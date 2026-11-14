@@ -24,111 +24,6 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| N13 | Name every function in decomp/src/text_00130000.c | any |  | ShawnDarr96/claude (2026-11-14) | 117 functions |
-| N14 | Name every function in decomp/src/text_00134000.c | any |  | ShawnDarr96/claude (2026-11-14) | 65 functions |
-| N15 | Name every function in decomp/src/text_00138000.c | any |  | ShawnDarr96/claude (2026-11-14) | 78 functions |
-| N16 | Name every function in decomp/src/text_0013c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 55 functions |
-| N19 | Name every function in decomp/src/text_00148000.c | any |  | ShawnDarr96/claude (2026-11-14) | 41 functions |
-| N21 | Name every function in decomp/src/text_00150000.c | any |  | ShawnDarr96/claude (2026-11-14) | 27 functions |
-| N22 | Name every function in decomp/src/text_00154000.c | any |  | ShawnDarr96/claude (2026-11-14) | 32 functions |
-| N30 | Name every function in decomp/src/text_00174000.c | any |  | ShawnDarr96/claude (2026-11-14) | 92 functions |
-| N32 | Name every function in decomp/src/text_0017c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 45 functions |
-| N34 | Name every function in decomp/src/text_00184000.c | any |  | ShawnDarr96/claude (2026-11-14) | 38 functions |
-| N35 | Name every function in decomp/src/text_00188000.c | any |  | ShawnDarr96/claude (2026-11-14) | 29 functions |
-| N36 | Name every function in decomp/src/text_0018c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 49 functions |
-| N37 | Name every function in decomp/src/text_00190000.c | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
-| N38 | Name every function in decomp/src/text_00194000.c | any |  | ShawnDarr96/claude (2026-11-14) | 22 functions |
-| N39 | Name every function in decomp/src/text_00198000.c | any |  | ShawnDarr96/claude (2026-11-14) | 30 functions |
-| N40 | Name every function in decomp/src/text_0019c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 21 functions |
-| N41 | Name every function in decomp/src/text_001a0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 28 functions |
-| N42 | Name every function in decomp/src/text_001a4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 55 functions |
-| N43 | Name every function in decomp/src/text_001a8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 50 functions |
-| N44 | Name every function in decomp/src/text_001ac000.c | any |  | ShawnDarr96/claude (2026-11-14) | 34 functions |
-| N45 | Name every function in decomp/src/text_001b0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
-| N46 | Name every function in decomp/src/text_001b4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 27 functions |
-| N47 | Name every function in decomp/src/text_001b8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 41 functions |
-| N48 | Name every function in decomp/src/text_001bc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 36 functions |
-| N49 | Name every function in decomp/src/text_001c0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 70 functions |
-| N50 | Name every function in decomp/src/text_001c4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 32 functions |
-| N51 | Name every function in decomp/src/text_001c8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 28 functions |
-| N52 | Name every function in decomp/src/text_001cc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 17 functions |
-| N53 | Name every function in decomp/src/text_001d0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 35 functions |
-| N54 | Name every function in decomp/src/text_001d4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 16 functions |
-| N55 | Name every function in decomp/src/text_001d8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 21 functions |
-| N56 | Name every function in decomp/src/text_001dc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 51 functions |
-| N57 | Name every function in decomp/src/text_001e0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 19 functions |
-| N58 | Name every function in decomp/src/text_001e4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 24 functions |
-| N59 | Name every function in decomp/src/text_001e8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 57 functions |
-| N60 | Name every function in decomp/src/text_001ec000.c | any |  | ShawnDarr96/claude (2026-11-14) | 31 functions |
-| N61 | Name every function in decomp/src/text_001f0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 53 functions |
-| N62 | Name every function in decomp/src/text_001f4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 75 functions |
-| N63 | Name every function in decomp/src/text_001f8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 37 functions |
-| N64 | Name every function in decomp/src/text_001fc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 34 functions |
-| N65 | Name every function in decomp/src/text_00200000.c | any |  | ShawnDarr96/claude (2026-11-14) | 28 functions |
-| N66 | Name every function in decomp/src/text_00204000.c | any |  | ShawnDarr96/claude (2026-11-14) | 44 functions |
-| N67 | Name every function in decomp/src/text_00208000.c | any |  | ShawnDarr96/claude (2026-11-14) | 42 functions |
-| N68 | Name every function in decomp/src/text_0020c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 37 functions |
-| N69 | Name every function in decomp/src/text_00210000.c | any |  | ShawnDarr96/claude (2026-11-14) | 14 functions |
-| N70 | Name every function in decomp/src/text_00214000.c | any |  | ShawnDarr96/claude (2026-11-14) | 14 functions |
-| N71 | Name every function in decomp/src/text_00218000.c | any |  | ShawnDarr96/claude (2026-11-14) | 11 functions |
-| N72 | Name every function in decomp/src/text_0021c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 4 functions |
-| N73 | Name every function in decomp/src/text_00220000.c | any |  | ShawnDarr96/claude (2026-11-14) | 10 functions |
-| N74 | Name every function in decomp/src/text_00224000.c | any |  | ShawnDarr96/claude (2026-11-14) | 6 functions |
-| N75 | Name every function in decomp/src/text_00228000.c | any |  | ShawnDarr96/claude (2026-11-14) | 4 functions |
-| N76 | Name every function in decomp/src/text_0022c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 24 functions |
-| N77 | Name every function in decomp/src/text_00230000.c | any |  | ShawnDarr96/claude (2026-11-14) | 15 functions |
-| N78 | Name every function in decomp/src/text_00234000.c | any |  | ShawnDarr96/claude (2026-11-14) | 34 functions |
-| N79 | Name every function in decomp/src/text_00238000.c | any |  | ShawnDarr96/claude (2026-11-14) | 16 functions |
-| N80 | Name every function in decomp/src/text_0023c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 21 functions |
-| N81 | Name every function in decomp/src/text_00240000.c | any |  | ShawnDarr96/claude (2026-11-14) | 21 functions |
-| N82 | Name every function in decomp/src/text_00244000.c | any |  | ShawnDarr96/claude (2026-11-14) | 11 functions |
-| N83 | Name every function in decomp/src/text_00248000.c | any |  | ShawnDarr96/claude (2026-11-14) | 14 functions |
-| N84 | Name every function in decomp/src/text_0024c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 15 functions |
-| N85 | Name every function in decomp/src/text_00250000.c | any |  | ShawnDarr96/claude (2026-11-14) | 4 functions |
-| N86 | Name every function in decomp/src/text_00254000.c | any |  | ShawnDarr96/claude (2026-11-14) | 11 functions |
-| N87 | Name every function in decomp/src/text_00258000.c | any |  | ShawnDarr96/claude (2026-11-14) | 17 functions |
-| N88 | Name every function in decomp/src/text_0025c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 15 functions |
-| N89 | Name every function in decomp/src/text_00260000.c | any |  | ShawnDarr96/claude (2026-11-14) | 16 functions |
-| N90 | Name every function in decomp/src/text_00264000.c | any |  | ShawnDarr96/claude (2026-11-14) | 18 functions |
-| N91 | Name every function in decomp/src/text_00268000.c | any |  | ShawnDarr96/claude (2026-11-14) | 23 functions |
-| N92 | Name every function in decomp/src/text_0026c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 8 functions |
-| N93 | Name every function in decomp/src/text_00270000.c | any |  | ShawnDarr96/claude (2026-11-14) | 17 functions |
-| N94 | Name every function in decomp/src/text_00274000.c | any |  | ShawnDarr96/claude (2026-11-14) | 22 functions |
-| N95 | Name every function in decomp/src/text_00278000.c | any |  | ShawnDarr96/claude (2026-11-14) | 10 functions |
-| N96 | Name every function in decomp/src/text_0027c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 13 functions |
-| N97 | Name every function in decomp/src/text_00280000.c | any |  | ShawnDarr96/claude (2026-11-14) | 8 functions |
-| N98 | Name every function in decomp/src/text_00284000.c | any |  | ShawnDarr96/claude (2026-11-14) | 40 functions |
-| N99 | Name every function in decomp/src/text_00288000.c | any |  | ShawnDarr96/claude (2026-11-14) | 25 functions |
-| N100 | Name every function in decomp/src/text_0028c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 39 functions |
-| N101 | Name every function in decomp/src/text_00290000.c | any |  | ShawnDarr96/claude (2026-11-14) | 46 functions |
-| N102 | Name every function in decomp/src/text_00294000.c | any |  | ShawnDarr96/claude (2026-11-14) | 36 functions |
-| N103 | Name every function in decomp/src/text_00298000.c | any |  | ShawnDarr96/claude (2026-11-14) | 17 functions |
-| N104 | Name every function in decomp/src/text_0029c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 22 functions |
-| N105 | Name every function in decomp/src/text_002a0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 36 functions |
-| N106 | Name every function in decomp/src/text_002a4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 45 functions |
-| N107 | Name every function in decomp/src/text_002a8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 30 functions |
-| N108 | Name every function in decomp/src/text_002ac000.c | any |  | ShawnDarr96/claude (2026-11-14) | 37 functions |
-| N109 | Name every function in decomp/src/text_002b0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 16 functions |
-| N110 | Name every function in decomp/src/text_002b4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 6 functions |
-| N111 | Name every function in decomp/src/text_002b8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 49 functions |
-| N112 | Name every function in decomp/src/text_002bc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 23 functions |
-| N113 | Name every function in decomp/src/text_002c0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
-| N114 | Name every function in decomp/src/text_002c4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 26 functions |
-| N115 | Name every function in decomp/src/text_002c8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 17 functions |
-| N116 | Name every function in decomp/src/text_002cc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 23 functions |
-| N117 | Name every function in decomp/src/text_002d0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 18 functions |
-| N118 | Name every function in decomp/src/text_002d4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 45 functions |
-| N119 | Name every function in decomp/src/text_002d8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 26 functions |
-| N120 | Name every function in decomp/src/text_002dc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 53 functions |
-| N121 | Name every function in decomp/src/text_002e0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 26 functions |
-| N122 | Name every function in decomp/src/text_002e4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 15 functions |
-| N123 | Name every function in decomp/src/text_002e8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 29 functions |
-| N124 | Name every function in decomp/src/text_002ec000.c | any |  | ShawnDarr96/claude (2026-11-14) | 14 functions |
-| N125 | Name every function in decomp/src/text_002f0000.c | any |  | ShawnDarr96/claude (2026-11-14) | 11 functions |
-| N126 | Name every function in decomp/src/text_002f4000.c | any |  | ShawnDarr96/claude (2026-11-14) | 45 functions |
-| N127 | Name every function in decomp/src/text_002f8000.c | any |  | ShawnDarr96/claude (2026-11-14) | 71 functions |
-| N128 | Name every function in decomp/src/text_002fc000.c | any |  | ShawnDarr96/claude (2026-11-14) | 7 functions |
-| N129 | Name every function in decomp/src/text_00304000.c | any |  | ShawnDarr96/claude (2026-11-14) | 9 functions |
 
 ## P2 Types
 
@@ -192,6 +87,111 @@ Columns:
 | N33 | every function in the file named or assigned to its library | P1 | ShawnDarr96/claude | 2026-11-14 |  |
 | N130 | every function in the file named or assigned to its library | P1 | ShawnDarr96/claude | 2026-11-14 |  |
 | N131 | every function in the file named or assigned to its library | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N13 | named; module placeholders: vu0math 35, libpad2 12, libdbc 5 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N14 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N15 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N16 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N19 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N21 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N22 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N30 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N32 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N34 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N35 | named; module placeholders: road 8 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N36 | named; module placeholders: snd 32 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N37 | named; module placeholders: snd 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N38 | named; module placeholders: carsnd 13 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N39 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N40 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N41 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N42 | named; module placeholders: course 10 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N43 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N44 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N45 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N46 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N47 | named; module placeholders: garage 15 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N48 | named; module placeholders: garage 36 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N49 | named; module placeholders: profile 19 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N50 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N51 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N52 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N53 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N54 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N55 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N56 | named; module placeholders: raceprog 6 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N57 | named; module placeholders: raceprog 2, race 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N58 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N59 | named; module placeholders: race 11 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N60 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N61 | named; module placeholders: demo 11 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N62 | named; module placeholders: ui 2, demo 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N63 | named; module placeholders: menu 5 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N64 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N65 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N66 | named; module placeholders: menu 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N67 | all functions named | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N68 | named; module placeholders: menuscr 8, scrcareer 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N69 | named; module placeholders: scrcareer 7, menuscr 7 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N70 | named; module placeholders: scrgarage 11, scrrace 1, menuscr 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N71 | named; module placeholders: scrcareer 6, scrrace 3, menuscr 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N72 | named; module placeholders: scrcareer 3, menuscr 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N73 | named; module placeholders: scrcareer 4, scrrace 3, menuscr 3 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N74 | named; module placeholders: scrcareer 6 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N75 | named; module placeholders: menuscr 2, scrcareer 1, scrrace 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N76 | named; module placeholders: menuscr 15, scrcareer 4, scrrace 4 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N77 | named; module placeholders: menuscr 7, scrcareer 6, scrrace 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N78 | named; module placeholders: menuscr 20, scrcareer 6, scrrace 6 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N79 | named; module placeholders: scrcareer 9, menuscr 3, scrrace 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N80 | named; module placeholders: menuscr 17, scrrace 4 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N81 | named; module placeholders: menuscr 19, scrrecord 1, scrrace 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N82 | named; module placeholders: scrcareer 9, menuscr 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N83 | named; module placeholders: scrcareer 13, menuscr 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N84 | named; module placeholders: scrcareer 6, scrrace 4, menuscr 3 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N85 | named; module placeholders: menuscr 2, scrcareer 1, scrrace 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N86 | named; module placeholders: scrrace 3, scrgarage 3, scrcareer 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N87 | named; module placeholders: scrgarage 8, scrrace 8, scrcareer 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N88 | named; module placeholders: scrgarage 11, scrrace 2, menuscr 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N89 | named; module placeholders: scrcareer 7, menuscr 5, scrgarage 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N90 | named; module placeholders: menuscr 12, scrcareer 3, scrgarage 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N91 | named; module placeholders: menuscr 11, scrgarage 10, scrrace 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N92 | named; module placeholders: scrgarage 3, menuscr 3, scrcareer 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N93 | named; module placeholders: scrcareer 8, scrgarage 5, scrrace 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N94 | named; module placeholders: scrgarage 13, menuscr 6, scrcareer 3 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N95 | named; module placeholders: scrgarage 5, scrcareer 4, scrrace 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N96 | named; module placeholders: menuscr 7, scrgarage 3, scrcareer 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N97 | named; module placeholders: menuscr 6, scrgarage 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N98 | named; module placeholders: menuscr 16, scrgarage 15, scrrace 7 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N99 | named; module placeholders: menuscr 13, scrcareer 8, scrrecord 1 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N100 | named; module placeholders: menuscr 27, scrrace 9, scrcareer 2 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N101 | named; module placeholders: menuscr 22, scrcareer 9, scrrace 6 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N102 | named; module placeholders: menuscr 20, scroptions 9, scrcareer 4 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N103 | named; module placeholders: scrgarage 5, scrcareer 5, menuscr 5 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N104 | named; module placeholders: menuscr 9, scrcareer 8, scrgarage 3 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N105 | named; module placeholders: menuscr 17, scrgarage 13, scrcareer 3 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N106 | named; module placeholders: menuscr 28, scrgarage 8, scrrecord 3 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N107 | named; module placeholders: scrgarage 11, menuscr 10, scrcareer 7 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N108 | named; module placeholders: menuscr 23, scrgarage 10, scrcareer 4 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N109 | named; module placeholders: script 16 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N110 | named; module placeholders: script 6 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N111 | named; module placeholders: script 49 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N112 | named; module placeholders: script 14, result 9 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N113 | named; module placeholders: result 33 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N114 | named; module placeholders: raceui 22, result 4 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N115 | named; module placeholders: raceui 17 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N116 | named; module placeholders: racehud 23 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N117 | named; module placeholders: racehud 10, showroom 8 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N118 | named; module placeholders: showroom 45 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N119 | named; module placeholders: showroom 13, replayui 13 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N120 | named; module placeholders: password 50 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N121 | named; module placeholders: eventui 26 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N122 | named; module placeholders: eventui 15 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N123 | named; module placeholders: eventui 29 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N124 | named; module placeholders: eventui 14 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N125 | named; module placeholders: menuscr 11 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N126 | named; module placeholders: nameentry 33, menuscr 12 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N127 | named; module placeholders: nameentry 52, attract 19 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N128 | named; module placeholders: misc 7 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
+| N129 | named; module placeholders: misc 9 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
 
 ## Changes to the board
 
@@ -202,3 +202,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N17, N18, N20, N23, N24, N25, N26, N27, N28, N29, N31, N33, N130, N131.
 - 2026-11-14 ShawnDarr96/claude: N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N17, N18, N20, N23, N24, N25, N26, N27, N28, N29, N31, N33, N130, N131 done.
 - 2026-11-14 ShawnDarr96/claude: claim N13, N14, N15, N16, N19, N21, N22, N30, N32, N34, N35, N36, N37, N38, N39, N40, N41, N42, N43, N44, N45, N46, N47, N48, N49, N50, N51, N52, N53, N54, N55, N56, N57, N58, N59, N60, N61, N62, N63, N64, N65, N66, N67, N68, N69, N70, N71, N72, N73, N74, N75, N76, N77, N78, N79, N80, N81, N82, N83, N84, N85, N86, N87, N88, N89, N90, N91, N92, N93, N94, N95, N96, N97, N98, N99, N100, N101, N102, N103, N104, N105, N106, N107, N108, N109, N110, N111, N112, N113, N114, N115, N116, N117, N118, N119, N120, N121, N122, N123, N124, N125, N126, N127, N128, N129.
+- 2026-11-14 ShawnDarr96/claude: N13, N14, N15, N16, N19, N21, N22, N30, N32, N34, N35, N36, N37, N38, N39, N40, N41, N42, N43, N44, N45, N46, N47, N48, N49, N50, N51, N52, N53, N54, N55, N56, N57, N58, N59, N60, N61, N62, N63, N64, N65, N66, N67, N68, N69, N70, N71, N72, N73, N74, N75, N76, N77, N78, N79, N80, N81, N82, N83, N84, N85, N86, N87, N88, N89, N90, N91, N92, N93, N94, N95, N96, N97, N98, N99, N100, N101, N102, N103, N104, N105, N106, N107, N108, N109, N110, N111, N112, N113, N114, N115, N116, N117, N118, N119, N120, N121, N122, N123, N124, N125, N126, N127, N128, N129 done.
