@@ -86,9 +86,15 @@ python -I scripts/build.py --bindir <ps2dev>/ee/bin                # assemble, l
 ```
 
 `scripts/build.py` needs EE binutils (`mips64r5900el-ps2-elf-as/ld/objcopy` from the
-[ps2dev](https://github.com/ps2dev/ps2dev/releases) toolchain). The byte-identical round trip has not been
+[ps2dev](https://github.com/ps2dev/ps2dev/releases) toolchain). The Windows build of ps2dev is 32-bit and
+needs a **32-bit** `libzstd.dll` next to the executables (`dll/libzstd.dll` from the official
+`zstd-v1.5.7-win32.zip` at https://github.com/facebook/zstd/releases); without it they exit with code
+0xC000007B / 127. The byte-identical round trip has not been
 verified yet (board row M2). Matching C additionally needs the original compiler, Metrowerks CodeWarrior
-for PS2 2.4.1 (`MW MIPS C Compiler 2.4.1.01`), which is proprietary and not provided here (board row M1).
+for PS2 2.4.1 (`MW MIPS C Compiler 2.4.1.01`), which is proprietary and not provided here (board row M1). The closest build the community uses is
+decomp.me's `mwcps2-2.4-001213` (CodeWarrior PS2 2.4, December 2000); whether it reproduces this game's
+2.4.1.01 output exactly still has to be tested on a few small functions, e.g. by making scratches on
+https://decomp.me (platform PS2) from functions in `build/asm/`.
 
 Layout found while splitting: `.text` 0x100000-0x308080, `.data` to 0x35e130, `.rodata` to 0x3685e0,
 static-initializer code (`__sinit_*`) 0x3685e0-0x36db30, more data (vtables) to 0x36ef80, `.bss` to 0x46a600,
