@@ -13,7 +13,7 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
-| F6 | Reverse the BUILD.TOC / BUILD.DAT archive format (GUT_Archive) and write scripts/extract_build.py | any |  |  | BUILD.DAT is 1.3 GB, BUILD.TOC 304 KB |
+| F6 | Reverse the BUILD.TOC / BUILD.DAT archive format (GUT_Archive) and write scripts/extract_build.py | any |  | ShawnDarr96/claude (2026-11-14) | BUILD.DAT is 1.3 GB, BUILD.TOC 304 KB |
 | F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
@@ -250,3 +250,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N153.
 - 2026-11-14 ShawnDarr96/claude: claim F4, F5.
 - 2026-11-14 ShawnDarr96/claude: F4, F5 done; added F10 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim F6.
