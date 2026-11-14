@@ -24,7 +24,7 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| N1 | Name every function in decomp/src/text_00100000.c | any | | | 71 functions |
+| N1 | Name every function in decomp/src/text_00100000.c | any |  | ShawnDarr96/claude (2026-11-14) | 71 functions |
 | N2 | Name every function in decomp/src/text_00104000.c | any | | | 48 functions |
 | N3 | Name every function in decomp/src/text_00108000.c | any | | | 25 functions |
 | N4 | Name every function in decomp/src/text_0010c000.c | any | | | 65 functions |
@@ -198,3 +198,4 @@ Columns:
 - 2026-11-14 board created with `board init`; rows for SDK identification, naming (one per 16 KiB file), types and matching added.
 - 2026-11-14 ShawnDarr96/claude: claim F1, F2.
 - 2026-11-14 ShawnDarr96/claude: F1, F2 done; added F8, F9 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim N1.
