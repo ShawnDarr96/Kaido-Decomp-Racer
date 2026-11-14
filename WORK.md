@@ -45,6 +45,7 @@ Columns:
 | N150 | Replace the snd_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 33 functions |
 | N151 | Replace the racehud_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 33 functions |
 | N152 | Replace the small-module placeholders (snd, racehud, loadfile, libmc, profile, attract, scroptions, libcdvd, misc, carsnd, replayui, libpad2, race, demo, scrrecord, libm, course, road, raceprog, menu, libdbc, libgraph, ui, scrsave) | any |  |  | about 330 functions |
+| N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  |  |
 
 ## P2 Types
 
@@ -245,3 +246,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N150.
 - 2026-11-14 ShawnDarr96: added N151.
 - 2026-11-14 ShawnDarr96: added N152.
+- 2026-11-14 ShawnDarr96: added N153.
