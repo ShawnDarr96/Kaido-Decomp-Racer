@@ -789,6 +789,13 @@ address,name,signature,source,comment
 0x00131a60,libdbc_sub_00131a60,,f1-module,
 0x00131a88,libdbc_sub_00131a88,,f1-module,
 0x00131b08,libdbc_sub_00131b08,,f1-module,
+0x001321c0,maybe_List_Append,,game,
+0x00132250,maybe_List_Remove,,game,
+0x001322a0,maybe_List_Clear,,game,
+0x00132320,maybe_List_dtor,,game,
+0x00132400,maybe_ListNode_dtor,,game,
+0x00132450,maybe_ListNode_ctor,,game,
+0x001325d0,Mem_Set16,,game,"(dst, value, size) qword fill; 53 callers"
 0x00132600,maybe_Mem_CopyQwords,,f2,16-byte aligned fast copy
 0x00132790,maybe_Mutex_Delete,,f2,
 0x001327d0,maybe_Mutex_Create,,f2,
@@ -836,6 +843,333 @@ address,name,signature,source,comment
 0x00133940,maybe_Rand_Float,,f2,
 0x001339a0,maybe_Rand_Seed,,f2,
 0x001339f0,maybe_Math_AngleToIndex,,f2,x * 40.74 (256/2pi)
+0x00134240,maybe_Vec3_SetAbsYZ,,game,
+0x001342e0,Input_UpdateButtonEdges,,game,held/pressed/released bit masks
+0x001343d0,Input_Clear,,game,
+0x00134400,Input_LatchButton,,game,
+0x00134430,Input_GetAnalog,,game,
+0x00134440,maybe_Gut_HashInsert,,game,recursive
+0x00134630,Gut_PackGetEntry,,game,count + offset table; 32 callers
+0x00134680,Gut_ArchiveDecompress,,game,"""GUT_Archive Memory Over"", ""destSize Error"""
+0x00134860,maybe_Gfx_VSyncWakeThread,,game,iReferThreadStatus + iWakeup
+0x001348d0,Gfx_StoreImage,,game,sceGsExecStoreImage
+0x001349a0,Gfx_ResetPathsIfBusy,,game,"sceGsSyncPath, kicks VIF1/GIF DMA"
+0x00134a20,maybe_Gfx_KickVif1Dma,,game,
+0x00134ab0,Gfx_SyncPath,,game,
+0x00134b60,Gfx_Init,,game,"sceGsResetGraph(0,1,2,1), DBuff"
+0x00134cf0,maybe_Gfx_BuildDisplayEnv,,game,
+0x00135030,Gfx_AddFrameCallback,,game,
+0x00135040,Gfx_RemoveFrameCallback,,game,
+0x00135050,Gfx_SyncAndFlip,,game,"runs vsync callbacks, sync path"
+0x00135420,Gfx_SetVideoMode,,game,sceGsResetGraph + DefDispEnv + vsync callback
+0x00135660,Gfx_Shutdown,,game,
+0x001356a0,Gfx_ResetState,,game,
+0x00135750,Dbc_Release,,game,refcounted sceDbcEnd
+0x00135790,Dbc_Acquire,,game,refcounted sceDbcInit
+0x001357f0,CdStream_ReadSector,,game,sceCdStRead
+0x001359c0,CdStream_Close,,game,
+0x00135a60,CdStream_Open,,game,
+0x00135b60,CdStream_Shutdown,,game,
+0x00135b90,maybe_CdStream_Init,,game,
+0x00135c00,File_WriteHostRequest,,game,sceOpen/sceLseek/sceWrite
+0x00135cf0,File_ReadHostRequest,,game,sceOpen/sceLseek/sceRead
+0x00135de0,maybe_Cd_ToggleMotor,,game,
+0x00135e50,File_LoaderThread,,game,"""decompress Error"""
+0x00136140,File_StartRequest,,game,
+0x001363e0,File_PollRequest,,game,
+0x00136610,File_NextRequest,,game,
+0x001368c0,File_AbortAll,,game,
+0x00136920,File_IsBusy,,game,
+0x001369c0,File_CancelRequest,,game,
+0x00136a80,File_QueueRequest,,game,
+0x00136be0,File_OpenCdFile,,game,sceCdSearchFile
+0x00136d10,File_ReadCdFile,,game,
+0x00136e10,maybe_File_GetSectorCount,,game,
+0x00136e30,File_ReadClock,,game,sceCdReadClock
+0x00136ed0,File_GetDiscType,,game,
+0x00136fa0,File_Shutdown,,game,
+0x00137090,File_Init,,game,"sceCdInit, loader thread"
+0x00137250,File_CloseHostHandles,,game,
+0x001372d0,File_ResetHostHandles,,game,
+0x00137320,File_SetHeap,,game,
+0x00137460,Pad_Update,,game,
+0x001375f0,Pad_GetPort,,game,0x498 bytes per pad at 0x386650
+0x00137620,maybe_Pad_Shutdown,,game,
+0x00137680,Pad_Init,,game,"scePad2CreateSocket per port, state at 0x386650"
+0x00137810,Pad_SetActuator,,game,sceDbcSendData2 (vibration)
+0x001379e0,Pad_ReadButtons,,game,
+0x00137eb0,Pad_Close,,game,
+0x00138050,maybe_Pad_ctor,,game,
+0x00138120,Pad_MapButtons,,game,
+0x00138380,maybe_Pad_ReadAnalogAxes,,game,
+0x00138580,maybe_Pad_ApplyDeadzone,,game,
+0x001388a0,Pad_Reset,,game,
+0x00138960,Pad_InitState,,game,
+0x00138b60,Sema_GetCount,,game,
+0x00138ba0,Sema_Signal,,game,handles interrupt context
+0x00138bf0,Sema_Wait,,game,
+0x00138c30,Sema_Delete,,game,
+0x00138c70,Sema_Create,,game,
+0x00138cb0,Thread_Exit,,game,
+0x00138cf0,Thread_Terminate,,game,
+0x00138d30,Thread_Start,,game,
+0x00138d70,Thread_Delete,,game,
+0x00138dc0,Thread_Create,,game,
+0x00138e20,Mc_PollResult,,game,sceMcSync
+0x001390b0,Mc_IssueCommand,,game,switch over sceMc* calls
+0x00139340,Mc_QueueCommand,,game,
+0x001394c0,Mc_Update,,game,
+0x00139580,Mc_Shutdown,,game,
+0x00139640,Mc_Init,,game,sceMcInit
+0x00139770,Mc_CancelCommand,,game,
+0x00139830,Mc_RemoveCommandsFor,,game,
+0x001398c0,Mc_InitCommand,,game,
+0x00139910,Mc_TranslateResult,,game,
+0x00139f10,maybe_Gfx_ClipRect,,game,
+0x0013a0e0,Movie_CopyAudioChunk,,game,
+0x0013a200,Movie_CopyVideoChunk,,game,
+0x0013a430,Movie_HandleCallback,,game,sceMpeg callback dispatch
+0x0013a4e0,Movie_GetFrameCount,,game,
+0x0013a4f0,Movie_IsFrameReady,,game,
+0x0013a540,Movie_Demux,,game,sceMpegDemuxPss
+0x0013a5d0,Movie_DecodeThread,,game,
+0x0013a760,maybe_Movie_iSuspendSelf,,game,
+0x0013a770,Movie_IsEnd,,game,
+0x0013a790,Movie_FeedData,,game,
+0x0013a8b0,Movie_RequestStop,,game,
+0x0013a8e0,Movie_Close,,game,
+0x0013a930,Movie_Start,,game,
+0x0013ab20,Movie_StopDma,,game,
+0x0013abc0,Movie_Open,,game,sceMpegCreate
+0x0013ad00,RingBuf_Consume,,game,
+0x0013ad20,RingBuf_GetSpans,,game,
+0x0013ad50,RingBuf_GetFree,,game,
+0x0013ad70,RingBuf_GetWriteSpans,,game,
+0x0013ae30,RingBuf_Write,,game,
+0x0013af50,Movie_IpuDmaHandler,,game,
+0x0013b0f0,Movie_ReadDmaHandler,,game,
+0x0013b480,Movie_ResetDma,,game,
+0x0013b5a0,Movie_KickDma,,game,
+0x0013b810,Movie_GetFrameBuffer,,game,
+0x0013b830,Movie_GetBufferCount,,game,
+0x0013b840,Movie_GetBufferSize,,game,
+0x0013b850,Movie_GetReadyCount,,game,
+0x0013b860,Movie_GetUserData,,game,
+0x0013b870,Movie_ReleaseFrame,,game,
+0x0013b8a0,Movie_IsBufferFull,,game,
+0x0013b8c0,Movie_GetStreamSpans,,game,
+0x0013b9b0,Movie_ResetStream,,game,
+0x0013bb60,Movie_InitStream,,game,
+0x0013bc30,Stream_Advance,,game,
+0x0013bc70,Stream_GetReadPtr,,game,
+0x0013bcb0,Stream_GetSize,,game,
+0x0013bcc0,Stream_InvokeCallback,,game,
+0x0013bd10,Rpc_GetPendingCount,,game,intc-guarded read
+0x0013bd50,Rpc_Call,,game,sceSifCallRpc wrapper with mutex
+0x0013be40,Rpc_SetBlocking,,game,returns previous
+0x0013be50,Rpc_Unbind,,game,
+0x0013be60,Rpc_Bind,,game,sceSifBindRpc retry loop
+0x0013bef0,RpcServer_Thread,,game,sceSifRegisterRpc + sceSifRpcLoop
+0x0013bf50,RpcServer_Stop,,game,
+0x0013bfa0,RpcServer_Start,,game,
+0x0013c000,Sif_WaitDma,,game,
+0x0013c050,Sif_SendDma,,game,
+0x0013c100,Rpc_PackStrings,,game,
+0x0013c1b0,Iop_LoadModule,,game,
+0x0013c1f0,Iop_Reboot,,game,"sceSifInitRpc, loads IOPRP image"
+0x0013c2c0,IopSnd_Command,,game,
+0x0013c4b0,IopSnd_SetBlocking,,game,
+0x0013c550,IopStrm_RpcHandler,,game,
+0x0013c730,IopStrm_TransferChunk,,game,
+0x0013c880,IopStrm_Open,,game,
+0x0013c9b0,IopStrm_Command,,game,11 callers
+0x0013cb20,IopStrm_IsPlaying,,game,
+0x0013cbc0,IopStrm_SetVolume,,game,
+0x0013cc80,IopStrm_IsStopped,,game,
+0x0013cd10,IopStrm_Stop,,game,
+0x0013cd70,IopStrm_GetState,,game,
+0x0013cdc0,IopStrm_WaitIdle,,game,
+0x0013ce30,IopStrm_Flush,,game,
+0x0013ceb0,IopStrm_AddPosition,,game,
+0x0013cf10,IopStrm_Play,,game,
+0x0013d000,IopStrm_PlayEx,,game,
+0x0013d0d0,IopStrm_Shutdown,,game,
+0x0013d170,IopStrm_Init,,game,
+0x0013d260,IopStrm_Reset,,game,
+0x0013d300,IopStrm_SetRpcClient,,game,
+0x0013d310,IopSe_Open,,game,
+0x0013d480,IopSe_FlushDma,,game,
+0x0013d600,IopSe_ClearPending,,game,
+0x0013d620,IopSe_Command,,game,
+0x0013d770,IopSe_LoadBank,,game,
+0x0013d890,IopSe_Shutdown,,game,
+0x0013d8f0,IopSe_OpenLocked,,game,
+0x0013d960,IopSe_Reset,,game,
+0x0013d9d0,IopSe_SetRpcClient,,game,
+0x0013d9e0,Tex_GetEntry,,game,
+0x0013da40,Tex_GetFirstEntry,,game,
+0x0013da70,Tex_Relocate,,game,13 callers
+0x0013dbb0,Tex_GetPsmBytesPerPixelClass,,game,psm 0x14/0x2c/0x24
+0x0013dc80,Tex_GetPsmInfo,,game,
+0x0013dca0,Tex_BuildUploadPacket,,game,
+0x0013e3d0,Tex_BuildClutPacket,,game,
+0x0013e840,Tex_GetGsParams,,game,
+0x0013eb50,Tex_GetMipLevel,,game,
+0x0013ebd0,Tex_GetMipCount,,game,
+0x0013ec20,Tex_GetImageData,,game,
+0x0013ecf0,Tex_GetClutHeader,,game,
+0x0013ed10,Tex_GetTex0,,game,
+0x0013eee0,Tex_OffsetTbp,,game,
+0x0013f060,Tex_SetFilter,,game,
+0x0013f270,Tex_UploadAll,,game,
+0x0013f340,Tex_Upload,,game,
+0x0013f950,Tex_SwizzleBlocks,,game,
+0x0013fe10,Tex_GetPageCount,,game,
+0x0013ff20,Tex_GetBlockCount,,game,
+0x00140020,Bits_HighestSet,,game,
+0x00140070,Tex_GetBufferWidth,,game,psm-dependent TBW
+0x00140140,Vu0_Sqrt,,game,
+0x00140170,Vu0_Vec3Distance,,game,
+0x001401c0,maybe_Camera_ClampAngles,,game,
+0x00140350,Wheel_Update,,game,lgDevEnumHint / lgDevAReadMulti
+0x00140540,Wheel_UpdateForceEffects,,game,lgDevDownloadForceEffect etc.
+0x00140ca0,Wheel_PollDevices,,game,lgDevRead / lgDevClose
+0x00140e90,Wheel_EnumerateDevices,,game,lgDevEnumerate / lgDevOpen
+0x00141120,maybe_Wheel_SortDevices,,game,recursive
+0x00141310,Wheel_GetDeviceName,,game,
+0x00141400,Wheel_GetHandle,,game,
+0x00141430,maybe_Wheel_Shutdown,,game,
+0x00141530,Wheel_Init,,game,lgDevInit
+0x001415c0,Wheel_StateMachine,,game,
+0x00141990,Wheel_SetButtonMap,,game,
+0x001419c0,Wheel_SetAxisMap,,game,
+0x001419f0,Wheel_IsActive,,game,
+0x00141a00,Wheel_ConsumeDisconnect,,game,
+0x00141a80,Wheel_ReadInput,,game,
+0x001423f0,Wheel_ReadAxis,,game,
+0x00142910,Wheel_ReadButtons,,game,
+0x00142b40,Wheel_IsEffectIdle,,game,
+0x00142b90,Wheel_PlayEffect,,game,
+0x00142c80,Wheel_IsEffectPlaying,,game,
+0x00142cb0,Wheel_SetEffectGain,,game,
+0x00142d10,Wheel_BuildEffect,,game,
+0x00142e40,Wheel_SetCenterSpring,,game,
+0x00142e80,Wheel_SetAutocenter,,game,
+0x00142eb0,Wheel_ResetState,,game,
+0x00142fb0,maybe_Wheel_ctor,,game,
+0x00142ff0,Vu0_TransformPointPersp,,game,
+0x001430f0,maybe_Camera_BuildFrustum,,game,
+0x00143890,Camera_BuildProjection,,game,
+0x00143b40,Gfx_SetupRenderTarget,,game,
+0x00143e10,Gfx_SetupRenderTargetEx,,game,9 callers
+0x00144350,Camera_GetViewMatrix,,game,
+0x001443a0,Camera_BuildScreenMatrix,,game,
+0x00144560,Gfx_GetViewportSize,,game,
+0x001445d0,Camera_Init,,game,
+0x001448b0,Gfx_ClearRenderTarget,,game,
+0x00144940,Gfx_SetViewportOffset,,game,
+0x00144950,Gfx_SetViewportSize,,game,
+0x00144960,Gfx_CopyRenderTarget,,game,
+0x00144aa0,DmaBuf_Free,,game,
+0x00144b00,DmaBuf_Alloc,,game,
+0x00144b80,DmaBuf_SetUncached,,game,
+0x00144bb0,DmaChain_GetSpan,,game,
+0x00144cd0,DmaChain_Init,,game,
+0x00144d90,DmaChain_Kick,,game,
+0x00144e50,DmaChain_Begin,,game,
+0x00144fd0,DmaChain_End,,game,
+0x00145100,DmaChain_SetFlag,,game,
+0x00145170,DmaChain_Destroy,,game,
+0x00145250,DmaChain_Create,,game,
+0x00145370,DmaChain_DestroyAll,,game,
+0x00145500,DmaChain_SetHeap,,game,
+0x00145590,Pkt_Close,,game,
+0x00145640,Pkt_AddGsRegisters,,game,0x36 qwords
+0x00145680,Pkt_AddGsDefaults,,game,0xf qwords
+0x001456c0,Pkt_Reserve,,game,7 callers
+0x00145780,Pkt_AddRef,,game,
+0x00145800,Pkt_SetTag,,game,
+0x00145820,Pkt_SetTexFlush,,game,
+0x00145860,Pkt_SetScissor,,game,
+0x00145a80,Pkt_SetFrame,,game,
+0x00145c50,Pkt_Begin,,game,
+0x00145d70,Pkt_End,,game,25 callers
+0x00145e30,Pkt_AppendData,,game,
+0x00145f10,Pkt_Flush,,game,15 callers
+0x00145f50,Pkt_AddTexture,,game,
+0x00146050,Pkt_AddMicroProgram,,game,
+0x00146140,Pkt_AddSwizzledImage,,game,
+0x00146230,Pkt_CloseDmaTag,,game,"DMA ""end"" 0x60000000"
+0x001462b0,Pkt_AddGifTag,,game,
+0x00146370,Pkt_AllocVif,,game,10 callers
+0x001463f0,Pkt_PatchTag,,game,
+0x00146480,Pkt_AllocDmaRef,,game,12 callers
+0x00146570,Pkt_Submit,,game,43 callers
+0x001465c0,Pkt_SubmitToChain,,game,43 callers
+0x001466b0,Pkt_Init,,game,17 callers
+0x001466e0,maybe_Pkt_InitLayers,,game,
+0x001467a0,Pkt_AddVu1Header,,game,
+0x00146820,Pkt_AddVu1HeaderTex,,game,
+0x001468a0,Pkt_AddVu1HeaderShort,,game,
+0x00146920,Pkt_AddVu1Matrices,,game,
+0x00146a90,Pkt_AddVu1Base,,game,
+0x00146b80,maybe_Model_BuildPacket,,game,
+0x00147020,Model_CopyStaticPacket,,game,
+0x00147070,maybe_Model_BuildSkinnedPacket,,game,
+0x00147490,Model_FinishPacket,,game,
+0x00147580,Model_PatchPacket,,game,
+0x00147610,Model_BeginPacket,,game,
+0x00147660,Pkt_AddTextureRegs,,game,
+0x001477a0,maybe_Model_SetupLighting,,game,
+0x00147b30,maybe_Model_DrawMesh,,game,
+0x00147d80,maybe_Model_DrawMeshClipped,,game,
+0x00148150,maybe_Model_DrawSimple,,game,
+0x001482d0,maybe_Model_DrawSimpleAlt,,game,
+0x00148430,Model_UpdateNodeMatrix,,game,11 callers
+0x001486a0,maybe_Layer_Draw,,game,
+0x00148820,Layer_Close,,game,10 callers
+0x00148850,Layer_Open,,game,10 callers
+0x00148950,Layer_Reset,,game,10 callers
+0x001489a0,maybe_Gs_BuildSpriteRegs,,game,
+0x00148bb0,maybe_Gs_BuildSpritePacket,,game,
+0x00148ea0,maybe_Gs_SetAlphaTest,,game,
+0x001490a0,maybe_Gs_BuildRectPacket,,game,
+0x00149390,maybe_Gs_BuildFullscreenQuad,,game,
+0x00149670,maybe_Gs_SetBlend,,game,
+0x001497f0,maybe_Gs_BuildBlendRect,,game,
+0x00149a80,Gs_BuildClearPacket,,game,
+0x00149c90,maybe_Gs_BuildTiledCopy,,game,
+0x0014a0d0,maybe_Model_DrawShadow,,game,
+0x0014a550,maybe_Layer_DrawModel,,game,
+0x0014a800,Model_Draw,,game,9 callers
+0x0014a9c0,maybe_Model_ClipPrimitive,,game,
+0x0014ab40,maybe_Model_TransformPrimitive,,game,
+0x0014af80,maybe_Model_EmitPrimitives,,game,
+0x0014b700,Pkt_AddPrimitives,,game,28 callers
+0x0014b850,Scene_SetCallback2,,game,
+0x0014b860,Scene_SetResetCheck,,game,
+0x0014b870,Scene_GetNext,,game,
+0x0014b880,Scene_RequestChange,,game,
+0x0014b890,Scene_RequestExit,,game,
+0x0014b8a0,Scene_SetParam,,game,11 callers
+0x0014b8b0,Scene_GetParam,,game,
+0x0014b8c0,Scene_Update,,game,returns nonzero when the scene ends
+0x0014bac0,Scene_Start,,game,
+0x0014bb00,Scene_FreeObjects,,game,
+0x0014bc60,Scene_CreateObjects,,game,
+0x0014be10,Scene_Shutdown,,game,
+0x0014be30,maybe_Scene_InitHeap,,game,
+0x0014be40,Arc_LoadFile,,game,
+0x0014bf00,Arc_LoadFileEx,,game,54 callers
+0x0014bfe0,Arc_GetFileSize,,game,
+0x0014c0a0,Arc_Init,,game,"BUILD.TOC / BUILD.DAT, OPMOV/GLOGO movies"
+0x0014c2c0,Arc_SetHeap,,game,
+0x0014c9d0,Xvi_LoadIop,,game,XVI_IOP.IRX
+0x0014f110,Movie_Init,,game,
+0x00157990,Snd_Update,,game,
+0x00157b20,maybe_Snd_Shutdown,,game,
+0x00157bb0,Snd_Init,,game,XVI_SND.IRX
+0x001707d0,main,,game,
 0x00170810,lgDevInit,,analysis,
 0x00170bd8,lgDevEnumHint,,analysis,
 0x00170c30,lgDevEnumerate,,analysis,
@@ -860,3 +1194,12 @@ address,name,signature,source,comment
 0x001722b8,lgDevAStartForceEffectMulti,,analysis,
 0x001723d8,lgDevAStopForceEffect,,analysis,
 0x00172468,lgDevAStopForceEffectMulti,,analysis,
+0x00191420,maybe_Render_GetCurrentList,,game,
+0x001919c0,maybe_Render_Frame,,game,
+0x00192050,maybe_Render_Init,,game,
+0x001a5b30,maybe_Game_CheckResetRequest,,game,
+0x001a5b90,Game_MainLoop,,game,scene table at 0x3179e0 (0x20 per scene)
+0x001a5c80,Game_Shutdown,,game,
+0x001a5d10,Game_Init,,game,"IOP reboot + IRX loads, 26 MB heap at 0x430750, subsystem inits"
+0x001a5f80,maybe_Light_InitDefaults,,game,
+0x001a9210,maybe_Game_UpdateObjects,,game,14 objects of 0x5c0 at 0x431100
