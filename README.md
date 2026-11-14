@@ -17,7 +17,7 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Executable extracted, compiler identified | done: **Metrowerks CodeWarrior MIPS C 2.4.1.01**, Sony SDK libraries **2.8.0** |
 | Full Ghidra analysis (Emotion Engine processor) | done |
 | Every function decompiled to C | done: [`decomp/src/`](decomp/src), index in [`decomp/functions.csv`](decomp/functions.csv), progress in [`decomp/PROGRESS.md`](decomp/PROGRESS.md) |
-| Every function named or assigned to its module | done: 3576 named (75%), 1177 tagged `module_role_sub_ADDRESS` (25%); see [`config/symbols.csv`](config/symbols.csv) |
+| Every function named or assigned to its module | done: 5259 functions (519 of them missed by Ghidra's analysis and added from `config/extra_functions.txt`); 3919 named (74.5%), 1340 tagged `module_role_sub_ADDRESS` (25.5%); see [`config/symbols.csv`](config/symbols.csv) |
 | Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
 | Placeholders replaced with real names, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
 | Matching (byte-identical) source | not started, see the P3 rows in [`WORK.md`](WORK.md) |
