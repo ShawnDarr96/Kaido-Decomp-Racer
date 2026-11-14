@@ -197,7 +197,7 @@ void FUN_001c0290(short *param_1,long param_2)
     *(uint *)(param_1 + 4) = *(uint *)(param_1 + 4) | 0x20000000;
   }
   *(uint *)(param_1 + 4) = *(uint *)(param_1 + 4) | 0x1e000000;
-  uVar2 = FUN_0017e4e0(uVar5 & 0xff);
+  uVar2 = Race_GetOpponentCount(uVar5 & 0xff);
   *(uint *)(param_1 + 4) = *(uint *)(param_1 + 4) | uVar2;
   if (param_2 == 0) {
     uVar2 = 0;
@@ -1543,7 +1543,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
   undefined4 uStack_14;
   undefined4 uStack_10;
   
-  iVar2 = FUN_00158660(0x42f3c0);
+  iVar2 = phys_sub_00158660(0x42f3c0);
   param_1[0xc] = 0;
   piVar16 = (int *)param_2;
   iVar15 = 0;
@@ -1554,14 +1554,14 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
     afStack_90[1] = (float)DAT_00318344;
     afStack_90[2] = (float)DAT_00318348;
     afStack_90[3] = (float)DAT_0031834c;
-    iVar4 = FUN_0015a8b0(param_2,DAT_00318340);
+    iVar4 = PhysBox_GetEdge(param_2,DAT_00318340);
     iVar5 = (**(code **)(*piVar16 + 0x5c))(param_2,0);
     uVar3 = 1;
     pfVar14 = afStack_90;
     fVar17 = *(float *)(iVar4 + 4) - *(float *)(iVar5 + 0x14);
     do {
       pfVar14 = pfVar14 + 1;
-      iVar4 = FUN_0015a8b0(param_2,*pfVar14);
+      iVar4 = PhysBox_GetEdge(param_2,*pfVar14);
       iVar5 = (**(code **)(*piVar16 + 0x5c))(param_2,uVar3);
       fVar18 = *(float *)(iVar4 + 4) - *(float *)(iVar5 + 0x14);
       if (fVar18 < fVar17) {
@@ -1572,7 +1572,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
     } while (uVar3 < 4);
     uStack_b4 = 0x3f800000;
     uStack_a4 = 0x3f800000;
-    uVar8 = FUN_0015a8b0(param_2,afStack_90[uVar13]);
+    uVar8 = PhysBox_GetEdge(param_2,afStack_90[uVar13]);
     (**(code **)(*piVar16 + 0x5c))(param_2,uVar13);
     if (fVar17 < 0.0) {
       uVar9 = (**(code **)(*piVar16 + 0x5c))(param_2,uVar13);
@@ -1648,9 +1648,9 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
   else {
     uStack_24 = 0x3f800000;
     uStack_14 = 0x3f800000;
-    uVar8 = FUN_0015bf20(param_2);
+    uVar8 = PhysShape_GetCenter(param_2);
     FUN_001c2190(afStack_40,uVar8,0,2);
-    fVar17 = (float)FUN_00159c90(param_2);
+    fVar17 = (float)PhysShape_GetType(param_2);
     if (0.0 < fVar17 - afStack_40[0]) {
       param_1[0xe] = 0;
       param_1[4] = uStack_30;
@@ -1662,7 +1662,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
       param_1[10] = uStack_18;
       param_1[0xb] = uStack_14;
       param_1[0xc] = (fVar17 - afStack_40[0]) + 0.01;
-      puVar6 = (undefined4 *)FUN_0015bf20(param_2);
+      puVar6 = (undefined4 *)PhysShape_GetCenter(param_2);
       uVar10 = puVar6[1];
       uVar11 = puVar6[2];
       uVar12 = puVar6[3];
@@ -1670,7 +1670,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
       param_1[1] = uVar10;
       param_1[2] = uVar11;
       param_1[3] = uVar12;
-      fVar17 = (float)FUN_00159c90(param_2);
+      fVar17 = (float)PhysShape_GetType(param_2);
       param_1[2] = (float)param_1[2] - fVar17;
       param_1[0xd] = uStack_10;
       if (0 < iVar2) {
@@ -1685,13 +1685,13 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
 undefined4 FUN_001c20e0(int param_1,undefined8 param_2)
 
 {
-  FUN_00159b40(param_2);
+  PhysContact_ComputeImpulse(param_2);
   DAT_70000000 = 0;
   *(undefined4 *)(param_1 + 0x3c) = 0x40000000;
   DAT_70000004 = 0x40000000;
   DAT_7000000c = (undefined4)param_2;
   DAT_70000008 = param_1;
-  FUN_001878c0(0x70000000,0x36f238);
+  Cam_ResolveCollision(0x70000000,0x36f238);
   return DAT_70000000;
 }
 
@@ -1792,7 +1792,7 @@ undefined4 FUN_001c2190(float *param_1,undefined8 param_2,long param_3)
 void FUN_001c2340(void)
 
 {
-  FUN_001596f0();
+  Phys_Shutdown();
   Mem_Free(*(undefined4 *)(iRam0036f308 + 4));
   Mem_Free(iRam0036f308);
   iRam0036f308 = 0;
@@ -1808,23 +1808,23 @@ void FUN_001c2380(void)
   undefined4 uVar2;
   
   maybe_Heap_Create(0x436530,0x12488,0x430750);
-  FUN_00159770(0x32,1000,100,0x436530);
-  FUN_001596e0(0x1c20e0);
-  FUN_001596d0(0x1c1c80);
-  FUN_001596c0(0x1c2140);
-  FUN_001593c0(0x20);
-  FUN_0015cdc0(0x3c23d70a,0x2000000);
-  FUN_0015cdc0(0,0x1000000);
-  FUN_0015cdc0(0,0x4000000);
-  FUN_0015cd70(0x3f800000,0x2000000);
-  FUN_0015cd70(0,0x1000000);
-  FUN_0015cd70(0x3f800000,0x4000000);
-  FUN_0015ce60(0x3dcccccd,0x2000000);
-  FUN_0015ce60(0xbeb33333,0x1000000);
-  FUN_0015ce60(0x3e800000,0x4000000);
-  FUN_0015ce10(0x3f800000,0x2000000);
-  FUN_0015ce10(0,0x1000000);
-  FUN_0015ce10(0,0x4000000);
+  Phys_Init(0x32,1000,100,0x436530);
+  Phys_SetParamB(0x1c20e0);
+  Phys_SetParamA(0x1c1c80);
+  Phys_SetCallback(0x1c2140);
+  Phys_SetupPools(0x20);
+  phys_sub_0015cdc0(0x3c23d70a,0x2000000);
+  phys_sub_0015cdc0(0,0x1000000);
+  phys_sub_0015cdc0(0,0x4000000);
+  phys_sub_0015cd70(0x3f800000,0x2000000);
+  phys_sub_0015cd70(0,0x1000000);
+  phys_sub_0015cd70(0x3f800000,0x4000000);
+  phys_sub_0015ce60(0x3dcccccd,0x2000000);
+  phys_sub_0015ce60(0xbeb33333,0x1000000);
+  phys_sub_0015ce60(0x3e800000,0x4000000);
+  phys_sub_0015ce10(0x3f800000,0x2000000);
+  phys_sub_0015ce10(0,0x1000000);
+  phys_sub_0015ce10(0,0x4000000);
   puVar1 = (undefined4 *)Mem_AllocAligned(8,0x10,0x436530);
   puRam0036f308 = puVar1;
   *puVar1 = 0;
@@ -1945,16 +1945,17 @@ void FUN_001c27c0(void)
   if ((lVar5 == 0) && (lVar5 = FUN_001e90f0(), lVar5 != 0)) {
     lVar5 = FUN_001e8f60();
     if (((lVar5 == 0) && (lVar5 = FUN_001e8f40(), lVar5 == 0)) &&
-       ((cVar1 = FUN_0017e8d0(), cVar1 != '\x01' ||
-        (((cVar1 = FUN_00177040(), cVar1 != '\x01' && (cVar1 = FUN_00177040(), cVar1 != '\x02')) &&
-         (cVar1 = FUN_00177040(), cVar1 != '\x03')))))) {
-      FUN_001594b0(0x42700000);
+       ((cVar1 = RaceCtx_GetMode(), cVar1 != '\x01' ||
+        (((cVar1 = GameState_Get_354(), cVar1 != '\x01' &&
+          (cVar1 = GameState_Get_354(), cVar1 != '\x02')) &&
+         (cVar1 = GameState_Get_354(), cVar1 != '\x03')))))) {
+      Phys_Step(0x42700000);
     }
     else {
-      FUN_001594b0(0);
+      Phys_Step(0);
     }
     iVar10 = 0;
-    lVar5 = FUN_00177230();
+    lVar5 = GameState_GetMoneyTotal3();
     if (0 < lVar5) {
       do {
         lVar5 = FUN_001ca6b0(iVar10);
@@ -1963,10 +1964,10 @@ void FUN_001c27c0(void)
           *(uint *)(iVar2 + 0x60) = *(uint *)(iVar2 + 0x60) & 0xffffff8f;
           FUN_001cee10(lVar5);
           for (iVar3 = *(int *)(*(int *)((int)lVar5 + 0x158) + 0xd4); iVar3 != 0;
-              iVar3 = FUN_00158590(iVar3,0xffffffffffffffff)) {
-            lVar6 = FUN_00158620(iVar3);
+              iVar3 = PhysWorld_FindBodyWithFlags(iVar3,0xffffffffffffffff)) {
+            lVar6 = phys_sub_00158620(iVar3);
             if (lVar6 == 0) {
-              uVar7 = FUN_00158600(iVar3);
+              uVar7 = phys_sub_00158600(iVar3);
               if ((uVar7 & 1) == 0) {
                 uVar9 = 0x20;
               }
@@ -1987,7 +1988,7 @@ void FUN_001c27c0(void)
           }
         }
         iVar10 = iVar10 + 1;
-        iVar3 = FUN_00177230();
+        iVar3 = GameState_GetMoneyTotal3();
       } while (iVar10 < iVar3);
     }
   }
@@ -2051,7 +2052,7 @@ void FUN_001c2a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   uStack_dc = DAT_003187c4;
   uStack_d8 = DAT_003187c8;
   uStack_d4 = DAT_003187cc;
-  FUN_0014f170(&uStack_d0);
+  Obj_Init(&uStack_d0);
   vu0math_sub_00132b50(auStack_20,param_1,&uStack_e0);
   vu0math_sub_00132b70(auStack_10,param_1,&uStack_e0);
   uStack_4 = 0x3f800000;
@@ -2066,9 +2067,9 @@ void FUN_001c2a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   uStack_c4 = 1;
   uStack_70 = 0x3f800000;
   uStack_ce = param_5;
-  FUN_0014f150(&uStack_d0,5,0,0);
-  FUN_0014f120(&uStack_d0,param_4,param_3,auStack_20);
-  FUN_0014a800(param_2,&uStack_d0);
+  Obj_SetBlend(&uStack_d0,5,0,0);
+  Obj_SetTexture(&uStack_d0,param_4,param_3,auStack_20);
+  Model_Draw(param_2,&uStack_d0);
   return;
 }
 
@@ -2095,7 +2096,7 @@ void FUN_001c2bc0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_0014f170(&uStack_d0);
+  Obj_Init(&uStack_d0);
   uStack_18 = 0xff7fffff;
   uStack_1c = 0xff7fffff;
   uStack_20 = 0xff7fffff;
@@ -2114,9 +2115,9 @@ void FUN_001c2bc0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   uStack_74 = 0x3f800000;
   uStack_ce = 2;
   uStack_70 = 0x3f800000;
-  FUN_0014f150(&uStack_d0,5,0,0);
-  FUN_0014f120(&uStack_d0,param_3,param_2,&uStack_20);
-  FUN_0014a800(param_1,&uStack_d0);
+  Obj_SetBlend(&uStack_d0,5,0,0);
+  Obj_SetTexture(&uStack_d0,param_3,param_2,&uStack_20);
+  Model_Draw(param_1,&uStack_d0);
   return;
 }
 
@@ -2165,13 +2166,13 @@ void FUN_001c2e10(void)
   undefined1 auStack_160 [352];
   
   if (iGpffff8b08 == 0) {
-    thunk_FUN_001466e0(auStack_160,0x431100,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
     FUN_001c2bc0(auStack_160,uGpffff8c38,400);
   }
   else {
-    thunk_FUN_001466e0(auStack_160,0x4316c0,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
     FUN_001c2bc0(auStack_160,uGpffff8c38,400);
-    thunk_FUN_001466e0(auStack_160,0x431c80,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
     FUN_001c2bc0(auStack_160,uGpffff8c38,400);
   }
   return;
@@ -2263,14 +2264,14 @@ void FUN_001c3200(void)
   
   iVar1 = iGpffff8c38;
   if (iGpffff8b08 == 0) {
-    thunk_FUN_001466e0(auStack_160,0x431100,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
     FUN_001c2bc0(auStack_160,iVar1,400);
   }
   else {
     iVar2 = iGpffff8c38 + 0x4b00;
-    thunk_FUN_001466e0(auStack_160,0x4316c0,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
     FUN_001c2bc0(auStack_160,iVar1,200);
-    thunk_FUN_001466e0(auStack_160,0x431c80,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
     FUN_001c2bc0(auStack_160,iVar2,200);
   }
   return;
@@ -2389,7 +2390,7 @@ void FUN_001c34b0(float *param_1,float *param_2,undefined4 *param_3,int param_4,
           param_1[4] = 0.0;
         }
         else {
-          fVar3 = (float)FUN_00140170(auStack_40,param_1,iVar1 + 0x4365b0);
+          fVar3 = (float)Vu0_Vec3Distance(auStack_40,param_1,iVar1 + 0x4365b0);
           fVar3 = fVar3 / 10.0;
           if (fVar3 < 1.0) {
             fVar3 = 1.0;
@@ -2492,14 +2493,14 @@ void FUN_001c3b00(void)
   iVar1 = iGpffff8c38;
   if (iGpffff8b08 == 0) {
     vu0math_sub_00132ae0(auStack_170,0x431100);
-    thunk_FUN_001466e0(auStack_160,0x431100,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
     FUN_001c2a70(0x431100,auStack_160,iVar1,100,4,0x10);
   }
   else {
     iVar2 = iGpffff8c38 + 0x12c0;
-    thunk_FUN_001466e0(auStack_160,0x4316c0,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
     FUN_001c2a70(0x4316c0,auStack_160,iVar1,100,2,0x10);
-    thunk_FUN_001466e0(auStack_160,0x431c80,0x436180,0,0);
+    maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
     FUN_001c2a70(0x431c80,auStack_160,iVar2,100,2,0x10);
   }
   return;
@@ -2586,7 +2587,7 @@ void FUN_001c3d70(float *param_1,undefined4 *param_2,int param_3,int param_4,lon
         param_1[7] = 0.0;
       }
       else {
-        fVar4 = (float)FUN_00140170(auStack_30,param_1,param_4 * 0x50 + 0x4365b0);
+        fVar4 = (float)Vu0_Vec3Distance(auStack_30,param_1,param_4 * 0x50 + 0x4365b0);
         fVar4 = fVar4 / 10.0;
         if (fVar4 < 1.0) {
           fVar4 = 1.0;

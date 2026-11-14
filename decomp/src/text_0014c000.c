@@ -3,19 +3,21 @@
 #include "ghidra_types.h"
 
 // 0x0014c060  size 0x34
-void FUN_0014c060(void)
+void Arc_Shutdown(void)
 
 {
   if (iRam0036f0c4 != 0) {
     Mem_Free();
     iRam0036f0c4 = 0;
   }
-  FUN_00136fa0();
+  File_Shutdown();
   return;
 }
 
 // 0x0014c0a0  size 0x1e8
-void FUN_0014c0a0(undefined8 param_1,undefined8 param_2)
+/* BUILD.TOC / BUILD.DAT, OPMOV/GLOGO movies */
+
+void Arc_Init(undefined8 param_1,undefined8 param_2)
 
 {
   int *piVar1;
@@ -28,20 +30,20 @@ void FUN_0014c0a0(undefined8 param_1,undefined8 param_2)
   int iStack_8;
   undefined1 auStack_4 [4];
   
-  FUN_00137090(param_1,param_2,0x7fe6d);
-  lVar3 = FUN_00136ed0(0);
+  File_Init(param_1,param_2,0x7fe6d);
+  lVar3 = File_GetDiscType(0);
   iRam0036f0bc = (int)lVar3;
   if (lVar3 == 0) {
     iRam0036f0bc = 0;
   }
   iRam0036f0c4 = Mem_AllocAligned(DAT_0030a8c0 * 0x14 + 0x80fU & 0xfffff800,0x40,uRam0036f0b8);
   if (iRam0036f0bc != 0) {
-    lVar3 = FUN_00136d10(0x3622e0,auStack_4,&iStack_8,0,0);
+    lVar3 = File_ReadCdFile(0x3622e0,auStack_4,&iStack_8,0,0);
     if (lVar3 == 0) {
       iRam0036f0bc = 0;
     }
     else {
-      lVar3 = FUN_00136d10(0x3622f0,&uStack_c,auStack_10,0,0);
+      lVar3 = File_ReadCdFile(0x3622f0,&uStack_c,auStack_10,0,0);
       if (lVar3 == 0) {
         iRam0036f0bc = 0;
       }
@@ -50,7 +52,7 @@ void FUN_0014c0a0(undefined8 param_1,undefined8 param_2)
       iRam0036f0bc = 0;
     }
     if (iRam0036f0bc != 0) {
-      FUN_00136be0(0x3622e0,iRam0036f0c4);
+      File_OpenCdFile(0x3622e0,iRam0036f0c4);
     }
     if (iRam0036f0bc != 0) {
       uRam0036f0c0 = uStack_c;
@@ -64,7 +66,7 @@ void FUN_0014c0a0(undefined8 param_1,undefined8 param_2)
     piVar4 = &DAT_0030a8d0;
     do {
       iVar2 = *piVar4;
-      lVar3 = FUN_00136d10(piVar4[1],&uStack_14,0,0,0);
+      lVar3 = File_ReadCdFile(piVar4[1],&uStack_14,0,0,0);
       if (lVar3 != 0) {
         *(undefined4 *)(iRam0036f0c4 + iVar2 * 0x14 + 0x10) = uStack_14;
       }
@@ -76,26 +78,26 @@ void FUN_0014c0a0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0014c290  size 0x24
-void FUN_0014c290(void)
+void Arc_CloseHost(void)
 
 {
-  FUN_00137250();
+  File_CloseHostHandles();
   FUN_00137310();
   return;
 }
 
 // 0x0014c2c0  size 0x30
-void FUN_0014c2c0(undefined4 param_1)
+void Arc_SetHeap(undefined4 param_1)
 
 {
-  FUN_00137320();
-  FUN_001372d0();
+  File_SetHeap();
+  File_ResetHostHandles();
   uRam0036f0b8 = param_1;
   return;
 }
 
 // 0x0014c2f0  size 0x74
-int FUN_0014c2f0(int param_1)
+int Anim_GetFrameData(int param_1)
 
 {
   int iVar1;
@@ -118,7 +120,7 @@ int FUN_0014c2f0(int param_1)
 }
 
 // 0x0014c370  size 0x64
-int FUN_0014c370(int param_1,int param_2)
+int Anim_GetKeyData(int param_1,int param_2)
 
 {
   int iVar1;
@@ -138,8 +140,8 @@ int FUN_0014c370(int param_1,int param_2)
 }
 
 // 0x0014c3e0  size 0x280
-void FUN_0014c3e0(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6)
+void Tex_SetupFromHeader(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                        undefined8 param_5,undefined8 param_6)
 
 {
   undefined4 uVar1;
@@ -153,18 +155,18 @@ void FUN_0014c3e0(int param_1,undefined8 param_2,undefined8 param_3,undefined8 p
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  FUN_0013eee0(param_1 + 0x48);
-  FUN_0013f060(param_1 + 0x48,param_4,0,0,param_5,param_6);
+  Tex_OffsetTbp(param_1 + 0x48);
+  Tex_SetFilter(param_1 + 0x48,param_4,0,0,param_5,param_6);
   uStack_14 = 0;
   uStack_10 = 0;
   uStack_18 = (undefined4)(((ulong)*(ushort *)(param_1 + 0x62) & 0x3ff) >> 4);
   uStack_c = *(undefined4 *)(*(int *)(param_1 + 0x40) + 0x10);
   uStack_8 = *(undefined4 *)(*(int *)(param_1 + 0x40) + 0x14);
   uStack_20 = *(ushort *)(*(int *)(param_1 + 8) + 0x18) & 0x3fff;
-  uStack_1c = FUN_00140070(uStack_18,uStack_c);
-  uVar1 = FUN_0013f950(&uStack_20,
-                       *(int *)(param_1 + 0x40) + *(int *)(*(int *)(param_1 + 0x40) + 0x20),0x12,
-                       param_1 + 0xf0);
+  uStack_1c = Tex_GetBufferWidth(uStack_18,uStack_c);
+  uVar1 = Tex_SwizzleBlocks(&uStack_20,
+                            *(int *)(param_1 + 0x40) + *(int *)(*(int *)(param_1 + 0x40) + 0x20),
+                            0x12,param_1 + 0xf0);
   *(undefined4 *)(param_1 + 0xe8) = uVar1;
   uVar3 = 0;
   if (*(int *)(param_1 + 0xe8) != 0) {
@@ -202,7 +204,7 @@ void FUN_0014c3e0(int param_1,undefined8 param_2,undefined8 param_3,undefined8 p
   }
   iVar2 = *(int *)(param_1 + 0x40);
 LAB_0014c5a4:
-  uVar1 = FUN_0013f950(&uStack_20,iVar2 + *(int *)(iVar2 + 0x24),0x12,param_1 + 0x1f0);
+  uVar1 = Tex_SwizzleBlocks(&uStack_20,iVar2 + *(int *)(iVar2 + 0x24),0x12,param_1 + 0x1f0);
   *(undefined4 *)(param_1 + 0x1e8) = uVar1;
   uVar3 = 0;
   if (*(int *)(param_1 + 0x1e8) != 0) {
@@ -222,7 +224,7 @@ LAB_0014c5a4:
 }
 
 // 0x0014c660  size 0x210
-void FUN_0014c660(undefined8 param_1,ushort param_2,undefined2 param_3,undefined4 param_4)
+void Tex_InitDescriptor(undefined8 param_1,ushort param_2,undefined2 param_3,undefined4 param_4)
 
 {
   byte bVar1;
@@ -269,9 +271,9 @@ void FUN_0014c660(undefined8 param_1,ushort param_2,undefined2 param_3,undefined
   puVar3[0x2b] = 0;
   puVar3[0x2c] = 0;
   puVar3[0x2d] = 0;
-  uVar2 = FUN_0013dc80(*(undefined1 *)puVar3[0x10]);
+  uVar2 = Tex_GetPsmInfo(*(undefined1 *)puVar3[0x10]);
   *(ushort *)((int)puVar3 + 0x62) = *(ushort *)((int)puVar3 + 0x62) & 0xfc0f | (uVar2 & 0x3f) << 4;
-  bVar1 = FUN_0013dc80(*(undefined1 *)(puVar3[0x10] + 4));
+  bVar1 = Tex_GetPsmInfo(*(undefined1 *)(puVar3[0x10] + 4));
   *(byte *)((int)puVar3 + 0x66) = *(byte *)((int)puVar3 + 0x66) & 0x87 | (bVar1 & 0xf) << 3;
   *(ulong *)(puVar3 + 0x32) =
        (ulong)(*(int *)(puVar3[0x10] + 8) - 1) << 0xe | 10 |
@@ -280,12 +282,12 @@ void FUN_0014c660(undefined8 param_1,ushort param_2,undefined2 param_3,undefined
   *(ulong *)(puVar3 + 0x36) =
        (ulong)(uint)(*(int *)(puVar3[0x10] + 8) << 4) |
        (ulong)(uint)(*(int *)(puVar3[0x10] + 0xc) << 4) << 0x10;
-  FUN_0014c3e0(param_1,0,0,0x50010,0,0x80);
+  Tex_SetupFromHeader(param_1,0,0,0x50010,0,0x80);
   return;
 }
 
 // 0x0014c870  size 0xe8
-void FUN_0014c870(int param_1,int param_2,ulong *param_3,ulong *param_4,ulong *param_5)
+void Anim_GetFrameIndices(int param_1,int param_2,ulong *param_3,ulong *param_4,ulong *param_5)
 
 {
   int iVar1;
@@ -309,8 +311,9 @@ void FUN_0014c870(int param_1,int param_2,ulong *param_3,ulong *param_4,ulong *p
 }
 
 // 0x0014c960  size 0x60
-void FUN_0014c960(undefined4 *param_1,ushort param_2,undefined2 param_3,undefined4 param_4,
-                 undefined4 param_5,undefined4 param_6)
+void Tex_InitDescriptorSimple
+               (undefined4 *param_1,ushort param_2,undefined2 param_3,undefined4 param_4,
+               undefined4 param_5,undefined4 param_6)
 
 {
   *param_1 = 0;
@@ -333,24 +336,27 @@ void FUN_0014c960(undefined4 *param_1,ushort param_2,undefined2 param_3,undefine
 }
 
 // 0x0014c9c0  size 0x8
-void FUN_0014c9c0(void)
+void Xvi_Shutdown(void)
 
 {
   return;
 }
 
 // 0x0014c9d0  size 0x18
-void FUN_0014c9d0(void)
+/* XVI_IOP.IRX */
+
+void Xvi_LoadIop(void)
 
 {
-  FUN_0013c1b0(0x362300,0,0,0);
+  Iop_LoadModule(0x362300,0,0,0);
   return;
 }
 
 // 0x0014c9f0  size 0x11c
 undefined4
-FUN_0014c9f0(undefined4 param_1,undefined4 param_2,undefined1 (*param_3) [16],
-            undefined1 (*param_4) [16])
+maybe_Light_ComputeDirectional
+          (undefined4 param_1,undefined4 param_2,undefined1 (*param_3) [16],
+          undefined1 (*param_4) [16])
 
 {
   ulong uVar1;
@@ -432,7 +438,7 @@ FUN_0014c9f0(undefined4 param_1,undefined4 param_2,undefined1 (*param_3) [16],
 }
 
 // 0x0014cb10  size 0x64
-bool FUN_0014cb10(undefined1 (*param_1) [16])
+bool maybe_Light_IsNonZero(undefined1 (*param_1) [16])
 
 {
   bool bVar1;
@@ -467,7 +473,8 @@ bool FUN_0014cb10(undefined1 (*param_1) [16])
 }
 
 // 0x0014cb80  size 0x2e8
-void FUN_0014cb80(undefined8 param_1,int param_2,ulong param_3,ulong param_4,undefined8 param_5)
+void maybe_Light_ApplyToVertices
+               (undefined8 param_1,int param_2,ulong param_3,ulong param_4,undefined8 param_5)
 
 {
   undefined4 *puVar1;
@@ -500,46 +507,46 @@ void FUN_0014cb80(undefined8 param_1,int param_2,ulong param_3,ulong param_4,und
     fVar9 = (float)(int)param_4;
   }
   uVar10 = 0xbf800000;
-  puVar1 = (undefined4 *)FUN_0014cf00(auStack_20,1);
+  puVar1 = (undefined4 *)Light_GetIntensity(auStack_20,1);
   *puVar1 = uVar10;
   vu0math_sub_00132b10(0x3f800000,auStack_10,(int)param_5 + 0x40);
-  iVar2 = FUN_0014cef0(param_5);
+  iVar2 = Light_GetAmbient(param_5);
   vu0math_sub_00132c20(auStack_e0,iVar2 + 0x80);
   uVar10 = 0;
-  uVar4 = FUN_0014cee0(auStack_e0,3);
-  puVar1 = (undefined4 *)FUN_0014cf00(uVar4,2);
+  uVar4 = Light_GetDirection(auStack_e0,3);
+  puVar1 = (undefined4 *)Light_GetIntensity(uVar4,2);
   *puVar1 = uVar10;
-  uVar4 = FUN_0014cee0(auStack_e0,3);
-  puVar1 = (undefined4 *)FUN_0014cf00(uVar4,1);
+  uVar4 = Light_GetDirection(auStack_e0,3);
+  puVar1 = (undefined4 *)Light_GetIntensity(uVar4,1);
   *puVar1 = uVar10;
-  uVar4 = FUN_0014cee0(auStack_e0,3);
-  puVar1 = (undefined4 *)FUN_0014cf00(uVar4,0);
+  uVar4 = Light_GetDirection(auStack_e0,3);
+  puVar1 = (undefined4 *)Light_GetIntensity(uVar4,0);
   *puVar1 = uVar10;
   vu0math_sub_00132cd0(auStack_e0,auStack_e0);
-  uVar4 = FUN_0014ced0(param_1);
+  uVar4 = Light_GetDirMatrix(param_1);
   vu0math_sub_00132c20(auStack_a0,uVar4);
-  uVar4 = FUN_0014cec0(param_1);
+  uVar4 = Light_GetColorMatrix(param_1);
   vu0math_sub_00132c20(auStack_60,uVar4);
   uVar6 = 0;
   if (param_4 != 0) {
     do {
       uVar10 = 0xbf800000;
-      puVar1 = (undefined4 *)FUN_0014cf00(auStack_20,0);
+      puVar1 = (undefined4 *)Light_GetIntensity(auStack_20,0);
       *puVar1 = uVar10;
-      pfVar3 = (float *)FUN_0014cf00(auStack_20,1);
+      pfVar3 = (float *)Light_GetIntensity(auStack_20,1);
       uVar7 = 0;
       *pfVar3 = *pfVar3 + 1.0 / ((fVar9 - 1.0) / 2.0 + 1.0);
       if (param_3 != 0) {
         do {
-          pfVar3 = (float *)FUN_0014cf00(auStack_20,0);
+          pfVar3 = (float *)Light_GetIntensity(auStack_20,0);
           *pfVar3 = *pfVar3 + 1.0 / ((fVar8 - 1.0) / 2.0 + 1.0);
-          lVar5 = FUN_0014cb10(auStack_20);
+          lVar5 = maybe_Light_IsNonZero(auStack_20);
           if (lVar5 == 1) {
-            FUN_0014c9f0(0x437f0000,0x461c4000,auStack_f0,auStack_e0);
-            FUN_0014ce70(param_2,auStack_f0);
+            maybe_Light_ComputeDirectional(0x437f0000,0x461c4000,auStack_f0,auStack_e0);
+            Color_ToRgb5551(param_2,auStack_f0);
           }
           else {
-            FUN_0014ceb0(param_2,0);
+            Color_SetRgb5551(param_2,0);
           }
           param_2 = param_2 + 2;
           uVar7 = (ulong)((int)uVar7 + 1);
@@ -552,7 +559,7 @@ void FUN_0014cb80(undefined8 param_1,int param_2,ulong param_3,ulong param_4,und
 }
 
 // 0x0014ce70  size 0x38
-void FUN_0014ce70(ushort *param_1,uint *param_2)
+void Color_ToRgb5551(ushort *param_1,uint *param_2)
 
 {
   *param_1 = (ushort)((param_2[2] & 0xf8) << 7) |
@@ -561,7 +568,7 @@ void FUN_0014ce70(ushort *param_1,uint *param_2)
 }
 
 // 0x0014ceb0  size 0xc
-void FUN_0014ceb0(ushort *param_1,ushort param_2)
+void Color_SetRgb5551(ushort *param_1,ushort param_2)
 
 {
   *param_1 = param_2 | 0x8000;
@@ -569,42 +576,43 @@ void FUN_0014ceb0(ushort *param_1,ushort param_2)
 }
 
 // 0x0014cec0  size 0x8
-int FUN_0014cec0(int param_1)
+int Light_GetColorMatrix(int param_1)
 
 {
   return param_1 + 0xb0;
 }
 
 // 0x0014ced0  size 0x8
-int FUN_0014ced0(int param_1)
+int Light_GetDirMatrix(int param_1)
 
 {
   return param_1 + 0x130;
 }
 
 // 0x0014cee0  size 0xc
-int FUN_0014cee0(int param_1,int param_2)
+int Light_GetDirection(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0x10;
 }
 
 // 0x0014cef0  size 0x8
-int FUN_0014cef0(int param_1)
+int Light_GetAmbient(int param_1)
 
 {
   return param_1 + 0x100;
 }
 
 // 0x0014cf00  size 0xc
-int FUN_0014cf00(int param_1,int param_2)
+int Light_GetIntensity(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 4;
 }
 
 // 0x0014cf10  size 0x2e8
-void FUN_0014cf10(undefined8 param_1,int param_2,ulong param_3,ulong param_4,undefined8 param_5)
+void maybe_Light_ApplyToVerticesAlt
+               (undefined8 param_1,int param_2,ulong param_3,ulong param_4,undefined8 param_5)
 
 {
   undefined4 *puVar1;
@@ -637,46 +645,46 @@ void FUN_0014cf10(undefined8 param_1,int param_2,ulong param_3,ulong param_4,und
     fVar9 = (float)(int)param_4;
   }
   uVar10 = 0xbf800000;
-  puVar1 = (undefined4 *)FUN_0014cf00(auStack_20,1);
+  puVar1 = (undefined4 *)Light_GetIntensity(auStack_20,1);
   *puVar1 = uVar10;
   vu0math_sub_00132b10(0x3f800000,auStack_10,(int)param_5 + 0x40);
-  iVar2 = FUN_0014cef0(param_5);
+  iVar2 = Light_GetAmbient(param_5);
   vu0math_sub_00132c20(auStack_e0,iVar2 + 0x80);
   uVar10 = 0;
-  uVar4 = FUN_0014cee0(auStack_e0,3);
-  puVar1 = (undefined4 *)FUN_0014cf00(uVar4,2);
+  uVar4 = Light_GetDirection(auStack_e0,3);
+  puVar1 = (undefined4 *)Light_GetIntensity(uVar4,2);
   *puVar1 = uVar10;
-  uVar4 = FUN_0014cee0(auStack_e0,3);
-  puVar1 = (undefined4 *)FUN_0014cf00(uVar4,1);
+  uVar4 = Light_GetDirection(auStack_e0,3);
+  puVar1 = (undefined4 *)Light_GetIntensity(uVar4,1);
   *puVar1 = uVar10;
-  uVar4 = FUN_0014cee0(auStack_e0,3);
-  puVar1 = (undefined4 *)FUN_0014cf00(uVar4,0);
+  uVar4 = Light_GetDirection(auStack_e0,3);
+  puVar1 = (undefined4 *)Light_GetIntensity(uVar4,0);
   *puVar1 = uVar10;
   vu0math_sub_00132cd0(auStack_e0,auStack_e0);
-  uVar4 = FUN_0014ced0(param_1);
+  uVar4 = Light_GetDirMatrix(param_1);
   vu0math_sub_00132c20(auStack_a0,uVar4);
-  uVar4 = FUN_0014cec0(param_1);
+  uVar4 = Light_GetColorMatrix(param_1);
   vu0math_sub_00132c20(auStack_60,uVar4);
   uVar6 = 0;
   if (param_4 != 0) {
     do {
       uVar10 = 0xbf800000;
-      puVar1 = (undefined4 *)FUN_0014cf00(auStack_20,0);
+      puVar1 = (undefined4 *)Light_GetIntensity(auStack_20,0);
       *puVar1 = uVar10;
-      pfVar3 = (float *)FUN_0014cf00(auStack_20,1);
+      pfVar3 = (float *)Light_GetIntensity(auStack_20,1);
       uVar7 = 0;
       *pfVar3 = *pfVar3 + 1.0 / ((fVar9 - 1.0) / 2.0 + 1.0);
       if (param_3 != 0) {
         do {
-          pfVar3 = (float *)FUN_0014cf00(auStack_20,0);
+          pfVar3 = (float *)Light_GetIntensity(auStack_20,0);
           *pfVar3 = *pfVar3 + 1.0 / ((fVar8 - 1.0) / 2.0 + 1.0);
-          lVar5 = FUN_0014cb10(auStack_20);
+          lVar5 = maybe_Light_IsNonZero(auStack_20);
           if (lVar5 == 1) {
-            FUN_0014c9f0(0x437f0000,0x461c4000,auStack_f0,auStack_e0);
-            FUN_0014d200(param_2,auStack_f0);
+            maybe_Light_ComputeDirectional(0x437f0000,0x461c4000,auStack_f0,auStack_e0);
+            Color_PackRgba(param_2,auStack_f0);
           }
           else {
-            FUN_0014d230(param_2,0);
+            Color_SetPacked(param_2,0);
           }
           param_2 = param_2 + 4;
           uVar7 = (ulong)((int)uVar7 + 1);
@@ -689,7 +697,7 @@ void FUN_0014cf10(undefined8 param_1,int param_2,ulong param_3,ulong param_4,und
 }
 
 // 0x0014d200  size 0x2c
-void FUN_0014d200(uint *param_1,uint *param_2)
+void Color_PackRgba(uint *param_1,uint *param_2)
 
 {
   *param_1 = (uint)(byte)param_2[2] << 0x10 | *param_2 | (uint)(byte)param_2[1] << 8 | 0x80000000;
@@ -697,7 +705,7 @@ void FUN_0014d200(uint *param_1,uint *param_2)
 }
 
 // 0x0014d230  size 0x8
-void FUN_0014d230(undefined4 *param_1,undefined4 param_2)
+void Color_SetPacked(undefined4 *param_1,undefined4 param_2)
 
 {
   *param_1 = param_2;
@@ -705,7 +713,9 @@ void FUN_0014d230(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x0014d240  size 0x58
-void FUN_0014d240(undefined8 param_1)
+/* 14 callers */
+
+void Light_UpdateMatrices(undefined8 param_1)
 
 {
   int iVar1;
@@ -718,7 +728,9 @@ void FUN_0014d240(undefined8 param_1)
 }
 
 // 0x0014d2a0  size 0x424
-void FUN_0014d2a0(int param_1)
+/* 13 callers */
+
+void Model_Relocate(int param_1)
 
 {
   bool bVar1;
@@ -883,7 +895,9 @@ void FUN_0014d2a0(int param_1)
 }
 
 // 0x0014d6e0  size 0x2c
-undefined4 FUN_0014d6e0(int param_1,uint param_2)
+/* 11 callers */
+
+undefined4 Model_GetTexture(int param_1,uint param_2)
 
 {
   undefined4 uVar1;
@@ -898,7 +912,7 @@ undefined4 FUN_0014d6e0(int param_1,uint param_2)
 }
 
 // 0x0014d710  size 0x38
-int FUN_0014d710(int param_1,uint param_2)
+int Model_GetNode(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -913,7 +927,7 @@ int FUN_0014d710(int param_1,uint param_2)
 }
 
 // 0x0014d750  size 0xf0
-void FUN_0014d750(int param_1,undefined8 param_2,uint *param_3)
+void Model_BuildNodeMatrices(int param_1,undefined8 param_2,uint *param_3)
 
 {
   uint auStack_40 [5];
@@ -941,7 +955,7 @@ void FUN_0014d750(int param_1,undefined8 param_2,uint *param_3)
 }
 
 // 0x0014d840  size 0x58
-int FUN_0014d840(uint *param_1)
+int Model_GetHeaderSize(uint *param_1)
 
 {
   int iVar1;
@@ -968,7 +982,9 @@ int FUN_0014d840(uint *param_1)
 }
 
 // 0x0014d8a0  size 0x40
-void FUN_0014d8a0(int param_1)
+/* 0x30000008 = VIF NOP */
+
+void Model_SkipNops(int param_1)
 
 {
   int iVar1;
@@ -984,8 +1000,8 @@ void FUN_0014d8a0(int param_1)
 }
 
 // 0x0014d8e0  size 0x1d4
-int FUN_0014d8e0(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,int param_5,
-                undefined8 param_6,int param_7,undefined8 param_8,int param_9)
+int MovieSnd_SendSpan(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,
+                     int param_5,undefined8 param_6,int param_7,undefined8 param_8,int param_9)
 
 {
   int iVar1;
@@ -1004,41 +1020,41 @@ int FUN_0014d8e0(undefined8 param_1,undefined8 param_2,int param_3,undefined8 pa
     iVar1 = param_3 - param_7;
     if (param_9 < iVar1) {
       if (param_7 != 0) {
-        FUN_0013c050(param_2,param_6,param_7,0);
+        Sif_SendDma(param_2,param_6,param_7,0);
       }
       if (param_9 != 0) {
-        FUN_0013c050((int)param_2 + param_7,param_8,param_9,0);
+        Sif_SendDma((int)param_2 + param_7,param_8,param_9,0);
       }
     }
     else {
       if (param_7 != 0) {
-        FUN_0013c050(param_2,param_6,param_7,0);
+        Sif_SendDma(param_2,param_6,param_7,0);
       }
       if (iVar1 != 0) {
-        FUN_0013c050((int)param_2 + param_7,param_8,iVar1,0);
+        Sif_SendDma((int)param_2 + param_7,param_8,iVar1,0);
       }
       if (param_9 - iVar1 != 0) {
-        FUN_0013c050(param_4,((int)param_8 + param_3) - param_7,param_9 - iVar1,0);
+        Sif_SendDma(param_4,((int)param_8 + param_3) - param_7,param_9 - iVar1,0);
       }
     }
   }
   else {
     if (param_3 != 0) {
-      FUN_0013c050(param_2,param_6,param_3,0);
+      Sif_SendDma(param_2,param_6,param_3,0);
     }
     if (param_7 - param_3 != 0) {
-      FUN_0013c050(param_4,(int)param_6 + param_3,param_7 - param_3,0);
+      Sif_SendDma(param_4,(int)param_6 + param_3,param_7 - param_3,0);
     }
     if (param_9 != 0) {
-      FUN_0013c050(((int)param_4 + param_7) - param_3,param_8,param_9,0);
+      Sif_SendDma(((int)param_4 + param_7) - param_3,param_8,param_9,0);
     }
   }
   return param_7 + param_9;
 }
 
 // 0x0014dac0  size 0xcc
-void FUN_0014dac0(int param_1,int *param_2,int *param_3,undefined4 *param_4,int *param_5,int param_6
-                 )
+void MovieSnd_GetSpans(int param_1,int *param_2,int *param_3,undefined4 *param_4,int *param_5,
+                      int param_6)
 
 {
   int iVar1;
@@ -1076,7 +1092,7 @@ void FUN_0014dac0(int param_1,int *param_2,int *param_3,undefined4 *param_4,int 
 }
 
 // 0x0014db90  size 0x20c
-void FUN_0014db90(undefined8 param_1)
+void MovieSnd_Feed(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1103,10 +1119,11 @@ void FUN_0014db90(undefined8 param_1)
     return;
   }
   if (iVar8 == 2) {
-    uVar3 = FUN_0013be40(puVar5[1],1);
-    uVar2 = FUN_0013c2c0(0x102,0,0);
-    FUN_0014dac0(param_1,&iStack_4,&iStack_c,&uStack_8,&iStack_10,(uVar2 & 0xffffff) - puVar5[4]);
-    FUN_0013be40(puVar5[1],uVar3);
+    uVar3 = Rpc_SetBlocking(puVar5[1],1);
+    uVar2 = IopSnd_Command(0x102,0,0);
+    MovieSnd_GetSpans(param_1,&iStack_4,&iStack_c,&uStack_8,&iStack_10,
+                      (uVar2 & 0xffffff) - puVar5[4]);
+    Rpc_SetBlocking(puVar5[1],uVar3);
   }
   else {
     if (iVar8 != 1) {
@@ -1126,7 +1143,7 @@ void FUN_0014db90(undefined8 param_1)
   }
   uVar1 = *puVar5;
 LAB_0014dc84:
-  FUN_0013ad20(uVar1,&iStack_14,&iStack_18,&iStack_1c,&iStack_20);
+  RingBuf_GetSpans(uVar1,&iStack_14,&iStack_18,&iStack_1c,&iStack_20);
   iVar8 = iStack_14 + (iStack_18 + (iStack_1c - iStack_20)) % iStack_18;
   if (iStack_20 < 0) {
     iStack_20 = iStack_20 + 0x3ff;
@@ -1138,16 +1155,16 @@ LAB_0014dc84:
   }
   if ((0x3ff < iStack_c + iStack_10) && (0x3ff < iVar4)) {
     FlushCache(0);
-    uVar7 = FUN_0014d8e0(param_1,iStack_4,iStack_c,uStack_8,iStack_10,iVar8,iVar6,iStack_14);
+    uVar7 = MovieSnd_SendSpan(param_1,iStack_4,iStack_c,uStack_8,iStack_10,iVar8,iVar6,iStack_14);
   }
-  FUN_0013ad00(*puVar5,uVar7);
+  RingBuf_Consume(*puVar5,uVar7);
   puVar5[7] = puVar5[7] + (int)uVar7;
   puVar5[8] = (puVar5[8] + (int)uVar7) % (int)puVar5[3];
   return;
 }
 
 // 0x0014dda0  size 0x128
-void FUN_0014dda0(int param_1)
+void MovieSnd_Start(int param_1)
 
 {
   undefined8 uVar1;
@@ -1155,23 +1172,23 @@ void FUN_0014dda0(int param_1)
   int iVar3;
   int iVar4;
   
-  uVar1 = FUN_0013be40(*(undefined4 *)(param_1 + 4),1);
-  FUN_0013c2c0(0x101,0,2,0,0,0);
-  FUN_0013c2c0(0x10d,0xf80,0);
-  FUN_0013c2c0(0x10d,0x1080,0);
-  FUN_0013c050(*(undefined4 *)(param_1 + 0x10),*(undefined4 *)(param_1 + 0x14),0x800,1);
+  uVar1 = Rpc_SetBlocking(*(undefined4 *)(param_1 + 4),1);
+  IopSnd_Command(0x101,0,2,0,0,0);
+  IopSnd_Command(0x10d,0xf80,0);
+  IopSnd_Command(0x10d,0x1080,0);
+  Sif_SendDma(*(undefined4 *)(param_1 + 0x10),*(undefined4 *)(param_1 + 0x14),0x800,1);
   iVar4 = *(int *)(param_1 + 0x10);
   for (iVar3 = *(int *)(param_1 + 0xc); iVar3 != 0; iVar3 = iVar3 - iVar2) {
     iVar2 = iVar3;
     if (0x800 < iVar3) {
       iVar2 = 0x800;
     }
-    FUN_0013c050(iVar4,*(undefined4 *)(param_1 + 0x14),iVar2,1);
+    Sif_SendDma(iVar4,*(undefined4 *)(param_1 + 0x14),iVar2,1);
     iVar4 = iVar4 + iVar2;
   }
-  FUN_0013c2c0(0x103,0,0,*(undefined4 *)(param_1 + 0x10),0x4000,0x800);
-  FUN_0013c2c0(0x104,0,1);
-  FUN_0013be40(*(undefined4 *)(param_1 + 4),uVar1);
+  IopSnd_Command(0x103,0,0,*(undefined4 *)(param_1 + 0x10),0x4000,0x800);
+  IopSnd_Command(0x104,0,1);
+  Rpc_SetBlocking(*(undefined4 *)(param_1 + 4),uVar1);
   *(undefined4 *)(param_1 + 0x18) = 0;
   *(undefined4 *)(param_1 + 0x1c) = 0;
   *(undefined4 *)(param_1 + 0x20) = 0;
@@ -1180,7 +1197,7 @@ void FUN_0014dda0(int param_1)
 }
 
 // 0x0014ded0  size 0xbc
-void FUN_0014ded0(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined8 param_4)
+void MovieSnd_Init(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -1205,13 +1222,13 @@ void FUN_0014ded0(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,und
   param_1[4] = uVar1;
   uVar1 = Mem_AllocAligned(0x800,0x40,param_4);
   param_1[5] = uVar1;
-  FUN_001325d0(param_1[5],0,0x800);
+  Mem_Set16(param_1[5],0,0x800);
   FlushCache(0);
   return;
 }
 
 // 0x0014df90  size 0x19c
-void FUN_0014df90(undefined8 param_1,long param_2,undefined8 param_3,undefined8 param_4)
+void MovieVid_Present(undefined8 param_1,long param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1223,7 +1240,7 @@ void FUN_0014df90(undefined8 param_1,long param_2,undefined8 param_3,undefined8 
   int iVar7;
   
   iVar6 = (int)param_1;
-  lVar4 = FUN_0013b860(*(undefined4 *)(iVar6 + 0x28));
+  lVar4 = Movie_GetUserData(*(undefined4 *)(iVar6 + 0x28));
   lVar5 = 1;
   if (lVar4 == 0) {
     lVar5 = 2;
@@ -1246,28 +1263,28 @@ void FUN_0014df90(undefined8 param_1,long param_2,undefined8 param_3,undefined8 
     }
     *(int *)(iVar6 + 0x2c) = iVar7;
   }
-  lVar4 = FUN_0013b850(*(undefined4 *)(iVar6 + 0x28));
+  lVar4 = Movie_GetReadyCount(*(undefined4 *)(iVar6 + 0x28));
   if ((lVar5 <= lVar4) && (1 < *(int *)(iVar6 + 0x2c))) {
-    FUN_0013b870(*(undefined4 *)(iVar6 + 0x28));
+    Movie_ReleaseFrame(*(undefined4 *)(iVar6 + 0x28));
     *(undefined4 *)(iVar6 + 0x2c) = 0;
     *(undefined4 *)(iVar6 + 0x3c) = 0xffffffff;
   }
   if ((*(int *)(iVar6 + 0x3c) < 0) &&
-     (lVar5 = FUN_0013b850(*(undefined4 *)(iVar6 + 0x28)), lVar5 != 0)) {
-    iVar1 = FUN_0013b840(*(undefined4 *)(iVar6 + 0x28));
-    iVar7 = FUN_0013b850(*(undefined4 *)(iVar6 + 0x28));
-    iVar2 = FUN_0013b830(*(undefined4 *)(iVar6 + 0x28));
-    iVar3 = FUN_0013b830(*(undefined4 *)(iVar6 + 0x28));
+     (lVar5 = Movie_GetReadyCount(*(undefined4 *)(iVar6 + 0x28)), lVar5 != 0)) {
+    iVar1 = Movie_GetBufferSize(*(undefined4 *)(iVar6 + 0x28));
+    iVar7 = Movie_GetReadyCount(*(undefined4 *)(iVar6 + 0x28));
+    iVar2 = Movie_GetBufferCount(*(undefined4 *)(iVar6 + 0x28));
+    iVar3 = Movie_GetBufferCount(*(undefined4 *)(iVar6 + 0x28));
     *(int *)(iVar6 + 0x3c) = (iVar2 + (iVar1 - iVar7)) % iVar3;
   }
   if ((param_2 != 0) && (-1 < *(int *)(iVar6 + 0x3c))) {
-    FUN_001743e0(param_1,*(int *)(iVar6 + 0x3c),param_3,param_4);
+    MovieTex_Upload(param_1,*(int *)(iVar6 + 0x3c),param_3,param_4);
   }
   return;
 }
 
 // 0x0014e130  size 0x94
-void FUN_0014e130(int param_1,undefined4 param_2,undefined4 *param_3,undefined8 param_4)
+void MovieVid_Init(int param_1,undefined4 param_2,undefined4 *param_3,undefined8 param_4)
 
 {
   undefined4 uStack_30;
@@ -1299,12 +1316,12 @@ void FUN_0014e130(int param_1,undefined4 param_2,undefined4 *param_3,undefined8 
   uStack_10 = param_3[9];
   uStack_c = param_3[10];
   uStack_8 = param_3[0xb];
-  FUN_00174da0(param_1,param_4,&uStack_30);
+  MovieTex_Init(param_1,param_4,&uStack_30);
   return;
 }
 
 // 0x0014e1d0  size 0x3a8
-uint FUN_0014e1d0(void)
+uint MoviePlayer_Thread(void)
 
 {
   bool bVar1;
@@ -1327,22 +1344,22 @@ uint FUN_0014e1d0(void)
     do {
       if ((puRam0036f0c8[0x5b] < 5) || ((*puRam0036f0c8 & 0x20) != 0)) {
         puRam0036f0c8[0x55] = 2;
-        lVar8 = FUN_0013a790(puRam0036f0c8);
+        lVar8 = Movie_FeedData(puRam0036f0c8);
         while (lVar8 == 0) {
-          FUN_0013a760(puRam0036f0c8);
-          lVar8 = FUN_0013a790(puRam0036f0c8);
+          maybe_Movie_iSuspendSelf(puRam0036f0c8);
+          lVar8 = Movie_FeedData(puRam0036f0c8);
         }
         if ((*puRam0036f0c8 & 0x80) == 0) {
-          lVar8 = FUN_0013a770();
+          lVar8 = Movie_IsEnd();
           while (lVar8 != 0) {
-            FUN_0013a760(puRam0036f0c8);
-            lVar8 = FUN_0013a770(puRam0036f0c8);
+            maybe_Movie_iSuspendSelf(puRam0036f0c8);
+            lVar8 = Movie_IsEnd(puRam0036f0c8);
           }
         }
         puRam0036f0c8[0x55] = 3;
         if ((*puRam0036f0c8 & 0x20) == 0) {
           do {
-            FUN_0013a760();
+            maybe_Movie_iSuspendSelf();
           } while ((*puRam0036f0c8 & 0x20) == 0);
           uVar7 = *puRam0036f0c8;
         }
@@ -1358,15 +1375,15 @@ uint FUN_0014e1d0(void)
         return uVar7;
       }
       puVar11 = puRam0036f0c8 + 0x1b;
-      lVar8 = FUN_0013bc70(puVar11,&uStack_c);
-      lVar9 = FUN_0013bcb0(puVar11);
+      lVar8 = Stream_GetReadPtr(puVar11,&uStack_c);
+      lVar9 = Stream_GetSize(puVar11);
       if ((puRam0036f0c8[0x5a] != 0) && (lVar9 <= lVar8)) {
-        uVar10 = FUN_001357f0(uStack_c,lVar9);
-        FUN_0013bc30(puVar11,uVar10);
+        uVar10 = CdStream_ReadSector(uStack_c,lVar9);
+        Stream_Advance(puVar11,uVar10);
         puRam0036f0c8[0x5a] = puRam0036f0c8[0x5a] - (int)uVar10;
       }
-      FUN_0013a760(puRam0036f0c8);
-      iVar6 = FUN_0013a540(puRam0036f0c8);
+      maybe_Movie_iSuspendSelf(puRam0036f0c8);
+      iVar6 = Movie_Demux(puRam0036f0c8);
       puRam0036f0c8[0x5b] = puRam0036f0c8[0x5b] - iVar6;
     } while (puRam0036f0c8[0x5d] != 0);
     bVar2 = false;
@@ -1375,7 +1392,7 @@ uint FUN_0014e1d0(void)
       bVar2 = true;
     }
     else {
-      lVar8 = FUN_0013b8a0(puRam0036f0c8 + 0x20);
+      lVar8 = Movie_IsBufferFull(puRam0036f0c8 + 0x20);
       if (lVar8 != 0) {
         bVar2 = true;
       }
@@ -1386,7 +1403,7 @@ LAB_0014e304:
       bVar3 = true;
     }
     else {
-      lVar8 = FUN_0013ad50(puRam0036f0c8[0x7a]);
+      lVar8 = RingBuf_GetFree(puRam0036f0c8[0x7a]);
       if (lVar8 == 0) {
         bVar1 = false;
       }
@@ -1400,7 +1417,7 @@ LAB_0014e304:
     }
     if ((bVar2) && (bVar3)) {
       if ((puRam0036f0c8[0x57] & 1) != 0) {
-        FUN_0013a4f0(puRam0036f0c8,&uStack_4,&uStack_8);
+        Movie_IsFrameReady(puRam0036f0c8,&uStack_4,&uStack_8);
         uVar5 = uStack_4;
         uVar4 = uStack_8;
         puVar11 = puRam0036f0c8;
@@ -1408,8 +1425,8 @@ LAB_0014e304:
         iVar6 = 0;
         if (0 < (int)puRam0036f0c8[0x75]) {
           do {
-            uVar10 = FUN_0013b810(puVar11[0x71],iVar6);
-            FUN_001744d0(puVar12,iVar6,uVar10,0,0,uVar5,uVar4);
+            uVar10 = Movie_GetFrameBuffer(puVar11[0x71],iVar6);
+            MovieTex_BuildPacket(puVar12,iVar6,uVar10,0,0,uVar5,uVar4);
             iVar6 = iVar6 + 1;
           } while (iVar6 < (int)puVar11[0x75]);
         }
@@ -1417,16 +1434,16 @@ LAB_0014e304:
       }
       puVar11 = puRam0036f0c8;
       if ((puRam0036f0c8[0x57] & 2) != 0) {
-        uVar10 = FUN_0013be40(puRam0036f0c8[0x7b],1);
-        FUN_0013c2c0(0x10d,0xf80,puVar11[0x7c]);
-        FUN_0013c2c0(0x10d,0x1080,puVar11[0x7c]);
+        uVar10 = Rpc_SetBlocking(puRam0036f0c8[0x7b],1);
+        IopSnd_Command(0x10d,0xf80,puVar11[0x7c]);
+        IopSnd_Command(0x10d,0x1080,puVar11[0x7c]);
         uVar7 = puVar11[0x7d];
         if ((int)uVar7 < 0) {
           uVar7 = uVar7 + 0x3ff;
         }
-        FUN_0013c2c0(0x101,0,0x13,puVar11[0x7e],((int)uVar7 >> 10) << 10,
-                     puVar11[0x7e] + puVar11[0x83]);
-        FUN_0013be40(puVar11[0x7b],uVar10);
+        IopSnd_Command(0x101,0,0x13,puVar11[0x7e],((int)uVar7 >> 10) << 10,
+                       puVar11[0x7e] + puVar11[0x83]);
+        Rpc_SetBlocking(puVar11[0x7b],uVar10);
         puVar11[0x80] = 2;
         puRam0036f0c8[0x79] = 1;
       }
@@ -1438,7 +1455,7 @@ LAB_0014e304:
 // 0x0014e6e0  size 0x4c4
 /* WARNING: Removing unreachable block (ram,0x0014e820) */
 
-void FUN_0014e6e0(undefined4 *param_1,undefined8 param_2)
+void MoviePlayer_Setup(undefined4 *param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1607,56 +1624,56 @@ void FUN_0014e6e0(undefined4 *param_1,undefined8 param_2)
   uStack_10 = *(undefined4 *)(iRam0036f0c8 + 0x1dc);
   *(undefined4 *)(iRam0036f0c8 + 0x150) = *param_1;
   uStack_18 = *(undefined4 *)(iRam0036f0c8 + 0x150);
-  FUN_0013abc0(iRam0036f0c8,&iStack_60);
+  Movie_Open(iRam0036f0c8,&iStack_60);
   return;
 }
 
 // 0x0014ebb0  size 0x94
-void FUN_0014ebb0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void MoviePlayer_Update(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   if ((*(uint *)(iGpffff89d8 + 0x15c) & 2) != 0) {
-    FUN_0014db90(iGpffff89d8 + 0x1e8);
+    MovieSnd_Feed(iGpffff89d8 + 0x1e8);
   }
   if (((*(uint *)(iGpffff89d8 + 0x15c) & 1) != 0) && (*(int *)(iGpffff89d8 + 0x198) != 0)) {
-    FUN_0014df90(iGpffff89d8 + 0x19c,param_1,param_2,param_3);
+    MovieVid_Present(iGpffff89d8 + 0x19c,param_1,param_2,param_3);
   }
   return;
 }
 
 // 0x0014ec50  size 0x78
-bool FUN_0014ec50(void)
+bool MoviePlayer_Close(void)
 
 {
   bool bVar1;
   
   bVar1 = *(int *)(iGpffff89d8 + 0x154) == 4;
   if (bVar1) {
-    FUN_00138cf0(iGpffff89d8 + 0x188);
-    FUN_00138d70(iGpffff89d8 + 0x188);
-    FUN_00138cf0(iGpffff89d8 + 0x17c);
-    FUN_00138d70(iGpffff89d8 + 0x17c);
-    FUN_0013a8e0(iGpffff89d8);
-    FUN_001359c0();
+    Thread_Terminate(iGpffff89d8 + 0x188);
+    Thread_Delete(iGpffff89d8 + 0x188);
+    Thread_Terminate(iGpffff89d8 + 0x17c);
+    Thread_Delete(iGpffff89d8 + 0x17c);
+    Movie_Close(iGpffff89d8);
+    CdStream_Close();
     *(undefined4 *)(iGpffff89d8 + 0x154) = 0;
   }
   return bVar1;
 }
 
 // 0x0014ecd0  size 0x6c
-undefined4 FUN_0014ecd0(void)
+undefined4 MoviePlayer_IsFinished(void)
 
 {
   undefined4 uVar1;
   long lVar2;
   
   if (*(int *)(iGpffff89d8 + 0x154) == 1) {
-    lVar2 = FUN_0013a4e0();
+    lVar2 = Movie_GetFrameCount();
     if ((lVar2 < 0xb) || (*(int *)(iGpffff89d8 + 0x174) != 1)) {
       uVar1 = 0;
     }
     else {
-      FUN_0013a8b0();
+      Movie_RequestStop();
       uVar1 = 1;
     }
   }
@@ -1667,7 +1684,7 @@ undefined4 FUN_0014ecd0(void)
 }
 
 // 0x0014ed40  size 0x250
-undefined4 FUN_0014ed40(undefined4 *param_1,undefined4 param_2)
+undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -1677,9 +1694,9 @@ undefined4 FUN_0014ed40(undefined4 *param_1,undefined4 param_2)
   undefined4 uStack_8;
   
   if (*(int *)(iGpffff89d8 + 0x154) == 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x7730);
+    Sema_Wait((int)register0x000001c0 + -0x7730);
     iVar1 = iRam00386628;
-    FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+    Sema_Signal((int)register0x000001c0 + -0x7730,0);
     if (iVar1 == 0) {
       *(undefined4 *)(iGpffff89d8 + 0x158) = *param_1;
       *(undefined4 *)(iGpffff89d8 + 0x15c) = param_1[3];
@@ -1709,26 +1726,26 @@ undefined4 FUN_0014ed40(undefined4 *param_1,undefined4 param_2)
         else {
           *(undefined4 *)(iGpffff89d8 + 0x1cc) = 10000;
         }
-        FUN_00174cd0();
+        MovieTex_Reset();
       }
       if ((*(int *)(iGpffff89d8 + 0x1dc) != 0) && ((*(uint *)(iGpffff89d8 + 0x15c) & 2) != 0)) {
         *(undefined4 *)(iGpffff89d8 + 0x1e0) = 1;
-        FUN_0014dda0(iGpffff89d8 + 0x1e8);
+        MovieSnd_Start(iGpffff89d8 + 0x1e8);
       }
       *(undefined4 *)(iGpffff89d8 + 0x168) = *(undefined4 *)(iGpffff89d8 + 0x164);
       *(undefined4 *)(iGpffff89d8 + 0x16c) = *(undefined4 *)(iGpffff89d8 + 0x164);
       uStack_10 = *(undefined4 *)(iGpffff89d8 + 0x158);
       uStack_c = *(undefined4 *)(iGpffff89d8 + 0x160);
       uStack_8 = *(undefined4 *)(iGpffff89d8 + 0x164);
-      FUN_00135a60(&uStack_10);
-      FUN_0013a930(iGpffff89d8,*(undefined4 *)(iGpffff89d8 + 0x194),
-                   *(undefined4 *)(iGpffff89d8 + 0x1e0),0);
-      FUN_00138dc0(iGpffff89d8 + 0x17c,*(undefined4 *)(iGpffff89d8 + 0x150),0x14e590,
-                   *(undefined4 *)(iGpffff89d8 + 0x178),0x10000,0);
-      FUN_00138d30(iGpffff89d8 + 0x17c);
-      FUN_00138dc0(iGpffff89d8 + 0x188,*(undefined4 *)(iGpffff89d8 + 0x150),0x14e580,
-                   *(undefined4 *)(iGpffff89d8 + 0x184),0x4000,0);
-      FUN_00138d30(iGpffff89d8 + 0x188);
+      CdStream_Open(&uStack_10);
+      Movie_Start(iGpffff89d8,*(undefined4 *)(iGpffff89d8 + 0x194),
+                  *(undefined4 *)(iGpffff89d8 + 0x1e0),0);
+      Thread_Create(iGpffff89d8 + 0x17c,*(undefined4 *)(iGpffff89d8 + 0x150),0x14e590,
+                    *(undefined4 *)(iGpffff89d8 + 0x178),0x10000,0);
+      Thread_Start(iGpffff89d8 + 0x17c);
+      Thread_Create(iGpffff89d8 + 0x188,*(undefined4 *)(iGpffff89d8 + 0x150),0x14e580,
+                    *(undefined4 *)(iGpffff89d8 + 0x184),0x4000,0);
+      Thread_Start(iGpffff89d8 + 0x188);
       uVar2 = 1;
       *(undefined4 *)(iGpffff89d8 + 0x154) = 1;
     }
@@ -1743,7 +1760,7 @@ undefined4 FUN_0014ed40(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x0014ef90  size 0x9c
-void FUN_0014ef90(void)
+void MoviePlayer_Free(void)
 
 {
   int iVar1;
@@ -1757,9 +1774,9 @@ void FUN_0014ef90(void)
     loadfile_sub_00118b98(*(undefined4 *)(iVar1 + 0x1f8));
   }
   if (*(int *)(iGpffff89d8 + 400) != 0) {
-    FUN_00174d10(iGpffff89d8 + 0x19c);
+    MovieTex_Free(iGpffff89d8 + 0x19c);
   }
-  FUN_0013ab20(iGpffff89d8);
+  Movie_StopDma(iGpffff89d8);
   if (*(int *)(iGpffff89d8 + 0x148) != 0) {
     Mem_Free();
     *(undefined4 *)(iGpffff89d8 + 0x148) = 0;
@@ -1770,31 +1787,31 @@ void FUN_0014ef90(void)
 }
 
 // 0x0014f030  size 0xd0
-void FUN_0014f030(undefined8 param_1,undefined8 param_2)
+void MoviePlayer_Create(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
   
   uVar1 = maybe_operator_new_arr_heap(0x210);
   iGpffff89d8 = (int)uVar1;
-  FUN_001325d0(uVar1,0,0x210);
-  FUN_0014e6e0(param_1,param_2);
+  Mem_Set16(uVar1,0,0x210);
+  MoviePlayer_Setup(param_1,param_2);
   *(undefined4 *)(iGpffff89d8 + 0x154) = 0;
   *(undefined4 *)(iGpffff89d8 + 0x194) = 0;
   *(undefined4 *)(iGpffff89d8 + 0x198) = 0;
   *(undefined4 *)(iGpffff89d8 + 0x1e0) = 0;
   *(undefined4 *)(iGpffff89d8 + 0x1e4) = 0;
   if (*(int *)(iGpffff89d8 + 400) != 0) {
-    FUN_0014e130(iGpffff89d8 + 0x19c,iGpffff89d8 + 0x80,(int)param_1 + 0x14,param_2);
+    MovieVid_Init(iGpffff89d8 + 0x19c,iGpffff89d8 + 0x80,(int)param_1 + 0x14,param_2);
   }
   if (*(int *)(iGpffff89d8 + 0x1dc) != 0) {
-    FUN_0014ded0(iGpffff89d8 + 0x1e8,iGpffff89d8 + 0x100,(int)param_1 + 0x44,param_2);
+    MovieSnd_Init(iGpffff89d8 + 0x1e8,iGpffff89d8 + 0x100,(int)param_1 + 0x44,param_2);
   }
   return;
 }
 
 // 0x0014f110  size 0x8
-void FUN_0014f110(void)
+void Movie_Init(void)
 
 {
   uGpffff89d8 = 0;
@@ -1803,7 +1820,9 @@ void FUN_0014f110(void)
 }
 
 // 0x0014f120  size 0x30
-void FUN_0014f120(int param_1,undefined4 param_2,undefined4 param_3,long param_4)
+/* 9 callers */
+
+void Obj_SetTexture(int param_1,undefined4 param_2,undefined4 param_3,long param_4)
 
 {
   *(undefined4 *)(param_1 + 0xa0) = param_2;
@@ -1815,7 +1834,7 @@ void FUN_0014f120(int param_1,undefined4 param_2,undefined4 param_3,long param_4
 }
 
 // 0x0014f150  size 0x18
-void FUN_0014f150(int param_1,undefined1 param_2,undefined2 param_3,undefined8 param_4)
+void Obj_SetBlend(int param_1,undefined1 param_2,undefined2 param_3,undefined8 param_4)
 
 {
   *(undefined4 *)(param_1 + 4) = 1;
@@ -1826,7 +1845,7 @@ void FUN_0014f150(int param_1,undefined1 param_2,undefined2 param_3,undefined8 p
 }
 
 // 0x0014f170  size 0x58
-void FUN_0014f170(undefined2 *param_1)
+void Obj_Init(undefined2 *param_1)
 
 {
   *param_1 = 1;
@@ -1844,7 +1863,7 @@ void FUN_0014f170(undefined2 *param_1)
 }
 
 // 0x0014f1d0  size 0x1c
-void FUN_0014f1d0(uint *param_1,undefined8 param_2)
+void Obj_SetMatrixDirty(uint *param_1,undefined8 param_2)
 
 {
   *param_1 = *param_1 | 0x20;
@@ -1853,7 +1872,7 @@ void FUN_0014f1d0(uint *param_1,undefined8 param_2)
 }
 
 // 0x0014f1f0  size 0x10
-void FUN_0014f1f0(int param_1,undefined8 param_2)
+void Obj_CopyParams(int param_1,undefined8 param_2)
 
 {
   FUN_00132560(param_1 + 0x10,param_2,*(undefined4 *)(param_1 + 8));
@@ -1861,7 +1880,7 @@ void FUN_0014f1f0(int param_1,undefined8 param_2)
 }
 
 // 0x0014f200  size 0xc0
-void FUN_0014f200(int param_1,undefined4 param_2,undefined4 param_3)
+void Obj_SetType(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -1906,7 +1925,9 @@ void FUN_0014f200(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x0014f2c0  size 0x34
-void FUN_0014f2c0(uint *param_1,long param_2,undefined1 param_3,undefined2 param_4)
+/* 19 callers */
+
+void Obj_SetVisible(uint *param_1,long param_2,undefined1 param_3,undefined2 param_4)
 
 {
   if (param_2 == 0) {
@@ -1921,7 +1942,9 @@ void FUN_0014f2c0(uint *param_1,long param_2,undefined1 param_3,undefined2 param
 }
 
 // 0x0014f300  size 0xa4
-float FUN_0014f300(float param_1,uint *param_2)
+/* to [-pi, pi] */
+
+float Angle_Wrap(float param_1,uint *param_2)
 
 {
   *param_2 = *param_2 | 8;
@@ -1934,10 +1957,12 @@ float FUN_0014f300(float param_1,uint *param_2)
 }
 
 // 0x0014f3b0  size 0xa0
-void FUN_0014f3b0(undefined4 *param_1)
+/* 30 callers */
+
+void Obj_Reset(undefined4 *param_1)
 
 {
-  FUN_0014f200();
+  Obj_SetType();
   *param_1 = 0x40;
   *(undefined1 *)((int)param_1 + 0x291) = 0;
   *(undefined2 *)((int)param_1 + 0x292) = 0;
@@ -1969,7 +1994,9 @@ void FUN_0014f3b0(undefined4 *param_1)
 }
 
 // 0x0014f450  size 0x1d4
-int * FUN_0014f450(undefined8 param_1,ulong param_2,int param_3,int param_4,undefined8 param_5,
+/* pools at 0x388200 */
+
+int * Sprite_Alloc(undefined8 param_1,ulong param_2,int param_3,int param_4,undefined8 param_5,
                   long param_6,undefined8 param_7)
 
 {
@@ -1990,13 +2017,13 @@ int * FUN_0014f450(undefined8 param_1,ulong param_2,int param_3,int param_4,unde
   piVar8[1] = 0;
   piVar8[2] = 0;
   if (((uVar1 | uVar2) & 0x7ffe) != 0) {
-    FUN_0014f9a0(param_1,puVar7,param_2,param_7);
+    Sprite_BuildPacket(param_1,puVar7,param_2,param_7);
   }
   if ((((uVar1 | uVar2) & 0x18000) == 0) && (param_6 == 0)) {
     iVar4 = piVar8[1];
   }
   else {
-    FUN_0014f630(param_1,puVar7,param_2,param_5,param_6);
+    Sprite_SetupBlend(param_1,puVar7,param_2,param_5,param_6);
     iVar4 = piVar8[1];
   }
   if (iVar4 == 0) {
@@ -2028,7 +2055,7 @@ int * FUN_0014f450(undefined8 param_1,ulong param_2,int param_3,int param_4,unde
 }
 
 // 0x0014f630  size 0x370
-void FUN_0014f630(int *param_1,uint *param_2,ulong param_3,uint param_4,long param_5)
+void Sprite_SetupBlend(int *param_1,uint *param_2,ulong param_3,uint param_4,long param_5)
 
 {
   int iVar1;
@@ -2168,7 +2195,7 @@ void FUN_0014f630(int *param_1,uint *param_2,ulong param_3,uint param_4,long par
 }
 
 // 0x0014f9a0  size 0xc18
-void FUN_0014f9a0(int *param_1,uint *param_2,ulong param_3,long param_4)
+void Sprite_BuildPacket(int *param_1,uint *param_2,ulong param_3,long param_4)
 
 {
   int iVar1;

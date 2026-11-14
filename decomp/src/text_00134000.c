@@ -45,7 +45,8 @@ void FUN_00134120(float *param_1,uint param_2,ulong param_3)
 }
 
 // 0x00134240  size 0x48
-void FUN_00134240(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 *param_4)
+void maybe_Vec3_SetAbsYZ(undefined4 param_1,undefined4 param_2,undefined4 param_3,
+                        undefined4 *param_4)
 
 {
   undefined4 uVar1;
@@ -76,7 +77,9 @@ undefined8 FUN_00134290(undefined8 param_1)
 }
 
 // 0x001342e0  size 0xf0
-void FUN_001342e0(uint *param_1,uint param_2)
+/* held/pressed/released bit masks */
+
+void Input_UpdateButtonEdges(uint *param_1,uint param_2)
 
 {
   uint uVar1;
@@ -116,7 +119,7 @@ void FUN_001342e0(uint *param_1,uint param_2)
 }
 
 // 0x001343d0  size 0x28
-void FUN_001343d0(int param_1)
+void Input_Clear(int param_1)
 
 {
   *(undefined4 *)(param_1 + 4) = 0;
@@ -125,12 +128,12 @@ void FUN_001343d0(int param_1)
   *(undefined4 *)(param_1 + 0x10) = 0;
   *(undefined4 *)(param_1 + 0x14) = 0;
   *(undefined4 *)(param_1 + 0x18) = 0;
-  FUN_001325d0(param_1 + 0x1c,0,0x20);
+  Mem_Set16(param_1 + 0x1c,0,0x20);
   return;
 }
 
 // 0x00134400  size 0x28
-void FUN_00134400(int param_1,uint param_2)
+void Input_LatchButton(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -142,14 +145,16 @@ void FUN_00134400(int param_1,uint param_2)
 }
 
 // 0x00134430  size 0x10
-undefined4 FUN_00134430(int param_1,int param_2)
+undefined4 Input_GetAnalog(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x9c);
 }
 
 // 0x00134440  size 0x180
-void FUN_00134440(uint *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
+/* recursive */
+
+void maybe_Gut_HashInsert(uint *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
 
 {
   uint uVar1;
@@ -185,7 +190,7 @@ void FUN_00134440(uint *param_1,uint param_2,undefined8 param_3,undefined8 param
                       uVar4 = 0;
                       if (uVar1 != 0) {
                         do {
-                          FUN_00134440(param_1,uVar4,param_3,param_4);
+                          maybe_Gut_HashInsert(param_1,uVar4,param_3,param_4);
                           uVar4 = uVar4 + 1;
                         } while (uVar4 < *param_1);
                       }
@@ -235,19 +240,21 @@ undefined8 FUN_001345d0(undefined8 param_1,undefined4 param_2)
   
   puVar1 = (undefined4 *)param_1;
   *puVar1 = param_2;
-  FUN_00134440(param_1,*puVar1,0x28,2);
+  maybe_Gut_HashInsert(param_1,*puVar1,0x28,2);
   puVar1[1] = 0;
   puVar1[2] = 0;
   puVar1[3] = 0;
   puVar1[4] = 0;
   puVar1[5] = 0;
   puVar1[6] = 0;
-  FUN_001325d0(puVar1 + 7,0,0x20);
+  Mem_Set16(puVar1 + 7,0,0x20);
   return param_1;
 }
 
 // 0x00134630  size 0x44
-int * FUN_00134630(uint *param_1,uint param_2,long param_3)
+/* count + offset table; 32 callers */
+
+int * Gut_PackGetEntry(uint *param_1,uint param_2,long param_3)
 
 {
   int *piVar1;
@@ -265,7 +272,9 @@ int * FUN_00134630(uint *param_1,uint param_2,long param_3)
 }
 
 // 0x00134680  size 0x1dc
-undefined4 FUN_00134680(int param_1,int param_2,uint param_3)
+/* "GUT_Archive Memory Over", "destSize Error" */
+
+undefined4 Gut_ArchiveDecompress(int param_1,int param_2,uint param_3)
 
 {
   uint uVar1;
@@ -321,7 +330,9 @@ undefined4 FUN_00134680(int param_1,int param_2,uint param_3)
 }
 
 // 0x00134860  size 0x70
-undefined8 FUN_00134860(void)
+/* iReferThreadStatus + iWakeup */
+
+undefined8 maybe_Gfx_VSyncWakeThread(void)
 
 {
   uint auStack_30 [12];
@@ -337,7 +348,9 @@ undefined8 FUN_00134860(void)
 }
 
 // 0x001348d0  size 0xc8
-void FUN_001348d0(undefined8 param_1,undefined2 *param_2)
+/* sceGsExecStoreImage */
+
+void Gfx_StoreImage(undefined8 param_1,undefined2 *param_2)
 
 {
   long lVar1;
@@ -363,7 +376,9 @@ void FUN_001348d0(undefined8 param_1,undefined2 *param_2)
 }
 
 // 0x001349a0  size 0x80
-void FUN_001349a0(void)
+/* sceGsSyncPath, kicks VIF1/GIF DMA */
+
+void Gfx_ResetPathsIfBusy(void)
 
 {
   long lVar1;
@@ -383,7 +398,7 @@ void FUN_001349a0(void)
 }
 
 // 0x00134a20  size 0x90
-void FUN_00134a20(long param_1,long param_2)
+void maybe_Gfx_KickVif1Dma(long param_1,long param_2)
 
 {
   uint uVar1;
@@ -410,7 +425,7 @@ void FUN_00134a20(long param_1,long param_2)
 }
 
 // 0x00134ab0  size 0xa0
-long FUN_00134ab0(long param_1,undefined2 param_2)
+long Gfx_SyncPath(long param_1,undefined2 param_2)
 
 {
   long lVar1;
@@ -432,7 +447,9 @@ long FUN_00134ab0(long param_1,undefined2 param_2)
 }
 
 // 0x00134b60  size 0x180
-void FUN_00134b60(void)
+/* sceGsResetGraph(0,1,2,1), DBuff */
+
+void Gfx_Init(void)
 
 {
   long lVar1;
@@ -475,7 +492,7 @@ void FUN_00134b60(void)
 }
 
 // 0x00134cf0  size 0x33c
-void FUN_00134cf0(int *param_1)
+void maybe_Gfx_BuildDisplayEnv(int *param_1)
 
 {
   int iVar1;
@@ -592,23 +609,25 @@ void FUN_00134cf0(int *param_1)
 }
 
 // 0x00135030  size 0x10
-void FUN_00135030(undefined8 param_1)
+void Gfx_AddFrameCallback(undefined8 param_1)
 
 {
-  FUN_001321c0(0x380380,param_1);
+  maybe_List_Append(0x380380,param_1);
   return;
 }
 
 // 0x00135040  size 0x10
-void FUN_00135040(undefined8 param_1)
+void Gfx_RemoveFrameCallback(undefined8 param_1)
 
 {
-  FUN_00132250(0x380380,param_1);
+  maybe_List_Remove(0x380380,param_1);
   return;
 }
 
 // 0x00135050  size 0x3c4
-void FUN_00135050(void)
+/* runs vsync callbacks, sync path */
+
+void Gfx_SyncAndFlip(void)
 
 {
   int iVar1;
@@ -712,7 +731,9 @@ void FUN_00135050(void)
 }
 
 // 0x00135420  size 0x238
-void FUN_00135420(undefined2 param_1,undefined2 *param_2)
+/* sceGsResetGraph + DefDispEnv + vsync callback */
+
+void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
 
 {
   undefined2 *puVar1;
@@ -782,19 +803,19 @@ void FUN_00135420(undefined2 param_1,undefined2 *param_2)
 }
 
 // 0x00135660  size 0x3c
-void FUN_00135660(void)
+void Gfx_Shutdown(void)
 
 {
   if (iGpffff88b8 != 0) {
     DisableIntc(2);
     sceGsSyncVCallback(iGpffff88b8);
   }
-  FUN_001322a0(0x380380);
+  maybe_List_Clear(0x380380);
   return;
 }
 
 // 0x001356a0  size 0x50
-void FUN_001356a0(void)
+void Gfx_ResetState(void)
 
 {
   libgraph_sub_00108140(0);
@@ -817,7 +838,7 @@ long FUN_001356f0(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e0b0;
-    FUN_00132320(param_1,0);
+    maybe_List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -826,7 +847,9 @@ long FUN_001356f0(long param_1,short param_2)
 }
 
 // 0x00135750  size 0x38
-void FUN_00135750(void)
+/* refcounted sceDbcEnd */
+
+void Dbc_Release(void)
 
 {
   iGpffff88c4 = iGpffff88c4 + -1;
@@ -837,7 +860,9 @@ void FUN_00135750(void)
 }
 
 // 0x00135790  size 0x40
-void FUN_00135790(void)
+/* refcounted sceDbcInit */
+
+void Dbc_Acquire(void)
 
 {
   if (iGpffff88c4 == 0) {
@@ -857,7 +882,9 @@ undefined8 FUN_001357d0(undefined8 param_1)
 }
 
 // 0x001357f0  size 0x1d0
-int FUN_001357f0(undefined8 param_1,undefined8 param_2)
+/* sceCdStRead */
+
+int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -897,11 +924,11 @@ int FUN_001357f0(undefined8 param_1,undefined8 param_2)
           }
           iGpffff891c = -1;
         }
-        FUN_00138ba0((int)register0x000001c0 + -0x76f4,0);
+        Sema_Signal((int)register0x000001c0 + -0x76f4,0);
         do {
           lVar3 = sceCdDiskReady(0);
         } while (lVar3 == 6);
-        FUN_00135a60(&uStack_10);
+        CdStream_Open(&uStack_10);
       }
     } while (iStack_4 != 0);
   }
@@ -918,7 +945,7 @@ int FUN_001357f0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001359c0  size 0x98
-void FUN_001359c0(void)
+void CdStream_Close(void)
 
 {
   int iVar1;
@@ -934,12 +961,12 @@ void FUN_001359c0(void)
     }
     iGpffff891c = -1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x76f4,0);
+  Sema_Signal((int)register0x000001c0 + -0x76f4,0);
   return;
 }
 
 // 0x00135a60  size 0xfc
-undefined4 FUN_00135a60(int *param_1)
+undefined4 CdStream_Open(int *param_1)
 
 {
   long lVar1;
@@ -989,12 +1016,12 @@ undefined4 FUN_00135a60(int *param_1)
     iGpffff8920 = 0;
     iGpffff8924 = 0;
   }
-  FUN_00138bf0((int)register0x000001c0 + -0x76f4);
+  Sema_Wait((int)register0x000001c0 + -0x76f4);
   return 1;
 }
 
 // 0x00135b60  size 0x24
-void FUN_00135b60(void)
+void CdStream_Shutdown(void)
 
 {
   libcdvd_sub_00122bd8();
@@ -1003,7 +1030,7 @@ void FUN_00135b60(void)
 }
 
 // 0x00135b90  size 0x64
-undefined4 FUN_00135b90(undefined8 param_1,undefined8 param_2)
+undefined4 maybe_CdStream_Init(undefined8 param_1,undefined8 param_2)
 
 {
   uGpffff891c = 0xffffffff;
@@ -1014,7 +1041,9 @@ undefined4 FUN_00135b90(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00135c00  size 0xf0
-void FUN_00135c00(int param_1)
+/* sceOpen/sceLseek/sceWrite */
+
+void File_WriteHostRequest(int param_1)
 
 {
   int iVar1;
@@ -1041,12 +1070,14 @@ void FUN_00135c00(int param_1)
   if (iVar3 < 0) {
     uGpffff8910 = 0xfffffffb;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x76f8,0);
+  Sema_Signal((int)register0x000001c0 + -0x76f8,0);
   return;
 }
 
 // 0x00135cf0  size 0xf0
-void FUN_00135cf0(int param_1)
+/* sceOpen/sceLseek/sceRead */
+
+void File_ReadHostRequest(int param_1)
 
 {
   int iVar1;
@@ -1073,15 +1104,15 @@ void FUN_00135cf0(int param_1)
   if (iVar3 < 0) {
     uGpffff8910 = 0xfffffffb;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x76f8,0);
+  Sema_Signal((int)register0x000001c0 + -0x76f8,0);
   return;
 }
 
 // 0x00135de0  size 0x68
-void FUN_00135de0(undefined4 param_1)
+void maybe_Cd_ToggleMotor(undefined4 param_1)
 
 {
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iGpffff8910 == 0) {
     iGpffff8910 = libcdvd_sub_001228b0();
   }
@@ -1089,13 +1120,15 @@ void FUN_00135de0(undefined4 param_1)
     iGpffff8910 = 0;
   }
   uGpffff8914 = param_1;
-  FUN_00138ba0((int)register0x000001c0 + -0x76f8,0);
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x76f8,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   return;
 }
 
 // 0x00135e50  size 0x2f0
-void FUN_00135e50(void)
+/* "decompress Error" */
+
+void File_LoaderThread(void)
 
 {
   int iVar1;
@@ -1113,16 +1146,16 @@ void FUN_00135e50(void)
   undefined1 uStack_1;
   
   do {
-    FUN_00138bf0((int)register0x000001c0 + -0x76fc);
-    for (lVar2 = FUN_00136610(0); lVar2 != 0; lVar2 = FUN_00136610(lVar2)) {
-      FUN_00138bf0((int)register0x000001c0 + -0x76f4);
-      FUN_00138ba0((int)register0x000001c0 + -0x76f4,0);
+    Sema_Wait((int)register0x000001c0 + -0x76fc);
+    for (lVar2 = File_NextRequest(0); lVar2 != 0; lVar2 = File_NextRequest(lVar2)) {
+      Sema_Wait((int)register0x000001c0 + -0x76f4);
+      Sema_Signal((int)register0x000001c0 + -0x76f4,0);
       iVar5 = (int)lVar2;
       switch(*(undefined1 *)(iVar5 + 0x38)) {
       case 1:
       case 2:
       case 3:
-        FUN_00138ba0((int)register0x000001c0 + -0x76f8,0);
+        Sema_Signal((int)register0x000001c0 + -0x76f8,0);
         iVar1 = *(int *)(iVar5 + 0x58);
         goto LAB_00136060;
       case 4:
@@ -1181,22 +1214,23 @@ void FUN_00135e50(void)
         } while (lVar3 == 0);
         break;
       case 7:
-        FUN_00135cf0(lVar2);
+        File_ReadHostRequest(lVar2);
         break;
       case 8:
-        FUN_00135c00(lVar2);
+        File_WriteHostRequest(lVar2);
       }
       iVar1 = *(int *)(iVar5 + 0x58);
 LAB_00136060:
       if (iVar1 != 0) {
-        lVar3 = FUN_00134680(*(undefined4 *)(iVar1 + 0x5c),*(undefined4 *)(iVar1 + 0x50),
-                             *(undefined4 *)(iVar1 + 0x4c));
+        lVar3 = Gut_ArchiveDecompress
+                          (*(undefined4 *)(iVar1 + 0x5c),*(undefined4 *)(iVar1 + 0x50),
+                           *(undefined4 *)(iVar1 + 0x4c));
         if (lVar3 == 0) {
           FUN_00132470(0x361260);
         }
         FlushCache(0);
       }
-      FUN_00138bf0((int)register0x000001c0 + -0x76f8);
+      Sema_Wait((int)register0x000001c0 + -0x76f8);
       *(int *)(iVar5 + 0x54) = iGpffff8910;
       if (iGpffff8910 != 0) {
         sceCdSync(0);
@@ -1207,18 +1241,18 @@ LAB_00136060:
         do {
           lVar3 = sceCdDiskReady(0);
         } while (lVar3 == 6);
-        FUN_00138bf0((int)register0x000001c0 + -0x76f8);
+        Sema_Wait((int)register0x000001c0 + -0x76f8);
       }
     }
     if (iGpffff88d8 != 0) {
       iGpffff88d8 = 0;
-      FUN_00138ba0((int)register0x000001c0 + -0x772c,0);
+      Sema_Signal((int)register0x000001c0 + -0x772c,0);
     }
   } while( true );
 }
 
 // 0x00136140  size 0x2a0
-void FUN_00136140(long param_1)
+void File_StartRequest(long param_1)
 
 {
   uint uVar1;
@@ -1228,7 +1262,7 @@ void FUN_00136140(long param_1)
   int iVar5;
   
   if ((param_1 != 0) && (iVar5 = (int)param_1, *(char *)(iVar5 + 0x38) == '\x01')) {
-    FUN_00138bf0(0x36efc0);
+    Sema_Wait(0x36efc0);
     uVar1 = *(uint *)(iVar5 + 0xc);
     if ((uVar1 & 8) == 0) {
       if (((uVar1 & 0x10) == 0) || ((uVar1 & 0x800) == 0)) {
@@ -1269,7 +1303,7 @@ void FUN_00136140(long param_1)
     else {
       *(undefined1 *)(iVar5 + 0x38) = 3;
     }
-    FUN_00138ba0(0x36efc0,0);
+    Sema_Signal(0x36efc0,0);
     if ((*(uint *)(iVar5 + 0xc) & 0x800) != 0) {
       *(undefined4 *)(iVar5 + 0x3c) = *(undefined4 *)(iVar5 + 0x18);
     }
@@ -1313,7 +1347,7 @@ void FUN_00136140(long param_1)
 }
 
 // 0x001363e0  size 0x228
-int FUN_001363e0(int param_1,long param_2,long param_3)
+int File_PollRequest(int param_1,long param_2,long param_3)
 
 {
   uint uVar1;
@@ -1322,20 +1356,20 @@ int FUN_001363e0(int param_1,long param_2,long param_3)
   int iVar4;
   
   iVar3 = 0;
-  FUN_00138bf0(0x36efc0);
+  Sema_Wait(0x36efc0);
   if (((param_1 != 0) && ((*(uint *)(param_1 + 0xc) & 0x100) != 0)) &&
      ((*(uint *)(param_1 + 0xc) & 8) == 0)) {
     iVar3 = param_1;
   }
   if (param_2 != 0) {
-    FUN_001321c0(0x386620,param_2);
+    maybe_List_Append(0x386620,param_2);
     iVar4 = (int)param_2;
     *(undefined4 *)(iVar4 + 8) = 0xffffffff;
     *(undefined1 *)(iVar4 + 0x38) = 0;
     *(undefined4 *)(iVar4 + 0xc) = 0;
   }
   if (param_3 != 0) {
-    FUN_001321c0(0x386620,param_3);
+    maybe_List_Append(0x386620,param_3);
     iVar4 = (int)param_3;
     *(undefined4 *)(iVar4 + 8) = 0xffffffff;
     *(undefined1 *)(iVar4 + 0x38) = 0;
@@ -1383,15 +1417,15 @@ int FUN_001363e0(int param_1,long param_2,long param_3)
     }
     *(undefined1 *)(iVar3 + 0x38) = 2;
   }
-  if ((iVar4 != 0) && (lVar2 = FUN_00138b60(0x36eff4,0), lVar2 != 0)) {
-    FUN_00138bf0(0x36eff4);
+  if ((iVar4 != 0) && (lVar2 = Sema_GetCount(0x36eff4,0), lVar2 != 0)) {
+    Sema_Wait(0x36eff4);
   }
-  FUN_00138ba0(0x36efc0,0);
+  Sema_Signal(0x36efc0,0);
   return iVar4;
 }
 
 // 0x00136610  size 0x2ac
-int FUN_00136610(int param_1)
+int File_NextRequest(int param_1)
 
 {
   bool bVar1;
@@ -1485,45 +1519,45 @@ int FUN_00136610(int param_1)
         }
       }
     }
-    param_1 = FUN_001363e0(param_1,iVar7,iVar6);
+    param_1 = File_PollRequest(param_1,iVar7,iVar6);
     if (param_1 != 0) {
-      FUN_00136140(param_1);
+      File_StartRequest(param_1);
     }
   }
   else if (iVar7 != 0) {
-    FUN_00138bf0(0x36efc0);
-    FUN_001321c0(0x386620,iVar7);
+    Sema_Wait(0x36efc0);
+    maybe_List_Append(0x386620,iVar7);
     *(undefined4 *)(iVar7 + 8) = 0xffffffff;
     *(undefined1 *)(iVar7 + 0x38) = 0;
     *(undefined4 *)(iVar7 + 0xc) = 0;
-    FUN_00138ba0(0x36efc0,0);
+    Sema_Signal(0x36efc0,0);
   }
   return param_1;
 }
 
 // 0x001368c0  size 0x60
-void FUN_001368c0(void)
+void File_AbortAll(void)
 
 {
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iRam00386628 != 0) {
     iGpffff88d8 = 1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iGpffff88d8 != 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x772c);
+    Sema_Wait((int)register0x000001c0 + -0x772c);
   }
   return;
 }
 
 // 0x00136920  size 0x94
-bool FUN_00136920(int param_1)
+bool File_IsBusy(int param_1)
 
 {
   int iVar1;
   uint uVar2;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   uVar2 = 0;
   iVar1 = 0x380610;
   do {
@@ -1536,12 +1570,12 @@ bool FUN_00136920(int param_1)
   } while (uVar2 < 0x100);
   iVar1 = 0;
 LAB_00136984:
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   return iVar1 == 0;
 }
 
 // 0x001369c0  size 0xb8
-undefined4 FUN_001369c0(int param_1)
+undefined4 File_CancelRequest(int param_1)
 
 {
   int iVar1;
@@ -1549,7 +1583,7 @@ undefined4 FUN_001369c0(int param_1)
   undefined4 uVar3;
   
   uVar3 = 0;
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   uVar2 = 0;
   iVar1 = 0x380610;
   do {
@@ -1566,16 +1600,16 @@ LAB_00136a24:
     uVar3 = 1;
   }
   else if (*(char *)(iVar1 + 0x38) == '\0') {
-    FUN_001321c0(0x386620,iVar1);
+    maybe_List_Append(0x386620,iVar1);
     uVar3 = 1;
     *(undefined4 *)(iVar1 + 8) = 0xffffffff;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   return uVar3;
 }
 
 // 0x00136a80  size 0x160
-int FUN_00136a80(undefined4 *param_1)
+int File_QueueRequest(undefined4 *param_1)
 
 {
   long lVar1;
@@ -1584,7 +1618,7 @@ int FUN_00136a80(undefined4 *param_1)
   int iVar4;
   
   iVar4 = -1;
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   uVar3 = 0;
   iVar2 = 0x380610;
   do {
@@ -1599,8 +1633,8 @@ int FUN_00136a80(undefined4 *param_1)
 LAB_00136aec:
   if (iVar2 != 0) {
     if ((iRam0038662c == 0) &&
-       (lVar1 = FUN_00138b60((int)register0x000001c0 + -0x76fc,0), lVar1 == 0)) {
-      FUN_00138ba0((int)register0x000001c0 + -0x76fc,0);
+       (lVar1 = Sema_GetCount((int)register0x000001c0 + -0x76fc,0), lVar1 == 0)) {
+      Sema_Signal((int)register0x000001c0 + -0x76fc,0);
       iVar4 = iGpffff88cc;
     }
     else {
@@ -1620,14 +1654,16 @@ LAB_00136aec:
     *(undefined4 *)(iVar2 + 0x2c) = param_1[8];
     *(undefined4 *)(iVar2 + 0x30) = param_1[9];
     *(undefined4 *)(iVar2 + 0x34) = param_1[10];
-    FUN_00132250(0x386620,iVar2);
+    maybe_List_Remove(0x386620,iVar2);
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   return iVar4;
 }
 
 // 0x00136be0  size 0x12c
-undefined4 FUN_00136be0(undefined8 param_1,undefined4 param_2)
+/* sceCdSearchFile */
+
+undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
 
 {
   undefined4 uVar1;
@@ -1643,13 +1679,13 @@ undefined4 FUN_00136be0(undefined8 param_1,undefined4 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iRam00386628 != 0) {
     iGpffff88d8 = 1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iGpffff88d8 != 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x772c);
+    Sema_Wait((int)register0x000001c0 + -0x772c);
   }
   lVar2 = libcdvd_sub_00121728(&uStack_70,param_1);
   if (lVar2 == 0) {
@@ -1664,14 +1700,14 @@ undefined4 FUN_00136be0(undefined8 param_1,undefined4 param_2)
     uStack_34 = uStack_70;
     uStack_2c = uStack_6c;
     uStack_20 = param_2;
-    FUN_00136a80(auStack_40);
-    FUN_00138bf0((int)register0x000001c0 + -0x7730);
+    File_QueueRequest(auStack_40);
+    Sema_Wait((int)register0x000001c0 + -0x7730);
     if (iRam00386628 != 0) {
       iGpffff88d8 = 1;
     }
-    FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+    Sema_Signal((int)register0x000001c0 + -0x7730,0);
     if (iGpffff88d8 != 0) {
-      FUN_00138bf0((int)register0x000001c0 + -0x772c);
+      Sema_Wait((int)register0x000001c0 + -0x772c);
     }
     uVar1 = 1;
   }
@@ -1679,7 +1715,7 @@ undefined4 FUN_00136be0(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00136d10  size 0xf4
-undefined4 FUN_00136d10(undefined8 param_1,long param_2,long param_3,long param_4,long param_5)
+undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long param_4,long param_5)
 
 {
   undefined4 uVar1;
@@ -1689,13 +1725,13 @@ undefined4 FUN_00136d10(undefined8 param_1,long param_2,long param_3,long param_
   undefined1 auStack_18 [8];
   undefined4 uStack_10;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iRam00386628 != 0) {
     iGpffff88d8 = 1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iGpffff88d8 != 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x772c);
+    Sema_Wait((int)register0x000001c0 + -0x772c);
   }
   lVar2 = libcdvd_sub_00121728(&uStack_30,param_1);
   if (lVar2 == 0) {
@@ -1720,7 +1756,7 @@ undefined4 FUN_00136d10(undefined8 param_1,long param_2,long param_3,long param_
 }
 
 // 0x00136e10  size 0x14
-undefined4 FUN_00136e10(int *param_1)
+undefined4 maybe_File_GetSectorCount(int *param_1)
 
 {
   *param_1 = iGpffff88f0 << 1;
@@ -1728,18 +1764,20 @@ undefined4 FUN_00136e10(int *param_1)
 }
 
 // 0x00136e30  size 0x98
-void FUN_00136e30(undefined8 param_1)
+/* sceCdReadClock */
+
+void File_ReadClock(undefined8 param_1)
 
 {
   long lVar1;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iRam00386628 != 0) {
     iGpffff88d8 = 1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iGpffff88d8 != 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x772c);
+    Sema_Wait((int)register0x000001c0 + -0x772c);
   }
   lVar1 = sceCdReadClock(param_1);
   while (lVar1 == 0) {
@@ -1750,18 +1788,18 @@ void FUN_00136e30(undefined8 param_1)
 }
 
 // 0x00136ed0  size 0xcc
-bool FUN_00136ed0(long param_1)
+bool File_GetDiscType(long param_1)
 
 {
   long lVar1;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iRam00386628 != 0) {
     iGpffff88d8 = 1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iGpffff88d8 != 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x772c);
+    Sema_Wait((int)register0x000001c0 + -0x772c);
   }
   lVar1 = libcdvd_sub_00122818();
   while (lVar1 == 1) {
@@ -1775,16 +1813,16 @@ bool FUN_00136ed0(long param_1)
 }
 
 // 0x00136fa0  size 0xe8
-void FUN_00136fa0(void)
+void File_Shutdown(void)
 
 {
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   if (iRam00386628 != 0) {
     iGpffff88d8 = 1;
   }
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iGpffff88d8 != 0) {
-    FUN_00138bf0((int)register0x000001c0 + -0x772c);
+    Sema_Wait((int)register0x000001c0 + -0x772c);
   }
   sceCdInit(5);
   if (iGpffff88f0 != 0) {
@@ -1795,7 +1833,7 @@ void FUN_00136fa0(void)
     }
     uGpffff88fc = 0;
   }
-  FUN_00138d70((int)register0x000001c0 + -0x7720);
+  Thread_Delete((int)register0x000001c0 + -0x7720);
   if (iGpffff88e8 != 0) {
     Mem_Free();
     iGpffff88e8 = 0;
@@ -1804,16 +1842,18 @@ void FUN_00136fa0(void)
     Mem_Free();
     iGpffff88ec = 0;
   }
-  FUN_00138c30((int)register0x000001c0 + -0x7730);
-  FUN_00138c30((int)register0x000001c0 + -0x772c);
-  FUN_00138c30((int)register0x000001c0 + -0x76f8);
-  FUN_00138c30((int)register0x000001c0 + -0x76fc);
-  FUN_00138c30((int)register0x000001c0 + -0x76f4);
+  Sema_Delete((int)register0x000001c0 + -0x7730);
+  Sema_Delete((int)register0x000001c0 + -0x772c);
+  Sema_Delete((int)register0x000001c0 + -0x76f8);
+  Sema_Delete((int)register0x000001c0 + -0x76fc);
+  Sema_Delete((int)register0x000001c0 + -0x76f4);
   return;
 }
 
 // 0x00137090  size 0x1b4
-undefined4 FUN_00137090(undefined8 param_1,undefined8 param_2,long param_3)
+/* sceCdInit, loader thread */
+
+undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   undefined8 uVar1;
@@ -1828,15 +1868,15 @@ undefined4 FUN_00137090(undefined8 param_1,undefined8 param_2,long param_3)
   uGpffff8910 = 0;
   uGpffff8914 = 0;
   uGpffff8900 = 0;
-  FUN_00138c70((int)register0x000001c0 + -0x7730,1,1);
-  FUN_00138c70((int)register0x000001c0 + -0x772c,0,1);
-  FUN_00138c70((int)register0x000001c0 + -0x76fc,0,1);
-  FUN_00138c70((int)register0x000001c0 + -0x76f8,0,1);
-  FUN_00138c70((int)register0x000001c0 + -0x76f4,1,1);
+  Sema_Create((int)register0x000001c0 + -0x7730,1,1);
+  Sema_Create((int)register0x000001c0 + -0x772c,0,1);
+  Sema_Create((int)register0x000001c0 + -0x76fc,0,1);
+  Sema_Create((int)register0x000001c0 + -0x76f8,0,1);
+  Sema_Create((int)register0x000001c0 + -0x76f4,1,1);
   uVar1 = Mem_AllocAligned(0x4000,0x10,uGpffff88c8);
   uGpffff88e8 = (undefined4)uVar1;
-  FUN_00138dc0((int)register0x000001c0 + -0x7720,param_1,0x135e50,uVar1,0x4000,0);
-  FUN_00138d30((int)register0x000001c0 + -0x7720,0);
+  Thread_Create((int)register0x000001c0 + -0x7720,param_1,0x135e50,uVar1,0x4000,0);
+  Thread_Start((int)register0x000001c0 + -0x7720,0);
   uVar1 = Mem_AllocAligned(0x4000,0x10,uGpffff88c8);
   uGpffff88ec = (undefined4)uVar1;
   maybe_Cd_CallbackThreadInit(param_2,uVar1,0x4000);
@@ -1870,7 +1910,7 @@ undefined4 FUN_00137090(undefined8 param_1,undefined8 param_2,long param_3)
 }
 
 // 0x00137250  size 0x78
-void FUN_00137250(void)
+void File_CloseHostHandles(void)
 
 {
   uint uVar1;
@@ -1889,7 +1929,7 @@ void FUN_00137250(void)
 }
 
 // 0x001372d0  size 0x3c
-undefined4 FUN_001372d0(void)
+undefined4 File_ResetHostHandles(void)
 
 {
   undefined4 *puVar1;
@@ -1917,7 +1957,7 @@ void FUN_00137310(void)
 }
 
 // 0x00137320  size 0x14
-void FUN_00137320(undefined4 param_1)
+void File_SetHeap(undefined4 param_1)
 
 {
   uGpffff88c8 = param_1;
@@ -1932,7 +1972,7 @@ long FUN_00137340(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e0c0;
-    FUN_00132320(param_1,0);
+    maybe_List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1944,13 +1984,13 @@ long FUN_00137340(long param_1,short param_2)
 undefined8 FUN_00137420(undefined8 param_1)
 
 {
-  FUN_00132450(param_1,0);
+  maybe_ListNode_ctor(param_1,0);
   *(undefined4 *)param_1 = &DAT_0036e0d0;
   return param_1;
 }
 
 // 0x00137460  size 0x17c
-void FUN_00137460(void)
+void Pad_Update(void)
 
 {
   undefined4 uVar1;
@@ -1980,13 +2020,13 @@ void FUN_00137460(void)
           lVar2 = libpad2_sub_001304b8
                             (*(undefined4 *)(iVar6 + 0x48c),*(undefined4 *)(iVar6 + 0x488));
           if (0 < lVar2) {
-            FUN_001379e0(iVar6);
+            Pad_ReadButtons(iVar6);
           }
         }
       }
       else {
         *(undefined4 *)(iVar6 + 0x480) = 0;
-        FUN_001343d0(iVar6 + 8);
+        Input_Clear(iVar6 + 8);
         iVar5 = 0;
         iVar4 = iVar6;
         do {
@@ -2031,14 +2071,16 @@ void FUN_00137460(void)
 }
 
 // 0x001375f0  size 0x30
-int FUN_001375f0(char param_1,char param_2)
+/* 0x498 bytes per pad at 0x386650 */
+
+int Pad_GetPort(char param_1,char param_2)
 
 {
   return param_2 * 0x498 + param_1 * 0x498 + 0x386650;
 }
 
 // 0x00137620  size 0x5c
-void FUN_00137620(void)
+void maybe_Pad_Shutdown(void)
 
 {
   int iVar1;
@@ -2047,17 +2089,19 @@ void FUN_00137620(void)
   iVar2 = 0;
   iVar1 = 0x386650;
   do {
-    FUN_00137eb0(iVar1);
+    Pad_Close(iVar1);
     iVar2 = iVar2 + 1;
     iVar1 = iVar1 + 0x498;
   } while (iVar2 < 2);
   libpad2_sub_001302f0();
-  FUN_00135750();
+  Dbc_Release();
   return;
 }
 
 // 0x00137680  size 0x188
-void FUN_00137680(undefined8 param_1)
+/* scePad2CreateSocket per port, state at 0x386650 */
+
+void Pad_Init(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -2070,7 +2114,7 @@ void FUN_00137680(undefined8 param_1)
   int iStack_1c;
   int iStack_18;
   
-  FUN_00135790();
+  Dbc_Acquire();
   libpad2_sub_001302b0(0);
   iVar6 = 0;
   pcVar5 = (char *)0x386650;
@@ -2098,7 +2142,7 @@ void FUN_00137680(undefined8 param_1)
     iStack_18 = (int)pcVar5[1];
     uVar1 = scePad2CreateSocket(&uStack_20,*(undefined4 *)(pcVar5 + 0x484));
     *(undefined4 *)(pcVar5 + 0x48c) = uVar1;
-    FUN_001343d0(pcVar5 + 8);
+    Input_Clear(pcVar5 + 8);
     pcVar2 = pcVar5;
     iVar3 = 0;
     do {
@@ -2183,7 +2227,9 @@ void FUN_00137680(undefined8 param_1)
 }
 
 // 0x00137810  size 0x110
-undefined4 FUN_00137810(int param_1,byte param_2,byte param_3,uint param_4)
+/* sceDbcSendData2 (vibration) */
+
+undefined4 Pad_SetActuator(int param_1,byte param_2,byte param_3,uint param_4)
 
 {
   bool bVar1;
@@ -2225,7 +2271,7 @@ undefined4 FUN_00137810(int param_1,byte param_2,byte param_3,uint param_4)
 }
 
 // 0x001379e0  size 0x4c4
-void FUN_001379e0(int param_1)
+void Pad_ReadButtons(int param_1)
 
 {
   int iVar1;
@@ -2307,8 +2353,8 @@ void FUN_001379e0(int param_1)
     puVar9 = puVar9 + 1;
     iVar10 = iVar10 + 0x10;
   } while (uVar7 < 0x18);
-  uVar6 = FUN_00138120(param_1,uVar11,1);
-  FUN_001342e0(param_1 + 8,uVar6);
+  uVar6 = Pad_MapButtons(param_1,uVar11,1);
+  Input_UpdateButtonEdges(param_1 + 8,uVar6);
   FUN_00133e60(param_1 + 0x324,uStack_8,uStack_4,0xff);
   fVar12 = ((float)uStack_4 / 2.0 - (float)uStack_8 / 2.0) + 127.5;
   if (2.1474836e+09 <= fVar12) {
@@ -2338,7 +2384,7 @@ void FUN_001379e0(int param_1)
 }
 
 // 0x00137eb0  size 0x140
-void FUN_00137eb0(undefined1 *param_1)
+void Pad_Close(undefined1 *param_1)
 
 {
   undefined1 *puVar1;
@@ -2367,7 +2413,7 @@ void FUN_00137eb0(undefined1 *param_1)
   param_1[1] = 0xff;
   *(undefined4 *)(param_1 + 0x47c) = 0;
   *(undefined4 *)(param_1 + 0x480) = 0;
-  FUN_001343d0(param_1 + 8);
+  Input_Clear(param_1 + 8);
   puVar1 = param_1;
   iVar2 = 0;
   do {
@@ -2412,7 +2458,7 @@ long FUN_00137ff0(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined **)((int)param_1 + 4) = &DAT_0036e0e0;
-    FUN_00137eb0();
+    Pad_Close();
     if (0 < param_2) {
       Mem_Free(param_1);
     }

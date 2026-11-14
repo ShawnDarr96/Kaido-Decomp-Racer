@@ -40,6 +40,9 @@ def main():
     lo = int(a.start, 16)
     hi = int(a.end, 16) if a.end else lo + 1
     X = {r["address"]: r for r in csv.DictReader(open(ROOT / "decomp" / "xrefs.csv", encoding="utf-8"))}
+    for r in csv.DictReader(open(ROOT / "config" / "symbols.csv", encoding="utf-8")):
+        if r["address"] in X and r["name"]:
+            X[r["address"]]["name"] = r["name"]
     names = {k: v["name"] for k, v in X.items()}
     C = load_c()
     for addr in sorted(X, key=lambda s: int(s, 16)):

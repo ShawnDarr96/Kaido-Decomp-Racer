@@ -861,7 +861,7 @@ void FUN_00231ba0(undefined8 param_1)
     uVar10 = FUN_001f6ec0(*(undefined2 *)uVar9);
     FUN_002010a0(0xec,0x38,uVar10);
   }
-  uVar10 = FUN_0017e430(*(undefined4 *)((undefined2 *)uVar9 + 10));
+  uVar10 = Race_GetLapCountForMode(*(undefined4 *)((undefined2 *)uVar9 + 10));
   FUN_00201140(0xec,0x30,4,0x29a);
   uVar10 = FUN_001f69f0(uVar10);
   uVar10 = FUN_001f69b0(uVar10,0);

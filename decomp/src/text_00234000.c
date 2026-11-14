@@ -1296,7 +1296,7 @@ void FUN_00236960(int param_1)
   undefined8 uVar3;
   
   iVar1 = FUN_001b55a0(*(undefined2 *)(param_1 + 0x20));
-  uVar2 = FUN_0017e430(*(undefined4 *)(iVar1 + 0x14));
+  uVar2 = Race_GetLapCountForMode(*(undefined4 *)(iVar1 + 0x14));
   uVar2 = FUN_001f69f0(uVar2);
   FUN_002011b0(0xd2,0x27,0x106);
   uVar3 = FUN_001f69b0(uVar2,1);
@@ -1382,7 +1382,7 @@ void FUN_00236ac0(int param_1)
   uVar11 = FUN_001f7430(*(undefined4 *)(param_1 + 0x20),0xfffffffffffffffd);
   iVar8 = FUN_001f7bd0(*(undefined4 *)(param_1 + 0x20),0xfffffffffffffffd);
   psVar20 = (short *)uVar13;
-  uVar5 = FUN_0017e430(*(undefined4 *)(psVar20 + 10));
+  uVar5 = Race_GetLapCountForMode(*(undefined4 *)(psVar20 + 10));
   cVar6 = FUN_001b4930(uVar13);
   iVar19 = -1;
   if (cVar6 == '\n') {
@@ -1569,7 +1569,7 @@ void FUN_00237210(int param_1,int param_2)
     case 6:
     case 7:
       iVar2 = FUN_001b55a0(uVar1);
-      uVar4 = FUN_0017e430(*(undefined4 *)(iVar2 + 0x14));
+      uVar4 = Race_GetLapCountForMode(*(undefined4 *)(iVar2 + 0x14));
       uVar4 = FUN_001f69f0(uVar4);
       uVar4 = FUN_001f69b0(uVar4,0);
       FUN_002011b0(0xc6,puVar6[2],uVar4);

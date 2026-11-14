@@ -228,7 +228,7 @@ void FUN_00254100(int param_1)
       *(undefined4 *)(param_1 + 0x660) = 0;
     }
   }
-  uVar10 = FUN_0017e720();
+  uVar10 = Race_GetCourseVariant();
   iVar4 = FUN_001f69f0(uVar10);
   FUN_001eea30(iVar13,0x5f,0x16,*(undefined4 *)(&DAT_0032c010 + iVar4 * 4));
   if (*piRam0036f468 == 1) {
@@ -591,31 +591,31 @@ void FUN_002551c0(int param_1)
       }
     }
   }
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   iVar2 = FUN_001f69f0(uVar6);
   FUN_001eea30(iVar7,0x3d,0x16,*(undefined4 *)(&DAT_0032bfc0 + iVar2 * 4));
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   iVar2 = FUN_001f69f0(uVar6);
   FUN_001eea30(iVar7,0x3e,0x16,*(undefined4 *)(&DAT_0032bfc0 + iVar2 * 4));
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   iVar2 = FUN_001f69f0(uVar6);
   FUN_001eea30(iVar7,0x3f,0x16,*(undefined4 *)(&DAT_0032bfc0 + iVar2 * 4));
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   iVar2 = FUN_001f69f0(uVar6);
   FUN_001eea30(iVar7,0x40,0x16,*(undefined4 *)(&DAT_0032bfc0 + iVar2 * 4));
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   uVar6 = FUN_001f69f0(uVar6);
   uVar6 = FUN_001f69b0(uVar6,1);
   FUN_002011b0(0x78,0x42,uVar6);
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   uVar6 = FUN_001f69f0(uVar6);
   uVar6 = FUN_001f69b0(uVar6,1);
   FUN_002011b0(0x78,0x43,uVar6);
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   uVar6 = FUN_001f69f0(uVar6);
   uVar6 = FUN_001f69b0(uVar6,1);
   FUN_002011b0(0x78,0x44,uVar6);
-  uVar6 = FUN_0017e720();
+  uVar6 = Race_GetCourseVariant();
   uVar6 = FUN_001f69f0(uVar6);
   uVar6 = FUN_001f69b0(uVar6,1);
   FUN_002011b0(0x78,0x45,uVar6);
@@ -685,9 +685,9 @@ void FUN_00255bf0(void)
 {
   char cVar1;
   
-  cVar1 = FUN_0017e890();
+  cVar1 = RaceCtx_Get_8();
   if (cVar1 == '\x02') {
-    FUN_00176fa0();
+    GameState_Get_35c();
   }
   FUN_00200fc0(0);
   return;

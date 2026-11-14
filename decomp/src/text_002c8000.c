@@ -184,9 +184,9 @@ void FUN_002c8c00(undefined8 param_1)
   int iStack_8;
   
   uVar7 = FUN_001c1890(0);
-  lVar8 = FUN_00177260();
+  lVar8 = GameState_Get_e4();
   bVar2 = lVar8 != 2;
-  FUN_00177930(&iStack_50);
+  GameState_GetCurrentRecord(&iStack_50);
   iStack_30 = iStack_50;
   iStack_2c = iStack_4c;
   uStack_28 = uStack_48;
@@ -223,7 +223,7 @@ void FUN_002c8c00(undefined8 param_1)
                  -((float)*(int *)(iVar10 + 0x90) * 6.6e-06),0x3f800000,iVar10 + 0x26f0,
                  *piRam00387f7c + -0x13,0,0,0);
   }
-  cVar3 = FUN_0017e890();
+  cVar3 = RaceCtx_Get_8();
   if (cVar3 == '\x10') {
     uVar9 = *(uint *)(iVar10 + 0x164);
   }
@@ -423,8 +423,8 @@ void FUN_002c9c60(int param_1)
   iVar2 = 0x32f6f0;
   iVar6 = param_1;
   do {
-    thunk_FUN_001466b0(auStack_40,2,2,0);
-    FUN_001465c0(auStack_40,*piRam00387f7c + -10);
+    Pkt_Init(auStack_40,2,2,0);
+    Pkt_SubmitToChain(auStack_40,*piRam00387f7c + -10);
     fVar9 = DAT_0032f7d4 + *(float *)(iVar2 + 8);
     fVar8 = DAT_0032f7d4 + *(float *)(iVar2 + 0xc);
     maybe_Vu0_UnitMatrix(auStack_6e0);
@@ -463,9 +463,9 @@ void FUN_002c9c60(int param_1)
       uVar3 = uVar3 + 1;
       pfVar1 = pfVar1 + 4;
     } while (uVar3 < 4);
-    FUN_0014f3b0(puVar4,5,4);
+    Obj_Reset(puVar4,5,4);
     *puVar4 = *puVar4 | 2;
-    FUN_0014f1f0(puVar4,&fStack_6a0);
+    Obj_CopyParams(puVar4,&fStack_6a0);
     puVar4[0xb0] = DAT_0032f7dc >> 0x10 & 0xff;
     puVar4[0xb1] = DAT_0032f7dc >> 8 & 0xff;
     puVar4[0xb2] = DAT_0032f7dc & 0xff;
@@ -480,8 +480,8 @@ void FUN_002c9c60(int param_1)
     iVar6 = iVar6 + 0xcc;
     iVar2 = iVar2 + 0x60;
   } while (iVar5 < 2);
-  FUN_0014b700(auStack_40,auStack_660,((int)puVar4 - (int)auStack_660) / 0x310);
-  FUN_00146570(auStack_40,0);
+  Pkt_AddPrimitives(auStack_40,auStack_660,((int)puVar4 - (int)auStack_660) / 0x310);
+  Pkt_Submit(auStack_40,0);
   return;
 }
 
@@ -523,8 +523,8 @@ void FUN_002ca080(int param_1)
   undefined1 auStack_40 [64];
   
   puVar6 = auStack_12a0;
-  thunk_FUN_001466b0(auStack_40,2,2,0);
-  FUN_001465c0(auStack_40,*piRam00387f7c + -10);
+  Pkt_Init(auStack_40,2,2,0);
+  Pkt_SubmitToChain(auStack_40,*piRam00387f7c + -10);
   iVar5 = 0;
   puVar3 = &DAT_0032f7b0;
   iVar8 = 0;
@@ -572,9 +572,9 @@ void FUN_002ca080(int param_1)
         uVar4 = uVar4 + 1;
         pfVar2 = pfVar2 + 4;
       } while (uVar4 < 4);
-      FUN_0014f3b0(puVar6,5,4);
+      Obj_Reset(puVar6,5,4);
       *puVar6 = *puVar6 | 2;
-      FUN_0014f1f0(puVar6,&fStack_12e0);
+      Obj_CopyParams(puVar6,&fStack_12e0);
       uVar4 = *(uint *)(puVar3 + 0x14);
       puVar6[0xb0] = uVar4 >> 0x10 & 0xff;
       puVar6[0xb1] = uVar4 >> 8 & 0xff;
@@ -593,8 +593,8 @@ void FUN_002ca080(int param_1)
     puVar3 = puVar3 + 0x18;
     iVar8 = iVar8 + 8;
   } while (iVar5 < 3);
-  FUN_0014b700(auStack_40,auStack_12a0,((int)puVar6 - (int)auStack_12a0) / 0x310);
-  FUN_00146570(auStack_40,0);
+  Pkt_AddPrimitives(auStack_40,auStack_12a0,((int)puVar6 - (int)auStack_12a0) / 0x310);
+  Pkt_Submit(auStack_40,0);
   return;
 }
 
@@ -1212,7 +1212,7 @@ void FUN_002cb970(int param_1)
                param_1 + 0x1270,*piRam00387f7c + -0xc,0,0,0);
   FUN_002c5a50(0x42000000,(float)iVar4,*(undefined4 *)(param_1 + 0x3b70),0x3f800000,0x3f800000,
                param_1 + 0x1270,*piRam00387f7c + -0xd,0,1,0);
-  cVar1 = FUN_00177050();
+  cVar1 = GameState_Get_354_7050();
   if (cVar1 == '\0') {
     fVar5 = (float)(iVar4 - iVar3) / 16.0;
     if (fVar5 < 0.0) {
@@ -1294,7 +1294,7 @@ void FUN_002cbe40(int param_1)
   int iVar5;
   
   if (*(int *)(param_1 + 0x288) == 0) {
-    lVar1 = FUN_00177260();
+    lVar1 = GameState_Get_e4();
     iVar3 = (int)((398.0 - (*(float *)(param_1 + 100) * 276.0) / *(float *)(param_1 + 0x268)) - 9.0)
     ;
     if (iVar3 < 0x71) {
@@ -1305,7 +1305,7 @@ void FUN_002cbe40(int param_1)
     }
     FUN_002c5a50(0x41e80000,(float)(iVar3 + 9),*(undefined4 *)(param_1 + 0x3b70),0x3f800000,
                  (float)(0x18e - (iVar3 + 9)) / 16.0,param_1 + 0x1270,*piRam00387f7c + -0x11,1,0,0);
-    lVar2 = FUN_00177230();
+    lVar2 = GameState_GetMoneyTotal3();
     if (lVar2 == 1) {
       FUN_002c5a50(0x41e80000,(float)iVar3,*(undefined4 *)(param_1 + 0x3b70),0x3f800000,0x3f800000,
                    param_1 + 0x1270,*piRam00387f7c + -10,0,0,0);

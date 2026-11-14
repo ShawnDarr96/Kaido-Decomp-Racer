@@ -8,7 +8,7 @@ undefined1 FUN_002fd080(void)
 {
   undefined1 auStack_50 [80];
   
-  FUN_001778a0(auStack_50);
+  GameState_LoadHeader(auStack_50);
   return auStack_50[0];
 }
 
@@ -19,7 +19,7 @@ undefined1 FUN_002fd0a0(void)
   undefined1 uStack_50;
   undefined1 uStack_4f;
   
-  FUN_001778a0(&uStack_50);
+  GameState_LoadHeader(&uStack_50);
   return uStack_4f;
 }
 
@@ -32,12 +32,12 @@ undefined4 FUN_002fd0c0(void)
   undefined4 uVar3;
   
   uVar3 = 0;
-  lVar2 = FUN_00177070(1);
+  lVar2 = GameState_Elem_f0_xcc(1);
   if (lVar2 == 0) {
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_00177160(*(undefined1 *)((int)lVar2 + 9));
+    lVar2 = GameState_Elem_2fa0_x17c(*(undefined1 *)((int)lVar2 + 9));
   }
   if (lVar2 != 0) {
     uVar1 = FUN_001b4930(lVar2);
@@ -77,12 +77,12 @@ undefined8 FUN_002fd180(void)
   long lVar1;
   undefined8 uVar2;
   
-  lVar1 = FUN_00177070(1);
+  lVar1 = GameState_Elem_f0_xcc(1);
   if (lVar1 == 0) {
     uVar2 = 0;
   }
   else {
-    uVar2 = FUN_00177160(*(undefined1 *)((int)lVar1 + 9));
+    uVar2 = GameState_Elem_2fa0_x17c(*(undefined1 *)((int)lVar1 + 9));
   }
   return uVar2;
 }
@@ -174,9 +174,9 @@ void FUN_002fd1e0(int *param_1)
       FUN_001f8640(param_1 + 1,0,2,2,1,0);
     }
     else if (iVar1 == 1) {
-      FUN_00138bf0((int)register0x000001c0 + -0x7730);
+      Sema_Wait((int)register0x000001c0 + -0x7730);
       iVar1 = iRam00386628;
-      FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+      Sema_Signal((int)register0x000001c0 + -0x7730,0);
       if (iVar1 == 0) {
         if (*(int *)(iGpffff8d68 + 0x24) == -1) {
           param_1[5] = 2;

@@ -732,7 +732,7 @@ void FUN_002e13c0(int *param_1)
   }
   FUN_002008b0(0);
   FUN_002011b0(0xf4,0x25,0x1f81);
-  piVar1 = (int *)FUN_0017bf40();
+  piVar1 = (int *)maybe_Race_GetMode();
   uVar9 = 0;
   puVar8 = &DAT_00342520;
   puVar7 = &DAT_00342610;
@@ -864,17 +864,17 @@ void FUN_002e1d90(undefined4 *param_1)
   else {
     param_1[0xf] = 0xfffffffe;
     param_1[0x10] = 0xfffffffe;
-    FUN_00154870(8);
+    Snd_QueueCmd1(8);
     param_1[10] = param_1[0xd];
     *(undefined1 *)(param_1 + 9) = 1;
     FUN_002b97c0(param_1[8],param_1[0xd]);
     cVar2 = *(char *)(param_1 + 9);
   }
   if (cVar2 == '\x04') {
-    cVar2 = FUN_00155be0(8);
+    cVar2 = Snd_IsBusy(8);
     if (cVar2 == '\0') {
-      FUN_00154a10(8,0,0);
-      lVar3 = FUN_001548f0(8,1);
+      Snd_QueueCmd3(8,0,0);
+      lVar3 = Snd_QueueCmd2(8,1);
       if (lVar3 != 0) {
         *(undefined1 *)(param_1 + 9) = 5;
         param_1[2] = *param_1;
@@ -888,12 +888,12 @@ void FUN_002e1d90(undefined4 *param_1)
       param_1[2] = *param_1;
     }
     else {
-      cVar2 = FUN_00155be0(8);
+      cVar2 = Snd_IsBusy(8);
       if (cVar2 == '\0') {
         FUN_002b8ca0(param_1[8],&uStack_4,&uStack_8);
         FUN_002b8c30(param_1[8],&uStack_c,&uStack_10);
         FUN_002b8bc0(param_1[8],&uStack_14,&uStack_18);
-        lVar3 = FUN_001559d0(8,uStack_4,uStack_8,uStack_c,uStack_10,uStack_14,uStack_18);
+        lVar3 = Snd_PlayStream(8,uStack_4,uStack_8,uStack_c,uStack_10,uStack_14,uStack_18);
         if (lVar3 != 0) {
           *(undefined1 *)(param_1 + 9) = 4;
         }
@@ -927,7 +927,7 @@ void FUN_002e1f60(int *param_1)
   if ((iVar2 != 0) && (param_1[0x10] = 0, *param_1 != 2)) {
     *(undefined1 *)(param_1 + 9) = 0;
     param_1[10] = -1;
-    iVar2 = FUN_0017bf40();
+    iVar2 = maybe_Race_GetMode();
     param_1[0xd] = *(int *)(iVar2 + param_1[0xc] * 4);
     param_1[0xe] = ((param_1[0xd] - param_1[0xc]) + 0x21) % 0x21;
   }
@@ -964,7 +964,7 @@ void FUN_002e1f60(int *param_1)
       FUN_001fb290(8);
     }
     else if (param_1[0xd] == param_1[10]) {
-      FUN_00154870(8);
+      Snd_QueueCmd1(8);
       param_1[10] = -1;
       *(undefined1 *)(param_1 + 9) = 0;
     }
@@ -973,13 +973,13 @@ void FUN_002e1f60(int *param_1)
     }
   }
   else if (uVar4 == 0x20) {
-    FUN_00154870(8);
+    Snd_QueueCmd1(8);
   }
   else if (uVar4 == 0x10) {
     if (param_1[0xf] == 0) {
-      FUN_0017bf50(param_1[0xc],param_1[0xd]);
+      Race_SetCarSlot(param_1[0xc],param_1[0xd]);
       if ((char)param_1[9] == '\x05') {
-        FUN_00154870(8);
+        Snd_QueueCmd1(8);
         *(undefined1 *)(param_1 + 9) = 0;
       }
     }
@@ -1013,7 +1013,7 @@ void FUN_002e2480(undefined4 *param_1)
   undefined4 uVar1;
   long lVar2;
   
-  FUN_00154d50(8,0x100);
+  Snd_QueueCmd2d(8,0x100);
   *param_1 = 0xffffffff;
   param_1[1] = 0;
   param_1[2] = 0;
@@ -1050,7 +1050,7 @@ void FUN_002e2530(void)
   undefined8 uVar4;
   long lVar5;
   
-  uVar3 = FUN_00191420();
+  uVar3 = maybe_Render_GetCurrentList();
   FUN_001f4e90(1);
   uVar4 = FUN_002bc1f0();
   lVar5 = FUN_002bc0b0(uVar4);
@@ -1066,12 +1066,12 @@ void FUN_002e2530(void)
           uVar3 = FUN_001c1890(0);
           uVar4 = FUN_00177a30();
           sVar2 = FUN_001c0860(uVar3,uVar4);
-          if ((sVar2 == 0) && (cVar1 = FUN_0017e8d0(), cVar1 != '\x05')) {
-            FUN_0014b8a0(3);
+          if ((sVar2 == 0) && (cVar1 = RaceCtx_GetMode(), cVar1 != '\x05')) {
+            Scene_SetParam(3);
             return;
           }
         }
-        FUN_0014b8a0(0);
+        Scene_SetParam(0);
       }
     }
   }
@@ -1101,15 +1101,15 @@ void FUN_002e2680(int param_1)
   undefined4 uStack_4;
   
   iVar1 = *(int *)(param_1 + 0x14);
-  FUN_00191420();
+  maybe_Render_GetCurrentList();
   FUN_001f4e90(1);
   lVar3 = FUN_00191430();
   if (lVar3 != 0) {
-    FUN_00138bf0(0x36efc0);
+    Sema_Wait(0x36efc0);
     iVar2 = iRam00386628;
-    FUN_00138ba0(0x36efc0,0);
+    Sema_Signal(0x36efc0,0);
     if ((iVar2 == 0) && (*(int *)(iVar1 + 4) = *(int *)(iVar1 + 4) + -1, *(int *)(iVar1 + 4) < 0)) {
-      uVar4 = FUN_00136e10(&uStack_4);
+      uVar4 = maybe_File_GetSectorCount(&uStack_4);
       maybe_Heap_CreateFromBuffer(iVar1 + 8,uVar4,uStack_4);
       FUN_002e2800(iVar1);
       *(code **)(param_1 + 0x1c) = FUN_002e2530;
@@ -1127,7 +1127,7 @@ void FUN_002e2750(int param_1)
   undefined8 uVar3;
   
   iVar1 = *(int *)(param_1 + 0x14);
-  uVar2 = FUN_00191420();
+  uVar2 = maybe_Render_GetCurrentList();
   *(undefined4 *)(iVar1 + 4) = 0x3c;
   uVar3 = FUN_00191410(uVar2,4);
   (**(code **)(*(int *)uVar3 + 0x1c))(uVar3);
@@ -1158,9 +1158,9 @@ void FUN_002e2800(int param_1)
   undefined1 auStack_50 [2];
   char cStack_4e;
   
-  FUN_001778a0(auStack_50);
-  FUN_001778a0(auStack_a0);
-  cVar3 = FUN_0017e8d0();
+  GameState_LoadHeader(auStack_50);
+  GameState_LoadHeader(auStack_a0);
+  cVar3 = RaceCtx_GetMode();
   if ((cVar3 == '\x05') || ((iRam0036f3d8 != 0 && (lVar5 = thunk_FUN_001e8fc0(), lVar5 != 0)))) {
     iVar7 = 10;
     if (cStack_9d != '\0') {
@@ -1187,7 +1187,7 @@ void FUN_002e2800(int param_1)
     iVar7 = maybe_Rand_Float();
     iVar7 = iVar7 % 3 + 5;
   }
-  iVar4 = FUN_0017bf40();
+  iVar4 = maybe_Race_GetMode();
   uVar9 = *(uint *)(iVar4 + iVar7 * 4);
   uVar2 = DAT_0036eebc;
   if (uVar9 == 0x21) {
@@ -1238,7 +1238,7 @@ void FUN_002e2800(int param_1)
 LAB_002e2904:
   DAT_0036eebc = uVar2;
   FUN_002bc3f0(param_1 + 8,0,1 << (uVar9 & 0x1f) & 0xffff);
-  uVar6 = FUN_00191420();
+  uVar6 = maybe_Render_GetCurrentList();
   uVar6 = FUN_00191410(uVar6,4);
   lVar5 = FUN_002fd1c0();
   if (lVar5 == 0) {
@@ -1276,8 +1276,8 @@ void FUN_002e2ac0(int param_1)
   float fStack_4;
   
   if (((puGpffff91fc[1] != 0) && (puGpffff91fc[2] != 0)) && (puGpffff91fc[3] != 0)) {
-    uVar6 = FUN_00134630(puGpffff91fc[2],param_1 + 2,0);
-    puVar2 = (uint *)FUN_0014d6e0(uVar6,0);
+    uVar6 = Gut_PackGetEntry(puGpffff91fc[2],param_1 + 2,0);
+    puVar2 = (uint *)Model_GetTexture(uVar6,0);
     if ((*puVar2 & 0x10) == 0) {
       puVar2 = (uint *)0x0;
     }
@@ -1285,8 +1285,8 @@ void FUN_002e2ac0(int param_1)
       puVar2 = puVar2 + 0x14;
     }
     puStack_30 = puVar2 + 0xc;
-    uVar6 = FUN_00134630(puGpffff91fc[2],param_1 + (*puGpffff91fc & 1),0);
-    puVar3 = (uint *)FUN_0014d6e0(uVar6,0);
+    uVar6 = Gut_PackGetEntry(puGpffff91fc[2],param_1 + (*puGpffff91fc & 1),0);
+    puVar3 = (uint *)Model_GetTexture(uVar6,0);
     if ((*puVar3 & 0x10) == 0) {
       puVar3 = (uint *)0x0;
     }
@@ -1297,8 +1297,8 @@ void FUN_002e2ac0(int param_1)
     uStack_40 = 0;
     if (puVar2[3] != 0) {
       do {
-        puVar4 = (ushort *)FUN_0014d8a0(puStack_30 + 0x1c);
-        puVar5 = (ushort *)FUN_0014d8a0(puVar3 + 0x1c);
+        puVar4 = (ushort *)Model_SkipNops(puStack_30 + 0x1c);
+        puVar5 = (ushort *)Model_SkipNops(puVar3 + 0x1c);
         *(undefined1 *)((int)puVar3 + 0xd) = 0xf;
         uVar10 = 0;
         if (puStack_30[0x1d] != 0) {
@@ -1375,7 +1375,7 @@ void FUN_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_3,int param_4
   iVar8 = iVar7 + 0x431100;
   bVar2 = false;
   if (((puGpffff91fc[1] != 0) && (puGpffff91fc[2] != 0)) && (puGpffff91fc[3] != 0)) {
-    FUN_00148950(auStack_240,iVar8,0x436180,param_2,param_3);
+    Layer_Reset(auStack_240,iVar8,0x436180,param_2,param_3);
     piVar5 = (int *)puGpffff91fc[3];
     iVar10 = 0;
     if (0 < *piVar5) {
@@ -1386,14 +1386,14 @@ void FUN_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_3,int param_4
         pfVar9 = (float *)(psVar1 + *psVar1 * 0x10 +
                                     *(int *)((int)piVar5 + iVar11 + 0x14) * 6 + 0x3e);
         if (*(int *)((int)piVar5 + iVar11 + 0x18) == 0) {
-          uVar3 = FUN_00134630(puGpffff91fc[2],*puGpffff91fc & 1,0);
+          uVar3 = Gut_PackGetEntry(puGpffff91fc[2],*puGpffff91fc & 1,0);
           puVar6 = puGpffff91fc + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 4;
         }
         else {
-          uVar3 = FUN_00134630(puGpffff91fc[2],(*puGpffff91fc & 1) + 4,0);
+          uVar3 = Gut_PackGetEntry(puGpffff91fc[2],(*puGpffff91fc & 1) + 4,0);
           puVar6 = puGpffff91fc + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 0x44;
         }
-        FUN_00158390(0xf,1,puVar6);
+        TexSlot_Set(0xf,1,puVar6);
         uStack_244 = 0x3f800000;
         fStack_248 = *(float *)((int)piVar5 + iVar11 + 0x28) * 0.017453292;
         fStack_260 = *(float *)((int)piVar5 + iVar11 + 0x30) * 10.0 + *pfVar9 + 0.0;
@@ -1411,7 +1411,7 @@ void FUN_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_3,int param_4
             (fVar13 = (float)vu0math_sub_00132ab0(iVar7 + 0x431140,auStack_270),
             -20.0 <= fVar12 * fVar13)) && (lVar4 = FUN_0019e0a0(iVar8,&fStack_260), lVar4 != 0)) {
           if (!bVar2) {
-            FUN_00148850(auStack_240,0);
+            Layer_Open(auStack_240,0);
             bVar2 = true;
           }
           maybe_Vu0_UnitMatrix(auStack_180);
@@ -1419,8 +1419,8 @@ void FUN_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_3,int param_4
           maybe_Vu0_RotMatrixY(fStack_24c,auStack_180,auStack_180);
           maybe_Vu0_RotMatrixX(fStack_248,auStack_180,auStack_180);
           vu0math_sub_00132d20(auStack_180,auStack_180,&fStack_260);
-          uVar3 = FUN_0014d6e0(uVar3,0);
-          FUN_00148430(auStack_240,uVar3);
+          uVar3 = Model_GetTexture(uVar3,0);
+          Model_UpdateNodeMatrix(auStack_240,uVar3);
         }
         iVar10 = iVar10 + 1;
         piVar5 = (int *)puGpffff91fc[3];
@@ -1428,7 +1428,7 @@ void FUN_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_3,int param_4
       } while (iVar10 < *piVar5);
     }
     if (bVar2) {
-      FUN_00148820(auStack_240,0);
+      Layer_Close(auStack_240,0);
     }
   }
   return;
@@ -1452,15 +1452,15 @@ void FUN_002e32c0(void)
   iVar6 = 0;
   uVar1 = *(undefined4 *)(iGpffff91fc + 8);
   do {
-    uVar2 = FUN_00134630(uVar1,iVar7,0);
-    uVar3 = FUN_00134630(uVar1,iVar7 + 1,0);
-    uVar4 = FUN_00134630(uVar1,iVar7 + 2,0);
-    uVar5 = FUN_00134630(uVar1,iVar7 + 3,0);
-    FUN_0014d2a0(uVar2);
-    FUN_0014d2a0(uVar3);
-    FUN_0014d2a0(uVar4);
-    FUN_0013da70(uVar5);
-    FUN_00158160(iGpffff91fc + iVar6 + 0x10,uVar5,0,iGpffff8bd0 + iRam004305f0,
+    uVar2 = Gut_PackGetEntry(uVar1,iVar7,0);
+    uVar3 = Gut_PackGetEntry(uVar1,iVar7 + 1,0);
+    uVar4 = Gut_PackGetEntry(uVar1,iVar7 + 2,0);
+    uVar5 = Gut_PackGetEntry(uVar1,iVar7 + 3,0);
+    Model_Relocate(uVar2);
+    Model_Relocate(uVar3);
+    Model_Relocate(uVar4);
+    Tex_Relocate(uVar5);
+    TexSlot_Bind(iGpffff91fc + iVar6 + 0x10,uVar5,0,iGpffff8bd0 + iRam004305f0,
                  iGpffff8bd0 + iRam004305f0,0x51010,0,0);
     iVar8 = iVar8 + 1;
     iVar7 = iVar7 + 4;
@@ -1532,14 +1532,14 @@ void FUN_002e3500(undefined8 param_1,int param_2,byte param_3,uint param_4,uint 
     uVar1 = *(undefined4 *)(&DAT_00342850 + (uint)param_3 * 4);
     iVar4 = *(int *)(&DAT_003427b0 + param_2 * 4) +
             *(int *)((param_4 & 0xff) * 4 + (param_5 & 0xff) * 0x18 + 0x342870);
-    uVar3 = FUN_0014bfe0(iVar4,iVar4,1);
+    uVar3 = Arc_GetFileSize(iVar4,iVar4,1);
     uVar2 = Mem_AllocAligned(uVar3,0x40,0x430750);
     puGpffff91fc[2] = uVar2;
-    FUN_0014bf00(iVar4,puGpffff91fc[2],0,0,0,0);
-    uVar3 = FUN_0014bfe0(uVar1,uVar1,1);
+    Arc_LoadFileEx(iVar4,puGpffff91fc[2],0,0,0,0);
+    uVar3 = Arc_GetFileSize(uVar1,uVar1,1);
     uVar2 = Mem_AllocAligned(uVar3,0x40,0x430750);
     puGpffff91fc[3] = uVar2;
-    FUN_0014bf00(uVar1,puGpffff91fc[3],0x2e32c0,puGpffff91fc,0,0);
+    Arc_LoadFileEx(uVar1,puGpffff91fc[3],0x2e32c0,puGpffff91fc,0,0);
   }
   return;
 }

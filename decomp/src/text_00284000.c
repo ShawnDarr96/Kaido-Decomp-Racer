@@ -424,8 +424,9 @@ LAB_00284e20:
   }
   iVar3 = *(int *)(iVar6 + 0x688);
   uVar5 = FUN_001f6a70(*(undefined4 *)(iVar6 + 0x67c));
-  FUN_0017c2b0(uVar4,uVar5,unaff_s0,*(undefined1 *)(iVar6 + 0x690),iVar3 == 0,iVar6 + 0x4e0,
-               *(undefined4 *)(iVar6 + 0x4d8),iVar6 + 0x5ac);
+  RaceSetup_FromCareer
+            (uVar4,uVar5,unaff_s0,*(undefined1 *)(iVar6 + 0x690),iVar3 == 0,iVar6 + 0x4e0,
+             *(undefined4 *)(iVar6 + 0x4d8),iVar6 + 0x5ac);
 LAB_00284ed4:
   FUN_001fb290(5);
   FUN_00284fa0(param_1,*(undefined4 *)(iVar6 + 0x6c0));
@@ -915,7 +916,7 @@ void FUN_00285b50(int *param_1)
   }
   FUN_001f8300(param_1 + 0x1a6,param_1 + 0x19e,(int)uVar3 + 1,4,0,2);
   uVar3 = FUN_001f6a70(param_1[0x19f]);
-  FUN_0017e830(uVar3);
+  RaceCtx_Set_10(uVar3);
   uVar2 = FUN_001f6a70(param_1[0x19f]);
   *(undefined1 *)(iGpffff8d68 + 0x620) = uVar2;
   *(undefined4 *)(iGpffff8d68 + 0x624) = 0xffffffff;
@@ -1012,9 +1013,9 @@ void FUN_00285eb0(undefined8 param_1)
     iVar7 = iVar7 + 1;
     iVar5 = iVar5 + 4;
   } while (iVar7 < 0x120);
-  cVar1 = FUN_0017e890();
+  cVar1 = RaceCtx_Get_8();
   if (cVar1 == '\r') {
-    FUN_0017e880(0x13);
+    RaceCtx_Set_8(0x13);
     FUN_001c1a20(1,0x430750);
     *(undefined4 *)(iVar4 + 4) = 0;
     uVar6 = 0;
@@ -1055,7 +1056,7 @@ void FUN_00285eb0(undefined8 param_1)
   *(undefined4 *)(iVar4 + 0x6b0) = 1;
   *(undefined4 *)(iVar4 + 0x6a8) = 1;
   *(undefined4 *)(iVar4 + 0x6b4) = 0;
-  FUN_0017e8c0(4);
+  RaceCtx_SetMode(4);
   (*(code *)(&PTR_FUN_0032e690)[*(int *)(iVar4 + 0x6a0)])(param_1);
   return;
 }
@@ -1088,7 +1089,7 @@ void FUN_002860d0(int *param_1)
     if (iVar1 < 0) {
       if (iVar1 == -2) {
         uRam0036f2b4 = 0x10;
-        FUN_0017e860(1);
+        RaceCtx_Set_9(1);
         FUN_001fd070(0xfffffffffffffffd);
       }
       else {
@@ -1109,7 +1110,7 @@ void FUN_002860d0(int *param_1)
     if (iVar1 < 0) {
       if (iVar1 == -2) {
         uRam0036f2b4 = 0x10;
-        FUN_0017e860(1);
+        RaceCtx_Set_9(1);
         FUN_001fd070(0xfffffffffffffffd);
       }
       else {
@@ -1221,7 +1222,7 @@ void FUN_00286420(undefined4 *param_1)
     }
     if (uVar7 == 0x10) {
       FUN_001fb290(0xc);
-      uVar3 = FUN_00183480();
+      uVar3 = Hud_Get_14();
       uVar4 = FUN_001c1890(0);
       uVar5 = FUN_001c1890(0);
       uVar5 = FUN_001c1820(uVar5);
@@ -2197,7 +2198,7 @@ void FUN_00287ec0(int param_1,long param_2)
           iVar5 = iStack_54;
           iVar6 = iStack_58;
         }
-        cVar1 = FUN_00182c40(uVar2,0);
+        cVar1 = Race_IsTimeTrialMode(uVar2,0);
         uVar4 = (undefined1)uVar2;
         if (cVar1 == '\0') {
           *(undefined1 *)(iGpffff8d68 + 0x620) = uVar4;
@@ -2274,7 +2275,7 @@ void FUN_00287ec0(int param_1,long param_2)
         uVar2 = FUN_001f6a70(*(undefined4 *)(param_1 + 0x14));
         uVar3 = FUN_001c1890(0);
         FUN_002de7d0(uVar3,uVar2,*(undefined4 *)(param_1 + 0x1c),iVar6 == iVar5 + 1);
-        uVar3 = FUN_0017e550(*(undefined1 *)(iGpffff8d68 + 0x620));
+        uVar3 = Race_GetCourseId(*(undefined1 *)(iGpffff8d68 + 0x620));
         if (*(int *)(param_1 + 0x1c) == *(int *)(param_1 + 8) + 1) {
           FUN_002ddfd0(uVar2,*(undefined4 *)(param_1 + 0x20),uVar3,*(undefined4 *)(param_1 + 0x24));
         }

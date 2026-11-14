@@ -32,7 +32,7 @@ void entry(void)
   _InitSys(0,0,0,0,0,0,0,0,0x46a600,0xffffffffffffffff,0x80000,0x36fa00,0x100220,0,0,0);
   FlushCache(0);
   EI();
-  uVar2 = FUN_001707d0(uRam0036fa00,0x36fa04);
+  uVar2 = main(uRam0036fa00,0x36fa04);
   newlib_sub_00126098(uVar2);
   return;
 }

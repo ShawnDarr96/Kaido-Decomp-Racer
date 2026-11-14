@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00144350  size 0x48
-void FUN_00144350(int param_1,undefined8 param_2)
+void Camera_GetViewMatrix(int param_1,undefined8 param_2)
 
 {
   undefined1 auStack_40 [64];
@@ -14,8 +14,9 @@ void FUN_00144350(int param_1,undefined8 param_2)
 }
 
 // 0x001443a0  size 0x1b4
-void FUN_001443a0(float param_1,float param_2,int param_3,undefined8 param_4,undefined8 param_5,
-                 undefined8 param_6)
+void Camera_BuildScreenMatrix
+               (float param_1,float param_2,int param_3,undefined8 param_4,undefined8 param_5,
+               undefined8 param_6)
 
 {
   undefined1 auStack_b0 [16];
@@ -65,7 +66,7 @@ void FUN_001443a0(float param_1,float param_2,int param_3,undefined8 param_4,und
 }
 
 // 0x00144560  size 0x64
-void FUN_00144560(int param_1,int *param_2)
+void Gfx_GetViewportSize(int param_1,int *param_2)
 
 {
   int iVar1;
@@ -86,7 +87,7 @@ void FUN_00144560(int param_1,int *param_2)
 }
 
 // 0x001445d0  size 0x2d8
-void FUN_001445d0(undefined8 param_1)
+void Camera_Init(undefined8 param_1)
 
 {
   int iVar1;
@@ -104,12 +105,13 @@ void FUN_001445d0(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x3c4) = 0x44fa0000;
   *(undefined4 *)(iVar1 + 0x3c8) = *(undefined4 *)(iVar1 + 0xa0);
   *(undefined4 *)(iVar1 + 0x3cc) = *(undefined4 *)(iVar1 + 0xa4);
-  FUN_00143890(*(undefined4 *)(iVar1 + 0x8c),*(undefined4 *)(iVar1 + 0x90),
-               *(undefined4 *)(iVar1 + 0x94),0x45000000,0x45000000,*(undefined4 *)(iVar1 + 0x98),
-               *(undefined4 *)(iVar1 + 0x9c),*(undefined4 *)(iVar1 + 0xa0),iVar1 + 0x1c0,
-               iVar1 + 0x3c0,iVar1 + 0x200,iVar1 + 0x240,iVar1 + 0x300);
+  Camera_BuildProjection
+            (*(undefined4 *)(iVar1 + 0x8c),*(undefined4 *)(iVar1 + 0x90),
+             *(undefined4 *)(iVar1 + 0x94),0x45000000,0x45000000,*(undefined4 *)(iVar1 + 0x98),
+             *(undefined4 *)(iVar1 + 0x9c),*(undefined4 *)(iVar1 + 0xa0),iVar1 + 0x1c0,iVar1 + 0x3c0
+             ,iVar1 + 0x200,iVar1 + 0x240,iVar1 + 0x300);
   maybe_Vu0_UnitMatrix(auStack_40);
-  FUN_001430f0(iVar1 + 0x300,iVar1 + 0x340,auStack_40);
+  maybe_Camera_BuildFrustum(iVar1 + 0x300,iVar1 + 0x340,auStack_40);
   vu0math_sub_00132b50(iVar1 + 0x40,iVar1 + 0x10,param_1);
   vu0math_sub_001328b0(iVar1 + 0x40,iVar1 + 0x40);
   *(undefined4 *)(iVar1 + 0x3d0) = 0xbf800000;
@@ -162,19 +164,20 @@ void FUN_001445d0(undefined8 param_1)
 }
 
 // 0x001448b0  size 0x90
-void FUN_001448b0(int param_1)
+void Gfx_ClearRenderTarget(int param_1)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_00140070(*(undefined4 *)(param_1 + 100),*(undefined4 *)(param_1 + 0x70));
-  FUN_00149a80(param_1 + 0x480,*(undefined4 *)(param_1 + 0x60),uVar1,*(undefined4 *)(param_1 + 100),
-               0,*(undefined4 *)(param_1 + 0x68),*(undefined4 *)(param_1 + 0x6c),0);
+  uVar1 = Tex_GetBufferWidth(*(undefined4 *)(param_1 + 100),*(undefined4 *)(param_1 + 0x70));
+  Gs_BuildClearPacket(param_1 + 0x480,*(undefined4 *)(param_1 + 0x60),uVar1,
+                      *(undefined4 *)(param_1 + 100),0,*(undefined4 *)(param_1 + 0x68),
+                      *(undefined4 *)(param_1 + 0x6c),0);
   return;
 }
 
 // 0x00144940  size 0xc
-void FUN_00144940(int param_1,undefined4 param_2,undefined4 param_3)
+void Gfx_SetViewportOffset(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_1 + 0x80) = param_2;
@@ -183,7 +186,7 @@ void FUN_00144940(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00144950  size 0xc
-void FUN_00144950(int param_1,undefined4 param_2,undefined4 param_3)
+void Gfx_SetViewportSize(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_1 + 0x78) = param_2;
@@ -192,7 +195,7 @@ void FUN_00144950(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00144960  size 0x134
-void FUN_00144960(undefined4 *param_1,undefined4 *param_2)
+void Gfx_CopyRenderTarget(undefined4 *param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -248,7 +251,7 @@ void FUN_00144960(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x00144aa0  size 0x5c
-void FUN_00144aa0(uint *param_1)
+void DmaBuf_Free(uint *param_1)
 
 {
   if (*param_1 != 0) {
@@ -266,7 +269,7 @@ void FUN_00144aa0(uint *param_1)
 }
 
 // 0x00144b00  size 0x80
-undefined4 FUN_00144b00(uint *param_1,undefined8 param_2,uint param_3)
+undefined4 DmaBuf_Alloc(uint *param_1,undefined8 param_2,uint param_3)
 
 {
   uint uVar1;
@@ -295,7 +298,7 @@ undefined4 FUN_00144b00(uint *param_1,undefined8 param_2,uint param_3)
 }
 
 // 0x00144b80  size 0x2c
-void FUN_00144b80(uint *param_1,long param_2,uint param_3)
+void DmaBuf_SetUncached(uint *param_1,long param_2,uint param_3)
 
 {
   uint uVar1;
@@ -312,7 +315,7 @@ void FUN_00144b80(uint *param_1,long param_2,uint param_3)
 }
 
 // 0x00144bb0  size 0x11c
-undefined4 FUN_00144bb0(char *param_1,uint *param_2,uint *param_3)
+undefined4 DmaChain_GetSpan(char *param_1,uint *param_2,uint *param_3)
 
 {
   uint *puVar1;
@@ -377,7 +380,7 @@ undefined4 FUN_00144bb0(char *param_1,uint *param_2,uint *param_3)
 }
 
 // 0x00144cd0  size 0xb4
-bool FUN_00144cd0(uint *param_1,uint param_2)
+bool DmaChain_Init(uint *param_1,uint param_2)
 
 {
   bool bVar1;
@@ -408,14 +411,14 @@ bool FUN_00144cd0(uint *param_1,uint param_2)
         iVar5 = iVar5 + 0x1c;
       } while (uVar2 < *param_1);
     }
-    lVar4 = FUN_00144b00(param_1 + 2,uGpffff8990,param_2 + 1);
+    lVar4 = DmaBuf_Alloc(param_1 + 2,uGpffff8990,param_2 + 1);
     bVar1 = lVar4 != 0;
   }
   return bVar1;
 }
 
 // 0x00144d90  size 0xb4
-void FUN_00144d90(uint param_1,int param_2,int param_3)
+void DmaChain_Kick(uint param_1,int param_2,int param_3)
 
 {
   long lVar1;
@@ -433,7 +436,7 @@ void FUN_00144d90(uint param_1,int param_2,int param_3)
   }
   iVar2 = *(int *)(*(int *)(iVar2 + 0x387f5c) + iVar3 * 0x28 + 4);
   iVar3 = iVar2 + param_2 * 0x1c;
-  lVar1 = FUN_00144bb0(iVar2 + param_3 * 0x1c,&uStack_4,&uStack_8);
+  lVar1 = DmaChain_GetSpan(iVar2 + param_3 * 0x1c,&uStack_4,&uStack_8);
   if (lVar1 != 0) {
     *(uint *)(*(int *)(iVar3 + 0x18) + 4) = uStack_4 & 0xfffffff;
     *(undefined4 *)(iVar3 + 0x18) = uStack_8;
@@ -442,7 +445,7 @@ void FUN_00144d90(uint param_1,int param_2,int param_3)
 }
 
 // 0x00144e50  size 0x178
-uint FUN_00144e50(uint param_1,undefined4 *param_2)
+uint DmaChain_Begin(uint param_1,undefined4 *param_2)
 
 {
   long lVar1;
@@ -475,7 +478,7 @@ uint FUN_00144e50(uint param_1,undefined4 *param_2)
     else {
       iVar4 = 0;
       do {
-        lVar1 = FUN_00144bb0(puVar6[1] + iVar4,&uStack_4,&iStack_8);
+        lVar1 = DmaChain_GetSpan(puVar6[1] + iVar4,&uStack_4,&iStack_8);
         if (lVar1 != 0) {
           puVar3 = (undefined4 *)(puVar6[2] + puVar6[4] * 0x10);
           *puVar3 = 0x20000000;
@@ -505,7 +508,7 @@ uint FUN_00144e50(uint param_1,undefined4 *param_2)
 }
 
 // 0x00144fd0  size 0x128
-void FUN_00144fd0(uint param_1)
+void DmaChain_End(uint param_1)
 
 {
   uint uVar1;
@@ -577,7 +580,7 @@ void FUN_00144fd0(uint param_1)
 }
 
 // 0x00145100  size 0x68
-void FUN_00145100(uint param_1,int param_2,undefined1 param_3)
+void DmaChain_SetFlag(uint param_1,int param_2,undefined1 param_3)
 
 {
   int iVar1;
@@ -598,7 +601,7 @@ void FUN_00145100(uint param_1,int param_2,undefined1 param_3)
 }
 
 // 0x00145170  size 0xd8
-void FUN_00145170(uint param_1)
+void DmaChain_Destroy(uint param_1)
 
 {
   int iVar1;
@@ -615,8 +618,8 @@ void FUN_00145170(uint param_1)
     iVar2 = 0;
     do {
       puVar4 = (undefined4 *)(*(int *)(iVar1 + 0x387f5c) + iVar2);
-      FUN_00144aa0(puVar4 + 6);
-      FUN_00144aa0(puVar4 + 2);
+      DmaBuf_Free(puVar4 + 6);
+      DmaBuf_Free(puVar4 + 2);
       *puVar4 = 0;
       if (puVar4[1] != 0) {
         Mem_Free();
@@ -637,7 +640,7 @@ void FUN_00145170(uint param_1)
 }
 
 // 0x00145250  size 0x120
-undefined4 FUN_00145250(uint param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
+undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   bool bVar1;
@@ -663,12 +666,12 @@ undefined4 FUN_00145250(uint param_1,undefined4 param_2,undefined8 param_3,undef
       iVar6 = 0;
       do {
         iVar5 = *(int *)(iVar4 + 0x387f5c) + iVar6;
-        lVar3 = FUN_00144cd0(iVar5,param_4);
+        lVar3 = DmaChain_Init(iVar5,param_4);
         if (lVar3 == 0) {
           bVar1 = false;
         }
         else {
-          lVar3 = FUN_00144b00(iVar5 + 0x18,uGpffff8990,param_3);
+          lVar3 = DmaBuf_Alloc(iVar5 + 0x18,uGpffff8990,param_3);
           if (lVar3 == 0) {
             bVar1 = false;
           }
@@ -689,7 +692,7 @@ undefined4 FUN_00145250(uint param_1,undefined4 param_2,undefined8 param_3,undef
 }
 
 // 0x00145370  size 0x184
-void FUN_00145370(void)
+void DmaChain_DestroyAll(void)
 
 {
   int iVar1;
@@ -706,8 +709,8 @@ void FUN_00145370(void)
       iVar2 = 0;
       do {
         puVar5 = (undefined4 *)(*(int *)(iVar1 + 0x387f5c) + iVar2);
-        FUN_00144aa0(puVar5 + 6);
-        FUN_00144aa0(puVar5 + 2);
+        DmaBuf_Free(puVar5 + 6);
+        DmaBuf_Free(puVar5 + 2);
         *puVar5 = 0;
         if (puVar5[1] != 0) {
           Mem_Free();
@@ -751,7 +754,7 @@ void FUN_00145370(void)
 }
 
 // 0x00145500  size 0x88
-void FUN_00145500(undefined4 param_1)
+void DmaChain_SetHeap(undefined4 param_1)
 
 {
   uGpffff8990 = param_1;
@@ -779,7 +782,7 @@ void FUN_00145500(undefined4 param_1)
 }
 
 // 0x00145590  size 0xac
-void FUN_00145590(char *param_1)
+void Pkt_Close(char *param_1)
 
 {
   char cVar1;
@@ -792,11 +795,11 @@ void FUN_00145590(char *param_1)
     else {
       cVar1 = *param_1;
     }
-    FUN_00152b20(cVar1,param_1 + 0x1c);
+    Sprite_GetPoolCount(cVar1,param_1 + 0x1c);
     iVar2 = *(int *)(param_1 + 0x14);
   }
   else {
-    FUN_00144560(*(int *)(param_1 + 0x14),param_1 + 0x1c);
+    Gfx_GetViewportSize(*(int *)(param_1 + 0x14),param_1 + 0x1c);
     iVar2 = *(int *)(param_1 + 0x14);
   }
   if (iVar2 == 0) {
@@ -806,7 +809,7 @@ void FUN_00145590(char *param_1)
     else {
       cVar1 = *param_1;
     }
-    FUN_00152ac0(cVar1,param_1 + 0x2c);
+    Sprite_GetPoolInfo(cVar1,param_1 + 0x2c);
   }
   else {
     *(undefined4 *)(param_1 + 0x2c) = *(undefined4 *)(iVar2 + 0xd4);
@@ -818,29 +821,35 @@ void FUN_00145590(char *param_1)
 }
 
 // 0x00145640  size 0x3c
-void FUN_00145640(undefined8 param_1,undefined8 param_2)
+/* 0x36 qwords */
+
+void Pkt_AddGsRegisters(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_00146370(param_1,0x36,0x10000000);
+  uVar1 = Pkt_AllocVif(param_1,0x36,0x10000000);
   FUN_00132560(uVar1,param_2,0x36);
   return;
 }
 
 // 0x00145680  size 0x3c
-void FUN_00145680(undefined8 param_1,undefined8 param_2)
+/* 0xf qwords */
+
+void Pkt_AddGsDefaults(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_00146370(param_1,0xf,0x10000000);
+  uVar1 = Pkt_AllocVif(param_1,0xf,0x10000000);
   FUN_00132560(uVar1,param_2,0xf);
   return;
 }
 
 // 0x001456c0  size 0xb8
-undefined4 FUN_001456c0(char *param_1,int param_2)
+/* 7 callers */
+
+undefined4 Pkt_Reserve(char *param_1,int param_2)
 
 {
   int *piVar1;
@@ -865,7 +874,7 @@ undefined4 FUN_001456c0(char *param_1,int param_2)
 }
 
 // 0x00145780  size 0x80
-void FUN_00145780(undefined8 param_1,ushort *param_2)
+void Pkt_AddRef(undefined8 param_1,ushort *param_2)
 
 {
   ushort uVar1;
@@ -876,16 +885,16 @@ void FUN_00145780(undefined8 param_1,ushort *param_2)
   uVar2 = *(undefined4 *)(param_2 + 6);
   uVar3 = *(undefined4 *)(param_2 + 4);
   uVar1 = *param_2;
-  uVar4 = FUN_001456c0(param_1,1);
+  uVar4 = Pkt_Reserve(param_1,1);
   *(undefined4 *)((int)param_1 + 0xc) = uVar4;
-  FUN_00145800(*(undefined4 *)((int)param_1 + 0xc),(ulong)uVar1 | 0x30000000,
-               (uint)(param_2 + 8) & 0xfffffff,uVar3,uVar2);
+  Pkt_SetTag(*(undefined4 *)((int)param_1 + 0xc),(ulong)uVar1 | 0x30000000,
+             (uint)(param_2 + 8) & 0xfffffff,uVar3,uVar2);
   return;
 }
 
 // 0x00145800  size 0x14
-void FUN_00145800(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                 undefined4 param_5)
+void Pkt_SetTag(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5)
 
 {
   *param_1 = param_2;
@@ -896,19 +905,19 @@ void FUN_00145800(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
 }
 
 // 0x00145820  size 0x40
-void FUN_00145820(undefined8 param_1,int param_2)
+void Pkt_SetTexFlush(undefined8 param_1,int param_2)
 
 {
   long *plVar1;
   
-  plVar1 = (long *)FUN_00146370(param_1,1,0x13000000);
+  plVar1 = (long *)Pkt_AllocVif(param_1,1,0x13000000);
   *plVar1 = (long)param_2;
   plVar1[1] = 0x22;
   return;
 }
 
 // 0x00145860  size 0x21c
-void FUN_00145860(undefined8 param_1,int param_2,int param_3,int param_4,int param_5,long param_6)
+void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int param_5,long param_6)
 
 {
   byte bVar1;
@@ -917,7 +926,7 @@ void FUN_00145860(undefined8 param_1,int param_2,int param_3,int param_4,int par
   ushort *puVar4;
   byte *pbVar5;
   
-  puVar3 = (ulong *)FUN_00146370(param_1,1,0x13000000);
+  puVar3 = (ulong *)Pkt_AllocVif(param_1,1,0x13000000);
   pbVar5 = (byte *)param_1;
   iVar2 = *(int *)(pbVar5 + 0x14);
   if (iVar2 == 0) {
@@ -959,7 +968,7 @@ void FUN_00145860(undefined8 param_1,int param_2,int param_3,int param_4,int par
 }
 
 // 0x00145a80  size 0x1c4
-void FUN_00145a80(undefined8 param_1,int param_2,int param_3,long param_4)
+void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
 
 {
   byte bVar1;
@@ -968,7 +977,7 @@ void FUN_00145a80(undefined8 param_1,int param_2,int param_3,long param_4)
   ushort *puVar4;
   byte *pbVar5;
   
-  puVar3 = (ulong *)FUN_00146370(param_1,1,0x13000000);
+  puVar3 = (ulong *)Pkt_AllocVif(param_1,1,0x13000000);
   pbVar5 = (byte *)param_1;
   iVar2 = *(int *)(pbVar5 + 0x14);
   if (iVar2 == 0) {
@@ -1007,7 +1016,7 @@ void FUN_00145a80(undefined8 param_1,int param_2,int param_3,long param_4)
 }
 
 // 0x00145c50  size 0x118
-void FUN_00145c50(undefined8 param_1)
+void Pkt_Begin(undefined8 param_1)
 
 {
   byte bVar1;
@@ -1024,20 +1033,23 @@ void FUN_00145c50(undefined8 param_1)
     else {
       bVar1 = *pbVar3;
     }
-    FUN_00145640(param_1,(uint)bVar1 * 0x8280 + iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900
-                         + 0x388660);
+    Pkt_AddGsRegisters(param_1,(uint)bVar1 * 0x8280 +
+                               iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x388660);
   }
   else {
-    FUN_00148bb0(auStack_360,*(undefined4 *)(iVar2 + 0xc4),*(undefined4 *)(iVar2 + 0xbc),
-                 *(undefined4 *)(iVar2 + 200),2,*(undefined4 *)(iVar2 + 0xc0),
-                 *(undefined4 *)(iVar2 + 0x70),*(undefined4 *)(iVar2 + 0x74));
-    FUN_00145640(param_1,auStack_360);
+    maybe_Gs_BuildSpritePacket
+              (auStack_360,*(undefined4 *)(iVar2 + 0xc4),*(undefined4 *)(iVar2 + 0xbc),
+               *(undefined4 *)(iVar2 + 200),2,*(undefined4 *)(iVar2 + 0xc0),
+               *(undefined4 *)(iVar2 + 0x70),*(undefined4 *)(iVar2 + 0x74));
+    Pkt_AddGsRegisters(param_1,auStack_360);
   }
   return;
 }
 
 // 0x00145d70  size 0xbc
-void FUN_00145d70(byte *param_1)
+/* 25 callers */
+
+void Pkt_End(byte *param_1)
 
 {
   byte bVar1;
@@ -1049,17 +1061,17 @@ void FUN_00145d70(byte *param_1)
     else {
       bVar1 = *param_1;
     }
-    FUN_00145680(param_1,(uint)bVar1 * 0x8280 + iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900
-                         + 0x38fca0);
+    Pkt_AddGsDefaults(param_1,(uint)bVar1 * 0x8280 +
+                              iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x38fca0);
   }
   else {
-    FUN_00145680(param_1,*(int *)(param_1 + 0x14) + 0x480);
+    Pkt_AddGsDefaults(param_1,*(int *)(param_1 + 0x14) + 0x480);
   }
   return;
 }
 
 // 0x00145e30  size 0xd4
-void FUN_00145e30(char *param_1,undefined4 *param_2)
+void Pkt_AppendData(char *param_1,undefined4 *param_2)
 
 {
   int iVar1;
@@ -1091,25 +1103,27 @@ void FUN_00145e30(char *param_1,undefined4 *param_2)
 }
 
 // 0x00145f10  size 0x34
-void FUN_00145f10(undefined8 param_1,int param_2)
+/* 15 callers */
+
+void Pkt_Flush(undefined8 param_1,int param_2)
 
 {
   if (*(int *)(param_2 + 8) != 0) {
-    FUN_00146230();
+    Pkt_CloseDmaTag();
   }
   return;
 }
 
 // 0x00145f50  size 0xf8
-void FUN_00145f50(char *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Pkt_AddTexture(char *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int *piVar1;
   undefined4 *puVar2;
   int iVar3;
   
-  iVar3 = FUN_0013f340(param_4,0x12,**(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10,
-                       param_2,param_3);
+  iVar3 = Tex_Upload(param_4,0x12,**(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10,
+                     param_2,param_3);
   *(int *)(param_1 + 0x10) = **(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10;
   piVar1 = *(int **)(param_1 + 4);
   piVar1[2] = piVar1[2] + iVar3;
@@ -1129,14 +1143,14 @@ void FUN_00145f50(char *param_1,undefined8 param_2,undefined8 param_3,undefined8
 }
 
 // 0x00146050  size 0xe4
-void FUN_00146050(char *param_1)
+void Pkt_AddMicroProgram(char *param_1)
 
 {
   int *piVar1;
   undefined4 *puVar2;
   int iVar3;
   
-  iVar3 = FUN_001580f0(**(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10);
+  iVar3 = Pkt_AddTextureIfNeeded(**(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10);
   *(int *)(param_1 + 0x10) = **(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10;
   piVar1 = *(int **)(param_1 + 4);
   piVar1[2] = piVar1[2] + iVar3;
@@ -1156,15 +1170,15 @@ void FUN_00146050(char *param_1)
 }
 
 // 0x00146140  size 0xf0
-void FUN_00146140(char *param_1,undefined8 param_2,undefined8 param_3)
+void Pkt_AddSwizzledImage(char *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int *piVar1;
   undefined4 *puVar2;
   int iVar3;
   
-  iVar3 = FUN_0013f950(param_2,param_3,0x12,
-                       **(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10);
+  iVar3 = Tex_SwizzleBlocks(param_2,param_3,0x12,
+                            **(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10);
   *(int *)(param_1 + 0x10) = **(int **)(param_1 + 4) + (*(int **)(param_1 + 4))[2] * 0x10;
   piVar1 = *(int **)(param_1 + 4);
   piVar1[2] = piVar1[2] + iVar3;
@@ -1184,7 +1198,9 @@ void FUN_00146140(char *param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x00146230  size 0x74
-void FUN_00146230(undefined8 param_1,uint *param_2)
+/* DMA "end" 0x60000000 */
+
+void Pkt_CloseDmaTag(undefined8 param_1,uint *param_2)
 
 {
   uint uVar1;
@@ -1197,14 +1213,14 @@ void FUN_00146230(undefined8 param_1,uint *param_2)
   puVar3[1] = 0;
   puVar3[2] = 0;
   puVar3[3] = 0;
-  uVar2 = FUN_001456c0(param_1,1);
+  uVar2 = Pkt_Reserve(param_1,1);
   *(undefined4 *)((int)param_1 + 0xc) = uVar2;
-  FUN_00145800(*(undefined4 *)((int)param_1 + 0xc),0x50000000,uVar1 & 0xfffffff,0,0);
+  Pkt_SetTag(*(undefined4 *)((int)param_1 + 0xc),0x50000000,uVar1 & 0xfffffff,0,0);
   return;
 }
 
 // 0x001462b0  size 0xbc
-void FUN_001462b0(char *param_1,uint param_2,undefined4 param_3)
+void Pkt_AddGifTag(char *param_1,uint param_2,undefined4 param_3)
 
 {
   ulong *puVar1;
@@ -1227,16 +1243,18 @@ void FUN_001462b0(char *param_1,uint param_2,undefined4 param_3)
 }
 
 // 0x00146370  size 0x78
-ulong * FUN_00146370(undefined8 param_1,ulong param_2)
+/* 10 callers */
+
+ulong * Pkt_AllocVif(undefined8 param_1,ulong param_2)
 
 {
   ulong *puVar1;
   
   if (param_2 == 0) {
-    puVar1 = (ulong *)FUN_00146480(param_1,0,0,0);
+    puVar1 = (ulong *)Pkt_AllocDmaRef(param_1,0,0,0);
   }
   else {
-    puVar1 = (ulong *)FUN_00146480();
+    puVar1 = (ulong *)Pkt_AllocDmaRef();
   }
   *puVar1 = param_2 & 0xffffffff | 0x1000000000008000;
   puVar1[1] = 0xe;
@@ -1244,7 +1262,7 @@ ulong * FUN_00146370(undefined8 param_1,ulong param_2)
 }
 
 // 0x001463f0  size 0x84
-void FUN_001463f0(char *param_1,uint param_2,undefined4 param_3,undefined4 param_4)
+void Pkt_PatchTag(char *param_1,uint param_2,undefined4 param_3,undefined4 param_4)
 
 {
   **(uint **)(param_1 + 0xc) = **(uint **)(param_1 + 0xc) | param_2;
@@ -1260,7 +1278,9 @@ void FUN_001463f0(char *param_1,uint param_2,undefined4 param_3,undefined4 param
 }
 
 // 0x00146480  size 0xe8
-undefined4 FUN_00146480(char *param_1,long param_2,undefined4 param_3,undefined4 param_4)
+/* 12 callers */
+
+undefined4 Pkt_AllocDmaRef(char *param_1,long param_2,undefined4 param_3,undefined4 param_4)
 
 {
   undefined4 *puVar1;
@@ -1297,7 +1317,9 @@ undefined4 FUN_00146480(char *param_1,long param_2,undefined4 param_3,undefined4
 }
 
 // 0x00146570  size 0x4c
-void FUN_00146570(int param_1,undefined4 param_2)
+/* 43 callers */
+
+void Pkt_Submit(int param_1,undefined4 param_2)
 
 {
   undefined4 *puVar1;
@@ -1313,7 +1335,9 @@ void FUN_00146570(int param_1,undefined4 param_2)
 }
 
 // 0x001465c0  size 0xe8
-void FUN_001465c0(byte *param_1,int param_2)
+/* 43 callers */
+
+void Pkt_SubmitToChain(byte *param_1,int param_2)
 
 {
   int *piVar1;
@@ -1351,7 +1375,9 @@ void FUN_001465c0(byte *param_1,int param_2)
 }
 
 // 0x001466b0  size 0x28
-void FUN_001466b0(undefined1 *param_1,undefined1 param_2,undefined1 param_3,undefined4 param_4)
+/* 17 callers */
+
+void Pkt_Init(undefined1 *param_1,undefined1 param_2,undefined1 param_3,undefined4 param_4)
 
 {
   *param_1 = param_2;
@@ -1367,8 +1393,9 @@ void FUN_001466b0(undefined1 *param_1,undefined1 param_2,undefined1 param_3,unde
 }
 
 // 0x001466e0  size 0xb4
-void FUN_001466e0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                 undefined4 param_5)
+void maybe_Pkt_InitLayers
+               (int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5)
 
 {
   int iVar1;
@@ -1377,7 +1404,7 @@ void FUN_001466e0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    thunk_FUN_001466b0(iVar1,1,2,0);
+    Pkt_Init(iVar1,1,2,0);
     *(undefined4 *)(iVar1 + 0x14) = param_2;
     uVar2 = uVar2 + 1;
     *(undefined4 *)(iVar1 + 0x18) = param_3;
@@ -1393,12 +1420,12 @@ void FUN_001466e0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
 }
 
 // 0x001467a0  size 0x7c
-void FUN_001467a0(undefined8 param_1,uint param_2)
+void Pkt_AddVu1Header(undefined8 param_1,uint param_2)
 
 {
   int iVar1;
   
-  iVar1 = FUN_00146480(param_1,0xf,0x10000000,0x6c0e0035);
+  iVar1 = Pkt_AllocDmaRef(param_1,0xf,0x10000000,0x6c0e0035);
   *(undefined8 *)(iVar1 + 0xa0) = 0x1000000000008003;
   *(undefined8 *)(iVar1 + 0xa8) = 0xe;
   *(undefined4 *)(iVar1 + 0xe0) = 0x13000000;
@@ -1409,12 +1436,12 @@ void FUN_001467a0(undefined8 param_1,uint param_2)
 }
 
 // 0x00146820  size 0x7c
-void FUN_00146820(undefined8 param_1,uint param_2)
+void Pkt_AddVu1HeaderTex(undefined8 param_1,uint param_2)
 
 {
   int iVar1;
   
-  iVar1 = FUN_00146480(param_1,0x17,0x13000000,0x6c160035);
+  iVar1 = Pkt_AllocDmaRef(param_1,0x17,0x13000000,0x6c160035);
   *(undefined8 *)(iVar1 + 0xa0) = 0x100000000000800b;
   *(undefined8 *)(iVar1 + 0xa8) = 0xe;
   *(undefined4 *)(iVar1 + 0x160) = 0x13000000;
@@ -1425,12 +1452,12 @@ void FUN_00146820(undefined8 param_1,uint param_2)
 }
 
 // 0x001468a0  size 0x7c
-void FUN_001468a0(undefined8 param_1,uint param_2)
+void Pkt_AddVu1HeaderShort(undefined8 param_1,uint param_2)
 
 {
   undefined8 *puVar1;
   
-  puVar1 = (undefined8 *)FUN_00146480(param_1,8,0x13000000,0x6c07003f);
+  puVar1 = (undefined8 *)Pkt_AllocDmaRef(param_1,8,0x13000000,0x6c07003f);
   *puVar1 = 0x1000000000008006;
   puVar1[1] = 0xe;
   *(undefined4 *)(puVar1 + 0xe) = 0x13000000;
@@ -1441,14 +1468,15 @@ void FUN_001468a0(undefined8 param_1,uint param_2)
 }
 
 // 0x00146920  size 0x170
-undefined8 FUN_00146920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+undefined8
+Pkt_AddVu1Matrices(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
   int iVar2;
   int iVar3;
   
-  uVar1 = FUN_00146480(param_1,0x31,0x10000000,0x6c300005);
+  uVar1 = Pkt_AllocDmaRef(param_1,0x31,0x10000000,0x6c300005);
   iVar3 = (int)param_1;
   iVar2 = (int)uVar1;
   vu0math_sub_00132c20(uVar1,*(int *)(iVar3 + 0x18) + 0xb0);
@@ -1474,13 +1502,13 @@ undefined8 FUN_00146920(undefined8 param_1,undefined8 param_2,undefined8 param_3
 }
 
 // 0x00146a90  size 0xdc
-undefined4 * FUN_00146a90(undefined8 param_1,int param_2)
+undefined4 * Pkt_AddVu1Base(undefined8 param_1,int param_2)
 
 {
   undefined4 *puVar1;
   
   param_2 = param_2 * iGpffff88a0;
-  puVar1 = (undefined4 *)FUN_00146480(param_1,6,0,0x10000000);
+  puVar1 = (undefined4 *)Pkt_AllocDmaRef(param_1,6,0,0x10000000);
   *puVar1 = 0x30000e6;
   puVar1[1] = 0x200018d;
   puVar1[2] = 0x1000404;
@@ -1505,8 +1533,8 @@ undefined4 * FUN_00146a90(undefined8 param_1,int param_2)
 }
 
 // 0x00146b80  size 0x49c
-void FUN_00146b80(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5
-                 )
+void maybe_Model_BuildPacket
+               (undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5)
 
 {
   int iVar1;
@@ -1527,8 +1555,8 @@ void FUN_00146b80(undefined8 param_1,undefined8 param_2,uint param_3,uint param_
   
   iVar7 = (int)param_2;
   iVar1 = *(int *)(iVar7 + 0x40);
-  iVar3 = FUN_0014c370(param_2,param_5);
-  uVar6 = FUN_001456c0(param_1,*(undefined4 *)(iVar3 + 8));
+  iVar3 = Anim_GetKeyData(param_2,param_5);
+  uVar6 = Pkt_Reserve(param_1,*(undefined4 *)(iVar3 + 8));
   FUN_00132560(uVar6,iVar3 + 0x10,*(undefined4 *)(iVar3 + 8));
   iVar3 = (int)param_1;
   if ((int)(param_3 << 4) < 0) {
@@ -1608,7 +1636,7 @@ void FUN_00146b80(undefined8 param_1,undefined8 param_2,uint param_3,uint param_
     uVar9 = (long)(int)(fVar14 - 2.1474836e+09) | 0xffffffff80000000;
     uVar4 = *(uint *)(iVar7 + 4);
   }
-  uVar5 = FUN_00146480(param_1,0,0,0);
+  uVar5 = Pkt_AllocDmaRef(param_1,0,0,0);
   *(undefined4 *)(iVar3 + 0x40) = uVar5;
   *(int *)(iVar3 + 0x44) = *(int *)(iVar3 + 0x40) + 0x10;
   *(undefined4 *)(iVar3 + 0x48) = 0;
@@ -1637,26 +1665,27 @@ void FUN_00146b80(undefined8 param_1,undefined8 param_2,uint param_3,uint param_
          (ulong)uVar4 | 0x400000008000 | (ulong)*(uint *)(*(int *)(iVar3 + 0x3c) + 0x34) << 0x2f |
          0x1000000000000000;
     *(undefined8 *)(*(int *)(iVar3 + 0x40) + 8) = 0xe;
-    FUN_001463f0(param_1,uVar8,0,uVar8 | 0x50000000);
+    Pkt_PatchTag(param_1,uVar8,0,uVar8 | 0x50000000);
   }
   return;
 }
 
 // 0x00147020  size 0x48
-void FUN_00147020(undefined8 param_1,undefined8 param_2)
+void Model_CopyStaticPacket(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
   int iVar2;
   
-  iVar2 = FUN_0014c2f0(param_2);
-  uVar1 = FUN_001456c0(param_1,*(undefined4 *)(iVar2 + 8));
+  iVar2 = Anim_GetFrameData(param_2);
+  uVar1 = Pkt_Reserve(param_1,*(undefined4 *)(iVar2 + 8));
   FUN_00132560(uVar1,iVar2 + 0x10,*(undefined4 *)(iVar2 + 8));
   return;
 }
 
 // 0x00147070  size 0x414
-void FUN_00147070(int param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5)
+void maybe_Model_BuildSkinnedPacket
+               (int param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5)
 
 {
   undefined8 *puVar1;
@@ -1677,7 +1706,7 @@ void FUN_00147070(int param_1,undefined8 param_2,uint param_3,uint param_4,undef
   
   iVar6 = (int)param_2;
   if (*(int *)(iVar6 + 0x48) == 0) {
-    FUN_0014c870(param_2,param_5,&uStack_8,&uStack_10,&uStack_18);
+    Anim_GetFrameIndices(param_2,param_5,&uStack_8,&uStack_10,&uStack_18);
   }
   else {
     iVar3 = (int)param_5 * 0x18;
@@ -1783,7 +1812,7 @@ void FUN_00147070(int param_1,undefined8 param_2,uint param_3,uint param_4,undef
 }
 
 // 0x00147490  size 0xe4
-void FUN_00147490(undefined8 param_1,undefined8 param_2)
+void Model_FinishPacket(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1799,11 +1828,11 @@ void FUN_00147490(undefined8 param_1,undefined8 param_2)
          (ulong)uVar1 | 0x400000008000 | (ulong)*(uint *)(*(int *)(iVar3 + 0x3c) + 0x34) << 0x2f |
          0x1000000000000000;
     *(undefined8 *)(*(int *)(iVar3 + 0x40) + 8) = 0xe;
-    FUN_001463f0(param_1,uVar4,0,uVar4 | 0x50000000);
+    Pkt_PatchTag(param_1,uVar4,0,uVar4 | 0x50000000);
   }
-  FUN_00147660(param_1,param_2);
-  FUN_00145590(param_1);
-  uVar2 = FUN_00146480(param_1,0,0,0);
+  Pkt_AddTextureRegs(param_1,param_2);
+  Pkt_Close(param_1);
+  uVar2 = Pkt_AllocDmaRef(param_1,0,0,0);
   *(undefined4 *)(iVar3 + 0x40) = uVar2;
   *(int *)(iVar3 + 0x44) = *(int *)(iVar3 + 0x40) + 0x10;
   *(undefined4 *)(iVar3 + 0x48) = 0;
@@ -1811,7 +1840,7 @@ void FUN_00147490(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00147580  size 0x90
-void FUN_00147580(int param_1)
+void Model_PatchPacket(int param_1)
 
 {
   uint uVar1;
@@ -1824,19 +1853,19 @@ void FUN_00147580(int param_1)
          (ulong)uVar1 | 0x400000008000 | (ulong)*(uint *)(*(int *)(param_1 + 0x3c) + 0x34) << 0x2f |
          0x1000000000000000;
     *(undefined8 *)(*(int *)(param_1 + 0x40) + 8) = 0xe;
-    FUN_001463f0(param_1,uVar2,0,uVar2 | 0x50000000);
+    Pkt_PatchTag(param_1,uVar2,0,uVar2 | 0x50000000);
   }
   return;
 }
 
 // 0x00147610  size 0x44
-void FUN_00147610(undefined8 param_1)
+void Model_BeginPacket(undefined8 param_1)
 
 {
   undefined4 uVar1;
   int iVar2;
   
-  uVar1 = FUN_00146480(param_1,0,0,0);
+  uVar1 = Pkt_AllocDmaRef(param_1,0,0,0);
   iVar2 = (int)param_1;
   *(undefined4 *)(iVar2 + 0x40) = uVar1;
   *(int *)(iVar2 + 0x44) = *(int *)(iVar2 + 0x40) + 0x10;
@@ -1845,7 +1874,7 @@ void FUN_00147610(undefined8 param_1)
 }
 
 // 0x00147660  size 0x124
-void FUN_00147660(undefined8 param_1,int param_2)
+void Pkt_AddTextureRegs(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -1857,10 +1886,10 @@ void FUN_00147660(undefined8 param_1,int param_2)
   undefined8 uStack_10;
   undefined8 uStack_8;
   
-  puVar6 = (undefined8 *)FUN_00146370(param_1,9,0);
+  puVar6 = (undefined8 *)Pkt_AllocVif(param_1,9,0);
   iVar1 = *(int *)(param_2 + 8);
   *(int *)((int)param_1 + 0x3c) = param_2;
-  FUN_0013ed10(iVar1,*(undefined4 *)(param_2 + 0xc),&uStack_8,&uStack_10);
+  Tex_GetTex0(iVar1,*(undefined4 *)(param_2 + 0xc),&uStack_8,&uStack_10);
   iVar2 = *(int *)(param_2 + 0x24);
   iVar3 = *(int *)(param_2 + 0x28);
   iVar4 = *(int *)(param_2 + 0x2c);
@@ -1887,7 +1916,7 @@ void FUN_00147660(undefined8 param_1,int param_2)
 }
 
 // 0x001477a0  size 0x388
-void FUN_001477a0(int param_1,undefined4 *param_2,int param_3)
+void maybe_Model_SetupLighting(int param_1,undefined4 *param_2,int param_3)
 
 {
   ushort uVar1;
@@ -1999,7 +2028,7 @@ void FUN_001477a0(int param_1,undefined4 *param_2,int param_3)
 /* WARNING: Removing unreachable block (ram,0x00147b98) */
 /* WARNING: Removing unreachable block (ram,0x00147bdc) */
 
-void FUN_00147b30(undefined8 param_1,uint param_2,undefined8 param_3)
+void maybe_Model_DrawMesh(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
   uint uVar1;
@@ -2011,16 +2040,15 @@ void FUN_00147b30(undefined8 param_1,uint param_2,undefined8 param_3)
   iVar3 = (int)param_1;
   iVar4 = iVar3 + (param_2 & 0xff) * 0x44;
   if (*(char *)(iVar3 + 0x90) == '\0') {
-    uVar2 = FUN_00146820(iVar4,0x32);
+    uVar2 = Pkt_AddVu1HeaderTex(iVar4,0x32);
   }
   else {
-    uVar2 = FUN_00146820(iVar4,8);
+    uVar2 = Pkt_AddVu1HeaderTex(iVar4,8);
   }
-  FUN_001477a0(param_1,uVar2,param_3);
+  maybe_Model_SetupLighting(param_1,uVar2,param_3);
   iVar5 = (int)param_3;
   iVar4 = (int)uVar2;
-  FUN_0013ed10(*(undefined4 *)(iVar3 + 0x9c),*(undefined1 *)(iVar5 + 0xc),iVar4 + 0xc0,iVar4 + 0xb0)
-  ;
+  Tex_GetTex0(*(undefined4 *)(iVar3 + 0x9c),*(undefined1 *)(iVar5 + 0xc),iVar4 + 0xc0,iVar4 + 0xb0);
   *(undefined8 *)(iVar4 + 0xb8) = 6;
   *(undefined8 *)(iVar4 + 200) = 6;
   *(byte *)(iVar4 + 0xc4) =
@@ -2063,7 +2091,7 @@ void FUN_00147b30(undefined8 param_1,uint param_2,undefined8 param_3)
 /* WARNING: Removing unreachable block (ram,0x00147f30) */
 /* WARNING: Removing unreachable block (ram,0x00147f74) */
 
-void FUN_00147d80(undefined8 param_1,undefined8 param_2)
+void maybe_Model_DrawMeshClipped(undefined8 param_1,undefined8 param_2)
 
 {
   undefined4 *puVar1;
@@ -2082,7 +2110,7 @@ void FUN_00147d80(undefined8 param_1,undefined8 param_2)
   if ((puVar6[2] & 1) != 0) {
     return;
   }
-  lVar4 = FUN_00142ff0(*(undefined4 *)(iVar8 + 0x88),iVar8 + 0x180,puVar6 + 0x20);
+  lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar8 + 0x88),iVar8 + 0x180,puVar6 + 0x20);
   if (lVar4 == 0) {
     return;
   }
@@ -2109,7 +2137,7 @@ void FUN_00147d80(undefined8 param_1,undefined8 param_2)
     *(uint *)(iVar8 + 0xb4) = *(uint *)(iVar8 + 0xb4) & 0xfffff7ff;
   }
   else {
-    lVar4 = FUN_00142ff0(*(undefined4 *)(iVar8 + 0x88),iVar8 + 0x200,puVar6 + 0x20);
+    lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar8 + 0x88),iVar8 + 0x200,puVar6 + 0x20);
     if (lVar4 == 0) {
       *(uint *)(iVar8 + 0xb4) = *(uint *)(iVar8 + 0xb4) & 0xfffff7ff;
     }
@@ -2133,25 +2161,25 @@ void FUN_00147d80(undefined8 param_1,undefined8 param_2)
      ((uVar2 & 0x800) == 0)) {
     if (((*(int *)(iVar8 + 0xa4) != 0) && (*(int *)(*(int *)(iVar8 + 0xa4) + 0x60) == 0)) &&
        ((uVar2 & 0x100) != 0)) {
-      FUN_00146050(iVar8 + iVar9 * 0x44);
+      Pkt_AddMicroProgram(iVar8 + iVar9 * 0x44);
       uVar2 = *(uint *)(iVar8 + 0xb4);
       goto LAB_00147edc;
     }
   }
   else {
-    FUN_00146050(iVar8 + iVar9 * 0x44);
+    Pkt_AddMicroProgram(iVar8 + iVar9 * 0x44);
   }
   uVar2 = *(uint *)(iVar8 + 0xb4);
 LAB_00147edc:
   if ((uVar2 & 0x20) == 0) {
     iVar5 = iVar8 + iVar9 * 0x44;
     if (*(char *)(iVar8 + 0x90) == '\0') {
-      uVar7 = FUN_001467a0(iVar5,0x32);
+      uVar7 = Pkt_AddVu1Header(iVar5,0x32);
     }
     else {
-      uVar7 = FUN_001467a0(iVar5,8);
+      uVar7 = Pkt_AddVu1Header(iVar5,8);
     }
-    FUN_001477a0(param_1,uVar7,param_2);
+    maybe_Model_SetupLighting(param_1,uVar7,param_2);
     iVar5 = (int)uVar7;
     *(undefined8 *)(iVar5 + 0xb8) = 0x47;
     *(undefined8 *)(iVar5 + 0xb0) = *(undefined8 *)(puVar6 + 0x16);
@@ -2167,15 +2195,15 @@ LAB_00147edc:
     *(ulong *)(iVar5 + 0xd0) = (ulong)uVar2;
   }
   else {
-    uVar3 = FUN_00158370(*(undefined1 *)((int)puVar6 + 0xd),*(undefined2 *)((int)puVar6 + 0xe));
+    uVar3 = TexSlot_GetEntry(*(undefined1 *)((int)puVar6 + 0xd),*(undefined2 *)((int)puVar6 + 0xe));
     *(undefined4 *)(iVar8 + 0x9c) = uVar3;
     if (*(int *)(*(int *)(iVar8 + 0x9c) + 0x60) == 0) {
-      FUN_00146050(iVar8 + iVar9 * 0x44);
+      Pkt_AddMicroProgram(iVar8 + iVar9 * 0x44);
     }
-    FUN_00147b30(param_1,iVar9,param_2);
+    maybe_Model_DrawMesh(param_1,iVar9,param_2);
   }
   iVar8 = iVar8 + iVar9 * 0x44;
-  uVar3 = FUN_001456c0(iVar8,1);
+  uVar3 = Pkt_Reserve(iVar8,1);
   *(undefined4 *)(iVar8 + 0xc) = uVar3;
   puVar1 = *(undefined4 **)(iVar8 + 0xc);
   *puVar1 = 0x50000000;

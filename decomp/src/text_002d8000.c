@@ -27,15 +27,15 @@ void FUN_002d8150(int param_1,undefined1 *param_2)
   
   iVar6 = ((uint)(byte)param_2[4] * 0x18 - (uint)(byte)param_2[4]) * 0x40;
   iVar12 = iVar6 + 0x431100;
-  uVar2 = FUN_0014d6e0(*(undefined4 *)(param_1 + 0x40),0);
-  uVar3 = FUN_0014d6e0(*(undefined4 *)(param_1 + 0x34),0);
-  uVar4 = FUN_0014d6e0(*(undefined4 *)(param_1 + 0x44),0);
-  uVar5 = FUN_0014d6e0(*(undefined4 *)(param_1 + 0x48),0);
+  uVar2 = Model_GetTexture(*(undefined4 *)(param_1 + 0x40),0);
+  uVar3 = Model_GetTexture(*(undefined4 *)(param_1 + 0x34),0);
+  uVar4 = Model_GetTexture(*(undefined4 *)(param_1 + 0x44),0);
+  uVar5 = Model_GetTexture(*(undefined4 *)(param_1 + 0x48),0);
   if (*(int *)(iVar6 + 0x431684) != 0) {
-    FUN_00184b20(iVar12,0,*param_2);
-    FUN_0014d240(0x436180);
-    FUN_00148950(auStack_250,iVar12,0x436180,*(undefined4 *)(param_2 + 8),
-                 *(undefined4 *)(param_2 + 0xc));
+    Cam_SetupViewport(iVar12,0,*param_2);
+    Light_UpdateMatrices(0x436180);
+    Layer_Reset(auStack_250,iVar12,0x436180,*(undefined4 *)(param_2 + 8),
+                *(undefined4 *)(param_2 + 0xc));
     uVar7 = *(uint *)(param_1 + 0x70);
     uVar8 = 0;
     if (((int)uVar7 < 0) || (uVar10 = *(uint *)(param_1 + 0x74), (int)uVar10 < 0)) {
@@ -113,15 +113,15 @@ void FUN_002d8150(int param_1,undefined1 *param_2)
       puVar1[10] = uVar13;
       puVar1 = puVar1 + (puVar1[0x1e] + 1) * 4 + 0x28;
     }
-    FUN_00148850(auStack_250,0);
-    FUN_00148850(auStack_250,1);
+    Layer_Open(auStack_250,0);
+    Layer_Open(auStack_250,1);
     maybe_Vu0_UnitMatrix(auStack_190);
     maybe_Vu0_RotMatrixZ(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
     maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
     maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
     vu0math_sub_00132d20(auStack_190,auStack_190,param_1 + 0x60);
-    FUN_00148430(auStack_250,uVar2);
-    FUN_00148430(auStack_250,uVar3);
+    Model_UpdateNodeMatrix(auStack_250,uVar2);
+    Model_UpdateNodeMatrix(auStack_250,uVar3);
     if (*(int *)(param_1 + 0x70) < 0) {
       iVar6 = *(int *)(param_1 + 0x74);
     }
@@ -135,7 +135,7 @@ void FUN_002d8150(int param_1,undefined1 *param_2)
       maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
       maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
       vu0math_sub_00132d20(auStack_190,auStack_190,auStack_260);
-      FUN_00148430(auStack_250,uVar4);
+      Model_UpdateNodeMatrix(auStack_250,uVar4);
       iVar6 = *(int *)(param_1 + 0x74);
     }
     if (-1 < iVar6) {
@@ -147,10 +147,10 @@ void FUN_002d8150(int param_1,undefined1 *param_2)
       maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
       maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
       vu0math_sub_00132d20(auStack_190,auStack_190,auStack_270);
-      FUN_00148430(auStack_250,uVar5);
+      Model_UpdateNodeMatrix(auStack_250,uVar5);
     }
-    FUN_00148820(auStack_250,0);
-    FUN_00148820(auStack_250,1);
+    Layer_Close(auStack_250,0);
+    Layer_Close(auStack_250,1);
   }
   return;
 }
@@ -184,23 +184,23 @@ void FUN_002d86a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   
   FUN_001a5a70(param_4);
   FUN_001a59b0(param_4,param_3);
-  uVar1 = FUN_00134630(param_2,0,0);
+  uVar1 = Gut_PackGetEntry(param_2,0,0);
   iVar2 = (int)param_4;
   *(undefined4 *)(iVar2 + 0x34) = uVar1;
-  FUN_0014d2a0(*(undefined4 *)(iVar2 + 0x34));
-  uVar1 = FUN_00134630(param_2,1,0);
+  Model_Relocate(*(undefined4 *)(iVar2 + 0x34));
+  uVar1 = Gut_PackGetEntry(param_2,1,0);
   *(undefined4 *)(iVar2 + 0x38) = uVar1;
-  uVar1 = FUN_00134630(param_2,2,0);
+  uVar1 = Gut_PackGetEntry(param_2,2,0);
   *(undefined4 *)(iVar2 + 0x3c) = uVar1;
-  uVar1 = FUN_00134630(param_2,3,0);
+  uVar1 = Gut_PackGetEntry(param_2,3,0);
   *(undefined4 *)(iVar2 + 0x40) = uVar1;
-  FUN_0014d2a0(*(undefined4 *)(iVar2 + 0x40));
-  uVar1 = FUN_00134630(param_2,4,0);
+  Model_Relocate(*(undefined4 *)(iVar2 + 0x40));
+  uVar1 = Gut_PackGetEntry(param_2,4,0);
   *(undefined4 *)(iVar2 + 0x44) = uVar1;
-  FUN_0014d2a0(*(undefined4 *)(iVar2 + 0x44));
-  uVar1 = FUN_00134630(param_2,5,0);
+  Model_Relocate(*(undefined4 *)(iVar2 + 0x44));
+  uVar1 = Gut_PackGetEntry(param_2,5,0);
   *(undefined4 *)(iVar2 + 0x48) = uVar1;
-  FUN_0014d2a0(*(undefined4 *)(iVar2 + 0x48));
+  Model_Relocate(*(undefined4 *)(iVar2 + 0x48));
   *(undefined4 *)(iVar2 + 8) = 0;
   return;
 }
@@ -373,7 +373,7 @@ void FUN_002d8cf0(undefined8 param_1)
 {
   int iVar1;
   
-  thunk_FUN_00172660();
+  Save_AllocSlots();
   FUN_0020e110(param_1);
   FUN_002d8f60(0,0,0);
   FUN_002d8f50(0x293f50,0x293f40,0x293f30);
@@ -696,7 +696,7 @@ void FUN_002d9ca0(undefined8 param_1)
   *(undefined4 *)(iGpffff91c4 + 0xb0) = uVar1;
   iVar5 = *(int *)(iGpffff91c4 + 0xb0);
   do {
-    FUN_0014bf00(*piVar8,iVar5,0,0,0,0);
+    Arc_LoadFileEx(*piVar8,iVar5,0,0,0,0);
     iVar3 = iGpffff89d4 + *piVar8 * 0x14;
     iVar7 = *(int *)(iVar3 + 0x20);
     if (iVar7 == 0) {
@@ -709,7 +709,7 @@ void FUN_002d9ca0(undefined8 param_1)
     iVar5 = iVar5 + uVar2 * 0x800;
     piVar8 = piVar8 + 1;
   } while (iVar6 < 0x2b);
-  FUN_0014bf00((&DAT_00342260)[iVar6],iVar5,0x2d9c20,0,0,0);
+  Arc_LoadFileEx((&DAT_00342260)[iVar6],iVar5,0x2d9c20,0,0,0);
   return;
 }
 
@@ -830,7 +830,7 @@ void FUN_002d9e30(int param_1)
   else {
     if (bVar4) {
       if (bVar3) {
-        iVar8 = FUN_00176da0();
+        iVar8 = Replay_GetHeader();
         iVar9 = *(int *)(iVar8 + 0x18) + 0x4de;
         iStack_7b0 = *(int *)(iVar8 + 0x18) + 0x5c0;
         iStack_7c0 = *(int *)(iVar8 + 0x14) + 0x6a3;
@@ -892,7 +892,7 @@ void FUN_002d9e30(int param_1)
     cVar1 = *(char *)(param_1 + 0x779);
     if ((cVar1 == '\x05') || (cVar1 == '\x03')) {
       if ((bVar4) && (bVar3)) {
-        iVar8 = FUN_00176da0();
+        iVar8 = Replay_GetHeader();
         uVar7 = *(undefined4 *)(iVar8 + 8);
       }
       else {
@@ -908,11 +908,11 @@ void FUN_002d9e30(int param_1)
     }
     else if ((cVar1 == '\x04') || (cVar1 == '\x02')) {
       if ((bVar4) && (bVar3)) {
-        iVar8 = FUN_00176da0();
-        FUN_0017d9e0(1,*(undefined4 *)(iVar8 + 4),&uStack_4,&uStack_8,&uStack_c);
+        iVar8 = Replay_GetHeader();
+        Time_SplitHms(1,*(undefined4 *)(iVar8 + 4),&uStack_4,&uStack_8,&uStack_c);
       }
       else {
-        FUN_0017d9e0(1,*(undefined4 *)(param_1 + 0x7bc),&uStack_4,&uStack_8,&uStack_c);
+        Time_SplitHms(1,*(undefined4 *)(param_1 + 0x7bc),&uStack_4,&uStack_8,&uStack_c);
       }
       uVar10 = (*pcVar6)(0x1e9f);
       uVar11 = (*pcVar5)(0xc2);
@@ -942,7 +942,7 @@ void FUN_002d9e30(int param_1)
       uStack_44 = DAT_0034224c;
       uStack_40 = DAT_00342250;
       if ((bVar4) && (bVar3)) {
-        iVar8 = FUN_00176da0();
+        iVar8 = Replay_GetHeader();
         uVar10 = (*pcVar5)(0xc0);
         uVar11 = (*pcVar6)(0x1e9e);
         FUN_002dd810(uVar10,0x1c,uVar11);

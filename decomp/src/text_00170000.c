@@ -3,7 +3,9 @@
 #include "ghidra_types.h"
 
 // 0x001702c0  size 0x188
-void FUN_001702c0(int param_1)
+/* reciprocals, degrees->radians */
+
+void CarSpec_ConvertUnits(int param_1)
 
 {
   int iVar1;
@@ -50,7 +52,7 @@ void FUN_001702c0(int param_1)
 }
 
 // 0x00170450  size 0x18c
-void FUN_00170450(int param_1)
+void CarSpec_SetDefaults(int param_1)
 
 {
   undefined4 uStack_34;
@@ -127,7 +129,7 @@ void FUN_00170450(int param_1)
 }
 
 // 0x001705e0  size 0x1e8
-undefined8 FUN_001705e0(undefined8 param_1)
+undefined8 CarSpec_ctor(undefined8 param_1)
 
 {
   bool bVar1;
@@ -222,18 +224,18 @@ undefined8 FUN_001705e0(undefined8 param_1)
   }
   puVar4[0x1c7] = 0x3f800000;
   puVar4[0x1cb] = 0x3f800000;
-  FUN_00170450(param_1);
+  CarSpec_SetDefaults(param_1);
   return param_1;
 }
 
 // 0x001707d0  size 0x40
-undefined8 FUN_001707d0(void)
+undefined8 main(void)
 
 {
   maybe___init_cpp();
-  FUN_001a5d10();
-  FUN_001a5b90(3);
-  FUN_001a5c80();
+  Game_Init();
+  Game_MainLoop(3);
+  Game_Shutdown();
   __destroy_global_chain();
   return 0;
 }
@@ -375,7 +377,7 @@ undefined4 lgDevEnumerate(undefined4 param_1,long param_2)
     uVar3 = 0x80000004;
   }
   else {
-    FUN_00171c40(0,0);
+    lgDev_WaitAsync(0,0);
     uRam0042fd84 = param_1;
     lVar4 = sceSifCallRpc(0x42fd40,1,0,0x42fd80,0x240,0x42fd80,0x240,0);
     uVar2 = uRam0042fe04;
@@ -408,7 +410,7 @@ undefined4 lgDevOpen(undefined4 param_1,long param_2)
     uVar1 = 0x80000004;
   }
   else {
-    FUN_00171c40(0,0);
+    lgDev_WaitAsync(0,0);
     uRam0042fd84 = param_1;
     lVar2 = sceSifCallRpc(0x42fd40,2,0,0x42fd80,0x240,0x42fd80,0x240,0);
     if (lVar2 == 0) {
@@ -431,7 +433,7 @@ undefined4 lgDevClose(undefined4 param_1)
   undefined4 uVar1;
   long lVar2;
   
-  FUN_00171c40(0,0);
+  lgDev_WaitAsync(0,0);
   uRam0042fd88 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,3,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
@@ -457,7 +459,7 @@ undefined4 lgDevGetDeviceProperty(undefined4 param_1,undefined4 param_2,long par
     uVar1 = 0x80000004;
   }
   else {
-    FUN_00171c40(0,0);
+    lgDev_WaitAsync(0,0);
     uRam0042fd88 = param_1;
     uRam0042fdd8 = param_2;
     lVar2 = sceSifCallRpc(0x42fd40,4,0,0x42fd80,0x240,0x42fd80,0x240,0);
@@ -481,7 +483,7 @@ undefined4 lgDevSetDeviceProperty(undefined4 param_1,undefined4 param_2,undefine
   undefined4 uVar1;
   long lVar2;
   
-  FUN_00171c40(0,0);
+  lgDev_WaitAsync(0,0);
   uRam0042fd88 = param_1;
   uRam0042fdd8 = param_2;
   uRam0042fddc = param_3;
@@ -510,7 +512,7 @@ undefined4 lgDevRead(undefined4 param_1,undefined4 param_2,long param_3)
     uVar2 = 0x80000004;
   }
   else {
-    FUN_00171c40(0,0);
+    lgDev_WaitAsync(0,0);
     uRam0042fd88 = param_1;
     uRam0042fde4 = param_2;
     lVar3 = sceSifCallRpc(0x42fd40,6,0,0x42fd80,0x240,0x42fd80,0x240,0);
@@ -549,7 +551,7 @@ undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *para
     }
     else {
       if (param_4 != (undefined8 *)0x0) {
-        FUN_00171c40(0,0);
+        lgDev_WaitAsync(0,0);
         iVar5 = 0;
         if (0 < param_1) {
           puVar4 = (undefined4 *)0x42fde4;
@@ -605,7 +607,7 @@ undefined4 lgDevDownloadForceEffect(undefined4 param_1,long param_2,long param_3
   }
   else {
     if (param_3 != 0) {
-      FUN_00171c40(0,0);
+      lgDev_WaitAsync(0,0);
       uRam0042fd98 = *(undefined4 *)param_2;
       puVar3 = (undefined8 *)param_3;
       uRam0042fdf4 = *puVar3;
@@ -645,7 +647,7 @@ undefined4 lgDevUpdateForceEffect(int param_1,long param_2)
   }
   else {
     if (param_2 != 0) {
-      FUN_00171c40(0,0);
+      lgDev_WaitAsync(0,0);
       puVar3 = (undefined8 *)param_2;
       uRam0042fdf4 = *puVar3;
       uRam0042fdfc = puVar3[1];
@@ -677,7 +679,7 @@ undefined4 lgDevStartForceEffect(undefined4 param_1)
   undefined4 uVar1;
   long lVar2;
   
-  FUN_00171c40(0,0);
+  lgDev_WaitAsync(0,0);
   uRam0042fd98 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,8,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
@@ -702,7 +704,7 @@ undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
   
   if (param_1 - 1U < 0x10) {
     if (param_2 != (undefined4 *)0x0) {
-      FUN_00171c40(0,0);
+      lgDev_WaitAsync(0,0);
       iVar4 = 0;
       if (0 < param_1) {
         puVar3 = (undefined4 *)0x42fd98;
@@ -738,7 +740,7 @@ undefined4 lgDevStopForceEffect(undefined4 param_1)
   undefined4 uVar1;
   long lVar2;
   
-  FUN_00171c40(0,0);
+  lgDev_WaitAsync(0,0);
   uRam0042fd98 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,9,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
@@ -763,7 +765,7 @@ undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
   
   if (param_1 - 1U < 0x10) {
     if (param_2 != (undefined4 *)0x0) {
-      FUN_00171c40(0,0);
+      lgDev_WaitAsync(0,0);
       iVar4 = 0;
       if (0 < param_1) {
         puVar3 = (undefined4 *)0x42fd98;
@@ -799,7 +801,7 @@ undefined4 lgDevDestroyForceEffect(undefined4 param_1)
   undefined4 uVar1;
   long lVar2;
   
-  FUN_00171c40(0,0);
+  lgDev_WaitAsync(0,0);
   uRam0042fd98 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,10,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
@@ -828,7 +830,7 @@ undefined4 lgDevPrepareForIOPReboot(void)
   undefined8 uVar6;
   undefined8 uVar7;
   
-  FUN_00171c40(0,0);
+  lgDev_WaitAsync(0,0);
   lVar2 = sceSifCallRpc(0x42fd40,0x11,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
     puVar4 = (undefined8 *)0x42fdf4;
@@ -857,7 +859,9 @@ undefined4 lgDevPrepareForIOPReboot(void)
 }
 
 // 0x00171c40  size 0x84
-long FUN_00171c40(long param_1,long param_2)
+/* sceSifCheckStatRpc; 25 callers */
+
+long lgDev_WaitAsync(long param_1,long param_2)
 
 {
   long lVar1;
@@ -881,7 +885,7 @@ long FUN_00171c40(long param_1,long param_2)
 }
 
 // 0x00171df0  size 0xa8
-undefined8 FUN_00171df0(long param_1)
+undefined8 lgDevAEnumHint(long param_1)
 
 {
   undefined8 uVar1;
@@ -892,7 +896,7 @@ undefined8 FUN_00171df0(long param_1)
     uVar1 = 0xffffffff80000004;
   }
   else {
-    lVar2 = FUN_00171c40(1,0);
+    lVar2 = lgDev_WaitAsync(1,0);
     if (lVar2 == 0) {
       DAT_0030b0c4 = (undefined4)param_1;
       sceSifCallRpc(0x42fd40,0xb,1,0x30ae80,0x240,0x30ae80,0x240,0x171db0);
@@ -918,7 +922,7 @@ undefined8 lgDevARead(undefined4 param_1,undefined4 param_2,long param_3)
     uVar1 = 0xffffffff80000004;
   }
   else {
-    lVar2 = FUN_00171c40(1,0);
+    lVar2 = lgDev_WaitAsync(1,0);
     if (lVar2 == 0) {
       DAT_0030b0c0 = (undefined4)param_3;
       DAT_0030ae88 = param_1;
@@ -953,7 +957,7 @@ undefined8 lgDevAReadMulti(int param_1,long param_2,long param_3,long param_4)
     }
     else {
       if (param_4 != 0) {
-        lVar1 = FUN_00171c40(1,0);
+        lVar1 = lgDev_WaitAsync(1,0);
         if (lVar1 != 0) {
           printf(0x362ff0);
           return 0xffffffff80000008;
@@ -997,7 +1001,7 @@ undefined8 lgDevAUpdateForceEffect(int param_1,long param_2)
   }
   else {
     if (param_2 != 0) {
-      lVar1 = FUN_00171c40(1,0);
+      lVar1 = lgDev_WaitAsync(1,0);
       if (lVar1 == 0) {
         puVar3 = (undefined8 *)param_2;
         DAT_0030aef4 = *puVar3;
@@ -1028,7 +1032,7 @@ undefined8 lgDevAStartForceEffect(undefined4 param_1)
   long lVar1;
   undefined8 uVar2;
   
-  lVar1 = FUN_00171c40(1,0);
+  lVar1 = lgDev_WaitAsync(1,0);
   if (lVar1 == 0) {
     DAT_0030ae98 = param_1;
     sceSifCallRpc(0x42fd40,8,1,0x30ae80,0x240,0x30ae80,0x240,0x171d88);
@@ -1051,7 +1055,7 @@ undefined8 lgDevAStartForceEffectMulti(int param_1,undefined4 *param_2)
   undefined4 *puVar4;
   int iVar5;
   
-  lVar2 = FUN_00171c40(1,0);
+  lVar2 = lgDev_WaitAsync(1,0);
   if (lVar2 == 0) {
     if (param_1 - 1U < 0x10) {
       if (param_2 != (undefined4 *)0x0) {
@@ -1091,7 +1095,7 @@ undefined8 lgDevAStopForceEffect(undefined4 param_1)
   long lVar1;
   undefined8 uVar2;
   
-  lVar1 = FUN_00171c40(1,0);
+  lVar1 = lgDev_WaitAsync(1,0);
   if (lVar1 == 0) {
     DAT_0030ae98 = param_1;
     sceSifCallRpc(0x42fd40,9,1,0x30ae80,0x240,0x30ae80,0x240,0x171d88);
@@ -1114,7 +1118,7 @@ undefined8 lgDevAStopForceEffectMulti(int param_1,undefined4 *param_2)
   undefined4 *puVar4;
   int iVar5;
   
-  lVar2 = FUN_00171c40(1,0);
+  lVar2 = lgDev_WaitAsync(1,0);
   if (lVar2 == 0) {
     if (param_1 - 1U < 0x10) {
       if (param_2 != (undefined4 *)0x0) {
@@ -1148,35 +1152,37 @@ undefined8 lgDevAStopForceEffectMulti(int param_1,undefined4 *param_2)
 }
 
 // 0x00172590  size 0x1c
-int FUN_00172590(int param_1,int param_2)
+/* 0x220 bytes per slot */
+
+int SaveSlot_Get(int param_1,int param_2)
 
 {
   return iRam0036f19c + (param_1 + param_2) * 0x220;
 }
 
 // 0x001725b0  size 0x48
-void FUN_001725b0(void)
+void Save_UpdateAll(void)
 
 {
   uint uVar1;
   
   uVar1 = 0;
   do {
-    FUN_00173650(iRam0036f19c + uVar1 * 0x220);
+    SaveSlot_Update(iRam0036f19c + uVar1 * 0x220);
     uVar1 = uVar1 + 1;
   } while (uVar1 < 2);
   return;
 }
 
 // 0x00172600  size 0x60
-void FUN_00172600(void)
+void Save_FreeAll(void)
 
 {
   uint uVar1;
   
   uVar1 = 0;
   do {
-    FUN_00139830(iRam0036f19c + uVar1 * 0x220);
+    Mc_RemoveCommandsFor(iRam0036f19c + uVar1 * 0x220);
     uVar1 = uVar1 + 1;
   } while (uVar1 < 2);
   if (iRam0036f19c != 0) {
@@ -1187,7 +1193,7 @@ void FUN_00172600(void)
 }
 
 // 0x00172660  size 0x90
-void FUN_00172660(void)
+void Save_AllocSlots(void)
 
 {
   uint uVar1;
@@ -1201,35 +1207,37 @@ void FUN_00172660(void)
     *(undefined4 *)(iVar2 + 0x70) = 0;
     *(undefined4 *)(iVar2 + 0x74) = 0;
     *(undefined4 *)(iVar2 + 0x78) = 0;
-    FUN_00172de0(iVar2,0,0);
-    FUN_001398c0(iVar2,uVar1 & 0xff,0);
+    SaveSlot_SetState(iVar2,0,0);
+    Mc_InitCommand(iVar2,uVar1 & 0xff,0);
     uVar1 = uVar1 + 1;
   } while (uVar1 < 2);
   return;
 }
 
 // 0x001726f0  size 0x24
-void FUN_001726f0(void)
+void Save_Shutdown(void)
 
 {
-  FUN_00139580();
+  Mc_Shutdown();
   uRam0036f198 = 0;
   uRam0036f19c = 0;
   return;
 }
 
 // 0x00172720  size 0x10
-void FUN_00172720(undefined4 param_1)
+/* Mc_Init(heap, 0x14) */
+
+void Save_Init(undefined4 param_1)
 
 {
   uRam0036f19c = 0;
   uRam0036f198 = param_1;
-  FUN_00139640(param_1,0x14);
+  Mc_Init(param_1,0x14);
   return;
 }
 
 // 0x00172730  size 0x8
-void FUN_00172730(int param_1,undefined4 param_2)
+void SaveSlot_SetUserData(int param_1,undefined4 param_2)
 
 {
   *(undefined4 *)(param_1 + 100) = param_2;
@@ -1237,14 +1245,14 @@ void FUN_00172730(int param_1,undefined4 param_2)
 }
 
 // 0x00172740  size 0x8
-undefined4 FUN_00172740(int param_1)
+undefined4 SaveSlot_GetBuffer(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x5c);
 }
 
 // 0x00172750  size 0x150
-int FUN_00172750(int param_1,undefined8 param_2,long param_3,long param_4)
+int SaveSlot_BuildPath(int param_1,undefined8 param_2,long param_3,long param_4)
 
 {
   int iVar1;
@@ -1276,7 +1284,7 @@ int FUN_00172750(int param_1,undefined8 param_2,long param_3,long param_4)
 }
 
 // 0x001728a0  size 0x268
-int FUN_001728a0(undefined8 param_1,undefined8 param_2,int param_3)
+int SaveSlot_ParseDirectory(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   char cVar1;
@@ -1326,7 +1334,7 @@ int FUN_001728a0(undefined8 param_1,undefined8 param_2,int param_3)
           }
         }
         if (!bVar2) {
-          FUN_00172750(param_1,iVar9 + 0x1a0,param_2,iVar4);
+          SaveSlot_BuildPath(param_1,iVar9 + 0x1a0,param_2,iVar4);
           uVar5 = strlen(puVar7 + 0x20);
           lVar6 = FUN_00132590(puVar7 + 0x20,iVar9 + 0x1a0,uVar5);
           if (lVar6 != 0) {
@@ -1363,7 +1371,7 @@ int FUN_001728a0(undefined8 param_1,undefined8 param_2,int param_3)
 }
 
 // 0x00172b20  size 0x1b4
-int FUN_00172b20(undefined8 param_1,int param_2)
+int SaveSlot_ParseFileList(undefined8 param_1,int param_2)
 
 {
   bool bVar1;
@@ -1384,7 +1392,7 @@ int FUN_00172b20(undefined8 param_1,int param_2)
     bVar1 = lVar3 == 0;
     if (!bVar1) {
       iVar2 = atoi((int)lVar3 + 1);
-      FUN_00172750(param_1,iVar8 + 0x1a0,iVar2,0xffffffffffffffff);
+      SaveSlot_BuildPath(param_1,iVar8 + 0x1a0,iVar2,0xffffffffffffffff);
       uVar4 = strlen(puVar6 + 0x20);
       lVar3 = FUN_00132590(puVar6 + 0x20,iVar8 + 0x1a0,uVar4);
       if (lVar3 != 0) {
@@ -1417,7 +1425,7 @@ int FUN_00172b20(undefined8 param_1,int param_2)
 }
 
 // 0x00172ce0  size 0x100
-void FUN_00172ce0(undefined8 param_1,undefined8 param_2)
+void SaveSlot_ClearLists(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1427,9 +1435,9 @@ void FUN_00172ce0(undefined8 param_1,undefined8 param_2)
   int iVar5;
   
   iVar1 = (int)param_1;
-  FUN_001325d0(*(undefined4 *)(iVar1 + 0x78),0,*(int *)(*(int *)(iVar1 + 0x6c) + 4) * 0x28);
-  FUN_001325d0(*(undefined4 *)(iVar1 + 0x7c),0,
-               *(int *)(*(int *)(iVar1 + 0x6c) + 4) * *(int *)(*(int *)(iVar1 + 0x6c) + 8) * 0x1c);
+  Mem_Set16(*(undefined4 *)(iVar1 + 0x78),0,*(int *)(*(int *)(iVar1 + 0x6c) + 4) * 0x28);
+  Mem_Set16(*(undefined4 *)(iVar1 + 0x7c),0,
+            *(int *)(*(int *)(iVar1 + 0x6c) + 4) * *(int *)(*(int *)(iVar1 + 0x6c) + 8) * 0x1c);
   *(undefined4 *)(iVar1 + 0x88) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x8c) = 0xffffffff;
   *(int *)(iVar1 + 0x80) = (int)param_2;
@@ -1449,12 +1457,14 @@ void FUN_00172ce0(undefined8 param_1,undefined8 param_2)
       iVar4 = iVar4 + 0x28;
     } while (iVar5 < *(int *)(iVar2 + 4));
   }
-  FUN_00172b20(param_1,param_2);
+  SaveSlot_ParseFileList(param_1,param_2);
   return;
 }
 
 // 0x00172de0  size 0xa0
-void FUN_00172de0(int param_1,char param_2,char param_3)
+/* (state, substate) */
+
+void SaveSlot_SetState(int param_1,char param_2,char param_3)
 
 {
   *(char *)(param_1 + 0x3c) = param_2;
@@ -1478,13 +1488,13 @@ void FUN_00172de0(int param_1,char param_2,char param_3)
     *(undefined4 *)(param_1 + 0x58) = 0;
   }
   if ((param_2 == '\x01') || (param_2 == '\a')) {
-    FUN_00172ce0(param_1,0);
+    SaveSlot_ClearLists(param_1,0);
   }
   return;
 }
 
 // 0x00172e80  size 0x2dc
-undefined4 FUN_00172e80(int param_1,int param_2,int *param_3,int param_4)
+undefined4 SaveSlot_FindFreeName(int param_1,int param_2,int *param_3,int param_4)
 
 {
   undefined4 uVar1;
@@ -1502,7 +1512,7 @@ undefined4 FUN_00172e80(int param_1,int param_2,int *param_3,int param_4)
   iVar10 = 0;
   iVar9 = 0;
   if (param_2 < *(int *)(*(int *)(param_1 + 0x6c) + 4)) {
-    FUN_001325d0(aiStack_50,0,0x48);
+    Mem_Set16(aiStack_50,0,0x48);
     iVar4 = 0;
     if (*(int *)(*(int *)(param_1 + 0x78) + param_2 * 0x28) != 0) {
       iVar2 = 0;
@@ -1607,7 +1617,7 @@ undefined4 FUN_00172e80(int param_1,int param_2,int *param_3,int param_4)
 }
 
 // 0x00173160  size 0xd4
-undefined4 FUN_00173160(int param_1,int param_2,int *param_3,int param_4)
+undefined4 SaveSlot_FindFile(int param_1,int param_2,int *param_3,int param_4)
 
 {
   int iVar1;
@@ -1661,7 +1671,7 @@ undefined4 FUN_00173160(int param_1,int param_2,int *param_3,int param_4)
 }
 
 // 0x00173240  size 0x110
-undefined4 FUN_00173240(int param_1)
+undefined4 SaveSlot_StartCheck(int param_1)
 
 {
   if (*(char *)(param_1 + 0x3c) != '\x04') {
@@ -1671,41 +1681,41 @@ undefined4 FUN_00173240(int param_1)
     switch(*(undefined1 *)(param_1 + 0x3d)) {
     case 5:
     case 6:
-      FUN_00172de0(param_1,1,1);
+      SaveSlot_SetState(param_1,1,1);
       return 1;
     case 9:
     case 10:
       if (*(int *)(param_1 + 0x80) == 0) {
-        FUN_00172de0(param_1,3,7);
+        SaveSlot_SetState(param_1,3,7);
       }
       else {
-        FUN_00172de0(param_1,3,8);
+        SaveSlot_SetState(param_1,3,8);
       }
       break;
     case 0xb:
-      FUN_00172de0(param_1,1,1);
+      SaveSlot_SetState(param_1,1,1);
       break;
     case 0xc:
     case 0xd:
       if (*(int *)(param_1 + 0x80) == 0) {
-        FUN_00172de0(param_1,3,7);
+        SaveSlot_SetState(param_1,3,7);
       }
       else {
-        FUN_00172de0(param_1,3,8);
+        SaveSlot_SetState(param_1,3,8);
       }
       break;
     case 0xe:
-      FUN_00172de0(param_1,1,1);
+      SaveSlot_SetState(param_1,1,1);
     }
   }
   else {
-    FUN_00172de0(param_1,1,1);
+    SaveSlot_SetState(param_1,1,1);
   }
   return 1;
 }
 
 // 0x00173350  size 0x90
-undefined4 FUN_00173350(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+undefined4 SaveSlot_StartLoad(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   undefined4 uVar1;
@@ -1719,11 +1729,11 @@ undefined4 FUN_00173350(int param_1,undefined4 param_2,undefined4 param_3,undefi
     *(undefined4 *)(param_1 + 0x98) = 0;
     *(undefined4 *)(param_1 + 0x9c) = param_4;
     if (*(int *)(param_1 + 0x40) == 0) {
-      FUN_00172de0(param_1,0xe,1);
+      SaveSlot_SetState(param_1,0xe,1);
       uVar1 = 1;
     }
     else {
-      FUN_00172de0(param_1,5,1);
+      SaveSlot_SetState(param_1,5,1);
       uVar1 = 1;
     }
   }
@@ -1734,7 +1744,7 @@ undefined4 FUN_00173350(int param_1,undefined4 param_2,undefined4 param_3,undefi
 }
 
 // 0x001733e0  size 0x68
-undefined4 FUN_001733e0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+undefined4 SaveSlot_StartSave(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   undefined4 uVar1;
@@ -1746,7 +1756,7 @@ undefined4 FUN_001733e0(int param_1,undefined4 param_2,undefined4 param_3,undefi
     *(undefined4 *)(param_1 + 0x94) = 0;
     *(undefined4 *)(param_1 + 0x98) = 0;
     *(undefined4 *)(param_1 + 0x9c) = param_4;
-    FUN_00172de0(param_1,0xb,1);
+    SaveSlot_SetState(param_1,0xb,1);
     uVar1 = 1;
   }
   else {
@@ -1756,7 +1766,7 @@ undefined4 FUN_001733e0(int param_1,undefined4 param_2,undefined4 param_3,undefi
 }
 
 // 0x00173450  size 0x40
-undefined4 FUN_00173450(int param_1)
+undefined4 SaveSlot_ConsumeDone(int param_1)
 
 {
   undefined4 uVar1;
@@ -1773,7 +1783,7 @@ undefined4 FUN_00173450(int param_1)
 }
 
 // 0x00173490  size 0x1c
-undefined4 FUN_00173490(int param_1,undefined4 *param_2,undefined4 *param_3)
+undefined4 SaveSlot_GetFileList(int param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
   *param_2 = *(undefined4 *)(param_1 + 0x80);
@@ -1782,21 +1792,21 @@ undefined4 FUN_00173490(int param_1,undefined4 *param_2,undefined4 *param_3)
 }
 
 // 0x001734b0  size 0x8
-undefined1 FUN_001734b0(int param_1)
+undefined1 SaveSlot_GetSubState(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x3d);
 }
 
 // 0x001734c0  size 0x8
-undefined1 FUN_001734c0(int param_1)
+undefined1 SaveSlot_GetState(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x3c);
 }
 
 // 0x001734d0  size 0x94
-undefined4 FUN_001734d0(undefined8 param_1)
+undefined4 SaveSlot_Close(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1820,14 +1830,14 @@ undefined4 FUN_001734d0(undefined8 param_1)
       Mem_Free();
       *(undefined4 *)(iVar2 + 0x74) = 0;
     }
-    FUN_00172de0(param_1,0,0);
+    SaveSlot_SetState(param_1,0,0);
     uVar1 = 1;
   }
   return uVar1;
 }
 
 // 0x00173570  size 0xdc
-undefined4 FUN_00173570(undefined8 param_1,undefined4 param_2)
+undefined4 SaveSlot_Open(undefined8 param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -1854,7 +1864,7 @@ undefined4 FUN_00173570(undefined8 param_1,undefined4 param_2)
     uVar2 = Mem_Alloc16(*(int *)(*(int *)(iVar4 + 0x6c) + 4) * *(int *)(*(int *)(iVar4 + 0x6c) + 8)
                         * 0x1c,*(undefined4 *)(iVar4 + 0x38));
     *(undefined4 *)(iVar4 + 0x7c) = uVar2;
-    FUN_00172de0(param_1,1,1);
+    SaveSlot_SetState(param_1,1,1);
     uVar2 = 1;
   }
   else {
@@ -1864,7 +1874,9 @@ undefined4 FUN_00173570(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00173650  size 0xd8c
-void FUN_00173650(undefined8 param_1)
+/* memory-card state machine */
+
+void SaveSlot_Update(undefined8 param_1)
 
 {
   char cVar1;
@@ -1886,8 +1898,8 @@ void FUN_00173650(undefined8 param_1)
   case '\0':
     break;
   case '\x01':
-    thunk_FUN_00139340(param_1,0,1,7,0,0,0);
-    FUN_00172de0(param_1,2,1);
+    Mc_QueueCommand(param_1,0,1,7,0,0,0);
+    SaveSlot_SetState(param_1,2,1);
     break;
   case '\x02':
     if (puVar5[0x11] == 0) {
@@ -1906,19 +1918,19 @@ void FUN_00173650(undefined8 param_1)
     }
     if ((*puVar5 & 8) == 0) {
       if ((int)puVar5[0x11] < 4) {
-        thunk_FUN_00139340(param_1,0,1,7,0,0,0);
+        Mc_QueueCommand(param_1,0,1,7,0,0,0);
       }
       else {
         if (puVar5[0x15] == 2) {
           if (puVar5[0x16] == 0) {
-            FUN_00172de0(param_1,3,4);
+            SaveSlot_SetState(param_1,3,4);
             puVar5[0x11] = 0;
             break;
           }
-          FUN_00172de0(param_1,7,1);
+          SaveSlot_SetState(param_1,7,1);
         }
         else {
-          FUN_00172de0(param_1,3);
+          SaveSlot_SetState(param_1,3);
           puVar5[0x13] = *puVar5;
           puVar5[0x15] = puVar5[2];
           puVar5[0x16] = puVar5[4];
@@ -1928,7 +1940,7 @@ void FUN_00173650(undefined8 param_1)
       }
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       puVar5[0x11] = 0;
     }
     break;
@@ -1940,67 +1952,67 @@ void FUN_00173650(undefined8 param_1)
           puVar5[0x14] = puVar5[0x14] + 1;
         }
         else {
-          thunk_FUN_00139340(param_1,0,1,0,0,0,0);
+          Mc_QueueCommand(param_1,0,1,0,0,0,0);
           puVar5[0x14] = 0;
         }
       }
       else if ((char)puVar5[0xf] == '\x03') {
-        FUN_00172de0(param_1,1,1);
+        SaveSlot_SetState(param_1,1,1);
       }
       else {
         puVar5[0x12] = 1;
       }
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       puVar5[0x14] = 0;
     }
     break;
   case '\x05':
-    thunk_FUN_00139340(param_1,0,0x10,0,0,0,0);
-    FUN_00172de0(param_1,6,1);
+    Mc_QueueCommand(param_1,0,0x10,0,0,0,0);
+    SaveSlot_SetState(param_1,6,1);
     break;
   case '\x06':
     if (uVar7 == 0) {
       if (puVar5[0x10] == 0) {
-        FUN_00172de0(param_1,4,5);
+        SaveSlot_SetState(param_1,4,5);
       }
       else {
-        FUN_00172de0(param_1,0xe,1);
+        SaveSlot_SetState(param_1,0xe,1);
       }
     }
     else {
-      FUN_00139770(param_1);
-      FUN_00172de0(param_1,4,6);
+      Mc_CancelCommand(param_1);
+      SaveSlot_SetState(param_1,4,6);
     }
     break;
   case '\a':
     *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-    iVar3 = FUN_00172750(param_1,(int)puVar5 + 0xa1,0xffffffffffffffff,0xffffffffffffffff);
+    iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,0xffffffffffffffff,0xffffffffffffffff);
     maybe_strcpy((int)puVar5 + iVar3 + 0xa1,0x363358);
-    thunk_FUN_00139340(param_1,0,0xd,puVar5 + 0x28,0,puVar5[0x1c],puVar5[0x1d]);
-    FUN_00172de0(param_1,8,1);
+    Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,puVar5[0x1c],puVar5[0x1d]);
+    SaveSlot_SetState(param_1,8,1);
     break;
   case '\b':
     if (uVar7 == 0) {
-      FUN_00172ce0(param_1,puVar5[8]);
+      SaveSlot_ClearLists(param_1,puVar5[8]);
       if ((int)puVar5[8] < 1) {
-        FUN_00172de0(param_1,3,7);
+        SaveSlot_SetState(param_1,3,7);
       }
       else {
-        FUN_00172de0(param_1,9,1);
+        SaveSlot_SetState(param_1,9,1);
       }
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       if (puVar5[10] == 0x13) {
-        FUN_00172de0(param_1,3,2);
+        SaveSlot_SetState(param_1,3,2);
       }
       else if (puVar5[10] == 5) {
-        FUN_00172de0(param_1,3,3);
+        SaveSlot_SetState(param_1,3,3);
       }
       else {
-        FUN_00172de0(param_1,1,1);
+        SaveSlot_SetState(param_1,1,1);
       }
     }
     break;
@@ -2017,13 +2029,13 @@ void FUN_00173650(undefined8 param_1)
     }
     if ((int)uVar6 < iVar3) {
       *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-      iVar3 = FUN_00172750(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
+      iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
       maybe_strcpy((int)puVar5 + iVar3 + 0xa1,0x363360);
-      thunk_FUN_00139340(param_1,0,0xd,puVar5 + 0x28,0,puVar5[0x1c],puVar5[0x1d]);
-      FUN_00172de0(param_1,10,1);
+      Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,puVar5[0x1c],puVar5[0x1d]);
+      SaveSlot_SetState(param_1,10,1);
     }
     else {
-      FUN_00172de0(param_1,3,8);
+      SaveSlot_SetState(param_1,3,8);
     }
     break;
   case '\n':
@@ -2031,30 +2043,30 @@ void FUN_00173650(undefined8 param_1)
       uVar6 = puVar5[0x21];
       puVar5[0x21] = uVar6 + 1;
       uVar7 = puVar5[0x1e];
-      uVar2 = FUN_001728a0(param_1,uVar6,puVar5[8]);
+      uVar2 = SaveSlot_ParseDirectory(param_1,uVar6,puVar5[8]);
       *(undefined4 *)(uVar7 + uVar6 * 0x28 + 0x20) = uVar2;
-      FUN_00172de0(param_1,9,1);
+      SaveSlot_SetState(param_1,9,1);
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       if (puVar5[10] == 0x13) {
-        FUN_00172de0(param_1,3,2);
+        SaveSlot_SetState(param_1,3,2);
       }
       else if (puVar5[10] == 5) {
-        FUN_00172de0(param_1,3,3);
+        SaveSlot_SetState(param_1,3,3);
       }
       else {
-        FUN_00172de0(param_1,1,1);
+        SaveSlot_SetState(param_1,1,1);
       }
     }
     break;
   case '\v':
-    cVar1 = FUN_00173160(param_1,puVar5[0x22],puVar5[0x24],puVar5[0x27]);
+    cVar1 = SaveSlot_FindFile(param_1,puVar5[0x22],puVar5[0x24],puVar5[0x27]);
     if (cVar1 == '\0') {
-      FUN_00172de0(param_1,0xc,1);
+      SaveSlot_SetState(param_1,0xc,1);
     }
     else {
-      FUN_00172de0(param_1,4,10);
+      SaveSlot_SetState(param_1,4,10);
     }
     break;
   case '\f':
@@ -2063,80 +2075,80 @@ void FUN_00173650(undefined8 param_1)
         puVar8 = (uint *)(puVar5[0x24] + puVar5[0x26] * 0xc);
         if (puVar5[0x23] != *puVar8) {
           if (-1 < (int)puVar5[0x23]) {
-            thunk_FUN_00139340(param_1,0,3,0,0,0,0);
+            Mc_QueueCommand(param_1,0,3,0,0,0,0);
           }
           puVar5[0x23] = *puVar8;
           uVar6 = puVar5[0x22];
           uVar7 = puVar5[0x23];
           *(undefined1 *)(puVar5 + 0x48) = 0x2f;
-          iVar3 = FUN_00172750(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
+          iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
           if (-1 < (int)uVar7) {
             *(undefined1 *)((int)puVar5 + iVar3 + 0x121) = 0x2f;
-            FUN_00172750(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,uVar7);
+            SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,uVar7);
           }
-          thunk_FUN_00139340(param_1,0,2,puVar5 + 0x48,1,0,0);
+          Mc_QueueCommand(param_1,0,2,puVar5 + 0x48,1,0,0);
         }
-        thunk_FUN_00139340(param_1,0,5,puVar8[1],puVar8[2],0,0);
+        Mc_QueueCommand(param_1,0,5,puVar8[1],puVar8[2],0,0);
         puVar5[0x26] = puVar5[0x26] + 1;
       }
       else {
-        thunk_FUN_00139340(param_1,0,3,0,0,0,0);
-        FUN_00172de0(param_1,0xd,1);
+        Mc_QueueCommand(param_1,0,3,0,0,0,0);
+        SaveSlot_SetState(param_1,0xd,1);
       }
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
-        FUN_00172de0(param_1,3,2);
+        SaveSlot_SetState(param_1,3,2);
       }
       else {
-        FUN_00172de0(param_1,4,0xb);
+        SaveSlot_SetState(param_1,4,0xb);
       }
     }
     break;
   case '\r':
     if (uVar7 == 0) {
-      FUN_00172de0(param_1,4,9);
+      SaveSlot_SetState(param_1,4,9);
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
-        FUN_00172de0(param_1,3,2);
+        SaveSlot_SetState(param_1,3,2);
       }
       else {
-        FUN_00172de0(param_1,4,0xb);
+        SaveSlot_SetState(param_1,4,0xb);
       }
     }
     break;
   case '\x0e':
-    cVar1 = FUN_00172e80(param_1,puVar5[0x22],puVar5[0x24],puVar5[0x27]);
+    cVar1 = SaveSlot_FindFreeName(param_1,puVar5[0x22],puVar5[0x24],puVar5[0x27]);
     if (cVar1 == '\0') {
       uVar6 = puVar5[0x22];
       piVar4 = (int *)(puVar5[0x1e] + uVar6 * 0x28);
       if (*piVar4 == 0) {
         *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-        FUN_00172750(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
-        thunk_FUN_00139340(param_1,0,0xb,puVar5 + 0x28,0,0,0);
-        thunk_FUN_00139340(param_1,0,0xd,puVar5 + 0x28,0,1,puVar5[0x1d]);
+        SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
+        Mc_QueueCommand(param_1,0,0xb,puVar5 + 0x28,0,0,0);
+        Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,1,puVar5[0x1d]);
       }
       else if (*(int *)piVar4[9] == 1) {
         *(undefined1 *)(puVar5 + 0x48) = 0x2f;
-        iVar3 = FUN_00172750(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
+        iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
         *(undefined1 *)((int)puVar5 + iVar3 + 0x121) = 0x2f;
-        FUN_00172750(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,0);
-        thunk_FUN_00139340(param_1,0,0xf,puVar5 + 0x48,0,0,0);
+        SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,0);
+        Mc_QueueCommand(param_1,0,0xf,puVar5 + 0x48,0,0,0);
       }
-      FUN_00172de0(param_1,0xf,1);
+      SaveSlot_SetState(param_1,0xf,1);
     }
     else {
-      FUN_00172de0(param_1,4,0xd);
+      SaveSlot_SetState(param_1,4,0xd);
     }
     break;
   case '\x0f':
     if (uVar7 == 0) {
       if (*(int *)(puVar5[0x1e] + puVar5[0x22] * 0x28) == 0) {
         puVar5[0x20] = puVar5[0x20] + puVar5[8];
-        FUN_00172b20(param_1);
+        SaveSlot_ParseFileList(param_1);
         uVar6 = puVar5[0x26];
       }
       else {
@@ -2149,48 +2161,48 @@ void FUN_00173650(undefined8 param_1)
           uVar6 = puVar5[0x22];
           uVar7 = puVar5[0x23];
           *(undefined1 *)(puVar5 + 0x48) = 0x2f;
-          iVar3 = FUN_00172750(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
+          iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
           if (-1 < (int)uVar7) {
             *(undefined1 *)((int)puVar5 + iVar3 + 0x121) = 0x2f;
-            FUN_00172750(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,uVar7);
+            SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,uVar7);
           }
-          thunk_FUN_00139340(param_1,0,2,puVar5 + 0x48,0x202,0,0);
+          Mc_QueueCommand(param_1,0,2,puVar5 + 0x48,0x202,0,0);
           uVar6 = puVar8[1];
         }
         else {
           uVar6 = puVar8[1];
         }
-        thunk_FUN_00139340(param_1,0,6,uVar6,puVar8[2],0,0);
+        Mc_QueueCommand(param_1,0,6,uVar6,puVar8[2],0,0);
         if ((puVar5[0x26] + 1 == puVar5[0x27]) ||
            (*puVar8 != *(uint *)(puVar5[0x26] * 0xc + puVar5[0x24] + 0xc))) {
-          thunk_FUN_00139340(param_1,0,3,0,0,0,0);
+          Mc_QueueCommand(param_1,0,3,0,0,0,0);
           uVar6 = puVar5[0x22];
           uVar7 = puVar5[0x23];
           *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-          iVar3 = FUN_00172750(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
+          iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
           if (-1 < (int)uVar7) {
             *(undefined1 *)((int)puVar5 + iVar3 + 0xa1) = 0x2f;
-            FUN_00172750(param_1,(int)puVar5 + iVar3 + 0xa2,uVar6,uVar7);
+            SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0xa2,uVar6,uVar7);
           }
-          thunk_FUN_00139340(param_1,0,0xd,puVar5 + 0x28,0,1,puVar5[0x1d] + puVar5[0x25] * 0x40);
+          Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,1,puVar5[0x1d] + puVar5[0x25] * 0x40);
           puVar5[0x23] = 0xffffffff;
           puVar5[0x25] = puVar5[0x25] + 1;
         }
         puVar5[0x26] = puVar5[0x26] + 1;
       }
       else {
-        FUN_001728a0(param_1,puVar5[0x22],puVar5[0x25]);
-        thunk_FUN_00139340(param_1,0,1,7,0,0,0);
-        FUN_00172de0(param_1,0x10,1);
+        SaveSlot_ParseDirectory(param_1,puVar5[0x22],puVar5[0x25]);
+        Mc_QueueCommand(param_1,0,1,7,0,0,0);
+        SaveSlot_SetState(param_1,0x10,1);
       }
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
-        FUN_00172de0(param_1,3,2);
+        SaveSlot_SetState(param_1,3,2);
       }
       else {
-        FUN_00172de0(param_1,4,0xe);
+        SaveSlot_SetState(param_1,4,0xe);
       }
     }
     break;
@@ -2200,15 +2212,15 @@ void FUN_00173650(undefined8 param_1)
       puVar5[0x15] = puVar5[2];
       puVar5[0x16] = puVar5[4];
       puVar5[0x17] = puVar5[3];
-      FUN_00172de0(param_1,4,0xc);
+      SaveSlot_SetState(param_1,4,0xc);
     }
     else {
-      FUN_00139770(param_1);
+      Mc_CancelCommand(param_1);
       if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
-        FUN_00172de0(param_1,3,2);
+        SaveSlot_SetState(param_1,3,2);
       }
       else {
-        FUN_00172de0(param_1,4,0xe);
+        SaveSlot_SetState(param_1,4,0xe);
       }
     }
     break;

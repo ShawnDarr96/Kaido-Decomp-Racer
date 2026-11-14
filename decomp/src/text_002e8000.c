@@ -1668,8 +1668,8 @@ void FUN_002eb150(int param_1)
     *(undefined4 *)(param_1 + 0xcc0) = 0;
     *(undefined4 *)(param_1 + 0xcc4) = 0xffffffff;
     *(undefined1 *)(param_1 + 0xce0) = 1;
-    FUN_001325d0(param_1 + 0xd08,0,0x20);
-    FUN_001325d0(param_1 + 0xd28,0,0x20);
+    Mem_Set16(param_1 + 0xd08,0,0x20);
+    Mem_Set16(param_1 + 0xd28,0,0x20);
   }
   lVar1 = FUN_002f81c0(param_1 + 0xc44);
   if ((lVar1 == 0) &&

@@ -1492,7 +1492,7 @@ void FUN_002ae7a0(int param_1)
     iVar4 = (*(int *)(param_1 + 0x8c) + 1) * 0x2a;
     lVar3 = Mem_Alloc16(iVar4,*(undefined4 *)(param_1 + 0xb4));
     if (lVar3 != 0) {
-      FUN_001325d0(lVar3,0,iVar4);
+      Mem_Set16(lVar3,0,iVar4);
     }
     *(int *)(param_1 + 0x94) = (int)lVar3;
     uVar6 = 0;
@@ -1682,7 +1682,7 @@ void FUN_002aef60(int param_1)
     iVar3 = (*(int *)(param_1 + 0x74) + 1) * 8;
     lVar2 = Mem_Alloc16(iVar3,*(undefined4 *)(param_1 + 0xb4));
     if (lVar2 != 0) {
-      FUN_001325d0(lVar2,0,iVar3);
+      Mem_Set16(lVar2,0,iVar3);
     }
     *(int *)(param_1 + 0x7c) = (int)lVar2;
     uVar6 = 0;
@@ -1755,7 +1755,7 @@ void FUN_002af210(int param_1)
     iVar3 = (*(int *)(param_1 + 0x5c) + 1) * 0x28;
     lVar2 = Mem_Alloc16(iVar3,*(undefined4 *)(param_1 + 0xb4));
     if (lVar2 != 0) {
-      FUN_001325d0(lVar2,0,iVar3);
+      Mem_Set16(lVar2,0,iVar3);
     }
     *(int *)(param_1 + 100) = (int)lVar2;
     uVar6 = 0;
@@ -2029,13 +2029,13 @@ void FUN_002afbd0(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0xc4) = 0xffffffff;
   *(undefined4 *)(iVar1 + 200) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0xcc) = 0;
-  FUN_001325d0(param_1,0,0x10);
-  FUN_001325d0(iVar1 + 0x10,0,0x40);
-  FUN_001325d0(iVar1 + 0x50,0,0x18);
-  FUN_001325d0(iVar1 + 0x68,0,0x18);
-  FUN_001325d0(iVar1 + 0x80,0,0x18);
-  FUN_001325d0(iVar1 + 0x98,0,0x18);
-  FUN_001325d0(iVar1 + 0xd4,0,0x10);
+  Mem_Set16(param_1,0,0x10);
+  Mem_Set16(iVar1 + 0x10,0,0x40);
+  Mem_Set16(iVar1 + 0x50,0,0x18);
+  Mem_Set16(iVar1 + 0x68,0,0x18);
+  Mem_Set16(iVar1 + 0x80,0,0x18);
+  Mem_Set16(iVar1 + 0x98,0,0x18);
+  Mem_Set16(iVar1 + 0xd4,0,0x10);
   *(undefined4 *)(iVar1 + 0xd0) = 0;
   *(undefined4 *)(iVar1 + 0xb0) = 0;
   return;
@@ -2075,7 +2075,7 @@ void FUN_002afe00(undefined8 param_1,int param_2)
     *(undefined4 *)(iVar4 + 0xc4) = 0;
   }
   if (*(int *)(iVar4 + 0xbc) != 0) {
-    uVar2 = FUN_0014bf00(param_2 + 0x1ca6,*(int *)(iVar4 + 0xbc),0x2ae4b0,param_1,0,0);
+    uVar2 = Arc_LoadFileEx(param_2 + 0x1ca6,*(int *)(iVar4 + 0xbc),0x2ae4b0,param_1,0,0);
     *(undefined4 *)(iVar4 + 200) = uVar2;
     *(undefined4 *)(iVar4 + 0xcc) = 1;
   }

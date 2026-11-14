@@ -685,9 +685,9 @@ void FUN_001bcb10(undefined8 param_1)
   }
   uVar1 = *(undefined1 *)(iVar6 + 0x2730);
 LAB_001bce30:
-  FUN_0017e810(uVar1);
-  FUN_0017e820(*(undefined1 *)(iVar6 + 0x2731));
-  FUN_0017e800(*(undefined1 *)(iVar6 + 0x2732));
+  RaceCtx_Set_13(uVar1);
+  RaceCtx_Set_12(*(undefined1 *)(iVar6 + 0x2731));
+  RaceCtx_Set_14(*(undefined1 *)(iVar6 + 0x2732));
   return;
 }
 
@@ -2153,7 +2153,7 @@ void FUN_001beb20(void)
         }
       }
     }
-    cVar3 = FUN_0017e680();
+    cVar3 = Race_GetTimeOfDay();
     iVar4 = 6;
     if (cVar3 != '\0') {
       iVar4 = 3;
@@ -2625,7 +2625,7 @@ LAB_001bfb30:
     bVar1 = *(byte *)(iVar2 + 0x2733);
   }
   if (*(char *)((uint)bVar1 + iVar2 + 0x3fbc) < '\n') {
-    cVar4 = FUN_0017e680();
+    cVar4 = Race_GetTimeOfDay();
     iVar5 = 6;
     aiStack_3630[0] = 0;
     aiStack_3630[1] = 0;
@@ -2749,7 +2749,7 @@ undefined4 FUN_001bff70(undefined8 param_1,long param_2,long param_3,int *param_
   iVar4 = (int)param_2;
   iVar3 = (int)param_3;
   if (param_2 < param_3) {
-    cVar1 = FUN_00182c40(param_1,1);
+    cVar1 = Race_IsTimeTrialMode(param_1,1);
     if (cVar1 == '\x01') {
       *param_4 = 8 - iVar4;
       *param_5 = 9 - iVar3;
@@ -2761,7 +2761,7 @@ undefined4 FUN_001bff70(undefined8 param_1,long param_2,long param_3,int *param_
     uVar2 = 1;
   }
   else {
-    cVar1 = FUN_00182c40(param_1,0);
+    cVar1 = Race_IsTimeTrialMode(param_1,0);
     if (cVar1 == '\0') {
       *param_4 = 9 - iVar4;
       *param_5 = 8 - iVar3;

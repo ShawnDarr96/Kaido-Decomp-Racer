@@ -1508,15 +1508,15 @@ LAB_001fa01c:
     }
     iVar11 = FUN_001f48c0(4);
     iVar11 = *piGpffff8d3c + iVar11 * 0x4f4;
-    FUN_00158390(0,*(undefined2 *)(*(int *)(iVar11 + 0x2d4) + 6),*(undefined4 *)(iVar11 + 0x2dc));
-    thunk_FUN_001466b0(auStack_1690,1,2,0);
-    FUN_001465c0(auStack_1690,7);
-    FUN_00145d70(auStack_1690);
+    TexSlot_Set(0,*(undefined2 *)(*(int *)(iVar11 + 0x2d4) + 6),*(undefined4 *)(iVar11 + 0x2dc));
+    Pkt_Init(auStack_1690,1,2,0);
+    Pkt_SubmitToChain(auStack_1690,7);
+    Pkt_End(auStack_1690);
     if (*(int *)(iVar11 + 0x2d8) != 0) {
-      FUN_00145f10(auStack_1690,iVar11 + 0x2e0);
+      Pkt_Flush(auStack_1690,iVar11 + 0x2e0);
     }
-    FUN_0014f3b0(auStack_1650,4,0xffffffffffffffff);
-    FUN_0014f2c0(auStack_1650,1,0,uVar14);
+    Obj_Reset(auStack_1650,4,0xffffffffffffffff);
+    Obj_SetVisible(auStack_1650,1,0,uVar14);
     uStack_1384 = 0x40;
     uStack_13a0 = 0x48;
     uStack_1380 = 0;
@@ -1526,8 +1526,8 @@ LAB_001fa01c:
     uStack_1360 = 0;
     uStack_135c = 0;
     auStack_1650[0] = auStack_1650[0] | 2;
-    FUN_0014b700(auStack_1690,auStack_1650,1);
-    FUN_00146570(auStack_1690,0);
+    Pkt_AddPrimitives(auStack_1690,auStack_1650,1);
+    Pkt_Submit(auStack_1690,0);
   }
   if (param_1[0x1b] != 0) {
     FUN_002060f0(DAT_00327020);
@@ -1811,9 +1811,9 @@ void FUN_001fb290(undefined1 param_1)
   char cVar1;
   undefined8 uVar2;
   
-  uVar2 = FUN_00191420();
+  uVar2 = maybe_Render_GetCurrentList();
   uVar2 = FUN_00191400(uVar2,0);
-  cVar1 = FUN_00183460();
+  cVar1 = Hud_Get_20();
   (**(code **)(*(int *)uVar2 + 0x24))(uVar2,param_1,0,(cVar1 * 0x60) / 0xf & 0xff,0x3c,0x40,0);
   return;
 }
@@ -1911,9 +1911,9 @@ undefined4 FUN_001fb400(void)
     break;
   case 1:
     if (*(int *)(iGpffff8d68 + 0x5a4) == 0) {
-      FUN_00138bf0((int)register0x000001c0 + -0x7730);
+      Sema_Wait((int)register0x000001c0 + -0x7730);
       iVar1 = iRam00386628;
-      FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+      Sema_Signal((int)register0x000001c0 + -0x7730,0);
       if (iVar1 == 0) {
         FUN_00206110();
         return 0;
@@ -1926,9 +1926,9 @@ undefined4 FUN_001fb400(void)
     break;
   case 2:
     if (*(int *)(iGpffff8d68 + 0x5e4) == 0) {
-      FUN_00138bf0((int)register0x000001c0 + -0x7730);
+      Sema_Wait((int)register0x000001c0 + -0x7730);
       iVar1 = iRam00386628;
-      FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+      Sema_Signal((int)register0x000001c0 + -0x7730,0);
       if (iVar1 == 0) {
         FUN_001c5b50();
         FUN_00206110();
@@ -1942,9 +1942,9 @@ undefined4 FUN_001fb400(void)
     break;
   case 3:
     if (*(int *)(iGpffff8d68 + 0x604) == 0) {
-      FUN_00138bf0((int)register0x000001c0 + -0x7730);
+      Sema_Wait((int)register0x000001c0 + -0x7730);
       iVar1 = iRam00386628;
-      FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+      Sema_Signal((int)register0x000001c0 + -0x7730,0);
       if (iVar1 == 0) {
         FUN_002d6820();
         return 0;
@@ -1957,9 +1957,9 @@ undefined4 FUN_001fb400(void)
     break;
   case 4:
     if (*(int *)(iGpffff8d68 + 0x638) == 0) {
-      FUN_00138bf0((int)register0x000001c0 + -0x7730);
+      Sema_Wait((int)register0x000001c0 + -0x7730);
       iVar1 = iRam00386628;
-      FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+      Sema_Signal((int)register0x000001c0 + -0x7730,0);
       if (iVar1 == 0) {
         FUN_002d8880();
         return 0;

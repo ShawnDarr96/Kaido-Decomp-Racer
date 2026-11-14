@@ -409,7 +409,7 @@ void FUN_001c9a80(uint *param_1,char param_2)
   param_1[0x71] = param_1[0x6b];
   *(char *)(param_1 + 0x72) = (char)param_1[0x6c];
   param_1[0x34] = 0;
-  uVar2 = FUN_001375f0((char)param_1[1],(char)param_1[2]);
+  uVar2 = Pad_GetPort((char)param_1[1],(char)param_1[2]);
   param_1[0x34] = uVar2;
   FUN_001ca160(param_1 + 3,param_1[1]);
   if (((param_1[0x34] != 0) &&
@@ -418,13 +418,13 @@ void FUN_001c9a80(uint *param_1,char param_2)
      lVar3 != 0)) {
     *param_1 = *param_1 | 1;
   }
-  uVar2 = FUN_00141310(param_2);
+  uVar2 = Wheel_GetDeviceName(param_2);
   param_1[0x66] = uVar2;
-  if ((param_1[0x66] != 0) && (lVar3 = FUN_001419f0(), lVar3 == 0)) {
+  if ((param_1[0x66] != 0) && (lVar3 = Wheel_IsActive(), lVar3 == 0)) {
     *param_1 = *param_1 | 2;
     FUN_001c9e00(param_1 + 0x35,param_1[1]);
   }
-  lVar3 = FUN_00177270();
+  lVar3 = GameState_Get_e0();
   if ((long)uVar9 < lVar3) {
     iVar6 = 0;
     puVar4 = param_1;
@@ -474,7 +474,7 @@ void FUN_001c9a80(uint *param_1,char param_2)
     } while (iVar6 < 36000);
     param_1[0x76] = 0;
   }
-  lVar3 = FUN_00183490();
+  lVar3 = Hud_Get_18();
   uVar2 = 4;
   iVar6 = 0;
   if (lVar3 == 0) {
@@ -551,7 +551,7 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  piVar2 = (int *)FUN_00183350(param_2);
+  piVar2 = (int *)Hud_Elem_28_xe8(param_2);
   *param_1 = 0;
   iVar7 = 0;
   puVar4 = param_1;
@@ -571,31 +571,31 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
     piVar5 = piVar5 + 1;
     puVar4 = puVar4 + 2;
   } while (iVar7 < 0x18);
-  iVar7 = FUN_001831b0();
-  FUN_00182ed0(iVar7 + (int)param_2 * 0xe8 + 0x28,param_1[0x31]);
+  iVar7 = maybe_Options_GetLanguage();
+  Controls_ApplyMapping(iVar7 + (int)param_2 * 0xe8 + 0x28,param_1[0x31]);
   uVar9 = 0;
   puVar8 = &DAT_00318920;
   do {
     iVar7 = *piVar2;
     if (iVar7 == 0x20000000) {
-      FUN_00138380(0,0x3f666666,param_1[0x31],*puVar8);
+      maybe_Pad_ReadAnalogAxes(0,0x3f666666,param_1[0x31],*puVar8);
     }
     else if (iVar7 == 4) {
-      FUN_00138380(0,0x3f666666,param_1[0x31],*puVar8);
+      maybe_Pad_ReadAnalogAxes(0,0x3f666666,param_1[0x31],*puVar8);
     }
     else if (iVar7 == 0x200) {
-      FUN_00138380(0,0x3f666666,param_1[0x31],*puVar8);
+      maybe_Pad_ReadAnalogAxes(0,0x3f666666,param_1[0x31],*puVar8);
     }
     else if (iVar7 == 8) {
-      FUN_00138380(0,0x3f666666,param_1[0x31],*puVar8);
+      maybe_Pad_ReadAnalogAxes(0,0x3f666666,param_1[0x31],*puVar8);
     }
     uVar9 = uVar9 + 1;
     piVar2 = piVar2 + 1;
     puVar8 = puVar8 + 4;
   } while (uVar9 < 0x18);
   uVar1 = param_1[0x31];
-  FUN_00142e80(uVar1,0);
-  FUN_00142e40(uVar1,0xff);
+  Wheel_SetAutocenter(uVar1,0);
+  Wheel_SetCenterSpring(uVar1,0xff);
   auStack_40[0] = 2;
   uStack_3c = 0xffffffff;
   uStack_1c = 0;
@@ -608,9 +608,9 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
   uStack_24 = 0;
   uStack_20 = 0;
   uStack_14 = 0;
-  FUN_00142cb0(uVar1,0,2);
-  FUN_00142b40(uVar1,0);
-  FUN_00142b90(uVar1,0,auStack_40);
+  Wheel_SetEffectGain(uVar1,0,2);
+  Wheel_IsEffectIdle(uVar1,0);
+  Wheel_PlayEffect(uVar1,0,auStack_40);
   auStack_40[0] = 7;
   uStack_3c = 0xffffffff;
   uStack_2c = 0x32;
@@ -620,9 +620,9 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
   uStack_38 = 0;
   uStack_34 = 0;
   uStack_30 = 0;
-  FUN_00142cb0(uVar1,1,7);
-  FUN_00142b40(uVar1,1);
-  FUN_00142b90(uVar1,1,auStack_40);
+  Wheel_SetEffectGain(uVar1,1,7);
+  Wheel_IsEffectIdle(uVar1,1);
+  Wheel_PlayEffect(uVar1,1,auStack_40);
   auStack_40[0] = 0;
   uStack_3c = 0xffffffff;
   uStack_38 = 0;
@@ -632,9 +632,9 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
   uStack_28 = 0;
   uStack_24 = 0;
   uStack_20 = 0;
-  FUN_00142cb0(uVar1,2,0);
-  FUN_00142b40(uVar1,2);
-  FUN_00142b90(uVar1,2,auStack_40);
+  Wheel_SetEffectGain(uVar1,2,0);
+  Wheel_IsEffectIdle(uVar1,2);
+  Wheel_PlayEffect(uVar1,2,auStack_40);
   return;
 }
 
@@ -654,7 +654,7 @@ void FUN_001ca160(undefined4 *param_1,undefined8 param_2)
   undefined4 uVar10;
   undefined4 uVar11;
   
-  piVar3 = (int *)FUN_00183350(param_2);
+  piVar3 = (int *)Hud_Elem_28_xe8(param_2);
   uVar2 = param_1[0x31];
   iVar8 = 0;
   *param_1 = 0;
@@ -679,7 +679,7 @@ void FUN_001ca160(undefined4 *param_1,undefined8 param_2)
   do {
     iVar7 = *piVar3;
     if ((((iVar7 == 0x20000000) || (iVar7 == 4)) || (iVar7 == 0x200)) || (iVar7 == 8)) {
-      lVar4 = FUN_00183490();
+      lVar4 = Hud_Get_18();
       if (lVar4 == 0) {
         uVar11 = 0x3dcccccd;
         uVar10 = 0x3e4ccccd;
@@ -695,7 +695,7 @@ void FUN_001ca160(undefined4 *param_1,undefined8 param_2)
 LAB_001ca240:
       uVar1 = *puVar9;
     }
-    FUN_00138380(uVar11,uVar10,uVar2,uVar1);
+    maybe_Pad_ReadAnalogAxes(uVar11,uVar10,uVar2,uVar1);
     iVar8 = iVar8 + 1;
     piVar3 = piVar3 + 1;
     puVar9 = puVar9 + 4;
@@ -723,7 +723,7 @@ void FUN_001ca2d0(uint *param_1)
      (lVar4 = (**(code **)(*(int *)(param_1[0x34] + 4) + 0xc))(param_1[0x34],0xffffffffffffffff),
      lVar4 != 0)) {
     if ((uVar1 & 1) == 0) {
-      uVar2 = FUN_001375f0((char)param_1[1],(char)param_1[2]);
+      uVar2 = Pad_GetPort((char)param_1[1],(char)param_1[2]);
       param_1[0x34] = uVar2;
       FUN_001ca160(param_1 + 3,param_1[1]);
       uVar2 = *param_1;
@@ -744,20 +744,20 @@ void FUN_001ca2d0(uint *param_1)
       param_1[3] = param_1[3] | 2;
     }
   }
-  uVar2 = FUN_00141310(param_1[1]);
+  uVar2 = Wheel_GetDeviceName(param_1[1]);
   param_1[0x66] = uVar2;
   if (param_1[0x66] != 0) {
     if ((uVar1 & 2) == 0) {
-      lVar4 = FUN_001419f0();
+      lVar4 = Wheel_IsActive();
       if (lVar4 == 0) {
         FUN_001c9e00(param_1 + 0x35,param_1[1]);
-        iVar3 = FUN_001831b0();
-        FUN_00182ed0(iVar3 + param_1[1] * 0xe8 + 0x28,param_1[0x66]);
+        iVar3 = maybe_Options_GetLanguage();
+        Controls_ApplyMapping(iVar3 + param_1[1] * 0xe8 + 0x28,param_1[0x66]);
         *param_1 = *param_1 | 2;
       }
     }
     else {
-      lVar4 = FUN_001419f0();
+      lVar4 = Wheel_IsActive();
       if (lVar4 == 0) {
         *param_1 = *param_1 | 2;
       }
@@ -849,7 +849,7 @@ float FUN_001ca680(int param_1)
 {
   float fVar1;
   
-  fVar1 = (float)FUN_00177730();
+  fVar1 = (float)GameState_Get_14();
   return fVar1 - *(float *)(param_1 + 0x1780);
 }
 
@@ -1013,7 +1013,7 @@ void FUN_001ca810(int param_1,uint param_2)
   undefined4 uStack_18;
   undefined4 uStack_4;
   
-  cVar4 = FUN_00177780();
+  cVar4 = GameState_Get_3();
   if (cVar4 == '\x01') {
     if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
       iVar12 = 0;
@@ -1022,12 +1022,12 @@ void FUN_001ca810(int param_1,uint param_2)
       iVar12 = iRam004301b0 + param_2 * 0xb900;
     }
     if (*(int *)(*(int *)(iGpffff8b0c + 0x14) + 0x500) != 0) {
-      FUN_0017a020(iVar12);
+      MotionBlur_Setup(iVar12);
     }
     if ((*(int *)(iGpffff8cc0 + 0xc) != 0) &&
        (iVar13 = *(int *)(*(int *)(iGpffff8cc0 + 0xc) + 0x14), iVar13 != 0)) {
       *(uint *)(*(int *)(param_2 * 4 + iVar13 + 0x1c) + 0x3fc) = param_2;
-      FUN_0017a200(iVar12,1);
+      MotionBlur_Build(iVar12,1);
     }
   }
   if ((*(uint *)(*(int *)(param_1 + 0x17dc) + 4) & 1) == 0) {
@@ -1035,17 +1035,17 @@ LAB_001ca8e8:
     cVar4 = *(char *)(param_1 + 0x8e8);
   }
   else {
-    lVar8 = FUN_00162430(*(undefined4 *)(param_1 + 0x158),0xffffffffffffffff);
+    lVar8 = phys_sub_00162430(*(undefined4 *)(param_1 + 0x158),0xffffffffffffffff);
     uStack_34 = 0x3f800000;
     iVar12 = *(int *)(iGpffff8c5c + (char)param_2 * 4);
-    uVar9 = FUN_00165040(*(undefined4 *)(param_1 + 0x154));
+    uVar9 = phys_sub_00165040(*(undefined4 *)(param_1 + 0x154));
     FUN_001da8c0(&fStack_50,uVar9);
-    for (; lVar8 != 0; lVar8 = FUN_00158590(lVar8,0xffffffffffffffff)) {
+    for (; lVar8 != 0; lVar8 = PhysWorld_FindBodyWithFlags(lVar8,0xffffffffffffffff)) {
       if (((*(uint *)(param_1 + 0x13c0) & 0x70) != 0) &&
-         (FUN_001651a0(*(undefined4 *)(param_1 + 0x154)), 10.0 < *(float *)(param_1 + 0x40) * 3.6))
-      {
-        uStack_4 = FUN_001585d0(lVar8);
-        puVar6 = (undefined4 *)FUN_001585e0(lVar8);
+         (phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154)),
+         10.0 < *(float *)(param_1 + 0x40) * 3.6)) {
+        uStack_4 = PhysWorld_GetFirstBody(lVar8);
+        puVar6 = (undefined4 *)PhysWorld_GetGravity(lVar8);
         uStack_40 = *puVar6;
         uStack_3c = puVar6[1];
         uStack_38 = puVar6[2];
@@ -1094,13 +1094,13 @@ LAB_001ca8e8:
         else {
           iVar11 = iRam004301b0 + param_2 * 0xb900;
         }
-        FUN_0017adc0(iVar11,iVar1 + iVar13 + 0x550,uVar14);
+        Skid_UpdateWheel(iVar11,iVar1 + iVar13 + 0x550,uVar14);
       }
       uVar14 = uVar14 + 1;
       iVar13 = iVar13 + 0x10;
     } while (uVar14 < 4);
   }
-  cVar4 = FUN_00177790();
+  cVar4 = GameState_Get_2();
   if (cVar4 == '\0') {
     bVar3 = false;
     bVar2 = false;
@@ -1130,16 +1130,16 @@ LAB_001ca8e8:
       if (iVar12 != 0) {
         if ((bVar2) || (fVar16 = (float)fabsf(*(float *)(param_1 + 0x40) * 3.6), fVar16 <= 60.0)) {
           if (bVar2) {
-            FUN_0017af90(iVar12,uVar15,1);
+            Skid_UpdateAll(iVar12,uVar15,1);
           }
         }
         else {
-          FUN_0017af90(iVar12,uVar15,0);
+          Skid_UpdateAll(iVar12,uVar15,0);
         }
       }
     }
   }
-  uVar5 = FUN_00177790();
+  uVar5 = GameState_Get_2();
   switch(uVar5) {
   case 0:
     bVar2 = false;
@@ -1161,7 +1161,7 @@ LAB_001ca8e8:
         iVar12 = iRam004301b0 + param_2 * 0xb900;
       }
       if (iVar12 != 0) {
-        FUN_0017b180(iVar12,uVar15);
+        Skid_UpdateCarEx(iVar12,uVar15);
       }
     }
     goto switchD_001caf44_default;
@@ -1253,7 +1253,7 @@ switchD_001caf44_caseD_2:
   }
   lVar8 = FUN_001d2280(*(undefined4 *)(param_1 + 0x17dc),0x14);
   if (lVar8 == 0) {
-    cVar4 = FUN_00177790();
+    cVar4 = GameState_Get_2();
     if (cVar4 != '\x04') {
       uVar7 = 0x40a00000;
       goto LAB_001cae6c;
@@ -1266,7 +1266,7 @@ switchD_001caf44_caseD_2:
 LAB_001cae6c:
     uVar10 = 0x41f00000;
   }
-  FUN_0017b030(uVar10,uVar7,iVar12,uVar15);
+  Skid_UpdateCar(uVar10,uVar7,iVar12,uVar15);
 switchD_001caf44_default:
   return;
 }
@@ -1468,7 +1468,7 @@ void FUN_001cb190(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar8 = FUN_001651a0(*(undefined4 *)(param_1 + 0x154));
+  uVar8 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
   puVar5 = (undefined1 *)0x10;
   puVar11 = auStack_60;
   puVar4 = puVar11;
@@ -1487,12 +1487,12 @@ void FUN_001cb190(int param_1)
   lVar9 = FUN_001e8f30();
   if (lVar9 != 0) {
     iVar12 = FUN_001e8f30();
-    FUN_0017e8e0(iVar12 + -1,auStack_50,auStack_60,0);
+    Course_GetStartTransform(iVar12 + -1,auStack_50,auStack_60,0);
     uStack_80 = uStack_20;
     uStack_7c = uStack_1c;
     uStack_78 = uStack_18;
   }
-  FUN_00163b40(auStack_90,&uStack_70,&uStack_80);
+  Vec3_Sub(auStack_90,&uStack_70,&uStack_80);
   fVar15 = (float)FUN_001dac80(auStack_90);
   *(undefined4 *)(param_1 + 0x178c) = *(undefined4 *)(param_1 + 0x1788);
   *(float *)(param_1 + 0x1788) = (fVar15 * 60.0 * 60.0 * 60.0) / 1000.0;
@@ -1517,7 +1517,7 @@ void FUN_001cb190(int param_1)
   uStack_b4 = 0x3f800000;
   uStack_c4 = 0x3f800000;
   uStack_d4 = 0x3f800000;
-  lVar9 = FUN_00177750();
+  lVar9 = GameState_Get_40();
   if (lVar9 == 0) {
     if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
       FUN_001d7dc0(auStack_200,1,uVar1,sVar2);
@@ -1565,14 +1565,14 @@ void FUN_001cb190(int param_1)
     uStack_a4 = uStack_1a4;
   }
   uStack_ac = 0;
-  FUN_00163b40(afStack_220,&uStack_b0,&uStack_a0);
+  Vec3_Sub(afStack_220,&uStack_b0,&uStack_a0);
   fStack_c0 = afStack_220[0];
   fStack_b8 = fStack_218;
   uStack_b4 = uStack_214;
   fStack_bc = 0.0;
   fVar15 = (float)FUN_001dac80(&fStack_c0);
   *(float *)(param_1 + 0x1760) = fVar15;
-  FUN_00163b40(auStack_230,uVar8,&uStack_a0);
+  Vec3_Sub(auStack_230,uVar8,&uStack_a0);
   uStack_d0 = auStack_230[0];
   uStack_c8 = uStack_228;
   uStack_c4 = uStack_224;
@@ -1580,7 +1580,7 @@ void FUN_001cb190(int param_1)
   fVar16 = (float)FUN_001dacc0(&fStack_c0,&uStack_d0);
   fVar17 = (float)FUN_001dac80(&fStack_c0);
   fVar16 = fVar16 / fVar17;
-  FUN_00163bc0(&fStack_c0);
+  phys_sub_00163bc0(&fStack_c0);
   fStack_dc = fStack_bc * fVar16;
   fStack_e0 = fStack_c0 * fVar16;
   fStack_d8 = fStack_b8 * fVar16;
@@ -1611,12 +1611,12 @@ void FUN_001cb190(int param_1)
   uStack_ec = uStack_25c;
   uStack_e8 = uStack_258;
   uStack_e4 = uStack_254;
-  FUN_00163b40(auStack_270,&uStack_100,&uStack_f0);
+  Vec3_Sub(auStack_270,&uStack_100,&uStack_f0);
   uStack_110 = auStack_270[0];
   uStack_108 = uStack_268;
   uStack_104 = uStack_264;
   uStack_10c = 0;
-  FUN_00163b40(auStack_280,uVar8,&uStack_f0);
+  Vec3_Sub(auStack_280,uVar8,&uStack_f0);
   uStack_120 = auStack_280[0];
   uStack_118 = uStack_278;
   uStack_114 = uStack_274;
@@ -1639,7 +1639,7 @@ void FUN_001cb190(int param_1)
   uStack_15c = uStack_29c;
   uStack_158 = uStack_298;
   uStack_154 = uStack_294;
-  lVar9 = FUN_00177750();
+  lVar9 = GameState_Get_40();
   if (lVar9 == 0) {
     if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
       bVar3 = false;
@@ -1678,20 +1678,20 @@ void FUN_001cb190(int param_1)
     uStack_16c = uStack_2bc;
     uStack_168 = uStack_2b8;
     uStack_164 = uStack_2b4;
-    FUN_00163b40(&uStack_2d0,&uStack_150,&uStack_130);
+    Vec3_Sub(&uStack_2d0,&uStack_150,&uStack_130);
     *(undefined4 *)(param_1 + 0x16f0) = uStack_2d0;
     *(undefined4 *)(param_1 + 0x16f4) = uStack_2cc;
     *(undefined4 *)(param_1 + 0x16f8) = uStack_2c8;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_2c4;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    FUN_00163bc0(param_1 + 0x16f0);
-    FUN_00163b40(&uStack_2e0,&uStack_170,&uStack_160);
+    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Sub(&uStack_2e0,&uStack_170,&uStack_160);
     *(undefined4 *)(param_1 + 0x1700) = uStack_2e0;
     *(undefined4 *)(param_1 + 0x1704) = uStack_2dc;
     *(undefined4 *)(param_1 + 0x1708) = uStack_2d8;
     *(undefined4 *)(param_1 + 0x170c) = uStack_2d4;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    FUN_00163bc0(param_1 + 0x1700);
+    phys_sub_00163bc0(param_1 + 0x1700);
   }
   else {
     lVar13 = (long)(iVar12 + 1);
@@ -1714,22 +1714,22 @@ void FUN_001cb190(int param_1)
     uStack_16c = uStack_2fc;
     uStack_168 = uStack_2f8;
     uStack_164 = uStack_2f4;
-    FUN_00163b40(&uStack_310,&uStack_150,&uStack_130);
+    Vec3_Sub(&uStack_310,&uStack_150,&uStack_130);
     *(undefined4 *)(param_1 + 0x16f0) = uStack_310;
     *(undefined4 *)(param_1 + 0x16f4) = uStack_30c;
     *(undefined4 *)(param_1 + 0x16f8) = uStack_308;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_304;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    FUN_00163bc0(param_1 + 0x16f0);
-    FUN_00163b40(&uStack_320,&uStack_170,&uStack_160);
+    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Sub(&uStack_320,&uStack_170,&uStack_160);
     *(undefined4 *)(param_1 + 0x1700) = uStack_320;
     *(undefined4 *)(param_1 + 0x1704) = uStack_31c;
     *(undefined4 *)(param_1 + 0x1708) = uStack_318;
     *(undefined4 *)(param_1 + 0x170c) = uStack_314;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    FUN_00163bc0(param_1 + 0x1700);
+    phys_sub_00163bc0(param_1 + 0x1700);
   }
-  FUN_00163b40(auStack_330,&uStack_130,&uStack_a0);
+  Vec3_Sub(auStack_330,&uStack_130,&uStack_a0);
   uStack_140 = auStack_330[0];
   uStack_138 = uStack_328;
   uStack_134 = uStack_324;
@@ -1757,15 +1757,15 @@ void FUN_001cb190(int param_1)
   fVar15 = 0.0;
   *(undefined2 *)(param_1 + 0x17b8) = *(undefined2 *)(param_1 + 0x1366);
   *(int *)(param_1 + 0x17b4) = (int)*(short *)(param_1 + 0x1368);
-  lVar9 = FUN_00177700();
+  lVar9 = GameState_Get_44();
   if (lVar9 != 0) {
-    uVar6 = FUN_001777a0();
+    uVar6 = GameState_Get_1();
     puVar7 = (undefined4 *)((int)lVar9 + (uVar6 & 0xff) * 0x10);
     uStack_180 = *puVar7;
     iStack_17c = puVar7[1];
     uStack_178 = puVar7[2];
     uStack_174 = puVar7[3];
-    iVar12 = FUN_00177770();
+    iVar12 = GameState_Get_c();
     sStack_10 = *(short *)(param_1 + 0x1366);
     puVar7 = (undefined4 *)(iStack_17c + iVar12 * 0x10);
     uStack_190 = *puVar7;
@@ -1778,7 +1778,7 @@ void FUN_001cb190(int param_1)
     uStack_4 = uStack_18c;
     lVar9 = FUN_001dde40((short)uStack_190);
     lVar13 = FUN_001dde40(sStack_10,iStack_c);
-    lVar10 = FUN_00177750();
+    lVar10 = GameState_Get_40();
     if (lVar10 == 0) {
       if (lVar9 <= lVar13) {
         fVar15 = (float)FUN_001ddeb0(CONCAT44(uStack_4,uStack_8),
@@ -2014,14 +2014,14 @@ void FUN_001cba60(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar7 = FUN_001651a0(*(undefined4 *)(param_1 + 0x154));
+  uVar7 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
   *(undefined4 *)(param_1 + 0x178c) = *(undefined4 *)(param_1 + 0x1788);
   *(float *)(param_1 + 0x1788) = *(float *)(param_1 + 0x40) * 3.6;
   uStack_14 = 0x3f800000;
   uStack_20 = 0x3fd9999a;
   uStack_1c = 0;
   uStack_18 = 0;
-  FUN_00162e70(&uStack_1d0,param_1 + 0xe0,&uStack_20);
+  Mat33_MulVec3(&uStack_1d0,param_1 + 0xe0,&uStack_20);
   *(undefined4 *)(param_1 + 0x16b0) = uStack_1d0;
   *(undefined4 *)(param_1 + 0x16b4) = uStack_1cc;
   *(undefined4 *)(param_1 + 0x16b8) = uStack_1c8;
@@ -2058,11 +2058,11 @@ void FUN_001cba60(int param_1)
   } while (0 < iVar15);
   fVar20 = *(float *)(param_1 + 0x40);
   uVar12 = *(undefined4 *)(param_1 + 0x158);
-  uVar8 = FUN_00162430(uVar12,0xffffffffff000000);
+  uVar8 = phys_sub_00162430(uVar12,0xffffffffff000000);
   if ((fVar20 * 3.6 <= 10.0) || ((uStack_30 & 0x20) == 0)) {
     if ((10.0 < *(float *)(param_1 + 0x1788)) && ((uStack_30 & 0x10) != 0)) {
-      uVar8 = FUN_00162430(uVar12,0xffffff);
-      fVar20 = (float)FUN_001585d0(uVar8);
+      uVar8 = phys_sub_00162430(uVar12,0xffffff);
+      fVar20 = (float)PhysWorld_GetFirstBody(uVar8);
       unaff_f20 = fVar20 * 5e-06;
       if (1.0 < unaff_f20) {
         unaff_f20 = 1.0;
@@ -2070,7 +2070,7 @@ void FUN_001cba60(int param_1)
     }
   }
   else {
-    fVar20 = (float)FUN_001585d0(uVar8);
+    fVar20 = (float)PhysWorld_GetFirstBody(uVar8);
     unaff_f20 = fVar20 * 5e-06;
     if (1.0 < unaff_f20) {
       unaff_f20 = 1.0;
@@ -2164,10 +2164,10 @@ void FUN_001cba60(int param_1)
   *(float *)(param_1 + 0x1754) = fVar33 / 2.0;
   *(float *)(param_1 + 0x175c) = fVar32 / 2.0;
   *(float *)(param_1 + 0x1758) = fVar31 / 2.0;
-  iVar15 = FUN_00164d80(*(undefined4 *)(param_1 + 0x154));
+  iVar15 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
   uStack_a4 = 0x3f800000;
   *(float *)(param_1 + 0x1720) = (-*(float *)(iVar15 + 4) * 3.0) / 3.1415927;
-  uVar8 = FUN_00165040(*(undefined4 *)(param_1 + 0x154));
+  uVar8 = phys_sub_00165040(*(undefined4 *)(param_1 + 0x154));
   FUN_001da8c0(&uStack_1e0,uVar8);
   uStack_b0 = uStack_1e0;
   uStack_ac = uStack_1dc;
@@ -2195,7 +2195,7 @@ void FUN_001cba60(int param_1)
   uStack_d4 = 0x3f800000;
   uStack_e4 = 0x3f800000;
   uStack_f4 = 0x3f800000;
-  lVar9 = FUN_00177750();
+  lVar9 = GameState_Get_40();
   if (lVar9 == 0) {
     if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
       FUN_001d7dc0(auStack_250,1,uVar1,sVar2);
@@ -2243,14 +2243,14 @@ void FUN_001cba60(int param_1)
     uStack_c4 = uStack_1f4;
   }
   uStack_cc = 0;
-  FUN_00163b40(afStack_270,&uStack_d0,&uStack_c0);
+  Vec3_Sub(afStack_270,&uStack_d0,&uStack_c0);
   fStack_e0 = afStack_270[0];
   fStack_d8 = fStack_268;
   uStack_d4 = uStack_264;
   fStack_dc = 0.0;
   fVar20 = (float)FUN_001dac80(&fStack_e0);
   *(float *)(param_1 + 0x1760) = fVar20;
-  FUN_00163b40(auStack_280,uVar7,&uStack_c0);
+  Vec3_Sub(auStack_280,uVar7,&uStack_c0);
   uStack_f0 = auStack_280[0];
   uStack_e8 = uStack_278;
   uStack_e4 = uStack_274;
@@ -2258,7 +2258,7 @@ void FUN_001cba60(int param_1)
   fVar34 = (float)FUN_001dacc0(&fStack_e0,&uStack_f0);
   fVar23 = (float)FUN_001dac80(&fStack_e0);
   fVar34 = fVar34 / fVar23;
-  FUN_00163bc0(&fStack_e0);
+  phys_sub_00163bc0(&fStack_e0);
   fStack_fc = fStack_dc * fVar34;
   fStack_100 = fStack_e0 * fVar34;
   fStack_f8 = fStack_d8 * fVar34;
@@ -2289,12 +2289,12 @@ void FUN_001cba60(int param_1)
   uStack_10c = uStack_2ac;
   uStack_108 = uStack_2a8;
   uStack_104 = uStack_2a4;
-  FUN_00163b40(auStack_2c0,&uStack_120,&uStack_110);
+  Vec3_Sub(auStack_2c0,&uStack_120,&uStack_110);
   uStack_130 = auStack_2c0[0];
   uStack_128 = uStack_2b8;
   uStack_124 = uStack_2b4;
   uStack_12c = 0;
-  FUN_00163b40(auStack_2d0,uVar7,&uStack_110);
+  Vec3_Sub(auStack_2d0,uVar7,&uStack_110);
   uStack_140 = auStack_2d0[0];
   uStack_138 = uStack_2c8;
   uStack_134 = uStack_2c4;
@@ -2316,7 +2316,7 @@ void FUN_001cba60(int param_1)
   uStack_14c = uStack_2dc;
   uStack_148 = uStack_2d8;
   uStack_144 = uStack_2d4;
-  lVar9 = FUN_00177750();
+  lVar9 = GameState_Get_40();
   if (lVar9 == 0) {
     if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
       bVar3 = false;
@@ -2354,20 +2354,20 @@ void FUN_001cba60(int param_1)
     uStack_16c = uStack_2ec;
     uStack_168 = uStack_2e8;
     uStack_164 = uStack_2e4;
-    FUN_00163b40(&uStack_300,&uStack_170,&uStack_150);
+    Vec3_Sub(&uStack_300,&uStack_170,&uStack_150);
     *(undefined4 *)(param_1 + 0x16f0) = uStack_300;
     *(undefined4 *)(param_1 + 0x16f4) = uStack_2fc;
     *(undefined4 *)(param_1 + 0x16f8) = uStack_2f8;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_2f4;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    FUN_00163bc0(param_1 + 0x16f0);
-    FUN_00163b40(&uStack_310,&uStack_190,&uStack_180);
+    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Sub(&uStack_310,&uStack_190,&uStack_180);
     *(undefined4 *)(param_1 + 0x1700) = uStack_310;
     *(undefined4 *)(param_1 + 0x1704) = uStack_30c;
     *(undefined4 *)(param_1 + 0x1708) = uStack_308;
     *(undefined4 *)(param_1 + 0x170c) = uStack_304;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    FUN_00163bc0(param_1 + 0x1700);
+    phys_sub_00163bc0(param_1 + 0x1700);
   }
   else {
     lVar10 = (long)(sVar2 + 1);
@@ -2389,22 +2389,22 @@ void FUN_001cba60(int param_1)
     uStack_16c = uStack_31c;
     uStack_168 = uStack_318;
     uStack_164 = uStack_314;
-    FUN_00163b40(&uStack_330,&uStack_170,&uStack_150);
+    Vec3_Sub(&uStack_330,&uStack_170,&uStack_150);
     *(undefined4 *)(param_1 + 0x16f0) = uStack_330;
     *(undefined4 *)(param_1 + 0x16f4) = uStack_32c;
     *(undefined4 *)(param_1 + 0x16f8) = uStack_328;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_324;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    FUN_00163bc0(param_1 + 0x16f0);
-    FUN_00163b40(&uStack_340,&uStack_190,&uStack_180);
+    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Sub(&uStack_340,&uStack_190,&uStack_180);
     *(undefined4 *)(param_1 + 0x1700) = uStack_340;
     *(undefined4 *)(param_1 + 0x1704) = uStack_33c;
     *(undefined4 *)(param_1 + 0x1708) = uStack_338;
     *(undefined4 *)(param_1 + 0x170c) = uStack_334;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    FUN_00163bc0(param_1 + 0x1700);
+    phys_sub_00163bc0(param_1 + 0x1700);
   }
-  FUN_00163b40(auStack_350,&uStack_150,&uStack_c0);
+  Vec3_Sub(auStack_350,&uStack_150,&uStack_c0);
   uStack_160 = auStack_350[0];
   uStack_158 = uStack_348;
   uStack_154 = uStack_344;
@@ -2432,15 +2432,15 @@ void FUN_001cba60(int param_1)
   fVar20 = 0.0;
   *(undefined2 *)(param_1 + 0x17b8) = *(undefined2 *)(param_1 + 0x1366);
   *(int *)(param_1 + 0x17b4) = (int)*(short *)(param_1 + 0x1368);
-  lVar9 = FUN_00177700();
+  lVar9 = GameState_Get_44();
   if (lVar9 != 0) {
-    uVar17 = FUN_001777a0();
+    uVar17 = GameState_Get_1();
     puVar6 = (undefined4 *)((int)lVar9 + (uVar17 & 0xff) * 0x10);
     uStack_1a0 = *puVar6;
     iStack_19c = puVar6[1];
     uStack_198 = puVar6[2];
     uStack_194 = puVar6[3];
-    iVar15 = FUN_00177770();
+    iVar15 = GameState_Get_c();
     sStack_10 = *(short *)(param_1 + 0x1366);
     puVar6 = (undefined4 *)(iStack_19c + iVar15 * 0x10);
     uStack_1b0 = *puVar6;
@@ -2453,7 +2453,7 @@ void FUN_001cba60(int param_1)
     uStack_4 = uStack_1ac;
     lVar9 = FUN_001dde40((short)uStack_1b0);
     lVar10 = FUN_001dde40(sStack_10,iStack_c);
-    lVar11 = FUN_00177750();
+    lVar11 = GameState_Get_40();
     if (lVar11 == 0) {
       if (lVar9 <= lVar10) {
         fVar20 = (float)FUN_001ddeb0(CONCAT44(uStack_4,uStack_8),
@@ -2477,7 +2477,7 @@ LAB_001cc744:
   *(float *)(param_1 + 0x1780) = fVar20;
   cVar4 = FUN_001777b0();
   if (cVar4 != '\b') {
-    uVar7 = FUN_00164f50(*(undefined4 *)(param_1 + 0x154));
+    uVar7 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
     puVar6 = (undefined4 *)uVar7;
     uStack_1c0 = *puVar6;
     uStack_1bc = puVar6[1];

@@ -136,14 +136,14 @@ void FUN_001f4460(float param_1,float param_2,undefined8 param_3)
     if (param_1 < param_2) {
       param_1 = param_2;
     }
-    FUN_00163100(param_1,auStack_a0,iVar4 + 0x5d0);
-    FUN_00163100(1.0 - param_1,auStack_b0,iVar4 + 0x5e0);
-    FUN_001631c0(&uStack_90,auStack_a0,auStack_b0);
+    phys_sub_00163100(param_1,auStack_a0,iVar4 + 0x5d0);
+    phys_sub_00163100(1.0 - param_1,auStack_b0,iVar4 + 0x5e0);
+    phys_sub_001631c0(&uStack_90,auStack_a0,auStack_b0);
     *(undefined4 *)(iVar4 + 0x5d0) = uStack_90;
     *(undefined4 *)(iVar4 + 0x5d4) = uStack_8c;
     *(undefined4 *)(iVar4 + 0x5d8) = uStack_88;
     *(undefined4 *)(iVar4 + 0x5dc) = uStack_84;
-    FUN_001632e0(iVar4 + 0x5d0);
+    phys_sub_001632e0(iVar4 + 0x5d0);
     if (iRam0036f428 == 0) {
       iVar2 = iVar4 + 0x530;
     }
@@ -155,7 +155,7 @@ void FUN_001f4460(float param_1,float param_2,undefined8 param_3)
     fStack_78 = *(float *)(iVar4 + 0x478) - *(float *)(iVar4 + 0x468);
     fStack_7c = *(float *)(iVar4 + 0x474) - *(float *)(iVar4 + 0x464);
     fStack_80 = *(float *)(iVar4 + 0x470) - *(float *)(iVar4 + 0x460);
-    FUN_00163210(&fStack_c0,iVar4 + 0x5d0,&fStack_80);
+    phys_sub_00163210(&fStack_c0,iVar4 + 0x5d0,&fStack_80);
     fStack_80 = fStack_c0;
     fStack_7c = (float)uStack_bc;
     fStack_78 = (float)uStack_b8;
@@ -168,14 +168,14 @@ void FUN_001f4460(float param_1,float param_2,undefined8 param_3)
     vu0math_sub_00132b70(iVar4 + 0x420,&fStack_80,auStack_70);
     *(undefined4 *)(iVar4 + 0x42c) = 0x3f800000;
     vu0math_sub_00132ae0(iVar4 + 0x440,iVar4 + 0x490);
-    FUN_00183e90(param_3);
+    Cam_UpdateTargetFromCar(param_3);
     FUN_001847f0(param_3);
     if ((*(uint *)(iVar4 + 0x7c0) & 1) != 0) {
-      FUN_00184180(param_3);
+      Cam_BuildViewMatrix(param_3);
     }
-    lVar1 = FUN_00183db0(param_3);
+    lVar1 = Cam_IsTransitioning(param_3);
     if (lVar1 != 0) {
-      FUN_00184270(param_3);
+      Cam_UpdateChase(param_3);
     }
   }
   return;
@@ -195,13 +195,13 @@ void FUN_001f4760(int param_1,undefined8 param_2,undefined8 param_3,undefined8 p
   vu0math_sub_00132ae0(param_1 + 0x460,param_1 + 0x4a0);
   *(undefined4 *)(param_1 + 0x7c4) = 0;
   if (*(int *)(param_1 + 0x7b0) != 0) {
-    FUN_001851b0(param_1 + 0x510);
+    Cam_SetTarget(param_1 + 0x510);
     iVar1 = *(int *)(param_1 + 0x7b4);
     if (iVar1 == 0) {
       iVar1 = *(int *)(param_1 + 0x7b0);
     }
-    FUN_001851b0(param_1 + 0x660,iVar1);
-    FUN_001632e0(param_1 + 0x5d0);
+    Cam_SetTarget(param_1 + 0x660,iVar1);
+    phys_sub_001632e0(param_1 + 0x5d0);
     *(undefined4 *)(param_1 + 0x5e0) = *(undefined4 *)(param_1 + 0x5d0);
     *(undefined4 *)(param_1 + 0x5e4) = *(undefined4 *)(param_1 + 0x5d4);
     *(undefined4 *)(param_1 + 0x5e8) = *(undefined4 *)(param_1 + 0x5d8);
@@ -407,7 +407,7 @@ void FUN_001f4c80(undefined8 param_1,int param_2,int param_3,long param_4,int pa
     piGpffff8d3c[0x145] = uVar2 << 0xb;
     iVar1 = Mem_AllocAligned(piGpffff8d3c[0x145],0x40,param_1);
     piGpffff8d3c[0x144] = iVar1;
-    FUN_0014bf00(param_6,piGpffff8d3c[0x144],0,0,0,0);
+    Arc_LoadFileEx(param_6,piGpffff8d3c[0x144],0,0,0,0);
   }
   if (param_4 == 0) {
     piGpffff8d3c[0x142] = 0;
@@ -618,8 +618,8 @@ void FUN_001f5210(undefined8 param_1)
   }
   uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
   uGpffff8d4c = (undefined4)uVar3;
-  FUN_0014bf00(iStack_4,uVar3,0,0,0,0);
-  FUN_001368c0();
+  Arc_LoadFileEx(iStack_4,uVar3,0,0,0,0);
+  File_AbortAll();
   return;
 }
 
@@ -1279,7 +1279,7 @@ void FUN_001f5d30(void)
   
   uVar1 = FUN_001f54b0();
   iVar2 = FUN_001b55a0(uVar1);
-  FUN_0017e430(*(undefined4 *)(iVar2 + 0x14));
+  Race_GetLapCountForMode(*(undefined4 *)(iVar2 + 0x14));
   return;
 }
 

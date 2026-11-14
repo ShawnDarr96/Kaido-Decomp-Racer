@@ -744,10 +744,10 @@ void FUN_002b1820(undefined8 param_1)
     Mem_Free();
     *(undefined4 *)(iVar1 + 0x40) = 0;
   }
-  FUN_001325d0(param_1,0,0x10);
-  FUN_001325d0(iVar1 + 0x10,0,0x20);
-  FUN_001325d0(iVar1 + 0x30,0,0x18);
-  FUN_001325d0(iVar1 + 0x7e,0,0x10);
+  Mem_Set16(param_1,0,0x10);
+  Mem_Set16(iVar1 + 0x10,0,0x20);
+  Mem_Set16(iVar1 + 0x30,0,0x18);
+  Mem_Set16(iVar1 + 0x7e,0,0x10);
   if (*(int *)(iVar1 + 100) != 0) {
     Mem_Free();
     *(undefined4 *)(iVar1 + 100) = 0;
@@ -800,7 +800,7 @@ void FUN_002b18e0(undefined8 param_1,int param_2)
     *(undefined4 *)(iVar4 + 0x6c) = 0;
   }
   if (*(int *)(iVar4 + 100) != 0) {
-    uVar2 = FUN_0014bf00(param_2 + 0x1ec2,*(int *)(iVar4 + 100),0x2ae500,param_1,0,0);
+    uVar2 = Arc_LoadFileEx(param_2 + 0x1ec2,*(int *)(iVar4 + 100),0x2ae500,param_1,0,0);
     *(undefined4 *)(iVar4 + 0x70) = uVar2;
     *(undefined4 *)(iVar4 + 0x74) = 1;
   }
@@ -813,11 +813,11 @@ void FUN_002b19d0(undefined8 param_1,undefined4 param_2)
 {
   int iVar1;
   
-  FUN_001325d0(param_1,0,0x10);
+  Mem_Set16(param_1,0,0x10);
   iVar1 = (int)param_1;
-  FUN_001325d0(iVar1 + 0x10,0,0x20);
-  FUN_001325d0(iVar1 + 0x30,0,0x18);
-  FUN_001325d0(iVar1 + 0x7e,0,0x10);
+  Mem_Set16(iVar1 + 0x10,0,0x20);
+  Mem_Set16(iVar1 + 0x30,0,0x18);
+  Mem_Set16(iVar1 + 0x7e,0,0x10);
   *(undefined4 *)(iVar1 + 0x48) = 0;
   *(undefined4 *)(iVar1 + 0x4c) = 0;
   *(undefined4 *)(iVar1 + 0x50) = 0;

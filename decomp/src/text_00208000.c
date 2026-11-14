@@ -139,7 +139,7 @@ void FUN_00208b00(undefined8 param_1,undefined8 param_2)
   uVar3 = newlib_sub_0012f600((float)uVar1 / 2.0);
   uVar2 = __muldf3(uVar3,uVar2);
   uVar6 = maybe___extendsfdf2(uVar2);
-  FUN_00185030(uVar6,*(undefined4 *)(iVar4 + 0xd0));
+  Cam_SetPitch(uVar6,*(undefined4 *)(iVar4 + 0xd0));
   vu0math_sub_00132ae0(param_1,param_2);
   vu0math_sub_00132ae0(iVar4 + 0x10,iVar5 + 0x10);
   vu0math_sub_00132ae0(iVar4 + 0x20,iVar5 + 0x20);
@@ -171,7 +171,7 @@ void FUN_00208c60(undefined8 param_1,int param_2)
   uVar4 = newlib_sub_0012f600((float)uVar2 / 2.0);
   uVar3 = __muldf3(uVar4,uVar3);
   uVar6 = maybe___extendsfdf2(uVar3);
-  FUN_00185030(uVar6,*(undefined4 *)(iVar5 + 0xd0));
+  Cam_SetPitch(uVar6,*(undefined4 *)(iVar5 + 0xd0));
   vu0math_sub_00132ae0(param_1,puVar1);
   vu0math_sub_00132ae0(iVar5 + 0x10,puVar1 + 0x10);
   vu0math_sub_00132ae0(iVar5 + 0x20,puVar1 + 0x20);
@@ -222,7 +222,7 @@ void FUN_00208e70(undefined8 param_1)
   vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x80,iVar1 + 0x40);
   vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x90,iVar1 + 0x50);
   vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0xa0,iVar1 + 0x60);
-  FUN_0014d240(*(undefined4 *)(iVar1 + 0x70));
+  Light_UpdateMatrices(*(undefined4 *)(iVar1 + 0x70));
   return;
 }
 
@@ -397,7 +397,7 @@ int FUN_00209470(int param_1)
 void FUN_00209490(void)
 
 {
-  FUN_00136920(*puGpffff8df8);
+  File_IsBusy(*puGpffff8df8);
   return;
 }
 
@@ -463,175 +463,175 @@ void FUN_00209630(void)
     uVar2 = *(uint *)(iGpffff89d4 + 0x20314);
   }
   puGpffff8df8[1] = uVar2 / 0x58;
-  uVar1 = FUN_0014bf00(0x19c0,puGpffff8df8[0x7c],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c0,puGpffff8df8[0x7c],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20334);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20328);
   }
   puGpffff8df8[2] = uVar2 / 0x48;
-  uVar1 = FUN_0014bf00(0x19c1,puGpffff8df8[0x7d],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c1,puGpffff8df8[0x7d],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20348);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x2033c);
   }
   puGpffff8df8[3] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c2,puGpffff8df8[0x7e],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c2,puGpffff8df8[0x7e],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20370);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20364);
   }
   puGpffff8df8[4] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c4,puGpffff8df8[0x7f],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c4,puGpffff8df8[0x7f],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20384);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20378);
   }
   puGpffff8df8[5] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c5,puGpffff8df8[0x80],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c5,puGpffff8df8[0x80],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20398);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x2038c);
   }
   puGpffff8df8[6] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c6,puGpffff8df8[0x81],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c6,puGpffff8df8[0x81],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x203ac);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x203a0);
   }
   puGpffff8df8[7] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c7,puGpffff8df8[0x82],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c7,puGpffff8df8[0x82],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x203d4);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x203c8);
   }
   puGpffff8df8[8] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c9,puGpffff8df8[0x83],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c9,puGpffff8df8[0x83],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x203c0);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x203b4);
   }
   puGpffff8df8[9] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19c8,puGpffff8df8[0x84],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19c8,puGpffff8df8[0x84],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x203e8);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x203dc);
   }
   puGpffff8df8[10] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19ca,puGpffff8df8[0x85],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19ca,puGpffff8df8[0x85],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x203fc);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x203f0);
   }
   puGpffff8df8[0xb] = uVar2 >> 6;
-  uVar1 = FUN_0014bf00(0x19cb,puGpffff8df8[0x86],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19cb,puGpffff8df8[0x86],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20410);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20404);
   }
   puGpffff8df8[0xc] = uVar2 / 0x38;
-  uVar1 = FUN_0014bf00(0x19cc,puGpffff8df8[0x87],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19cc,puGpffff8df8[0x87],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20424);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20418);
   }
   puGpffff8df8[0xe] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19cd,puGpffff8df8[0x89],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19cd,puGpffff8df8[0x89],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20438);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x2042c);
   }
   puGpffff8df8[0xd] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19ce,puGpffff8df8[0x88],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19ce,puGpffff8df8[0x88],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x2044c);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20440);
   }
   puGpffff8df8[0x12] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19cf,puGpffff8df8[0x8d],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19cf,puGpffff8df8[0x8d],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20460);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20454);
   }
   puGpffff8df8[0x10] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19d0,puGpffff8df8[0x8b],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d0,puGpffff8df8[0x8b],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20474);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20468);
   }
   puGpffff8df8[0xf] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19d1,puGpffff8df8[0x8a],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d1,puGpffff8df8[0x8a],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20488);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x2047c);
   }
   puGpffff8df8[0x11] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19d2,puGpffff8df8[0x8c],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d2,puGpffff8df8[0x8c],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x2049c);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20490);
   }
   puGpffff8df8[0x14] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19d3,puGpffff8df8[0x8f],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d3,puGpffff8df8[0x8f],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x204b0);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x204a4);
   }
   puGpffff8df8[0x13] = uVar2 >> 5;
-  uVar1 = FUN_0014bf00(0x19d4,puGpffff8df8[0x8e],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d4,puGpffff8df8[0x8e],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x204c4);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x204b8);
   }
   puGpffff8df8[0x15] = uVar2 / 0x17c;
-  uVar1 = FUN_0014bf00(0x19d5,puGpffff8df8[0x90],0x209540,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d5,puGpffff8df8[0x90],0x209540,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x204d8);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x204cc);
   }
   puGpffff8df8[0x16] = uVar2 / 0x44;
-  uVar1 = FUN_0014bf00(0x19d6,puGpffff8df8[0x91],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d6,puGpffff8df8[0x91],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x204ec);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x204e0);
   }
   puGpffff8df8[0x17] = uVar2 / 0x28;
-  uVar1 = FUN_0014bf00(0x19d7,puGpffff8df8[0x92],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d7,puGpffff8df8[0x92],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20500);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x204f4);
   }
   puGpffff8df8[0x18] = uVar2 / 0x50;
-  uVar1 = FUN_0014bf00(0x19d8,puGpffff8df8[0x93],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d8,puGpffff8df8[0x93],0,0,0,0);
   *puGpffff8df8 = uVar1;
   uVar2 = *(uint *)(iGpffff89d4 + 0x20514);
   if (uVar2 == 0) {
     uVar2 = *(uint *)(iGpffff89d4 + 0x20508);
   }
   puGpffff8df8[0x19] = uVar2 / 0xc;
-  uVar1 = FUN_0014bf00(0x19d9,puGpffff8df8[0x94],0,0,0,0);
+  uVar1 = Arc_LoadFileEx(0x19d9,puGpffff8df8[0x94],0,0,0,0);
   *puGpffff8df8 = uVar1;
   return;
 }
@@ -672,7 +672,7 @@ void FUN_0020a030(undefined8 param_1)
     }
     iVar5 = *(int *)(iRam0036f4e8 + 0x1ec);
     *(int *)(iRam0036f4e8 + 500) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c1,0x19c1,1);
+    iVar1 = Arc_GetFileSize(0x19c1,0x19c1,1);
     if (iVar5 == 0) {
       iVar5 = 0;
     }
@@ -680,7 +680,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar1;
     }
     *(int *)(iRam0036f4e8 + 0x1f0) = iVar5;
-    iVar2 = FUN_0014bfe0(0x19c0,0x19c0,1);
+    iVar2 = Arc_GetFileSize(0x19c0,0x19c0,1);
     if (iVar5 == 0) {
       iVar5 = 0;
     }
@@ -688,7 +688,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar1 + iVar2;
     }
     *(int *)(iRam0036f4e8 + 0x1f8) = iVar5;
-    iVar3 = FUN_0014bfe0(0x19c2,0x19c2,1);
+    iVar3 = Arc_GetFileSize(0x19c2,0x19c2,1);
     iVar3 = iVar1 + iVar2 + iVar3;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -697,7 +697,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x1fc) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c4,0x19c4,1);
+    iVar1 = Arc_GetFileSize(0x19c4,0x19c4,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -706,7 +706,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x200) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c5,0x19c5,1);
+    iVar1 = Arc_GetFileSize(0x19c5,0x19c5,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -715,7 +715,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x204) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c6,0x19c6,1);
+    iVar1 = Arc_GetFileSize(0x19c6,0x19c6,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -724,7 +724,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x208) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c7,0x19c7,1);
+    iVar1 = Arc_GetFileSize(0x19c7,0x19c7,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -733,7 +733,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x20c) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c9,0x19c9,1);
+    iVar1 = Arc_GetFileSize(0x19c9,0x19c9,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -742,7 +742,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x210) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19c8,0x19c8,1);
+    iVar1 = Arc_GetFileSize(0x19c8,0x19c8,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -751,7 +751,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x214) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19ca,0x19ca,1);
+    iVar1 = Arc_GetFileSize(0x19ca,0x19ca,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -760,7 +760,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x218) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19cb,0x19cb,1);
+    iVar1 = Arc_GetFileSize(0x19cb,0x19cb,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -769,7 +769,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x21c) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19cc,0x19cc,1);
+    iVar1 = Arc_GetFileSize(0x19cc,0x19cc,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -778,7 +778,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x220) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19ce,0x19ce,1);
+    iVar1 = Arc_GetFileSize(0x19ce,0x19ce,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -787,7 +787,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x224) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19cd,0x19cd,1);
+    iVar1 = Arc_GetFileSize(0x19cd,0x19cd,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -796,7 +796,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x234) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19cf,0x19cf,1);
+    iVar1 = Arc_GetFileSize(0x19cf,0x19cf,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -805,7 +805,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x22c) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d0,0x19d0,1);
+    iVar1 = Arc_GetFileSize(0x19d0,0x19d0,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -814,7 +814,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x228) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d1,0x19d1,1);
+    iVar1 = Arc_GetFileSize(0x19d1,0x19d1,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -823,7 +823,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x230) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d2,0x19d2,1);
+    iVar1 = Arc_GetFileSize(0x19d2,0x19d2,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -832,7 +832,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x23c) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d3,0x19d3,1);
+    iVar1 = Arc_GetFileSize(0x19d3,0x19d3,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -841,7 +841,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x238) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d4,0x19d4,1);
+    iVar1 = Arc_GetFileSize(0x19d4,0x19d4,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -850,7 +850,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x240) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d5,0x19d5,1);
+    iVar1 = Arc_GetFileSize(0x19d5,0x19d5,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -859,7 +859,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x244) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d6,0x19d6,1);
+    iVar1 = Arc_GetFileSize(0x19d6,0x19d6,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -868,7 +868,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x248) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d7,0x19d7,1);
+    iVar1 = Arc_GetFileSize(0x19d7,0x19d7,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -877,7 +877,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x24c) = iVar5;
-    iVar1 = FUN_0014bfe0(0x19d8,0x19d8,1);
+    iVar1 = Arc_GetFileSize(0x19d8,0x19d8,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
@@ -886,7 +886,7 @@ void FUN_0020a030(undefined8 param_1)
       iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
     }
     *(int *)(iRam0036f4e8 + 0x250) = iVar5;
-    iVar5 = FUN_0014bfe0(0x19d9,0x19d9,1);
+    iVar5 = Arc_GetFileSize(0x19d9,0x19d9,1);
     iVar3 = iVar3 + iVar5;
     iVar5 = *(int *)(iRam0036f4e8 + 0x1ec);
   }
@@ -902,7 +902,7 @@ void FUN_0020a5d0(void)
   
   bVar1 = false;
   if (-1 < *(int *)(iRam0036f4f4 + 4)) {
-    lVar2 = FUN_00136920();
+    lVar2 = File_IsBusy();
     if (lVar2 == 0) {
       bVar1 = true;
     }
@@ -911,7 +911,7 @@ void FUN_0020a5d0(void)
     }
   }
   if (!bVar1) {
-    FUN_001725b0();
+    Save_UpdateAll();
   }
   return;
 }
@@ -920,7 +920,7 @@ void FUN_0020a5d0(void)
 void FUN_0020a640(void)
 
 {
-  FUN_00172600();
+  Save_FreeAll();
   if (*(int *)(iRam0036f4f4 + 0xc) != 0) {
     Mem_Free();
     *(undefined4 *)(iRam0036f4f4 + 0xc) = 0;
@@ -932,7 +932,7 @@ void FUN_0020a640(void)
 void FUN_0020a690(void)
 
 {
-  FUN_001726f0();
+  Save_Shutdown();
   if (iRam0036f4f4 != 0) {
     Mem_Free();
     iRam0036f4f4 = 0;
@@ -949,7 +949,7 @@ void FUN_0020a6d0(undefined8 param_1)
   puRam0036f4f4[1] = 0xffffffff;
   puRam0036f4f4[2] = 0;
   puRam0036f4f4[3] = 0;
-  FUN_00172720(param_1);
+  Save_Init(param_1);
   return;
 }
 
@@ -1120,7 +1120,7 @@ void FUN_0020a730(undefined4 *param_1)
     *(undefined1 *)((int)param_1 + 0x1e) = 1;
     break;
   case 10:
-    FUN_00173350(*param_1,param_1[0x14],param_1 + 0x11b,param_1[0x11a]);
+    SaveSlot_StartLoad(*param_1,param_1[0x14],param_1 + 0x11b,param_1[0x11a]);
     param_1[0x158] = 0xb;
     *(undefined1 *)((int)param_1 + 0x1d) = uVar6;
     *(undefined1 *)((int)param_1 + 0x1e) = 1;
@@ -1201,7 +1201,7 @@ void FUN_0020acd0(undefined4 *param_1)
   iVar3 = param_1[0x10c] + param_1[0x14] * 0x2c;
   switch(param_1[0x158]) {
   case 0:
-    FUN_001733e0(*param_1,param_1[0x14],param_1 + 0x11b,param_1[0x11a]);
+    SaveSlot_StartSave(*param_1,param_1[0x14],param_1 + 0x11b,param_1[0x11a]);
     param_1[0x158] = 1;
     *(undefined1 *)((int)param_1 + 0x1d) = 0xb;
     *(undefined1 *)((int)param_1 + 0x1e) = 1;
@@ -1400,7 +1400,7 @@ void FUN_0020b180(undefined4 *param_1)
     }
     *(undefined1 *)((int)param_1 + 0x1d) = 0xd;
     *(undefined1 *)((int)param_1 + 0x1e) = 1;
-    FUN_00173240(*param_1);
+    SaveSlot_StartCheck(*param_1);
     param_1[0x157] = 0;
     param_1[0x158] = 0;
     param_1[0x159] = 0;
@@ -1450,7 +1450,7 @@ void FUN_0020b180(undefined4 *param_1)
         *(undefined1 *)(iVar2 + 0x10) = 3;
         *(undefined4 *)(iVar2 + 0x1c) = 0;
         *(undefined4 *)(iVar2 + 0x18) = 1;
-        FUN_00173240(*param_1);
+        SaveSlot_StartCheck(*param_1);
         param_1[0x157] = 0;
         param_1[0x158] = 0;
         param_1[0x159] = 0;
@@ -1463,7 +1463,7 @@ void FUN_0020b180(undefined4 *param_1)
     }
   }
   else if (iVar3 == 0) {
-    FUN_001733e0(*param_1,param_1[0x10b],param_1 + 0x11b,param_1[0x11a]);
+    SaveSlot_StartSave(*param_1,param_1[0x10b],param_1 + 0x11b,param_1[0x11a]);
     param_1[0x158] = 1;
     *(undefined1 *)((int)param_1 + 0x1d) = 0xb;
     *(undefined1 *)((int)param_1 + 0x1e) = 1;
@@ -1613,7 +1613,7 @@ void FUN_0020b560(undefined4 *param_1)
       }
       else {
         param_1[0xb] = 1;
-        FUN_00173450(*param_1);
+        SaveSlot_ConsumeDone(*param_1);
       }
     }
     if (*(char *)(param_1 + 7) == '\v') {
@@ -1625,7 +1625,7 @@ void FUN_0020b560(undefined4 *param_1)
     }
     break;
   case 5:
-    FUN_00173240(*param_1);
+    SaveSlot_StartCheck(*param_1);
     break;
   case 6:
     if (param_1[8] != 0) {
@@ -2089,7 +2089,7 @@ void FUN_0020bcb0(undefined8 param_1)
     if (puVar7[0xb] == 0) {
       if (((puVar7[0x13] == 0) && (1 < *(int *)(puVar7[1] + 4))) &&
          (*(int *)(puVar7[1] + 4) <= (int)puVar7[0x110])) {
-        iVar3 = FUN_00172740(*puVar7);
+        iVar3 = SaveSlot_GetBuffer(*puVar7);
         if (iVar3 < (int)puVar7[2]) {
           *(undefined1 *)(puVar7 + 7) = 0x1e;
         }

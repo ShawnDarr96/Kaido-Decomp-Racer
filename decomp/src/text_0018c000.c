@@ -207,52 +207,52 @@ void FUN_0018c7e0(uint *param_1)
     return;
   }
   if (uVar8 < 2) {
-    FUN_001466b0(auStack_40,1,2,0);
+    Pkt_Init(auStack_40,1,2,0);
     uStack_2c = 0x433940;
-    FUN_001465c0(auStack_40,8);
-    FUN_00145d70(auStack_40);
-    FUN_00146570(auStack_40,0);
-    thunk_FUN_001466b0(auStack_80,1,2,0);
+    Pkt_SubmitToChain(auStack_40,8);
+    Pkt_End(auStack_40);
+    Pkt_Submit(auStack_40,0);
+    Pkt_Init(auStack_80,1,2,0);
     uStack_6c = 0x431100;
-    FUN_001465c0(auStack_80,8);
-    FUN_00143e10(0x431100,auStack_410,0,0);
-    FUN_00158390(0,1,auStack_410);
-    FUN_0014f3b0(auStack_390,4,0xffffffffffffffff);
+    Pkt_SubmitToChain(auStack_80,8);
+    Gfx_SetupRenderTargetEx(0x431100,auStack_410,0,0);
+    TexSlot_Set(0,1,auStack_410);
+    Obj_Reset(auStack_390,4,0xffffffffffffffff);
     uStack_e8 = 0x31001;
-    FUN_0014f2c0(auStack_390,1,0,0);
+    Obj_SetVisible(auStack_390,1,0,0);
     uStack_a0 = 0;
     uStack_9c = 0;
     uStack_b0 = 0x3dcccccd;
     uStack_ac = 0x3dcccccd;
     auStack_390[0] = auStack_390[0] | 4;
-    FUN_0014b700(auStack_80,auStack_390,1);
-    FUN_00146570(auStack_80,0);
+    Pkt_AddPrimitives(auStack_80,auStack_390,1);
+    Pkt_Submit(auStack_80,0);
   }
-  FUN_001466b0(auStack_450,1,2,0);
+  Pkt_Init(auStack_450,1,2,0);
   uStack_43c = uVar9;
-  FUN_001465c0(auStack_450,8);
-  FUN_00145d70(auStack_450);
-  FUN_00146570(auStack_450,0);
-  thunk_FUN_001466b0(auStack_490,1,2,0);
+  Pkt_SubmitToChain(auStack_450,8);
+  Pkt_End(auStack_450);
+  Pkt_Submit(auStack_450,0);
+  Pkt_Init(auStack_490,1,2,0);
   uStack_47c = uVar9;
-  FUN_001465c0(auStack_490,8);
-  FUN_00143e10(0x433940,auStack_820,0,0);
-  FUN_00158390(0,1,auStack_820);
-  FUN_0014f3b0(auStack_7a0,4,0xffffffffffffffff);
+  Pkt_SubmitToChain(auStack_490,8);
+  Gfx_SetupRenderTargetEx(0x433940,auStack_820,0,0);
+  TexSlot_Set(0,1,auStack_820);
+  Obj_Reset(auStack_7a0,4,0xffffffffffffffff);
   uStack_4f8 = 0x31001;
-  FUN_0014f2c0(auStack_7a0,1,0,0);
+  Obj_SetVisible(auStack_7a0,1,0,0);
   uStack_4c0 = 0;
   uStack_4bc = 0;
   uStack_4b0 = 0;
   uStack_4ac = 0;
   auStack_7a0[0] = auStack_7a0[0] | 4;
-  FUN_0014b700(auStack_490,auStack_7a0,1);
-  FUN_00146570(auStack_490,0);
-  FUN_001466b0(auStack_860,1,2,0);
+  Pkt_AddPrimitives(auStack_490,auStack_7a0,1);
+  Pkt_Submit(auStack_490,0);
+  Pkt_Init(auStack_860,1,2,0);
   uStack_84c = 0x431100;
-  FUN_001465c0(auStack_860,8);
-  FUN_00145780(auStack_860,0x304f90);
-  puVar1 = (undefined8 *)FUN_00146480(auStack_860,4,0,0x50000004);
+  Pkt_SubmitToChain(auStack_860,8);
+  Pkt_AddRef(auStack_860,0x304f90);
+  puVar1 = (undefined8 *)Pkt_AllocDmaRef(auStack_860,4,0,0x50000004);
   *puVar1 = 0x1000000000008003;
   puVar1[1] = 0xe;
   puVar1[2] = 0x31001;
@@ -272,7 +272,7 @@ void FUN_0018c7e0(uint *param_1)
     puVar1[6] = 0xac000fc00a;
     puVar1[7] = 8;
   }
-  puVar1 = (undefined8 *)FUN_00146480(auStack_860,0x13,0,0x6c130000);
+  puVar1 = (undefined8 *)Pkt_AllocDmaRef(auStack_860,0x13,0,0x6c130000);
   *puVar1 = 0x30aec00000008012;
   puVar1[1] = 0x531;
   *(uint *)(puVar1 + 2) = *param_1;
@@ -297,7 +297,7 @@ LAB_0018cb1c:
     iVar6 = iVar6 + 1;
     puVar1 = puVar1 + 2;
   } while (iVar6 < 0x11);
-  puVar2 = (undefined4 *)FUN_00146480(auStack_860,0x66,0,0);
+  puVar2 = (undefined4 *)Pkt_AllocDmaRef(auStack_860,0x66,0,0);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[2] = 0;
@@ -333,7 +333,7 @@ LAB_0018cbc8:
       }
       else if (param_1[uVar5 * 0x10 + 0x57] == 1) {
         uVar9 = vu0math_sub_00132ab0(param_1 + uVar5 * 0x10 + 0x60,param_1 + uVar5 * 0x10 + 0x60);
-        fVar10 = (float)FUN_00140140(uVar9);
+        fVar10 = (float)Vu0_Sqrt(uVar9);
         if (200.0 < fVar10) {
           fVar10 = 200.0;
         }
@@ -357,7 +357,7 @@ LAB_0018cbc8:
   puVar2[0x195] = 0;
   puVar2[0x196] = 0x13000000;
   puVar2[0x197] = 0x15000000;
-  FUN_00146570(auStack_860,0);
+  Pkt_Submit(auStack_860,0);
   return;
 }
 
@@ -567,7 +567,7 @@ LAB_0018d338:
                             (0x3f000000,param_1 + uVar6 * 0x10 + 0x60,puVar4 + 0x60,
                              param_1 + uVar6 * 0x10 + 0x60);
                   puVar4[0x54] = 0;
-                  fVar10 = (float)FUN_00140140(fVar11);
+                  fVar10 = (float)Vu0_Sqrt(fVar11);
                   param_1[uVar6 * 0x10 + 0x58] = (uint)fVar10;
                   if (8.0 < fVar10) {
                     param_1[uVar6 * 0x10 + 0x58] = 0x41000000;
@@ -797,55 +797,55 @@ void FUN_0018da40(float param_1,uint param_2)
   float fStack_8;
   float fStack_4;
   
-  FUN_001466b0(auStack_50,1,2,0);
+  Pkt_Init(auStack_50,1,2,0);
   uStack_3c = 0x433940;
-  FUN_001465c0(auStack_50,8);
-  FUN_00145d70(auStack_50);
-  FUN_00146570(auStack_50,0);
-  thunk_FUN_001466b0(auStack_90,1,2,0);
+  Pkt_SubmitToChain(auStack_50,8);
+  Pkt_End(auStack_50);
+  Pkt_Submit(auStack_50,0);
+  Pkt_Init(auStack_90,1,2,0);
   uStack_7c = 0x431100;
-  FUN_001465c0(auStack_90,8);
-  FUN_00143e10(0x431100,auStack_420,0,0);
-  FUN_00158390(0,1,auStack_420);
-  FUN_0014f3b0(auStack_3a0,4,0xffffffffffffffff);
+  Pkt_SubmitToChain(auStack_90,8);
+  Gfx_SetupRenderTargetEx(0x431100,auStack_420,0,0);
+  TexSlot_Set(0,1,auStack_420);
+  Obj_Reset(auStack_3a0,4,0xffffffffffffffff);
   uStack_f8 = 0x31001;
-  FUN_0014f2c0(auStack_3a0,1,0,0);
+  Obj_SetVisible(auStack_3a0,1,0,0);
   uStack_b0 = 0;
   uStack_ac = 0;
   uStack_c0 = 0x3f000000;
   uStack_bc = 0x3f000000;
   auStack_3a0[0] = auStack_3a0[0] | 4;
-  FUN_0014b700(auStack_90,auStack_3a0,1);
-  FUN_00146570(auStack_90,0);
-  FUN_001466b0(auStack_460,1,2,0);
+  Pkt_AddPrimitives(auStack_90,auStack_3a0,1);
+  Pkt_Submit(auStack_90,0);
+  Pkt_Init(auStack_460,1,2,0);
   uStack_44c = 0x431100;
-  FUN_001465c0(auStack_460,8);
-  FUN_00145d70(auStack_460);
-  FUN_00146570(auStack_460,0);
-  thunk_FUN_001466b0(auStack_4a0,1,2,0);
+  Pkt_SubmitToChain(auStack_460,8);
+  Pkt_End(auStack_460);
+  Pkt_Submit(auStack_460,0);
+  Pkt_Init(auStack_4a0,1,2,0);
   uStack_48c = 0x431100;
-  FUN_001465c0(auStack_4a0,8);
-  FUN_00143e10(0x433940,auStack_830,0,0);
-  FUN_00158390(0,1,auStack_830);
-  FUN_0014f3b0(auStack_7b0,4,0xffffffffffffffff);
+  Pkt_SubmitToChain(auStack_4a0,8);
+  Gfx_SetupRenderTargetEx(0x433940,auStack_830,0,0);
+  TexSlot_Set(0,1,auStack_830);
+  Obj_Reset(auStack_7b0,4,0xffffffffffffffff);
   uStack_508 = 0x31001;
   auStack_7b0[0] = auStack_7b0[0] | 2;
-  FUN_0014f2c0(auStack_7b0,1,0,0);
+  Obj_SetVisible(auStack_7b0,1,0,0);
   uStack_4d0 = 0;
   uStack_4cc = 0;
   uStack_4c0 = 0;
   uStack_4bc = 0;
   auStack_7b0[0] = auStack_7b0[0] | 4;
-  FUN_0014b700(auStack_4a0,auStack_7b0,1);
-  FUN_00146570(auStack_4a0,0);
-  FUN_001466b0(auStack_870,1,2,0);
+  Pkt_AddPrimitives(auStack_4a0,auStack_7b0,1);
+  Pkt_Submit(auStack_4a0,0);
+  Pkt_Init(auStack_870,1,2,0);
   uStack_85c = 0x42d0c0;
-  FUN_001465c0(auStack_870,8);
-  FUN_00145780(auStack_870,0x3014c0);
-  puVar1 = (undefined8 *)FUN_00146480(auStack_870,4,0,0x50000004);
+  Pkt_SubmitToChain(auStack_870,8);
+  Pkt_AddRef(auStack_870,0x3014c0);
+  puVar1 = (undefined8 *)Pkt_AllocDmaRef(auStack_870,4,0,0x50000004);
   *puVar1 = 0x1000000000008003;
   puVar1[1] = 0xe;
-  FUN_00144560(0x431100,auStack_880);
+  Gfx_GetViewportSize(0x431100,auStack_880);
   lVar4 = newlib_sub_0012f390(((float)uStack_878 / 16.0) / 2.0);
   lVar5 = newlib_sub_0012f390(((float)uStack_874 / 16.0) / 2.0);
   puVar1[2] = lVar4 << 0xe | 10U | lVar5 << 0x22;
@@ -854,8 +854,8 @@ void FUN_0018da40(float param_1,uint param_2)
   puVar1[5] = 0x47;
   puVar1[6] = 0x44;
   puVar1[7] = 0x42;
-  pfVar2 = (float *)FUN_00146480(auStack_870,10,0,0x6c0a0000);
-  FUN_00144560(0x431100,auStack_890);
+  pfVar2 = (float *)Pkt_AllocDmaRef(auStack_870,10,0,0x6c0a0000);
+  Gfx_GetViewportSize(0x431100,auStack_890);
   *pfVar2 = ((float)uStack_888 / 16.0) * 0.5 - 1.0;
   pfVar2[1] = ((float)uStack_884 / 16.0) * 0.5 - 1.0;
   iVar9 = 0;
@@ -872,7 +872,7 @@ void FUN_0018da40(float param_1,uint param_2)
     puVar7 = puVar7 + 0x10;
     pfVar2 = pfVar2 + 4;
   } while (iVar9 < 8);
-  puVar3 = (undefined4 *)FUN_00146480(auStack_870,0x193,0,0);
+  puVar3 = (undefined4 *)Pkt_AllocDmaRef(auStack_870,0x193,0,0);
   *puVar3 = 0;
   puVar3[1] = 0;
   puVar3[2] = 0;
@@ -915,7 +915,7 @@ void FUN_0018da40(float param_1,uint param_2)
   puVar3[0x649] = 0;
   puVar3[0x64a] = 0x13000000;
   puVar3[0x64b] = 0x15000000;
-  FUN_00146570(auStack_870,0);
+  Pkt_Submit(auStack_870,0);
   return;
 }
 
@@ -1122,7 +1122,7 @@ byte FUN_0018e580(int param_1)
   byte bVar2;
   char cVar3;
   
-  cVar3 = FUN_00155be0(*(undefined4 *)(param_1 + 0x40));
+  cVar3 = Snd_IsBusy(*(undefined4 *)(param_1 + 0x40));
   bVar2 = 0;
   bVar1 = false;
   if ((*(char *)(iRam0036f254 + 0x400) == '\0') && (*(char *)(iRam0036f258 + 0x200) == '\0')) {
@@ -1317,7 +1317,7 @@ bool FUN_0018e9b0(int param_1)
 {
   char cVar1;
   
-  cVar1 = FUN_001543c0(*(undefined4 *)(param_1 + 4));
+  cVar1 = Snd_StreamGetState(*(undefined4 *)(param_1 + 4));
   return *(int *)(param_1 + 0x1c) != 0 && cVar1 != '\0';
 }
 
@@ -1432,7 +1432,7 @@ void FUN_0018ebe0(undefined8 param_1,uint param_2,undefined8 param_3,uint param_
   puVar1[5] = 1;
   puVar1[4] = param_5;
   puVar1[3] = 0;
-  iVar2 = FUN_00154410();
+  iVar2 = Snd_GetBankCount();
   if (iVar2 - 1U < param_2) {
     param_2 = 0;
   }
@@ -1899,7 +1899,7 @@ bool FUN_0018fa50(int param_1)
 LAB_0018fab4:
       bVar3 = true;
       if (!bVar1) {
-        cVar2 = FUN_00155be0();
+        cVar2 = Snd_IsBusy();
         bVar3 = cVar2 != '\0';
       }
       return bVar3;
@@ -1946,7 +1946,7 @@ FUN_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_
     }
   }
   else {
-    uVar2 = FUN_00155ac0(*(undefined4 *)(param_1 + 8));
+    uVar2 = Snd_PlayStreamEx(*(undefined4 *)(param_1 + 8));
   }
   return uVar2;
 }

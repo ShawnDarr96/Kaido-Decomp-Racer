@@ -34,7 +34,7 @@ undefined2 FUN_001d4010(undefined2 param_1,uint param_2,long param_3)
     uStack_38 = *(undefined4 *)(iVar2 + 0x4c);
   }
   else {
-    iVar1 = FUN_001771b0(param_3);
+    iVar1 = GameState_Elem_3e0_x540(param_3);
     iVar2 = iVar1 + 4;
     uStack_38 = *(undefined4 *)(iVar1 + 0x50);
   }
@@ -157,7 +157,7 @@ void FUN_001d4240(int param_1,short param_2,ulong param_3)
       param_3 = (ulong)uVar1;
     }
     else {
-      iVar4 = FUN_001771b0(param_3);
+      iVar4 = GameState_Elem_3e0_x540(param_3);
       param_3 = (ulong)(iVar4 + 0xa0);
     }
   }
@@ -254,7 +254,7 @@ void FUN_001d4360(short param_1,char *param_2)
   undefined4 uStack_4;
   
   iVar2 = FUN_001ca6b0(param_1);
-  iVar3 = FUN_00177070(param_1);
+  iVar3 = GameState_Elem_f0_xcc(param_1);
   sVar11 = -1;
   fVar8 = 1e+08;
   lVar9 = 0;
@@ -281,9 +281,9 @@ void FUN_001d4360(short param_1,char *param_2)
     if ((((lVar9 != param_1) && (lVar6 = FUN_001ca6b0(lVar9), lVar6 != 0)) &&
         (*(float *)(iVar2 + 0x1780) != 0.0)) &&
        ((iVar4 = (int)lVar6, *(float *)(iVar4 + 0x1780) != 0.0 &&
-        (fVar12 = (float)FUN_00177730(), *(float *)(iVar2 + 0x1780) < fVar12)))) {
+        (fVar12 = (float)GameState_Get_14(), *(float *)(iVar2 + 0x1780) < fVar12)))) {
       fVar15 = *(float *)(iVar4 + 0x1780);
-      fVar12 = (float)FUN_00177730();
+      fVar12 = (float)GameState_Get_14();
       if (fVar15 < fVar12) {
         fVar15 = *(float *)(iVar2 + 0x1780) - fVar15;
         if (lVar9 == 0) {
@@ -291,7 +291,7 @@ void FUN_001d4360(short param_1,char *param_2)
           if ((uVar7 & 0x80) != 0) {
             uStack_4 = 0x3f800000;
             uStack_14 = 0x3f800000;
-            puVar5 = (undefined4 *)FUN_001651a0(*(undefined4 *)(iVar2 + 0x154));
+            puVar5 = (undefined4 *)phys_sub_001651a0(*(undefined4 *)(iVar2 + 0x154));
             uStack_30 = *puVar5;
             uStack_2c = puVar5[1];
             uStack_28 = puVar5[2];
@@ -300,12 +300,12 @@ void FUN_001d4360(short param_1,char *param_2)
             uStack_8 = *(undefined4 *)(iVar4 + 0x16e8);
             uStack_4 = *(undefined4 *)(iVar4 + 0x16ec);
             uStack_c = 0;
-            FUN_00163b40(auStack_70,&uStack_30,iVar4 + 0x16b0);
+            Vec3_Sub(auStack_70,&uStack_30,iVar4 + 0x16b0);
             uStack_20 = auStack_70[0];
             uStack_18 = uStack_68;
             uStack_14 = uStack_64;
             uStack_1c = 0;
-            FUN_00163b40(&fStack_80,&uStack_10,&uStack_20);
+            Vec3_Sub(&fStack_80,&uStack_10,&uStack_20);
             fVar12 = SQRT(fStack_78 * fStack_78 + fStack_80 * fStack_80 + fStack_7c * fStack_7c);
             if (fVar12 < 50.0) {
               fVar13 = (float)FUN_001dab90(&uStack_10,&uStack_20);
@@ -320,7 +320,7 @@ void FUN_001d4360(short param_1,char *param_2)
           }
           uStack_34 = 0x3f800000;
           uStack_44 = 0x3f800000;
-          puVar5 = (undefined4 *)FUN_001651a0(*(undefined4 *)(iVar4 + 0x154));
+          puVar5 = (undefined4 *)phys_sub_001651a0(*(undefined4 *)(iVar4 + 0x154));
           uStack_60 = *puVar5;
           uStack_5c = puVar5[1];
           uStack_58 = puVar5[2];
@@ -329,12 +329,12 @@ void FUN_001d4360(short param_1,char *param_2)
           uStack_38 = *(undefined4 *)(iVar2 + 0x16e8);
           uStack_34 = *(undefined4 *)(iVar2 + 0x16ec);
           uStack_3c = 0;
-          FUN_00163b40(auStack_90,&uStack_60,iVar2 + 0x16b0);
+          Vec3_Sub(auStack_90,&uStack_60,iVar2 + 0x16b0);
           uStack_50 = auStack_90[0];
           uStack_48 = uStack_88;
           uStack_44 = uStack_84;
           uStack_4c = 0;
-          FUN_00163b40(&fStack_a0,&uStack_40,&uStack_50);
+          Vec3_Sub(&fStack_a0,&uStack_40,&uStack_50);
           fVar12 = SQRT(fStack_98 * fStack_98 + fStack_a0 * fStack_a0 + fStack_9c * fStack_9c);
           if (fVar12 < 50.0) {
             fVar13 = (float)FUN_001dab90(&uStack_40,&uStack_50);
@@ -354,7 +354,7 @@ void FUN_001d4360(short param_1,char *param_2)
           }
         }
         else {
-          cVar1 = FUN_0017e760();
+          cVar1 = Race_GetWeather();
           if (((cVar1 != '\x01') || (uVar7 = FUN_001ca730(lVar6), (uVar7 & 8) != 0)) &&
              (fVar15 < fVar18)) {
             fVar18 = fVar15;
@@ -451,7 +451,7 @@ void FUN_001d4b50(int param_1)
     do {
       if (*(int *)(iVar5 + 4) != 0) {
         uVar2 = FUN_001ca6b0(iVar6);
-        iVar3 = FUN_00177070(iVar6);
+        iVar3 = GameState_Elem_f0_xcc(iVar6);
         if ((((*(uint *)(iVar3 + 4) & 0x20) == 0) &&
             (uVar4 = FUN_001ca730(uVar2), (uVar4 & 0x200) != 0)) &&
            ((*(uint *)(iVar5 + 4) & 1) != 0)) {
@@ -515,7 +515,7 @@ void FUN_001d4cf0(int param_1)
   char cVar7;
   float fVar8;
   
-  cVar1 = FUN_00177230();
+  cVar1 = GameState_GetMoneyTotal3();
   cVar7 = '\0';
   iVar6 = param_1;
   do {
@@ -530,10 +530,10 @@ void FUN_001d4cf0(int param_1)
     do {
       *(undefined4 *)(param_1 + 4) = 1;
       *(int *)(param_1 + 8) = (int)cVar7;
-      uVar5 = FUN_00177070();
-      iVar6 = FUN_00177160(*(undefined1 *)((int)uVar5 + 9));
-      iVar3 = FUN_001771b0(*(undefined1 *)((int)uVar5 + 9));
-      cVar2 = FUN_0017e8d0();
+      uVar5 = GameState_Elem_f0_xcc();
+      iVar6 = GameState_Elem_2fa0_x17c(*(undefined1 *)((int)uVar5 + 9));
+      iVar3 = GameState_Elem_3e0_x540(*(undefined1 *)((int)uVar5 + 9));
+      cVar2 = RaceCtx_GetMode();
       if (cVar2 == '\x06') {
         *(undefined4 *)(param_1 + 0x54) = 0x1800;
       }
@@ -601,7 +601,7 @@ void FUN_001d4f20(undefined4 *param_1)
   param_1[0x17] = 0x3f800000;
   param_1[0x18] = 0x3f800000;
   param_1[0x19] = 0x3f800000;
-  uVar1 = FUN_00177790();
+  uVar1 = GameState_Get_2();
   switch(uVar1) {
   case 0:
     param_1[0x17] = 0x3f800000;
@@ -794,7 +794,7 @@ void FUN_001d5060(undefined8 param_1)
   iVar6 = FUN_001ca770(uVar7);
   uStack_250 = 1;
   fVar15 = (float)FUN_001d7fe0(uVar1);
-  lVar8 = FUN_00177750();
+  lVar8 = GameState_Get_40();
   if (lVar8 == 0) {
     uVar9 = FUN_001ca730(uVar7);
     if ((uVar9 & 4) == 0) {
@@ -814,7 +814,7 @@ void FUN_001d5060(undefined8 param_1)
     }
   }
   if ((*(char *)(iVar14 + 0x811) == '\0') && (*(int *)(iVar14 + 0x814) < 1)) {
-    FUN_0016c870(uVar7);
+    Car_RequestShiftUp(uVar7);
   }
   auStack_b0[0] = 4;
   uStack_ac = 0;
@@ -868,8 +868,8 @@ void FUN_001d5060(undefined8 param_1)
   uStack_d8 = uStack_128;
   aiStack_120[0] = iVar13;
   if (((fVar15 == -200.0) || (fVar15 == 0.0)) ||
-     (((cVar5 = FUN_00177040(), cVar5 == '\0' || (cVar5 = FUN_00177040(), cVar5 == '\x05')) &&
-      ((uVar9 = FUN_001e8f20(), uVar9 < 0x1e1 && (iRam0046a590 == 0)))))) {
+     (((cVar5 = GameState_Get_354(), cVar5 == '\0' || (cVar5 = GameState_Get_354(), cVar5 == '\x05')
+       ) && ((uVar9 = FUN_001e8f20(), uVar9 < 0x1e1 && (iRam0046a590 == 0)))))) {
     fVar16 = *(float *)(iVar14 + 6000) + *(float *)(iVar14 + 0x1778);
     if (2.0 <= fVar16) {
       fVar17 = *(float *)(iVar14 + 0x1760) - 2.0;
@@ -1332,7 +1332,7 @@ void FUN_001d5cb0(float param_1,int param_2,long param_3,undefined4 *param_4,und
   uStack_138 = *(undefined4 *)(iVar14 + 0x16d8);
   uStack_134 = *(undefined4 *)(iVar14 + 0x16dc);
   uStack_13c = 0;
-  FUN_00163b40(afStack_160,&uStack_110,iVar14 + 0x16b0);
+  Vec3_Sub(afStack_160,&uStack_110,iVar14 + 0x16b0);
   fStack_150 = afStack_160[0];
   fStack_148 = fStack_158;
   uStack_144 = uStack_154;
@@ -1354,7 +1354,7 @@ void FUN_001d5cb0(float param_1,int param_2,long param_3,undefined4 *param_4,und
   uStack_168 = *(undefined4 *)(iVar14 + 0x16d8);
   uStack_164 = *(undefined4 *)(iVar14 + 0x16dc);
   uStack_16c = 0;
-  FUN_00163b40(afStack_190,&uStack_d0,iVar14 + 0x16b0);
+  Vec3_Sub(afStack_190,&uStack_d0,iVar14 + 0x16b0);
   fStack_180 = afStack_190[0];
   fStack_178 = fStack_188;
   uStack_174 = uStack_184;
@@ -1409,7 +1409,8 @@ LAB_001d6158:
   if ((param_6 != 0) && (param_3 != 0)) {
     iVar11 = FUN_001ca6b0(0);
     if ((*(uint *)(param_2 + 0x48) & 8) == 0) {
-      if (((*(uint *)(param_2 + 0x48) & 0x10) != 0) && (cVar5 = FUN_0017e760(), cVar5 == '\x01')) {
+      if (((*(uint *)(param_2 + 0x48) & 0x10) != 0) && (cVar5 = Race_GetWeather(), cVar5 == '\x01'))
+      {
         cVar5 = *pcVar12;
         if ((((cVar5 == '\0') || (cVar5 == '\x02')) && (*(short *)(pcVar12 + 2) == 0)) ||
            ((cVar5 == '\x04' && (0.0 < *(float *)(iVar11 + 0x1780) - *(float *)(iVar14 + 0x1780)))))
@@ -1530,7 +1531,7 @@ LAB_001d6580:
       iVar11 = FUN_001ca6b0(0);
       fVar20 = *(float *)(iVar14 + 0x1780) - *(float *)(iVar11 + 0x1780);
       if ((*(uint *)(iVar7 + 4) & 0x100) == 0) {
-        cVar5 = FUN_00177790();
+        cVar5 = GameState_Get_2();
         if (cVar5 == '\0') {
           fVar19 = *(float *)(param_2 + 0x50);
         }
@@ -1569,7 +1570,7 @@ LAB_001d6580:
   else {
     bVar3 = false;
   }
-  cVar5 = FUN_0017e8d0();
+  cVar5 = RaceCtx_GetMode();
   if (((cVar5 == '\x06') || (cVar5 = FUN_001777b0(), cVar5 == '\x03')) ||
      (cVar5 = FUN_001777b0(), cVar5 == '\x04')) {
     uVar8 = newlib_sub_0012f600(fStack_a8 * 3.1415927);
@@ -1624,7 +1625,7 @@ LAB_001d6828:
   }
   if (40.0 < fVar23) {
     fVar23 = 0.0;
-    uVar6 = FUN_00177790();
+    uVar6 = GameState_Get_2();
     switch(uVar6) {
     case 0:
       fVar23 = 0.2;
@@ -1897,7 +1898,7 @@ undefined4 FUN_001d7fe0(undefined8 param_1)
   undefined4 uVar5;
   
   uVar5 = 0x447a0000;
-  iVar2 = FUN_00177070();
+  iVar2 = GameState_Elem_f0_xcc();
   uVar3 = FUN_001ca6b0(param_1);
   if ((*(uint *)(iVar2 + 4) & 4) == 0) {
     uVar1 = FUN_001dc1b0();

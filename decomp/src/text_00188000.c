@@ -980,13 +980,13 @@ undefined8 FUN_0018a0d0(undefined8 param_1,undefined8 param_2)
   else {
     uVar3 = iVar1 + 0x7ffU >> 0xb;
   }
-  FUN_00138bf0(0x36efc0);
+  Sema_Wait(0x36efc0);
   uVar2 = uRam00386628;
-  FUN_00138ba0(0x36efc0,0);
+  Sema_Signal(0x36efc0,0);
   if (uVar2 < 0x100) {
     uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
     *(undefined4 *)param_1 = uVar4;
-    uVar5 = FUN_0014bf00(param_2,*(undefined4 *)param_1,0x18a040,param_1,0,0);
+    uVar5 = Arc_LoadFileEx(param_2,*(undefined4 *)param_1,0x18a040,param_1,0,0);
   }
   else {
     uVar5 = 0xffffffffffffffff;
@@ -1494,9 +1494,9 @@ undefined8 FUN_0018b1e0(undefined8 param_1,undefined8 param_2)
   undefined8 uVar4;
   int iVar5;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   uVar2 = uRam00386628;
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (uVar2 < 0x100) {
     iVar5 = (int)param_2 * 0x14 + iGpffff89d4;
     iVar1 = *(int *)(iVar5 + 0x20);
@@ -1508,7 +1508,7 @@ undefined8 FUN_0018b1e0(undefined8 param_1,undefined8 param_2)
     }
     uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x10,0x430750);
     *(undefined4 *)param_1 = uVar3;
-    uVar4 = FUN_0014bf00(param_2,*(undefined4 *)param_1,0x18b150,param_1,0,0);
+    uVar4 = Arc_LoadFileEx(param_2,*(undefined4 *)param_1,0x18b150,param_1,0,0);
   }
   else {
     uVar4 = 0xffffffffffffffff;

@@ -8,19 +8,19 @@
 /* WARNING: Removing unreachable block (ram,0x001481ac) */
 /* WARNING: Removing unreachable block (ram,0x001481f0) */
 
-void FUN_00148150(int param_1,uint param_2)
+void maybe_Model_DrawSimple(int param_1,uint param_2)
 
 {
   int iVar1;
   
   iVar1 = param_1 + (param_2 & 0xff) * 0x44;
   if (*(char *)(param_1 + 0x90) == '\0') {
-    iVar1 = FUN_001468a0(iVar1,0x32);
+    iVar1 = Pkt_AddVu1HeaderShort(iVar1,0x32);
   }
   else {
-    iVar1 = FUN_001468a0(iVar1,8);
+    iVar1 = Pkt_AddVu1HeaderShort(iVar1,8);
   }
-  FUN_0013ed10(*(undefined4 *)(param_1 + 0xa4),0,iVar1 + 0x20,iVar1 + 0x10);
+  Tex_GetTex0(*(undefined4 *)(param_1 + 0xa4),0,iVar1 + 0x20,iVar1 + 0x10);
   *(undefined8 *)(iVar1 + 0x18) = 7;
   *(undefined8 *)(iVar1 + 0x28) = 7;
   *(byte *)(iVar1 + 0x24) = *(byte *)(iVar1 + 0x24) & 0xe7;
@@ -42,19 +42,19 @@ void FUN_00148150(int param_1,uint param_2)
 /* WARNING: Removing unreachable block (ram,0x0014832c) */
 /* WARNING: Removing unreachable block (ram,0x00148370) */
 
-void FUN_001482d0(int param_1,uint param_2)
+void maybe_Model_DrawSimpleAlt(int param_1,uint param_2)
 
 {
   int iVar1;
   
   iVar1 = param_1 + (param_2 & 0xff) * 0x44;
   if (*(char *)(param_1 + 0x90) == '\0') {
-    iVar1 = FUN_001468a0(iVar1,0x32);
+    iVar1 = Pkt_AddVu1HeaderShort(iVar1,0x32);
   }
   else {
-    iVar1 = FUN_001468a0(iVar1,8);
+    iVar1 = Pkt_AddVu1HeaderShort(iVar1,8);
   }
-  FUN_0013ed10(*(undefined4 *)(param_1 + 0xa0),0,iVar1 + 0x20,iVar1 + 0x10);
+  Tex_GetTex0(*(undefined4 *)(param_1 + 0xa0),0,iVar1 + 0x20,iVar1 + 0x10);
   *(undefined8 *)(iVar1 + 0x18) = 7;
   *(undefined8 *)(iVar1 + 0x28) = 7;
   *(byte *)(iVar1 + 0x24) = *(byte *)(iVar1 + 0x24) & 0xe7;
@@ -71,7 +71,9 @@ void FUN_001482d0(int param_1,uint param_2)
 }
 
 // 0x00148430  size 0x268
-undefined4 FUN_00148430(undefined8 param_1,uint *param_2)
+/* 11 callers */
+
+undefined4 Model_UpdateNodeMatrix(undefined8 param_1,uint *param_2)
 
 {
   bool bVar1;
@@ -102,7 +104,7 @@ undefined4 FUN_00148430(undefined8 param_1,uint *param_2)
     vu0math_sub_00133260(iVar5 + 0x140);
     vu0math_sub_001330c0(*(int *)(iVar5 + 0x88) + 0x2c0);
     vu0math_sub_00133280(iVar5 + 0x180);
-    lVar4 = FUN_00142ff0(*(undefined4 *)(iVar5 + 0x88),iVar5 + 0x180,puVar6 + 4);
+    lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar5 + 0x88),iVar5 + 0x180,puVar6 + 4);
     if (lVar4 == 0) {
       uVar3 = 0;
     }
@@ -126,28 +128,28 @@ undefined4 FUN_00148430(undefined8 param_1,uint *param_2)
       }
       if ((uVar2 & 0x20) != 0) {
         if (*(int *)(iVar5 + 0x94) == 0) {
-          FUN_001465c0(param_1,*(undefined4 *)(iVar5 + 0x3c));
+          Pkt_SubmitToChain(param_1,*(undefined4 *)(iVar5 + 0x3c));
         }
-        FUN_00146920(param_1,iVar5 + 0x140,iVar5 + 0x180,iVar5 + 0x1c0);
+        Pkt_AddVu1Matrices(param_1,iVar5 + 0x140,iVar5 + 0x180,iVar5 + 0x1c0);
       }
       if ((uVar2 & 0x40) != 0) {
         if (*(int *)(iVar5 + 0x98) == 0) {
-          FUN_001465c0(iVar5 + 0x44,*(undefined4 *)(iVar5 + 0x80));
+          Pkt_SubmitToChain(iVar5 + 0x44,*(undefined4 *)(iVar5 + 0x80));
         }
-        FUN_00146920(iVar5 + 0x44,iVar5 + 0x140,iVar5 + 0x180,iVar5 + 0x1c0);
+        Pkt_AddVu1Matrices(iVar5 + 0x44,iVar5 + 0x140,iVar5 + 0x180,iVar5 + 0x1c0);
       }
       puVar8 = puVar6 + 0xc;
       uVar7 = 0;
       do {
-        FUN_00147d80(param_1,puVar8);
+        maybe_Model_DrawMeshClipped(param_1,puVar8);
         uVar7 = uVar7 + 1;
         puVar8 = puVar8 + (puVar8[0x1e] + 1) * 4 + 0x28;
       } while (uVar7 < puVar6[3]);
       if (((uVar2 & 0x20) != 0) && (*(int *)(iVar5 + 0x94) == 0)) {
-        FUN_00146570(param_1,*(undefined4 *)(iVar5 + 0x40));
+        Pkt_Submit(param_1,*(undefined4 *)(iVar5 + 0x40));
       }
       if (((uVar2 & 0x40) != 0) && (*(int *)(iVar5 + 0x98) == 0)) {
-        FUN_00144350(*(undefined4 *)(iVar5 + 0x88),auStack_10,iVar5 + 0x140);
+        Camera_GetViewMatrix(*(undefined4 *)(iVar5 + 0x88),auStack_10,iVar5 + 0x140);
         bVar1 = true;
         if ((-1 < iStack_8) && (iStack_8 < 0xffffff)) {
           bVar1 = false;
@@ -156,7 +158,7 @@ undefined4 FUN_00148430(undefined8 param_1,uint *param_2)
           iStack_8 = 0xfffff0;
         }
         *(int *)(iVar5 + 0x84) = iStack_8;
-        FUN_00146570(iVar5 + 0x44,*(undefined4 *)(iVar5 + 0x84));
+        Pkt_Submit(iVar5 + 0x44,*(undefined4 *)(iVar5 + 0x84));
       }
       uVar3 = 1;
     }
@@ -165,7 +167,7 @@ undefined4 FUN_00148430(undefined8 param_1,uint *param_2)
 }
 
 // 0x001486a0  size 0x178
-void FUN_001486a0(undefined8 param_1,undefined8 param_2)
+void maybe_Layer_Draw(undefined8 param_1,undefined8 param_2)
 
 {
   uint *puVar1;
@@ -178,29 +180,29 @@ void FUN_001486a0(undefined8 param_1,undefined8 param_2)
   puVar4 = (uint *)param_2;
   iVar6 = (int)param_1;
   if (((*puVar4 & 1) != 0) && (*(int *)(iVar6 + 0x94) == 0)) {
-    FUN_001465c0(param_1,*(undefined4 *)(iVar6 + 0x3c));
-    FUN_00145d70(param_1);
+    Pkt_SubmitToChain(param_1,*(undefined4 *)(iVar6 + 0x3c));
+    Pkt_End(param_1);
     if (*(char *)(iVar6 + 0x90) == '\0') {
-      FUN_00145780(param_1,0x301800);
-      FUN_00146a90(param_1,1);
+      Pkt_AddRef(param_1,0x301800);
+      Pkt_AddVu1Base(param_1,1);
       iVar3 = *(int *)(iVar6 + 0xa0);
     }
     else {
-      FUN_00145780(param_1,0x3054b0);
-      FUN_00146a90(param_1,0x20);
+      Pkt_AddRef(param_1,0x3054b0);
+      Pkt_AddVu1Base(param_1,0x20);
       iVar3 = *(int *)(iVar6 + 0xa0);
     }
     if (iVar3 == 0) {
       if (*(int *)(iVar6 + 0xa4) != 0) {
-        FUN_00148150(param_1,0);
+        maybe_Model_DrawSimple(param_1,0);
       }
       uVar2 = *(undefined4 *)(iVar6 + 0x40);
     }
     else {
-      FUN_001482d0(param_1,0);
+      maybe_Model_DrawSimpleAlt(param_1,0);
       uVar2 = *(undefined4 *)(iVar6 + 0x40);
     }
-    FUN_00146570(param_1,uVar2);
+    Pkt_Submit(param_1,uVar2);
   }
   uVar5 = 0;
   if (puVar4[4] != 0) {
@@ -208,8 +210,8 @@ void FUN_001486a0(undefined8 param_1,undefined8 param_2)
       puVar1 = *(uint **)(puVar4[5] + (puVar4[3] + uVar5) * 4);
       if (((puVar1[2] & 1) == 0) && ((*puVar1 & 0x10) != 0)) {
         maybe_Vu0_UnitMatrix(iVar6 + 0x100);
-        FUN_0014d750(param_2,iVar6 + 0x100,puVar1);
-        FUN_00148430(param_1,puVar1);
+        Model_BuildNodeMatrices(param_2,iVar6 + 0x100,puVar1);
+        Model_UpdateNodeMatrix(param_1,puVar1);
       }
       uVar5 = uVar5 + 1;
     } while (uVar5 < puVar4[4]);
@@ -218,17 +220,21 @@ void FUN_001486a0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00148820  size 0x28
-void FUN_00148820(int param_1,uint param_2)
+/* 10 callers */
+
+void Layer_Close(int param_1,uint param_2)
 
 {
   *(undefined4 *)((param_2 & 0xff) * 4 + param_1 + 0x94) = 0;
   param_1 = param_1 + (param_2 & 0xff) * 0x44;
-  FUN_00146570(param_1,*(undefined4 *)(param_1 + 0x40));
+  Pkt_Submit(param_1,*(undefined4 *)(param_1 + 0x40));
   return;
 }
 
 // 0x00148850  size 0xf8
-void FUN_00148850(undefined8 param_1,undefined8 param_2)
+/* 10 callers */
+
+void Layer_Open(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -239,34 +245,36 @@ void FUN_00148850(undefined8 param_1,undefined8 param_2)
   iVar2 = (int)param_1;
   *(undefined4 *)(uVar1 * 4 + iVar2 + 0x94) = 1;
   iVar3 = iVar2 + uVar1 * 0x44;
-  FUN_001465c0(iVar3,*(undefined4 *)(iVar3 + 0x3c));
-  FUN_00145d70(iVar3);
+  Pkt_SubmitToChain(iVar3,*(undefined4 *)(iVar3 + 0x3c));
+  Pkt_End(iVar3);
   if (*(char *)(iVar2 + 0x90) == '\0') {
-    FUN_00145780(iVar3,0x301800);
-    FUN_00146a90(iVar3,1);
+    Pkt_AddRef(iVar3,0x301800);
+    Pkt_AddVu1Base(iVar3,1);
     iVar3 = *(int *)(iVar2 + 0xa0);
   }
   else {
-    FUN_00145780(iVar3,0x3054b0);
-    FUN_00146a90(iVar3,0x20);
+    Pkt_AddRef(iVar3,0x3054b0);
+    Pkt_AddVu1Base(iVar3,0x20);
     iVar3 = *(int *)(iVar2 + 0xa0);
   }
   if (iVar3 == 0) {
     if (*(int *)(iVar2 + 0xa4) != 0) {
-      FUN_00148150(param_1,param_2);
+      maybe_Model_DrawSimple(param_1,param_2);
     }
   }
   else {
-    FUN_001482d0(param_1,param_2);
+    maybe_Model_DrawSimpleAlt(param_1,param_2);
   }
   return;
 }
 
 // 0x00148950  size 0x50
-void FUN_00148950(int param_1)
+/* 10 callers */
+
+void Layer_Reset(int param_1)
 
 {
-  FUN_001466e0();
+  maybe_Pkt_InitLayers();
   *(undefined1 *)(param_1 + 0x90) = 0;
   *(undefined4 *)(param_1 + 0x94) = 0;
   *(undefined4 *)(param_1 + 0x98) = 0;
@@ -280,8 +288,9 @@ void FUN_00148950(int param_1)
 }
 
 // 0x001489a0  size 0x20c
-void FUN_001489a0(undefined8 *param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,ulong param_6,int param_7)
+void maybe_Gs_BuildSpriteRegs
+               (undefined8 *param_1,int param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5,ulong param_6,int param_7)
 
 {
   int iVar1;
@@ -344,9 +353,10 @@ void FUN_001489a0(undefined8 *param_1,int param_2,undefined8 param_3,undefined8 
 }
 
 // 0x00148bb0  size 0x2e4
-void FUN_00148bb0(undefined8 *param_1,long param_2,long param_3,long param_4,ulong param_5,
-                 ulong param_6,uint param_7,long param_8,uint param_9,uint param_10,uint param_11,
-                 uint param_12,uint param_13,uint param_14,uint param_15,undefined8 param_16)
+void maybe_Gs_BuildSpritePacket
+               (undefined8 *param_1,long param_2,long param_3,long param_4,ulong param_5,
+               ulong param_6,uint param_7,long param_8,uint param_9,uint param_10,uint param_11,
+               uint param_12,uint param_13,uint param_14,uint param_15,undefined8 param_16)
 
 {
   int iVar1;
@@ -428,7 +438,7 @@ void FUN_00148bb0(undefined8 *param_1,long param_2,long param_3,long param_4,ulo
 }
 
 // 0x00148ea0  size 0x1f8
-void FUN_00148ea0(int param_1,long param_2,ulong param_3)
+void maybe_Gs_SetAlphaTest(int param_1,long param_2,ulong param_3)
 
 {
   long lVar1;
@@ -492,9 +502,10 @@ void FUN_00148ea0(int param_1,long param_2,ulong param_3)
 }
 
 // 0x001490a0  size 0x2f0
-void FUN_001490a0(undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ulong param_5,
-                 ulong param_6,ulong param_7,uint param_8,int param_9,uint param_10,
-                 undefined4 param_11,undefined4 param_12,uint param_13,uint param_14)
+void maybe_Gs_BuildRectPacket
+               (undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ulong param_5,
+               ulong param_6,ulong param_7,uint param_8,int param_9,uint param_10,
+               undefined4 param_11,undefined4 param_12,uint param_13,uint param_14)
 
 {
   int iVar1;
@@ -525,7 +536,7 @@ void FUN_001490a0(undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ul
   param_1[9] = 0x3b;
   param_1[10] = (ulong)param_8 << 0xe | 10 | (ulong)(param_9 - 1) << 0x22;
   param_1[0xb] = 8;
-  FUN_00148ea0(param_1,param_11,param_12);
+  maybe_Gs_SetAlphaTest(param_1,param_11,param_12);
   param_8 = param_8 >> 4;
   iVar1 = param_2 + param_9 * 0x10;
   uVar6 = 0;
@@ -565,8 +576,9 @@ void FUN_001490a0(undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ul
 }
 
 // 0x00149390  size 0x2d4
-void FUN_00149390(undefined8 *param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,uint param_6)
+void maybe_Gs_BuildFullscreenQuad
+               (undefined8 *param_1,int param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5,uint param_6)
 
 {
   int iVar1;
@@ -586,7 +598,7 @@ void FUN_00149390(undefined8 *param_1,int param_2,undefined8 param_3,undefined8 
   
   iVar9 = (0x1000U - *(int *)(param_2 + 0x70) >> 1) * 0x10;
   iVar8 = (0x1000U - *(int *)(param_2 + 0x74) >> 1) * 0x10;
-  FUN_00143e10(param_3,auStack_80,0,0);
+  Gfx_SetupRenderTargetEx(param_3,auStack_80,0,0);
   *param_1 = 0;
   param_1[1] = 0x3f;
   param_1[2] = param_4;
@@ -635,7 +647,7 @@ void FUN_00149390(undefined8 *param_1,int param_2,undefined8 param_3,undefined8 
 }
 
 // 0x00149670  size 0x178
-void FUN_00149670(int param_1,long param_2,ulong param_3)
+void maybe_Gs_SetBlend(int param_1,long param_2,ulong param_3)
 
 {
   long lVar1;
@@ -679,9 +691,10 @@ void FUN_00149670(int param_1,long param_2,ulong param_3)
 }
 
 // 0x001497f0  size 0x288
-void FUN_001497f0(undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ulong param_5,
-                 ulong param_6,ulong param_7,uint param_8,int param_9,uint param_10,
-                 undefined4 param_11,undefined4 param_12,uint param_13,uint param_14)
+void maybe_Gs_BuildBlendRect
+               (undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ulong param_5,
+               ulong param_6,ulong param_7,uint param_8,int param_9,uint param_10,
+               undefined4 param_11,undefined4 param_12,uint param_13,uint param_14)
 
 {
   uint uVar1;
@@ -708,7 +721,7 @@ void FUN_001497f0(undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ul
   param_1[9] = 0x3b;
   param_1[10] = (ulong)param_8 << 0xe | 10 | (ulong)(param_9 - 1) << 0x22;
   param_1[0xb] = 8;
-  FUN_00149670(param_1,param_11,param_12);
+  maybe_Gs_SetBlend(param_1,param_11,param_12);
   param_8 = param_8 >> 4;
   uVar2 = 0;
   do {
@@ -732,9 +745,9 @@ void FUN_001497f0(undefined8 *param_1,int param_2,ulong param_3,ulong param_4,ul
 }
 
 // 0x00149a80  size 0x204
-void FUN_00149a80(undefined8 *param_1,ulong param_2,ulong param_3,ulong param_4,long param_5,
-                 ulong param_6,ulong param_7,long param_8,uint param_9,uint param_10,uint param_11,
-                 uint param_12,uint param_13,uint param_14,int param_15)
+void Gs_BuildClearPacket(undefined8 *param_1,ulong param_2,ulong param_3,ulong param_4,long param_5,
+                        ulong param_6,ulong param_7,long param_8,uint param_9,uint param_10,
+                        uint param_11,uint param_12,uint param_13,uint param_14,int param_15)
 
 {
   undefined8 uVar1;
@@ -783,7 +796,7 @@ void FUN_00149a80(undefined8 *param_1,ulong param_2,ulong param_3,ulong param_4,
 }
 
 // 0x00149c90  size 0x438
-void FUN_00149c90(int param_1,byte param_2,short *param_3)
+void maybe_Gs_BuildTiledCopy(int param_1,byte param_2,short *param_3)
 
 {
   byte bVar1;
@@ -809,7 +822,7 @@ void FUN_00149c90(int param_1,byte param_2,short *param_3)
   if (*param_3 == 2) {
     uVar7 = 1;
   }
-  puVar4 = (undefined4 *)FUN_001456c0(param_1 + (uint)param_2 * 0x44,uVar7 << 2);
+  puVar4 = (undefined4 *)Pkt_Reserve(param_1 + (uint)param_2 * 0x44,uVar7 << 2);
   if (uVar11 != 0) {
     lVar6 = 3;
     uVar5 = 0x412;
@@ -939,7 +952,7 @@ LAB_0014a03c:
 /* WARNING: Removing unreachable block (ram,0x0014a134) */
 /* WARNING: Removing unreachable block (ram,0x0014a4a0) */
 
-void FUN_0014a0d0(int param_1,byte param_2,ushort *param_3)
+void maybe_Model_DrawShadow(int param_1,byte param_2,ushort *param_3)
 
 {
   int iVar1;
@@ -953,7 +966,7 @@ void FUN_0014a0d0(int param_1,byte param_2,ushort *param_3)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  iVar3 = FUN_00146820(param_1 + (uint)param_2 * 0x44,0x2f);
+  iVar3 = Pkt_AddVu1HeaderTex(param_1 + (uint)param_2 * 0x44,0x2f);
   *(uint *)(iVar3 + 0x30) = (uint)*param_3;
   if ((param_3[1] & 2) != 0) {
     *(uint *)(iVar3 + 0x30) = *(uint *)(iVar3 + 0x30) | 0x80;
@@ -980,7 +993,7 @@ void FUN_0014a0d0(int param_1,byte param_2,ushort *param_3)
     *(undefined8 *)(iVar3 + 0x118) = 0x7f;
   }
   else {
-    FUN_0013ed10(*(undefined4 *)(param_1 + 0x90),0,iVar3 + 0xc0,iVar3 + 0xb0);
+    Tex_GetTex0(*(undefined4 *)(param_1 + 0x90),0,iVar3 + 0xc0,iVar3 + 0xb0);
     *(undefined8 *)(iVar3 + 0xb8) = 6;
     *(undefined8 *)(iVar3 + 200) = 6;
     if (*param_3 == 2) {
@@ -1076,7 +1089,7 @@ void FUN_0014a0d0(int param_1,byte param_2,ushort *param_3)
 }
 
 // 0x0014a550  size 0x2a4
-void FUN_0014a550(undefined8 param_1,ulong param_2,undefined8 param_3)
+void maybe_Layer_DrawModel(undefined8 param_1,ulong param_2,undefined8 param_3)
 
 {
   bool bVar1;
@@ -1101,20 +1114,20 @@ void FUN_0014a550(undefined8 param_1,ulong param_2,undefined8 param_3)
   iVar3 = ((uint)param_2 & 0xff) * 0x44;
   iVar6 = (int)param_1;
   iVar4 = iVar6 + iVar3;
-  FUN_00145d70(iVar4);
-  FUN_00145780(iVar4,0x2fda00);
-  FUN_00146a90(iVar4,1);
-  FUN_00146920(iVar4,iVar6 + 0xa0,iVar6 + 0xe0,iVar6 + 0x120);
+  Pkt_End(iVar4);
+  Pkt_AddRef(iVar4,0x2fda00);
+  Pkt_AddVu1Base(iVar4,1);
+  Pkt_AddVu1Matrices(iVar4,iVar6 + 0xa0,iVar6 + 0xe0,iVar6 + 0x120);
   psVar5 = (short *)param_3;
   if (*(int *)(psVar5 + 2) != 0) {
-    uVar2 = FUN_00158370(*(undefined1 *)((int)psVar5 + 9),psVar5[5]);
+    uVar2 = TexSlot_GetEntry(*(undefined1 *)((int)psVar5 + 9),psVar5[5]);
     *(undefined4 *)(iVar6 + 0x90) = uVar2;
     if (*(int *)(*(int *)(iVar6 + 0x90) + 0x60) == 0) {
-      FUN_00146050(iVar4);
+      Pkt_AddMicroProgram(iVar4);
     }
   }
-  FUN_0014a0d0(param_1,param_2,param_3);
-  FUN_00149c90(param_1,param_2,param_3);
+  maybe_Model_DrawShadow(param_1,param_2,param_3);
+  maybe_Gs_BuildTiledCopy(param_1,param_2,param_3);
   if ((param_2 & 0xff) != 0) {
     if ((*psVar5 == 0x800) || (*psVar5 == 2)) {
       *(undefined4 *)(iVar3 + iVar6 + 0x40) = 0xfffff0;
@@ -1125,7 +1138,7 @@ void FUN_0014a550(undefined8 param_1,ulong param_2,undefined8 param_3)
       uStack_54 = 0x3f800000;
       fStack_58 = (*(float *)(psVar5 + 0x44) + *(float *)(psVar5 + 0x4c)) / 2.0;
       vu0math_sub_00132ae0(iVar6 + 0xd0,&fStack_60);
-      FUN_00144350(*(undefined4 *)(iVar6 + 0x88),auStack_70,iVar6 + 0xa0);
+      Camera_GetViewMatrix(*(undefined4 *)(iVar6 + 0x88),auStack_70,iVar6 + 0xa0);
       bVar1 = true;
       if ((-1 < iStack_68) && (iStack_68 < 0xffffff)) {
         bVar1 = false;
@@ -1141,7 +1154,7 @@ void FUN_0014a550(undefined8 param_1,ulong param_2,undefined8 param_3)
       fStack_1c = (*(float *)(psVar5 + 0x42) + *(float *)(psVar5 + 0x4a)) / 2.0;
       fStack_18 = (*(float *)(psVar5 + 0x44) + *(float *)(psVar5 + 0x4c)) / 2.0;
       vu0math_sub_00132ba0(iVar6 + 0xa0,iVar6 + 0xa0,auStack_50);
-      FUN_00144350(*(undefined4 *)(iVar6 + 0x88),auStack_10,iVar6 + 0xa0);
+      Camera_GetViewMatrix(*(undefined4 *)(iVar6 + 0x88),auStack_10,iVar6 + 0xa0);
       bVar1 = true;
       if ((-1 < iStack_8) && (iStack_8 < 0xffffff)) {
         bVar1 = false;
@@ -1156,7 +1169,9 @@ void FUN_0014a550(undefined8 param_1,ulong param_2,undefined8 param_3)
 }
 
 // 0x0014a800  size 0x1b0
-undefined4 FUN_0014a800(undefined8 param_1,undefined8 param_2)
+/* 9 callers */
+
+undefined4 Model_Draw(undefined8 param_1,undefined8 param_2)
 
 {
   byte bVar1;
@@ -1189,7 +1204,7 @@ undefined4 FUN_0014a800(undefined8 param_1,undefined8 param_2)
     }
     if (((sVar2 != 0x800) && (sVar2 != 2)) && (sVar2 != 0x200)) {
       vu0math_sub_00132ba0(iVar7 + 0xe0,*(int *)(iVar7 + 0x88) + 0x2c0,iVar7 + 0xa0);
-      lVar4 = FUN_00142ff0(*(undefined4 *)(iVar7 + 0x88),iVar7 + 0xe0,psVar5 + 0x40);
+      lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar7 + 0x88),iVar7 + 0xe0,psVar5 + 0x40);
       if (lVar4 == 0) {
         return 0;
       }
@@ -1214,17 +1229,17 @@ undefined4 FUN_0014a800(undefined8 param_1,undefined8 param_2)
       iVar6 = 0;
     }
     iVar7 = iVar7 + iVar6 * 0x44;
-    FUN_001465c0(iVar7,*(undefined4 *)(iVar7 + 0x3c));
-    FUN_0014a550(param_1,iVar6,param_2);
-    FUN_00146570(iVar7,*(undefined4 *)(iVar7 + 0x40));
+    Pkt_SubmitToChain(iVar7,*(undefined4 *)(iVar7 + 0x3c));
+    maybe_Layer_DrawModel(param_1,iVar6,param_2);
+    Pkt_Submit(iVar7,*(undefined4 *)(iVar7 + 0x40));
     uVar3 = 1;
   }
   return uVar3;
 }
 
 // 0x0014a9c0  size 0x178
-void FUN_0014a9c0(undefined8 param_1,uint *param_2,int *param_3,int *param_4,uint param_5,
-                 int param_6)
+void maybe_Model_ClipPrimitive
+               (undefined8 param_1,uint *param_2,int *param_3,int *param_4,uint param_5,int param_6)
 
 {
   uint uVar1;
@@ -1301,7 +1316,8 @@ void FUN_0014a9c0(undefined8 param_1,uint *param_2,int *param_3,int *param_4,uin
 }
 
 // 0x0014ab40  size 0x438
-undefined4 FUN_0014ab40(int param_1,uint *param_2,uint *param_3,int param_4,uint param_5)
+undefined4
+maybe_Model_TransformPrimitive(int param_1,uint *param_2,uint *param_3,int param_4,uint param_5)
 
 {
   bool bVar1;
@@ -1429,7 +1445,7 @@ undefined4 FUN_0014ab40(int param_1,uint *param_2,uint *param_3,int param_4,uint
 /* WARNING: Removing unreachable block (ram,0x0014aff8) */
 /* WARNING: Removing unreachable block (ram,0x0014b030) */
 
-int FUN_0014af80(undefined8 param_1,undefined8 param_2,ulong *param_3,long param_4)
+int maybe_Model_EmitPrimitives(undefined8 param_1,undefined8 param_2,ulong *param_3,long param_4)
 
 {
   int *piVar1;
@@ -1473,7 +1489,7 @@ int FUN_0014af80(undefined8 param_1,undefined8 param_2,ulong *param_3,long param
     puVar13[0xc0] = (uint)(float)*(ushort *)(iVar15 + 8);
     puVar13[0xc1] = (uint)(float)*(ushort *)(iVar15 + 10);
   }
-  lVar7 = FUN_0014ab40(param_1,param_2,aiStack_120,puVar13 + 4,puVar13[2]);
+  lVar7 = maybe_Model_TransformPrimitive(param_1,param_2,aiStack_120,puVar13 + 4,puVar13[2]);
   if (lVar7 == 0) {
     iVar17 = 0;
   }
@@ -1485,10 +1501,10 @@ int FUN_0014af80(undefined8 param_1,undefined8 param_2,ulong *param_3,long param
       uStack_8 = *(ulong *)(iVar15 + 0x18);
       uStack_10 = 0;
       uStack_18 = *(undefined8 *)(iVar15 + 0x20);
-      FUN_0013ed10(param_4,puVar13[0xa7],&uStack_8,&uStack_10);
+      Tex_GetTex0(param_4,puVar13[0xa7],&uStack_8,&uStack_10);
       uVar3 = uStack_18._4_2_ & 0xf000;
       uStack_18._0_6_ = CONCAT24(uVar3 | (ushort)puVar13[0xa5] & 0xfff,(undefined4)uStack_18);
-      FUN_0014a9c0(param_1,param_2,aiStack_220,puVar13 + 0x84,puVar13[2],param_4);
+      maybe_Model_ClipPrimitive(param_1,param_2,aiStack_220,puVar13 + 0x84,puVar13[2],param_4);
       uVar11 = puVar13[0xb3];
     }
     uVar6 = uVar11;
@@ -1664,7 +1680,9 @@ int FUN_0014af80(undefined8 param_1,undefined8 param_2,ulong *param_3,long param
 }
 
 // 0x0014b700  size 0x14c
-void FUN_0014b700(undefined8 param_1,uint *param_2,int param_3)
+/* 28 callers */
+
+void Pkt_AddPrimitives(undefined8 param_1,uint *param_2,int param_3)
 
 {
   int *piVar1;
@@ -1678,20 +1696,20 @@ void FUN_0014b700(undefined8 param_1,uint *param_2,int param_3)
   piVar1 = *(int **)((int)param_1 + 4);
   iVar4 = 0;
   iVar7 = *piVar1 + piVar1[2] * 0x10;
-  FUN_00145590();
+  Pkt_Close();
   for (; param_3 != 0; param_3 = param_3 + -1) {
     lVar6 = 0;
     if ((*param_2 & 0xc0) != 0) {
       if ((*param_2 & 1) != 0) {
-        lVar6 = FUN_00158370(*(undefined1 *)((int)param_2 + 0x291),
-                             *(undefined2 *)((int)param_2 + 0x292));
+        lVar6 = TexSlot_GetEntry(*(undefined1 *)((int)param_2 + 0x291),
+                                 *(undefined2 *)((int)param_2 + 0x292));
       }
       if ((lVar6 != 0) && (*(int *)((int)lVar6 + 0x60) == 0)) {
-        iVar3 = FUN_001580f0(iVar7 + iVar4 * 0x10,lVar6);
+        iVar3 = Pkt_AddTextureIfNeeded(iVar7 + iVar4 * 0x10,lVar6);
         iVar4 = iVar4 + iVar3;
       }
       puVar5 = (uint *)(iVar7 + iVar4 * 0x10);
-      lVar6 = FUN_0014af80(param_1,param_2,puVar5 + 4,lVar6);
+      lVar6 = maybe_Model_EmitPrimitives(param_1,param_2,puVar5 + 4,lVar6);
       if (lVar6 != 0) {
         uVar2 = (uint)lVar6;
         *puVar5 = uVar2 | 0x10000000;
@@ -1704,13 +1722,13 @@ void FUN_0014b700(undefined8 param_1,uint *param_2,int param_3)
     param_2 = param_2 + 0xc4;
   }
   if (iVar4 != 0) {
-    FUN_001456c0(param_1,iVar4);
+    Pkt_Reserve(param_1,iVar4);
   }
   return;
 }
 
 // 0x0014b850  size 0x8
-void FUN_0014b850(undefined4 param_1)
+void Scene_SetCallback2(undefined4 param_1)
 
 {
   uGpffff89c4 = param_1;
@@ -1718,7 +1736,7 @@ void FUN_0014b850(undefined4 param_1)
 }
 
 // 0x0014b860  size 0x8
-void FUN_0014b860(undefined4 param_1)
+void Scene_SetResetCheck(undefined4 param_1)
 
 {
   uGpffff89c0 = param_1;
@@ -1726,14 +1744,14 @@ void FUN_0014b860(undefined4 param_1)
 }
 
 // 0x0014b870  size 0x8
-undefined4 FUN_0014b870(void)
+undefined4 Scene_GetNext(void)
 
 {
   return uGpffff89a0;
 }
 
 // 0x0014b880  size 0x10
-void FUN_0014b880(undefined4 param_1)
+void Scene_RequestChange(undefined4 param_1)
 
 {
   uGpffff89a0 = param_1;
@@ -1742,7 +1760,7 @@ void FUN_0014b880(undefined4 param_1)
 }
 
 // 0x0014b890  size 0xc
-void FUN_0014b890(void)
+void Scene_RequestExit(void)
 
 {
   uGpffff89b8 = 1;
@@ -1750,7 +1768,9 @@ void FUN_0014b890(void)
 }
 
 // 0x0014b8a0  size 0xc
-undefined4 FUN_0014b8a0(undefined4 param_1)
+/* 11 callers */
+
+undefined4 Scene_SetParam(undefined4 param_1)
 
 {
   uGpffff89a8 = param_1;
@@ -1758,14 +1778,16 @@ undefined4 FUN_0014b8a0(undefined4 param_1)
 }
 
 // 0x0014b8b0  size 0x8
-undefined4 FUN_0014b8b0(void)
+undefined4 Scene_GetParam(void)
 
 {
   return uGpffff89a4;
 }
 
 // 0x0014b8c0  size 0x1f4
-undefined4 FUN_0014b8c0(void)
+/* returns nonzero when the scene ends */
+
+undefined4 Scene_Update(void)
 
 {
   undefined4 *puVar1;
@@ -1798,7 +1820,7 @@ undefined4 FUN_0014b8c0(void)
         iVar2 = *(int *)((int)piGpffff89b4 + iVar5);
       } while (iVar2 != 0);
     }
-    FUN_0014bb00();
+    Scene_FreeObjects();
     cGpffff8060 = '\x04';
   }
   else if (cGpffff8060 == '\x02') {
@@ -1840,14 +1862,14 @@ undefined4 FUN_0014b8c0(void)
     if (cGpffff8060 != '\0') {
       return 0;
     }
-    FUN_0014bc60(piGpffff89b4);
+    Scene_CreateObjects(piGpffff89b4);
     cGpffff8060 = '\x01';
   }
   return uVar7;
 }
 
 // 0x0014bac0  size 0x38
-void FUN_0014bac0(int param_1)
+void Scene_Start(int param_1)
 
 {
   uGpffff8060 = 0;
@@ -1863,7 +1885,7 @@ void FUN_0014bac0(int param_1)
 }
 
 // 0x0014bb00  size 0xe0
-void FUN_0014bb00(void)
+void Scene_FreeObjects(void)
 
 {
   int *piVar1;
@@ -1885,7 +1907,7 @@ void FUN_0014bb00(void)
             (**(code **)(*piVar3 + 8))(piVar3,1);
           }
         }
-        FUN_001322a0(piVar1);
+        maybe_List_Clear(piVar1);
         if (piVar1 != (int *)0x0) {
           (**(code **)(*piVar1 + 8))(piVar1,1);
         }
@@ -1926,7 +1948,7 @@ long FUN_0014bc20(long param_1)
 }
 
 // 0x0014bc60  size 0x1a8
-void FUN_0014bc60(int *param_1)
+void Scene_CreateObjects(int *param_1)
 
 {
   int *piVar1;
@@ -1991,16 +2013,16 @@ void FUN_0014bc60(int *param_1)
 }
 
 // 0x0014be10  size 0x20
-void FUN_0014be10(void)
+void Scene_Shutdown(void)
 
 {
-  FUN_0014bb00();
+  Scene_FreeObjects();
   uGpffff8994 = 0;
   return;
 }
 
 // 0x0014be30  size 0x10
-void FUN_0014be30(undefined4 param_1)
+void maybe_Scene_InitHeap(undefined4 param_1)
 
 {
   uGpffff8994 = param_1;
@@ -2010,7 +2032,7 @@ void FUN_0014be30(undefined4 param_1)
 }
 
 // 0x0014be40  size 0xb8
-void FUN_0014be40(int param_1,undefined4 param_2,long param_3,undefined4 param_4)
+void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4)
 
 {
   int iVar1;
@@ -2048,13 +2070,15 @@ void FUN_0014be40(int param_1,undefined4 param_2,long param_3,undefined4 param_4
   uStack_14 = 0;
   uStack_10 = param_2;
   uStack_c = param_4;
-  FUN_00136a80(auStack_30);
+  File_QueueRequest(auStack_30);
   return;
 }
 
 // 0x0014bf00  size 0xd4
-void FUN_0014bf00(int param_1,undefined4 param_2,long param_3,undefined4 param_4,long param_5,
-                 int param_6)
+/* 54 callers */
+
+void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param_4,long param_5,
+                   int param_6)
 
 {
   int iVar1;
@@ -2098,12 +2122,12 @@ void FUN_0014bf00(int param_1,undefined4 param_2,long param_3,undefined4 param_4
   uStack_14 = 0;
   uStack_10 = param_2;
   uStack_c = param_4;
-  FUN_00136a80(auStack_30);
+  File_QueueRequest(auStack_30);
   return;
 }
 
 // 0x0014bfe0  size 0x7c
-uint FUN_0014bfe0(uint param_1,uint param_2,long param_3)
+uint Arc_GetFileSize(uint param_1,uint param_2,long param_3)
 
 {
   uint uVar1;

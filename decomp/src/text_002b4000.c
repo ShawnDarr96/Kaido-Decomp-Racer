@@ -1788,7 +1788,7 @@ undefined4 FUN_002b6e10(int param_1)
   uStack_24 = *(undefined4 *)(param_1 + 0x7008);
   uStack_28 = *(undefined4 *)(param_1 + 0x7004);
   uStack_2c = *(undefined4 *)(param_1 + 0x7000);
-  FUN_001325d0(auStack_18,0xff,0x18);
+  Mem_Set16(auStack_18,0xff,0x18);
   *(undefined4 *)(param_1 + 0x6ff0) = 0x10;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {

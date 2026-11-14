@@ -320,8 +320,8 @@ void FUN_00248970(undefined8 param_1)
   FUN_002011b0(7,0x2e,*(undefined4 *)
                        ((int)register0x000001c0 + *(int *)(iVar13 + 0x62c) * 4 + -0x7b58));
   iVar14 = FUN_001b55a0(*(undefined2 *)(iVar13 + 0x24));
-  uVar10 = FUN_0017e850();
-  cVar4 = FUN_00182c40(uVar10,0);
+  uVar10 = RaceCtx_Get_10();
+  cVar4 = Race_IsTimeTrialMode(uVar10,0);
   if (cVar4 == '\0') {
     if (*(short *)(iVar14 + 0x3a) < *(short *)(iVar14 + 0x38)) {
       bVar3 = true;
@@ -690,8 +690,8 @@ void FUN_00249330(undefined8 param_1)
   FUN_002011b0(7,0x2e,*(undefined4 *)
                        ((int)register0x000001c0 + *(int *)(iVar14 + 0x62c) * 4 + -0x7b68));
   iVar5 = FUN_001b55a0(*(undefined2 *)(iVar14 + 0x24));
-  uVar10 = FUN_0017e850();
-  cVar4 = FUN_00182c40(uVar10,0);
+  uVar10 = RaceCtx_Get_10();
+  cVar4 = Race_IsTimeTrialMode(uVar10,0);
   if (cVar4 == '\0') {
     if (*(short *)(iVar5 + 0x3a) < *(short *)(iVar5 + 0x38)) {
       bVar3 = true;
@@ -1134,7 +1134,7 @@ void FUN_0024a870(int param_1)
     FUN_001ffdc0(auStack_f0[0],0xffffffffffffffff,0xffffffffffffffff,0);
   }
   else {
-    FUN_0017fd70(auStack_10,*(undefined2 *)(param_1 + 0x24));
+    RaceResult_BuildMessage(auStack_10,*(undefined2 *)(param_1 + 0x24));
     FUN_001ffdc0(uStack_c,0xffffffffffffffff,0xffffffffffffffff,0);
   }
   iVar2 = FUN_001f48c0(0x8a);
@@ -1163,7 +1163,7 @@ void FUN_0024a870(int param_1)
   }
   else {
     iVar2 = iGpffff8d68 + 0x40;
-    FUN_0017fd70(auStack_20,*(undefined2 *)(param_1 + 0x24));
+    RaceResult_BuildMessage(auStack_20,*(undefined2 *)(param_1 + 0x24));
     uVar4 = FUN_001f6ff0(uStack_1c,0xffffffffffffffff);
     FUN_001eea30(iVar2,0,0x16,uVar4);
   }
@@ -1855,7 +1855,7 @@ void FUN_0024baa0(int param_1)
     *(undefined4 *)(param_1 + 0x660) = 0;
   }
   FUN_00245af0(param_1,*(undefined4 *)(param_1 + 0x28),0);
-  uVar11 = FUN_0017e720();
+  uVar11 = Race_GetCourseVariant();
   uVar11 = FUN_001f69f0(uVar11);
   uVar11 = FUN_001f69b0(uVar11,1);
   FUN_002010a0(0x85,3,0x37d,1,uVar11);
@@ -1924,8 +1924,8 @@ void FUN_0024baa0(int param_1)
       FUN_002010a0(0x93,0x1a,0x16,uVar11,4);
     }
     iVar6 = FUN_001b55a0(*(undefined2 *)(param_1 + 0x28));
-    uVar11 = FUN_0017e850();
-    cVar2 = FUN_00182c40(uVar11,0);
+    uVar11 = RaceCtx_Get_10();
+    cVar2 = Race_IsTimeTrialMode(uVar11,0);
     if (cVar2 == '\0') {
       if (*(short *)(iVar6 + 0x3a) < *(short *)(iVar6 + 0x38)) {
         bVar1 = true;

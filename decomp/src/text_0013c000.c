@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x0013c000  size 0x4c
-void FUN_0013c000(undefined8 param_1,long param_2)
+void Sif_WaitDma(undefined8 param_1,long param_2)
 
 {
   long lVar1;
@@ -18,7 +18,7 @@ void FUN_0013c000(undefined8 param_1,long param_2)
 }
 
 // 0x0013c050  size 0x90
-long FUN_0013c050(undefined4 param_1,undefined4 param_2,undefined4 param_3,long param_4)
+long Sif_SendDma(undefined4 param_1,undefined4 param_2,undefined4 param_3,long param_4)
 
 {
   long lVar1;
@@ -47,7 +47,7 @@ long FUN_0013c050(undefined4 param_1,undefined4 param_2,undefined4 param_3,long 
 }
 
 // 0x0013c100  size 0xac
-int FUN_0013c100(int param_1,int *param_2)
+int Rpc_PackStrings(int param_1,int *param_2)
 
 {
   int iVar1;
@@ -71,7 +71,7 @@ int FUN_0013c100(int param_1,int *param_2)
 }
 
 // 0x0013c1b0  size 0x38
-void FUN_0013c1b0(void)
+void Iop_LoadModule(void)
 
 {
   long in_a3;
@@ -85,7 +85,9 @@ void FUN_0013c1b0(void)
 }
 
 // 0x0013c1f0  size 0xcc
-void FUN_0013c1f0(long param_1,long param_2)
+/* sceSifInitRpc, loads IOPRP image */
+
+void Iop_Reboot(long param_1,long param_2)
 
 {
   long lVar1;
@@ -115,8 +117,8 @@ void FUN_0013c1f0(long param_1,long param_2)
 // 0x0013c2c0  size 0x1d8
 /* WARNING: Removing unreachable block (ram,0x0013c2f0) */
 
-void FUN_0013c2c0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void IopSnd_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                   undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined2 *puVar1;
@@ -188,7 +190,7 @@ void FUN_0013c2c0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undef
     puStack_60 = puVar3;
   }
 LAB_0013c474:
-  FUN_0013bd50(uRam0036f020,&uStack_70);
+  Rpc_Call(uRam0036f020,&uStack_70);
   return;
 }
 
@@ -200,25 +202,25 @@ void FUN_0013c4a0(void)
 }
 
 // 0x0013c4b0  size 0x94
-void FUN_0013c4b0(undefined8 param_1)
+void IopSnd_SetBlocking(undefined8 param_1)
 
 {
   undefined8 uVar1;
   
   uRam0036f020 = (undefined4)param_1;
-  uVar1 = FUN_0013be40(param_1,1);
-  FUN_0013c2c0(0x100,0);
-  FUN_0013c2c0(0x10d,0x980,0x3fff);
-  FUN_0013c2c0(0x10d,0xa80,0x3fff);
-  FUN_0013c2c0(0x10d,0x981,0x3fff);
-  FUN_0013c2c0(0x10d,0xa81,0x3fff);
-  FUN_0013c2c0(0x107,10,0x80);
-  FUN_0013be40(uRam0036f020,uVar1);
+  uVar1 = Rpc_SetBlocking(param_1,1);
+  IopSnd_Command(0x100,0);
+  IopSnd_Command(0x10d,0x980,0x3fff);
+  IopSnd_Command(0x10d,0xa80,0x3fff);
+  IopSnd_Command(0x10d,0x981,0x3fff);
+  IopSnd_Command(0x10d,0xa81,0x3fff);
+  IopSnd_Command(0x107,10,0x80);
+  Rpc_SetBlocking(uRam0036f020,uVar1);
   return;
 }
 
 // 0x0013c550  size 0x1dc
-undefined4 FUN_0013c550(undefined4 param_1,int *param_2)
+undefined4 IopStrm_RpcHandler(undefined4 param_1,int *param_2)
 
 {
   int iVar1;
@@ -269,13 +271,13 @@ undefined4 FUN_0013c550(undefined4 param_1,int *param_2)
       if (*(code **)(iVar4 + 0x68) != (code *)0x0) {
         (**(code **)(iVar4 + 0x68))(iVar1,iVar4 + 0x44,*(undefined4 *)(iVar4 + 100));
       }
-      FUN_0013c730(iVar1,iVar2,iVar5);
+      IopStrm_TransferChunk(iVar1,iVar2,iVar5);
       *(undefined4 *)(iVar4 + 0x2c) = 0;
     }
     break;
   case 0x404:
-    if ((*(int *)(iVar4 + 0x30) == 0) ||
-       (lVar3 = FUN_0013c000(*(int *)(iVar4 + 0x30),0), -1 < lVar3)) {
+    if ((*(int *)(iVar4 + 0x30) == 0) || (lVar3 = Sif_WaitDma(*(int *)(iVar4 + 0x30),0), -1 < lVar3)
+       ) {
       uRam003871c0 = 0;
     }
     else {
@@ -298,7 +300,7 @@ undefined4 FUN_0013c550(undefined4 param_1,int *param_2)
 }
 
 // 0x0013c730  size 0x148
-undefined8 FUN_0013c730(int param_1,int param_2,uint param_3)
+undefined8 IopStrm_TransferChunk(int param_1,int param_2,uint param_3)
 
 {
   uint uVar1;
@@ -373,7 +375,7 @@ undefined8 FUN_0013c730(int param_1,int param_2,uint param_3)
 }
 
 // 0x0013c880  size 0x124
-undefined4 FUN_0013c880(uint param_1,undefined8 param_2,undefined8 param_3)
+undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uVar1;
@@ -382,7 +384,7 @@ undefined4 FUN_0013c880(uint param_1,undefined8 param_2,undefined8 param_3)
   int iVar4;
   uint uVar5;
   
-  lVar2 = FUN_0013c9b0(0x300,param_1,param_2,uGpffff8938);
+  lVar2 = IopStrm_Command(0x300,param_1,param_2,uGpffff8938);
   if (lVar2 == -1) {
     uVar1 = 0;
   }
@@ -390,7 +392,7 @@ undefined4 FUN_0013c880(uint param_1,undefined8 param_2,undefined8 param_3)
     uVar5 = 0;
     if (param_1 != 0) {
       do {
-        FUN_0013c9b0(0x303,uVar5,0,1,0x2a);
+        IopStrm_Command(0x303,uVar5,0,1,0x2a);
         uVar5 = uVar5 + 1;
       } while (uVar5 < param_1);
     }
@@ -431,9 +433,10 @@ undefined4 FUN_0013c880(uint param_1,undefined8 param_2,undefined8 param_3)
 
 // 0x0013c9b0  size 0x168
 /* WARNING: Removing unreachable block (ram,0x0013c9e0) */
+/* 11 callers */
 
-void FUN_0013c9b0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void IopStrm_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                    undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined4 *puVar1;
@@ -488,12 +491,12 @@ void FUN_0013c9b0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undef
     maybe_Mem_CopyQwords(0x387084,uRam00387084,0xc);
   default:
   }
-  FUN_0013bd50(uGpffff8934,&uStack_70);
+  Rpc_Call(uGpffff8934,&uStack_70);
   return;
 }
 
 // 0x0013cb20  size 0x94
-bool FUN_0013cb20(undefined8 param_1)
+bool IopStrm_IsPlaying(undefined8 param_1)
 
 {
   bool bVar1;
@@ -503,7 +506,7 @@ bool FUN_0013cb20(undefined8 param_1)
   WaitSema(uGpffff894c);
   bVar1 = *(int *)(iVar2 + 0x3c) - 2U < 2;
   if (bVar1) {
-    FUN_0013c9b0(0x30a,param_1);
+    IopStrm_Command(0x30a,param_1);
     *(undefined4 *)(iVar2 + 0x3c) = 1;
     *(undefined4 *)(iVar2 + 0x40) = 0;
   }
@@ -512,7 +515,7 @@ bool FUN_0013cb20(undefined8 param_1)
 }
 
 // 0x0013cbc0  size 0xbc
-undefined4 FUN_0013cbc0(undefined8 param_1,int param_2)
+undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -523,7 +526,7 @@ undefined4 FUN_0013cbc0(undefined8 param_1,int param_2)
   iVar2 = iGpffff8948 + (int)param_1 * 0x6c;
   WaitSema(uGpffff894c);
   if ((*(int *)(iVar2 + 0x40) != param_2) && (*(int *)(iVar2 + 0x3c) - 2U < 2)) {
-    FUN_0013c9b0(0x309,param_1,param_2);
+    IopStrm_Command(0x309,param_1,param_2);
     uVar1 = 2;
     if (param_2 == 0) {
       uVar1 = 3;
@@ -537,7 +540,7 @@ undefined4 FUN_0013cbc0(undefined8 param_1,int param_2)
 }
 
 // 0x0013cc80  size 0x8c
-bool FUN_0013cc80(undefined8 param_1)
+bool IopStrm_IsStopped(undefined8 param_1)
 
 {
   bool bVar1;
@@ -547,7 +550,7 @@ bool FUN_0013cc80(undefined8 param_1)
   WaitSema(uGpffff894c);
   bVar1 = *(int *)(iVar2 + 0x3c) == 0;
   if (bVar1) {
-    FUN_0013c9b0(0x308,param_1);
+    IopStrm_Command(0x308,param_1);
     *(undefined4 *)(iVar2 + 0x3c) = 1;
     *(undefined4 *)(iVar2 + 0x40) = 0;
   }
@@ -556,7 +559,7 @@ bool FUN_0013cc80(undefined8 param_1)
 }
 
 // 0x0013cd10  size 0x5c
-void FUN_0013cd10(undefined8 param_1,long param_2)
+void IopStrm_Stop(undefined8 param_1,long param_2)
 
 {
   int iVar1;
@@ -566,12 +569,12 @@ void FUN_0013cd10(undefined8 param_1,long param_2)
     *(undefined4 *)(iVar1 + 0x3c) = 1;
     *(undefined4 *)(iVar1 + 0x40) = 0;
   }
-  FUN_0013c9b0(0x307,param_1,*(undefined4 *)(iVar1 + 0x2c));
+  IopStrm_Command(0x307,param_1,*(undefined4 *)(iVar1 + 0x2c));
   return;
 }
 
 // 0x0013cd70  size 0x50
-undefined1 FUN_0013cd70(int param_1)
+undefined1 IopStrm_GetState(int param_1)
 
 {
   undefined1 uVar1;
@@ -585,7 +588,7 @@ undefined1 FUN_0013cd70(int param_1)
 }
 
 // 0x0013cdc0  size 0x68
-undefined4 FUN_0013cdc0(int param_1)
+undefined4 IopStrm_WaitIdle(int param_1)
 
 {
   int iVar1;
@@ -595,7 +598,7 @@ undefined4 FUN_0013cdc0(int param_1)
   
   iVar4 = iGpffff8948 + param_1 * 0x6c;
   iVar1 = *(int *)(iVar4 + 0x30);
-  if ((iVar1 == 0) || (lVar3 = FUN_0013c000(iVar1,0), -1 < lVar3)) {
+  if ((iVar1 == 0) || (lVar3 = Sif_WaitDma(iVar1,0), -1 < lVar3)) {
     uVar2 = 0;
   }
   else {
@@ -606,7 +609,7 @@ undefined4 FUN_0013cdc0(int param_1)
 }
 
 // 0x0013ce30  size 0x7c
-undefined8 FUN_0013ce30(undefined8 param_1)
+undefined8 IopStrm_Flush(undefined8 param_1)
 
 {
   undefined8 uVar1;
@@ -614,14 +617,14 @@ undefined8 FUN_0013ce30(undefined8 param_1)
   
   piVar2 = (int *)(iGpffff8948 + (int)param_1 * 0x6c);
   WaitSema(uGpffff894c);
-  uVar1 = FUN_0013c730(param_1,piVar2[8],*piVar2 * piVar2[9]);
+  uVar1 = IopStrm_TransferChunk(param_1,piVar2[8],*piVar2 * piVar2[9]);
   piVar2[0xb] = piVar2[0xd];
   SignalSema(uGpffff894c);
   return uVar1;
 }
 
 // 0x0013ceb0  size 0x60
-void FUN_0013ceb0(int param_1,int param_2)
+void IopStrm_AddPosition(int param_1,int param_2)
 
 {
   int iVar1;
@@ -634,7 +637,7 @@ void FUN_0013ceb0(int param_1,int param_2)
 }
 
 // 0x0013cf10  size 0xf0
-void FUN_0013cf10(undefined8 param_1,undefined4 *param_2)
+void IopStrm_Play(undefined8 param_1,undefined4 *param_2)
 
 {
   int iVar1;
@@ -659,12 +662,12 @@ void FUN_0013cf10(undefined8 param_1,undefined4 *param_2)
   *(undefined4 *)(iVar2 + 0x30) = 0;
   *(undefined4 *)(iVar2 + 0x34) = 0;
   *(undefined4 *)(iVar2 + 0x38) = 0;
-  FUN_0013c9b0(0x306,param_1,&uStack_10);
+  IopStrm_Command(0x306,param_1,&uStack_10);
   return;
 }
 
 // 0x0013d000  size 0xcc
-void FUN_0013d000(undefined8 param_1,undefined4 *param_2)
+void IopStrm_PlayEx(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined4 *puVar1;
@@ -697,25 +700,25 @@ void FUN_0013d000(undefined8 param_1,undefined4 *param_2)
   puVar1[0x10] = 0;
   puVar1[0x19] = 0;
   puVar1[0x1a] = param_2[6];
-  FUN_0013c9b0(0x305,param_1,&uStack_10);
+  IopStrm_Command(0x305,param_1,&uStack_10);
   return;
 }
 
 // 0x0013d0d0  size 0x9c
-void FUN_0013d0d0(void)
+void IopStrm_Shutdown(void)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_0013be40(uGpffff8934,1);
+  uVar1 = Rpc_SetBlocking(uGpffff8934,1);
   uGpffff8944 = 0;
   if (iGpffff8948 != 0) {
     Mem_Free();
     iGpffff8948 = 0;
   }
-  FUN_0013c9b0(0x301);
-  FUN_0013be40(uGpffff8934,uVar1);
-  FUN_0013bf50(0x387100);
+  IopStrm_Command(0x301);
+  Rpc_SetBlocking(uGpffff8934,uVar1);
+  RpcServer_Stop(0x387100);
   maybe_Mutex_Delete((int)register0x000001c0 + -0x76b4);
   if (iGpffff893c != 0) {
     Mem_Free();
@@ -729,7 +732,7 @@ void FUN_0013d0d0(void)
 }
 
 // 0x0013d170  size 0xf0
-bool FUN_0013d170(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+bool IopStrm_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                  undefined8 param_5)
 
 {
@@ -740,30 +743,30 @@ bool FUN_0013d170(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   uGpffff893c = Mem_AllocAligned(0x40,0x40,param_5);
   uGpffff8940 = Mem_AllocAligned(0x1000,0x10,param_5);
   maybe_Mutex_Create((int)register0x000001c0 + -0x76b4);
-  lVar1 = FUN_0013bfa0(0x387100,param_3,param_4,0x40,uGpffff893c,0x1000,uGpffff8940,0x13c550);
+  lVar1 = RpcServer_Start(0x387100,param_3,param_4,0x40,uGpffff893c,0x1000,uGpffff8940,0x13c550);
   if (lVar1 != 0) {
-    uVar2 = FUN_0013be40(uGpffff8934,1);
-    FUN_0013c880(param_1,param_2,param_5);
-    FUN_0013be40(uGpffff8934,uVar2);
+    uVar2 = Rpc_SetBlocking(uGpffff8934,1);
+    IopStrm_Open(param_1,param_2,param_5);
+    Rpc_SetBlocking(uGpffff8934,uVar2);
   }
   return lVar1 != 0;
 }
 
 // 0x0013d260  size 0x9c
-void FUN_0013d260(void)
+void IopStrm_Reset(void)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_0013be40(uGpffff8934,1);
+  uVar1 = Rpc_SetBlocking(uGpffff8934,1);
   uGpffff8944 = 0;
   if (iGpffff8948 != 0) {
     Mem_Free();
     iGpffff8948 = 0;
   }
-  FUN_0013c9b0(0x301);
-  FUN_0013be40(uGpffff8934,uVar1);
-  FUN_0013bf50(0x387100);
+  IopStrm_Command(0x301);
+  Rpc_SetBlocking(uGpffff8934,uVar1);
+  RpcServer_Stop(0x387100);
   maybe_Mutex_Delete((int)register0x000001c0 + -0x76b4);
   if (iGpffff893c != 0) {
     Mem_Free();
@@ -777,7 +780,7 @@ void FUN_0013d260(void)
 }
 
 // 0x0013d300  size 0x8
-void FUN_0013d300(undefined4 param_1)
+void IopStrm_SetRpcClient(undefined4 param_1)
 
 {
   uGpffff8934 = param_1;
@@ -785,7 +788,7 @@ void FUN_0013d300(undefined4 param_1)
 }
 
 // 0x0013d310  size 0x170
-undefined4 FUN_0013d310(uint param_1,undefined8 param_2,undefined8 param_3)
+undefined4 IopSe_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uVar1;
@@ -794,12 +797,12 @@ undefined4 FUN_0013d310(uint param_1,undefined8 param_2,undefined8 param_3)
   int iVar4;
   uint uVar5;
   
-  lVar2 = FUN_0013d620(0x200,param_2,param_1);
+  lVar2 = IopSe_Command(0x200,param_2,param_1);
   if (lVar2 == -1) {
     uVar1 = 0;
   }
   else {
-    lVar2 = FUN_0013d620(0x204,1);
+    lVar2 = IopSe_Command(0x204,1);
     if (lVar2 == -1) {
       uVar1 = 0;
     }
@@ -807,7 +810,7 @@ undefined4 FUN_0013d310(uint param_1,undefined8 param_2,undefined8 param_3)
       uVar5 = 0;
       if (param_1 != 0) {
         do {
-          lVar2 = FUN_0013d620(0x206,uVar5,0x100);
+          lVar2 = IopSe_Command(0x206,uVar5,0x100);
           if (lVar2 == -1) {
             return 0;
           }
@@ -848,7 +851,7 @@ undefined4 FUN_0013d310(uint param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x0013d480  size 0x17c
-void FUN_0013d480(void)
+void IopSe_FlushDma(void)
 
 {
   int *piVar1;
@@ -907,7 +910,7 @@ void FUN_0013d480(void)
 }
 
 // 0x0013d600  size 0x20
-void FUN_0013d600(int param_1)
+void IopSe_ClearPending(int param_1)
 
 {
   *(undefined4 *)(*(int *)(iGpffff8958 + param_1 * 0x50 + 0x3c) + 4) = 0;
@@ -917,8 +920,8 @@ void FUN_0013d600(int param_1)
 // 0x0013d620  size 0x148
 /* WARNING: Removing unreachable block (ram,0x0013d650) */
 
-void FUN_0013d620(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void IopSe_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                  undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined4 *puVar1;
@@ -969,12 +972,12 @@ void FUN_0013d620(undefined4 param_1,undefined8 param_2,undefined8 param_3,undef
   case 0x205:
     maybe_Mem_CopyQwords(0x387204,uRam00387204,0x1c);
   }
-  FUN_0013bd50(uGpffff8950,&uStack_70);
+  Rpc_Call(uGpffff8950,&uStack_70);
   return;
 }
 
 // 0x0013d770  size 0x118
-void FUN_0013d770(undefined8 param_1,int *param_2)
+void IopSe_LoadBank(undefined8 param_1,int *param_2)
 
 {
   int *piVar1;
@@ -1010,54 +1013,54 @@ void FUN_0013d770(undefined8 param_1,int *param_2)
   iStack_10 = param_2[6];
   iStack_c = param_2[7];
   iStack_8 = param_2[8];
-  FUN_0013d620(0x205,param_1,&iStack_20);
+  IopSe_Command(0x205,param_1,&iStack_20);
   return;
 }
 
 // 0x0013d890  size 0x58
-void FUN_0013d890(void)
+void IopSe_Shutdown(void)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_0013be40(uGpffff8950,1);
+  uVar1 = Rpc_SetBlocking(uGpffff8950,1);
   if (iGpffff8958 != 0) {
     Mem_Free();
     iGpffff8958 = 0;
   }
   uGpffff8954 = 0;
-  FUN_0013d620(0x201);
-  FUN_0013be40(uGpffff8950,uVar1);
+  IopSe_Command(0x201);
+  Rpc_SetBlocking(uGpffff8950,uVar1);
   return;
 }
 
 // 0x0013d8f0  size 0x6c
-undefined8 FUN_0013d8f0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+undefined8 IopSe_OpenLocked(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
   undefined8 uVar2;
   
-  uVar1 = FUN_0013be40(uGpffff8950,1);
-  uVar2 = FUN_0013d310(param_1,param_2,param_3);
-  FUN_0013be40(uGpffff8950,uVar1);
+  uVar1 = Rpc_SetBlocking(uGpffff8950,1);
+  uVar2 = IopSe_Open(param_1,param_2,param_3);
+  Rpc_SetBlocking(uGpffff8950,uVar1);
   return uVar2;
 }
 
 // 0x0013d960  size 0x64
-void FUN_0013d960(void)
+void IopSe_Reset(void)
 
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_0013be40(uGpffff8950,1);
+  uVar1 = Rpc_SetBlocking(uGpffff8950,1);
   if (iGpffff8958 != 0) {
     Mem_Free();
     iGpffff8958 = 0;
   }
   uGpffff8954 = 0;
-  FUN_0013d620(0x201);
-  FUN_0013be40(uGpffff8950,uVar1);
+  IopSe_Command(0x201);
+  Rpc_SetBlocking(uGpffff8950,uVar1);
   uGpffff8950 = 0;
   uGpffff8954 = 0;
   iGpffff8958 = 0;
@@ -1065,7 +1068,7 @@ void FUN_0013d960(void)
 }
 
 // 0x0013d9d0  size 0x10
-void FUN_0013d9d0(undefined4 param_1)
+void IopSe_SetRpcClient(undefined4 param_1)
 
 {
   uGpffff8950 = param_1;
@@ -1075,7 +1078,7 @@ void FUN_0013d9d0(undefined4 param_1)
 }
 
 // 0x0013d9e0  size 0x58
-int * FUN_0013d9e0(int param_1,uint param_2)
+int * Tex_GetEntry(int param_1,uint param_2)
 
 {
   int *piVar1;
@@ -1101,7 +1104,7 @@ int * FUN_0013d9e0(int param_1,uint param_2)
 }
 
 // 0x0013da40  size 0x24
-int FUN_0013da40(int param_1)
+int Tex_GetFirstEntry(int param_1)
 
 {
   int iVar1;
@@ -1119,7 +1122,9 @@ int FUN_0013da40(int param_1)
 }
 
 // 0x0013da70  size 0x13c
-void FUN_0013da70(int param_1)
+/* 13 callers */
+
+void Tex_Relocate(int param_1)
 
 {
   ulong uVar1;
@@ -1145,9 +1150,9 @@ void FUN_0013da70(int param_1)
            (ushort)((*(uint *)(&DAT_00361530 + (uint)*(byte *)((int)piVar4 + 0x13) * 4) & 0x3f) << 4
                    );
       if ((*(ulong *)(piVar4 + 6) & 0xfffff) >> 0xe == 0) {
-        uVar1 = FUN_00140070(((ulong)*(ushort *)((int)piVar4 + 0x1a) & 0x3ff) >> 4,
-                             (uint)(*(ushort *)((int)piVar4 + 0x26) >> 6) +
-                             (uint)*(ushort *)(piVar4 + 5));
+        uVar1 = Tex_GetBufferWidth(((ulong)*(ushort *)((int)piVar4 + 0x1a) & 0x3ff) >> 4,
+                                   (uint)(*(ushort *)((int)piVar4 + 0x26) >> 6) +
+                                   (uint)*(ushort *)(piVar4 + 5));
         *(ulong *)(piVar4 + 6) = *(ulong *)(piVar4 + 6) & 0xfffffffffff03fff | (uVar1 & 0x3f) << 0xe
         ;
       }
@@ -1163,7 +1168,9 @@ void FUN_0013da70(int param_1)
 }
 
 // 0x0013dbb0  size 0xcc
-undefined4 FUN_0013dbb0(int param_1)
+/* psm 0x14/0x2c/0x24 */
+
+undefined4 Tex_GetPsmBytesPerPixelClass(int param_1)
 
 {
   undefined4 uVar1;
@@ -1188,15 +1195,16 @@ undefined4 FUN_0013dbb0(int param_1)
 }
 
 // 0x0013dc80  size 0x1c
-undefined4 FUN_0013dc80(uint param_1)
+undefined4 Tex_GetPsmInfo(uint param_1)
 
 {
   return *(undefined4 *)(&DAT_00361530 + (param_1 & 0xff) * 4);
 }
 
 // 0x0013dca0  size 0x70c
-int FUN_0013dca0(ulong param_1,undefined8 param_2,undefined8 param_3,uint param_4,uint param_5,
-                uint param_6,int param_7,long param_8)
+int Tex_BuildUploadPacket
+              (ulong param_1,undefined8 param_2,undefined8 param_3,uint param_4,uint param_5,
+              uint param_6,int param_7,long param_8)
 
 {
   byte bVar1;
@@ -1346,15 +1354,16 @@ LAB_0013df40:
       *(ushort *)((int)piVar11 + 0x1a) =
            *(ushort *)((int)piVar11 + 0x1a) & 0xfc0f |
            (ushort)((*(uint *)(&DAT_00361530 + ((uint)param_1 & 0xff) * 4) & 0x3f) << 4);
-      uVar13 = FUN_00140070(((ulong)*(ushort *)((int)piVar11 + 0x1a) & 0x3ff) >> 4,param_2);
+      uVar13 = Tex_GetBufferWidth(((ulong)*(ushort *)((int)piVar11 + 0x1a) & 0x3ff) >> 4,param_2);
       *(ulong *)(piVar11 + 6) =
            *(ulong *)(piVar11 + 6) & 0xfffffffffff03fff | (uVar13 & 0x3f) << 0xe;
-      bVar1 = FUN_00140020(param_2);
+      bVar1 = Bits_HighestSet(param_2);
       *(byte *)((int)piVar11 + 0x1b) = *(byte *)((int)piVar11 + 0x1b) & 0xc3 | (bVar1 & 0xf) << 2;
-      uVar13 = FUN_00140020(param_3);
+      uVar13 = Bits_HighestSet(param_3);
       *(ulong *)(piVar11 + 6) =
            *(ulong *)(piVar11 + 6) & 0xfffffffc3fffffff | (uVar13 & 0xf) << 0x1e;
-      iVar4 = FUN_0013fe10(((ulong)*(ushort *)((int)piVar11 + 0x1a) & 0x3ff) >> 4,param_2,param_3);
+      iVar4 = Tex_GetPageCount(((ulong)*(ushort *)((int)piVar11 + 0x1a) & 0x3ff) >> 4,param_2,
+                               param_3);
       uVar13 = (ulong)iVar4;
     }
     if (param_5 != 0) {
@@ -1363,7 +1372,8 @@ LAB_0013df40:
            (byte)((*(uint *)(&DAT_00361530 + (param_5 & 0xff) * 4) & 0xf) << 3);
       *(ulong *)(piVar11 + 6) =
            *(ulong *)(piVar11 + 6) & 0xfff8001fffffffff | (uVar13 & 0x3fff) << 0x25;
-      iVar4 = FUN_0013fe10(((ulong)*(byte *)((int)piVar11 + 0x1e) & 0x7f) >> 3,uStack_30,uStack_34);
+      iVar4 = Tex_GetPageCount(((ulong)*(byte *)((int)piVar11 + 0x1e) & 0x7f) >> 3,uStack_30,
+                               uStack_34);
       uVar13 = (ulong)((int)uVar13 + iVar4);
     }
     if (1 < param_4) {
@@ -1401,7 +1411,7 @@ LAB_0013df40:
           iVar4 = (int)uVar13;
           if ((uVar6 != 0) && (uVar6 < 4)) {
             *puVar12 = *puVar12 | (ulong)(uint)(iVar4 << (uStack_50 & 0x1f));
-            iVar2 = FUN_00140070(param_1,uVar10 >> (uVar6 & 0x1f));
+            iVar2 = Tex_GetBufferWidth(param_1,uVar10 >> (uVar6 & 0x1f));
             uVar3 = uStack_60 & 0x1f;
             uStack_50 = uStack_50 + 0x14;
             uStack_60 = uStack_60 + 0x14;
@@ -1410,13 +1420,13 @@ LAB_0013df40:
           if ((3 < uVar6) && (uVar6 < 7)) {
             *(ulong *)(piVar11 + 0xe) =
                  *(ulong *)(piVar11 + 0xe) | (ulong)(uint)(iVar4 << (uStack_70 & 0x1f));
-            iVar2 = FUN_00140070(param_1,uVar10 >> (uVar6 & 0x1f));
+            iVar2 = Tex_GetBufferWidth(param_1,uVar10 >> (uVar6 & 0x1f));
             uVar3 = uStack_80 & 0x1f;
             uStack_70 = uStack_70 + 0x14;
             uStack_80 = uStack_80 + 0x14;
             *(ulong *)(piVar11 + 0xe) = *(ulong *)(piVar11 + 0xe) | (ulong)(uint)(iVar2 << uVar3);
           }
-          iVar2 = FUN_0013fe10(param_1,uVar10 >> (uVar6 & 0x1f),uVar9 >> (uVar6 & 0x1f));
+          iVar2 = Tex_GetPageCount(param_1,uVar10 >> (uVar6 & 0x1f),uVar9 >> (uVar6 & 0x1f));
           uVar13 = (ulong)(iVar4 + iVar2);
           uVar6 = uVar6 + 1;
           piStack_90 = piStack_90 + 1;
@@ -1428,7 +1438,7 @@ LAB_0013df40:
 }
 
 // 0x0013e3d0  size 0x464
-undefined4 FUN_0013e3d0(int param_1,long param_2,uint *param_3)
+undefined4 Tex_BuildClutPacket(int param_1,long param_2,uint *param_3)
 
 {
   byte bVar1;
@@ -1597,7 +1607,7 @@ undefined4 FUN_0013e3d0(int param_1,long param_2,uint *param_3)
 }
 
 // 0x0013e840  size 0x304
-void FUN_0013e840(int param_1,uint *param_2,ulong param_3,ulong param_4)
+void Tex_GetGsParams(int param_1,uint *param_2,ulong param_3,ulong param_4)
 
 {
   ushort uVar1;
@@ -1689,7 +1699,7 @@ void FUN_0013e840(int param_1,uint *param_2,ulong param_3,ulong param_4)
 }
 
 // 0x0013eb50  size 0x7c
-int FUN_0013eb50(int param_1,int param_2)
+int Tex_GetMipLevel(int param_1,int param_2)
 
 {
   char cVar1;
@@ -1723,7 +1733,7 @@ LAB_0013eb98:
 }
 
 // 0x0013ebd0  size 0x4c
-ushort FUN_0013ebd0(int param_1)
+ushort Tex_GetMipCount(int param_1)
 
 {
   ushort uVar1;
@@ -1745,7 +1755,7 @@ ushort FUN_0013ebd0(int param_1)
 }
 
 // 0x0013ec20  size 0xd0
-int FUN_0013ec20(int param_1,uint param_2)
+int Tex_GetImageData(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -1788,7 +1798,7 @@ int FUN_0013ec20(int param_1,uint param_2)
 }
 
 // 0x0013ecf0  size 0x1c
-int FUN_0013ecf0(int param_1)
+int Tex_GetClutHeader(int param_1)
 
 {
   int iVar1;
@@ -1801,7 +1811,7 @@ int FUN_0013ecf0(int param_1)
 }
 
 // 0x0013ed10  size 0x1cc
-void FUN_0013ed10(int param_1,int param_2,ulong *param_3,ulong *param_4)
+void Tex_GetTex0(int param_1,int param_2,ulong *param_3,ulong *param_4)
 
 {
   ushort uVar1;
@@ -1848,7 +1858,7 @@ void FUN_0013ed10(int param_1,int param_2,ulong *param_3,ulong *param_4)
 }
 
 // 0x0013eee0  size 0x180
-void FUN_0013eee0(uint *param_1,ulong param_2,ulong param_3)
+void Tex_OffsetTbp(uint *param_1,ulong param_2,ulong param_3)
 
 {
   short sVar1;
@@ -1883,8 +1893,8 @@ void FUN_0013eee0(uint *param_1,ulong param_2,ulong param_3)
 }
 
 // 0x0013f060  size 0x208
-void FUN_0013f060(int *param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5,
-                 undefined1 param_6)
+void Tex_SetFilter(int *param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5,
+                  undefined1 param_6)
 
 {
   byte bVar1;
@@ -1917,7 +1927,7 @@ void FUN_0013f060(int *param_1,uint param_2,byte param_3,ushort param_4,undefine
 }
 
 // 0x0013f270  size 0xc8
-int FUN_0013f270(int param_1,undefined8 param_2,long param_3,undefined8 param_4,undefined8 param_5)
+int Tex_UploadAll(int param_1,undefined8 param_2,long param_3,undefined8 param_4,undefined8 param_5)
 
 {
   int *piVar1;
@@ -1926,7 +1936,7 @@ int FUN_0013f270(int param_1,undefined8 param_2,long param_3,undefined8 param_4,
   int iVar4;
   
   iVar4 = 0;
-  piVar1 = (int *)FUN_0013da40();
+  piVar1 = (int *)Tex_GetFirstEntry();
   uVar3 = 0;
   if (*(short *)(param_1 + 6) != 0) {
     do {
@@ -1936,7 +1946,7 @@ int FUN_0013f270(int param_1,undefined8 param_2,long param_3,undefined8 param_4,
       else {
         iVar2 = (int)param_3 + iVar4 * 0x10;
       }
-      iVar2 = FUN_0013f340(piVar1,param_2,iVar2,param_4,param_5);
+      iVar2 = Tex_Upload(piVar1,param_2,iVar2,param_4,param_5);
       iVar4 = iVar4 + iVar2;
       uVar3 = uVar3 + 1;
       piVar1 = (int *)((int)piVar1 + *piVar1);
@@ -1946,7 +1956,7 @@ int FUN_0013f270(int param_1,undefined8 param_2,long param_3,undefined8 param_4,
 }
 
 // 0x0013f340  size 0x5ec
-int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int param_5)
+int Tex_Upload(undefined8 param_1,uint param_2,int param_3,int param_4,int param_5)
 
 {
   ushort uVar1;
@@ -1978,7 +1988,7 @@ int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int par
   iVar15 = 0;
   iVar10 = (int)param_1;
   if ((*(char *)(iVar10 + 0x11) != '\0') && ((param_2 & 0x200) == 0)) {
-    puVar3 = (ulong *)FUN_0013ecf0();
+    puVar3 = (ulong *)Tex_GetClutHeader();
     uVar13 = 0;
     if (*(char *)(iVar10 + 0x11) != '\0') {
       do {
@@ -2034,9 +2044,9 @@ int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int par
           uStack_8 = uStack_8 >> 1;
         }
         uStack_14 = (uint)uVar1;
-        unaff_s6_lo = FUN_0013ec20(param_1,uVar13);
+        unaff_s6_lo = Tex_GetImageData(param_1,uVar13);
         if ((param_3 != 0) || ((param_2 & 0x400) != 0)) {
-          iVar8 = FUN_0013f950(&uStack_20,unaff_s6_lo,param_2,param_3);
+          iVar8 = Tex_SwizzleBlocks(&uStack_20,unaff_s6_lo,param_2,param_3);
           iVar15 = iVar15 + iVar8;
           param_3 = param_3 + iVar8 * 0x10;
         }
@@ -2057,9 +2067,9 @@ int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int par
       uVar1 = *(ushort *)(iVar10 + 0x2c);
     }
     iVar2 = *(int *)(iVar10 + 0x2c);
-    iVar4 = FUN_0013eb50(param_1,0);
+    iVar4 = Tex_GetMipLevel(param_1,0);
     uVar12 = 0;
-    lVar7 = FUN_0013ebd0(param_1);
+    lVar7 = Tex_GetMipCount(param_1);
     if (lVar7 != 0) {
       iVar14 = 0;
       iVar16 = 0;
@@ -2087,7 +2097,7 @@ int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int par
           unaff_s6_lo = iVar4 + iVar8 * iVar17;
         }
         if ((param_3 != 0) || ((param_2 & 0x400) != 0)) {
-          iVar5 = FUN_0013f950(&uStack_20,unaff_s6_lo,param_2,param_3);
+          iVar5 = Tex_SwizzleBlocks(&uStack_20,unaff_s6_lo,param_2,param_3);
           iVar15 = iVar15 + iVar5;
           param_3 = param_3 + iVar5 * 0x10;
         }
@@ -2095,7 +2105,7 @@ int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int par
         iVar16 = iVar16 + iVar8;
         iVar17 = iVar17 + 0x100;
         uVar12 = uVar12 + 1;
-        uVar6 = FUN_0013ebd0(param_1);
+        uVar6 = Tex_GetMipCount(param_1);
       } while (uVar12 < uVar6);
     }
   }
@@ -2103,7 +2113,7 @@ int FUN_0013f340(undefined8 param_1,uint param_2,int param_3,int param_4,int par
 }
 
 // 0x0013f950  size 0x4bc
-int FUN_0013f950(uint *param_1,int param_2,ulong param_3,uint *param_4)
+int Tex_SwizzleBlocks(uint *param_1,int param_2,ulong param_3,uint *param_4)
 
 {
   bool bVar1;
@@ -2127,7 +2137,7 @@ int FUN_0013f950(uint *param_1,int param_2,ulong param_3,uint *param_4)
   uVar15 = 0;
   uVar13 = 1;
   iVar12 = 0;
-  cVar2 = FUN_0013dbb0(param_1[2]);
+  cVar2 = Tex_GetPsmBytesPerPixelClass(param_1[2]);
   if (cVar2 == '\x04') {
     uVar13 = param_1[5] >> 1;
   }
@@ -2263,7 +2273,7 @@ int FUN_0013f950(uint *param_1,int param_2,ulong param_3,uint *param_4)
 }
 
 // 0x0013fe10  size 0x104
-int FUN_0013fe10(int param_1,int param_2,int param_3)
+int Tex_GetPageCount(int param_1,int param_2,int param_3)
 
 {
   int iVar1;
@@ -2289,7 +2299,7 @@ int FUN_0013fe10(int param_1,int param_2,int param_3)
 }
 
 // 0x0013ff20  size 0x100
-int FUN_0013ff20(int param_1,int param_2,int param_3)
+int Tex_GetBlockCount(int param_1,int param_2,int param_3)
 
 {
   int iVar1;

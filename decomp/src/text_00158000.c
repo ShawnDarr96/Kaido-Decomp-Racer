@@ -3,29 +3,31 @@
 #include "ghidra_types.h"
 
 // 0x00158050  size 0x50
-void FUN_00158050(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/* 11 callers */
+
+void Pkt_AddTextureUploadAll(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
   
-  iVar1 = FUN_0013f270(param_2,0x12,*param_1 + param_1[2] * 0x10,param_3,param_4);
+  iVar1 = Tex_UploadAll(param_2,0x12,*param_1 + param_1[2] * 0x10,param_3,param_4);
   param_1[2] = param_1[2] + iVar1;
   return;
 }
 
 // 0x001580a0  size 0x50
-void FUN_001580a0(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Pkt_AddTextureUpload(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
   
-  iVar1 = FUN_0013f340(param_2,0x12,*param_1 + param_1[2] * 0x10,param_3,param_4);
+  iVar1 = Tex_Upload(param_2,0x12,*param_1 + param_1[2] * 0x10,param_3,param_4);
   param_1[2] = param_1[2] + iVar1;
   return;
 }
 
 // 0x001580f0  size 0x68
-undefined8 FUN_001580f0(undefined4 *param_1,int param_2)
+undefined8 Pkt_AddTextureIfNeeded(undefined4 *param_1,int param_2)
 
 {
   uint uVar1;
@@ -42,14 +44,16 @@ undefined8 FUN_001580f0(undefined4 *param_1,int param_2)
       param_1[3] = 0;
     }
     else {
-      uVar2 = FUN_0013f340();
+      uVar2 = Tex_Upload();
     }
   }
   return uVar2;
 }
 
 // 0x00158160  size 0x120
-void FUN_00158160(int param_1,undefined8 param_2,long param_3,undefined8 param_4,undefined8 param_5,
+/* 16 callers */
+
+void TexSlot_Bind(int param_1,undefined8 param_2,long param_3,undefined8 param_4,undefined8 param_5,
                  undefined8 param_6,undefined8 param_7,undefined4 param_8,undefined4 param_9,
                  undefined4 param_10)
 
@@ -58,12 +62,12 @@ void FUN_00158160(int param_1,undefined8 param_2,long param_3,undefined8 param_4
   uint uVar2;
   uint uVar3;
   
-  piVar1 = (int *)FUN_0013da40(param_2);
+  piVar1 = (int *)Tex_GetFirstEntry(param_2);
   uVar2 = (uint)*(ushort *)((int)param_2 + 6);
   uVar3 = 0;
   if (uVar2 != 0) {
     do {
-      FUN_0013e840(piVar1,param_1,param_4,param_5);
+      Tex_GetGsParams(piVar1,param_1,param_4,param_5);
       if (param_3 == 0) {
         *(undefined4 *)(param_1 + 0x60) = 0;
         *(int **)(param_1 + 0x6c) = piVar1;
@@ -74,7 +78,7 @@ void FUN_00158160(int param_1,undefined8 param_2,long param_3,undefined8 param_4
       }
       *(int *)(param_1 + 100) = (int)param_4;
       *(int *)(param_1 + 0x68) = (int)param_5;
-      FUN_0013f060(param_1,param_6,param_7,param_8,param_9,param_10);
+      Tex_SetFilter(param_1,param_6,param_7,param_8,param_9,param_10);
       *(undefined4 *)(param_1 + 0x70) = 0;
       uVar3 = uVar3 + 1;
       *(undefined4 *)(param_1 + 0x74) = 0;
@@ -87,14 +91,14 @@ void FUN_00158160(int param_1,undefined8 param_2,long param_3,undefined8 param_4
 }
 
 // 0x00158290  size 0xd4
-void FUN_00158290(undefined8 param_1,undefined8 param_2,long param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-                 undefined4 param_9,undefined4 param_10)
+void TexSlot_BindSimple(undefined8 param_1,undefined8 param_2,long param_3,undefined8 param_4,
+                       undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
+                       undefined4 param_9,undefined4 param_10)
 
 {
   int iVar1;
   
-  FUN_0013e840(param_2,param_1,param_4,param_5);
+  Tex_GetGsParams(param_2,param_1,param_4,param_5);
   iVar1 = (int)param_1;
   if (param_3 == 0) {
     *(undefined4 *)(iVar1 + 0x60) = 0;
@@ -106,7 +110,7 @@ void FUN_00158290(undefined8 param_1,undefined8 param_2,long param_3,undefined8 
   }
   *(int *)(iVar1 + 100) = (int)param_4;
   *(int *)(iVar1 + 0x68) = (int)param_5;
-  FUN_0013f060(param_1,param_6,param_7,param_8,param_9,param_10);
+  Tex_SetFilter(param_1,param_6,param_7,param_8,param_9,param_10);
   *(undefined4 *)(iVar1 + 0x70) = 0;
   *(undefined4 *)(iVar1 + 0x74) = 0;
   *(undefined4 *)(iVar1 + 0x78) = 0;
@@ -114,14 +118,16 @@ void FUN_00158290(undefined8 param_1,undefined8 param_2,long param_3,undefined8 
 }
 
 // 0x00158370  size 0x1c
-int FUN_00158370(int param_1,int param_2)
+int TexSlot_GetEntry(int param_1,int param_2)
 
 {
   return *(int *)(param_1 * 8 + iRam0036f0d8 + 4) + param_2 * 0x80;
 }
 
 // 0x00158390  size 0x20
-void FUN_00158390(int param_1,undefined4 param_2,undefined4 param_3)
+/* 28 callers */
+
+void TexSlot_Set(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(iRam0036f0d8 + param_1 * 8) = param_2;
@@ -130,7 +136,7 @@ void FUN_00158390(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x001583b0  size 0x30
-void FUN_001583b0(void)
+void TexSlot_Free(void)
 
 {
   if (iRam0036f0d8 != 0) {
@@ -142,7 +148,7 @@ void FUN_001583b0(void)
 }
 
 // 0x001583e0  size 0x80
-undefined4 FUN_001583e0(uint param_1)
+undefined4 TexSlot_Alloc(uint param_1)
 
 {
   undefined4 uVar1;
@@ -176,7 +182,7 @@ undefined4 FUN_001583e0(uint param_1)
 }
 
 // 0x00158460  size 0x30
-void FUN_00158460(void)
+void TexSlot_Shutdown(void)
 
 {
   if (iRam0036f0d8 != 0) {
@@ -188,7 +194,7 @@ void FUN_00158460(void)
 }
 
 // 0x00158490  size 0x10
-void FUN_00158490(undefined4 param_1)
+void TexSlot_SetHeap(undefined4 param_1)
 
 {
   uRam0036f0d0 = param_1;
@@ -198,23 +204,23 @@ void FUN_00158490(undefined4 param_1)
 }
 
 // 0x001584a0  size 0xec
-void FUN_001584a0(undefined8 param_1,undefined8 param_2)
+void maybe_Font_UploadTexture(undefined8 param_1,undefined8 param_2)
 
 {
   if (iRam0042e400 != 0) {
     uRam0042e430 = 0;
-    FUN_00158050(0x42e428,iRam0042e400,param_1,param_2);
-    FUN_00158160(uRam0042e424,iRam0042e400,1,param_1,param_2,0x50010,0,0);
+    Pkt_AddTextureUploadAll(0x42e428,iRam0042e400,param_1,param_2);
+    TexSlot_Bind(uRam0042e424,iRam0042e400,1,param_1,param_2,0x50010,0,0);
   }
   if (iRam0042f370 != 0) {
-    FUN_0014c660(0x42f090,2,uRam0042f0c2);
-    FUN_0014c3e0(0x42f090,param_1,param_2,0x50010,0,0x80);
+    Tex_InitDescriptor(0x42f090,2,uRam0042f0c2);
+    Tex_SetupFromHeader(0x42f090,param_1,param_2,0x50010,0,0x80);
   }
   return;
 }
 
 // 0x00158590  size 0x38
-void FUN_00158590(int param_1,uint param_2)
+void PhysWorld_FindBodyWithFlags(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -226,28 +232,28 @@ void FUN_00158590(int param_1,uint param_2)
 }
 
 // 0x001585d0  size 0x8
-undefined4 FUN_001585d0(int param_1)
+undefined4 PhysWorld_GetFirstBody(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x40);
 }
 
 // 0x001585e0  size 0x8
-int FUN_001585e0(int param_1)
+int PhysWorld_GetGravity(int param_1)
 
 {
   return param_1 + 0x20;
 }
 
 // 0x001585f0  size 0x8
-int FUN_001585f0(int param_1)
+int PhysWorld_GetBounds(int param_1)
 
 {
   return param_1 + 0x10;
 }
 
 // 0x00158600  size 0x20
-undefined4 FUN_00158600(undefined4 *param_1)
+undefined4 phys_sub_00158600(undefined4 *param_1)
 
 {
   undefined4 uVar1;
@@ -262,7 +268,7 @@ undefined4 FUN_00158600(undefined4 *param_1)
 }
 
 // 0x00158620  size 0x20
-undefined4 FUN_00158620(undefined4 *param_1)
+undefined4 phys_sub_00158620(undefined4 *param_1)
 
 {
   undefined4 uVar1;
@@ -277,28 +283,28 @@ undefined4 FUN_00158620(undefined4 *param_1)
 }
 
 // 0x00158640  size 0x8
-undefined4 FUN_00158640(int param_1)
+undefined4 phys_sub_00158640(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x48);
 }
 
 // 0x00158650  size 0x8
-undefined4 FUN_00158650(int param_1)
+undefined4 phys_sub_00158650(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x44);
 }
 
 // 0x00158660  size 0x8
-undefined4 FUN_00158660(int param_1)
+undefined4 phys_sub_00158660(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x40);
 }
 
 // 0x00158690  size 0x258
-void FUN_00158690(int param_1,int param_2,uint param_3)
+void PhysWorld_CollideBroadphase(int param_1,int param_2,uint param_3)
 
 {
   int iVar1;
@@ -365,33 +371,33 @@ LAB_00158758:
       piVar9[5] = 0;
       piVar9[6] = 0;
       iVar6 = *piVar9;
-      lVar5 = FUN_00162420(iVar6);
+      lVar5 = PhysBody_GetUserData(iVar6);
       if (lVar5 == 0) {
         iVar6 = 0;
       }
       else {
         while (lVar4 = lVar5, lVar4 != 0) {
-          lVar5 = FUN_0015c640(lVar4,iVar6);
+          lVar5 = phys_sub_0015c640(lVar4,iVar6);
           unaff_s5 = lVar4;
         }
         iVar6 = (int)unaff_s5;
       }
       piVar9[2] = iVar6;
-      FUN_0015c5f0(piVar9,piVar9);
+      phys_sub_0015c5f0(piVar9,piVar9);
       iVar6 = piVar9[1];
-      lVar5 = FUN_00162420(iVar6);
+      lVar5 = PhysBody_GetUserData(iVar6);
       if (lVar5 == 0) {
         iVar6 = 0;
       }
       else {
         while (lVar4 = lVar5, lVar4 != 0) {
-          lVar5 = FUN_0015c640(lVar4,iVar6);
+          lVar5 = phys_sub_0015c640(lVar4,iVar6);
           unaff_s6 = lVar4;
         }
         iVar6 = (int)unaff_s6;
       }
       piVar9[3] = iVar6;
-      FUN_0015c5a0(piVar9,piVar9);
+      phys_sub_0015c5a0(piVar9,piVar9);
       goto LAB_00158768;
     }
     iVar1 = *(int *)(iVar1 + 0xc4);
@@ -399,7 +405,7 @@ LAB_00158758:
 }
 
 // 0x00158900  size 0x1a4
-void FUN_00158900(int param_1,int param_2,uint param_3)
+void PhysWorld_BuildPairs(int param_1,int param_2,uint param_3)
 
 {
   uint uVar1;
@@ -420,10 +426,10 @@ LAB_001589c0:
         }
         else {
           iVar4 = *(int *)(param_1 + 0x28) + uVar2 * 0x20;
-          FUN_0015c4d0(iVar4);
+          PhysPairList_Clear(iVar4);
           uVar1 = *(int *)(param_1 + 0x2c) - 1;
           if (uVar2 < uVar1) {
-            FUN_0015c3c0(*(int *)(param_1 + 0x28) + uVar1 * 0x20,iVar4);
+            PhysPairList_Add(*(int *)(param_1 + 0x28) + uVar1 * 0x20,iVar4);
           }
           uVar2 = uVar2 - 1;
           *(int *)(param_1 + 0x2c) = *(int *)(param_1 + 0x2c) + -1;
@@ -433,10 +439,10 @@ LAB_001589c0:
         if (((piVar3[1] != param_2) || ((*(uint *)(iVar4 + 0xd8) & param_3) == 0)) ||
            ((*(uint *)(iVar4 + 0xdc) & *(uint *)(piVar3[1] + 0xd8)) != 0)) goto LAB_001589c0;
         iVar4 = *(int *)(param_1 + 0x28) + uVar2 * 0x20;
-        FUN_0015c4d0(iVar4);
+        PhysPairList_Clear(iVar4);
         uVar1 = *(int *)(param_1 + 0x2c) - 1;
         if (uVar2 < uVar1) {
-          FUN_0015c3c0(*(int *)(param_1 + 0x28) + uVar1 * 0x20,iVar4);
+          PhysPairList_Add(*(int *)(param_1 + 0x28) + uVar1 * 0x20,iVar4);
         }
         uVar2 = uVar2 - 1;
         *(int *)(param_1 + 0x2c) = *(int *)(param_1 + 0x2c) + -1;
@@ -448,7 +454,7 @@ LAB_001589c0:
 }
 
 // 0x00158ac0  size 0x3c
-int FUN_00158ac0(int param_1)
+int PhysWorld_AllocContact(int param_1)
 
 {
   uint uVar1;
@@ -466,7 +472,9 @@ int FUN_00158ac0(int param_1)
 }
 
 // 0x00158b00  size 0x2c8
-void FUN_00158b00(float param_1,int param_2)
+/* accumulates time, wraps at 3600 */
+
+void PhysWorld_Integrate(float param_1,int param_2)
 
 {
   undefined4 *puVar1;
@@ -526,26 +534,26 @@ LAB_00158b54:
       for (; iVar4 != 0; iVar4 = iVar4 + -1) {
         if (((*(char *)(*piVar7 + 0xf7) != '\0') || (*(char *)(piVar7[1] + 0xf7) != '\0')) ||
            ((float)piVar7[7] <= fGpffff8a14)) {
-          fVar8 = (float)FUN_0015c660(piVar7);
+          fVar8 = (float)PhysPair_ComputeDistance(piVar7);
           piVar7[7] = (int)fVar8;
           if (fVar8 < fGpffff8a14 + fGpffff8a10) {
-            puVar1 = (undefined4 *)FUN_00165250(*(undefined4 *)(*piVar7 + 4));
+            puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(*piVar7 + 4));
             uStack_10 = *puVar1;
             uStack_c = puVar1[1];
             uStack_8 = puVar1[2];
             uStack_4 = puVar1[3];
-            puVar1 = (undefined4 *)FUN_00165250(*(undefined4 *)(piVar7[1] + 4));
+            puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(piVar7[1] + 4));
             uStack_20 = *puVar1;
             uStack_1c = puVar1[1];
             uStack_18 = puVar1[2];
             uStack_14 = puVar1[3];
-            lVar3 = FUN_0015cab0(piVar7);
+            lVar3 = PhysPair_Update(piVar7);
             if (lVar3 != 0) {
               iVar5 = iVar5 + 1;
-              FUN_00161bb0(*piVar7);
-              FUN_00161bb0(piVar7[1]);
-              FUN_00165260(*(undefined4 *)(*piVar7 + 4),&uStack_10);
-              FUN_00165260(*(undefined4 *)(piVar7[1] + 4),&uStack_20);
+              PhysWorld_SolveIslands(*piVar7);
+              PhysWorld_SolveIslands(piVar7[1]);
+              phys_sub_00165260(*(undefined4 *)(*piVar7 + 4),&uStack_10);
+              phys_sub_00165260(*(undefined4 *)(piVar7[1] + 4),&uStack_20);
             }
           }
         }
@@ -558,9 +566,9 @@ LAB_00158b54:
         *(float *)(iVar4 + 0x100) = *(float *)(iVar4 + 0x100) * *(float *)(iVar4 + 0xb0);
         *(float *)(iVar4 + 0x104) = *(float *)(iVar4 + 0x104) * *(float *)(iVar4 + 0xb4);
         *(float *)(iVar4 + 0x108) = *(float *)(iVar4 + 0x108) * *(float *)(iVar4 + 0xb8);
-        uVar2 = FUN_00165250(*(undefined4 *)(iVar4 + 4));
-        FUN_00163b80(auStack_30,uVar2,iVar4 + 0x100);
-        FUN_00165260(*(undefined4 *)(iVar4 + 4),auStack_30);
+        uVar2 = phys_sub_00165250(*(undefined4 *)(iVar4 + 4));
+        Vec3_Add(auStack_30,uVar2,iVar4 + 0x100);
+        phys_sub_00165260(*(undefined4 *)(iVar4 + 4),auStack_30);
       }
       uVar6 = uVar6 + 1;
     } while (uVar6 < *(uint *)(param_2 + 0xc));
@@ -569,7 +577,7 @@ LAB_00158b54:
 }
 
 // 0x00158dd0  size 0x2b8
-void FUN_00158dd0(float param_1,undefined8 param_2)
+void PhysWorld_Step(float param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -588,8 +596,8 @@ void FUN_00158dd0(float param_1,undefined8 param_2)
   *(undefined1 *)(iVar8 + 0x3c) = 1;
   for (iVar1 = *(int *)(iVar8 + 0x18); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
     if (*(char *)(iVar1 + 0xf6) == '\0') {
-      uVar7 = FUN_00164c40(*(undefined4 *)(iVar1 + 4));
-      FUN_00159c20(iVar1 + 0x10,uVar7);
+      uVar7 = phys_sub_00164c40(*(undefined4 *)(iVar1 + 4));
+      PhysContact_Process(iVar1 + 0x10,uVar7);
     }
     *(undefined4 *)(iVar1 + 0xd4) = 0;
   }
@@ -597,21 +605,21 @@ void FUN_00158dd0(float param_1,undefined8 param_2)
     iVar1 = *(int *)(iVar8 + 0x18);
   }
   else {
-    FUN_00158b00(param_1,param_2);
+    PhysWorld_Integrate(param_1,param_2);
     iVar1 = *(int *)(iVar8 + 0x18);
   }
   for (; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
     if (*(char *)(iVar1 + 0xf4) == '\0') {
-      FUN_00161bb0(iVar1);
+      PhysWorld_SolveIslands(iVar1);
     }
   }
   for (iVar1 = *(int *)(iVar8 + 0x18); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
     if ((*(int *)(iVar1 + 0xd4) != 0) && (*(int *)(iVar1 + 0xa0) != 0)) {
-      FUN_00164d60(*(undefined4 *)(iVar1 + 4),iVar1 + 0x80);
-      FUN_001638b0(1.0 / (float)*(uint *)(iVar1 + 0xa0),auStack_20,iVar1 + 0x90);
-      FUN_001638b0(*(undefined4 *)(iVar1 + 0xc0),auStack_10,auStack_20);
-      FUN_00164d40(*(undefined4 *)(iVar1 + 4),auStack_10);
-      FUN_00163f80(0x3f800000,*(undefined4 *)(iVar1 + 4));
+      phys_sub_00164d60(*(undefined4 *)(iVar1 + 4),iVar1 + 0x80);
+      Vec3_Scale(1.0 / (float)*(uint *)(iVar1 + 0xa0),auStack_20,iVar1 + 0x90);
+      Vec3_Scale(*(undefined4 *)(iVar1 + 0xc0),auStack_10,auStack_20);
+      phys_sub_00164d40(*(undefined4 *)(iVar1 + 4),auStack_10);
+      phys_sub_00163f80(0x3f800000,*(undefined4 *)(iVar1 + 4));
     }
   }
   for (iVar1 = *(int *)(iVar8 + 0x18); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
@@ -666,7 +674,7 @@ void FUN_00158dd0(float param_1,undefined8 param_2)
 }
 
 // 0x00159090  size 0x2bc
-void FUN_00159090(int *param_1,int param_2,int param_3,int param_4)
+void PhysWorld_Init(int *param_1,int param_2,int param_3,int param_4)
 
 {
   int iVar1;
@@ -751,14 +759,14 @@ void FUN_00159090(int *param_1,int param_2,int param_3,int param_4)
 }
 
 // 0x00159370  size 0x4c
-undefined8 FUN_00159370(undefined8 param_1)
+undefined8 phys_sub_00159370(undefined8 param_1)
 
 {
   undefined4 *puVar1;
   
   puVar1 = (undefined4 *)param_1;
   *puVar1 = &DAT_0036e268;
-  FUN_00159e40(puVar1 + 4);
+  phys_sub_00159e40(puVar1 + 4);
   puVar1[0x23] = 0x3f800000;
   puVar1[0x27] = 0x3f800000;
   puVar1[0x2f] = 0x3f800000;
@@ -767,7 +775,7 @@ undefined8 FUN_00159370(undefined8 param_1)
 }
 
 // 0x001593c0  size 0xec
-void FUN_001593c0(int param_1)
+void Phys_SetupPools(int param_1)
 
 {
   undefined8 uVar1;
@@ -792,23 +800,23 @@ void FUN_001593c0(int param_1)
 }
 
 // 0x001594b0  size 0xc
-void FUN_001594b0(void)
+void Phys_Step(void)
 
 {
-  FUN_00158dd0(0x42f3c0);
+  PhysWorld_Step(0x42f3c0);
   return;
 }
 
 // 0x001594c0  size 0x130
-void FUN_001594c0(int param_1)
+void Phys_RemoveBody(int param_1)
 
 {
   int *piVar1;
   uint uVar2;
   int *piVar3;
   
-  FUN_001624b0(param_1,0x42f3d8);
-  FUN_00162500(param_1,0x42f3dc);
+  PhysBody_Unlink(param_1,0x42f3d8);
+  PhysBody_LinkFront(param_1,0x42f3dc);
   uVar2 = 0;
   iRam0042f3e0 = iRam0042f3e0 + -1;
   piVar3 = piRam0042f3e8;
@@ -816,9 +824,9 @@ void FUN_001594c0(int param_1)
     do {
       if ((*piVar3 == param_1) || (piVar3[1] == param_1)) {
         piVar1 = piRam0042f3e8 + uVar2 * 8;
-        FUN_0015c4d0(piVar1);
+        PhysPairList_Clear(piVar1);
         if (uVar2 < uRam0042f3ec - 1) {
-          FUN_0015c3c0(piRam0042f3e8 + (uRam0042f3ec - 1) * 8,piVar1);
+          PhysPairList_Add(piRam0042f3e8 + (uRam0042f3ec - 1) * 8,piVar1);
         }
         uVar2 = uVar2 - 1;
         uRam0042f3ec = uRam0042f3ec - 1;
@@ -833,22 +841,22 @@ void FUN_001594c0(int param_1)
 }
 
 // 0x00159600  size 0xb0
-int FUN_00159600(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+int Phys_AddBody(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
   
   iVar1 = iRam0042f3dc;
-  FUN_001624b0(iRam0042f3dc,0x42f3dc);
-  FUN_00162500(iVar1,0x42f3d8);
+  PhysBody_Unlink(iRam0042f3dc,0x42f3dc);
+  PhysBody_LinkFront(iVar1,0x42f3d8);
   iRam0042f3e0 = iRam0042f3e0 + 1;
-  FUN_00162740(iVar1,param_1,param_2,param_3,uRam0042f3c0);
-  FUN_00158690(0x42f3c0,iVar1,*(undefined4 *)(iVar1 + 0xdc));
+  PhysBody_Init(iVar1,param_1,param_2,param_3,uRam0042f3c0);
+  PhysWorld_CollideBroadphase(0x42f3c0,iVar1,*(undefined4 *)(iVar1 + 0xdc));
   return iVar1;
 }
 
 // 0x001596b0  size 0x10
-void FUN_001596b0(void)
+void phys_sub_001596b0(void)
 
 {
                     /* WARNING: Could not recover jumptable at 0x001596b8. Too many branches */
@@ -858,7 +866,7 @@ void FUN_001596b0(void)
 }
 
 // 0x001596c0  size 0xc
-void FUN_001596c0(undefined4 param_1)
+void Phys_SetCallback(undefined4 param_1)
 
 {
   uRam0042f3c4 = param_1;
@@ -866,7 +874,7 @@ void FUN_001596c0(undefined4 param_1)
 }
 
 // 0x001596d0  size 0x8
-void FUN_001596d0(undefined4 param_1)
+void Phys_SetParamA(undefined4 param_1)
 
 {
   uGpffff8a80 = param_1;
@@ -874,7 +882,7 @@ void FUN_001596d0(undefined4 param_1)
 }
 
 // 0x001596e0  size 0x8
-void FUN_001596e0(undefined4 param_1)
+void Phys_SetParamB(undefined4 param_1)
 
 {
   uGpffff8a7c = param_1;
@@ -882,7 +890,7 @@ void FUN_001596e0(undefined4 param_1)
 }
 
 // 0x001596f0  size 0x7c
-void FUN_001596f0(void)
+void Phys_Shutdown(void)
 
 {
   __destroy_new_array(uRam0042f3d4,0x1626d0);
@@ -900,12 +908,12 @@ void FUN_001596f0(void)
 }
 
 // 0x00159770  size 0x6c
-void FUN_00159770(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
+void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
 
 {
   uRam0042f3c0 = param_4;
-  FUN_00159090(0x42f3c0,param_1,param_2,param_3);
-  FUN_0015d220();
+  PhysWorld_Init(0x42f3c0,param_1,param_2,param_3);
+  PhysMaterial_SetDefaults();
   puGpffff8a7c = &LAB_0015d390;
   puGpffff8a80 = &LAB_0015d370;
   puRam0042f3c4 = &LAB_0015d330;
@@ -913,7 +921,7 @@ void FUN_00159770(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 }
 
 // 0x001597f0  size 0x184
-void FUN_001597f0(int param_1)
+void PhysContact_Resolve(int param_1)
 
 {
   int iVar1;
@@ -940,25 +948,25 @@ void FUN_001597f0(int param_1)
   iVar2 = *(int *)(param_1 + 8);
   iVar4 = iVar1 + 0x30;
   iVar3 = iVar2 + 0x30;
-  uVar5 = FUN_001638e0(iVar3,iVar4);
+  uVar5 = Vec3_Dot(iVar3,iVar4);
   *(undefined4 *)(param_1 + 0x30) = uVar5;
-  uVar5 = FUN_001638e0(iVar3,iVar1 + 0x40);
+  uVar5 = Vec3_Dot(iVar3,iVar1 + 0x40);
   *(undefined4 *)(param_1 + 0x34) = uVar5;
-  uVar5 = FUN_001638e0(iVar3,iVar1 + 0x50);
+  uVar5 = Vec3_Dot(iVar3,iVar1 + 0x50);
   *(undefined4 *)(param_1 + 0x38) = uVar5;
-  uVar5 = FUN_001638e0(iVar2 + 0x40,iVar4);
+  uVar5 = Vec3_Dot(iVar2 + 0x40,iVar4);
   *(undefined4 *)(param_1 + 0x40) = uVar5;
-  uVar5 = FUN_001638e0(iVar2 + 0x40,iVar1 + 0x40);
+  uVar5 = Vec3_Dot(iVar2 + 0x40,iVar1 + 0x40);
   *(undefined4 *)(param_1 + 0x44) = uVar5;
-  uVar5 = FUN_001638e0(iVar2 + 0x40,iVar1 + 0x50);
+  uVar5 = Vec3_Dot(iVar2 + 0x40,iVar1 + 0x50);
   *(undefined4 *)(param_1 + 0x48) = uVar5;
-  uVar5 = FUN_001638e0(iVar2 + 0x50,iVar4);
+  uVar5 = Vec3_Dot(iVar2 + 0x50,iVar4);
   *(undefined4 *)(param_1 + 0x50) = uVar5;
-  uVar5 = FUN_001638e0(iVar2 + 0x50,iVar1 + 0x40);
+  uVar5 = Vec3_Dot(iVar2 + 0x50,iVar1 + 0x40);
   *(undefined4 *)(param_1 + 0x54) = uVar5;
-  uVar5 = FUN_001638e0(iVar2 + 0x50,iVar1 + 0x50);
+  uVar5 = Vec3_Dot(iVar2 + 0x50,iVar1 + 0x50);
   *(undefined4 *)(param_1 + 0x58) = uVar5;
-  FUN_00163b40(&uStack_30,*(int *)(param_1 + 8) + 0x20,*(int *)(param_1 + 4) + 0x20);
+  Vec3_Sub(&uStack_30,*(int *)(param_1 + 8) + 0x20,*(int *)(param_1 + 4) + 0x20);
   uStack_14 = 0x3f800000;
   uStack_20 = uStack_30;
   uStack_1c = uStack_2c;
@@ -971,8 +979,8 @@ void FUN_001597f0(int param_1)
   fStack_38 = -*(float *)(iVar1 + 0x28);
   fStack_3c = -*(float *)(iVar1 + 0x24);
   fStack_40 = -*(float *)(iVar1 + 0x20);
-  FUN_00162e70(auStack_10,param_1 + 0x30,&fStack_40);
-  FUN_00163b80(&uStack_60,auStack_10,*(int *)(param_1 + 8) + 0x20);
+  Mat33_MulVec3(auStack_10,param_1 + 0x30,&fStack_40);
+  Vec3_Add(&uStack_60,auStack_10,*(int *)(param_1 + 8) + 0x20);
   *(undefined4 *)(param_1 + 0x60) = uStack_60;
   *(undefined4 *)(param_1 + 100) = uStack_5c;
   *(undefined4 *)(param_1 + 0x68) = uStack_58;
@@ -981,7 +989,7 @@ void FUN_001597f0(int param_1)
 }
 
 // 0x00159980  size 0x70
-uint FUN_00159980(int param_1,float *param_2)
+uint PhysContact_IsInside(int param_1,float *param_2)
 
 {
   uint uVar1;
@@ -1007,35 +1015,35 @@ uint FUN_00159980(int param_1,float *param_2)
 }
 
 // 0x001599f0  size 0x8
-undefined4 FUN_001599f0(int param_1)
+undefined4 PhysContact_GetBodyB(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 8);
 }
 
 // 0x00159a00  size 0x8
-undefined4 FUN_00159a00(int param_1)
+undefined4 PhysContact_GetBodyA(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 4);
 }
 
 // 0x00159a10  size 0x8
-undefined4 FUN_00159a10(int param_1)
+undefined4 PhysShape_GetBody(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 8);
 }
 
 // 0x00159a20  size 0x8
-undefined4 FUN_00159a20(int param_1)
+undefined4 PhysShape_GetOwner(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 4);
 }
 
 // 0x00159a30  size 0xf0
-void FUN_00159a30(undefined8 param_1)
+void PhysContact_Apply(undefined8 param_1)
 
 {
   int iVar1;
@@ -1061,7 +1069,7 @@ void FUN_00159a30(undefined8 param_1)
   
   iVar2 = (int)param_1;
   (**(code **)(**(int **)(iVar2 + 8) + 0x30))();
-  FUN_00163b40(&uStack_30,*(int *)(iVar2 + 8) + 0x20,*(int *)(iVar2 + 4) + 0x20);
+  Vec3_Sub(&uStack_30,*(int *)(iVar2 + 8) + 0x20,*(int *)(iVar2 + 4) + 0x20);
   uStack_14 = 0x3f800000;
   uStack_20 = uStack_30;
   uStack_1c = uStack_2c;
@@ -1074,8 +1082,8 @@ void FUN_00159a30(undefined8 param_1)
   fStack_38 = -*(float *)(iVar1 + 0x28);
   fStack_3c = -*(float *)(iVar1 + 0x24);
   fStack_40 = -*(float *)(iVar1 + 0x20);
-  FUN_00162e70(auStack_10,iVar2 + 0x30,&fStack_40);
-  FUN_00163b80(&uStack_60,auStack_10,*(int *)(iVar2 + 8) + 0x20);
+  Mat33_MulVec3(auStack_10,iVar2 + 0x30,&fStack_40);
+  Vec3_Add(&uStack_60,auStack_10,*(int *)(iVar2 + 8) + 0x20);
   uStack_44 = 0x3f800000;
   uStack_50 = uStack_60;
   uStack_4c = uStack_5c;
@@ -1084,12 +1092,12 @@ void FUN_00159a30(undefined8 param_1)
   *(undefined4 *)(iVar2 + 100) = uStack_5c;
   *(undefined4 *)(iVar2 + 0x68) = uStack_58;
   *(undefined4 *)(iVar2 + 0x6c) = 0x3f800000;
-  FUN_00159b40(param_1);
+  PhysContact_ComputeImpulse(param_1);
   return;
 }
 
 // 0x00159b20  size 0x14
-void FUN_00159b20(undefined4 *param_1)
+void phys_sub_00159b20(undefined4 *param_1)
 
 {
                     /* WARNING: Could not recover jumptable at 0x00159b2c. Too many branches */
@@ -1099,7 +1107,7 @@ void FUN_00159b20(undefined4 *param_1)
 }
 
 // 0x00159b40  size 0xd4
-void FUN_00159b40(int *param_1)
+void PhysContact_ComputeImpulse(int *param_1)
 
 {
   int iVar1;
@@ -1137,7 +1145,7 @@ void FUN_00159b40(int *param_1)
 }
 
 // 0x00159c20  size 0x68
-void FUN_00159c20(undefined8 param_1,undefined8 param_2)
+void PhysContact_Process(undefined8 param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -1149,34 +1157,34 @@ void FUN_00159c20(undefined8 param_1,undefined8 param_2)
   puVar2[2] = uVar1;
   (**(code **)(*(int *)puVar2[2] + 0x2c))((int *)puVar2[2],param_2,*puVar2);
   (**(code **)(*(int *)puVar2[2] + 0x60))((int *)puVar2[2],puVar2[1]);
-  FUN_001597f0(param_1);
-  FUN_00159b40(param_1);
+  PhysContact_Resolve(param_1);
+  PhysContact_ComputeImpulse(param_1);
   return;
 }
 
 // 0x00159c90  size 0x8
-undefined4 FUN_00159c90(int param_1)
+undefined4 PhysShape_GetType(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x14);
 }
 
 // 0x00159ca0  size 0xc
-int FUN_00159ca0(int param_1)
+int PhysShape_GetLocalA(int param_1)
 
 {
   return *(int *)(param_1 + 4) + 0x20;
 }
 
 // 0x00159cb0  size 0xc
-int FUN_00159cb0(int param_1)
+int PhysShape_GetLocalB(int param_1)
 
 {
   return *(int *)(param_1 + 8) + 0x20;
 }
 
 // 0x00159cc0  size 0xec
-void FUN_00159cc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void PhysShape_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -1200,13 +1208,13 @@ void FUN_00159cc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   (**(code **)(*(int *)puVar2[1] + 0x2c))((int *)puVar2[1],param_3,param_2);
   (**(code **)(*(int *)puVar2[2] + 0x2c))((int *)puVar2[2],param_3,param_2);
   *puVar2 = piVar3;
-  FUN_001630c0(puVar2 + 0xc);
-  FUN_00159b40(param_1);
+  Mat34_Identity(puVar2 + 0xc);
+  PhysContact_ComputeImpulse(param_1);
   return;
 }
 
 // 0x00159db0  size 0x84
-long FUN_00159db0(long param_1,short param_2)
+long phys_sub_00159db0(long param_1,short param_2)
 
 {
   int *piVar1;
@@ -1228,7 +1236,7 @@ long FUN_00159db0(long param_1,short param_2)
 }
 
 // 0x00159e40  size 0x20
-undefined8 FUN_00159e40(undefined8 param_1)
+undefined8 phys_sub_00159e40(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -1243,7 +1251,7 @@ undefined8 FUN_00159e40(undefined8 param_1)
 }
 
 // 0x00159e60  size 0x148
-void FUN_00159e60(undefined8 param_1,undefined8 param_2)
+void phys_sub_00159e60(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1277,7 +1285,7 @@ void FUN_00159e60(undefined8 param_1,undefined8 param_2)
   undefined4 uStack_8;
   
   iVar1 = (int)param_1;
-  FUN_001636f0(&uStack_80,param_2,iVar1 + 0x20);
+  Phys_TransformPointScaled(&uStack_80,param_2,iVar1 + 0x20);
   *(undefined4 *)(iVar1 + 0x20) = uStack_80;
   *(undefined4 *)(iVar1 + 0x24) = uStack_7c;
   *(undefined4 *)(iVar1 + 0x28) = uStack_78;
@@ -1285,15 +1293,15 @@ void FUN_00159e60(undefined8 param_1,undefined8 param_2)
   uStack_50 = *(undefined4 *)(iVar1 + 0x60);
   uStack_4c = 0;
   uStack_48 = 0;
-  FUN_001636a0(&uStack_10,param_2,&uStack_50);
+  Phys_TransformDirScaled(&uStack_10,param_2,&uStack_50);
   uStack_5c = *(undefined4 *)(iVar1 + 100);
   uStack_60 = 0;
   uStack_58 = 0;
-  FUN_001636a0(&uStack_20,param_2,&uStack_60);
+  Phys_TransformDirScaled(&uStack_20,param_2,&uStack_60);
   uStack_68 = *(undefined4 *)(iVar1 + 0x68);
   uStack_70 = 0;
   uStack_6c = 0;
-  FUN_001636a0(&uStack_30,param_2,&uStack_70);
+  Phys_TransformDirScaled(&uStack_30,param_2,&uStack_70);
   uStack_34 = 0x3f800000;
   fVar2 = (float)fabsf(uStack_20);
   fVar3 = (float)fabsf(uStack_10);
@@ -1307,12 +1315,12 @@ void FUN_00159e60(undefined8 param_1,undefined8 param_2)
   fVar3 = (float)fabsf(uStack_8);
   fStack_38 = (float)fabsf(uStack_28);
   fStack_38 = fStack_38 + fVar3 + fVar2;
-  FUN_0015a1b0(param_1,&fStack_40);
+  PhysSphere_Setup(param_1,&fStack_40);
   return;
 }
 
 // 0x00159ff0  size 0x1b4
-void FUN_00159ff0(int param_1,undefined4 *param_2)
+void phys_sub_00159ff0(int param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -1344,18 +1352,18 @@ void FUN_00159ff0(int param_1,undefined4 *param_2)
   *(undefined4 *)(param_1 + 0x24) = uVar1;
   *(undefined4 *)(param_1 + 0x28) = uVar2;
   *(undefined4 *)(param_1 + 0x2c) = uVar3;
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x60),auStack_50,param_1 + 0x120);
-  FUN_00163b40(auStack_40,param_1 + 0x20,auStack_50);
-  FUN_001638b0(*(undefined4 *)(param_1 + 100),auStack_60,param_1 + 0x140);
-  FUN_00163b40(auStack_30,auStack_40,auStack_60);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x68),auStack_70,param_1 + 0x160);
-  FUN_00163b40(&uStack_10,auStack_30,auStack_70);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x60),auStack_a0,param_1 + 0x120);
-  FUN_00163b80(auStack_90,param_1 + 0x20,auStack_a0);
-  FUN_001638b0(*(undefined4 *)(param_1 + 100),auStack_b0,param_1 + 0x140);
-  FUN_00163b80(auStack_80,auStack_90,auStack_b0);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x68),auStack_c0,param_1 + 0x160);
-  FUN_00163b80(&uStack_20,auStack_80,auStack_c0);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x60),auStack_50,param_1 + 0x120);
+  Vec3_Sub(auStack_40,param_1 + 0x20,auStack_50);
+  Vec3_Scale(*(undefined4 *)(param_1 + 100),auStack_60,param_1 + 0x140);
+  Vec3_Sub(auStack_30,auStack_40,auStack_60);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x68),auStack_70,param_1 + 0x160);
+  Vec3_Sub(&uStack_10,auStack_30,auStack_70);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x60),auStack_a0,param_1 + 0x120);
+  Vec3_Add(auStack_90,param_1 + 0x20,auStack_a0);
+  Vec3_Scale(*(undefined4 *)(param_1 + 100),auStack_b0,param_1 + 0x140);
+  Vec3_Add(auStack_80,auStack_90,auStack_b0);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x68),auStack_c0,param_1 + 0x160);
+  Vec3_Add(&uStack_20,auStack_80,auStack_c0);
   uVar5 = 0;
   iVar4 = param_1;
   do {
@@ -1383,23 +1391,23 @@ void FUN_00159ff0(int param_1,undefined4 *param_2)
     *(undefined4 *)(iVar4 + 0x98) = uVar1;
     iVar4 = iVar4 + 0x10;
   } while (uVar5 < 8);
-  uVar1 = FUN_001638e0(param_1 + 0x120,&uStack_20);
+  uVar1 = Vec3_Dot(param_1 + 0x120,&uStack_20);
   *(undefined4 *)(param_1 + 0x110) = uVar1;
-  uVar1 = FUN_001638e0(param_1 + 0x140,&uStack_20);
+  uVar1 = Vec3_Dot(param_1 + 0x140,&uStack_20);
   *(undefined4 *)(param_1 + 0x130) = uVar1;
-  uVar1 = FUN_001638e0(param_1 + 0x160,&uStack_20);
+  uVar1 = Vec3_Dot(param_1 + 0x160,&uStack_20);
   *(undefined4 *)(param_1 + 0x150) = uVar1;
-  uVar1 = FUN_001638e0(param_1 + 0x180,&uStack_10);
+  uVar1 = Vec3_Dot(param_1 + 0x180,&uStack_10);
   *(undefined4 *)(param_1 + 0x170) = uVar1;
-  uVar1 = FUN_001638e0(param_1 + 0x1a0,&uStack_10);
+  uVar1 = Vec3_Dot(param_1 + 0x1a0,&uStack_10);
   *(undefined4 *)(param_1 + 400) = uVar1;
-  uVar1 = FUN_001638e0(param_1 + 0x1c0,&uStack_10);
+  uVar1 = Vec3_Dot(param_1 + 0x1c0,&uStack_10);
   *(undefined4 *)(param_1 + 0x1b0) = uVar1;
   return;
 }
 
 // 0x0015a1b0  size 0x1fc
-void FUN_0015a1b0(int param_1,undefined8 param_2)
+void PhysSphere_Setup(int param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -1425,7 +1433,7 @@ void FUN_0015a1b0(int param_1,undefined8 param_2)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  uVar6 = FUN_00163c10(param_2);
+  uVar6 = Vec3_Length(param_2);
   *(undefined4 *)(param_1 + 0x14) = uVar6;
   puVar5 = (undefined4 *)param_2;
   uVar6 = puVar5[1];
@@ -1438,18 +1446,18 @@ void FUN_0015a1b0(int param_1,undefined8 param_2)
   *(float *)(param_1 + 0x70) = 1.0 / *(float *)(param_1 + 0x60);
   *(float *)(param_1 + 0x74) = 1.0 / *(float *)(param_1 + 100);
   *(float *)(param_1 + 0x78) = 1.0 / *(float *)(param_1 + 0x68);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x60),auStack_50,param_1 + 0x120);
-  FUN_00163b40(auStack_40,param_1 + 0x20,auStack_50);
-  FUN_001638b0(*(undefined4 *)(param_1 + 100),auStack_60,param_1 + 0x140);
-  FUN_00163b40(auStack_30,auStack_40,auStack_60);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x68),auStack_70,param_1 + 0x160);
-  FUN_00163b40(&uStack_10,auStack_30,auStack_70);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x60),auStack_a0,param_1 + 0x120);
-  FUN_00163b80(auStack_90,param_1 + 0x20,auStack_a0);
-  FUN_001638b0(*(undefined4 *)(param_1 + 100),auStack_b0,param_1 + 0x140);
-  FUN_00163b80(auStack_80,auStack_90,auStack_b0);
-  FUN_001638b0(*(undefined4 *)(param_1 + 0x68),auStack_c0,param_1 + 0x160);
-  FUN_00163b80(&uStack_20,auStack_80,auStack_c0);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x60),auStack_50,param_1 + 0x120);
+  Vec3_Sub(auStack_40,param_1 + 0x20,auStack_50);
+  Vec3_Scale(*(undefined4 *)(param_1 + 100),auStack_60,param_1 + 0x140);
+  Vec3_Sub(auStack_30,auStack_40,auStack_60);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x68),auStack_70,param_1 + 0x160);
+  Vec3_Sub(&uStack_10,auStack_30,auStack_70);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x60),auStack_a0,param_1 + 0x120);
+  Vec3_Add(auStack_90,param_1 + 0x20,auStack_a0);
+  Vec3_Scale(*(undefined4 *)(param_1 + 100),auStack_b0,param_1 + 0x140);
+  Vec3_Add(auStack_80,auStack_90,auStack_b0);
+  Vec3_Scale(*(undefined4 *)(param_1 + 0x68),auStack_c0,param_1 + 0x160);
+  Vec3_Add(&uStack_20,auStack_80,auStack_c0);
   uVar4 = 0;
   iVar3 = param_1;
   do {
@@ -1477,23 +1485,23 @@ void FUN_0015a1b0(int param_1,undefined8 param_2)
     *(undefined4 *)(iVar3 + 0x98) = uVar6;
     iVar3 = iVar3 + 0x10;
   } while (uVar4 < 8);
-  uVar6 = FUN_001638e0(param_1 + 0x120,&uStack_20);
+  uVar6 = Vec3_Dot(param_1 + 0x120,&uStack_20);
   *(undefined4 *)(param_1 + 0x110) = uVar6;
-  uVar6 = FUN_001638e0(param_1 + 0x140,&uStack_20);
+  uVar6 = Vec3_Dot(param_1 + 0x140,&uStack_20);
   *(undefined4 *)(param_1 + 0x130) = uVar6;
-  uVar6 = FUN_001638e0(param_1 + 0x160,&uStack_20);
+  uVar6 = Vec3_Dot(param_1 + 0x160,&uStack_20);
   *(undefined4 *)(param_1 + 0x150) = uVar6;
-  uVar6 = FUN_001638e0(param_1 + 0x180,&uStack_10);
+  uVar6 = Vec3_Dot(param_1 + 0x180,&uStack_10);
   *(undefined4 *)(param_1 + 0x170) = uVar6;
-  uVar6 = FUN_001638e0(param_1 + 0x1a0,&uStack_10);
+  uVar6 = Vec3_Dot(param_1 + 0x1a0,&uStack_10);
   *(undefined4 *)(param_1 + 400) = uVar6;
-  uVar6 = FUN_001638e0(param_1 + 0x1c0,&uStack_10);
+  uVar6 = Vec3_Dot(param_1 + 0x1c0,&uStack_10);
   *(undefined4 *)(param_1 + 0x1b0) = uVar6;
   return;
 }
 
 // 0x0015a3b0  size 0x28
-void FUN_0015a3b0(undefined4 param_1,undefined8 param_2)
+void phys_sub_0015a3b0(undefined4 param_1,undefined8 param_2)
 
 {
   undefined4 uStack_10;
@@ -1503,26 +1511,26 @@ void FUN_0015a3b0(undefined4 param_1,undefined8 param_2)
   uStack_10 = param_1;
   uStack_c = param_1;
   uStack_8 = param_1;
-  FUN_0015a1b0(param_2,&uStack_10);
+  PhysSphere_Setup(param_2,&uStack_10);
   return;
 }
 
 // 0x0015a3e0  size 0x8
-int FUN_0015a3e0(int param_1)
+int phys_sub_0015a3e0(int param_1)
 
 {
   return param_1 + 0x70;
 }
 
 // 0x0015a3f0  size 0x8
-int FUN_0015a3f0(int param_1)
+int phys_sub_0015a3f0(int param_1)
 
 {
   return param_1 + 0x60;
 }
 
 // 0x0015a420  size 0x154
-undefined4 FUN_0015a420(float *param_1,float *param_2,int param_3,int param_4)
+undefined4 PhysBox_ProjectPoint(float *param_1,float *param_2,int param_3,int param_4)
 
 {
   float fVar1;
@@ -1534,30 +1542,30 @@ undefined4 FUN_0015a420(float *param_1,float *param_2,int param_3,int param_4)
   float fVar7;
   float fVar8;
   
-  uVar2 = FUN_001638e0(param_3 + 0x140,param_1 + 4);
+  uVar2 = Vec3_Dot(param_3 + 0x140,param_1 + 4);
   fVar3 = (float)fabsf(uVar2);
-  uVar2 = FUN_001638e0(param_3 + 0x120,param_1 + 4);
+  uVar2 = Vec3_Dot(param_3 + 0x120,param_1 + 4);
   fVar4 = (float)fabsf(uVar2);
-  uVar2 = FUN_001638e0(param_3 + 0x160,param_1 + 4);
+  uVar2 = Vec3_Dot(param_3 + 0x160,param_1 + 4);
   fVar5 = (float)fabsf(uVar2);
   fVar1 = *(float *)(param_3 + 100);
   fVar8 = *(float *)(param_3 + 0x60);
   fVar7 = *(float *)(param_3 + 0x68);
-  fVar6 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 4);
+  fVar6 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 4);
   if (fVar6 - *param_1 < fVar7 * fVar5 + fVar8 * fVar4 + fVar1 * fVar3) {
     uVar2 = 0;
   }
   else {
-    uVar2 = FUN_001638e0(param_4 + 0x140,param_2 + 4);
+    uVar2 = Vec3_Dot(param_4 + 0x140,param_2 + 4);
     fVar3 = (float)fabsf(uVar2);
-    uVar2 = FUN_001638e0(param_4 + 0x120,param_2 + 4);
+    uVar2 = Vec3_Dot(param_4 + 0x120,param_2 + 4);
     fVar4 = (float)fabsf(uVar2);
-    uVar2 = FUN_001638e0(param_4 + 0x160,param_2 + 4);
+    uVar2 = Vec3_Dot(param_4 + 0x160,param_2 + 4);
     fVar5 = (float)fabsf(uVar2);
     fVar1 = *(float *)(param_4 + 100);
     fVar8 = *(float *)(param_4 + 0x60);
     fVar7 = *(float *)(param_4 + 0x68);
-    fVar6 = (float)FUN_001638e0(param_4 + 0x20,param_2 + 4);
+    fVar6 = (float)Vec3_Dot(param_4 + 0x20,param_2 + 4);
     uVar2 = 1;
     if (fVar6 - *param_2 <= fVar7 * fVar5 + fVar8 * fVar4 + fVar1 * fVar3) {
       uVar2 = 0;
@@ -1567,68 +1575,68 @@ undefined4 FUN_0015a420(float *param_1,float *param_2,int param_3,int param_4)
 }
 
 // 0x0015a580  size 0xd4
-void FUN_0015a580(int param_1,int param_2,int param_3)
+void PhysBox_ContactPlane(int param_1,int param_2,int param_3)
 
 {
   float fVar1;
   
-  fVar1 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 0x120);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 0x120);
   *(float *)(param_2 + 0x30) =
        *(float *)(param_1 + 0x70) * (fVar1 - *(float *)(param_1 + 0x110)) + 1.0;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 0x140);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 0x140);
   *(float *)(param_2 + 0x34) =
        *(float *)(param_1 + 0x74) * (fVar1 - *(float *)(param_1 + 0x130)) + 1.0;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 0x160);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 0x160);
   *(float *)(param_2 + 0x38) =
        *(float *)(param_1 + 0x78) * (fVar1 - *(float *)(param_1 + 0x150)) + 1.0;
   return;
 }
 
 // 0x0015a660  size 0x1f4
-void FUN_0015a660(int param_1,float *param_2,int param_3)
+void PhysBox_ContactPlaneEx(int param_1,float *param_2,int param_3)
 
 {
   float fVar1;
   
-  fVar1 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 0x120);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 0x120);
   param_2[0xc] = *(float *)(param_1 + 0x70) * (fVar1 - *(float *)(param_1 + 0x110)) + 1.0;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 0x140);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 0x140);
   param_2[0xd] = *(float *)(param_1 + 0x74) * (fVar1 - *(float *)(param_1 + 0x130)) + 1.0;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x20,param_1 + 0x160);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x20,param_1 + 0x160);
   param_2[0xe] = *(float *)(param_1 + 0x78) * (fVar1 - *(float *)(param_1 + 0x150)) + 1.0;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x120,param_1 + 0x120);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x120,param_1 + 0x120);
   *param_2 = *(float *)(param_1 + 0x70) * *(float *)(param_3 + 0x60) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x120,param_1 + 0x140);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x120,param_1 + 0x140);
   param_2[1] = *(float *)(param_1 + 0x74) * *(float *)(param_3 + 0x60) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x120,param_1 + 0x160);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x120,param_1 + 0x160);
   param_2[2] = *(float *)(param_1 + 0x78) * *(float *)(param_3 + 0x60) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x140,param_1 + 0x120);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x140,param_1 + 0x120);
   param_2[4] = *(float *)(param_1 + 0x70) * *(float *)(param_3 + 100) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x140,param_1 + 0x140);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x140,param_1 + 0x140);
   param_2[5] = *(float *)(param_1 + 0x74) * *(float *)(param_3 + 100) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x140,param_1 + 0x160);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x140,param_1 + 0x160);
   param_2[6] = *(float *)(param_1 + 0x78) * *(float *)(param_3 + 100) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x160,param_1 + 0x120);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x160,param_1 + 0x120);
   param_2[8] = *(float *)(param_1 + 0x70) * *(float *)(param_3 + 0x68) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x160,param_1 + 0x140);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x160,param_1 + 0x140);
   param_2[9] = *(float *)(param_1 + 0x74) * *(float *)(param_3 + 0x68) * fVar1;
-  fVar1 = (float)FUN_001638e0(param_3 + 0x160,param_1 + 0x160);
+  fVar1 = (float)Vec3_Dot(param_3 + 0x160,param_1 + 0x160);
   param_2[10] = *(float *)(param_1 + 0x78) * *(float *)(param_3 + 0x68) * fVar1;
   return;
 }
 
 // 0x0015a860  size 0x48
-float FUN_0015a860(int param_1,int param_2,undefined8 param_3)
+float PhysBox_PlaneDistance(int param_1,int param_2,undefined8 param_3)
 
 {
   float fVar1;
   
-  fVar1 = (float)FUN_001638e0(param_1 + param_2 * 0x20 + 0x120,param_3);
+  fVar1 = (float)Vec3_Dot(param_1 + param_2 * 0x20 + 0x120,param_3);
   return fVar1 - *(float *)(param_2 * 0x20 + param_1 + 0x110);
 }
 
 // 0x0015a8b0  size 0x48
-int FUN_0015a8b0(int param_1,int param_2)
+int PhysBox_GetEdge(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1642,7 +1650,7 @@ int FUN_0015a8b0(int param_1,int param_2)
 }
 
 // 0x0015a900  size 0x9c
-void FUN_0015a900(int param_1,undefined8 param_2)
+void phys_sub_0015a900(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1652,24 +1660,24 @@ void FUN_0015a900(int param_1,undefined8 param_2)
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    FUN_00163b00(iVar1 + 0x90,param_2);
+    Vec3_AddInPlace(iVar1 + 0x90,param_2);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x10;
   } while (uVar2 < 8);
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    fVar3 = (float)FUN_001638e0(iVar1 + 0x120,param_2);
+    fVar3 = (float)Vec3_Dot(iVar1 + 0x120,param_2);
     uVar2 = uVar2 + 1;
     *(float *)(iVar1 + 0x110) = *(float *)(iVar1 + 0x110) + fVar3;
     iVar1 = iVar1 + 0x20;
   } while (uVar2 < 6);
-  FUN_00163b00(param_1 + 0x20,param_2);
+  Vec3_AddInPlace(param_1 + 0x20,param_2);
   return;
 }
 
 // 0x0015a9a0  size 0x114
-void FUN_0015a9a0(undefined4 param_1,undefined8 param_2,int param_3)
+void phys_sub_0015a9a0(undefined4 param_1,undefined8 param_2,int param_3)
 
 {
   undefined1 auStack_a0 [16];
@@ -1697,32 +1705,32 @@ void FUN_0015a9a0(undefined4 param_1,undefined8 param_2,int param_3)
   
   uStack_4 = 0x3f800000;
   uStack_14 = 0x3f800000;
-  FUN_00163880(*(undefined4 *)(param_3 + 0x110),&uStack_50,param_3 + 0x120);
+  Vec3_ScaleCopy(*(undefined4 *)(param_3 + 0x110),&uStack_50,param_3 + 0x120);
   uStack_20 = uStack_50;
   uStack_1c = uStack_4c;
   uStack_18 = uStack_48;
   uStack_14 = uStack_44;
-  FUN_00163880(*(undefined4 *)(param_3 + 0x130),auStack_60,param_3 + 0x140);
-  FUN_00163b00(&uStack_20,auStack_60);
-  FUN_00163880(*(undefined4 *)(param_3 + 0x150),auStack_70,param_3 + 0x160);
-  FUN_00163b00(&uStack_20,auStack_70);
-  FUN_00163880(*(undefined4 *)(param_3 + 0x170),&uStack_80,param_3 + 0x180);
+  Vec3_ScaleCopy(*(undefined4 *)(param_3 + 0x130),auStack_60,param_3 + 0x140);
+  Vec3_AddInPlace(&uStack_20,auStack_60);
+  Vec3_ScaleCopy(*(undefined4 *)(param_3 + 0x150),auStack_70,param_3 + 0x160);
+  Vec3_AddInPlace(&uStack_20,auStack_70);
+  Vec3_ScaleCopy(*(undefined4 *)(param_3 + 0x170),&uStack_80,param_3 + 0x180);
   uStack_10 = uStack_80;
   uStack_c = uStack_7c;
   uStack_8 = uStack_78;
   uStack_4 = uStack_74;
-  FUN_00163880(*(undefined4 *)(param_3 + 400),auStack_90,param_3 + 0x1a0);
-  FUN_00163b00(&uStack_10,auStack_90);
-  FUN_00163880(*(undefined4 *)(param_3 + 0x1b0),auStack_a0,param_3 + 0x1c0);
-  FUN_00163b00(&uStack_10,auStack_a0);
-  FUN_001638b0(param_1,auStack_30,&uStack_10);
-  FUN_001638b0(param_1,auStack_40,&uStack_20);
-  FUN_0015b7c0(param_2,auStack_30,auStack_40);
+  Vec3_ScaleCopy(*(undefined4 *)(param_3 + 400),auStack_90,param_3 + 0x1a0);
+  Vec3_AddInPlace(&uStack_10,auStack_90);
+  Vec3_ScaleCopy(*(undefined4 *)(param_3 + 0x1b0),auStack_a0,param_3 + 0x1c0);
+  Vec3_AddInPlace(&uStack_10,auStack_a0);
+  Vec3_Scale(param_1,auStack_30,&uStack_10);
+  Vec3_Scale(param_1,auStack_40,&uStack_20);
+  PhysBox_ComputeBounds(param_2,auStack_30,auStack_40);
   return;
 }
 
 // 0x0015aac0  size 0x57c
-long FUN_0015aac0(int param_1,long param_2)
+long PhysBox_Create(int param_1,long param_2)
 
 {
   bool bVar1;
@@ -1739,7 +1747,7 @@ long FUN_0015aac0(int param_1,long param_2)
   if (param_2 == 0) {
     lVar5 = maybe_operator_new_arr(0x1d0);
     if (lVar5 != 0) {
-      FUN_0015c200(lVar5);
+      PhysShapeBase_ctor(lVar5);
       puVar10 = (undefined4 *)lVar5;
       *puVar10 = &DAT_0036e190;
       puVar10[0x1b] = 0x3f800000;
@@ -1842,13 +1850,13 @@ long FUN_0015aac0(int param_1,long param_2)
           puVar4[7] = 0x3f800000;
         }
       }
-      FUN_0015b7c0(lVar5,param_1 + 0x100,param_1 + 0x90);
+      PhysBox_ComputeBounds(lVar5,param_1 + 0x100,param_1 + 0x90);
     }
   }
   else {
     lVar5 = maybe_operator_new_arr_heap(0x1d0);
     if (lVar5 != 0) {
-      FUN_0015c200(lVar5);
+      PhysShapeBase_ctor(lVar5);
       puVar10 = (undefined4 *)lVar5;
       *puVar10 = &DAT_0036e190;
       puVar10[0x1b] = 0x3f800000;
@@ -1951,14 +1959,14 @@ long FUN_0015aac0(int param_1,long param_2)
           puVar4[7] = 0x3f800000;
         }
       }
-      FUN_0015b7c0(lVar5,param_1 + 0x100,param_1 + 0x90);
+      PhysBox_ComputeBounds(lVar5,param_1 + 0x100,param_1 + 0x90);
     }
   }
   return lVar5;
 }
 
 // 0x0015b050  size 0x8c
-undefined4 FUN_0015b050(int param_1,undefined8 param_2)
+undefined4 PhysBox_ClassifyPoint(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1968,7 +1976,7 @@ undefined4 FUN_0015b050(int param_1,undefined8 param_2)
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    fVar3 = (float)FUN_001638e0(param_2,param_1 + 0x120);
+    fVar3 = (float)Vec3_Dot(param_2,param_1 + 0x120);
     if (*(float *)(iVar1 + 0x110) < fVar3) {
       return 0;
     }
@@ -1980,7 +1988,7 @@ undefined4 FUN_0015b050(int param_1,undefined8 param_2)
 }
 
 // 0x0015b0e0  size 0x2c4
-undefined4 FUN_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefined8 param_4)
+undefined4 phys_sub_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   bool bVar1;
@@ -2006,16 +2014,16 @@ undefined4 FUN_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefined8 
   iVar4 = param_1;
   iVar3 = param_1;
   do {
-    fVar9 = (float)FUN_001638e0(param_3,iVar4 + 0x120);
+    fVar9 = (float)Vec3_Dot(param_3,iVar4 + 0x120);
     if ((*(float *)(iVar3 + 0x110) <= fVar9) &&
-       (fVar9 = (float)FUN_001638e0(param_4,iVar4 + 0x120), *(float *)(iVar3 + 0x110) < fVar9)) {
+       (fVar9 = (float)Vec3_Dot(param_4,iVar4 + 0x120), *(float *)(iVar3 + 0x110) < fVar9)) {
       return 0;
     }
     uVar6 = uVar6 + 1;
     iVar4 = iVar4 + 0x20;
     iVar3 = iVar3 + 0x20;
   } while (uVar6 < 6);
-  FUN_00163b40(auStack_10,param_4,param_3);
+  Vec3_Sub(auStack_10,param_4,param_3);
   fVar12 = 0.0;
   iVar3 = 0;
   uStack_38 = 0;
@@ -2025,20 +2033,20 @@ undefined4 FUN_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefined8 
   iVar4 = param_1;
   iStack_50 = param_1;
   do {
-    fVar10 = (float)FUN_001638e0(auStack_10,iVar4 + 0x120);
+    fVar10 = (float)Vec3_Dot(auStack_10,iVar4 + 0x120);
     if (fVar10 != 0.0) {
-      fVar11 = (float)FUN_001638e0(param_3,iVar4 + 0x120);
+      fVar11 = (float)Vec3_Dot(param_3,iVar4 + 0x120);
       fVar10 = (*(float *)(iStack_50 + 0x110) - fVar11) / fVar10;
-      FUN_001638b0(fVar10,auStack_30,auStack_10);
-      FUN_00163b80(auStack_20,param_3,auStack_30);
+      Vec3_Scale(fVar10,auStack_30,auStack_10);
+      Vec3_Add(auStack_20,param_3,auStack_30);
       bVar1 = true;
       uVar8 = 0;
       iVar5 = param_1;
       iVar7 = param_1;
       do {
         if ((uVar6 != uVar8) &&
-           (fVar11 = (float)FUN_001638e0(auStack_20,iVar7 + 0x120),
-           *(float *)(iVar5 + 0x110) < fVar11)) {
+           (fVar11 = (float)Vec3_Dot(auStack_20,iVar7 + 0x120), *(float *)(iVar5 + 0x110) < fVar11))
+        {
           bVar1 = false;
           break;
         }
@@ -2091,21 +2099,21 @@ undefined4 FUN_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefined8 
 }
 
 // 0x0015b3b0  size 0x18
-undefined4 FUN_0015b3b0(int param_1)
+undefined4 phys_sub_0015b3b0(int param_1)
 
 {
   return *(undefined4 *)(&DAT_0030acb0 + param_1 * 4);
 }
 
 // 0x0015b3d0  size 0x18
-undefined4 FUN_0015b3d0(int param_1)
+undefined4 phys_sub_0015b3d0(int param_1)
 
 {
   return *(undefined4 *)(&DAT_0030ac80 + param_1 * 4);
 }
 
 // 0x0015b430  size 0x9c
-undefined4 FUN_0015b430(int param_1,int param_2)
+undefined4 phys_sub_0015b430(int param_1,int param_2)
 
 {
   undefined1 auStack_50 [16];
@@ -2118,11 +2126,11 @@ undefined4 FUN_0015b430(int param_1,int param_2)
   undefined4 uStack_4;
   
   param_2 = param_2 * 0x10;
-  FUN_001638b0(*(undefined4 *)(param_2 + 0x42f480),auStack_30,param_1 + 0x120);
-  FUN_001638b0(*(undefined4 *)(param_2 + 0x42f484),auStack_40,param_1 + 0x140);
-  FUN_00163b80(auStack_20,auStack_30,auStack_40);
-  FUN_001638b0(*(undefined4 *)(param_2 + 0x42f488),auStack_50,param_1 + 0x160);
-  FUN_00163b80(&uStack_10,auStack_20,auStack_50);
+  Vec3_Scale(*(undefined4 *)(param_2 + 0x42f480),auStack_30,param_1 + 0x120);
+  Vec3_Scale(*(undefined4 *)(param_2 + 0x42f484),auStack_40,param_1 + 0x140);
+  Vec3_Add(auStack_20,auStack_30,auStack_40);
+  Vec3_Scale(*(undefined4 *)(param_2 + 0x42f488),auStack_50,param_1 + 0x160);
+  Vec3_Add(&uStack_10,auStack_20,auStack_50);
   uRam0042f540 = uStack_10;
   uRam0042f544 = uStack_c;
   uRam0042f548 = uStack_8;
@@ -2131,14 +2139,14 @@ undefined4 FUN_0015b430(int param_1,int param_2)
 }
 
 // 0x0015b4e0  size 0x10
-int FUN_0015b4e0(int param_1,int param_2)
+int phys_sub_0015b4e0(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0x20 + 0x110;
 }
 
 // 0x0015b520  size 0x240
-void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
+void phys_sub_0015b520(int param_1,undefined8 param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2197,7 +2205,7 @@ void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x74) = uVar1;
   *(undefined4 *)(param_1 + 0x78) = uVar2;
   *(undefined4 *)(param_1 + 0x7c) = uVar3;
-  FUN_00162e70(&uStack_10,param_2,param_3 + 0x20);
+  Mat33_MulVec3(&uStack_10,param_2,param_3 + 0x20);
   uVar4 = 0;
   *(undefined4 *)(param_1 + 0x20) = uStack_10;
   *(undefined4 *)(param_1 + 0x24) = uStack_c;
@@ -2206,7 +2214,7 @@ void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
   puVar6 = (undefined4 *)(param_1 + 0x90);
   iVar5 = param_3 + 0x90;
   do {
-    FUN_00162e70(&uStack_b0,param_2,iVar5);
+    Mat33_MulVec3(&uStack_b0,param_2,iVar5);
     uVar4 = uVar4 + 1;
     *puVar6 = uStack_b0;
     puVar6[1] = uStack_ac;
@@ -2223,7 +2231,7 @@ void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x124) = uStack_1c;
   *(undefined4 *)(param_1 + 0x128) = uStack_18;
   *(undefined4 *)(param_1 + 300) = uStack_14;
-  uVar1 = FUN_001638e0(param_1 + 0x120,param_1 + 0x90);
+  uVar1 = Vec3_Dot(param_1 + 0x120,param_1 + 0x90);
   *(undefined4 *)(param_1 + 0x110) = uVar1;
   uStack_30 = puVar6[4];
   uStack_2c = puVar6[5];
@@ -2232,7 +2240,7 @@ void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x144) = uStack_2c;
   *(undefined4 *)(param_1 + 0x148) = uStack_28;
   *(undefined4 *)(param_1 + 0x14c) = uStack_24;
-  uVar1 = FUN_001638e0(param_1 + 0x140,param_1 + 0x90);
+  uVar1 = Vec3_Dot(param_1 + 0x140,param_1 + 0x90);
   *(undefined4 *)(param_1 + 0x130) = uVar1;
   uStack_40 = puVar6[8];
   uStack_3c = puVar6[9];
@@ -2241,21 +2249,21 @@ void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x164) = uStack_3c;
   *(undefined4 *)(param_1 + 0x168) = uStack_38;
   *(undefined4 *)(param_1 + 0x16c) = uStack_34;
-  uVar1 = FUN_001638e0(param_1 + 0x160,param_1 + 0x90);
+  uVar1 = Vec3_Dot(param_1 + 0x160,param_1 + 0x90);
   *(undefined4 *)(param_1 + 0x150) = uVar1;
-  FUN_001638b0(0xbf800000,&uStack_50,param_1 + 0x120);
+  Vec3_Scale(0xbf800000,&uStack_50,param_1 + 0x120);
   *(undefined4 *)(param_1 + 0x180) = uStack_50;
   *(undefined4 *)(param_1 + 0x184) = uStack_4c;
   *(undefined4 *)(param_1 + 0x188) = uStack_48;
   *(undefined4 *)(param_1 + 0x18c) = uStack_44;
   *(float *)(param_1 + 0x170) = *(float *)(param_1 + 0x60) * 2.0 - *(float *)(param_1 + 0x110);
-  FUN_001638b0(0xbf800000,&uStack_60,param_1 + 0x140);
+  Vec3_Scale(0xbf800000,&uStack_60,param_1 + 0x140);
   *(undefined4 *)(param_1 + 0x1a0) = uStack_60;
   *(undefined4 *)(param_1 + 0x1a4) = uStack_5c;
   *(undefined4 *)(param_1 + 0x1a8) = uStack_58;
   *(undefined4 *)(param_1 + 0x1ac) = uStack_54;
   *(float *)(param_1 + 400) = *(float *)(param_1 + 100) * 2.0 - *(float *)(param_1 + 0x130);
-  FUN_001638b0(0xbf800000,&uStack_70,param_1 + 0x160);
+  Vec3_Scale(0xbf800000,&uStack_70,param_1 + 0x160);
   *(undefined4 *)(param_1 + 0x1c0) = uStack_70;
   *(undefined4 *)(param_1 + 0x1c4) = uStack_6c;
   *(undefined4 *)(param_1 + 0x1c8) = uStack_68;
@@ -2283,7 +2291,7 @@ void FUN_0015b520(int param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0015b760  size 0x60
-long FUN_0015b760(long param_1,short param_2)
+long phys_sub_0015b760(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -2299,7 +2307,7 @@ long FUN_0015b760(long param_1,short param_2)
 }
 
 // 0x0015b7c0  size 0x248
-void FUN_0015b7c0(int param_1,undefined8 param_2,undefined8 param_3)
+void PhysBox_ComputeBounds(int param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -2323,17 +2331,17 @@ void FUN_0015b7c0(int param_1,undefined8 param_2,undefined8 param_3)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_00163b80(auStack_20);
-  FUN_001638b0(0x3f000000,&uStack_10,auStack_20);
+  Vec3_Add(auStack_20);
+  Vec3_Scale(0x3f000000,&uStack_10,auStack_20);
   *(undefined4 *)(param_1 + 0x20) = uStack_10;
   *(undefined4 *)(param_1 + 0x24) = uStack_c;
   *(undefined4 *)(param_1 + 0x28) = uStack_8;
   *(undefined4 *)(param_1 + 0x2c) = uStack_4;
-  FUN_00163b40(auStack_30,param_3,param_2);
-  fVar5 = (float)FUN_00163c10(auStack_30);
+  Vec3_Sub(auStack_30,param_3,param_2);
+  fVar5 = (float)Vec3_Length(auStack_30);
   *(float *)(param_1 + 0x14) = fVar5 * 0.5;
-  FUN_00163b40(auStack_50,param_3,param_2);
-  FUN_001638b0(0x3f000000,&uStack_40,auStack_50);
+  Vec3_Sub(auStack_50,param_3,param_2);
+  Vec3_Scale(0x3f000000,&uStack_40,auStack_50);
   uVar2 = 0;
   *(undefined4 *)(param_1 + 0x60) = uStack_40;
   *(undefined4 *)(param_1 + 100) = uStack_3c;
@@ -2373,32 +2381,32 @@ void FUN_0015b7c0(int param_1,undefined8 param_2,undefined8 param_3)
   *(undefined4 *)(param_1 + 0x120) = 0x3f800000;
   *(undefined4 *)(param_1 + 0x124) = 0;
   *(undefined4 *)(param_1 + 0x128) = 0;
-  uVar6 = FUN_001638e0(param_1 + 0x120,param_3);
+  uVar6 = Vec3_Dot(param_1 + 0x120,param_3);
   *(undefined4 *)(param_1 + 0x110) = uVar6;
   *(undefined4 *)(param_1 + 0x140) = 0;
   *(undefined4 *)(param_1 + 0x144) = 0x3f800000;
   *(undefined4 *)(param_1 + 0x148) = 0;
-  uVar6 = FUN_001638e0(param_1 + 0x140,param_3);
+  uVar6 = Vec3_Dot(param_1 + 0x140,param_3);
   *(undefined4 *)(param_1 + 0x130) = uVar6;
   *(undefined4 *)(param_1 + 0x160) = 0;
   *(undefined4 *)(param_1 + 0x164) = 0;
   *(undefined4 *)(param_1 + 0x168) = 0x3f800000;
-  uVar6 = FUN_001638e0(param_1 + 0x160,param_3);
+  uVar6 = Vec3_Dot(param_1 + 0x160,param_3);
   *(undefined4 *)(param_1 + 0x150) = uVar6;
   *(undefined4 *)(param_1 + 0x180) = 0xbf800000;
   *(undefined4 *)(param_1 + 0x184) = 0;
   *(undefined4 *)(param_1 + 0x188) = 0;
-  uVar6 = FUN_001638e0(param_1 + 0x180,param_2);
+  uVar6 = Vec3_Dot(param_1 + 0x180,param_2);
   *(undefined4 *)(param_1 + 0x170) = uVar6;
   *(undefined4 *)(param_1 + 0x1a0) = 0;
   *(undefined4 *)(param_1 + 0x1a4) = 0xbf800000;
   *(undefined4 *)(param_1 + 0x1a8) = 0;
-  uVar6 = FUN_001638e0(param_1 + 0x1a0,param_2);
+  uVar6 = Vec3_Dot(param_1 + 0x1a0,param_2);
   *(undefined4 *)(param_1 + 400) = uVar6;
   *(undefined4 *)(param_1 + 0x1c0) = 0;
   *(undefined4 *)(param_1 + 0x1c4) = 0;
   *(undefined4 *)(param_1 + 0x1c8) = 0xbf800000;
-  uVar6 = FUN_001638e0(param_1 + 0x1c0,param_2);
+  uVar6 = Vec3_Dot(param_1 + 0x1c0,param_2);
   *(undefined4 *)(param_1 + 0x1b0) = uVar6;
   *(undefined4 *)(param_1 + 0x80) = 0;
   *(undefined4 *)(param_1 + 0x84) = 0;
@@ -2420,7 +2428,7 @@ void FUN_0015b7c0(int param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x0015ba10  size 0x2bc
-undefined8 FUN_0015ba10(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+undefined8 PhysBox_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   bool bVar1;
@@ -2433,7 +2441,7 @@ undefined8 FUN_0015ba10(undefined8 param_1,undefined8 param_2,undefined8 param_3
   uint uVar8;
   undefined4 *puVar9;
   
-  FUN_0015c200();
+  PhysShapeBase_ctor();
   puVar9 = (undefined4 *)param_1;
   *puVar9 = &DAT_0036e190;
   puVar9[0x1b] = 0x3f800000;
@@ -2536,12 +2544,12 @@ undefined8 FUN_0015ba10(undefined8 param_1,undefined8 param_2,undefined8 param_3
       puVar4[7] = 0x3f800000;
     }
   }
-  FUN_0015b7c0(param_1,param_2,param_3);
+  PhysBox_ComputeBounds(param_1,param_2,param_3);
   return param_1;
 }
 
 // 0x0015bcd0  size 0x34
-void FUN_0015bcd0(int param_1,undefined8 param_2)
+void phys_sub_0015bcd0(int param_1,undefined8 param_2)
 
 {
   undefined4 uStack_10;
@@ -2549,7 +2557,7 @@ void FUN_0015bcd0(int param_1,undefined8 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_001636f0(&uStack_10,param_2,param_1 + 0x20);
+  Phys_TransformPointScaled(&uStack_10,param_2,param_1 + 0x20);
   *(undefined4 *)(param_1 + 0x20) = uStack_10;
   *(undefined4 *)(param_1 + 0x24) = uStack_c;
   *(undefined4 *)(param_1 + 0x28) = uStack_8;
@@ -2558,7 +2566,7 @@ void FUN_0015bcd0(int param_1,undefined8 param_2)
 }
 
 // 0x0015bdc0  size 0xa0
-void FUN_0015bdc0(undefined8 param_1,undefined8 param_2)
+void phys_sub_0015bdc0(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -2578,7 +2586,7 @@ void FUN_0015bdc0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0015be60  size 0xa0
-void FUN_0015be60(int param_1,undefined8 param_2,int param_3)
+void phys_sub_0015be60(int param_1,undefined8 param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -2592,7 +2600,7 @@ void FUN_0015be60(int param_1,undefined8 param_2,int param_3)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_00162e70(&uStack_10,param_2,param_3 + 0x20);
+  Mat33_MulVec3(&uStack_10,param_2,param_3 + 0x20);
   *(undefined4 *)(param_1 + 0x20) = uStack_10;
   *(undefined4 *)(param_1 + 0x24) = uStack_c;
   *(undefined4 *)(param_1 + 0x28) = uStack_8;
@@ -2620,14 +2628,14 @@ void FUN_0015be60(int param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0015bf20  size 0x8
-int FUN_0015bf20(int param_1)
+int PhysShape_GetCenter(int param_1)
 
 {
   return param_1 + 0x20;
 }
 
 // 0x0015bf30  size 0x1a4
-undefined4 FUN_0015bf30(int param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
+undefined4 phys_sub_0015bf30(int param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -2638,13 +2646,13 @@ undefined4 FUN_0015bf30(int param_1,undefined4 *param_2,undefined8 param_3,undef
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  FUN_00163b40(auStack_10,param_3,param_1 + 0x20);
-  FUN_00163b40(auStack_20,param_4,param_3);
-  fVar2 = (float)FUN_001638e0(auStack_20,auStack_20);
-  fVar3 = (float)FUN_001638e0(auStack_20,auStack_10);
+  Vec3_Sub(auStack_10,param_3,param_1 + 0x20);
+  Vec3_Sub(auStack_20,param_4,param_3);
+  fVar2 = (float)Vec3_Dot(auStack_20,auStack_20);
+  fVar3 = (float)Vec3_Dot(auStack_20,auStack_10);
   fVar5 = *(float *)(param_1 + 0x14);
   fVar3 = fVar3 * 2.0;
-  fVar4 = (float)FUN_001638e0(auStack_10,auStack_10);
+  fVar4 = (float)Vec3_Dot(auStack_10,auStack_10);
   fVar4 = fVar3 * fVar3 - fVar2 * 4.0 * ((fVar4 + 0.0) - fVar5 * fVar5);
   if (fVar4 < 0.0) {
     uVar1 = 0;

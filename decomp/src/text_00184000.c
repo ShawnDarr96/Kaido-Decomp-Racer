@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00184180  size 0xf0
-void FUN_00184180(int param_1)
+void Cam_BuildViewMatrix(int param_1)
 
 {
   undefined4 uStack_60;
@@ -30,7 +30,7 @@ void FUN_00184180(int param_1)
 }
 
 // 0x00184270  size 0x574
-void FUN_00184270(int param_1)
+void Cam_UpdateChase(int param_1)
 
 {
   short sVar1;
@@ -82,7 +82,7 @@ void FUN_00184270(int param_1)
   uStack_e8 = DAT_0030b9e8;
   uStack_e4 = DAT_0030b9ec;
   uStack_4 = *(undefined4 *)(param_1 + 0x5f6);
-  FUN_00185410(&uStack_8,param_1 + 0x420,uStack_4);
+  Cam_UpdateReplay(&uStack_8,param_1 + 0x420,uStack_4);
   uStack_4 = CONCAT22(sStack_6,uStack_8);
   uStack_10 = uStack_8;
   sStack_e = sStack_6;
@@ -99,7 +99,7 @@ void FUN_00184270(int param_1)
     uStack_6c = *(undefined4 *)(psVar2 + 2);
     uStack_68 = *(undefined4 *)(psVar2 + 4);
     uStack_64 = 0x3f800000;
-    fVar4 = (float)FUN_001858c0(auStack_60,uStack_4);
+    fVar4 = (float)Cam_ComputeReplayOffset(auStack_60,uStack_4);
     fVar5 = (float)vu0math_sub_00132ab0(auStack_60,param_1 + 0x420);
     fVar4 = fVar4 - fVar5;
     FUN_001f2c10(&uStack_c,uStack_4,0xffffffffffffffff);
@@ -119,7 +119,7 @@ void FUN_00184270(int param_1)
       uStack_7c = *(undefined4 *)(psVar2 + 2);
       uStack_78 = *(undefined4 *)(psVar2 + 4);
       uStack_74 = 0x3f800000;
-      fVar5 = (float)FUN_001858c0(auStack_50,uStack_4);
+      fVar5 = (float)Cam_ComputeReplayOffset(auStack_50,uStack_4);
       fVar6 = (float)vu0math_sub_00132ab0(auStack_50,param_1 + 0x420);
       vu0math_sub_00132a90(auStack_30,&uStack_f0,auStack_50);
       vu0math_sub_00132a90(auStack_40,&uStack_f0,auStack_60);
@@ -183,7 +183,7 @@ void FUN_001847f0(void)
 }
 
 // 0x00184800  size 0x64
-int FUN_00184800(int param_1)
+int Cam_GetTargetBodyB(int param_1)
 
 {
   int iVar1;
@@ -202,7 +202,7 @@ int FUN_00184800(int param_1)
 }
 
 // 0x00184870  size 0x64
-int FUN_00184870(int param_1)
+int Cam_GetTargetBodyA(int param_1)
 
 {
   int iVar1;
@@ -228,7 +228,7 @@ void FUN_001848e0(void)
 }
 
 // 0x001848f0  size 0x8
-void FUN_001848f0(int param_1)
+void Cam_ResetTimer(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x500) = 0;
@@ -236,7 +236,7 @@ void FUN_001848f0(int param_1)
 }
 
 // 0x00184900  size 0x214
-void FUN_00184900(undefined8 param_1)
+void Cam_Init(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -245,8 +245,8 @@ void FUN_00184900(undefined8 param_1)
   iVar2 = (int)param_1;
   *(undefined4 *)(iVar2 + 0x500) = 0;
   *(undefined1 *)(iVar2 + 0x4f9) = 1;
-  FUN_00185030(((float)uRam0038804c * 1.9209821) / 2.0,param_1);
-  FUN_00184f60(0,param_1);
+  Cam_SetPitch(((float)uRam0038804c * 1.9209821) / 2.0,param_1);
+  Cam_SetYaw(0,param_1);
   *(undefined4 *)(iVar2 + 0x4e8) = 0x3f000000;
   uRam004311a0 = 0x3f000000;
   *(undefined4 *)(iVar2 + 0x4ec) = *(undefined4 *)(iVar2 + 0x4e0);
@@ -281,12 +281,14 @@ void FUN_00184900(undefined8 param_1)
   vu0math_sub_00132ae0(iVar2 + 0x470,0x3634f0);
   vu0math_sub_00132ae0(iVar2 + 0x480,0x363500);
   vu0math_sub_00132ae0(iVar2 + 0x490,0x363510);
-  FUN_00183b40(param_1,*(undefined1 *)(iVar2 + 0x4f9));
+  Cam_SetMode(param_1,*(undefined1 *)(iVar2 + 0x4f9));
   return;
 }
 
 // 0x00184b20  size 0xf4
-void FUN_00184b20(undefined8 param_1,uint param_2,byte param_3)
+/* 11 callers */
+
+void Cam_SetupViewport(undefined8 param_1,uint param_2,byte param_3)
 
 {
   int iVar1;
@@ -310,13 +312,14 @@ void FUN_00184b20(undefined8 param_1,uint param_2,byte param_3)
   *(uint *)(iVar1 + 0xac) = puVar2[0x14];
   *(uint *)(iVar1 + 0x30) = puVar2[0x10];
   *(uint *)(iVar1 + 0xb4) = (uint)((*puVar2 & 1) != 0);
-  FUN_001445d0(param_1);
+  Camera_Init(param_1);
   return;
 }
 
 // 0x00184c20  size 0x78
-void FUN_00184c20(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5)
+void Cam_SetPositionAndTarget
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5)
 
 {
   int iVar1;
@@ -326,12 +329,12 @@ void FUN_00184c20(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   vu0math_sub_00132ae0(iVar1 + 0x430,param_3);
   vu0math_sub_00132ae0(iVar1 + 0x440,param_4);
   vu0math_sub_00132ae0(iVar1 + 0x450,param_5);
-  FUN_00184ca0(param_1);
+  Cam_ApplyLookAt(param_1);
   return;
 }
 
 // 0x00184ca0  size 0x280
-void FUN_00184ca0(int param_1)
+void Cam_ApplyLookAt(int param_1)
 
 {
   vu0math_sub_00132ae0(param_1 + 0x70,param_1 + 0x420);
@@ -381,7 +384,7 @@ void FUN_00184ca0(int param_1)
 }
 
 // 0x00184f20  size 0x28
-void FUN_00184f20(int param_1)
+void Cam_NormalizeDirection(int param_1)
 
 {
   undefined4 uVar1;
@@ -392,7 +395,7 @@ void FUN_00184f20(int param_1)
 }
 
 // 0x00184f50  size 0x10
-void FUN_00184f50(undefined4 param_1,int param_2)
+void Cam_SetFov(undefined4 param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0x4e8) = param_1;
@@ -401,7 +404,9 @@ void FUN_00184f50(undefined4 param_1,int param_2)
 }
 
 // 0x00184f60  size 0xd0
-void FUN_00184f60(float param_1,int param_2)
+/* wraps to [0, 2pi] */
+
+void Cam_SetYaw(float param_1,int param_2)
 
 {
   float fVar1;
@@ -427,7 +432,9 @@ void FUN_00184f60(float param_1,int param_2)
 }
 
 // 0x00185030  size 0x13c
-void FUN_00185030(float param_1,int param_2)
+/* 10 callers */
+
+void Cam_SetPitch(float param_1,int param_2)
 
 {
   ulong uVar1;
@@ -454,7 +461,7 @@ void FUN_00185030(float param_1,int param_2)
 }
 
 // 0x00185170  size 0x34
-void FUN_00185170(int param_1,float *param_2)
+void Cam_DistanceTo(int param_1,float *param_2)
 
 {
   float fVar1;
@@ -469,7 +476,7 @@ void FUN_00185170(int param_1,float *param_2)
 }
 
 // 0x001851b0  size 0x15c
-void FUN_001851b0(undefined8 param_1,long param_2)
+void Cam_SetTarget(undefined8 param_1,long param_2)
 
 {
   undefined2 uVar1;
@@ -507,7 +514,7 @@ void FUN_001851b0(undefined8 param_1,long param_2)
   puVar6[0x36] = puVar6[0x32];
   puVar6[0x37] = puVar6[0x33];
   if (param_2 != 0) {
-    FUN_00185a00(param_1,puVar6 + 8,puVar6 + 0x10,puVar6 + 0x30,param_2);
+    Cam_GetCarAttachPoint(param_1,puVar6 + 8,puVar6 + 0x10,puVar6 + 0x30,param_2);
     puVar2 = (undefined1 *)FUN_001ca760(param_2);
     *(undefined1 *)(puVar6 + 0x38) = *puVar2;
     uVar1 = *(undefined2 *)(puVar2 + 4);
@@ -556,7 +563,7 @@ void FUN_001851b0(undefined8 param_1,long param_2)
 }
 
 // 0x00185410  size 0x4a8
-void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
+void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
 
 {
   float fVar1;
@@ -589,7 +596,7 @@ void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
   undefined4 uStack_4;
   
   uStack_4 = param_3;
-  fVar1 = (float)FUN_001858c0(auStack_80,param_3);
+  fVar1 = (float)Cam_ComputeReplayOffset(auStack_80,param_3);
   fVar2 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
   FUN_001f2c10(&sStack_8,uStack_4,1);
   uStack_4 = CONCAT22(sStack_6,sStack_8);
@@ -598,7 +605,7 @@ void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
     param_1[1] = sStack_6;
   }
   else {
-    fVar3 = (float)FUN_001858c0(auStack_80,uStack_4);
+    fVar3 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
     fVar4 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
     fVar3 = fVar3 - fVar4;
     FUN_001f2c10(&sStack_c,uStack_4,0xfffffffffffffffe);
@@ -608,7 +615,7 @@ void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
       param_1[1] = sStack_a;
     }
     else {
-      fVar4 = (float)FUN_001858c0(auStack_80,uStack_4);
+      fVar4 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
       fVar5 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
       fVar4 = fVar4 - fVar5;
       FUN_001f2c10(&sStack_10,uStack_4,1);
@@ -644,7 +651,7 @@ void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
                 param_1[1] = sStack_16;
                 return;
               }
-              fVar3 = (float)FUN_001858c0(auStack_80,uStack_4);
+              fVar3 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
               fVar4 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
               fVar3 = fVar3 - fVar4;
               FUN_001f2c10(&sStack_1c,uStack_4,0xffffffffffffffff);
@@ -667,7 +674,7 @@ void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
             param_1[1] = sStack_1e;
             return;
           }
-          fVar5 = (float)FUN_001858c0(auStack_80,uStack_4);
+          fVar5 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
           fVar6 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
           FUN_001f2c10(&sStack_24,uStack_4,1);
           uStack_64 = CONCAT22(sStack_22,sStack_24);
@@ -685,7 +692,7 @@ void FUN_00185410(short *param_1,undefined8 param_2,undefined4 param_3)
 }
 
 // 0x001858c0  size 0x140
-void FUN_001858c0(undefined8 param_1,uint param_2)
+void Cam_ComputeReplayOffset(undefined8 param_1,uint param_2)
 
 {
   short sVar1;
@@ -733,7 +740,7 @@ void FUN_001858c0(undefined8 param_1,uint param_2)
 }
 
 // 0x00185a00  size 0x148
-void FUN_00185a00(long param_1,long param_2,long param_3,undefined4 *param_4,int param_5)
+void Cam_GetCarAttachPoint(long param_1,long param_2,long param_3,undefined4 *param_4,int param_5)
 
 {
   undefined8 uVar1;
@@ -749,7 +756,7 @@ void FUN_00185a00(long param_1,long param_2,long param_3,undefined4 *param_4,int
   undefined4 uStack_4;
   
   if (param_1 != 0) {
-    uVar1 = FUN_001651a0(*(undefined4 *)(param_5 + 0x154));
+    uVar1 = phys_sub_001651a0(*(undefined4 *)(param_5 + 0x154));
     vu0math_sub_00132ae0(param_1,uVar1);
   }
   if (param_2 != 0) {
@@ -759,16 +766,16 @@ void FUN_00185a00(long param_1,long param_2,long param_3,undefined4 *param_4,int
     uStack_c = 0;
     uStack_10 = 0;
     do {
-      FUN_00163b00(&uStack_10,param_5 + iVar2 * 0x140 + 0x1f0);
+      Vec3_AddInPlace(&uStack_10,param_5 + iVar2 * 0x140 + 0x1f0);
       iVar2 = iVar2 + 1;
     } while (iVar2 < 4);
-    FUN_00163a50(0x40800000,&uStack_10);
+    phys_sub_00163a50(0x40800000,&uStack_10);
     vu0math_sub_00132ae0(param_2,&uStack_10);
   }
   if (param_3 != 0) {
-    uVar1 = FUN_00165040(*(undefined4 *)(param_5 + 0x154));
-    FUN_001630c0(auStack_50);
-    FUN_00162fb0(auStack_50,uVar1);
+    uVar1 = phys_sub_00165040(*(undefined4 *)(param_5 + 0x154));
+    Mat34_Identity(auStack_50);
+    phys_sub_00162fb0(auStack_50,uVar1);
     vu0math_sub_00132ae0(param_3,auStack_50);
     iVar2 = (int)param_3;
     vu0math_sub_00132ae0(iVar2 + 0x10,auStack_40);
@@ -784,7 +791,7 @@ void FUN_00185a00(long param_1,long param_2,long param_3,undefined4 *param_4,int
 }
 
 // 0x00185b50  size 0xe4
-void FUN_00185b50(uint param_1,uint *param_2,undefined8 param_3,uint *param_4)
+void Cam_FindReplayKey(uint param_1,uint *param_2,undefined8 param_3,uint *param_4)
 
 {
   uint uVar1;
@@ -814,7 +821,7 @@ void FUN_00185b50(uint param_1,uint *param_2,undefined8 param_3,uint *param_4)
 }
 
 // 0x00185c40  size 0x260
-void FUN_00185c40(undefined8 param_1,undefined8 param_2)
+void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -841,23 +848,23 @@ void FUN_00185c40(undefined8 param_1,undefined8 param_2)
   if (*piVar7 != 0) {
     uStack_4 = *(undefined4 *)((int)piVar7 + 0x5f6);
     iVar3 = FUN_001f2e30(uStack_4);
-    uVar4 = FUN_00186100(*piVar7,piVar7[1],iVar3);
+    uVar4 = Cam_FindKeyBefore(*piVar7,piVar7[1],iVar3);
     if (uVar4 != 0) {
       puVar8 = (uint *)uVar4;
       uVar6 = *puVar8;
       uVar1 = puVar8[1];
       fVar10 = (float)FUN_001f1ff0(uStack_4,piVar9);
       fVar11 = (float)(int)(uVar1 - uVar6);
-      FUN_001861a0((float)(iVar3 - uVar6) / fVar11 + fVar10 / fVar11,puVar8[4] + piVar7[3] * 0xd8,
-                   auStack_70,piVar9);
-      FUN_00185030(fStack_2c,param_2);
-      FUN_00184f60(uStack_30,param_2);
+      Cam_InterpolatePath((float)(iVar3 - uVar6) / fVar11 + fVar10 / fVar11,
+                          puVar8[4] + piVar7[3] * 0xd8,auStack_70,piVar9);
+      Cam_SetPitch(fStack_2c,param_2);
+      Cam_SetYaw(uStack_30,param_2);
       fRam004311a0 = (float)piVar7[0x13d] * (fStack_2c / (float)piVar7[0x13c]);
       piVar7[0x13a] = (int)fRam004311a0;
       vu0math_sub_00132ae0(piVar7 + 0x108,auStack_60);
       vu0math_sub_00132ae0(piVar7 + 0x10c,auStack_50);
       vu0math_sub_00132ae0(piVar7 + 0x110,piVar7 + 0x124);
-      FUN_00183e90(param_2);
+      Cam_UpdateTargetFromCar(param_2);
       iVar2 = piVar7[2];
       if (iVar3 != iVar2) {
         if (iVar2 < iVar3) {
@@ -874,7 +881,7 @@ void FUN_00185c40(undefined8 param_1,undefined8 param_2)
           }
           iGpffff8b30 = uVar6 - 1;
         }
-        uVar5 = FUN_00186100(*piVar7,piVar7[1],iGpffff8b30);
+        uVar5 = Cam_FindKeyBefore(*piVar7,piVar7[1],iGpffff8b30);
         if (uVar5 == 0) {
           vu0math_sub_00132ae0(piVar7 + 0x134,auStack_60);
           return;
@@ -885,7 +892,8 @@ void FUN_00185c40(undefined8 param_1,undefined8 param_2)
         else {
           uVar12 = 0;
         }
-        FUN_001861a0(uVar12,*(int *)((int)uVar5 + 0x10) + piVar7[3] * 0xd8,auStack_70,piVar9);
+        Cam_InterpolatePath(uVar12,*(int *)((int)uVar5 + 0x10) + piVar7[3] * 0xd8,auStack_70,piVar9)
+        ;
         vu0math_sub_00132ae0(piVar7 + 0x134,auStack_60);
       }
       piVar7[2] = iVar3;
@@ -895,7 +903,7 @@ void FUN_00185c40(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00185ea0  size 0x260
-void FUN_00185ea0(undefined8 param_1,undefined8 param_2)
+void Cam_UpdateTracksideAlt(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -922,23 +930,24 @@ void FUN_00185ea0(undefined8 param_1,undefined8 param_2)
   if (*piVar7 != 0) {
     uStack_4 = *(undefined4 *)((int)piVar7 + 0x5f6);
     iVar3 = FUN_001f2e30(uStack_4);
-    uVar4 = FUN_00186150(*piVar7,piVar7[1],iVar3);
+    uVar4 = Cam_FindKeyAfter(*piVar7,piVar7[1],iVar3);
     if (uVar4 != 0) {
       puVar8 = (uint *)uVar4;
       uVar6 = *puVar8;
       uVar1 = puVar8[1];
       fVar10 = (float)FUN_001f1ff0(uStack_4,piVar9);
       fVar11 = (float)(int)(uVar1 - uVar6);
-      FUN_00186690((float)(iVar3 - uVar6) / fVar11 + fVar10 / fVar11,puVar8[4] + piVar7[3] * 0xd8,
-                   auStack_70,piVar9);
-      FUN_00185030(fStack_2c,param_2);
-      FUN_00184f60(uStack_30,param_2);
+      Cam_InterpolatePathAlt
+                ((float)(iVar3 - uVar6) / fVar11 + fVar10 / fVar11,puVar8[4] + piVar7[3] * 0xd8,
+                 auStack_70,piVar9);
+      Cam_SetPitch(fStack_2c,param_2);
+      Cam_SetYaw(uStack_30,param_2);
       fRam004311a0 = (float)piVar7[0x13d] * (fStack_2c / (float)piVar7[0x13c]);
       piVar7[0x13a] = (int)fRam004311a0;
       vu0math_sub_00132ae0(piVar7 + 0x108,auStack_60);
       vu0math_sub_00132ae0(piVar7 + 0x10c,auStack_50);
       vu0math_sub_00132ae0(piVar7 + 0x110,piVar7 + 0x124);
-      FUN_00183e90(param_2);
+      Cam_UpdateTargetFromCar(param_2);
       iVar2 = piVar7[2];
       if (iVar3 != iVar2) {
         if (iVar2 < iVar3) {
@@ -955,7 +964,7 @@ void FUN_00185ea0(undefined8 param_1,undefined8 param_2)
           }
           iGpffff8b34 = uVar6 - 1;
         }
-        uVar5 = FUN_00186150(*piVar7,piVar7[1],iGpffff8b34);
+        uVar5 = Cam_FindKeyAfter(*piVar7,piVar7[1],iGpffff8b34);
         if (uVar5 == 0) {
           vu0math_sub_00132ae0(piVar7 + 0x134,auStack_60);
           return;
@@ -966,7 +975,8 @@ void FUN_00185ea0(undefined8 param_1,undefined8 param_2)
         else {
           uVar12 = 0;
         }
-        FUN_00186690(uVar12,*(int *)((int)uVar5 + 0x10) + piVar7[3] * 0xd8,auStack_70,piVar9);
+        Cam_InterpolatePathAlt
+                  (uVar12,*(int *)((int)uVar5 + 0x10) + piVar7[3] * 0xd8,auStack_70,piVar9);
         vu0math_sub_00132ae0(piVar7 + 0x134,auStack_60);
       }
       piVar7[2] = iVar3;
@@ -976,7 +986,7 @@ void FUN_00185ea0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00186100  size 0x4c
-uint * FUN_00186100(uint *param_1,uint *param_2,uint param_3)
+uint * Cam_FindKeyBefore(uint *param_1,uint *param_2,uint param_3)
 
 {
   bool bVar1;
@@ -996,7 +1006,7 @@ uint * FUN_00186100(uint *param_1,uint *param_2,uint param_3)
 }
 
 // 0x00186150  size 0x4c
-uint * FUN_00186150(uint *param_1,uint *param_2,uint param_3)
+uint * Cam_FindKeyAfter(uint *param_1,uint *param_2,uint param_3)
 
 {
   bool bVar1;
@@ -1016,7 +1026,7 @@ uint * FUN_00186150(uint *param_1,uint *param_2,uint param_3)
 }
 
 // 0x001861a0  size 0x4ec
-void FUN_001861a0(float param_1,int param_2,int param_3,int param_4)
+void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
 
 {
   float fVar1;
@@ -1109,7 +1119,7 @@ void FUN_001861a0(float param_1,int param_2,int param_3,int param_4)
     iVar3 = (int)fVar4;
     FUN_001f2d40(&uStack_c,iVar3);
     uStack_4 = CONCAT22(uStack_a,uStack_c);
-    FUN_00186b80(fVar4 - (float)iVar3,auStack_20,uStack_4,&fStack_30);
+    Cam_ApplyOrbit(fVar4 - (float)iVar3,auStack_20,uStack_4,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x10,param_3 + 0x10);
     vu0math_sub_00132b70(param_3 + 0x10,auStack_20,param_3 + 0x10);
@@ -1125,7 +1135,7 @@ void FUN_001861a0(float param_1,int param_2,int param_3,int param_4)
     fVar5 = (float)FUN_001f2310(fVar5,param_2 + 0xd0);
     FUN_001f2d40(&uStack_10,(int)fVar5);
     uStack_8 = CONCAT22(uStack_e,uStack_10);
-    FUN_00186b80(fVar5 - (float)(int)fVar5,auStack_20,uStack_8,&fStack_30);
+    Cam_ApplyOrbit(fVar5 - (float)(int)fVar5,auStack_20,uStack_8,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x20,param_3 + 0x20);
     vu0math_sub_00132b70(param_3 + 0x20,auStack_20,param_3 + 0x20);
@@ -1134,7 +1144,7 @@ void FUN_001861a0(float param_1,int param_2,int param_3,int param_4)
 }
 
 // 0x00186690  size 0x4ec
-void FUN_00186690(float param_1,int param_2,int param_3,int param_4)
+void Cam_InterpolatePathAlt(float param_1,int param_2,int param_3,int param_4)
 
 {
   float fVar1;
@@ -1227,7 +1237,7 @@ void FUN_00186690(float param_1,int param_2,int param_3,int param_4)
     iVar3 = (int)fVar4;
     FUN_001f2d40(&uStack_c,iVar3);
     uStack_4 = CONCAT22(uStack_a,uStack_c);
-    FUN_00186b80(fVar4 - (float)iVar3,auStack_20,uStack_4,&fStack_30);
+    Cam_ApplyOrbit(fVar4 - (float)iVar3,auStack_20,uStack_4,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x10,param_3 + 0x10);
     vu0math_sub_00132b70(param_3 + 0x10,auStack_20,param_3 + 0x10);
@@ -1243,7 +1253,7 @@ void FUN_00186690(float param_1,int param_2,int param_3,int param_4)
     fVar5 = (float)FUN_001f23a0(fVar5,param_2 + 0xd0);
     FUN_001f2d40(&uStack_10,(int)fVar5);
     uStack_8 = CONCAT22(uStack_e,uStack_10);
-    FUN_00186b80(fVar5 - (float)(int)fVar5,auStack_20,uStack_8,&fStack_30);
+    Cam_ApplyOrbit(fVar5 - (float)(int)fVar5,auStack_20,uStack_8,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x20,param_3 + 0x20);
     vu0math_sub_00132b70(param_3 + 0x20,auStack_20,param_3 + 0x20);
@@ -1252,20 +1262,20 @@ void FUN_00186690(float param_1,int param_2,int param_3,int param_4)
 }
 
 // 0x00186b80  size 0x5c
-void FUN_00186b80(undefined8 param_1,undefined4 param_2,undefined8 param_3)
+void Cam_ApplyOrbit(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
   undefined1 auStack_50 [16];
   undefined1 auStack_40 [64];
   
-  FUN_00186be0(param_1,auStack_40,param_2);
+  Cam_ComputeOrbitMatrix(param_1,auStack_40,param_2);
   vu0math_sub_00132d50(auStack_50,auStack_40,param_3);
   vu0math_sub_00132b70(param_1,param_1,auStack_50);
   return;
 }
 
 // 0x00186be0  size 0x2f4
-void FUN_00186be0(float param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Cam_ComputeOrbitMatrix(float param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   float fVar1;
@@ -1304,20 +1314,20 @@ void FUN_00186be0(float param_1,undefined8 param_2,undefined8 param_3,undefined8
   uStack_f4 = DAT_0030ba4c;
   FUN_001f2c10(&uStack_4,param_4,0xffffffffffffffff);
   uStack_114 = CONCAT22(uStack_2,uStack_4);
-  FUN_00187000(auStack_50,uStack_114);
+  Cam_LoadPresetC(auStack_50,uStack_114);
   FUN_001f2c10(&uStack_8,uStack_114,1);
   uStack_114 = CONCAT22(uStack_6,uStack_8);
-  FUN_00187000(auStack_40,uStack_114);
-  FUN_00186f70(auStack_b0,uStack_114);
-  FUN_00186ee0(auStack_d0,uStack_114);
+  Cam_LoadPresetC(auStack_40,uStack_114);
+  Cam_LoadPresetB(auStack_b0,uStack_114);
+  Cam_LoadPresetA(auStack_d0,uStack_114);
   FUN_001f2c10(&uStack_c,uStack_114,1);
   uStack_114 = CONCAT22(uStack_a,uStack_c);
-  FUN_00187000(auStack_30,uStack_114);
-  FUN_00186f70(auStack_a0,uStack_114);
-  FUN_00186ee0(auStack_c0,uStack_114);
+  Cam_LoadPresetC(auStack_30,uStack_114);
+  Cam_LoadPresetB(auStack_a0,uStack_114);
+  Cam_LoadPresetA(auStack_c0,uStack_114);
   FUN_001f2c10(&uStack_10,uStack_114,1);
   uStack_114 = CONCAT22(uStack_e,uStack_10);
-  FUN_00187000(auStack_20,uStack_114);
+  Cam_LoadPresetC(auStack_20,uStack_114);
   vu0math_sub_001333b0(param_1,param_2,auStack_50,4,0x10);
   vu0math_sub_00132b50(auStack_60,auStack_30,auStack_50);
   vu0math_sub_00132b50(auStack_70,auStack_20,auStack_40);
@@ -1343,7 +1353,7 @@ void FUN_00186be0(float param_1,undefined8 param_2,undefined8 param_3,undefined8
 }
 
 // 0x00186ee0  size 0x88
-void FUN_00186ee0(undefined4 *param_1,undefined4 param_2)
+void Cam_LoadPresetA(undefined4 *param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -1363,7 +1373,7 @@ void FUN_00186ee0(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x00186f70  size 0x88
-void FUN_00186f70(undefined4 *param_1,undefined4 param_2)
+void Cam_LoadPresetB(undefined4 *param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -1383,7 +1393,7 @@ void FUN_00186f70(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x00187000  size 0x80
-void FUN_00187000(undefined4 *param_1,undefined4 param_2)
+void Cam_LoadPresetC(undefined4 *param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -1403,7 +1413,7 @@ void FUN_00187000(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x00187080  size 0x834
-void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,char param_5)
+void Cam_UpdateCollision(float *param_1,int *param_2,int *param_3,undefined4 param_4,char param_5)
 
 {
   bool bVar1;
@@ -1478,8 +1488,8 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
   iVar20 = iVar7 + *(int *)(iVar7 + 0x44) + sStack_232 * 0x1c;
   uVar5 = (uint)*(ushort *)(iVar20 + 4);
   puVar25 = (ushort *)(iVar7 + *(int *)(iVar7 + 0x4c) + (uint)*(ushort *)(iVar20 + 6) * 8);
-  uVar8 = FUN_00159a00(param_2[3]);
-  uVar9 = FUN_001599f0(param_2[3]);
+  uVar8 = PhysContact_GetBodyA(param_2[3]);
+  uVar9 = PhysContact_GetBodyB(param_2[3]);
   pfVar6 = (float *)0x8;
   pfVar15 = &fStack_8;
   pfVar3 = pfVar15;
@@ -1491,9 +1501,9 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
   }
   param_2[7] = 0x3f800000;
   param_2[0xb] = 0x3f800000;
-  FUN_00187d80(auStack_80,uVar9);
-  uVar10 = FUN_0015bf20(uVar9);
-  uVar11 = FUN_0015bf20(uVar8);
+  Cam_GetShapeCenter(auStack_80,uVar9);
+  uVar10 = PhysShape_GetCenter(uVar9);
+  uVar11 = PhysShape_GetCenter(uVar8);
   vu0math_sub_00132b50(auStack_90,uVar10,uVar11);
   vu0math_sub_00132b90(auStack_a0);
   uStack_84 = 0x3f800000;
@@ -1553,7 +1563,7 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
           }
           fVar26 = fVar26 + -1.0;
           sStack_10 = sStack_234;
-          iVar7 = FUN_0015bf20(uVar9);
+          iVar7 = PhysShape_GetCenter(uVar9);
           fVar27 = (float)fabsf(fVar26 - *(float *)(iVar7 + 4));
           if (fVar27 <= 100.0) {
             param_2[4] = *(int *)(iVar22 + (uint)*puVar25 * 0x10);
@@ -1562,8 +1572,8 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
             param_2[8] = *(int *)(iVar22 + (uint)puVar25[1] * 0x10);
             param_2[9] = (int)fVar26;
             param_2[10] = *(int *)(iVar22 + (uint)puVar25[1] * 0x10 + 8);
-            uVar12 = FUN_00159980(param_2[3],param_2 + 4);
-            uVar13 = FUN_00159980(param_2[3],param_2 + 8);
+            uVar12 = PhysContact_IsInside(param_2[3],param_2 + 4);
+            uVar13 = PhysContact_IsInside(param_2[3],param_2 + 8);
             if ((uVar12 & uVar13) == 0) {
               vu0math_sub_00132ae0(auStack_e0,param_2 + 4);
               vu0math_sub_00132ae0(auStack_d0,param_2 + 4);
@@ -1575,9 +1585,9 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
               uStack_c4 = 0x3f800000;
               uStack_b4 = 0x3f800000;
               uStack_a4 = 0x3f800000;
-              lVar14 = FUN_00187ff0(&fStack_8,auStack_80,auStack_90,auStack_e0,auStack_a0);
+              lVar14 = Cam_SweepTest(&fStack_8,auStack_80,auStack_90,auStack_e0,auStack_a0);
               if ((lVar14 != 0) &&
-                 (FUN_00187f00(auStack_230,auStack_80,auStack_e0), iStack_130 != 0)) {
+                 (Cam_RaycastCourse(auStack_230,auStack_80,auStack_e0), iStack_130 != 0)) {
                 uVar10 = (**(code **)(*(int *)uVar9 + 0x38))(uVar9,0);
                 uVar11 = (**(code **)(*(int *)uVar8 + 0x38))(uVar8,0);
                 vu0math_sub_00132b50(auStack_120,uVar10,uVar11);
@@ -1629,7 +1639,7 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
                 }
                 param_2[0x18] = (int)fVar26;
                 param_2[1] = (int)((float)param_2[1] * DAT_0036e788);
-                iVar20 = FUN_00158660(0x42f3c0);
+                iVar20 = phys_sub_00158660(0x42f3c0);
                 iVar7 = *param_2;
                 if (iVar7 < iVar20) {
                   iVar24 = iVar7;
@@ -1663,7 +1673,7 @@ void FUN_00187080(float *param_1,int *param_2,int *param_3,undefined4 param_4,ch
 }
 
 // 0x001878c0  size 0xd4
-void FUN_001878c0(int param_1,undefined8 param_2)
+void Cam_ResolveCollision(int param_1,undefined8 param_2)
 
 {
   undefined4 *puVar1;
@@ -1675,7 +1685,7 @@ void FUN_001878c0(int param_1,undefined8 param_2)
   undefined4 uStack_4;
   
   *(undefined4 *)(param_1 + 0x26c) = 0;
-  FUN_001879a0();
+  Cam_CollideWithWorld();
   iVar5 = 0;
   if (0 < *(int *)(param_1 + 0x68)) {
     iVar4 = param_1;
@@ -1690,7 +1700,7 @@ void FUN_001878c0(int param_1,undefined8 param_2)
         puVar1 = puVar2;
       }
       uStack_4 = *(undefined4 *)(iVar4 + 0x6c);
-      FUN_00187080(auStack_10,param_1,param_2,uStack_4,2);
+      Cam_UpdateCollision(auStack_10,param_1,param_2,uStack_4,2);
       iVar5 = iVar5 + 1;
       iVar4 = iVar4 + 4;
     } while (iVar5 < *(int *)(param_1 + 0x68));
@@ -1699,7 +1709,7 @@ void FUN_001878c0(int param_1,undefined8 param_2)
 }
 
 // 0x001879a0  size 0x3dc
-undefined4 FUN_001879a0(int param_1,int *param_2)
+undefined4 Cam_CollideWithWorld(int param_1,int *param_2)
 
 {
   short sVar1;
@@ -1716,7 +1726,7 @@ undefined4 FUN_001879a0(int param_1,int *param_2)
   short *psVar12;
   uint uVar13;
   
-  uVar5 = FUN_001599f0(*(undefined4 *)(param_1 + 0xc));
+  uVar5 = PhysContact_GetBodyB(*(undefined4 *)(param_1 + 0xc));
   uVar3 = (**(code **)(*(int *)uVar5 + 0x34))(uVar5);
   *(undefined4 *)(param_1 + 0x68) = 0;
   uVar13 = 0;
@@ -1827,7 +1837,7 @@ undefined4 FUN_001879a0(int param_1,int *param_2)
 }
 
 // 0x00187d80  size 0x178
-void FUN_00187d80(undefined8 param_1,undefined8 param_2)
+void Cam_GetShapeCenter(undefined8 param_1,undefined8 param_2)
 
 {
   float *pfVar1;
@@ -1836,7 +1846,7 @@ void FUN_00187d80(undefined8 param_1,undefined8 param_2)
   int *piVar4;
   int iVar5;
   
-  uVar3 = FUN_0015bf20(param_2);
+  uVar3 = PhysShape_GetCenter(param_2);
   vu0math_sub_00132ae0(param_1,uVar3);
   piVar4 = (int *)param_2;
   pfVar1 = (float *)(**(code **)(*piVar4 + 0x40))(param_2,0);
@@ -1860,7 +1870,7 @@ void FUN_00187d80(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00187f00  size 0xe8
-bool FUN_00187f00(int param_1,int param_2,int param_3)
+bool Cam_RaycastCourse(int param_1,int param_2,int param_3)
 
 {
   int iVar1;
@@ -1896,7 +1906,7 @@ bool FUN_00187f00(int param_1,int param_2,int param_3)
 
 // 0x00187ff0  size 0x2bc
 undefined4
-FUN_00187ff0(undefined8 param_1,int param_2,undefined8 param_3,int param_4,undefined8 param_5)
+Cam_SweepTest(undefined8 param_1,int param_2,undefined8 param_3,int param_4,undefined8 param_5)
 
 {
   uint uVar1;

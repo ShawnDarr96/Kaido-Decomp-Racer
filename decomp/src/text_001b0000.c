@@ -1597,7 +1597,7 @@ long FUN_001b2700(ulong param_1,undefined1 param_2)
   }
   if (lVar2 == 1) {
     lVar2 = 0;
-    cVar1 = FUN_0017e760();
+    cVar1 = Race_GetWeather();
     if (cVar1 == '\x01') {
       if ((param_1 & 0x40000000) != 0) {
         lVar2 = 1;
@@ -1685,7 +1685,7 @@ bool FUN_001b2880(ulong param_1,undefined1 param_2)
     bVar10 = true;
   }
   if (bVar10 == true) {
-    uVar3 = FUN_0017e680();
+    uVar3 = Race_GetTimeOfDay();
     bVar10 = false;
     switch(uVar3) {
     case 0:
@@ -1778,7 +1778,7 @@ bool FUN_001b2880(ulong param_1,undefined1 param_2)
   }
   if (bVar10 == true) {
     bVar10 = false;
-    cVar4 = FUN_0017e760();
+    cVar4 = Race_GetWeather();
     if (cVar4 == '\x01') {
       if ((param_1 & 0x40000000) != 0) {
         bVar10 = true;
@@ -2548,7 +2548,7 @@ void FUN_001b3fe0(int param_1)
   byte bStack_2;
   byte bStack_1;
   
-  FUN_00136e30(acStack_8);
+  File_ReadClock(acStack_8);
   if (acStack_8[0] == '\0') {
     cVar5 = (bStack_2 & 0xf) + (char)((int)(uint)bStack_2 >> 4) * '\n';
     sVar12 = (bStack_1 & 0xf) + (short)((int)(uint)bStack_1 >> 4) * 10 + 2000;

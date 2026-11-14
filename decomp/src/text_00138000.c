@@ -3,13 +3,13 @@
 #include "ghidra_types.h"
 
 // 0x00138050  size 0xc4
-undefined8 FUN_00138050(undefined8 param_1)
+undefined8 maybe_Pad_ctor(undefined8 param_1)
 
 {
   int iVar1;
   uint uVar2;
   
-  FUN_00138960();
+  Pad_InitState();
   uVar2 = 0;
   iVar1 = (int)param_1;
   *(undefined **)(iVar1 + 4) = &DAT_0036e0e0;
@@ -21,19 +21,19 @@ undefined8 FUN_00138050(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x484) = 0;
   *(undefined4 *)(iVar1 + 0x488) = 0;
   do {
-    FUN_00138580(0,0,param_1,uVar2 & 0xff,0,0);
+    maybe_Pad_ApplyDeadzone(0,0,param_1,uVar2 & 0xff,0,0);
     uVar2 = uVar2 + 1;
   } while (uVar2 < 0x10);
   uVar2 = 0x10;
   do {
-    FUN_00138580(0x3ecccccd,0x3ecccccd,param_1,uVar2 & 0xff,10,0x14);
+    maybe_Pad_ApplyDeadzone(0x3ecccccd,0x3ecccccd,param_1,uVar2 & 0xff,10,0x14);
     uVar2 = uVar2 + 1;
   } while (uVar2 < 0x18);
   return param_1;
 }
 
 // 0x00138120  size 0x250
-uint FUN_00138120(undefined8 param_1,uint param_2,int param_3)
+uint Pad_MapButtons(undefined8 param_1,uint param_2,int param_3)
 
 {
   byte bVar1;
@@ -82,9 +82,9 @@ LAB_00138208:
             if ((*pcVar5 == '\0') && (*(byte *)(iVar6 + 0x414) < *(byte *)(iVar6 + 0x444))) {
               bVar1 = *(char *)(iVar6 + 0x45c) + 1;
               *(byte *)(iVar6 + 0x45c) = bVar1;
-              uVar3 = FUN_00134430(iVar10 + 8,uVar9);
+              uVar3 = Input_GetAnalog(iVar10 + 8,uVar9);
               if (bVar1 <= uVar3) goto LAB_001382a8;
-              FUN_00134400(iVar10 + 8,uVar9);
+              Input_LatchButton(iVar10 + 8,uVar9);
               *(undefined1 *)(iVar6 + 0x45c) = 0;
               *(byte *)(iVar6 + 0x444) = *(byte *)(iVar6 + 0x414);
             }
@@ -124,7 +124,7 @@ LAB_001382a8:
 }
 
 // 0x00138380  size 0x1e8
-void FUN_00138380(undefined4 param_1,undefined4 param_2,undefined8 param_3,uint param_4)
+void maybe_Pad_ReadAnalogAxes(undefined4 param_1,undefined4 param_2,undefined8 param_3,uint param_4)
 
 {
   uint uVar1;
@@ -150,43 +150,44 @@ void FUN_00138380(undefined4 param_1,undefined4 param_2,undefined8 param_3,uint 
                   if ((uVar2 & 0xff) == 0x18) {
                     uVar1 = 0;
                     do {
-                      FUN_00138380(param_1,param_2,param_3,uVar1 & 0xff);
+                      maybe_Pad_ReadAnalogAxes(param_1,param_2,param_3,uVar1 & 0xff);
                       uVar1 = uVar1 + 1;
                     } while (uVar1 < 0x18);
                   }
                   else {
-                    FUN_00134240(0,param_1,param_2,iVar6 + (uVar2 & 0xff) * 0x10 + 0x1a4);
+                    maybe_Vec3_SetAbsYZ(0,param_1,param_2,iVar6 + (uVar2 & 0xff) * 0x10 + 0x1a4);
                   }
                   uVar2 = uVar2 + 1;
                 } while (uVar2 < 0x18);
               }
               else {
-                FUN_00134240(0,param_1,param_2,iVar6 + (uVar3 & 0xff) * 0x10 + 0x1a4);
+                maybe_Vec3_SetAbsYZ(0,param_1,param_2,iVar6 + (uVar3 & 0xff) * 0x10 + 0x1a4);
               }
               uVar3 = uVar3 + 1;
             } while (uVar3 < 0x18);
           }
           else {
-            FUN_00134240(0,param_1,param_2,iVar6 + (uVar4 & 0xff) * 0x10 + 0x1a4);
+            maybe_Vec3_SetAbsYZ(0,param_1,param_2,iVar6 + (uVar4 & 0xff) * 0x10 + 0x1a4);
           }
           uVar4 = uVar4 + 1;
         } while (uVar4 < 0x18);
       }
       else {
-        FUN_00134240(0,param_1,param_2,iVar6 + (uVar5 & 0xff) * 0x10 + 0x1a4);
+        maybe_Vec3_SetAbsYZ(0,param_1,param_2,iVar6 + (uVar5 & 0xff) * 0x10 + 0x1a4);
       }
       uVar5 = uVar5 + 1;
     } while (uVar5 < 0x18);
   }
   else {
-    FUN_00134240(0,param_1,param_2,iVar6 + (param_4 & 0xff) * 0x10 + 0x1a4);
+    maybe_Vec3_SetAbsYZ(0,param_1,param_2,iVar6 + (param_4 & 0xff) * 0x10 + 0x1a4);
   }
   return;
 }
 
 // 0x00138580  size 0x310
-void FUN_00138580(float param_1,float param_2,undefined8 param_3,uint param_4,undefined8 param_5,
-                 undefined8 param_6)
+void maybe_Pad_ApplyDeadzone
+               (float param_1,float param_2,undefined8 param_3,uint param_4,undefined8 param_5,
+               undefined8 param_6)
 
 {
   float fVar1;
@@ -215,7 +216,7 @@ void FUN_00138580(float param_1,float param_2,undefined8 param_3,uint param_4,un
           if ((uVar5 & 0xff) == 0x18) {
             uVar4 = 0;
             do {
-              FUN_00138580(param_1,param_2,param_3,uVar4 & 0xff,param_5,param_6);
+              maybe_Pad_ApplyDeadzone(param_1,param_2,param_3,uVar4 & 0xff,param_5,param_6);
               uVar4 = uVar4 + 1;
             } while (uVar4 < 0x18);
           }
@@ -277,14 +278,14 @@ void FUN_00138580(float param_1,float param_2,undefined8 param_3,uint param_4,un
 }
 
 // 0x001388a0  size 0xbc
-void FUN_001388a0(int param_1)
+void Pad_Reset(int param_1)
 
 {
   int iVar1;
   int iVar2;
   int iVar3;
   
-  FUN_001343d0(param_1 + 8);
+  Input_Clear(param_1 + 8);
   iVar3 = 0;
   iVar2 = param_1;
   do {
@@ -324,7 +325,7 @@ void FUN_001388a0(int param_1)
 }
 
 // 0x00138960  size 0x1d8
-int FUN_00138960(int param_1)
+int Pad_InitState(int param_1)
 
 {
   int iVar1;
@@ -346,7 +347,7 @@ int FUN_00138960(int param_1)
     FUN_00134290(uVar4);
     uVar4 = uVar4 + 0x10;
   } while (uVar4 < param_1 + 900U);
-  FUN_001343d0(param_1 + 8);
+  Input_Clear(param_1 + 8);
   iVar3 = 0;
   iVar2 = param_1;
   do {
@@ -382,22 +383,22 @@ int FUN_00138960(int param_1)
   *(undefined1 *)(param_1 + 0x478) = 0x7f;
   *(undefined4 *)(param_1 + 0x380) = 0;
   *(undefined1 *)(param_1 + 0x479) = 0x7f;
-  FUN_001325d0(param_1 + 900,0,0x18);
-  FUN_001325d0(param_1 + 0x39c,0,0x18);
-  FUN_001325d0(param_1 + 0x3b4,0,0x18);
-  FUN_001325d0(param_1 + 0x3cc,0,0x18);
-  FUN_001325d0(param_1 + 0x3e4,0,0x18);
-  FUN_001325d0(param_1 + 0x3fc,0,0x18);
-  FUN_001325d0(param_1 + 0x414,0,0x18);
-  FUN_001325d0(param_1 + 0x42c,0,0x18);
-  FUN_001325d0(param_1 + 0x444,0,0x18);
-  FUN_001325d0(param_1 + 0x45c,0,0x18);
-  FUN_001325d0(param_1 + 0x474,0,6);
+  Mem_Set16(param_1 + 900,0,0x18);
+  Mem_Set16(param_1 + 0x39c,0,0x18);
+  Mem_Set16(param_1 + 0x3b4,0,0x18);
+  Mem_Set16(param_1 + 0x3cc,0,0x18);
+  Mem_Set16(param_1 + 0x3e4,0,0x18);
+  Mem_Set16(param_1 + 0x3fc,0,0x18);
+  Mem_Set16(param_1 + 0x414,0,0x18);
+  Mem_Set16(param_1 + 0x42c,0,0x18);
+  Mem_Set16(param_1 + 0x444,0,0x18);
+  Mem_Set16(param_1 + 0x45c,0,0x18);
+  Mem_Set16(param_1 + 0x474,0,6);
   return param_1;
 }
 
 // 0x00138b60  size 0x3c
-undefined4 FUN_00138b60(undefined4 *param_1,long param_2)
+undefined4 Sema_GetCount(undefined4 *param_1,long param_2)
 
 {
   undefined4 auStack_20 [8];
@@ -412,7 +413,9 @@ undefined4 FUN_00138b60(undefined4 *param_1,long param_2)
 }
 
 // 0x00138ba0  size 0x44
-void FUN_00138ba0(int *param_1,long param_2)
+/* handles interrupt context */
+
+void Sema_Signal(int *param_1,long param_2)
 
 {
   if (-1 < *param_1) {
@@ -427,7 +430,7 @@ void FUN_00138ba0(int *param_1,long param_2)
 }
 
 // 0x00138bf0  size 0x38
-void FUN_00138bf0(int *param_1)
+void Sema_Wait(int *param_1)
 
 {
   if (-1 < *param_1) {
@@ -437,7 +440,7 @@ void FUN_00138bf0(int *param_1)
 }
 
 // 0x00138c30  size 0x38
-void FUN_00138c30(int *param_1)
+void Sema_Delete(int *param_1)
 
 {
   if (-1 < *param_1) {
@@ -447,7 +450,7 @@ void FUN_00138c30(int *param_1)
 }
 
 // 0x00138c70  size 0x3c
-bool FUN_00138c70(int *param_1,undefined4 param_2,undefined4 param_3)
+bool Sema_Create(int *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -463,7 +466,7 @@ bool FUN_00138c70(int *param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00138cb0  size 0x38
-void FUN_00138cb0(int *param_1)
+void Thread_Exit(int *param_1)
 
 {
   if (-1 < *param_1) {
@@ -473,7 +476,7 @@ void FUN_00138cb0(int *param_1)
 }
 
 // 0x00138cf0  size 0x38
-void FUN_00138cf0(int *param_1)
+void Thread_Terminate(int *param_1)
 
 {
   if (-1 < *param_1) {
@@ -483,7 +486,7 @@ void FUN_00138cf0(int *param_1)
 }
 
 // 0x00138d30  size 0x38
-void FUN_00138d30(int *param_1)
+void Thread_Start(int *param_1)
 
 {
   if (-1 < *param_1) {
@@ -493,7 +496,7 @@ void FUN_00138d30(int *param_1)
 }
 
 // 0x00138d70  size 0x48
-void FUN_00138d70(int *param_1)
+void Thread_Delete(int *param_1)
 
 {
   if (-1 < *param_1) {
@@ -505,8 +508,8 @@ void FUN_00138d70(int *param_1)
 }
 
 // 0x00138dc0  size 0x54
-bool FUN_00138dc0(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                 undefined4 param_5,int param_6)
+bool Thread_Create(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+                  undefined4 param_5,int param_6)
 
 {
   int iVar1;
@@ -531,7 +534,9 @@ bool FUN_00138dc0(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 
 }
 
 // 0x00138e20  size 0x28c
-long FUN_00138e20(int param_1)
+/* sceMcSync */
+
+long Mc_PollResult(int param_1)
 
 {
   uint uVar1;
@@ -611,7 +616,7 @@ long FUN_00138e20(int param_1)
       if (bVar3) {
         **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 8;
         *(undefined4 *)(*(int *)(param_1 + 8) + 0x24) = *(undefined4 *)(param_1 + 0xc);
-        uVar1 = FUN_00139910(*(undefined1 *)(param_1 + 0xc),iStack_8);
+        uVar1 = Mc_TranslateResult(*(undefined1 *)(param_1 + 0xc),iStack_8);
         *(uint *)(*(int *)(param_1 + 8) + 0x28) = uVar1 & 0xffff;
         if ((*(undefined4 **)(param_1 + 8))[10] == 0x13) {
           **(undefined4 **)(param_1 + 8) = 0;
@@ -629,7 +634,9 @@ long FUN_00138e20(int param_1)
 }
 
 // 0x001390b0  size 0x28c
-long FUN_001390b0(int param_1)
+/* switch over sceMc* calls */
+
+long Mc_IssueCommand(int param_1)
 
 {
   uint *puVar1;
@@ -736,8 +743,8 @@ long FUN_001390b0(int param_1)
 
 // 0x00139340  size 0x174
 undefined4
-FUN_00139340(int param_1,long param_2,undefined4 param_3,uint param_4,undefined4 param_5,
-            undefined4 param_6,undefined4 param_7)
+Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefined4 param_5,
+               undefined4 param_6,undefined4 param_7)
 
 {
   int iVar1;
@@ -832,15 +839,15 @@ FUN_00139340(int param_1,long param_2,undefined4 param_3,uint param_4,undefined4
       *(uint *)(iVar1 + 0x28) = param_4;
       *(undefined4 *)(iVar1 + 0x2c) = param_5;
     }
-    FUN_001321c0(0x386f94,iVar1);
-    FUN_00132250(0x386fa8,iVar1);
+    maybe_List_Append(0x386f94,iVar1);
+    maybe_List_Remove(0x386fa8,iVar1);
     uVar2 = 1;
   }
   return uVar2;
 }
 
 // 0x001394c0  size 0xb8
-void FUN_001394c0(void)
+void Mc_Update(void)
 
 {
   int iVar1;
@@ -851,10 +858,10 @@ void FUN_001394c0(void)
   if (iRam00386fb4 != 0) {
     while (iVar1 = *(int *)(iVar3 + 4), (**(uint **)(iVar3 + 8) & 8) == 0) {
       if (*(int *)(iVar3 + 0x10) == 0) {
-        lVar2 = FUN_00138e20(iVar3);
+        lVar2 = Mc_PollResult(iVar3);
       }
       else {
-        lVar2 = FUN_001390b0(iVar3);
+        lVar2 = Mc_IssueCommand(iVar3);
       }
       if (lVar2 == 0) {
         return;
@@ -863,8 +870,8 @@ void FUN_001394c0(void)
         return;
       }
       *(int *)(*(int *)(iVar3 + 8) + 0x14) = *(int *)(*(int *)(iVar3 + 8) + 0x14) + -1;
-      FUN_001321c0(0x386fa8,iVar3);
-      FUN_00132250(0x386f94,iVar3);
+      maybe_List_Append(0x386fa8,iVar3);
+      maybe_List_Remove(0x386f94,iVar3);
       iVar3 = iVar1;
       if (iVar1 == 0) {
         return;
@@ -875,12 +882,12 @@ void FUN_001394c0(void)
 }
 
 // 0x00139580  size 0x5c
-void FUN_00139580(void)
+void Mc_Shutdown(void)
 
 {
-  FUN_00135030(0x386fbc);
-  FUN_001322a0(0x386f94);
-  FUN_001322a0(0x386fa8);
+  Gfx_AddFrameCallback(0x386fbc);
+  maybe_List_Clear(0x386f94);
+  maybe_List_Clear(0x386fa8);
   if (iRam00386f90 != 0) {
     __destroy_new_array(iRam00386f90,0x1395e0);
     iRam00386f90 = 0;
@@ -894,7 +901,7 @@ long FUN_001395e0(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e118;
-    FUN_00132400(param_1,0);
+    maybe_ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -903,7 +910,9 @@ long FUN_001395e0(long param_1,short param_2)
 }
 
 // 0x00139640  size 0xec
-void FUN_00139640(undefined8 param_1,uint param_2)
+/* sceMcInit */
+
+void Mc_Init(undefined8 param_1,uint param_2)
 
 {
   undefined8 uVar1;
@@ -919,14 +928,14 @@ void FUN_00139640(undefined8 param_1,uint param_2)
   if (param_2 != 0) {
     iVar3 = 0;
     do {
-      FUN_00132250(0x386f94,iRam00386f90 + iVar3);
+      maybe_List_Remove(0x386f94,iRam00386f90 + iVar3);
       uVar2 = uVar2 + 1;
       iVar3 = iVar3 + 0x58;
     } while (uVar2 < param_2);
   }
-  pcRam00386fc4 = FUN_001394c0;
+  pcRam00386fc4 = Mc_Update;
   uRam00386fc8 = 0;
-  FUN_00135040(0x386fbc);
+  Gfx_RemoveFrameCallback(0x386fbc);
   return;
 }
 
@@ -934,13 +943,13 @@ void FUN_00139640(undefined8 param_1,uint param_2)
 undefined8 FUN_00139730(undefined8 param_1)
 
 {
-  FUN_00132450(param_1,0);
+  maybe_ListNode_ctor(param_1,0);
   *(undefined4 *)param_1 = &DAT_0036e118;
   return param_1;
 }
 
 // 0x00139770  size 0xac
-void FUN_00139770(uint *param_1)
+void Mc_CancelCommand(uint *param_1)
 
 {
   int iVar1;
@@ -951,8 +960,8 @@ void FUN_00139770(uint *param_1)
     while (iVar2 = iVar1, iVar2 != 0) {
       iVar1 = *(int *)(iVar2 + 4);
       if (param_1 == *(uint **)(iVar2 + 8)) {
-        FUN_001321c0(0x386fa8,iVar2);
-        FUN_00132250(0x386f94,iVar2);
+        maybe_List_Append(0x386fa8,iVar2);
+        maybe_List_Remove(0x386f94,iVar2);
       }
     }
     param_1[5] = 0;
@@ -962,7 +971,7 @@ void FUN_00139770(uint *param_1)
 }
 
 // 0x00139830  size 0x88
-void FUN_00139830(int param_1)
+void Mc_RemoveCommandsFor(int param_1)
 
 {
   int iVar1;
@@ -972,8 +981,8 @@ void FUN_00139830(int param_1)
   while (iVar2 = iVar1, iVar2 != 0) {
     iVar1 = *(int *)(iVar2 + 4);
     if (param_1 == *(int *)(iVar2 + 8)) {
-      FUN_001321c0(0x386fa8,iVar2);
-      FUN_00132250(0x386f94,iVar2);
+      maybe_List_Append(0x386fa8,iVar2);
+      maybe_List_Remove(0x386f94,iVar2);
     }
   }
   *(undefined4 *)(param_1 + 0x14) = 0;
@@ -981,7 +990,7 @@ void FUN_00139830(int param_1)
 }
 
 // 0x001398c0  size 0x48
-undefined4 FUN_001398c0(undefined4 *param_1,undefined1 param_2,undefined1 param_3)
+undefined4 Mc_InitCommand(undefined4 *param_1,undefined1 param_2,undefined1 param_3)
 
 {
   *param_1 = 0;
@@ -1003,7 +1012,7 @@ undefined4 FUN_001398c0(undefined4 *param_1,undefined1 param_2,undefined1 param_
 }
 
 // 0x00139910  size 0x510
-undefined4 FUN_00139910(undefined1 param_1,int param_2)
+undefined4 Mc_TranslateResult(undefined1 param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -1382,7 +1391,7 @@ long FUN_00139e20(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e128;
-    FUN_00132400(param_1,0);
+    maybe_ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1400,10 +1409,10 @@ long FUN_00139e80(long param_1,short param_2)
     iVar1 = (int)param_1;
     if (iVar1 + 0x2c != 0) {
       *(undefined **)(iVar1 + 0x2c) = &DAT_0036e128;
-      FUN_00132400(iVar1 + 0x2c,0);
+      maybe_ListNode_dtor(iVar1 + 0x2c,0);
     }
-    FUN_00132320(iVar1 + 0x18,0xffffffffffffffff);
-    FUN_00132320(iVar1 + 4,0xffffffffffffffff);
+    maybe_List_dtor(iVar1 + 0x18,0xffffffffffffffff);
+    maybe_List_dtor(iVar1 + 4,0xffffffffffffffff);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1412,8 +1421,8 @@ long FUN_00139e80(long param_1,short param_2)
 }
 
 // 0x00139f10  size 0x1cc
-int FUN_00139f10(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,int param_7
-                ,int param_8)
+int maybe_Gfx_ClipRect(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,
+                      int param_7,int param_8)
 
 {
   int iVar1;
@@ -1474,7 +1483,7 @@ int FUN_00139f10(int param_1,int param_2,int param_3,int param_4,int param_5,int
 }
 
 // 0x0013a0e0  size 0x118
-bool FUN_0013a0e0(undefined8 param_1,undefined8 param_2,int param_3)
+bool Movie_CopyAudioChunk(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   uint uVar1;
@@ -1485,9 +1494,9 @@ bool FUN_0013a0e0(undefined8 param_1,undefined8 param_2,int param_3)
   uint uStack_8;
   uint uStack_4;
   
-  FUN_0013ad70(param_3 + 0x100,&uStack_4,&uStack_c,&uStack_8,&uStack_10);
-  uVar1 = FUN_00139f10(uStack_4 & 0xfffffff | 0x20000000,uStack_c,uStack_8 & 0xfffffff | 0x20000000,
-                       uStack_10);
+  RingBuf_GetWriteSpans(param_3 + 0x100,&uStack_4,&uStack_c,&uStack_8,&uStack_10);
+  uVar1 = maybe_Gfx_ClipRect(uStack_4 & 0xfffffff | 0x20000000,uStack_c,
+                             uStack_8 & 0xfffffff | 0x20000000,uStack_10);
   uVar3 = uVar1;
   if (*(uint *)(param_3 + 0x13c) < 0x28) {
     uVar2 = 0x28 - *(uint *)(param_3 + 0x13c);
@@ -1504,7 +1513,7 @@ bool FUN_0013a0e0(undefined8 param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0013a200  size 0x228
-bool FUN_0013a200(undefined8 param_1,int param_2,int param_3)
+bool Movie_CopyVideoChunk(undefined8 param_1,int param_2,int param_3)
 
 {
   long lVar1;
@@ -1518,9 +1527,9 @@ bool FUN_0013a200(undefined8 param_1,int param_2,int param_3)
   uint uStack_8;
   uint uStack_4;
   
-  FUN_0013b8c0(param_3 + 0x80,&uStack_4,&uStack_c,&uStack_8,&uStack_10);
-  lVar1 = FUN_00139f10(uStack_4 & 0xfffffff | 0x20000000,uStack_c,uStack_8 & 0xfffffff | 0x20000000,
-                       uStack_10);
+  Movie_GetStreamSpans(param_3 + 0x80,&uStack_4,&uStack_c,&uStack_8,&uStack_10);
+  lVar1 = maybe_Gfx_ClipRect(uStack_4 & 0xfffffff | 0x20000000,uStack_c,
+                             uStack_8 & 0xfffffff | 0x20000000,uStack_10);
   iVar2 = (int)lVar1;
   if (0 < lVar1) {
     lStack_30 = *(long *)(param_2 + 0x10);
@@ -1529,7 +1538,7 @@ bool FUN_0013a200(undefined8 param_1,int param_2,int param_3)
     iStack_1c = iVar2;
     WaitSema(*(undefined4 *)(param_3 + 0xc0));
     if ((*(int *)(param_3 + 0xd8) < *(int *)(param_3 + 0xd4)) &&
-       ((FUN_0013ae30(param_3 + 0x80,&lStack_30), -1 < lStack_30 || (-1 < lStack_28)))) {
+       ((RingBuf_Write(param_3 + 0x80,&lStack_30), -1 < lStack_30 || (-1 < lStack_28)))) {
       *(long *)(*(int *)(param_3 + 0xd0) + *(int *)(param_3 + 0xdc) * 0x18) = lStack_30;
       *(long *)(*(int *)(param_3 + 0xdc) * 0x18 + *(int *)(param_3 + 0xd0) + 8) = lStack_28;
       *(int *)(*(int *)(param_3 + 0xdc) * 0x18 + *(int *)(param_3 + 0xd0) + 0x10) = iStack_20;
@@ -1547,7 +1556,9 @@ bool FUN_0013a200(undefined8 param_1,int param_2,int param_3)
 }
 
 // 0x0013a430  size 0xac
-undefined4 FUN_0013a430(undefined8 param_1,undefined1 *param_2,int param_3)
+/* sceMpeg callback dispatch */
+
+undefined4 Movie_HandleCallback(undefined8 param_1,undefined1 *param_2,int param_3)
 
 {
   undefined8 uStack_20;
@@ -1556,16 +1567,16 @@ undefined4 FUN_0013a430(undefined8 param_1,undefined1 *param_2,int param_3)
   switch(*param_2) {
   case 1:
     RotateThreadReadyQueue(*(undefined4 *)(param_3 + 0x50));
-    FUN_0013b5a0(param_3 + 0x80);
+    Movie_KickDma(param_3 + 0x80);
     return 1;
   case 2:
-    FUN_0013b480(param_3 + 0x80);
+    Movie_ResetDma(param_3 + 0x80);
     break;
   case 3:
-    FUN_0013b0f0(param_3 + 0x80);
+    Movie_ReadDmaHandler(param_3 + 0x80);
     break;
   case 5:
-    FUN_0013af50(param_3 + 0x80,&uStack_20);
+    Movie_IpuDmaHandler(param_3 + 0x80,&uStack_20);
     *(undefined8 *)(param_2 + 8) = uStack_20;
     *(undefined8 *)(param_2 + 0x10) = uStack_18;
   }
@@ -1573,14 +1584,14 @@ undefined4 FUN_0013a430(undefined8 param_1,undefined1 *param_2,int param_3)
 }
 
 // 0x0013a4e0  size 0x8
-undefined4 FUN_0013a4e0(int param_1)
+undefined4 Movie_GetFrameCount(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x10);
 }
 
 // 0x0013a4f0  size 0x50
-undefined4 FUN_0013a4f0(uint *param_1,uint *param_2,uint *param_3)
+undefined4 Movie_IsFrameReady(uint *param_1,uint *param_2,uint *param_3)
 
 {
   undefined4 uVar1;
@@ -1597,7 +1608,9 @@ undefined4 FUN_0013a4f0(uint *param_1,uint *param_2,uint *param_3)
 }
 
 // 0x0013a540  size 0x88
-int FUN_0013a540(int param_1)
+/* sceMpegDemuxPss */
+
+int Movie_Demux(int param_1)
 
 {
   int iVar1;
@@ -1621,7 +1634,7 @@ int FUN_0013a540(int param_1)
 }
 
 // 0x0013a5d0  size 0x188
-void FUN_0013a5d0(uint *param_1)
+void Movie_DecodeThread(uint *param_1)
 
 {
   uint uVar1;
@@ -1676,7 +1689,7 @@ LAB_0013a6fc:
 }
 
 // 0x0013a760  size 0x8
-void FUN_0013a760(void)
+void maybe_Movie_iSuspendSelf(void)
 
 {
   syscall(0x2b);
@@ -1684,7 +1697,7 @@ void FUN_0013a760(void)
 }
 
 // 0x0013a770  size 0x20
-bool FUN_0013a770(int param_1)
+bool Movie_IsEnd(int param_1)
 
 {
   long lVar1;
@@ -1694,7 +1707,7 @@ bool FUN_0013a770(int param_1)
 }
 
 // 0x0013a790  size 0x11c
-undefined4 FUN_0013a790(uint *param_1)
+undefined4 Movie_FeedData(uint *param_1)
 
 {
   int iVar1;
@@ -1712,9 +1725,9 @@ undefined4 FUN_0013a790(uint *param_1)
     uStack_3 = DAT_0036e719;
     uStack_2 = DAT_0036e71a;
     uStack_1 = DAT_0036e71b;
-    FUN_0013b8c0(param_1 + 0x20,&uStack_8,&iStack_10,&uStack_c,&iStack_14);
+    Movie_GetStreamSpans(param_1 + 0x20,&uStack_8,&iStack_10,&uStack_c,&iStack_14);
     if (3 < (uint)(iStack_10 + iStack_14)) {
-      iVar1 = FUN_00139f10(uStack_8,iStack_10,uStack_c,iStack_14,&uStack_4,4,0,0);
+      iVar1 = maybe_Gfx_ClipRect(uStack_8,iStack_10,uStack_c,iStack_14,&uStack_4,4,0,0);
       WaitSema(param_1[0x30]);
       param_1[0x25] = param_1[0x25] + iVar1;
       *(long *)(param_1 + 0x32) = *(long *)(param_1 + 0x32) + (long)iVar1;
@@ -1733,7 +1746,7 @@ undefined4 FUN_0013a790(uint *param_1)
 }
 
 // 0x0013a8b0  size 0x2c
-void FUN_0013a8b0(uint *param_1)
+void Movie_RequestStop(uint *param_1)
 
 {
   if ((*param_1 & 8) != 0) {
@@ -1743,18 +1756,18 @@ void FUN_0013a8b0(uint *param_1)
 }
 
 // 0x0013a8e0  size 0x48
-void FUN_0013a8e0(int param_1)
+void Movie_Close(int param_1)
 
 {
-  FUN_00138cf0(param_1 + 0x54);
-  FUN_00138d70(param_1 + 0x54);
+  Thread_Terminate(param_1 + 0x54);
+  Thread_Delete(param_1 + 0x54);
   libmpeg_sub_0010f838(param_1 + 8);
   sceMpegCreate(param_1 + 8,*(undefined4 *)(param_1 + 0x5c),*(undefined4 *)(param_1 + 0x60));
   return;
 }
 
 // 0x0013a930  size 0x1ec
-void FUN_0013a930(undefined8 param_1,long param_2,long param_3,long param_4)
+void Movie_Start(undefined8 param_1,long param_2,long param_3,long param_4)
 
 {
   uint uVar1;
@@ -1770,7 +1783,7 @@ void FUN_0013a930(undefined8 param_1,long param_2,long param_3,long param_4)
     uVar1 = *puVar2;
   }
   else {
-    FUN_0013b9b0(puVar2 + 0x20,param_4);
+    Movie_ResetStream(puVar2 + 0x20,param_4);
     uVar1 = *puVar2;
   }
   if ((uVar1 & 4) != 0) {
@@ -1797,13 +1810,13 @@ void FUN_0013a930(undefined8 param_1,long param_2,long param_3,long param_4)
   }
   *puVar2 = *puVar2 & 0xffffff0f;
   *puVar2 = *puVar2 | 8;
-  FUN_00138dc0(puVar2 + 0x15,puVar2[0x14],0x13a5d0,puVar2[0x19],puVar2[0x1a],0);
-  FUN_00138d30(puVar2 + 0x15,param_1);
+  Thread_Create(puVar2 + 0x15,puVar2[0x14],0x13a5d0,puVar2[0x19],puVar2[0x1a],0);
+  Thread_Start(puVar2 + 0x15,param_1);
   return;
 }
 
 // 0x0013ab20  size 0x98
-void FUN_0013ab20(uint *param_1)
+void Movie_StopDma(uint *param_1)
 
 {
   uint uVar1;
@@ -1827,7 +1840,9 @@ void FUN_0013ab20(uint *param_1)
 }
 
 // 0x0013abc0  size 0x11c
-void FUN_0013abc0(uint *param_1,uint *param_2)
+/* sceMpegCreate */
+
+void Movie_Open(uint *param_1,uint *param_2)
 
 {
   uint uVar1;
@@ -1854,7 +1869,7 @@ void FUN_0013abc0(uint *param_1,uint *param_2)
     if (param_2 != (uint *)0x0) {
       puVar2 = param_2 + 3;
     }
-    FUN_0013bb60(param_1 + 0x20,puVar2);
+    Movie_InitStream(param_1 + 0x20,puVar2);
     uVar1 = param_2[0x14];
   }
   if (uVar1 != 0) {
@@ -1880,7 +1895,7 @@ void FUN_0013ace0(void)
 }
 
 // 0x0013ad00  size 0x1c
-void FUN_0013ad00(int param_1,int param_2)
+void RingBuf_Consume(int param_1,int param_2)
 
 {
   if (*(int *)(param_1 + 0xc) <= param_2) {
@@ -1891,8 +1906,8 @@ void FUN_0013ad00(int param_1,int param_2)
 }
 
 // 0x0013ad20  size 0x24
-void FUN_0013ad20(undefined4 *param_1,undefined4 *param_2,undefined4 *param_3,undefined4 *param_4,
-                 undefined4 *param_5)
+void RingBuf_GetSpans(undefined4 *param_1,undefined4 *param_2,undefined4 *param_3,
+                     undefined4 *param_4,undefined4 *param_5)
 
 {
   *param_2 = *param_1;
@@ -1903,7 +1918,7 @@ void FUN_0013ad20(undefined4 *param_1,undefined4 *param_2,undefined4 *param_3,un
 }
 
 // 0x0013ad50  size 0x1c
-int FUN_0013ad50(int param_1)
+int RingBuf_GetFree(int param_1)
 
 {
   if (*(uint *)(param_1 + 0x3c) < 0x28) {
@@ -1916,7 +1931,7 @@ int FUN_0013ad50(int param_1)
 }
 
 // 0x0013ad70  size 0xb8
-void FUN_0013ad70(int *param_1,int *param_2,int *param_3,int *param_4,int *param_5)
+void RingBuf_GetWriteSpans(int *param_1,int *param_2,int *param_3,int *param_4,int *param_5)
 
 {
   int iVar1;
@@ -1948,7 +1963,7 @@ void FUN_0013ad70(int *param_1,int *param_2,int *param_3,int *param_4,int *param
 }
 
 // 0x0013ae30  size 0x11c
-undefined8 FUN_0013ae30(int param_1,int param_2)
+undefined8 RingBuf_Write(int param_1,int param_2)
 
 {
   int iVar1;
@@ -2006,7 +2021,7 @@ undefined8 FUN_0013ae30(int param_1,int param_2)
 }
 
 // 0x0013af50  size 0x194
-undefined4 FUN_0013af50(int *param_1,undefined8 *param_2)
+undefined4 Movie_IpuDmaHandler(int *param_1,undefined8 *param_2)
 
 {
   uint uVar1;
@@ -2058,7 +2073,7 @@ undefined4 FUN_0013af50(int *param_1,undefined8 *param_2)
 }
 
 // 0x0013b0f0  size 0x388
-void FUN_0013b0f0(uint *param_1)
+void Movie_ReadDmaHandler(uint *param_1)
 
 {
   uint uVar1;
@@ -2186,7 +2201,7 @@ void FUN_0013b0f0(uint *param_1)
 }
 
 // 0x0013b480  size 0x118
-void FUN_0013b480(int param_1)
+void Movie_ResetDma(int param_1)
 
 {
   uint uVar1;
@@ -2236,7 +2251,7 @@ void FUN_0013b480(int param_1)
 }
 
 // 0x0013b5a0  size 0x270
-void FUN_0013b5a0(int *param_1)
+void Movie_KickDma(int *param_1)
 
 {
   int iVar1;
@@ -2328,42 +2343,42 @@ void FUN_0013b5a0(int *param_1)
 }
 
 // 0x0013b810  size 0x14
-int FUN_0013b810(int param_1,int param_2)
+int Movie_GetFrameBuffer(int param_1,int param_2)
 
 {
   return *(int *)(param_1 + 0x60) + param_2 * *(int *)(param_1 + 100);
 }
 
 // 0x0013b830  size 0x8
-undefined4 FUN_0013b830(int param_1)
+undefined4 Movie_GetBufferCount(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x68);
 }
 
 // 0x0013b840  size 0x8
-undefined4 FUN_0013b840(int param_1)
+undefined4 Movie_GetBufferSize(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x6c);
 }
 
 // 0x0013b850  size 0x8
-undefined4 FUN_0013b850(int param_1)
+undefined4 Movie_GetReadyCount(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x70);
 }
 
 // 0x0013b860  size 0x8
-undefined4 FUN_0013b860(int param_1)
+undefined4 Movie_GetUserData(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x7c);
 }
 
 // 0x0013b870  size 0x28
-void FUN_0013b870(int param_1)
+void Movie_ReleaseFrame(int param_1)
 
 {
   if (*(int *)(param_1 + 0x70) != 0) {
@@ -2373,14 +2388,14 @@ void FUN_0013b870(int param_1)
 }
 
 // 0x0013b8a0  size 0x14
-bool FUN_0013b8a0(int param_1)
+bool Movie_IsBufferFull(int param_1)
 
 {
   return *(int *)(param_1 + 0x70) == *(int *)(param_1 + 0x68);
 }
 
 // 0x0013b8c0  size 0xf0
-void FUN_0013b8c0(int *param_1,int *param_2,int *param_3,int *param_4,int *param_5)
+void Movie_GetStreamSpans(int *param_1,int *param_2,int *param_3,int *param_4,int *param_5)
 
 {
   int iVar1;
@@ -2406,7 +2421,7 @@ void FUN_0013b8c0(int *param_1,int *param_2,int *param_3,int *param_4,int *param
 }
 
 // 0x0013b9b0  size 0x1a8
-void FUN_0013b9b0(uint *param_1,long param_2)
+void Movie_ResetStream(uint *param_1,long param_2)
 
 {
   uint uVar1;
@@ -2478,7 +2493,7 @@ void FUN_0013b9b0(uint *param_1,long param_2)
 }
 
 // 0x0013bb60  size 0xcc
-void FUN_0013bb60(undefined8 param_1,undefined4 *param_2)
+void Movie_InitStream(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -2504,12 +2519,12 @@ void FUN_0013bb60(undefined8 param_1,undefined4 *param_2)
   puVar2[0x1a] = param_2[6];
   puVar2[0x1d] = param_2[7];
   puVar2[0x1e] = param_2[8];
-  FUN_0013b9b0(param_1,0);
+  Movie_ResetStream(param_1,0);
   return;
 }
 
 // 0x0013bc30  size 0x3c
-int FUN_0013bc30(int param_1,int param_2)
+int Stream_Advance(int param_1,int param_2)
 
 {
   int iVar1;
@@ -2524,7 +2539,7 @@ int FUN_0013bc30(int param_1,int param_2)
 }
 
 // 0x0013bc70  size 0x34
-void FUN_0013bc70(int *param_1,int *param_2)
+void Stream_GetReadPtr(int *param_1,int *param_2)
 
 {
   if (param_1[1] != param_1[4]) {
@@ -2534,14 +2549,14 @@ void FUN_0013bc70(int *param_1,int *param_2)
 }
 
 // 0x0013bcb0  size 0x8
-undefined4 FUN_0013bcb0(int param_1)
+undefined4 Stream_GetSize(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 8);
 }
 
 // 0x0013bcc0  size 0x4c
-void FUN_0013bcc0(int param_1)
+void Stream_InvokeCallback(int param_1)
 
 {
   if (*(code **)(param_1 + 0x30) != (code *)0x0) {
@@ -2557,7 +2572,9 @@ void FUN_0013bcc0(int param_1)
 }
 
 // 0x0013bd10  size 0x38
-undefined4 FUN_0013bd10(int param_1)
+/* intc-guarded read */
+
+undefined4 Rpc_GetPendingCount(int param_1)
 
 {
   undefined4 uVar1;
@@ -2569,7 +2586,9 @@ undefined4 FUN_0013bd10(int param_1)
 }
 
 // 0x0013bd50  size 0xec
-undefined4 FUN_0013bd50(undefined8 param_1,undefined4 *param_2)
+/* sceSifCallRpc wrapper with mutex */
+
+undefined4 Rpc_Call(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -2602,7 +2621,9 @@ undefined4 FUN_0013bd50(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x0013be40  size 0xc
-undefined4 FUN_0013be40(int param_1,undefined4 param_2)
+/* returns previous */
+
+undefined4 Rpc_SetBlocking(int param_1,undefined4 param_2)
 
 {
   undefined4 uVar1;
@@ -2613,7 +2634,7 @@ undefined4 FUN_0013be40(int param_1,undefined4 param_2)
 }
 
 // 0x0013be50  size 0x8
-void FUN_0013be50(int param_1)
+void Rpc_Unbind(int param_1)
 
 {
   maybe_Mutex_Delete(param_1 + 0x28);
@@ -2621,7 +2642,9 @@ void FUN_0013be50(int param_1)
 }
 
 // 0x0013be60  size 0x88
-void FUN_0013be60(undefined8 param_1,undefined8 param_2)
+/* sceSifBindRpc retry loop */
+
+void Rpc_Bind(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -2642,7 +2665,9 @@ void FUN_0013be60(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0013bef0  size 0x54
-void FUN_0013bef0(undefined4 *param_1)
+/* sceSifRegisterRpc + sceSifRpcLoop */
+
+void RpcServer_Thread(undefined4 *param_1)
 
 {
   sceSifSetRpcQueue(param_1 + 6,param_1[1]);
@@ -2652,20 +2677,20 @@ void FUN_0013bef0(undefined4 *param_1)
 }
 
 // 0x0013bf50  size 0x44
-void FUN_0013bf50(int param_1)
+void RpcServer_Stop(int param_1)
 
 {
   maybe_sceSifRemoveRpc(param_1 + 0x30,param_1 + 0x18);
   maybe_sceSifRemoveRpcQueue(param_1 + 0x18);
-  FUN_00138cf0(param_1 + 4);
-  FUN_00138d70(param_1 + 4);
+  Thread_Terminate(param_1 + 4);
+  Thread_Delete(param_1 + 4);
   return;
 }
 
 // 0x0013bfa0  size 0x60
 undefined4
-FUN_0013bfa0(undefined8 param_1,undefined4 param_2,undefined8 param_3,undefined4 param_4,
-            undefined4 param_5,undefined8 param_6,undefined8 param_7,undefined4 param_8)
+RpcServer_Start(undefined8 param_1,undefined4 param_2,undefined8 param_3,undefined4 param_4,
+               undefined4 param_5,undefined8 param_6,undefined8 param_7,undefined4 param_8)
 
 {
   undefined4 *puVar1;
@@ -2675,8 +2700,8 @@ FUN_0013bfa0(undefined8 param_1,undefined4 param_2,undefined8 param_3,undefined4
   puVar1[3] = param_4;
   puVar1[4] = param_5;
   puVar1[5] = param_8;
-  FUN_00138dc0(puVar1 + 1,param_3,0x13bef0,param_7,param_6,param_1);
-  FUN_00138d30(puVar1 + 1,param_1);
+  Thread_Create(puVar1 + 1,param_3,0x13bef0,param_7,param_6,param_1);
+  Thread_Start(puVar1 + 1,param_1);
   return 1;
 }
 

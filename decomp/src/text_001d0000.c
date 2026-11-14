@@ -187,10 +187,10 @@ undefined8 FUN_001d1bf0(int *param_1,undefined8 param_2)
   undefined2 uStack_4;
   undefined2 uStack_2;
   
-  FUN_001705e0(auStack_d20);
+  CarSpec_ctor(auStack_d20);
   iVar4 = (int)param_2;
   iStack_70 = (int)*(short *)(iVar4 + 0xc);
-  FUN_00175e10(auStack_5b0,param_2);
+  maybe_RaceSetup_BuildCarEntry(auStack_5b0,param_2);
   FUN_001ceef0(auStack_5b0,auStack_d20,param_2,1);
   uStack_4 = *(undefined2 *)(iVar4 + 0x70);
   uStack_2 = *(undefined2 *)(iVar4 + 0x72);

@@ -14,18 +14,18 @@ void FUN_002941d0(undefined4 *param_1)
   if (iVar2 != 0) {
     param_1[1] = 0;
     *param_1 = 0;
-    uVar1 = FUN_001831b0();
-    FUN_00183320(uVar1);
-    iVar2 = FUN_001831b0();
-    FUN_00183300(iVar2 + 0x1c);
-    iVar2 = FUN_001831b0();
-    FUN_001831c0(iVar2 + 0x28);
-    iVar2 = FUN_001831b0();
-    FUN_001831c0(iVar2 + 0x110);
-    iVar2 = FUN_001831b0();
-    FUN_001833f0(*(undefined1 *)(iVar2 + 0x1c));
-    iVar2 = FUN_001831b0();
-    FUN_00183380(*(undefined1 *)(iVar2 + 0x20));
+    uVar1 = maybe_Options_GetLanguage();
+    Options_SetDefaultsGame(uVar1);
+    iVar2 = maybe_Options_GetLanguage();
+    Options_SetDefaultsVolume(iVar2 + 0x1c);
+    iVar2 = maybe_Options_GetLanguage();
+    Options_SetDefaults(iVar2 + 0x28);
+    iVar2 = maybe_Options_GetLanguage();
+    Options_SetDefaults(iVar2 + 0x110);
+    iVar2 = maybe_Options_GetLanguage();
+    Hud_HideMessage(*(undefined1 *)(iVar2 + 0x1c));
+    iVar2 = maybe_Options_GetLanguage();
+    Hud_ShowMessage(*(undefined1 *)(iVar2 + 0x20));
   }
   return;
 }
@@ -88,18 +88,18 @@ void FUN_00294380(undefined4 *param_1)
       iVar5 = 0;
       puVar4 = param_1;
       do {
-        uVar2 = FUN_00141400(iVar5);
+        uVar2 = Wheel_GetHandle(iVar5);
         lVar3 = (**(code **)(*(int *)((int)uVar2 + 4) + 8))(uVar2);
         if (lVar3 != 0) {
           if (puVar4[0xb] == 0) {
-            lVar3 = FUN_00141a00(uVar2);
+            lVar3 = Wheel_ConsumeDisconnect(uVar2);
             if (lVar3 != 0) {
               bVar1 = false;
               puVar4[0xb] = 1;
             }
           }
           else {
-            lVar3 = FUN_001419f0(uVar2);
+            lVar3 = Wheel_IsActive(uVar2);
             if (lVar3 != 0) {
               bVar1 = false;
             }
@@ -160,9 +160,9 @@ void FUN_002944c0(undefined8 param_1)
       iVar5 = iVar5 + 8;
       puVar6 = puVar6 + 5;
     } while (uVar7 < 9);
-    iVar5 = FUN_001831b0();
+    iVar5 = maybe_Options_GetLanguage();
     FUN_002964c0(puVar2 + 0x82,iVar5 + puVar2[0x81] * 0xe8 + 0x28);
-    iVar5 = FUN_001831b0();
+    iVar5 = maybe_Options_GetLanguage();
     FUN_002963b0(puVar2 + 0x8e,iVar5 + puVar2[0x81] * 0xe8 + 0x88);
     puVar6 = puVar2 + 0xf7;
     puVar2[0xf8] = 1;
@@ -186,9 +186,9 @@ void FUN_002944c0(undefined8 param_1)
       iVar5 = iVar5 + 8;
       puVar6 = puVar6 + 5;
     } while (uVar7 < 9);
-    iVar5 = FUN_001831b0();
+    iVar5 = maybe_Options_GetLanguage();
     FUN_002964c0(puVar2 + 0xf9,iVar5 + puVar2[0xf8] * 0xe8 + 0x28);
-    iVar5 = FUN_001831b0();
+    iVar5 = maybe_Options_GetLanguage();
     FUN_002963b0(puVar2 + 0x105,iVar5 + puVar2[0xf8] * 0xe8 + 0x88);
   }
   puVar2[1] = 6;
@@ -229,7 +229,7 @@ void FUN_002947b0(undefined4 *param_1)
   iVar3 = 0;
   param_1[0xd] = param_1[0xd] & 0xfffffffd;
   do {
-    uVar1 = FUN_00141400(iVar3);
+    uVar1 = Wheel_GetHandle(iVar3);
     lVar2 = (**(code **)(*(int *)((int)uVar1 + 4) + 8))(uVar1);
     if (lVar2 != 0) {
       param_1[0xd] = param_1[0xd] | 2;
@@ -289,9 +289,9 @@ void FUN_002948b0(undefined4 *param_1)
       iVar7 = iVar7 + 8;
       puVar8 = puVar8 + 5;
     } while (uVar12 < 9);
-    iVar7 = FUN_001831b0();
+    iVar7 = maybe_Options_GetLanguage();
     FUN_002964c0(param_1 + 0x82,iVar7 + param_1[0x81] * 0xe8 + 0x28);
-    iVar7 = FUN_001831b0();
+    iVar7 = maybe_Options_GetLanguage();
     FUN_002963b0(param_1 + 0x8e,iVar7 + param_1[0x81] * 0xe8 + 0x88);
     puVar8 = param_1 + 0xf7;
     param_1[0xf8] = 1;
@@ -315,9 +315,9 @@ void FUN_002948b0(undefined4 *param_1)
       iVar7 = iVar7 + 8;
       puVar8 = puVar8 + 5;
     } while (uVar12 < 9);
-    iVar7 = FUN_001831b0();
+    iVar7 = maybe_Options_GetLanguage();
     FUN_002964c0(param_1 + 0xf9,iVar7 + param_1[0xf8] * 0xe8 + 0x28);
-    iVar7 = FUN_001831b0();
+    iVar7 = maybe_Options_GetLanguage();
     FUN_002963b0(param_1 + 0x105,iVar7 + param_1[0xf8] * 0xe8 + 0x88);
   }
   *param_1 = 4;
@@ -359,9 +359,9 @@ void FUN_002948b0(undefined4 *param_1)
           return;
         }
       }
-      iVar7 = FUN_001831b0();
+      iVar7 = maybe_Options_GetLanguage();
       iVar11 = iVar7 + 0x28;
-      FUN_001325d0(iVar11,0,0x60);
+      Mem_Set16(iVar11,0,0x60);
       *(undefined4 *)(iVar7 + 0x38) = 0x10;
       *(undefined4 *)(iVar7 + 0x3c) = 0x20;
       iVar10 = 0;
@@ -385,9 +385,9 @@ void FUN_002948b0(undefined4 *param_1)
         puVar9 = puVar9 + 5;
         *(undefined4 *)(iVar11 + *piVar1 * 4) = uVar5;
       } while (iVar10 < 10);
-      iVar7 = FUN_001831b0();
+      iVar7 = maybe_Options_GetLanguage();
       iVar11 = iVar7 + 0x110;
-      FUN_001325d0(iVar11,0,0x60);
+      Mem_Set16(iVar11,0,0x60);
       *(undefined4 *)(iVar7 + 0x120) = 0x10;
       *(undefined4 *)(iVar7 + 0x124) = 0x20;
       iVar10 = 0;
@@ -454,7 +454,7 @@ void FUN_00294de0(undefined4 *param_1)
     uVar4 = 0x100000;
   }
   if (uVar4 == 0x10) {
-    puVar2 = (undefined4 *)FUN_001831b0();
+    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
     *puVar2 = param_1[0xe];
     puVar2[1] = param_1[0xf];
     puVar2[2] = param_1[0x10];
@@ -464,7 +464,7 @@ void FUN_00294de0(undefined4 *param_1)
     puVar2[6] = param_1[0x14];
   }
   else if (uVar4 == 0x20) {
-    puVar2 = (undefined4 *)FUN_001831b0();
+    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -487,7 +487,7 @@ void FUN_00294fa0(undefined4 *param_1)
   param_1[0x171] = 0;
   if (iVar1 != 0) {
     *param_1 = 0;
-    puVar2 = (undefined4 *)FUN_001831b0();
+    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -521,11 +521,11 @@ void FUN_00295060(undefined4 *param_1)
   if (iVar1 != 0) {
     param_1[1] = 0;
     *param_1 = 0;
-    iVar1 = FUN_001831b0();
+    iVar1 = maybe_Options_GetLanguage();
     param_1[0x15] = *(undefined4 *)(iVar1 + 0x1c);
     param_1[0x16] = *(undefined4 *)(iVar1 + 0x20);
     param_1[0x17] = *(undefined4 *)(iVar1 + 0x24);
-    iVar1 = FUN_001831b0();
+    iVar1 = maybe_Options_GetLanguage();
     param_1[0x18] = *(undefined4 *)(iVar1 + 0x1c);
     param_1[0x19] = *(undefined4 *)(iVar1 + 0x20);
     param_1[0x1a] = *(undefined4 *)(iVar1 + 0x24);
@@ -542,11 +542,11 @@ void FUN_00295060(undefined4 *param_1)
   else if (iVar1 == 1) {
     lVar2 = FUN_001f8640(param_1 + 0x16,0,8,0xf,0,0);
     if (lVar2 != 0) {
-      FUN_00183380(*(undefined1 *)(param_1 + 0x16));
+      Hud_ShowMessage(*(undefined1 *)(param_1 + 0x16));
     }
   }
   else if ((iVar1 == 0) && (lVar2 = FUN_001f8640(puVar4,0,8,0xf,0,0), lVar2 != 0)) {
-    FUN_001833f0(*(undefined1 *)puVar4);
+    Hud_HideMessage(*(undefined1 *)puVar4);
   }
   uVar3 = piGpffff8d78[2];
   if ((piGpffff8d78[4] & uVar3) == 0) {
@@ -560,36 +560,36 @@ void FUN_00295060(undefined4 *param_1)
   }
   if (uVar3 == 0x10) {
     if (param_1[5] == 3) {
-      iVar1 = FUN_001831b0();
-      FUN_00183300(iVar1 + 0x1c);
-      iVar1 = FUN_001831b0();
-      FUN_001833f0(*(undefined1 *)(iVar1 + 0x1c));
-      iVar1 = FUN_001831b0();
-      FUN_00183380(*(undefined1 *)(iVar1 + 0x20));
-      iVar1 = FUN_001831b0();
+      iVar1 = maybe_Options_GetLanguage();
+      Options_SetDefaultsVolume(iVar1 + 0x1c);
+      iVar1 = maybe_Options_GetLanguage();
+      Hud_HideMessage(*(undefined1 *)(iVar1 + 0x1c));
+      iVar1 = maybe_Options_GetLanguage();
+      Hud_ShowMessage(*(undefined1 *)(iVar1 + 0x20));
+      iVar1 = maybe_Options_GetLanguage();
       param_1[0x15] = *(undefined4 *)(iVar1 + 0x1c);
       param_1[0x16] = *(undefined4 *)(iVar1 + 0x20);
       param_1[0x17] = *(undefined4 *)(iVar1 + 0x24);
-      iVar1 = FUN_001831b0();
+      iVar1 = maybe_Options_GetLanguage();
       param_1[0x18] = *(undefined4 *)(iVar1 + 0x1c);
       param_1[0x19] = *(undefined4 *)(iVar1 + 0x20);
       param_1[0x1a] = *(undefined4 *)(iVar1 + 0x24);
     }
     else {
-      iVar1 = FUN_001831b0();
+      iVar1 = maybe_Options_GetLanguage();
       *(undefined4 *)(iVar1 + 0x1c) = param_1[0x15];
       *(undefined4 *)(iVar1 + 0x20) = param_1[0x16];
       *(undefined4 *)(iVar1 + 0x24) = param_1[0x17];
       param_1[0x18] = param_1[0x15];
       param_1[0x19] = param_1[0x16];
       param_1[0x1a] = param_1[0x17];
-      FUN_001833f0(*(undefined1 *)puVar4);
-      FUN_00183380(*(undefined1 *)(param_1 + 0x16));
+      Hud_HideMessage(*(undefined1 *)puVar4);
+      Hud_ShowMessage(*(undefined1 *)(param_1 + 0x16));
     }
   }
   else if (uVar3 == 0x20) {
-    FUN_001833f0(*(undefined1 *)(param_1 + 0x18));
-    FUN_00183380(*(undefined1 *)(param_1 + 0x19));
+    Hud_HideMessage(*(undefined1 *)(param_1 + 0x18));
+    Hud_ShowMessage(*(undefined1 *)(param_1 + 0x19));
   }
   return;
 }
@@ -609,7 +609,7 @@ void FUN_00295320(undefined4 *param_1)
   if (iVar1 != 0) {
     param_1[1] = 0;
     *param_1 = 0;
-    puVar2 = (undefined4 *)FUN_001831b0();
+    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -671,9 +671,9 @@ LAB_002954b8:
   }
   if (uVar5 == 0x10) {
     if (param_1[4] == 6) {
-      uVar4 = FUN_001831b0();
-      FUN_00183320(uVar4);
-      puVar2 = (undefined4 *)FUN_001831b0();
+      uVar4 = maybe_Options_GetLanguage();
+      Options_SetDefaultsGame(uVar4);
+      puVar2 = (undefined4 *)maybe_Options_GetLanguage();
       param_1[0xe] = *puVar2;
       param_1[0xf] = puVar2[1];
       param_1[0x10] = puVar2[2];
@@ -683,7 +683,7 @@ LAB_002954b8:
       param_1[0x14] = puVar2[6];
     }
     else {
-      puVar2 = (undefined4 *)FUN_001831b0();
+      puVar2 = (undefined4 *)maybe_Options_GetLanguage();
       *puVar2 = param_1[0xe];
       puVar2[1] = param_1[0xf];
       puVar2[2] = param_1[0x10];
@@ -694,7 +694,7 @@ LAB_002954b8:
     }
   }
   else if (uVar5 == 0x20) {
-    puVar2 = (undefined4 *)FUN_001831b0();
+    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -869,7 +869,7 @@ void FUN_00295a60(undefined4 *param_1)
   param_1[8] = 0;
   param_1[9] = 0;
   param_1[10] = 0;
-  puVar1 = (undefined4 *)FUN_001831b0();
+  puVar1 = (undefined4 *)maybe_Options_GetLanguage();
   param_1[0xe] = *puVar1;
   param_1[0xf] = puVar1[1];
   param_1[0x10] = puVar1[2];
@@ -877,7 +877,7 @@ void FUN_00295a60(undefined4 *param_1)
   param_1[0x12] = puVar1[4];
   param_1[0x13] = puVar1[5];
   param_1[0x14] = puVar1[6];
-  iVar2 = FUN_001831b0();
+  iVar2 = maybe_Options_GetLanguage();
   puVar4 = param_1 + 0x80;
   uVar5 = 0;
   iVar3 = 0;
@@ -903,9 +903,9 @@ void FUN_00295a60(undefined4 *param_1)
     iVar2 = iVar2 + 8;
     puVar4 = puVar4 + 5;
   } while (uVar5 < 9);
-  iVar2 = FUN_001831b0();
+  iVar2 = maybe_Options_GetLanguage();
   FUN_002964c0(param_1 + 0x82,iVar2 + param_1[0x81] * 0xe8 + 0x28);
-  iVar2 = FUN_001831b0();
+  iVar2 = maybe_Options_GetLanguage();
   FUN_002963b0(param_1 + 0x8e,iVar2 + param_1[0x81] * 0xe8 + 0x88);
   puVar4 = param_1 + 0xf7;
   param_1[0xf8] = 1;
@@ -929,9 +929,9 @@ void FUN_00295a60(undefined4 *param_1)
     iVar2 = iVar2 + 8;
     puVar4 = puVar4 + 5;
   } while (uVar5 < 9);
-  iVar2 = FUN_001831b0();
+  iVar2 = maybe_Options_GetLanguage();
   FUN_002964c0(param_1 + 0xf9,iVar2 + param_1[0xf8] * 0xe8 + 0x28);
-  iVar2 = FUN_001831b0();
+  iVar2 = maybe_Options_GetLanguage();
   FUN_002963b0(param_1 + 0x105,iVar2 + param_1[0xf8] * 0xe8 + 0x88);
   param_1[0x16e] = 0xffffffff;
   param_1[0x16f] = 0;
@@ -977,9 +977,9 @@ void FUN_00295db0(int *param_1,int param_2)
   FUN_001f8640(param_1,iVar5,2,9,1,0);
   if (*param_1 == 9) {
     if (uVar9 == 0x10) {
-      iVar5 = FUN_001831b0();
-      FUN_001830d0(iVar5 + param_1[1] * 0xe8 + 0x88);
-      iVar5 = FUN_001831b0();
+      iVar5 = maybe_Options_GetLanguage();
+      Options_SetDefaultsSound(iVar5 + param_1[1] * 0xe8 + 0x88);
+      iVar5 = maybe_Options_GetLanguage();
       FUN_002963b0(param_1 + 0xe,iVar5 + param_1[1] * 0xe8 + 0x88);
       *(undefined4 *)(param_2 + 4) = 7;
     }
@@ -991,9 +991,9 @@ void FUN_00295db0(int *param_1,int param_2)
         bVar4 = param_1[0xe] != 0;
       }
       if (!bVar4) {
-        iVar5 = FUN_001831b0();
+        iVar5 = maybe_Options_GetLanguage();
         iVar10 = iVar5 + param_1[1] * 0xe8 + 0x88;
-        FUN_001325d0(iVar10,0,0x18);
+        Mem_Set16(iVar10,0,0x18);
         iVar5 = 0;
         ppuVar8 = &PTR_DAT_0032eb40;
         piVar7 = param_1;
@@ -1060,8 +1060,8 @@ void FUN_00296030(int *param_1,int param_2)
   iVar1 = *param_1;
   if (iVar1 == 10) {
     if (uVar6 == 0x10) {
-      iVar1 = FUN_001831b0();
-      FUN_00183110(iVar1 + param_1[1] * 0xe8 + 0x28);
+      iVar1 = maybe_Options_GetLanguage();
+      Options_SetDefaultsDisplay(iVar1 + param_1[1] * 0xe8 + 0x28);
       *param_1 = 0;
       uVar6 = 0;
       iVar1 = 0;
@@ -1083,9 +1083,9 @@ void FUN_00296030(int *param_1,int param_2)
         iVar1 = iVar1 + 8;
         piVar5 = piVar5 + 5;
       } while (uVar6 < 9);
-      iVar1 = FUN_001831b0();
+      iVar1 = maybe_Options_GetLanguage();
       FUN_002964c0(param_1 + 2,iVar1 + param_1[1] * 0xe8 + 0x28);
-      iVar1 = FUN_001831b0();
+      iVar1 = maybe_Options_GetLanguage();
       FUN_002963b0(param_1 + 0xe,iVar1 + param_1[1] * 0xe8 + 0x88);
       *param_1 = 10;
       *(undefined4 *)(param_2 + 4) = 5;
@@ -1289,63 +1289,63 @@ int FUN_00296600(void)
                     FUN_001bdd10(uVar1,0x200000);
                     FUN_001bdd10(uVar1,0x1000);
                     uRam0036f2b4 = 0xe;
-                    FUN_0017e860(4);
+                    RaceCtx_Set_9(4);
                     iVar3 = 1;
                   }
                 }
                 else {
                   FUN_001bdce0(uVar1,0x200);
                   uRam0036f2b4 = 0x1e;
-                  FUN_0017e860(3);
+                  RaceCtx_Set_9(3);
                   iVar3 = 1;
                 }
               }
               else {
                 FUN_001bdce0(uVar1,0x100);
                 uRam0036f2b4 = 0x1f;
-                FUN_0017e860(3);
+                RaceCtx_Set_9(3);
                 iVar3 = 1;
               }
             }
             else {
               FUN_001bdce0(uVar1,0x80);
               uRam0036f2b4 = 0x1c;
-              FUN_0017e860(3);
+              RaceCtx_Set_9(3);
               iVar3 = 1;
             }
           }
           else {
             FUN_001bdce0(uVar1,0x40);
             uRam0036f2b4 = 0x1b;
-            FUN_0017e860(3);
+            RaceCtx_Set_9(3);
             iVar3 = 1;
           }
         }
         else {
           FUN_001bdce0(uVar1,0x20);
           uRam0036f2b4 = 0x1a;
-          FUN_0017e860(3);
+          RaceCtx_Set_9(3);
           iVar3 = 1;
         }
       }
       else {
         FUN_001bdce0(uVar1,0x10);
         uRam0036f2b4 = 0x1d;
-        FUN_0017e860(3);
+        RaceCtx_Set_9(3);
         iVar3 = 1;
       }
     }
     else {
       FUN_001bdce0(uVar1,8);
       uRam0036f2b4 = 0x19;
-      FUN_0017e860(3);
+      RaceCtx_Set_9(3);
       iVar3 = 1;
     }
   }
   else {
     FUN_001bdce0(uVar1,4);
     uRam0036f2b4 = 0x18;
-    FUN_0017e860(3);
+    RaceCtx_Set_9(3);
     iVar3 = 1;
   }
   if (iVar3 != 0) {
@@ -1818,7 +1818,7 @@ void FUN_00297120(int param_1)
     uVar7 = 0x100000;
   }
   if (uVar7 == 0x10) {
-    uVar5 = FUN_00176fa0();
+    uVar5 = GameState_Get_35c();
     if ((uVar5 & 1) != 0) {
       bVar1 = *(byte *)(param_1 + 0x480);
       if (bVar1 - 1 < 2) {
@@ -1832,7 +1832,7 @@ void FUN_00297120(int param_1)
       else {
         if ((bVar1 == 3) && (*(int *)(param_1 + 0x484) != -1)) {
           uVar6 = FUN_001c1890(0);
-          iVar4 = FUN_00177a50();
+          iVar4 = GameState_Ptr_48();
           sVar3 = FUN_001c0890(uVar6,*(undefined4 *)(iVar4 + 0x80));
           if (sVar3 < 2) {
             *(undefined4 *)(param_1 + 0x640) = 0x2e;
@@ -1856,7 +1856,7 @@ LAB_002973ac:
   if (uVar7 != 0x20) {
     return;
   }
-  uVar5 = FUN_00176fa0();
+  uVar5 = GameState_Get_35c();
   if ((uVar5 & 1) != 0) {
     bVar1 = *(byte *)(param_1 + 0x480);
     if (bVar1 - 1 < 2) {
@@ -1869,7 +1869,7 @@ LAB_002973ac:
     }
     if ((bVar1 == 3) && (*(int *)(param_1 + 0x484) != -1)) {
       uVar6 = FUN_001c1890(0);
-      iVar4 = FUN_00177a50();
+      iVar4 = GameState_Ptr_48();
       sVar3 = FUN_001c0890(uVar6,*(undefined4 *)(iVar4 + 0x80));
       if (sVar3 < 2) {
         *(undefined4 *)(param_1 + 0x640) = 0x2e;
@@ -2036,7 +2036,7 @@ void FUN_002977b0(int param_1)
       iVar1 = iVar1 + 2;
     } while (iVar2 < 0x162);
   }
-  FUN_0017e7c0(param_1 + 0x474);
+  RaceSlot_Clear(param_1 + 0x474);
   *(undefined4 *)(param_1 + 0x670) = 0;
   *(undefined4 *)(param_1 + 0x674) = 0xffffffff;
   iVar2 = 0;
@@ -2262,7 +2262,7 @@ undefined4 FUN_00297d00(int param_1)
     puVar5 = puVar5 + 1;
     puVar4 = puVar4 + 1;
   } while (0 < iVar3);
-  FUN_0017e7c0(param_1 + 0x480);
+  RaceSlot_Clear(param_1 + 0x480);
   *(undefined1 *)(param_1 + 0x480) = uStack_4c;
   *(undefined4 *)(param_1 + 0x484) = uStack_48;
   *(undefined4 *)(param_1 + 0x488) = uStack_44;

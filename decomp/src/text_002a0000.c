@@ -1060,7 +1060,7 @@ ulong FUN_002a30b0(void)
   int iVar1;
   ulong uVar2;
   
-  iVar1 = FUN_001375f0(0,0);
+  iVar1 = Pad_GetPort(0,0);
   iVar1 = *(int *)(iVar1 + 0x14);
   uVar2 = 0;
   if (iVar1 == 0) {
@@ -1328,12 +1328,12 @@ void FUN_002a3200(int param_1,int param_2)
                        *(int *)(param_1 + 0x38) == 0,0);
         }
         if (*(int *)(param_1 + 8) == 0) {
-          FUN_0017e8c0(2);
+          RaceCtx_SetMode(2);
           iVar4 = *(int *)(param_1 + 0x28);
         }
         else {
           if (*(int *)(param_1 + 8) == 1) {
-            FUN_0017e8c0(3);
+            RaceCtx_SetMode(3);
           }
           iVar4 = *(int *)(param_1 + 0x28);
         }
@@ -1360,10 +1360,11 @@ void FUN_002a3200(int param_1,int param_2)
             cVar7 = '\x05';
           }
         }
-        FUN_0017ca10(uVar6,iVar4 == 0,uVar5,cVar7,
-                     *(undefined1 *)((int)register0x000001c0 + *(int *)(param_1 + 0x20) + -0x78bc),
-                     *(undefined1 *)((int)register0x000001c0 + *(int *)(param_1 + 0x18) + -0x78c4),
-                     &uStack_d0,!bVar1);
+        RaceSetup_FromQuickRace
+                  (uVar6,iVar4 == 0,uVar5,cVar7,
+                   *(undefined1 *)((int)register0x000001c0 + *(int *)(param_1 + 0x20) + -0x78bc),
+                   *(undefined1 *)((int)register0x000001c0 + *(int *)(param_1 + 0x18) + -0x78c4),
+                   &uStack_d0,!bVar1);
         FUN_001fd070(0xfffffffffffffffe);
       }
       uGpffff8738 = *(undefined4 *)(param_1 + 8);
@@ -1589,24 +1590,24 @@ void FUN_002a3660(undefined4 *param_1)
       }
     }
     if (uVar15 == 0x2000 || (uVar14 == 0x1000 || (lVar9 != 0 || (lVar8 != 0 || iVar2 != 0)))) {
-      uVar11 = FUN_0017e1e0();
-      uVar12 = FUN_0017e1f0();
+      uVar11 = RaceTbl_Ptr_5fa0();
+      uVar12 = maybe_RaceTbl_GetCount();
       uVar13 = FUN_001f6a70(param_1[0x10]);
       uVar1 = *(undefined1 *)((int)register0x000001c0 + param_1[0x11] + -0x78c4);
       if (param_1[2] == 0) {
         if (param_1[0x12] == 0) {
-          uVar11 = FUN_0017e1a0(uVar11,0,uVar1,uVar13);
+          uVar11 = RaceTbl_GetCourseEntryB(uVar11,0,uVar1,uVar13);
           FUN_002a57e0(param_1 + 0x1ff,uVar11);
           FUN_002a5080(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar13,uVar1,0);
           *(undefined1 *)((int)param_1 + 0x7f9) = 0;
           return;
         }
-        uVar11 = FUN_0017e1a0(uVar11,1,uVar1,uVar13);
+        uVar11 = RaceTbl_GetCourseEntryB(uVar11,1,uVar1,uVar13);
         FUN_002a57e0(param_1 + 0x1ff,uVar11);
         FUN_002a5080(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar13,uVar1,1);
       }
       else if (param_1[0x12] == 0) {
-        uVar11 = FUN_0017e140(uVar12,0,uVar1,uVar13);
+        uVar11 = RaceTbl_GetCourseEntry(uVar12,0,uVar1,uVar13);
         FUN_002a5790(param_1 + 0x209,uVar11);
         iVar2 = param_1[0x14];
         auStack_10[3] = 0;
@@ -1634,7 +1635,7 @@ void FUN_002a3660(undefined4 *param_1)
         }
       }
       else {
-        uVar11 = FUN_0017e140(uVar12,1,uVar1,uVar13);
+        uVar11 = RaceTbl_GetCourseEntry(uVar12,1,uVar1,uVar13);
         FUN_002a5790(param_1 + 0x209,uVar11);
         iVar2 = param_1[0x14];
         auStack_10[1] = 0;
@@ -1684,7 +1685,7 @@ void FUN_002a3e10(undefined4 *param_1)
     else {
       *param_1 = 9;
     }
-    lVar2 = FUN_00183480();
+    lVar2 = Hud_Get_14();
     param_1[0xe] = (uint)(lVar2 == 0);
   }
   FUN_001f8640(param_1 + 0xe,0,2,1,1,0);

@@ -82,13 +82,13 @@ void FUN_002c41d0(undefined8 param_1)
     FUN_002c4f70(param_1);
     FUN_002c40d0(param_1,uVar8);
     FUN_002c40d0(param_1,uVar7);
-    cVar2 = FUN_00183470();
+    cVar2 = Hud_Get_1c();
     *(short *)((int)piVar6 + 0x10a) = (short)cVar2;
     *(short *)(piVar6 + 0x42) = (short)cVar2;
-    cVar2 = FUN_00183460();
+    cVar2 = Hud_Get_20();
     *(short *)((int)piVar6 + 0x10e) = (short)cVar2;
     *(short *)(piVar6 + 0x43) = (short)cVar2;
-    iVar3 = FUN_001834c0();
+    iVar3 = Hud_Get_4();
     piVar6[0x45] = iVar3;
     piVar6[0x44] = iVar3;
   }
@@ -146,7 +146,7 @@ void FUN_002c41d0(undefined8 param_1)
     lVar5 = FUN_002c3ad0(param_1);
     if ((lVar5 != 0) && (lVar5 = FUN_002c3910(param_1), lVar5 != 0)) {
       piVar6[0x40] = 0;
-      FUN_00180160();
+      Race_FrameBegin();
       piVar6[0x3c] = 0xb;
     }
   }
@@ -260,7 +260,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x20) = uVar2;
-  FUN_0014bf00(0x186d,*(undefined4 *)(param_1 + 0x20),0,0,0,0);
+  Arc_LoadFileEx(0x186d,*(undefined4 *)(param_1 + 0x20),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e8b8) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e8b0);
   }
@@ -269,7 +269,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x24) = uVar2;
-  FUN_0014bf00(0x186e,*(undefined4 *)(param_1 + 0x24),0,0,0,0);
+  Arc_LoadFileEx(0x186e,*(undefined4 *)(param_1 + 0x24),0,0,0,0);
   iVar4 = (int)unaff_s3 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -280,7 +280,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x34) = uVar2;
-  FUN_0014bf00(unaff_s3,*(undefined4 *)(param_1 + 0x34),0,0,0,0);
+  Arc_LoadFileEx(unaff_s3,*(undefined4 *)(param_1 + 0x34),0,0,0,0);
   iVar4 = (int)unaff_s2 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -291,7 +291,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x38) = uVar2;
-  FUN_0014bf00(unaff_s2,*(undefined4 *)(param_1 + 0x38),0,0,0,0);
+  Arc_LoadFileEx(unaff_s2,*(undefined4 *)(param_1 + 0x38),0,0,0,0);
   iVar4 = (int)unaff_s1 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -302,7 +302,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x48) = uVar2;
-  FUN_0014bf00(unaff_s1,*(undefined4 *)(param_1 + 0x48),0,0,0,0);
+  Arc_LoadFileEx(unaff_s1,*(undefined4 *)(param_1 + 0x48),0,0,0,0);
   iVar4 = (int)unaff_s0 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -313,7 +313,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x4c) = uVar2;
-  FUN_0014bf00(unaff_s0,*(undefined4 *)(param_1 + 0x4c),0,0,0,0);
+  Arc_LoadFileEx(unaff_s0,*(undefined4 *)(param_1 + 0x4c),0,0,0,0);
   iVar4 = (int)unaff_s5 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -324,7 +324,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x5c) = uVar2;
-  FUN_0014bf00(unaff_s5,*(undefined4 *)(param_1 + 0x5c),0,0,0,0);
+  Arc_LoadFileEx(unaff_s5,*(undefined4 *)(param_1 + 0x5c),0,0,0,0);
   iVar4 = (int)unaff_s6 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -335,7 +335,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x60) = uVar2;
-  FUN_0014bf00(unaff_s6,*(undefined4 *)(param_1 + 0x60),0,0,0,0);
+  Arc_LoadFileEx(unaff_s6,*(undefined4 *)(param_1 + 0x60),0,0,0,0);
   iVar4 = (int)unaff_s7 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -346,7 +346,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x70) = uVar2;
-  FUN_0014bf00(unaff_s7,*(undefined4 *)(param_1 + 0x70),0,0,0,0);
+  Arc_LoadFileEx(unaff_s7,*(undefined4 *)(param_1 + 0x70),0,0,0,0);
   iVar4 = (int)unaff_s8 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -357,7 +357,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x74) = uVar2;
-  FUN_0014bf00(unaff_s8,*(undefined4 *)(param_1 + 0x74),0,0,0,0);
+  Arc_LoadFileEx(unaff_s8,*(undefined4 *)(param_1 + 0x74),0,0,0,0);
   iVar4 = iStack_50 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -368,7 +368,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x84) = uVar2;
-  FUN_0014bf00(iStack_50,*(undefined4 *)(param_1 + 0x84),0,0,0,0);
+  Arc_LoadFileEx(iStack_50,*(undefined4 *)(param_1 + 0x84),0,0,0,0);
   iVar4 = iStack_60 * 0x14 + iRam0036f0c4;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
@@ -379,7 +379,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x88) = uVar2;
-  FUN_0014bf00(iStack_60,*(undefined4 *)(param_1 + 0x88),0,0,0,0);
+  Arc_LoadFileEx(iStack_60,*(undefined4 *)(param_1 + 0x88),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e69c) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e694);
   }
@@ -388,7 +388,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x98) = uVar2;
-  FUN_0014bf00(0x1853,*(undefined4 *)(param_1 + 0x98),0,0,0,0);
+  Arc_LoadFileEx(0x1853,*(undefined4 *)(param_1 + 0x98),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e6b0) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e6a8);
   }
@@ -397,7 +397,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x9c) = uVar2;
-  FUN_0014bf00(0x1854,*(undefined4 *)(param_1 + 0x9c),0,0,0,0);
+  Arc_LoadFileEx(0x1854,*(undefined4 *)(param_1 + 0x9c),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e714) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e70c);
   }
@@ -406,7 +406,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xac) = uVar2;
-  FUN_0014bf00(0x1859,*(undefined4 *)(param_1 + 0xac),0,0,0,0);
+  Arc_LoadFileEx(0x1859,*(undefined4 *)(param_1 + 0xac),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e728) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e720);
   }
@@ -415,7 +415,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xb0) = uVar2;
-  FUN_0014bf00(0x185a,*(undefined4 *)(param_1 + 0xb0),0,0,0,0);
+  Arc_LoadFileEx(0x185a,*(undefined4 *)(param_1 + 0xb0),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e82c) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e824);
   }
@@ -424,7 +424,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xc0) = uVar2;
-  FUN_0014bf00(0x1867,*(undefined4 *)(param_1 + 0xc0),0,0,0,0);
+  Arc_LoadFileEx(0x1867,*(undefined4 *)(param_1 + 0xc0),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e840) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e838);
   }
@@ -433,7 +433,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xc4) = uVar2;
-  FUN_0014bf00(0x1868,*(undefined4 *)(param_1 + 0xc4),0,0,0,0);
+  Arc_LoadFileEx(0x1868,*(undefined4 *)(param_1 + 0xc4),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e854) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e84c);
   }
@@ -442,7 +442,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xd4) = uVar2;
-  FUN_0014bf00(0x1869,*(undefined4 *)(param_1 + 0xd4),0,0,0,0);
+  Arc_LoadFileEx(0x1869,*(undefined4 *)(param_1 + 0xd4),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e868) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e860);
   }
@@ -451,7 +451,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xd8) = uVar2;
-  FUN_0014bf00(0x186a,*(undefined4 *)(param_1 + 0xd8),0,0,0,0);
+  Arc_LoadFileEx(0x186a,*(undefined4 *)(param_1 + 0xd8),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e87c) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e874);
   }
@@ -460,7 +460,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xe8) = uVar2;
-  FUN_0014bf00(0x186b,*(undefined4 *)(param_1 + 0xe8),0,0,0,0);
+  Arc_LoadFileEx(0x186b,*(undefined4 *)(param_1 + 0xe8),0,0,0,0);
   if (*(int *)(iRam0036f0c4 + 0x1e890) == 0) {
     uVar3 = *(uint *)(iRam0036f0c4 + 0x1e888);
   }
@@ -469,7 +469,7 @@ void FUN_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xec) = uVar2;
-  FUN_0014bf00(0x186c,*(undefined4 *)(param_1 + 0xec),0,0,0,0);
+  Arc_LoadFileEx(0x186c,*(undefined4 *)(param_1 + 0xec),0,0,0,0);
   return;
 }
 
@@ -866,16 +866,16 @@ void FUN_002c55e0(int param_1,undefined8 param_2,undefined8 param_3,undefined4 *
   uint uVar6;
   
   if (param_1 == param_4[0xe]) {
-    FUN_0013da70(param_4[1]);
+    Tex_Relocate(param_4[1]);
     uVar1 = *(ushort *)(param_4[1] + 6);
-    iVar2 = FUN_0013f270(param_4[1],0x412,0,0,0);
+    iVar2 = Tex_UploadAll(param_4[1],0x412,0,0,0);
     if ((param_4[0xd] != 0) && (uVar6 = 0, uVar1 != 0)) {
       do {
-        iVar3 = FUN_0013d9e0(param_4[1],uVar6);
+        iVar3 = Tex_GetEntry(param_4[1],uVar6);
         *(ushort *)(iVar3 + 0x18) = *(ushort *)(iVar3 + 0x18) & 0xc000;
         if (*(int *)(iVar3 + 4) != 0) {
-          uVar5 = FUN_0013fe10(((ulong)*(ushort *)(iVar3 + 0x1a) & 0x3ff) >> 4,
-                               *(undefined2 *)(iVar3 + 0x14),*(undefined2 *)(iVar3 + 0x16));
+          uVar5 = Tex_GetPageCount(((ulong)*(ushort *)(iVar3 + 0x1a) & 0x3ff) >> 4,
+                                   *(undefined2 *)(iVar3 + 0x14),*(undefined2 *)(iVar3 + 0x16));
           *(ulong *)(iVar3 + 0x18) =
                *(ulong *)(iVar3 + 0x18) & 0xfff8001fffffffff | (uVar5 & 0x3fff) << 0x25;
         }
@@ -883,12 +883,12 @@ void FUN_002c55e0(int param_1,undefined8 param_2,undefined8 param_3,undefined4 *
       } while (uVar6 < uVar1);
     }
     if (param_4[2] != 0) {
-      FUN_00144b00(param_4 + 4,*param_4,iVar2 + 1);
-      FUN_00158050(param_4 + 4,param_4[1],param_4[8],param_4[9]);
+      DmaBuf_Alloc(param_4 + 4,*param_4,iVar2 + 1);
+      Pkt_AddTextureUploadAll(param_4 + 4,param_4[1],param_4[8],param_4[9]);
     }
     uVar4 = Mem_Alloc16((uint)uVar1 << 7,*param_4);
     param_4[3] = uVar4;
-    FUN_00158160(param_4[3],param_4[1],param_4[2],param_4[8],param_4[9],param_4[10],0,0);
+    TexSlot_Bind(param_4[3],param_4[1],param_4[2],param_4[8],param_4[9],param_4[10],0,0);
     param_4[0xc] = 0;
   }
   return;
@@ -911,24 +911,24 @@ void FUN_002c5780(int param_1)
   undefined1 auStack_40 [64];
   
   if (*(int *)(param_1 + 4) != 0) {
-    FUN_00158390(0,*(undefined2 *)(*(int *)(param_1 + 4) + 6),*(undefined4 *)(param_1 + 0xc));
+    TexSlot_Set(0,*(undefined2 *)(*(int *)(param_1 + 4) + 6),*(undefined4 *)(param_1 + 0xc));
     iVar6 = 0;
     iVar2 = param_1;
     do {
       if (0 < *(int *)(iVar2 + 0x1440)) {
         iVar4 = 0;
         puVar5 = auStack_18840;
-        thunk_FUN_001466b0(auStack_40,2,2,0);
-        FUN_001465c0(auStack_40,(*piRam00387f7c + -2) - (iVar6 + 8));
+        Pkt_Init(auStack_40,2,2,0);
+        Pkt_SubmitToChain(auStack_40,(*piRam00387f7c + -2) - (iVar6 + 8));
         if (*(int *)(param_1 + 8) != 0) {
-          FUN_00145f10(auStack_40,param_1 + 0x10);
+          Pkt_Flush(auStack_40,param_1 + 0x10);
         }
         iVar3 = 0;
         iVar1 = param_1;
         do {
           if (iVar6 == *(int *)(iVar1 + 0x40)) {
-            FUN_0014f3b0(puVar5,4,0xffffffffffffffff);
-            FUN_0014f2c0(puVar5,1,0,*(undefined4 *)(iVar1 + 0x50));
+            Obj_Reset(puVar5,4,0xffffffffffffffff);
+            Obj_SetVisible(puVar5,1,0,*(undefined4 *)(iVar1 + 0x50));
             puVar5[0xa7] = *(uint *)(iVar1 + 0x54);
             *puVar5 = *puVar5 | 2;
             fVar7 = *(float *)(iVar1 + 0x58) * 128.0;
@@ -959,8 +959,8 @@ void FUN_002c5780(int param_1)
           iVar3 = iVar3 + 1;
           iVar1 = iVar1 + 0x28;
         } while (iVar3 < 0x80);
-        FUN_0014b700(auStack_40,auStack_18840,((int)puVar5 - (int)auStack_18840) / 0x310);
-        FUN_00146570(auStack_40,0);
+        Pkt_AddPrimitives(auStack_40,auStack_18840,((int)puVar5 - (int)auStack_18840) / 0x310);
+        Pkt_Submit(auStack_40,0);
         *(undefined4 *)(iVar2 + 0x1440) = 0;
       }
       iVar6 = iVar6 + 1;
@@ -1042,7 +1042,7 @@ void FUN_002c5b90(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
   param_1[0xc] = 0;
   param_1[0xd] = 0;
   param_1[0xe] = 0;
-  FUN_00144b80(param_1 + 4,0,0);
+  DmaBuf_SetUncached(param_1 + 4,0,0);
   return;
 }
 
@@ -1062,14 +1062,14 @@ void FUN_002c5c40(undefined4 param_1,undefined4 param_2,float param_3,undefined4
   undefined4 uStack_5c;
   undefined1 auStack_40 [64];
   
-  FUN_00158390(0,*(undefined2 *)(*(int *)(param_6 + 4) + 6),*(undefined4 *)(param_6 + 0xc));
-  thunk_FUN_001466b0(auStack_40,2,2,0);
-  FUN_001465c0(auStack_40,param_7);
+  TexSlot_Set(0,*(undefined2 *)(*(int *)(param_6 + 4) + 6),*(undefined4 *)(param_6 + 0xc));
+  Pkt_Init(auStack_40,2,2,0);
+  Pkt_SubmitToChain(auStack_40,param_7);
   if (*(int *)(param_6 + 8) != 0) {
-    FUN_00145f10(auStack_40,param_6 + 0x10);
+    Pkt_Flush(auStack_40,param_6 + 0x10);
   }
-  FUN_0014f3b0(auStack_350,4,0xffffffffffffffff);
-  FUN_0014f2c0(auStack_350,1,0,0);
+  Obj_Reset(auStack_350,4,0xffffffffffffffff);
+  Obj_SetVisible(auStack_350,1,0,0);
   param_3 = param_3 * 128.0;
   if (2.1474836e+09 <= param_3) {
     param_3 = param_3 - 2.1474836e+09;
@@ -1083,8 +1083,8 @@ void FUN_002c5c40(undefined4 param_1,undefined4 param_2,float param_3,undefined4
   uStack_6c = param_5;
   uStack_60 = param_1;
   uStack_5c = param_2;
-  FUN_0014b700(auStack_40,auStack_350,1);
-  FUN_00146570(auStack_40,0);
+  Pkt_AddPrimitives(auStack_40,auStack_350,1);
+  Pkt_Submit(auStack_40,0);
   return;
 }
 
@@ -1098,7 +1098,7 @@ void FUN_002c5de0(int param_1,int param_2)
   uint uVar4;
   undefined4 uVar5;
   
-  iVar2 = FUN_00178390();
+  iVar2 = maybe_GameState_GetFlag();
   iVar2 = iVar2 + param_2 * 0x540;
   cVar1 = *(char *)(iVar2 + 0x7b0);
   if (cVar1 == '\x04') {
@@ -1500,7 +1500,7 @@ void FUN_002c6af0(undefined8 param_1)
     uVar1 = *(undefined4 *)(iVar6 + 0xac);
   }
   else {
-    cVar3 = FUN_0017e890();
+    cVar3 = RaceCtx_Get_8();
     if (cVar3 == '\x10') {
       FUN_002c7920(param_1,0xaf,0x26,*(undefined4 *)(iVar6 + 0x26c),3,5,0);
       FUN_002c9680(param_1,0x1bd,0x5a,iVar6 + 0x270,1);
@@ -1628,12 +1628,12 @@ void FUN_002c6fb0(undefined8 param_1)
   }
   FUN_001ede20(*(undefined4 *)(iVar8 + 0x10f8),auStack_70,uVar7);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar8 + 0x3b70));
-  iVar4 = FUN_00177070(0);
+  iVar4 = GameState_Elem_f0_xcc(0);
   if (*(short *)(iVar4 + 0xc) == 0x112) {
     iVar4 = 0x295;
   }
   else {
-    iVar4 = FUN_00178390();
+    iVar4 = maybe_GameState_GetFlag();
     iVar4 = *(char *)(iVar4 + 0x40c) + 0x296;
   }
   FUN_001ede20(*(undefined4 *)(iVar8 + 0x10f8),auStack_b0,uVar7);
@@ -1642,8 +1642,8 @@ void FUN_002c6fb0(undefined8 param_1)
   FUN_001f1350(auStack_b0,iVar4);
   FUN_001ede20(*(undefined4 *)(iVar8 + 0x10f8),auStack_70,uVar14);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar8 + 0x3b70));
-  iVar4 = FUN_00177070(0);
-  piVar5 = (int *)FUN_001771b0(*(undefined1 *)(iVar4 + 9));
+  iVar4 = GameState_Elem_f0_xcc(0);
+  piVar5 = (int *)GameState_Elem_3e0_x540(*(undefined1 *)(iVar4 + 9));
   iVar4 = *piVar5;
   FUN_001ede20(*(undefined4 *)(iVar8 + 0x10f8),auStack_f0,uVar14);
   uStack_dc = 0;
@@ -1651,8 +1651,8 @@ void FUN_002c6fb0(undefined8 param_1)
   FUN_001f1350(auStack_f0,iVar4 + 0x1b3);
   FUN_001ede20(*(undefined4 *)(iVar8 + 0x10f8),auStack_70,uVar2);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar8 + 0x3b70));
-  iVar4 = FUN_00177070(0);
-  piVar5 = (int *)FUN_001771b0(*(undefined1 *)(iVar4 + 9));
+  iVar4 = GameState_Elem_f0_xcc(0);
+  piVar5 = (int *)GameState_Elem_3e0_x540(*(undefined1 *)(iVar4 + 9));
   iVar4 = *piVar5;
   FUN_001ede20(*(undefined4 *)(iVar8 + 0x10f8),auStack_130,uVar2);
   uStack_11c = 0;
@@ -1666,8 +1666,8 @@ void FUN_002c6fb0(undefined8 param_1)
       FUN_002c9680(param_1,0x1bd,0x12,iVar8 + 0x484,0);
     }
     else {
-      cVar3 = FUN_0017e890();
-      if ((cVar3 == '\x10') && (lVar6 = FUN_00176f70(), lVar6 == 0)) {
+      cVar3 = RaceCtx_Get_8();
+      if ((cVar3 == '\x10') && (lVar6 = GameState_Get_364(), lVar6 == 0)) {
         FUN_002c9680(param_1,0x1bd,0x22,iVar8 + 0x270,1);
       }
       else {
@@ -2055,8 +2055,8 @@ void FUN_002c7df0(undefined8 param_1)
     uVar1 = *(undefined4 *)(iVar7 + 0xac);
   }
   else {
-    cVar3 = FUN_0017e890();
-    if ((cVar3 == '\x10') && (lVar4 = FUN_00176f80(), lVar4 == 0)) {
+    cVar3 = RaceCtx_Get_8();
+    if ((cVar3 == '\x10') && (lVar4 = GameState_Get_390(), lVar4 == 0)) {
       FUN_002c7920(param_1,0xc3,0x26,*(undefined4 *)(iVar7 + 0x26c),3,5,0);
     }
     else {

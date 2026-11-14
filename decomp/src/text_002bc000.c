@@ -47,7 +47,7 @@ bool FUN_002bc150(long param_1)
   int iVar1;
   
   if (0xb < param_1) {
-    iVar1 = FUN_0017bf40();
+    iVar1 = maybe_Race_GetMode();
     *(undefined2 *)(iVar1 + (int)param_1 * 0x858 + -0x5bac) = 0;
   }
   return 0xb < param_1;
@@ -64,7 +64,7 @@ bool FUN_002bc1a0(long param_1)
     bVar1 = true;
   }
   else {
-    iVar2 = FUN_0017bf40();
+    iVar2 = maybe_Race_GetMode();
     bVar1 = *(short *)(iVar2 + (int)param_1 * 0x858 + -0x5bac) != 0;
   }
   return bVar1;
@@ -115,7 +115,7 @@ void FUN_002bc200(void)
     *(undefined4 *)(iVar1 + 0x2f0) = 0;
     *(undefined4 *)(iVar1 + 0x2fc) = 0;
     *(undefined4 *)(iVar1 + 0x2f4) = 0;
-    FUN_001325d0(iVar1 + 0x300,0,0xc00);
+    Mem_Set16(iVar1 + 0x300,0,0xc00);
     iVar3 = iVar3 + 1;
     *(undefined4 *)(iVar1 + 0x2f8) = 0;
     iVar2 = iVar2 + 0xda8;
@@ -140,7 +140,7 @@ void FUN_002bc200(void)
     *(undefined4 *)(iVar1 + 0x7030) = 0;
     *(undefined4 *)(iVar1 + 0x703c) = 0;
     *(undefined4 *)(iVar1 + 0x7034) = 0;
-    FUN_001325d0(iVar1 + 0x7040,0,0xc00);
+    Mem_Set16(iVar1 + 0x7040,0,0xc00);
     iVar3 = iVar3 + 1;
     *(undefined4 *)(iVar1 + 0x7038) = 0;
     iVar2 = iVar2 + 0xda8;
@@ -182,7 +182,7 @@ void FUN_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
   
   uVar3 = Mem_Alloc16(0x8a08,param_1);
   iRam0036f7e0 = (int)uVar3;
-  FUN_001325d0(uVar3,0,0x8a08);
+  Mem_Set16(uVar3,0,0x8a08);
   *(undefined4 *)(iRam0036f7e0 + 8) = 0;
   uVar8 = 0;
   iVar7 = 0;
@@ -205,7 +205,7 @@ void FUN_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
     *(undefined4 *)(iVar4 + 0x4c) = 0;
     iVar4 = *(int *)(iRam0036f7e0 + iVar7 + 0x3c);
     if (iVar4 != 0) {
-      FUN_001325d0(iVar4,0,*(undefined4 *)(iRam0036f7e0 + iVar7 + 0x40));
+      Mem_Set16(iVar4,0,*(undefined4 *)(iRam0036f7e0 + iVar7 + 0x40));
     }
     if (((int)(param_3 & 0xffff) >> (uVar8 & 0x1f) & 1U) != 0) {
       iVar5 = iRam0036f0c4 + (uVar8 + 0x17ff) * 0x14;
@@ -232,8 +232,8 @@ void FUN_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
         *(undefined4 *)(iVar6 + 0x44) = 0;
       }
       if (*(int *)(iVar6 + 0x3c) != 0) {
-        uVar2 = FUN_0014bf00(uVar8 + 0x17ff,*(int *)(iVar6 + 0x3c),0x2ae450,
-                             (undefined4 *)(iVar6 + 0x38),0,0);
+        uVar2 = Arc_LoadFileEx(uVar8 + 0x17ff,*(int *)(iVar6 + 0x3c),0x2ae450,
+                               (undefined4 *)(iVar6 + 0x38),0,0);
         *(undefined4 *)(iVar6 + 0x48) = uVar2;
         *(undefined4 *)(iVar6 + 0x4c) = 1;
       }
@@ -265,7 +265,7 @@ void FUN_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
     puRam0036f7e4 = (undefined4 *)Mem_Alloc16(0xc,param_1);
     uVar2 = Mem_Alloc16(uVar8 << 0xb,param_1);
     puRam0036f7e4[2] = uVar2;
-    uVar2 = FUN_0014bf00(0x180b,puRam0036f7e4[2],0x2ae560,puRam0036f7e4,0,0);
+    uVar2 = Arc_LoadFileEx(0x180b,puRam0036f7e4[2],0x2ae560,puRam0036f7e4,0,0);
     *puRam0036f7e4 = uVar2;
     puRam0036f7e4[1] = 1;
   }
@@ -395,17 +395,17 @@ void FUN_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   FUN_002b19d0();
-  FUN_001325d0(param_1 + 0x94,0,0x10);
-  FUN_001325d0(param_1 + 0xa4,0,0x40);
-  FUN_001325d0(param_1 + 0xe4,0,0x18);
-  FUN_001325d0(param_1 + 0xfc,0,0x18);
-  FUN_001325d0(param_1 + 0x114,0,0x18);
-  FUN_001325d0(param_1 + 300,0,0x18);
+  Mem_Set16(param_1 + 0x94,0,0x10);
+  Mem_Set16(param_1 + 0xa4,0,0x40);
+  Mem_Set16(param_1 + 0xe4,0,0x18);
+  Mem_Set16(param_1 + 0xfc,0,0x18);
+  Mem_Set16(param_1 + 0x114,0,0x18);
+  Mem_Set16(param_1 + 300,0,0x18);
   *(undefined4 *)(param_1 + 0x148) = param_2;
   *(undefined4 *)(param_1 + 0x164) = 0;
   *(undefined4 *)(param_1 + 0x144) = 0;
   *(undefined4 *)(param_1 + 0x178) = 0;
-  FUN_001325d0(param_1 + 0x168,0,0x10);
+  Mem_Set16(param_1 + 0x168,0,0x10);
   *(undefined4 *)(param_1 + 0x14c) = param_2;
   *(undefined4 *)(param_1 + 0x150) = 0;
   *(undefined4 *)(param_1 + 0x154) = 0;
@@ -421,7 +421,7 @@ void FUN_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
   *(undefined4 *)(param_1 + 0x194) = 0;
   *(undefined4 *)(param_1 + 0x1a4) = 0;
   *(undefined4 *)(param_1 + 0x19c) = 0;
-  FUN_001325d0(param_1 + 0x1a8,0,0xc00);
+  Mem_Set16(param_1 + 0x1a8,0,0xc00);
   *(undefined4 *)(param_1 + 0x198) = 0;
   *(undefined4 *)(param_1 + 0x1a0) = 0;
   return;
@@ -444,7 +444,7 @@ void FUN_002bcb00(int param_1)
   uVar9 = 0;
   iVar1 = *piGpffff8c5c;
   uVar8 = 0;
-  cVar2 = FUN_0017e8d0();
+  cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x01') {
     uVar3 = FUN_001dc290();
     if ((uVar3 & 4) != 0) {
@@ -456,14 +456,14 @@ void FUN_002bcb00(int param_1)
       uVar8 = FUN_001dc240(0);
       uVar8 = FUN_001e0530(uVar8);
     }
-    uVar4 = FUN_00176da0();
-    uVar5 = FUN_00178390();
-    uVar6 = FUN_0017e8d0();
-    uVar7 = FUN_0017e890();
-    FUN_00176960(uVar4,uVar5,iVar1 + 0x1d8,uVar9,uVar8,uVar6,uVar7,0);
+    uVar4 = Replay_GetHeader();
+    uVar5 = maybe_GameState_GetFlag();
+    uVar6 = RaceCtx_GetMode();
+    uVar7 = RaceCtx_Get_8();
+    RaceEntry_Create(uVar4,uVar5,iVar1 + 0x1d8,uVar9,uVar8,uVar6,uVar7,0);
   }
-  thunk_FUN_00172660();
-  cVar2 = FUN_0017e8d0();
+  Save_AllocSlots();
+  cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x03') {
     if (iGpffff9100 == 0) {
       FUN_002dbf20(param_1 + 0x40c,2);
@@ -760,7 +760,7 @@ void FUN_002bd2d0(int param_1)
       cVar4 = *(char *)(param_1 + 0x48);
       goto LAB_002bd944;
     }
-    pcVar6 = (char *)FUN_00177070(0);
+    pcVar6 = (char *)GameState_Elem_f0_xcc(0);
     FUN_002bdb10(&uStack_18);
     if (*pcVar6 == '\x01') {
       uStack_18 = uStack_18 & 0xfffffffd | 2;
@@ -768,14 +768,14 @@ void FUN_002bd2d0(int param_1)
     else if (*pcVar6 == '\0') {
       uStack_18 = uStack_18 & 0xfffffffd;
     }
-    cVar4 = FUN_0017e6e0();
+    cVar4 = Race_GetDirection();
     uStack_18._0_1_ = (byte)uStack_18 & 0xfb | (cVar4 != '\0') << 2;
-    cVar4 = FUN_0017e760();
+    cVar4 = Race_GetWeather();
     uStack_18._0_1_ = (byte)uStack_18 & 0xf7 | (cVar4 != '\0') << 3;
     iVar7 = FUN_001dc200(0);
     uStack_18 = CONCAT31(uStack_18._1_3_,(byte)uStack_18 & 0xef | (*(int *)(iVar7 + 0xc) != 0) << 4)
     ;
-    uVar5 = FUN_0017e680();
+    uVar5 = Race_GetTimeOfDay();
     switch(uVar5) {
     case 0:
       uStack_14 = uStack_14 & 0xfffc;
@@ -791,7 +791,7 @@ void FUN_002bd2d0(int param_1)
     case 5:
       uStack_14 = uStack_14 & 0xfffc | 3;
     }
-    uVar5 = FUN_0017e720();
+    uVar5 = Race_GetCourseVariant();
     switch(uVar5) {
     case 0:
       uStack_14 = (ushort)((byte)uStack_14 & 0x83);
@@ -818,7 +818,7 @@ void FUN_002bd2d0(int param_1)
       uStack_14 = (ushort)((byte)uStack_14 & 0x83 | 0x1c);
     }
     uStack_14 = uStack_14 & 0x7f | *(short *)(pcVar6 + 0xc) << 7;
-    cVar4 = FUN_00177050();
+    cVar4 = GameState_Get_354_7050();
     if (cVar4 == '\x02') {
       uStack_18 = uStack_18 & 0xfffffffe;
       uStack_18 = CONCAT22(uStack_18._2_2_,
@@ -862,7 +862,7 @@ LAB_002bd944:
     *(undefined4 *)(param_1 + 0x348) =
          *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar10 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
     if ((((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x05') &&
-        (cVar4 = FUN_00177050(), cVar4 == '\x01')) && (*(int *)(param_1 + 0x348) == 99)) {
+        (cVar4 = GameState_Get_354_7050(), cVar4 == '\x01')) && (*(int *)(param_1 + 0x348) == 99)) {
       *(undefined4 *)(param_1 + 0x348) = 100;
     }
     iVar2 = *(int *)(param_1 + 0x348);
@@ -959,7 +959,7 @@ void FUN_002bdb20(int param_1)
   undefined4 uStack_2c;
   int iStack_28;
   
-  cVar2 = FUN_00177050();
+  cVar2 = GameState_Get_354_7050();
   if (cVar2 == '\x02') {
     if (*(int *)(param_1 + 0x318) == 0) {
       if (*(int *)(param_1 + 0x364) == -1) {
@@ -1265,7 +1265,7 @@ void FUN_002be4b0(int param_1)
   undefined4 uStack_2c;
   int iStack_28;
   
-  cVar1 = FUN_00177050();
+  cVar1 = GameState_Get_354_7050();
   if (cVar1 != '\x03') {
     if (cVar1 != '\x02') {
       if (cVar1 != '\x01') {
@@ -1488,7 +1488,7 @@ void FUN_002bea60(int param_1)
   int iStack_28;
   
   uVar1 = *(undefined4 *)(param_1 + 4);
-  uVar2 = FUN_00177050();
+  uVar2 = GameState_Get_354_7050();
   switch(uVar2) {
   case 0:
   case 4:
@@ -1788,7 +1788,7 @@ void FUN_002bf390(int param_1)
   int iStack_28;
   
   uVar1 = *(undefined4 *)(param_1 + 4);
-  uVar2 = FUN_00177050();
+  uVar2 = GameState_Get_354_7050();
   switch(uVar2) {
   case 0:
   case 4:
@@ -2007,7 +2007,7 @@ void FUN_002bf9a0(int param_1)
     unaff_s0 = 0xe;
   }
   FUN_001eea30(uVar1,0x25,0x16,unaff_s0);
-  cVar2 = FUN_00177050();
+  cVar2 = GameState_Get_354_7050();
   if (cVar2 == '\x02') {
     if (*(int *)(param_1 + 0x354) == -1) {
       iVar4 = *(int *)(param_1 + 0x318);

@@ -423,7 +423,7 @@ void FUN_0024d960(undefined8 param_1)
   uStack_40 = uStack_210;
   uStack_28 = uStack_1f8;
   uStack_3c = uStack_20c;
-  FUN_0017fd70(&uStack_20,*(undefined2 *)(iVar14 + 0x24));
+  RaceResult_BuildMessage(&uStack_20,*(undefined2 *)(iVar14 + 0x24));
   uVar15 = (uint)cStack_174;
   uStack_10 = uStack_20;
   uStack_c = uStack_1c;
@@ -840,31 +840,31 @@ void FUN_0024e7d0(int param_1)
   if ((*(int *)(param_1 + 0x660) != 0) && (lVar4 = FUN_00201260(0x79), lVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x660) = 0;
   }
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   iVar3 = FUN_001f69f0(uVar5);
   FUN_001eea30(iVar6,0x3d,0x16,*(undefined4 *)(&DAT_0032c550 + iVar3 * 4));
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   iVar3 = FUN_001f69f0(uVar5);
   FUN_001eea30(iVar6,0x3e,0x16,*(undefined4 *)(&DAT_0032c550 + iVar3 * 4));
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   iVar3 = FUN_001f69f0(uVar5);
   FUN_001eea30(iVar6,0x3f,0x16,*(undefined4 *)(&DAT_0032c550 + iVar3 * 4));
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   iVar3 = FUN_001f69f0(uVar5);
   FUN_001eea30(iVar6,0x40,0x16,*(undefined4 *)(&DAT_0032c550 + iVar3 * 4));
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   uVar5 = FUN_001f69f0(uVar5);
   uVar5 = FUN_001f69b0(uVar5,1);
   FUN_002011b0(0x78,0x42,uVar5);
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   uVar5 = FUN_001f69f0(uVar5);
   uVar5 = FUN_001f69b0(uVar5,1);
   FUN_002011b0(0x78,0x43,uVar5);
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   uVar5 = FUN_001f69f0(uVar5);
   uVar5 = FUN_001f69b0(uVar5,1);
   FUN_002011b0(0x78,0x44,uVar5);
-  uVar5 = FUN_0017e720();
+  uVar5 = Race_GetCourseVariant();
   uVar5 = FUN_001f69f0(uVar5);
   uVar5 = FUN_001f69b0(uVar5,1);
   FUN_002011b0(0x78,0x45,uVar5);
@@ -2357,7 +2357,7 @@ LAB_00250740:
       FUN_00245af0(param_1,*(undefined4 *)(*(int *)(iVar18 + 0x6a4) * 4 + iVar18 + 0x100),0);
     }
   }
-  uVar10 = FUN_0017e720();
+  uVar10 = Race_GetCourseVariant();
   uVar10 = FUN_001f69f0(uVar10);
   uVar10 = FUN_001f69b0(uVar10,1);
   FUN_002010a0(0x85,3,0x37d,1,uVar10);

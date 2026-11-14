@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00168070  size 0x634
-void FUN_00168070(int param_1,uint param_2)
+void Car_UpdateDiffFront(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -53,7 +53,7 @@ void FUN_00168070(int param_1,uint param_2)
       if (bVar2) {
         *(undefined4 *)(iVar6 + 0x28c) = 0;
         *(undefined4 *)(iVar6 + 0x26c) = 0;
-        fVar12 = (float)FUN_00163c10(iVar6 + 0x2e0);
+        fVar12 = (float)Vec3_Length(iVar6 + 0x2e0);
         if (fVar12 <= 0.1) {
           *(undefined1 *)(iVar6 + 0x287) = 0;
           *(undefined1 *)(iVar6 + 0x286) = 0;
@@ -117,7 +117,7 @@ void FUN_00168070(int param_1,uint param_2)
         *(float *)(iVar6 + 0x28c) = fVar12;
         if (fVar12 * *(float *)(param_1 + 0x86c) < 0.0) {
           *(undefined4 *)(iVar6 + 0x28c) = 0;
-          fVar12 = (float)FUN_00163c10(iVar6 + 0x2e0);
+          fVar12 = (float)Vec3_Length(iVar6 + 0x2e0);
           if (fVar12 < 0.1) {
             *(undefined1 *)(iVar6 + 0x286) = 0;
             *(undefined1 *)(iVar6 + 0x287) = 0;
@@ -188,7 +188,7 @@ void FUN_00168070(int param_1,uint param_2)
 }
 
 // 0x001686b0  size 0x5b4
-void FUN_001686b0(int param_1,uint param_2)
+void Car_UpdateDiffRear(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -234,7 +234,7 @@ void FUN_001686b0(int param_1,uint param_2)
       if (bVar2) {
         *(undefined4 *)(iVar6 + 0x28c) = 0;
         *(undefined4 *)(iVar6 + 0x26c) = 0;
-        fVar10 = (float)FUN_00163c10(iVar6 + 0x2e0);
+        fVar10 = (float)Vec3_Length(iVar6 + 0x2e0);
         if (fVar10 <= 0.1) {
           *(undefined1 *)(iVar6 + 0x287) = 0;
           *(undefined1 *)(iVar6 + 0x286) = 0;
@@ -300,7 +300,7 @@ void FUN_001686b0(int param_1,uint param_2)
           fVar10 = *(float *)(iVar6 + 0x28c);
 LAB_00168a60:
           if ((fVar10 * *(float *)(iVar6 + 0x288) <= 0.0) &&
-             (fVar10 = (float)FUN_00163c10(iVar6 + 0x2e0), 0.1 < fVar10)) {
+             (fVar10 = (float)Vec3_Length(iVar6 + 0x2e0), 0.1 < fVar10)) {
             *(undefined4 *)(iVar6 + 0x28c) = 0;
             *(undefined1 *)(iVar6 + 0x286) = 1;
           }
@@ -347,7 +347,7 @@ LAB_00168a60:
 }
 
 // 0x00168c70  size 0x350
-void FUN_00168c70(int param_1)
+void Car_ApplySuspensionForces(int param_1)
 
 {
   bool bVar1;
@@ -428,10 +428,10 @@ void FUN_00168c70(int param_1)
       }
       *(float *)(iVar3 + 0x2a8) = fVar9 * fVar7;
       *(float *)(iVar3 + 0x2a4) = fVar7 * fVar10 * *(float *)(param_1 + 0x86c);
-      FUN_001638b0(auStack_20,param_1 + 0x80);
-      FUN_001638b0(*(undefined4 *)(iVar3 + 0x2a8),auStack_30,param_1 + 0x90);
-      FUN_00163b80(auStack_10,auStack_20,auStack_30);
-      FUN_00163b00(iVar2 + 0x910,auStack_10);
+      Vec3_Scale(auStack_20,param_1 + 0x80);
+      Vec3_Scale(*(undefined4 *)(iVar3 + 0x2a8),auStack_30,param_1 + 0x90);
+      Vec3_Add(auStack_10,auStack_20,auStack_30);
+      Vec3_AddInPlace(iVar2 + 0x910,auStack_10);
     }
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x140;
@@ -441,7 +441,7 @@ void FUN_00168c70(int param_1)
 }
 
 // 0x00168fd0  size 0x158
-void FUN_00168fd0(int param_1)
+void Car_UpdateWheelSpin(int param_1)
 
 {
   int iVar1;
@@ -494,7 +494,9 @@ void FUN_00168fd0(int param_1)
 }
 
 // 0x00169130  size 0x320
-void FUN_00169130(int param_1)
+/* drive type +0x888 == 2 */
+
+void Car_UpdateLsd(int param_1)
 
 {
   int iVar1;
@@ -576,7 +578,7 @@ void FUN_00169130(int param_1)
 }
 
 // 0x00169450  size 0x40c
-void FUN_00169450(int param_1)
+void Car_ApplyTireForces(int param_1)
 
 {
   undefined4 *puVar1;
@@ -641,16 +643,16 @@ void FUN_00169450(int param_1)
       fVar6 = *(float *)(param_1 + 0x44) * fVar6;
       fVar5 = fVar6 * *(float *)(*(int *)(param_1 + 0x120) + 0x164);
       if ((*(int *)(param_1 + 0x160) != 0) && (0.1 < *(float *)(param_1 + 0x40))) {
-        uVar2 = FUN_00164f50(*(undefined4 *)(param_1 + 0x154));
-        FUN_00163800(&uStack_20,param_1 + 0x70,uVar2);
-        FUN_00163bc0(&uStack_20);
-        FUN_00163800(&uStack_40,param_1 + 0x70,&uStack_20);
+        uVar2 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+        phys_sub_00163800(&uStack_20,param_1 + 0x70,uVar2);
+        phys_sub_00163bc0(&uStack_20);
+        phys_sub_00163800(&uStack_40,param_1 + 0x70,&uStack_20);
         uStack_20 = uStack_40;
         uStack_1c = uStack_3c;
         uStack_18 = uStack_38;
         uStack_14 = uStack_34;
-        FUN_00163a90(fVar12 * fVar5,&uStack_20);
-        FUN_00163b00(param_1 + 0x950,&uStack_20);
+        Vec3_ScaleInPlace(fVar12 * fVar5,&uStack_20);
+        Vec3_AddInPlace(param_1 + 0x950,&uStack_20);
       }
       iVar3 = *(int *)(param_1 + 0x120);
       uVar4 = 0;
@@ -711,21 +713,21 @@ void FUN_00169450(int param_1)
       *(undefined4 *)(param_1 + 0x64c) = 0;
       *(undefined4 *)(param_1 + 0x670) = 0;
       *(undefined4 *)(param_1 + 0x674) = 0;
-      puVar1 = (undefined4 *)FUN_00164f50(*(undefined4 *)(param_1 + 0x154));
+      puVar1 = (undefined4 *)phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
       uStack_10 = *puVar1;
       uStack_c = puVar1[1];
       uStack_8 = puVar1[2];
       uStack_4 = puVar1[3];
-      FUN_001638b0(uVar11,auStack_30,param_1 + 0x80);
-      FUN_00163ac0(&uStack_10,auStack_30);
-      FUN_00164f60(*(undefined4 *)(param_1 + 0x154),&uStack_10);
+      Vec3_Scale(uVar11,auStack_30,param_1 + 0x80);
+      phys_sub_00163ac0(&uStack_10,auStack_30);
+      phys_sub_00164f60(*(undefined4 *)(param_1 + 0x154),&uStack_10);
     }
   }
   return;
 }
 
 // 0x00169860  size 0x7f8
-void FUN_00169860(int param_1)
+void Car_UpdateClutchAndTorque(int param_1)
 
 {
   int iVar1;
@@ -784,7 +786,7 @@ LAB_00169924:
   *(float *)(param_1 + 0x8f4) = fVar16;
 LAB_00169930:
   if ((*(int *)(param_1 + 0x814) == 0) || (*(float *)(param_1 + 0x820) == 0.0)) {
-    fVar8 = (float)FUN_0016bfb0(*(undefined4 *)(param_1 + 0x7fc),fVar16,param_1);
+    fVar8 = (float)Car_TorqueCurveLookup(*(undefined4 *)(param_1 + 0x7fc),fVar16,param_1);
     fVar15 = 0.0;
     fVar7 = 1.0;
     if (0.0 < fVar16) {
@@ -802,7 +804,7 @@ LAB_00169930:
     fVar13 = *(float *)(*(int *)(param_1 + 0x120) + 0x2c4) *
              (((*(float *)(param_1 + 0x7fc) - *(float *)(param_1 + 0x800)) *
                *(float *)(iVar6 + 0x528) * 0.10471976) / fVar14);
-    fVar10 = (float)FUN_0016bfb0(*(float *)(param_1 + 0x7fc),fVar16,param_1);
+    fVar10 = (float)Car_TorqueCurveLookup(*(float *)(param_1 + 0x7fc),fVar16,param_1);
     fVar12 = fVar12 * fVar13;
     fVar7 = 1.0;
     fVar11 = fVar14 * (1.0 - fVar8) * fVar10;
@@ -816,8 +818,8 @@ LAB_00169930:
           *(float *)(param_1 + 0x808) = fVar16 * fVar10 * *(float *)(iVar6 + 0x640) - fVar8;
         }
         else {
-          fVar10 = (float)FUN_0016bfb0(*(float *)(iVar6 + 0x530) / *(float *)(iVar6 + 0x528),param_1
-                                      );
+          fVar10 = (float)Car_TorqueCurveLookup
+                                    (*(float *)(iVar6 + 0x530) / *(float *)(iVar6 + 0x528),param_1);
           fVar9 = -fVar10 * 0.3 * fVar14;
           *(float *)(param_1 + 0x808) = -fVar10 * 0.3 * *(float *)(iVar6 + 0x640) - fVar8;
         }
@@ -966,7 +968,7 @@ LAB_00169930:
 }
 
 // 0x0016a070  size 0x344
-void FUN_0016a070(int param_1)
+void Car_UpdateParkingBrake(int param_1)
 
 {
   float *pfVar1;
@@ -983,16 +985,16 @@ void FUN_0016a070(int param_1)
   if (*(char *)(param_1 + 0x88e) == '\0') {
     fVar7 = (float)fabsf(*(undefined4 *)(param_1 + 0x7e4));
     if ((fVar7 <= 5.5) &&
-       (pfVar1 = (float *)FUN_00164f40(*(undefined4 *)(param_1 + 0x154)), *pfVar1 <= 1.3889)) {
-      uVar2 = FUN_00164d80(*(undefined4 *)(param_1 + 0x154));
-      fVar7 = (float)FUN_00163c10(uVar2);
+       (pfVar1 = (float *)phys_sub_00164f40(*(undefined4 *)(param_1 + 0x154)), *pfVar1 <= 1.3889)) {
+      uVar2 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
+      fVar7 = (float)Vec3_Length(uVar2);
       if (fVar7 < 1.0) {
         lVar5 = 0;
       }
     }
   }
   else {
-    pfVar1 = (float *)FUN_00164f40(*(undefined4 *)(param_1 + 0x154));
+    pfVar1 = (float *)phys_sub_00164f40(*(undefined4 *)(param_1 + 0x154));
     if ((*pfVar1 <= 1.3889) &&
        (fVar7 = (float)fabsf(*(undefined4 *)(param_1 + 0x7e4)), fVar7 <= 5.5)) {
       lVar5 = 0;
@@ -1059,13 +1061,13 @@ void FUN_0016a070(int param_1)
     fVar7 = 0.05;
   }
   *(float *)(param_1 + 0xb68) = fVar7;
-  FUN_0016a3c0(param_1,lVar5,0);
-  FUN_0016a3c0(param_1,lVar5,2);
+  Car_SolveAxleTires(param_1,lVar5,0);
+  Car_SolveAxleTires(param_1,lVar5,2);
   return;
 }
 
 // 0x0016a3c0  size 0x3f4
-void FUN_0016a3c0(undefined8 param_1,long param_2,undefined8 param_3)
+void Car_SolveAxleTires(undefined8 param_1,long param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -1092,10 +1094,10 @@ void FUN_0016a3c0(undefined8 param_1,long param_2,undefined8 param_3)
   iVar3 = iVar7 + uVar5 * 0x140;
   iVar1 = *(int *)(uVar6 * 4 + iVar7 + 0x7c0);
   iVar4 = iVar7 + uVar6 * 0x140;
-  FUN_001663f0(*(undefined4 *)(iVar4 + 0x2a0),*(undefined4 *)(iVar4 + 0x280),
-               *(undefined4 *)(iVar1 + 0x94),iVar7 + 0xae4,iVar1);
-  FUN_001663f0(*(undefined4 *)(iVar3 + 0x2a0),*(undefined4 *)(iVar3 + 0x280),
-               *(undefined4 *)(iVar1 + 0x94),iVar7 + 0xb20,iVar1);
+  Tire_SetupLoad(*(undefined4 *)(iVar4 + 0x2a0),*(undefined4 *)(iVar4 + 0x280),
+                 *(undefined4 *)(iVar1 + 0x94),iVar7 + 0xae4,iVar1);
+  Tire_SetupLoad(*(undefined4 *)(iVar3 + 0x2a0),*(undefined4 *)(iVar3 + 0x280),
+                 *(undefined4 *)(iVar1 + 0x94),iVar7 + 0xb20,iVar1);
   *(undefined4 *)(iVar4 + 0x2c0) = *(undefined4 *)(iVar4 + 0x2b0);
   *(undefined4 *)(iVar3 + 0x2c0) = *(undefined4 *)(iVar3 + 0x2b0);
   if (*(int *)(iVar7 + 0x888) == 5) {
@@ -1125,23 +1127,23 @@ void FUN_0016a3c0(undefined8 param_1,long param_2,undefined8 param_3)
   }
   fVar11 = 1.0;
   if (param_2 == 0) {
-    FUN_00163b80(auStack_30,iVar4 + 0x220,iVar3 + 0x220);
-    FUN_001638b0(0x3f000000,auStack_10,auStack_30);
+    Vec3_Add(auStack_30,iVar4 + 0x220,iVar3 + 0x220);
+    Vec3_Scale(0x3f000000,auStack_10,auStack_30);
     puVar2 = *(undefined4 **)(uVar6 * 4 + iVar7 + 0x7b0);
     uStack_20 = *puVar2;
     uStack_1c = puVar2[1];
     uStack_18 = puVar2[2];
     uStack_14 = puVar2[3];
-    fVar11 = (float)FUN_00164900(*(undefined4 *)(iVar7 + 0x870),*(undefined4 *)(iVar7 + 0x154),
-                                 &uStack_20,auStack_10);
+    fVar11 = (float)phys_sub_00164900(*(undefined4 *)(iVar7 + 0x870),*(undefined4 *)(iVar7 + 0x154),
+                                      &uStack_20,auStack_10);
     *(float *)(iVar4 + 0x2b8) = fVar11 * 0.5;
     *(float *)(iVar3 + 0x2b8) = fVar11 * 0.5;
-    FUN_0016aa00(param_1,param_3);
-    FUN_0016aa00(param_1,uVar5);
+    Car_SolveFreeWheel(param_1,param_3);
+    Car_SolveFreeWheel(param_1,uVar5);
   }
   else {
-    FUN_0016a7c0(param_1,param_3);
-    FUN_0016a7c0(param_1,uVar5);
+    Car_SolveDriveWheel(param_1,param_3);
+    Car_SolveDriveWheel(param_1,uVar5);
     if (*(char *)(iVar4 + 0x1c1) == '\0') {
       *(undefined4 *)(iVar4 + 0x2b8) = 0;
     }
@@ -1155,8 +1157,9 @@ void FUN_0016a3c0(undefined8 param_1,long param_2,undefined8 param_3)
         fVar10 = -1.0;
         fVar8 = *(float *)(iVar4 + 0x298);
       }
-      uVar9 = FUN_00165ef0(*(undefined4 *)(iVar4 + 0x290),fVar10 * fVar8 * *(float *)(iVar7 + 0x86c)
-                           ,*(undefined4 *)(iVar4 + 0x1d4),iVar7 + (uVar6 & 1) * 0x3c + 0xae4);
+      uVar9 = Tire_CombinedForce(*(undefined4 *)(iVar4 + 0x290),
+                                 fVar10 * fVar8 * *(float *)(iVar7 + 0x86c),
+                                 *(undefined4 *)(iVar4 + 0x1d4),iVar7 + (uVar6 & 1) * 0x3c + 0xae4);
       *(undefined4 *)(iVar4 + 0x2b8) = uVar9;
     }
     if (*(char *)(iVar3 + 0x1c1) == '\0') {
@@ -1171,9 +1174,9 @@ void FUN_0016a3c0(undefined8 param_1,long param_2,undefined8 param_3)
         fVar11 = -1.0;
         fVar10 = *(float *)(iVar7 + 0x86c);
       }
-      uVar9 = FUN_00165ef0(*(undefined4 *)(iVar3 + 0x290),
-                           fVar11 * *(float *)(iVar3 + 0x298) * fVar10,
-                           *(undefined4 *)(iVar3 + 0x1d4),iVar7 + (uVar5 & 1) * 0x3c + 0xae4);
+      uVar9 = Tire_CombinedForce(*(undefined4 *)(iVar3 + 0x290),
+                                 fVar11 * *(float *)(iVar3 + 0x298) * fVar10,
+                                 *(undefined4 *)(iVar3 + 0x1d4),iVar7 + (uVar5 & 1) * 0x3c + 0xae4);
       *(undefined4 *)(iVar3 + 0x2b8) = uVar9;
     }
   }
@@ -1181,7 +1184,7 @@ void FUN_0016a3c0(undefined8 param_1,long param_2,undefined8 param_3)
 }
 
 // 0x0016a7c0  size 0x234
-float FUN_0016a7c0(int param_1,uint param_2)
+float Car_SolveDriveWheel(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -1210,14 +1213,14 @@ float FUN_0016a7c0(int param_1,uint param_2)
     fStack_4 = *(float *)(param_1 + 0x86c) * (*(float *)(iVar1 + 0x2c0) + *(float *)(iVar1 + 0x2b4))
     ;
     if ((*(char *)(iVar1 + 0x287) == '\0') && (*(char *)(iVar1 + 0x286) == '\0')) {
-      fVar6 = (float)FUN_00165cf0(fStack_4,iVar3);
+      fVar6 = (float)Tire_LongitudinalForce(fStack_4,iVar3);
       *(undefined4 *)(iVar1 + 0x268) = *(undefined4 *)(iVar2 + 0xb14);
       fVar4 = *(float *)(param_1 + 0xb68);
       fVar5 = -fVar4;
       if ((-fVar4 <= fVar6) && (fVar5 = fVar4, fVar6 <= fVar4)) {
         fVar5 = fVar6;
       }
-      fVar4 = (float)FUN_001661c0(fVar5,iVar3);
+      fVar4 = (float)Tire_ForceAtSlip(fVar5,iVar3);
       *(float *)(iVar1 + 0x298) = fVar5 * *(float *)(param_1 + 0x86c);
       *(float *)(iVar1 + 700) = fVar4 * *(float *)(param_1 + 0x86c);
       fVar5 = (float)fabsf(*(undefined4 *)(iVar2 + 0xb18));
@@ -1231,7 +1234,7 @@ float FUN_0016a7c0(int param_1,uint param_2)
       fStack_4 = (float)fabsf();
     }
     else {
-      uVar7 = FUN_00165a80(iVar3,&fStack_4);
+      uVar7 = Tire_FindPeakSlipRatio(iVar3,&fStack_4);
       *(undefined4 *)(iVar1 + 0x268) = uVar7;
       fVar5 = 1.0;
       if ((*(float *)(iVar1 + 0x28c) != 0.0) ||
@@ -1244,7 +1247,7 @@ float FUN_0016a7c0(int param_1,uint param_2)
       }
       fVar6 = *(float *)(param_1 + 0x86c);
       *(float *)(iVar1 + 0x298) = fVar4;
-      fVar4 = (float)FUN_001661c0(fVar4 * fVar6 * fVar5,iVar3);
+      fVar4 = (float)Tire_ForceAtSlip(fVar4 * fVar6 * fVar5,iVar3);
       *(float *)(iVar1 + 700) = fVar5 * fVar4 * *(float *)(param_1 + 0x86c);
       fStack_4 = (float)fabsf(fStack_4);
       fVar5 = (float)fabsf(fVar5 * fVar4);
@@ -1257,7 +1260,7 @@ float FUN_0016a7c0(int param_1,uint param_2)
 }
 
 // 0x0016aa00  size 0x174
-void FUN_0016aa00(int param_1,uint param_2)
+void Car_SolveFreeWheel(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -1280,7 +1283,7 @@ void FUN_0016aa00(int param_1,uint param_2)
   else {
     *(undefined4 *)(iVar2 + 0x298) = *(undefined4 *)(iVar2 + 0x294);
     uStack_4 = 0xbf800000;
-    uVar4 = FUN_00165a80(iVar1 + 0xae4,&uStack_4);
+    uVar4 = Tire_FindPeakSlipRatio(iVar1 + 0xae4,&uStack_4);
     *(undefined4 *)(iVar2 + 0x268) = uVar4;
     if ((*(char *)(iVar2 + 0x287) == '\0') && (*(char *)(iVar2 + 0x286) == '\0')) {
       fVar6 = *(float *)(iVar2 + 0x2c4);
@@ -1301,8 +1304,8 @@ void FUN_0016aa00(int param_1,uint param_2)
       *(float *)(iVar1 + 0xb08) = *(float *)(iVar1 + 0xb04) * fVar3;
       *(undefined4 *)(iVar1 + 0xb0c) = uVar4;
       *(undefined4 *)(iVar2 + 0x298) = *(undefined4 *)(iVar2 + 0x294);
-      fVar3 = (float)FUN_001661c0(*(float *)(iVar2 + 0x294) * *(float *)(param_1 + 0x86c),
-                                  iVar1 + 0xae4);
+      fVar3 = (float)Tire_ForceAtSlip(*(float *)(iVar2 + 0x294) * *(float *)(param_1 + 0x86c),
+                                      iVar1 + 0xae4);
       *(float *)(iVar2 + 700) = *(float *)(param_1 + 0x86c) * fVar3;
     }
   }
@@ -1310,7 +1313,7 @@ void FUN_0016aa00(int param_1,uint param_2)
 }
 
 // 0x0016ab80  size 0x110
-void FUN_0016ab80(int param_1)
+void Car_UpdateCamber(int param_1)
 
 {
   int iVar1;
@@ -1345,7 +1348,7 @@ void FUN_0016ab80(int param_1)
 }
 
 // 0x0016aca0  size 0x180
-void FUN_0016aca0(int param_1)
+void Car_UpdateWheelAngularVel(int param_1)
 
 {
   int iVar1;
@@ -1408,7 +1411,9 @@ void FUN_0016aca0(int param_1)
 }
 
 // 0x0016ae20  size 0x1c0
-void FUN_0016ae20(int param_1)
+/* v^2 drag/downforce */
+
+void Car_ApplyAeroDrag(int param_1)
 
 {
   int iVar1;
@@ -1439,28 +1444,28 @@ void FUN_0016ae20(int param_1)
   if (0.0 < fVar2) {
     fVar4 = fVar4 * -1.0;
   }
-  FUN_001638b0(fVar5,auStack_50,param_1 + 0x80);
-  FUN_001638b0(fVar4,auStack_60,param_1 + 0x90);
-  FUN_00163b80(auStack_10,auStack_50,auStack_60);
-  FUN_00163b00(param_1 + 0x950,auStack_10);
+  Vec3_Scale(fVar5,auStack_50,param_1 + 0x80);
+  Vec3_Scale(fVar4,auStack_60,param_1 + 0x90);
+  Vec3_Add(auStack_10,auStack_50,auStack_60);
+  Vec3_AddInPlace(param_1 + 0x950,auStack_10);
   if (0.0 < *(float *)(param_1 + 400)) {
     fStack_78 = -*(float *)(param_1 + 0x78);
     fStack_7c = -*(float *)(param_1 + 0x74);
     fStack_80 = -*(float *)(param_1 + 0x70);
-    FUN_001638b0(fVar3 * fVar3,auStack_70,&fStack_80);
-    FUN_001638b0(0x3f000000,auStack_20,auStack_70);
-    FUN_001638b0(*(undefined4 *)(*(int *)(param_1 + 0x120) + 0x744),auStack_30,auStack_20);
-    FUN_001638b0(*(undefined4 *)(*(int *)(param_1 + 0x120) + 0x748),auStack_40,auStack_20);
-    FUN_00163b00(param_1 + 0x920,auStack_30);
-    FUN_00163b00(param_1 + 0x910,auStack_30);
-    FUN_00163b00(param_1 + 0x940,auStack_40);
-    FUN_00163b00(param_1 + 0x930,auStack_40);
+    Vec3_Scale(fVar3 * fVar3,auStack_70,&fStack_80);
+    Vec3_Scale(0x3f000000,auStack_20,auStack_70);
+    Vec3_Scale(*(undefined4 *)(*(int *)(param_1 + 0x120) + 0x744),auStack_30,auStack_20);
+    Vec3_Scale(*(undefined4 *)(*(int *)(param_1 + 0x120) + 0x748),auStack_40,auStack_20);
+    Vec3_AddInPlace(param_1 + 0x920,auStack_30);
+    Vec3_AddInPlace(param_1 + 0x910,auStack_30);
+    Vec3_AddInPlace(param_1 + 0x940,auStack_40);
+    Vec3_AddInPlace(param_1 + 0x930,auStack_40);
   }
   return;
 }
 
 // 0x0016afe0  size 0xf8
-void FUN_0016afe0(int param_1)
+void Car_ApplyRollingResistance(int param_1)
 
 {
   int iVar1;
@@ -1488,8 +1493,8 @@ void FUN_0016afe0(int param_1)
       else {
         fVar5 = *(float *)(*(int *)(param_1 + 0x120) + 0x754) * fVar4;
       }
-      FUN_001638b0(fVar5,auStack_10,param_1 + 0x70);
-      FUN_00163b00(iVar1 + 0x910,auStack_10);
+      Vec3_Scale(fVar5,auStack_10,param_1 + 0x70);
+      Vec3_AddInPlace(iVar1 + 0x910,auStack_10);
       *(float *)(iVar2 + 0x1b8) = *(float *)(iVar2 + 0x1b8) + fVar5;
     }
     uVar3 = uVar3 + 1;
@@ -1500,7 +1505,7 @@ void FUN_0016afe0(int param_1)
 }
 
 // 0x0016b0e0  size 0x2bc
-void FUN_0016b0e0(int param_1)
+void Car_UpdateSuspension(int param_1)
 
 {
   int iVar1;
@@ -1543,7 +1548,7 @@ void FUN_0016b0e0(int param_1)
   iVar4 = param_1;
   do {
     iVar1 = param_1 + *(int *)(iVar4 + 2000) * 0x140;
-    FUN_0016b3b0(param_1);
+    Car_RaycastWheel(param_1);
     fVar10 = *(float *)(iVar1 + 0x200);
     fVar10 = fVar10 - fVar10;
     if ((0.0 < fVar10) && (uVar7 != 3)) {
@@ -1553,8 +1558,8 @@ void FUN_0016b0e0(int param_1)
         do {
           iVar2 = param_1 + *(int *)(iVar8 + 2000) * 0x140;
           *(float *)(iVar2 + 0x200) = *(float *)(iVar2 + 0x200) + fVar10;
-          FUN_001638b0(fVar10,auStack_20,iVar1 + 0x210);
-          FUN_00163b00(iVar2 + 0x1f0,auStack_20);
+          Vec3_Scale(fVar10,auStack_20,iVar1 + 0x210);
+          Vec3_AddInPlace(iVar2 + 0x1f0,auStack_20);
           iVar9 = iVar9 + 1;
           iVar8 = iVar8 + 4;
         } while (iVar9 < 4);
@@ -1586,8 +1591,8 @@ void FUN_0016b0e0(int param_1)
   iVar4 = param_1;
   iVar1 = param_1;
   do {
-    FUN_001638b0(*(undefined4 *)(iVar4 + 0x1b8),auStack_10,param_1 + 0x70);
-    FUN_00163b00(iVar1 + 0x910,auStack_10);
+    Vec3_Scale(*(undefined4 *)(iVar4 + 0x1b8),auStack_10,param_1 + 0x70);
+    Vec3_AddInPlace(iVar1 + 0x910,auStack_10);
     uVar7 = uVar7 + 1;
     iVar4 = iVar4 + 0x140;
     iVar1 = iVar1 + 0x10;
@@ -1596,7 +1601,7 @@ void FUN_0016b0e0(int param_1)
 }
 
 // 0x0016b3b0  size 0x1b8
-void FUN_0016b3b0(undefined8 param_1,undefined8 param_2)
+void Car_RaycastWheel(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1620,15 +1625,15 @@ void FUN_0016b3b0(undefined8 param_1,undefined8 param_2)
   pfVar2 = (float *)(iVar4 + 0x1b0);
   *(undefined4 *)(iVar4 + 0x1bc) = *(undefined4 *)(iVar4 + 0x1b8);
   *(undefined1 *)(iVar4 + 0x1c0) = 0;
-  fVar5 = (float)FUN_00166570(param_1,param_2,iVar4 + 0x1f0);
+  fVar5 = (float)Car_GetSurfaceGrip(param_1,param_2,iVar4 + 0x1f0);
   fVar5 = -*(float *)(iVar4 + 0x200) - fVar5;
   if (fVar5 <= *(float *)(iVar1 + 0x78)) {
-    FUN_00164eb0(&fStack_30,*(undefined4 *)(iVar3 + 0x154),iVar4 + 0x1f0);
+    phys_sub_00164eb0(&fStack_30,*(undefined4 *)(iVar3 + 0x154),iVar4 + 0x1f0);
     fStack_18 = -fStack_28;
     fStack_1c = -fStack_2c;
     fStack_20 = -fStack_30;
-    fStack_4 = (float)FUN_00163750(&fStack_20,iVar3 + 0xb0);
-    fVar5 = (float)FUN_0016b7b0(fVar5,param_1,param_2,&fStack_4);
+    fStack_4 = (float)phys_sub_00163750(&fStack_20,iVar3 + 0xb0);
+    fVar5 = (float)Car_SpringDamperForce(fVar5,param_1,param_2,&fStack_4);
     fVar5 = *(float *)(iVar1 + 0x80) + fVar5;
     *(float *)(iVar4 + 0x1b4) = -fStack_4;
     if (*pfVar2 < *(float *)(iVar1 + 0x7c)) {
@@ -1646,7 +1651,7 @@ void FUN_0016b3b0(undefined8 param_1,undefined8 param_2)
     }
   }
   else {
-    fVar5 = (float)FUN_0016b570(param_1,param_2);
+    fVar5 = (float)Car_WheelGroundContact(param_1,param_2);
     *(float *)(iVar4 + 0x200) = *(float *)(iVar4 + 0x200) + fVar5;
     *pfVar2 = *(float *)(iVar1 + 0x78);
     *(undefined4 *)(iVar4 + 0x1b4) = 0;
@@ -1663,7 +1668,7 @@ void FUN_0016b3b0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0016b570  size 0x238
-float FUN_0016b570(int param_1,int param_2)
+float Car_WheelGroundContact(int param_1,int param_2)
 
 {
   undefined4 *puVar1;
@@ -1700,49 +1705,49 @@ float FUN_0016b570(int param_1,int param_2)
   iVar3 = param_1 + param_2 * 0x140;
   iVar5 = iVar3 + 0x210;
   iVar4 = iVar3 + 0x1f0;
-  fVar6 = (float)FUN_001638e0(*(int *)(param_2 * 4 + param_1 + 0x7b0) + 0x50,iVar5);
+  fVar6 = (float)Vec3_Dot(*(int *)(param_2 * 4 + param_1 + 0x7b0) + 0x50,iVar5);
   if (fVar6 <= 0.0) {
     uStack_10 = DAT_003625e0;
     uStack_c = DAT_003625e4;
     uStack_8 = DAT_003625e8;
     uStack_4 = DAT_003625ec;
     if ((*(byte *)(iVar3 + 0x1c8) & 2) == 0) {
-      fVar6 = (float)FUN_001647f0(*(undefined4 *)(param_1 + 0x154),iVar4,iVar5);
-      FUN_001638b0(fVar6 * 1.1,&uStack_70,iVar5);
+      fVar6 = (float)phys_sub_001647f0(*(undefined4 *)(param_1 + 0x154),iVar4,iVar5);
+      Vec3_Scale(fVar6 * 1.1,&uStack_70,iVar5);
       uStack_10 = uStack_70;
       uStack_c = uStack_6c;
       uStack_8 = uStack_68;
       uStack_4 = uStack_64;
     }
     else {
-      uVar7 = FUN_001647f0(*(undefined4 *)(param_1 + 0x154),iVar4,param_1 + 0x20);
-      FUN_001638b0(uVar7,&uStack_60,param_1 + 0x20);
+      uVar7 = phys_sub_001647f0(*(undefined4 *)(param_1 + 0x154),iVar4,param_1 + 0x20);
+      Vec3_Scale(uVar7,&uStack_60,param_1 + 0x20);
       uStack_10 = uStack_60;
       uStack_c = uStack_5c;
       uStack_8 = uStack_58;
       uStack_4 = uStack_54;
     }
-    uVar2 = FUN_00165110(*(undefined4 *)(param_1 + 0x154));
-    FUN_00163b40(auStack_20,iVar4,uVar2);
-    FUN_00163800(auStack_30,auStack_20,&uStack_10);
-    uVar2 = FUN_00165300(*(undefined4 *)(param_1 + 0x154));
-    FUN_00163b80(auStack_80,uVar2,auStack_30);
-    FUN_00165310(*(undefined4 *)(param_1 + 0x154),auStack_80);
-    uVar2 = FUN_00164f50(*(undefined4 *)(param_1 + 0x154));
-    uVar7 = FUN_00165380(*(undefined4 *)(param_1 + 0x154));
-    FUN_001638b0(uVar7,auStack_a0,&uStack_10);
-    FUN_00163b80(auStack_90,uVar2,auStack_a0);
-    FUN_00164f60(*(undefined4 *)(param_1 + 0x154),auStack_90);
+    uVar2 = phys_sub_00165110(*(undefined4 *)(param_1 + 0x154));
+    Vec3_Sub(auStack_20,iVar4,uVar2);
+    phys_sub_00163800(auStack_30,auStack_20,&uStack_10);
+    uVar2 = phys_sub_00165300(*(undefined4 *)(param_1 + 0x154));
+    Vec3_Add(auStack_80,uVar2,auStack_30);
+    phys_sub_00165310(*(undefined4 *)(param_1 + 0x154),auStack_80);
+    uVar2 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+    uVar7 = phys_sub_00165380(*(undefined4 *)(param_1 + 0x154));
+    Vec3_Scale(uVar7,auStack_a0,&uStack_10);
+    Vec3_Add(auStack_90,uVar2,auStack_a0);
+    phys_sub_00164f60(*(undefined4 *)(param_1 + 0x154),auStack_90);
     fVar6 = -*(float *)(*(int *)(param_2 * 4 + param_1 + 0x7c0) + 0x78) - *(float *)(iVar3 + 0x200);
-    FUN_001638b0(fVar6,auStack_40,iVar5);
-    puVar1 = (undefined4 *)FUN_00165250(*(undefined4 *)(param_1 + 0x154));
+    Vec3_Scale(fVar6,auStack_40,iVar5);
+    puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(param_1 + 0x154));
     uStack_50 = *puVar1;
     uStack_4c = puVar1[1];
     uStack_48 = puVar1[2];
     uStack_44 = puVar1[3];
-    FUN_00163b80(auStack_b0,&uStack_50,auStack_40);
-    FUN_00165260(*(undefined4 *)(param_1 + 0x154),auStack_b0);
-    FUN_00163b00(iVar4,auStack_40);
+    Vec3_Add(auStack_b0,&uStack_50,auStack_40);
+    phys_sub_00165260(*(undefined4 *)(param_1 + 0x154),auStack_b0);
+    Vec3_AddInPlace(iVar4,auStack_40);
   }
   else {
     fVar6 = 0.0;
@@ -1751,7 +1756,7 @@ float FUN_0016b570(int param_1,int param_2)
 }
 
 // 0x0016b7b0  size 0x120
-float FUN_0016b7b0(float param_1,int param_2,int param_3,float *param_4)
+float Car_SpringDamperForce(float param_1,int param_2,int param_3,float *param_4)
 
 {
   int iVar1;
@@ -1801,7 +1806,7 @@ float FUN_0016b7b0(float param_1,int param_2,int param_3,float *param_4)
 }
 
 // 0x0016b8e0  size 0x200
-void FUN_0016b8e0(int param_1)
+void Car_UpdateSlipAngles(int param_1)
 
 {
   int iVar1;
@@ -1824,10 +1829,10 @@ void FUN_0016b8e0(int param_1)
     fStack_8 = *(float *)(iVar1 + 0x2e8);
     uStack_4 = *(undefined4 *)(iVar1 + 0x2ec);
     if (0.01 < fStack_8 * fStack_8 + fStack_10 * fStack_10 + fStack_c * fStack_c) {
-      FUN_001638b0(0x447a0000,auStack_20,&fStack_10);
-      fVar3 = (float)FUN_001638e0(auStack_20,iVar1 + 0x230);
+      Vec3_Scale(0x447a0000,auStack_20,&fStack_10);
+      fVar3 = (float)Vec3_Dot(auStack_20,iVar1 + 0x230);
       fVar3 = *(float *)(param_1 + 0x86c) * fVar3;
-      fVar4 = (float)FUN_001638e0(auStack_20,iVar1 + 0x220);
+      fVar4 = (float)Vec3_Dot(auStack_20,iVar1 + 0x220);
       if (0.0001 < fVar3 * fVar3) {
         fVar5 = (float)fabsf(fVar3);
         fVar3 = (float)fabsf(fVar4);
@@ -1853,7 +1858,7 @@ void FUN_0016b8e0(int param_1)
 }
 
 // 0x0016baf0  size 0x4c0
-void FUN_0016baf0(int param_1)
+void Car_UpdateSteeringGeometry(int param_1)
 
 {
   int iVar1;
@@ -1939,16 +1944,16 @@ void FUN_0016baf0(int param_1)
   fVar13 = *(float *)(param_1 + 0x13c);
   fVar7 = (float)cosf(fVar13);
   uVar8 = sinf(fVar13);
-  FUN_001638b0(uVar8,auStack_20,puVar3);
-  FUN_001638b0(-fVar7,auStack_30,puVar2);
-  FUN_00163b80(&uStack_10,auStack_20,auStack_30);
+  Vec3_Scale(uVar8,auStack_20,puVar3);
+  Vec3_Scale(-fVar7,auStack_30,puVar2);
+  Vec3_Add(&uStack_10,auStack_20,auStack_30);
   *(undefined4 *)(param_1 + 0x6f0) = uStack_10;
   *(undefined4 *)(param_1 + 0x6f4) = uStack_c;
   *(undefined4 *)(param_1 + 0x6f8) = uStack_8;
   *(undefined4 *)(param_1 + 0x6fc) = uStack_4;
-  FUN_001638b0(fVar7,auStack_50,puVar3);
-  FUN_001638b0(uVar8,auStack_60,puVar2);
-  FUN_00163b80(&uStack_40,auStack_50,auStack_60);
+  Vec3_Scale(fVar7,auStack_50,puVar3);
+  Vec3_Scale(uVar8,auStack_60,puVar2);
+  Vec3_Add(&uStack_40,auStack_50,auStack_60);
   *(undefined4 *)(param_1 + 0x6e0) = uStack_40;
   *(undefined4 *)(param_1 + 0x6e4) = uStack_3c;
   *(undefined4 *)(param_1 + 0x6e8) = uStack_38;
@@ -1963,16 +1968,16 @@ void FUN_0016baf0(int param_1)
   fVar9 = fVar13 + *(float *)(param_1 + 0x1d8);
   fVar7 = (float)cosf(fVar9);
   uVar8 = sinf(fVar9);
-  FUN_001638b0(uVar8,auStack_80,puVar3);
-  FUN_001638b0(-fVar7,auStack_90,puVar2);
-  FUN_00163b80(&uStack_70,auStack_80,auStack_90);
+  Vec3_Scale(uVar8,auStack_80,puVar3);
+  Vec3_Scale(-fVar7,auStack_90,puVar2);
+  Vec3_Add(&uStack_70,auStack_80,auStack_90);
   *(undefined4 *)(param_1 + 0x230) = uStack_70;
   *(undefined4 *)(param_1 + 0x234) = uStack_6c;
   *(undefined4 *)(param_1 + 0x238) = uStack_68;
   *(undefined4 *)(param_1 + 0x23c) = uStack_64;
-  FUN_001638b0(fVar7,auStack_b0,puVar3);
-  FUN_001638b0(uVar8,auStack_c0,puVar2);
-  FUN_00163b80(&uStack_a0,auStack_b0,auStack_c0);
+  Vec3_Scale(fVar7,auStack_b0,puVar3);
+  Vec3_Scale(uVar8,auStack_c0,puVar2);
+  Vec3_Add(&uStack_a0,auStack_b0,auStack_c0);
   *(undefined4 *)(param_1 + 0x220) = uStack_a0;
   *(undefined4 *)(param_1 + 0x224) = uStack_9c;
   *(undefined4 *)(param_1 + 0x228) = uStack_98;
@@ -1980,16 +1985,16 @@ void FUN_0016baf0(int param_1)
   fVar13 = fVar13 + *(float *)(param_1 + 0x318);
   fVar7 = (float)cosf(fVar13);
   uVar8 = sinf(fVar13);
-  FUN_001638b0(uVar8,auStack_e0,puVar3);
-  FUN_001638b0(-fVar7,auStack_f0,puVar2);
-  FUN_00163b80(&uStack_d0,auStack_e0,auStack_f0);
+  Vec3_Scale(uVar8,auStack_e0,puVar3);
+  Vec3_Scale(-fVar7,auStack_f0,puVar2);
+  Vec3_Add(&uStack_d0,auStack_e0,auStack_f0);
   *(undefined4 *)(param_1 + 0x370) = uStack_d0;
   *(undefined4 *)(param_1 + 0x374) = uStack_cc;
   *(undefined4 *)(param_1 + 0x378) = uStack_c8;
   *(undefined4 *)(param_1 + 0x37c) = uStack_c4;
-  FUN_001638b0(fVar7,auStack_110,puVar3);
-  FUN_001638b0(uVar8,auStack_120,puVar2);
-  FUN_00163b80(&uStack_100,auStack_110,auStack_120);
+  Vec3_Scale(fVar7,auStack_110,puVar3);
+  Vec3_Scale(uVar8,auStack_120,puVar2);
+  Vec3_Add(&uStack_100,auStack_110,auStack_120);
   *(undefined4 *)(param_1 + 0x360) = uStack_100;
   *(undefined4 *)(param_1 + 0x364) = uStack_fc;
   *(undefined4 *)(param_1 + 0x368) = uStack_f8;
@@ -2012,16 +2017,16 @@ void FUN_0016baf0(int param_1)
   uVar8 = *(undefined4 *)(param_1 + 0x458);
   fVar7 = (float)cosf(uVar8);
   uVar8 = sinf(uVar8);
-  FUN_001638b0(uVar8,auStack_140,puVar3);
-  FUN_001638b0(-fVar7,auStack_150,puVar2);
-  FUN_00163b80(&uStack_130,auStack_140,auStack_150);
+  Vec3_Scale(uVar8,auStack_140,puVar3);
+  Vec3_Scale(-fVar7,auStack_150,puVar2);
+  Vec3_Add(&uStack_130,auStack_140,auStack_150);
   *(undefined4 *)(param_1 + 0x4b0) = uStack_130;
   *(undefined4 *)(param_1 + 0x4b4) = uStack_12c;
   *(undefined4 *)(param_1 + 0x4b8) = uStack_128;
   *(undefined4 *)(param_1 + 0x4bc) = uStack_124;
-  FUN_001638b0(fVar7,auStack_170,puVar3);
-  FUN_001638b0(uVar8,auStack_180,puVar2);
-  FUN_00163b80(&uStack_160,auStack_170,auStack_180);
+  Vec3_Scale(fVar7,auStack_170,puVar3);
+  Vec3_Scale(uVar8,auStack_180,puVar2);
+  Vec3_Add(&uStack_160,auStack_170,auStack_180);
   *(undefined4 *)(param_1 + 0x4a0) = uStack_160;
   *(undefined4 *)(param_1 + 0x4a4) = uStack_15c;
   *(undefined4 *)(param_1 + 0x4a8) = uStack_158;
@@ -2029,16 +2034,16 @@ void FUN_0016baf0(int param_1)
   uVar8 = *(undefined4 *)(param_1 + 0x598);
   fVar7 = (float)cosf(uVar8);
   uVar8 = sinf(uVar8);
-  FUN_001638b0(uVar8,auStack_1a0,puVar3);
-  FUN_001638b0(-fVar7,auStack_1b0,puVar2);
-  FUN_00163b80(&uStack_190,auStack_1a0,auStack_1b0);
+  Vec3_Scale(uVar8,auStack_1a0,puVar3);
+  Vec3_Scale(-fVar7,auStack_1b0,puVar2);
+  Vec3_Add(&uStack_190,auStack_1a0,auStack_1b0);
   *(undefined4 *)(param_1 + 0x5f0) = uStack_190;
   *(undefined4 *)(param_1 + 0x5f4) = uStack_18c;
   *(undefined4 *)(param_1 + 0x5f8) = uStack_188;
   *(undefined4 *)(param_1 + 0x5fc) = uStack_184;
-  FUN_001638b0(fVar7,auStack_1d0,puVar3);
-  FUN_001638b0(uVar8,auStack_1e0,puVar2);
-  FUN_00163b80(&uStack_1c0,auStack_1d0,auStack_1e0);
+  Vec3_Scale(fVar7,auStack_1d0,puVar3);
+  Vec3_Scale(uVar8,auStack_1e0,puVar2);
+  Vec3_Add(&uStack_1c0,auStack_1d0,auStack_1e0);
   uVar6 = 0;
   *(undefined4 *)(param_1 + 0x5e0) = uStack_1c0;
   *(undefined4 *)(param_1 + 0x5e4) = uStack_1bc;
@@ -2049,14 +2054,14 @@ void FUN_0016baf0(int param_1)
   do {
     iVar1 = *(int *)(iVar4 + 0x7c0);
     *(undefined4 *)(iVar5 + 0x2cc) = *(undefined4 *)(iVar5 + 0x2c8);
-    FUN_00164eb0(&uStack_1f0,*(undefined4 *)(param_1 + 0x154),iVar5 + 0x240);
+    phys_sub_00164eb0(&uStack_1f0,*(undefined4 *)(param_1 + 0x154),iVar5 + 0x240);
     *(undefined4 *)(iVar5 + 0x2e0) = uStack_1f0;
     *(undefined4 *)(iVar5 + 0x2e4) = uStack_1ec;
     *(undefined4 *)(iVar5 + 0x2e8) = uStack_1e8;
     *(undefined4 *)(iVar5 + 0x2ec) = uStack_1e4;
-    uVar8 = FUN_001638e0(iVar5 + 0x2e0,iVar5 + 0x230);
+    uVar8 = Vec3_Dot(iVar5 + 0x2e0,iVar5 + 0x230);
     *(undefined4 *)(iVar5 + 0x2c8) = uVar8;
-    uVar8 = FUN_001638e0(iVar5 + 0x2e0,iVar5 + 0x220);
+    uVar8 = Vec3_Dot(iVar5 + 0x2e0,iVar5 + 0x220);
     *(undefined4 *)(iVar5 + 0x2d0) = uVar8;
     if ((uVar6 & 1) == 0) {
       fVar7 = (float)atan2f(*(undefined4 *)(iVar5 + 0x1b0),*(undefined4 *)(iVar5 + 0x1cc));
@@ -2068,7 +2073,7 @@ void FUN_0016baf0(int param_1)
       *(float *)(iVar5 + 0x1d4) = *(float *)(iVar1 + 0x30) * fVar7 + -*(float *)(iVar1 + 0xcc) + 0.0
       ;
     }
-    FUN_00163540(*(undefined4 *)(iVar5 + 0x1d4),iVar5 + 0x1e0,0x362560);
+    phys_sub_00163540(*(undefined4 *)(iVar5 + 0x1d4),iVar5 + 0x1e0,0x362560);
     uVar6 = uVar6 + 1;
     iVar5 = iVar5 + 0x140;
     iVar4 = iVar4 + 4;
@@ -2077,7 +2082,9 @@ void FUN_0016baf0(int param_1)
 }
 
 // 0x0016bfb0  size 0x120
-float FUN_0016bfb0(float param_1,int param_2)
+/* rpm*32 index */
+
+float Car_TorqueCurveLookup(float param_1,int param_2)
 
 {
   int iVar1;

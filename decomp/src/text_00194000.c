@@ -80,7 +80,7 @@ void FUN_001940f0(undefined4 *param_1,undefined8 param_2)
     }
     param_1[4] = iVar6;
   }
-  FUN_001778a0(auStack_50);
+  GameState_LoadHeader(auStack_50);
   switch(uStack_4e) {
   case 1:
   case 4:
@@ -173,7 +173,7 @@ void FUN_001946a0(undefined4 *param_1,undefined8 param_2)
     if (*(short *)(param_1 + 3) == 0) {
       uVar3 = *(undefined4 *)((int)param_2 + 0x158);
       iVar6 = FUN_001ca760(param_2);
-      uVar7 = FUN_00162430(uVar3,0xffffffffff000000);
+      uVar7 = phys_sub_00162430(uVar3,0xffffffffff000000);
       if ((*(uint *)(iVar6 + 0x60) & 0x30) == 0) {
         if (((param_1[1] & 2) == 0) ||
            (*(short *)((int)param_1 + 0xe) = *(short *)((int)param_1 + 0xe) + 1,
@@ -193,7 +193,7 @@ void FUN_001946a0(undefined4 *param_1,undefined8 param_2)
         }
       }
       else if ((*(uint *)(iVar6 + 0x60) & 0x10) == 0) {
-        fVar15 = (float)FUN_001585d0(uVar7);
+        fVar15 = (float)PhysWorld_GetFirstBody(uVar7);
         fVar13 = (float)FUN_001ca7c0(param_2);
         fVar15 = fVar15 * (fVar13 / DAT_0036e7dc);
         if (10.0 < fVar15) {
@@ -282,10 +282,10 @@ void FUN_001946a0(undefined4 *param_1,undefined8 param_2)
         *(undefined2 *)((int)param_1 + 0xe) = 0;
       }
       else if ((param_1[1] & 8) != 0) {
-        uVar7 = FUN_00162430(uVar3,0xffffff);
+        uVar7 = phys_sub_00162430(uVar3,0xffffff);
         if ((uRam0036f25c & 8) == 0) {
           uRam0036f25c = uRam0036f25c | 8;
-          fVar13 = (float)FUN_001585d0(uVar7);
+          fVar13 = (float)PhysWorld_GetFirstBody(uVar7);
           fVar15 = 1.0;
           fVar14 = (fVar13 * 5.0) / DAT_0036e7d8;
           if (fVar14 <= 1.0) {
@@ -893,7 +893,7 @@ void FUN_001963b0(undefined8 param_1,undefined8 param_2)
   undefined8 uVar1;
   undefined8 uVar2;
   
-  uVar1 = FUN_00191420();
+  uVar1 = maybe_Render_GetCurrentList();
   uVar1 = FUN_00191400(uVar1,3);
   uVar2 = (**(code **)(*(int *)param_1 + 0xc))(param_1,param_2);
   (**(code **)(*(int *)uVar1 + 0x28))(uVar1,param_2,uVar2,0x3c);
@@ -909,7 +909,7 @@ undefined4 FUN_00196460(void)
   long lVar1;
   undefined4 uVar2;
   
-  lVar1 = FUN_00183600();
+  lVar1 = Loading_IsActive();
   uVar2 = 0x3d;
   if (lVar1 == 0) {
     uVar2 = 0x3c;
@@ -923,7 +923,7 @@ void FUN_00196490(void)
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_00191420();
+  uVar1 = maybe_Render_GetCurrentList();
   FUN_00191400(uVar1,3);
   return;
 }
@@ -935,7 +935,7 @@ char FUN_001964c0(int param_1)
   char cVar1;
   long lVar2;
   
-  lVar2 = FUN_00183600();
+  lVar2 = Loading_IsActive();
   if (lVar2 == 0) {
     cVar1 = *(char *)(param_1 + 4) + '\x01';
   }
@@ -959,7 +959,7 @@ void FUN_00196500(undefined8 param_1,undefined8 param_2)
   uVar1 = (**(code **)(*piVar5 + 0x14))();
   lVar2 = FUN_0018fa50(uVar1);
   if (lVar2 == 0) {
-    uVar1 = FUN_00191420();
+    uVar1 = maybe_Render_GetCurrentList();
     uVar3 = FUN_00191400(uVar1,1);
     uVar4 = (**(code **)(*piVar5 + 0xc))(param_1,param_2);
     (**(code **)(*(int *)uVar3 + 0x28))(uVar3,param_2,uVar4,0x3c);
@@ -978,12 +978,12 @@ void FUN_00196600(void)
   undefined8 uVar2;
   undefined8 uVar3;
   
-  lVar1 = FUN_00183600();
+  lVar1 = Loading_IsActive();
   uVar3 = 1;
   if (lVar1 == 0) {
     uVar3 = 2;
   }
-  uVar2 = FUN_00191420();
+  uVar2 = maybe_Render_GetCurrentList();
   FUN_00191400(uVar2,uVar3);
   return;
 }
@@ -1138,9 +1138,9 @@ void FUN_00196d10(undefined8 param_1)
 {
   int iVar1;
   
-  FUN_001448b0();
+  Gfx_ClearRenderTarget();
   iVar1 = (int)param_1;
-  FUN_00152a50(param_1,*(undefined1 *)(iVar1 + 0x588),*(undefined4 *)(iVar1 + 0x58c));
+  Pkt_SubmitImmediate(param_1,*(undefined1 *)(iVar1 + 0x588),*(undefined4 *)(iVar1 + 0x58c));
   *(undefined4 *)(iVar1 + 0x584) = 1;
   return;
 }
@@ -1216,16 +1216,16 @@ int FUN_00196d60(undefined8 param_1,undefined1 param_2,uint param_3)
   uStack_90 = uVar8;
   uStack_80 = uVar8;
   if ((param_3 & 0x40) != 0) {
-    iVar3 = FUN_0013ff20(iRam00388044,0x100,0x40);
-    iVar4 = FUN_0013ff20(iRam00388048,0x100,0x40);
+    iVar3 = Tex_GetBlockCount(iRam00388044,0x100,0x40);
+    iVar4 = Tex_GetBlockCount(iRam00388048,0x100,0x40);
     uStack_80 = uVar8 + iVar3;
     uStack_90 = uVar8 + iVar3 + iVar4;
   }
   uStack_b0 = uStack_90;
   uStack_a0 = uStack_90;
   if ((param_3 & 8) != 0) {
-    iVar3 = FUN_0013ff20(2,0x80,0x80);
-    iVar4 = FUN_0013ff20(0x32,0x80,0x80);
+    iVar3 = Tex_GetBlockCount(2,0x80,0x80);
+    iVar4 = Tex_GetBlockCount(0x32,0x80,0x80);
     uStack_a0 = uStack_90 + iVar3;
     uStack_b0 = uStack_90 + iVar3 + iVar4;
   }
@@ -1234,23 +1234,23 @@ int FUN_00196d60(undefined8 param_1,undefined1 param_2,uint param_3)
     uVar9 = uStack_b0;
     uVar6 = uStack_b0;
     if ((param_3 & 0x10) != 0) {
-      iVar3 = FUN_0013ff20(0,0x80,0x80);
-      iVar4 = FUN_0013ff20(0x3a,0x80,0x80);
+      iVar3 = Tex_GetBlockCount(0,0x80,0x80);
+      iVar4 = Tex_GetBlockCount(0x3a,0x80,0x80);
       uVar5 = uStack_b0 + iVar3 + iVar4;
       uVar6 = uStack_b0 + iVar3;
     }
   }
   else {
-    iVar3 = FUN_0013ff20(0,0x100,0x100);
-    iVar4 = FUN_0013ff20(0x3a,0x100,0x100);
+    iVar3 = Tex_GetBlockCount(0,0x100,0x100);
+    iVar4 = Tex_GetBlockCount(0x3a,0x100,0x100);
     uVar5 = uStack_b0 + iVar3 + iVar4;
     uVar9 = uStack_b0 + iVar3;
     uVar6 = uStack_b0 + iVar3;
   }
   uStack_c0 = uVar8;
   if ((param_3 & 0x1000) != 0) {
-    iVar3 = FUN_0013ff20(0,0x140,0xe0);
-    iVar4 = FUN_0013ff20(0x3a,0x140,0xe0);
+    iVar3 = Tex_GetBlockCount(0,0x140,0xe0);
+    iVar4 = Tex_GetBlockCount(0x3a,0x140,0xe0);
     uStack_c0 = uVar8 + iVar3;
     uVar5 = uVar8 + iVar3 + iVar4;
   }
@@ -1563,13 +1563,13 @@ int FUN_00196d60(undefined8 param_1,undefined1 param_2,uint param_3)
     unaff_s6_lo = 0x78;
   }
 LAB_00197c3c:
-  FUN_00144960(param_1,&uStack_60);
-  FUN_00144950(param_1,uStack_d0,unaff_s6_lo);
-  FUN_00144940(param_1,unaff_s5_lo,unaff_s4_lo);
-  FUN_001448b0(param_1);
+  Gfx_CopyRenderTarget(param_1,&uStack_60);
+  Gfx_SetViewportSize(param_1,uStack_d0,unaff_s6_lo);
+  Gfx_SetViewportOffset(param_1,unaff_s5_lo,unaff_s4_lo);
+  Gfx_ClearRenderTarget(param_1);
   *(undefined4 *)(iVar7 + 0xa0) = unaff_f22;
   *(undefined4 *)(iVar7 + 0xa4) = in_f21;
-  FUN_001445d0(param_1);
+  Camera_Init(param_1);
   return uVar5 << 5;
 }
 

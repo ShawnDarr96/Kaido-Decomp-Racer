@@ -288,14 +288,14 @@ void FUN_002cc9d0(int param_1)
       aiStack_50[0] = 0x80;
     }
     aiStack_50[0] = aiStack_50[0] << 0x18;
-    FUN_00153260(2,9,1,aiStack_50);
+    Gfx_SetFade(2,9,1,aiStack_50);
     if ((iGpffff9124 == 0x14) && (uVar1 = FUN_001e9110(), (uVar1 & 0x40000) == 0)) {
       FUN_001e9120();
     }
     iGpffff9124 = iGpffff9124 + 1;
   }
   else {
-    FUN_00153260(2,9,0,0);
+    Gfx_SetFade(2,9,0,0);
     *(undefined4 *)(param_1 + 0x3b70) = 0;
     FUN_001e9120(4);
     iGpffff9124 = 0;
@@ -326,7 +326,7 @@ void FUN_002ccaf0(void)
   uStack_10 = 0;
   uStack_c = 0;
   if (iGpffff8768 < 1) {
-    FUN_00153260(2,9,0,0);
+    Gfx_SetFade(2,9,0,0);
     FUN_002cfb70(3);
     iGpffff8768 = 0x14;
   }
@@ -339,7 +339,7 @@ void FUN_002ccaf0(void)
       aiStack_50[0] = 0x80;
     }
     aiStack_50[0] = aiStack_50[0] << 0x18;
-    FUN_00153260(2,9,1,aiStack_50);
+    Gfx_SetFade(2,9,1,aiStack_50);
     iGpffff8768 = iGpffff8768 + -1;
   }
   return;
@@ -360,7 +360,7 @@ void FUN_002ccbd0(void)
   FUN_002cccc0(iGpffff9114);
   iVar4 = 0;
   *(undefined4 *)(iGpffff9114 + 0x2a0) = 0;
-  lVar2 = FUN_00177230();
+  lVar2 = GameState_GetMoneyTotal3();
   if (0 < lVar2) {
     iVar3 = 0;
     do {
@@ -374,7 +374,7 @@ void FUN_002ccbd0(void)
       *(undefined4 *)(iGpffff9114 + iVar3 + 0xa4) = 0xffffffff;
       *(undefined4 *)(iGpffff9114 + iVar3 + 0x98) = 0;
       iVar3 = iVar3 + 0xcc;
-      iVar1 = FUN_00177230();
+      iVar1 = GameState_GetMoneyTotal3();
     } while (iVar4 < iVar1);
   }
   return;
@@ -579,7 +579,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
   iVar9 = (byte)(&DAT_0032f532)[iVar30] + 0x28;
   uVar12 = auStack_170[(byte)(&DAT_0032f532)[iVar30]];
   iVar30 = aiStack_180[(byte)(&DAT_0032f534)[iVar30]];
-  uVar8 = FUN_00177050();
+  uVar8 = GameState_Get_354_7050();
   piVar7 = piStack_8;
   piVar6 = piStack_c;
   switch(uVar8) {
@@ -1078,7 +1078,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0xfc4) = uVar11;
-    FUN_0014bf00(iVar3,*(undefined4 *)(param_1 + 0xfc4),0,0,0,0);
+    Arc_LoadFileEx(iVar3,*(undefined4 *)(param_1 + 0xfc4),0,0,0,0);
   }
   if (bVar4) {
     iStack_40 = DAT_0032f910;
@@ -1095,7 +1095,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0xfec) = uVar11;
-    FUN_0014bf00(0x182a,*(undefined4 *)(param_1 + 0xfec),0,0,0,0);
+    Arc_LoadFileEx(0x182a,*(undefined4 *)(param_1 + 0xfec),0,0,0,0);
     iStack_50 = DAT_0032f91c;
     iStack_4c = DAT_0032f920;
     iStack_48 = DAT_0032f924;
@@ -1110,7 +1110,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1000) = uVar11;
-    FUN_0014bf00(0x182a,*(undefined4 *)(param_1 + 0x1000),0,0,0,0);
+    Arc_LoadFileEx(0x182a,*(undefined4 *)(param_1 + 0x1000),0,0,0,0);
   }
   iStack_60 = DAT_0032f904;
   iStack_5c = DAT_0032f908;
@@ -1126,7 +1126,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
   }
   uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xfd8) = uVar11;
-  FUN_0014bf00(0x1817,*(undefined4 *)(param_1 + 0xfd8),0,0,0,0);
+  Arc_LoadFileEx(0x1817,*(undefined4 *)(param_1 + 0xfd8),0,0,0,0);
   FUN_001f4980(0x10,&DAT_0032f8b0 + iVar13,0);
   if (bVar4) {
     FUN_001f4980(0x11,0x32fa54,0);
@@ -1167,7 +1167,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1014) = uVar12;
-    FUN_0014bf00(0x1818,*(undefined4 *)(param_1 + 0x1014),0,0,0,0);
+    Arc_LoadFileEx(0x1818,*(undefined4 *)(param_1 + 0x1014),0,0,0,0);
     iStack_80 = DAT_0032f934;
     iStack_7c = DAT_0032f938;
     iStack_78 = DAT_0032f93c;
@@ -1182,7 +1182,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1028) = uVar12;
-    FUN_0014bf00(0x1817,*(undefined4 *)(param_1 + 0x1028),0,0,0,0);
+    Arc_LoadFileEx(0x1817,*(undefined4 *)(param_1 + 0x1028),0,0,0,0);
     iStack_90 = DAT_0032f940;
     iStack_8c = DAT_0032f944;
     iStack_88 = DAT_0032f948;
@@ -1197,7 +1197,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x103c) = uVar12;
-    FUN_0014bf00(0x1820,*(undefined4 *)(param_1 + 0x103c),0,0,0,0);
+    Arc_LoadFileEx(0x1820,*(undefined4 *)(param_1 + 0x103c),0,0,0,0);
     iStack_a0 = DAT_0032f94c;
     iStack_9c = DAT_0032f950;
     iStack_98 = DAT_0032f954;
@@ -1212,7 +1212,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1050) = uVar12;
-    FUN_0014bf00(0x1821,*(undefined4 *)(param_1 + 0x1050),0,0,0,0);
+    Arc_LoadFileEx(0x1821,*(undefined4 *)(param_1 + 0x1050),0,0,0,0);
     iStack_b0 = DAT_0032f958;
     iStack_ac = DAT_0032f95c;
     iStack_a8 = DAT_0032f960;
@@ -1227,7 +1227,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1064) = uVar12;
-    FUN_0014bf00(0x1822,*(undefined4 *)(param_1 + 0x1064),0,0,0,0);
+    Arc_LoadFileEx(0x1822,*(undefined4 *)(param_1 + 0x1064),0,0,0,0);
     iStack_c0 = DAT_0032f964;
     iStack_bc = DAT_0032f968;
     iStack_b8 = DAT_0032f96c;
@@ -1242,7 +1242,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1078) = uVar12;
-    FUN_0014bf00(0x1829,*(undefined4 *)(param_1 + 0x1078),0,0,0,0);
+    Arc_LoadFileEx(0x1829,*(undefined4 *)(param_1 + 0x1078),0,0,0,0);
     iStack_d0 = DAT_0032f970;
     iStack_cc = DAT_0032f974;
     iStack_c8 = DAT_0032f978;
@@ -1257,7 +1257,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x108c) = uVar12;
-    FUN_0014bf00(0x1828,*(undefined4 *)(param_1 + 0x108c),0,0,0,0);
+    Arc_LoadFileEx(0x1828,*(undefined4 *)(param_1 + 0x108c),0,0,0,0);
     iStack_e0 = DAT_0032f97c;
     iStack_dc = DAT_0032f980;
     iStack_d8 = DAT_0032f984;
@@ -1272,7 +1272,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10a0) = uVar12;
-    FUN_0014bf00(0x1823,*(undefined4 *)(param_1 + 0x10a0),0,0,0,0);
+    Arc_LoadFileEx(0x1823,*(undefined4 *)(param_1 + 0x10a0),0,0,0,0);
     iStack_f0 = DAT_0032f988;
     iStack_ec = DAT_0032f98c;
     iStack_e8 = DAT_0032f990;
@@ -1287,7 +1287,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10b4) = uVar12;
-    FUN_0014bf00(0x1824,*(undefined4 *)(param_1 + 0x10b4),0,0,0,0);
+    Arc_LoadFileEx(0x1824,*(undefined4 *)(param_1 + 0x10b4),0,0,0,0);
     iStack_100 = DAT_0032f994;
     iStack_fc = DAT_0032f998;
     iStack_f8 = DAT_0032f99c;
@@ -1302,7 +1302,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10c8) = uVar12;
-    FUN_0014bf00(0x1825,*(undefined4 *)(param_1 + 0x10c8),0,0,0,0);
+    Arc_LoadFileEx(0x1825,*(undefined4 *)(param_1 + 0x10c8),0,0,0,0);
     iStack_110 = DAT_0032f9a0;
     iStack_10c = DAT_0032f9a4;
     iStack_108 = DAT_0032f9a8;
@@ -1317,7 +1317,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10dc) = uVar12;
-    FUN_0014bf00(0x1826,*(undefined4 *)(param_1 + 0x10dc),0,0,0,0);
+    Arc_LoadFileEx(0x1826,*(undefined4 *)(param_1 + 0x10dc),0,0,0,0);
     iStack_120 = DAT_0032f9ac;
     iStack_11c = DAT_0032f9b0;
     iStack_118 = DAT_0032f9b4;
@@ -1332,7 +1332,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     }
     uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10f0) = uVar12;
-    FUN_0014bf00(0x1827,*(undefined4 *)(param_1 + 0x10f0),0,0,0,0);
+    Arc_LoadFileEx(0x1827,*(undefined4 *)(param_1 + 0x10f0),0,0,0,0);
   }
   FUN_001f4980(0x1b,0x32fb80,0);
   FUN_001f4980(0x1c,0x32fb8c,0);
@@ -1564,14 +1564,14 @@ void FUN_002cfb70(byte param_1)
           *(uint *)(iGpffff9114 + 0x27c) = *(uint *)(iGpffff9114 + 0x27c) & 0xfffffffd;
         }
         iVar5 = 0;
-        lVar3 = FUN_00177230();
+        lVar3 = GameState_GetMoneyTotal3();
         if (0 < lVar3) {
           iVar4 = 0;
           do {
             FUN_002c5f70(iGpffff9114 + iVar4 + 4,iVar5);
             iVar4 = iVar4 + 0xcc;
             iVar5 = iVar5 + 1;
-            iVar2 = FUN_00177230();
+            iVar2 = GameState_GetMoneyTotal3();
           } while (iVar5 < iVar2);
         }
       }
@@ -1605,10 +1605,11 @@ void FUN_002cfd00(undefined4 param_1,undefined4 param_2)
         if (((*(int *)(iVar1 + 0x1110) != 0) && (*(int *)(iVar1 + 0x110c) != 0)) &&
            (*(int *)(iVar1 + 0x1138) == 0)) {
           *(undefined4 *)(iVar1 + 0x1120) = 0;
-          FUN_00158050(iVar1 + 0x1118,*(undefined4 *)(iVar1 + 0x110c),
-                       *(undefined4 *)(iVar1 + 0x1128),*(undefined4 *)(iVar1 + 0x112c));
+          Pkt_AddTextureUploadAll
+                    (iVar1 + 0x1118,*(undefined4 *)(iVar1 + 0x110c),*(undefined4 *)(iVar1 + 0x1128),
+                     *(undefined4 *)(iVar1 + 0x112c));
         }
-        FUN_00158160(*(undefined4 *)(iVar1 + 0x1114),*(undefined4 *)(iVar1 + 0x110c),
+        TexSlot_Bind(*(undefined4 *)(iVar1 + 0x1114),*(undefined4 *)(iVar1 + 0x110c),
                      *(undefined4 *)(iVar1 + 0x1110),*(undefined4 *)(iVar1 + 0x1128),
                      *(undefined4 *)(iVar1 + 0x112c),*(undefined4 *)(iVar1 + 0x1130),0,0);
         iVar1 = iGpffff9114;
@@ -1623,10 +1624,11 @@ void FUN_002cfd00(undefined4 param_1,undefined4 param_2)
     if (((*(int *)(iGpffff9114 + 0x1278) != 0) && (*(int *)(iGpffff9114 + 0x1274) != 0)) &&
        (*(int *)(iGpffff9114 + 0x12a0) == 0)) {
       *(undefined4 *)(iGpffff9114 + 0x1288) = 0;
-      FUN_00158050(iGpffff9114 + 0x1280,*(undefined4 *)(iGpffff9114 + 0x1274),
-                   *(undefined4 *)(iGpffff9114 + 0x1290),*(undefined4 *)(iGpffff9114 + 0x1294));
+      Pkt_AddTextureUploadAll
+                (iGpffff9114 + 0x1280,*(undefined4 *)(iGpffff9114 + 0x1274),
+                 *(undefined4 *)(iGpffff9114 + 0x1290),*(undefined4 *)(iGpffff9114 + 0x1294));
     }
-    FUN_00158160(*(undefined4 *)(iVar1 + 0x127c),*(undefined4 *)(iVar1 + 0x1274),
+    TexSlot_Bind(*(undefined4 *)(iVar1 + 0x127c),*(undefined4 *)(iVar1 + 0x1274),
                  *(undefined4 *)(iVar1 + 0x1278),*(undefined4 *)(iVar1 + 0x1290),
                  *(undefined4 *)(iVar1 + 0x1294),*(undefined4 *)(iVar1 + 0x1298),0,0);
     iVar3 = iGpffff9114;
@@ -1635,10 +1637,11 @@ void FUN_002cfd00(undefined4 param_1,undefined4 param_2)
     if (((*(int *)(iGpffff9114 + 0x26f8) != 0) && (*(int *)(iGpffff9114 + 0x26f4) != 0)) &&
        (*(int *)(iGpffff9114 + 0x2720) == 0)) {
       *(undefined4 *)(iGpffff9114 + 0x2708) = 0;
-      FUN_00158050(iGpffff9114 + 0x2700,*(undefined4 *)(iGpffff9114 + 0x26f4),
-                   *(undefined4 *)(iGpffff9114 + 10000),*(undefined4 *)(iGpffff9114 + 0x2714));
+      Pkt_AddTextureUploadAll
+                (iGpffff9114 + 0x2700,*(undefined4 *)(iGpffff9114 + 0x26f4),
+                 *(undefined4 *)(iGpffff9114 + 10000),*(undefined4 *)(iGpffff9114 + 0x2714));
     }
-    FUN_00158160(*(undefined4 *)(iVar3 + 0x26fc),*(undefined4 *)(iVar3 + 0x26f4),
+    TexSlot_Bind(*(undefined4 *)(iVar3 + 0x26fc),*(undefined4 *)(iVar3 + 0x26f4),
                  *(undefined4 *)(iVar3 + 0x26f8),*(undefined4 *)(iVar3 + 10000),
                  *(undefined4 *)(iVar3 + 0x2714),*(undefined4 *)(iVar3 + 0x2718),0,0);
   }
@@ -1677,7 +1680,7 @@ void FUN_002cff10(void)
       Mem_Free();
       *(undefined4 *)(iVar2 + 0x127c) = 0;
     }
-    FUN_00144aa0(iVar2 + 0x1280);
+    DmaBuf_Free(iVar2 + 0x1280);
     iVar3 = iGpffff9114;
     *(undefined4 *)(iVar2 + 0x12a0) = 0;
     if (*(int *)(iGpffff9114 + 0x26f4) != 0) {
@@ -1688,7 +1691,7 @@ void FUN_002cff10(void)
       Mem_Free();
       *(undefined4 *)(iVar3 + 0x26fc) = 0;
     }
-    FUN_00144aa0(iVar3 + 0x2700);
+    DmaBuf_Free(iVar3 + 0x2700);
     *(undefined4 *)(iVar3 + 0x2720) = 0;
     uVar4 = 0;
     iVar2 = 0;
@@ -1705,7 +1708,7 @@ void FUN_002cff10(void)
           Mem_Free();
           *(undefined4 *)(iVar1 + 0x1114) = 0;
         }
-        FUN_00144aa0(iVar1 + 0x1118);
+        DmaBuf_Free(iVar1 + 0x1118);
         uVar5 = uVar5 + 1;
         *(undefined4 *)(iVar1 + 0x1138) = 0;
         iVar3 = iVar3 + 0x3c;

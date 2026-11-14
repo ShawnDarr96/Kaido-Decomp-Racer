@@ -34,9 +34,9 @@ void FUN_0019c2e0(undefined8 param_1)
     puVar9 = (uint *)param_1;
     if (((*(int *)(iVar6 + 0x431684) != 0) && ((bVar1 != 1 || ((*puVar9 & 4) != 0)))) &&
        ((bVar1 != 2 || ((*puVar9 & 8) != 0)))) {
-      FUN_00148950(auStack_500,iStack_2bc,uStack_130,0,*(undefined4 *)(puVar7 + 4));
-      FUN_00184b20(iStack_2bc,*puVar7,puVar7[1]);
-      FUN_0014d240(uStack_130);
+      Layer_Reset(auStack_500,iStack_2bc,uStack_130,0,*(undefined4 *)(puVar7 + 4));
+      Cam_SetupViewport(iStack_2bc,*puVar7,puVar7[1]);
+      Light_UpdateMatrices(uStack_130);
       uVar4 = puVar9[0x44];
       if ((uVar4 & 0x200) == 0) {
         cVar2 = puVar7[2];
@@ -75,28 +75,28 @@ LAB_0019c6c8:
         }
         uStack_a8 = FUN_001aded0(puVar9[0x141],uStack_a8);
       }
-      FUN_00148850(auStack_500,0);
-      FUN_00148850(auStack_500,1);
+      Layer_Open(auStack_500,0);
+      Layer_Open(auStack_500,1);
       if (puVar9[0x13a] == 0) {
         uVar4 = puVar9[0x44];
       }
       else {
-        FUN_00145a80(auStack_500,puVar9[0x13b],puVar9[0x13c],0);
-        FUN_00145a80(auStack_4bc,puVar9[0x13b],puVar9[0x13c],0);
-        FUN_00145a80(auStack_500,puVar9[0x13b],puVar9[0x13c],1);
-        FUN_00145a80(auStack_4bc,puVar9[0x13b],puVar9[0x13c],1);
+        Pkt_SetFrame(auStack_500,puVar9[0x13b],puVar9[0x13c],0);
+        Pkt_SetFrame(auStack_4bc,puVar9[0x13b],puVar9[0x13c],0);
+        Pkt_SetFrame(auStack_500,puVar9[0x13b],puVar9[0x13c],1);
+        Pkt_SetFrame(auStack_4bc,puVar9[0x13b],puVar9[0x13c],1);
         uVar4 = puVar9[0x44];
       }
       if (((uVar4 & 0x800) != 0) && (puVar7[2] == '\0')) {
-        FUN_00145820(auStack_500,3);
-        FUN_00145820(auStack_4bc,3);
+        Pkt_SetTexFlush(auStack_500,3);
+        Pkt_SetTexFlush(auStack_4bc,3);
       }
       lVar5 = FUN_0019af50(param_1,auStack_500);
       if (lVar5 != 0) {
         FUN_0019a8a0(param_1,auStack_500);
       }
       FUN_0019a260(param_1,auStack_500);
-      FUN_00144350(iStack_2bc,auStack_510,puVar9 + 0x48);
+      Camera_GetViewMatrix(iStack_2bc,auStack_510,puVar9 + 0x48);
       bVar3 = true;
       if ((-1 < iStack_508) && (iStack_508 < 0xffffff)) {
         bVar3 = false;
@@ -106,17 +106,17 @@ LAB_0019c6c8:
       }
       iStack_47c = iStack_508;
       if (((puVar9[0x44] & 0x800) != 0) && (puVar7[2] == '\0')) {
-        FUN_00145820(auStack_500,0);
-        FUN_00145820(auStack_4bc,0);
+        Pkt_SetTexFlush(auStack_500,0);
+        Pkt_SetTexFlush(auStack_4bc,0);
       }
       if (puVar9[0x13a] != 0) {
-        FUN_00145a80(auStack_500,0,0,0);
-        FUN_00145a80(auStack_4bc,0,0,0);
-        FUN_00145a80(auStack_500,0,0,1);
-        FUN_00145a80(auStack_4bc,0,0,1);
+        Pkt_SetFrame(auStack_500,0,0,0);
+        Pkt_SetFrame(auStack_4bc,0,0,0);
+        Pkt_SetFrame(auStack_500,0,0,1);
+        Pkt_SetFrame(auStack_4bc,0,0,1);
       }
-      FUN_00148820(auStack_500,0);
-      FUN_00148820(auStack_500,1);
+      Layer_Close(auStack_500,0);
+      Layer_Close(auStack_500,1);
     }
     uVar8 = uVar8 + 1;
     puVar7 = puVar7 + 8;
@@ -129,7 +129,7 @@ LAB_0019c6c8:
           iVar6 = iRam004301b0 + puVar9[0xff] * 0xb900;
         }
         if (iVar6 != 0) {
-          FUN_001799b0(iVar6,param_1);
+          Car_DrawShadowAndBlur(iVar6,param_1);
         }
       }
       return;
@@ -197,7 +197,7 @@ void FUN_0019c780(undefined8 param_1)
       iStack_2bc = 0x432240;
     }
     if (*(int *)(iStack_2bc + 0x584) != 0) {
-      FUN_00148950(auStack_500,iStack_2bc,iStack_130,0,4);
+      Layer_Reset(auStack_500,iStack_2bc,iStack_130,0,4);
       if (cRam00430460 == '\x02') {
         vu0math_sub_00132b50(auStack_520,iVar4 + 400,iVar4 + 0x170);
         vu0math_sub_00132b50(auStack_530,iVar4 + 0x180,iVar4 + 400);
@@ -248,8 +248,8 @@ void FUN_0019c780(undefined8 param_1)
       vu0math_sub_00132ae0(iStack_130 + 0x50,auStack_720);
       vu0math_sub_00132ae0(iStack_130 + 0x60,auStack_710);
       vu0math_sub_00132ae0(iStack_130 + 0x70,auStack_700);
-      FUN_00184b20(iStack_2bc,0,1);
-      FUN_0014d240(iStack_130);
+      Cam_SetupViewport(iStack_2bc,0,1);
+      Light_UpdateMatrices(iStack_130);
       if (*(byte *)(iVar4 + 0x4e3) < 5) {
         uStack_a8 = (uint)*(byte *)(iVar4 + 0x4e3);
       }
@@ -257,19 +257,19 @@ void FUN_0019c780(undefined8 param_1)
         uStack_a8 = 4;
       }
       uStack_a8 = FUN_001aded0(*(undefined4 *)(iVar4 + 0x504),uStack_a8);
-      FUN_00148850(auStack_500,0);
-      FUN_00148850(auStack_500,1);
+      Layer_Open(auStack_500,0);
+      Layer_Open(auStack_500,1);
       if (*(int *)(iVar4 + 0x4e8) != 0) {
-        FUN_00145a80(auStack_500,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),0);
-        FUN_00145a80(auStack_4bc,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),0);
-        FUN_00145a80(auStack_500,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),1);
-        FUN_00145a80(auStack_4bc,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),1);
+        Pkt_SetFrame(auStack_500,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),0);
+        Pkt_SetFrame(auStack_4bc,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),0);
+        Pkt_SetFrame(auStack_500,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),1);
+        Pkt_SetFrame(auStack_4bc,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),1);
       }
       if (cRam00430460 == '\x02') {
-        puVar2 = (undefined8 *)FUN_00146370(auStack_500,1,0x13000000);
+        puVar2 = (undefined8 *)Pkt_AllocVif(auStack_500,1,0x13000000);
         *puVar2 = 1;
         puVar2[1] = 0x4a;
-        puVar2 = (undefined8 *)FUN_00146370(auStack_4bc,1,0x13000000);
+        puVar2 = (undefined8 *)Pkt_AllocVif(auStack_4bc,1,0x13000000);
         *puVar2 = 1;
         puVar2[1] = 0x4a;
       }
@@ -283,7 +283,7 @@ void FUN_0019c780(undefined8 param_1)
         FUN_0019a8a0(param_1,auStack_500);
       }
       FUN_0019a260(param_1,auStack_500);
-      FUN_00144350(iStack_2bc,auStack_7b0,auStack_440);
+      Camera_GetViewMatrix(iStack_2bc,auStack_7b0,auStack_440);
       bVar1 = true;
       if ((-1 < iStack_7a8) && (iStack_7a8 < 0xffffff)) {
         bVar1 = false;
@@ -293,21 +293,21 @@ void FUN_0019c780(undefined8 param_1)
       }
       iStack_47c = iStack_7a8;
       if (cRam00430460 == '\x02') {
-        puVar2 = (undefined8 *)FUN_00146370(auStack_500,1,0x13000000);
+        puVar2 = (undefined8 *)Pkt_AllocVif(auStack_500,1,0x13000000);
         *puVar2 = 0;
         puVar2[1] = 0x4a;
-        puVar2 = (undefined8 *)FUN_00146370(auStack_4bc,1,0x13000000);
+        puVar2 = (undefined8 *)Pkt_AllocVif(auStack_4bc,1,0x13000000);
         *puVar2 = 0;
         puVar2[1] = 0x4a;
       }
       if (*(int *)(iVar4 + 0x4e8) != 0) {
-        FUN_00145a80(auStack_500,0,0,0);
-        FUN_00145a80(auStack_4bc,0,0,0);
-        FUN_00145a80(auStack_500,0,0,1);
-        FUN_00145a80(auStack_4bc,0,0,1);
+        Pkt_SetFrame(auStack_500,0,0,0);
+        Pkt_SetFrame(auStack_4bc,0,0,0);
+        Pkt_SetFrame(auStack_500,0,0,1);
+        Pkt_SetFrame(auStack_4bc,0,0,1);
       }
-      FUN_00148820(auStack_500,0);
-      FUN_00148820(auStack_500,1);
+      Layer_Close(auStack_500,0);
+      Layer_Close(auStack_500,1);
     }
   }
   return;
@@ -481,7 +481,7 @@ void FUN_0019d090(int param_1)
 {
   int iVar1;
   
-  FUN_001325d0(param_1,0,0x100);
+  Mem_Set16(param_1,0,0x100);
   *(undefined4 *)(param_1 + 4) = 0;
   FUN_001af6f0(param_1 + 8);
   *(undefined4 *)(param_1 + 0xc) = 0;
@@ -544,16 +544,16 @@ void FUN_0019d120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
           lVar6 = FUN_001a14c0(iRam004305d0,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar10 + 4);
-            FUN_00138bf0((int)register0x000001c0 + -0x7730);
+            Sema_Wait((int)register0x000001c0 + -0x7730);
             uVar2 = uRam00386628;
-            FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+            Sema_Signal((int)register0x000001c0 + -0x7730,0);
             puVar8 = (uint *)lVar6;
             if (uVar2 < 0x100) {
               puVar8[2] = uVar5;
               uVar1 = *(ushort *)((int)puVar8 + 10);
               iVar9 = *(int *)(iRam004305b8 + (uint)(ushort)puVar8[2] * 0xc + 0x48);
-              iVar4 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),
-                                   (uint)(ushort)puVar8[2] * 2 + 0xc,0);
+              iVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
+                                       (uint)(ushort)puVar8[2] * 2 + 0xc,0);
               iVar4 = *(int *)(iVar4 + (uint)uVar1 * 4);
               if (iVar4 < 0) {
                 bVar7 = false;
@@ -561,7 +561,7 @@ void FUN_0019d120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
               else {
                 *puVar8 = *puVar8 & 0xfffffffb;
                 *puVar8 = *puVar8 | 1;
-                uVar5 = FUN_0014bf00(iVar9 + iVar4,puVar8[3],0x19e660,lVar6,0,0);
+                uVar5 = Arc_LoadFileEx(iVar9 + iVar4,puVar8[3],0x19e660,lVar6,0,0);
                 puVar8[4] = uVar5;
                 bVar7 = true;
               }
@@ -591,7 +591,7 @@ void FUN_0019d120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
       if (((*puVar8 & 0x10) == 0) && ((*puVar8 & 1) != 0)) {
         bVar7 = true;
       }
-      if ((bVar7) && (lVar6 = FUN_001369c0(puVar8[4]), lVar6 != 0)) {
+      if ((bVar7) && (lVar6 = File_CancelRequest(puVar8[4]), lVar6 != 0)) {
         *puVar8 = 0;
         puVar8[1] = 0;
         *(undefined2 *)(puVar8 + 2) = 0xffff;
@@ -685,7 +685,7 @@ uint FUN_0019d490(float param_1,undefined4 param_2,float param_3,undefined4 para
         } while (uVar11 < uRam004305c4);
       }
       if (bVar1) {
-        iVar5 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),iStack_110,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_110,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iStack_130 = 0;
@@ -788,7 +788,7 @@ LAB_0019d900:
         } while (uVar11 < uRam004305c4);
       }
       if (bVar1) {
-        iVar5 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),iVar13,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iVar13,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iVar17 = 0;
@@ -910,7 +910,7 @@ int FUN_0019dd50(int param_1,int param_2,float *param_3,int param_4,int param_5)
   float fVar11;
   int iStack_20;
   
-  lVar4 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),10,1);
+  lVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),10,1);
   iStack_20 = 0;
   iVar6 = 0;
   if (0 < param_2) {
@@ -1049,7 +1049,7 @@ undefined4 FUN_0019e0a0(float *param_1,float *param_2)
   float afStack_10 [3];
   undefined4 uStack_4;
   
-  uVar5 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),8,0);
+  uVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),8,0);
   afStack_10[0] = *param_1;
   afStack_10[1] = 0.0;
   afStack_10[2] = param_1[2];
@@ -1083,7 +1083,7 @@ undefined4 FUN_0019e0a0(float *param_1,float *param_2)
   if (*(uint *)uVar5 != 0) {
     fVar3 = -1.0;
     do {
-      iVar4 = FUN_00134630(uVar5,uVar8,0);
+      iVar4 = Gut_PackGetEntry(uVar5,uVar8,0);
       iVar7 = iVar4 + 0x30;
       if ((((*(float *)(iVar4 + 0x10) <= fVar14) && (fVar12 <= *(float *)(iVar4 + 0x20))) &&
           (*(float *)(iVar4 + 0x18) <= fVar13)) && (fVar11 <= *(float *)(iVar4 + 0x28))) {
@@ -1191,7 +1191,7 @@ undefined4 FUN_0019e0a0(float *param_1,float *param_2)
               if ((0.0 <= fVar10) &&
                  (fVar10 * fVar10 <= afStack_d0[0] * afStack_d0[0] + afStack_d0[2] * afStack_d0[2]))
               {
-                fVar9 = (float)FUN_00140170(auStack_c0,auStack_b0,auStack_a0);
+                fVar9 = (float)Vu0_Vec3Distance(auStack_c0,auStack_b0,auStack_a0);
               }
               if ((fVar9 <= 0.0) || (6.0 <= fVar9)) {
                 return 0;
@@ -1252,13 +1252,13 @@ void FUN_0019e660(void)
   pfVar5 = (float *)(in_a3_lo + 10);
   pfVar10 = (float *)(in_a3_lo + 0xe);
   do {
-    lVar3 = FUN_00134630(in_a3_lo[3],uVar8 & 0xff,1);
+    lVar3 = Gut_PackGetEntry(in_a3_lo[3],uVar8 & 0xff,1);
     if (lVar3 != 0) {
-      FUN_0014d2a0(lVar3);
+      Model_Relocate(lVar3);
       uVar7 = 0;
       if (*(int *)((int)lVar3 + 0x24) != 0) {
         do {
-          puVar2 = (uint *)FUN_0014d6e0(lVar3,uVar7);
+          puVar2 = (uint *)Model_GetTexture(lVar3,uVar7);
           if ((*puVar2 & 0x10) == 0) {
             puVar4 = (uint *)0x0;
           }
@@ -1330,47 +1330,47 @@ void FUN_0019e8f0(void)
   long lVar1;
   uint *in_a3_lo;
   
-  lVar1 = FUN_00134630(in_a3_lo[3],3,1);
+  lVar1 = Gut_PackGetEntry(in_a3_lo[3],3,1);
   if (lVar1 == 0) {
     in_a3_lo[6] = 0;
     in_a3_lo[10] = 0;
   }
   else {
-    FUN_0013da70(lVar1);
+    Tex_Relocate(lVar1);
     in_a3_lo[6] = (uint)*(ushort *)((int)lVar1 + 6);
     in_a3_lo[10] = 0;
     if (in_a3_lo[9] != 0) {
-      FUN_00158050(in_a3_lo + 8,lVar1,in_a3_lo[7],in_a3_lo[7]);
+      Pkt_AddTextureUploadAll(in_a3_lo + 8,lVar1,in_a3_lo[7],in_a3_lo[7]);
     }
-    FUN_00158160(in_a3_lo[0xc],lVar1,0,in_a3_lo[7],in_a3_lo[7],0x51010,0,0);
+    TexSlot_Bind(in_a3_lo[0xc],lVar1,0,in_a3_lo[7],in_a3_lo[7],0x51010,0,0);
   }
-  lVar1 = FUN_00134630(in_a3_lo[3],4,1);
+  lVar1 = Gut_PackGetEntry(in_a3_lo[3],4,1);
   if (lVar1 == 0) {
     in_a3_lo[0xe] = 0;
     in_a3_lo[0x12] = 0;
   }
   else {
-    FUN_0013da70(lVar1);
+    Tex_Relocate(lVar1);
     in_a3_lo[0xe] = (uint)*(ushort *)((int)lVar1 + 6);
     in_a3_lo[0x12] = 0;
     if (in_a3_lo[0x11] != 0) {
-      FUN_00158050(in_a3_lo + 0x10,lVar1,in_a3_lo[0xf],in_a3_lo[0xf]);
+      Pkt_AddTextureUploadAll(in_a3_lo + 0x10,lVar1,in_a3_lo[0xf],in_a3_lo[0xf]);
     }
-    FUN_00158160(in_a3_lo[0x14],lVar1,1,in_a3_lo[0xf],in_a3_lo[0xf],0x51010,0,0);
+    TexSlot_Bind(in_a3_lo[0x14],lVar1,1,in_a3_lo[0xf],in_a3_lo[0xf],0x51010,0,0);
   }
-  lVar1 = FUN_00134630(in_a3_lo[3],5,1);
+  lVar1 = Gut_PackGetEntry(in_a3_lo[3],5,1);
   if (lVar1 == 0) {
     in_a3_lo[0x16] = 0;
     in_a3_lo[0x1a] = 0;
   }
   else {
-    FUN_0013da70(lVar1);
+    Tex_Relocate(lVar1);
     in_a3_lo[0x16] = (uint)*(ushort *)((int)lVar1 + 6);
     in_a3_lo[0x1a] = 0;
     if (in_a3_lo[0x19] != 0) {
-      FUN_00158050(in_a3_lo + 0x18,lVar1,in_a3_lo[0x17],in_a3_lo[0x17]);
+      Pkt_AddTextureUploadAll(in_a3_lo + 0x18,lVar1,in_a3_lo[0x17],in_a3_lo[0x17]);
     }
-    FUN_00158160(in_a3_lo[0x1c],lVar1,1,in_a3_lo[0x17],in_a3_lo[0x17],0x51010,0,0);
+    TexSlot_Bind(in_a3_lo[0x1c],lVar1,1,in_a3_lo[0x17],in_a3_lo[0x17],0x51010,0,0);
   }
   *in_a3_lo = *in_a3_lo & 0xfffffffe;
   *in_a3_lo = *in_a3_lo | 6;
@@ -1390,14 +1390,15 @@ void FUN_0019eb10(void)
     *(undefined4 *)(in_a3_lo + 0x2c) = 0;
   }
   else {
-    FUN_0013da70(iVar1);
+    Tex_Relocate(iVar1);
     *(uint *)(in_a3_lo + 0x1c) = (uint)*(ushort *)(iVar1 + 6);
     *(undefined4 *)(in_a3_lo + 0x2c) = 0;
     if (*(int *)(in_a3_lo + 0x28) != 0) {
-      FUN_00158050(in_a3_lo + 0x24,iVar1,*(undefined4 *)(in_a3_lo + 0x20),
-                   *(undefined4 *)(in_a3_lo + 0x20));
+      Pkt_AddTextureUploadAll
+                (in_a3_lo + 0x24,iVar1,*(undefined4 *)(in_a3_lo + 0x20),
+                 *(undefined4 *)(in_a3_lo + 0x20));
     }
-    FUN_00158160(*(undefined4 *)(in_a3_lo + 0x34),iVar1,1,*(undefined4 *)(in_a3_lo + 0x20),
+    TexSlot_Bind(*(undefined4 *)(in_a3_lo + 0x34),iVar1,1,*(undefined4 *)(in_a3_lo + 0x20),
                  *(undefined4 *)(in_a3_lo + 0x20),0x51010,0,0);
   }
   return;
@@ -1416,78 +1417,81 @@ void FUN_0019ebd0(void)
   uint uVar6;
   uint uVar7;
   
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),0,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),0,0);
   if (lVar3 == 0) {
     *(undefined4 *)(in_a3_lo + 0x18) = 0;
     *(undefined4 *)(in_a3_lo + 0x28) = 0;
   }
   else {
-    FUN_0013da70(lVar3);
+    Tex_Relocate(lVar3);
     *(uint *)(in_a3_lo + 0x18) = (uint)*(ushort *)((int)lVar3 + 6);
     *(undefined4 *)(in_a3_lo + 0x28) = 0;
     if (*(int *)(in_a3_lo + 0x24) != 0) {
-      FUN_00158050(in_a3_lo + 0x20,lVar3,*(undefined4 *)(in_a3_lo + 0x1c),
-                   *(undefined4 *)(in_a3_lo + 0x1c));
+      Pkt_AddTextureUploadAll
+                (in_a3_lo + 0x20,lVar3,*(undefined4 *)(in_a3_lo + 0x1c),
+                 *(undefined4 *)(in_a3_lo + 0x1c));
     }
-    FUN_00158160(*(undefined4 *)(in_a3_lo + 0x30),lVar3,1,*(undefined4 *)(in_a3_lo + 0x1c),
+    TexSlot_Bind(*(undefined4 *)(in_a3_lo + 0x30),lVar3,1,*(undefined4 *)(in_a3_lo + 0x1c),
                  *(undefined4 *)(in_a3_lo + 0x1c),0x51010,0,0);
   }
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),1,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),1,0);
   if (lVar3 == 0) {
     *(undefined4 *)(in_a3_lo + 0x38) = 0;
     *(undefined4 *)(in_a3_lo + 0x48) = 0;
   }
   else {
-    FUN_0013da70(lVar3);
+    Tex_Relocate(lVar3);
     *(uint *)(in_a3_lo + 0x38) = (uint)*(ushort *)((int)lVar3 + 6);
     *(undefined4 *)(in_a3_lo + 0x48) = 0;
     if (*(int *)(in_a3_lo + 0x44) != 0) {
-      FUN_00158050(in_a3_lo + 0x40,lVar3,*(undefined4 *)(in_a3_lo + 0x3c),
-                   *(undefined4 *)(in_a3_lo + 0x3c));
+      Pkt_AddTextureUploadAll
+                (in_a3_lo + 0x40,lVar3,*(undefined4 *)(in_a3_lo + 0x3c),
+                 *(undefined4 *)(in_a3_lo + 0x3c));
     }
-    FUN_00158160(*(undefined4 *)(in_a3_lo + 0x50),lVar3,0,*(undefined4 *)(in_a3_lo + 0x3c),
+    TexSlot_Bind(*(undefined4 *)(in_a3_lo + 0x50),lVar3,0,*(undefined4 *)(in_a3_lo + 0x3c),
                  *(undefined4 *)(in_a3_lo + 0x3c),0x51010,0,0);
   }
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),2,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),2,0);
   if (lVar3 == 0) {
     *(undefined4 *)(in_a3_lo + 0x58) = 0;
     *(undefined4 *)(in_a3_lo + 0x68) = 0;
   }
   else {
-    FUN_0013da70(lVar3);
+    Tex_Relocate(lVar3);
     *(uint *)(in_a3_lo + 0x58) = (uint)*(ushort *)((int)lVar3 + 6);
     *(undefined4 *)(in_a3_lo + 0x68) = 0;
     if (*(int *)(in_a3_lo + 100) != 0) {
-      FUN_00158050(in_a3_lo + 0x60,lVar3,*(undefined4 *)(in_a3_lo + 0x5c),
-                   *(undefined4 *)(in_a3_lo + 0x5c));
+      Pkt_AddTextureUploadAll
+                (in_a3_lo + 0x60,lVar3,*(undefined4 *)(in_a3_lo + 0x5c),
+                 *(undefined4 *)(in_a3_lo + 0x5c));
     }
-    FUN_00158160(*(undefined4 *)(in_a3_lo + 0x70),lVar3,0,*(undefined4 *)(in_a3_lo + 0x5c),
+    TexSlot_Bind(*(undefined4 *)(in_a3_lo + 0x70),lVar3,0,*(undefined4 *)(in_a3_lo + 0x5c),
                  *(undefined4 *)(in_a3_lo + 0x5c),0x51010,0,0);
   }
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),3,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),3,0);
   if (lVar3 != 0) {
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),3,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),3,0);
     uVar6 = 0;
     if (*(uint *)uVar4 == 0) {
       uVar1 = *(undefined4 *)(in_a3_lo + 0xc);
     }
     else {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
-        FUN_0014d2a0(uVar5);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
+        Model_Relocate(uVar5);
         uVar6 = uVar6 + 1;
       } while (uVar6 < *(uint *)uVar4);
       uVar1 = *(undefined4 *)(in_a3_lo + 0xc);
     }
-    uVar4 = FUN_00134630(uVar1,3,0);
+    uVar4 = Gut_PackGetEntry(uVar1,3,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
         uVar7 = 0;
         if (*(int *)((int)uVar5 + 0x24) != 0) {
           do {
-            iVar2 = FUN_0014d6e0(uVar5,uVar7);
+            iVar2 = Model_GetTexture(uVar5,uVar7);
             uVar7 = uVar7 + 1;
             *(uint *)(iVar2 + 8) = *(uint *)(iVar2 + 8) | 2;
           } while (uVar7 < *(uint *)((int)uVar5 + 0x24));
@@ -1496,26 +1500,26 @@ void FUN_0019ebd0(void)
       } while (uVar6 < *(uint *)uVar4);
     }
   }
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),4,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),4,0);
   if (lVar3 != 0) {
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),4,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),4,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
-        FUN_0014d2a0(uVar5);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
+        Model_Relocate(uVar5);
         uVar6 = uVar6 + 1;
       } while (uVar6 < *(uint *)uVar4);
     }
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),4,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),4,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
         uVar7 = 0;
         if (*(int *)((int)uVar5 + 0x24) != 0) {
           do {
-            iVar2 = FUN_0014d6e0(uVar5,uVar7);
+            iVar2 = Model_GetTexture(uVar5,uVar7);
             uVar7 = uVar7 + 1;
             *(uint *)(iVar2 + 8) = *(uint *)(iVar2 + 8) | 2;
           } while (uVar7 < *(uint *)((int)uVar5 + 0x24));
@@ -1524,26 +1528,26 @@ void FUN_0019ebd0(void)
       } while (uVar6 < *(uint *)uVar4);
     }
   }
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),5,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),5,0);
   if (lVar3 != 0) {
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),5,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),5,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
-        FUN_0014d2a0(uVar5);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
+        Model_Relocate(uVar5);
         uVar6 = uVar6 + 1;
       } while (uVar6 < *(uint *)uVar4);
     }
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),5,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),5,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
         uVar7 = 0;
         if (*(int *)((int)uVar5 + 0x24) != 0) {
           do {
-            FUN_0014d6e0(uVar5,uVar7);
+            Model_GetTexture(uVar5,uVar7);
             uVar7 = uVar7 + 1;
           } while (uVar7 < *(uint *)((int)uVar5 + 0x24));
         }
@@ -1551,26 +1555,26 @@ void FUN_0019ebd0(void)
       } while (uVar6 < *(uint *)uVar4);
     }
   }
-  lVar3 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),6,0);
+  lVar3 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),6,0);
   if (lVar3 != 0) {
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),6,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),6,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
-        FUN_0014d2a0(uVar5);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
+        Model_Relocate(uVar5);
         uVar6 = uVar6 + 1;
       } while (uVar6 < *(uint *)uVar4);
     }
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),6,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),6,0);
     uVar6 = 0;
     if (*(uint *)uVar4 != 0) {
       do {
-        uVar5 = FUN_00134630(uVar4,uVar6,0);
+        uVar5 = Gut_PackGetEntry(uVar4,uVar6,0);
         uVar7 = 0;
         if (*(int *)((int)uVar5 + 0x24) != 0) {
           do {
-            FUN_0014d6e0(uVar5,uVar7);
+            Model_GetTexture(uVar5,uVar7);
             uVar7 = uVar7 + 1;
           } while (uVar7 < *(uint *)((int)uVar5 + 0x24));
         }
@@ -1579,8 +1583,8 @@ void FUN_0019ebd0(void)
     }
   }
   if (pcRam00430604 != (code *)0x0) {
-    uVar4 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),7,0);
-    uVar5 = FUN_00134630(*(undefined4 *)(in_a3_lo + 0xc),5,0);
+    uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),7,0);
+    uVar5 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),5,0);
     (*pcRam00430604)(uVar5,uVar4,uRam00430608);
   }
   return;
@@ -1636,16 +1640,16 @@ void FUN_0019f250(undefined4 param_1,undefined4 param_2,byte param_3,undefined8 
           lVar6 = FUN_001a14c0(iRam004305d0,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar12 + 4);
-            FUN_00138bf0((int)register0x000001c0 + -0x7730);
+            Sema_Wait((int)register0x000001c0 + -0x7730);
             uVar2 = uRam00386628;
-            FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+            Sema_Signal((int)register0x000001c0 + -0x7730,0);
             puVar9 = (uint *)lVar6;
             if (uVar2 < 0x100) {
               puVar9[2] = uVar5;
               uVar1 = *(ushort *)((int)puVar9 + 10);
               iVar10 = *(int *)(iRam004305b8 + (uint)(ushort)puVar9[2] * 0xc + 0x48);
-              iVar4 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),
-                                   (uint)(ushort)puVar9[2] * 2 + 0xc,0);
+              iVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
+                                       (uint)(ushort)puVar9[2] * 2 + 0xc,0);
               iVar4 = *(int *)(iVar4 + (uint)uVar1 * 4);
               if (iVar4 < 0) {
                 bVar7 = false;
@@ -1653,7 +1657,7 @@ void FUN_0019f250(undefined4 param_1,undefined4 param_2,byte param_3,undefined8 
               else {
                 *puVar9 = *puVar9 & 0xfffffffb;
                 *puVar9 = *puVar9 | 1;
-                uVar5 = FUN_0014bf00(iVar10 + iVar4,puVar9[3],0x19e660,lVar6,0,0);
+                uVar5 = Arc_LoadFileEx(iVar10 + iVar4,puVar9[3],0x19e660,lVar6,0,0);
                 puVar9[4] = uVar5;
                 bVar7 = true;
               }
@@ -1682,7 +1686,7 @@ void FUN_0019f250(undefined4 param_1,undefined4 param_2,byte param_3,undefined8 
       if (((*puVar9 & 0x10) == 0) && ((*puVar9 & 1) != 0)) {
         bVar7 = true;
       }
-      if ((bVar7) && (lVar6 = FUN_001369c0(puVar9[4]), lVar6 != 0)) {
+      if ((bVar7) && (lVar6 = File_CancelRequest(puVar9[4]), lVar6 != 0)) {
         *puVar9 = 0;
         puVar9[1] = 0;
         *(undefined2 *)(puVar9 + 2) = 0xffff;
@@ -1770,7 +1774,7 @@ uint FUN_0019f590(float param_1,undefined4 param_2,undefined4 param_3,undefined8
         } while (uVar11 < uRam004305c4);
       }
       if (bVar1) {
-        iVar5 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),iStack_c0,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_c0,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iStack_d0 = 0;
@@ -1847,7 +1851,7 @@ LAB_0019f850:
     if (uVar11 != 0) {
       iStack_b0 = 0xb;
       do {
-        iVar5 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),iStack_b0,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_b0,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iVar17 = 0;
@@ -1950,16 +1954,16 @@ void FUN_0019fbd0(undefined8 param_1,undefined8 param_2,long param_3)
         lVar5 = FUN_001a1510(iRam004305c8,uRam004305c4);
         if (lVar5 != 0) {
           uVar4 = *(uint *)(iVar8 + 4);
-          FUN_00138bf0((int)register0x000001c0 + -0x7730);
+          Sema_Wait((int)register0x000001c0 + -0x7730);
           uVar2 = uRam00386628;
-          FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+          Sema_Signal((int)register0x000001c0 + -0x7730,0);
           puVar7 = (uint *)lVar5;
           if (uVar2 < 0x100) {
             puVar7[2] = uVar4;
             uVar1 = *(undefined4 *)(iRam004305b8 + puVar7[2] * 0xc + 0x44);
             *puVar7 = *puVar7 & 0xfffffffb;
             *puVar7 = *puVar7 | 1;
-            uVar4 = FUN_0014bf00(uVar1,puVar7[3],0x19e8f0,lVar5,0,0);
+            uVar4 = Arc_LoadFileEx(uVar1,puVar7[3],0x19e8f0,lVar5,0,0);
             puVar7[4] = uVar4;
             *puVar7 = *puVar7 | 0x10;
           }
@@ -1981,7 +1985,7 @@ void FUN_0019fbd0(undefined8 param_1,undefined8 param_2,long param_3)
       if (((*puVar7 & 0x10) == 0) && ((*puVar7 & 1) != 0)) {
         bVar6 = true;
       }
-      if ((bVar6) && (lVar5 = FUN_001369c0(puVar7[4]), lVar5 != 0)) {
+      if ((bVar6) && (lVar5 = File_CancelRequest(puVar7[4]), lVar5 != 0)) {
         *puVar7 = 0;
         puVar7[1] = 0;
         *(undefined2 *)(puVar7 + 2) = 0xffff;
@@ -2043,7 +2047,7 @@ uint FUN_0019fe00(float param_1,undefined8 param_2,long param_3)
     iStack_c0 = 0xb;
     pfVar17 = (float *)param_2;
     do {
-      iVar6 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),iStack_c0,0);
+      iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_c0,0);
       pfVar14 = (float *)(iVar6 + 0x20);
       bVar1 = true;
       iVar12 = 0;
@@ -2096,7 +2100,7 @@ uint FUN_0019fe00(float param_1,undefined8 param_2,long param_3)
             fVar18 = -1.0;
           }
           else {
-            fVar18 = (float)FUN_00140170(auStack_30,auStack_20,auStack_10);
+            fVar18 = (float)Vu0_Vec3Distance(auStack_30,auStack_20,auStack_10);
           }
         }
         else {
@@ -2156,7 +2160,7 @@ uint FUN_0019fe00(float param_1,undefined8 param_2,long param_3)
       pfVar7 = (float *)param_3;
       pfVar17 = pfVar7 + 2;
       do {
-        iVar6 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),iStack_90,0);
+        iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_90,0);
         pfVar14 = (float *)(iVar6 + 0x20);
         bVar2 = true;
         bVar1 = false;
@@ -2222,7 +2226,7 @@ uint FUN_0019fe00(float param_1,undefined8 param_2,long param_3)
                 fVar18 = -1.0;
               }
               else {
-                fVar18 = (float)FUN_00140170(auStack_70,auStack_60,auStack_50);
+                fVar18 = (float)Vu0_Vec3Distance(auStack_70,auStack_60,auStack_50);
               }
             }
             else {

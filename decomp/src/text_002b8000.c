@@ -172,7 +172,7 @@ void FUN_002b8a40(undefined8 param_1)
     *(undefined4 *)(iVar1 + 0x89ec) = 1;
   }
   *(undefined4 *)(iVar1 + 0xc) = 1;
-  FUN_00138cb0(param_1);
+  Thread_Exit(param_1);
   return;
 }
 
@@ -312,7 +312,7 @@ int FUN_002b8e60(int param_1,long param_2)
     iVar1 = *(int *)((int)param_2 * 0x18 + param_1 + 0x3c) + 0x846;
   }
   else {
-    iVar1 = FUN_0017bf40();
+    iVar1 = maybe_Race_GetMode();
     iVar1 = iVar1 + ((int)param_2 + -0xc) * 0x858 + 0x876;
   }
   return iVar1;
@@ -632,7 +632,7 @@ void FUN_002b9440(undefined8 param_1,int param_2,int param_3)
   int iVar6;
   
   *(undefined4 *)(param_2 + 0x19c) = 0;
-  FUN_001325d0(param_2 + 0x1a8,0,0xc00);
+  Mem_Set16(param_2 + 0x1a8,0,0xc00);
   iVar5 = 0;
   uVar4 = 0;
   do {
@@ -706,7 +706,7 @@ undefined4 FUN_002b95c0(int param_1,int *param_2)
     *(undefined4 *)(iVar3 + 0x7030) = 0;
     *(undefined4 *)(iVar3 + 0x703c) = 0;
     *(undefined4 *)(iVar3 + 0x7034) = 0;
-    FUN_001325d0(iVar3 + 0x7040,0,0xc00);
+    Mem_Set16(iVar3 + 0x7040,0,0xc00);
     iVar5 = iVar5 + 1;
     *(undefined4 *)(iVar3 + 0x7038) = 0;
     iVar3 = iVar3 + 0xda8;
@@ -731,7 +731,7 @@ undefined4 FUN_002b95c0(int param_1,int *param_2)
     *(undefined4 *)(iVar3 + 0x2f0) = 0;
     *(undefined4 *)(iVar3 + 0x2fc) = 0;
     *(undefined4 *)(iVar3 + 0x2f4) = 0;
-    FUN_001325d0(iVar3 + 0x300,0,0xc00);
+    Mem_Set16(iVar3 + 0x300,0,0xc00);
     *(undefined4 *)(iVar3 + 0x2f8) = 0;
     iVar2 = *param_2;
     if ((0 < iVar2) && (0 < iVar2)) {
@@ -772,14 +772,14 @@ undefined8 FUN_002b97c0(undefined8 param_1,long param_2)
       bVar1 = true;
     }
     else {
-      iVar2 = FUN_0017bf40();
+      iVar2 = maybe_Race_GetMode();
       bVar1 = *(short *)(iVar2 + iVar4 * 0x858 + -0x5bac) != 0;
     }
     if (!bVar1) {
       FUN_002bb810(param_1);
       return 0;
     }
-    iVar2 = FUN_0017bf40();
+    iVar2 = maybe_Race_GetMode();
     iVar4 = iVar2 + (iVar4 + -0xc) * 0x858 + 0x30;
   }
   uVar3 = FUN_002b95c0(param_1,iVar4);
@@ -796,7 +796,7 @@ undefined4 FUN_002b9890(int param_1,undefined4 *param_2)
   uint uVar4;
   uint uVar5;
   
-  FUN_001325d0(param_2,0,0x858);
+  Mem_Set16(param_2,0,0x858);
   *(undefined2 *)(param_2 + 0x211) = *(undefined2 *)(param_1 + 0x89f4);
   *(undefined2 *)(param_2 + 0x210) = *(undefined2 *)(param_1 + 0x89f0);
   *(undefined2 *)((int)param_2 + 0x842) = *(undefined2 *)(param_1 + 0x89f2);
@@ -851,7 +851,7 @@ undefined8 FUN_002b9a00(undefined8 param_1,long param_2)
     uVar2 = 0;
   }
   else {
-    iVar1 = FUN_0017bf40();
+    iVar1 = maybe_Race_GetMode();
     uVar2 = FUN_002b9890(param_1,iVar1 + ((int)param_2 + -0xc) * 0x858 + 0x30);
   }
   return uVar2;
@@ -1392,8 +1392,8 @@ undefined4 FUN_002ba4b0(undefined8 param_1,int param_2)
     iVar16 = iVar13 + 0x6e98;
     iVar10 = iVar22 + *(int *)(iVar22 + 0x89e8) * 0xda8;
     iVar17 = iVar10 + 0x6e98;
-    FUN_001325d0(auStack_430,0,0x400);
-    FUN_001325d0(auStack_2430,0,0x2000);
+    Mem_Set16(auStack_430,0,0x400);
+    Mem_Set16(auStack_2430,0,0x2000);
     *(undefined4 *)(iVar9 + 0x1b0) = 0;
     *(undefined4 *)(iVar9 + 0x1c4) = 0;
     *(undefined1 *)(iVar9 + 0x1d4) = 0;
@@ -1771,7 +1771,7 @@ undefined4 FUN_002bb370(int param_1)
       *(undefined4 *)(iVar1 + 0x7030) = 0;
       *(undefined4 *)(iVar1 + 0x703c) = 0;
       *(undefined4 *)(iVar1 + 0x7034) = 0;
-      FUN_001325d0(iVar1 + 0x7040,0,0xc00);
+      Mem_Set16(iVar1 + 0x7040,0,0xc00);
       *(undefined4 *)(iVar1 + 0x7038) = 0;
     }
     FUN_002b0b70(iVar1 + 0x6e98,0x286c0);
@@ -1789,7 +1789,7 @@ undefined4 FUN_002bb460(int param_1)
   undefined4 uVar1;
   
   if (*(int *)(param_1 + 0xc) == 1) {
-    FUN_00138d70();
+    Thread_Delete();
     if (*(int *)(param_1 + 8) != 0) {
       Mem_Free();
       *(undefined4 *)(param_1 + 8) = 0;
@@ -1864,9 +1864,9 @@ LAB_002bb5d8:
         param_1[0x227b] = 4;
         iVar5 = Mem_AllocAligned(0x3500,0x10,param_1[0xc]);
         param_1[2] = iVar5;
-        FUN_00138dc0(param_1,iGpffff8bb4 + 1,0x2b8a40,param_1[2],0x3500,0);
+        Thread_Create(param_1,iGpffff8bb4 + 1,0x2b8a40,param_1[2],0x3500,0);
         param_1[3] = 0;
-        FUN_00138d30(param_1,param_1);
+        Thread_Start(param_1,param_1);
         uVar6 = 1;
       }
       else {
@@ -1997,7 +1997,7 @@ void FUN_002bb810(int param_1)
     *(undefined4 *)(iVar1 + 0x7030) = 0;
     *(undefined4 *)(iVar1 + 0x703c) = 0;
     *(undefined4 *)(iVar1 + 0x7034) = 0;
-    FUN_001325d0(iVar1 + 0x7040,0,0xc00);
+    Mem_Set16(iVar1 + 0x7040,0,0xc00);
     iVar2 = iVar2 + 1;
     *(undefined4 *)(iVar1 + 0x7038) = 0;
     iVar1 = iVar1 + 0xda8;
@@ -2021,7 +2021,7 @@ void FUN_002bb810(int param_1)
     *(undefined4 *)(iVar1 + 0x2f0) = 0;
     *(undefined4 *)(iVar1 + 0x2fc) = 0;
     *(undefined4 *)(iVar1 + 0x2f4) = 0;
-    FUN_001325d0(iVar1 + 0x300,0,0xc00);
+    Mem_Set16(iVar1 + 0x300,0,0xc00);
     iVar2 = iVar2 + 1;
     *(undefined1 *)(iVar1 + 0x1d5) = 100;
     iVar1 = iVar1 + 0xda8;
@@ -2172,14 +2172,14 @@ void FUN_002bb990(int param_1)
               }
               iVar4 = *(int *)(iVar4 + param_1 + 0x7018);
               if (iVar4 != 0) {
-                uVar3 = FUN_0014bf00(iVar7 + 0x1db4,iVar4,0x2ae470,iVar6 + 0x7014,0,0);
+                uVar3 = Arc_LoadFileEx(iVar7 + 0x1db4,iVar4,0x2ae470,iVar6 + 0x7014,0,0);
                 *(undefined4 *)(iVar9 + 0x7024) = uVar3;
                 *(undefined4 *)(iVar9 + 0x7028) = 1;
               }
             }
             else {
-              uVar3 = FUN_0014bf00(iVar7 + 0x1db4,*(int *)(iVar4 + param_1 + 0x7018) + iVar8,
-                                   0x2ae470,iVar6 + 0x7014,0,0);
+              uVar3 = Arc_LoadFileEx(iVar7 + 0x1db4,*(int *)(iVar4 + param_1 + 0x7018) + iVar8,
+                                     0x2ae470,iVar6 + 0x7014,0,0);
               *(undefined4 *)(iVar4 + param_1 + 0x7024) = uVar3;
               *(undefined4 *)(iVar4 + param_1 + 0x7028) = 1;
             }
@@ -2212,7 +2212,7 @@ void FUN_002bb990(int param_1)
             }
             iVar4 = *(int *)(iVar6 + param_1 + 0x2d8);
             if (iVar4 != 0) {
-              uVar3 = FUN_0014bf00(iVar8,iVar4,0x2ae470,param_1 + iVar6 + 0x2d4,0,0);
+              uVar3 = Arc_LoadFileEx(iVar8,iVar4,0x2ae470,param_1 + iVar6 + 0x2d4,0,0);
               *(undefined4 *)(iVar7 + 0x2e4) = uVar3;
               *(undefined4 *)(iVar7 + 0x2e8) = 1;
             }

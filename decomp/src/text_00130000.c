@@ -1307,7 +1307,7 @@ void FUN_00132020(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0xc) = *(undefined4 *)(param_1 + 8);
-  FUN_00132250();
+  maybe_List_Remove();
   return;
 }
 
@@ -1317,7 +1317,7 @@ long FUN_00132030(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e070;
-    FUN_00132320(param_1,0);
+    maybe_List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1340,7 +1340,7 @@ long FUN_001320d0(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e080;
-    FUN_00132400(param_1,0);
+    maybe_ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1356,7 +1356,7 @@ FUN_00132130(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4
 {
   undefined4 *puVar1;
   
-  FUN_00132450(param_1,0);
+  maybe_ListNode_ctor(param_1,0);
   puVar1 = (undefined4 *)param_1;
   *puVar1 = &DAT_0036e080;
   puVar1[2] = param_2;
@@ -1370,7 +1370,7 @@ FUN_00132130(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4
 }
 
 // 0x001321c0  size 0x88
-undefined4 FUN_001321c0(int param_1,int param_2)
+undefined4 maybe_List_Append(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1402,7 +1402,7 @@ undefined4 FUN_001321c0(int param_1,int param_2)
 }
 
 // 0x00132250  size 0x44
-undefined4 FUN_00132250(int param_1,long param_2)
+undefined4 maybe_List_Remove(int param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -1429,7 +1429,7 @@ undefined4 FUN_00132250(int param_1,long param_2)
 }
 
 // 0x001322a0  size 0x74
-void FUN_001322a0(int param_1)
+void maybe_List_Clear(int param_1)
 
 {
   int iVar1;
@@ -1451,7 +1451,7 @@ void FUN_001322a0(int param_1)
 }
 
 // 0x00132320  size 0xa8
-long FUN_00132320(long param_1,short param_2)
+long maybe_List_dtor(long param_1,short param_2)
 
 {
   int iVar1;
@@ -1496,7 +1496,7 @@ undefined8 FUN_001323d0(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00132400  size 0x4c
-long FUN_00132400(long param_1,short param_2)
+long maybe_ListNode_dtor(long param_1,short param_2)
 
 {
   if ((param_1 != 0) && (*(undefined4 *)param_1 = &DAT_0036e0a0, 0 < param_2)) {
@@ -1506,7 +1506,7 @@ long FUN_00132400(long param_1,short param_2)
 }
 
 // 0x00132450  size 0x18
-undefined8 FUN_00132450(undefined8 param_1,undefined4 param_2)
+undefined8 maybe_ListNode_ctor(undefined8 param_1,undefined4 param_2)
 
 {
   *(undefined4 *)param_1 = &DAT_0036e0a0;
@@ -1636,7 +1636,9 @@ int FUN_00132590(char *param_1,char *param_2,int param_3)
 }
 
 // 0x001325d0  size 0x30
-undefined1 * FUN_001325d0(undefined1 *param_1,undefined1 param_2,int param_3)
+/* (dst, value, size) qword fill; 53 callers */
+
+undefined1 * Mem_Set16(undefined1 *param_1,undefined1 param_2,int param_3)
 
 {
   undefined1 *puVar1;

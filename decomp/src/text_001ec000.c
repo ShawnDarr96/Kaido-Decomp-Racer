@@ -59,13 +59,13 @@ void FUN_001ec030(int param_1)
     *(undefined4 *)(iVar1 + 0x5c) = 0;
   }
   else if ((iVar3 != 0) && (iVar3 = *(int *)(iVar3 + 0x14), iVar3 != 0)) {
-    fVar8 = (float)FUN_00184f20(*(undefined4 *)(iRam0036f1fc + 0x14));
+    fVar8 = (float)Cam_NormalizeDirection(*(undefined4 *)(iRam0036f1fc + 0x14));
     if (10.0 < fVar8) {
       *(undefined4 *)(iVar1 + 0x5c) = 0;
     }
     uVar5 = FUN_001777b0();
-    uVar6 = FUN_00177790();
-    uVar7 = FUN_00177780();
+    uVar6 = GameState_Get_2();
+    uVar7 = GameState_Get_3();
     FUN_001c5b30(uVar5,uVar6,uVar7,0);
     if (*(int *)(iVar3 + 0x1c) != 0) {
       lVar4 = FUN_001ca6b0(0);
@@ -158,7 +158,7 @@ void FUN_001ec360(int param_1)
   undefined2 uVar2;
   
   puVar1 = *(undefined2 **)(param_1 + 0x14);
-  uVar2 = FUN_001804d0();
+  uVar2 = Course_GetCurrentId();
   *puVar1 = uVar2;
   FUN_001c5ba0(0x430750);
   FUN_001eba40(puVar1);
@@ -230,15 +230,15 @@ void FUN_001ec3c0(undefined8 param_1,float *param_2,int param_3,int param_4)
 LAB_001ec484:
   if (bVar2) {
     piVar10 = (int *)param_1;
-    FUN_0014f3b0(*piVar10,6,param_4);
+    Obj_Reset(*piVar10,6,param_4);
     *(uint *)*piVar10 = *(uint *)*piVar10 | 2;
     iVar8 = *piVar10;
     *(undefined4 *)(iVar8 + 0x2c0) = 0x80;
     *(undefined4 *)(iVar8 + 0x2c4) = 0x80;
     *(undefined4 *)(iVar8 + 0x2c8) = 0x80;
     *(undefined4 *)(iVar8 + 0x2cc) = 0x80;
-    FUN_0014f1f0(*piVar10,param_2);
-    FUN_0014f1d0(*piVar10,param_3);
+    Obj_CopyParams(*piVar10,param_2);
+    Obj_SetMatrixDirty(*piVar10,param_3);
     *piVar10 = *piVar10 + 0x310;
   }
   else {
@@ -1033,9 +1033,9 @@ void FUN_001ed540(float param_1,float param_2,int param_3,int *param_4,int param
   fVar10 = (float)*(int *)(param_5 + 0x20);
   fVar8 = (float)(iVar2 - *(int *)(param_5 + 0x1c));
   fVar9 = (float)(iVar3 - *(int *)(param_5 + 0x20));
-  FUN_0014f3b0(puVar1,5,4);
+  Obj_Reset(puVar1,5,4);
   *puVar1 = *puVar1 | 2;
-  FUN_0014f2c0(puVar1,1,*(undefined4 *)(param_5 + 8),*(undefined4 *)(param_5 + 0xc));
+  Obj_SetVisible(puVar1,1,*(undefined4 *)(param_5 + 8),*(undefined4 *)(param_5 + 0xc));
   puVar1[0xb0] = 0x80;
   puVar1[0xb1] = 0x80;
   puVar1[0xb2] = 0x80;
@@ -1189,10 +1189,10 @@ void FUN_001eda40(float param_1,int param_2)
     piVar8 = (int *)(iGpffff8d3c + 0x2d0);
   }
   if ((piVar8 != (int *)0x0) && (*piVar8 == 1)) {
-    FUN_00158390(0,*(undefined2 *)(piVar8[1] + 6),piVar8[3]);
+    TexSlot_Set(0,*(undefined2 *)(piVar8[1] + 6),piVar8[3]);
   }
   if (*(int *)(param_2 + 0x2cc) == 1) {
-    FUN_00158390(1,*(undefined2 *)(*(int *)(param_2 + 0x2d0) + 6),*(undefined4 *)(param_2 + 0x2d8));
+    TexSlot_Set(1,*(undefined2 *)(*(int *)(param_2 + 0x2d0) + 6),*(undefined4 *)(param_2 + 0x2d8));
   }
   iVar7 = 0;
   iVar5 = param_2;
@@ -1200,12 +1200,12 @@ void FUN_001eda40(float param_1,int param_2)
     if ((*(uint *)(iVar5 + 0x4c) & 1) != 0) {
       iStack_4 = 0x436810;
       if (iVar7 < 0x18) {
-        thunk_FUN_001466b0(param_2,2,2,0);
-        FUN_001465c0(param_2,(*piRam00387f7c + -2) - iVar7);
+        Pkt_Init(param_2,2,2,0);
+        Pkt_SubmitToChain(param_2,(*piRam00387f7c + -2) - iVar7);
       }
       else {
-        thunk_FUN_001466b0(param_2,0,2,0);
-        FUN_001465c0(param_2,(*piRam00387f5c + -2) - (iVar7 + -0x18));
+        Pkt_Init(param_2,0,2,0);
+        Pkt_SubmitToChain(param_2,(*piRam00387f5c + -2) - (iVar7 + -0x18));
       }
       maybe_Vu0_UnitMatrix(auStack_50);
       FUN_001ed840(0x3f800000,0x3f800000,param_2,&iStack_4,
@@ -1214,21 +1214,21 @@ void FUN_001eda40(float param_1,int param_2)
       iVar6 = iStack_4 + -0x436810 >> 0x1f;
       if ((iStack_4 + -0x436810) / 0x310 + iVar6 != iVar6) {
         if ((*(int *)(param_2 + 0x2d4) == 1) && (*(int *)(param_2 + 0x2cc) == 1)) {
-          FUN_00145f10(param_2,param_2 + 0x2dc);
+          Pkt_Flush(param_2,param_2 + 0x2dc);
         }
         if (((piVar8 != (int *)0x0) && (piVar8[2] == 1)) && (*piVar8 == 1)) {
-          FUN_00145f10(param_2,piVar8 + 4);
+          Pkt_Flush(param_2,piVar8 + 4);
         }
         if ((*(uint *)(iVar5 + 0x4c) & 4) != 0) {
-          FUN_00145860(param_2,*(undefined4 *)(iVar5 + 0x50),*(undefined4 *)(iVar5 + 0x54),
-                       *(undefined4 *)(iVar5 + 0x58),*(undefined4 *)(iVar5 + 0x5c),0);
+          Pkt_SetScissor(param_2,*(undefined4 *)(iVar5 + 0x50),*(undefined4 *)(iVar5 + 0x54),
+                         *(undefined4 *)(iVar5 + 0x58),*(undefined4 *)(iVar5 + 0x5c),0);
         }
-        FUN_0014b700(param_2,0x436810,(iStack_4 + -0x436810) / 0x310);
+        Pkt_AddPrimitives(param_2,0x436810,(iStack_4 + -0x436810) / 0x310);
         if ((*(uint *)(iVar5 + 0x4c) & 4) != 0) {
-          FUN_00145860(param_2,0,0,0,0,0);
+          Pkt_SetScissor(param_2,0,0,0,0,0);
         }
       }
-      FUN_00146570(param_2,0);
+      Pkt_Submit(param_2,0);
     }
     if ((*(uint *)(iVar5 + 0x4c) & 2) != 0) {
       iVar2 = *(int *)(param_2 + 0x44) + *(int *)(*(int *)(param_2 + 0x40) + 4) * 0x14;
@@ -1491,10 +1491,11 @@ void FUN_001ee2b0(int param_1,undefined4 param_2,undefined4 param_3)
   if (*(int *)(param_1 + 0x2d0) != 0) {
     if (*(int *)(param_1 + 0x2d4) != 0) {
       *(undefined4 *)(param_1 + 0x2e4) = 0;
-      FUN_00158050(param_1 + 0x2dc,*(undefined4 *)(param_1 + 0x2d0),*(undefined4 *)(param_1 + 0x2ec)
-                   ,*(undefined4 *)(param_1 + 0x2f0));
+      Pkt_AddTextureUploadAll
+                (param_1 + 0x2dc,*(undefined4 *)(param_1 + 0x2d0),*(undefined4 *)(param_1 + 0x2ec),
+                 *(undefined4 *)(param_1 + 0x2f0));
     }
-    FUN_00158160(*(undefined4 *)(param_1 + 0x2d8),*(undefined4 *)(param_1 + 0x2d0),
+    TexSlot_Bind(*(undefined4 *)(param_1 + 0x2d8),*(undefined4 *)(param_1 + 0x2d0),
                  *(undefined4 *)(param_1 + 0x2d4),*(undefined4 *)(param_1 + 0x2ec),
                  *(undefined4 *)(param_1 + 0x2f0),*(undefined4 *)(param_1 + 0x2f4),0,0);
   }
@@ -1609,12 +1610,13 @@ void FUN_001ee590(void)
   else {
     *(undefined4 *)(iVar5 + 0x2cc) = 1;
     *(uint *)(iVar5 + 0x2d0) = *(int *)(iVar5 + 0x3c) + iVar3 + uVar2;
-    FUN_0013da70(*(undefined4 *)(iVar5 + 0x2d0));
+    Tex_Relocate(*(undefined4 *)(iVar5 + 0x2d0));
     if (*(int *)(iVar5 + 0x2d4) != 0) {
-      FUN_00158050(iVar5 + 0x2dc,*(undefined4 *)(iVar5 + 0x2d0),*(undefined4 *)(iVar5 + 0x2ec),
-                   *(undefined4 *)(iVar5 + 0x2f0));
+      Pkt_AddTextureUploadAll
+                (iVar5 + 0x2dc,*(undefined4 *)(iVar5 + 0x2d0),*(undefined4 *)(iVar5 + 0x2ec),
+                 *(undefined4 *)(iVar5 + 0x2f0));
     }
-    FUN_00158160(*(undefined4 *)(iVar5 + 0x2d8),*(undefined4 *)(iVar5 + 0x2d0),
+    TexSlot_Bind(*(undefined4 *)(iVar5 + 0x2d8),*(undefined4 *)(iVar5 + 0x2d0),
                  *(undefined4 *)(iVar5 + 0x2d4),*(undefined4 *)(iVar5 + 0x2ec),
                  *(undefined4 *)(iVar5 + 0x2f0),*(undefined4 *)(iVar5 + 0x2f4),0,0);
   }
@@ -1683,12 +1685,12 @@ void FUN_001ee6c0(undefined8 param_1,undefined4 *param_2,long param_3)
     else {
       uVar4 = iVar3 + 0x7ffU >> 0xb;
     }
-    FUN_00144b80(iVar6 + 0x2dc,
-                 *(int *)(iVar6 + 0x3c) + *(int *)(iVar6 + 0x2fc) * 0x80 + uVar4 * 0x800,
-                 *(int *)(iVar6 + 0x300) * 0xd + 1);
+    DmaBuf_SetUncached(iVar6 + 0x2dc,
+                       *(int *)(iVar6 + 0x3c) + *(int *)(iVar6 + 0x2fc) * 0x80 + uVar4 * 0x800,
+                       *(int *)(iVar6 + 0x300) * 0xd + 1);
   }
   *(undefined4 *)(iVar6 + 0x304) = 1;
-  FUN_0014bf00(iVar2 + (uint)bVar1,*(undefined4 *)(iVar6 + 0x3c),0x1ee590,param_1,0,0);
+  Arc_LoadFileEx(iVar2 + (uint)bVar1,*(undefined4 *)(iVar6 + 0x3c),0x1ee590,param_1,0,0);
   return;
 }
 
@@ -1721,7 +1723,7 @@ void FUN_001ee970(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
   *(undefined4 *)(param_1 + 0x2d0) = 0;
   *(undefined4 *)(param_1 + 0x2d4) = param_4;
   *(undefined4 *)(param_1 + 0x2d8) = 0;
-  FUN_00144b80(param_1 + 0x2dc,0,0);
+  DmaBuf_SetUncached(param_1 + 0x2dc,0,0);
   *(undefined4 *)(param_1 + 0x2ec) = param_2;
   *(undefined4 *)(param_1 + 0x2f0) = param_3;
   *(undefined4 *)(param_1 + 0x2f4) = 0x50010;

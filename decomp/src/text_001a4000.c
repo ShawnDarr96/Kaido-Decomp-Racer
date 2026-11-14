@@ -29,7 +29,7 @@ void FUN_001a4760(void)
   do {
     iVar5 = ((uint)(byte)puVar7[2] * 0x18 - (uint)(byte)puVar7[2]) * 0x40;
     if (*(int *)(iVar5 + 0x431684) != 0) {
-      FUN_00184b20(iVar5 + 0x431100,*puVar7,puVar7[1]);
+      Cam_SetupViewport(iVar5 + 0x431100,*puVar7,puVar7[1]);
     }
     uVar9 = uVar9 + 1;
     puVar7 = puVar7 + 3;
@@ -70,10 +70,10 @@ void FUN_001a4760(void)
                 iVar10 = iVar6 + 0x431100;
                 if (*(int *)(iVar6 + 0x431684) != 0) {
                   if (iRam0036f1f8 == 1) {
-                    lVar2 = FUN_00142ff0(iVar10,iVar6 + 0x4313c0,puVar8 + 8);
+                    lVar2 = Vu0_TransformPointPersp(iVar10,iVar6 + 0x4313c0,puVar8 + 8);
                     if (lVar2 != 0) {
-                      iVar6 = FUN_00134630(*(undefined4 *)(iRam004305bc + 0xc),
-                                           (uint)(ushort)puVar8[2] * 2 + 0xb,0);
+                      iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
+                                               (uint)(ushort)puVar8[2] * 2 + 0xb,0);
                       lVar2 = FUN_0019e0a0(iVar10,iVar6 + (*(ushort *)((int)puVar8 + 10) + 1) * 0x50
                                                   + 0x10);
                       if (lVar2 != 0) {
@@ -82,7 +82,7 @@ void FUN_001a4760(void)
                     }
                   }
                   else {
-                    lVar2 = FUN_00142ff0(iVar10,iVar6 + 0x4313c0,puVar8 + 8);
+                    lVar2 = Vu0_TransformPointPersp(iVar10,iVar6 + 0x4313c0,puVar8 + 8);
                     if (lVar2 != 0) {
                       puVar8[0x10] = puVar8[0x10] | 1 << ((byte)puVar7[2] & 0x1f);
                     }
@@ -156,7 +156,7 @@ void FUN_001a4b60(void)
     Mem_Free();
     iRam00430660 = 0;
   }
-  FUN_00135030(0x430644);
+  Gfx_AddFrameCallback(0x430644);
   FUN_001a0860();
   return;
 }
@@ -192,13 +192,13 @@ FUN_001a4c30(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,und
   }
   pcRam0043064c = FUN_001a23c0;
   uRam00430650 = 0x430640;
-  FUN_00135040(0x430644);
+  Gfx_RemoveFrameCallback(0x430644);
   uRam00430654 = 0;
   uRam00430658 = 0;
   uRam0043065c = 0;
   uVar6 = Mem_AllocAligned(0x200,0x80,param_1);
   uRam00430660 = (undefined4)uVar6;
-  FUN_001325d0(uVar6,0,0x200);
+  Mem_Set16(uVar6,0,0x200);
   uRam00430668 = 1;
   uRam0043067c = 0;
   uRam004306c0 = 0;
@@ -247,7 +247,7 @@ long FUN_001a4ed0(long param_1,short param_2)
     iVar1 = (int)param_1 + 4;
     if (iVar1 != 0) {
       *(undefined **)((int)param_1 + 4) = &DAT_0036e128;
-      FUN_00132400(iVar1,0);
+      maybe_ListNode_dtor(iVar1,0);
     }
     if (0 < param_2) {
       Mem_Free(param_1);
@@ -268,7 +268,7 @@ void FUN_001a4f50(uint *param_1,uint param_2)
       bVar1 = true;
       goto LAB_001a4f84;
     }
-    lVar2 = FUN_00136920(param_1[1]);
+    lVar2 = File_IsBusy(param_1[1]);
     if (lVar2 != 0) {
       bVar1 = true;
       *param_1 = *param_1 | 2;
@@ -293,7 +293,7 @@ undefined4 FUN_001a4fe0(uint *param_1)
     if ((*param_1 & 2) != 0) {
       return 1;
     }
-    lVar1 = FUN_00136920(param_1[1]);
+    lVar1 = File_IsBusy(param_1[1]);
     if (lVar1 != 0) {
       *param_1 = *param_1 | 2;
       return 1;
@@ -386,11 +386,11 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
   if (param_3 == 0) {
     *param_2 = 0;
     param_2[1] = 0;
-    FUN_00144b80(param_2 + 2,0,0);
+    DmaBuf_SetUncached(param_2 + 2,0,0);
     param_2[6] = 0;
     return;
   }
-  FUN_0013da70(param_3);
+  Tex_Relocate(param_3);
   uVar7 = 0;
   iVar8 = (int)param_3;
   if (param_7 == 0) {
@@ -404,7 +404,7 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
     if (*(short *)(iVar8 + 6) != 0) {
       do {
         uVar7 = uVar2;
-        iVar3 = FUN_0013d9e0(param_3,uVar6);
+        iVar3 = Tex_GetEntry(param_3,uVar6);
         if (*(ushort *)(iVar3 + 0x2e) >> 6 != 0) {
           uVar7 = uVar7 + 1;
         }
@@ -420,13 +420,13 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
   *(uint *)(param_1 + 0x1c) = iVar8 + *param_2 * 0x80;
   param_2[6] = *(int *)(param_1 + 0x20) + iVar8;
   if (param_5 == 0) {
-    FUN_00144b80(param_2 + 2,0,0);
+    DmaBuf_SetUncached(param_2 + 2,0,0);
     uVar7 = *param_2;
   }
   else {
     iVar8 = *(int *)(param_1 + 0x1c);
     *(uint *)(param_1 + 0x1c) = iVar8 + uVar7 * 0x200;
-    FUN_00144b80(param_2 + 2,*(int *)(param_1 + 0x20) + iVar8,uVar7 << 5);
+    DmaBuf_SetUncached(param_2 + 2,*(int *)(param_1 + 0x20) + iVar8,uVar7 << 5);
     uVar7 = *param_2;
   }
   uVar5 = 0;
@@ -434,7 +434,7 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
     iVar8 = 0;
     puVar9 = param_8;
     do {
-      uVar4 = FUN_0013d9e0(param_3,uVar5);
+      uVar4 = Tex_GetEntry(param_3,uVar5);
       bVar1 = param_4 == 0;
       if ((param_5 != 0) && ((param_7 == 0 || (*(ushort *)((int)(uint *)uVar4 + 0x2e) >> 6 == 1))))
       {
@@ -445,9 +445,9 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
           uVar4 = FUN_00132560(*(int *)(param_1 + 0x20) + iVar3,uVar4,uVar7 >> 4);
         }
         bVar1 = true;
-        FUN_001580a0(param_2 + 2,uVar4,param_2[1],param_2[1]);
+        Pkt_AddTextureUpload(param_2 + 2,uVar4,param_2[1],param_2[1]);
       }
-      FUN_00158290(param_2[6] + iVar8,uVar4,param_5,param_2[1],param_2[1],0x11110,0,0);
+      TexSlot_BindSimple(param_2[6] + iVar8,uVar4,param_5,param_2[1],param_2[1],0x11110,0,0);
       if (param_5 != 0) {
         *(int *)(param_2[6] + iVar8 + 0x6c) = (int)uVar4;
       }
@@ -616,14 +616,14 @@ int FUN_001a58b0(undefined8 param_1,undefined8 param_2,int param_3)
   int iVar2;
   uint uVar3;
   
-  iVar1 = FUN_0014d6e0(param_2,0);
+  iVar1 = Model_GetTexture(param_2,0);
   uVar3 = 0;
   if (*(int *)((int)param_2 + 0x24) != 0) {
     do {
       if (param_3 == *(int *)(iVar1 + 4)) {
         return iVar1;
       }
-      iVar2 = FUN_0014d840(iVar1);
+      iVar2 = Model_GetHeaderSize(iVar1);
       iVar1 = iVar1 + iVar2;
       uVar3 = uVar3 + 1;
     } while (uVar3 < *(uint *)((int)param_2 + 0x24));
@@ -638,7 +638,7 @@ void FUN_001a5950(int param_1,undefined8 param_2)
   int iVar1;
   uint uVar2;
   
-  uVar2 = FUN_0014d840(param_2);
+  uVar2 = Model_GetHeaderSize(param_2);
   iVar1 = *(int *)(param_1 + 0x1c);
   *(uint *)(param_1 + 0x1c) = iVar1 + (uVar2 + 0xf & 0xfffffff0);
   FUN_00132560(*(int *)(param_1 + 0x20) + iVar1,param_2,uVar2 >> 4);
@@ -746,7 +746,7 @@ undefined4 FUN_001a5ad0(void)
   
   uVar2 = 0;
   do {
-    cVar1 = FUN_001543c0(uVar2);
+    cVar1 = Snd_StreamGetState(uVar2);
     if (cVar1 != '\0') {
       return 0;
     }
@@ -756,22 +756,24 @@ undefined4 FUN_001a5ad0(void)
 }
 
 // 0x001a5b30  size 0x54
-bool FUN_001a5b30(void)
+bool maybe_Game_CheckResetRequest(void)
 
 {
   int iVar1;
   
-  FUN_00138bf0((int)register0x000001c0 + -0x7730);
+  Sema_Wait((int)register0x000001c0 + -0x7730);
   iVar1 = iRam00386628;
-  FUN_00138ba0((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal((int)register0x000001c0 + -0x7730,0);
   if (iVar1 != 0) {
-    FUN_001368c0();
+    File_AbortAll();
   }
   return iVar1 == 0;
 }
 
 // 0x001a5b90  size 0xe8
-void FUN_001a5b90(byte param_1)
+/* scene table at 0x3179e0 (0x20 per scene) */
+
+void Game_MainLoop(byte param_1)
 
 {
   byte bVar1;
@@ -783,99 +785,101 @@ void FUN_001a5b90(byte param_1)
   do {
     bGpffff8bb8 = bVar1;
     iVar4 = (uint)bGpffff8bb8 * 0x20;
-    FUN_00135050();
+    Gfx_SyncAndFlip();
     FUN_001a98f0(*(undefined1 *)(iVar4 + 0x3179f4),*(undefined4 *)(&DAT_003179fc + iVar4));
     FUN_001a9420(iVar4 + 0x3179e0);
-    FUN_0014bac0(*(undefined4 *)(iVar4 + 0x3179f8));
-    FUN_0014b860(0x1a5b30);
-    FUN_0014b850(0x1a5ad0);
+    Scene_Start(*(undefined4 *)(iVar4 + 0x3179f8));
+    Scene_SetResetCheck(0x1a5b30);
+    Scene_SetCallback2(0x1a5ad0);
     do {
-      FUN_001a9210();
-      lVar2 = FUN_0014b8c0();
-      thunk_FUN_001349a0();
-      FUN_00135050();
-      FUN_00137460();
-      FUN_00140350();
+      maybe_Game_UpdateObjects();
+      lVar2 = Scene_Update();
+      Gfx_ResetPathsIfBusy();
+      Gfx_SyncAndFlip();
+      Pad_Update();
+      Wheel_Update();
       iGpffff8b70 = iGpffff8b70 + 1;
-      uVar3 = FUN_00191420();
-      FUN_001919c0(uVar3);
-      FUN_00157990();
+      uVar3 = maybe_Render_GetCurrentList();
+      maybe_Render_Frame(uVar3);
+      Snd_Update();
     } while (lVar2 == 0);
-    bVar1 = FUN_0014b870();
+    bVar1 = Scene_GetNext();
     FUN_001a93d0();
   } while (bVar1 != 6);
   return;
 }
 
 // 0x001a5c80  size 0x90
-void FUN_001a5c80(void)
+void Game_Shutdown(void)
 
 {
-  FUN_0017be20();
+  Race_Shutdown();
   FUN_001a8ff0();
   FUN_001a9a10();
   thunk_FUN_0013ace0();
   FUN_00191dd0();
-  FUN_00157b20();
-  FUN_0014c9c0();
+  maybe_Snd_Shutdown();
+  Xvi_Shutdown();
   FUN_0020a690();
-  FUN_0014be10();
-  FUN_00141430();
-  FUN_00137620();
-  FUN_00135b60();
-  FUN_0014c060();
-  FUN_0014c290();
+  Scene_Shutdown();
+  maybe_Wheel_Shutdown();
+  maybe_Pad_Shutdown();
+  CdStream_Shutdown();
+  Arc_Shutdown();
+  Arc_CloseHost();
   maybe_Heap_Release(0x430750);
   return;
 }
 
 // 0x001a5d10  size 0x26c
-void FUN_001a5d10(void)
+/* IOP reboot + IRX loads, 26 MB heap at 0x430750, subsystem inits */
+
+void Game_Init(void)
 
 {
   undefined8 uVar1;
   
-  FUN_0013c1f0(0x3636e0,0);
-  FUN_00134b60();
+  Iop_Reboot(0x3636e0,0);
+  Gfx_Init();
   iGpffff8bb4 = 5;
   uVar1 = GetThreadId();
   ChangeThreadPriority(uVar1,5);
   maybe_Heap_Create(0x430750,0x1a80000,0);
   sceCdInit(0);
   libcdvd_sub_00122948(2);
-  FUN_0013c1b0(0x363700,0,0,0);
-  FUN_0013c1b0(0x363720,0,0,0);
-  FUN_0013c1b0(0x363740,0,0,0);
-  FUN_0013c1b0(0x363760,0,0,0);
-  FUN_0013c1b0(0x363780,0,0,0);
-  FUN_0013c1b0(0x363780,0,0,0);
-  FUN_0013c1b0(0x3637a0,0,0,0);
-  FUN_0013c1b0(0x3637c0,0,0,0);
-  FUN_0013c1b0(0x3637e0,0,0,0);
-  FUN_0013c1b0(0x363800,0,0,0);
-  FUN_0013c1b0(0x363820,0,0,0);
-  FUN_0013c1b0(0x363840,0,0,0);
-  FUN_0013c1b0(0x363860,0,0,0);
-  FUN_0014c2c0(0x430750);
-  FUN_0014c0a0(iGpffff8bb4 + 1,iGpffff8bb4 + -1);
-  FUN_00135b90(0x50,5);
-  FUN_00137680(0x430750);
-  FUN_00141530();
-  FUN_0014be30(0x430750);
+  Iop_LoadModule(0x363700,0,0,0);
+  Iop_LoadModule(0x363720,0,0,0);
+  Iop_LoadModule(0x363740,0,0,0);
+  Iop_LoadModule(0x363760,0,0,0);
+  Iop_LoadModule(0x363780,0,0,0);
+  Iop_LoadModule(0x363780,0,0,0);
+  Iop_LoadModule(0x3637a0,0,0,0);
+  Iop_LoadModule(0x3637c0,0,0,0);
+  Iop_LoadModule(0x3637e0,0,0,0);
+  Iop_LoadModule(0x363800,0,0,0);
+  Iop_LoadModule(0x363820,0,0,0);
+  Iop_LoadModule(0x363840,0,0,0);
+  Iop_LoadModule(0x363860,0,0,0);
+  Arc_SetHeap(0x430750);
+  Arc_Init(iGpffff8bb4 + 1,iGpffff8bb4 + -1);
+  maybe_CdStream_Init(0x50,5);
+  Pad_Init(0x430750);
+  Wheel_Init();
+  maybe_Scene_InitHeap(0x430750);
   FUN_0020a6d0(0x430750);
   maybe_Rand_Seed(0);
-  FUN_0014c9d0();
-  FUN_00157bb0(0x430750,0x20,iGpffff8bb4 + -1);
-  FUN_00192050(0x430750);
-  FUN_0014f110();
+  Xvi_LoadIop();
+  Snd_Init(0x430750,0x20,iGpffff8bb4 + -1);
+  maybe_Render_Init(0x430750);
+  Movie_Init();
   FUN_001a9a40(0x430750);
-  FUN_0017be80(0x430750);
+  Race_Init(0x430750);
   FUN_001a9020(0x430750);
   return;
 }
 
 // 0x001a5f80  size 0x94
-void FUN_001a5f80(undefined4 *param_1)
+void maybe_Light_InitDefaults(undefined4 *param_1)
 
 {
   param_1[0x14] = 0xbf13cd36;
@@ -906,7 +910,7 @@ void FUN_001a5f80(undefined4 *param_1)
   param_1[1] = 0x3e99999a;
   param_1[2] = 0x3e99999a;
   param_1[3] = 0x3f800000;
-  FUN_0014d240();
+  Light_UpdateMatrices();
   return;
 }
 
@@ -937,7 +941,7 @@ long FUN_001a6090(long param_1,short param_2)
     *(undefined4 *)param_1 = &DAT_0036e580;
     if (param_1 != 0) {
       *(undefined4 *)param_1 = &DAT_0036e5a0;
-      FUN_00132320(param_1,0);
+      maybe_List_dtor(param_1,0);
     }
     if (0 < param_2) {
       Mem_Free(param_1);
@@ -1527,8 +1531,8 @@ void FUN_001a7770(undefined8 param_1)
         printf(0x3638d0);
         return;
       }
-      FUN_001321c0(0x4307a0,iRam004307ac);
-      FUN_00132250(param_1,iVar1);
+      maybe_List_Append(0x4307a0,iRam004307ac);
+      maybe_List_Remove(param_1,iVar1);
       *(int *)(iVar1 + 0x9c) = iVar2;
       FUN_001a7470(iVar1,iVar2 + 0xc0,iVar2 + 0xd0,*(undefined4 *)(iVar2 + 0x114));
       uVar3 = uVar3 + 1;
@@ -1562,20 +1566,20 @@ void FUN_001a78a0(int param_1)
       uVar1 = (uint)(byte)puVar2[2];
       uVar3 = uVar3 + 1;
       if (((uVar1 != 4) && (uVar1 != 3)) && (*(int *)(uVar1 * 0x5c0 + 0x431684) == 1)) {
-        thunk_FUN_001466e0(auStack_160,uVar1 * 0x5c0 + 0x431100,0x436180,*puVar2,puVar2[1]);
-        FUN_0014f170(&uStack_210);
+        maybe_Pkt_InitLayers(auStack_160,uVar1 * 0x5c0 + 0x431100,0x436180,*puVar2,puVar2[1]);
+        Obj_Init(&uStack_210);
         uStack_210 = *(undefined2 *)(*(int *)(param_1 + 0x24) + 200);
         uStack_20e = *(undefined1 *)(*(int *)(param_1 + 0x24) + 0xca);
         if (*(int *)(param_1 + 0x138) != -1) {
-          FUN_0014f150(&uStack_210,5,*(int *)(param_1 + 0x138),0);
+          Obj_SetBlend(&uStack_210,5,*(int *)(param_1 + 0x138),0);
         }
         uStack_204 = *(undefined4 *)(*(int *)(param_1 + 0x24) + 0xac);
         vu0math_sub_00132ae0(auStack_1c0,param_1 + 0xc0);
         vu0math_sub_00132c20(auStack_200,param_1 + 0xd0);
         uStack_1b0 = 0x3f800000;
-        FUN_0014f120(&uStack_210,*(undefined4 *)(param_1 + 0xb4),*(undefined4 *)(param_1 + 0xb0),
-                     param_1 + 0x90);
-        FUN_0014a800(auStack_160,&uStack_210);
+        Obj_SetTexture(&uStack_210,*(undefined4 *)(param_1 + 0xb4),*(undefined4 *)(param_1 + 0xb0),
+                       param_1 + 0x90);
+        Model_Draw(auStack_160,&uStack_210);
       }
       puVar2 = puVar2 + 3;
     } while (uVar3 < 6);
@@ -1774,8 +1778,8 @@ void FUN_001a7db0(undefined8 param_1)
         if (*(int *)(iVar3 + 0x10) < *(int *)(iVar3 + 0x14)) {
           iVar10 = *(int *)(iVar3 + 4);
           *(undefined4 *)(iVar3 + 8) = 0;
-          FUN_001321c0(*(undefined4 *)(iVar3 + 0x9c),iVar3);
-          FUN_00132250(0x4307a0,iVar3);
+          maybe_List_Append(*(undefined4 *)(iVar3 + 0x9c),iVar3);
+          maybe_List_Remove(0x4307a0,iVar3);
           *(int *)(iVar4 + 0x8c) = *(int *)(iVar4 + 0x8c) + -1;
         }
         else {

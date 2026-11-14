@@ -208,46 +208,47 @@ undefined4 FUN_001fc500(void)
       }
     }
     else if (iVar2 == -1) {
-      cVar1 = FUN_0017e890();
+      cVar1 = RaceCtx_Get_8();
       if (cVar1 == '\x02') {
         iVar6 = 1;
-        uVar4 = FUN_00176fa0();
-        if (((uVar4 & 1) != 0) && (FUN_00176e90(acStack_10), acStack_10[0] == '\x05')) {
+        uVar4 = GameState_Get_35c();
+        if (((uVar4 & 1) != 0) && (GameState_GetVec3d0(acStack_10), acStack_10[0] == '\x05')) {
           iVar6 = 3;
         }
-        cVar1 = FUN_0017e890();
+        cVar1 = RaceCtx_Get_8();
         if (cVar1 == '\x01') {
           iVar6 = 5;
         }
         else {
-          cVar1 = FUN_0017e890();
+          cVar1 = RaceCtx_Get_8();
           if (cVar1 == '\x05') {
             iVar6 = 5;
           }
         }
-        cVar1 = FUN_0017e890();
+        cVar1 = RaceCtx_Get_8();
         if (cVar1 == '\x02') {
-          uVar4 = FUN_00176fa0();
-          if (((uVar4 & 2) != 0) || (uVar4 = FUN_00176fa0(), (uVar4 & 4) != 0)) {
-            FUN_00176ef0(acStack_20);
-            if ((acStack_20[0] == '\x05') || (FUN_00176ef0(acStack_30), acStack_30[0] == '\b')) {
+          uVar4 = GameState_Get_35c();
+          if (((uVar4 & 2) != 0) || (uVar4 = GameState_Get_35c(), (uVar4 & 4) != 0)) {
+            GameState_GetVec3c4(acStack_20);
+            if ((acStack_20[0] == '\x05') ||
+               (GameState_GetVec3c4(acStack_30), acStack_30[0] == '\b')) {
               iVar6 = 5;
             }
             else {
-              FUN_00176ef0(acStack_40);
+              GameState_GetVec3c4(acStack_40);
               if (acStack_40[0] == '\x06') {
                 iVar6 = 5;
               }
             }
           }
-          uVar4 = FUN_00176fa0();
+          uVar4 = GameState_Get_35c();
           if ((uVar4 & 0x100000) != 0) {
             iVar6 = 5;
           }
         }
       }
       else {
-        cVar1 = FUN_0017e890();
+        cVar1 = RaceCtx_Get_8();
         if (cVar1 == '\x03') {
           iVar6 = 1;
         }
@@ -388,7 +389,7 @@ undefined8 FUN_001fc9b0(void)
   else if (iVar3 == 0x1b) {
     if (iVar1 != 0xf) {
       if (iVar1 == -1) {
-        cVar2 = FUN_0017e8d0();
+        cVar2 = RaceCtx_GetMode();
         if (cVar2 == '\a') {
           cVar2 = FUN_001c16e0(uVar4);
           uVar6 = 0x27;
@@ -399,7 +400,7 @@ undefined8 FUN_001fc9b0(void)
         }
         else {
           *(undefined4 *)(iGpffff8d68 + 0x3c) = 0xffffffff;
-          cVar2 = FUN_0017e890();
+          cVar2 = RaceCtx_Get_8();
           if (cVar2 == '\x01') {
             cVar2 = FUN_001c16e0(uVar4);
             uVar6 = 0x27;
@@ -409,7 +410,7 @@ undefined8 FUN_001fc9b0(void)
             *(undefined4 *)(iGpffff8d68 + 0x3c) = uVar6;
           }
           else {
-            cVar2 = FUN_0017e890();
+            cVar2 = RaceCtx_Get_8();
             if (cVar2 == '\x05') {
               cVar2 = FUN_001c16e0(uVar4);
               uVar6 = 0x27;
@@ -419,18 +420,18 @@ undefined8 FUN_001fc9b0(void)
               *(undefined4 *)(iGpffff8d68 + 0x3c) = uVar6;
             }
           }
-          cVar2 = FUN_0017e890();
+          cVar2 = RaceCtx_Get_8();
           if (cVar2 == '\x02') {
-            FUN_00176ef0(acStack_10);
-            if ((acStack_10[0] == '\x05') && (uVar5 = FUN_00176fa0(), (uVar5 & 1) != 0)) {
+            GameState_GetVec3c4(acStack_10);
+            if ((acStack_10[0] == '\x05') && (uVar5 = GameState_Get_35c(), (uVar5 & 1) != 0)) {
               *(undefined4 *)(iGpffff8d68 + 0x3c) = 0x12;
             }
             else {
-              uVar5 = FUN_00176fa0();
-              if ((((uVar5 & 2) != 0) || (uVar5 = FUN_00176fa0(), (uVar5 & 4) != 0)) &&
-                 (((FUN_00176ef0(acStack_20), acStack_20[0] == '\x05' ||
-                   (FUN_00176ef0(acStack_30), acStack_30[0] == '\b')) ||
-                  (FUN_00176ef0(acStack_40), acStack_40[0] == '\x06')))) {
+              uVar5 = GameState_Get_35c();
+              if ((((uVar5 & 2) != 0) || (uVar5 = GameState_Get_35c(), (uVar5 & 4) != 0)) &&
+                 (((GameState_GetVec3c4(acStack_20), acStack_20[0] == '\x05' ||
+                   (GameState_GetVec3c4(acStack_30), acStack_30[0] == '\b')) ||
+                  (GameState_GetVec3c4(acStack_40), acStack_40[0] == '\x06')))) {
                 cVar2 = FUN_001c16e0(uVar4);
                 uVar6 = 0x27;
                 if (cVar2 != '\0') {
@@ -438,7 +439,7 @@ undefined8 FUN_001fc9b0(void)
                 }
                 *(undefined4 *)(iGpffff8d68 + 0x3c) = uVar6;
               }
-              uVar5 = FUN_00176fa0();
+              uVar5 = GameState_Get_35c();
               if ((uVar5 & 0x100000) != 0) {
                 cVar2 = FUN_001c16e0(uVar4);
                 uVar6 = 0x27;
@@ -1009,12 +1010,12 @@ undefined4 FUN_001fda70(int param_1)
   
   auStack_8[0] = DAT_0036e880;
   auStack_8[1] = DAT_0036e884;
-  lVar3 = FUN_00141310(auStack_8[*(char *)(param_1 + 0x1c)]);
+  lVar3 = Wheel_GetDeviceName(auStack_8[*(char *)(param_1 + 0x1c)]);
   if (lVar3 != 0) {
     iVar5 = (int)lVar3;
     lVar4 = (**(code **)(*(int *)(iVar5 + 4) + 8))(lVar3);
     if (lVar4 != 0) {
-      lVar4 = FUN_001419f0(lVar3);
+      lVar4 = Wheel_IsActive(lVar3);
       if (lVar4 != 0) {
         if (*(int *)(iRam0036f468 + 4) == 1) {
           *(undefined4 *)(param_1 + 8) = 0;
@@ -1023,9 +1024,10 @@ undefined4 FUN_001fda70(int param_1)
       }
       if ((*(int *)(iRam0036f468 + 4) == 1) && (*(int *)(param_1 + 8) == 0)) {
         *(undefined4 *)(param_1 + 8) = 1;
-        iVar2 = FUN_001831b0();
-        FUN_00182d60(iVar2 + (*(char *)(param_1 + 0x1c) * 0x1c + (int)*(char *)(param_1 + 0x1c)) * 8
-                     + 0x28,lVar3);
+        iVar2 = maybe_Options_GetLanguage();
+        Controls_SetDefaults
+                  (iVar2 + (*(char *)(param_1 + 0x1c) * 0x1c + (int)*(char *)(param_1 + 0x1c)) * 8 +
+                   0x28,lVar3);
       }
       uVar1 = *(uint *)(iVar5 + 0x14);
       if ((uVar1 & 0x100) != 0) {
@@ -1128,7 +1130,7 @@ undefined4 FUN_001fddf0(int param_1)
   undefined8 uVar4;
   long lVar5;
   
-  uVar4 = FUN_001375f0(*(undefined1 *)(param_1 + 0x1c),0);
+  uVar4 = Pad_GetPort(*(undefined1 *)(param_1 + 0x1c),0);
   iVar2 = (int)uVar4;
   lVar5 = (**(code **)(*(int *)(iVar2 + 4) + 8))(uVar4);
   if (lVar5 == 0) {
@@ -1332,20 +1334,20 @@ void FUN_001fe160(int param_1)
   *(undefined4 *)(iVar1 + 8) = 0;
   *(char *)(iVar1 + 0x1c) = (char)*(undefined4 *)(param_1 + 0xc);
   *(undefined4 *)(iVar1 + 0xc) = 0;
-  uVar3 = FUN_001375f0(*(undefined1 *)(iVar1 + 0x1c),0);
+  uVar3 = Pad_GetPort(*(undefined1 *)(iVar1 + 0x1c),0);
   iVar4 = (int)uVar3;
-  FUN_00134440(iVar4 + 8,2,10,5);
-  FUN_00134440(iVar4 + 8,3,10,5);
-  FUN_00134440(iVar4 + 8,4,10,5);
-  FUN_00134440(iVar4 + 8,5,10,5);
-  FUN_00134440(iVar4 + 8,0x10,10,5);
-  FUN_00134440(iVar4 + 8,0x11,10,5);
-  FUN_00134440(iVar4 + 8,0x12,10,5);
-  FUN_00134440(iVar4 + 8,0x13,10,5);
-  FUN_00134440(iVar4 + 8,0x14,10,5);
-  FUN_00134440(iVar4 + 8,0x15,10,5);
-  FUN_00134440(iVar4 + 8,0x16,10,5);
-  FUN_00134440(iVar4 + 8,0x17,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,2,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,3,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,4,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,5,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x10,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x11,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x12,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x13,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x14,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x15,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x16,10,5);
+  maybe_Gut_HashInsert(iVar4 + 8,0x17,10,5);
   uVar2 = (**(code **)(*(int *)(iVar4 + 4) + 8))(uVar3);
   *(undefined4 *)(iVar1 + 0x10) = uVar2;
   *(code **)(param_1 + 0x1c) = FUN_001fe100;
@@ -2066,7 +2068,7 @@ void FUN_001ff790(ulong param_1,long param_2)
   }
   FUN_001eea30(iVar3,0x16,0x16,uVar8);
   FUN_001eea30(iVar3,0x23,9,cVar2 != '\0');
-  uVar1 = FUN_0017e550(*(undefined1 *)(iGpffff8d68 + 0x620));
+  uVar1 = Race_GetCourseId(*(undefined1 *)(iGpffff8d68 + 0x620));
   switch(uVar1) {
   case 0:
     unaff_s0 = 0x13;

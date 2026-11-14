@@ -1033,11 +1033,11 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_00182c10();
+  Career_BeginNew();
   uVar1 = FUN_002093c0((int)param_2 + ((uint)param_1 & 0xff) * 3);
   memcpy(auStack_40,uVar1,0x38);
-  FUN_00177da0(1,param_1,param_2,0);
-  FUN_0017e880(0);
+  GameState_StartRace(1,param_1,param_2,0);
+  RaceCtx_Set_8(0);
   uVar1 = FUN_001c1890(0);
   FUN_001bc410(auStack_300,uVar1);
   puVar4 = auStack_300;
@@ -1054,34 +1054,34 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
   uStack_1dc = 0x89;
   uStack_1d8 = 0;
   FUN_001d2180(auStack_1e0,param_4);
-  FUN_00182cb0(0,auStack_1e0);
-  FUN_00177200(1);
+  PlayerRecord_Copy(0,auStack_1e0);
+  GameState_Set_e0(1);
   if (bStack_34 - 2 < 2) {
     if (param_3 == '\0') {
-      FUN_00176f50(iStack_18 * 1000);
+      GameState_Set_364(iStack_18 * 1000);
     }
     else {
-      FUN_00176f50(iStack_14 * 1000);
+      GameState_Set_364(iStack_14 * 1000);
     }
   }
   if ((bStack_34 == 1) || (bStack_34 == 3)) {
     if (param_3 == '\0') {
-      FUN_00176f60(uStack_28);
+      GameState_Set_390(uStack_28);
     }
     else {
-      FUN_00176f60(uStack_24);
+      GameState_Set_390(uStack_24);
     }
   }
   if (bStack_34 == 3) {
-    FUN_00177030();
+    GameState_Set_354();
   }
   else if (bStack_34 == 1) {
-    FUN_00177030();
+    GameState_Set_354();
   }
   else if (bStack_34 == 2) {
-    FUN_00177030();
+    GameState_Set_354();
   }
-  FUN_001780d0(&uStack_230);
+  RaceParams_SetDefaults(&uStack_230);
   uStack_230 = (undefined1)param_1;
   uStack_22f = FUN_001bff70(param_1,uStack_30,uStack_2c,&uStack_4,&uStack_8);
   uStack_22d = 0;
@@ -1089,8 +1089,8 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
   uStack_224 = uStack_4;
   uStack_220 = uStack_8;
   cStack_22e = param_3;
-  FUN_001777c0(&uStack_230);
-  FUN_00180fa0();
+  GameState_SaveHeader(&uStack_230);
+  RaceSetup_Prepare();
   return;
 }
 
@@ -1131,7 +1131,7 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_00182c10();
+  Career_BeginNew();
   piVar1 = (int *)FUN_002093a0(param_1,param_2 + param_3 * 10);
   while( true ) {
     iStack_310 = *piVar1;
@@ -1146,8 +1146,8 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
     piVar1 = piVar1 + 8;
   }
   memcpy(auStack_30,&iStack_310,0x20);
-  FUN_00177da0(0,param_1,param_2,param_3);
-  FUN_0017e880(0);
+  GameState_StartRace(0,param_1,param_2,param_3);
+  RaceCtx_Set_8(0);
   uVar2 = FUN_001c1890(0);
   FUN_001bc410(auStack_2f0,uVar2);
   puVar5 = auStack_2f0;
@@ -1164,16 +1164,16 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
   uStack_1cc = 0x89;
   uStack_1c8 = 0;
   FUN_001d2180(auStack_1d0,param_5);
-  FUN_00182cb0(0,auStack_1d0);
-  FUN_00177200(1);
-  FUN_00177030(1);
+  PlayerRecord_Copy(0,auStack_1d0);
+  GameState_Set_e0(1);
+  GameState_Set_354(1);
   if (param_4 == '\0') {
-    FUN_00176f60(uStack_20);
+    GameState_Set_390(uStack_20);
   }
   else {
-    FUN_00176f60(uStack_1c);
+    GameState_Set_390(uStack_1c);
   }
-  FUN_001780d0(&uStack_220);
+  RaceParams_SetDefaults(&uStack_220);
   uStack_220 = (undefined1)param_1;
   uStack_21f = FUN_001bff70(param_1,uStack_28,uStack_24,&uStack_4,&uStack_8);
   uStack_21d = 0;
@@ -1181,8 +1181,8 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
   uStack_214 = uStack_4;
   uStack_210 = uStack_8;
   cStack_21e = param_4;
-  FUN_001777c0(&uStack_220);
-  FUN_00180fa0();
+  GameState_SaveHeader(&uStack_220);
+  RaceSetup_Prepare();
   return;
 }
 
@@ -1687,21 +1687,21 @@ undefined4 FUN_002df190(undefined2 param_1)
 }
 
 // 0x002df200  size 0xc
-undefined4 FUN_002df200(void)
+undefined4 GameState_Get_3a4(void)
 
 {
   return *(undefined4 *)(iGpffff8ab8 + 0x3a4);
 }
 
 // 0x002df210  size 0xc
-undefined4 FUN_002df210(void)
+undefined4 GameState_Get_3ac(void)
 
 {
   return *(undefined4 *)(iGpffff8ab8 + 0x3ac);
 }
 
 // 0x002df220  size 0xc
-undefined4 FUN_002df220(void)
+undefined4 GameState_Get_3a8(void)
 
 {
   return *(undefined4 *)(iGpffff8ab8 + 0x3a8);
@@ -1715,19 +1715,19 @@ undefined4 FUN_002df230(void)
   undefined4 uVar2;
   
   uVar2 = 5;
-  uVar1 = FUN_00176fa0();
+  uVar1 = GameState_Get_35c();
   if ((uVar1 & 0x400) == 0) {
-    uVar1 = FUN_00176fa0();
+    uVar1 = GameState_Get_35c();
     if ((uVar1 & 0x800) == 0) {
-      uVar1 = FUN_00176fa0();
+      uVar1 = GameState_Get_35c();
       if ((uVar1 & 0x1000) == 0) {
-        uVar1 = FUN_00176fa0();
+        uVar1 = GameState_Get_35c();
         if ((uVar1 & 0x2000) == 0) {
-          uVar1 = FUN_00176fa0();
+          uVar1 = GameState_Get_35c();
           if ((uVar1 & 0x4000) == 0) {
-            uVar1 = FUN_00176fa0();
+            uVar1 = GameState_Get_35c();
             if ((uVar1 & 0x8000) == 0) {
-              FUN_00176fa0();
+              GameState_Get_35c();
             }
             else {
               uVar2 = 4;
@@ -1761,7 +1761,7 @@ bool FUN_002df320(void)
 {
   ulong uVar1;
   
-  uVar1 = FUN_00176fa0();
+  uVar1 = GameState_Get_35c();
   return (uVar1 & 0x20000) != 0;
 }
 
