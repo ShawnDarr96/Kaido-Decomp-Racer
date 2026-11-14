@@ -512,9 +512,9 @@ void maybe_Light_ApplyToVertices
   uVar10 = 0xbf800000;
   puVar1 = (undefined4 *)Light_GetIntensity(auStack_20,1);
   *puVar1 = uVar10;
-  vu0math_sub_00132b10(0x3f800000,auStack_10,(int)param_5 + 0x40);
+  sceVu0ScaleVector(0x3f800000,auStack_10,(int)param_5 + 0x40);
   iVar2 = Light_GetAmbient(param_5);
-  vu0math_sub_00132c20(auStack_e0,iVar2 + 0x80);
+  sceVu0CopyMatrix(auStack_e0,iVar2 + 0x80);
   uVar10 = 0;
   uVar4 = Light_GetDirection(auStack_e0,3);
   puVar1 = (undefined4 *)Light_GetIntensity(uVar4,2);
@@ -525,11 +525,11 @@ void maybe_Light_ApplyToVertices
   uVar4 = Light_GetDirection(auStack_e0,3);
   puVar1 = (undefined4 *)Light_GetIntensity(uVar4,0);
   *puVar1 = uVar10;
-  vu0math_sub_00132cd0(auStack_e0,auStack_e0);
+  sceVu0TransposeMatrix(auStack_e0,auStack_e0);
   uVar4 = Light_GetDirMatrix(param_1);
-  vu0math_sub_00132c20(auStack_a0,uVar4);
+  sceVu0CopyMatrix(auStack_a0,uVar4);
   uVar4 = Light_GetColorMatrix(param_1);
-  vu0math_sub_00132c20(auStack_60,uVar4);
+  sceVu0CopyMatrix(auStack_60,uVar4);
   uVar6 = 0;
   if (param_4 != 0) {
     do {
@@ -650,9 +650,9 @@ void maybe_Light_ApplyToVerticesAlt
   uVar10 = 0xbf800000;
   puVar1 = (undefined4 *)Light_GetIntensity(auStack_20,1);
   *puVar1 = uVar10;
-  vu0math_sub_00132b10(0x3f800000,auStack_10,(int)param_5 + 0x40);
+  sceVu0ScaleVector(0x3f800000,auStack_10,(int)param_5 + 0x40);
   iVar2 = Light_GetAmbient(param_5);
-  vu0math_sub_00132c20(auStack_e0,iVar2 + 0x80);
+  sceVu0CopyMatrix(auStack_e0,iVar2 + 0x80);
   uVar10 = 0;
   uVar4 = Light_GetDirection(auStack_e0,3);
   puVar1 = (undefined4 *)Light_GetIntensity(uVar4,2);
@@ -663,11 +663,11 @@ void maybe_Light_ApplyToVerticesAlt
   uVar4 = Light_GetDirection(auStack_e0,3);
   puVar1 = (undefined4 *)Light_GetIntensity(uVar4,0);
   *puVar1 = uVar10;
-  vu0math_sub_00132cd0(auStack_e0,auStack_e0);
+  sceVu0TransposeMatrix(auStack_e0,auStack_e0);
   uVar4 = Light_GetDirMatrix(param_1);
-  vu0math_sub_00132c20(auStack_a0,uVar4);
+  sceVu0CopyMatrix(auStack_a0,uVar4);
   uVar4 = Light_GetColorMatrix(param_1);
-  vu0math_sub_00132c20(auStack_60,uVar4);
+  sceVu0CopyMatrix(auStack_60,uVar4);
   uVar6 = 0;
   if (param_4 != 0) {
     do {
@@ -724,9 +724,9 @@ void Light_UpdateMatrices(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  vu0math_sub_001337f0(iVar1 + 0x130,iVar1 + 0x50,iVar1 + 0x60,iVar1 + 0x70);
-  vu0math_sub_00133780(iVar1 + 0xb0,iVar1 + 0x80,iVar1 + 0x90,iVar1 + 0xa0,param_1);
-  vu0math_sub_00132c20(iVar1 + 0xf0,iVar1 + 0x10);
+  sceVu0NormalLightMatrix(iVar1 + 0x130,iVar1 + 0x50,iVar1 + 0x60,iVar1 + 0x70);
+  sceVu0LightColorMatrix(iVar1 + 0xb0,iVar1 + 0x80,iVar1 + 0x90,iVar1 + 0xa0,param_1);
+  sceVu0CopyMatrix(iVar1 + 0xf0,iVar1 + 0x10);
   return;
 }
 
@@ -945,8 +945,8 @@ void Model_BuildNodeMatrices(int param_1,undefined8 param_2,uint *param_3)
     maybe_Vu0_RotMatrixZ(param_3[0xc],auStack_40,auStack_40);
     maybe_Vu0_RotMatrixY(param_3[0xd],auStack_40,auStack_40);
     maybe_Vu0_RotMatrixX(param_3[0xe],auStack_40,auStack_40);
-    vu0math_sub_00132d20(auStack_40,auStack_40,param_3 + 8);
-    vu0math_sub_00132ba0(param_2,auStack_40,param_2);
+    sceVu0TransMatrix(auStack_40,auStack_40,param_3 + 8);
+    sceVu0MulMatrix(param_2,auStack_40,param_2);
     if ((*param_3 & 1) == 0) {
       param_3 = (uint *)0x0;
     }
@@ -1221,7 +1221,7 @@ void MovieSnd_Init(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,un
   if (iVar2 < 0x800) {
     iVar2 = 0x800;
   }
-  uVar1 = loadfile_sub_00118a30(iVar2);
+  uVar1 = sceSifAllocIopHeap(iVar2);
   param_1[4] = uVar1;
   uVar1 = Mem_AllocAligned(0x800,0x40,param_4);
   param_1[5] = uVar1;
@@ -1777,7 +1777,7 @@ void MoviePlayer_Free(void)
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x1fc) = 0;
     }
-    loadfile_sub_00118b98(*(undefined4 *)(iVar1 + 0x1f8));
+    maybe_sceSifFreeSysMemory(*(undefined4 *)(iVar1 + 0x1f8));
   }
   if (*(int *)(iRam0036f0c8 + 400) != 0) {
     MovieTex_Free(iRam0036f0c8 + 0x19c);
@@ -1821,7 +1821,7 @@ void Movie_Init(void)
 
 {
   uRam0036f0c8 = 0;
-  libmpeg_sub_0010f578();
+  maybe_sceMpegInit();
   return;
 }
 

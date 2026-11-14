@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00110158  size 0x68
-undefined4 libmpeg_sub_00110158(int param_1)
+undefined4 maybe_Mpeg_FlushOutput(int param_1)
 
 {
   int iVar1;
@@ -12,7 +12,7 @@ undefined4 libmpeg_sub_00110158(int param_1)
   iVar1 = *(int *)(param_1 + 0x40);
   uVar2 = 0;
   if ((*(int *)(iVar1 + 4) != 0) && (*(int *)(iVar1 + 8) != 0)) {
-    libmpeg_sub_001101d0(iVar1);
+    maybe_Mpeg_FlushSecondField(iVar1);
     uVar2 = 1;
     *(int *)(param_1 + 8) = *(int *)(iVar1 + 0x130) - *(int *)(iVar1 + 0xc4);
     *(undefined4 *)(iVar1 + 4) = 0;
@@ -21,7 +21,7 @@ undefined4 libmpeg_sub_00110158(int param_1)
 }
 
 // 0x001101c0  size 0xc
-void libmpeg_sub_001101c0(int param_1)
+void maybe_Ipu_EnableBusy(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x860) = 0;
@@ -30,7 +30,9 @@ void libmpeg_sub_001101c0(int param_1)
 }
 
 // 0x001101d0  size 0x7c
-void libmpeg_sub_001101d0(undefined8 param_1)
+/* "the second field is missing" */
+
+void maybe_Mpeg_FlushSecondField(undefined8 param_1)
 
 {
   int iVar1;
@@ -38,11 +40,11 @@ void libmpeg_sub_001101d0(undefined8 param_1)
   iVar1 = (int)param_1;
   if (*(int *)(iVar1 + 0x138) == 0) {
     if (*(int *)(iVar1 + 0x18c) == 3) {
-      libmpeg_sub_0010d8f8(param_1,*(undefined4 *)(iVar1 + 0x1d4),*(int *)(iVar1 + 0x130) + -1);
+      maybe_Mpeg_OutputFrame(param_1,*(undefined4 *)(iVar1 + 0x1d4),*(int *)(iVar1 + 0x130) + -1);
       *(undefined4 *)(iVar1 + 0x138) = 0;
     }
     else {
-      libmpeg_sub_0010da08
+      maybe_Mpeg_OutputField
                 (param_1,*(undefined4 *)(iVar1 + 0x1e4),*(undefined4 *)(iVar1 + 500),
                  *(int *)(iVar1 + 0x130) + -1);
       *(undefined4 *)(iVar1 + 0x138) = 0;
@@ -56,7 +58,9 @@ void libmpeg_sub_001101d0(undefined8 param_1)
 }
 
 // 0x00110250  size 0x60
-void libmpeg_sub_00110250(int param_1)
+/* 0x70000000 SPR */
+
+void maybe_Mpeg_InitScratchpad(int param_1)
 
 {
   maybe_Ipu_SetCtrlBit23(1);
@@ -69,7 +73,7 @@ void libmpeg_sub_00110250(int param_1)
 }
 
 // 0x001102b0  size 0xc8
-void libmpeg_sub_001102b0(int param_1)
+void maybe_Mpeg_ResetDecoder(int param_1)
 
 {
   uint uVar1;
@@ -138,7 +142,7 @@ void maybe_Mpeg_Error(long param_1,undefined8 param_2)
 }
 
 // 0x00110418  size 0x100
-void libmpeg_sub_00110418(int param_1,uint param_2,int param_3)
+void maybe_Mpeg_SetQuantMatrices(int param_1,uint param_2,int param_3)
 
 {
   int iVar1;
@@ -181,7 +185,7 @@ void libmpeg_sub_00110418(int param_1,uint param_2,int param_3)
 }
 
 // 0x00110518  size 0x20
-undefined4 libmpeg_sub_00110518(int param_1,int param_2,int param_3)
+undefined4 maybe_Mpeg_SetPictureSize(int param_1,int param_2,int param_3)
 
 {
   *(int *)(param_1 + 0xc) = param_2 >> 4;
@@ -224,7 +228,7 @@ void maybe_Mpeg_SequenceHeader(undefined8 param_1)
   lVar6 = maybe_Mpeg_GetBits(param_1,1);
   *(int *)(iVar7 + 0x858) = (int)lVar6;
   if (lVar6 == 0) {
-    libmpeg_sub_001109e8(param_1,0x50000000,0x3069c0);
+    maybe_Mpeg_DecodeIntraSlice(param_1,0x50000000,0x3069c0);
   }
   else {
     maybe_Ipu_Sync(param_1);
@@ -234,7 +238,7 @@ void maybe_Mpeg_SequenceHeader(undefined8 param_1)
   lVar6 = maybe_Mpeg_GetBits(param_1,1);
   *(int *)(iVar7 + 0x85c) = (int)lVar6;
   if (lVar6 == 0) {
-    libmpeg_sub_001109e8(param_1,0x58000000,0x306a00);
+    maybe_Mpeg_DecodeIntraSlice(param_1,0x58000000,0x306a00);
   }
   else {
     maybe_Ipu_Sync(param_1);
@@ -280,30 +284,30 @@ LAB_00110700:
   iVar8 = iVar7 + 0x120;
   iVar9 = iVar10 >> 1;
   uVar2 = (uint)(iVar11 * iVar4 * 0x1800) >> 8;
-  libmpeg_sub_0010fc28(iVar8);
+  maybe_Ringbuf_Commit(iVar8);
   uVar5 = maybe_Mpeg_WorkAlloc(iVar7,iVar8,uVar2,0x40);
   *(undefined4 *)(iVar7 + 0x114) = uVar5;
   uVar5 = maybe_Mpeg_WorkAlloc(iVar7,iVar8,uVar2,0x40);
   *(undefined4 *)(iVar7 + 0x118) = uVar5;
   uVar5 = maybe_Mpeg_WorkAlloc(iVar7,iVar8,uVar2,0x40);
   *(undefined4 *)(iVar7 + 0x11c) = uVar5;
-  libmpeg_sub_00110908
+  maybe_Mpeg_ComputeMbAddresses
             (iVar7 + 0x200,iVar7 + 0x268,iVar7 + 0x2d0,iVar7 + 0x338,iVar7 + 0x3a0,iVar7 + 0x408,
              iVar7 + 0x470,iVar7 + 0x4d8);
-  libmpeg_sub_00110518(iVar7 + 0x200,iVar11,iVar10);
-  libmpeg_sub_00110518(iVar7 + 0x268,iVar11,iVar10);
-  libmpeg_sub_00110518(iVar7 + 0x2d0,iVar11,iVar10);
-  libmpeg_sub_00110518(iVar7 + 0x338,iVar11,iVar9);
-  libmpeg_sub_00110518(iVar7 + 0x3a0,iVar11,iVar9);
-  libmpeg_sub_00110518(iVar7 + 0x408,iVar11,iVar9);
-  libmpeg_sub_00110518(iVar7 + 0x470,iVar11,iVar9);
-  libmpeg_sub_00110518(iVar7 + 0x4d8,iVar11,iVar9);
-  libmpeg_sub_00110518(iVar7 + 0x540,iVar11,iVar9);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x200,iVar11,iVar10);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x268,iVar11,iVar10);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x2d0,iVar11,iVar10);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x338,iVar11,iVar9);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x3a0,iVar11,iVar9);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x408,iVar11,iVar9);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x470,iVar11,iVar9);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x4d8,iVar11,iVar9);
+  maybe_Mpeg_SetPictureSize(iVar7 + 0x540,iVar11,iVar9);
   return;
 }
 
 // 0x00110908  size 0xe0
-void libmpeg_sub_00110908
+void maybe_Mpeg_ComputeMbAddresses
                (uint *param_1,uint *param_2,uint *param_3,uint *param_4,uint *param_5,uint *param_6,
                uint *param_7,uint *param_8,uint *param_9,uint param_10,uint param_11,uint param_12,
                int param_13,int param_14)
@@ -336,7 +340,7 @@ void libmpeg_sub_00110908
 }
 
 // 0x001109e8  size 0xe0
-void libmpeg_sub_001109e8(undefined8 param_1,undefined8 param_2,uint param_3)
+void maybe_Mpeg_DecodeIntraSlice(undefined8 param_1,undefined8 param_2,uint param_3)
 
 {
   long lVar1;
@@ -395,7 +399,7 @@ void maybe_Mpeg_SequenceExtension(undefined8 param_1)
 }
 
 // 0x00110bf8  size 0x8c
-void libmpeg_sub_00110bf8(undefined8 param_1)
+void maybe_Mpeg_QuantMatrixExt(undefined8 param_1)
 
 {
   long lVar1;
@@ -420,15 +424,15 @@ void libmpeg_sub_00110bf8(undefined8 param_1)
 }
 
 // 0x00110cf0  size 0x24
-undefined4 libmpeg_sub_00110cf0(int param_1)
+undefined4 maybe_sceMpegResume(int param_1)
 
 {
-  libmpeg_sub_00110ef0(*(int *)(param_1 + 0x40) + 0x68);
+  maybe_sceMpegRestoreIpuState(*(int *)(param_1 + 0x40) + 0x68);
   return 1;
 }
 
 // 0x00110d18  size 0x74
-void libmpeg_sub_00110d18(undefined4 param_1)
+void maybe_Dmac_SuspendCh4(undefined4 param_1)
 
 {
   uint uVar1;
@@ -448,7 +452,7 @@ void libmpeg_sub_00110d18(undefined4 param_1)
 }
 
 // 0x00110d90  size 0x74
-void libmpeg_sub_00110d90(undefined4 param_1)
+void maybe_Dmac_SuspendCh3(undefined4 param_1)
 
 {
   uint uVar1;
@@ -468,13 +472,13 @@ void libmpeg_sub_00110d90(undefined4 param_1)
 }
 
 // 0x00110e08  size 0xe4
-void libmpeg_sub_00110e08(undefined4 *param_1)
+void maybe_sceMpegSaveIpuState(undefined4 *param_1)
 
 {
   uint uVar1;
   undefined4 uVar2;
   
-  libmpeg_sub_00110d90(1);
+  maybe_Dmac_SuspendCh3(1);
   uVar2 = REG_DMAC_4_IPU_TO_MADR;
   *param_1 = uVar2;
   uVar2 = REG_DMAC_4_IPU_TO_TADR;
@@ -486,7 +490,7 @@ void libmpeg_sub_00110e08(undefined4 *param_1)
   do {
     uVar1 = REG_IPU_CTRL;
   } while ((uVar1 & 0xf0) != 0);
-  libmpeg_sub_00110d18(0);
+  maybe_Dmac_SuspendCh4(0);
   uVar2 = REG_DMAC_3_IPU_FROM_MADR;
   param_1[4] = uVar2;
   uVar2 = REG_DMAC_3_IPU_FROM_QWC;
@@ -501,7 +505,7 @@ void libmpeg_sub_00110e08(undefined4 *param_1)
 }
 
 // 0x00110ef0  size 0x150
-void libmpeg_sub_00110ef0(int *param_1)
+void maybe_sceMpegRestoreIpuState(int *param_1)
 
 {
   uint uVar1;
@@ -516,7 +520,7 @@ void libmpeg_sub_00110ef0(int *param_1)
   if ((param_1[4] != 0) && (param_1[5] != 0)) {
     REG_DMAC_3_IPU_FROM_MADR = param_1[4];
     REG_DMAC_3_IPU_FROM_QWC = param_1[5];
-    libmpeg_sub_00110d18(param_1[6] | 0x100);
+    maybe_Dmac_SuspendCh4(param_1[6] | 0x100);
   }
   do {
     iVar2 = REG_IPU_CTRL;
@@ -531,7 +535,7 @@ void libmpeg_sub_00110ef0(int *param_1)
   REG_DMAC_4_IPU_TO_MADR = iVar3;
   REG_DMAC_4_IPU_TO_TADR = param_1[1];
   REG_DMAC_4_IPU_TO_QWC = iVar4;
-  libmpeg_sub_00110d90(param_1[3] | 0x100);
+  maybe_Dmac_SuspendCh3(param_1[3] | 0x100);
   return;
 }
 
@@ -559,7 +563,7 @@ uint maybe_Ipu_WaitIdle(int param_1)
 }
 
 // 0x001110a8  size 0x74
-void libmpeg_sub_001110a8(undefined4 param_1)
+void maybe_Dmac_SuspendCh3B(undefined4 param_1)
 
 {
   uint uVar1;
@@ -584,7 +588,7 @@ void maybe_Ipu_Reset(void)
 {
   int iVar1;
   
-  libmpeg_sub_001110a8(1);
+  maybe_Dmac_SuspendCh3B(1);
   REG_IPU_CTRL = 0x40000000;
   do {
     iVar1 = REG_IPU_CTRL;
@@ -1149,7 +1153,7 @@ void _InitTLB(void)
 }
 
 // 0x00111c20  size 0xc
-void libkernl_sub_00111c20(void)
+void maybe__kernl_ResetTtyFlag(void)
 
 {
   DAT_00306ad0 = 0;
@@ -1157,7 +1161,9 @@ void libkernl_sub_00111c20(void)
 }
 
 // 0x00111c30  size 0x90
-void libkernl_sub_00111c30(void)
+/* INTC_STAT = 4 (VBLANK_START) */
+
+void maybe_sceGsVSyncHandlerClear(void)
 
 {
   uint uVar1;
@@ -1183,7 +1189,7 @@ void libkernl_sub_00111c30(void)
 }
 
 // 0x00111cc0  size 0xa4
-undefined8 libkernl_sub_00111cc0(void)
+undefined8 maybe_sceGsWaitVSync(void)
 
 {
   uint uVar1;
@@ -1213,7 +1219,9 @@ undefined8 libkernl_sub_00111cc0(void)
 }
 
 // 0x00111d68  size 0x7c
-undefined8 libkernl_sub_00111d68(int param_1,undefined8 param_2,undefined8 param_3)
+/* fd 1/2 -> TTY */
+
+undefined8 _write(int param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -1235,7 +1243,9 @@ LAB_00111dc8:
 }
 
 // 0x00111de8  size 0x74
-undefined8 libkernl_sub_00111de8(long param_1,undefined8 param_2,undefined8 param_3)
+/* fd 0 -> TTY */
+
+undefined8 _read(long param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -1257,7 +1267,9 @@ LAB_00111e40:
 }
 
 // 0x00111e60  size 0x28
-undefined4 libkernl_sub_00111e60(void)
+/* sets errno EIO */
+
+undefined4 _close(void)
 
 {
   undefined4 *puVar1;
@@ -1268,21 +1280,23 @@ undefined4 libkernl_sub_00111e60(void)
 }
 
 // 0x00111e88  size 0x8
-undefined4 libkernl_sub_00111e88(void)
+undefined4 maybe__getpid(void)
 
 {
   return 0xffffffff;
 }
 
 // 0x00111e98  size 0x8
-undefined4 libkernl_sub_00111e98(void)
+undefined4 maybe__kill(void)
 
 {
   return 0xffffffff;
 }
 
 // 0x00111ea0  size 0xac
-uint libkernl_sub_00111ea0(int param_1)
+/* EndOfHeap */
+
+uint _sbrk(int param_1)
 
 {
   uint uVar1;
@@ -1317,14 +1331,16 @@ uint libkernl_sub_00111ea0(int param_1)
 }
 
 // 0x00111f50  size 0x8
-undefined4 libkernl_sub_00111f50(void)
+undefined4 maybe__isatty(void)
 
 {
   return 1;
 }
 
 // 0x00111f58  size 0x14
-undefined8 libkernl_sub_00111f58(undefined8 param_1,int param_2)
+/* st_mode = S_IFCHR */
+
+undefined8 _fstat(undefined8 param_1,int param_2)
 
 {
   *(undefined8 *)(param_2 + 0x48) = 0;
@@ -1333,7 +1349,7 @@ undefined8 libkernl_sub_00111f58(undefined8 param_1,int param_2)
 }
 
 // 0x00111f78  size 0x28
-undefined8 libkernl_sub_00111f78(int param_1,undefined8 param_2)
+undefined8 maybe__exit_hook(int param_1,undefined8 param_2)
 
 {
   if (param_1 == 1) {
@@ -1343,7 +1359,9 @@ undefined8 libkernl_sub_00111f78(int param_1,undefined8 param_2)
 }
 
 // 0x00111fa0  size 0x28
-undefined4 libkernl_sub_00111fa0(void)
+/* EIO */
+
+undefined4 _lseek(void)
 
 {
   undefined4 *puVar1;
@@ -1354,7 +1372,9 @@ undefined4 libkernl_sub_00111fa0(void)
 }
 
 // 0x00111fc8  size 0x28
-undefined4 libkernl_sub_00111fc8(void)
+/* EIO */
+
+undefined4 _open(void)
 
 {
   undefined4 *puVar1;
@@ -1365,7 +1385,7 @@ undefined4 libkernl_sub_00111fc8(void)
 }
 
 // 0x00111ff0  size 0xa4
-void libkernl_sub_00111ff0(uint param_1,uint param_2)
+void maybe__SyncDCacheLines(uint param_1,uint param_2)
 
 {
   uint uVar1;
@@ -1398,7 +1418,9 @@ void libkernl_sub_00111ff0(uint param_1,uint param_2)
 }
 
 // 0x00112098  size 0x7c
-void libkernl_sub_00112098(ulong param_1,ulong param_2)
+/* (start, end) */
+
+void SyncDCache(ulong param_1,ulong param_2)
 
 {
   uint uVar1;
@@ -1407,7 +1429,7 @@ void libkernl_sub_00112098(ulong param_1,ulong param_2)
   if (uVar1 != 0) {
     DIntr();
   }
-  libkernl_sub_00111ff0(param_1 & 0xffffffffffffffc0,param_2 & 0xffffffffffffffc0);
+  maybe__SyncDCacheLines(param_1 & 0xffffffffffffffc0,param_2 & 0xffffffffffffffc0);
   if (uVar1 == 0) {
     return;
   }
@@ -1416,7 +1438,7 @@ void libkernl_sub_00112098(ulong param_1,ulong param_2)
 }
 
 // 0x00112130  size 0xa4
-void libkernl_sub_00112130(uint param_1,uint param_2)
+void maybe__InvalidDCacheLines(uint param_1,uint param_2)
 
 {
   uint uVar1;
@@ -1449,7 +1471,7 @@ void libkernl_sub_00112130(uint param_1,uint param_2)
 }
 
 // 0x001121d8  size 0x7c
-void libkernl_sub_001121d8(ulong param_1,ulong param_2)
+void InvalidDCache(ulong param_1,ulong param_2)
 
 {
   uint uVar1;
@@ -1458,7 +1480,7 @@ void libkernl_sub_001121d8(ulong param_1,ulong param_2)
   if (uVar1 != 0) {
     DIntr();
   }
-  libkernl_sub_00112130(param_1 & 0xffffffffffffffc0,param_2 & 0xffffffffffffffc0);
+  maybe__InvalidDCacheLines(param_1 & 0xffffffffffffffc0,param_2 & 0xffffffffffffffc0);
   if (uVar1 == 0) {
     return;
   }
@@ -1657,7 +1679,7 @@ int maybe_InitThreadExtension(void)
 }
 
 // 0x00112650  size 0x94
-void libkernl_sub_00112650(ulong param_1)
+void maybe_iWakeupThreadEx(ulong param_1)
 
 {
   undefined4 uVar1;
@@ -1682,7 +1704,7 @@ void libkernl_sub_00112650(ulong param_1)
 }
 
 // 0x001126e8  size 0x7c
-uint libkernl_sub_001126e8(uint param_1)
+uint maybe_iSignalSemaEx(uint param_1)
 
 {
   undefined4 uVar1;
@@ -1703,7 +1725,7 @@ uint libkernl_sub_001126e8(uint param_1)
 }
 
 // 0x00112768  size 0x98
-void libkernl_sub_00112768(ulong param_1)
+void maybe_iSuspendThreadEx(ulong param_1)
 
 {
   undefined4 uVar1;
@@ -1753,7 +1775,7 @@ long DelayThread(undefined8 param_1)
       lVar2 = -0x7fff7ffd;
     }
     else {
-      uVar3 = libkernl_sub_0011c2a8(0,param_1);
+      uVar3 = maybe_TimerUSec2BusClock(0,param_1);
       lVar2 = maybe_SetTimerAlarm(uVar3,0x1128c8,lVar1);
       if (lVar2 < 0) {
         DeleteSema(lVar1);
@@ -1769,7 +1791,7 @@ long DelayThread(undefined8 param_1)
 }
 
 // 0x001128c8  size 0x28
-undefined8 libkernl_sub_001128c8(void)
+undefined8 maybe_Kernl_AlarmSignal(void)
 
 {
   undefined8 in_a3;
@@ -1841,7 +1863,7 @@ void sceDeci2Poll(undefined4 param_1)
 }
 
 // 0x001129b8  size 0x30
-void libkernl_sub_001129b8(uint param_1,undefined4 param_2,undefined4 param_3)
+void maybe_sceDeci2ExReqSend(uint param_1,undefined4 param_2,undefined4 param_3)
 
 {
   uint uStack_30;
@@ -1856,7 +1878,7 @@ void libkernl_sub_001129b8(uint param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x001129e8  size 0x24
-void libkernl_sub_001129e8(undefined4 param_1)
+void maybe_sceDeci2ExLock(undefined4 param_1)
 
 {
   undefined4 auStack_20 [4];
@@ -1897,7 +1919,7 @@ void sceDeci2ExSend(undefined4 param_1,undefined4 param_2,uint param_3)
 }
 
 // 0x00112ab0  size 0x24
-void libkernl_sub_00112ab0(undefined4 param_1)
+void maybe_sceDeci2ExUnLock(undefined4 param_1)
 
 {
   undefined4 auStack_20 [4];
@@ -1908,7 +1930,7 @@ void libkernl_sub_00112ab0(undefined4 param_1)
 }
 
 // 0x00112ad8  size 0x24
-void libkernl_sub_00112ad8(undefined4 param_1)
+void maybe_sceDeci2ExPoll(undefined4 param_1)
 
 {
   undefined4 auStack_20 [4];
@@ -1932,7 +1954,7 @@ void maybe_sceDeci2kputs(undefined4 param_1)
 }
 
 // 0x00112b28  size 0x24
-undefined4 libkernl_sub_00112b28(undefined4 param_1)
+undefined4 maybe_Tty_SetBuffer(undefined4 param_1)
 
 {
   uRam00370b40 = param_1;
@@ -1943,7 +1965,7 @@ undefined4 libkernl_sub_00112b28(undefined4 param_1)
 }
 
 // 0x00112b50  size 0x3c
-void libkernl_sub_00112b50(int *param_1)
+void maybe_Tty_PushChar(int *param_1)
 
 {
   int iVar1;
@@ -1958,7 +1980,7 @@ void libkernl_sub_00112b50(int *param_1)
 }
 
 // 0x00112b90  size 0x3c
-void libkernl_sub_00112b90(int *param_1)
+void maybe_Tty_PopChar(int *param_1)
 
 {
   int iVar1;
@@ -2009,7 +2031,7 @@ void maybe_Tty_Deci2Handler(int param_1,ulong param_2,undefined4 *param_3)
             puVar2 = (undefined1 *)((int)puVar4 + iVar6);
             iVar6 = iVar6 + 1;
             **(undefined1 **)(iVar5 + 0xc) = *puVar2;
-            libkernl_sub_00112b50(param_3[6]);
+            maybe_Tty_PushChar(param_3[6]);
             if ((int)(uint)*puVar1 <= iVar6) break;
             puVar4 = (ushort *)param_3[5];
             iVar5 = param_3[6];
@@ -2117,7 +2139,7 @@ int maybe_Tty_Read(int param_1,int param_2)
       do {
       } while (*(int *)(iRam00370c68 + 4) == 0);
       *(char *)(param_1 + iVar2) = **(char **)(iRam00370c68 + 8);
-      libkernl_sub_00112b90(iRam00370c68);
+      maybe_Tty_PopChar(iRam00370c68);
       cVar1 = *(char *)(param_1 + iVar2);
       if ((cVar1 == '\n') || (cVar1 == '\r')) {
         return iVar3;
@@ -2148,7 +2170,7 @@ bool maybe_Tty_Init(void)
     DAT_20370c87 = 0x48;
     DAT_20370c88 = 0;
     DAT_20370c82 = 0;
-    uRam00370c68 = libkernl_sub_00112b28(0x100);
+    uRam00370c68 = maybe_Tty_SetBuffer(0x100);
   }
   return bVar1;
 }
@@ -2169,7 +2191,7 @@ undefined8 maybe_Sio_PutRaw(undefined8 param_1)
 }
 
 // 0x001130b0  size 0xb0
-void libkernl_sub_001130b0(int param_1)
+void maybe_kputchar(int param_1)
 
 {
   int iVar1;
@@ -2209,7 +2231,7 @@ void maybe_Sio_PutChar(long param_1)
 }
 
 // 0x00113198  size 0x94
-int libkernl_sub_00113198(ulong param_1)
+int maybe_Kprintf_DoubleToInt(ulong param_1)
 
 {
   int iVar1;
@@ -2240,7 +2262,7 @@ int libkernl_sub_00113198(ulong param_1)
 }
 
 // 0x00113230  size 0x160
-void libkernl_sub_00113230(undefined8 param_1)
+void maybe_Kprintf_FormatDouble(undefined8 param_1)
 
 {
   long lVar1;
@@ -2270,8 +2292,8 @@ void libkernl_sub_00113230(undefined8 param_1)
     }
   }
   uVar2 = __muldf3(param_1,DAT_0035f1d8);
-  uVar2 = newlib_sub_0012f278(uVar2);
-  uVar2 = libkernl_sub_00113198(uVar2);
+  uVar2 = maybe___fixdfdi(uVar2);
+  uVar2 = maybe_Kprintf_DoubleToInt(uVar2);
   maybe_kprintf(0x35f1b0,uVar2);
   if (iVar3 < 0) {
     maybe_kprintf(0x35f1c0,iVar3);
@@ -2360,7 +2382,7 @@ void maybe_scePrintf(undefined8 param_1,undefined8 param_2,undefined8 param_3,un
   undefined8 uStack_8;
   
   puVar1 = PTR_maybe_Sio_PutChar_00306ae4;
-  PTR_maybe_Sio_PutChar_00306ae4 = libkernl_sub_001130b0;
+  PTR_maybe_Sio_PutChar_00306ae4 = maybe_kputchar;
   uStack_38 = param_2;
   uStack_30 = param_3;
   uStack_28 = param_4;
@@ -2374,7 +2396,7 @@ void maybe_scePrintf(undefined8 param_1,undefined8 param_2,undefined8 param_3,un
 }
 
 // 0x00113a58  size 0x18
-undefined4 libkernl_sub_00113a58(int param_1)
+undefined4 maybe_sceSifGetSreg(int param_1)
 
 {
   return *(undefined4 *)(param_1 * 4 + 0x371200);
@@ -2466,7 +2488,7 @@ void sceSifExitCmd(void)
 }
 
 // 0x00113d88  size 0x78
-void libkernl_sub_00113d88(long param_1,undefined4 param_2,undefined4 param_3)
+void maybe_sceSifGetCmdHandler(long param_1,undefined4 param_2,undefined4 param_3)
 
 {
   undefined4 *puVar1;
@@ -2492,7 +2514,7 @@ void libkernl_sub_00113d88(long param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00113e00  size 0x4c
-void libkernl_sub_00113e00(long param_1)
+void maybe_sceSifRemoveCmdHandler(long param_1)
 
 {
   if (param_1 < 0) {

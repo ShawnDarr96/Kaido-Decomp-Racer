@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00124030  size 0xcc
-long libmc_sub_00124030(undefined4 param_1,undefined4 param_2)
+long maybe_sceMcFlush(undefined4 param_1,undefined4 param_2)
 
 {
   long lVar1;
@@ -32,7 +32,7 @@ long libmc_sub_00124030(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x00124100  size 0x11c
-long libmc_sub_00124100(undefined4 param_1,undefined4 param_2,long param_3)
+long maybe_sceMcChdir(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
@@ -69,7 +69,7 @@ long libmc_sub_00124100(undefined4 param_1,undefined4 param_2,long param_3)
 }
 
 // 0x00124220  size 0xbc
-long libmc_sub_00124220(undefined4 param_1)
+long maybe_sceMcFormat(undefined4 param_1)
 
 {
   long lVar1;
@@ -97,8 +97,8 @@ long libmc_sub_00124220(undefined4 param_1)
 }
 
 // 0x001242e0  size 0x1cc
-long libmc_sub_001242e0(undefined4 param_1,undefined4 param_2,long param_3,undefined8 *param_4,
-                       uint param_5)
+long maybe_sceMcReadDirEntry
+               (undefined4 param_1,undefined4 param_2,long param_3,undefined8 *param_4,uint param_5)
 
 {
   long lVar1;
@@ -145,7 +145,7 @@ long libmc_sub_001242e0(undefined4 param_1,undefined4 param_2,long param_3,undef
 }
 
 // 0x001244b0  size 0x15c
-long libmc_sub_001244b0(undefined4 param_1,undefined4 param_2,long param_3,long param_4)
+long maybe_sceMcGetEntSpace(undefined4 param_1,undefined4 param_2,long param_3,long param_4)
 
 {
   long lVar1;
@@ -186,7 +186,7 @@ long libmc_sub_001244b0(undefined4 param_1,undefined4 param_2,long param_3,long 
 }
 
 // 0x00124610  size 0xcc
-long libmc_sub_00124610(undefined4 param_1,undefined4 param_2)
+long maybe_sceMcUnformat(undefined4 param_1,undefined4 param_2)
 
 {
   long lVar1;
@@ -215,7 +215,7 @@ long libmc_sub_00124610(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x001246e0  size 0x10c
-long libmc_sub_001246e0(undefined4 param_1,undefined4 param_2,long param_3)
+long maybe_sceMcDelete(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
@@ -474,13 +474,13 @@ undefined4 * maybe__calloc_r(undefined8 param_1,int param_2,int param_3)
 }
 
 // 0x00124b98  size 0x58
-void newlib_sub_00124b98(int *param_1,undefined8 param_2)
+void maybe__close_r(int *param_1,undefined8 param_2)
 
 {
   long lVar1;
   
   iRam0046a5dc = 0;
-  lVar1 = libkernl_sub_00111e88(param_2);
+  lVar1 = maybe__getpid(param_2);
   if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
     *param_1 = iRam0046a5dc;
   }
@@ -488,7 +488,9 @@ void newlib_sub_00124b98(int *param_1,undefined8 param_2)
 }
 
 // 0x00124bf0  size 0x228
-int newlib_sub_00124bf0(undefined8 param_1,undefined8 param_2)
+/* dtoa helper */
+
+int maybe_quorem(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -927,7 +929,7 @@ LAB_00125b88:
           }
           uVar17 = 1;
           do {
-            iVar13 = newlib_sub_00124bf0(uStack_6c,iStack_60);
+            iVar13 = maybe_quorem(uStack_6c,iStack_60);
             uVar19 = iVar13 + 0x30;
             lVar4 = __mcmp(uStack_6c,iStack_68);
             uVar5 = __mdiff(param_1,iStack_60,iStack_64);
@@ -990,7 +992,7 @@ LAB_00125ec0:
           } while( true );
         }
         while( true ) {
-          iVar13 = newlib_sub_00124bf0(uStack_6c,iStack_60);
+          iVar13 = maybe_quorem(uStack_6c,iStack_60);
           uVar19 = iVar13 + 0x30;
           *pcVar20 = (char)uVar19;
           pcVar20 = pcVar20 + 1;
@@ -1245,7 +1247,7 @@ undefined * __errno(void)
 }
 
 // 0x00126098  size 0xac
-void newlib_sub_00126098(undefined8 param_1)
+void maybe_exit(undefined8 param_1)
 
 {
   code *pcVar1;
@@ -1312,7 +1314,7 @@ undefined8 maybe__fflush_r(long param_1)
     puVar5 = puVar1;
   }
   if (iVar9 == 0) {
-    newlib_sub_00126470(puVar5);
+    __sinit(puVar5);
     uVar4 = *(ushort *)(piVar8 + 3);
   }
   else {
@@ -1344,7 +1346,7 @@ undefined8 maybe__fflush_r(long param_1)
 }
 
 // 0x00126260  size 0x5c
-void newlib_sub_00126260(undefined4 *param_1,undefined2 param_2,undefined2 param_3,
+void maybe_std_FILE_init(undefined4 *param_1,undefined2 param_2,undefined2 param_3,
                         undefined4 param_4)
 
 {
@@ -1395,7 +1397,7 @@ undefined4 * maybe___sfp(undefined8 param_1)
   puVar4 = (undefined4 *)param_1;
   puVar3 = puVar4 + 0x76;
   if (puVar4[0xe] == 0) {
-    newlib_sub_00126470();
+    __sinit();
   }
   while( true ) {
     while( true ) {
@@ -1441,7 +1443,9 @@ void maybe__cleanup_r(undefined8 param_1)
 }
 
 // 0x00126470  size 0x8c
-void newlib_sub_00126470(undefined8 param_1)
+/* newlib stdio init; 9 callers */
+
+void __sinit(undefined8 param_1)
 
 {
   int iVar1;
@@ -1449,9 +1453,9 @@ void newlib_sub_00126470(undefined8 param_1)
   iVar1 = (int)param_1;
   *(code **)(iVar1 + 0x3c) = maybe__cleanup_r;
   *(undefined4 *)(iVar1 + 0x38) = 1;
-  newlib_sub_00126260(iVar1 + 0x1e4,4,0,param_1);
-  newlib_sub_00126260(iVar1 + 0x23c,9,1,param_1);
-  newlib_sub_00126260(iVar1 + 0x294,10,2,param_1);
+  maybe_std_FILE_init(iVar1 + 0x1e4,4,0,param_1);
+  maybe_std_FILE_init(iVar1 + 0x23c,9,1,param_1);
+  maybe_std_FILE_init(iVar1 + 0x294,10,2,param_1);
   *(undefined4 *)(iVar1 + 0x1d8) = 0;
   *(int *)(iVar1 + 0x1e0) = iVar1 + 0x1e4;
   *(undefined4 *)(iVar1 + 0x1dc) = 3;
@@ -1497,7 +1501,7 @@ void _free_r(undefined8 param_1,long param_2)
     }
     *(uint *)((int)PTR_DAT_0030a0a8 + 4) = uVar8 | 1;
     if (DAT_0030a4a8 <= uVar8) {
-      newlib_sub_001267f8(param_1,DAT_0030a4b0);
+      maybe__malloc_trim_r(param_1,DAT_0030a4b0);
     }
     __malloc_unlock(param_1);
     return;
@@ -1604,7 +1608,7 @@ LAB_001267b8:
 }
 
 // 0x001267f8  size 0x16c
-undefined4 newlib_sub_001267f8(undefined8 param_1,ulong param_2)
+undefined4 maybe__malloc_trim_r(undefined8 param_1,ulong param_2)
 
 {
   uint uVar1;
@@ -1619,17 +1623,17 @@ undefined4 newlib_sub_001267f8(undefined8 param_1,ulong param_2)
   uVar6 = (long)(int)uVar1 & 0xfffffffc;
   lVar5 = ((uVar6 - (param_2 & 0xffffffff)) + 0xfef >> 0xc) - 1;
   if ((0xfff < lVar5 * 0x1000) &&
-     (puVar2 = (undefined *)newlib_sub_0012a908(param_1,0),
+     (puVar2 = (undefined *)maybe__sbrk_r(param_1,0),
      puVar2 == PTR_DAT_0030a0a8 + (uVar1 & 0xfffffffc))) {
     iVar3 = (int)((ulong)(lVar5 << 0x2c) >> 0x20);
-    lVar4 = newlib_sub_0012a908(param_1,-iVar3);
+    lVar4 = maybe__sbrk_r(param_1,-iVar3);
     if (lVar4 != -1) {
       *(uint *)(PTR_DAT_0030a0a8 + 4) = (int)uVar6 + (int)lVar5 * -0x1000 | 1;
       DAT_0030a4d0 = DAT_0030a4d0 - iVar3;
       __malloc_unlock(param_1);
       return 1;
     }
-    iVar3 = newlib_sub_0012a908(param_1,0);
+    iVar3 = maybe__sbrk_r(param_1,0);
     if (0xf < iVar3 - (int)PTR_DAT_0030a0a8) {
       DAT_0030a4d0 = iVar3 - DAT_0030a4b8;
       *(uint *)(PTR_DAT_0030a0a8 + 4) = iVar3 - (int)PTR_DAT_0030a0a8 | 1;
@@ -1640,7 +1644,7 @@ undefined4 newlib_sub_001267f8(undefined8 param_1,ulong param_2)
 }
 
 // 0x00126968  size 0x48c
-undefined4 newlib_sub_00126968(undefined8 param_1,ulong param_2,long param_3)
+undefined4 maybe__fseek_r(undefined8 param_1,ulong param_2,long param_3)
 
 {
   int iVar1;
@@ -1669,7 +1673,7 @@ undefined4 newlib_sub_00126968(undefined8 param_1,ulong param_2,long param_3)
     puVar10 = (undefined4 *)puVar3;
   }
   if (puVar10[0xe] == 0) {
-    newlib_sub_00126470(puVar10);
+    __sinit(puVar10);
     puVar10 = (undefined4 *)piVar9[0x15];
     uVar11 = piVar9[3];
   }
@@ -1750,7 +1754,7 @@ LAB_00126aec:
         uVar4 = uVar4 | 0x800;
       }
       else {
-        lVar6 = newlib_sub_00126e18(puVar10,*(short *)((int)piVar9 + 0xe),auStack_c0);
+        lVar6 = maybe__fstat_r(puVar10,*(short *)((int)piVar9 + 0xe),auStack_c0);
         if (lVar6 == 0) {
           if ((uStack_bc & 0xf000) == 0x8000) {
             piVar9[0x13] = 0x400;
@@ -1774,7 +1778,7 @@ LAB_00126aec:
 LAB_00126b80:
   uVar12 = param_2;
   if (param_3 != 0) {
-    lVar6 = newlib_sub_00126e18(puVar10,*(undefined2 *)((int)piVar9 + 0xe),auStack_c0);
+    lVar6 = maybe__fstat_r(puVar10,*(undefined2 *)((int)piVar9 + 0xe),auStack_c0);
     if (lVar6 != 0) goto LAB_00126d78;
     uVar12 = lStack_b0 + param_2;
   }
@@ -1891,13 +1895,13 @@ LAB_00126d78:
 }
 
 // 0x00126e18  size 0x5c
-void newlib_sub_00126e18(int *param_1,undefined8 param_2,undefined8 param_3)
+void maybe__fstat_r(int *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
   
   iRam0046a5dc = 0;
-  lVar1 = libkernl_sub_00111f58(param_2,param_3);
+  lVar1 = _fstat(param_2,param_3);
   if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
     *param_1 = iRam0046a5dc;
   }
@@ -1905,7 +1909,7 @@ void newlib_sub_00126e18(int *param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x00126e78  size 0xfc
-long newlib_sub_00126e78(undefined8 param_1)
+long maybe__fclose_r(undefined8 param_1)
 
 {
   ushort uVar1;
@@ -1927,7 +1931,7 @@ long newlib_sub_00126e78(undefined8 param_1)
     puVar5 = puVar2;
   }
   if (iVar3 == 0) {
-    newlib_sub_00126470(puVar5);
+    __sinit(puVar5);
     iVar3 = piVar6[10];
   }
   else {
@@ -1966,7 +1970,7 @@ long newlib_sub_00126e78(undefined8 param_1)
 }
 
 // 0x00126f80  size 0x3cc
-undefined4 newlib_sub_00126f80(undefined8 param_1,undefined4 *param_2)
+undefined4 maybe___sfvwrite(undefined8 param_1,undefined4 *param_2)
 
 {
   uint *puVar1;
@@ -2076,7 +2080,7 @@ LAB_00127194:
             uVar4 = *puVar11;
           }
           else {
-            lVar6 = newlib_sub_001280f0(unaff_s3_lo,10,uVar12);
+            lVar6 = memchr(unaff_s3_lo,10,uVar12);
             uVar4 = uVar12;
             if (lVar6 != 0) {
               uVar4 = (int)lVar6 - unaff_s3_lo;
@@ -2196,14 +2200,14 @@ ulong maybe__fwalk(int param_1,code *param_2)
 }
 
 // 0x001273f8  size 0x88
-undefined * newlib_sub_001273f8(int param_1,undefined4 param_2,long param_3)
+undefined * maybe__setlocale_r(int param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
   
   if (param_3 != 0) {
-    lVar1 = newlib_sub_0012b0d8(param_3,0x3602a0);
-    if ((lVar1 != 0) && (lVar1 = newlib_sub_0012b0d8(param_3,0x360290), lVar1 != 0)) {
+    lVar1 = strcmp(param_3,0x3602a0);
+    if ((lVar1 != 0) && (lVar1 = strcmp(param_3,0x360290), lVar1 != 0)) {
       return (undefined *)0x0;
     }
     *(int *)(param_1 + 0x34) = (int)param_3;
@@ -2213,36 +2217,36 @@ undefined * newlib_sub_001273f8(int param_1,undefined4 param_2,long param_3)
 }
 
 // 0x00127488  size 0xc
-undefined ** newlib_sub_00127488(void)
+undefined ** maybe__localeconv_r(void)
 
 {
   return &PTR_DAT_00360260;
 }
 
 // 0x00127498  size 0x24
-void newlib_sub_00127498(undefined8 param_1,undefined8 param_2)
+void maybe_setlocale(undefined8 param_1,undefined8 param_2)
 
 {
-  newlib_sub_001273f8(PTR_DAT_0030a090,param_1,param_2);
+  maybe__setlocale_r(PTR_DAT_0030a090,param_1,param_2);
   return;
 }
 
 // 0x001274c0  size 0x1c
-void newlib_sub_001274c0(void)
+void maybe_localeconv(void)
 
 {
-  newlib_sub_00127488(PTR_DAT_0030a090);
+  maybe__localeconv_r(PTR_DAT_0030a090);
   return;
 }
 
 // 0x001274e0  size 0x60
-void newlib_sub_001274e0(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void maybe__lseek_r(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
   iRam0046a5dc = 0;
-  lVar1 = libkernl_sub_00111e98(param_2,param_3,param_4);
+  lVar1 = maybe__kill(param_2,param_3,param_4);
   if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
     *param_1 = iRam0046a5dc;
   }
@@ -2267,7 +2271,7 @@ void maybe___smakebuf(int *param_1)
     return;
   }
   if (-1 < *(short *)((int)param_1 + 0xe)) {
-    lVar2 = newlib_sub_00126e18(param_1[0x15],*(short *)((int)param_1 + 0xe),auStack_90);
+    lVar2 = maybe__fstat_r(param_1[0x15],*(short *)((int)param_1 + 0xe),auStack_90);
     if (-1 < lVar2) {
       bVar1 = (uStack_8c & 0xf000) == 0x2000;
       if ((uStack_8c & 0xf000) == 0x8000) {
@@ -2303,8 +2307,7 @@ LAB_001275fc:
     *(ushort *)(param_1 + 3) = uVar3 | 0x80;
     param_1[5] = 0x400;
     *param_1 = (int)lVar2;
-    if ((bVar1) && (lVar2 = libkernl_sub_00111f50(*(undefined2 *)((int)param_1 + 0xe)), lVar2 != 0))
-    {
+    if ((bVar1) && (lVar2 = maybe__isatty(*(undefined2 *)((int)param_1 + 0xe)), lVar2 != 0)) {
       *(ushort *)(param_1 + 3) = *(ushort *)(param_1 + 3) | 1;
     }
   }
@@ -2356,7 +2359,7 @@ void maybe_malloc_extend_top(undefined8 param_1,int param_2)
   if (DAT_0030a4b8 != (undefined *)0xffffffff) {
     uVar7 = param_2 + 0x100fU & 0xfffff000;
   }
-  puVar2 = (undefined *)newlib_sub_0012a908(param_1,uVar7);
+  puVar2 = (undefined *)maybe__sbrk_r(param_1,uVar7);
   if ((puVar2 != (undefined *)0xffffffff) && ((puVar5 <= puVar2 || (puVar1 == &DAT_0030a0a0)))) {
     DAT_0030a4d0 = DAT_0030a4d0 + uVar7;
     if (puVar2 == puVar5) {
@@ -2377,7 +2380,7 @@ void maybe_malloc_extend_top(undefined8 param_1,int param_2)
         puVar2 = puVar2 + iVar6;
       }
       iVar6 = iVar6 + (0x1000 - ((uint)(puVar2 + uVar7) & 0xfff));
-      lVar3 = newlib_sub_0012a908((int)param_1,iVar6);
+      lVar3 = maybe__sbrk_r((int)param_1,iVar6);
       if (lVar3 == -1) {
         return;
       }

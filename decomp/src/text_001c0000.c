@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001c0040  size 0x8c
-int profile_sub_001c0040(undefined8 param_1,undefined1 param_2)
+int Profile_GetChapterRivalCount(undefined8 param_1,undefined1 param_2)
 
 {
   int iVar1;
@@ -430,14 +430,14 @@ void Profile_InitDefaults(undefined4 *param_1)
 }
 
 // 0x001c0850  size 0x10
-undefined2 profile_sub_001c0850(int param_1,int param_2)
+undefined2 Profile_GetRivalWins(int param_1,int param_2)
 
 {
   return *(undefined2 *)(param_2 * 2 + param_1 + 0x4b7c);
 }
 
 // 0x001c0860  size 0x28
-short profile_sub_001c0860(int param_1,int param_2)
+short Profile_GetRivalTotalRaces(int param_1,int param_2)
 
 {
   param_1 = param_2 * 2 + param_1;
@@ -445,14 +445,16 @@ short profile_sub_001c0860(int param_1,int param_2)
 }
 
 // 0x001c0890  size 0x10
-undefined2 profile_sub_001c0890(int param_1,int param_2)
+/* 8 callers */
+
+undefined2 Profile_GetRivalBattleCount(int param_1,int param_2)
 
 {
   return *(undefined2 *)(param_2 * 2 + param_1 + 0x3fc4);
 }
 
 // 0x001c08a0  size 0x30
-undefined2 profile_sub_001c08a0(int param_1)
+undefined2 Profile_GetRivalBattleCountById(int param_1)
 
 {
   int iVar1;
@@ -728,7 +730,7 @@ int Profile_FindRivalEntry(void)
 }
 
 // 0x001c0e30  size 0x18
-void profile_sub_001c0e30(int param_1,int param_2)
+void Profile_MarkEventSeen(int param_1,int param_2)
 
 {
   param_1 = param_2 * 4 + param_1;
@@ -738,7 +740,7 @@ void profile_sub_001c0e30(int param_1,int param_2)
 }
 
 // 0x001c0e50  size 0x50
-undefined4 profile_sub_001c0e50(int param_1,undefined4 param_2,undefined4 param_3)
+undefined4 Profile_CountEventsSeen(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -760,21 +762,21 @@ undefined4 profile_sub_001c0e50(int param_1,undefined4 param_2,undefined4 param_
 }
 
 // 0x001c0ea0  size 0x8
-undefined2 profile_sub_001c0ea0(int param_1)
+undefined2 Profile_GetPlayYear(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x5310);
 }
 
 // 0x001c0eb0  size 0x8
-undefined2 profile_sub_001c0eb0(int param_1)
+undefined2 Profile_GetPlayDay(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x5314);
 }
 
 // 0x001c0ec0  size 0x8
-undefined2 profile_sub_001c0ec0(int param_1)
+undefined2 Profile_GetPlayMonth(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x5312);
@@ -788,28 +790,28 @@ undefined4 Profile_GetStat(int param_1,uint param_2)
 }
 
 // 0x001c0ef0  size 0x8
-undefined4 Profile_GetMoney(int param_1)
+undefined4 Profile_GetPoints(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x2744);
 }
 
 // 0x001c0f00  size 0x10
-undefined4 profile_sub_001c0f00(int param_1,int param_2)
+undefined4 Profile_IsEventSeen(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2c0c);
 }
 
 // 0x001c0f10  size 0x10
-undefined4 profile_sub_001c0f10(int param_1,int param_2)
+undefined4 Profile_GetCourseRecordB(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2ac4);
 }
 
 // 0x001c0f20  size 0x10
-undefined4 profile_sub_001c0f20(int param_1,int param_2)
+undefined4 Profile_GetCourseRecord(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2a74);
@@ -1093,7 +1095,7 @@ void Profile_BuildRivalList(int *param_1,int param_2,int param_3)
   if (iStack_10 == 0) {
     iVar6 = 0;
     while( true ) {
-      password_sub_002dfe70(aiStack_390,iVar6);
+      password_step_sub_002dfe70(aiStack_390,iVar6);
       uStack_1c4 = uStack_384;
       if (aiStack_390[0] == -1) break;
       if (param_3 == aiStack_390[0]) {
@@ -1112,7 +1114,7 @@ void Profile_BuildRivalList(int *param_1,int param_2,int param_3)
 }
 
 // 0x001c1590  size 0x38
-int profile_sub_001c1590(int param_1)
+int Profile_CountUnlockedCourses(int param_1)
 
 {
   int iVar1;
@@ -1131,7 +1133,7 @@ int profile_sub_001c1590(int param_1)
 }
 
 // 0x001c15d0  size 0x38
-int profile_sub_001c15d0(int param_1)
+int Profile_CountClearedCourses(int param_1)
 
 {
   int iVar1;
@@ -1150,7 +1152,7 @@ int profile_sub_001c15d0(int param_1)
 }
 
 // 0x001c1610  size 0x10
-undefined4 profile_sub_001c1610(int param_1,int param_2)
+undefined4 Profile_GetCourseBest(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2b14);
@@ -1159,7 +1161,7 @@ undefined4 profile_sub_001c1610(int param_1,int param_2)
 // 0x001c1620  size 0x44
 /* +0x2744 */
 
-void Profile_AddMoney(int param_1,int param_2)
+void Profile_AddPoints(int param_1,int param_2)
 
 {
   *(int *)(param_1 + 0x2744) = *(int *)(param_1 + 0x2744) + param_2;
@@ -1173,7 +1175,7 @@ void Profile_AddMoney(int param_1,int param_2)
 }
 
 // 0x001c1670  size 0x14
-void profile_sub_001c1670(int param_1,int param_2)
+void Profile_SetEventSeen(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x2c0c) = 1;
@@ -1181,7 +1183,7 @@ void profile_sub_001c1670(int param_1,int param_2)
 }
 
 // 0x001c1690  size 0x10
-void profile_sub_001c1690(int param_1,int param_2,undefined4 param_3)
+void Profile_SetCourseRecord(int param_1,int param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x2a74) = param_3;
@@ -1189,7 +1191,7 @@ void profile_sub_001c1690(int param_1,int param_2,undefined4 param_3)
 }
 
 // 0x001c16a0  size 0x10
-void profile_sub_001c16a0(int param_1,int param_2,undefined4 param_3)
+void Profile_SetCourseBest(int param_1,int param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x2b14) = param_3;
@@ -1227,7 +1229,7 @@ undefined1 Profile_GetChapter(int param_1)
 }
 
 // 0x001c16f0  size 0x8
-void Profile_SetCurrentCar(int param_1,undefined1 param_2)
+void Profile_SetSelection2733(int param_1,undefined1 param_2)
 
 {
   *(undefined1 *)(param_1 + 0x2733) = param_2;
@@ -1235,7 +1237,7 @@ void Profile_SetCurrentCar(int param_1,undefined1 param_2)
 }
 
 // 0x001c1700  size 0x8
-undefined1 Profile_GetCurrentCar(int param_1)
+undefined1 Profile_GetSelection2733(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x2733);
@@ -1444,7 +1446,7 @@ void Profile_Create(int param_1,undefined8 param_2)
     uVar2 = Mem_Alloc16(0xdb5c);
     *(undefined4 *)(_g_Profiles + param_1) = uVar2;
     Profile_InitDefaults(*(int *)(_g_Profiles + param_1) + 0x2ef0);
-    garage_sub_001bc620(*(undefined4 *)(_g_Profiles + param_1));
+    Profile_InitNewGame(*(undefined4 *)(_g_Profiles + param_1));
     iVar4 = 0;
     iVar1 = *(int *)(_g_Profiles + param_1);
     puVar3 = (undefined4 *)(iVar1 + 0x2708);
@@ -1497,18 +1499,17 @@ int RaceWorld_AddStaticBox
   if ((iVar1 < 0x80) && (param_6 != '\0')) {
     pcVar2 = (char *)(param_1[1] + iVar1 * 0x40);
     *pcVar2 = param_6;
-    vu0math_sub_00132ae0(pcVar2 + 0x10);
-    vu0math_sub_00132ae0(pcVar2 + 0x20,param_3);
-    vu0math_sub_00132b50(pcVar2 + 0x30,param_3,param_2);
-    fVar3 = (float)vu0math_sub_00133650
-                             (*(float *)(pcVar2 + 0x30) * *(float *)(pcVar2 + 0x30) +
-                              *(float *)(pcVar2 + 0x38) * *(float *)(pcVar2 + 0x38));
+    sceVu0CopyVector(pcVar2 + 0x10);
+    sceVu0CopyVector(pcVar2 + 0x20,param_3);
+    sceVu0SubVector(pcVar2 + 0x30,param_3,param_2);
+    fVar3 = (float)maybe_Vu0_SqrtQ(*(float *)(pcVar2 + 0x30) * *(float *)(pcVar2 + 0x30) +
+                                   *(float *)(pcVar2 + 0x38) * *(float *)(pcVar2 + 0x38));
     pcVar2[1] = (char)(int)(fVar3 / 3.5);
     pcVar2[0x34] = '\0';
     pcVar2[0x35] = '\0';
     pcVar2[0x36] = '\0';
     pcVar2[0x37] = '\0';
-    vu0math_sub_001328b0(pcVar2 + 0x30,pcVar2 + 0x30);
+    sceVu0Normalize(pcVar2 + 0x30,pcVar2 + 0x30);
     *(undefined2 *)(pcVar2 + 2) = param_4;
     *(undefined2 *)(pcVar2 + 4) = param_5;
     *param_1 = *param_1 + 1;
@@ -1571,7 +1572,7 @@ int RaceWorld_ContactCallback(undefined4 *param_1,undefined8 param_2)
   undefined4 uStack_14;
   undefined4 uStack_10;
   
-  iVar2 = phys_sub_00158660(0x42f3c0);
+  iVar2 = PhysWorld_GetBodyList(0x42f3c0);
   param_1[0xc] = 0;
   piVar16 = (int *)param_2;
   iVar15 = 0;
@@ -1771,7 +1772,7 @@ undefined4 RaceWorld_GroundQuery(float *param_1,undefined8 param_2,long param_3)
     param_1[0xc] = 1.5046328e-36;
   }
   else {
-    vu0math_sub_00132ae0(auStack_10);
+    sceVu0CopyVector(auStack_10);
     fStack_c = fStack_c + 0.5;
     param_1[0xd] = fVar5;
     if ((*pfVar6 == *(float *)((int)fVar5 + 0x10)) && (pfVar6[2] == *(float *)((int)fVar5 + 0x18)))
@@ -1799,14 +1800,14 @@ undefined4 RaceWorld_GroundQuery(float *param_1,undefined8 param_2,long param_3)
         param_1[0xb] = fVar2;
         param_1[0xc] = 1.5046328e-36;
         *param_1 = 0.0;
-        vu0math_sub_00132ae0((int)fVar5 + 0x10,param_2);
+        sceVu0CopyVector((int)fVar5 + 0x10,param_2);
         return 1;
       }
-      vu0math_sub_00132ae0((int)fVar5 + 0x10,auStack_10);
+      sceVu0CopyVector((int)fVar5 + 0x10,auStack_10);
       *(float *)((int)fVar5 + 100) = fVar4;
     }
-    vu0math_sub_00132ae0(param_1 + 4,(int)fVar5 + 0x30);
-    vu0math_sub_00132ae0(param_1 + 8,(int)fVar5 + 0x30);
+    sceVu0CopyVector(param_1 + 4,(int)fVar5 + 0x30);
+    sceVu0CopyVector(param_1 + 8,(int)fVar5 + 0x30);
     param_1[0xc] = fVar4;
     if (fVar4 == 5.60519e-45) {
       fStack_c = fStack_c + 0.005;
@@ -1843,18 +1844,18 @@ void RaceWorld_Init(void)
   Phys_SetParamA(0x1c1c80);
   Phys_SetCallback(0x1c2140);
   Phys_SetupPools(0x20);
-  phys_sub_0015cdc0(0x3c23d70a,0x2000000);
-  phys_sub_0015cdc0(0,0x1000000);
-  phys_sub_0015cdc0(0,0x4000000);
-  phys_sub_0015cd70(0x3f800000,0x2000000);
-  phys_sub_0015cd70(0,0x1000000);
-  phys_sub_0015cd70(0x3f800000,0x4000000);
-  phys_sub_0015ce60(0x3dcccccd,0x2000000);
-  phys_sub_0015ce60(0xbeb33333,0x1000000);
-  phys_sub_0015ce60(0x3e800000,0x4000000);
-  phys_sub_0015ce10(0x3f800000,0x2000000);
-  phys_sub_0015ce10(0,0x1000000);
-  phys_sub_0015ce10(0,0x4000000);
+  PhysMaterial_SetRestitution(0x3c23d70a,0x2000000);
+  PhysMaterial_SetRestitution(0,0x1000000);
+  PhysMaterial_SetRestitution(0,0x4000000);
+  PhysMaterial_SetFriction(0x3f800000,0x2000000);
+  PhysMaterial_SetFriction(0,0x1000000);
+  PhysMaterial_SetFriction(0x3f800000,0x4000000);
+  PhysMaterial_SetDamping(0x3dcccccd,0x2000000);
+  PhysMaterial_SetDamping(0xbeb33333,0x1000000);
+  PhysMaterial_SetDamping(0x3e800000,0x4000000);
+  PhysMaterial_SetSoftness(0x3f800000,0x2000000);
+  PhysMaterial_SetSoftness(0,0x1000000);
+  PhysMaterial_SetSoftness(0,0x4000000);
   puVar1 = (undefined4 *)Mem_AllocAligned(8,0x10,0x436530);
   puRam0036f308 = puVar1;
   *puVar1 = 0;
@@ -1973,8 +1974,8 @@ void RaceWorld_Step(void)
   
   lVar5 = RaceScene_IsPaused();
   if ((lVar5 == 0) && (lVar5 = RaceScene_IsRunning(), lVar5 != 0)) {
-    lVar5 = race_sub_001e8f60();
-    if (((lVar5 == 0) && (lVar5 = race_sub_001e8f40(), lVar5 == 0)) &&
+    lVar5 = race_leaf_sub_001e8f60();
+    if (((lVar5 == 0) && (lVar5 = race_leaf_sub_001e8f40(), lVar5 == 0)) &&
        ((cVar1 = RaceCtx_GetMode(), cVar1 != '\x01' ||
         (((cVar1 = GameState_Get_354(), cVar1 != '\x01' &&
           (cVar1 = GameState_Get_354(), cVar1 != '\x02')) &&
@@ -1995,9 +1996,9 @@ void RaceWorld_Step(void)
           RaceCar_UpdateTracker(lVar5);
           for (iVar3 = *(int *)(*(int *)((int)lVar5 + 0x158) + 0xd4); iVar3 != 0;
               iVar3 = PhysWorld_FindBodyWithFlags(iVar3,0xffffffffffffffff)) {
-            lVar6 = phys_sub_00158620(iVar3);
+            lVar6 = PhysHandle_GetValueIfValid(iVar3);
             if (lVar6 == 0) {
-              uVar7 = phys_sub_00158600(iVar3);
+              uVar7 = PhysHandle_GetIndexIfValid(iVar3);
               if ((uVar7 & 1) == 0) {
                 uVar9 = 0x20;
               }
@@ -2083,13 +2084,13 @@ void Prop_DrawModel(undefined8 param_1,undefined8 param_2,undefined8 param_3,und
   uStack_d8 = DAT_003187c8;
   uStack_d4 = DAT_003187cc;
   Obj_Init(&uStack_d0);
-  vu0math_sub_00132b50(auStack_20,param_1,&uStack_e0);
-  vu0math_sub_00132b70(auStack_10,param_1,&uStack_e0);
+  sceVu0SubVector(auStack_20,param_1,&uStack_e0);
+  sceVu0AddVector(auStack_10,param_1,&uStack_e0);
   uStack_4 = 0x3f800000;
   uStack_14 = 0x3f800000;
   uStack_d0 = param_6;
   maybe_Vu0_UnitMatrix(auStack_120);
-  vu0math_sub_00132c20(auStack_c0,auStack_120);
+  sceVu0CopyMatrix(auStack_c0,auStack_120);
   uStack_78 = 0;
   uStack_7c = 0;
   uStack_80 = 0;
@@ -2137,7 +2138,7 @@ void Prop_Draw(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   uStack_4 = 0x3f800000;
   uStack_14 = 0x3f800000;
   maybe_Vu0_UnitMatrix(auStack_110);
-  vu0math_sub_00132c20(auStack_c0,auStack_110);
+  sceVu0CopyMatrix(auStack_c0,auStack_110);
   uStack_c4 = 1;
   uStack_78 = 0;
   uStack_7c = 0;
@@ -2271,7 +2272,7 @@ void Prop_UpdateDebris(int *param_1)
       *pfVar5 = (*pfVar5 + fVar7) * 0.99;
       fVar7 = (float)maybe_Rand_Next(0xbc088889,0x3c088889);
       pfVar5[2] = (pfVar5[2] + fVar7) * 0.99;
-      vu0math_sub_00132b70(puVar6,puVar6,pfVar5);
+      sceVu0AddVector(puVar6,puVar6,pfVar5);
       pfVar5[9] = (float)((int)pfVar5[9] + (int)pfVar5[8]);
       pfVar5[0xb] = (float)((int)pfVar5[0xb] + (int)pfVar5[10]);
       Math_SinCosTable(pfVar5[9],puVar6 + 8,puVar6 + 9);
@@ -2326,7 +2327,7 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
   iVar1 = iRam0036f328;
   if (iRam0036f1f8 == 0) {
     iVar3 = iRam0036f328 + 0x4b00;
-    vu0math_sub_00132ae0(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_SpawnSmoke(iVar1,iVar3,auStack_10,400,param_3);
@@ -2338,8 +2339,8 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
     iVar5 = iRam0036f328 + 0x2580;
     iVar4 = iRam0036f328 + 0x4b00;
     iVar6 = iRam0036f328 + 0x7080;
-    vu0math_sub_00132ae0(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    vu0math_sub_00132ae0(auStack_30,iVar3 + 0x70);
+    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_30,iVar3 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_SpawnSmoke(iVar1,iVar5,auStack_20,200,param_3);
@@ -2409,7 +2410,7 @@ void Prop_SpawnSpark(float *param_1,float *param_2,undefined4 *param_3,int param
         fVar3 = (float)maybe_Rand_Next(0x3f000000,0x40600000);
         param_1[2] = fStack_8 * fVar3 * 0.33333334 + param_1[2] + 0.0;
       }
-      vu0math_sub_00132b70(param_1,param_1,param_2);
+      sceVu0AddVector(param_1,param_1,param_2);
       param_2[9] = (float)((int)param_2[9] + (int)param_2[8]);
       param_2[0xb] = (float)((int)param_2[0xb] + (int)param_2[10]);
       Math_SinCosTable(param_2[9],param_1 + 8,param_1 + 9);
@@ -2427,7 +2428,7 @@ void Prop_SpawnSpark(float *param_1,float *param_2,undefined4 *param_3,int param
           if (fVar3 < 1.0) {
             fVar3 = 1.0;
           }
-          fVar4 = (float)vu0math_sub_00132ab0(auStack_40,iVar1 + 0x436580);
+          fVar4 = (float)sceVu0InnerProduct(auStack_40,iVar1 + 0x436580);
           fVar3 = (fVar4 * fVar4 * fVar4) / (fVar3 * fVar3);
           if (fVar3 < 0.0) {
             fVar3 = 0.0;
@@ -2525,7 +2526,7 @@ void Prop_DrawSparks(void)
   
   iVar1 = iRam0036f328;
   if (iRam0036f1f8 == 0) {
-    vu0math_sub_00132ae0(auStack_170,0x431100);
+    sceVu0CopyVector(auStack_170,0x431100);
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
     Prop_DrawModel(0x431100,auStack_160,iVar1,100,4,0x10);
   }
@@ -2554,7 +2555,7 @@ void Prop_UpdateLeaves(int *param_1)
   
   iVar2 = iRam0036f328;
   if (iRam0036f1f8 == 0) {
-    vu0math_sub_00132ae0(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MoveLeaves(iVar2,auStack_10,100);
@@ -2564,8 +2565,8 @@ void Prop_UpdateLeaves(int *param_1)
   else {
     iVar1 = *(int *)(_g_Loading + 0x18);
     iVar3 = iRam0036f328 + 0x12c0;
-    vu0math_sub_00132ae0(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    vu0math_sub_00132ae0(auStack_30,iVar1 + 0x70);
+    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MoveLeaves(iVar2,auStack_20,100);
@@ -2627,7 +2628,7 @@ void Prop_SpawnLeaf(float *param_1,undefined4 *param_2,int param_3,int param_4,l
         if (fVar4 < 1.0) {
           fVar4 = 1.0;
         }
-        fVar5 = (float)vu0math_sub_00132ab0(auStack_30,param_4 * 0x50 + 0x436580);
+        fVar5 = (float)sceVu0InnerProduct(auStack_30,param_4 * 0x50 + 0x436580);
         fVar4 = (fVar5 * fVar5 * fVar5) / (fVar4 * fVar4);
         if (fVar4 < 0.0) {
           fVar4 = 0.0;

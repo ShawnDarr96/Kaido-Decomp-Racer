@@ -104,9 +104,9 @@ void PhysPair_SphereBoxSat(undefined4 *param_1)
               if (lVar6 != 0) {
                 Vec3_Sub(auStack_90,auStack_50,auStack_40);
                 Vec3_Sub(auStack_a0,&uStack_80,&uStack_70);
-                phys_sub_00163800(&fStack_b0,auStack_90,auStack_a0);
+                Vec3_Cross(&fStack_b0,auStack_90,auStack_a0);
                 if (fStack_a8 * fStack_a8 + fStack_b0 * fStack_b0 + fStack_ac * fStack_ac != 0.0) {
-                  phys_sub_00163bc0(&fStack_b0);
+                  Vec3_Normalize(&fStack_b0);
                   uVar7 = (**(code **)(*piVar10 + 0x48))(uVar5,uVar8);
                   fVar12 = (float)Vec3_Dot(&fStack_b0,uVar7);
                   if (0.0 < fVar12) {
@@ -118,8 +118,8 @@ void PhysPair_SphereBoxSat(undefined4 *param_1)
                   }
                   Vec3_Sub(auStack_d0,&uStack_70,auStack_40);
                   fVar12 = (float)Vec3_Dot(auStack_d0,&fStack_b0);
-                  uVar7 = newlib_sub_0012f600(fVar12);
-                  lVar6 = msl_sub_00100960(uVar7,0x3f50624dd2f1a9fc);
+                  uVar7 = maybe___sf_to_df(fVar12);
+                  lVar6 = maybe___dlt(uVar7,0x3f50624dd2f1a9fc);
                   if (((lVar6 == 0) &&
                       (fVar13 = (float)Vec3_Dot(param_1 + 0x18,&fStack_b0), 0.0 < fVar13)) &&
                      (fVar13 = fVar12 / fVar13, fVar13 < fVar14)) {
@@ -127,8 +127,7 @@ void PhysPair_SphereBoxSat(undefined4 *param_1)
                     fStack_2c = fStack_ac;
                     fStack_28 = fStack_a8;
                     uStack_24 = uStack_a4;
-                    phys_sub_001637a0((fStack_58 + fStack_54) / 2.0,&uStack_e0,&uStack_70,&uStack_80
-                                     );
+                    Vec3_CrossSub((fStack_58 + fStack_54) / 2.0,&uStack_e0,&uStack_70,&uStack_80);
                     uStack_20 = uStack_e0;
                     uStack_1c = uStack_dc;
                     uStack_18 = uStack_d8;
@@ -530,7 +529,7 @@ void PhysPair_BoxMeshContacts(undefined4 *param_1)
         if (lVar10 != 0) {
           do {
             if ((uVar14 != uVar4) &&
-               (fVar18 = (float)phys_sub_00163780(fVar17,*pfVar13,pfVar13[1]), 0.0 < fVar18)) {
+               (fVar18 = (float)Math_Lerp(fVar17,*pfVar13,pfVar13[1]), 0.0 < fVar18)) {
               bVar1 = false;
             }
             uVar4 = uVar4 + 1;
@@ -540,7 +539,7 @@ void PhysPair_BoxMeshContacts(undefined4 *param_1)
         if ((((bVar1) && (fVar17 < 1.0)) && (fVar17 < (float)param_1[0x15])) && (-1.0 < fVar17)) {
           uVar11 = PhysShape_GetCenter(uVar6);
           uVar12 = PhysShape_GetCenter(uVar7);
-          phys_sub_001637a0(fVar17,auStack_330,uVar11,uVar12);
+          Vec3_CrossSub(fVar17,auStack_330,uVar11,uVar12);
           iVar2 = (**(code **)(*piVar15 + 0x40))(uVar9,uVar14);
           PhysContact_Fill(-pfVar13[1],fVar17,param_1 + 8,auStack_330,iVar2 + 0x10);
         }
@@ -681,8 +680,7 @@ void PhysPair_SphereMeshContacts(undefined4 *param_1)
               if (lVar12 != 0) {
                 do {
                   if ((uVar14 != uVar8) &&
-                     (fVar19 = (float)phys_sub_00163780(fVar20,*pfVar13,pfVar13[1]), 0.0 < fVar19))
-                  {
+                     (fVar19 = (float)Math_Lerp(fVar20,*pfVar13,pfVar13[1]), 0.0 < fVar19)) {
                     bVar2 = false;
                   }
                   uVar8 = uVar8 + 1;
@@ -691,7 +689,7 @@ void PhysPair_SphereMeshContacts(undefined4 *param_1)
               }
               if ((((bVar2) && (fVar20 < 1.0)) && (fVar20 < (float)param_1[0x15])) &&
                  (-1.0 < fVar20)) {
-                phys_sub_001637a0(fVar20,auStack_350,&uStack_330,&uStack_340);
+                Vec3_CrossSub(fVar20,auStack_350,&uStack_330,&uStack_340);
                 iVar6 = (**(code **)(*piVar15 + 0x40))(uVar11,uVar14);
                 PhysContact_Fill(-pfVar13[1],fVar20,param_1 + 8,auStack_350,iVar6 + 0x10);
               }
@@ -748,18 +746,18 @@ void PhysPair_PointMeshContacts(undefined4 *param_1)
     uVar8 = param_1[0x16];
     uVar1 = PhysShape_GetCenter(uVar1);
     uVar2 = PhysShape_GetCenter(uVar2);
-    phys_sub_001637a0(uVar8,auStack_40,uVar1,uVar2);
+    Vec3_CrossSub(uVar8,auStack_40,uVar1,uVar2);
     uVar8 = param_1[0x16];
     uVar1 = PhysShape_GetCenter(uVar3);
     uVar2 = PhysShape_GetCenter(uVar4);
-    phys_sub_001637a0(uVar8,auStack_50,uVar1,uVar2);
+    Vec3_CrossSub(uVar8,auStack_50,uVar1,uVar2);
     Vec3_Sub(&fStack_60,auStack_40,auStack_50);
     if (fStack_58 * fStack_58 + fStack_60 * fStack_60 + fStack_5c * fStack_5c == 0.0) {
       fStack_60 = 0.0;
       fStack_5c = 1.0;
       fStack_58 = 0.0;
     }
-    phys_sub_00163bc0(&fStack_60);
+    Vec3_Normalize(&fStack_60);
     fVar9 = (float)param_1[0x16];
     fVar7 = (float)Vec3_Length(auStack_30);
     Vec3_Add(auStack_80,auStack_40,auStack_50);
@@ -785,7 +783,7 @@ void PhysWorld_SolveIslands(undefined8 param_1)
   int iVar8;
   int iVar9;
   
-  uVar4 = phys_sub_00158650(0x42f3c0);
+  uVar4 = PhysWorld_GetIslandList(0x42f3c0);
   iVar9 = 0;
   do {
     bVar3 = true;
@@ -869,7 +867,7 @@ void PhysWorld_SolveIsland(int param_1,uint *param_2,uint param_3)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  puVar1 = (uint *)phys_sub_00158640(0x42f3c0);
+  puVar1 = (uint *)PhysWorld_GetContactPool(0x42f3c0);
   uVar11 = 0;
   puVar12 = (uint *)0x0;
   fVar19 = 0.01;
@@ -928,18 +926,18 @@ LAB_00161e50:
   }
   if ((puVar12 != (uint *)0x0) && ((puVar12[0xd] & 0x7000000 & *(uint *)(param_1 + 0xe8)) != 0)) {
     Vec3_Scale(fVar19,auStack_50,puVar12 + 8);
-    puVar2 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(param_1 + 4));
+    puVar2 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(param_1 + 4));
     uStack_90 = *puVar2;
     uStack_8c = puVar2[1];
     uStack_88 = puVar2[2];
     uStack_84 = puVar2[3];
     Vec3_AddInPlace(&uStack_90,auStack_50);
-    phys_sub_00165260(*(undefined4 *)(param_1 + 4),&uStack_90);
+    PhysBody_WorldToLocal(*(undefined4 *)(param_1 + 4),&uStack_90);
     PhysContact_Apply(param_1 + 0x10,auStack_50);
     Vec3_AddInPlace(param_1 + 0x100,auStack_50);
     *(undefined1 *)(param_1 + 0xf6) = 0;
   }
-  pfVar3 = (float *)phys_sub_00164f40(*(undefined4 *)(param_1 + 4));
+  pfVar3 = (float *)PhysBody_GetLinearVelocity(*(undefined4 *)(param_1 + 4));
   fVar19 = *pfVar3;
   uVar13 = 0;
   if (uVar11 != 0) {
@@ -947,11 +945,11 @@ LAB_00161e50:
       uVar6 = puVar1[0xd];
       uVar7 = uVar6 & 0x7000000;
       if (((uVar7 & *(uint *)(param_1 + 0xe4)) != 0) &&
-         (fVar14 = (float)phys_sub_001647f0(*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8),
+         (fVar14 = (float)PhysBody_VelocityAtPoint(*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8),
          0.0 < fVar14)) {
         uVar18 = *(undefined4 *)(*(int *)(param_1 + 4) + 0x200);
-        fVar15 = (float)phys_sub_0015c100(*(undefined4 *)(param_1 + 8));
-        fVar16 = (float)phys_sub_0015d2f0(uVar7);
+        fVar15 = (float)PhysPair_GetBodyA(*(undefined4 *)(param_1 + 8));
+        fVar16 = (float)PhysMaterial_GetDamping(uVar7);
         fVar15 = (fVar15 + fVar16) * 0.5;
         if (0.0 <= fVar15) {
           if (1.0 < fVar15) {
@@ -962,8 +960,8 @@ LAB_00161e50:
           fVar15 = 0.0;
         }
         fVar20 = fVar14 * (fVar15 + 1.0);
-        fVar15 = (float)phys_sub_0015c110(*(undefined4 *)(param_1 + 8));
-        fVar16 = (float)phys_sub_0015d270(uVar7);
+        fVar15 = (float)PhysPair_GetBodyB(*(undefined4 *)(param_1 + 8));
+        fVar16 = (float)PhysMaterial_GetRestitution(uVar7);
         fVar15 = fVar15 + fVar16;
         uStack_10 = 0;
         uStack_c = 0;
@@ -971,7 +969,7 @@ LAB_00161e50:
         Vec3_Scale(fVar20,&uStack_20,puVar1 + 8);
         if (4.167 < fVar19) {
           if ((uVar6 & 0x4000000) != 0xffffffff) {
-            uVar17 = phys_sub_0015d2b0(uVar7);
+            uVar17 = PhysMaterial_GetSoftness(uVar7);
             Vec3_Scale(uVar17,&uStack_60,&uStack_20);
             uStack_10 = uStack_60;
             uStack_c = uStack_5c;
@@ -979,9 +977,9 @@ LAB_00161e50:
             uStack_4 = uStack_54;
           }
           if (0.0 < fVar15) {
-            phys_sub_00164360(fVar20,fVar15,auStack_30,*(undefined4 *)(param_1 + 4),puVar1,
-                              puVar1 + 8);
-            uVar17 = phys_sub_0015d230(uVar7);
+            PhysBody_ApplyImpulseAtPoint
+                      (fVar20,fVar15,auStack_30,*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8);
+            uVar17 = PhysMaterial_GetFriction(uVar7);
             Vec3_AddInPlace(&uStack_20,auStack_30);
             Vec3_Scale(uVar17,auStack_70,auStack_30);
             Vec3_AddInPlace(&uStack_10,auStack_70);
@@ -993,22 +991,24 @@ LAB_00161e50:
           uStack_8 = uStack_18;
           uStack_4 = uStack_14;
         }
-        phys_sub_00164d60(*(undefined4 *)(param_1 + 4),&uStack_20);
-        phys_sub_00164c60(*(undefined4 *)(param_1 + 4),&uStack_10,puVar1);
-        phys_sub_00163f80(0x3f800000,*(undefined4 *)(param_1 + 4));
+        PhysBody_AddTorque(*(undefined4 *)(param_1 + 4),&uStack_20);
+        PhysBody_AddTorqueAtPoint(*(undefined4 *)(param_1 + 4),&uStack_10,puVar1);
+        PhysBody_Integrate(0x3f800000,*(undefined4 *)(param_1 + 4));
         fVar15 = 0.0;
         *(undefined4 *)(*(int *)(param_1 + 4) + 0x200) = uVar18;
         if ((uVar6 & 0x4000000) == 0) {
           if (puVar12 == (uint *)0x0) {
             Vec3_Scale(0xc11ccccd,auStack_40,puVar1 + 8);
-            fVar15 = (float)phys_sub_00164270(uRam0042f3c8,*(undefined4 *)(param_1 + 4),puVar1,
-                                              puVar1 + 8,auStack_40);
+            fVar15 = (float)PhysBody_PointVelocity
+                                      (uRam0042f3c8,*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8,
+                                       auStack_40);
           }
         }
         else {
-          uVar5 = phys_sub_00164210(*(undefined4 *)(param_1 + 4));
-          fVar15 = (float)phys_sub_00164270(uRam0042f3c8,*(undefined4 *)(param_1 + 4),puVar1,
-                                            puVar1 + 8,uVar5);
+          uVar5 = PhysBody_GetUserBlock(*(undefined4 *)(param_1 + 4));
+          fVar15 = (float)PhysBody_PointVelocity
+                                    (uRam0042f3c8,*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8,
+                                     uVar5);
         }
         if (fVar15 != 0.0) {
           Vec3_Scale(fVar15,&uStack_80,puVar1 + 8);
@@ -1016,8 +1016,8 @@ LAB_00161e50:
           uStack_c = uStack_7c;
           uStack_8 = uStack_78;
           uStack_4 = uStack_74;
-          phys_sub_00164cc0(*(undefined4 *)(param_1 + 4),&uStack_10,puVar1);
-          phys_sub_00163f80(0x3f800000,*(undefined4 *)(param_1 + 4));
+          PhysBody_AddForceAtPoint(*(undefined4 *)(param_1 + 4),&uStack_10,puVar1);
+          PhysBody_Integrate(0x3f800000,*(undefined4 *)(param_1 + 4));
         }
         lVar4 = PhysWorld_AllocContact(0x42f3c0);
         if (lVar4 == 0) {
@@ -1071,7 +1071,7 @@ void PhysBody_SetMaterial(undefined4 param_1,int param_2)
 }
 
 // 0x001622c0  size 0xc
-void phys_sub_001622c0(int param_1,undefined4 *param_2)
+void PhysBody_SetVelocity(int param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -1089,7 +1089,7 @@ void phys_sub_001622c0(int param_1,undefined4 *param_2)
 }
 
 // 0x001622d0  size 0x14
-void phys_sub_001622d0(int param_1,uint param_2)
+void PhysBody_ClearCollideMask(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0xe8) = *(uint *)(param_1 + 0xe8) & ~param_2;
@@ -1097,7 +1097,7 @@ void phys_sub_001622d0(int param_1,uint param_2)
 }
 
 // 0x001622f0  size 0x10
-void phys_sub_001622f0(int param_1,uint param_2)
+void PhysBody_SetCollideMask(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0xe8) = *(uint *)(param_1 + 0xe8) | param_2;
@@ -1105,7 +1105,7 @@ void phys_sub_001622f0(int param_1,uint param_2)
 }
 
 // 0x00162300  size 0x14
-void phys_sub_00162300(int param_1,uint param_2)
+void PhysBody_ClearGroupMask(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0xe4) = *(uint *)(param_1 + 0xe4) & ~param_2;
@@ -1113,7 +1113,7 @@ void phys_sub_00162300(int param_1,uint param_2)
 }
 
 // 0x00162320  size 0x10
-void phys_sub_00162320(int param_1,uint param_2)
+void PhysBody_SetGroupMask(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0xe4) = *(uint *)(param_1 + 0xe4) | param_2;
@@ -1121,7 +1121,7 @@ void phys_sub_00162320(int param_1,uint param_2)
 }
 
 // 0x00162330  size 0x14
-void phys_sub_00162330(int param_1,uint param_2)
+void PhysBody_ClearFlags(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0xe0) = *(uint *)(param_1 + 0xe0) & ~param_2;
@@ -1129,7 +1129,7 @@ void phys_sub_00162330(int param_1,uint param_2)
 }
 
 // 0x00162350  size 0x5c
-void phys_sub_00162350(undefined8 param_1,uint param_2)
+void PhysBody_TestCollideMask(undefined8 param_1,uint param_2)
 
 {
   uint uVar1;
@@ -1145,7 +1145,7 @@ void phys_sub_00162350(undefined8 param_1,uint param_2)
 }
 
 // 0x001623b0  size 0x5c
-void phys_sub_001623b0(undefined8 param_1,uint param_2)
+void PhysBody_TestGroupMask(undefined8 param_1,uint param_2)
 
 {
   uint uVar1;
@@ -1175,7 +1175,9 @@ undefined4 PhysBody_GetUserData(int param_1)
 }
 
 // 0x00162430  size 0x38
-void phys_sub_00162430(int param_1,uint param_2)
+/* 6 callers */
+
+void PhysBody_FindShapeWithFlags(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -1187,7 +1189,7 @@ void phys_sub_00162430(int param_1,uint param_2)
 }
 
 // 0x00162470  size 0x40
-long phys_sub_00162470(int param_1)
+long PhysBody_AddContact(int param_1)
 
 {
   long lVar1;
@@ -1233,7 +1235,7 @@ void PhysBody_LinkFront(int param_1,int *param_2)
 }
 
 // 0x00162530  size 0x88
-void phys_sub_00162530(int param_1,undefined8 param_2)
+void PhysBody_ApplyContactImpulse(int param_1,undefined8 param_2)
 
 {
   undefined4 *puVar1;
@@ -1242,13 +1244,13 @@ void phys_sub_00162530(int param_1,undefined8 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(param_1 + 4));
+  puVar1 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(param_1 + 4));
   uStack_10 = *puVar1;
   uStack_c = puVar1[1];
   uStack_8 = puVar1[2];
   uStack_4 = puVar1[3];
   Vec3_AddInPlace(&uStack_10,param_2);
-  phys_sub_00165260(*(undefined4 *)(param_1 + 4),&uStack_10);
+  PhysBody_WorldToLocal(*(undefined4 *)(param_1 + 4),&uStack_10);
   PhysContact_Apply(param_1 + 0x10,param_2);
   Vec3_AddInPlace(param_1 + 0x100,param_2);
   *(undefined1 *)(param_1 + 0xf6) = 0;
@@ -1256,7 +1258,7 @@ void phys_sub_00162530(int param_1,undefined8 param_2)
 }
 
 // 0x001625c0  size 0x110
-void phys_sub_001625c0(int param_1,undefined8 param_2,undefined8 param_3)
+void PhysBody_ApplyFriction(int param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
@@ -1274,9 +1276,9 @@ void phys_sub_001625c0(int param_1,undefined8 param_2,undefined8 param_3)
   undefined4 uStack_4;
   
   uStack_4 = 0x3f800000;
-  uVar1 = phys_sub_00165250(*(undefined4 *)(param_1 + 4));
+  uVar1 = PhysBody_GetCenterOfMass(*(undefined4 *)(param_1 + 4));
   Vec3_Sub(auStack_30,param_2,uVar1);
-  phys_sub_00163800(&uStack_20,auStack_30,param_3);
+  Vec3_Cross(&uStack_20,auStack_30,param_3);
   uStack_10 = uStack_20;
   uStack_c = uStack_1c;
   uStack_8 = uStack_18;
@@ -1304,7 +1306,7 @@ void phys_sub_001625c0(int param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001626d0  size 0x68
-long phys_sub_001626d0(long param_1,short param_2)
+long PhysWorld_dtorDelete(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1313,7 +1315,7 @@ long phys_sub_001626d0(long param_1,short param_2)
     puVar1 = (undefined4 *)param_1;
     *puVar1 = &DAT_0036e268;
     puVar1[0x3c] = 0;
-    phys_sub_00159db0(puVar1 + 4,0xffffffffffffffff);
+    PhysWorld_dtor(puVar1 + 4,0xffffffffffffffff);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1333,7 +1335,7 @@ void PhysBody_Init(int param_1,undefined4 param_2,undefined8 param_3,undefined4 
   
   *(undefined4 *)(param_1 + 4) = param_2;
   *(int *)(param_1 + 8) = (int)param_3;
-  uVar4 = phys_sub_00164c40(*(undefined4 *)(param_1 + 4));
+  uVar4 = PhysBody_GetTransform(*(undefined4 *)(param_1 + 4));
   PhysShape_Init(param_1 + 0x10,param_3,uVar4,param_5);
   *(undefined4 *)(param_1 + 0xd8) = param_4;
   *(undefined4 *)(param_1 + 0xdc) = 0xffffffff;
@@ -1380,19 +1382,19 @@ void PhysBody_Init(int param_1,undefined4 param_2,undefined8 param_3,undefined4 
 }
 
 // 0x00162830  size 0x3c
-void phys_sub_00162830(int param_1)
+void PhysBody_Wake(int param_1)
 
 {
   undefined8 uVar1;
   
   *(undefined1 *)(param_1 + 0xf7) = 1;
-  uVar1 = phys_sub_00164c40(*(undefined4 *)(param_1 + 4));
+  uVar1 = PhysBody_GetTransform(*(undefined4 *)(param_1 + 4));
   PhysContact_Process(param_1 + 0x10,uVar1);
   return;
 }
 
 // 0x00162870  size 0xb4
-void phys_sub_00162870(undefined4 *param_1,undefined4 *param_2)
+void Mat33_ToEuler(undefined4 *param_1,undefined4 *param_2)
 
 {
   float fVar1;
@@ -1419,18 +1421,18 @@ void phys_sub_00162870(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x00162930  size 0x34
-void phys_sub_00162930(undefined8 param_1)
+void Quat_ToEuler(undefined8 param_1)
 
 {
   undefined1 auStack_40 [64];
   
-  phys_sub_00162fb0(auStack_40);
-  phys_sub_00162870(param_1,auStack_40);
+  Quat_ToMat33(auStack_40);
+  Mat33_ToEuler(param_1,auStack_40);
   return;
 }
 
 // 0x00162970  size 0x7c
-void phys_sub_00162970(undefined8 param_1,undefined4 *param_2)
+void Euler_ToQuat(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined1 auStack_40 [16];
@@ -1438,16 +1440,16 @@ void phys_sub_00162970(undefined8 param_1,undefined4 *param_2)
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  phys_sub_001635f0(*param_2,auStack_10,0);
-  phys_sub_001635f0(param_2[1],auStack_20,1);
-  phys_sub_001635f0(param_2[2],auStack_30,2);
-  phys_sub_00163140(auStack_40,auStack_30,auStack_20);
-  phys_sub_00163140(param_1,auStack_40,auStack_10);
+  Quat_FromAxisIndex(*param_2,auStack_10,0);
+  Quat_FromAxisIndex(param_2[1],auStack_20,1);
+  Quat_FromAxisIndex(param_2[2],auStack_30,2);
+  Quat_MulB(auStack_40,auStack_30,auStack_20);
+  Quat_MulB(param_1,auStack_40,auStack_10);
   return;
 }
 
 // 0x001629f0  size 0x344
-void phys_sub_001629f0(float *param_1,float *param_2,float *param_3)
+void Mat44_MulVec4(float *param_1,float *param_2,float *param_3)
 
 {
   *param_1 = param_3[0xc] * param_2[3] +
@@ -1487,7 +1489,7 @@ void phys_sub_001629f0(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x00162d40  size 0x84
-void phys_sub_00162d40(undefined4 *param_1,undefined4 *param_2)
+void Mat33_Transpose(undefined4 *param_1,undefined4 *param_2)
 
 {
   *param_1 = *param_2;
@@ -1510,7 +1512,7 @@ void phys_sub_00162d40(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x00162dd0  size 0x9c
-void phys_sub_00162dd0(float *param_1,undefined8 param_2,float *param_3)
+void Mat33_MulVec3Transposed(float *param_1,undefined8 param_2,float *param_3)
 
 {
   float fVar1;
@@ -1526,7 +1528,7 @@ void phys_sub_00162dd0(float *param_1,undefined8 param_2,float *param_3)
   float fStack_1c;
   float fStack_18;
   
-  phys_sub_00162d40(&fStack_40);
+  Mat33_Transpose(&fStack_40);
   fVar3 = param_3[1];
   fVar1 = *param_3;
   fVar2 = param_3[2];
@@ -1572,7 +1574,9 @@ void Mat33_MulVec3(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x00162f00  size 0x6c
-void phys_sub_00162f00(float *param_1,float *param_2,float *param_3)
+/* 13 callers */
+
+void Mat33_MulVec3B(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -1602,7 +1606,7 @@ void phys_sub_00162f00(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x00162f70  size 0x38
-void phys_sub_00162f70(int param_1,undefined4 *param_2)
+void Mat33_Copy(int param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -1619,14 +1623,14 @@ void phys_sub_00162f70(int param_1,undefined4 *param_2)
 }
 
 // 0x00162fb0  size 0x30
-void phys_sub_00162fb0(int param_1)
+void Quat_ToMat33(int param_1)
 
 {
   undefined4 uVar1;
   undefined4 uVar2;
   undefined4 uVar3;
   
-  phys_sub_00162fe0();
+  Quat_ToMat33Normalized();
   uVar3 = DAT_003625cc;
   uVar2 = DAT_003625c8;
   uVar1 = DAT_003625c4;
@@ -1638,7 +1642,7 @@ void phys_sub_00162fb0(int param_1)
 }
 
 // 0x00162fe0  size 0xdc
-void phys_sub_00162fe0(float *param_1,undefined8 param_2)
+void Quat_ToMat33Normalized(float *param_1,undefined8 param_2)
 
 {
   float *pfVar1;
@@ -1651,7 +1655,7 @@ void phys_sub_00162fe0(float *param_1,undefined8 param_2)
   float fVar8;
   float fVar9;
   
-  fVar2 = (float)phys_sub_001632b0(param_2);
+  fVar2 = (float)Quat_LengthSq(param_2);
   pfVar1 = (float *)param_2;
   fVar7 = *pfVar1;
   fVar2 = 2.0 / fVar2;
@@ -1716,7 +1720,7 @@ void Mat34_Identity(undefined4 *param_1)
 }
 
 // 0x00163100  size 0x34
-void phys_sub_00163100(float param_1,float *param_2,float *param_3)
+void Mat33_MulVec3Add(float param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -1734,7 +1738,7 @@ void phys_sub_00163100(float param_1,float *param_2,float *param_3)
 }
 
 // 0x00163140  size 0x74
-void phys_sub_00163140(float *param_1,float *param_2,float *param_3)
+void Quat_MulB(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -1762,7 +1766,7 @@ void phys_sub_00163140(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x001631c0  size 0x44
-void phys_sub_001631c0(float *param_1,float *param_2,float *param_3)
+void Quat_Conjugate(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -1786,7 +1790,7 @@ void phys_sub_001631c0(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x00163210  size 0x98
-void phys_sub_00163210(float *param_1,float *param_2,float *param_3)
+void Quat_RotateVec3(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -1816,7 +1820,7 @@ void phys_sub_00163210(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x001632b0  size 0x24
-float phys_sub_001632b0(float *param_1)
+float Quat_LengthSq(float *param_1)
 
 {
   return param_1[3] * param_1[3] +
@@ -1824,7 +1828,7 @@ float phys_sub_001632b0(float *param_1)
 }
 
 // 0x001632e0  size 0x60
-void phys_sub_001632e0(float *param_1)
+void Quat_Normalize(float *param_1)
 
 {
   float fVar1;
@@ -1841,7 +1845,7 @@ void phys_sub_001632e0(float *param_1)
 }
 
 // 0x00163340  size 0x200
-void phys_sub_00163340(float *param_1,float *param_2)
+void Mat33_ToQuat(float *param_1,float *param_2)
 
 {
   int iVar1;
@@ -1890,7 +1894,7 @@ void phys_sub_00163340(float *param_1,float *param_2)
 }
 
 // 0x00163540  size 0xa8
-void phys_sub_00163540(float param_1,float *param_2,float *param_3)
+void Quat_FromAxisAngle(float param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -1914,7 +1918,7 @@ void phys_sub_00163540(float param_1,float *param_2,float *param_3)
 }
 
 // 0x001635f0  size 0xb0
-undefined8 phys_sub_001635f0(float param_1,undefined8 param_2,char param_3)
+undefined8 Quat_FromAxisIndex(float param_1,undefined8 param_2,char param_3)
 
 {
   undefined4 *puVar1;
@@ -1952,7 +1956,7 @@ void Phys_TransformDirScaled(undefined8 param_1,undefined8 param_2,undefined8 pa
   undefined1 auStack_10 [16];
   
   Vec3_Scale(*(undefined4 *)((int)param_2 + 0x20),auStack_10,param_3);
-  phys_sub_00163210(param_1,param_2,auStack_10);
+  Quat_RotateVec3(param_1,param_2,auStack_10);
   return;
 }
 
@@ -1964,27 +1968,27 @@ void Phys_TransformPointScaled(undefined8 param_1,undefined8 param_2,undefined8 
   undefined1 auStack_10 [16];
   
   Vec3_Scale(*(undefined4 *)((int)param_2 + 0x20),auStack_20,param_3);
-  phys_sub_00163210(auStack_10,param_2,auStack_20);
+  Quat_RotateVec3(auStack_10,param_2,auStack_20);
   Vec3_Add(param_1,auStack_10,(int)param_2 + 0x10);
   return;
 }
 
 // 0x00163750  size 0x28
-float phys_sub_00163750(float *param_1,float *param_2)
+float Vec3_DotC(float *param_1,float *param_2)
 
 {
   return param_1[2] * param_2[2] + *param_1 * *param_2 + param_1[1] * param_2[1];
 }
 
 // 0x00163780  size 0x18
-float phys_sub_00163780(float param_1,float param_2,float param_3)
+float Math_Lerp(float param_1,float param_2,float param_3)
 
 {
   return (param_2 + 0.0) - param_1 * (param_2 - param_3);
 }
 
 // 0x001637a0  size 0x54
-void phys_sub_001637a0(float param_1,float *param_2,float *param_3,float *param_4)
+void Vec3_CrossSub(float param_1,float *param_2,float *param_3,float *param_4)
 
 {
   float fVar1;
@@ -2003,7 +2007,9 @@ void phys_sub_001637a0(float param_1,float *param_2,float *param_3,float *param_
 }
 
 // 0x00163800  size 0x40
-void phys_sub_00163800(float *param_1,float *param_2,float *param_3)
+/* 17 callers */
+
+void Vec3_Cross(float *param_1,float *param_2,float *param_3)
 
 {
   float fVar1;
@@ -2107,7 +2113,7 @@ void Quat_Mul(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x00163960  size 0x34
-void phys_sub_00163960(float *param_1,float *param_2)
+void Vec3_AddInPlaceB(float *param_1,float *param_2)
 
 {
   *param_1 = *param_1 + *param_2;
@@ -2139,7 +2145,7 @@ void Vec4_Sub(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x001639e0  size 0x64
-void phys_sub_001639e0(float *param_1)
+void Quat_NormalizeB(float *param_1)
 
 {
   float fVar1;
@@ -2154,7 +2160,7 @@ void phys_sub_001639e0(float *param_1)
 }
 
 // 0x00163a50  size 0x34
-void phys_sub_00163a50(float param_1,float *param_2)
+void Vec3_DivInPlace(float param_1,float *param_2)
 
 {
   param_1 = 1.0 / param_1;
@@ -2175,7 +2181,7 @@ void Vec3_ScaleInPlace(float param_1,float *param_2)
 }
 
 // 0x00163ac0  size 0x34
-void phys_sub_00163ac0(float *param_1,float *param_2)
+void Vec3_SubInPlace(float *param_1,float *param_2)
 
 {
   *param_1 = *param_1 - *param_2;
@@ -2233,7 +2239,9 @@ void Vec3_Add(float *param_1,float *param_2,float *param_3)
 }
 
 // 0x00163bc0  size 0x50
-void phys_sub_00163bc0(float *param_1)
+/* 11 callers */
+
+void Vec3_Normalize(float *param_1)
 
 {
   float fVar1;
@@ -2253,7 +2261,7 @@ float Vec3_Length(float *param_1)
 }
 
 // 0x00163c40  size 0x334
-void phys_sub_00163c40(float param_1,undefined8 param_2)
+void PhysBody_IntegrateFull(float param_1,undefined8 param_2)
 
 {
   char *pcVar1;
@@ -2318,7 +2326,7 @@ void phys_sub_00163c40(float param_1,undefined8 param_2)
     pcVar1[0x81] = '\0';
     pcVar1[0x82] = '\0';
     pcVar1[0x83] = '\0';
-    phys_sub_00162f00(&uStack_70,pcVar1 + 0x1a0,pcVar1 + 400);
+    Mat33_MulVec3B(&uStack_70,pcVar1 + 0x1a0,pcVar1 + 400);
     *(undefined4 *)(pcVar1 + 0x60) = uStack_70;
     *(undefined4 *)(pcVar1 + 100) = uStack_6c;
     *(undefined4 *)(pcVar1 + 0x68) = uStack_68;
@@ -2335,14 +2343,14 @@ void phys_sub_00163c40(float param_1,undefined8 param_2)
     fVar2 = (float)Vec3_Length(pcVar1 + 0x60);
     if (0.0 < fVar2) {
       Vec3_Scale(1.0 / fVar2,auStack_10,pcVar1 + 0x60);
-      phys_sub_00163540(fVar2 * param_1,auStack_20,auStack_10);
-      phys_sub_00163140(&uStack_40,auStack_20,pcVar1 + 0x50);
+      Quat_FromAxisAngle(fVar2 * param_1,auStack_20,auStack_10);
+      Quat_MulB(&uStack_40,auStack_20,pcVar1 + 0x50);
       *(undefined4 *)(pcVar1 + 0x50) = uStack_40;
       *(undefined4 *)(pcVar1 + 0x54) = uStack_3c;
       *(undefined4 *)(pcVar1 + 0x58) = uStack_38;
       *(undefined4 *)(pcVar1 + 0x5c) = uStack_34;
-      phys_sub_001632e0(pcVar1 + 0x50);
-      phys_sub_00164120(param_2);
+      Quat_Normalize(pcVar1 + 0x50);
+      PhysBody_UpdateWorldInertia(param_2);
     }
     Vec3_AddInPlace(pcVar1 + 0x40,pcVar1 + 0x1f0);
     Vec3_Scale(param_1,auStack_50,pcVar1 + 0x40);
@@ -2388,7 +2396,7 @@ void phys_sub_00163c40(float param_1,undefined8 param_2)
       *(undefined4 *)(pcVar1 + 0xa0) = *(undefined4 *)(pcVar1 + 0x30);
     }
     Vec3_Scale(param_1,auStack_60,pcVar1 + 0x20);
-    phys_sub_00163960(pcVar1 + 0x110,auStack_60);
+    Vec3_AddInPlaceB(pcVar1 + 0x110,auStack_60);
     uStack_d0 = *(undefined4 *)(pcVar1 + 0x110);
     uStack_cc = *(undefined4 *)(pcVar1 + 0x114);
     uStack_c8 = *(undefined4 *)(pcVar1 + 0x118);
@@ -2396,7 +2404,7 @@ void phys_sub_00163c40(float param_1,undefined8 param_2)
     *(undefined4 *)(pcVar1 + 0x14) = uStack_cc;
     *(undefined4 *)(pcVar1 + 0x18) = uStack_c8;
     *(undefined4 *)(pcVar1 + 0x1c) = uStack_c4;
-    phys_sub_00162f00(auStack_c0,pcVar1 + 0xe0,pcVar1 + 0xc0);
+    Mat33_MulVec3B(auStack_c0,pcVar1 + 0xe0,pcVar1 + 0xc0);
     Vec3_Sub(&uStack_e0,pcVar1 + 0x10,auStack_c0);
     *(undefined4 *)(pcVar1 + 0xd0) = uStack_e0;
     *(undefined4 *)(pcVar1 + 0xd4) = uStack_dc;
@@ -2414,7 +2422,7 @@ void phys_sub_00163c40(float param_1,undefined8 param_2)
 }
 
 // 0x00163f80  size 0x1a0
-void phys_sub_00163f80(undefined4 param_1,char *param_2)
+void PhysBody_Integrate(undefined4 param_1,char *param_2)
 
 {
   float fVar1;
@@ -2458,7 +2466,7 @@ void phys_sub_00163f80(undefined4 param_1,char *param_2)
     param_2[0x81] = '\0';
     param_2[0x82] = '\0';
     param_2[0x83] = '\0';
-    phys_sub_00162f00(&uStack_30,param_2 + 0x1a0,param_2 + 400);
+    Mat33_MulVec3B(&uStack_30,param_2 + 0x1a0,param_2 + 400);
     *(undefined4 *)(param_2 + 0x60) = uStack_30;
     *(undefined4 *)(param_2 + 100) = uStack_2c;
     *(undefined4 *)(param_2 + 0x68) = uStack_28;

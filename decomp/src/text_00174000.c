@@ -3196,7 +3196,7 @@ void GameState_StartRace(long param_1,undefined8 param_2,undefined4 param_3,unde
   *(undefined4 *)(_g_GameState + 0x3a8) = param_3;
   *(undefined4 *)(_g_GameState + 0x3ac) = param_4;
   if (param_1 == 0) {
-    uVar3 = password_sub_002dff30(auStack_60);
+    uVar3 = password_step_sub_002dff30(auStack_60);
     *(undefined4 *)(_g_GameState + 0x3b0) = uVar3;
     cVar2 = Race_GetTimeOfDay();
     if (cVar2 == '\0') {
@@ -3209,7 +3209,7 @@ void GameState_StartRace(long param_1,undefined8 param_2,undefined4 param_3,unde
     }
   }
   else {
-    uVar3 = password_sub_002dfed0(auStack_40);
+    uVar3 = password_step_sub_002dfed0(auStack_40);
     *(undefined4 *)(_g_GameState + 0x3b0) = uVar3;
     cVar2 = Race_GetTimeOfDay();
     if (cVar2 == '\0') {

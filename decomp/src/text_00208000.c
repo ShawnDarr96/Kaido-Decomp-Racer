@@ -48,10 +48,10 @@ void TitleCam_SetKey(undefined8 param_1,undefined4 *param_2,undefined4 *param_3,
   uStack_c = uStack_2c;
   uStack_8 = uStack_28;
   uStack_4 = uStack_24;
-  vu0math_sub_00132ae0(iVar1 + 0x40,param_1);
-  vu0math_sub_00132ae0(iVar1 + 0x50,iVar1 + 0x10);
-  vu0math_sub_00132ae0(iVar1 + 0x70,&uStack_30);
-  vu0math_sub_00132ae0(iVar1 + 0x80,&uStack_40);
+  sceVu0CopyVector(iVar1 + 0x40,param_1);
+  sceVu0CopyVector(iVar1 + 0x50,iVar1 + 0x10);
+  sceVu0CopyVector(iVar1 + 0x70,&uStack_30);
+  sceVu0CopyVector(iVar1 + 0x80,&uStack_40);
   return;
 }
 
@@ -85,10 +85,10 @@ void TitleCam_SetTarget(undefined4 param_1,undefined8 param_2,undefined4 *param_
   *(undefined4 *)(iVar1 + 0x94) = param_6;
   *(undefined4 *)(iVar1 + 0x60) = *(undefined4 *)(iVar1 + 0x38);
   *(undefined4 *)(iVar1 + 0x90) = param_1;
-  vu0math_sub_00132ae0(iVar1 + 0x40,param_2);
-  vu0math_sub_00132ae0(iVar1 + 0x50,iVar1 + 0x10);
-  vu0math_sub_00132ae0(iVar1 + 0x70,&uStack_10);
-  vu0math_sub_00132ae0(iVar1 + 0x80,&uStack_20);
+  sceVu0CopyVector(iVar1 + 0x40,param_2);
+  sceVu0CopyVector(iVar1 + 0x50,iVar1 + 0x10);
+  sceVu0CopyVector(iVar1 + 0x70,&uStack_10);
+  sceVu0CopyVector(iVar1 + 0x80,&uStack_20);
   return;
 }
 
@@ -133,16 +133,16 @@ void TitleCam_Advance(undefined8 param_1,undefined8 param_2)
   uRam00431190 = *(undefined4 *)(iVar5 + 0x34);
   uRam00431194 = *(undefined4 *)(iVar5 + 0x38);
   uVar1 = (ulong)uRam00431170;
-  uVar2 = newlib_sub_0012f600((*(float *)(iVar4 + 0x38) / 57.29578) / 2.0);
-  uVar2 = libm_sub_00120618(uVar2);
+  uVar2 = maybe___sf_to_df((*(float *)(iVar4 + 0x38) / 57.29578) / 2.0);
+  uVar2 = maybe_cos(uVar2);
   uVar2 = __divdf3(0x3ff0000000000000,uVar2);
-  uVar3 = newlib_sub_0012f600((float)uVar1 / 2.0);
+  uVar3 = maybe___sf_to_df((float)uVar1 / 2.0);
   uVar2 = __muldf3(uVar3,uVar2);
   uVar6 = maybe___extendsfdf2(uVar2);
   Cam_SetPitch(uVar6,*(undefined4 *)(iVar4 + 0xd0));
-  vu0math_sub_00132ae0(param_1,param_2);
-  vu0math_sub_00132ae0(iVar4 + 0x10,iVar5 + 0x10);
-  vu0math_sub_00132ae0(iVar4 + 0x20,iVar5 + 0x20);
+  sceVu0CopyVector(param_1,param_2);
+  sceVu0CopyVector(iVar4 + 0x10,iVar5 + 0x10);
+  sceVu0CopyVector(iVar4 + 0x20,iVar5 + 0x20);
   return;
 }
 
@@ -165,16 +165,16 @@ void TitleCam_StartPath(undefined8 param_1,int param_2)
   uRam00431190 = *(undefined4 *)(puVar1 + 0x34);
   uRam00431194 = *(undefined4 *)(puVar1 + 0x38);
   uVar2 = (ulong)uRam00431170;
-  uVar3 = newlib_sub_0012f600((*(float *)(iVar5 + 0x38) / 57.29578) / 2.0);
-  uVar3 = libm_sub_00120618(uVar3);
+  uVar3 = maybe___sf_to_df((*(float *)(iVar5 + 0x38) / 57.29578) / 2.0);
+  uVar3 = maybe_cos(uVar3);
   uVar3 = __divdf3(0x3ff0000000000000,uVar3);
-  uVar4 = newlib_sub_0012f600((float)uVar2 / 2.0);
+  uVar4 = maybe___sf_to_df((float)uVar2 / 2.0);
   uVar3 = __muldf3(uVar4,uVar3);
   uVar6 = maybe___extendsfdf2(uVar3);
   Cam_SetPitch(uVar6,*(undefined4 *)(iVar5 + 0xd0));
-  vu0math_sub_00132ae0(param_1,puVar1);
-  vu0math_sub_00132ae0(iVar5 + 0x10,puVar1 + 0x10);
-  vu0math_sub_00132ae0(iVar5 + 0x20,puVar1 + 0x20);
+  sceVu0CopyVector(param_1,puVar1);
+  sceVu0CopyVector(iVar5 + 0x10,puVar1 + 0x10);
+  sceVu0CopyVector(iVar5 + 0x20,puVar1 + 0x20);
   return;
 }
 
@@ -200,11 +200,11 @@ void TitleCam_SetFov(undefined4 *param_1,undefined4 param_2)
   param_1[0xc] = 0;
   param_1[0xd] = 0;
   param_1[0xe] = 0x42040000;
-  vu0math_sub_00132b90(param_1 + 0x28);
-  vu0math_sub_00132b90(param_1 + 0x2c);
-  vu0math_sub_00132b90(param_1 + 0x30);
-  vu0math_sub_00132b90(param_1 + 0x38);
-  vu0math_sub_00132b90(param_1 + 0x3c);
+  maybe_Vu0_SetUnitW(param_1 + 0x28);
+  maybe_Vu0_SetUnitW(param_1 + 0x2c);
+  maybe_Vu0_SetUnitW(param_1 + 0x30);
+  maybe_Vu0_SetUnitW(param_1 + 0x38);
+  maybe_Vu0_SetUnitW(param_1 + 0x3c);
   return;
 }
 
@@ -215,13 +215,13 @@ void TitleCam_ApplyLight(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  vu0math_sub_00132ae0(*(undefined4 *)(iVar1 + 0x70),param_1);
-  vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x50,iVar1 + 0x10);
-  vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x60,iVar1 + 0x20);
-  vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x70,iVar1 + 0x30);
-  vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x80,iVar1 + 0x40);
-  vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0x90,iVar1 + 0x50);
-  vu0math_sub_00132ae0(*(int *)(iVar1 + 0x70) + 0xa0,iVar1 + 0x60);
+  sceVu0CopyVector(*(undefined4 *)(iVar1 + 0x70),param_1);
+  sceVu0CopyVector(*(int *)(iVar1 + 0x70) + 0x50,iVar1 + 0x10);
+  sceVu0CopyVector(*(int *)(iVar1 + 0x70) + 0x60,iVar1 + 0x20);
+  sceVu0CopyVector(*(int *)(iVar1 + 0x70) + 0x70,iVar1 + 0x30);
+  sceVu0CopyVector(*(int *)(iVar1 + 0x70) + 0x80,iVar1 + 0x40);
+  sceVu0CopyVector(*(int *)(iVar1 + 0x70) + 0x90,iVar1 + 0x50);
+  sceVu0CopyVector(*(int *)(iVar1 + 0x70) + 0xa0,iVar1 + 0x60);
   Light_UpdateMatrices(*(undefined4 *)(iVar1 + 0x70));
   return;
 }
@@ -230,13 +230,13 @@ void TitleCam_ApplyLight(undefined8 param_1)
 void TitleCam_CopyPosition(int param_1,int param_2)
 
 {
-  vu0math_sub_00132ae0();
-  vu0math_sub_00132ae0(param_1 + 0x10,param_2 + 0x10);
-  vu0math_sub_00132ae0(param_1 + 0x20,param_2 + 0x20);
-  vu0math_sub_00132ae0(param_1 + 0x30,param_2 + 0x30);
-  vu0math_sub_00132ae0(param_1 + 0x40,param_2 + 0x40);
-  vu0math_sub_00132ae0(param_1 + 0x50,param_2 + 0x50);
-  vu0math_sub_00132ae0(param_1 + 0x60,param_2 + 0x60);
+  sceVu0CopyVector();
+  sceVu0CopyVector(param_1 + 0x10,param_2 + 0x10);
+  sceVu0CopyVector(param_1 + 0x20,param_2 + 0x20);
+  sceVu0CopyVector(param_1 + 0x30,param_2 + 0x30);
+  sceVu0CopyVector(param_1 + 0x40,param_2 + 0x40);
+  sceVu0CopyVector(param_1 + 0x50,param_2 + 0x50);
+  sceVu0CopyVector(param_1 + 0x60,param_2 + 0x60);
   return;
 }
 
@@ -248,14 +248,14 @@ void TitleCam_StartPathB(undefined8 param_1,int param_2)
   int iVar2;
   
   puVar1 = (&PTR_DAT_003298a0)[param_2];
-  vu0math_sub_00132ae0(param_1,puVar1);
+  sceVu0CopyVector(param_1,puVar1);
   iVar2 = (int)param_1;
-  vu0math_sub_00132ae0(iVar2 + 0x10,puVar1 + 0x10);
-  vu0math_sub_00132ae0(iVar2 + 0x20,puVar1 + 0x20);
-  vu0math_sub_00132ae0(iVar2 + 0x30,puVar1 + 0x30);
-  vu0math_sub_00132ae0(iVar2 + 0x40,puVar1 + 0x40);
-  vu0math_sub_00132ae0(iVar2 + 0x50,puVar1 + 0x50);
-  vu0math_sub_00132ae0(iVar2 + 0x60,puVar1 + 0x60);
+  sceVu0CopyVector(iVar2 + 0x10,puVar1 + 0x10);
+  sceVu0CopyVector(iVar2 + 0x20,puVar1 + 0x20);
+  sceVu0CopyVector(iVar2 + 0x30,puVar1 + 0x30);
+  sceVu0CopyVector(iVar2 + 0x40,puVar1 + 0x40);
+  sceVu0CopyVector(iVar2 + 0x50,puVar1 + 0x50);
+  sceVu0CopyVector(iVar2 + 0x60,puVar1 + 0x60);
   return;
 }
 

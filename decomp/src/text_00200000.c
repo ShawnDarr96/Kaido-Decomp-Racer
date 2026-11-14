@@ -412,7 +412,7 @@ void MenuWnd_DrawMoney(int param_1)
       iVar5 = UiMgr_FindLayout(10);
       UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
       uVar6 = Profile_Get(0);
-      uVar6 = garage_sub_001bcb00(uVar6);
+      uVar6 = Profile_GetMoney(uVar6);
       MenuWnd_DrawNumber(10,1,uVar6);
       if ((*(uint *)(_g_MenuMgr + 0x28) & 0x10000) == 0) {
         uVar7 = 3;
@@ -450,7 +450,7 @@ void MenuWnd_DrawMoney(int param_1)
     if (*(int *)(param_1 + 8) == 1) {
       *(undefined4 *)(param_1 + 8) = 0;
       uVar6 = MenuMgr_UpdateTransition(0x24);
-      (*(code *)PTR_menuscr_sub_00269e40_00327890)(uVar6);
+      (*(code *)PTR_menuscr_anim_sub_00269e40_00327890)(uVar6);
     }
     iVar5 = UiMgr_FindLayout(10);
     bVar1 = *(int *)(*_g_UiMgr + iVar5 * 0x4f4 + 0x31c) != 1;
@@ -483,7 +483,7 @@ void MenuWnd_DrawMoney(int param_1)
     iVar5 = UiMgr_FindLayout(10);
     UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
     uVar6 = Profile_Get(0);
-    uVar6 = garage_sub_001bcb00(uVar6);
+    uVar6 = Profile_GetMoney(uVar6);
     MenuWnd_DrawNumber(10,1,uVar6);
     if ((*(uint *)(_g_MenuMgr + 0x28) & 0x10000) == 0) {
       uVar7 = 3;
@@ -519,12 +519,12 @@ void MenuWnd_DrawMoney(int param_1)
   iVar5 = *(int *)(_g_MenuMgr + 0x1c);
   if (*(int *)(param_1 + 4) == 0) {
     uVar6 = MenuMgr_UpdateTransition(iVar5);
-    (*(code *)(&PTR_showroom_sub_002d8b10_003276e0)[iVar5 * 3])(uVar6);
+    (*(code *)(&PTR_showroom_step_sub_002d8b10_003276e0)[iVar5 * 3])(uVar6);
     *(undefined4 *)(param_1 + 4) = 1;
   }
   if (*(int *)(param_1 + 4) == 1) {
     uVar6 = MenuMgr_UpdateTransition(iVar5);
-    (*(code *)(&PTR_showroom_sub_002d8910_003276e4)[iVar5 * 3])(uVar6);
+    (*(code *)(&PTR_showroom_draw_sub_002d8910_003276e4)[iVar5 * 3])(uVar6);
     if ((*(uint *)(_g_MenuMgr + 0x28) & 0x800) != 0) {
       *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xfffff7ff;
       *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -646,12 +646,12 @@ void MenuScene_Update(int param_1)
         iVar4 = *(int *)(_g_MenuMgr + 0x1c);
         if (piVar1[1] == 0) {
           uVar6 = MenuMgr_UpdateTransition(iVar4);
-          (*(code *)(&PTR_showroom_sub_002d8b10_003276e0)[iVar4 * 3])(uVar6);
+          (*(code *)(&PTR_showroom_step_sub_002d8b10_003276e0)[iVar4 * 3])(uVar6);
           piVar1[1] = 1;
         }
         if (piVar1[1] == 1) {
           uVar6 = MenuMgr_UpdateTransition(iVar4);
-          (*(code *)(&PTR_showroom_sub_002d8910_003276e4)[iVar4 * 3])(uVar6);
+          (*(code *)(&PTR_showroom_draw_sub_002d8910_003276e4)[iVar4 * 3])(uVar6);
           if ((*(uint *)(_g_MenuMgr + 0x28) & 0x800) != 0) {
             *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xfffff7ff;
             *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -883,7 +883,7 @@ void MenuScene_HandleGarageSelect(int *param_1)
         param_1[2] = *(int *)(_g_MenuMgr + 0x24);
         param_1[3] = iVar6;
         uVar2 = MenuMgr_UpdateTransition(0x24);
-        (*(code *)PTR_menuscr_sub_002a6580_00327660)(uVar2);
+        (*(code *)PTR_menuscr_leaf_sub_002a6580_00327660)(uVar2);
         *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x20000;
         return;
       }
@@ -980,7 +980,7 @@ LAB_0020263c:
   if ((*param_1 == 0) && (-1 < iVar6)) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffffefff;
     uVar2 = MenuMgr_UpdateTransition(iVar6);
-    (*(code *)(&PTR_showroom_sub_002d8cf0_003274b0)[iVar6 * 3])(uVar2);
+    (*(code *)(&PTR_showroom_step_sub_002d8cf0_003274b0)[iVar6 * 3])(uVar2);
     *param_1 = 1;
   }
   return;
@@ -1031,7 +1031,7 @@ void MenuScene_StartRace(int param_1)
         if ((*(uint *)(_g_MenuMgr + 0x28) & 0x40000000) != 0) {
           *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xbfffffff;
           uVar4 = Profile_Get(0);
-          garage_sub_001bcb10(uVar4);
+          Profile_StartNight(uVar4);
         }
         Subtitle_DrawPortrait();
         MenuScene_HandleGarageSelect(uVar1);
@@ -1059,7 +1059,7 @@ void MenuScene_Exit(int param_1)
   CarDb_Free();
   Subtitle_Free();
   GameDb_Free();
-  showroom_sub_002d5230();
+  showroom_exit_sub_002d5230();
   UiRes_FreeFonts();
   return;
 }
@@ -1116,7 +1116,7 @@ void MenuScene_Enter(int param_1)
   *puVar2 = 0;
   uVar5 = MenuScene_GetEntryScreen();
   puVar2[1] = uVar5;
-  showroom_sub_002d5260(0x430750);
+  showroom_load_sub_002d5260(0x430750);
   CarDb_Alloc(0x430750);
   CarDb_Load();
   GameDb_Alloc(0x430750);
@@ -1289,7 +1289,7 @@ void MenuCar_ComputeTurntable(int param_1,int param_2,long param_3,long param_4)
   uVar13 = atan2f(fVar14 - fVar15,*(undefined4 *)(iVar4 + 8));
   maybe_Vu0_RotMatrixX(uVar13,param_1 + 0x10,param_1 + 0x10);
   *(float *)(param_1 + 0x44) = (fVar14 + fVar15) / 2.0;
-  vu0math_sub_00133020(auStack_60,param_1 + 0x10);
+  sceVu0InversMatrix(auStack_60,param_1 + 0x10);
   if (bVar1) {
     uVar3 = 0;
     piVar2 = &DAT_003295d0;
@@ -1363,8 +1363,8 @@ void MenuCar_ComputeTurntable(int param_1,int param_2,long param_3,long param_4)
       }
       *(float *)(iVar10 + 100) = *pfStack_90;
       *(undefined4 *)(iVar10 + 0x6c) = 0x3f800000;
-      vu0math_sub_00132d20(iVar6,iVar6,pfVar8);
-      vu0math_sub_00132ba0(iVar6,auStack_60,iVar6);
+      sceVu0TransMatrix(iVar6,iVar6,pfVar8);
+      sceVu0MulMatrix(iVar6,auStack_60,iVar6);
       uVar9 = uVar9 + 1;
       *(undefined4 *)(iVar10 + 100) = 0;
       iVar10 = iVar10 + 0x10;
@@ -1516,7 +1516,7 @@ void MenuCar_BuildRivalPreview
     }
     else if (param_3 == '\x01') {
       uVar1 = Profile_Get(param_4);
-      uVar1 = garage_sub_001bc390(uVar1,param_5);
+      uVar1 = Profile_GetCarRecord(uVar1,param_5);
       maybe_Mem_CopyQwords(param_1,uVar1,8);
       maybe_Mem_CopyQwords(param_2,(int)uVar1 + 0x14,0xb8);
     }

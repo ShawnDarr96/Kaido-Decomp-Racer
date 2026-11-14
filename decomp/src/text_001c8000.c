@@ -1046,14 +1046,14 @@ LAB_001ca8e8:
     cVar4 = *(char *)(param_1 + 0x8e8);
   }
   else {
-    lVar8 = phys_sub_00162430(*(undefined4 *)(param_1 + 0x158),0xffffffffffffffff);
+    lVar8 = PhysBody_FindShapeWithFlags(*(undefined4 *)(param_1 + 0x158),0xffffffffffffffff);
     uStack_34 = 0x3f800000;
     iVar12 = *(int *)(iRam0036f34c + (char)param_2 * 4);
-    uVar9 = phys_sub_00165040(*(undefined4 *)(param_1 + 0x154));
+    uVar9 = PhysBody_GetRotation(*(undefined4 *)(param_1 + 0x154));
     AiLine_TransformToWorld(&fStack_50,uVar9);
     for (; lVar8 != 0; lVar8 = PhysWorld_FindBodyWithFlags(lVar8,0xffffffffffffffff)) {
       if (((*(uint *)(param_1 + 0x13c0) & 0x70) != 0) &&
-         (phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154)),
+         (PhysBody_GetWorldMatrix(*(undefined4 *)(param_1 + 0x154)),
          10.0 < *(float *)(param_1 + 0x40) * 3.6)) {
         uStack_4 = PhysWorld_GetFirstBody(lVar8);
         puVar6 = (undefined4 *)PhysWorld_GetGravity(lVar8);
@@ -1067,7 +1067,7 @@ LAB_001ca8e8:
         uStack_20 = uStack_40;
         uStack_1c = uStack_3c;
         uStack_18 = uStack_38;
-        vu0math_sub_00132a90(&uStack_20,&uStack_20,&fStack_30);
+        sceVu0OuterProduct(&uStack_20,&uStack_20,&fStack_30);
         Driver_SetInputMode(iVar12,&uStack_20,&uStack_4,0);
       }
     }
@@ -1203,7 +1203,7 @@ LAB_001ca8e8:
       uStack_5c = 0xc4160000;
       *(undefined4 *)(iVar12 + 8) = 1;
       *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
-      vu0math_sub_00132ae0(iVar12 + 0x20,&fStack_60);
+      sceVu0CopyVector(iVar12 + 0x20,&fStack_60);
     }
     else {
       uStack_58 = 0;
@@ -1212,11 +1212,11 @@ LAB_001ca8e8:
       uStack_5c = 0x44160000;
       *(undefined4 *)(iVar12 + 8) = 1;
       *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
-      vu0math_sub_00132ae0(iVar12 + 0x20,&fStack_60);
+      sceVu0CopyVector(iVar12 + 0x20,&fStack_60);
     }
     Weather_SpawnDrops(iVar12);
   }
-  lVar8 = race_sub_001e8fc0();
+  lVar8 = race_leaf_sub_001e8fc0();
   if (((lVar8 != 0) && (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
      (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
     uStack_70 = 0;
@@ -1224,7 +1224,7 @@ LAB_001ca8e8:
     uStack_68 = 0;
     uStack_64 = 0;
     *(undefined4 *)(iVar12 + 0x58) = 0;
-    vu0math_sub_00132ae0(iVar12 + 0x70,&uStack_70);
+    sceVu0CopyVector(iVar12 + 0x70,&uStack_70);
     Weather_SpawnDrops(iVar12 + 0x50);
   }
 switchD_001caf44_caseD_2:
@@ -1481,7 +1481,7 @@ void Ai_FollowRacingLine(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar8 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
+  uVar8 = PhysBody_GetWorldMatrix(*(undefined4 *)(param_1 + 0x154));
   puVar5 = (undefined1 *)0x10;
   puVar11 = auStack_60;
   puVar4 = puVar11;
@@ -1593,7 +1593,7 @@ void Ai_FollowRacingLine(int param_1)
   fVar16 = (float)Vec3_DotB(&fStack_c0,&uStack_d0);
   fVar17 = (float)Vec3_LengthB(&fStack_c0);
   fVar16 = fVar16 / fVar17;
-  phys_sub_00163bc0(&fStack_c0);
+  Vec3_Normalize(&fStack_c0);
   fStack_dc = fStack_bc * fVar16;
   fStack_e0 = fStack_c0 * fVar16;
   fStack_d8 = fStack_b8 * fVar16;
@@ -1697,14 +1697,14 @@ void Ai_FollowRacingLine(int param_1)
     *(undefined4 *)(param_1 + 0x16f8) = uStack_2c8;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_2c4;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Normalize(param_1 + 0x16f0);
     Vec3_Sub(&uStack_2e0,&uStack_170,&uStack_160);
     *(undefined4 *)(param_1 + 0x1700) = uStack_2e0;
     *(undefined4 *)(param_1 + 0x1704) = uStack_2dc;
     *(undefined4 *)(param_1 + 0x1708) = uStack_2d8;
     *(undefined4 *)(param_1 + 0x170c) = uStack_2d4;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    phys_sub_00163bc0(param_1 + 0x1700);
+    Vec3_Normalize(param_1 + 0x1700);
   }
   else {
     lVar13 = (long)(iVar12 + 1);
@@ -1733,14 +1733,14 @@ void Ai_FollowRacingLine(int param_1)
     *(undefined4 *)(param_1 + 0x16f8) = uStack_308;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_304;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Normalize(param_1 + 0x16f0);
     Vec3_Sub(&uStack_320,&uStack_170,&uStack_160);
     *(undefined4 *)(param_1 + 0x1700) = uStack_320;
     *(undefined4 *)(param_1 + 0x1704) = uStack_31c;
     *(undefined4 *)(param_1 + 0x1708) = uStack_318;
     *(undefined4 *)(param_1 + 0x170c) = uStack_314;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    phys_sub_00163bc0(param_1 + 0x1700);
+    Vec3_Normalize(param_1 + 0x1700);
   }
   Vec3_Sub(auStack_330,&uStack_130,&uStack_a0);
   uStack_140 = auStack_330[0];
@@ -2031,7 +2031,7 @@ void Ai_ComputeSteering(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar7 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
+  uVar7 = PhysBody_GetWorldMatrix(*(undefined4 *)(param_1 + 0x154));
   *(undefined4 *)(param_1 + 0x178c) = *(undefined4 *)(param_1 + 0x1788);
   *(float *)(param_1 + 0x1788) = *(float *)(param_1 + 0x40) * 3.6;
   uStack_14 = 0x3f800000;
@@ -2075,10 +2075,10 @@ void Ai_ComputeSteering(int param_1)
   } while (0 < iVar15);
   fVar20 = *(float *)(param_1 + 0x40);
   uVar12 = *(undefined4 *)(param_1 + 0x158);
-  uVar8 = phys_sub_00162430(uVar12,0xffffffffff000000);
+  uVar8 = PhysBody_FindShapeWithFlags(uVar12,0xffffffffff000000);
   if ((fVar20 * 3.6 <= 10.0) || ((uStack_30 & 0x20) == 0)) {
     if ((10.0 < *(float *)(param_1 + 0x1788)) && ((uStack_30 & 0x10) != 0)) {
-      uVar8 = phys_sub_00162430(uVar12,0xffffff);
+      uVar8 = PhysBody_FindShapeWithFlags(uVar12,0xffffff);
       fVar20 = (float)PhysWorld_GetFirstBody(uVar8);
       unaff_f20 = fVar20 * 5e-06;
       if (1.0 < unaff_f20) {
@@ -2181,10 +2181,10 @@ void Ai_ComputeSteering(int param_1)
   *(float *)(param_1 + 0x1754) = fVar33 / 2.0;
   *(float *)(param_1 + 0x175c) = fVar32 / 2.0;
   *(float *)(param_1 + 0x1758) = fVar31 / 2.0;
-  iVar15 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
+  iVar15 = PhysBody_GetAngularVelocity(*(undefined4 *)(param_1 + 0x154));
   uStack_a4 = 0x3f800000;
   *(float *)(param_1 + 0x1720) = (-*(float *)(iVar15 + 4) * 3.0) / 3.1415927;
-  uVar8 = phys_sub_00165040(*(undefined4 *)(param_1 + 0x154));
+  uVar8 = PhysBody_GetRotation(*(undefined4 *)(param_1 + 0x154));
   AiLine_TransformToWorld(&uStack_1e0,uVar8);
   uStack_b0 = uStack_1e0;
   uStack_ac = uStack_1dc;
@@ -2275,7 +2275,7 @@ void Ai_ComputeSteering(int param_1)
   fVar34 = (float)Vec3_DotB(&fStack_e0,&uStack_f0);
   fVar23 = (float)Vec3_LengthB(&fStack_e0);
   fVar34 = fVar34 / fVar23;
-  phys_sub_00163bc0(&fStack_e0);
+  Vec3_Normalize(&fStack_e0);
   fStack_fc = fStack_dc * fVar34;
   fStack_100 = fStack_e0 * fVar34;
   fStack_f8 = fStack_d8 * fVar34;
@@ -2377,14 +2377,14 @@ void Ai_ComputeSteering(int param_1)
     *(undefined4 *)(param_1 + 0x16f8) = uStack_2f8;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_2f4;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Normalize(param_1 + 0x16f0);
     Vec3_Sub(&uStack_310,&uStack_190,&uStack_180);
     *(undefined4 *)(param_1 + 0x1700) = uStack_310;
     *(undefined4 *)(param_1 + 0x1704) = uStack_30c;
     *(undefined4 *)(param_1 + 0x1708) = uStack_308;
     *(undefined4 *)(param_1 + 0x170c) = uStack_304;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    phys_sub_00163bc0(param_1 + 0x1700);
+    Vec3_Normalize(param_1 + 0x1700);
   }
   else {
     lVar10 = (long)(sVar2 + 1);
@@ -2412,14 +2412,14 @@ void Ai_ComputeSteering(int param_1)
     *(undefined4 *)(param_1 + 0x16f8) = uStack_328;
     *(undefined4 *)(param_1 + 0x16fc) = uStack_324;
     *(undefined4 *)(param_1 + 0x16f4) = 0;
-    phys_sub_00163bc0(param_1 + 0x16f0);
+    Vec3_Normalize(param_1 + 0x16f0);
     Vec3_Sub(&uStack_340,&uStack_190,&uStack_180);
     *(undefined4 *)(param_1 + 0x1700) = uStack_340;
     *(undefined4 *)(param_1 + 0x1704) = uStack_33c;
     *(undefined4 *)(param_1 + 0x1708) = uStack_338;
     *(undefined4 *)(param_1 + 0x170c) = uStack_334;
     *(undefined4 *)(param_1 + 0x1704) = 0;
-    phys_sub_00163bc0(param_1 + 0x1700);
+    Vec3_Normalize(param_1 + 0x1700);
   }
   Vec3_Sub(auStack_350,&uStack_150,&uStack_c0);
   uStack_160 = auStack_350[0];
@@ -2496,7 +2496,7 @@ LAB_001cc744:
   *(float *)(param_1 + 0x1780) = fVar20;
   cVar4 = GameState_Get_0();
   if (cVar4 != '\b') {
-    uVar7 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+    uVar7 = PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
     puVar6 = (undefined4 *)uVar7;
     uStack_1c0 = *puVar6;
     uStack_1bc = puVar6[1];

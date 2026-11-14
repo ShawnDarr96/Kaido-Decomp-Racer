@@ -113,26 +113,26 @@ void RaceCam_UpdateFree(int param_1)
           iVar3 = CarRec_GetPartData(uVar5,0xc);
           fVar10 = ((float)iVar3 + 5.0) / 5.0 - 1.0;
           maybe_Vu0_UnitMatrix(auStack_90);
-          vu0math_sub_00132ae0(auStack_90,&uStack_d0);
-          vu0math_sub_00132ae0(auStack_80,&uStack_c0);
-          vu0math_sub_00132ae0(auStack_70,&uStack_b0);
-          vu0math_sub_00132ae0(auStack_20,&uStack_a0);
-          vu0math_sub_00132d50(auStack_30,auStack_90,&uStack_10);
-          vu0math_sub_00132ae0(auStack_e0,auStack_20);
+          sceVu0CopyVector(auStack_90,&uStack_d0);
+          sceVu0CopyVector(auStack_80,&uStack_c0);
+          sceVu0CopyVector(auStack_70,&uStack_b0);
+          sceVu0CopyVector(auStack_20,&uStack_a0);
+          sceVu0ApplyMatrix(auStack_30,auStack_90,&uStack_10);
+          sceVu0CopyVector(auStack_e0,auStack_20);
           fStack_dc = fStack_dc + 0.4;
           if (iVar1 == 0) {
-            vu0math_sub_00132ae0(0x430680,auStack_20);
-            vu0math_sub_00132ae0(0x4306a0,auStack_30);
+            sceVu0CopyVector(0x430680,auStack_20);
+            sceVu0CopyVector(0x4306a0,auStack_30);
           }
           else {
-            vu0math_sub_00132ae0(0x430690,auStack_20);
-            vu0math_sub_00132ae0(0x4306b0,auStack_30);
+            sceVu0CopyVector(0x430690,auStack_20);
+            sceVu0CopyVector(0x4306b0,auStack_30);
           }
-          vu0math_sub_00132d50(&uStack_50,auStack_90,&uStack_50);
-          vu0math_sub_001328b0(auStack_30,auStack_30);
-          vu0math_sub_001328b0(&uStack_50,&uStack_50);
-          vu0math_sub_00132b10(0x40000000,auStack_40,auStack_30);
-          vu0math_sub_00132b70(auStack_20,auStack_20,auStack_40);
+          sceVu0ApplyMatrix(&uStack_50,auStack_90,&uStack_50);
+          sceVu0Normalize(auStack_30,auStack_30);
+          sceVu0Normalize(&uStack_50,&uStack_50);
+          sceVu0ScaleVector(0x40000000,auStack_40,auStack_30);
+          sceVu0AddVector(auStack_20,auStack_20,auStack_40);
           if ((*puVar7 & 8) == 0) {
             Camera_BuildScreenMatrix
                       (fVar10 + 0.6,fVar10 + 1.0,&g_Views + iVar6,auStack_20,auStack_30,&uStack_50);
@@ -639,7 +639,7 @@ void Race_LoadCourseAsync(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x1c) = 0;
   *(undefined4 *)(iVar1 + 0x20) = 0;
   *(undefined4 *)(iVar1 + 0x24) = 0;
-  showroom_sub_002d36c0(0x430750);
+  showroom_load_sub_002d36c0(0x430750);
   Race_LoadCourse(param_1,1);
   return;
 }
@@ -666,7 +666,7 @@ void RaceHud_UpdateBattle(undefined8 param_1)
   undefined8 uVar7;
   int iVar8;
   
-  iVar2 = racehud_sub_002cfb30(0);
+  iVar2 = racehud_leaf_sub_002cfb30(0);
   iVar1 = *(int *)(iVar2 + 0xb0);
   iVar8 = 0;
   lVar6 = GameState_GetPlayerCount();
@@ -675,7 +675,7 @@ void RaceHud_UpdateBattle(undefined8 param_1)
   }
   else {
     do {
-      iVar4 = racehud_sub_002cfb30(iVar8);
+      iVar4 = racehud_leaf_sub_002cfb30(iVar8);
       uVar7 = RaceHud_UpdateTimePanel(param_1,iVar8);
       RaceHud_UpdateLapPanel(param_1,iVar8,uVar7);
       RaceHud_UpdatePlayerPanel(param_1,iVar8);
@@ -703,7 +703,7 @@ void RaceHud_UpdateBattle(undefined8 param_1)
   }
   uVar7 = RaceProg_GetArray_34(0);
   uVar7 = SpGauge_Update(uVar7);
-  racehud_sub_002cfac0(uVar7);
+  racehud_leaf_sub_002cfac0(uVar7);
   return;
 }
 
@@ -724,9 +724,9 @@ void RaceHud_UpdateRanking(void)
   lVar5 = GameState_GetTotalCarCount();
   if (0 < lVar5) {
     do {
-      iVar2 = racehud_sub_002cfb30(iVar8);
+      iVar2 = racehud_leaf_sub_002cfb30(iVar8);
       uVar6 = RaceProg_GetArray_28((char)iVar8);
-      uVar3 = raceprog_sub_001dcdc0(uVar6);
+      uVar3 = raceprog_leaf_sub_001dcdc0(uVar6);
       *(undefined4 *)(iVar2 + 0x8c) = uVar3;
       iVar4 = *(int *)(iVar2 + 0x8c);
       iVar1 = *(int *)(iVar2 + 0x90);
@@ -771,7 +771,7 @@ void RaceHud_UpdateSprint(undefined8 param_1)
   lVar2 = GameState_GetPlayerCount();
   if (0 < lVar2) {
     do {
-      iVar1 = racehud_sub_002cfb30(iVar4);
+      iVar1 = racehud_leaf_sub_002cfb30(iVar4);
       uVar3 = RaceHud_UpdateTimePanel(param_1,iVar4);
       RaceHud_UpdateLapPanel(param_1,iVar4,uVar3);
       RaceHud_UpdatePlayerPanel(param_1,iVar4);
@@ -795,7 +795,7 @@ void RaceHud_UpdatePlayerPanel(undefined8 param_1,long param_2)
   ulong uVar6;
   long lVar7;
   
-  iVar1 = racehud_sub_002cfb30(param_2);
+  iVar1 = racehud_leaf_sub_002cfb30(param_2);
   uVar4 = RaceProg_GetArray_34((char)param_2);
   iVar2 = SpGauge_GetValue(uVar4);
   *(uint *)(iVar1 + 4) = *(uint *)(iVar1 + 4) & 0xffffff7f;
@@ -843,17 +843,19 @@ void RaceHud_UpdatePlayerPanel(undefined8 param_1,long param_2)
     }
   }
   if (iVar3 - iVar2 < 1) {
-    lVar7 = race_sub_001e8fc0();
-    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = racehud_sub_002cfad0(), (uVar6 & 1) != 0)))) {
-      raceui_sub_002c6090(0,param_2);
+    lVar7 = race_leaf_sub_001e8fc0();
+    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = racehud_leaf_sub_002cfad0(), (uVar6 & 1) != 0))))
+    {
+      raceui_step_sub_002c6090(0,param_2);
       iVar2 = *(int *)(iVar1 + 0x98);
       goto LAB_001e5cc8;
     }
   }
   else {
-    lVar7 = race_sub_001e8fc0();
-    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = racehud_sub_002cfad0(), (uVar6 & 1) != 0)))) {
-      raceui_sub_002c6090(1,param_2);
+    lVar7 = race_leaf_sub_001e8fc0();
+    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = racehud_leaf_sub_002cfad0(), (uVar6 & 1) != 0))))
+    {
+      raceui_step_sub_002c6090(1,param_2);
     }
   }
   iVar2 = *(int *)(iVar1 + 0x98);
@@ -872,7 +874,7 @@ void RaceHud_UpdateLapPanel(undefined8 param_1,undefined8 param_2,int param_3)
   int iVar3;
   int iVar4;
   
-  iVar3 = racehud_sub_002cfb30(param_2);
+  iVar3 = racehud_leaf_sub_002cfb30(param_2);
   if (param_3 == -1) {
     iVar4 = RaceProg_GetArray_34((char)param_2);
     if (*(int *)(iVar3 + 0x9c) != *(int *)(iVar3 + 0x98)) {
@@ -922,7 +924,7 @@ int RaceHud_UpdateTimePanel(undefined8 param_1,undefined8 param_2)
   int iVar3;
   int iVar4;
   
-  iVar1 = racehud_sub_002cfb30(param_2);
+  iVar1 = racehud_leaf_sub_002cfb30(param_2);
   iVar2 = RaceProg_GetArray_34((char)param_2);
   iVar4 = -1;
   *(undefined4 *)(iVar1 + 0xac) = 0;
@@ -956,7 +958,7 @@ void RaceHud_UpdateTimeAttack(undefined8 param_1)
   lVar2 = GameState_GetPlayerCount();
   if (0 < lVar2) {
     do {
-      iVar1 = racehud_sub_002cfb30(iVar4);
+      iVar1 = racehud_leaf_sub_002cfb30(iVar4);
       uVar3 = RaceHud_UpdateTimePanel(param_1,iVar4);
       RaceHud_UpdateLapPanel(param_1,iVar4,uVar3);
       RaceHud_UpdatePlayerPanel(param_1,iVar4);
@@ -984,9 +986,9 @@ void RaceHud_UpdateMap(void)
   lVar5 = GameState_GetTotalCarCount();
   if (0 < lVar5) {
     do {
-      iVar2 = racehud_sub_002cfb30(iVar7);
+      iVar2 = racehud_leaf_sub_002cfb30(iVar7);
       uVar6 = RaceProg_GetArray_28((char)iVar7);
-      uVar3 = raceprog_sub_001dcdc0(uVar6);
+      uVar3 = raceprog_leaf_sub_001dcdc0(uVar6);
       *(undefined4 *)(iVar2 + 0x8c) = uVar3;
       iVar4 = *(int *)(iVar2 + 0x8c);
       iVar1 = *(int *)(iVar2 + 0x90);
@@ -1039,7 +1041,7 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
   float fVar14;
   float fVar15;
   
-  iVar1 = racehud_sub_002cfb30(param_2);
+  iVar1 = racehud_leaf_sub_002cfb30(param_2);
   uVar5 = RaceCar_Get(param_2);
   uVar13 = RaceCar_GetSpeedKmh(uVar5);
   *(undefined4 *)(iVar1 + 0x14) = uVar13;
@@ -1051,7 +1053,7 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
   *(float *)(iVar1 + 0x44) = *(float *)(iVar12 + 0xac0) - 1.0;
   iVar4 = iVar1;
   do {
-    iVar2 = racehud_sub_002cfb20();
+    iVar2 = racehud_leaf_sub_002cfb20();
     pfVar3 = (float *)(iVar2 + iVar10);
     *(float *)(iVar4 + 0x18) =
          pfVar3[1] +
@@ -1154,37 +1156,37 @@ void RaceHud_UpdateMessages(void)
   cVar1 = RaceProg_Get();
   if (cVar1 == '\x05') {
     if (*(int *)(iRam0036f804 + 0x288) == 0) {
-      cVar1 = racehud_sub_002cfb60();
+      cVar1 = racehud_leaf_sub_002cfb60();
       if (cVar1 != '\x04') {
-        racehud_sub_002cfb70();
+        racehud_step_sub_002cfb70();
       }
     }
     else {
-      cVar1 = racehud_sub_002cfb60();
+      cVar1 = racehud_leaf_sub_002cfb60();
       if (cVar1 != '\x02') {
-        racehud_sub_002cfb70();
+        racehud_step_sub_002cfb70();
       }
     }
   }
   else if (cVar1 == '\x03') {
     lVar2 = RaceScene_IsPaused();
     if (lVar2 == 0) {
-      cVar1 = racehud_sub_002cfb60();
+      cVar1 = racehud_leaf_sub_002cfb60();
       if (cVar1 == '\x05') {
-        racehud_sub_002cfb70(3);
+        racehud_step_sub_002cfb70(3);
       }
     }
     else {
-      cVar1 = racehud_sub_002cfb60();
+      cVar1 = racehud_leaf_sub_002cfb60();
       if (cVar1 == '\x03') {
         Se_PlayMenuVol(9,0x60);
-        racehud_sub_002cfb70(5);
+        racehud_step_sub_002cfb70(5);
       }
     }
   }
-  else if (((cVar1 == '\x01') && (cVar1 = racehud_sub_002cfb60(), cVar1 != '\x01')) &&
-          (cVar1 = racehud_sub_002cfb60(), cVar1 != '\x03')) {
-    racehud_sub_002cfb70(1);
+  else if (((cVar1 == '\x01') && (cVar1 = racehud_leaf_sub_002cfb60(), cVar1 != '\x01')) &&
+          (cVar1 = racehud_leaf_sub_002cfb60(), cVar1 != '\x03')) {
+    racehud_step_sub_002cfb70(1);
   }
   return;
 }
@@ -1203,13 +1205,13 @@ void RaceHud_Task(undefined8 param_1)
   int iVar6;
   undefined4 uVar7;
   
-  lVar3 = racehud_sub_002cf9b0();
+  lVar3 = racehud_step_sub_002cf9b0();
   if ((lVar3 == 0) && (cVar1 = RaceProg_Get(), cVar1 != '\0')) {
     if (iRam0046a590 == 0) {
       RaceHud_UpdateMessages(param_1);
-      lVar3 = race_sub_001e8fc0();
+      lVar3 = race_leaf_sub_001e8fc0();
       if (lVar3 != 0) {
-        racehud_sub_002cfb00(4);
+        racehud_leaf_sub_002cfb00(4);
         if (*piRam0036f468 != 1) {
           *piRam0036f468 = 1;
         }
@@ -1224,14 +1226,14 @@ void RaceHud_Task(undefined8 param_1)
           uVar5 = 0x100000;
         }
         if (((uVar5 == 0x10) && (lVar3 = RaceScene_IsPaused(), lVar3 == 0)) &&
-           (uVar4 = racehud_sub_002cfad0(), (uVar4 & 1) == 0)) {
-          racehud_sub_002cfae0(8);
+           (uVar4 = racehud_leaf_sub_002cfad0(), (uVar4 & 1) == 0)) {
+          racehud_leaf_sub_002cfae0(8);
           *(undefined4 *)(iRam0036f804 + 0x3b70) = 0x3f800000;
         }
       }
       maybe_GameState_GetFlag();
       uVar7 = GameState_Get_14();
-      racehud_sub_002cfab0(uVar7);
+      racehud_leaf_sub_002cfab0(uVar7);
       iVar6 = 0;
       lVar3 = GameState_GetTotalCarCount();
       if (0 < lVar3) {
@@ -1242,25 +1244,25 @@ void RaceHud_Task(undefined8 param_1)
         } while (iVar6 < iVar2);
       }
       __ptmf_scall(param_1);
-      uVar4 = racehud_sub_002cfad0();
+      uVar4 = racehud_leaf_sub_002cfad0();
       if ((uVar4 & 1) == 0) {
-        iVar6 = racehud_sub_002cfb30(0);
+        iVar6 = racehud_leaf_sub_002cfb30(0);
         lVar3 = Cam_IsIdle(*(undefined4 *)(_g_Loading + 0x14));
-        if ((lVar3 == 0) || (lVar3 = race_sub_001e8fc0(), lVar3 != 0)) {
+        if ((lVar3 == 0) || (lVar3 = race_leaf_sub_001e8fc0(), lVar3 != 0)) {
           *(undefined4 *)(iVar6 + 0x70) = 1;
         }
         else {
           *(undefined4 *)(iVar6 + 0x70) = 0;
         }
       }
-      racehud_sub_002cf820();
-      uVar4 = racehud_sub_002cfad0();
-      if ((((uVar4 & 10) != 0) && (cVar1 = racehud_sub_002cfb60(), cVar1 != '\x04')) &&
+      racehud_step_sub_002cf820();
+      uVar4 = racehud_leaf_sub_002cfad0();
+      if ((((uVar4 & 10) != 0) && (cVar1 = racehud_leaf_sub_002cfb60(), cVar1 != '\x04')) &&
          ((lVar3 = Options_Get_c(), lVar3 == 1 && (iRam0036f1f8 == 0)))) {
         if (iRam0036f85c != 0) {
           *(undefined4 *)(iRam0036f85c + 0x1c) = *(undefined4 *)(iRam0036f804 + 0x3b70);
         }
-        showroom_sub_002d6e40();
+        showroom_draw_sub_002d6e40();
       }
     }
   }
@@ -1364,7 +1366,7 @@ void RaceHud_Init(int param_1)
   Gfx_SetFade(2,9,0,0);
   UiRes_LoadLocalizedAlloc(0x430750,0x1876,0x485);
   MenuWnd_Alloc(0x430750,0);
-  racehud_sub_002d1130(0x430750);
+  racehud_load_sub_002d1130(0x430750);
   RaceHud_GetLayout(uVar1);
   UiMgr_DrawAll(1);
   *(undefined1 **)(param_1 + 0x1c) = &LAB_001e6ab0;
@@ -1827,7 +1829,7 @@ void RaceSnd_UpdateCars(int param_1)
         uVar9 = uVar9 + 1;
         iVar8 = iVar8 + 0x80;
       } while ((int)uVar9 < 2);
-      lVar5 = race_sub_001e8fc0();
+      lVar5 = race_leaf_sub_001e8fc0();
       if (((lVar5 == 0) && (uVar6 = RaceProg_Get_4(), (uVar6 & 1) != 0)) &&
          (cVar2 = RaceProg_Get(), cVar2 == '\x03')) {
         iVar8 = 0;
@@ -1835,7 +1837,7 @@ void RaceSnd_UpdateCars(int param_1)
         if (0 < lVar5) {
           do {
             uVar7 = RaceProg_GetArray_28((char)iVar8);
-            iVar4 = raceprog_sub_001dcdc0(uVar7);
+            iVar4 = raceprog_leaf_sub_001dcdc0(uVar7);
             if ((iVar4 < *(int *)(param_1 + 0x30)) &&
                (fVar10 = ((float)iVar4 / 0.25) / 5e+06, fVar10 < 1.0)) {
               if (*(int *)(param_1 + 0x2c) == 0) {
@@ -2024,12 +2026,12 @@ LAB_001e7bfc:
     else {
       lVar7 = RaceScene_IsPaused();
       if (lVar7 == 0) {
-        lVar7 = race_sub_001e8fc0();
+        lVar7 = race_leaf_sub_001e8fc0();
         if ((((lVar7 == 0) && (uVar9 = RaceProg_Get_4(), (uVar9 & 1) != 0)) &&
             (cVar2 = RaceProg_Get(), cVar2 == '\x03')) &&
            (uVar9 = RaceProg_Get_4(), (uVar9 & 0x80) == 0)) {
           uVar8 = RaceProg_GetArray_28(0);
-          iVar11 = raceprog_sub_001dcdc0(uVar8);
+          iVar11 = raceprog_leaf_sub_001dcdc0(uVar8);
           if ((iVar11 < *(int *)(param_1 + 0x30)) &&
              (fVar13 = ((float)iVar11 / 0.25) / 5e+06, fVar13 < 1.0)) {
             if (*(int *)(param_1 + 0x2c) == 0) {

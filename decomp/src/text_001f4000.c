@@ -49,9 +49,9 @@ void Demo_DriveCar(undefined4 *param_1,long param_2)
       Demo_FindRoadSection(&uStack_10,puVar8[5] + iVar6);
       uStack_8 = uStack_10;
       uStack_6 = uStack_e;
-      uVar5 = misc_sub_002fd080();
+      uVar5 = misc_step_sub_002fd080();
       cVar1 = *(char *)((uVar5 & 0xff) + 0x36e868);
-      cVar3 = misc_sub_002fd0a0();
+      cVar3 = misc_step_sub_002fd0a0();
       bVar2 = cVar1 == cVar3;
       iVar6 = RaceCar_GetIndex(param_1[3]);
       param_1[5] = *(undefined4 *)(iVar6 + 4);
@@ -124,9 +124,9 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
     uStack_4c = 0;
     uStack_58 = 0;
     uStack_48 = 0;
-    vu0math_sub_00132d50(&uStack_50,iVar4 + 0x590,&uStack_50);
-    vu0math_sub_00132d50(&uStack_60,iVar4 + 0x550,&uStack_60);
-    fVar5 = (float)vu0math_sub_00132ab0(&uStack_50,&uStack_60);
+    sceVu0ApplyMatrix(&uStack_50,iVar4 + 0x590,&uStack_50);
+    sceVu0ApplyMatrix(&uStack_60,iVar4 + 0x550,&uStack_60);
+    fVar5 = (float)sceVu0InnerProduct(&uStack_50,&uStack_60);
     if ((float)(fVar5 < 0.0) * fVar5 * fVar5 * fVar5 * fVar5 == 0.0) {
       param_1 = param_1 * 1.0;
     }
@@ -136,26 +136,26 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
     if (param_1 < param_2) {
       param_1 = param_2;
     }
-    phys_sub_00163100(param_1,auStack_a0,iVar4 + 0x5d0);
-    phys_sub_00163100(1.0 - param_1,auStack_b0,iVar4 + 0x5e0);
-    phys_sub_001631c0(&uStack_90,auStack_a0,auStack_b0);
+    Mat33_MulVec3Add(param_1,auStack_a0,iVar4 + 0x5d0);
+    Mat33_MulVec3Add(1.0 - param_1,auStack_b0,iVar4 + 0x5e0);
+    Quat_Conjugate(&uStack_90,auStack_a0,auStack_b0);
     *(undefined4 *)(iVar4 + 0x5d0) = uStack_90;
     *(undefined4 *)(iVar4 + 0x5d4) = uStack_8c;
     *(undefined4 *)(iVar4 + 0x5d8) = uStack_88;
     *(undefined4 *)(iVar4 + 0x5dc) = uStack_84;
-    phys_sub_001632e0(iVar4 + 0x5d0);
+    Quat_Normalize(iVar4 + 0x5d0);
     if (iRam0036f428 == 0) {
       iVar2 = iVar4 + 0x530;
     }
     else {
       iVar2 = iVar3;
     }
-    vu0math_sub_00132d20(auStack_40,iVar4 + 0x550,iVar2);
-    vu0math_sub_00132d50(iVar4 + 0x430,auStack_40,iVar4 + 0x480);
+    sceVu0TransMatrix(auStack_40,iVar4 + 0x550,iVar2);
+    sceVu0ApplyMatrix(iVar4 + 0x430,auStack_40,iVar4 + 0x480);
     fStack_78 = *(float *)(iVar4 + 0x478) - *(float *)(iVar4 + 0x468);
     fStack_7c = *(float *)(iVar4 + 0x474) - *(float *)(iVar4 + 0x464);
     fStack_80 = *(float *)(iVar4 + 0x470) - *(float *)(iVar4 + 0x460);
-    phys_sub_00163210(&fStack_c0,iVar4 + 0x5d0,&fStack_80);
+    Quat_RotateVec3(&fStack_c0,iVar4 + 0x5d0,&fStack_80);
     fStack_80 = fStack_c0;
     fStack_7c = (float)uStack_bc;
     fStack_78 = (float)uStack_b8;
@@ -163,11 +163,11 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
     if (iRam0036f428 == 0) {
       iVar3 = iVar4 + 0x530;
     }
-    vu0math_sub_00132d20(auStack_40,iVar4 + 0x550,iVar3);
-    vu0math_sub_00132d50(auStack_70,auStack_40,iVar4 + 0x460);
-    vu0math_sub_00132b70(iVar4 + 0x420,&fStack_80,auStack_70);
+    sceVu0TransMatrix(auStack_40,iVar4 + 0x550,iVar3);
+    sceVu0ApplyMatrix(auStack_70,auStack_40,iVar4 + 0x460);
+    sceVu0AddVector(iVar4 + 0x420,&fStack_80,auStack_70);
     *(undefined4 *)(iVar4 + 0x42c) = 0x3f800000;
-    vu0math_sub_00132ae0(iVar4 + 0x440,iVar4 + 0x490);
+    sceVu0CopyVector(iVar4 + 0x440,iVar4 + 0x490);
     Cam_UpdateTargetFromCar(param_3);
     Cam_Nop(param_3);
     if ((*(uint *)(iVar4 + 0x7c0) & 1) != 0) {
@@ -182,17 +182,18 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
 }
 
 // 0x001f4760  size 0x12c
-void demo_sub_001f4760(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                      undefined8 param_5)
+void demo_step_sub_001f4760
+               (int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5)
 
 {
   int iVar1;
   
-  vu0math_sub_00132ae0(param_1 + 0x470);
-  vu0math_sub_00132ae0(param_1 + 0x480,param_3);
-  vu0math_sub_00132ae0(param_1 + 0x490,param_4);
-  vu0math_sub_00132ae0(param_1 + 0x4a0,param_5);
-  vu0math_sub_00132ae0(param_1 + 0x460,param_1 + 0x4a0);
+  sceVu0CopyVector(param_1 + 0x470);
+  sceVu0CopyVector(param_1 + 0x480,param_3);
+  sceVu0CopyVector(param_1 + 0x490,param_4);
+  sceVu0CopyVector(param_1 + 0x4a0,param_5);
+  sceVu0CopyVector(param_1 + 0x460,param_1 + 0x4a0);
   *(undefined4 *)(param_1 + 0x7c4) = 0;
   if (*(int *)(param_1 + 0x7b0) != 0) {
     Cam_SetTarget(param_1 + 0x510);
@@ -201,7 +202,7 @@ void demo_sub_001f4760(int param_1,undefined8 param_2,undefined8 param_3,undefin
       iVar1 = *(int *)(param_1 + 0x7b0);
     }
     Cam_SetTarget(param_1 + 0x660,iVar1);
-    phys_sub_001632e0(param_1 + 0x5d0);
+    Quat_Normalize(param_1 + 0x5d0);
     *(undefined4 *)(param_1 + 0x5e0) = *(undefined4 *)(param_1 + 0x5d0);
     *(undefined4 *)(param_1 + 0x5e4) = *(undefined4 *)(param_1 + 0x5d4);
     *(undefined4 *)(param_1 + 0x5e8) = *(undefined4 *)(param_1 + 0x5d8);
@@ -1914,7 +1915,7 @@ undefined4 Msg_MakerCountry(void)
 // 0x001f6720  size 0x34
 /* WARNING: Switch with 1 destination removed at 0x001f6744 : 8 cases all go to same destination */
 
-void ui_sub_001f6720(float *param_1,uint param_2,int param_3,int param_4)
+void ui_leaf_sub_001f6720(float *param_1,uint param_2,int param_3,int param_4)
 
 {
   undefined *puVar1;
@@ -2176,8 +2177,8 @@ undefined4 Menu_MapCursorToItem(undefined4 param_1)
 }
 
 // 0x001f6af0  size 0x3cc
-void ui_sub_001f6af0(undefined4 *param_1,long param_2,undefined8 param_3,undefined8 param_4,
-                    long param_5)
+void ui_step_sub_001f6af0
+               (undefined4 *param_1,long param_2,undefined8 param_3,undefined8 param_4,long param_5)
 
 {
   undefined2 uVar1;
@@ -2211,14 +2212,14 @@ void ui_sub_001f6af0(undefined4 *param_1,long param_2,undefined8 param_3,undefin
   
   if (param_2 == -1) {
     uVar5 = Profile_Get(param_3);
-    puVar3 = (undefined2 *)garage_sub_001bc3f0(uVar5);
+    puVar3 = (undefined2 *)Profile_GetCurrentCar(uVar5);
     uStack_c4 = *puVar3;
   }
   else {
     iVar2 = Profile_Get(param_3);
     uVar1 = *(undefined2 *)(iVar2 + (int)param_2 * 2 + 0x13ee);
     uVar5 = Profile_Get(param_3);
-    puVar3 = (undefined2 *)garage_sub_001bc600(uVar5,uVar1);
+    puVar3 = (undefined2 *)Profile_GetCarRecordB(uVar5,uVar1);
     uStack_c4 = *puVar3;
   }
   puVar9 = auStack_d0;
@@ -2423,7 +2424,7 @@ undefined4 MenuText_RivalCar(long param_1,long param_2)
   else {
     uVar3 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar3 = garage_sub_001bc3f0(uVar3);
+      uVar3 = Profile_GetCurrentCar(uVar3);
       sVar1 = CarRec_GetModelId(uVar3);
     }
     else {
@@ -2486,7 +2487,7 @@ undefined1 MenuText_RivalCarSpec(long param_1,long param_2)
   else {
     uVar4 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar4 = garage_sub_001bc3f0(uVar4);
+      uVar4 = Profile_GetCurrentCar(uVar4);
       uVar2 = CarRec_GetModelId(uVar4);
     }
     else {
@@ -2550,7 +2551,7 @@ undefined1 MenuText_RivalCarMaker(long param_1,long param_2)
   else {
     uVar4 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar4 = garage_sub_001bc3f0(uVar4);
+      uVar4 = Profile_GetCurrentCar(uVar4);
       uVar2 = CarRec_GetModelId(uVar4);
     }
     else {
@@ -2594,7 +2595,7 @@ int MenuText_OpponentName(long param_1,long param_2)
   else {
     uVar2 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar2 = garage_sub_001bc3f0(uVar2);
+      uVar2 = Profile_GetCurrentCar(uVar2);
       uVar1 = CarRec_GetModelId(uVar2);
     }
     else {
@@ -2638,7 +2639,7 @@ int MenuText_OpponentTeam(long param_1,long param_2)
   else {
     uVar2 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar2 = garage_sub_001bc3f0(uVar2);
+      uVar2 = Profile_GetCurrentCar(uVar2);
       uVar1 = CarRec_GetModelId(uVar2);
     }
     else {
@@ -2682,7 +2683,7 @@ int MenuText_OpponentCar(long param_1,long param_2)
   else {
     uVar2 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar2 = garage_sub_001bc3f0(uVar2);
+      uVar2 = Profile_GetCurrentCar(uVar2);
       uVar1 = CarRec_GetModelId(uVar2);
     }
     else {
@@ -2726,7 +2727,7 @@ int MenuText_OpponentTitle(long param_1,long param_2)
   else {
     uVar2 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar2 = garage_sub_001bc3f0(uVar2);
+      uVar2 = Profile_GetCurrentCar(uVar2);
       uVar1 = CarRec_GetModelId(uVar2);
     }
     else {
@@ -2789,7 +2790,7 @@ undefined4 MenuText_OpponentSpec(long param_1,long param_2)
   else {
     uVar3 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar3 = garage_sub_001bc3f0(uVar3);
+      uVar3 = Profile_GetCurrentCar(uVar3);
       uVar1 = CarRec_GetModelId(uVar3);
     }
     else {
@@ -2833,7 +2834,7 @@ int MenuText_OpponentComment(long param_1,long param_2)
   else {
     uVar2 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar2 = garage_sub_001bc3f0(uVar2);
+      uVar2 = Profile_GetCurrentCar(uVar2);
       uVar1 = CarRec_GetModelId(uVar2);
     }
     else {
@@ -2899,7 +2900,7 @@ undefined1 MenuText_CarName(long param_1,long param_2)
   else {
     uVar4 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar4 = garage_sub_001bc3f0(uVar4);
+      uVar4 = Profile_GetCurrentCar(uVar4);
       uVar2 = CarRec_GetModelId(uVar4);
     }
     else {
@@ -2983,7 +2984,7 @@ undefined1 MenuText_CarFullName(long param_1,long param_2)
   else {
     uVar4 = Profile_Get(param_2);
     if (param_1 == -1) {
-      uVar4 = garage_sub_001bc3f0(uVar4);
+      uVar4 = Profile_GetCurrentCar(uVar4);
       uVar2 = CarRec_GetModelId(uVar4);
     }
     else {

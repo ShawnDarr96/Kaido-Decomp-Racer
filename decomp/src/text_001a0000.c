@@ -1251,7 +1251,7 @@ void Course_CullBlocks(int param_1,int param_2,ushort *param_3,long param_4,long
       }
       else {
         Vu0_Vec3Distance(auStack_10,param_2,iVar1 + 0x430680);
-        fVar4 = (float)vu0math_sub_00132ab0(auStack_10,iVar1 + 0x4306a0);
+        fVar4 = (float)sceVu0InnerProduct(auStack_10,iVar1 + 0x4306a0);
         fVar3 = fVar4 * fVar4 * fVar4 * fVar4;
         fVar3 = fVar3 * fVar3;
         fVar4 = fVar4 * fVar3 * fVar3;
@@ -1271,9 +1271,9 @@ void Course_CullBlocks(int param_1,int param_2,ushort *param_3,long param_4,long
           *(float *)(param_2 + 0x18) = *(float *)(param_2 + 0x18) + fVar3;
           *(undefined4 *)(param_2 + 0x1c) = 0x43000000;
         }
-        vu0math_sub_00132ae0(auStack_20,param_2);
+        sceVu0CopyVector(auStack_20,param_2);
         uStack_14 = 0x3f800000;
-        vu0math_sub_00132d50(auStack_20,param_1 + 0x180,auStack_20);
+        sceVu0ApplyMatrix(auStack_20,param_1 + 0x180,auStack_20);
         *(float *)(param_2 + 0xc) =
              ((((float)*(int *)(param_1 + 0x80) *
                ((fStack_18 * 20.0 + *(float *)(param_1 + 0xa4) + 0.0) / *(float *)(param_1 + 0xa4))
@@ -1541,10 +1541,10 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   Pkt_End(auStack_40);
   TexSlot_Set(5,*(undefined4 *)(iRam004305bc + 0x58),*(undefined4 *)(iRam004305bc + 0x70));
   if (param_2 == 0) {
-    vu0math_sub_001328b0(auStack_3b0,iVar12);
-    vu0math_sub_00132b10(0x461c4000,auStack_3b0,auStack_3b0);
-    vu0math_sub_00132b70(auStack_3b0,auStack_3b0,puVar13);
-    vu0math_sub_00133680(&iStack_3a0,iVar9 + 0x431480,auStack_3b0,1);
+    sceVu0Normalize(auStack_3b0,iVar12);
+    sceVu0ScaleVector(0x461c4000,auStack_3b0,auStack_3b0);
+    sceVu0AddVector(auStack_3b0,auStack_3b0,puVar13);
+    sceVu0RotTransPersN(&iStack_3a0,iVar9 + 0x431480,auStack_3b0,1);
     if (iStack_3a0 < 0) {
       iStack_3a0 = iStack_3a0 + 0xf;
     }
@@ -1563,12 +1563,12 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
     iVar8 = (iStack_39c >> 4) + (iVar8 >> 1);
   }
   else {
-    vu0math_sub_001328b0(auStack_3b0,iVar12);
-    vu0math_sub_001328b0(auStack_3b0,auStack_3b0);
-    vu0math_sub_00132b10(0x461c4000,auStack_3b0,auStack_3b0);
+    sceVu0Normalize(auStack_3b0,iVar12);
+    sceVu0Normalize(auStack_3b0,auStack_3b0);
+    sceVu0ScaleVector(0x461c4000,auStack_3b0,auStack_3b0);
     fStack_3ac = fStack_3ac * -1.0;
-    vu0math_sub_00132b70(auStack_3b0,auStack_3b0,puVar13);
-    vu0math_sub_00133680(&iStack_3a0,iVar9 + 0x431480,auStack_3b0,1);
+    sceVu0AddVector(auStack_3b0,auStack_3b0,puVar13);
+    sceVu0RotTransPersN(&iStack_3a0,iVar9 + 0x431480,auStack_3b0,1);
     if (iStack_3a0 < 0) {
       iStack_3a0 = iStack_3a0 + 0xf;
     }
@@ -1662,7 +1662,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
         fStack_3cc = (float)(iVar7 >> 1);
         fStack_3c0 = fVar14;
         fStack_3bc = fVar15;
-        vu0math_sub_00132a60(pfVar11[1],&fStack_3e0,&fStack_3d0,&fStack_3c0);
+        sceVu0InterVector(pfVar11[1],&fStack_3e0,&fStack_3d0,&fStack_3c0);
         Obj_Reset(auStack_390,4,0xffffffffffffffff);
         uStack_e0 = 0x48;
         auStack_390[0] = auStack_390[0] | 2;
@@ -1775,8 +1775,8 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
     maybe_Pkt_InitLayers
               (auStack_3a0,puVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
                *(undefined4 *)(param_2 + 0x10));
-    vu0math_sub_00132a90(iVar5 + 0x431150,iVar5 + 0x431120,iVar5 + 0x431140);
-    vu0math_sub_001328b0(iVar5 + 0x431150,iVar5 + 0x431150);
+    sceVu0OuterProduct(iVar5 + 0x431150,iVar5 + 0x431120,iVar5 + 0x431140);
+    sceVu0Normalize(iVar5 + 0x431150,iVar5 + 0x431150);
     uVar13 = 0;
     if (*(int *)(iVar14 + 8) != 0) {
       do {

@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002535c0  size 0x30
-void menuscr_sub_002535c0(int param_1,int param_2)
+void menuscr_leaf_sub_002535c0(int param_1,int param_2)
 
 {
   param_1 = param_2 * 0x14 + param_1;
@@ -18,7 +18,7 @@ void menuscr_sub_002535c0(int param_1,int param_2)
 }
 
 // 0x002535f0  size 0x3c
-void menuscr_sub_002535f0(int param_1,int param_2)
+void menuscr_leaf_sub_002535f0(int param_1,int param_2)
 
 {
   param_1 = param_2 * 0x14 + param_1;
@@ -37,7 +37,7 @@ void menuscr_sub_002535f0(int param_1,int param_2)
 // 0x00253630  size 0x60c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00253630(int param_1)
+void scrcareer_draw_sub_00253630(int param_1)
 
 {
   undefined4 uVar1;
@@ -252,7 +252,7 @@ void scrcareer_sub_00253630(int param_1)
 // 0x00253c40  size 0x4b8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00253c40(int param_1)
+void scrrace_draw_sub_00253c40(int param_1)
 
 {
   int iVar1;
@@ -323,7 +323,7 @@ void scrrace_sub_00253c40(int param_1)
     iVar3 = UiMgr_FindLayout(0x78);
     iVar1 = *_g_UiMgr;
     uVar6 = Profile_Get(0);
-    uVar6 = Profile_GetCurrentCar(uVar6);
+    uVar6 = Profile_GetSelection2733(uVar6);
     iVar4 = MsgId_ForOption(uVar6);
     UiElem_SetPropInt(iVar1 + iVar3 * 0x4f4 + 4,
                       *(undefined4 *)(&DAT_0032c1d0 + *(int *)(param_1 + 0x6b0) * 4),0x16,

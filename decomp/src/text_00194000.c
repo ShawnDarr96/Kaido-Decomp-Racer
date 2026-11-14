@@ -53,7 +53,7 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
     uVar1 = *(undefined1 *)(param_1 + 3);
     piVar11 = (int *)*param_1;
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_sub_0018fa50(uVar7);
+    lVar8 = snd_step_sub_0018fa50(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
@@ -106,7 +106,7 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
     uVar1 = *(undefined1 *)(param_1 + 3);
     piVar11 = (int *)*param_1;
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_sub_0018fa50(uVar7);
+    lVar8 = snd_step_sub_0018fa50(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
@@ -123,14 +123,14 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
   uVar2 = *(ushort *)(param_1 + 4);
   uVar1 = *(undefined1 *)(param_1 + 3);
   uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-  lVar8 = snd_sub_0018fa50(uVar7);
+  lVar8 = snd_step_sub_0018fa50(uVar7);
   if (lVar8 == 0) {
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
     uVar9 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
     uVar10 = (**(code **)(*piVar11 + 0x10))(piVar11);
     (**(code **)(*(int *)uVar7 + 0x24))(uVar7,uVar1,uVar9,0x7f,uVar10,0x40,0);
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_sub_0018fa50(uVar7);
+    lVar8 = snd_step_sub_0018fa50(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
@@ -173,7 +173,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
     if (*(short *)(param_1 + 3) == 0) {
       uVar3 = *(undefined4 *)((int)param_2 + 0x158);
       iVar6 = RaceCar_GetTracker(param_2);
-      uVar7 = phys_sub_00162430(uVar3,0xffffffffff000000);
+      uVar7 = PhysBody_FindShapeWithFlags(uVar3,0xffffffffff000000);
       if ((*(uint *)(iVar6 + 0x60) & 0x30) == 0) {
         if (((param_1[1] & 2) == 0) ||
            (*(short *)((int)param_1 + 0xe) = *(short *)((int)param_1 + 0xe) + 1,
@@ -208,14 +208,14 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             piVar12 = (int *)*param_1;
             uVar1 = *(ushort *)(param_1 + 2);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_sub_0018fa50(uVar7);
+            lVar8 = snd_step_sub_0018fa50(uVar7);
             if (lVar8 == 0) {
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
               uVar9 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
               uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
               (**(code **)(*(int *)uVar7 + 0x24))(uVar7,7,uVar9,0x7f,uVar10,0x40,0);
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-              lVar8 = snd_sub_0018fa50(uVar7);
+              lVar8 = snd_step_sub_0018fa50(uVar7);
               if (lVar8 == 0) {
                 uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
                 uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
@@ -231,7 +231,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             piVar12 = (int *)*param_1;
             uVar1 = *(ushort *)(param_1 + 2);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_sub_0018fa50(uVar7);
+            lVar8 = snd_step_sub_0018fa50(uVar7);
             if (lVar8 == 0) {
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
               uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
@@ -258,7 +258,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             piVar12 = (int *)*param_1;
             uVar1 = *(ushort *)(param_1 + 2);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_sub_0018fa50(uVar7);
+            lVar8 = snd_step_sub_0018fa50(uVar7);
             if (lVar8 == 0) {
               uVar11 = ((int)fVar13 & 0xffffU) + 3;
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
@@ -266,7 +266,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
               uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
               (**(code **)(*(int *)uVar7 + 0x24))(uVar7,uVar11 & 0xff,uVar9,0x7f,uVar10,0x40,0);
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-              lVar8 = snd_sub_0018fa50(uVar7);
+              lVar8 = snd_step_sub_0018fa50(uVar7);
               if (lVar8 == 0) {
                 uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
                 uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,uVar11 & 0xff);
@@ -282,7 +282,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
         *(undefined2 *)((int)param_1 + 0xe) = 0;
       }
       else if ((param_1[1] & 8) != 0) {
-        uVar7 = phys_sub_00162430(uVar3,0xffffff);
+        uVar7 = PhysBody_FindShapeWithFlags(uVar3,0xffffff);
         if ((uRam0036f25c & 8) == 0) {
           uRam0036f25c = uRam0036f25c | 8;
           fVar13 = (float)PhysWorld_GetFirstBody(uVar7);
@@ -309,7 +309,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
           piVar12 = (int *)*param_1;
           uVar1 = *(ushort *)(param_1 + 2);
           uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-          lVar8 = snd_sub_0018fa50(uVar7);
+          lVar8 = snd_step_sub_0018fa50(uVar7);
           if (lVar8 == 0) {
             uVar11 = ((int)fVar14 & 0xffffU) + 3;
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
@@ -317,7 +317,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
             (**(code **)(*(int *)uVar7 + 0x24))(uVar7,uVar11 & 0xff,uVar9,0x7f,uVar10,0x40,0);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_sub_0018fa50(uVar7);
+            lVar8 = snd_step_sub_0018fa50(uVar7);
             if (lVar8 == 0) {
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
               uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,uVar11 & 0xff);
@@ -341,7 +341,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
         uVar1 = *(ushort *)(param_1 + 2);
         piVar12 = (int *)*param_1;
         uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        lVar8 = snd_sub_0018fa50(uVar7);
+        lVar8 = snd_step_sub_0018fa50(uVar7);
         if (lVar8 == 0) {
           uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
           uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
@@ -358,7 +358,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001950f0  size 0x1f8
-void carsnd_sub_001950f0(undefined4 *param_1)
+void carsnd_leaf_sub_001950f0(undefined4 *param_1)
 
 {
   undefined1 uVar1;
@@ -437,14 +437,15 @@ void carsnd_sub_001950f0(undefined4 *param_1)
 }
 
 // 0x001952f0  size 0x50
-undefined4 carsnd_sub_001952f0(int param_1)
+undefined4 carsnd_step_sub_001952f0(int param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  lVar2 = snd_sub_0018fa50(*(undefined4 *)(param_1 + 0xc));
-  if ((lVar2 == 0) && (lVar2 = snd_sub_0018fa50(*(undefined4 *)(param_1 + 0x54)), lVar2 == 0)) {
+  lVar2 = snd_step_sub_0018fa50(*(undefined4 *)(param_1 + 0xc));
+  if ((lVar2 == 0) && (lVar2 = snd_step_sub_0018fa50(*(undefined4 *)(param_1 + 0x54)), lVar2 == 0))
+  {
     *(undefined4 *)(param_1 + 0x48) = 0;
     uVar1 = 1;
   }
@@ -455,7 +456,7 @@ undefined4 carsnd_sub_001952f0(int param_1)
 }
 
 // 0x00195340  size 0x104
-void carsnd_sub_00195340(int param_1,int param_2,int param_3)
+void carsnd_step_sub_00195340(int param_1,int param_2,int param_3)
 
 {
   uint uVar1;
@@ -480,10 +481,12 @@ void carsnd_sub_00195340(int param_1,int param_2,int param_3)
     *(int *)(param_1 + 0x40) = param_2;
     *(int *)(param_1 + 0x44) = param_3;
     *(undefined4 *)(param_1 + 0x48) = 1;
-    snd_sub_0018faf0(*(undefined4 *)(param_1 + 0xc),**(undefined4 **)(param_1 + 0x10),
-                     (*(undefined4 **)(param_1 + 0x10))[1],0,0);
-    snd_sub_0018faf0(*(undefined4 *)(param_1 + 0x54),*(undefined4 *)(*(int *)(param_1 + 0x10) + 8),
-                     *(undefined4 *)(*(int *)(param_1 + 0x10) + 0xc),0,0);
+    snd_step_sub_0018faf0
+              (*(undefined4 *)(param_1 + 0xc),**(undefined4 **)(param_1 + 0x10),
+               (*(undefined4 **)(param_1 + 0x10))[1],0,0);
+    snd_step_sub_0018faf0
+              (*(undefined4 *)(param_1 + 0x54),*(undefined4 *)(*(int *)(param_1 + 0x10) + 8),
+               *(undefined4 *)(*(int *)(param_1 + 0x10) + 0xc),0,0);
   }
   return;
 }
@@ -522,14 +525,14 @@ void CarSnd_UpdateCollision(undefined4 *param_1,int param_2)
       piVar11 = (int *)*param_1;
       sVar1 = *(short *)(param_1 + 0x13);
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar8 = snd_sub_0018fa50(uVar7);
+      lVar8 = snd_step_sub_0018fa50(uVar7);
       if (lVar8 == 0) {
         uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar5 = (**(code **)(*piVar11 + 0xc))(piVar11,10);
         uVar6 = (**(code **)(*piVar11 + 0x10))(piVar11);
         (**(code **)(*(int *)uVar7 + 0x24))(uVar7,10,uVar5,0x7f,uVar6,0x40,0);
         uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-        lVar8 = snd_sub_0018fa50(uVar7);
+        lVar8 = snd_step_sub_0018fa50(uVar7);
         if (lVar8 == 0) {
           uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
           uVar2 = (**(code **)(*piVar11 + 0xc))(piVar11,10);
@@ -572,7 +575,7 @@ LAB_00195670:
     piVar11 = (int *)*param_1;
     sVar1 = *(short *)(param_1 + 0x13);
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_sub_0018fa50(uVar7);
+    lVar8 = snd_step_sub_0018fa50(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar2 = (**(code **)(*piVar11 + 0xc))(piVar11,10);
@@ -590,7 +593,7 @@ LAB_00195670:
 }
 
 // 0x00195890  size 0x158
-void carsnd_sub_00195890(undefined8 param_1)
+void carsnd_leaf_sub_00195890(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -695,7 +698,7 @@ void CarSnd_UpdateWind(undefined8 param_1,undefined8 param_2)
         uVar4 = 0x7f;
       }
       uVar2 = (**(code **)(*(int *)(iVar6 + 8) + 0x14))(param_1);
-      carsnd_sub_001966c0(fVar10,iVar6 + 0x14,*(undefined4 *)(iVar6 + 0x10),uVar2);
+      carsnd_step_sub_001966c0(fVar10,iVar6 + 0x14,*(undefined4 *)(iVar6 + 0x10),uVar2);
       SndCh_SetVolumeCc(uVar2,*(undefined1 *)(iVar6 + 0x14),*(undefined1 *)(iVar6 + 0x14),0x40);
       SndCh_ProgramChange(uVar2,*(undefined1 *)(iVar6 + 0x14),*(undefined1 *)(iVar6 + 0x14),uVar4);
     }
@@ -754,7 +757,7 @@ void CarSnd_UpdateWind(undefined8 param_1,undefined8 param_2)
         uVar4 = 0x7f;
       }
       uVar2 = (**(code **)(*(int *)(iVar6 + 8) + 0x14))(param_1);
-      carsnd_sub_001966c0(fVar10,iVar6 + 0x25,*(undefined4 *)(iVar6 + 0x10),uVar2);
+      carsnd_step_sub_001966c0(fVar10,iVar6 + 0x25,*(undefined4 *)(iVar6 + 0x10),uVar2);
       SndCh_SetVolumeCc(uVar2,*(undefined1 *)(iVar6 + 0x25),*(undefined1 *)(iVar6 + 0x25),0x40);
       SndCh_ProgramChange(uVar2,*(undefined1 *)(iVar6 + 0x25),*(undefined1 *)(iVar6 + 0x25),uVar4);
     }
@@ -763,14 +766,14 @@ void CarSnd_UpdateWind(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00195f70  size 0x48
-bool carsnd_sub_00195f70(int param_1)
+bool carsnd_step_sub_00195f70(int param_1)
 
 {
   undefined8 uVar1;
   long lVar2;
   
   uVar1 = (**(code **)(*(int *)(param_1 + 8) + 0x14))();
-  lVar2 = snd_sub_0018fa50(uVar1);
+  lVar2 = snd_step_sub_0018fa50(uVar1);
   if (lVar2 == 0) {
     *(undefined4 *)(param_1 + 0x48) = 0;
   }
@@ -778,7 +781,7 @@ bool carsnd_sub_00195f70(int param_1)
 }
 
 // 0x00195fc0  size 0xf0
-void carsnd_sub_00195fc0(int param_1,int param_2,int param_3)
+void carsnd_step_sub_00195fc0(int param_1,int param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -807,7 +810,7 @@ void carsnd_sub_00195fc0(int param_1,int param_2,int param_3)
     *(undefined4 *)(param_1 + 0x48) = 1;
     puVar1 = *(undefined4 **)(param_1 + 0x10);
     uVar2 = (**(code **)(*(int *)(param_1 + 8) + 0x14))();
-    snd_sub_0018faf0(uVar2,*puVar1,puVar1[1],0,0);
+    snd_step_sub_0018faf0(uVar2,*puVar1,puVar1[1],0,0);
   }
   return;
 }
@@ -844,14 +847,14 @@ void CarSnd_UpdateGearShift(undefined4 *param_1,int param_2)
     uVar1 = DAT_0036e80c;
     piVar9 = (int *)*param_1;
     uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
-    lVar6 = snd_sub_0018fa50(uVar5);
+    lVar6 = snd_step_sub_0018fa50(uVar5);
     if (lVar6 == 0) {
       uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
       uVar7 = (**(code **)(*piVar9 + 0xc))(piVar9,0);
       uVar8 = (**(code **)(*piVar9 + 0x10))(piVar9);
       (**(code **)(*(int *)uVar5 + 0x24))(uVar5,0,uVar7,0x7f,uVar8,0x40,0);
       uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
-      lVar6 = snd_sub_0018fa50(uVar5);
+      lVar6 = snd_step_sub_0018fa50(uVar5);
       if (lVar6 != 0) goto LAB_001961a0;
       uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
       uVar2 = (**(code **)(*piVar9 + 0xc))(piVar9,0);
@@ -873,7 +876,7 @@ LAB_00196124:
   uVar1 = DAT_0036e80c;
   piVar9 = (int *)*param_1;
   uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
-  lVar6 = snd_sub_0018fa50(uVar5);
+  lVar6 = snd_step_sub_0018fa50(uVar5);
   if (lVar6 == 0) {
     uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
     uVar2 = (**(code **)(*piVar9 + 0xc))(piVar9,0);
@@ -887,7 +890,7 @@ LAB_00196124:
 }
 
 // 0x001963b0  size 0xa8
-void carsnd_sub_001963b0(undefined8 param_1,undefined8 param_2)
+void carsnd_step_sub_001963b0(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -903,7 +906,7 @@ void carsnd_sub_001963b0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00196460  size 0x2c
-undefined4 carsnd_sub_00196460(void)
+undefined4 carsnd_step_sub_00196460(void)
 
 {
   long lVar1;
@@ -918,7 +921,7 @@ undefined4 carsnd_sub_00196460(void)
 }
 
 // 0x00196490  size 0x28
-void carsnd_sub_00196490(void)
+void carsnd_step_sub_00196490(void)
 
 {
   undefined8 uVar1;
@@ -929,7 +932,7 @@ void carsnd_sub_00196490(void)
 }
 
 // 0x001964c0  size 0x3c
-char carsnd_sub_001964c0(int param_1)
+char carsnd_step_sub_001964c0(int param_1)
 
 {
   char cVar1;
@@ -946,7 +949,7 @@ char carsnd_sub_001964c0(int param_1)
 }
 
 // 0x00196500  size 0xe4
-void carsnd_sub_00196500(undefined8 param_1,undefined8 param_2)
+void carsnd_step_sub_00196500(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -957,7 +960,7 @@ void carsnd_sub_00196500(undefined8 param_1,undefined8 param_2)
   
   piVar5 = (int *)param_1;
   uVar1 = (**(code **)(*piVar5 + 0x14))();
-  lVar2 = snd_sub_0018fa50(uVar1);
+  lVar2 = snd_step_sub_0018fa50(uVar1);
   if (lVar2 == 0) {
     uVar1 = SndMgr_GetInstance();
     uVar3 = SndMgr_GetChannelB(uVar1,1);
@@ -971,7 +974,7 @@ void carsnd_sub_00196500(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00196600  size 0x40
-void carsnd_sub_00196600(void)
+void carsnd_step_sub_00196600(void)
 
 {
   long lVar1;
@@ -992,7 +995,7 @@ void carsnd_sub_00196600(void)
 /* WARNING: Removing unreachable block (ram,0x00196af0) */
 /* WARNING: Removing unreachable block (ram,0x00196bec) */
 
-void carsnd_sub_001966c0(float param_1,undefined1 *param_2,long param_3,undefined8 param_4)
+void carsnd_step_sub_001966c0(float param_1,undefined1 *param_2,long param_3,undefined8 param_4)
 
 {
   undefined1 uVar1;
@@ -1012,7 +1015,7 @@ void carsnd_sub_001966c0(float param_1,undefined1 *param_2,long param_3,undefine
     uVar1 = *param_2;
     puVar7 = (uint *)((int)param_3 + 0x18);
     pcVar9 = param_2 + 1;
-    snd_sub_0018fb90(param_4,uVar1,uVar1);
+    snd_step_sub_0018fb90(param_4,uVar1,uVar1);
     if (DAT_0036e808 < param_1) {
       param_1 = DAT_0036e808;
     }
@@ -1041,12 +1044,12 @@ void carsnd_sub_001966c0(float param_1,undefined1 *param_2,long param_3,undefine
           cVar10 = (char)(int)fVar12;
           if (*pcVar9 == '\0') {
             if (uVar11 == 0) goto LAB_0019685c;
-            snd_sub_0018ff10(param_4,*param_2,uVar1,0x7f,uVar6 & 0xff,0x40,0);
+            snd_step_sub_0018ff10(param_4,*param_2,uVar1,0x7f,uVar6 & 0xff,0x40,0);
             *pcVar9 = cVar10;
           }
           else {
             if (uVar11 == 0) {
-              snd_sub_0018fe50(param_4,*param_2,uVar1,uVar6 & 0xff);
+              snd_step_sub_0018fe50(param_4,*param_2,uVar1,uVar6 & 0xff);
             }
 LAB_0019685c:
             *pcVar9 = cVar10;
@@ -1068,12 +1071,12 @@ LAB_0019685c:
         cVar10 = (char)(int)fVar12;
         if (*pcVar9 == '\0') {
           if (uVar6 == 0) goto LAB_00196978;
-          snd_sub_0018ff10(param_4,*param_2,uVar1,0x7f,(char)*puVar7,0x40,0);
+          snd_step_sub_0018ff10(param_4,*param_2,uVar1,0x7f,(char)*puVar7,0x40,0);
           *pcVar9 = cVar10;
         }
         else {
           if (uVar6 == 0) {
-            snd_sub_0018fe50(param_4,*param_2,uVar1,(char)*puVar7);
+            snd_step_sub_0018fe50(param_4,*param_2,uVar1,(char)*puVar7);
           }
 LAB_00196978:
           *pcVar9 = cVar10;

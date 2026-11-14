@@ -114,7 +114,16 @@ def apply_symbols(program):
             bad += 1
             continue
         if r["name"] and f.getName() != r["name"]:
-            f.setName(r["name"], SourceType.USER_DEFINED)
+            try:
+                f.setName(r["name"], SourceType.USER_DEFINED)
+            except Exception:
+                # a label with this name already exists here (e.g. from analysis): make it primary
+                existing = [s for s in program.getSymbolTable().getSymbols(addr) if s.getName() == r["name"]]
+                if existing:
+                    existing[0].setPrimary()
+                else:
+                    print(f"  symbols.csv: cannot name 0x{a:08x} {r['name']}", flush=True)
+                    bad += 1
         if r.get("signature"):
             try:
                 sig = parser.parse(f.getSignature(), r["signature"])

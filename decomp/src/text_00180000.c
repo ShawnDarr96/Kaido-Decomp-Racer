@@ -29,13 +29,13 @@ void Race_FrameBegin(void)
   undefined8 uVar2;
   
   Race_InitFrame();
-  lVar1 = race_sub_001e8fc0();
+  lVar1 = race_leaf_sub_001e8fc0();
   if (lVar1 == 0) {
     if (*pcRam0036f1d4 == '\x01') {
       uVar2 = Profile_Get(0);
       Career_ProcessDay(uVar2);
     }
-    uVar2 = raceprog_sub_001dc180();
+    uVar2 = raceprog_leaf_sub_001dc180();
     GameState_Set_35c(uVar2);
     RaceScene_SetupPlayerCar();
   }
@@ -353,15 +353,15 @@ undefined4 Career_ProcessRaceEnd(void)
       uVar15 = GameState_Ptr_3a04();
       puVar17 = (undefined4 *)uVar15;
       uVar27 = *puVar17;
-      uVar16 = garage_sub_001bc500(uVar15);
-      garage_sub_001bc4f0(uVar15);
+      uVar16 = Profile_GetGarageSize(uVar15);
+      Profile_HasFreeGarageSlot(uVar15);
       lVar26 = (long)(int)puVar17[5];
       lVar13 = (long)(int)puVar17[6];
     }
     GameState_Set_354(uVar16);
     uVar15 = Race_GetLapCountForMode(uVar27);
     *_g_GameState = (char)uVar15;
-    cVar8 = garage_sub_001bff70(uVar15,lVar26,lVar13,&uStack_4,&uStack_8);
+    cVar8 = Race_GetRewardAmount(uVar15,lVar26,lVar13,&uStack_4,&uStack_8);
     _g_GameState[1] = cVar8;
     *(undefined4 *)(_g_GameState + 0xc) = uStack_4;
     *(undefined4 *)(_g_GameState + 0x10) = uStack_8;
@@ -1373,8 +1373,8 @@ undefined4 RaceSetup_Prepare(void)
         puVar20 = puVar20 + 1;
       } while (0 < iVar19);
       uStack_1260 = auStack_360[0];
-      uVar16 = garage_sub_001bc500(auStack_360);
-      garage_sub_001bc4f0(auStack_360);
+      uVar16 = Profile_GetGarageSize(auStack_360);
+      Profile_HasFreeGarageSlot(auStack_360);
       lVar15 = (long)iStack_34c;
       iStack_1250 = iStack_348;
     }
@@ -1386,7 +1386,7 @@ undefined4 RaceSetup_Prepare(void)
     }
     uVar16 = Race_GetLapCountForMode(uStack_1260);
     *_g_GameState = (char)uVar16;
-    cVar8 = garage_sub_001bff70(uVar16,lVar15,iStack_1250,&uStack_4,&uStack_8);
+    cVar8 = Race_GetRewardAmount(uVar16,lVar15,iStack_1250,&uStack_4,&uStack_8);
     _g_GameState[1] = cVar8;
     *(undefined4 *)(_g_GameState + 0xc) = uStack_4;
     *(undefined4 *)(_g_GameState + 0x10) = uStack_8;
@@ -2781,8 +2781,8 @@ void Cam_Update(undefined8 param_1)
   Cam_SetTarget(iVar2 + 0x660,iVar1);
   (**(code **)(**(int **)(iVar2 + 0x4fc) + 0xc))(*(int **)(iVar2 + 0x4fc),param_1);
   Cam_ApplyLookAt(param_1);
-  uVar3 = vu0math_sub_00132ab0(iVar2 + 0x4b0,iVar2 + 0x4b0);
-  fVar4 = (float)vu0math_sub_00133650(uVar3);
+  uVar3 = sceVu0InnerProduct(iVar2 + 0x4b0,iVar2 + 0x4b0);
+  fVar4 = (float)maybe_Vu0_SqrtQ(uVar3);
   if (2.0 < fVar4) {
     *(undefined4 *)(iVar2 + 0x500) = 1;
   }
@@ -2929,13 +2929,13 @@ void Cam_UpdateShake(int param_1,undefined8 param_2)
     bVar1 = true;
   }
   if (bVar1) {
-    vu0math_sub_00132ae0(param_2,param_1 + 0x4d0);
+    sceVu0CopyVector(param_2,param_1 + 0x4d0);
   }
   else if (*(int *)(param_1 + 0x7b0) == 0) {
-    vu0math_sub_00132ae0(param_2,param_1 + 0x420);
+    sceVu0CopyVector(param_2,param_1 + 0x420);
   }
   else {
-    vu0math_sub_00132ae0(param_2,param_1 + 0x510);
+    sceVu0CopyVector(param_2,param_1 + 0x510);
   }
   return;
 }
@@ -2956,7 +2956,7 @@ void Cam_UpdateTargetFromCar(int param_1)
   
   iVar6 = *(int *)(param_1 + 0x7b0);
   if (iVar6 == 0) {
-    vu0math_sub_00132ae0(param_1 + 0x450,param_1 + 0x430);
+    sceVu0CopyVector(param_1 + 0x450,param_1 + 0x430);
   }
   else {
     if ((*(char *)(param_1 + 0x4f8) == '\0') || (*(char *)(param_1 + 0x4f8) == '\x04')) {
@@ -2966,13 +2966,13 @@ void Cam_UpdateTargetFromCar(int param_1)
       bVar1 = false;
     }
     if (bVar1) {
-      uVar4 = phys_sub_001651a0(*(undefined4 *)(iVar6 + 0x154));
+      uVar4 = PhysBody_GetWorldMatrix(*(undefined4 *)(iVar6 + 0x154));
       iVar6 = 0;
       fVar2 = 1e+07;
       do {
         iVar3 = RaceCar_Get(iVar6);
         if ((iVar3 != 0) && (iVar3 != *(int *)(param_1 + 0x7b0))) {
-          uVar5 = phys_sub_001651a0(*(undefined4 *)(iVar3 + 0x154));
+          uVar5 = PhysBody_GetWorldMatrix(*(undefined4 *)(iVar3 + 0x154));
           Vec3_Sub(auStack_10,uVar5,uVar4);
           Vec3_Sub(auStack_20,uVar5,uVar4);
           fVar7 = (float)Vec3_Dot(auStack_10,auStack_20);
@@ -2987,7 +2987,7 @@ void Cam_UpdateTargetFromCar(int param_1)
     else {
       *(int *)(param_1 + 0x7b4) = iVar6;
     }
-    vu0math_sub_00132ae0(param_1 + 0x450,param_1 + 0x660);
+    sceVu0CopyVector(param_1 + 0x450,param_1 + 0x660);
   }
   return;
 }
@@ -3010,29 +3010,29 @@ float Cam_ComputeFov(int param_1,int param_2)
   undefined1 auStack_10 [12];
   undefined4 uStack_4;
   
-  vu0math_sub_00132ae0(auStack_20,param_1 + 0x4b0);
-  vu0math_sub_00132b10(0x42700000,auStack_20,auStack_20);
+  sceVu0CopyVector(auStack_20,param_1 + 0x4b0);
+  sceVu0ScaleVector(0x42700000,auStack_20,auStack_20);
   uStack_14 = 0;
-  uVar1 = phys_sub_00164f50(*(undefined4 *)(param_2 + 0x154));
-  vu0math_sub_00132ae0(auStack_30,uVar1);
+  uVar1 = PhysBody_GetPositionPtr(*(undefined4 *)(param_2 + 0x154));
+  sceVu0CopyVector(auStack_30,uVar1);
   uStack_24 = 0;
-  uVar1 = phys_sub_001651a0(*(undefined4 *)(param_2 + 0x154));
-  vu0math_sub_00132ae0(auStack_10,uVar1);
+  uVar1 = PhysBody_GetWorldMatrix(*(undefined4 *)(param_2 + 0x154));
+  sceVu0CopyVector(auStack_10,uVar1);
   uStack_4 = 0;
-  vu0math_sub_00132b50(auStack_40,param_1 + 0x420,auStack_10);
-  fVar2 = (float)vu0math_sub_00132ab0(auStack_40,auStack_30);
-  fVar3 = (float)vu0math_sub_00132ab0(auStack_40,auStack_40);
-  vu0math_sub_00132af0(fVar2 / fVar3,auStack_30,auStack_40);
-  uVar4 = vu0math_sub_00132ab0(auStack_30,auStack_30);
-  fVar5 = (float)vu0math_sub_00133650(uVar4);
+  sceVu0SubVector(auStack_40,param_1 + 0x420,auStack_10);
+  fVar2 = (float)sceVu0InnerProduct(auStack_40,auStack_30);
+  fVar3 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
+  maybe_sceVu0ScaleVectorXYZ(fVar2 / fVar3,auStack_30,auStack_40);
+  uVar4 = sceVu0InnerProduct(auStack_30,auStack_30);
+  fVar5 = (float)maybe_Vu0_SqrtQ(uVar4);
   if (fVar2 / fVar3 < 0.0) {
     fVar5 = fVar5 * -1.0;
   }
-  fVar2 = (float)vu0math_sub_00132ab0(auStack_40,auStack_20);
-  fVar3 = (float)vu0math_sub_00132ab0(auStack_40,auStack_40);
-  vu0math_sub_00132af0(fVar2 / fVar3,auStack_20,auStack_40);
-  uVar4 = vu0math_sub_00132ab0(auStack_20,auStack_20);
-  fVar6 = (float)vu0math_sub_00133650(uVar4);
+  fVar2 = (float)sceVu0InnerProduct(auStack_40,auStack_20);
+  fVar3 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
+  maybe_sceVu0ScaleVectorXYZ(fVar2 / fVar3,auStack_20,auStack_40);
+  uVar4 = sceVu0InnerProduct(auStack_20,auStack_20);
+  fVar6 = (float)maybe_Vu0_SqrtQ(uVar4);
   if (0.0 < fVar2 / fVar3) {
     fVar6 = fVar6 * -1.0;
   }

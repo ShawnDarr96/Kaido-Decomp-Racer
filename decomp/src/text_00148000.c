@@ -98,22 +98,22 @@ undefined4 Model_UpdateNodeMatrix(undefined8 param_1,uint *param_2)
   }
   else {
     iVar5 = (int)param_1;
-    vu0math_sub_00133260(iVar5 + 0x100);
-    vu0math_sub_001330c0(iVar5 + 0xc0);
-    vu0math_sub_00133280(iVar5 + 0x140);
-    vu0math_sub_00133260(iVar5 + 0x140);
-    vu0math_sub_001330c0(*(int *)(iVar5 + 0x88) + 0x2c0);
-    vu0math_sub_00133280(iVar5 + 0x180);
+    maybe_Vu0_LoadMatrixVf28(iVar5 + 0x100);
+    maybe_sceVu0RotTransPers(iVar5 + 0xc0);
+    maybe_Vu0_StoreMatrixVf28(iVar5 + 0x140);
+    maybe_Vu0_LoadMatrixVf28(iVar5 + 0x140);
+    maybe_sceVu0RotTransPers(*(int *)(iVar5 + 0x88) + 0x2c0);
+    maybe_Vu0_StoreMatrixVf28(iVar5 + 0x180);
     lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar5 + 0x88),iVar5 + 0x180,puVar6 + 4);
     if (lVar4 == 0) {
       uVar3 = 0;
     }
     else {
-      vu0math_sub_00133260(iVar5 + 0x140);
-      vu0math_sub_001330c0(*(int *)(iVar5 + 0x88) + 0x280);
-      vu0math_sub_00133280(iVar5 + 0x1c0);
+      maybe_Vu0_LoadMatrixVf28(iVar5 + 0x140);
+      maybe_sceVu0RotTransPers(*(int *)(iVar5 + 0x88) + 0x280);
+      maybe_Vu0_StoreMatrixVf28(iVar5 + 0x1c0);
       if ((param_2[2] & 2) == 0) {
-        uVar3 = vu0math_sub_00133120(puVar6 + 4,0xffffff);
+        uVar3 = maybe_sceVu0RotTransPersN(puVar6 + 4,0xffffff);
         *(undefined4 *)(iVar5 + 0xb0) = uVar3;
       }
       else {
@@ -123,7 +123,7 @@ undefined4 Model_UpdateNodeMatrix(undefined8 param_1,uint *param_2)
         uVar2 = *param_2;
       }
       else {
-        vu0math_sub_00132ba0(iVar5 + 0x200,*(int *)(iVar5 + 0x88) + 0x420,iVar5 + 0x140);
+        sceVu0MulMatrix(iVar5 + 0x200,*(int *)(iVar5 + 0x88) + 0x420,iVar5 + 0x140);
         uVar2 = *param_2;
       }
       if ((uVar2 & 0x20) != 0) {
@@ -972,14 +972,14 @@ void maybe_Model_DrawShadow(int param_1,byte param_2,ushort *param_3)
     *(uint *)(iVar3 + 0x30) = *(uint *)(iVar3 + 0x30) | 0x80;
   }
   if (*(int *)(param_3 + 6) == 0) {
-    vu0math_sub_00132ae0(iVar3 + 0x40,*(undefined4 *)(param_1 + 0x88));
+    sceVu0CopyVector(iVar3 + 0x40,*(undefined4 *)(param_1 + 0x88));
   }
   else {
     uStack_10 = DAT_0030a8b0;
     uStack_c = DAT_0030a8b4;
     uStack_8 = DAT_0030a8b8;
     uStack_4 = DAT_0030a8bc;
-    vu0math_sub_00132ae0(iVar3 + 0x40,&uStack_10);
+    sceVu0CopyVector(iVar3 + 0x40,&uStack_10);
   }
   *(undefined4 *)(iVar3 + 0x4c) = 0x40000000;
   if (*(int *)(param_3 + 2) == 0) {
@@ -1137,7 +1137,7 @@ void maybe_Layer_DrawModel(undefined8 param_1,ulong param_2,undefined8 param_3)
       fStack_5c = (*(float *)(psVar5 + 0x42) + *(float *)(psVar5 + 0x4a)) / 2.0;
       uStack_54 = 0x3f800000;
       fStack_58 = (*(float *)(psVar5 + 0x44) + *(float *)(psVar5 + 0x4c)) / 2.0;
-      vu0math_sub_00132ae0(iVar6 + 0xd0,&fStack_60);
+      sceVu0CopyVector(iVar6 + 0xd0,&fStack_60);
       Camera_GetViewMatrix(*(undefined4 *)(iVar6 + 0x88),auStack_70,iVar6 + 0xa0);
       bVar1 = true;
       if ((-1 < iStack_68) && (iStack_68 < 0xffffff)) {
@@ -1153,7 +1153,7 @@ void maybe_Layer_DrawModel(undefined8 param_1,ulong param_2,undefined8 param_3)
       fStack_20 = (*(float *)(psVar5 + 0x40) + *(float *)(psVar5 + 0x48)) / 2.0;
       fStack_1c = (*(float *)(psVar5 + 0x42) + *(float *)(psVar5 + 0x4a)) / 2.0;
       fStack_18 = (*(float *)(psVar5 + 0x44) + *(float *)(psVar5 + 0x4c)) / 2.0;
-      vu0math_sub_00132ba0(iVar6 + 0xa0,iVar6 + 0xa0,auStack_50);
+      sceVu0MulMatrix(iVar6 + 0xa0,iVar6 + 0xa0,auStack_50);
       Camera_GetViewMatrix(*(undefined4 *)(iVar6 + 0x88),auStack_10,iVar6 + 0xa0);
       bVar1 = true;
       if ((-1 < iStack_8) && (iStack_8 < 0xffffff)) {
@@ -1197,13 +1197,13 @@ undefined4 Model_Draw(undefined8 param_1,undefined8 param_2)
     }
     else {
       maybe_Vu0_UnitMatrix(auStack_40);
-      vu0math_sub_00132d20(auStack_40,auStack_40,psVar5 + 0x28);
+      sceVu0TransMatrix(auStack_40,auStack_40,psVar5 + 0x28);
       uStack_4 = 0x3f800000;
-      vu0math_sub_00132ba0(iVar7 + 0xa0,auStack_40,psVar5 + 8);
+      sceVu0MulMatrix(iVar7 + 0xa0,auStack_40,psVar5 + 8);
       sVar2 = *psVar5;
     }
     if (((sVar2 != 0x800) && (sVar2 != 2)) && (sVar2 != 0x200)) {
-      vu0math_sub_00132ba0(iVar7 + 0xe0,*(int *)(iVar7 + 0x88) + 0x2c0,iVar7 + 0xa0);
+      sceVu0MulMatrix(iVar7 + 0xe0,*(int *)(iVar7 + 0x88) + 0x2c0,iVar7 + 0xa0);
       lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar7 + 0x88),iVar7 + 0xe0,psVar5 + 0x40);
       if (lVar4 == 0) {
         return 0;
@@ -1211,7 +1211,7 @@ undefined4 Model_Draw(undefined8 param_1,undefined8 param_2)
     }
     if (*(int *)(psVar5 + 6) == 0) {
       maybe_Vu0_UnitMatrix(auStack_80);
-      vu0math_sub_00132d20(iVar7 + 0xa0,auStack_80,*(undefined4 *)(iVar7 + 0x88));
+      sceVu0TransMatrix(iVar7 + 0xa0,auStack_80,*(undefined4 *)(iVar7 + 0x88));
       bVar1 = *(byte *)(psVar5 + 1);
     }
     else {
@@ -1364,7 +1364,7 @@ maybe_Model_TransformPrimitive(int param_1,uint *param_2,uint *param_3,int param
     uStack_c = auStack_30[5];
   }
   maybe_Vu0_UnitMatrix(auStack_90);
-  vu0math_sub_00132b50(&fStack_60,&fStack_60,param_2 + 0xb4);
+  sceVu0SubVector(&fStack_60,&fStack_60,param_2 + 0xb4);
   if ((*param_2 & 4) == 0) {
     uVar2 = *param_2;
   }
@@ -1372,7 +1372,7 @@ maybe_Model_TransformPrimitive(int param_1,uint *param_2,uint *param_3,int param
     maybe_Vu0_UnitMatrix(auStack_d0);
     auStack_d0[0] = param_2[0xb8];
     uStack_bc = param_2[0xb9];
-    vu0math_sub_00132ba0(auStack_90,auStack_d0,auStack_90);
+    sceVu0MulMatrix(auStack_90,auStack_d0,auStack_90);
     uVar2 = *param_2;
   }
   if ((uVar2 & 8) != 0) {
@@ -1382,11 +1382,11 @@ maybe_Model_TransformPrimitive(int param_1,uint *param_2,uint *param_3,int param
     maybe_Vu0_RotMatrixX(param_2[0xa8],auStack_90,auStack_90);
   }
   if (bVar1) {
-    vu0math_sub_00132b70(&fStack_60,&fStack_60,param_2 + 0xbc);
+    sceVu0AddVector(&fStack_60,&fStack_60,param_2 + 0xbc);
     fVar4 = *(float *)(param_1 + 0x30);
   }
   else {
-    vu0math_sub_00132b70(&fStack_60,&fStack_60,param_2 + 0xb4);
+    sceVu0AddVector(&fStack_60,&fStack_60,param_2 + 0xb4);
     fVar4 = *(float *)(param_1 + 0x30);
   }
   if ((fVar4 == 1.0) && (*(float *)(param_1 + 0x2c) == 1.0)) {
@@ -1396,21 +1396,21 @@ maybe_Model_TransformPrimitive(int param_1,uint *param_2,uint *param_3,int param
     maybe_Vu0_UnitMatrix(auStack_110);
     auStack_110[0] = *(undefined4 *)(param_1 + 0x2c);
     uStack_fc = *(undefined4 *)(param_1 + 0x30);
-    vu0math_sub_00132ba0(auStack_90,auStack_110,auStack_90);
+    sceVu0MulMatrix(auStack_90,auStack_110,auStack_90);
     uVar2 = *(uint *)(param_1 + 0x1c);
   }
   fStack_60 = fStack_60 + (float)uVar2 / 16.0 + *(float *)(param_1 + 0x34);
   fStack_5c = fStack_5c + (float)*(uint *)(param_1 + 0x20) / 16.0 + *(float *)(param_1 + 0x38);
   if (bVar1) {
-    vu0math_sub_00132d50(&uStack_40,auStack_90,&uStack_40);
-    vu0math_sub_00132d50(auStack_30,auStack_90,auStack_30);
+    sceVu0ApplyMatrix(&uStack_40,auStack_90,&uStack_40);
+    sceVu0ApplyMatrix(auStack_30,auStack_90,auStack_30);
     puVar3 = auStack_30 + 4;
-    vu0math_sub_00132d50(puVar3,auStack_90,puVar3);
-    vu0math_sub_00132d50(&uStack_10,auStack_90,&uStack_10);
-    vu0math_sub_00132950(param_3,&uStack_40);
-    vu0math_sub_00132950(param_3 + 4,auStack_30);
-    vu0math_sub_00132950(param_3 + 8,puVar3);
-    vu0math_sub_00132950(param_3 + 0xc,&uStack_10);
+    sceVu0ApplyMatrix(puVar3,auStack_90,puVar3);
+    sceVu0ApplyMatrix(&uStack_10,auStack_90,&uStack_10);
+    sceVu0FTOI4Vector(param_3,&uStack_40);
+    sceVu0FTOI4Vector(param_3 + 4,auStack_30);
+    sceVu0FTOI4Vector(param_3 + 8,puVar3);
+    sceVu0FTOI4Vector(param_3 + 0xc,&uStack_10);
     if (((*param_2 & 0x40) != 0) &&
        (((param_3[0xd] |
          param_3[0xc] | param_3[9] | param_3[8] | param_3[5] | param_3[4] | *param_3 | param_3[1]) &
@@ -1422,8 +1422,8 @@ maybe_Model_TransformPrimitive(int param_1,uint *param_2,uint *param_3,int param
     uVar2 = 0;
     if (param_5 != 0) {
       do {
-        vu0math_sub_00132d50(auStack_50,auStack_90,param_4);
-        vu0math_sub_00132950(param_3,auStack_50);
+        sceVu0ApplyMatrix(auStack_50,auStack_90,param_4);
+        sceVu0FTOI4Vector(param_3,auStack_50);
         if ((*param_2 & 0x40) != 0) {
           if (((int)*param_3 < 0) || (0xfff0 < (int)*param_3)) {
             return 0;

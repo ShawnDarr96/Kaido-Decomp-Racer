@@ -201,55 +201,55 @@ void CarModel_RenderTranslucent(undefined8 param_1)
     if (*(int *)(puStack_2bc + 0x584) != 0) {
       Layer_Reset(auStack_500,puStack_2bc,iStack_130,0,4);
       if (cRam00430460 == '\x02') {
-        vu0math_sub_00132b50(auStack_520,iVar4 + 400,iVar4 + 0x170);
-        vu0math_sub_00132b50(auStack_530,iVar4 + 0x180,iVar4 + 400);
-        vu0math_sub_00132b50(auStack_540,iVar4 + 0x1a0,iVar4 + 0x180);
-        vu0math_sub_00132a90(auStack_550,auStack_520,auStack_530);
-        vu0math_sub_001328b0(auStack_550,auStack_550);
-        vu0math_sub_00132a90(auStack_560,auStack_540,auStack_530);
-        vu0math_sub_001328b0(auStack_560,auStack_560);
-        vu0math_sub_00132b70(auStack_520,auStack_550,auStack_560);
-        vu0math_sub_001328b0(auStack_510,auStack_520);
+        sceVu0SubVector(auStack_520,iVar4 + 400,iVar4 + 0x170);
+        sceVu0SubVector(auStack_530,iVar4 + 0x180,iVar4 + 400);
+        sceVu0SubVector(auStack_540,iVar4 + 0x1a0,iVar4 + 0x180);
+        sceVu0OuterProduct(auStack_550,auStack_520,auStack_530);
+        sceVu0Normalize(auStack_550,auStack_550);
+        sceVu0OuterProduct(auStack_560,auStack_540,auStack_530);
+        sceVu0Normalize(auStack_560,auStack_560);
+        sceVu0AddVector(auStack_520,auStack_550,auStack_560);
+        sceVu0Normalize(auStack_510,auStack_520);
         uStack_504 = 0;
         maybe_Vu0_UnitMatrix(auStack_5a0);
         maybe_Vu0_UnitMatrix(auStack_620);
-        vu0math_sub_00132b50(auStack_670,iVar4 + 0x150,iVar4 + 0x170);
-        uVar5 = vu0math_sub_00132ab0(auStack_670,auStack_510);
-        vu0math_sub_00132b10(uVar5,auStack_680,auStack_510);
-        vu0math_sub_00132b50(auStack_680,iVar4 + 0x150,auStack_680);
-        vu0math_sub_00132b10(0xbf800000,auStack_690,auStack_680);
-        vu0math_sub_00132a90(auStack_6a0,iVar4 + 0x120,auStack_510);
-        vu0math_sub_001328b0(auStack_580,auStack_6a0);
-        vu0math_sub_00132ae0(auStack_590,auStack_510);
-        vu0math_sub_00132a90(auStack_5a0,auStack_590,auStack_580);
-        vu0math_sub_00133020(auStack_660,auStack_5a0);
+        sceVu0SubVector(auStack_670,iVar4 + 0x150,iVar4 + 0x170);
+        uVar5 = sceVu0InnerProduct(auStack_670,auStack_510);
+        sceVu0ScaleVector(uVar5,auStack_680,auStack_510);
+        sceVu0SubVector(auStack_680,iVar4 + 0x150,auStack_680);
+        sceVu0ScaleVector(0xbf800000,auStack_690,auStack_680);
+        sceVu0OuterProduct(auStack_6a0,iVar4 + 0x120,auStack_510);
+        sceVu0Normalize(auStack_580,auStack_6a0);
+        sceVu0CopyVector(auStack_590,auStack_510);
+        sceVu0OuterProduct(auStack_5a0,auStack_590,auStack_580);
+        sceVu0InversMatrix(auStack_660,auStack_5a0);
         maybe_Vu0_UnitMatrix(auStack_620);
-        vu0math_sub_00132d20(auStack_620,auStack_620,auStack_690);
-        vu0math_sub_00132ba0(auStack_620,auStack_620,iVar4 + 0x120);
-        vu0math_sub_00132ba0(auStack_660,auStack_660,auStack_620);
+        sceVu0TransMatrix(auStack_620,auStack_620,auStack_690);
+        sceVu0MulMatrix(auStack_620,auStack_620,iVar4 + 0x120);
+        sceVu0MulMatrix(auStack_660,auStack_660,auStack_620);
         maybe_Vu0_UnitMatrix(auStack_5e0);
         uStack_5cc = 0xbf800000;
-        vu0math_sub_00132ba0(auStack_5e0,auStack_5e0,auStack_660);
-        vu0math_sub_00132ba0(auStack_5e0,auStack_5a0,auStack_5e0);
+        sceVu0MulMatrix(auStack_5e0,auStack_5e0,auStack_660);
+        sceVu0MulMatrix(auStack_5e0,auStack_5a0,auStack_5e0);
         maybe_Vu0_UnitMatrix(auStack_620);
-        vu0math_sub_00132d20(auStack_620,auStack_620,auStack_680);
-        vu0math_sub_00132ba0(auStack_440,auStack_620,auStack_5e0);
+        sceVu0TransMatrix(auStack_620,auStack_620,auStack_680);
+        sceVu0MulMatrix(auStack_440,auStack_620,auStack_5e0);
       }
       else {
         maybe_Vu0_UnitMatrix(auStack_6e0);
         uStack_6cc = 0xbf800000;
-        vu0math_sub_00132ba0(auStack_440,auStack_6e0,iVar4 + 0x120);
+        sceVu0MulMatrix(auStack_440,auStack_6e0,iVar4 + 0x120);
       }
       maybe_Vu0_UnitMatrix(auStack_720);
       uStack_70c = 0xbf800000;
       maybe_Vu0_UnitMatrix(auStack_760);
-      vu0math_sub_00132ae0(auStack_760,iStack_130 + 0x50);
-      vu0math_sub_00132ae0(auStack_750,iStack_130 + 0x60);
-      vu0math_sub_00132ae0(auStack_740,iStack_130 + 0x70);
-      vu0math_sub_00132ba0(auStack_720,auStack_720,auStack_760);
-      vu0math_sub_00132ae0(iStack_130 + 0x50,auStack_720);
-      vu0math_sub_00132ae0(iStack_130 + 0x60,auStack_710);
-      vu0math_sub_00132ae0(iStack_130 + 0x70,auStack_700);
+      sceVu0CopyVector(auStack_760,iStack_130 + 0x50);
+      sceVu0CopyVector(auStack_750,iStack_130 + 0x60);
+      sceVu0CopyVector(auStack_740,iStack_130 + 0x70);
+      sceVu0MulMatrix(auStack_720,auStack_720,auStack_760);
+      sceVu0CopyVector(iStack_130 + 0x50,auStack_720);
+      sceVu0CopyVector(iStack_130 + 0x60,auStack_710);
+      sceVu0CopyVector(iStack_130 + 0x70,auStack_700);
       Cam_SetupViewport(puStack_2bc,0,1);
       Light_UpdateMatrices(iStack_130);
       if (*(byte *)(iVar4 + 0x4e3) < 5) {
@@ -279,7 +279,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
       if (cRam00430460 != '\x02') {
         maybe_Vu0_UnitMatrix(auStack_7a0);
         uStack_78c = 0xbf800000;
-        vu0math_sub_00132ba0(auStack_440,auStack_7a0,iVar4 + 0x120);
+        sceVu0MulMatrix(auStack_440,auStack_7a0,iVar4 + 0x120);
       }
       if ((lVar3 != 0) && (cRam00430460 == '\0')) {
         CarModel_DrawParts(param_1,auStack_500);
@@ -384,13 +384,13 @@ void CarModel_SwapParts(undefined8 param_1)
     *(int *)(iVar1 + 0x514) = *(int *)(iVar1 + 0x524);
   }
   *(undefined4 *)(iVar1 + 0x524) = 0;
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x500));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x528));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x508));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x50c));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x510));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x514));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x504));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x500));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x528));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x508));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x50c));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x510));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x514));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x504));
   Chunk_Init(param_1,0x530);
   *(undefined4 *)(iVar1 + 0x500) = 0;
   *(undefined4 *)(iVar1 + 0x504) = 0;
@@ -528,12 +528,12 @@ void CourseStream_RequestBlock
   
   iVar10 = iRam004305e0;
   iVar9 = *(int *)((param_5 & 0xff) * 4 + _g_Loading + 0x14);
-  vu0math_sub_00132ae0(auStack_20,iVar9 + 0x70);
+  sceVu0CopyVector(auStack_20,iVar9 + 0x70);
   afStack_10[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
   afStack_10[1] = 0.0;
   afStack_10[2] = *(float *)(iVar9 + 0x88) - *(float *)(iVar9 + 0x78);
   iVar9 = *(int *)((param_6 & 0xff) * 4 + _g_Loading + 0x14);
-  vu0math_sub_00132ae0(auStack_40,iVar9 + 0x70);
+  sceVu0CopyVector(auStack_40,iVar9 + 0x70);
   afStack_30[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
   afStack_30[1] = 0.0;
   afStack_30[2] = *(float *)(iVar9 + 0x88) - *(float *)(iVar9 + 0x78);
@@ -663,16 +663,16 @@ uint CourseStream_UpdateVisibility
   uVar3 = uRam004305cc;
   iVar2 = iRam004305b8;
   uVar15 = 0;
-  vu0math_sub_00132ae0(auStack_40);
+  sceVu0CopyVector(auStack_40);
   uStack_3c = 0;
-  vu0math_sub_001328b0(auStack_40,auStack_40);
-  vu0math_sub_00132b10(param_2,afStack_50,auStack_40);
-  vu0math_sub_00132b70(afStack_30,afStack_50,param_5);
+  sceVu0Normalize(auStack_40,auStack_40);
+  sceVu0ScaleVector(param_2,afStack_50,auStack_40);
+  sceVu0AddVector(afStack_30,afStack_50,param_5);
   fStack_10 = afStack_30[0] - fStack_48;
   fStack_20 = afStack_30[0] + fStack_48;
   fStack_8 = afStack_30[2] + afStack_50[0];
   fStack_18 = afStack_30[2] - afStack_50[0];
-  vu0math_sub_00132ae0(afStack_30,param_5);
+  sceVu0CopyVector(afStack_30,param_5);
   uVar14 = 0;
   if (*(int *)(iVar2 + 0x40) != 0) {
     iStack_110 = 0xb;
@@ -708,7 +708,7 @@ uint CourseStream_UpdateVisibility
                 iVar6 = 0;
                 pfVar8 = afStack_30;
                 do {
-                  vu0math_sub_00132a30
+                  maybe_sceVu0InterVectorXYZ
                             (auStack_80,pfVar8,afStack_30 + ((iVar6 + 1) % 3) * 4,iVar17 + 0x10);
                   if (0.0 < fStack_7c) {
                     bVar1 = false;
@@ -768,14 +768,14 @@ LAB_0019d900:
       iStack_110 = iStack_110 + 2;
     } while (uVar14 < *(uint *)(iVar2 + 0x40));
   }
-  vu0math_sub_00132ae0(auStack_60,param_8);
+  sceVu0CopyVector(auStack_60,param_8);
   uStack_5c = 0;
-  vu0math_sub_001328b0(auStack_60,auStack_60);
-  vu0math_sub_00132b10(param_4,auStack_70,auStack_60);
-  vu0math_sub_00132b70(afStack_30,auStack_70,param_7);
+  sceVu0Normalize(auStack_60,auStack_60);
+  sceVu0ScaleVector(param_4,auStack_70,auStack_60);
+  sceVu0AddVector(afStack_30,auStack_70,param_7);
   fStack_10 = afStack_30[0] - fStack_68;
   fStack_20 = afStack_30[0] + fStack_68;
-  vu0math_sub_00132ae0(afStack_30,param_7);
+  sceVu0CopyVector(afStack_30,param_7);
   uVar14 = 0;
   if (*(int *)(iVar2 + 0x40) != 0) {
     iVar13 = 0xb;
@@ -833,7 +833,7 @@ LAB_0019d900:
                   pfStack_100 = afStack_30;
                   iVar16 = 0;
                   do {
-                    vu0math_sub_00132a30
+                    maybe_sceVu0InterVectorXYZ
                               (auStack_90,pfStack_100,afStack_30 + ((iVar16 + 1) % 3) * 4,
                                iVar6 + 0x10);
                     if (0.0 < fStack_8c) {
@@ -971,7 +971,7 @@ LAB_0019df40:
               iVar8 = iVar5 * 0x10;
               iVar7 = param_1 + iVar8;
               do {
-                vu0math_sub_00132ae0(iVar7,param_1 + iVar8 + -0x10);
+                sceVu0CopyVector(iVar7,param_1 + iVar8 + -0x10);
                 iVar5 = iVar5 + -1;
                 iVar8 = iVar8 + -0x10;
                 iVar7 = iVar7 + -0x10;
@@ -1085,7 +1085,7 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
   if (afStack_10[2] <= afStack_20[2]) {
     fVar11 = afStack_10[2];
   }
-  vu0math_sub_00132900(auStack_30,afStack_20,afStack_10);
+  maybe_sceVu0InterVectorDist(auStack_30,afStack_20,afStack_10);
   uVar8 = 0;
   if (*(uint *)uVar5 != 0) {
     fVar3 = -1.0;
@@ -1122,7 +1122,7 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
         auVar16 = _vmulbc(auVar16,auVar17);
         auVar15 = _vsub(auVar16,auVar15);
         auStack_70 = _sqc2(auVar15);
-        fVar9 = (float)vu0math_sub_00132ab0();
+        fVar9 = (float)sceVu0InnerProduct();
         if (0.0 < fVar9) {
           fStack_38 = fStack_48;
           auVar15 = _lqc2(auStack_30);
@@ -1137,7 +1137,7 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
           auVar15 = _vmulbc(auVar15,auVar17);
           auVar15 = _vsub(auVar15,auVar16);
           auStack_70 = _sqc2(auVar15);
-          fVar9 = (float)vu0math_sub_00132ab0(auStack_70,auStack_60);
+          fVar9 = (float)sceVu0InnerProduct(auStack_70,auStack_60);
           if (0.0 < fVar9) {
             fStack_48 = *(float *)(iVar4 + 0x18) - afStack_10[2];
             auVar15 = _lqc2(auStack_30);
@@ -1152,7 +1152,7 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
             auVar15 = _vmulbc(auVar15,auVar17);
             auVar15 = _vsub(auVar15,auVar16);
             auStack_70 = _sqc2(auVar15);
-            fVar9 = (float)vu0math_sub_00132ab0(auStack_70,auStack_60);
+            fVar9 = (float)sceVu0InnerProduct(auStack_70,auStack_60);
             if (0.0 < fVar9) goto LAB_0019e558;
           }
         }
@@ -1160,22 +1160,22 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
         fVar9 = fVar3;
         if (*(int *)(iVar4 + 8) != 0) {
           do {
-            vu0math_sub_00132a30(auStack_80,iVar7,afStack_10,afStack_20);
+            maybe_sceVu0InterVectorXYZ(auStack_80,iVar7,afStack_10,afStack_20);
             if (0.0 < fStack_7c) {
               bVar1 = false;
             }
             else {
-              vu0math_sub_00132a30(auStack_90,iVar7 + 0x10,afStack_10,afStack_20);
+              maybe_sceVu0InterVectorXYZ(auStack_90,iVar7 + 0x10,afStack_10,afStack_20);
               if (0.0 <= fStack_7c * fStack_8c) {
                 bVar1 = false;
               }
               else {
-                vu0math_sub_00132a30(auStack_80,afStack_10,iVar7,iVar7 + 0x10);
+                maybe_sceVu0InterVectorXYZ(auStack_80,afStack_10,iVar7,iVar7 + 0x10);
                 if (fStack_7c < 0.0) {
                   bVar1 = false;
                 }
                 else {
-                  vu0math_sub_00132a30(auStack_90,afStack_20,iVar7,iVar7 + 0x10);
+                  maybe_sceVu0InterVectorXYZ(auStack_90,afStack_20,iVar7,iVar7 + 0x10);
                   if (0.0 <= fStack_7c * fStack_8c) {
                     bVar1 = false;
                   }
@@ -1187,13 +1187,13 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
             }
             fVar3 = fVar9;
             if (bVar1) {
-              vu0math_sub_00132b50(afStack_d0,iVar7 + 0x10,iVar7);
+              sceVu0SubVector(afStack_d0,iVar7 + 0x10,iVar7);
               afStack_d0[1] = 0.0;
-              vu0math_sub_001328b0(auStack_c0,afStack_d0);
-              vu0math_sub_00132b50(auStack_b0,afStack_10,iVar7);
+              sceVu0Normalize(auStack_c0,afStack_d0);
+              sceVu0SubVector(auStack_b0,afStack_10,iVar7);
               uStack_ac = 0;
-              fVar10 = (float)vu0math_sub_00132ab0(auStack_c0,auStack_b0);
-              vu0math_sub_00132b10(fVar10,auStack_a0,auStack_c0);
+              fVar10 = (float)sceVu0InnerProduct(auStack_c0,auStack_b0);
+              sceVu0ScaleVector(fVar10,auStack_a0,auStack_c0);
               fVar3 = fVar9;
               if ((0.0 <= fVar10) &&
                  (fVar10 * fVar10 <= afStack_d0[0] * afStack_d0[0] + afStack_d0[2] * afStack_d0[2]))
@@ -1627,13 +1627,13 @@ void CourseStream_RequestLod
   afStack_10[0] = *(float *)(iVar10 + 0x80) - *(float *)(iVar10 + 0x70);
   afStack_10[1] = 0.0;
   afStack_10[2] = *(float *)(iVar10 + 0x88) - *(float *)(iVar10 + 0x78);
-  vu0math_sub_00132ae0(auStack_20);
+  sceVu0CopyVector(auStack_20);
   uStack_1c = 0;
   if (param_5 == 0) {
     puVar8 = (undefined1 *)0x0;
   }
   else {
-    vu0math_sub_00132ae0(auStack_30,param_5);
+    sceVu0CopyVector(auStack_30,param_5);
     uStack_2c = 0;
     puVar8 = auStack_30;
   }
@@ -1754,16 +1754,16 @@ uint CourseStream_UpdateLod
   uVar3 = uRam004305cc;
   iVar2 = iRam004305b8;
   uVar15 = 0;
-  vu0math_sub_00132ae0(auStack_40);
+  sceVu0CopyVector(auStack_40);
   uStack_3c = 0;
-  vu0math_sub_001328b0(auStack_40,auStack_40);
-  vu0math_sub_00132b10(param_2,afStack_50,auStack_40);
-  vu0math_sub_00132b70(afStack_30,afStack_50,param_3);
+  sceVu0Normalize(auStack_40,auStack_40);
+  sceVu0ScaleVector(param_2,afStack_50,auStack_40);
+  sceVu0AddVector(afStack_30,afStack_50,param_3);
   fStack_10 = afStack_30[0] - fStack_48;
   fStack_20 = afStack_30[0] + fStack_48;
   fStack_8 = afStack_30[2] + afStack_50[0];
   fStack_18 = afStack_30[2] - afStack_50[0];
-  vu0math_sub_00132ae0(afStack_30,param_3);
+  sceVu0CopyVector(afStack_30,param_3);
   uVar14 = 0;
   uVar11 = 0;
   if (*(int *)(iVar2 + 0x40) != 0) {
@@ -1790,13 +1790,14 @@ uint CourseStream_UpdateLod
           do {
             iVar17 = iVar5 + iStack_d0 + 0x50;
             iVar7 = iVar17 + 0x10;
-            fVar18 = (float)vu0math_sub_00132900(auStack_60,iVar7,param_3);
-            fVar19 = (float)vu0math_sub_00132900(auStack_60,iVar7,iVar17 + 0x20);
+            fVar18 = (float)maybe_sceVu0InterVectorDist(auStack_60,iVar7,param_3);
+            fVar19 = (float)maybe_sceVu0InterVectorDist(auStack_60,iVar7,iVar17 + 0x20);
             if (param_1 + fVar19 < fVar18) {
               iVar17 = 0;
               pfVar6 = afStack_30;
               do {
-                vu0math_sub_00132a30(auStack_90,pfVar6,afStack_30 + ((iVar17 + 1) % 3) * 4,iVar7);
+                maybe_sceVu0InterVectorXYZ
+                          (auStack_90,pfVar6,afStack_30 + ((iVar17 + 1) % 3) * 4,iVar7);
                 if (0.0 < fStack_8c) {
                   bVar1 = false;
                   goto LAB_0019f848;
@@ -1871,7 +1872,8 @@ LAB_0019f850:
               iVar7 = iVar4;
               do {
                 if ((uVar13 == *(ushort *)(iVar7 + 4)) && (uVar11 == *(ushort *)(iVar7 + 6))) {
-                  fVar18 = (float)vu0math_sub_00132900(auStack_70,iVar5 + iVar17 + 0x60,param_5);
+                  fVar18 = (float)maybe_sceVu0InterVectorDist
+                                            (auStack_70,iVar5 + iVar17 + 0x60,param_5);
                   pfVar6 = (float *)(iVar4 + uVar12 * 8);
                   if (fVar18 < *pfVar6) {
                     *pfVar6 = fVar18;
@@ -1886,8 +1888,8 @@ LAB_0019f850:
             if (!bVar1) {
               iVar7 = iVar5 + iVar17 + 0x50;
               iVar16 = iVar7 + 0x10;
-              fVar18 = (float)vu0math_sub_00132900(auStack_80,iVar16,param_5);
-              fVar19 = (float)vu0math_sub_00132900(auStack_80,iVar16,iVar7 + 0x20);
+              fVar18 = (float)maybe_sceVu0InterVectorDist(auStack_80,iVar16,param_5);
+              fVar19 = (float)maybe_sceVu0InterVectorDist(auStack_80,iVar16,iVar7 + 0x20);
               if ((fVar18 <= param_1 + fVar19) &&
                  (lVar8 = Course_GetGroundHeight(param_5,iVar16), lVar8 != 0)) {
                 uVar12 = uVar14;
@@ -2096,13 +2098,13 @@ uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
       iVar6 = 0;
       pfStack_e0 = pfVar14;
       do {
-        vu0math_sub_00132b50(afStack_40,pfVar14 + (iVar6 + 1U & 3) * 4,pfStack_e0);
+        sceVu0SubVector(afStack_40,pfVar14 + (iVar6 + 1U & 3) * 4,pfStack_e0);
         afStack_40[1] = 0.0;
-        vu0math_sub_001328b0(auStack_30,afStack_40);
-        vu0math_sub_00132b50(auStack_20,param_2,pfStack_e0);
+        sceVu0Normalize(auStack_30,afStack_40);
+        sceVu0SubVector(auStack_20,param_2,pfStack_e0);
         uStack_1c = 0;
-        fVar18 = (float)vu0math_sub_00132ab0(auStack_30,auStack_20);
-        vu0math_sub_00132b10(fVar18,auStack_10,auStack_30);
+        fVar18 = (float)sceVu0InnerProduct(auStack_30,auStack_20);
+        sceVu0ScaleVector(fVar18,auStack_10,auStack_30);
         if (0.0 <= fVar18) {
           if (afStack_40[0] * afStack_40[0] + afStack_40[2] * afStack_40[2] + 0.0 < fVar18 * fVar18)
           {
@@ -2222,13 +2224,13 @@ uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
           iVar6 = 0;
           pfStack_b0 = pfVar14;
           do {
-            vu0math_sub_00132b50(afStack_80,pfVar14 + (iVar6 + 1U & 3) * 4,pfStack_b0);
+            sceVu0SubVector(afStack_80,pfVar14 + (iVar6 + 1U & 3) * 4,pfStack_b0);
             afStack_80[1] = 0.0;
-            vu0math_sub_001328b0(auStack_70,afStack_80);
-            vu0math_sub_00132b50(auStack_60,param_3,pfStack_b0);
+            sceVu0Normalize(auStack_70,afStack_80);
+            sceVu0SubVector(auStack_60,param_3,pfStack_b0);
             uStack_5c = 0;
-            fVar18 = (float)vu0math_sub_00132ab0(auStack_70,auStack_60);
-            vu0math_sub_00132b10(fVar18,auStack_50,auStack_70);
+            fVar18 = (float)sceVu0InnerProduct(auStack_70,auStack_60);
+            sceVu0ScaleVector(fVar18,auStack_50,auStack_70);
             if (0.0 <= fVar18) {
               if (afStack_80[0] * afStack_80[0] + afStack_80[2] * afStack_80[2] + 0.0 <
                   fVar18 * fVar18) {

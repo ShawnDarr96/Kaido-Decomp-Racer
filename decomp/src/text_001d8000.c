@@ -813,9 +813,9 @@ void Ai_ComputeTargetSpeed
       uStack_118 = uStack_238;
       uStack_114 = uStack_234;
       uStack_11c = 0;
-      vu0math_sub_00132b50(&uStack_140,&uStack_110,&uStack_100);
-      vu0math_sub_00132b50(&uStack_150,&uStack_120,&uStack_100);
-      vu0math_sub_00132b50(&uStack_160,&iStack_130,&uStack_100);
+      sceVu0SubVector(&uStack_140,&uStack_110,&uStack_100);
+      sceVu0SubVector(&uStack_150,&uStack_120,&uStack_100);
+      sceVu0SubVector(&uStack_160,&iStack_130,&uStack_100);
       uStack_2b0 = uStack_140;
       uStack_2c0 = uStack_160;
       uStack_2ac = uStack_13c;
@@ -903,7 +903,7 @@ LAB_001d9798:
       iStack_bc = iStack_12c;
       iStack_b8 = iStack_128;
       uStack_b4 = uStack_124;
-      fVar25 = (float)vu0math_sub_00132900(auStack_f0,&iStack_d0,&iStack_e0);
+      fVar25 = (float)maybe_sceVu0InterVectorDist(auStack_f0,&iStack_d0,&iStack_e0);
       fVar23 = fVar23 + fVar25;
       fVar25 = (float)atan2f(uStack_e8,auStack_f0[0]);
       if (iStack_370 != 0) {
@@ -998,9 +998,9 @@ LAB_001d9798:
     uStack_118 = uStack_1b8;
     uStack_114 = uStack_1b4;
     uStack_11c = 0;
-    vu0math_sub_00132b50(&uStack_140,&uStack_110,&uStack_100);
-    vu0math_sub_00132b50(&uStack_150,&uStack_120,&uStack_100);
-    vu0math_sub_00132b50(&uStack_160,&iStack_130,&uStack_100);
+    sceVu0SubVector(&uStack_140,&uStack_110,&uStack_100);
+    sceVu0SubVector(&uStack_150,&uStack_120,&uStack_100);
+    sceVu0SubVector(&uStack_160,&iStack_130,&uStack_100);
     uStack_250 = uStack_140;
     uStack_260 = uStack_160;
     uStack_24c = uStack_13c;
@@ -1088,7 +1088,7 @@ LAB_001d9028:
     iStack_bc = iStack_12c;
     iStack_b8 = iStack_128;
     uStack_b4 = uStack_124;
-    fVar25 = (float)vu0math_sub_00132900(auStack_f0,&iStack_d0,&iStack_e0);
+    fVar25 = (float)maybe_sceVu0InterVectorDist(auStack_f0,&iStack_d0,&iStack_e0);
     fVar23 = fVar23 + fVar25;
     fVar25 = (float)atan2f(uStack_e8,auStack_f0[0]);
     if (iVar14 != 0) {
@@ -1258,7 +1258,7 @@ float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long
       uStack_8 = uStack_98;
       uStack_4 = uStack_94;
       uStack_c = 0;
-      fVar10 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+      fVar10 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
       fVar13 = fVar13 + fVar10;
       fVar10 = (float)atan2f(uStack_28,auStack_30[0]);
       if (iVar2 == 0) {
@@ -1325,7 +1325,7 @@ LAB_001d9e70:
     uStack_8 = uStack_58;
     uStack_4 = uStack_54;
     uStack_c = 0;
-    fVar10 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+    fVar10 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
     fVar13 = fVar13 + fVar10;
     fVar10 = (float)atan2f(uStack_28,auStack_30[0]);
     if (iVar4 == 0) {
@@ -1485,7 +1485,7 @@ void Ai_ThrottleControl(int *param_1,int *param_2)
       iStack_58 = iStack_a8;
       uStack_54 = uStack_a4;
       iStack_5c = 0;
-      fVar9 = (float)vu0math_sub_00132900(auStack_80,&iStack_60,&iStack_70);
+      fVar9 = (float)maybe_sceVu0InterVectorDist(auStack_80,&iStack_60,&iStack_70);
       fVar13 = fVar13 + fVar9;
       fVar9 = (float)atan2f(uStack_78,auStack_80[0]);
       if (iVar6 != 0) {
@@ -1529,7 +1529,7 @@ LAB_001da7e0:
     iStack_58 = iStack_e8;
     uStack_54 = uStack_e4;
     iStack_5c = 0;
-    fVar9 = (float)vu0math_sub_00132900(auStack_80,&iStack_60,&iStack_70);
+    fVar9 = (float)maybe_sceVu0InterVectorDist(auStack_80,&iStack_60,&iStack_70);
     fVar13 = fVar13 + fVar9;
     fVar9 = (float)atan2f(uStack_78,auStack_80[0]);
     if (iVar6 != 0) {
@@ -1646,13 +1646,13 @@ void AiLine_TransformToWorld(undefined4 *param_1,undefined4 *param_2)
   uStack_18 = DAT_00319828;
   uStack_14 = DAT_0031982c;
   Mat34_Identity(auStack_a0);
-  phys_sub_00162fb0(auStack_a0,&uStack_10);
+  Quat_ToMat33(auStack_a0,&uStack_10);
   maybe_Vu0_UnitMatrix(auStack_60);
-  vu0math_sub_00132ae0(auStack_60,auStack_a0);
-  vu0math_sub_00132ae0(auStack_50,auStack_90);
-  vu0math_sub_00132ae0(auStack_40,auStack_80);
-  vu0math_sub_00132ae0(auStack_30,auStack_70);
-  vu0math_sub_00132d50(&uStack_20,auStack_60,&uStack_20);
+  sceVu0CopyVector(auStack_60,auStack_a0);
+  sceVu0CopyVector(auStack_50,auStack_90);
+  sceVu0CopyVector(auStack_40,auStack_80);
+  sceVu0CopyVector(auStack_30,auStack_70);
+  sceVu0ApplyMatrix(&uStack_20,auStack_60,&uStack_20);
   *param_1 = uStack_20;
   param_1[1] = uStack_1c;
   param_1[2] = uStack_18;
@@ -1701,9 +1701,9 @@ undefined4 Vec3_AngleBetween(undefined4 *param_1,undefined4 *param_2)
   uStack_c = uStack_2c;
   uStack_8 = uStack_28;
   uStack_4 = uStack_24;
-  fVar1 = (float)vu0math_sub_00132ab0(&uStack_30,&uStack_40);
-  fVar2 = (float)vu0math_sub_001328b0(&uStack_10,&uStack_10);
-  fVar3 = (float)vu0math_sub_001328b0(&uStack_20,&uStack_20);
+  fVar1 = (float)sceVu0InnerProduct(&uStack_30,&uStack_40);
+  fVar2 = (float)sceVu0Normalize(&uStack_10,&uStack_10);
+  fVar3 = (float)sceVu0Normalize(&uStack_20,&uStack_20);
   if (fVar1 == 0.0) {
     uVar4 = 0;
   }
@@ -2308,7 +2308,7 @@ void RaceRule_Finish(void)
       iVar9 = SpGauge_GetValue();
       iVar9 = (int)(float)iVar9;
     }
-    uVar8 = password_sub_002df400(iVar9,*(undefined4 *)(uVar1 + 0x4b8));
+    uVar8 = password_leaf_sub_002df400(iVar9,*(undefined4 *)(uVar1 + 0x4b8));
     if (uVar8 < 6) {
                     /* WARNING: Could not recover jumptable at 0x001dc074. Too many branches */
                     /* WARNING: Treating indirect jump as call */
@@ -2321,7 +2321,7 @@ void RaceRule_Finish(void)
       uVar4 = GameState_Get_3ac();
       uVar5 = Race_GetCourseVariant();
       uVar6 = GameState_Get_3a8();
-      lVar7 = password_sub_002de940(uVar2,uVar8,uVar3,uVar4,uVar5,uVar6);
+      lVar7 = password_step_sub_002de940(uVar2,uVar8,uVar3,uVar4,uVar5,uVar6);
       if (lVar7 != 0) {
         *_g_RaceProg = *_g_RaceProg | 0x20000;
       }

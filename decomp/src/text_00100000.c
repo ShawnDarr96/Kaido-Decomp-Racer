@@ -33,7 +33,7 @@ void entry(void)
   FlushCache(0);
   EI();
   uVar2 = main(uRam0036fa00,0x36fa04);
-  newlib_sub_00126098(uVar2);
+  maybe_exit(uVar2);
   return;
 }
 
@@ -380,7 +380,9 @@ undefined8 maybe_Heap_ctor(undefined8 param_1)
 }
 
 // 0x00100940  size 0x20
-bool msl_sub_00100940(void)
+/* __cmpdf2 > 0 */
+
+bool maybe___dgt(void)
 
 {
   long lVar1;
@@ -390,7 +392,9 @@ bool msl_sub_00100940(void)
 }
 
 // 0x00100960  size 0x20
-bool msl_sub_00100960(void)
+/* __cmpdf2 < 0 */
+
+bool maybe___dlt(void)
 
 {
   long lVar1;
@@ -676,7 +680,7 @@ void maybe___call_static_initializers
   for (; param_1 < param_2; param_1 = param_1 + 1) {
     (*(code *)*param_1)();
   }
-  msl_sub_00102810(param_3,param_4);
+  maybe___ExceptionTableEnd(param_3,param_4);
   return;
 }
 
@@ -774,7 +778,7 @@ byte * maybe___DecodeSignedNumber(byte *param_1,uint *param_2)
 }
 
 // 0x00101320  size 0x38
-void msl_sub_00101320(int *param_1)
+void maybe___destroy_local_object(int *param_1)
 
 {
   if ((*param_1 != 0) && ((code *)param_1[2] != (code *)0x0)) {
@@ -800,26 +804,26 @@ void maybe___ThrowHandler(undefined8 param_1)
   int aiStack_8 [2];
   
   piVar4 = (int *)param_1;
-  msl_sub_001024d0(piVar4[4],&iStack_30);
+  maybe___FindExceptionTable(piVar4[4],&iStack_30);
   if (iStack_2c == 0) {
     maybe_std_terminate();
   }
-  msl_sub_00102820(param_1,&iStack_30);
+  maybe___DecodeFrameInfo(param_1,&iStack_30);
   if (*piVar4 == 0) {
-    iVar1 = msl_sub_00101810(param_1,&iStack_30);
+    iVar1 = maybe___UnwindStack(param_1,&iStack_30);
     piVar4[3] = iVar1;
   }
   else {
     piVar4[3] = 0;
   }
-  uVar2 = msl_sub_00101500(param_1,&iStack_30,aiStack_18);
+  uVar2 = maybe___FindExceptionHandler(param_1,&iStack_30,aiStack_18);
   iStack_10 = *(int *)((int)uVar2 + 1);
   if (iStack_10 == 0) {
     iStack_10 = 0;
   }
   uVar3 = maybe___DecodeUnsignedNumber((int)uVar2 + 5,&iStack_c);
   maybe___DecodeSignedNumber(uVar3,aiStack_8);
-  msl_sub_00101980(param_1,&iStack_30,uVar2);
+  maybe___ExecuteCatchHandler(param_1,&iStack_30,uVar2);
   piVar5 = (int *)(piVar4[6] + aiStack_8[0]);
   *piVar5 = piVar4[1];
   piVar5[1] = *piVar4;
@@ -831,12 +835,12 @@ void maybe___ThrowHandler(undefined8 param_1)
   else {
     piVar5[3] = piVar4[1] + aiStack_18[0];
   }
-  msl_sub_001026a0(param_1,&iStack_30,iStack_30 + iStack_c);
+  maybe___JumpToHandler(param_1,&iStack_30,iStack_30 + iStack_c);
   return;
 }
 
 // 0x00101500  size 0x304
-byte * msl_sub_00101500(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+byte * maybe___FindExceptionHandler(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   bool bVar1;
@@ -968,13 +972,13 @@ byte * msl_sub_00101500(undefined8 param_1,undefined8 param_2,undefined8 param_3
 LAB_001016f0:
       pbVar2 = pbStack_2f8;
       if (!bVar1) {
-        msl_sub_00101980(param_1,param_2,pbStack_2f8);
+        maybe___ExecuteCatchHandler(param_1,param_2,pbStack_2f8);
         puVar5 = (undefined4 *)(puVar18[6] + iStack_308);
         *puVar5 = puVar18[1];
         puVar5[1] = *puVar18;
         puVar5[2] = puVar18[2];
         puVar5[5] = pbVar2;
-        msl_sub_001026a0(param_1,param_2,*piVar14 + iStack_30c);
+        maybe___JumpToHandler(param_1,param_2,*piVar14 + iStack_30c);
       }
     case 0:
     case 2:
@@ -989,12 +993,12 @@ LAB_001016f0:
     case 0xb:
     case 0xd:
     }
-    bVar3 = msl_sub_001021c0(&iStack_300);
+    bVar3 = maybe___UnwindFrame(&iStack_300);
   } while( true );
 }
 
 // 0x00101810  size 0x168
-void msl_sub_00101810(undefined4 *param_1,undefined4 *param_2)
+void maybe___UnwindStack(undefined4 *param_1,undefined4 *param_2)
 
 {
   byte bVar1;
@@ -1083,7 +1087,7 @@ void msl_sub_00101810(undefined4 *param_1,undefined4 *param_2)
     case 0xb:
     case 0xc:
     case 0xf:
-      bVar1 = msl_sub_001021c0(&uStack_2f0);
+      bVar1 = maybe___UnwindFrame(&uStack_2f0);
       break;
     default:
       maybe_std_terminate();
@@ -1100,7 +1104,7 @@ void msl_sub_00101810(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x00101980  size 0x834
-void msl_sub_00101980(undefined8 param_1,undefined8 param_2,byte *param_3)
+void maybe___ExecuteCatchHandler(undefined8 param_1,undefined8 param_2,byte *param_3)
 
 {
   byte bVar1;
@@ -1150,12 +1154,12 @@ LAB_001019b8:
   bVar1 = *pbVar9;
   goto LAB_001020dc;
 code_r0x001019c4:
-  uVar6 = msl_sub_001028e0(param_1,param_2);
-  msl_sub_001024d0(uVar6,param_2);
+  uVar6 = maybe___RestoreSavedRegisters(param_1,param_2);
+  maybe___FindExceptionTable(uVar6,param_2);
   if (*(int *)(iVar11 + 4) == 0) {
     maybe_std_terminate();
   }
-  msl_sub_00102820(param_1,param_2);
+  maybe___DecodeFrameInfo(param_1,param_2);
   pbVar9 = *(byte **)(iVar11 + 8);
   if (pbVar9 == (byte *)0x0) goto LAB_001019b8;
   bVar1 = *pbVar9;
@@ -1345,7 +1349,7 @@ LAB_001020dc:
 }
 
 // 0x001021c0  size 0x310
-void msl_sub_001021c0(undefined8 param_1)
+void maybe___UnwindFrame(undefined8 param_1)
 
 {
   byte bVar1;
@@ -1386,12 +1390,12 @@ void msl_sub_001021c0(undefined8 param_1)
   iVar6 = (int)param_1;
   pbVar2 = *(byte **)(iVar6 + 8);
   while ((pbVar2 == (byte *)0x0 || ((*pbVar2 & 0x80) != 0))) {
-    uVar5 = msl_sub_001028e0(iVar6 + 0x20,param_1);
-    msl_sub_001024d0(uVar5,param_1);
+    uVar5 = maybe___RestoreSavedRegisters(iVar6 + 0x20,param_1);
+    maybe___FindExceptionTable(uVar5,param_1);
     if (*(int *)(iVar6 + 4) == 0) {
       maybe_std_terminate();
     }
-    msl_sub_00102820(iVar6 + 0x20,param_1);
+    maybe___DecodeFrameInfo(iVar6 + 0x20,param_1);
     if (*(int *)(iVar6 + 8) != 0) goto LAB_00102410;
     pbVar2 = *(byte **)(iVar6 + 8);
   }
@@ -1476,7 +1480,7 @@ LAB_00102410:
 }
 
 // 0x001024d0  size 0x1c4
-void msl_sub_001024d0(undefined8 param_1,undefined8 param_2)
+void maybe___FindExceptionTable(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1496,7 +1500,7 @@ void msl_sub_001024d0(undefined8 param_1,undefined8 param_2)
   puVar5 = (uint *)param_2;
   puVar5[1] = 0;
   puVar5[2] = 0;
-  lVar2 = msl_sub_001027f0(param_2,param_1);
+  lVar2 = maybe___InitExceptionInfo(param_2,param_1);
   if (lVar2 != 0) {
     uVar4 = (uint)param_1 & 0xfffffffe;
     iVar8 = 0;
@@ -1525,7 +1529,7 @@ LAB_001025bc:
       }
       *puVar5 = *puVar9;
       uVar1 = *puVar9;
-      uVar3 = msl_sub_00102790(puVar5[1]);
+      uVar3 = maybe___SkipExceptionAction(puVar5[1]);
       uVar10 = 0;
       do {
         uVar3 = maybe___DecodeUnsignedNumber(uVar3,&iStack_4);
@@ -1546,7 +1550,7 @@ LAB_001025bc:
 }
 
 // 0x001026a0  size 0x64
-void msl_sub_001026a0(undefined8 param_1,undefined8 param_2,code *UNRECOVERED_JUMPTABLE)
+void maybe___JumpToHandler(undefined8 param_1,undefined8 param_2,code *UNRECOVERED_JUMPTABLE)
 
 {
                     /* WARNING: Could not recover jumptable at 0x001026fc. Too many branches */
@@ -1590,7 +1594,7 @@ void maybe___throw(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00102790  size 0x58
-void msl_sub_00102790(byte *param_1)
+void maybe___SkipExceptionAction(byte *param_1)
 
 {
   byte bVar1;
@@ -1607,7 +1611,7 @@ void msl_sub_00102790(byte *param_1)
 }
 
 // 0x001027f0  size 0x20
-undefined4 msl_sub_001027f0(int param_1)
+undefined4 maybe___InitExceptionInfo(int param_1)
 
 {
   *(undefined ***)(param_1 + 0xc) = &PTR_DAT_0036e690;
@@ -1616,14 +1620,14 @@ undefined4 msl_sub_001027f0(int param_1)
 }
 
 // 0x00102810  size 0x8
-undefined8 msl_sub_00102810(void)
+undefined8 maybe___ExceptionTableEnd(void)
 
 {
   return 0;
 }
 
 // 0x00102820  size 0xb4
-void msl_sub_00102820(int param_1,int param_2)
+void maybe___DecodeFrameInfo(int param_1,int param_2)
 
 {
   byte bVar1;
@@ -1653,7 +1657,7 @@ void msl_sub_00102820(int param_1,int param_2)
 }
 
 // 0x001028e0  size 0x180
-undefined4 msl_sub_001028e0(int param_1,int param_2,int param_3,ulong param_4)
+undefined4 maybe___RestoreSavedRegisters(int param_1,int param_2,int param_3,ulong param_4)
 
 {
   byte bVar1;
@@ -1749,7 +1753,7 @@ undefined4 msl_sub_001028e0(int param_1,int param_2,int param_3,ulong param_4)
 }
 
 // 0x00102a60  size 0x88
-long msl_sub_00102a60(long param_1,short param_2)
+long maybe_std_locale_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1758,7 +1762,7 @@ long msl_sub_00102a60(long param_1,short param_2)
     puVar1 = (undefined4 *)param_1;
     *puVar1 = &PTR_PTR_0036de90;
     if (puVar1 + 1 != (undefined4 *)0x0) {
-      msl_sub_00102c30(puVar1 + 1,0xffffffffffffffff);
+      maybe_std_shared_count_dtor(puVar1 + 1,0xffffffffffffffff);
     }
     if (param_1 != 0) {
       *puVar1 = &PTR_PTR_0036de70;
@@ -1771,7 +1775,7 @@ long msl_sub_00102a60(long param_1,short param_2)
 }
 
 // 0x00102af0  size 0xb4
-long msl_sub_00102af0(long param_1,short param_2)
+long maybe_std_locale_imp_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1820,7 +1824,7 @@ void std_ios_base_init(int param_1,long param_2)
 }
 
 // 0x00102c30  size 0x78
-long msl_sub_00102c30(long param_1,short param_2)
+long maybe_std_shared_count_dtor(long param_1,short param_2)
 
 {
   int *piVar1;
@@ -1842,7 +1846,7 @@ long msl_sub_00102c30(long param_1,short param_2)
 }
 
 // 0x00102cb0  size 0x6c
-undefined8 msl_sub_00102cb0(undefined8 param_1,int param_2)
+undefined8 maybe_std_shared_count_ctor(undefined8 param_1,int param_2)
 
 {
   long lVar1;
@@ -1889,10 +1893,10 @@ undefined8 std_ios_base_Init_ctor(undefined8 param_1)
   bVar1 = iRam0036fb50 == 0;
   iRam0036fb50 = iVar2;
   if (bVar1) {
-    msl_sub_00104100(0x36fb60,1,0x36fe90);
-    msl_sub_00104430(0x36fbd0,1,0x36fee0);
-    msl_sub_00104430(0x36fc90,1,0x36ff30);
-    msl_sub_00104430(0x36fc30,1,0x36ff30);
+    maybe_std_istream_ctor(0x36fb60,1,0x36fe90);
+    maybe_std_ostream_ctor(0x36fbd0,1,0x36fee0);
+    maybe_std_ostream_ctor(0x36fc90,1,0x36ff30);
+    maybe_std_ostream_ctor(0x36fc30,1,0x36ff30);
     *(undefined4 *)(iRam0036fb60 + 0x40) = 0x36fbd0;
     *(ushort *)(iRam0036fc90 + 0x38) = *(ushort *)(iRam0036fc90 + 0x38) | 0x2000;
     (**(code **)(iRam0036fe90 + 0xc))(0x36fe90,0,0);
@@ -1903,7 +1907,7 @@ undefined8 std_ios_base_Init_ctor(undefined8 param_1)
 }
 
 // 0x00102ff0  size 0x60
-long msl_sub_00102ff0(long param_1,short param_2)
+long maybe_std_stdio_filebuf_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1941,7 +1945,7 @@ long std_ios_base_Init_dtor(long param_1,short param_2)
 }
 
 // 0x00103150  size 0x98
-long msl_sub_00103150(long param_1,long param_2)
+long maybe_std_ostream_dtor(long param_1,long param_2)
 
 {
   int *piVar1;
@@ -1955,7 +1959,7 @@ long msl_sub_00103150(long param_1,long param_2)
     *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
     if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
       piVar2[2] = (int)&PTR_PTR_0036df88;
-      msl_sub_00102af0(piVar1,0);
+      maybe_std_locale_imp_dtor(piVar1,0);
     }
     if (0 < (short)param_2) {
       Mem_Free(param_1);
@@ -1965,7 +1969,7 @@ long msl_sub_00103150(long param_1,long param_2)
 }
 
 // 0x001031f0  size 0x98
-long msl_sub_001031f0(long param_1,long param_2)
+long maybe_std_istream_dtor(long param_1,long param_2)
 
 {
   int *piVar1;
@@ -1979,7 +1983,7 @@ long msl_sub_001031f0(long param_1,long param_2)
     *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
     if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
       piVar2[6] = (int)&PTR_PTR_0036df88;
-      msl_sub_00102af0(piVar1,0);
+      maybe_std_locale_imp_dtor(piVar1,0);
     }
     if (0 < (short)param_2) {
       Mem_Free(param_1);
@@ -2016,10 +2020,10 @@ undefined8 maybe_std_wios_Init_ctor(undefined8 param_1)
   bVar1 = iRam0036fb58 == 0;
   iRam0036fb58 = iVar2;
   if (bVar1) {
-    msl_sub_001041b0(0x36fcf0,1,0x36ff80);
-    msl_sub_001046b0(0x36fd60,1,0x370000);
-    msl_sub_001046b0(0x36fe20,1,0x370080);
-    msl_sub_001046b0(0x36fdc0,1,0x370080);
+    maybe_std_wistream_ctor(0x36fcf0,1,0x36ff80);
+    maybe_std_wostream_ctor(0x36fd60,1,0x370000);
+    maybe_std_wostream_ctor(0x36fe20,1,0x370080);
+    maybe_std_wostream_ctor(0x36fdc0,1,0x370080);
     *(undefined4 *)(iRam0036fcf0 + 0x40) = 0x36fd60;
     *(ushort *)(iRam0036fe20 + 0x38) = *(ushort *)(iRam0036fe20 + 0x38) | 0x2000;
     (**(code **)(iRam0036ff80 + 0xc))(0x36ff80,0,0);
@@ -2030,7 +2034,7 @@ undefined8 maybe_std_wios_Init_ctor(undefined8 param_1)
 }
 
 // 0x00103540  size 0x60
-long msl_sub_00103540(long param_1,short param_2)
+long maybe_std_stdio_wfilebuf_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -2068,7 +2072,7 @@ long maybe_std_wios_Init_dtor(long param_1,short param_2)
 }
 
 // 0x001036a0  size 0x98
-long msl_sub_001036a0(long param_1,long param_2)
+long maybe_std_wostream_dtor(long param_1,long param_2)
 
 {
   int *piVar1;
@@ -2082,7 +2086,7 @@ long msl_sub_001036a0(long param_1,long param_2)
     *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
     if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
       piVar2[2] = (int)&PTR_PTR_0036deb8;
-      msl_sub_00102af0(piVar1,0);
+      maybe_std_locale_imp_dtor(piVar1,0);
     }
     if (0 < (short)param_2) {
       Mem_Free(param_1);
@@ -2092,7 +2096,7 @@ long msl_sub_001036a0(long param_1,long param_2)
 }
 
 // 0x00103740  size 0x98
-long msl_sub_00103740(long param_1,long param_2)
+long maybe_std_wistream_dtor(long param_1,long param_2)
 
 {
   int *piVar1;
@@ -2106,7 +2110,7 @@ long msl_sub_00103740(long param_1,long param_2)
     *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
     if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
       piVar2[6] = (int)&PTR_PTR_0036deb8;
-      msl_sub_00102af0(piVar1,0);
+      maybe_std_locale_imp_dtor(piVar1,0);
     }
     if (0 < (short)param_2) {
       Mem_Free(param_1);
@@ -2116,12 +2120,12 @@ long msl_sub_00103740(long param_1,long param_2)
 }
 
 // 0x001037e0  size 0x60
-long msl_sub_001037e0(long param_1,short param_2)
+long maybe_std_wios_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &PTR_PTR_0036deb8;
-    msl_sub_00102af0(param_1,0);
+    maybe_std_locale_imp_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -2130,7 +2134,7 @@ long msl_sub_001037e0(long param_1,short param_2)
 }
 
 // 0x00103840  size 0x4c
-long msl_sub_00103840(long param_1,short param_2)
+long maybe_std_wstreambuf_dtor(long param_1,short param_2)
 
 {
   if ((param_1 != 0) && (*(undefined4 *)param_1 = &PTR_PTR_0036def0, 0 < param_2)) {
@@ -2140,12 +2144,12 @@ long msl_sub_00103840(long param_1,short param_2)
 }
 
 // 0x00103890  size 0x60
-long msl_sub_00103890(long param_1,short param_2)
+long maybe_std_ios_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &PTR_PTR_0036df88;
-    msl_sub_00102af0(param_1,0);
+    maybe_std_locale_imp_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -2154,7 +2158,7 @@ long msl_sub_00103890(long param_1,short param_2)
 }
 
 // 0x001038f0  size 0x4c
-long msl_sub_001038f0(long param_1,short param_2)
+long maybe_std_streambuf_dtor(long param_1,short param_2)
 
 {
   if ((param_1 != 0) && (*(undefined4 *)param_1 = &PTR_PTR_0036dfc0, 0 < param_2)) {
@@ -2164,7 +2168,7 @@ long msl_sub_001038f0(long param_1,short param_2)
 }
 
 // 0x001039b0  size 0x50
-ulong msl_sub_001039b0(int *param_1)
+ulong maybe_std_streambuf_uflow(int *param_1)
 
 {
   byte *pbVar1;
@@ -2182,7 +2186,7 @@ ulong msl_sub_001039b0(int *param_1)
 }
 
 // 0x00103a20  size 0x12c
-long msl_sub_00103a20(undefined8 param_1,byte *param_2,long param_3)
+long maybe_std_streambuf_xsgetn(undefined8 param_1,byte *param_2,long param_3)
 
 {
   byte bVar1;
@@ -2235,7 +2239,7 @@ long msl_sub_00103a20(undefined8 param_1,byte *param_2,long param_3)
 }
 
 // 0x00103b50  size 0x124
-long msl_sub_00103b50(undefined8 param_1,undefined1 *param_2,long param_3)
+long maybe_std_streambuf_xsputn(undefined8 param_1,undefined1 *param_2,long param_3)
 
 {
   byte *pbVar1;
@@ -2286,7 +2290,7 @@ long msl_sub_00103b50(undefined8 param_1,undefined1 *param_2,long param_3)
 }
 
 // 0x00103cb0  size 0x1e0
-long msl_sub_00103cb0(undefined8 param_1,ushort *param_2,long param_3)
+long maybe_std_wstreambuf_xsgetn(undefined8 param_1,ushort *param_2,long param_3)
 
 {
   ushort uVar1;
@@ -2374,7 +2378,7 @@ long msl_sub_00103cb0(undefined8 param_1,ushort *param_2,long param_3)
 }
 
 // 0x00103ea0  size 0x50
-ulong msl_sub_00103ea0(int *param_1)
+ulong maybe_std_wstreambuf_uflow(int *param_1)
 
 {
   ushort *puVar1;
@@ -2392,7 +2396,7 @@ ulong msl_sub_00103ea0(int *param_1)
 }
 
 // 0x00103f00  size 0x1dc
-long msl_sub_00103f00(undefined8 param_1,undefined2 *param_2,long param_3)
+long maybe_std_wstreambuf_xsputn(undefined8 param_1,undefined2 *param_2,long param_3)
 
 {
   undefined2 uVar1;

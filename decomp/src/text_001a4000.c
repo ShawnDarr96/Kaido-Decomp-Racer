@@ -241,7 +241,7 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
 }
 
 // 0x001a4ed0  size 0x78
-long course_sub_001a4ed0(long param_1,short param_2)
+long course_step_sub_001a4ed0(long param_1,short param_2)
 
 {
   int iVar1;
@@ -356,7 +356,7 @@ int * Chunk_FindNext(undefined4 *param_1,int param_2,int param_3,int *param_4)
 }
 
 // 0x001a5130  size 0x8
-void course_sub_001a5130(void)
+void course_leaf_sub_001a5130(void)
 
 {
   return;
@@ -662,7 +662,7 @@ int Arena_Alloc(int param_1,int param_2)
 }
 
 // 0x001a59e0  size 0x8
-void course_sub_001a59e0(int param_1,undefined4 param_2)
+void Course_SetField_24(int param_1,undefined4 param_2)
 
 {
   *(undefined4 *)(param_1 + 0x24) = param_2;
@@ -670,14 +670,14 @@ void course_sub_001a59e0(int param_1,undefined4 param_2)
 }
 
 // 0x001a59f0  size 0x8
-undefined4 course_sub_001a59f0(int param_1)
+undefined4 Course_GetField_24(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x24);
 }
 
 // 0x001a5a00  size 0x40
-void course_sub_001a5a00(int param_1)
+void course_leaf_sub_001a5a00(int param_1)
 
 {
   int iVar1;
@@ -694,7 +694,7 @@ void course_sub_001a5a00(int param_1)
 }
 
 // 0x001a5a40  size 0x28
-void course_sub_001a5a40(int param_1)
+void course_leaf_sub_001a5a40(int param_1)
 
 {
   int iVar1;
@@ -708,7 +708,7 @@ void course_sub_001a5a40(int param_1)
 }
 
 // 0x001a5a70  size 0x8
-void course_sub_001a5a70(int param_1)
+void course_leaf_sub_001a5a70(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0;
@@ -716,7 +716,7 @@ void course_sub_001a5a70(int param_1)
 }
 
 // 0x001a5a80  size 0x20
-void course_sub_001a5a80(int param_1,undefined4 param_2,uint param_3)
+void course_leaf_sub_001a5a80(int param_1,undefined4 param_2,uint param_3)
 
 {
   *(undefined4 *)(param_1 + 0x18) = param_2;
@@ -726,7 +726,7 @@ void course_sub_001a5a80(int param_1,undefined4 param_2,uint param_3)
 }
 
 // 0x001a5aa0  size 0x30
-void course_sub_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
+void course_leaf_sub_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *param_1 = param_2;
@@ -743,7 +743,7 @@ void course_sub_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param
 }
 
 // 0x001a5ad0  size 0x50
-undefined4 course_sub_001a5ad0(void)
+undefined4 course_step_sub_001a5ad0(void)
 
 {
   char cVar1;
@@ -851,7 +851,7 @@ void Game_Init(void)
   ChangeThreadPriority(uVar1,5);
   maybe_Heap_Create(0x430750,0x1a80000,0);
   sceCdInit(0);
-  libcdvd_sub_00122948(2);
+  sceCdMmode(2);
   Iop_LoadModule(0x363700,0,0,0);
   Iop_LoadModule(0x363720,0,0,0);
   Iop_LoadModule(0x363740,0,0,0);
@@ -981,14 +981,14 @@ void Ptcl_EmitSphereA(undefined8 param_1,int param_2,undefined8 param_3,undefine
   maybe_Vu0_UnitMatrix(auStack_40);
   maybe_Vu0_RotMatrixZ(uVar1,auStack_40,auStack_40);
   maybe_Vu0_RotMatrixY(uVar2,auStack_40,auStack_40);
-  vu0math_sub_00132ba0(auStack_40,param_1,auStack_40);
+  sceVu0MulMatrix(auStack_40,param_1,auStack_40);
   uVar1 = maybe_Rand_Next(-*(float *)(param_2 + 0x1c) * 0.5,*(float *)(param_2 + 0x1c) * 0.5);
-  vu0math_sub_00132d50(auStack_60,auStack_40,&uStack_50);
-  vu0math_sub_00132b10(uVar1,auStack_70,auStack_60);
-  vu0math_sub_00132b70(param_3,param_3,auStack_70);
+  sceVu0ApplyMatrix(auStack_60,auStack_40,&uStack_50);
+  sceVu0ScaleVector(uVar1,auStack_70,auStack_60);
+  sceVu0AddVector(param_3,param_3,auStack_70);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
   fVar3 = (float)maybe_Rand_Next(-*(float *)(param_2 + 0x18));
-  vu0math_sub_00132b10((*(float *)(param_2 + 0x14) + fVar3) * 0.016666668,param_4,auStack_60);
+  sceVu0ScaleVector((*(float *)(param_2 + 0x14) + fVar3) * 0.016666668,param_4,auStack_60);
   return;
 }
 
@@ -1016,13 +1016,13 @@ void Ptcl_EmitSphereB(undefined8 param_1,int param_2,undefined8 param_3,undefine
   maybe_Vu0_UnitMatrix(auStack_40);
   maybe_Vu0_RotMatrixZ(uVar1,auStack_40,auStack_40);
   maybe_Vu0_RotMatrixY(uVar2,auStack_40,auStack_40);
-  vu0math_sub_00132ba0(auStack_40,param_1,auStack_40);
-  vu0math_sub_00132d50(auStack_60,auStack_40,&uStack_50);
-  vu0math_sub_00132b10(*(float *)(param_2 + 0x1c) * 0.5,auStack_70,auStack_60);
-  vu0math_sub_00132b70(param_3,param_3,auStack_70);
+  sceVu0MulMatrix(auStack_40,param_1,auStack_40);
+  sceVu0ApplyMatrix(auStack_60,auStack_40,&uStack_50);
+  sceVu0ScaleVector(*(float *)(param_2 + 0x1c) * 0.5,auStack_70,auStack_60);
+  sceVu0AddVector(param_3,param_3,auStack_70);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
   fVar3 = (float)maybe_Rand_Next(-*(float *)(param_2 + 0x18));
-  vu0math_sub_00132b10((*(float *)(param_2 + 0x14) + fVar3) * 0.016666668,param_4,auStack_60);
+  sceVu0ScaleVector((*(float *)(param_2 + 0x14) + fVar3) * 0.016666668,param_4,auStack_60);
   return;
 }
 
@@ -1043,9 +1043,9 @@ void Ptcl_RandomVelocity(undefined8 param_1,int param_2,undefined8 param_3,undef
   uStack_8 = param_5[2];
   maybe_Rand_Next(-*(float *)(param_2 + 0x10));
   maybe_Rand_Next(0xc0490fdb,0x40490fdb);
-  vu0math_sub_001328b0(&uStack_10,&uStack_10);
+  sceVu0Normalize(&uStack_10,&uStack_10);
   fVar1 = (float)maybe_Rand_Next(-*(float *)(param_2 + 0x18));
-  vu0math_sub_00132b10((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,&uStack_10);
+  sceVu0ScaleVector((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,&uStack_10);
   return;
 }
 
@@ -1063,7 +1063,7 @@ void Ptcl_EmitSmoke(undefined8 param_1,undefined8 param_2,undefined8 param_3,und
   uStack_10 = maybe_Rand_Next(-*(float *)(iVar1 + 0x1c) * 0.5,*(float *)(iVar1 + 0x1c) * 0.5);
   uStack_c = maybe_Rand_Next(-*(float *)(iVar1 + 0x1c) * 0.5,*(float *)(iVar1 + 0x1c) * 0.5);
   uStack_8 = maybe_Rand_Next(-*(float *)(iVar1 + 0x1c) * 0.5,*(float *)(iVar1 + 0x1c) * 0.5);
-  vu0math_sub_00132b70(param_3,param_3,&uStack_10);
+  sceVu0AddVector(param_3,param_3,&uStack_10);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
   Ptcl_RandomVelocity(param_1,param_2,param_3,param_4,&uStack_10,param_5);
   return;
@@ -1096,7 +1096,7 @@ void Ptcl_EmitDust(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   afStack_20[(int)(uVar3 + 1) % 3] = fVar2;
   fVar2 = (float)maybe_Rand_Next(-*(float *)(iVar1 + 0x1c) * 0.5,*(float *)(iVar1 + 0x1c) * 0.5);
   afStack_20[(int)(uVar3 + 2) % 3] = fVar2;
-  vu0math_sub_00132b70(param_3,param_3,afStack_20);
+  sceVu0AddVector(param_3,param_3,afStack_20);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
   Ptcl_RandomVelocity(param_1,param_2,param_3,param_4,afStack_20,param_5);
   return;
@@ -1139,7 +1139,7 @@ void Ptcl_EmitSparks(undefined8 param_1,undefined8 param_2,undefined8 param_3,un
   afStack_10[(int)(uVar3 + 1) % 3] = *(float *)(iVar1 + 0x1c) * 0.5 * fVar2;
   fVar2 = (float)maybe_Rand_Next(-*(float *)(iVar1 + 0x1c) * 0.5,*(float *)(iVar1 + 0x1c) * 0.5);
   afStack_10[(int)(uVar3 + 2) % 3] = fVar2;
-  vu0math_sub_00132b70(param_3,param_3,afStack_10);
+  sceVu0AddVector(param_3,param_3,afStack_10);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
   Ptcl_RandomVelocity(param_1,param_2,param_3,param_4,afStack_10,param_5);
   return;
@@ -1176,11 +1176,11 @@ void Ptcl_EmitConeA(undefined8 param_1,int param_2,undefined8 param_3,undefined8
   maybe_Vu0_RotMatrixZ(fVar1,auStack_40,auStack_40);
   maybe_Vu0_RotMatrixY(uVar2,auStack_40,auStack_40);
   if (param_5 == 0) {
-    vu0math_sub_00132ba0(auStack_40,param_1,auStack_40);
+    sceVu0MulMatrix(auStack_40,param_1,auStack_40);
   }
-  vu0math_sub_00132d50(auStack_60,auStack_40,&uStack_50);
+  sceVu0ApplyMatrix(auStack_60,auStack_40,&uStack_50);
   fVar1 = (float)maybe_Rand_Next(-*(float *)(param_2 + 0x18));
-  vu0math_sub_00132b10((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,auStack_60);
+  sceVu0ScaleVector((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,auStack_60);
   return;
 }
 
@@ -1209,7 +1209,7 @@ void Ptcl_EmitRing(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   fVar4 = (float)cosf(uVar2);
   fStack_8 = fVar3 * fVar4 * 0.5;
   if (param_5 == 0) {
-    vu0math_sub_00132d50(&fStack_10,param_1,&fStack_10);
+    sceVu0ApplyMatrix(&fStack_10,param_1,&fStack_10);
   }
   pfVar1 = (float *)param_3;
   *pfVar1 = *pfVar1 + fStack_10;
@@ -1242,7 +1242,7 @@ void Ptcl_EmitRingB(undefined8 param_1,undefined8 param_2,undefined8 param_3,und
   fVar3 = (float)cosf(uVar2);
   fStack_8 = *(float *)((int)param_2 + 0x1c) * fVar3 * 0.5;
   if (param_5 == 0) {
-    vu0math_sub_00132d50(&fStack_10,param_1,&fStack_10);
+    sceVu0ApplyMatrix(&fStack_10,param_1,&fStack_10);
   }
   pfVar1 = (float *)param_3;
   *pfVar1 = *pfVar1 + fStack_10;
@@ -1283,11 +1283,11 @@ void Ptcl_EmitConeB(undefined8 param_1,int param_2,undefined8 param_3,undefined8
   maybe_Vu0_RotMatrixZ(fVar1,auStack_40,auStack_40);
   maybe_Vu0_RotMatrixY(uVar2,auStack_40,auStack_40);
   if (param_5 == 0) {
-    vu0math_sub_00132ba0(auStack_40,param_1,auStack_40);
+    sceVu0MulMatrix(auStack_40,param_1,auStack_40);
   }
-  vu0math_sub_00132d50(auStack_60,auStack_40,&uStack_50);
+  sceVu0ApplyMatrix(auStack_60,auStack_40,&uStack_50);
   fVar1 = (float)maybe_Rand_Next(-*(float *)(param_2 + 0x18));
-  vu0math_sub_00132b10((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,auStack_60);
+  sceVu0ScaleVector((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,auStack_60);
   return;
 }
 
@@ -1312,7 +1312,7 @@ void Ptcl_EmitExhaust(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
   fVar2 = *(float *)((int)param_2 + 0x1c);
   fStack_8 = (float)maybe_Rand_Next(-fVar2 * 0.5,fVar2 * 0.5);
   if (param_5 == 0) {
-    vu0math_sub_00132d50(&fStack_10,param_1,&fStack_10);
+    sceVu0ApplyMatrix(&fStack_10,param_1,&fStack_10);
   }
   pfVar1 = (float *)param_3;
   *pfVar1 = *pfVar1 + fStack_10;
@@ -1349,7 +1349,7 @@ void Ptcl_EmitBackfire(undefined8 param_1,undefined8 param_2,undefined8 param_3,
   fVar3 = (float)maybe_Rand_Next(-fVar3 * 0.5,fVar3 * 0.5);
   afStack_20[(uVar2 + 1 & 1) * 2] = fVar3;
   if (param_5 == 0) {
-    vu0math_sub_00132d50(afStack_20,param_1,afStack_20);
+    sceVu0ApplyMatrix(afStack_20,param_1,afStack_20);
   }
   pfVar1 = (float *)param_3;
   *pfVar1 = *pfVar1 + afStack_20[0];
@@ -1391,11 +1391,11 @@ void Ptcl_EmitConeC(undefined8 param_1,int param_2,undefined8 param_3,undefined8
   maybe_Vu0_RotMatrixZ(fVar1,auStack_40,auStack_40);
   maybe_Vu0_RotMatrixY(uVar2,auStack_40,auStack_40);
   if (param_5 == 0) {
-    vu0math_sub_00132ba0(auStack_40,param_1,auStack_40);
+    sceVu0MulMatrix(auStack_40,param_1,auStack_40);
   }
-  vu0math_sub_00132d50(auStack_60,auStack_40,&uStack_50);
+  sceVu0ApplyMatrix(auStack_60,auStack_40,&uStack_50);
   fVar1 = (float)maybe_Rand_Next(-*(float *)(param_2 + 0x18));
-  vu0math_sub_00132b10((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,auStack_60);
+  sceVu0ScaleVector((*(float *)(param_2 + 0x14) + fVar1) * 0.016666668,param_4,auStack_60);
   return;
 }
 
@@ -1464,7 +1464,7 @@ void Ptcl_Spawn(int param_1,undefined8 param_2,undefined8 param_3,long param_4)
   fStack_78 = pfVar1[0x26];
   *(undefined4 *)(param_1 + 8) = 1;
   if (param_4 == 0) {
-    vu0math_sub_00132ae0(param_1 + 0x20);
+    sceVu0CopyVector(param_1 + 0x20);
   }
   else {
     *(undefined4 *)(param_1 + 0x28) = 0;
@@ -1586,8 +1586,8 @@ void PtclSys_Draw(int param_1)
           Obj_SetBlend(&uStack_210,5,*(int *)(param_1 + 0x138),0);
         }
         uStack_204 = *(undefined4 *)(*(int *)(param_1 + 0x24) + 0xac);
-        vu0math_sub_00132ae0(auStack_1c0,param_1 + 0xc0);
-        vu0math_sub_00132c20(auStack_200,param_1 + 0xd0);
+        sceVu0CopyVector(auStack_1c0,param_1 + 0xc0);
+        sceVu0CopyMatrix(auStack_200,param_1 + 0xd0);
         uStack_1b0 = 0x3f800000;
         Obj_SetTexture(&uStack_210,*(undefined4 *)(param_1 + 0xb4),*(undefined4 *)(param_1 + 0xb0),
                        param_1 + 0x90);
@@ -1630,9 +1630,9 @@ void PtclSys_SetEmitter(int param_1,undefined4 param_2,undefined4 *param_3,long 
     *(undefined4 *)(param_1 + 300) = *(undefined4 *)(*(int *)(param_1 + 0x24) + 0x24);
     *(undefined4 *)(param_1 + 0x130) = *(undefined4 *)(*(int *)(param_1 + 0x24) + 0x34);
     *(undefined4 *)(param_1 + 0x114) = *(undefined4 *)(*(int *)(param_1 + 0x24) + 0xac);
-    vu0math_sub_00132ae0(param_1 + 0x40,*(int *)(param_1 + 0x24) + 0x40);
-    vu0math_sub_00132ae0(param_1 + 0x50,*(int *)(param_1 + 0x24) + 0x50);
-    vu0math_sub_00132ae0(param_1 + 0x30,*(int *)(param_1 + 0x24) + 0x60);
+    sceVu0CopyVector(param_1 + 0x40,*(int *)(param_1 + 0x24) + 0x40);
+    sceVu0CopyVector(param_1 + 0x50,*(int *)(param_1 + 0x24) + 0x50);
+    sceVu0CopyVector(param_1 + 0x30,*(int *)(param_1 + 0x24) + 0x60);
     *(undefined4 *)(param_1 + 0x80) = 0x3f000000;
     *(undefined4 *)(param_1 + 0x84) = 0x3e99999a;
   }
@@ -1754,7 +1754,7 @@ void PtclSys_Update(undefined8 param_1)
   
   iVar4 = (int)param_1;
   if (*(int *)(iVar4 + 0x114) != 0) {
-    vu0math_sub_00133020(auStack_40,iVar4 + 0xd0);
+    sceVu0InversMatrix(auStack_40,iVar4 + 0xd0);
     uStack_4 = 0x3f800000;
     uStack_8 = 0;
     uStack_c = 0;
@@ -1763,11 +1763,11 @@ void PtclSys_Update(undefined8 param_1)
       iVar3 = *(int *)(iVar4 + 0x24);
     }
     else {
-      vu0math_sub_00132d50(auStack_50,auStack_40,iVar4 + 0x40);
+      sceVu0ApplyMatrix(auStack_50,auStack_40,iVar4 + 0x40);
       iVar3 = *(int *)(iVar4 + 0x24);
     }
     if (*(int *)(iVar3 + 0xa0) != 0) {
-      vu0math_sub_00132d50(auStack_60,auStack_40,iVar4 + 0x30);
+      sceVu0ApplyMatrix(auStack_60,auStack_40,iVar4 + 0x30);
     }
   }
   PtclSys_ResetBounds(param_1);
@@ -1787,7 +1787,7 @@ void PtclSys_Update(undefined8 param_1)
           printf(0x3638e0);
         }
         *(int *)(iVar3 + 0x14) = *(int *)(iVar3 + 0x14) + 1;
-        vu0math_sub_00132ae0(iVar3 + 0x30,iVar3 + 0x20);
+        sceVu0CopyVector(iVar3 + 0x30,iVar3 + 0x20);
         if (*(int *)(iVar3 + 0x10) < *(int *)(iVar3 + 0x14)) {
           iVar10 = *(int *)(iVar3 + 4);
           *(undefined4 *)(iVar3 + 8) = 0;
@@ -1799,16 +1799,16 @@ void PtclSys_Update(undefined8 param_1)
           *(char *)(iVar3 + 0x60) = *(char *)(iVar3 + 0x60) + *(char *)(iVar3 + 0x61);
           if (*(int *)(*(int *)(iVar4 + 0x24) + 0x9c) != 0) {
             if (*(int *)(iVar4 + 0x114) == 0) {
-              vu0math_sub_00132b10(*(undefined4 *)(iVar4 + 0x4c),auStack_80,iVar4 + 0x40);
+              sceVu0ScaleVector(*(undefined4 *)(iVar4 + 0x4c),auStack_80,iVar4 + 0x40);
             }
             else {
-              vu0math_sub_00132b10(*(undefined4 *)(iVar4 + 0x4c),auStack_80,auStack_50);
+              sceVu0ScaleVector(*(undefined4 *)(iVar4 + 0x4c),auStack_80,auStack_50);
             }
-            vu0math_sub_00132b70(&uStack_70,&uStack_70,auStack_80);
+            sceVu0AddVector(&uStack_70,&uStack_70,auStack_80);
           }
           if (*(int *)(*(int *)(iVar4 + 0x24) + 0xa4) != 0) {
-            vu0math_sub_00132b50(auStack_90,iVar3 + 0x20,iVar4 + 0x50);
-            fVar11 = (float)vu0math_sub_00132ab0(auStack_90,auStack_90);
+            sceVu0SubVector(auStack_90,iVar3 + 0x20,iVar4 + 0x50);
+            fVar11 = (float)sceVu0InnerProduct(auStack_90,auStack_90);
             fVar11 = SQRT(fVar11);
             fVar11 = fVar11 * fVar11 * fVar11;
             if (fVar11 == 0.0) {
@@ -1821,8 +1821,8 @@ void PtclSys_Update(undefined8 param_1)
             if (fVar11 < -1.0) {
               fVar11 = -1.0;
             }
-            vu0math_sub_00132b10(fVar11,auStack_90,auStack_90);
-            vu0math_sub_00132b70(&uStack_70,&uStack_70,auStack_90);
+            sceVu0ScaleVector(fVar11,auStack_90,auStack_90);
+            sceVu0AddVector(&uStack_70,&uStack_70,auStack_90);
           }
           if (*(int *)(*(int *)(iVar4 + 0x24) + 0xa0) != 0) {
             fVar11 = *(float *)(iVar4 + 0x3c) / *(float *)(iVar3 + 0x18);
@@ -1830,15 +1830,15 @@ void PtclSys_Update(undefined8 param_1)
               fVar11 = 0.05;
             }
             if (*(int *)(iVar4 + 0x114) == 0) {
-              vu0math_sub_00132b10(fVar11,auStack_a0,iVar4 + 0x30);
+              sceVu0ScaleVector(fVar11,auStack_a0,iVar4 + 0x30);
             }
             else {
-              vu0math_sub_00132b10(fVar11,auStack_a0,auStack_60);
+              sceVu0ScaleVector(fVar11,auStack_a0,auStack_60);
             }
-            vu0math_sub_00132b70(&uStack_70,&uStack_70,auStack_a0);
+            sceVu0AddVector(&uStack_70,&uStack_70,auStack_a0);
           }
           if (*(int *)(*(int *)(iVar4 + 0x24) + 0xa8) != 0) {
-            fVar11 = (float)vu0math_sub_00132ab0(iVar3 + 0x40,iVar3 + 0x40);
+            fVar11 = (float)sceVu0InnerProduct(iVar3 + 0x40,iVar3 + 0x40);
             fVar11 = SQRT(fVar11);
             fVar9 = (float)maybe_Rand_Next(-*(float *)(iVar4 + 0x84));
             fVar9 = *(float *)(iVar4 + 0x80) + fVar9;
@@ -1850,12 +1850,12 @@ void PtclSys_Update(undefined8 param_1)
               if (fVar11 < fVar9) {
                 fVar9 = fVar11;
               }
-              vu0math_sub_00132b10(-fVar9 / fVar11,auStack_b0,iVar3 + 0x40);
-              vu0math_sub_00132b70(&uStack_70,&uStack_70,auStack_b0);
+              sceVu0ScaleVector(-fVar9 / fVar11,auStack_b0,iVar3 + 0x40);
+              sceVu0AddVector(&uStack_70,&uStack_70,auStack_b0);
             }
           }
-          vu0math_sub_00132b70(iVar3 + 0x40,iVar3 + 0x40,&uStack_70);
-          vu0math_sub_00132b70(iVar3 + 0x20,iVar3 + 0x20,iVar3 + 0x40);
+          sceVu0AddVector(iVar3 + 0x40,iVar3 + 0x40,&uStack_70);
+          sceVu0AddVector(iVar3 + 0x20,iVar3 + 0x20,iVar3 + 0x40);
           *(undefined4 *)(iVar3 + 0x2c) = 0x3f800000;
           *(undefined4 *)(iVar3 + 0x4c) = 0x3f800000;
           if (*(float *)(iVar3 + 0x20) < *(float *)(iVar4 + 0x90)) {
@@ -1935,11 +1935,11 @@ LAB_001a8580:
             *(undefined4 *)(iVar3 + 0xc) = *(undefined4 *)(*(int *)(iVar3 + 0x84) + 4);
           }
 LAB_001a8620:
-          vu0math_sub_00132ae0(*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30,iVar3 + 0x20);
+          sceVu0CopyVector(*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30,iVar3 + 0x20);
           *(undefined4 *)(*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30 + 0xc) =
                *(undefined4 *)(iVar3 + 0xc);
-          vu0math_sub_00132ae0
-                    (*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30 + 0x10,iVar3 + 0x50);
+          sceVu0CopyVector(*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30 + 0x10,
+                           iVar3 + 0x50);
           *(undefined4 *)(*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30 + 0x20) =
                *(undefined4 *)((uint)*(byte *)(iVar3 + 0x60) * 4 + 0x4308e0);
           *(undefined4 *)(*(int *)(iVar4 + 0xb0) + *(int *)(iVar4 + 0xb4) * 0x30 + 0x24) =

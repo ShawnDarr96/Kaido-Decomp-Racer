@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002bc0b0  size 0x58
-undefined4 script_sub_002bc0b0(int param_1)
+undefined4 script_leaf_sub_002bc0b0(int param_1)
 
 {
   undefined4 uVar1;
@@ -27,21 +27,21 @@ undefined4 script_sub_002bc0b0(int param_1)
 }
 
 // 0x002bc110  size 0x20
-undefined2 script_sub_002bc110(int param_1)
+undefined2 script_leaf_sub_002bc110(int param_1)
 
 {
   return *(undefined2 *)(*(int *)(iRam0036f7e4 + 8) + param_1 * 0xc);
 }
 
 // 0x002bc130  size 0x1c
-int script_sub_002bc130(int param_1)
+int script_leaf_sub_002bc130(int param_1)
 
 {
   return *(int *)(iRam0036f7e4 + 8) + param_1 * 0xc;
 }
 
 // 0x002bc150  size 0x50
-bool script_sub_002bc150(long param_1)
+bool script_step_sub_002bc150(long param_1)
 
 {
   int iVar1;
@@ -54,7 +54,7 @@ bool script_sub_002bc150(long param_1)
 }
 
 // 0x002bc1a0  size 0x50
-bool script_sub_002bc1a0(long param_1)
+bool script_step_sub_002bc1a0(long param_1)
 
 {
   bool bVar1;
@@ -71,14 +71,14 @@ bool script_sub_002bc1a0(long param_1)
 }
 
 // 0x002bc1f0  size 0x8
-undefined4 script_sub_002bc1f0(void)
+undefined4 script_leaf_sub_002bc1f0(void)
 
 {
   return uRam0036f7e0;
 }
 
 // 0x002bc200  size 0x1ec
-void script_sub_002bc200(void)
+void script_exit_sub_002bc200(void)
 
 {
   int iVar1;
@@ -99,8 +99,8 @@ void script_sub_002bc200(void)
   iVar2 = 0;
   do {
     iVar1 = iRam0036f7e0 + iVar2;
-    script_sub_002b1820(iVar1 + 0x158);
-    menuscr_sub_002afbd0(iVar1 + 0x1ec);
+    script_exit_sub_002b1820(iVar1 + 0x158);
+    menuscr_exit_sub_002afbd0(iVar1 + 0x1ec);
     if (*(int *)(iVar1 + 0x2d8) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x2d8) = 0;
@@ -124,8 +124,8 @@ void script_sub_002bc200(void)
   iVar2 = 0;
   do {
     iVar1 = iRam0036f7e0 + iVar2;
-    script_sub_002b1820(iVar1 + 0x6e98);
-    menuscr_sub_002afbd0(iVar1 + 0x6f2c);
+    script_exit_sub_002b1820(iVar1 + 0x6e98);
+    menuscr_exit_sub_002afbd0(iVar1 + 0x6f2c);
     if (*(int *)(iVar1 + 0x7018) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x7018) = 0;
@@ -170,7 +170,7 @@ void script_sub_002bc200(void)
 // 0x002bc3f0  size 0x33c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void script_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
+void script_load_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
 
 {
   uint uVar1;
@@ -246,14 +246,14 @@ void script_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
   iVar4 = 0;
   iVar7 = 0;
   do {
-    script_sub_002bc9e0(iRam0036f7e0 + iVar7 + 0x158,param_1,param_1);
+    script_step_sub_002bc9e0(iRam0036f7e0 + iVar7 + 0x158,param_1,param_1);
     iVar4 = iVar4 + 1;
     iVar7 = iVar7 + 0xda8;
   } while (iVar4 < 8);
   iVar4 = 0;
   iVar7 = 0;
   do {
-    script_sub_002bc9e0(iRam0036f7e0 + iVar7 + 0x6e98,0x430750,param_1);
+    script_step_sub_002bc9e0(iRam0036f7e0 + iVar7 + 0x6e98,0x430750,param_1);
     iVar4 = iVar4 + 1;
     iVar7 = iVar7 + 0xda8;
   } while (iVar4 < 2);
@@ -277,7 +277,7 @@ void script_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
 // 0x002bc730  size 0x160
 /* WARNING: Removing unreachable block (ram,0x002bc7b0) */
 
-void script_sub_002bc730(int param_1,int param_2)
+void script_leaf_sub_002bc730(int param_1,int param_2)
 
 {
   bool bVar1;
@@ -334,7 +334,7 @@ void script_sub_002bc730(int param_1,int param_2)
 }
 
 // 0x002bc8a0  size 0x130
-void script_sub_002bc8a0(int param_1,short param_2,short param_3)
+void script_leaf_sub_002bc8a0(int param_1,short param_2,short param_3)
 
 {
   short *psVar1;
@@ -393,10 +393,10 @@ LAB_002bc8d4:
 }
 
 // 0x002bc9e0  size 0x114
-void script_sub_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
+void script_step_sub_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  script_sub_002b19d0();
+  script_step_sub_002b19d0();
   Mem_Set16(param_1 + 0x94,0,0x10);
   Mem_Set16(param_1 + 0xa4,0,0x40);
   Mem_Set16(param_1 + 0xe4,0,0x18);
@@ -430,7 +430,7 @@ void script_sub_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x002bcb00  size 0x1d4
-void script_sub_002bcb00(int param_1)
+void script_step_sub_002bcb00(int param_1)
 
 {
   int iVar1;
@@ -468,32 +468,32 @@ void script_sub_002bcb00(int param_1)
   cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x03') {
     if (iRam0036f7f0 == 0) {
-      replayui_sub_002dbf20(param_1 + 0x40c,2);
+      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2);
     }
     else {
-      replayui_sub_002dbf20(param_1 + 0x40c,2,5);
+      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,5);
     }
   }
   else if (cVar2 == '\x02') {
     if (iRam0036f7f0 == 0) {
-      replayui_sub_002dbf20(param_1 + 0x40c,2,2);
+      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,2);
     }
     else {
-      replayui_sub_002dbf20(param_1 + 0x40c,2,4);
+      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,4);
     }
   }
   else {
-    replayui_sub_002dbf20(param_1 + 0x40c,2,1);
+    replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,1);
   }
-  showroom_sub_002d8f50(0x2d9590,0x2d9780,0x2d8f70);
+  showroom_leaf_sub_002d8f50(0x2d9590,0x2d9780,0x2d8f70);
   *(undefined4 *)(param_1 + 0xb88) = 0;
-  replayui_sub_002dbc70(param_1 + 0x40c);
-  replayui_sub_002dbb80(param_1 + 0x40c);
+  replayui_anim_sub_002dbc70(param_1 + 0x40c);
+  replayui_step_sub_002dbb80(param_1 + 0x40c);
   return;
 }
 
 // 0x002bcce0  size 0x11c
-int script_sub_002bcce0(int *param_1,int *param_2,int *param_3)
+int script_leaf_sub_002bcce0(int *param_1,int *param_2,int *param_3)
 
 {
   int iVar1;
@@ -521,7 +521,7 @@ int script_sub_002bcce0(int *param_1,int *param_2,int *param_3)
 }
 
 // 0x002bce00  size 0x4d0
-void script_sub_002bce00(char *param_1)
+void script_step_sub_002bce00(char *param_1)
 
 {
   int iVar1;
@@ -683,7 +683,7 @@ void script_sub_002bce00(char *param_1)
 }
 
 // 0x002bd2d0  size 0x834
-void result_sub_002bd2d0(int param_1)
+void result_draw_sub_002bd2d0(int param_1)
 
 {
   byte bVar1;
@@ -763,7 +763,7 @@ void result_sub_002bd2d0(int param_1)
       goto LAB_002bd944;
     }
     pcVar6 = (char *)GameState_Elem_f0_xcc(0);
-    result_sub_002bdb10(&uStack_18);
+    result_leaf_sub_002bdb10(&uStack_18);
     if (*pcVar6 == '\x01') {
       uStack_18 = uStack_18 & 0xfffffffd | 2;
     }
@@ -835,7 +835,7 @@ void result_sub_002bd2d0(int param_1)
     else if (cVar4 == '\x01') {
       uStack_18 = uStack_18 & 0xf000001e | 1 | (*(uint *)(param_1 + 0x150) & 0x7fffff) << 5;
     }
-    password_sub_002dddc0(auStack_310,&uStack_18,acStack_10);
+    password_step_sub_002dddc0(auStack_310,&uStack_18,acStack_10);
     uVar9 = 0;
     pcVar6 = acStack_10;
     do {
@@ -880,7 +880,7 @@ LAB_002bd944:
 }
 
 // 0x002bdb10  size 0xc
-void result_sub_002bdb10(undefined4 *param_1)
+void result_leaf_sub_002bdb10(undefined4 *param_1)
 
 {
   param_1[1] = 0;
@@ -889,7 +889,7 @@ void result_sub_002bdb10(undefined4 *param_1)
 }
 
 // 0x002bdb20  size 0x984
-void result_sub_002bdb20(int param_1)
+void result_draw_sub_002bdb20(int param_1)
 
 {
   undefined4 uVar1;
@@ -1228,7 +1228,7 @@ LAB_002bdc40:
 }
 
 // 0x002be4b0  size 0x5a4
-void result_sub_002be4b0(int param_1)
+void result_draw_sub_002be4b0(int param_1)
 
 {
   char cVar1;
@@ -1431,7 +1431,7 @@ LAB_002be884:
 }
 
 // 0x002bea60  size 0x930
-void result_sub_002bea60(int param_1)
+void result_draw_sub_002bea60(int param_1)
 
 {
   undefined4 uVar1;
@@ -1759,7 +1759,7 @@ LAB_002beeec:
 }
 
 // 0x002bf390  size 0x60c
-void result_sub_002bf390(int param_1)
+void result_draw_sub_002bf390(int param_1)
 
 {
   undefined4 uVar1;
@@ -1982,7 +1982,7 @@ LAB_002bf718:
 }
 
 // 0x002bf9a0  size 0x314
-void result_sub_002bf9a0(int param_1)
+void result_draw_sub_002bf9a0(int param_1)
 
 {
   undefined4 uVar1;
@@ -2010,7 +2010,7 @@ void result_sub_002bf9a0(int param_1)
   int iStack_28;
   
   uVar1 = *(undefined4 *)(param_1 + 4);
-  uVar3 = password_sub_002df230();
+  uVar3 = password_step_sub_002df230();
   switch(uVar3) {
   case 0:
     unaff_s0 = 7;
@@ -2101,7 +2101,7 @@ void result_sub_002bf9a0(int param_1)
 }
 
 // 0x002bfcc0  size 0x1d4
-void result_sub_002bfcc0(int param_1)
+void result_draw_sub_002bfcc0(int param_1)
 
 {
   undefined8 uVar1;
@@ -2114,16 +2114,16 @@ void result_sub_002bfcc0(int param_1)
   
   switch((&DAT_0032f535)[(uint)bRam0036f810 * 6]) {
   case 0:
-    result_sub_002bf9a0();
+    result_draw_sub_002bf9a0();
     break;
   case 1:
-    result_sub_002bf390();
+    result_draw_sub_002bf390();
     break;
   case 2:
-    result_sub_002bea60();
+    result_draw_sub_002bea60();
     break;
   case 3:
-    result_sub_002be4b0();
+    result_draw_sub_002be4b0();
     break;
   case 4:
     uVar1 = 8;
@@ -2149,7 +2149,7 @@ void result_sub_002bfcc0(int param_1)
     }
     break;
   case 5:
-    result_sub_002bdb20();
+    result_draw_sub_002bdb20();
     break;
   case 6:
     if (*(int *)(param_1 + 0x32c) == 0) {
@@ -2167,7 +2167,7 @@ void result_sub_002bfcc0(int param_1)
 }
 
 // 0x002bfea0  size 0x2b8
-void result_sub_002bfea0(int param_1)
+void result_draw_sub_002bfea0(int param_1)
 
 {
   int iVar1;

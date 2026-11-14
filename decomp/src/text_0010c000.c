@@ -235,7 +235,7 @@ void maybe_Mpeg_ByteAlign(undefined8 param_1)
 }
 
 // 0x0010c6f8  size 0x64
-undefined8 libmpeg_sub_0010c6f8(undefined8 param_1)
+undefined8 maybe_Mpeg_PictureCodingExtension(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -282,7 +282,7 @@ undefined4 maybe_Mpeg_GetHeader(undefined8 param_1)
         return 0;
       }
       if (uVar2 == 0x1b8) {
-        libmpeg_sub_0010cd20(param_1);
+        maybe_Mpeg_GopHeader(param_1);
         iVar1 = *(int *)(iVar3 + 0x10a0);
       }
       else {
@@ -332,7 +332,7 @@ void maybe_Mpeg_PictureHeader(undefined8 param_1)
   }
   maybe_Mpeg_ExtraBitInformation(param_1);
   maybe_Mpeg_ExtensionAndUserData(param_1);
-  libmpeg_sub_0010cca8(param_1,uVar2);
+  maybe_Mpeg_IsFrameComplete(param_1,uVar2);
   return;
 }
 
@@ -352,10 +352,10 @@ void maybe_Mpeg_ExtensionAndUserData(undefined8 param_1)
   undefined *puStack_58;
   
   uStack_80 = _PTR_LAB_0035ed60;
-  uStack_78 = _PTR_libmpeg_sub_00110bf8_0035ed68;
-  uStack_70 = _PTR_libmpeg_sub_0010cf80_0035ed70;
+  uStack_78 = _PTR_maybe_Mpeg_QuantMatrixExt_0035ed68;
+  uStack_70 = _PTR_maybe_Mpeg_SequenceDisplayExtension_0035ed70;
   uStack_68 = _PTR_LAB_0035ed78;
-  uStack_60 = _PTR_libmpeg_sub_0010ca70_0035ed80;
+  uStack_60 = _PTR_maybe_Mpeg_PictureCodingExt2_0035ed80;
   puStack_58 = PTR_LAB_0035ed88;
   maybe_Mpeg_ByteAlign();
   while( true ) {
@@ -376,7 +376,7 @@ void maybe_Mpeg_ExtensionAndUserData(undefined8 param_1)
 }
 
 // 0x0010ca70  size 0x1f0
-void libmpeg_sub_0010ca70(undefined8 param_1)
+void maybe_Mpeg_PictureCodingExt2(undefined8 param_1)
 
 {
   uint uVar1;
@@ -447,7 +447,7 @@ void maybe_Mpeg_ExtraBitInformation(undefined8 param_1)
 }
 
 // 0x0010cca8  size 0x74
-void libmpeg_sub_0010cca8(int param_1,long param_2)
+void maybe_Mpeg_IsFrameComplete(int param_1,long param_2)
 
 {
   bool bVar1;
@@ -493,7 +493,7 @@ LAB_0010cd08:
 }
 
 // 0x0010cd20  size 0xa0
-void libmpeg_sub_0010cd20(undefined8 param_1)
+void maybe_Mpeg_GopHeader(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -552,7 +552,7 @@ void maybe_Mpeg_QuantMatrixExtension(undefined8 param_1)
 }
 
 // 0x0010ce88  size 0xf4
-void libmpeg_sub_0010ce88(undefined8 param_1)
+void maybe_Mpeg_PictureDisplayExtension(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -599,7 +599,7 @@ LAB_0010cef0:
 }
 
 // 0x0010cf80  size 0x90
-void libmpeg_sub_0010cf80(undefined8 param_1)
+void maybe_Mpeg_SequenceDisplayExtension(undefined8 param_1)
 
 {
   maybe_Mpeg_GetBits(param_1,1);
@@ -661,7 +661,7 @@ LAB_0010d0ac:
 }
 
 // 0x0010d0e0  size 0x90
-void libmpeg_sub_0010d0e0(undefined8 param_1,int param_2,long param_3)
+void maybe_Mpeg_OutputPicture(undefined8 param_1,int param_2,long param_3)
 
 {
   undefined4 uVar1;
@@ -678,7 +678,7 @@ void libmpeg_sub_0010d0e0(undefined8 param_1,int param_2,long param_3)
       else {
         uVar1 = *(undefined4 *)(iVar4 + 0x1d0);
       }
-      libmpeg_sub_0010d8f8(param_1,uVar1,param_2 + -1);
+      maybe_Mpeg_OutputFrame(param_1,uVar1,param_2 + -1);
       iVar3 = *(int *)(iVar4 + 0x110);
       goto LAB_0010d150;
     }
@@ -690,7 +690,7 @@ void libmpeg_sub_0010d0e0(undefined8 param_1,int param_2,long param_3)
       uVar1 = *(undefined4 *)(iVar4 + 0x1e0);
       uVar2 = *(undefined4 *)(iVar4 + 0x1f0);
     }
-    libmpeg_sub_0010da08(param_1,uVar1,uVar2,param_2 + -1);
+    maybe_Mpeg_OutputField(param_1,uVar1,uVar2,param_2 + -1);
   }
   iVar3 = *(int *)(iVar4 + 0x110);
 LAB_0010d150:
@@ -701,7 +701,7 @@ LAB_0010d150:
 }
 
 // 0x0010d170  size 0x2b4
-bool libmpeg_sub_0010d170(int param_1,long param_2)
+bool maybe_Mpeg_ReorderFrames(int param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -907,7 +907,7 @@ bool maybe_Mpeg_CheckBufferSize(undefined8 param_1,int param_2)
 }
 
 // 0x0010d4c8  size 0x290
-void libmpeg_sub_0010d4c8(int param_1,uint *param_2)
+void maybe_Mpeg_SetupCscDma(int param_1,uint *param_2)
 
 {
   uint uVar1;
@@ -1000,7 +1000,8 @@ LAB_0010d59c:
 }
 
 // 0x0010d780  size 0x174
-void libmpeg_sub_0010d780(int param_1,int param_2,long *param_3,undefined8 *param_4,ulong *param_5)
+void maybe_Mpeg_ComputeTimestamp
+               (int param_1,int param_2,long *param_3,undefined8 *param_4,ulong *param_5)
 
 {
   uint uVar1;
@@ -1067,7 +1068,7 @@ void libmpeg_sub_0010d780(int param_1,int param_2,long *param_3,undefined8 *para
 }
 
 // 0x0010d8f8  size 0x138
-void libmpeg_sub_0010d8f8(undefined8 param_1,undefined8 param_2)
+void maybe_Mpeg_OutputFrame(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1077,7 +1078,7 @@ void libmpeg_sub_0010d8f8(undefined8 param_1,undefined8 param_2)
   
   iVar3 = (int)param_1;
   iVar4 = *(int *)(iVar3 + 0x870);
-  libmpeg_sub_0010d780(param_1,param_2,iVar4 + 0x10,iVar4 + 0x18,iVar4 + 0x20);
+  maybe_Mpeg_ComputeTimestamp(param_1,param_2,iVar4 + 0x10,iVar4 + 0x18,iVar4 + 0x20);
   lVar2 = *(long *)(*(int *)(iVar3 + 0x870) + 0x20);
   *(undefined4 *)(iVar3 + 0x98) = *(undefined4 *)(*(int *)(iVar3 + 0x870) + 0x10);
   iVar4 = (int)param_2;
@@ -1096,7 +1097,7 @@ void libmpeg_sub_0010d8f8(undefined8 param_1,undefined8 param_2)
     return;
   }
   if (*(int *)(iVar3 + 200) == 0) {
-    libmpeg_sub_0010d4c8(param_1,param_2);
+    maybe_Mpeg_SetupCscDma(param_1,param_2);
   }
   else {
     maybe_Ipu_ConvertPicture(param_1);
@@ -1110,7 +1111,7 @@ void libmpeg_sub_0010d8f8(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0010da08  size 0x1b8
-void libmpeg_sub_0010da08(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void maybe_Mpeg_OutputField(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uVar1;
@@ -1136,12 +1137,12 @@ void libmpeg_sub_0010da08(undefined8 param_1,undefined8 param_2,undefined8 param
     uVar9 = param_2;
   }
   iVar6 = *(int *)(iVar5 + 0x870);
-  libmpeg_sub_0010d780(param_1,uVar8,iVar6 + 0x10,iVar6 + 0x18,iVar6 + 0x20);
+  maybe_Mpeg_ComputeTimestamp(param_1,uVar8,iVar6 + 0x10,iVar6 + 0x18,iVar6 + 0x20);
   iVar6 = *(int *)(iVar5 + 0x870);
   uVar1 = *(undefined4 *)(iVar6 + 0x10);
   *(undefined8 *)(iVar5 + 0xa0) = 1;
   *(undefined4 *)(iVar5 + 0x98) = uVar1;
-  libmpeg_sub_0010d780(param_1,uVar9,iVar6 + 0x28,iVar6 + 0x30,iVar6 + 0x38);
+  maybe_Mpeg_ComputeTimestamp(param_1,uVar9,iVar6 + 0x28,iVar6 + 0x30,iVar6 + 0x38);
   iVar6 = *(int *)(iVar5 + 0x870);
   uVar1 = *(undefined4 *)(iVar6 + 0x28);
   *(undefined8 *)(iVar5 + 0xa0) = 1;
@@ -1165,7 +1166,7 @@ void libmpeg_sub_0010da08(undefined8 param_1,undefined8 param_2,undefined8 param
   }
   *(int *)(iVar6 + 0x10) = *(int *)(iVar6 + 0x10) << 1;
   if (*(int *)(iVar5 + 200) == 0) {
-    libmpeg_sub_0010d4c8(param_1,param_2);
+    maybe_Mpeg_SetupCscDma(param_1,param_2);
     iVar7 = *(int *)(iVar6 + 0x10);
   }
   else {
@@ -1182,7 +1183,7 @@ void libmpeg_sub_0010da08(undefined8 param_1,undefined8 param_2,undefined8 param
 }
 
 // 0x0010dbc0  size 0x16c
-void libmpeg_sub_0010dbc0(int param_1)
+void maybe_Mpeg_KickMotionComp(int param_1)
 
 {
   int iVar1;
@@ -1242,7 +1243,7 @@ void maybe_Ipu_DmaFromStart(uint param_1,int param_2)
 }
 
 // 0x0010ddb8  size 0x128
-void libmpeg_sub_0010ddb8(undefined8 param_1,uint param_2,ulong param_3)
+void maybe_Ipu_CscLoop(undefined8 param_1,uint param_2,ulong param_3)
 
 {
   int iVar1;
@@ -1369,7 +1370,7 @@ void maybe_Ipu_ConvertPicture(undefined8 param_1,uint *param_2)
       uVar6 = *(undefined4 *)(iVar7 + 0x870);
     }
     else {
-      libmpeg_sub_0010ddb8(param_1,*(undefined4 *)(iVar7 + 0xf0),iVar1);
+      maybe_Ipu_CscLoop(param_1,*(undefined4 *)(iVar7 + 0xf0),iVar1);
       uVar6 = *(undefined4 *)(iVar7 + 0x870);
     }
   }
@@ -1390,7 +1391,7 @@ void maybe_Ipu_ConvertPicture(undefined8 param_1,uint *param_2)
       maybe_Ipu_CscWithHandler(param_1,*(undefined4 *)(iVar7 + 0xf0),iVar1);
     }
     else {
-      libmpeg_sub_0010ddb8(param_1,*(undefined4 *)(iVar7 + 0xf0),iVar1);
+      maybe_Ipu_CscLoop(param_1,*(undefined4 *)(iVar7 + 0xf0),iVar1);
     }
     DisableDmac(4);
     RemoveDmacHandler(4,uVar4);
@@ -1402,7 +1403,7 @@ void maybe_Ipu_ConvertPicture(undefined8 param_1,uint *param_2)
 }
 
 // 0x0010e548  size 0x34
-void libmpeg_sub_0010e548(undefined8 param_1,undefined4 param_2,int param_3,int param_4)
+void maybe_Bs_Init(undefined8 param_1,undefined4 param_2,int param_3,int param_4)
 
 {
   undefined8 *puVar1;
@@ -1482,7 +1483,7 @@ undefined8 maybe_Bs_GetBit(undefined8 param_1)
 }
 
 // 0x0010e6d0  size 0x54
-void libmpeg_sub_0010e6d0(undefined8 param_1,int param_2)
+void maybe_Bs_Seek(undefined8 param_1,int param_2)
 
 {
   long lVar1;
@@ -1504,7 +1505,7 @@ void libmpeg_sub_0010e6d0(undefined8 param_1,int param_2)
 }
 
 // 0x0010e728  size 0x2c
-uint libmpeg_sub_0010e728(int param_1,int param_2)
+uint maybe_Bs_WrapOffset(int param_1,int param_2)
 
 {
   uint uVar1;
@@ -1517,7 +1518,7 @@ uint libmpeg_sub_0010e728(int param_1,int param_2)
 }
 
 // 0x0010e758  size 0x88
-ulong libmpeg_sub_0010e758(ulong param_1,ulong param_2)
+ulong maybe_Demux_GetStreamType(ulong param_1,ulong param_2)
 
 {
   ulong uVar1;
@@ -1543,7 +1544,7 @@ LAB_0010e7c8:
 }
 
 // 0x0010e7e0  size 0x1fc
-int libmpeg_sub_0010e7e0(uint *param_1,uint *param_2,ulong param_3)
+int maybe_sceMpegDemuxPssRing(uint *param_1,uint *param_2,ulong param_3)
 
 {
   uint uVar1;
@@ -1668,7 +1669,7 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
   iVar1 = *(int *)((int)param_1 + 0x40);
   iStack_b8 = *(int *)(iVar1 + 0x60);
   pcStack_c0 = (code *)0x0;
-  libmpeg_sub_0010e548(auStack_160,param_2,param_4,param_5);
+  maybe_Bs_Init(auStack_160,param_2,param_4,param_5);
   uStack_bc = 0;
   uStack_b4 = 0;
   if (*(int *)(iVar1 + 100) < 1) {
@@ -1689,7 +1690,7 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
   do {
     lVar4 = maybe_Bs_ShowBits(auStack_160,0x20);
     if (lVar4 == 0x1ba) {
-      libmpeg_sub_0010ee08(auStack_160,auStack_130);
+      maybe_Demux_PesHeader(auStack_160,auStack_130);
     }
     while (((lVar4 = maybe_Bs_ShowBits(auStack_160,0x18), lVar4 == 1 &&
             (lVar4 = maybe_Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1ba)) &&
@@ -1705,8 +1706,8 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
             puVar5 = (ulong *)(iVar7 * 0x20 + iStack_b8);
             if (*puVar5 == (auStack_118[0] & puVar5[1])) {
               uStack_e0 = 6;
-              uStack_dc = libmpeg_sub_0010e728(auStack_160,uStack_f0);
-              uStack_d8 = libmpeg_sub_0010e728(auStack_160,uStack_f8);
+              uStack_dc = maybe_Bs_WrapOffset(auStack_160,uStack_f0);
+              uStack_d8 = maybe_Bs_WrapOffset(auStack_160,uStack_f8);
               uStack_d0 = uStack_108;
               uStack_d4 = uStack_f4;
               uStack_c8 = uStack_100;
@@ -1720,8 +1721,8 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
         }
         if ((iVar7 == iVar6) && (pcStack_c0 != (code *)0x0)) {
           uStack_e0 = 6;
-          uStack_dc = libmpeg_sub_0010e728(auStack_160,uStack_f0);
-          uStack_d8 = libmpeg_sub_0010e728(auStack_160,uStack_f8);
+          uStack_dc = maybe_Bs_WrapOffset(auStack_160,uStack_f0);
+          uStack_d8 = maybe_Bs_WrapOffset(auStack_160,uStack_f8);
           uStack_d0 = uStack_108;
           uStack_d4 = uStack_f4;
           uStack_c8 = uStack_100;
@@ -1741,7 +1742,7 @@ LAB_0010ec9c:
 }
 
 // 0x0010ecf0  size 0x20
-void libmpeg_sub_0010ecf0(void)
+void maybe_sceMpegDemuxPss(void)
 
 {
   maybe_Mpeg_DemuxPss();
@@ -1750,7 +1751,7 @@ void libmpeg_sub_0010ecf0(void)
 
 // 0x0010ed10  size 0xf8
 undefined4
-libmpeg_sub_0010ed10
+maybe_Demux_DeliverPacket
           (int param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,undefined4 param_5)
 
 {
@@ -1763,7 +1764,7 @@ libmpeg_sub_0010ed10
   uVar5 = 0;
   iVar1 = *(int *)(param_1 + 0x40);
   plVar3 = *(long **)(iVar1 + 0x60);
-  lVar2 = libmpeg_sub_0010e758(param_2,param_3);
+  lVar2 = maybe_Demux_GetStreamType(param_2,param_3);
   iVar4 = 0;
   if (0 < *(int *)(iVar1 + 100)) {
     if (lVar2 == *plVar3) {
@@ -1793,7 +1794,7 @@ libmpeg_sub_0010ed10
 }
 
 // 0x0010ee08  size 0x150
-undefined4 libmpeg_sub_0010ee08(undefined8 param_1,undefined8 param_2)
+undefined4 maybe_Demux_PesHeader(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1829,7 +1830,7 @@ undefined4 libmpeg_sub_0010ee08(undefined8 param_1,undefined8 param_2)
   lVar6 = maybe_Bs_ShowBits(param_1,0x20);
   if (lVar6 == 0x1bb) {
     puVar8[3] = 1;
-    libmpeg_sub_0010ef58(param_1,param_2);
+    maybe_Demux_SystemHeader(param_1,param_2);
   }
   else {
     puVar8[3] = 0;
@@ -1838,7 +1839,7 @@ undefined4 libmpeg_sub_0010ee08(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0010ef58  size 0x68
-undefined4 libmpeg_sub_0010ef58(undefined8 param_1)
+undefined4 maybe_Demux_SystemHeader(undefined8 param_1)
 
 {
   long lVar1;
@@ -1900,7 +1901,7 @@ LAB_0010f4d8:
       *param_3 = *param_3 | uVar11 & 0xffffffff;
     }
     if (iVar14 != 0) {
-      libmpeg_sub_0010e6d0(param_2,iVar14);
+      maybe_Bs_Seek(param_2,iVar14);
     }
     return 1;
   }
@@ -1917,7 +1918,7 @@ LAB_0010f4d8:
       if ((int)param_3[1] == 0) {
         return 1;
       }
-      libmpeg_sub_0010e6d0(param_2);
+      maybe_Bs_Seek(param_2);
       return 1;
     }
     goto LAB_0010f4d8;
@@ -1999,7 +2000,7 @@ LAB_0010f4d8:
   lVar4 = *(long *)(iVar14 + 0x18);
 LAB_0010f3d4:
   if (iStack_a8 != (int)((ulong)((lVar4 - (int)uVar6) * 0x20000000) >> 0x20)) {
-    libmpeg_sub_0010e6d0(param_2);
+    maybe_Bs_Seek(param_2);
   }
   iVar13 = (int)param_3[1] - iStack_a8;
   iVar3 = iVar13 + -3;
@@ -2013,12 +2014,12 @@ LAB_0010f3d4:
   if (iVar3 == 0) {
     return 1;
   }
-  libmpeg_sub_0010e6d0(param_2);
+  maybe_Bs_Seek(param_2);
   return 1;
 }
 
 // 0x0010f578  size 0xb0
-undefined4 libmpeg_sub_0010f578(void)
+undefined4 maybe_sceMpegInit(void)
 
 {
   uint uVar1;
@@ -2061,7 +2062,7 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     iVar3 = uVar4 + 0x120;
     puVar5 = (undefined4 *)param_1;
     puVar5[0x10] = uVar4;
-    libmpeg_sub_0010fc00(iVar3,uVar4 + 0x10c0,uVar2 - 0x10c0);
+    maybe_Ringbuf_Init(iVar3,uVar4 + 0x10c0,uVar2 - 0x10c0);
     *puVar5 = 0;
     puVar5[1] = 0;
     puVar5[2] = 0;
@@ -2093,7 +2094,7 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     *(undefined4 *)(uVar4 + 0x54) = 0;
     *(undefined8 *)(uVar4 + 0x108) = 0xffffffffffffffff;
     *(undefined1 **)(uVar4 + 0x24) = &LAB_00110cc8;
-    *(code **)(uVar4 + 0x30) = libmpeg_sub_00110cf0;
+    *(code **)(uVar4 + 0x30) = maybe_sceMpegResume;
     uVar1 = maybe_Mpeg_WorkAlloc(uVar4,iVar3,0x800,8);
     *(undefined4 *)(uVar4 + 100) = 0;
     *(undefined4 *)(uVar4 + 0x114) = 0;
@@ -2111,9 +2112,9 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     *(undefined4 **)(uVar4 + 0x870) = puVar5;
     *(undefined4 *)(uVar4 + 0x60) = uVar1;
     *(undefined4 *)(uVar4 + 200) = 1;
-    libmpeg_sub_00110250(uVar4);
-    libmpeg_sub_0010f9c8(param_1);
-    libmpeg_sub_0010fa28(param_1);
+    maybe_Mpeg_InitScratchpad(uVar4);
+    maybe_sceMpegReset(param_1);
+    maybe_Mpeg_ResetCallbacks(param_1);
     *(uint *)(uVar4 + 0x1d0) = uVar4 + 0x200;
     *(uint *)(uVar4 + 0x1d4) = uVar4 + 0x268;
     *(uint *)(uVar4 + 0x1dc) = uVar4 + 0x2d0;
@@ -2123,7 +2124,7 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     *(uint *)(uVar4 + 0x1f0) = uVar4 + 0x470;
     *(uint *)(uVar4 + 500) = uVar4 + 0x4d8;
     *(uint *)(uVar4 + 0x1fc) = uVar4 + 0x540;
-    libmpeg_sub_0010fc18(iVar3);
+    maybe_Ringbuf_Rewind(iVar3);
     *(undefined4 *)(uVar4 + 0x868) = 0xffffffff;
     *(undefined4 *)(uVar4 + 0x86c) = 0;
     *(undefined **)(uVar4 + 0x834) = &DAT_70003600;
@@ -2136,14 +2137,14 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0010f838  size 0x8
-undefined4 libmpeg_sub_0010f838(void)
+undefined4 maybe_sceMpegDelete(void)
 
 {
   return 1;
 }
 
 // 0x0010f880  size 0x48
-void libmpeg_sub_0010f880(int param_1,uint param_2,undefined4 param_3)
+void maybe_sceMpegGetPictureRAW8(int param_1,uint param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -2159,7 +2160,7 @@ void libmpeg_sub_0010f880(int param_1,uint param_2,undefined4 param_3)
 }
 
 // 0x0010f8c8  size 0x44
-void libmpeg_sub_0010f8c8(int param_1,uint param_2,undefined4 param_3)
+void maybe_sceMpegGetPictureRAW8xy(int param_1,uint param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -2175,7 +2176,7 @@ void libmpeg_sub_0010f8c8(int param_1,uint param_2,undefined4 param_3)
 }
 
 // 0x0010f910  size 0x50
-void libmpeg_sub_0010f910(int param_1,uint param_2,int param_3,int param_4)
+void maybe_sceMpegGetPictureRGB32(int param_1,uint param_2,int param_3,int param_4)
 
 {
   int iVar1;
@@ -2191,7 +2192,7 @@ void libmpeg_sub_0010f910(int param_1,uint param_2,int param_3,int param_4)
 }
 
 // 0x0010f9a8  size 0xc
-undefined4 libmpeg_sub_0010f9a8(int param_1)
+undefined4 maybe_sceMpegGetDecodeMode(int param_1)
 
 {
   return **(undefined4 **)(param_1 + 0x40);
@@ -2205,7 +2206,7 @@ bool maybe_sceMpegIsEnd(int param_1)
 }
 
 // 0x0010f9c8  size 0x5c
-undefined4 libmpeg_sub_0010f9c8(int param_1)
+undefined4 maybe_sceMpegReset(int param_1)
 
 {
   undefined4 *puVar1;
@@ -2218,14 +2219,14 @@ undefined4 libmpeg_sub_0010f9c8(int param_1)
   *(undefined4 *)(param_1 + 8) = 0;
   puVar1[0x31] = 0;
   puVar1[0x26] = 0xffffffff;
-  libmpeg_sub_001102b0(puVar1);
+  maybe_Mpeg_ResetDecoder(puVar1);
   puVar1[0x4c] = 0;
-  libmpeg_sub_001101c0(puVar1);
+  maybe_Ipu_EnableBusy(puVar1);
   return 1;
 }
 
 // 0x0010fa28  size 0x54
-undefined4 libmpeg_sub_0010fa28(int param_1)
+undefined4 maybe_Mpeg_ResetCallbacks(int param_1)
 
 {
   int iVar1;
@@ -2299,7 +2300,7 @@ undefined4 maybe_Mpeg_CallbackBackground(undefined8 param_1)
 }
 
 // 0x0010fc00  size 0x14
-void libmpeg_sub_0010fc00(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
+void maybe_Ringbuf_Init(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   param_1[3] = param_2;
@@ -2310,7 +2311,7 @@ void libmpeg_sub_0010fc00(undefined4 *param_1,undefined4 param_2,undefined4 para
 }
 
 // 0x0010fc18  size 0xc
-void libmpeg_sub_0010fc18(int param_1)
+void maybe_Ringbuf_Rewind(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0xc) = *(undefined4 *)(param_1 + 8);
@@ -2318,7 +2319,7 @@ void libmpeg_sub_0010fc18(int param_1)
 }
 
 // 0x0010fc28  size 0xc
-void libmpeg_sub_0010fc28(int param_1)
+void maybe_Ringbuf_Commit(int param_1)
 
 {
   *(undefined4 *)(param_1 + 8) = *(undefined4 *)(param_1 + 0xc);
@@ -2399,7 +2400,7 @@ undefined8 sceMpegGetPicture(int param_1)
 }
 
 // 0x0010fe78  size 0x120
-ulong libmpeg_sub_0010fe78(undefined8 param_1,long param_2,long param_3)
+ulong maybe_Mpeg_GetPictureField(undefined8 param_1,long param_2,long param_3)
 
 {
   int iVar1;
@@ -2418,7 +2419,7 @@ ulong libmpeg_sub_0010fe78(undefined8 param_1,long param_2,long param_3)
       *(undefined4 *)(iVar7 + 8) = 0;
       *(undefined4 *)(iVar1 + 8) = 1;
     }
-    lVar3 = libmpeg_sub_0010d170(iVar1,0);
+    lVar3 = maybe_Mpeg_ReorderFrames(iVar1,0);
     uVar6 = 0;
     if (lVar3 != 0) {
       lVar3 = maybe_Mpeg_DecodePicture(iVar1);
@@ -2426,13 +2427,13 @@ ulong libmpeg_sub_0010fe78(undefined8 param_1,long param_2,long param_3)
     }
   }
   else {
-    uVar6 = libmpeg_sub_0010d170(iVar1,0);
+    uVar6 = maybe_Mpeg_ReorderFrames(iVar1,0);
     bVar2 = true;
     maybe_Mpeg_CallbackBackground(param_1);
   }
   uVar4 = 0;
   if (*(int *)(iVar1 + 0x10a0) == 0) {
-    libmpeg_sub_0010d0e0(iVar1,*(undefined4 *)(iVar1 + 0x130),*(undefined4 *)(iVar1 + 4));
+    maybe_Mpeg_OutputPicture(iVar1,*(undefined4 *)(iVar1 + 0x130),*(undefined4 *)(iVar1 + 4));
     if (*(int *)(iVar1 + 0x18c) == 3) {
       iVar5 = *(int *)(iVar1 + 0xc4);
     }
@@ -2454,20 +2455,20 @@ ulong libmpeg_sub_0010fe78(undefined8 param_1,long param_2,long param_3)
 }
 
 // 0x0010ff98  size 0x44
-void libmpeg_sub_0010ff98(undefined8 param_1)
+void maybe_Mpeg_GetPictureDispatch(undefined8 param_1)
 
 {
   if (*(int *)(*(int *)((int)param_1 + 0x40) + 0x18c) == 3) {
-    libmpeg_sub_0010fe78(param_1);
+    maybe_Mpeg_GetPictureField(param_1);
   }
   else {
-    libmpeg_sub_0010ffe0(param_1);
+    maybe_Mpeg_GetPictureFrame(param_1);
   }
   return;
 }
 
 // 0x0010ffe0  size 0x174
-undefined4 libmpeg_sub_0010ffe0(undefined8 param_1,long param_2,long param_3)
+undefined4 maybe_Mpeg_GetPictureFrame(undefined8 param_1,long param_2,long param_3)
 
 {
   undefined4 *puVar1;
@@ -2493,7 +2494,7 @@ undefined4 libmpeg_sub_0010ffe0(undefined8 param_1,long param_2,long param_3)
     *(undefined4 *)(iVar6 + 8) = 0;
     puVar1[2] = 1;
   }
-  lVar5 = libmpeg_sub_0010d170(puVar1,0);
+  lVar5 = maybe_Mpeg_ReorderFrames(puVar1,0);
   if (lVar5 == 0) {
     iVar3 = puVar1[0x428];
   }
@@ -2510,7 +2511,7 @@ undefined4 libmpeg_sub_0010ffe0(undefined8 param_1,long param_2,long param_3)
   puVar1[0x4e] = 1;
   lVar5 = maybe_Mpeg_GetHeader(puVar1);
   if (lVar5 == 0) {
-    libmpeg_sub_00110158(param_1);
+    maybe_Mpeg_FlushOutput(param_1);
     *puVar1 = 1;
     return 0;
   }
@@ -2521,7 +2522,7 @@ undefined4 libmpeg_sub_0010ffe0(undefined8 param_1,long param_2,long param_3)
   if (puVar1[99] != iVar3) {
     return 0xffffffff;
   }
-  lVar5 = libmpeg_sub_0010d170(puVar1,1);
+  lVar5 = maybe_Mpeg_ReorderFrames(puVar1,1);
   uVar7 = 0;
   if (lVar5 != 0) {
     if (!bVar2) {
@@ -2537,7 +2538,7 @@ undefined4 libmpeg_sub_0010ffe0(undefined8 param_1,long param_2,long param_3)
 LAB_001100e0:
   uVar4 = 0;
   if (iVar3 == 0) {
-    libmpeg_sub_0010d0e0(puVar1,puVar1[0x4c],puVar1[1]);
+    maybe_Mpeg_OutputPicture(puVar1,puVar1[0x4c],puVar1[1]);
     puVar1[0x4e] = 0;
     *(undefined4 *)(iVar6 + 8) = puVar1[0x4c] - puVar1[0x31];
     puVar1[0x4c] = puVar1[0x4c] + 1;

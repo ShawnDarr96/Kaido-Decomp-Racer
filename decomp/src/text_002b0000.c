@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002b02c0  size 0x250
-void script_sub_002b02c0(int param_1)
+void script_load_sub_002b02c0(int param_1)
 
 {
   int *piVar1;
@@ -82,7 +82,7 @@ void script_sub_002b02c0(int param_1)
 }
 
 // 0x002b0510  size 0x140
-void script_sub_002b0510(int param_1)
+void script_step_sub_002b0510(int param_1)
 
 {
   maybe_Mem_CopyQwords(param_1 + 0x10,*(int *)(param_1 + 100) + *(int *)(param_1 + 0x6c),4);
@@ -105,7 +105,7 @@ void script_sub_002b0510(int param_1)
 }
 
 // 0x002b0650  size 0x140
-void script_sub_002b0650(undefined8 param_1)
+void script_step_sub_002b0650(undefined8 param_1)
 
 {
   int iVar1;
@@ -123,8 +123,8 @@ void script_sub_002b0650(undefined8 param_1)
   *(int *)(iVar1 + 0x6c) = *(int *)(iVar1 + 0x6c) + 1;
   maybe_Mem_CopyQwords(iVar1 + 0xf,*(int *)(iVar1 + 100) + *(int *)(iVar1 + 0x6c),1);
   *(int *)(iVar1 + 0x6c) = *(int *)(iVar1 + 0x6c) + 1;
-  script_sub_002b0510(param_1);
-  script_sub_002b02c0(param_1);
+  script_step_sub_002b0510(param_1);
+  script_load_sub_002b02c0(param_1);
   if (*(int *)(iVar1 + 0x44) == 0) {
     *(int *)(iVar1 + 0x50) = *(int *)(iVar1 + 100) + 0x4a;
     *(int *)(iVar1 + 0x54) = *(int *)(iVar1 + 0x6c) + -0x4a;
@@ -138,7 +138,7 @@ void script_sub_002b0650(undefined8 param_1)
 }
 
 // 0x002b0790  size 0x2f0
-undefined4 script_sub_002b0790(undefined8 param_1,int *param_2)
+undefined4 script_step_sub_002b0790(undefined8 param_1,int *param_2)
 
 {
   bool bVar1;
@@ -158,7 +158,7 @@ undefined4 script_sub_002b0790(undefined8 param_1,int *param_2)
     *(byte *)(iVar4 + -1) = *(byte *)(iVar4 + -1) | 0x80;
   }
   else {
-    menuscr_sub_002afef0(param_1,*param_2,acStack_10,&iStack_4);
+    menuscr_leaf_sub_002afef0(param_1,*param_2,acStack_10,&iStack_4);
     if (iStack_4 == 0) {
       return 0;
     }
@@ -231,7 +231,7 @@ undefined4 script_sub_002b0790(undefined8 param_1,int *param_2)
 }
 
 // 0x002b0a80  size 0xe4
-undefined4 script_sub_002b0a80(undefined8 param_1,undefined8 param_2,long param_3)
+undefined4 script_step_sub_002b0a80(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   byte bVar1;
@@ -242,7 +242,7 @@ undefined4 script_sub_002b0a80(undefined8 param_1,undefined8 param_2,long param_
   iVar3 = 0;
   do {
     while( true ) {
-      lVar2 = menuscr_sub_002affd0(param_1,param_2);
+      lVar2 = menuscr_leaf_sub_002affd0(param_1,param_2);
       if (lVar2 == 0) {
         return 0;
       }
@@ -262,7 +262,7 @@ LAB_002b0b18:
 }
 
 // 0x002b0b70  size 0x1a4
-void script_sub_002b0b70(undefined8 param_1,undefined8 param_2)
+void script_load_sub_002b0b70(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -275,7 +275,7 @@ void script_sub_002b0b70(undefined8 param_1,undefined8 param_2)
   undefined1 auStack_10 [12];
   int iStack_4;
   
-  script_sub_002b1820();
+  script_exit_sub_002b1820();
   iVar7 = (int)param_1;
   if (*(int *)(iVar7 + 100) != 0) {
     Mem_Free();
@@ -291,7 +291,7 @@ void script_sub_002b0b70(undefined8 param_1,undefined8 param_2)
     *(int *)(iVar7 + 0x68) = (int)param_2;
     *(undefined4 *)(iVar7 + 0x6c) = 0;
   }
-  lVar3 = menuscr_sub_002afef0(param_1,0,auStack_10,&iStack_4);
+  lVar3 = menuscr_leaf_sub_002afef0(param_1,0,auStack_10,&iStack_4);
   if (lVar3 != 0) {
     auStack_10[iStack_4] = 0xff;
     auStack_10[iStack_4 + 1] = 0x2f;
@@ -334,7 +334,7 @@ void script_sub_002b0b70(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002b0d20  size 0x238
-undefined4 script_sub_002b0d20(undefined8 param_1,long param_2)
+undefined4 script_step_sub_002b0d20(undefined8 param_1,long param_2)
 
 {
   char cVar1;
@@ -349,7 +349,7 @@ undefined4 script_sub_002b0d20(undefined8 param_1,long param_2)
   char cStack_6;
   
   do {
-    lVar3 = menuscr_sub_002affd0(param_1,auStack_10);
+    lVar3 = menuscr_leaf_sub_002affd0(param_1,auStack_10);
     if (lVar3 == 0) {
       return 0;
     }
@@ -395,7 +395,7 @@ undefined4 script_sub_002b0d20(undefined8 param_1,long param_2)
 }
 
 // 0x002b0f60  size 0x350
-undefined4 script_sub_002b0f60(undefined8 param_1,undefined8 param_2)
+undefined4 script_step_sub_002b0f60(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -410,7 +410,7 @@ undefined4 script_sub_002b0f60(undefined8 param_1,undefined8 param_2)
   int iStack_4;
   
   iStack_4 = 0;
-  lVar4 = menuscr_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
+  lVar4 = menuscr_leaf_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
   iVar7 = (int)param_1;
   if (lVar4 == 0) {
     uVar2 = 0;
@@ -448,7 +448,7 @@ undefined4 script_sub_002b0f60(undefined8 param_1,undefined8 param_2)
     if (bVar1) {
       *(undefined4 *)(iVar7 + 0x50) = *(undefined4 *)(iVar7 + 100);
     }
-    menuscr_sub_002afef0(param_1,1,auStack_10,&iStack_4);
+    menuscr_leaf_sub_002afef0(param_1,1,auStack_10,&iStack_4);
     auStack_10[iStack_4] = 0xb0;
     auStack_10[iStack_4 + 1] = 6;
     iVar8 = iStack_4 + 3;
@@ -482,7 +482,7 @@ undefined4 script_sub_002b0f60(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar7 + 0x50) = *(undefined4 *)(iVar7 + 100);
     }
     uVar2 = 2;
-    menuscr_sub_002afef0(param_1,1,auStack_10,&iStack_4);
+    menuscr_leaf_sub_002afef0(param_1,1,auStack_10,&iStack_4);
     auStack_10[iStack_4] = 0xb0;
     auStack_10[iStack_4 + 1] = 0x26;
     iVar8 = iStack_4 + 3;
@@ -522,7 +522,7 @@ undefined4 script_sub_002b0f60(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002b12b0  size 0x24c
-long script_sub_002b12b0(undefined8 param_1,undefined8 param_2)
+long script_step_sub_002b12b0(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -537,7 +537,7 @@ long script_sub_002b12b0(undefined8 param_1,undefined8 param_2)
   int iStack_4;
   
   iStack_4 = 0;
-  lVar3 = menuscr_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
+  lVar3 = menuscr_leaf_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
   iVar8 = (int)param_1;
   if (lVar3 == 0) {
     lVar3 = 0;
@@ -576,7 +576,7 @@ long script_sub_002b12b0(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar8 + 0x50) = *(undefined4 *)(iVar8 + 100);
     }
     lVar3 = 1;
-    menuscr_sub_002afef0(param_1,1,auStack_10,&iStack_4);
+    menuscr_leaf_sub_002afef0(param_1,1,auStack_10,&iStack_4);
     auStack_10[iStack_4] = 0xb0;
     auStack_10[iStack_4 + 1] = 6;
     iVar7 = iStack_4 + 3;
@@ -616,7 +616,8 @@ long script_sub_002b12b0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002b1500  size 0x174
-undefined8 script_sub_002b1500(undefined8 param_1,undefined8 param_2,byte param_3,short param_4)
+undefined8
+script_step_sub_002b1500(undefined8 param_1,undefined8 param_2,byte param_3,short param_4)
 
 {
   bool bVar1;
@@ -631,7 +632,7 @@ undefined8 script_sub_002b1500(undefined8 param_1,undefined8 param_2,byte param_
   
   if ((-1 < param_4) && (param_4 < 0x4000)) {
     iStack_4 = 0;
-    lVar3 = menuscr_sub_002afef0(param_1,param_2,abStack_10,&iStack_4);
+    lVar3 = menuscr_leaf_sub_002afef0(param_1,param_2,abStack_10,&iStack_4);
     iVar7 = (int)param_1;
     if (lVar3 != 0) {
       abStack_10[iStack_4] = param_3 & 0xf | 0xe0;
@@ -674,7 +675,7 @@ undefined8 script_sub_002b1500(undefined8 param_1,undefined8 param_2,byte param_
 }
 
 // 0x002b1680  size 0x19c
-undefined8 script_sub_002b1680(undefined8 param_1,undefined8 param_2,ulong param_3)
+undefined8 script_step_sub_002b1680(undefined8 param_1,undefined8 param_2,ulong param_3)
 
 {
   bool bVar1;
@@ -689,7 +690,7 @@ undefined8 script_sub_002b1680(undefined8 param_1,undefined8 param_2,ulong param
   
   if ((0x3971d < param_3) && (param_3 < 0x2dc6c1)) {
     iStack_4 = 0;
-    lVar3 = menuscr_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
+    lVar3 = menuscr_leaf_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
     iVar7 = (int)param_1;
     if (lVar3 != 0) {
       auStack_10[iStack_4] = 0xff;
@@ -734,7 +735,7 @@ undefined8 script_sub_002b1680(undefined8 param_1,undefined8 param_2,ulong param
 }
 
 // 0x002b1820  size 0xc0
-void script_sub_002b1820(undefined8 param_1)
+void script_exit_sub_002b1820(undefined8 param_1)
 
 {
   int iVar1;
@@ -769,7 +770,7 @@ void script_sub_002b1820(undefined8 param_1)
 // 0x002b18e0  size 0xf0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void script_sub_002b18e0(undefined8 param_1,int param_2)
+void script_load_sub_002b18e0(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
@@ -777,7 +778,7 @@ void script_sub_002b18e0(undefined8 param_1,int param_2)
   int iVar3;
   int iVar4;
   
-  script_sub_002b1820();
+  script_exit_sub_002b1820();
   iVar3 = (param_2 + 0x1ec2) * 0x14 + _g_ArcToc;
   iVar4 = *(int *)(iVar3 + 0x20);
   if (iVar4 == 0) {
@@ -810,7 +811,7 @@ void script_sub_002b18e0(undefined8 param_1,int param_2)
 }
 
 // 0x002b19d0  size 0xb0
-void script_sub_002b19d0(undefined8 param_1,undefined4 param_2)
+void script_step_sub_002b19d0(undefined8 param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -840,7 +841,7 @@ void script_sub_002b19d0(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x002b1a80  size 0x968
-undefined4 script_sub_002b1a80(int param_1)
+undefined4 script_step_sub_002b1a80(int param_1)
 
 {
   bool bVar1;
@@ -1216,7 +1217,7 @@ undefined4 script_sub_002b1a80(int param_1)
 }
 
 // 0x002b23f0  size 0x1c98
-undefined4 script_sub_002b23f0(int param_1)
+undefined4 script_step_sub_002b23f0(int param_1)
 
 {
   bool bVar1;

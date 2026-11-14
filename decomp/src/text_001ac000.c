@@ -64,7 +64,7 @@ void WheelAsset_Setup(int param_1,undefined8 param_2)
       } while (uVar3 <= uVar2);
     }
   }
-  if ((cRam00436478 == '\x02') && (lVar5 = course_sub_001a59f0(param_1), lVar5 == 0)) {
+  if ((cRam00436478 == '\x02') && (lVar5 = Course_GetField_24(param_1), lVar5 == 0)) {
     lVar11 = 1;
   }
   if (uVar10 <= uVar2) {
@@ -104,8 +104,8 @@ void WheelAsset_OnLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_
 {
   long lVar1;
   
-  course_sub_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+  course_leaf_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,param_3);
   }
   WheelAsset_Setup(param_4,param_2);
@@ -123,9 +123,9 @@ void WheelAsset_Load(undefined8 param_1)
   int iVar4;
   
   iVar2 = 0;
-  lVar3 = course_sub_001a59f0();
+  lVar3 = Course_GetField_24();
   if (lVar3 != 0) {
-    iVar2 = course_sub_001a59f0(param_1);
+    iVar2 = Course_GetField_24(param_1);
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   iVar4 = (int)param_1;
@@ -152,7 +152,7 @@ void WheelAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_
 
 {
   maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
-  course_sub_001a5a40(param_1);
+  course_leaf_sub_001a5a40(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
 }
@@ -1232,8 +1232,8 @@ void CarAsset_Build(int param_1)
   uVar11 = uRam0036f2d4;
   uVar7 = uRam0036f2d8;
   if ((cRam00436478 == '\x02') &&
-     (lVar4 = course_sub_001a59f0(param_1), uVar11 = uRam0036f2d4, uVar7 = uRam0036f2d8, lVar4 == 0)
-     ) {
+     (lVar4 = Course_GetField_24(param_1), uVar11 = uRam0036f2d4, uVar7 = uRam0036f2d8, lVar4 == 0))
+  {
     uVar15 = 1;
     uStack_4 = 1;
   }
@@ -1438,8 +1438,8 @@ void CarAsset_OnLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 {
   long lVar1;
   
-  course_sub_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+  course_leaf_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,*(undefined4 *)((int)param_4 + 0x94));
   }
   CarAsset_Build(param_4,param_2);
@@ -1465,9 +1465,9 @@ undefined8 CarAsset_Load(undefined8 param_1)
   undefined8 unaff_s8;
   
   iVar1 = 0;
-  lVar3 = course_sub_001a59f0();
+  lVar3 = Course_GetField_24();
   if (lVar3 != 0) {
-    iVar1 = course_sub_001a59f0(param_1);
+    iVar1 = Course_GetField_24(param_1);
     iVar1 = *(int *)(iVar1 + 0x20);
   }
   iVar9 = (int)param_1;
@@ -1703,13 +1703,13 @@ void DriverAsset_OnLoaded
   int iVar1;
   int iVar2;
   
-  course_sub_001a5a70(param_4);
+  course_leaf_sub_001a5a70(param_4);
   iVar2 = (int)param_4;
   if (*(int *)(iVar2 + 0x2c) == 0) {
     iVar1 = *(int *)(iVar2 + 0x2c);
   }
   else {
-    course_sub_001a5a70(0x436320);
+    course_leaf_sub_001a5a70(0x436320);
     Arena_Alloc(0x436320,param_3);
     iVar1 = *(int *)(iVar2 + 0x2c);
   }

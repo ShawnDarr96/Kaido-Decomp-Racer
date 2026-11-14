@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00120110  size 0x44
-ulong libm_sub_00120110(ulong param_1,long param_2)
+ulong copysign(ulong param_1,long param_2)
 
 {
   return param_1 & 0xffffffff |
@@ -11,14 +11,14 @@ ulong libm_sub_00120110(ulong param_1,long param_2)
 }
 
 // 0x00120158  size 0x34
-ulong libm_sub_00120158(ulong param_1)
+ulong fabs(ulong param_1)
 
 {
   return param_1 & 0xffffffff | ((long)param_1 >> 0x20 & 0x7fffffffU) << 0x20;
 }
 
 // 0x00120190  size 0x20c
-ulong libm_sub_00120190(ulong param_1)
+ulong maybe_floor(ulong param_1)
 
 {
   undefined8 uVar1;
@@ -103,7 +103,7 @@ ulong libm_sub_00120190(ulong param_1)
 }
 
 // 0x001203a8  size 0x48
-int libm_sub_001203a8(uint param_1)
+int maybe_finite(uint param_1)
 
 {
   uint uVar1;
@@ -113,14 +113,14 @@ int libm_sub_001203a8(uint param_1)
 }
 
 // 0x001203f0  size 0x3c
-uint libm_sub_001203f0(uint param_1)
+uint maybe_isnan(uint param_1)
 
 {
   return 0x7ff00000 - ((int)param_1 >> 0x20 & 0x7fffffffU | (param_1 | -param_1) >> 0x1f) >> 0x1f;
 }
 
 // 0x00120430  size 0x1d0
-ulong libm_sub_00120430(ulong param_1,long param_2)
+ulong maybe_scalbn(ulong param_1,long param_2)
 
 {
   undefined8 uVar1;
@@ -163,13 +163,13 @@ ulong libm_sub_00120430(ulong param_1,long param_2)
       uVar5 = DAT_0035fc98;
     }
   }
-  uVar1 = libm_sub_00120110(uVar5,param_1);
+  uVar1 = copysign(uVar5,param_1);
   uVar4 = __muldf3(uVar1,uVar5);
   return uVar4;
 }
 
 // 0x00120618  size 0xa0
-void libm_sub_00120618(long param_1)
+void maybe_cos(long param_1)
 
 {
   uint uVar1;
@@ -179,11 +179,11 @@ void libm_sub_00120618(long param_1)
   
   uVar2 = param_1 >> 0x20 & 0x7fffffff;
   if (uVar2 < 0x3fe921fc) {
-    libm_sub_0011ee60(param_1,0);
+    maybe___kernel_cos(param_1,0);
   }
   else if (uVar2 < 0x7ff00000) {
-    uVar1 = libm_sub_0011c9f8(param_1,&uStack_20,1);
-    libm_sub_0011ee60(uStack_20,uStack_18,(uVar1 & 1) * -2 + 1);
+    uVar1 = maybe___ieee754_rem_pio2(param_1,&uStack_20,1);
+    maybe___kernel_cos(uStack_20,uStack_18,(uVar1 & 1) * -2 + 1);
   }
   else {
     __subdf3(param_1,param_1);
@@ -505,7 +505,7 @@ undefined4 maybe_sceCdSync0(undefined4 param_1)
 }
 
 // 0x00120e70  size 0xa0
-void libcdvd_sub_00120e70(int *param_1)
+void maybe_Cd_CallbackHandler(int *param_1)
 
 {
   DAT_00308218 = *param_1;
@@ -602,7 +602,7 @@ void maybe_Cd_SemaInit(void)
 }
 
 // 0x00121220  size 0xa0
-void libcdvd_sub_00121220(void)
+void maybe_sceCdInitEeCB(void)
 
 {
   long lVar1;
@@ -616,7 +616,7 @@ void libcdvd_sub_00121220(void)
   DeleteSema(DAT_003081f0);
   DeleteSema(DAT_003081e0);
   lVar1 = DIntr();
-  libkernl_sub_00113e00(0xffffffff80000012);
+  maybe_sceSifRemoveCmdHandler(0xffffffff80000012);
   if (lVar1 == 0) {
     return;
   }
@@ -625,14 +625,14 @@ void libcdvd_sub_00121220(void)
 }
 
 // 0x001212c0  size 0x80
-undefined4 libcdvd_sub_001212c0(undefined4 param_1,undefined4 param_2)
+undefined4 maybe_sceCdCallback(undefined4 param_1,undefined4 param_2)
 
 {
   undefined4 uVar1;
   long lVar2;
   
   if (DAT_00308200 < 0) {
-    libcdvd_sub_00121398();
+    maybe_Cd_SetupCallbackCmd();
   }
   lVar2 = DIntr();
   uVar1 = uRam00378008;
@@ -646,7 +646,7 @@ undefined4 libcdvd_sub_001212c0(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x00121340  size 0x54
-void libcdvd_sub_00121340(void)
+void maybe_Cd_InvokeUserCallback(void)
 
 {
   if ((pcRam00378008 != (code *)0x0) && (DAT_003081e4 == 0)) {
@@ -656,14 +656,14 @@ void libcdvd_sub_00121340(void)
 }
 
 // 0x00121398  size 0x78
-undefined4 libcdvd_sub_00121398(void)
+undefined4 maybe_Cd_SetupCallbackCmd(void)
 
 {
   long lVar1;
   
   DAT_003081e4 = 1;
   lVar1 = DIntr();
-  libkernl_sub_00113d88(0xffffffff80000012,0x121340,0);
+  maybe_sceSifGetCmdHandler(0xffffffff80000012,0x121340,0);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -763,7 +763,7 @@ undefined4 sceCdSearchFile(undefined8 *param_1,char *param_2,undefined4 param_3)
 }
 
 // 0x00121728  size 0x1c
-void libcdvd_sub_00121728(undefined8 param_1,undefined8 param_2)
+void maybe_sceCdSearchFileSimple(undefined8 param_1,undefined8 param_2)
 
 {
   sceCdSearchFile(param_1,param_2,0);
@@ -820,7 +820,7 @@ undefined4 maybe_Cd_CheckNCmd(undefined8 param_1)
 }
 
 // 0x001218b8  size 0x98
-undefined4 libcdvd_sub_001218b8(void)
+undefined4 sceCdGetError(void)
 
 {
   long lVar1;
@@ -1001,13 +1001,13 @@ undefined4 sceCdInit(int param_1)
       DAT_003081e4 = 0;
       if (((param_1 < 0) || (param_1 < 2)) || (param_1 != 5)) {
         maybe_Cd_SemaInit();
-        libcdvd_sub_00121398();
+        maybe_Cd_SetupCallbackCmd();
       }
       else {
         if (0 < ram0x003081d0) {
           maybe_scePrintf(0x35fe58);
         }
-        libcdvd_sub_00121220();
+        maybe_sceCdInitEeCB();
         DAT_003081e8 = 0xffffffff;
         DAT_003081ec = 0xffffffff;
         DAT_003081e0 = 0xffffffff;
@@ -1154,7 +1154,7 @@ undefined4 sceCdRead(undefined4 param_1,int param_2,undefined8 param_3,undefined
   long lVar2;
   int iVar3;
   
-  if (((DAT_003081f8 & 1) == 0) && (lVar2 = libcdvd_sub_001218b8(), lVar2 == 6)) {
+  if (((DAT_003081f8 & 1) == 0) && (lVar2 = sceCdGetError(), lVar2 == 6)) {
     return 0;
   }
   lVar2 = maybe_Cd_CheckNCmd(4);
@@ -1213,7 +1213,7 @@ maybe_sceCdReadIOPm(undefined4 param_1,undefined4 param_2,undefined4 param_3,und
 {
   long lVar1;
   
-  if (((DAT_003081f8 & 1) == 0) && (lVar1 = libcdvd_sub_001218b8(), lVar1 == 6)) {
+  if (((DAT_003081f8 & 1) == 0) && (lVar1 = sceCdGetError(), lVar1 == 6)) {
     return 0;
   }
   lVar1 = maybe_Cd_CheckNCmd(5);
@@ -1245,12 +1245,12 @@ maybe_sceCdReadIOPm(undefined4 param_1,undefined4 param_2,undefined4 param_3,und
 }
 
 // 0x00122698  size 0xcc
-undefined4 libcdvd_sub_00122698(undefined4 param_1)
+undefined4 maybe_sceCdSeek(undefined4 param_1)
 
 {
   long lVar1;
   
-  lVar1 = libcdvd_sub_001218b8();
+  lVar1 = sceCdGetError();
   if ((lVar1 != 6) && (lVar1 = maybe_Cd_CheckNCmd(9), lVar1 != 0)) {
     DAT_003082c0 = param_1;
     sceSifWriteBackDCache(0x3082c0,4);
@@ -1268,12 +1268,12 @@ undefined4 libcdvd_sub_00122698(undefined4 param_1)
 }
 
 // 0x00122768  size 0xac
-undefined4 libcdvd_sub_00122768(void)
+undefined4 maybe_sceCdStop(void)
 
 {
   long lVar1;
   
-  lVar1 = libcdvd_sub_001218b8();
+  lVar1 = sceCdGetError();
   if ((lVar1 != 6) && (lVar1 = maybe_Cd_CheckNCmd(10), lVar1 != 0)) {
     DAT_00308218 = 5;
     DAT_003081f4 = 1;
@@ -1289,7 +1289,9 @@ undefined4 libcdvd_sub_00122768(void)
 }
 
 // 0x00122818  size 0x98
-undefined4 libcdvd_sub_00122818(void)
+/* scmd 1; used by File_GetDiscType */
+
+undefined4 sceCdGetDiskType(void)
 
 {
   long lVar1;
@@ -1308,7 +1310,9 @@ undefined4 libcdvd_sub_00122818(void)
 }
 
 // 0x001228b0  size 0x98
-undefined4 libcdvd_sub_001228b0(void)
+/* scmd 3 */
+
+undefined4 maybe_sceCdTrayReq(void)
 
 {
   undefined4 uVar1;
@@ -1333,7 +1337,9 @@ undefined4 libcdvd_sub_001228b0(void)
 }
 
 // 0x00122948  size 0xd0
-undefined4 libcdvd_sub_00122948(undefined4 param_1)
+/* scmd 0x22; called with 2 (DVD) after init */
+
+undefined4 sceCdMmode(undefined4 param_1)
 
 {
   long lVar1;
@@ -1383,7 +1389,7 @@ undefined4 sceCdReadClock(undefined8 *param_1)
 }
 
 // 0x00122b10  size 0x2c
-void libcdvd_sub_00122b10(void)
+void sceCdStInit(void)
 
 {
   DAT_00309d78 = 0;
@@ -1392,7 +1398,7 @@ void libcdvd_sub_00122b10(void)
 }
 
 // 0x00122b40  size 0x34
-void libcdvd_sub_00122b40(undefined8 param_1,undefined8 param_2)
+void sceCdStStart(undefined8 param_1,undefined8 param_2)
 
 {
   DAT_00309d78 = 1;
@@ -1401,7 +1407,7 @@ void libcdvd_sub_00122b40(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00122b78  size 0x2c
-void libcdvd_sub_00122b78(undefined8 param_1)
+void maybe_sceCdStSeekF(undefined8 param_1)
 
 {
   maybe_Cd_StreamCmd(param_1,0,0,9,0x378298);
@@ -1409,7 +1415,7 @@ void libcdvd_sub_00122b78(undefined8 param_1)
 }
 
 // 0x00122ba8  size 0x2c
-void libcdvd_sub_00122ba8(undefined8 param_1)
+void maybe_sceCdStSeek(undefined8 param_1)
 
 {
   maybe_Cd_StreamCmd(param_1,0,0,4,0x378298);
@@ -1417,7 +1423,7 @@ void libcdvd_sub_00122ba8(undefined8 param_1)
 }
 
 // 0x00122bd8  size 0x38
-void libcdvd_sub_00122bd8(void)
+void sceCdStStop(void)
 
 {
   DAT_00309d78 = 0;
@@ -1648,7 +1654,7 @@ undefined4 maybe_sceMcEnd(void)
 }
 
 // 0x00123210  size 0x30
-undefined4 libmc_sub_00123210(undefined4 *param_1,undefined4 *param_2)
+undefined4 maybe_Mc_GetSyncState(undefined4 *param_1,undefined4 *param_2)
 
 {
   *param_1 = 0x379880;
@@ -1658,7 +1664,7 @@ undefined4 libmc_sub_00123210(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x00123310  size 0xc4
-int libmc_sub_00123310(undefined4 param_1)
+int maybe_sceMcGetInfo(undefined4 param_1)
 
 {
   int iVar1;
@@ -1688,7 +1694,7 @@ int libmc_sub_00123310(undefined4 param_1)
 }
 
 // 0x001233d8  size 0x128
-long libmc_sub_001233d8(undefined4 param_1,undefined4 param_2,long param_3,undefined4 param_4)
+long maybe_sceMcOpen(undefined4 param_1,undefined4 param_2,long param_3,undefined4 param_4)
 
 {
   long lVar1;
@@ -1725,12 +1731,12 @@ long libmc_sub_001233d8(undefined4 param_1,undefined4 param_2,long param_3,undef
 }
 
 // 0x00123500  size 0x34
-long libmc_sub_00123500(void)
+long maybe_sceMcOpenChecked(void)
 
 {
   long lVar1;
   
-  lVar1 = libmc_sub_001233d8();
+  lVar1 = maybe_sceMcOpen();
   if (lVar1 == 0) {
     DAT_00309d90 = 0xb;
   }
@@ -1738,7 +1744,7 @@ long libmc_sub_00123500(void)
 }
 
 // 0x00123538  size 0xbc
-long libmc_sub_00123538(undefined4 param_1)
+long maybe_sceMcClose(undefined4 param_1)
 
 {
   long lVar1;
@@ -1766,7 +1772,7 @@ long libmc_sub_00123538(undefined4 param_1)
 }
 
 // 0x001235f8  size 0xe0
-long libmc_sub_001235f8(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+long maybe_sceMcSeek(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
   long lVar1;
@@ -1796,7 +1802,7 @@ long libmc_sub_001235f8(undefined4 param_1,undefined4 param_2,undefined4 param_3
 }
 
 // 0x00123770  size 0x114
-long libmc_sub_00123770(undefined4 param_1,undefined8 param_2,undefined8 param_3)
+long maybe_sceMcRead(undefined4 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -1829,7 +1835,7 @@ long libmc_sub_00123770(undefined4 param_1,undefined8 param_2,undefined8 param_3
 }
 
 // 0x00123888  size 0x178
-long libmc_sub_00123888(undefined4 param_1,undefined1 *param_2,long param_3)
+long maybe_sceMcWrite(undefined4 param_1,undefined1 *param_2,long param_3)
 
 {
   undefined1 *puVar1;
@@ -1914,8 +1920,7 @@ uint sceMcSync(long param_1,long param_2,long param_3)
 }
 
 // 0x00123b20  size 0x17c
-long libmc_sub_00123b20(undefined4 param_1,undefined4 param_2,long param_3,long param_4,long param_5
-                       )
+long maybe_sceMcGetDir(undefined4 param_1,undefined4 param_2,long param_3,long param_4,long param_5)
 
 {
   long lVar1;
@@ -1972,8 +1977,9 @@ undefined4 sceMcUdCheckNewCard(void)
 }
 
 // 0x00123d10  size 0x14c
-long libmc_sub_00123d10(undefined4 param_1,undefined4 param_2,long param_3,undefined4 param_4,
-                       long param_5,undefined8 param_6)
+long maybe_sceMcSetFileInfo
+               (undefined4 param_1,undefined4 param_2,long param_3,undefined4 param_4,long param_5,
+               undefined8 param_6)
 
 {
   long lVar1;
@@ -2015,7 +2021,7 @@ long libmc_sub_00123d10(undefined4 param_1,undefined4 param_2,long param_3,undef
 }
 
 // 0x00123e60  size 0x8c
-void libmc_sub_00123e60(long param_1)
+void maybe_Mc_RpcEndCallback(long param_1)
 
 {
   ulong uVar1;
@@ -2037,7 +2043,7 @@ void libmc_sub_00123e60(long param_1)
 }
 
 // 0x00123ef0  size 0x140
-long libmc_sub_00123ef0(undefined4 param_1,undefined4 param_2,long param_3)
+long maybe_sceMcMkdir(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;

@@ -974,12 +974,12 @@ float Demo_EvalCameraPath(uint param_1,undefined8 param_2)
   uStack_2c = *(undefined4 *)(psVar2 + 2);
   uStack_28 = *(undefined4 *)(psVar2 + 4);
   uStack_24 = 0x3f800000;
-  vu0math_sub_00132b50(auStack_40,&uStack_30,&uStack_20);
-  vu0math_sub_00132b50(auStack_50,param_2,&uStack_20);
-  fVar4 = (float)vu0math_sub_00132ab0(auStack_40,auStack_50);
-  fVar5 = (float)vu0math_sub_00132ab0(auStack_40,auStack_40);
-  vu0math_sub_00132b10(fVar4 / fVar5,auStack_60,auStack_40);
-  vu0math_sub_00132b70(auStack_60,&uStack_20,auStack_60);
+  sceVu0SubVector(auStack_40,&uStack_30,&uStack_20);
+  sceVu0SubVector(auStack_50,param_2,&uStack_20);
+  fVar4 = (float)sceVu0InnerProduct(auStack_40,auStack_50);
+  fVar5 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
+  sceVu0ScaleVector(fVar4 / fVar5,auStack_60,auStack_40);
+  sceVu0AddVector(auStack_60,&uStack_20,auStack_60);
   Demo_GetRoadPoint(&uStack_4,param_1,1);
   psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)uStack_4 * 4);
   sVar1 = *psVar2;
@@ -993,16 +993,16 @@ float Demo_EvalCameraPath(uint param_1,undefined8 param_2)
   uStack_2c = *(undefined4 *)(psVar2 + 2);
   uStack_28 = *(undefined4 *)(psVar2 + 4);
   uStack_24 = 0x3f800000;
-  vu0math_sub_00132b50(auStack_40,&uStack_30,&uStack_20);
-  vu0math_sub_00132b50(auStack_50,param_2,&uStack_20);
-  fVar4 = (float)vu0math_sub_00132ab0(auStack_40,auStack_50);
-  fVar5 = (float)vu0math_sub_00132ab0(auStack_40,auStack_40);
-  vu0math_sub_00132b10(fVar4 / fVar5,auStack_70,auStack_40);
-  vu0math_sub_00132b70(auStack_70,&uStack_20,auStack_70);
-  vu0math_sub_00132b50(auStack_40,auStack_70,auStack_60);
-  vu0math_sub_00132b50(auStack_50,param_2,auStack_60);
-  fVar4 = (float)vu0math_sub_00132ab0(auStack_40,auStack_50);
-  fVar5 = (float)vu0math_sub_00132ab0(auStack_40,auStack_40);
+  sceVu0SubVector(auStack_40,&uStack_30,&uStack_20);
+  sceVu0SubVector(auStack_50,param_2,&uStack_20);
+  fVar4 = (float)sceVu0InnerProduct(auStack_40,auStack_50);
+  fVar5 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
+  sceVu0ScaleVector(fVar4 / fVar5,auStack_70,auStack_40);
+  sceVu0AddVector(auStack_70,&uStack_20,auStack_70);
+  sceVu0SubVector(auStack_40,auStack_70,auStack_60);
+  sceVu0SubVector(auStack_50,param_2,auStack_60);
+  fVar4 = (float)sceVu0InnerProduct(auStack_40,auStack_50);
+  fVar5 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
   return fVar4 / fVar5;
 }
 
@@ -1111,7 +1111,7 @@ void Demo_InterpolateKeys(float param_1,float *param_2)
     fStack_2c = pfVar3[1];
     fStack_24 = pfVar3[3] * fStack_28;
     fStack_18 = fStack_28;
-    vu0math_sub_001332a0((param_1 * *pfVar2 - *param_2) / fStack_28,auStack_8,&fStack_20,&fStack_30)
+    maybe_Vu0_ClearStack((param_1 * *pfVar2 - *param_2) / fStack_28,auStack_8,&fStack_20,&fStack_30)
     ;
   }
   return;
@@ -1214,9 +1214,9 @@ void Demo_ResetMatrix(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
 
 {
   maybe_Vu0_UnitMatrix();
-  vu0math_sub_00132ae0(param_1,param_2);
-  vu0math_sub_00132ae0((int)param_1 + 0x10,param_3);
-  vu0math_sub_00132ae0((int)param_1 + 0x20,param_4);
+  sceVu0CopyVector(param_1,param_2);
+  sceVu0CopyVector((int)param_1 + 0x10,param_3);
+  sceVu0CopyVector((int)param_1 + 0x20,param_4);
   return;
 }
 
@@ -1250,7 +1250,7 @@ void Demo_BuildRotation(undefined4 param_1,undefined8 param_2,undefined8 param_3
   fStack_20 = fVar3 * param_4[2] * *param_4 - fVar2 * param_4[1];
   fStack_1c = fVar2 * *param_4 + fVar3 * param_4[1] * param_4[2];
   fStack_18 = fVar3 * param_4[2] * param_4[2] + fVar1 + 0.0;
-  vu0math_sub_00132ba0(param_2,param_3,&fStack_40);
+  sceVu0MulMatrix(param_2,param_3,&fStack_40);
   return;
 }
 
@@ -1264,13 +1264,13 @@ float Demo_LookAt(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  vu0math_sub_00132b50(auStack_10,param_4);
-  vu0math_sub_00132b50(auStack_20,param_5,param_4);
-  vu0math_sub_00132a90(param_1,auStack_10,auStack_20);
-  vu0math_sub_001328b0(param_1,param_1);
-  fVar1 = (float)vu0math_sub_00132ab0(param_1,param_3);
-  fVar2 = (float)vu0math_sub_00132ab0(param_1,param_2);
-  vu0math_sub_00132b10(fVar1 - fVar2,param_1,param_1);
+  sceVu0SubVector(auStack_10,param_4);
+  sceVu0SubVector(auStack_20,param_5,param_4);
+  sceVu0OuterProduct(param_1,auStack_10,auStack_20);
+  sceVu0Normalize(param_1,param_1);
+  fVar1 = (float)sceVu0InnerProduct(param_1,param_3);
+  fVar2 = (float)sceVu0InnerProduct(param_1,param_2);
+  sceVu0ScaleVector(fVar1 - fVar2,param_1,param_1);
   return fVar1 - fVar2;
 }
 
@@ -1281,11 +1281,11 @@ void Demo_LookAtSimple(undefined8 param_1,undefined8 param_2,undefined8 param_3,
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  vu0math_sub_00132b50(auStack_10,param_3,param_2);
-  vu0math_sub_00132b50(auStack_20,param_4,param_3);
-  vu0math_sub_00132a90(param_1,auStack_10,auStack_20);
-  vu0math_sub_001328b0(param_1,param_1);
-  vu0math_sub_00132ab0(param_1,param_2);
+  sceVu0SubVector(auStack_10,param_3,param_2);
+  sceVu0SubVector(auStack_20,param_4,param_3);
+  sceVu0OuterProduct(param_1,auStack_10,auStack_20);
+  sceVu0Normalize(param_1,param_1);
+  sceVu0InnerProduct(param_1,param_2);
   return;
 }
 
@@ -1485,7 +1485,7 @@ void RoadData_GetSegmentTable(int *param_1,uint param_2)
 }
 
 // 0x001f30c0  size 0x40
-void demo_sub_001f30c0(undefined8 param_1,undefined4 *param_2)
+void demo_step_sub_001f30c0(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined4 uStack_10;
@@ -1501,14 +1501,14 @@ void demo_sub_001f30c0(undefined8 param_1,undefined4 *param_2)
   uStack_c = DAT_003268b4;
   uStack_8 = DAT_003268b8;
   uStack_4 = DAT_003268bc;
-  vu0math_sub_00132ae0(param_2 + 0x124,&uStack_10);
+  sceVu0CopyVector(param_2 + 0x124,&uStack_10);
   return;
 }
 
 // 0x001f3100  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void demo_sub_001f3100(undefined8 param_1,undefined4 *param_2)
+void demo_step_sub_001f3100(undefined8 param_1,undefined4 *param_2)
 
 {
   int *piVar1;
@@ -1553,12 +1553,12 @@ void demo_sub_001f3100(undefined8 param_1,undefined4 *param_2)
   uStack_c = DAT_003268a4;
   uStack_8 = DAT_003268a8;
   uStack_4 = DAT_003268ac;
-  vu0math_sub_00132ae0(param_2 + 0x124,&uStack_10);
+  sceVu0CopyVector(param_2 + 0x124,&uStack_10);
   return;
 }
 
 // 0x001f3200  size 0xe4
-void demo_sub_001f3200(undefined8 param_1,undefined8 param_2)
+void demo_step_sub_001f3200(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1570,7 +1570,7 @@ void demo_sub_001f3200(undefined8 param_1,undefined8 param_2)
   
   SndMgr_GetInstance();
   Demo_Start(param_2,param_2);
-  lVar5 = misc_sub_002fd0c0();
+  lVar5 = misc_step_sub_002fd0c0();
   if ((lVar5 == 0) || (cVar3 = Snd_StreamGetState(0), cVar3 == '\t')) {
     piVar6 = (int *)param_2;
     iVar1 = *piVar6;
@@ -1597,12 +1597,12 @@ void demo_sub_001f3200(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f32f0  size 0x60
-void demo_sub_001f32f0(undefined8 param_1,undefined8 param_2)
+void demo_step_sub_001f32f0(undefined8 param_1,undefined8 param_2)
 
 {
   long lVar1;
   
-  lVar1 = attract_sub_002fb5a0();
+  lVar1 = attract_step_sub_002fb5a0();
   Demo_DriveCar(param_2,lVar1);
   Demo_Start(param_2,param_2);
   if (lVar1 == 0) {
@@ -1612,7 +1612,7 @@ void demo_sub_001f32f0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3350  size 0xbc
-void demo_sub_001f3350(undefined8 param_1,undefined8 param_2)
+void demo_step_sub_001f3350(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1646,7 +1646,7 @@ void demo_sub_001f3350(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3410  size 0x78
-void demo_sub_001f3410(undefined8 param_1,undefined8 param_2)
+void demo_input_sub_001f3410(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1671,7 +1671,7 @@ void demo_sub_001f3410(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3490  size 0x3f0
-void demo_sub_001f3490(undefined8 param_1,undefined8 param_2)
+void demo_input_sub_001f3490(undefined8 param_1,undefined8 param_2)
 
 {
   float *pfVar1;
@@ -1773,25 +1773,25 @@ void demo_sub_001f3490(undefined8 param_1,undefined8 param_2)
   if ((uVar4 & 0x20) != 0) {
     Cam_SetPitch(*(float *)(iVar6 + 0x4e4) * 1.005,param_2);
   }
-  vu0math_sub_00132cd0(auStack_50,param_2);
-  vu0math_sub_00132d50(&fStack_10,auStack_50,&fStack_10);
-  vu0math_sub_00132b70(iVar6 + 0x40,iVar6 + 0x40,&fStack_10);
-  vu0math_sub_00132d50(iVar6 + 0x420,auStack_50,iVar6 + 0x470);
-  vu0math_sub_00132b70(iVar6 + 0x420,iVar6 + 0x420,iVar6 + 0x40);
+  sceVu0TransposeMatrix(auStack_50,param_2);
+  sceVu0ApplyMatrix(&fStack_10,auStack_50,&fStack_10);
+  sceVu0AddVector(iVar6 + 0x40,iVar6 + 0x40,&fStack_10);
+  sceVu0ApplyMatrix(iVar6 + 0x420,auStack_50,iVar6 + 0x470);
+  sceVu0AddVector(iVar6 + 0x420,iVar6 + 0x420,iVar6 + 0x40);
   if (*(int *)(iVar6 + 0x50) == 1) {
-    vu0math_sub_00132ae0(iVar6 + 0x430,iVar6 + 0x510);
+    sceVu0CopyVector(iVar6 + 0x430,iVar6 + 0x510);
   }
   else {
-    vu0math_sub_00132d50(iVar6 + 0x430,auStack_50,iVar6 + 0x480);
-    vu0math_sub_00132b70(iVar6 + 0x430,iVar6 + 0x430,iVar6 + 0x40);
+    sceVu0ApplyMatrix(iVar6 + 0x430,auStack_50,iVar6 + 0x480);
+    sceVu0AddVector(iVar6 + 0x430,iVar6 + 0x430,iVar6 + 0x40);
   }
-  vu0math_sub_00132d50(iVar6 + 0x440,auStack_50,iVar6 + 0x490);
+  sceVu0ApplyMatrix(iVar6 + 0x440,auStack_50,iVar6 + 0x490);
   Cam_UpdateTargetFromCar(param_2);
   return;
 }
 
 // 0x001f3880  size 0xe0
-void demo_sub_001f3880(undefined8 param_1,undefined8 param_2)
+void demo_step_sub_001f3880(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1800,25 +1800,25 @@ void demo_sub_001f3880(undefined8 param_1,undefined8 param_2)
   undefined1 auStack_10 [16];
   
   iVar1 = (int)param_2;
-  vu0math_sub_00132ae0(iVar1 + 0x470,0x365140);
-  vu0math_sub_00132ae0(iVar1 + 0x480,0x365150);
-  vu0math_sub_00132ae0(iVar1 + 0x490,0x365160);
-  vu0math_sub_00132ae0(iVar1 + 0x40,iVar1 + 0x420);
-  vu0math_sub_00132ae0(auStack_10,iVar1 + 0x440);
-  vu0math_sub_00132b50(auStack_20,iVar1 + 0x430,iVar1 + 0x420);
-  vu0math_sub_001328b0(auStack_20,auStack_20);
-  vu0math_sub_00132a90(auStack_30,auStack_20,auStack_10);
-  vu0math_sub_001328b0(auStack_30,auStack_30);
-  vu0math_sub_00132a90(auStack_10,auStack_30,auStack_20);
-  vu0math_sub_001328b0(auStack_10,auStack_10);
+  sceVu0CopyVector(iVar1 + 0x470,0x365140);
+  sceVu0CopyVector(iVar1 + 0x480,0x365150);
+  sceVu0CopyVector(iVar1 + 0x490,0x365160);
+  sceVu0CopyVector(iVar1 + 0x40,iVar1 + 0x420);
+  sceVu0CopyVector(auStack_10,iVar1 + 0x440);
+  sceVu0SubVector(auStack_20,iVar1 + 0x430,iVar1 + 0x420);
+  sceVu0Normalize(auStack_20,auStack_20);
+  sceVu0OuterProduct(auStack_30,auStack_20,auStack_10);
+  sceVu0Normalize(auStack_30,auStack_30);
+  sceVu0OuterProduct(auStack_10,auStack_30,auStack_20);
+  sceVu0Normalize(auStack_10,auStack_10);
   Demo_ResetMatrix(param_2,auStack_20,auStack_10,auStack_30);
-  vu0math_sub_00132cd0(param_2,param_2);
+  sceVu0TransposeMatrix(param_2,param_2);
   *(undefined4 *)(iVar1 + 0x50) = 0;
   return;
 }
 
 // 0x001f3960  size 0x104
-void demo_sub_001f3960(undefined8 param_1,undefined8 param_2)
+void demo_step_sub_001f3960(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1836,13 +1836,13 @@ void demo_sub_001f3960(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3a70  size 0x10c
-void demo_sub_001f3a70(undefined8 param_1,undefined8 param_2)
+void demo_step_sub_001f3a70(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
   int iVar2;
   
-  demo_sub_001f4760(param_2,0x365100,0x365110,0x365120,0x365130);
+  demo_step_sub_001f4760(param_2,0x365100,0x365110,0x365120,0x365130);
   iVar2 = (int)param_2;
   if (*(int *)(iVar2 + 0x7b0) != 0) {
     iVar1 = RaceCar_GetIndex();
@@ -1857,15 +1857,15 @@ void demo_sub_001f3a70(undefined8 param_1,undefined8 param_2)
 /* WARNING: Removing unreachable block (ram,0x001f3d18) */
 /* WARNING: Removing unreachable block (ram,0x001f3db0) */
 
-void demo_sub_001f3c90(undefined8 param_1,int param_2)
+void demo_step_sub_001f3c90(undefined8 param_1,int param_2)
 
 {
   int iVar1;
   
-  vu0math_sub_00132ae0(param_2 + 0x470,0x365080);
-  vu0math_sub_00132ae0(param_2 + 0x480,0x365090);
-  vu0math_sub_00132ae0(param_2 + 0x490,0x3650a0);
-  vu0math_sub_00132ae0(param_2 + 0x4a0,0x3650b0);
+  sceVu0CopyVector(param_2 + 0x470,0x365080);
+  sceVu0CopyVector(param_2 + 0x480,0x365090);
+  sceVu0CopyVector(param_2 + 0x490,0x3650a0);
+  sceVu0CopyVector(param_2 + 0x4a0,0x3650b0);
   if (*(int *)(param_2 + 0x7b0) != 0) {
     iVar1 = RaceCar_GetIndex();
     iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
@@ -1993,9 +1993,9 @@ LAB_001f4074:
       Cam_SetPitch(fStack_1c,param_2);
       Cam_SetYaw(-fStack_20,param_2);
       Cam_SetFov(*(float *)(iVar7 + 0x4f4) * (fStack_1c / *(float *)(iVar7 + 0x4f0)),param_2);
-      vu0math_sub_00132ae0(iVar7 + 0x420,auStack_50);
-      vu0math_sub_00132ae0(iVar7 + 0x430,auStack_40);
-      vu0math_sub_00132ae0(iVar7 + 0x440,iVar7 + 0x490);
+      sceVu0CopyVector(iVar7 + 0x420,auStack_50);
+      sceVu0CopyVector(iVar7 + 0x430,auStack_40);
+      sceVu0CopyVector(iVar7 + 0x440,iVar7 + 0x490);
       Cam_UpdateTargetFromCar(param_2);
     }
     if (*(int *)(iVar1 + 0x10) != 0) {

@@ -5,7 +5,7 @@
 // 0x002144a0  size 0x7b8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_002144a0(int param_1)
+void scrrace_draw_sub_002144a0(int param_1)
 
 {
   int iVar1;
@@ -300,7 +300,7 @@ void scrrace_sub_002144a0(int param_1)
     UiLayout_UpdateAnimById(0x11,0);
   }
   uVar6 = Profile_Get(0);
-  uVar6 = garage_sub_001bcb00(uVar6);
+  uVar6 = Profile_GetMoney(uVar6);
   MenuWnd_DrawNumber(0x17,0x37,uVar6);
   MenuWnd_SetTitle(3,0x178);
   iVar7 = UiMgr_FindLayout(0x11);
@@ -315,7 +315,7 @@ void scrrace_sub_002144a0(int param_1)
 // 0x00214c80  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00214c80(undefined8 param_1)
+void menuscr_step_sub_00214c80(undefined8 param_1)
 
 {
   long lVar1;
@@ -323,7 +323,7 @@ void menuscr_sub_00214c80(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_scrrace_sub_002144a0_0032a020)[*(int *)((int)param_1 + 0x4c0)])(param_1);
+  (*(code *)(&PTR_scrrace_draw_sub_002144a0_0032a020)[*(int *)((int)param_1 + 0x4c0)])(param_1);
   if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
      (lVar1 = Menu_IsInputIdle((int)param_1 + 0x4bc), lVar1 == 1)) {
     if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
@@ -334,7 +334,7 @@ void menuscr_sub_00214c80(undefined8 param_1)
 }
 
 // 0x00214d60  size 0x17c
-void scrgarage_sub_00214d60(undefined8 param_1)
+void scrgarage_step_sub_00214d60(undefined8 param_1)
 
 {
   undefined2 uVar1;
@@ -448,7 +448,7 @@ void scrgarage_sub_00214d60(undefined8 param_1)
 // 0x00214ee0  size 0x450
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00214ee0(int param_1)
+void scrgarage_draw_sub_00214ee0(int param_1)
 
 {
   int iVar1;
@@ -542,13 +542,14 @@ void scrgarage_sub_00214ee0(int param_1)
   MenuWnd_DrawStatus(*(undefined4 *)(param_1 + 0x34),0,0xffffffffffffffff,0);
   iVar1 = Profile_Get(0);
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bc600(uVar5,*(undefined2 *)(iVar1 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
+  uVar5 = Profile_GetCarRecordB
+                    (uVar5,*(undefined2 *)(iVar1 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
   uVar6 = Profile_Get(0);
   uVar6 = Profile_GetDay(uVar6);
   iVar1 = Garage_RepairCar(uVar5,uVar6);
   iVar2 = Garage_ComputeValue(uVar5);
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bcb00(uVar5);
+  uVar5 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x20,0x3d,uVar5);
   MenuWnd_DrawText(0x23,0x1d,1);
   MenuWnd_DrawText(0x23,0x1f,2);
@@ -558,7 +559,7 @@ void scrgarage_sub_00214ee0(int param_1)
   MenuWnd_DrawNumber(0x23,0x22,iVar1 - iVar2);
   MenuWnd_DrawNumber(0x23,0x23,iVar1 - iVar2);
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bcb00(uVar5);
+  uVar5 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x20,0x3d,uVar5);
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   iVar1 = UiMgr_FindLayout(0x1d);
@@ -578,7 +579,7 @@ void scrgarage_sub_00214ee0(int param_1)
 // 0x00215330  size 0x454
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00215330(int param_1)
+void scrgarage_draw_sub_00215330(int param_1)
 
 {
   int iVar1;
@@ -672,13 +673,14 @@ void scrgarage_sub_00215330(int param_1)
   MenuWnd_DrawStatus(*(undefined4 *)(param_1 + 0x34),0,0xffffffffffffffff,0);
   iVar1 = Profile_Get(0);
   uVar4 = Profile_Get(0);
-  uVar4 = garage_sub_001bc600(uVar4,*(undefined2 *)(iVar1 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
+  uVar4 = Profile_GetCarRecordB
+                    (uVar4,*(undefined2 *)(iVar1 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
   uVar5 = Profile_Get(0);
   uVar5 = Profile_GetDay(uVar5);
   uVar5 = Garage_RepairCar(uVar4,uVar5);
   uVar4 = Garage_ComputeValue(uVar4);
   uVar6 = Profile_Get(0);
-  uVar6 = garage_sub_001bcb00(uVar6);
+  uVar6 = Profile_GetMoney(uVar6);
   MenuWnd_DrawNumber(0x20,0x3d,uVar6);
   MenuWnd_DrawText(0x22,0x1e,1);
   MenuWnd_DrawText(0x22,0x20,2);
@@ -707,7 +709,7 @@ void scrgarage_sub_00215330(int param_1)
 // 0x00215790  size 0x528
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00215790(int param_1)
+void scrgarage_draw_sub_00215790(int param_1)
 
 {
   int iVar1;
@@ -795,7 +797,8 @@ void scrgarage_sub_00215790(int param_1)
   MenuWnd_DrawText(0x21,0x15,0x175);
   iVar1 = Profile_Get(0);
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bc600(uVar5,*(undefined2 *)(iVar1 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
+  uVar5 = Profile_GetCarRecordB
+                    (uVar5,*(undefined2 *)(iVar1 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
   iVar1 = *(int *)(param_1 + 0x50);
   if (iVar1 != 2) {
     if (iVar1 == 1) {
@@ -813,7 +816,7 @@ void scrgarage_sub_00215790(int param_1)
     }
   }
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bcb00(uVar5);
+  uVar5 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x20,0x3d,uVar5);
   if (*piRam0036f468 == 1) {
     MenuWnd_SetItemState(0x21,*(undefined4 *)(&DAT_0032a270 + *(int *)(param_1 + 0x50) * 4),1,0);
@@ -834,7 +837,7 @@ void scrgarage_sub_00215790(int param_1)
 // 0x00215cc0  size 0x8bc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00215cc0(int param_1)
+void scrcareer_draw_sub_00215cc0(int param_1)
 
 {
   bool bVar1;
@@ -1093,14 +1096,15 @@ void scrcareer_sub_00215cc0(int param_1)
   UiElem_SetPropInt(iVar3,0,0x16,uVar6);
   iVar3 = Profile_Get(0);
   uVar6 = Profile_Get(0);
-  uVar6 = garage_sub_001bc600(uVar6,*(undefined2 *)(iVar3 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
+  uVar6 = Profile_GetCarRecordB
+                    (uVar6,*(undefined2 *)(iVar3 + 0x13ee + *(int *)(param_1 + 0x34) * 2));
   uVar11 = Profile_Get(0);
   uVar11 = Profile_GetDay(uVar11);
   uVar6 = Garage_RepairCar(uVar6,uVar11);
   MenuWnd_DrawNumber(0x20,0x3e,uVar6);
   MenuWnd_DrawLabel(0x20,0x3f,0x3b,*(int *)(param_1 + 0x34) + 1,iVar2);
   uVar6 = Profile_Get(0);
-  uVar6 = garage_sub_001bcb00(uVar6);
+  uVar6 = Profile_GetMoney(uVar6);
   MenuWnd_DrawNumber(0x20,0x3d,uVar6);
   MenuWnd_Update(param_1 + 0x40,0x20,6,5);
   if (bVar1) {
@@ -1123,7 +1127,7 @@ void scrcareer_sub_00215cc0(int param_1)
 // 0x00216580  size 0x4a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00216580(int param_1)
+void scrgarage_draw_sub_00216580(int param_1)
 
 {
   undefined2 uVar1;
@@ -1352,7 +1356,7 @@ void scrgarage_sub_00216580(int param_1)
   uVar5 = Profile_GetDayOfMonth(uVar5);
   iVar2 = Garage_RecalcCar(&uStack_270,uVar5);
   uVar5 = Profile_Get(0);
-  iVar3 = garage_sub_001bcb00(uVar5);
+  iVar3 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x1e,0x1e,iVar3 - iVar2);
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 8) * 4 + param_1 + 0xc),0xfffffffffffffffe,
                      0xffffffffffffffff,0);
@@ -1368,7 +1372,7 @@ void scrgarage_sub_00216580(int param_1)
 // 0x00216a30  size 0x4a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00216a30(int param_1)
+void scrgarage_draw_sub_00216a30(int param_1)
 
 {
   undefined2 uVar1;
@@ -1597,7 +1601,7 @@ void scrgarage_sub_00216a30(int param_1)
   uVar5 = Profile_GetDayOfMonth(uVar5);
   iVar2 = Garage_RecalcCar(&uStack_270,uVar5);
   uVar5 = Profile_Get(0);
-  iVar3 = garage_sub_001bcb00(uVar5);
+  iVar3 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x1e,0x1e,iVar3 - iVar2);
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 8) * 4 + param_1 + 0xc),0xfffffffffffffffe,
                      0xffffffffffffffff,0);
@@ -1613,7 +1617,7 @@ void scrgarage_sub_00216a30(int param_1)
 // 0x00216ee0  size 0x364
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00216ee0(int param_1)
+void scrgarage_draw_sub_00216ee0(int param_1)
 
 {
   undefined2 uVar1;
@@ -1748,7 +1752,7 @@ void scrgarage_sub_00216ee0(int param_1)
   uVar4 = Garage_RecalcCar(&uStack_d0,uVar4);
   MenuWnd_DrawNumber(0x1e,0x1f,uVar4);
   uVar4 = Profile_Get(0);
-  uVar4 = garage_sub_001bcb00(uVar4);
+  uVar4 = Profile_GetMoney(uVar4);
   MenuWnd_DrawNumber(0x1e,0x1e,uVar4);
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 8) * 4 + param_1 + 0xc),0xfffffffffffffffe,
                      0xffffffffffffffff,0);
@@ -1764,7 +1768,7 @@ void scrgarage_sub_00216ee0(int param_1)
 // 0x00217250  size 0x338
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00217250(int param_1)
+void scrgarage_draw_sub_00217250(int param_1)
 
 {
   undefined2 uVar1;
@@ -1896,7 +1900,7 @@ void scrgarage_sub_00217250(int param_1)
   uVar4 = Garage_RecalcCar(&uStack_d0,uVar4);
   MenuWnd_DrawNumber(0x1e,0x1f,uVar4);
   uVar4 = Profile_Get(0);
-  uVar4 = garage_sub_001bcb00(uVar4);
+  uVar4 = Profile_GetMoney(uVar4);
   MenuWnd_DrawNumber(0x1e,0x1e,uVar4);
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 8) * 4 + param_1 + 0xc),0xfffffffffffffffe,
                      0xffffffffffffffff,0);
@@ -1912,7 +1916,7 @@ void scrgarage_sub_00217250(int param_1)
 // 0x00217590  size 0x338
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00217590(int param_1)
+void scrgarage_draw_sub_00217590(int param_1)
 
 {
   undefined2 uVar1;
@@ -2044,7 +2048,7 @@ void scrgarage_sub_00217590(int param_1)
   uVar4 = Garage_RecalcCar(&uStack_d0,uVar4);
   MenuWnd_DrawNumber(0x1e,0x1f,uVar4);
   uVar4 = Profile_Get(0);
-  uVar4 = garage_sub_001bcb00(uVar4);
+  uVar4 = Profile_GetMoney(uVar4);
   MenuWnd_DrawNumber(0x1e,0x1e,uVar4);
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 8) * 4 + param_1 + 0xc),0xfffffffffffffffe,
                      0xffffffffffffffff,0);
@@ -2060,7 +2064,7 @@ void scrgarage_sub_00217590(int param_1)
 // 0x002178d0  size 0x564
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_002178d0(int param_1)
+void scrgarage_draw_sub_002178d0(int param_1)
 
 {
   undefined2 uVar1;
@@ -2250,7 +2254,7 @@ void scrgarage_sub_002178d0(int param_1)
   uVar5 = Garage_RecalcCar(&uStack_d0,uVar5);
   MenuWnd_DrawNumber(0x1e,0x1f,uVar5);
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bcb00(uVar5);
+  uVar5 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x1e,0x1e,uVar5);
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 8) * 4 + param_1 + 0xc),0xfffffffffffffffe,
                      0xffffffffffffffff,0);
@@ -2273,7 +2277,7 @@ void scrgarage_sub_002178d0(int param_1)
 // 0x00217e40  size 0x92c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00217e40(int param_1)
+void scrgarage_draw_sub_00217e40(int param_1)
 
 {
   undefined2 uVar1;
@@ -2588,7 +2592,7 @@ LAB_00217f44:
     MenuWnd_DrawLabel(0x1e,0x20,0x3b,*(int *)(param_1 + 8) + 1,*(undefined4 *)(param_1 + 4));
   }
   uVar8 = Profile_Get(0);
-  uVar8 = garage_sub_001bcb00(uVar8);
+  uVar8 = Profile_GetMoney(uVar8);
   MenuWnd_DrawNumber(0x1e,0x1e,uVar8);
   if (*(int *)(param_1 + 4) == 0) {
     MenuWnd_DrawStatus(0xfffffffffffffffe,0xffffffffffffffff,0xffffffffffffffff,0);

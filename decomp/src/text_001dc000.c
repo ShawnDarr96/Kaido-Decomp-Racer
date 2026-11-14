@@ -5,7 +5,7 @@
 // 0x001dc180  size 0xc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 raceprog_sub_001dc180(void)
+undefined4 raceprog_leaf_sub_001dc180(void)
 
 {
   return *_g_RaceProg;
@@ -104,7 +104,7 @@ undefined4 RaceProg_GetArray_28(char param_1)
 // 0x001dc280  size 0x8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 raceprog_sub_001dc280(void)
+undefined4 raceprog_leaf_sub_001dc280(void)
 
 {
   return _g_RaceProg;
@@ -163,7 +163,7 @@ void RaceProg_UpdateAll(undefined8 param_1)
     }
   }
   lVar3 = RaceScene_Get_38();
-  if ((lVar3 == 36000) && (lVar3 = race_sub_001e8fc0(), lVar3 != 0)) {
+  if ((lVar3 == 36000) && (lVar3 = race_leaf_sub_001e8fc0(), lVar3 != 0)) {
     if (*_g_RaceProg == 0) {
       *puVar4 = *puVar4 | 0x10;
       uVar2 = GameState_Get_35c();
@@ -389,7 +389,7 @@ void RaceProg_Begin(void)
             }
             else {
               *(undefined1 *)(_g_RaceProg + 2) = 5;
-              lVar5 = race_sub_001e8fc0();
+              lVar5 = race_leaf_sub_001e8fc0();
               if (lVar5 == 0) {
                 cVar4 = RaceCtx_GetMode();
                 if (cVar4 == '\x01') {
@@ -628,7 +628,7 @@ void LapTime_GetLapCount(int *param_1,long param_2,long param_3)
 }
 
 // 0x001dcdc0  size 0x8
-undefined4 raceprog_sub_001dcdc0(undefined4 *param_1)
+undefined4 raceprog_leaf_sub_001dcdc0(undefined4 *param_1)
 
 {
   return *param_1;
@@ -1247,7 +1247,7 @@ undefined4 Checkpoint_Update(int param_1,int param_2)
 // 0x001ddda0  size 0xa0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void raceprog_sub_001ddda0(int param_1,short *param_2,undefined2 *param_3)
+void raceprog_leaf_sub_001ddda0(int param_1,short *param_2,undefined2 *param_3)
 
 {
   int iVar1;
@@ -1412,7 +1412,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
       uStack_c = uStack_4c;
       uStack_8 = uStack_48;
       uStack_4 = uStack_44;
-      fVar7 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+      fVar7 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
       fVar9 = fVar9 + fVar7;
       uStack_20 = uStack_10;
       uStack_1c = uStack_c;
@@ -1441,7 +1441,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
           uStack_c = uStack_6c;
           uStack_8 = uStack_68;
           uStack_4 = uStack_64;
-          fVar9 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+          fVar9 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
           iVar4 = iVar4 + 1;
           fVar7 = fVar7 + fVar9;
           uStack_20 = uStack_10;
@@ -1465,7 +1465,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
         uStack_c = uStack_8c;
         uStack_8 = uStack_88;
         uStack_4 = uStack_84;
-        fVar7 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+        fVar7 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
         fVar9 = fVar9 + fVar7;
         uStack_20 = uStack_10;
         uStack_1c = uStack_c;
@@ -1477,7 +1477,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
       uStack_c = uStack_9c;
       uStack_8 = uStack_98;
       uStack_4 = uStack_94;
-      fVar7 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+      fVar7 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
       fVar9 = fVar9 + fVar7;
     }
     sVar5 = **(short **)(*(int *)(_g_RoadData + 4) + (uVar2 & 0xffff) * 4);
@@ -1499,7 +1499,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
         uStack_c = uStack_bc;
         uStack_8 = uStack_b8;
         uStack_4 = uStack_b4;
-        fVar8 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+        fVar8 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
         fVar7 = fVar7 + fVar8;
         uStack_20 = uStack_10;
         uStack_1c = uStack_c;
@@ -1523,7 +1523,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
           uStack_c = uStack_dc;
           uStack_8 = uStack_d8;
           uStack_4 = uStack_d4;
-          fVar7 = (float)vu0math_sub_00132900(auStack_30,&uStack_10,&uStack_20);
+          fVar7 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
           iVar4 = iVar4 + 1;
           fVar9 = fVar9 + fVar7;
           uStack_20 = uStack_10;
@@ -1734,7 +1734,7 @@ void RaceProg_CheckWin(undefined8 param_1)
     break;
   case 6:
     uVar1 = RaceProg_GetArray_28(0);
-    lVar2 = raceprog_sub_001dcdc0(uVar1);
+    lVar2 = raceprog_leaf_sub_001dcdc0(uVar1);
     if (lVar2 < 1) {
       Flags_Set(param_1,0x22);
     }
@@ -2044,18 +2044,18 @@ void RaceProg_CheckTimeUp(undefined8 param_1)
   if (lVar5 == 2) {
     uVar6 = RaceProg_GetArray_28(0);
     uVar7 = RaceProg_GetArray_28(1);
-    lVar5 = raceprog_sub_001dcdc0(uVar6);
-    if ((lVar5 < 1) && (lVar5 = raceprog_sub_001dcdc0(uVar7), 0 < lVar5)) {
+    lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
+    if ((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar7), 0 < lVar5)) {
       Flags_Set(param_1,0x22);
     }
     else {
-      lVar5 = raceprog_sub_001dcdc0(uVar6);
-      if ((lVar5 < 1) && (lVar5 = raceprog_sub_001dcdc0(uVar7), lVar5 < 1)) {
+      lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
+      if ((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar7), lVar5 < 1)) {
         Flags_Set(param_1,0x24);
       }
       else {
-        lVar5 = raceprog_sub_001dcdc0(uVar6);
-        if ((lVar5 < 1) || (lVar5 = raceprog_sub_001dcdc0(uVar7), 0 < lVar5)) {
+        lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
+        if ((lVar5 < 1) || (lVar5 = raceprog_leaf_sub_001dcdc0(uVar7), 0 < lVar5)) {
           iVar3 = RaceProg_GetArray_40(0);
           iVar4 = RaceProg_GetArray_40(1);
           iVar3 = *(int *)(iVar3 + 0x4b8);
@@ -2091,19 +2091,19 @@ void RaceProg_CheckTimeUp(undefined8 param_1)
       uVar6 = RaceProg_GetArray_28(0);
       uVar7 = RaceProg_GetArray_28(1);
       uVar8 = RaceProg_GetArray_28(2);
-      lVar5 = raceprog_sub_001dcdc0(uVar7);
-      if (((lVar5 < 1) && (lVar5 = raceprog_sub_001dcdc0(uVar8), lVar5 < 1)) &&
-         (lVar5 = raceprog_sub_001dcdc0(uVar6), 0 < lVar5)) {
+      lVar5 = raceprog_leaf_sub_001dcdc0(uVar7);
+      if (((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar8), lVar5 < 1)) &&
+         (lVar5 = raceprog_leaf_sub_001dcdc0(uVar6), 0 < lVar5)) {
         Flags_Set(param_1,0x21);
       }
       else {
-        lVar5 = raceprog_sub_001dcdc0(uVar7);
-        if (((lVar5 < 1) && (lVar5 = raceprog_sub_001dcdc0(uVar8), lVar5 < 1)) &&
-           (lVar5 = raceprog_sub_001dcdc0(uVar6), lVar5 < 1)) {
+        lVar5 = raceprog_leaf_sub_001dcdc0(uVar7);
+        if (((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar8), lVar5 < 1)) &&
+           (lVar5 = raceprog_leaf_sub_001dcdc0(uVar6), lVar5 < 1)) {
           Flags_Set(param_1,0x24);
         }
         else {
-          lVar5 = raceprog_sub_001dcdc0(uVar6);
+          lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
           if (lVar5 < 1) {
             Flags_Set(param_1,0x22);
           }
@@ -2489,7 +2489,7 @@ void RaceProg_UpdateTimerAll(void)
 }
 
 // 0x001dff30  size 0x48
-void raceprog_sub_001dff30(int param_1)
+void raceprog_leaf_sub_001dff30(int param_1)
 
 {
   int iVar1;
@@ -2511,7 +2511,7 @@ void raceprog_sub_001dff30(int param_1)
 }
 
 // 0x001dff80  size 0x50
-int raceprog_sub_001dff80(int param_1)
+int raceprog_leaf_sub_001dff80(int param_1)
 
 {
   int iVar1;

@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001bc010  size 0x210
-undefined4 garage_sub_001bc010(undefined8 param_1,undefined8 param_2,short param_3)
+undefined4 Profile_EquipFromStock(undefined8 param_1,undefined8 param_2,short param_3)
 
 {
   short sVar1;
@@ -43,7 +43,7 @@ undefined4 garage_sub_001bc010(undefined8 param_1,undefined8 param_2,short param
         if (sVar1 < 99) {
           *(short *)(iVar6 + 0x1420) = sVar1 + 1;
         }
-        garage_sub_001bbeb0(param_1,sVar3,param_2);
+        Profile_ApplyStockParts(param_1,sVar3,param_2);
         CarRec_ClearParts(uVar8);
         uVar9 = CarDb_FindDefaultPart(*puVar11,param_2,0xffffffffffffffff);
         CarRec_SetModelAndColor(uVar8,uVar9);
@@ -72,14 +72,14 @@ undefined4 garage_sub_001bc010(undefined8 param_1,undefined8 param_2,short param
 }
 
 // 0x001bc220  size 0x18
-undefined2 garage_sub_001bc220(int param_1,short param_2)
+undefined2 Profile_GetPartStock(int param_1,short param_2)
 
 {
   return *(undefined2 *)(param_2 * 2 + param_1 + 0x1420);
 }
 
 // 0x001bc240  size 0x144
-void garage_sub_001bc240(undefined4 *param_1,int param_2)
+void Profile_AddCar(undefined4 *param_1,int param_2)
 
 {
   short sVar1;
@@ -156,14 +156,14 @@ void garage_sub_001bc240(undefined4 *param_1,int param_2)
 }
 
 // 0x001bc390  size 0x1c
-int garage_sub_001bc390(int param_1,int param_2)
+int Profile_GetCarRecord(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0xcc;
 }
 
 // 0x001bc3b0  size 0x40
-void garage_sub_001bc3b0(undefined4 *param_1,int param_2,int param_3)
+void Profile_CopyCarRecord(undefined4 *param_1,int param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -181,14 +181,16 @@ void garage_sub_001bc3b0(undefined4 *param_1,int param_2,int param_3)
 }
 
 // 0x001bc3f0  size 0x20
-int garage_sub_001bc3f0(int param_1)
+/* +0x13ec index, 0xcc records; 41 callers */
+
+int Profile_GetCurrentCar(int param_1)
 
 {
   return param_1 + *(short *)(param_1 + 0x13ec) * 0xcc;
 }
 
 // 0x001bc410  size 0x44
-void garage_sub_001bc410(undefined4 *param_1,int param_2)
+void Profile_CopyCurrentCar(undefined4 *param_1,int param_2)
 
 {
   undefined4 *puVar1;
@@ -206,21 +208,21 @@ void garage_sub_001bc410(undefined4 *param_1,int param_2)
 }
 
 // 0x001bc460  size 0x8
-undefined2 garage_sub_001bc460(int param_1)
+undefined2 Profile_GetCurrentCarIndex(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x13ec);
 }
 
 // 0x001bc470  size 0x24
-undefined2 garage_sub_001bc470(int param_1)
+undefined2 Profile_GetCurrentCarModel(int param_1)
 
 {
   return *(undefined2 *)(param_1 + *(short *)(param_1 + 0x13ec) * 0xcc);
 }
 
 // 0x001bc4a0  size 0x28
-undefined4 garage_sub_001bc4a0(int param_1,undefined2 param_2)
+undefined4 Profile_SetCurrentCarColor(int param_1,undefined2 param_2)
 
 {
   *(undefined2 *)(param_1 + *(short *)(param_1 + 0x13ec) * 0xcc + 2) = param_2;
@@ -228,7 +230,7 @@ undefined4 garage_sub_001bc4a0(int param_1,undefined2 param_2)
 }
 
 // 0x001bc4d0  size 0x1c
-void garage_sub_001bc4d0(undefined4 *param_1,int param_2)
+void Profile_CopyTime(undefined4 *param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -243,21 +245,23 @@ void garage_sub_001bc4d0(undefined4 *param_1,int param_2)
 }
 
 // 0x001bc4f0  size 0x10
-bool garage_sub_001bc4f0(int param_1)
+bool Profile_HasFreeGarageSlot(int param_1)
 
 {
   return *(int *)(param_1 + 0x14) < *(int *)(param_1 + 0x18);
 }
 
 // 0x001bc500  size 0x8
-undefined1 garage_sub_001bc500(int param_1)
+undefined1 Profile_GetGarageSize(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x10);
 }
 
 // 0x001bc510  size 0xe4
-void garage_sub_001bc510(short *param_1,char param_2)
+/* wraps at 9999 */
+
+void Profile_AdvanceCounter(short *param_1,char param_2)
 
 {
   short sVar1;
@@ -295,14 +299,16 @@ LAB_001bc598:
 }
 
 // 0x001bc600  size 0x1c
-int garage_sub_001bc600(int param_1,int param_2)
+/* 21 callers */
+
+int Profile_GetCarRecordB(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0xcc;
 }
 
 // 0x001bc620  size 0x388
-void garage_sub_001bc620(int param_1)
+void Profile_InitNewGame(int param_1)
 
 {
   short *psVar1;
@@ -498,7 +504,9 @@ void garage_sub_001bc620(int param_1)
 }
 
 // 0x001bc9b0  size 0x94
-bool garage_sub_001bc9b0(int param_1,int param_2,long param_3)
+/* money -= x, spent += x */
+
+bool Profile_SpendMoney(int param_1,int param_2,long param_3)
 
 {
   bool bVar1;
@@ -521,7 +529,9 @@ bool garage_sub_001bc9b0(int param_1,int param_2,long param_3)
 }
 
 // 0x001bca50  size 0xa8
-void garage_sub_001bca50(int param_1,int param_2,long param_3)
+/* money += x, earned += x */
+
+void Profile_EarnMoney(int param_1,int param_2,long param_3)
 
 {
   *(int *)(param_1 + 0x2738) = *(int *)(param_1 + 0x2738) + param_2;
@@ -541,14 +551,16 @@ void garage_sub_001bca50(int param_1,int param_2,long param_3)
 }
 
 // 0x001bcb00  size 0x8
-undefined4 garage_sub_001bcb00(int param_1)
+/* +0x2738; 59 callers */
+
+undefined4 Profile_GetMoney(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x2738);
 }
 
 // 0x001bcb10  size 0x354
-void garage_sub_001bcb10(undefined8 param_1)
+void Profile_StartNight(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -590,7 +602,7 @@ void garage_sub_001bcb10(undefined8 param_1)
         *(undefined4 *)(iVar6 + 0x2738) = 99999999;
       }
     }
-    garage_sub_001be430(param_1);
+    Profile_AdvanceDay(param_1);
   }
   *(undefined1 *)(iVar6 + 0x3fbc) = 0;
   *(undefined1 *)(iVar6 + 0x3fbd) = 0;
@@ -692,7 +704,7 @@ LAB_001bce30:
 }
 
 // 0x001bce70  size 0xe34
-void garage_sub_001bce70(int param_1)
+void Profile_ScheduleRivals(int param_1)
 
 {
   bool bVar1;
@@ -1304,7 +1316,7 @@ void garage_sub_001bce70(int param_1)
 }
 
 // 0x001bdce0  size 0x14
-void garage_sub_001bdce0(int param_1,uint param_2)
+void Profile_ClearFlags(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) & ~param_2;
@@ -1312,14 +1324,14 @@ void garage_sub_001bdce0(int param_1,uint param_2)
 }
 
 // 0x001bdd00  size 0x8
-undefined4 garage_sub_001bdd00(int param_1)
+undefined4 Profile_GetFlags(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x272c);
 }
 
 // 0x001bdd10  size 0x10
-void garage_sub_001bdd10(int param_1,uint param_2)
+void Profile_SetFlags(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) | param_2;
@@ -1327,7 +1339,7 @@ void garage_sub_001bdd10(int param_1,uint param_2)
 }
 
 // 0x001bdd20  size 0x70c
-void garage_sub_001bdd20(int param_1)
+void Profile_SetupRivalBattle(int param_1)
 
 {
   undefined4 uVar1;
@@ -1646,7 +1658,7 @@ void garage_sub_001bdd20(int param_1)
 // 0x001be430  size 0x380
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void garage_sub_001be430(int param_1)
+void Profile_AdvanceDay(int param_1)
 
 {
   undefined4 uVar1;
@@ -1659,7 +1671,7 @@ void garage_sub_001be430(int param_1)
   int iVar8;
   uint uVar9;
   
-  garage_sub_001bdd20();
+  Profile_SetupRivalBattle();
   iVar8 = 0;
   iVar5 = param_1 + 0x531c;
   iVar6 = param_1;
@@ -1693,7 +1705,7 @@ void garage_sub_001be430(int param_1)
       Career_RefreshAvailability(param_1 + 0x531c);
       Career_UpdateTeams(param_1 + 0x531c);
       *(undefined4 *)(param_1 + 0x94e0) = 0;
-      garage_sub_001bce70(param_1);
+      Profile_ScheduleRivals(param_1);
       iVar5 = 0;
       iVar6 = param_1;
       do {
@@ -1815,17 +1827,17 @@ void garage_sub_001be430(int param_1)
       *(undefined2 *)(param_1 + 0x5318) = *(undefined2 *)(param_1 + 0x5312);
       *(undefined2 *)(param_1 + 0x531a) = *(undefined2 *)(param_1 + 0x5314);
       do {
-        password_sub_002de600(param_1,uVar9 & 0xff);
+        password_step_sub_002de600(param_1,uVar9 & 0xff);
         uVar9 = uVar9 + 1;
       } while ((int)uVar9 < 9);
-      password_sub_002de450(param_1 + 0xd84a);
+      password_leaf_sub_002de450(param_1 + 0xd84a);
       return;
     }
   } while( true );
 }
 
 // 0x001be7c0  size 0x2d0
-void garage_sub_001be7c0(int param_1,ulong param_2)
+void Profile_ResetCareer(int param_1,ulong param_2)
 
 {
   int iVar1;
@@ -1844,7 +1856,7 @@ void garage_sub_001be7c0(int param_1,ulong param_2)
   } while (iVar2 < 9);
   *(undefined4 *)(param_1 + 0x270c) = 1;
   Career_Reset(param_1 + 0x272c);
-  garage_sub_001bc620(param_1);
+  Profile_InitNewGame(param_1);
   *(undefined2 *)(param_1 + 0x5308) = 0;
   *(undefined2 *)(param_1 + 0x530a) = 0;
   *(undefined2 *)(param_1 + 0x530c) = 0;
@@ -1867,7 +1879,7 @@ void garage_sub_001be7c0(int param_1,ulong param_2)
     *(undefined1 *)(iVar2 + 0xd830) = 0;
     *(undefined1 *)(iVar2 + 0xd831) = 0;
   } while (iVar1 < 0x1e);
-  password_sub_002de540(param_1 + 0xd84a);
+  password_leaf_sub_002de540(param_1 + 0xd84a);
   iVar1 = 0;
   puVar4 = (undefined4 *)(param_1 + 0x531c);
   do {
@@ -1982,7 +1994,7 @@ void garage_sub_001be7c0(int param_1,ulong param_2)
 }
 
 // 0x001bea90  size 0x30
-void garage_sub_001bea90(undefined4 *param_1,int param_2)
+void Profile_CopyRivalStates(undefined4 *param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -2003,14 +2015,16 @@ void garage_sub_001bea90(undefined4 *param_1,int param_2)
 }
 
 // 0x001beac0  size 0x24
-undefined2 garage_sub_001beac0(int param_1,int param_2)
+/* table at 0x36f2fc */
+
+undefined2 RivalSchedule_Get(int param_1,int param_2)
 
 {
   return *(undefined2 *)(iRam0036f2fc + param_1 * 0xc + param_2 * 2);
 }
 
 // 0x001beaf0  size 0x2c
-void garage_sub_001beaf0(void)
+void RivalSchedule_Free(void)
 
 {
   if (iRam0036f2fc != 0) {
@@ -2024,7 +2038,7 @@ void garage_sub_001beaf0(void)
 /* WARNING: Removing unreachable block (ram,0x001bed98) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void garage_sub_001beb20(void)
+void RivalSchedule_SetupBattle(void)
 
 {
   int iVar1;
@@ -2053,7 +2067,8 @@ void garage_sub_001beb20(void)
   iVar1 = *_g_Profiles;
   if (*(char *)((uint)*(byte *)(iVar1 + 0x2733) + iVar1 + 0x3fbc) < '\n') {
     iVar14 = 0;
-    iVar4 = profile_sub_001c0040(*(int *)(iVar1 + 0x2734) % 7,*(undefined1 *)(iVar1 + 0x2731));
+    iVar4 = Profile_GetChapterRivalCount
+                      (*(int *)(iVar1 + 0x2734) % 7,*(undefined1 *)(iVar1 + 0x2731));
     iVar11 = 0;
     psVar9 = psRam0036f2fc;
     do {
@@ -2238,7 +2253,7 @@ void garage_sub_001beb20(void)
 /* WARNING: Removing unreachable block (ram,0x001bf578) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void garage_sub_001bf120(void)
+void RivalSchedule_SetupTeamBattle(void)
 
 {
   byte bVar1;
@@ -2285,7 +2300,8 @@ void garage_sub_001bf120(void)
   
   iVar23 = 0;
   iVar2 = *_g_Profiles;
-  iVar5 = profile_sub_001c0040(*(int *)(iVar2 + 0x2734) % 7,*(undefined1 *)(iVar2 + 0x2731));
+  iVar5 = Profile_GetChapterRivalCount(*(int *)(iVar2 + 0x2734) % 7,*(undefined1 *)(iVar2 + 0x2731))
+  ;
   iVar13 = 0;
   piVar12 = aiStack_2ab0;
   do {
@@ -2693,7 +2709,7 @@ LAB_001bfb30:
 }
 
 // 0x001bfe00  size 0x24
-void garage_sub_001bfe00(undefined8 param_1)
+void RivalSchedule_Alloc(undefined8 param_1)
 
 {
   uRam0036f2fc = Mem_Alloc16(0x820,param_1);
@@ -2701,7 +2717,7 @@ void garage_sub_001bfe00(undefined8 param_1)
 }
 
 // 0x001bfe30  size 0x10c
-void garage_sub_001bfe30(int param_1,short param_2,int param_3)
+void RivalSchedule_IsComplete(int param_1,short param_2,int param_3)
 
 {
   char cVar1;
@@ -2755,7 +2771,7 @@ void garage_sub_001bfe30(int param_1,short param_2,int param_3)
 }
 
 // 0x001bff40  size 0x28
-void garage_sub_001bff40(int param_1,int param_2)
+void RivalSchedule_Clear(int param_1,int param_2)
 
 {
   *(undefined2 *)(iRam0036f2fc + param_1 * 0xc + param_2 * 2) = 0xffff;
@@ -2764,7 +2780,7 @@ void garage_sub_001bff40(int param_1,int param_2)
 
 // 0x001bff70  size 0xcc
 undefined4
-garage_sub_001bff70(undefined8 param_1,long param_2,long param_3,int *param_4,int *param_5)
+Race_GetRewardAmount(undefined8 param_1,long param_2,long param_3,int *param_4,int *param_5)
 
 {
   char cVar1;

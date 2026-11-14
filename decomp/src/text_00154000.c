@@ -1506,7 +1506,7 @@ void maybe_Snd_Shutdown(void)
   maybe_Mutex_Delete(0x42d868);
   Rpc_Unbind(0x42d824);
   Mem_Free(uRam0042d81c);
-  loadfile_sub_00118b98(uRam0042d820);
+  maybe_sceSifFreeSysMemory(uRam0042d820);
   return;
 }
 
@@ -1566,16 +1566,16 @@ void Snd_Init(undefined8 param_1,undefined4 param_2,undefined4 param_3)
   iVar7 = Arc_GetFileSize(0x1c3d,0x1c5a,1);
   iVar8 = Arc_GetFileSize(0x1ca7,0x1db2,1);
   iVar9 = Arc_GetFileSize(0x1ec3,0x1fce,1);
-  uRam0042d820 = loadfile_sub_00118a30
-                           ((iVar9 + 0x3fU & 0xffffffc0) +
-                            (iVar8 + 0x3fU & 0xffffffc0) +
-                            (iVar7 + 0x3fU & 0xffffffc0) +
-                            (iVar6 + 0x3fU & 0xffffffc0) +
-                            (iVar5 + 0x3fU & 0xffffffc0) +
-                            (iVar4 + 0x3fU & 0xffffffc0) +
-                            (iVar3 + 0x3fU & 0xffffffc0) +
-                            (iVar2 + 0x3fU & 0xffffffc0) +
-                            (iVar11 + 0x3fU & 0xffffffc0) + 0x45140 + (iVar1 + 0x3fU & 0xffffffc0));
+  uRam0042d820 = sceSifAllocIopHeap((iVar9 + 0x3fU & 0xffffffc0) +
+                                    (iVar8 + 0x3fU & 0xffffffc0) +
+                                    (iVar7 + 0x3fU & 0xffffffc0) +
+                                    (iVar6 + 0x3fU & 0xffffffc0) +
+                                    (iVar5 + 0x3fU & 0xffffffc0) +
+                                    (iVar4 + 0x3fU & 0xffffffc0) +
+                                    (iVar3 + 0x3fU & 0xffffffc0) +
+                                    (iVar2 + 0x3fU & 0xffffffc0) +
+                                    (iVar11 + 0x3fU & 0xffffffc0) + 0x45140 +
+                                    (iVar1 + 0x3fU & 0xffffffc0));
   puStack_120 = PTR_DAT_0030ac60;
   puStack_118 = PTR_DAT_0030ac68;
   puStack_110 = PTR_DAT_0030ac70;

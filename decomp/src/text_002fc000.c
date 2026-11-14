@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002fd080  size 0x20
-undefined1 misc_sub_002fd080(void)
+undefined1 misc_step_sub_002fd080(void)
 
 {
   undefined1 auStack_50 [80];
@@ -13,7 +13,7 @@ undefined1 misc_sub_002fd080(void)
 }
 
 // 0x002fd0a0  size 0x20
-undefined1 misc_sub_002fd0a0(void)
+undefined1 misc_step_sub_002fd0a0(void)
 
 {
   undefined1 uStack_50;
@@ -24,7 +24,7 @@ undefined1 misc_sub_002fd0a0(void)
 }
 
 // 0x002fd0c0  size 0xbc
-undefined4 misc_sub_002fd0c0(void)
+undefined4 misc_step_sub_002fd0c0(void)
 
 {
   undefined1 uVar1;
@@ -71,7 +71,7 @@ undefined4 misc_sub_002fd0c0(void)
 }
 
 // 0x002fd180  size 0x34
-undefined8 misc_sub_002fd180(void)
+undefined8 misc_step_sub_002fd180(void)
 
 {
   long lVar1;
@@ -88,7 +88,7 @@ undefined8 misc_sub_002fd180(void)
 }
 
 // 0x002fd1c0  size 0xc
-undefined4 misc_sub_002fd1c0(void)
+undefined4 misc_leaf_sub_002fd1c0(void)
 
 {
   return uRam0046a598;
@@ -97,7 +97,7 @@ undefined4 misc_sub_002fd1c0(void)
 // 0x002fd1e0  size 0x398
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void misc_sub_002fd1e0(int *param_1)
+void misc_input_sub_002fd1e0(int *param_1)
 
 {
   int iVar1;
@@ -219,7 +219,7 @@ void misc_sub_002fd1e0(int *param_1)
 // 0x002fd5e0  size 0x3d0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void misc_sub_002fd5e0(int *param_1)
+void misc_draw_sub_002fd5e0(int *param_1)
 
 {
   int iVar1;

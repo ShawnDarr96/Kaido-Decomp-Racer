@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00108140  size 0x94
-uint libgraph_sub_00108140(void)
+uint sceGsSyncV(void)
 
 {
   ulong uVar1;
@@ -13,7 +13,7 @@ uint libgraph_sub_00108140(void)
   
   psVar2 = (short *)sceGsGetGParam();
   if (*(int *)(psVar2 + 4) == 0) {
-    libkernl_sub_00111c30();
+    maybe_sceGsVSyncHandlerClear();
     uVar3 = 1;
     if (*psVar2 == 1) {
       uVar1 = REG_GS_CSR;
@@ -21,7 +21,7 @@ uint libgraph_sub_00108140(void)
     }
   }
   else {
-    lVar4 = libkernl_sub_00111cc0();
+    lVar4 = maybe_sceGsWaitVSync();
     uVar3 = 1;
     if (*psVar2 == 1) {
       uVar3 = (uint)(lVar4 >> 0xd) & 1;
@@ -144,7 +144,7 @@ LAB_0010836c:
 
 // 0x001084f0  size 0x140
 undefined4
-libgraph_sub_001084f0
+sceGsSetDefStoreImage
           (undefined4 *param_1,short param_2,int param_3,short param_4,short param_5,int param_6,
           short param_7,short param_8)
 
@@ -503,7 +503,7 @@ maybe_Mpeg_MotionCompensation
     do {
       uVar2 = REG_DMAC_9_SPR_TO_CHCR;
     } while ((uVar2 >> 8 & 1) != 0);
-    libmpeg_sub_0010dbc0(param_1);
+    maybe_Mpeg_KickMotionComp(param_1);
     *(undefined4 *)(*(int *)(iVar5 + 0x828) * 0x140 + iVar5 + 0x6e0) = 1;
   }
   else {
@@ -1226,7 +1226,7 @@ maybe_Mpeg_SliceHeader
   uVar4 = maybe_Mpeg_ShowBits(param_1,0x20);
   if ((uint)uVar4 - 0x101 < 0xaf) {
     maybe_Mpeg_FlushBits(param_1,0x20);
-    iVar2 = libmpeg_sub_0010c6f8(param_1);
+    iVar2 = maybe_Mpeg_PictureCodingExtension(param_1);
     iVar3 = maybe_Mpeg_GetMBAddrInc(param_1);
     *param_4 = iVar3;
     if (*(int *)(iVar5 + 0x134) == 0) {

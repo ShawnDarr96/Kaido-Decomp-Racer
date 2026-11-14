@@ -253,7 +253,7 @@ int PhysWorld_GetBounds(int param_1)
 }
 
 // 0x00158600  size 0x20
-undefined4 phys_sub_00158600(undefined4 *param_1)
+undefined4 PhysHandle_GetIndexIfValid(undefined4 *param_1)
 
 {
   undefined4 uVar1;
@@ -268,7 +268,7 @@ undefined4 phys_sub_00158600(undefined4 *param_1)
 }
 
 // 0x00158620  size 0x20
-undefined4 phys_sub_00158620(undefined4 *param_1)
+undefined4 PhysHandle_GetValueIfValid(undefined4 *param_1)
 
 {
   undefined4 uVar1;
@@ -283,21 +283,21 @@ undefined4 phys_sub_00158620(undefined4 *param_1)
 }
 
 // 0x00158640  size 0x8
-undefined4 phys_sub_00158640(int param_1)
+undefined4 PhysWorld_GetContactPool(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x48);
 }
 
 // 0x00158650  size 0x8
-undefined4 phys_sub_00158650(int param_1)
+undefined4 PhysWorld_GetIslandList(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x44);
 }
 
 // 0x00158660  size 0x8
-undefined4 phys_sub_00158660(int param_1)
+undefined4 PhysWorld_GetBodyList(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x40);
@@ -377,13 +377,13 @@ LAB_00158758:
       }
       else {
         while (lVar4 = lVar5, lVar4 != 0) {
-          lVar5 = phys_sub_0015c640(lVar4,iVar6);
+          lVar5 = PhysPair_GetOther(lVar4,iVar6);
           unaff_s5 = lVar4;
         }
         iVar6 = (int)unaff_s5;
       }
       piVar9[2] = iVar6;
-      phys_sub_0015c5f0(piVar9,piVar9);
+      PhysPairList_RemoveLast(piVar9,piVar9);
       iVar6 = piVar9[1];
       lVar5 = PhysBody_GetUserData(iVar6);
       if (lVar5 == 0) {
@@ -391,13 +391,13 @@ LAB_00158758:
       }
       else {
         while (lVar4 = lVar5, lVar4 != 0) {
-          lVar5 = phys_sub_0015c640(lVar4,iVar6);
+          lVar5 = PhysPair_GetOther(lVar4,iVar6);
           unaff_s6 = lVar4;
         }
         iVar6 = (int)unaff_s6;
       }
       piVar9[3] = iVar6;
-      phys_sub_0015c5a0(piVar9,piVar9);
+      PhysPairList_RemoveFirst(piVar9,piVar9);
       goto LAB_00158768;
     }
     iVar1 = *(int *)(iVar1 + 0xc4);
@@ -537,12 +537,12 @@ LAB_00158b54:
           fVar8 = (float)PhysPair_ComputeDistance(piVar7);
           piVar7[7] = (int)fVar8;
           if (fVar8 < fRam0036f104 + fRam0036f100) {
-            puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(*piVar7 + 4));
+            puVar1 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(*piVar7 + 4));
             uStack_10 = *puVar1;
             uStack_c = puVar1[1];
             uStack_8 = puVar1[2];
             uStack_4 = puVar1[3];
-            puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(piVar7[1] + 4));
+            puVar1 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(piVar7[1] + 4));
             uStack_20 = *puVar1;
             uStack_1c = puVar1[1];
             uStack_18 = puVar1[2];
@@ -552,8 +552,8 @@ LAB_00158b54:
               iVar5 = iVar5 + 1;
               PhysWorld_SolveIslands(*piVar7);
               PhysWorld_SolveIslands(piVar7[1]);
-              phys_sub_00165260(*(undefined4 *)(*piVar7 + 4),&uStack_10);
-              phys_sub_00165260(*(undefined4 *)(piVar7[1] + 4),&uStack_20);
+              PhysBody_WorldToLocal(*(undefined4 *)(*piVar7 + 4),&uStack_10);
+              PhysBody_WorldToLocal(*(undefined4 *)(piVar7[1] + 4),&uStack_20);
             }
           }
         }
@@ -566,9 +566,9 @@ LAB_00158b54:
         *(float *)(iVar4 + 0x100) = *(float *)(iVar4 + 0x100) * *(float *)(iVar4 + 0xb0);
         *(float *)(iVar4 + 0x104) = *(float *)(iVar4 + 0x104) * *(float *)(iVar4 + 0xb4);
         *(float *)(iVar4 + 0x108) = *(float *)(iVar4 + 0x108) * *(float *)(iVar4 + 0xb8);
-        uVar2 = phys_sub_00165250(*(undefined4 *)(iVar4 + 4));
+        uVar2 = PhysBody_GetCenterOfMass(*(undefined4 *)(iVar4 + 4));
         Vec3_Add(auStack_30,uVar2,iVar4 + 0x100);
-        phys_sub_00165260(*(undefined4 *)(iVar4 + 4),auStack_30);
+        PhysBody_WorldToLocal(*(undefined4 *)(iVar4 + 4),auStack_30);
       }
       uVar6 = uVar6 + 1;
     } while (uVar6 < *(uint *)(param_2 + 0xc));
@@ -596,7 +596,7 @@ void PhysWorld_Step(float param_1,undefined8 param_2)
   *(undefined1 *)(iVar8 + 0x3c) = 1;
   for (iVar1 = *(int *)(iVar8 + 0x18); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
     if (*(char *)(iVar1 + 0xf6) == '\0') {
-      uVar7 = phys_sub_00164c40(*(undefined4 *)(iVar1 + 4));
+      uVar7 = PhysBody_GetTransform(*(undefined4 *)(iVar1 + 4));
       PhysContact_Process(iVar1 + 0x10,uVar7);
     }
     *(undefined4 *)(iVar1 + 0xd4) = 0;
@@ -615,11 +615,11 @@ void PhysWorld_Step(float param_1,undefined8 param_2)
   }
   for (iVar1 = *(int *)(iVar8 + 0x18); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
     if ((*(int *)(iVar1 + 0xd4) != 0) && (*(int *)(iVar1 + 0xa0) != 0)) {
-      phys_sub_00164d60(*(undefined4 *)(iVar1 + 4),iVar1 + 0x80);
+      PhysBody_AddTorque(*(undefined4 *)(iVar1 + 4),iVar1 + 0x80);
       Vec3_Scale(1.0 / (float)*(uint *)(iVar1 + 0xa0),auStack_20,iVar1 + 0x90);
       Vec3_Scale(*(undefined4 *)(iVar1 + 0xc0),auStack_10,auStack_20);
-      phys_sub_00164d40(*(undefined4 *)(iVar1 + 4),auStack_10);
-      phys_sub_00163f80(0x3f800000,*(undefined4 *)(iVar1 + 4));
+      PhysBody_AddForce(*(undefined4 *)(iVar1 + 4),auStack_10);
+      PhysBody_Integrate(0x3f800000,*(undefined4 *)(iVar1 + 4));
     }
   }
   for (iVar1 = *(int *)(iVar8 + 0x18); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xc4)) {
@@ -759,14 +759,14 @@ void PhysWorld_Init(int *param_1,int param_2,int param_3,int param_4)
 }
 
 // 0x00159370  size 0x4c
-undefined8 phys_sub_00159370(undefined8 param_1)
+undefined8 PhysWorld_ctor(undefined8 param_1)
 
 {
   undefined4 *puVar1;
   
   puVar1 = (undefined4 *)param_1;
   *puVar1 = &DAT_0036e268;
-  phys_sub_00159e40(puVar1 + 4);
+  PhysWorld_InitDefaults(puVar1 + 4);
   puVar1[0x23] = 0x3f800000;
   puVar1[0x27] = 0x3f800000;
   puVar1[0x2f] = 0x3f800000;
@@ -856,7 +856,9 @@ int Phys_AddBody(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001596b0  size 0x10
-void phys_sub_001596b0(void)
+/* indirect jump through vtable */
+
+void PhysShape_CallVirtual(void)
 
 {
                     /* WARNING: Could not recover jumptable at 0x001596b8. Too many branches */
@@ -1097,7 +1099,9 @@ void PhysContact_Apply(undefined8 param_1)
 }
 
 // 0x00159b20  size 0x14
-void phys_sub_00159b20(undefined4 *param_1)
+/* vtable dispatch */
+
+void PhysShape_GetKind(undefined4 *param_1)
 
 {
                     /* WARNING: Could not recover jumptable at 0x00159b2c. Too many branches */
@@ -1214,7 +1218,7 @@ void PhysShape_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,und
 }
 
 // 0x00159db0  size 0x84
-long phys_sub_00159db0(long param_1,short param_2)
+long PhysWorld_dtor(long param_1,short param_2)
 
 {
   int *piVar1;
@@ -1236,7 +1240,7 @@ long phys_sub_00159db0(long param_1,short param_2)
 }
 
 // 0x00159e40  size 0x20
-undefined8 phys_sub_00159e40(undefined8 param_1)
+undefined8 PhysWorld_InitDefaults(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -1251,7 +1255,7 @@ undefined8 phys_sub_00159e40(undefined8 param_1)
 }
 
 // 0x00159e60  size 0x148
-void phys_sub_00159e60(undefined8 param_1,undefined8 param_2)
+void PhysSphere_UpdateTransform(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1320,7 +1324,7 @@ void phys_sub_00159e60(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00159ff0  size 0x1b4
-void phys_sub_00159ff0(int param_1,undefined4 *param_2)
+void PhysSphere_ComputeInertia(int param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -1501,7 +1505,7 @@ void PhysSphere_Setup(int param_1,undefined8 param_2)
 }
 
 // 0x0015a3b0  size 0x28
-void phys_sub_0015a3b0(undefined4 param_1,undefined8 param_2)
+void PhysSphere_SetRadius(undefined4 param_1,undefined8 param_2)
 
 {
   undefined4 uStack_10;
@@ -1516,14 +1520,14 @@ void phys_sub_0015a3b0(undefined4 param_1,undefined8 param_2)
 }
 
 // 0x0015a3e0  size 0x8
-int phys_sub_0015a3e0(int param_1)
+int PhysBox_GetHalfExtents(int param_1)
 
 {
   return param_1 + 0x70;
 }
 
 // 0x0015a3f0  size 0x8
-int phys_sub_0015a3f0(int param_1)
+int PhysBox_GetAxes(int param_1)
 
 {
   return param_1 + 0x60;
@@ -1650,7 +1654,7 @@ int PhysBox_GetEdge(int param_1,int param_2)
 }
 
 // 0x0015a900  size 0x9c
-void phys_sub_0015a900(int param_1,undefined8 param_2)
+void PhysBox_SupportPoint(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1677,7 +1681,7 @@ void phys_sub_0015a900(int param_1,undefined8 param_2)
 }
 
 // 0x0015a9a0  size 0x114
-void phys_sub_0015a9a0(undefined4 param_1,undefined8 param_2,int param_3)
+void PhysBox_SetSize(undefined4 param_1,undefined8 param_2,int param_3)
 
 {
   undefined1 auStack_a0 [16];
@@ -1988,7 +1992,7 @@ undefined4 PhysBox_ClassifyPoint(int param_1,undefined8 param_2)
 }
 
 // 0x0015b0e0  size 0x2c4
-undefined4 phys_sub_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefined8 param_4)
+undefined4 PhysBox_ComputeInertia(int param_1,uint *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   bool bVar1;
@@ -2099,21 +2103,21 @@ undefined4 phys_sub_0015b0e0(int param_1,uint *param_2,undefined8 param_3,undefi
 }
 
 // 0x0015b3b0  size 0x18
-undefined4 phys_sub_0015b3b0(int param_1)
+undefined4 PhysBox_GetEdgeIndexA(int param_1)
 
 {
   return *(undefined4 *)(&DAT_0030acb0 + param_1 * 4);
 }
 
 // 0x0015b3d0  size 0x18
-undefined4 phys_sub_0015b3d0(int param_1)
+undefined4 PhysBox_GetEdgeIndexB(int param_1)
 
 {
   return *(undefined4 *)(&DAT_0030ac80 + param_1 * 4);
 }
 
 // 0x0015b430  size 0x9c
-undefined4 phys_sub_0015b430(int param_1,int param_2)
+undefined4 PhysBox_GetCorner(int param_1,int param_2)
 
 {
   undefined1 auStack_50 [16];
@@ -2139,14 +2143,14 @@ undefined4 phys_sub_0015b430(int param_1,int param_2)
 }
 
 // 0x0015b4e0  size 0x10
-int phys_sub_0015b4e0(int param_1,int param_2)
+int PhysBox_GetPlane(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0x20 + 0x110;
 }
 
 // 0x0015b520  size 0x240
-void phys_sub_0015b520(int param_1,undefined8 param_2,int param_3)
+void PhysBox_UpdateTransform(int param_1,undefined8 param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2291,7 +2295,7 @@ void phys_sub_0015b520(int param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0015b760  size 0x60
-long phys_sub_0015b760(long param_1,short param_2)
+long PhysBox_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -2549,7 +2553,7 @@ undefined8 PhysBox_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3
 }
 
 // 0x0015bcd0  size 0x34
-void phys_sub_0015bcd0(int param_1,undefined8 param_2)
+void PhysPlane_UpdateTransform(int param_1,undefined8 param_2)
 
 {
   undefined4 uStack_10;
@@ -2566,7 +2570,7 @@ void phys_sub_0015bcd0(int param_1,undefined8 param_2)
 }
 
 // 0x0015bdc0  size 0xa0
-void phys_sub_0015bdc0(undefined8 param_1,undefined8 param_2)
+void PhysPlane_GetKind(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -2586,7 +2590,7 @@ void phys_sub_0015bdc0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0015be60  size 0xa0
-void phys_sub_0015be60(int param_1,undefined8 param_2,int param_3)
+void PhysPlane_TransformNormal(int param_1,undefined8 param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -2635,7 +2639,8 @@ int PhysShape_GetCenter(int param_1)
 }
 
 // 0x0015bf30  size 0x1a4
-undefined4 phys_sub_0015bf30(int param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
+undefined4
+PhysPlane_RayIntersect(int param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;

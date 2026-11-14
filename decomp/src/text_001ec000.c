@@ -93,10 +93,10 @@ void RaceIntro_Update(int param_1)
         uStack_4c = *(undefined4 *)(iVar2 + 0x114);
         uStack_48 = *(undefined4 *)(iVar2 + 0x118);
         uStack_44 = *(undefined4 *)(iVar2 + 0x11c);
-        vu0math_sub_00132ae0(auStack_40,&uStack_80);
-        vu0math_sub_00132ae0(auStack_30,&uStack_70);
-        vu0math_sub_00132ae0(auStack_20,&uStack_60);
-        vu0math_sub_00132ae0(auStack_10,&uStack_50);
+        sceVu0CopyVector(auStack_40,&uStack_80);
+        sceVu0CopyVector(auStack_30,&uStack_70);
+        sceVu0CopyVector(auStack_20,&uStack_60);
+        sceVu0CopyVector(auStack_10,&uStack_50);
         iVar2 = *(int *)(iVar3 + 0x1c);
       }
       Prop_SetLight(0,(*(uint *)(iVar2 + 0x110) & 4) != 0,auStack_40);
@@ -125,10 +125,10 @@ void RaceIntro_Update(int param_1)
         uStack_8c = *(undefined4 *)(iVar2 + 0x114);
         uStack_88 = *(undefined4 *)(iVar2 + 0x118);
         uStack_84 = *(undefined4 *)(iVar2 + 0x11c);
-        vu0math_sub_00132ae0(auStack_40,&uStack_c0);
-        vu0math_sub_00132ae0(auStack_30,&uStack_b0);
-        vu0math_sub_00132ae0(auStack_20,&uStack_a0);
-        vu0math_sub_00132ae0(auStack_10,&uStack_90);
+        sceVu0CopyVector(auStack_40,&uStack_c0);
+        sceVu0CopyVector(auStack_30,&uStack_b0);
+        sceVu0CopyVector(auStack_20,&uStack_a0);
+        sceVu0CopyVector(auStack_10,&uStack_90);
         iVar3 = *(int *)(iVar3 + 0x1c);
       }
       Prop_SetLight(1,(*(uint *)(iVar3 + 0x110) & 4) != 0,auStack_40);
@@ -142,8 +142,8 @@ void RaceIntro_Update(int param_1)
 void RaceIntro_Exit(void)
 
 {
-  showroom_sub_002d7ba0();
-  eventui_sub_002e3480();
+  showroom_exit_sub_002d7ba0();
+  eventui_exit_sub_002e3480();
   CourseScene_Unload();
   UiRes_UploadFonts(uRam0036f2c0,uRam0036f2c0);
   UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
@@ -218,7 +218,8 @@ void UiModel_DrawPart(undefined8 param_1,float *param_2,int param_3,int param_4)
         if (iVar8 != 0) {
           iVar5 = iVar8;
         }
-        vu0math_sub_00132a30(auStack_230,param_2 + (iVar5 + -1) * 4,param_2 + iVar4 * 4,pfVar7);
+        maybe_sceVu0InterVectorXYZ
+                  (auStack_230,param_2 + (iVar5 + -1) * 4,param_2 + iVar4 * 4,pfVar7);
         if (0.0 <= fStack_228) {
           bVar2 = false;
           goto LAB_001ec484;
@@ -284,11 +285,11 @@ LAB_001ec484:
       iVar11 = iVar9;
       do {
         pfVar7 = param_2 + iVar11 * 4;
-        vu0math_sub_00132a30(auStack_20,param_2 + iVar4 * 4,param_2 + iVar8 * 4,pfVar7);
+        maybe_sceVu0InterVectorXYZ(auStack_20,param_2 + iVar4 * 4,param_2 + iVar8 * 4,pfVar7);
         bVar1 = 0.0 <= fStack_18;
-        vu0math_sub_00132a30(auStack_20,param_2 + iVar5 * 4,param_2 + iVar4 * 4,pfVar7);
+        maybe_sceVu0InterVectorXYZ(auStack_20,param_2 + iVar5 * 4,param_2 + iVar4 * 4,pfVar7);
         if ((bVar1 == 0.0 <= fStack_18) &&
-           (vu0math_sub_00132a30(auStack_20,param_2 + iVar8 * 4,param_2 + iVar5 * 4,pfVar7),
+           (maybe_sceVu0InterVectorXYZ(auStack_20,param_2 + iVar8 * 4,param_2 + iVar5 * 4,pfVar7),
            bVar1 == 0.0 <= fStack_18)) {
           bVar2 = true;
           break;
@@ -304,7 +305,8 @@ LAB_001ec484:
     if (bVar2) {
       if (iVar9 != iVar5) {
         do {
-          fVar15 = (float)vu0math_sub_00132900(auStack_20,param_2 + iVar8 * 4,param_2 + iVar9 * 4);
+          fVar15 = (float)maybe_sceVu0InterVectorDist
+                                    (auStack_20,param_2 + iVar8 * 4,param_2 + iVar9 * 4);
           if (fVar15 < fVar14) {
             fVar14 = fVar15;
             iStack_250 = iVar9;
@@ -342,8 +344,8 @@ LAB_001ec484:
         puVar13 = auStack_220;
         do {
           iVar5 = (int)lVar6;
-          vu0math_sub_00132ae0(puVar12,param_2 + iVar5 * 4);
-          vu0math_sub_001329c0(puVar13,param_3 + iVar5 * 0x10);
+          sceVu0CopyVector(puVar12,param_2 + iVar5 * 4);
+          maybe_sceVu0CopyVectorInt(puVar13,param_3 + iVar5 * 0x10);
           puVar12 = puVar12 + 0x10;
           puVar13 = puVar13 + 0x10;
           iVar4 = iVar4 + 1;
@@ -384,14 +386,14 @@ void UiModel_BuildMatrix(undefined8 param_1,undefined8 param_2,int param_3)
     fStack_90 = -*(float *)(param_3 + 0x44);
     fStack_8c = 0.0;
     uStack_88 = 0;
-    vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
+    sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
     maybe_Vu0_UnitMatrix(auStack_80);
     auStack_80[0] = 0xbf800000;
-    vu0math_sub_00132ba0(auStack_40,auStack_80,auStack_40);
+    sceVu0MulMatrix(auStack_40,auStack_80,auStack_40);
     fStack_90 = *(float *)(param_3 + 0x44);
     fStack_8c = 0.0;
     uStack_88 = 0;
-    vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
+    sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
     uVar1 = *(uint *)(param_3 + 0x10);
   }
   if ((uVar1 & 1) == 0) {
@@ -401,14 +403,14 @@ void UiModel_BuildMatrix(undefined8 param_1,undefined8 param_2,int param_3)
     fStack_8c = -*(float *)(param_3 + 0x48);
     fStack_90 = 0.0;
     uStack_88 = 0;
-    vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
+    sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
     maybe_Vu0_UnitMatrix(auStack_80);
     uStack_6c = 0xbf800000;
-    vu0math_sub_00132ba0(auStack_40,auStack_80,auStack_40);
+    sceVu0MulMatrix(auStack_40,auStack_80,auStack_40);
     fStack_8c = *(float *)(param_3 + 0x48);
     uStack_88 = 0;
     fStack_90 = 0.0;
-    vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
+    sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
     fVar2 = *(float *)(param_3 + 0x4c);
   }
   if (((fVar2 == 1.0) && (*(float *)(param_3 + 0x50) == 1.0)) && (*(float *)(param_3 + 0x54) == 0.0)
@@ -419,7 +421,7 @@ void UiModel_BuildMatrix(undefined8 param_1,undefined8 param_2,int param_3)
     fStack_8c = -*(float *)(param_3 + 0x48);
     fStack_90 = -*(float *)(param_3 + 0x44);
     uStack_88 = 0;
-    vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
+    sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
     if ((*(float *)(param_3 + 0x4c) == 1.0) && (*(float *)(param_3 + 0x50) == 1.0)) {
       fVar2 = *(float *)(param_3 + 0x54);
     }
@@ -427,7 +429,7 @@ void UiModel_BuildMatrix(undefined8 param_1,undefined8 param_2,int param_3)
       maybe_Vu0_UnitMatrix(auStack_80);
       auStack_80[0] = *(undefined4 *)(param_3 + 0x4c);
       uStack_6c = *(undefined4 *)(param_3 + 0x50);
-      vu0math_sub_00132ba0(auStack_40,auStack_80,auStack_40);
+      sceVu0MulMatrix(auStack_40,auStack_80,auStack_40);
       fVar2 = *(float *)(param_3 + 0x54);
     }
     if (fVar2 != 0.0) {
@@ -445,13 +447,13 @@ void UiModel_BuildMatrix(undefined8 param_1,undefined8 param_2,int param_3)
     fStack_8c = *(float *)(param_3 + 0x48);
     fStack_90 = *(float *)(param_3 + 0x44);
     uStack_88 = 0;
-    vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
+    sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
     fStack_8c = *(float *)(param_3 + 0x18);
   }
   fStack_90 = *(float *)(param_3 + 0x14);
   uStack_88 = 0;
-  vu0math_sub_00132d20(auStack_40,auStack_40,&fStack_90);
-  vu0math_sub_00132ba0(param_1,param_2,auStack_40);
+  sceVu0TransMatrix(auStack_40,auStack_40,&fStack_90);
+  sceVu0MulMatrix(param_1,param_2,auStack_40);
   return;
 }
 
@@ -965,7 +967,7 @@ void UiModel_DrawNode(float param_1,float param_2,undefined8 param_3,undefined8 
   fStack_20c = -*(float *)(param_5 + 0x48) * param_2;
   uStack_208 = 0;
   fStack_210 = -*(float *)(param_5 + 0x44) * param_1;
-  vu0math_sub_00132d20(param_6,param_6,&fStack_210);
+  sceVu0TransMatrix(param_6,param_6,&fStack_210);
   iVar7 = 0;
   if (0 < iVar1) {
     puVar6 = auStack_100;
@@ -1001,7 +1003,7 @@ void UiModel_DrawNode(float param_1,float param_2,undefined8 param_3,undefined8 
         }
         piVar5[3] = iVar10;
       }
-      vu0math_sub_00132d50(puVar6,param_6,puVar6);
+      sceVu0ApplyMatrix(puVar6,param_6,puVar6);
       iVar7 = iVar7 + 1;
       puVar8 = puVar8 + 3;
       puVar6 = puVar6 + 4;
@@ -1090,7 +1092,7 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
   uStack_8 = 0;
   fStack_c = -*(float *)(param_5 + 0x48) * param_2;
   fStack_10 = -*(float *)(param_5 + 0x44) * param_1;
-  vu0math_sub_00132d20(param_6,param_6,&fStack_10);
+  sceVu0TransMatrix(param_6,param_6,&fStack_10);
   puVar1[4] = 0;
   puVar1[5] = 0;
   iVar5 = 0;
@@ -1110,7 +1112,7 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
   puVar1[0x13] = 0x3f800000;
   puVar4 = puVar1;
   do {
-    vu0math_sub_00132d50(puVar4 + 4,param_6,puVar4 + 4);
+    sceVu0ApplyMatrix(puVar4 + 4,param_6,puVar4 + 4);
     iVar5 = iVar5 + 1;
     puVar4 = puVar4 + 4;
   } while (iVar5 < 4);

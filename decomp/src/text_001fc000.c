@@ -920,7 +920,7 @@ void MenuMgr_Alloc(undefined8 param_1,undefined4 param_2)
   *(undefined4 *)(_g_MenuMgr + 0x1c) = *(undefined4 *)(_g_MenuMgr + 0x20);
   MenuMgr_PushScreen();
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bdd00(uVar2);
+  uVar3 = Profile_GetFlags(uVar2);
   if ((uVar3 & 0x3fe) != 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x80000000;
   }
@@ -2265,7 +2265,7 @@ void MenuWnd_DrawStatus(long param_1,ulong param_2,int param_3,undefined4 param_
 LAB_001ffe38:
     if (param_1 == -2) goto LAB_001ffe40;
     if (param_2 < 2) {
-      ui_sub_001f6af0(auStack_20,param_1,param_2,0xffffffffffffffff,0);
+      ui_step_sub_001f6af0(auStack_20,param_1,param_2,0xffffffffffffffff,0);
       uStack_94 = MenuText_CarNameOrMaker(param_1,param_2);
       uStack_90 = MenuText_CarGrade(param_1,param_2);
       uStack_8c = MenuText_CarShortName(param_1,param_2);
@@ -2343,7 +2343,7 @@ LAB_001ffe40:
     }
     else {
       uStack_84 = (undefined2)param_3;
-      ui_sub_001f6af0(auStack_40,param_1,0,uStack_84,param_4);
+      ui_step_sub_001f6af0(auStack_40,param_1,0,uStack_84,param_4);
       iStack_190 = iStack_28;
       iStack_160 = (int)fStack_3c;
       iStack_b0 = (int)fStack_38;

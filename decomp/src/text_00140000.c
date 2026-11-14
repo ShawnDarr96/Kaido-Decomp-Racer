@@ -2152,7 +2152,7 @@ void Camera_BuildProjection
   fStack_2c = param_3;
   fStack_10 = param_4;
   fStack_c = param_5;
-  vu0math_sub_00132ba0(param_9,afStack_40,afStack_80);
+  sceVu0MulMatrix(param_9,afStack_40,afStack_80);
   maybe_Vu0_UnitMatrix(param_11);
   pfVar1 = (float *)param_11;
   *pfVar1 = param_8 / fVar5;

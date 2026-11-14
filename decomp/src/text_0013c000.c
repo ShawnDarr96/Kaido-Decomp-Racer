@@ -77,7 +77,7 @@ void Iop_LoadModule(void)
   long in_a3;
   undefined4 uStack_4;
   
-  loadfile_sub_00119918();
+  maybe_sceSifLoadStartModuleBuffer();
   if (in_a3 != 0) {
     *(undefined4 *)in_a3 = uStack_4;
   }
@@ -96,7 +96,7 @@ void Iop_Reboot(long param_1,long param_2)
   sceCdInit(0);
   if (param_2 != 0) {
     do {
-      lVar1 = loadfile_sub_001198f8(param_2,0,0);
+      lVar1 = maybe_sceSifLoadModuleBuffer(param_2,0,0);
     } while (lVar1 < 0);
   }
   if (param_1 != 0) {
@@ -108,9 +108,9 @@ void Iop_Reboot(long param_1,long param_2)
     } while (lVar1 == 0);
   }
   sceSifInitRpc(0);
-  loadfile_sub_00119088();
-  libkernl_sub_00115bb8();
-  loadfile_sub_001189a8();
+  sceSifLoadFileReset();
+  maybe_Fio_ClearBinding();
+  sceSifInitIopHeap();
   return;
 }
 

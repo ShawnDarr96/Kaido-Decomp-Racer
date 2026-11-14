@@ -41,11 +41,11 @@ void Car_UpdateSteeringAngle(int param_1)
   if (*(float *)(param_1 + 400) < 0.0) {
     fVar3 = fVar5;
   }
-  iVar1 = phys_sub_00164c40(*(undefined4 *)(param_1 + 0x154));
+  iVar1 = PhysBody_GetTransform(*(undefined4 *)(param_1 + 0x154));
   uStack_10 = *(undefined4 *)(iVar1 + 0x10);
   uStack_c = *(undefined4 *)(iVar1 + 0x14);
   uStack_8 = *(undefined4 *)(iVar1 + 0x18);
-  uVar2 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
+  uVar2 = PhysBody_GetAngularVelocity(*(undefined4 *)(param_1 + 0x154));
   fVar4 = (float)Vec3_Dot(&uStack_10,uVar2);
   fVar4 = DAT_0036e75c * ((*(float *)(param_1 + 0x6c) + 0.0) - fVar4 * DAT_0036e758);
   if (fVar4 < fVar7) {
@@ -708,7 +708,7 @@ void Car_ApplyStopFriction(int param_1)
     fVar2 = (float)fabsf(*(undefined4 *)(param_1 + 0x198));
     fVar3 = (float)fabsf(*(undefined4 *)(param_1 + 400));
     if ((fVar2 <= 0.1) || (fVar3 <= 0.06)) {
-      uVar1 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
+      uVar1 = PhysBody_GetAngularVelocity(*(undefined4 *)(param_1 + 0x154));
       fVar3 = (float)Vec3_Length(uVar1);
       if (0.1 <= fVar3) {
         uStack_10 = DAT_003625e0;
@@ -726,10 +726,10 @@ void Car_ApplyStopFriction(int param_1)
         uStack_1c = DAT_003625e4;
         uStack_18 = DAT_003625e8;
         uStack_14 = DAT_003625ec;
-        uVar1 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+        uVar1 = PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
         Vec3_Sub(auStack_50,uVar1,&uStack_20);
         Vec3_Sub(auStack_30,auStack_50,&uStack_10);
-        phys_sub_00164f60(*(undefined4 *)(param_1 + 0x154),auStack_30);
+        PhysBody_UpdateMomentum(*(undefined4 *)(param_1 + 0x154),auStack_30);
       }
     }
   }
@@ -798,8 +798,8 @@ void Car_CheckUpsideDown(int param_1)
      (fVar3 = (float)Vec3_Dot(param_1 + 0x20,param_1 + 0x70), fVar3 < -0.8)) {
     uStack_24 = 0x3f800000;
     uStack_14 = 0x3f800000;
-    uVar2 = phys_sub_00165250(*(undefined4 *)(param_1 + 0x154));
-    phys_sub_001596b0(afStack_40,uVar2,*(undefined4 *)(param_1 + 0xae0));
+    uVar2 = PhysBody_GetCenterOfMass(*(undefined4 *)(param_1 + 0x154));
+    PhysShape_CallVirtual(afStack_40,uVar2,*(undefined4 *)(param_1 + 0xae0));
     Mat34_Identity(&uStack_80);
     uStack_a4 = 0x3f800000;
     uStack_b0 = uStack_30;
@@ -812,7 +812,7 @@ void Car_CheckUpsideDown(int param_1)
     uStack_e0 = uStack_30;
     uStack_dc = uStack_2c;
     uStack_d8 = uStack_28;
-    phys_sub_00163800(&uStack_d0,&uStack_e0,param_1 + 0x900);
+    Vec3_Cross(&uStack_d0,&uStack_e0,param_1 + 0x900);
     uStack_b4 = 0x3f800000;
     uStack_c0 = uStack_d0;
     uStack_bc = uStack_cc;
@@ -821,14 +821,14 @@ void Car_CheckUpsideDown(int param_1)
     uStack_5c = uStack_cc;
     uStack_58 = uStack_c8;
     uStack_54 = 0x3f800000;
-    phys_sub_001639e0(&uStack_60);
+    Quat_NormalizeB(&uStack_60);
     uStack_120 = uStack_60;
     uStack_110 = uStack_60;
     uStack_11c = uStack_5c;
     uStack_10c = uStack_5c;
     uStack_118 = uStack_58;
     uStack_108 = uStack_58;
-    phys_sub_00163800(&uStack_100,&uStack_110,&uStack_120);
+    Vec3_Cross(&uStack_100,&uStack_110,&uStack_120);
     uStack_e4 = 0x3f800000;
     uStack_f0 = uStack_100;
     uStack_ec = uStack_fc;
@@ -837,16 +837,16 @@ void Car_CheckUpsideDown(int param_1)
     uStack_7c = uStack_fc;
     uStack_78 = uStack_f8;
     uStack_74 = 0x3f800000;
-    phys_sub_001639e0(&uStack_80);
-    phys_sub_00163340(auStack_90,&uStack_80);
-    puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(param_1 + 0x154));
+    Quat_NormalizeB(&uStack_80);
+    Mat33_ToQuat(auStack_90,&uStack_80);
+    puVar1 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(param_1 + 0x154));
     uStack_a0 = *puVar1;
     uStack_98 = puVar1[2];
     fStack_9c = (float)puVar1[1] - afStack_40[0];
     uStack_94 = puVar1[3];
-    phys_sub_00165120(*(undefined4 *)(param_1 + 0x154),*(int *)(param_1 + 0x120) + 0x90);
-    phys_sub_00165260(*(undefined4 *)(param_1 + 0x154),&uStack_a0);
-    phys_sub_00165050(*(undefined4 *)(param_1 + 0x154),auStack_90);
+    PhysBody_SetTransformFrom(*(undefined4 *)(param_1 + 0x154),*(int *)(param_1 + 0x120) + 0x90);
+    PhysBody_WorldToLocal(*(undefined4 *)(param_1 + 0x154),&uStack_a0);
+    PhysBody_SetRotation(*(undefined4 *)(param_1 + 0x154),auStack_90);
     *(undefined1 *)(param_1 + 0xb74) = 0;
   }
   return;
@@ -1104,12 +1104,12 @@ void Car_UpdateBodyDynamics(int param_1)
   if (*(int *)(param_1 + 0x160) == 0) {
     if ((ulong)*(byte *)(param_1 + 0xb74) != 0xffffffffffffffff) {
       *(undefined1 *)(param_1 + 0xb74) = 1;
-      phys_sub_00165120(*(undefined4 *)(param_1 + 0x154),*(int *)(param_1 + 0x120) + 0xa0);
+      PhysBody_SetTransformFrom(*(undefined4 *)(param_1 + 0x154),*(int *)(param_1 + 0x120) + 0xa0);
     }
   }
   else if (*(char *)(param_1 + 0xb74) != '\0') {
     *(undefined1 *)(param_1 + 0xb74) = 0;
-    phys_sub_00165120(*(undefined4 *)(param_1 + 0x154),*(int *)(param_1 + 0x120) + 0x90);
+    PhysBody_SetTransformFrom(*(undefined4 *)(param_1 + 0x154),*(int *)(param_1 + 0x120) + 0x90);
   }
   uStack_80 = 0;
   uStack_7c = 0;
@@ -1126,15 +1126,15 @@ void Car_UpdateBodyDynamics(int param_1)
   iVar9 = param_1;
   do {
     iVar1 = *(int *)(iVar9 + 0x7c0);
-    phys_sub_00162dd0(&uStack_10,param_1 + 0xa0,iVar8 + 0x910);
+    Mat33_MulVec3Transposed(&uStack_10,param_1 + 0xa0,iVar8 + 0x910);
     Vec3_AddInPlace(param_1 + 0x180,&uStack_10);
     Vec3_ScaleCopy(*(float *)(iVar1 + 0xd4) * fVar11,auStack_90,param_1 + 0x80);
-    uVar3 = phys_sub_00165110(*(undefined4 *)(param_1 + 0x154));
+    uVar3 = PhysBody_GetLocalCenter(*(undefined4 *)(param_1 + 0x154));
     Vec3_Add(auStack_20,auStack_90,uVar3);
     Vec3_ScaleCopy(*(float *)(iVar7 + 0x1cc) * fVar12,auStack_a0,param_1 + 0x90);
     Vec3_AddInPlace(auStack_20,auStack_a0);
     Vec3_ScaleCopy(*(undefined4 *)(*(int *)(param_1 + 0x120) + 0x84),auStack_b0,param_1 + 0x70);
-    phys_sub_00163ac0(auStack_20,auStack_b0);
+    Vec3_SubInPlace(auStack_20,auStack_b0);
     uStack_24 = 0x3f800000;
     if ((1 < uVar10) || (*(float *)(iVar7 + 0x294) * *(float *)(param_1 + 0x86c) < 0.0)) {
       Vec3_ScaleCopy(uStack_10,auStack_170,param_1 + 0x80);
@@ -1167,19 +1167,19 @@ void Car_UpdateBodyDynamics(int param_1)
       uStack_28 = uStack_f8;
       uStack_24 = uStack_f4;
     }
-    phys_sub_00164cc0(*(undefined4 *)(param_1 + 0x154),&uStack_30,auStack_20);
-    phys_sub_00162f00(auStack_60,param_1 + 0xa0,&uStack_30);
+    PhysBody_AddForceAtPoint(*(undefined4 *)(param_1 + 0x154),&uStack_30,auStack_20);
+    Mat33_MulVec3B(auStack_60,param_1 + 0xa0,&uStack_30);
     fVar13 = (float)Vec3_Dot(param_1 + 0x20,0x362570);
     if ((fVar13 < 0.7071) && (*(float *)(iVar7 + 0x2a0) == 0.0)) {
       uStack_70 = DAT_003625e0;
       uStack_6c = DAT_003625e4;
       uStack_68 = DAT_003625e8;
       uStack_64 = DAT_003625ec;
-      uVar3 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
-      phys_sub_00163800(auStack_1a0,uVar3,param_1 + 0x20);
+      uVar3 = PhysBody_GetAngularVelocity(*(undefined4 *)(param_1 + 0x154));
+      Vec3_Cross(auStack_1a0,uVar3,param_1 + 0x20);
       fVar14 = (float)Vec3_Dot(auStack_1a0,0x362570);
       if (fVar14 < fVar13) {
-        phys_sub_00164d90(*(undefined4 *)(param_1 + 0x154),&uStack_70);
+        PhysBody_ClampAngularVelocity(*(undefined4 *)(param_1 + 0x154),&uStack_70);
       }
     }
     uVar10 = uVar10 + 1;
@@ -1189,8 +1189,8 @@ void Car_UpdateBodyDynamics(int param_1)
   } while (uVar10 < 4);
   *(float *)(param_1 + 0x60) = *(float *)(param_1 + 0x188) * *(float *)(param_1 + 0xad8);
   *(float *)(param_1 + 100) = *(float *)(param_1 + 0x180) * *(float *)(param_1 + 0xadc);
-  phys_sub_00164d60(*(undefined4 *)(param_1 + 0x154),param_1 + 0x950);
-  puVar2 = (undefined4 *)phys_sub_00164d50(*(undefined4 *)(param_1 + 0x154));
+  PhysBody_AddTorque(*(undefined4 *)(param_1 + 0x154),param_1 + 0x950);
+  puVar2 = (undefined4 *)PhysBody_GetTorque(*(undefined4 *)(param_1 + 0x154));
   uVar4 = puVar2[1];
   uVar5 = puVar2[2];
   uVar6 = puVar2[3];
@@ -1202,14 +1202,14 @@ void Car_UpdateBodyDynamics(int param_1)
     afStack_1b0[2] = -*(float *)(param_1 + 0x8c8);
     afStack_1b0[0] = -*(float *)(param_1 + 0x8c0);
     afStack_1b0[1] = 0.0;
-    phys_sub_00164d60(*(undefined4 *)(param_1 + 0x154),afStack_1b0);
+    PhysBody_AddTorque(*(undefined4 *)(param_1 + 0x154),afStack_1b0);
     *(undefined4 *)(param_1 + 0x8c0) = 0;
     *(undefined4 *)(param_1 + 0x8c8) = 0;
   }
   Vec3_Scale(0x3f000000,auStack_1c0,param_1 + 0x8c0);
   Vec3_AddInPlace(param_1 + 0x170,auStack_1c0);
   Vec3_ScaleInPlace(0x3f2aaa9f,param_1 + 0x170);
-  puVar2 = (undefined4 *)phys_sub_00164d30(*(undefined4 *)(param_1 + 0x154));
+  puVar2 = (undefined4 *)PhysBody_GetForce(*(undefined4 *)(param_1 + 0x154));
   uVar4 = puVar2[1];
   uVar5 = puVar2[2];
   uVar6 = puVar2[3];
@@ -1217,7 +1217,7 @@ void Car_UpdateBodyDynamics(int param_1)
   *(undefined4 *)(param_1 + 0x8d4) = uVar4;
   *(undefined4 *)(param_1 + 0x8d8) = uVar5;
   *(undefined4 *)(param_1 + 0x8dc) = uVar6;
-  phys_sub_00163c40(*(undefined4 *)(param_1 + 0x870),*(undefined4 *)(param_1 + 0x154));
+  PhysBody_IntegrateFull(*(undefined4 *)(param_1 + 0x870),*(undefined4 *)(param_1 + 0x154));
   return;
 }
 
@@ -1248,9 +1248,9 @@ void Car_CheckStuck(int param_1)
       *(undefined1 *)(param_1 + 0xab0) = 0;
     }
     else {
-      lVar1 = phys_sub_00162430(*(int *)(param_1 + 0x158),0x3000000);
+      lVar1 = PhysBody_FindShapeWithFlags(*(int *)(param_1 + 0x158),0x3000000);
       if ((lVar1 != 0) && (fVar4 = (float)PhysWorld_GetFirstBody(lVar1), fVar4 < 70.0)) {
-        iVar3 = phys_sub_00164c50(*(undefined4 *)(param_1 + 0x154));
+        iVar3 = PhysBody_GetOrientation(*(undefined4 *)(param_1 + 0x154));
         uStack_30 = *(undefined4 *)(iVar3 + 0x30);
         uStack_2c = *(undefined4 *)(iVar3 + 0x34);
         uStack_28 = *(undefined4 *)(iVar3 + 0x38);
@@ -1274,12 +1274,12 @@ void Car_CheckStuck(int param_1)
     *(undefined4 *)(param_1 + 0x530) = 0;
     *(undefined4 *)(param_1 + 0x64c) = 0;
     *(undefined4 *)(param_1 + 0x670) = 0;
-    iVar3 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+    iVar3 = PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
     uStack_1c = *(undefined4 *)(iVar3 + 4);
     uStack_14 = *(undefined4 *)(iVar3 + 0xc);
     uStack_18 = 0;
     uStack_20 = 0;
-    phys_sub_00164f60(*(undefined4 *)(param_1 + 0x154),&uStack_20);
+    PhysBody_UpdateMomentum(*(undefined4 *)(param_1 + 0x154),&uStack_20);
   }
   return;
 }
@@ -1360,7 +1360,7 @@ void Car_UpdateWheelTransforms(int param_1)
   do {
     uStack_24 = 0x3f800000;
     uStack_14 = 0x3f800000;
-    phys_sub_001596b0(auStack_40,iVar3 + 0x1f0,*(undefined4 *)(iVar3 + 0x1c4));
+    PhysShape_CallVirtual(auStack_40,iVar3 + 0x1f0,*(undefined4 *)(iVar3 + 0x1c4));
     fVar5 = 0.0;
     *(undefined4 *)(iVar3 + 0x200) = auStack_40[0];
     *(undefined4 *)(iVar3 + 0x210) = uStack_30;
@@ -1390,7 +1390,7 @@ void Car_UpdateWheelTransforms(int param_1)
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x140;
   } while (uVar4 < 4);
-  phys_sub_00163bc0(param_1 + 0x70);
+  Vec3_Normalize(param_1 + 0x70);
   Vec3_Add(auStack_80,param_1 + 0x240,param_1 + 0x380);
   Vec3_Scale(0x3f000000,&uStack_70,auStack_80);
   *(undefined4 *)(param_1 + 0x6c0) = uStack_70;
@@ -1403,18 +1403,18 @@ void Car_UpdateWheelTransforms(int param_1)
   *(undefined4 *)(param_1 + 0x744) = uStack_8c;
   *(undefined4 *)(param_1 + 0x748) = uStack_88;
   *(undefined4 *)(param_1 + 0x74c) = uStack_84;
-  phys_sub_00163800(&uStack_b0,param_1 + 0x70,param_1 + 0x30);
+  Vec3_Cross(&uStack_b0,param_1 + 0x70,param_1 + 0x30);
   *(undefined4 *)(param_1 + 0x80) = uStack_b0;
   *(undefined4 *)(param_1 + 0x84) = uStack_ac;
   *(undefined4 *)(param_1 + 0x88) = uStack_a8;
   *(undefined4 *)(param_1 + 0x8c) = uStack_a4;
-  phys_sub_00163bc0(param_1 + 0x80);
-  phys_sub_00163800(&uStack_c0,param_1 + 0x80,param_1 + 0x70);
+  Vec3_Normalize(param_1 + 0x80);
+  Vec3_Cross(&uStack_c0,param_1 + 0x80,param_1 + 0x70);
   *(undefined4 *)(param_1 + 0x90) = uStack_c0;
   *(undefined4 *)(param_1 + 0x94) = uStack_bc;
   *(undefined4 *)(param_1 + 0x98) = uStack_b8;
   *(undefined4 *)(param_1 + 0x9c) = uStack_b4;
-  phys_sub_00163bc0(param_1 + 0x90);
+  Vec3_Normalize(param_1 + 0x90);
   uStack_d0 = *(undefined4 *)(param_1 + 0x80);
   uStack_cc = *(undefined4 *)(param_1 + 0x84);
   uStack_c4 = 0x3f800000;
@@ -1439,7 +1439,7 @@ void Car_UpdateWheelTransforms(int param_1)
   *(undefined4 *)(param_1 + 0xc4) = uStack_ec;
   *(undefined4 *)(param_1 + 200) = uStack_e8;
   *(undefined4 *)(param_1 + 0xcc) = 0x3f800000;
-  pfVar1 = (float *)phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+  pfVar1 = (float *)PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
   fStack_50 = *pfVar1;
   fStack_4c = pfVar1[1];
   fStack_48 = pfVar1[2];
@@ -1461,23 +1461,23 @@ void Car_UpdateWheelTransforms(int param_1)
   }
   uVar8 = Vec3_Dot(param_1 + 0x50,param_1 + 0x70);
   *(undefined4 *)(param_1 + 0xb60) = uVar8;
-  phys_sub_00164eb0(&uStack_100,*(undefined4 *)(param_1 + 0x154),param_1 + 0x6b0);
+  PhysBody_PointVelocityWorld(&uStack_100,*(undefined4 *)(param_1 + 0x154),param_1 + 0x6b0);
   *(undefined4 *)(param_1 + 0x700) = uStack_100;
   *(undefined4 *)(param_1 + 0x704) = uStack_fc;
   *(undefined4 *)(param_1 + 0x708) = uStack_f8;
   *(undefined4 *)(param_1 + 0x70c) = uStack_f4;
-  phys_sub_00164eb0(&uStack_110,*(undefined4 *)(param_1 + 0x154),param_1 + 0x730);
+  PhysBody_PointVelocityWorld(&uStack_110,*(undefined4 *)(param_1 + 0x154),param_1 + 0x730);
   *(undefined4 *)(param_1 + 0x780) = uStack_110;
   *(undefined4 *)(param_1 + 0x784) = uStack_10c;
   *(undefined4 *)(param_1 + 0x788) = uStack_108;
   *(undefined4 *)(param_1 + 0x78c) = uStack_104;
-  uVar2 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
-  phys_sub_00162dd0(&uStack_120,param_1 + 0xa0,uVar2);
+  uVar2 = PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
+  Mat33_MulVec3Transposed(&uStack_120,param_1 + 0xa0,uVar2);
   *(undefined4 *)(param_1 + 400) = uStack_120;
   *(undefined4 *)(param_1 + 0x194) = uStack_11c;
   *(undefined4 *)(param_1 + 0x198) = uStack_118;
   *(undefined4 *)(param_1 + 0x19c) = uStack_114;
-  phys_sub_00163800(auStack_60,param_1 + 0x70,param_1 + 0x20);
+  Vec3_Cross(auStack_60,param_1 + 0x70,param_1 + 0x20);
   uVar8 = Vec3_Dot(auStack_60,param_1 + 0x80);
   *(undefined4 *)(param_1 + 0x68) = uVar8;
   return;
@@ -1548,7 +1548,7 @@ void Car_SyncFromRigidBody(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  puVar1 = (undefined4 *)phys_sub_00164c40(*(undefined4 *)(param_1 + 0x154));
+  puVar1 = (undefined4 *)PhysBody_GetTransform(*(undefined4 *)(param_1 + 0x154));
   uStack_90 = *puVar1;
   uStack_8c = puVar1[1];
   uStack_88 = puVar1[2];
@@ -1556,7 +1556,7 @@ void Car_SyncFromRigidBody(int param_1)
   *(undefined4 *)(param_1 + 0x14) = uStack_8c;
   *(undefined4 *)(param_1 + 0x18) = uStack_88;
   *(undefined4 *)(param_1 + 0x1c) = uStack_84;
-  iVar2 = phys_sub_00164c40(*(undefined4 *)(param_1 + 0x154));
+  iVar2 = PhysBody_GetTransform(*(undefined4 *)(param_1 + 0x154));
   uStack_a0 = *(undefined4 *)(iVar2 + 0x10);
   uStack_9c = *(undefined4 *)(iVar2 + 0x14);
   uStack_98 = *(undefined4 *)(iVar2 + 0x18);
@@ -1564,7 +1564,7 @@ void Car_SyncFromRigidBody(int param_1)
   *(undefined4 *)(param_1 + 0x24) = uStack_9c;
   *(undefined4 *)(param_1 + 0x28) = uStack_98;
   *(undefined4 *)(param_1 + 0x2c) = uStack_94;
-  iVar2 = phys_sub_00164c40(*(undefined4 *)(param_1 + 0x154));
+  iVar2 = PhysBody_GetTransform(*(undefined4 *)(param_1 + 0x154));
   uStack_b0 = *(undefined4 *)(iVar2 + 0x20);
   uStack_ac = *(undefined4 *)(iVar2 + 0x24);
   uStack_a8 = *(undefined4 *)(iVar2 + 0x28);
@@ -1572,9 +1572,9 @@ void Car_SyncFromRigidBody(int param_1)
   *(undefined4 *)(param_1 + 0x34) = uStack_ac;
   *(undefined4 *)(param_1 + 0x38) = uStack_a8;
   *(undefined4 *)(param_1 + 0x3c) = uStack_a4;
-  puVar1 = (undefined4 *)phys_sub_00164f40(*(undefined4 *)(param_1 + 0x154));
+  puVar1 = (undefined4 *)PhysBody_GetLinearVelocity(*(undefined4 *)(param_1 + 0x154));
   *(undefined4 *)(param_1 + 0x40) = *puVar1;
-  puVar1 = (undefined4 *)phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
+  puVar1 = (undefined4 *)PhysBody_GetAngularVelocity(*(undefined4 *)(param_1 + 0x154));
   uVar3 = puVar1[1];
   uVar4 = puVar1[2];
   uVar5 = puVar1[3];
@@ -1582,7 +1582,7 @@ void Car_SyncFromRigidBody(int param_1)
   *(undefined4 *)(param_1 + 0x54) = uVar3;
   *(undefined4 *)(param_1 + 0x58) = uVar4;
   *(undefined4 *)(param_1 + 0x5c) = uVar5;
-  puVar1 = (undefined4 *)phys_sub_00164c40(*(undefined4 *)(param_1 + 0x154));
+  puVar1 = (undefined4 *)PhysBody_GetTransform(*(undefined4 *)(param_1 + 0x154));
   uVar3 = puVar1[1];
   uVar4 = puVar1[2];
   uVar5 = puVar1[3];
@@ -2469,7 +2469,7 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x3c4) = uVar3;
   uVar3 = sinf(*(undefined4 *)(param_1 + 0x24c));
   *(undefined4 *)(param_1 + 0x3c8) = uVar3;
-  phys_sub_00163540(*(undefined4 *)(param_1 + 0x24c),&uStack_2b0,0x362560);
+  Quat_FromAxisAngle(*(undefined4 *)(param_1 + 0x24c),&uStack_2b0,0x362560);
   *(undefined4 *)(param_1 + 0x3d0) = uStack_2b0;
   *(undefined4 *)(param_1 + 0x3d4) = uStack_2ac;
   *(undefined4 *)(param_1 + 0x3d8) = uStack_2a8;
@@ -2480,7 +2480,7 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x424) = uVar3;
   uVar3 = sinf(-*(float *)(param_1 + 0x24c));
   *(undefined4 *)(param_1 + 0x428) = uVar3;
-  phys_sub_00163540(-*(float *)(param_1 + 0x24c),&uStack_2c0,0x362560);
+  Quat_FromAxisAngle(-*(float *)(param_1 + 0x24c),&uStack_2c0,0x362560);
   *(undefined4 *)(param_1 + 0x430) = uStack_2c0;
   *(undefined4 *)(param_1 + 0x434) = uStack_2bc;
   *(undefined4 *)(param_1 + 0x438) = uStack_2b8;
@@ -2507,7 +2507,7 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x484) = uVar3;
   uVar3 = sinf(*(undefined4 *)(param_1 + 0x35c));
   *(undefined4 *)(param_1 + 0x488) = uVar3;
-  phys_sub_00163540(*(undefined4 *)(param_1 + 0x35c),&uStack_2d0,0x362560);
+  Quat_FromAxisAngle(*(undefined4 *)(param_1 + 0x35c),&uStack_2d0,0x362560);
   *(undefined4 *)(param_1 + 0x490) = uStack_2d0;
   *(undefined4 *)(param_1 + 0x494) = uStack_2cc;
   *(undefined4 *)(param_1 + 0x498) = uStack_2c8;
@@ -2518,7 +2518,7 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x4e4) = uVar3;
   uVar3 = sinf(-*(float *)(param_1 + 0x35c));
   *(undefined4 *)(param_1 + 0x4e8) = uVar3;
-  phys_sub_00163540(-*(float *)(param_1 + 0x35c),&uStack_2e0,0x362560);
+  Quat_FromAxisAngle(-*(float *)(param_1 + 0x35c),&uStack_2e0,0x362560);
   *(undefined4 *)(param_1 + 0x4f0) = uStack_2e0;
   *(undefined4 *)(param_1 + 0x4f4) = uStack_2dc;
   *(undefined4 *)(param_1 + 0x4f8) = uStack_2d8;
@@ -2595,12 +2595,12 @@ void CarSpec_Finalize(int param_1)
   fStack_20 = fVar7;
   fStack_10 = fStack_30;
   fStack_c = fStack_2c;
-  phys_sub_00163bc0(&fStack_30);
+  Vec3_Normalize(&fStack_30);
   fStack_40 = fStack_20;
   fStack_3c = fStack_1c;
   uStack_38 = uStack_18;
   uStack_34 = uStack_14;
-  phys_sub_00163bc0(&fStack_40);
+  Vec3_Normalize(&fStack_40);
   uVar3 = Vec3_Dot(&fStack_10,&fStack_40);
   Vec3_ScaleCopy(uVar3,auStack_300,&fStack_40);
   Vec3_Sub(&uStack_2f0,auStack_300,&fStack_10);
@@ -2616,28 +2616,28 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x9c) = *(undefined4 *)(param_1 + 0xac);
   *(float *)(param_1 + 0x3c) = fVar4;
   maybe_Car_InitMatrices(auStack_260);
-  phys_sub_00165400(auStack_260);
-  phys_sub_001653a0(*(undefined4 *)(param_1 + 0x24),auStack_260);
-  phys_sub_00165320(auStack_260,param_1 + 0x70);
-  phys_sub_00165120(auStack_260,param_1 + 0x90);
+  PhysBody_Reset(auStack_260);
+  PhysBody_SetMassAndInertia(*(undefined4 *)(param_1 + 0x24),auStack_260);
+  PhysBody_SetInertia(auStack_260,param_1 + 0x70);
+  PhysBody_SetTransformFrom(auStack_260,param_1 + 0x90);
   uStack_270 = *(undefined4 *)(param_1 + 0x180);
   uStack_26c = 0;
   uStack_268 = 0;
   uStack_280 = *(undefined4 *)(param_1 + 0x290);
   uStack_27c = 0;
   uStack_278 = 0;
-  phys_sub_00164a10(auStack_260,param_1 + 0x270,&uStack_270);
-  phys_sub_00164a10(auStack_260,param_1 + 0x380,&uStack_280);
+  PhysBody_EffectiveMass(auStack_260,param_1 + 0x270,&uStack_270);
+  PhysBody_EffectiveMass(auStack_260,param_1 + 0x380,&uStack_280);
   uStack_284 = 0x3f800000;
   uStack_294 = 0x3f800000;
   uStack_308 = *(undefined4 *)(param_1 + 0x188);
   uStack_30c = *(undefined4 *)(param_1 + 0x184);
   uStack_310 = *(undefined4 *)(param_1 + 0x180);
-  phys_sub_00164a10(auStack_260,auStack_2a0,&uStack_310);
+  PhysBody_EffectiveMass(auStack_260,auStack_2a0,&uStack_310);
   uStack_318 = *(undefined4 *)(param_1 + 0x298);
   uStack_31c = *(undefined4 *)(param_1 + 0x184);
   uStack_320 = *(undefined4 *)(param_1 + 0x290);
-  phys_sub_00164a10(auStack_260,auStack_290,&uStack_320);
+  PhysBody_EffectiveMass(auStack_260,auStack_290,&uStack_320);
   *(float *)(param_1 + 0x1e0) = fStack_29c;
   *(float *)(param_1 + 0x2f0) = fStack_28c;
   uVar1 = 0;

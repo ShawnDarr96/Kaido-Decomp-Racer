@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00104100  size 0xac
-undefined8 msl_sub_00104100(undefined8 param_1,short param_2,undefined8 param_3)
+undefined8 maybe_std_istream_ctor(undefined8 param_1,short param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -27,7 +27,7 @@ undefined8 msl_sub_00104100(undefined8 param_1,short param_2,undefined8 param_3)
 }
 
 // 0x001041b0  size 0xac
-undefined8 msl_sub_001041b0(undefined8 param_1,short param_2,undefined8 param_3)
+undefined8 maybe_std_wistream_ctor(undefined8 param_1,short param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -81,7 +81,7 @@ undefined8 maybe_std_ostream_flush(undefined8 param_1)
         ppuStack_18 = &PTR_PTR_0036de90;
         iVar2 = strlen(0x35e280);
         uVar4 = maybe_operator_new(iVar2 + 1);
-        msl_sub_00102cb0(auStack_14,uVar4);
+        maybe_std_shared_count_ctor(auStack_14,uVar4);
         maybe_strcpy(auStack_14[0],0x35e280);
         maybe___throw(0x35e5f0,&ppuStack_18,0x102a60);
       }
@@ -95,7 +95,7 @@ undefined8 maybe_std_ostream_flush(undefined8 param_1)
 }
 
 // 0x00104430  size 0xa8
-undefined8 msl_sub_00104430(undefined8 param_1,short param_2,undefined8 param_3)
+undefined8 maybe_std_ostream_ctor(undefined8 param_1,short param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -145,7 +145,7 @@ undefined8 maybe_std_wostream_flush(undefined8 param_1)
         ppuStack_18 = &PTR_PTR_0036de90;
         iVar2 = strlen(0x35e280);
         uVar4 = maybe_operator_new(iVar2 + 1);
-        msl_sub_00102cb0(auStack_14,uVar4);
+        maybe_std_shared_count_ctor(auStack_14,uVar4);
         maybe_strcpy(auStack_14[0],0x35e280);
         maybe___throw(0x35e5f0,&ppuStack_18,0x102a60);
       }
@@ -159,7 +159,7 @@ undefined8 maybe_std_wostream_flush(undefined8 param_1)
 }
 
 // 0x001046b0  size 0xa8
-undefined8 msl_sub_001046b0(undefined8 param_1,short param_2,undefined8 param_3)
+undefined8 maybe_std_wostream_ctor(undefined8 param_1,short param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -181,7 +181,7 @@ undefined8 msl_sub_001046b0(undefined8 param_1,short param_2,undefined8 param_3)
 }
 
 // 0x00104760  size 0xb8
-int msl_sub_00104760(undefined8 param_1)
+int maybe_std_filebuf_sync(undefined8 param_1)
 
 {
   bool bVar1;
@@ -210,7 +210,8 @@ int msl_sub_00104760(undefined8 param_1)
 }
 
 // 0x00104820  size 0x110
-void msl_sub_00104820(undefined8 *param_1,undefined8 param_2,undefined8 *param_3,ulong param_4)
+void maybe_std_filebuf_seekpos
+               (undefined8 *param_1,undefined8 param_2,undefined8 *param_3,ulong param_4)
 
 {
   bool bVar1;
@@ -238,7 +239,7 @@ void msl_sub_00104820(undefined8 *param_1,undefined8 param_2,undefined8 *param_3
       *(undefined4 *)(param_1 + 1) = 0;
     }
     else {
-      lVar2 = newlib_sub_00126968(piVar4[7],uVar5,0);
+      lVar2 = maybe__fseek_r(piVar4[7],uVar5,0);
       if (lVar2 == 0) {
         piVar4[1] = 0;
         piVar4[2] = 0;
@@ -261,8 +262,8 @@ void msl_sub_00104820(undefined8 *param_1,undefined8 param_2,undefined8 *param_3
 }
 
 // 0x00104930  size 0x170
-void msl_sub_00104930(undefined8 *param_1,undefined8 param_2,long param_3,char param_4,ulong param_5
-                     )
+void maybe_std_filebuf_seekoff
+               (undefined8 *param_1,undefined8 param_2,long param_3,char param_4,ulong param_5)
 
 {
   bool bVar1;
@@ -303,7 +304,7 @@ void msl_sub_00104930(undefined8 *param_1,undefined8 param_2,long param_3,char p
         }
         uVar4 = 0;
       }
-      lVar2 = newlib_sub_00126968(piVar3[7],param_3,uVar4);
+      lVar2 = maybe__fseek_r(piVar3[7],param_3,uVar4);
       if (lVar2 == 0) {
         piVar3[1] = 0;
         piVar3[2] = 0;
@@ -312,7 +313,7 @@ void msl_sub_00104930(undefined8 *param_1,undefined8 param_2,long param_3,char p
         piVar3[4] = 0;
         piVar3[6] = 0;
         *(undefined1 *)(piVar3 + 0xd) = 0;
-        uVar4 = newlib_sub_00126e78(piVar3[7]);
+        uVar4 = maybe__fclose_r(piVar3[7]);
         *param_1 = uVar4;
         *(undefined4 *)(param_1 + 1) = 0;
       }
@@ -326,7 +327,7 @@ void msl_sub_00104930(undefined8 *param_1,undefined8 param_2,long param_3,char p
 }
 
 // 0x00104aa0  size 0x3f0
-ulong msl_sub_00104aa0(undefined8 param_1,ulong param_2)
+ulong maybe_std_filebuf_overflow(undefined8 param_1,ulong param_2)
 
 {
   byte bVar1;
@@ -363,7 +364,7 @@ ulong msl_sub_00104aa0(undefined8 param_1,ulong param_2)
       puVar11 = (undefined1 *)piVar9[4];
       if (puVar11 < (undefined1 *)piVar9[5]) {
         do {
-          lVar7 = msl_sub_001062f0(param_1,1,*puVar11);
+          lVar7 = maybe_std_filebuf_putmb(param_1,1,*puVar11);
           if (lVar7 == -1) {
             if ((undefined1 *)piVar9[4] < puVar11) {
               memcpy((undefined1 *)piVar9[4],puVar11,piVar9[5] - (int)puVar11);
@@ -381,7 +382,7 @@ ulong msl_sub_00104aa0(undefined8 param_1,ulong param_2)
       bVar4 = false;
       piVar9[5] = piVar9[5] + (iVar5 - piVar9[5]);
       if ((param_2 != 0xffffffffffffffff) &&
-         (lVar7 = msl_sub_001062f0(param_1,1,uVar10), lVar7 == -1)) {
+         (lVar7 = maybe_std_filebuf_putmb(param_1,1,uVar10), lVar7 == -1)) {
         bVar4 = true;
       }
       if (bVar4) {
@@ -398,13 +399,13 @@ ulong msl_sub_00104aa0(undefined8 param_1,ulong param_2)
           if (iVar5 < 0) {
             puVar3 = (undefined4 *)piVar9[7];
             if ((int)puVar3[2] < (int)puVar3[6]) {
-              uVar6 = newlib_sub_0012d5e0(bVar1);
+              uVar6 = maybe___swbuf_r(bVar1);
             }
             else {
               *(byte *)*puVar3 = bVar1;
               puVar3 = (undefined4 *)piVar9[7];
               if (*(char *)*puVar3 == '\n') {
-                uVar6 = newlib_sub_0012d5e0();
+                uVar6 = maybe___swbuf_r();
               }
               else {
                 pbVar2 = (byte *)*puVar3;
@@ -441,13 +442,13 @@ ulong msl_sub_00104aa0(undefined8 param_1,ulong param_2)
         if (iVar5 < 0) {
           puVar3 = (undefined4 *)piVar9[7];
           if ((int)puVar3[2] < (int)puVar3[6]) {
-            uVar6 = newlib_sub_0012d5e0(uVar10);
+            uVar6 = maybe___swbuf_r(uVar10);
           }
           else {
             *(undefined1 *)*puVar3 = uVar10;
             puVar3 = (undefined4 *)piVar9[7];
             if (*(char *)*puVar3 == '\n') {
-              uVar6 = newlib_sub_0012d5e0();
+              uVar6 = maybe___swbuf_r();
             }
             else {
               pbVar12 = (byte *)*puVar3;
@@ -480,7 +481,7 @@ ulong msl_sub_00104aa0(undefined8 param_1,ulong param_2)
 }
 
 // 0x00104e90  size 0xc0
-long msl_sub_00104e90(int param_1,long param_2)
+long maybe_std_stdio_filebuf_pbackfail(int param_1,long param_2)
 
 {
   long lVar1;
@@ -492,7 +493,7 @@ long msl_sub_00104e90(int param_1,long param_2)
     if (param_2 == -1) {
       return -1;
     }
-    lVar1 = newlib_sub_0012b9d0(param_2);
+    lVar1 = maybe__ungetc_r(param_2);
     if (lVar1 == -1) {
       return -1;
     }
@@ -513,7 +514,7 @@ long msl_sub_00104e90(int param_1,long param_2)
 }
 
 // 0x00104f50  size 0x124
-ulong msl_sub_00104f50(undefined8 param_1)
+ulong maybe_std_stdio_filebuf_underflow(undefined8 param_1)
 
 {
   byte bVar1;
@@ -548,10 +549,10 @@ ulong msl_sub_00104f50(undefined8 param_1)
     }
     else {
       if (*(char *)((int)piVar6 + 0x35) == '\0') {
-        uVar5 = msl_sub_001061d0(param_1,1,0);
+        uVar5 = maybe_std_filebuf_getmb(param_1,1,0);
       }
       else {
-        uVar5 = msl_sub_00106120(param_1,0);
+        uVar5 = maybe_std_filebuf_getc(param_1,0);
       }
       if (uVar5 == 0xffffffffffffffff) {
         uVar5 = 0xffffffffffffffff;
@@ -571,7 +572,7 @@ ulong msl_sub_00104f50(undefined8 param_1)
 }
 
 // 0x00105080  size 0x180
-ulong msl_sub_00105080(undefined8 param_1)
+ulong maybe_std_stdio_filebuf_uflow(undefined8 param_1)
 
 {
   byte *pbVar1;
@@ -612,10 +613,10 @@ ulong msl_sub_00105080(undefined8 param_1)
     }
     else {
       if (*(char *)((int)piVar7 + 0x35) == '\0') {
-        uVar5 = msl_sub_001061d0(param_1,1,pbVar1 == (byte *)0x0);
+        uVar5 = maybe_std_filebuf_getmb(param_1,1,pbVar1 == (byte *)0x0);
       }
       else {
-        uVar5 = msl_sub_00106120(param_1,pbVar1 == (byte *)0x0);
+        uVar5 = maybe_std_filebuf_getc(param_1,pbVar1 == (byte *)0x0);
       }
       uVar6 = 0xffffffffffffffff;
       if ((uVar5 != 0xffffffffffffffff) && (uVar6 = uVar5, piVar7[2] != 0)) {
@@ -658,7 +659,7 @@ undefined8 maybe_std_stdio_filebuf_ctor(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00105270  size 0xb8
-int msl_sub_00105270(undefined8 param_1)
+int maybe_std_stdio_wfilebuf_sync(undefined8 param_1)
 
 {
   bool bVar1;
@@ -687,7 +688,8 @@ int msl_sub_00105270(undefined8 param_1)
 }
 
 // 0x00105330  size 0x110
-void msl_sub_00105330(undefined8 *param_1,undefined8 param_2,undefined8 *param_3,ulong param_4)
+void maybe_std_stdio_wfilebuf_seekpos
+               (undefined8 *param_1,undefined8 param_2,undefined8 *param_3,ulong param_4)
 
 {
   bool bVar1;
@@ -715,7 +717,7 @@ void msl_sub_00105330(undefined8 *param_1,undefined8 param_2,undefined8 *param_3
       *(undefined4 *)(param_1 + 1) = 0;
     }
     else {
-      lVar2 = newlib_sub_00126968(piVar4[7],uVar5,0);
+      lVar2 = maybe__fseek_r(piVar4[7],uVar5,0);
       if (lVar2 == 0) {
         piVar4[1] = 0;
         piVar4[2] = 0;
@@ -738,8 +740,8 @@ void msl_sub_00105330(undefined8 *param_1,undefined8 param_2,undefined8 *param_3
 }
 
 // 0x00105440  size 0x180
-void msl_sub_00105440(undefined8 *param_1,undefined8 param_2,long param_3,char param_4,ulong param_5
-                     )
+void maybe_std_stdio_wfilebuf_seekoff
+               (undefined8 *param_1,undefined8 param_2,long param_3,char param_4,ulong param_5)
 
 {
   bool bVar1;
@@ -785,7 +787,7 @@ void msl_sub_00105440(undefined8 *param_1,undefined8 param_2,long param_3,char p
         }
         uVar5 = 0;
       }
-      lVar2 = newlib_sub_00126968(piVar4[7],param_3 << 2,uVar5);
+      lVar2 = maybe__fseek_r(piVar4[7],param_3 << 2,uVar5);
       if (lVar2 == 0) {
         piVar4[1] = 0;
         piVar4[2] = 0;
@@ -794,7 +796,7 @@ void msl_sub_00105440(undefined8 *param_1,undefined8 param_2,long param_3,char p
         piVar4[4] = 0;
         piVar4[6] = 0;
         *(undefined1 *)(piVar4 + 0x19) = 0;
-        uVar5 = newlib_sub_00126e78(piVar4[7]);
+        uVar5 = maybe__fclose_r(piVar4[7]);
         *param_1 = uVar5;
         *(undefined4 *)(param_1 + 1) = 0;
       }
@@ -808,7 +810,7 @@ void msl_sub_00105440(undefined8 *param_1,undefined8 param_2,long param_3,char p
 }
 
 // 0x001055c0  size 0x460
-ulong msl_sub_001055c0(undefined8 param_1,ulong param_2)
+ulong maybe_std_stdio_wfilebuf_overflow(undefined8 param_1,ulong param_2)
 
 {
   ushort uVar1;
@@ -844,7 +846,7 @@ ulong msl_sub_001055c0(undefined8 param_1,ulong param_2)
       puVar11 = (undefined2 *)piVar10[4];
       if (puVar11 < (undefined2 *)piVar10[5]) {
         do {
-          lVar7 = msl_sub_00105ff0(param_1,4,*puVar11);
+          lVar7 = maybe_std_wfilebuf_putmb(param_1,4,*puVar11);
           if (lVar7 == -1) {
             if ((undefined2 *)piVar10[4] < puVar11) {
               iVar8 = piVar10[5] - (int)puVar11;
@@ -874,7 +876,7 @@ ulong msl_sub_001055c0(undefined8 param_1,ulong param_2)
       bVar4 = false;
       piVar10[5] = piVar10[5] + (iVar8 >> 2) * 4;
       if ((param_2 != 0xffffffffffffffff) &&
-         (lVar7 = msl_sub_00105ff0(param_1,4,param_2), lVar7 == -1)) {
+         (lVar7 = maybe_std_wfilebuf_putmb(param_1,4,param_2), lVar7 == -1)) {
         bVar4 = true;
       }
       if (bVar4) {
@@ -891,13 +893,13 @@ ulong msl_sub_001055c0(undefined8 param_1,ulong param_2)
           if (iVar8 < 0) {
             puVar3 = (undefined4 *)piVar10[7];
             if ((int)puVar3[2] < (int)puVar3[6]) {
-              uVar5 = newlib_sub_0012d5e0((ulong)uVar1);
+              uVar5 = maybe___swbuf_r((ulong)uVar1);
             }
             else {
               *(char *)*puVar3 = (char)uVar1;
               puVar3 = (undefined4 *)piVar10[7];
               if (*(char *)*puVar3 == '\n') {
-                uVar5 = newlib_sub_0012d5e0();
+                uVar5 = maybe___swbuf_r();
               }
               else {
                 pbVar2 = (byte *)*puVar3;
@@ -947,13 +949,13 @@ ulong msl_sub_001055c0(undefined8 param_1,ulong param_2)
         if (iVar8 < 0) {
           puVar3 = (undefined4 *)piVar10[7];
           if ((int)puVar3[2] < (int)puVar3[6]) {
-            uVar6 = newlib_sub_0012d5e0(uVar5);
+            uVar6 = maybe___swbuf_r(uVar5);
           }
           else {
             *(char *)*puVar3 = (char)uVar5;
             puVar3 = (undefined4 *)piVar10[7];
             if (*(char *)*puVar3 == '\n') {
-              uVar6 = newlib_sub_0012d5e0();
+              uVar6 = maybe___swbuf_r();
             }
             else {
               pbVar2 = (byte *)*puVar3;
@@ -986,7 +988,7 @@ ulong msl_sub_001055c0(undefined8 param_1,ulong param_2)
 }
 
 // 0x00105a20  size 0xc0
-long msl_sub_00105a20(int param_1,long param_2)
+long maybe_std_stdio_wfilebuf_pbackfail(int param_1,long param_2)
 
 {
   long lVar1;
@@ -998,7 +1000,7 @@ long msl_sub_00105a20(int param_1,long param_2)
     if (param_2 == -1) {
       return -1;
     }
-    lVar1 = newlib_sub_0012b9d0(param_2);
+    lVar1 = maybe__ungetc_r(param_2);
     if (lVar1 == -1) {
       return -1;
     }
@@ -1019,7 +1021,7 @@ long msl_sub_00105a20(int param_1,long param_2)
 }
 
 // 0x00105ae0  size 0x124
-ulong msl_sub_00105ae0(undefined8 param_1)
+ulong maybe_std_stdio_wfilebuf_underflow(undefined8 param_1)
 
 {
   ushort uVar1;
@@ -1054,10 +1056,10 @@ ulong msl_sub_00105ae0(undefined8 param_1)
     }
     else {
       if (*(char *)((int)piVar6 + 0x65) == '\0') {
-        uVar5 = msl_sub_00105ed0(param_1,4,0);
+        uVar5 = maybe_std_wfilebuf_getmb(param_1,4,0);
       }
       else {
-        uVar5 = msl_sub_00105e20(param_1,0);
+        uVar5 = maybe_std_wfilebuf_getc(param_1,0);
       }
       if (uVar5 == 0xffffffffffffffff) {
         uVar5 = 0xffffffffffffffff;
@@ -1077,7 +1079,7 @@ ulong msl_sub_00105ae0(undefined8 param_1)
 }
 
 // 0x00105c10  size 0x190
-ulong msl_sub_00105c10(undefined8 param_1)
+ulong maybe_std_stdio_wfilebuf_uflow(undefined8 param_1)
 
 {
   ushort *puVar1;
@@ -1118,10 +1120,10 @@ ulong msl_sub_00105c10(undefined8 param_1)
     }
     else {
       if (*(char *)((int)piVar8 + 0x65) == '\0') {
-        uVar5 = msl_sub_00105ed0(param_1,4,puVar1 == (ushort *)0x0);
+        uVar5 = maybe_std_wfilebuf_getmb(param_1,4,puVar1 == (ushort *)0x0);
       }
       else {
-        uVar5 = msl_sub_00105e20(param_1,puVar1 == (ushort *)0x0);
+        uVar5 = maybe_std_wfilebuf_getc(param_1,puVar1 == (ushort *)0x0);
       }
       uVar7 = 0xffffffffffffffff;
       if ((uVar5 != 0xffffffffffffffff) && (uVar7 = uVar5, piVar8[2] != 0)) {
@@ -1168,7 +1170,7 @@ undefined8 maybe_std_stdio_wfilebuf_ctor(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00105e20  size 0xa8
-ulong msl_sub_00105e20(int param_1,long param_2)
+ulong maybe_std_wfilebuf_getc(int param_1,long param_2)
 
 {
   byte *pbVar1;
@@ -1190,7 +1192,7 @@ ulong msl_sub_00105e20(int param_1,long param_2)
   uVar5 = 0xffffffffffffffff;
   if (uVar3 != 0xffffffffffffffff) {
     if ((param_2 != 0) &&
-       (lVar4 = newlib_sub_0012b9d0(uVar3,*(undefined4 *)(param_1 + 0x1c)), lVar4 == -1)) {
+       (lVar4 = maybe__ungetc_r(uVar3,*(undefined4 *)(param_1 + 0x1c)), lVar4 == -1)) {
       return 0xffffffffffffffff;
     }
     uVar5 = uVar3;
@@ -1199,7 +1201,7 @@ ulong msl_sub_00105e20(int param_1,long param_2)
 }
 
 // 0x00105ed0  size 0x114
-ulong msl_sub_00105ed0(int param_1,uint param_2,long param_3)
+ulong maybe_std_wfilebuf_getmb(int param_1,uint param_2,long param_3)
 
 {
   byte *pbVar1;
@@ -1242,7 +1244,7 @@ LAB_00105fb8:
     else {
       do {
         if ((int)param_2 < 1) goto LAB_00105fb8;
-        lVar4 = newlib_sub_0012b9d0(auStack_11[param_2],*(undefined4 *)(param_1 + 0x1c));
+        lVar4 = maybe__ungetc_r(auStack_11[param_2],*(undefined4 *)(param_1 + 0x1c));
         uVar3 = 0xffffffffffffffff;
         param_2 = param_2 - 1;
       } while (lVar4 != -1);
@@ -1255,7 +1257,7 @@ LAB_00105fb8:
 }
 
 // 0x00105ff0  size 0x12c
-ulong msl_sub_00105ff0(int param_1,int param_2,ushort param_3)
+ulong maybe_std_wfilebuf_putmb(int param_1,int param_2,ushort param_3)
 
 {
   byte *pbVar1;
@@ -1278,13 +1280,13 @@ ulong msl_sub_00105ff0(int param_1,int param_2,ushort param_3)
       if (iVar3 < 0) {
         puVar2 = *(undefined4 **)(param_1 + 0x1c);
         if ((int)puVar2[2] < (int)puVar2[6]) {
-          uVar4 = newlib_sub_0012d5e0(*puVar5);
+          uVar4 = maybe___swbuf_r(*puVar5);
         }
         else {
           *(undefined1 *)*puVar2 = *puVar5;
           puVar2 = *(undefined4 **)(param_1 + 0x1c);
           if (*(char *)*puVar2 == '\n') {
-            uVar4 = newlib_sub_0012d5e0();
+            uVar4 = maybe___swbuf_r();
           }
           else {
             pbVar1 = (byte *)*puVar2;
@@ -1310,7 +1312,7 @@ ulong msl_sub_00105ff0(int param_1,int param_2,ushort param_3)
 }
 
 // 0x00106120  size 0xa8
-ulong msl_sub_00106120(int param_1,long param_2)
+ulong maybe_std_filebuf_getc(int param_1,long param_2)
 
 {
   byte *pbVar1;
@@ -1332,7 +1334,7 @@ ulong msl_sub_00106120(int param_1,long param_2)
   uVar5 = 0xffffffffffffffff;
   if (uVar3 != 0xffffffffffffffff) {
     if ((param_2 != 0) &&
-       (lVar4 = newlib_sub_0012b9d0(uVar3,*(undefined4 *)(param_1 + 0x1c)), lVar4 == -1)) {
+       (lVar4 = maybe__ungetc_r(uVar3,*(undefined4 *)(param_1 + 0x1c)), lVar4 == -1)) {
       return 0xffffffffffffffff;
     }
     uVar5 = uVar3;
@@ -1341,7 +1343,7 @@ ulong msl_sub_00106120(int param_1,long param_2)
 }
 
 // 0x001061d0  size 0x114
-ulong msl_sub_001061d0(int param_1,uint param_2,long param_3)
+ulong maybe_std_filebuf_getmb(int param_1,uint param_2,long param_3)
 
 {
   byte *pbVar1;
@@ -1384,7 +1386,7 @@ LAB_001062b8:
     else {
       do {
         if ((int)param_2 < 1) goto LAB_001062b8;
-        lVar4 = newlib_sub_0012b9d0(auStack_11[param_2],*(undefined4 *)(param_1 + 0x1c));
+        lVar4 = maybe__ungetc_r(auStack_11[param_2],*(undefined4 *)(param_1 + 0x1c));
         uVar3 = 0xffffffffffffffff;
         param_2 = param_2 - 1;
       } while (lVar4 != -1);
@@ -1397,7 +1399,7 @@ LAB_001062b8:
 }
 
 // 0x001062f0  size 0x12c
-ulong msl_sub_001062f0(int param_1,int param_2,byte param_3)
+ulong maybe_std_filebuf_putmb(int param_1,int param_2,byte param_3)
 
 {
   byte *pbVar1;
@@ -1420,13 +1422,13 @@ ulong msl_sub_001062f0(int param_1,int param_2,byte param_3)
       if (iVar3 < 0) {
         puVar2 = *(undefined4 **)(param_1 + 0x1c);
         if ((int)puVar2[2] < (int)puVar2[6]) {
-          uVar4 = newlib_sub_0012d5e0(*puVar5);
+          uVar4 = maybe___swbuf_r(*puVar5);
         }
         else {
           *(undefined1 *)*puVar2 = *puVar5;
           puVar2 = *(undefined4 **)(param_1 + 0x1c);
           if (*(char *)*puVar2 == '\n') {
-            uVar4 = newlib_sub_0012d5e0();
+            uVar4 = maybe___swbuf_r();
           }
           else {
             pbVar1 = (byte *)*puVar2;
@@ -1657,7 +1659,7 @@ maybe_std_string_replace(undefined8 param_1,uint param_2,uint param_3,int param_
     ppuStack_10 = &PTR_PTR_0036e060;
     iVar5 = strlen(0x35e620);
     uVar7 = maybe_operator_new(iVar5 + 1);
-    msl_sub_00102cb0(auStack_c,uVar7);
+    maybe_std_shared_count_ctor(auStack_c,uVar7);
     maybe_strcpy(auStack_c[0],0x35e620);
     ppuStack_10 = &PTR_PTR_0036e050;
     maybe___throw(0x35e640,&ppuStack_10,0x106fb0);
@@ -1675,7 +1677,7 @@ maybe_std_string_replace(undefined8 param_1,uint param_2,uint param_3,int param_
     ppuStack_20 = &PTR_PTR_0036e060;
     iVar5 = strlen(0x35e680);
     uVar7 = maybe_operator_new(iVar5 + 1);
-    msl_sub_00102cb0(auStack_1c,uVar7);
+    maybe_std_shared_count_ctor(auStack_1c,uVar7);
     maybe_strcpy(auStack_1c[0],0x35e680);
     ppuStack_20 = &PTR_PTR_0036e040;
     maybe___throw(0x35e6a0,&ppuStack_20,0x106f10);
@@ -1737,7 +1739,7 @@ maybe_std_string_replace(undefined8 param_1,uint param_2,uint param_3,int param_
 }
 
 // 0x00106e80  size 0x88
-long msl_sub_00106e80(long param_1,short param_2)
+long maybe_std_exception_dtor_b(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1746,7 +1748,7 @@ long msl_sub_00106e80(long param_1,short param_2)
     puVar1 = (undefined4 *)param_1;
     *puVar1 = &PTR_PTR_0036e060;
     if (puVar1 + 1 != (undefined4 *)0x0) {
-      msl_sub_00102c30(puVar1 + 1,0xffffffffffffffff);
+      maybe_std_shared_count_dtor(puVar1 + 1,0xffffffffffffffff);
     }
     if (param_1 != 0) {
       *puVar1 = &PTR_PTR_0036de70;
@@ -1759,7 +1761,7 @@ long msl_sub_00106e80(long param_1,short param_2)
 }
 
 // 0x00106f10  size 0x98
-long msl_sub_00106f10(long param_1,short param_2)
+long maybe_std_out_of_range_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1770,7 +1772,7 @@ long msl_sub_00106f10(long param_1,short param_2)
     if (param_1 != 0) {
       *puVar1 = &PTR_PTR_0036e060;
       if (puVar1 + 1 != (undefined4 *)0x0) {
-        msl_sub_00102c30(puVar1 + 1,0xffffffffffffffff);
+        maybe_std_shared_count_dtor(puVar1 + 1,0xffffffffffffffff);
       }
       if (param_1 != 0) {
         *puVar1 = &PTR_PTR_0036de70;
@@ -1784,7 +1786,7 @@ long msl_sub_00106f10(long param_1,short param_2)
 }
 
 // 0x00106fb0  size 0x98
-long msl_sub_00106fb0(long param_1,short param_2)
+long maybe_std_length_error_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1795,7 +1797,7 @@ long msl_sub_00106fb0(long param_1,short param_2)
     if (param_1 != 0) {
       *puVar1 = &PTR_PTR_0036e060;
       if (puVar1 + 1 != (undefined4 *)0x0) {
-        msl_sub_00102c30(puVar1 + 1,0xffffffffffffffff);
+        maybe_std_shared_count_dtor(puVar1 + 1,0xffffffffffffffff);
       }
       if (param_1 != 0) {
         *puVar1 = &PTR_PTR_0036de70;
@@ -2057,7 +2059,9 @@ uint maybe_Gs_ReadRomVersion(void)
 }
 
 // 0x00107680  size 0x10
-void libgraph_sub_00107680(void)
+/* syscall 0x80 */
+
+void maybe_sceGsSyncVBlank(void)
 
 {
   syscall(0x80);
@@ -2107,7 +2111,7 @@ LAB_00107730:
       uVar6 = psVar2[1];
       goto LAB_00107730;
     }
-    libgraph_sub_00107680
+    maybe_sceGsSyncVBlank
               (psVar2[1],&iStack_90,(uint)&iStack_90 | 4,(uint)&iStack_90 | 8,(uint)&iStack_90 | 0xc
               );
     uVar6 = psVar2[1];
@@ -2192,7 +2196,7 @@ LAB_001079d8:
 }
 
 // 0x00107a08  size 0xc8
-int libgraph_sub_00107a08(ulong param_1,short param_2,short param_3)
+int maybe_sceGsSetDefDrawEnvOffset(ulong param_1,short param_2,short param_3)
 
 {
   ulong *puVar1;
@@ -2252,11 +2256,11 @@ sceGsSetDefDrawEnv(ulong *param_1,short param_2,short param_3,short param_4,shor
   *param_1 = ((long)(iVar4 + 0x3f >> 6) & 0x3fU) << 0x10 | (uVar5 & 0xf) << 0x18;
   param_1[3] = 0x4e;
   if (uVar6 == 0) {
-    sVar1 = libgraph_sub_00107a08(uVar5,iVar4,iVar3);
+    sVar1 = maybe_sceGsSetDefDrawEnvOffset(uVar5,iVar4,iVar3);
     uVar2 = (long)sVar1 | ((long)(int)param_6 & 0xfU) << 0x18 | 0x100000000;
   }
   else {
-    sVar1 = libgraph_sub_00107a08(uVar5,iVar4,iVar3);
+    sVar1 = maybe_sceGsSetDefDrawEnvOffset(uVar5,iVar4,iVar3);
     uVar2 = (long)sVar1 | ((long)(int)param_6 & 0xfU) << 0x18;
   }
   param_1[2] = uVar2;
@@ -2397,7 +2401,7 @@ void sceGsSetDefDBuff(undefined8 param_1,undefined2 param_2,int param_3,int para
        *(ulong *)(iVar5 + 0x140) & 0xfffffffffff8000 | uVar2 | 0x1000000000008000;
   *(ulong *)(iVar5 + 0x58) = *(ulong *)(iVar5 + 0x58) & 0xfffffffffffffff0 | 0xe;
   *(ulong *)(iVar5 + 0x148) = *(ulong *)(iVar5 + 0x148) & 0xfffffffffffffff0 | 0xe;
-  iVar6 = libgraph_sub_00107a08(param_2,iVar6,iVar7);
+  iVar6 = maybe_sceGsSetDefDrawEnvOffset(param_2,iVar6,iVar7);
   if (((*puVar1 & 0xffff0000ffff) == 0x100000001) || ((short)*puVar1 == 0)) {
     *(ulong *)(iVar5 + 0x60) =
          *(ulong *)(iVar5 + 0x60) & 0xfffffffffffffe00 | (long)(iVar6 >> 1) & 0x1ffU;

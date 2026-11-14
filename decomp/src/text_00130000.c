@@ -81,8 +81,7 @@ int __fixdfsi(undefined8 param_1)
 }
 
 // 0x00130188  size 0x2c
-void newlib_sub_00130188(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4
-                        )
+void maybe___make_dp(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   undefined4 uStack_30;
@@ -117,7 +116,7 @@ void maybe___extendsfdf2(undefined8 param_1)
   if ((uStack_30 & 0x3fffffff) == 0) {
     uVar2 = uVar1;
   }
-  newlib_sub_0012f5d0(uStack_40,uStack_3c,uStack_38,uVar2);
+  maybe___make_fp(uStack_40,uStack_3c,uStack_38,uVar2);
   return;
 }
 
@@ -153,7 +152,7 @@ undefined4 maybe___truncdfsf2(undefined8 param_1)
 // 0x001302b0  size 0x40
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 libpad2_sub_001302b0(void)
+undefined4 maybe_scePad2Init(void)
 
 {
   undefined4 *puVar1;
@@ -173,7 +172,7 @@ undefined4 libpad2_sub_001302b0(void)
 // 0x001302f0  size 0x68
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-long libpad2_sub_001302f0(void)
+long maybe_scePad2End(void)
 
 {
   long lVar1;
@@ -230,7 +229,7 @@ long scePad2CreateSocket(long param_1,ulong param_2)
       iVar1 = (int)lVar2 * 0x334;
       *(int *)(iVar1 + 0x3798d0) = (int)param_2;
       *(undefined4 *)(iVar1 + 0x3798c0) = 1;
-      libpad2_sub_00130880(lVar2);
+      maybe_Pad2_ClearBuffer(lVar2);
     }
   }
   else {
@@ -258,7 +257,7 @@ long scePad2DeleteSocket(int param_1)
 }
 
 // 0x001304b8  size 0xd4
-uint libpad2_sub_001304b8(undefined8 param_1,undefined8 param_2)
+uint maybe_scePad2Read(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -269,17 +268,18 @@ uint libpad2_sub_001304b8(undefined8 param_1,undefined8 param_2)
   iVar1 = (int)param_1 * 0x334;
   uVar2 = 0xffffffff;
   if (*(int *)(iVar1 + 0x3798c0) != 0) {
-    if ((*(int *)(iVar1 + 0x3798c4) == 0) && (lVar4 = libpad2_sub_001308f8(param_1), lVar4 < 0)) {
+    if ((*(int *)(iVar1 + 0x3798c4) == 0) && (lVar4 = maybe_Pad2_GetDepNumber(param_1), lVar4 < 0))
+    {
       return 0xffffffff;
     }
-    iVar1 = libpad2_sub_00130950(param_1);
+    iVar1 = maybe_Pad2_SyncRecvBuffer(param_1);
     if (*(char *)(iVar1 + 2) == '\0') {
       iVar3 = *(int *)(iVar1 + 4);
     }
     else {
       if (iVar1 + 0x1c != 0) {
         memcpy(param_2,iVar1 + 0x1c,*(char *)(iVar1 + 2));
-        libpad2_sub_00130a80(iVar1 + *(byte *)(iVar1 + 2) + 0x1c,(int)param_1 * 0x334 + 0x3798d4);
+        maybe_Pad2_ParseData(iVar1 + *(byte *)(iVar1 + 2) + 0x1c,(int)param_1 * 0x334 + 0x3798d4);
       }
       iVar3 = *(int *)(iVar1 + 4);
     }
@@ -294,22 +294,22 @@ uint libpad2_sub_001304b8(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00130590  size 0xd0
-uint libpad2_sub_00130590(undefined8 param_1,undefined8 param_2)
+uint maybe_scePad2GetState(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
   uint uVar2;
   long lVar3;
   
-  libpad2_sub_00130660();
+  maybe_Pad2_UpdateSocket();
   if ((*(int *)((int)param_1 * 0x334 + 0x3798c4) == 0) &&
-     (lVar3 = libpad2_sub_001308f8(param_1), lVar3 < 0)) {
+     (lVar3 = maybe_Pad2_GetDepNumber(param_1), lVar3 < 0)) {
     return 0xffffffff;
   }
-  iVar1 = libpad2_sub_001309b8(param_1);
+  iVar1 = maybe_Pad2_SyncSendBuffer(param_1);
   if ((*(char *)(iVar1 + 3) != '\0') && (iVar1 != -0x1c)) {
     memcpy(param_2,(uint)*(byte *)(iVar1 + 2) + iVar1 + 0x1c,*(undefined1 *)(iVar1 + 3));
-    libpad2_sub_00130a80(iVar1 + *(byte *)(iVar1 + 2) + 0x1c,(int)param_1 * 0x334 + 0x3798d4);
+    maybe_Pad2_ParseData(iVar1 + *(byte *)(iVar1 + 2) + 0x1c,(int)param_1 * 0x334 + 0x3798d4);
   }
   if (*(int *)(iVar1 + 4) == 0) {
     uVar2 = 0xffffffff;
@@ -321,7 +321,7 @@ uint libpad2_sub_00130590(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00130660  size 0x140
-undefined1 libpad2_sub_00130660(undefined8 param_1)
+undefined1 maybe_Pad2_UpdateSocket(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -330,10 +330,10 @@ undefined1 libpad2_sub_00130660(undefined8 param_1)
   undefined1 auStack_50 [16];
   
   if ((*(int *)((int)param_1 * 0x334 + 0x3798c4) == 0) &&
-     (lVar3 = libpad2_sub_001308f8(param_1), lVar3 < 0)) {
+     (lVar3 = maybe_Pad2_GetDepNumber(param_1), lVar3 < 0)) {
     return 0;
   }
-  lVar3 = libpad2_sub_00130a20(param_1);
+  lVar3 = maybe_Pad2_CheckFrame(param_1);
   if (lVar3 == 0) {
     lVar3 = sceDbcReceiveData(param_1,0x101800c,(uint)auStack_50 | 4,auStack_50);
     if (-1 < lVar3) {
@@ -341,26 +341,26 @@ undefined1 libpad2_sub_00130660(undefined8 param_1)
     }
   }
   else {
-    puVar2 = (undefined1 *)libpad2_sub_001309b8(param_1);
+    puVar2 = (undefined1 *)maybe_Pad2_SyncSendBuffer(param_1);
     if (*(int *)(puVar2 + 4) != 0) {
       uVar1 = *puVar2;
       goto LAB_00130788;
     }
-    lVar3 = libpad2_sub_001308f8(param_1);
+    lVar3 = maybe_Pad2_GetDepNumber(param_1);
     if (-1 < lVar3) {
       uVar1 = *puVar2;
       goto LAB_00130788;
     }
   }
   *(undefined4 *)((int)param_1 * 0x334 + 0x3798c4) = 0;
-  libpad2_sub_00130880(param_1);
+  maybe_Pad2_ClearBuffer(param_1);
   uVar1 = 0;
 LAB_00130788:
   return uVar1;
 }
 
 // 0x001307a0  size 0xe0
-uint libpad2_sub_001307a0(int param_1,int param_2,int param_3)
+uint maybe_scePad2GetButtonProfile(int param_1,int param_2,int param_3)
 
 {
   uint uVar1;
@@ -399,7 +399,7 @@ uint libpad2_sub_001307a0(int param_1,int param_2,int param_3)
 }
 
 // 0x00130880  size 0x78
-void libpad2_sub_00130880(int param_1)
+void maybe_Pad2_ClearBuffer(int param_1)
 
 {
   undefined1 *puVar1;
@@ -426,7 +426,7 @@ void libpad2_sub_00130880(int param_1)
 }
 
 // 0x001308f8  size 0x54
-long libpad2_sub_001308f8(int param_1)
+long maybe_Pad2_GetDepNumber(int param_1)
 
 {
   long lVar1;
@@ -440,38 +440,38 @@ long libpad2_sub_001308f8(int param_1)
 }
 
 // 0x00130950  size 0x64
-int libpad2_sub_00130950(int param_1)
+int maybe_Pad2_SyncRecvBuffer(int param_1)
 
 {
   int aiStack_20 [4];
   
   aiStack_20[0] = *(int *)(param_1 * 0x334 + 0x3798d0);
   aiStack_20[1] = aiStack_20[0] + 0x80;
-  libkernl_sub_00112098(aiStack_20[0],aiStack_20[0] + 0xff);
+  SyncDCache(aiStack_20[0],aiStack_20[0] + 0xff);
   return aiStack_20[*(int *)(aiStack_20[0] + 0x7c) < *(int *)(aiStack_20[1] + 0x7c)];
 }
 
 // 0x001309b8  size 0x64
-int libpad2_sub_001309b8(int param_1)
+int maybe_Pad2_SyncSendBuffer(int param_1)
 
 {
   int aiStack_20 [4];
   
   aiStack_20[0] = *(int *)(param_1 * 0x334 + 0x3798d0);
   aiStack_20[1] = aiStack_20[0] + 0x80;
-  libkernl_sub_00112098(aiStack_20[0],aiStack_20[0] + 0x100);
+  SyncDCache(aiStack_20[0],aiStack_20[0] + 0x100);
   return aiStack_20[*(int *)(aiStack_20[0] + 0x7c) < *(int *)(aiStack_20[1] + 0x7c)];
 }
 
 // 0x00130a20  size 0x5c
-undefined4 libpad2_sub_00130a20(int param_1)
+undefined4 maybe_Pad2_CheckFrame(int param_1)
 
 {
   int iVar1;
   undefined4 uVar2;
   int *piVar3;
   
-  iVar1 = libpad2_sub_00130950();
+  iVar1 = maybe_Pad2_SyncRecvBuffer();
   iVar1 = *(int *)(iVar1 + 0x7c);
   if ((iVar1 == 0) || (piVar3 = (int *)(param_1 * 0x334 + 0x3798c8), iVar1 == *piVar3)) {
     uVar2 = 0;
@@ -484,7 +484,7 @@ undefined4 libpad2_sub_00130a20(int param_1)
 }
 
 // 0x00130a80  size 0xb0
-undefined4 libpad2_sub_00130a80(byte *param_1,undefined4 *param_2)
+undefined4 maybe_Pad2_ParseData(byte *param_1,undefined4 *param_2)
 
 {
   int iVar1;
@@ -531,7 +531,7 @@ undefined4 libpad2_sub_00130a80(byte *param_1,undefined4 *param_2)
 }
 
 // 0x00130b68  size 0x54
-undefined4 libdbc_sub_00130b68(void)
+undefined4 maybe_Dbc_RpcCall(void)
 
 {
   sceSifCallRpc(0x37cc08,0xffffffff80001363,0,0x37cc80,0x280,0x37cc80,0x280,0);
@@ -566,7 +566,7 @@ undefined4 sceDbcInit(void)
     } while (iVar4 != -1);
   }
 LAB_00130d78:
-  libdbc_sub_00131a60(0x360a50);
+  maybe_Dbc_GetLastError(0x360a50);
   return 0;
 LAB_00130c84:
   lVar3 = sceSifBindRpc(0x37cc30,0xffffffff8000131b,0);
@@ -581,7 +581,7 @@ LAB_00130cdc:
   while (lVar3 = sceSifBindRpc(0x37cc58,0xffffffff8000131c,0), -1 < lVar3) {
     iVar4 = 0x10000;
     if (iRam0037cc7c != 0) {
-      uVar1 = libdbc_sub_00130b68();
+      uVar1 = maybe_Dbc_RpcCall();
       if ((int)uVar1 >> 8 != 3) {
         maybe_scePrintf(0x360a68);
         maybe_scePrintf(0x360a90,3,0,(int)uVar1 >> 8,uVar1 & 0xff);
@@ -601,7 +601,7 @@ LAB_00130cdc:
         iVar4 = iVar4 + -1;
         puVar2 = puVar2 + -1;
       } while (-1 < iVar4);
-      libdbc_sub_00131a60(0x360ab8,0x380100);
+      maybe_Dbc_GetLastError(0x360ab8,0x380100);
       sceDbcSetWorkAddr(0x380100);
       ram0x0030a540 = 1;
       return 1;
@@ -646,7 +646,7 @@ undefined4 sceDbcSetWorkAddr(undefined4 param_1)
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001304,0,0x37cc80,0x280,0x37cc80,0x280,0);
   uVar1 = uRam0037cc80;
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360ad8);
+    maybe_Dbc_GetLastError(0x360ad8);
     uVar1 = 0;
   }
   return uVar1;
@@ -682,7 +682,7 @@ undefined4 sceDbcCreateSocket(undefined4 *param_1,undefined4 param_2,undefined4 
     } while (iVar5 < 0x10);
     lVar3 = sceSifCallRpc(0x37cc08,0xffffffff80001301,0,0x37cc80,0x280,0x37cc80,0x280,0);
     if (lVar3 < 0) {
-      libdbc_sub_00131a60(0x360af8);
+      maybe_Dbc_GetLastError(0x360af8);
       uVar2 = 0;
     }
     else {
@@ -708,7 +708,7 @@ undefined4 sceDbcDeleteSocket(undefined4 param_1)
     uRam0037cc80 = param_1;
     lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001302,0,0x37cc80,0x280,0x37cc80,0x280,0);
     if (lVar2 < 0) {
-      libdbc_sub_00131a60(0x360b18);
+      maybe_Dbc_GetLastError(0x360b18);
       uVar1 = 0;
     }
     else {
@@ -725,7 +725,7 @@ undefined4 sceDbcGetDepNumber(int param_1)
   undefined4 uVar1;
   long lVar2;
   
-  libkernl_sub_00112098(0x380100,0x380180);
+  SyncDCache(0x380100,0x380180);
   DIntr();
   uRam00380180 = uRam00380100;
   uRam00380188 = uRam00380108;
@@ -741,7 +741,7 @@ undefined4 sceDbcGetDepNumber(int param_1)
     iRam0037cc80 = param_1;
     lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001303,0,0x37cc80,0x280,0x37cc80,0x280,0);
     if (lVar2 < 0) {
-      libdbc_sub_00131a60(0x360b38);
+      maybe_Dbc_GetLastError(0x360b38);
       uVar1 = 0;
     }
     else {
@@ -752,12 +752,12 @@ undefined4 sceDbcGetDepNumber(int param_1)
 }
 
 // 0x00131160  size 0xf4
-undefined4 libdbc_sub_00131160(int param_1)
+undefined4 maybe_Dbc_SyncBuffers(int param_1)
 
 {
   undefined4 uVar1;
   
-  libkernl_sub_00112098(0x380100,0x380180);
+  SyncDCache(0x380100,0x380180);
   DIntr();
   uRam00380180 = uRam00380100;
   uRam00380188 = uRam00380108;
@@ -785,7 +785,7 @@ undefined4 sceDbcInitSocket(undefined4 param_1)
   uRam0037cc80 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001315,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360b58);
+    maybe_Dbc_GetLastError(0x360b58);
     uVar1 = 0;
   }
   else {
@@ -804,7 +804,7 @@ undefined4 sceDbcResetSocket(undefined4 param_1)
   uRam0037cc80 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001316,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360b78);
+    maybe_Dbc_GetLastError(0x360b78);
     uVar1 = 0;
   }
   else {
@@ -823,7 +823,7 @@ undefined4 sceDbcGetDeviceStatus(undefined4 param_1)
   uRam0037cc80 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001317,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360b98);
+    maybe_Dbc_GetLastError(0x360b98);
     uVar1 = 0;
   }
   else {
@@ -846,7 +846,7 @@ undefined4 maybe_Dbc_GetDeviceStatusRpc(int param_1)
   uRam0037cc94 = *(undefined4 *)(param_1 + 0xc);
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff8000131d,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360b98);
+    maybe_Dbc_GetLastError(0x360b98);
     uVar1 = 0xffffffff;
   }
   else {
@@ -882,7 +882,7 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
   }
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001318,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360bc0);
+    maybe_Dbc_GetLastError(0x360bc0);
     iVar4 = 0;
   }
   else {
@@ -934,7 +934,7 @@ int sceDbcSendData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1
   }
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001319,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
-    libdbc_sub_00131a60(0x360be0);
+    maybe_Dbc_GetLastError(0x360be0);
     SignalSema(uRam003801c0);
     iVar4 = 0;
   }
@@ -985,11 +985,11 @@ undefined4 sceDbcSendData2(undefined4 param_1,undefined4 param_2,int *param_3,un
       }
       pcVar4 = s_sceDbcSendData2__rpc_error_00360c50;
     }
-    libdbc_sub_00131a60(pcVar4);
+    maybe_Dbc_GetLastError(pcVar4);
     SignalSema(uRam003801c0);
   }
   else {
-    libdbc_sub_00131a60(0x360c00,*param_3);
+    maybe_Dbc_GetLastError(0x360c00,*param_3);
   }
   return 0;
 }
@@ -1025,7 +1025,7 @@ maybe_sceDbcSendData3
     }
     lVar2 = sceSifCheckStatRpc(0x37cc58);
     if (lVar2 == 1) {
-      libdbc_sub_00131a60(0x360c98);
+      maybe_Dbc_GetLastError(0x360c98);
     }
     else {
       lVar2 = sceSifCallRpc(0x37cc58,0xffffffff8000131c,1,0x37e000,0x2090,0x37e000,0x2090,param_5);
@@ -1037,7 +1037,7 @@ maybe_sceDbcSendData3
     SignalSema(uRam003801c0);
   }
   else {
-    libdbc_sub_00131a60(0x360c70);
+    maybe_Dbc_GetLastError(0x360c70);
   }
   return 0;
 }
@@ -1056,7 +1056,7 @@ int sceDbcReceiveData(undefined4 param_1,undefined4 param_2,int *param_3,int par
   uRam0037cc84 = param_2;
   lVar3 = sceSifCallRpc(0x37cc08,0xffffffff8000131a,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar3 < 0) {
-    libdbc_sub_00131a60(0x360cb8);
+    maybe_Dbc_GetLastError(0x360cb8);
     iVar2 = 0;
   }
   else {
@@ -1083,14 +1083,16 @@ int sceDbcReceiveData(undefined4 param_1,undefined4 param_2,int *param_3,int par
 }
 
 // 0x00131a60  size 0x28
-void libdbc_sub_00131a60(void)
+/* 14 callers */
+
+void maybe_Dbc_GetLastError(void)
 
 {
   return;
 }
 
 // 0x00131a88  size 0x80
-int libdbc_sub_00131a88(undefined8 param_1,undefined8 param_2)
+int maybe_Dbc_ReceiveStatus(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1104,8 +1106,9 @@ int libdbc_sub_00131a88(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00131b08  size 0xec
-void libdbc_sub_00131b08(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4
-                        ,undefined8 param_5)
+void maybe_Dbc_SendActuator
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5)
 
 {
   ulong unaff_s4;
@@ -1762,7 +1765,9 @@ undefined8 Mutex_Init(undefined8 param_1)
 }
 
 // 0x001328b0  size 0x48
-undefined4 vu0math_sub_001328b0(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
+/* 36 callers */
+
+undefined4 sceVu0Normalize(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
 
 {
   undefined1 in_vf0 [16];
@@ -1791,7 +1796,7 @@ undefined4 vu0math_sub_001328b0(undefined1 (*param_1) [16],undefined1 (*param_2)
 
 // 0x00132900  size 0x50
 undefined4
-vu0math_sub_00132900
+maybe_sceVu0InterVectorDist
           (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
 
 {
@@ -1822,7 +1827,9 @@ vu0math_sub_00132900
 }
 
 // 0x00132950  size 0x6c
-void vu0math_sub_00132950(int *param_1,float *param_2)
+/* *16 */
+
+void sceVu0FTOI4Vector(int *param_1,float *param_2)
 
 {
   *param_1 = (int)(*param_2 * 16.0);
@@ -1833,7 +1840,7 @@ void vu0math_sub_00132950(int *param_1,float *param_2)
 }
 
 // 0x001329c0  size 0x24
-void vu0math_sub_001329c0(undefined4 *param_1,undefined4 *param_2)
+void maybe_sceVu0CopyVectorInt(undefined4 *param_1,undefined4 *param_2)
 
 {
   *param_1 = *param_2;
@@ -1844,8 +1851,8 @@ void vu0math_sub_001329c0(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x001329f0  size 0x14
-void vu0math_sub_001329f0
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+void maybe_Vu0_VecMax(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                     undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -1860,8 +1867,8 @@ void vu0math_sub_001329f0
 }
 
 // 0x00132a10  size 0x14
-void vu0math_sub_00132a10
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+void maybe_Vu0_VecMin(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                     undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -1876,7 +1883,7 @@ void vu0math_sub_00132a10
 }
 
 // 0x00132a30  size 0x28
-void vu0math_sub_00132a30
+void maybe_sceVu0InterVectorXYZ
                (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16],
                undefined1 (*param_4) [16])
 
@@ -1899,9 +1906,8 @@ void vu0math_sub_00132a30
 }
 
 // 0x00132a60  size 0x2c
-void vu0math_sub_00132a60
-               (undefined4 param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16],
-               undefined1 (*param_4) [16])
+void sceVu0InterVector(undefined4 param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16],
+                      undefined1 (*param_4) [16])
 
 {
   undefined1 in_vf0 [16];
@@ -1923,8 +1929,8 @@ void vu0math_sub_00132a60
 }
 
 // 0x00132a90  size 0x1c
-void vu0math_sub_00132a90
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+void sceVu0OuterProduct(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                       undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -1941,7 +1947,9 @@ void vu0math_sub_00132a90
 }
 
 // 0x00132ab0  size 0x24
-undefined4 vu0math_sub_00132ab0(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
+/* 40 callers */
+
+undefined4 sceVu0InnerProduct(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
 
 {
   undefined1 auVar1 [16];
@@ -1957,7 +1965,9 @@ undefined4 vu0math_sub_00132ab0(undefined1 (*param_1) [16],undefined1 (*param_2)
 }
 
 // 0x00132ae0  size 0xc
-void vu0math_sub_00132ae0(undefined4 *param_1,undefined4 *param_2)
+/* 86 callers */
+
+void sceVu0CopyVector(undefined4 *param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;
@@ -1975,7 +1985,8 @@ void vu0math_sub_00132ae0(undefined4 *param_1,undefined4 *param_2)
 }
 
 // 0x00132af0  size 0x1c
-void vu0math_sub_00132af0(undefined4 param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+void maybe_sceVu0ScaleVectorXYZ
+               (undefined4 param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -1990,7 +2001,9 @@ void vu0math_sub_00132af0(undefined4 param_1,undefined1 (*param_2) [16],undefine
 }
 
 // 0x00132b10  size 0x1c
-void vu0math_sub_00132b10(undefined4 param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+/* 46 callers */
+
+void sceVu0ScaleVector(undefined4 param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2005,8 +2018,8 @@ void vu0math_sub_00132b10(undefined4 param_1,undefined1 (*param_2) [16],undefine
 }
 
 // 0x00132b30  size 0x14
-void vu0math_sub_00132b30
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+void sceVu0MulVector(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                    undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2021,8 +2034,10 @@ void vu0math_sub_00132b30
 }
 
 // 0x00132b50  size 0x14
-void vu0math_sub_00132b50
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+/* 40 callers */
+
+void sceVu0SubVector(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                    undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2037,8 +2052,10 @@ void vu0math_sub_00132b50
 }
 
 // 0x00132b70  size 0x14
-void vu0math_sub_00132b70
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+/* 43 callers */
+
+void sceVu0AddVector(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                    undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2053,7 +2070,7 @@ void vu0math_sub_00132b70
 }
 
 // 0x00132b90  size 0x8
-void vu0math_sub_00132b90(undefined1 (*param_1) [16])
+void maybe_Vu0_SetUnitW(undefined1 (*param_1) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2065,8 +2082,10 @@ void vu0math_sub_00132b90(undefined1 (*param_1) [16])
 }
 
 // 0x00132ba0  size 0x78
-void vu0math_sub_00132ba0
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+/* 26 callers */
+
+void sceVu0MulMatrix(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                    undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2114,7 +2133,7 @@ void vu0math_sub_00132ba0
 }
 
 // 0x00132c20  size 0x24
-void vu0math_sub_00132c20(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
+void sceVu0CopyMatrix(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2183,7 +2202,7 @@ void maybe_Vu0_SinCos(void)
 }
 
 // 0x00132cd0  size 0x44
-void vu0math_sub_00132cd0(undefined4 *param_1,undefined1 (*param_2) [16])
+void sceVu0TransposeMatrix(undefined4 *param_1,undefined1 (*param_2) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2220,7 +2239,9 @@ void vu0math_sub_00132cd0(undefined4 *param_1,undefined1 (*param_2) [16])
 }
 
 // 0x00132d20  size 0x2c
-void vu0math_sub_00132d20(undefined4 *param_1,undefined4 *param_2,undefined1 (*param_3) [16])
+/* 24 callers */
+
+void sceVu0TransMatrix(undefined4 *param_1,undefined4 *param_2,undefined1 (*param_3) [16])
 
 {
   undefined4 uVar1;
@@ -2269,8 +2290,10 @@ void vu0math_sub_00132d20(undefined4 *param_1,undefined4 *param_2,undefined1 (*p
 }
 
 // 0x00132d50  size 0x2c
-void vu0math_sub_00132d50
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+/* 32 callers */
+
+void sceVu0ApplyMatrix(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                      undefined1 (*param_3) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2446,7 +2469,7 @@ void maybe_Vu0_RotMatrixZ(float param_1,undefined1 (*param_2) [16],undefined1 (*
 }
 
 // 0x00133020  size 0x6c
-void vu0math_sub_00133020(undefined4 *param_1,undefined1 (*param_2) [16])
+void sceVu0InversMatrix(undefined4 *param_1,undefined1 (*param_2) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2521,7 +2544,7 @@ void maybe_Vu0_UnitMatrix(undefined1 (*param_1) [16])
 }
 
 // 0x001330c0  size 0x54
-void vu0math_sub_001330c0(undefined1 (*param_1) [16])
+void maybe_sceVu0RotTransPers(undefined1 (*param_1) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2557,7 +2580,7 @@ void vu0math_sub_001330c0(undefined1 (*param_1) [16])
 }
 
 // 0x00133120  size 0xc4
-undefined4 vu0math_sub_00133120(undefined1 (*param_1) [16],int param_2)
+undefined4 maybe_sceVu0RotTransPersN(undefined1 (*param_1) [16],int param_2)
 
 {
   ulong uVar1;
@@ -2621,7 +2644,7 @@ undefined4 vu0math_sub_00133120(undefined1 (*param_1) [16],int param_2)
 }
 
 // 0x001331f0  size 0x64
-void vu0math_sub_001331f0(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
+void maybe_sceVu0MulMatrixVf28(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2666,7 +2689,7 @@ void vu0math_sub_001331f0(undefined1 (*param_1) [16],undefined1 (*param_2) [16])
 }
 
 // 0x00133260  size 0x14
-void vu0math_sub_00133260(undefined1 (*param_1) [16])
+void maybe_Vu0_LoadMatrixVf28(undefined1 (*param_1) [16])
 
 {
   _lqc2(*param_1);
@@ -2677,7 +2700,7 @@ void vu0math_sub_00133260(undefined1 (*param_1) [16])
 }
 
 // 0x00133280  size 0x14
-void vu0math_sub_00133280(undefined1 (*param_1) [16])
+void maybe_Vu0_StoreMatrixVf28(undefined1 (*param_1) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2698,7 +2721,7 @@ void vu0math_sub_00133280(undefined1 (*param_1) [16])
 }
 
 // 0x001332a0  size 0x10c
-void vu0math_sub_001332a0(float param_1,float *param_2,float *param_3,float *param_4)
+void maybe_Vu0_ClearStack(float param_1,float *param_2,float *param_3,float *param_4)
 
 {
   int iVar1;
@@ -2733,7 +2756,7 @@ void vu0math_sub_001332a0(float param_1,float *param_2,float *param_3,float *par
 }
 
 // 0x001333b0  size 0x29c
-void vu0math_sub_001333b0(float param_1,undefined8 param_2,int param_3,int param_4,int param_5)
+void maybe_Vu0_EvalCurve(float param_1,undefined8 param_2,int param_3,int param_4,int param_5)
 
 {
   int iVar1;
@@ -2756,13 +2779,13 @@ void vu0math_sub_001333b0(float param_1,undefined8 param_2,int param_3,int param
     fStack_50 = param_1 * fStack_4c;
     uStack_44 = DAT_0030a56c;
     fStack_48 = param_1;
-    vu0math_sub_00132ae0(auStack_40);
-    vu0math_sub_00132ae0(auStack_30,param_3 + param_5);
-    vu0math_sub_00132ae0(auStack_20,param_3 + param_5 * 2);
-    vu0math_sub_00132ae0(auStack_10,param_3 + param_5 * 3);
-    vu0math_sub_00132d50(&fStack_50,0x360d20,&fStack_50);
-    vu0math_sub_00132d50(&fStack_50,auStack_40,&fStack_50);
-    vu0math_sub_00132b10(0x3f000000,param_2,&fStack_50);
+    sceVu0CopyVector(auStack_40);
+    sceVu0CopyVector(auStack_30,param_3 + param_5);
+    sceVu0CopyVector(auStack_20,param_3 + param_5 * 2);
+    sceVu0CopyVector(auStack_10,param_3 + param_5 * 3);
+    sceVu0ApplyMatrix(&fStack_50,0x360d20,&fStack_50);
+    sceVu0ApplyMatrix(&fStack_50,auStack_40,&fStack_50);
+    sceVu0ScaleVector(0x3f000000,param_2,&fStack_50);
   }
   else {
     fVar2 = 1.0 / (float)(param_4 + -1);
@@ -2775,36 +2798,36 @@ void vu0math_sub_001333b0(float param_1,undefined8 param_2,int param_3,int param
     uStack_54 = DAT_0030a57c;
     if (fVar2 <= param_1) {
       if (param_1 + fVar2 <= 1.0) {
-        vu0math_sub_00132ae0(auStack_40,param_3 - param_5);
-        vu0math_sub_00132ae0(auStack_30,param_3);
-        vu0math_sub_00132ae0(auStack_20,param_3 + param_5);
-        vu0math_sub_00132ae0(auStack_10,param_3 + param_5 * 2);
-        vu0math_sub_00132d50(&fStack_60,0x360d20,&fStack_60);
+        sceVu0CopyVector(auStack_40,param_3 - param_5);
+        sceVu0CopyVector(auStack_30,param_3);
+        sceVu0CopyVector(auStack_20,param_3 + param_5);
+        sceVu0CopyVector(auStack_10,param_3 + param_5 * 2);
+        sceVu0ApplyMatrix(&fStack_60,0x360d20,&fStack_60);
       }
       else {
-        vu0math_sub_00132ae0(auStack_40,param_3 - param_5);
-        vu0math_sub_00132ae0(auStack_30,param_3);
-        vu0math_sub_00132ae0(auStack_20,param_3 + param_5);
-        vu0math_sub_00132ae0(auStack_10,param_3 + param_5);
-        vu0math_sub_00132d50(&fStack_60,0x360d60,&fStack_60);
+        sceVu0CopyVector(auStack_40,param_3 - param_5);
+        sceVu0CopyVector(auStack_30,param_3);
+        sceVu0CopyVector(auStack_20,param_3 + param_5);
+        sceVu0CopyVector(auStack_10,param_3 + param_5);
+        sceVu0ApplyMatrix(&fStack_60,0x360d60,&fStack_60);
       }
     }
     else {
-      vu0math_sub_00132ae0(auStack_40,param_3);
-      vu0math_sub_00132ae0(auStack_30,param_3);
-      vu0math_sub_00132ae0(auStack_20,param_3 + param_5);
-      vu0math_sub_00132ae0(auStack_10,param_3 + param_5 * 2);
-      vu0math_sub_00132d50(&fStack_60,0x360ce0,&fStack_60);
+      sceVu0CopyVector(auStack_40,param_3);
+      sceVu0CopyVector(auStack_30,param_3);
+      sceVu0CopyVector(auStack_20,param_3 + param_5);
+      sceVu0CopyVector(auStack_10,param_3 + param_5 * 2);
+      sceVu0ApplyMatrix(&fStack_60,0x360ce0,&fStack_60);
     }
-    vu0math_sub_00132d50(&fStack_60,auStack_40,&fStack_60);
-    vu0math_sub_00132b10(0x3f000000,&fStack_60,&fStack_60);
-    vu0math_sub_00132ae0(param_2,&fStack_60);
+    sceVu0ApplyMatrix(&fStack_60,auStack_40,&fStack_60);
+    sceVu0ScaleVector(0x3f000000,&fStack_60,&fStack_60);
+    sceVu0CopyVector(param_2,&fStack_60);
   }
   return;
 }
 
 // 0x00133650  size 0x24
-undefined4 vu0math_sub_00133650(undefined4 param_1)
+undefined4 maybe_Vu0_SqrtQ(undefined4 param_1)
 
 {
   undefined1 in_vf0 [16];
@@ -2820,9 +2843,8 @@ undefined4 vu0math_sub_00133650(undefined4 param_1)
 }
 
 // 0x00133680  size 0x44
-void vu0math_sub_00133680
-               (undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16],
-               long param_4)
+void sceVu0RotTransPersN(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
+                        undefined1 (*param_3) [16],long param_4)
 
 {
   undefined1 in_vf0 [16];
@@ -2855,7 +2877,9 @@ void vu0math_sub_00133680
 }
 
 // 0x001336d0  size 0xa4
-void vu0math_sub_001336d0
+/* look-at: outer products + inverse */
+
+void sceVu0ViewScreenMatrix
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -2865,48 +2889,48 @@ void vu0math_sub_001336d0
   undefined1 auStack_20 [32];
   
   maybe_Vu0_UnitMatrix(auStack_40);
-  vu0math_sub_00132a90(auStack_50,param_4,param_3);
-  vu0math_sub_001328b0(auStack_40,auStack_50);
-  vu0math_sub_001328b0(auStack_20,param_3);
-  vu0math_sub_00132a90(auStack_30,auStack_20,auStack_40);
-  vu0math_sub_00132d20(auStack_40,auStack_40,param_2);
-  vu0math_sub_00133020(param_1,auStack_40);
+  sceVu0OuterProduct(auStack_50,param_4,param_3);
+  sceVu0Normalize(auStack_40,auStack_50);
+  sceVu0Normalize(auStack_20,param_3);
+  sceVu0OuterProduct(auStack_30,auStack_20,auStack_40);
+  sceVu0TransMatrix(auStack_40,auStack_40,param_2);
+  sceVu0InversMatrix(param_1,auStack_40);
   return;
 }
 
 // 0x00133780  size 0x6c
-void vu0math_sub_00133780
+void sceVu0LightColorMatrix
                (int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                undefined8 param_5)
 
 {
-  vu0math_sub_00132ae0();
-  vu0math_sub_00132ae0(param_1 + 0x10,param_3);
-  vu0math_sub_00132ae0(param_1 + 0x20,param_4);
-  vu0math_sub_00132ae0(param_1 + 0x30,param_5);
+  sceVu0CopyVector();
+  sceVu0CopyVector(param_1 + 0x10,param_3);
+  sceVu0CopyVector(param_1 + 0x20,param_4);
+  sceVu0CopyVector(param_1 + 0x30,param_5);
   return;
 }
 
 // 0x001337f0  size 0xb4
-void vu0math_sub_001337f0
+void sceVu0NormalLightMatrix
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
   undefined1 auStack_10 [16];
   
-  vu0math_sub_00132b10(0xbf800000,auStack_10);
-  vu0math_sub_001328b0(param_1,auStack_10);
-  vu0math_sub_00132b10(0xbf800000,auStack_10,param_3);
+  sceVu0ScaleVector(0xbf800000,auStack_10);
+  sceVu0Normalize(param_1,auStack_10);
+  sceVu0ScaleVector(0xbf800000,auStack_10,param_3);
   iVar1 = (int)param_1;
-  vu0math_sub_001328b0(iVar1 + 0x10,auStack_10);
-  vu0math_sub_00132b10(0xbf800000,auStack_10,param_4);
-  vu0math_sub_001328b0(iVar1 + 0x20,auStack_10);
+  sceVu0Normalize(iVar1 + 0x10,auStack_10);
+  sceVu0ScaleVector(0xbf800000,auStack_10,param_4);
+  sceVu0Normalize(iVar1 + 0x20,auStack_10);
   *(undefined4 *)(iVar1 + 0x38) = 0;
   *(undefined4 *)(iVar1 + 0x34) = 0;
   *(undefined4 *)(iVar1 + 0x30) = 0;
   *(undefined4 *)(iVar1 + 0x3c) = 0x3f800000;
-  vu0math_sub_00132cd0(param_1,param_1);
+  sceVu0TransposeMatrix(param_1,param_1);
   return;
 }
 

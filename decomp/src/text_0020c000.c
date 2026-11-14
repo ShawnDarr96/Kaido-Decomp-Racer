@@ -1217,14 +1217,14 @@ void Minimap_ClampToFrame(undefined8 param_1,int param_2,float *param_3,float *p
   float fVar6;
   float fVar7;
   
-  fVar1 = (float)vu0math_sub_00132ab0();
-  uVar2 = vu0math_sub_00132ab0(param_1,param_2 + 0x50);
+  fVar1 = (float)sceVu0InnerProduct();
+  uVar2 = sceVu0InnerProduct(param_1,param_2 + 0x50);
   fVar3 = (float)fabsf(uVar2);
   fVar7 = *(float *)(param_2 + 0x60);
-  uVar2 = vu0math_sub_00132ab0(param_1,param_2 + 0x10);
+  uVar2 = sceVu0InnerProduct(param_1,param_2 + 0x10);
   fVar4 = (float)fabsf(uVar2);
   fVar6 = *(float *)(param_2 + 0x20);
-  uVar2 = vu0math_sub_00132ab0(param_1,param_2 + 0x30);
+  uVar2 = sceVu0InnerProduct(param_1,param_2 + 0x30);
   fVar5 = (float)fabsf(uVar2);
   fVar3 = fVar7 * fVar3 + fVar6 * fVar4 + *(float *)(param_2 + 0x40) * fVar5;
   *param_3 = fVar1 - fVar3;
@@ -1239,14 +1239,14 @@ void Minimap_RotatePoint(undefined8 param_1,int param_2,int param_3,float *param
   int iVar1;
   float fVar2;
   
-  fVar2 = (float)vu0math_sub_00132ab0();
+  fVar2 = (float)sceVu0InnerProduct();
   *param_4 = fVar2;
   iVar1 = 1;
   *param_5 = fVar2;
   if (1 < param_3) {
     do {
       param_2 = param_2 + 0x10;
-      fVar2 = (float)vu0math_sub_00132ab0(param_1,param_2);
+      fVar2 = (float)sceVu0InnerProduct(param_1,param_2);
       if (*param_4 <= fVar2) {
         if (*param_5 < fVar2) {
           *param_5 = fVar2;
@@ -1295,7 +1295,7 @@ void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *para
     do {
       pfVar6 = pfVar6 + 1;
       fVar10 = (float)fabsf(param_1);
-      fVar12 = (float)vu0math_sub_00132ab0(param_2,puVar1);
+      fVar12 = (float)sceVu0InnerProduct(param_2,puVar1);
       fVar10 = fVar10 * 1.1920929e-07 + (fVar12 - param_1) + 0.0;
       *pfVar6 = fVar10;
       if (0.0 <= fVar10) {
@@ -1320,11 +1320,10 @@ void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *para
     if (iVar9 < 1) {
       return;
     }
-    vu0math_sub_00132b50(auStack_10,param_4 + (uint)(iVar4 == 0) * 4,param_4 + iVar4 * 4);
-    vu0math_sub_00132b10
-              (afStack_54[iVar4 + 1] / (afStack_54[iVar4 + 1] - afStack_54[(iVar4 == 0) + 1]),
-               auStack_10,auStack_10);
-    vu0math_sub_00132b70(param_4 + (uint)(iVar4 == 0) * 4,param_4 + iVar4 * 4,auStack_10);
+    sceVu0SubVector(auStack_10,param_4 + (uint)(iVar4 == 0) * 4,param_4 + iVar4 * 4);
+    sceVu0ScaleVector(afStack_54[iVar4 + 1] / (afStack_54[iVar4 + 1] - afStack_54[(iVar4 == 0) + 1])
+                      ,auStack_10,auStack_10);
+    sceVu0AddVector(param_4 + (uint)(iVar4 == 0) * 4,param_4 + iVar4 * 4,auStack_10);
     return;
   }
   if (iVar8 < 1) {
@@ -1354,9 +1353,9 @@ void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *para
     pfVar6 = afStack_54 + iVar7 + 1;
     fVar12 = afStack_54[iVar7];
     fVar10 = *pfVar6;
-    vu0math_sub_00132b50(auStack_10,param_4 + (iVar7 + -1) * 4,param_4 + iVar7 * 4);
-    vu0math_sub_00132b10(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
-    vu0math_sub_00132b70(auStack_150 + iVar3 * 4,param_4 + iVar7 * 4,auStack_10);
+    sceVu0SubVector(auStack_10,param_4 + (iVar7 + -1) * 4,param_4 + iVar7 * 4);
+    sceVu0ScaleVector(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
+    sceVu0AddVector(auStack_150 + iVar3 * 4,param_4 + iVar7 * 4,auStack_10);
     for (; (iVar7 < iVar5 && (*pfVar6 < 0.0)); pfVar6 = pfVar6 + 1) {
       iVar7 = iVar7 + 1;
     }
@@ -1365,10 +1364,10 @@ void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *para
       fVar12 = afStack_54[iVar7];
       fVar10 = *pfVar6;
       puVar2 = param_4 + iVar7 * 4;
-      vu0math_sub_00132b50(auStack_10,param_4 + (iVar7 + -1) * 4,puVar2);
-      vu0math_sub_00132b10(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
+      sceVu0SubVector(auStack_10,param_4 + (iVar7 + -1) * 4,puVar2);
+      sceVu0ScaleVector(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
       iVar4 = iVar3 + 2;
-      vu0math_sub_00132b70(auStack_150 + (iVar3 + 1) * 4,puVar2,auStack_10);
+      sceVu0AddVector(auStack_150 + (iVar3 + 1) * 4,puVar2,auStack_10);
       puVar1 = auStack_150 + iVar4 * 4;
       for (; (iVar7 < iVar5 && (0.0 <= *pfVar6)); pfVar6 = pfVar6 + 1) {
         uVar14 = puVar2[1];
@@ -1386,20 +1385,20 @@ void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *para
       goto LAB_0020e8d8;
     }
     fVar10 = afStack_54[iVar5];
-    vu0math_sub_00132b50(auStack_10,param_4 + (iVar5 + -1) * 4,param_4);
-    vu0math_sub_00132b10(afStack_54[1] / (afStack_54[1] - fVar10),auStack_10,auStack_10);
+    sceVu0SubVector(auStack_10,param_4 + (iVar5 + -1) * 4,param_4);
+    sceVu0ScaleVector(afStack_54[1] / (afStack_54[1] - fVar10),auStack_10,auStack_10);
     iVar5 = iVar3 + 2;
-    vu0math_sub_00132b70(auStack_150 + (iVar3 + 1) * 4,param_4,auStack_10);
+    sceVu0AddVector(auStack_150 + (iVar3 + 1) * 4,param_4,auStack_10);
   }
   else {
     pfVar6 = afStack_54 + iVar4 + 1;
     fVar12 = afStack_54[iVar4];
     fVar10 = *pfVar6;
     puVar2 = param_4 + iVar4 * 4;
-    vu0math_sub_00132b50(auStack_10,param_4 + (iVar4 + -1) * 4,puVar2);
-    vu0math_sub_00132b10(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
+    sceVu0SubVector(auStack_10,param_4 + (iVar4 + -1) * 4,puVar2);
+    sceVu0ScaleVector(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
     iVar3 = 1;
-    vu0math_sub_00132b70(auStack_150,puVar2,auStack_10);
+    sceVu0AddVector(auStack_150,puVar2,auStack_10);
     puVar1 = auStack_150;
     for (; (puVar1 = puVar1 + 4, iVar4 < iVar5 && (0.0 <= *pfVar6)); pfVar6 = pfVar6 + 1) {
       uVar14 = puVar2[1];
@@ -1420,10 +1419,10 @@ void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *para
     }
     fVar10 = afStack_54[iVar7 + 1];
     fVar12 = afStack_54[iVar4];
-    vu0math_sub_00132b50(auStack_10,param_4 + (iVar4 + -1) * 4,param_4 + iVar7 * 4);
-    vu0math_sub_00132b10(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
+    sceVu0SubVector(auStack_10,param_4 + (iVar4 + -1) * 4,param_4 + iVar7 * 4);
+    sceVu0ScaleVector(fVar10 / (fVar10 - fVar12),auStack_10,auStack_10);
     iVar4 = iVar3 + 1;
-    vu0math_sub_00132b70(auStack_150 + iVar3 * 4,param_4 + iVar7 * 4,auStack_10);
+    sceVu0AddVector(auStack_150 + iVar3 * 4,param_4 + iVar7 * 4,auStack_10);
 LAB_0020e8d8:
     iVar5 = iVar4;
   }
@@ -1770,7 +1769,7 @@ void Subtitle_Alloc(undefined8 param_1,undefined8 param_2,undefined4 param_3)
 }
 
 // 0x0020f570  size 0x390
-void menuscr_sub_0020f570(void)
+void menuscr_draw_sub_0020f570(void)
 
 {
   int iVar1;
@@ -1865,7 +1864,7 @@ LAB_0020f5a8:
 }
 
 // 0x0020f900  size 0x4c
-void menuscr_sub_0020f900
+void menuscr_leaf_sub_0020f900
                (undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4)
 
 {
@@ -1881,7 +1880,7 @@ void menuscr_sub_0020f900
 }
 
 // 0x0020f950  size 0x18
-void menuscr_sub_0020f950(void)
+void menuscr_step_sub_0020f950(void)
 
 {
   *(undefined1 *)(iRam0036f4fc + 5) = 8;
@@ -1891,7 +1890,7 @@ void menuscr_sub_0020f950(void)
 }
 
 // 0x0020f970  size 0x9c
-undefined4 menuscr_sub_0020f970(void)
+undefined4 menuscr_step_sub_0020f970(void)
 
 {
   long lVar1;
@@ -1911,7 +1910,7 @@ undefined4 menuscr_sub_0020f970(void)
 }
 
 // 0x0020fa10  size 0x7c
-undefined4 menuscr_sub_0020fa10(void)
+undefined4 menuscr_exit_sub_0020fa10(void)
 
 {
   undefined4 uVar1;
@@ -1939,7 +1938,7 @@ undefined4 menuscr_sub_0020fa10(void)
 }
 
 // 0x0020fa90  size 0xd0
-bool menuscr_sub_0020fa90(undefined1 param_1,undefined1 param_2)
+bool menuscr_load_sub_0020fa90(undefined1 param_1,undefined1 param_2)
 
 {
   char cVar1;
@@ -1965,7 +1964,7 @@ bool menuscr_sub_0020fa90(undefined1 param_1,undefined1 param_2)
 }
 
 // 0x0020fb60  size 0x34
-void menuscr_sub_0020fb60(void)
+void menuscr_exit_sub_0020fb60(void)
 
 {
   MoviePlayer_Free();
@@ -1977,7 +1976,7 @@ void menuscr_sub_0020fb60(void)
 }
 
 // 0x0020fba0  size 0x160
-void menuscr_sub_0020fba0
+void menuscr_load_sub_0020fba0
                (undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4,
                undefined8 param_5)
 
@@ -2031,7 +2030,7 @@ void menuscr_sub_0020fba0
 // 0x0020fd00  size 0x1dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_0020fd00(int param_1)
+void scrcareer_draw_sub_0020fd00(int param_1)
 
 {
   int iVar1;
@@ -2087,7 +2086,7 @@ void scrcareer_sub_0020fd00(int param_1)
 // 0x0020fee0  size 0x560
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_0020fee0(int param_1)
+void scrcareer_draw_sub_0020fee0(int param_1)
 
 {
   undefined4 uVar1;

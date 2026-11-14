@@ -5,7 +5,7 @@
 // 0x002ac030  size 0x264
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_002ac030(int param_1)
+void scrcareer_input_sub_002ac030(int param_1)
 
 {
   undefined4 uVar1;
@@ -42,7 +42,7 @@ void scrcareer_sub_002ac030(int param_1)
     uVar6 = 0;
     *(undefined4 *)(param_1 + 0x6c) = *(undefined4 *)(&DAT_0032ef20 + *(int *)(param_1 + 8) * 4);
     do {
-      lVar5 = scrcareer_sub_0029f130(uVar6);
+      lVar5 = scrcareer_step_sub_0029f130(uVar6);
       if (lVar5 == 0) {
         *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & ~(1 << (uVar6 & 0x1f));
       }
@@ -51,7 +51,7 @@ void scrcareer_sub_002ac030(int param_1)
     if (*(int *)(param_1 + 8) == 0) {
       uVar6 = 0;
       do {
-        lVar5 = scrcareer_sub_0029f130(uVar6);
+        lVar5 = scrcareer_step_sub_0029f130(uVar6);
         if (lVar5 == 1) {
           *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) | 1 << (uVar6 & 0x1f);
         }
@@ -60,9 +60,9 @@ void scrcareer_sub_002ac030(int param_1)
     }
     uVar6 = 0x15;
     do {
-      sVar2 = menuscr_sub_002a17d0(uVar6);
+      sVar2 = menuscr_leaf_sub_002a17d0(uVar6);
       lVar5 = (long)sVar2;
-      sVar3 = menuscr_sub_002a1690(uVar6);
+      sVar3 = menuscr_leaf_sub_002a1690(uVar6);
       iVar8 = 0;
       if (lVar5 <= sVar3) {
         iVar7 = (int)sVar2 << 1;
@@ -98,7 +98,7 @@ void scrcareer_sub_002ac030(int param_1)
 // 0x002ac2a0  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002ac2a0(int param_1)
+void menuscr_input_sub_002ac2a0(int param_1)
 
 {
   int iVar1;
@@ -129,7 +129,7 @@ void menuscr_sub_002ac2a0(int param_1)
 // 0x002ac370  size 0xe8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_002ac370(int param_1)
+void scrcareer_input_sub_002ac370(int param_1)
 
 {
   long lVar1;
@@ -161,7 +161,7 @@ void scrcareer_sub_002ac370(int param_1)
 // 0x002ac460  size 0x1a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002ac460(undefined8 param_1)
+void menuscr_input_sub_002ac460(undefined8 param_1)
 
 {
   short sVar1;
@@ -185,7 +185,7 @@ void menuscr_sub_002ac460(undefined8 param_1)
     *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
   }
   iVar2 = Profile_Get(0);
-  iVar3 = showroom_sub_002d3ba0(0);
+  iVar3 = showroom_step_sub_002d3ba0(0);
   iVar4 = _g_MenuMgr;
   iVar5 = 0;
   sVar1 = *(short *)(iVar2 + iVar3 * 2 + 0x13ee);
@@ -230,7 +230,7 @@ void menuscr_sub_002ac460(undefined8 param_1)
 // 0x002ac610  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002ac610(void)
+void menuscr_step_sub_002ac610(void)
 
 {
   short sVar1;
@@ -245,7 +245,7 @@ void menuscr_sub_002ac610(void)
   *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
   *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
   iVar2 = Profile_Get(0);
-  iVar3 = showroom_sub_002d3ba0(0);
+  iVar3 = showroom_step_sub_002d3ba0(0);
   iVar4 = _g_MenuMgr;
   iVar5 = 0;
   sVar1 = *(short *)(iVar2 + iVar3 * 2 + 0x13ee);
@@ -269,7 +269,7 @@ void menuscr_sub_002ac610(void)
 }
 
 // 0x002ac6e0  size 0x1d4
-void scrgarage_sub_002ac6e0(int param_1)
+void scrgarage_select_sub_002ac6e0(int param_1)
 
 {
   undefined4 uVar1;
@@ -283,7 +283,7 @@ void scrgarage_sub_002ac6e0(int param_1)
   
   lVar3 = Menu_IsInputIdle(param_1 + 0xa00);
   if (lVar3 != 0) {
-    (*(code *)(&PTR_menuscr_sub_002ac460_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
+    (*(code *)(&PTR_menuscr_input_sub_002ac460_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
     uVar5 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar5) == 0) {
       uVar5 = 0x100000;
@@ -303,7 +303,7 @@ void scrgarage_sub_002ac6e0(int param_1)
         Se_PlayMenu(5);
         uVar1 = *(undefined4 *)(param_1 + 0xa24);
       }
-      scrgarage_sub_002a8ff0(param_1,uVar1);
+      scrgarage_step_sub_002a8ff0(param_1,uVar1);
     }
     else if (uVar5 == 0x20) {
       Se_PlayMenu(6);
@@ -328,7 +328,7 @@ void scrgarage_sub_002ac6e0(int param_1)
           iVar7 = iVar7 + 4;
         } while (iVar6 < 0x10);
       }
-      scrgarage_sub_002a8ff0(param_1,*(undefined4 *)(param_1 + 0xa20));
+      scrgarage_step_sub_002a8ff0(param_1,*(undefined4 *)(param_1 + 0xa20));
     }
     Menu_RequestTransition(param_1 + 0xa00);
   }
@@ -338,7 +338,7 @@ void scrgarage_sub_002ac6e0(int param_1)
 // 0x002ac8c0  size 0x170
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_002ac8c0(undefined4 *param_1)
+void scrcareer_step_sub_002ac8c0(undefined4 *param_1)
 
 {
   short sVar1;
@@ -353,7 +353,7 @@ void scrcareer_sub_002ac8c0(undefined4 *param_1)
   *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
   *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
   iVar3 = Profile_Get(0);
-  iVar4 = showroom_sub_002d3ba0(0);
+  iVar4 = showroom_step_sub_002d3ba0(0);
   iVar5 = _g_MenuMgr;
   sVar1 = *(short *)(iVar3 + iVar4 * 2 + 0x13ee);
   *(undefined4 *)(_g_MenuMgr + 0x538) = 2;
@@ -398,7 +398,7 @@ void scrcareer_sub_002ac8c0(undefined4 *param_1)
 }
 
 // 0x002aca40  size 0x58
-undefined4 menuscr_sub_002aca40(int *param_1)
+undefined4 menuscr_leaf_sub_002aca40(int *param_1)
 
 {
   if (param_1[0xe] == 0) {
@@ -419,7 +419,7 @@ undefined4 menuscr_sub_002aca40(int *param_1)
 }
 
 // 0x002acaa0  size 0x320
-void scrgarage_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3)
+void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3)
 
 {
   undefined8 uVar1;
@@ -483,7 +483,7 @@ void scrgarage_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3
     case 5:
       if (*(float *)(param_2 + 0x18) == 0.0) {
         uVar1 = Profile_Get(0);
-        uVar1 = garage_sub_001bc3f0(uVar1);
+        uVar1 = Profile_GetCurrentCar(uVar1);
         uVar2 = CarRec_GetModelId(uVar1);
         iVar5 = CarDb_GetModelPhysics(uVar2);
         iVar7 = 0;
@@ -491,12 +491,12 @@ void scrgarage_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3
         *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(iVar5 + 0x240);
         do {
           uVar1 = Profile_Get(0);
-          uVar1 = garage_sub_001bc3f0(uVar1);
+          uVar1 = Profile_GetCurrentCar(uVar1);
           uVar2 = CarRec_GetModelId(uVar1);
           iVar5 = CarDb_GetModelPhysics(uVar2);
           if (iVar7 < *(int *)(iVar5 + 0x1ac)) {
             uVar1 = Profile_Get(0);
-            uVar1 = garage_sub_001bc3f0(uVar1);
+            uVar1 = Profile_GetCurrentCar(uVar1);
             uVar2 = CarRec_GetModelId(uVar1);
             iVar5 = CarDb_GetModelPhysics(uVar2);
             *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(iVar5 + iVar6 + 0x1b4);
@@ -514,7 +514,7 @@ void scrgarage_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3
         iVar5 = 0;
         do {
           uVar1 = Profile_Get(0);
-          uVar1 = garage_sub_001bc3f0(uVar1);
+          uVar1 = Profile_GetCurrentCar(uVar1);
           uVar2 = CarRec_GetModelId(uVar1);
           iVar6 = CarDb_GetModelPhysics(uVar2);
           if (iVar5 < *(int *)(iVar6 + 0x1ac)) {
@@ -548,7 +548,7 @@ void scrgarage_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3
 }
 
 // 0x002acdc0  size 0x42c
-void scrgarage_sub_002acdc0(undefined8 param_1)
+void scrgarage_input_sub_002acdc0(undefined8 param_1)
 
 {
   bool bVar1;
@@ -613,16 +613,16 @@ switchD_002ad01c_caseD_0:
         piVar5[1] = 0;
         piVar5[0x10] = 1;
         uVar4 = Profile_Get(0);
-        iVar2 = garage_sub_001bc3f0(uVar4);
-        scrgarage_sub_002acaa0(piVar5 + 0x32,iVar2 + 0x14,*piVar5 + 1);
+        iVar2 = Profile_GetCurrentCar(uVar4);
+        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar2 + 0x14,*piVar5 + 1);
         break;
       case 1:
         piVar5[4] = *piVar5 + 5;
         piVar5[1] = 0;
         piVar5[0x10] = 1;
         uVar4 = Profile_Get(0);
-        iVar2 = garage_sub_001bc3f0(uVar4);
-        scrgarage_sub_002acaa0(piVar5 + 0x32,iVar2 + 0x14,*piVar5 + 5);
+        iVar2 = Profile_GetCurrentCar(uVar4);
+        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar2 + 0x14,*piVar5 + 5);
         break;
       case 2:
       case 3:
@@ -633,13 +633,13 @@ switchD_002ad01c_caseD_0:
       case 8:
         if (*piVar5 == piVar5[10]) {
           if (piVar5[0xb] == 2) {
-            scrgarage_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x41,iVar2);
+            scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x41,iVar2);
           }
           else {
             if (piVar5[0xb] == 0) {
               uVar4 = Profile_Get(0);
-              iVar3 = garage_sub_001bc3f0(uVar4);
-              scrgarage_sub_002acaa0(iVar3 + 0x14,piVar5 + 0x32,iVar2);
+              iVar3 = Profile_GetCurrentCar(uVar4);
+              scrgarage_step_sub_002acaa0(iVar3 + 0x14,piVar5 + 0x32,iVar2);
             }
             if (iVar2 < 5) {
               piVar5[1] = iVar2 + -1;
@@ -655,7 +655,7 @@ switchD_002ad01c_caseD_0:
         }
         else if ((iVar2 != 8) && ((iVar2 != 4 || (*piVar5 != 2)))) {
           if (piVar5[0xe] == 0) {
-            scrgarage_sub_002acaa0(piVar5 + 0x23,piVar5 + 0x32,iVar2);
+            scrgarage_step_sub_002acaa0(piVar5 + 0x23,piVar5 + 0x32,iVar2);
             iVar2 = piVar5[0xe];
           }
           else {
@@ -677,7 +677,7 @@ switchD_002ad01c_caseD_0:
     }
     else if (piVar5[0xe] == 1) {
       piVar5[0xe] = 0;
-      scrgarage_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x23,iVar2);
+      scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x23,iVar2);
     }
     else {
       switch(iVar2) {
@@ -716,7 +716,7 @@ LAB_002ad078:
 }
 
 // 0x002ad1f0  size 0x64
-void menuscr_sub_002ad1f0(int *param_1)
+void menuscr_input_sub_002ad1f0(int *param_1)
 
 {
   int iStack_4;
@@ -732,7 +732,7 @@ void menuscr_sub_002ad1f0(int *param_1)
 }
 
 // 0x002ad260  size 0xac
-void menuscr_sub_002ad260(int *param_1)
+void menuscr_input_sub_002ad260(int *param_1)
 
 {
   int **ppiVar1;
@@ -762,7 +762,7 @@ void menuscr_sub_002ad260(int *param_1)
 }
 
 // 0x002ad310  size 0x354
-void scrgarage_sub_002ad310(int *param_1)
+void scrgarage_input_sub_002ad310(int *param_1)
 
 {
   int **ppiVar1;
@@ -785,13 +785,13 @@ void scrgarage_sub_002ad310(int *param_1)
   param_1[10] = 6;
   param_1[0xc] = 1 << (param_1[10] & 0x1fU);
   uVar6 = Profile_Get(0);
-  uVar6 = garage_sub_001bbaa0(uVar6,7);
+  uVar6 = Profile_GetCurrentPartSlot(uVar6,7);
   sVar3 = PartDb_GetInfo(uVar6);
   cVar2 = MenuText_CarName(0xffffffffffffffff,0);
   if (cVar2 == '\x04') {
     param_1[0xc] = param_1[0xc] | 3;
     uVar6 = Profile_Get(0);
-    iVar4 = garage_sub_001bc3f0(uVar6);
+    iVar4 = Profile_GetCurrentCar(uVar6);
     lVar7 = CarRec_GetOptionData(iVar4 + 0x14,7);
     if (0 < lVar7) {
       if (sVar3 == 0x6e) {
@@ -808,7 +808,7 @@ void scrgarage_sub_002ad310(int *param_1)
   else if (((cVar2 == '\x03') || (cVar2 == '\x02')) || (cVar2 == '\x01')) {
     param_1[0xc] = param_1[0xc] | 2;
     uVar6 = Profile_Get(0);
-    iVar4 = garage_sub_001bc3f0(uVar6);
+    iVar4 = Profile_GetCurrentCar(uVar6);
     lVar7 = CarRec_GetOptionData(iVar4 + 0x14,7);
     if (0 < lVar7) {
       if (sVar3 == 0x6e) {
@@ -829,7 +829,7 @@ void scrgarage_sub_002ad310(int *param_1)
     }
     param_1[0xc] = param_1[0xc] | 1;
     uVar6 = Profile_Get(0);
-    iVar4 = garage_sub_001bc3f0(uVar6);
+    iVar4 = Profile_GetCurrentCar(uVar6);
     lVar7 = CarRec_GetOptionData(iVar4 + 0x14,7);
     if ((0 < lVar7) && (sVar3 != 0x6e)) {
       if (sVar3 == 0x6b) {
@@ -845,7 +845,7 @@ LAB_002ad534:
   if (iVar4 == 1) {
     uVar9 = 0;
     uVar6 = Profile_Get(0);
-    iVar4 = garage_sub_001bc3f0(uVar6);
+    iVar4 = Profile_GetCurrentCar(uVar6);
     lVar7 = CarRec_GetOptionData(iVar4 + 0x14,7);
     if (lVar7 == 3) {
       uVar9 = 0xfffffffffffffffb;
@@ -885,7 +885,7 @@ LAB_002ad534:
 }
 
 // 0x002ad670  size 0x19c
-void scrgarage_sub_002ad670(int *param_1)
+void scrgarage_input_sub_002ad670(int *param_1)
 
 {
   uint uVar1;
@@ -900,7 +900,7 @@ void scrgarage_sub_002ad670(int *param_1)
   param_1[10] = 7;
   param_1[0xc] = 0xc0;
   uVar4 = Profile_Get(0);
-  uVar4 = garage_sub_001bc3f0(uVar4);
+  uVar4 = Profile_GetCurrentCar(uVar4);
   uVar2 = CarRec_GetModelId(uVar4);
   iVar3 = CarDb_GetModelPhysics(uVar2);
   if (*(int *)(iVar3 + 0x1ac) < 1) {
@@ -912,7 +912,7 @@ void scrgarage_sub_002ad670(int *param_1)
       uVar5 = uVar5 + 1;
       param_1[0xc] = param_1[0xc] | 1 << uVar1;
       uVar4 = Profile_Get(0);
-      uVar4 = garage_sub_001bc3f0(uVar4);
+      uVar4 = Profile_GetCurrentCar(uVar4);
       uVar2 = CarRec_GetModelId(uVar4);
       iVar3 = CarDb_GetModelPhysics(uVar2);
     } while ((int)uVar5 < *(int *)(iVar3 + 0x1ac));
@@ -931,7 +931,7 @@ void scrgarage_sub_002ad670(int *param_1)
 }
 
 // 0x002ad810  size 0x1d0
-void scrcareer_sub_002ad810(int *param_1)
+void scrcareer_input_sub_002ad810(int *param_1)
 
 {
   char cVar1;
@@ -993,7 +993,7 @@ LAB_002ad938:
 }
 
 // 0x002ad9e0  size 0xe8
-void menuscr_sub_002ad9e0(int *param_1)
+void menuscr_input_sub_002ad9e0(int *param_1)
 
 {
   int *piVar1;
@@ -1038,7 +1038,7 @@ void menuscr_sub_002ad9e0(int *param_1)
 }
 
 // 0x002adad0  size 0x184
-void scrgarage_sub_002adad0(int *param_1)
+void scrgarage_input_sub_002adad0(int *param_1)
 
 {
   int *piVar1;
@@ -1061,7 +1061,7 @@ void scrgarage_sub_002adad0(int *param_1)
   param_1[0xc] = 0;
   if (param_1[0xe] == 1) {
     uVar5 = Profile_Get(0);
-    iVar2 = garage_sub_001bc3f0(uVar5);
+    iVar2 = Profile_GetCurrentCar(uVar5);
     lVar6 = CarRec_GetOptionData(iVar2 + 0x14,8);
     if ((lVar6 == 5) && (*param_1 - 6U < 2)) {
       iVar2 = -6;
@@ -1069,11 +1069,11 @@ void scrgarage_sub_002adad0(int *param_1)
     }
     else {
       uVar5 = Profile_Get(0);
-      iVar2 = garage_sub_001bc3f0(uVar5);
+      iVar2 = Profile_GetCurrentCar(uVar5);
       iVar2 = CarRec_GetOptionData(iVar2 + 0x14,8);
       iVar2 = -iVar2;
       uVar5 = Profile_Get(0);
-      iVar4 = garage_sub_001bc3f0(uVar5);
+      iVar4 = Profile_GetCurrentCar(uVar5);
       uVar5 = CarRec_GetOptionData(iVar4 + 0x14,8);
     }
     piVar3 = (int *)0x20;
@@ -1101,7 +1101,7 @@ void scrgarage_sub_002adad0(int *param_1)
 }
 
 // 0x002adc60  size 0xfc
-void scrgarage_sub_002adc60(undefined8 param_1)
+void scrgarage_input_sub_002adc60(undefined8 param_1)
 
 {
   short sVar1;
@@ -1114,18 +1114,18 @@ void scrgarage_sub_002adc60(undefined8 param_1)
   *(undefined4 *)(iVar5 + 0x28) = 0xffffffff;
   *(undefined4 *)(iVar5 + 0x30) = 0xc;
   uVar3 = Profile_Get(0);
-  iVar2 = garage_sub_001bc3f0(uVar3);
+  iVar2 = Profile_GetCurrentCar(uVar3);
   lVar4 = CarRec_GetOptionData(iVar2 + 0x14,5);
   if (0 < lVar4) {
     uVar3 = Profile_Get(0);
-    uVar3 = garage_sub_001bc3f0(uVar3);
+    uVar3 = Profile_GetCurrentCar(uVar3);
     sVar1 = CarRec_GetModelId(uVar3);
     if ((((sVar1 != 0x39) && (sVar1 != 0x38)) && (sVar1 != 10)) && (sVar1 != 9)) {
       *(uint *)(iVar5 + 0x30) = *(uint *)(iVar5 + 0x30) | 1;
     }
   }
   uVar3 = Profile_Get(0);
-  iVar2 = garage_sub_001bc3f0(uVar3);
+  iVar2 = Profile_GetCurrentCar(uVar3);
   lVar4 = CarRec_GetOptionData(iVar2 + 0x14,7);
   if (0 < lVar4) {
     *(uint *)(iVar5 + 0x30) = *(uint *)(iVar5 + 0x30) | 2;
@@ -1135,7 +1135,7 @@ void scrgarage_sub_002adc60(undefined8 param_1)
 }
 
 // 0x002add60  size 0xe4
-void scrgarage_sub_002add60(undefined8 param_1)
+void scrgarage_input_sub_002add60(undefined8 param_1)
 
 {
   char cVar1;
@@ -1148,13 +1148,13 @@ void scrgarage_sub_002add60(undefined8 param_1)
   *(undefined4 *)(iVar5 + 0x28) = 0xffffffff;
   *(undefined4 *)(iVar5 + 0x30) = 1;
   uVar3 = Profile_Get(0);
-  iVar2 = garage_sub_001bc3f0(uVar3);
+  iVar2 = Profile_GetCurrentCar(uVar3);
   lVar4 = CarRec_GetOptionData(iVar2 + 0x14,8);
   if (0 < lVar4) {
     *(uint *)(iVar5 + 0x30) = *(uint *)(iVar5 + 0x30) | 6;
   }
   uVar3 = Profile_Get(0);
-  iVar2 = garage_sub_001bc3f0(uVar3);
+  iVar2 = Profile_GetCurrentCar(uVar3);
   lVar4 = CarRec_GetOptionData(iVar2 + 0x14,9);
   if (0 < lVar4) {
     *(uint *)(iVar5 + 0x30) = *(uint *)(iVar5 + 0x30) | 8;
@@ -1169,7 +1169,7 @@ void scrgarage_sub_002add60(undefined8 param_1)
 }
 
 // 0x002ade60  size 0x98
-void menuscr_sub_002ade60(undefined8 param_1)
+void menuscr_select_sub_002ade60(undefined8 param_1)
 
 {
   long lVar1;
@@ -1183,16 +1183,16 @@ void menuscr_sub_002ade60(undefined8 param_1)
       *puVar2 = puVar2[1];
     }
     if (puVar2[0xf] == 5) {
-      (*(code *)(&PTR_scrgarage_sub_002add60_0032ef40)[puVar2[3]])(param_1);
+      (*(code *)(&PTR_scrgarage_input_sub_002add60_0032ef40)[puVar2[3]])(param_1);
     }
-    scrgarage_sub_002acdc0(param_1);
+    scrgarage_input_sub_002acdc0(param_1);
     Menu_RequestTransition(puVar2 + 2);
   }
   return;
 }
 
 // 0x002adf00  size 0x3a4
-void scrgarage_sub_002adf00(undefined8 param_1)
+void scrgarage_input_sub_002adf00(undefined8 param_1)
 
 {
   char cVar1;
@@ -1224,31 +1224,31 @@ void scrgarage_sub_002adf00(undefined8 param_1)
   puVar7[0xc] = 0;
   puVar7[0x10] = 1;
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bc3f0(uVar5);
+  uVar5 = Profile_GetCurrentCar(uVar5);
   uVar5 = CarRec_GetModelId(uVar5);
   CarDb_GetPartForModel(puVar7 + 0x41,uVar5,0xffffffffffffffff);
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bc3f0(uVar5);
+  uVar5 = Profile_GetCurrentCar(uVar5);
   uVar2 = CarRec_GetModelId(uVar5);
   iVar3 = CarDb_GetModelPhysics(uVar2);
   puVar7[0x47] = *(undefined4 *)(iVar3 + 0x240);
   puVar7[0x11] = 0x40200000;
   puVar7[0x12] = 0x40fff7cf;
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bc3f0(uVar5);
+  uVar5 = Profile_GetCurrentCar(uVar5);
   uVar2 = CarRec_GetModelId(uVar5);
   iVar4 = CarDb_GetModelPhysics(uVar2);
   iVar3 = 0;
   if (0 < *(int *)(iVar4 + 0x1ac)) {
     do {
       uVar5 = Profile_Get(0);
-      uVar5 = garage_sub_001bc3f0(uVar5);
+      uVar5 = Profile_GetCurrentCar(uVar5);
       uVar2 = CarRec_GetModelId(uVar5);
       iVar4 = CarDb_GetModelPhysics(uVar2);
       iVar8 = iVar3 + 1;
       puVar7[iVar3 + 0x48] = *(undefined4 *)(iVar4 + (iVar3 + 1) * 4 + 0x1b0);
       uVar5 = Profile_Get(0);
-      uVar5 = garage_sub_001bc3f0(uVar5);
+      uVar5 = Profile_GetCurrentCar(uVar5);
       uVar2 = CarRec_GetModelId(uVar5);
       iVar4 = CarDb_GetModelPhysics(uVar2);
       iVar3 = iVar8;
@@ -1256,7 +1256,7 @@ void scrgarage_sub_002adf00(undefined8 param_1)
   }
   iVar4 = 0;
   uVar5 = Profile_Get(0);
-  uVar5 = garage_sub_001bc3f0(uVar5);
+  uVar5 = Profile_GetCurrentCar(uVar5);
   uVar2 = CarRec_GetModelId(uVar5);
   iVar3 = CarDb_GetModelPhysics(uVar2);
   if (0 < *(int *)(iVar3 + 0x1ac)) {
@@ -1270,7 +1270,7 @@ void scrgarage_sub_002adf00(undefined8 param_1)
                  ((float)puVar7[iVar4 + 0x47] - (float)puVar7[iVar4 + 0x48]) / 3.0;
       }
       uVar5 = Profile_Get(0);
-      uVar5 = garage_sub_001bc3f0(uVar5);
+      uVar5 = Profile_GetCurrentCar(uVar5);
       uVar2 = CarRec_GetModelId(uVar5);
       iVar8 = CarDb_GetModelPhysics(uVar2);
       if (iVar4 == *(int *)(iVar8 + 0x1ac) + -1) {
@@ -1284,7 +1284,7 @@ void scrgarage_sub_002adf00(undefined8 param_1)
       iVar4 = iVar4 + 1;
       puVar7[iVar3 * 2 + 0x12] = fVar10;
       uVar5 = Profile_Get(0);
-      uVar5 = garage_sub_001bc3f0(uVar5);
+      uVar5 = Profile_GetCurrentCar(uVar5);
       uVar2 = CarRec_GetModelId(uVar5);
       iVar3 = CarDb_GetModelPhysics(uVar2);
     } while (iVar4 < *(int *)(iVar3 + 0x1ac));
@@ -1292,13 +1292,13 @@ void scrgarage_sub_002adf00(undefined8 param_1)
   puVar7[10] = 0xffffffff;
   puVar7[0xc] = 1;
   uVar5 = Profile_Get(0);
-  iVar3 = garage_sub_001bc3f0(uVar5);
+  iVar3 = Profile_GetCurrentCar(uVar5);
   lVar6 = CarRec_GetOptionData(iVar3 + 0x14,8);
   if (0 < lVar6) {
     puVar7[0xc] = puVar7[0xc] | 6;
   }
   uVar5 = Profile_Get(0);
-  iVar3 = garage_sub_001bc3f0(uVar5);
+  iVar3 = Profile_GetCurrentCar(uVar5);
   lVar6 = CarRec_GetOptionData(iVar3 + 0x14,9);
   if (0 < lVar6) {
     puVar7[0xc] = puVar7[0xc] | 8;
@@ -1315,7 +1315,7 @@ void scrgarage_sub_002adf00(undefined8 param_1)
 // 0x002ae2c0  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002ae2c0(undefined8 param_1)
+void menuscr_input_sub_002ae2c0(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1346,7 +1346,7 @@ void menuscr_sub_002ae2c0(undefined8 param_1)
 // 0x002ae3c0  size 0x88
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_002ae3c0(undefined4 *param_1)
+void scrgarage_step_sub_002ae3c0(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1378,18 +1378,18 @@ void scrgarage_sub_002ae3c0(undefined4 *param_1)
 }
 
 // 0x002ae470  size 0x34
-void menuscr_sub_002ae470(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
+void menuscr_step_sub_002ae470(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
 {
   if (param_1 == *(int *)(param_4 + 0x10)) {
     *(undefined4 *)(param_4 + 0x14) = 0;
-    script_sub_002bb990(uRam0036f7e0);
+    script_load_sub_002bb990(uRam0036f7e0);
   }
   return;
 }
 
 // 0x002ae4b0  size 0x4c
-void menuscr_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+void menuscr_step_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1397,15 +1397,15 @@ void menuscr_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3,unde
   iVar1 = (int)param_4;
   if (param_1 == *(int *)(iVar1 + 200)) {
     *(undefined4 *)(iVar1 + 0xb0) = param_3;
-    menuscr_sub_002afb80(param_4);
+    menuscr_step_sub_002afb80(param_4);
     *(undefined4 *)(iVar1 + 0xcc) = 0;
-    script_sub_002bb990(uRam0036f7e0);
+    script_load_sub_002bb990(uRam0036f7e0);
   }
   return;
 }
 
 // 0x002ae500  size 0x58
-void menuscr_sub_002ae500(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+void menuscr_step_sub_002ae500(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1413,16 +1413,16 @@ void menuscr_sub_002ae500(int param_1,undefined8 param_2,undefined4 param_3,unde
   iVar1 = (int)param_4;
   if (param_1 == *(int *)(iVar1 + 0x70)) {
     *(undefined4 *)(iVar1 + 0x4c) = param_3;
-    script_sub_002b0650(param_4);
-    script_sub_002b0d20(param_4,0);
+    script_step_sub_002b0650(param_4);
+    script_step_sub_002b0d20(param_4,0);
     *(undefined4 *)(iVar1 + 0x74) = 0;
-    script_sub_002bb990(uRam0036f7e0);
+    script_load_sub_002bb990(uRam0036f7e0);
   }
   return;
 }
 
 // 0x002ae580  size 0x21c
-void menuscr_sub_002ae580(int param_1)
+void menuscr_load_sub_002ae580(int param_1)
 
 {
   undefined4 uVar1;
@@ -1480,7 +1480,7 @@ void menuscr_sub_002ae580(int param_1)
 }
 
 // 0x002ae7a0  size 0x7b8
-void menuscr_sub_002ae7a0(int param_1)
+void menuscr_load_sub_002ae7a0(int param_1)
 
 {
   int iVar1;
@@ -1670,7 +1670,7 @@ void menuscr_sub_002ae7a0(int param_1)
 }
 
 // 0x002aef60  size 0x2ac
-void menuscr_sub_002aef60(int param_1)
+void menuscr_load_sub_002aef60(int param_1)
 
 {
   undefined4 uVar1;
@@ -1743,7 +1743,7 @@ void menuscr_sub_002aef60(int param_1)
 }
 
 // 0x002af210  size 0x6b0
-void menuscr_sub_002af210(int param_1)
+void menuscr_load_sub_002af210(int param_1)
 
 {
   undefined4 uVar1;
@@ -1908,7 +1908,7 @@ void menuscr_sub_002af210(int param_1)
 }
 
 // 0x002af8c0  size 0x1bc
-void menuscr_sub_002af8c0(int param_1)
+void menuscr_step_sub_002af8c0(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0xc4) = 0x10;
@@ -1939,7 +1939,7 @@ void menuscr_sub_002af8c0(int param_1)
 }
 
 // 0x002afa80  size 0xf8
-void menuscr_sub_002afa80(undefined8 param_1)
+void menuscr_step_sub_002afa80(undefined8 param_1)
 
 {
   int iVar1;
@@ -1962,20 +1962,20 @@ void menuscr_sub_002afa80(undefined8 param_1)
 }
 
 // 0x002afb80  size 0x4c
-void menuscr_sub_002afb80(undefined8 param_1)
+void menuscr_step_sub_002afb80(undefined8 param_1)
 
 {
-  menuscr_sub_002afa80();
-  menuscr_sub_002af8c0(param_1);
-  menuscr_sub_002ae580(param_1);
-  menuscr_sub_002ae7a0(param_1);
-  menuscr_sub_002aef60(param_1);
-  menuscr_sub_002af210(param_1);
+  menuscr_step_sub_002afa80();
+  menuscr_step_sub_002af8c0(param_1);
+  menuscr_load_sub_002ae580(param_1);
+  menuscr_load_sub_002ae7a0(param_1);
+  menuscr_load_sub_002aef60(param_1);
+  menuscr_load_sub_002af210(param_1);
   return;
 }
 
 // 0x002afbd0  size 0x230
-void menuscr_sub_002afbd0(undefined8 param_1)
+void menuscr_exit_sub_002afbd0(undefined8 param_1)
 
 {
   int iVar1;
@@ -2062,7 +2062,7 @@ void menuscr_sub_002afbd0(undefined8 param_1)
 // 0x002afe00  size 0xf0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002afe00(undefined8 param_1,int param_2)
+void menuscr_load_sub_002afe00(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
@@ -2070,7 +2070,7 @@ void menuscr_sub_002afe00(undefined8 param_1,int param_2)
   int iVar3;
   int iVar4;
   
-  menuscr_sub_002afbd0();
+  menuscr_exit_sub_002afbd0();
   iVar3 = (param_2 + 0x1ca6) * 0x14 + _g_ArcToc;
   iVar4 = *(int *)(iVar3 + 0x20);
   if (iVar4 == 0) {
@@ -2103,7 +2103,8 @@ void menuscr_sub_002afe00(undefined8 param_1,int param_2)
 }
 
 // 0x002afef0  size 0xd8
-undefined4 menuscr_sub_002afef0(undefined8 param_1,ulong param_2,byte *param_3,undefined4 *param_4)
+undefined4
+menuscr_leaf_sub_002afef0(undefined8 param_1,ulong param_2,byte *param_3,undefined4 *param_4)
 
 {
   undefined4 uVar1;
@@ -2146,7 +2147,7 @@ undefined4 menuscr_sub_002afef0(undefined8 param_1,ulong param_2,byte *param_3,u
 }
 
 // 0x002affd0  size 0x2e8
-undefined4 menuscr_sub_002affd0(int param_1,uint *param_2)
+undefined4 menuscr_leaf_sub_002affd0(int param_1,uint *param_2)
 
 {
   int iVar1;

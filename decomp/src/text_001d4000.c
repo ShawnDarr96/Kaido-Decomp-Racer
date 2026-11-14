@@ -293,7 +293,7 @@ void Ai_UpdateRivalBehaviour(short param_1,char *param_2)
           if ((uVar7 & 0x80) != 0) {
             uStack_4 = 0x3f800000;
             uStack_14 = 0x3f800000;
-            puVar5 = (undefined4 *)phys_sub_001651a0(*(undefined4 *)(iVar2 + 0x154));
+            puVar5 = (undefined4 *)PhysBody_GetWorldMatrix(*(undefined4 *)(iVar2 + 0x154));
             uStack_30 = *puVar5;
             uStack_2c = puVar5[1];
             uStack_28 = puVar5[2];
@@ -322,7 +322,7 @@ void Ai_UpdateRivalBehaviour(short param_1,char *param_2)
           }
           uStack_34 = 0x3f800000;
           uStack_44 = 0x3f800000;
-          puVar5 = (undefined4 *)phys_sub_001651a0(*(undefined4 *)(iVar4 + 0x154));
+          puVar5 = (undefined4 *)PhysBody_GetWorldMatrix(*(undefined4 *)(iVar4 + 0x154));
           uStack_60 = *puVar5;
           uStack_5c = puVar5[1];
           uStack_58 = puVar5[2];
@@ -1575,7 +1575,7 @@ LAB_001d6580:
   cVar5 = RaceCtx_GetMode();
   if (((cVar5 == '\x06') || (cVar5 = GameState_Get_0(), cVar5 == '\x03')) ||
      (cVar5 = GameState_Get_0(), cVar5 == '\x04')) {
-    uVar8 = newlib_sub_0012f600(fStack_a8 * 3.1415927);
+    uVar8 = maybe___sf_to_df(fStack_a8 * 3.1415927);
     uVar8 = __divdf3(uVar8,0x4066800000000000);
     uVar17 = maybe___extendsfdf2(uVar8);
     uVar17 = cosf(uVar17);
@@ -1862,10 +1862,10 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
   uStack_18 = *(undefined4 *)(psVar4 + 4);
   uStack_14 = 0x3f800000;
   if (param_5 == 0) {
-    vu0math_sub_00132b50(auStack_50,&uStack_20,&uStack_10);
-    vu0math_sub_001328b0(auStack_30,auStack_50);
-    vu0math_sub_00132af0(param_1,auStack_30,auStack_30);
-    vu0math_sub_00132b70(&uStack_60,&uStack_10,auStack_30);
+    sceVu0SubVector(auStack_50,&uStack_20,&uStack_10);
+    sceVu0Normalize(auStack_30,auStack_50);
+    maybe_sceVu0ScaleVectorXYZ(param_1,auStack_30,auStack_30);
+    sceVu0AddVector(&uStack_60,&uStack_10,auStack_30);
   }
   else {
     puVar3 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar2) + 0x7c + param_4 * 0x20);
@@ -1875,14 +1875,14 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
     uStack_34 = 0x3f800000;
     if (param_1 < 0.0) {
       param_1 = -param_1;
-      vu0math_sub_00132b50(auStack_50,&uStack_10,&uStack_40);
+      sceVu0SubVector(auStack_50,&uStack_10,&uStack_40);
     }
     else {
-      vu0math_sub_00132b50(auStack_50,&uStack_20,&uStack_40);
+      sceVu0SubVector(auStack_50,&uStack_20,&uStack_40);
     }
-    vu0math_sub_001328b0(auStack_30,auStack_50);
-    vu0math_sub_00132af0(param_1,auStack_30,auStack_30);
-    vu0math_sub_00132b70(&uStack_60,&uStack_40,auStack_30);
+    sceVu0Normalize(auStack_30,auStack_50);
+    maybe_sceVu0ScaleVectorXYZ(param_1,auStack_30,auStack_30);
+    sceVu0AddVector(&uStack_60,&uStack_40,auStack_30);
   }
   *param_2 = uStack_60;
   param_2[1] = uStack_5c;

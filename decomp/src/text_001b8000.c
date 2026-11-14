@@ -705,7 +705,7 @@ undefined4 Garage_BuyCar(undefined8 param_1,long param_2,undefined8 param_3)
           if (sVar1 < 99) {
             *(short *)(iVar3 + 0x1420) = sVar1 + 1;
           }
-          garage_sub_001bbeb0(param_1,param_3,uVar12 & 0xff);
+          Profile_ApplyStockParts(param_1,param_3,uVar12 & 0xff);
           CarRec_ClearParts(uVar6);
           uVar7 = CarDb_FindDefaultPart((short)*piVar11,uVar12 & 0xff,0xffffffffffffffff);
           CarRec_SetModelAndColor(uVar6,uVar7);
@@ -2028,7 +2028,7 @@ undefined8 Garage_ComputeCarStats(undefined8 param_1,long param_2)
 }
 
 // 0x001baf70  size 0x3c
-bool garage_sub_001baf70(int param_1)
+bool Profile_IsCurrentCarTuned(int param_1)
 
 {
   bool bVar1;
@@ -2042,7 +2042,7 @@ bool garage_sub_001baf70(int param_1)
 }
 
 // 0x001bafb0  size 0xc4
-undefined4 garage_sub_001bafb0(int param_1)
+undefined4 Profile_GetCurrentCarValue(int param_1)
 
 {
   int iVar1;
@@ -2073,7 +2073,7 @@ undefined4 garage_sub_001bafb0(int param_1)
 }
 
 // 0x001bb080  size 0x104
-undefined4 garage_sub_001bb080(int param_1,undefined8 param_2)
+undefined4 Profile_GetCarValue(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -2102,7 +2102,7 @@ undefined4 garage_sub_001bb080(int param_1,undefined8 param_2)
 }
 
 // 0x001bb190  size 0x24
-undefined4 garage_sub_001bb190(int param_1,short param_2)
+undefined4 Profile_DecPartStock(int param_1,short param_2)
 
 {
   param_1 = param_2 * 2 + param_1;
@@ -2111,7 +2111,9 @@ undefined4 garage_sub_001bb190(int param_1,short param_2)
 }
 
 // 0x001bb1c0  size 0x138
-undefined4 garage_sub_001bb1c0(int param_1,undefined8 param_2)
+/* money -= price */
+
+undefined4 Profile_PayForCar(int param_1,undefined8 param_2)
 
 {
   short sVar1;
@@ -2152,7 +2154,7 @@ undefined4 garage_sub_001bb1c0(int param_1,undefined8 param_2)
 }
 
 // 0x001bb300  size 0x44
-bool garage_sub_001bb300(int param_1,short param_2)
+bool Profile_HasPartStock(int param_1,short param_2)
 
 {
   short sVar1;
@@ -2166,7 +2168,8 @@ bool garage_sub_001bb300(int param_1,short param_2)
 }
 
 // 0x001bb350  size 0x164
-undefined4 garage_sub_001bb350(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+undefined4
+Profile_InstallPartOnCurrent(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   short sVar1;
@@ -2231,7 +2234,7 @@ undefined4 garage_sub_001bb350(int param_1,undefined8 param_2,undefined8 param_3
   uStack_24 = uStack_84;
   uStack_50 = uStack_80;
   uStack_20 = uStack_80;
-  lVar5 = garage_sub_001bb4c0(*puVar8,param_3,param_4);
+  lVar5 = Profile_BuildCarFromTeam(*puVar8,param_3,param_4);
   if (lVar5 == 0) {
     uVar3 = 0;
   }
@@ -2255,7 +2258,7 @@ undefined4 garage_sub_001bb350(int param_1,undefined8 param_2,undefined8 param_3
 }
 
 // 0x001bb4c0  size 0x488
-undefined4 garage_sub_001bb4c0(short param_1,undefined1 param_2,int param_3)
+undefined4 Profile_BuildCarFromTeam(short param_1,undefined1 param_2,int param_3)
 
 {
   char cVar1;
@@ -2450,7 +2453,7 @@ undefined4 garage_sub_001bb4c0(short param_1,undefined1 param_2,int param_3)
 }
 
 // 0x001bb950  size 0x144
-undefined4 garage_sub_001bb950(undefined8 param_1,undefined8 param_2)
+undefined4 Profile_ResetCurrentCarParts(undefined8 param_1,undefined8 param_2)
 
 {
   short sVar1;
@@ -2478,7 +2481,7 @@ undefined4 garage_sub_001bb950(undefined8 param_1,undefined8 param_2)
       if (sVar2 < 99) {
         *(short *)(iVar5 + 0x1420) = sVar2 + 1;
       }
-      garage_sub_001bbeb0(param_1,sVar1,param_2);
+      Profile_ApplyStockParts(param_1,sVar1,param_2);
       CarRec_ClearParts(uVar6);
       uVar7 = CarDb_FindDefaultPart(*puVar8,param_2,0xffffffffffffffff);
       CarRec_SetModelAndColor(uVar6,uVar7);
@@ -2495,7 +2498,9 @@ undefined4 garage_sub_001bb950(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001bbaa0  size 0x38
-undefined2 garage_sub_001bbaa0(int param_1)
+/* 23 callers */
+
+undefined2 Profile_GetCurrentPartSlot(int param_1)
 
 {
   undefined2 *puVar1;
@@ -2505,7 +2510,7 @@ undefined2 garage_sub_001bbaa0(int param_1)
 }
 
 // 0x001bbae0  size 0x38
-undefined2 garage_sub_001bbae0(int param_1,int param_2,undefined8 param_3)
+undefined2 Profile_GetCarPartSlot(int param_1,int param_2,undefined8 param_3)
 
 {
   undefined2 *puVar1;
@@ -2515,7 +2520,7 @@ undefined2 garage_sub_001bbae0(int param_1,int param_2,undefined8 param_3)
 }
 
 // 0x001bbb20  size 0x148
-undefined4 garage_sub_001bbb20(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+undefined4 Profile_ResetCarParts(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -2540,7 +2545,7 @@ undefined4 garage_sub_001bbb20(undefined8 param_1,undefined8 param_2,undefined8 
       if (sVar1 < 99) {
         *(short *)(iVar4 + 0x1420) = sVar1 + 1;
       }
-      garage_sub_001bbeb0(param_1,param_2,param_3);
+      Profile_ApplyStockParts(param_1,param_2,param_3);
       CarRec_ClearParts(uVar5);
       uVar6 = CarDb_FindDefaultPart(*puVar7,param_3,0xffffffffffffffff);
       CarRec_SetModelAndColor(uVar5,uVar6);
@@ -2557,7 +2562,7 @@ undefined4 garage_sub_001bbb20(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x001bbc70  size 0x15c
-undefined4 garage_sub_001bbc70(undefined8 param_1,undefined8 param_2)
+undefined4 Profile_ResetAllCarParts(undefined8 param_1,undefined8 param_2)
 
 {
   short sVar1;
@@ -2585,7 +2590,7 @@ undefined4 garage_sub_001bbc70(undefined8 param_1,undefined8 param_2)
         if (sVar1 < 99) {
           *(short *)(iVar4 + 0x1420) = sVar1 + 1;
         }
-        garage_sub_001bbeb0(param_1,param_2,uVar7 & 0xff);
+        Profile_ApplyStockParts(param_1,param_2,uVar7 & 0xff);
         CarRec_ClearParts(uVar5);
         uVar6 = CarDb_FindDefaultPart(*puVar8,uVar7 & 0xff,0xffffffffffffffff);
         CarRec_SetModelAndColor(uVar5,uVar6);
@@ -2604,7 +2609,7 @@ undefined4 garage_sub_001bbc70(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001bbdd0  size 0xd0
-long garage_sub_001bbdd0(int param_1,undefined8 param_2)
+long Profile_FindCompatiblePart(int param_1,undefined8 param_2)
 
 {
   short sVar1;
@@ -2635,7 +2640,7 @@ long garage_sub_001bbdd0(int param_1,undefined8 param_2)
 }
 
 // 0x001bbeb0  size 0x154
-void garage_sub_001bbeb0(int param_1,int param_2,char param_3)
+void Profile_ApplyStockParts(int param_1,int param_2,char param_3)
 
 {
   undefined1 *puVar1;

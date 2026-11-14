@@ -5,7 +5,7 @@
 // 0x00268000  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00268000(void)
+void menuscr_step_sub_00268000(void)
 
 {
   undefined4 uVar1;
@@ -39,7 +39,7 @@ void menuscr_sub_00268000(void)
 // 0x002680c0  size 0x1d8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002680c0(int param_1)
+void menuscr_draw_sub_002680c0(int param_1)
 
 {
   uint uVar1;
@@ -78,7 +78,7 @@ void menuscr_sub_002680c0(int param_1)
 // 0x002682a0  size 0x1b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002682a0(void)
+void menuscr_step_sub_002682a0(void)
 
 {
   undefined4 uVar1;
@@ -163,7 +163,7 @@ void menuscr_sub_002682a0(void)
 // 0x00268460  size 0x60c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00268460(int param_1)
+void scrgarage_draw_sub_00268460(int param_1)
 
 {
   undefined2 uVar1;
@@ -207,7 +207,7 @@ void scrgarage_sub_00268460(int param_1)
     iVar7 = Profile_Get(*(undefined4 *)(param_1 + 0x10));
     uVar1 = *(undefined2 *)(iVar7 + iVar16 * 2 + 0x13ee);
     uVar12 = Profile_Get(*(undefined4 *)(param_1 + 0x10));
-    uVar12 = garage_sub_001bc600(uVar12,uVar1);
+    uVar12 = Profile_GetCarRecordB(uVar12,uVar1);
     uVar2 = *(undefined4 *)(param_1 + 0x10);
     uVar8 = MenuText_CarNameOrMaker(iVar16,uVar2);
     uVar9 = MenuText_CarGrade(iVar16,uVar2);
@@ -309,7 +309,7 @@ void scrgarage_sub_00268460(int param_1)
 // 0x00268a70  size 0x118
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00268a70(undefined8 param_1)
+void scrgarage_draw_sub_00268a70(undefined8 param_1)
 
 {
   int iVar1;
@@ -338,7 +338,7 @@ void scrgarage_sub_00268a70(undefined8 param_1)
   if (lVar2 == 2) {
     *(undefined4 *)(iVar5 + 0x38) = 0;
   }
-  scrgarage_sub_00268460(param_1);
+  scrgarage_draw_sub_00268460(param_1);
   UiLayout_UpdateAnimById(0xe,6);
   iVar1 = UiMgr_FindLayout(0xe);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -348,7 +348,7 @@ void scrgarage_sub_00268a70(undefined8 param_1)
 // 0x00268b90  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00268b90(undefined8 param_1)
+void scrgarage_draw_sub_00268b90(undefined8 param_1)
 
 {
   int iVar1;
@@ -374,7 +374,7 @@ void scrgarage_sub_00268b90(undefined8 param_1)
   if (lVar2 == 2) {
     puVar3[0xe] = 0;
   }
-  scrgarage_sub_00268460(param_1);
+  scrgarage_draw_sub_00268460(param_1);
   UiLayout_UpdateAnimById(0xe,6);
   iVar1 = UiMgr_FindLayout(0xe);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -384,7 +384,7 @@ void scrgarage_sub_00268b90(undefined8 param_1)
 // 0x00268c90  size 0x2a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00268c90(undefined8 param_1)
+void scrgarage_draw_sub_00268c90(undefined8 param_1)
 
 {
   int iVar1;
@@ -459,7 +459,7 @@ void scrgarage_sub_00268c90(undefined8 param_1)
   MenuWnd_DrawText(0xf,0x3a,0x167);
   MenuWnd_DrawText(0xf,0x3b,0x168);
   MenuWnd_DrawText(0xf,0x3c,0x169);
-  scrgarage_sub_00268460(param_1);
+  scrgarage_draw_sub_00268460(param_1);
   UiLayout_UpdateAnimById(0xe,6);
   iVar1 = UiMgr_FindLayout(0xe);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -471,7 +471,7 @@ void scrgarage_sub_00268c90(undefined8 param_1)
 // 0x00268f40  size 0x790
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00268f40(undefined8 param_1)
+void scrgarage_draw_sub_00268f40(undefined8 param_1)
 
 {
   int iVar1;
@@ -689,7 +689,7 @@ void scrgarage_sub_00268f40(undefined8 param_1)
     iVar4 = UiMgr_FindLayout(0xe);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,0xca,8);
   }
-  scrgarage_sub_00268460(param_1);
+  scrgarage_draw_sub_00268460(param_1);
   iVar1 = UiMgr_FindLayout(0xe);
   iVar4 = *(int *)(iVar2 + 0x20);
   iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
@@ -723,7 +723,7 @@ void scrgarage_sub_00268f40(undefined8 param_1)
 // 0x002696d0  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002696d0(void)
+void menuscr_anim_sub_002696d0(void)
 
 {
   int iVar1;
@@ -737,7 +737,7 @@ void menuscr_sub_002696d0(void)
 // 0x00269730  size 0x120
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00269730(undefined8 param_1)
+void scrrace_draw_sub_00269730(undefined8 param_1)
 
 {
   int iVar1;
@@ -746,7 +746,7 @@ void scrrace_sub_00269730(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_scrgarage_sub_00268f40_0032d770)[*(int *)((int)param_1 + 0x2c)])(param_1);
+  (*(code *)(&PTR_scrgarage_draw_sub_00268f40_0032d770)[*(int *)((int)param_1 + 0x2c)])(param_1);
   iVar1 = UiMgr_FindLayout(8);
   UiLayout_UpdateAnim(*_g_UiMgr + iVar1 * 0x4f4 + 4,2);
   iVar1 = UiMgr_FindLayout(8);
@@ -764,7 +764,7 @@ void scrrace_sub_00269730(undefined8 param_1)
 // 0x00269850  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00269850(void)
+void menuscr_anim_sub_00269850(void)
 
 {
   int iVar1;
@@ -852,7 +852,7 @@ void menuscr_sub_00269850(void)
 // 0x00269a50  size 0xbc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00269a50(void)
+void menuscr_anim_sub_00269a50(void)
 
 {
   int iVar1;
@@ -871,7 +871,7 @@ void menuscr_sub_00269a50(void)
 // 0x00269b10  size 0x328
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00269b10(int *param_1)
+void scrrace_draw_sub_00269b10(int *param_1)
 
 {
   int iVar1;
@@ -924,7 +924,7 @@ void scrrace_sub_00269b10(int *param_1)
   iVar1 = UiMgr_FindLayout(10);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   uVar4 = Profile_Get(0);
-  uVar4 = garage_sub_001bcb00(uVar4);
+  uVar4 = Profile_GetMoney(uVar4);
   MenuWnd_DrawNumber(10,1,uVar4);
   iVar1 = UiMgr_FindLayout(7);
   UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x25,8);
@@ -944,7 +944,7 @@ void scrrace_sub_00269b10(int *param_1)
 // 0x00269e40  size 0x4a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00269e40(undefined4 *param_1)
+void menuscr_anim_sub_00269e40(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1139,7 +1139,7 @@ void menuscr_sub_00269e40(undefined4 *param_1)
 }
 
 // 0x0026a2e0  size 0x1f4
-undefined4 menuscr_sub_0026a2e0(short param_1)
+undefined4 menuscr_leaf_sub_0026a2e0(short param_1)
 
 {
   undefined4 uVar1;
@@ -1226,7 +1226,7 @@ undefined4 menuscr_sub_0026a2e0(short param_1)
 // 0x0026a4e0  size 0x150
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_0026a4e0(undefined8 param_1)
+void menuscr_anim_sub_0026a4e0(undefined8 param_1)
 
 {
   int iVar1;
@@ -1279,7 +1279,7 @@ void menuscr_sub_0026a4e0(undefined8 param_1)
 // 0x0026a630  size 0x350
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_0026a630
+void menuscr_anim_sub_0026a630
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 
@@ -1329,7 +1329,7 @@ void menuscr_sub_0026a630
 // 0x0026a980  size 0x3fc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_0026a980(int param_1)
+void scrgarage_draw_sub_0026a980(int param_1)
 
 {
   int iVar1;
@@ -1343,8 +1343,8 @@ void scrgarage_sub_0026a980(int param_1)
   MenuWnd_DrawTextId(0xdf,0x2c,1,0x243);
   MenuWnd_DrawTextId(0xdf,0x20,4,0x98d);
   uVar3 = Profile_Get(0);
-  uVar4 = garage_sub_001bbae0(uVar3,*(undefined4 *)(param_1 + 0x24),0xc);
-  uVar3 = garage_sub_001bc600(uVar3,*(undefined4 *)(param_1 + 0x24));
+  uVar4 = Profile_GetCarPartSlot(uVar3,*(undefined4 *)(param_1 + 0x24),0xc);
+  uVar3 = Profile_GetCarRecordB(uVar3,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar3,0xc);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar3 = 0xffffffffffffffff;
@@ -1352,11 +1352,11 @@ void scrgarage_sub_0026a980(int param_1)
   else {
     uVar3 = 0x24d;
   }
-  uVar4 = menuscr_sub_0026a2e0(uVar4);
+  uVar4 = menuscr_leaf_sub_0026a2e0(uVar4);
   uVar5 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x26,0x24e,uVar4,uVar5,uVar3);
   MenuWnd_DrawTextId(0xdf,0x21,4,0x98f);
-  uVar2 = garage_sub_001bc390(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar2 = Profile_GetCarRecord(uVar2,*(undefined4 *)(param_1 + 0x24));
   lVar6 = CarRec_GetGrade(uVar2);
   if (lVar6 == 0) {
     MenuWnd_DrawText(0xdf,0x27,0x9b2);
@@ -1366,8 +1366,8 @@ void scrgarage_sub_0026a980(int param_1)
   }
   MenuWnd_DrawTextId(0xdf,0x22,4,0x991);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0x12);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0x12);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0x12);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1375,13 +1375,13 @@ void scrgarage_sub_0026a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x28,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdf,0x23,4,0x992);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0x11);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0x11);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0x11);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1389,13 +1389,13 @@ void scrgarage_sub_0026a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x29,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdf,0x24,4,0x993);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0x13);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0x13);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0x13);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1403,13 +1403,13 @@ void scrgarage_sub_0026a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x2a,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdf,0x25,4,0x994);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0x14);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0x14);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0x14);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1417,7 +1417,7 @@ void scrgarage_sub_0026a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x2b,0x24e,uVar3,uVar4,uVar2);
   iVar1 = UiMgr_FindLayout(0xdf);
@@ -1428,7 +1428,7 @@ void scrgarage_sub_0026a980(int param_1)
 // 0x0026ad80  size 0x464
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_0026ad80(int param_1)
+void scrgarage_draw_sub_0026ad80(int param_1)
 
 {
   int iVar1;
@@ -1440,8 +1440,8 @@ void scrgarage_sub_0026ad80(int param_1)
   MenuWnd_DrawTextId(0xde,0x33,1,0x240);
   MenuWnd_DrawTextId(0xde,0x27,4,0x98a);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),10);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),10);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,10);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1449,13 +1449,13 @@ void scrgarage_sub_0026ad80(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x2d,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x28,4,0x98b);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0xb);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0xb);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0xb);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1463,14 +1463,14 @@ void scrgarage_sub_0026ad80(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x2e,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x34,1,0x241);
   MenuWnd_DrawTextId(0xde,0x29,4,0x247);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0xf);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0xf);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0xf);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1478,13 +1478,13 @@ void scrgarage_sub_0026ad80(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x2f,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x2a,4,0x248);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0x10);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0x10);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0x10);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1492,14 +1492,14 @@ void scrgarage_sub_0026ad80(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x30,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x35,1,0x242);
   MenuWnd_DrawTextId(0xde,0x2b,4,0x247);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0xd);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0xd);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0xd);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1507,13 +1507,13 @@ void scrgarage_sub_0026ad80(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x31,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x2c,4,0x248);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0xe);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0xe);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0xe);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1521,7 +1521,7 @@ void scrgarage_sub_0026ad80(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x32,0x24e,uVar3,uVar4,uVar2);
   iVar1 = UiMgr_FindLayout(0xde);
@@ -1532,7 +1532,7 @@ void scrgarage_sub_0026ad80(int param_1)
 // 0x0026b1f0  size 0x6d0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_0026b1f0(int param_1)
+void scrgarage_draw_sub_0026b1f0(int param_1)
 
 {
   int iVar1;
@@ -1544,8 +1544,8 @@ void scrgarage_sub_0026b1f0(int param_1)
   MenuWnd_DrawTextId(0xdd,0x36,1,0x23e);
   MenuWnd_DrawTextId(0xdd,0x24,4,0x980);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),0);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),0);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,0);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1553,13 +1553,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2c,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x25,4,0x981);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),2);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),2);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,2);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1567,13 +1567,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2d,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x26,4,0x982);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),1);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),1);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,1);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1581,13 +1581,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2e,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x27,4,0x983);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),3);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),3);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,3);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1595,13 +1595,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2f,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x28,4,0x984);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),4);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),4);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,4);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1609,14 +1609,14 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x30,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x37,1,0x23f);
   MenuWnd_DrawTextId(0xdd,0x29,4,0x985);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),5);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),5);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,5);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1624,13 +1624,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x31,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x2a,4,0x986);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),6);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),6);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,6);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1638,13 +1638,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x32,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x2b,4,0x987);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),7);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),7);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,7);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1652,13 +1652,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x33,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x34,4,0x988);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),8);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),8);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,8);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1666,13 +1666,13 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x35,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x38,4,0x989);
   uVar2 = Profile_Get(0);
-  uVar3 = garage_sub_001bbae0(uVar2,*(undefined4 *)(param_1 + 0x24),9);
-  uVar2 = garage_sub_001bc600(uVar2,*(undefined4 *)(param_1 + 0x24));
+  uVar3 = Profile_GetCarPartSlot(uVar2,*(undefined4 *)(param_1 + 0x24),9);
+  uVar2 = Profile_GetCarRecordB(uVar2,*(undefined4 *)(param_1 + 0x24));
   iVar1 = CarRec_GetPartSlotB(uVar2,9);
   if ((*(char *)(iVar1 + 2) < '\0') || ('\x1d' < *(char *)(iVar1 + 2))) {
     uVar2 = 0xffffffffffffffff;
@@ -1680,7 +1680,7 @@ void scrgarage_sub_0026b1f0(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_sub_0026a2e0(uVar3);
+  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x39,0x24e,uVar3,uVar4,uVar2);
   iVar1 = UiMgr_FindLayout(0xdd);
@@ -1691,7 +1691,7 @@ void scrgarage_sub_0026b1f0(int param_1)
 // 0x0026b8c0  size 0x464
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_0026b8c0(int param_1)
+void menuscr_select_sub_0026b8c0(int param_1)
 
 {
   undefined4 uVar1;
@@ -1756,7 +1756,7 @@ LAB_0026b9ac:
         uVar1 = *(undefined4 *)(&DAT_0032d928 + *(int *)(param_1 + 0x2fc) * 4);
         iVar3 = UiMgr_FindLayout(0xda);
         UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,uVar1,8);
-        menuscr_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + iVar2 * 4));
+        menuscr_anim_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + iVar2 * 4));
         *(int *)(param_1 + 0x2fc) = iVar2;
       }
       if (*(int *)(param_1 + 0x18) == 0) {
@@ -1806,7 +1806,7 @@ LAB_0026b9ac:
 }
 
 // 0x0026bd30  size 0x138
-void scrgarage_sub_0026bd30(undefined8 param_1)
+void scrgarage_draw_sub_0026bd30(undefined8 param_1)
 
 {
   char cVar1;
@@ -1856,7 +1856,7 @@ LAB_0026bd9c:
       *(undefined4 *)(iVar4 + 0x18) = 0;
     }
   }
-  menuscr_sub_0026b8c0(param_1);
+  menuscr_select_sub_0026b8c0(param_1);
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   return;
 }
@@ -1864,7 +1864,7 @@ LAB_0026bd9c:
 // 0x0026be70  size 0xca0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_0026be70(undefined8 param_1)
+void scrgarage_select_sub_0026be70(undefined8 param_1)
 
 {
   int iVar1;
@@ -2379,7 +2379,7 @@ void scrgarage_sub_0026be70(undefined8 param_1)
     }
     if ((lVar3 == 1) && (lVar3 = MenuMgr_Goto(), lVar3 == 0)) {
       if (*(int *)(iVar5 + 8) == 3) {
-        scrgarage_sub_0026ad80(param_1);
+        scrgarage_draw_sub_0026ad80(param_1);
         lVar3 = UiLayout_UpdateAnimById(0xde,6);
         lVar4 = UiLayout_UpdateAnimById(0xdf,4);
         if (lVar3 == 0 && lVar4 == 0) {
@@ -2387,7 +2387,7 @@ void scrgarage_sub_0026be70(undefined8 param_1)
         }
       }
       else {
-        scrgarage_sub_0026b1f0(param_1);
+        scrgarage_draw_sub_0026b1f0(param_1);
         lVar3 = UiLayout_UpdateAnimById(0xdd,3);
         lVar4 = UiLayout_UpdateAnimById(0xdf,3);
         if (lVar3 == 0 && lVar4 == 0) {
@@ -2403,12 +2403,12 @@ void scrgarage_sub_0026be70(undefined8 param_1)
       }
     }
   }
-  menuscr_sub_0026b8c0(param_1);
-  menuscr_sub_0026a630(0xdc,3,4,0xf8,4,1,3);
+  menuscr_select_sub_0026b8c0(param_1);
+  menuscr_anim_sub_0026a630(0xdc,3,4,0xf8,4,1,3);
   UiLayout_UpdateAnimById(0xdc,2);
   iVar1 = UiMgr_FindLayout(0xdc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
-  scrgarage_sub_0026a980(param_1);
+  scrgarage_draw_sub_0026a980(param_1);
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   return;
 }

@@ -8,8 +8,8 @@ void Camera_GetViewMatrix(int param_1,undefined8 param_2)
 {
   undefined1 auStack_40 [64];
   
-  vu0math_sub_00132ba0(auStack_40,param_1 + 0x380);
-  vu0math_sub_00133680(param_2,auStack_40,0x361610,1);
+  sceVu0MulMatrix(auStack_40,param_1 + 0x380);
+  sceVu0RotTransPersN(param_2,auStack_40,0x361610,1);
   return;
 }
 
@@ -38,13 +38,13 @@ void Camera_BuildScreenMatrix
   uStack_94 = 0x3f800000;
   uStack_a0 = 0;
   uStack_9c = 0;
-  vu0math_sub_001328b0(param_5,param_5);
-  vu0math_sub_00132b10(0,auStack_b0,param_5);
-  vu0math_sub_00132b70(auStack_90,param_4,auStack_b0);
+  sceVu0Normalize(param_5,param_5);
+  sceVu0ScaleVector(0,auStack_b0,param_5);
+  sceVu0AddVector(auStack_90,param_4,auStack_b0);
   uStack_84 = 0x3f800000;
   fStack_8c = fStack_8c + 0.2;
   *(undefined4 *)((int)param_5 + 0xc) = 0x3f800000;
-  vu0math_sub_001336d0(auStack_80,auStack_90,param_5,param_6);
+  sceVu0ViewScreenMatrix(auStack_80,auStack_90,param_5,param_6);
   maybe_Vu0_UnitMatrix(afStack_40);
   if (param_1 == 0.0) {
     param_1 = 1.0;
@@ -54,14 +54,14 @@ void Camera_BuildScreenMatrix
   }
   afStack_40[0] = 1.0 / param_1;
   fStack_18 = 1.0 / param_2;
-  vu0math_sub_00132ba0(param_3 + 0x3e0,afStack_40,auStack_80);
+  sceVu0MulMatrix(param_3 + 0x3e0,afStack_40,auStack_80);
   maybe_Vu0_UnitMatrix(afStack_40);
   uStack_2c = 0x3e088889;
   afStack_40[0] = 0.13333334 / param_1;
   uStack_8 = 0xbf800000;
   uStack_4 = 0x3f800000;
   fStack_18 = 0.05 / param_2;
-  vu0math_sub_00132ba0(param_3 + 0x420,afStack_40,auStack_80);
+  sceVu0MulMatrix(param_3 + 0x420,afStack_40,auStack_80);
   return;
 }
 
@@ -112,8 +112,8 @@ void Camera_Init(undefined8 param_1)
              ,iVar1 + 0x200,iVar1 + 0x240,iVar1 + 0x300);
   maybe_Vu0_UnitMatrix(auStack_40);
   maybe_Camera_BuildFrustum(iVar1 + 0x300,iVar1 + 0x340,auStack_40);
-  vu0math_sub_00132b50(iVar1 + 0x40,iVar1 + 0x10,param_1);
-  vu0math_sub_001328b0(iVar1 + 0x40,iVar1 + 0x40);
+  sceVu0SubVector(iVar1 + 0x40,iVar1 + 0x10,param_1);
+  sceVu0Normalize(iVar1 + 0x40,iVar1 + 0x40);
   *(undefined4 *)(iVar1 + 0x3d0) = 0xbf800000;
   if (*(int *)(iVar1 + 0xb4) == 0) {
     *(undefined4 *)(iVar1 + 0x3d4) = 0x3f800000;
@@ -136,14 +136,14 @@ void Camera_Init(undefined8 param_1)
     *(float *)(iVar1 + 0x3d8) = fVar2;
     *(float *)(iVar1 + 0x3dc) = 255.0 / (*(float *)(iVar1 + 0xac) - 1.0);
   }
-  vu0math_sub_00132b10(0xbf800000,auStack_50,iVar1 + 0x40);
+  sceVu0ScaleVector(0xbf800000,auStack_50,iVar1 + 0x40);
   uStack_44 = 0x3f800000;
-  vu0math_sub_001336d0(iVar1 + 0x180,param_1,auStack_50,iVar1 + 0x20);
+  sceVu0ViewScreenMatrix(iVar1 + 0x180,param_1,auStack_50,iVar1 + 0x20);
   maybe_Vu0_UnitMatrix(auStack_90);
   maybe_Vu0_RotMatrixX(*(undefined4 *)(iVar1 + 0x30),auStack_90,auStack_90);
-  vu0math_sub_00132ba0(iVar1 + 0x180,auStack_90,iVar1 + 0x180);
-  vu0math_sub_00132a90(iVar1 + 0x50,iVar1 + 0x20,iVar1 + 0x40);
-  vu0math_sub_001328b0(iVar1 + 0x50,iVar1 + 0x50);
+  sceVu0MulMatrix(iVar1 + 0x180,auStack_90,iVar1 + 0x180);
+  sceVu0OuterProduct(iVar1 + 0x50,iVar1 + 0x20,iVar1 + 0x40);
+  sceVu0Normalize(iVar1 + 0x50,iVar1 + 0x50);
   maybe_Vu0_UnitMatrix(auStack_d0);
   if (*(int *)(iVar1 + 0xb0) == 0) {
     auStack_d0[0] = 0x3f800000;
@@ -153,11 +153,11 @@ void Camera_Init(undefined8 param_1)
   }
   uStack_bc = 0xbf800000;
   uStack_a8 = 0xbf800000;
-  vu0math_sub_00132ba0(iVar1 + 0x180,auStack_d0,iVar1 + 0x180);
-  vu0math_sub_00133260(iVar1 + 0x180);
-  vu0math_sub_001331f0(iVar1 + 0x280,iVar1 + 0x200);
-  vu0math_sub_001331f0(iVar1 + 0x2c0,iVar1 + 0x240);
-  vu0math_sub_001331f0(iVar1 + 0x380,iVar1 + 0x1c0);
+  sceVu0MulMatrix(iVar1 + 0x180,auStack_d0,iVar1 + 0x180);
+  maybe_Vu0_LoadMatrixVf28(iVar1 + 0x180);
+  maybe_sceVu0MulMatrixVf28(iVar1 + 0x280,iVar1 + 0x200);
+  maybe_sceVu0MulMatrixVf28(iVar1 + 0x2c0,iVar1 + 0x240);
+  maybe_sceVu0MulMatrixVf28(iVar1 + 0x380,iVar1 + 0x1c0);
   fVar2 = (float)maybe_sqrtf(*(undefined4 *)(iVar1 + 0x8c));
   *(int *)(iVar1 + 0xb8) = (int)((5.0 - fVar2 / 0.6931472) * 16.0);
   return;
@@ -1479,21 +1479,21 @@ Pkt_AddVu1Matrices(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   uVar1 = Pkt_AllocDmaRef(param_1,0x31,0x10000000,0x6c300005);
   iVar3 = (int)param_1;
   iVar2 = (int)uVar1;
-  vu0math_sub_00132c20(uVar1,*(int *)(iVar3 + 0x18) + 0xb0);
-  vu0math_sub_00132c20(iVar2 + 0x40,*(int *)(iVar3 + 0x18) + 0x130);
-  vu0math_sub_00132c20(iVar2 + 0x80,*(int *)(iVar3 + 0x18) + 0xf0);
-  vu0math_sub_00132c20(iVar2 + 0xc0,*(int *)(iVar3 + 0x14) + 0x180);
-  vu0math_sub_00132c20(iVar2 + 0x100,*(int *)(iVar3 + 0x14) + 0x1c0);
-  vu0math_sub_00132c20(iVar2 + 0x140,*(int *)(iVar3 + 0x14) + 0x280);
-  vu0math_sub_00132ae0(iVar2 + 0x180,*(int *)(iVar3 + 0x14) + 0x40);
-  vu0math_sub_00132ae0(iVar2 + 400,*(int *)(iVar3 + 0x14) + 0x20);
-  vu0math_sub_00132ae0(iVar2 + 0x1a0,*(int *)(iVar3 + 0x14) + 0x50);
-  vu0math_sub_00132ae0(iVar2 + 0x1b0,*(int *)(iVar3 + 0x14) + 0x3d0);
-  vu0math_sub_00132c20(iVar2 + 0x240,param_2);
-  vu0math_sub_00132c20(iVar2 + 0x280,param_4);
-  vu0math_sub_00132c20(iVar2 + 0x2c0,param_3);
-  vu0math_sub_00132c20(iVar2 + 0x1c0,*(int *)(iVar3 + 0x14) + 0x340);
-  vu0math_sub_00132c20(iVar2 + 0x200,*(int *)(iVar3 + 0x14) + 0x3e0);
+  sceVu0CopyMatrix(uVar1,*(int *)(iVar3 + 0x18) + 0xb0);
+  sceVu0CopyMatrix(iVar2 + 0x40,*(int *)(iVar3 + 0x18) + 0x130);
+  sceVu0CopyMatrix(iVar2 + 0x80,*(int *)(iVar3 + 0x18) + 0xf0);
+  sceVu0CopyMatrix(iVar2 + 0xc0,*(int *)(iVar3 + 0x14) + 0x180);
+  sceVu0CopyMatrix(iVar2 + 0x100,*(int *)(iVar3 + 0x14) + 0x1c0);
+  sceVu0CopyMatrix(iVar2 + 0x140,*(int *)(iVar3 + 0x14) + 0x280);
+  sceVu0CopyVector(iVar2 + 0x180,*(int *)(iVar3 + 0x14) + 0x40);
+  sceVu0CopyVector(iVar2 + 400,*(int *)(iVar3 + 0x14) + 0x20);
+  sceVu0CopyVector(iVar2 + 0x1a0,*(int *)(iVar3 + 0x14) + 0x50);
+  sceVu0CopyVector(iVar2 + 0x1b0,*(int *)(iVar3 + 0x14) + 0x3d0);
+  sceVu0CopyMatrix(iVar2 + 0x240,param_2);
+  sceVu0CopyMatrix(iVar2 + 0x280,param_4);
+  sceVu0CopyMatrix(iVar2 + 0x2c0,param_3);
+  sceVu0CopyMatrix(iVar2 + 0x1c0,*(int *)(iVar3 + 0x14) + 0x340);
+  sceVu0CopyMatrix(iVar2 + 0x200,*(int *)(iVar3 + 0x14) + 0x3e0);
   *(undefined4 *)(iVar2 + 0x300) = 0x13000000;
   *(undefined4 *)(iVar2 + 0x304) = 0x15000000;
   *(undefined4 *)(iVar2 + 0x308) = 0;
@@ -2119,7 +2119,7 @@ void maybe_Model_DrawMeshClipped(undefined8 param_1,undefined8 param_2)
     if ((*(uint *)(iVar8 + 0xb4) & 0x400000) == 0) {
       uVar7 = 0xbefbef;
     }
-    lVar4 = vu0math_sub_00133120(puVar6 + 0x20,uVar7);
+    lVar4 = maybe_sceVu0RotTransPersN(puVar6 + 0x20,uVar7);
     if (lVar4 == 0) {
       *(uint *)(iVar8 + 0xb4) = *(uint *)(iVar8 + 0xb4) & 0xffffbfff;
     }

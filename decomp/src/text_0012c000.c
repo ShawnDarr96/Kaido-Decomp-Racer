@@ -71,7 +71,7 @@ LAB_0012d4c8:
 // 0x0012d500  size 0xd4
 /* WARNING: Removing unreachable block (ram,0x0012d54c) */
 
-int newlib_sub_0012d500(undefined1 *param_1,int param_2,undefined1 param_3)
+int maybe__mbrtowc_r(undefined1 *param_1,int param_2,undefined1 param_3)
 
 {
   char cVar1;
@@ -124,7 +124,7 @@ int newlib_sub_0012d500(undefined1 *param_1,int param_2,undefined1 param_3)
 }
 
 // 0x0012d5e0  size 0x110
-uint newlib_sub_0012d5e0(byte param_1,undefined8 param_2)
+uint maybe___swbuf_r(byte param_1,undefined8 param_2)
 
 {
   ushort uVar1;
@@ -144,7 +144,7 @@ uint newlib_sub_0012d5e0(byte param_1,undefined8 param_2)
     puVar4 = puVar2;
   }
   if (*(int *)(puVar4 + 0x38) == 0) {
-    newlib_sub_00126470(puVar4);
+    __sinit(puVar4);
     uVar1 = *(ushort *)(piVar7 + 3);
   }
   else {
@@ -191,13 +191,13 @@ uint newlib_sub_0012d5e0(byte param_1,undefined8 param_2)
 }
 
 // 0x0012d6f0  size 0x60
-long newlib_sub_0012d6f0(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+long maybe__write_r(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
   iRam0046a5dc = 0;
-  lVar1 = libkernl_sub_00111d68(param_2,param_3,param_4);
+  lVar1 = _write(param_2,param_3,param_4);
   if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
     *param_1 = iRam0046a5dc;
   }
@@ -226,7 +226,7 @@ undefined4 maybe___swsetup(undefined8 param_1)
     puVar3 = puVar1;
   }
   if (iVar2 == 0) {
-    newlib_sub_00126470(puVar3);
+    __sinit(puVar3);
     uVar4 = *(ushort *)(piVar5 + 3);
   }
   else {
@@ -296,7 +296,7 @@ ulong maybe___muldi3(ulong param_1,ulong param_2)
 }
 
 // 0x0012d8d8  size 0x680
-undefined8 newlib_sub_0012d8d8(long param_1,long param_2)
+undefined8 maybe___divdi3(long param_1,long param_2)
 
 {
   long lVar1;
@@ -605,7 +605,7 @@ LAB_0012def8:
 }
 
 // 0x0012df70  size 0x680
-ulong newlib_sub_0012df70(ulong param_1,long param_2)
+ulong maybe___moddi3(ulong param_1,long param_2)
 
 {
   long lVar1;
@@ -1428,7 +1428,7 @@ LAB_0012ed88:
 }
 
 // 0x0012f0e8  size 0xa8
-void newlib_sub_0012f0e8(long param_1)
+void __floatdidf(long param_1)
 
 {
   undefined8 uVar1;
@@ -1446,7 +1446,7 @@ void newlib_sub_0012f0e8(long param_1)
 }
 
 // 0x0012f190  size 0xe8
-void newlib_sub_0012f190(ulong param_1)
+void maybe___floatdisf(ulong param_1)
 
 {
   undefined8 uVar1;
@@ -1468,7 +1468,7 @@ void newlib_sub_0012f190(ulong param_1)
 }
 
 // 0x0012f278  size 0x118
-long newlib_sub_0012f278(undefined8 param_1)
+long maybe___fixdfdi(undefined8 param_1)
 
 {
   long lVar1;
@@ -1483,11 +1483,11 @@ long newlib_sub_0012f278(undefined8 param_1)
     uVar4 = maybe___truncdfsf2(uVar3);
     lVar2 = uVar4 << 0x20;
     if (lVar2 < 0) {
-      uVar3 = newlib_sub_0012f0e8((uVar4 & 0xffffffff) << 0x1f);
+      uVar3 = __floatdidf((uVar4 & 0xffffffff) << 0x1f);
       uVar3 = __adddf3(uVar3,uVar3);
     }
     else {
-      uVar3 = newlib_sub_0012f0e8(lVar2);
+      uVar3 = __floatdidf(lVar2);
     }
     uVar3 = __subdf3(param_1,uVar3);
     lVar1 = __cmpdf2(uVar3,0);
@@ -1506,7 +1506,7 @@ long newlib_sub_0012f278(undefined8 param_1)
 }
 
 // 0x0012f390  size 0x124
-long newlib_sub_0012f390(void)
+long maybe___fixsfdi(void)
 
 {
   undefined8 uVar1;
@@ -1515,7 +1515,7 @@ long newlib_sub_0012f390(void)
   undefined8 uVar4;
   ulong uVar5;
   
-  uVar1 = newlib_sub_0012f600();
+  uVar1 = maybe___sf_to_df();
   lVar2 = __cmpdf2(uVar1,0);
   lVar3 = 0;
   if (-1 < lVar2) {
@@ -1523,11 +1523,11 @@ long newlib_sub_0012f390(void)
     uVar5 = maybe___truncdfsf2(uVar4);
     lVar3 = uVar5 << 0x20;
     if (lVar3 < 0) {
-      uVar4 = newlib_sub_0012f0e8((uVar5 & 0xffffffff) << 0x1f);
+      uVar4 = __floatdidf((uVar5 & 0xffffffff) << 0x1f);
       uVar4 = __adddf3(uVar4,uVar4);
     }
     else {
-      uVar4 = newlib_sub_0012f0e8(lVar3);
+      uVar4 = __floatdidf(lVar3);
     }
     uVar1 = __subdf3(uVar1,uVar4);
     lVar2 = __cmpdf2(uVar1,0);
@@ -1546,7 +1546,7 @@ long newlib_sub_0012f390(void)
 }
 
 // 0x0012f4b8  size 0xb0
-uint newlib_sub_0012f4b8(int *param_1)
+uint __pack_f(int *param_1)
 
 {
   uint uVar1;
@@ -1586,7 +1586,7 @@ LAB_0012f520:
 }
 
 // 0x0012f570  size 0x58
-void newlib_sub_0012f570(uint *param_1,undefined4 *param_2)
+void __unpack_f(uint *param_1,undefined4 *param_2)
 
 {
   uint uVar1;
@@ -1606,8 +1606,7 @@ void newlib_sub_0012f570(uint *param_1,undefined4 *param_2)
 }
 
 // 0x0012f5d0  size 0x2c
-void newlib_sub_0012f5d0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4
-                        )
+void maybe___make_fp(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   undefined4 uStack_20;
@@ -1619,12 +1618,14 @@ void newlib_sub_0012f5d0(undefined4 param_1,undefined4 param_2,undefined4 param_
   uStack_1c = param_2;
   uStack_18 = param_3;
   uStack_14 = param_4;
-  newlib_sub_0012f4b8(&uStack_20);
+  __pack_f(&uStack_20);
   return;
 }
 
 // 0x0012f600  size 0x3c
-void newlib_sub_0012f600(undefined4 param_1)
+/* unpack_f + make_dp; 15 callers */
+
+void maybe___sf_to_df(undefined4 param_1)
 
 {
   undefined4 uStack_30;
@@ -1634,8 +1635,8 @@ void newlib_sub_0012f600(undefined4 param_1)
   undefined4 auStack_20 [4];
   
   auStack_20[0] = param_1;
-  newlib_sub_0012f570(auStack_20,&uStack_30);
-  newlib_sub_00130188(uStack_30,uStack_2c,uStack_28,(ulong)uStack_24 << 0x1e);
+  __unpack_f(auStack_20,&uStack_30);
+  maybe___make_dp(uStack_30,uStack_2c,uStack_28,(ulong)uStack_24 << 0x1e);
   return;
 }
 

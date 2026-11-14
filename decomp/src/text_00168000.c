@@ -643,10 +643,10 @@ void Car_ApplyTireForces(int param_1)
       fVar6 = *(float *)(param_1 + 0x44) * fVar6;
       fVar5 = fVar6 * *(float *)(*(int *)(param_1 + 0x120) + 0x164);
       if ((*(int *)(param_1 + 0x160) != 0) && (0.1 < *(float *)(param_1 + 0x40))) {
-        uVar2 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
-        phys_sub_00163800(&uStack_20,param_1 + 0x70,uVar2);
-        phys_sub_00163bc0(&uStack_20);
-        phys_sub_00163800(&uStack_40,param_1 + 0x70,&uStack_20);
+        uVar2 = PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
+        Vec3_Cross(&uStack_20,param_1 + 0x70,uVar2);
+        Vec3_Normalize(&uStack_20);
+        Vec3_Cross(&uStack_40,param_1 + 0x70,&uStack_20);
         uStack_20 = uStack_40;
         uStack_1c = uStack_3c;
         uStack_18 = uStack_38;
@@ -713,14 +713,14 @@ void Car_ApplyTireForces(int param_1)
       *(undefined4 *)(param_1 + 0x64c) = 0;
       *(undefined4 *)(param_1 + 0x670) = 0;
       *(undefined4 *)(param_1 + 0x674) = 0;
-      puVar1 = (undefined4 *)phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
+      puVar1 = (undefined4 *)PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
       uStack_10 = *puVar1;
       uStack_c = puVar1[1];
       uStack_8 = puVar1[2];
       uStack_4 = puVar1[3];
       Vec3_Scale(uVar11,auStack_30,param_1 + 0x80);
-      phys_sub_00163ac0(&uStack_10,auStack_30);
-      phys_sub_00164f60(*(undefined4 *)(param_1 + 0x154),&uStack_10);
+      Vec3_SubInPlace(&uStack_10,auStack_30);
+      PhysBody_UpdateMomentum(*(undefined4 *)(param_1 + 0x154),&uStack_10);
     }
   }
   return;
@@ -985,8 +985,9 @@ void Car_UpdateParkingBrake(int param_1)
   if (*(char *)(param_1 + 0x88e) == '\0') {
     fVar7 = (float)fabsf(*(undefined4 *)(param_1 + 0x7e4));
     if ((fVar7 <= 5.5) &&
-       (pfVar1 = (float *)phys_sub_00164f40(*(undefined4 *)(param_1 + 0x154)), *pfVar1 <= 1.3889)) {
-      uVar2 = phys_sub_00164d80(*(undefined4 *)(param_1 + 0x154));
+       (pfVar1 = (float *)PhysBody_GetLinearVelocity(*(undefined4 *)(param_1 + 0x154)),
+       *pfVar1 <= 1.3889)) {
+      uVar2 = PhysBody_GetAngularVelocity(*(undefined4 *)(param_1 + 0x154));
       fVar7 = (float)Vec3_Length(uVar2);
       if (fVar7 < 1.0) {
         lVar5 = 0;
@@ -994,7 +995,7 @@ void Car_UpdateParkingBrake(int param_1)
     }
   }
   else {
-    pfVar1 = (float *)phys_sub_00164f40(*(undefined4 *)(param_1 + 0x154));
+    pfVar1 = (float *)PhysBody_GetLinearVelocity(*(undefined4 *)(param_1 + 0x154));
     if ((*pfVar1 <= 1.3889) &&
        (fVar7 = (float)fabsf(*(undefined4 *)(param_1 + 0x7e4)), fVar7 <= 5.5)) {
       lVar5 = 0;
@@ -1134,8 +1135,9 @@ void Car_SolveAxleTires(undefined8 param_1,long param_2,undefined8 param_3)
     uStack_1c = puVar2[1];
     uStack_18 = puVar2[2];
     uStack_14 = puVar2[3];
-    fVar11 = (float)phys_sub_00164900(*(undefined4 *)(iVar7 + 0x870),*(undefined4 *)(iVar7 + 0x154),
-                                      &uStack_20,auStack_10);
+    fVar11 = (float)PhysBody_RelativeVelocity
+                              (*(undefined4 *)(iVar7 + 0x870),*(undefined4 *)(iVar7 + 0x154),
+                               &uStack_20,auStack_10);
     *(float *)(iVar4 + 0x2b8) = fVar11 * 0.5;
     *(float *)(iVar3 + 0x2b8) = fVar11 * 0.5;
     Car_SolveFreeWheel(param_1,param_3);
@@ -1628,11 +1630,11 @@ void Car_RaycastWheel(undefined8 param_1,undefined8 param_2)
   fVar5 = (float)Car_GetSurfaceGrip(param_1,param_2,iVar4 + 0x1f0);
   fVar5 = -*(float *)(iVar4 + 0x200) - fVar5;
   if (fVar5 <= *(float *)(iVar1 + 0x78)) {
-    phys_sub_00164eb0(&fStack_30,*(undefined4 *)(iVar3 + 0x154),iVar4 + 0x1f0);
+    PhysBody_PointVelocityWorld(&fStack_30,*(undefined4 *)(iVar3 + 0x154),iVar4 + 0x1f0);
     fStack_18 = -fStack_28;
     fStack_1c = -fStack_2c;
     fStack_20 = -fStack_30;
-    fStack_4 = (float)phys_sub_00163750(&fStack_20,iVar3 + 0xb0);
+    fStack_4 = (float)Vec3_DotC(&fStack_20,iVar3 + 0xb0);
     fVar5 = (float)Car_SpringDamperForce(fVar5,param_1,param_2,&fStack_4);
     fVar5 = *(float *)(iVar1 + 0x80) + fVar5;
     *(float *)(iVar4 + 0x1b4) = -fStack_4;
@@ -1712,7 +1714,7 @@ float Car_WheelGroundContact(int param_1,int param_2)
     uStack_8 = DAT_003625e8;
     uStack_4 = DAT_003625ec;
     if ((*(byte *)(iVar3 + 0x1c8) & 2) == 0) {
-      fVar6 = (float)phys_sub_001647f0(*(undefined4 *)(param_1 + 0x154),iVar4,iVar5);
+      fVar6 = (float)PhysBody_VelocityAtPoint(*(undefined4 *)(param_1 + 0x154),iVar4,iVar5);
       Vec3_Scale(fVar6 * 1.1,&uStack_70,iVar5);
       uStack_10 = uStack_70;
       uStack_c = uStack_6c;
@@ -1720,33 +1722,33 @@ float Car_WheelGroundContact(int param_1,int param_2)
       uStack_4 = uStack_64;
     }
     else {
-      uVar7 = phys_sub_001647f0(*(undefined4 *)(param_1 + 0x154),iVar4,param_1 + 0x20);
+      uVar7 = PhysBody_VelocityAtPoint(*(undefined4 *)(param_1 + 0x154),iVar4,param_1 + 0x20);
       Vec3_Scale(uVar7,&uStack_60,param_1 + 0x20);
       uStack_10 = uStack_60;
       uStack_c = uStack_5c;
       uStack_8 = uStack_58;
       uStack_4 = uStack_54;
     }
-    uVar2 = phys_sub_00165110(*(undefined4 *)(param_1 + 0x154));
+    uVar2 = PhysBody_GetLocalCenter(*(undefined4 *)(param_1 + 0x154));
     Vec3_Sub(auStack_20,iVar4,uVar2);
-    phys_sub_00163800(auStack_30,auStack_20,&uStack_10);
-    uVar2 = phys_sub_00165300(*(undefined4 *)(param_1 + 0x154));
+    Vec3_Cross(auStack_30,auStack_20,&uStack_10);
+    uVar2 = PhysBody_GetExtraData(*(undefined4 *)(param_1 + 0x154));
     Vec3_Add(auStack_80,uVar2,auStack_30);
-    phys_sub_00165310(*(undefined4 *)(param_1 + 0x154),auStack_80);
-    uVar2 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
-    uVar7 = phys_sub_00165380(*(undefined4 *)(param_1 + 0x154));
+    PhysBody_SetLinearVelocity(*(undefined4 *)(param_1 + 0x154),auStack_80);
+    uVar2 = PhysBody_GetPositionPtr(*(undefined4 *)(param_1 + 0x154));
+    uVar7 = PhysBody_GetInvMass(*(undefined4 *)(param_1 + 0x154));
     Vec3_Scale(uVar7,auStack_a0,&uStack_10);
     Vec3_Add(auStack_90,uVar2,auStack_a0);
-    phys_sub_00164f60(*(undefined4 *)(param_1 + 0x154),auStack_90);
+    PhysBody_UpdateMomentum(*(undefined4 *)(param_1 + 0x154),auStack_90);
     fVar6 = -*(float *)(*(int *)(param_2 * 4 + param_1 + 0x7c0) + 0x78) - *(float *)(iVar3 + 0x200);
     Vec3_Scale(fVar6,auStack_40,iVar5);
-    puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(param_1 + 0x154));
+    puVar1 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(param_1 + 0x154));
     uStack_50 = *puVar1;
     uStack_4c = puVar1[1];
     uStack_48 = puVar1[2];
     uStack_44 = puVar1[3];
     Vec3_Add(auStack_b0,&uStack_50,auStack_40);
-    phys_sub_00165260(*(undefined4 *)(param_1 + 0x154),auStack_b0);
+    PhysBody_WorldToLocal(*(undefined4 *)(param_1 + 0x154),auStack_b0);
     Vec3_AddInPlace(iVar4,auStack_40);
   }
   else {
@@ -2054,7 +2056,7 @@ void Car_UpdateSteeringGeometry(int param_1)
   do {
     iVar1 = *(int *)(iVar4 + 0x7c0);
     *(undefined4 *)(iVar5 + 0x2cc) = *(undefined4 *)(iVar5 + 0x2c8);
-    phys_sub_00164eb0(&uStack_1f0,*(undefined4 *)(param_1 + 0x154),iVar5 + 0x240);
+    PhysBody_PointVelocityWorld(&uStack_1f0,*(undefined4 *)(param_1 + 0x154),iVar5 + 0x240);
     *(undefined4 *)(iVar5 + 0x2e0) = uStack_1f0;
     *(undefined4 *)(iVar5 + 0x2e4) = uStack_1ec;
     *(undefined4 *)(iVar5 + 0x2e8) = uStack_1e8;
@@ -2073,7 +2075,7 @@ void Car_UpdateSteeringGeometry(int param_1)
       *(float *)(iVar5 + 0x1d4) = *(float *)(iVar1 + 0x30) * fVar7 + -*(float *)(iVar1 + 0xcc) + 0.0
       ;
     }
-    phys_sub_00163540(*(undefined4 *)(iVar5 + 0x1d4),iVar5 + 0x1e0,0x362560);
+    Quat_FromAxisAngle(*(undefined4 *)(iVar5 + 0x1d4),iVar5 + 0x1e0,0x362560);
     uVar6 = uVar6 + 1;
     iVar5 = iVar5 + 0x140;
     iVar4 = iVar4 + 4;

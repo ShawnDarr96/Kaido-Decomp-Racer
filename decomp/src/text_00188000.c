@@ -191,13 +191,13 @@ void Road_ComputeLateralOffset
   fVar10 = (fVar10 - fVar9) * fVar13 + fVar9 + 0.0;
   fStack_1c = pfVar5[1] - fStack_1c;
   fStack_18 = pfVar5[2] - fStack_18;
-  vu0math_sub_00132b50(&fStack_30,&fStack_30,param_2);
-  vu0math_sub_00132a90(auStack_40,&fStack_20,&fStack_30);
-  vu0math_sub_00132af0(fVar13,&fStack_20,&fStack_20);
-  vu0math_sub_00132b70(&fStack_50,&fStack_50,&fStack_20);
-  vu0math_sub_00132b50(&fStack_50,param_2,&fStack_50);
-  fVar9 = (float)vu0math_sub_00133650
-                           (fStack_48 * fStack_48 + fStack_50 * fStack_50 + fStack_4c * fStack_4c);
+  sceVu0SubVector(&fStack_30,&fStack_30,param_2);
+  sceVu0OuterProduct(auStack_40,&fStack_20,&fStack_30);
+  maybe_sceVu0ScaleVectorXYZ(fVar13,&fStack_20,&fStack_20);
+  sceVu0AddVector(&fStack_50,&fStack_50,&fStack_20);
+  sceVu0SubVector(&fStack_50,param_2,&fStack_50);
+  fVar9 = (float)maybe_Vu0_SqrtQ(fStack_48 * fStack_48 +
+                                 fStack_50 * fStack_50 + fStack_4c * fStack_4c);
   if (fStack_3c != 0.0) {
     if (fStack_3c < 0.0) {
       fVar12 = fVar12 - fVar9;
@@ -286,16 +286,17 @@ void Road_ProjectOnSegment
     uStack_28 = puVar1[2];
   }
   uStack_24 = 0x3f800000;
-  vu0math_sub_00132b50(param_2,&uStack_30,&uStack_20);
+  sceVu0SubVector(param_2,&uStack_30,&uStack_20);
   *(undefined4 *)((int)param_2 + 0xc) = 0x3f800000;
-  vu0math_sub_001328b0(param_2,param_2);
+  sceVu0Normalize(param_2,param_2);
   *(undefined4 *)((int)param_2 + 0xc) = 0x3f800000;
   return;
 }
 
 // 0x00188b50  size 0x2b0
-void road_sub_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort param_4,
-                      int param_5,undefined8 param_6,long param_7)
+void road_step_sub_00188b50
+               (float param_1,undefined8 param_2,undefined8 param_3,ushort param_4,int param_5,
+               undefined8 param_6,long param_7)
 
 {
   uint uVar1;
@@ -372,9 +373,9 @@ void road_sub_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushor
     uStack_28 = puVar3[2];
   }
   uStack_24 = 0x3f800000;
-  vu0math_sub_00132b50(auStack_50,&uStack_30,&uStack_20);
-  vu0math_sub_00132af0((float)(int)uVar1 / 32.0,auStack_40,auStack_50);
-  vu0math_sub_00132b70(param_3,auStack_40,&uStack_20);
+  sceVu0SubVector(auStack_50,&uStack_30,&uStack_20);
+  maybe_sceVu0ScaleVectorXYZ((float)(int)uVar1 / 32.0,auStack_40,auStack_50);
+  sceVu0AddVector(param_3,auStack_40,&uStack_20);
   return;
 }
 
@@ -1077,7 +1078,7 @@ undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 par
   sVar1 = psVar10[1];
   uStack_10 = 0;
   if (*psVar10 == -1) {
-    road_sub_0018bc40(param_2,param_3,param_1);
+    road_step_sub_0018bc40(param_2,param_3,param_1);
     uStack_10 = 0;
   }
   else {
@@ -1126,7 +1127,7 @@ undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 par
             if (CONCAT44((int)((ulong)(long)sVar8 >> 0x20),(int)sVar8) < (long)*psVar4) {
               if (CONCAT44((int)((ulong)(long)sVar7 >> 0x20),(int)sVar7) < 1) {
                 psVar10[1] = sVar7;
-                lVar15 = road_sub_0018b550(param_1,param_2,param_3);
+                lVar15 = road_step_sub_0018b550(param_1,param_2,param_3);
               }
               else {
                 lVar15 = 0;
@@ -1154,7 +1155,7 @@ undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 par
             }
             else {
               psVar10[1] = sVar8;
-              lVar15 = road_sub_0018b550(param_1,param_2,param_3);
+              lVar15 = road_step_sub_0018b550(param_1,param_2,param_3);
             }
           }
           else {
@@ -1202,10 +1203,10 @@ LAB_0018a750:
         }
         if (sVar2 == -1) {
           uStack_10 = 0xffffffff;
-          lVar15 = road_sub_0018bc40(param_2,param_3,param_1);
+          lVar15 = road_step_sub_0018bc40(param_2,param_3,param_1);
           if (lVar15 != 1) {
             uStack_10 = 0xfffffffe;
-            lVar15 = road_sub_0018be90(param_2,param_3,param_1);
+            lVar15 = road_step_sub_0018be90(param_2,param_3,param_1);
             if (lVar15 != 1) {
               psVar10[1] = sVar1;
               uStack_10 = 0xfffffffd;
@@ -1268,10 +1269,10 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
   sStack_34 = (short)param_3;
   sStack_50 = sStack_32;
   if (param_4 != 0) {
-    vu0math_sub_00132b90(param_4);
+    maybe_Vu0_SetUnitW(param_4);
   }
   if (param_5 != 0) {
-    vu0math_sub_00132b90(param_5);
+    maybe_Vu0_SetUnitW(param_5);
     *(undefined4 *)(param_5 + 4) = 0x3f800000;
   }
   uVar4 = 0xffffffffffffffff;
@@ -1279,7 +1280,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
     piVar16 = (int *)param_1;
     psVar14 = *(short **)(*(int *)(*piVar16 + 4) + sStack_34 * 4);
     if (sStack_32 != -1) {
-      lVar5 = road_sub_0018b390(psVar14,sStack_32,param_2,0);
+      lVar5 = road_leaf_sub_0018b390(psVar14,sStack_32,param_2,0);
       sVar7 = sStack_50;
       if (lVar5 == -1) {
         uVar10 = 0;
@@ -1297,7 +1298,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
           }
           if (sVar8 != -1) {
             psVar14 = *(short **)(*(int *)(*piVar16 + 4) + sVar8 * 4);
-            lVar5 = road_sub_0018b390(psVar14,sVar7,param_2,0);
+            lVar5 = road_leaf_sub_0018b390(psVar14,sVar7,param_2,0);
             if (lVar5 != -1) break;
           }
           uVar10 = uVar10 + 1;
@@ -1313,7 +1314,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
           if ((psVar12[2] != -1) && (psVar12[2] == sStack_32)) {
             sVar7 = psVar12[4];
             psVar1 = *(short **)(*(int *)(*piVar16 + 4) + psVar12[3] * 4);
-            lVar5 = road_sub_0018b390(psVar1,sVar7,param_2,0);
+            lVar5 = road_leaf_sub_0018b390(psVar1,sVar7,param_2,0);
             if (lVar5 != -1) {
               psVar14 = psVar1;
               sStack_50 = sVar7;
@@ -1342,8 +1343,8 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
               else if (*psVar1 <= sVar8) {
                 sVar7 = -1;
               }
-              if ((sVar7 != -1) && (lVar5 = road_sub_0018b390(psVar1,sVar8,param_2,0), lVar5 != -1))
-              {
+              if ((sVar7 != -1) &&
+                 (lVar5 = road_leaf_sub_0018b390(psVar1,sVar8,param_2,0), lVar5 != -1)) {
                 psVar14 = psVar1;
                 sStack_50 = sVar8;
                 break;
@@ -1363,18 +1364,18 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
         uVar4 = (ulong)puVar13[4];
         pfVar9 = (float *)((int)psVar14 + (uint)*puVar13 * 0x10 + *(int *)(psVar14 + 0x20));
         if (uVar4 == 4) {
-          lVar5 = road_sub_0018b390(psVar14,sStack_50,param_2,1);
+          lVar5 = road_leaf_sub_0018b390(psVar14,sStack_50,param_2,1);
           if ((lVar5 == -1) && ((long)(sStack_50 + 1) < (long)*psVar14)) {
-            lVar5 = road_sub_0018b390(psVar14,(long)(sStack_50 + 1),param_2,1);
+            lVar5 = road_leaf_sub_0018b390(psVar14,(long)(sStack_50 + 1),param_2,1);
           }
           if ((lVar5 == -1) && (-1 < sStack_50 + -1)) {
-            lVar5 = road_sub_0018b390(psVar14,sStack_50 + -1,param_2,1);
+            lVar5 = road_leaf_sub_0018b390(psVar14,sStack_50 + -1,param_2,1);
           }
           if ((lVar5 == -1) && ((long)(sStack_50 + 2) < (long)*psVar14)) {
-            lVar5 = road_sub_0018b390(psVar14,(long)(sStack_50 + 2),param_2,1);
+            lVar5 = road_leaf_sub_0018b390(psVar14,(long)(sStack_50 + 2),param_2,1);
           }
           if ((lVar5 == -1) && (-1 < sStack_50 + -2)) {
-            lVar5 = road_sub_0018b390(psVar14,sStack_50 + -2,param_2,1);
+            lVar5 = road_leaf_sub_0018b390(psVar14,sStack_50 + -2,param_2,1);
           }
           if (lVar5 == -1) {
             bVar2 = false;
@@ -1425,9 +1426,9 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
           fVar18 = (fVar21 + pfVar9[1] +
                              (fStack_30 / fStack_2c) * (*pfVar9 - *pfVar15) +
                              (fStack_28 / fStack_2c) * (pfVar9[2] - pfVar15[2])) / 2.0 + 0.05;
-          vu0math_sub_00132b70(&fStack_10,&fStack_20,&fStack_30);
-          vu0math_sub_00132b10(0x3f000000,&fStack_10,&fStack_10);
-          vu0math_sub_001328b0(param_5,&fStack_10);
+          sceVu0AddVector(&fStack_10,&fStack_20,&fStack_30);
+          sceVu0ScaleVector(0x3f000000,&fStack_10,&fStack_10);
+          sceVu0Normalize(param_5,&fStack_10);
         }
         if ((uVar4 == 4) && (!bVar2)) {
           fVar18 = fVar18 + -0.02;
@@ -1436,11 +1437,12 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
         if (fVar19 < 9.0) {
           pfVar15[1] = fVar18;
           if ((int)param_4 != 0) {
-            road_sub_0018b710(param_2,puVar13,(int)psVar14 + *(int *)(psVar14 + 0x20),(int)param_4);
+            road_step_sub_0018b710
+                      (param_2,puVar13,(int)psVar14 + *(int *)(psVar14 + 0x20),(int)param_4);
           }
           if (param_5 != 0) {
             uStack_4 = 0x3f800000;
-            vu0math_sub_001328b0(param_5,&fStack_10);
+            sceVu0Normalize(param_5,&fStack_10);
           }
         }
         else {
@@ -1490,7 +1492,7 @@ void RoadMesh_Init(undefined8 param_1,int param_2,int param_3,undefined8 param_4
   uStack_14 = 0x3f800000;
   uStack_4 = 0x3f800000;
   *(undefined4 *)((int)param_4 + 0xc) = 0x3f800000;
-  road_sub_0018b2c0(param_4,&uStack_10,&uStack_20,&uStack_30);
+  road_step_sub_0018b2c0(param_4,&uStack_10,&uStack_20,&uStack_30);
   return;
 }
 
@@ -1547,7 +1549,7 @@ void RoadMesh_MarkLoaded(undefined4 *param_1)
 }
 
 // 0x0018b2c0  size 0xcc
-void road_sub_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *param_4)
+void road_step_sub_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *param_4)
 
 {
   float *pfVar1;
@@ -1559,13 +1561,13 @@ void road_sub_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *p
               (*param_4 - *param_3) * (param_3[2] - param_2[2]);
   pfVar1[2] = (*param_4 - *param_3) * (param_3[1] - param_2[1]) -
               (param_4[1] - param_3[1]) * (*param_3 - *param_2);
-  vu0math_sub_001328b0(pfVar1,param_1);
+  sceVu0Normalize(pfVar1,param_1);
   pfVar1[3] = 1.0;
   return;
 }
 
 // 0x0018b390  size 0x1b4
-int road_sub_0018b390(int param_1,int param_2,float *param_3,int param_4)
+int road_leaf_sub_0018b390(int param_1,int param_2,float *param_3,int param_4)
 
 {
   ushort uVar1;
@@ -1631,7 +1633,7 @@ LAB_0018b508:
 }
 
 // 0x0018b550  size 0x1b4
-bool road_sub_0018b550(int *param_1,undefined8 param_2,short *param_3)
+bool road_step_sub_0018b550(int *param_1,undefined8 param_2,short *param_3)
 
 {
   bool bVar1;
@@ -1688,7 +1690,7 @@ LAB_0018b604:
 }
 
 // 0x0018b710  size 0x528
-void road_sub_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
+void road_step_sub_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
 
 {
   ushort uVar1;
@@ -1776,23 +1778,23 @@ void road_sub_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 par
   uStack_34 = 0x437f0000;
   uStack_44 = 0x437f0000;
   uStack_54 = 0x437f0000;
-  vu0math_sub_00132b50(afStack_70,&uStack_10,afStack_30);
-  vu0math_sub_00132b50(afStack_80,&uStack_10,&uStack_20);
-  vu0math_sub_00132b50(auStack_a0,&fStack_40,&fStack_60);
-  vu0math_sub_00132b50(auStack_90,&fStack_40,&fStack_50);
+  sceVu0SubVector(afStack_70,&uStack_10,afStack_30);
+  sceVu0SubVector(afStack_80,&uStack_10,&uStack_20);
+  sceVu0SubVector(auStack_a0,&fStack_40,&fStack_60);
+  sceVu0SubVector(auStack_90,&fStack_40,&fStack_50);
   fVar7 = param_1[2] - afStack_30[2];
   fVar8 = -1.0 / (fStack_78 * afStack_70[0] - afStack_80[0] * fStack_68);
   fVar9 = *param_1 - afStack_30[0];
-  vu0math_sub_00132b10(fVar8 * (fVar9 * fStack_68 - fVar7 * afStack_70[0]),auStack_90,auStack_90);
-  vu0math_sub_00132b10(fVar8 * (fVar9 * fStack_78 - fVar7 * afStack_80[0]),auStack_a0,auStack_a0);
-  vu0math_sub_00132b50(param_4,auStack_90,auStack_a0);
-  vu0math_sub_00132b70(param_4,param_4,&fStack_60);
-  vu0math_sub_00132b10(0x3b842108,param_4,param_4);
+  sceVu0ScaleVector(fVar8 * (fVar9 * fStack_68 - fVar7 * afStack_70[0]),auStack_90,auStack_90);
+  sceVu0ScaleVector(fVar8 * (fVar9 * fStack_78 - fVar7 * afStack_80[0]),auStack_a0,auStack_a0);
+  sceVu0SubVector(param_4,auStack_90,auStack_a0);
+  sceVu0AddVector(param_4,param_4,&fStack_60);
+  sceVu0ScaleVector(0x3b842108,param_4,param_4);
   return;
 }
 
 // 0x0018bc40  size 0x240
-int road_sub_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
+int road_step_sub_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -1877,7 +1879,7 @@ int road_sub_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
 }
 
 // 0x0018be90  size 0x104
-undefined4 road_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_3)
+undefined4 road_step_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -1896,8 +1898,9 @@ undefined4 road_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 p
     do {
       lVar1 = RoadData_GetSection(param_3,param_1,(short)iVar4);
       if ((lVar1 == 0) &&
-         (lVar1 = road_sub_0018bfa0(*(undefined4 *)(*(int *)(*piVar2 + 4) + iVar3),param_1,&fStack_4
-                                   ), lVar1 != -1)) {
+         (lVar1 = road_step_sub_0018bfa0
+                            (*(undefined4 *)(*(int *)(*piVar2 + 4) + iVar3),param_1,&fStack_4),
+         lVar1 != -1)) {
         param_2[1] = (short)lVar1;
         *param_2 = (short)iVar4;
         uVar5 = 1;
@@ -1915,7 +1918,7 @@ undefined4 road_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 p
 // 0x0018bfa0  size 0x368
 /* WARNING: Removing unreachable block (ram,0x0018c0d8) */
 
-long road_sub_0018bfa0(short *param_1,undefined8 param_2,float *param_3)
+long road_step_sub_0018bfa0(short *param_1,undefined8 param_2,float *param_3)
 
 {
   ushort *puVar1;

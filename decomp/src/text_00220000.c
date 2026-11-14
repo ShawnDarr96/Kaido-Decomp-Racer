@@ -5,7 +5,7 @@
 // 0x00220130  size 0xbb4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00220130(int *param_1)
+void scrcareer_draw_sub_00220130(int *param_1)
 
 {
   int iVar1;
@@ -470,7 +470,7 @@ void scrcareer_sub_00220130(int *param_1)
 // 0x00220d10  size 0x260
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00220d10(undefined8 param_1)
+void scrrace_anim_sub_00220d10(undefined8 param_1)
 
 {
   int iVar1;
@@ -482,7 +482,7 @@ void scrrace_sub_00220d10(undefined8 param_1)
   }
   iVar3 = (int)param_1;
   MenuWnd_SetTitle(*(undefined4 *)(&DAT_0032a390 + *(int *)(iVar3 + 0xc) * 4),0xffffffffffffffff);
-  (*(code *)(&PTR_scrcareer_sub_00220130_0032a370)[*(int *)(iVar3 + 0xc)])(param_1);
+  (*(code *)(&PTR_scrcareer_draw_sub_00220130_0032a370)[*(int *)(iVar3 + 0xc)])(param_1);
   iVar1 = UiMgr_FindLayout(0xab);
   UiElem_SetPropFloat(0,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x23,8);
   iVar1 = UiMgr_FindLayout(0xab);
@@ -511,7 +511,7 @@ void scrrace_sub_00220d10(undefined8 param_1)
 // 0x00220f80  size 0xeb4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00220f80(int *param_1)
+void menuscr_draw_sub_00220f80(int *param_1)
 
 {
   undefined2 uVar1;
@@ -943,7 +943,7 @@ void menuscr_sub_00220f80(int *param_1)
 // 0x00221e60  size 0x168
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00221e60(undefined8 param_1)
+void scrrace_anim_sub_00221e60(undefined8 param_1)
 
 {
   int iVar1;
@@ -976,7 +976,7 @@ void scrrace_sub_00221e60(undefined8 param_1)
 // 0x00221fe0  size 0x65c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00221fe0(int *param_1)
+void scrcareer_draw_sub_00221fe0(int *param_1)
 
 {
   int iVar1;
@@ -1205,7 +1205,7 @@ void scrcareer_sub_00221fe0(int *param_1)
 // 0x00222660  size 0xd8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00222660(undefined8 param_1)
+void scrrace_step_sub_00222660(undefined8 param_1)
 
 {
   long lVar1;
@@ -1216,7 +1216,7 @@ void scrrace_sub_00222660(undefined8 param_1)
   }
   iVar2 = (int)param_1;
   MenuWnd_SetTitle(*(undefined4 *)(&DAT_0036e984 + *(int *)(iVar2 + 8) * 4),0xffffffffffffffff);
-  (*(code *)(&PTR_scrcareer_sub_00221fe0_0036e980)[*(int *)(iVar2 + 8)])(param_1);
+  (*(code *)(&PTR_scrcareer_draw_sub_00221fe0_0036e980)[*(int *)(iVar2 + 8)])(param_1);
   if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) && (lVar1 = Menu_IsInputIdle(iVar2 + 4), lVar1 == 1)
      ) {
     if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
@@ -1229,7 +1229,7 @@ void scrrace_sub_00222660(undefined8 param_1)
 // 0x00222740  size 0x408
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00222740(void)
+void menuscr_step_sub_00222740(void)
 
 {
   undefined4 uVar1;
@@ -1417,7 +1417,7 @@ void menuscr_sub_00222740(void)
 }
 
 // 0x00222b50  size 0x14c
-void menuscr_sub_00222b50(int *param_1)
+void menuscr_draw_sub_00222b50(int *param_1)
 
 {
   int iVar1;
@@ -1474,7 +1474,7 @@ void menuscr_sub_00222b50(int *param_1)
 // 0x00222cb0  size 0xa80
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00222cb0(int param_1)
+void scrcareer_draw_sub_00222cb0(int param_1)
 
 {
   int iVar1;
@@ -1556,7 +1556,7 @@ void scrcareer_sub_00222cb0(int param_1)
   }
   MenuWnd_DrawText(0xae,1,0x434);
   if (*(int *)(param_1 + 0x674) == 1) {
-    menuscr_sub_00222b50
+    menuscr_draw_sub_00222b50
               (*(int *)(param_1 + 0x680) +
                *(int *)(*(int *)(param_1 + 0x67c) * 4 + param_1 + 0x354) * 0x28 + 0x9994);
     iVar2 = *(int *)(*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x678) * 4 +
@@ -1584,7 +1584,7 @@ void scrcareer_sub_00222cb0(int param_1)
       iVar1 = *(int *)(param_1 + 0x674);
       goto LAB_002230cc;
     }
-    menuscr_sub_00222b50
+    menuscr_draw_sub_00222b50
               (*(int *)(param_1 + 0x680) +
                *(int *)(*(int *)(param_1 + 0x678) * 4 + param_1 + 0x34) * 0x28 + 0xb8d4);
     iVar2 = *(int *)(*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x678) * 4 +
@@ -1676,7 +1676,7 @@ LAB_002230cc:
 // 0x00223730  size 0x11ac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00223730(int param_1)
+void scrcareer_draw_sub_00223730(int param_1)
 
 {
   int iVar1;
@@ -2078,7 +2078,7 @@ void scrcareer_sub_00223730(int param_1)
       } while (iVar1 < 10);
     }
   }
-  uVar13 = menuscr_sub_0028b580(*(undefined4 *)(param_1 + 0x674));
+  uVar13 = menuscr_step_sub_0028b580(*(undefined4 *)(param_1 + 0x674));
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar13);
   if (*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x2c) < 0xb) {
     iVar8 = 0;

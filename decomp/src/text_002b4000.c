@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002b4090  size 0xae4
-undefined4 script_sub_002b4090(int param_1)
+undefined4 script_step_sub_002b4090(int param_1)
 
 {
   bool bVar1;
@@ -439,7 +439,7 @@ undefined4 script_sub_002b4090(int param_1)
 }
 
 // 0x002b4b80  size 0x2284
-undefined4 script_sub_002b4b80(int param_1)
+undefined4 script_step_sub_002b4b80(int param_1)
 
 {
   bool bVar1;
@@ -1755,7 +1755,7 @@ undefined4 script_sub_002b4b80(int param_1)
 }
 
 // 0x002b6e10  size 0x7cc
-undefined4 script_sub_002b6e10(int param_1)
+undefined4 script_step_sub_002b6e10(int param_1)
 
 {
   int iVar1;
@@ -2003,7 +2003,7 @@ undefined4 script_sub_002b6e10(int param_1)
 }
 
 // 0x002b75e0  size 0x45c
-undefined4 script_sub_002b75e0(int param_1)
+undefined4 script_step_sub_002b75e0(int param_1)
 
 {
   undefined4 uVar1;
@@ -2144,7 +2144,7 @@ undefined4 script_sub_002b75e0(int param_1)
 }
 
 // 0x002b7a40  size 0x5ac
-undefined4 script_sub_002b7a40(int param_1)
+undefined4 script_step_sub_002b7a40(int param_1)
 
 {
   undefined4 uVar1;
@@ -2330,7 +2330,7 @@ undefined4 script_sub_002b7a40(int param_1)
 }
 
 // 0x002b7ff0  size 0x5dc
-undefined4 script_sub_002b7ff0(int param_1)
+undefined4 script_step_sub_002b7ff0(int param_1)
 
 {
   undefined4 uVar1;

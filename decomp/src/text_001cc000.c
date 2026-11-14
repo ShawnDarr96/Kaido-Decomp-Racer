@@ -122,14 +122,14 @@ float RaceCar_WheelGroundDistance(int param_1,int param_2)
     iVar1 = *(int *)(param_2 * 4 + param_1 + 0x7c0);
     Vec3_Scale(*(undefined4 *)(iVar2 + 0x28c),auStack_40,iVar2 + 0x230);
     Vec3_Scale(*(undefined4 *)(iVar1 + 0x34),auStack_30,auStack_40);
-    phys_sub_00164eb0(auStack_50,*(undefined4 *)(param_1 + 0x154),iVar2 + 0x1f0);
+    PhysBody_PointVelocityWorld(auStack_50,*(undefined4 *)(param_1 + 0x154),iVar2 + 0x1f0);
     Vec3_Sub(&uStack_20,auStack_30,auStack_50);
     uStack_10 = uStack_20;
     uStack_c = uStack_1c;
     uStack_8 = uStack_18;
     uStack_4 = uStack_14;
     uVar3 = Vec3_Dot(&uStack_10,&uStack_10);
-    fVar4 = (float)vu0math_sub_00133650(uVar3);
+    fVar4 = (float)maybe_Vu0_SqrtQ(uVar3);
     if ((fVar4 <= 3.3333333) || (fVar4 = (float)fabsf(*(undefined4 *)(iVar2 + 0x294)), fVar4 <= 0.2)
        ) {
       fVar4 = 0.0;
@@ -252,44 +252,44 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   fStack_8 = (float)param_2[0x4de];
   fStack_10 = (float)param_2[0x4dc];
   fStack_c = (float)param_2[0x4dd] + 0.1;
-  road_sub_00188b50(0x3f800000,0x36f230,auStack_30,*(undefined2 *)((int)param_2 + 0x1366),
-                    param_2[0x4db],*(undefined2 *)((int)param_2 + 0x136a),lVar16);
-  vu0math_sub_00132b50(&fStack_50,auStack_30,param_2 + 0x4dc);
-  vu0math_sub_00132b50(param_2 + 0x4ec,auStack_30,param_2 + 0x4dc);
-  vu0math_sub_001328b0(param_2 + 0x4ec,param_2 + 0x4ec);
+  road_step_sub_00188b50
+            (0x3f800000,0x36f230,auStack_30,*(undefined2 *)((int)param_2 + 0x1366),param_2[0x4db],
+             *(undefined2 *)((int)param_2 + 0x136a),lVar16);
+  sceVu0SubVector(&fStack_50,auStack_30,param_2 + 0x4dc);
+  sceVu0SubVector(param_2 + 0x4ec,auStack_30,param_2 + 0x4dc);
+  sceVu0Normalize(param_2 + 0x4ec,param_2 + 0x4ec);
   piVar5 = param_2 + 0x4ee;
-  uVar18 = vu0math_sub_00133650
-                     ((float)param_2[0x4ec] * (float)param_2[0x4ec] +
-                      (float)param_2[0x4ee] * (float)param_2[0x4ee]);
+  uVar18 = maybe_Vu0_SqrtQ((float)param_2[0x4ec] * (float)param_2[0x4ec] +
+                           (float)param_2[0x4ee] * (float)param_2[0x4ee]);
   uStack_40 = atan2f(param_2[0x4ed],uVar18);
   if (lVar16 == 0) {
     uVar18 = atan2f(param_2[0x4ec],*piVar5);
-    uVar8 = newlib_sub_0012f600(uVar18);
+    uVar8 = maybe___sf_to_df(uVar18);
     uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
-    lVar16 = msl_sub_00100940(uVar8,0x400921fb54442d18);
+    lVar16 = maybe___dgt(uVar8,0x400921fb54442d18);
     if (lVar16 == 0) {
       uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = newlib_sub_0012f600(uVar18);
+      uVar8 = maybe___sf_to_df(uVar18);
       uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
       auVar15._8_8_ = in_v0_udw;
       auVar15._0_8_ = 0xc00921fb54442d18;
       auVar15 = _pcpyld(in_zero_qw,auVar15);
-      lVar16 = msl_sub_00100960(uVar8,auVar15._0_8_);
+      lVar16 = maybe___dlt(uVar8,auVar15._0_8_);
       if (lVar16 == 0) {
         uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = newlib_sub_0012f600(uVar18);
+        uVar8 = maybe___sf_to_df(uVar18);
         uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
       }
       else {
         uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = newlib_sub_0012f600(uVar18);
+        uVar8 = maybe___sf_to_df(uVar18);
         uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
         uVar8 = __adddf3(0x401921fb54442d18,uVar8);
       }
     }
     else {
       uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = newlib_sub_0012f600(uVar18);
+      uVar8 = maybe___sf_to_df(uVar18);
       uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
       uVar8 = __subdf3(uVar8,0x401921fb54442d18);
     }
@@ -297,32 +297,32 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   }
   else {
     uVar18 = atan2f(param_2[0x4ec],*piVar5);
-    uVar8 = newlib_sub_0012f600(uVar18);
+    uVar8 = maybe___sf_to_df(uVar18);
     uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
-    lVar16 = msl_sub_00100940(uVar8,0x400921fb54442d18);
+    lVar16 = maybe___dgt(uVar8,0x400921fb54442d18);
     if (lVar16 == 0) {
       uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = newlib_sub_0012f600(uVar18);
+      uVar8 = maybe___sf_to_df(uVar18);
       uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
       auVar3._8_8_ = in_v0_udw;
       auVar3._0_8_ = 0xc00921fb54442d18;
       auVar15 = _pcpyld(in_zero_qw,auVar3);
-      lVar16 = msl_sub_00100960(uVar8,auVar15._0_8_);
+      lVar16 = maybe___dlt(uVar8,auVar15._0_8_);
       if (lVar16 == 0) {
         uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = newlib_sub_0012f600(uVar18);
+        uVar8 = maybe___sf_to_df(uVar18);
         uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
       }
       else {
         uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = newlib_sub_0012f600(uVar18);
+        uVar8 = maybe___sf_to_df(uVar18);
         uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
         uVar8 = __adddf3(0x401921fb54442d18,uVar8);
       }
     }
     else {
       uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = newlib_sub_0012f600(uVar18);
+      uVar8 = maybe___sf_to_df(uVar18);
       uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
       uVar8 = __subdf3(uVar8,0x401921fb54442d18);
     }
@@ -332,33 +332,33 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   uStack_118 = 0;
   uStack_11c = uStack_3c;
   uStack_120 = uStack_40;
-  phys_sub_00162970(&uStack_110,&uStack_120);
+  Euler_ToQuat(&uStack_110,&uStack_120);
   uStack_20 = uStack_110;
   uStack_1c = uStack_10c;
   uStack_18 = uStack_108;
   uStack_14 = uStack_104;
-  phys_sub_001651b0(param_2[0x55],&fStack_10);
+  PhysBody_LocalToWorld(param_2[0x55],&fStack_10);
   Car_SyncFromRigidBody(param_2);
-  phys_sub_00162830(param_2[0x56]);
-  phys_sub_00165050(param_2[0x55],&uStack_20);
+  PhysBody_Wake(param_2[0x56]);
+  PhysBody_SetRotation(param_2[0x55],&uStack_20);
   Car_SyncFromRigidBody(param_2);
-  phys_sub_00162830(param_2[0x56]);
-  uVar9 = phys_sub_001651a0(param_2[0x55]);
+  PhysBody_Wake(param_2[0x56]);
+  uVar9 = PhysBody_GetWorldMatrix(param_2[0x55]);
   pfVar4 = (float *)uVar9;
-  uVar8 = phys_sub_00165040(param_2[0x55]);
-  phys_sub_00162930(auStack_60,uVar8);
-  vu0math_sub_00132ae0(param_2 + 0x4dc,uVar9);
+  uVar8 = PhysBody_GetRotation(param_2[0x55]);
+  Quat_ToEuler(auStack_60,uVar8);
+  sceVu0CopyVector(param_2 + 0x4dc,uVar9);
   uStack_64 = 0x3f800000;
   uStack_74 = 0x3f800000;
   fVar19 = (param_1 * 1000.0) / 3600.0;
   fStack_80 = fStack_50;
   fStack_7c = fStack_4c;
   fStack_78 = fStack_48;
-  phys_sub_00163bc0(&fStack_80);
+  Vec3_Normalize(&fStack_80);
   fStack_6c = fStack_7c * fVar19;
   fStack_70 = fStack_80 * fVar19;
   fStack_68 = fStack_78 * fVar19;
-  phys_sub_00164f60(param_2[0x55],&fStack_70);
+  PhysBody_UpdateMomentum(param_2[0x55],&fStack_70);
   iVar10 = 0;
   piVar5 = param_2;
   do {
@@ -447,10 +447,10 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   fStack_a8 = fStack_a8 - pfVar6[2];
   fStack_b8 = fStack_b8 - pfVar6[2];
   Vec3_LengthB(&fStack_90);
-  phys_sub_00163bc0(&fStack_90);
-  phys_sub_00163bc0(&fStack_a0);
-  phys_sub_00163bc0(&fStack_c0);
-  phys_sub_00163bc0(&fStack_b0);
+  Vec3_Normalize(&fStack_90);
+  Vec3_Normalize(&fStack_a0);
+  Vec3_Normalize(&fStack_c0);
+  Vec3_Normalize(&fStack_b0);
   switch(param_5) {
   case 1:
     fVar20 = 1.5;
@@ -501,10 +501,10 @@ LAB_001cd4e8:
   fStack_10 = *pfVar4 + fStack_10;
   fStack_c = pfVar4[1] + fStack_c;
   fStack_8 = pfVar4[2] + fStack_8;
-  phys_sub_001651b0(param_2[0x55],&fStack_10);
+  PhysBody_LocalToWorld(param_2[0x55],&fStack_10);
   Car_SyncFromRigidBody(param_2);
-  phys_sub_00162830(param_2[0x56]);
-  vu0math_sub_00132ae0(param_2 + 0x4dc,&fStack_10);
+  PhysBody_Wake(param_2[0x56]);
+  sceVu0CopyVector(param_2 + 0x4dc,&fStack_10);
   iVar10 = 0;
   piVar5 = param_2;
   do {
@@ -557,7 +557,7 @@ LAB_001cd4e8:
   uStack_100 = 0;
   uStack_fc = 0;
   uStack_f8 = 0;
-  phys_sub_00164d90(param_2[0x55],&uStack_100);
+  PhysBody_ClampAngularVelocity(param_2[0x55],&uStack_100);
   if ((param_7 & 0x20) == 0) {
     iVar10 = 0;
     do {
@@ -738,7 +738,7 @@ void Ai_SetupDifficulty(void)
         else {
           iVar15 = iVar15 * 0x20;
         }
-        raceprog_sub_001ddda0(iVar9 + iVar15,&uStack_2,&uStack_4);
+        raceprog_leaf_sub_001ddda0(iVar9 + iVar15,&uStack_2,&uStack_4);
         Ai_PredictPath(0,*(undefined4 *)((int)_g_RaceCars + iVar7),uStack_2,uStack_4,uVar14,1,
                        *(undefined4 *)(iVar12 + 4));
         Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar7));
@@ -939,7 +939,7 @@ void RaceCar_PlaceOnGrid(undefined8 param_1,undefined8 param_2)
     uStack_130 = uStack_e0;
     uStack_12c = uStack_dc;
     uStack_128 = uStack_d8;
-    phys_sub_00163340(auStack_140,auStack_110);
+    Mat33_ToQuat(auStack_140,auStack_110);
     RaceCar_SetTransform(param_1,&uStack_130,auStack_140);
     Ai_FollowRacingLine(param_1);
   }
@@ -1430,12 +1430,12 @@ void RaceCar_SetTransform(undefined8 param_1,undefined4 *param_2,undefined4 *par
   uStack_10 = uStack_30;
   uStack_c = uStack_2c;
   uStack_8 = uStack_28;
-  phys_sub_001651b0(*(undefined4 *)(iVar2 + 0x154),&uStack_30);
+  PhysBody_LocalToWorld(*(undefined4 *)(iVar2 + 0x154),&uStack_30);
   Car_SyncFromRigidBody(param_1);
-  phys_sub_00162830(*(undefined4 *)(iVar2 + 0x158));
-  phys_sub_00165050(*(undefined4 *)(iVar2 + 0x154),&uStack_20);
+  PhysBody_Wake(*(undefined4 *)(iVar2 + 0x158));
+  PhysBody_SetRotation(*(undefined4 *)(iVar2 + 0x154),&uStack_20);
   Car_SyncFromRigidBody(param_1);
-  phys_sub_00162830(*(undefined4 *)(iVar2 + 0x158));
+  PhysBody_Wake(*(undefined4 *)(iVar2 + 0x158));
   *(undefined4 *)(iVar2 + 0x1370) = uStack_10;
   *(undefined4 *)(iVar2 + 0x1374) = uStack_c;
   *(undefined4 *)(iVar2 + 0x1378) = uStack_8;
@@ -1457,14 +1457,14 @@ void RaceCar_UpdateTracker(int param_1)
   int iVar4;
   int iVar5;
   
-  uVar2 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
-  vu0math_sub_00132ae0(param_1 + 0x1370,uVar2);
+  uVar2 = PhysBody_GetWorldMatrix(*(undefined4 *)(param_1 + 0x154));
+  sceVu0CopyVector(param_1 + 0x1370,uVar2);
   Road_UpdateTracker(param_1 + 0x1360,0x36f230,0x36f238);
   iVar3 = 0;
   iVar4 = param_1;
   iVar5 = param_1;
   do {
-    vu0math_sub_00132ae0(iVar5 + 0x13e0,iVar4 + 0x1f0);
+    sceVu0CopyVector(iVar5 + 0x13e0,iVar4 + 0x1f0);
     Road_UpdateTracker(iVar5 + 0x13d0,0x36f230,0x36f238);
     iVar3 = iVar3 + 1;
     iVar5 = iVar5 + 0x70;
@@ -1782,12 +1782,12 @@ void CarSpec_BuildFromDb(int param_1,int param_2,undefined8 param_3,long param_4
       }
       uVar17 = auStack_180[(int)fVar16 / 5];
       *(float *)(param_2 + 0x5bc) = (fVar15 + 0.0) - fVar15 * afStack_120[(int)fVar16 / 5];
-      uVar3 = newlib_sub_0012f600(uVar17);
+      uVar3 = maybe___sf_to_df(uVar17);
       uVar3 = __subdf3(0x3ff0000000000000,uVar3);
-      uVar4 = newlib_sub_0012f600(uVar18);
+      uVar4 = maybe___sf_to_df(uVar18);
       uVar3 = __muldf3(uVar4,uVar3);
       uVar3 = __muldf3(0x3fd99999a0000000,uVar3);
-      uVar4 = newlib_sub_0012f600(uVar18);
+      uVar4 = maybe___sf_to_df(uVar18);
       uVar3 = __subdf3(uVar4,uVar3);
       uVar18 = maybe___extendsfdf2(uVar3);
       *(undefined4 *)(param_2 + 0x638) = uVar18;

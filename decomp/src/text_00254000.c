@@ -5,7 +5,7 @@
 // 0x00254100  size 0x10a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_sub_00254100(int param_1)
+void scrcareer_draw_sub_00254100(int param_1)
 
 {
   char cVar1;
@@ -242,7 +242,7 @@ void scrcareer_sub_00254100(int param_1)
   do {
     iRam0036f5e0 = 0;
     do {
-      lVar8 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+      lVar8 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
       if (lVar8 == -1) {
         UiElem_SetPropFloat(0,iVar13,*(undefined4 *)
                                       (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8);
@@ -250,11 +250,11 @@ void scrcareer_sub_00254100(int param_1)
                                       (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
       }
       else {
-        uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+        uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
         uVar10 = RivalDb_Get(uVar2);
         cVar1 = RivalRec_GetTeam(uVar10);
         if ((cVar1 == '\x06') || (cVar1 == '\x05')) {
-          uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
           uVar10 = RivalDb_Get(uVar2);
           uVar6 = RivalRec_GetTeam(uVar10);
           UiElem_SetPropInt(iVar13,*(undefined4 *)
@@ -266,12 +266,12 @@ void scrcareer_sub_00254100(int param_1)
                               *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
         }
         else if (cVar1 == '\x01') {
-          uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
           uVar10 = RivalDb_Get(uVar2);
           sVar3 = RivalRec_GetId(uVar10);
           iVar4 = Profile_Get(0);
           if (*(short *)(iVar4 + sVar3 * 2 + 0x4b7c) < 1) {
-            uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+            uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
             uVar10 = RivalDb_Get(uVar2);
             uVar6 = RivalRec_GetTeam(uVar10);
             UiElem_SetPropInt(iVar13,*(undefined4 *)
@@ -292,12 +292,12 @@ void scrcareer_sub_00254100(int param_1)
                               *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
         }
         else if (cVar1 == '\0') {
-          uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
           uVar10 = RivalDb_Get(uVar2);
           sVar3 = RivalRec_GetId(uVar10);
           iVar4 = Profile_Get(0);
           if (*(short *)(iVar4 + sVar3 * 2 + 0x4b7c) < 1) {
-            uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+            uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
             uVar10 = RivalDb_Get(uVar2);
             lVar8 = RivalRec_IsValid(uVar10);
             if (lVar8 == 0) goto LAB_00254538;
@@ -309,15 +309,15 @@ void scrcareer_sub_00254100(int param_1)
           }
           else {
 LAB_00254538:
-            uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+            uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
             uVar10 = RivalDb_Get(uVar2);
             uVar6 = RivalRec_GetTeam(uVar10);
             UiElem_SetPropInt(iVar13,*(undefined4 *)
                                       (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,
                               *(undefined4 *)(&DAT_0032c130 + (uVar6 & 0xff) * 4));
             uVar10 = Profile_Get(0);
-            uVar11 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
-            sVar3 = profile_sub_001c0890(uVar10,uVar11);
+            uVar11 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+            sVar3 = Profile_GetRivalBattleCount(uVar10,uVar11);
             if (sVar3 < 1) {
               UiElem_SetPropFloat(0x3f666666,iVar13,
                                   *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030)
@@ -339,15 +339,15 @@ LAB_00254538:
                                         (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
         }
         else {
-          uVar2 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
           uVar10 = RivalDb_Get(uVar2);
           uVar6 = RivalRec_GetTeam(uVar10);
           UiElem_SetPropInt(iVar13,*(undefined4 *)
                                     (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,
                             *(undefined4 *)(&DAT_0032c130 + (uVar6 & 0xff) * 4));
           uVar10 = Profile_Get(0);
-          uVar11 = garage_sub_001beac0(iRam0036f5dc,iRam0036f5e0);
-          sVar3 = profile_sub_001c0890(uVar10,uVar11);
+          uVar11 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+          sVar3 = Profile_GetRivalBattleCount(uVar10,uVar11);
           if (sVar3 < 1) {
             UiElem_SetPropFloat(0x3f666666,iVar13,
                                 *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8
@@ -411,7 +411,7 @@ LAB_00254538:
 // 0x002551c0  size 0x8dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_002551c0(int param_1)
+void scrrace_draw_sub_002551c0(int param_1)
 
 {
   char cVar1;
@@ -669,7 +669,7 @@ void scrrace_sub_002551c0(int param_1)
 // 0x00255ac0  size 0x130
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00255ac0(undefined8 param_1)
+void scrrace_anim_sub_00255ac0(undefined8 param_1)
 
 {
   long lVar1;
@@ -687,7 +687,7 @@ void scrrace_sub_00255ac0(undefined8 param_1)
     *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
   }
   else {
-    (*(code *)(&PTR_scrrace_sub_002551c0_0032be30)[*(int *)(iVar2 + 0x638)])(param_1);
+    (*(code *)(&PTR_scrrace_draw_sub_002551c0_0032be30)[*(int *)(iVar2 + 0x638)])(param_1);
     MenuWnd_SetTitle(*(undefined4 *)(&DAT_0032bef0 + *(int *)(iVar2 + 0x638) * 4),0xffffffffffffffff
                     );
   }
@@ -701,7 +701,7 @@ void scrrace_sub_00255ac0(undefined8 param_1)
 }
 
 // 0x00255bf0  size 0x3c
-void scrrecord_sub_00255bf0(void)
+void scrrecord_step_sub_00255bf0(void)
 
 {
   char cVar1;
@@ -717,7 +717,7 @@ void scrrecord_sub_00255bf0(void)
 // 0x00255c50  size 0x220
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_sub_00255c50(int *param_1)
+void scrrace_draw_sub_00255c50(int *param_1)
 
 {
   int iVar1;
@@ -771,7 +771,7 @@ void scrrace_sub_00255c50(int *param_1)
 // 0x00255e70  size 0x394
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_00255e70(void)
+void menuscr_step_sub_00255e70(void)
 
 {
   undefined4 uVar1;
@@ -938,7 +938,7 @@ void menuscr_sub_00255e70(void)
 }
 
 // 0x00256210  size 0xa8
-undefined8 scrcareer_sub_00256210(long param_1,long param_2)
+undefined8 scrcareer_step_sub_00256210(long param_1,long param_2)
 
 {
   undefined8 uVar1;
@@ -951,7 +951,7 @@ undefined8 scrcareer_sub_00256210(long param_1,long param_2)
     uVar1 = 1;
   }
   else {
-    lVar2 = scrcareer_sub_0029f130();
+    lVar2 = scrcareer_step_sub_0029f130();
     if (lVar2 == 1) {
       if (param_1 == 0x21) {
         return 1;
@@ -971,7 +971,7 @@ undefined8 scrcareer_sub_00256210(long param_1,long param_2)
 // 0x002562c0  size 0x5f4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_002562c0(int param_1)
+void scrgarage_draw_sub_002562c0(int param_1)
 
 {
   bool bVar1;
@@ -1177,7 +1177,7 @@ void scrgarage_sub_002562c0(int param_1)
   }
   MenuWnd_DrawNumber(0x55,3,uVar6);
   uVar6 = Profile_Get(0);
-  uVar6 = garage_sub_001bcb00(uVar6);
+  uVar6 = Profile_GetMoney(uVar6);
   MenuWnd_DrawNumber(0x55,4,uVar6);
   iVar3 = UiMgr_FindLayout(0x56);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
@@ -1189,7 +1189,7 @@ void scrgarage_sub_002562c0(int param_1)
 // 0x002568c0  size 0x5a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_sub_002568c0(int param_1)
+void menuscr_draw_sub_002568c0(int param_1)
 
 {
   bool bVar1;
@@ -1392,7 +1392,7 @@ void menuscr_sub_002568c0(int param_1)
   }
   MenuWnd_DrawNumber(0x55,3,uVar7);
   uVar7 = Profile_Get(0);
-  uVar7 = garage_sub_001bcb00(uVar7);
+  uVar7 = Profile_GetMoney(uVar7);
   MenuWnd_DrawNumber(0x55,4,uVar7);
   iVar2 = UiMgr_FindLayout(0x6c);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
@@ -1406,7 +1406,7 @@ void menuscr_sub_002568c0(int param_1)
 // 0x00256e70  size 0x638
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_00256e70(int param_1)
+void scrgarage_draw_sub_00256e70(int param_1)
 
 {
   bool bVar1;
@@ -1426,7 +1426,7 @@ void scrgarage_sub_00256e70(int param_1)
   undefined1 uStack_3;
   
   uVar8 = Profile_Get(0);
-  uVar8 = garage_sub_001bc3f0(uVar8);
+  uVar8 = Profile_GetCurrentCar(uVar8);
   uVar2 = CarRec_GetModelId(uVar8);
   iVar3 = CarDb_GetModelEntry(uVar2);
   iVar7 = *(int *)(param_1 + 0x5c);
@@ -1602,7 +1602,7 @@ void scrgarage_sub_00256e70(int param_1)
   }
   MenuWnd_DrawNumber(0x55,3,uVar8);
   uVar8 = Profile_Get(0);
-  uVar8 = garage_sub_001bcb00(uVar8);
+  uVar8 = Profile_GetMoney(uVar8);
   MenuWnd_DrawNumber(0x55,4,uVar8);
   iVar7 = UiMgr_FindLayout(0x54);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar7 * 0x4f4 + 4);
@@ -1614,7 +1614,7 @@ void scrgarage_sub_00256e70(int param_1)
 // 0x002574b0  size 0xeb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_sub_002574b0(int param_1)
+void scrgarage_draw_sub_002574b0(int param_1)
 
 {
   bool bVar1;
@@ -1956,7 +1956,7 @@ void scrgarage_sub_002574b0(int param_1)
         iVar8 = 9;
       }
       if (iVar8 <= iVar9) break;
-      sVar3 = scrcareer_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar7 % iVar4 + iVar6);
+      sVar3 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar7 % iVar4 + iVar6);
       iVar8 = UiMgr_FindLayout(0x68);
       UiElem_SetPropInt(*_g_UiMgr + iVar8 * 0x4f4 + 4,*puVar14,0x16,sVar3 + -0xa8);
       iVar7 = iVar7 % iVar4 + 1;
@@ -2011,7 +2011,7 @@ LAB_002580a4:
         iVar6 = *(int *)(param_1 + 0x28);
         iVar7 = *(int *)(param_1 + 0x38);
         iVar9 = MsgId_ForMenuHelp(*(int *)(param_1 + 0xc) + 1U & 0xff);
-        sVar3 = scrcareer_sub_002a1600
+        sVar3 = scrcareer_step_sub_002a1600
                           (*(undefined4 *)(param_1 + 4),
                            (iVar4 + (iVar6 - iVar7) + -1) % iVar4 + iVar9);
         iVar6 = UiMgr_FindLayout(0x68);
@@ -2042,7 +2042,7 @@ LAB_002580a4:
         iVar6 = *(int *)(param_1 + 0x28);
         iVar7 = *(int *)(param_1 + 0x38);
         iVar9 = MsgId_ForMenuHelp(*(int *)(param_1 + 0xc) + 1U & 0xff);
-        sVar3 = scrcareer_sub_002a1600
+        sVar3 = scrcareer_step_sub_002a1600
                           (*(undefined4 *)(param_1 + 4),
                            (iVar4 + (iVar6 - iVar7) + 9) % iVar4 + iVar9);
         iVar6 = UiMgr_FindLayout(0x68);
@@ -2052,22 +2052,22 @@ LAB_002580a4:
   }
   uVar5 = *(undefined4 *)(param_1 + 0x10);
 LAB_00257d98:
-  uVar13 = scrcareer_sub_002a1600(*(undefined4 *)(param_1 + 4),uVar5);
+  uVar13 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),uVar5);
   uVar13 = Garage_ComputeCarStats(uVar13,0);
   MenuWnd_DrawNumber(0x4f,4,uVar13);
   uVar13 = Profile_Get(0);
-  uVar13 = garage_sub_001bcb00(uVar13);
+  uVar13 = Profile_GetMoney(uVar13);
   MenuWnd_DrawNumber(0x4f,3,uVar13);
-  uVar2 = scrcareer_sub_002a1600(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
+  uVar2 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
   if (*(int *)(param_1 + 0x4c) == 3) {
-    scrgarage_sub_00274d20(uVar2,iVar4,1,0);
+    scrgarage_draw_sub_00274d20(uVar2,iVar4,1,0);
   }
   else {
-    scrgarage_sub_00274d20(uVar2,iVar4,0,0);
+    scrgarage_draw_sub_00274d20(uVar2,iVar4,0,0);
   }
   iVar6 = UiMgr_FindLayout(0x4f);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar6 * 0x4f4 + 4);
-  lVar10 = scrcareer_sub_0029f130(*(undefined4 *)(param_1 + 4));
+  lVar10 = scrcareer_step_sub_0029f130(*(undefined4 *)(param_1 + 4));
   if (lVar10 == 0) {
     iVar6 = UiMgr_FindLayout(0x59);
     UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar6 * 0x4f4 + 4);

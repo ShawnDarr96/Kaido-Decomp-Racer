@@ -577,7 +577,7 @@ void CarRec_Randomize(short *param_1,int param_2)
   sVar5 = DAT_00319280;
   uVar21 = (undefined1)DAT_00319284;
   uVar12 = Profile_Get(0);
-  uVar13 = garage_sub_001bdd00(uVar12);
+  uVar13 = Profile_GetFlags(uVar12);
   if ((uVar13 & 0x200000) == 0) {
     uVar12 = Profile_Get(0);
     lVar14 = Profile_GetStat(uVar12,6);
@@ -718,12 +718,12 @@ LAB_001d256c:
       }
       if (uVar16 == 0) {
         iVar6 = maybe_Rand_Float();
-        iVar8 = menu_sub_00204630();
+        iVar8 = menu_leaf_sub_00204630();
         param_1[1] = (short)(iVar6 % iVar8) + 0x1e;
       }
       else {
         iVar6 = maybe_Rand_Float();
-        iVar8 = menu_sub_002045b0();
+        iVar8 = menu_leaf_sub_002045b0();
         param_1[1] = (short)(iVar6 % iVar8) + 0x2be;
       }
     }
@@ -758,7 +758,7 @@ LAB_001d256c:
       psVar17 = param_1;
       do {
         uVar12 = Profile_Get(0);
-        lVar14 = garage_sub_001bbdd0(uVar12,psVar17[6]);
+        lVar14 = Profile_FindCompatiblePart(uVar12,psVar17[6]);
         if (0 < lVar14) {
           sVar5 = CarDb_FindDefaultPart(*param_1,uVar19 & 0xff,0xffffffffffffffff);
           psVar17[6] = sVar5 + (short)lVar14;
@@ -787,7 +787,7 @@ LAB_001d256c:
         piVar18 = aiStack_250;
         do {
           uVar12 = Profile_Get(0);
-          lVar14 = garage_sub_001bbdd0(uVar12,param_1[*piVar18 + 6]);
+          lVar14 = Profile_FindCompatiblePart(uVar12,param_1[*piVar18 + 6]);
           if (0 < lVar14) {
             iVar8 = maybe_Rand_Float();
             sVar5 = CarDb_FindDefaultPart(*param_1,(char)*piVar18,0xffffffffffffffff);

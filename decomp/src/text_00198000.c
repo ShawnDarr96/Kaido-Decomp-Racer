@@ -147,22 +147,22 @@ long SceneObj_CreateCar(undefined8 param_1)
         ((lVar11 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0x94),iVar10 + 0x98), lVar11 == 0 ||
          (lVar4 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0xdc),iVar10 + 0xe0), lVar4 == 0)))))) {
       if (lVar3 != 0) {
-        course_sub_001a5a00(lVar3);
+        course_leaf_sub_001a5a00(lVar3);
       }
       if (lVar9 != 0) {
-        course_sub_001a5a00(lVar9);
+        course_leaf_sub_001a5a00(lVar9);
       }
       if (lVar8 != 0) {
-        course_sub_001a5a00(lVar8);
+        course_leaf_sub_001a5a00(lVar8);
       }
       if (lVar7 != 0) {
-        course_sub_001a5a00(lVar7);
+        course_leaf_sub_001a5a00(lVar7);
       }
       if (lVar6 != 0) {
-        course_sub_001a5a00(lVar6);
+        course_leaf_sub_001a5a00(lVar6);
       }
       if (lVar11 != 0) {
-        course_sub_001a5a00(lVar11);
+        course_leaf_sub_001a5a00(lVar11);
       }
       lVar2 = 0;
     }
@@ -519,12 +519,12 @@ void Course_DrawShadowedMeshes(long param_1)
   uStack_14 = uRam004362ec;
   uStack_10 = uRam004362f0;
   if (param_1 != 0) {
-    vu0math_sub_00132b30(&uStack_180,0x436180,param_1);
-    vu0math_sub_00132b30(&uStack_100,0x436200,param_1);
-    vu0math_sub_00132ae0(&uStack_120,0x4361d0);
-    vu0math_sub_00132ae0(&uStack_110,0x4361d0);
-    vu0math_sub_00132b10(0,&uStack_f0,0x436200);
-    vu0math_sub_00132b10(0,&uStack_e0,0x436200);
+    sceVu0MulVector(&uStack_180,0x436180,param_1);
+    sceVu0MulVector(&uStack_100,0x436200,param_1);
+    sceVu0CopyVector(&uStack_120,0x4361d0);
+    sceVu0CopyVector(&uStack_110,0x4361d0);
+    sceVu0ScaleVector(0,&uStack_f0,0x436200);
+    sceVu0ScaleVector(0,&uStack_e0,0x436200);
   }
   Camera_Init(0x431100);
   Light_UpdateMatrices(&uStack_180);
@@ -732,10 +732,10 @@ void Course_DrawLitMeshes(long param_1)
   uStack_14 = uRam004362ec;
   uStack_10 = uRam004362f0;
   if (param_1 != 0) {
-    vu0math_sub_00132b30(&uStack_180,0x436180,param_1);
-    vu0math_sub_00132b30(&uStack_100,0x436200,param_1);
-    vu0math_sub_00132b30(&uStack_f0,0x436210,param_1);
-    vu0math_sub_00132b30(&uStack_e0,0x436220,param_1);
+    sceVu0MulVector(&uStack_180,0x436180,param_1);
+    sceVu0MulVector(&uStack_100,0x436200,param_1);
+    sceVu0MulVector(&uStack_f0,0x436210,param_1);
+    sceVu0MulVector(&uStack_e0,0x436220,param_1);
   }
   Camera_Init(0x431100);
   Light_UpdateMatrices(&uStack_180);
@@ -1037,7 +1037,7 @@ void SceneObj_Release(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
   Chunk_Init(param_1,0x48);
   *(undefined4 *)(iVar1 + 0x40) = 0;
   *(undefined8 *)(iVar1 + 0x10) = 0x48;
@@ -1085,7 +1085,7 @@ void SceneObj_BuildMatrix(int param_1,undefined1 *param_2)
     maybe_Vu0_RotMatrixZ(*(undefined4 *)(param_1 + 0x10),auStack_180,auStack_180);
     maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x14),auStack_180,auStack_180);
     maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x18),auStack_180,auStack_180);
-    vu0math_sub_00132d20(auStack_180,auStack_180,param_1 + 0x20);
+    sceVu0TransMatrix(auStack_180,auStack_180,param_1 + 0x20);
     Layer_Open(auStack_240,0);
     Layer_Open(auStack_240,1);
     iVar4 = *(int *)(iVar3 + 0x68);
@@ -1223,8 +1223,8 @@ void CarModel_Release(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
-  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x44));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
+  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x44));
   Chunk_Init(param_1,0x50);
   *(undefined4 *)(iVar1 + 0x44) = 0;
   *(undefined4 *)(iVar1 + 0x10) = 0;
@@ -1300,7 +1300,7 @@ CarModel_ProjectShadow
     uVar6 = 0;
     iVar4 = iVar5;
     do {
-      vu0math_sub_00132b70(auStack_10,auStack_10,iVar4);
+      sceVu0AddVector(auStack_10,auStack_10,iVar4);
       uVar6 = uVar6 + 1;
       iVar4 = iVar4 + 0x10;
     } while (uVar6 < 2);
@@ -1308,9 +1308,9 @@ CarModel_ProjectShadow
     iVar5 = iVar5 + 0x20;
   } while (uVar7 < 2);
   if (cRam00430460 == '\x02') {
-    vu0math_sub_001328b0(&uStack_70,param_6);
+    sceVu0Normalize(&uStack_70,param_6);
     fStack_6c = fStack_6c - 1.0;
-    vu0math_sub_001328b0(&uStack_70,&uStack_70);
+    sceVu0Normalize(&uStack_70,&uStack_70);
   }
   else {
     uStack_70 = 0;
@@ -1318,27 +1318,27 @@ CarModel_ProjectShadow
     uStack_68 = 0;
     uStack_64 = 0x3f800000;
   }
-  vu0math_sub_00132b50(auStack_20,param_5 + 0x20,param_5);
-  vu0math_sub_00132b50(&uStack_30,param_5 + 0x10,param_5 + 0x20);
-  vu0math_sub_00132b50(auStack_40,param_5 + 0x30,param_5 + 0x10);
-  vu0math_sub_00132a90(auStack_50,auStack_20,&uStack_30);
-  vu0math_sub_001328b0(auStack_50,auStack_50);
-  vu0math_sub_00132a90(auStack_60,auStack_40,&uStack_30);
-  vu0math_sub_001328b0(auStack_60,auStack_60);
-  vu0math_sub_00132b70(auStack_20,auStack_50,auStack_60);
-  vu0math_sub_001328b0(&uStack_30,auStack_20);
+  sceVu0SubVector(auStack_20,param_5 + 0x20,param_5);
+  sceVu0SubVector(&uStack_30,param_5 + 0x10,param_5 + 0x20);
+  sceVu0SubVector(auStack_40,param_5 + 0x30,param_5 + 0x10);
+  sceVu0OuterProduct(auStack_50,auStack_20,&uStack_30);
+  sceVu0Normalize(auStack_50,auStack_50);
+  sceVu0OuterProduct(auStack_60,auStack_40,&uStack_30);
+  sceVu0Normalize(auStack_60,auStack_60);
+  sceVu0AddVector(auStack_20,auStack_50,auStack_60);
+  sceVu0Normalize(&uStack_30,auStack_20);
   maybe_Camera_ClampAngles(uStack_30,uStack_2c,uStack_28,param_4,&uStack_70,0);
   iVar5 = (int)param_4;
   *(undefined4 *)(iVar5 + 0x38) = 0;
   *(undefined4 *)(iVar5 + 0x34) = 0;
   *(undefined4 *)(iVar5 + 0x30) = 0;
-  vu0math_sub_00132b10(param_1,auStack_20,&uStack_30);
-  vu0math_sub_00132d20(param_4,param_4,auStack_20);
-  vu0math_sub_00132b50(auStack_20,param_7,param_5);
-  uVar8 = vu0math_sub_00132ab0(&uStack_30,auStack_20);
+  sceVu0ScaleVector(param_1,auStack_20,&uStack_30);
+  sceVu0TransMatrix(param_4,param_4,auStack_20);
+  sceVu0SubVector(auStack_20,param_7,param_5);
+  uVar8 = sceVu0InnerProduct(&uStack_30,auStack_20);
   maybe_Vu0_UnitMatrix(param_3);
-  vu0math_sub_00132b10(0x3e800000,auStack_10,auStack_10);
-  vu0math_sub_00132d20(param_4,param_4,auStack_10);
+  sceVu0ScaleVector(0x3e800000,auStack_10,auStack_10);
+  sceVu0TransMatrix(param_4,param_4,auStack_10);
   return uVar8;
 }
 
@@ -1396,12 +1396,12 @@ CarModel_ComputeShadowQuad
   else {
     uStack_50 = 0xbf800000;
   }
-  vu0math_sub_00132c20(auStack_40,param_4);
+  sceVu0CopyMatrix(auStack_40,param_4);
   uStack_8 = 0;
   uStack_c = 0;
   uStack_10 = 0;
-  vu0math_sub_00132d50(auStack_60,auStack_40,&uStack_50);
-  fVar4 = (float)vu0math_sub_00132ab0(auStack_60,param_3 + 0x40);
+  sceVu0ApplyMatrix(auStack_60,auStack_40,&uStack_50);
+  fVar4 = (float)sceVu0InnerProduct(auStack_60,param_3 + 0x40);
   uVar2 = 0;
   if (param_6 != 0) {
     if (8 < param_6) {
@@ -1418,29 +1418,29 @@ CarModel_ComputeShadowQuad
     uVar1 = 0;
   }
   else {
-    vu0math_sub_00132ba0(auStack_a0,param_3 + 0x180,param_4);
-    vu0math_sub_00132d50(auStack_130,auStack_a0,param_5);
+    sceVu0MulMatrix(auStack_a0,param_3 + 0x180,param_4);
+    sceVu0ApplyMatrix(auStack_130,auStack_a0,param_5);
     fVar4 = (((float)*(int *)(param_3 + 0x80) *
              ((fStack_128 * 10.0 + *(float *)(param_3 + 0xa4) + 0.0) / *(float *)(param_3 + 0xa4)) *
              1.9209821) / 2.0) / *(float *)(param_3 + 0x8c);
     if (fVar4 < 1.0) {
       fVar4 = 1.0;
     }
-    vu0math_sub_001328b0(auStack_140,auStack_130);
-    vu0math_sub_00132b10(0x3f000000,auStack_140,auStack_140);
-    vu0math_sub_00132b50(auStack_130,auStack_130,auStack_140);
+    sceVu0Normalize(auStack_140,auStack_130);
+    sceVu0ScaleVector(0x3f000000,auStack_140,auStack_140);
+    sceVu0SubVector(auStack_130,auStack_130,auStack_140);
     maybe_Vu0_UnitMatrix(auStack_e0);
     if (param_8 == 0) {
-      vu0math_sub_00132ba0(auStack_a0,param_4,param_2);
-      vu0math_sub_00132ba0(auStack_a0,param_3 + 0x180,auStack_a0);
-      vu0math_sub_001328b0(auStack_180,&uStack_70);
-      vu0math_sub_00133020(auStack_a0,auStack_a0);
+      sceVu0MulMatrix(auStack_a0,param_4,param_2);
+      sceVu0MulMatrix(auStack_a0,param_3 + 0x180,auStack_a0);
+      sceVu0Normalize(auStack_180,&uStack_70);
+      sceVu0InversMatrix(auStack_a0,auStack_a0);
       uStack_68 = 0;
       uStack_6c = 0;
       uStack_70 = 0;
-      vu0math_sub_00132b10(0xbf000000,auStack_180,auStack_180);
-      vu0math_sub_00132d50(auStack_180,auStack_a0,auStack_180);
-      vu0math_sub_00132d20(param_2,param_2,auStack_180);
+      sceVu0ScaleVector(0xbf000000,auStack_180,auStack_180);
+      sceVu0ApplyMatrix(auStack_180,auStack_a0,auStack_180);
+      sceVu0TransMatrix(param_2,param_2,auStack_180);
     }
     else {
       uStack_150 = DAT_00312900;
@@ -1457,21 +1457,21 @@ CarModel_ComputeShadowQuad
       uStack_164 = DAT_0031292c;
       if (param_7 == 0) {
         if (*(int *)(param_3 + 0xb0) == 0) {
-          vu0math_sub_001336d0(auStack_e0,&uStack_150,&uStack_160,auStack_130);
+          sceVu0ViewScreenMatrix(auStack_e0,&uStack_150,&uStack_160,auStack_130);
         }
         else {
-          vu0math_sub_001336d0(auStack_e0,&uStack_150,&uStack_170,auStack_130);
+          sceVu0ViewScreenMatrix(auStack_e0,&uStack_150,&uStack_170,auStack_130);
         }
       }
       else if (*(int *)(param_3 + 0xb0) == 0) {
-        vu0math_sub_001336d0(auStack_e0,&uStack_150,&uStack_170,auStack_130);
+        sceVu0ViewScreenMatrix(auStack_e0,&uStack_150,&uStack_170,auStack_130);
       }
       else {
-        vu0math_sub_001336d0(auStack_e0,&uStack_150,&uStack_160,auStack_130);
+        sceVu0ViewScreenMatrix(auStack_e0,&uStack_150,&uStack_160,auStack_130);
       }
-      vu0math_sub_00132d20(auStack_e0,auStack_e0,auStack_130);
-      vu0math_sub_00133020(auStack_120,param_3 + 0x180);
-      vu0math_sub_00132ba0(param_4,auStack_120,auStack_e0);
+      sceVu0TransMatrix(auStack_e0,auStack_e0,auStack_130);
+      sceVu0InversMatrix(auStack_120,param_3 + 0x180);
+      sceVu0MulMatrix(param_4,auStack_120,auStack_e0);
       maybe_Vu0_UnitMatrix(param_2);
       pfVar3 = (float *)param_2;
       *pfVar3 = fVar5;
@@ -1493,8 +1493,8 @@ uint CarModel_ComputeLod(float param_1,undefined8 param_2,int param_3,undefined8
   float fStack_8;
   
   maybe_Vu0_UnitMatrix(auStack_40);
-  vu0math_sub_00132ba0(auStack_40,auStack_40,param_4);
-  vu0math_sub_00132ba0(auStack_40,param_3 + 0x180,auStack_40);
+  sceVu0MulMatrix(auStack_40,auStack_40,param_4);
+  sceVu0MulMatrix(auStack_40,param_3 + 0x180,auStack_40);
   if (0.0 < fStack_8) {
     uVar1 = 0;
     for (; (uVar1 < param_5 && (*(float *)(param_3 + 0x8c) / fStack_8 < *param_6));
@@ -1587,7 +1587,7 @@ switchD_0019a314_default:
       uStack_70 = 0;
       iStack_a0 = iStack_90;
       do {
-        vu0math_sub_00132c20(auStack_40,iVar6);
+        sceVu0CopyMatrix(auStack_40,iVar6);
         if ((*puVar10 & 1) != 0) {
           if (*(int *)(iVar9 + 0x3f8) == 1) {
             puVar12 = puVar10 + 4;
@@ -1607,7 +1607,7 @@ switchD_0019a314_default:
             }
             if (iVar2 == 0) {
               maybe_Vu0_UnitMatrix(iVar6);
-              vu0math_sub_00132ba0(iVar6,iVar9 + 0x120,iVar6);
+              sceVu0MulMatrix(iVar6,iVar9 + 0x120,iVar6);
               iVar2 = *(int *)(iVar8 + 0x240);
             }
             else {
@@ -1615,7 +1615,7 @@ switchD_0019a314_default:
             }
             if (iVar2 != 0) {
               maybe_Vu0_UnitMatrix(puVar7);
-              vu0math_sub_00132d20(puVar7,puVar7,puVar12);
+              sceVu0TransMatrix(puVar7,puVar7,puVar12);
             }
             if (uVar11 - 5 < 2) {
               lVar3 = CarModel_ComputeShadowQuad
@@ -1653,11 +1653,10 @@ switchD_0019a314_default:
             }
             if (iVar2 == 0) {
               maybe_Vu0_UnitMatrix(iVar6);
-              vu0math_sub_00132d20
-                        (iVar6,iVar6,
-                         *(int *)(*(int *)(iVar9 + 0x504) + *(int *)(iVar8 + 0x458) * 100 + 0x98) +
-                         0x20);
-              vu0math_sub_00132ba0(iVar6,iVar9 + 0x120,iVar6);
+              sceVu0TransMatrix(iVar6,iVar6,
+                                *(int *)(*(int *)(iVar9 + 0x504) + *(int *)(iVar8 + 0x458) * 100 +
+                                        0x98) + 0x20);
+              sceVu0MulMatrix(iVar6,iVar9 + 0x120,iVar6);
             }
             if (uVar11 - 5 < 2) {
               lVar3 = CarModel_ComputeShadowQuad
@@ -1671,10 +1670,9 @@ switchD_0019a314_default:
             }
             if (lVar3 != 0) {
               if (*(int *)(iVar8 + 0x240) != 0) {
-                vu0math_sub_00132d20
-                          (puVar7,puVar7,
-                           *(int *)(*(int *)(iVar9 + 0x504) + *(int *)(iVar8 + 0x458) * 100 + 0x98)
-                           + 0x20);
+                sceVu0TransMatrix(puVar7,puVar7,
+                                  *(int *)(*(int *)(iVar9 + 0x504) + *(int *)(iVar8 + 0x458) * 100 +
+                                          0x98) + 0x20);
               }
               Model_UpdateNodeMatrix(param_2,uStack_b0);
             }
@@ -1691,30 +1689,30 @@ switchD_0019a314_default:
           else {
             uVar13 = *(undefined4 *)(iVar5 + *(int *)(iVar9 + 0x500) + 0x68);
             maybe_Vu0_UnitMatrix(puVar7);
-            vu0math_sub_00132d20(puVar7,puVar7,puVar10 + 8);
-            vu0math_sub_00132c20(iVar6,iVar9 + 0x120);
+            sceVu0TransMatrix(puVar7,puVar7,puVar10 + 8);
+            sceVu0CopyMatrix(iVar6,iVar9 + 0x120);
             *(undefined4 *)(iVar8 + 0xf0) = 0;
             *(undefined4 *)(iVar8 + 0xf4) = *(undefined4 *)(iVar8 + 0x460);
             *(undefined4 *)(iVar8 + 0xf8) = 0;
-            vu0math_sub_00132ba0(iVar6,iVar8 + 0x470,iVar6);
-            vu0math_sub_00132d20(iVar6,iVar6,&uStack_50);
+            sceVu0MulMatrix(iVar6,iVar8 + 0x470,iVar6);
+            sceVu0TransMatrix(iVar6,iVar6,&uStack_50);
             Model_UpdateNodeMatrix(param_2,uVar13);
             uVar4 = *puVar10;
           }
           if ((uVar4 & 4) != 0) {
             uVar13 = *(undefined4 *)(iVar5 + *(int *)(iVar9 + 0x500) + 0x84);
             maybe_Vu0_UnitMatrix(puVar7);
-            vu0math_sub_00132d20(puVar7,puVar7,puVar10 + 0xc);
-            vu0math_sub_00132c20(iVar6,iVar9 + 0x120);
+            sceVu0TransMatrix(puVar7,puVar7,puVar10 + 0xc);
+            sceVu0CopyMatrix(iVar6,iVar9 + 0x120);
             *(undefined4 *)(iVar8 + 0xf0) = 0;
             *(undefined4 *)(iVar8 + 0xf4) = *(undefined4 *)(iVar8 + 0x460);
             *(undefined4 *)(iVar8 + 0xf8) = 0;
-            vu0math_sub_00132ba0(iVar6,iVar8 + 0x470,iVar6);
-            vu0math_sub_00132d20(iVar6,iVar6,&uStack_50);
+            sceVu0MulMatrix(iVar6,iVar8 + 0x470,iVar6);
+            sceVu0TransMatrix(iVar6,iVar6,&uStack_50);
             Model_UpdateNodeMatrix(param_2,uVar13);
           }
         }
-        vu0math_sub_00132c20(iVar6,auStack_40);
+        sceVu0CopyMatrix(iVar6,auStack_40);
         iStack_a0 = iStack_a0 + 4;
         uStack_70 = uStack_70 + 1;
         puVar10 = puVar10 + 0x10;
@@ -1764,8 +1762,8 @@ void CarModel_DrawParts(int param_1,undefined8 param_2)
   iVar12 = (int)param_2;
   if (cRam00430460 == '\x02') {
     Vu0_Vec3Distance(auStack_10,param_1 + 0x150,*(undefined4 *)(iVar12 + 0x244));
-    in_f21 = (float)vu0math_sub_00132ab0(param_1 + 0x120,auStack_10);
-    unaff_f20 = (float)vu0math_sub_00132ab0(param_1 + 0x140,auStack_10);
+    in_f21 = (float)sceVu0InnerProduct(param_1 + 0x120,auStack_10);
+    unaff_f20 = (float)sceVu0InnerProduct(param_1 + 0x140,auStack_10);
   }
   if (iRam00436450 != 0) {
     Pkt_Flush(param_2,0x436458);
@@ -1803,14 +1801,14 @@ void CarModel_DrawParts(int param_1,undefined8 param_2)
 LAB_0019aa5c:
         maybe_Vu0_UnitMatrix(iVar10);
         if (*(int *)(iVar12 + 0x240) == 0) {
-          vu0math_sub_00132c20(iVar12 + 0xc0,param_1 + 0x120);
+          sceVu0CopyMatrix(iVar12 + 0xc0,param_1 + 0x120);
         }
         if ((cRam00430460 == '\x02') || (*(int *)(param_1 + 0x498) != 0)) {
-          vu0math_sub_00132ba0(iVar10,iVar10,iVar4);
+          sceVu0MulMatrix(iVar10,iVar10,iVar4);
           iVar6 = *(int *)(param_1 + 0x504);
         }
         else {
-          vu0math_sub_00132d20(iVar10,iVar10,iVar6 + iStack_70 + iStack_b0 + 0x510);
+          sceVu0TransMatrix(iVar10,iVar10,iVar6 + iStack_70 + iStack_b0 + 0x510);
           iVar6 = *(int *)(param_1 + 0x504);
         }
         uVar2 = CarModel_ComputeLod(*(undefined4 *)(iVar6 + 0xcb0),param_1,
@@ -1827,11 +1825,11 @@ LAB_0019aa5c:
           Model_UpdateNodeMatrix(param_2,*(undefined4 *)(iStack_90 + iVar6 + iStack_c0 + 0x40));
         }
         if ((cRam00430460 == '\x02') || (*(int *)(param_1 + 0x498) != 0)) {
-          vu0math_sub_00132ba0(iVar10,iVar4,iVar16 + 0x2b0);
+          sceVu0MulMatrix(iVar10,iVar4,iVar16 + 0x2b0);
           iVar6 = *(int *)(param_1 + 0x528);
         }
         else {
-          vu0math_sub_00132ba0(iVar10,iVar10,iVar4);
+          sceVu0MulMatrix(iVar10,iVar10,iVar4);
           iVar6 = *(int *)(param_1 + 0x528);
         }
         if ((*(int *)(iVar14 + iVar6 + 0x38) != 0) && (*(uint *)(iVar12 + 0x45c) < 3)) {
@@ -2037,7 +2035,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
   else {
     puVar11 = puVar11 + 0x14;
   }
-  vu0math_sub_00132ba0(auStack_50,*(int *)(iVar13 + 0x244) + 0x2c0,param_1 + 0x120);
+  sceVu0MulMatrix(auStack_50,*(int *)(iVar13 + 0x244) + 0x2c0,param_1 + 0x120);
   lVar5 = Vu0_TransformPointPersp(*(undefined4 *)(iVar13 + 0x244),auStack_50,puVar11 + 4);
   if (lVar5 == 0) {
     uVar19 = 0;
@@ -2057,10 +2055,9 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
           iStack_100 = 0;
           iVar7 = iStack_d0;
           do {
-            vu0math_sub_00132b90(iVar7 + 0x170);
-            vu0math_sub_00132d50
-                      (iVar7 + 0x170,iVar9,
-                       *(int *)(param_1 + 0x504) + iStack_e0 + iStack_100 + 0x510);
+            maybe_Vu0_SetUnitW(iVar7 + 0x170);
+            sceVu0ApplyMatrix(iVar7 + 0x170,iVar9,
+                              *(int *)(param_1 + 0x504) + iStack_e0 + iStack_100 + 0x510);
             uVar6 = uRam0036f2dc;
             if (uRam0036f2dc == 0) {
               uVar6 = 0;
@@ -2089,7 +2086,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
         } while (uVar15 < 2);
       }
       if ((puVar11 != (uint *)0x0) && (*(int *)(param_1 + 0x49c) == 1)) {
-        vu0math_sub_00132c20(iVar9,param_1 + 0x120);
+        sceVu0CopyMatrix(iVar9,param_1 + 0x120);
         uVar19 = CarModel_ProjectShadow
                            (0x3c23d70a,param_1,iVar12,iVar13 + 0x4c0,param_1 + 0x170,
                             *(int *)(iVar13 + 0x3d0) + 0x50,iVar13 + 0xf0);
@@ -2097,7 +2094,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
         *(undefined4 *)(iVar13 + 0xf0) = 0;
         *(undefined4 *)(iVar13 + 0xf4) = *(undefined4 *)(iVar13 + 0x4b0);
         *(undefined4 *)(iVar13 + 0xf8) = 0;
-        vu0math_sub_00132ba0(iVar9,iVar13 + 0x4c0,iVar9);
+        sceVu0MulMatrix(iVar9,iVar13 + 0x4c0,iVar9);
         fVar20 = *(float *)(param_1 + 0x160);
         fVar21 = *(float *)(param_1 + 0x164);
         fVar18 = *(float *)(param_1 + 0x168);
@@ -2142,9 +2139,9 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
           (uVar15 = 0, iVar7 != 0)) && (iVar7 != 0)) {
         iVar7 = param_1;
         do {
-          vu0math_sub_00132c20(iVar9,param_1 + 0x120);
-          vu0math_sub_00132b50(auStack_60,iVar13 + 0xf0,iVar7 + 0x4b0);
-          vu0math_sub_00132c20(iVar9,param_1 + 0x120);
+          sceVu0CopyMatrix(iVar9,param_1 + 0x120);
+          sceVu0SubVector(auStack_60,iVar13 + 0xf0,iVar7 + 0x4b0);
+          sceVu0CopyMatrix(iVar9,param_1 + 0x120);
           uVar19 = CarModel_ProjectShadow
                              (0x3c23d70a,param_1,iVar12,iVar13 + 0x4c0,param_1 + 0x170,auStack_60,
                               iVar13 + 0xf0);
@@ -2152,8 +2149,8 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
           *(undefined4 *)(iVar13 + 0xf0) = 0;
           *(undefined4 *)(iVar13 + 0xf4) = *(undefined4 *)(iVar13 + 0x4b0);
           *(undefined4 *)(iVar13 + 0xf8) = 0;
-          vu0math_sub_00132ba0(iVar9,iVar13 + 0x4c0,iVar9);
-          fVar18 = (float)vu0math_sub_00132900(auStack_60,iVar7 + 0x4b0,iVar13 + 0xf0);
+          sceVu0MulMatrix(iVar9,iVar13 + 0x4c0,iVar9);
+          fVar18 = (float)maybe_sceVu0InterVectorDist(auStack_60,iVar7 + 0x4b0,iVar13 + 0xf0);
           fVar18 = 30.0 - fVar18;
           if (fVar18 < 0.0) {
             fVar18 = 0.0;
@@ -2188,11 +2185,11 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
         } while (uVar15 < *(uint *)(param_1 + 0x4a4));
       }
       if (puVar1 != (uint *)0x0) {
-        vu0math_sub_00132c20(iVar9,param_1 + 0x120);
+        sceVu0CopyMatrix(iVar9,param_1 + 0x120);
         *(undefined4 *)(iVar13 + 0xf0) = 0;
         *(undefined4 *)(iVar13 + 0xf4) = *(undefined4 *)(iVar13 + 0x460);
         *(undefined4 *)(iVar13 + 0xf8) = 0;
-        vu0math_sub_00132ba0(iVar9,iVar13 + 0x470,iVar9);
+        sceVu0MulMatrix(iVar9,iVar13 + 0x470,iVar9);
         *puVar1 = *puVar1 | 0x20;
         *puVar1 = *puVar1 & 0xffffffbf;
         if ((*puVar1 & 0x10) == 0) {
@@ -2273,19 +2270,19 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
       if (*(int *)(iVar13 + 0x240) == 0) {
         maybe_Vu0_UnitMatrix(iVar9);
         if (cRam00430460 != '\x02') {
-          vu0math_sub_00132d20(iVar9,iVar9,iVar7 + 0x20);
+          sceVu0TransMatrix(iVar9,iVar9,iVar7 + 0x20);
         }
-        vu0math_sub_00132ba0(iVar9,param_1 + 0x120,iVar9);
+        sceVu0MulMatrix(iVar9,param_1 + 0x120,iVar9);
       }
       else if (cRam00430460 != '\x02') {
         maybe_Vu0_UnitMatrix(auStack_a0);
-        vu0math_sub_00132d20(auStack_a0,auStack_a0,iVar7 + 0x20);
-        vu0math_sub_00132ba0(iVar9,iVar9,auStack_a0);
+        sceVu0TransMatrix(auStack_a0,auStack_a0,iVar7 + 0x20);
+        sceVu0MulMatrix(iVar9,iVar9,auStack_a0);
       }
     }
     else if (*(int *)(iVar13 + 0x240) == 0) {
       maybe_Vu0_UnitMatrix(iVar9);
-      vu0math_sub_00132ba0(iVar9,param_1 + 0x120,iVar9);
+      sceVu0MulMatrix(iVar9,param_1 + 0x120,iVar9);
     }
     *(int *)(iVar13 + 0xa4) = iVar13 + 0x3d8;
     *(undefined4 *)(iVar13 + 0xa8) = 1;
@@ -2308,7 +2305,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
       if (((puVar11 != (uint *)0x0) && ((*puVar11 & 0x10) != 0)) &&
          ((cRam00430460 != '\x02' ||
           ((uVar15 != 3 ||
-           (fVar18 = (float)vu0math_sub_00132ab0(param_1 + 0x120,*(int *)(iVar13 + 0x244) + 0x40),
+           (fVar18 = (float)sceVu0InnerProduct(param_1 + 0x120,*(int *)(iVar13 + 0x244) + 0x40),
            0.0 <= fVar18)))))) {
         if (1 < *(uint *)(iVar13 + 0x458)) {
           if ((uVar15 < 7) || (0x10 < uVar15)) {
@@ -2376,21 +2373,21 @@ switchD_0019b78c_default:
               maybe_Vu0_RotMatrixZ(puVar11[0xc],iVar12,iVar12);
               maybe_Vu0_RotMatrixY(puVar11[0xd],iVar12,iVar12);
               maybe_Vu0_RotMatrixX(puVar11[0xe],iVar12,iVar12);
-              vu0math_sub_00132af0(*(undefined4 *)(param_1 + 0x48c),auStack_c0,puVar11 + 8);
-              vu0math_sub_00132d20(iVar12,iVar12,auStack_c0);
+              maybe_sceVu0ScaleVectorXYZ(*(undefined4 *)(param_1 + 0x48c),auStack_c0,puVar11 + 8);
+              sceVu0TransMatrix(iVar12,iVar12,auStack_c0);
             }
             else if ((uVar15 == 2) || (uVar15 == 1)) {
-              vu0math_sub_00132af0(*(undefined4 *)(param_1 + 0x484),&uStack_b0,puVar11 + 0xc);
+              maybe_sceVu0ScaleVectorXYZ(*(undefined4 *)(param_1 + 0x484),&uStack_b0,puVar11 + 0xc);
               maybe_Vu0_RotMatrixZ(uStack_b0,iVar12,iVar12);
               maybe_Vu0_RotMatrixY(uStack_ac,iVar12,iVar12);
               maybe_Vu0_RotMatrixX(uStack_a8,iVar12,iVar12);
-              vu0math_sub_00132d20(iVar12,iVar12,puVar11 + 8);
+              sceVu0TransMatrix(iVar12,iVar12,puVar11 + 8);
             }
             else {
               maybe_Vu0_RotMatrixZ(puVar11[0xc],iVar12,iVar12);
               maybe_Vu0_RotMatrixY(puVar11[0xd],iVar12,iVar12);
               maybe_Vu0_RotMatrixX(puVar11[0xe],iVar12,iVar12);
-              vu0math_sub_00132d20(iVar12,iVar12,puVar11 + 8);
+              sceVu0TransMatrix(iVar12,iVar12,puVar11 + 8);
             }
             Model_UpdateNodeMatrix(param_2,puVar11);
           }
@@ -2622,12 +2619,12 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x3b8) = uVar16;
     *(undefined4 *)(param_2 + 0x3bc) = uVar17;
     *(undefined1 *)(param_2 + 0x3c0) = uRam004362f0;
-    vu0math_sub_00132b30(auStack_10,0x436180,param_1 + 0x160);
-    vu0math_sub_00132a60(0x3ecccccd,param_2 + 0x250,0x436180,auStack_10);
-    vu0math_sub_00132b30(param_2 + 0x2d0,0x436200,param_1 + 0x160);
-    vu0math_sub_00132b30(param_2 + 0x2e0,0x436210,param_1 + 0x160);
-    vu0math_sub_00132ae0(param_2 + 0x2f0,param_1 + 0x3b0);
-    vu0math_sub_00132ae0(param_2 + 0x2c0,param_1 + 0x3c0);
+    sceVu0MulVector(auStack_10,0x436180,param_1 + 0x160);
+    sceVu0InterVector(0x3ecccccd,param_2 + 0x250,0x436180,auStack_10);
+    sceVu0MulVector(param_2 + 0x2d0,0x436200,param_1 + 0x160);
+    sceVu0MulVector(param_2 + 0x2e0,0x436210,param_1 + 0x160);
+    sceVu0CopyVector(param_2 + 0x2f0,param_1 + 0x3b0);
+    sceVu0CopyVector(param_2 + 0x2c0,param_1 + 0x3c0);
     *(int *)(param_2 + 0x3d0) = param_2 + 0x250;
   }
   else if (cRam00430460 == '\x01') {
@@ -2806,7 +2803,7 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x3b8) = uVar16;
     *(undefined4 *)(param_2 + 0x3bc) = uVar17;
     *(undefined1 *)(param_2 + 0x3c0) = uRam004362f0;
-    vu0math_sub_00132b30(param_2 + 0x250,0x436180,param_1 + 0x160);
+    sceVu0MulVector(param_2 + 0x250,0x436180,param_1 + 0x160);
     *(int *)(param_2 + 0x3d0) = param_2 + 0x250;
   }
   else {

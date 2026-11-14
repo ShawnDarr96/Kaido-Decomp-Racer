@@ -647,78 +647,80 @@ long Mc_IssueCommand(int param_1)
   lVar2 = 0;
   switch(*(undefined4 *)(param_1 + 0xc)) {
   case 1:
-    lVar2 = libmc_sub_00123b20(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
-                               *(undefined4 *)(param_1 + 0x24));
+    lVar2 = maybe_sceMcGetDir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                              *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                              *(undefined4 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
+                              *(undefined4 *)(param_1 + 0x24));
     break;
   case 2:
-    lVar2 = libmc_sub_001233d8(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30));
+    lVar2 = maybe_sceMcOpen(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                            *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                            *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30));
     break;
   case 3:
-    lVar2 = libmc_sub_00123538(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
+    lVar2 = maybe_sceMcClose(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
     break;
   case 4:
-    lVar2 = libmc_sub_001235f8(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                               *(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x30));
+    lVar2 = maybe_sceMcSeek(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                            *(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x30));
     break;
   case 5:
-    lVar2 = libmc_sub_00123770(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                               *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
+    lVar2 = maybe_sceMcRead(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                            *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
     break;
   case 6:
-    lVar2 = libmc_sub_00123888(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                               *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
+    lVar2 = maybe_sceMcWrite(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                             *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
     break;
   case 10:
-    lVar2 = libmc_sub_00124220(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
+    lVar2 = maybe_sceMcFormat(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
     break;
   case 0xb:
-    lVar2 = libmc_sub_00123500(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x28));
+    lVar2 = maybe_sceMcOpenChecked
+                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28));
     break;
   case 0xc:
-    lVar2 = libmc_sub_00123ef0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x40),*(undefined4 *)(param_1 + 0x44));
+    lVar2 = maybe_sceMcMkdir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                             *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                             *(undefined4 *)(param_1 + 0x40),*(undefined4 *)(param_1 + 0x44));
     break;
   case 0xd:
-    lVar2 = libmc_sub_00123d10(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30),
-                               *(undefined4 *)(param_1 + 0x48),*(undefined4 *)(param_1 + 0x4c));
+    lVar2 = maybe_sceMcSetFileInfo
+                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
+                       *(undefined4 *)(param_1 + 0x30),*(undefined4 *)(param_1 + 0x48),
+                       *(undefined4 *)(param_1 + 0x4c));
     break;
   case 0xe:
-    lVar2 = libmc_sub_001242e0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x50),
-                               *(undefined4 *)(param_1 + 0x54));
+    lVar2 = maybe_sceMcReadDirEntry
+                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
+                       *(undefined4 *)(param_1 + 0x50),*(undefined4 *)(param_1 + 0x54));
     break;
   case 0xf:
-    lVar2 = libmc_sub_00124100(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x28));
+    lVar2 = maybe_sceMcChdir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                             *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                             *(undefined4 *)(param_1 + 0x28));
     break;
   case 0x10:
-    lVar2 = libmc_sub_00124030(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5));
+    lVar2 = maybe_sceMcFlush(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                             *(undefined1 *)(*(int *)(param_1 + 8) + 5));
     break;
   case 0x11:
-    lVar2 = libmc_sub_00124610(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5));
+    lVar2 = maybe_sceMcUnformat(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                                *(undefined1 *)(*(int *)(param_1 + 8) + 5));
     break;
   case 0x12:
-    lVar2 = libmc_sub_001246e0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x40));
+    lVar2 = maybe_sceMcDelete(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                              *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                              *(undefined4 *)(param_1 + 0x40));
     break;
   case 0x13:
-    lVar2 = libmc_sub_001244b0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x2c));
+    lVar2 = maybe_sceMcGetEntSpace
+                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
+                       *(undefined4 *)(param_1 + 0x2c));
   }
   if (lVar2 == 0) {
     *(undefined4 *)(param_1 + 0x10) = 0;
@@ -1642,7 +1644,7 @@ void Movie_DecodeThread(uint *param_1)
   long lVar3;
   int iVar4;
   
-  lVar3 = libmpeg_sub_0010f9a8(param_1 + 2);
+  lVar3 = maybe_sceMpegGetDecodeMode(param_1 + 2);
   do {
     if ((lVar3 != 0) || ((*param_1 & 0x10) != 0)) goto LAB_0013a6fc;
     if ((param_1[0x50] != 0) && ((*param_1 & 2) != 0)) {
@@ -1666,11 +1668,11 @@ void Movie_DecodeThread(uint *param_1)
       if ((int)uVar2 < 0) {
         uVar2 = uVar2 + 0xf;
       }
-      lVar3 = libmpeg_sub_0010f880(param_1 + 2,iVar4,((int)uVar1 >> 4) * ((int)uVar2 >> 4));
+      lVar3 = maybe_sceMpegGetPictureRAW8(param_1 + 2,iVar4,((int)uVar1 >> 4) * ((int)uVar2 >> 4));
       if (lVar3 < 0) {
 LAB_0013a6fc:
         param_1[0x3f] = 1;
-        libmpeg_sub_0010f9c8(param_1 + 2);
+        maybe_sceMpegReset(param_1 + 2);
         *param_1 = *param_1 & 0xffffffbf;
         *param_1 = *param_1 | 0x80;
         *param_1 = *param_1 | 0x20;
@@ -1684,7 +1686,7 @@ LAB_0013a6fc:
     }
     *param_1 = *param_1 | 0x40;
     RotateThreadReadyQueue(param_1[0x14]);
-    lVar3 = libmpeg_sub_0010f9a8(param_1 + 2);
+    lVar3 = maybe_sceMpegGetDecodeMode(param_1 + 2);
   } while( true );
 }
 
@@ -1761,7 +1763,7 @@ void Movie_Close(int param_1)
 {
   Thread_Terminate(param_1 + 0x54);
   Thread_Delete(param_1 + 0x54);
-  libmpeg_sub_0010f838(param_1 + 8);
+  maybe_sceMpegDelete(param_1 + 8);
   sceMpegCreate(param_1 + 8,*(undefined4 *)(param_1 + 0x5c),*(undefined4 *)(param_1 + 0x60));
   return;
 }
@@ -1774,7 +1776,7 @@ void Movie_Start(undefined8 param_1,long param_2,long param_3,long param_4)
   uint *puVar2;
   
   puVar2 = (uint *)param_1;
-  libmpeg_sub_0010f9c8(puVar2 + 2);
+  maybe_sceMpegReset(puVar2 + 2);
   puVar2[0x50] = 0;
   puVar2[0x51] = 0;
   puVar2[0x1e] = 0;
@@ -1801,11 +1803,11 @@ void Movie_Start(undefined8 param_1,long param_2,long param_3,long param_4)
   sceMpegAddCallback(puVar2 + 2,4,0x13a430,param_1);
   sceMpegAddCallback(puVar2 + 2,5,0x13a430,param_1);
   if (((*puVar2 & 2) != 0) && (param_2 != 0)) {
-    libmpeg_sub_0010ed10(puVar2 + 2,0,0,0x13a200,param_1);
+    maybe_Demux_DeliverPacket(puVar2 + 2,0,0,0x13a200,param_1);
     puVar2[0x50] = (uint)param_2;
   }
   if (((*puVar2 & 4) != 0) && (param_3 != 0)) {
-    libmpeg_sub_0010ed10(puVar2 + 2,2,0,0x13a0e0,param_1);
+    maybe_Demux_DeliverPacket(puVar2 + 2,2,0,0x13a0e0,param_1);
     puVar2[0x51] = (uint)param_3;
   }
   *puVar2 = *puVar2 & 0xffffff0f;
@@ -1835,7 +1837,7 @@ void Movie_StopDma(uint *param_1)
     REG_DMAC_4_IPU_TO_TADR = 0;
     DeleteSema(param_1[0x30]);
   }
-  libmpeg_sub_0010f838(param_1 + 2);
+  maybe_sceMpegDelete(param_1 + 2);
   return;
 }
 

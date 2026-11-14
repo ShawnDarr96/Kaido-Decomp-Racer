@@ -340,7 +340,7 @@ undefined8 maybe_Gfx_VSyncWakeThread(void)
   uRam0036ef98 = uRam0036ef98 + 1;
   if ((uRam00380340 <= uRam0036ef98) &&
      (iReferThreadStatus(uRam0036efa4,auStack_30), (auStack_30[0] & 4) != 0)) {
-    libkernl_sub_00112650(uRam0036efa4);
+    maybe_iWakeupThreadEx(uRam0036efa4);
   }
   SYNC(0);
   EI();
@@ -356,7 +356,7 @@ void Gfx_StoreImage(undefined8 param_1,undefined2 *param_2)
   long lVar1;
   undefined1 auStack_70 [112];
   
-  libgraph_sub_001084f0
+  sceGsSetDefStoreImage
             (auStack_70,*param_2,param_2[2],param_2[4],param_2[6],param_2[8],param_2[10],
              param_2[0xc]);
   FlushCache(0);
@@ -463,7 +463,7 @@ void Gfx_Init(void)
   if ((uRam003804f0 & 0x1ff) <= (uRam00380400 & 0x1ff)) {
     uVar2 = uRam00380400 & 0x1ff;
   }
-  libgraph_sub_00108140(0);
+  sceGsSyncV(0);
   uVar4 = 0;
   if (0x200 / uVar2 != 0) {
     iVar3 = 0;
@@ -487,7 +487,7 @@ void Gfx_Init(void)
       iVar3 = iVar3 + uVar2;
     } while (uVar4 < 0x200 / uVar2);
   }
-  libgraph_sub_00108140(0);
+  sceGsSyncV(0);
   return;
 }
 
@@ -749,9 +749,9 @@ void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
   undefined8 uStack_10;
   
   FlushCache(0);
-  libgraph_sub_00108140(0);
+  sceGsSyncV(0);
   sceGsResetGraph(param_1,param_2[2],*param_2,param_2[4]);
-  libgraph_sub_00108140(0);
+  sceGsSyncV(0);
   uStack_40 = 0;
   puStack_50 = (undefined8 *)0x3801f0;
   puVar3 = param_2;
@@ -818,7 +818,7 @@ void Gfx_Shutdown(void)
 void Gfx_ResetState(void)
 
 {
-  libgraph_sub_00108140(0);
+  sceGsSyncV(0);
   sceGsResetPath();
   uRam0036ef90 = 0;
   uRam0036ef9c = 4;
@@ -915,7 +915,7 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
         iStack_c = iRam0036f010;
         iStack_8 = iRam0036f014;
         if (iRam0036f00c == -1) {
-          libcdvd_sub_00122bd8();
+          sceCdStStop();
         }
         else {
           if (*(int *)(iRam0036f00c * 4 + 0x3805d0) != -1) {
@@ -952,7 +952,7 @@ void CdStream_Close(void)
   
   iVar1 = iRam0036f00c;
   if (iRam0036f00c == -1) {
-    libcdvd_sub_00122bd8();
+    sceCdStStop();
   }
   else {
     if (*(int *)(iRam0036f00c * 4 + 0x3805d0) != -1) {
@@ -984,7 +984,7 @@ undefined4 CdStream_Open(int *param_1)
     uStack_2 = 0;
     iRam0036f010 = param_1[1];
     iRam0036f014 = param_1[2];
-    lVar1 = libcdvd_sub_00122b40(iRam0036f010,&uStack_4);
+    lVar1 = sceCdStStart(iRam0036f010,&uStack_4);
     if (lVar1 == 0) {
       return 0;
     }
@@ -1024,8 +1024,8 @@ undefined4 CdStream_Open(int *param_1)
 void CdStream_Shutdown(void)
 
 {
-  libcdvd_sub_00122bd8();
-  loadfile_sub_00118b98(uRam0036f008);
+  sceCdStStop();
+  maybe_sceSifFreeSysMemory(uRam0036f008);
   return;
 }
 
@@ -1035,8 +1035,8 @@ undefined4 maybe_CdStream_Init(undefined8 param_1,undefined8 param_2)
 {
   uRam0036f00c = 0xffffffff;
   uRam0036f010 = 0;
-  iRam0036f008 = loadfile_sub_00118a30((int)param_1 * 0x800 + 0x10);
-  libcdvd_sub_00122b10(param_1,param_2,iRam0036f008 + 0xfU & 0xfffffff0);
+  iRam0036f008 = sceSifAllocIopHeap((int)param_1 * 0x800 + 0x10);
+  sceCdStInit(param_1,param_2,iRam0036f008 + 0xfU & 0xfffffff0);
   return 1;
 }
 
@@ -1114,7 +1114,7 @@ void maybe_Cd_ToggleMotor(undefined4 param_1)
 {
   Sema_Wait(0x36efc0);
   if (iRam0036f000 == 0) {
-    iRam0036f000 = libcdvd_sub_001228b0();
+    iRam0036f000 = maybe_sceCdTrayReq();
   }
   else {
     iRam0036f000 = 0;
@@ -1171,7 +1171,7 @@ void File_LoaderThread(void)
           do {
             lVar4 = sceCdDiskReady(0);
           } while (lVar4 == 6);
-          lVar4 = libcdvd_sub_00122698(iVar2 + uVar5);
+          lVar4 = maybe_sceCdSeek(iVar2 + uVar5);
         } while (lVar4 == 0);
         break;
       case 5:
@@ -1239,7 +1239,7 @@ LAB_00136060:
         do {
           lVar4 = sceCdDiskReady(0);
         } while (lVar4 == 6);
-        libcdvd_sub_00122768();
+        maybe_sceCdStop();
         do {
           lVar4 = sceCdDiskReady(0);
         } while (lVar4 == 6);
@@ -1328,7 +1328,7 @@ void File_StartRequest(long param_1)
         puVar4 = *(undefined4 **)(iVar5 + 0x2c);
       }
       else {
-        uVar2 = loadfile_sub_00118a30();
+        uVar2 = sceSifAllocIopHeap();
         puVar4 = *(undefined4 **)(iVar5 + 0x2c);
       }
       if (puVar4 != (undefined4 *)0x0) {
@@ -1456,7 +1456,7 @@ int File_NextRequest(int param_1)
     }
     if ((uVar4 & 2) != 0) {
       if ((uVar4 & 0x1000) == 0) {
-        loadfile_sub_00118b98(*(undefined4 *)(iVar6 + 0x50));
+        maybe_sceSifFreeSysMemory(*(undefined4 *)(iVar6 + 0x50));
       }
       else if (*(int *)(iVar6 + 0x50) != 0) {
         Mem_Free();
@@ -1473,7 +1473,7 @@ int File_NextRequest(int param_1)
   }
   bVar1 = false;
   if (param_1 != 0) {
-    lVar3 = libcdvd_sub_001228b0();
+    lVar3 = maybe_sceCdTrayReq();
     bVar5 = false;
     if (lVar3 == 0) {
       bVar5 = *(int *)(param_1 + 0x54) == 0;
@@ -1513,7 +1513,7 @@ int File_NextRequest(int param_1)
       iVar6 = param_1;
       if ((uVar4 & 2) != 0) {
         if ((uVar4 & 0x1000) == 0) {
-          loadfile_sub_00118b98(*(undefined4 *)(param_1 + 0x50));
+          maybe_sceSifFreeSysMemory(*(undefined4 *)(param_1 + 0x50));
         }
         else if (*(int *)(param_1 + 0x50) != 0) {
           Mem_Free();
@@ -1688,7 +1688,7 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
   if (iRam0036efc8 != 0) {
     Sema_Wait(0x36efc4);
   }
-  lVar2 = libcdvd_sub_00121728(&uStack_70,param_1);
+  lVar2 = maybe_sceCdSearchFileSimple(&uStack_70,param_1);
   if (lVar2 == 0) {
     uVar1 = 0;
   }
@@ -1734,7 +1734,7 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
   if (iRam0036efc8 != 0) {
     Sema_Wait(0x36efc4);
   }
-  lVar2 = libcdvd_sub_00121728(&uStack_30,param_1);
+  lVar2 = maybe_sceCdSearchFileSimple(&uStack_30,param_1);
   if (lVar2 == 0) {
     uVar1 = 0;
   }
@@ -1802,10 +1802,10 @@ bool File_GetDiscType(long param_1)
   if (iRam0036efc8 != 0) {
     Sema_Wait(0x36efc4);
   }
-  lVar1 = libcdvd_sub_00122818();
+  lVar1 = sceCdGetDiskType();
   while (lVar1 == 1) {
     DelayThread(10000);
-    lVar1 = libcdvd_sub_00122818();
+    lVar1 = sceCdGetDiskType();
   }
   if (param_1 != 0) {
     *(undefined4 *)param_1 = (int)lVar1;
@@ -1862,7 +1862,7 @@ undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
   uint uVar3;
   
   sceCdInit(0);
-  libcdvd_sub_00122948(2);
+  sceCdMmode(2);
   DAT_0036e704 = 0xffffffff;
   uRam0036efbc = 0;
   uRam0036efc8 = 0;
@@ -2005,21 +2005,21 @@ void Pad_Update(void)
   iVar7 = 0;
   puVar6 = &g_Pads;
   do {
-    uVar1 = libpad2_sub_00130660(*(undefined4 *)(puVar6 + 0x48c));
+    uVar1 = maybe_Pad2_UpdateSocket(*(undefined4 *)(puVar6 + 0x48c));
     *(undefined4 *)(puVar6 + 0x47c) = uVar1;
     if (*(int *)(puVar6 + 0x47c) != 3) {
       if (*(int *)(puVar6 + 0x47c) == 1) {
         if (*(int *)(puVar6 + 0x480) == 0) {
-          lVar2 = libpad2_sub_00130590
+          lVar2 = maybe_scePad2GetState
                             (*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x490));
           if (0 < lVar2) {
             *(undefined4 *)(puVar6 + 0x480) = 1;
           }
-          libdbc_sub_00131a88(*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x494));
+          maybe_Dbc_ReceiveStatus(*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x494));
         }
         else {
-          lVar2 = libpad2_sub_001304b8
-                            (*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x488));
+          lVar2 = maybe_scePad2Read(*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x488))
+          ;
           if (0 < lVar2) {
             Pad_ReadButtons(puVar6);
           }
@@ -2094,7 +2094,7 @@ void maybe_Pad_Shutdown(void)
     iVar2 = iVar2 + 1;
     puVar1 = puVar1 + 0x498;
   } while (iVar2 < 2);
-  libpad2_sub_001302f0();
+  maybe_scePad2End();
   Dbc_Release();
   return;
 }
@@ -2116,7 +2116,7 @@ void Pad_Init(undefined8 param_1)
   int iStack_18;
   
   Dbc_Acquire();
-  libpad2_sub_001302b0(0);
+  maybe_scePad2Init(0);
   iVar6 = 0;
   pcVar5 = &g_Pads;
   do {
@@ -2262,7 +2262,7 @@ undefined4 Pad_SetActuator(int param_1,byte param_2,byte param_3,uint param_4)
       uVar4 = 2;
     }
     bStack_1 = param_2;
-    libdbc_sub_00131b08(*(undefined4 *)(param_1 + 0x48c),1,&bStack_1,uVar4,&bStack_4);
+    maybe_Dbc_SendActuator(*(undefined4 *)(param_1 + 0x48c),1,&bStack_1,uVar4,&bStack_4);
     uVar2 = 1;
   }
   else {
@@ -2302,7 +2302,7 @@ void Pad_ReadButtons(int param_1)
     iVar3 = 0;
     if ((-1 < iVar1) &&
        (lVar5 = (**(code **)(*(int *)(param_1 + 4) + 0x10))(param_1,iVar1), lVar5 != 0)) {
-      iVar3 = libpad2_sub_001307a0
+      iVar3 = maybe_scePad2GetButtonProfile
                         (*(undefined4 *)(param_1 + 0x48c),*(undefined4 *)(param_1 + 0x488),iVar1);
     }
     if ((iVar1 == iVar2) ||
@@ -2310,7 +2310,7 @@ void Pad_ReadButtons(int param_1)
       uVar4 = iVar3 * 0xff;
     }
     else {
-      uVar4 = libpad2_sub_001307a0
+      uVar4 = maybe_scePad2GetButtonProfile
                         (*(undefined4 *)(param_1 + 0x48c),*(undefined4 *)(param_1 + 0x488),iVar2);
     }
     lVar5 = (**(code **)(*(int *)(param_1 + 4) + 0x10))(param_1,iVar2);
@@ -2373,7 +2373,7 @@ void Pad_ReadButtons(int param_1)
     uVar6 = 0;
     lVar5 = (**(code **)(*(int *)(param_1 + 4) + 0x10))(param_1,uVar7 + 0x10);
     if (lVar5 != 0) {
-      uVar6 = libpad2_sub_001307a0
+      uVar6 = maybe_scePad2GetButtonProfile
                         (*(undefined4 *)(param_1 + 0x48c),*(undefined4 *)(param_1 + 0x488),
                          uVar7 + 0x10);
     }

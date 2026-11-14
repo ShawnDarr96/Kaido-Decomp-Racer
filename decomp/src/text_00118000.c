@@ -30,7 +30,7 @@ undefined8 maybe_sceLseek64(undefined8 param_1,undefined8 param_2,undefined4 par
   undefined4 uStack_9c;
   undefined8 auStack_90 [2];
   
-  lVar2 = libkernl_sub_00115378();
+  lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(0x16);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();
@@ -186,7 +186,7 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
 }
 
 // 0x00118600  size 0x1e0
-undefined4 libkernl_sub_00118600(char *param_1,char *param_2)
+undefined4 maybe_sceSymlink(char *param_1,char *param_2)
 
 {
   char cVar1;
@@ -259,7 +259,7 @@ undefined4 libkernl_sub_00118600(char *param_1,char *param_2)
 }
 
 // 0x001187e0  size 0x1c8
-undefined4 libkernl_sub_001187e0(char *param_1,undefined8 param_2,ulong param_3)
+undefined4 maybe_sceReadlink(char *param_1,undefined8 param_2,ulong param_3)
 
 {
   char cVar1;
@@ -326,7 +326,9 @@ undefined4 libkernl_sub_001187e0(char *param_1,undefined8 param_2,ulong param_3)
 }
 
 // 0x001189a8  size 0x88
-undefined4 loadfile_sub_001189a8(void)
+/* binds RPC 0x80000003 */
+
+undefined4 sceSifInitIopHeap(void)
 
 {
   int iVar1;
@@ -348,7 +350,7 @@ undefined4 loadfile_sub_001189a8(void)
 }
 
 // 0x00118a30  size 0x70
-undefined4 loadfile_sub_00118a30(undefined4 param_1)
+undefined4 sceSifAllocIopHeap(undefined4 param_1)
 
 {
   long lVar1;
@@ -362,7 +364,7 @@ undefined4 loadfile_sub_00118a30(undefined4 param_1)
 }
 
 // 0x00118aa0  size 0x80
-undefined4 loadfile_sub_00118aa0(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+undefined4 maybe_sceSifAllocSysMemory(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
   undefined4 uVar1;
@@ -383,7 +385,7 @@ undefined4 loadfile_sub_00118aa0(undefined4 param_1,undefined4 param_2,undefined
 }
 
 // 0x00118b20  size 0x78
-undefined4 loadfile_sub_00118b20(undefined4 param_1)
+undefined4 sceSifFreeIopHeap(undefined4 param_1)
 
 {
   undefined4 uVar1;
@@ -404,15 +406,15 @@ undefined4 loadfile_sub_00118b20(undefined4 param_1)
 }
 
 // 0x00118b98  size 0x1c
-void loadfile_sub_00118b98(void)
+void maybe_sceSifFreeSysMemory(void)
 
 {
-  loadfile_sub_00118b20();
+  sceSifFreeIopHeap();
   return;
 }
 
 // 0x00118bb8  size 0xf0
-undefined4 loadfile_sub_00118bb8(char *param_1,undefined4 param_2)
+undefined4 maybe_sceSifLoadIopHeap(char *param_1,undefined4 param_2)
 
 {
   char cVar1;
@@ -448,7 +450,7 @@ undefined4 loadfile_sub_00118bb8(char *param_1,undefined4 param_2)
 }
 
 // 0x00118ca8  size 0x70
-undefined4 loadfile_sub_00118ca8(void)
+undefined4 maybe_sceSifQueryTotalFreeMemSize(void)
 
 {
   undefined4 uVar1;
@@ -470,7 +472,7 @@ undefined4 loadfile_sub_00118ca8(void)
 }
 
 // 0x00118d18  size 0x70
-undefined4 loadfile_sub_00118d18(void)
+undefined4 maybe_sceSifQueryMaxFreeMemSize(void)
 
 {
   undefined4 uVar1;
@@ -492,7 +494,7 @@ undefined4 loadfile_sub_00118d18(void)
 }
 
 // 0x00118d88  size 0x70
-undefined4 loadfile_sub_00118d88(void)
+undefined4 maybe_sceSifQueryBlockTopAddress(void)
 
 {
   undefined4 uVar1;
@@ -514,7 +516,7 @@ undefined4 loadfile_sub_00118d88(void)
 }
 
 // 0x00118df8  size 0x7c
-undefined4 loadfile_sub_00118df8(undefined4 param_1)
+undefined4 maybe_sceSifQueryBlockSize(undefined4 param_1)
 
 {
   undefined4 uVar1;
@@ -537,7 +539,7 @@ undefined4 loadfile_sub_00118df8(undefined4 param_1)
 }
 
 // 0x00118e78  size 0x7c
-undefined4 loadfile_sub_00118e78(undefined4 param_1)
+undefined4 maybe_sceSifQueryMemSize(undefined4 param_1)
 
 {
   undefined4 uVar1;
@@ -560,7 +562,9 @@ undefined4 loadfile_sub_00118e78(undefined4 param_1)
 }
 
 // 0x00118ef8  size 0x100
-undefined4 loadfile_sub_00118ef8(void)
+/* binds RPC 0x80000006 */
+
+undefined4 sceSifLoadFileInit(void)
 
 {
   undefined4 uVar1;
@@ -592,7 +596,7 @@ undefined4 loadfile_sub_00118ef8(void)
 }
 
 // 0x00118ff8  size 0x8c
-bool loadfile_sub_00118ff8(void)
+bool maybe_LoadFile_IsBound(void)
 
 {
   long lVar1;
@@ -611,7 +615,7 @@ bool loadfile_sub_00118ff8(void)
 }
 
 // 0x00119088  size 0x38
-undefined8 loadfile_sub_00119088(void)
+undefined8 sceSifLoadFileReset(void)
 
 {
   DAT_00306ba0 = 0xffffffff;
@@ -621,7 +625,7 @@ undefined8 loadfile_sub_00119088(void)
 
 // 0x001190c0  size 0x208
 undefined4
-loadfile_sub_001190c0(undefined4 param_1,long param_2,undefined8 *param_3,undefined4 *param_4)
+maybe__lf_module_load(undefined4 param_1,long param_2,undefined8 *param_3,undefined4 *param_4)
 
 {
   undefined8 *puVar1;
@@ -632,10 +636,10 @@ loadfile_sub_001190c0(undefined4 param_1,long param_2,undefined8 *param_3,undefi
   undefined8 uVar6;
   undefined8 uVar7;
   
-  lVar3 = loadfile_sub_00118ef8();
+  lVar3 = sceSifLoadFileInit();
   uVar2 = 0xffff0000;
   if (-1 < lVar3) {
-    lVar3 = loadfile_sub_00118ff8();
+    lVar3 = maybe_LoadFile_IsBound();
     if (lVar3 == 0) {
       uRam003744c0 = param_1;
       if (param_3 == (undefined8 *)0x0) {
@@ -702,7 +706,7 @@ loadfile_sub_001190c0(undefined4 param_1,long param_2,undefined8 *param_3,undefi
 
 // 0x001192c8  size 0x208
 undefined4
-loadfile_sub_001192c8(undefined4 param_1,long param_2,undefined8 *param_3,undefined4 *param_4)
+maybe__lf_module_load_ex(undefined4 param_1,long param_2,undefined8 *param_3,undefined4 *param_4)
 
 {
   undefined8 *puVar1;
@@ -713,10 +717,10 @@ loadfile_sub_001192c8(undefined4 param_1,long param_2,undefined8 *param_3,undefi
   undefined8 uVar6;
   undefined8 uVar7;
   
-  lVar3 = loadfile_sub_00118ef8();
+  lVar3 = sceSifLoadFileInit();
   uVar2 = 0xffff0000;
   if (-1 < lVar3) {
-    lVar3 = loadfile_sub_00118ff8();
+    lVar3 = maybe_LoadFile_IsBound();
     if (lVar3 == 0) {
       uRam003744c0 = param_1;
       if (param_3 == (undefined8 *)0x0) {
@@ -782,16 +786,16 @@ loadfile_sub_001192c8(undefined4 param_1,long param_2,undefined8 *param_3,undefi
 }
 
 // 0x001194d0  size 0x90
-undefined4 loadfile_sub_001194d0(undefined4 param_1)
+undefined4 maybe_sceSifStopModule(undefined4 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  lVar2 = loadfile_sub_00118ef8();
+  lVar2 = sceSifLoadFileInit();
   uVar1 = 0xffff0000;
   if (-1 < lVar2) {
-    lVar2 = loadfile_sub_00118ff8();
+    lVar2 = maybe_LoadFile_IsBound();
     if (lVar2 == 0) {
       uRam003744c0 = param_1;
       lVar2 = sceSifCallRpc(0x3746c0,8,0,0x3744c0,4,0x3744c0,4,0);
@@ -810,16 +814,16 @@ undefined4 loadfile_sub_001194d0(undefined4 param_1)
 }
 
 // 0x00119560  size 0xa0
-undefined4 loadfile_sub_00119560(undefined8 param_1)
+undefined4 maybe_sceSifSearchModuleByName(undefined8 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  lVar2 = loadfile_sub_00118ef8();
+  lVar2 = sceSifLoadFileInit();
   uVar1 = 0xffff0000;
   if (-1 < lVar2) {
-    lVar2 = loadfile_sub_00118ff8();
+    lVar2 = maybe_LoadFile_IsBound();
     if (lVar2 == 0) {
       maybe_strncpy(0x3744c8,param_1,0xfc);
       uRam003745c3 = 0;
@@ -839,16 +843,16 @@ undefined4 loadfile_sub_00119560(undefined8 param_1)
 }
 
 // 0x00119600  size 0x90
-undefined4 loadfile_sub_00119600(undefined4 param_1)
+undefined4 maybe_sceSifUnloadModule(undefined4 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  lVar2 = loadfile_sub_00118ef8();
+  lVar2 = sceSifLoadFileInit();
   uVar1 = 0xffff0000;
   if (-1 < lVar2) {
-    lVar2 = loadfile_sub_00118ff8();
+    lVar2 = maybe_LoadFile_IsBound();
     if (lVar2 == 0) {
       uRam003744c0 = param_1;
       lVar2 = sceSifCallRpc(0x3746c0,10,0,0x3744c0,4,0x3744c0,4,0);
@@ -867,24 +871,24 @@ undefined4 loadfile_sub_00119600(undefined4 param_1)
 }
 
 // 0x00119690  size 0x1c
-void loadfile_sub_00119690(void)
+void sceSifLoadModule(void)
 
 {
-  loadfile_sub_001190c0();
+  maybe__lf_module_load();
   return;
 }
 
 // 0x001196b0  size 0x1c
-void loadfile_sub_001196b0(void)
+void maybe_sceSifLoadStartModule(void)
 
 {
-  loadfile_sub_001190c0();
+  maybe__lf_module_load();
   return;
 }
 
 // 0x001196d0  size 0x224
 undefined4
-loadfile_sub_001196d0
+maybe__lf_module_buffer_load
           (undefined8 param_1,long param_2,undefined8 *param_3,undefined4 *param_4,
           undefined8 param_5)
 
@@ -897,10 +901,10 @@ loadfile_sub_001196d0
   undefined8 uVar6;
   undefined8 uVar7;
   
-  lVar3 = loadfile_sub_00118ef8();
+  lVar3 = sceSifLoadFileInit();
   uVar2 = 0xffff0000;
   if (-1 < lVar3) {
-    lVar3 = loadfile_sub_00118ff8();
+    lVar3 = maybe_LoadFile_IsBound();
     if (lVar3 == 0) {
       maybe_strncpy(0x3744c8,param_1,0xfc);
       uRam003745c3 = 0;
@@ -968,33 +972,32 @@ loadfile_sub_001196d0
 }
 
 // 0x001198f8  size 0x20
-void loadfile_sub_001198f8(void)
+void maybe_sceSifLoadModuleBuffer(void)
 
 {
-  loadfile_sub_001196d0();
+  maybe__lf_module_buffer_load();
   return;
 }
 
 // 0x00119918  size 0x1c
-void loadfile_sub_00119918(void)
+void maybe_sceSifLoadStartModuleBuffer(void)
 
 {
-  loadfile_sub_001196d0();
+  maybe__lf_module_buffer_load();
   return;
 }
 
 // 0x00119938  size 0x104
-undefined8
-loadfile_sub_00119938(undefined8 param_1,undefined8 param_2,int *param_3,undefined8 param_4)
+undefined8 maybe__lf_elf_load(undefined8 param_1,undefined8 param_2,int *param_3,undefined8 param_4)
 
 {
   long lVar1;
   undefined8 uVar2;
   
-  lVar1 = loadfile_sub_00118ef8();
+  lVar1 = sceSifLoadFileInit();
   uVar2 = 0xffffffffffff0000;
   if (-1 < lVar1) {
-    lVar1 = loadfile_sub_00118ff8();
+    lVar1 = maybe_LoadFile_IsBound();
     if (lVar1 == 0) {
       maybe_strncpy(0x3744c8,param_1,0xfc);
       uRam003745c3 = 0;
@@ -1021,21 +1024,21 @@ loadfile_sub_00119938(undefined8 param_1,undefined8 param_2,int *param_3,undefin
 }
 
 // 0x00119a40  size 0x1c
-void loadfile_sub_00119a40(void)
+void maybe_sceSifLoadElf(void)
 
 {
-  loadfile_sub_00119938();
+  maybe__lf_elf_load();
   return;
 }
 
 // 0x00119a88  size 0xec
-undefined8 loadfile_sub_00119a88(undefined4 param_1,undefined4 *param_2,ulong param_3)
+undefined8 maybe_sceSifGetIopAddr(undefined4 param_1,undefined4 *param_2,ulong param_3)
 
 {
   long lVar1;
   undefined8 uVar2;
   
-  lVar1 = loadfile_sub_00118ef8();
+  lVar1 = sceSifLoadFileInit();
   if (lVar1 < 0) {
     return 0xffffffffffff0000;
   }
@@ -1066,13 +1069,13 @@ LAB_00119b44:
 }
 
 // 0x00119b78  size 0xdc
-undefined8 loadfile_sub_00119b78(undefined4 param_1,undefined4 *param_2,long param_3)
+undefined8 maybe_sceSifSetIopAddr(undefined4 param_1,undefined4 *param_2,long param_3)
 
 {
   long lVar1;
   undefined8 uVar2;
   
-  lVar1 = loadfile_sub_00118ef8();
+  lVar1 = sceSifLoadFileInit();
   if (lVar1 < 0) {
     uVar2 = 0xffffffffffff0000;
   }
@@ -1113,8 +1116,8 @@ bool maybe_sceSifResetIop(char *param_1,undefined4 param_2)
   undefined4 uStack_38;
   undefined4 uStack_34;
   
-  libkernl_sub_0011c950(0,0);
-  libkernl_sub_0011c950(1,0);
+  maybe_SetSifCmdFlag(0,0);
+  maybe_SetSifCmdFlag(1,0);
   sceSifStopDma();
   uStack_3c = sceSifGetReg(0xffffffff80000000);
   iRam00374710 = 0;
@@ -1169,9 +1172,9 @@ bool maybe_sceSifIsIopReady(void)
   uVar2 = sceSifGetReg(4);
   bVar1 = (uVar2 & 0x40000) != 0;
   if (bVar1) {
-    libkernl_sub_00111c20();
-    libkernl_sub_0011c950(1,1);
-    libkernl_sub_0011c950(0,1);
+    maybe__kernl_ResetTtyFlag();
+    maybe_SetSifCmdFlag(1,1);
+    maybe_SetSifCmdFlag(0,1);
   }
   return bVar1;
 }
@@ -1244,7 +1247,7 @@ undefined8 sceSifRebootIop(byte *param_1)
 }
 
 // 0x00119f38  size 0x60
-undefined8 libkernl_sub_00119f38(undefined8 param_1)
+undefined8 maybe_InitTLBHandler(undefined8 param_1)
 
 {
   DAT_00306ed8 = (undefined4)param_1;
@@ -1255,7 +1258,9 @@ undefined8 libkernl_sub_00119f38(undefined8 param_1)
 }
 
 // 0x0011a020  size 0x10
-void libkernl_sub_0011a020(void)
+/* syscall 0x5a */
+
+void maybe_kCopy_A(void)
 
 {
   syscall(0x5a);
@@ -1271,7 +1276,7 @@ void RFU091(void)
 }
 
 // 0x0011a078  size 0x10
-void RFU116_SetSyscall(void)
+void SetSyscall(void)
 
 {
   syscall(0x74);
@@ -1279,7 +1284,7 @@ void RFU116_SetSyscall(void)
 }
 
 // 0x0011a088  size 0xc4
-void libkernl_sub_0011a088(void)
+void maybe_InitAlarmPatch(void)
 
 {
   undefined4 uVar1;
@@ -1289,19 +1294,19 @@ void libkernl_sub_0011a088(void)
   
   uVar4 = 3;
   puVar3 = &DAT_00306f40;
-  RFU116_SetSyscall(DAT_00306f28,PTR_LAB_00306f2c);
-  libkernl_sub_0011a020(0xffffffff80075000,0x306ba8,0x330);
+  SetSyscall(DAT_00306f28,PTR_LAB_00306f2c);
+  maybe_kCopy_A(0xffffffff80075000,0x306ba8,0x330);
   FlushCache(0);
   FlushCache(2);
-  RFU116_SetSyscall(DAT_00306f30,DAT_00306f34);
-  RFU116_SetSyscall(DAT_00306f38,PTR_LAB_00306f3c);
+  SetSyscall(DAT_00306f30,DAT_00306f34);
+  SetSyscall(DAT_00306f38,PTR_LAB_00306f3c);
   uVar1 = DAT_00306f40;
   while( true ) {
     uVar4 = uVar4 + 1;
     uVar2 = RFU091(uVar1);
     uVar1 = *puVar3;
     puVar3 = puVar3 + 2;
-    RFU116_SetSyscall(uVar1,uVar2);
+    SetSyscall(uVar1,uVar2);
     if (7 < uVar4) break;
     uVar1 = *puVar3;
   }
@@ -1318,7 +1323,7 @@ void RFU086_WaitEvnetFlag(void)
 }
 
 // 0x0011a180  size 0x30
-undefined8 libkernl_sub_0011a180(int param_1)
+undefined8 maybe_Kernl_WaitEventFlagWrap(int param_1)
 
 {
   undefined8 uVar1;
@@ -1468,7 +1473,7 @@ bool EIntr(void)
 }
 
 // 0x0011a850  size 0x48
-void libkernl_sub_0011a850(void)
+void maybe_InitKernelSema(void)
 
 {
   undefined1 auStack_50 [4];
@@ -1488,7 +1493,7 @@ void libkernl_sub_0011a850(void)
 }
 
 // 0x0011a8a8  size 0x10
-void libkernl_sub_0011a8a8(void)
+void maybe_kCopy_B(void)
 
 {
   syscall(0x5a);
@@ -1496,7 +1501,9 @@ void libkernl_sub_0011a8a8(void)
 }
 
 // 0x0011a930  size 0x10
-void libkernl_sub_0011a930(void)
+/* syscall 0x83 */
+
+void maybe_GetSyscallTable(void)
 
 {
   syscall(0x83);
@@ -1504,17 +1511,17 @@ void libkernl_sub_0011a930(void)
 }
 
 // 0x0011a940  size 0x34
-undefined4 libkernl_sub_0011a940(int param_1)
+undefined4 maybe_Kernl_ReadSyscallEntry(int param_1)
 
 {
   undefined4 auStack_20 [4];
   
-  libkernl_sub_0011a8a8(auStack_20,DAT_003071f8 + param_1 * 4,4);
+  maybe_kCopy_B(auStack_20,DAT_003071f8 + param_1 * 4,4);
   return auStack_20[0];
 }
 
 // 0x0011a978  size 0xfc
-void libkernl_sub_0011a978(void)
+void maybe_InitThreadPatch(void)
 
 {
   bool bVar1;
@@ -1523,10 +1530,10 @@ void libkernl_sub_0011a978(void)
   uint uVar4;
   uint uVar5;
   
-  RFU116_SetSyscall(DAT_00307200,PTR_LAB_00307204);
-  RFU116_SetSyscall(DAT_00307208,PTR_LAB_0030720c);
-  iVar2 = libkernl_sub_0011a930(0xffffffff80000000,0xffffffff80080000,0x11a8f0);
-  iVar3 = libkernl_sub_0011a930(0xffffffff80000000,0xffffffff80080000,0x11a8b8);
+  SetSyscall_copy2(DAT_00307200,PTR_LAB_00307204);
+  SetSyscall_copy2(DAT_00307208,PTR_LAB_0030720c);
+  iVar2 = maybe_GetSyscallTable(0xffffffff80000000,0xffffffff80080000,0x11a8f0);
+  iVar3 = maybe_GetSyscallTable(0xffffffff80000000,0xffffffff80080000,0x11a8b8);
   uVar5 = iVar2 - 0x20c;
   uVar4 = iVar3 - 0x168;
   if (uVar5 == uVar4) {
@@ -1536,11 +1543,11 @@ void libkernl_sub_0011a978(void)
     bVar1 = uVar5 < uVar4;
     do {
       if (bVar1) {
-        iVar2 = libkernl_sub_0011a930(iVar2 + 4,0xffffffff80080000,0x11a8f0);
+        iVar2 = maybe_GetSyscallTable(iVar2 + 4,0xffffffff80080000,0x11a8f0);
         uVar5 = iVar2 - 0x20c;
       }
       else {
-        iVar3 = libkernl_sub_0011a930(iVar3 + 4,0xffffffff80080000,0x11a8b8);
+        iVar3 = maybe_GetSyscallTable(iVar3 + 4,0xffffffff80080000,0x11a8b8);
         uVar4 = iVar3 - 0x168;
       }
       bVar1 = uVar5 < uVar4;
@@ -1551,7 +1558,7 @@ void libkernl_sub_0011a978(void)
 }
 
 // 0x0011aa78  size 0x10
-void RFU116_SetSyscall(void)
+void SetSyscall_copy2(void)
 
 {
   syscall(0x74);
@@ -1564,20 +1571,20 @@ void RFU116_SetSyscall(void)
 void _InitSys(void)
 
 {
-  libkernl_sub_0011a850();
-  libkernl_sub_0011a978();
-  libkernl_sub_0011af68();
+  maybe_InitKernelSema();
+  maybe_InitThreadPatch();
+  maybe_InitTimerPatch();
   maybe_InitTimer(2);
   maybe_StartTimerSystemTime();
   maybe_InitThreadExtension();
-  libkernl_sub_0011abb0();
-  libkernl_sub_0011a088();
-  libkernl_sub_0011c798();
+  maybe_InitOsdPatch();
+  maybe_InitAlarmPatch();
+  maybe_InitTimerAlarmPool();
   return;
 }
 
 // 0x0011aae0  size 0x10
-void RFU116_SetSyscall(void)
+void SetSyscall_copy3(void)
 
 {
   syscall(0x74);
@@ -1585,7 +1592,7 @@ void RFU116_SetSyscall(void)
 }
 
 // 0x0011aaf0  size 0x10
-void libkernl_sub_0011aaf0(void)
+void maybe_kCopy_C(void)
 
 {
   syscall(0x5a);
@@ -1593,7 +1600,7 @@ void libkernl_sub_0011aaf0(void)
 }
 
 // 0x0011ab38  size 0x10
-void RFU091(void)
+void RFU091_copy2(void)
 
 {
   syscall(0x5b);
@@ -1601,7 +1608,7 @@ void RFU091(void)
 }
 
 // 0x0011ab48  size 0x68
-bool libkernl_sub_0011ab48(void)
+bool maybe_SetOsdConfigFlag(void)
 
 {
   uint uStack_30;
@@ -1616,7 +1623,7 @@ bool libkernl_sub_0011ab48(void)
 }
 
 // 0x0011abb0  size 0xac
-void libkernl_sub_0011abb0(void)
+void maybe_InitOsdPatch(void)
 
 {
   undefined4 uVar1;
@@ -1625,22 +1632,22 @@ void libkernl_sub_0011abb0(void)
   undefined4 *puVar4;
   uint uVar5;
   
-  lVar2 = libkernl_sub_0011ab48();
+  lVar2 = maybe_SetOsdConfigFlag();
   if (lVar2 != 0) {
     uVar5 = 2;
     puVar4 = &DAT_003079d0;
-    RFU116_SetSyscall(DAT_003079c0,PTR_LAB_003079c4);
-    libkernl_sub_0011aaf0(0xffffffff80074000,0x307218,0x7a8);
+    SetSyscall_copy3(DAT_003079c0,PTR_LAB_003079c4);
+    maybe_kCopy_C(0xffffffff80074000,0x307218,0x7a8);
     FlushCache(0);
     FlushCache(2);
-    RFU116_SetSyscall(DAT_003079c8,DAT_003079cc);
+    SetSyscall_copy3(DAT_003079c8,DAT_003079cc);
     uVar1 = DAT_003079d0;
     while( true ) {
       uVar5 = uVar5 + 1;
-      uVar3 = RFU091(uVar1);
+      uVar3 = RFU091_copy2(uVar1);
       uVar1 = *puVar4;
       puVar4 = puVar4 + 2;
-      RFU116_SetSyscall(uVar1,uVar3);
+      SetSyscall_copy3(uVar1,uVar3);
       if (2 < uVar5) break;
       uVar1 = *puVar4;
     }
@@ -1649,7 +1656,7 @@ void libkernl_sub_0011abb0(void)
 }
 
 // 0x0011ac60  size 0x10
-void libkernl_sub_0011ac60(void)
+void maybe_kCopy_D(void)
 
 {
   syscall(0x5a);
@@ -1657,7 +1664,7 @@ void libkernl_sub_0011ac60(void)
 }
 
 // 0x0011aca0  size 0x10
-void RFU116_SetSyscall(void)
+void SetSyscall_copy4(void)
 
 {
   syscall(0x74);
@@ -1665,7 +1672,7 @@ void RFU116_SetSyscall(void)
 }
 
 // 0x0011acb0  size 0x118
-int libkernl_sub_0011acb0(undefined8 param_1,int param_2,undefined4 *param_3)
+int maybe_Exec_SetupArgs(undefined8 param_1,int param_2,undefined4 *param_3)
 
 {
   undefined4 uVar1;
@@ -1677,23 +1684,23 @@ int libkernl_sub_0011acb0(undefined8 param_1,int param_2,undefined4 *param_3)
   iVar4 = DAT_00306f20;
   iVar2 = DAT_00306f20 + 0x40;
   aiStack_80[0] = iVar2;
-  RFU116_SetSyscall(DAT_003079d8,PTR_LAB_003079dc);
+  SetSyscall_copy4(DAT_003079d8,PTR_LAB_003079dc);
   if (0xf < param_2) {
     param_2 = 0xf;
   }
-  libkernl_sub_0011ac60(iVar4,aiStack_80,4);
+  maybe_kCopy_D(iVar4,aiStack_80,4);
   iVar3 = strlen(param_1);
-  libkernl_sub_0011ac60(aiStack_80[0],param_1,iVar3 + 1);
+  maybe_kCopy_D(aiStack_80[0],param_1,iVar3 + 1);
   aiStack_80[0] = aiStack_80[0] + iVar3 + 1;
   if (0 < param_2) {
     do {
       iVar4 = iVar4 + 4;
-      libkernl_sub_0011ac60(iVar4,aiStack_80,4);
+      maybe_kCopy_D(iVar4,aiStack_80,4);
       param_2 = param_2 + -1;
       iVar3 = strlen(*param_3);
       uVar1 = *param_3;
       param_3 = param_3 + 1;
-      libkernl_sub_0011ac60(aiStack_80[0],uVar1,iVar3 + 1);
+      maybe_kCopy_D(aiStack_80[0],uVar1,iVar3 + 1);
       aiStack_80[0] = aiStack_80[0] + iVar3 + 1;
     } while (param_2 != 0);
   }
@@ -1706,7 +1713,7 @@ void LoadExecPS2(undefined8 param_1,undefined8 param_2)
 {
   undefined8 uVar1;
   
-  uVar1 = libkernl_sub_0011acb0();
+  uVar1 = maybe_Exec_SetupArgs();
   maybe_kernl_ResetTLB();
   _LoadExecPS2(uVar1,param_2,DAT_00306f20 + 4);
   return;
@@ -1725,14 +1732,14 @@ void Exit(int param_1)
 void ExecOSD(undefined8 param_1,undefined8 param_2)
 
 {
-  libkernl_sub_0011acb0(0x35f440,param_1,param_2);
+  maybe_Exec_SetupArgs(0x35f440,param_1,param_2);
   maybe_kernl_ResetTLB();
   _ExecOSD(param_1,DAT_00306f20 + 4);
   return;
 }
 
 // 0x0011af00  size 0x10
-void RFU116_SetSyscall(void)
+void SetSyscall_copy5(void)
 
 {
   syscall(0x74);
@@ -1740,7 +1747,7 @@ void RFU116_SetSyscall(void)
 }
 
 // 0x0011af10  size 0x10
-void libkernl_sub_0011af10(void)
+void maybe_kCopy_E(void)
 
 {
   syscall(0x5a);
@@ -1748,7 +1755,7 @@ void libkernl_sub_0011af10(void)
 }
 
 // 0x0011af58  size 0x10
-void RFU091(void)
+void RFU091_copy3(void)
 
 {
   syscall(0x5b);
@@ -1756,7 +1763,9 @@ void RFU091(void)
 }
 
 // 0x0011af68  size 0xd4
-void libkernl_sub_0011af68(void)
+/* RCNT3 */
+
+void maybe_InitTimerPatch(void)
 
 {
   undefined4 uVar1;
@@ -1768,19 +1777,19 @@ void libkernl_sub_0011af68(void)
   if ((uVar4 & 0x100) == 0) {
     uVar4 = 2;
     puVar3 = &DAT_00308158;
-    RFU116_SetSyscall(DAT_00308148,PTR_LAB_0030814c);
-    libkernl_sub_0011af10(0xffffffff80076000,0x3079e0,0x740);
-    libkernl_sub_0011af10(0x82000,0x308120,0x28);
+    SetSyscall_copy5(DAT_00308148,PTR_LAB_0030814c);
+    maybe_kCopy_E(0xffffffff80076000,0x3079e0,0x740);
+    maybe_kCopy_E(0x82000,0x308120,0x28);
     FlushCache(0);
     FlushCache(2);
-    RFU116_SetSyscall(DAT_00308150,DAT_00308154);
+    SetSyscall_copy5(DAT_00308150,DAT_00308154);
     uVar1 = DAT_00308158;
     while( true ) {
       uVar4 = uVar4 + 1;
-      uVar2 = RFU091(uVar1);
+      uVar2 = RFU091_copy3(uVar1);
       uVar1 = *puVar3;
       puVar3 = puVar3 + 2;
-      RFU116_SetSyscall(uVar1,uVar2);
+      SetSyscall_copy5(uVar1,uVar2);
       if (7 < uVar4) break;
       uVar1 = *puVar3;
     }
@@ -1789,7 +1798,7 @@ void libkernl_sub_0011af68(void)
 }
 
 // 0x0011b040  size 0x68
-void libkernl_sub_0011b040(undefined4 *param_1,undefined4 param_2)
+void Timer_WriteReg(undefined4 *param_1,undefined4 param_2)
 
 {
   undefined4 unaff_retaddr;
@@ -1808,26 +1817,32 @@ void libkernl_sub_0011b040(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x0011b0b0  size 0x10
-void libkernl_sub_0011b0b0(undefined8 param_1)
+/* T2_COUNT 0xB0001000 */
+
+void Timer_SetCount(undefined8 param_1)
 
 {
-  libkernl_sub_0011b040(0xffffffffb0001000,param_1);
+  Timer_WriteReg(0xffffffffb0001000,param_1);
   return;
 }
 
 // 0x0011b0c0  size 0x10
-void libkernl_sub_0011b0c0(undefined8 param_1)
+/* T2_MODE  0xB0001010 */
+
+void Timer_SetMode(undefined8 param_1)
 
 {
-  libkernl_sub_0011b040(0xffffffffb0001010,param_1);
+  Timer_WriteReg(0xffffffffb0001010,param_1);
   return;
 }
 
 // 0x0011b0d0  size 0x10
-void libkernl_sub_0011b0d0(undefined8 param_1)
+/* T2_COMP  0xB0001020 */
+
+void Timer_SetComp(undefined8 param_1)
 
 {
-  libkernl_sub_0011b040(0xffffffffb0001020,param_1);
+  Timer_WriteReg(0xffffffffb0001020,param_1);
   return;
 }
 
@@ -1872,10 +1887,10 @@ undefined8 maybe_InitTimer(uint param_1)
       uVar6 = param_1 | 0x300;
       if ((param_1 & 0x80) == 0) {
         uVar6 = param_1 | 0xf80;
-        libkernl_sub_0011b0b0(0);
-        libkernl_sub_0011b0d0(0xffff);
+        Timer_SetCount(0);
+        Timer_SetComp(0xffff);
       }
-      libkernl_sub_0011b0c0(uVar6);
+      Timer_SetMode(uVar6);
       EnableIntc(0xb);
       uVar2 = 0;
       if (lVar3 != 0) {
@@ -1906,8 +1921,8 @@ undefined8 maybe_EndTimer(void)
     lVar3 = RemoveIntcHandler(0xb,DAT_00308190);
     if (lVar3 == 0) {
       DisableIntc(0xb);
-      libkernl_sub_0011b0c0(0xc00);
-      libkernl_sub_0011b0b0(0);
+      Timer_SetMode(0xc00);
+      Timer_SetCount(0);
     }
     DAT_00308188 = 0;
     DAT_00308190 = -1;
@@ -1934,9 +1949,9 @@ undefined4 maybe_StartTimerSystemTime(void)
   lVar3 = DIntr();
   uVar1 = REG_RCNT2_MODE;
   if ((uVar1 & 0x80) == 0) {
-    libkernl_sub_0011b0c0(uVar1 & 0xfffff3ff | 0x80);
+    Timer_SetMode(uVar1 & 0xfffff3ff | 0x80);
     uVar4 = maybe_GetTimerSystemTime();
-    libkernl_sub_0011b430(uVar4);
+    maybe_Timer_UpdateCompare(uVar4);
     uVar2 = 0;
     if (lVar3 != 0) {
       EIntr();
@@ -1971,7 +1986,7 @@ undefined4 maybe_StopTimerSystemTime(void)
     }
   }
   else {
-    libkernl_sub_0011b0c0(uVar1 & 0xfffff37f);
+    Timer_SetMode(uVar1 & 0xfffff37f);
     uVar2 = 1;
     if (lVar3 != 0) {
       EIntr();
@@ -1982,7 +1997,7 @@ undefined4 maybe_StopTimerSystemTime(void)
 }
 
 // 0x0011b430  size 0x190
-void libkernl_sub_0011b430(long param_1)
+void maybe_Timer_UpdateCompare(long param_1)
 
 {
   int iVar1;
@@ -1996,8 +2011,8 @@ void libkernl_sub_0011b430(long param_1)
   }
   uVar2 = REG_RCNT2_MODE;
   if (DAT_003081a0 == (int *)0x0) {
-    libkernl_sub_0011b0d0(0);
-    libkernl_sub_0011b0c0(uVar2 & 0xfffff7ff);
+    Timer_SetComp(0);
+    Timer_SetMode(uVar2 & 0xfffff7ff);
     return;
   }
   piVar4 = (int *)*DAT_003081a0;
@@ -2021,17 +2036,17 @@ void libkernl_sub_0011b430(long param_1)
 LAB_0011b51c:
   if (param_1 < 0x7333) {
     iVar1 = REG_RCNT2_COUNT;
-    libkernl_sub_0011b0d0(iVar1 + (int)(0x7333L >> (long)(int)((uVar2 & 3) << 2)));
-    libkernl_sub_0011b0c0(uVar2 & 0xfffff7ff);
+    Timer_SetComp(iVar1 + (int)(0x7333L >> (long)(int)((uVar2 & 3) << 2)));
+    Timer_SetMode(uVar2 & 0xfffff7ff);
     return;
   }
-  libkernl_sub_0011b0c0(uVar2 & 0xfffff7ff);
-  libkernl_sub_0011b0d0((int)(uVar5 >> (long)(int)((uVar2 & 3) << 2)));
+  Timer_SetMode(uVar2 & 0xfffff7ff);
+  Timer_SetComp((int)(uVar5 >> (long)(int)((uVar2 & 3) << 2)));
   return;
 }
 
 // 0x0011b5c0  size 0x80
-void libkernl_sub_0011b5c0(undefined4 *param_1)
+void maybe_Timer_FindNextAlarm(undefined4 *param_1)
 
 {
   undefined4 *puVar1;
@@ -2067,7 +2082,7 @@ LAB_0011b620:
 }
 
 // 0x0011b648  size 0x38
-int libkernl_sub_0011b648(int *param_1)
+int maybe_Timer_UnlinkAlarm(int *param_1)
 
 {
   int iVar1;
@@ -2114,12 +2129,12 @@ undefined8 maybe_Timer_IntcHandler(undefined8 param_1,undefined8 param_2,undefin
       lVar6 = *(long *)(puVar8 + 6);
       if ((uVar2 & 0x800) != 0) {
         DAT_00308188 = DAT_00308188 + 1;
-        libkernl_sub_0011b0c0(uVar2 & 0xfffffbff);
+        Timer_SetMode(uVar2 & 0xfffffbff);
         uVar1 = REG_RCNT2_COUNT;
       }
       uVar9 = (DAT_00308188 << 0x10 | (ulong)uVar1) << (long)(int)((uVar2 & 3) << 2);
       if (uVar9 < (ulong)((lVar7 + lVar5) - lVar6)) break;
-      puVar4 = (undefined4 *)libkernl_sub_0011b648(puVar8);
+      puVar4 = (undefined4 *)maybe_Timer_UnlinkAlarm(puVar8);
       DAT_003081a4 = (int)puVar8 << 4 | puVar8[2];
       uVar9 = (*(code *)puVar8[10])
                         ((int)puVar8 << 4 | puVar8[2],*(undefined8 *)(puVar8 + 8),
@@ -2140,7 +2155,7 @@ undefined8 maybe_Timer_IntcHandler(undefined8 param_1,undefined8 param_2,undefin
           uVar9 = 0x3999;
         }
         *(ulong *)(puVar8 + 8) = *(long *)(puVar8 + 8) + uVar9;
-        libkernl_sub_0011b5c0(puVar8);
+        maybe_Timer_FindNextAlarm(puVar8);
       }
       puVar8 = puVar4;
     } while (puVar4 != (undefined4 *)0x0);
@@ -2150,14 +2165,14 @@ undefined8 maybe_Timer_IntcHandler(undefined8 param_1,undefined8 param_2,undefin
   uVar2 = REG_RCNT2_MODE;
   if ((uVar2 & 0x800) != 0) {
     DAT_00308188 = DAT_00308188 + 1;
-    libkernl_sub_0011b0c0(uVar2 & 0xfffffbff);
+    Timer_SetMode(uVar2 & 0xfffffbff);
     uVar1 = REG_RCNT2_COUNT;
   }
-  libkernl_sub_0011b430((DAT_00308188 << 0x10 | (ulong)uVar1) << (long)(int)((uVar2 & 3) << 2));
+  maybe_Timer_UpdateCompare((DAT_00308188 << 0x10 | (ulong)uVar1) << (long)(int)((uVar2 & 3) << 2));
   uVar1 = REG_RCNT2_MODE;
   if ((uVar1 & 0x800) != 0) {
     DAT_00308188 = DAT_00308188 + 1;
-    libkernl_sub_0011b0c0(uVar1 & 0xfffffbff);
+    Timer_SetMode(uVar1 & 0xfffffbff);
   }
   SYNC(0);
   EI();
@@ -2220,7 +2235,7 @@ long maybe_iGetTimerSystemTime(void)
 }
 
 // 0x0011b9f0  size 0x70
-uint libkernl_sub_0011b9f0(void)
+uint maybe_Timer_AllocSlot(void)
 
 {
   undefined8 *puVar1;
@@ -2251,7 +2266,7 @@ undefined8 maybe_AllocTimerCounter(void)
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011b9f0();
+  uVar2 = maybe_Timer_AllocSlot();
   if (lVar1 != 0) {
     EIntr();
   }
@@ -2259,7 +2274,7 @@ undefined8 maybe_AllocTimerCounter(void)
 }
 
 // 0x0011baa8  size 0xa0
-undefined8 libkernl_sub_0011baa8(uint param_1)
+undefined8 maybe_iFreeTimerCounter(uint param_1)
 
 {
   undefined8 uVar1;
@@ -2274,7 +2289,7 @@ undefined8 libkernl_sub_0011baa8(uint param_1)
   }
   else {
     if ((puVar2[3] & 2) != 0) {
-      libkernl_sub_0011b648(puVar2);
+      maybe_Timer_UnlinkAlarm(puVar2);
     }
     puVar2[2] = 0;
     uVar1 = 0;
@@ -2294,7 +2309,7 @@ undefined8 maybe_FreeTimerCounter(undefined8 param_1)
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011baa8(param_1);
+  uVar2 = maybe_iFreeTimerCounter(param_1);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -2302,7 +2317,7 @@ undefined8 maybe_FreeTimerCounter(undefined8 param_1)
 }
 
 // 0x0011bb98  size 0x50
-undefined8 libkernl_sub_0011bb98(long param_1,long param_2)
+undefined8 maybe_iGetTimerUsedUnitSize(long param_1,long param_2)
 
 {
   if (DAT_00308190 < 0) {
@@ -2318,14 +2333,14 @@ undefined8 libkernl_sub_0011bb98(long param_1,long param_2)
 }
 
 // 0x0011bbe8  size 0x5c
-undefined8 libkernl_sub_0011bbe8(undefined8 param_1,undefined8 param_2)
+undefined8 maybe_GetTimerUsedUnitSize(undefined8 param_1,undefined8 param_2)
 
 {
   long lVar1;
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011bb98(param_1,param_2);
+  uVar2 = maybe_iGetTimerUsedUnitSize(param_1,param_2);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -2333,7 +2348,7 @@ undefined8 libkernl_sub_0011bbe8(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0011bc48  size 0xac
-undefined4 libkernl_sub_0011bc48(uint param_1)
+undefined4 maybe_iStartTimerCounter(uint param_1)
 
 {
   uint uVar1;
@@ -2356,8 +2371,8 @@ undefined4 libkernl_sub_0011bc48(uint param_1)
       *(undefined8 *)(iVar4 + 0x10) = uVar3;
       *(uint *)(iVar4 + 0xc) = uVar1 | 1;
       if ((uVar1 & 2) != 0) {
-        libkernl_sub_0011b5c0(iVar4);
-        libkernl_sub_0011b430(uVar3);
+        maybe_Timer_FindNextAlarm(iVar4);
+        maybe_Timer_UpdateCompare(uVar3);
       }
       uVar2 = 0;
     }
@@ -2373,7 +2388,7 @@ undefined8 maybe_StartTimerCounter(undefined8 param_1)
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011bc48(param_1);
+  uVar2 = maybe_iStartTimerCounter(param_1);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -2381,7 +2396,7 @@ undefined8 maybe_StartTimerCounter(undefined8 param_1)
 }
 
 // 0x0011bd48  size 0xc4
-undefined4 libkernl_sub_0011bd48(uint param_1)
+undefined4 maybe_iStopTimerCounter(uint param_1)
 
 {
   uint uVar1;
@@ -2404,8 +2419,8 @@ undefined4 libkernl_sub_0011bd48(uint param_1)
       *(long *)(iVar4 + 0x18) = *(long *)(iVar4 + 0x18) + (lVar3 - *(long *)(iVar4 + 0x10));
       *(uint *)(iVar4 + 0xc) = uVar1 & 0xfffffffe;
       if ((uVar1 & 2) != 0) {
-        libkernl_sub_0011b648(iVar4);
-        libkernl_sub_0011b430(lVar3);
+        maybe_Timer_UnlinkAlarm(iVar4);
+        maybe_Timer_UpdateCompare(lVar3);
       }
       uVar2 = 1;
     }
@@ -2421,7 +2436,7 @@ undefined8 maybe_StopTimerCounter(undefined8 param_1)
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011bd48(param_1);
+  uVar2 = maybe_iStopTimerCounter(param_1);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -2429,7 +2444,7 @@ undefined8 maybe_StopTimerCounter(undefined8 param_1)
 }
 
 // 0x0011be60  size 0xcc
-long libkernl_sub_0011be60(uint param_1,undefined8 param_2)
+long maybe_SetTimerCount(uint param_1,undefined8 param_2)
 
 {
   long lVar1;
@@ -2468,7 +2483,7 @@ long libkernl_sub_0011be60(uint param_1,undefined8 param_2)
 }
 
 // 0x0011bf30  size 0x48
-long libkernl_sub_0011bf30(uint param_1)
+long maybe_iGetTimerBaseTime(uint param_1)
 
 {
   int iVar1;
@@ -2484,14 +2499,14 @@ long libkernl_sub_0011bf30(uint param_1)
 }
 
 // 0x0011bf78  size 0x4c
-undefined8 libkernl_sub_0011bf78(undefined8 param_1)
+undefined8 maybe_GetTimerBaseTime(undefined8 param_1)
 
 {
   long lVar1;
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011bf30(param_1);
+  uVar2 = maybe_iGetTimerBaseTime(param_1);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -2499,7 +2514,7 @@ undefined8 libkernl_sub_0011bf78(undefined8 param_1)
 }
 
 // 0x0011bfc8  size 0x6c
-long libkernl_sub_0011bfc8(uint param_1)
+long maybe_iGetTimerCount(uint param_1)
 
 {
   long lVar1;

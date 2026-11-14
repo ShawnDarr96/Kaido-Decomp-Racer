@@ -3,14 +3,14 @@
 #include "ghidra_types.h"
 
 // 0x002dc6d0  size 0x54
-void password_sub_002dc6d0(int param_1,undefined8 param_2)
+void password_step_sub_002dc6d0(int param_1,undefined8 param_2)
 
 {
   uint uVar1;
   
   uVar1 = 0;
   do {
-    password_sub_002dd200(param_1,param_2);
+    password_leaf_sub_002dd200(param_1,param_2);
     uVar1 = uVar1 + 1;
     param_1 = param_1 + 0x4c;
   } while (uVar1 < 3);
@@ -18,7 +18,7 @@ void password_sub_002dc6d0(int param_1,undefined8 param_2)
 }
 
 // 0x002dc730  size 0x20c
-void password_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
+void password_step_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
 
 {
   undefined4 uVar1;
@@ -31,7 +31,7 @@ void password_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
   param_1[0x3b] = 0xffffffff;
   puVar2 = param_1;
   do {
-    password_sub_002dd160(puVar2);
+    password_leaf_sub_002dd160(puVar2);
     uVar3 = uVar3 + 1;
     puVar2 = puVar2 + 0x13;
   } while (uVar3 < 3);
@@ -95,7 +95,7 @@ void password_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
 }
 
 // 0x002dc940  size 0x180
-void password_sub_002dc940(undefined4 *param_1,char param_2)
+void password_leaf_sub_002dc940(undefined4 *param_1,char param_2)
 
 {
   undefined4 uVar1;
@@ -149,7 +149,7 @@ void password_sub_002dc940(undefined4 *param_1,char param_2)
 }
 
 // 0x002dcac0  size 0x15c
-void password_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
+void password_step_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
 
 {
   undefined1 uVar1;
@@ -177,7 +177,7 @@ void password_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
     uVar6 = 0;
     puVar4 = param_1;
     do {
-      password_sub_002dd160(puVar4);
+      password_leaf_sub_002dd160(puVar4);
       uVar6 = uVar6 + 1;
       puVar4 = puVar4 + 0x13;
     } while (uVar6 < 3);
@@ -194,32 +194,32 @@ void password_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
       param_1[0x3a] = 0x13;
       param_1[0x3b] = 0x14;
     }
-    password_sub_002dc940(param_1,param_2,uVar1);
+    password_leaf_sub_002dc940(param_1,param_2,uVar1);
   }
   else {
-    password_sub_002dc730(param_1,param_2,param_3);
+    password_step_sub_002dc730(param_1,param_2,param_3);
   }
   return;
 }
 
 // 0x002dcc20  size 0x10
-void password_sub_002dcc20(int param_1)
+void password_step_sub_002dcc20(int param_1)
 
 {
   *(undefined1 *)(param_1 + 0x1e0) = 1;
-  password_sub_002dc6d0(param_1 + 0xf0);
+  password_step_sub_002dc6d0(param_1 + 0xf0);
   return;
 }
 
 // 0x002dcc30  size 0x10
-bool password_sub_002dcc30(int param_1)
+bool password_leaf_sub_002dcc30(int param_1)
 
 {
   return *(char *)(param_1 + 0x1e0) != -1;
 }
 
 // 0x002dcc40  size 0x108
-void password_sub_002dcc40(int param_1)
+void password_step_sub_002dcc40(int param_1)
 
 {
   char cVar1;
@@ -236,11 +236,11 @@ void password_sub_002dcc40(int param_1)
       uVar4 = 0;
       iVar3 = param_1;
       do {
-        password_sub_002dd350(iVar3,0xffffffffffffffff);
+        password_draw_sub_002dd350(iVar3,0xffffffffffffffff);
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
-      replayui_sub_002dbf30
+      replayui_draw_sub_002dbf30
                 (param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
       return;
     }
@@ -248,11 +248,11 @@ void password_sub_002dcc40(int param_1)
       uVar4 = 0;
       iVar3 = param_1 + 0xf0;
       do {
-        password_sub_002dd350(iVar3,0xffffffffffffffff);
+        password_draw_sub_002dd350(iVar3,0xffffffffffffffff);
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
-      replayui_sub_002dbf30
+      replayui_draw_sub_002dbf30
                 (param_1 + 0xf0,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
       return;
     }
@@ -261,16 +261,17 @@ void password_sub_002dcc40(int param_1)
   uVar4 = 0;
   iVar3 = param_1;
   do {
-    password_sub_002dd350(iVar3,uVar2);
+    password_draw_sub_002dd350(iVar3,uVar2);
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x4c;
   } while (uVar4 < 3);
-  replayui_sub_002dbf30(param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
+  replayui_draw_sub_002dbf30
+            (param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
   return;
 }
 
 // 0x002dcd50  size 0x368
-bool password_sub_002dcd50(int *param_1)
+bool password_anim_sub_002dcd50(int *param_1)
 
 {
   char cVar1;
@@ -355,7 +356,7 @@ bool password_sub_002dcd50(int *param_1)
           DAT_003420f0 = 0;
           DAT_003420f4 = 0xffffffff;
           *(undefined1 *)(param_1 + 0x78) = 0;
-          password_sub_002dc6d0(param_1,(char)param_1[0x78]);
+          password_step_sub_002dc6d0(param_1,(char)param_1[0x78]);
         }
         else {
           *(undefined1 *)(param_1 + 0x78) = 0xff;
@@ -403,7 +404,7 @@ LAB_002dcfb0:
 }
 
 // 0x002dd0c0  size 0xa0
-void password_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
+void password_step_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
 
 {
   int iVar1;
@@ -412,14 +413,14 @@ void password_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    password_sub_002dd160(iVar1);
+    password_leaf_sub_002dd160(iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x4c;
   } while (uVar2 < 3);
   uVar2 = 0;
   iVar1 = param_1 + 0xf0;
   do {
-    password_sub_002dd160(iVar1);
+    password_leaf_sub_002dd160(iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x4c;
   } while (uVar2 < 3);
@@ -430,7 +431,7 @@ void password_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
 }
 
 // 0x002dd160  size 0xa0
-void password_sub_002dd160(undefined4 *param_1)
+void password_leaf_sub_002dd160(undefined4 *param_1)
 
 {
   uint uVar1;
@@ -470,7 +471,7 @@ void password_sub_002dd160(undefined4 *param_1)
 }
 
 // 0x002dd200  size 0x150
-void password_sub_002dd200(int *param_1,ulong param_2)
+void password_leaf_sub_002dd200(int *param_1,ulong param_2)
 
 {
   int iVar1;
@@ -545,7 +546,7 @@ void password_sub_002dd200(int *param_1,ulong param_2)
 }
 
 // 0x002dd350  size 0x108
-void password_sub_002dd350(int *param_1,uint param_2)
+void password_draw_sub_002dd350(int *param_1,uint param_2)
 
 {
   int iVar1;
@@ -572,7 +573,7 @@ void password_sub_002dd350(int *param_1,uint param_2)
     piVar3 = param_1;
     do {
       if ((-1 < piVar3[0x11]) && (uVar4 == param_2)) {
-        password_sub_002dd640(*param_1,piVar3[0x11],1,0);
+        password_anim_sub_002dd640(*param_1,piVar3[0x11],1,0);
       }
       uVar4 = uVar4 + 1;
       piVar3 = piVar3 + 1;
@@ -583,7 +584,7 @@ void password_sub_002dd350(int *param_1,uint param_2)
 }
 
 // 0x002dd460  size 0x90
-int password_sub_002dd460(int param_1,int param_2)
+int password_leaf_sub_002dd460(int param_1,int param_2)
 
 {
   uint uVar1;
@@ -603,7 +604,7 @@ int password_sub_002dd460(int param_1,int param_2)
 }
 
 // 0x002dd4f0  size 0x34
-undefined8 password_sub_002dd4f0(ulong param_1)
+undefined8 password_leaf_sub_002dd4f0(ulong param_1)
 
 {
   undefined8 uVar1;
@@ -618,7 +619,7 @@ undefined8 password_sub_002dd4f0(ulong param_1)
 }
 
 // 0x002dd550  size 0xe4
-void password_sub_002dd550(long param_1)
+void password_anim_sub_002dd550(long param_1)
 
 {
   int iVar1;
@@ -651,7 +652,7 @@ void password_sub_002dd550(long param_1)
 }
 
 // 0x002dd640  size 0x13c
-void password_sub_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
+void password_anim_sub_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
 
 {
   int iVar1;
@@ -691,7 +692,7 @@ void password_sub_002dd640(int param_1,int param_2,undefined8 param_3,long param
 // 0x002dd780  size 0x84
 /* WARNING: Removing unreachable block (ram,0x002dd7c4) */
 
-void password_sub_002dd780
+void password_draw_sub_002dd780
                (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
                undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
@@ -716,7 +717,7 @@ void password_sub_002dd780
 // 0x002dd810  size 0x78
 /* WARNING: Removing unreachable block (ram,0x002dd850) */
 
-void password_sub_002dd810
+void password_draw_sub_002dd810
                (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
                undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
@@ -739,7 +740,7 @@ void password_sub_002dd810
 }
 
 // 0x002dd890  size 0x1e0
-undefined8 password_sub_002dd890(int param_1,undefined4 *param_2)
+undefined8 password_leaf_sub_002dd890(int param_1,undefined4 *param_2)
 
 {
   uint uVar1;
@@ -787,7 +788,7 @@ undefined8 password_sub_002dd890(int param_1,undefined4 *param_2)
 }
 
 // 0x002dda70  size 0x158
-void password_sub_002dda70(int param_1)
+void password_leaf_sub_002dda70(int param_1)
 
 {
   undefined4 *puVar1;
@@ -843,7 +844,7 @@ void password_sub_002dda70(int param_1)
 }
 
 // 0x002ddbd0  size 0x1e8
-void password_sub_002ddbd0(byte *param_1)
+void password_leaf_sub_002ddbd0(byte *param_1)
 
 {
   uint uVar1;
@@ -915,7 +916,7 @@ void password_sub_002ddbd0(byte *param_1)
 }
 
 // 0x002dddc0  size 0x190
-void password_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
+void password_step_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   long lVar1;
@@ -925,13 +926,13 @@ void password_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
   int iVar5;
   int iVar6;
   
-  password_sub_002ddf50();
-  lVar1 = password_sub_002dd890(param_1,param_2);
+  password_leaf_sub_002ddf50();
+  lVar1 = password_leaf_sub_002dd890(param_1,param_2);
   if (lVar1 < 0) {
     printf(0x368210);
   }
   else {
-    password_sub_002ddbd0(param_1);
+    password_leaf_sub_002ddbd0(param_1);
     iVar6 = (int)param_1;
     iVar2 = 1;
     *(int *)(iVar6 + 0x18) = *(int *)(iVar6 + 0x18) + *(int *)(iVar6 + 0x20);
@@ -951,7 +952,7 @@ void password_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
            (*(uint *)(iVar6 + 0x1c) << uVar3 | *(uint *)(iVar6 + 0x1c) >> (0x20 - uVar3 & 0x1f));
       iVar5 = iVar5 + 8;
     } while (iVar2 < 0x41);
-    password_sub_002dda70(param_1);
+    password_leaf_sub_002dda70(param_1);
     iVar5 = 0;
     do {
       puVar4 = (undefined1 *)(param_3 + iVar5);
@@ -977,7 +978,7 @@ void password_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
 }
 
 // 0x002ddf50  size 0x7c
-void password_sub_002ddf50(undefined1 *param_1)
+void password_leaf_sub_002ddf50(undefined1 *param_1)
 
 {
   param_1[0x10] = 0;
@@ -1006,7 +1007,8 @@ void password_sub_002ddf50(undefined1 *param_1)
 }
 
 // 0x002ddfd0  size 0x254
-void password_sub_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4)
+void password_step_sub_002ddfd0
+               (undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -1042,7 +1044,7 @@ void password_sub_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,un
   GameState_StartRace(1,param_1,param_2,0);
   RaceCtx_Set_8(0);
   uVar1 = Profile_Get(0);
-  garage_sub_001bc410(auStack_300,uVar1);
+  Profile_CopyCurrentCar(auStack_300,uVar1);
   puVar4 = auStack_300;
   puVar3 = auStack_110;
   iVar2 = 0x33;
@@ -1086,7 +1088,7 @@ void password_sub_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,un
   }
   RaceParams_SetDefaults(&uStack_230);
   uStack_230 = (undefined1)param_1;
-  uStack_22f = garage_sub_001bff70(param_1,uStack_30,uStack_2c,&uStack_4,&uStack_8);
+  uStack_22f = Race_GetRewardAmount(param_1,uStack_30,uStack_2c,&uStack_4,&uStack_8);
   uStack_22d = 0;
   uStack_228 = 0;
   uStack_224 = uStack_4;
@@ -1098,7 +1100,7 @@ void password_sub_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,un
 }
 
 // 0x002de230  size 0x21c
-void password_sub_002de230
+void password_step_sub_002de230
                (undefined8 param_1,int param_2,int param_3,char param_4,undefined8 param_5)
 
 {
@@ -1153,7 +1155,7 @@ void password_sub_002de230
   GameState_StartRace(0,param_1,param_2,param_3);
   RaceCtx_Set_8(0);
   uVar2 = Profile_Get(0);
-  garage_sub_001bc410(auStack_2f0,uVar2);
+  Profile_CopyCurrentCar(auStack_2f0,uVar2);
   puVar5 = auStack_2f0;
   puVar4 = auStack_100;
   iVar3 = 0x33;
@@ -1179,7 +1181,7 @@ void password_sub_002de230
   }
   RaceParams_SetDefaults(&uStack_220);
   uStack_220 = (undefined1)param_1;
-  uStack_21f = garage_sub_001bff70(param_1,uStack_28,uStack_24,&uStack_4,&uStack_8);
+  uStack_21f = Race_GetRewardAmount(param_1,uStack_28,uStack_24,&uStack_4,&uStack_8);
   uStack_21d = 0;
   uStack_218 = 0;
   uStack_214 = uStack_4;
@@ -1191,7 +1193,7 @@ void password_sub_002de230
 }
 
 // 0x002de450  size 0xe8
-void password_sub_002de450(int param_1)
+void password_leaf_sub_002de450(int param_1)
 
 {
   char *pcVar1;
@@ -1231,7 +1233,7 @@ void password_sub_002de450(int param_1)
 }
 
 // 0x002de540  size 0x8c
-void password_sub_002de540(int param_1)
+void password_leaf_sub_002de540(int param_1)
 
 {
   int iVar1;
@@ -1275,7 +1277,7 @@ void password_sub_002de540(int param_1)
 }
 
 // 0x002de5d0  size 0x2c
-char password_sub_002de5d0(int param_1,uint param_2)
+char password_leaf_sub_002de5d0(int param_1,uint param_2)
 
 {
   char cVar1;
@@ -1288,7 +1290,7 @@ char password_sub_002de5d0(int param_1,uint param_2)
 }
 
 // 0x002de600  size 0x1cc
-bool password_sub_002de600(undefined8 param_1,uint param_2)
+bool password_step_sub_002de600(undefined8 param_1,uint param_2)
 
 {
   char cVar1;
@@ -1357,7 +1359,7 @@ bool password_sub_002de600(undefined8 param_1,uint param_2)
 }
 
 // 0x002de7d0  size 0x88
-void password_sub_002de7d0(int param_1,uint param_2,int param_3,long param_4)
+void password_leaf_sub_002de7d0(int param_1,uint param_2,int param_3,long param_4)
 
 {
   if (param_4 == 0) {
@@ -1374,7 +1376,7 @@ void password_sub_002de7d0(int param_1,uint param_2,int param_3,long param_4)
 }
 
 // 0x002de860  size 0x7c
-int password_sub_002de860(int param_1,long param_2,uint param_3,int param_4)
+int password_leaf_sub_002de860(int param_1,long param_2,uint param_3,int param_4)
 
 {
   int iVar1;
@@ -1391,7 +1393,7 @@ int password_sub_002de860(int param_1,long param_2,uint param_3,int param_4)
 }
 
 // 0x002de8e0  size 0x5c
-undefined1 password_sub_002de8e0(int param_1,long param_2,int param_3,uint param_4,int param_5)
+undefined1 password_leaf_sub_002de8e0(int param_1,long param_2,int param_3,uint param_4,int param_5)
 
 {
   undefined1 uVar1;
@@ -1407,7 +1409,7 @@ undefined1 password_sub_002de8e0(int param_1,long param_2,int param_3,uint param
 
 // 0x002de940  size 0x188
 undefined4
-password_sub_002de940
+password_step_sub_002de940
           (undefined8 param_1,char param_2,long param_3,int param_4,undefined8 param_5,int param_6)
 
 {
@@ -1419,19 +1421,19 @@ password_sub_002de940
   uVar4 = 0;
   if (param_2 == '\0') {
     if (param_3 == 0) {
-      garage_sub_001bdd10(param_1,0x400);
-      Profile_AddMoney(param_1,5);
+      Profile_SetFlags(param_1,0x400);
+      Profile_AddPoints(param_1,5);
     }
     else {
-      garage_sub_001bdd10(param_1,0x800);
-      Profile_AddMoney(param_1,8);
+      Profile_SetFlags(param_1,0x800);
+      Profile_AddPoints(param_1,8);
     }
   }
   else if (param_3 == 0) {
-    Profile_AddMoney(param_1,0xfffffffffffffffd);
+    Profile_AddPoints(param_1,0xfffffffffffffffd);
   }
   else {
-    Profile_AddMoney(param_1,0xfffffffffffffffb);
+    Profile_AddPoints(param_1,0xfffffffffffffffb);
   }
   if (param_3 == 0) {
     pcVar3 = (char *)(param_4 + param_6 * 8 + ((uint)param_5 & 0xff) * 0x50 + (int)param_1 + 0xd86e)
@@ -1439,7 +1441,7 @@ password_sub_002de940
     cVar1 = *pcVar3;
     if ((cVar1 == '\a') || (param_2 < cVar1)) {
       *pcVar3 = param_2;
-      lVar2 = password_sub_002de600(param_1,param_5);
+      lVar2 = password_step_sub_002de600(param_1,param_5);
       if (lVar2 != 0) {
         uVar4 = 1;
       }
@@ -1458,7 +1460,7 @@ password_sub_002de940
 }
 
 // 0x002dead0  size 0x5f0
-undefined8 password_sub_002dead0(char param_1,long param_2,short param_3)
+undefined8 password_step_sub_002dead0(char param_1,long param_2,short param_3)
 
 {
   char cVar1;
@@ -1623,7 +1625,7 @@ undefined8 password_sub_002dead0(char param_1,long param_2,short param_3)
 }
 
 // 0x002df0c0  size 0x50
-undefined4 password_sub_002df0c0(undefined2 param_1)
+undefined4 password_step_sub_002df0c0(undefined2 param_1)
 
 {
   int iVar1;
@@ -1648,7 +1650,7 @@ undefined4 password_sub_002df0c0(undefined2 param_1)
 }
 
 // 0x002df110  size 0x80
-undefined4 password_sub_002df110(undefined2 param_1)
+undefined4 password_step_sub_002df110(undefined2 param_1)
 
 {
   char cVar1;
@@ -1671,7 +1673,7 @@ undefined4 password_sub_002df110(undefined2 param_1)
 }
 
 // 0x002df190  size 0x6c
-undefined4 password_sub_002df190(undefined2 param_1)
+undefined4 password_step_sub_002df190(undefined2 param_1)
 
 {
   char cVar1;
@@ -1718,7 +1720,7 @@ undefined4 GameState_Get_3a8(void)
 }
 
 // 0x002df230  size 0xe8
-undefined4 password_sub_002df230(void)
+undefined4 password_step_sub_002df230(void)
 
 {
   ulong uVar1;
@@ -1766,7 +1768,7 @@ undefined4 password_sub_002df230(void)
 }
 
 // 0x002df320  size 0x28
-bool password_sub_002df320(void)
+bool password_step_sub_002df320(void)
 
 {
   ulong uVar1;
@@ -1778,7 +1780,7 @@ bool password_sub_002df320(void)
 // 0x002df350  size 0xa4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int password_sub_002df350(long param_1)
+int password_step_sub_002df350(long param_1)
 
 {
   int iVar1;
@@ -1788,7 +1790,7 @@ int password_sub_002df350(long param_1)
   undefined4 uStack_8;
   
   if (*(int *)(_g_GameState + 0x3a4) == 0) {
-    iVar1 = password_sub_002df9f0(*(undefined4 *)(_g_GameState + 0x3a8));
+    iVar1 = password_leaf_sub_002df9f0(*(undefined4 *)(_g_GameState + 0x3a8));
   }
   else {
     aiStack_20[0] = DAT_003424c0;
@@ -1811,7 +1813,7 @@ int password_sub_002df350(long param_1)
 // 0x002df400  size 0x168
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int password_sub_002df400(int param_1,int param_2)
+int password_leaf_sub_002df400(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1889,7 +1891,7 @@ int password_sub_002df400(int param_1,int param_2)
 }
 
 // 0x002df570  size 0x104
-int password_sub_002df570(int param_1)
+int password_step_sub_002df570(int param_1)
 
 {
   short sVar1;
@@ -1940,7 +1942,7 @@ int password_sub_002df570(int param_1)
 }
 
 // 0x002df680  size 0x88
-int password_sub_002df680(uint param_1,int param_2,char param_3,int param_4)
+int password_step_sub_002df680(uint param_1,int param_2,char param_3,int param_4)
 
 {
   undefined8 uVar1;
@@ -1964,7 +1966,7 @@ int password_sub_002df680(uint param_1,int param_2,char param_3,int param_4)
 }
 
 // 0x002df710  size 0xe0
-int password_sub_002df710(uint param_1,int param_2,char param_3,long param_4)
+int password_step_sub_002df710(uint param_1,int param_2,char param_3,long param_4)
 
 {
   int iVar1;
@@ -2005,7 +2007,7 @@ int password_sub_002df710(uint param_1,int param_2,char param_3,long param_4)
 }
 
 // 0x002df7f0  size 0x7c
-undefined4 password_sub_002df7f0(long param_1)
+undefined4 password_leaf_sub_002df7f0(long param_1)
 
 {
   undefined4 uVar1;
@@ -2031,7 +2033,7 @@ undefined4 password_sub_002df7f0(long param_1)
 }
 
 // 0x002df870  size 0x17c
-int password_sub_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long param_5)
+int password_step_sub_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long param_5)
 
 {
   int iVar1;
@@ -2092,7 +2094,7 @@ int password_sub_002df870(undefined8 param_1,int param_2,int param_3,char param_
 }
 
 // 0x002df9f0  size 0x478
-undefined4 password_sub_002df9f0(long param_1,long param_2)
+undefined4 password_leaf_sub_002df9f0(long param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -2299,7 +2301,7 @@ undefined4 password_sub_002df9f0(long param_1,long param_2)
 }
 
 // 0x002dfe70  size 0x60
-void password_sub_002dfe70(undefined4 *param_1,undefined8 param_2)
+void password_step_sub_002dfe70(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -2324,7 +2326,7 @@ void password_sub_002dfe70(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x002dfed0  size 0x54
-int password_sub_002dfed0(undefined8 param_1,uint param_2,int param_3)
+int password_step_sub_002dfed0(undefined8 param_1,uint param_2,int param_3)
 
 {
   undefined8 uVar1;
@@ -2336,7 +2338,7 @@ int password_sub_002dfed0(undefined8 param_1,uint param_2,int param_3)
 }
 
 // 0x002dff30  size 0x100
-int password_sub_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
+int password_step_sub_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
 
 {
   int *piVar1;

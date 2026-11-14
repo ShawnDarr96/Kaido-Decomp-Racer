@@ -1318,12 +1318,12 @@ int SaveSlot_ParseDirectory(undefined8 param_1,undefined8 param_2,int param_3)
           }
         }
         else {
-          lVar6 = newlib_sub_0012af48(puVar7 + 0x20);
+          lVar6 = maybe_strchr(puVar7 + 0x20);
           if (lVar6 == 0) {
             bVar2 = true;
           }
           else {
-            lVar6 = newlib_sub_0012af48((int)lVar6 + 1,0x2e);
+            lVar6 = maybe_strchr((int)lVar6 + 1,0x2e);
             if (lVar6 == 0) {
               iVar4 = 4;
             }
@@ -1387,7 +1387,7 @@ int SaveSlot_ParseFileList(undefined8 param_1,int param_2)
   for (; param_2 != 0; param_2 = param_2 + -1) {
     iVar8 = (int)param_1;
     puVar6 = (undefined1 *)(*(int *)(iVar8 + 0x74) + (param_2 + -1) * 0x40);
-    lVar3 = newlib_sub_0012b630(puVar6 + 0x20,0x2e);
+    lVar3 = maybe_strrchr(puVar6 + 0x20,0x2e);
     iVar2 = 0;
     bVar1 = lVar3 == 0;
     if (!bVar1) {

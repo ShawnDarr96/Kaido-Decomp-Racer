@@ -3,14 +3,14 @@
 #include "ghidra_types.h"
 
 // 0x0011c038  size 0x4c
-undefined8 libkernl_sub_0011c038(undefined8 param_1)
+undefined8 maybe_GetTimerCount(undefined8 param_1)
 
 {
   long lVar1;
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011bfc8(param_1);
+  uVar2 = maybe_iGetTimerCount(param_1);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -18,7 +18,7 @@ undefined8 libkernl_sub_0011c038(undefined8 param_1)
 }
 
 // 0x0011c088  size 0xf4
-undefined8 libkernl_sub_0011c088(uint param_1,undefined8 param_2,long param_3,undefined4 param_4)
+undefined8 maybe_iSetTimerHandler(uint param_1,undefined8 param_2,long param_3,undefined4 param_4)
 
 {
   undefined8 uVar1;
@@ -35,7 +35,7 @@ undefined8 libkernl_sub_0011c088(uint param_1,undefined8 param_2,long param_3,un
   else {
     uVar2 = *(uint *)(iVar3 + 0xc);
     if ((uVar2 & 2) != 0) {
-      libkernl_sub_0011b648(iVar3);
+      maybe_Timer_UnlinkAlarm(iVar3);
       uVar2 = *(uint *)(iVar3 + 0xc);
     }
     *(int *)(iVar3 + 0x28) = (int)param_3;
@@ -48,11 +48,11 @@ undefined8 libkernl_sub_0011c088(uint param_1,undefined8 param_2,long param_3,un
       *(undefined1 **)(iVar3 + 0x2c) = &_mips_gp0_value;
       *(undefined4 *)(iVar3 + 0x30) = param_4;
       if ((*(uint *)(iVar3 + 0xc) & 1) != 0) {
-        libkernl_sub_0011b5c0(iVar3);
+        maybe_Timer_FindNextAlarm(iVar3);
       }
     }
     uVar1 = maybe_GetTimerSystemTime();
-    libkernl_sub_0011b430(uVar1);
+    maybe_Timer_UpdateCompare(uVar1);
     uVar1 = 0;
   }
   return uVar1;
@@ -60,14 +60,14 @@ undefined8 libkernl_sub_0011c088(uint param_1,undefined8 param_2,long param_3,un
 
 // 0x0011c180  size 0x7c
 undefined8
-libkernl_sub_0011c180(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+maybe_SetTimerHandler(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   undefined8 uVar2;
   
   lVar1 = DIntr();
-  uVar2 = libkernl_sub_0011c088(param_1,param_2,param_3,param_4);
+  uVar2 = maybe_iSetTimerHandler(param_1,param_2,param_3,param_4);
   if (lVar1 != 0) {
     EIntr();
   }
@@ -75,7 +75,9 @@ libkernl_sub_0011c180(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
 }
 
 // 0x0011c200  size 0xa8
-void libkernl_sub_0011c200(long param_1,long param_2,long param_3)
+/* / 0x8ca0000 (147.456 MHz) */
+
+void maybe_TimerBusClock2USec(long param_1,long param_2,long param_3)
 
 {
   uint uVar1;
@@ -95,7 +97,7 @@ void libkernl_sub_0011c200(long param_1,long param_2,long param_3)
 }
 
 // 0x0011c2a8  size 0x70
-long libkernl_sub_0011c2a8(int param_1,ulong param_2)
+long maybe_TimerUSec2BusClock(int param_1,ulong param_2)
 
 {
   ulong uVar1;
@@ -107,17 +109,17 @@ long libkernl_sub_0011c2a8(int param_1,ulong param_2)
 }
 
 // 0x0011c318  size 0x54
-float libkernl_sub_0011c318(ulong param_1)
+float maybe___floatundisf(ulong param_1)
 
 {
   float fVar1;
   
   if ((long)param_1 < 0) {
-    fVar1 = (float)newlib_sub_0012f190(param_1 & 1 | param_1 >> 1);
+    fVar1 = (float)maybe___floatdisf(param_1 & 1 | param_1 >> 1);
     fVar1 = fVar1 + fVar1;
   }
   else {
-    fVar1 = (float)newlib_sub_0012f190();
+    fVar1 = (float)maybe___floatdisf();
   }
   return 1.47456e+08 / fVar1;
 }
@@ -145,7 +147,7 @@ undefined8 maybe_Timer_FindFreeSlot(void)
 }
 
 // 0x0011c3f8  size 0x5c
-long libkernl_sub_0011c3f8(uint param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4)
+long maybe_Alarm_Dispatch(uint param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4)
 
 {
   undefined4 *puVar1;
@@ -199,7 +201,7 @@ uint maybe_SetTimerAlarm(undefined8 param_1,long param_2,undefined4 param_3)
         puVar1[2] = (int)param_2;
         puVar1[3] = param_3;
         puVar1[1] = uVar3;
-        libkernl_sub_0011c180(uVar3,param_1,0x11c3f8,puVar1);
+        maybe_SetTimerHandler(uVar3,param_1,0x11c3f8,puVar1);
         maybe_StartTimerCounter(uVar3);
         if (lVar4 != 0) {
           EIntr();
@@ -212,7 +214,7 @@ uint maybe_SetTimerAlarm(undefined8 param_1,long param_2,undefined4 param_3)
 }
 
 // 0x0011c588  size 0xf0
-uint libkernl_sub_0011c588(undefined8 param_1,long param_2,undefined4 param_3)
+uint maybe_SetTimerAlarm_(undefined8 param_1,long param_2,undefined4 param_3)
 
 {
   undefined4 *puVar1;
@@ -228,7 +230,7 @@ uint libkernl_sub_0011c588(undefined8 param_1,long param_2,undefined4 param_3)
   }
   else {
     puRam00377dc0 = (undefined4 *)*puRam00377dc0;
-    uVar3 = libkernl_sub_0011b9f0();
+    uVar3 = maybe_Timer_AllocSlot();
     if ((int)uVar3 < 0) {
       puVar2 = puVar1;
       *puVar1 = puRam00377dc0;
@@ -239,8 +241,8 @@ uint libkernl_sub_0011c588(undefined8 param_1,long param_2,undefined4 param_3)
       puVar1[2] = (int)param_2;
       puVar1[3] = param_3;
       puVar1[1] = uVar3;
-      libkernl_sub_0011c088(uVar3,param_1,0x11c3f8,puVar1);
-      libkernl_sub_0011bc48(uVar3);
+      maybe_iSetTimerHandler(uVar3,param_1,0x11c3f8,puVar1);
+      maybe_iStartTimerCounter(uVar3);
       uVar3 = (int)puVar1 << 4 | uVar3 & 0xfe | 1;
     }
   }
@@ -248,7 +250,7 @@ uint libkernl_sub_0011c588(undefined8 param_1,long param_2,undefined4 param_3)
 }
 
 // 0x0011c678  size 0xa8
-undefined8 libkernl_sub_0011c678(uint param_1)
+undefined8 maybe_ReleaseTimerAlarm(uint param_1)
 
 {
   undefined4 *puVar1;
@@ -280,7 +282,7 @@ undefined8 libkernl_sub_0011c678(uint param_1)
 }
 
 // 0x0011c720  size 0x78
-long libkernl_sub_0011c720(uint param_1)
+long maybe_iReleaseTimerAlarm(uint param_1)
 
 {
   undefined4 *puVar1;
@@ -292,7 +294,7 @@ long libkernl_sub_0011c720(uint param_1)
     lVar2 = -0x7fff7ffe;
   }
   else {
-    lVar2 = libkernl_sub_0011baa8(puVar3[1]);
+    lVar2 = maybe_iFreeTimerCounter(puVar3[1]);
     if (lVar2 == 0) {
       puVar1 = puVar3;
       *puVar3 = puRam00377dc0;
@@ -304,7 +306,7 @@ long libkernl_sub_0011c720(uint param_1)
 }
 
 // 0x0011c798  size 0x24
-void libkernl_sub_0011c798(void)
+void maybe_InitTimerAlarmPool(void)
 
 {
   DAT_003081a8 = 0;
@@ -314,7 +316,7 @@ void libkernl_sub_0011c798(void)
 }
 
 // 0x0011c840  size 0xb8
-undefined8 libkernl_sub_0011c840(uint param_1,undefined4 param_2,undefined4 param_3)
+undefined8 maybe_iCancelTimerAlarm(uint param_1,undefined4 param_2,undefined4 param_3)
 
 {
   uint uVar1;
@@ -350,7 +352,7 @@ undefined8 libkernl_sub_0011c840(uint param_1,undefined4 param_2,undefined4 para
 }
 
 // 0x0011c950  size 0xa8
-undefined1 * libkernl_sub_0011c950(long param_1,undefined8 param_2)
+undefined1 * maybe_SetSifCmdFlag(long param_1,undefined8 param_2)
 
 {
   int *piVar1;
@@ -380,7 +382,7 @@ undefined1 * libkernl_sub_0011c950(long param_1,undefined8 param_2)
 }
 
 // 0x0011c9f8  size 0x5a8
-int libm_sub_0011c9f8(ulong param_1,undefined8 param_2)
+int maybe___ieee754_rem_pio2(ulong param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -470,7 +472,7 @@ int libm_sub_0011c9f8(ulong param_1,undefined8 param_2)
       if (lVar6 != 0) break;
       iVar7 = iVar7 + -1;
     }
-    iVar7 = libm_sub_0011e310(auStack_70,param_2,iVar13 + -0x416,iVar7,2,0x35f448);
+    iVar7 = maybe___kernel_rem_pio2(auStack_70,param_2,iVar13 + -0x416,iVar7,2,0x35f448);
     if (-1 < (long)uVar14) {
       return iVar7;
     }
@@ -479,7 +481,7 @@ int libm_sub_0011c9f8(ulong param_1,undefined8 param_2)
     *puVar11 = uVar14;
     goto LAB_0011cf70;
   }
-  uVar5 = libm_sub_00120158();
+  uVar5 = fabs();
   uVar1 = __muldf3(uVar5,DAT_0035f660);
   uVar1 = __adddf3(uVar1,0x3fe0000000000000);
   iVar7 = __fixdfsi(uVar1);
@@ -564,7 +566,7 @@ float maybe___ieee754_acosf(float param_1)
     }
     else if ((int)param_1 < 0) {
       fVar1 = (param_1 + 1.0) * 0.5;
-      fVar2 = (float)libm_sub_0011e240(fVar1);
+      fVar2 = (float)maybe_truncf(fVar1);
       fVar2 = fVar2 + (((fVar1 * (fVar1 * (fVar1 * (fVar1 * (fVar1 * (fVar1 * 3.479331e-05 +
                                                                      0.000791535) + -0.040055536) +
                                                    0.20121253) + -0.3255658) + 0.16666666)) /
@@ -574,7 +576,7 @@ float maybe___ieee754_acosf(float param_1)
     }
     else {
       fVar3 = (1.0 - param_1) * 0.5;
-      fVar2 = (float)libm_sub_0011e240(fVar3);
+      fVar2 = (float)maybe_truncf(fVar3);
       fVar1 = (float)((uint)fVar2 & 0xfffff000);
       fVar1 = fVar1 + ((fVar3 * (fVar3 * (fVar3 * (fVar3 * (fVar3 * (fVar3 * 3.479331e-05 +
                                                                     0.000791535) + -0.040055536) +
@@ -626,7 +628,7 @@ float maybe___ieee754_asinf(float param_1)
     fVar3 = fVar4 * (fVar4 * (fVar4 * (fVar4 * (fVar4 * (fVar4 * 3.479331e-05 + 0.000791535) +
                                                -0.040055536) + 0.20121253) + -0.3255658) +
                     0.16666666);
-    fVar2 = (float)libm_sub_0011e240(fVar4);
+    fVar2 = (float)maybe_truncf(fVar4);
     if ((uint)fVar1 < 0x3f79999a) {
       fVar1 = (float)((uint)fVar2 & 0xfffff000);
       fVar4 = (fVar4 - fVar1 * fVar1) / (fVar2 + fVar1);
@@ -940,7 +942,7 @@ LAB_0011e21c:
 }
 
 // 0x0011e240  size 0xcc
-float libm_sub_0011e240(float param_1)
+float maybe_truncf(float param_1)
 
 {
   int iVar1;
@@ -980,8 +982,9 @@ float libm_sub_0011e240(float param_1)
 // 0x0011e310  size 0xb24
 /* WARNING: Removing unreachable block (ram,0x0011e368) */
 
-uint libm_sub_0011e310(undefined8 *param_1,undefined8 *param_2,int param_3,int param_4,int param_5,
-                      int param_6)
+uint maybe___kernel_rem_pio2
+               (undefined8 *param_1,undefined8 *param_2,int param_3,int param_4,int param_5,
+               int param_6)
 
 {
   uint uVar1;
@@ -1097,9 +1100,9 @@ LAB_0011e498:
       uVar20 = __adddf3(uVar20,uVar10);
     } while (0 < iVar12);
   }
-  uVar20 = libm_sub_00120430(uVar20,iStack_70);
+  uVar20 = maybe_scalbn(uVar20,iStack_70);
   uVar10 = __muldf3(uVar20,0x3fc0000000000000);
-  uVar10 = libm_sub_00120190(uVar10);
+  uVar10 = maybe_floor(uVar10);
   uVar10 = __muldf3(uVar10,0x4020000000000000);
   uVar20 = __subdf3(uVar20,uVar10);
   uVar10 = __fixdfsi(uVar20);
@@ -1162,7 +1165,7 @@ LAB_0011e68c:
     }
 LAB_0011e700:
     if ((iVar12 == 2) && (uVar20 = __subdf3(0x3ff0000000000000,uVar20), bVar2)) {
-      uVar10 = libm_sub_00120430(0x3ff0000000000000,iStack_70);
+      uVar10 = maybe_scalbn(0x3ff0000000000000,iStack_70);
       uVar20 = __subdf3(uVar20,uVar10);
     }
   }
@@ -1236,7 +1239,7 @@ LAB_0011e8c0:
     }
   }
   else {
-    uVar20 = libm_sub_00120430(uVar20,-iStack_70);
+    uVar20 = maybe_scalbn(uVar20,-iStack_70);
     lVar7 = __cmpdf2(uVar20,0x4170000000000000);
     if (-1 < lVar7) {
       iStack_70 = iStack_70 + 0x18;
@@ -1254,7 +1257,7 @@ LAB_0011e8c0:
     uVar4 = __fixdfsi(uVar20);
     auStack_2c4[iVar9 + 1] = uVar4;
   }
-  uVar20 = libm_sub_00120430(0x3ff0000000000000,iStack_70);
+  uVar20 = maybe_scalbn(0x3ff0000000000000,iStack_70);
   if (-1 < iVar9) {
     puVar8 = auStack_2c4 + iVar9 + 1;
     puVar14 = auStack_130 + iVar9;
@@ -1420,7 +1423,7 @@ LAB_0011eb04:
 }
 
 // 0x0011ee60  size 0x560
-ulong libm_sub_0011ee60(ulong param_1,undefined8 param_2,int param_3)
+ulong maybe___kernel_cos(ulong param_1,undefined8 param_2,int param_3)
 
 {
   uint uVar1;
@@ -1438,7 +1441,7 @@ ulong libm_sub_0011ee60(ulong param_1,undefined8 param_2,int param_3)
   uVar10 = uVar1 & 0x7fffffff;
   if ((uVar10 < 0x3e300000) && (lVar2 = __fixdfsi(), lVar2 == 0)) {
     if (((param_1 & 0x7fffffff00000000) == 0 && (int)param_1 == 0) && param_3 == -1) {
-      uVar3 = libm_sub_00120158(param_1);
+      uVar3 = fabs(param_1);
       param_1 = __divdf3(0x3ff0000000000000,uVar3);
     }
     else if (param_3 != 1) {

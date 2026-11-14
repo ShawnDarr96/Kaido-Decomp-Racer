@@ -45,7 +45,7 @@ void Prop_UpdatePaper(int *param_1,undefined8 param_2)
   
   iVar2 = iRam0036f328;
   if (iRam0036f1f8 == 0) {
-    vu0math_sub_00132ae0(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MovePaper(iRam0036f328,auStack_10,800,param_2);
@@ -57,8 +57,8 @@ void Prop_UpdatePaper(int *param_1,undefined8 param_2)
   else {
     iVar1 = *(int *)(_g_Loading + 0x18);
     iVar3 = iRam0036f328 + 0x4b00;
-    vu0math_sub_00132ae0(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    vu0math_sub_00132ae0(auStack_30,iVar1 + 0x70);
+    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MovePaper(iVar2,auStack_20,400,param_2);
@@ -266,7 +266,7 @@ void Prop_DrawBirds(uint param_1)
     else {
       uVar3 = 800;
     }
-    vu0math_sub_00132ae0(auStack_170,iVar1 + 0x420);
+    sceVu0CopyVector(auStack_170,iVar1 + 0x420);
     uRam00433fa4 = *(undefined4 *)(iVar1 + 0xa8);
     Cam_SetupViewport(0x433f00,0,8);
     maybe_Pkt_InitLayers(auStack_160,0x433f00,0x436180,8,9);
@@ -331,7 +331,7 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
     else {
       uVar3 = 800;
     }
-    vu0math_sub_00132ae0(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       if (uVar4 - 2 < 2) {
@@ -360,8 +360,8 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
       iVar5 = iRam0036f328 + 0x4b00;
       iVar2 = iRam0036f328;
     }
-    vu0math_sub_00132ae0(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    vu0math_sub_00132ae0(auStack_30,iVar1 + 0x70);
+    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MoveBirds(iVar2,auStack_20,uVar3,param_2);
@@ -718,7 +718,7 @@ void Prop_SetLight(int param_1,undefined4 param_2,undefined8 param_3)
 
 {
   *(undefined4 *)(param_1 * 0x50 + 0x436570) = param_2;
-  vu0math_sub_00132c20(param_1 * 0x50 + 0x436580,param_3);
+  sceVu0CopyMatrix(param_1 * 0x50 + 0x436580,param_3);
   return;
 }
 
@@ -1431,7 +1431,7 @@ LAB_001c6ccc:
   if (cVar1 == '\x01') {
     *(undefined4 *)(iVar9 + 0x1a8) = 0x3f800000;
   }
-  lVar7 = race_sub_001e8fc0();
+  lVar7 = race_leaf_sub_001e8fc0();
   if ((lVar7 == 0) && (uVar8 = RaceCar_GetFlags(uVar6), (uVar8 & 0x400) == 0)) {
     Driver_ReadInput(iVar9 + 0x19c,iVar9 + 0x69964);
     *(short *)(iVar9 + 0x1d0) = (short)(int)(*(float *)(iVar9 + 0x1a4) * 255.0);

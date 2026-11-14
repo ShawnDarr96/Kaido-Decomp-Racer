@@ -139,10 +139,10 @@ void sceSifInitRpc(void)
   uRam00372a90 = 0;
   uRam00372a98 = 0x20;
   uRam00372aa4 = 0;
-  libkernl_sub_00113d88(0xffffffff80000008,0x114500,0x372a80);
-  libkernl_sub_00113d88(0xffffffff80000009,0x1148c8,0x372a80);
-  libkernl_sub_00113d88(0xffffffff8000000a,0x114ad8,0x372a80);
-  libkernl_sub_00113d88(0xffffffff8000000c,0x114610,0x372a80);
+  maybe_sceSifGetCmdHandler(0xffffffff80000008,0x114500,0x372a80);
+  maybe_sceSifGetCmdHandler(0xffffffff80000009,0x1148c8,0x372a80);
+  maybe_sceSifGetCmdHandler(0xffffffff8000000a,0x114ad8,0x372a80);
+  maybe_sceSifGetCmdHandler(0xffffffff8000000c,0x114610,0x372a80);
   EIntr();
   lVar1 = sceSifGetReg(0xffffffff80000002);
   if (lVar1 != 0) {
@@ -151,7 +151,7 @@ void sceSifInitRpc(void)
   uRam003712cc = 1;
   sceSifSendCmd(0xffffffff80000002,0x3712c0,0x10,0,0,0);
   do {
-    lVar1 = libkernl_sub_00113a58(0);
+    lVar1 = maybe_sceSifGetSreg(0);
   } while (lVar1 == 0);
   sceSifSetReg(0xffffffff80000002,1);
   return;
@@ -167,7 +167,7 @@ void sceSifExitRpc(void)
 }
 
 // 0x001143c8  size 0xa8
-int libkernl_sub_001143c8(int *param_1)
+int maybe__rpc_get_packet(int *param_1)
 
 {
   int iVar1;
@@ -202,7 +202,7 @@ int libkernl_sub_001143c8(int *param_1)
 }
 
 // 0x00114470  size 0x1c
-void libkernl_sub_00114470(int param_1)
+void maybe__rpc_free_packet(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x18) = 0;
@@ -211,7 +211,7 @@ void libkernl_sub_00114470(int param_1)
 }
 
 // 0x00114490  size 0x30
-int libkernl_sub_00114490(int param_1)
+int maybe__rpc_get_fpacket(int param_1)
 
 {
   int iVar1;
@@ -225,13 +225,13 @@ int libkernl_sub_00114490(int param_1)
 }
 
 // 0x001144c0  size 0x40
-int libkernl_sub_001144c0(int param_1,int param_2)
+int maybe__rpc_get_fpacket2(int param_1,int param_2)
 
 {
   int iVar1;
   
   if ((param_2 < 0) || (*(int *)(param_1 + 0x20) <= param_2)) {
-    iVar1 = libkernl_sub_00114490();
+    iVar1 = maybe__rpc_get_fpacket();
   }
   else {
     iVar1 = *(int *)(param_1 + 0x1c) + param_2 * 0x40;
@@ -240,7 +240,7 @@ int libkernl_sub_001144c0(int param_1,int param_2)
 }
 
 // 0x00114500  size 0xcc
-void libkernl_sub_00114500(int param_1)
+void maybe__request_end(int param_1)
 
 {
   uint uVar1;
@@ -273,13 +273,13 @@ LAB_00114598:
   if (-1 < iVar2) {
     iSignalSema();
   }
-  libkernl_sub_00114470(*puVar3);
+  maybe__rpc_free_packet(*puVar3);
   *puVar3 = 0;
   return;
 }
 
 // 0x001145d0  size 0x40
-undefined4 libkernl_sub_001145d0(void)
+undefined4 maybe__request_rdata(void)
 
 {
   long lVar1;
@@ -298,7 +298,7 @@ undefined4 libkernl_sub_001145d0(void)
 }
 
 // 0x00114610  size 0xd0
-void libkernl_sub_00114610(int param_1,undefined8 param_2)
+void maybe__request_bind(int param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -307,10 +307,10 @@ void libkernl_sub_00114610(int param_1,undefined8 param_2)
   int iVar4;
   
   if ((*(uint *)(param_1 + 0x10) & 4) == 0) {
-    uVar2 = libkernl_sub_00114490(param_2);
+    uVar2 = maybe__rpc_get_fpacket(param_2);
   }
   else {
-    uVar2 = libkernl_sub_001144c0(param_2,*(uint *)(param_1 + 0x10) >> 0x10);
+    uVar2 = maybe__rpc_get_fpacket2(param_2,*(uint *)(param_1 + 0x10) >> 0x10);
   }
   uVar1 = *(undefined4 *)(param_1 + 0x1c);
   iVar4 = (int)uVar2;
@@ -323,7 +323,7 @@ void libkernl_sub_00114610(int param_1,undefined8 param_2)
   lVar3 = isceSifSendCmd(0xffffffff80000008,uVar2,0x40,*(undefined4 *)(param_1 + 0x20),
                          *(undefined4 *)(param_1 + 0x24),*(undefined4 *)(param_1 + 0x28));
   if (lVar3 == 0) {
-    libkernl_sub_0011c588(0x800,0x1145d0,uVar2);
+    maybe_SetTimerAlarm_(0x800,0x1145d0,uVar2);
     return;
   }
   return;
@@ -331,8 +331,8 @@ void libkernl_sub_00114610(int param_1,undefined8 param_2)
 
 // 0x001146e0  size 0x158
 undefined4
-libkernl_sub_001146e0
-          (int *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,ulong param_5)
+sceSifGetOtherData(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+                  ulong param_5)
 
 {
   int iVar1;
@@ -344,7 +344,7 @@ libkernl_sub_001146e0
   undefined4 uStack_8c;
   undefined4 uStack_88;
   
-  lVar3 = libkernl_sub_001143c8(0x372a80);
+  lVar3 = maybe__rpc_get_packet(0x372a80);
   uVar2 = 0xffffffff;
   if (lVar3 != 0) {
     iVar5 = (int)lVar3;
@@ -362,13 +362,13 @@ libkernl_sub_001146e0
       lVar4 = CreateSema(auStack_90);
       param_1[2] = (int)lVar4;
       if (lVar4 < 0) {
-        libkernl_sub_00114470(lVar3);
+        maybe__rpc_free_packet(lVar3);
         uVar2 = 0xfffffffd;
       }
       else {
         lVar4 = sceSifSendCmd(0xffffffff8000000c,lVar3,0x40,0,0,0);
         if (lVar4 == 0) {
-          libkernl_sub_00114470(lVar3);
+          maybe__rpc_free_packet(lVar3);
           DeleteSema(param_1[2]);
           uVar2 = 0xfffffffe;
         }
@@ -384,7 +384,7 @@ libkernl_sub_001146e0
       lVar4 = sceSifSendCmd(0xffffffff8000000c,lVar3,0x40,0,0,0);
       uVar2 = 0;
       if (lVar4 == 0) {
-        libkernl_sub_00114470(lVar3);
+        maybe__rpc_free_packet(lVar3);
         uVar2 = 0xfffffffe;
       }
     }
@@ -393,7 +393,7 @@ libkernl_sub_001146e0
 }
 
 // 0x00114838  size 0x4c
-int * libkernl_sub_00114838(int param_1,int param_2)
+int * maybe__search_svdata(int param_1,int param_2)
 
 {
   int iVar1;
@@ -427,7 +427,7 @@ int * libkernl_sub_00114838(int param_1,int param_2)
 }
 
 // 0x00114888  size 0x40
-undefined4 libkernl_sub_00114888(void)
+undefined4 maybe__request_call_end(void)
 
 {
   long lVar1;
@@ -443,7 +443,7 @@ undefined4 libkernl_sub_00114888(void)
 }
 
 // 0x001148c8  size 0xcc
-void libkernl_sub_001148c8(int param_1,undefined8 param_2)
+void maybe__request_call(int param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -451,13 +451,13 @@ void libkernl_sub_001148c8(int param_1,undefined8 param_2)
   long lVar3;
   int iVar4;
   
-  uVar2 = libkernl_sub_00114490(param_2);
+  uVar2 = maybe__rpc_get_fpacket(param_2);
   uVar1 = *(undefined4 *)(param_1 + 0x14);
   iVar4 = (int)uVar2;
   *(undefined4 *)(iVar4 + 0x1c) = *(undefined4 *)(param_1 + 0x1c);
   *(undefined4 *)(iVar4 + 0x14) = uVar1;
   *(undefined4 *)(iVar4 + 0x20) = 0x80000009;
-  lVar3 = libkernl_sub_00114838(*(undefined4 *)(param_1 + 0x20),param_2);
+  lVar3 = maybe__search_svdata(*(undefined4 *)(param_1 + 0x20),param_2);
   if (lVar3 == 0) {
     *(undefined4 *)(iVar4 + 0x24) = 0;
     *(undefined4 *)(iVar4 + 0x28) = 0;
@@ -468,7 +468,7 @@ void libkernl_sub_001148c8(int param_1,undefined8 param_2)
   }
   lVar3 = isceSifSendCmd(0xffffffff80000008,uVar2,0x40,0,0,0);
   if (lVar3 == 0) {
-    libkernl_sub_0011c588(0x800,0x114888,uVar2);
+    maybe_SetTimerAlarm_(0x800,0x114888,uVar2);
     return;
   }
   return;
@@ -489,7 +489,7 @@ undefined4 sceSifBindRpc(int *param_1,undefined4 param_2,ulong param_3)
   
   param_1[4] = 0;
   param_1[9] = 0;
-  lVar3 = libkernl_sub_001143c8(0x372a80);
+  lVar3 = maybe__rpc_get_packet(0x372a80);
   uVar2 = 0xffffffff;
   if (lVar3 != 0) {
     iVar5 = (int)lVar3;
@@ -505,13 +505,13 @@ undefined4 sceSifBindRpc(int *param_1,undefined4 param_2,ulong param_3)
       lVar4 = CreateSema(auStack_70);
       param_1[2] = (int)lVar4;
       if (lVar4 < 0) {
-        libkernl_sub_00114470(lVar3);
+        maybe__rpc_free_packet(lVar3);
         uVar2 = 0xfffffffd;
       }
       else {
         lVar4 = sceSifSendCmd(0xffffffff80000009,lVar3,0x40,0,0,0);
         if (lVar4 == 0) {
-          libkernl_sub_00114470(lVar3);
+          maybe__rpc_free_packet(lVar3);
           DeleteSema(param_1[2]);
           uVar2 = 0xfffffffe;
         }
@@ -527,7 +527,7 @@ undefined4 sceSifBindRpc(int *param_1,undefined4 param_2,ulong param_3)
       lVar4 = sceSifSendCmd(0xffffffff80000009,lVar3,0x40,0,0,0);
       uVar2 = 0;
       if (lVar4 == 0) {
-        libkernl_sub_00114470(lVar3);
+        maybe__rpc_free_packet(lVar3);
         uVar2 = 0xfffffffe;
       }
     }
@@ -551,7 +551,7 @@ sceSifCallRpc(int *param_1,undefined4 param_2,ulong param_3,long param_4,long pa
   undefined4 uStack_bc;
   undefined4 uStack_b8;
   
-  lVar2 = libkernl_sub_001143c8(0x372a80);
+  lVar2 = maybe__rpc_get_packet(0x372a80);
   if (lVar2 == 0) {
     return 0xffffffff;
   }
@@ -592,7 +592,7 @@ sceSifCallRpc(int *param_1,undefined4 param_2,ulong param_3,long param_4,long pa
     lVar3 = CreateSema(auStack_c0);
     param_1[2] = (int)lVar3;
     if (lVar3 < 0) {
-      libkernl_sub_00114470(lVar2);
+      maybe__rpc_free_packet(lVar2);
       return 0xfffffffd;
     }
     *(undefined4 *)(iVar4 + 0x30) = 1;
@@ -617,7 +617,7 @@ sceSifCallRpc(int *param_1,undefined4 param_2,ulong param_3,long param_4,long pa
       return 0;
     }
   }
-  libkernl_sub_00114470(lVar2);
+  maybe__rpc_free_packet(lVar2);
   return 0xfffffffe;
 }
 
@@ -826,10 +826,10 @@ void sceSifExecRequest(int param_1)
   }
   DIntr();
   if ((*(uint *)(param_1 + 0x34) & 4) == 0) {
-    uVar3 = libkernl_sub_00114490(0x372a80,*(uint *)(param_1 + 0x34) >> 0x10);
+    uVar3 = maybe__rpc_get_fpacket(0x372a80,*(uint *)(param_1 + 0x34) >> 0x10);
   }
   else {
-    uVar3 = libkernl_sub_001144c0(0x372a80);
+    uVar3 = maybe__rpc_get_fpacket2(0x372a80);
   }
   EIntr();
   uVar1 = *(undefined4 *)(param_1 + 0x1c);
@@ -882,7 +882,7 @@ void sceSifRpcLoop(undefined8 param_1)
 }
 
 // 0x00115290  size 0x5c
-void libkernl_sub_00115290(void)
+void maybe_Fio_InitSema(void)
 
 {
   undefined1 auStack_40 [4];
@@ -901,14 +901,14 @@ void libkernl_sub_00115290(void)
 }
 
 // 0x001152f0  size 0x88
-uint libkernl_sub_001152f0(void)
+uint maybe_Fio_WaitFree(void)
 
 {
   undefined4 uVar1;
   int iVar2;
   uint uVar3;
   
-  libkernl_sub_00115290();
+  maybe_Fio_InitSema();
   WaitSema(DAT_00306b88);
   uVar1 = DAT_00306b88;
   uVar3 = 0x374000;
@@ -928,12 +928,12 @@ uint libkernl_sub_001152f0(void)
 }
 
 // 0x00115378  size 0x6c
-int libkernl_sub_00115378(ulong param_1)
+int maybe_Fio_GetFreeSlot(ulong param_1)
 
 {
   int iVar1;
   
-  libkernl_sub_00115290();
+  maybe_Fio_InitSema();
   WaitSema(DAT_00306b88);
   if (param_1 < 0x20) {
     iVar1 = (int)param_1 * 0x10 + 0x374000;
@@ -947,7 +947,7 @@ int libkernl_sub_00115378(ulong param_1)
 }
 
 // 0x001153e8  size 0x3b0
-void libkernl_sub_001153e8(int param_1)
+void maybe_Fio_RpcCallback(int param_1)
 
 {
   int iVar1;
@@ -1093,7 +1093,7 @@ LAB_0011571c:
 }
 
 // 0x001157a0  size 0x4c
-void libkernl_sub_001157a0(void)
+void maybe_Fio_InitLockSema(void)
 
 {
   undefined1 auStack_40 [4];
@@ -1114,7 +1114,7 @@ void libkernl_sub_001157a0(void)
 undefined8 maybe_Fio_Lock(void)
 
 {
-  libkernl_sub_001157a0();
+  maybe_Fio_InitLockSema();
   WaitSema(DAT_00306b84);
   return 0;
 }
@@ -1128,7 +1128,7 @@ void maybe_Fio_Unlock(void)
 }
 
 // 0x001158d8  size 0x44
-void libkernl_sub_001158d8(undefined8 param_1,undefined4 *param_2)
+void maybe_Fio_AsyncCallback(undefined8 param_1,undefined4 *param_2)
 
 {
   if ((code *)*param_2 != (code *)0x0) {
@@ -1154,8 +1154,8 @@ undefined4 maybe_Fio_Bind(void)
   uRam00374280 = 0;
   uRam00374284 = 0;
   lVar3 = DIntr();
-  libkernl_sub_00113d88(0xffffffff80000011,0x1153e8,0x374240);
-  libkernl_sub_00113d88(0xffffffff80000013,0x1158d8,0x374280);
+  maybe_sceSifGetCmdHandler(0xffffffff80000011,0x1153e8,0x374240);
+  maybe_sceSifGetCmdHandler(0xffffffff80000013,0x1158d8,0x374280);
   if (lVar3 != 0) {
     EIntr();
   }
@@ -1170,7 +1170,7 @@ undefined4 maybe_Fio_Bind(void)
       iVar1 = iVar1 + -1;
     } while (iVar1 != -1);
   }
-  libkernl_sub_00115290();
+  maybe_Fio_InitSema();
   WaitSema(DAT_00306b88);
   uVar4 = 0x374000;
   do {
@@ -1196,7 +1196,7 @@ undefined4 maybe_Fio_Bind(void)
 }
 
 // 0x00115b28  size 0x8c
-bool libkernl_sub_00115b28(void)
+bool maybe_Fio_IsBound(void)
 
 {
   long lVar1;
@@ -1215,7 +1215,7 @@ bool libkernl_sub_00115b28(void)
 }
 
 // 0x00115bb8  size 0x34
-undefined8 libkernl_sub_00115bb8(void)
+undefined8 maybe_Fio_ClearBinding(void)
 
 {
   DAT_00306b7c = 0;
@@ -1246,9 +1246,9 @@ int sceOpen(char *param_1,uint param_2,undefined4 param_3)
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
-  lVar4 = libkernl_sub_00115b28();
+  lVar4 = maybe_Fio_IsBound();
   if (lVar4 == 0) {
-    lVar4 = libkernl_sub_001152f0();
+    lVar4 = maybe_Fio_WaitFree();
     if (lVar4 == 0) {
       maybe_Fio_Unlock();
       iVar6 = -0x13;
@@ -1334,7 +1334,7 @@ int sceClose(void)
   undefined4 uStack_7c;
   int aiStack_70 [4];
   
-  lVar2 = libkernl_sub_00115378();
+  lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(1);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();
@@ -1399,7 +1399,7 @@ undefined4 sceLseek(undefined8 param_1,undefined4 param_2,undefined4 param_3)
   undefined4 uStack_9c;
   undefined4 auStack_90 [4];
   
-  lVar3 = libkernl_sub_00115378();
+  lVar3 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(4);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();
@@ -1487,7 +1487,7 @@ undefined4 sceRead(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   undefined4 uStack_bc;
   undefined4 auStack_b0 [4];
   
-  lVar3 = libkernl_sub_00115378();
+  lVar3 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(2);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();
@@ -1583,7 +1583,7 @@ undefined4 sceWrite(undefined8 param_1,ulong param_2,int param_3)
   undefined4 uStack_bc;
   undefined4 auStack_b0 [4];
   
-  lVar4 = libkernl_sub_00115378();
+  lVar4 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(3);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();
@@ -1696,7 +1696,7 @@ undefined4 sceIoctl(undefined8 param_1,long param_2,undefined8 *param_3)
   undefined4 uStack_9c;
   undefined4 auStack_90 [4];
   
-  lVar2 = libkernl_sub_00115378();
+  lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(5);
   puRam00372ac8 = param_3;
   if (DAT_00306b7c == 0) {
@@ -1806,9 +1806,8 @@ LAB_001168f0:
 
 // 0x00116ac8  size 0x1dc
 undefined4
-libkernl_sub_00116ac8
-          (undefined8 param_1,undefined4 param_2,long param_3,ulong param_4,undefined4 param_5,
-          ulong param_6)
+maybe_sceIoctl2(undefined8 param_1,undefined4 param_2,long param_3,ulong param_4,undefined4 param_5,
+               ulong param_6)
 
 {
   int iVar1;
@@ -1820,7 +1819,7 @@ libkernl_sub_00116ac8
   undefined4 uStack_ac;
   undefined4 auStack_a0 [4];
   
-  lVar2 = libkernl_sub_00115378();
+  lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(0x1a);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
@@ -2116,7 +2115,9 @@ undefined4 maybe_sceFormat(char *param_1,long param_2,int param_3,int param_4)
 }
 
 // 0x001172b0  size 0x120
-undefined4 libkernl_sub_001172b0(undefined4 param_1)
+/* cmd 0xf */
+
+undefined4 maybe_sceAddDrv(undefined4 param_1)
 
 {
   int iVar1;
@@ -2162,7 +2163,9 @@ undefined4 libkernl_sub_001172b0(undefined4 param_1)
 }
 
 // 0x001173d0  size 0x1c
-void libkernl_sub_001173d0(undefined8 param_1)
+/* cmd 0x10 */
+
+void maybe_sceDelDrv(undefined8 param_1)
 
 {
   maybe_Fio_PathCmd(param_1,0x10);
@@ -2184,7 +2187,7 @@ int sceDopen(undefined8 param_1)
     maybe_Fio_Bind();
   }
   maybe_Fio_Unlock();
-  lVar2 = libkernl_sub_001152f0();
+  lVar2 = maybe_Fio_WaitFree();
   if (lVar2 == 0) {
     iVar1 = -0x13;
   }
@@ -2221,7 +2224,7 @@ int sceDclose(void)
   undefined4 uStack_7c;
   int aiStack_70 [4];
   
-  lVar2 = libkernl_sub_00115378();
+  lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(10);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();
@@ -2281,7 +2284,7 @@ undefined4 sceDread(undefined8 param_1,undefined4 param_2)
   undefined4 uStack_6c;
   undefined4 auStack_60 [4];
   
-  lVar2 = libkernl_sub_00115378();
+  lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(0xb);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Unlock();

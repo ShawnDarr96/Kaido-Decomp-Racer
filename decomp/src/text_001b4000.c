@@ -195,7 +195,7 @@ void Career_AssignRivalCar
       param_1[5] = param_5;
       break;
     case 9:
-      sVar1 = profile_sub_001c08a0(*_g_Profiles);
+      sVar1 = Profile_GetRivalBattleCountById(*_g_Profiles);
       param_1[5] = (int)sVar1;
     }
     iVar4 = iVar4 + 1;
@@ -1842,12 +1842,12 @@ void Career_ProcessDay(int param_1)
     iVar8 = GameState_Elem_f0_xcc(1);
     uVar5 = GameState_Elem_2fa0_x17c(*(undefined1 *)(iVar8 + 9));
     iVar8 = GameState_Ptr_48();
-    uVar6 = raceprog_sub_001dc180();
+    uVar6 = raceprog_leaf_sub_001dc180();
     psVar12 = (short *)uVar5;
     if ((uVar6 & 1) == 0) {
-      uVar6 = raceprog_sub_001dc180();
+      uVar6 = raceprog_leaf_sub_001dc180();
       if ((uVar6 & 2) == 0) {
-        uVar6 = raceprog_sub_001dc180();
+        uVar6 = raceprog_leaf_sub_001dc180();
         if ((uVar6 & 4) != 0) {
           *(short *)(param_1 + 0x5316) = *(short *)(param_1 + 0x5316) + 1;
           if (9999 < *(short *)(param_1 + 0x5316)) {
@@ -1862,7 +1862,7 @@ void Career_ProcessDay(int param_1)
           if (999 < *(short *)(iVar8 + 0x4794)) {
             *(undefined2 *)(iVar8 + 0x4794) = 999;
           }
-          garage_sub_001bfe30(uVar5,iStack_20,0);
+          RivalSchedule_IsComplete(uVar5,iStack_20,0);
           iVar9 = 0;
           *(short *)(*_g_Profiles + 0x5278) = *(short *)(*_g_Profiles + 0x5278) + 1;
           *(short *)(*_g_Profiles + 0x4c30) = *(short *)(*_g_Profiles + 0x4c30) + 1;
@@ -1899,7 +1899,7 @@ LAB_001b7ba8:
             if (999 < *(short *)(iVar8 + 0x4794)) {
               *(undefined2 *)(iVar8 + 0x4794) = 999;
             }
-            garage_sub_001bfe30(uVar5,iStack_1c,0);
+            RivalSchedule_IsComplete(uVar5,iStack_1c,0);
             iVar9 = 0;
             iVar8 = *_g_Profiles;
             do {
@@ -1917,7 +1917,7 @@ LAB_001b7ba8:
         }
       }
       else {
-        uVar7 = raceprog_sub_001dc280();
+        uVar7 = raceprog_leaf_sub_001dc280();
         *(short *)(param_1 + 0x5314) = *(short *)(param_1 + 0x5314) + 1;
         if (9999 < *(short *)(param_1 + 0x5314)) {
           *(undefined2 *)(param_1 + 0x5314) = 9999;
@@ -1939,7 +1939,7 @@ LAB_001b7ba8:
         else if (9999 < *(int *)(iVar8 + 0x2744)) {
           *(undefined4 *)(iVar8 + 0x2744) = 9999;
         }
-        garage_sub_001bfe30(uVar5,iStack_20,0);
+        RivalSchedule_IsComplete(uVar5,iStack_20,0);
         iVar9 = 0;
         *(short *)(*_g_Profiles + 0x5276) = *(short *)(*_g_Profiles + 0x5276) + 1;
         *(short *)(*_g_Profiles + 0x4c30) = *(short *)(*_g_Profiles + 0x4c30) + 1;
@@ -1992,7 +1992,7 @@ LAB_001b7998:
           else if (9999 < *(int *)(iVar8 + 0x2744)) {
             *(undefined4 *)(iVar8 + 0x2744) = 9999;
           }
-          garage_sub_001bfe30(uVar5,iStack_1c,0);
+          RivalSchedule_IsComplete(uVar5,iStack_1c,0);
           iVar9 = 0;
           iVar8 = *_g_Profiles;
           do {
@@ -2054,7 +2054,7 @@ LAB_001b7998:
         iVar13 = iVar13 + 8;
       } while (iVar11 < 200);
       if (*psVar12 == -1) {
-        garage_sub_001bfe30(uVar5,iStack_20,1);
+        RivalSchedule_IsComplete(uVar5,iStack_20,1);
       }
       else {
         iVar9 = *psVar12 * 2;
@@ -2069,7 +2069,7 @@ LAB_001b7998:
             *(undefined2 *)(*psVar12 * 2 + *_g_Profiles + 0x3f80) = 0;
             for (iVar9 = iVar8; *(int *)(iVar9 + 0x80) != -1; iVar9 = iVar9 + 4) {
               uVar5 = GameState_Elem_2fa0_x17c(iVar13 + 1);
-              garage_sub_001bfe30(uVar5,*(undefined4 *)(iVar9 + 0x80),1);
+              RivalSchedule_IsComplete(uVar5,*(undefined4 *)(iVar9 + 0x80),1);
               iVar13 = iVar13 + 1;
             }
           }
@@ -2079,7 +2079,7 @@ LAB_001b7998:
           }
         }
         else {
-          garage_sub_001bfe30(uVar5,iStack_20,1);
+          RivalSchedule_IsComplete(uVar5,iStack_20,1);
         }
       }
       if (*(short *)(iStack_20 * 2 + param_1 + 0x3fc4) == 1) {
@@ -2198,7 +2198,7 @@ LAB_001b7998:
           iVar13 = iVar13 + 8;
         } while (iVar11 < 200);
         if (*psVar12 == -1) {
-          garage_sub_001bfe30(uVar5,iStack_1c,1);
+          RivalSchedule_IsComplete(uVar5,iStack_1c,1);
         }
         else {
           iVar9 = *psVar12 * 2;
@@ -2213,7 +2213,7 @@ LAB_001b7998:
               *(undefined2 *)(*psVar12 * 2 + *_g_Profiles + 0x3f80) = 0;
               for (; *(int *)(iVar8 + 0x80) != -1; iVar8 = iVar8 + 4) {
                 uVar5 = GameState_Elem_2fa0_x17c(iVar9 + 1);
-                garage_sub_001bfe30(uVar5,*(undefined4 *)(iVar8 + 0x80),1);
+                RivalSchedule_IsComplete(uVar5,*(undefined4 *)(iVar8 + 0x80),1);
                 iVar9 = iVar9 + 1;
               }
             }
@@ -2223,7 +2223,7 @@ LAB_001b7998:
             }
           }
           else {
-            garage_sub_001bfe30(uVar5,iStack_1c,1);
+            RivalSchedule_IsComplete(uVar5,iStack_1c,1);
           }
         }
         if (*(short *)(iStack_1c * 2 + param_1 + 0x3fc4) == 1) {
@@ -2244,7 +2244,7 @@ LAB_001b7998:
   if (((cVar2 == '\0') || (cVar2 = RaceCtx_Get_8(), cVar2 == '\x01')) ||
      (cVar2 = RaceCtx_Get_8(), cVar2 == '\x02')) {
     uVar5 = GameState_Get_354();
-    garage_sub_001bc510(param_1 + 0x5308,uVar5);
+    Profile_AdvanceCounter(param_1 + 0x5308,uVar5);
     iVar8 = RaceProg_GetArray_1c(0);
     cVar2 = GameState_Get_354();
     if ((cVar2 == '\x04') || (cVar2 == '\x05')) {
@@ -2315,7 +2315,7 @@ LAB_001b7998:
     }
     else if (cVar2 == '\x01') {
       uVar5 = RaceProg_GetArray_34(0);
-      iVar9 = raceprog_sub_001dff80(uVar5);
+      iVar9 = raceprog_leaf_sub_001dff80(uVar5);
       if (*(int *)(param_1 + 0x2bcc) < iVar9) {
         *(int *)(param_1 + 0x2bcc) = iVar9;
       }
@@ -2327,7 +2327,7 @@ LAB_001b7998:
         *(int *)(param_1 + 0x2bc4) =
              (iVar9 + (sVar3 + -1) * *(int *)(param_1 + 0x2bc4)) / (int)sVar3;
       }
-      iVar9 = raceprog_sub_001dff30(uVar5);
+      iVar9 = raceprog_leaf_sub_001dff30(uVar5);
       if (*(int *)(param_1 + 0x2bd0) < iVar9) {
         *(int *)(param_1 + 0x2bd0) = iVar9;
         iVar9 = *_g_Profiles;
@@ -2337,7 +2337,7 @@ LAB_001b7998:
           *(int *)(iVar9 + 0x2a70) = *(int *)(iVar9 + 0x2a70) + 1;
         }
       }
-      iVar9 = race_sub_001e0600(uVar5);
+      iVar9 = Race_GetField_8b4(uVar5);
       if (*(int *)(param_1 + 0x2bc8) < iVar9) {
         *(int *)(param_1 + 0x2bc8) = iVar9;
       }

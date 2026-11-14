@@ -294,7 +294,7 @@ void ScreenFx_Draw(uint *param_1)
   iVar7 = 0;
 LAB_0018cb1c:
   do {
-    vu0math_sub_00132ae0(puVar1 + 4,param_1 + (0x10 - iVar7) * 4 + 0x10);
+    sceVu0CopyVector(puVar1 + 4,param_1 + (0x10 - iVar7) * 4 + 0x10);
     iVar7 = iVar7 + 1;
     puVar1 = puVar1 + 2;
   } while (iVar7 < 0x11);
@@ -321,8 +321,8 @@ LAB_0018cb1c:
       uVar6 = 0xffffffff;
 LAB_0018cbc8:
       if (uVar6 == 0xffffffff) break;
-      vu0math_sub_00132ae0(puVar8 + 4,param_1 + uVar6 * 0x10 + 0x5c);
-      vu0math_sub_00132ae0(puVar8 + 0xcc,param_1 + uVar6 * 0x10 + 0x60);
+      sceVu0CopyVector(puVar8 + 4,param_1 + uVar6 * 0x10 + 0x5c);
+      sceVu0CopyVector(puVar8 + 0xcc,param_1 + uVar6 * 0x10 + 0x60);
       if ((int)param_1[uVar6 * 0x10 + 0x55] < 5) {
         if (param_1[uVar6 * 0x10 + 0x57] == 2) {
           puVar8[6] = param_1[uVar6 * 0x10 + 0x58];
@@ -333,7 +333,7 @@ LAB_0018cbc8:
         }
       }
       else if (param_1[uVar6 * 0x10 + 0x57] == 1) {
-        uVar10 = vu0math_sub_00132ab0(param_1 + uVar6 * 0x10 + 0x60,param_1 + uVar6 * 0x10 + 0x60);
+        uVar10 = sceVu0InnerProduct(param_1 + uVar6 * 0x10 + 0x60,param_1 + uVar6 * 0x10 + 0x60);
         fVar11 = (float)Vu0_Sqrt(uVar10);
         if (200.0 < fVar11) {
           fVar11 = 200.0;
@@ -420,23 +420,23 @@ void Weather_UpdateDrop(int param_1,int param_2)
     pfVar3 = pfVar6;
   }
   if (*(int *)(param_1 + 8) == 1) {
-    vu0math_sub_00132b50(auStack_20,iVar7 + 0x170,param_1 + 0x20);
-    vu0math_sub_001328b0(auStack_20,auStack_20);
-    vu0math_sub_00132b10(*(undefined4 *)(param_1 + 0x14),auStack_20,auStack_20);
-    vu0math_sub_00132b70(&fStack_30,auStack_20,&uStack_10);
+    sceVu0SubVector(auStack_20,iVar7 + 0x170,param_1 + 0x20);
+    sceVu0Normalize(auStack_20,auStack_20);
+    sceVu0ScaleVector(*(undefined4 *)(param_1 + 0x14),auStack_20,auStack_20);
+    sceVu0AddVector(&fStack_30,auStack_20,&uStack_10);
   }
   else {
     if (*(int *)(param_1 + 8) != 0) {
       iVar11 = *(int *)(iVar7 + 0x15c);
       goto LAB_0018cfe0;
     }
-    vu0math_sub_00132b70(&fStack_30,param_1 + 0x20,&uStack_10);
+    sceVu0AddVector(&fStack_30,param_1 + 0x20,&uStack_10);
   }
   iVar11 = *(int *)(iVar7 + 0x15c);
 LAB_0018cfe0:
   if (iVar11 == 1) {
-    vu0math_sub_00132b70(iVar7 + 0x180,iVar7 + 0x180,&fStack_30);
-    fVar12 = (float)vu0math_sub_00132ab0(iVar7 + 0x180,iVar7 + 0x180);
+    sceVu0AddVector(iVar7 + 0x180,iVar7 + 0x180,&fStack_30);
+    fVar12 = (float)sceVu0InnerProduct(iVar7 + 0x180,iVar7 + 0x180);
     if (fVar12 < 0.25) {
       *(undefined4 *)(iVar7 + 0x180) = 0;
       *(undefined4 *)(iVar7 + 0x184) = 0;
@@ -452,10 +452,10 @@ LAB_0018cfe0:
         puVar5 = puVar5 + -1;
         puVar2 = puVar5;
       }
-      vu0math_sub_001328b0(auStack_50,iVar7 + 0x180);
+      sceVu0Normalize(auStack_50,iVar7 + 0x180);
       iVar11 = 0;
       do {
-        fVar12 = (float)vu0math_sub_00132ab0(auStack_50,param_1 + 0x40);
+        fVar12 = (float)sceVu0InnerProduct(auStack_50,param_1 + 0x40);
         if (0.9 < fVar12) goto LAB_0018d0f8;
         iVar11 = iVar11 + 1;
         param_1 = param_1 + 0x10;
@@ -472,9 +472,9 @@ LAB_0018d0f8:
         puVar5 = puVar5 + -1;
         puVar2 = puVar5;
       }
-      vu0math_sub_001328b0(auStack_40,iVar7 + 0x180);
-      vu0math_sub_00132b10(0x3f000000,auStack_40,auStack_40);
-      vu0math_sub_00132b50(iVar7 + 0x180,iVar7 + 0x180,auStack_40);
+      sceVu0Normalize(auStack_40,iVar7 + 0x180);
+      sceVu0ScaleVector(0x3f000000,auStack_40,auStack_40);
+      sceVu0SubVector(iVar7 + 0x180,iVar7 + 0x180,auStack_40);
     }
   }
   else {
@@ -558,17 +558,15 @@ LAB_0018d338:
             puVar9 = param_1 + uVar6 * 0x10;
             do {
               if (puVar9[0x54] != 0) {
-                vu0math_sub_00132b50(auStack_10,puVar4 + 0x5c,puVar9 + 0x5c);
-                fVar10 = (float)vu0math_sub_00132ab0(auStack_10,auStack_10);
+                sceVu0SubVector(auStack_10,puVar4 + 0x5c,puVar9 + 0x5c);
+                fVar10 = (float)sceVu0InnerProduct(auStack_10,auStack_10);
                 fVar11 = (float)puVar4[0x58] * (float)puVar4[0x58] +
                          (float)puVar9[0x58] * (float)puVar9[0x58];
                 if (fVar10 < fVar11 * 1.5) {
-                  vu0math_sub_00132a60
-                            (0x3f000000,param_1 + uVar6 * 0x10 + 0x5c,puVar4 + 0x5c,
-                             param_1 + uVar6 * 0x10 + 0x5c);
-                  vu0math_sub_00132a60
-                            (0x3f000000,param_1 + uVar6 * 0x10 + 0x60,puVar4 + 0x60,
-                             param_1 + uVar6 * 0x10 + 0x60);
+                  sceVu0InterVector(0x3f000000,param_1 + uVar6 * 0x10 + 0x5c,puVar4 + 0x5c,
+                                    param_1 + uVar6 * 0x10 + 0x5c);
+                  sceVu0InterVector(0x3f000000,param_1 + uVar6 * 0x10 + 0x60,puVar4 + 0x60,
+                                    param_1 + uVar6 * 0x10 + 0x60);
                   puVar4[0x54] = 0;
                   fVar10 = (float)Vu0_Sqrt(fVar11);
                   param_1[uVar6 * 0x10 + 0x58] = (uint)fVar10;
@@ -595,8 +593,8 @@ LAB_0018d338:
               puVar3 = puVar3 + -1;
               puVar1 = puVar3;
             }
-            vu0math_sub_00132b10(0x3cf5c28f,auStack_20,puVar4 + 0x60);
-            vu0math_sub_00132b70(puVar4 + 0x5c,puVar4 + 0x5c,auStack_20);
+            sceVu0ScaleVector(0x3cf5c28f,auStack_20,puVar4 + 0x60);
+            sceVu0AddVector(puVar4 + 0x5c,puVar4 + 0x5c,auStack_20);
           }
         }
       }
@@ -719,7 +717,7 @@ void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
     puVar2[0x13] = 0;
     puVar2 = puVar2 + 4;
   } while (uVar3 < 0x10);
-  vu0math_sub_00132ae0(param_2 + 0x50,param_2 + 0x10);
+  sceVu0CopyVector(param_2 + 0x50,param_2 + 0x10);
   *param_2 = (uint)param_3;
   param_2[6] = param_1;
   if (0x32 < param_3) {
@@ -849,8 +847,8 @@ void Weather_Draw(float param_1,uint param_2)
   *puVar1 = 0x1000000000008003;
   puVar1[1] = 0xe;
   Gfx_GetViewportSize(0x431100,auStack_880);
-  lVar4 = newlib_sub_0012f390(((float)uStack_878 / 16.0) / 2.0);
-  lVar5 = newlib_sub_0012f390(((float)uStack_874 / 16.0) / 2.0);
+  lVar4 = maybe___fixsfdi(((float)uStack_878 / 16.0) / 2.0);
+  lVar5 = maybe___fixsfdi(((float)uStack_874 / 16.0) / 2.0);
   puVar1[2] = lVar4 << 0xe | 10U | lVar5 << 0x22;
   puVar1[3] = 8;
   puVar1[4] = 0x31001;
@@ -870,7 +868,7 @@ void Weather_Draw(float param_1,uint param_2)
   pfVar2[6] = 1.46155e-42;
   pfVar2[7] = 0.0;
   do {
-    vu0math_sub_00132ae0(pfVar2 + 8,puVar7);
+    sceVu0CopyVector(pfVar2 + 8,puVar7);
     iVar9 = iVar9 + 1;
     puVar7 = puVar7 + 0x10;
     pfVar2 = pfVar2 + 4;
@@ -1035,7 +1033,7 @@ undefined8 SndCh_SetVolume(undefined8 param_1,uint param_2,undefined8 param_3)
 }
 
 // 0x0018e3d0  size 0xa8
-long snd_sub_0018e3d0(long param_1,short param_2)
+long snd_step_sub_0018e3d0(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1062,7 +1060,7 @@ long snd_sub_0018e3d0(long param_1,short param_2)
 }
 
 // 0x0018e480  size 0x80
-ulong snd_sub_0018e480(int *param_1)
+ulong snd_step_sub_0018e480(int *param_1)
 
 {
   ulong uVar1;
@@ -1090,7 +1088,7 @@ ulong snd_sub_0018e480(int *param_1)
 }
 
 // 0x0018e500  size 0x80
-ulong snd_sub_0018e500(int *param_1)
+ulong snd_step_sub_0018e500(int *param_1)
 
 {
   ulong uVar1;
@@ -1138,7 +1136,7 @@ byte SndCh_IsPlaying(int param_1)
 }
 
 // 0x0018e600  size 0xa4
-void snd_sub_0018e600(int *param_1,uint param_2)
+void snd_step_sub_0018e600(int *param_1,uint param_2)
 
 {
   uint *puVar1;
@@ -1172,7 +1170,7 @@ void snd_sub_0018e600(int *param_1,uint param_2)
 }
 
 // 0x0018e6b0  size 0x90
-void snd_sub_0018e6b0(int *param_1,short param_2)
+void snd_step_sub_0018e6b0(int *param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1200,7 +1198,7 @@ void snd_sub_0018e6b0(int *param_1,short param_2)
 }
 
 // 0x0018e740  size 0x9c
-void snd_sub_0018e740(undefined8 param_1,long param_2)
+void snd_leaf_sub_0018e740(undefined8 param_1,long param_2)
 
 {
   undefined4 *puVar1;
@@ -1224,7 +1222,7 @@ void snd_sub_0018e740(undefined8 param_1,long param_2)
 }
 
 // 0x0018e7e0  size 0x80
-void snd_sub_0018e7e0(int *param_1)
+void snd_step_sub_0018e7e0(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -1253,7 +1251,7 @@ void snd_sub_0018e7e0(int *param_1)
 }
 
 // 0x0018e860  size 0xc0
-void snd_sub_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
+void snd_step_sub_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
   uint *puVar1;
@@ -1292,7 +1290,7 @@ void snd_sub_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
 }
 
 // 0x0018e920  size 0x8c
-long snd_sub_0018e920(long param_1,short param_2)
+long snd_step_sub_0018e920(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1325,7 +1323,7 @@ bool SndCh_IsStreamPlaying(int param_1)
 }
 
 // 0x0018ea30  size 0x90
-void snd_sub_0018ea30(int *param_1,short param_2)
+void snd_step_sub_0018ea30(int *param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1353,7 +1351,7 @@ void snd_sub_0018ea30(int *param_1,short param_2)
 }
 
 // 0x0018eac0  size 0x84
-void snd_sub_0018eac0(int *param_1)
+void snd_step_sub_0018eac0(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -1383,7 +1381,7 @@ void snd_sub_0018eac0(int *param_1)
 }
 
 // 0x0018eb50  size 0x88
-void snd_sub_0018eb50(int *param_1,undefined4 param_2)
+void snd_step_sub_0018eb50(int *param_1,undefined4 param_2)
 
 {
   undefined4 *puVar1;
@@ -1413,7 +1411,8 @@ void snd_sub_0018eb50(int *param_1,undefined4 param_2)
 // 0x0018ebe0  size 0x114
 /* WARNING: Removing unreachable block (ram,0x0018ecc8) */
 
-void snd_sub_0018ebe0(undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5)
+void snd_step_sub_0018ebe0
+               (undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5)
 
 {
   uint *puVar1;
@@ -1454,7 +1453,7 @@ void snd_sub_0018ebe0(undefined8 param_1,uint param_2,undefined8 param_3,uint pa
 }
 
 // 0x0018ed30  size 0x38
-undefined4 snd_sub_0018ed30(int *param_1,uint param_2)
+undefined4 snd_leaf_sub_0018ed30(int *param_1,uint param_2)
 
 {
   uint *puVar1;
@@ -1465,7 +1464,7 @@ undefined4 snd_sub_0018ed30(int *param_1,uint param_2)
 }
 
 // 0x0018edb0  size 0x7c
-void snd_sub_0018edb0(undefined8 param_1)
+void snd_leaf_sub_0018edb0(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -1601,8 +1600,9 @@ SndCh_ControlChange(int param_1,uint param_2,byte param_3,uint param_4,undefined
 /* WARNING: Removing unreachable block (ram,0x0018f27c) */
 
 undefined4
-snd_sub_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
-                uint param_6,short param_7)
+snd_step_sub_0018f180
+          (undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
+          uint param_6,short param_7)
 
 {
   byte bVar1;
@@ -1668,7 +1668,7 @@ snd_sub_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4
 // 0x0018f390  size 0xe8
 /* WARNING: Removing unreachable block (ram,0x0018f3f8) */
 
-undefined4 snd_sub_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 snd_step_sub_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1687,7 +1687,7 @@ undefined4 snd_sub_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
 }
 
 // 0x0018f480  size 0xd8
-undefined4 snd_sub_0018f480(int param_1,uint param_2,byte param_3,short param_4)
+undefined4 snd_step_sub_0018f480(int param_1,uint param_2,byte param_3,short param_4)
 
 {
   short sVar1;
@@ -1715,7 +1715,7 @@ undefined4 snd_sub_0018f480(int param_1,uint param_2,byte param_3,short param_4)
 }
 
 // 0x0018f560  size 0xc0
-undefined4 snd_sub_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 snd_step_sub_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1742,7 +1742,7 @@ undefined4 snd_sub_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
 // 0x0018f620  size 0xe8
 /* WARNING: Removing unreachable block (ram,0x0018f688) */
 
-undefined4 snd_sub_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 snd_step_sub_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1764,8 +1764,9 @@ undefined4 snd_sub_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
 /* WARNING: Removing unreachable block (ram,0x0018f810) */
 
 undefined4
-snd_sub_0018f710(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
-                uint param_6,short param_7)
+snd_step_sub_0018f710
+          (undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
+          uint param_6,short param_7)
 
 {
   byte bVar1;
@@ -1820,7 +1821,7 @@ snd_sub_0018f710(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4
 }
 
 // 0x0018f930  size 0x60
-long snd_sub_0018f930(long param_1,short param_2)
+long snd_step_sub_0018f930(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1836,7 +1837,7 @@ long snd_sub_0018f930(long param_1,short param_2)
 }
 
 // 0x0018f990  size 0x54
-void snd_sub_0018f990(int param_1)
+void snd_step_sub_0018f990(int param_1)
 
 {
   undefined4 uStack_20;
@@ -1861,7 +1862,7 @@ void snd_sub_0018f990(int param_1)
 }
 
 // 0x0018f9f0  size 0x54
-void snd_sub_0018f9f0(int param_1)
+void snd_step_sub_0018f9f0(int param_1)
 
 {
   undefined4 uStack_20;
@@ -1886,7 +1887,7 @@ void snd_sub_0018f9f0(int param_1)
 }
 
 // 0x0018fa50  size 0x94
-bool snd_sub_0018fa50(int param_1)
+bool snd_step_sub_0018fa50(int param_1)
 
 {
   bool bVar1;
@@ -1922,7 +1923,8 @@ LAB_0018fab4:
 
 // 0x0018faf0  size 0x94
 undefined8
-snd_sub_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
+snd_step_sub_0018faf0
+          (int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
 
 {
   int iVar1;
@@ -1958,7 +1960,7 @@ snd_sub_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 pa
 }
 
 // 0x0018fb90  size 0x4c
-undefined4 snd_sub_0018fb90(int param_1,byte param_2,uint param_3)
+undefined4 snd_step_sub_0018fb90(int param_1,byte param_2,uint param_3)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_3;
@@ -1969,7 +1971,8 @@ undefined4 snd_sub_0018fb90(int param_1,byte param_2,uint param_3)
 }
 
 // 0x0018fbe0  size 0xd8
-undefined4 snd_sub_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5)
+undefined4
+snd_step_sub_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -1994,7 +1997,7 @@ undefined4 snd_sub_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4
 
 // 0x0018fcc0  size 0xc4
 undefined4
-snd_sub_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
+snd_step_sub_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -2019,7 +2022,7 @@ snd_sub_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,undefi
 
 // 0x0018fd90  size 0xc0
 undefined4
-snd_sub_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
+snd_step_sub_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -2043,7 +2046,7 @@ snd_sub_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,undefi
 }
 
 // 0x0018fe50  size 0xb8
-undefined4 snd_sub_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4)
+undefined4 snd_step_sub_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4)
 
 {
   int iVar1;
@@ -2068,8 +2071,9 @@ undefined4 snd_sub_0018fe50(int param_1,uint param_2,byte param_3,undefined1 par
 
 // 0x0018ff10  size 0x148
 undefined4
-snd_sub_0018ff10(undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param_4,
-                undefined8 param_5,ulong param_6,undefined8 param_7)
+snd_step_sub_0018ff10
+          (undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param_4,undefined8 param_5,
+          ulong param_6,undefined8 param_7)
 
 {
   int iVar1;
