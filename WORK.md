@@ -13,11 +13,11 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
-| F6 | Reverse the BUILD.TOC / BUILD.DAT archive format (GUT_Archive) and write scripts/extract_build.py | any |  | ShawnDarr96/claude (2026-11-14) | BUILD.DAT is 1.3 GB, BUILD.TOC 304 KB |
 | F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
 | F10 | Recover the struct layouts behind g_GameState, g_RaceCtx, g_Options, g_MenuMgr (fields now appear as GameState_Get_354 etc.) | any |  |  | Gap of F5 |
+| F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
 
 ## P1 Naming
 
@@ -215,6 +215,7 @@ Columns:
 | N129 | named; module placeholders: misc 9 | P1 | ShawnDarr96/claude | 2026-11-14 |  |
 | F4 | 0x368000-0x36ef80 is real code: 200 __sinit_* static initializers (.ctors), plus 0x368xxx loaders using cdrom0:\WBRCDATA paths | P0 | ShawnDarr96/claude | 2026-11-14 |  |
 | F5 | 23 singletons in config/globals.csv; gp=0x3766f0 set as context so iGp* accesses resolve | P0 | ShawnDarr96/claude | 2026-11-14 | 96cd87c |
+| F6 | scripts/extract_build.py (TOC 0x14-byte entries, uclpack NRV2B_LE32), scripts/text_table.py (u16 glyph codes, 6 languages from entry 0x1870) | P0 | ShawnDarr96/claude | 2026-11-14 | 8070a98 |
 
 ## Changes to the board
 
@@ -251,3 +252,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim F4, F5.
 - 2026-11-14 ShawnDarr96/claude: F4, F5 done; added F10 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim F6.
+- 2026-11-14 ShawnDarr96/claude: F6 done; added F11 (gaps).
