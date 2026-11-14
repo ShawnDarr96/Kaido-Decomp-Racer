@@ -1,0 +1,49 @@
+# splat config for SLES_531.91 (Kaido Racer, PAL). Run from the repository root:
+#   tools/splat-venv/Scripts/python -m splat split splat/kaido.yaml
+# Output (asm/, assets/, linker script) is generated from your own executable and is not committed.
+name: Kaido Racer (SLES-53191)
+sha1: 05f754aea14cafd28d0922b8c87586f9c9ca651e
+options:
+  basename: SLES_531.91
+  target_path: iso_extract/SLES_531.91
+  base_path: ..
+  platform: ps2
+  compiler: MWCCPS2
+  gp_value: 0x3766F0
+  asm_path: build/asm
+  src_path: src
+  build_path: build
+  ld_script_path: build/SLES_531.91.ld
+  symbol_addrs_path: splat/symbol_addrs.txt
+  undefined_funcs_auto_path: build/undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/undefined_syms_auto.txt
+  find_file_boundaries: true
+  create_undefined_funcs_auto: true
+  create_undefined_syms_auto: true
+  string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+  section_order: [".text", ".data", ".rodata", ".bss"]
+segments:
+  - [0x0, bin, elf_header]
+  - name: main
+    type: code
+    start: 0x80
+    vram: 0x100000
+    subsegments:
+      - [0x80, asm, text]
+      - [0x208100, data, data]
+      - [0x25E1B0, rodata, rodata]
+  - name: init
+    type: code
+    start: 0x268660
+    vram: 0x3685E0
+    bss_size: 0xFB680
+    subsegments:
+      - [0x268660, asm, sinit]
+      - [0x26DBB0, data, data2]
+      - { start: 0x26F000, type: bss, vram: 0x36EF80 }
+  - [0x26F000, bin, elf_sections]
+  - [0x26F070]

@@ -72,6 +72,26 @@ Two notes from setting this up:
   directory whose canonical path differs from its given path, which happens behind a junction, a symlink or
   a virtualized `%APPDATA%` (for example when Ghidra is started from a packaged app).
 
+## Splitting and rebuilding (matching setup)
+
+[`splat/kaido.yaml`](splat/kaido.yaml) splits the executable into assembly and data with
+[splat](https://github.com/ethteck/splat) (`pip install splat64[mips]`), using the names in
+`config/symbols.csv` (regenerate `splat/symbol_addrs.txt` with `python -I scripts/gen_symbol_addrs.py`):
+
+```bash
+tools/splat-venv/Scripts/python -m splat split splat/kaido.yaml   # writes build/ (git-ignored)
+python -I scripts/build.py --bindir <ps2dev>/ee/bin                # assemble, link, compare with SLES_531.91
+```
+
+`scripts/build.py` needs EE binutils (`mips64r5900el-ps2-elf-as/ld/objcopy` from the
+[ps2dev](https://github.com/ps2dev/ps2dev/releases) toolchain). The byte-identical round trip has not been
+verified yet (board row M2). Matching C additionally needs the original compiler, Metrowerks CodeWarrior
+for PS2 2.4.1 (`MW MIPS C Compiler 2.4.1.01`), which is proprietary and not provided here (board row M1).
+
+Layout found while splitting: `.text` 0x100000-0x308080, `.data` to 0x35e130, `.rodata` to 0x3685e0,
+static-initializer code (`__sinit_*`) 0x3685e0-0x36db30, more data (vtables) to 0x36ef80, `.bss` to 0x46a600,
+`$gp` = 0x3766f0.
+
 ## Working with Ghidra through MCP
 
 1. Start Ghidra (`tools\ghidra_12.2_PUBLIC\ghidraRun.bat`), open `tools/ghidra_proj/KaidoRacer`.
