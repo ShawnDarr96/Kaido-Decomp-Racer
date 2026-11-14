@@ -34,6 +34,7 @@ Columns:
 | N139 | Replace the eventui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 84 functions |
 | N140 | Replace the scrrace_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 82 functions |
 | N141 | Replace the showroom_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 66 functions |
+| N142 | Replace the msl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 61 functions |
 
 ## P2 Types
 
@@ -223,3 +224,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N139.
 - 2026-11-14 ShawnDarr96: added N140.
 - 2026-11-14 ShawnDarr96: added N141.
+- 2026-11-14 ShawnDarr96: added N142.
