@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001c8c40  size 0xd00
-void FUN_001c8c40(uint *param_1,float *param_2,int param_3)
+void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
 
 {
   uint uVar1;
@@ -367,7 +367,7 @@ void FUN_001c8c40(uint *param_1,float *param_2,int param_3)
 }
 
 // 0x001c9a80  size 0x378
-void FUN_001c9a80(uint *param_1,char param_2)
+void Driver_InitController(uint *param_1,char param_2)
 
 {
   int iVar1;
@@ -411,7 +411,7 @@ void FUN_001c9a80(uint *param_1,char param_2)
   param_1[0x34] = 0;
   uVar2 = Pad_GetPort((char)param_1[1],(char)param_1[2]);
   param_1[0x34] = uVar2;
-  FUN_001ca160(param_1 + 3,param_1[1]);
+  Driver_ReadPad(param_1 + 3,param_1[1]);
   if (((param_1[0x34] != 0) &&
       (lVar3 = (**(code **)(*(int *)(param_1[0x34] + 4) + 8))(), lVar3 != 0)) &&
      (lVar3 = (**(code **)(*(int *)(param_1[0x34] + 4) + 0xc))(param_1[0x34],0xffffffffffffffff),
@@ -422,9 +422,9 @@ void FUN_001c9a80(uint *param_1,char param_2)
   param_1[0x66] = uVar2;
   if ((param_1[0x66] != 0) && (lVar3 = Wheel_IsActive(), lVar3 == 0)) {
     *param_1 = *param_1 | 2;
-    FUN_001c9e00(param_1 + 0x35,param_1[1]);
+    Driver_ReadWheel(param_1 + 0x35,param_1[1]);
   }
-  lVar3 = GameState_Get_e0();
+  lVar3 = GameState_GetPlayerCount();
   if ((long)uVar9 < lVar3) {
     iVar6 = 0;
     puVar4 = param_1;
@@ -474,7 +474,7 @@ void FUN_001c9a80(uint *param_1,char param_2)
     } while (iVar6 < 36000);
     param_1[0x76] = 0;
   }
-  lVar3 = Hud_Get_18();
+  lVar3 = Options_Get_18();
   uVar2 = 4;
   iVar6 = 0;
   if (lVar3 == 0) {
@@ -526,7 +526,7 @@ void FUN_001c9a80(uint *param_1,char param_2)
 }
 
 // 0x001c9e00  size 0x350
-void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
+void Driver_ReadWheel(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -551,7 +551,7 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  piVar2 = (int *)Hud_Elem_28_xe8(param_2);
+  piVar2 = (int *)Options_Elem_28_xe8(param_2);
   *param_1 = 0;
   iVar7 = 0;
   puVar4 = param_1;
@@ -639,7 +639,7 @@ void FUN_001c9e00(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001ca160  size 0x16c
-void FUN_001ca160(undefined4 *param_1,undefined8 param_2)
+void Driver_ReadPad(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined1 uVar1;
@@ -654,7 +654,7 @@ void FUN_001ca160(undefined4 *param_1,undefined8 param_2)
   undefined4 uVar10;
   undefined4 uVar11;
   
-  piVar3 = (int *)Hud_Elem_28_xe8(param_2);
+  piVar3 = (int *)Options_Elem_28_xe8(param_2);
   uVar2 = param_1[0x31];
   iVar8 = 0;
   *param_1 = 0;
@@ -679,7 +679,7 @@ void FUN_001ca160(undefined4 *param_1,undefined8 param_2)
   do {
     iVar7 = *piVar3;
     if ((((iVar7 == 0x20000000) || (iVar7 == 4)) || (iVar7 == 0x200)) || (iVar7 == 8)) {
-      lVar4 = Hud_Get_18();
+      lVar4 = Options_Get_18();
       if (lVar4 == 0) {
         uVar11 = 0x3dcccccd;
         uVar10 = 0x3e4ccccd;
@@ -706,7 +706,7 @@ LAB_001ca240:
 }
 
 // 0x001ca2d0  size 0x1fc
-void FUN_001ca2d0(uint *param_1)
+void Driver_ApplyControls(uint *param_1)
 
 {
   uint uVar1;
@@ -725,7 +725,7 @@ void FUN_001ca2d0(uint *param_1)
     if ((uVar1 & 1) == 0) {
       uVar2 = Pad_GetPort((char)param_1[1],(char)param_1[2]);
       param_1[0x34] = uVar2;
-      FUN_001ca160(param_1 + 3,param_1[1]);
+      Driver_ReadPad(param_1 + 3,param_1[1]);
       uVar2 = *param_1;
     }
     else {
@@ -750,7 +750,7 @@ void FUN_001ca2d0(uint *param_1)
     if ((uVar1 & 2) == 0) {
       lVar4 = Wheel_IsActive();
       if (lVar4 == 0) {
-        FUN_001c9e00(param_1 + 0x35,param_1[1]);
+        Driver_ReadWheel(param_1 + 0x35,param_1[1]);
         iVar3 = maybe_Options_GetLanguage();
         Controls_ApplyMapping(iVar3 + param_1[1] * 0xe8 + 0x28,param_1[0x66]);
         *param_1 = *param_1 | 2;
@@ -767,7 +767,7 @@ void FUN_001ca2d0(uint *param_1)
 }
 
 // 0x001ca4d0  size 0x60
-void FUN_001ca4d0(float *param_1)
+void Input_ClampPositive(float *param_1)
 
 {
   if (0.0 < *param_1) {
@@ -780,7 +780,7 @@ void FUN_001ca4d0(float *param_1)
 }
 
 // 0x001ca530  size 0x104
-void FUN_001ca530(float *param_1)
+void Input_ApplyCurve(float *param_1)
 
 {
   if (*param_1 <= 1.0) {
@@ -819,7 +819,7 @@ void FUN_001ca530(float *param_1)
 }
 
 // 0x001ca640  size 0x1c
-void FUN_001ca640(undefined4 *param_1)
+void DriverInput_Clear(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -832,7 +832,7 @@ void FUN_001ca640(undefined4 *param_1)
 }
 
 // 0x001ca660  size 0x1c
-void FUN_001ca660(undefined4 *param_1)
+void DriverInput_ClearAxes(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -844,7 +844,7 @@ void FUN_001ca660(undefined4 *param_1)
 }
 
 // 0x001ca680  size 0x2c
-float FUN_001ca680(int param_1)
+float Race_GetTimeScale(int param_1)
 
 {
   float fVar1;
@@ -854,7 +854,9 @@ float FUN_001ca680(int param_1)
 }
 
 // 0x001ca6b0  size 0x20
-undefined4 FUN_001ca6b0(int param_1)
+/* 42 callers */
+
+undefined4 RaceCar_Get(int param_1)
 
 {
   undefined4 uVar1;
@@ -869,28 +871,28 @@ undefined4 FUN_001ca6b0(int param_1)
 }
 
 // 0x001ca6d0  size 0x8
-undefined4 FUN_001ca6d0(int param_1)
+undefined4 RaceCar_GetLap(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x1784);
 }
 
 // 0x001ca6e0  size 0x8
-undefined4 FUN_001ca6e0(int param_1)
+undefined4 RaceCar_GetPosition(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x1780);
 }
 
 // 0x001ca6f0  size 0x8
-undefined4 FUN_001ca6f0(int param_1)
+undefined4 RaceCar_GetCheckpoint(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x17d0);
 }
 
 // 0x001ca700  size 0x14
-void FUN_001ca700(int param_1,uint param_2)
+void RaceCar_ClearFlags(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0x17d8) = *(uint *)(param_1 + 0x17d8) & ~param_2;
@@ -898,7 +900,7 @@ void FUN_001ca700(int param_1,uint param_2)
 }
 
 // 0x001ca720  size 0x10
-void FUN_001ca720(int param_1,uint param_2)
+void RaceCar_SetFlags(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0x17d8) = *(uint *)(param_1 + 0x17d8) | param_2;
@@ -906,63 +908,69 @@ void FUN_001ca720(int param_1,uint param_2)
 }
 
 // 0x001ca730  size 0x8
-undefined4 FUN_001ca730(int param_1)
+/* 17 callers */
+
+undefined4 RaceCar_GetFlags(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x17d8);
 }
 
 // 0x001ca740  size 0x18
-int FUN_001ca740(int param_1,int param_2)
+int RaceCar_GetWheelFx(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0x70 + 0x13d0;
 }
 
 // 0x001ca760  size 0x8
-int FUN_001ca760(int param_1)
+int RaceCar_GetTracker(int param_1)
 
 {
   return param_1 + 0x1360;
 }
 
 // 0x001ca770  size 0x8
-undefined4 FUN_001ca770(int param_1)
+/* 18 callers */
+
+undefined4 RaceCar_GetIndex(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x17dc);
 }
 
 // 0x001ca780  size 0x24
-float FUN_001ca780(int param_1)
+float RaceCar_GetSpeedPerMinute(int param_1)
 
 {
   return *(float *)(param_1 + 0x40) / 60.0;
 }
 
 // 0x001ca7b0  size 0x8
-undefined4 FUN_001ca7b0(int param_1)
+undefined4 RaceCar_GetRpm(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x7f8);
 }
 
 // 0x001ca7c0  size 0x18
-float FUN_001ca7c0(int param_1)
+/* 11 callers */
+
+float RaceCar_GetSpeedKmh(int param_1)
 
 {
   return *(float *)(param_1 + 0x40) * 3.6;
 }
 
 // 0x001ca7e0  size 0x8
-undefined4 FUN_001ca7e0(int param_1)
+undefined4 RaceCar_GetDistance(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x17a0);
 }
 
 // 0x001ca7f0  size 0x14
-void FUN_001ca7f0(int param_1,undefined4 *param_2,undefined4 *param_3)
+void RaceCar_GetLapTimes(int param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
   *param_2 = *(undefined4 *)(param_1 + 0x179c);
@@ -971,7 +979,7 @@ void FUN_001ca7f0(int param_1,undefined4 *param_2,undefined4 *param_3)
 }
 
 // 0x001ca810  size 0x974
-void FUN_001ca810(int param_1,uint param_2)
+void Ai_UpdateDriver(int param_1,uint param_2)
 
 {
   int iVar1;
@@ -1039,7 +1047,7 @@ LAB_001ca8e8:
     uStack_34 = 0x3f800000;
     iVar12 = *(int *)(iGpffff8c5c + (char)param_2 * 4);
     uVar9 = phys_sub_00165040(*(undefined4 *)(param_1 + 0x154));
-    FUN_001da8c0(&fStack_50,uVar9);
+    AiLine_TransformToWorld(&fStack_50,uVar9);
     for (; lVar8 != 0; lVar8 = PhysWorld_FindBodyWithFlags(lVar8,0xffffffffffffffff)) {
       if (((*(uint *)(param_1 + 0x13c0) & 0x70) != 0) &&
          (phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154)),
@@ -1057,14 +1065,14 @@ LAB_001ca8e8:
         uStack_1c = uStack_3c;
         uStack_18 = uStack_38;
         vu0math_sub_00132a90(&uStack_20,&uStack_20,&fStack_30);
-        FUN_001c6130(iVar12,&uStack_20,&uStack_4,0);
+        Driver_SetInputMode(iVar12,&uStack_20,&uStack_4,0);
       }
     }
     if (*(char *)(iVar12 + 0x6a114) == '\0') goto LAB_001ca8e8;
     if ((*(int *)(param_1 + 0x1434) != 4) && (*(int *)(param_1 + 0x14a4) != 4)) {
       if ((*(int *)(param_1 + 0x1434) == 3) || (*(int *)(param_1 + 0x14a4) == 3)) {
         if (10.0 < *(float *)(param_1 + 0x40) * 3.6) {
-          FUN_001c6130(iVar12,&uStack_20,&uStack_4,2);
+          Driver_SetInputMode(iVar12,&uStack_20,&uStack_4,2);
         }
       }
       else {
@@ -1072,12 +1080,12 @@ LAB_001ca8e8:
         uStack_1c = 0;
         uStack_18 = 0;
         uStack_4 = 0;
-        FUN_001c6130(iVar12,&uStack_20,&uStack_4,0xffffffffffffffff);
+        Driver_SetInputMode(iVar12,&uStack_20,&uStack_4,0xffffffffffffffff);
       }
       goto LAB_001ca8e8;
     }
     if (*(float *)(param_1 + 0x40) * 3.6 <= 10.0) goto LAB_001ca8e8;
-    FUN_001c6130(iVar12,&uStack_20,&uStack_4,1);
+    Driver_SetInputMode(iVar12,&uStack_20,&uStack_4,1);
     cVar4 = *(char *)(param_1 + 0x8e8);
   }
   if (((cVar4 != '\0') && (*(int *)(iGpffff8cc0 + 0xc) != 0)) &&
@@ -1146,7 +1154,7 @@ LAB_001ca8e8:
     uVar15 = 0;
     uVar14 = 0;
     do {
-      fVar16 = (float)FUN_001cca90(param_1,uVar14);
+      fVar16 = (float)RaceCar_WheelGroundDistance(param_1,uVar14);
       if (fVar16 != 0.0) {
         bVar2 = true;
         uVar15 = uVar15 | 1 << (uVar14 & 0x1f);
@@ -1203,9 +1211,9 @@ LAB_001ca8e8:
       *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
       vu0math_sub_00132ae0(iVar12 + 0x20,&fStack_60);
     }
-    FUN_0018d170(iVar12);
+    Weather_SpawnDrops(iVar12);
   }
-  lVar8 = thunk_FUN_001e8fc0();
+  lVar8 = race_sub_001e8fc0();
   if (((lVar8 != 0) && (*(int *)(iGpffff8cc0 + 0xc) != 0)) &&
      (iVar12 = *(int *)(*(int *)(iGpffff8cc0 + 0xc) + 0x14), iVar12 != 0)) {
     uStack_70 = 0;
@@ -1214,7 +1222,7 @@ LAB_001ca8e8:
     uStack_64 = 0;
     *(undefined4 *)(iVar12 + 0x58) = 0;
     vu0math_sub_00132ae0(iVar12 + 0x70,&uStack_70);
-    FUN_0018d170(iVar12 + 0x50);
+    Weather_SpawnDrops(iVar12 + 0x50);
   }
 switchD_001caf44_caseD_2:
   bVar2 = false;
@@ -1251,7 +1259,7 @@ switchD_001caf44_caseD_2:
   if (iVar12 == 0) {
     return;
   }
-  lVar8 = FUN_001d2280(*(undefined4 *)(param_1 + 0x17dc),0x14);
+  lVar8 = CarRec_GetPartData(*(undefined4 *)(param_1 + 0x17dc),0x14);
   if (lVar8 == 0) {
     cVar4 = GameState_Get_2();
     if (cVar4 != '\x04') {
@@ -1272,7 +1280,7 @@ switchD_001caf44_default:
 }
 
 // 0x001cb190  size 0x8c4
-void FUN_001cb190(int param_1)
+void Ai_FollowRacingLine(int param_1)
 
 {
   ushort uVar1;
@@ -1484,16 +1492,16 @@ void FUN_001cb190(int param_1)
   uStack_6c = puVar7[1];
   uStack_68 = puVar7[2];
   uStack_64 = puVar7[3];
-  lVar9 = FUN_001e8f30();
+  lVar9 = RaceScene_Get_40();
   if (lVar9 != 0) {
-    iVar12 = FUN_001e8f30();
+    iVar12 = RaceScene_Get_40();
     Course_GetStartTransform(iVar12 + -1,auStack_50,auStack_60,0);
     uStack_80 = uStack_20;
     uStack_7c = uStack_1c;
     uStack_78 = uStack_18;
   }
   Vec3_Sub(auStack_90,&uStack_70,&uStack_80);
-  fVar15 = (float)FUN_001dac80(auStack_90);
+  fVar15 = (float)Vec3_LengthB(auStack_90);
   *(undefined4 *)(param_1 + 0x178c) = *(undefined4 *)(param_1 + 0x1788);
   *(float *)(param_1 + 0x1788) = (fVar15 * 60.0 * 60.0 * 60.0) / 1000.0;
   *(undefined4 *)(param_1 + 0x16b0) = uStack_70;
@@ -1520,46 +1528,46 @@ void FUN_001cb190(int param_1)
   lVar9 = GameState_Get_40();
   if (lVar9 == 0) {
     if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
-      FUN_001d7dc0(auStack_200,1,uVar1,sVar2);
+      AiLine_GetDirection(auStack_200,1,uVar1,sVar2);
       uStack_a0 = auStack_200[0];
       uStack_98 = uStack_1f8;
       uStack_94 = uStack_1f4;
       uStack_9c = 0;
-      FUN_001d7dc0(auStack_210,2,uVar1,sVar2);
+      AiLine_GetDirection(auStack_210,2,uVar1,sVar2);
       uStack_b0 = auStack_210[0];
       uStack_a8 = uStack_208;
       uStack_a4 = uStack_204;
     }
     else {
-      FUN_001d7dc0(auStack_1e0,2,uVar1,sVar2);
+      AiLine_GetDirection(auStack_1e0,2,uVar1,sVar2);
       uStack_a0 = auStack_1e0[0];
       uStack_98 = uStack_1d8;
       uStack_94 = uStack_1d4;
       uStack_9c = 0;
-      FUN_001d7dc0(auStack_1f0,1,uVar1,sVar2);
+      AiLine_GetDirection(auStack_1f0,1,uVar1,sVar2);
       uStack_b0 = auStack_1f0[0];
       uStack_a8 = uStack_1e8;
       uStack_a4 = uStack_1e4;
     }
   }
   else if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
-    FUN_001d7dc0(auStack_1c0,2,uVar1,sVar2);
+    AiLine_GetDirection(auStack_1c0,2,uVar1,sVar2);
     uStack_a0 = auStack_1c0[0];
     uStack_98 = uStack_1b8;
     uStack_94 = uStack_1b4;
     uStack_9c = 0;
-    FUN_001d7dc0(auStack_1d0,1,uVar1,sVar2);
+    AiLine_GetDirection(auStack_1d0,1,uVar1,sVar2);
     uStack_b0 = auStack_1d0[0];
     uStack_a8 = uStack_1c8;
     uStack_a4 = uStack_1c4;
   }
   else {
-    FUN_001d7dc0(auStack_1a0,1,uVar1,sVar2);
+    AiLine_GetDirection(auStack_1a0,1,uVar1,sVar2);
     uStack_a0 = auStack_1a0[0];
     uStack_98 = uStack_198;
     uStack_94 = uStack_194;
     uStack_9c = 0;
-    FUN_001d7dc0(auStack_1b0,2,uVar1,sVar2);
+    AiLine_GetDirection(auStack_1b0,2,uVar1,sVar2);
     uStack_b0 = auStack_1b0[0];
     uStack_a8 = uStack_1a8;
     uStack_a4 = uStack_1a4;
@@ -1570,21 +1578,21 @@ void FUN_001cb190(int param_1)
   fStack_b8 = fStack_218;
   uStack_b4 = uStack_214;
   fStack_bc = 0.0;
-  fVar15 = (float)FUN_001dac80(&fStack_c0);
+  fVar15 = (float)Vec3_LengthB(&fStack_c0);
   *(float *)(param_1 + 0x1760) = fVar15;
   Vec3_Sub(auStack_230,uVar8,&uStack_a0);
   uStack_d0 = auStack_230[0];
   uStack_c8 = uStack_228;
   uStack_c4 = uStack_224;
   uStack_cc = 0;
-  fVar16 = (float)FUN_001dacc0(&fStack_c0,&uStack_d0);
-  fVar17 = (float)FUN_001dac80(&fStack_c0);
+  fVar16 = (float)Vec3_DotB(&fStack_c0,&uStack_d0);
+  fVar17 = (float)Vec3_LengthB(&fStack_c0);
   fVar16 = fVar16 / fVar17;
   phys_sub_00163bc0(&fStack_c0);
   fStack_dc = fStack_bc * fVar16;
   fStack_e0 = fStack_c0 * fVar16;
   fStack_d8 = fStack_b8 * fVar16;
-  fVar16 = (float)FUN_001dac80(&fStack_e0);
+  fVar16 = (float)Vec3_LengthB(&fStack_e0);
   *(float *)(param_1 + 0x1768) = fVar16;
   iVar12 = sVar2 + 1;
   *(float *)(param_1 + 0x1764) = fVar16 / fVar15;
@@ -1593,20 +1601,20 @@ void FUN_001cb190(int param_1)
   uStack_104 = 0x3f800000;
   uStack_114 = 0x3f800000;
   if ((long)iVar12 < (long)**(short **)(piGpffff8b40[1] + (uint)uVar1 * 4)) {
-    FUN_001d7dc0(&uStack_250,3,uVar1,(short)iVar12);
+    AiLine_GetDirection(&uStack_250,3,uVar1,(short)iVar12);
     uStack_100 = uStack_250;
     uStack_fc = uStack_24c;
     uStack_f8 = uStack_248;
     uStack_f4 = uStack_244;
   }
   else {
-    FUN_001d7dc0(&uStack_240,3,uVar1 + 1,0);
+    AiLine_GetDirection(&uStack_240,3,uVar1 + 1,0);
     uStack_100 = uStack_240;
     uStack_fc = uStack_23c;
     uStack_f8 = uStack_238;
     uStack_f4 = uStack_234;
   }
-  FUN_001d7dc0(&uStack_260,3,uVar1,sVar2);
+  AiLine_GetDirection(&uStack_260,3,uVar1,sVar2);
   uStack_f0 = uStack_260;
   uStack_ec = uStack_25c;
   uStack_e8 = uStack_258;
@@ -1621,20 +1629,20 @@ void FUN_001cb190(int param_1)
   uStack_118 = uStack_278;
   uStack_114 = uStack_274;
   uStack_11c = 0;
-  fVar16 = (float)FUN_001dacc0(&uStack_110,&uStack_120);
-  fVar17 = (float)FUN_001dac80(&uStack_110);
+  fVar16 = (float)Vec3_DotB(&uStack_110,&uStack_120);
+  fVar17 = (float)Vec3_LengthB(&uStack_110);
   *(float *)(param_1 + 0x177c) = fVar16 / fVar17;
   uStack_124 = 0x3f800000;
   uStack_134 = 0x3f800000;
   uStack_144 = 0x3f800000;
   uStack_154 = 0x3f800000;
   uStack_164 = 0x3f800000;
-  FUN_001d7dc0(&uStack_290,0,uVar1,sVar2);
+  AiLine_GetDirection(&uStack_290,0,uVar1,sVar2);
   uStack_130 = uStack_290;
   uStack_12c = uStack_28c;
   uStack_128 = uStack_288;
   uStack_124 = uStack_284;
-  FUN_001d7dc0(&uStack_2a0,3,uVar1,sVar2);
+  AiLine_GetDirection(&uStack_2a0,3,uVar1,sVar2);
   uStack_160 = uStack_2a0;
   uStack_15c = uStack_29c;
   uStack_158 = uStack_298;
@@ -1668,12 +1676,12 @@ void FUN_001cb190(int param_1)
         iVar14 = **(short **)(piGpffff8b40[1] + ((int)(short)uVar1 - 1U & 0xffff) * 4) + -1;
       }
     }
-    FUN_001d7dc0(&uStack_2b0,0,(short)lVar9,(short)iVar14);
+    AiLine_GetDirection(&uStack_2b0,0,(short)lVar9,(short)iVar14);
     uStack_150 = uStack_2b0;
     uStack_14c = uStack_2ac;
     uStack_148 = uStack_2a8;
     uStack_144 = uStack_2a4;
-    FUN_001d7dc0(&uStack_2c0,3,(short)lVar9,(short)iVar14);
+    AiLine_GetDirection(&uStack_2c0,3,(short)lVar9,(short)iVar14);
     uStack_170 = uStack_2c0;
     uStack_16c = uStack_2bc;
     uStack_168 = uStack_2b8;
@@ -1704,12 +1712,12 @@ void FUN_001cb190(int param_1)
         lVar9 = (long)(short)uVar1;
       }
     }
-    FUN_001d7dc0(&uStack_2f0,0,(short)lVar9,(short)lVar13);
+    AiLine_GetDirection(&uStack_2f0,0,(short)lVar9,(short)lVar13);
     uStack_150 = uStack_2f0;
     uStack_14c = uStack_2ec;
     uStack_148 = uStack_2e8;
     uStack_144 = uStack_2e4;
-    FUN_001d7dc0(&uStack_300,3,(short)lVar9,(short)lVar13);
+    AiLine_GetDirection(&uStack_300,3,(short)lVar9,(short)lVar13);
     uStack_170 = uStack_300;
     uStack_16c = uStack_2fc;
     uStack_168 = uStack_2f8;
@@ -1734,7 +1742,7 @@ void FUN_001cb190(int param_1)
   uStack_138 = uStack_328;
   uStack_134 = uStack_324;
   uStack_13c = 0;
-  fVar16 = (float)FUN_001dac80(&uStack_140);
+  fVar16 = (float)Vec3_LengthB(&uStack_140);
   *(float *)(param_1 + 6000) = fVar16;
   *(float *)(param_1 + 0x176c) = fVar16 / fVar15;
   fVar15 = *(float *)(param_1 + 0x1768) - *(float *)(param_1 + 6000);
@@ -1776,13 +1784,14 @@ void FUN_001cb190(int param_1)
     uStack_184 = puVar7[3];
     uStack_8 = uStack_190;
     uStack_4 = uStack_18c;
-    lVar9 = FUN_001dde40((short)uStack_190);
-    lVar13 = FUN_001dde40(sStack_10,iStack_c);
+    lVar9 = Checkpoint_GetPosition((short)uStack_190);
+    lVar13 = Checkpoint_GetPosition(sStack_10,iStack_c);
     lVar10 = GameState_Get_40();
     if (lVar10 == 0) {
       if (lVar9 <= lVar13) {
-        fVar15 = (float)FUN_001ddeb0(CONCAT44(uStack_4,uStack_8),
-                                     CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
+        fVar15 = (float)Checkpoint_BuildGate
+                                  (CONCAT44(uStack_4,uStack_8),
+                                   CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
         fVar15 = fVar15 + *(float *)(param_1 + 0x177c);
       }
     }
@@ -1791,8 +1800,9 @@ void FUN_001cb190(int param_1)
         uVar18 = *(undefined4 *)(param_1 + 0x1780);
         goto LAB_001cba24;
       }
-      fVar15 = (float)FUN_001ddeb0(CONCAT44(uStack_4,uStack_8),
-                                   CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
+      fVar15 = (float)Checkpoint_BuildGate
+                                (CONCAT44(uStack_4,uStack_8),
+                                 CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
       fVar15 = fVar15 - *(float *)(param_1 + 0x177c);
     }
   }
@@ -1804,7 +1814,7 @@ LAB_001cba24:
 }
 
 // 0x001cba60  size 0xe78
-void FUN_001cba60(int param_1)
+void Ai_ComputeSteering(int param_1)
 
 {
   ushort uVar1;
@@ -2076,8 +2086,8 @@ void FUN_001cba60(int param_1)
       unaff_f20 = 1.0;
     }
   }
-  iVar15 = FUN_001d2280(*(undefined4 *)(param_1 + 0x17dc),10);
-  iVar5 = FUN_001d2280(*(undefined4 *)(param_1 + 0x17dc),0xb);
+  iVar15 = CarRec_GetPartData(*(undefined4 *)(param_1 + 0x17dc),10);
+  iVar5 = CarRec_GetPartData(*(undefined4 *)(param_1 + 0x17dc),0xb);
   fVar29 = 0.0;
   uVar17 = 0;
   piVar16 = aiStack_a0;
@@ -2168,7 +2178,7 @@ void FUN_001cba60(int param_1)
   uStack_a4 = 0x3f800000;
   *(float *)(param_1 + 0x1720) = (-*(float *)(iVar15 + 4) * 3.0) / 3.1415927;
   uVar8 = phys_sub_00165040(*(undefined4 *)(param_1 + 0x154));
-  FUN_001da8c0(&uStack_1e0,uVar8);
+  AiLine_TransformToWorld(&uStack_1e0,uVar8);
   uStack_b0 = uStack_1e0;
   uStack_ac = uStack_1dc;
   uStack_a8 = uStack_1d8;
@@ -2176,7 +2186,7 @@ void FUN_001cba60(int param_1)
   fVar20 = (float)atan2f(uStack_1d8,uStack_1e0);
   *(float *)(param_1 + 0x171c) = (fVar20 * 180.0) / 3.1415927;
   fVar34 = fVar20 + *(float *)(param_1 + 0x1728);
-  uVar12 = FUN_001dad00((fVar34 * 180.0) / 3.1415927);
+  uVar12 = Race_CountActiveCars((fVar34 * 180.0) / 3.1415927);
   *(undefined4 *)(param_1 + 0x1718) = uVar12;
   uVar12 = sinf(fVar34);
   *(undefined4 *)(param_1 + 0x16d0) = uVar12;
@@ -2198,46 +2208,46 @@ void FUN_001cba60(int param_1)
   lVar9 = GameState_Get_40();
   if (lVar9 == 0) {
     if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
-      FUN_001d7dc0(auStack_250,1,uVar1,sVar2);
+      AiLine_GetDirection(auStack_250,1,uVar1,sVar2);
       uStack_c0 = auStack_250[0];
       uStack_b8 = uStack_248;
       uStack_b4 = uStack_244;
       uStack_bc = 0;
-      FUN_001d7dc0(auStack_260,2,uVar1,sVar2);
+      AiLine_GetDirection(auStack_260,2,uVar1,sVar2);
       uStack_d0 = auStack_260[0];
       uStack_c8 = uStack_258;
       uStack_c4 = uStack_254;
     }
     else {
-      FUN_001d7dc0(auStack_230,2,uVar1,sVar2);
+      AiLine_GetDirection(auStack_230,2,uVar1,sVar2);
       uStack_c0 = auStack_230[0];
       uStack_b8 = uStack_228;
       uStack_b4 = uStack_224;
       uStack_bc = 0;
-      FUN_001d7dc0(auStack_240,1,uVar1,sVar2);
+      AiLine_GetDirection(auStack_240,1,uVar1,sVar2);
       uStack_d0 = auStack_240[0];
       uStack_c8 = uStack_238;
       uStack_c4 = uStack_234;
     }
   }
   else if ((*(uint *)(param_1 + 0x17d8) & 4) == 0) {
-    FUN_001d7dc0(auStack_210,2,uVar1,sVar2);
+    AiLine_GetDirection(auStack_210,2,uVar1,sVar2);
     uStack_c0 = auStack_210[0];
     uStack_b8 = uStack_208;
     uStack_b4 = uStack_204;
     uStack_bc = 0;
-    FUN_001d7dc0(auStack_220,1,uVar1,sVar2);
+    AiLine_GetDirection(auStack_220,1,uVar1,sVar2);
     uStack_d0 = auStack_220[0];
     uStack_c8 = uStack_218;
     uStack_c4 = uStack_214;
   }
   else {
-    FUN_001d7dc0(auStack_1f0,1,uVar1,sVar2);
+    AiLine_GetDirection(auStack_1f0,1,uVar1,sVar2);
     uStack_c0 = auStack_1f0[0];
     uStack_b8 = uStack_1e8;
     uStack_b4 = uStack_1e4;
     uStack_bc = 0;
-    FUN_001d7dc0(auStack_200,2,uVar1,sVar2);
+    AiLine_GetDirection(auStack_200,2,uVar1,sVar2);
     uStack_d0 = auStack_200[0];
     uStack_c8 = uStack_1f8;
     uStack_c4 = uStack_1f4;
@@ -2248,21 +2258,21 @@ void FUN_001cba60(int param_1)
   fStack_d8 = fStack_268;
   uStack_d4 = uStack_264;
   fStack_dc = 0.0;
-  fVar20 = (float)FUN_001dac80(&fStack_e0);
+  fVar20 = (float)Vec3_LengthB(&fStack_e0);
   *(float *)(param_1 + 0x1760) = fVar20;
   Vec3_Sub(auStack_280,uVar7,&uStack_c0);
   uStack_f0 = auStack_280[0];
   uStack_e8 = uStack_278;
   uStack_e4 = uStack_274;
   uStack_ec = 0;
-  fVar34 = (float)FUN_001dacc0(&fStack_e0,&uStack_f0);
-  fVar23 = (float)FUN_001dac80(&fStack_e0);
+  fVar34 = (float)Vec3_DotB(&fStack_e0,&uStack_f0);
+  fVar23 = (float)Vec3_LengthB(&fStack_e0);
   fVar34 = fVar34 / fVar23;
   phys_sub_00163bc0(&fStack_e0);
   fStack_fc = fStack_dc * fVar34;
   fStack_100 = fStack_e0 * fVar34;
   fStack_f8 = fStack_d8 * fVar34;
-  fVar34 = (float)FUN_001dac80(&fStack_100);
+  fVar34 = (float)Vec3_LengthB(&fStack_100);
   *(float *)(param_1 + 0x1768) = fVar34;
   iVar15 = sVar2 + 1;
   *(float *)(param_1 + 0x1764) = fVar34 / fVar20;
@@ -2271,20 +2281,20 @@ void FUN_001cba60(int param_1)
   uStack_124 = 0x3f800000;
   uStack_134 = 0x3f800000;
   if ((long)iVar15 < (long)**(short **)(piGpffff8b40[1] + (uint)uVar1 * 4)) {
-    FUN_001d7dc0(&uStack_2a0,3,uVar1,(short)iVar15);
+    AiLine_GetDirection(&uStack_2a0,3,uVar1,(short)iVar15);
     uStack_120 = uStack_2a0;
     uStack_11c = uStack_29c;
     uStack_118 = uStack_298;
     uStack_114 = uStack_294;
   }
   else {
-    FUN_001d7dc0(&uStack_290,3,uVar1 + 1,0);
+    AiLine_GetDirection(&uStack_290,3,uVar1 + 1,0);
     uStack_120 = uStack_290;
     uStack_11c = uStack_28c;
     uStack_118 = uStack_288;
     uStack_114 = uStack_284;
   }
-  FUN_001d7dc0(&uStack_2b0,3,uVar1,sVar2);
+  AiLine_GetDirection(&uStack_2b0,3,uVar1,sVar2);
   uStack_110 = uStack_2b0;
   uStack_10c = uStack_2ac;
   uStack_108 = uStack_2a8;
@@ -2299,15 +2309,15 @@ void FUN_001cba60(int param_1)
   uStack_138 = uStack_2c8;
   uStack_134 = uStack_2c4;
   uStack_13c = 0;
-  fVar34 = (float)FUN_001dacc0(&uStack_130,&uStack_140);
-  fVar23 = (float)FUN_001dac80(&uStack_130);
+  fVar34 = (float)Vec3_DotB(&uStack_130,&uStack_140);
+  fVar23 = (float)Vec3_LengthB(&uStack_130);
   *(float *)(param_1 + 0x177c) = fVar34 / fVar23;
   uStack_144 = 0x3f800000;
   uStack_154 = 0x3f800000;
   uStack_164 = 0x3f800000;
   uStack_174 = 0x3f800000;
   uStack_184 = 0x3f800000;
-  FUN_001d7dc0(&uStack_2e0,3,uVar1,sVar2);
+  AiLine_GetDirection(&uStack_2e0,3,uVar1,sVar2);
   uStack_180 = uStack_2e0;
   uStack_17c = uStack_2dc;
   uStack_178 = uStack_2d8;
@@ -2345,7 +2355,7 @@ void FUN_001cba60(int param_1)
         lVar9 = (long)(int)uVar17;
       }
     }
-    FUN_001d7dc0(&uStack_2f0,3,(short)lVar9,(short)iVar5);
+    AiLine_GetDirection(&uStack_2f0,3,(short)lVar9,(short)iVar5);
     uStack_190 = uStack_2f0;
     uStack_18c = uStack_2ec;
     uStack_188 = uStack_2e8;
@@ -2380,7 +2390,7 @@ void FUN_001cba60(int param_1)
         lVar9 = (long)(short)uVar1;
       }
     }
-    FUN_001d7dc0(&uStack_320,3,(short)lVar9,(short)lVar10);
+    AiLine_GetDirection(&uStack_320,3,(short)lVar9,(short)lVar10);
     uStack_190 = uStack_320;
     uStack_18c = uStack_31c;
     uStack_188 = uStack_318;
@@ -2409,7 +2419,7 @@ void FUN_001cba60(int param_1)
   uStack_158 = uStack_348;
   uStack_154 = uStack_344;
   uStack_15c = 0;
-  fVar34 = (float)FUN_001dac80(&uStack_160);
+  fVar34 = (float)Vec3_LengthB(&uStack_160);
   *(float *)(param_1 + 6000) = fVar34;
   *(float *)(param_1 + 0x176c) = fVar34 / fVar20;
   fVar20 = *(float *)(param_1 + 0x1768) - *(float *)(param_1 + 6000);
@@ -2451,13 +2461,14 @@ void FUN_001cba60(int param_1)
     uStack_1a4 = puVar6[3];
     uStack_8 = uStack_1b0;
     uStack_4 = uStack_1ac;
-    lVar9 = FUN_001dde40((short)uStack_1b0);
-    lVar10 = FUN_001dde40(sStack_10,iStack_c);
+    lVar9 = Checkpoint_GetPosition((short)uStack_1b0);
+    lVar10 = Checkpoint_GetPosition(sStack_10,iStack_c);
     lVar11 = GameState_Get_40();
     if (lVar11 == 0) {
       if (lVar9 <= lVar10) {
-        fVar20 = (float)FUN_001ddeb0(CONCAT44(uStack_4,uStack_8),
-                                     CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
+        fVar20 = (float)Checkpoint_BuildGate
+                                  (CONCAT44(uStack_4,uStack_8),
+                                   CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
         fVar20 = fVar20 + *(float *)(param_1 + 0x177c);
       }
     }
@@ -2466,8 +2477,9 @@ void FUN_001cba60(int param_1)
         uVar12 = *(undefined4 *)(param_1 + 0x1780);
         goto LAB_001cc744;
       }
-      fVar20 = (float)FUN_001ddeb0(CONCAT44(uStack_4,uStack_8),
-                                   CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
+      fVar20 = (float)Checkpoint_BuildGate
+                                (CONCAT44(uStack_4,uStack_8),
+                                 CONCAT44(iStack_c,CONCAT22(sStack_e,sStack_10)));
       fVar20 = fVar20 - *(float *)(param_1 + 0x177c);
     }
   }
@@ -2475,7 +2487,7 @@ void FUN_001cba60(int param_1)
 LAB_001cc744:
   *(undefined4 *)(param_1 + 0x1784) = uVar12;
   *(float *)(param_1 + 0x1780) = fVar20;
-  cVar4 = FUN_001777b0();
+  cVar4 = GameState_Get_0();
   if (cVar4 != '\b') {
     uVar7 = phys_sub_00164f50(*(undefined4 *)(param_1 + 0x154));
     puVar6 = (undefined4 *)uVar7;
@@ -2483,9 +2495,9 @@ LAB_001cc744:
     uStack_1bc = puVar6[1];
     uStack_1b8 = puVar6[2];
     uStack_1b4 = puVar6[3];
-    fVar20 = (float)FUN_001dac80(&uStack_1c0);
+    fVar20 = (float)Vec3_LengthB(&uStack_1c0);
     fVar20 = (fVar20 * 60.0 * 60.0) / 1000.0;
-    uVar12 = FUN_001daab0(uVar7,param_1 + 0x1700);
+    uVar12 = Vec3_AngleBetweenSigned(uVar7,param_1 + 0x1700);
     *(undefined4 *)(param_1 + 0x1714) = uVar12;
     if ((*(uint *)(param_1 + 0x17d8) & 0x100) == 0) {
       if ((4.0 < fVar20) &&

@@ -1598,7 +1598,7 @@ bool PhysPair_InitSphereBox(undefined8 param_1)
   puVar1[0x16] = 0x40000000;
   phys_sub_00159b20(puVar1[1]);
   phys_sub_00159b20(*puVar1);
-  msl_sub_00101180(param_1);
+  __ptmf_scall(param_1);
   return (float)puVar1[0x15] < 1.01;
 }
 
@@ -1624,7 +1624,7 @@ bool PhysPair_InitSpherePlane(undefined8 param_1,undefined4 *param_2)
   puVar4[0x16] = 0x40000000;
   phys_sub_00159b20(puVar4[1]);
   phys_sub_00159b20(*puVar4);
-  msl_sub_00101180(param_1);
+  __ptmf_scall(param_1);
   return 0.0 < (float)puVar4[0x14];
 }
 

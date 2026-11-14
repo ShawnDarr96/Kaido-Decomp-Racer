@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x0019c2e0  size 0x494
-void FUN_0019c2e0(undefined8 param_1)
+void CarModel_RenderOpaque(undefined8 param_1)
 
 {
   byte bVar1;
@@ -24,7 +24,7 @@ void FUN_0019c2e0(undefined8 param_1)
   undefined4 uStack_130;
   uint uStack_a8;
   
-  FUN_0019be00(param_1,auStack_500,0);
+  CarModel_SetupLighting(param_1,auStack_500,0);
   uVar8 = 0;
   puVar7 = &DAT_00312800;
   do {
@@ -48,12 +48,12 @@ LAB_0019c6c8:
         else {
           if (((cVar2 == '\x02') || (cVar2 == '\x01')) || (cVar2 == '\0')) {
             if ((uVar4 & 0x400) == 0) {
-              uStack_a8 = FUN_0019a180(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
-                                       puVar9 + 0x48,5,0x312820);
+              uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,
+                                              iStack_2bc,puVar9 + 0x48,5,0x312820);
             }
             else {
-              uStack_a8 = FUN_0019a180(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
-                                       puVar9 + 0x48,5,0x312860);
+              uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,
+                                              iStack_2bc,puVar9 + 0x48,5,0x312860);
             }
             goto LAB_0019c6c8;
           }
@@ -62,18 +62,18 @@ LAB_0019c6c8:
         if (bVar1 < 5) {
           uStack_a8 = (uint)bVar1;
         }
-        uStack_a8 = FUN_001aded0(puVar9[0x141],uStack_a8);
+        uStack_a8 = CarAsset_GetPartVariant(puVar9[0x141],uStack_a8);
       }
       else {
         if ((uVar4 & 0x400) == 0) {
-          uStack_a8 = FUN_0019a180(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
-                                   puVar9 + 0x48,5,0x312840);
+          uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
+                                          puVar9 + 0x48,5,0x312840);
         }
         else {
-          uStack_a8 = FUN_0019a180(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
-                                   puVar9 + 0x48,5,0x312880);
+          uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
+                                          puVar9 + 0x48,5,0x312880);
         }
-        uStack_a8 = FUN_001aded0(puVar9[0x141],uStack_a8);
+        uStack_a8 = CarAsset_GetPartVariant(puVar9[0x141],uStack_a8);
       }
       Layer_Open(auStack_500,0);
       Layer_Open(auStack_500,1);
@@ -91,11 +91,11 @@ LAB_0019c6c8:
         Pkt_SetTexFlush(auStack_500,3);
         Pkt_SetTexFlush(auStack_4bc,3);
       }
-      lVar5 = FUN_0019af50(param_1,auStack_500);
+      lVar5 = CarModel_DrawWheels(param_1,auStack_500);
       if (lVar5 != 0) {
-        FUN_0019a8a0(param_1,auStack_500);
+        CarModel_DrawParts(param_1,auStack_500);
       }
-      FUN_0019a260(param_1,auStack_500);
+      CarModel_DrawBody(param_1,auStack_500);
       Camera_GetViewMatrix(iStack_2bc,auStack_510,puVar9 + 0x48);
       bVar3 = true;
       if ((-1 < iStack_508) && (iStack_508 < 0xffffff)) {
@@ -138,7 +138,7 @@ LAB_0019c6c8:
 }
 
 // 0x0019c780  size 0x5f4
-void FUN_0019c780(undefined8 param_1)
+void CarModel_RenderTranslucent(undefined8 param_1)
 
 {
   bool bVar1;
@@ -187,7 +187,7 @@ void FUN_0019c780(undefined8 param_1)
   
   iVar4 = (int)param_1;
   if (*(int *)(iVar4 + 0x4f4) != 0) {
-    FUN_0019be00(param_1,auStack_500,1);
+    CarModel_SetupLighting(param_1,auStack_500,1);
     if (cRam00430460 == '\0') {
       *(undefined4 *)(*(int *)(iRam0036f1fc + 0x14) + 0x104) =
            *(undefined4 *)(*(int *)(iRam0036f1fc + 0x14) + 0xa4);
@@ -256,7 +256,7 @@ void FUN_0019c780(undefined8 param_1)
       else {
         uStack_a8 = 4;
       }
-      uStack_a8 = FUN_001aded0(*(undefined4 *)(iVar4 + 0x504),uStack_a8);
+      uStack_a8 = CarAsset_GetPartVariant(*(undefined4 *)(iVar4 + 0x504),uStack_a8);
       Layer_Open(auStack_500,0);
       Layer_Open(auStack_500,1);
       if (*(int *)(iVar4 + 0x4e8) != 0) {
@@ -273,16 +273,16 @@ void FUN_0019c780(undefined8 param_1)
         *puVar2 = 1;
         puVar2[1] = 0x4a;
       }
-      lVar3 = FUN_0019af50(param_1,auStack_500);
+      lVar3 = CarModel_DrawWheels(param_1,auStack_500);
       if (cRam00430460 != '\x02') {
         maybe_Vu0_UnitMatrix(auStack_7a0);
         uStack_78c = 0xbf800000;
         vu0math_sub_00132ba0(auStack_440,auStack_7a0,iVar4 + 0x120);
       }
       if ((lVar3 != 0) && (cRam00430460 == '\0')) {
-        FUN_0019a8a0(param_1,auStack_500);
+        CarModel_DrawParts(param_1,auStack_500);
       }
-      FUN_0019a260(param_1,auStack_500);
+      CarModel_DrawBody(param_1,auStack_500);
       Camera_GetViewMatrix(iStack_2bc,auStack_7b0,auStack_440);
       bVar1 = true;
       if ((-1 < iStack_7a8) && (iStack_7a8 < 0xffffff)) {
@@ -314,7 +314,7 @@ void FUN_0019c780(undefined8 param_1)
 }
 
 // 0x0019cd80  size 0x5c
-void FUN_0019cd80(int param_1,int param_2,long param_3)
+void CarModel_SetBrakeLight(int param_1,int param_2,long param_3)
 
 {
   int iVar1;
@@ -337,7 +337,7 @@ void FUN_0019cd80(int param_1,int param_2,long param_3)
 }
 
 // 0x0019cde0  size 0x5c
-void FUN_0019cde0(int param_1,int param_2,long param_3)
+void CarModel_SetHeadLight(int param_1,int param_2,long param_3)
 
 {
   int iVar1;
@@ -360,7 +360,7 @@ void FUN_0019cde0(int param_1,int param_2,long param_3)
 }
 
 // 0x0019ce40  size 0xe4
-void FUN_0019ce40(undefined8 param_1)
+void CarModel_SwapParts(undefined8 param_1)
 
 {
   int iVar1;
@@ -382,14 +382,14 @@ void FUN_0019ce40(undefined8 param_1)
     *(int *)(iVar1 + 0x514) = *(int *)(iVar1 + 0x524);
   }
   *(undefined4 *)(iVar1 + 0x524) = 0;
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x500));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x528));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x508));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x50c));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x510));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x514));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x504));
-  FUN_001a5060(param_1,0x530);
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x500));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x528));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x508));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x50c));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x510));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x514));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x504));
+  Chunk_Init(param_1,0x530);
   *(undefined4 *)(iVar1 + 0x500) = 0;
   *(undefined4 *)(iVar1 + 0x504) = 0;
   *(undefined4 *)(iVar1 + 0x508) = 0;
@@ -401,12 +401,12 @@ void FUN_0019ce40(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x520) = 0;
   *(undefined4 *)(iVar1 + 0x524) = 0;
   *(undefined4 *)(iVar1 + 0x528) = 0;
-  FUN_0019cf30(iVar1 + 0x110);
+  CarModel_ResetState(iVar1 + 0x110);
   return;
 }
 
 // 0x0019cf30  size 0x154
-void FUN_0019cf30(undefined4 *param_1)
+void CarModel_ResetState(undefined4 *param_1)
 
 {
   undefined4 *puVar1;
@@ -476,24 +476,24 @@ void FUN_0019cf30(undefined4 *param_1)
 }
 
 // 0x0019d090  size 0x84
-void FUN_0019d090(int param_1)
+void CourseStream_InitBlock(int param_1)
 
 {
   int iVar1;
   
   Mem_Set16(param_1,0,0x100);
   *(undefined4 *)(param_1 + 4) = 0;
-  FUN_001af6f0(param_1 + 8);
+  DriverAsset_ClearFlag(param_1 + 8);
   *(undefined4 *)(param_1 + 0xc) = 0;
-  FUN_001af080(param_1 + 0x10);
+  DriverAsset_Clear(param_1 + 0x10);
   *(undefined4 *)(param_1 + 0x60) = 0;
-  FUN_001ab5f0(param_1 + 100);
+  CarAsset_Clear(param_1 + 100);
   iVar1 = 0;
   do {
     *(undefined4 *)(param_1 + 0x70) = 0;
-    FUN_001ac8b0(param_1 + 0x74);
+    WheelAsset_ClearParams(param_1 + 0x74);
     *(undefined4 *)(param_1 + 0x94) = 0;
-    FUN_001abf50(param_1 + 0x98);
+    WheelAsset_Clear(param_1 + 0x98);
     iVar1 = iVar1 + 1;
     param_1 = param_1 + 0x48;
   } while (iVar1 < 2);
@@ -501,8 +501,9 @@ void FUN_0019d090(int param_1)
 }
 
 // 0x0019d120  size 0x360
-void FUN_0019d120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                 uint param_5,uint param_6)
+void CourseStream_RequestBlock
+               (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               uint param_5,uint param_6)
 
 {
   ushort uVar1;
@@ -532,16 +533,17 @@ void FUN_0019d120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   afStack_30[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
   afStack_30[1] = 0.0;
   afStack_30[2] = *(float *)(iVar9 + 0x88) - *(float *)(iVar9 + 0x78);
-  uVar3 = FUN_0019d490(param_1,param_2,param_3,param_4,auStack_20,afStack_10,auStack_40,afStack_30);
+  uVar3 = CourseStream_UpdateVisibility
+                    (param_1,param_2,param_3,param_4,auStack_20,afStack_10,auStack_40,afStack_30);
   uVar11 = 0;
   uRam004305dc = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar6 = FUN_001a15a0(uRam004305c8,uRam004305c4,*(undefined2 *)(iVar10 + 4));
+      lVar6 = BlockPool_FindB(uRam004305c8,uRam004305c4,*(undefined2 *)(iVar10 + 4));
       if (lVar6 != 0) {
-        lVar6 = FUN_001a1560(iRam004305d0,uRam004305cc,*(undefined4 *)(iVar10 + 4));
+        lVar6 = BlockPool_Find(iRam004305d0,uRam004305cc,*(undefined4 *)(iVar10 + 4));
         if (lVar6 == 0) {
-          lVar6 = FUN_001a14c0(iRam004305d0,uRam004305cc);
+          lVar6 = BlockPool_FindFree(iRam004305d0,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar10 + 4);
             Sema_Wait((int)register0x000001c0 + -0x7730);
@@ -605,8 +607,9 @@ void FUN_0019d120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
 }
 
 // 0x0019d490  size 0x8a4
-uint FUN_0019d490(float param_1,undefined4 param_2,float param_3,undefined4 param_4,float *param_5,
-                 undefined8 param_6,float *param_7,undefined4 param_8)
+uint CourseStream_UpdateVisibility
+               (float param_1,undefined4 param_2,float param_3,undefined4 param_4,float *param_5,
+               undefined8 param_6,float *param_7,undefined4 param_8)
 
 {
   bool bVar1;
@@ -717,7 +720,7 @@ LAB_0019d8f8:
             }
             else {
 LAB_0019d900:
-              lVar7 = FUN_0019e0a0(param_5,iVar17 + 0x10);
+              lVar7 = Course_GetGroundHeight(param_5,iVar17 + 0x10);
               if (lVar7 != 0) {
                 uVar12 = uVar15;
                 if (uVar15 != 0) {
@@ -843,7 +846,7 @@ LAB_0019dc30:
               }
               else {
 LAB_0019dc38:
-                lVar7 = FUN_0019e0a0(param_7,iVar6 + 0x10);
+                lVar7 = Course_GetGroundHeight(param_7,iVar6 + 0x10);
                 if (lVar7 != 0) {
                   uVar12 = uVar15;
                   if (uVar15 != 0) {
@@ -894,7 +897,7 @@ LAB_0019dc38:
 // 0x0019dd50  size 0x340
 /* WARNING: Removing unreachable block (ram,0x0019de0c) */
 
-int FUN_0019dd50(int param_1,int param_2,float *param_3,int param_4,int param_5)
+int CourseStream_FindBlock(int param_1,int param_2,float *param_3,int param_4,int param_5)
 
 {
   bool bVar1;
@@ -1003,7 +1006,7 @@ LAB_0019df98:
 }
 
 // 0x0019e0a0  size 0x518
-undefined4 FUN_0019e0a0(float *param_1,float *param_2)
+undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
 
 {
   bool bVar1;
@@ -1211,25 +1214,25 @@ LAB_0019e558:
 }
 
 // 0x0019e5d0  size 0x3c
-void FUN_0019e5d0(void)
+void CourseStream_FreeAll(void)
 
 {
-  FUN_001a12c0(uRam004305c8,uRam004305c4);
-  FUN_001a1260(uRam004305d0,uRam004305cc);
+  BlockPool_ResetB(uRam004305c8,uRam004305c4);
+  BlockPool_ResetA(uRam004305d0,uRam004305cc);
   return;
 }
 
 // 0x0019e610  size 0x50
-void FUN_0019e610(undefined8 param_1)
+void CourseStream_Update(undefined8 param_1)
 
 {
-  FUN_001a13f0(uRam004305c8,uRam004305c4,param_1);
-  FUN_001a1320(uRam004305d0,uRam004305cc,param_1);
+  BlockPool_TouchB(uRam004305c8,uRam004305c4,param_1);
+  BlockPool_TouchA(uRam004305d0,uRam004305cc,param_1);
   return;
 }
 
 // 0x0019e660  size 0x284
-void FUN_0019e660(void)
+void CourseStream_OnModelLoaded(void)
 
 {
   bool bVar1;
@@ -1324,7 +1327,7 @@ void FUN_0019e660(void)
 }
 
 // 0x0019e8f0  size 0x21c
-void FUN_0019e8f0(void)
+void CourseStream_OnTextureLoaded(void)
 
 {
   long lVar1;
@@ -1378,7 +1381,7 @@ void FUN_0019e8f0(void)
 }
 
 // 0x0019eb10  size 0xbc
-void FUN_0019eb10(void)
+void CourseStream_OnTextureReady(void)
 
 {
   int iVar1;
@@ -1405,7 +1408,7 @@ void FUN_0019eb10(void)
 }
 
 // 0x0019ebd0  size 0x668
-void FUN_0019ebd0(void)
+void CourseStream_OnBlockLoaded(void)
 
 {
   undefined4 uVar1;
@@ -1591,8 +1594,8 @@ void FUN_0019ebd0(void)
 }
 
 // 0x0019f250  size 0x334
-void FUN_0019f250(undefined4 param_1,undefined4 param_2,byte param_3,undefined8 param_4,long param_5
-                 )
+void CourseStream_RequestLod
+               (undefined4 param_1,undefined4 param_2,byte param_3,undefined8 param_4,long param_5)
 
 {
   ushort uVar1;
@@ -1628,16 +1631,16 @@ void FUN_0019f250(undefined4 param_1,undefined4 param_2,byte param_3,undefined8 
     uStack_2c = 0;
     puVar8 = auStack_30;
   }
-  uVar3 = FUN_0019f590(param_1,param_2,auStack_20,afStack_10,puVar8);
+  uVar3 = CourseStream_UpdateLod(param_1,param_2,auStack_20,afStack_10,puVar8);
   uVar11 = 0;
   uRam004305dc = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar6 = FUN_001a15a0(uRam004305c8,uRam004305c4,*(undefined2 *)(iVar12 + 4));
+      lVar6 = BlockPool_FindB(uRam004305c8,uRam004305c4,*(undefined2 *)(iVar12 + 4));
       if (lVar6 != 0) {
-        lVar6 = FUN_001a1560(iRam004305d0,uRam004305cc,*(undefined4 *)(iVar12 + 4));
+        lVar6 = BlockPool_Find(iRam004305d0,uRam004305cc,*(undefined4 *)(iVar12 + 4));
         if (lVar6 == 0) {
-          lVar6 = FUN_001a14c0(iRam004305d0,uRam004305cc);
+          lVar6 = BlockPool_FindFree(iRam004305d0,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar12 + 4);
             Sema_Wait((int)register0x000001c0 + -0x7730);
@@ -1700,8 +1703,8 @@ void FUN_0019f250(undefined4 param_1,undefined4 param_2,byte param_3,undefined8 
 }
 
 // 0x0019f590  size 0x620
-uint FUN_0019f590(float param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4,int param_5
-                 )
+uint CourseStream_UpdateLod
+               (float param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4,int param_5)
 
 {
   bool bVar1;
@@ -1801,7 +1804,7 @@ LAB_0019f848:
             }
             else {
 LAB_0019f850:
-              lVar8 = FUN_0019e0a0(param_3,iVar7);
+              lVar8 = Course_GetGroundHeight(param_3,iVar7);
               if (lVar8 != 0) {
                 uVar13 = uVar15;
                 if (uVar15 != 0) {
@@ -1879,8 +1882,8 @@ LAB_0019f850:
               iVar16 = iVar7 + 0x10;
               fVar18 = (float)vu0math_sub_00132900(auStack_80,iVar16,param_5);
               fVar19 = (float)vu0math_sub_00132900(auStack_80,iVar16,iVar7 + 0x20);
-              if ((fVar18 <= param_1 + fVar19) && (lVar8 = FUN_0019e0a0(param_5,iVar16), lVar8 != 0)
-                 ) {
+              if ((fVar18 <= param_1 + fVar19) &&
+                 (lVar8 = Course_GetGroundHeight(param_5,iVar16), lVar8 != 0)) {
                 uVar12 = uVar14;
                 if (uVar14 != uVar15) {
                   iVar7 = iVar4 + uVar14 * 8;
@@ -1927,7 +1930,7 @@ LAB_0019f850:
 }
 
 // 0x0019fbd0  size 0x22c
-void FUN_0019fbd0(undefined8 param_1,undefined8 param_2,long param_3)
+void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   undefined4 uVar1;
@@ -1944,14 +1947,14 @@ void FUN_0019fbd0(undefined8 param_1,undefined8 param_2,long param_3)
   if (param_3 == 0) {
     param_3 = 0;
   }
-  uVar3 = FUN_0019fe00(param_2,param_3);
+  uVar3 = CourseStream_UpdateTextures(param_2,param_3);
   uVar9 = 0;
   uRam004305d4 = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar5 = FUN_001a15a0(iRam004305c8,uRam004305c4,*(undefined4 *)(iVar8 + 4));
+      lVar5 = BlockPool_FindB(iRam004305c8,uRam004305c4,*(undefined4 *)(iVar8 + 4));
       if (lVar5 == 0) {
-        lVar5 = FUN_001a1510(iRam004305c8,uRam004305c4);
+        lVar5 = BlockPool_FindFreeB(iRam004305c8,uRam004305c4);
         if (lVar5 != 0) {
           uVar4 = *(uint *)(iVar8 + 4);
           Sema_Wait((int)register0x000001c0 + -0x7730);
@@ -1999,7 +2002,7 @@ void FUN_0019fbd0(undefined8 param_1,undefined8 param_2,long param_3)
 }
 
 // 0x0019fe00  size 0x860
-uint FUN_0019fe00(float param_1,undefined8 param_2,long param_3)
+uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
 
 {
   bool bVar1;

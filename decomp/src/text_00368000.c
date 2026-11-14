@@ -6,7 +6,7 @@
 void __sinit_003685e0(void)
 
 {
-  FUN_001323d0(0x380380,0);
+  List_ctor(0x380380,0);
   puRam00380380 = &DAT_0036e0b0;
   __register_global_object(0x380380,0x1356f0,0x380370);
   return;
@@ -18,7 +18,7 @@ void __sinit_00368630(void)
 {
   __construct_array(0x380610,0x137420,0x1373c0,0x60,0x100);
   __register_global_object(0,0x1373a0,0x3805f8);
-  FUN_001323d0(0x386620,0);
+  List_ctor(0x386620,0);
   puRam00386620 = &DAT_0036e0c0;
   __register_global_object(0x386620,0x137340,0x386610);
   return;
@@ -37,8 +37,8 @@ void __sinit_003686c0(void)
 void __sinit_00368710(void)
 
 {
-  FUN_001323d0(0x386f94,1);
-  FUN_001323d0(0x386fa8,1);
+  List_ctor(0x386f94,1);
+  List_ctor(0x386fa8,1);
   maybe_ListNode_ctor(0x386fbc,0);
   puRam00386fbc = &DAT_0036e128;
   __register_global_object(0x386f90,0x139e80,0x386f80);
@@ -60,7 +60,7 @@ void __sinit_00368790(void)
 void __sinit_003687f0(void)
 
 {
-  FUN_001328a0(0x36f03c);
+  Mutex_Init(0x36f03c);
   __register_global_object(0x36f03c,0x132830,0x387178);
   return;
 }
@@ -69,8 +69,8 @@ void __sinit_003687f0(void)
 void __sinit_003688a0(void)
 
 {
-  FUN_001328a0(0x42d84c);
-  FUN_001328a0(0x42d868);
+  Mutex_Init(0x42d84c);
+  Mutex_Init(0x42d868);
   __register_global_object(0x42d810,0x157fd0,0x42d7f8);
   return;
 }
@@ -593,7 +593,7 @@ void __sinit_00369d50(void)
 void __sinit_00369db0(void)
 
 {
-  FUN_001323d0(0x4307a0,1);
+  List_ctor(0x4307a0,1);
   maybe_Heap_ctor(0x4308a8);
   __register_global_object(0x4307a0,0x1a8f80,0x430788);
   return;

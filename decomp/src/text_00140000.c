@@ -738,7 +738,7 @@ int Wheel_GetDeviceName(int param_1)
     piVar4 = (int *)((int)register0x000001c0 + -0x7690);
     do {
       iVar1 = *piVar4;
-      lVar2 = FUN_00132590(iVar1 + 0x57c,acStack_8,uVar7);
+      lVar2 = Str_CompareN(iVar1 + 0x57c,acStack_8,uVar7);
       if (lVar2 == 0) {
         return iVar1;
       }
@@ -1203,7 +1203,7 @@ void Wheel_ReadInput(int param_1,undefined8 param_2)
   uVar11 = 0;
   iVar13 = param_1;
   do {
-    FUN_00134120(iVar13 + 0x1a4,*(undefined1 *)(param_1 + uVar11 + 0x414),0xff);
+    Color_LerpAlpha(iVar13 + 0x1a4,*(undefined1 *)(param_1 + uVar11 + 0x414),0xff);
     uVar11 = uVar11 + 1;
     iVar13 = iVar13 + 0x10;
   } while (uVar11 < 0x18);
@@ -1233,13 +1233,13 @@ void Wheel_ReadInput(int param_1,undefined8 param_2)
       puVar12[-2] = uVar3;
       puVar12 = puVar12 + 1;
     } while (uVar11 < 6);
-    FUN_00133e60(param_1 + 0x324,auStack_10[2],auStack_10[3],0xff);
+    Color_LerpRgba(param_1 + 0x324,auStack_10[2],auStack_10[3],0xff);
     fVar14 = ((float)auStack_10[3] / 2.0 - (float)auStack_10[2] / 2.0) + 127.5;
     if (2.1474836e+09 <= fVar14) {
       fVar14 = fVar14 - 2.1474836e+09;
     }
     *(char *)(param_1 + 0x474) = (char)(int)fVar14;
-    FUN_00133e60(param_1 + 0x334,auStack_10[1],auStack_10[0],0xff);
+    Color_LerpRgba(param_1 + 0x334,auStack_10[1],auStack_10[0],0xff);
     fVar14 = ((float)auStack_10[1] / 2.0 - (float)auStack_10[0] / 2.0) + 127.5;
     if (2.1474836e+09 <= fVar14) {
       fVar14 = fVar14 - 2.1474836e+09;
@@ -1348,13 +1348,13 @@ uint Wheel_ReadAxis(int param_1,uint param_2,ulong param_3,uint *param_4,long pa
       if (param_2 == 0x18) {
         *param_4 = *param_4 | 1 << (DAT_0030a750 & 0x1f);
         *param_4 = *param_4 | 1 << (DAT_0030a754 & 0x1f);
-        FUN_00133ff0(param_1 + 0x324,param_3 & 0xff,0xff);
+        Color_LerpRgb(param_1 + 0x324,param_3 & 0xff,0xff);
         *(undefined1 *)(param_1 + 0x474) = uVar5;
       }
       else {
         *param_4 = *param_4 | 1 << (DAT_0030a748 & 0x1f);
         *param_4 = *param_4 | 1 << (DAT_0030a74c & 0x1f);
-        FUN_00133ff0(param_1 + 0x334,param_3 & 0xff,0xff);
+        Color_LerpRgb(param_1 + 0x334,param_3 & 0xff,0xff);
         *(undefined1 *)(param_1 + 0x475) = uVar5;
       }
     }
@@ -1387,22 +1387,22 @@ uint Wheel_ReadAxis(int param_1,uint param_2,ulong param_3,uint *param_4,long pa
   }
   if (param_2 == 0x1a) {
     *param_4 = *param_4 | 0x40000;
-    FUN_00133ff0(param_1 + 0x364,param_3 & 0xff,0xff);
+    Color_LerpRgb(param_1 + 0x364,param_3 & 0xff,0xff);
     *(undefined1 *)(param_1 + 0x478) = uVar5;
   }
   if (param_2 == 0x1b) {
     *param_4 = *param_4 | 0x80000;
-    FUN_00133ff0(param_1 + 0x374,param_3 & 0xff,0xff);
+    Color_LerpRgb(param_1 + 0x374,param_3 & 0xff,0xff);
     *(undefined1 *)(param_1 + 0x479) = uVar5;
   }
   if (param_2 == 0x1c) {
     *param_4 = *param_4 | 0x10000;
-    FUN_00133ff0(param_1 + 0x344,param_3 & 0xff,0xff);
+    Color_LerpRgb(param_1 + 0x344,param_3 & 0xff,0xff);
     *(undefined1 *)(param_1 + 0x476) = uVar5;
   }
   if (param_2 == 0x1d) {
     *param_4 = *param_4 | 0x20000;
-    FUN_00133ff0(param_1 + 0x354,param_3 & 0xff,0xff);
+    Color_LerpRgb(param_1 + 0x354,param_3 & 0xff,0xff);
     *(undefined1 *)(param_1 + 0x477) = uVar5;
   }
   return uVar1;

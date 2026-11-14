@@ -1266,7 +1266,7 @@ int SaveSlot_BuildPath(int param_1,undefined8 param_2,long param_3,long param_4)
   iVar2 = (int)param_2;
   if ((-1 < param_3) && ((param_4 < 0 || (3 < param_4)))) {
     *(undefined1 *)(iVar2 + iVar1) = 0x2e;
-    FUN_00131c00(iVar2 + iVar1 + 1,param_3,10,2,0x30);
+    Str_FormatNumberPadded(iVar2 + iVar1 + 1,param_3,10,2,0x30);
     iVar1 = iVar1 + 3;
   }
   if (-1 < param_4) {
@@ -1276,7 +1276,7 @@ int SaveSlot_BuildPath(int param_1,undefined8 param_2,long param_3,long param_4)
     }
     else if (4 < param_4) {
       *(undefined1 *)(iVar2 + iVar1) = 0x2e;
-      FUN_00131c00(iVar2 + iVar1 + 1,(int)param_4 + -4,10,2,0x30);
+      Str_FormatNumberPadded(iVar2 + iVar1 + 1,(int)param_4 + -4,10,2,0x30);
       iVar1 = iVar1 + 3;
     }
   }
@@ -1336,7 +1336,7 @@ int SaveSlot_ParseDirectory(undefined8 param_1,undefined8 param_2,int param_3)
         if (!bVar2) {
           SaveSlot_BuildPath(param_1,iVar9 + 0x1a0,param_2,iVar4);
           uVar5 = strlen(puVar7 + 0x20);
-          lVar6 = FUN_00132590(puVar7 + 0x20,iVar9 + 0x1a0,uVar5);
+          lVar6 = Str_CompareN(puVar7 + 0x20,iVar9 + 0x1a0,uVar5);
           if (lVar6 != 0) {
             bVar2 = true;
           }
@@ -1394,7 +1394,7 @@ int SaveSlot_ParseFileList(undefined8 param_1,int param_2)
       iVar2 = atoi((int)lVar3 + 1);
       SaveSlot_BuildPath(param_1,iVar8 + 0x1a0,iVar2,0xffffffffffffffff);
       uVar4 = strlen(puVar6 + 0x20);
-      lVar3 = FUN_00132590(puVar6 + 0x20,iVar8 + 0x1a0,uVar4);
+      lVar3 = Str_CompareN(puVar6 + 0x20,iVar8 + 0x1a0,uVar4);
       if (lVar3 != 0) {
         bVar1 = true;
       }

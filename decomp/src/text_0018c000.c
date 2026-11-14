@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x0018c310  size 0xec
-long FUN_0018c310(short *param_1,int param_2,undefined8 param_3)
+long Road_PointInCell(short *param_1,int param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -37,7 +37,7 @@ long FUN_0018c310(short *param_1,int param_2,undefined8 param_3)
     if (lVar4 <= lVar5) {
       return -1;
     }
-    lVar3 = FUN_0018c400(iVar6,(int)param_1 + (uint)uVar2,param_3);
+    lVar3 = Road_PointInTriangle(iVar6,(int)param_1 + (uint)uVar2,param_3);
     if (lVar3 != 0) break;
     lVar5 = (long)((int)lVar5 + 1);
     iVar6 = iVar6 + 0x1c;
@@ -48,7 +48,7 @@ long FUN_0018c310(short *param_1,int param_2,undefined8 param_3)
 // 0x0018c400  size 0x3d4
 /* WARNING: Removing unreachable block (ram,0x0018c504) */
 
-bool FUN_0018c400(int param_1,int param_2,float *param_3)
+bool Road_PointInTriangle(int param_1,int param_2,float *param_3)
 
 {
   ushort *puVar1;
@@ -148,7 +148,7 @@ bool FUN_0018c400(int param_1,int param_2,float *param_3)
 }
 
 // 0x0018c7e0  size 0x6b8
-void FUN_0018c7e0(uint *param_1)
+void ScreenFx_Draw(uint *param_1)
 
 {
   undefined8 *puVar1;
@@ -362,7 +362,7 @@ LAB_0018cbc8:
 }
 
 // 0x0018cea0  size 0x2d0
-void FUN_0018cea0(int param_1,int param_2)
+void Weather_UpdateDrop(int param_1,int param_2)
 
 {
   undefined4 *puVar1;
@@ -487,7 +487,9 @@ LAB_0018d0f8:
 }
 
 // 0x0018d170  size 0x548
-void FUN_0018d170(uint *param_1)
+/* 50 slots, rand() threshold */
+
+void Weather_SpawnDrops(uint *param_1)
 
 {
   undefined1 *puVar1;
@@ -516,7 +518,7 @@ void FUN_0018d170(uint *param_1)
     uVar8 = 0xffffffff;
 LAB_0018d1f4:
     if (uVar8 != 0xffffffff) {
-      FUN_0018d6d0(param_1);
+      Weather_ResetDrop(param_1);
     }
   }
   uVar8 = 0;
@@ -634,7 +636,7 @@ LAB_0018d4b8:
           uVar6 = 0xffffffff;
 LAB_0018d540:
           if (5 < (int)param_1[uVar6 * 0x10 + 0x55]) {
-            FUN_0018cea0(param_1);
+            Weather_UpdateDrop(param_1);
           }
           uVar8 = uVar8 + 1;
         } while (uVar8 < *param_1);
@@ -647,7 +649,7 @@ LAB_0018d540:
 }
 
 // 0x0018d6d0  size 0x19c
-void FUN_0018d6d0(int param_1,int param_2)
+void Weather_ResetDrop(int param_1,int param_2)
 
 {
   int iVar1;
@@ -683,7 +685,7 @@ void FUN_0018d6d0(int param_1,int param_2)
 }
 
 // 0x0018d870  size 0x1c8
-void FUN_0018d870(uint param_1,uint *param_2,ulong param_3,uint param_4)
+void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
 
 {
   int iVar1;
@@ -741,7 +743,7 @@ void FUN_0018d870(uint param_1,uint *param_2,ulong param_3,uint param_4)
   uVar3 = 0;
   if (*param_2 != 0) {
     do {
-      FUN_0018d6d0(param_2,uVar3);
+      Weather_ResetDrop(param_2,uVar3);
       uVar3 = uVar3 + 1;
     } while (uVar3 < *param_2);
   }
@@ -749,7 +751,7 @@ void FUN_0018d870(uint param_1,uint *param_2,ulong param_3,uint param_4)
 }
 
 // 0x0018da40  size 0x778
-void FUN_0018da40(float param_1,uint param_2)
+void Weather_Draw(float param_1,uint param_2)
 
 {
   undefined8 *puVar1;
@@ -898,9 +900,9 @@ void FUN_0018da40(float param_1,uint param_2)
     if (fVar12 < -20.0) {
       puVar8[0x329] = fVar12 + 512.0;
     }
-    uVar6 = FUN_00133a70(((float)iVar11 / 200.0) * 65536.0 +
-                         ((float)(param_2 & 0x1ff) * 65536.0) / 512.0 + 0.0);
-    FUN_001339b0(uVar6,&fStack_8,&fStack_4);
+    uVar6 = Math_FloatToFixed22(((float)iVar11 / 200.0) * 65536.0 +
+                                ((float)(param_2 & 0x1ff) * 65536.0) / 512.0 + 0.0);
+    Math_SinCosTable(uVar6,&fStack_8,&fStack_4);
     iVar11 = iVar11 + 1;
     puVar10 = puVar10 + 2;
     fVar12 = fStack_4 * 20.0 * 0.2;
@@ -920,7 +922,7 @@ void FUN_0018da40(float param_1,uint param_2)
 }
 
 // 0x0018e1c0  size 0xc8
-undefined8 FUN_0018e1c0(int *param_1,byte param_2)
+undefined8 SndCh_Play(int *param_1,byte param_2)
 
 {
   uint *puVar1;
@@ -957,14 +959,14 @@ undefined8 FUN_0018e1c0(int *param_1,byte param_2)
       uStack_8 = puVar1[4];
       uStack_4 = puVar1[5];
       uStack_1c = 0x13;
-      uVar2 = FUN_00190d30(uRam0036f254,&iStack_20);
+      uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
     }
   }
   return uVar2;
 }
 
 // 0x0018e290  size 0x80
-void FUN_0018e290(int *param_1)
+void SndCh_Stop(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -988,12 +990,12 @@ void FUN_0018e290(int *param_1)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 0x11;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018e310  size 0xc0
-undefined8 FUN_0018e310(undefined8 param_1,uint param_2,undefined8 param_3)
+undefined8 SndCh_SetVolume(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
   uint *puVar1;
@@ -1026,13 +1028,13 @@ undefined8 FUN_0018e310(undefined8 param_1,uint param_2,undefined8 param_3)
     uStack_8 = puVar1[4];
     uStack_4 = puVar1[5];
     uStack_1c = 0xd;
-    uVar2 = FUN_00190d30(uRam0036f254,&iStack_20);
+    uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
   }
   return uVar2;
 }
 
 // 0x0018e3d0  size 0xa8
-long FUN_0018e3d0(long param_1,short param_2)
+long snd_sub_0018e3d0(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1059,7 +1061,7 @@ long FUN_0018e3d0(long param_1,short param_2)
 }
 
 // 0x0018e480  size 0x80
-ulong FUN_0018e480(int *param_1)
+ulong snd_sub_0018e480(int *param_1)
 
 {
   ulong uVar1;
@@ -1082,12 +1084,12 @@ ulong FUN_0018e480(int *param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  uVar2 = FUN_00190d30(uRam0036f254,&iStack_20);
+  uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return uVar1 & 1 & uVar2;
 }
 
 // 0x0018e500  size 0x80
-ulong FUN_0018e500(int *param_1)
+ulong snd_sub_0018e500(int *param_1)
 
 {
   ulong uVar1;
@@ -1110,12 +1112,12 @@ ulong FUN_0018e500(int *param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  uVar2 = FUN_00190d30(uRam0036f254,&iStack_20);
+  uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return uVar1 & 1 & uVar2;
 }
 
 // 0x0018e580  size 0x78
-byte FUN_0018e580(int param_1)
+byte SndCh_IsPlaying(int param_1)
 
 {
   bool bVar1;
@@ -1135,7 +1137,7 @@ byte FUN_0018e580(int param_1)
 }
 
 // 0x0018e600  size 0xa4
-void FUN_0018e600(int *param_1,uint param_2)
+void snd_sub_0018e600(int *param_1,uint param_2)
 
 {
   uint *puVar1;
@@ -1164,12 +1166,12 @@ void FUN_0018e600(int *param_1,uint param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 0xb;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018e6b0  size 0x90
-void FUN_0018e6b0(int *param_1,short param_2)
+void snd_sub_0018e6b0(int *param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1192,12 +1194,12 @@ void FUN_0018e6b0(int *param_1,short param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 0xc;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018e740  size 0x9c
-void FUN_0018e740(undefined8 param_1,long param_2)
+void snd_sub_0018e740(undefined8 param_1,long param_2)
 
 {
   undefined4 *puVar1;
@@ -1221,7 +1223,7 @@ void FUN_0018e740(undefined8 param_1,long param_2)
 }
 
 // 0x0018e7e0  size 0x80
-void FUN_0018e7e0(int *param_1)
+void snd_sub_0018e7e0(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -1245,12 +1247,12 @@ void FUN_0018e7e0(int *param_1)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 9;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018e860  size 0xc0
-void FUN_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
+void snd_sub_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
   uint *puVar1;
@@ -1284,12 +1286,12 @@ void FUN_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 5;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018e920  size 0x8c
-long FUN_0018e920(long param_1,short param_2)
+long snd_sub_0018e920(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1312,7 +1314,7 @@ long FUN_0018e920(long param_1,short param_2)
 }
 
 // 0x0018e9b0  size 0x44
-bool FUN_0018e9b0(int param_1)
+bool SndCh_IsStreamPlaying(int param_1)
 
 {
   char cVar1;
@@ -1322,7 +1324,7 @@ bool FUN_0018e9b0(int param_1)
 }
 
 // 0x0018ea30  size 0x90
-void FUN_0018ea30(int *param_1,short param_2)
+void snd_sub_0018ea30(int *param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1345,12 +1347,12 @@ void FUN_0018ea30(int *param_1,short param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 3;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018eac0  size 0x84
-void FUN_0018eac0(int *param_1)
+void snd_sub_0018eac0(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -1375,12 +1377,12 @@ void FUN_0018eac0(int *param_1)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 2;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018eb50  size 0x88
-void FUN_0018eb50(int *param_1,undefined4 param_2)
+void snd_sub_0018eb50(int *param_1,undefined4 param_2)
 
 {
   undefined4 *puVar1;
@@ -1403,14 +1405,14 @@ void FUN_0018eb50(int *param_1,undefined4 param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 4;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018ebe0  size 0x114
 /* WARNING: Removing unreachable block (ram,0x0018ecc8) */
 
-void FUN_0018ebe0(undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5)
+void snd_sub_0018ebe0(undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5)
 
 {
   uint *puVar1;
@@ -1446,12 +1448,12 @@ void FUN_0018ebe0(undefined8 param_1,uint param_2,undefined8 param_3,uint param_
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 1;
-  FUN_00190d30(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(uRam0036f254,&iStack_20);
   return;
 }
 
 // 0x0018ed30  size 0x38
-undefined4 FUN_0018ed30(int *param_1,uint param_2)
+undefined4 snd_sub_0018ed30(int *param_1,uint param_2)
 
 {
   uint *puVar1;
@@ -1462,7 +1464,7 @@ undefined4 FUN_0018ed30(int *param_1,uint param_2)
 }
 
 // 0x0018edb0  size 0x7c
-void FUN_0018edb0(undefined8 param_1)
+void snd_sub_0018edb0(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -1479,7 +1481,7 @@ void FUN_0018edb0(undefined8 param_1)
 }
 
 // 0x0018ee60  size 0x8
-void FUN_0018ee60(int param_1,undefined4 param_2)
+void SndCh_SetMidiPort(int param_1,undefined4 param_2)
 
 {
   *(undefined4 *)(param_1 + 0x10) = param_2;
@@ -1487,7 +1489,7 @@ void FUN_0018ee60(int param_1,undefined4 param_2)
 }
 
 // 0x0018ee70  size 0x104
-undefined4 FUN_0018ee70(int param_1,uint param_2,byte param_3,short param_4,undefined1 param_5)
+undefined4 SndCh_NoteOn(int param_1,uint param_2,byte param_3,short param_4,undefined1 param_5)
 
 {
   undefined4 *puVar1;
@@ -1509,8 +1511,8 @@ undefined4 FUN_0018ee70(int param_1,uint param_2,byte param_3,short param_4,unde
     *(undefined1 *)(param_1 + 0xc) = uVar4;
   }
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar3 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar3 + 8) = 0xfd;
   *(undefined1 *)(iVar3 + 9) = 2;
@@ -1520,12 +1522,12 @@ undefined4 FUN_0018ee70(int param_1,uint param_2,byte param_3,short param_4,unde
   *(byte *)(iVar3 + 0xd) = (byte)uVar2 & 0x7f;
   *(char *)(iVar3 + 0xe) = (char)((short)(uVar2 & 0x3f80) >> 7);
   puVar1 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar1[1],*puVar1,puVar1 + 2);
+  Midi_IsReady(puVar1[1],*puVar1,puVar1 + 2);
   return 1;
 }
 
 // 0x0018ef80  size 0xec
-undefined4 FUN_0018ef80(int param_1,uint param_2,byte param_3,uint param_4,undefined1 param_5)
+undefined4 SndCh_NoteOff(int param_1,uint param_2,byte param_3,uint param_4,undefined1 param_5)
 
 {
   undefined4 *puVar1;
@@ -1547,8 +1549,8 @@ undefined4 FUN_0018ef80(int param_1,uint param_2,byte param_3,uint param_4,undef
     *(undefined1 *)(param_1 + 0xc) = uVar4;
   }
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar3 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar3 + 8) = 0xfd;
   *(undefined1 *)(iVar3 + 9) = 1;
@@ -1558,14 +1560,15 @@ undefined4 FUN_0018ef80(int param_1,uint param_2,byte param_3,uint param_4,undef
   *(undefined1 *)(iVar3 + 0xd) = uVar2;
   *(undefined1 *)(iVar3 + 0xe) = 0;
   puVar1 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar1[1],*puVar1,puVar1 + 2);
+  Midi_IsReady(puVar1[1],*puVar1,puVar1 + 2);
   return 1;
 }
 
 // 0x0018f070  size 0x110
 /* WARNING: Removing unreachable block (ram,0x0018f0ec) */
 
-undefined4 FUN_0018f070(int param_1,uint param_2,byte param_3,uint param_4,undefined1 param_5)
+undefined4
+SndCh_ControlChange(int param_1,uint param_2,byte param_3,uint param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -1578,8 +1581,8 @@ undefined4 FUN_0018f070(int param_1,uint param_2,byte param_3,uint param_4,undef
   }
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar1 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar1 + 8) = 0xfd;
   *(undefined1 *)(iVar1 + 9) = 0;
@@ -1589,7 +1592,7 @@ undefined4 FUN_0018f070(int param_1,uint param_2,byte param_3,uint param_4,undef
   *(char *)(iVar1 + 0xd) = (char)uVar3;
   *(undefined1 *)(iVar1 + 0xe) = 0;
   puVar2 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar2[1],*puVar2,puVar2 + 2);
+  Midi_IsReady(puVar2[1],*puVar2,puVar2 + 2);
   return 1;
 }
 
@@ -1597,8 +1600,8 @@ undefined4 FUN_0018f070(int param_1,uint param_2,byte param_3,uint param_4,undef
 /* WARNING: Removing unreachable block (ram,0x0018f27c) */
 
 undefined4
-FUN_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
-            uint param_6,short param_7)
+snd_sub_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
+                uint param_6,short param_7)
 
 {
   byte bVar1;
@@ -1640,8 +1643,8 @@ FUN_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
   }
   *(char *)(piVar7 + 3) = (char)param_2;
   *(char *)((int)piVar7 + 0xd) = (char)param_3;
-  newlib_sub_00124918(((undefined4 *)piVar7[1])[1],*(undefined4 *)piVar7[1],
-                      param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
+  Midi_SendMessage(((undefined4 *)piVar7[1])[1],*(undefined4 *)piVar7[1],
+                   param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
   iVar5 = piVar7[1];
   *(undefined1 *)(iVar5 + 8) = 0xfd;
   *(undefined1 *)(iVar5 + 9) = 0x10;
@@ -1651,7 +1654,7 @@ FUN_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
   *(char *)(iVar5 + 0xd) = (char)uVar8;
   *(undefined1 *)(iVar5 + 0xe) = 0;
   puVar3 = (undefined4 *)piVar7[1];
-  newlib_sub_00124a40(puVar3[1],*puVar3,puVar3 + 2);
+  Midi_IsReady(puVar3[1],*puVar3,puVar3 + 2);
   if (uVar6 != 0x40) {
     (**(code **)(*piVar7 + 0x30))(param_1,param_2,param_3,uVar6,param_5);
   }
@@ -1664,7 +1667,7 @@ FUN_0018f180(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
 // 0x0018f390  size 0xe8
 /* WARNING: Removing unreachable block (ram,0x0018f3f8) */
 
-undefined4 FUN_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 snd_sub_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1675,15 +1678,15 @@ undefined4 FUN_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
   }
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uVar1 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0x700);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uVar1 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0x700);
   return 1;
 }
 
 // 0x0018f480  size 0xd8
-undefined4 FUN_0018f480(int param_1,uint param_2,byte param_3,short param_4)
+undefined4 snd_sub_0018f480(int param_1,uint param_2,byte param_3,short param_4)
 
 {
   short sVar1;
@@ -1702,16 +1705,16 @@ undefined4 FUN_0018f480(int param_1,uint param_2,byte param_3,short param_4)
     *(char *)(param_1 + 0xc) = (char)param_2;
   }
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (((int)sVar1 + 0x2000U & 0x3f80) >> 7) << 0x10 |
-                      (uint)(param_3 | 0xe0) | ((int)sVar1 + 0x2000U & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (((int)sVar1 + 0x2000U & 0x3f80) >> 7) << 0x10 |
+                   (uint)(param_3 | 0xe0) | ((int)sVar1 + 0x2000U & 0x7f) << 8);
   return 1;
 }
 
 // 0x0018f560  size 0xc0
-undefined4 FUN_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 snd_sub_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1728,17 +1731,17 @@ undefined4 FUN_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
     *(char *)(param_1 + 0xc) = (char)param_2;
   }
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uVar1 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xa00);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uVar1 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xa00);
   return 1;
 }
 
 // 0x0018f620  size 0xe8
 /* WARNING: Removing unreachable block (ram,0x0018f688) */
 
-undefined4 FUN_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 snd_sub_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1749,10 +1752,10 @@ undefined4 FUN_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
   }
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uVar1 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xb00);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uVar1 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xb00);
   return 1;
 }
 
@@ -1760,8 +1763,8 @@ undefined4 FUN_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
 /* WARNING: Removing unreachable block (ram,0x0018f810) */
 
 undefined4
-FUN_0018f710(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
-            uint param_6,short param_7)
+snd_sub_0018f710(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
+                uint param_6,short param_7)
 
 {
   byte bVar1;
@@ -1802,10 +1805,10 @@ FUN_0018f710(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
   }
   *(char *)(piVar6 + 3) = (char)param_2;
   *(char *)((int)piVar6 + 0xd) = (char)param_3;
-  newlib_sub_00124918(((undefined4 *)piVar6[1])[1],*(undefined4 *)piVar6[1],
-                      param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
-  newlib_sub_00124918(((undefined4 *)piVar6[1])[1],*(undefined4 *)piVar6[1],
-                      (uVar7 & 0x7f) << 0x10 | param_3 & 0xff | 0x90 | ((uint)param_5 & 0x7f) << 8);
+  Midi_SendMessage(((undefined4 *)piVar6[1])[1],*(undefined4 *)piVar6[1],
+                   param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
+  Midi_SendMessage(((undefined4 *)piVar6[1])[1],*(undefined4 *)piVar6[1],
+                   (uVar7 & 0x7f) << 0x10 | param_3 & 0xff | 0x90 | ((uint)param_5 & 0x7f) << 8);
   if (uVar5 != 0x40) {
     (**(code **)(*piVar6 + 0x30))(param_1,param_2,param_3,uVar5,param_5);
   }
@@ -1816,7 +1819,7 @@ FUN_0018f710(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
 }
 
 // 0x0018f930  size 0x60
-long FUN_0018f930(long param_1,short param_2)
+long snd_sub_0018f930(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1832,7 +1835,7 @@ long FUN_0018f930(long param_1,short param_2)
 }
 
 // 0x0018f990  size 0x54
-void FUN_0018f990(int param_1)
+void snd_sub_0018f990(int param_1)
 
 {
   undefined4 uStack_20;
@@ -1852,12 +1855,12 @@ void FUN_0018f990(int param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  FUN_00190d30(uGpffff8b64,&uStack_20);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_20);
   return;
 }
 
 // 0x0018f9f0  size 0x54
-void FUN_0018f9f0(int param_1)
+void snd_sub_0018f9f0(int param_1)
 
 {
   undefined4 uStack_20;
@@ -1877,12 +1880,12 @@ void FUN_0018f9f0(int param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  FUN_00190d30(uGpffff8b64,&uStack_20);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_20);
   return;
 }
 
 // 0x0018fa50  size 0x94
-bool FUN_0018fa50(int param_1)
+bool snd_sub_0018fa50(int param_1)
 
 {
   bool bVar1;
@@ -1918,7 +1921,7 @@ LAB_0018fab4:
 
 // 0x0018faf0  size 0x94
 undefined8
-FUN_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
+snd_sub_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
 
 {
   uint uVar1;
@@ -1952,18 +1955,18 @@ FUN_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_
 }
 
 // 0x0018fb90  size 0x4c
-undefined4 FUN_0018fb90(int param_1,byte param_2,uint param_3)
+undefined4 snd_sub_0018fb90(int param_1,byte param_2,uint param_3)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_3;
   *(byte *)(param_1 + 0xd) = param_2;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_2 | 0xc0) | (param_3 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_2 | 0xc0) | (param_3 & 0x7f) << 8);
   return 1;
 }
 
 // 0x0018fbe0  size 0xd8
-undefined4 FUN_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5)
+undefined4 snd_sub_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -1971,8 +1974,8 @@ undefined4 FUN_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,und
   
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar1 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar1 + 8) = 0xfd;
   *(undefined1 *)(iVar1 + 9) = 2;
@@ -1982,12 +1985,13 @@ undefined4 FUN_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,und
   *(byte *)(iVar1 + 0xd) = (byte)param_4 & 0x7f;
   *(char *)(iVar1 + 0xe) = (char)((short)(param_4 & 0x3f80) >> 7);
   puVar2 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar2[1],*puVar2,puVar2 + 2);
+  Midi_IsReady(puVar2[1],*puVar2,puVar2 + 2);
   return 1;
 }
 
 // 0x0018fcc0  size 0xc4
-undefined4 FUN_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
+undefined4
+snd_sub_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -1995,8 +1999,8 @@ undefined4 FUN_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4
   
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar1 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar1 + 8) = 0xfd;
   *(undefined1 *)(iVar1 + 9) = 1;
@@ -2006,12 +2010,13 @@ undefined4 FUN_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4
   *(undefined1 *)(iVar1 + 0xd) = param_4;
   *(undefined1 *)(iVar1 + 0xe) = 0;
   puVar2 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar2[1],*puVar2,puVar2 + 2);
+  Midi_IsReady(puVar2[1],*puVar2,puVar2 + 2);
   return 1;
 }
 
 // 0x0018fd90  size 0xc0
-undefined4 FUN_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
+undefined4
+snd_sub_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -2019,8 +2024,8 @@ undefined4 FUN_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4
   
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar1 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar1 + 8) = 0xfd;
   *(undefined1 *)(iVar1 + 9) = 0;
@@ -2030,12 +2035,12 @@ undefined4 FUN_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4
   *(undefined1 *)(iVar1 + 0xd) = param_4;
   *(undefined1 *)(iVar1 + 0xe) = 0;
   puVar2 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar2[1],*puVar2,puVar2 + 2);
+  Midi_IsReady(puVar2[1],*puVar2,puVar2 + 2);
   return 1;
 }
 
 // 0x0018fe50  size 0xb8
-undefined4 FUN_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4)
+undefined4 snd_sub_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4)
 
 {
   int iVar1;
@@ -2043,8 +2048,8 @@ undefined4 FUN_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4
   
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
   iVar1 = *(int *)(param_1 + 4);
   *(undefined1 *)(iVar1 + 8) = 0xfd;
   *(undefined1 *)(iVar1 + 9) = 0x10;
@@ -2054,14 +2059,14 @@ undefined4 FUN_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4
   *(undefined1 *)(iVar1 + 0xd) = 0;
   *(undefined1 *)(iVar1 + 0xe) = 0;
   puVar2 = *(undefined4 **)(param_1 + 4);
-  newlib_sub_00124a40(puVar2[1],*puVar2,puVar2 + 2);
+  Midi_IsReady(puVar2[1],*puVar2,puVar2 + 2);
   return 1;
 }
 
 // 0x0018ff10  size 0x148
 undefined4
-FUN_0018ff10(undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param_4,
-            undefined8 param_5,ulong param_6,undefined8 param_7)
+snd_sub_0018ff10(undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param_4,
+                undefined8 param_5,ulong param_6,undefined8 param_7)
 
 {
   int iVar1;
@@ -2071,8 +2076,8 @@ FUN_0018ff10(undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param
   piVar3 = (int *)param_1;
   *(char *)(piVar3 + 3) = (char)param_2;
   *(char *)((int)piVar3 + 0xd) = (char)param_3;
-  newlib_sub_00124918(((undefined4 *)piVar3[1])[1],*(undefined4 *)piVar3[1],
-                      param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
+  Midi_SendMessage(((undefined4 *)piVar3[1])[1],*(undefined4 *)piVar3[1],
+                   param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
   iVar1 = piVar3[1];
   *(undefined1 *)(iVar1 + 8) = 0xfd;
   *(undefined1 *)(iVar1 + 9) = 0x10;
@@ -2082,7 +2087,7 @@ FUN_0018ff10(undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param
   *(undefined1 *)(iVar1 + 0xd) = param_4;
   *(undefined1 *)(iVar1 + 0xe) = 0;
   puVar2 = (undefined4 *)piVar3[1];
-  newlib_sub_00124a40(puVar2[1],*puVar2,puVar2 + 2);
+  Midi_IsReady(puVar2[1],*puVar2,puVar2 + 2);
   if ((param_6 & 0xff) != 0x40) {
     (**(code **)(*piVar3 + 0x30))(param_1,param_2,param_3,param_6,param_5);
   }

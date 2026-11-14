@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001a8740  size 0x60
-long FUN_001a8740(long param_1,short param_2)
+long PtclList_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -17,7 +17,9 @@ long FUN_001a8740(long param_1,short param_2)
 }
 
 // 0x001a87a0  size 0x68
-int FUN_001a87a0(long param_1)
+/* "particleSystem Get Error! : Illegal ID"; 0x3b systems */
+
+int PtclSys_Get(long param_1)
 
 {
   int iVar1;
@@ -36,7 +38,7 @@ int FUN_001a87a0(long param_1)
 }
 
 // 0x001a8810  size 0x80
-undefined4 FUN_001a8810(undefined8 param_1)
+undefined4 PtclSys_Create(undefined8 param_1)
 
 {
   int iVar1;
@@ -50,7 +52,7 @@ undefined4 FUN_001a8810(undefined8 param_1)
     iVar1 = *(int *)(iVar2 + 0x1c);
     if ((*(uint *)(iVar1 + 0x14) & 1) == 0) {
       uStack_4 = 1;
-      FUN_001a7a40(iVar1,uVar3,param_1,&uStack_4);
+      PtclSys_SetEmitter(iVar1,uVar3,param_1,&uStack_4);
       iRam004307b4 = iRam004307b4 + 1;
       return *(undefined4 *)(iVar1 + 0x20);
     }
@@ -61,7 +63,9 @@ undefined4 FUN_001a8810(undefined8 param_1)
 }
 
 // 0x001a8890  size 0x114
-void FUN_001a8890(void)
+/* "particleSystem Remove Error!" */
+
+void PtclSys_RemoveAll(void)
 
 {
   int iVar1;
@@ -100,7 +104,7 @@ void FUN_001a8890(void)
 }
 
 // 0x001a89b0  size 0x18c
-void FUN_001a89b0(void)
+void PtclSys_UpdateAll(void)
 
 {
   int *piVar1;
@@ -115,11 +119,11 @@ void FUN_001a89b0(void)
     piVar1 = *(int **)(iVar4 + 0x1c);
     if ((piVar1[5] & 1U) != 0) {
       if (iRam004308d0 == 0) {
-        FUN_001a7b60(piVar1);
+        PtclSys_ComputeRate(piVar1);
         (**(code **)(*piVar1 + 0x14))(piVar1);
       }
       if (((piVar1[5] & 2U) == 0) || (piVar1[0x23] != 0)) {
-        FUN_001a7db0(piVar1);
+        PtclSys_Update(piVar1);
         (**(code **)(*piVar1 + 0x10))(piVar1);
       }
       else {
@@ -151,7 +155,7 @@ void FUN_001a89b0(void)
 }
 
 // 0x001a8b40  size 0x4c
-void FUN_001a8b40(void)
+void PtclSys_BeginFrame(void)
 
 {
   uRam004308d4 = 0;
@@ -166,7 +170,7 @@ void FUN_001a8b40(void)
 }
 
 // 0x001a8b90  size 0x150
-void FUN_001a8b90(void)
+void PtclSys_Shutdown(void)
 
 {
   int iVar1;
@@ -216,7 +220,7 @@ void FUN_001a8b90(void)
 }
 
 // 0x001a8ce0  size 0x278
-void FUN_001a8ce0(undefined8 param_1)
+void PtclSys_Init(undefined8 param_1)
 
 {
   long lVar1;
@@ -252,7 +256,7 @@ void FUN_001a8ce0(undefined8 param_1)
   do {
     lVar1 = maybe_operator_new_arr_heap(0x160,0x4308a8);
     if (lVar1 != 0) {
-      FUN_001323d0(lVar1,0);
+      List_ctor(lVar1,0);
       *(undefined4 *)lVar1 = &DAT_0036e580;
     }
     *(undefined4 **)(iVar3 + 0x1c) = (undefined4 *)lVar1;
@@ -295,7 +299,7 @@ void FUN_001a8ce0(undefined8 param_1)
 }
 
 // 0x001a8f80  size 0x64
-long FUN_001a8f80(long param_1,short param_2)
+long PtclMgr_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -309,25 +313,27 @@ long FUN_001a8f80(long param_1,short param_2)
 }
 
 // 0x001a8ff0  size 0x24
-void FUN_001a8ff0(void)
+void Ui_Shutdown(void)
 
 {
-  FUN_001f15f0();
-  FUN_001f51a0();
+  UiRes_FreeAll();
+  UiMgr_FreeSystem();
   return;
 }
 
 // 0x001a9020  size 0x34
-void FUN_001a9020(undefined8 param_1)
+/* font/ui heaps 0x2000 */
+
+void Ui_Init(undefined8 param_1)
 
 {
-  FUN_001f1710(param_1,0x2000,0x2000);
-  FUN_001f5210(param_1);
+  UiRes_LoadAll(param_1,0x2000,0x2000);
+  UiMgr_LoadSystem(param_1);
   return;
 }
 
 // 0x001a9060  size 0xb8
-void FUN_001a9060(uint param_1,undefined8 param_2)
+void View_DrawFadeSprite(uint param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -347,7 +353,7 @@ void FUN_001a9060(uint param_1,undefined8 param_2)
 }
 
 // 0x001a9120  size 0xe0
-void FUN_001a9120(uint param_1,uint param_2,undefined8 param_3)
+void View_DrawFullscreen(uint param_1,uint param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
@@ -384,7 +390,7 @@ void maybe_Game_UpdateObjects(void)
   
   uVar7 = 0;
   do {
-    FUN_00196d50((uVar7 & 0xff) * 0x5c0 + 0x431100);
+    View_ResetDirty((uVar7 & 0xff) * 0x5c0 + 0x431100);
     uVar7 = uVar7 + 1;
   } while (uVar7 < 0xe);
   Gfx_EndFrame();
@@ -427,7 +433,7 @@ void maybe_Game_UpdateObjects(void)
 }
 
 // 0x001a93d0  size 0x44
-void FUN_001a93d0(void)
+void Render_EndScene(void)
 
 {
   TexSlot_Free();
@@ -440,7 +446,7 @@ void FUN_001a93d0(void)
 }
 
 // 0x001a9420  size 0x1a8
-void FUN_001a9420(int *param_1)
+void Render_BeginScene(int *param_1)
 
 {
   int iVar1;
@@ -495,7 +501,7 @@ void FUN_001a9420(int *param_1)
 }
 
 // 0x001a95d0  size 0xf4
-void FUN_001a95d0(void)
+void Render_SetupViews(void)
 
 {
   undefined4 uVar1;
@@ -512,7 +518,7 @@ void FUN_001a95d0(void)
   do {
     iVar3 = (uVar5 & 0xff) * 0x5c0;
     if ((uGpffff8be0 & 1 << (uVar5 & 0x1f)) != 0) {
-      uVar2 = FUN_00196d60(iVar3 + 0x431100);
+      uVar2 = View_SetupForCourse(iVar3 + 0x431100);
     }
     uVar1 = *(undefined4 *)(puVar4 + 4);
     uVar5 = uVar5 + 1;
@@ -524,14 +530,14 @@ void FUN_001a95d0(void)
     uVar2 = uGpffff8bd0;
   }
   uGpffff8bd0 = uVar2;
-  FUN_001a6020(0x436180,0);
+  Light_SetEnabledFlag(0x436180,0);
   uGpffff8bcc = uGpffff8bd0;
   uGpffff8bd0 = uGpffff8bd0 + 0x20;
   return;
 }
 
 // 0x001a96d0  size 0xf8
-void FUN_001a96d0(undefined8 param_1,undefined4 param_2,long param_3)
+void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
@@ -540,10 +546,10 @@ void FUN_001a96d0(undefined8 param_1,undefined4 param_2,long param_3)
   if (param_3 != 0) {
     uGpffff8be0 = param_2;
   }
-  lVar1 = FUN_00132590(0x4310e0,param_1,0x14);
+  lVar1 = Str_CompareN(0x4310e0,param_1,0x14);
   if (lVar1 == 0) {
     if (param_3 != 0) {
-      FUN_001a95d0(0);
+      Render_SetupViews(0);
     }
   }
   else {
@@ -553,7 +559,7 @@ void FUN_001a96d0(undefined8 param_1,undefined4 param_2,long param_3)
   if (param_3 != 0) {
     uVar2 = 0;
     do {
-      FUN_00196d50((uVar2 & 0xff) * 0x5c0 + 0x431100);
+      View_ResetDirty((uVar2 & 0xff) * 0x5c0 + 0x431100);
       uVar2 = uVar2 + 1;
     } while (uVar2 < 0xe);
   }
@@ -564,7 +570,7 @@ void FUN_001a96d0(undefined8 param_1,undefined4 param_2,long param_3)
 }
 
 // 0x001a97d0  size 0x120
-void FUN_001a97d0(byte param_1)
+void Render_SetInterlace(byte param_1)
 
 {
   uint uVar1;
@@ -602,12 +608,12 @@ void FUN_001a97d0(byte param_1)
   uStack_17 = (&DAT_00317f79)[iVar2];
   uStack_15 = (&DAT_00317f7b)[iVar2];
   bStack_20 = param_1;
-  FUN_001a96d0(&bStack_20,0,0);
+  Render_SetVideoMode(&bStack_20,0,0);
   return;
 }
 
 // 0x001a98f0  size 0x120
-void FUN_001a98f0(uint param_1,undefined8 param_2)
+void Render_SetSceneMode(uint param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -643,12 +649,12 @@ void FUN_001a98f0(uint param_1,undefined8 param_2)
   uStack_14 = (&DAT_00317f7c)[uGpffff8bd8 * 5] | 1;
   uStack_16 = (&DAT_00317f7a)[iVar1];
   uStack_15 = (&DAT_00317f7b)[iVar1];
-  FUN_001a96d0(&bStack_20,param_2,1);
+  Render_SetVideoMode(&bStack_20,param_2,1);
   return;
 }
 
 // 0x001a9a10  size 0x28
-void FUN_001a9a10(void)
+void Render_Shutdown(void)
 
 {
   Gfx_AddEndFrameCallback(0x436310);
@@ -657,7 +663,7 @@ void FUN_001a9a10(void)
 }
 
 // 0x001a9a40  size 0x138
-void FUN_001a9a40(undefined4 param_1)
+void Render_Init(undefined4 param_1)
 
 {
   undefined1 uStack_20;
@@ -684,7 +690,7 @@ void FUN_001a9a40(undefined4 param_1)
   Mem_Set16(0x4310e0,0x55,0x14);
   uGpffff8be0 = 0;
   Gfx_InitAll(uGpffff8bc8);
-  pcRam00436318 = FUN_001a95d0;
+  pcRam00436318 = Render_SetupViews;
   uRam0043631c = 0;
   Gfx_RemoveEndFrameCallback(0x436310);
   uGpffff8bd8 = 0;
@@ -703,12 +709,12 @@ void FUN_001a9a40(undefined4 param_1)
   uStack_10 = DAT_00317f80;
   uStack_20 = (undefined1)uGpffff8bdc;
   uGpffff8bdc = uGpffff8bdc & 0xff;
-  FUN_001a96d0(&uStack_20,0,1);
+  Render_SetVideoMode(&uStack_20,0,1);
   return;
 }
 
 // 0x001a9b80  size 0x60
-long FUN_001a9b80(long param_1,short param_2)
+long Render_Task_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -722,7 +728,7 @@ long FUN_001a9b80(long param_1,short param_2)
 }
 
 // 0x001a9be0  size 0x64
-int FUN_001a9be0(void)
+int ResPool_CountUsedA(void)
 
 {
   int iVar1;
@@ -743,7 +749,7 @@ int FUN_001a9be0(void)
 }
 
 // 0x001a9c50  size 0x5c
-int FUN_001a9c50(void)
+int ResPool_CountUsedB(void)
 
 {
   int iVar1;
@@ -769,15 +775,15 @@ int FUN_001a9c50(void)
 /* WARNING: Removing unreachable block (ram,0x001a9dac) */
 /* WARNING: Removing unreachable block (ram,0x001a9dcc) */
 
-long FUN_001a9cb0(undefined1 param_1,undefined8 param_2,undefined8 param_3)
+long ResPool_Load(undefined1 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
   int iVar2;
   undefined4 uVar3;
   
-  for (lVar1 = FUN_001a50d0(0x436470,param_1,param_2,uRam0043649c); lVar1 != 0;
-      lVar1 = FUN_001a50d0(0x436470,param_1,param_2,(int)lVar1 + *(int *)((int)lVar1 + 4))) {
+  for (lVar1 = Chunk_FindNext(0x436470,param_1,param_2,uRam0043649c); lVar1 != 0;
+      lVar1 = Chunk_FindNext(0x436470,param_1,param_2,(int)lVar1 + *(int *)((int)lVar1 + 4))) {
     switch(param_1) {
     case 0:
       break;
@@ -790,34 +796,34 @@ long FUN_001a9cb0(undefined1 param_1,undefined8 param_2,undefined8 param_3)
     case 4:
     }
   }
-  lVar1 = FUN_001a5070(0x436470,param_1);
+  lVar1 = Chunk_Find(0x436470,param_1);
   if (lVar1 != 0) {
     uVar3 = (undefined4)param_2;
     iVar2 = (int)lVar1;
     switch(param_1) {
     case 0:
       maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,1);
-      FUN_001a5a40(lVar1);
+      course_sub_001a5a40(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 1:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x50);
-      FUN_001a5a40(lVar1);
+      course_sub_001a5a40(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 2:
       maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,10);
-      FUN_001a5a40(lVar1);
+      course_sub_001a5a40(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 3:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
-      FUN_001a5a40(lVar1);
+      course_sub_001a5a40(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 4:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
-      FUN_001a5a40(lVar1);
+      course_sub_001a5a40(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
     }
   }
@@ -825,7 +831,7 @@ long FUN_001a9cb0(undefined1 param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001a9ef0  size 0x28
-int FUN_001a9ef0(int param_1)
+int ResPool_Get(int param_1)
 
 {
   int iVar1;
@@ -840,10 +846,10 @@ int FUN_001a9ef0(int param_1)
 }
 
 // 0x001a9f20  size 0xe0
-void FUN_001a9f20(void)
+void Asset_FreeCourseCommon(void)
 
 {
-  FUN_001a5130(0x436470);
+  course_sub_001a5130(0x436470);
   if (iRam004364c0 != 0) {
     Mem_Free();
     iRam004364c0 = 0;
@@ -872,7 +878,7 @@ void FUN_001a9f20(void)
 }
 
 // 0x001aa000  size 0xb98
-void FUN_001aa000(undefined4 param_1,char *param_2)
+void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
 
 {
   char cVar1;
@@ -1033,8 +1039,8 @@ void FUN_001aa000(undefined4 param_1,char *param_2)
       iVar20 = 0;
       do {
         iVar8 = iRam004364cc + iVar20;
-        FUN_001a5aa0(iVar8,3,0x80);
-        FUN_001a5a80(iVar8,uVar3 + 0x1000,iVar5);
+        course_sub_001a5aa0(iVar8,3,0x80);
+        course_sub_001a5a80(iVar8,uVar3 + 0x1000,iVar5);
         uVar14 = uVar14 + 1;
         iVar5 = iVar5 + uVar3 + 0x1000;
         iVar20 = iVar20 + 0x80;
@@ -1045,8 +1051,8 @@ void FUN_001aa000(undefined4 param_1,char *param_2)
       iVar20 = 0;
       do {
         iVar8 = iRam004364d4 + iVar20;
-        FUN_001a5aa0(iVar8,4,0xa0);
-        FUN_001a5a80(iVar8,uVar18 + 0x1000,iVar5);
+        course_sub_001a5aa0(iVar8,4,0xa0);
+        course_sub_001a5a80(iVar8,uVar18 + 0x1000,iVar5);
         uVar14 = uVar14 + 1;
         iVar5 = iVar5 + uVar18 + 0x1000;
         iVar20 = iVar20 + 0xa0;
@@ -1066,13 +1072,13 @@ LAB_001aa5ac:
   }
   uVar9 = Mem_AllocAligned(iVar12 + uVar11 + 0x500,0x40,param_1);
   iRam00436484 = (int)uVar9;
-  FUN_001a5aa0(0x436320,0,0xc0);
-  FUN_001a5a80(0x436320,iVar12,uVar9);
+  course_sub_001a5aa0(0x436320,0,0xc0);
+  course_sub_001a5a80(0x436320,iVar12,uVar9);
   uRam00436348 = 0;
   uRam0043634c = 0;
   iVar12 = iRam00436484 + iVar12;
-  FUN_001a5aa0(0x4363e0,0,0x8c);
-  FUN_001a5a80(0x4363e0,uVar11 + 0x500,iVar12);
+  course_sub_001a5aa0(0x4363e0,0,0x8c);
+  course_sub_001a5a80(0x4363e0,uVar11 + 0x500,iVar12);
   uRam00436408 = 0;
   if (*param_2 == '\x02') {
     iVar12 = uVar13 + 0x1680;
@@ -1108,8 +1114,8 @@ LAB_001aa5ac:
     iVar15 = 0;
     do {
       iVar17 = iRam004364a4 + iVar15;
-      FUN_001a5aa0(iVar17,0,0xa0);
-      FUN_001a5a80(iVar17,0,iVar8);
+      course_sub_001a5aa0(iVar17,0,0xa0);
+      course_sub_001a5a80(iVar17,0,iVar8);
       uVar11 = uVar11 + 1;
       *(undefined4 *)(iVar17 + 0x2c) = 0;
       iVar15 = iVar15 + 0xa0;
@@ -1124,8 +1130,8 @@ LAB_001aa5ac:
     iVar15 = 0;
     do {
       iVar17 = iRam004364a8 + iVar15;
-      FUN_001a5aa0(iVar17,1,0xcc0);
-      FUN_001a5a80(iVar17,iVar12,iVar8);
+      course_sub_001a5aa0(iVar17,1,0xcc0);
+      course_sub_001a5a80(iVar17,iVar12,iVar8);
       uVar2 = uVar2 + 1;
       iVar8 = iVar8 + iVar12;
       iVar15 = iVar15 + 0xcc0;
@@ -1142,15 +1148,15 @@ LAB_001aa5ac:
     iVar17 = 0;
     do {
       iVar16 = iRam004364ac + iVar15;
-      FUN_001a5aa0(iVar16,3,0x80);
-      FUN_001a5a80(iVar16,iStack_70,iVar8);
+      course_sub_001a5aa0(iVar16,3,0x80);
+      course_sub_001a5a80(iVar16,iStack_70,iVar8);
       iVar16 = iRam004364b0 + iVar12;
-      FUN_001a5aa0(iVar16,4,0xa0);
-      FUN_001a5a80(iVar16,iVar5,iVar8 + iStack_70);
+      course_sub_001a5aa0(iVar16,4,0xa0);
+      course_sub_001a5a80(iVar16,iVar5,iVar8 + iStack_70);
       iVar8 = iVar8 + iStack_70 + iVar5;
       iVar16 = iRam004364b4 + iVar17;
-      FUN_001a5aa0(iVar16,2,0x70);
-      FUN_001a5a80(iVar16,0,iVar8);
+      course_sub_001a5aa0(iVar16,2,0x70);
+      course_sub_001a5a80(iVar16,0,iVar8);
       *(undefined4 *)(iVar16 + 0x34) = 0;
       uVar2 = uVar2 + 1;
       iVar15 = iVar15 + 0x80;
@@ -1167,8 +1173,8 @@ LAB_001aa5ac:
     iVar12 = 0;
     do {
       iVar5 = iRam004364b8 + iVar12;
-      FUN_001a5aa0(iVar5,5,0x2d0);
-      FUN_001a5a80(iVar5,iVar20,iVar8);
+      course_sub_001a5aa0(iVar5,5,0x2d0);
+      course_sub_001a5a80(iVar5,iVar20,iVar8);
       uVar2 = uVar2 + 1;
       iVar8 = iVar8 + iVar20;
       iVar12 = iVar12 + 0x2d0;
@@ -1180,38 +1186,39 @@ LAB_001aa5ac:
     iVar12 = 0;
     do {
       iVar5 = iRam004364bc + iVar12;
-      FUN_001a5aa0(iVar5,6,0x50);
-      FUN_001a5a80(iVar5,iStack_80,iVar8);
+      course_sub_001a5aa0(iVar5,6,0x50);
+      course_sub_001a5a80(iVar5,iStack_80,iVar8);
       uVar2 = uVar2 + 1;
       iVar8 = iVar8 + iStack_80;
       iVar12 = iVar12 + 0x50;
     } while (uVar2 < *(uint *)(param_2 + 0x10));
   }
-  FUN_001a5140(0x436470,iRam0043649c,iRam004364a0);
+  Chunk_SetRange(0x436470,iRam0043649c,iRam004364a0);
   return;
 }
 
 // 0x001aaba0  size 0xb4
-void FUN_001aaba0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Asset_OnCourseTexLoaded
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   undefined8 uVar2;
   int iVar3;
   
-  FUN_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = FUN_001a59f0(param_4), lVar1 == 0)) {
-    FUN_001a59b0(param_4,param_3);
+  course_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+    Arena_Alloc(param_4,param_3);
   }
   iVar3 = iGpffff8bfc + iGpffff8bd0;
   uVar2 = Gut_PackGetEntry(param_2,0,0);
-  FUN_001a5150(param_4,(int)param_4 + 0x2c,uVar2,0,0,iVar3,0,0);
+  Res_UploadTexture(param_4,(int)param_4 + 0x2c,uVar2,0,0,iVar3,0,0);
   *(undefined4 *)((int)param_4 + 8) = 0;
   return;
 }
 
 // 0x001aac60  size 0xc8
-void FUN_001aac60(undefined8 param_1,int param_2)
+void Asset_LoadCourseTex(undefined8 param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -1220,12 +1227,12 @@ void FUN_001aac60(undefined8 param_1,int param_2)
   int iVar4;
   
   iVar2 = 0;
-  FUN_001a5a40();
+  course_sub_001a5a40();
   iVar4 = (int)param_1;
   *(int *)(iVar4 + 0xc) = param_2;
-  lVar3 = FUN_001a59f0(param_1);
+  lVar3 = course_sub_001a59f0(param_1);
   if (lVar3 != 0) {
-    iVar2 = FUN_001a59f0(param_1);
+    iVar2 = course_sub_001a59f0(param_1);
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   if (cRam00436478 == '\x02') {
@@ -1245,7 +1252,7 @@ void FUN_001aac60(undefined8 param_1,int param_2)
 }
 
 // 0x001aad30  size 0x30
-void FUN_001aad30(int param_1,undefined4 *param_2,int param_3)
+void Asset_GetLightColor(int param_1,undefined4 *param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -1259,7 +1266,7 @@ void FUN_001aad30(int param_1,undefined4 *param_2,int param_3)
 }
 
 // 0x001aad60  size 0x90
-void FUN_001aad60(int param_1,float *param_2,float *param_3,int param_4)
+void Asset_GetSpotLight(int param_1,float *param_2,float *param_3,int param_4)
 
 {
   int iVar1;
@@ -1279,7 +1286,7 @@ void FUN_001aad60(int param_1,float *param_2,float *param_3,int param_4)
 }
 
 // 0x001aadf0  size 0x80
-void FUN_001aadf0(int param_1,float *param_2,float *param_3,int param_4)
+void Asset_GetPointLight(int param_1,float *param_2,float *param_3,int param_4)
 
 {
   float *pfVar1;
@@ -1299,7 +1306,7 @@ void FUN_001aadf0(int param_1,float *param_2,float *param_3,int param_4)
 }
 
 // 0x001aae70  size 0xa8
-void FUN_001aae70(int param_1,undefined4 *param_2,float *param_3,undefined4 *param_4)
+void Asset_FindNearestLight(int param_1,undefined4 *param_2,float *param_3,undefined4 *param_4)
 
 {
   undefined4 *puVar1;
@@ -1338,7 +1345,7 @@ void FUN_001aae70(int param_1,undefined4 *param_2,float *param_3,undefined4 *par
 }
 
 // 0x001aaf20  size 0x16c
-void FUN_001aaf20(int param_1,undefined8 param_2)
+void Asset_SetupEnvModels(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1374,9 +1381,9 @@ void FUN_001aaf20(int param_1,undefined8 param_2)
     }
     *(int *)(iVar5 + 0x3c) = (int)lVar3;
     uVar4 = Gut_PackGetEntry(param_2,iVar9,1);
-    FUN_001a5150(param_1,iVar6 + 0x68,uVar4,0,1,iVar1,0,0);
+    Res_UploadTexture(param_1,iVar6 + 0x68,uVar4,0,1,iVar1,0,0);
     uVar4 = Gut_PackGetEntry(param_2,iVar10,1);
-    FUN_001a5150(param_1,iVar6 + 0x19c,uVar4,0,0,iVar1,0,0);
+    Res_UploadTexture(param_1,iVar6 + 0x19c,uVar4,0,0,iVar1,0,0);
     uVar7 = uVar7 + 1;
     iVar8 = iVar8 + 3;
     iVar5 = iVar5 + 4;
@@ -1388,22 +1395,22 @@ void FUN_001aaf20(int param_1,undefined8 param_2)
 }
 
 // 0x001ab090  size 0x80
-void FUN_001ab090(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Asset_OnEnvLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
-  FUN_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = FUN_001a59f0(param_4), lVar1 == 0)) {
-    FUN_001a59b0(param_4,param_3);
+  course_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+    Arena_Alloc(param_4,param_3);
   }
-  FUN_001aaf20(param_4,param_2);
+  Asset_SetupEnvModels(param_4,param_2);
   *(undefined4 *)((int)param_4 + 8) = 0;
   return;
 }
 
 // 0x001ab110  size 0xc8
-void FUN_001ab110(undefined8 param_1,int param_2)
+void Asset_LoadEnv(undefined8 param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -1412,12 +1419,12 @@ void FUN_001ab110(undefined8 param_1,int param_2)
   int iVar4;
   
   iVar2 = 0;
-  FUN_001a5a40();
+  course_sub_001a5a40();
   iVar4 = (int)param_1;
   *(int *)(iVar4 + 0xc) = param_2;
-  lVar3 = FUN_001a59f0(param_1);
+  lVar3 = course_sub_001a59f0(param_1);
   if (lVar3 != 0) {
-    iVar2 = FUN_001a59f0(param_1);
+    iVar2 = course_sub_001a59f0(param_1);
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   if (cRam00436478 == '\x02') {
@@ -1437,7 +1444,7 @@ void FUN_001ab110(undefined8 param_1,int param_2)
 }
 
 // 0x001ab1e0  size 0x1d0
-void FUN_001ab1e0(int param_1)
+void Asset_ReleaseCarParts(int param_1)
 
 {
   int iVar1;
@@ -1485,16 +1492,16 @@ void FUN_001ab1e0(int param_1)
     *(undefined4 *)(iVar6 + 0x40) = uVar3;
     uVar4 = Model_GetTexture(uVar4,iVar1);
     *(undefined4 *)(iVar6 + 0x44) = uVar4;
-    FUN_001a5440(param_1,*(undefined4 *)(iVar6 + 0x40));
-    FUN_001a5440(param_1,*(undefined4 *)(iVar6 + 0x44));
+    Res_Release(param_1,*(undefined4 *)(iVar6 + 0x40));
+    Res_Release(param_1,*(undefined4 *)(iVar6 + 0x44));
     uVar4 = *(undefined4 *)((uint)*(byte *)(iVar10 + 0x29) * 4 + 0x43641c);
     uVar3 = Model_GetTexture(uVar4,*(undefined1 *)(iVar10 + 0x2b));
     *(undefined4 *)(iVar9 + 0x50) = uVar3;
     uVar4 = Model_GetTexture(uVar4,2);
     *(undefined4 *)(iVar9 + 0x58) = uVar4;
-    FUN_001a5440(param_1,*(undefined4 *)(iVar9 + 0x50));
-    FUN_001a5440(param_1,*(undefined4 *)(iVar9 + 0x58));
-    uVar4 = FUN_001a5850(param_1,*(undefined4 *)(iVar9 + 0x58),0);
+    Res_Release(param_1,*(undefined4 *)(iVar9 + 0x50));
+    Res_Release(param_1,*(undefined4 *)(iVar9 + 0x58));
+    uVar4 = Res_GetSubResource(param_1,*(undefined4 *)(iVar9 + 0x58),0);
     uVar11 = uVar11 + 1;
     *(undefined4 *)(iVar9 + 0x60) = uVar4;
     iVar10 = iVar10 + 5;
@@ -1507,7 +1514,7 @@ void FUN_001ab1e0(int param_1)
 }
 
 // 0x001ab3c0  size 0xec
-void FUN_001ab3c0(undefined8 param_1,undefined8 param_2)
+void Asset_SetupCarParts(undefined8 param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -1535,37 +1542,38 @@ void FUN_001ab3c0(undefined8 param_1,undefined8 param_2)
   } while (uVar4 < 0xd);
   iVar3 = iGpffff8bfc + iGpffff8bd0;
   uVar2 = Gut_PackGetEntry(param_2,0,0);
-  FUN_001a5150(0x4363e0,0x436450,uVar2,0,1,iVar3 + 0xc0,0,0);
+  Res_UploadTexture(0x4363e0,0x436450,uVar2,0,1,iVar3 + 0xc0,0,0);
   return;
 }
 
 // 0x001ab4b0  size 0x9c
-void FUN_001ab4b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Asset_OnCarPartsLoaded
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
   int iVar2;
   
-  FUN_001a5a70(param_4);
+  course_sub_001a5a70(param_4);
   iVar2 = (int)param_4;
   if (*(int *)(iVar2 + 0x34) == 0) {
     iVar1 = *(int *)(iVar2 + 0x34);
   }
   else {
-    FUN_001a5a70(0x4363e0);
-    FUN_001a59b0(0x4363e0,param_3);
+    course_sub_001a5a70(0x4363e0);
+    Arena_Alloc(0x4363e0,param_3);
     iVar1 = *(int *)(iVar2 + 0x34);
   }
   if (iVar1 != 0) {
-    FUN_001ab3c0(param_4,param_2);
+    Asset_SetupCarParts(param_4,param_2);
   }
-  FUN_001ab1e0(param_4,param_2);
+  Asset_ReleaseCarParts(param_4,param_2);
   *(undefined4 *)(iVar2 + 8) = 0;
   return;
 }
 
 // 0x001ab550  size 0x9c
-void FUN_001ab550(undefined8 param_1)
+void Asset_LoadCarParts(undefined8 param_1)
 
 {
   int iVar1;
@@ -1594,7 +1602,7 @@ void FUN_001ab550(undefined8 param_1)
 }
 
 // 0x001ab5f0  size 0x54
-void FUN_001ab5f0(undefined8 param_1)
+void CarAsset_Clear(undefined8 param_1)
 
 {
   undefined1 *puVar1;
@@ -1625,7 +1633,7 @@ void FUN_001ab5f0(undefined8 param_1)
 /* WARNING: Removing unreachable block (ram,0x001ab8cc) */
 /* WARNING: Removing unreachable block (ram,0x001ab9f8) */
 
-void FUN_001ab650(undefined8 param_1,char param_2,undefined8 param_3)
+void CarAsset_RelocateBody(undefined8 param_1,char param_2,undefined8 param_3)
 
 {
   byte bVar1;
@@ -1657,7 +1665,7 @@ void FUN_001ab650(undefined8 param_1,char param_2,undefined8 param_3)
       do {
         iVar5 = (int)param_3;
         if (uVar3 == 0) {
-          FUN_001a5530(param_1,*(undefined4 *)(iVar7 + 0x4c),uVar4,1,param_3,iVar5 + 3,iVar5 + 6,0);
+          Res_Relocate(param_1,*(undefined4 *)(iVar7 + 0x4c),uVar4,1,param_3,iVar5 + 3,iVar5 + 6,0);
         }
         else {
           bVar1 = *(byte *)(iVar5 + 3);
@@ -1688,7 +1696,7 @@ void FUN_001ab650(undefined8 param_1,char param_2,undefined8 param_3)
             fVar9 = fVar9 - 2.1474836e+09;
           }
           uStack_2 = (undefined1)(int)fVar9;
-          FUN_001a5530(param_1,*(undefined4 *)(iVar7 + 0x4c),uVar4,1,param_3,&uStack_4,iVar5 + 6,0);
+          Res_Relocate(param_1,*(undefined4 *)(iVar7 + 0x4c),uVar4,1,param_3,&uStack_4,iVar5 + 6,0);
         }
         uVar2 = uVar2 + 1;
         iVar7 = iVar7 + 4;
@@ -1701,7 +1709,7 @@ void FUN_001ab650(undefined8 param_1,char param_2,undefined8 param_3)
 }
 
 // 0x001abb30  size 0x270
-void FUN_001abb30(int param_1,undefined4 param_2)
+void CarAsset_SetupBody(int param_1,undefined4 param_2)
 
 {
   bool bVar1;
@@ -1735,7 +1743,7 @@ void FUN_001abb30(int param_1,undefined4 param_2)
       iVar4 = iVar4 + 0xc;
     } while (uVar8 <= uGpffff8bf8);
   }
-  if ((cRam00436478 == '\x02') && (lVar7 = FUN_001a59f0(param_1), lVar7 == 0)) {
+  if ((cRam00436478 == '\x02') && (lVar7 = course_sub_001a59f0(param_1), lVar7 == 0)) {
     bVar1 = true;
     uStack_24 = 1;
   }
@@ -1753,16 +1761,16 @@ void FUN_001abb30(int param_1,undefined4 param_2)
         if (uVar10 == 0) {
           iVar9 = 0;
         }
-        uVar6 = FUN_001a58b0(param_1,uVar5,iVar9);
+        uVar6 = Res_GetModelSize(param_1,uVar5,iVar9);
         if (bVar1) {
-          uVar6 = FUN_001a5950(param_1,uVar6);
+          uVar6 = Res_CopyModel(param_1,uVar6);
         }
         if ((uVar10 == 0) && (uVar8 == 0)) {
-          uVar5 = FUN_001a58b0(param_1,uVar5,1);
-          FUN_001ad1a0(0x41500000,0x41a00000,param_1,uVar6,param_1 + 0x2c,uVar5);
+          uVar5 = Res_GetModelSize(param_1,uVar5,1);
+          CarAsset_ApplyLivery(0x41500000,0x41a00000,param_1,uVar6,param_1 + 0x2c,uVar5);
         }
-        FUN_001ac8f0(param_1,uVar6,param_1 + 0x2c,0,0);
-        FUN_001a5440(param_1,uVar6);
+        CarAsset_ApplyDecals(param_1,uVar6,param_1 + 0x2c,0,0);
+        Res_Release(param_1,uVar6);
         uVar8 = uVar8 + 1;
         *(int *)(iStack_50 + 0x4c) = (int)uVar6;
         iStack_50 = iStack_50 + 4;
@@ -1776,32 +1784,33 @@ void FUN_001abb30(int param_1,undefined4 param_2)
   uVar10 = 0;
   iVar4 = param_1;
   do {
-    FUN_001ab650(param_1,uVar10 & 0xff,iVar4 + 0x3c);
+    CarAsset_RelocateBody(param_1,uVar10 & 0xff,iVar4 + 0x3c);
     uVar10 = uVar10 + 1;
     iVar4 = iVar4 + 8;
   } while (uVar10 < 2);
   uVar5 = Gut_PackGetEntry(param_2,1,1);
-  FUN_001a5150(param_1,param_1 + 0x7c,uVar5,uStack_24,1,iVar3 + 0x40,0,0);
+  Res_UploadTexture(param_1,param_1 + 0x7c,uVar5,uStack_24,1,iVar3 + 0x40,0,0);
   return;
 }
 
 // 0x001abda0  size 0x80
-void FUN_001abda0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void CarAsset_OnBodyLoaded
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
-  FUN_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = FUN_001a59f0(param_4), lVar1 == 0)) {
-    FUN_001a59b0(param_4,param_3);
+  course_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+    Arena_Alloc(param_4,param_3);
   }
-  FUN_001abb30(param_4,param_2);
+  CarAsset_SetupBody(param_4,param_2);
   *(undefined4 *)((int)param_4 + 8) = 0;
   return;
 }
 
 // 0x001abe20  size 0xdc
-void FUN_001abe20(undefined8 param_1)
+void CarAsset_LoadBody(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1810,9 +1819,9 @@ void FUN_001abe20(undefined8 param_1)
   int iVar4;
   
   iVar2 = 0;
-  lVar3 = FUN_001a59f0();
+  lVar3 = course_sub_001a59f0();
   if (lVar3 != 0) {
-    iVar2 = FUN_001a59f0(param_1);
+    iVar2 = course_sub_001a59f0(param_1);
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   iVar4 = (int)param_1;
@@ -1835,21 +1844,21 @@ void FUN_001abe20(undefined8 param_1)
 }
 
 // 0x001abf00  size 0x48
-void FUN_001abf00(undefined8 param_1,undefined4 param_2,undefined8 param_3)
+void CarAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
   maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
-  FUN_001a5a40(param_1);
+  course_sub_001a5a40(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
 }
 
 // 0x001abf50  size 0x34
-void FUN_001abf50(undefined8 param_1)
+void WheelAsset_Clear(undefined8 param_1)
 
 {
   Mem_Set16(param_1,0,0x20);
-  FUN_001ad640(param_1);
+  CarAsset_SetDefaultParams(param_1);
   return;
 }
 
@@ -1864,7 +1873,7 @@ void FUN_001abf50(undefined8 param_1)
 /* WARNING: Removing unreachable block (ram,0x001ac1f4) */
 /* WARNING: Removing unreachable block (ram,0x001ac320) */
 
-void FUN_001abf90(undefined8 param_1,char param_2,undefined8 param_3)
+void WheelAsset_Relocate(undefined8 param_1,char param_2,undefined8 param_3)
 
 {
   byte bVar1;
@@ -1891,7 +1900,7 @@ void FUN_001abf90(undefined8 param_1,char param_2,undefined8 param_3)
     do {
       iVar5 = (int)param_3;
       if (uVar3 == 0) {
-        FUN_001a5530(param_1,*(undefined4 *)(iVar2 + 0x4c),uVar4,1,param_3,iVar5 + 3,iVar5 + 6,0);
+        Res_Relocate(param_1,*(undefined4 *)(iVar2 + 0x4c),uVar4,1,param_3,iVar5 + 3,iVar5 + 6,0);
       }
       else {
         bVar1 = *(byte *)(iVar5 + 3);
@@ -1922,7 +1931,7 @@ void FUN_001abf90(undefined8 param_1,char param_2,undefined8 param_3)
           fVar7 = fVar7 - 2.1474836e+09;
         }
         uStack_2 = (undefined1)(int)fVar7;
-        FUN_001a5530(param_1,*(undefined4 *)(iVar2 + 0x4c),uVar4,1,param_3,&uStack_4,iVar5 + 6,0);
+        Res_Relocate(param_1,*(undefined4 *)(iVar2 + 0x4c),uVar4,1,param_3,&uStack_4,iVar5 + 6,0);
       }
       uVar3 = uVar3 + 1;
       iVar2 = iVar2 + 4;

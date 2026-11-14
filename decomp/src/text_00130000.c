@@ -1127,7 +1127,8 @@ void libdbc_sub_00131b08(undefined8 param_1,undefined8 param_2,undefined8 param_
 /* WARNING: Removing unreachable block (ram,0x00131d80) */
 
 undefined8
-FUN_00131c00(undefined8 param_1,undefined8 param_2,undefined8 param_3,long param_4,char param_5)
+Str_FormatNumberPadded
+          (undefined8 param_1,undefined8 param_2,undefined8 param_3,long param_4,char param_5)
 
 {
   bool bVar1;
@@ -1146,7 +1147,7 @@ FUN_00131c00(undefined8 param_1,undefined8 param_2,undefined8 param_3,long param
   int iVar14;
   char *pcVar15;
   
-  FUN_00131e20();
+  Str_FormatNumberBase();
   if (param_4 != 0) {
     lVar6 = strlen(param_1);
     iVar12 = 0;
@@ -1216,7 +1217,9 @@ FUN_00131c00(undefined8 param_1,undefined8 param_2,undefined8 param_3,long param
 }
 
 // 0x00131e20  size 0x104
-char * FUN_00131e20(char *param_1,int param_2,int param_3)
+/* base 2..36 */
+
+char * Str_FormatNumberBase(char *param_1,int param_2,int param_3)
 
 {
   char cVar1;
@@ -1272,7 +1275,7 @@ char * FUN_00131e20(char *param_1,int param_2,int param_3)
 }
 
 // 0x00131f30  size 0x7c
-void FUN_00131f30(int param_1)
+void Task_RunPostUpdate(int param_1)
 
 {
   int iVar1;
@@ -1288,7 +1291,7 @@ void FUN_00131f30(int param_1)
 }
 
 // 0x00131fb0  size 0x70
-void FUN_00131fb0(int param_1)
+void Task_RunUpdate(int param_1)
 
 {
   int iVar1;
@@ -1303,7 +1306,7 @@ void FUN_00131fb0(int param_1)
 }
 
 // 0x00132020  size 0xc
-void FUN_00132020(int param_1,int param_2)
+void TaskList_Remove(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0xc) = *(undefined4 *)(param_1 + 8);
@@ -1312,7 +1315,7 @@ void FUN_00132020(int param_1,int param_2)
 }
 
 // 0x00132030  size 0x60
-long FUN_00132030(long param_1,short param_2)
+long TaskList_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1326,16 +1329,16 @@ long FUN_00132030(long param_1,short param_2)
 }
 
 // 0x00132090  size 0x38
-undefined8 FUN_00132090(undefined8 param_1)
+undefined8 TaskList_ctor(undefined8 param_1)
 
 {
-  FUN_001323d0(param_1,0);
+  List_ctor(param_1,0);
   *(undefined4 *)param_1 = &DAT_0036e070;
   return param_1;
 }
 
 // 0x001320d0  size 0x60
-long FUN_001320d0(long param_1,short param_2)
+long Task_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1350,8 +1353,8 @@ long FUN_001320d0(long param_1,short param_2)
 
 // 0x00132130  size 0x90
 undefined8
-FUN_00132130(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-            undefined4 param_5,undefined4 param_6)
+Task_ctor(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+         undefined4 param_5,undefined4 param_6)
 
 {
   undefined4 *puVar1;
@@ -1481,7 +1484,7 @@ long maybe_List_dtor(long param_1,short param_2)
 }
 
 // 0x001323d0  size 0x24
-undefined8 FUN_001323d0(undefined8 param_1,undefined4 param_2)
+undefined8 List_ctor(undefined8 param_1,undefined4 param_2)
 
 {
   undefined4 *puVar1;
@@ -1515,14 +1518,14 @@ undefined8 maybe_ListNode_ctor(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00132470  size 0x28
-void FUN_00132470(void)
+void Dbg_Nop(void)
 
 {
   return;
 }
 
 // 0x001324a0  size 0x30
-undefined1 * FUN_001324a0(undefined1 *param_1,undefined1 *param_2,int param_3)
+undefined1 * Mem_Copy8(undefined1 *param_1,undefined1 *param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1539,7 +1542,7 @@ undefined1 * FUN_001324a0(undefined1 *param_1,undefined1 *param_2,int param_3)
 }
 
 // 0x001324d0  size 0x30
-undefined2 * FUN_001324d0(undefined2 *param_1,undefined2 *param_2,int param_3)
+undefined2 * Mem_Copy16(undefined2 *param_1,undefined2 *param_2,int param_3)
 
 {
   undefined2 uVar1;
@@ -1556,7 +1559,7 @@ undefined2 * FUN_001324d0(undefined2 *param_1,undefined2 *param_2,int param_3)
 }
 
 // 0x00132500  size 0x30
-undefined4 * FUN_00132500(undefined4 *param_1,undefined4 *param_2,int param_3)
+undefined4 * Mem_Copy32(undefined4 *param_1,undefined4 *param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1573,7 +1576,7 @@ undefined4 * FUN_00132500(undefined4 *param_1,undefined4 *param_2,int param_3)
 }
 
 // 0x00132530  size 0x30
-undefined8 * FUN_00132530(undefined8 *param_1,undefined8 *param_2,int param_3)
+undefined8 * Mem_Copy64(undefined8 *param_1,undefined8 *param_2,int param_3)
 
 {
   undefined8 *puVar1;
@@ -1590,7 +1593,9 @@ undefined8 * FUN_00132530(undefined8 *param_1,undefined8 *param_2,int param_3)
 }
 
 // 0x00132560  size 0x30
-undefined4 * FUN_00132560(undefined4 *param_1,undefined4 *param_2,int param_3)
+/* 10 callers */
+
+undefined4 * Mem_Copy128(undefined4 *param_1,undefined4 *param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -1616,7 +1621,7 @@ undefined4 * FUN_00132560(undefined4 *param_1,undefined4 *param_2,int param_3)
 }
 
 // 0x00132590  size 0x34
-int FUN_00132590(char *param_1,char *param_2,int param_3)
+int Str_CompareN(char *param_1,char *param_2,int param_3)
 
 {
   char cVar1;
@@ -1666,7 +1671,7 @@ uint maybe_Mem_CopyQwords(uint param_1,uint param_2,uint param_3)
         uVar2 = param_1;
         if (((1 < param_3) && ((param_1 & 1) == 0)) && ((param_2 & 1) == 0)) {
           uVar1 = param_3 >> 1;
-          FUN_001324d0(param_1,param_2,uVar1);
+          Mem_Copy16(param_1,param_2,uVar1);
           uVar2 = param_1 + uVar1 * 2;
           param_2 = param_2 + uVar1 * 2;
           param_3 = param_3 + uVar1 * -2;
@@ -1674,7 +1679,7 @@ uint maybe_Mem_CopyQwords(uint param_1,uint param_2,uint param_3)
       }
       else {
         uVar2 = param_3 >> 2;
-        FUN_00132500(param_1,param_2,uVar2);
+        Mem_Copy32(param_1,param_2,uVar2);
         param_2 = param_2 + uVar2 * 4;
         param_3 = param_3 + uVar2 * -4;
         uVar2 = param_1 + uVar2 * 4;
@@ -1682,7 +1687,7 @@ uint maybe_Mem_CopyQwords(uint param_1,uint param_2,uint param_3)
     }
     else {
       uVar2 = param_3 >> 3;
-      FUN_00132530(param_1,param_2,uVar2);
+      Mem_Copy64(param_1,param_2,uVar2);
       param_2 = param_2 + uVar2 * 8;
       param_3 = param_3 + uVar2 * -8;
       uVar2 = param_1 + uVar2 * 8;
@@ -1690,13 +1695,13 @@ uint maybe_Mem_CopyQwords(uint param_1,uint param_2,uint param_3)
   }
   else {
     uVar1 = param_3 >> 4;
-    FUN_00132560(param_1,param_2,uVar1);
+    Mem_Copy128(param_1,param_2,uVar1);
     uVar2 = param_1 + uVar1 * 0x10;
     param_2 = param_2 + uVar1 * 0x10;
     param_3 = param_3 + uVar1 * -0x10;
   }
   if (param_3 != 0) {
-    FUN_001324a0(uVar2,param_2,param_3);
+    Mem_Copy8(uVar2,param_2,param_3);
   }
   return param_1;
 }
@@ -1733,7 +1738,7 @@ bool maybe_Mutex_Create(int *param_1)
 }
 
 // 0x00132830  size 0x6c
-long FUN_00132830(long param_1,short param_2)
+long Mutex_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1749,7 +1754,7 @@ long FUN_00132830(long param_1,short param_2)
 }
 
 // 0x001328a0  size 0xc
-undefined8 FUN_001328a0(undefined8 param_1)
+undefined8 Mutex_Init(undefined8 param_1)
 
 {
   *(undefined4 *)param_1 = 0;
@@ -2932,7 +2937,9 @@ void maybe_Rand_Seed(undefined4 param_1)
 }
 
 // 0x001339b0  size 0x3c
-void FUN_001339b0(int param_1,undefined4 *param_2,undefined4 *param_3)
+/* 256-entry table at 0x360e00 */
+
+void Math_SinCosTable(int param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
   undefined4 uVar1;
@@ -2960,14 +2967,14 @@ void maybe_Math_AngleToIndex(float param_1,undefined4 *param_2,undefined4 *param
 }
 
 // 0x00133a70  size 0x28
-uint FUN_00133a70(float param_1)
+uint Math_FloatToFixed22(float param_1)
 
 {
   return (uint)(param_1 + DAT_00360da0) & 0x3fffff;
 }
 
 // 0x00133aa0  size 0x3b4
-undefined4 FUN_00133aa0(int param_1,uint param_2,int param_3,int *param_4)
+undefined4 Math_SolveCubic(int param_1,uint param_2,int param_3,int *param_4)
 
 {
   undefined4 uVar1;
@@ -3120,7 +3127,7 @@ undefined4 FUN_00133aa0(int param_1,uint param_2,int param_3,int *param_4)
 }
 
 // 0x00133e60  size 0x190
-void FUN_00133e60(float *param_1,uint param_2,uint param_3,ulong param_4)
+void Color_LerpRgba(float *param_1,uint param_2,uint param_3,ulong param_4)
 
 {
   float fVar1;
@@ -3168,7 +3175,7 @@ void FUN_00133e60(float *param_1,uint param_2,uint param_3,ulong param_4)
 }
 
 // 0x00133ff0  size 0x12c
-void FUN_00133ff0(float *param_1,ulong param_2,uint param_3)
+void Color_LerpRgb(float *param_1,ulong param_2,uint param_3)
 
 {
   float fVar1;

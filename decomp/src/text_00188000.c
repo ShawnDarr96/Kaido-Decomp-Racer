@@ -3,24 +3,25 @@
 #include "ghidra_types.h"
 
 // 0x001882c0  size 0xa8
-void FUN_001882c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void Road_InitTracker(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
   int iVar2;
   
   iVar2 = (int)param_1;
-  FUN_00188f70(param_2,iVar2 + 0x10,*(undefined4 *)(iVar2 + 6),*(undefined2 *)(iVar2 + 10));
+  Road_FindNearestSection
+            (param_2,iVar2 + 0x10,*(undefined4 *)(iVar2 + 6),*(undefined2 *)(iVar2 + 10));
   iVar1 = *(int *)(*(int *)(*(int *)param_2 + 4) + (uint)*(ushort *)(iVar2 + 6) * 4) + 0x7c;
   *(undefined2 *)(iVar2 + 2) = *(undefined2 *)(*(short *)(iVar2 + 8) * 0x20 + iVar1 + 0x18);
   *(undefined2 *)(iVar2 + 4) = *(undefined2 *)(*(short *)(iVar2 + 8) * 0x20 + iVar1 + 0x1a);
   *(undefined4 *)(iVar2 + 0x60) = 0;
-  FUN_00188370(param_1,param_2,param_3);
+  Road_UpdateTracker(param_1,param_2,param_3);
   return;
 }
 
 // 0x00188370  size 0x168
-void FUN_00188370(int param_1,undefined8 param_2,undefined8 param_3)
+void Road_UpdateTracker(int param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uVar1;
@@ -29,33 +30,36 @@ void FUN_00188370(int param_1,undefined8 param_2,undefined8 param_3)
   float fVar4;
   
   uVar1 = *(undefined4 *)(param_1 + 6);
-  FUN_0018a2c0(param_3,param_1 + 0x10,param_1 + 2);
+  Road_LocatePoint(param_3,param_1 + 0x10,param_1 + 2);
   fVar4 = *(float *)(param_1 + 0x14);
   *(float *)(param_1 + 0x14) = fVar4 + 0.5;
-  lVar3 = FUN_0018a810(param_3,param_1 + 0x10,*(undefined4 *)(param_1 + 2),param_1 + 0x20,
-                       param_1 + 0x30);
+  lVar3 = Road_RaycastGround(param_3,param_1 + 0x10,*(undefined4 *)(param_1 + 2),param_1 + 0x20,
+                             param_1 + 0x30);
   if (lVar3 == -1) {
     *(float *)(param_1 + 0x14) = fVar4;
   }
   else {
     *(int *)(param_1 + 100) = (int)lVar3;
   }
-  FUN_00189030(param_2,param_1 + 0x10,param_1 + 6,uVar1,*(undefined2 *)(param_1 + 10));
-  iVar2 = FUN_00188e00(param_2,param_1 + 0x10,*(undefined4 *)(param_1 + 6),
-                       *(undefined2 *)(param_1 + 10));
+  Road_AdvanceAlongPath(param_2,param_1 + 0x10,param_1 + 6,uVar1,*(undefined2 *)(param_1 + 10));
+  iVar2 = Road_GetSectionSegments
+                    (param_2,param_1 + 0x10,*(undefined4 *)(param_1 + 6),
+                     *(undefined2 *)(param_1 + 10));
   *(int *)(param_1 + 0xc) = *(short *)(param_1 + 8) * 0x20 + iVar2;
-  FUN_001885d0(param_2,param_1 + 0x10,*(undefined2 *)(param_1 + 6),*(undefined4 *)(param_1 + 0xc),
-               *(undefined2 *)(param_1 + 10),param_1 + 0x40,param_1 + 0x44,0);
+  Road_ComputeLateralOffset
+            (param_2,param_1 + 0x10,*(undefined2 *)(param_1 + 6),*(undefined4 *)(param_1 + 0xc),
+             *(undefined2 *)(param_1 + 10),param_1 + 0x40,param_1 + 0x44,0);
   *(byte *)(param_1 + 0x48) =
        *(byte *)(*(short *)(param_1 + 8) * 0x20 +
                  *(int *)(*(int *)(*(int *)param_2 + 4) + (uint)*(ushort *)(param_1 + 6) * 4) + 0x9a
                 ) & 0xf;
-  FUN_00188910(param_2,param_1 + 0x50,*(undefined4 *)(param_1 + 6),*(undefined2 *)(param_1 + 10),0);
+  Road_ProjectOnSegment
+            (param_2,param_1 + 0x50,*(undefined4 *)(param_1 + 6),*(undefined2 *)(param_1 + 10),0);
   return;
 }
 
 // 0x001884e0  size 0xe8
-uint FUN_001884e0(int *param_1,float *param_2,uint param_3)
+uint Road_GetSegment(int *param_1,float *param_2,uint param_3)
 
 {
   int iVar1;
@@ -91,8 +95,9 @@ uint FUN_001884e0(int *param_1,float *param_2,uint param_3)
 }
 
 // 0x001885d0  size 0x33c
-void FUN_001885d0(undefined8 param_1,undefined8 param_2,ushort param_3,uint param_4,
-                 undefined8 param_5,long param_6,long param_7,char param_8)
+void Road_ComputeLateralOffset
+               (undefined8 param_1,undefined8 param_2,ushort param_3,uint param_4,undefined8 param_5
+               ,long param_6,long param_7,char param_8)
 
 {
   ushort *puVar1;
@@ -164,7 +169,7 @@ void FUN_001885d0(undefined8 param_1,undefined8 param_2,ushort param_3,uint para
   fStack_1c = fStack_4c;
   fStack_18 = fStack_48;
   uStack_4 = param_3;
-  FUN_00189520(param_1,&uStack_4,param_5);
+  Road_GetSegmentPoint(param_1,&uStack_4,param_5);
   iVar8 = sStack_2 * 0x20;
   iVar7 = *(int *)(*(int *)(*(int *)param_1 + 4) + (uint)uStack_4 * 4) + 0x7c;
   fVar10 = *(float *)(iVar8 + iVar7 + 0xc) * 0.5;
@@ -213,8 +218,9 @@ void FUN_001885d0(undefined8 param_1,undefined8 param_2,ushort param_3,uint para
 }
 
 // 0x00188910  size 0x23c
-void FUN_00188910(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
-                 long param_5)
+void Road_ProjectOnSegment
+               (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
+               long param_5)
 
 {
   undefined4 *puVar1;
@@ -244,7 +250,7 @@ void FUN_00188910(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
   if (param_5 == 1) {
     sStack_2 = sStack_32 + 1;
     uStack_4 = uStack_34;
-    FUN_00189520(param_1,&uStack_4,param_4);
+    Road_GetSegmentPoint(param_1,&uStack_4,param_4);
     puVar1 = (undefined4 *)
              (*(int *)(*(int *)(*piVar2 + 4) + (uint)uStack_4 * 4) + 0x7c + sStack_2 * 0x20);
     uStack_20 = *puVar1;
@@ -253,7 +259,7 @@ void FUN_00188910(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
     uStack_14 = 0x3f800000;
     uStack_8 = uStack_34;
     sStack_6 = sStack_32;
-    FUN_00189520(param_1,&uStack_8,param_4);
+    Road_GetSegmentPoint(param_1,&uStack_8,param_4);
     puVar1 = (undefined4 *)
              (*(int *)(*(int *)(*piVar2 + 4) + (uint)uStack_8 * 4) + 0x7c + sStack_6 * 0x20);
     uStack_30 = *puVar1;
@@ -263,7 +269,7 @@ void FUN_00188910(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
   else {
     sStack_a = sStack_32;
     uStack_c = uStack_34;
-    FUN_00189520(param_1,&uStack_c,param_4);
+    Road_GetSegmentPoint(param_1,&uStack_c,param_4);
     sStack_e = sStack_32 + 1;
     puVar1 = (undefined4 *)
              (*(int *)(*(int *)(*piVar2 + 4) + (uint)uStack_c * 4) + 0x7c + sStack_a * 0x20);
@@ -272,7 +278,7 @@ void FUN_00188910(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
     uStack_18 = puVar1[2];
     uStack_14 = 0x3f800000;
     uStack_10 = uStack_34;
-    FUN_00189520(param_1,&uStack_10,param_4);
+    Road_GetSegmentPoint(param_1,&uStack_10,param_4);
     puVar1 = (undefined4 *)
              (*(int *)(*(int *)(*piVar2 + 4) + (uint)uStack_10 * 4) + 0x7c + sStack_e * 0x20);
     uStack_30 = *puVar1;
@@ -288,8 +294,8 @@ void FUN_00188910(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
 }
 
 // 0x00188b50  size 0x2b0
-void FUN_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort param_4,int param_5,
-                 undefined8 param_6,long param_7)
+void road_sub_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort param_4,
+                      int param_5,undefined8 param_6,long param_7)
 
 {
   uint uVar1;
@@ -330,7 +336,7 @@ void FUN_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort par
   if (param_7 == 1) {
     uStack_4 = param_4;
     sStack_2 = sVar5 + 1;
-    FUN_00189520(param_2,&uStack_4,param_6);
+    Road_GetSegmentPoint(param_2,&uStack_4,param_6);
     puVar3 = (undefined4 *)
              (*(int *)(*(int *)(*piVar4 + 4) + (uint)uStack_4 * 4) + 0x7c + sStack_2 * 0x20);
     uStack_20 = *puVar3;
@@ -339,7 +345,7 @@ void FUN_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort par
     uStack_14 = 0x3f800000;
     uStack_8 = param_4;
     sStack_6 = sVar5;
-    FUN_00189520(param_2,&uStack_8,param_6);
+    Road_GetSegmentPoint(param_2,&uStack_8,param_6);
     puVar3 = (undefined4 *)
              (*(int *)(*(int *)(*piVar4 + 4) + (uint)uStack_8 * 4) + 0x7c + sStack_6 * 0x20);
     uStack_30 = *puVar3;
@@ -349,7 +355,7 @@ void FUN_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort par
   else {
     uStack_c = param_4;
     sStack_a = sVar5;
-    FUN_00189520(param_2,&uStack_c,param_6);
+    Road_GetSegmentPoint(param_2,&uStack_c,param_6);
     puVar3 = (undefined4 *)
              (*(int *)(*(int *)(*piVar4 + 4) + (uint)uStack_c * 4) + 0x7c + sStack_a * 0x20);
     uStack_20 = *puVar3;
@@ -358,7 +364,7 @@ void FUN_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort par
     uStack_14 = 0x3f800000;
     uStack_10 = param_4;
     sStack_e = sVar5 + 1;
-    FUN_00189520(param_2,&uStack_10,param_6);
+    Road_GetSegmentPoint(param_2,&uStack_10,param_6);
     puVar3 = (undefined4 *)
              (*(int *)(*(int *)(*piVar4 + 4) + (uint)uStack_10 * 4) + 0x7c + sStack_e * 0x20);
     uStack_30 = *puVar3;
@@ -373,7 +379,7 @@ void FUN_00188b50(float param_1,undefined8 param_2,undefined8 param_3,ushort par
 }
 
 // 0x00188e00  size 0x168
-int FUN_00188e00(undefined8 param_1,float *param_2,uint param_3,undefined8 param_4)
+int Road_GetSectionSegments(undefined8 param_1,float *param_2,uint param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -398,7 +404,7 @@ int FUN_00188e00(undefined8 param_1,float *param_2,uint param_3,undefined8 param
                     iVar1 * 0x20);
   fVar6 = *pfVar2;
   fVar7 = pfVar2[2];
-  FUN_00189520(param_1,&uStack_4,param_4);
+  Road_GetSegmentPoint(param_1,&uStack_4,param_4);
   pfVar2 = (float *)(*(int *)(*(int *)(*(int *)param_1 + 4) + (uint)uStack_4 * 4) + 0x7c +
                     sStack_2 * 0x20);
   fVar4 = *pfVar2 - fVar6;
@@ -422,7 +428,8 @@ int FUN_00188e00(undefined8 param_1,float *param_2,uint param_3,undefined8 param
 }
 
 // 0x00188f70  size 0xbc
-ushort FUN_00188f70(undefined8 param_1,undefined4 *param_2,undefined4 param_3,undefined8 param_4)
+ushort Road_FindNearestSection
+                 (undefined8 param_1,undefined4 *param_2,undefined4 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -435,7 +442,7 @@ ushort FUN_00188f70(undefined8 param_1,undefined4 *param_2,undefined4 param_3,un
   sStack_6 = (short)((uint)param_3 >> 0x10);
   uStack_4 = uStack_8;
   sStack_2 = sStack_6;
-  FUN_00189520(param_1,&uStack_4,param_4);
+  Road_GetSegmentPoint(param_1,&uStack_4,param_4);
   iVar1 = *(int *)(*(int *)(*(int *)param_1 + 4) + (uint)uStack_4 * 4) + 0x7c;
   *param_2 = *(undefined4 *)(iVar1 + sStack_2 * 0x20);
   param_2[1] = *(undefined4 *)(sStack_2 * 0x20 + iVar1 + 4);
@@ -448,8 +455,9 @@ ushort FUN_00188f70(undefined8 param_1,undefined4 *param_2,undefined4 param_3,un
 /* WARNING: Removing unreachable block (ram,0x00189278) */
 /* WARNING: Removing unreachable block (ram,0x001892e8) */
 
-long FUN_00189030(undefined8 param_1,undefined8 param_2,ushort *param_3,undefined4 param_4,
-                 ulong param_5)
+long Road_AdvanceAlongPath
+               (undefined8 param_1,undefined8 param_2,ushort *param_3,undefined4 param_4,
+               ulong param_5)
 
 {
   short *psVar1;
@@ -534,7 +542,7 @@ long FUN_00189030(undefined8 param_1,undefined8 param_2,ushort *param_3,undefine
     uStack_10 = CONCAT22((short)iVar3,uVar5);
     uVar9 = uVar10;
   }
-  lVar4 = FUN_00189ce0(param_1,param_2,uStack_8,param_5,&fStack_14,0);
+  lVar4 = Road_DistanceToSegment(param_1,param_2,uStack_8,param_5,&fStack_14,0);
   if (lVar4 == 1) {
     uStack_4 = (ushort)uStack_8;
     uStack_2 = uStack_8._2_2_;
@@ -542,7 +550,7 @@ LAB_001891ac:
     iVar3 = *piVar6;
   }
   else {
-    lVar4 = FUN_00189ce0(param_1,param_2,uStack_c,uVar10,&fStack_14,0);
+    lVar4 = Road_DistanceToSegment(param_1,param_2,uStack_c,uVar10,&fStack_14,0);
     if (lVar4 == 1) {
       uStack_4 = (ushort)uStack_c;
       uStack_2 = uStack_c._2_2_;
@@ -551,7 +559,7 @@ LAB_001891ac:
       }
       goto LAB_001891ac;
     }
-    lVar4 = FUN_00189ce0(param_1,param_2,uStack_10,uVar9,&fStack_14,0);
+    lVar4 = Road_DistanceToSegment(param_1,param_2,uStack_10,uVar9,&fStack_14,0);
     if (lVar4 == 1) {
       uStack_4 = (ushort)uStack_10;
       uStack_2 = uStack_10._2_2_;
@@ -562,16 +570,16 @@ LAB_001891ac:
     }
     if ((((uStack_18 == 0xffff) || (uStack_18 == (ushort)uStack_8)) ||
         (uStack_18 == (ushort)uStack_c)) || (uStack_18 == (ushort)uStack_10)) {
-      FUN_00189770(param_1,param_2,&uStack_4,*param_3,uStack_18);
+      Road_SearchNeighbours(param_1,param_2,&uStack_4,*param_3,uStack_18);
       goto LAB_001891ac;
     }
-    lVar4 = FUN_00189ce0(param_1,param_2,param_4,param_5,&fStack_14,0);
+    lVar4 = Road_DistanceToSegment(param_1,param_2,param_4,param_5,&fStack_14,0);
     if (lVar4 == 1) {
       uStack_4 = uStack_18;
       uStack_2 = uStack_16;
       goto LAB_001891ac;
     }
-    FUN_00189770(param_1,param_2,&uStack_4,*param_3,uStack_18);
+    Road_SearchNeighbours(param_1,param_2,&uStack_4,*param_3,uStack_18);
     iVar3 = *piVar6;
   }
   fVar11 = (float)fabsf(*(float *)((short)uStack_2 * 0x20 +
@@ -584,7 +592,7 @@ LAB_001891ac:
     uStack_2 = uVar7;
     if (fStack_14 <= 62500.0) goto LAB_00189220;
   }
-  FUN_00189770(param_1,param_2,&uStack_4,*param_3,uStack_18);
+  Road_SearchNeighbours(param_1,param_2,&uStack_4,*param_3,uStack_18);
   fVar11 = (float)fabsf(*(float *)((short)uStack_2 * 0x20 +
                                    *(int *)(*(int *)(*piVar6 + 4) + (uint)uStack_4 * 4) + 0x80) -
                         *(float *)((int)param_2 + 4));
@@ -604,7 +612,7 @@ LAB_00189220:
 // 0x00189520  size 0x240
 /* WARNING: Removing unreachable block (ram,0x00189728) */
 
-undefined4 FUN_00189520(int *param_1,ushort *param_2,short param_3)
+undefined4 Road_GetSegmentPoint(int *param_1,ushort *param_2,short param_3)
 
 {
   int *piVar1;
@@ -695,8 +703,8 @@ undefined4 FUN_00189520(int *param_1,ushort *param_2,short param_3)
 }
 
 // 0x00189770  size 0x564
-void FUN_00189770(undefined8 param_1,undefined8 param_2,ushort *param_3,ushort param_4,
-                 ushort param_5)
+void Road_SearchNeighbours
+               (undefined8 param_1,undefined8 param_2,ushort *param_3,ushort param_4,ushort param_5)
 
 {
   long lVar1;
@@ -725,12 +733,12 @@ void FUN_00189770(undefined8 param_1,undefined8 param_2,ushort *param_3,ushort p
     do {
       uVar2 = *(ushort *)(iVar12 + 0x1c);
       uStack_8 = (uint)uVar2;
-      if ((uVar2 != 0xffff) && (lVar4 = FUN_001884e0(param_1,param_2,uVar2), lVar4 == 0)) {
+      if ((uVar2 != 0xffff) && (lVar4 = Road_GetSegment(param_1,param_2,uVar2), lVar4 == 0)) {
         uStack_8 = (uint)uVar2;
         psVar8 = *(short **)(*(int *)(*piVar7 + 4) + (uint)uVar2 * 4);
         if (0 < *psVar8) {
           do {
-            lVar4 = FUN_00189ce0(param_1,param_2,uStack_8,0,&fStack_4,0);
+            lVar4 = Road_DistanceToSegment(param_1,param_2,uStack_8,0,&fStack_4,0);
             if ((lVar4 == 1) && (fStack_4 < fVar3)) {
               fVar3 = fStack_4;
               uVar10 = uStack_8._2_2_;
@@ -754,10 +762,10 @@ void FUN_00189770(undefined8 param_1,undefined8 param_2,ushort *param_3,ushort p
   if ((lVar4 != -1) &&
      (lVar4 != CONCAT44((int)((ulong)(long)(short)param_4 >> 0x20),(int)(short)param_4))) {
     psVar8 = *(short **)(*(int *)(*piVar7 + 4) + (uint)param_5 * 4);
-    lVar1 = FUN_001884e0(param_1,param_2,param_5);
+    lVar1 = Road_GetSegment(param_1,param_2,param_5);
     if ((lVar1 == 0) && (uStack_8 = uStack_8 & 0xffff, 0 < *psVar8)) {
       do {
-        lVar1 = FUN_00189ce0(param_1,param_2,uStack_8,0,&fStack_4,0);
+        lVar1 = Road_DistanceToSegment(param_1,param_2,uStack_8,0,&fStack_4,0);
         if ((lVar1 == 1) && (fStack_4 < fVar3)) {
           fVar3 = fStack_4;
           uVar10 = uStack_8._2_2_;
@@ -771,12 +779,12 @@ void FUN_00189770(undefined8 param_1,undefined8 param_2,ushort *param_3,ushort p
     iVar11 = 0;
     do {
       uVar2 = *(ushort *)((int)psVar8 + iVar11 + 0x1c);
-      if ((uVar2 != 0xffff) && (lVar1 = FUN_001884e0(param_1,param_2,uVar2), lVar1 == 0)) {
+      if ((uVar2 != 0xffff) && (lVar1 = Road_GetSegment(param_1,param_2,uVar2), lVar1 == 0)) {
         uStack_8 = (uint)uVar2;
         psVar8 = *(short **)(*(int *)(*piVar7 + 4) + (uint)uVar2 * 4);
         if (0 < *psVar8) {
           do {
-            lVar1 = FUN_00189ce0(param_1,param_2,uStack_8,0,&fStack_4,0);
+            lVar1 = Road_DistanceToSegment(param_1,param_2,uStack_8,0,&fStack_4,0);
             if ((lVar1 == 1) && (fStack_4 < fVar3)) {
               fVar3 = fStack_4;
               uVar10 = uStack_8._2_2_;
@@ -802,10 +810,10 @@ void FUN_00189770(undefined8 param_1,undefined8 param_2,ushort *param_3,ushort p
   if (0 < *piVar6) {
     do {
       psVar8 = *(short **)(piVar6[1] + ((uint)lVar1 & 0xffff) * 4);
-      if (((0x2f < *(byte *)(psVar8 + 1)) && (lVar1 = FUN_001884e0(param_1,param_2), lVar1 == 0)) &&
-         (0 < *psVar8)) {
+      if (((0x2f < *(byte *)(psVar8 + 1)) && (lVar1 = Road_GetSegment(param_1,param_2), lVar1 == 0))
+         && (0 < *psVar8)) {
         do {
-          lVar1 = FUN_00189ce0(param_1,param_2,uStack_8,0,&fStack_4,0);
+          lVar1 = Road_DistanceToSegment(param_1,param_2,uStack_8,0,&fStack_4,0);
           if ((lVar1 == 1) && (fStack_4 < fVar3)) {
             fVar3 = fStack_4;
             uVar10 = uStack_8._2_2_;
@@ -843,7 +851,8 @@ void FUN_00189770(undefined8 param_1,undefined8 param_2,ushort *param_3,ushort p
 }
 
 // 0x00189ce0  size 0x358
-int FUN_00189ce0(int *param_1,float *param_2,uint param_3,ushort param_4,float *param_5,int param_6)
+int Road_DistanceToSegment
+              (int *param_1,float *param_2,uint param_3,ushort param_4,float *param_5,int param_6)
 
 {
   short sVar1;
@@ -874,7 +883,7 @@ int FUN_00189ce0(int *param_1,float *param_2,uint param_3,ushort param_4,float *
   psVar11 = *(short **)(*(int *)(*param_1 + 4) + iVar9);
   sVar1 = *psVar11;
   psVar11 = psVar11 + 0x3e;
-  lVar4 = FUN_001884e0();
+  lVar4 = Road_GetSegment();
   if (lVar4 == 0) {
     iVar5 = sStack_6 + 1;
     sVar10 = (short)iVar5;
@@ -952,7 +961,7 @@ int FUN_00189ce0(int *param_1,float *param_2,uint param_3,ushort param_4,float *
 }
 
 // 0x0018a0a0  size 0x30
-void FUN_0018a0a0(undefined4 *param_1)
+void RoadData_Free(undefined4 *param_1)
 
 {
   *(undefined1 *)(param_1 + 1) = 0;
@@ -962,7 +971,7 @@ void FUN_0018a0a0(undefined4 *param_1)
 }
 
 // 0x0018a0d0  size 0xdc
-undefined8 FUN_0018a0d0(undefined8 param_1,undefined8 param_2)
+undefined8 RoadData_Load(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -995,7 +1004,7 @@ undefined8 FUN_0018a0d0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0018a1b0  size 0x10
-void FUN_0018a1b0(undefined4 *param_1)
+void RoadData_MarkLoaded(undefined4 *param_1)
 
 {
   *(undefined1 *)(param_1 + 1) = 1;
@@ -1004,7 +1013,7 @@ void FUN_0018a1b0(undefined4 *param_1)
 }
 
 // 0x0018a1c0  size 0xf4
-uint FUN_0018a1c0(int *param_1,float *param_2,short param_3)
+uint RoadData_GetSection(int *param_1,float *param_2,short param_3)
 
 {
   int iVar1;
@@ -1040,7 +1049,7 @@ uint FUN_0018a1c0(int *param_1,float *param_2,short param_3)
 }
 
 // 0x0018a2c0  size 0x548
-undefined4 FUN_0018a2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -1066,7 +1075,7 @@ undefined4 FUN_0018a2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3
   sVar1 = psVar10[1];
   uStack_10 = 0;
   if (*psVar10 == -1) {
-    FUN_0018bc40(param_2,param_3,param_1);
+    road_sub_0018bc40(param_2,param_3,param_1);
     uStack_10 = 0;
   }
   else {
@@ -1074,7 +1083,7 @@ undefined4 FUN_0018a2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3
     psVar4 = *(short **)(*(int *)(*piVar13 + 4) + *psVar10 * 4);
     iVar12 = *(int *)(psVar4 + 0x22);
     iVar11 = (int)psVar4 + (uint)(ushort)psVar4[1];
-    lVar9 = FUN_0018c400((int)psVar4 + sVar1 * 0x1c + iVar12,iVar11,param_2);
+    lVar9 = Road_PointInTriangle((int)psVar4 + sVar1 * 0x1c + iVar12,iVar11,param_2);
     if (lVar9 == 1) {
       uStack_10 = 0;
     }
@@ -1085,32 +1094,37 @@ undefined4 FUN_0018a2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3
       sVar14 = sVar2 + -2;
       sVar16 = sVar2 + 2;
       if (((long)sVar8 < (long)*psVar4) &&
-         (lVar9 = FUN_0018c400((int)psVar4 + sVar8 * 0x1c + iVar12,iVar11,param_2), lVar9 == 1)) {
+         (lVar9 = Road_PointInTriangle((int)psVar4 + sVar8 * 0x1c + iVar12,iVar11,param_2),
+         lVar9 == 1)) {
         psVar10[1] = sVar8;
       }
       else if (((long)sVar7 < 0) ||
-              (lVar9 = FUN_0018c400((int)psVar4 + sVar7 * 0x1c + iVar12,iVar11,param_2), lVar9 != 1)
-              ) {
+              (lVar9 = Road_PointInTriangle((int)psVar4 + sVar7 * 0x1c + iVar12,iVar11,param_2),
+              lVar9 != 1)) {
         if ((sVar16 < *psVar4) &&
-           (lVar9 = FUN_0018c400((int)psVar4 + (sVar16 * 8 - (int)sVar16) * 4 + iVar12,iVar11,
-                                 param_2), lVar9 == 1)) {
+           (lVar9 = Road_PointInTriangle
+                              ((int)psVar4 + (sVar16 * 8 - (int)sVar16) * 4 + iVar12,iVar11,param_2)
+           , lVar9 == 1)) {
           psVar10[1] = sVar16;
         }
         else if ((sVar14 < 0) ||
-                (lVar9 = FUN_0018c400((int)psVar4 + (sVar14 * 8 - (int)sVar14) * 4 + iVar12,iVar11,
-                                      param_2), lVar9 != 1)) {
+                (lVar9 = Road_PointInTriangle
+                                   ((int)psVar4 + (sVar14 * 8 - (int)sVar14) * 4 + iVar12,iVar11,
+                                    param_2), lVar9 != 1)) {
           if (((short)(sVar2 + 3) < *psVar4) &&
-             (lVar9 = FUN_0018c400((int)psVar4 + (short)(sVar2 + 3) * 0x1c + iVar12,iVar11,param_2),
+             (lVar9 = Road_PointInTriangle
+                                ((int)psVar4 + (short)(sVar2 + 3) * 0x1c + iVar12,iVar11,param_2),
              lVar9 == 1)) {
             psVar10[1] = sVar16;
           }
           else if (((short)(sVar2 + -3) < 0) ||
-                  (lVar9 = FUN_0018c400((int)psVar4 + (short)(sVar2 + -3) * 0x1c + iVar12,iVar11,
-                                        param_2), lVar9 != 1)) {
+                  (lVar9 = Road_PointInTriangle
+                                     ((int)psVar4 + (short)(sVar2 + -3) * 0x1c + iVar12,iVar11,
+                                      param_2), lVar9 != 1)) {
             if (CONCAT44((int)((ulong)(long)sVar8 >> 0x20),(int)sVar8) < (long)*psVar4) {
               if (CONCAT44((int)((ulong)(long)sVar7 >> 0x20),(int)sVar7) < 1) {
                 psVar10[1] = sVar7;
-                lVar15 = FUN_0018b550(param_1,param_2,param_3);
+                lVar15 = road_sub_0018b550(param_1,param_2,param_3);
               }
               else {
                 lVar15 = 0;
@@ -1121,8 +1135,9 @@ undefined4 FUN_0018a2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3
                     sVar2 = *(short *)(iVar12 + 6);
                     sVar7 = *(short *)(iVar12 + 8);
                     iVar5 = *(int *)(*(int *)(*piVar13 + 4) + sVar2 * 4);
-                    lVar9 = FUN_0018c400(iVar5 + *(int *)(iVar5 + 0x44) + sVar7 * 0x1c,
-                                         iVar5 + (uint)*(ushort *)(iVar5 + 2),param_2);
+                    lVar9 = Road_PointInTriangle
+                                      (iVar5 + *(int *)(iVar5 + 0x44) + sVar7 * 0x1c,
+                                       iVar5 + (uint)*(ushort *)(iVar5 + 2),param_2);
                     if (lVar9 == 1) {
                       *psVar10 = sVar2;
                       psVar10[1] = sVar7;
@@ -1137,7 +1152,7 @@ undefined4 FUN_0018a2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3
             }
             else {
               psVar10[1] = sVar8;
-              lVar15 = FUN_0018b550(param_1,param_2,param_3);
+              lVar15 = road_sub_0018b550(param_1,param_2,param_3);
             }
           }
           else {
@@ -1165,12 +1180,13 @@ LAB_0018a750:
               iVar5 = *(int *)(*(int *)(*piVar13 + 4) + sVar2 * 4);
               iVar6 = *(int *)(iVar5 + 0x44);
               uVar3 = *(ushort *)(iVar5 + 2);
-              sVar7 = FUN_0018c310(iVar5,*(undefined2 *)(iVar12 + 8),param_2);
+              sVar7 = Road_PointInCell(iVar5,*(undefined2 *)(iVar12 + 8),param_2);
               if (sVar7 == -1) {
-                sVar7 = FUN_0018c310(iVar5,0xffffffffffffffff,param_2);
+                sVar7 = Road_PointInCell(iVar5,0xffffffffffffffff,param_2);
               }
               if ((sVar7 != -1) &&
-                 (lVar15 = FUN_0018c400(iVar5 + iVar6 + sVar7 * 0x1c,iVar5 + (uint)uVar3,param_2),
+                 (lVar15 = Road_PointInTriangle
+                                     (iVar5 + iVar6 + sVar7 * 0x1c,iVar5 + (uint)uVar3,param_2),
                  lVar15 == 1)) {
                 *psVar10 = sVar2;
                 psVar10[1] = sVar7;
@@ -1184,10 +1200,10 @@ LAB_0018a750:
         }
         if (sVar2 == -1) {
           uStack_10 = 0xffffffff;
-          lVar15 = FUN_0018bc40(param_2,param_3,param_1);
+          lVar15 = road_sub_0018bc40(param_2,param_3,param_1);
           if (lVar15 != 1) {
             uStack_10 = 0xfffffffe;
-            lVar15 = FUN_0018be90(param_2,param_3,param_1);
+            lVar15 = road_sub_0018be90(param_2,param_3,param_1);
             if (lVar15 != 1) {
               psVar10[1] = sVar1;
               uStack_10 = 0xfffffffd;
@@ -1204,8 +1220,8 @@ LAB_0018a750:
 }
 
 // 0x0018a810  size 0x864
-ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long param_4,int param_5
-                  )
+ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_3,long param_4,
+                        int param_5)
 
 {
   short *psVar1;
@@ -1261,7 +1277,7 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
     piVar16 = (int *)param_1;
     psVar14 = *(short **)(*(int *)(*piVar16 + 4) + sStack_34 * 4);
     if (sStack_32 != -1) {
-      lVar5 = FUN_0018b390(psVar14,sStack_32,param_2,0);
+      lVar5 = road_sub_0018b390(psVar14,sStack_32,param_2,0);
       sVar7 = sStack_50;
       if (lVar5 == -1) {
         uVar10 = 0;
@@ -1279,7 +1295,7 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
           }
           if (sVar8 != -1) {
             psVar14 = *(short **)(*(int *)(*piVar16 + 4) + sVar8 * 4);
-            lVar5 = FUN_0018b390(psVar14,sVar7,param_2,0);
+            lVar5 = road_sub_0018b390(psVar14,sVar7,param_2,0);
             if (lVar5 != -1) break;
           }
           uVar10 = uVar10 + 1;
@@ -1295,7 +1311,7 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
           if ((psVar12[2] != -1) && (psVar12[2] == sStack_32)) {
             sVar7 = psVar12[4];
             psVar1 = *(short **)(*(int *)(*piVar16 + 4) + psVar12[3] * 4);
-            lVar5 = FUN_0018b390(psVar1,sVar7,param_2,0);
+            lVar5 = road_sub_0018b390(psVar1,sVar7,param_2,0);
             if (lVar5 != -1) {
               psVar14 = psVar1;
               sStack_50 = sVar7;
@@ -1324,7 +1340,8 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
               else if (*psVar1 <= sVar8) {
                 sVar7 = -1;
               }
-              if ((sVar7 != -1) && (lVar5 = FUN_0018b390(psVar1,sVar8,param_2,0), lVar5 != -1)) {
+              if ((sVar7 != -1) && (lVar5 = road_sub_0018b390(psVar1,sVar8,param_2,0), lVar5 != -1))
+              {
                 psVar14 = psVar1;
                 sStack_50 = sVar8;
                 break;
@@ -1344,18 +1361,18 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
         uVar4 = (ulong)puVar13[4];
         pfVar9 = (float *)((int)psVar14 + (uint)*puVar13 * 0x10 + *(int *)(psVar14 + 0x20));
         if (uVar4 == 4) {
-          lVar5 = FUN_0018b390(psVar14,sStack_50,param_2,1);
+          lVar5 = road_sub_0018b390(psVar14,sStack_50,param_2,1);
           if ((lVar5 == -1) && ((long)(sStack_50 + 1) < (long)*psVar14)) {
-            lVar5 = FUN_0018b390(psVar14,(long)(sStack_50 + 1),param_2,1);
+            lVar5 = road_sub_0018b390(psVar14,(long)(sStack_50 + 1),param_2,1);
           }
           if ((lVar5 == -1) && (-1 < sStack_50 + -1)) {
-            lVar5 = FUN_0018b390(psVar14,sStack_50 + -1,param_2,1);
+            lVar5 = road_sub_0018b390(psVar14,sStack_50 + -1,param_2,1);
           }
           if ((lVar5 == -1) && ((long)(sStack_50 + 2) < (long)*psVar14)) {
-            lVar5 = FUN_0018b390(psVar14,(long)(sStack_50 + 2),param_2,1);
+            lVar5 = road_sub_0018b390(psVar14,(long)(sStack_50 + 2),param_2,1);
           }
           if ((lVar5 == -1) && (-1 < sStack_50 + -2)) {
-            lVar5 = FUN_0018b390(psVar14,sStack_50 + -2,param_2,1);
+            lVar5 = road_sub_0018b390(psVar14,sStack_50 + -2,param_2,1);
           }
           if (lVar5 == -1) {
             bVar2 = false;
@@ -1367,7 +1384,7 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
         }
         pfVar15 = (float *)param_2;
         if ((puVar13[3] == 0xffff) || ((puVar13[5] & 1) == 0)) {
-          FUN_0018b080(param_1,psVar14,puVar13,&fStack_10,0,1,2);
+          RoadMesh_Init(param_1,psVar14,puVar13,&fStack_10,0,1,2);
           fVar18 = pfVar9[1] +
                    (fStack_10 / fStack_c) * (*pfVar9 - *pfVar15) +
                    (fStack_8 / fStack_c) * (pfVar9[2] - pfVar15[2]) + 0.05;
@@ -1386,21 +1403,21 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
           fVar23 = *pfVar9 - fVar21;
           if (0.0 < (pfVar11[2] - fVar20) * (*pfVar6 - fVar21) -
                     (*pfVar11 - fVar21) * (pfVar6[2] - fVar20)) {
-            FUN_0018b080(param_1,psVar14,puVar13,&fStack_20,0,1,2);
+            RoadMesh_Init(param_1,psVar14,puVar13,&fStack_20,0,1,2);
             fVar21 = pfVar11[2];
           }
           else {
-            FUN_0018b080(param_1,psVar14,puVar13,&fStack_20,0,2,3);
+            RoadMesh_Init(param_1,psVar14,puVar13,&fStack_20,0,2,3);
             fVar21 = pfVar11[2];
           }
           fVar21 = pfVar11[1] +
                    (fStack_20 / fStack_1c) * (*pfVar11 - *pfVar15) +
                    (fStack_18 / fStack_1c) * (fVar21 - pfVar15[2]);
           if (0.0 < (fVar19 - fVar20) * fVar22 - fVar23 * (fVar18 - fVar20)) {
-            FUN_0018b080(param_1,psVar14,puVar13,&fStack_30,1,2,3);
+            RoadMesh_Init(param_1,psVar14,puVar13,&fStack_30,1,2,3);
           }
           else {
-            FUN_0018b080(param_1,psVar14,puVar13,&fStack_30,0,1,3);
+            RoadMesh_Init(param_1,psVar14,puVar13,&fStack_30,0,1,3);
             pfVar9 = pfVar11;
           }
           fVar18 = (fVar21 + pfVar9[1] +
@@ -1417,7 +1434,7 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
         if (fVar19 < 9.0) {
           pfVar15[1] = fVar18;
           if ((int)param_4 != 0) {
-            FUN_0018b710(param_2,puVar13,(int)psVar14 + *(int *)(psVar14 + 0x20),(int)param_4);
+            road_sub_0018b710(param_2,puVar13,(int)psVar14 + *(int *)(psVar14 + 0x20),(int)param_4);
           }
           if (param_5 != 0) {
             uStack_4 = 0x3f800000;
@@ -1434,8 +1451,8 @@ ulong FUN_0018a810(undefined8 param_1,undefined8 param_2,undefined4 param_3,long
 }
 
 // 0x0018b080  size 0xc8
-void FUN_0018b080(undefined8 param_1,int param_2,int param_3,undefined8 param_4,int param_5,
-                 int param_6,int param_7)
+void RoadMesh_Init(undefined8 param_1,int param_2,int param_3,undefined8 param_4,int param_5,
+                  int param_6,int param_7)
 
 {
   undefined4 *puVar1;
@@ -1471,12 +1488,12 @@ void FUN_0018b080(undefined8 param_1,int param_2,int param_3,undefined8 param_4,
   uStack_14 = 0x3f800000;
   uStack_4 = 0x3f800000;
   *(undefined4 *)((int)param_4 + 0xc) = 0x3f800000;
-  FUN_0018b2c0(param_4,&uStack_10,&uStack_20,&uStack_30);
+  road_sub_0018b2c0(param_4,&uStack_10,&uStack_20,&uStack_30);
   return;
 }
 
 // 0x0018b1b0  size 0x2c
-void FUN_0018b1b0(undefined4 *param_1)
+void RoadMesh_Free(undefined4 *param_1)
 
 {
   Mem_Free(*param_1);
@@ -1485,7 +1502,7 @@ void FUN_0018b1b0(undefined4 *param_1)
 }
 
 // 0x0018b1e0  size 0xc8
-undefined8 FUN_0018b1e0(undefined8 param_1,undefined8 param_2)
+undefined8 RoadMesh_Load(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1517,7 +1534,7 @@ undefined8 FUN_0018b1e0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0018b2b0  size 0x10
-void FUN_0018b2b0(undefined4 *param_1)
+void RoadMesh_MarkLoaded(undefined4 *param_1)
 
 {
   *(undefined1 *)(param_1 + 1) = 1;
@@ -1526,7 +1543,7 @@ void FUN_0018b2b0(undefined4 *param_1)
 }
 
 // 0x0018b2c0  size 0xcc
-void FUN_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *param_4)
+void road_sub_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *param_4)
 
 {
   float *pfVar1;
@@ -1544,7 +1561,7 @@ void FUN_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *param_
 }
 
 // 0x0018b390  size 0x1b4
-int FUN_0018b390(int param_1,int param_2,float *param_3,int param_4)
+int road_sub_0018b390(int param_1,int param_2,float *param_3,int param_4)
 
 {
   ushort uVar1;
@@ -1610,7 +1627,7 @@ LAB_0018b508:
 }
 
 // 0x0018b550  size 0x1b4
-bool FUN_0018b550(int *param_1,undefined8 param_2,short *param_3)
+bool road_sub_0018b550(int *param_1,undefined8 param_2,short *param_3)
 
 {
   bool bVar1;
@@ -1630,7 +1647,7 @@ bool FUN_0018b550(int *param_1,undefined8 param_2,short *param_3)
   if (sVar7 < 0) {
     sVar4 = 0;
   }
-  sVar4 = FUN_0018c310(psVar8,sVar4,param_2);
+  sVar4 = Road_PointInCell(psVar8,sVar4,param_2);
   bVar1 = sVar4 != -1;
   if (bVar1) {
     sVar7 = sVar4;
@@ -1642,7 +1659,7 @@ bool FUN_0018b550(int *param_1,undefined8 param_2,short *param_3)
       if (psVar5[2] != -1) {
         sVar2 = psVar5[3];
         psVar3 = *(short **)(*(int *)(*param_1 + 4) + sVar2 * 4);
-        sVar4 = FUN_0018c310(psVar3,psVar5[4],param_2);
+        sVar4 = Road_PointInCell(psVar3,psVar5[4],param_2);
         if (sVar4 != -1) {
           bVar1 = true;
           sVar9 = sVar2;
@@ -1667,7 +1684,7 @@ LAB_0018b604:
 }
 
 // 0x0018b710  size 0x528
-void FUN_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
+void road_sub_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
 
 {
   ushort uVar1;
@@ -1771,7 +1788,7 @@ void FUN_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
 }
 
 // 0x0018bc40  size 0x240
-int FUN_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
+int road_sub_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -1801,10 +1818,10 @@ int FUN_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
     do {
       if (*(short *)(iVar5 + 4) != -1) {
         sVar1 = *(short *)(iVar5 + 6);
-        lVar3 = FUN_0018a1c0(param_3,param_1,sVar1);
+        lVar3 = RoadData_GetSection(param_3,param_1,sVar1);
         if (lVar3 == 0) {
-          lVar3 = FUN_0018c310(*(undefined4 *)(*(int *)(*piVar8 + 4) + sVar1 * 4),0xffffffffffffffff
-                               ,param_1);
+          lVar3 = Road_PointInCell(*(undefined4 *)(*(int *)(*piVar8 + 4) + sVar1 * 4),
+                                   0xffffffffffffffff,param_1);
           if (lVar3 != -1) {
             param_2[1] = (short)lVar3;
             *param_2 = sVar1;
@@ -1838,10 +1855,10 @@ int FUN_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
         } while (iVar7 < iVar6);
       }
       if (bVar2) {
-        lVar4 = FUN_0018a1c0(param_3,param_1,(short)lVar3);
+        lVar4 = RoadData_GetSection(param_3,param_1,(short)lVar3);
         if ((lVar4 == 0) &&
-           (lVar4 = FUN_0018c310(*(undefined4 *)(*(int *)(*piVar8 + 4) + iVar5),0xffffffffffffffff,
-                                 param_1), lVar4 != -1)) {
+           (lVar4 = Road_PointInCell(*(undefined4 *)(*(int *)(*piVar8 + 4) + iVar5),
+                                     0xffffffffffffffff,param_1), lVar4 != -1)) {
           param_2[1] = (short)lVar4;
           iVar10 = 1;
           *param_2 = (short)lVar3;
@@ -1856,7 +1873,7 @@ int FUN_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
 }
 
 // 0x0018be90  size 0x104
-undefined4 FUN_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_3)
+undefined4 road_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -1873,10 +1890,10 @@ undefined4 FUN_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_
   if (0 < *(int *)*piVar2) {
     iVar3 = 0;
     do {
-      lVar1 = FUN_0018a1c0(param_3,param_1,(short)iVar4);
+      lVar1 = RoadData_GetSection(param_3,param_1,(short)iVar4);
       if ((lVar1 == 0) &&
-         (lVar1 = FUN_0018bfa0(*(undefined4 *)(*(int *)(*piVar2 + 4) + iVar3),param_1,&fStack_4),
-         lVar1 != -1)) {
+         (lVar1 = road_sub_0018bfa0(*(undefined4 *)(*(int *)(*piVar2 + 4) + iVar3),param_1,&fStack_4
+                                   ), lVar1 != -1)) {
         param_2[1] = (short)lVar1;
         *param_2 = (short)iVar4;
         uVar5 = 1;
@@ -1894,7 +1911,7 @@ undefined4 FUN_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_
 // 0x0018bfa0  size 0x368
 /* WARNING: Removing unreachable block (ram,0x0018c0d8) */
 
-long FUN_0018bfa0(short *param_1,undefined8 param_2,float *param_3)
+long road_sub_0018bfa0(short *param_1,undefined8 param_2,float *param_3)
 
 {
   ushort *puVar1;
@@ -1986,7 +2003,7 @@ long FUN_0018bfa0(short *param_1,undefined8 param_2,float *param_3)
             lVar19 = lVar15;
             fVar23 = fVar21;
           }
-          lVar4 = FUN_0018c400(iVar17,iVar16,param_2);
+          lVar4 = Road_PointInTriangle(iVar17,iVar16,param_2);
           if (lVar4 != 0) {
             *param_3 = 0.0;
             return lVar15;

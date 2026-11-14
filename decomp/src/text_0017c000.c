@@ -138,37 +138,37 @@ void RaceSetup_FromCareer
   *(undefined1 *)(iRam0036f1d4 + 8) = 0x13;
   *(undefined1 *)(iRam0036f1d4 + 8) = 0xd;
   if (aiStack_e0[2] != 0) goto switchD_0017c3e8_caseD_0;
-  uVar7 = FUN_001d34f0(aiStack_e0,0xf);
-  uVar8 = FUN_001d34f0(aiStack_e0,0x10);
+  uVar7 = CarRec_GetPartSlotB(aiStack_e0,0xf);
+  uVar8 = CarRec_GetPartSlotB(aiStack_e0,0x10);
   switch(param_3) {
   case '\x01':
   case '\x04':
     if ((uVar17 == 7) || (uVar17 == 4)) {
-      FUN_001d2150(uVar7,0x9d);
-      FUN_001d2150(uVar8,0x9d);
+      CarRec_SetModelAndColor(uVar7,0x9d);
+      CarRec_SetModelAndColor(uVar8,0x9d);
     }
     else {
-      FUN_001d2150(uVar7,0x98);
-      FUN_001d2150(uVar8,0x98);
+      CarRec_SetModelAndColor(uVar7,0x98);
+      CarRec_SetModelAndColor(uVar8,0x98);
     }
     break;
   case '\x02':
   case '\x05':
-    FUN_001d2150(uVar7,0x9d);
-    FUN_001d2150(uVar8,0x9d);
+    CarRec_SetModelAndColor(uVar7,0x9d);
+    CarRec_SetModelAndColor(uVar8,0x9d);
     break;
   case '\x03':
-    FUN_001d2150(uVar7,0x98);
-    FUN_001d2150(uVar8,0x98);
+    CarRec_SetModelAndColor(uVar7,0x98);
+    CarRec_SetModelAndColor(uVar8,0x98);
     goto LAB_0017c464;
   }
 switchD_0017c3e8_caseD_0:
 LAB_0017c464:
-  FUN_001d3120(aiStack_e0,auStack_280);
+  CarRec_Copy(aiStack_e0,auStack_280);
   auStack_280[0] = 1;
   uStack_27c = 0x89;
   uStack_278 = 0;
-  FUN_001d2180(auStack_280,param_7);
+  CarRec_SetMileage(auStack_280,param_7);
   uVar6 = uStack_270;
   uVar5 = uStack_277;
   uVar4 = uStack_278;
@@ -244,37 +244,37 @@ LAB_0017c464:
     puVar12 = puVar12 + 2;
   } while (0 < iVar10);
   if (iStack_1a8 == 0) {
-    uVar7 = FUN_001d34f0(aiStack_e0,0xf);
-    uVar8 = FUN_001d34f0(aiStack_e0,0x10);
+    uVar7 = CarRec_GetPartSlotB(aiStack_e0,0xf);
+    uVar8 = CarRec_GetPartSlotB(aiStack_e0,0x10);
     switch(param_3) {
     case '\x01':
     case '\x04':
       if ((uVar17 == 7) || (uVar17 == 4)) {
-        FUN_001d2150(uVar7,0x9d);
-        FUN_001d2150(uVar8,0x9d);
+        CarRec_SetModelAndColor(uVar7,0x9d);
+        CarRec_SetModelAndColor(uVar8,0x9d);
       }
       else {
-        FUN_001d2150(uVar7,0x98);
-        FUN_001d2150(uVar8,0x98);
+        CarRec_SetModelAndColor(uVar7,0x98);
+        CarRec_SetModelAndColor(uVar8,0x98);
       }
       break;
     case '\x02':
     case '\x05':
-      FUN_001d2150(uVar7,0x9d);
-      FUN_001d2150(uVar8,0x9d);
+      CarRec_SetModelAndColor(uVar7,0x9d);
+      CarRec_SetModelAndColor(uVar8,0x9d);
       break;
     case '\x03':
-      FUN_001d2150(uVar7,0x98);
-      FUN_001d2150(uVar8,0x98);
+      CarRec_SetModelAndColor(uVar7,0x98);
+      CarRec_SetModelAndColor(uVar8,0x98);
       goto LAB_0017c704;
     }
   }
 LAB_0017c704:
-  FUN_001d3120(auStack_1b0,auStack_280);
+  CarRec_Copy(auStack_1b0,auStack_280);
   uStack_27c = 0x91;
   auStack_280[0] = 1;
   uStack_278 = 1;
-  FUN_001d2180(auStack_280,param_9);
+  CarRec_SetMileage(auStack_280,param_9);
   uVar4 = uStack_278;
   uVar2 = uStack_27c;
   uVar3 = auStack_280[0];
@@ -346,7 +346,7 @@ LAB_0017c704:
     uVar7 = 9;
   }
   RaceParams_SetDefaults(&uStack_2d0);
-  uStack_2cf = FUN_001bff70(param_2,uVar8,uVar7,&uStack_4,&uStack_8);
+  uStack_2cf = garage_sub_001bff70(param_2,uVar8,uVar7,&uStack_4,&uStack_8);
   uStack_2d0 = (undefined1)param_2;
   uStack_2c8 = 0;
   uStack_2c4 = uStack_4;
@@ -459,42 +459,42 @@ void RaceSetup_FromQuickRace
   *(char *)(iGpffff8ae4 + 8) = param_1;
   if (iStack_d8 == 0) {
     sVar14 = 0;
-    uVar5 = FUN_001d34f0(auStack_e0,0xf);
-    uVar6 = FUN_001d34f0(auStack_e0,0x10);
+    uVar5 = CarRec_GetPartSlotB(auStack_e0,0xf);
+    uVar6 = CarRec_GetPartSlotB(auStack_e0,0x10);
     if (param_1 == '\x0f') {
       sVar14 = 4;
     }
     switch(param_4) {
     case '\0':
-      FUN_001d2150(uVar5,sVar14 + 0x8d);
-      FUN_001d2150(uVar6,sVar14 + 0x8d);
+      CarRec_SetModelAndColor(uVar5,sVar14 + 0x8d);
+      CarRec_SetModelAndColor(uVar6,sVar14 + 0x8d);
       break;
     case '\x01':
     case '\x04':
       if ((uVar13 == 7) || (uVar13 == 4)) {
-        FUN_001d2150(uVar5,sVar14 + 0x9d);
-        FUN_001d2150(uVar6,sVar14 + 0x9d);
+        CarRec_SetModelAndColor(uVar5,sVar14 + 0x9d);
+        CarRec_SetModelAndColor(uVar6,sVar14 + 0x9d);
       }
       else {
-        FUN_001d2150(uVar5,sVar14 + 0x98);
-        FUN_001d2150(uVar6,sVar14 + 0x98);
+        CarRec_SetModelAndColor(uVar5,sVar14 + 0x98);
+        CarRec_SetModelAndColor(uVar6,sVar14 + 0x98);
       }
       break;
     case '\x02':
     case '\x05':
-      FUN_001d2150(uVar5,sVar14 + 0x9d);
-      FUN_001d2150(uVar6,sVar14 + 0x9d);
+      CarRec_SetModelAndColor(uVar5,sVar14 + 0x9d);
+      CarRec_SetModelAndColor(uVar6,sVar14 + 0x9d);
       break;
     case '\x03':
-      FUN_001d2150(uVar5,sVar14 + 0x98);
-      FUN_001d2150(uVar6,sVar14 + 0x98);
+      CarRec_SetModelAndColor(uVar5,sVar14 + 0x98);
+      CarRec_SetModelAndColor(uVar6,sVar14 + 0x98);
     }
   }
-  FUN_001d3120(auStack_e0,auStack_1b0);
+  CarRec_Copy(auStack_e0,auStack_1b0);
   uStack_1a8 = 0;
   uStack_1ac = 0x89;
   auStack_1b0[0] = param_8;
-  FUN_001d2180(auStack_1b0,param_2);
+  CarRec_SetMileage(auStack_1b0,param_2);
   uVar4 = uStack_1a8;
   uVar2 = uStack_1ac;
   uVar3 = auStack_1b0[0];
@@ -568,7 +568,7 @@ void RaceSetup_FromQuickRace
     uVar5 = 9;
   }
   RaceParams_SetDefaults(&uStack_200);
-  uStack_1ff = FUN_001bff70(param_3,uVar6,uVar5,&uStack_4,&uStack_8);
+  uStack_1ff = garage_sub_001bff70(param_3,uVar6,uVar5,&uStack_4,&uStack_8);
   uStack_200 = (undefined1)param_3;
   uStack_1f8 = 0;
   uStack_1f4 = uStack_4;
@@ -875,8 +875,8 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
   *(undefined1 *)(iGpffff8ae4 + 8) = 0x13;
   *(undefined1 *)(iGpffff8ae4 + 8) = param_1;
   if (param_3 == -1) {
-    uVar8 = FUN_001c1890(0);
-    FUN_001bc410(&uStack_640,uVar8);
+    uVar8 = Profile_Get(0);
+    garage_sub_001bc410(&uStack_640,uVar8);
     puVar12 = auStack_62c;
     puVar10 = auStack_19c;
     iVar9 = 0x17;
@@ -927,9 +927,9 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
     uStack_e8 = uStack_578;
   }
   else {
-    uVar8 = FUN_001c1890(0);
-    uVar8 = FUN_001b8ec0(uVar8,param_3);
-    FUN_001d2e00(&uStack_570,uVar8,0);
+    uVar8 = Profile_Get(0);
+    uVar8 = Garage_GetPartSlot(uVar8,param_3);
+    CarRec_InstallPart(&uStack_570,uVar8,0);
     puVar12 = auStack_55c;
     puVar10 = auStack_19c;
     iVar9 = 0x17;
@@ -980,11 +980,11 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
     uStack_e8 = uStack_4a8;
     GameState_Set_3a48(param_3);
   }
-  FUN_001d3120(&uStack_1b0,auStack_e0);
+  CarRec_Copy(&uStack_1b0,auStack_e0);
   auStack_e0[0] = 1;
   uStack_dc = 0x89;
   uStack_d8 = 0;
-  FUN_001d2180(auStack_e0,param_2);
+  CarRec_SetMileage(auStack_e0,param_2);
   uVar4 = uStack_d8;
   uVar2 = uStack_dc;
   uVar3 = auStack_e0[0];
@@ -1059,7 +1059,7 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
       GameState_Set_354(param_12);
     }
     RaceParams_SetDefaults(&uStack_4a0);
-    uStack_49f = FUN_001bff70(param_4,param_8,param_9,&uStack_c,&uStack_10);
+    uStack_49f = garage_sub_001bff70(param_4,param_8,param_9,&uStack_c,&uStack_10);
     uStack_494 = uStack_c;
     uStack_490 = uStack_10;
     uStack_4a0 = (char)param_4;
@@ -1070,7 +1070,7 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
   }
   else {
     if (param_10 == 0) {
-      FUN_001b55b0(&uStack_7c0,(short)param_11);
+      RivalDb_Copy(&uStack_7c0,(short)param_11);
       puVar15 = auStack_77c;
       puVar11 = auStack_2ec;
       iVar9 = 0x17;
@@ -1136,8 +1136,8 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
       uStack_1b8 = uStack_648;
       uStack_1cc = uStack_65c;
       if (cStack_7bc == '\v') {
-        uVar7 = FUN_001b4970(&uStack_330);
-        FUN_001b7e20(auStack_890,(char)uVar7,param_5);
+        uVar7 = RivalRec_GetCourse(&uStack_330);
+        Opponent_BuildFromTeam(auStack_890,(char)uVar7,param_5);
         puVar18 = auStack_3ec;
         auStack_400[0] = auStack_890[0];
         uStack_3fc = uStack_88c;
@@ -1193,7 +1193,7 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
         uStack_3fc = 0x89;
         uStack_338 = uStack_7c8;
         uStack_33c = uStack_7cc;
-        FUN_001d2180(auStack_400,param_2);
+        CarRec_SetMileage(auStack_400,param_2);
         uVar6 = uStack_3f0;
         uVar5 = uStack_3f7;
         uVar4 = uStack_3f8;
@@ -1273,7 +1273,7 @@ void RaceSetup_Build(undefined1 param_1,undefined8 param_2,char param_3,ulong pa
       RaceResult_Compute(param_11);
     }
     RaceParams_SetDefaults(&uStack_450);
-    uStack_44f = FUN_001bff70(param_4,param_8,param_9,&uStack_4,&uStack_8);
+    uStack_44f = garage_sub_001bff70(param_4,param_8,param_9,&uStack_4,&uStack_8);
     uStack_444 = uStack_4;
     uStack_440 = uStack_8;
     uStack_450 = (char)param_4;
@@ -1334,21 +1334,21 @@ int Ranking_ComputePlayerRank(void)
   int iVar18;
   
   pbVar8 = (byte *)GameState_Elem_f0_xcc(0);
-  iVar9 = FUN_001dc240(0);
-  uVar15 = FUN_001dc220(0);
+  iVar9 = RaceProg_GetArray_34(0);
+  uVar15 = RaceProg_GetArray_40(0);
   iVar17 = iGpffff8af0;
   bVar3 = *pbVar8;
   uVar10 = GameState_Get_1();
-  bVar5 = FUN_001777b0();
+  bVar5 = GameState_Get_0();
   uVar6 = GameState_Get_2();
   uVar7 = GameState_Get_3();
   sVar4 = *(short *)(pbVar8 + 0xc);
-  iVar11 = FUN_001dccc0(uVar15);
-  iVar12 = FUN_001e0530(iVar9);
+  iVar11 = LapTime_GetBest(uVar15);
+  iVar12 = SpGauge_GetValue(iVar9);
   if (bVar5 == 8) {
     return -1;
   }
-  iVar13 = FUN_001dc200(0);
+  iVar13 = RaceProg_GetArray_1c(0);
   piVar16 = (int *)(iVar17 + (uint)bVar3 * 0x2fd0 + (uVar10 & 0xff) * 0x17e8 + (uint)bVar5 * 0x2a8);
   iVar17 = 0;
   piVar14 = piVar16;
@@ -1446,20 +1446,20 @@ int Ranking_FindBestRival(void)
   
   iVar14 = -1;
   pbVar6 = (byte *)GameState_Elem_f0_xcc(0);
-  iVar7 = FUN_001dc220(0);
+  iVar7 = RaceProg_GetArray_40(0);
   bVar1 = *pbVar6;
   iVar15 = iGpffff8af0 + 0x5fa0;
   uVar8 = GameState_Get_1();
-  bVar3 = FUN_001777b0();
+  bVar3 = GameState_Get_0();
   uVar4 = GameState_Get_2();
   uVar5 = GameState_Get_3();
   sVar2 = *(short *)(pbVar6 + 0xc);
-  iVar9 = FUN_001dccc0(iVar7);
+  iVar9 = LapTime_GetBest(iVar7);
   if (bVar3 == 8) {
     iVar14 = -1;
   }
   else if (iVar9 != 0) {
-    iVar10 = FUN_001dc200(0);
+    iVar10 = RaceProg_GetArray_1c(0);
     iVar12 = 0;
     piVar11 = (int *)(iVar15 + (uint)bVar1 * 0x1950 + (uVar8 & 0xff) * 0xca8 + (uint)bVar3 * 0x168);
     piVar13 = piVar11;
@@ -1549,7 +1549,7 @@ undefined4 maybe_RaceTbl_GetCount(void)
 }
 
 // 0x0017e200  size 0x8
-undefined4 FUN_0017e200(void)
+undefined4 maybe_RaceTbl_GetCapacity(void)
 
 {
   return uRam0036f1e0;
@@ -1791,12 +1791,12 @@ ulong Race_GetCourseId(char param_1)
       param_1 = pcRam0036f1d4[0x10];
     }
     else {
-      param_1 = FUN_001777b0();
+      param_1 = GameState_Get_0();
     }
   }
   if (*pcRam0036f1d4 == '\x01') {
-    uVar2 = FUN_001c1890(0);
-    uVar1 = FUN_001c16d0(uVar2);
+    uVar2 = Profile_Get(0);
+    uVar1 = Profile_GetDifficulty(uVar2);
   }
   else if (pcRam0036f1d4[8] == '\x13') {
     uVar1 = (ulong)pcRam0036f1d4[0x12];
@@ -1823,8 +1823,8 @@ char Race_GetTimeOfDay(void)
   undefined8 uVar2;
   
   if (*pcRam0036f1d4 == '\x01') {
-    uVar2 = FUN_001c1890(0);
-    cVar1 = FUN_001c16d0(uVar2);
+    uVar2 = Profile_Get(0);
+    cVar1 = Profile_GetDifficulty(uVar2);
   }
   else if (pcRam0036f1d4[8] == '\x13') {
     cVar1 = pcRam0036f1d4[0x12];
@@ -1862,7 +1862,7 @@ undefined1 Race_GetCourseVariant(void)
     uVar1 = *(undefined1 *)(iRam0036f1d4 + 0x10);
   }
   else {
-    uVar1 = FUN_001777b0();
+    uVar1 = GameState_Get_0();
   }
   return uVar1;
 }
@@ -1875,8 +1875,8 @@ char Race_GetWeather(void)
   undefined8 uVar2;
   
   if (*pcRam0036f1d4 == '\x01') {
-    uVar2 = FUN_001c1890(0);
-    cVar1 = FUN_001c16e0(uVar2);
+    uVar2 = Profile_Get(0);
+    cVar1 = Profile_GetChapter(uVar2);
   }
   else if (pcRam0036f1d4[8] == '\x13') {
     cVar1 = pcRam0036f1d4[0x13];
@@ -2484,7 +2484,7 @@ void RaceResult_Compute(int param_1)
   asStack_14[7] = -1;
   do {
     sVar12 = (short)iVar22;
-    FUN_001b55b0(&uStack_490,sVar12);
+    RivalDb_Copy(&uStack_490,sVar12);
     puVar13 = auStack_44c;
     uStack_190 = uStack_490;
     uStack_178 = uStack_478;
@@ -2550,9 +2550,9 @@ void RaceResult_Compute(int param_1)
     uStack_18 = uStack_318;
     uStack_2c = uStack_32c;
     if (sStack_48e == -1) break;
-    sVar7 = FUN_001b4900(&uStack_190);
+    sVar7 = RivalRec_GetId(&uStack_190);
     if ((long)param_1 == (long)sVar7) {
-      cVar6 = FUN_001b4930(&uStack_190);
+      cVar6 = RivalRec_GetTeam(&uStack_190);
       if (cVar6 != '\x01') {
         iVar9 = 0;
         psVar21 = asStack_14 + 2;
@@ -2562,7 +2562,7 @@ LAB_0017f3b8:
           asStack_14[iVar9 + 2] = sVar12;
         }
         else {
-          FUN_001b55b0(&uStack_610);
+          RivalDb_Copy(&uStack_610);
           puVar13 = auStack_5cc;
           uStack_310 = uStack_610;
           uStack_2f8 = uStack_5f8;
@@ -2627,8 +2627,8 @@ LAB_0017f3b8:
           uStack_1a0 = uStack_4a0;
           uStack_19c = uStack_49c;
           uStack_198 = uStack_498;
-          sVar7 = FUN_001b4990(&uStack_310);
-          sVar8 = FUN_001b4990(&uStack_190);
+          sVar7 = RivalRec_GetSubId(&uStack_310);
+          sVar8 = RivalRec_GetSubId(&uStack_190);
           if (sVar7 <= sVar8) goto code_r0x0017f66c;
           iVar10 = 5;
           if (iVar9 < 5) {
@@ -2718,7 +2718,7 @@ LAB_0017f008:
   *(int *)(iGpffff8ab8 + 0xdc) = (int)asStack_14[7];
   do {
     if (asStack_14[iVar9 + 2] == -1) break;
-    FUN_001b55b0(&uStack_790);
+    RivalDb_Copy(&uStack_790);
     puVar13 = auStack_74c;
     uStack_190 = uStack_790;
     uStack_178 = uStack_778;
@@ -2841,24 +2841,24 @@ void RaceResult_Award(void)
       GameState_GetVec3c4(acStack_30);
       cStack_10 = acStack_30[0];
       if (acStack_30[0] == '\x06') {
-        uVar6 = FUN_001c1890(0);
-        FUN_001bc9b0(uVar6,uStack_28,1);
+        uVar6 = Profile_Get(0);
+        garage_sub_001bc9b0(uVar6,uStack_28,1);
       }
       else if (acStack_30[0] == '\x03') {
-        uVar6 = FUN_001c1890(0);
-        FUN_001bc9b0(uVar6,uStack_28,1);
+        uVar6 = Profile_Get(0);
+        garage_sub_001bc9b0(uVar6,uStack_28,1);
       }
       else if ((acStack_30[0] == '\x02') || (acStack_30[0] == '\x01')) {
-        uVar6 = FUN_001c1890(0);
-        FUN_001b9460(uVar6,uStack_2c);
-        uVar6 = FUN_001c1890(0);
-        FUN_001b6800(uVar6,8,0xffffffffffffffff);
+        uVar6 = Profile_Get(0);
+        Garage_InitCarRecord(uVar6,uStack_2c);
+        uVar6 = Profile_Get(0);
+        Career_IsBelowCap(uVar6,8,0xffffffffffffffff);
       }
       else if (acStack_30[0] == '\0') {
-        uVar6 = FUN_001c1890(0);
-        FUN_001bb190(uVar6,(short)uStack_2c);
-        uVar6 = FUN_001c1890(0);
-        FUN_001b6800(uVar6,2,0xffffffffffffffff);
+        uVar6 = Profile_Get(0);
+        garage_sub_001bb190(uVar6,(short)uStack_2c);
+        uVar6 = Profile_Get(0);
+        Career_IsBelowCap(uVar6,2,0xffffffffffffffff);
       }
     }
   }
@@ -2868,89 +2868,89 @@ void RaceResult_Award(void)
     uVar7 = (undefined2)iStack_1c;
     switch(auStack_20[0]) {
     case 0:
-      FUN_001d2150(asStack_4,uVar7);
-      uVar6 = FUN_001c1890(0);
-      FUN_001bb300(uVar6,asStack_4[0]);
-      sVar2 = FUN_001d3970(asStack_4[0]);
+      CarRec_SetModelAndColor(asStack_4,uVar7);
+      uVar6 = Profile_Get(0);
+      garage_sub_001bb300(uVar6,asStack_4[0]);
+      sVar2 = PartDb_GetInfo(asStack_4[0]);
       lVar8 = (long)sVar2;
       if (lVar8 <= asStack_4[0]) {
         do {
-          uVar6 = FUN_001c1890(0);
-          FUN_001ba220(uVar6,(short)lVar8);
+          uVar6 = Profile_Get(0);
+          Garage_MarkDirty(uVar6,(short)lVar8);
           lVar8 = (long)((int)lVar8 + 1);
         } while (lVar8 <= asStack_4[0]);
       }
-      uVar6 = FUN_001c1890(0);
-      FUN_001b6800(uVar6,1,0xffffffffffffffff);
+      uVar6 = Profile_Get(0);
+      Career_IsBelowCap(uVar6,1,0xffffffffffffffff);
       break;
     case 1:
-      FUN_001b55b0(auStack_280,uVar7);
-      FUN_001b55b0(auStack_400,uVar7);
-      uVar6 = FUN_001c1890(0);
-      uVar6 = FUN_001c1820(uVar6);
-      FUN_001d3020(auStack_100,uStack_278,uStack_3f4,1,uVar6);
-      uVar6 = FUN_001c1890(0);
-      FUN_001b9a70(uVar6,auStack_100);
-      uVar6 = FUN_001c1890(0);
-      FUN_001b6800(uVar6,4,0xffffffffffffffff);
+      RivalDb_Copy(auStack_280,uVar7);
+      RivalDb_Copy(auStack_400,uVar7);
+      uVar6 = Profile_Get(0);
+      uVar6 = Profile_GetDay(uVar6);
+      CarRec_Build(auStack_100,uStack_278,uStack_3f4,1,uVar6);
+      uVar6 = Profile_Get(0);
+      Garage_ResetCarRecord(uVar6,auStack_100);
+      uVar6 = Profile_Get(0);
+      Career_IsBelowCap(uVar6,4,0xffffffffffffffff);
       break;
     case 2:
     case 4:
       break;
     case 3:
-      uVar6 = FUN_001c1890(0);
-      FUN_001bca50(uVar6,uStack_18,1);
+      uVar6 = Profile_Get(0);
+      garage_sub_001bca50(uVar6,uStack_18,1);
       if (iStack_1c == -1) {
         return;
       }
-      uVar6 = FUN_001c1890(0);
+      uVar6 = Profile_Get(0);
       iVar9 = GameState_Ptr_48();
-      sVar2 = FUN_001c0890(uVar6,*(undefined4 *)(iVar9 + 0x80));
+      sVar2 = profile_sub_001c0890(uVar6,*(undefined4 *)(iVar9 + 0x80));
       if (1 < sVar2) {
         return;
       }
-      piVar3 = (int *)FUN_00209240(iStack_1c);
+      piVar3 = (int *)GameDb_GetEncounter(iStack_1c);
       iVar9 = 0;
       do {
         iVar1 = *piVar3;
         if (-1 < iVar1) {
-          uVar6 = FUN_001c1890(0);
-          FUN_001c1670(uVar6,iVar1);
+          uVar6 = Profile_Get(0);
+          profile_sub_001c1670(uVar6,iVar1);
         }
         iVar9 = iVar9 + 1;
         piVar3 = piVar3 + 1;
       } while (iVar9 < 3);
       break;
     case 5:
-      uVar6 = FUN_001c1890(0);
-      uVar5 = FUN_001c1890(0);
-      uVar5 = FUN_001c1800(uVar5);
-      FUN_001c16a0(uVar6,iStack_1c,uVar5);
+      uVar6 = Profile_Get(0);
+      uVar5 = Profile_Get(0);
+      uVar5 = Profile_GetDayClamped(uVar5);
+      profile_sub_001c16a0(uVar6,iStack_1c,uVar5);
       break;
     case 6:
-      piVar3 = (int *)FUN_00209240(iStack_1c);
+      piVar3 = (int *)GameDb_GetEncounter(iStack_1c);
       iVar9 = 0;
       do {
         iVar1 = *piVar3;
         if (-1 < iVar1) {
-          uVar6 = FUN_001c1890(0);
-          FUN_001c1670(uVar6,iVar1);
+          uVar6 = Profile_Get(0);
+          profile_sub_001c1670(uVar6,iVar1);
         }
         iVar9 = iVar9 + 1;
         piVar3 = piVar3 + 1;
       } while (iVar9 < 3);
       break;
     case 7:
-      uVar6 = FUN_001c1890(0);
-      FUN_001c1620(uVar6,iStack_1c);
-      uVar6 = FUN_001c1890(0);
-      FUN_001bca50(uVar6,uStack_18,1);
+      uVar6 = Profile_Get(0);
+      Profile_AddMoney(uVar6,iStack_1c);
+      uVar6 = Profile_Get(0);
+      garage_sub_001bca50(uVar6,uStack_18,1);
       break;
     case 8:
-      uVar6 = FUN_001c1890(0);
-      uVar5 = FUN_001c1890(0);
-      uVar5 = FUN_001c1820(uVar5);
-      FUN_001c1690(uVar6,iStack_1c,uVar5);
+      uVar6 = Profile_Get(0);
+      uVar5 = Profile_Get(0);
+      uVar5 = Profile_GetDay(uVar5);
+      profile_sub_001c1690(uVar6,iStack_1c,uVar5);
       break;
     default:
       goto switchD_0017f91c_default;
@@ -3018,7 +3018,7 @@ void RaceResult_BuildMessage(undefined4 *param_1,undefined2 param_2)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  FUN_001b55b0(auStack_410);
+  RivalDb_Copy(auStack_410);
   puVar8 = auStack_410;
   puVar7 = auStack_1f0;
   iVar6 = 0x5f;
@@ -3032,14 +3032,14 @@ void RaceResult_BuildMessage(undefined4 *param_1,undefined2 param_2)
   uStack_10 = CONCAT31(uStack_10._1_3_,9);
   uStack_8 = 0;
   if (cStack_1d0 != '\t') {
-    cVar1 = FUN_001b4930(auStack_1f0);
+    cVar1 = RivalRec_GetTeam(auStack_1f0);
     if (cVar1 == '\x01') {
-      uVar5 = FUN_001c1890(0);
-      uVar2 = FUN_001b4900(auStack_1f0);
-      sVar3 = FUN_001c0850(uVar5,uVar2);
+      uVar5 = Profile_Get(0);
+      uVar2 = RivalRec_GetId(auStack_1f0);
+      sVar3 = profile_sub_001c0850(uVar5,uVar2);
       if (sVar3 == 0) {
-        uVar2 = FUN_001b4900(auStack_1f0);
-        FUN_001b0ea0(auStack_460,uVar2);
+        uVar2 = RivalRec_GetId(auStack_1f0);
+        Rival_GetTeamRecord(auStack_460,uVar2);
         puVar8 = auStack_460;
         puVar7 = auStack_240;
         iVar6 = 0x11;
@@ -3049,16 +3049,16 @@ void RaceResult_BuildMessage(undefined4 *param_1,undefined2 param_2)
           puVar8 = puVar8 + 1;
           puVar7 = puVar7 + 1;
         } while (0 < iVar6);
-        FUN_001bc4d0(auStack_20,auStack_240);
+        garage_sub_001bc4d0(auStack_20,auStack_240);
         uStack_10 = CONCAT31(uStack_10._1_3_,auStack_20[0]);
         uStack_c = uStack_1c;
         uStack_8 = uStack_18;
       }
       else {
-        uVar5 = FUN_001c1890(0);
-        sVar3 = FUN_001c0890(uVar5,param_2);
+        uVar5 = Profile_Get(0);
+        sVar3 = profile_sub_001c0890(uVar5,param_2);
         if (sVar3 == 1) {
-          FUN_001b48e0(auStack_30,auStack_1f0);
+          RivalRec_GetPosition(auStack_30,auStack_1f0);
           uStack_10 = CONCAT31(uStack_10._1_3_,auStack_30[0]);
           uStack_c = uStack_2c;
           uStack_8 = uStack_28;
@@ -3066,21 +3066,21 @@ void RaceResult_BuildMessage(undefined4 *param_1,undefined2 param_2)
       }
     }
     else {
-      lVar4 = FUN_001b4940(auStack_1f0);
+      lVar4 = RivalRec_IsValid(auStack_1f0);
       if (lVar4 == 0) {
-        uVar5 = FUN_001c1890(0);
-        sVar3 = FUN_001c0890(uVar5,param_2);
+        uVar5 = Profile_Get(0);
+        sVar3 = profile_sub_001c0890(uVar5,param_2);
         if (sVar3 == 0) {
-          FUN_001b48e0(auStack_60,auStack_1f0);
+          RivalRec_GetPosition(auStack_60,auStack_1f0);
           uStack_10 = CONCAT31(uStack_10._1_3_,auStack_60[0]);
           uStack_c = uStack_5c;
           uStack_8 = uStack_58;
         }
         else {
-          uVar5 = FUN_001c1890(0);
-          sVar3 = FUN_001c0890(uVar5,param_2);
+          uVar5 = Profile_Get(0);
+          sVar3 = profile_sub_001c0890(uVar5,param_2);
           if (0 < sVar3) {
-            FUN_001b48e0(acStack_70,auStack_1f0);
+            RivalRec_GetPosition(acStack_70,auStack_1f0);
             uStack_10 = CONCAT31(uStack_10._1_3_,acStack_70[0]);
             uStack_8 = uStack_68;
             uStack_c = uStack_6c;
@@ -3093,12 +3093,12 @@ void RaceResult_BuildMessage(undefined4 *param_1,undefined2 param_2)
         }
       }
       else {
-        uVar5 = FUN_001c1890(0);
-        uVar2 = FUN_001b4900(auStack_1f0);
-        sVar3 = FUN_001c0850(uVar5,uVar2);
+        uVar5 = Profile_Get(0);
+        uVar2 = RivalRec_GetId(auStack_1f0);
+        sVar3 = profile_sub_001c0850(uVar5,uVar2);
         if (sVar3 == 0) {
-          uVar2 = FUN_001b4900(auStack_1f0);
-          FUN_001b0ea0(auStack_4b0,uVar2);
+          uVar2 = RivalRec_GetId(auStack_1f0);
+          Rival_GetTeamRecord(auStack_4b0,uVar2);
           puVar8 = auStack_4b0;
           puVar7 = auStack_290;
           iVar6 = 0x11;
@@ -3108,21 +3108,21 @@ void RaceResult_BuildMessage(undefined4 *param_1,undefined2 param_2)
             puVar8 = puVar8 + 1;
             puVar7 = puVar7 + 1;
           } while (0 < iVar6);
-          FUN_001bc4d0(auStack_50,auStack_290);
+          garage_sub_001bc4d0(auStack_50,auStack_290);
           uStack_10 = CONCAT31(uStack_10._1_3_,auStack_50[0]);
           uStack_c = uStack_4c;
           uStack_8 = uStack_48;
         }
         else {
-          uVar5 = FUN_001c1890(0);
-          sVar3 = FUN_001c0890(uVar5,param_2);
+          uVar5 = Profile_Get(0);
+          sVar3 = profile_sub_001c0890(uVar5,param_2);
           if (sVar3 == 1) {
-            FUN_001b48e0(auStack_40,auStack_1f0);
+            RivalRec_GetPosition(auStack_40,auStack_1f0);
             uStack_10 = CONCAT31(uStack_10._1_3_,auStack_40[0]);
             uStack_c = uStack_3c;
             uStack_8 = uStack_38;
-            uVar5 = FUN_001c1890(0);
-            sVar3 = FUN_001c0890(uVar5,param_2);
+            uVar5 = Profile_Get(0);
+            sVar3 = profile_sub_001c0890(uVar5,param_2);
             if ((1 < sVar3) && ((char)uStack_10 != '\x03')) {
               uStack_8 = 0;
               uStack_10 = CONCAT31(uStack_10._1_3_,9);

@@ -334,17 +334,17 @@ int Pad_InitState(int param_1)
   uint uVar4;
   uint uVar5;
   
-  FUN_001357d0();
+  Input_InitPorts();
   *(undefined **)(param_1 + 4) = &DAT_0036e100;
-  FUN_001345d0(param_1 + 8,0x18);
+  Gut_HashInit(param_1 + 8,0x18);
   uVar5 = param_1 + 0x1a4;
   do {
-    FUN_00134290(uVar5);
+    maybe_Vec3_SetUp(uVar5);
     uVar5 = uVar5 + 0x10;
     uVar4 = param_1 + 0x324;
   } while (uVar5 < uVar4);
   do {
-    FUN_00134290(uVar4);
+    maybe_Vec3_SetUp(uVar4);
     uVar4 = uVar4 + 0x10;
   } while (uVar4 < param_1 + 900U);
   Input_Clear(param_1 + 8);
@@ -896,7 +896,7 @@ void Mc_Shutdown(void)
 }
 
 // 0x001395e0  size 0x60
-long FUN_001395e0(long param_1,short param_2)
+long Mc_Command_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -940,7 +940,7 @@ void Mc_Init(undefined8 param_1,uint param_2)
 }
 
 // 0x00139730  size 0x38
-undefined8 FUN_00139730(undefined8 param_1)
+undefined8 Mc_Command_ctor(undefined8 param_1)
 
 {
   maybe_ListNode_ctor(param_1,0);
@@ -1386,7 +1386,7 @@ undefined4 Mc_TranslateResult(undefined1 param_1,int param_2)
 }
 
 // 0x00139e20  size 0x60
-long FUN_00139e20(long param_1,short param_2)
+long Mc_Queue_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1400,7 +1400,7 @@ long FUN_00139e20(long param_1,short param_2)
 }
 
 // 0x00139e80  size 0x90
-long FUN_00139e80(long param_1,short param_2)
+long Mc_Manager_dtor(long param_1,short param_2)
 
 {
   int iVar1;
@@ -1888,7 +1888,7 @@ void Movie_Open(uint *param_1,uint *param_2)
 }
 
 // 0x0013ace0  size 0x8
-void FUN_0013ace0(void)
+void Movie_ShutdownNop(void)
 
 {
   return;

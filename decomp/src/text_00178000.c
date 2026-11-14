@@ -152,7 +152,7 @@ void GameState_Alloc(undefined8 param_1)
   *(undefined4 *)(puVar1 + 0xe8) = 0;
   *(undefined4 *)(puVar1 + 0xec) = 1;
   do {
-    FUN_001d2190(puVar4 + 0x10);
+    CarRec_Init(puVar4 + 0x10);
     puVar1 = puRam0036f1a8;
     iVar3 = iVar3 + 1;
     puVar4 = puVar4 + 0xcc;
@@ -231,11 +231,11 @@ void Course_RenderHook(void)
   
   if (*(int *)(iRam0036f1b8 + 0xc) != 0) {
     puVar1 = *(undefined4 **)(*(int *)(iRam0036f1b8 + 0xc) + 0x14);
-    lVar2 = FUN_001a9ef0(0);
+    lVar2 = ResPool_Get(0);
     if (lVar2 != 0) {
       TexSlot_Set(5,9);
       Car_DrawAllEffects();
-      FUN_001a8b40();
+      PtclSys_BeginFrame();
       uRam004301a8 = 0;
       if (uRam004301a4 == 0) {
         uRam004301a0 = *puVar1;
@@ -254,7 +254,7 @@ void Course_UpdateHook(void)
 
 {
   Skid_DrawAll();
-  FUN_001a89b0();
+  PtclSys_UpdateAll();
   return;
 }
 
@@ -513,7 +513,7 @@ void Course_SpawnAmbient(void)
       uGpffff8ad8 = (int)(fVar4 - 2.1474836e+09) | 0x80000000;
     }
   }
-  lVar2 = FUN_001e9010();
+  lVar2 = RaceScene_IsPaused();
   if ((lVar2 == 0) && (iRam0046a59c == 0)) {
     uGpffff8ad8 = uGpffff8ad8 - 1;
   }
@@ -524,7 +524,7 @@ void Course_SpawnAmbient(void)
       if (lVar2 == 0) {
         uVar3 = 0x10;
       }
-      FUN_002062d0(uVar3,0x7f);
+      Se_PlayMenuVol(uVar3,0x7f);
     }
     uVar1 = uGpffff8ad8 * 0x70;
     if ((int)uVar1 < 0) {
@@ -659,7 +659,7 @@ void Course_UpdateEnvironment(void)
         vu0math_sub_001328b0(afStack_540,afStack_510);
         vu0math_sub_00132a90(afStack_540,&uStack_530,afStack_540);
         vu0math_sub_001328b0(afStack_540,afStack_540);
-        lVar3 = FUN_001e9010();
+        lVar3 = RaceScene_IsPaused();
         if (((lVar3 == 0) && (iRam0046a59c == 0)) && (uRam004301c4 = 0xc, cRam004301c0 == '\x01')) {
           fVar13 = (float)maybe_Rand_Next(0x3f800000,0x41400000);
           if (fVar13 < 2.1474836e+09) {
@@ -677,7 +677,7 @@ void Course_UpdateEnvironment(void)
           do {
             iVar11 = iVar8 + 0x10;
             iVar4 = iVar8 + 0x20;
-            lVar3 = FUN_001e9010();
+            lVar3 = RaceScene_IsPaused();
             if ((lVar3 == 0) && (iRam0046a59c == 0)) {
               fVar13 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
               fVar14 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
@@ -769,7 +769,7 @@ void Course_UpdateEnvironment(void)
           vu0math_sub_001328b0(afStack_4a0,afStack_470);
           vu0math_sub_00132a90(afStack_4a0,&uStack_490,afStack_4a0);
           vu0math_sub_001328b0(afStack_4a0,afStack_4a0);
-          lVar3 = FUN_001e9010();
+          lVar3 = RaceScene_IsPaused();
           if (((lVar3 == 0) && (iRam0046a59c == 0)) && (uRam004301c4 = 6, cRam004301c0 == '\x01')) {
             fVar13 = (float)maybe_Rand_Next(0x3f800000,0x40c00000);
             if (fVar13 < 2.1474836e+09) {
@@ -789,7 +789,7 @@ void Course_UpdateEnvironment(void)
               iVar4 = (uVar7 + iVar8) * 0x20;
               iVar11 = iVar4 + 0x4301d0;
               iVar4 = iVar4 + 0x4301e0;
-              lVar3 = FUN_001e9010();
+              lVar3 = RaceScene_IsPaused();
               if ((lVar3 == 0) && (iRam0046a59c == 0)) {
                 fVar13 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
                 fVar14 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
@@ -1573,14 +1573,14 @@ void Skid_UpdateWheel(int param_1,undefined8 param_2,ulong param_3)
     iVar2 = (int)param_3 * 0x20;
     puVar3 = (undefined4 *)(iVar2 + param_1 + 0x130);
     if (*(int *)(iVar2 + param_1 + 0x130) == -1) {
-      lVar1 = FUN_001a8810(0x30b7f8);
+      lVar1 = PtclSys_Create(0x30b7f8);
       *puVar3 = (int)lVar1;
       if (lVar1 == -1) {
         return;
       }
     }
     *(undefined4 *)(iVar2 + param_1 + 0x134) = 1;
-    lVar1 = FUN_001a87a0(*puVar3);
+    lVar1 = PtclSys_Get(*puVar3);
     if (lVar1 == 0) {
       *puVar3 = 0xffffffff;
       *(undefined4 *)(iVar2 + param_1 + 0x134) = 0;
@@ -1609,11 +1609,11 @@ void Skid_EmitPoint(undefined4 param_1,int param_2,ulong param_3,long param_4)
     puVar4 = (undefined4 *)(iVar2 + 0xe0);
     if (*(int *)(iVar2 + 0xe0) == -1) {
       if (param_4 == 0) {
-        lVar1 = FUN_001a8810(0x30b808);
+        lVar1 = PtclSys_Create(0x30b808);
         *puVar4 = (int)lVar1;
       }
       else {
-        lVar1 = FUN_001a8810(0x30b800);
+        lVar1 = PtclSys_Create(0x30b800);
         *puVar4 = (int)lVar1;
       }
       if (lVar1 == -1) {
@@ -1622,7 +1622,7 @@ void Skid_EmitPoint(undefined4 param_1,int param_2,ulong param_3,long param_4)
     }
     iVar3 = iVar3 + param_2;
     *(undefined4 *)(iVar3 + 0xe4) = 1;
-    lVar1 = FUN_001a87a0(*puVar4);
+    lVar1 = PtclSys_Get(*puVar4);
     if (lVar1 == 0) {
       *puVar4 = 0xffffffff;
       *(undefined4 *)(iVar3 + 0xe4) = 0;
@@ -1666,12 +1666,12 @@ void Skid_UpdateCar(undefined4 param_1,undefined4 param_2,int param_3,uint param
   do {
     if (((param_4 & 1 << (uVar3 & 0x1f)) != 0) && (uVar3 < 4)) {
       if (*(int *)(iVar2 + 0x100) == -1) {
-        lVar1 = FUN_001a8810(0x30b7e8);
+        lVar1 = PtclSys_Create(0x30b7e8);
         *(int *)(iVar2 + 0x100) = (int)lVar1;
         if (lVar1 == -1) goto LAB_0017b0f0;
       }
       *(undefined4 *)(iVar2 + 0x104) = 1;
-      lVar1 = FUN_001a87a0(*(undefined4 *)(iVar2 + 0x100));
+      lVar1 = PtclSys_Get(*(undefined4 *)(iVar2 + 0x100));
       if (lVar1 == 0) {
         *(undefined4 *)(iVar2 + 0x100) = 0xffffffff;
         *(undefined4 *)(iVar2 + 0x104) = 0;
@@ -1686,14 +1686,14 @@ LAB_0017b0f0:
     iVar2 = iVar2 + 8;
     if (3 < uVar3) {
       if (*(int *)(param_3 + 0x120) == -1) {
-        lVar1 = FUN_001a8810(0x30b7f0);
+        lVar1 = PtclSys_Create(0x30b7f0);
         *(int *)(param_3 + 0x120) = (int)lVar1;
         if (lVar1 == -1) {
           return;
         }
       }
       *(undefined4 *)(param_3 + 0x124) = 1;
-      lVar1 = FUN_001a87a0(*(undefined4 *)(param_3 + 0x120));
+      lVar1 = PtclSys_Get(*(undefined4 *)(param_3 + 0x120));
       if (lVar1 == 0) {
         *(undefined4 *)(param_3 + 0x120) = 0xffffffff;
         *(undefined4 *)(param_3 + 0x124) = 0;
@@ -1722,12 +1722,12 @@ void Skid_UpdateCarEx(int param_1,uint param_2)
     if ((param_2 & 1 << (uVar3 & 0x1f)) != 0) {
       if (uVar3 < 4) {
         if (*(int *)(iVar2 + 0xc0) == -1) {
-          lVar1 = FUN_001a8810(0x30b7e0);
+          lVar1 = PtclSys_Create(0x30b7e0);
           *(int *)(iVar2 + 0xc0) = (int)lVar1;
           if (lVar1 == -1) goto LAB_0017b220;
         }
         *(undefined4 *)(iVar2 + 0xc4) = 1;
-        lVar1 = FUN_001a87a0(*(undefined4 *)(iVar2 + 0xc0));
+        lVar1 = PtclSys_Get(*(undefined4 *)(iVar2 + 0xc0));
         if (lVar1 == 0) {
           *(undefined4 *)(iVar2 + 0xc0) = 0xffffffff;
           *(undefined4 *)(iVar2 + 0xc4) = 0;
@@ -1759,7 +1759,7 @@ void Skid_ResetCar(int param_1)
   uVar3 = 0;
   iVar2 = param_1;
   do {
-    if ((*(int *)(iVar2 + 0xc0) != -1) && (lVar1 = FUN_001a87a0(), lVar1 == 0)) {
+    if ((*(int *)(iVar2 + 0xc0) != -1) && (lVar1 = PtclSys_Get(), lVar1 == 0)) {
       *(undefined4 *)(iVar2 + 0xc0) = 0xffffffff;
     }
     uVar3 = uVar3 + 1;
@@ -1767,7 +1767,7 @@ void Skid_ResetCar(int param_1)
   } while (uVar3 < 4);
   uVar3 = 0;
   do {
-    if ((*(int *)(param_1 + 0x130) != -1) && (lVar1 = FUN_001a87a0(), lVar1 == 0)) {
+    if ((*(int *)(param_1 + 0x130) != -1) && (lVar1 = PtclSys_Get(), lVar1 == 0)) {
       *(undefined4 *)(param_1 + 0x130) = 0xffffffff;
     }
     uVar3 = uVar3 + 1;
@@ -1807,14 +1807,14 @@ void Skid_Draw(int param_1,undefined8 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  lVar3 = FUN_001ca6b0(param_2);
+  lVar3 = RaceCar_Get(param_2);
   if (lVar3 != 0) {
     uVar9 = 0;
     iVar8 = param_1;
     do {
       iVar1 = (int)lVar3;
       if (*(int *)(iVar8 + 0x130) != -1) {
-        lVar5 = FUN_001a87a0();
+        lVar5 = PtclSys_Get();
         if (lVar5 == 0) {
           *(undefined4 *)(iVar8 + 0x130) = 0xffffffff;
         }
@@ -1853,7 +1853,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
       iVar8 = iVar8 + 0x20;
     } while (uVar9 < 4);
     if (*(int *)(param_1 + 0x120) != -1) {
-      lVar5 = FUN_001a87a0();
+      lVar5 = PtclSys_Get();
       if (lVar5 == 0) {
         *(undefined4 *)(param_1 + 0x120) = 0xffffffff;
       }
@@ -1872,9 +1872,9 @@ void Skid_Draw(int param_1,undefined8 param_2)
     uVar9 = 0;
     iVar8 = param_1;
     do {
-      iVar1 = FUN_001ca740(lVar3,uVar9);
+      iVar1 = RaceCar_GetWheelFx(lVar3,uVar9);
       if (*(int *)(param_1 + 0xc0) != -1) {
-        lVar5 = FUN_001a87a0();
+        lVar5 = PtclSys_Get();
         if (lVar5 == 0) {
           *(undefined4 *)(param_1 + 0xc0) = 0xffffffff;
         }
@@ -1890,7 +1890,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
         }
       }
       if (*(int *)(param_1 + 0xe0) != -1) {
-        lVar5 = FUN_001a87a0();
+        lVar5 = PtclSys_Get();
         if (lVar5 == 0) {
           *(undefined4 *)(param_1 + 0xe0) = 0xffffffff;
         }
@@ -1906,7 +1906,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
         }
       }
       if (*(int *)(param_1 + 0x100) != -1) {
-        lVar5 = FUN_001a87a0();
+        lVar5 = PtclSys_Get();
         if (lVar5 == 0) {
           *(undefined4 *)(param_1 + 0x100) = 0xffffffff;
         }
@@ -2114,9 +2114,9 @@ void Car_DrawAllEffects(void)
   
   uVar3 = 0;
   do {
-    lVar1 = FUN_001a87a0(uVar3);
+    lVar1 = PtclSys_Get(uVar3);
     if (lVar1 != 0) {
-      FUN_001a78a0(lVar1);
+      PtclSys_Draw(lVar1);
     }
     uVar3 = uVar3 + 1;
   } while (uVar3 < 0x3b);
@@ -2160,7 +2160,7 @@ void Skid_ClearAll(void)
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0xb900;
   } while (uVar2 < 3);
-  FUN_001a8890();
+  PtclSys_RemoveAll();
   return;
 }
 
@@ -2173,7 +2173,7 @@ void Skid_Free(void)
   }
   iRam004301b0 = 0;
   uRam004301ac = 0;
-  FUN_001a8b90();
+  PtclSys_Shutdown();
   return;
 }
 
@@ -2184,7 +2184,7 @@ void Skid_Alloc(undefined8 param_1)
   uint uVar1;
   int iVar2;
   
-  FUN_001a8ce0();
+  PtclSys_Init();
   uRam004301ac = 3;
   iRam004301b0 = Mem_Alloc16(0x22b00,param_1);
   uVar1 = 0;
@@ -2208,10 +2208,10 @@ void Race_Shutdown(void)
     Mem_Free();
   }
   GameState_Free();
-  FUN_001c18c0();
-  FUN_001beaf0();
+  Profile_FreeAll();
+  garage_sub_001beaf0();
   RaceTbl_Free();
-  Hud_Free();
+  Options_Free();
   RaceTables_Free();
   Replay_Free();
   return;
@@ -2221,7 +2221,7 @@ void Race_Shutdown(void)
 void Race_Init(undefined8 param_1)
 
 {
-  FUN_001a97d0(1);
+  Render_SetInterlace(1);
   iGpffff8ae4 = Mem_Alloc16(0x18,param_1);
   RaceCtx_SetMode(0);
   RaceCtx_Set_4(0);
@@ -2230,13 +2230,13 @@ void Race_Init(undefined8 param_1)
   RaceCtx_SetDefaults(iGpffff8ae4 + 0x10);
   *(undefined1 *)(iGpffff8ae4 + 0x15) = 1;
   GameState_Alloc(param_1);
-  FUN_001c1b30(param_1);
-  FUN_001c1a20(0,param_1);
-  FUN_001bfe00(param_1);
+  Profile_InitTable(param_1);
+  Profile_Create(0,param_1);
+  garage_sub_001bfe00(param_1);
   RaceTbl_Alloc(param_1);
   Replay_Alloc(param_1);
   RaceTables_Alloc(param_1);
-  Hud_Alloc(param_1);
+  Options_Alloc(param_1);
   return;
 }
 

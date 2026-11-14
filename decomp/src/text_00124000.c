@@ -251,7 +251,7 @@ long libmc_sub_001246e0(undefined4 param_1,undefined4 param_2,long param_3)
 }
 
 // 0x001247f0  size 0x80
-undefined4 newlib_sub_001247f0(long param_1)
+undefined4 maybe_Midi_Init(long param_1)
 
 {
   int iVar1;
@@ -279,7 +279,7 @@ undefined4 newlib_sub_001247f0(long param_1)
 }
 
 // 0x00124880  size 0x94
-undefined4 newlib_sub_00124880(long param_1,uint param_2,undefined1 *param_3,int param_4)
+undefined4 maybe_Midi_GetChannel(long param_1,uint param_2,undefined1 *param_3,int param_4)
 
 {
   undefined1 uVar1;
@@ -309,7 +309,9 @@ undefined4 newlib_sub_00124880(long param_1,uint param_2,undefined1 *param_3,int
 }
 
 // 0x00124918  size 0xb0
-undefined8 newlib_sub_00124918(undefined8 param_1,undefined8 param_2,uint param_3)
+/* status|ch, data bytes; 23 callers */
+
+undefined8 Midi_SendMessage(undefined8 param_1,undefined8 param_2,uint param_3)
 
 {
   uint uVar1;
@@ -350,12 +352,12 @@ LAB_001249b0:
   uVar2 = 3;
 LAB_001249b4:
   auStack_20[0] = param_3;
-  uVar2 = newlib_sub_00124880(param_1,param_2,auStack_20,uVar2);
+  uVar2 = maybe_Midi_GetChannel(param_1,param_2,auStack_20,uVar2);
   return uVar2;
 }
 
 // 0x001249c8  size 0x78
-undefined8 newlib_sub_001249c8(undefined8 param_1,undefined8 param_2,char *param_3,uint param_4)
+undefined8 maybe_Midi_SendSysEx(undefined8 param_1,undefined8 param_2,char *param_3,uint param_4)
 
 {
   char cVar1;
@@ -371,7 +373,7 @@ undefined8 newlib_sub_001249c8(undefined8 param_1,undefined8 param_2,char *param
       if (param_4 < uVar3) goto LAB_00124a34;
       cVar1 = *pcVar4;
     }
-    uVar2 = newlib_sub_00124880();
+    uVar2 = maybe_Midi_GetChannel();
   }
   else {
 LAB_00124a34:
@@ -381,13 +383,13 @@ LAB_00124a34:
 }
 
 // 0x00124a40  size 0x48
-undefined8 newlib_sub_00124a40(undefined8 param_1,undefined8 param_2,char *param_3)
+undefined8 Midi_IsReady(undefined8 param_1,undefined8 param_2,char *param_3)
 
 {
   undefined8 uVar1;
   
   if ((*param_3 == -7) || (uVar1 = 0xffffffffffffffff, *param_3 == -3)) {
-    uVar1 = newlib_sub_00124880();
+    uVar1 = maybe_Midi_GetChannel();
   }
   return uVar1;
 }

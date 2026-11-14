@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001a4760  size 0x3ec
-void FUN_001a4760(void)
+void Course_UpdateFlareOcclusion(void)
 
 {
   bool bVar1;
@@ -74,8 +74,9 @@ void FUN_001a4760(void)
                     if (lVar2 != 0) {
                       iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
                                                (uint)(ushort)puVar8[2] * 2 + 0xb,0);
-                      lVar2 = FUN_0019e0a0(iVar10,iVar6 + (*(ushort *)((int)puVar8 + 10) + 1) * 0x50
-                                                  + 0x10);
+                      lVar2 = Course_GetGroundHeight
+                                        (iVar10,iVar6 + (*(ushort *)((int)puVar8 + 10) + 1) * 0x50 +
+                                                0x10);
                       if (lVar2 != 0) {
                         puVar8[0x10] = puVar8[0x10] | 1 << ((byte)puVar7[2] & 0x1f);
                       }
@@ -130,7 +131,7 @@ void FUN_001a4760(void)
 }
 
 // 0x001a4b60  size 0xc8
-void FUN_001a4b60(void)
+void CourseScene_Unload(void)
 
 {
   uint uVar1;
@@ -157,14 +158,14 @@ void FUN_001a4b60(void)
     iRam00430660 = 0;
   }
   Gfx_AddFrameCallback(0x430644);
-  FUN_001a0860();
+  Course_Unload();
   return;
 }
 
 // 0x001a4c30  size 0x290
 undefined8
-FUN_001a4c30(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,undefined8 param_5,
-            undefined8 param_6,undefined4 param_7,undefined4 param_8)
+CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,undefined8 param_5,
+                undefined8 param_6,undefined4 param_7,undefined4 param_8)
 
 {
   byte bVar1;
@@ -178,7 +179,7 @@ FUN_001a4c30(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,und
   uint uVar9;
   int iVar10;
   
-  uVar5 = FUN_001a0bd0();
+  uVar5 = Course_Load();
   iRam00430640 = Mem_Alloc16(uRam004305c4 << 3,param_1);
   uVar9 = 0;
   iVar10 = iRam00430640;
@@ -190,7 +191,7 @@ FUN_001a4c30(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,und
       iVar10 = iVar10 + 8;
     } while (uVar9 < uRam004305c4);
   }
-  pcRam0043064c = FUN_001a23c0;
+  pcRam0043064c = Course_CaptureReflection;
   uRam00430650 = 0x430640;
   Gfx_RemoveFrameCallback(0x430644);
   uRam00430654 = 0;
@@ -238,7 +239,7 @@ FUN_001a4c30(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,und
 }
 
 // 0x001a4ed0  size 0x78
-long FUN_001a4ed0(long param_1,short param_2)
+long course_sub_001a4ed0(long param_1,short param_2)
 
 {
   int iVar1;
@@ -257,7 +258,7 @@ long FUN_001a4ed0(long param_1,short param_2)
 }
 
 // 0x001a4f50  size 0x90
-void FUN_001a4f50(uint *param_1,uint param_2)
+void AsyncRes_Poll(uint *param_1,uint param_2)
 
 {
   bool bVar1;
@@ -284,7 +285,7 @@ LAB_001a4f84:
 }
 
 // 0x001a4fe0  size 0x68
-undefined4 FUN_001a4fe0(uint *param_1)
+undefined4 AsyncRes_IsReady(uint *param_1)
 
 {
   long lVar1;
@@ -303,14 +304,14 @@ undefined4 FUN_001a4fe0(uint *param_1)
 }
 
 // 0x001a5050  size 0xc
-int FUN_001a5050(int param_1)
+int Chunk_GetData(int param_1)
 
 {
   return param_1 + *(int *)(param_1 + 8);
 }
 
 // 0x001a5060  size 0xc
-void FUN_001a5060(undefined4 *param_1,undefined4 param_2)
+void Chunk_Init(undefined4 *param_1,undefined4 param_2)
 
 {
   *param_1 = 0;
@@ -319,7 +320,7 @@ void FUN_001a5060(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x001a5070  size 0x54
-int * FUN_001a5070(undefined4 *param_1,int param_2)
+int * Chunk_Find(undefined4 *param_1,int param_2)
 
 {
   int *piVar1;
@@ -336,7 +337,7 @@ int * FUN_001a5070(undefined4 *param_1,int param_2)
 }
 
 // 0x001a50d0  size 0x5c
-int * FUN_001a50d0(undefined4 *param_1,int param_2,int param_3,int *param_4)
+int * Chunk_FindNext(undefined4 *param_1,int param_2,int param_3,int *param_4)
 
 {
   if (param_4 == (int *)0x0) {
@@ -353,14 +354,14 @@ int * FUN_001a50d0(undefined4 *param_1,int param_2,int param_3,int *param_4)
 }
 
 // 0x001a5130  size 0x8
-void FUN_001a5130(void)
+void course_sub_001a5130(void)
 
 {
   return;
 }
 
 // 0x001a5140  size 0xc
-void FUN_001a5140(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
+void Chunk_SetRange(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *param_1 = param_2;
@@ -369,8 +370,8 @@ void FUN_001a5140(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x001a5150  size 0x2e8
-void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param_5,uint param_6,
-                 int param_7,undefined4 *param_8)
+void Res_UploadTexture(int param_1,uint *param_2,long param_3,long param_4,long param_5,uint param_6
+                      ,int param_7,undefined4 *param_8)
 
 {
   bool bVar1;
@@ -442,7 +443,7 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
           uVar7 = *(uint *)uVar4;
           iVar3 = *(int *)(param_1 + 0x1c);
           *(uint *)(param_1 + 0x1c) = iVar3 + (uVar7 + 0xf & 0xfffffff0);
-          uVar4 = FUN_00132560(*(int *)(param_1 + 0x20) + iVar3,uVar4,uVar7 >> 4);
+          uVar4 = Mem_Copy128(*(int *)(param_1 + 0x20) + iVar3,uVar4,uVar7 >> 4);
         }
         bVar1 = true;
         Pkt_AddTextureUpload(param_2 + 2,uVar4,param_2[1],param_2[1]);
@@ -463,7 +464,7 @@ void FUN_001a5150(int param_1,uint *param_2,long param_3,long param_4,long param
 }
 
 // 0x001a5440  size 0xec
-void FUN_001a5440(undefined8 param_1,long param_2)
+void Res_Release(undefined8 param_1,long param_2)
 
 {
   uint *puVar1;
@@ -517,7 +518,7 @@ void FUN_001a5440(undefined8 param_1,long param_2)
 /* WARNING: Removing unreachable block (ram,0x001a5688) */
 /* WARNING: Removing unreachable block (ram,0x001a5718) */
 
-void FUN_001a5530(undefined8 param_1,long param_2,uint param_3,long param_4,long param_5,
+void Res_Relocate(undefined8 param_1,long param_2,uint param_3,long param_4,long param_5,
                  long param_6,long param_7,long param_8)
 
 {
@@ -579,7 +580,7 @@ void FUN_001a5530(undefined8 param_1,long param_2,uint param_3,long param_4,long
 }
 
 // 0x001a5850  size 0x58
-uint * FUN_001a5850(undefined8 param_1,long param_2,long param_3)
+uint * Res_GetSubResource(undefined8 param_1,long param_2,long param_3)
 
 {
   uint *puVar1;
@@ -609,7 +610,7 @@ uint * FUN_001a5850(undefined8 param_1,long param_2,long param_3)
 }
 
 // 0x001a58b0  size 0x98
-int FUN_001a58b0(undefined8 param_1,undefined8 param_2,int param_3)
+int Res_GetModelSize(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   int iVar1;
@@ -632,7 +633,7 @@ int FUN_001a58b0(undefined8 param_1,undefined8 param_2,int param_3)
 }
 
 // 0x001a5950  size 0x60
-void FUN_001a5950(int param_1,undefined8 param_2)
+void Res_CopyModel(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -641,12 +642,14 @@ void FUN_001a5950(int param_1,undefined8 param_2)
   uVar2 = Model_GetHeaderSize(param_2);
   iVar1 = *(int *)(param_1 + 0x1c);
   *(uint *)(param_1 + 0x1c) = iVar1 + (uVar2 + 0xf & 0xfffffff0);
-  FUN_00132560(*(int *)(param_1 + 0x20) + iVar1,param_2,uVar2 >> 4);
+  Mem_Copy128(*(int *)(param_1 + 0x20) + iVar1,param_2,uVar2 >> 4);
   return;
 }
 
 // 0x001a59b0  size 0x24
-int FUN_001a59b0(int param_1,int param_2)
+/* bump allocator, 16-byte aligned */
+
+int Arena_Alloc(int param_1,int param_2)
 
 {
   int iVar1;
@@ -657,7 +660,7 @@ int FUN_001a59b0(int param_1,int param_2)
 }
 
 // 0x001a59e0  size 0x8
-void FUN_001a59e0(int param_1,undefined4 param_2)
+void course_sub_001a59e0(int param_1,undefined4 param_2)
 
 {
   *(undefined4 *)(param_1 + 0x24) = param_2;
@@ -665,14 +668,14 @@ void FUN_001a59e0(int param_1,undefined4 param_2)
 }
 
 // 0x001a59f0  size 0x8
-undefined4 FUN_001a59f0(int param_1)
+undefined4 course_sub_001a59f0(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x24);
 }
 
 // 0x001a5a00  size 0x40
-void FUN_001a5a00(int param_1)
+void course_sub_001a5a00(int param_1)
 
 {
   int iVar1;
@@ -689,7 +692,7 @@ void FUN_001a5a00(int param_1)
 }
 
 // 0x001a5a40  size 0x28
-void FUN_001a5a40(int param_1)
+void course_sub_001a5a40(int param_1)
 
 {
   int iVar1;
@@ -703,7 +706,7 @@ void FUN_001a5a40(int param_1)
 }
 
 // 0x001a5a70  size 0x8
-void FUN_001a5a70(int param_1)
+void course_sub_001a5a70(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0;
@@ -711,7 +714,7 @@ void FUN_001a5a70(int param_1)
 }
 
 // 0x001a5a80  size 0x20
-void FUN_001a5a80(int param_1,undefined4 param_2,uint param_3)
+void course_sub_001a5a80(int param_1,undefined4 param_2,uint param_3)
 
 {
   *(undefined4 *)(param_1 + 0x18) = param_2;
@@ -721,7 +724,7 @@ void FUN_001a5a80(int param_1,undefined4 param_2,uint param_3)
 }
 
 // 0x001a5aa0  size 0x30
-void FUN_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
+void course_sub_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *param_1 = param_2;
@@ -738,7 +741,7 @@ void FUN_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x001a5ad0  size 0x50
-undefined4 FUN_001a5ad0(void)
+undefined4 course_sub_001a5ad0(void)
 
 {
   char cVar1;
@@ -786,8 +789,8 @@ void Game_MainLoop(byte param_1)
     bGpffff8bb8 = bVar1;
     iVar4 = (uint)bGpffff8bb8 * 0x20;
     Gfx_SyncAndFlip();
-    FUN_001a98f0(*(undefined1 *)(iVar4 + 0x3179f4),*(undefined4 *)(&DAT_003179fc + iVar4));
-    FUN_001a9420(iVar4 + 0x3179e0);
+    Render_SetSceneMode(*(undefined1 *)(iVar4 + 0x3179f4),*(undefined4 *)(&DAT_003179fc + iVar4));
+    Render_BeginScene(iVar4 + 0x3179e0);
     Scene_Start(*(undefined4 *)(iVar4 + 0x3179f8));
     Scene_SetResetCheck(0x1a5b30);
     Scene_SetCallback2(0x1a5ad0);
@@ -799,12 +802,12 @@ void Game_MainLoop(byte param_1)
       Pad_Update();
       Wheel_Update();
       iGpffff8b70 = iGpffff8b70 + 1;
-      uVar3 = maybe_Render_GetCurrentList();
-      maybe_Render_Frame(uVar3);
+      uVar3 = SndMgr_GetInstance();
+      SndMgr_Update(uVar3);
       Snd_Update();
     } while (lVar2 == 0);
     bVar1 = Scene_GetNext();
-    FUN_001a93d0();
+    Render_EndScene();
   } while (bVar1 != 6);
   return;
 }
@@ -814,13 +817,13 @@ void Game_Shutdown(void)
 
 {
   Race_Shutdown();
-  FUN_001a8ff0();
-  FUN_001a9a10();
-  thunk_FUN_0013ace0();
-  FUN_00191dd0();
+  Ui_Shutdown();
+  Render_Shutdown();
+  Movie_ShutdownNop();
+  SndMgr_Shutdown();
   maybe_Snd_Shutdown();
   Xvi_Shutdown();
-  FUN_0020a690();
+  SaveMgr_Shutdown();
   Scene_Shutdown();
   maybe_Wheel_Shutdown();
   maybe_Pad_Shutdown();
@@ -866,15 +869,15 @@ void Game_Init(void)
   Pad_Init(0x430750);
   Wheel_Init();
   maybe_Scene_InitHeap(0x430750);
-  FUN_0020a6d0(0x430750);
+  SaveMgr_Init(0x430750);
   maybe_Rand_Seed(0);
   Xvi_LoadIop();
   Snd_Init(0x430750,0x20,iGpffff8bb4 + -1);
-  maybe_Render_Init(0x430750);
+  SndMgr_Init(0x430750);
   Movie_Init();
-  FUN_001a9a40(0x430750);
+  Render_Init(0x430750);
   Race_Init(0x430750);
-  FUN_001a9020(0x430750);
+  Ui_Init(0x430750);
   return;
 }
 
@@ -915,7 +918,7 @@ void maybe_Light_InitDefaults(undefined4 *param_1)
 }
 
 // 0x001a6020  size 0x8
-void FUN_001a6020(int param_1,undefined1 param_2)
+void Light_SetEnabledFlag(int param_1,undefined1 param_2)
 
 {
   *(undefined1 *)(param_1 + 0x170) = param_2;
@@ -923,7 +926,7 @@ void FUN_001a6020(int param_1,undefined1 param_2)
 }
 
 // 0x001a6030  size 0x60
-void FUN_001a6030(undefined4 *param_1,int param_2)
+void Arc_GetEntryInfo(undefined4 *param_1,int param_2)
 
 {
   *param_1 = 0;
@@ -934,7 +937,7 @@ void FUN_001a6030(undefined4 *param_1,int param_2)
 }
 
 // 0x001a6090  size 0x70
-long FUN_001a6090(long param_1,short param_2)
+long PtclSys_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -951,7 +954,7 @@ long FUN_001a6090(long param_1,short param_2)
 }
 
 // 0x001a6110  size 0x188
-void FUN_001a6110(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4)
+void Ptcl_EmitSphereA(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -986,7 +989,7 @@ void FUN_001a6110(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
 }
 
 // 0x001a62a0  size 0x174
-void FUN_001a62a0(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4)
+void Ptcl_EmitSphereB(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -1020,8 +1023,8 @@ void FUN_001a62a0(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
 }
 
 // 0x001a6420  size 0xf0
-void FUN_001a6420(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                 undefined4 *param_5)
+void Ptcl_RandomVelocity(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
+                        undefined4 *param_5)
 
 {
   float fVar1;
@@ -1043,8 +1046,8 @@ void FUN_001a6420(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
 }
 
 // 0x001a6510  size 0xe4
-void FUN_001a6510(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5)
+void Ptcl_EmitSmoke(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                   undefined8 param_5)
 
 {
   int iVar1;
@@ -1058,13 +1061,13 @@ void FUN_001a6510(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   uStack_8 = maybe_Rand_Next(-*(float *)(iVar1 + 0x1c) * 0.5,*(float *)(iVar1 + 0x1c) * 0.5);
   vu0math_sub_00132b70(param_3,param_3,&uStack_10);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
-  FUN_001a6420(param_1,param_2,param_3,param_4,&uStack_10,param_5);
+  Ptcl_RandomVelocity(param_1,param_2,param_3,param_4,&uStack_10,param_5);
   return;
 }
 
 // 0x001a6600  size 0x1a8
-void FUN_001a6600(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5)
+void Ptcl_EmitDust(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                  undefined8 param_5)
 
 {
   int iVar1;
@@ -1091,13 +1094,13 @@ void FUN_001a6600(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   afStack_20[(int)(uVar3 + 2) % 3] = fVar2;
   vu0math_sub_00132b70(param_3,param_3,afStack_20);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
-  FUN_001a6420(param_1,param_2,param_3,param_4,afStack_20,param_5);
+  Ptcl_RandomVelocity(param_1,param_2,param_3,param_4,afStack_20,param_5);
   return;
 }
 
 // 0x001a67b0  size 0x1e8
-void FUN_001a67b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5)
+void Ptcl_EmitSparks(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                    undefined8 param_5)
 
 {
   int iVar1;
@@ -1134,12 +1137,13 @@ void FUN_001a67b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   afStack_10[(int)(uVar3 + 2) % 3] = fVar2;
   vu0math_sub_00132b70(param_3,param_3,afStack_10);
   *(undefined4 *)((int)param_3 + 0xc) = 0x3f800000;
-  FUN_001a6420(param_1,param_2,param_3,param_4,afStack_10,param_5);
+  Ptcl_RandomVelocity(param_1,param_2,param_3,param_4,afStack_10,param_5);
   return;
 }
 
 // 0x001a69a0  size 0x1ac
-void FUN_001a69a0(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,long param_5)
+void Ptcl_EmitConeA(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
+                   long param_5)
 
 {
   float fVar1;
@@ -1177,8 +1181,8 @@ void FUN_001a69a0(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
 }
 
 // 0x001a6b50  size 0x170
-void FUN_001a6b50(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 long param_5)
+void Ptcl_EmitRing(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                  long param_5)
 
 {
   float *pfVar1;
@@ -1207,13 +1211,13 @@ void FUN_001a6b50(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   *pfVar1 = *pfVar1 + fStack_10;
   pfVar1[1] = pfVar1[1] + fStack_c;
   pfVar1[2] = pfVar1[2] + fStack_8;
-  FUN_001a69a0(param_1,param_2,param_3,param_4,param_5);
+  Ptcl_EmitConeA(param_1,param_2,param_3,param_4,param_5);
   return;
 }
 
 // 0x001a6cc0  size 0x160
-void FUN_001a6cc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 long param_5)
+void Ptcl_EmitRingB(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                   long param_5)
 
 {
   float *pfVar1;
@@ -1240,12 +1244,13 @@ void FUN_001a6cc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   *pfVar1 = *pfVar1 + fStack_10;
   pfVar1[1] = pfVar1[1] + fStack_c;
   pfVar1[2] = pfVar1[2] + fStack_8;
-  FUN_001a69a0(param_1,param_2,param_3,param_4,param_5);
+  Ptcl_EmitConeA(param_1,param_2,param_3,param_4,param_5);
   return;
 }
 
 // 0x001a6e20  size 0x1ac
-void FUN_001a6e20(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,long param_5)
+void Ptcl_EmitConeB(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
+                   long param_5)
 
 {
   float fVar1;
@@ -1283,8 +1288,8 @@ void FUN_001a6e20(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
 }
 
 // 0x001a6fd0  size 0x138
-void FUN_001a6fd0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 long param_5)
+void Ptcl_EmitExhaust(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                     long param_5)
 
 {
   float *pfVar1;
@@ -1309,13 +1314,13 @@ void FUN_001a6fd0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   *pfVar1 = *pfVar1 + fStack_10;
   pfVar1[1] = pfVar1[1] + fStack_c;
   pfVar1[2] = pfVar1[2] + fStack_8;
-  FUN_001a6e20(param_1,param_2,param_3,param_4,param_5);
+  Ptcl_EmitConeB(param_1,param_2,param_3,param_4,param_5);
   return;
 }
 
 // 0x001a7110  size 0x1ac
-void FUN_001a7110(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 long param_5)
+void Ptcl_EmitBackfire(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                      long param_5)
 
 {
   float *pfVar1;
@@ -1346,12 +1351,13 @@ void FUN_001a7110(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   *pfVar1 = *pfVar1 + afStack_20[0];
   pfVar1[1] = pfVar1[1] + afStack_20[1];
   pfVar1[2] = pfVar1[2] + afStack_20[2];
-  FUN_001a6e20(param_1,param_2,param_3,param_4,param_5);
+  Ptcl_EmitConeB(param_1,param_2,param_3,param_4,param_5);
   return;
 }
 
 // 0x001a72c0  size 0x1b0
-void FUN_001a72c0(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,long param_5)
+void Ptcl_EmitConeC(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
+                   long param_5)
 
 {
   float fVar1;
@@ -1393,7 +1399,7 @@ void FUN_001a72c0(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
 /* WARNING: Removing unreachable block (ram,0x001a7660) */
 /* WARNING: Removing unreachable block (ram,0x001a7690) */
 
-void FUN_001a7470(int param_1,undefined8 param_2,undefined8 param_3,long param_4)
+void Ptcl_Spawn(int param_1,undefined8 param_2,undefined8 param_3,long param_4)
 
 {
   float *pfVar1;
@@ -1447,8 +1453,8 @@ void FUN_001a7470(int param_1,undefined8 param_2,undefined8 param_3,long param_4
   fStack_8c = pfVar1[0x21];
   fStack_88 = pfVar1[0x22];
   fStack_84 = pfVar1[0x23];
-  pcVar2 = (code *)(&PTR_FUN_00317dd0)[((uint)fStack_a0 & 0xff) * 3 + ((uint)fStack_a0 >> 8 & 0xff)]
-  ;
+  pcVar2 = (code *)(&PTR_Ptcl_EmitConeC_00317dd0)
+                   [((uint)fStack_a0 & 0xff) * 3 + ((uint)fStack_a0 >> 8 & 0xff)];
   fStack_80 = pfVar1[0x24];
   fStack_7c = pfVar1[0x25];
   fStack_78 = pfVar1[0x26];
@@ -1502,7 +1508,9 @@ void FUN_001a7470(int param_1,undefined8 param_2,undefined8 param_3,long param_4
 }
 
 // 0x001a7770  size 0x128
-void FUN_001a7770(undefined8 param_1)
+/* "particle Error!" */
+
+void Ptcl_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1534,7 +1542,7 @@ void FUN_001a7770(undefined8 param_1)
       maybe_List_Append(0x4307a0,iRam004307ac);
       maybe_List_Remove(param_1,iVar1);
       *(int *)(iVar1 + 0x9c) = iVar2;
-      FUN_001a7470(iVar1,iVar2 + 0xc0,iVar2 + 0xd0,*(undefined4 *)(iVar2 + 0x114));
+      Ptcl_Spawn(iVar1,iVar2 + 0xc0,iVar2 + 0xd0,*(undefined4 *)(iVar2 + 0x114));
       uVar3 = uVar3 + 1;
       *(float *)(iVar2 + 0x118) = *(float *)(iVar2 + 0x118) - 1.0;
       *(int *)(iVar2 + 0x8c) = *(int *)(iVar2 + 0x8c) + 1;
@@ -1545,7 +1553,7 @@ void FUN_001a7770(undefined8 param_1)
 }
 
 // 0x001a78a0  size 0x194
-void FUN_001a78a0(int param_1)
+void PtclSys_Draw(int param_1)
 
 {
   uint uVar1;
@@ -1588,7 +1596,7 @@ void FUN_001a78a0(int param_1)
 }
 
 // 0x001a7a40  size 0x114
-void FUN_001a7a40(int param_1,undefined4 param_2,undefined4 *param_3,long param_4)
+void PtclSys_SetEmitter(int param_1,undefined4 param_2,undefined4 *param_3,long param_4)
 
 {
   undefined4 uVar1;
@@ -1628,7 +1636,7 @@ void FUN_001a7a40(int param_1,undefined4 param_2,undefined4 *param_3,long param_
 }
 
 // 0x001a7b60  size 0x114
-void FUN_001a7b60(int param_1)
+void PtclSys_ComputeRate(int param_1)
 
 {
   float *pfVar1;
@@ -1665,7 +1673,7 @@ LAB_001a7c20:
 }
 
 // 0x001a7c80  size 0x130
-void FUN_001a7c80(int param_1)
+void PtclSys_ResetBounds(int param_1)
 
 {
   int iVar1;
@@ -1708,8 +1716,9 @@ void FUN_001a7c80(int param_1)
 /* WARNING: Removing unreachable block (ram,0x001a859c) */
 /* WARNING: Removing unreachable block (ram,0x001a8444) */
 /* WARNING: Removing unreachable block (ram,0x001a8488) */
+/* "particle Error! : inactive particle" */
 
-void FUN_001a7db0(undefined8 param_1)
+void PtclSys_Update(undefined8 param_1)
 
 {
   byte bVar1;
@@ -1757,7 +1766,7 @@ void FUN_001a7db0(undefined8 param_1)
       vu0math_sub_00132d50(auStack_60,auStack_40,iVar4 + 0x30);
     }
   }
-  FUN_001a7c80(param_1);
+  PtclSys_ResetBounds(param_1);
   if (iRam004308d0 == 0) {
     *(float *)(iVar4 + 0x88) = *(float *)(iVar4 + 0x88) + 1.0;
     *(undefined4 *)(iVar4 + 0xb0) = uRam004308c8;

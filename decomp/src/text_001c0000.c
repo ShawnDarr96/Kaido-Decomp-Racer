@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001c0040  size 0x8c
-int FUN_001c0040(undefined8 param_1,undefined1 param_2)
+int profile_sub_001c0040(undefined8 param_1,undefined1 param_2)
 
 {
   int iVar1;
@@ -40,7 +40,7 @@ int FUN_001c0040(undefined8 param_1,undefined1 param_2)
 }
 
 // 0x001c00d0  size 0x1b8
-void FUN_001c00d0(short *param_1,long param_2,int param_3)
+void Opponent_SetupGrid(short *param_1,long param_2,int param_3)
 
 {
   int iVar1;
@@ -48,7 +48,7 @@ void FUN_001c00d0(short *param_1,long param_2,int param_3)
   int iVar3;
   int iVar4;
   
-  FUN_001b5430(param_3);
+  Opponent_Clear(param_3);
   *(undefined2 *)(param_3 + 2) = 0;
   *(short *)(param_3 + 0x168) = (short)(char)param_1[2];
   *(char *)(param_3 + 0x2c) = (char)param_1[6];
@@ -125,7 +125,7 @@ void FUN_001c00d0(short *param_1,long param_2,int param_3)
 }
 
 // 0x001c0290  size 0x31c
-void FUN_001c0290(short *param_1,long param_2)
+void Opponent_RandomizeGrid(short *param_1,long param_2)
 
 {
   char cVar1;
@@ -180,8 +180,8 @@ void FUN_001c0290(short *param_1,long param_2)
   }
   iVar6 = maybe_Rand_Float();
   *param_1 = psVar11[iVar6 % (int)sVar10];
-  iVar6 = FUN_00205530(*param_1);
-  lVar4 = FUN_002055e0(*param_1);
+  iVar6 = CarDb_GetModel(*param_1);
+  lVar4 = CarDb_GetVariant(*param_1);
   if (lVar4 == 1) {
     *(undefined1 *)(param_1 + 2) = 1;
   }
@@ -203,7 +203,7 @@ void FUN_001c0290(short *param_1,long param_2)
     uVar2 = 0;
     psVar11 = param_1;
     do {
-      lVar4 = FUN_001d41e0(uVar2 & 0xff);
+      lVar4 = CarDb_CopyTable(uVar2 & 0xff);
       iVar7 = (int)lVar4;
       if (lVar4 < 0) {
         iVar7 = iVar7 + 1;
@@ -218,7 +218,7 @@ void FUN_001c0290(short *param_1,long param_2)
     uVar2 = 0;
     psVar11 = param_1;
     do {
-      sVar10 = FUN_001d41e0(uVar2 & 0xff);
+      sVar10 = CarDb_CopyTable(uVar2 & 0xff);
       uVar2 = uVar2 + 1;
       psVar11[10] = sVar10;
       psVar11 = psVar11 + 1;
@@ -258,7 +258,7 @@ void FUN_001c0290(short *param_1,long param_2)
 }
 
 // 0x001c05b0  size 0x294
-void FUN_001c05b0(undefined4 *param_1)
+void Profile_InitDefaults(undefined4 *param_1)
 
 {
   undefined4 *puVar1;
@@ -430,14 +430,14 @@ void FUN_001c05b0(undefined4 *param_1)
 }
 
 // 0x001c0850  size 0x10
-undefined2 FUN_001c0850(int param_1,int param_2)
+undefined2 profile_sub_001c0850(int param_1,int param_2)
 
 {
   return *(undefined2 *)(param_2 * 2 + param_1 + 0x4b7c);
 }
 
 // 0x001c0860  size 0x28
-short FUN_001c0860(int param_1,int param_2)
+short profile_sub_001c0860(int param_1,int param_2)
 
 {
   param_1 = param_2 * 2 + param_1;
@@ -445,24 +445,24 @@ short FUN_001c0860(int param_1,int param_2)
 }
 
 // 0x001c0890  size 0x10
-undefined2 FUN_001c0890(int param_1,int param_2)
+undefined2 profile_sub_001c0890(int param_1,int param_2)
 
 {
   return *(undefined2 *)(param_2 * 2 + param_1 + 0x3fc4);
 }
 
 // 0x001c08a0  size 0x30
-undefined2 FUN_001c08a0(int param_1)
+undefined2 profile_sub_001c08a0(int param_1)
 
 {
   int iVar1;
   
-  iVar1 = FUN_001c08d0();
+  iVar1 = Profile_FindRivalEntry();
   return *(undefined2 *)(iVar1 * 2 + param_1 + 0x3fc4);
 }
 
 // 0x001c08d0  size 0x554
-int FUN_001c08d0(void)
+int Profile_FindRivalEntry(void)
 
 {
   undefined4 uVar1;
@@ -588,7 +588,7 @@ int FUN_001c08d0(void)
   
   iVar6 = 0;
   while( true ) {
-    uVar3 = FUN_002092c0((short)iVar6);
+    uVar3 = GameDb_GetRival((short)iVar6);
     memcpy(&uStack_480,uVar3,0x17c);
     puVar5 = auStack_43c;
     uStack_300 = uStack_480;
@@ -728,7 +728,7 @@ int FUN_001c08d0(void)
 }
 
 // 0x001c0e30  size 0x18
-void FUN_001c0e30(int param_1,int param_2)
+void profile_sub_001c0e30(int param_1,int param_2)
 
 {
   param_1 = param_2 * 4 + param_1;
@@ -738,7 +738,7 @@ void FUN_001c0e30(int param_1,int param_2)
 }
 
 // 0x001c0e50  size 0x50
-undefined4 FUN_001c0e50(int param_1,undefined4 param_2,undefined4 param_3)
+undefined4 profile_sub_001c0e50(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -760,63 +760,63 @@ undefined4 FUN_001c0e50(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x001c0ea0  size 0x8
-undefined2 FUN_001c0ea0(int param_1)
+undefined2 profile_sub_001c0ea0(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x5310);
 }
 
 // 0x001c0eb0  size 0x8
-undefined2 FUN_001c0eb0(int param_1)
+undefined2 profile_sub_001c0eb0(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x5314);
 }
 
 // 0x001c0ec0  size 0x8
-undefined2 FUN_001c0ec0(int param_1)
+undefined2 profile_sub_001c0ec0(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x5312);
 }
 
 // 0x001c0ed0  size 0x14
-undefined4 FUN_001c0ed0(int param_1,uint param_2)
+undefined4 Profile_GetStat(int param_1,uint param_2)
 
 {
   return *(undefined4 *)((param_2 & 0xff) * 4 + param_1 + 0x2708);
 }
 
 // 0x001c0ef0  size 0x8
-undefined4 FUN_001c0ef0(int param_1)
+undefined4 Profile_GetMoney(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x2744);
 }
 
 // 0x001c0f00  size 0x10
-undefined4 FUN_001c0f00(int param_1,int param_2)
+undefined4 profile_sub_001c0f00(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2c0c);
 }
 
 // 0x001c0f10  size 0x10
-undefined4 FUN_001c0f10(int param_1,int param_2)
+undefined4 profile_sub_001c0f10(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2ac4);
 }
 
 // 0x001c0f20  size 0x10
-undefined4 FUN_001c0f20(int param_1,int param_2)
+undefined4 profile_sub_001c0f20(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2a74);
 }
 
 // 0x001c0f30  size 0x654
-void FUN_001c0f30(int *param_1,int param_2,int param_3)
+void Profile_BuildRivalList(int *param_1,int param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -951,7 +951,7 @@ void FUN_001c0f30(int *param_1,int param_2,int param_3)
   iStack_10 = 0;
   iStack_8 = -1;
   do {
-    uVar2 = FUN_002092c0((short)iVar6);
+    uVar2 = GameDb_GetRival((short)iVar6);
     memcpy(&uStack_510,uVar2,0x17c);
     puVar5 = auStack_4cc;
     uStack_350 = uStack_510;
@@ -1093,7 +1093,7 @@ void FUN_001c0f30(int *param_1,int param_2,int param_3)
   if (iStack_10 == 0) {
     iVar6 = 0;
     while( true ) {
-      FUN_002dfe70(aiStack_390,iVar6);
+      password_sub_002dfe70(aiStack_390,iVar6);
       uStack_1c4 = uStack_384;
       if (aiStack_390[0] == -1) break;
       if (param_3 == aiStack_390[0]) {
@@ -1112,7 +1112,7 @@ void FUN_001c0f30(int *param_1,int param_2,int param_3)
 }
 
 // 0x001c1590  size 0x38
-int FUN_001c1590(int param_1)
+int profile_sub_001c1590(int param_1)
 
 {
   int iVar1;
@@ -1131,7 +1131,7 @@ int FUN_001c1590(int param_1)
 }
 
 // 0x001c15d0  size 0x38
-int FUN_001c15d0(int param_1)
+int profile_sub_001c15d0(int param_1)
 
 {
   int iVar1;
@@ -1150,14 +1150,16 @@ int FUN_001c15d0(int param_1)
 }
 
 // 0x001c1610  size 0x10
-undefined4 FUN_001c1610(int param_1,int param_2)
+undefined4 profile_sub_001c1610(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x2b14);
 }
 
 // 0x001c1620  size 0x44
-void FUN_001c1620(int param_1,int param_2)
+/* +0x2744 */
+
+void Profile_AddMoney(int param_1,int param_2)
 
 {
   *(int *)(param_1 + 0x2744) = *(int *)(param_1 + 0x2744) + param_2;
@@ -1171,7 +1173,7 @@ void FUN_001c1620(int param_1,int param_2)
 }
 
 // 0x001c1670  size 0x14
-void FUN_001c1670(int param_1,int param_2)
+void profile_sub_001c1670(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x2c0c) = 1;
@@ -1179,7 +1181,7 @@ void FUN_001c1670(int param_1,int param_2)
 }
 
 // 0x001c1690  size 0x10
-void FUN_001c1690(int param_1,int param_2,undefined4 param_3)
+void profile_sub_001c1690(int param_1,int param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x2a74) = param_3;
@@ -1187,7 +1189,7 @@ void FUN_001c1690(int param_1,int param_2,undefined4 param_3)
 }
 
 // 0x001c16a0  size 0x10
-void FUN_001c16a0(int param_1,int param_2,undefined4 param_3)
+void profile_sub_001c16a0(int param_1,int param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x2b14) = param_3;
@@ -1195,35 +1197,37 @@ void FUN_001c16a0(int param_1,int param_2,undefined4 param_3)
 }
 
 // 0x001c16b0  size 0x8
-undefined1 FUN_001c16b0(int param_1)
+undefined1 Profile_GetFlag273f(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x273f);
 }
 
 // 0x001c16c0  size 0x8
-undefined1 FUN_001c16c0(int param_1)
+undefined1 Profile_GetFlag273d(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x273d);
 }
 
 // 0x001c16d0  size 0x8
-undefined1 FUN_001c16d0(int param_1)
+undefined1 Profile_GetDifficulty(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x2731);
 }
 
 // 0x001c16e0  size 0x8
-undefined1 FUN_001c16e0(int param_1)
+/* +0x2730; 26 callers */
+
+undefined1 Profile_GetChapter(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x2730);
 }
 
 // 0x001c16f0  size 0x8
-void FUN_001c16f0(int param_1,undefined1 param_2)
+void Profile_SetCurrentCar(int param_1,undefined1 param_2)
 
 {
   *(undefined1 *)(param_1 + 0x2733) = param_2;
@@ -1231,21 +1235,25 @@ void FUN_001c16f0(int param_1,undefined1 param_2)
 }
 
 // 0x001c1700  size 0x8
-undefined1 FUN_001c1700(int param_1)
+undefined1 Profile_GetCurrentCar(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x2733);
 }
 
 // 0x001c1710  size 0x18
-int FUN_001c1710(int param_1)
+/* day % 7 */
+
+int Profile_GetWeekday(int param_1)
 
 {
   return *(int *)(param_1 + 0x2734) % 7;
 }
 
 // 0x001c1730  size 0x24
-int FUN_001c1730(int param_1)
+/* day % 28, 1-based */
+
+int Profile_GetDayOfMonth(int param_1)
 
 {
   int iVar1;
@@ -1258,7 +1266,7 @@ int FUN_001c1730(int param_1)
 }
 
 // 0x001c1760  size 0x48
-int FUN_001c1760(int param_1)
+int Profile_GetMonth(int param_1)
 
 {
   int iVar1;
@@ -1271,7 +1279,7 @@ int FUN_001c1760(int param_1)
 }
 
 // 0x001c17b0  size 0x4c
-int FUN_001c17b0(int param_1)
+int Profile_IsMonthStart(int param_1)
 
 {
   int iVar1;
@@ -1284,7 +1292,7 @@ int FUN_001c17b0(int param_1)
 }
 
 // 0x001c1800  size 0x1c
-int FUN_001c1800(int param_1)
+int Profile_GetDayClamped(int param_1)
 
 {
   int iVar1;
@@ -1297,14 +1305,16 @@ int FUN_001c1800(int param_1)
 }
 
 // 0x001c1820  size 0x8
-undefined4 FUN_001c1820(int param_1)
+/* +0x2734; 25 callers */
+
+undefined4 Profile_GetDay(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x2734);
 }
 
 // 0x001c1830  size 0x5c
-void FUN_001c1830(int param_1,int *param_2,uint *param_3)
+void Profile_Validate(int param_1,int *param_2,uint *param_3)
 
 {
   int iVar1;
@@ -1323,7 +1333,9 @@ void FUN_001c1830(int param_1,int *param_2,uint *param_3)
 }
 
 // 0x001c1890  size 0x24
-undefined4 FUN_001c1890(int param_1)
+/* slot clamped to 0..1; 310 callers */
+
+undefined4 Profile_Get(int param_1)
 
 {
   if (1 < param_1) {
@@ -1333,7 +1345,7 @@ undefined4 FUN_001c1890(int param_1)
 }
 
 // 0x001c18c0  size 0x6c
-void FUN_001c18c0(void)
+void Profile_FreeAll(void)
 
 {
   int iVar1;
@@ -1354,7 +1366,7 @@ void FUN_001c18c0(void)
 }
 
 // 0x001c1930  size 0x48
-void FUN_001c1930(int param_1)
+void Profile_Free(int param_1)
 
 {
   if (*(int *)(iGpffff8c08 + param_1 * 4) != 0) {
@@ -1365,7 +1377,7 @@ void FUN_001c1930(int param_1)
 }
 
 // 0x001c1980  size 0x90
-void FUN_001c1980(void)
+void Profile_GetPlayTime(void)
 
 {
   int iVar1;
@@ -1398,7 +1410,7 @@ void FUN_001c1980(void)
 }
 
 // 0x001c1a10  size 0x10
-void FUN_001c1a10(void)
+void Profile_ResetPlayTimer(void)
 
 {
   *(undefined4 *)(iGpffff8c08 + 8) = uGpffff89dc;
@@ -1406,7 +1418,7 @@ void FUN_001c1a10(void)
 }
 
 // 0x001c1a20  size 0x110
-void FUN_001c1a20(int param_1,undefined8 param_2)
+void Profile_Create(int param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1418,8 +1430,8 @@ void FUN_001c1a20(int param_1,undefined8 param_2)
   if (*(int *)(iGpffff8c08 + param_1) == 0) {
     uVar2 = Mem_Alloc16(0xdb5c);
     *(undefined4 *)(iGpffff8c08 + param_1) = uVar2;
-    FUN_001c05b0(*(int *)(iGpffff8c08 + param_1) + 0x2ef0);
-    FUN_001bc620(*(undefined4 *)(iGpffff8c08 + param_1));
+    Profile_InitDefaults(*(int *)(iGpffff8c08 + param_1) + 0x2ef0);
+    garage_sub_001bc620(*(undefined4 *)(iGpffff8c08 + param_1));
     iVar4 = 0;
     iVar1 = *(int *)(iGpffff8c08 + param_1);
     puVar3 = (undefined4 *)(iVar1 + 0x2708);
@@ -1431,7 +1443,7 @@ void FUN_001c1a20(int param_1,undefined8 param_2)
       puVar3 = puVar3 + 3;
     } while (iVar4 < 9);
     *(undefined4 *)(iVar1 + 0x270c) = 1;
-    FUN_001b2eb0(*(int *)(iGpffff8c08 + param_1) + 0x272c);
+    Career_Reset(*(int *)(iGpffff8c08 + param_1) + 0x272c);
     *(undefined4 *)(*(int *)(iGpffff8c08 + param_1) + 0x2734) = 0;
   }
   else {
@@ -1446,7 +1458,7 @@ void FUN_001c1a20(int param_1,undefined8 param_2)
 }
 
 // 0x001c1b30  size 0x38
-void FUN_001c1b30(undefined8 param_1)
+void Profile_InitTable(undefined8 param_1)
 
 {
   puGpffff8c08 = (undefined4 *)Mem_Alloc16(0xc,param_1);
@@ -1457,8 +1469,9 @@ void FUN_001c1b30(undefined8 param_1)
 }
 
 // 0x001c1b70  size 0x108
-int FUN_001c1b70(int *param_1,undefined8 param_2,undefined8 param_3,undefined2 param_4,
-                undefined2 param_5,char param_6)
+int RaceWorld_AddStaticBox
+              (int *param_1,undefined8 param_2,undefined8 param_3,undefined2 param_4,
+              undefined2 param_5,char param_6)
 
 {
   int iVar1;
@@ -1490,7 +1503,7 @@ int FUN_001c1b70(int *param_1,undefined8 param_2,undefined8 param_3,undefined2 p
 }
 
 // 0x001c1c80  size 0x45c
-int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
+int RaceWorld_ContactCallback(undefined4 *param_1,undefined8 param_2)
 
 {
   char cVar1;
@@ -1576,7 +1589,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
     (**(code **)(*piVar16 + 0x5c))(param_2,uVar13);
     if (fVar17 < 0.0) {
       uVar9 = (**(code **)(*piVar16 + 0x5c))(param_2,uVar13);
-      FUN_001c2190(afStack_d0,uVar8,uVar9,2);
+      RaceWorld_GroundQuery(afStack_d0,uVar8,uVar9,2);
       if (0.0 < -afStack_d0[0]) {
         param_1[0xe] = 0;
         param_1[4] = uStack_c0;
@@ -1612,7 +1625,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
         uStack_54 = 0x3f800000;
         uVar8 = (**(code **)(*piVar16 + 0x38))(param_2,uVar13);
         uVar9 = (**(code **)(*piVar16 + 0x5c))(param_2,uVar13);
-        FUN_001c2190(afStack_90 + 4,uVar8,uVar9,2);
+        RaceWorld_GroundQuery(afStack_90 + 4,uVar8,uVar9,2);
         if (0.0 < -afStack_90[4]) {
           param_1[0xe] = iVar15;
           param_1[4] = uStack_70;
@@ -1649,7 +1662,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
     uStack_24 = 0x3f800000;
     uStack_14 = 0x3f800000;
     uVar8 = PhysShape_GetCenter(param_2);
-    FUN_001c2190(afStack_40,uVar8,0,2);
+    RaceWorld_GroundQuery(afStack_40,uVar8,0,2);
     fVar17 = (float)PhysShape_GetType(param_2);
     if (0.0 < fVar17 - afStack_40[0]) {
       param_1[0xe] = 0;
@@ -1682,7 +1695,7 @@ int FUN_001c1c80(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001c20e0  size 0x60
-undefined4 FUN_001c20e0(int param_1,undefined8 param_2)
+undefined4 RaceWorld_CameraContact(int param_1,undefined8 param_2)
 
 {
   PhysContact_ComputeImpulse(param_2);
@@ -1696,12 +1709,12 @@ undefined4 FUN_001c20e0(int param_1,undefined8 param_2)
 }
 
 // 0x001c2140  size 0x4c
-bool FUN_001c2140(int param_1)
+bool RaceWorld_CheckGrounded(int param_1)
 
 {
   long lVar1;
   
-  lVar1 = FUN_001c2190();
+  lVar1 = RaceWorld_GroundQuery();
   if (lVar1 != 0) {
     *(uint *)(param_1 + 0x30) = *(uint *)(param_1 + 0x30) & 0x80ffffff;
   }
@@ -1709,7 +1722,7 @@ bool FUN_001c2140(int param_1)
 }
 
 // 0x001c2190  size 0x1ac
-undefined4 FUN_001c2190(float *param_1,undefined8 param_2,long param_3)
+undefined4 RaceWorld_GroundQuery(float *param_1,undefined8 param_2,long param_3)
 
 {
   float fVar1;
@@ -1752,8 +1765,8 @@ undefined4 FUN_001c2190(float *param_1,undefined8 param_2,long param_3)
       fVar4 = *(float *)((int)fVar5 + 100);
     }
     else {
-      fVar4 = (float)FUN_0018a810(0x36f238,auStack_10,*(undefined4 *)((int)fVar5 + 2),0,
-                                  (int)fVar5 + 0x30);
+      fVar4 = (float)Road_RaycastGround(0x36f238,auStack_10,*(undefined4 *)((int)fVar5 + 2),0,
+                                        (int)fVar5 + 0x30);
       fVar3 = DAT_0036257c;
       fVar2 = DAT_00362578;
       fVar1 = DAT_00362574;
@@ -1789,7 +1802,7 @@ undefined4 FUN_001c2190(float *param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001c2340  size 0x40
-void FUN_001c2340(void)
+void RaceWorld_Shutdown(void)
 
 {
   Phys_Shutdown();
@@ -1801,7 +1814,9 @@ void FUN_001c2340(void)
 }
 
 // 0x001c2380  size 0x16c
-void FUN_001c2380(void)
+/* physics heap 0x12488 */
+
+void RaceWorld_Init(void)
 
 {
   undefined4 *puVar1;
@@ -1834,7 +1849,7 @@ void FUN_001c2380(void)
 }
 
 // 0x001c24f0  size 0x2c8
-undefined8 FUN_001c24f0(ushort param_1,char param_2)
+undefined8 RaceWorld_BuildColliders(ushort param_1,char param_2)
 
 {
   ushort uVar1;
@@ -1908,7 +1923,7 @@ LAB_001c25c8:
                 uStack_20 = *(undefined4 *)((int)psVar2 + (uint)puVar7[1] * 0x10 + iVar3);
                 uStack_1c = *(undefined4 *)((int)psVar2 + (uint)puVar7[1] * 0x10 + iVar3 + 4);
                 uStack_18 = *(undefined4 *)((int)psVar2 + (uint)puVar7[1] * 0x10 + iVar3 + 8);
-                FUN_001c1b70(iRam0036f308,&uStack_10,&uStack_20,(short)uVar6,0,uVar5);
+                RaceWorld_AddStaticBox(iRam0036f308,&uStack_10,&uStack_20,(short)uVar6,0,uVar5);
                 uVar1 = *(ushort *)((int)psVar2 + iVar4 + 4);
               }
               uVar9 = uVar9 + 1;
@@ -1927,7 +1942,7 @@ LAB_001c25c8:
 }
 
 // 0x001c27c0  size 0x220
-void FUN_001c27c0(void)
+void RaceWorld_Step(void)
 
 {
   char cVar1;
@@ -1941,10 +1956,10 @@ void FUN_001c27c0(void)
   uint uVar9;
   int iVar10;
   
-  lVar5 = FUN_001e9010();
-  if ((lVar5 == 0) && (lVar5 = FUN_001e90f0(), lVar5 != 0)) {
-    lVar5 = FUN_001e8f60();
-    if (((lVar5 == 0) && (lVar5 = FUN_001e8f40(), lVar5 == 0)) &&
+  lVar5 = RaceScene_IsPaused();
+  if ((lVar5 == 0) && (lVar5 = RaceScene_IsRunning(), lVar5 != 0)) {
+    lVar5 = race_sub_001e8f60();
+    if (((lVar5 == 0) && (lVar5 = race_sub_001e8f40(), lVar5 == 0)) &&
        ((cVar1 = RaceCtx_GetMode(), cVar1 != '\x01' ||
         (((cVar1 = GameState_Get_354(), cVar1 != '\x01' &&
           (cVar1 = GameState_Get_354(), cVar1 != '\x02')) &&
@@ -1955,14 +1970,14 @@ void FUN_001c27c0(void)
       Phys_Step(0);
     }
     iVar10 = 0;
-    lVar5 = GameState_GetMoneyTotal3();
+    lVar5 = GameState_GetTotalCarCount();
     if (0 < lVar5) {
       do {
-        lVar5 = FUN_001ca6b0(iVar10);
+        lVar5 = RaceCar_Get(iVar10);
         if (lVar5 != 0) {
-          iVar2 = FUN_001ca760(lVar5);
+          iVar2 = RaceCar_GetTracker(lVar5);
           *(uint *)(iVar2 + 0x60) = *(uint *)(iVar2 + 0x60) & 0xffffff8f;
-          FUN_001cee10(lVar5);
+          RaceCar_UpdateTracker(lVar5);
           for (iVar3 = *(int *)(*(int *)((int)lVar5 + 0x158) + 0xd4); iVar3 != 0;
               iVar3 = PhysWorld_FindBodyWithFlags(iVar3,0xffffffffffffffff)) {
             lVar6 = phys_sub_00158620(iVar3);
@@ -1977,7 +1992,7 @@ void FUN_001c27c0(void)
               iVar8 = 0;
               *(uint *)(iVar2 + 0x60) = *(uint *)(iVar2 + 0x60) | uVar9;
               do {
-                iVar4 = FUN_001ca740(lVar5,iVar8);
+                iVar4 = RaceCar_GetWheelFx(lVar5,iVar8);
                 iVar8 = iVar8 + 1;
                 *(uint *)(iVar4 + 0x60) = *(uint *)(iVar4 + 0x60) | uVar9;
               } while (iVar8 < 4);
@@ -1988,7 +2003,7 @@ void FUN_001c27c0(void)
           }
         }
         iVar10 = iVar10 + 1;
-        iVar3 = GameState_GetMoneyTotal3();
+        iVar3 = GameState_GetTotalCarCount();
       } while (iVar10 < iVar3);
     }
   }
@@ -1997,7 +2012,7 @@ void FUN_001c27c0(void)
 
 // 0x001c2a30  size 0x40
 undefined8
-FUN_001c2a30(undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+Vu0_RaySphereTest(undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
 
 {
   undefined8 uVar1;
@@ -2025,8 +2040,8 @@ FUN_001c2a30(undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*
 }
 
 // 0x001c2a70  size 0x144
-void FUN_001c2a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                 undefined1 param_5,undefined2 param_6)
+void Prop_DrawModel(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                   undefined1 param_5,undefined2 param_6)
 
 {
   undefined1 auStack_120 [64];
@@ -2074,7 +2089,7 @@ void FUN_001c2a70(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 }
 
 // 0x001c2bc0  size 0xf4
-void FUN_001c2bc0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void Prop_Draw(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined1 auStack_110 [64];
@@ -2122,13 +2137,13 @@ void FUN_001c2bc0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001c2cc0  size 0x150
-void FUN_001c2cc0(undefined8 param_1,undefined8 param_2,float *param_3)
+void Prop_CollideWithCar(undefined8 param_1,undefined8 param_2,float *param_3)
 
 {
   ulong uVar1;
   float *pfVar2;
   
-  uVar1 = FUN_001c2a30(param_2,param_1);
+  uVar1 = Vu0_RaySphereTest(param_2,param_1);
   if (uVar1 != 0) {
     pfVar2 = (float *)param_2;
     if ((uVar1 & 1) == 0) {
@@ -2160,26 +2175,26 @@ void FUN_001c2cc0(undefined8 param_1,undefined8 param_2,float *param_3)
 }
 
 // 0x001c2e10  size 0xb8
-void FUN_001c2e10(void)
+void Prop_DrawAll(void)
 
 {
   undefined1 auStack_160 [352];
   
   if (iGpffff8b08 == 0) {
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
-    FUN_001c2bc0(auStack_160,uGpffff8c38,400);
+    Prop_Draw(auStack_160,uGpffff8c38,400);
   }
   else {
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
-    FUN_001c2bc0(auStack_160,uGpffff8c38,400);
+    Prop_Draw(auStack_160,uGpffff8c38,400);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
-    FUN_001c2bc0(auStack_160,uGpffff8c38,400);
+    Prop_Draw(auStack_160,uGpffff8c38,400);
   }
   return;
 }
 
 // 0x001c2ed0  size 0x324
-void FUN_001c2ed0(int *param_1)
+void Prop_UpdateDebris(int *param_1)
 
 {
   undefined8 uVar1;
@@ -2221,9 +2236,9 @@ void FUN_001c2ed0(int *param_1)
       puVar6[6] = 0x43000000;
       puVar6[7] = 0x43000000;
       uVar1 = maybe_rand();
-      FUN_001339b0(uVar1,puVar6 + 8,puVar6 + 9);
+      Math_SinCosTable(uVar1,puVar6 + 8,puVar6 + 9);
       uVar1 = maybe_rand();
-      FUN_001339b0(uVar1,puVar6 + 10,puVar6 + 0xb);
+      Math_SinCosTable(uVar1,puVar6 + 10,puVar6 + 0xb);
       *pfVar5 = 0.0;
       iVar2 = maybe_rand();
       pfVar5[1] = -(((float)iVar2 / 2.1474836e+09) * 0.016666668 + 0.016666668);
@@ -2244,8 +2259,8 @@ void FUN_001c2ed0(int *param_1)
       vu0math_sub_00132b70(puVar6,puVar6,pfVar5);
       pfVar5[9] = (float)((int)pfVar5[9] + (int)pfVar5[8]);
       pfVar5[0xb] = (float)((int)pfVar5[0xb] + (int)pfVar5[10]);
-      FUN_001339b0(pfVar5[9],puVar6 + 8,puVar6 + 9);
-      FUN_001339b0(pfVar5[0xb],puVar6 + 10,puVar6 + 0xb);
+      Math_SinCosTable(pfVar5[9],puVar6 + 8,puVar6 + 9);
+      Math_SinCosTable(pfVar5[0xb],puVar6 + 10,puVar6 + 0xb);
     }
     iVar3 = iVar3 + 1;
     puVar6 = puVar6 + 0xc;
@@ -2255,7 +2270,7 @@ void FUN_001c2ed0(int *param_1)
 }
 
 // 0x001c3200  size 0xd4
-void FUN_001c3200(void)
+void Prop_DrawDebris(void)
 
 {
   int iVar1;
@@ -2265,20 +2280,20 @@ void FUN_001c3200(void)
   iVar1 = iGpffff8c38;
   if (iGpffff8b08 == 0) {
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
-    FUN_001c2bc0(auStack_160,iVar1,400);
+    Prop_Draw(auStack_160,iVar1,400);
   }
   else {
     iVar2 = iGpffff8c38 + 0x4b00;
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
-    FUN_001c2bc0(auStack_160,iVar1,200);
+    Prop_Draw(auStack_160,iVar1,200);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
-    FUN_001c2bc0(auStack_160,iVar2,200);
+    Prop_Draw(auStack_160,iVar2,200);
   }
   return;
 }
 
 // 0x001c32e0  size 0x1c8
-void FUN_001c32e0(int *param_1,long param_2,undefined8 param_3)
+void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -2297,9 +2312,9 @@ void FUN_001c32e0(int *param_1,long param_2,undefined8 param_3)
     vu0math_sub_00132ae0(auStack_10,*(int *)(iGpffff8b0c + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      FUN_001c3860(iVar1,iVar3,auStack_10,400,param_3);
+      Prop_SpawnSmoke(iVar1,iVar3,auStack_10,400,param_3);
     }
-    FUN_001c34b0(iVar1,iVar3,auStack_10,400,-(param_2 != 0 ^ 1),uRam00436570,param_3);
+    Prop_SpawnSpark(iVar1,iVar3,auStack_10,400,-(param_2 != 0 ^ 1),uRam00436570,param_3);
   }
   else {
     iVar3 = *(int *)(iGpffff8b0c + 0x18);
@@ -2310,22 +2325,22 @@ void FUN_001c32e0(int *param_1,long param_2,undefined8 param_3)
     vu0math_sub_00132ae0(auStack_30,iVar3 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      FUN_001c3860(iVar1,iVar5,auStack_20,200,param_3);
-      FUN_001c3860(iVar4,iVar6,auStack_30,200,param_3);
+      Prop_SpawnSmoke(iVar1,iVar5,auStack_20,200,param_3);
+      Prop_SpawnSmoke(iVar4,iVar6,auStack_30,200,param_3);
     }
-    FUN_001c34b0(iVar1,iVar5,auStack_20,200,-(param_2 != 0 ^ 1),uRam00436570,param_3);
+    Prop_SpawnSpark(iVar1,iVar5,auStack_20,200,-(param_2 != 0 ^ 1),uRam00436570,param_3);
     uVar2 = 1;
     if (param_2 == 0) {
       uVar2 = 0xffffffffffffffff;
     }
-    FUN_001c34b0(iVar4,iVar6,auStack_30,200,uVar2,uRam004365c0,param_3);
+    Prop_SpawnSpark(iVar4,iVar6,auStack_30,200,uVar2,uRam004365c0,param_3);
   }
   return;
 }
 
 // 0x001c34b0  size 0x3a0
-void FUN_001c34b0(float *param_1,float *param_2,undefined4 *param_3,int param_4,long param_5,
-                 int param_6,long param_7)
+void Prop_SpawnSpark(float *param_1,float *param_2,undefined4 *param_3,int param_4,long param_5,
+                    int param_6,long param_7)
 
 {
   int iVar1;
@@ -2380,9 +2395,9 @@ void FUN_001c34b0(float *param_1,float *param_2,undefined4 *param_3,int param_4,
       vu0math_sub_00132b70(param_1,param_1,param_2);
       param_2[9] = (float)((int)param_2[9] + (int)param_2[8]);
       param_2[0xb] = (float)((int)param_2[0xb] + (int)param_2[10]);
-      FUN_001339b0(param_2[9],param_1 + 8,param_1 + 9);
-      FUN_001339b0(param_2[0xb],param_1 + 10,param_1 + 0xb);
-      FUN_001c2cc0(&uStack_20,param_1,&uStack_30);
+      Math_SinCosTable(param_2[9],param_1 + 8,param_1 + 9);
+      Math_SinCosTable(param_2[0xb],param_1 + 10,param_1 + 0xb);
+      Prop_CollideWithCar(&uStack_20,param_1,&uStack_30);
       if (-1 < param_5) {
         if (param_6 == 0) {
           param_1[6] = 0.0;
@@ -2415,7 +2430,8 @@ void FUN_001c34b0(float *param_1,float *param_2,undefined4 *param_3,int param_4,
 }
 
 // 0x001c3860  size 0x294
-void FUN_001c3860(undefined4 *param_1,undefined4 *param_2,float *param_3,int param_4,long param_5)
+void Prop_SpawnSmoke(undefined4 *param_1,undefined4 *param_2,float *param_3,int param_4,long param_5
+                    )
 
 {
   int iVar1;
@@ -2459,9 +2475,9 @@ void FUN_001c3860(undefined4 *param_1,undefined4 *param_2,float *param_3,int par
       }
       param_1[7] = 0x43000000;
       uVar2 = maybe_rand();
-      FUN_001339b0(uVar2,param_1 + 8,param_1 + 9);
+      Math_SinCosTable(uVar2,param_1 + 8,param_1 + 9);
       uVar2 = maybe_rand();
-      FUN_001339b0(uVar2,param_1 + 10,param_1 + 0xb);
+      Math_SinCosTable(uVar2,param_1 + 10,param_1 + 0xb);
       *param_2 = 0;
       fVar8 = (float)maybe_Rand_Next(0x3d4ccccd,0x3dcccccd);
       param_2[1] = -fVar8;
@@ -2482,7 +2498,7 @@ void FUN_001c3860(undefined4 *param_1,undefined4 *param_2,float *param_3,int par
 }
 
 // 0x001c3b00  size 0x124
-void FUN_001c3b00(void)
+void Prop_DrawSparks(void)
 
 {
   int iVar1;
@@ -2494,20 +2510,20 @@ void FUN_001c3b00(void)
   if (iGpffff8b08 == 0) {
     vu0math_sub_00132ae0(auStack_170,0x431100);
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
-    FUN_001c2a70(0x431100,auStack_160,iVar1,100,4,0x10);
+    Prop_DrawModel(0x431100,auStack_160,iVar1,100,4,0x10);
   }
   else {
     iVar2 = iGpffff8c38 + 0x12c0;
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
-    FUN_001c2a70(0x4316c0,auStack_160,iVar1,100,2,0x10);
+    Prop_DrawModel(0x4316c0,auStack_160,iVar1,100,2,0x10);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
-    FUN_001c2a70(0x431c80,auStack_160,iVar2,100,2,0x10);
+    Prop_DrawModel(0x431c80,auStack_160,iVar2,100,2,0x10);
   }
   return;
 }
 
 // 0x001c3c30  size 0x138
-void FUN_001c3c30(int *param_1)
+void Prop_UpdateLeaves(int *param_1)
 
 {
   int iVar1;
@@ -2522,9 +2538,9 @@ void FUN_001c3c30(int *param_1)
     vu0math_sub_00132ae0(auStack_10,*(int *)(iGpffff8b0c + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      FUN_001c3fe0(iVar2,auStack_10,100);
+      Prop_MoveLeaves(iVar2,auStack_10,100);
     }
-    FUN_001c3d70(iVar2,auStack_10,100,0,uRam00436570);
+    Prop_SpawnLeaf(iVar2,auStack_10,100,0,uRam00436570);
   }
   else {
     iVar1 = *(int *)(iGpffff8b0c + 0x18);
@@ -2533,17 +2549,17 @@ void FUN_001c3c30(int *param_1)
     vu0math_sub_00132ae0(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      FUN_001c3fe0(iVar2,auStack_20,100);
-      FUN_001c3fe0(iVar3,auStack_30,100);
+      Prop_MoveLeaves(iVar2,auStack_20,100);
+      Prop_MoveLeaves(iVar3,auStack_30,100);
     }
-    FUN_001c3d70(iVar2,auStack_20,100,0,uRam00436570);
-    FUN_001c3d70(iVar3,auStack_30,100,1,uRam004365c0);
+    Prop_SpawnLeaf(iVar2,auStack_20,100,0,uRam00436570);
+    Prop_SpawnLeaf(iVar3,auStack_30,100,1,uRam004365c0);
   }
   return;
 }
 
 // 0x001c3d70  size 0x268
-void FUN_001c3d70(float *param_1,undefined4 *param_2,int param_3,int param_4,long param_5)
+void Prop_SpawnLeaf(float *param_1,undefined4 *param_2,int param_3,int param_4,long param_5)
 
 {
   float *pfVar1;
@@ -2582,7 +2598,7 @@ void FUN_001c3d70(float *param_1,undefined4 *param_2,int param_3,int param_4,lon
       fVar4 = (float)maybe_Rand_Next(0xbd4ccccd,0x3d4ccccd);
       param_1[1] = param_1[1] - fVar4;
       param_1[2] = param_1[2] + *pfVar1;
-      FUN_001c2cc0(&uStack_10,param_1,&uStack_20);
+      Prop_CollideWithCar(&uStack_10,param_1,&uStack_20);
       if (param_5 == 0) {
         param_1[7] = 0.0;
       }
@@ -2607,7 +2623,7 @@ void FUN_001c3d70(float *param_1,undefined4 *param_2,int param_3,int param_4,lon
 }
 
 // 0x001c3fe0  size 0x144
-void FUN_001c3fe0(undefined4 *param_1,float *param_2,int param_3)
+void Prop_MoveLeaves(undefined4 *param_1,float *param_2,int param_3)
 
 {
   float fVar1;

@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001d15a0  size 0x644
-void FUN_001d15a0(int param_1,undefined8 param_2)
+void CarSpec_ApplyParts(int param_1,undefined8 param_2)
 
 {
   char cVar1;
@@ -17,7 +17,7 @@ void FUN_001d15a0(int param_1,undefined8 param_2)
   int iVar9;
   float fVar10;
   
-  pcVar5 = (char *)FUN_001d2210(param_2);
+  pcVar5 = (char *)CarRec_GetPaintArray(param_2);
   fVar10 = (float)maybe_asinf(((float)(int)pcVar5[2] / 2.0) /
                               (*(float *)(param_1 + 0x1b4) * 2.0 * 1000.0));
   *(float *)(param_1 + 0x250) = *(float *)(param_1 + 0x250) + (fVar10 * 180.0) / 3.1415927;
@@ -80,8 +80,8 @@ void FUN_001d15a0(int param_1,undefined8 param_2)
     *(int *)(param_1 + 0x524) = iVar9;
     *(undefined4 *)(param_1 + 0x630) = *(undefined4 *)(pcVar5 + 0x18);
   }
-  lVar6 = FUN_001d2280(param_2,7);
-  sVar4 = FUN_001d2240(param_2,7);
+  lVar6 = CarRec_GetPartData(param_2,7);
+  sVar4 = CarRec_GetPartInfo(param_2,7);
   if (0 < lVar6) {
     fVar10 = 1.0;
     if (sVar4 == 0x67) {
@@ -113,7 +113,7 @@ void FUN_001d15a0(int param_1,undefined8 param_2)
 }
 
 // 0x001d1bf0  size 0x4f4
-undefined8 FUN_001d1bf0(int *param_1,undefined8 param_2)
+undefined8 CarSpec_BuildForRecord(int *param_1,undefined8 param_2)
 
 {
   long lVar1;
@@ -191,62 +191,62 @@ undefined8 FUN_001d1bf0(int *param_1,undefined8 param_2)
   iVar4 = (int)param_2;
   iStack_70 = (int)*(short *)(iVar4 + 0xc);
   maybe_RaceSetup_BuildCarEntry(auStack_5b0,param_2);
-  FUN_001ceef0(auStack_5b0,auStack_d20,param_2,1);
+  CarSpec_BuildFromDb(auStack_5b0,auStack_d20,param_2,1);
   uStack_4 = *(undefined2 *)(iVar4 + 0x70);
   uStack_2 = *(undefined2 *)(iVar4 + 0x72);
-  lVar1 = FUN_001d3540(uStack_4);
+  lVar1 = PartDb_Get(uStack_4);
   if (lVar1 == 0) {
     uStack_8 = *(undefined2 *)(iVar4 + 0x78);
     uStack_6 = *(undefined2 *)(iVar4 + 0x7a);
-    lVar1 = FUN_001d3540(uStack_8);
+    lVar1 = PartDb_Get(uStack_8);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_c = *(undefined2 *)(iVar4 + 0x80);
     uStack_a = *(undefined2 *)(iVar4 + 0x82);
-    lVar1 = FUN_001d3540(uStack_c);
+    lVar1 = PartDb_Get(uStack_c);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_10 = *(undefined2 *)(iVar4 + 0x74);
     uStack_e = *(undefined2 *)(iVar4 + 0x76);
-    lVar1 = FUN_001d3540(uStack_10);
+    lVar1 = PartDb_Get(uStack_10);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_14 = *(undefined2 *)(iVar4 + 0x84);
     uStack_12 = *(undefined2 *)(iVar4 + 0x86);
-    lVar1 = FUN_001d3540(uStack_14);
+    lVar1 = PartDb_Get(uStack_14);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_18 = *(undefined2 *)(iVar4 + 0x88);
     uStack_16 = *(undefined2 *)(iVar4 + 0x8a);
-    lVar1 = FUN_001d3540(uStack_18);
+    lVar1 = PartDb_Get(uStack_18);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_1c = *(undefined2 *)(iVar4 + 0x90);
     uStack_1a = *(undefined2 *)(iVar4 + 0x92);
-    lVar1 = FUN_001d3540(uStack_1c);
+    lVar1 = PartDb_Get(uStack_1c);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_20 = *(undefined2 *)(iVar4 + 0x94);
     uStack_1e = *(undefined2 *)(iVar4 + 0x96);
-    lVar1 = FUN_001d3540(uStack_20);
+    lVar1 = PartDb_Get(uStack_20);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_24 = *(undefined2 *)(iVar4 + 0x98);
     uStack_22 = *(undefined2 *)(iVar4 + 0x9a);
-    lVar1 = FUN_001d3540(uStack_24);
+    lVar1 = PartDb_Get(uStack_24);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_28 = *(undefined2 *)(iVar4 + 0x9c);
     uStack_26 = *(undefined2 *)(iVar4 + 0x9e);
-    lVar1 = FUN_001d3540(uStack_28);
+    lVar1 = PartDb_Get(uStack_28);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_2c = *(undefined2 *)(iVar4 + 0xb8);
     uStack_2a = *(undefined2 *)(iVar4 + 0xba);
-    lVar1 = FUN_001d3540(uStack_2c);
+    lVar1 = PartDb_Get(uStack_2c);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_30 = *(undefined2 *)(iVar4 + 0xb4);
     uStack_2e = *(undefined2 *)(iVar4 + 0xb6);
-    lVar1 = FUN_001d3540(uStack_30);
+    lVar1 = PartDb_Get(uStack_30);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_34 = *(undefined2 *)(iVar4 + 0xac);
     uStack_32 = *(undefined2 *)(iVar4 + 0xae);
-    lVar1 = FUN_001d3540(uStack_34);
+    lVar1 = PartDb_Get(uStack_34);
     if (lVar1 != 0) goto LAB_001d1c5c;
     uStack_38 = *(undefined2 *)(iVar4 + 0xb0);
     uStack_36 = *(undefined2 *)(iVar4 + 0xb2);
-    lVar1 = FUN_001d3540(uStack_38);
+    lVar1 = PartDb_Get(uStack_38);
     if ((lVar1 != 0) || (*(char *)(iVar4 + 0xc4) != '\0')) goto LAB_001d1c5c;
 LAB_001d1cd8:
     fStack_5c = (float)uStack_580;
@@ -260,23 +260,23 @@ LAB_001d1c5c:
   uStack_3c = *(undefined2 *)(iVar4 + 0x70);
   uStack_3a = *(undefined2 *)(iVar4 + 0x72);
   iStack_58 = iStack_564;
-  lVar1 = FUN_001d3540(uStack_3c);
+  lVar1 = PartDb_Get(uStack_3c);
   if (lVar1 == 0) {
     uStack_40 = *(undefined2 *)(iVar4 + 0x78);
     uStack_3e = *(undefined2 *)(iVar4 + 0x7a);
-    lVar1 = FUN_001d3540(uStack_40);
+    lVar1 = PartDb_Get(uStack_40);
     if (lVar1 == 0) {
       uStack_44 = *(undefined2 *)(iVar4 + 0x7c);
       uStack_42 = *(undefined2 *)(iVar4 + 0x7e);
-      lVar1 = FUN_001d3540(uStack_44);
+      lVar1 = PartDb_Get(uStack_44);
       if (lVar1 == 0) {
         uStack_48 = *(undefined2 *)(iVar4 + 0x80);
         uStack_46 = *(undefined2 *)(iVar4 + 0x82);
-        lVar1 = FUN_001d3540(uStack_48);
+        lVar1 = PartDb_Get(uStack_48);
         if (lVar1 == 0) {
           uStack_4c = *(undefined2 *)(iVar4 + 0x74);
           uStack_4a = *(undefined2 *)(iVar4 + 0x76);
-          lVar1 = FUN_001d3540(uStack_4c);
+          lVar1 = PartDb_Get(uStack_4c);
           if (lVar1 == 0) {
             fStack_6c = fStack_560;
             fStack_68 = fStack_55c;
@@ -323,14 +323,16 @@ LAB_001d1e08:
 }
 
 // 0x001d20f0  size 0x8
-undefined2 FUN_001d20f0(undefined2 *param_1)
+/* 37 callers */
+
+undefined2 CarRec_GetModelId(undefined2 *param_1)
 
 {
   return *param_1;
 }
 
 // 0x001d2100  size 0x18
-void FUN_001d2100(undefined2 *param_1)
+void CarRec_Clear(undefined2 *param_1)
 
 {
   *param_1 = 0xffff;
@@ -340,7 +342,7 @@ void FUN_001d2100(undefined2 *param_1)
 }
 
 // 0x001d2120  size 0xc
-void FUN_001d2120(undefined2 *param_1)
+void CarRec_ClearModel(undefined2 *param_1)
 
 {
   *param_1 = 0xffff;
@@ -348,14 +350,14 @@ void FUN_001d2120(undefined2 *param_1)
 }
 
 // 0x001d2130  size 0x8
-undefined2 FUN_001d2130(undefined2 *param_1)
+undefined2 CarRec_GetModelIdRaw(undefined2 *param_1)
 
 {
   return *param_1;
 }
 
 // 0x001d2140  size 0x8
-void FUN_001d2140(undefined2 *param_1,undefined2 param_2)
+void CarRec_SetModel(undefined2 *param_1,undefined2 param_2)
 
 {
   *param_1 = param_2;
@@ -363,7 +365,7 @@ void FUN_001d2140(undefined2 *param_1,undefined2 param_2)
 }
 
 // 0x001d2150  size 0x10
-void FUN_001d2150(undefined2 *param_1,undefined2 param_2)
+void CarRec_SetModelAndColor(undefined2 *param_1,undefined2 param_2)
 
 {
   *param_1 = param_2;
@@ -372,7 +374,7 @@ void FUN_001d2150(undefined2 *param_1,undefined2 param_2)
 }
 
 // 0x001d2160  size 0x14
-void FUN_001d2160(undefined2 *param_1)
+void CarRec_ClearParts(undefined2 *param_1)
 
 {
   *param_1 = 0xffff;
@@ -381,7 +383,7 @@ void FUN_001d2160(undefined2 *param_1)
 }
 
 // 0x001d2180  size 0x8
-void FUN_001d2180(int param_1,undefined4 param_2)
+void CarRec_SetMileage(int param_1,undefined4 param_2)
 
 {
   *(undefined4 *)(param_1 + 0x10) = param_2;
@@ -389,7 +391,7 @@ void FUN_001d2180(int param_1,undefined4 param_2)
 }
 
 // 0x001d2190  size 0x68
-void FUN_001d2190(undefined1 *param_1)
+void CarRec_Init(undefined1 *param_1)
 
 {
   undefined1 *puVar1;
@@ -422,44 +424,46 @@ void FUN_001d2190(undefined1 *param_1)
 }
 
 // 0x001d2200  size 0x10
-undefined1 FUN_001d2200(int param_1,uint param_2)
+undefined1 CarRec_GetPaint(int param_1,uint param_2)
 
 {
   return *(undefined1 *)((param_2 & 0xff) + param_1 + 0x14);
 }
 
 // 0x001d2210  size 0x8
-int FUN_001d2210(int param_1)
+int CarRec_GetPaintArray(int param_1)
 
 {
   return param_1 + 0x14;
 }
 
 // 0x001d2220  size 0x14
-int FUN_001d2220(int param_1,uint param_2)
+int CarRec_GetPartSlot(int param_1,uint param_2)
 
 {
   return param_1 + (param_2 & 0xff) * 4 + 0x70;
 }
 
 // 0x001d2240  size 0x38
-void FUN_001d2240(int param_1,uint param_2)
+void CarRec_GetPartInfo(int param_1,uint param_2)
 
 {
-  FUN_001d3970(*(undefined2 *)((param_2 & 0xff) * 4 + param_1 + 0x70));
+  PartDb_GetInfo(*(undefined2 *)((param_2 & 0xff) * 4 + param_1 + 0x70));
   return;
 }
 
 // 0x001d2280  size 0x38
-void FUN_001d2280(int param_1,uint param_2)
+/* 16 callers */
+
+void CarRec_GetPartData(int param_1,uint param_2)
 
 {
-  FUN_001d3540(*(undefined2 *)((param_2 & 0xff) * 4 + param_1 + 0x70));
+  PartDb_Get(*(undefined2 *)((param_2 & 0xff) * 4 + param_1 + 0x70));
   return;
 }
 
 // 0x001d22c0  size 0xd4
-void FUN_001d22c0(int param_1,undefined8 param_2)
+void CarRec_CountParts(int param_1,undefined8 param_2)
 
 {
   undefined2 uVar1;
@@ -484,11 +488,11 @@ void FUN_001d22c0(int param_1,undefined8 param_2)
   *(undefined1 *)(param_1 + 0xb0) = 0;
   *(undefined4 *)(param_1 + 0xb4) = 0;
   if ((short)param_2 != -1) {
-    FUN_001d4240(param_1,param_2);
+    CarDb_GetPartForModel(param_1,param_2);
     uVar4 = 0;
     iVar2 = param_1;
     do {
-      uVar1 = FUN_001d4010(param_2,uVar4 & 0xff,0xffffffffffffffff);
+      uVar1 = CarDb_FindDefaultPart(param_2,uVar4 & 0xff,0xffffffffffffffff);
       *(undefined2 *)(iVar2 + 0x5c) = uVar1;
       *(undefined1 *)(iVar2 + 0x5e) = 0x1f;
       uVar4 = uVar4 + 1;
@@ -500,22 +504,22 @@ void FUN_001d22c0(int param_1,undefined8 param_2)
 }
 
 // 0x001d23a0  size 0x14
-int FUN_001d23a0(int param_1,uint param_2)
+int CarRec_GetOptionSlot(int param_1,uint param_2)
 
 {
   return param_1 + (param_2 & 0xff) * 4 + 0x5c;
 }
 
 // 0x001d23c0  size 0x38
-void FUN_001d23c0(int param_1,uint param_2)
+void CarRec_GetOptionData(int param_1,uint param_2)
 
 {
-  FUN_001d3540(*(undefined2 *)((param_2 & 0xff) * 4 + param_1 + 0x5c));
+  PartDb_Get(*(undefined2 *)((param_2 & 0xff) * 4 + param_1 + 0x5c));
   return;
 }
 
 // 0x001d2410  size 0x80
-void FUN_001d2410(int param_1,undefined8 param_2,undefined8 param_3)
+void CarRec_HasPart(int param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined2 uVar1;
@@ -525,7 +529,7 @@ void FUN_001d2410(int param_1,undefined8 param_2,undefined8 param_3)
   uVar3 = 0;
   iVar2 = param_1;
   do {
-    uVar1 = FUN_001d4010(param_2,uVar3 & 0xff,param_3);
+    uVar1 = CarDb_FindDefaultPart(param_2,uVar3 & 0xff,param_3);
     *(undefined2 *)(iVar2 + 0x5c) = uVar1;
     *(undefined1 *)(iVar2 + 0x5e) = 0x1f;
     uVar3 = uVar3 + 1;
@@ -536,7 +540,7 @@ void FUN_001d2410(int param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001d2490  size 0x960
-void FUN_001d2490(short *param_1,int param_2)
+void CarRec_Randomize(short *param_1,int param_2)
 
 {
   bool bVar1;
@@ -568,34 +572,34 @@ void FUN_001d2490(short *param_1,int param_2)
   iVar20 = 0;
   bVar3 = false;
   bVar2 = false;
-  uVar12 = FUN_001c1890(0);
-  sVar4 = FUN_001c1730(uVar12);
+  uVar12 = Profile_Get(0);
+  sVar4 = Profile_GetDayOfMonth(uVar12);
   sVar5 = DAT_00319280;
   uVar21 = (undefined1)DAT_00319284;
-  uVar12 = FUN_001c1890(0);
-  uVar13 = FUN_001bdd00(uVar12);
+  uVar12 = Profile_Get(0);
+  uVar13 = garage_sub_001bdd00(uVar12);
   if ((uVar13 & 0x200000) == 0) {
-    uVar12 = FUN_001c1890(0);
-    lVar14 = FUN_001c0ed0(uVar12,6);
+    uVar12 = Profile_Get(0);
+    lVar14 = Profile_GetStat(uVar12,6);
     psVar17 = (short *)PTR_DAT_003197f0;
     if (lVar14 == 0) {
-      uVar12 = FUN_001c1890(0);
-      lVar14 = FUN_001c0ed0(uVar12,7);
+      uVar12 = Profile_Get(0);
+      lVar14 = Profile_GetStat(uVar12,7);
       if (lVar14 == 0) {
-        uVar12 = FUN_001c1890(0);
-        lVar14 = FUN_001c0ed0(uVar12,4);
+        uVar12 = Profile_Get(0);
+        lVar14 = Profile_GetStat(uVar12,4);
         if (lVar14 == 0) {
-          uVar12 = FUN_001c1890(0);
-          lVar14 = FUN_001c0ed0(uVar12,2);
+          uVar12 = Profile_Get(0);
+          lVar14 = Profile_GetStat(uVar12,2);
           if (lVar14 == 0) {
-            uVar12 = FUN_001c1890(0);
-            lVar14 = FUN_001c0ed0(uVar12,3);
+            uVar12 = Profile_Get(0);
+            lVar14 = Profile_GetStat(uVar12,3);
             if (lVar14 == 0) {
-              uVar12 = FUN_001c1890(0);
-              lVar14 = FUN_001c0ed0(uVar12,0);
+              uVar12 = Profile_Get(0);
+              lVar14 = Profile_GetStat(uVar12,0);
               if (lVar14 == 0) {
-                uVar12 = FUN_001c1890(0);
-                lVar14 = FUN_001c0ed0(uVar12,5);
+                uVar12 = Profile_Get(0);
+                lVar14 = Profile_GetStat(uVar12,5);
                 psVar17 = (short *)PTR_DAT_003197e0;
                 if (lVar14 == 0) {
                   uVar7 = maybe_Rand_Float();
@@ -680,13 +684,13 @@ LAB_001d256c:
         bVar2 = true;
       }
     }
-    iVar11 = FUN_001c1890(0);
+    iVar11 = Profile_Get(0);
     piVar18 = (int *)(iVar11 + 0x1c70);
     sVar5 = 0;
     iVar11 = 0;
     psVar17 = asStack_240;
     do {
-      if ((*piVar18 != 0) && (iVar6 = FUN_00205530(iVar11), *(int *)(iVar6 + 0x88) == 0)) {
+      if ((*piVar18 != 0) && (iVar6 = CarDb_GetModel(iVar11), *(int *)(iVar6 + 0x88) == 0)) {
         sVar5 = sVar5 + 1;
         *psVar17 = (short)iVar11;
         psVar17 = psVar17 + 1;
@@ -697,11 +701,11 @@ LAB_001d256c:
     iVar11 = maybe_Rand_Float();
     *param_1 = asStack_240[iVar11 % (int)sVar5];
   }
-  iVar11 = FUN_00205530(*param_1);
+  iVar11 = CarDb_GetModel(*param_1);
   sVar5 = *param_1;
   if (((sVar5 == 0x11d) || (sVar5 == 0xfb)) || (*(char *)(iVar11 + 0x28) == '\f')) {
     iVar6 = maybe_Rand_Float();
-    iVar8 = FUN_00204b50(sVar5);
+    iVar8 = CarDb_GetModelEntry(sVar5);
     param_1[1] = (short)(iVar6 % iVar8);
   }
   else {
@@ -714,17 +718,17 @@ LAB_001d256c:
       }
       if (uVar16 == 0) {
         iVar6 = maybe_Rand_Float();
-        iVar8 = FUN_00204630();
+        iVar8 = menu_sub_00204630();
         param_1[1] = (short)(iVar6 % iVar8) + 0x1e;
       }
       else {
         iVar6 = maybe_Rand_Float();
-        iVar8 = FUN_002045b0();
+        iVar8 = menu_sub_002045b0();
         param_1[1] = (short)(iVar6 % iVar8) + 0x2be;
       }
     }
     else {
-      iVar6 = FUN_00204b50(*param_1);
+      iVar6 = CarDb_GetModelEntry(*param_1);
       iVar8 = maybe_Rand_Float();
       param_1[1] = (short)(iVar8 % iVar6);
     }
@@ -743,7 +747,7 @@ LAB_001d256c:
   *(int *)(param_1 + 2) = iVar8 % 100 + ((int)fVar22 / 5) * 4000 + 3000 + (iVar6 % 100) * 0x28;
   psVar17 = param_1;
   do {
-    sVar5 = FUN_001d4010(*param_1,uVar7 & 0xff,0xffffffffffffffff);
+    sVar5 = CarDb_FindDefaultPart(*param_1,uVar7 & 0xff,0xffffffffffffffff);
     uVar7 = uVar7 + 1;
     psVar17[6] = sVar5;
     psVar17 = psVar17 + 1;
@@ -753,12 +757,12 @@ LAB_001d256c:
       uVar19 = 0;
       psVar17 = param_1;
       do {
-        uVar12 = FUN_001c1890(0);
-        lVar14 = FUN_001bbdd0(uVar12,psVar17[6]);
+        uVar12 = Profile_Get(0);
+        lVar14 = garage_sub_001bbdd0(uVar12,psVar17[6]);
         if (0 < lVar14) {
-          sVar5 = FUN_001d4010(*param_1,uVar19 & 0xff,0xffffffffffffffff);
+          sVar5 = CarDb_FindDefaultPart(*param_1,uVar19 & 0xff,0xffffffffffffffff);
           psVar17[6] = sVar5 + (short)lVar14;
-          iVar6 = FUN_001ba290(psVar17[6],0);
+          iVar6 = Garage_ComputeCarStats(psVar17[6],0);
           iVar20 = iVar20 + iVar6;
         }
         uVar19 = uVar19 + 1;
@@ -768,27 +772,27 @@ LAB_001d256c:
       sVar5 = (short)(iVar6 % 0x98) + 0xad;
       param_1[0x14] = sVar5;
       param_1[0x13] = sVar5;
-      iVar6 = FUN_001ba290(param_1[0x13],0);
-      iVar8 = FUN_001ba290(param_1[0x14],0);
+      iVar6 = Garage_ComputeCarStats(param_1[0x13],0);
+      iVar8 = Garage_ComputeCarStats(param_1[0x14],0);
       param_1[0x16] = 0x90;
       param_1[0x15] = 0x90;
-      iVar9 = FUN_001ba290(param_1[0x15],0);
-      iVar10 = FUN_001ba290(param_1[0x16],0);
+      iVar9 = Garage_ComputeCarStats(param_1[0x15],0);
+      iVar10 = Garage_ComputeCarStats(param_1[0x16],0);
       iVar20 = iVar20 + iVar6 + iVar8 + iVar9 + iVar10;
     }
     else {
-      FUN_001b0480(0xb,uVar19,aiStack_250);
+      Rival_RandomizeBehaviour(0xb,uVar19,aiStack_250);
       iVar6 = 0;
       if (0 < (int)uVar19) {
         piVar18 = aiStack_250;
         do {
-          uVar12 = FUN_001c1890(0);
-          lVar14 = FUN_001bbdd0(uVar12,param_1[*piVar18 + 6]);
+          uVar12 = Profile_Get(0);
+          lVar14 = garage_sub_001bbdd0(uVar12,param_1[*piVar18 + 6]);
           if (0 < lVar14) {
             iVar8 = maybe_Rand_Float();
-            sVar5 = FUN_001d4010(*param_1,(char)*piVar18,0xffffffffffffffff);
+            sVar5 = CarDb_FindDefaultPart(*param_1,(char)*piVar18,0xffffffffffffffff);
             param_1[*piVar18 + 6] = sVar5 + (short)(iVar8 % (int)lVar14) + 1;
-            iVar8 = FUN_001ba290(param_1[*piVar18 + 6],0);
+            iVar8 = Garage_ComputeCarStats(param_1[*piVar18 + 6],0);
             iVar20 = iVar20 + iVar8;
           }
           iVar6 = iVar6 + 1;
@@ -806,8 +810,8 @@ LAB_001d256c:
           sVar5 = (short)(iVar6 % 0x98) + 0xad;
           param_1[0x14] = sVar5;
           param_1[0x13] = sVar5;
-          iVar6 = FUN_001ba290(param_1[0x13],0);
-          iVar8 = FUN_001ba290(param_1[0x14],0);
+          iVar6 = Garage_ComputeCarStats(param_1[0x13],0);
+          iVar8 = Garage_ComputeCarStats(param_1[0x14],0);
           iVar20 = iVar20 + iVar6 + iVar8;
         }
       }
@@ -835,7 +839,9 @@ LAB_001d256c:
 }
 
 // 0x001d2e00  size 0x1cc
-void FUN_001d2e00(undefined4 *param_1,short *param_2,undefined4 param_3)
+/* 12 callers */
+
+void CarRec_InstallPart(undefined4 *param_1,short *param_2,undefined4 param_3)
 
 {
   short sVar1;
@@ -882,11 +888,11 @@ void FUN_001d2e00(undefined4 *param_1,short *param_2,undefined4 param_3)
   uStack_8 = 0;
   uStack_c = 0;
   if (sVar1 != -1) {
-    FUN_001d4240(auStack_bc,sVar1);
+    CarDb_GetPartForModel(auStack_bc,sVar1);
     uVar6 = 0;
     psVar4 = psVar5;
     do {
-      sVar2 = FUN_001d4010(sVar1,uVar6 & 0xff,0xffffffffffffffff);
+      sVar2 = CarDb_FindDefaultPart(sVar1,uVar6 & 0xff,0xffffffffffffffff);
       psVar4[0x38] = sVar2;
       *(undefined1 *)(psVar4 + 0x39) = 0x1f;
       uVar6 = uVar6 + 1;
@@ -928,7 +934,7 @@ void FUN_001d2e00(undefined4 *param_1,short *param_2,undefined4 param_3)
 }
 
 // 0x001d2fd0  size 0x28
-void FUN_001d2fd0(undefined2 *param_1)
+void CarRec_ResetParts(undefined2 *param_1)
 
 {
   *param_1 = 0xffff;
@@ -943,21 +949,21 @@ void FUN_001d2fd0(undefined2 *param_1)
 }
 
 // 0x001d3000  size 0x8
-undefined1 FUN_001d3000(int param_1)
+undefined1 CarRec_GetGrade(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0xc4);
 }
 
 // 0x001d3010  size 0x8
-undefined2 FUN_001d3010(int param_1)
+undefined2 CarRec_GetVariant(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 2);
 }
 
 // 0x001d3020  size 0xf4
-void FUN_001d3020(short *param_1,undefined8 param_2,short param_3,undefined4 param_4,
+void CarRec_Build(short *param_1,undefined8 param_2,short param_3,undefined4 param_4,
                  undefined4 param_5)
 
 {
@@ -994,11 +1000,11 @@ void FUN_001d3020(short *param_1,undefined8 param_2,short param_3,undefined4 par
   param_1[100] = 0;
   param_1[0x65] = 0;
   if ((short)param_2 != -1) {
-    FUN_001d4240(param_1 + 10,param_2);
+    CarDb_GetPartForModel(param_1 + 10,param_2);
     uVar4 = 0;
     psVar3 = param_1;
     do {
-      sVar1 = FUN_001d4010(param_2,uVar4 & 0xff,0xffffffffffffffff);
+      sVar1 = CarDb_FindDefaultPart(param_2,uVar4 & 0xff,0xffffffffffffffff);
       psVar3[0x38] = sVar1;
       *(undefined1 *)(psVar3 + 0x39) = 0x1f;
       uVar4 = uVar4 + 1;
@@ -1010,7 +1016,7 @@ void FUN_001d3020(short *param_1,undefined8 param_2,short param_3,undefined4 par
 }
 
 // 0x001d3120  size 0xc0
-void FUN_001d3120(undefined2 *param_1,undefined1 *param_2)
+void CarRec_Copy(undefined2 *param_1,undefined1 *param_2)
 
 {
   undefined2 uVar1;
@@ -1064,7 +1070,7 @@ void FUN_001d3120(undefined2 *param_1,undefined1 *param_2)
 }
 
 // 0x001d31e0  size 0x2ec
-undefined4 FUN_001d31e0(undefined2 *param_1,byte param_2,undefined4 param_3)
+undefined4 CarRec_ApplyDefaultParts(undefined2 *param_1,byte param_2,undefined4 param_3)
 
 {
   bool bVar1;
@@ -1078,7 +1084,7 @@ undefined4 FUN_001d31e0(undefined2 *param_1,byte param_2,undefined4 param_3)
   undefined1 uStack_42;
   undefined1 auStack_40 [64];
   
-  iVar3 = FUN_00205530(*param_1);
+  iVar3 = CarDb_GetModel(*param_1);
   puVar6 = (undefined4 *)auStack_40;
   puVar7 = (undefined4 *)(iVar3 + 0x44);
   iVar5 = 8;
@@ -1092,7 +1098,7 @@ undefined4 FUN_001d31e0(undefined2 *param_1,byte param_2,undefined4 param_3)
   } while (0 < iVar5);
   sStack_44 = (short)param_3;
   bVar1 = false;
-  bVar2 = FUN_001d3da0(sStack_44);
+  bVar2 = Maker_GetInfo(sStack_44);
   if (bVar2 == 0xd) {
     if (param_2 - 0xd < 2) {
       bVar1 = true;
@@ -1192,28 +1198,30 @@ undefined4 FUN_001d31e0(undefined2 *param_1,byte param_2,undefined4 param_3)
 }
 
 // 0x001d34d0  size 0x8
-int FUN_001d34d0(int param_1)
+int CarRec_GetName(int param_1)
 
 {
   return param_1 + 0x14;
 }
 
 // 0x001d34e0  size 0x10
-int FUN_001d34e0(int param_1,int param_2)
+int CarRec_GetColorSlot(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 2 + 0x50;
 }
 
 // 0x001d34f0  size 0x14
-int FUN_001d34f0(int param_1,uint param_2)
+/* 19 callers */
+
+int CarRec_GetPartSlotB(int param_1,uint param_2)
 
 {
   return param_1 + (param_2 & 0xff) * 4 + 0x70;
 }
 
 // 0x001d3510  size 0x24
-void FUN_001d3510(undefined2 *param_1)
+void CarRec_ResetColors(undefined2 *param_1)
 
 {
   *param_1 = 0xffff;
@@ -1226,7 +1234,9 @@ void FUN_001d3510(undefined2 *param_1)
 }
 
 // 0x001d3540  size 0x430
-long FUN_001d3540(short param_1)
+/* 16 callers */
+
+long PartDb_Get(short param_1)
 
 {
   long lVar1;
@@ -1384,7 +1394,9 @@ long FUN_001d3540(short param_1)
 }
 
 // 0x001d3970  size 0x424
-undefined4 FUN_001d3970(short param_1)
+/* 20 callers */
+
+undefined4 PartDb_GetInfo(short param_1)
 
 {
   undefined4 uVar1;
@@ -1536,7 +1548,9 @@ undefined4 FUN_001d3970(short param_1)
 }
 
 // 0x001d3da0  size 0x270
-undefined4 FUN_001d3da0(short param_1)
+/* id 0..0x23 */
+
+undefined4 Maker_GetInfo(short param_1)
 
 {
   undefined4 uVar1;

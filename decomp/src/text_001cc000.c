@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001cc8e0  size 0x124
-void FUN_001cc8e0(int param_1)
+void Ai_Reset(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x16b8) = 0;
@@ -73,7 +73,7 @@ void FUN_001cc8e0(int param_1)
 }
 
 // 0x001cca10  size 0x78
-float FUN_001cca10(undefined8 param_1)
+float RaceCar_IsAirborne(undefined8 param_1)
 
 {
   int iVar1;
@@ -83,9 +83,9 @@ float FUN_001cca10(undefined8 param_1)
   iVar1 = 0;
   fVar3 = 0.0;
   do {
-    fVar2 = (float)FUN_001cca90(param_1,iVar1);
+    fVar2 = (float)RaceCar_WheelGroundDistance(param_1,iVar1);
     if (fVar3 < fVar2) {
-      fVar3 = (float)FUN_001cca90(param_1,iVar1);
+      fVar3 = (float)RaceCar_WheelGroundDistance(param_1,iVar1);
     }
     iVar1 = iVar1 + 1;
   } while (iVar1 < 4);
@@ -93,7 +93,7 @@ float FUN_001cca10(undefined8 param_1)
 }
 
 // 0x001cca90  size 0x174
-float FUN_001cca90(int param_1,int param_2)
+float RaceCar_WheelGroundDistance(int param_1,int param_2)
 
 {
   int iVar1;
@@ -139,8 +139,8 @@ float FUN_001cca90(int param_1,int param_2)
 }
 
 // 0x001ccc10  size 0xac8
-void FUN_001ccc10(float param_1,int *param_2,ushort param_3,int param_4,undefined1 param_5,
-                 long param_6,ulong param_7)
+void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefined1 param_5,
+                   long param_6,ulong param_7)
 
 {
   short sVar1;
@@ -246,12 +246,12 @@ void FUN_001ccc10(float param_1,int *param_2,ushort param_3,int param_4,undefine
   *(short *)(param_2 + 0x4da) = (short)param_4;
   *(undefined2 *)((int)param_2 + 0x136a) = 0;
   *(undefined1 *)piVar17 = 0;
-  FUN_001882c0(piVar17,0x36f230,0x36f238);
+  Road_InitTracker(piVar17,0x36f230,0x36f238);
   fStack_8 = (float)param_2[0x4de];
   fStack_10 = (float)param_2[0x4dc];
   fStack_c = (float)param_2[0x4dd] + 0.1;
-  FUN_00188b50(0x3f800000,0x36f230,auStack_30,*(undefined2 *)((int)param_2 + 0x1366),param_2[0x4db],
-               *(undefined2 *)((int)param_2 + 0x136a),lVar16);
+  road_sub_00188b50(0x3f800000,0x36f230,auStack_30,*(undefined2 *)((int)param_2 + 0x1366),
+                    param_2[0x4db],*(undefined2 *)((int)param_2 + 0x136a),lVar16);
   vu0math_sub_00132b50(&fStack_50,auStack_30,param_2 + 0x4dc);
   vu0math_sub_00132b50(param_2 + 0x4ec,auStack_30,param_2 + 0x4dc);
   vu0math_sub_001328b0(param_2 + 0x4ec,param_2 + 0x4ec);
@@ -444,7 +444,7 @@ void FUN_001ccc10(float param_1,int *param_2,ushort param_3,int param_4,undefine
   fStack_98 = fStack_a8 - fStack_b8;
   fStack_a8 = fStack_a8 - pfVar6[2];
   fStack_b8 = fStack_b8 - pfVar6[2];
-  FUN_001dac80(&fStack_90);
+  Vec3_LengthB(&fStack_90);
   phys_sub_00163bc0(&fStack_90);
   phys_sub_00163bc0(&fStack_a0);
   phys_sub_00163bc0(&fStack_c0);
@@ -567,7 +567,7 @@ LAB_001cd4e8:
 }
 
 // 0x001cd6e0  size 0x450
-void FUN_001cd6e0(void)
+void Ai_SetupDifficulty(void)
 
 {
   undefined *puVar1;
@@ -592,7 +592,7 @@ void FUN_001cd6e0(void)
   
   iVar5 = Course_GetCurrentId();
   puVar1 = (&PTR_DAT_00326710)[iVar5];
-  iVar5 = GameState_GetMoneyTotal3();
+  iVar5 = GameState_GetTotalCarCount();
   uVar13 = 0;
   bVar3 = false;
   if (puVar1 == (undefined *)0x0) {
@@ -601,9 +601,10 @@ void FUN_001cd6e0(void)
       iVar12 = 0;
       iVar7 = 5;
       do {
-        FUN_001ccc10(0,*(int *)((int)piGpffff8c68 + iVar12),0,iVar7,0,1,
-                     *(undefined4 *)(*(int *)(*(int *)((int)piGpffff8c68 + iVar12) + 0x17dc) + 4));
-        FUN_001cba60(*(undefined4 *)((int)piGpffff8c68 + iVar12));
+        Ai_PredictPath(0,*(int *)((int)piGpffff8c68 + iVar12),0,iVar7,0,1,
+                       *(undefined4 *)(*(int *)(*(int *)((int)piGpffff8c68 + iVar12) + 0x17dc) + 4))
+        ;
+        Ai_ComputeSteering(*(undefined4 *)((int)piGpffff8c68 + iVar12));
         iVar9 = iVar9 + 1;
         iVar12 = iVar12 + 4;
         iVar7 = iVar7 + 2;
@@ -616,7 +617,7 @@ void FUN_001cd6e0(void)
     iVar7 = GameState_Get_c();
     puVar8 = (undefined4 *)(iVar9 + iVar7 * 0x10);
     uStack_20 = (undefined2)*puVar8;
-    iVar9 = FUN_001dde40(uStack_20,puVar8[1]);
+    iVar9 = Checkpoint_GetPosition(uStack_20,puVar8[1]);
     bVar2 = true;
     if ((iVar5 != 1) && (bVar2 = bVar3, iVar5 == 2)) {
       cVar4 = GameState_Get_354_7050();
@@ -734,10 +735,10 @@ void FUN_001cd6e0(void)
         else {
           iVar15 = iVar15 * 0x20;
         }
-        FUN_001ddda0(iVar9 + iVar15,&uStack_2,&uStack_4);
-        FUN_001ccc10(0,*(undefined4 *)((int)piGpffff8c68 + iVar7),uStack_2,uStack_4,uVar14,1,
-                     *(undefined4 *)(iVar12 + 4));
-        FUN_001cba60(*(undefined4 *)((int)piGpffff8c68 + iVar7));
+        raceprog_sub_001ddda0(iVar9 + iVar15,&uStack_2,&uStack_4);
+        Ai_PredictPath(0,*(undefined4 *)((int)piGpffff8c68 + iVar7),uStack_2,uStack_4,uVar14,1,
+                       *(undefined4 *)(iVar12 + 4));
+        Ai_ComputeSteering(*(undefined4 *)((int)piGpffff8c68 + iVar7));
         if ((iRam004301b0 == 0) || (uRam004301ac <= uVar6)) {
           iVar12 = 0;
         }
@@ -754,7 +755,7 @@ void FUN_001cd6e0(void)
 }
 
 // 0x001cdb30  size 0x90
-long FUN_001cdb30(long param_1,short param_2)
+long RaceCar_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -776,7 +777,7 @@ long FUN_001cdb30(long param_1,short param_2)
 }
 
 // 0x001cdbc0  size 0x84
-void FUN_001cdbc0(void)
+void RaceCar_FreeAll(void)
 
 {
   int *piVar1;
@@ -801,19 +802,19 @@ void FUN_001cdbc0(void)
 }
 
 // 0x001cdc50  size 0x74
-void FUN_001cdc50(void)
+void RaceCar_PlaceAll(void)
 
 {
   int iVar1;
   int iVar2;
   int iVar3;
   
-  iVar1 = GameState_GetMoneyTotal3();
+  iVar1 = GameState_GetTotalCarCount();
   iVar2 = 0;
   if (0 < iVar1) {
     iVar3 = 0;
     do {
-      FUN_001cde10(*(undefined4 *)(iGpffff8c68 + iVar3),iVar2);
+      RaceCar_PlaceOnGrid(*(undefined4 *)(iGpffff8c68 + iVar3),iVar2);
       iVar2 = iVar2 + 1;
       iVar3 = iVar3 + 4;
     } while (iVar2 < iVar1);
@@ -822,7 +823,7 @@ void FUN_001cdc50(void)
 }
 
 // 0x001cdcd0  size 0x138
-void FUN_001cdcd0(undefined8 param_1)
+void RaceCar_CreateAll(undefined8 param_1)
 
 {
   int iVar1;
@@ -835,7 +836,7 @@ void FUN_001cdcd0(undefined8 param_1)
   uVar2 = Mem_Alloc16(0x1c,param_1);
   puGpffff8c68 = (undefined4 *)uVar2;
   Mem_Set16(uVar2,0,0x1c);
-  iVar1 = GameState_GetMoneyTotal3();
+  iVar1 = GameState_GetTotalCarCount();
   iVar6 = 0;
   *puGpffff8c68 = 0;
   puGpffff8c68[1] = 0;
@@ -861,7 +862,7 @@ void FUN_001cdcd0(undefined8 param_1)
         puVar5[0x5c3] = 0x3f800000;
       }
       *(undefined4 **)((int)puGpffff8c68 + iVar4) = puVar5;
-      FUN_001ce4d0(*(undefined4 *)((int)puGpffff8c68 + iVar4),iVar6);
+      RaceCar_ResetToTrack(*(undefined4 *)((int)puGpffff8c68 + iVar4),iVar6);
       iVar6 = iVar6 + 1;
       iVar4 = iVar4 + 4;
     } while (iVar6 < iVar1);
@@ -870,7 +871,7 @@ void FUN_001cdcd0(undefined8 param_1)
 }
 
 // 0x001cde10  size 0x164
-void FUN_001cde10(undefined8 param_1,undefined8 param_2)
+void RaceCar_PlaceOnGrid(undefined8 param_1,undefined8 param_2)
 
 {
   undefined1 *puVar1;
@@ -905,14 +906,14 @@ void FUN_001cde10(undefined8 param_1,undefined8 param_2)
     puVar7 = puVar7 + 1;
   } while (0 < iVar5);
   if ((uStack_cc & 0x20) == 0) {
-    FUN_001cdf80(param_1,param_2);
+    Ai_UpdateGearbox(param_1,param_2);
     (**(code **)(*(int *)param_1 + 0x38))(0x3c888889,param_1);
-    FUN_001cee10(param_1);
+    RaceCar_UpdateTracker(param_1);
     if (((uStack_cc & 0x100) == 0) &&
        (((uStack_cc & 0x60) == 0 || (lVar3 = GameState_Get_ec(), lVar3 != 0)))) {
-      FUN_001ca810(param_1,param_2);
+      Ai_UpdateDriver(param_1,param_2);
     }
-    FUN_001cba60(param_1);
+    Ai_ComputeSteering(param_1);
   }
   else {
     puVar2 = (undefined1 *)0x10;
@@ -924,20 +925,20 @@ void FUN_001cde10(undefined8 param_1,undefined8 param_2)
       puVar2 = puVar2 + -1;
       puVar1 = puVar2;
     }
-    uVar4 = FUN_001e8f30();
+    uVar4 = RaceScene_Get_40();
     Course_GetStartTransform(uVar4,auStack_110,auStack_120,0);
     uStack_130 = uStack_e0;
     uStack_12c = uStack_dc;
     uStack_128 = uStack_d8;
     phys_sub_00163340(auStack_140,auStack_110);
-    FUN_001ced30(param_1,&uStack_130,auStack_140);
-    FUN_001cb190(param_1);
+    RaceCar_SetTransform(param_1,&uStack_130,auStack_140);
+    Ai_FollowRacingLine(param_1);
   }
   return;
 }
 
 // 0x001cdf80  size 0x548
-void FUN_001cdf80(undefined8 param_1,char param_2)
+void Ai_UpdateGearbox(undefined8 param_1,char param_2)
 
 {
   char cVar1;
@@ -1096,7 +1097,7 @@ LAB_001ce1b8:
 }
 
 // 0x001ce4d0  size 0x268
-void FUN_001ce4d0(int param_1,undefined8 param_2)
+void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
 
 {
   char cVar1;
@@ -1137,7 +1138,7 @@ void FUN_001ce4d0(int param_1,undefined8 param_2)
   *(undefined4 *)(param_1 + 0xbe8) = 0;
   *(undefined4 *)(param_1 + 0xbec) = 0;
   uVar3 = GameState_Elem_3e0_x540(uStack_c7);
-  FUN_001ceef0(uVar3,param_1 + 0xbf0,auStack_d0,1);
+  CarSpec_BuildFromDb(uVar3,param_1 + 0xbf0,auStack_d0,1);
   Car_Reset(param_1,param_1 + 0xbf0,1,7);
   uVar4 = PhysContact_GetBodyB(*(int *)(param_1 + 0x158) + 0x10);
   uVar10 = 0;
@@ -1152,18 +1153,18 @@ void FUN_001ce4d0(int param_1,undefined8 param_2)
     iVar6 = iVar6 + 0x140;
   } while (uVar10 < 4);
   *(undefined1 *)(param_1 + 0x9a8) = 1;
-  cVar1 = FUN_001d2200(auStack_d0,0x14);
+  cVar1 = CarRec_GetPaint(auStack_d0,0x14);
   if (cVar1 == '\0') {
     Car_SetHandbrake(0,param_1,0);
   }
   else {
-    iVar6 = FUN_001d2200(auStack_d0,0x14);
+    iVar6 = CarRec_GetPaint(auStack_d0,0x14);
     Car_SetHandbrake((float)iVar6 * 0.05 + -1.0,param_1,1);
   }
-  cVar1 = FUN_001d2200(auStack_d0,0x16);
+  cVar1 = CarRec_GetPaint(auStack_d0,0x16);
   *(bool *)(param_1 + 0x892) = cVar1 != '\0';
   *(undefined1 *)(param_1 + 0x890) = 1;
-  lVar5 = FUN_001d2280(auStack_d0,0);
+  lVar5 = CarRec_GetPartData(auStack_d0,0);
   if ((lVar5 < 3) && (*(int *)((int)uVar3 + 0x8c) != 2)) {
     *(undefined1 *)(param_1 + 0x8f0) = 0;
   }
@@ -1172,14 +1173,14 @@ void FUN_001ce4d0(int param_1,undefined8 param_2)
   }
   *(uint *)(param_1 + 0x884) = *(uint *)(param_1 + 0x884) | 2;
   *(bool *)(param_1 + 0x811) = iStack_c0 != 0;
-  FUN_001ce740(param_1,param_2,0);
+  RaceCar_ApplyRecord(param_1,param_2,0);
   *(undefined1 *)(param_1 + 0x88c) = 1;
-  FUN_001cc8e0(param_1);
+  Ai_Reset(param_1);
   return;
 }
 
 // 0x001ce740  size 0x5dc
-void FUN_001ce740(int param_1,undefined8 param_2,long param_3)
+void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
 
 {
   bool bVar1;
@@ -1288,12 +1289,12 @@ void FUN_001ce740(int param_1,undefined8 param_2,long param_3)
   do {
     if (param_3 == 0) {
       if (iVar4 == 0) {
-        uVar11 = FUN_001d2240(auStack_d0,0xf);
+        uVar11 = CarRec_GetPartInfo(auStack_d0,0xf);
       }
       else {
-        uVar11 = FUN_001d2240(auStack_d0,0x10);
+        uVar11 = CarRec_GetPartInfo(auStack_d0,0x10);
       }
-      iVar8 = FUN_001d3540(uVar11);
+      iVar8 = PartDb_Get(uVar11);
     }
     else {
       uVar11 = 0x93;
@@ -1389,7 +1390,7 @@ void FUN_001ce740(int param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001ced30  size 0xdc
-void FUN_001ced30(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
+void RaceCar_SetTransform(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
   undefined4 uVar1;
@@ -1430,16 +1431,16 @@ void FUN_001ced30(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
   *(undefined4 *)(iVar2 + 0x1374) = uStack_c;
   *(undefined4 *)(iVar2 + 0x1378) = uStack_8;
   *(undefined4 *)(iVar2 + 0x137c) = uStack_4;
-  thunk_FUN_00188370(iVar2 + 0x1360,(int)register0x000001c0 + -0x74c0,
+  Road_UpdateTracker(iVar2 + 0x1360,(int)register0x000001c0 + -0x74c0,
                      (int)register0x000001c0 + -0x74b8);
   *(undefined4 *)(iVar2 + 0x17d4) = *(undefined4 *)(iVar2 + 0x17d0);
-  uVar1 = FUN_001dde80(*(undefined2 *)(iVar2 + 0x1366),*(undefined4 *)(iVar2 + 0x136c));
+  uVar1 = Checkpoint_GetDirection(*(undefined2 *)(iVar2 + 0x1366),*(undefined4 *)(iVar2 + 0x136c));
   *(undefined4 *)(iVar2 + 0x17d0) = uVar1;
   return;
 }
 
 // 0x001cee10  size 0xd8
-void FUN_001cee10(int param_1)
+void RaceCar_UpdateTracker(int param_1)
 
 {
   undefined4 uVar1;
@@ -1450,27 +1451,28 @@ void FUN_001cee10(int param_1)
   
   uVar2 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
   vu0math_sub_00132ae0(param_1 + 0x1370,uVar2);
-  thunk_FUN_00188370(param_1 + 0x1360,(int)register0x000001c0 + -0x74c0,
+  Road_UpdateTracker(param_1 + 0x1360,(int)register0x000001c0 + -0x74c0,
                      (int)register0x000001c0 + -0x74b8);
   iVar3 = 0;
   iVar4 = param_1;
   iVar5 = param_1;
   do {
     vu0math_sub_00132ae0(iVar5 + 0x13e0,iVar4 + 0x1f0);
-    thunk_FUN_00188370(iVar5 + 0x13d0,(int)register0x000001c0 + -0x74c0,
+    Road_UpdateTracker(iVar5 + 0x13d0,(int)register0x000001c0 + -0x74c0,
                        (int)register0x000001c0 + -0x74b8);
     iVar3 = iVar3 + 1;
     iVar5 = iVar5 + 0x70;
     iVar4 = iVar4 + 0x140;
   } while (iVar3 < 4);
   *(undefined4 *)(param_1 + 0x17d4) = *(undefined4 *)(param_1 + 0x17d0);
-  uVar1 = FUN_001dde80(*(undefined2 *)(param_1 + 0x1366),*(undefined4 *)(param_1 + 0x136c));
+  uVar1 = Checkpoint_GetDirection
+                    (*(undefined2 *)(param_1 + 0x1366),*(undefined4 *)(param_1 + 0x136c));
   *(undefined4 *)(param_1 + 0x17d0) = uVar1;
   return;
 }
 
 // 0x001ceef0  size 0x960
-void FUN_001ceef0(int param_1,int param_2,undefined8 param_3,long param_4)
+void CarSpec_BuildFromDb(int param_1,int param_2,undefined8 param_3,long param_4)
 
 {
   undefined *puVar1;
@@ -1740,8 +1742,8 @@ void FUN_001ceef0(int param_1,int param_2,undefined8 param_3,long param_4)
   } while (uVar14 < 0x10);
   *(undefined4 *)(param_2 + 0x130) = *(undefined4 *)(puVar1 + 0x4c);
   *(undefined4 *)(param_2 + 0x134) = *(undefined4 *)(puVar1 + 0x50);
-  FUN_001cf860(param_2,param_3,param_1 + 4);
-  FUN_001d15a0(param_2,param_3);
+  CarSpec_ApplyTuning(param_2,param_3,param_1 + 4);
+  CarSpec_ApplyParts(param_2,param_3);
   if (param_4 != 0) {
     fVar16 = *(float *)((int)param_3 + 200);
     fVar15 = *(float *)(param_2 + 0x5bc);
@@ -1825,7 +1827,7 @@ void FUN_001ceef0(int param_1,int param_2,undefined8 param_3,long param_4)
 // 0x001cf860  size 0x1d34
 /* WARNING: Removing unreachable block (ram,0x001cfe2c) */
 
-void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
+void CarSpec_ApplyTuning(int param_1,undefined8 param_2,int param_3)
 
 {
   char cVar1;
@@ -1995,7 +1997,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
   else {
     fVar24 = 2.0;
   }
-  lVar6 = FUN_001d2280(param_2,0);
+  lVar6 = CarRec_GetPartData(param_2,0);
   iVar17 = (int)lVar6;
   if (0 < lVar6) {
     if (*(char *)(param_3 + 0x45) == '\0') {
@@ -2018,7 +2020,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
          *(float *)(param_1 + 0x63c) * 0.5 * ((float)iVar17 / 8.0);
   }
   fVar24 = *(float *)(param_1 + 0x60) * 3.5;
-  lVar6 = FUN_001d2280(param_2,2);
+  lVar6 = CarRec_GetPartData(param_2,2);
   iVar16 = (int)lVar6;
   if (0 < lVar6) {
     fVar24 = fVar24 - (fVar24 * (100.0 - (float)(iVar16 * iVar16))) / 100.0;
@@ -2036,11 +2038,11 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
     fVar23 = (fVar23 + 0.0) - fVar24 * 0.65;
     *(float *)(param_1 + 0x684) = *(float *)(param_1 + 0x684) * afStack_60[iVar16];
   }
-  lVar6 = FUN_001d2280(param_2,1);
+  lVar6 = CarRec_GetPartData(param_2,1);
   if (0 < lVar6) {
     fVar25 = (float)(int)lVar6 * 0.5 + fVar25 + 0.0;
   }
-  iVar5 = FUN_001d2280(param_2,3);
+  iVar5 = CarRec_GetPartData(param_2,3);
   afStack_80[0] = DAT_00318e80;
   afStack_80[1] = (float)DAT_00318e84;
   afStack_80[2] = (float)DAT_00318e88;
@@ -2049,11 +2051,11 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
   uStack_6c = DAT_00318e94;
   uStack_68 = DAT_00318e98;
   uStack_64 = DAT_00318e9c;
-  lVar7 = FUN_001d2280(param_2,4);
+  lVar7 = CarRec_GetPartData(param_2,4);
   if (0 < lVar7) {
     fVar25 = fVar25 + afStack_80[(int)lVar7];
   }
-  lVar8 = FUN_001d2280(param_2,5);
+  lVar8 = CarRec_GetPartData(param_2,5);
   if (0 < lVar8) {
     uVar14 = 0;
     afStack_a0[1] = (float)DAT_00318ea4;
@@ -2099,7 +2101,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
       iVar11 = iVar11 + 4;
     } while (uVar14 < 9);
   }
-  lVar8 = FUN_001d2280(param_2,6);
+  lVar8 = CarRec_GetPartData(param_2,6);
   if (0 < lVar8) {
     uVar14 = 0;
     afStack_100[0] = DAT_00318f00;
@@ -2130,7 +2132,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
          (*(float *)(param_1 + 0x648) + 0.0) -
          *(float *)(param_1 + 0x648) * 0.5 * ((float)iVar12 / 5.0);
   }
-  FUN_001d2280(param_2,7);
+  CarRec_GetPartData(param_2,7);
   afStack_140[0] = DAT_00318f40;
   afStack_140[1] = (float)DAT_00318f44;
   afStack_140[2] = (float)DAT_00318f48;
@@ -2139,7 +2141,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
   uStack_12c = DAT_00318f54;
   uStack_128 = DAT_00318f58;
   uStack_124 = DAT_00318f5c;
-  lVar8 = FUN_001d2280(param_2,8);
+  lVar8 = CarRec_GetPartData(param_2,8);
   if (0 < lVar8) {
     fVar25 = fVar25 - afStack_140[(int)lVar8] * 0.5;
     fVar23 = fVar23 - afStack_140[(int)lVar8] * 0.5;
@@ -2154,7 +2156,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
   uStack_150 = DAT_00318f70;
   uStack_14c = DAT_00318f74;
   uStack_148 = DAT_00318f78;
-  lVar8 = FUN_001d2280(param_2,9);
+  lVar8 = CarRec_GetPartData(param_2,9);
   uVar4 = DAT_00318fd8;
   uVar3 = DAT_00318fd4;
   if (0 < lVar8) {
@@ -2215,14 +2217,14 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
          *(float *)(param_1 + 0x2c4) *
          (*(float *)(param_1 + 0x2d0) + 10.0) * *(float *)(param_1 + 0x2c4) * 0.5;
   }
-  lVar8 = FUN_001d2280(param_2,0xd);
+  lVar8 = CarRec_GetPartData(param_2,0xd);
   if (lVar8 != 0) {
     *(float *)(param_1 + 0x1c0) = *(float *)(param_1 + 0x1c0) - 3.0;
     *(float *)(param_1 + 0x248) =
          *(float *)(param_1 + 0x1b4) *
          (*(float *)(param_1 + 0x1c0) + 10.0) * *(float *)(param_1 + 0x1b4) * 0.5;
   }
-  lVar8 = FUN_001d2280(param_2,0xe);
+  lVar8 = CarRec_GetPartData(param_2,0xe);
   if (lVar8 != 0) {
     *(float *)(param_1 + 0x358) =
          *(float *)(param_1 + 0x2c4) *
@@ -2237,7 +2239,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
   uStack_20c = DAT_00319034;
   uStack_208 = DAT_00319038;
   uStack_204 = DAT_0031903c;
-  lVar8 = FUN_001d2280(param_2,10);
+  lVar8 = CarRec_GetPartData(param_2,10);
   if (0 < lVar8) {
     afStack_240[0] = DAT_00319040;
     afStack_240[1] = (float)DAT_00319044;
@@ -2262,7 +2264,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
   uStack_24c = DAT_00319074;
   uStack_248 = DAT_00319078;
   uStack_244 = DAT_0031907c;
-  lVar8 = FUN_001d2280(param_2,0xb);
+  lVar8 = CarRec_GetPartData(param_2,0xb);
   if (0 < lVar8) {
     afStack_280[0] = DAT_00319080;
     afStack_280[1] = (float)DAT_00319084;
@@ -2279,7 +2281,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
     fVar25 = (fVar25 + 0.0) - fVar20 * fVar24;
     fVar23 = (fVar23 + 0.0) - (1.0 - fVar20) * fVar24;
   }
-  lVar8 = FUN_001d2280(param_2,0x12);
+  lVar8 = CarRec_GetPartData(param_2,0x12);
   if (0 < lVar8) {
     if (*(int *)(param_3 + 0x94) == 0) {
       fVar23 = fVar23 + 5.0;
@@ -2290,7 +2292,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
     *(float *)(param_1 + 0x6d8) = *(float *)(param_1 + 0x6d8) * 0.975;
     *(float *)(param_1 + 0x6e4) = *(float *)(param_1 + 0x6e4) + 108.255104;
   }
-  lVar8 = FUN_001d2280(param_2,0x11);
+  lVar8 = CarRec_GetPartData(param_2,0x11);
   if (0 < lVar8) {
     fVar25 = fVar25 - 8.0;
     *(float *)(param_1 + 0x6d8) = *(float *)(param_1 + 0x6d8) * 0.975;
@@ -2320,7 +2322,7 @@ void FUN_001cf860(int param_1,undefined8 param_2,int param_3)
     fVar24 = *(float *)(param_1 + 0x24) * 0.02;
     fVar25 = fVar24 * (1.0 - fVar20) + fVar25 + 0.0;
     fVar23 = fVar24 * fVar20 + fVar23 + 0.0;
-    lVar8 = FUN_001d2280(param_2,0x12);
+    lVar8 = CarRec_GetPartData(param_2,0x12);
     if (lVar8 < 1) {
       *(float *)(param_1 + 0x6e0) = *(float *)(param_1 + 0x6e0) + 32.47653;
       *(float *)(param_1 + 0x6e4) = *(float *)(param_1 + 0x6e4) + 32.47653;

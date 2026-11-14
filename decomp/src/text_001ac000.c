@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001ac440  size 0x2bc
-void FUN_001ac440(int param_1,undefined8 param_2)
+void WheelAsset_Setup(int param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -64,7 +64,7 @@ void FUN_001ac440(int param_1,undefined8 param_2)
       } while (uVar3 <= uVar2);
     }
   }
-  if ((cRam00436478 == '\x02') && (lVar5 = FUN_001a59f0(param_1), lVar5 == 0)) {
+  if ((cRam00436478 == '\x02') && (lVar5 = course_sub_001a59f0(param_1), lVar5 == 0)) {
     lVar11 = 1;
   }
   if (uVar10 <= uVar2) {
@@ -72,13 +72,13 @@ void FUN_001ac440(int param_1,undefined8 param_2)
     do {
       uVar4 = Gut_PackGetEntry(param_2,0,0);
       Model_Relocate(uVar4);
-      lVar5 = FUN_001a58b0(param_1,uVar4,uVar10);
+      lVar5 = Res_GetModelSize(param_1,uVar4,uVar10);
       if (lVar11 != 0) {
-        lVar5 = FUN_001a5950(param_1,lVar5);
+        lVar5 = Res_CopyModel(param_1,lVar5);
       }
       if (lVar5 != 0) {
-        FUN_001ac8f0(param_1,lVar5,param_1 + 0x2c,0,1);
-        FUN_001a5440(param_1,lVar5);
+        CarAsset_ApplyDecals(param_1,lVar5,param_1 + 0x2c,0,1);
+        Res_Release(param_1,lVar5);
       }
       uVar10 = uVar10 + 1;
       *(int *)(iVar6 + 0x4c) = (int)lVar5;
@@ -88,32 +88,33 @@ void FUN_001ac440(int param_1,undefined8 param_2)
   uVar10 = 0;
   iVar6 = param_1;
   do {
-    FUN_001abf90(param_1,uVar10 & 0xff,iVar6 + 0x3c);
+    WheelAsset_Relocate(param_1,uVar10 & 0xff,iVar6 + 0x3c);
     uVar10 = uVar10 + 1;
     iVar6 = iVar6 + 8;
   } while (uVar10 < 2);
   uVar4 = Gut_PackGetEntry(param_2,1,1);
-  FUN_001a5150(param_1,param_1 + 0x5c,uVar4,lVar11,1,iVar12,0,0);
+  Res_UploadTexture(param_1,param_1 + 0x5c,uVar4,lVar11,1,iVar12,0,0);
   return;
 }
 
 // 0x001ac700  size 0x80
-void FUN_001ac700(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void WheelAsset_OnLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4
+                        )
 
 {
   long lVar1;
   
-  FUN_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = FUN_001a59f0(param_4), lVar1 == 0)) {
-    FUN_001a59b0(param_4,param_3);
+  course_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+    Arena_Alloc(param_4,param_3);
   }
-  FUN_001ac440(param_4,param_2);
+  WheelAsset_Setup(param_4,param_2);
   *(undefined4 *)((int)param_4 + 8) = 0;
   return;
 }
 
 // 0x001ac780  size 0xdc
-void FUN_001ac780(undefined8 param_1)
+void WheelAsset_Load(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -122,9 +123,9 @@ void FUN_001ac780(undefined8 param_1)
   int iVar4;
   
   iVar2 = 0;
-  lVar3 = FUN_001a59f0();
+  lVar3 = course_sub_001a59f0();
   if (lVar3 != 0) {
-    iVar2 = FUN_001a59f0(param_1);
+    iVar2 = course_sub_001a59f0(param_1);
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   iVar4 = (int)param_1;
@@ -147,26 +148,26 @@ void FUN_001ac780(undefined8 param_1)
 }
 
 // 0x001ac860  size 0x48
-void FUN_001ac860(undefined8 param_1,undefined4 param_2,undefined8 param_3)
+void WheelAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
   maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
-  FUN_001a5a40(param_1);
+  course_sub_001a5a40(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
 }
 
 // 0x001ac8b0  size 0x34
-void FUN_001ac8b0(undefined8 param_1)
+void WheelAsset_ClearParams(undefined8 param_1)
 
 {
   Mem_Set16(param_1,0,0x20);
-  FUN_001ad640(param_1);
+  CarAsset_SetDefaultParams(param_1);
   return;
 }
 
 // 0x001ac8f0  size 0x8a8
-void FUN_001ac8f0(undefined8 param_1,long param_2,float *param_3,long param_4,long param_5)
+void CarAsset_ApplyDecals(undefined8 param_1,long param_2,float *param_3,long param_4,long param_5)
 
 {
   ushort uVar1;
@@ -230,7 +231,7 @@ void FUN_001ac8f0(undefined8 param_1,long param_2,float *param_3,long param_4,lo
       else {
         puVar8 = puVar8 + 0x14;
       }
-      iVar4 = FUN_001a5850(param_1,param_2,&uStack_4);
+      iVar4 = Res_GetSubResource(param_1,param_2,&uStack_4);
       uVar13 = 0;
       fVar16 = param_3[3];
       fVar26 = *param_3;
@@ -467,8 +468,9 @@ void FUN_001ac8f0(undefined8 param_1,long param_2,float *param_3,long param_4,lo
 /* WARNING: Removing unreachable block (ram,0x001ad470) */
 /* WARNING: Removing unreachable block (ram,0x001ad518) */
 
-void FUN_001ad1a0(float param_1,float param_2,undefined8 param_3,long param_4,float *param_5,
-                 long param_6)
+void CarAsset_ApplyLivery
+               (float param_1,float param_2,undefined8 param_3,long param_4,float *param_5,
+               long param_6)
 
 {
   int iVar1;
@@ -506,8 +508,8 @@ void FUN_001ad1a0(float param_1,float param_2,undefined8 param_3,long param_4,fl
         puVar7 = (uint *)param_6 + 0x14;
       }
       if (puVar7 != (uint *)0x0) {
-        iVar3 = FUN_001a5850(param_3,param_4,&uStack_4);
-        iVar4 = FUN_001a5850(param_3,param_6,auStack_8);
+        iVar3 = Res_GetSubResource(param_3,param_4,&uStack_4);
+        iVar4 = Res_GetSubResource(param_3,param_6,auStack_8);
         uVar14 = 0;
         fVar16 = (*param_5 - param_1) / (param_2 - param_1);
         if (uStack_4 != 0) {
@@ -576,7 +578,7 @@ void FUN_001ad1a0(float param_1,float param_2,undefined8 param_3,long param_4,fl
 }
 
 // 0x001ad640  size 0x8c
-void FUN_001ad640(undefined4 *param_1)
+void CarAsset_SetDefaultParams(undefined4 *param_1)
 
 {
   uint uVar1;
@@ -603,7 +605,7 @@ void FUN_001ad640(undefined4 *param_1)
 }
 
 // 0x001ad6d0  size 0x16c
-void FUN_001ad6d0(undefined8 param_1,long param_2)
+void CarAsset_SelectLod(undefined8 param_1,long param_2)
 
 {
   int iVar1;
@@ -627,8 +629,8 @@ void FUN_001ad6d0(undefined8 param_1,long param_2)
         iVar1 = *(int *)(iVar8 + *piVar3 * 4 + 0x98);
         uVar4 = 0;
         if (((iVar1 != 0) &&
-            (puVar2 = (uint *)FUN_001a5850(param_1,iVar1,&uStack_4), puVar2 != (uint *)0x0)) &&
-           (uStack_4 != 0)) {
+            (puVar2 = (uint *)Res_GetSubResource(param_1,iVar1,&uStack_4), puVar2 != (uint *)0x0))
+           && (uStack_4 != 0)) {
           do {
             if ((puVar2[1] & 0x7c0) != 0) {
               if (((*(int *)(iVar6 + 0x30) == 0) || ((puVar2[1] & 0x40) == 0)) && (param_2 != 0)) {
@@ -654,7 +656,7 @@ void FUN_001ad6d0(undefined8 param_1,long param_2)
 }
 
 // 0x001ad840  size 0x1f8
-void FUN_001ad840(undefined8 param_1,byte param_2,undefined8 param_3)
+void CarAsset_RelocatePart(undefined8 param_1,byte param_2,undefined8 param_3)
 
 {
   undefined4 uVar1;
@@ -707,10 +709,10 @@ void FUN_001ad840(undefined8 param_1,byte param_2,undefined8 param_3)
       do {
         uVar1 = *(undefined4 *)(iVar8 + *piVar3 * 4 + 0x98);
         if (param_2 == 5) {
-          FUN_001a5530(param_1,uVar1,uVar5,0,param_3,puVar6 + 3,puVar6 + 6,puVar6 + 7);
+          Res_Relocate(param_1,uVar1,uVar5,0,param_3,puVar6 + 3,puVar6 + 6,puVar6 + 7);
         }
         else {
-          FUN_001a5530(param_1,uVar1,uVar5,0,param_3,puVar6 + 3,puVar6 + 6,0);
+          Res_Relocate(param_1,uVar1,uVar5,0,param_3,puVar6 + 3,puVar6 + 6,0);
         }
         uVar4 = uVar4 + 1;
         piVar3 = piVar3 + 1;
@@ -723,7 +725,7 @@ void FUN_001ad840(undefined8 param_1,byte param_2,undefined8 param_3)
 }
 
 // 0x001ada40  size 0xa0
-void FUN_001ada40(undefined8 param_1,undefined8 param_2,char param_3)
+void CarAsset_SetPaintColor(undefined8 param_1,undefined8 param_2,char param_3)
 
 {
   uint uVar1;
@@ -735,14 +737,14 @@ void FUN_001ada40(undefined8 param_1,undefined8 param_2,char param_3)
   if (param_3 != *(char *)(iVar2 + 0x3c)) {
     *(char *)(iVar2 + 0x3c) = param_3;
     for (uVar3 = uGpffff8be4; uVar3 <= uVar1; uVar3 = uVar3 + 1) {
-      FUN_001ae060(param_1,uVar3,param_2);
+      CarAsset_UploadPalette(param_1,uVar3,param_2);
     }
   }
   return;
 }
 
 // 0x001adae0  size 0x9c
-void FUN_001adae0(undefined8 param_1,undefined1 param_2)
+void CarAsset_SetAero(undefined8 param_1,undefined1 param_2)
 
 {
   uint uVar1;
@@ -757,7 +759,7 @@ void FUN_001adae0(undefined8 param_1,undefined1 param_2)
     uVar4 = uGpffff8be4;
     do {
       uVar2 = Gut_PackGetEntry(*(undefined4 *)(iVar3 + 0x80),0,0);
-      FUN_001ae2f0(param_1,uVar4,uVar2,0,0x12,0x12);
+      CarAsset_InstallPart(param_1,uVar4,uVar2,0,0x12,0x12);
       uVar4 = uVar4 + 1;
       iVar3 = iVar3 + 4;
     } while (uVar4 <= uVar1);
@@ -766,7 +768,7 @@ void FUN_001adae0(undefined8 param_1,undefined1 param_2)
 }
 
 // 0x001adb80  size 0xbc
-void FUN_001adb80(int param_1,undefined1 param_2)
+void CarAsset_SetSpoiler(int param_1,undefined1 param_2)
 
 {
   undefined8 uVar1;
@@ -781,7 +783,7 @@ void FUN_001adb80(int param_1,undefined1 param_2)
     uVar4 = uGpffff8be4;
     do {
       uVar1 = Gut_PackGetEntry(*(undefined4 *)(iVar2 + 0x80),0,0);
-      FUN_001ae2f0(param_1,uVar4,uVar1,0,0x14,0x14);
+      CarAsset_InstallPart(param_1,uVar4,uVar1,0,0x14,0x14);
       uVar4 = uVar4 + 1;
       iVar2 = iVar2 + 4;
     } while (uVar4 <= uVar3);
@@ -789,7 +791,7 @@ void FUN_001adb80(int param_1,undefined1 param_2)
   uVar3 = 0;
   iVar2 = param_1;
   do {
-    FUN_001ad840(param_1,uVar3 & 0xff,iVar2 + 0x4c);
+    CarAsset_RelocatePart(param_1,uVar3 & 0xff,iVar2 + 0x4c);
     uVar3 = uVar3 + 1;
     iVar2 = iVar2 + 8;
   } while (uVar3 < 4);
@@ -797,7 +799,7 @@ void FUN_001adb80(int param_1,undefined1 param_2)
 }
 
 // 0x001adc40  size 0xb4
-void FUN_001adc40(undefined8 param_1,undefined1 param_2)
+void CarAsset_SetBodyKit(undefined8 param_1,undefined1 param_2)
 
 {
   undefined4 uVar1;
@@ -813,9 +815,9 @@ void FUN_001adc40(undefined8 param_1,undefined1 param_2)
     uVar4 = uGpffff8be4;
     do {
       uVar1 = *(undefined4 *)(iVar5 + 0x80);
-      FUN_001adf20(param_1,uVar4);
+      CarAsset_UploadPaletteDefault(param_1,uVar4);
       uVar3 = Gut_PackGetEntry(uVar1,0,0);
-      FUN_001ae2f0(param_1,uVar4,uVar3,0,4,5);
+      CarAsset_InstallPart(param_1,uVar4,uVar3,0,4,5);
       uVar4 = uVar4 + 1;
       iVar5 = iVar5 + 4;
     } while (uVar4 <= uVar2);
@@ -824,7 +826,7 @@ void FUN_001adc40(undefined8 param_1,undefined1 param_2)
 }
 
 // 0x001add00  size 0x1bc
-void FUN_001add00(int param_1,undefined1 param_2)
+void CarAsset_SetWheelType(int param_1,undefined1 param_2)
 
 {
   uint uVar1;
@@ -841,7 +843,7 @@ void FUN_001add00(int param_1,undefined1 param_2)
       uVar1 = uGpffff8be4;
       do {
         uVar2 = Gut_PackGetEntry(*(undefined4 *)(iVar4 + 0x80),0,0);
-        FUN_001ae2f0(param_1,uVar1,uVar2,0,3,3);
+        CarAsset_InstallPart(param_1,uVar1,uVar2,0,3,3);
         uVar1 = uVar1 + 1;
         iVar4 = iVar4 + 4;
       } while (uVar1 <= uVar3);
@@ -869,7 +871,7 @@ void FUN_001add00(int param_1,undefined1 param_2)
       }
       uVar5 = 1 << (uVar3 & 0x1f);
       *(uint *)(param_1 + 0x7c) = *(uint *)(param_1 + 0x7c) & ~uVar5;
-      FUN_001ae200(param_1,iVar4 + 0x550,uVar2,uVar3 + uVar1 * 4 + 0x25,uVar5,0);
+      CarAsset_CopyPartModel(param_1,iVar4 + 0x550,uVar2,uVar3 + uVar1 * 4 + 0x25,uVar5,0);
       uVar3 = uVar3 + 1;
       iVar4 = iVar4 + 0x10;
     } while (uVar3 < 4);
@@ -878,7 +880,7 @@ void FUN_001add00(int param_1,undefined1 param_2)
 }
 
 // 0x001adec0  size 0x8
-void FUN_001adec0(int param_1,undefined4 param_2)
+void CarAsset_SetUserData(int param_1,undefined4 param_2)
 
 {
   *(undefined4 *)(param_1 + 0x30) = param_2;
@@ -886,7 +888,7 @@ void FUN_001adec0(int param_1,undefined4 param_2)
 }
 
 // 0x001aded0  size 0x44
-uint FUN_001aded0(undefined8 param_1,uint param_2)
+uint CarAsset_GetPartVariant(undefined8 param_1,uint param_2)
 
 {
   uint uVar1;
@@ -910,7 +912,7 @@ uint FUN_001aded0(undefined8 param_1,uint param_2)
 }
 
 // 0x001adf20  size 0x134
-void FUN_001adf20(int param_1,int param_2)
+void CarAsset_UploadPaletteDefault(int param_1,int param_2)
 
 {
   int iVar1;
@@ -951,7 +953,7 @@ void FUN_001adf20(int param_1,int param_2)
 }
 
 // 0x001ae060  size 0x1a0
-void FUN_001ae060(int param_1,int param_2,uint param_3)
+void CarAsset_UploadPalette(int param_1,int param_2,uint param_3)
 
 {
   undefined4 uVar1;
@@ -1013,8 +1015,9 @@ void FUN_001ae060(int param_1,int param_2,uint param_3)
 
 // 0x001ae200  size 0xec
 undefined4
-FUN_001ae200(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4,
-            uint param_5,long param_6)
+CarAsset_CopyPartModel
+          (undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4,uint param_5
+          ,long param_6)
 
 {
   int iVar1;
@@ -1022,7 +1025,7 @@ FUN_001ae200(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined
   long lVar3;
   
   Model_Relocate(param_3);
-  lVar3 = FUN_001a58b0(param_1,param_3,param_4);
+  lVar3 = Res_GetModelSize(param_1,param_3,param_4);
   if (lVar3 == 0) {
     *param_2 = 0;
     param_2[1] = 0;
@@ -1051,8 +1054,9 @@ FUN_001ae200(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined
 }
 
 // 0x001ae2f0  size 0x280
-void FUN_001ae2f0(undefined8 param_1,int param_2,undefined8 param_3,long param_4,uint param_5,
-                 uint param_6)
+void CarAsset_InstallPart
+               (undefined8 param_1,int param_2,undefined8 param_3,long param_4,uint param_5,
+               uint param_6)
 
 {
   bool bVar1;
@@ -1149,17 +1153,17 @@ void FUN_001ae2f0(undefined8 param_1,int param_2,undefined8 param_3,long param_4
         iVar4 = param_5 + 0xb;
       }
       if (iVar4 != -1) {
-        lVar3 = FUN_001a58b0(param_1,param_3);
+        lVar3 = Res_GetModelSize(param_1,param_3);
       }
       if (((lVar3 != 0) && ((*(uint *)lVar3 & 0x10) == 0)) && (!bVar1)) {
         lVar3 = 0;
       }
       if ((lVar3 != 0) && (param_4 != 0)) {
-        lVar3 = FUN_001a5950(param_1);
+        lVar3 = Res_CopyModel(param_1);
       }
       *(int *)(iVar5 + 0x98) = (int)lVar3;
       if ((lVar7 != 0) || (iVar6 != 0)) {
-        FUN_001a5530(param_1,lVar3,0xffffffffffffffff,0,lVar7,iVar6,0,0);
+        Res_Relocate(param_1,lVar3,0xffffffffffffffff,0,lVar7,iVar6,0,0);
       }
       param_5 = param_5 + 1;
       iVar5 = iVar5 + 4;
@@ -1169,7 +1173,7 @@ void FUN_001ae2f0(undefined8 param_1,int param_2,undefined8 param_3,long param_4
 }
 
 // 0x001ae570  size 0x8a8
-void FUN_001ae570(int param_1)
+void CarAsset_Build(int param_1)
 
 {
   undefined4 uVar1;
@@ -1201,10 +1205,10 @@ void FUN_001ae570(int param_1)
   iVar10 = param_1;
   iVar9 = param_1;
   do {
-    FUN_001a5150(param_1,iVar10 + 0x2b4,0,0,0,0,0,0);
-    FUN_001a5150(param_1,iVar10 + 0x340,0,0,0,0,0,0);
-    FUN_001a5150(param_1,iVar10 + 0x3cc,0,0,0,0,0,0);
-    FUN_001a5150(param_1,iVar10 + 0x458,0,0,0,0,0,0);
+    Res_UploadTexture(param_1,iVar10 + 0x2b4,0,0,0,0,0,0);
+    Res_UploadTexture(param_1,iVar10 + 0x340,0,0,0,0,0,0);
+    Res_UploadTexture(param_1,iVar10 + 0x3cc,0,0,0,0,0,0);
+    Res_UploadTexture(param_1,iVar10 + 0x458,0,0,0,0,0,0);
     *(undefined4 *)(iVar9 + 0x4e4) = 0;
     uVar7 = 0;
     *(undefined4 *)(iVar9 + 0x4f8) = 0;
@@ -1227,7 +1231,8 @@ void FUN_001ae570(int param_1)
   uVar11 = uRam0036f2d4;
   uVar7 = uRam0036f2d8;
   if ((cRam00436478 == '\x02') &&
-     (lVar4 = FUN_001a59f0(param_1), uVar11 = uRam0036f2d4, uVar7 = uRam0036f2d8, lVar4 == 0)) {
+     (lVar4 = course_sub_001a59f0(param_1), uVar11 = uRam0036f2d4, uVar7 = uRam0036f2d8, lVar4 == 0)
+     ) {
     uVar15 = 1;
     uStack_4 = 1;
   }
@@ -1237,27 +1242,27 @@ void FUN_001ae570(int param_1)
     if ((cRam00436478 != '\x01') || ((uRam0036f2d8 = uVar7, uVar11 != 0 && (1 < uVar11 - 2)))) {
       uRam0036f2d8 = uVar7;
       uVar5 = Gut_PackGetEntry(uVar1,0,0);
-      FUN_001ae2f0(param_1,uVar11,uVar5,uStack_4,0,0x18);
+      CarAsset_InstallPart(param_1,uVar11,uVar5,uStack_4,0,0x18);
       uVar5 = Gut_PackGetEntry(uVar1,1,1);
       iVar10 = param_1 + uVar11 * 0x1c;
-      FUN_001a5150(param_1,iVar10 + 0x2b4,uVar5,uVar15,1,iVar16,0,0);
+      Res_UploadTexture(param_1,iVar10 + 0x2b4,uVar5,uVar15,1,iVar16,0,0);
       uVar5 = Gut_PackGetEntry(uVar1,2,1);
-      FUN_001a5150(param_1,iVar10 + 0x340,uVar5,uVar15,1,iVar16,0,iVar13 + 0x4e4);
+      Res_UploadTexture(param_1,iVar10 + 0x340,uVar5,uVar15,1,iVar16,0,iVar13 + 0x4e4);
       uVar7 = 0;
       do {
-        FUN_001ae060(param_1,uVar11,uVar7 & 0xff);
+        CarAsset_UploadPalette(param_1,uVar11,uVar7 & 0xff);
         uVar7 = uVar7 + 1;
       } while (uVar7 < 0x10);
       lVar4 = Gut_PackGetEntry(uVar1,3,1);
       if ((uVar11 == 4) || (lVar4 == 0)) {
-        FUN_001a5150(param_1,iVar10 + 0x3cc,lVar4,uVar15,1,iVar16,0,0);
+        Res_UploadTexture(param_1,iVar10 + 0x3cc,lVar4,uVar15,1,iVar16,0,0);
       }
       else {
-        FUN_001a5150(param_1,iVar10 + 0x3cc,lVar4,uVar15,1,iVar16,0,iVar13 + 0x4f8);
+        Res_UploadTexture(param_1,iVar10 + 0x3cc,lVar4,uVar15,1,iVar16,0,iVar13 + 0x4f8);
       }
-      FUN_001adf20(param_1,uVar11);
+      CarAsset_UploadPaletteDefault(param_1,uVar11);
       uVar5 = Gut_PackGetEntry(uVar1,4,1);
-      FUN_001a5150(param_1,iVar10 + 0x458,uVar5,uVar15,1,iVar16,0,0);
+      Res_UploadTexture(param_1,iVar10 + 0x458,uVar5,uVar15,1,iVar16,0,0);
     }
     uVar7 = uRam0036f2d8;
     uRam0036f2d8 = uVar12;
@@ -1309,7 +1314,7 @@ void FUN_001ae570(int param_1)
       iVar10 = iVar13;
       iVar9 = iStack_20;
       do {
-        lVar4 = FUN_001ae200(param_1,iVar10 + 0x5b0,uVar3,iVar9 + 0x39 + uVar7,0,0);
+        lVar4 = CarAsset_CopyPartModel(param_1,iVar10 + 0x5b0,uVar3,iVar9 + 0x39 + uVar7,0,0);
         if (lVar4 != 0) {
           uVar14 = uVar14 | 1 << (uVar12 & 0x1f);
         }
@@ -1328,11 +1333,11 @@ void FUN_001ae570(int param_1)
   uVar11 = 0;
   iVar13 = param_1;
   do {
-    FUN_001ad840(param_1,uVar11 & 0xff,iVar13 + 0x4c);
+    CarAsset_RelocatePart(param_1,uVar11 & 0xff,iVar13 + 0x4c);
     uVar11 = uVar11 + 1;
     iVar13 = iVar13 + 8;
   } while (uVar11 < 6);
-  FUN_001ad6d0(param_1,*(undefined4 *)(param_1 + 0x2c));
+  CarAsset_SelectLod(param_1,*(undefined4 *)(param_1 + 0x2c));
   if (uRam0036f2d4 <= uRam0036f2d8) {
     iVar10 = param_1 + uRam0036f2d4 * 8;
     iVar13 = param_1 + uRam0036f2d4 * 100;
@@ -1346,7 +1351,7 @@ void FUN_001ae570(int param_1)
           uVar1 = 0;
         }
         else {
-          uVar1 = FUN_001a5850(param_1,*(int *)(iVar16 + 0xd4),0);
+          uVar1 = Res_GetSubResource(param_1,*(int *)(iVar16 + 0xd4),0);
         }
         *(undefined4 *)(iVar9 + 0x28c) = uVar1;
         uVar7 = uVar7 + 1;
@@ -1365,7 +1370,7 @@ void FUN_001ae570(int param_1)
     uVar7 = 0;
     iVar9 = iVar13;
     do {
-      FUN_001ae200(param_1,iVar9 + 0x510,uVar3,uVar7 + iVar10,0,0);
+      CarAsset_CopyPartModel(param_1,iVar9 + 0x510,uVar3,uVar7 + iVar10,0,0);
       uVar7 = uVar7 + 1;
       iVar9 = iVar9 + 0x10;
     } while (uVar7 < 2);
@@ -1382,11 +1387,12 @@ void FUN_001ae570(int param_1)
     else {
       uVar7 = (uint)(*(byte *)(param_1 + 0x38) >> 1);
     }
-    FUN_001ae200(param_1,iVar13 + 0x550,uVar3,uVar11 + uVar7 * 4 + 0x25,1 << (uVar11 & 0x1f),0);
+    CarAsset_CopyPartModel
+              (param_1,iVar13 + 0x550,uVar3,uVar11 + uVar7 * 4 + 0x25,1 << (uVar11 & 0x1f),0);
     uVar11 = uVar11 + 1;
     iVar13 = iVar13 + 0x10;
   } while (uVar11 < 4);
-  lVar4 = FUN_001a58b0(param_1,uVar3,0xf);
+  lVar4 = Res_GetModelSize(param_1,uVar3,0xf);
   if (lVar4 != 0) {
     puVar2 = (uint *)lVar4;
     if ((*puVar2 & 0x10) == 0) {
@@ -1426,22 +1432,22 @@ void FUN_001ae570(int param_1)
 }
 
 // 0x001aee30  size 0x74
-void FUN_001aee30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void CarAsset_OnLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
-  FUN_001a5a70(param_4);
-  if ((cRam00436478 != '\x02') && (lVar1 = FUN_001a59f0(param_4), lVar1 == 0)) {
-    FUN_001a59b0(param_4,*(undefined4 *)((int)param_4 + 0x94));
+  course_sub_001a5a70(param_4);
+  if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
+    Arena_Alloc(param_4,*(undefined4 *)((int)param_4 + 0x94));
   }
-  FUN_001ae570(param_4,param_2);
+  CarAsset_Build(param_4,param_2);
   *(undefined4 *)((int)param_4 + 8) = 0;
   return;
 }
 
 // 0x001aeeb0  size 0x1d0
-undefined8 FUN_001aeeb0(undefined8 param_1)
+undefined8 CarAsset_Load(undefined8 param_1)
 
 {
   int iVar1;
@@ -1458,9 +1464,9 @@ undefined8 FUN_001aeeb0(undefined8 param_1)
   undefined8 unaff_s8;
   
   iVar1 = 0;
-  lVar3 = FUN_001a59f0();
+  lVar3 = course_sub_001a59f0();
   if (lVar3 != 0) {
-    iVar1 = FUN_001a59f0(param_1);
+    iVar1 = course_sub_001a59f0(param_1);
     iVar1 = *(int *)(iVar1 + 0x20);
   }
   iVar9 = (int)param_1;
@@ -1513,7 +1519,7 @@ undefined8 FUN_001aeeb0(undefined8 param_1)
 }
 
 // 0x001af080  size 0x14c
-void FUN_001af080(undefined8 param_1)
+void DriverAsset_Clear(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1594,16 +1600,16 @@ void FUN_001af080(undefined8 param_1)
 }
 
 // 0x001af1d0  size 0x10
-void FUN_001af1d0(int param_1,undefined1 param_2)
+void DriverAsset_SetFace(int param_1,undefined1 param_2)
 
 {
   *(undefined1 *)(param_1 + 0x29) = param_2;
-  FUN_001af1e0(param_1,uRam00436340);
+  DriverAsset_ApplyFace(param_1,uRam00436340);
   return;
 }
 
 // 0x001af1e0  size 0x208
-void FUN_001af1e0(int param_1)
+void DriverAsset_ApplyFace(int param_1)
 
 {
   undefined4 uVar1;
@@ -1660,7 +1666,7 @@ void FUN_001af1e0(int param_1)
 }
 
 // 0x001af3f0  size 0x1bc
-void FUN_001af3f0(undefined8 param_1,undefined8 param_2)
+void DriverAsset_Setup(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -1671,50 +1677,51 @@ void FUN_001af3f0(undefined8 param_1,undefined8 param_2)
   Model_Relocate(uVar1);
   iVar2 = iGpffff8bfc + iGpffff8bd0;
   uVar1 = Gut_PackGetEntry(param_2,1,0);
-  FUN_001a5150(0x436320,0x436354,uVar1,0,1,iVar2,0,0);
+  Res_UploadTexture(0x436320,0x436354,uVar1,0,1,iVar2,0,0);
   iVar2 = iGpffff8bfc + iGpffff8bd0;
   uVar1 = Gut_PackGetEntry(param_2,2,0);
-  FUN_001a5150(0x436320,0x436370,uVar1,0,0,iVar2,0,0);
+  Res_UploadTexture(0x436320,0x436370,uVar1,0,0,iVar2,0,0);
   iVar2 = iGpffff8bfc + iGpffff8bd0;
   uVar1 = Gut_PackGetEntry(param_2,3,0);
-  FUN_001a5150(0x436320,0x43638c,uVar1,0,0,iVar2,0,0);
+  Res_UploadTexture(0x436320,0x43638c,uVar1,0,0,iVar2,0,0);
   iVar2 = iGpffff8bfc + iGpffff8bd0;
   uVar1 = Gut_PackGetEntry(param_2,4,0);
-  FUN_001a5150(0x436320,0x4363a8,uVar1,0,0,iVar2,0,0);
+  Res_UploadTexture(0x436320,0x4363a8,uVar1,0,0,iVar2,0,0);
   iVar2 = iGpffff8bfc + iGpffff8bd0;
   uVar1 = Gut_PackGetEntry(param_2,5,0);
-  FUN_001a5150(0x436320,0x4363c4,uVar1,0,0,iVar2,0,0);
+  Res_UploadTexture(0x436320,0x4363c4,uVar1,0,0,iVar2,0,0);
   uRam0043634c = 1;
   return;
 }
 
 // 0x001af5b0  size 0x9c
-void FUN_001af5b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void DriverAsset_OnLoaded
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
   int iVar2;
   
-  FUN_001a5a70(param_4);
+  course_sub_001a5a70(param_4);
   iVar2 = (int)param_4;
   if (*(int *)(iVar2 + 0x2c) == 0) {
     iVar1 = *(int *)(iVar2 + 0x2c);
   }
   else {
-    FUN_001a5a70(0x436320);
-    FUN_001a59b0(0x436320,param_3);
+    course_sub_001a5a70(0x436320);
+    Arena_Alloc(0x436320,param_3);
     iVar1 = *(int *)(iVar2 + 0x2c);
   }
   if (iVar1 != 0) {
-    FUN_001af3f0(param_4,param_2);
+    DriverAsset_Setup(param_4,param_2);
   }
-  FUN_001af1e0(param_4,param_2);
+  DriverAsset_ApplyFace(param_4,param_2);
   *(undefined4 *)(iVar2 + 8) = 0;
   return;
 }
 
 // 0x001af650  size 0x9c
-void FUN_001af650(undefined8 param_1)
+void DriverAsset_Load(undefined8 param_1)
 
 {
   int iVar1;
@@ -1743,7 +1750,7 @@ void FUN_001af650(undefined8 param_1)
 }
 
 // 0x001af6f0  size 0x30
-void FUN_001af6f0(undefined8 param_1)
+void DriverAsset_ClearFlag(undefined8 param_1)
 
 {
   Mem_Set16(param_1,0,1);
@@ -1752,7 +1759,7 @@ void FUN_001af6f0(undefined8 param_1)
 }
 
 // 0x001af720  size 0x17c
-undefined4 FUN_001af720(int param_1)
+undefined4 Rival_CountActive(int param_1)
 
 {
   int iVar1;
@@ -1828,7 +1835,7 @@ undefined4 FUN_001af720(int param_1)
 }
 
 // 0x001af8a0  size 0x36c
-uint FUN_001af8a0(void)
+uint Rival_PickEncounter(void)
 
 {
   short sVar1;
@@ -1961,7 +1968,7 @@ uint FUN_001af8a0(void)
 }
 
 // 0x001afc10  size 0x864
-uint FUN_001afc10(void)
+uint Rival_BuildEncounterList(void)
 
 {
   int iVar1;
@@ -2112,7 +2119,7 @@ uint FUN_001afc10(void)
   iVar11 = 0;
   aiStack_40[iVar6] = 0;
   do {
-    uVar3 = FUN_002092c0((short)iVar11);
+    uVar3 = GameDb_GetRival((short)iVar11);
     memcpy(&uStack_4c0,uVar3,0x17c);
     puVar7 = auStack_47c;
     uStack_340 = uStack_4c0;

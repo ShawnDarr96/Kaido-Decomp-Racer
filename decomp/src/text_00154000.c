@@ -1446,7 +1446,7 @@ void Snd_Update(void)
     IopSe_FlushDma();
     lVar1 = Rpc_GetPendingCount(0x42d824);
     if ((lVar1 != 0) && (iRam0042dafc != 0)) {
-      FUN_00132500(0x42df00,0x42dafc,0xf1);
+      Mem_Copy32(0x42df00,0x42dafc,0xf1);
       iRam0042dafc = 0;
       uStack_20 = 0x400;
       uStack_1c = 0x3d0;
@@ -1497,7 +1497,7 @@ void maybe_Snd_Shutdown(void)
   Rpc_SetBlocking(0x42d824,0);
   IopStrm_Reset();
   IopSe_Reset();
-  FUN_0013c4a0();
+  IopSnd_Nop();
   maybe_Mutex_Delete(0x42d868);
   Rpc_Unbind(0x42d824);
   Mem_Free(uRam0042d81c);
@@ -1615,16 +1615,16 @@ void Snd_Init(undefined8 param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00157fd0  size 0x78
-long FUN_00157fd0(long param_1,short param_2)
+long Snd_Manager_dtor(long param_1,short param_2)
 
 {
   int iVar1;
   
   if (param_1 != 0) {
     iVar1 = (int)param_1;
-    FUN_00132830(iVar1 + 0x58,0xffffffffffffffff);
+    Mutex_dtor(iVar1 + 0x58,0xffffffffffffffff);
     if (iVar1 != -0x14) {
-      FUN_00132830(iVar1 + 0x3c,0xffffffffffffffff);
+      Mutex_dtor(iVar1 + 0x3c,0xffffffffffffffff);
     }
     if (0 < param_2) {
       Mem_Free(param_1);

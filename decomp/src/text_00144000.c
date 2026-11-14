@@ -829,7 +829,7 @@ void Pkt_AddGsRegisters(undefined8 param_1,undefined8 param_2)
   undefined8 uVar1;
   
   uVar1 = Pkt_AllocVif(param_1,0x36,0x10000000);
-  FUN_00132560(uVar1,param_2,0x36);
+  Mem_Copy128(uVar1,param_2,0x36);
   return;
 }
 
@@ -842,7 +842,7 @@ void Pkt_AddGsDefaults(undefined8 param_1,undefined8 param_2)
   undefined8 uVar1;
   
   uVar1 = Pkt_AllocVif(param_1,0xf,0x10000000);
-  FUN_00132560(uVar1,param_2,0xf);
+  Mem_Copy128(uVar1,param_2,0xf);
   return;
 }
 
@@ -1097,7 +1097,7 @@ void Pkt_AppendData(char *param_1,undefined4 *param_2)
       *(int *)(*(int *)(param_1 + 8) + 4) = *(int *)(*(int *)(param_1 + 8) + 4) + iVar1;
       *(undefined4 *)(*(int *)(param_1 + 8) + 0x18) = *(undefined4 *)(param_1 + 0xc);
     }
-    FUN_00132560(*(undefined4 *)(param_1 + 0x10),uVar2);
+    Mem_Copy128(*(undefined4 *)(param_1 + 0x10),uVar2);
   }
   return;
 }
@@ -1557,7 +1557,7 @@ void maybe_Model_BuildPacket
   iVar1 = *(int *)(iVar7 + 0x40);
   iVar3 = Anim_GetKeyData(param_2,param_5);
   uVar6 = Pkt_Reserve(param_1,*(undefined4 *)(iVar3 + 8));
-  FUN_00132560(uVar6,iVar3 + 0x10,*(undefined4 *)(iVar3 + 8));
+  Mem_Copy128(uVar6,iVar3 + 0x10,*(undefined4 *)(iVar3 + 8));
   iVar3 = (int)param_1;
   if ((int)(param_3 << 4) < 0) {
     fVar14 = (float)((param_3 & 0xfffffff) << 3);
@@ -1679,7 +1679,7 @@ void Model_CopyStaticPacket(undefined8 param_1,undefined8 param_2)
   
   iVar2 = Anim_GetFrameData(param_2);
   uVar1 = Pkt_Reserve(param_1,*(undefined4 *)(iVar2 + 8));
-  FUN_00132560(uVar1,iVar2 + 0x10,*(undefined4 *)(iVar2 + 8));
+  Mem_Copy128(uVar1,iVar2 + 0x10,*(undefined4 *)(iVar2 + 8));
   return;
 }
 

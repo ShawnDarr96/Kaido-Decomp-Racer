@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00198010  size 0x84
-void FUN_00198010(void)
+void SceneObj_DestroyAll(void)
 
 {
   long lVar1;
@@ -12,11 +12,11 @@ void FUN_00198010(void)
   
   uVar3 = 0;
   do {
-    lVar1 = FUN_001984c0(uVar3 & 0xff,0);
+    lVar1 = SceneObj_Next(uVar3 & 0xff,0);
     while (lVar1 != 0) {
       *(uint *)lVar1 = *(uint *)lVar1 & 0xfffffff3;
-      uVar2 = FUN_001a5050();
-      lVar1 = FUN_001984c0(uVar3 & 0xff,uVar2);
+      uVar2 = Chunk_GetData();
+      lVar1 = SceneObj_Next(uVar3 & 0xff,uVar2);
     }
     uVar3 = uVar3 + 1;
   } while ((int)uVar3 < 3);
@@ -25,7 +25,7 @@ void FUN_00198010(void)
 }
 
 // 0x001980a0  size 0x84
-void FUN_001980a0(void)
+void SceneObj_ResetAll(void)
 
 {
   long lVar1;
@@ -34,11 +34,11 @@ void FUN_001980a0(void)
   
   uVar3 = 0;
   do {
-    lVar1 = FUN_001984c0(uVar3 & 0xff,0);
+    lVar1 = SceneObj_Next(uVar3 & 0xff,0);
     while (lVar1 != 0) {
       iRam00430588 = iRam00430588 + 1;
-      uVar2 = FUN_001a5050(lVar1);
-      lVar1 = FUN_001984c0(uVar3 & 0xff,uVar2);
+      uVar2 = Chunk_GetData(lVar1);
+      lVar1 = SceneObj_Next(uVar3 & 0xff,uVar2);
     }
     uVar3 = uVar3 + 1;
   } while ((int)uVar3 < 3);
@@ -46,7 +46,7 @@ void FUN_001980a0(void)
 }
 
 // 0x00198130  size 0x7c
-long FUN_00198130(undefined8 param_1)
+long SceneObj_CreateEffect(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -54,12 +54,12 @@ long FUN_00198130(undefined8 param_1)
   long lVar3;
   undefined4 *puVar4;
   
-  lVar2 = FUN_00198610(2);
+  lVar2 = SceneObj_AllocFromPool(2);
   if (lVar2 == 0) {
     lVar2 = 0;
   }
   else {
-    lVar3 = FUN_001a9cb0(6,param_1,0);
+    lVar3 = ResPool_Load(6,param_1,0);
     if (lVar3 == 0) {
       lVar2 = 0;
     }
@@ -67,7 +67,7 @@ long FUN_00198130(undefined8 param_1)
       puVar4 = (undefined4 *)lVar2;
       puVar4[0x10] = (int)lVar3;
       *puVar4 = 1;
-      uVar1 = FUN_001aac60(puVar4[0x10],param_1);
+      uVar1 = Asset_LoadCourseTex(puVar4[0x10],param_1);
       puVar4[1] = uVar1;
     }
   }
@@ -75,7 +75,7 @@ long FUN_00198130(undefined8 param_1)
 }
 
 // 0x001981b0  size 0xb8
-long FUN_001981b0(undefined8 param_1)
+long SceneObj_CreateModel(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -85,14 +85,14 @@ long FUN_001981b0(undefined8 param_1)
   undefined4 *puVar5;
   undefined1 auStack_4 [4];
   
-  FUN_001af6f0(auStack_4);
-  lVar2 = FUN_00198610(1);
+  DriverAsset_ClearFlag(auStack_4);
+  lVar2 = SceneObj_AllocFromPool(1);
   if (lVar2 == 0) {
     lVar2 = 0;
   }
   else {
-    lVar3 = FUN_001a9cb0(0,0,auStack_4);
-    if ((lVar3 == 0) || (lVar4 = FUN_001a9cb0(5,param_1,0), lVar4 == 0)) {
+    lVar3 = ResPool_Load(0,0,auStack_4);
+    if ((lVar3 == 0) || (lVar4 = ResPool_Load(5,param_1,0), lVar4 == 0)) {
       lVar2 = 0;
     }
     else {
@@ -100,9 +100,9 @@ long FUN_001981b0(undefined8 param_1)
       puVar5[0x10] = (int)lVar3;
       puVar5[0x11] = (int)lVar4;
       *puVar5 = 1;
-      uVar1 = FUN_001af650(puVar5[0x10]);
+      uVar1 = DriverAsset_Load(puVar5[0x10]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001ab110(puVar5[0x11],param_1);
+      uVar1 = Asset_LoadEnv(puVar5[0x11],param_1);
       puVar5[1] = uVar1;
     }
   }
@@ -112,7 +112,7 @@ long FUN_001981b0(undefined8 param_1)
 // 0x00198270  size 0x244
 /* WARNING: Removing unreachable block (ram,0x00198348) */
 
-long FUN_00198270(undefined8 param_1)
+long SceneObj_CreateCar(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -132,37 +132,37 @@ long FUN_00198270(undefined8 param_1)
   lVar8 = 0;
   lVar7 = 0;
   lVar6 = 0;
-  lVar2 = FUN_00198610(0);
+  lVar2 = SceneObj_AllocFromPool(0);
   if (lVar2 == 0) {
     lVar2 = 0;
   }
   else {
     iVar10 = (int)param_1;
-    lVar3 = FUN_001a9cb0(0,*(undefined4 *)(iVar10 + 4),iVar10 + 8);
+    lVar3 = ResPool_Load(0,*(undefined4 *)(iVar10 + 4),iVar10 + 8);
     if ((((lVar3 == 0) ||
-         (lVar9 = FUN_001a9cb0(1,*(undefined4 *)(iVar10 + 0xc),iVar10 + 0x10), lVar9 == 0)) ||
-        (lVar8 = FUN_001a9cb0(2,*(undefined4 *)(iVar10 + 0x60),iVar10 + 100), lVar8 == 0)) ||
-       (((lVar7 = FUN_001a9cb0(3,*(undefined4 *)(iVar10 + 0x70),iVar10 + 0x74), lVar7 == 0 ||
-         (lVar6 = FUN_001a9cb0(3,*(undefined4 *)(iVar10 + 0xb8),iVar10 + 0xbc), lVar6 == 0)) ||
-        ((lVar11 = FUN_001a9cb0(4,*(undefined4 *)(iVar10 + 0x94),iVar10 + 0x98), lVar11 == 0 ||
-         (lVar4 = FUN_001a9cb0(4,*(undefined4 *)(iVar10 + 0xdc),iVar10 + 0xe0), lVar4 == 0)))))) {
+         (lVar9 = ResPool_Load(1,*(undefined4 *)(iVar10 + 0xc),iVar10 + 0x10), lVar9 == 0)) ||
+        (lVar8 = ResPool_Load(2,*(undefined4 *)(iVar10 + 0x60),iVar10 + 100), lVar8 == 0)) ||
+       (((lVar7 = ResPool_Load(3,*(undefined4 *)(iVar10 + 0x70),iVar10 + 0x74), lVar7 == 0 ||
+         (lVar6 = ResPool_Load(3,*(undefined4 *)(iVar10 + 0xb8),iVar10 + 0xbc), lVar6 == 0)) ||
+        ((lVar11 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0x94),iVar10 + 0x98), lVar11 == 0 ||
+         (lVar4 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0xdc),iVar10 + 0xe0), lVar4 == 0)))))) {
       if (lVar3 != 0) {
-        FUN_001a5a00(lVar3);
+        course_sub_001a5a00(lVar3);
       }
       if (lVar9 != 0) {
-        FUN_001a5a00(lVar9);
+        course_sub_001a5a00(lVar9);
       }
       if (lVar8 != 0) {
-        FUN_001a5a00(lVar8);
+        course_sub_001a5a00(lVar8);
       }
       if (lVar7 != 0) {
-        FUN_001a5a00(lVar7);
+        course_sub_001a5a00(lVar7);
       }
       if (lVar6 != 0) {
-        FUN_001a5a00(lVar6);
+        course_sub_001a5a00(lVar6);
       }
       if (lVar11 != 0) {
-        FUN_001a5a00(lVar11);
+        course_sub_001a5a00(lVar11);
       }
       lVar2 = 0;
     }
@@ -177,28 +177,28 @@ long FUN_00198270(undefined8 param_1)
       puVar5[0x145] = (int)lVar4;
       maybe_Mem_CopyQwords(puVar5 + 3,param_1,0x100);
       *puVar5 = 1;
-      uVar1 = FUN_001af650(puVar5[0x140]);
+      uVar1 = DriverAsset_Load(puVar5[0x140]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001ab550(puVar5[0x14a]);
+      uVar1 = Asset_LoadCarParts(puVar5[0x14a]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001ac780(puVar5[0x142]);
+      uVar1 = WheelAsset_Load(puVar5[0x142]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001ac780(puVar5[0x143]);
+      uVar1 = WheelAsset_Load(puVar5[0x143]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001abe20(puVar5[0x144]);
+      uVar1 = CarAsset_LoadBody(puVar5[0x144]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001abe20(puVar5[0x145]);
+      uVar1 = CarAsset_LoadBody(puVar5[0x145]);
       puVar5[1] = uVar1;
-      uVar1 = FUN_001aeeb0(puVar5[0x141]);
+      uVar1 = CarAsset_Load(puVar5[0x141]);
       puVar5[1] = uVar1;
-      FUN_0019cf30(puVar5 + 0x44);
+      CarModel_ResetState(puVar5 + 0x44);
     }
   }
   return lVar2;
 }
 
 // 0x001984c0  size 0x150
-uint * FUN_001984c0(char param_1,uint *param_2)
+uint * SceneObj_Next(char param_1,uint *param_2)
 
 {
   bool bVar1;
@@ -236,14 +236,14 @@ LAB_00198568:
       if ((*param_2 & 0xc) != 0) {
         return param_2;
       }
-      param_2 = (uint *)FUN_001a5050(param_2);
+      param_2 = (uint *)Chunk_GetData(param_2);
     } while (param_2 < puVar2);
   }
   return (uint *)0x0;
 }
 
 // 0x00198610  size 0xd0
-int * FUN_00198610(char param_1)
+int * SceneObj_AllocFromPool(char param_1)
 
 {
   bool bVar1;
@@ -277,7 +277,7 @@ LAB_00198690:
       if (*piVar2 == 0) {
         return piVar2;
       }
-      piVar2 = (int *)FUN_001a5050(piVar2);
+      piVar2 = (int *)Chunk_GetData(piVar2);
       iVar4 = iVar4 + 1;
     } while (iVar4 < iVar3);
   }
@@ -285,7 +285,7 @@ LAB_00198690:
 }
 
 // 0x001986e0  size 0xc
-void FUN_001986e0(undefined4 param_1)
+void SceneObj_SetGlobalFlags(undefined4 param_1)
 
 {
   uRam0036f284 = param_1;
@@ -294,7 +294,7 @@ void FUN_001986e0(undefined4 param_1)
 }
 
 // 0x001986f0  size 0x180
-void FUN_001986f0(uint param_1,long param_2,long param_3)
+void View_DrawBackground(uint param_1,long param_2,long param_3)
 
 {
   int iVar1;
@@ -327,7 +327,7 @@ void FUN_001986f0(uint param_1,long param_2,long param_3)
 }
 
 // 0x00198870  size 0x264
-void FUN_00198870(long param_1)
+void Course_DrawShadowedMeshes(long param_1)
 
 {
   undefined8 uVar1;
@@ -540,7 +540,7 @@ void FUN_00198870(long param_1)
 }
 
 // 0x00198ae0  size 0x24c
-void FUN_00198ae0(long param_1)
+void Course_DrawLitMeshes(long param_1)
 
 {
   undefined8 uVar1;
@@ -751,7 +751,7 @@ void FUN_00198ae0(long param_1)
 }
 
 // 0x00198d30  size 0xc0
-void FUN_00198d30(void)
+void Course_FreeModels(void)
 
 {
   if (iRam00430574 != 0) {
@@ -773,12 +773,12 @@ void FUN_00198d30(void)
     Mem_Free();
     iRam00430464 = 0;
   }
-  FUN_001a9f20();
+  Asset_FreeCourseCommon();
   return;
 }
 
 // 0x00198df0  size 0x3b8
-void FUN_00198df0(undefined8 param_1,undefined8 param_2)
+void Course_LoadModels(undefined8 param_1,undefined8 param_2)
 
 {
   char cVar1;
@@ -822,7 +822,7 @@ void FUN_00198df0(undefined8 param_1,undefined8 param_2)
   TexSlot_BindSimple(0x430470,iRam00430464,0,iGpffff8b94 + iGpffff8bd0,iGpffff8b94 + iGpffff8bd0,
                      0x11110,0,0);
   Gfx_SetupRenderTargetEx(uVar9,0x4304f0,0,0);
-  FUN_001aa000(param_1,param_2);
+  Asset_LoadCourseCommon(param_1,param_2);
   uRam00430570 = *(undefined4 *)(iVar3 + 0x20);
   iRam00430574 = Mem_Alloc16(*(int *)(iVar3 + 0x20) * 0x530,param_1);
   uVar8 = 0;
@@ -833,7 +833,7 @@ void FUN_00198df0(undefined8 param_1,undefined8 param_2)
     iVar6 = 0;
     do {
       iVar4 = iRam00430574 + iVar6;
-      FUN_001a5060(iVar4,0x530);
+      Chunk_Init(iVar4,0x530);
       *(undefined4 *)(iVar4 + 0x500) = 0;
       *(undefined4 *)(iVar4 + 0x504) = 0;
       *(undefined4 *)(iVar4 + 0x508) = 0;
@@ -845,7 +845,7 @@ void FUN_00198df0(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar4 + 0x520) = 0;
       *(undefined4 *)(iVar4 + 0x524) = 0;
       *(undefined4 *)(iVar4 + 0x528) = 0;
-      FUN_0019cf30(iVar4 + 0x110);
+      CarModel_ResetState(iVar4 + 0x110);
       uVar8 = uVar8 + 1;
       iVar6 = iVar6 + 0x530;
     } while (uVar8 < *(uint *)(iVar3 + 0x20));
@@ -866,7 +866,7 @@ void FUN_00198df0(undefined8 param_1,undefined8 param_2)
     iVar6 = 0;
     do {
       iVar4 = iRam0043057c + iVar6;
-      FUN_001a5060(iVar4,0x50);
+      Chunk_Init(iVar4,0x50);
       *(undefined4 *)(iVar4 + 0x44) = 0;
       *(undefined4 *)(iVar4 + 0x10) = 0;
       *(undefined4 *)(iVar4 + 0x14) = 0;
@@ -895,7 +895,7 @@ void FUN_00198df0(undefined8 param_1,undefined8 param_2)
     iVar6 = 0;
     do {
       iVar4 = iRam00430584 + iVar6;
-      FUN_001a5060(iVar4,0x48);
+      Chunk_Init(iVar4,0x48);
       *(undefined4 *)(iVar4 + 0x40) = 0;
       *(undefined8 *)(iVar4 + 0x10) = 0x48;
       *(undefined4 *)(iVar4 + 0x18) = 0x80808080;
@@ -913,7 +913,7 @@ void FUN_00198df0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001991b0  size 0x1e8
-void FUN_001991b0(undefined8 param_1,byte *param_2)
+void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
 
 {
   int iVar1;
@@ -967,7 +967,7 @@ void FUN_001991b0(undefined8 param_1,byte *param_2)
 }
 
 // 0x001993a0  size 0x8c
-void FUN_001993a0(int param_1)
+void SceneObj_DrawOpaque(int param_1)
 
 {
   bool bVar1;
@@ -994,12 +994,12 @@ void FUN_001993a0(int param_1)
   uStack_8 = *(undefined4 *)(param_1 + 0x18);
   uStack_4 = 0;
   *(undefined4 *)(iStack_1c + 0x60) = 0;
-  FUN_001991b0(param_1,&uStack_20);
+  SceneObj_DrawModel(param_1,&uStack_20);
   return;
 }
 
 // 0x00199430  size 0x90
-void FUN_00199430(int param_1)
+void SceneObj_DrawTranslucent(int param_1)
 
 {
   bool bVar1;
@@ -1026,19 +1026,19 @@ void FUN_00199430(int param_1)
   uStack_8 = *(undefined4 *)(param_1 + 0x18);
   uStack_4 = 1;
   *(undefined4 *)(iStack_1c + 0x60) = 0;
-  FUN_001991b0(param_1,&uStack_20);
+  SceneObj_DrawModel(param_1,&uStack_20);
   return;
 }
 
 // 0x001994c0  size 0x60
-void FUN_001994c0(undefined8 param_1)
+void SceneObj_Release(undefined8 param_1)
 
 {
   int iVar1;
   
   iVar1 = (int)param_1;
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x40));
-  FUN_001a5060(param_1,0x48);
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
+  Chunk_Init(param_1,0x48);
   *(undefined4 *)(iVar1 + 0x40) = 0;
   *(undefined8 *)(iVar1 + 0x10) = 0x48;
   *(undefined4 *)(iVar1 + 0x18) = 0x80808080;
@@ -1050,7 +1050,7 @@ void FUN_001994c0(undefined8 param_1)
 }
 
 // 0x00199520  size 0x2c
-void FUN_00199520(undefined8 *param_1)
+void SceneObj_SetDefaultColor(undefined8 *param_1)
 
 {
   *param_1 = 0x48;
@@ -1063,7 +1063,7 @@ void FUN_00199520(undefined8 *param_1)
 }
 
 // 0x00199550  size 0x1d0
-void FUN_00199550(int param_1,undefined1 *param_2)
+void SceneObj_BuildMatrix(int param_1,undefined1 *param_2)
 
 {
   int iVar1;
@@ -1107,7 +1107,7 @@ void FUN_00199550(int param_1,undefined1 *param_2)
 }
 
 // 0x00199720  size 0x14c
-void FUN_00199720(undefined8 param_1)
+void SceneObj_DrawShadowCaster(undefined8 param_1)
 
 {
   int iVar1;
@@ -1122,43 +1122,43 @@ void FUN_00199720(undefined8 param_1)
   uStack_14 = 1;
   uStack_18 = 0;
   iStack_10 = 6;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   iVar1 = (int)param_1;
   if (*(int *)(iVar1 + 0x30) != 0) {
-    FUN_001a9060(0,1);
+    View_DrawFadeSprite(0,1);
   }
   uStack_14 = 1;
   uStack_20 = 0;
   uStack_1c = 0;
   uStack_18 = 0;
   iStack_10 = 0;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   if (*(int *)(iVar1 + 0x30) != 0) {
-    FUN_001a9120(0,3,0xffffffff80808080);
+    View_DrawFullscreen(0,3,0xffffffff80808080);
   }
   uStack_14 = 1;
   iStack_10 = 1;
   uStack_20 = 0;
   uStack_1c = 0;
   uStack_18 = 0;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_20 = 0;
   uStack_14 = 1;
   uStack_1c = 0;
   uStack_18 = 0;
   iStack_10 = *(int *)(iVar1 + 0x34) + 2;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_14 = 1;
   uStack_1c = 0;
   iStack_10 = 5;
   uStack_18 = 0;
   uStack_20 = 0;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   return;
 }
 
 // 0x00199870  size 0x1a0
-void FUN_00199870(undefined8 param_1)
+void SceneObj_DrawShadow(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1184,50 +1184,50 @@ void FUN_00199870(undefined8 param_1)
   uStack_18 = 0;
   iStack_10 = 0;
   uStack_1c = uVar2;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_20 = 3;
   uStack_14 = 6;
   uStack_18 = 0;
   iStack_10 = 1;
   uStack_1c = uVar2;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_20 = 3;
   uStack_18 = 0;
   uStack_14 = 6;
   iStack_10 = *(int *)((int)param_1 + 0x34) + 2;
   uStack_1c = uVar2;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_20 = 3;
   uStack_14 = 6;
   iStack_10 = 6;
   uStack_18 = 0;
   uStack_1c = uVar2;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_20 = 1;
   uStack_18 = 0;
   uStack_1c = 3;
   uStack_14 = 4;
   iStack_10 = 7;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   uStack_18 = 0;
   uStack_20 = 1;
   uStack_1c = 3;
   uStack_14 = 4;
   iStack_10 = *(int *)((int)param_1 + 0x34) + 8;
-  FUN_00199550(param_1,&uStack_20);
+  SceneObj_BuildMatrix(param_1,&uStack_20);
   return;
 }
 
 // 0x00199a10  size 0x70
-void FUN_00199a10(undefined8 param_1)
+void CarModel_Release(undefined8 param_1)
 
 {
   int iVar1;
   
   iVar1 = (int)param_1;
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x40));
-  FUN_001a5a00(*(undefined4 *)(iVar1 + 0x44));
-  FUN_001a5060(param_1,0x50);
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
+  course_sub_001a5a00(*(undefined4 *)(iVar1 + 0x44));
+  Chunk_Init(param_1,0x50);
   *(undefined4 *)(iVar1 + 0x44) = 0;
   *(undefined4 *)(iVar1 + 0x10) = 0;
   *(undefined4 *)(iVar1 + 0x14) = 0;
@@ -1243,7 +1243,7 @@ void FUN_00199a10(undefined8 param_1)
 }
 
 // 0x00199a80  size 0x34
-void FUN_00199a80(undefined4 *param_1)
+void CarModel_Clear(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -1261,8 +1261,9 @@ void FUN_00199a80(undefined4 *param_1)
 
 // 0x00199ac0  size 0x260
 undefined4
-FUN_00199ac0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,int param_5
-            ,undefined8 param_6,undefined8 param_7)
+CarModel_ProjectShadow
+          (undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,int param_5,
+          undefined8 param_6,undefined8 param_7)
 
 {
   undefined1 *puVar1;
@@ -1345,8 +1346,9 @@ FUN_00199ac0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8
 
 // 0x00199d20  size 0x458
 undefined4
-FUN_00199d20(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,undefined8 param_5
-            ,uint param_6,long param_7,long param_8)
+CarModel_ComputeShadowQuad
+          (undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,undefined8 param_5,
+          uint param_6,long param_7,long param_8)
 
 {
   undefined4 uVar1;
@@ -1484,8 +1486,8 @@ FUN_00199d20(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_
 }
 
 // 0x0019a180  size 0xdc
-uint FUN_0019a180(float param_1,undefined8 param_2,int param_3,undefined8 param_4,uint param_5,
-                 float *param_6)
+uint CarModel_ComputeLod(float param_1,undefined8 param_2,int param_3,undefined8 param_4,
+                        uint param_5,float *param_6)
 
 {
   uint uVar1;
@@ -1514,7 +1516,7 @@ uint FUN_0019a180(float param_1,undefined8 param_2,int param_3,undefined8 param_
 // 0x0019a260  size 0x638
 /* WARNING: Type propagation algorithm not settling */
 
-void FUN_0019a260(undefined8 param_1,undefined8 param_2)
+void CarModel_DrawBody(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -1618,12 +1620,14 @@ switchD_0019a314_default:
               vu0math_sub_00132d20(puVar7,puVar7,puVar12);
             }
             if (uVar11 - 5 < 2) {
-              lVar3 = FUN_00199d20(param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar12,1,0,
-                                   bVar1);
+              lVar3 = CarModel_ComputeShadowQuad
+                                (param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar12,1,0,
+                                 bVar1);
             }
             else {
-              lVar3 = FUN_00199d20(param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar12,3,1,
-                                   bVar1);
+              lVar3 = CarModel_ComputeShadowQuad
+                                (param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar12,3,1,
+                                 bVar1);
             }
             if (lVar3 == 0) {
               uVar13 = *puVar7;
@@ -1658,12 +1662,14 @@ switchD_0019a314_default:
               vu0math_sub_00132ba0(iVar6,iVar9 + 0x120,iVar6);
             }
             if (uVar11 - 5 < 2) {
-              lVar3 = FUN_00199d20(param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar10 + 4,1
-                                   ,0,bVar1);
+              lVar3 = CarModel_ComputeShadowQuad
+                                (param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar10 + 4,1,0
+                                 ,bVar1);
             }
             else {
-              lVar3 = FUN_00199d20(param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar10 + 4,3
-                                   ,1,bVar1);
+              lVar3 = CarModel_ComputeShadowQuad
+                                (param_1,puVar7,*(undefined4 *)(iVar8 + 0x244),iVar6,puVar10 + 4,3,1
+                                 ,bVar1);
             }
             if (lVar3 != 0) {
               if (*(int *)(iVar8 + 0x240) != 0) {
@@ -1727,7 +1733,7 @@ switchD_0019a314_default:
 }
 
 // 0x0019a8a0  size 0x6ac
-void FUN_0019a8a0(int param_1,undefined8 param_2)
+void CarModel_DrawParts(int param_1,undefined8 param_2)
 
 {
   byte bVar1;
@@ -1809,8 +1815,8 @@ LAB_0019aa5c:
           vu0math_sub_00132d20(iVar10,iVar10,iVar6 + iStack_70 + iStack_b0 + 0x510);
           iVar6 = *(int *)(param_1 + 0x504);
         }
-        uVar2 = FUN_0019a180(*(undefined4 *)(iVar6 + 0xcb0),param_1,*(undefined4 *)(iVar12 + 0x244),
-                             param_1 + 0x120,4,0x3128a0);
+        uVar2 = CarModel_ComputeLod(*(undefined4 *)(iVar6 + 0xcb0),param_1,
+                                    *(undefined4 *)(iVar12 + 0x244),param_1 + 0x120,4,0x3128a0);
         *(undefined4 *)(iVar12 + 0x45c) = uVar2;
         if (iRam00436450 == 0) {
           iVar6 = *(int *)(param_1 + 0x528);
@@ -1981,7 +1987,7 @@ LAB_0019aca4:
 // 0x0019af50  size 0xe64
 /* WARNING: Type propagation algorithm not settling */
 
-undefined4 FUN_0019af50(int param_1,undefined8 param_2)
+undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
 
 {
   uint *puVar1;
@@ -2022,8 +2028,9 @@ undefined4 FUN_0019af50(int param_1,undefined8 param_2)
   iVar13 = (int)param_2;
   iVar12 = iVar13 + 0x100;
   iVar9 = iVar13 + 0xc0;
-  uVar19 = FUN_00199ac0(0x3c23d70a,param_1,iVar12,iVar13 + 0x470,param_1 + 0x170,0x3128b0,
-                        param_1 + 0x150);
+  uVar19 = CarModel_ProjectShadow
+                     (0x3c23d70a,param_1,iVar12,iVar13 + 0x470,param_1 + 0x170,0x3128b0,
+                      param_1 + 0x150);
   *(undefined4 *)(iVar13 + 0x460) = uVar19;
   puVar11 = *(uint **)(*(int *)(iVar13 + 0x458) * 100 + *(int *)(param_1 + 0x504) + 0xe4);
   if ((*puVar11 & 0x10) == 0) {
@@ -2085,8 +2092,9 @@ undefined4 FUN_0019af50(int param_1,undefined8 param_2)
       }
       if ((puVar11 != (uint *)0x0) && (*(int *)(param_1 + 0x49c) == 1)) {
         vu0math_sub_00132c20(iVar9,param_1 + 0x120);
-        uVar19 = FUN_00199ac0(0x3c23d70a,param_1,iVar12,iVar13 + 0x4c0,param_1 + 0x170,
-                              *(int *)(iVar13 + 0x3d0) + 0x50,iVar13 + 0xf0);
+        uVar19 = CarModel_ProjectShadow
+                           (0x3c23d70a,param_1,iVar12,iVar13 + 0x4c0,param_1 + 0x170,
+                            *(int *)(iVar13 + 0x3d0) + 0x50,iVar13 + 0xf0);
         *(undefined4 *)(iVar13 + 0x4b0) = uVar19;
         *(undefined4 *)(iVar13 + 0xf0) = 0;
         *(undefined4 *)(iVar13 + 0xf4) = *(undefined4 *)(iVar13 + 0x4b0);
@@ -2139,8 +2147,9 @@ undefined4 FUN_0019af50(int param_1,undefined8 param_2)
           vu0math_sub_00132c20(iVar9,param_1 + 0x120);
           vu0math_sub_00132b50(auStack_60,iVar13 + 0xf0,iVar7 + 0x4b0);
           vu0math_sub_00132c20(iVar9,param_1 + 0x120);
-          uVar19 = FUN_00199ac0(0x3c23d70a,param_1,iVar12,iVar13 + 0x4c0,param_1 + 0x170,auStack_60,
-                                iVar13 + 0xf0);
+          uVar19 = CarModel_ProjectShadow
+                             (0x3c23d70a,param_1,iVar12,iVar13 + 0x4c0,param_1 + 0x170,auStack_60,
+                              iVar13 + 0xf0);
           *(undefined4 *)(iVar13 + 0x4b0) = uVar19;
           *(undefined4 *)(iVar13 + 0xf0) = 0;
           *(undefined4 *)(iVar13 + 0xf4) = *(undefined4 *)(iVar13 + 0x4b0);
@@ -2225,16 +2234,16 @@ undefined4 FUN_0019af50(int param_1,undefined8 param_2)
     cVar10 = *(int *)(iVar7 + 0x2b4) != 0;
     if ((bool)cVar10) {
       TexSlot_Set(0,*(int *)(iVar7 + 0x2b4),*(undefined4 *)(iVar7 + 0x2cc));
-      msl_sub_00101180(param_2,1,iVar7 + 700);
+      __ptmf_scall(param_2,1,iVar7 + 700);
     }
     if (*piVar14 != 0) {
       TexSlot_Set(cVar10,*piVar14,*(undefined4 *)(iVar7 + 0x358));
-      msl_sub_00101180(param_2,0,iVar7 + 0x348);
+      __ptmf_scall(param_2,0,iVar7 + 0x348);
       cVar10 = cVar10 + '\x01';
     }
     if (*(int *)(iVar7 + 0x3cc) != 0) {
       TexSlot_Set(cVar10,*(int *)(iVar7 + 0x3cc),*(undefined4 *)(iVar7 + 0x3e4));
-      msl_sub_00101180(param_2,0,iVar7 + 0x3d4);
+      __ptmf_scall(param_2,0,iVar7 + 0x3d4);
       cVar10 = cVar10 + '\x01';
     }
     if (*(int *)(iVar7 + 0x458) == 0) {
@@ -2242,7 +2251,7 @@ undefined4 FUN_0019af50(int param_1,undefined8 param_2)
     }
     else {
       TexSlot_Set(cVar10,*(int *)(iVar7 + 0x458),*(undefined4 *)(iVar7 + 0x470));
-      msl_sub_00101180(param_2,1,iVar7 + 0x460);
+      __ptmf_scall(param_2,1,iVar7 + 0x460);
       uVar15 = *(uint *)(iVar13 + 0x458);
     }
     if (uVar15 < 2) {
@@ -2250,12 +2259,12 @@ undefined4 FUN_0019af50(int param_1,undefined8 param_2)
     }
     else {
       puVar17 = (undefined4 *)(*(int *)(param_1 + 0x504) + 0x2d0);
-      msl_sub_00101180(param_2,1,*(int *)(param_1 + 0x504) + 0x2d8);
+      __ptmf_scall(param_2,1,*(int *)(param_1 + 0x504) + 0x2d8);
       iVar7 = *(int *)(iVar13 + 0x458);
     }
     if (iVar7 - 2U < 2) {
       piVar14 = (int *)(*(int *)(param_1 + 0x504) + 0x35c);
-      msl_sub_00101180(param_2,0,*(int *)(param_1 + 0x504) + 0x364);
+      __ptmf_scall(param_2,0,*(int *)(param_1 + 0x504) + 0x364);
       iVar7 = *(int *)(param_1 + 0x3f8);
     }
     else {
@@ -2413,7 +2422,7 @@ switchD_0019b78c_default:
 }
 
 // 0x0019be00  size 0x4d4
-void FUN_0019be00(int param_1,int param_2,undefined4 param_3)
+void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
 
 {
   undefined4 *puVar1;

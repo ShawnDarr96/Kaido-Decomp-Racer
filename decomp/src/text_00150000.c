@@ -952,7 +952,7 @@ void Gfx_SetFade(int param_1,uint param_2,long param_3,long param_4)
     else {
       *puVar1 = *puVar1 | 1 << (param_2 & 0x1f);
       if (param_4 != 0) {
-        FUN_00132500(puVar1 + param_2 * 0x12 + 2,param_4,0x12);
+        Mem_Copy32(puVar1 + param_2 * 0x12 + 2,param_4,0x12);
       }
     }
   }
@@ -1167,7 +1167,7 @@ undefined4 Gfx_InitAll(undefined8 param_1)
 }
 
 // 0x00153960  size 0x60
-long FUN_00153960(long param_1,short param_2)
+long Gfx_EndFrameCallbackList_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {

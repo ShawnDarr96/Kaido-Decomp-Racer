@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00134120  size 0x118
-void FUN_00134120(float *param_1,uint param_2,ulong param_3)
+void Color_LerpAlpha(float *param_1,uint param_2,ulong param_3)
 
 {
   float fVar1;
@@ -60,7 +60,7 @@ void maybe_Vec3_SetAbsYZ(undefined4 param_1,undefined4 param_2,undefined4 param_
 }
 
 // 0x00134290  size 0x48
-undefined8 FUN_00134290(undefined8 param_1)
+undefined8 maybe_Vec3_SetUp(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -233,7 +233,7 @@ void maybe_Gut_HashInsert(uint *param_1,uint param_2,undefined8 param_3,undefine
 }
 
 // 0x001345d0  size 0x60
-undefined8 FUN_001345d0(undefined8 param_1,undefined4 param_2)
+undefined8 Gut_HashInit(undefined8 param_1,undefined4 param_2)
 
 {
   undefined4 *puVar1;
@@ -305,18 +305,18 @@ undefined4 Gut_ArchiveDecompress(int param_1,int param_2,uint param_3)
         if (param_3 == uVar4) {
           return 1;
         }
-        FUN_00132470(0x361240);
+        Dbg_Nop(0x361240);
         return 0;
       }
       memcpy(&uStack_14,param_2 + iVar2 + 4,4);
       uVar1 = CONCAT13(uStack_14,CONCAT12(uStack_13,CONCAT11(uStack_12,uStack_11)));
       iVar2 = iVar2 + 8;
       if (uVar3 <= uVar1) break;
-      FUN_00133aa0(param_2 + iVar2,uVar1,param_1 + uVar4,auStack_4,0);
+      Math_SolveCubic(param_2 + iVar2,uVar1,param_1 + uVar4,auStack_4,0);
       uVar4 = uVar4 + uVar3;
       iVar2 = iVar2 + uVar1;
       if (param_3 < uVar4) {
-        FUN_00132470(0x361200);
+        Dbg_Nop(0x361200);
         return 0;
       }
     }
@@ -325,7 +325,7 @@ undefined4 Gut_ArchiveDecompress(int param_1,int param_2,uint param_3)
     iVar2 = iVar2 + uVar1;
     uVar4 = uVar4 + uVar1;
   }
-  FUN_00132470(0x361220);
+  Dbg_Nop(0x361220);
   return 0;
 }
 
@@ -833,7 +833,7 @@ void Gfx_ResetState(void)
 }
 
 // 0x001356f0  size 0x60
-long FUN_001356f0(long param_1,short param_2)
+long Gfx_FrameCallbackList_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -873,7 +873,7 @@ void Dbc_Acquire(void)
 }
 
 // 0x001357d0  size 0x14
-undefined8 FUN_001357d0(undefined8 param_1)
+undefined8 Input_InitPorts(undefined8 param_1)
 
 {
   *(undefined1 *)param_1 = 0xff;
@@ -1226,7 +1226,7 @@ LAB_00136060:
                           (*(undefined4 *)(iVar1 + 0x5c),*(undefined4 *)(iVar1 + 0x50),
                            *(undefined4 *)(iVar1 + 0x4c));
         if (lVar3 == 0) {
-          FUN_00132470(0x361260);
+          Dbg_Nop(0x361260);
         }
         FlushCache(0);
       }
@@ -1748,7 +1748,7 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
       *(undefined4 *)param_4 = uStack_10;
     }
     if (param_5 != 0) {
-      FUN_001324a0(param_5,auStack_18,8);
+      Mem_Copy8(param_5,auStack_18,8);
     }
     uVar1 = 1;
   }
@@ -1950,7 +1950,7 @@ undefined4 File_ResetHostHandles(void)
 }
 
 // 0x00137310  size 0x8
-void FUN_00137310(void)
+void File_ShutdownNop(void)
 
 {
   return;
@@ -1967,7 +1967,7 @@ void File_SetHeap(undefined4 param_1)
 }
 
 // 0x00137340  size 0x60
-long FUN_00137340(long param_1,short param_2)
+long File_RequestList_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1981,7 +1981,7 @@ long FUN_00137340(long param_1,short param_2)
 }
 
 // 0x00137420  size 0x38
-undefined8 FUN_00137420(undefined8 param_1)
+undefined8 File_Request_ctor(undefined8 param_1)
 
 {
   maybe_ListNode_ctor(param_1,0);
@@ -2346,7 +2346,7 @@ void Pad_ReadButtons(int param_1)
       puVar9[-2] = uVar4;
     }
     uVar11 = uVar11 | iVar3 << (uVar7 & 0x1f);
-    FUN_00134120(iVar10 + 0x1a4,uVar4,0xff);
+    Color_LerpAlpha(iVar10 + 0x1a4,uVar4,0xff);
     piVar8 = piVar8 + 2;
     *(char *)(param_1 + uVar7 + 0x414) = (char)uVar4;
     uVar7 = uVar7 + 1;
@@ -2355,13 +2355,13 @@ void Pad_ReadButtons(int param_1)
   } while (uVar7 < 0x18);
   uVar6 = Pad_MapButtons(param_1,uVar11,1);
   Input_UpdateButtonEdges(param_1 + 8,uVar6);
-  FUN_00133e60(param_1 + 0x324,uStack_8,uStack_4,0xff);
+  Color_LerpRgba(param_1 + 0x324,uStack_8,uStack_4,0xff);
   fVar12 = ((float)uStack_4 / 2.0 - (float)uStack_8 / 2.0) + 127.5;
   if (2.1474836e+09 <= fVar12) {
     fVar12 = fVar12 - 2.1474836e+09;
   }
   *(char *)(param_1 + 0x474) = (char)(int)fVar12;
-  FUN_00133e60(param_1 + 0x334,auStack_18[2],auStack_18[3],0xff);
+  Color_LerpRgba(param_1 + 0x334,auStack_18[2],auStack_18[3],0xff);
   fVar12 = ((float)auStack_18[3] / 2.0 - (float)auStack_18[2] / 2.0) + 127.5;
   if (2.1474836e+09 <= fVar12) {
     fVar12 = fVar12 - 2.1474836e+09;
@@ -2376,7 +2376,7 @@ void Pad_ReadButtons(int param_1)
                         (*(undefined4 *)(param_1 + 0x48c),*(undefined4 *)(param_1 + 0x488),
                          uVar7 + 0x10);
     }
-    FUN_00133ff0(param_1 + (uVar7 + 2) * 0x10 + 0x324,uVar6,0xff);
+    Color_LerpRgb(param_1 + (uVar7 + 2) * 0x10 + 0x324,uVar6,0xff);
     *(char *)(param_1 + uVar7 + 0x476) = (char)uVar6;
     uVar7 = uVar7 + 1;
   } while (uVar7 < 4);
@@ -2453,7 +2453,7 @@ void Pad_Close(undefined1 *param_1)
 }
 
 // 0x00137ff0  size 0x5c
-long FUN_00137ff0(long param_1,short param_2)
+long Pad_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {

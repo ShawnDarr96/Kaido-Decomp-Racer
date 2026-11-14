@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001f0490  size 0x5c
-int FUN_001f0490(int param_1)
+int UiRes_GetFontIndex(int param_1)
 
 {
   short sVar1;
@@ -29,7 +29,7 @@ int FUN_001f0490(int param_1)
 }
 
 // 0x001f04f0  size 0xbc
-undefined4 FUN_001f04f0(int param_1,int param_2)
+undefined4 UiRes_GetFontInfo(int param_1,int param_2)
 
 {
   ushort uVar1;
@@ -72,7 +72,7 @@ undefined4 FUN_001f04f0(int param_1,int param_2)
 }
 
 // 0x001f05b0  size 0x44
-void FUN_001f05b0(void)
+void UiRes_FreeFonts(void)
 
 {
   if (iRam0036f400 != 0) {
@@ -87,7 +87,9 @@ void FUN_001f05b0(void)
 }
 
 // 0x001f06b0  size 0x60
-void FUN_001f06b0(int param_1)
+/* language offset at +0x15 */
+
+void UiRes_LoadLocalized(int param_1)
 
 {
   int iVar1;
@@ -109,7 +111,7 @@ void FUN_001f06b0(int param_1)
 }
 
 // 0x001f0710  size 0x50
-void FUN_001f0710(undefined8 param_1,undefined4 param_2,int param_3)
+void UiRes_AllocFonts(undefined8 param_1,undefined4 param_2,int param_3)
 
 {
   iRam0036f408 = param_3;
@@ -120,7 +122,7 @@ void FUN_001f0710(undefined8 param_1,undefined4 param_2,int param_3)
 }
 
 // 0x001f0760  size 0xb4
-void FUN_001f0760(undefined8 param_1,int param_2,int param_3)
+void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
 
 {
   int iVar1;
@@ -147,7 +149,7 @@ void FUN_001f0760(undefined8 param_1,int param_2,int param_3)
 }
 
 // 0x001f0820  size 0x12c
-void FUN_001f0820(undefined8 param_1)
+void UiRes_LoadCommon(undefined8 param_1)
 
 {
   uint uVar1;
@@ -199,7 +201,7 @@ void FUN_001f0820(undefined8 param_1)
 }
 
 // 0x001f0950  size 0x240
-void FUN_001f0950(undefined8 param_1,uint param_2,long param_3)
+void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
 
 {
   undefined4 uVar1;
@@ -251,7 +253,7 @@ void FUN_001f0950(undefined8 param_1,uint param_2,long param_3)
 }
 
 // 0x001f0b90  size 0x268
-void FUN_001f0b90(undefined8 param_1,uint param_2,long param_3)
+void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
 
 {
   undefined4 uVar1;
@@ -307,7 +309,7 @@ void FUN_001f0b90(undefined8 param_1,uint param_2,long param_3)
 }
 
 // 0x001f0e00  size 0x364
-void FUN_001f0e00(undefined8 param_1,short *param_2)
+void UiText_DrawString(undefined8 param_1,short *param_2)
 
 {
   byte bVar1;
@@ -372,11 +374,11 @@ void FUN_001f0e00(undefined8 param_1,short *param_2)
       *(int *)(iVar6 + 0x46788c) = piVar7[5];
       uVar3 = *(undefined4 *)(iVar6 + 0x4678c4);
       do {
-        uVar4 = FUN_001f1bf0(iVar11,psStack_c);
-        FUN_001ef360(&uStack_4,&uStack_10,param_1,uVar4,&psStack_c);
-        FUN_001ef270(&uStack_8,param_1,iVar9,iVar10,uVar3);
+        uVar4 = UiModel_FindSkinned(iVar11,psStack_c);
+        UiText_MeasureLine(&uStack_4,&uStack_10,param_1,uVar4,&psStack_c);
+        UiText_SetColor(&uStack_8,param_1,iVar9,iVar10,uVar3);
         iVar9 = iVar9 + 1;
-        lVar5 = FUN_001f1cb0(uStack_10,iVar11,uStack_4,uStack_8,piVar7[6],&psStack_c);
+        lVar5 = UiModel_DrawSkinned(uStack_10,iVar11,uStack_4,uStack_8,piVar7[6],&psStack_c);
       } while (lVar5 == 0);
       if (piVar7[9] == 1) {
         Pkt_SetScissor(iVar11,0,0,0,0,0);
@@ -396,11 +398,11 @@ void FUN_001f0e00(undefined8 param_1,short *param_2)
       *(int *)(iVar6 + 0x467acc) = piVar7[5];
       uVar3 = *(undefined4 *)(*(int *)(iVar6 + 0x467b00) + 0xc);
       do {
-        uVar4 = FUN_001f17d0(iVar11,psStack_c);
-        FUN_001ef360(&uStack_4,&uStack_14,param_1,uVar4,&psStack_c);
-        FUN_001ef270(&uStack_8,param_1,iVar9,iVar10,uVar3);
+        uVar4 = UiModel_FindStatic(iVar11,psStack_c);
+        UiText_MeasureLine(&uStack_4,&uStack_14,param_1,uVar4,&psStack_c);
+        UiText_SetColor(&uStack_8,param_1,iVar9,iVar10,uVar3);
         iVar9 = iVar9 + 1;
-        lVar5 = FUN_001f1890(uStack_14,iVar11,uStack_4,uStack_8,piVar7[6],&psStack_c);
+        lVar5 = UiModel_DrawStatic(uStack_14,iVar11,uStack_4,uStack_8,piVar7[6],&psStack_c);
       } while (lVar5 == 0);
       if (piVar7[9] == 1) {
         Pkt_SetScissor(iVar11,0,0,0,0,0);
@@ -412,7 +414,7 @@ void FUN_001f0e00(undefined8 param_1,short *param_2)
 }
 
 // 0x001f1170  size 0x130
-void FUN_001f1170(short *param_1,char *param_2)
+void UiText_CountLines(short *param_1,char *param_2)
 
 {
   char cVar1;
@@ -462,25 +464,29 @@ void FUN_001f1170(short *param_1,char *param_2)
 }
 
 // 0x001f12c0  size 0x84
-void FUN_001f12c0(undefined8 param_1,undefined8 param_2,long param_3)
+/* "%s@kaido.battle" */
+
+void UiText_DrawPlayerName(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   undefined1 auStack_40 [64];
   
   if (param_3 == 1) {
     sprintf(auStack_40,0x365070,param_2);
-    FUN_001f1170(0x4680f0,auStack_40);
-    FUN_001f0e00(param_1,0x4680f0);
+    UiText_CountLines(0x4680f0,auStack_40);
+    UiText_DrawString(param_1,0x4680f0);
   }
   else {
-    FUN_001f1170(0x4680f0);
-    FUN_001f0e00(param_1,0x4680f0);
+    UiText_CountLines(0x4680f0);
+    UiText_DrawString(param_1,0x4680f0);
   }
   return;
 }
 
 // 0x001f1350  size 0x34
-void FUN_001f1350(undefined8 param_1,int param_2)
+/* 30 callers */
+
+void UiText_DrawById(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -491,12 +497,12 @@ void FUN_001f1350(undefined8 param_1,int param_2)
   else {
     iVar1 = iGpffff8d10 + *(int *)(iGpffff8d14 + param_2 * 4) * 2;
   }
-  FUN_001f0e00(param_1,iVar1);
+  UiText_DrawString(param_1,iVar1);
   return;
 }
 
 // 0x001f1390  size 0x68
-void FUN_001f1390(undefined8 param_1,int param_2)
+void UiText_DrawRivalName(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -507,16 +513,17 @@ void FUN_001f1390(undefined8 param_1,int param_2)
   else {
     iVar1 = iGpffff8d10 + *(int *)(iGpffff8d14 + param_2 * 4) * 2;
   }
-  FUN_001ef490(0x4680f0,iVar1);
-  FUN_001f0e00(param_1,0x4680f0);
+  UiText_FormatRivalInfo(0x4680f0,iVar1);
+  UiText_DrawString(param_1,0x4680f0);
   return;
 }
 
 // 0x001f1400  size 0xb0
 /* WARNING: Removing unreachable block (ram,0x001f1434) */
 
-void FUN_001f1400(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void UiText_DrawRivalInfo
+               (undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   int iVar1;
@@ -539,13 +546,13 @@ void FUN_001f1400(undefined8 param_1,int param_2,undefined8 param_3,undefined8 p
   uStack_18 = param_6;
   uStack_10 = param_7;
   uStack_8 = param_8;
-  FUN_001ef490(0x4680f0,iVar1,&uStack_30);
-  FUN_001f0e00(param_1,0x4680f0);
+  UiText_FormatRivalInfo(0x4680f0,iVar1,&uStack_30);
+  UiText_DrawString(param_1,0x4680f0);
   return;
 }
 
 // 0x001f14b0  size 0x134
-void FUN_001f14b0(undefined8 param_1,undefined8 param_2)
+void UiRes_UploadFonts(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -580,7 +587,7 @@ void FUN_001f14b0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f15f0  size 0x118
-void FUN_001f15f0(void)
+void UiRes_FreeAll(void)
 
 {
   int iVar1;
@@ -621,7 +628,7 @@ void FUN_001f15f0(void)
 }
 
 // 0x001f1710  size 0xb8
-void FUN_001f1710(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void UiRes_LoadAll(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   uint uVar1;
@@ -633,20 +640,20 @@ void FUN_001f1710(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   uRam00467da0 = 0;
   uRam004680e0 = 0;
   do {
-    FUN_001f0b90(param_1,uVar1 & 0xff,param_2);
+    UiRes_LoadTextures(param_1,uVar1 & 0xff,param_2);
     uVar1 = uVar1 + 1;
   } while ((int)uVar1 < 3);
   uVar1 = 3;
   do {
-    FUN_001f0950(param_1,uVar1 & 0xff,param_3);
+    UiRes_LoadIcons(param_1,uVar1 & 0xff,param_3);
     uVar1 = uVar1 + 1;
   } while ((int)uVar1 < 5);
-  FUN_001f0820(param_1);
+  UiRes_LoadCommon(param_1);
   return;
 }
 
 // 0x001f17d0  size 0xb4
-int FUN_001f17d0(int param_1,ushort *param_2)
+int UiModel_FindStatic(int param_1,ushort *param_2)
 
 {
   int iVar1;
@@ -680,8 +687,8 @@ int FUN_001f17d0(int param_1,ushort *param_2)
 
 // 0x001f1890  size 0x35c
 undefined4
-FUN_001f1890(float param_1,undefined8 param_2,uint param_3,undefined8 param_4,uint param_5,
-            undefined4 *param_6)
+UiModel_DrawStatic(float param_1,undefined8 param_2,uint param_3,undefined8 param_4,uint param_5,
+                  undefined4 *param_6)
 
 {
   short sVar1;
@@ -781,7 +788,7 @@ FUN_001f1890(float param_1,undefined8 param_2,uint param_3,undefined8 param_4,ui
 }
 
 // 0x001f1bf0  size 0xb0
-int FUN_001f1bf0(int param_1,ushort *param_2)
+int UiModel_FindSkinned(int param_1,ushort *param_2)
 
 {
   int iVar1;
@@ -815,8 +822,8 @@ int FUN_001f1bf0(int param_1,ushort *param_2)
 
 // 0x001f1cb0  size 0x330
 undefined4
-FUN_001f1cb0(float param_1,undefined8 param_2,uint param_3,undefined8 param_4,uint param_5,
-            undefined4 *param_6)
+UiModel_DrawSkinned(float param_1,undefined8 param_2,uint param_3,undefined8 param_4,uint param_5,
+                   undefined4 *param_6)
 
 {
   short sVar1;
@@ -917,7 +924,7 @@ LAB_001f1e74:
 }
 
 // 0x001f1ff0  size 0x2c4
-float FUN_001f1ff0(uint param_1,undefined8 param_2)
+float Demo_EvalCameraPath(uint param_1,undefined8 param_2)
 
 {
   short sVar1;
@@ -960,7 +967,7 @@ float FUN_001f1ff0(uint param_1,undefined8 param_2)
   fVar5 = (float)vu0math_sub_00132ab0(auStack_40,auStack_40);
   vu0math_sub_00132b10(fVar4 / fVar5,auStack_60,auStack_40);
   vu0math_sub_00132b70(auStack_60,&uStack_20,auStack_60);
-  FUN_001f2c10(&uStack_4,param_1,1);
+  Demo_GetRoadPoint(&uStack_4,param_1,1);
   psVar2 = *(short **)(*(int *)(iGpffff8b40 + 4) + (uint)uStack_4 * 4);
   sVar1 = *psVar2;
   psVar3 = psVar2 + sVar1 * 0x10 + sStack_2 * 6 + 0x3e;
@@ -987,7 +994,7 @@ float FUN_001f1ff0(uint param_1,undefined8 param_2)
 }
 
 // 0x001f22c0  size 0x50
-float FUN_001f22c0(char *param_1)
+float Demo_EvalKeyA(char *param_1)
 
 {
   float fVar1;
@@ -996,7 +1003,7 @@ float FUN_001f22c0(char *param_1)
     fVar1 = *(float *)(param_1 + 4);
   }
   else if (*param_1 == '\x01') {
-    fVar1 = (float)FUN_001f23d0(*(undefined4 *)(param_1 + 4));
+    fVar1 = (float)Demo_InterpolateKeys(*(undefined4 *)(param_1 + 4));
   }
   else {
     fVar1 = 0.0;
@@ -1005,7 +1012,7 @@ float FUN_001f22c0(char *param_1)
 }
 
 // 0x001f2310  size 0x44
-undefined4 FUN_001f2310(char *param_1)
+undefined4 Demo_EvalKeyB(char *param_1)
 
 {
   undefined4 uVar1;
@@ -1014,7 +1021,7 @@ undefined4 FUN_001f2310(char *param_1)
     uVar1 = *(undefined4 *)(param_1 + 4);
   }
   else if (*param_1 == '\x01') {
-    uVar1 = FUN_001f23d0(*(undefined4 *)(param_1 + 4));
+    uVar1 = Demo_InterpolateKeys(*(undefined4 *)(param_1 + 4));
   }
   else {
     uVar1 = 0;
@@ -1023,7 +1030,7 @@ undefined4 FUN_001f2310(char *param_1)
 }
 
 // 0x001f2360  size 0x40
-float FUN_001f2360(float *param_1)
+float Demo_EvalKeyC(float *param_1)
 
 {
   float fVar1;
@@ -1032,13 +1039,13 @@ float FUN_001f2360(float *param_1)
     fVar1 = *param_1;
   }
   else {
-    fVar1 = (float)FUN_001f23d0(param_1[1]);
+    fVar1 = (float)Demo_InterpolateKeys(param_1[1]);
   }
   return fVar1 * 10.0;
 }
 
 // 0x001f23a0  size 0x30
-undefined4 FUN_001f23a0(undefined4 *param_1)
+undefined4 Demo_EvalKeyD(undefined4 *param_1)
 
 {
   undefined4 uVar1;
@@ -1047,13 +1054,13 @@ undefined4 FUN_001f23a0(undefined4 *param_1)
     uVar1 = *param_1;
   }
   else {
-    uVar1 = FUN_001f23d0(param_1[1]);
+    uVar1 = Demo_InterpolateKeys(param_1[1]);
   }
   return uVar1;
 }
 
 // 0x001f23d0  size 0x148
-void FUN_001f23d0(float param_1,float *param_2)
+void Demo_InterpolateKeys(float param_1,float *param_2)
 
 {
   float fVar1;
@@ -1098,7 +1105,7 @@ void FUN_001f23d0(float param_1,float *param_2)
 }
 
 // 0x001f2520  size 0xa0
-void FUN_001f2520(int param_1,int param_2,undefined8 param_3)
+void Demo_SetTrack(int param_1,int param_2,undefined8 param_3)
 
 {
   uint uVar1;
@@ -1109,7 +1116,7 @@ void FUN_001f2520(int param_1,int param_2,undefined8 param_3)
   if (*(int *)(param_1 + 8) != 0) {
     iVar2 = 0;
     do {
-      FUN_001f25c0(*(int *)(param_1 + 0x10) + iVar2,param_3);
+      Demo_AdvanceTrack(*(int *)(param_1 + 0x10) + iVar2,param_3);
       uVar1 = uVar1 + 1;
       iVar2 = iVar2 + 0xd8;
     } while (uVar1 < *(uint *)(param_1 + 8));
@@ -1118,7 +1125,7 @@ void FUN_001f2520(int param_1,int param_2,undefined8 param_3)
 }
 
 // 0x001f25c0  size 0xa8
-void FUN_001f25c0(int param_1,undefined8 param_2)
+void Demo_AdvanceTrack(int param_1,undefined8 param_2)
 
 {
   if (*(char *)(param_1 + 8) == '\x02') {
@@ -1129,13 +1136,13 @@ void FUN_001f25c0(int param_1,undefined8 param_2)
     *(undefined1 *)(param_1 + 0x10) = 1;
     *(int *)(param_1 + 0x14) = (int)param_2 + *(int *)(param_1 + 0x14) * 0x18;
   }
-  FUN_001f2670(param_1 + 0x18,param_2);
-  FUN_001f2670(param_1 + 0x78,param_2);
+  Demo_EvalTrack(param_1 + 0x18,param_2);
+  Demo_EvalTrack(param_1 + 0x78,param_2);
   return;
 }
 
 // 0x001f2670  size 0x250
-void FUN_001f2670(char *param_1,int param_2)
+void Demo_EvalTrack(char *param_1,int param_2)
 
 {
   if (*param_1 == '\x02') {
@@ -1190,7 +1197,7 @@ void FUN_001f2670(char *param_1,int param_2)
 }
 
 // 0x001f28c0  size 0x6c
-void FUN_001f28c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Demo_ResetMatrix(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   maybe_Vu0_UnitMatrix();
@@ -1201,7 +1208,7 @@ void FUN_001f28c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 }
 
 // 0x001f2930  size 0x17c
-void FUN_001f2930(undefined4 param_1,undefined8 param_2,undefined8 param_3,float *param_4)
+void Demo_BuildRotation(undefined4 param_1,undefined8 param_2,undefined8 param_3,float *param_4)
 
 {
   float fVar1;
@@ -1235,8 +1242,8 @@ void FUN_001f2930(undefined4 param_1,undefined8 param_2,undefined8 param_3,float
 }
 
 // 0x001f2ab0  size 0xc4
-float FUN_001f2ab0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5)
+float Demo_LookAt(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+                 undefined8 param_5)
 
 {
   float fVar1;
@@ -1255,7 +1262,7 @@ float FUN_001f2ab0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 }
 
 // 0x001f2b80  size 0x8c
-void FUN_001f2b80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Demo_LookAtSimple(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined1 auStack_20 [16];
@@ -1270,7 +1277,7 @@ void FUN_001f2b80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 }
 
 // 0x001f2c10  size 0x124
-void FUN_001f2c10(short *param_1,uint param_2,short param_3)
+void Demo_GetRoadPoint(short *param_1,uint param_2,short param_3)
 
 {
   short sVar1;
@@ -1313,7 +1320,7 @@ void FUN_001f2c10(short *param_1,uint param_2,short param_3)
 }
 
 // 0x001f2d40  size 0xe4
-void FUN_001f2d40(ushort *param_1,long param_2)
+void Demo_FindRoadSection(ushort *param_1,long param_2)
 
 {
   short sVar1;
@@ -1366,7 +1373,7 @@ void FUN_001f2d40(ushort *param_1,long param_2)
 // 0x001f2e30  size 0x1e4
 /* WARNING: Removing unreachable block (ram,0x001f2ea8) */
 
-long FUN_001f2e30(undefined4 param_1)
+long Demo_ProjectOnRoad(undefined4 param_1)
 
 {
   int iVar1;
@@ -1422,7 +1429,7 @@ long FUN_001f2e30(undefined4 param_1)
 }
 
 // 0x001f3020  size 0x30
-void FUN_001f3020(undefined4 *param_1,uint param_2)
+void RoadData_GetSectionStart(undefined4 *param_1,uint param_2)
 
 {
   short *psVar1;
@@ -1433,7 +1440,7 @@ void FUN_001f3020(undefined4 *param_1,uint param_2)
 }
 
 // 0x001f3050  size 0x40
-void FUN_001f3050(undefined4 *param_1,uint param_2)
+void RoadData_GetSectionEnd(undefined4 *param_1,uint param_2)
 
 {
   short sVar1;
@@ -1446,7 +1453,7 @@ void FUN_001f3050(undefined4 *param_1,uint param_2)
 }
 
 // 0x001f3090  size 0x24
-void FUN_001f3090(int *param_1,uint param_2)
+void RoadData_GetSegmentTable(int *param_1,uint param_2)
 
 {
   *param_1 = *(int *)(*(int *)(iGpffff8b40 + 4) + (param_2 & 0xffff) * 4) + 0x7c;
@@ -1454,7 +1461,7 @@ void FUN_001f3090(int *param_1,uint param_2)
 }
 
 // 0x001f30c0  size 0x40
-void FUN_001f30c0(undefined8 param_1,undefined4 *param_2)
+void demo_sub_001f30c0(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined4 uStack_10;
@@ -1475,7 +1482,7 @@ void FUN_001f30c0(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x001f3100  size 0xf8
-void FUN_001f3100(undefined8 param_1,undefined4 *param_2)
+void demo_sub_001f3100(undefined8 param_1,undefined4 *param_2)
 
 {
   int *piVar1;
@@ -1498,18 +1505,18 @@ void FUN_001f3100(undefined8 param_1,undefined4 *param_2)
   param_2[1] = piVar5 + *piVar1 * 5 + -5;
   param_2[2] = 0;
   param_2[3] = 0;
-  lVar4 = GameState_GetMoneyTotal2();
+  lVar4 = GameState_GetRacerCount();
   if (lVar4 < 1) {
     bVar2 = true;
   }
   else {
     do {
-      lVar4 = FUN_001ca6b0(iVar6);
-      if ((lVar4 != 0) && (iVar3 = FUN_001ca770(lVar4), (*(uint *)(iVar3 + 4) & 0x100) == 0)) {
+      lVar4 = RaceCar_Get(iVar6);
+      if ((lVar4 != 0) && (iVar3 = RaceCar_GetIndex(lVar4), (*(uint *)(iVar3 + 4) & 0x100) == 0)) {
         iVar7 = iVar7 + 1;
       }
       iVar6 = iVar6 + 1;
-      iVar3 = GameState_GetMoneyTotal2();
+      iVar3 = GameState_GetRacerCount();
     } while (iVar6 < iVar3);
     bVar2 = iVar7 < 2;
   }
@@ -1525,7 +1532,7 @@ void FUN_001f3100(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x001f3200  size 0xe4
-void FUN_001f3200(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3200(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1535,9 +1542,9 @@ void FUN_001f3200(undefined8 param_1,undefined8 param_2)
   long lVar5;
   int *piVar6;
   
-  maybe_Render_GetCurrentList();
-  FUN_001f3e60(param_2,param_2);
-  lVar5 = FUN_002fd0c0();
+  SndMgr_GetInstance();
+  Demo_Start(param_2,param_2);
+  lVar5 = misc_sub_002fd0c0();
   if ((lVar5 == 0) || (cVar3 = Snd_StreamGetState(0), cVar3 == '\t')) {
     piVar6 = (int *)param_2;
     iVar1 = *piVar6;
@@ -1550,7 +1557,7 @@ void FUN_001f3200(undefined8 param_1,undefined8 param_2)
       if (!bVar2) {
         if (-1 < *(int *)(iVar1 + 0x14)) {
           iVar1 = piVar6[5];
-          iVar4 = FUN_001ca770(piVar6[3]);
+          iVar4 = RaceCar_GetIndex(piVar6[3]);
           *(int *)(iVar4 + 4) = iVar1;
         }
         Fade_ToBlack();
@@ -1564,14 +1571,14 @@ void FUN_001f3200(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f32f0  size 0x60
-void FUN_001f32f0(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f32f0(undefined8 param_1,undefined8 param_2)
 
 {
   long lVar1;
   
-  lVar1 = FUN_002fb5a0();
-  FUN_001f42c0(param_2,lVar1);
-  FUN_001f3e60(param_2,param_2);
+  lVar1 = attract_sub_002fb5a0();
+  Demo_DriveCar(param_2,lVar1);
+  Demo_Start(param_2,param_2);
   if (lVar1 == 0) {
     uRam0046a594 = 0;
   }
@@ -1579,7 +1586,7 @@ void FUN_001f32f0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3350  size 0xbc
-void FUN_001f3350(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3350(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1587,7 +1594,7 @@ void FUN_001f3350(undefined8 param_1,undefined8 param_2)
   int iVar3;
   int *piVar4;
   
-  FUN_001f3e60(param_2);
+  Demo_Start(param_2);
   piVar4 = (int *)param_2;
   iVar1 = *piVar4;
   if ((piVar4[1] == 0) || (iVar1 == 0)) {
@@ -1599,7 +1606,7 @@ void FUN_001f3350(undefined8 param_1,undefined8 param_2)
     if (!bVar2) {
       if (-1 < *(int *)(iVar1 + 0x14)) {
         iVar1 = piVar4[5];
-        iVar3 = FUN_001ca770(piVar4[3]);
+        iVar3 = RaceCar_GetIndex(piVar4[3]);
         *(int *)(iVar3 + 4) = iVar1;
       }
       Fade_ToBlack();
@@ -1613,7 +1620,7 @@ void FUN_001f3350(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3410  size 0x78
-void FUN_001f3410(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3410(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1633,12 +1640,12 @@ void FUN_001f3410(undefined8 param_1,undefined8 param_2)
       uVar3 = 0x35d610;
     }
   }
-  FUN_001f42c0(param_2,uVar3);
+  Demo_DriveCar(param_2,uVar3);
   return;
 }
 
 // 0x001f3490  size 0x3f0
-void FUN_001f3490(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3490(undefined8 param_1,undefined8 param_2)
 
 {
   float *pfVar1;
@@ -1758,7 +1765,7 @@ void FUN_001f3490(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3880  size 0xe0
-void FUN_001f3880(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3880(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1778,23 +1785,23 @@ void FUN_001f3880(undefined8 param_1,undefined8 param_2)
   vu0math_sub_001328b0(auStack_30,auStack_30);
   vu0math_sub_00132a90(auStack_10,auStack_30,auStack_20);
   vu0math_sub_001328b0(auStack_10,auStack_10);
-  FUN_001f28c0(param_2,auStack_20,auStack_10,auStack_30);
+  Demo_ResetMatrix(param_2,auStack_20,auStack_10,auStack_30);
   vu0math_sub_00132cd0(param_2,param_2);
   *(undefined4 *)(iVar1 + 0x50) = 0;
   return;
 }
 
 // 0x001f3960  size 0x104
-void FUN_001f3960(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3960(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
   int iVar2;
   
-  FUN_001f4460(0x3d3851ec,0x3e23d70a,param_2);
+  Demo_PlaceCamera(0x3d3851ec,0x3e23d70a,param_2);
   iVar2 = (int)param_2;
   if (*(int *)(iVar2 + 0x7b0) != 0) {
-    iVar1 = FUN_001ca770();
+    iVar1 = RaceCar_GetIndex();
     iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
     *(float *)(iVar2 + 0x474) = ((float)*(uint *)(iVar1 + 0x38) + 250.0) / 1000.0;
     *(float *)(iVar2 + 0x484) = ((float)*(uint *)(iVar1 + 0x38) + 100.0) / 1000.0;
@@ -1803,16 +1810,16 @@ void FUN_001f3960(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3a70  size 0x10c
-void FUN_001f3a70(undefined8 param_1,undefined8 param_2)
+void demo_sub_001f3a70(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
   int iVar2;
   
-  FUN_001f4760(param_2,0x365100,0x365110,0x365120,0x365130);
+  demo_sub_001f4760(param_2,0x365100,0x365110,0x365120,0x365130);
   iVar2 = (int)param_2;
   if (*(int *)(iVar2 + 0x7b0) != 0) {
-    iVar1 = FUN_001ca770();
+    iVar1 = RaceCar_GetIndex();
     iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
     *(float *)(iVar2 + 0x474) = ((float)*(uint *)(iVar1 + 0x38) + 250.0) / 1000.0;
     *(float *)(iVar2 + 0x484) = ((float)*(uint *)(iVar1 + 0x38) + 100.0) / 1000.0;
@@ -1824,7 +1831,7 @@ void FUN_001f3a70(undefined8 param_1,undefined8 param_2)
 /* WARNING: Removing unreachable block (ram,0x001f3d18) */
 /* WARNING: Removing unreachable block (ram,0x001f3db0) */
 
-void FUN_001f3c90(undefined8 param_1,int param_2)
+void demo_sub_001f3c90(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -1834,7 +1841,7 @@ void FUN_001f3c90(undefined8 param_1,int param_2)
   vu0math_sub_00132ae0(param_2 + 0x490,0x3650a0);
   vu0math_sub_00132ae0(param_2 + 0x4a0,0x3650b0);
   if (*(int *)(param_2 + 0x7b0) != 0) {
-    iVar1 = FUN_001ca770();
+    iVar1 = RaceCar_GetIndex();
     iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
     *(float *)(param_2 + 0x470) = ((float)(*(uint *)(iVar1 + 0x34) >> 1) - 1800.0) / 1000.0;
     *(float *)(param_2 + 0x474) = ((float)*(uint *)(iVar1 + 0x38) - 450.0) / 1000.0;
@@ -1845,7 +1852,7 @@ void FUN_001f3c90(undefined8 param_1,int param_2)
 }
 
 // 0x001f3e60  size 0x45c
-void FUN_001f3e60(int *param_1,undefined8 param_2)
+void Demo_Start(int *param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1876,7 +1883,7 @@ void FUN_001f3e60(int *param_1,undefined8 param_2)
           iVar9 = piVar6[2];
           if (iVar9 == 2) {
             uVar10 = 0;
-            lVar3 = GameState_GetMoneyTotal2();
+            lVar3 = GameState_GetRacerCount();
             if (0 < lVar3) {
               iVar9 = 0;
               do {
@@ -1886,7 +1893,7 @@ void FUN_001f3e60(int *param_1,undefined8 param_2)
                 else {
                   iVar4 = iGpffff8b7c + iVar9;
                 }
-                FUN_00193070(iVar4);
+                CarSnd_StopVoice(iVar4);
                 if ((iRam004301b0 == 0) || (uRam004301ac <= uVar10)) {
                   iVar4 = 0;
                 }
@@ -1896,7 +1903,7 @@ void FUN_001f3e60(int *param_1,undefined8 param_2)
                 Skid_Clear(iVar4);
                 iVar9 = iVar9 + 0x80;
                 uVar10 = uVar10 + 1;
-                iVar4 = GameState_GetMoneyTotal2();
+                iVar4 = GameState_GetRacerCount();
               } while ((int)uVar10 < iVar4);
             }
             uVar5 = 4;
@@ -1909,34 +1916,34 @@ void FUN_001f3e60(int *param_1,undefined8 param_2)
           }
           if (iVar9 == 3) {
             if (piVar6[1] == 0) {
-              FUN_001ca700(iVar2,0x4000);
+              RaceCar_ClearFlags(iVar2,0x4000);
             }
             else {
-              FUN_001ca720(iVar2,0x4000);
+              RaceCar_SetFlags(iVar2,0x4000);
             }
             goto LAB_001f4074;
           }
           if (iVar9 == 4) goto LAB_001f4074;
           if (iVar9 == 1) {
             if (piVar6[1] == 0) {
-              FUN_001ca700(iVar2,8);
-              FUN_001ca720(iVar2,0x40);
+              RaceCar_ClearFlags(iVar2,8);
+              RaceCar_SetFlags(iVar2,0x40);
             }
             else {
-              FUN_001ca720(iVar2,8);
-              FUN_001ca720(iVar2,0x20);
+              RaceCar_SetFlags(iVar2,8);
+              RaceCar_SetFlags(iVar2,0x20);
             }
             goto LAB_001f4074;
           }
           if (iVar9 == 0) {
             if (piVar6[1] == 0) {
-              FUN_001ca700(iVar2,0x200);
-              FUN_001ca720(iVar2,1);
+              RaceCar_ClearFlags(iVar2,0x200);
+              RaceCar_SetFlags(iVar2,1);
             }
             else {
               *(undefined1 *)(iVar2 + 0x890) = 0;
-              FUN_001ca720(iVar2,0x200);
-              FUN_001ca700(iVar2,1);
+              RaceCar_SetFlags(iVar2,0x200);
+              RaceCar_ClearFlags(iVar2,1);
             }
             goto LAB_001f4074;
           }
@@ -1966,7 +1973,7 @@ LAB_001f4074:
       Cam_UpdateTargetFromCar(param_2);
     }
     if (*(int *)(iVar1 + 0x10) != 0) {
-      fVar11 = (float)FUN_001f23d0((float)param_1[4] / (float)*(int *)(iVar1 + 0x1c));
+      fVar11 = (float)Demo_InterpolateKeys((float)param_1[4] / (float)*(int *)(iVar1 + 0x1c));
       fVar11 = fVar11 * 255.0;
       if (fVar11 < 2.1474836e+09) {
         uVar10 = (uint)fVar11;

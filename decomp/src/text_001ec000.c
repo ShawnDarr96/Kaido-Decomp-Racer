@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001ec030  size 0x2c8
-void FUN_001ec030(int param_1)
+void RaceIntro_Update(int param_1)
 
 {
   int iVar1;
@@ -52,9 +52,9 @@ void FUN_001ec030(int param_1)
   undefined1 auStack_10 [16];
   
   iVar1 = *(int *)(param_1 + 0x14);
-  FUN_001eb900(iVar1);
+  RaceIntro_SetupColliders(iVar1);
   iVar3 = *(int *)(iRam0036f3b0 + 0xc);
-  lVar4 = FUN_001e90f0();
+  lVar4 = RaceScene_IsRunning();
   if (lVar4 == 0) {
     *(undefined4 *)(iVar1 + 0x5c) = 0;
   }
@@ -63,12 +63,12 @@ void FUN_001ec030(int param_1)
     if (10.0 < fVar8) {
       *(undefined4 *)(iVar1 + 0x5c) = 0;
     }
-    uVar5 = FUN_001777b0();
+    uVar5 = GameState_Get_0();
     uVar6 = GameState_Get_2();
     uVar7 = GameState_Get_3();
-    FUN_001c5b30(uVar5,uVar6,uVar7,0);
+    RaceScene_SetPaused(uVar5,uVar6,uVar7,0);
     if (*(int *)(iVar3 + 0x1c) != 0) {
-      lVar4 = FUN_001ca6b0(0);
+      lVar4 = RaceCar_Get(0);
       if (lVar4 == 0) {
         maybe_Vu0_UnitMatrix(auStack_40);
         iVar2 = *(int *)(iVar3 + 0x1c);
@@ -97,10 +97,10 @@ void FUN_001ec030(int param_1)
         vu0math_sub_00132ae0(auStack_10,&uStack_50);
         iVar2 = *(int *)(iVar3 + 0x1c);
       }
-      FUN_001c5b00(0,(*(uint *)(iVar2 + 0x110) & 4) != 0,auStack_40);
+      Prop_SetLight(0,(*(uint *)(iVar2 + 0x110) & 4) != 0,auStack_40);
     }
     if (*(int *)(iVar3 + 0x20) != 0) {
-      lVar4 = FUN_001ca6b0(1);
+      lVar4 = RaceCar_Get(1);
       if (lVar4 == 0) {
         maybe_Vu0_UnitMatrix(auStack_40);
         iVar3 = *(int *)(iVar3 + 0x1c);
@@ -129,29 +129,29 @@ void FUN_001ec030(int param_1)
         vu0math_sub_00132ae0(auStack_10,&uStack_90);
         iVar3 = *(int *)(iVar3 + 0x1c);
       }
-      FUN_001c5b00(1,(*(uint *)(iVar3 + 0x110) & 4) != 0,auStack_40);
+      Prop_SetLight(1,(*(uint *)(iVar3 + 0x110) & 4) != 0,auStack_40);
     }
-    FUN_001c5990(iVar1 + 0x5c);
+    RaceScene_UpdateAmbient(iVar1 + 0x5c);
   }
   return;
 }
 
 // 0x001ec300  size 0x58
-void FUN_001ec300(void)
+void RaceIntro_Exit(void)
 
 {
-  FUN_002d7ba0();
-  FUN_002e3480();
-  FUN_001a4b60();
-  FUN_001f14b0(uRam0036f2c0,uRam0036f2c0);
-  FUN_001f4b20(uRam0036f2c0,uRam0036f2c0);
-  FUN_001f5130(uRam0036f2c0,uRam0036f2c0);
-  FUN_001c5b50();
+  showroom_sub_002d7ba0();
+  eventui_sub_002e3480();
+  CourseScene_Unload();
+  UiRes_UploadFonts(uRam0036f2c0,uRam0036f2c0);
+  UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
+  UiMgr_RebindTextures(uRam0036f2c0,uRam0036f2c0);
+  RaceScene_FreeProps();
   return;
 }
 
 // 0x001ec360  size 0x54
-void FUN_001ec360(int param_1)
+void RaceIntro_Enter(int param_1)
 
 {
   undefined2 *puVar1;
@@ -160,14 +160,14 @@ void FUN_001ec360(int param_1)
   puVar1 = *(undefined2 **)(param_1 + 0x14);
   uVar2 = Course_GetCurrentId();
   *puVar1 = uVar2;
-  FUN_001c5ba0(0x430750);
-  FUN_001eba40(puVar1);
-  *(code **)(param_1 + 0x1c) = FUN_001ec030;
+  RaceScene_AllocProps(0x430750);
+  RaceIntro_LoadAssets(puVar1);
+  *(code **)(param_1 + 0x1c) = RaceIntro_Update;
   return;
 }
 
 // 0x001ec3c0  size 0x45c
-void FUN_001ec3c0(undefined8 param_1,float *param_2,int param_3,int param_4)
+void UiModel_DrawPart(undefined8 param_1,float *param_2,int param_3,int param_4)
 
 {
   bool bVar1;
@@ -353,7 +353,7 @@ LAB_001ec484:
           }
         } while (lVar6 != CONCAT44(iStack_29c,iStack_2a0));
       }
-      FUN_001ec3c0(param_1,auStack_120,auStack_220,iVar4);
+      UiModel_DrawPart(param_1,auStack_120,auStack_220,iVar4);
       iVar8 = iVar8 + 1;
       piVar10 = piVar10 + 1;
     } while (iVar8 < 2);
@@ -362,7 +362,7 @@ LAB_001ec484:
 }
 
 // 0x001ec820  size 0x314
-void FUN_001ec820(undefined8 param_1,undefined8 param_2,int param_3)
+void UiModel_BuildMatrix(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   uint uVar1;
@@ -456,7 +456,7 @@ void FUN_001ec820(undefined8 param_1,undefined8 param_2,int param_3)
 // 0x001ecb40  size 0x23c
 /* WARNING: Removing unreachable block (ram,0x001ecc0c) */
 
-float FUN_001ecb40(int param_1,int param_2)
+float UiAnim_EvalKey(int param_1,int param_2)
 
 {
   bool bVar1;
@@ -519,7 +519,9 @@ float FUN_001ecb40(int param_1,int param_2)
 }
 
 // 0x001ecd80  size 0x404
-void FUN_001ecd80(undefined8 param_1,int param_2)
+/* 39 callers */
+
+void UiLayout_UpdateAnim(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -644,16 +646,16 @@ LAB_001ece1c:
             case 0x38:
             }
             if (bVar4) {
-              piVar5 = (int *)FUN_001ee140(param_1,iVar10,uVar2 & 0xff);
+              piVar5 = (int *)UiElem_GetPropPtr(param_1,iVar10,uVar2 & 0xff);
               piVar11[2] = *piVar5;
             }
             else {
-              piVar5 = (int *)FUN_001ee140(param_1,iVar10,uVar2 & 0xff);
+              piVar5 = (int *)UiElem_GetPropPtr(param_1,iVar10,uVar2 & 0xff);
               piVar11[2] = *piVar5;
             }
           }
           if (*piVar12 < piVar11[4]) goto LAB_001ece1c;
-          fVar13 = (float)FUN_001ecb40(piVar11);
+          fVar13 = (float)UiAnim_EvalKey(piVar11);
           uVar2 = piVar11[1];
           switch(uVar2 & 0xff) {
           case 0:
@@ -757,7 +759,7 @@ LAB_001ece1c:
                        (int)(fVar13 * (float)(((int)(uVar3 & 0xff0000) >> 0x10) - iVar8) +
                             (float)iVar8 + 0.0) << 0x10;
             }
-            FUN_001eea30(param_1,iVar10,uVar2 & 0xff,uVar14);
+            UiElem_SetPropInt(param_1,iVar10,uVar2 & 0xff,uVar14);
             goto LAB_001ece1c;
           }
           if (-1000.0 <= fVar13) {
@@ -766,7 +768,7 @@ LAB_001ece1c:
           else {
             fVar13 = (float)piVar11[3];
           }
-          FUN_001eeb00(fVar13,param_1,iVar10,uVar2 & 0xff);
+          UiElem_SetPropFloat(fVar13,param_1,iVar10,uVar2 & 0xff);
           piVar11 = *(int **)(iVar6 + 0x31c);
         }
         iVar9 = iVar9 + 0x28;
@@ -784,7 +786,9 @@ LAB_001ece1c:
 }
 
 // 0x001ed190  size 0x130
-void FUN_001ed190(undefined8 param_1,int *param_2)
+/* 27 callers */
+
+void UiLayout_PlayAnim(undefined8 param_1,int *param_2)
 
 {
   uint uVar1;
@@ -883,10 +887,10 @@ void FUN_001ed190(undefined8 param_1,int *param_2)
             bVar2 = false;
           }
           if (bVar2) {
-            FUN_001eeb00(piVar4[3],param_1,*piVar4,uVar1 & 0xff);
+            UiElem_SetPropFloat(piVar4[3],param_1,*piVar4,uVar1 & 0xff);
           }
           else {
-            FUN_001eea30(param_1,*piVar4,uVar1 & 0xff,piVar4[3]);
+            UiElem_SetPropInt(param_1,*piVar4,uVar1 & 0xff,piVar4[3]);
           }
         }
         piVar4 = piVar4 + 10;
@@ -897,7 +901,9 @@ void FUN_001ed190(undefined8 param_1,int *param_2)
 }
 
 // 0x001ed2c0  size 0x88
-void FUN_001ed2c0(int param_1,int param_2,undefined4 param_3,int param_4,undefined4 param_5)
+/* 18 callers */
+
+void UiLayout_IsAnimDone(int param_1,int param_2,undefined4 param_3,int param_4,undefined4 param_5)
 
 {
   int iVar1;
@@ -932,8 +938,8 @@ void FUN_001ed2c0(int param_1,int param_2,undefined4 param_3,int param_4,undefin
 /* WARNING: Removing unreachable block (ram,0x001ed3fc) */
 /* WARNING: Removing unreachable block (ram,0x001ed490) */
 
-void FUN_001ed350(float param_1,float param_2,undefined8 param_3,undefined8 param_4,int param_5,
-                 undefined8 param_6,int param_7)
+void UiModel_DrawNode(float param_1,float param_2,undefined8 param_3,undefined8 param_4,int param_5,
+                     undefined8 param_6,int param_7)
 
 {
   int iVar1;
@@ -1000,13 +1006,13 @@ void FUN_001ed350(float param_1,float param_2,undefined8 param_3,undefined8 para
       piVar5 = piVar5 + 4;
     } while (iVar7 < iVar1);
   }
-  FUN_001ec3c0(param_4,auStack_100,aiStack_200,iVar1);
+  UiModel_DrawPart(param_4,auStack_100,aiStack_200,iVar1);
   return;
 }
 
 // 0x001ed540  size 0x2f4
-void FUN_001ed540(float param_1,float param_2,int param_3,int *param_4,int param_5,
-                 undefined8 param_6,uint param_7)
+void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int param_5,
+                     undefined8 param_6,uint param_7)
 
 {
   uint *puVar1;
@@ -1119,8 +1125,10 @@ void FUN_001ed540(float param_1,float param_2,int param_3,int *param_4,int param
 }
 
 // 0x001ed840  size 0x1f4
-void FUN_001ed840(float param_1,float param_2,undefined8 param_3,undefined8 param_4,int param_5,
-                 undefined8 param_6,int param_7,int param_8)
+/* recursive */
+
+void UiModel_DrawTree(float param_1,float param_2,undefined8 param_3,undefined8 param_4,int param_5,
+                     undefined8 param_6,int param_7,int param_8)
 
 {
   int iVar1;
@@ -1142,17 +1150,17 @@ void FUN_001ed840(float param_1,float param_2,undefined8 param_3,undefined8 para
       piVar5 = (int *)(*(int *)((int)param_3 + 0x48) + iVar3 * 0x128 + iVar4);
       if (((param_8 == -1) || (piVar5[0x18] == param_8)) &&
          (iVar7 = (int)((float)param_7 * (float)piVar5[0x16]), iVar7 != 0)) {
-        FUN_001ec820(auStack_40,param_6,piVar5);
+        UiModel_BuildMatrix(auStack_40,param_6,piVar5);
         iVar2 = *piVar5;
         if (iVar2 == 1) {
-          FUN_001ed840(param_1 * (float)piVar5[0x13],param_2 * (float)piVar5[0x14],param_3,param_4,
-                       piVar5[3],auStack_40,iVar7,0xffffffffffffffff);
+          UiModel_DrawTree(param_1 * (float)piVar5[0x13],param_2 * (float)piVar5[0x14],param_3,
+                           param_4,piVar5[3],auStack_40,iVar7,0xffffffffffffffff);
         }
         else if (iVar2 == 2) {
-          FUN_001ed350(param_1,param_2,param_3,param_4,piVar5,auStack_40,iVar7);
+          UiModel_DrawNode(param_1,param_2,param_3,param_4,piVar5,auStack_40,iVar7);
         }
         else if (iVar2 == 0) {
-          FUN_001ed540(param_1,param_2,param_3,param_4,piVar5,auStack_40,iVar7);
+          UiModel_DrawMesh(param_1,param_2,param_3,param_4,piVar5,auStack_40,iVar7);
         }
       }
       iVar6 = iVar6 + 1;
@@ -1163,7 +1171,9 @@ void FUN_001ed840(float param_1,float param_2,undefined8 param_3,undefined8 para
 }
 
 // 0x001eda40  size 0x3dc
-void FUN_001eda40(float param_1,int param_2)
+/* (alpha, layout); 315 callers */
+
+void UiLayout_Draw(float param_1,int param_2)
 
 {
   int iVar1;
@@ -1208,9 +1218,9 @@ void FUN_001eda40(float param_1,int param_2)
         Pkt_SubmitToChain(param_2,(*piRam00387f5c + -2) - (iVar7 + -0x18));
       }
       maybe_Vu0_UnitMatrix(auStack_50);
-      FUN_001ed840(0x3f800000,0x3f800000,param_2,&iStack_4,
-                   *(int *)(*(int *)(param_2 + 0x40) + 4) + -1,auStack_50,(int)(param_1 * 128.0),
-                   iVar7);
+      UiModel_DrawTree(0x3f800000,0x3f800000,param_2,&iStack_4,
+                       *(int *)(*(int *)(param_2 + 0x40) + 4) + -1,auStack_50,(int)(param_1 * 128.0)
+                       ,iVar7);
       iVar6 = iStack_4 + -0x436810 >> 0x1f;
       if ((iStack_4 + -0x436810) / 0x310 + iVar6 != iVar6) {
         if ((*(int *)(param_2 + 0x2d4) == 1) && (*(int *)(param_2 + 0x2cc) == 1)) {
@@ -1239,11 +1249,11 @@ void FUN_001eda40(float param_1,int param_2)
         do {
           piVar3 = (int *)(*(int *)(param_2 + 0x48) + iVar4);
           if ((*piVar3 == 3) && (iVar7 == piVar3[0x18])) {
-            piVar3 = (int *)FUN_001ee140(param_2,iVar6,0x17);
+            piVar3 = (int *)UiElem_GetPropPtr(param_2,iVar6,0x17);
             iVar1 = *piVar3;
             if (0 < iVar1) {
-              FUN_001ede20(param_2,auStack_90,iVar6);
-              FUN_001f1350(auStack_90,iVar1);
+              UiElem_GetRect(param_2,auStack_90,iVar6);
+              UiText_DrawById(auStack_90,iVar1);
             }
           }
           iVar6 = iVar6 + 1;
@@ -1258,7 +1268,9 @@ void FUN_001eda40(float param_1,int param_2)
 }
 
 // 0x001ede20  size 0x294
-void FUN_001ede20(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
+/* 47 callers */
+
+void UiElem_GetRect(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
 
 {
   undefined4 *puVar1;
@@ -1267,35 +1279,35 @@ void FUN_001ede20(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
   int iVar4;
   float fVar5;
   
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,10);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,10);
   *param_2 = *puVar1;
-  pfVar2 = (float *)FUN_001ee140(param_1,param_3,1);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,1);
   param_2[1] = (int)(*pfVar2 + 0.5);
-  pfVar2 = (float *)FUN_001ee140(param_1,param_3,1);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,1);
   fVar5 = *pfVar2;
-  piVar3 = (int *)FUN_001ee140(param_1,param_3,0x14);
+  piVar3 = (int *)UiElem_GetPropPtr(param_1,param_3,0x14);
   param_2[2] = (int)(fVar5 + 0.5) + *piVar3;
-  pfVar2 = (float *)FUN_001ee140(param_1,param_3,2);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,2);
   param_2[3] = (int)(*pfVar2 + 0.5);
-  pfVar2 = (float *)FUN_001ee140(param_1,param_3,2);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,2);
   fVar5 = *pfVar2;
-  piVar3 = (int *)FUN_001ee140(param_1,param_3,0x15);
+  piVar3 = (int *)UiElem_GetPropPtr(param_1,param_3,0x15);
   param_2[4] = (int)(fVar5 + 0.5) + *piVar3;
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,0x18);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x18);
   *(char *)(param_2 + 7) = (char)*puVar1;
-  pfVar2 = (float *)FUN_001ee140(param_1,param_3,8);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,8);
   param_2[6] = (int)(*pfVar2 * 128.0 + 0.5);
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,0xb);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0xb);
   param_2[8] = *puVar1;
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,0x10);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x10);
   param_2[10] = *puVar1;
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,0x11);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x11);
   param_2[0xc] = *puVar1;
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,0x12);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x12);
   param_2[0xb] = *puVar1;
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,0x13);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x13);
   param_2[0xd] = *puVar1;
-  puVar1 = (undefined4 *)FUN_001ee140(param_1,param_3,9);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,9);
   param_2[5] = *puVar1;
   if ((((param_2[10] == 0) && (param_2[0xb] == 0)) && (param_2[0xc] == 0)) && (param_2[0xd] == 0)) {
     param_2[9] = 0;
@@ -1317,7 +1329,7 @@ void FUN_001ede20(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
 }
 
 // 0x001ee0c0  size 0x78
-void FUN_001ee0c0(int param_1,int param_2,uint param_3,uint param_4,uint param_5)
+void UiElem_Get(int param_1,int param_2,uint param_3,uint param_4,uint param_5)
 
 {
   int iVar1;
@@ -1339,7 +1351,9 @@ void FUN_001ee0c0(int param_1,int param_2,uint param_3,uint param_4,uint param_5
 }
 
 // 0x001ee140  size 0x16c
-int FUN_001ee140(int param_1,int param_2,uint param_3)
+/* element = 0x128 bytes */
+
+int UiElem_GetPropPtr(int param_1,int param_2,uint param_3)
 
 {
   int iVar1;
@@ -1483,7 +1497,7 @@ int FUN_001ee140(int param_1,int param_2,uint param_3)
 }
 
 // 0x001ee2b0  size 0x84
-void FUN_001ee2b0(int param_1,undefined4 param_2,undefined4 param_3)
+void UiLayout_SetTexture(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_1 + 0x2ec) = param_2;
@@ -1503,7 +1517,7 @@ void FUN_001ee2b0(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x001ee340  size 0x244
-void FUN_001ee340(int param_1)
+void UiElem_MarkDirty(int param_1)
 
 {
   int iVar1;
@@ -1583,7 +1597,7 @@ void FUN_001ee340(int param_1)
 }
 
 // 0x001ee590  size 0x130
-void FUN_001ee590(void)
+void UiLayout_OnTextureLoaded(void)
 
 {
   int *piVar1;
@@ -1602,7 +1616,7 @@ void FUN_001ee590(void)
     *(int *)(iVar5 + 0x40) = (int)piVar1 + iVar3;
     *(int *)(iVar5 + 0x48) = *(int *)(iVar5 + 0x3c) + iVar3 + 8;
     *(int *)(iVar5 + 0x44) = *(int *)(iVar5 + 0x3c) + iVar3 + **(int **)(iVar5 + 0x40) * 0x128 + 8;
-    FUN_001ee340(in_a3);
+    UiElem_MarkDirty(in_a3);
   }
   if (iVar4 == 0) {
     *(undefined4 *)(iVar5 + 0x2cc) = 0;
@@ -1625,7 +1639,7 @@ void FUN_001ee590(void)
 }
 
 // 0x001ee6c0  size 0x22c
-void FUN_001ee6c0(undefined8 param_1,undefined4 *param_2,long param_3)
+void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
 
 {
   byte bVar1;
@@ -1657,7 +1671,7 @@ void FUN_001ee6c0(undefined8 param_1,undefined4 *param_2,long param_3)
        ((*(int *)(iVar6 + 0x300) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
        uVar4 * 0x800 + *(int *)(iVar6 + 0x2fc) * 0x80;
   if (param_3 == 0) {
-    uVar7 = FUN_001f4930(*(undefined4 *)(iVar6 + 0x308));
+    uVar7 = UiMgr_LockedAlloc(*(undefined4 *)(iVar6 + 0x308));
     *(undefined4 *)(iVar6 + 0x3c) = uVar7;
   }
   else {
@@ -1695,13 +1709,13 @@ void FUN_001ee6c0(undefined8 param_1,undefined4 *param_2,long param_3)
 }
 
 // 0x001ee8f0  size 0x80
-void FUN_001ee8f0(int param_1)
+void UiLayout_Free(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x304) = 0;
   if (*(int *)(param_1 + 0x4ec) == 0) {
     if (0 < *(int *)(param_1 + 0x308)) {
-      FUN_001f4910(param_1 + 0x308);
+      UiMgr_ReleaseMemory(param_1 + 0x308);
     }
   }
   else {
@@ -1715,7 +1729,7 @@ void FUN_001ee8f0(int param_1)
 }
 
 // 0x001ee970  size 0xc0
-void FUN_001ee970(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+void UiLayout_Init(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   int iVar1;
@@ -1753,7 +1767,9 @@ void FUN_001ee970(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
 }
 
 // 0x001eea30  size 0xc8
-void FUN_001eea30(undefined8 param_1,undefined8 param_2,char param_3,int param_4)
+/* (layout, elem, prop, value); 126 callers */
+
+void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,char param_3,int param_4)
 
 {
   bool bVar1;
@@ -1842,21 +1858,23 @@ void FUN_001eea30(undefined8 param_1,undefined8 param_2,char param_3,int param_4
     bVar1 = false;
   }
   if (bVar1) {
-    pfVar2 = (float *)FUN_001ee140(param_1);
+    pfVar2 = (float *)UiElem_GetPropPtr(param_1);
     *pfVar2 = (float)param_4;
   }
   else {
-    piVar3 = (int *)FUN_001ee140(param_1);
+    piVar3 = (int *)UiElem_GetPropPtr(param_1);
     *piVar3 = param_4;
   }
   if (param_3 == '\n') {
-    FUN_001ee340(param_1);
+    UiElem_MarkDirty(param_1);
   }
   return;
 }
 
 // 0x001eeb00  size 0xf0
-void FUN_001eeb00(float param_1,undefined8 param_2,undefined8 param_3,char param_4)
+/* (value, layout, elem, prop); 209 callers */
+
+void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,char param_4)
 
 {
   bool bVar1;
@@ -1946,7 +1964,7 @@ void FUN_001eeb00(float param_1,undefined8 param_2,undefined8 param_3,char param
     bVar1 = false;
   }
   if (bVar1) {
-    pfVar3 = (float *)FUN_001ee140(param_2);
+    pfVar3 = (float *)UiElem_GetPropPtr(param_2);
     *pfVar3 = param_1;
   }
   else {
@@ -1954,17 +1972,17 @@ void FUN_001eeb00(float param_1,undefined8 param_2,undefined8 param_3,char param
     if ((float)iVar4 != param_1) {
       iVar4 = (int)(param_1 + 0.5);
     }
-    piVar2 = (int *)FUN_001ee140(param_2);
+    piVar2 = (int *)UiElem_GetPropPtr(param_2);
     *piVar2 = iVar4;
   }
   if (param_4 == '\n') {
-    FUN_001ee340(param_2);
+    UiElem_MarkDirty(param_2);
   }
   return;
 }
 
 // 0x001eebf0  size 0xe4
-void FUN_001eebf0(int param_1,long param_2,long param_3)
+void UiText_Reset(int param_1,long param_2,long param_3)
 
 {
   byte bVar1;
@@ -2010,7 +2028,7 @@ void FUN_001eebf0(int param_1,long param_2,long param_3)
 }
 
 // 0x001eece0  size 0x2b4
-void FUN_001eece0(int param_1)
+void UiText_Layout(int param_1)
 
 {
   char cVar1;
@@ -2113,7 +2131,7 @@ void FUN_001eece0(int param_1)
 }
 
 // 0x001eefa0  size 0x1e4
-void FUN_001eefa0(int param_1)
+void UiText_Update(int param_1)
 
 {
   int iVar1;
@@ -2126,7 +2144,7 @@ void FUN_001eefa0(int param_1)
     iVar1 = *(int *)(param_1 + 0x4610);
   }
   else {
-    FUN_001eece0();
+    UiText_Layout();
     iVar1 = *(int *)(param_1 + 0x4610);
   }
   if (iVar1 + -1 == *(int *)(param_1 + 0x460c) % iVar1) {
@@ -2193,7 +2211,7 @@ LAB_001ef0a4:
 }
 
 // 0x001ef190  size 0xe0
-void FUN_001ef190(int param_1,undefined4 param_2,undefined4 param_3,long param_4)
+void UiText_SetString(int param_1,undefined4 param_2,undefined4 param_3,long param_4)
 
 {
   int iVar1;
@@ -2232,7 +2250,7 @@ void FUN_001ef190(int param_1,undefined4 param_2,undefined4 param_3,long param_4
 }
 
 // 0x001ef270  size 0xec
-void FUN_001ef270(int *param_1,int param_2,int param_3,long param_4,int param_5)
+void UiText_SetColor(int *param_1,int param_2,int param_3,long param_4,int param_5)
 
 {
   uint uVar1;
@@ -2274,7 +2292,7 @@ void FUN_001ef270(int *param_1,int param_2,int param_3,long param_4,int param_5)
 }
 
 // 0x001ef360  size 0x128
-void FUN_001ef360(int *param_1,float *param_2,int param_3,int param_4,undefined4 *param_5)
+void UiText_MeasureLine(int *param_1,float *param_2,int param_3,int param_4,undefined4 *param_5)
 
 {
   ushort uVar1;
@@ -2344,7 +2362,7 @@ void FUN_001ef360(int *param_1,float *param_2,int param_3,int param_4,undefined4
 /* WARNING: Removing unreachable block (ram,0x001efe54) */
 /* WARNING: Removing unreachable block (ram,0x001eff8c) */
 
-void FUN_001ef490(ushort *param_1,ushort *param_2,int *param_3)
+void UiText_FormatRivalInfo(ushort *param_1,ushort *param_2,int *param_3)
 
 {
   ushort uVar1;
@@ -2395,9 +2413,9 @@ LAB_001ef4bc:
       iVar4 = *piVar13;
       if (iVar4 == -2) {
         puVar6 = auStack_70;
-        uVar3 = FUN_001c1890(0);
-        uVar3 = FUN_001b2e60(uVar3);
-        FUN_001f1170(puVar6,uVar3);
+        uVar3 = Profile_Get(0);
+        uVar3 = Career_GetRivalTable(uVar3);
+        UiText_CountLines(puVar6,uVar3);
         while( true ) {
           uVar1 = *puVar6;
           puVar6 = puVar6 + 1;

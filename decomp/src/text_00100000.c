@@ -356,7 +356,7 @@ long maybe_Heap_dtor(long param_1,short param_2)
     puVar1[3] = 0;
     puVar1[4] = 0;
     maybe_Mutex_Delete(puVar1 + 5);
-    FUN_00132830(puVar1 + 5,0xffffffffffffffff);
+    Mutex_dtor(puVar1 + 5,0xffffffffffffffff);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -371,7 +371,7 @@ undefined8 maybe_Heap_ctor(undefined8 param_1)
   undefined4 *puVar1;
   
   puVar1 = (undefined4 *)param_1;
-  FUN_001328a0(puVar1 + 5);
+  Mutex_Init(puVar1 + 5);
   *puVar1 = 0;
   puVar1[1] = 0;
   puVar1[2] = 0;
@@ -681,15 +681,17 @@ void maybe___call_static_initializers
 }
 
 // 0x00101180  size 0x34
-void msl_sub_00101180(int param_1)
+/* MW pointer-to-member-function call */
+
+void __ptmf_scall(int param_1)
 
 {
   code *UNRECOVERED_JUMPTABLE;
   
   UNRECOVERED_JUMPTABLE = (code *)&LAB_8f390008;
-  if (-1 < msl_sub_00101180) {
+  if (-1 < __ptmf_scall) {
     UNRECOVERED_JUMPTABLE =
-         *(code **)(*(int *)(&LAB_8f390008 + param_1 + _msl_sub_00101180) + msl_sub_00101180);
+         *(code **)(*(int *)(&LAB_8f390008 + param_1 + ___ptmf_scall) + __ptmf_scall);
   }
                     /* WARNING: Could not recover jumptable at 0x001011ac. Too many branches */
                     /* WARNING: Treating indirect jump as call */
@@ -698,7 +700,7 @@ void msl_sub_00101180(int param_1)
 }
 
 // 0x001011c0  size 0x1c
-bool msl_sub_001011c0(int *param_1)
+bool __ptmf_test(int *param_1)
 
 {
   return (*param_1 != 0 || param_1[1] != 0) || param_1[2] != 0;

@@ -61,7 +61,7 @@ int Rpc_PackStrings(int param_1,int *param_2)
     iVar1 = strlen(*param_2);
     iVar1 = iVar1 + 1;
     maybe_Mem_CopyQwords(param_1 + iVar4,*param_2,iVar1);
-    uVar3 = FUN_00131e20(param_1 + iVar4 + iVar1,param_2[1],10);
+    uVar3 = Str_FormatNumberBase(param_1 + iVar4 + iVar1,param_2[1],10);
     iVar2 = strlen(uVar3);
     param_2 = param_2 + 2;
     iVar4 = iVar4 + iVar1 + iVar2 + 1;
@@ -195,7 +195,7 @@ LAB_0013c474:
 }
 
 // 0x0013c4a0  size 0x8
-void FUN_0013c4a0(void)
+void IopSnd_Nop(void)
 
 {
   return;
@@ -997,8 +997,8 @@ void IopSe_LoadBank(undefined8 param_1,int *param_2)
     *(int *)piVar1[0xf] = param_2[4] + -0x10;
     *(undefined4 *)(piVar1[0xf] + 4) = 0;
     *(int *)(*(int *)(piVar1[2] + 0xc) + 4) = piVar1[0xf];
-    newlib_sub_001247f0(piVar1 + 1);
-    newlib_sub_00124918(piVar1 + 1,0,0xc0);
+    maybe_Midi_Init(piVar1 + 1);
+    Midi_SendMessage(piVar1 + 1,0,0xc0);
     piVar1[0x11] = (int)(piVar1 + 1);
     piVar1[0x10] = 0;
     *(undefined1 *)(piVar1[0xf] + *(int *)piVar1[0xf] + 8) = 1;

@@ -6,7 +6,7 @@
 /* WARNING: Removing unreachable block (ram,0x001b0534) */
 /* WARNING: Removing unreachable block (ram,0x001b0624) */
 
-void FUN_001b0480(int param_1,int param_2,int *param_3)
+void Rival_RandomizeBehaviour(int param_1,int param_2,int *param_3)
 
 {
   bool bVar1;
@@ -111,7 +111,7 @@ void FUN_001b0480(int param_1,int param_2,int *param_3)
 }
 
 // 0x001b0750  size 0xbc
-undefined4 FUN_001b0750(int param_1,undefined2 param_2)
+undefined4 Rival_HasCar(int param_1,undefined2 param_2)
 
 {
   ushort uVar1;
@@ -119,7 +119,7 @@ undefined4 FUN_001b0750(int param_1,undefined2 param_2)
   undefined4 uVar3;
   
   uVar3 = 0;
-  uVar1 = FUN_00274810(param_2);
+  uVar1 = menuscr_sub_00274810(param_2);
   if (uVar1 < 2) {
     uVar3 = *(undefined4 *)(param_1 + 0x20);
   }
@@ -151,37 +151,39 @@ undefined4 FUN_001b0750(int param_1,undefined2 param_2)
 }
 
 // 0x001b0810  size 0x60
-undefined8 FUN_001b0810(undefined8 param_1,long param_2)
+undefined8 Rival_IsDefeated(undefined8 param_1,long param_2)
 
 {
   long lVar1;
   undefined8 uVar2;
   
   uVar2 = 0;
-  lVar1 = FUN_00209420();
+  lVar1 = GameDb_GetTeamMemberCount();
   if (param_2 < lVar1) {
-    uVar2 = FUN_00209440(param_1,param_2);
+    uVar2 = GameDb_GetTeamMember(param_1,param_2);
   }
   return uVar2;
 }
 
 // 0x001b0870  size 0x54
-undefined8 FUN_001b0870(long param_1)
+undefined8 Rival_IsUnlocked(long param_1)
 
 {
   long lVar1;
   undefined8 uVar2;
   
   uVar2 = 0;
-  lVar1 = FUN_002093e0();
+  lVar1 = GameDb_GetTeamCount();
   if (param_1 < lVar1) {
-    uVar2 = FUN_002093f0(param_1);
+    uVar2 = GameDb_GetTeamRecord(param_1);
   }
   return uVar2;
 }
 
 // 0x001b08d0  size 0x60
-void FUN_001b08d0(undefined4 *param_1,undefined8 param_2)
+/* 0x50-byte record copy */
+
+void Rival_GetRecord(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -190,7 +192,7 @@ void FUN_001b08d0(undefined4 *param_1,undefined8 param_2)
   undefined4 *puVar4;
   undefined4 auStack_50 [20];
   
-  uVar2 = FUN_00209260(param_2);
+  uVar2 = GameDb_GetRivalCar(param_2);
   memcpy(auStack_50,uVar2,0x50);
   puVar4 = auStack_50;
   iVar3 = 10;
@@ -206,7 +208,7 @@ void FUN_001b08d0(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001b0930  size 0x564
-int FUN_001b0930(short param_1)
+int Rival_FindByTeam(short param_1)
 
 {
   undefined4 uVar1;
@@ -334,7 +336,7 @@ int FUN_001b0930(short param_1)
   iVar7 = 0;
   iVar6 = 0;
   while( true ) {
-    uVar3 = FUN_002092c0((short)iVar6);
+    uVar3 = GameDb_GetRival((short)iVar6);
     memcpy(&sStack_480,uVar3,0x17c);
     puVar5 = auStack_43c;
     sStack_300 = sStack_480;
@@ -477,7 +479,9 @@ int FUN_001b0930(short param_1)
 }
 
 // 0x001b0ea0  size 0x5c
-void FUN_001b0ea0(undefined4 *param_1,undefined8 param_2)
+/* 0x44-byte record copy */
+
+void Rival_GetTeamRecord(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -485,7 +489,7 @@ void FUN_001b0ea0(undefined4 *param_1,undefined8 param_2)
   undefined4 *puVar3;
   undefined4 auStack_50 [20];
   
-  uVar1 = FUN_002092a0(param_2);
+  uVar1 = GameDb_GetTeam(param_2);
   memcpy(auStack_50,uVar1,0x44);
   puVar3 = auStack_50;
   iVar2 = 0x11;
@@ -499,7 +503,7 @@ void FUN_001b0ea0(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001b0f00  size 0x1218
-int FUN_001b0f00(int *param_1,long param_2)
+int Rival_SelectOpponents(int *param_1,long param_2)
 
 {
   int iVar1;
@@ -836,7 +840,7 @@ int FUN_001b0f00(int *param_1,long param_2)
         cStack_4 = 3;
         do {
           if (iVar4 != iVar1) {
-            uVar6 = FUN_002092c0((short)iVar4);
+            uVar6 = GameDb_GetRival((short)iVar4);
             memcpy(&uStack_c10,uVar6,0x17c);
             puVar8 = auStack_bcc;
             uStack_790 = uStack_c10;
@@ -978,7 +982,7 @@ int FUN_001b0f00(int *param_1,long param_2)
         } while (iVar4 < 500);
       }
       else if (cStack_4 == '\x02') {
-        uVar6 = FUN_002092c0((short)iVar1);
+        uVar6 = GameDb_GetRival((short)iVar1);
         memcpy(&uStack_910,uVar6,0x17c);
         uVar3 = uStack_8fc;
         puVar8 = auStack_8cc;
@@ -1113,7 +1117,7 @@ int FUN_001b0f00(int *param_1,long param_2)
         uStack_1ac = uStack_7ac;
         do {
           if (iVar4 != iVar1) {
-            uVar6 = FUN_002092c0((short)iVar4);
+            uVar6 = GameDb_GetRival((short)iVar4);
             memcpy(&uStack_a90,uVar6,0x17c);
             puVar8 = auStack_a4c;
             uStack_610 = uStack_a90;
@@ -1287,7 +1291,7 @@ LAB_001b20e0:
 }
 
 // 0x001b2130  size 0x468
-long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
+long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
 
 {
   short sVar1;
@@ -1342,7 +1346,7 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
   
   lVar10 = 1;
   sVar9 = -1;
-  psVar2 = (short *)FUN_002092c0((short)param_1);
+  psVar2 = (short *)GameDb_GetRival((short)param_1);
   uStack_10 = *(undefined4 *)(psVar2 + 0x10);
   uVar4 = *(uint *)(psVar2 + 10);
   iStack_c = *(int *)(psVar2 + 0x12);
@@ -1356,7 +1360,7 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
       if (*(short *)(sVar1 * 2 + *piRam0036f2f8 + 0x4b7c) == 0) {
         iVar6 = 0;
         iVar11 = 0;
-        uVar3 = FUN_002092a0();
+        uVar3 = GameDb_GetTeam();
         memcpy(auStack_b0,uVar3,0x44);
         uVar4 = auStack_b0[0];
         sVar9 = sVar1;
@@ -1412,20 +1416,20 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
   }
   if (lVar10 == 1) {
     if ((uVar4 & 0x200) == 0) {
-      lVar10 = FUN_001b2880(uVar4,param_2);
+      lVar10 = Rival_CheckAppearCondition(uVar4,param_2);
     }
     else if (*(int *)(param_1 * 4 + *piRam0036f2f8 + 0x37b0) == 0) {
       lVar10 = 0;
     }
     else {
-      lVar10 = FUN_001b2880(uVar4,param_2);
+      lVar10 = Rival_CheckAppearCondition(uVar4,param_2);
     }
     if (lVar10 == 1) {
       if (sVar9 == -1) {
-        lVar10 = FUN_001b0f00(psVar2 + 0xa0,5);
+        lVar10 = Rival_SelectOpponents(psVar2 + 0xa0,5);
       }
       else {
-        uVar3 = FUN_002092a0(sVar9);
+        uVar3 = GameDb_GetTeam(sVar9);
         memcpy(&uStack_100,uVar3,0x44);
         uStack_4c = uStack_ec;
         uStack_44 = uStack_e4;
@@ -1444,7 +1448,7 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
         uStack_28 = uStack_c8;
         uStack_24 = uStack_c4;
         uStack_20 = uStack_c0;
-        lVar10 = FUN_001b0f00(&uStack_44,5);
+        lVar10 = Rival_SelectOpponents(&uStack_44,5);
       }
     }
   }
@@ -1484,7 +1488,7 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
 }
 
 // 0x001b25a0  size 0x158
-undefined1 FUN_001b25a0(ulong param_1,int param_2,undefined8 param_3,undefined8 param_4)
+undefined1 Rival_IsAvailable(ulong param_1,int param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1526,7 +1530,7 @@ undefined1 FUN_001b25a0(ulong param_1,int param_2,undefined8 param_3,undefined8 
   }
   bVar2 = false;
   if (bVar3) {
-    lVar4 = FUN_001b0f00(param_3,param_4);
+    lVar4 = Rival_SelectOpponents(param_3,param_4);
     bVar2 = lVar4 != 0;
   }
   uVar5 = 0;
@@ -1542,7 +1546,7 @@ undefined1 FUN_001b25a0(ulong param_1,int param_2,undefined8 param_3,undefined8 
 }
 
 // 0x001b2700  size 0x174
-long FUN_001b2700(ulong param_1,undefined1 param_2)
+long Rival_CheckWeatherCondition(ulong param_1,undefined1 param_2)
 
 {
   char cVar1;
@@ -1611,7 +1615,7 @@ long FUN_001b2700(ulong param_1,undefined1 param_2)
 }
 
 // 0x001b2880  size 0x50c
-bool FUN_001b2880(ulong param_1,undefined1 param_2)
+bool Rival_CheckAppearCondition(ulong param_1,undefined1 param_2)
 
 {
   int iVar1;
@@ -1773,7 +1777,7 @@ bool FUN_001b2880(ulong param_1,undefined1 param_2)
     }
   }
   if (bVar10 == true) {
-    lVar7 = FUN_001b2d90(param_1,iVar1 % 7);
+    lVar7 = Rival_CheckTimeCondition(param_1,iVar1 % 7);
     bVar10 = lVar7 != 0;
   }
   if (bVar10 == true) {
@@ -1792,7 +1796,7 @@ bool FUN_001b2880(ulong param_1,undefined1 param_2)
 }
 
 // 0x001b2d90  size 0xd0
-undefined8 FUN_001b2d90(ulong param_1,long param_2)
+undefined8 Rival_CheckTimeCondition(ulong param_1,long param_2)
 
 {
   undefined8 uVar1;
@@ -1823,14 +1827,14 @@ undefined8 FUN_001b2d90(ulong param_1,long param_2)
 }
 
 // 0x001b2e60  size 0x8
-int FUN_001b2e60(int param_1)
+int Career_GetRivalTable(int param_1)
 
 {
   return param_1 + 0x2bfc;
 }
 
 // 0x001b2e70  size 0x38
-void FUN_001b2e70(int param_1,int param_2)
+void Career_CopyFlags(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1847,7 +1851,7 @@ void FUN_001b2e70(int param_1,int param_2)
 }
 
 // 0x001b2eb0  size 0x210
-void FUN_001b2eb0(undefined4 *param_1)
+void Career_Reset(undefined4 *param_1)
 
 {
   char cVar1;
@@ -1907,7 +1911,7 @@ void FUN_001b2eb0(undefined4 *param_1)
   param_1[iVar2 * 2 + 0xf] = 0;
   param_1[iVar2 * 2 + 0x10] = 0xffffffff;
   param_1[0xd1] = 0;
-  FUN_001b30c0(param_1 + 0x122);
+  Career_ClearStats(param_1 + 0x122);
   param_1[8] = 0;
   iVar2 = 0;
   puVar4 = param_1;
@@ -1959,7 +1963,7 @@ void FUN_001b2eb0(undefined4 *param_1)
 }
 
 // 0x001b30c0  size 0x4c
-void FUN_001b30c0(undefined4 *param_1)
+void Career_ClearStats(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -1984,14 +1988,14 @@ void FUN_001b30c0(undefined4 *param_1)
 }
 
 // 0x001b3110  size 0xc
-undefined1 FUN_001b3110(int param_1,int param_2)
+undefined1 Career_GetFlag(int param_1,int param_2)
 
 {
   return *(undefined1 *)(param_1 + param_2);
 }
 
 // 0x001b3120  size 0x300
-void FUN_001b3120(int param_1,undefined8 param_2)
+void Career_UnlockCar(int param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -2010,7 +2014,7 @@ void FUN_001b3120(int param_1,undefined8 param_2)
   iStack_4 = (int)((ulong)param_2 >> 0x20);
   uVar9 = (ulong)iStack_4;
   if (iStack_8 == 3) {
-    sVar6 = FUN_001d3970((short)((ulong)param_2 >> 0x20));
+    sVar6 = PartDb_GetInfo((short)((ulong)param_2 >> 0x20));
     lVar7 = (long)sVar6;
     if (lVar7 <= (long)uVar9) {
       iVar8 = iStack_4 - sVar6;
@@ -2088,7 +2092,7 @@ void FUN_001b3120(int param_1,undefined8 param_2)
 }
 
 // 0x001b3420  size 0xec
-int FUN_001b3420(int param_1,long param_2,int param_3)
+int Career_FindRival(int param_1,long param_2,int param_3)
 
 {
   char cVar1;
@@ -2107,9 +2111,9 @@ int FUN_001b3420(int param_1,long param_2,int param_3)
   }
   iVar2 = *piVar5;
   iVar4 = 0;
-  iVar3 = FUN_002093e0();
+  iVar3 = GameDb_GetTeamCount();
   if (iVar2 < iVar3) {
-    iVar4 = FUN_002093f0(iVar2);
+    iVar4 = GameDb_GetTeamRecord(iVar2);
   }
   cVar1 = (char)piVar5[2];
   if ((((cVar1 != '\x03') && (cVar1 != '\x04')) && (cVar1 != '\x05')) &&
@@ -2121,7 +2125,9 @@ int FUN_001b3420(int param_1,long param_2,int param_3)
 }
 
 // 0x001b3510  size 0x11c
-void FUN_001b3510(int param_1,int param_2)
+/* < 199 rivals, 0x28 bytes each */
+
+void Career_SetRivalResult(int param_1,int param_2)
 
 {
   int iVar1;
@@ -2155,7 +2161,7 @@ void FUN_001b3510(int param_1,int param_2)
 }
 
 // 0x001b3630  size 0x70
-void FUN_001b3630(int param_1,long param_2,int param_3)
+void Career_MarkRivalSeen(int param_1,long param_2,int param_3)
 
 {
   char *pcVar1;
@@ -2176,7 +2182,7 @@ void FUN_001b3630(int param_1,long param_2,int param_3)
 }
 
 // 0x001b36a0  size 0x1c8
-int FUN_001b36a0(int param_1,undefined8 param_2,long param_3)
+int Career_FindTeam(int param_1,undefined8 param_2,long param_3)
 
 {
   char cVar1;
@@ -2193,9 +2199,9 @@ int FUN_001b36a0(int param_1,undefined8 param_2,long param_3)
   
   piVar7 = (int *)0x0;
   iStack_10 = -1;
-  lVar8 = FUN_00209420(param_2);
+  lVar8 = GameDb_GetTeamMemberCount(param_2);
   if (param_3 < lVar8) {
-    piVar7 = (int *)FUN_00209440(param_2,param_3);
+    piVar7 = (int *)GameDb_GetTeamMember(param_2,param_3);
   }
   iVar9 = (int)param_2 * 0x644;
   iVar4 = iVar9 + param_1 + 0x5320;
@@ -2208,9 +2214,9 @@ int FUN_001b36a0(int param_1,undefined8 param_2,long param_3)
       iVar10 = 0;
       while( true ) {
         lVar8 = 0;
-        iVar6 = FUN_00209420(param_2);
+        iVar6 = GameDb_GetTeamMemberCount(param_2);
         if (iVar10 < iVar6) {
-          lVar8 = FUN_00209440(param_2,iVar10);
+          lVar8 = GameDb_GetTeamMember(param_2,iVar10);
         }
         iVar6 = -1;
         if ((lVar8 == 0) ||
@@ -2232,7 +2238,7 @@ int FUN_001b36a0(int param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001b3870  size 0xac
-void FUN_001b3870(int param_1,undefined8 param_2,long param_3)
+void Career_SetTeamDefeated(int param_1,undefined8 param_2,long param_3)
 
 {
   long lVar1;
@@ -2240,9 +2246,9 @@ void FUN_001b3870(int param_1,undefined8 param_2,long param_3)
   long lVar3;
   
   lVar3 = 0;
-  lVar1 = FUN_00209420(param_2);
+  lVar1 = GameDb_GetTeamMemberCount(param_2);
   if (param_3 < lVar1) {
-    lVar3 = FUN_00209440(param_2,param_3);
+    lVar3 = GameDb_GetTeamMember(param_2,param_3);
   }
   if ((lVar3 != 0) &&
      (iVar2 = (int)param_3 * 8 + (int)param_2 * 0x644 + param_1, *(char *)(iVar2 + 0x5320) == '\x01'
@@ -2253,7 +2259,9 @@ void FUN_001b3870(int param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001b3920  size 0x16c
-int FUN_001b3920(int param_1,long param_2,int param_3)
+/* 10 callers */
+
+int Career_GetRivalIndex(int param_1,long param_2,int param_3)
 
 {
   int iVar1;
@@ -2274,9 +2282,9 @@ int FUN_001b3920(int param_1,long param_2,int param_3)
     bStack_28 = *(byte *)(param_1 + 0xb8dc);
   }
   lVar3 = 0;
-  iVar2 = FUN_002093e0();
+  iVar2 = GameDb_GetTeamCount();
   if (iVar1 < iVar2) {
-    lVar3 = FUN_002093f0(iVar1);
+    lVar3 = GameDb_GetTeamRecord(iVar1);
   }
   if (((lVar3 != 0) && (bStack_28 - 1 < 2)) && (iVar1 = *(int *)((int)lVar3 + 0x24), iVar1 != -1)) {
     iVar4 = iVar1;
@@ -2285,7 +2293,7 @@ int FUN_001b3920(int param_1,long param_2,int param_3)
 }
 
 // 0x001b3a90  size 0xc0
-undefined4 FUN_001b3a90(int param_1,undefined8 param_2,long param_3)
+undefined4 Career_IsTeamDefeated(int param_1,undefined8 param_2,long param_3)
 
 {
   long lVar1;
@@ -2294,9 +2302,9 @@ undefined4 FUN_001b3a90(int param_1,undefined8 param_2,long param_3)
   
   uVar3 = 0;
   lVar2 = 0;
-  lVar1 = FUN_00209420(param_2);
+  lVar1 = GameDb_GetTeamMemberCount(param_2);
   if (param_3 < lVar1) {
-    lVar2 = FUN_00209440(param_2,param_3);
+    lVar2 = GameDb_GetTeamMember(param_2,param_3);
   }
   if (((lVar2 != 0) &&
       (*(byte *)((int)param_3 * 8 + (int)param_2 * 0x644 + param_1 + 0x5320) - 1 < 2)) &&
@@ -2307,14 +2315,16 @@ undefined4 FUN_001b3a90(int param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001b3b50  size 0x28
-int FUN_001b3b50(int *param_1)
+/* value / 100 */
+
+int Career_GetLevel(int *param_1)
 
 {
   return *param_1 / 100;
 }
 
 // 0x001b3b80  size 0x7c
-void FUN_001b3b80(int param_1,int param_2)
+void Career_SetAllFlags(int param_1,int param_2)
 
 {
   bool bVar1;
@@ -2345,7 +2355,7 @@ void FUN_001b3b80(int param_1,int param_2)
 }
 
 // 0x001b3c00  size 0x74
-undefined4 FUN_001b3c00(int param_1)
+undefined4 Career_CountFlags(int param_1)
 
 {
   int iVar1;
@@ -2365,7 +2375,7 @@ undefined4 FUN_001b3c00(int param_1)
 }
 
 // 0x001b3c80  size 0xe8
-int FUN_001b3c80(int param_1)
+int Career_CountDefeatedRivals(int param_1)
 
 {
   int iVar1;
@@ -2404,7 +2414,7 @@ int FUN_001b3c80(int param_1)
 }
 
 // 0x001b3d70  size 0xa0
-int FUN_001b3d70(int param_1)
+int Career_CountDefeatedTeams(int param_1)
 
 {
   int iVar1;
@@ -2440,7 +2450,7 @@ int FUN_001b3d70(int param_1)
 }
 
 // 0x001b3e10  size 0x1cc
-void FUN_001b3e10(int param_1,long param_2,undefined4 *param_3)
+void Career_UpdateRivalStatus(int param_1,long param_2,undefined4 *param_3)
 
 {
   int iVar1;
@@ -2526,7 +2536,9 @@ void FUN_001b3e10(int param_1,long param_2,undefined4 *param_3)
 }
 
 // 0x001b3fe0  size 0x288
-void FUN_001b3fe0(int param_1)
+/* reads the real-time clock */
+
+void Career_SpawnNightRivals(int param_1)
 
 {
   bool bVar1;
@@ -2566,26 +2578,26 @@ void FUN_001b3fe0(int param_1)
   iVar8 = 0;
   while( true ) {
     lVar7 = 0;
-    iVar4 = FUN_00209460();
+    iVar4 = GameDb_GetEventCount();
     if (iVar8 < iVar4) {
-      lVar7 = FUN_00209470(iVar8);
+      lVar7 = GameDb_GetEvent(iVar8);
     }
     if (lVar7 == 0) break;
     if (*(char *)(param_1 + 0x3868) == '\0') {
       bVar2 = false;
-      cVar3 = FUN_001af720(lVar7);
+      cVar3 = Rival_CountActive(lVar7);
       puVar6 = (undefined4 *)lVar7;
       bVar1 = bVar2;
       if (cVar3 == '\0') {
-        if ((puVar6[4] != -1) && (lVar7 = FUN_001b25a0(*puVar6,puVar6[1],puVar6 + 4,6), lVar7 != 0))
-        {
+        if ((puVar6[4] != -1) &&
+           (lVar7 = Rival_IsAvailable(*puVar6,puVar6[1],puVar6 + 4,6), lVar7 != 0)) {
           bVar1 = true;
         }
       }
       else {
         bVar1 = true;
         if (((cVar3 != '\x01') && (bVar1 = bVar2, cVar3 == '\x02')) &&
-           (lVar7 = FUN_001b25a0(*puVar6,puVar6[1],puVar6 + 4,6), lVar7 != 0)) {
+           (lVar7 = Rival_IsAvailable(*puVar6,puVar6[1],puVar6 + 4,6), lVar7 != 0)) {
           bVar1 = true;
         }
       }
@@ -2597,7 +2609,7 @@ void FUN_001b3fe0(int param_1)
         *(char *)(param_1 + 0x386d) = cVar11;
         *(char *)(param_1 + 0x386e) = cVar10;
         *(char *)(param_1 + 0x386f) = cVar9;
-        FUN_001b3120(*piGpffff8c08,*(undefined8 *)(puVar6 + 2));
+        Career_UnlockCar(*piGpffff8c08,*(undefined8 *)(puVar6 + 2));
       }
     }
     param_1 = param_1 + 0xc;

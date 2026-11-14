@@ -1815,7 +1815,7 @@ undefined4 Scene_Update(void)
     if (iVar2 != 0) {
       iVar5 = 0;
       do {
-        FUN_00131f30(**(undefined4 **)(iVar2 + 0x14));
+        Task_RunPostUpdate(**(undefined4 **)(iVar2 + 0x14));
         iVar5 = iVar5 + 4;
         iVar2 = *(int *)((int)piGpffff89b4 + iVar5);
       } while (iVar2 != 0);
@@ -1837,7 +1837,7 @@ undefined4 Scene_Update(void)
   else if (cGpffff8060 == '\x01') {
     piVar4 = *(int **)(iGpffff89b0 + uGpffff89a4 * 4);
     while (((undefined4 *)*piVar4 != (undefined4 *)0x0 && (iGpffff89b8 == 0))) {
-      FUN_00131fb0(*(undefined4 *)*piVar4);
+      Task_RunUpdate(*(undefined4 *)*piVar4);
       piVar4 = piVar4 + 2;
     }
     if (uGpffff89a8 != uGpffff89a4) {
@@ -1845,7 +1845,7 @@ undefined4 Scene_Update(void)
       puVar1 = (undefined4 *)*puVar6;
       while (puVar1 != (undefined4 *)0x0) {
         if ((puVar6[1] & 1 << (uGpffff89a8 & 0x1f)) != 0) {
-          FUN_00131f30(*puVar1);
+          Task_RunPostUpdate(*puVar1);
         }
         puVar6 = puVar6 + 2;
         puVar1 = (undefined4 *)*puVar6;
@@ -1926,23 +1926,23 @@ void Scene_FreeObjects(void)
 }
 
 // 0x0014bbe0  size 0x40
-long FUN_0014bbe0(long param_1)
+long Scene_TaskList_dtor(long param_1)
 
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e168;
-    FUN_00132030(param_1,0);
+    TaskList_dtor(param_1,0);
   }
   return param_1;
 }
 
 // 0x0014bc20  size 0x40
-long FUN_0014bc20(long param_1)
+long Scene_Task_dtor(long param_1)
 
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e158;
-    FUN_001320d0(param_1,0);
+    Task_dtor(param_1,0);
   }
   return param_1;
 }
@@ -1988,7 +1988,7 @@ void Scene_CreateObjects(int *param_1)
   puVar7 = puGpffff899c;
   while (piVar6 != (int *)0x0) {
     if (puVar7 != (undefined4 *)0x0) {
-      FUN_00132090(puVar7);
+      TaskList_ctor(puVar7);
       *puVar7 = &DAT_0036e168;
     }
     *(undefined4 **)piVar6[5] = puVar7;
@@ -1996,10 +1996,10 @@ void Scene_CreateObjects(int *param_1)
     if (piVar6[1] != 0) {
       do {
         if (puVar9 != (undefined4 *)0x0) {
-          FUN_00132130(puVar9,puVar7,iVar4,piVar6[2],piVar6[3],piVar6[4]);
+          Task_ctor(puVar9,puVar7,iVar4,piVar6[2],piVar6[3],piVar6[4]);
           *puVar9 = &DAT_0036e158;
         }
-        FUN_00132020(puVar7,puVar9);
+        TaskList_Remove(puVar7,puVar9);
         uVar10 = uVar10 + 1;
         puVar9 = puVar9 + 9;
         iVar4 = iVar4 + (*piVar6 + 0xfU & 0xfffffff0);

@@ -3,14 +3,14 @@
 #include "ghidra_types.h"
 
 // 0x002dc6d0  size 0x54
-void FUN_002dc6d0(int param_1,undefined8 param_2)
+void password_sub_002dc6d0(int param_1,undefined8 param_2)
 
 {
   uint uVar1;
   
   uVar1 = 0;
   do {
-    FUN_002dd200(param_1,param_2);
+    password_sub_002dd200(param_1,param_2);
     uVar1 = uVar1 + 1;
     param_1 = param_1 + 0x4c;
   } while (uVar1 < 3);
@@ -18,7 +18,7 @@ void FUN_002dc6d0(int param_1,undefined8 param_2)
 }
 
 // 0x002dc730  size 0x20c
-void FUN_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
+void password_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
 
 {
   undefined4 uVar1;
@@ -31,7 +31,7 @@ void FUN_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
   param_1[0x3b] = 0xffffffff;
   puVar2 = param_1;
   do {
-    FUN_002dd160(puVar2);
+    password_sub_002dd160(puVar2);
     uVar3 = uVar3 + 1;
     puVar2 = puVar2 + 0x13;
   } while (uVar3 < 3);
@@ -95,7 +95,7 @@ void FUN_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
 }
 
 // 0x002dc940  size 0x180
-void FUN_002dc940(undefined4 *param_1,char param_2)
+void password_sub_002dc940(undefined4 *param_1,char param_2)
 
 {
   undefined4 uVar1;
@@ -149,7 +149,7 @@ void FUN_002dc940(undefined4 *param_1,char param_2)
 }
 
 // 0x002dcac0  size 0x15c
-void FUN_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
+void password_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
 
 {
   undefined1 uVar1;
@@ -177,7 +177,7 @@ void FUN_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
     uVar6 = 0;
     puVar4 = param_1;
     do {
-      FUN_002dd160(puVar4);
+      password_sub_002dd160(puVar4);
       uVar6 = uVar6 + 1;
       puVar4 = puVar4 + 0x13;
     } while (uVar6 < 3);
@@ -194,32 +194,32 @@ void FUN_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
       param_1[0x3a] = 0x13;
       param_1[0x3b] = 0x14;
     }
-    FUN_002dc940(param_1,param_2,uVar1);
+    password_sub_002dc940(param_1,param_2,uVar1);
   }
   else {
-    FUN_002dc730(param_1,param_2,param_3);
+    password_sub_002dc730(param_1,param_2,param_3);
   }
   return;
 }
 
 // 0x002dcc20  size 0x10
-void FUN_002dcc20(int param_1)
+void password_sub_002dcc20(int param_1)
 
 {
   *(undefined1 *)(param_1 + 0x1e0) = 1;
-  FUN_002dc6d0(param_1 + 0xf0);
+  password_sub_002dc6d0(param_1 + 0xf0);
   return;
 }
 
 // 0x002dcc30  size 0x10
-bool FUN_002dcc30(int param_1)
+bool password_sub_002dcc30(int param_1)
 
 {
   return *(char *)(param_1 + 0x1e0) != -1;
 }
 
 // 0x002dcc40  size 0x108
-void FUN_002dcc40(int param_1)
+void password_sub_002dcc40(int param_1)
 
 {
   char cVar1;
@@ -236,23 +236,24 @@ void FUN_002dcc40(int param_1)
       uVar4 = 0;
       iVar3 = param_1;
       do {
-        FUN_002dd350(iVar3,0xffffffffffffffff);
+        password_sub_002dd350(iVar3,0xffffffffffffffff);
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
-      FUN_002dbf30(param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
+      replayui_sub_002dbf30
+                (param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
       return;
     }
     if (cVar1 == '\x01') {
       uVar4 = 0;
       iVar3 = param_1 + 0xf0;
       do {
-        FUN_002dd350(iVar3,0xffffffffffffffff);
+        password_sub_002dd350(iVar3,0xffffffffffffffff);
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
-      FUN_002dbf30(param_1 + 0xf0,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2))
-      ;
+      replayui_sub_002dbf30
+                (param_1 + 0xf0,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
       return;
     }
     uVar2 = *(undefined4 *)(param_1 + 0x1e4);
@@ -260,16 +261,16 @@ void FUN_002dcc40(int param_1)
   uVar4 = 0;
   iVar3 = param_1;
   do {
-    FUN_002dd350(iVar3,uVar2);
+    password_sub_002dd350(iVar3,uVar2);
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x4c;
   } while (uVar4 < 3);
-  FUN_002dbf30(param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
+  replayui_sub_002dbf30(param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
   return;
 }
 
 // 0x002dcd50  size 0x368
-bool FUN_002dcd50(int *param_1)
+bool password_sub_002dcd50(int *param_1)
 
 {
   char cVar1;
@@ -291,13 +292,13 @@ bool FUN_002dcd50(int *param_1)
         }
         else {
           if (*(int *)(*piVar5 + 0x32c) == 1) {
-            FUN_001ecd80();
+            UiLayout_UpdateAnim();
           }
           if (*(int *)(*piVar5 + 0x340) == 1) {
-            FUN_001ecd80(*piVar5,2);
+            UiLayout_UpdateAnim(*piVar5,2);
           }
           if (*(int *)(*piVar5 + 0x318) == 1) {
-            FUN_001ecd80(*piVar5,0);
+            UiLayout_UpdateAnim(*piVar5,0);
             bVar4 = 1;
           }
           else {
@@ -323,13 +324,13 @@ bool FUN_002dcd50(int *param_1)
         }
         else {
           if (*(int *)(*piVar5 + 0x32c) == 1) {
-            FUN_001ecd80();
+            UiLayout_UpdateAnim();
           }
           if (*(int *)(*piVar5 + 0x340) == 1) {
-            FUN_001ecd80(*piVar5,2);
+            UiLayout_UpdateAnim(*piVar5,2);
           }
           if (*(int *)(*piVar5 + 0x318) == 1) {
-            FUN_001ecd80(*piVar5,0);
+            UiLayout_UpdateAnim(*piVar5,0);
             bVar4 = 1;
           }
           else {
@@ -354,7 +355,7 @@ bool FUN_002dcd50(int *param_1)
           DAT_003420f0 = 0;
           DAT_003420f4 = 0xffffffff;
           *(undefined1 *)(param_1 + 0x78) = 0;
-          FUN_002dc6d0(param_1,(char)param_1[0x78]);
+          password_sub_002dc6d0(param_1,(char)param_1[0x78]);
         }
         else {
           *(undefined1 *)(param_1 + 0x78) = 0xff;
@@ -364,13 +365,13 @@ bool FUN_002dcd50(int *param_1)
         do {
           if (*piVar5 != 0) {
             if (*(int *)(*piVar5 + 0x32c) == 1) {
-              FUN_001ecd80();
+              UiLayout_UpdateAnim();
             }
             if (*(int *)(*piVar5 + 0x340) == 1) {
-              FUN_001ecd80(*piVar5,2);
+              UiLayout_UpdateAnim(*piVar5,2);
             }
             if (*(int *)(*piVar5 + 0x318) == 1) {
-              FUN_001ecd80(*piVar5,0);
+              UiLayout_UpdateAnim(*piVar5,0);
             }
           }
           uVar6 = uVar6 + 1;
@@ -385,13 +386,13 @@ bool FUN_002dcd50(int *param_1)
   do {
     if (*piVar5 != 0) {
       if (*(int *)(*piVar5 + 0x32c) == 1) {
-        FUN_001ecd80();
+        UiLayout_UpdateAnim();
       }
       if (*(int *)(*piVar5 + 0x340) == 1) {
-        FUN_001ecd80(*piVar5,2);
+        UiLayout_UpdateAnim(*piVar5,2);
       }
       if (*(int *)(*piVar5 + 0x318) == 1) {
-        FUN_001ecd80(*piVar5,0);
+        UiLayout_UpdateAnim(*piVar5,0);
       }
     }
     uVar6 = uVar6 + 1;
@@ -402,7 +403,7 @@ LAB_002dcfb0:
 }
 
 // 0x002dd0c0  size 0xa0
-void FUN_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
+void password_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
 
 {
   int iVar1;
@@ -411,14 +412,14 @@ void FUN_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    FUN_002dd160(iVar1);
+    password_sub_002dd160(iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x4c;
   } while (uVar2 < 3);
   uVar2 = 0;
   iVar1 = param_1 + 0xf0;
   do {
-    FUN_002dd160(iVar1);
+    password_sub_002dd160(iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x4c;
   } while (uVar2 < 3);
@@ -429,7 +430,7 @@ void FUN_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
 }
 
 // 0x002dd160  size 0xa0
-void FUN_002dd160(undefined4 *param_1)
+void password_sub_002dd160(undefined4 *param_1)
 
 {
   uint uVar1;
@@ -469,7 +470,7 @@ void FUN_002dd160(undefined4 *param_1)
 }
 
 // 0x002dd200  size 0x150
-void FUN_002dd200(int *param_1,ulong param_2)
+void password_sub_002dd200(int *param_1,ulong param_2)
 
 {
   int iVar1;
@@ -544,7 +545,7 @@ void FUN_002dd200(int *param_1,ulong param_2)
 }
 
 // 0x002dd350  size 0x108
-void FUN_002dd350(int *param_1,uint param_2)
+void password_sub_002dd350(int *param_1,uint param_2)
 
 {
   int iVar1;
@@ -560,9 +561,9 @@ void FUN_002dd350(int *param_1,uint param_2)
     do {
       if ((-1 < piVar3[1]) && (iVar1 = piVar3[2], -1 < iVar1)) {
         iVar2 = piVar3[3];
-        FUN_001ede20(*param_1,auStack_40);
+        UiElem_GetRect(*param_1,auStack_40);
         iStack_2c = iVar2;
-        FUN_001f1350(auStack_40,iVar1);
+        UiText_DrawById(auStack_40,iVar1);
       }
       uVar4 = uVar4 + 1;
       piVar3 = piVar3 + 3;
@@ -571,18 +572,18 @@ void FUN_002dd350(int *param_1,uint param_2)
     piVar3 = param_1;
     do {
       if ((-1 < piVar3[0x11]) && (uVar4 == param_2)) {
-        FUN_002dd640(*param_1,piVar3[0x11],1,0);
+        password_sub_002dd640(*param_1,piVar3[0x11],1,0);
       }
       uVar4 = uVar4 + 1;
       piVar3 = piVar3 + 1;
     } while (uVar4 < 2);
-    FUN_001eda40(0x3f800000,*param_1);
+    UiLayout_Draw(0x3f800000,*param_1);
   }
   return;
 }
 
 // 0x002dd460  size 0x90
-int FUN_002dd460(int param_1,int param_2)
+int password_sub_002dd460(int param_1,int param_2)
 
 {
   uint uVar1;
@@ -602,7 +603,7 @@ int FUN_002dd460(int param_1,int param_2)
 }
 
 // 0x002dd4f0  size 0x34
-undefined8 FUN_002dd4f0(ulong param_1)
+undefined8 password_sub_002dd4f0(ulong param_1)
 
 {
   undefined8 uVar1;
@@ -617,7 +618,7 @@ undefined8 FUN_002dd4f0(ulong param_1)
 }
 
 // 0x002dd550  size 0xe4
-void FUN_002dd550(long param_1)
+void password_sub_002dd550(long param_1)
 
 {
   int iVar1;
@@ -628,7 +629,7 @@ void FUN_002dd550(long param_1)
     if (0 < DAT_0034211c) {
       puVar2 = &DAT_00342100;
       do {
-        FUN_001eeb00(0,DAT_00342118,*(undefined4 *)(puVar2 + 0x20),8);
+        UiElem_SetPropFloat(0,DAT_00342118,*(undefined4 *)(puVar2 + 0x20),8);
         iVar1 = iVar1 + 1;
         puVar2 = puVar2 + 4;
       } while (iVar1 < DAT_0034211c);
@@ -639,8 +640,8 @@ void FUN_002dd550(long param_1)
     if (0 < DAT_0034211c) {
       puVar2 = &DAT_00342100;
       do {
-        FUN_001eeb00(0x3f800000,DAT_00342118,*(undefined4 *)(puVar2 + 0x20),8);
-        FUN_001ecd80(DAT_00342118,0x13 - iVar1);
+        UiElem_SetPropFloat(0x3f800000,DAT_00342118,*(undefined4 *)(puVar2 + 0x20),8);
+        UiLayout_UpdateAnim(DAT_00342118,0x13 - iVar1);
         iVar1 = iVar1 + 1;
         puVar2 = puVar2 + 4;
       } while (iVar1 < DAT_0034211c);
@@ -650,7 +651,7 @@ void FUN_002dd550(long param_1)
 }
 
 // 0x002dd640  size 0x13c
-void FUN_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
+void password_sub_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
 
 {
   int iVar1;
@@ -668,21 +669,21 @@ void FUN_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
   iVar1 = (int)param_4;
   if ((&DAT_003420f0)[iVar1 * 2] == param_1) {
     if (param_2 != (&DAT_003420f4)[iVar1 * 2]) {
-      FUN_001fe850(0,param_1,param_2,param_3);
-      FUN_001fe850(1,param_1,(&DAT_003420f4)[iVar1 * 2],1,0);
+      MenuWnd_SetElementState(0,param_1,param_2,param_3);
+      MenuWnd_SetElementState(1,param_1,(&DAT_003420f4)[iVar1 * 2],1,0);
       (&DAT_003420f4)[iVar1 * 2] = param_2;
     }
   }
   else {
     (&DAT_003420f0)[iVar1 * 2] = param_1;
     (&DAT_003420f4)[iVar1 * 2] = param_2;
-    FUN_001fe850(0,param_1,param_2,param_3);
+    MenuWnd_SetElementState(0,param_1,param_2,param_3);
   }
   if (*(int *)(iVar2 * 0x14 + param_1 + 0x318) == 1) {
-    FUN_001ecd80(param_1,iVar2);
+    UiLayout_UpdateAnim(param_1,iVar2);
   }
   else {
-    FUN_001ecd80(param_1,uVar3);
+    UiLayout_UpdateAnim(param_1,uVar3);
   }
   return;
 }
@@ -690,8 +691,9 @@ void FUN_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
 // 0x002dd780  size 0x84
 /* WARNING: Removing unreachable block (ram,0x002dd7c4) */
 
-void FUN_002dd780(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void password_sub_002dd780
+               (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
+               undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined1 auStack_a0 [20];
@@ -705,17 +707,18 @@ void FUN_002dd780(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
   uStack_18 = param_6;
   uStack_10 = param_7;
   uStack_8 = param_8;
-  FUN_001ede20(param_1,auStack_a0,param_2);
+  UiElem_GetRect(param_1,auStack_a0,param_2);
   uStack_8c = param_3;
-  FUN_001f1390(auStack_a0,param_4,&uStack_20);
+  UiText_DrawRivalName(auStack_a0,param_4,&uStack_20);
   return;
 }
 
 // 0x002dd810  size 0x78
 /* WARNING: Removing unreachable block (ram,0x002dd850) */
 
-void FUN_002dd810(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void password_sub_002dd810
+               (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
+               undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined1 auStack_a0 [120];
@@ -730,13 +733,13 @@ void FUN_002dd810(undefined8 param_1,undefined8 param_2,undefined4 param_3,undef
   uStack_18 = param_6;
   uStack_10 = param_7;
   uStack_8 = param_8;
-  FUN_001ede20(param_1,auStack_a0,param_2);
-  FUN_001f1390(auStack_a0,param_3,&uStack_28);
+  UiElem_GetRect(param_1,auStack_a0,param_2);
+  UiText_DrawRivalName(auStack_a0,param_3,&uStack_28);
   return;
 }
 
 // 0x002dd890  size 0x1e0
-undefined8 FUN_002dd890(int param_1,undefined4 *param_2)
+undefined8 password_sub_002dd890(int param_1,undefined4 *param_2)
 
 {
   uint uVar1;
@@ -784,7 +787,7 @@ undefined8 FUN_002dd890(int param_1,undefined4 *param_2)
 }
 
 // 0x002dda70  size 0x158
-void FUN_002dda70(int param_1)
+void password_sub_002dda70(int param_1)
 
 {
   undefined4 *puVar1;
@@ -840,7 +843,7 @@ void FUN_002dda70(int param_1)
 }
 
 // 0x002ddbd0  size 0x1e8
-void FUN_002ddbd0(byte *param_1)
+void password_sub_002ddbd0(byte *param_1)
 
 {
   uint uVar1;
@@ -912,7 +915,7 @@ void FUN_002ddbd0(byte *param_1)
 }
 
 // 0x002dddc0  size 0x190
-void FUN_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
+void password_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   long lVar1;
@@ -922,13 +925,13 @@ void FUN_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
   int iVar5;
   int iVar6;
   
-  FUN_002ddf50();
-  lVar1 = FUN_002dd890(param_1,param_2);
+  password_sub_002ddf50();
+  lVar1 = password_sub_002dd890(param_1,param_2);
   if (lVar1 < 0) {
     printf(0x368210);
   }
   else {
-    FUN_002ddbd0(param_1);
+    password_sub_002ddbd0(param_1);
     iVar6 = (int)param_1;
     iVar2 = 1;
     *(int *)(iVar6 + 0x18) = *(int *)(iVar6 + 0x18) + *(int *)(iVar6 + 0x20);
@@ -948,7 +951,7 @@ void FUN_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
            (*(uint *)(iVar6 + 0x1c) << uVar3 | *(uint *)(iVar6 + 0x1c) >> (0x20 - uVar3 & 0x1f));
       iVar5 = iVar5 + 8;
     } while (iVar2 < 0x41);
-    FUN_002dda70(param_1);
+    password_sub_002dda70(param_1);
     iVar5 = 0;
     do {
       puVar4 = (undefined1 *)(param_3 + iVar5);
@@ -974,7 +977,7 @@ void FUN_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
 }
 
 // 0x002ddf50  size 0x7c
-void FUN_002ddf50(undefined1 *param_1)
+void password_sub_002ddf50(undefined1 *param_1)
 
 {
   param_1[0x10] = 0;
@@ -1003,7 +1006,7 @@ void FUN_002ddf50(undefined1 *param_1)
 }
 
 // 0x002ddfd0  size 0x254
-void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4)
+void password_sub_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -1034,12 +1037,12 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
   undefined4 uStack_4;
   
   Career_BeginNew();
-  uVar1 = FUN_002093c0((int)param_2 + ((uint)param_1 & 0xff) * 3);
+  uVar1 = GameDb_GetCourse((int)param_2 + ((uint)param_1 & 0xff) * 3);
   memcpy(auStack_40,uVar1,0x38);
   GameState_StartRace(1,param_1,param_2,0);
   RaceCtx_Set_8(0);
-  uVar1 = FUN_001c1890(0);
-  FUN_001bc410(auStack_300,uVar1);
+  uVar1 = Profile_Get(0);
+  garage_sub_001bc410(auStack_300,uVar1);
   puVar4 = auStack_300;
   puVar3 = auStack_110;
   iVar2 = 0x33;
@@ -1049,11 +1052,11 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
     puVar4 = puVar4 + 1;
     puVar3 = puVar3 + 1;
   } while (0 < iVar2);
-  FUN_001d3120(auStack_110,auStack_1e0);
+  CarRec_Copy(auStack_110,auStack_1e0);
   auStack_1e0[0] = 1;
   uStack_1dc = 0x89;
   uStack_1d8 = 0;
-  FUN_001d2180(auStack_1e0,param_4);
+  CarRec_SetMileage(auStack_1e0,param_4);
   PlayerRecord_Copy(0,auStack_1e0);
   GameState_Set_e0(1);
   if (bStack_34 - 2 < 2) {
@@ -1083,7 +1086,7 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
   }
   RaceParams_SetDefaults(&uStack_230);
   uStack_230 = (undefined1)param_1;
-  uStack_22f = FUN_001bff70(param_1,uStack_30,uStack_2c,&uStack_4,&uStack_8);
+  uStack_22f = garage_sub_001bff70(param_1,uStack_30,uStack_2c,&uStack_4,&uStack_8);
   uStack_22d = 0;
   uStack_228 = 0;
   uStack_224 = uStack_4;
@@ -1095,7 +1098,8 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
 }
 
 // 0x002de230  size 0x21c
-void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefined8 param_5)
+void password_sub_002de230
+               (undefined8 param_1,int param_2,int param_3,char param_4,undefined8 param_5)
 
 {
   int *piVar1;
@@ -1132,7 +1136,7 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
   undefined4 uStack_4;
   
   Career_BeginNew();
-  piVar1 = (int *)FUN_002093a0(param_1,param_2 + param_3 * 10);
+  piVar1 = (int *)GameDb_GetCourseSection(param_1,param_2 + param_3 * 10);
   while( true ) {
     iStack_310 = *piVar1;
     iStack_30c = piVar1[1];
@@ -1148,8 +1152,8 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
   memcpy(auStack_30,&iStack_310,0x20);
   GameState_StartRace(0,param_1,param_2,param_3);
   RaceCtx_Set_8(0);
-  uVar2 = FUN_001c1890(0);
-  FUN_001bc410(auStack_2f0,uVar2);
+  uVar2 = Profile_Get(0);
+  garage_sub_001bc410(auStack_2f0,uVar2);
   puVar5 = auStack_2f0;
   puVar4 = auStack_100;
   iVar3 = 0x33;
@@ -1159,11 +1163,11 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
     puVar5 = puVar5 + 1;
     puVar4 = puVar4 + 1;
   } while (0 < iVar3);
-  FUN_001d3120(auStack_100,auStack_1d0);
+  CarRec_Copy(auStack_100,auStack_1d0);
   auStack_1d0[0] = 1;
   uStack_1cc = 0x89;
   uStack_1c8 = 0;
-  FUN_001d2180(auStack_1d0,param_5);
+  CarRec_SetMileage(auStack_1d0,param_5);
   PlayerRecord_Copy(0,auStack_1d0);
   GameState_Set_e0(1);
   GameState_Set_354(1);
@@ -1175,7 +1179,7 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
   }
   RaceParams_SetDefaults(&uStack_220);
   uStack_220 = (undefined1)param_1;
-  uStack_21f = FUN_001bff70(param_1,uStack_28,uStack_24,&uStack_4,&uStack_8);
+  uStack_21f = garage_sub_001bff70(param_1,uStack_28,uStack_24,&uStack_4,&uStack_8);
   uStack_21d = 0;
   uStack_218 = 0;
   uStack_214 = uStack_4;
@@ -1187,7 +1191,7 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
 }
 
 // 0x002de450  size 0xe8
-void FUN_002de450(int param_1)
+void password_sub_002de450(int param_1)
 
 {
   char *pcVar1;
@@ -1227,7 +1231,7 @@ void FUN_002de450(int param_1)
 }
 
 // 0x002de540  size 0x8c
-void FUN_002de540(int param_1)
+void password_sub_002de540(int param_1)
 
 {
   int iVar1;
@@ -1271,7 +1275,7 @@ void FUN_002de540(int param_1)
 }
 
 // 0x002de5d0  size 0x2c
-char FUN_002de5d0(int param_1,uint param_2)
+char password_sub_002de5d0(int param_1,uint param_2)
 
 {
   char cVar1;
@@ -1284,7 +1288,7 @@ char FUN_002de5d0(int param_1,uint param_2)
 }
 
 // 0x002de600  size 0x1cc
-bool FUN_002de600(undefined8 param_1,uint param_2)
+bool password_sub_002de600(undefined8 param_1,uint param_2)
 
 {
   char cVar1;
@@ -1299,14 +1303,14 @@ bool FUN_002de600(undefined8 param_1,uint param_2)
   int iVar10;
   
   iVar9 = 1;
-  lVar3 = FUN_001c0ed0(param_1,6);
+  lVar3 = Profile_GetStat(param_1,6);
   if (lVar3 == 0) {
-    lVar3 = FUN_001c0ed0(param_1,7);
-    if ((lVar3 == 0) && (lVar3 = FUN_001c0ed0(param_1,4), lVar3 == 0)) {
-      lVar3 = FUN_001c0ed0(param_1,2);
-      if ((lVar3 == 0) && (lVar3 = FUN_001c0ed0(param_1,3), lVar3 == 0)) {
-        lVar3 = FUN_001c0ed0(param_1,5);
-        if ((lVar3 == 0) && (lVar3 = FUN_001c0ed0(param_1,0), lVar3 == 0)) {
+    lVar3 = Profile_GetStat(param_1,7);
+    if ((lVar3 == 0) && (lVar3 = Profile_GetStat(param_1,4), lVar3 == 0)) {
+      lVar3 = Profile_GetStat(param_1,2);
+      if ((lVar3 == 0) && (lVar3 = Profile_GetStat(param_1,3), lVar3 == 0)) {
+        lVar3 = Profile_GetStat(param_1,5);
+        if ((lVar3 == 0) && (lVar3 = Profile_GetStat(param_1,0), lVar3 == 0)) {
           iVar2 = 2;
         }
         else {
@@ -1353,7 +1357,7 @@ bool FUN_002de600(undefined8 param_1,uint param_2)
 }
 
 // 0x002de7d0  size 0x88
-void FUN_002de7d0(int param_1,uint param_2,int param_3,long param_4)
+void password_sub_002de7d0(int param_1,uint param_2,int param_3,long param_4)
 
 {
   if (param_4 == 0) {
@@ -1370,7 +1374,7 @@ void FUN_002de7d0(int param_1,uint param_2,int param_3,long param_4)
 }
 
 // 0x002de860  size 0x7c
-int FUN_002de860(int param_1,long param_2,uint param_3,int param_4)
+int password_sub_002de860(int param_1,long param_2,uint param_3,int param_4)
 
 {
   int iVar1;
@@ -1387,7 +1391,7 @@ int FUN_002de860(int param_1,long param_2,uint param_3,int param_4)
 }
 
 // 0x002de8e0  size 0x5c
-undefined1 FUN_002de8e0(int param_1,long param_2,int param_3,uint param_4,int param_5)
+undefined1 password_sub_002de8e0(int param_1,long param_2,int param_3,uint param_4,int param_5)
 
 {
   undefined1 uVar1;
@@ -1403,8 +1407,8 @@ undefined1 FUN_002de8e0(int param_1,long param_2,int param_3,uint param_4,int pa
 
 // 0x002de940  size 0x188
 undefined4
-FUN_002de940(undefined8 param_1,char param_2,long param_3,int param_4,undefined8 param_5,int param_6
-            )
+password_sub_002de940
+          (undefined8 param_1,char param_2,long param_3,int param_4,undefined8 param_5,int param_6)
 
 {
   char cVar1;
@@ -1415,19 +1419,19 @@ FUN_002de940(undefined8 param_1,char param_2,long param_3,int param_4,undefined8
   uVar4 = 0;
   if (param_2 == '\0') {
     if (param_3 == 0) {
-      FUN_001bdd10(param_1,0x400);
-      FUN_001c1620(param_1,5);
+      garage_sub_001bdd10(param_1,0x400);
+      Profile_AddMoney(param_1,5);
     }
     else {
-      FUN_001bdd10(param_1,0x800);
-      FUN_001c1620(param_1,8);
+      garage_sub_001bdd10(param_1,0x800);
+      Profile_AddMoney(param_1,8);
     }
   }
   else if (param_3 == 0) {
-    FUN_001c1620(param_1,0xfffffffffffffffd);
+    Profile_AddMoney(param_1,0xfffffffffffffffd);
   }
   else {
-    FUN_001c1620(param_1,0xfffffffffffffffb);
+    Profile_AddMoney(param_1,0xfffffffffffffffb);
   }
   if (param_3 == 0) {
     pcVar3 = (char *)(param_4 + param_6 * 8 + ((uint)param_5 & 0xff) * 0x50 + (int)param_1 + 0xd86e)
@@ -1435,7 +1439,7 @@ FUN_002de940(undefined8 param_1,char param_2,long param_3,int param_4,undefined8
     cVar1 = *pcVar3;
     if ((cVar1 == '\a') || (param_2 < cVar1)) {
       *pcVar3 = param_2;
-      lVar2 = FUN_002de600(param_1,param_5);
+      lVar2 = password_sub_002de600(param_1,param_5);
       if (lVar2 != 0) {
         uVar4 = 1;
       }
@@ -1454,7 +1458,7 @@ FUN_002de940(undefined8 param_1,char param_2,long param_3,int param_4,undefined8
 }
 
 // 0x002dead0  size 0x5f0
-undefined8 FUN_002dead0(char param_1,long param_2,short param_3)
+undefined8 password_sub_002dead0(char param_1,long param_2,short param_3)
 
 {
   char cVar1;
@@ -1462,7 +1466,7 @@ undefined8 FUN_002dead0(char param_1,long param_2,short param_3)
   int iVar3;
   undefined8 uVar4;
   
-  iVar3 = FUN_00205530(param_3);
+  iVar3 = CarDb_GetModel(param_3);
   uVar4 = 0;
   if ((param_2 < 0) || (2 < param_2)) {
     uVar4 = 0;
@@ -1619,13 +1623,13 @@ undefined8 FUN_002dead0(char param_1,long param_2,short param_3)
 }
 
 // 0x002df0c0  size 0x50
-undefined4 FUN_002df0c0(undefined2 param_1)
+undefined4 password_sub_002df0c0(undefined2 param_1)
 
 {
   int iVar1;
   undefined4 uVar2;
   
-  iVar1 = FUN_00205530(param_1);
+  iVar1 = CarDb_GetModel(param_1);
   if (*(int *)(iVar1 + 0x88) == 2) {
     uVar2 = 0xffffffff;
   }
@@ -1644,7 +1648,7 @@ undefined4 FUN_002df0c0(undefined2 param_1)
 }
 
 // 0x002df110  size 0x80
-undefined4 FUN_002df110(undefined2 param_1)
+undefined4 password_sub_002df110(undefined2 param_1)
 
 {
   char cVar1;
@@ -1652,7 +1656,7 @@ undefined4 FUN_002df110(undefined2 param_1)
   undefined4 uVar3;
   
   uVar3 = 2;
-  iVar2 = FUN_00205530(param_1);
+  iVar2 = CarDb_GetModel(param_1);
   cVar1 = *(char *)(iVar2 + 0x3c);
   if (cVar1 == '\x04') {
     uVar3 = 4;
@@ -1667,7 +1671,7 @@ undefined4 FUN_002df110(undefined2 param_1)
 }
 
 // 0x002df190  size 0x6c
-undefined4 FUN_002df190(undefined2 param_1)
+undefined4 password_sub_002df190(undefined2 param_1)
 
 {
   char cVar1;
@@ -1675,7 +1679,7 @@ undefined4 FUN_002df190(undefined2 param_1)
   undefined4 uVar3;
   
   uVar3 = 0;
-  iVar2 = FUN_00205530(param_1);
+  iVar2 = CarDb_GetModel(param_1);
   cVar1 = *(char *)(iVar2 + 0x45);
   if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
     uVar3 = 1;
@@ -1708,7 +1712,7 @@ undefined4 GameState_Get_3a8(void)
 }
 
 // 0x002df230  size 0xe8
-undefined4 FUN_002df230(void)
+undefined4 password_sub_002df230(void)
 
 {
   ulong uVar1;
@@ -1756,7 +1760,7 @@ undefined4 FUN_002df230(void)
 }
 
 // 0x002df320  size 0x28
-bool FUN_002df320(void)
+bool password_sub_002df320(void)
 
 {
   ulong uVar1;
@@ -1766,7 +1770,7 @@ bool FUN_002df320(void)
 }
 
 // 0x002df350  size 0xa4
-int FUN_002df350(long param_1)
+int password_sub_002df350(long param_1)
 
 {
   int iVar1;
@@ -1776,7 +1780,7 @@ int FUN_002df350(long param_1)
   undefined4 uStack_8;
   
   if (*(int *)(iGpffff8ab8 + 0x3a4) == 0) {
-    iVar1 = FUN_002df9f0(*(undefined4 *)(iGpffff8ab8 + 0x3a8));
+    iVar1 = password_sub_002df9f0(*(undefined4 *)(iGpffff8ab8 + 0x3a8));
   }
   else {
     aiStack_20[0] = DAT_003424c0;
@@ -1797,7 +1801,7 @@ int FUN_002df350(long param_1)
 }
 
 // 0x002df400  size 0x168
-int FUN_002df400(int param_1,int param_2)
+int password_sub_002df400(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1875,7 +1879,7 @@ int FUN_002df400(int param_1,int param_2)
 }
 
 // 0x002df570  size 0x104
-int FUN_002df570(int param_1)
+int password_sub_002df570(int param_1)
 
 {
   short sVar1;
@@ -1906,7 +1910,7 @@ int FUN_002df570(int param_1)
   do {
     sVar1 = *(short *)(param_1 + 0x3c);
     if ((sVar1 != -1) && (sVar1 < 0x1e)) {
-      FUN_001b8610(&uStack_60,(char)sVar1);
+      TeamDb_Copy(&uStack_60,(char)sVar1);
       uStack_30 = uStack_60;
       uStack_28 = uStack_58;
       uStack_24 = uStack_54;
@@ -1916,7 +1920,7 @@ int FUN_002df570(int param_1)
       uStack_14 = uStack_44;
       uStack_10 = uStack_40;
       uStack_c = uStack_3c;
-      iVar2 = FUN_001b0750(&uStack_30,(short)iVar3);
+      iVar2 = Rival_HasCar(&uStack_30,(short)iVar3);
       iVar4 = iVar4 + iVar2;
     }
     iVar3 = iVar3 + 1;
@@ -1926,7 +1930,7 @@ int FUN_002df570(int param_1)
 }
 
 // 0x002df680  size 0x88
-int FUN_002df680(uint param_1,int param_2,char param_3,int param_4)
+int password_sub_002df680(uint param_1,int param_2,char param_3,int param_4)
 
 {
   undefined8 uVar1;
@@ -1936,7 +1940,7 @@ int FUN_002df680(uint param_1,int param_2,char param_3,int param_4)
   int iStack_10;
   int iStack_c;
   
-  uVar1 = FUN_002093c0(param_2 + (param_1 & 0xff) * 3);
+  uVar1 = GameDb_GetCourse(param_2 + (param_1 & 0xff) * 3);
   memcpy(auStack_40,uVar1,0x38);
   if (param_3 == '\0') {
     iStack_14 = iStack_18;
@@ -1950,7 +1954,7 @@ int FUN_002df680(uint param_1,int param_2,char param_3,int param_4)
 }
 
 // 0x002df710  size 0xe0
-int FUN_002df710(uint param_1,int param_2,char param_3,long param_4)
+int password_sub_002df710(uint param_1,int param_2,char param_3,long param_4)
 
 {
   int iVar1;
@@ -1962,7 +1966,7 @@ int FUN_002df710(uint param_1,int param_2,char param_3,long param_4)
   int iStack_20;
   int iStack_1c;
   
-  uVar2 = FUN_002093c0(param_2 + (param_1 & 0xff) * 3);
+  uVar2 = GameDb_GetCourse(param_2 + (param_1 & 0xff) * 3);
   memcpy(auStack_40,uVar2,0x38);
   if (param_3 != '\0') {
     iStack_20 = iStack_1c;
@@ -1991,7 +1995,7 @@ int FUN_002df710(uint param_1,int param_2,char param_3,long param_4)
 }
 
 // 0x002df7f0  size 0x7c
-undefined4 FUN_002df7f0(long param_1)
+undefined4 password_sub_002df7f0(long param_1)
 
 {
   undefined4 uVar1;
@@ -2017,7 +2021,7 @@ undefined4 FUN_002df7f0(long param_1)
 }
 
 // 0x002df870  size 0x17c
-int FUN_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long param_5)
+int password_sub_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long param_5)
 
 {
   int iVar1;
@@ -2037,7 +2041,7 @@ int FUN_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long pa
   int iStack_8;
   int iStack_4;
   
-  piVar2 = (int *)FUN_002093a0(param_1,param_2 + param_3 * 10);
+  piVar2 = (int *)GameDb_GetCourseSection(param_1,param_2 + param_3 * 10);
   while( true ) {
     iStack_40 = *piVar2;
     iStack_3c = piVar2[1];
@@ -2078,7 +2082,7 @@ int FUN_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long pa
 }
 
 // 0x002df9f0  size 0x478
-undefined4 FUN_002df9f0(long param_1,long param_2)
+undefined4 password_sub_002df9f0(long param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -2285,7 +2289,7 @@ undefined4 FUN_002df9f0(long param_1,long param_2)
 }
 
 // 0x002dfe70  size 0x60
-void FUN_002dfe70(undefined4 *param_1,undefined8 param_2)
+void password_sub_002dfe70(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -2294,7 +2298,7 @@ void FUN_002dfe70(undefined4 *param_1,undefined8 param_2)
   undefined4 *puVar4;
   undefined4 auStack_40 [16];
   
-  uVar2 = FUN_002093c0(param_2);
+  uVar2 = GameDb_GetCourse(param_2);
   memcpy(auStack_40,uVar2,0x38);
   puVar4 = auStack_40;
   iVar3 = 7;
@@ -2310,19 +2314,19 @@ void FUN_002dfe70(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x002dfed0  size 0x54
-int FUN_002dfed0(undefined8 param_1,uint param_2,int param_3)
+int password_sub_002dfed0(undefined8 param_1,uint param_2,int param_3)
 
 {
   undefined8 uVar1;
   
   param_3 = param_3 + (param_2 & 0xff) * 3;
-  uVar1 = FUN_002093c0(param_3);
+  uVar1 = GameDb_GetCourse(param_3);
   memcpy(param_1,uVar1,0x38);
   return param_3;
 }
 
 // 0x002dff30  size 0x100
-int FUN_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
+int password_sub_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
 
 {
   int *piVar1;
@@ -2338,7 +2342,7 @@ int FUN_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
   int iStack_8;
   int iStack_4;
   
-  piVar1 = (int *)FUN_002093a0(param_2,param_3 + param_4 * 10);
+  piVar1 = (int *)GameDb_GetCourseSection(param_2,param_3 + param_4 * 10);
   iVar2 = 0;
   while( true ) {
     iStack_20 = *piVar1;

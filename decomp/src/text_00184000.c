@@ -19,7 +19,7 @@ void Cam_BuildViewMatrix(int param_1)
   uStack_54 = DAT_0030b9fc;
   maybe_Vu0_UnitMatrix(auStack_50);
   vu0math_sub_00132d50(&uStack_60,param_1 + 0x550,&uStack_60);
-  FUN_001f2930(0x40490fdb,auStack_50,auStack_50,&uStack_60);
+  Demo_BuildRotation(0x40490fdb,auStack_50,auStack_50,&uStack_60);
   vu0math_sub_00132b50(auStack_10,param_1 + 0x420,param_1 + 0x510);
   vu0math_sub_00132d50(auStack_10,auStack_50,auStack_10);
   vu0math_sub_00132b70(param_1 + 0x420,param_1 + 0x510,auStack_10);
@@ -102,7 +102,7 @@ void Cam_UpdateChase(int param_1)
     fVar4 = (float)Cam_ComputeReplayOffset(auStack_60,uStack_4);
     fVar5 = (float)vu0math_sub_00132ab0(auStack_60,param_1 + 0x420);
     fVar4 = fVar4 - fVar5;
-    FUN_001f2c10(&uStack_c,uStack_4,0xffffffffffffffff);
+    Demo_GetRoadPoint(&uStack_c,uStack_4,0xffffffffffffffff);
     uStack_4 = CONCAT22(sStack_a,uStack_c);
     uStack_14 = uStack_c;
     sStack_12 = sStack_a;
@@ -134,7 +134,7 @@ void Cam_UpdateChase(int param_1)
       vu0math_sub_00132b70(auStack_c0,&uStack_70,&uStack_80);
       vu0math_sub_00132b70(auStack_c0,auStack_c0,&uStack_f0);
       vu0math_sub_00132b10(0x3f000000,auStack_c0,auStack_c0);
-      fVar4 = (float)FUN_001ca7c0(*(undefined4 *)(param_1 + 0x7b0));
+      fVar4 = (float)RaceCar_GetSpeedKmh(*(undefined4 *)(param_1 + 0x7b0));
       fVar5 = (fVar4 - 8.0) / 240.0;
       fVar4 = 1.0;
       if (fVar5 <= 1.0) {
@@ -146,11 +146,11 @@ void Cam_UpdateChase(int param_1)
       }
       *(float *)(param_1 + 0x7c4) =
            *(float *)(param_1 + 0x7c4) + ((1.0 - fVar6) - *(float *)(param_1 + 0x7c4)) / 16.0;
-      fVar4 = (float)FUN_001f2ab0(auStack_e0,param_1 + 0x420,&uStack_a0,auStack_d0,&uStack_90);
+      fVar4 = (float)Demo_LookAt(auStack_e0,param_1 + 0x420,&uStack_a0,auStack_d0,&uStack_90);
       if (fVar4 <= 0.0) {
-        fVar4 = (float)FUN_001f2ab0(auStack_e0,param_1 + 0x420,&uStack_70,auStack_c0,&uStack_80);
+        fVar4 = (float)Demo_LookAt(auStack_e0,param_1 + 0x420,&uStack_70,auStack_c0,&uStack_80);
         if (0.0 < fVar4) {
-          FUN_001f2b80(auStack_e0,&uStack_70,auStack_c0,&uStack_80);
+          Demo_LookAtSimple(auStack_e0,&uStack_70,auStack_c0,&uStack_80);
           fVar5 = (float)vu0math_sub_00132ab0(auStack_e0,auStack_b0);
           vu0math_sub_00132b10
                     ((fVar4 / fVar5) * 0.85 * *(float *)(param_1 + 0x7c4),auStack_e0,auStack_b0);
@@ -161,7 +161,7 @@ void Cam_UpdateChase(int param_1)
         }
       }
       else {
-        FUN_001f2b80(auStack_e0,&uStack_a0,auStack_d0,&uStack_90);
+        Demo_LookAtSimple(auStack_e0,&uStack_a0,auStack_d0,&uStack_90);
         fVar5 = (float)vu0math_sub_00132ab0(auStack_e0,auStack_b0);
         vu0math_sub_00132b10
                   ((fVar4 / fVar5) * 0.85 * *(float *)(param_1 + 0x7c4),auStack_e0,auStack_b0);
@@ -176,7 +176,7 @@ void Cam_UpdateChase(int param_1)
 }
 
 // 0x001847f0  size 0x8
-void FUN_001847f0(void)
+void Cam_Nop(void)
 
 {
   return;
@@ -192,7 +192,7 @@ int Cam_GetTargetBodyB(int param_1)
   
   iVar3 = 0;
   iVar1 = *(int *)(param_1 + 0x7b4);
-  while ((iVar2 = FUN_001ca6b0(iVar3), iVar2 == 0 || (iVar2 != iVar1))) {
+  while ((iVar2 = RaceCar_Get(iVar3), iVar2 == 0 || (iVar2 != iVar1))) {
     iVar3 = iVar3 + 1;
     if (2 < iVar3) {
       return 0;
@@ -211,7 +211,7 @@ int Cam_GetTargetBodyA(int param_1)
   
   iVar3 = 0;
   iVar1 = *(int *)(param_1 + 0x7b0);
-  while ((iVar2 = FUN_001ca6b0(iVar3), iVar2 == 0 || (iVar2 != iVar1))) {
+  while ((iVar2 = RaceCar_Get(iVar3), iVar2 == 0 || (iVar2 != iVar1))) {
     iVar3 = iVar3 + 1;
     if (2 < iVar3) {
       return 0;
@@ -221,7 +221,7 @@ int Cam_GetTargetBodyA(int param_1)
 }
 
 // 0x001848e0  size 0x8
-void FUN_001848e0(void)
+void Cam_NopB(void)
 
 {
   return;
@@ -515,7 +515,7 @@ void Cam_SetTarget(undefined8 param_1,long param_2)
   puVar6[0x37] = puVar6[0x33];
   if (param_2 != 0) {
     Cam_GetCarAttachPoint(param_1,puVar6 + 8,puVar6 + 0x10,puVar6 + 0x30,param_2);
-    puVar2 = (undefined1 *)FUN_001ca760(param_2);
+    puVar2 = (undefined1 *)RaceCar_GetTracker(param_2);
     *(undefined1 *)(puVar6 + 0x38) = *puVar2;
     uVar1 = *(undefined2 *)(puVar2 + 4);
     *(undefined2 *)((int)puVar6 + 0xe2) = *(undefined2 *)(puVar2 + 2);
@@ -598,7 +598,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
   uStack_4 = param_3;
   fVar1 = (float)Cam_ComputeReplayOffset(auStack_80,param_3);
   fVar2 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
-  FUN_001f2c10(&sStack_8,uStack_4,1);
+  Demo_GetRoadPoint(&sStack_8,uStack_4,1);
   uStack_4 = CONCAT22(sStack_6,sStack_8);
   if (sStack_8 < 0) {
     *param_1 = sStack_8;
@@ -608,7 +608,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
     fVar3 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
     fVar4 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
     fVar3 = fVar3 - fVar4;
-    FUN_001f2c10(&sStack_c,uStack_4,0xfffffffffffffffe);
+    Demo_GetRoadPoint(&sStack_c,uStack_4,0xfffffffffffffffe);
     uStack_4 = CONCAT22(sStack_a,sStack_c);
     if (sStack_c < 0) {
       *param_1 = sStack_c;
@@ -618,7 +618,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
       fVar4 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
       fVar5 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
       fVar4 = fVar4 - fVar5;
-      FUN_001f2c10(&sStack_10,uStack_4,1);
+      Demo_GetRoadPoint(&sStack_10,uStack_4,1);
       uStack_54 = CONCAT22(sStack_e,sStack_10);
       uStack_44 = uStack_54;
       fVar1 = fVar1 - fVar2;
@@ -633,7 +633,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
               fVar2 = fVar1;
               fVar1 = fVar3;
               if ((0.0 <= fVar1) && (fVar2 <= 0.0)) {
-                FUN_001f2c10(&sStack_14,uStack_44,1);
+                Demo_GetRoadPoint(&sStack_14,uStack_44,1);
                 *param_1 = sStack_14;
                 param_1[1] = sStack_12;
                 return;
@@ -644,7 +644,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
                 return;
               }
               if (0.0 <= fVar1) break;
-              FUN_001f2c10(&sStack_18,uStack_44,2);
+              Demo_GetRoadPoint(&sStack_18,uStack_44,2);
               uStack_4 = CONCAT22(sStack_16,sStack_18);
               if (sStack_18 < 0) {
                 *param_1 = sStack_18;
@@ -654,7 +654,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
               fVar3 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
               fVar4 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
               fVar3 = fVar3 - fVar4;
-              FUN_001f2c10(&sStack_1c,uStack_4,0xffffffffffffffff);
+              Demo_GetRoadPoint(&sStack_1c,uStack_4,0xffffffffffffffff);
               uStack_5c = CONCAT22(sStack_1a,sStack_1c);
               uStack_44 = uStack_5c;
               fVar4 = fVar2;
@@ -667,7 +667,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
             fVar3 = fVar1;
             fVar1 = fVar2;
           } while (fVar4 <= 0.0);
-          FUN_001f2c10(&sStack_20,uStack_44,0xfffffffffffffffe);
+          Demo_GetRoadPoint(&sStack_20,uStack_44,0xfffffffffffffffe);
           uStack_4 = CONCAT22(sStack_1e,sStack_20);
           if (sStack_20 < 0) {
             *param_1 = sStack_20;
@@ -676,7 +676,7 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
           }
           fVar5 = (float)Cam_ComputeReplayOffset(auStack_80,uStack_4);
           fVar6 = (float)vu0math_sub_00132ab0(auStack_80,param_2);
-          FUN_001f2c10(&sStack_24,uStack_4,1);
+          Demo_GetRoadPoint(&sStack_24,uStack_4,1);
           uStack_64 = CONCAT22(sStack_22,sStack_24);
           uStack_44 = uStack_64;
           fVar3 = fVar2;
@@ -808,7 +808,7 @@ void Cam_FindReplayKey(uint param_1,uint *param_2,undefined8 param_3,uint *param
   }
   else {
     do {
-      FUN_001f2520(puVar2,puVar4,puVar4 + uVar1 * 0x36);
+      Demo_SetTrack(puVar2,puVar4,puVar4 + uVar1 * 0x36);
       uVar3 = uVar3 + 1;
       puVar2 = puVar2 + 5;
     } while (uVar3 < *param_2);
@@ -847,13 +847,13 @@ void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
   piVar9 = piVar7 + 0x144;
   if (*piVar7 != 0) {
     uStack_4 = *(undefined4 *)((int)piVar7 + 0x5f6);
-    iVar3 = FUN_001f2e30(uStack_4);
+    iVar3 = Demo_ProjectOnRoad(uStack_4);
     uVar4 = Cam_FindKeyBefore(*piVar7,piVar7[1],iVar3);
     if (uVar4 != 0) {
       puVar8 = (uint *)uVar4;
       uVar6 = *puVar8;
       uVar1 = puVar8[1];
-      fVar10 = (float)FUN_001f1ff0(uStack_4,piVar9);
+      fVar10 = (float)Demo_EvalCameraPath(uStack_4,piVar9);
       fVar11 = (float)(int)(uVar1 - uVar6);
       Cam_InterpolatePath((float)(iVar3 - uVar6) / fVar11 + fVar10 / fVar11,
                           puVar8[4] + piVar7[3] * 0xd8,auStack_70,piVar9);
@@ -929,13 +929,13 @@ void Cam_UpdateTracksideAlt(undefined8 param_1,undefined8 param_2)
   piVar9 = piVar7 + 0x144;
   if (*piVar7 != 0) {
     uStack_4 = *(undefined4 *)((int)piVar7 + 0x5f6);
-    iVar3 = FUN_001f2e30(uStack_4);
+    iVar3 = Demo_ProjectOnRoad(uStack_4);
     uVar4 = Cam_FindKeyAfter(*piVar7,piVar7[1],iVar3);
     if (uVar4 != 0) {
       puVar8 = (uint *)uVar4;
       uVar6 = *puVar8;
       uVar1 = puVar8[1];
-      fVar10 = (float)FUN_001f1ff0(uStack_4,piVar9);
+      fVar10 = (float)Demo_EvalCameraPath(uStack_4,piVar9);
       fVar11 = (float)(int)(uVar1 - uVar6);
       Cam_InterpolatePathAlt
                 ((float)(iVar3 - uVar6) / fVar11 + fVar10 / fVar11,puVar8[4] + piVar7[3] * 0xd8,
@@ -1061,29 +1061,29 @@ void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
     }
     fVar5 = param_1;
   }
-  fVar1 = (float)FUN_001f2310(fVar5,param_2 + 8);
+  fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 8);
   *(float *)(param_3 + 0x40) = fVar1 * 0.017453292;
-  fVar1 = (float)FUN_001f2310(fVar5,param_2 + 0x10);
+  fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 0x10);
   *(float *)(param_3 + 0x44) = ((float)uRam00431170 * 50.0) / fVar1;
-  uVar2 = FUN_001f22c0(fVar5,param_2 + 0x18);
+  uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x18);
   *(undefined4 *)(param_3 + 0x10) = uVar2;
-  uVar2 = FUN_001f22c0(fVar5,param_2 + 0x20);
+  uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x20);
   *(undefined4 *)(param_3 + 0x14) = uVar2;
-  uVar2 = FUN_001f22c0(fVar5,param_2 + 0x28);
+  uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x28);
   *(undefined4 *)(param_3 + 0x18) = uVar2;
   *(undefined4 *)(param_3 + 0x1c) = 0x3f800000;
-  uVar2 = FUN_001f22c0(fVar5,param_2 + 0x78);
+  uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x78);
   *(undefined4 *)(param_3 + 0x20) = uVar2;
-  uVar2 = FUN_001f22c0(fVar5,param_2 + 0x80);
+  uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x80);
   *(undefined4 *)(param_3 + 0x24) = uVar2;
-  uVar2 = FUN_001f22c0(fVar5,param_2 + 0x88);
+  uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x88);
   *(undefined4 *)(param_3 + 0x28) = uVar2;
   *(undefined4 *)(param_3 + 0x2c) = 0x3f800000;
-  fVar1 = (float)FUN_001f2310(fVar5,param_2 + 0x48);
+  fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 0x48);
   if (fVar1 != 0.0) {
-    fStack_40 = (float)FUN_001f22c0(fVar5,param_2 + 0x30);
-    uStack_3c = FUN_001f22c0(fVar5,param_2 + 0x38);
-    fVar4 = (float)FUN_001f22c0(fVar5,param_2 + 0x40);
+    fStack_40 = (float)Demo_EvalKeyA(fVar5,param_2 + 0x30);
+    uStack_3c = Demo_EvalKeyA(fVar5,param_2 + 0x38);
+    fVar4 = (float)Demo_EvalKeyA(fVar5,param_2 + 0x40);
     uStack_34 = 0x3f800000;
     fStack_38 = -fStack_40;
     fStack_40 = fVar4;
@@ -1093,11 +1093,11 @@ void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x10,param_3 + 0x10);
     vu0math_sub_00132b70(param_3 + 0x10,&fStack_40,param_3 + 0x10);
   }
-  fVar1 = (float)FUN_001f2310(fVar5,param_2 + 0xa8);
+  fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 0xa8);
   if (fVar1 != 0.0) {
-    fStack_50 = (float)FUN_001f22c0(fVar5,param_2 + 0x90);
-    uStack_4c = FUN_001f22c0(fVar5,param_2 + 0x98);
-    fVar4 = (float)FUN_001f22c0(fVar5,param_2 + 0xa0);
+    fStack_50 = (float)Demo_EvalKeyA(fVar5,param_2 + 0x90);
+    uStack_4c = Demo_EvalKeyA(fVar5,param_2 + 0x98);
+    fVar4 = (float)Demo_EvalKeyA(fVar5,param_2 + 0xa0);
     uStack_44 = 0x3f800000;
     fStack_48 = -fStack_50;
     fStack_50 = fVar4;
@@ -1107,33 +1107,33 @@ void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x20,param_3 + 0x20);
     vu0math_sub_00132b70(param_3 + 0x20,&fStack_50,param_3 + 0x20);
   }
-  fVar1 = (float)FUN_001f2310(fVar5,param_2 + 0x68);
+  fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 0x68);
   if (fVar1 != 0.0) {
-    fStack_30 = (float)FUN_001f22c0(fVar5,param_2 + 0x50);
-    uStack_2c = FUN_001f22c0(fVar5,param_2 + 0x58);
-    fVar4 = (float)FUN_001f22c0(fVar5,param_2 + 0x60);
+    fStack_30 = (float)Demo_EvalKeyA(fVar5,param_2 + 0x50);
+    uStack_2c = Demo_EvalKeyA(fVar5,param_2 + 0x58);
+    fVar4 = (float)Demo_EvalKeyA(fVar5,param_2 + 0x60);
     uStack_24 = 0x3f800000;
     fStack_28 = -fStack_30;
     fStack_30 = fVar4;
-    fVar4 = (float)FUN_001f2310(fVar5,param_2 + 0x70);
+    fVar4 = (float)Demo_EvalKeyB(fVar5,param_2 + 0x70);
     iVar3 = (int)fVar4;
-    FUN_001f2d40(&uStack_c,iVar3);
+    Demo_FindRoadSection(&uStack_c,iVar3);
     uStack_4 = CONCAT22(uStack_a,uStack_c);
     Cam_ApplyOrbit(fVar4 - (float)iVar3,auStack_20,uStack_4,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x10,param_3 + 0x10);
     vu0math_sub_00132b70(param_3 + 0x10,auStack_20,param_3 + 0x10);
   }
-  fVar1 = (float)FUN_001f2310(fVar5,param_2 + 200);
+  fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 200);
   if (fVar1 != 0.0) {
-    fStack_30 = (float)FUN_001f22c0(fVar5,param_2 + 0xb0);
-    uStack_2c = FUN_001f22c0(fVar5,param_2 + 0xb8);
-    fVar4 = (float)FUN_001f22c0(fVar5,param_2 + 0xc0);
+    fStack_30 = (float)Demo_EvalKeyA(fVar5,param_2 + 0xb0);
+    uStack_2c = Demo_EvalKeyA(fVar5,param_2 + 0xb8);
+    fVar4 = (float)Demo_EvalKeyA(fVar5,param_2 + 0xc0);
     uStack_24 = 0x3f800000;
     fStack_28 = -fStack_30;
     fStack_30 = fVar4;
-    fVar5 = (float)FUN_001f2310(fVar5,param_2 + 0xd0);
-    FUN_001f2d40(&uStack_10,(int)fVar5);
+    fVar5 = (float)Demo_EvalKeyB(fVar5,param_2 + 0xd0);
+    Demo_FindRoadSection(&uStack_10,(int)fVar5);
     uStack_8 = CONCAT22(uStack_e,uStack_10);
     Cam_ApplyOrbit(fVar5 - (float)(int)fVar5,auStack_20,uStack_8,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
@@ -1179,29 +1179,29 @@ void Cam_InterpolatePathAlt(float param_1,int param_2,int param_3,int param_4)
     }
     fVar5 = param_1;
   }
-  fVar1 = (float)FUN_001f23a0(fVar5,param_2 + 8);
+  fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 8);
   *(float *)(param_3 + 0x40) = fVar1 * 0.017453292;
-  fVar1 = (float)FUN_001f23a0(fVar5,param_2 + 0x10);
+  fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 0x10);
   *(float *)(param_3 + 0x44) = ((float)uRam00431170 * 50.0) / fVar1;
-  uVar2 = FUN_001f2360(fVar5,param_2 + 0x18);
+  uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x18);
   *(undefined4 *)(param_3 + 0x10) = uVar2;
-  uVar2 = FUN_001f2360(fVar5,param_2 + 0x20);
+  uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x20);
   *(undefined4 *)(param_3 + 0x14) = uVar2;
-  uVar2 = FUN_001f2360(fVar5,param_2 + 0x28);
+  uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x28);
   *(undefined4 *)(param_3 + 0x18) = uVar2;
   *(undefined4 *)(param_3 + 0x1c) = 0x3f800000;
-  uVar2 = FUN_001f2360(fVar5,param_2 + 0x78);
+  uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x78);
   *(undefined4 *)(param_3 + 0x20) = uVar2;
-  uVar2 = FUN_001f2360(fVar5,param_2 + 0x80);
+  uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x80);
   *(undefined4 *)(param_3 + 0x24) = uVar2;
-  uVar2 = FUN_001f2360(fVar5,param_2 + 0x88);
+  uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x88);
   *(undefined4 *)(param_3 + 0x28) = uVar2;
   *(undefined4 *)(param_3 + 0x2c) = 0x3f800000;
-  fVar1 = (float)FUN_001f23a0(fVar5,param_2 + 0x48);
+  fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 0x48);
   if (fVar1 != 0.0) {
-    fStack_40 = (float)FUN_001f2360(fVar5,param_2 + 0x30);
-    uStack_3c = FUN_001f2360(fVar5,param_2 + 0x38);
-    fVar4 = (float)FUN_001f2360(fVar5,param_2 + 0x40);
+    fStack_40 = (float)Demo_EvalKeyC(fVar5,param_2 + 0x30);
+    uStack_3c = Demo_EvalKeyC(fVar5,param_2 + 0x38);
+    fVar4 = (float)Demo_EvalKeyC(fVar5,param_2 + 0x40);
     uStack_34 = 0x3f800000;
     fStack_38 = -fStack_40;
     fStack_40 = fVar4;
@@ -1211,11 +1211,11 @@ void Cam_InterpolatePathAlt(float param_1,int param_2,int param_3,int param_4)
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x10,param_3 + 0x10);
     vu0math_sub_00132b70(param_3 + 0x10,&fStack_40,param_3 + 0x10);
   }
-  fVar1 = (float)FUN_001f23a0(fVar5,param_2 + 0xa8);
+  fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 0xa8);
   if (fVar1 != 0.0) {
-    fStack_50 = (float)FUN_001f2360(fVar5,param_2 + 0x90);
-    uStack_4c = FUN_001f2360(fVar5,param_2 + 0x98);
-    fVar4 = (float)FUN_001f2360(fVar5,param_2 + 0xa0);
+    fStack_50 = (float)Demo_EvalKeyC(fVar5,param_2 + 0x90);
+    uStack_4c = Demo_EvalKeyC(fVar5,param_2 + 0x98);
+    fVar4 = (float)Demo_EvalKeyC(fVar5,param_2 + 0xa0);
     uStack_44 = 0x3f800000;
     fStack_48 = -fStack_50;
     fStack_50 = fVar4;
@@ -1225,33 +1225,33 @@ void Cam_InterpolatePathAlt(float param_1,int param_2,int param_3,int param_4)
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x20,param_3 + 0x20);
     vu0math_sub_00132b70(param_3 + 0x20,&fStack_50,param_3 + 0x20);
   }
-  fVar1 = (float)FUN_001f23a0(fVar5,param_2 + 0x68);
+  fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 0x68);
   if (fVar1 != 0.0) {
-    fStack_30 = (float)FUN_001f2360(fVar5,param_2 + 0x50);
-    uStack_2c = FUN_001f2360(fVar5,param_2 + 0x58);
-    fVar4 = (float)FUN_001f2360(fVar5,param_2 + 0x60);
+    fStack_30 = (float)Demo_EvalKeyC(fVar5,param_2 + 0x50);
+    uStack_2c = Demo_EvalKeyC(fVar5,param_2 + 0x58);
+    fVar4 = (float)Demo_EvalKeyC(fVar5,param_2 + 0x60);
     uStack_24 = 0x3f800000;
     fStack_28 = -fStack_30;
     fStack_30 = fVar4;
-    fVar4 = (float)FUN_001f23a0(fVar5,param_2 + 0x70);
+    fVar4 = (float)Demo_EvalKeyD(fVar5,param_2 + 0x70);
     iVar3 = (int)fVar4;
-    FUN_001f2d40(&uStack_c,iVar3);
+    Demo_FindRoadSection(&uStack_c,iVar3);
     uStack_4 = CONCAT22(uStack_a,uStack_c);
     Cam_ApplyOrbit(fVar4 - (float)iVar3,auStack_20,uStack_4,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
     vu0math_sub_00132b10(1.0 - fVar1,param_3 + 0x10,param_3 + 0x10);
     vu0math_sub_00132b70(param_3 + 0x10,auStack_20,param_3 + 0x10);
   }
-  fVar1 = (float)FUN_001f23a0(fVar5,param_2 + 200);
+  fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 200);
   if (fVar1 != 0.0) {
-    fStack_30 = (float)FUN_001f2360(fVar5,param_2 + 0xb0);
-    uStack_2c = FUN_001f2360(fVar5,param_2 + 0xb8);
-    fVar4 = (float)FUN_001f2360(fVar5,param_2 + 0xc0);
+    fStack_30 = (float)Demo_EvalKeyC(fVar5,param_2 + 0xb0);
+    uStack_2c = Demo_EvalKeyC(fVar5,param_2 + 0xb8);
+    fVar4 = (float)Demo_EvalKeyC(fVar5,param_2 + 0xc0);
     uStack_24 = 0x3f800000;
     fStack_28 = -fStack_30;
     fStack_30 = fVar4;
-    fVar5 = (float)FUN_001f23a0(fVar5,param_2 + 0xd0);
-    FUN_001f2d40(&uStack_10,(int)fVar5);
+    fVar5 = (float)Demo_EvalKeyD(fVar5,param_2 + 0xd0);
+    Demo_FindRoadSection(&uStack_10,(int)fVar5);
     uStack_8 = CONCAT22(uStack_e,uStack_10);
     Cam_ApplyOrbit(fVar5 - (float)(int)fVar5,auStack_20,uStack_8,&fStack_30);
     vu0math_sub_00132b10(fVar1,auStack_20,auStack_20);
@@ -1312,20 +1312,20 @@ void Cam_ComputeOrbitMatrix(float param_1,undefined8 param_2,undefined8 param_3,
   uStack_fc = DAT_0030ba44;
   uStack_f8 = DAT_0030ba48;
   uStack_f4 = DAT_0030ba4c;
-  FUN_001f2c10(&uStack_4,param_4,0xffffffffffffffff);
+  Demo_GetRoadPoint(&uStack_4,param_4,0xffffffffffffffff);
   uStack_114 = CONCAT22(uStack_2,uStack_4);
   Cam_LoadPresetC(auStack_50,uStack_114);
-  FUN_001f2c10(&uStack_8,uStack_114,1);
+  Demo_GetRoadPoint(&uStack_8,uStack_114,1);
   uStack_114 = CONCAT22(uStack_6,uStack_8);
   Cam_LoadPresetC(auStack_40,uStack_114);
   Cam_LoadPresetB(auStack_b0,uStack_114);
   Cam_LoadPresetA(auStack_d0,uStack_114);
-  FUN_001f2c10(&uStack_c,uStack_114,1);
+  Demo_GetRoadPoint(&uStack_c,uStack_114,1);
   uStack_114 = CONCAT22(uStack_a,uStack_c);
   Cam_LoadPresetC(auStack_30,uStack_114);
   Cam_LoadPresetB(auStack_a0,uStack_114);
   Cam_LoadPresetA(auStack_c0,uStack_114);
-  FUN_001f2c10(&uStack_10,uStack_114,1);
+  Demo_GetRoadPoint(&uStack_10,uStack_114,1);
   uStack_114 = CONCAT22(uStack_e,uStack_10);
   Cam_LoadPresetC(auStack_20,uStack_114);
   vu0math_sub_001333b0(param_1,param_2,auStack_50,4,0x10);
@@ -1348,7 +1348,7 @@ void Cam_ComputeOrbitMatrix(float param_1,undefined8 param_2,undefined8 param_3,
     vu0math_sub_00132b10(0xbf800000,auStack_90,auStack_90);
     vu0math_sub_00132b10(0xbf800000,auStack_110,auStack_110);
   }
-  FUN_001f28c0(param_3,auStack_80,auStack_110,auStack_90);
+  Demo_ResetMatrix(param_3,auStack_80,auStack_110,auStack_90);
   return;
 }
 
@@ -1363,7 +1363,7 @@ void Cam_LoadPresetA(undefined4 *param_1,undefined4 param_2)
   
   uStack_8 = (undefined2)param_2;
   sStack_6 = (short)((uint)param_2 >> 0x10);
-  FUN_001f3050(&iStack_4,uStack_8);
+  RoadData_GetSectionEnd(&iStack_4,uStack_8);
   iVar1 = sStack_6 * 0xc;
   *param_1 = *(undefined4 *)(iStack_4 + iVar1);
   param_1[1] = *(undefined4 *)(iVar1 + iStack_4 + 4);
@@ -1383,7 +1383,7 @@ void Cam_LoadPresetB(undefined4 *param_1,undefined4 param_2)
   
   uStack_8 = (undefined2)param_2;
   sStack_6 = (short)((uint)param_2 >> 0x10);
-  FUN_001f3020(&iStack_4,uStack_8);
+  RoadData_GetSectionStart(&iStack_4,uStack_8);
   iVar1 = sStack_6 * 0xc;
   *param_1 = *(undefined4 *)(iStack_4 + iVar1);
   param_1[1] = *(undefined4 *)(iVar1 + iStack_4 + 4);
@@ -1403,7 +1403,7 @@ void Cam_LoadPresetC(undefined4 *param_1,undefined4 param_2)
   
   uStack_8 = (undefined2)param_2;
   sStack_6 = (short)((uint)param_2 >> 0x10);
-  FUN_001f3090(&iStack_4,uStack_8);
+  RoadData_GetSegmentTable(&iStack_4,uStack_8);
   iVar1 = sStack_6 * 0x20;
   *param_1 = *(undefined4 *)(iStack_4 + iVar1);
   param_1[1] = *(undefined4 *)(iVar1 + iStack_4 + 4);
@@ -1895,7 +1895,7 @@ bool Cam_RaycastCourse(int param_1,int param_2,int param_3)
     do {
       vu0math_sub_00132b10((float)iVar3,auStack_10,iVar1 + 0x10);
       fVar4 = (float)vu0math_sub_00132ab0(auStack_10,param_2);
-      FUN_0020e560(fVar4 - *(float *)(iVar1 + 0x20),auStack_10,param_1 + 0x100,param_1);
+      Minimap_Draw(fVar4 - *(float *)(iVar1 + 0x20),auStack_10,param_1 + 0x100,param_1);
       iVar2 = iVar2 + 1;
       iVar1 = iVar1 + 0x20;
     } while (iVar2 < 3);
@@ -1951,20 +1951,20 @@ Cam_SweepTest(undefined8 param_1,int param_2,undefined8 param_3,int param_4,unde
   uStack_14 = 0x3f800000;
   uStack_8 = vu0math_sub_00132ab0(auStack_20,param_4);
   uStack_4 = uStack_8;
-  FUN_0020e3b0(auStack_20,param_2,&fStack_c,&fStack_10);
+  Minimap_ClampToFrame(auStack_20,param_2,&fStack_c,&fStack_10);
   uVar9 = vu0math_sub_00132ab0(auStack_20,auStack_130);
-  lVar2 = FUN_0020e1f0(0x3f800000,uVar9,uStack_4,uStack_8,fStack_c,fStack_10,param_1,puVar6);
+  lVar2 = Minimap_Project(0x3f800000,uVar9,uStack_4,uStack_8,fStack_c,fStack_10,param_1,puVar6);
   if (lVar2 == 0) {
     iVar4 = 0;
     iVar7 = param_2;
     do {
       vu0math_sub_00132ae0(auStack_20,iVar7 + 0x10);
-      FUN_0020e490(auStack_20,param_4,4,&uStack_4,&uStack_8);
+      Minimap_RotatePoint(auStack_20,param_4,4,&uStack_4,&uStack_8);
       fStack_10 = (float)vu0math_sub_00132ab0(auStack_20,param_2);
       fStack_c = fStack_10 - *(float *)(iVar7 + 0x20);
       fStack_10 = fStack_10 + *(float *)(iVar7 + 0x20);
       uVar9 = vu0math_sub_00132ab0(auStack_20,auStack_130);
-      lVar2 = FUN_0020e1f0(0x3f800000,uVar9,uStack_4,uStack_8,fStack_c,fStack_10,param_1,puVar6);
+      lVar2 = Minimap_Project(0x3f800000,uVar9,uStack_4,uStack_8,fStack_c,fStack_10,param_1,puVar6);
       if (lVar2 != 0) {
         return 0;
       }
@@ -1977,10 +1977,11 @@ Cam_SweepTest(undefined8 param_1,int param_2,undefined8 param_3,int param_4,unde
       iVar4 = param_2;
       do {
         vu0math_sub_00132a90(auStack_20,puVar8,iVar4 + 0x10);
-        FUN_0020e490(auStack_20,param_4,4,&uStack_4,&uStack_8);
-        FUN_0020e3b0(auStack_20,param_2,&fStack_c,&fStack_10);
+        Minimap_RotatePoint(auStack_20,param_4,4,&uStack_4,&uStack_8);
+        Minimap_ClampToFrame(auStack_20,param_2,&fStack_c,&fStack_10);
         uVar9 = vu0math_sub_00132ab0(auStack_20,auStack_130);
-        lVar2 = FUN_0020e1f0(0x3f800000,uVar9,uStack_4,uStack_8,fStack_c,fStack_10,param_1,puVar6);
+        lVar2 = Minimap_Project(0x3f800000,uVar9,uStack_4,uStack_8,fStack_c,fStack_10,param_1,puVar6
+                               );
         if (lVar2 != 0) {
           return 0;
         }

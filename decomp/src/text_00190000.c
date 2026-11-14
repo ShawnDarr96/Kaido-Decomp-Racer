@@ -3,75 +3,75 @@
 #include "ghidra_types.h"
 
 // 0x00190060  size 0x98
-undefined4 FUN_00190060(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 SndCh_ProgramChange(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (param_4 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0x700);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (param_4 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0x700);
   return 1;
 }
 
 // 0x00190100  size 0xac
-undefined4 FUN_00190100(int param_1,uint param_2,byte param_3,short param_4)
+undefined4 SndCh_ProgramChangePan(int param_1,uint param_2,byte param_3,short param_4)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (((int)param_4 + 0x2000U & 0x3f80) >> 7) << 0x10 |
-                      (uint)(param_3 | 0xe0) | ((int)param_4 + 0x2000U & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (((int)param_4 + 0x2000U & 0x3f80) >> 7) << 0x10 |
+                   (uint)(param_3 | 0xe0) | ((int)param_4 + 0x2000U & 0x7f) << 8);
   return 1;
 }
 
 // 0x001901b0  size 0x98
-undefined4 FUN_001901b0(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 SndCh_SetVolumeCc(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (param_4 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xa00);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (param_4 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xa00);
   return 1;
 }
 
 // 0x00190250  size 0x98
-undefined4 FUN_00190250(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 SndCh_SetPanCc(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (param_4 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xb00);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (param_4 & 0x7f) << 0x10 | (param_3 | 0xb0) | 0xb00);
   return 1;
 }
 
 // 0x001902f0  size 0x94
-undefined4 FUN_001902f0(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 SndCh_SetExpressionCc(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_2;
   *(byte *)(param_1 + 0xd) = param_3;
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
-  newlib_sub_00124918((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
-                      (uint)(param_3 | 0x80) | (param_4 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0xc0) | (param_2 & 0x7f) << 8);
+  Midi_SendMessage((*(undefined4 **)(param_1 + 4))[1],**(undefined4 **)(param_1 + 4),
+                   (uint)(param_3 | 0x80) | (param_4 & 0x7f) << 8);
   return 1;
 }
 
 // 0x00190390  size 0x14c
 undefined4
-FUN_00190390(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
-            ulong param_6,undefined8 param_7)
+SndCh_PlayVoice(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
+               ulong param_6,undefined8 param_7)
 
 {
   int *piVar1;
@@ -79,11 +79,10 @@ FUN_00190390(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
   piVar1 = (int *)param_1;
   *(char *)(piVar1 + 3) = (char)param_2;
   *(char *)((int)piVar1 + 0xd) = (char)param_3;
-  newlib_sub_00124918(((undefined4 *)piVar1[1])[1],*(undefined4 *)piVar1[1],
-                      param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
-  newlib_sub_00124918(((undefined4 *)piVar1[1])[1],*(undefined4 *)piVar1[1],
-                      (param_4 & 0x7f) << 0x10 | param_3 & 0xff | 0x90 | ((uint)param_5 & 0x7f) << 8
-                     );
+  Midi_SendMessage(((undefined4 *)piVar1[1])[1],*(undefined4 *)piVar1[1],
+                   param_3 & 0xff | 0xc0 | ((uint)param_2 & 0x7f) << 8);
+  Midi_SendMessage(((undefined4 *)piVar1[1])[1],*(undefined4 *)piVar1[1],
+                   (param_4 & 0x7f) << 0x10 | param_3 & 0xff | 0x90 | ((uint)param_5 & 0x7f) << 8);
   if ((param_6 & 0xff) != 0x40) {
     (**(code **)(*piVar1 + 0x30))(param_1,param_2,param_3,param_6,param_5);
   }
@@ -94,7 +93,7 @@ FUN_00190390(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,und
 }
 
 // 0x001904e0  size 0x4c
-long FUN_001904e0(long param_1,short param_2)
+long snd_sub_001904e0(long param_1,short param_2)
 
 {
   if ((param_1 != 0) && (*(undefined4 *)param_1 = &DAT_0036e4c0, 0 < param_2)) {
@@ -104,7 +103,7 @@ long FUN_001904e0(long param_1,short param_2)
 }
 
 // 0x00190530  size 0x7fc
-long FUN_00190530(undefined8 param_1)
+long SndMgr_UpdateStreams(undefined8 param_1)
 
 {
   char cVar1;
@@ -132,7 +131,7 @@ long FUN_00190530(undefined8 param_1)
   cVar3 = Snd_StreamGetState(*piVar11);
   cVar4 = Snd_IsBusy(8);
   iVar5 = iRam0036f250;
-  uVar7 = FUN_002bc1f0();
+  uVar7 = script_sub_002bc1f0();
   cVar1 = (char)piVar11[1];
   if (((cVar1 == '\x19') || (cVar1 == '\x18')) || (cVar1 == '\x17')) {
     piVar6 = (int *)0x0;
@@ -202,15 +201,15 @@ long FUN_00190530(undefined8 param_1)
       }
     }
     else if (piVar6[4] != 0) {
-      FUN_00190d30(param_1,piVar11);
+      SndMgr_PostEvent(param_1,piVar11);
       cVar1 = (char)piVar11[1];
       goto LAB_00190a7c;
     }
     break;
   case '\x05':
     if (*piVar6 != piVar11[2]) {
-      lVar10 = FUN_002f6440(8);
-      if ((lVar10 == 0) || (lVar10 = FUN_002f63f0(8), lVar10 == 0)) {
+      lVar10 = nameentry_sub_002f6440(8);
+      if ((lVar10 == 0) || (lVar10 = nameentry_sub_002f63f0(8), lVar10 == 0)) {
         lVar10 = 0;
       }
       else {
@@ -270,8 +269,8 @@ long FUN_00190530(undefined8 param_1)
     lVar10 = 1;
     break;
   case '\v':
-    lVar10 = FUN_002f6440(8);
-    if ((lVar10 == 0) || (lVar10 = FUN_002f63f0(8), lVar10 == 0)) {
+    lVar10 = nameentry_sub_002f6440(8);
+    if ((lVar10 == 0) || (lVar10 = nameentry_sub_002f63f0(8), lVar10 == 0)) {
       lVar10 = 0;
     }
     else {
@@ -304,37 +303,37 @@ long FUN_00190530(undefined8 param_1)
     lVar10 = 0;
     break;
   case '\x13':
-    lVar10 = FUN_002bc0b0(uVar7);
-    if ((lVar10 != 0) && (lVar10 = FUN_002b9080(uVar7,0xffffffffffffffff), lVar10 == 0)) {
-      FUN_002b97c0(uVar7,piVar11[2]);
+    lVar10 = script_sub_002bc0b0(uVar7);
+    if ((lVar10 != 0) && (lVar10 = script_sub_002b9080(uVar7,0xffffffffffffffff), lVar10 == 0)) {
+      script_sub_002b97c0(uVar7,piVar11[2]);
       *(undefined1 *)(piVar11 + 1) = 0x14;
       *piVar6 = piVar11[2];
     }
     lVar10 = 0;
     break;
   case '\x14':
-    lVar10 = FUN_002b9080(uVar7,0xffffffffffffffff);
+    lVar10 = script_sub_002b9080(uVar7,0xffffffffffffffff);
     if (lVar10 == 0) {
-      FUN_002bb4c0(uVar7);
+      script_sub_002bb4c0(uVar7);
       *(undefined1 *)(piVar11 + 1) = 0x15;
     }
     lVar10 = 0;
     break;
   case '\x15':
-    lVar8 = FUN_002bb460(uVar7);
+    lVar8 = script_sub_002bb460(uVar7);
     if (lVar8 == 0) {
       lVar10 = 0;
     }
     else {
-      lVar8 = FUN_002b9290(uVar7);
+      lVar8 = script_sub_002b9290(uVar7);
       if (lVar8 == 0) {
         piVar2 = *(int **)(iVar5 + *piVar11 * 4);
         (**(code **)(*piVar2 + 0x28))(piVar2,0xff);
       }
       else {
-        FUN_002b8ca0(uVar7,&uStack_4,&uStack_10);
-        FUN_002b8c30(uVar7,&uStack_8,&uStack_14);
-        FUN_002b8bc0(uVar7,&uStack_c,&uStack_18);
+        script_sub_002b8ca0(uVar7,&uStack_4,&uStack_10);
+        script_sub_002b8c30(uVar7,&uStack_8,&uStack_14);
+        script_sub_002b8bc0(uVar7,&uStack_c,&uStack_18);
         Snd_PlayStream(*(undefined4 *)(*(int *)(iVar5 + *piVar11 * 4) + 0x40),uStack_4,uStack_10,
                        uStack_8,uStack_14,uStack_c,uStack_18);
       }
@@ -375,7 +374,9 @@ LAB_00190a7c:
 }
 
 // 0x00190d30  size 0x1d4
-undefined4 FUN_00190d30(int param_1,int *param_2)
+/* 17 callers */
+
+undefined4 SndMgr_PostEvent(int param_1,int *param_2)
 
 {
   undefined4 uVar1;
@@ -473,7 +474,7 @@ undefined4 FUN_00190d30(int param_1,int *param_2)
 }
 
 // 0x00190f10  size 0xfc
-void FUN_00190f10(int param_1)
+void SndMgr_PauseAll(int param_1)
 
 {
   (**(code **)(**(int **)(param_1 + 0x28) + 0x3c))();
@@ -491,7 +492,7 @@ void FUN_00190f10(int param_1)
 }
 
 // 0x00191010  size 0xfc
-void FUN_00191010(int param_1)
+void SndMgr_ResumeAll(int param_1)
 
 {
   (**(code **)(**(int **)(param_1 + 0x28) + 0x38))();
@@ -509,7 +510,7 @@ void FUN_00191010(int param_1)
 }
 
 // 0x00191110  size 0x22c
-void FUN_00191110(int param_1,undefined4 param_2)
+void SndMgr_PlayEngine(int param_1,undefined4 param_2)
 
 {
   undefined4 uStack_100;
@@ -585,7 +586,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_8 = 0;
   uStack_4 = 0;
   uStack_14 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_20);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_20);
   uStack_40 = *(undefined4 *)(*(int *)(param_1 + 0x1c) + 8);
   uStack_38 = 0xffffffff;
   uStack_30 = 0x3f;
@@ -594,7 +595,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_28 = 0;
   uStack_24 = 0;
   uStack_34 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_40);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_40);
   uStack_60 = *(undefined4 *)(*(int *)(param_1 + 0x20) + 8);
   uStack_58 = 0xffffffff;
   uStack_50 = 0x3f;
@@ -603,7 +604,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_48 = 0;
   uStack_44 = 0;
   uStack_54 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_60);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_60);
   uStack_80 = *(undefined4 *)(*(int *)(param_1 + 0x24) + 8);
   uStack_78 = 0xffffffff;
   uStack_70 = 0x3f;
@@ -612,7 +613,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_68 = 0;
   uStack_64 = 0;
   uStack_74 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_80);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_80);
   uStack_a0 = *(undefined4 *)(*(int *)(param_1 + 0x28) + 8);
   uStack_98 = 0xffffffff;
   uStack_90 = 0x3f;
@@ -621,7 +622,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_88 = 0;
   uStack_84 = 0;
   uStack_94 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_a0);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_a0);
   uStack_c0 = *(undefined4 *)(*(int *)(param_1 + 0x2c) + 8);
   uStack_b8 = 0xffffffff;
   uStack_b0 = 0x3f;
@@ -630,7 +631,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_a8 = 0;
   uStack_a4 = 0;
   uStack_b4 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_c0);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_c0);
   uStack_e0 = *(undefined4 *)(*(int *)(param_1 + 0x30) + 8);
   uStack_d8 = 0xffffffff;
   uStack_d0 = 0x3f;
@@ -639,7 +640,7 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_c8 = 0;
   uStack_c4 = 0;
   uStack_d4 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_e0);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_e0);
   uStack_100 = *(undefined4 *)(*(int *)(param_1 + 0x34) + 8);
   uStack_f8 = 0xffffffff;
   uStack_f0 = 0x3f;
@@ -648,12 +649,12 @@ void FUN_00191110(int param_1,undefined4 param_2)
   uStack_e8 = 0;
   uStack_e4 = 0;
   uStack_f4 = param_2;
-  FUN_00190d30(uGpffff8b64,&uStack_100);
+  SndMgr_PostEvent(uGpffff8b64,&uStack_100);
   return;
 }
 
 // 0x00191340  size 0xa4
-void FUN_00191340(undefined4 *param_1,undefined2 param_2)
+void SndMgr_SetPitchAll(undefined4 *param_1,undefined2 param_2)
 
 {
   (**(code **)(*(int *)param_1[2] + 0x20))((int *)param_1[2],param_2);
@@ -665,35 +666,37 @@ void FUN_00191340(undefined4 *param_1,undefined2 param_2)
 }
 
 // 0x001913f0  size 0x10
-undefined4 FUN_001913f0(int param_1,int param_2)
+undefined4 SndMgr_GetChannel(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x18);
 }
 
 // 0x00191400  size 0x10
-undefined4 FUN_00191400(int param_1,int param_2)
+undefined4 SndMgr_GetChannelB(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x18);
 }
 
 // 0x00191410  size 0x10
-undefined4 FUN_00191410(int param_1,int param_2)
+undefined4 SndMgr_GetSlot(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_1 + param_2 * 4);
 }
 
 // 0x00191420  size 0x8
-undefined4 maybe_Render_GetCurrentList(void)
+/* 31 callers */
+
+undefined4 SndMgr_GetInstance(void)
 
 {
   return uGpffff8b60;
 }
 
 // 0x00191430  size 0x584
-byte FUN_00191430(void)
+byte SndMgr_IsIdle(void)
 
 {
   bool bVar1;
@@ -956,7 +959,7 @@ LAB_0019186c:
 }
 
 // 0x001919c0  size 0x2f0
-undefined8 maybe_Render_Frame(undefined4 *param_1)
+undefined8 SndMgr_Update(undefined4 *param_1)
 
 {
   bool bVar1;
@@ -1005,7 +1008,7 @@ LAB_00191a00:
       *(char *)(iVar3 + 0x200) = *(char *)(iVar3 + 0x200) + -1;
     }
   }
-  if ((*(char *)(iVar2 + 0x400) != '\0') && (lVar8 = FUN_00190530(iVar2), lVar8 != 0)) {
+  if ((*(char *)(iVar2 + 0x400) != '\0') && (lVar8 = SndMgr_UpdateStreams(iVar2), lVar8 != 0)) {
     uVar9 = (int)*(char *)(iVar2 + 0x401) + 1;
     uVar6 = uVar9 & 0x1f;
     cVar4 = (char)uVar6;
@@ -1048,7 +1051,7 @@ LAB_00191a00:
 }
 
 // 0x00191cc0  size 0x104
-void FUN_00191cc0(void)
+void SndMgr_PauseGlobal(void)
 
 {
   int iVar1;
@@ -1071,7 +1074,7 @@ void FUN_00191cc0(void)
 }
 
 // 0x00191dd0  size 0x274
-void FUN_00191dd0(void)
+void SndMgr_Shutdown(void)
 
 {
   int *piVar1;
@@ -1157,7 +1160,7 @@ void FUN_00191dd0(void)
 }
 
 // 0x00192050  size 0x718
-void maybe_Render_Init(undefined8 param_1)
+void SndMgr_Init(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -1406,7 +1409,9 @@ void maybe_Render_Init(undefined8 param_1)
 }
 
 // 0x00192770  size 0x90
-uint FUN_00192770(ulong param_1)
+/* x * 384 / 15 */
+
+uint Snd_RpmToPitch(ulong param_1)
 
 {
   float fVar1;
@@ -1429,7 +1434,9 @@ uint FUN_00192770(ulong param_1)
 }
 
 // 0x00192800  size 0x20
-uint FUN_00192800(int param_1)
+/* x * 0x3fff / 15 */
+
+uint Snd_VolumeToMidi(int param_1)
 
 {
   return (uint)(param_1 * 0x3fff) / 0xf;
@@ -1439,7 +1446,7 @@ uint FUN_00192800(int param_1)
 /* WARNING: Removing unreachable block (ram,0x00192b38) */
 /* WARNING: Removing unreachable block (ram,0x00192bbc) */
 
-void FUN_00192890(undefined8 param_1,undefined8 param_2)
+void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
 
 {
   undefined1 uVar1;
@@ -1468,12 +1475,12 @@ void FUN_00192890(undefined8 param_1,undefined8 param_2)
   if (*piVar11 == 0) {
     return;
   }
-  iVar4 = FUN_001ca770();
+  iVar4 = RaceCar_GetIndex();
   if ((*(uint *)(iVar4 + 4) & 0x100) != 0) {
     return;
   }
   (**(code **)(*(int *)(piVar11[3] + 8) + 0x10))();
-  bRam0036f270 = FUN_001937f0(param_1,param_2);
+  bRam0036f270 = CarSnd_ComputeListener(param_1,param_2);
   fVar13 = (float)Cam_ComputeFov(param_2,*piVar11);
   iRam0036f274 = (int)(fVar13 * 8192.0 - 8192.0);
   if (iRam0036f274 < -0x2000) {
@@ -1505,7 +1512,7 @@ void FUN_00192890(undefined8 param_1,undefined8 param_2)
   lVar7 = Loading_IsActive();
   if ((lVar7 == 0) || (iRam0036f1f8 != 0)) goto LAB_00192ba0;
   uVar8 = GameState_Elem_f0_xcc(0);
-  uVar8 = FUN_001d2280(uVar8,0xb);
+  uVar8 = CarRec_GetPartData(uVar8,0xb);
   fVar13 = 1.0;
   switch(uVar8) {
   case 0:
@@ -1541,10 +1548,10 @@ LAB_00192ba0:
     piVar11[5] = piVar11[5] & 0xfffffffd;
   }
   else {
-    FUN_001946a0(piVar11 + 4,*piVar11);
+    CarSnd_UpdateTireSqueal(piVar11 + 4,*piVar11);
     iVar4 = *piVar11;
     if ((piVar11[0x18] & 1U) != 0) {
-      iVar6 = FUN_001ca760(iVar4);
+      iVar6 = RaceCar_GetTracker(iVar4);
       uVar8 = phys_sub_00162430(*(undefined4 *)(iVar4 + 0x158),0xffffffffffffffff);
       if ((*(uint *)(iVar6 + 0x60) & 0x40) != 0) {
         fVar14 = (float)PhysWorld_GetFirstBody(uVar8);
@@ -1556,14 +1563,14 @@ LAB_00192ba0:
         fVar15 = DAT_0036e7e8 + 0.0;
         fVar14 = 127.0 - DAT_0036e7e8;
         uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        lVar7 = FUN_0018fa50(uVar8);
+        lVar7 = snd_sub_0018fa50(uVar8);
         if (lVar7 == 0) {
           uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
           uVar9 = (**(code **)(*piVar12 + 0xc))(piVar12,6);
           uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
           (**(code **)(*(int *)uVar8 + 0x24))(uVar8,6,uVar9,0x7f,uVar10,0x40,0);
           uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-          lVar7 = FUN_0018fa50(uVar8);
+          lVar7 = snd_sub_0018fa50(uVar8);
           if (lVar7 == 0) {
             uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
             uVar1 = (**(code **)(*piVar12 + 0xc))(piVar12,6);
@@ -1577,21 +1584,21 @@ LAB_00192ba0:
         }
       }
     }
-    FUN_001959f0(piVar11[3],*piVar11);
-    FUN_001940f0(piVar11 + 9,*piVar11);
-    FUN_001939e0(piVar11 + 0xf,*piVar11);
+    CarSnd_UpdateWind(piVar11[3],*piVar11);
+    CarSnd_UpdateTurbo(piVar11 + 9,*piVar11);
+    CarSnd_UpdateEngine(piVar11 + 0xf,*piVar11);
     if (((piVar11[0x1a] & 1U) != 0) && (*(char *)(*piVar11 + 0x8e8) != '\0')) {
       fVar13 = (float)fabsf(*(undefined4 *)(*piVar11 + 0x8ec));
       piVar12 = (int *)piVar11[0x19];
       uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-      lVar7 = FUN_0018fa50(uVar8);
+      lVar7 = snd_sub_0018fa50(uVar8);
       if (lVar7 == 0) {
         uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
         uVar9 = (**(code **)(*piVar12 + 0xc))(piVar12,2);
         uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
         (**(code **)(*(int *)uVar8 + 0x24))(uVar8,2,uVar9,0x7f,uVar10,0x40,0);
         uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        lVar7 = FUN_0018fa50(uVar8);
+        lVar7 = snd_sub_0018fa50(uVar8);
         if (lVar7 == 0) {
           uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
           uVar1 = (**(code **)(*piVar12 + 0xc))(piVar12,2);
@@ -1604,13 +1611,13 @@ LAB_00192ba0:
         }
       }
     }
-    FUN_001960b0(piVar11 + 0x1b,*piVar11);
+    CarSnd_UpdateGearShift(piVar11 + 0x1b,*piVar11);
   }
   return;
 }
 
 // 0x00193070  size 0xc8
-void FUN_00193070(int param_1)
+void CarSnd_StopVoice(int param_1)
 
 {
   (**(code **)(**(int **)(param_1 + 0x24) + 8))
@@ -1628,7 +1635,7 @@ void FUN_00193070(int param_1)
 }
 
 // 0x00193140  size 0x10c
-void FUN_00193140(undefined4 *param_1,long param_2)
+void CarSnd_Attach(undefined4 *param_1,long param_2)
 
 {
   undefined8 uVar1;
@@ -1646,12 +1653,12 @@ void FUN_00193140(undefined4 *param_1,long param_2)
     if (*(char *)(param_1[1] + 4) == '\0') {
       param_1[0x1c] = param_1[0x1c] | 1;
       uVar1 = GameState_Elem_f0_xcc(0);
-      FUN_001d2280(uVar1,1);
-      uVar1 = maybe_Render_GetCurrentList();
-      uVar1 = FUN_00191400(uVar1,3);
+      CarRec_GetPartData(uVar1,1);
+      uVar1 = SndMgr_GetInstance();
+      uVar1 = SndMgr_GetChannelB(uVar1,3);
       if (param_1[0x1d] != 2) {
         param_1[0x1d] = 2;
-        FUN_0018faf0(uVar1,0x1c1c,0x1c65,0,0);
+        snd_sub_0018faf0(uVar1,0x1c1c,0x1c65,0,0);
       }
     }
     else {
@@ -1662,7 +1669,7 @@ void FUN_00193140(undefined4 *param_1,long param_2)
 }
 
 // 0x00193250  size 0x1e0
-void FUN_00193250(int param_1,long param_2,undefined8 param_3)
+void CarSnd_CreateVoice(int param_1,long param_2,undefined8 param_3)
 
 {
   undefined4 uVar1;
@@ -1670,7 +1677,7 @@ void FUN_00193250(int param_1,long param_2,undefined8 param_3)
   long lVar3;
   int iVar4;
   
-  uVar2 = maybe_Render_GetCurrentList();
+  uVar2 = SndMgr_GetInstance();
   lVar3 = Mem_Alloc16(8,param_3);
   if (lVar3 != 0) {
     *(undefined4 *)lVar3 = &DAT_0036e560;
@@ -1687,7 +1694,7 @@ void FUN_00193250(int param_1,long param_2,undefined8 param_3)
     if (lVar3 != 0) {
       *(undefined **)(iVar4 + 8) = &DAT_0036e500;
     }
-    uVar1 = FUN_00191400(uVar2,7);
+    uVar1 = SndMgr_GetChannelB(uVar2,7);
     *(undefined4 *)(iVar4 + 0x54) = uVar1;
     *(int *)(param_1 + 0xc) = iVar4;
   }
@@ -1730,13 +1737,13 @@ void FUN_00193250(int param_1,long param_2,undefined8 param_3)
   *(undefined4 *)(param_1 + 0x5c) = *(undefined4 *)(param_1 + 4);
   *(undefined4 *)(param_1 + 100) = *(undefined4 *)(param_1 + 4);
   *(undefined4 *)(param_1 + 0x6c) = *(undefined4 *)(param_1 + 8);
-  uVar1 = FUN_00191400(uVar2,(int)param_2 + 4);
+  uVar1 = SndMgr_GetChannelB(uVar2,(int)param_2 + 4);
   *(undefined4 *)(*(int *)(param_1 + 0xc) + 0xc) = uVar1;
   return;
 }
 
 // 0x00193430  size 0x168
-void FUN_00193430(void)
+void CarSnd_UpdateAll(void)
 
 {
   int iVar1;
@@ -1785,7 +1792,7 @@ void FUN_00193430(void)
 }
 
 // 0x001935a0  size 0x10c
-void FUN_001935a0(void)
+void CarSnd_Shutdown(void)
 
 {
   undefined8 uVar1;
@@ -1794,7 +1801,7 @@ void FUN_001935a0(void)
   int iVar4;
   int iVar5;
   
-  uVar1 = maybe_Render_GetCurrentList();
+  uVar1 = SndMgr_GetInstance();
   iVar4 = 0;
   iVar3 = 0;
   do {
@@ -1810,16 +1817,16 @@ void FUN_001935a0(void)
     iVar4 = iVar4 + 1;
     iVar3 = iVar3 + 0x80;
   } while (iVar4 < 3);
-  uVar2 = FUN_001913f0(uVar1,1);
-  FUN_0018ee60(uVar2,0);
-  uVar2 = FUN_001913f0(uVar1,2);
-  FUN_0018ee60(uVar2,0);
-  uVar2 = FUN_001913f0(uVar1,4);
-  FUN_0018ee60(uVar2,0);
-  uVar2 = FUN_001913f0(uVar1,5);
-  FUN_0018ee60(uVar2,0);
-  uVar1 = FUN_001913f0(uVar1,6);
-  FUN_0018ee60(uVar1,0);
+  uVar2 = SndMgr_GetChannel(uVar1,1);
+  SndCh_SetMidiPort(uVar2,0);
+  uVar2 = SndMgr_GetChannel(uVar1,2);
+  SndCh_SetMidiPort(uVar2,0);
+  uVar2 = SndMgr_GetChannel(uVar1,4);
+  SndCh_SetMidiPort(uVar2,0);
+  uVar2 = SndMgr_GetChannel(uVar1,5);
+  SndCh_SetMidiPort(uVar2,0);
+  uVar1 = SndMgr_GetChannel(uVar1,6);
+  SndCh_SetMidiPort(uVar1,0);
   if (iGpffff8b7c != 0) {
     Mem_Free();
     iGpffff8b7c = 0;
@@ -1828,7 +1835,7 @@ void FUN_001935a0(void)
 }
 
 // 0x001936b0  size 0x134
-void FUN_001936b0(undefined8 param_1)
+void CarSnd_Init(undefined8 param_1)
 
 {
   undefined8 uVar1;
@@ -1837,24 +1844,24 @@ void FUN_001936b0(undefined8 param_1)
   int iVar4;
   int iVar5;
   
-  uVar1 = maybe_Render_GetCurrentList();
+  uVar1 = SndMgr_GetInstance();
   uVar2 = Mem_Alloc16(0x180,param_1);
   iGpffff8b7c = (int)uVar2;
   Mem_Set16(uVar2,0,0x180);
-  uVar2 = FUN_001913f0(uVar1,1);
-  FUN_0018ee60(uVar2,(int)register0x000001c0 + -0x7480);
-  uVar2 = FUN_001913f0(uVar1,2);
-  FUN_0018ee60(uVar2,(int)register0x000001c0 + -0x7480);
-  uVar2 = FUN_001913f0(uVar1,3);
-  FUN_0018ee60(uVar2,(int)register0x000001c0 + -0x7480);
-  uVar2 = FUN_001913f0(uVar1,4);
-  FUN_0018ee60(uVar2,(int)register0x000001c0 + -0x7480);
-  uVar2 = FUN_001913f0(uVar1,5);
-  FUN_0018ee60(uVar2,(int)register0x000001c0 + -0x7480);
-  uVar2 = FUN_001913f0(uVar1,6);
-  FUN_0018ee60(uVar2,(int)register0x000001c0 + -0x7480);
-  uVar1 = FUN_001913f0(uVar1,7);
-  FUN_0018ee60(uVar1,(int)register0x000001c0 + -0x7480);
+  uVar2 = SndMgr_GetChannel(uVar1,1);
+  SndCh_SetMidiPort(uVar2,(int)register0x000001c0 + -0x7480);
+  uVar2 = SndMgr_GetChannel(uVar1,2);
+  SndCh_SetMidiPort(uVar2,(int)register0x000001c0 + -0x7480);
+  uVar2 = SndMgr_GetChannel(uVar1,3);
+  SndCh_SetMidiPort(uVar2,(int)register0x000001c0 + -0x7480);
+  uVar2 = SndMgr_GetChannel(uVar1,4);
+  SndCh_SetMidiPort(uVar2,(int)register0x000001c0 + -0x7480);
+  uVar2 = SndMgr_GetChannel(uVar1,5);
+  SndCh_SetMidiPort(uVar2,(int)register0x000001c0 + -0x7480);
+  uVar2 = SndMgr_GetChannel(uVar1,6);
+  SndCh_SetMidiPort(uVar2,(int)register0x000001c0 + -0x7480);
+  uVar1 = SndMgr_GetChannel(uVar1,7);
+  SndCh_SetMidiPort(uVar1,(int)register0x000001c0 + -0x7480);
   iVar5 = 0;
   iVar4 = 0;
   do {
@@ -1864,7 +1871,7 @@ void FUN_001936b0(undefined8 param_1)
     else {
       iVar3 = iGpffff8b7c + iVar4;
     }
-    FUN_00193250(iVar3,iVar5,param_1);
+    CarSnd_CreateVoice(iVar3,iVar5,param_1);
     iVar5 = iVar5 + 1;
     iVar4 = iVar4 + 0x80;
   } while (iVar5 < 3);
@@ -1872,7 +1879,7 @@ void FUN_001936b0(undefined8 param_1)
 }
 
 // 0x001937f0  size 0x1f0
-uint FUN_001937f0(int *param_1,undefined8 param_2)
+uint CarSnd_ComputeListener(int *param_1,undefined8 param_2)
 
 {
   undefined4 *puVar1;
@@ -1934,7 +1941,7 @@ uint FUN_001937f0(int *param_1,undefined8 param_2)
 }
 
 // 0x001939e0  size 0x708
-void FUN_001939e0(undefined4 *param_1,undefined8 param_2)
+void CarSnd_UpdateEngine(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined1 uVar1;
@@ -1954,7 +1961,7 @@ void FUN_001939e0(undefined4 *param_1,undefined8 param_2)
   if ((param_1[1] & 1) == 0) {
     return;
   }
-  fVar12 = (float)FUN_001ca7c0(param_2);
+  fVar12 = (float)RaceCar_GetSpeedKmh(param_2);
   param_1[2] = (int)((DAT_0036e7cc * fVar12) / DAT_0036e7c8);
   fVar12 = fRam0036f278;
   if ((param_1[1] & 2) != 0) {
@@ -1963,7 +1970,7 @@ void FUN_001939e0(undefined4 *param_1,undefined8 param_2)
       param_1[1] = param_1[1] & 0xfffffffd;
     }
     else {
-      fVar13 = (float)FUN_001ca7c0(param_2);
+      fVar13 = (float)RaceCar_GetSpeedKmh(param_2);
       piVar11 = (int *)*param_1;
       uVar4 = *(ushort *)(param_1 + 2);
       uVar3 = *(undefined1 *)(param_1 + 7);
@@ -1971,7 +1978,7 @@ void FUN_001939e0(undefined4 *param_1,undefined8 param_2)
       fVar13 = (1.0 - fVar12) * DAT_0036e7c0;
       fVar12 = fVar12 * DAT_0036e7bc;
       uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar7 = FUN_0018fa50(uVar6);
+      lVar7 = snd_sub_0018fa50(uVar6);
       if (lVar7 == 0) {
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar1 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar3);
@@ -1989,14 +1996,14 @@ void FUN_001939e0(undefined4 *param_1,undefined8 param_2)
   piVar11 = (int *)*param_1;
   uVar3 = *(undefined1 *)(param_1 + 7);
   uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-  lVar7 = FUN_0018fa50(uVar6);
+  lVar7 = snd_sub_0018fa50(uVar6);
   if (lVar7 == 0) {
     uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
     uVar8 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar3);
     uVar9 = (**(code **)(*piVar11 + 0x10))(piVar11);
     (**(code **)(*(int *)uVar6 + 0x24))(uVar6,uVar3,uVar8,0x7f,uVar9,0x40,0);
     uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar7 = FUN_0018fa50(uVar6);
+    lVar7 = snd_sub_0018fa50(uVar6);
     if (lVar7 != 0) goto LAB_00193bc4;
     uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
     uVar1 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar3);
@@ -2013,21 +2020,21 @@ LAB_00193bc4:
   }
   param_1[1] = uVar5 | 2;
 LAB_00193bd4:
-  fVar12 = (float)FUN_001ca7c0(param_2);
+  fVar12 = (float)RaceCar_GetSpeedKmh(param_2);
   iVar10 = (int)param_2;
   uVar4 = (ushort)(int)((fVar12 * 127.0) / 128.0);
   if ((*(char *)(iVar10 + 0x1c8) == '\x04') || (*(char *)(iVar10 + 0x308) == '\x04')) {
     if (param_1[4] == 0) {
       piVar11 = (int *)*param_1;
       uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar7 = FUN_0018fa50(uVar6);
+      lVar7 = snd_sub_0018fa50(uVar6);
       if (lVar7 == 0) {
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar8 = (**(code **)(*piVar11 + 0xc))(piVar11,8);
         uVar9 = (**(code **)(*piVar11 + 0x10))(piVar11);
         (**(code **)(*(int *)uVar6 + 0x24))(uVar6,8,uVar8,0x7f,uVar9,0x40,0);
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-        lVar7 = FUN_0018fa50(uVar6);
+        lVar7 = snd_sub_0018fa50(uVar6);
         if (lVar7 == 0) {
           uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
           uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,8);
@@ -2039,7 +2046,7 @@ LAB_00193bd4:
         }
       }
       param_1[4] = 1;
-      fVar12 = (float)FUN_001ca7c0(param_2);
+      fVar12 = (float)RaceCar_GetSpeedKmh(param_2);
       param_1[6] = (int)(fVar12 / 32.0);
     }
   }
@@ -2050,14 +2057,14 @@ LAB_00193bd4:
     if (param_1[3] == 0) {
       piVar11 = (int *)*param_1;
       uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar7 = FUN_0018fa50(uVar6);
+      lVar7 = snd_sub_0018fa50(uVar6);
       if (lVar7 == 0) {
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar8 = (**(code **)(*piVar11 + 0xc))(piVar11,9);
         uVar9 = (**(code **)(*piVar11 + 0x10))(piVar11);
         (**(code **)(*(int *)uVar6 + 0x24))(uVar6,9,uVar8,0x7f,uVar9,0x40,0);
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-        lVar7 = FUN_0018fa50(uVar6);
+        lVar7 = snd_sub_0018fa50(uVar6);
         if (lVar7 == 0) {
           uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
           uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,9);
@@ -2069,7 +2076,7 @@ LAB_00193bd4:
         }
       }
       param_1[3] = 1;
-      fVar12 = (float)FUN_001ca7c0(param_2);
+      fVar12 = (float)RaceCar_GetSpeedKmh(param_2);
       param_1[5] = (int)(fVar12 / 32.0);
     }
   }

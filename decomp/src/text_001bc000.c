@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001bc010  size 0x210
-undefined4 FUN_001bc010(undefined8 param_1,undefined8 param_2,short param_3)
+undefined4 garage_sub_001bc010(undefined8 param_1,undefined8 param_2,short param_3)
 
 {
   short sVar1;
@@ -26,42 +26,42 @@ undefined4 FUN_001bc010(undefined8 param_1,undefined8 param_2,short param_3)
   psVar13 = (short *)(iVar4 + 0x1420);
   puVar12 = (undefined2 *)(iVar6 + *(short *)(iVar6 + 0x13ec) * 0xcc);
   if ((*(short *)(iVar4 + 0x1420) < 1) &&
-     (sVar3 = FUN_001d4010(*puVar12,param_2,0xffffffffffffffff), param_3 != sVar3)) {
+     (sVar3 = CarDb_FindDefaultPart(*puVar12,param_2,0xffffffffffffffff), param_3 != sVar3)) {
     uVar7 = 0;
   }
   else {
     sVar3 = *(short *)(iVar6 + 0x13ec);
     puVar11 = (undefined2 *)(iVar6 + sVar3 * 0xcc);
-    uVar8 = FUN_001d34f0(puVar11,param_2);
+    uVar8 = CarRec_GetPartSlotB(puVar11,param_2);
     psVar5 = (short *)uVar8;
     if ((char)psVar5[1] == '\x1f') {
       sVar1 = *psVar5;
-      sVar2 = FUN_001d4010(*puVar11,param_2,0xffffffffffffffff);
+      sVar2 = CarDb_FindDefaultPart(*puVar11,param_2,0xffffffffffffffff);
       if (CONCAT44((int)((ulong)(long)sVar1 >> 0x20),(int)sVar1) != (long)sVar2) {
         iVar6 = *psVar5 * 2 + iVar6;
         sVar1 = *(short *)(iVar6 + 0x1420);
         if (sVar1 < 99) {
           *(short *)(iVar6 + 0x1420) = sVar1 + 1;
         }
-        FUN_001bbeb0(param_1,sVar3,param_2);
-        FUN_001d2160(uVar8);
-        uVar9 = FUN_001d4010(*puVar11,param_2,0xffffffffffffffff);
-        FUN_001d2150(uVar8,uVar9);
+        garage_sub_001bbeb0(param_1,sVar3,param_2);
+        CarRec_ClearParts(uVar8);
+        uVar9 = CarDb_FindDefaultPart(*puVar11,param_2,0xffffffffffffffff);
+        CarRec_SetModelAndColor(uVar8,uVar9);
       }
     }
     else {
-      FUN_001d2160(uVar8);
-      uVar9 = FUN_001d4010(*puVar11,param_2,0xffffffffffffffff);
-      FUN_001d2150(uVar8,uVar9);
+      CarRec_ClearParts(uVar8);
+      uVar9 = CarDb_FindDefaultPart(*puVar11,param_2,0xffffffffffffffff);
+      CarRec_SetModelAndColor(uVar8,uVar9);
     }
     auStack_4[2] = 0x1f;
     auStack_4._0_2_ = param_3;
-    lVar10 = FUN_001d31e0(puVar12,param_2,auStack_4._0_3_);
+    lVar10 = CarRec_ApplyDefaultParts(puVar12,param_2,auStack_4._0_3_);
     if (lVar10 == 0) {
       uVar7 = 0;
     }
     else {
-      sVar3 = FUN_001d4010(*puVar12,param_2,0xffffffffffffffff);
+      sVar3 = CarDb_FindDefaultPart(*puVar12,param_2,0xffffffffffffffff);
       if (param_3 != sVar3) {
         *psVar13 = *psVar13 + -1;
       }
@@ -72,14 +72,14 @@ undefined4 FUN_001bc010(undefined8 param_1,undefined8 param_2,short param_3)
 }
 
 // 0x001bc220  size 0x18
-undefined2 FUN_001bc220(int param_1,short param_2)
+undefined2 garage_sub_001bc220(int param_1,short param_2)
 
 {
   return *(undefined2 *)(param_2 * 2 + param_1 + 0x1420);
 }
 
 // 0x001bc240  size 0x144
-void FUN_001bc240(undefined4 *param_1,int param_2)
+void garage_sub_001bc240(undefined4 *param_1,int param_2)
 
 {
   short sVar1;
@@ -102,7 +102,7 @@ void FUN_001bc240(undefined4 *param_1,int param_2)
   undefined4 uStack_8;
   
   sVar1 = *(short *)(param_2 + 0x13ec);
-  FUN_001d2190(auStack_d0);
+  CarRec_Init(auStack_d0);
   auStack_d0[0]._0_1_ = 1;
   puVar5 = auStack_bc;
   iVar4 = 0xf;
@@ -156,14 +156,14 @@ void FUN_001bc240(undefined4 *param_1,int param_2)
 }
 
 // 0x001bc390  size 0x1c
-int FUN_001bc390(int param_1,int param_2)
+int garage_sub_001bc390(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0xcc;
 }
 
 // 0x001bc3b0  size 0x40
-void FUN_001bc3b0(undefined4 *param_1,int param_2,int param_3)
+void garage_sub_001bc3b0(undefined4 *param_1,int param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -181,14 +181,14 @@ void FUN_001bc3b0(undefined4 *param_1,int param_2,int param_3)
 }
 
 // 0x001bc3f0  size 0x20
-int FUN_001bc3f0(int param_1)
+int garage_sub_001bc3f0(int param_1)
 
 {
   return param_1 + *(short *)(param_1 + 0x13ec) * 0xcc;
 }
 
 // 0x001bc410  size 0x44
-void FUN_001bc410(undefined4 *param_1,int param_2)
+void garage_sub_001bc410(undefined4 *param_1,int param_2)
 
 {
   undefined4 *puVar1;
@@ -206,21 +206,21 @@ void FUN_001bc410(undefined4 *param_1,int param_2)
 }
 
 // 0x001bc460  size 0x8
-undefined2 FUN_001bc460(int param_1)
+undefined2 garage_sub_001bc460(int param_1)
 
 {
   return *(undefined2 *)(param_1 + 0x13ec);
 }
 
 // 0x001bc470  size 0x24
-undefined2 FUN_001bc470(int param_1)
+undefined2 garage_sub_001bc470(int param_1)
 
 {
   return *(undefined2 *)(param_1 + *(short *)(param_1 + 0x13ec) * 0xcc);
 }
 
 // 0x001bc4a0  size 0x28
-undefined4 FUN_001bc4a0(int param_1,undefined2 param_2)
+undefined4 garage_sub_001bc4a0(int param_1,undefined2 param_2)
 
 {
   *(undefined2 *)(param_1 + *(short *)(param_1 + 0x13ec) * 0xcc + 2) = param_2;
@@ -228,7 +228,7 @@ undefined4 FUN_001bc4a0(int param_1,undefined2 param_2)
 }
 
 // 0x001bc4d0  size 0x1c
-void FUN_001bc4d0(undefined4 *param_1,int param_2)
+void garage_sub_001bc4d0(undefined4 *param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -243,21 +243,21 @@ void FUN_001bc4d0(undefined4 *param_1,int param_2)
 }
 
 // 0x001bc4f0  size 0x10
-bool FUN_001bc4f0(int param_1)
+bool garage_sub_001bc4f0(int param_1)
 
 {
   return *(int *)(param_1 + 0x14) < *(int *)(param_1 + 0x18);
 }
 
 // 0x001bc500  size 0x8
-undefined1 FUN_001bc500(int param_1)
+undefined1 garage_sub_001bc500(int param_1)
 
 {
   return *(undefined1 *)(param_1 + 0x10);
 }
 
 // 0x001bc510  size 0xe4
-void FUN_001bc510(short *param_1,char param_2)
+void garage_sub_001bc510(short *param_1,char param_2)
 
 {
   short sVar1;
@@ -295,14 +295,14 @@ LAB_001bc598:
 }
 
 // 0x001bc600  size 0x1c
-int FUN_001bc600(int param_1,int param_2)
+int garage_sub_001bc600(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0xcc;
 }
 
 // 0x001bc620  size 0x388
-void FUN_001bc620(int param_1)
+void garage_sub_001bc620(int param_1)
 
 {
   short *psVar1;
@@ -316,7 +316,7 @@ void FUN_001bc620(int param_1)
   iVar4 = param_1;
   iVar3 = param_1;
   do {
-    FUN_001d3510(iVar4);
+    CarRec_ResetColors(iVar4);
     iVar2 = iVar2 + 1;
     *(undefined2 *)(iVar3 + 0x13ee) = 0xffff;
     iVar4 = iVar4 + 0xcc;
@@ -473,7 +473,7 @@ void FUN_001bc620(int param_1)
   iVar3 = 0;
   iVar4 = param_1;
   do {
-    FUN_001d2fd0(iVar4 + 0x2570);
+    CarRec_ResetParts(iVar4 + 0x2570);
     iVar3 = iVar3 + 1;
     iVar4 = iVar4 + 0x44;
   } while (iVar3 < 6);
@@ -498,7 +498,7 @@ void FUN_001bc620(int param_1)
 }
 
 // 0x001bc9b0  size 0x94
-bool FUN_001bc9b0(int param_1,int param_2,long param_3)
+bool garage_sub_001bc9b0(int param_1,int param_2,long param_3)
 
 {
   bool bVar1;
@@ -521,7 +521,7 @@ bool FUN_001bc9b0(int param_1,int param_2,long param_3)
 }
 
 // 0x001bca50  size 0xa8
-void FUN_001bca50(int param_1,int param_2,long param_3)
+void garage_sub_001bca50(int param_1,int param_2,long param_3)
 
 {
   *(int *)(param_1 + 0x2738) = *(int *)(param_1 + 0x2738) + param_2;
@@ -541,14 +541,14 @@ void FUN_001bca50(int param_1,int param_2,long param_3)
 }
 
 // 0x001bcb00  size 0x8
-undefined4 FUN_001bcb00(int param_1)
+undefined4 garage_sub_001bcb00(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x2738);
 }
 
 // 0x001bcb10  size 0x354
-void FUN_001bcb10(undefined8 param_1)
+void garage_sub_001bcb10(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -576,7 +576,7 @@ void FUN_001bcb10(undefined8 param_1)
       iVar3 = 0;
       do {
         if (*(char *)(iVar6 + iVar3 + 0xd82c) == '\x02') {
-          iVar5 = FUN_00209280(iVar3);
+          iVar5 = GameDb_GetTeamInfo(iVar3);
           iVar7 = iVar7 + *(int *)(iVar5 + 0xc);
         }
         iVar3 = iVar3 + 1;
@@ -590,7 +590,7 @@ void FUN_001bcb10(undefined8 param_1)
         *(undefined4 *)(iVar6 + 0x2738) = 99999999;
       }
     }
-    FUN_001be430(param_1);
+    garage_sub_001be430(param_1);
   }
   *(undefined1 *)(iVar6 + 0x3fbc) = 0;
   *(undefined1 *)(iVar6 + 0x3fbd) = 0;
@@ -692,7 +692,7 @@ LAB_001bce30:
 }
 
 // 0x001bce70  size 0xe34
-void FUN_001bce70(int param_1)
+void garage_sub_001bce70(int param_1)
 
 {
   bool bVar1;
@@ -778,7 +778,7 @@ void FUN_001bce70(int param_1)
   do {
     if (*(int *)(iVar9 + 0x2a74) != -1) {
       bVar1 = false;
-      uVar2 = FUN_00209260(iStack_7f0);
+      uVar2 = GameDb_GetRivalCar(iStack_7f0);
       memcpy(&uStack_7e0,uVar2,0x50);
       iVar6 = 9;
       puVar13 = auStack_7dc;
@@ -828,9 +828,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -853,9 +854,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -878,9 +880,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -903,9 +906,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -927,9 +931,10 @@ void FUN_001bce70(int param_1)
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
               }
-              FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-              FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+              Career_AssignRivalCar
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                         0xffffffffffffffff);
+              Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
               *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
               bVar1 = true;
               break;
@@ -946,9 +951,10 @@ void FUN_001bce70(int param_1)
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
             }
-            FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         *(undefined1 *)(param_1 + 0x273d));
-            FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+            Career_AssignRivalCar
+                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                       *(undefined1 *)(param_1 + 0x273d));
+            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
             *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
             bVar1 = true;
           }
@@ -966,9 +972,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -992,9 +999,10 @@ void FUN_001bce70(int param_1)
                   if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                     iVar11 = iVar11 + -4;
                   }
-                  FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar11,uStack_d0
-                               ,puVar13[1]);
-                  FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar11,uStack_d0,
+                             puVar13[1]);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                   *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                   bVar1 = true;
                 }
@@ -1020,9 +1028,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             uVar15);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           uVar15);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -1045,9 +1054,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -1070,9 +1080,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -1094,9 +1105,10 @@ void FUN_001bce70(int param_1)
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
               }
-              FUN_001b46d0(auStack_80,*(int *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           *(int *)(param_1 + 0x2734) - *(int *)(iVar9 + 0x2a74));
-              FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+              Career_AssignRivalCar
+                        (auStack_80,*(int *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                         *(int *)(param_1 + 0x2734) - *(int *)(iVar9 + 0x2a74));
+              Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
               *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
               bVar1 = true;
               break;
@@ -1112,9 +1124,10 @@ void FUN_001bce70(int param_1)
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
             }
-            FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         (long)sStack_fc);
-            FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+            Career_AssignRivalCar
+                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                       (long)sStack_fc);
+            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
             *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
             bVar1 = true;
           }
@@ -1126,9 +1139,10 @@ void FUN_001bce70(int param_1)
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
             }
-            FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         (int)sStack_fa);
-            FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+            Career_AssignRivalCar
+                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                       (int)sStack_fa);
+            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
             *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
             bVar1 = true;
           }
@@ -1145,9 +1159,10 @@ void FUN_001bce70(int param_1)
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
               }
-              FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           *(undefined2 *)(param_1 + 0x5312));
-              FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+              Career_AssignRivalCar
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                         *(undefined2 *)(param_1 + 0x5312));
+              Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
               *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
               bVar1 = true;
               break;
@@ -1168,9 +1183,10 @@ void FUN_001bce70(int param_1)
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
               }
-              FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           *(undefined2 *)(param_1 + 0x5314));
-              FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+              Career_AssignRivalCar
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                         *(undefined2 *)(param_1 + 0x5314));
+              Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
               *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
               bVar1 = true;
               break;
@@ -1192,9 +1208,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -1217,9 +1234,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -1236,9 +1254,10 @@ void FUN_001bce70(int param_1)
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
             }
-            FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         0xffffffffffffffff);
-            FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+            Career_AssignRivalCar
+                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                       0xffffffffffffffff);
+            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
             *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
             bVar1 = true;
           }
@@ -1256,9 +1275,10 @@ void FUN_001bce70(int param_1)
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
                 }
-                FUN_001b46d0(auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                             0xffffffffffffffff);
-                FUN_001b3e10(param_1 + 0x531c,0,auStack_80);
+                Career_AssignRivalCar
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                           0xffffffffffffffff);
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
                 *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
                 bVar1 = true;
                 break;
@@ -1284,7 +1304,7 @@ void FUN_001bce70(int param_1)
 }
 
 // 0x001bdce0  size 0x14
-void FUN_001bdce0(int param_1,uint param_2)
+void garage_sub_001bdce0(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) & ~param_2;
@@ -1292,14 +1312,14 @@ void FUN_001bdce0(int param_1,uint param_2)
 }
 
 // 0x001bdd00  size 0x8
-undefined4 FUN_001bdd00(int param_1)
+undefined4 garage_sub_001bdd00(int param_1)
 
 {
   return *(undefined4 *)(param_1 + 0x272c);
 }
 
 // 0x001bdd10  size 0x10
-void FUN_001bdd10(int param_1,uint param_2)
+void garage_sub_001bdd10(int param_1,uint param_2)
 
 {
   *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) | param_2;
@@ -1307,7 +1327,7 @@ void FUN_001bdd10(int param_1,uint param_2)
 }
 
 // 0x001bdd20  size 0x70c
-void FUN_001bdd20(int param_1)
+void garage_sub_001bdd20(int param_1)
 
 {
   undefined4 uVar1;
@@ -1444,7 +1464,7 @@ void FUN_001bdd20(int param_1)
     sVar7 = 0;
     iVar8 = param_1;
     while( true ) {
-      uVar3 = FUN_002092c0(sVar7);
+      uVar3 = GameDb_GetRival(sVar7);
       memcpy(&uStack_480,uVar3,0x17c);
       puVar6 = auStack_43c;
       uStack_300 = uStack_480;
@@ -1602,11 +1622,11 @@ void FUN_001bdd20(int param_1)
     }
   }
   if ((*(uint *)(param_1 + 0x272c) & 0x1000) != 0) {
-    FUN_001c0290(param_1 + 0x5280,0);
+    Opponent_RandomizeGrid(param_1 + 0x5280,0);
     *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) & 0xffffefff;
   }
   if ((*(uint *)(param_1 + 0x272c) & 0x2000) != 0) {
-    FUN_001c0290(param_1 + 0x52c4,1);
+    Opponent_RandomizeGrid(param_1 + 0x52c4,1);
     *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) & 0xffffdfff;
   }
   if ((*(uint *)(param_1 + 0x272c) & 0x800) != 0) {
@@ -1624,7 +1644,7 @@ void FUN_001bdd20(int param_1)
 }
 
 // 0x001be430  size 0x380
-void FUN_001be430(int param_1)
+void garage_sub_001be430(int param_1)
 
 {
   undefined4 uVar1;
@@ -1637,7 +1657,7 @@ void FUN_001be430(int param_1)
   int iVar8;
   uint uVar9;
   
-  FUN_001bdd20();
+  garage_sub_001bdd20();
   iVar8 = 0;
   iVar5 = param_1 + 0x531c;
   iVar6 = param_1;
@@ -1667,15 +1687,15 @@ void FUN_001be430(int param_1)
     iVar6 = iVar6 + 8;
     iVar5 = iVar5 + 8;
     if (2 < iVar8) {
-      FUN_001b3fe0(param_1 + 0x531c);
-      FUN_001b4270(param_1 + 0x531c);
-      FUN_001b44f0(param_1 + 0x531c);
+      Career_SpawnNightRivals(param_1 + 0x531c);
+      Career_RefreshAvailability(param_1 + 0x531c);
+      Career_UpdateTeams(param_1 + 0x531c);
       *(undefined4 *)(param_1 + 0x94e0) = 0;
-      FUN_001bce70(param_1);
+      garage_sub_001bce70(param_1);
       iVar5 = 0;
       iVar6 = param_1;
       do {
-        FUN_001d2490(iVar6 + 0x2570,iVar5);
+        CarRec_Randomize(iVar6 + 0x2570,iVar5);
         iVar5 = iVar5 + 1;
         *(char *)(iVar6 + 0x25ac) = *(char *)(iVar6 + 0x25ac) + -1;
         iVar6 = iVar6 + 0x44;
@@ -1735,8 +1755,8 @@ void FUN_001be430(int param_1)
       *(undefined1 *)(param_1 + 0x3fc1) = 0;
       *(undefined1 *)(param_1 + 0x3fc2) = 0;
       *(undefined1 *)(param_1 + 0x3fc3) = 0;
-      FUN_002094a0(0);
-      FUN_002094a0(1);
+      GameDb_ApplyToProfile(0);
+      GameDb_ApplyToProfile(1);
       iVar5 = 0;
       iVar6 = param_1 + 0x272c;
       do {
@@ -1784,26 +1804,26 @@ void FUN_001be430(int param_1)
       } while (iVar5 < 0x28);
       *(int *)(param_1 + 0x274c) = iVar8;
       if (*(int *)(param_1 + 0x2734) % 7 == 0) {
-        uVar3 = FUN_001afc10();
+        uVar3 = Rival_BuildEncounterList();
         *(undefined1 *)(param_1 + 0x273d) = uVar3;
-        uVar3 = FUN_001af8a0();
+        uVar3 = Rival_PickEncounter();
         *(undefined1 *)(param_1 + 0x273f) = uVar3;
       }
       uVar9 = 0;
       *(undefined2 *)(param_1 + 0x5318) = *(undefined2 *)(param_1 + 0x5312);
       *(undefined2 *)(param_1 + 0x531a) = *(undefined2 *)(param_1 + 0x5314);
       do {
-        FUN_002de600(param_1,uVar9 & 0xff);
+        password_sub_002de600(param_1,uVar9 & 0xff);
         uVar9 = uVar9 + 1;
       } while ((int)uVar9 < 9);
-      FUN_002de450(param_1 + 0xd84a);
+      password_sub_002de450(param_1 + 0xd84a);
       return;
     }
   } while( true );
 }
 
 // 0x001be7c0  size 0x2d0
-void FUN_001be7c0(int param_1,ulong param_2)
+void garage_sub_001be7c0(int param_1,ulong param_2)
 
 {
   int iVar1;
@@ -1821,8 +1841,8 @@ void FUN_001be7c0(int param_1,ulong param_2)
     iVar1 = iVar1 + 0xc;
   } while (iVar2 < 9);
   *(undefined4 *)(param_1 + 0x270c) = 1;
-  FUN_001b2eb0(param_1 + 0x272c);
-  FUN_001bc620(param_1);
+  Career_Reset(param_1 + 0x272c);
+  garage_sub_001bc620(param_1);
   *(undefined2 *)(param_1 + 0x5308) = 0;
   *(undefined2 *)(param_1 + 0x530a) = 0;
   *(undefined2 *)(param_1 + 0x530c) = 0;
@@ -1833,7 +1853,7 @@ void FUN_001be7c0(int param_1,ulong param_2)
   *(undefined2 *)(param_1 + 0x5310) = 0;
   *(undefined2 *)(param_1 + 0x5318) = 0;
   *(undefined2 *)(param_1 + 0x531a) = 0;
-  FUN_001c05b0(param_1 + 0x2ef0);
+  Profile_InitDefaults(param_1 + 0x2ef0);
   iVar1 = 0;
   do {
     iVar2 = param_1 + iVar1;
@@ -1845,7 +1865,7 @@ void FUN_001be7c0(int param_1,ulong param_2)
     *(undefined1 *)(iVar2 + 0xd830) = 0;
     *(undefined1 *)(iVar2 + 0xd831) = 0;
   } while (iVar1 < 0x1e);
-  FUN_002de540(param_1 + 0xd84a);
+  password_sub_002de540(param_1 + 0xd84a);
   iVar1 = 0;
   puVar4 = (undefined4 *)(param_1 + 0x531c);
   do {
@@ -1937,10 +1957,10 @@ void FUN_001be7c0(int param_1,ulong param_2)
     *(undefined1 *)((int)puVar4 + 0x5f) = 0;
     puVar4 = puVar4 + 0x18;
   } while (iVar1 < 200);
-  FUN_001b4810(param_1 + 0x94e0);
-  FUN_001b4270(param_1 + 0x531c);
-  FUN_001b3fe0(param_1 + 0x531c);
-  FUN_001b44f0(param_1 + 0x531c);
+  Career_InitRivalStates(param_1 + 0x94e0);
+  Career_RefreshAvailability(param_1 + 0x531c);
+  Career_SpawnNightRivals(param_1 + 0x531c);
+  Career_UpdateTeams(param_1 + 0x531c);
   *(undefined4 *)(param_1 + 0x94e0) = 0;
   if ((param_2 & 0x10) == 0) {
     if ((param_2 & 0x20) == 0) {
@@ -1960,7 +1980,7 @@ void FUN_001be7c0(int param_1,ulong param_2)
 }
 
 // 0x001bea90  size 0x30
-void FUN_001bea90(undefined4 *param_1,int param_2)
+void garage_sub_001bea90(undefined4 *param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -1981,14 +2001,14 @@ void FUN_001bea90(undefined4 *param_1,int param_2)
 }
 
 // 0x001beac0  size 0x24
-undefined2 FUN_001beac0(int param_1,int param_2)
+undefined2 garage_sub_001beac0(int param_1,int param_2)
 
 {
   return *(undefined2 *)(iGpffff8c0c + param_1 * 0xc + param_2 * 2);
 }
 
 // 0x001beaf0  size 0x2c
-void FUN_001beaf0(void)
+void garage_sub_001beaf0(void)
 
 {
   if (iGpffff8c0c != 0) {
@@ -2001,7 +2021,7 @@ void FUN_001beaf0(void)
 // 0x001beb20  size 0x5f4
 /* WARNING: Removing unreachable block (ram,0x001bed98) */
 
-void FUN_001beb20(void)
+void garage_sub_001beb20(void)
 
 {
   int iVar1;
@@ -2030,7 +2050,7 @@ void FUN_001beb20(void)
   iVar1 = *piGpffff8c08;
   if (*(char *)((uint)*(byte *)(iVar1 + 0x2733) + iVar1 + 0x3fbc) < '\n') {
     iVar14 = 0;
-    iVar4 = FUN_001c0040(*(int *)(iVar1 + 0x2734) % 7,*(undefined1 *)(iVar1 + 0x2731));
+    iVar4 = profile_sub_001c0040(*(int *)(iVar1 + 0x2734) % 7,*(undefined1 *)(iVar1 + 0x2731));
     iVar11 = 0;
     psVar9 = psGpffff8c0c;
     do {
@@ -2071,12 +2091,12 @@ void FUN_001beb20(void)
         iVar11 = 0;
         piVar8 = piVar16;
         do {
-          iVar5 = FUN_002092c0((short)iVar12);
+          iVar5 = GameDb_GetRival((short)iVar12);
           if (*(short *)(iVar5 + 2) == -1) break;
           if ((((*(int *)(*piGpffff8c08 + iVar10 + 0x2fe0) == 0) &&
                (*(int *)((int)psGpffff8c0c + iVar10 + 0x50) == 0)) &&
-              (lVar6 = FUN_001b2130(iVar12,*(undefined1 *)(iVar1 + 0x2733),cVar3), lVar6 != 0)) &&
-             ((0 < *(short *)(*piGpffff8c08 + iVar11 + 0x3fc4) && (iVar13 < 100)))) {
+              (lVar6 = Rival_SetupBattle(iVar12,*(undefined1 *)(iVar1 + 0x2733),cVar3), lVar6 != 0))
+             && ((0 < *(short *)(*piGpffff8c08 + iVar11 + 0x3fc4) && (iVar13 < 100)))) {
             *piVar8 = iVar12;
             iVar13 = iVar13 + 1;
             piVar8 = piVar8 + 1;
@@ -2087,7 +2107,7 @@ void FUN_001beb20(void)
         } while (iVar12 < 500);
         if (0 < iVar13) {
           if (iVar4 < iVar13) {
-            FUN_001b0480(iVar13,iVar4,aiStack_350);
+            Rival_RandomizeBehaviour(iVar13,iVar4,aiStack_350);
             iVar11 = 0;
             if (0 < iVar4) {
               piVar16 = aiStack_350;
@@ -2213,7 +2233,7 @@ void FUN_001beb20(void)
 /* WARNING: Removing unreachable block (ram,0x001bf840) */
 /* WARNING: Removing unreachable block (ram,0x001bf578) */
 
-void FUN_001bf120(void)
+void garage_sub_001bf120(void)
 
 {
   byte bVar1;
@@ -2260,7 +2280,7 @@ void FUN_001bf120(void)
   
   iVar23 = 0;
   iVar2 = *piGpffff8c08;
-  iVar5 = FUN_001c0040(*(int *)(iVar2 + 0x2734) % 7,*(undefined1 *)(iVar2 + 0x2731));
+  iVar5 = profile_sub_001c0040(*(int *)(iVar2 + 0x2734) % 7,*(undefined1 *)(iVar2 + 0x2731));
   iVar13 = 0;
   piVar12 = aiStack_2ab0;
   do {
@@ -2280,7 +2300,7 @@ void FUN_001bf120(void)
   do {
     *piVar12 = 0;
     *(undefined4 *)(iGpffff8c0c + iVar13 + 0x50) = 0;
-    iVar6 = FUN_002092c0((short)iVar21);
+    iVar6 = GameDb_GetRival((short)iVar21);
     if (*(short *)(iVar6 + 2) == -1) break;
     piVar12 = piVar12 + 1;
     uVar14 = (uint)*(byte *)(iVar6 + 4);
@@ -2323,12 +2343,12 @@ void FUN_001bf120(void)
     do {
       iVar6 = *(int *)(iVar13 + 0x2ef0);
       if ((iVar6 != -1) && (iVar20 = iVar6 * 4, *(int *)(iVar2 + iVar20 + 0x2fe0) == 0)) {
-        iVar7 = FUN_002092c0((short)iVar6);
+        iVar7 = GameDb_GetRival((short)iVar6);
         iVar8 = *(int *)(iVar13 + 0x2ef4);
         if (iVar8 == 0) {
           iVar8 = *(int *)(iVar7 + 0x14);
         }
-        lVar10 = FUN_001b2700(iVar8,*(undefined1 *)(iVar2 + 0x2733));
+        lVar10 = Rival_CheckWeatherCondition(iVar8,*(undefined1 *)(iVar2 + 0x2733));
         if (lVar10 != 0) {
           *(undefined4 *)(iVar20 + iVar2 + 0x2fe0) = 1;
           iVar23 = 1;
@@ -2368,7 +2388,7 @@ void FUN_001bf120(void)
         do {
           iVar6 = *piVar24;
           if (*(int *)(iVar2 + iVar6 * 4 + 0x2fe0) == 0) {
-            lVar10 = FUN_001b2130(iVar6,*(undefined1 *)(iVar2 + 0x2733),bVar1);
+            lVar10 = Rival_SetupBattle(iVar6,*(undefined1 *)(iVar2 + 0x2733),bVar1);
             if ((lVar10 != 0) && (*(short *)(iVar2 + iVar6 * 2 + 0x3fc4) == 0)) {
               if (99 < iVar21) break;
               *piVar12 = iVar6;
@@ -2386,7 +2406,7 @@ void FUN_001bf120(void)
       }
       if (0 < iVar21) {
         if (iVar5 < iVar21) {
-          FUN_001b0480(iVar21,iVar5,aiStack_3410);
+          Rival_RandomizeBehaviour(iVar21,iVar5,aiStack_3410);
           iVar13 = 0;
           if (0 < iVar5) {
             piVar24 = aiStack_3410;
@@ -2474,10 +2494,10 @@ void FUN_001bf120(void)
       piVar12 = piStack_3670;
       do {
         if (*piVar24 != 1) {
-          iVar8 = FUN_002092c0((short)iVar20);
+          iVar8 = GameDb_GetRival((short)iVar20);
           if (*(short *)(iVar8 + 2) == -1) break;
           if (*(int *)(iVar21 + 0x2fe0) == 0) {
-            lVar10 = FUN_001b2130(iVar20,*(undefined1 *)(iVar2 + 0x2733),cVar4);
+            lVar10 = Rival_SetupBattle(iVar20,*(undefined1 *)(iVar2 + 0x2733),cVar4);
             if (((lVar10 != 0) && (0 < *(short *)(iVar13 + 0x3fc4))) && (iVar6 < 100)) {
               *piVar12 = iVar20;
               iVar6 = iVar6 + 1;
@@ -2496,7 +2516,7 @@ void FUN_001bf120(void)
       } while (iVar20 < 500);
       if (0 < iVar6) {
         if (iVar5 < iVar6) {
-          FUN_001b0480(iVar6,iVar5,aiStack_35a0);
+          Rival_RandomizeBehaviour(iVar6,iVar5,aiStack_35a0);
           iVar13 = 0;
           if (0 < iVar5) {
             piVar24 = aiStack_35a0;
@@ -2563,7 +2583,7 @@ void FUN_001bf120(void)
     piVar24 = aiStack_35d0;
     piVar12 = piStack_3660;
     do {
-      iVar21 = FUN_002092c0((short)*piVar12);
+      iVar21 = GameDb_GetRival((short)*piVar12);
       if ((*(char *)(iVar21 + 4) == '\x01') && (*(short *)(iVar2 + *piVar12 * 2 + 0x3fc4) == 0)) {
         *piVar24 = *piVar12;
         *piVar12 = -1;
@@ -2575,7 +2595,7 @@ void FUN_001bf120(void)
     } while (iVar5 < iVar23);
   }
   if (iVar13 < 6) {
-    FUN_001b0480(5,iVar13,aiStack_35f0);
+    Rival_RandomizeBehaviour(5,iVar13,aiStack_35f0);
     iVar5 = iVar13;
   }
   else {
@@ -2597,14 +2617,14 @@ LAB_001bfb30:
     do {
       iVar13 = *piVar24;
       *(undefined4 *)(iGpffff8c0c + *piVar12 * 4 + 0x3c) = 0;
-      psVar17 = (short *)FUN_002092c0((short)iVar13);
-      uVar11 = FUN_001b0930(*psVar17);
-      FUN_001b0480(6,uVar11,aiStack_3610);
+      psVar17 = (short *)GameDb_GetRival((short)iVar13);
+      uVar11 = Rival_FindByTeam(*psVar17);
+      Rival_RandomizeBehaviour(6,uVar11,aiStack_3610);
       iVar21 = 0;
       piVar22 = aiStack_3610;
       iVar13 = 0;
       do {
-        psVar9 = (short *)FUN_002092c0((short)iVar21);
+        psVar9 = (short *)GameDb_GetRival((short)iVar21);
         if (psVar9[1] == -1) break;
         if (*psVar17 == *psVar9) {
           iVar6 = *piVar22;
@@ -2668,7 +2688,7 @@ LAB_001bfb30:
 }
 
 // 0x001bfe00  size 0x24
-void FUN_001bfe00(undefined8 param_1)
+void garage_sub_001bfe00(undefined8 param_1)
 
 {
   uGpffff8c0c = Mem_Alloc16(0x820,param_1);
@@ -2676,7 +2696,7 @@ void FUN_001bfe00(undefined8 param_1)
 }
 
 // 0x001bfe30  size 0x10c
-void FUN_001bfe30(int param_1,short param_2,int param_3)
+void garage_sub_001bfe30(int param_1,short param_2,int param_3)
 
 {
   char cVar1;
@@ -2730,7 +2750,7 @@ void FUN_001bfe30(int param_1,short param_2,int param_3)
 }
 
 // 0x001bff40  size 0x28
-void FUN_001bff40(int param_1,int param_2)
+void garage_sub_001bff40(int param_1,int param_2)
 
 {
   *(undefined2 *)(iGpffff8c0c + param_1 * 0xc + param_2 * 2) = 0xffff;
@@ -2738,7 +2758,8 @@ void FUN_001bff40(int param_1,int param_2)
 }
 
 // 0x001bff70  size 0xcc
-undefined4 FUN_001bff70(undefined8 param_1,long param_2,long param_3,int *param_4,int *param_5)
+undefined4
+garage_sub_001bff70(undefined8 param_1,long param_2,long param_3,int *param_4,int *param_5)
 
 {
   char cVar1;

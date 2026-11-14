@@ -58,7 +58,7 @@ void Arc_Init(undefined8 param_1,undefined8 param_2)
       uRam0036f0c0 = uStack_c;
     }
   }
-  if ((iRam0036f0bc != 0) && (lVar3 = FUN_00132590(iRam0036f0c4,0x30a8c0,0x10), lVar3 != 0)) {
+  if ((iRam0036f0bc != 0) && (lVar3 = Str_CompareN(iRam0036f0c4,0x30a8c0,0x10), lVar3 != 0)) {
     iRam0036f0bc = 0;
   }
   if ((iRam0036f0bc != 0) &&
@@ -82,7 +82,7 @@ void Arc_CloseHost(void)
 
 {
   File_CloseHostHandles();
-  FUN_00137310();
+  File_ShutdownNop();
   return;
 }
 
@@ -1867,7 +1867,7 @@ void Obj_SetMatrixDirty(uint *param_1,undefined8 param_2)
 
 {
   *param_1 = *param_1 | 0x20;
-  FUN_00132560(param_1 + 0x44,param_2,param_1[2]);
+  Mem_Copy128(param_1 + 0x44,param_2,param_1[2]);
   return;
 }
 
@@ -1875,7 +1875,7 @@ void Obj_SetMatrixDirty(uint *param_1,undefined8 param_2)
 void Obj_CopyParams(int param_1,undefined8 param_2)
 
 {
-  FUN_00132560(param_1 + 0x10,param_2,*(undefined4 *)(param_1 + 8));
+  Mem_Copy128(param_1 + 0x10,param_2,*(undefined4 *)(param_1 + 8));
   return;
 }
 
