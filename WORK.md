@@ -43,6 +43,7 @@ Columns:
 | N148 | Replace the raceui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 39 functions |
 | N149 | Replace the vu0math_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 35 functions |
 | N150 | Replace the snd_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 33 functions |
+| N151 | Replace the racehud_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 33 functions |
 
 ## P2 Types
 
@@ -241,3 +242,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N148.
 - 2026-11-14 ShawnDarr96: added N149.
 - 2026-11-14 ShawnDarr96: added N150.
+- 2026-11-14 ShawnDarr96: added N151.
