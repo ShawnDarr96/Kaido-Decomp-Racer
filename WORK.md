@@ -28,6 +28,7 @@ Columns:
 | N133 | Replace the scrcareer_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 169 functions |
 | N134 | Replace the scrgarage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 157 functions |
 | N135 | Replace the phys_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 143 functions |
+| N136 | Replace the libkernl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 105 functions |
 
 ## P2 Types
 
@@ -211,3 +212,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N133.
 - 2026-11-14 ShawnDarr96: added N134.
 - 2026-11-14 ShawnDarr96: added N135.
+- 2026-11-14 ShawnDarr96: added N136.
