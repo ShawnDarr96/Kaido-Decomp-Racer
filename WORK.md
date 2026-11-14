@@ -40,6 +40,7 @@ Columns:
 | N145 | Replace the password_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 50 functions |
 | N146 | Replace the newlib_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
 | N147 | Replace the result_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
+| N148 | Replace the raceui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 39 functions |
 
 ## P2 Types
 
@@ -235,3 +236,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N145.
 - 2026-11-14 ShawnDarr96: added N146.
 - 2026-11-14 ShawnDarr96: added N147.
+- 2026-11-14 ShawnDarr96: added N148.
