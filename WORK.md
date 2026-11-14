@@ -41,6 +41,7 @@ Columns:
 | N146 | Replace the newlib_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
 | N147 | Replace the result_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
 | N148 | Replace the raceui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 39 functions |
+| N149 | Replace the vu0math_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 35 functions |
 
 ## P2 Types
 
@@ -237,3 +238,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N146.
 - 2026-11-14 ShawnDarr96: added N147.
 - 2026-11-14 ShawnDarr96: added N148.
+- 2026-11-14 ShawnDarr96: added N149.
