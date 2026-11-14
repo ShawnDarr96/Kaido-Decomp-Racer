@@ -17,7 +17,7 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Executable extracted, compiler identified | done: **Metrowerks CodeWarrior MIPS C 2.4.1.01**, Sony SDK libraries **2.8.0** |
 | Full Ghidra analysis (Emotion Engine processor) | done |
 | Every function decompiled to C | done: [`decomp/src/`](decomp/src), index in [`decomp/functions.csv`](decomp/functions.csv), progress in [`decomp/PROGRESS.md`](decomp/PROGRESS.md) |
-| Every function named or assigned to its module | done: 2681 named (56%), 2072 tagged `module_sub_ADDRESS` (44%); see [`config/symbols.csv`](config/symbols.csv) |
+| Every function named or assigned to its module | done: 3576 named (75%), 1177 tagged `module_role_sub_ADDRESS` (25%); see [`config/symbols.csv`](config/symbols.csv) |
 | Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
 | Placeholders replaced with real names, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
 | Matching (byte-identical) source | not started, see the P3 rows in [`WORK.md`](WORK.md) |
@@ -45,6 +45,8 @@ identified from their strings and from other games that use the same SDK version
 | `scripts/add_names.py` | Merges `address name` lines (or a `--fill` range) into `config/symbols.csv` |
 | `decomp/xrefs.csv` | Call graph and string references of every function |
 | `config/globals.csv` | Named global singletons (applied as labels by the export) |
+| `scripts/extract_build.py` | Extracts BUILD.DAT via BUILD.TOC (UCL NRV2B decompression) into `extracted/` (git-ignored) |
+| `scripts/text_table.py` | Decodes the in-game string tables (entry 0x1870 + language) for naming UI code |
 | `ghidra_scripts/ExportDecomp.java` | The same export as a Ghidra GUI script |
 | `WORK.md`, `AGENTS.md`, `workboard.toml` | The shared work board (below) |
 
