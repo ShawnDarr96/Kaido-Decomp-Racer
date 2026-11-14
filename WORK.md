@@ -31,6 +31,7 @@ Columns:
 | N136 | Replace the libkernl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 105 functions |
 | N137 | Replace the script_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 85 functions |
 | N138 | Replace the nameentry_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 85 functions |
+| N139 | Replace the eventui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 84 functions |
 
 ## P2 Types
 
@@ -217,3 +218,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N136.
 - 2026-11-14 ShawnDarr96: added N137.
 - 2026-11-14 ShawnDarr96: added N138.
+- 2026-11-14 ShawnDarr96: added N139.
