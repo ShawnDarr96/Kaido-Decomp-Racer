@@ -140,7 +140,7 @@ void result_draw_sub_002c0490(int param_1)
   UiLayout_Draw(*(undefined4 *)(param_1 + 0x94),*(undefined4 *)(param_1 + 4));
   UiLayout_Draw(*(undefined4 *)(param_1 + 0x94),*(undefined4 *)(param_1 + 0x4c));
   if (*(int *)(param_1 + 800) == 0) {
-    result_draw_sub_002bfcc0(param_1);
+    Result_Draw_TestCourse_fcc0(param_1);
     result_draw_sub_002bfea0(param_1);
   }
   else {

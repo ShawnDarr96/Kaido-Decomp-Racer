@@ -1507,7 +1507,7 @@ void scrrecord_input_sub_002a3660(undefined4 *param_1)
       if (iVar7 < iVar4) {
         param_1[0x13] = param_1[0x13] + 1;
         param_1[0x15] = 1;
-        uVar6 = Msg_Get(0x38d);
+        uVar6 = UiRes_GetLayoutData(0x38d);
         iVar7 = UiMgr_FindLayout(0x10e);
         iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
         *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
@@ -1533,7 +1533,7 @@ void scrrecord_input_sub_002a3660(undefined4 *param_1)
       else if (iVar4 < iVar7) {
         param_1[0x13] = param_1[0x13] + -1;
         param_1[0x15] = 2;
-        uVar6 = Msg_Get(0x388);
+        uVar6 = UiRes_GetLayoutData(0x388);
         iVar7 = UiMgr_FindLayout(0x10e);
         iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
         *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
@@ -1566,7 +1566,7 @@ void scrrecord_input_sub_002a3660(undefined4 *param_1)
       }
       if (bVar5) {
         param_1[0x15] = 4;
-        uVar6 = Msg_Get(0x38a);
+        uVar6 = UiRes_GetLayoutData(0x38a);
         iVar7 = UiMgr_FindLayout(0x10e);
         iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
         *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
@@ -1591,7 +1591,7 @@ void scrrecord_input_sub_002a3660(undefined4 *param_1)
       }
       else {
         param_1[0x15] = 5;
-        uVar6 = Msg_Get(0x38c);
+        uVar6 = UiRes_GetLayoutData(0x38c);
         iVar7 = UiMgr_FindLayout(0x10e);
         iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
         *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;

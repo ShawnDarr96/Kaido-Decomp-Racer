@@ -889,7 +889,7 @@ void result_leaf_sub_002bdb10(undefined4 *param_1)
 }
 
 // 0x002bdb20  size 0x984
-void result_draw_sub_002bdb20(int param_1)
+void Result_Draw_TestCourse(int param_1)
 
 {
   undefined4 uVar1;
@@ -1228,7 +1228,7 @@ LAB_002bdc40:
 }
 
 // 0x002be4b0  size 0x5a4
-void result_draw_sub_002be4b0(int param_1)
+void Result_Draw_TestCourse_e4b0(int param_1)
 
 {
   char cVar1;
@@ -1431,7 +1431,7 @@ LAB_002be884:
 }
 
 // 0x002bea60  size 0x930
-void result_draw_sub_002bea60(int param_1)
+void Result_Draw_TestCourse_ea60(int param_1)
 
 {
   undefined4 uVar1;
@@ -1759,7 +1759,7 @@ LAB_002beeec:
 }
 
 // 0x002bf390  size 0x60c
-void result_draw_sub_002bf390(int param_1)
+void Result_Draw_TestCourse_f390(int param_1)
 
 {
   undefined4 uVar1;
@@ -1982,7 +1982,7 @@ LAB_002bf718:
 }
 
 // 0x002bf9a0  size 0x314
-void result_draw_sub_002bf9a0(int param_1)
+void Result_Draw_TestCourse_f9a0(int param_1)
 
 {
   undefined4 uVar1;
@@ -2101,7 +2101,7 @@ void result_draw_sub_002bf9a0(int param_1)
 }
 
 // 0x002bfcc0  size 0x1d4
-void result_draw_sub_002bfcc0(int param_1)
+void Result_Draw_TestCourse_fcc0(int param_1)
 
 {
   undefined8 uVar1;
@@ -2114,16 +2114,16 @@ void result_draw_sub_002bfcc0(int param_1)
   
   switch((&DAT_0032f535)[(uint)bRam0036f810 * 6]) {
   case 0:
-    result_draw_sub_002bf9a0();
+    Result_Draw_TestCourse_f9a0();
     break;
   case 1:
-    result_draw_sub_002bf390();
+    Result_Draw_TestCourse_f390();
     break;
   case 2:
-    result_draw_sub_002bea60();
+    Result_Draw_TestCourse_ea60();
     break;
   case 3:
-    result_draw_sub_002be4b0();
+    Result_Draw_TestCourse_e4b0();
     break;
   case 4:
     uVar1 = 8;
@@ -2149,7 +2149,7 @@ void result_draw_sub_002bfcc0(int param_1)
     }
     break;
   case 5:
-    result_draw_sub_002bdb20();
+    Result_Draw_TestCourse();
     break;
   case 6:
     if (*(int *)(param_1 + 0x32c) == 0) {

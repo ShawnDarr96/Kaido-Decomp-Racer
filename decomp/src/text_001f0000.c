@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001f0490  size 0x5c
-int UiRes_GetFontIndex(int param_1)
+int UiText_CountLinesById(int param_1)
 
 {
   short sVar1;
@@ -29,7 +29,7 @@ int UiRes_GetFontIndex(int param_1)
 }
 
 // 0x001f04f0  size 0xbc
-undefined4 UiRes_GetFontInfo(int param_1,int param_2)
+undefined4 UiText_CompareById(int param_1,int param_2)
 
 {
   ushort uVar1;

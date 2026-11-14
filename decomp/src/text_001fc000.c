@@ -1819,7 +1819,7 @@ void MenuWnd_DrawHelp(void)
   
   iVar1 = UiMgr_FindLayout(0xb);
   iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
-  uVar2 = Msg_Get(0xbb);
+  uVar2 = UiRes_GetLayoutData(0xbb);
   *(undefined4 *)(iVar1 + 0x314) = 0xffffffff;
   *(undefined4 *)(iVar1 + 800) = 0;
   *(undefined4 *)(iVar1 + 0x310) = 0;
@@ -1839,7 +1839,7 @@ void MenuWnd_DrawHelp(void)
   *(undefined4 *)(iVar1 + 0x318) = 0;
   *(undefined4 *)(iVar1 + 800) = uVar2;
   *(undefined4 *)(iVar1 + 0x31c) = 1;
-  uVar2 = Msg_Get(0xbc);
+  uVar2 = UiRes_GetLayoutData(0xbc);
   *(undefined4 *)(iVar1 + 0x328) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x334) = 0;
   *(undefined4 *)(iVar1 + 0x324) = 0;
@@ -1859,7 +1859,7 @@ void MenuWnd_DrawHelp(void)
   *(undefined4 *)(iVar1 + 0x32c) = 0;
   *(undefined4 *)(iVar1 + 0x334) = uVar2;
   *(undefined4 *)(iVar1 + 0x330) = 1;
-  uVar2 = Msg_Get(0xbd);
+  uVar2 = UiRes_GetLayoutData(0xbd);
   *(undefined4 *)(iVar1 + 0x350) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x35c) = 0;
   *(undefined4 *)(iVar1 + 0x34c) = 0;
@@ -1879,7 +1879,7 @@ void MenuWnd_DrawHelp(void)
   *(undefined4 *)(iVar1 + 0x354) = 0;
   *(undefined4 *)(iVar1 + 0x35c) = uVar2;
   *(undefined4 *)(iVar1 + 0x358) = 1;
-  uVar2 = Msg_Get(0xbe);
+  uVar2 = UiRes_GetLayoutData(0xbe);
   *(undefined4 *)(iVar1 + 0x364) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x370) = 0;
   *(undefined4 *)(iVar1 + 0x360) = 0;
@@ -2011,7 +2011,7 @@ void MenuWnd_SetHelpText(long param_1)
   _g_MenuWnd[4] = (int)param_1;
   iVar1 = UiMgr_FindLayout(5);
   iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
-  uVar2 = Msg_Get(1);
+  uVar2 = UiRes_GetLayoutData(1);
   *(undefined4 *)(iVar1 + 0x314) = 0xffffffff;
   *(undefined4 *)(iVar1 + 800) = 0;
   *(undefined4 *)(iVar1 + 0x310) = 0;
@@ -2031,7 +2031,7 @@ void MenuWnd_SetHelpText(long param_1)
   *(undefined4 *)(iVar1 + 0x318) = 0;
   *(undefined4 *)(iVar1 + 800) = uVar2;
   *(undefined4 *)(iVar1 + 0x31c) = 1;
-  uVar2 = Msg_Get(2);
+  uVar2 = UiRes_GetLayoutData(2);
   *(undefined4 *)(iVar1 + 0x328) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x334) = 0;
   *(undefined4 *)(iVar1 + 0x324) = 0;
@@ -2051,7 +2051,7 @@ void MenuWnd_SetHelpText(long param_1)
   *(undefined4 *)(iVar1 + 0x32c) = 0;
   *(undefined4 *)(iVar1 + 0x334) = uVar2;
   *(undefined4 *)(iVar1 + 0x330) = 1;
-  uVar2 = Msg_Get(3);
+  uVar2 = UiRes_GetLayoutData(3);
   *(undefined4 *)(iVar1 + 0x33c) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x348) = 0;
   *(undefined4 *)(iVar1 + 0x338) = 0;

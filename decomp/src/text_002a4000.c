@@ -988,7 +988,7 @@ void menuscr_input_sub_002a5ba0(undefined8 param_1)
     *(char *)(iVar1 + 0x779) = (char)*(undefined4 *)(iVar3 + 0x20) + '\x01';
     *(undefined4 *)(iVar1 + 0x77c) = 0;
     MenuMgr_GetScreenParam(0x17);
-    uVar2 = Msg_Get(*(undefined4 *)(*(int *)(iVar3 + 0x20) * 4 + 0x32ee00));
+    uVar2 = UiRes_GetLayoutData(*(undefined4 *)(*(int *)(iVar3 + 0x20) * 4 + 0x32ee00));
     iVar3 = UiMgr_FindLayout(0xb9);
     iVar3 = *_g_UiMgr + iVar3 * 0x4f4;
     *(undefined4 *)(iVar3 + 0x314) = 0xffffffff;

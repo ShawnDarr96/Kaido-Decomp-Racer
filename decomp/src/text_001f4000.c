@@ -221,9 +221,9 @@ void demo_step_sub_001f4760
 
 // 0x001f4890  size 0x2c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* localized string table; 250 callers */
+/* returns UI layout records from the menu layout pack (was Msg_Get) */
 
-int Msg_Get(int param_1)
+int UiRes_GetLayoutData(int param_1)
 
 {
   int *piVar1;
@@ -1230,32 +1230,36 @@ int MsgId_ForModeShort(undefined1 param_1,int param_2)
 }
 
 // 0x001f5c40  size 0x8
-/* base 0x89f */
+/* 0x89f "INEXPERIENCED MEDAL" */
 
-int MsgId_CarName(int param_1)
+int MsgId_MedalName(int param_1)
 
 {
   return param_1 + 0x89f;
 }
 
 // 0x001f5c50  size 0x8
-/* base 0xd99 */
+/* 0xd99 */
 
-int MsgId_PartName(int param_1)
+int MsgId_GirlfriendLine(int param_1)
 
 {
   return param_1 + 0xd99;
 }
 
 // 0x001f5c60  size 0x8
-int MsgId_PartDesc(int param_1)
+/* 0xdc1 "PARTYING" */
+
+int MsgId_GirlfriendHobby(int param_1)
 
 {
   return param_1 + 0xdc1;
 }
 
 // 0x001f5c70  size 0x8
-int MsgId_PartCategory(int param_1)
+/* 0xdad "FLIGHT ATTENDANT" */
+
+int MsgId_GirlfriendJob(int param_1)
 
 {
   return param_1 + 0xdad;
@@ -1302,9 +1306,9 @@ bool Msg_RivalComment(void)
 }
 
 // 0x001f5d20  size 0x8
-/* base 0x85 */
+/* 0x85 "Exclusive for TOYOTA INLINE ..." */
 
-int MsgId_CourseName(int param_1)
+int MsgId_PartDescription(int param_1)
 
 {
   return param_1 + 0x85;
@@ -1336,9 +1340,9 @@ undefined2 Msg_TeamInfo(undefined1 param_1)
 }
 
 // 0x001f5de0  size 0x8
-/* base 0x1f */
+/* 0x1f */
 
-int MsgId_Weekday(int param_1)
+int MsgId_Symbol(int param_1)
 
 {
   return param_1 + 0x1f;
@@ -2334,23 +2338,27 @@ void ui_step_sub_001f6af0
 }
 
 // 0x001f6ec0  size 0x8
-int MsgId_PartLong(int param_1)
+/* 0xdd5 "HAKONE STALKERS" */
+
+int MsgId_TeamName(int param_1)
 
 {
   return param_1 + 0xdd5;
 }
 
 // 0x001f6ed0  size 0x8
-int MsgId_PartShort(int param_1)
+/* 0xc32 */
+
+int MsgId_RivalProfile(int param_1)
 
 {
   return param_1 + 0xc32;
 }
 
 // 0x001f6ee0  size 0x8
-/* base 0x6ec */
+/* 0x6ec "GROUND ZERO" */
 
-int MsgId_TeamName(int param_1)
+int MsgId_RivalNickname(int param_1)
 
 {
   return param_1 + 0x6ec;
@@ -2366,14 +2374,18 @@ int MsgId_RivalName(int param_1)
 }
 
 // 0x001f6f00  size 0x8
-int MsgId_TeamMotto(int param_1)
+/* 0x6d2 */
+
+int MsgId_RivalType(int param_1)
 
 {
   return param_1 + 0x6d2;
 }
 
 // 0x001f6f10  size 0x8
-int MsgId_TeamArea(int param_1)
+/* 0x6b8 "FAKE", "BRAGGER" */
+
+int MsgId_RivalTrait(int param_1)
 
 {
   return param_1 + 0x6b8;

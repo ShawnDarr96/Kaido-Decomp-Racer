@@ -525,7 +525,7 @@ void Menu_ShowDialog(undefined4 *param_1,long param_2,undefined4 param_3)
   *param_1 = 4;
   param_1[1] = (int)param_2;
   param_1[2] = param_3;
-  uVar1 = Msg_Get(0x3f3);
+  uVar1 = UiRes_GetLayoutData(0x3f3);
   iVar2 = UiMgr_FindLayout(0x127);
   iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
   *(undefined4 *)(iVar2 + 0x314) = 0xffffffff;
@@ -547,7 +547,7 @@ void Menu_ShowDialog(undefined4 *param_1,long param_2,undefined4 param_3)
   *(undefined4 *)(iVar2 + 0x318) = 0;
   *(undefined4 *)(iVar2 + 800) = uVar1;
   *(undefined4 *)(iVar2 + 0x31c) = 1;
-  uVar1 = Msg_Get(0x3f5);
+  uVar1 = UiRes_GetLayoutData(0x3f5);
   iVar2 = UiMgr_FindLayout(0x127);
   iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
   *(undefined4 *)(iVar2 + 0x328) = 0xffffffff;
@@ -569,7 +569,7 @@ void Menu_ShowDialog(undefined4 *param_1,long param_2,undefined4 param_3)
   *(undefined4 *)(iVar2 + 0x32c) = 1;
   *(undefined4 *)(iVar2 + 0x334) = uVar1;
   *(undefined4 *)(iVar2 + 0x330) = 1;
-  uVar1 = Msg_Get(0x3f4);
+  uVar1 = UiRes_GetLayoutData(0x3f4);
   iVar2 = UiMgr_FindLayout(0x127);
   iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
   *(undefined4 *)(iVar2 + 0x33c) = 0xffffffff;
@@ -593,7 +593,7 @@ void Menu_ShowDialog(undefined4 *param_1,long param_2,undefined4 param_3)
   *(undefined4 *)(iVar2 + 0x344) = 1;
   iVar3 = UiMgr_FindLayout(param_1[1]);
   iVar2 = *_g_UiMgr;
-  uVar4 = Msg_Get(0x3f2);
+  uVar4 = UiRes_GetLayoutData(0x3f2);
   UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0,param_1[2],uVar4,0);
   if (param_2 == 0x124) {
     iVar2 = UiMgr_FindLayout(0x127);

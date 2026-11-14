@@ -5,7 +5,7 @@
 // 0x00244b90  size 0xf54
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00244b90(int param_1)
+void ScrCareer_Draw_MasterLord(int param_1)
 
 {
   undefined4 uVar1;
@@ -159,12 +159,12 @@ void scrcareer_draw_sub_00244b90(int param_1)
     iVar7 = *(int *)(param_1 + 0x64c);
   }
   if (iVar7 == 0xe) {
-    scrcareer_draw_sub_00245af0
-              (param_1,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + param_1 + 0x5e4),0);
+    ScrCareer_Draw_Prize(param_1,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + param_1 + 0x5e4),0)
+    ;
     iVar7 = *(int *)(param_1 + 0x64c);
   }
   else {
-    scrcareer_draw_sub_00245af0(param_1,*(undefined4 *)(param_1 + 0x24),0);
+    ScrCareer_Draw_Prize(param_1,*(undefined4 *)(param_1 + 0x24),0);
     iVar7 = *(int *)(param_1 + 0x64c);
   }
   if ((iVar7 == 0xe) || (iVar7 == 0x16)) {
@@ -425,7 +425,7 @@ LAB_00245414:
     iVar3 = UiMgr_FindLayout(0x87);
     iVar4 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
     UiMgr_FindLayout(0x81);
-    uVar8 = MsgId_PartLong(*(undefined4 *)(param_1 + 0xe4));
+    uVar8 = MsgId_TeamName(*(undefined4 *)(param_1 + 0xe4));
     MenuWnd_DrawText(0x87,0x2f,uVar8);
     iVar5 = 0;
     puVar9 = (undefined4 *)0x32cab0;
@@ -530,7 +530,7 @@ LAB_002458b0:
 }
 
 // 0x00245af0  size 0x674
-void scrcareer_draw_sub_00245af0(int param_1,long param_2,int param_3)
+void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -702,7 +702,7 @@ void scrcareer_draw_sub_00245af0(int param_1,long param_2,int param_3)
   uStack_3c = uStack_20c;
   sVar2 = RivalRec_GetCourse(&uStack_1a0);
   if (sVar2 == -1) {
-    uVar4 = MsgId_TeamName(param_2);
+    uVar4 = MsgId_RivalNickname(param_2);
     MenuWnd_DrawText(0x84,*(undefined4 *)(param_3 * 4 + 0x36ebd0),uVar4);
     uVar4 = MsgId_RivalName(param_2);
     MenuWnd_DrawText(0x84,*(undefined4 *)(param_3 * 4 + 0x36ebd8),uVar4);
@@ -713,7 +713,7 @@ void scrcareer_draw_sub_00245af0(int param_1,long param_2,int param_3)
     MenuWnd_DrawText(0x84,*(undefined4 *)(param_3 * 4 + 0x36ebd8),uVar4);
     uVar3 = RivalRec_GetCourse(&uStack_1a0);
     uVar4 = Msg_TeamName(uVar3);
-    menuscr_draw_sub_002430d0(0x84,*(undefined4 *)(param_3 * 4 + 0x36ebd0),uVar4);
+    MenuScr_Draw_ContractMoney(0x84,*(undefined4 *)(param_3 * 4 + 0x36ebd0),uVar4);
   }
   param_3 = param_3 * 4;
   RaceResult_BuildMessage(&uStack_20,(short)param_2);
@@ -804,7 +804,7 @@ LAB_00245fb0:
     case 0xb:
       if (*(int *)(param_1 + 0x64c) != 0x16) {
         uVar3 = RivalRec_GetCourse(&uStack_1a0);
-        uVar4 = MsgId_CourseName(uVar3);
+        uVar4 = MsgId_PartDescription(uVar3);
         MenuWnd_DrawText(0x91,0x14,uVar4);
       }
       uVar3 = RivalRec_GetCourse(&uStack_1a0);
@@ -823,7 +823,7 @@ LAB_00245fb0:
 // 0x00246190  size 0x384
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00246190(int param_1)
+void ScrCareer_Draw_ThisIsYour(int param_1)
 
 {
   char cVar1;
@@ -839,7 +839,7 @@ void scrcareer_draw_sub_00246190(int param_1)
   iVar6 = *(int *)(param_1 + 0x65c);
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar6 != 0) {
-    uVar2 = Msg_Get(0x10c);
+    uVar2 = UiRes_GetLayoutData(0x10c);
     iVar6 = UiMgr_FindLayout(0x89);
     iVar6 = *_g_UiMgr + iVar6 * 0x4f4;
     *(undefined4 *)(iVar6 + 0x314) = 0xffffffff;
@@ -861,7 +861,7 @@ void scrcareer_draw_sub_00246190(int param_1)
     *(undefined4 *)(iVar6 + 0x318) = 0;
     *(undefined4 *)(iVar6 + 800) = uVar2;
     *(undefined4 *)(iVar6 + 0x31c) = 1;
-    uVar2 = Msg_Get(0x195);
+    uVar2 = UiRes_GetLayoutData(0x195);
     iVar6 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x350) = 0xffffffff;
     *(undefined4 *)(iVar6 + 0x35c) = 0;
@@ -945,7 +945,7 @@ LAB_002461d4:
 // 0x00246520  size 0x2dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00246520(int param_1)
+void ScrCareer_Draw_IsTakenAway(int param_1)
 
 {
   int iVar1;
@@ -956,7 +956,7 @@ void scrcareer_draw_sub_00246520(int param_1)
   iVar1 = *(int *)(param_1 + 0x65c);
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar1 != 0) {
-    uVar2 = Msg_Get(0x112);
+    uVar2 = UiRes_GetLayoutData(0x112);
     iVar1 = UiMgr_FindLayout(0x95);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
     *(undefined4 *)(iVar1 + 0x314) = 0xffffffff;
@@ -978,7 +978,7 @@ void scrcareer_draw_sub_00246520(int param_1)
     *(undefined4 *)(iVar1 + 0x318) = 0;
     *(undefined4 *)(iVar1 + 800) = uVar2;
     *(undefined4 *)(iVar1 + 0x31c) = 1;
-    uVar2 = Msg_Get(0x113);
+    uVar2 = UiRes_GetLayoutData(0x113);
     iVar1 = UiMgr_FindLayout(0x95);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
     *(undefined4 *)(iVar1 + 0x328) = 0xffffffff;
@@ -1036,7 +1036,7 @@ void scrcareer_draw_sub_00246520(int param_1)
 // 0x00246800  size 0x2a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_draw_sub_00246800(int param_1)
+void MenuScr_Draw_GetPrize(int param_1)
 
 {
   int iVar1;
@@ -1046,7 +1046,7 @@ void menuscr_draw_sub_00246800(int param_1)
   iVar1 = *(int *)(param_1 + 0x65c);
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar1 != 0) {
-    uVar2 = Msg_Get(0x112);
+    uVar2 = UiRes_GetLayoutData(0x112);
     iVar1 = UiMgr_FindLayout(0x95);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
     *(undefined4 *)(iVar1 + 0x314) = 0xffffffff;
@@ -1068,7 +1068,7 @@ void menuscr_draw_sub_00246800(int param_1)
     *(undefined4 *)(iVar1 + 0x318) = 0;
     *(undefined4 *)(iVar1 + 800) = uVar2;
     *(undefined4 *)(iVar1 + 0x31c) = 1;
-    uVar2 = Msg_Get(0x113);
+    uVar2 = UiRes_GetLayoutData(0x113);
     iVar1 = UiMgr_FindLayout(0x95);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
     *(undefined4 *)(iVar1 + 0x328) = 0xffffffff;
@@ -1122,7 +1122,7 @@ void menuscr_draw_sub_00246800(int param_1)
 // 0x00246ab0  size 0x2e4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00246ab0(int param_1)
+void ScrCareer_Draw_Received(int param_1)
 
 {
   int iVar1;
@@ -1139,7 +1139,7 @@ void scrcareer_draw_sub_00246ab0(int param_1)
   iVar1 = *(int *)(param_1 + 0x65c);
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar1 != 0) {
-    uVar2 = Msg_Get(0x112);
+    uVar2 = UiRes_GetLayoutData(0x112);
     iVar1 = UiMgr_FindLayout(0x95);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
     *(undefined4 *)(iVar1 + 0x314) = 0xffffffff;
@@ -1161,7 +1161,7 @@ void scrcareer_draw_sub_00246ab0(int param_1)
     *(undefined4 *)(iVar1 + 0x318) = 0;
     *(undefined4 *)(iVar1 + 800) = uVar2;
     *(undefined4 *)(iVar1 + 0x31c) = 1;
-    uVar2 = Msg_Get(0x113);
+    uVar2 = UiRes_GetLayoutData(0x113);
     iVar1 = UiMgr_FindLayout(0x95);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
     *(undefined4 *)(iVar1 + 0x328) = 0xffffffff;
@@ -1244,7 +1244,7 @@ void menuscr_step_sub_00246da0(int param_1)
 // 0x00246e20  size 0x4f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00246e20(int param_1)
+void ScrCareer_Draw_BetCar(int param_1)
 
 {
   undefined2 uVar1;
@@ -1272,7 +1272,7 @@ void scrcareer_draw_sub_00246e20(int param_1)
   iVar2 = *_g_UiMgr;
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar5 != 0) {
-    uVar7 = Msg_Get(0x76);
+    uVar7 = UiRes_GetLayoutData(0x76);
     iVar5 = UiMgr_FindLayout(0x7e);
     iVar5 = *_g_UiMgr + iVar5 * 0x4f4;
     *(undefined4 *)(iVar5 + 0x314) = 0xffffffff;
@@ -1294,7 +1294,7 @@ void scrcareer_draw_sub_00246e20(int param_1)
     *(undefined4 *)(iVar5 + 0x318) = 0;
     *(undefined4 *)(iVar5 + 800) = uVar7;
     *(undefined4 *)(iVar5 + 0x31c) = 1;
-    uVar7 = Msg_Get(0x77);
+    uVar7 = UiRes_GetLayoutData(0x77);
     iVar5 = UiMgr_FindLayout(0x7e);
     iVar5 = *_g_UiMgr + iVar5 * 0x4f4;
     *(undefined4 *)(iVar5 + 0x328) = 0xffffffff;
@@ -1400,7 +1400,7 @@ void scrcareer_draw_sub_00246e20(int param_1)
 // 0x00247320  size 0x384
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00247320(int param_1)
+void ScrCareer_Draw_ThisIsThe(int param_1)
 
 {
   char cVar1;
@@ -1422,7 +1422,7 @@ void scrcareer_draw_sub_00247320(int param_1)
   iVar6 = *(int *)(param_1 + 0x65c);
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar6 != 0) {
-    uVar2 = Msg_Get(0x10c);
+    uVar2 = UiRes_GetLayoutData(0x10c);
     iVar6 = UiMgr_FindLayout(0x89);
     iVar6 = *_g_UiMgr + iVar6 * 0x4f4;
     *(undefined4 *)(iVar6 + 0x314) = 0xffffffff;
@@ -1444,7 +1444,7 @@ void scrcareer_draw_sub_00247320(int param_1)
     *(undefined4 *)(iVar6 + 0x318) = 0;
     *(undefined4 *)(iVar6 + 800) = uVar2;
     *(undefined4 *)(iVar6 + 0x31c) = 1;
-    uVar2 = Msg_Get(0x195);
+    uVar2 = UiRes_GetLayoutData(0x195);
     iVar6 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x350) = 0xffffffff;
     *(undefined4 *)(iVar6 + 0x35c) = 0;
@@ -1529,7 +1529,7 @@ LAB_00247364:
 // 0x002476b0  size 0x784
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_002476b0(int param_1)
+void ScrCareer_Draw_Challenge(int param_1)
 
 {
   undefined2 uVar1;
@@ -1554,7 +1554,7 @@ void scrcareer_draw_sub_002476b0(int param_1)
   iVar2 = *_g_UiMgr;
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar6 != 0) {
-    uVar7 = Msg_Get(0x6c);
+    uVar7 = UiRes_GetLayoutData(0x6c);
     iVar6 = UiMgr_FindLayout(0x7a);
     iVar6 = *_g_UiMgr + iVar6 * 0x4f4;
     *(undefined4 *)(iVar6 + 0x314) = 0xffffffff;
@@ -1576,7 +1576,7 @@ void scrcareer_draw_sub_002476b0(int param_1)
     *(undefined4 *)(iVar6 + 0x318) = 0;
     *(undefined4 *)(iVar6 + 800) = uVar7;
     *(undefined4 *)(iVar6 + 0x31c) = 1;
-    uVar7 = Msg_Get(0x6d);
+    uVar7 = UiRes_GetLayoutData(0x6d);
     iVar6 = UiMgr_FindLayout(0x7a);
     iVar6 = *_g_UiMgr + iVar6 * 0x4f4;
     *(undefined4 *)(iVar6 + 0x328) = 0xffffffff;
@@ -1646,7 +1646,7 @@ void scrcareer_draw_sub_002476b0(int param_1)
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
     iVar6 = UiMgr_FindLayout(0x89);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,0x27,8);
-    uVar7 = Msg_Get(0x8c);
+    uVar7 = UiRes_GetLayoutData(0x8c);
     iVar6 = UiMgr_FindLayout(0x84);
     iVar6 = *_g_UiMgr + iVar6 * 0x4f4;
     *(undefined4 *)(iVar6 + 0x314) = 0xffffffff;
@@ -1668,7 +1668,7 @@ void scrcareer_draw_sub_002476b0(int param_1)
     *(undefined4 *)(iVar6 + 0x318) = 0;
     *(undefined4 *)(iVar6 + 800) = uVar7;
     *(undefined4 *)(iVar6 + 0x31c) = 1;
-    uVar7 = Msg_Get(0x8d);
+    uVar7 = UiRes_GetLayoutData(0x8d);
     iVar6 = UiMgr_FindLayout(0x84);
     iVar6 = *_g_UiMgr + iVar6 * 0x4f4;
     *(undefined4 *)(iVar6 + 0x328) = 0xffffffff;
@@ -1773,7 +1773,7 @@ void scrcareer_draw_sub_002476b0(int param_1)
 // 0x00247e40  size 0xb24
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_draw_sub_00247e40(int param_1)
+void ScrCareer_Draw_GoBattle(int param_1)
 
 {
   undefined2 uVar1;
@@ -1808,7 +1808,7 @@ void scrcareer_draw_sub_00247e40(int param_1)
   iVar2 = *_g_UiMgr;
   *(undefined4 *)(param_1 + 0x65c) = 0;
   if (iVar12 != 0) {
-    uVar7 = Msg_Get(0x6c);
+    uVar7 = UiRes_GetLayoutData(0x6c);
     iVar12 = UiMgr_FindLayout(0x7a);
     iVar12 = *_g_UiMgr + iVar12 * 0x4f4;
     *(undefined4 *)(iVar12 + 0x314) = 0xffffffff;
@@ -1830,7 +1830,7 @@ void scrcareer_draw_sub_00247e40(int param_1)
     *(undefined4 *)(iVar12 + 0x318) = 0;
     *(undefined4 *)(iVar12 + 800) = uVar7;
     *(undefined4 *)(iVar12 + 0x31c) = 1;
-    uVar7 = Msg_Get(0x6d);
+    uVar7 = UiRes_GetLayoutData(0x6d);
     iVar12 = UiMgr_FindLayout(0x7a);
     iVar12 = *_g_UiMgr + iVar12 * 0x4f4;
     *(undefined4 *)(iVar12 + 0x328) = 0xffffffff;
@@ -1972,7 +1972,7 @@ void scrcareer_draw_sub_00247e40(int param_1)
     *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
     Menu_ShowDialog(_g_MenuMgr + 0x654,0x125,2);
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
-    uVar7 = Msg_Get(0x8c);
+    uVar7 = UiRes_GetLayoutData(0x8c);
     iVar12 = UiMgr_FindLayout(0x84);
     iVar12 = *_g_UiMgr + iVar12 * 0x4f4;
     *(undefined4 *)(iVar12 + 0x314) = 0xffffffff;
@@ -1994,7 +1994,7 @@ void scrcareer_draw_sub_00247e40(int param_1)
     *(undefined4 *)(iVar12 + 0x318) = 0;
     *(undefined4 *)(iVar12 + 800) = uVar7;
     *(undefined4 *)(iVar12 + 0x31c) = 1;
-    uVar7 = Msg_Get(0x8d);
+    uVar7 = UiRes_GetLayoutData(0x8d);
     iVar12 = UiMgr_FindLayout(0x84);
     iVar12 = *_g_UiMgr + iVar12 * 0x4f4;
     *(undefined4 *)(iVar12 + 0x328) = 0xffffffff;

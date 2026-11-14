@@ -21,3 +21,4 @@ board.html
 
 # splat output (generated from your own executable)
 build/
+extracted/

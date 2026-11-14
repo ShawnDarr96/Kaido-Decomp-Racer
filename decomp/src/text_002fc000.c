@@ -219,7 +219,7 @@ void misc_input_sub_002fd1e0(int *param_1)
 // 0x002fd5e0  size 0x3d0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void misc_draw_sub_002fd5e0(int *param_1)
+void Misc_Draw_StartGame(int *param_1)
 
 {
   int iVar1;

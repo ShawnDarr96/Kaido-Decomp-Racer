@@ -312,7 +312,7 @@ undefined4 Gut_ArchiveDecompress(int param_1,int param_2,uint param_3)
       uVar1 = CONCAT13(uStack_14,CONCAT12(uStack_13,CONCAT11(uStack_12,uStack_11)));
       iVar2 = iVar2 + 8;
       if (uVar3 <= uVar1) break;
-      Math_SolveCubic(param_2 + iVar2,uVar1,param_1 + uVar4,auStack_4,0);
+      Gut_DecompressBlock(param_2 + iVar2,uVar1,param_1 + uVar4,auStack_4,0);
       uVar4 = uVar4 + uVar3;
       iVar2 = iVar2 + uVar1;
       if (param_3 < uVar4) {

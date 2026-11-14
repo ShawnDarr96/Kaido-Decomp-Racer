@@ -67,19 +67,19 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
     *(undefined4 *)(iVar2 + _g_MenuWnd + 0x2c) = param_2[3];
     iVar3 = UiMgr_FindLayout(param_1);
     iVar2 = *_g_UiMgr;
-    uVar4 = Msg_Get(0x68);
+    uVar4 = UiRes_GetLayoutData(0x68);
     UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x13,*param_2,uVar4,1);
     iVar3 = UiMgr_FindLayout(param_1);
     iVar2 = *_g_UiMgr;
-    uVar4 = Msg_Get(0x6a);
+    uVar4 = UiRes_GetLayoutData(0x6a);
     UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x12,param_2[1],uVar4,1);
     iVar3 = UiMgr_FindLayout(param_1);
     iVar2 = *_g_UiMgr;
-    uVar4 = Msg_Get(0x6b);
+    uVar4 = UiRes_GetLayoutData(0x6b);
     UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x11,param_2[2],uVar4,1);
     iVar3 = UiMgr_FindLayout(param_1);
     iVar2 = *_g_UiMgr;
-    uVar4 = Msg_Get(0x69);
+    uVar4 = UiRes_GetLayoutData(0x69);
     UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x10,param_2[3],uVar4,1);
   }
   else {
@@ -87,26 +87,26 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
     if (param_4 == 0) {
       iVar3 = UiMgr_FindLayout(param_1);
       iVar2 = *_g_UiMgr;
-      uVar4 = Msg_Get(0x68);
+      uVar4 = UiRes_GetLayoutData(0x68);
       UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x13,*param_2,uVar4,1);
       if (1 < param_3) {
         *(undefined4 *)(uRam0036f47c * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
         iVar3 = UiMgr_FindLayout(param_1);
         iVar2 = *_g_UiMgr;
-        uVar4 = Msg_Get(0x6a);
+        uVar4 = UiRes_GetLayoutData(0x6a);
         UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x12,param_2[1],uVar4,1);
       }
     }
     else {
       iVar3 = UiMgr_FindLayout(param_1);
       iVar2 = *_g_UiMgr;
-      uVar4 = Msg_Get(0x6b);
+      uVar4 = UiRes_GetLayoutData(0x6b);
       UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x13,*param_2,uVar4,1);
       if (1 < param_3) {
         *(undefined4 *)(uRam0036f47c * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
         iVar3 = UiMgr_FindLayout(param_1);
         iVar2 = *_g_UiMgr;
-        uVar4 = Msg_Get(0x69);
+        uVar4 = UiRes_GetLayoutData(0x69);
         UiLayout_IsAnimDone(iVar2 + iVar3 * 0x4f4 + 4,0x12,param_2[1],uVar4,1);
       }
     }
@@ -578,7 +578,7 @@ void MenuScene_Update(int param_1)
   {
     if ((uVar2 & 2) != 0) {
       if (*piVar1 < 0) {
-        uVar3 = Msg_Get(4);
+        uVar3 = UiRes_GetLayoutData(4);
         iVar4 = UiMgr_FindLayout(7);
         iVar4 = *_g_UiMgr + iVar4 * 0x4f4;
         *(undefined4 *)(iVar4 + 0x314) = 0xffffffff;

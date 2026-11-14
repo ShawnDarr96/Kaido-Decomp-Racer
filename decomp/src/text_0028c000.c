@@ -1913,8 +1913,8 @@ void menuscr_input_sub_0028fcd0(int param_1)
     *(undefined4 *)(param_1 + 0x38) = 0xfffffffe;
     *(undefined4 *)(param_1 + 0x3c) = 2;
     *(undefined4 *)(param_1 + 0x30) = 0;
-    uVar2 = MsgId_PartShort(*(undefined4 *)(*(int *)(param_1 + 0x24) * 0xc + param_1 + 0x40));
-    iVar1 = UiRes_GetFontIndex(uVar2);
+    uVar2 = MsgId_RivalProfile(*(undefined4 *)(*(int *)(param_1 + 0x24) * 0xc + param_1 + 0x40));
+    iVar1 = UiText_CountLinesById(uVar2);
     iVar1 = iVar1 + -5;
     if (iVar1 < 0) {
       iVar1 = 0;
@@ -1938,8 +1938,8 @@ void menuscr_input_sub_0028fd70(int param_1)
     *(undefined4 *)(param_1 + 0x38) = 3;
     *(undefined4 *)(param_1 + 0x3c) = 1;
     *(undefined4 *)(param_1 + 0x30) = 0;
-    uVar2 = MsgId_PartName(*(undefined4 *)(param_1 + 0x24));
-    iVar1 = UiRes_GetFontIndex(uVar2);
+    uVar2 = MsgId_GirlfriendLine(*(undefined4 *)(param_1 + 0x24));
+    iVar1 = UiText_CountLinesById(uVar2);
     iVar1 = iVar1 + -5;
     if (iVar1 < 0) {
       iVar1 = 0;

@@ -340,7 +340,7 @@ void showroom_step_sub_002d8b10(void)
   undefined4 uVar1;
   int iVar2;
   
-  uVar1 = Msg_Get(0xfc);
+  uVar1 = UiRes_GetLayoutData(0xfc);
   iVar2 = UiMgr_FindLayout(0xb3);
   iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
   if (*(int *)(iVar2 + 800) == 0) {
@@ -977,7 +977,7 @@ void replayui_draw_sub_002d9e30(int param_1)
           UiText_DrawById(auStack_4a0,uVar10);
         }
         else {
-          uVar10 = MsgId_TeamName(*(undefined4 *)(iVar8 + 0x1c));
+          uVar10 = MsgId_RivalNickname(*(undefined4 *)(iVar8 + 0x1c));
           uVar10 = (*pcVar6)(uVar10);
           uVar11 = (*pcVar5)(0xc0);
           UiElem_GetRect(uVar11,auStack_560,0x1f);
@@ -1016,7 +1016,7 @@ void replayui_draw_sub_002d9e30(int param_1)
           UiText_DrawById(auStack_620,uVar10);
         }
         else {
-          uVar10 = MsgId_TeamName(*(undefined4 *)(param_1 + 2000));
+          uVar10 = MsgId_RivalNickname(*(undefined4 *)(param_1 + 2000));
           uVar10 = (*pcVar6)(uVar10);
           uVar11 = (*pcVar5)(0xc0);
           UiElem_GetRect(uVar11,auStack_6e0,0x1f);

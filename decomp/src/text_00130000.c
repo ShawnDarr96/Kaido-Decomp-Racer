@@ -2999,7 +2999,7 @@ uint Math_FloatToFixed22(float param_1)
 }
 
 // 0x00133aa0  size 0x3b4
-undefined4 Math_SolveCubic(int param_1,uint param_2,int param_3,int *param_4)
+undefined4 Gut_DecompressBlock(int param_1,uint param_2,int param_3,int *param_4)
 
 {
   undefined4 uVar1;

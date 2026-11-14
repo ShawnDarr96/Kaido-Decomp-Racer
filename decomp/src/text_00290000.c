@@ -747,7 +747,7 @@ int scrcareer_step_sub_002913e0(int *param_1,int *param_2)
     iVar1 = *param_1 - *param_2;
   }
   else {
-    iVar1 = UiRes_GetFontInfo(lVar4,lVar5);
+    iVar1 = UiText_CompareById(lVar4,lVar5);
   }
   return iVar1;
 }
@@ -1002,8 +1002,8 @@ void menuscr_input_sub_00291ac0(int *param_1)
   iVar1 = param_1[0x208];
   param_1[0x208] = 0;
   if (iVar1 != 0) {
-    uVar2 = MsgId_PartShort(param_1[8]);
-    iVar1 = UiRes_GetFontIndex(uVar2);
+    uVar2 = MsgId_RivalProfile(param_1[8]);
+    iVar1 = UiText_CountLinesById(uVar2);
     if (*param_1 == 1) {
       param_1[0x21a] = 4;
     }
