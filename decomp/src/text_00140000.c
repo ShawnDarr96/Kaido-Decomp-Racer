@@ -454,14 +454,14 @@ void Wheel_PollDevices(void)
   int iVar7;
   int iVar8;
   
-  iVar1 = iGpffff8960;
+  iVar1 = iRam0036f050;
   iVar7 = 0;
   iVar8 = 0x387da0;
-  piVar4 = (int *)((int)register0x000001c0 + -0x7698);
+  piVar4 = (int *)0x36f058;
   do {
     if (*piVar4 != -1) {
       uVar2 = lgDevRead(*piVar4,1,iVar8);
-      uGpffff8988 = (int)uVar2;
+      uRam0036f078 = (undefined4)uVar2;
       if ((uVar2 & 0xffffffff80000000) != 0) {
         iVar3 = 0;
         iVar6 = 0x387280;
@@ -495,21 +495,21 @@ LAB_00140d98:
         }
         Wheel_ResetState(iVar6);
         *piVar4 = -1;
-        iGpffff8960 = iGpffff8960 + -1;
+        iRam0036f050 = iRam0036f050 + -1;
       }
     }
     iVar7 = iVar7 + 1;
     piVar4 = piVar4 + 1;
     iVar8 = iVar8 + 0x10;
     if (1 < iVar7) {
-      if (iVar1 != iGpffff8960) {
+      if (iVar1 != iRam0036f050) {
         maybe_Wheel_SortDevices(0,1);
       }
-      uGpffff8968 = *(undefined4 *)(iGpffff8970 + 0x490);
-      uGpffff8978 = *(undefined4 *)(iGpffff8970 + 0x498);
-      uGpffff896c = *(undefined4 *)(iGpffff8974 + 0x490);
-      uGpffff897c = *(undefined4 *)(iGpffff8974 + 0x498);
-      uGpffff898c = 0;
+      uRam0036f058 = *(undefined4 *)(iRam0036f060 + 0x490);
+      uRam0036f068 = *(undefined4 *)(iRam0036f060 + 0x498);
+      uRam0036f05c = *(undefined4 *)(iRam0036f064 + 0x490);
+      uRam0036f06c = *(undefined4 *)(iRam0036f064 + 0x498);
+      uRam0036f07c = 0;
       return;
     }
   } while( true );
@@ -536,7 +536,7 @@ void Wheel_EnumerateDevices(void)
   undefined1 auStack_14 [8];
   int iStack_c;
   
-  iVar3 = iGpffff8960;
+  iVar3 = iRam0036f050;
   iVar9 = 0;
   uVar4 = lgDevEnumerate(0,&iStack_20);
   if ((uVar4 & 0xffffffff80000000) == 0) {
@@ -596,7 +596,7 @@ LAB_00140f70:
               *(undefined4 *)(iVar8 + 0x538) = 0;
               *(undefined4 *)(iVar8 + 0x53c) = 0;
             }
-            iGpffff8960 = iGpffff8960 + 1;
+            iRam0036f050 = iRam0036f050 + 1;
           }
         }
       }
@@ -604,13 +604,13 @@ LAB_00140f70:
       uVar4 = lgDevEnumerate(iVar9,&iStack_20);
     } while ((uVar4 & 0xffffffff80000000) == 0);
   }
-  if (iVar3 != iGpffff8960) {
+  if (iVar3 != iRam0036f050) {
     maybe_Wheel_SortDevices(0,1);
   }
-  uGpffff8968 = *(undefined4 *)(iGpffff8970 + 0x490);
-  uGpffff8978 = *(undefined4 *)(iGpffff8970 + 0x498);
-  uGpffff896c = *(undefined4 *)(iGpffff8974 + 0x490);
-  uGpffff897c = *(undefined4 *)(iGpffff8974 + 0x498);
+  uRam0036f058 = *(undefined4 *)(iRam0036f060 + 0x490);
+  uRam0036f068 = *(undefined4 *)(iRam0036f060 + 0x498);
+  uRam0036f05c = *(undefined4 *)(iRam0036f064 + 0x490);
+  uRam0036f06c = *(undefined4 *)(iRam0036f064 + 0x498);
   return;
 }
 
@@ -635,12 +635,12 @@ void maybe_Wheel_SortDevices(int param_1,int param_2)
   if (iVar4 < 0) {
     iVar4 = iVar4 + 1;
   }
-  piVar6 = (int *)((int)register0x000001c0 + (iVar4 >> 1) * 4 + -0x7690);
+  piVar6 = (int *)((iVar4 >> 1) * 4 + 0x36f060);
   iVar4 = param_1;
   iVar10 = param_2;
 LAB_00141164:
   do {
-    piVar5 = (int *)((int)register0x000001c0 + iVar4 * 4 + -0x7690);
+    piVar5 = (int *)(iVar4 * 4 + 0x36f060);
     uVar8 = 0;
     iVar3 = *piVar5;
     do {
@@ -659,7 +659,7 @@ LAB_00141164:
     lVar7 = 0;
 LAB_001411d0:
     if (-1 < lVar7) {
-      piVar9 = (int *)((int)register0x000001c0 + iVar10 * 4 + -0x7690);
+      piVar9 = (int *)(iVar10 * 4 + 0x36f060);
       do {
         uVar8 = 0;
         do {
@@ -695,7 +695,7 @@ LAB_00141280:
     return;
   }
   iVar4 = iVar4 + 1;
-  piVar9 = (int *)((int)register0x000001c0 + iVar10 * 4 + -0x7690);
+  piVar9 = (int *)(iVar10 * 4 + 0x36f060);
   iVar10 = iVar10 + -1;
   *piVar5 = *piVar9;
   *piVar9 = iVar3;
@@ -735,7 +735,7 @@ int Wheel_GetDeviceName(int param_1)
       uVar7 = uVar6 + 2;
     }
     iVar5 = 0;
-    piVar4 = (int *)((int)register0x000001c0 + -0x7690);
+    piVar4 = (int *)0x36f060;
     do {
       iVar1 = *piVar4;
       lVar2 = Str_CompareN(iVar1 + 0x57c,acStack_8,uVar7);
@@ -759,7 +759,7 @@ undefined4 Wheel_GetHandle(long param_1)
   undefined4 uVar1;
   
   if (param_1 < 2) {
-    uVar1 = *(undefined4 *)((int)register0x000001c0 + (int)param_1 * 4 + -0x7690);
+    uVar1 = *(undefined4 *)((int)param_1 * 4 + 0x36f060);
   }
   else {
     uVar1 = 0;
@@ -804,7 +804,7 @@ void maybe_Wheel_Shutdown(void)
     iVar4 = iVar4 + 1;
     iVar2 = iVar2 + 0x590;
   } while (iVar4 < 2);
-  uGpffff8960 = 0;
+  uRam0036f050 = 0;
   return;
 }
 
@@ -820,11 +820,11 @@ void Wheel_Init(void)
   int iVar4;
   
   lgDevInit();
-  uGpffff8960 = 0;
+  uRam0036f050 = 0;
   iVar4 = 0;
   iVar3 = 0x387280;
-  puVar2 = (undefined4 *)((int)register0x000001c0 + -0x7698);
-  piVar1 = (int *)((int)register0x000001c0 + -0x7690);
+  puVar2 = (undefined4 *)0x36f058;
+  piVar1 = (int *)0x36f060;
   do {
     Wheel_ResetState(iVar3);
     *piVar1 = iVar3;
@@ -834,10 +834,10 @@ void Wheel_Init(void)
     puVar2 = puVar2 + 1;
     piVar1 = piVar1 + 1;
   } while (iVar4 < 2);
-  uGpffff8980 = 0;
-  uGpffff8984 = 0;
-  uGpffff8988 = 0;
-  uGpffff898c = 0;
+  uRam0036f070 = 0;
+  uRam0036f074 = 0;
+  uRam0036f078 = 0;
+  uRam0036f07c = 0;
   return;
 }
 

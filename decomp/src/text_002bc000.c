@@ -168,6 +168,8 @@ void script_sub_002bc200(void)
 }
 
 // 0x002bc3f0  size 0x33c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void script_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
 
 {
@@ -208,7 +210,7 @@ void script_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
       Mem_Set16(iVar4,0,*(undefined4 *)(iRam0036f7e0 + iVar7 + 0x40));
     }
     if (((int)(param_3 & 0xffff) >> (uVar8 & 0x1f) & 1U) != 0) {
-      iVar5 = iRam0036f0c4 + (uVar8 + 0x17ff) * 0x14;
+      iVar5 = _g_ArcToc + (uVar8 + 0x17ff) * 0x14;
       iVar4 = *(int *)(iVar5 + 0x20);
       iVar6 = iRam0036f7e0 + iVar7;
       if (iVar4 == 0) {
@@ -256,11 +258,11 @@ void script_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
     iVar7 = iVar7 + 0xda8;
   } while (iVar4 < 2);
   if ((param_3 & 0xffff) == 0xffff) {
-    if (*(int *)(iRam0036f0c4 + 0x1e0fc) == 0) {
-      uVar8 = *(uint *)(iRam0036f0c4 + 0x1e0f4);
+    if (*(int *)(_g_ArcToc + 0x1e0fc) == 0) {
+      uVar8 = *(uint *)(_g_ArcToc + 0x1e0f4);
     }
     else {
-      uVar8 = *(int *)(iRam0036f0c4 + 0x1e0fc) + 0x7ffU >> 0xb;
+      uVar8 = *(int *)(_g_ArcToc + 0x1e0fc) + 0x7ffU >> 0xb;
     }
     puRam0036f7e4 = (undefined4 *)Mem_Alloc16(0xc,param_1);
     uVar2 = Mem_Alloc16(uVar8 << 0xb,param_1);
@@ -442,7 +444,7 @@ void script_sub_002bcb00(int param_1)
   undefined8 uVar9;
   
   uVar9 = 0;
-  iVar1 = *piGpffff8c5c;
+  iVar1 = *piRam0036f34c;
   uVar8 = 0;
   cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x01') {
@@ -465,7 +467,7 @@ void script_sub_002bcb00(int param_1)
   Save_AllocSlots();
   cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x03') {
-    if (iGpffff9100 == 0) {
+    if (iRam0036f7f0 == 0) {
       replayui_sub_002dbf20(param_1 + 0x40c,2);
     }
     else {
@@ -473,7 +475,7 @@ void script_sub_002bcb00(int param_1)
     }
   }
   else if (cVar2 == '\x02') {
-    if (iGpffff9100 == 0) {
+    if (iRam0036f7f0 == 0) {
       replayui_sub_002dbf20(param_1 + 0x40c,2,2);
     }
     else {
@@ -535,27 +537,27 @@ void script_sub_002bce00(char *param_1)
     uVar4 = 0;
   }
   uVar4 = *(int *)(param_1 + 0x318) != 0 | uVar4;
-  iVar7 = (int)(char)(&DAT_0032f535)[(uint)bGpffff9120 * 6];
+  iVar7 = (int)(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6];
   iVar1 = *(int *)(&DAT_0032f1c4 + iVar7 * 8);
   if ((param_1[0x48] != '\x02') && (param_1[0x48] != '\x04')) {
     if (*param_1 == '\x01') {
       if (*(float *)(param_1 + 0x94) == 1.0) {
-        if (*piGpffff8d78 != 1) {
-          *piGpffff8d78 = 1;
+        if (*piRam0036f468 != 1) {
+          *piRam0036f468 = 1;
         }
       }
-      else if (*piGpffff8d78 == 1) {
-        *piGpffff8d78 = 0;
+      else if (*piRam0036f468 == 1) {
+        *piRam0036f468 = 0;
       }
     }
-    uVar6 = piGpffff8d78[2];
-    if ((piGpffff8d78[4] & uVar6) == 0) {
+    uVar6 = piRam0036f468[2];
+    if ((piRam0036f468[4] & uVar6) == 0) {
       uVar6 = 0x100000;
     }
     else if (uVar6 == 0x80000) {
       uVar6 = 0x80000;
     }
-    else if (*piGpffff8d78 != 1) {
+    else if (*piRam0036f468 != 1) {
       uVar6 = 0x100000;
     }
     if (uVar6 == 0x20) {
@@ -585,16 +587,16 @@ void script_sub_002bce00(char *param_1)
           param_1[0x340] = '\x01';
           break;
         case 1:
-          *piGpffff8d78 = 0;
+          *piRam0036f468 = 0;
           param_1[0x340] = '\x02';
           break;
         case 2:
           param_1[0x340] = '\x03';
-          uGpffff9100 = 0;
+          uRam0036f7f0 = 0;
           break;
         case 3:
           param_1[0x340] = '\x04';
-          uGpffff9100 = 1;
+          uRam0036f7f0 = 1;
           break;
         case 4:
           param_1[0x324] = '\0';
@@ -602,7 +604,7 @@ void script_sub_002bce00(char *param_1)
           param_1[0x326] = '\0';
           param_1[0x327] = '\0';
           param_1[0x340] = '\x06';
-          *piGpffff8d78 = 0;
+          *piRam0036f468 = 0;
           break;
         case 5:
           param_1[0x340] = '\a';
@@ -719,7 +721,7 @@ void result_sub_002bd2d0(int param_1)
   if (*(int *)(param_1 + 0x31c) == 0) {
     uVar9 = 0;
   }
-  iVar10 = (int)(char)(&DAT_0032f535)[(uint)bGpffff9120 * 6];
+  iVar10 = (int)(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6];
   uVar3 = *(uint *)(&DAT_0032f1c4 + iVar10 * 8);
   uVar13 = 0;
   if (uVar3 != 0) {
@@ -862,7 +864,7 @@ LAB_002bd944:
   if (cVar4 == '\x03') {
     *(undefined4 *)(param_1 + 0x348) =
          *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar10 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
-    if ((((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x05') &&
+    if ((((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
         (cVar4 = GameState_Get_354_7050(), cVar4 == '\x01')) && (*(int *)(param_1 + 0x348) == 99)) {
       *(undefined4 *)(param_1 + 0x348) = 100;
     }
@@ -1166,7 +1168,7 @@ LAB_002bdc40:
     uStack_2c = 4;
     iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
     UiText_DrawRivalInfo(auStack_40,1,0,uVar6 + 1);
-    if (*(int *)(iGpffff9114 + 0x298) == 0) {
+    if (*(int *)(iRam0036f804 + 0x298) == 0) {
       uVar3 = 8 - uVar6;
     }
     else {
@@ -1717,7 +1719,7 @@ LAB_002beeec:
       UiElem_GetRect(uVar1,auStack_40,*(int *)(param_1 + 0x39c) + uVar6);
       uStack_2c = 4;
       iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
-      if (*(int *)(iGpffff9114 + 0x298) == 0) {
+      if (*(int *)(iRam0036f804 + 0x298) == 0) {
         uVar4 = 8 - uVar6;
       }
       else {
@@ -2110,7 +2112,7 @@ void result_sub_002bfcc0(int param_1)
   undefined4 uStack_2c;
   int iStack_28;
   
-  switch((&DAT_0032f535)[(uint)bGpffff9120 * 6]) {
+  switch((&DAT_0032f535)[(uint)bRam0036f810 * 6]) {
   case 0:
     result_sub_002bf9a0();
     break;

@@ -275,51 +275,58 @@ undefined4 TitleCam_GetPathCount(undefined4 param_1,ulong param_2)
 }
 
 // 0x00209240  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0xc */
 
 int GameDb_GetEncounter(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x250) + param_1 * 0xc;
+  return *(int *)(_g_GameDb + 0x250) + param_1 * 0xc;
 }
 
 // 0x00209260  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x50 */
 
 int GameDb_GetRivalCar(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x24c) + param_1 * 0x50;
+  return *(int *)(_g_GameDb + 0x24c) + param_1 * 0x50;
 }
 
 // 0x00209280  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x28 */
 
 int GameDb_GetTeamInfo(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x248) + param_1 * 0x28;
+  return *(int *)(_g_GameDb + 0x248) + param_1 * 0x28;
 }
 
 // 0x002092a0  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x44 */
 
 int GameDb_GetTeam(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x244) + param_1 * 0x44;
+  return *(int *)(_g_GameDb + 0x244) + param_1 * 0x44;
 }
 
 // 0x002092c0  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x17c; 17 callers */
 
 int GameDb_GetRival(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x240) + param_1 * 0x17c;
+  return *(int *)(_g_GameDb + 0x240) + param_1 * 0x17c;
 }
 
 // 0x002092f0  size 0xa8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int GameDb_FindRival(void)
 
 {
@@ -330,103 +337,118 @@ int GameDb_FindRival(void)
   
   iVar2 = 0;
   iVar4 = 0;
-  if (0 < *(int *)(iGpffff8df8 + 0x54)) {
-    iVar3 = *(int *)(iGpffff8df8 + 0x240);
+  if (0 < *(int *)(_g_GameDb + 0x54)) {
+    iVar3 = *(int *)(_g_GameDb + 0x240);
     do {
       if ((((*(short *)(iVar3 + 2) != -1) && (cVar1 = *(char *)(iVar3 + 4), cVar1 != '\x06')) &&
           (cVar1 != '\x05')) &&
          (((cVar1 != '\v' && (cVar1 != '\f')) &&
-          ((iVar4 != *(int *)(iGpffff8df8 + 0x1e8) && (iVar4 != *(int *)(iGpffff8df8 + 0x1e4)))))))
-      {
+          ((iVar4 != *(int *)(_g_GameDb + 0x1e8) && (iVar4 != *(int *)(_g_GameDb + 0x1e4))))))) {
         iVar2 = iVar2 + 1;
       }
       iVar4 = iVar4 + 1;
       iVar3 = iVar3 + 0x17c;
-    } while (iVar4 < *(int *)(iGpffff8df8 + 0x54));
+    } while (iVar4 < *(int *)(_g_GameDb + 0x54));
   }
   return iVar2;
 }
 
 // 0x002093a0  size 0x20
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int GameDb_GetCourseSection(uint param_1,int param_2)
 
 {
-  return *(int *)((param_1 & 0xff) * 4 + iGpffff8df8 + 0x220) + param_2 * 0x20;
+  return *(int *)((param_1 & 0xff) * 4 + _g_GameDb + 0x220) + param_2 * 0x20;
 }
 
 // 0x002093c0  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x38 */
 
 int GameDb_GetCourse(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x21c) + param_1 * 0x38;
+  return *(int *)(_g_GameDb + 0x21c) + param_1 * 0x38;
 }
 
 // 0x002093e0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 GameDb_GetTeamCount(void)
 
 {
-  return *(undefined4 *)(iGpffff8df8 + 4);
+  return *(undefined4 *)(_g_GameDb + 4);
 }
 
 // 0x002093f0  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x58 */
 
 int GameDb_GetTeamRecord(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 0x1f0) + param_1 * 0x58;
+  return *(int *)(_g_GameDb + 0x1f0) + param_1 * 0x58;
 }
 
 // 0x00209420  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 GameDb_GetTeamMemberCount(int param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + iGpffff8df8 + 0xc);
+  return *(undefined4 *)(param_1 * 4 + _g_GameDb + 0xc);
 }
 
 // 0x00209440  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x40 */
 
 int GameDb_GetTeamMember(int param_1,int param_2)
 
 {
-  return *(int *)(param_1 * 4 + iGpffff8df8 + 0x1f8) + param_2 * 0x40;
+  return *(int *)(param_1 * 4 + _g_GameDb + 0x1f8) + param_2 * 0x40;
 }
 
 // 0x00209460  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 GameDb_GetEventCount(void)
 
 {
-  return *(undefined4 *)(iGpffff8df8 + 8);
+  return *(undefined4 *)(_g_GameDb + 8);
 }
 
 // 0x00209470  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x48 */
 
 int GameDb_GetEvent(int param_1)
 
 {
-  return *(int *)(iGpffff8df8 + 500) + param_1 * 0x48;
+  return *(int *)(_g_GameDb + 500) + param_1 * 0x48;
 }
 
 // 0x00209490  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameDb_IsLoading(void)
 
 {
-  File_IsBusy(*puGpffff8df8);
+  File_IsBusy(*_g_GameDb);
   return;
 }
 
 // 0x002094a0  size 0x98
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameDb_ApplyToProfile(long param_1)
 
 {
   int iVar1;
   int iVar2;
   
-  iVar1 = iGpffff8df8;
+  iVar1 = _g_GameDb;
   if (param_1 == 0) {
     iVar2 = Profile_Get(0);
     Opponent_SetupGrid(iVar2 + 0x5280,0,*(int *)(iVar1 + 0x240) + *(int *)(iVar1 + 0x1e4) * 0x17c);
@@ -439,6 +461,8 @@ void GameDb_ApplyToProfile(long param_1)
 }
 
 // 0x00209540  size 0xe0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameDb_ApplyAllProfiles(void)
 
 {
@@ -448,228 +472,234 @@ void GameDb_ApplyAllProfiles(void)
   int iVar4;
   
   iVar4 = 0;
-  if (0 < *(int *)(iGpffff8df8 + 0x54)) {
+  if (0 < *(int *)(_g_GameDb + 0x54)) {
     iVar3 = 0;
     do {
-      iVar2 = *(int *)(iGpffff8df8 + 0x240) + iVar3;
+      iVar2 = *(int *)(_g_GameDb + 0x240) + iVar3;
       if (*(char *)(iVar2 + 4) == '\x05') {
         iVar1 = Profile_Get(0);
         Opponent_SetupGrid(iVar1 + 0x5280,0,iVar2);
-        *(int *)(iGpffff8df8 + 0x1e4) = iVar4;
+        *(int *)(_g_GameDb + 0x1e4) = iVar4;
       }
       if (*(char *)(iVar2 + 4) == '\x06') {
         iVar2 = Profile_Get(0);
-        Opponent_SetupGrid(iVar2 + 0x52c4,1,*(int *)(iGpffff8df8 + 0x240) + iVar3);
-        *(int *)(iGpffff8df8 + 0x1e8) = iVar4;
+        Opponent_SetupGrid(iVar2 + 0x52c4,1,*(int *)(_g_GameDb + 0x240) + iVar3);
+        *(int *)(_g_GameDb + 0x1e8) = iVar4;
       }
       iVar4 = iVar4 + 1;
       iVar3 = iVar3 + 0x17c;
-    } while (iVar4 < *(int *)(iGpffff8df8 + 0x54));
+    } while (iVar4 < *(int *)(_g_GameDb + 0x54));
   }
   return;
 }
 
 // 0x00209630  size 0x9ac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameDb_Load(void)
 
 {
   undefined4 uVar1;
   uint uVar2;
   
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20320);
+  uVar2 = *(uint *)(_g_ArcToc + 0x20320);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20314);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20314);
   }
-  puGpffff8df8[1] = uVar2 / 0x58;
-  uVar1 = Arc_LoadFileEx(0x19c0,puGpffff8df8[0x7c],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20334);
+  _g_GameDb[1] = uVar2 / 0x58;
+  uVar1 = Arc_LoadFileEx(0x19c0,_g_GameDb[0x7c],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20334);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20328);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20328);
   }
-  puGpffff8df8[2] = uVar2 / 0x48;
-  uVar1 = Arc_LoadFileEx(0x19c1,puGpffff8df8[0x7d],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20348);
+  _g_GameDb[2] = uVar2 / 0x48;
+  uVar1 = Arc_LoadFileEx(0x19c1,_g_GameDb[0x7d],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20348);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x2033c);
+    uVar2 = *(uint *)(_g_ArcToc + 0x2033c);
   }
-  puGpffff8df8[3] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c2,puGpffff8df8[0x7e],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20370);
+  _g_GameDb[3] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c2,_g_GameDb[0x7e],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20370);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20364);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20364);
   }
-  puGpffff8df8[4] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c4,puGpffff8df8[0x7f],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20384);
+  _g_GameDb[4] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c4,_g_GameDb[0x7f],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20384);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20378);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20378);
   }
-  puGpffff8df8[5] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c5,puGpffff8df8[0x80],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20398);
+  _g_GameDb[5] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c5,_g_GameDb[0x80],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20398);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x2038c);
+    uVar2 = *(uint *)(_g_ArcToc + 0x2038c);
   }
-  puGpffff8df8[6] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c6,puGpffff8df8[0x81],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x203ac);
+  _g_GameDb[6] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c6,_g_GameDb[0x81],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x203ac);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x203a0);
+    uVar2 = *(uint *)(_g_ArcToc + 0x203a0);
   }
-  puGpffff8df8[7] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c7,puGpffff8df8[0x82],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x203d4);
+  _g_GameDb[7] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c7,_g_GameDb[0x82],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x203d4);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x203c8);
+    uVar2 = *(uint *)(_g_ArcToc + 0x203c8);
   }
-  puGpffff8df8[8] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c9,puGpffff8df8[0x83],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x203c0);
+  _g_GameDb[8] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c9,_g_GameDb[0x83],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x203c0);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x203b4);
+    uVar2 = *(uint *)(_g_ArcToc + 0x203b4);
   }
-  puGpffff8df8[9] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19c8,puGpffff8df8[0x84],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x203e8);
+  _g_GameDb[9] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19c8,_g_GameDb[0x84],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x203e8);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x203dc);
+    uVar2 = *(uint *)(_g_ArcToc + 0x203dc);
   }
-  puGpffff8df8[10] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19ca,puGpffff8df8[0x85],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x203fc);
+  _g_GameDb[10] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19ca,_g_GameDb[0x85],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x203fc);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x203f0);
+    uVar2 = *(uint *)(_g_ArcToc + 0x203f0);
   }
-  puGpffff8df8[0xb] = uVar2 >> 6;
-  uVar1 = Arc_LoadFileEx(0x19cb,puGpffff8df8[0x86],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20410);
+  _g_GameDb[0xb] = uVar2 >> 6;
+  uVar1 = Arc_LoadFileEx(0x19cb,_g_GameDb[0x86],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20410);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20404);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20404);
   }
-  puGpffff8df8[0xc] = uVar2 / 0x38;
-  uVar1 = Arc_LoadFileEx(0x19cc,puGpffff8df8[0x87],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20424);
+  _g_GameDb[0xc] = uVar2 / 0x38;
+  uVar1 = Arc_LoadFileEx(0x19cc,_g_GameDb[0x87],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20424);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20418);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20418);
   }
-  puGpffff8df8[0xe] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19cd,puGpffff8df8[0x89],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20438);
+  _g_GameDb[0xe] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19cd,_g_GameDb[0x89],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20438);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x2042c);
+    uVar2 = *(uint *)(_g_ArcToc + 0x2042c);
   }
-  puGpffff8df8[0xd] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19ce,puGpffff8df8[0x88],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x2044c);
+  _g_GameDb[0xd] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19ce,_g_GameDb[0x88],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x2044c);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20440);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20440);
   }
-  puGpffff8df8[0x12] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19cf,puGpffff8df8[0x8d],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20460);
+  _g_GameDb[0x12] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19cf,_g_GameDb[0x8d],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20460);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20454);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20454);
   }
-  puGpffff8df8[0x10] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19d0,puGpffff8df8[0x8b],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20474);
+  _g_GameDb[0x10] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19d0,_g_GameDb[0x8b],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20474);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20468);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20468);
   }
-  puGpffff8df8[0xf] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19d1,puGpffff8df8[0x8a],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20488);
+  _g_GameDb[0xf] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19d1,_g_GameDb[0x8a],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20488);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x2047c);
+    uVar2 = *(uint *)(_g_ArcToc + 0x2047c);
   }
-  puGpffff8df8[0x11] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19d2,puGpffff8df8[0x8c],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x2049c);
+  _g_GameDb[0x11] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19d2,_g_GameDb[0x8c],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x2049c);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20490);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20490);
   }
-  puGpffff8df8[0x14] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19d3,puGpffff8df8[0x8f],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x204b0);
+  _g_GameDb[0x14] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19d3,_g_GameDb[0x8f],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x204b0);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x204a4);
+    uVar2 = *(uint *)(_g_ArcToc + 0x204a4);
   }
-  puGpffff8df8[0x13] = uVar2 >> 5;
-  uVar1 = Arc_LoadFileEx(0x19d4,puGpffff8df8[0x8e],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x204c4);
+  _g_GameDb[0x13] = uVar2 >> 5;
+  uVar1 = Arc_LoadFileEx(0x19d4,_g_GameDb[0x8e],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x204c4);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x204b8);
+    uVar2 = *(uint *)(_g_ArcToc + 0x204b8);
   }
-  puGpffff8df8[0x15] = uVar2 / 0x17c;
-  uVar1 = Arc_LoadFileEx(0x19d5,puGpffff8df8[0x90],0x209540,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x204d8);
+  _g_GameDb[0x15] = uVar2 / 0x17c;
+  uVar1 = Arc_LoadFileEx(0x19d5,_g_GameDb[0x90],0x209540,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x204d8);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x204cc);
+    uVar2 = *(uint *)(_g_ArcToc + 0x204cc);
   }
-  puGpffff8df8[0x16] = uVar2 / 0x44;
-  uVar1 = Arc_LoadFileEx(0x19d6,puGpffff8df8[0x91],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x204ec);
+  _g_GameDb[0x16] = uVar2 / 0x44;
+  uVar1 = Arc_LoadFileEx(0x19d6,_g_GameDb[0x91],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x204ec);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x204e0);
+    uVar2 = *(uint *)(_g_ArcToc + 0x204e0);
   }
-  puGpffff8df8[0x17] = uVar2 / 0x28;
-  uVar1 = Arc_LoadFileEx(0x19d7,puGpffff8df8[0x92],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20500);
+  _g_GameDb[0x17] = uVar2 / 0x28;
+  uVar1 = Arc_LoadFileEx(0x19d7,_g_GameDb[0x92],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20500);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x204f4);
+    uVar2 = *(uint *)(_g_ArcToc + 0x204f4);
   }
-  puGpffff8df8[0x18] = uVar2 / 0x50;
-  uVar1 = Arc_LoadFileEx(0x19d8,puGpffff8df8[0x93],0,0,0,0);
-  *puGpffff8df8 = uVar1;
-  uVar2 = *(uint *)(iGpffff89d4 + 0x20514);
+  _g_GameDb[0x18] = uVar2 / 0x50;
+  uVar1 = Arc_LoadFileEx(0x19d8,_g_GameDb[0x93],0,0,0,0);
+  *_g_GameDb = uVar1;
+  uVar2 = *(uint *)(_g_ArcToc + 0x20514);
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(iGpffff89d4 + 0x20508);
+    uVar2 = *(uint *)(_g_ArcToc + 0x20508);
   }
-  puGpffff8df8[0x19] = uVar2 / 0xc;
-  uVar1 = Arc_LoadFileEx(0x19d9,puGpffff8df8[0x94],0,0,0,0);
-  *puGpffff8df8 = uVar1;
+  _g_GameDb[0x19] = uVar2 / 0xc;
+  uVar1 = Arc_LoadFileEx(0x19d9,_g_GameDb[0x94],0,0,0,0);
+  *_g_GameDb = uVar1;
   return;
 }
 
 // 0x00209fe0  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameDb_Free(void)
 
 {
-  if (*(int *)(iGpffff8df8 + 0x1ec) != 0) {
+  if (*(int *)(_g_GameDb + 0x1ec) != 0) {
     Mem_Free();
-    *(undefined4 *)(iGpffff8df8 + 0x1ec) = 0;
+    *(undefined4 *)(_g_GameDb + 0x1ec) = 0;
   }
-  if (iGpffff8df8 != 0) {
+  if (_g_GameDb != 0) {
     Mem_Free();
-    iGpffff8df8 = 0;
+    _g_GameDb = 0;
   }
   return;
 }
 
 // 0x0020a030  size 0x594
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameDb_Alloc(undefined8 param_1)
 
 {
@@ -680,233 +710,233 @@ void GameDb_Alloc(undefined8 param_1)
   int iVar5;
   
   iVar3 = 0;
-  iRam0036f4e8 = Mem_Alloc16(0x254,param_1);
-  *(undefined4 *)(iRam0036f4e8 + 0x1ec) = 0;
-  iVar5 = *(int *)(iRam0036f4e8 + 0x1ec);
+  _g_GameDb = Mem_Alloc16(0x254,param_1);
+  *(undefined4 *)(_g_GameDb + 0x1ec) = 0;
+  iVar5 = *(int *)(_g_GameDb + 0x1ec);
   while (iVar5 == 0) {
     if (iVar3 != 0) {
       uVar4 = Mem_AllocAligned(iVar3,0x40,param_1);
-      *(undefined4 *)(iRam0036f4e8 + 0x1ec) = uVar4;
+      *(undefined4 *)(_g_GameDb + 0x1ec) = uVar4;
     }
-    iVar5 = *(int *)(iRam0036f4e8 + 0x1ec);
-    *(int *)(iRam0036f4e8 + 500) = iVar5;
+    iVar5 = *(int *)(_g_GameDb + 0x1ec);
+    *(int *)(_g_GameDb + 500) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c1,0x19c1,1);
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar1;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar1;
     }
-    *(int *)(iRam0036f4e8 + 0x1f0) = iVar5;
+    *(int *)(_g_GameDb + 0x1f0) = iVar5;
     iVar2 = Arc_GetFileSize(0x19c0,0x19c0,1);
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar1 + iVar2;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar1 + iVar2;
     }
-    *(int *)(iRam0036f4e8 + 0x1f8) = iVar5;
+    *(int *)(_g_GameDb + 0x1f8) = iVar5;
     iVar3 = Arc_GetFileSize(0x19c2,0x19c2,1);
     iVar3 = iVar1 + iVar2 + iVar3;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x1fc) = iVar5;
+    *(int *)(_g_GameDb + 0x1fc) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c4,0x19c4,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x200) = iVar5;
+    *(int *)(_g_GameDb + 0x200) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c5,0x19c5,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x204) = iVar5;
+    *(int *)(_g_GameDb + 0x204) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c6,0x19c6,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x208) = iVar5;
+    *(int *)(_g_GameDb + 0x208) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c7,0x19c7,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x20c) = iVar5;
+    *(int *)(_g_GameDb + 0x20c) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c9,0x19c9,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x210) = iVar5;
+    *(int *)(_g_GameDb + 0x210) = iVar5;
     iVar1 = Arc_GetFileSize(0x19c8,0x19c8,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x214) = iVar5;
+    *(int *)(_g_GameDb + 0x214) = iVar5;
     iVar1 = Arc_GetFileSize(0x19ca,0x19ca,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x218) = iVar5;
+    *(int *)(_g_GameDb + 0x218) = iVar5;
     iVar1 = Arc_GetFileSize(0x19cb,0x19cb,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x21c) = iVar5;
+    *(int *)(_g_GameDb + 0x21c) = iVar5;
     iVar1 = Arc_GetFileSize(0x19cc,0x19cc,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x220) = iVar5;
+    *(int *)(_g_GameDb + 0x220) = iVar5;
     iVar1 = Arc_GetFileSize(0x19ce,0x19ce,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x224) = iVar5;
+    *(int *)(_g_GameDb + 0x224) = iVar5;
     iVar1 = Arc_GetFileSize(0x19cd,0x19cd,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x234) = iVar5;
+    *(int *)(_g_GameDb + 0x234) = iVar5;
     iVar1 = Arc_GetFileSize(0x19cf,0x19cf,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x22c) = iVar5;
+    *(int *)(_g_GameDb + 0x22c) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d0,0x19d0,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x228) = iVar5;
+    *(int *)(_g_GameDb + 0x228) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d1,0x19d1,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x230) = iVar5;
+    *(int *)(_g_GameDb + 0x230) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d2,0x19d2,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x23c) = iVar5;
+    *(int *)(_g_GameDb + 0x23c) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d3,0x19d3,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x238) = iVar5;
+    *(int *)(_g_GameDb + 0x238) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d4,0x19d4,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x240) = iVar5;
+    *(int *)(_g_GameDb + 0x240) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d5,0x19d5,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x244) = iVar5;
+    *(int *)(_g_GameDb + 0x244) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d6,0x19d6,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x248) = iVar5;
+    *(int *)(_g_GameDb + 0x248) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d7,0x19d7,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x24c) = iVar5;
+    *(int *)(_g_GameDb + 0x24c) = iVar5;
     iVar1 = Arc_GetFileSize(0x19d8,0x19d8,1);
     iVar3 = iVar3 + iVar1;
     if (iVar5 == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = *(int *)(iRam0036f4e8 + 0x1ec) + iVar3;
+      iVar5 = *(int *)(_g_GameDb + 0x1ec) + iVar3;
     }
-    *(int *)(iRam0036f4e8 + 0x250) = iVar5;
+    *(int *)(_g_GameDb + 0x250) = iVar5;
     iVar5 = Arc_GetFileSize(0x19d9,0x19d9,1);
     iVar3 = iVar3 + iVar5;
-    iVar5 = *(int *)(iRam0036f4e8 + 0x1ec);
+    iVar5 = *(int *)(_g_GameDb + 0x1ec);
   }
   return;
 }

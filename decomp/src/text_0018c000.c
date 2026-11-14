@@ -154,16 +154,17 @@ void ScreenFx_Draw(uint *param_1)
   undefined8 *puVar1;
   undefined4 *puVar2;
   uint *puVar3;
-  uint uVar4;
+  undefined1 *puVar4;
   uint uVar5;
-  undefined4 unaff_s1_lo;
-  int iVar6;
-  undefined4 *puVar7;
-  uint uVar8;
-  undefined4 uVar9;
-  float fVar10;
+  uint uVar6;
+  undefined1 *unaff_s1_lo;
+  int iVar7;
+  undefined4 *puVar8;
+  uint uVar9;
+  undefined4 uVar10;
+  float fVar11;
   undefined1 auStack_860 [20];
-  undefined4 uStack_84c;
+  undefined1 *puStack_84c;
   undefined1 auStack_820 [128];
   uint auStack_7a0 [170];
   undefined8 uStack_4f8;
@@ -172,9 +173,9 @@ void ScreenFx_Draw(uint *param_1)
   undefined4 uStack_4b0;
   undefined4 uStack_4ac;
   undefined1 auStack_490 [20];
-  undefined4 uStack_47c;
+  undefined1 *puStack_47c;
   undefined1 auStack_450 [20];
-  undefined4 uStack_43c;
+  undefined1 *puStack_43c;
   undefined1 auStack_410 [128];
   uint auStack_390 [170];
   undefined8 uStack_e8;
@@ -183,37 +184,37 @@ void ScreenFx_Draw(uint *param_1)
   undefined4 uStack_a0;
   undefined4 uStack_9c;
   undefined1 auStack_80 [20];
-  undefined4 uStack_6c;
+  undefined1 *puStack_6c;
   undefined1 auStack_40 [20];
   undefined4 uStack_2c;
   
   if ((iRam0036f1f8 == 0) && (param_1[3] == 2)) {
     return;
   }
-  uVar8 = param_1[3];
-  uVar9 = 0x431c80;
-  if (uVar8 != 2) {
-    if (uVar8 == 1) {
-      uVar9 = 0x4316c0;
+  uVar9 = param_1[3];
+  puVar4 = (undefined1 *)0x431c80;
+  if (uVar9 != 2) {
+    if (uVar9 == 1) {
+      puVar4 = (undefined1 *)0x4316c0;
     }
     else {
-      if (uVar8 == 0) {
-        unaff_s1_lo = 0x431100;
+      if (uVar9 == 0) {
+        unaff_s1_lo = &g_Views;
       }
-      uVar9 = unaff_s1_lo;
+      puVar4 = unaff_s1_lo;
     }
   }
   if (*param_1 == 0) {
     return;
   }
-  if (uVar8 < 2) {
+  if (uVar9 < 2) {
     Pkt_Init(auStack_40,1,2,0);
     uStack_2c = 0x433940;
     Pkt_SubmitToChain(auStack_40,8);
     Pkt_End(auStack_40);
     Pkt_Submit(auStack_40,0);
     Pkt_Init(auStack_80,1,2,0);
-    uStack_6c = 0x431100;
+    puStack_6c = &g_Views;
     Pkt_SubmitToChain(auStack_80,8);
     Gfx_SetupRenderTargetEx(0x431100,auStack_410,0,0);
     TexSlot_Set(0,1,auStack_410);
@@ -229,12 +230,12 @@ void ScreenFx_Draw(uint *param_1)
     Pkt_Submit(auStack_80,0);
   }
   Pkt_Init(auStack_450,1,2,0);
-  uStack_43c = uVar9;
+  puStack_43c = puVar4;
   Pkt_SubmitToChain(auStack_450,8);
   Pkt_End(auStack_450);
   Pkt_Submit(auStack_450,0);
   Pkt_Init(auStack_490,1,2,0);
-  uStack_47c = uVar9;
+  puStack_47c = puVar4;
   Pkt_SubmitToChain(auStack_490,8);
   Gfx_SetupRenderTargetEx(0x433940,auStack_820,0,0);
   TexSlot_Set(0,1,auStack_820);
@@ -249,7 +250,7 @@ void ScreenFx_Draw(uint *param_1)
   Pkt_AddPrimitives(auStack_490,auStack_7a0,1);
   Pkt_Submit(auStack_490,0);
   Pkt_Init(auStack_860,1,2,0);
-  uStack_84c = 0x431100;
+  puStack_84c = &g_Views;
   Pkt_SubmitToChain(auStack_860,8);
   Pkt_AddRef(auStack_860,0x304f90);
   puVar1 = (undefined8 *)Pkt_AllocDmaRef(auStack_860,4,0,0x50000004);
@@ -259,16 +260,16 @@ void ScreenFx_Draw(uint *param_1)
   puVar1[3] = 0x47;
   puVar1[4] = 0x44;
   puVar1[5] = 0x42;
-  uVar8 = param_1[3];
-  if (uVar8 == 2) {
+  uVar9 = param_1[3];
+  if (uVar9 == 2) {
     puVar1[6] = 0xac160fc00a;
     puVar1[7] = 8;
   }
-  else if (uVar8 == 1) {
+  else if (uVar9 == 1) {
     puVar1[6] = 0x54000fc00a;
     puVar1[7] = 8;
   }
-  else if (uVar8 == 0) {
+  else if (uVar9 == 0) {
     puVar1[6] = 0xac000fc00a;
     puVar1[7] = 8;
   }
@@ -276,82 +277,82 @@ void ScreenFx_Draw(uint *param_1)
   *puVar1 = 0x30aec00000008012;
   puVar1[1] = 0x531;
   *(uint *)(puVar1 + 2) = *param_1;
-  uVar8 = param_1[3];
-  if (uVar8 == 2) {
+  uVar9 = param_1[3];
+  if (uVar9 == 2) {
     *(undefined4 *)((int)puVar1 + 0x14) = 0x42e00000;
   }
-  else if (uVar8 == 1) {
+  else if (uVar9 == 1) {
     *(undefined4 *)((int)puVar1 + 0x14) = 0xc2e00000;
   }
   else {
-    if (uVar8 != 0) {
-      iVar6 = 0;
+    if (uVar9 != 0) {
+      iVar7 = 0;
       goto LAB_0018cb1c;
     }
     *(undefined4 *)((int)puVar1 + 0x14) = 0;
   }
-  iVar6 = 0;
+  iVar7 = 0;
 LAB_0018cb1c:
   do {
-    vu0math_sub_00132ae0(puVar1 + 4,param_1 + (0x10 - iVar6) * 4 + 0x10);
-    iVar6 = iVar6 + 1;
+    vu0math_sub_00132ae0(puVar1 + 4,param_1 + (0x10 - iVar7) * 4 + 0x10);
+    iVar7 = iVar7 + 1;
     puVar1 = puVar1 + 2;
-  } while (iVar6 < 0x11);
+  } while (iVar7 < 0x11);
   puVar2 = (undefined4 *)Pkt_AllocDmaRef(auStack_860,0x66,0,0);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[2] = 0;
   puVar2[3] = 0x6c640013;
-  uVar8 = 0;
+  uVar9 = 0;
   if (*param_1 != 0) {
-    puVar7 = puVar2;
+    puVar8 = puVar2;
     do {
-      uVar4 = 0;
       uVar5 = 0;
+      uVar6 = 0;
       puVar3 = param_1;
       do {
         if (puVar3[0x54] == 1) {
-          if (uVar8 == uVar4) goto LAB_0018cbc8;
-          uVar4 = uVar4 + 1;
+          if (uVar9 == uVar5) goto LAB_0018cbc8;
+          uVar5 = uVar5 + 1;
         }
-        uVar5 = uVar5 + 1;
+        uVar6 = uVar6 + 1;
         puVar3 = puVar3 + 0x10;
-      } while (uVar5 < 0x32);
-      uVar5 = 0xffffffff;
+      } while (uVar6 < 0x32);
+      uVar6 = 0xffffffff;
 LAB_0018cbc8:
-      if (uVar5 == 0xffffffff) break;
-      vu0math_sub_00132ae0(puVar7 + 4,param_1 + uVar5 * 0x10 + 0x5c);
-      vu0math_sub_00132ae0(puVar7 + 0xcc,param_1 + uVar5 * 0x10 + 0x60);
-      if ((int)param_1[uVar5 * 0x10 + 0x55] < 5) {
-        if (param_1[uVar5 * 0x10 + 0x57] == 2) {
-          puVar7[6] = param_1[uVar5 * 0x10 + 0x58];
+      if (uVar6 == 0xffffffff) break;
+      vu0math_sub_00132ae0(puVar8 + 4,param_1 + uVar6 * 0x10 + 0x5c);
+      vu0math_sub_00132ae0(puVar8 + 0xcc,param_1 + uVar6 * 0x10 + 0x60);
+      if ((int)param_1[uVar6 * 0x10 + 0x55] < 5) {
+        if (param_1[uVar6 * 0x10 + 0x57] == 2) {
+          puVar8[6] = param_1[uVar6 * 0x10 + 0x58];
         }
         else {
-          puVar7[6] = (float)param_1[uVar5 * 0x10 + 0x58] * (float)(int)param_1[uVar5 * 0x10 + 0x55]
+          puVar8[6] = (float)param_1[uVar6 * 0x10 + 0x58] * (float)(int)param_1[uVar6 * 0x10 + 0x55]
                       * 0.2;
         }
       }
-      else if (param_1[uVar5 * 0x10 + 0x57] == 1) {
-        uVar9 = vu0math_sub_00132ab0(param_1 + uVar5 * 0x10 + 0x60,param_1 + uVar5 * 0x10 + 0x60);
-        fVar10 = (float)Vu0_Sqrt(uVar9);
-        if (200.0 < fVar10) {
-          fVar10 = 200.0;
+      else if (param_1[uVar6 * 0x10 + 0x57] == 1) {
+        uVar10 = vu0math_sub_00132ab0(param_1 + uVar6 * 0x10 + 0x60,param_1 + uVar6 * 0x10 + 0x60);
+        fVar11 = (float)Vu0_Sqrt(uVar10);
+        if (200.0 < fVar11) {
+          fVar11 = 200.0;
         }
-        puVar7[6] = (float)param_1[uVar5 * 0x10 + 0x58] * (1.0 - fVar10 * 0.003);
+        puVar8[6] = (float)param_1[uVar6 * 0x10 + 0x58] * (1.0 - fVar11 * 0.003);
       }
       else {
-        puVar7[6] = param_1[uVar5 * 0x10 + 0x58];
+        puVar8[6] = param_1[uVar6 * 0x10 + 0x58];
       }
-      puVar7[7] = param_1[uVar5 * 0x10 + 0x56];
-      if (param_1[uVar5 * 0x10 + 0x57] == 2) {
-        puVar7[0xcf] = 1.0 - (float)(int)param_1[uVar5 * 0x10 + 0x55] * 0.06666667;
+      puVar8[7] = param_1[uVar6 * 0x10 + 0x56];
+      if (param_1[uVar6 * 0x10 + 0x57] == 2) {
+        puVar8[0xcf] = 1.0 - (float)(int)param_1[uVar6 * 0x10 + 0x55] * 0.06666667;
       }
       else {
-        puVar7[0xcf] = 0x3f800000;
+        puVar8[0xcf] = 0x3f800000;
       }
-      uVar8 = uVar8 + 1;
-      puVar7 = puVar7 + 4;
-    } while (uVar8 < *param_1);
+      uVar9 = uVar9 + 1;
+      puVar8 = puVar8 + 4;
+    } while (uVar9 < *param_1);
   }
   puVar2[0x194] = 0;
   puVar2[0x195] = 0;
@@ -536,7 +537,7 @@ LAB_0018d1f4:
         puVar4[0x54] = 0;
         goto LAB_0018d4b8;
       }
-      if (iGpffff8b08 == 0) {
+      if (iRam0036f1f8 == 0) {
         if (((284.0 < (float)puVar4[0x5d]) || ((float)puVar4[0x5d] < -284.0)) ||
            ((380.0 < (float)puVar4[0x5c] || ((float)puVar4[0x5c] < -380.0)))) {
           puVar4[0x54] = 0;
@@ -661,7 +662,7 @@ void Weather_ResetDrop(int param_1,int param_2)
   *(undefined4 *)(iVar3 + 0x150) = 1;
   iVar1 = maybe_rand();
   *(float *)(iVar3 + 0x170) = ((float)iVar1 / 2.1474836e+09 - 0.5) * 640.0;
-  if (iGpffff8b08 == 0) {
+  if (iRam0036f1f8 == 0) {
     iVar1 = maybe_rand();
     *(float *)(iVar3 + 0x174) = ((float)iVar1 / 2.1474836e+09 - 0.5) * 448.0;
   }
@@ -693,7 +694,7 @@ void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
   uint uVar3;
   uint uVar4;
   
-  if (iGpffff8b08 == 0) {
+  if (iRam0036f1f8 == 0) {
     param_2[3] = 0;
   }
   else {
@@ -782,9 +783,9 @@ void Weather_Draw(float param_1,uint param_2)
   undefined4 uStack_4c0;
   undefined4 uStack_4bc;
   undefined1 auStack_4a0 [20];
-  undefined4 uStack_48c;
+  undefined1 *puStack_48c;
   undefined1 auStack_460 [20];
-  undefined4 uStack_44c;
+  undefined1 *puStack_44c;
   undefined1 auStack_420 [128];
   uint auStack_3a0 [170];
   undefined8 uStack_f8;
@@ -793,7 +794,7 @@ void Weather_Draw(float param_1,uint param_2)
   undefined4 uStack_b0;
   undefined4 uStack_ac;
   undefined1 auStack_90 [20];
-  undefined4 uStack_7c;
+  undefined1 *puStack_7c;
   undefined1 auStack_50 [20];
   undefined4 uStack_3c;
   float fStack_8;
@@ -805,7 +806,7 @@ void Weather_Draw(float param_1,uint param_2)
   Pkt_End(auStack_50);
   Pkt_Submit(auStack_50,0);
   Pkt_Init(auStack_90,1,2,0);
-  uStack_7c = 0x431100;
+  puStack_7c = &g_Views;
   Pkt_SubmitToChain(auStack_90,8);
   Gfx_SetupRenderTargetEx(0x431100,auStack_420,0,0);
   TexSlot_Set(0,1,auStack_420);
@@ -820,12 +821,12 @@ void Weather_Draw(float param_1,uint param_2)
   Pkt_AddPrimitives(auStack_90,auStack_3a0,1);
   Pkt_Submit(auStack_90,0);
   Pkt_Init(auStack_460,1,2,0);
-  uStack_44c = 0x431100;
+  puStack_44c = &g_Views;
   Pkt_SubmitToChain(auStack_460,8);
   Pkt_End(auStack_460);
   Pkt_Submit(auStack_460,0);
   Pkt_Init(auStack_4a0,1,2,0);
-  uStack_48c = 0x431100;
+  puStack_48c = &g_Views;
   Pkt_SubmitToChain(auStack_4a0,8);
   Gfx_SetupRenderTargetEx(0x433940,auStack_830,0,0);
   TexSlot_Set(0,1,auStack_830);
@@ -1855,7 +1856,7 @@ void snd_sub_0018f990(int param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  SndMgr_PostEvent(uGpffff8b64,&uStack_20);
+  SndMgr_PostEvent(uRam0036f254,&uStack_20);
   return;
 }
 
@@ -1880,7 +1881,7 @@ void snd_sub_0018f9f0(int param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  SndMgr_PostEvent(uGpffff8b64,&uStack_20);
+  SndMgr_PostEvent(uRam0036f254,&uStack_20);
   return;
 }
 
@@ -1894,9 +1895,9 @@ bool snd_sub_0018fa50(int param_1)
   int iVar4;
   ulong uVar5;
   
-  uVar5 = (ulong)*(char *)(iGpffff8b68 + 0x201);
+  uVar5 = (ulong)*(char *)(iRam0036f258 + 0x201);
   do {
-    if ((long)((int)*(char *)(iGpffff8b68 + 0x201) + (int)*(char *)(iGpffff8b68 + 0x200)) <=
+    if ((long)((int)*(char *)(iRam0036f258 + 0x201) + (int)*(char *)(iRam0036f258 + 0x200)) <=
         (long)uVar5) {
       bVar1 = false;
 LAB_0018fab4:
@@ -1911,7 +1912,7 @@ LAB_0018fab4:
     if (((long)uVar5 < 0) && ((uVar5 & 0x1f) != 0)) {
       iVar4 = iVar4 + -0x20;
     }
-    if (*(int *)(param_1 + 8) == *(int *)(iGpffff8b68 + iVar4 * 0x10)) {
+    if (*(int *)(param_1 + 8) == *(int *)(iRam0036f258 + iVar4 * 0x10)) {
       bVar1 = true;
       goto LAB_0018fab4;
     }
@@ -1924,34 +1925,36 @@ undefined8
 snd_sub_0018faf0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
 
 {
-  uint uVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  undefined4 *puVar4;
+  int iVar1;
+  uint uVar2;
+  undefined8 uVar3;
+  uint uVar4;
+  undefined4 *puVar5;
   
+  iVar1 = iRam0036f258;
   if (param_5 == 0) {
-    if (*(char *)(iGpffff8b68 + 0x200) < ' ') {
-      uVar3 = (int)*(char *)(iGpffff8b68 + 0x201) + (int)*(char *)(iGpffff8b68 + 0x200);
-      uVar1 = uVar3 & 0x1f;
-      if (((int)uVar3 < 0) && (uVar1 != 0)) {
-        uVar1 = uVar1 - 0x20;
+    if (*(char *)(iRam0036f258 + 0x200) < ' ') {
+      uVar4 = (int)*(char *)(iRam0036f258 + 0x201) + (int)*(char *)(iRam0036f258 + 0x200);
+      uVar2 = uVar4 & 0x1f;
+      if (((int)uVar4 < 0) && (uVar2 != 0)) {
+        uVar2 = uVar2 - 0x20;
       }
-      puVar4 = (undefined4 *)(iGpffff8b68 + uVar1 * 0x10);
-      uVar2 = 1;
-      *puVar4 = *(undefined4 *)(param_1 + 8);
-      puVar4[1] = param_2;
-      puVar4[2] = param_3;
-      puVar4[3] = param_4;
-      *(char *)(iGpffff8b68 + 0x200) = *(char *)(iGpffff8b68 + 0x200) + '\x01';
+      puVar5 = (undefined4 *)(iRam0036f258 + uVar2 * 0x10);
+      uVar3 = 1;
+      *puVar5 = *(undefined4 *)(param_1 + 8);
+      puVar5[1] = param_2;
+      puVar5[2] = param_3;
+      puVar5[3] = param_4;
+      *(char *)(iVar1 + 0x200) = *(char *)(iVar1 + 0x200) + '\x01';
     }
     else {
-      uVar2 = 0;
+      uVar3 = 0;
     }
   }
   else {
-    uVar2 = Snd_PlayStreamEx(*(undefined4 *)(param_1 + 8));
+    uVar3 = Snd_PlayStreamEx(*(undefined4 *)(param_1 + 8));
   }
-  return uVar2;
+  return uVar3;
 }
 
 // 0x0018fb90  size 0x4c

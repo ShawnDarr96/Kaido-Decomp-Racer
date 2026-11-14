@@ -561,22 +561,22 @@ undefined8 PhysPair_Update(undefined8 param_1)
 void phys_sub_0015cd20(void)
 
 {
-  uGpffff8a24 = 0x3f000000;
-  uGpffff8a28 = 0x3f800000;
-  uGpffff8a2c = 0x3f000000;
-  uGpffff8a30 = 0x3f800000;
-  uGpffff8a44 = 0x3f000000;
-  uGpffff8a48 = 0x3f800000;
-  uGpffff8a4c = 0x3f000000;
-  uGpffff8a50 = 0x3f800000;
-  uGpffff8a34 = 0x3f000000;
-  uGpffff8a38 = 0x3f800000;
-  uGpffff8a3c = 0x3f000000;
-  uGpffff8a40 = 0x3f800000;
-  uGpffff8a54 = 0x3f000000;
-  uGpffff8a5c = 0x3f000000;
-  uGpffff8a58 = 0x3f800000;
-  uGpffff8a60 = 0x3f800000;
+  uRam0036f114 = 0x3f000000;
+  uRam0036f118 = 0x3f800000;
+  uRam0036f11c = 0x3f000000;
+  uRam0036f120 = 0x3f800000;
+  uRam0036f134 = 0x3f000000;
+  uRam0036f138 = 0x3f800000;
+  uRam0036f13c = 0x3f000000;
+  uRam0036f140 = 0x3f800000;
+  uRam0036f124 = 0x3f000000;
+  uRam0036f128 = 0x3f800000;
+  uRam0036f12c = 0x3f000000;
+  uRam0036f130 = 0x3f800000;
+  uRam0036f144 = 0x3f000000;
+  uRam0036f14c = 0x3f000000;
+  uRam0036f148 = 0x3f800000;
+  uRam0036f150 = 0x3f800000;
   return;
 }
 
@@ -585,16 +585,16 @@ void phys_sub_0015cd70(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uGpffff8a28 = param_1;
+    uRam0036f118 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uGpffff8a38 = param_1;
+    uRam0036f128 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uGpffff8a48 = param_1;
+    uRam0036f138 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uGpffff8a58 = param_1;
+    uRam0036f148 = param_1;
   }
   return;
 }
@@ -604,16 +604,16 @@ void phys_sub_0015cdc0(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uGpffff8a24 = param_1;
+    uRam0036f114 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uGpffff8a34 = param_1;
+    uRam0036f124 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uGpffff8a44 = param_1;
+    uRam0036f134 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uGpffff8a54 = param_1;
+    uRam0036f144 = param_1;
   }
   return;
 }
@@ -623,16 +623,16 @@ void phys_sub_0015ce10(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uGpffff8a30 = param_1;
+    uRam0036f120 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uGpffff8a40 = param_1;
+    uRam0036f130 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uGpffff8a50 = param_1;
+    uRam0036f140 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uGpffff8a60 = param_1;
+    uRam0036f150 = param_1;
   }
   return;
 }
@@ -642,16 +642,16 @@ void phys_sub_0015ce60(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uGpffff8a2c = param_1;
+    uRam0036f11c = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uGpffff8a3c = param_1;
+    uRam0036f12c = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uGpffff8a4c = param_1;
+    uRam0036f13c = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uGpffff8a5c = param_1;
+    uRam0036f14c = param_1;
   }
   return;
 }
@@ -787,22 +787,22 @@ long phys_sub_0015d1d0(long param_1,short param_2)
 void PhysMaterial_SetDefaults(void)
 
 {
-  uGpffff8a24 = 0x3f000000;
-  uGpffff8a28 = 0x3f800000;
-  uGpffff8a2c = 0x3f000000;
-  uGpffff8a30 = 0x3f800000;
-  uGpffff8a44 = 0x3f000000;
-  uGpffff8a48 = 0x3f800000;
-  uGpffff8a4c = 0x3f000000;
-  uGpffff8a50 = 0x3f800000;
-  uGpffff8a34 = 0x3f000000;
-  uGpffff8a38 = 0x3f800000;
-  uGpffff8a3c = 0x3f000000;
-  uGpffff8a40 = 0x3f800000;
-  uGpffff8a54 = 0x3f000000;
-  uGpffff8a5c = 0x3f000000;
-  uGpffff8a58 = 0x3f800000;
-  uGpffff8a60 = 0x3f800000;
+  uRam0036f114 = 0x3f000000;
+  uRam0036f118 = 0x3f800000;
+  uRam0036f11c = 0x3f000000;
+  uRam0036f120 = 0x3f800000;
+  uRam0036f134 = 0x3f000000;
+  uRam0036f138 = 0x3f800000;
+  uRam0036f13c = 0x3f000000;
+  uRam0036f140 = 0x3f800000;
+  uRam0036f124 = 0x3f000000;
+  uRam0036f128 = 0x3f800000;
+  uRam0036f12c = 0x3f000000;
+  uRam0036f130 = 0x3f800000;
+  uRam0036f144 = 0x3f000000;
+  uRam0036f14c = 0x3f000000;
+  uRam0036f148 = 0x3f800000;
+  uRam0036f150 = 0x3f800000;
   return;
 }
 
@@ -815,18 +815,18 @@ undefined4 phys_sub_0015d230(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uGpffff8a30;
+        uVar1 = uRam0036f120;
       }
       else {
-        uVar1 = uGpffff8a60;
+        uVar1 = uRam0036f150;
       }
     }
     else {
-      uVar1 = uGpffff8a50;
+      uVar1 = uRam0036f140;
     }
   }
   else {
-    uVar1 = uGpffff8a40;
+    uVar1 = uRam0036f130;
   }
   return uVar1;
 }
@@ -840,18 +840,18 @@ undefined4 phys_sub_0015d270(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uGpffff8a2c;
+        uVar1 = uRam0036f11c;
       }
       else {
-        uVar1 = uGpffff8a5c;
+        uVar1 = uRam0036f14c;
       }
     }
     else {
-      uVar1 = uGpffff8a4c;
+      uVar1 = uRam0036f13c;
     }
   }
   else {
-    uVar1 = uGpffff8a3c;
+    uVar1 = uRam0036f12c;
   }
   return uVar1;
 }
@@ -865,18 +865,18 @@ undefined4 phys_sub_0015d2b0(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uGpffff8a30;
+        uVar1 = uRam0036f120;
       }
       else {
-        uVar1 = uGpffff8a58;
+        uVar1 = uRam0036f148;
       }
     }
     else {
-      uVar1 = uGpffff8a48;
+      uVar1 = uRam0036f138;
     }
   }
   else {
-    uVar1 = uGpffff8a38;
+    uVar1 = uRam0036f128;
   }
   return uVar1;
 }
@@ -890,18 +890,18 @@ undefined4 phys_sub_0015d2f0(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uGpffff8a24;
+        uVar1 = uRam0036f114;
       }
       else {
-        uVar1 = uGpffff8a54;
+        uVar1 = uRam0036f144;
       }
     }
     else {
-      uVar1 = uGpffff8a44;
+      uVar1 = uRam0036f134;
     }
   }
   else {
-    uVar1 = uGpffff8a34;
+    uVar1 = uRam0036f124;
   }
   return uVar1;
 }

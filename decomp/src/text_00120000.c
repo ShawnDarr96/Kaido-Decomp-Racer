@@ -495,8 +495,8 @@ undefined4 maybe_sceCdSync0(undefined4 param_1)
   if (lVar2 == 0) {
     lVar2 = DIntr();
     uVar1 = uRam00378000;
+    puRam00378004 = &_mips_gp0_value;
     uRam00378000 = param_1;
-    puRam00378004 = (undefined1 *)register0x000001c0;
     if (lVar2 != 0) {
       EIntr();
     }
@@ -636,8 +636,8 @@ undefined4 libcdvd_sub_001212c0(undefined4 param_1,undefined4 param_2)
   }
   lVar2 = DIntr();
   uVar1 = uRam00378008;
+  puRam0037800c = &_mips_gp0_value;
   uRam00378008 = param_1;
-  puRam0037800c = (undefined1 *)register0x000001c0;
   uRam00378010 = param_2;
   if (lVar2 != 0) {
     EIntr();

@@ -337,7 +337,7 @@ undefined8 libkernl_sub_0011c840(uint param_1,undefined4 param_2,undefined4 para
     puVar4 = (undefined4 *)(param_1 * 0x10 + iVar5);
     *puVar4 = param_2;
     puVar4[1] = param_3;
-    puVar4[2] = register0x000001c0;
+    puVar4[2] = &_mips_gp0_value;
     if (lVar3 != 0) {
       EIntr();
     }
@@ -355,7 +355,9 @@ undefined1 * libkernl_sub_0011c950(long param_1,undefined8 param_2)
 {
   int *piVar1;
   int iVar2;
+  undefined1 *puVar3;
   
+  puVar3 = &_mips_gp0_value;
   if (param_1 == 0) {
     iVar2 = DAT_003081ac;
     piVar1 = DAT_003081a8;
@@ -367,14 +369,14 @@ undefined1 * libkernl_sub_0011c950(long param_1,undefined8 param_2)
   if (0 < iVar2) {
     do {
       if (*piVar1 != 0) {
-        register0x000001c0 = (BADSPACEBASE *)piVar1[2];
+        puVar3 = (undefined1 *)piVar1[2];
         (*(code *)*piVar1)(param_2,piVar1[1]);
       }
       iVar2 = iVar2 + -1;
       piVar1 = piVar1 + 4;
     } while (iVar2 != 0);
   }
-  return (undefined1 *)register0x000001c0;
+  return puVar3;
 }
 
 // 0x0011c9f8  size 0x5a8

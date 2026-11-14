@@ -30,6 +30,8 @@ void Cam_BuildViewMatrix(int param_1)
 }
 
 // 0x00184270  size 0x574
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_UpdateChase(int param_1)
 
 {
@@ -87,7 +89,7 @@ void Cam_UpdateChase(int param_1)
   uStack_10 = uStack_8;
   sStack_e = sStack_6;
   if (-1 < (short)uStack_8) {
-    psVar3 = *(short **)(*(int *)(iRam0036f230 + 4) + (uint)uStack_8 * 4);
+    psVar3 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)uStack_8 * 4);
     sVar1 = *psVar3;
     psVar2 = psVar3 + sVar1 * 0x10 + sStack_6 * 6 + 0x3e;
     psVar3 = psVar3 + sVar1 * 0x14 + sVar1 * 2 + sStack_6 * 6 + 0x3e;
@@ -107,7 +109,7 @@ void Cam_UpdateChase(int param_1)
     uStack_14 = uStack_c;
     sStack_12 = sStack_a;
     if (-1 < (short)uStack_c) {
-      psVar3 = *(short **)(*(int *)(iRam0036f230 + 4) + (uint)uStack_c * 4);
+      psVar3 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)uStack_c * 4);
       sVar1 = *psVar3;
       psVar2 = psVar3 + sVar1 * 0x10 + sStack_a * 6 + 0x3e;
       psVar3 = psVar3 + sVar1 * 0x14 + sVar1 * 2 + sStack_a * 6 + 0x3e;
@@ -286,6 +288,7 @@ void Cam_Init(undefined8 param_1)
 }
 
 // 0x00184b20  size 0xf4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 11 callers */
 
 void Cam_SetupViewport(undefined8 param_1,uint param_2,byte param_3)
@@ -294,11 +297,11 @@ void Cam_SetupViewport(undefined8 param_1,uint param_2,byte param_3)
   int iVar1;
   uint *puVar2;
   
-  if ((param_3 == 0) && (iGpffff8b08 != 0)) {
-    puVar2 = (uint *)(*(int *)((param_2 & 0xff) * 4 + iGpffff8b0c + 0x14) + 0x3c0);
+  if ((param_3 == 0) && (iRam0036f1f8 != 0)) {
+    puVar2 = (uint *)(*(int *)((param_2 & 0xff) * 4 + _g_Loading + 0x14) + 0x3c0);
   }
   else {
-    puVar2 = (uint *)(*(int *)((param_2 & 0xff) * 4 + iGpffff8b0c + 0x14) + (uint)param_3 * 0x60 +
+    puVar2 = (uint *)(*(int *)((param_2 & 0xff) * 4 + _g_Loading + 0x14) + (uint)param_3 * 0x60 +
                      0x60);
   }
   vu0math_sub_00132ae0(param_1,puVar2 + 4);
@@ -692,6 +695,8 @@ void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
 }
 
 // 0x001858c0  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_ComputeReplayOffset(undefined8 param_1,uint param_2)
 
 {
@@ -719,13 +724,13 @@ void Cam_ComputeReplayOffset(undefined8 param_1,uint param_2)
   uStack_38 = DAT_0030b9d8;
   iVar3 = (param_2 & 0xffff) * 4;
   uStack_34 = DAT_0030b9dc;
-  psVar2 = *(short **)(*(int *)(iGpffff8b40 + 4) + iVar3);
+  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
   psVar2 = psVar2 + *psVar2 * 0x10 + sStack_42 * 6 + 0x3e;
   uStack_20 = *(undefined4 *)psVar2;
   uStack_1c = *(undefined4 *)(psVar2 + 2);
   uStack_18 = *(undefined4 *)(psVar2 + 4);
   uStack_14 = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(iGpffff8b40 + 4) + iVar3);
+  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
   sVar1 = *psVar2;
   psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + sStack_42 * 6 + 0x3e;
   uStack_30 = *(undefined4 *)psVar2;
@@ -872,16 +877,16 @@ void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
           if (puVar8[1] <= *puVar8) {
             uVar6 = *puVar8;
           }
-          iGpffff8b30 = uVar6 + 1;
+          iRam0036f220 = uVar6 + 1;
         }
         else if (iVar3 < iVar2) {
           uVar6 = puVar8[1];
           if (*puVar8 <= puVar8[1]) {
             uVar6 = *puVar8;
           }
-          iGpffff8b30 = uVar6 - 1;
+          iRam0036f220 = uVar6 - 1;
         }
-        uVar5 = Cam_FindKeyBefore(*piVar7,piVar7[1],iGpffff8b30);
+        uVar5 = Cam_FindKeyBefore(*piVar7,piVar7[1],iRam0036f220);
         if (uVar5 == 0) {
           vu0math_sub_00132ae0(piVar7 + 0x134,auStack_60);
           return;
@@ -955,16 +960,16 @@ void Cam_UpdateTracksideAlt(undefined8 param_1,undefined8 param_2)
           if (puVar8[1] <= *puVar8) {
             uVar6 = *puVar8;
           }
-          iGpffff8b34 = uVar6 + 1;
+          iRam0036f224 = uVar6 + 1;
         }
         else if (iVar3 < iVar2) {
           uVar6 = puVar8[1];
           if (*puVar8 <= puVar8[1]) {
             uVar6 = *puVar8;
           }
-          iGpffff8b34 = uVar6 - 1;
+          iRam0036f224 = uVar6 - 1;
         }
-        uVar5 = Cam_FindKeyAfter(*piVar7,piVar7[1],iGpffff8b34);
+        uVar5 = Cam_FindKeyAfter(*piVar7,piVar7[1],iRam0036f224);
         if (uVar5 == 0) {
           vu0math_sub_00132ae0(piVar7 + 0x134,auStack_60);
           return;

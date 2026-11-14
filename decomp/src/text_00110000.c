@@ -2487,7 +2487,7 @@ void libkernl_sub_00113d88(long param_1,undefined4 param_2,undefined4 param_3)
     *puVar1 = param_2;
     iVar2 = iRam0037106c;
   }
-  *(BADSPACEBASE **)(iVar3 + iVar2 + 8) = register0x000001c0;
+  *(undefined1 **)(iVar3 + iVar2 + 8) = &_mips_gp0_value;
   return;
 }
 

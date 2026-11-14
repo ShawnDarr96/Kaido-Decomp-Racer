@@ -303,12 +303,12 @@ void View_DrawBackground(uint param_1,long param_2,long param_3)
   float fStack_50;
   float fStack_4c;
   undefined1 auStack_40 [20];
-  int iStack_2c;
+  undefined1 *puStack_2c;
   
   iVar1 = (param_1 & 0xff) * 0x5c0;
-  Camera_Init(iVar1 + 0x431100);
+  Camera_Init(&g_Views + iVar1);
   Pkt_Init(auStack_40,1,2,0);
-  iStack_2c = iVar1 + 0x431100;
+  puStack_2c = &g_Views + iVar1;
   Pkt_SubmitToChain(auStack_40,0);
   Pkt_End(auStack_40);
   TexSlot_Set(0,1,0x430470);
@@ -819,8 +819,8 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
     }
     lVar5 = Tex_BuildUploadPacket(uVar2,uVar7,uVar7,1,0,0,0x80,iRam00430464);
   } while (iRam00430464 == 0);
-  TexSlot_BindSimple(0x430470,iRam00430464,0,iGpffff8b94 + iGpffff8bd0,iGpffff8b94 + iGpffff8bd0,
-                     0x11110,0,0);
+  TexSlot_BindSimple(0x430470,iRam00430464,0,iRam0036f284 + iRam0036f2c0,iRam0036f284 + iRam0036f2c0
+                     ,0x11110,0,0);
   Gfx_SetupRenderTargetEx(uVar9,0x4304f0,0,0);
   Asset_LoadCourseCommon(param_1,param_2);
   uRam00430570 = *(undefined4 *)(iVar3 + 0x20);
@@ -927,7 +927,7 @@ void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
   float fStack_50;
   float fStack_4c;
   undefined1 auStack_40 [20];
-  int iStack_2c;
+  undefined1 *puStack_2c;
   
   iVar1 = ((uint)*param_2 * 0x18 - (uint)*param_2) * 0x40;
   if (*(int *)(iVar1 + 0x431684) != 0) {
@@ -935,7 +935,7 @@ void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
       TexSlot_Set(5,1);
     }
     Pkt_Init(auStack_40,1,2,0);
-    iStack_2c = iVar1 + 0x431100;
+    puStack_2c = &g_Views + iVar1;
     Pkt_SubmitToChain(auStack_40,0);
     Pkt_End(auStack_40);
     Obj_Reset(auStack_350,4,0xffffffffffffffff);
@@ -1070,18 +1070,16 @@ void SceneObj_BuildMatrix(int param_1,undefined1 *param_2)
   undefined8 uVar2;
   int iVar3;
   int iVar4;
-  int iVar5;
   undefined1 auStack_240 [192];
   undefined1 auStack_180 [384];
   
   iVar1 = *(int *)(*(int *)(param_2 + 0x10) * 4 + *(int *)(param_1 + 0x44) + 0x3c);
   iVar4 = ((uint)(byte)param_2[4] * 0x18 - (uint)(byte)param_2[4]) * 0x40;
-  iVar5 = iVar4 + 0x431100;
   iVar3 = *(int *)(param_1 + 0x44) + *(int *)(param_2 + 0x10) * 0x1c;
   if ((*(int *)(iVar4 + 0x431684) != 0) && (iVar1 != 0)) {
-    Cam_SetupViewport(iVar5,0,*param_2);
+    Cam_SetupViewport(&g_Views + iVar4,0,*param_2);
     Light_UpdateMatrices(0x436180);
-    Layer_Reset(auStack_240,iVar5,0x436180,*(undefined4 *)(param_2 + 8),
+    Layer_Reset(auStack_240,&g_Views + iVar4,0x436180,*(undefined4 *)(param_2 + 8),
                 *(undefined4 *)(param_2 + 0xc));
     maybe_Vu0_UnitMatrix(auStack_180);
     maybe_Vu0_RotMatrixZ(*(undefined4 *)(param_1 + 0x10),auStack_180,auStack_180);
@@ -1868,12 +1866,12 @@ LAB_0019ab88:
           else if (*(byte *)(param_1 + 0x4e4) < 4) {
             *(uint *)(iVar12 + 0x45c) = (uint)*(byte *)(param_1 + 0x4e4);
           }
-          uVar5 = uGpffff8bec;
-          if (uGpffff8bec <= *(uint *)(iVar12 + 0x45c)) {
+          uVar5 = uRam0036f2dc;
+          if (uRam0036f2dc <= *(uint *)(iVar12 + 0x45c)) {
             uVar5 = *(uint *)(iVar12 + 0x45c);
           }
-          uVar3 = uGpffff8bf0;
-          if (uVar5 <= uGpffff8bf0) {
+          uVar3 = uRam0036f2e0;
+          if (uVar5 <= uRam0036f2e0) {
             uVar3 = uVar5;
           }
           *(uint *)(iVar12 + 0x45c) = uVar3;
@@ -1915,12 +1913,12 @@ LAB_0019ac08:
           else if (*(byte *)(param_1 + 0x4e5) < 4) {
             *(uint *)(iVar12 + 0x45c) = (uint)*(byte *)(param_1 + 0x4e5);
           }
-          uVar5 = uGpffff8bf4;
-          if (uGpffff8bf4 <= *(uint *)(iVar12 + 0x45c)) {
+          uVar5 = uRam0036f2e4;
+          if (uRam0036f2e4 <= *(uint *)(iVar12 + 0x45c)) {
             uVar5 = *(uint *)(iVar12 + 0x45c);
           }
-          uVar3 = uGpffff8bf8;
-          if (uVar5 <= uGpffff8bf8) {
+          uVar3 = uRam0036f2e8;
+          if (uVar5 <= uRam0036f2e8) {
             uVar3 = uVar5;
           }
           *(uint *)(iVar12 + 0x45c) = uVar3;
@@ -2063,12 +2061,12 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
             vu0math_sub_00132d50
                       (iVar7 + 0x170,iVar9,
                        *(int *)(param_1 + 0x504) + iStack_e0 + iStack_100 + 0x510);
-            uVar6 = uGpffff8bec;
-            if (uGpffff8bec == 0) {
+            uVar6 = uRam0036f2dc;
+            if (uRam0036f2dc == 0) {
               uVar6 = 0;
             }
-            uVar2 = uGpffff8bf0;
-            if (uVar6 <= uGpffff8bf0) {
+            uVar2 = uRam0036f2e0;
+            if (uVar6 <= uRam0036f2e0) {
               uVar2 = uVar6;
             }
             puVar3 = *(uint **)(*(int *)(iStack_f0 + 0x508) + uVar2 * 4 + 0x4c);

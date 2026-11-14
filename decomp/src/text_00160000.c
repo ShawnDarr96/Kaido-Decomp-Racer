@@ -794,7 +794,7 @@ void PhysWorld_SolveIslands(undefined8 param_1)
     do {
       iVar7 = (int)param_1;
       if (bVar3) {
-        lVar5 = (*pcGpffff8a7c)(uVar4,iVar7 + 0x10,*(undefined4 *)(iVar7 + 0xdc));
+        lVar5 = (*pcRam0036f16c)(uVar4,iVar7 + 0x10,*(undefined4 *)(iVar7 + 0xdc));
         if (lVar5 != 0) {
           PhysWorld_SolveIsland(param_1,uVar4);
         }
@@ -802,7 +802,7 @@ void PhysWorld_SolveIslands(undefined8 param_1)
       }
       if (bVar2) {
         uVar6 = PhysShape_GetBody(iVar7 + 0x10);
-        lVar5 = (*pcGpffff8a80)(uVar4,uVar6,*(undefined4 *)(iVar7 + 0xdc));
+        lVar5 = (*pcRam0036f170)(uVar4,uVar6,*(undefined4 *)(iVar7 + 0xdc));
         if (lVar5 == 0) {
           bVar2 = false;
         }

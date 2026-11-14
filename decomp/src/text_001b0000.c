@@ -503,6 +503,8 @@ void Rival_GetTeamRecord(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001b0f00  size 0x1218
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int Rival_SelectOpponents(int *param_1,long param_2)
 
 {
@@ -972,7 +974,7 @@ int Rival_SelectOpponents(int *param_1,long param_2)
             uStack_2c = uStack_aac;
             if (sStack_c0e == -1) break;
             if ((((cStack_c0c != '\v') && (cStack_c0c != '\f')) && (cStack_c0c != '\x05')) &&
-               ((cStack_c0c != '\x06' && (*(short *)(*piGpffff8c08 + iVar9 + 0x3fc4) == 0)))) {
+               ((cStack_c0c != '\x06' && (*(short *)(*_g_Profiles + iVar9 + 0x3fc4) == 0)))) {
               iStack_c30 = 0;
               break;
             }
@@ -1252,7 +1254,7 @@ int Rival_SelectOpponents(int *param_1,long param_2)
                 ((cStack_a8c != '\f' &&
                  (((cStack_a8c != '\x05' && (cStack_a8c != '\x06')) &&
                   ((uStack_a7c & uVar3 & 0x1ff) != 0)))))) &&
-               (*(short *)(*piGpffff8c08 + iVar9 + 0x3fc4) == 0)) {
+               (*(short *)(*_g_Profiles + iVar9 + 0x3fc4) == 0)) {
               iStack_c30 = 0;
               break;
             }
@@ -1262,7 +1264,7 @@ int Rival_SelectOpponents(int *param_1,long param_2)
         } while (iVar4 < 500);
       }
       else if (cStack_4 == '\x01') {
-        if (*(short *)(*piGpffff8c08 + iVar1 * 2 + 0x3fc4) < 1) {
+        if (*(short *)(*_g_Profiles + iVar1 * 2 + 0x3fc4) < 1) {
           if (iStack_c40 == -1) {
             iStack_c40 = 0;
           }
@@ -1271,7 +1273,7 @@ int Rival_SelectOpponents(int *param_1,long param_2)
           iStack_c40 = 1;
         }
       }
-      else if ((cStack_4 == '\0') && (*(short *)(*piGpffff8c08 + iVar1 * 2 + 0x3fc4) == 0)) {
+      else if ((cStack_4 == '\0') && (*(short *)(*_g_Profiles + iVar1 * 2 + 0x3fc4) == 0)) {
         iStack_c30 = 0;
       }
       if ((iStack_c30 == 0) || (iStack_c40 == 1)) goto LAB_001b20e0;
@@ -1291,6 +1293,8 @@ LAB_001b20e0:
 }
 
 // 0x001b2130  size 0x468
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
 
 {
@@ -1357,7 +1361,7 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
     switch((char)psVar2[2]) {
     case '\x01':
       sVar1 = *psVar2;
-      if (*(short *)(sVar1 * 2 + *piRam0036f2f8 + 0x4b7c) == 0) {
+      if (*(short *)(sVar1 * 2 + *_g_Profiles + 0x4b7c) == 0) {
         iVar6 = 0;
         iVar11 = 0;
         uVar3 = GameDb_GetTeam();
@@ -1370,7 +1374,7 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
       lVar10 = 1;
       break;
     case '\x03':
-      if (*(int *)(iStack_c * 4 + *piRam0036f2f8 + 0x2b14) != -1) {
+      if (*(int *)(iStack_c * 4 + *_g_Profiles + 0x2b14) != -1) {
         lVar10 = 0;
       }
       break;
@@ -1379,31 +1383,31 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
       lVar10 = 1;
       break;
     case '\a':
-      if (((char)uStack_10 == '\b') && (*(int *)(iStack_c * 4 + *piRam0036f2f8 + 0x2a74) != -1)) {
+      if (((char)uStack_10 == '\b') && (*(int *)(iStack_c * 4 + *_g_Profiles + 0x2a74) != -1)) {
         lVar10 = 0;
       }
     case '\0':
-      if ((*psVar2 != -1) && (*(short *)(*psVar2 * 2 + *piRam0036f2f8 + 0x4b7c) == 0)) {
+      if ((*psVar2 != -1) && (*(short *)(*psVar2 * 2 + *_g_Profiles + 0x4b7c) == 0)) {
         lVar10 = 0;
       }
       break;
     case '\b':
-      if (0 < *(short *)(param_1 * 2 + *piRam0036f2f8 + 0x3fc4)) {
+      if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
         lVar10 = 0;
       }
       break;
     case '\t':
-      if (0 < *(short *)(param_1 * 2 + *piRam0036f2f8 + 0x3fc4)) {
+      if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
         lVar10 = 0;
       }
       break;
     case '\n':
-      if (0 < *(short *)(param_1 * 2 + *piRam0036f2f8 + 0x3fc4)) {
+      if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
         lVar10 = 0;
       }
       break;
     case '\v':
-      if (*(char *)((int)psVar2[1] + *piRam0036f2f8 + 0xd82c) != '\0') {
+      if (*(char *)((int)psVar2[1] + *_g_Profiles + 0xd82c) != '\0') {
         lVar10 = 0;
       }
       break;
@@ -1418,7 +1422,7 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
     if ((uVar4 & 0x200) == 0) {
       lVar10 = Rival_CheckAppearCondition(uVar4,param_2);
     }
-    else if (*(int *)(param_1 * 4 + *piRam0036f2f8 + 0x37b0) == 0) {
+    else if (*(int *)(param_1 * 4 + *_g_Profiles + 0x37b0) == 0) {
       lVar10 = 0;
     }
     else {
@@ -1456,7 +1460,7 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
     lVar10 = 0;
     iVar8 = 0;
     iVar7 = 0;
-    iVar5 = *piRam0036f2f8;
+    iVar5 = *_g_Profiles;
     do {
       if (*(int *)(iVar5 + 0x2b14) != -1) {
         iVar8 = iVar8 + 1;
@@ -1472,7 +1476,7 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
     lVar10 = 0;
     iVar7 = 0;
     iVar5 = 0;
-    iVar6 = *piRam0036f2f8;
+    iVar6 = *_g_Profiles;
     do {
       if (*(int *)(iVar6 + 0x2a74) != -1) {
         iVar7 = iVar7 + 1;
@@ -1488,6 +1492,8 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
 }
 
 // 0x001b25a0  size 0x158
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined1 Rival_IsAvailable(ulong param_1,int param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -1497,7 +1503,7 @@ undefined1 Rival_IsAvailable(ulong param_1,int param_2,undefined8 param_3,undefi
   long lVar4;
   undefined1 uVar5;
   
-  iVar1 = *piRam0036f2f8;
+  iVar1 = *_g_Profiles;
   if (param_1 == 0) {
     bVar3 = true;
   }
@@ -1535,7 +1541,7 @@ undefined1 Rival_IsAvailable(ulong param_1,int param_2,undefined8 param_3,undefi
   }
   uVar5 = 0;
   if (bVar2) {
-    if (*(int *)(*piRam0036f2f8 + 0x2734) < param_2) {
+    if (*(int *)(*_g_Profiles + 0x2734) < param_2) {
       uVar5 = 0;
     }
     else {
@@ -1615,6 +1621,8 @@ long Rival_CheckWeatherCondition(ulong param_1,undefined1 param_2)
 }
 
 // 0x001b2880  size 0x50c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool Rival_CheckAppearCondition(ulong param_1,undefined1 param_2)
 
 {
@@ -1630,7 +1638,7 @@ bool Rival_CheckAppearCondition(ulong param_1,undefined1 param_2)
   bool bVar10;
   
   bVar10 = false;
-  iVar1 = *(int *)(*piGpffff8c08 + 0x2734);
+  iVar1 = *(int *)(*_g_Profiles + 0x2734);
   uVar9 = (iVar1 + -1) / 0x1c + 1;
   if (999 < (int)uVar9) {
     uVar9 = 999;
@@ -2182,6 +2190,8 @@ void Career_MarkRivalSeen(int param_1,long param_2,int param_3)
 }
 
 // 0x001b36a0  size 0x1c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int Career_FindTeam(int param_1,undefined8 param_2,long param_3)
 
 {
@@ -2227,7 +2237,7 @@ int Career_FindTeam(int param_1,undefined8 param_2,long param_3)
       *pcVar5 = '\x03';
       *(undefined1 *)(iVar4 + iVar6 * 8) = 2;
       *(int *)(iVar6 * 8 + iVar9 + 0x531c) =
-           *(int *)(iVar9 + 0x595c) + *(int *)(*piGpffff8c08 + 0x2734) * 100;
+           *(int *)(iVar9 + 0x595c) + *(int *)(*_g_Profiles + 0x2734) * 100;
       *(int *)(iVar9 + 0x595c) = *(int *)(iVar9 + 0x595c) + 1;
       if (piVar7[5] != -1) {
         iStack_10 = piVar7[5];
@@ -2536,6 +2546,7 @@ void Career_UpdateRivalStatus(int param_1,long param_2,undefined4 *param_3)
 }
 
 // 0x001b3fe0  size 0x288
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* reads the real-time clock */
 
 void Career_SpawnNightRivals(int param_1)
@@ -2603,13 +2614,13 @@ void Career_SpawnNightRivals(int param_1)
       }
       if (bVar1) {
         *(undefined1 *)(param_1 + 0x3868) = 1;
-        *(undefined4 *)(param_1 + 0x3864) = *(undefined4 *)(*piGpffff8c08 + 0x2734);
+        *(undefined4 *)(param_1 + 0x3864) = *(undefined4 *)(*_g_Profiles + 0x2734);
         *(short *)(param_1 + 0x386a) = sVar12;
         *(char *)(param_1 + 0x386c) = cVar5;
         *(char *)(param_1 + 0x386d) = cVar11;
         *(char *)(param_1 + 0x386e) = cVar10;
         *(char *)(param_1 + 0x386f) = cVar9;
-        Career_UnlockCar(*piGpffff8c08,*(undefined8 *)(puVar6 + 2));
+        Career_UnlockCar(*_g_Profiles,*(undefined8 *)(puVar6 + 2));
       }
     }
     param_1 = param_1 + 0xc;

@@ -79,10 +79,10 @@ void __sinit_003688a0(void)
 void __sinit_003688f0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7614);
-  __register_global_object((int)register0x000001c0 + -0x7614,0x103050,0x42e340);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7610);
-  __register_global_object((int)register0x000001c0 + -0x7610,0x1035a0,0x42e350);
+  std_ios_base_Init_ctor(0x36f0dc);
+  __register_global_object(0x36f0dc,0x103050,0x42e340);
+  maybe_std_wios_Init_ctor(0x36f0e0);
+  __register_global_object(0x36f0e0,0x1035a0,0x42e350);
   return;
 }
 
@@ -90,10 +90,10 @@ void __sinit_003688f0(void)
 void __sinit_00368950(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x760c);
-  __register_global_object((int)register0x000001c0 + -0x760c,0x103050,0x42f3a0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7608);
-  __register_global_object((int)register0x000001c0 + -0x7608,0x1035a0,0x42f3b0);
+  std_ios_base_Init_ctor(0x36f0e4);
+  __register_global_object(0x36f0e4,0x103050,0x42f3a0);
+  maybe_std_wios_Init_ctor(0x36f0e8);
+  __register_global_object(0x36f0e8,0x1035a0,0x42f3b0);
   return;
 }
 
@@ -101,10 +101,10 @@ void __sinit_00368950(void)
 void __sinit_003689b0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7600);
-  __register_global_object((int)register0x000001c0 + -0x7600,0x103050,0x42f410);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x75fc);
-  __register_global_object((int)register0x000001c0 + -0x75fc,0x1035a0,0x42f420);
+  std_ios_base_Init_ctor(0x36f0f0);
+  __register_global_object(0x36f0f0,0x103050,0x42f410);
+  maybe_std_wios_Init_ctor(0x36f0f4);
+  __register_global_object(0x36f0f4,0x1035a0,0x42f420);
   uRam0042f43c = 0x3f800000;
   uRam0042f45c = 0x3f800000;
   uRam0042f47c = 0x3f800000;
@@ -152,10 +152,10 @@ void __sinit_003689b0(void)
 void __sinit_00368b60(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x75f8);
-  __register_global_object((int)register0x000001c0 + -0x75f8,0x103050,0x42f550);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x75f4);
-  __register_global_object((int)register0x000001c0 + -0x75f4,0x1035a0,0x42f560);
+  std_ios_base_Init_ctor(0x36f0f8);
+  __register_global_object(0x36f0f8,0x103050,0x42f550);
+  maybe_std_wios_Init_ctor(0x36f0fc);
+  __register_global_object(0x36f0fc,0x1035a0,0x42f560);
   PhysBody_ctor(0x42f570);
   return;
 }
@@ -164,11 +164,11 @@ void __sinit_00368b60(void)
 void __sinit_00368bc0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x75e8);
-  __register_global_object((int)register0x000001c0 + -0x75e8,0x103050,0x42fb20);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x75e4);
-  __register_global_object((int)register0x000001c0 + -0x75e4,0x1035a0,0x42fb30);
-  __register_global_object((int)register0x000001c0 + -0x75e0,0x15d1d0,0x42fb40);
+  std_ios_base_Init_ctor(0x36f108);
+  __register_global_object(0x36f108,0x103050,0x42fb20);
+  maybe_std_wios_Init_ctor(0x36f10c);
+  __register_global_object(0x36f10c,0x1035a0,0x42fb30);
+  __register_global_object(0x36f110,0x15d1d0,0x42fb40);
   return;
 }
 
@@ -176,10 +176,10 @@ void __sinit_00368bc0(void)
 void __sinit_00368c30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x759c);
-  __register_global_object((int)register0x000001c0 + -0x759c,0x103050,0x42fb50);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7598);
-  __register_global_object((int)register0x000001c0 + -0x7598,0x1035a0,0x42fb60);
+  std_ios_base_Init_ctor(0x36f154);
+  __register_global_object(0x36f154,0x103050,0x42fb50);
+  maybe_std_wios_Init_ctor(0x36f158);
+  __register_global_object(0x36f158,0x1035a0,0x42fb60);
   uRam0042fb70 = DAT_0030ace0;
   puRam0042fb78 = PTR_PhysPair_SphereTriangle_0030ace8;
   uRam0042fb7c = DAT_0030acf0;
@@ -239,10 +239,10 @@ void __sinit_00368c30(void)
 void __sinit_00368fd0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7594);
-  __register_global_object((int)register0x000001c0 + -0x7594,0x103050,0x42fc50);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7590);
-  __register_global_object((int)register0x000001c0 + -0x7590,0x1035a0,0x42fc60);
+  std_ios_base_Init_ctor(0x36f15c);
+  __register_global_object(0x36f15c,0x103050,0x42fc50);
+  maybe_std_wios_Init_ctor(0x36f160);
+  __register_global_object(0x36f160,0x1035a0,0x42fc60);
   return;
 }
 
@@ -250,10 +250,10 @@ void __sinit_00368fd0(void)
 void __sinit_00369030(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x758c);
-  __register_global_object((int)register0x000001c0 + -0x758c,0x103050,0x42fc70);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7588);
-  __register_global_object((int)register0x000001c0 + -0x7588,0x1035a0,0x42fc80);
+  std_ios_base_Init_ctor(0x36f164);
+  __register_global_object(0x36f164,0x103050,0x42fc70);
+  maybe_std_wios_Init_ctor(0x36f168);
+  __register_global_object(0x36f168,0x1035a0,0x42fc80);
   return;
 }
 
@@ -322,10 +322,10 @@ void __sinit_003691e0(void)
 void __sinit_00369370(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x757c);
-  __register_global_object((int)register0x000001c0 + -0x757c,0x103050,0x42fc90);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7578);
-  __register_global_object((int)register0x000001c0 + -0x7578,0x1035a0,0x42fca0);
+  std_ios_base_Init_ctor(0x36f174);
+  __register_global_object(0x36f174,0x103050,0x42fc90);
+  maybe_std_wios_Init_ctor(0x36f178);
+  __register_global_object(0x36f178,0x1035a0,0x42fca0);
   return;
 }
 
@@ -333,10 +333,10 @@ void __sinit_00369370(void)
 void __sinit_003693d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7574);
-  __register_global_object((int)register0x000001c0 + -0x7574,0x103050,0x42fcb0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7570);
-  __register_global_object((int)register0x000001c0 + -0x7570,0x1035a0,0x42fcc0);
+  std_ios_base_Init_ctor(0x36f17c);
+  __register_global_object(0x36f17c,0x103050,0x42fcb0);
+  maybe_std_wios_Init_ctor(0x36f180);
+  __register_global_object(0x36f180,0x1035a0,0x42fcc0);
   return;
 }
 
@@ -351,10 +351,10 @@ void __sinit_00369430(void)
   undefined1 uStack_8;
   undefined1 uStack_4;
   
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x756c);
-  __register_global_object((int)register0x000001c0 + -0x756c,0x103050,0x42fcd0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7568);
-  __register_global_object((int)register0x000001c0 + -0x7568,0x1035a0,0x42fce0);
+  std_ios_base_Init_ctor(0x36f184);
+  __register_global_object(0x36f184,0x103050,0x42fcd0);
+  maybe_std_wios_Init_ctor(0x36f188);
+  __register_global_object(0x36f188,0x1035a0,0x42fce0);
   DAT_00362608 = 0;
   DAT_0036260c = 0;
   DAT_00362610 = 0;
@@ -402,10 +402,10 @@ void __sinit_00369430(void)
 void __sinit_003696d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7564);
-  __register_global_object((int)register0x000001c0 + -0x7564,0x103050,0x430120);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7560);
-  __register_global_object((int)register0x000001c0 + -0x7560,0x1035a0,0x430130);
+  std_ios_base_Init_ctor(0x36f18c);
+  __register_global_object(0x36f18c,0x103050,0x430120);
+  maybe_std_wios_Init_ctor(0x36f190);
+  __register_global_object(0x36f190,0x1035a0,0x430130);
   return;
 }
 
@@ -413,10 +413,10 @@ void __sinit_003696d0(void)
 void __sinit_00369730(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7550);
-  __register_global_object((int)register0x000001c0 + -0x7550,0x103050,0x430140);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x754c);
-  __register_global_object((int)register0x000001c0 + -0x754c,0x1035a0,0x430150);
+  std_ios_base_Init_ctor(0x36f1a0);
+  __register_global_object(0x36f1a0,0x103050,0x430140);
+  maybe_std_wios_Init_ctor(0x36f1a4);
+  __register_global_object(0x36f1a4,0x1035a0,0x430150);
   return;
 }
 
@@ -424,10 +424,10 @@ void __sinit_00369730(void)
 void __sinit_00369790(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7540);
-  __register_global_object((int)register0x000001c0 + -0x7540,0x103050,0x430160);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x753c);
-  __register_global_object((int)register0x000001c0 + -0x753c,0x1035a0,0x430170);
+  std_ios_base_Init_ctor(0x36f1b0);
+  __register_global_object(0x36f1b0,0x103050,0x430160);
+  maybe_std_wios_Init_ctor(0x36f1b4);
+  __register_global_object(0x36f1b4,0x1035a0,0x430170);
   return;
 }
 
@@ -435,10 +435,10 @@ void __sinit_00369790(void)
 void __sinit_003697f0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -30000);
-  __register_global_object((int)register0x000001c0 + -30000,0x103050,0x430180);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x752c);
-  __register_global_object((int)register0x000001c0 + -0x752c,0x1035a0,0x430190);
+  std_ios_base_Init_ctor(0x36f1c0);
+  __register_global_object(0x36f1c0,0x103050,0x430180);
+  maybe_std_wios_Init_ctor(0x36f1c4);
+  __register_global_object(0x36f1c4,0x1035a0,0x430190);
   return;
 }
 
@@ -446,10 +446,10 @@ void __sinit_003697f0(void)
 void __sinit_00369850(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7524);
-  __register_global_object((int)register0x000001c0 + -0x7524,0x103050,0x430350);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7520);
-  __register_global_object((int)register0x000001c0 + -0x7520,0x1035a0,0x430360);
+  std_ios_base_Init_ctor(0x36f1cc);
+  __register_global_object(0x36f1cc,0x103050,0x430350);
+  maybe_std_wios_Init_ctor(0x36f1d0);
+  __register_global_object(0x36f1d0,0x1035a0,0x430360);
   return;
 }
 
@@ -457,10 +457,10 @@ void __sinit_00369850(void)
 void __sinit_003698b0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7518);
-  __register_global_object((int)register0x000001c0 + -0x7518,0x103050,0x430370);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7514);
-  __register_global_object((int)register0x000001c0 + -0x7514,0x1035a0,0x430380);
+  std_ios_base_Init_ctor(0x36f1d8);
+  __register_global_object(0x36f1d8,0x103050,0x430370);
+  maybe_std_wios_Init_ctor(0x36f1dc);
+  __register_global_object(0x36f1dc,0x1035a0,0x430380);
   return;
 }
 
@@ -468,18 +468,18 @@ void __sinit_003698b0(void)
 void __sinit_00369910(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7500);
-  __register_global_object((int)register0x000001c0 + -0x7500,0x103050,0x430390);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x74fc);
-  __register_global_object((int)register0x000001c0 + -0x74fc,0x1035a0,0x4303a0);
-  puGpffff8b10 = &DAT_0036e680;
-  puGpffff8b14 = &DAT_0036e670;
-  puGpffff8b18 = &DAT_0036e660;
-  puGpffff8b1c = &DAT_0036e650;
-  puGpffff8b20 = &DAT_0036e630;
-  puGpffff8b24 = &DAT_0036e640;
-  puGpffff8b28 = &DAT_0036e2f0;
-  puGpffff8b2c = &DAT_0036e2e0;
+  std_ios_base_Init_ctor(0x36f1f0);
+  __register_global_object(0x36f1f0,0x103050,0x430390);
+  maybe_std_wios_Init_ctor(0x36f1f4);
+  __register_global_object(0x36f1f4,0x1035a0,0x4303a0);
+  puRam0036f200 = &DAT_0036e680;
+  puRam0036f204 = &DAT_0036e670;
+  puRam0036f208 = &DAT_0036e660;
+  puRam0036f20c = &DAT_0036e650;
+  puRam0036f210 = &DAT_0036e630;
+  puRam0036f214 = &DAT_0036e640;
+  puRam0036f218 = &DAT_0036e2f0;
+  puRam0036f21c = &DAT_0036e2e0;
   return;
 }
 
@@ -487,10 +487,10 @@ void __sinit_00369910(void)
 void __sinit_003699d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x74c8);
-  __register_global_object((int)register0x000001c0 + -0x74c8,0x103050,0x4303b0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x74c4);
-  __register_global_object((int)register0x000001c0 + -0x74c4,0x1035a0,0x4303c0);
+  std_ios_base_Init_ctor(0x36f228);
+  __register_global_object(0x36f228,0x103050,0x4303b0);
+  maybe_std_wios_Init_ctor(0x36f22c);
+  __register_global_object(0x36f22c,0x1035a0,0x4303c0);
   return;
 }
 
@@ -498,10 +498,10 @@ void __sinit_003699d0(void)
 void __sinit_00369a30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x74b0);
-  __register_global_object((int)register0x000001c0 + -0x74b0,0x103050,0x4303e0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x74ac);
-  __register_global_object((int)register0x000001c0 + -0x74ac,0x1035a0,0x4303f0);
+  std_ios_base_Init_ctor(0x36f240);
+  __register_global_object(0x36f240,0x103050,0x4303e0);
+  maybe_std_wios_Init_ctor(0x36f244);
+  __register_global_object(0x36f244,0x1035a0,0x4303f0);
   return;
 }
 
@@ -509,10 +509,10 @@ void __sinit_00369a30(void)
 void __sinit_00369a90(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x74a8);
-  __register_global_object((int)register0x000001c0 + -0x74a8,0x103050,0x430400);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x74a4);
-  __register_global_object((int)register0x000001c0 + -0x74a4,0x1035a0,0x430410);
+  std_ios_base_Init_ctor(0x36f248);
+  __register_global_object(0x36f248,0x103050,0x430400);
+  maybe_std_wios_Init_ctor(0x36f24c);
+  __register_global_object(0x36f24c,0x1035a0,0x430410);
   return;
 }
 
@@ -520,10 +520,10 @@ void __sinit_00369a90(void)
 void __sinit_00369af0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x748c);
-  __register_global_object((int)register0x000001c0 + -0x748c,0x103050,0x430420);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7488);
-  __register_global_object((int)register0x000001c0 + -0x7488,0x1035a0,0x430430);
+  std_ios_base_Init_ctor(0x36f264);
+  __register_global_object(0x36f264,0x103050,0x430420);
+  maybe_std_wios_Init_ctor(0x36f268);
+  __register_global_object(0x36f268,0x1035a0,0x430430);
   return;
 }
 
@@ -531,10 +531,10 @@ void __sinit_00369af0(void)
 void __sinit_00369b50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7474);
-  __register_global_object((int)register0x000001c0 + -0x7474,0x103050,0x430440);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7470);
-  __register_global_object((int)register0x000001c0 + -0x7470,0x1035a0,0x430450);
+  std_ios_base_Init_ctor(0x36f27c);
+  __register_global_object(0x36f27c,0x103050,0x430440);
+  maybe_std_wios_Init_ctor(0x36f280);
+  __register_global_object(0x36f280,0x1035a0,0x430450);
   return;
 }
 
@@ -542,10 +542,10 @@ void __sinit_00369b50(void)
 void __sinit_00369bb0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7468);
-  __register_global_object((int)register0x000001c0 + -0x7468,0x103050,0x430590);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7464);
-  __register_global_object((int)register0x000001c0 + -0x7464,0x1035a0,0x4305a0);
+  std_ios_base_Init_ctor(0x36f288);
+  __register_global_object(0x36f288,0x103050,0x430590);
+  maybe_std_wios_Init_ctor(0x36f28c);
+  __register_global_object(0x36f28c,0x1035a0,0x4305a0);
   return;
 }
 
@@ -553,10 +553,10 @@ void __sinit_00369bb0(void)
 void __sinit_00369c10(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7460);
-  __register_global_object((int)register0x000001c0 + -0x7460,0x103050,0x430610);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x745c);
-  __register_global_object((int)register0x000001c0 + -0x745c,0x1035a0,0x430620);
+  std_ios_base_Init_ctor(0x36f290);
+  __register_global_object(0x36f290,0x103050,0x430610);
+  maybe_std_wios_Init_ctor(0x36f294);
+  __register_global_object(0x36f294,0x1035a0,0x430620);
   maybe_ListNode_ctor(0x430644,0);
   puRam00430644 = &DAT_0036e128;
   __register_global_object(0x430640,0x1a4ed0,0x430630);
@@ -569,10 +569,10 @@ void __sinit_00369c10(void)
 void __sinit_00369cd0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7454);
-  __register_global_object((int)register0x000001c0 + -0x7454,0x103050,0x430720);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7450);
-  __register_global_object((int)register0x000001c0 + -0x7450,0x1035a0,0x430730);
+  std_ios_base_Init_ctor(0x36f29c);
+  __register_global_object(0x36f29c,0x103050,0x430720);
+  maybe_std_wios_Init_ctor(0x36f2a0);
+  __register_global_object(0x36f2a0,0x1035a0,0x430730);
   maybe_Heap_ctor(0x430750);
   __register_global_object(0x430750,0x100860,0x430740);
   return;
@@ -582,10 +582,10 @@ void __sinit_00369cd0(void)
 void __sinit_00369d50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7444);
-  __register_global_object((int)register0x000001c0 + -0x7444,0x103050,0x430768);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7440);
-  __register_global_object((int)register0x000001c0 + -0x7440,0x1035a0,0x430778);
+  std_ios_base_Init_ctor(0x36f2ac);
+  __register_global_object(0x36f2ac,0x103050,0x430768);
+  maybe_std_wios_Init_ctor(0x36f2b0);
+  __register_global_object(0x36f2b0,0x1035a0,0x430778);
   return;
 }
 
@@ -613,10 +613,10 @@ void __sinit_00369e00(void)
 void __sinit_00369e50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7400);
-  __register_global_object((int)register0x000001c0 + -0x7400,0x103050,0x4364d8);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x73fc);
-  __register_global_object((int)register0x000001c0 + -0x73fc,0x1035a0,0x4364e8);
+  std_ios_base_Init_ctor(0x36f2f0);
+  __register_global_object(0x36f2f0,0x103050,0x4364d8);
+  maybe_std_wios_Init_ctor(0x36f2f4);
+  __register_global_object(0x36f2f4,0x1035a0,0x4364e8);
   return;
 }
 
@@ -624,10 +624,10 @@ void __sinit_00369e50(void)
 void __sinit_00369eb0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x73f0);
-  __register_global_object((int)register0x000001c0 + -0x73f0,0x103050,0x4364f8);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x73ec);
-  __register_global_object((int)register0x000001c0 + -0x73ec,0x1035a0,0x436508);
+  std_ios_base_Init_ctor(0x36f300);
+  __register_global_object(0x36f300,0x103050,0x4364f8);
+  maybe_std_wios_Init_ctor(0x36f304);
+  __register_global_object(0x36f304,0x1035a0,0x436508);
   maybe_Heap_ctor(0x436530);
   __register_global_object(0x436530,0x100860,0x436518);
   return;
@@ -637,10 +637,10 @@ void __sinit_00369eb0(void)
 void __sinit_00369f30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x73e0);
-  __register_global_object((int)register0x000001c0 + -0x73e0,0x103050,0x436548);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x73dc);
-  __register_global_object((int)register0x000001c0 + -0x73dc,0x1035a0,0x436558);
+  std_ios_base_Init_ctor(0x36f310);
+  __register_global_object(0x36f310,0x103050,0x436548);
+  maybe_std_wios_Init_ctor(0x36f314);
+  __register_global_object(0x36f314,0x1035a0,0x436558);
   return;
 }
 
@@ -648,10 +648,10 @@ void __sinit_00369f30(void)
 void __sinit_00369f90(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x73bc);
-  __register_global_object((int)register0x000001c0 + -0x73bc,0x103050,0x436610);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x73b8);
-  __register_global_object((int)register0x000001c0 + -0x73b8,0x1035a0,0x436620);
+  std_ios_base_Init_ctor(0x36f334);
+  __register_global_object(0x36f334,0x103050,0x436610);
+  maybe_std_wios_Init_ctor(0x36f338);
+  __register_global_object(0x36f338,0x1035a0,0x436620);
   return;
 }
 
@@ -659,10 +659,10 @@ void __sinit_00369f90(void)
 void __sinit_00369ff0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x73b0);
-  __register_global_object((int)register0x000001c0 + -0x73b0,0x103050,0x436630);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x73ac);
-  __register_global_object((int)register0x000001c0 + -0x73ac,0x1035a0,0x436640);
+  std_ios_base_Init_ctor(0x36f340);
+  __register_global_object(0x36f340,0x103050,0x436630);
+  maybe_std_wios_Init_ctor(0x36f344);
+  __register_global_object(0x36f344,0x1035a0,0x436640);
   return;
 }
 
@@ -901,10 +901,10 @@ void __sinit_0036a7d0(void)
 void __sinit_0036a830(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7294);
-  __register_global_object((int)register0x000001c0 + -0x7294,0x103050,0x469360);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7290);
-  __register_global_object((int)register0x000001c0 + -0x7290,0x1035a0,0x469370);
+  std_ios_base_Init_ctor(0x36f45c);
+  __register_global_object(0x36f45c,0x103050,0x469360);
+  maybe_std_wios_Init_ctor(0x36f460);
+  __register_global_object(0x36f460,0x1035a0,0x469370);
   return;
 }
 
@@ -912,10 +912,10 @@ void __sinit_0036a830(void)
 void __sinit_0036a890(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7284);
-  __register_global_object((int)register0x000001c0 + -0x7284,0x103050,0x469380);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7280);
-  __register_global_object((int)register0x000001c0 + -0x7280,0x1035a0,0x469390);
+  std_ios_base_Init_ctor(0x36f46c);
+  __register_global_object(0x36f46c,0x103050,0x469380);
+  maybe_std_wios_Init_ctor(0x36f470);
+  __register_global_object(0x36f470,0x1035a0,0x469390);
   return;
 }
 
@@ -923,10 +923,10 @@ void __sinit_0036a890(void)
 void __sinit_0036a8f0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7270);
-  __register_global_object((int)register0x000001c0 + -0x7270,0x103050,0x4693a0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x726c);
-  __register_global_object((int)register0x000001c0 + -0x726c,0x1035a0,0x4693b0);
+  std_ios_base_Init_ctor(0x36f480);
+  __register_global_object(0x36f480,0x103050,0x4693a0);
+  maybe_std_wios_Init_ctor(0x36f484);
+  __register_global_object(0x36f484,0x1035a0,0x4693b0);
   return;
 }
 
@@ -934,10 +934,10 @@ void __sinit_0036a8f0(void)
 void __sinit_0036a950(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7264);
-  __register_global_object((int)register0x000001c0 + -0x7264,0x103050,0x4693c0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7260);
-  __register_global_object((int)register0x000001c0 + -0x7260,0x1035a0,0x4693d0);
+  std_ios_base_Init_ctor(0x36f48c);
+  __register_global_object(0x36f48c,0x103050,0x4693c0);
+  maybe_std_wios_Init_ctor(0x36f490);
+  __register_global_object(0x36f490,0x1035a0,0x4693d0);
   return;
 }
 
@@ -945,10 +945,10 @@ void __sinit_0036a950(void)
 void __sinit_0036a9b0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7258);
-  __register_global_object((int)register0x000001c0 + -0x7258,0x103050,0x4693e0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7254);
-  __register_global_object((int)register0x000001c0 + -0x7254,0x1035a0,0x4693f0);
+  std_ios_base_Init_ctor(0x36f498);
+  __register_global_object(0x36f498,0x103050,0x4693e0);
+  maybe_std_wios_Init_ctor(0x36f49c);
+  __register_global_object(0x36f49c,0x1035a0,0x4693f0);
   return;
 }
 
@@ -956,10 +956,10 @@ void __sinit_0036a9b0(void)
 void __sinit_0036aa10(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7248);
-  __register_global_object((int)register0x000001c0 + -0x7248,0x103050,0x469400);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7244);
-  __register_global_object((int)register0x000001c0 + -0x7244,0x1035a0,0x469410);
+  std_ios_base_Init_ctor(0x36f4a8);
+  __register_global_object(0x36f4a8,0x103050,0x469400);
+  maybe_std_wios_Init_ctor(0x36f4ac);
+  __register_global_object(0x36f4ac,0x1035a0,0x469410);
   return;
 }
 
@@ -967,10 +967,10 @@ void __sinit_0036aa10(void)
 void __sinit_0036aa70(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7240);
-  __register_global_object((int)register0x000001c0 + -0x7240,0x103050,0x469420);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x723c);
-  __register_global_object((int)register0x000001c0 + -0x723c,0x1035a0,0x469430);
+  std_ios_base_Init_ctor(0x36f4b0);
+  __register_global_object(0x36f4b0,0x103050,0x469420);
+  maybe_std_wios_Init_ctor(0x36f4b4);
+  __register_global_object(0x36f4b4,0x1035a0,0x469430);
   return;
 }
 
@@ -978,10 +978,10 @@ void __sinit_0036aa70(void)
 void __sinit_0036aad0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7234);
-  __register_global_object((int)register0x000001c0 + -0x7234,0x103050,0x469440);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7230);
-  __register_global_object((int)register0x000001c0 + -0x7230,0x1035a0,0x469450);
+  std_ios_base_Init_ctor(0x36f4bc);
+  __register_global_object(0x36f4bc,0x103050,0x469440);
+  maybe_std_wios_Init_ctor(0x36f4c0);
+  __register_global_object(0x36f4c0,0x1035a0,0x469450);
   return;
 }
 
@@ -989,10 +989,10 @@ void __sinit_0036aad0(void)
 void __sinit_0036ab30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7228);
-  __register_global_object((int)register0x000001c0 + -0x7228,0x103050,0x469460);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7224);
-  __register_global_object((int)register0x000001c0 + -0x7224,0x1035a0,0x469470);
+  std_ios_base_Init_ctor(0x36f4c8);
+  __register_global_object(0x36f4c8,0x103050,0x469460);
+  maybe_std_wios_Init_ctor(0x36f4cc);
+  __register_global_object(0x36f4cc,0x1035a0,0x469470);
   return;
 }
 
@@ -1000,10 +1000,10 @@ void __sinit_0036ab30(void)
 void __sinit_0036ab90(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x721c);
-  __register_global_object((int)register0x000001c0 + -0x721c,0x103050,0x469480);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7218);
-  __register_global_object((int)register0x000001c0 + -0x7218,0x1035a0,0x469490);
+  std_ios_base_Init_ctor(0x36f4d4);
+  __register_global_object(0x36f4d4,0x103050,0x469480);
+  maybe_std_wios_Init_ctor(0x36f4d8);
+  __register_global_object(0x36f4d8,0x1035a0,0x469490);
   return;
 }
 
@@ -1011,10 +1011,10 @@ void __sinit_0036ab90(void)
 void __sinit_0036abf0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7210);
-  __register_global_object((int)register0x000001c0 + -0x7210,0x103050,0x4694a0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x720c);
-  __register_global_object((int)register0x000001c0 + -0x720c,0x1035a0,0x4694b0);
+  std_ios_base_Init_ctor(0x36f4e0);
+  __register_global_object(0x36f4e0,0x103050,0x4694a0);
+  maybe_std_wios_Init_ctor(0x36f4e4);
+  __register_global_object(0x36f4e4,0x1035a0,0x4694b0);
   return;
 }
 
@@ -1022,10 +1022,10 @@ void __sinit_0036abf0(void)
 void __sinit_0036ac50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7204);
-  __register_global_object((int)register0x000001c0 + -0x7204,0x103050,0x4694c0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7200);
-  __register_global_object((int)register0x000001c0 + -0x7200,0x1035a0,0x4694d0);
+  std_ios_base_Init_ctor(0x36f4ec);
+  __register_global_object(0x36f4ec,0x103050,0x4694c0);
+  maybe_std_wios_Init_ctor(0x36f4f0);
+  __register_global_object(0x36f4f0,0x1035a0,0x4694d0);
   return;
 }
 
@@ -1033,10 +1033,10 @@ void __sinit_0036ac50(void)
 void __sinit_0036acb0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71f0);
-  __register_global_object((int)register0x000001c0 + -0x71f0,0x103050,0x4694e0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71ec);
-  __register_global_object((int)register0x000001c0 + -0x71ec,0x1035a0,0x4694f0);
+  std_ios_base_Init_ctor(0x36f500);
+  __register_global_object(0x36f500,0x103050,0x4694e0);
+  maybe_std_wios_Init_ctor(0x36f504);
+  __register_global_object(0x36f504,0x1035a0,0x4694f0);
   return;
 }
 
@@ -1044,10 +1044,10 @@ void __sinit_0036acb0(void)
 void __sinit_0036ad10(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71e8);
-  __register_global_object((int)register0x000001c0 + -0x71e8,0x103050,0x469500);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71e4);
-  __register_global_object((int)register0x000001c0 + -0x71e4,0x1035a0,0x469510);
+  std_ios_base_Init_ctor(0x36f508);
+  __register_global_object(0x36f508,0x103050,0x469500);
+  maybe_std_wios_Init_ctor(0x36f50c);
+  __register_global_object(0x36f50c,0x1035a0,0x469510);
   return;
 }
 
@@ -1055,10 +1055,10 @@ void __sinit_0036ad10(void)
 void __sinit_0036ad70(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71e0);
-  __register_global_object((int)register0x000001c0 + -0x71e0,0x103050,0x469520);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71dc);
-  __register_global_object((int)register0x000001c0 + -0x71dc,0x1035a0,0x469530);
+  std_ios_base_Init_ctor(0x36f510);
+  __register_global_object(0x36f510,0x103050,0x469520);
+  maybe_std_wios_Init_ctor(0x36f514);
+  __register_global_object(0x36f514,0x1035a0,0x469530);
   return;
 }
 
@@ -1066,10 +1066,10 @@ void __sinit_0036ad70(void)
 void __sinit_0036add0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71d8);
-  __register_global_object((int)register0x000001c0 + -0x71d8,0x103050,0x469540);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71d4);
-  __register_global_object((int)register0x000001c0 + -0x71d4,0x1035a0,0x469550);
+  std_ios_base_Init_ctor(0x36f518);
+  __register_global_object(0x36f518,0x103050,0x469540);
+  maybe_std_wios_Init_ctor(0x36f51c);
+  __register_global_object(0x36f51c,0x1035a0,0x469550);
   return;
 }
 
@@ -1077,10 +1077,10 @@ void __sinit_0036add0(void)
 void __sinit_0036ae30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71d0);
-  __register_global_object((int)register0x000001c0 + -0x71d0,0x103050,0x469560);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71cc);
-  __register_global_object((int)register0x000001c0 + -0x71cc,0x1035a0,0x469570);
+  std_ios_base_Init_ctor(0x36f520);
+  __register_global_object(0x36f520,0x103050,0x469560);
+  maybe_std_wios_Init_ctor(0x36f524);
+  __register_global_object(0x36f524,0x1035a0,0x469570);
   return;
 }
 
@@ -1088,10 +1088,10 @@ void __sinit_0036ae30(void)
 void __sinit_0036ae90(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71c8);
-  __register_global_object((int)register0x000001c0 + -0x71c8,0x103050,0x469580);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71c4);
-  __register_global_object((int)register0x000001c0 + -0x71c4,0x1035a0,0x469590);
+  std_ios_base_Init_ctor(0x36f528);
+  __register_global_object(0x36f528,0x103050,0x469580);
+  maybe_std_wios_Init_ctor(0x36f52c);
+  __register_global_object(0x36f52c,0x1035a0,0x469590);
   return;
 }
 
@@ -1099,10 +1099,10 @@ void __sinit_0036ae90(void)
 void __sinit_0036aef0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71c0);
-  __register_global_object((int)register0x000001c0 + -0x71c0,0x103050,0x4695a0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71bc);
-  __register_global_object((int)register0x000001c0 + -0x71bc,0x1035a0,0x4695b0);
+  std_ios_base_Init_ctor(0x36f530);
+  __register_global_object(0x36f530,0x103050,0x4695a0);
+  maybe_std_wios_Init_ctor(0x36f534);
+  __register_global_object(0x36f534,0x1035a0,0x4695b0);
   return;
 }
 
@@ -1110,10 +1110,10 @@ void __sinit_0036aef0(void)
 void __sinit_0036af50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71b8);
-  __register_global_object((int)register0x000001c0 + -0x71b8,0x103050,0x4695c0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71b4);
-  __register_global_object((int)register0x000001c0 + -0x71b4,0x1035a0,0x4695d0);
+  std_ios_base_Init_ctor(0x36f538);
+  __register_global_object(0x36f538,0x103050,0x4695c0);
+  maybe_std_wios_Init_ctor(0x36f53c);
+  __register_global_object(0x36f53c,0x1035a0,0x4695d0);
   return;
 }
 
@@ -1121,10 +1121,10 @@ void __sinit_0036af50(void)
 void __sinit_0036afb0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x71a4);
-  __register_global_object((int)register0x000001c0 + -0x71a4,0x103050,0x4695f0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x71a0);
-  __register_global_object((int)register0x000001c0 + -0x71a0,0x1035a0,0x469600);
+  std_ios_base_Init_ctor(0x36f54c);
+  __register_global_object(0x36f54c,0x103050,0x4695f0);
+  maybe_std_wios_Init_ctor(0x36f550);
+  __register_global_object(0x36f550,0x1035a0,0x469600);
   return;
 }
 
@@ -1132,10 +1132,10 @@ void __sinit_0036afb0(void)
 void __sinit_0036b010(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x719c);
-  __register_global_object((int)register0x000001c0 + -0x719c,0x103050,0x469610);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7198);
-  __register_global_object((int)register0x000001c0 + -0x7198,0x1035a0,0x469620);
+  std_ios_base_Init_ctor(0x36f554);
+  __register_global_object(0x36f554,0x103050,0x469610);
+  maybe_std_wios_Init_ctor(0x36f558);
+  __register_global_object(0x36f558,0x1035a0,0x469620);
   return;
 }
 
@@ -1143,10 +1143,10 @@ void __sinit_0036b010(void)
 void __sinit_0036b070(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7194);
-  __register_global_object((int)register0x000001c0 + -0x7194,0x103050,0x469630);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7190);
-  __register_global_object((int)register0x000001c0 + -0x7190,0x1035a0,0x469640);
+  std_ios_base_Init_ctor(0x36f55c);
+  __register_global_object(0x36f55c,0x103050,0x469630);
+  maybe_std_wios_Init_ctor(0x36f560);
+  __register_global_object(0x36f560,0x1035a0,0x469640);
   return;
 }
 
@@ -1154,10 +1154,10 @@ void __sinit_0036b070(void)
 void __sinit_0036b0d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x718c);
-  __register_global_object((int)register0x000001c0 + -0x718c,0x103050,0x469650);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7188);
-  __register_global_object((int)register0x000001c0 + -0x7188,0x1035a0,0x469660);
+  std_ios_base_Init_ctor(0x36f564);
+  __register_global_object(0x36f564,0x103050,0x469650);
+  maybe_std_wios_Init_ctor(0x36f568);
+  __register_global_object(0x36f568,0x1035a0,0x469660);
   return;
 }
 
@@ -1165,10 +1165,10 @@ void __sinit_0036b0d0(void)
 void __sinit_0036b130(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7184);
-  __register_global_object((int)register0x000001c0 + -0x7184,0x103050,0x469670);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7180);
-  __register_global_object((int)register0x000001c0 + -0x7180,0x1035a0,0x469680);
+  std_ios_base_Init_ctor(0x36f56c);
+  __register_global_object(0x36f56c,0x103050,0x469670);
+  maybe_std_wios_Init_ctor(0x36f570);
+  __register_global_object(0x36f570,0x1035a0,0x469680);
   return;
 }
 
@@ -1176,10 +1176,10 @@ void __sinit_0036b130(void)
 void __sinit_0036b190(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x717c);
-  __register_global_object((int)register0x000001c0 + -0x717c,0x103050,0x469690);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7178);
-  __register_global_object((int)register0x000001c0 + -0x7178,0x1035a0,0x4696a0);
+  std_ios_base_Init_ctor(0x36f574);
+  __register_global_object(0x36f574,0x103050,0x469690);
+  maybe_std_wios_Init_ctor(0x36f578);
+  __register_global_object(0x36f578,0x1035a0,0x4696a0);
   return;
 }
 
@@ -1187,10 +1187,10 @@ void __sinit_0036b190(void)
 void __sinit_0036b1f0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7174);
-  __register_global_object((int)register0x000001c0 + -0x7174,0x103050,0x4696b0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7170);
-  __register_global_object((int)register0x000001c0 + -0x7170,0x1035a0,0x4696c0);
+  std_ios_base_Init_ctor(0x36f57c);
+  __register_global_object(0x36f57c,0x103050,0x4696b0);
+  maybe_std_wios_Init_ctor(0x36f580);
+  __register_global_object(0x36f580,0x1035a0,0x4696c0);
   return;
 }
 
@@ -1198,10 +1198,10 @@ void __sinit_0036b1f0(void)
 void __sinit_0036b250(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x716c);
-  __register_global_object((int)register0x000001c0 + -0x716c,0x103050,0x4696d0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7168);
-  __register_global_object((int)register0x000001c0 + -0x7168,0x1035a0,0x4696e0);
+  std_ios_base_Init_ctor(0x36f584);
+  __register_global_object(0x36f584,0x103050,0x4696d0);
+  maybe_std_wios_Init_ctor(0x36f588);
+  __register_global_object(0x36f588,0x1035a0,0x4696e0);
   return;
 }
 
@@ -1209,10 +1209,10 @@ void __sinit_0036b250(void)
 void __sinit_0036b2b0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7164);
-  __register_global_object((int)register0x000001c0 + -0x7164,0x103050,0x4696f0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7160);
-  __register_global_object((int)register0x000001c0 + -0x7160,0x1035a0,0x469700);
+  std_ios_base_Init_ctor(0x36f58c);
+  __register_global_object(0x36f58c,0x103050,0x4696f0);
+  maybe_std_wios_Init_ctor(0x36f590);
+  __register_global_object(0x36f590,0x1035a0,0x469700);
   return;
 }
 
@@ -1220,10 +1220,10 @@ void __sinit_0036b2b0(void)
 void __sinit_0036b310(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x715c);
-  __register_global_object((int)register0x000001c0 + -0x715c,0x103050,0x469710);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7158);
-  __register_global_object((int)register0x000001c0 + -0x7158,0x1035a0,0x469720);
+  std_ios_base_Init_ctor(0x36f594);
+  __register_global_object(0x36f594,0x103050,0x469710);
+  maybe_std_wios_Init_ctor(0x36f598);
+  __register_global_object(0x36f598,0x1035a0,0x469720);
   return;
 }
 
@@ -1231,10 +1231,10 @@ void __sinit_0036b310(void)
 void __sinit_0036b370(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7154);
-  __register_global_object((int)register0x000001c0 + -0x7154,0x103050,0x469730);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7150);
-  __register_global_object((int)register0x000001c0 + -0x7150,0x1035a0,0x469740);
+  std_ios_base_Init_ctor(0x36f59c);
+  __register_global_object(0x36f59c,0x103050,0x469730);
+  maybe_std_wios_Init_ctor(0x36f5a0);
+  __register_global_object(0x36f5a0,0x1035a0,0x469740);
   return;
 }
 
@@ -1242,10 +1242,10 @@ void __sinit_0036b370(void)
 void __sinit_0036b3d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x714c);
-  __register_global_object((int)register0x000001c0 + -0x714c,0x103050,0x469750);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -29000);
-  __register_global_object((int)register0x000001c0 + -29000,0x1035a0,0x469760);
+  std_ios_base_Init_ctor(0x36f5a4);
+  __register_global_object(0x36f5a4,0x103050,0x469750);
+  maybe_std_wios_Init_ctor(0x36f5a8);
+  __register_global_object(0x36f5a8,0x1035a0,0x469760);
   return;
 }
 
@@ -1253,10 +1253,10 @@ void __sinit_0036b3d0(void)
 void __sinit_0036b430(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7144);
-  __register_global_object((int)register0x000001c0 + -0x7144,0x103050,0x469770);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7140);
-  __register_global_object((int)register0x000001c0 + -0x7140,0x1035a0,0x469780);
+  std_ios_base_Init_ctor(0x36f5ac);
+  __register_global_object(0x36f5ac,0x103050,0x469770);
+  maybe_std_wios_Init_ctor(0x36f5b0);
+  __register_global_object(0x36f5b0,0x1035a0,0x469780);
   return;
 }
 
@@ -1264,10 +1264,10 @@ void __sinit_0036b430(void)
 void __sinit_0036b490(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x713c);
-  __register_global_object((int)register0x000001c0 + -0x713c,0x103050,0x469790);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7138);
-  __register_global_object((int)register0x000001c0 + -0x7138,0x1035a0,0x4697a0);
+  std_ios_base_Init_ctor(0x36f5b4);
+  __register_global_object(0x36f5b4,0x103050,0x469790);
+  maybe_std_wios_Init_ctor(0x36f5b8);
+  __register_global_object(0x36f5b8,0x1035a0,0x4697a0);
   return;
 }
 
@@ -1275,10 +1275,10 @@ void __sinit_0036b490(void)
 void __sinit_0036b4f0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7134);
-  __register_global_object((int)register0x000001c0 + -0x7134,0x103050,0x4697b0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7130);
-  __register_global_object((int)register0x000001c0 + -0x7130,0x1035a0,0x4697c0);
+  std_ios_base_Init_ctor(0x36f5bc);
+  __register_global_object(0x36f5bc,0x103050,0x4697b0);
+  maybe_std_wios_Init_ctor(0x36f5c0);
+  __register_global_object(0x36f5c0,0x1035a0,0x4697c0);
   return;
 }
 
@@ -1286,10 +1286,10 @@ void __sinit_0036b4f0(void)
 void __sinit_0036b550(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x712c);
-  __register_global_object((int)register0x000001c0 + -0x712c,0x103050,0x4697d0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7128);
-  __register_global_object((int)register0x000001c0 + -0x7128,0x1035a0,0x4697e0);
+  std_ios_base_Init_ctor(0x36f5c4);
+  __register_global_object(0x36f5c4,0x103050,0x4697d0);
+  maybe_std_wios_Init_ctor(0x36f5c8);
+  __register_global_object(0x36f5c8,0x1035a0,0x4697e0);
   return;
 }
 
@@ -1297,10 +1297,10 @@ void __sinit_0036b550(void)
 void __sinit_0036b5b0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7124);
-  __register_global_object((int)register0x000001c0 + -0x7124,0x103050,0x4697f0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7120);
-  __register_global_object((int)register0x000001c0 + -0x7120,0x1035a0,0x469800);
+  std_ios_base_Init_ctor(0x36f5cc);
+  __register_global_object(0x36f5cc,0x103050,0x4697f0);
+  maybe_std_wios_Init_ctor(0x36f5d0);
+  __register_global_object(0x36f5d0,0x1035a0,0x469800);
   return;
 }
 
@@ -1308,10 +1308,10 @@ void __sinit_0036b5b0(void)
 void __sinit_0036b610(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x711c);
-  __register_global_object((int)register0x000001c0 + -0x711c,0x103050,0x469810);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7118);
-  __register_global_object((int)register0x000001c0 + -0x7118,0x1035a0,0x469820);
+  std_ios_base_Init_ctor(0x36f5d4);
+  __register_global_object(0x36f5d4,0x103050,0x469810);
+  maybe_std_wios_Init_ctor(0x36f5d8);
+  __register_global_object(0x36f5d8,0x1035a0,0x469820);
   return;
 }
 
@@ -1319,10 +1319,10 @@ void __sinit_0036b610(void)
 void __sinit_0036b670(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7100);
-  __register_global_object((int)register0x000001c0 + -0x7100,0x103050,0x469840);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70fc);
-  __register_global_object((int)register0x000001c0 + -0x70fc,0x1035a0,0x469850);
+  std_ios_base_Init_ctor(0x36f5f0);
+  __register_global_object(0x36f5f0,0x103050,0x469840);
+  maybe_std_wios_Init_ctor(0x36f5f4);
+  __register_global_object(0x36f5f4,0x1035a0,0x469850);
   return;
 }
 
@@ -1330,10 +1330,10 @@ void __sinit_0036b670(void)
 void __sinit_0036b6d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70f8);
-  __register_global_object((int)register0x000001c0 + -0x70f8,0x103050,0x469860);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70f4);
-  __register_global_object((int)register0x000001c0 + -0x70f4,0x1035a0,0x469870);
+  std_ios_base_Init_ctor(0x36f5f8);
+  __register_global_object(0x36f5f8,0x103050,0x469860);
+  maybe_std_wios_Init_ctor(0x36f5fc);
+  __register_global_object(0x36f5fc,0x1035a0,0x469870);
   return;
 }
 
@@ -1341,10 +1341,10 @@ void __sinit_0036b6d0(void)
 void __sinit_0036b730(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70f0);
-  __register_global_object((int)register0x000001c0 + -0x70f0,0x103050,0x469880);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70ec);
-  __register_global_object((int)register0x000001c0 + -0x70ec,0x1035a0,0x469890);
+  std_ios_base_Init_ctor(0x36f600);
+  __register_global_object(0x36f600,0x103050,0x469880);
+  maybe_std_wios_Init_ctor(0x36f604);
+  __register_global_object(0x36f604,0x1035a0,0x469890);
   return;
 }
 
@@ -1352,10 +1352,10 @@ void __sinit_0036b730(void)
 void __sinit_0036b790(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70e8);
-  __register_global_object((int)register0x000001c0 + -0x70e8,0x103050,0x4698a0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70e4);
-  __register_global_object((int)register0x000001c0 + -0x70e4,0x1035a0,0x4698b0);
+  std_ios_base_Init_ctor(0x36f608);
+  __register_global_object(0x36f608,0x103050,0x4698a0);
+  maybe_std_wios_Init_ctor(0x36f60c);
+  __register_global_object(0x36f60c,0x1035a0,0x4698b0);
   return;
 }
 
@@ -1363,10 +1363,10 @@ void __sinit_0036b790(void)
 void __sinit_0036b7f0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70e0);
-  __register_global_object((int)register0x000001c0 + -0x70e0,0x103050,0x4698c0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70dc);
-  __register_global_object((int)register0x000001c0 + -0x70dc,0x1035a0,0x4698d0);
+  std_ios_base_Init_ctor(0x36f610);
+  __register_global_object(0x36f610,0x103050,0x4698c0);
+  maybe_std_wios_Init_ctor(0x36f614);
+  __register_global_object(0x36f614,0x1035a0,0x4698d0);
   return;
 }
 
@@ -1374,10 +1374,10 @@ void __sinit_0036b7f0(void)
 void __sinit_0036b850(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70d8);
-  __register_global_object((int)register0x000001c0 + -0x70d8,0x103050,0x4698e0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70d4);
-  __register_global_object((int)register0x000001c0 + -0x70d4,0x1035a0,0x4698f0);
+  std_ios_base_Init_ctor(0x36f618);
+  __register_global_object(0x36f618,0x103050,0x4698e0);
+  maybe_std_wios_Init_ctor(0x36f61c);
+  __register_global_object(0x36f61c,0x1035a0,0x4698f0);
   return;
 }
 
@@ -1385,10 +1385,10 @@ void __sinit_0036b850(void)
 void __sinit_0036b8b0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70d0);
-  __register_global_object((int)register0x000001c0 + -0x70d0,0x103050,0x469900);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70cc);
-  __register_global_object((int)register0x000001c0 + -0x70cc,0x1035a0,0x469910);
+  std_ios_base_Init_ctor(0x36f620);
+  __register_global_object(0x36f620,0x103050,0x469900);
+  maybe_std_wios_Init_ctor(0x36f624);
+  __register_global_object(0x36f624,0x1035a0,0x469910);
   return;
 }
 
@@ -1396,10 +1396,10 @@ void __sinit_0036b8b0(void)
 void __sinit_0036b910(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70c8);
-  __register_global_object((int)register0x000001c0 + -0x70c8,0x103050,0x469920);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70c4);
-  __register_global_object((int)register0x000001c0 + -0x70c4,0x1035a0,0x469930);
+  std_ios_base_Init_ctor(0x36f628);
+  __register_global_object(0x36f628,0x103050,0x469920);
+  maybe_std_wios_Init_ctor(0x36f62c);
+  __register_global_object(0x36f62c,0x1035a0,0x469930);
   return;
 }
 
@@ -1407,10 +1407,10 @@ void __sinit_0036b910(void)
 void __sinit_0036b970(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70c0);
-  __register_global_object((int)register0x000001c0 + -0x70c0,0x103050,0x469940);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70bc);
-  __register_global_object((int)register0x000001c0 + -0x70bc,0x1035a0,0x469950);
+  std_ios_base_Init_ctor(0x36f630);
+  __register_global_object(0x36f630,0x103050,0x469940);
+  maybe_std_wios_Init_ctor(0x36f634);
+  __register_global_object(0x36f634,0x1035a0,0x469950);
   return;
 }
 
@@ -1418,10 +1418,10 @@ void __sinit_0036b970(void)
 void __sinit_0036b9d0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70b8);
-  __register_global_object((int)register0x000001c0 + -0x70b8,0x103050,0x469960);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70b4);
-  __register_global_object((int)register0x000001c0 + -0x70b4,0x1035a0,0x469970);
+  std_ios_base_Init_ctor(0x36f638);
+  __register_global_object(0x36f638,0x103050,0x469960);
+  maybe_std_wios_Init_ctor(0x36f63c);
+  __register_global_object(0x36f63c,0x1035a0,0x469970);
   return;
 }
 
@@ -1429,10 +1429,10 @@ void __sinit_0036b9d0(void)
 void __sinit_0036ba30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70b0);
-  __register_global_object((int)register0x000001c0 + -0x70b0,0x103050,0x469980);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70ac);
-  __register_global_object((int)register0x000001c0 + -0x70ac,0x1035a0,0x469990);
+  std_ios_base_Init_ctor(0x36f640);
+  __register_global_object(0x36f640,0x103050,0x469980);
+  maybe_std_wios_Init_ctor(0x36f644);
+  __register_global_object(0x36f644,0x1035a0,0x469990);
   return;
 }
 
@@ -1440,10 +1440,10 @@ void __sinit_0036ba30(void)
 void __sinit_0036ba90(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70a8);
-  __register_global_object((int)register0x000001c0 + -0x70a8,0x103050,0x4699a0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x70a4);
-  __register_global_object((int)register0x000001c0 + -0x70a4,0x1035a0,0x4699b0);
+  std_ios_base_Init_ctor(0x36f648);
+  __register_global_object(0x36f648,0x103050,0x4699a0);
+  maybe_std_wios_Init_ctor(0x36f64c);
+  __register_global_object(0x36f64c,0x1035a0,0x4699b0);
   return;
 }
 
@@ -1451,10 +1451,10 @@ void __sinit_0036ba90(void)
 void __sinit_0036baf0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x70a0);
-  __register_global_object((int)register0x000001c0 + -0x70a0,0x103050,0x4699c0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x709c);
-  __register_global_object((int)register0x000001c0 + -0x709c,0x1035a0,0x4699d0);
+  std_ios_base_Init_ctor(0x36f650);
+  __register_global_object(0x36f650,0x103050,0x4699c0);
+  maybe_std_wios_Init_ctor(0x36f654);
+  __register_global_object(0x36f654,0x1035a0,0x4699d0);
   return;
 }
 
@@ -1462,10 +1462,10 @@ void __sinit_0036baf0(void)
 void __sinit_0036bb50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7098);
-  __register_global_object((int)register0x000001c0 + -0x7098,0x103050,0x4699e0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7094);
-  __register_global_object((int)register0x000001c0 + -0x7094,0x1035a0,0x4699f0);
+  std_ios_base_Init_ctor(0x36f658);
+  __register_global_object(0x36f658,0x103050,0x4699e0);
+  maybe_std_wios_Init_ctor(0x36f65c);
+  __register_global_object(0x36f65c,0x1035a0,0x4699f0);
   return;
 }
 
@@ -1473,10 +1473,10 @@ void __sinit_0036bb50(void)
 void __sinit_0036bbb0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7090);
-  __register_global_object((int)register0x000001c0 + -0x7090,0x103050,0x469a00);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x708c);
-  __register_global_object((int)register0x000001c0 + -0x708c,0x1035a0,0x469a10);
+  std_ios_base_Init_ctor(0x36f660);
+  __register_global_object(0x36f660,0x103050,0x469a00);
+  maybe_std_wios_Init_ctor(0x36f664);
+  __register_global_object(0x36f664,0x1035a0,0x469a10);
   return;
 }
 
@@ -1484,10 +1484,10 @@ void __sinit_0036bbb0(void)
 void __sinit_0036bc10(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7088);
-  __register_global_object((int)register0x000001c0 + -0x7088,0x103050,0x469a20);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7084);
-  __register_global_object((int)register0x000001c0 + -0x7084,0x1035a0,0x469a30);
+  std_ios_base_Init_ctor(0x36f668);
+  __register_global_object(0x36f668,0x103050,0x469a20);
+  maybe_std_wios_Init_ctor(0x36f66c);
+  __register_global_object(0x36f66c,0x1035a0,0x469a30);
   return;
 }
 
@@ -1495,10 +1495,10 @@ void __sinit_0036bc10(void)
 void __sinit_0036bc70(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7080);
-  __register_global_object((int)register0x000001c0 + -0x7080,0x103050,0x469a40);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x707c);
-  __register_global_object((int)register0x000001c0 + -0x707c,0x1035a0,0x469a50);
+  std_ios_base_Init_ctor(0x36f670);
+  __register_global_object(0x36f670,0x103050,0x469a40);
+  maybe_std_wios_Init_ctor(0x36f674);
+  __register_global_object(0x36f674,0x1035a0,0x469a50);
   return;
 }
 
@@ -1506,10 +1506,10 @@ void __sinit_0036bc70(void)
 void __sinit_0036bcd0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7078);
-  __register_global_object((int)register0x000001c0 + -0x7078,0x103050,0x469a60);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7074);
-  __register_global_object((int)register0x000001c0 + -0x7074,0x1035a0,0x469a70);
+  std_ios_base_Init_ctor(0x36f678);
+  __register_global_object(0x36f678,0x103050,0x469a60);
+  maybe_std_wios_Init_ctor(0x36f67c);
+  __register_global_object(0x36f67c,0x1035a0,0x469a70);
   return;
 }
 
@@ -1517,10 +1517,10 @@ void __sinit_0036bcd0(void)
 void __sinit_0036bd30(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7070);
-  __register_global_object((int)register0x000001c0 + -0x7070,0x103050,0x469a80);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x706c);
-  __register_global_object((int)register0x000001c0 + -0x706c,0x1035a0,0x469a90);
+  std_ios_base_Init_ctor(0x36f680);
+  __register_global_object(0x36f680,0x103050,0x469a80);
+  maybe_std_wios_Init_ctor(0x36f684);
+  __register_global_object(0x36f684,0x1035a0,0x469a90);
   return;
 }
 
@@ -1528,10 +1528,10 @@ void __sinit_0036bd30(void)
 void __sinit_0036bd90(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7068);
-  __register_global_object((int)register0x000001c0 + -0x7068,0x103050,0x469aa0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7064);
-  __register_global_object((int)register0x000001c0 + -0x7064,0x1035a0,0x469ab0);
+  std_ios_base_Init_ctor(0x36f688);
+  __register_global_object(0x36f688,0x103050,0x469aa0);
+  maybe_std_wios_Init_ctor(0x36f68c);
+  __register_global_object(0x36f68c,0x1035a0,0x469ab0);
   return;
 }
 
@@ -1539,10 +1539,10 @@ void __sinit_0036bd90(void)
 void __sinit_0036bdf0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7060);
-  __register_global_object((int)register0x000001c0 + -0x7060,0x103050,0x469ac0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x705c);
-  __register_global_object((int)register0x000001c0 + -0x705c,0x1035a0,0x469ad0);
+  std_ios_base_Init_ctor(0x36f690);
+  __register_global_object(0x36f690,0x103050,0x469ac0);
+  maybe_std_wios_Init_ctor(0x36f694);
+  __register_global_object(0x36f694,0x1035a0,0x469ad0);
   return;
 }
 
@@ -1550,10 +1550,10 @@ void __sinit_0036bdf0(void)
 void __sinit_0036be50(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7054);
-  __register_global_object((int)register0x000001c0 + -0x7054,0x103050,0x469ae0);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7050);
-  __register_global_object((int)register0x000001c0 + -0x7050,0x1035a0,0x469af0);
+  std_ios_base_Init_ctor(0x36f69c);
+  __register_global_object(0x36f69c,0x103050,0x469ae0);
+  maybe_std_wios_Init_ctor(0x36f6a0);
+  __register_global_object(0x36f6a0,0x1035a0,0x469af0);
   return;
 }
 
@@ -1561,10 +1561,10 @@ void __sinit_0036be50(void)
 void __sinit_0036beb0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x704c);
-  __register_global_object((int)register0x000001c0 + -0x704c,0x103050,0x469b00);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7048);
-  __register_global_object((int)register0x000001c0 + -0x7048,0x1035a0,0x469b10);
+  std_ios_base_Init_ctor(0x36f6a4);
+  __register_global_object(0x36f6a4,0x103050,0x469b00);
+  maybe_std_wios_Init_ctor(0x36f6a8);
+  __register_global_object(0x36f6a8,0x1035a0,0x469b10);
   return;
 }
 
@@ -1572,10 +1572,10 @@ void __sinit_0036beb0(void)
 void __sinit_0036bf10(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7044);
-  __register_global_object((int)register0x000001c0 + -0x7044,0x103050,0x469b20);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7040);
-  __register_global_object((int)register0x000001c0 + -0x7040,0x1035a0,0x469b30);
+  std_ios_base_Init_ctor(0x36f6ac);
+  __register_global_object(0x36f6ac,0x103050,0x469b20);
+  maybe_std_wios_Init_ctor(0x36f6b0);
+  __register_global_object(0x36f6b0,0x1035a0,0x469b30);
   return;
 }
 
@@ -1583,10 +1583,10 @@ void __sinit_0036bf10(void)
 void __sinit_0036bf70(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7038);
-  __register_global_object((int)register0x000001c0 + -0x7038,0x103050,0x469b40);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x7034);
-  __register_global_object((int)register0x000001c0 + -0x7034,0x1035a0,0x469b50);
+  std_ios_base_Init_ctor(0x36f6b8);
+  __register_global_object(0x36f6b8,0x103050,0x469b40);
+  maybe_std_wios_Init_ctor(0x36f6bc);
+  __register_global_object(0x36f6bc,0x1035a0,0x469b50);
   return;
 }
 
@@ -1594,10 +1594,10 @@ void __sinit_0036bf70(void)
 void __sinit_0036bfd0(void)
 
 {
-  std_ios_base_Init_ctor((int)register0x000001c0 + -0x7030);
-  __register_global_object((int)register0x000001c0 + -0x7030,0x103050,0x469b60);
-  maybe_std_wios_Init_ctor((int)register0x000001c0 + -0x702c);
-  __register_global_object((int)register0x000001c0 + -0x702c,0x1035a0,0x469b70);
+  std_ios_base_Init_ctor(0x36f6c0);
+  __register_global_object(0x36f6c0,0x103050,0x469b60);
+  maybe_std_wios_Init_ctor(0x36f6c4);
+  __register_global_object(0x36f6c4,0x1035a0,0x469b70);
   return;
 }
 

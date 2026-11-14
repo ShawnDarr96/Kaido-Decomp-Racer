@@ -40,6 +40,8 @@ def main():
         program = flat.getCurrentProgram()
         tx = program.startTransaction("apply symbols")
         try:
+            set_gp(program)
+            apply_globals(program)
             apply_symbols(program)
             if args.auto_names:
                 auto_name_from_strings(program)
@@ -50,6 +52,35 @@ def main():
 
 
 SYMBOLS = ROOT / "config" / "symbols.csv"
+GLOBALS = ROOT / "config" / "globals.csv"
+GP_VALUE = 0x3766F0  # .reginfo ri_gp_value
+
+
+def set_gp(program):
+    """Give the decompiler the $gp value so gp-relative accesses resolve to absolute addresses."""
+    from java.math import BigInteger
+    ctx = program.getProgramContext()
+    gp = ctx.getRegister("gp")
+    text = program.getMemory().getBlock(program.getAddressFactory().getDefaultAddressSpace().getAddress(0x100000))
+    ctx.setValue(gp, text.getStart(), text.getEnd(), BigInteger.valueOf(GP_VALUE))
+
+
+def apply_globals(program):
+    from ghidra.program.model.symbol import SourceType
+    from ghidra.program.model.listing import CodeUnit
+    af = program.getAddressFactory().getDefaultAddressSpace()
+    st = program.getSymbolTable()
+    n = 0
+    with open(GLOBALS, encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            addr = af.getAddress(int(r["address"], 16))
+            sym = st.getPrimarySymbol(addr)
+            if sym is None or sym.getName() != r["name"]:
+                st.createLabel(addr, r["name"], SourceType.USER_DEFINED).setPrimary()
+            if r.get("comment"):
+                program.getListing().setComment(addr, CodeUnit.EOL_COMMENT, r["comment"])
+            n += 1
+    print(f"applied {n} globals", flush=True)
 SYM_FIELDS = ["address", "name", "signature", "source", "comment"]
 
 

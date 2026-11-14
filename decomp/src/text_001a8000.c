@@ -337,17 +337,16 @@ void View_DrawFadeSprite(uint param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
-  int iVar2;
   undefined1 auStack_40 [20];
-  int iStack_2c;
+  undefined1 *puStack_2c;
   
-  iVar2 = (param_1 & 0xff) * 0x5c0 + 0x431100;
   Pkt_Init(auStack_40,1,2,0);
-  iStack_2c = iVar2;
+  puStack_2c = &g_Views + (param_1 & 0xff) * 0x5c0;
   Pkt_SubmitToChain(auStack_40,0);
   Pkt_End(auStack_40);
   uVar1 = Pkt_AllocVif(auStack_40,0x36,0x13000000);
-  maybe_Gs_BuildSpriteRegs(uVar1,iVar2,0x3100c,0x3100c,0x58,0,param_2);
+  maybe_Gs_BuildSpriteRegs(uVar1,&g_Views + (param_1 & 0xff) * 0x5c0,0x3100c,0x3100c,0x58,0,param_2)
+  ;
   Pkt_Submit(auStack_40,0);
   return;
 }
@@ -357,18 +356,17 @@ void View_DrawFullscreen(uint param_1,uint param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
-  int iVar2;
   undefined1 auStack_40 [20];
-  int iStack_2c;
+  undefined1 *puStack_2c;
   
-  iVar2 = (param_1 & 0xff) * 0x5c0 + 0x431100;
   Pkt_Init(auStack_40,1,2,0);
-  iStack_2c = iVar2;
+  puStack_2c = &g_Views + (param_1 & 0xff) * 0x5c0;
   Pkt_SubmitToChain(auStack_40,0);
   Pkt_End(auStack_40);
   uVar1 = Pkt_AllocVif(auStack_40,0x59,0x13000000);
-  maybe_Gs_BuildFullscreenQuad(uVar1,iVar2,(param_2 & 0xff) * 0x5c0 + 0x431100,0x33001,0x58,param_3)
-  ;
+  maybe_Gs_BuildFullscreenQuad
+            (uVar1,&g_Views + (param_1 & 0xff) * 0x5c0,&g_Views + (param_2 & 0xff) * 0x5c0,0x33001,
+             0x58,param_3);
   Pkt_Submit(auStack_40,0);
   return;
 }
@@ -390,11 +388,11 @@ void maybe_Game_UpdateObjects(void)
   
   uVar7 = 0;
   do {
-    View_ResetDirty((uVar7 & 0xff) * 0x5c0 + 0x431100);
+    View_ResetDirty(&g_Views + (uVar7 & 0xff) * 0x5c0);
     uVar7 = uVar7 + 1;
   } while (uVar7 < 0xe);
   Gfx_EndFrame();
-  pbVar5 = (byte *)((int)register0x000001c0 + -0x7eb8);
+  pbVar5 = (byte *)0x36e838;
   pbVar3 = abStack_8;
   iVar2 = 5;
   do {
@@ -405,7 +403,7 @@ void maybe_Game_UpdateObjects(void)
   } while (0 < iVar2);
   uVar7 = 0;
   pbVar3 = abStack_8;
-  iVar2 = iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x388200;
+  iVar2 = iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x388200;
   do {
     iVar4 = (uint)*pbVar3 * 0x5c0;
     puVar6 = (uint *)(iVar4 + 0x431160);
@@ -512,13 +510,13 @@ void Render_SetupViews(void)
   
   uVar5 = 0;
   puVar4 = &DAT_00317f00;
-  uGpffff8bd0 = uRam00387fb8;
+  uRam0036f2c0 = uRam00387fb8;
   uVar2 = 0;
-  uGpffff8bd4 = uRam00387fbc;
+  uRam0036f2c4 = uRam00387fbc;
   do {
     iVar3 = (uVar5 & 0xff) * 0x5c0;
-    if ((uGpffff8be0 & 1 << (uVar5 & 0x1f)) != 0) {
-      uVar2 = View_SetupForCourse(iVar3 + 0x431100);
+    if ((uRam0036f2d0 & 1 << (uVar5 & 0x1f)) != 0) {
+      uVar2 = View_SetupForCourse(&g_Views + iVar3);
     }
     uVar1 = *(undefined4 *)(puVar4 + 4);
     uVar5 = uVar5 + 1;
@@ -526,13 +524,13 @@ void Render_SetupViews(void)
     puVar4 = puVar4 + 8;
     *(undefined4 *)(iVar3 + 0x43168c) = uVar1;
   } while (uVar5 < 0xe);
-  if (uVar2 <= uGpffff8bd0) {
-    uVar2 = uGpffff8bd0;
+  if (uVar2 <= uRam0036f2c0) {
+    uVar2 = uRam0036f2c0;
   }
-  uGpffff8bd0 = uVar2;
+  uRam0036f2c0 = uVar2;
   Light_SetEnabledFlag(0x436180,0);
-  uGpffff8bcc = uGpffff8bd0;
-  uGpffff8bd0 = uGpffff8bd0 + 0x20;
+  uRam0036f2bc = uRam0036f2c0;
+  uRam0036f2c0 = uRam0036f2c0 + 0x20;
   return;
 }
 
@@ -544,7 +542,7 @@ void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
   uint uVar2;
   
   if (param_3 != 0) {
-    uGpffff8be0 = param_2;
+    uRam0036f2d0 = param_2;
   }
   lVar1 = Str_CompareN(0x4310e0,param_1,0x14);
   if (lVar1 == 0) {
@@ -559,7 +557,7 @@ void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
   if (param_3 != 0) {
     uVar2 = 0;
     do {
-      View_ResetDirty((uVar2 & 0xff) * 0x5c0 + 0x431100);
+      View_ResetDirty(&g_Views + (uVar2 & 0xff) * 0x5c0);
       uVar2 = uVar2 + 1;
     } while (uVar2 < 0xe);
   }
@@ -590,12 +588,12 @@ void Render_SetInterlace(byte param_1)
   uint uStack_14;
   undefined4 uStack_10;
   
-  uGpffff8bdc = (uint)param_1;
-  uVar1 = (uint)(byte)uGpffff8bd8;
+  uRam0036f2cc = (uint)param_1;
+  uVar1 = (uint)(byte)uRam0036f2c8;
   iVar2 = uVar1 * 0x14;
   uStack_1e = (&DAT_00317f72)[iVar2];
   uStack_1f = (&DAT_00317f71)[iVar2];
-  uGpffff8bd8 = (uint)(byte)uGpffff8bd8;
+  uRam0036f2c8 = (uint)(byte)uRam0036f2c8;
   uStack_1d = (&DAT_00317f73)[iVar2];
   uStack_1c = (&DAT_00317f74)[iVar2];
   uStack_10 = (&DAT_00317f80)[uVar1 * 5];
@@ -632,12 +630,12 @@ void Render_SetSceneMode(uint param_1,undefined8 param_2)
   uint uStack_14;
   undefined4 uStack_10;
   
-  uGpffff8bd8 = param_1 & 0xff;
-  iVar1 = uGpffff8bd8 * 0x14;
+  uRam0036f2c8 = param_1 & 0xff;
+  iVar1 = uRam0036f2c8 * 0x14;
   uStack_1f = (&DAT_00317f71)[iVar1];
   uStack_1e = (&DAT_00317f72)[iVar1];
-  bStack_20 = (byte)uGpffff8bdc;
-  uGpffff8bdc = (uint)(byte)uGpffff8bdc;
+  bStack_20 = (byte)uRam0036f2cc;
+  uRam0036f2cc = (uint)(byte)uRam0036f2cc;
   uStack_1d = (&DAT_00317f73)[iVar1];
   uStack_1c = (&DAT_00317f74)[iVar1];
   uStack_1b = (&DAT_00317f75)[iVar1];
@@ -645,8 +643,8 @@ void Render_SetSceneMode(uint param_1,undefined8 param_2)
   uStack_1a = (&DAT_00317f76)[iVar1];
   uStack_18 = (&DAT_00317f78)[iVar1];
   uStack_17 = (&DAT_00317f79)[iVar1];
-  uStack_10 = (&DAT_00317f80)[uGpffff8bd8 * 5];
-  uStack_14 = (&DAT_00317f7c)[uGpffff8bd8 * 5] | 1;
+  uStack_10 = (&DAT_00317f80)[uRam0036f2c8 * 5];
+  uStack_14 = (&DAT_00317f7c)[uRam0036f2c8 * 5] | 1;
   uStack_16 = (&DAT_00317f7a)[iVar1];
   uStack_15 = (&DAT_00317f7b)[iVar1];
   Render_SetVideoMode(&bStack_20,param_2,1);
@@ -681,19 +679,19 @@ void Render_Init(undefined4 param_1)
   uint uStack_14;
   undefined4 uStack_10;
   
-  uGpffff8bcc = 0;
-  uGpffff8bd0 = 0;
-  uGpffff8bd4 = 0;
-  uGpffff8bd8 = 0;
-  uGpffff8bdc = 0;
-  uGpffff8bc8 = param_1;
+  uRam0036f2bc = 0;
+  uRam0036f2c0 = 0;
+  uRam0036f2c4 = 0;
+  uRam0036f2c8 = 0;
+  uRam0036f2cc = 0;
+  uRam0036f2b8 = param_1;
   Mem_Set16(0x4310e0,0x55,0x14);
-  uGpffff8be0 = 0;
-  Gfx_InitAll(uGpffff8bc8);
+  uRam0036f2d0 = 0;
+  Gfx_InitAll(uRam0036f2b8);
   pcRam00436318 = Render_SetupViews;
   uRam0043631c = 0;
   Gfx_RemoveEndFrameCallback(0x436310);
-  uGpffff8bd8 = 0;
+  uRam0036f2c8 = 0;
   uStack_1f = DAT_00317f71;
   uStack_1e = DAT_00317f72;
   uStack_18 = DAT_00317f78;
@@ -707,8 +705,8 @@ void Render_Init(undefined4 param_1)
   uStack_19 = DAT_00317f77;
   uStack_14 = DAT_00317f7c | 1;
   uStack_10 = DAT_00317f80;
-  uStack_20 = (undefined1)uGpffff8bdc;
-  uGpffff8bdc = uGpffff8bdc & 0xff;
+  uStack_20 = (undefined1)uRam0036f2cc;
+  uRam0036f2cc = uRam0036f2cc & 0xff;
   Render_SetVideoMode(&uStack_20,0,1);
   return;
 }
@@ -912,20 +910,20 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
   Mem_Set16(0x436470,0,0x68);
   cRam00436478 = *param_2;
   if ((cRam00436478 == '\x02') || (cRam00436478 == '\x01')) {
-    uGpffff8be8 = 4;
-    uGpffff8be4 = 1;
-    uGpffff8bec = 1;
-    uGpffff8bf4 = 1;
-    uGpffff8bf0 = 3;
-    uGpffff8bf8 = 3;
+    uRam0036f2d8 = 4;
+    uRam0036f2d4 = 1;
+    uRam0036f2dc = 1;
+    uRam0036f2e4 = 1;
+    uRam0036f2e0 = 3;
+    uRam0036f2e8 = 3;
   }
   else if (cRam00436478 == '\0') {
-    uGpffff8be4 = 0;
-    uGpffff8be8 = 0;
-    uGpffff8bec = 0;
-    uGpffff8bf0 = 0;
-    uGpffff8bf4 = 0;
-    uGpffff8bf8 = 0;
+    uRam0036f2d4 = 0;
+    uRam0036f2d8 = 0;
+    uRam0036f2dc = 0;
+    uRam0036f2e0 = 0;
+    uRam0036f2e4 = 0;
+    uRam0036f2e8 = 0;
   }
   uRam0043648c = *(undefined4 *)(param_2 + 4);
   uRam00436490 = *(undefined4 *)(param_2 + 8);
@@ -949,8 +947,8 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
   do {
     uVar19 = 0;
     uVar13 = 0;
-    uVar10 = uGpffff8be4;
-    if (uGpffff8be4 <= uGpffff8be8) {
+    uVar10 = uRam0036f2d4;
+    if (uRam0036f2d4 <= uRam0036f2d8) {
       do {
         if ((cRam00436478 != '\x01') || (((uVar10 != 0 && (uVar10 != 2)) && (uVar10 != 3)))) {
           iVar12 = Arc_GetFileSize(uVar14 + uVar10,uVar14 + uVar10,0);
@@ -958,7 +956,7 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
           uVar19 = uVar19 + (iVar12 + 0x7ffU & 0xfffff800);
         }
         uVar10 = uVar10 + 1;
-      } while (uVar10 <= uGpffff8be8);
+      } while (uVar10 <= uRam0036f2d8);
     }
     if (uVar13 <= uVar11) {
       uVar13 = uVar11;
@@ -1210,7 +1208,7 @@ void Asset_OnCourseTexLoaded
   if ((cRam00436478 != '\x02') && (lVar1 = course_sub_001a59f0(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,param_3);
   }
-  iVar3 = iGpffff8bfc + iGpffff8bd0;
+  iVar3 = iRam0036f2ec + iRam0036f2c0;
   uVar2 = Gut_PackGetEntry(param_2,0,0);
   Res_UploadTexture(param_4,(int)param_4 + 0x2c,uVar2,0,0,iVar3,0,0);
   *(undefined4 *)((int)param_4 + 8) = 0;
@@ -1360,7 +1358,7 @@ void Asset_SetupEnvModels(int param_1,undefined8 param_2)
   int iVar10;
   
   uVar7 = 0;
-  iVar1 = iGpffff8bfc + iGpffff8bd0;
+  iVar1 = iRam0036f2ec + iRam0036f2c0;
   iVar5 = param_1;
   do {
     uVar2 = Gut_PackGetEntry(param_2,uVar7,0);
@@ -1540,7 +1538,7 @@ void Asset_SetupCarParts(undefined8 param_1,undefined8 param_2)
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 4;
   } while (uVar4 < 0xd);
-  iVar3 = iGpffff8bfc + iGpffff8bd0;
+  iVar3 = iRam0036f2ec + iRam0036f2c0;
   uVar2 = Gut_PackGetEntry(param_2,0,0);
   Res_UploadTexture(0x4363e0,0x436450,uVar2,0,1,iVar3 + 0xc0,0,0);
   return;
@@ -1656,9 +1654,9 @@ void CarAsset_RelocateBody(undefined8 param_1,char param_2,undefined8 param_3)
   else if (param_2 == '\0') {
     uVar4 = 0x440;
   }
-  if (uGpffff8bf4 <= uGpffff8bf8) {
-    iVar6 = (int)param_1 + uGpffff8bf4 * 0xc;
-    uVar3 = uGpffff8bf4;
+  if (uRam0036f2e4 <= uRam0036f2e8) {
+    iVar6 = (int)param_1 + uRam0036f2e4 * 0xc;
+    uVar3 = uRam0036f2e4;
     do {
       uVar2 = 0;
       iVar7 = iVar6;
@@ -1703,7 +1701,7 @@ void CarAsset_RelocateBody(undefined8 param_1,char param_2,undefined8 param_3)
       } while (uVar2 < 3);
       uVar3 = uVar3 + 1;
       iVar6 = iVar6 + 0xc;
-    } while (uVar3 <= uGpffff8bf8);
+    } while (uVar3 <= uRam0036f2e8);
   }
   return;
 }
@@ -1727,21 +1725,21 @@ void CarAsset_SetupBody(int param_1,undefined4 param_2)
   int iStack_50;
   undefined4 uStack_24;
   
-  uVar2 = uGpffff8bf8;
-  uVar10 = uGpffff8bf4;
+  uVar2 = uRam0036f2e8;
+  uVar10 = uRam0036f2e4;
   bVar1 = false;
   uStack_24 = 0;
-  iVar3 = iGpffff8bfc + iGpffff8bd0;
-  if (uGpffff8bf4 <= uGpffff8bf8) {
-    iVar4 = param_1 + uGpffff8bf4 * 0xc;
-    uVar8 = uGpffff8bf4;
+  iVar3 = iRam0036f2ec + iRam0036f2c0;
+  if (uRam0036f2e4 <= uRam0036f2e8) {
+    iVar4 = param_1 + uRam0036f2e4 * 0xc;
+    uVar8 = uRam0036f2e4;
     do {
       *(undefined4 *)(iVar4 + 0x4c) = 0;
       uVar8 = uVar8 + 1;
       *(undefined4 *)(iVar4 + 0x50) = 0;
       *(undefined4 *)(iVar4 + 0x54) = 0;
       iVar4 = iVar4 + 0xc;
-    } while (uVar8 <= uGpffff8bf8);
+    } while (uVar8 <= uRam0036f2e8);
   }
   if ((cRam00436478 == '\x02') && (lVar7 = course_sub_001a59f0(param_1), lVar7 == 0)) {
     bVar1 = true;
@@ -1894,9 +1892,9 @@ void WheelAsset_Relocate(undefined8 param_1,char param_2,undefined8 param_3)
   else if (param_2 == '\0') {
     uVar4 = 0x440;
   }
-  if (uGpffff8bec <= uGpffff8bf0) {
-    iVar2 = (int)param_1 + uGpffff8bec * 4;
-    uVar3 = uGpffff8bec;
+  if (uRam0036f2dc <= uRam0036f2e0) {
+    iVar2 = (int)param_1 + uRam0036f2dc * 4;
+    uVar3 = uRam0036f2dc;
     do {
       iVar5 = (int)param_3;
       if (uVar3 == 0) {
@@ -1935,7 +1933,7 @@ void WheelAsset_Relocate(undefined8 param_1,char param_2,undefined8 param_3)
       }
       uVar3 = uVar3 + 1;
       iVar2 = iVar2 + 4;
-    } while (uVar3 <= uGpffff8bf0);
+    } while (uVar3 <= uRam0036f2e0);
   }
   return;
 }

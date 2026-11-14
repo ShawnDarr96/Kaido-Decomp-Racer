@@ -384,7 +384,7 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
   int iVar4;
   uint uVar5;
   
-  lVar2 = IopStrm_Command(0x300,param_1,param_2,uGpffff8938);
+  lVar2 = IopStrm_Command(0x300,param_1,param_2,uRam0036f028);
   if (lVar2 == -1) {
     uVar1 = 0;
   }
@@ -396,14 +396,14 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
         uVar5 = uVar5 + 1;
       } while (uVar5 < param_1);
     }
-    uGpffff8944 = param_1;
-    iGpffff8948 = Mem_Alloc16(param_1 * 0x6c,param_3);
+    uRam0036f034 = param_1;
+    iRam0036f038 = Mem_Alloc16(param_1 * 0x6c,param_3);
     uVar5 = 0;
     if (param_1 != 0) {
       iVar4 = 0;
       do {
         uVar5 = uVar5 + 1;
-        puVar3 = (undefined4 *)(iGpffff8948 + iVar4);
+        puVar3 = (undefined4 *)(iRam0036f038 + iVar4);
         *puVar3 = 0;
         iVar4 = iVar4 + 0x6c;
         puVar3[1] = 0;
@@ -491,7 +491,7 @@ void IopStrm_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,un
     maybe_Mem_CopyQwords(0x387084,uRam00387084,0xc);
   default:
   }
-  Rpc_Call(uGpffff8934,&uStack_70);
+  Rpc_Call(uRam0036f024,&uStack_70);
   return;
 }
 
@@ -502,15 +502,15 @@ bool IopStrm_IsPlaying(undefined8 param_1)
   bool bVar1;
   int iVar2;
   
-  iVar2 = iGpffff8948 + (int)param_1 * 0x6c;
-  WaitSema(uGpffff894c);
+  iVar2 = iRam0036f038 + (int)param_1 * 0x6c;
+  WaitSema(uRam0036f03c);
   bVar1 = *(int *)(iVar2 + 0x3c) - 2U < 2;
   if (bVar1) {
     IopStrm_Command(0x30a,param_1);
     *(undefined4 *)(iVar2 + 0x3c) = 1;
     *(undefined4 *)(iVar2 + 0x40) = 0;
   }
-  SignalSema(uGpffff894c);
+  SignalSema(uRam0036f03c);
   return bVar1;
 }
 
@@ -523,8 +523,8 @@ undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
   undefined4 uVar3;
   
   uVar3 = 0;
-  iVar2 = iGpffff8948 + (int)param_1 * 0x6c;
-  WaitSema(uGpffff894c);
+  iVar2 = iRam0036f038 + (int)param_1 * 0x6c;
+  WaitSema(uRam0036f03c);
   if ((*(int *)(iVar2 + 0x40) != param_2) && (*(int *)(iVar2 + 0x3c) - 2U < 2)) {
     IopStrm_Command(0x309,param_1,param_2);
     uVar1 = 2;
@@ -535,7 +535,7 @@ undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
     *(undefined4 *)(iVar2 + 0x3c) = uVar1;
     *(int *)(iVar2 + 0x40) = param_2;
   }
-  SignalSema(uGpffff894c);
+  SignalSema(uRam0036f03c);
   return uVar3;
 }
 
@@ -546,15 +546,15 @@ bool IopStrm_IsStopped(undefined8 param_1)
   bool bVar1;
   int iVar2;
   
-  iVar2 = iGpffff8948 + (int)param_1 * 0x6c;
-  WaitSema(uGpffff894c);
+  iVar2 = iRam0036f038 + (int)param_1 * 0x6c;
+  WaitSema(uRam0036f03c);
   bVar1 = *(int *)(iVar2 + 0x3c) == 0;
   if (bVar1) {
     IopStrm_Command(0x308,param_1);
     *(undefined4 *)(iVar2 + 0x3c) = 1;
     *(undefined4 *)(iVar2 + 0x40) = 0;
   }
-  SignalSema(uGpffff894c);
+  SignalSema(uRam0036f03c);
   return bVar1;
 }
 
@@ -564,7 +564,7 @@ void IopStrm_Stop(undefined8 param_1,long param_2)
 {
   int iVar1;
   
-  iVar1 = iGpffff8948 + (int)param_1 * 0x6c;
+  iVar1 = iRam0036f038 + (int)param_1 * 0x6c;
   if (param_2 != 0) {
     *(undefined4 *)(iVar1 + 0x3c) = 1;
     *(undefined4 *)(iVar1 + 0x40) = 0;
@@ -580,10 +580,10 @@ undefined1 IopStrm_GetState(int param_1)
   undefined1 uVar1;
   int iVar2;
   
-  iVar2 = iGpffff8948 + param_1 * 0x6c;
-  WaitSema(uGpffff894c);
+  iVar2 = iRam0036f038 + param_1 * 0x6c;
+  WaitSema(uRam0036f03c);
   uVar1 = *(undefined1 *)(iVar2 + 0x3c);
-  SignalSema(uGpffff894c);
+  SignalSema(uRam0036f03c);
   return uVar1;
 }
 
@@ -596,7 +596,7 @@ undefined4 IopStrm_WaitIdle(int param_1)
   long lVar3;
   int iVar4;
   
-  iVar4 = iGpffff8948 + param_1 * 0x6c;
+  iVar4 = iRam0036f038 + param_1 * 0x6c;
   iVar1 = *(int *)(iVar4 + 0x30);
   if ((iVar1 == 0) || (lVar3 = Sif_WaitDma(iVar1,0), -1 < lVar3)) {
     uVar2 = 0;
@@ -615,11 +615,11 @@ undefined8 IopStrm_Flush(undefined8 param_1)
   undefined8 uVar1;
   int *piVar2;
   
-  piVar2 = (int *)(iGpffff8948 + (int)param_1 * 0x6c);
-  WaitSema(uGpffff894c);
+  piVar2 = (int *)(iRam0036f038 + (int)param_1 * 0x6c);
+  WaitSema(uRam0036f03c);
   uVar1 = IopStrm_TransferChunk(param_1,piVar2[8],*piVar2 * piVar2[9]);
   piVar2[0xb] = piVar2[0xd];
-  SignalSema(uGpffff894c);
+  SignalSema(uRam0036f03c);
   return uVar1;
 }
 
@@ -629,10 +629,10 @@ void IopStrm_AddPosition(int param_1,int param_2)
 {
   int iVar1;
   
-  iVar1 = iGpffff8948 + param_1 * 0x6c;
-  WaitSema(uGpffff894c);
+  iVar1 = iRam0036f038 + param_1 * 0x6c;
+  WaitSema(uRam0036f03c);
   *(int *)(iVar1 + 0x18) = *(int *)(iVar1 + 0x18) + param_2;
-  SignalSema(uGpffff894c);
+  SignalSema(uRam0036f03c);
   return;
 }
 
@@ -648,14 +648,14 @@ void IopStrm_Play(undefined8 param_1,undefined4 *param_2)
   
   uStack_10 = *param_2;
   iVar2 = (int)param_1 * 0x6c;
-  iVar1 = iGpffff8948 + iVar2;
+  iVar1 = iRam0036f038 + iVar2;
   iStack_c = (int)(((float)(uint)param_2[1] * 4096.0) / 48000.0);
   uStack_8 = param_2[2];
   *(undefined4 *)(iVar1 + 4) = *param_2;
   *(undefined4 *)(iVar1 + 8) = param_2[1];
   *(undefined4 *)(iVar1 + 0x18) = 0;
   *(undefined4 *)(iVar1 + 0x1c) = param_2[2];
-  iVar2 = iGpffff8948 + iVar2;
+  iVar2 = iRam0036f038 + iVar2;
   *(undefined4 *)(iVar2 + 0x10) = 0;
   *(undefined4 *)(iVar2 + 0x18) = 0;
   *(undefined4 *)(iVar2 + 0x2c) = 0;
@@ -677,7 +677,7 @@ void IopStrm_PlayEx(undefined8 param_1,undefined4 *param_2)
   undefined4 uStack_4;
   
   uStack_10 = *param_2;
-  puVar1 = (undefined4 *)(iGpffff8948 + (int)param_1 * 0x6c);
+  puVar1 = (undefined4 *)(iRam0036f038 + (int)param_1 * 0x6c);
   uStack_c = param_2[4];
   uStack_8 = param_2[3];
   uStack_4 = param_2[5];
@@ -710,23 +710,23 @@ void IopStrm_Shutdown(void)
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uGpffff8934,1);
-  uGpffff8944 = 0;
-  if (iGpffff8948 != 0) {
+  uVar1 = Rpc_SetBlocking(uRam0036f024,1);
+  uRam0036f034 = 0;
+  if (iRam0036f038 != 0) {
     Mem_Free();
-    iGpffff8948 = 0;
+    iRam0036f038 = 0;
   }
   IopStrm_Command(0x301);
-  Rpc_SetBlocking(uGpffff8934,uVar1);
+  Rpc_SetBlocking(uRam0036f024,uVar1);
   RpcServer_Stop(0x387100);
-  maybe_Mutex_Delete((int)register0x000001c0 + -0x76b4);
-  if (iGpffff893c != 0) {
+  maybe_Mutex_Delete(0x36f03c);
+  if (iRam0036f02c != 0) {
     Mem_Free();
-    iGpffff893c = 0;
+    iRam0036f02c = 0;
   }
-  if (iGpffff8940 != 0) {
+  if (iRam0036f030 != 0) {
     Mem_Free();
-    iGpffff8940 = 0;
+    iRam0036f030 = 0;
   }
   return;
 }
@@ -739,15 +739,15 @@ bool IopStrm_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   long lVar1;
   undefined8 uVar2;
   
-  uGpffff8938 = (undefined4)param_3;
-  uGpffff893c = Mem_AllocAligned(0x40,0x40,param_5);
-  uGpffff8940 = Mem_AllocAligned(0x1000,0x10,param_5);
-  maybe_Mutex_Create((int)register0x000001c0 + -0x76b4);
-  lVar1 = RpcServer_Start(0x387100,param_3,param_4,0x40,uGpffff893c,0x1000,uGpffff8940,0x13c550);
+  uRam0036f028 = (undefined4)param_3;
+  uRam0036f02c = Mem_AllocAligned(0x40,0x40,param_5);
+  uRam0036f030 = Mem_AllocAligned(0x1000,0x10,param_5);
+  maybe_Mutex_Create(0x36f03c);
+  lVar1 = RpcServer_Start(0x387100,param_3,param_4,0x40,uRam0036f02c,0x1000,uRam0036f030,0x13c550);
   if (lVar1 != 0) {
-    uVar2 = Rpc_SetBlocking(uGpffff8934,1);
+    uVar2 = Rpc_SetBlocking(uRam0036f024,1);
     IopStrm_Open(param_1,param_2,param_5);
-    Rpc_SetBlocking(uGpffff8934,uVar2);
+    Rpc_SetBlocking(uRam0036f024,uVar2);
   }
   return lVar1 != 0;
 }
@@ -758,23 +758,23 @@ void IopStrm_Reset(void)
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uGpffff8934,1);
-  uGpffff8944 = 0;
-  if (iGpffff8948 != 0) {
+  uVar1 = Rpc_SetBlocking(uRam0036f024,1);
+  uRam0036f034 = 0;
+  if (iRam0036f038 != 0) {
     Mem_Free();
-    iGpffff8948 = 0;
+    iRam0036f038 = 0;
   }
   IopStrm_Command(0x301);
-  Rpc_SetBlocking(uGpffff8934,uVar1);
+  Rpc_SetBlocking(uRam0036f024,uVar1);
   RpcServer_Stop(0x387100);
-  maybe_Mutex_Delete((int)register0x000001c0 + -0x76b4);
-  if (iGpffff893c != 0) {
+  maybe_Mutex_Delete(0x36f03c);
+  if (iRam0036f02c != 0) {
     Mem_Free();
-    iGpffff893c = 0;
+    iRam0036f02c = 0;
   }
-  if (iGpffff8940 != 0) {
+  if (iRam0036f030 != 0) {
     Mem_Free();
-    iGpffff8940 = 0;
+    iRam0036f030 = 0;
   }
   return;
 }
@@ -783,7 +783,7 @@ void IopStrm_Reset(void)
 void IopStrm_SetRpcClient(undefined4 param_1)
 
 {
-  uGpffff8934 = param_1;
+  uRam0036f024 = param_1;
   return;
 }
 
@@ -817,14 +817,14 @@ undefined4 IopSe_Open(uint param_1,undefined8 param_2,undefined8 param_3)
           uVar5 = uVar5 + 1;
         } while (uVar5 < param_1);
       }
-      uGpffff8954 = param_1;
-      iGpffff8958 = Mem_Alloc16(param_1 * 0x50,param_3);
+      uRam0036f044 = param_1;
+      iRam0036f048 = Mem_Alloc16(param_1 * 0x50,param_3);
       uVar5 = 0;
       if (param_1 != 0) {
         iVar4 = 0;
         do {
           uVar5 = uVar5 + 1;
-          puVar3 = (undefined4 *)(iGpffff8958 + iVar4);
+          puVar3 = (undefined4 *)(iRam0036f048 + iVar4);
           puVar3[0xc] = 0;
           puVar3[0xd] = 0;
           *puVar3 = 0;
@@ -866,11 +866,11 @@ void IopSe_FlushDma(void)
   
   uVar7 = 0;
   iVar8 = 0;
-  if (uGpffff8954 != 0) {
+  if (uRam0036f044 != 0) {
     iVar6 = 0;
     piVar4 = aiStack_200;
     do {
-      piVar5 = (int *)(iGpffff8958 + iVar6);
+      piVar5 = (int *)(iRam0036f048 + iVar6);
       if ((*piVar5 == 0) && (piVar1 = (int *)piVar5[0xf], piVar1[1] != 0)) {
         iVar8 = iVar8 + 1;
         *(undefined1 *)((int)piVar1 + *piVar1 + 8) = 1;
@@ -882,7 +882,7 @@ void IopSe_FlushDma(void)
       }
       uVar7 = uVar7 + 1;
       iVar6 = iVar6 + 0x50;
-    } while (uVar7 < uGpffff8954);
+    } while (uVar7 < uRam0036f044);
   }
   if (iVar8 != 0) {
     FlushCache(0);
@@ -894,17 +894,17 @@ void IopSe_FlushDma(void)
     } while (-1 < lVar3);
   }
   uVar7 = 0;
-  if (uGpffff8954 != 0) {
+  if (uRam0036f044 != 0) {
     iVar8 = 0;
     do {
-      piVar4 = (int *)(iGpffff8958 + iVar8);
+      piVar4 = (int *)(iRam0036f048 + iVar8);
       if ((*piVar4 == 0) && (piVar5 = (int *)piVar4[0xf], piVar5[1] != 0)) {
         *(undefined1 *)((int)piVar5 + *piVar5 + 8) = 0;
         *(undefined4 *)(piVar4[0xf] + 4) = 0;
       }
       uVar7 = uVar7 + 1;
       iVar8 = iVar8 + 0x50;
-    } while (uVar7 < uGpffff8954);
+    } while (uVar7 < uRam0036f044);
   }
   return;
 }
@@ -913,7 +913,7 @@ void IopSe_FlushDma(void)
 void IopSe_ClearPending(int param_1)
 
 {
-  *(undefined4 *)(*(int *)(iGpffff8958 + param_1 * 0x50 + 0x3c) + 4) = 0;
+  *(undefined4 *)(*(int *)(iRam0036f048 + param_1 * 0x50 + 0x3c) + 4) = 0;
   return;
 }
 
@@ -972,7 +972,7 @@ void IopSe_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,unde
   case 0x205:
     maybe_Mem_CopyQwords(0x387204,uRam00387204,0x1c);
   }
-  Rpc_Call(uGpffff8950,&uStack_70);
+  Rpc_Call(uRam0036f040,&uStack_70);
   return;
 }
 
@@ -989,7 +989,7 @@ void IopSe_LoadBank(undefined8 param_1,int *param_2)
   int iStack_c;
   int iStack_8;
   
-  piVar1 = (int *)(iGpffff8958 + (int)param_1 * 0x50);
+  piVar1 = (int *)(iRam0036f048 + (int)param_1 * 0x50);
   if (*param_2 == 0) {
     *piVar1 = 0;
     piVar1[0xe] = param_2[5];
@@ -1023,14 +1023,14 @@ void IopSe_Shutdown(void)
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uGpffff8950,1);
-  if (iGpffff8958 != 0) {
+  uVar1 = Rpc_SetBlocking(uRam0036f040,1);
+  if (iRam0036f048 != 0) {
     Mem_Free();
-    iGpffff8958 = 0;
+    iRam0036f048 = 0;
   }
-  uGpffff8954 = 0;
+  uRam0036f044 = 0;
   IopSe_Command(0x201);
-  Rpc_SetBlocking(uGpffff8950,uVar1);
+  Rpc_SetBlocking(uRam0036f040,uVar1);
   return;
 }
 
@@ -1041,9 +1041,9 @@ undefined8 IopSe_OpenLocked(undefined8 param_1,undefined8 param_2,undefined8 par
   undefined8 uVar1;
   undefined8 uVar2;
   
-  uVar1 = Rpc_SetBlocking(uGpffff8950,1);
+  uVar1 = Rpc_SetBlocking(uRam0036f040,1);
   uVar2 = IopSe_Open(param_1,param_2,param_3);
-  Rpc_SetBlocking(uGpffff8950,uVar1);
+  Rpc_SetBlocking(uRam0036f040,uVar1);
   return uVar2;
 }
 
@@ -1053,17 +1053,17 @@ void IopSe_Reset(void)
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uGpffff8950,1);
-  if (iGpffff8958 != 0) {
+  uVar1 = Rpc_SetBlocking(uRam0036f040,1);
+  if (iRam0036f048 != 0) {
     Mem_Free();
-    iGpffff8958 = 0;
+    iRam0036f048 = 0;
   }
-  uGpffff8954 = 0;
+  uRam0036f044 = 0;
   IopSe_Command(0x201);
-  Rpc_SetBlocking(uGpffff8950,uVar1);
-  uGpffff8950 = 0;
-  uGpffff8954 = 0;
-  iGpffff8958 = 0;
+  Rpc_SetBlocking(uRam0036f040,uVar1);
+  uRam0036f040 = 0;
+  uRam0036f044 = 0;
+  iRam0036f048 = 0;
   return;
 }
 
@@ -1071,9 +1071,9 @@ void IopSe_Reset(void)
 void IopSe_SetRpcClient(undefined4 param_1)
 
 {
-  uGpffff8950 = param_1;
-  uGpffff8954 = 0;
-  uGpffff8958 = 0;
+  uRam0036f040 = param_1;
+  uRam0036f044 = 0;
+  uRam0036f048 = 0;
   return;
 }
 
@@ -2193,6 +2193,7 @@ int Tex_SwizzleBlocks(uint *param_1,int param_2,ulong param_3,uint *param_4)
         iVar7 = uVar11 - uVar6;
       }
       uVar11 = uVar13 * iVar7 + 0xf >> 4;
+      iRam0036f04c = iRam0036f04c + uVar11;
       if ((param_3 & 0x400) == 0) {
         iVar5 = 2;
         *puVar3 = uVar14 + 6 | 0x10000000;
@@ -2264,7 +2265,7 @@ int Tex_SwizzleBlocks(uint *param_1,int param_2,ulong param_3,uint *param_4)
         iVar4 = 0xd;
       }
       uVar6 = uVar6 + iVar7;
-      iGpffff895c = iGpffff895c + uVar11 + iVar4;
+      iRam0036f04c = iRam0036f04c + iVar4;
       uVar11 = param_1[6];
       iVar12 = iVar12 + iVar4;
     } while (uVar6 < uVar11);

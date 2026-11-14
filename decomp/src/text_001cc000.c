@@ -139,6 +139,8 @@ float RaceCar_WheelGroundDistance(int param_1,int param_2)
 }
 
 // 0x001ccc10  size 0xac8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefined1 param_5,
                    long param_6,ulong param_7)
 
@@ -421,7 +423,7 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   uStack_cc = DAT_003191e4;
   uStack_c8 = DAT_003191e8;
   uStack_c4 = DAT_003191ec;
-  psVar2 = *(short **)(*(int *)(iRam0036f230 + 4) + (uint)param_3 * 4);
+  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)param_3 * 4);
   sVar1 = *psVar2;
   pfVar6 = (float *)(psVar2 + param_4 * 0x10 + 0x3e);
   pfVar11 = (float *)(psVar2 + sVar1 * 0x10 + param_4 * 6 + 0x3e);
@@ -567,6 +569,8 @@ LAB_001cd4e8:
 }
 
 // 0x001cd6e0  size 0x450
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ai_SetupDifficulty(void)
 
 {
@@ -601,10 +605,9 @@ void Ai_SetupDifficulty(void)
       iVar12 = 0;
       iVar7 = 5;
       do {
-        Ai_PredictPath(0,*(int *)((int)piGpffff8c68 + iVar12),0,iVar7,0,1,
-                       *(undefined4 *)(*(int *)(*(int *)((int)piGpffff8c68 + iVar12) + 0x17dc) + 4))
-        ;
-        Ai_ComputeSteering(*(undefined4 *)((int)piGpffff8c68 + iVar12));
+        Ai_PredictPath(0,*(int *)((int)_g_RaceCars + iVar12),0,iVar7,0,1,
+                       *(undefined4 *)(*(int *)(*(int *)((int)_g_RaceCars + iVar12) + 0x17dc) + 4));
+        Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar12));
         iVar9 = iVar9 + 1;
         iVar12 = iVar12 + 4;
         iVar7 = iVar7 + 2;
@@ -624,8 +627,8 @@ void Ai_SetupDifficulty(void)
       if ((cVar4 == '\x04') || (cVar4 = GameState_Get_354_7050(), cVar4 == '\x05')) {
         bVar2 = true;
       }
-      else if ((*(char *)(*(int *)(*piGpffff8c68 + 0x17dc) + 8) == '\0') &&
-              (*(char *)(*(int *)(piGpffff8c68[1] + 0x17dc) + 8) == '\0')) {
+      else if ((*(char *)(*(int *)(*_g_RaceCars + 0x17dc) + 8) == '\0') &&
+              (*(char *)(*(int *)(_g_RaceCars[1] + 0x17dc) + 8) == '\0')) {
         bVar2 = true;
       }
     }
@@ -634,7 +637,7 @@ void Ai_SetupDifficulty(void)
       iVar7 = 0;
       do {
         uVar14 = 0;
-        iVar12 = *(int *)(*(int *)((int)piGpffff8c68 + iVar7) + 0x17dc);
+        iVar12 = *(int *)(*(int *)((int)_g_RaceCars + iVar7) + 0x17dc);
         iVar15 = 0;
         if ((*(uint *)(iVar12 + 4) & 1) == 0) {
           if ((*(uint *)(iVar12 + 4) & 2) != 0) {
@@ -736,9 +739,9 @@ void Ai_SetupDifficulty(void)
           iVar15 = iVar15 * 0x20;
         }
         raceprog_sub_001ddda0(iVar9 + iVar15,&uStack_2,&uStack_4);
-        Ai_PredictPath(0,*(undefined4 *)((int)piGpffff8c68 + iVar7),uStack_2,uStack_4,uVar14,1,
+        Ai_PredictPath(0,*(undefined4 *)((int)_g_RaceCars + iVar7),uStack_2,uStack_4,uVar14,1,
                        *(undefined4 *)(iVar12 + 4));
-        Ai_ComputeSteering(*(undefined4 *)((int)piGpffff8c68 + iVar7));
+        Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar7));
         if ((iRam004301b0 == 0) || (uRam004301ac <= uVar6)) {
           iVar12 = 0;
         }
@@ -777,6 +780,8 @@ long RaceCar_dtor(long param_1,short param_2)
 }
 
 // 0x001cdbc0  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceCar_FreeAll(void)
 
 {
@@ -787,21 +792,23 @@ void RaceCar_FreeAll(void)
   iVar3 = 0;
   iVar2 = 0;
   do {
-    piVar1 = *(int **)(iRam0036f358 + iVar2);
+    piVar1 = *(int **)(_g_RaceCars + iVar2);
     if (piVar1 != (int *)0x0) {
       if (piVar1 != (int *)0x0) {
         (**(code **)(*piVar1 + 8))(piVar1,1);
       }
-      *(undefined4 *)(iRam0036f358 + iVar2) = 0;
+      *(undefined4 *)(_g_RaceCars + iVar2) = 0;
     }
     iVar3 = iVar3 + 1;
     iVar2 = iVar2 + 4;
   } while (iVar3 < 7);
-  Mem_Free(iRam0036f358);
+  Mem_Free(_g_RaceCars);
   return;
 }
 
 // 0x001cdc50  size 0x74
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceCar_PlaceAll(void)
 
 {
@@ -814,7 +821,7 @@ void RaceCar_PlaceAll(void)
   if (0 < iVar1) {
     iVar3 = 0;
     do {
-      RaceCar_PlaceOnGrid(*(undefined4 *)(iGpffff8c68 + iVar3),iVar2);
+      RaceCar_PlaceOnGrid(*(undefined4 *)(_g_RaceCars + iVar3),iVar2);
       iVar2 = iVar2 + 1;
       iVar3 = iVar3 + 4;
     } while (iVar2 < iVar1);
@@ -823,6 +830,8 @@ void RaceCar_PlaceAll(void)
 }
 
 // 0x001cdcd0  size 0x138
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceCar_CreateAll(undefined8 param_1)
 
 {
@@ -834,17 +843,17 @@ void RaceCar_CreateAll(undefined8 param_1)
   int iVar6;
   
   uVar2 = Mem_Alloc16(0x1c,param_1);
-  puGpffff8c68 = (undefined4 *)uVar2;
+  _g_RaceCars = (undefined4 *)uVar2;
   Mem_Set16(uVar2,0,0x1c);
   iVar1 = GameState_GetTotalCarCount();
   iVar6 = 0;
-  *puGpffff8c68 = 0;
-  puGpffff8c68[1] = 0;
-  puGpffff8c68[2] = 0;
-  puGpffff8c68[3] = 0;
-  puGpffff8c68[4] = 0;
-  puGpffff8c68[5] = 0;
-  puGpffff8c68[6] = 0;
+  *_g_RaceCars = 0;
+  _g_RaceCars[1] = 0;
+  _g_RaceCars[2] = 0;
+  _g_RaceCars[3] = 0;
+  _g_RaceCars[4] = 0;
+  _g_RaceCars[5] = 0;
+  _g_RaceCars[6] = 0;
   if (0 < iVar1) {
     iVar4 = 0;
     do {
@@ -861,8 +870,8 @@ void RaceCar_CreateAll(undefined8 param_1)
         puVar5[0x5bf] = 0x3f800000;
         puVar5[0x5c3] = 0x3f800000;
       }
-      *(undefined4 **)((int)puGpffff8c68 + iVar4) = puVar5;
-      RaceCar_ResetToTrack(*(undefined4 *)((int)puGpffff8c68 + iVar4),iVar6);
+      *(undefined4 **)((int)_g_RaceCars + iVar4) = puVar5;
+      RaceCar_ResetToTrack(*(undefined4 *)((int)_g_RaceCars + iVar4),iVar6);
       iVar6 = iVar6 + 1;
       iVar4 = iVar4 + 4;
     } while (iVar6 < iVar1);
@@ -1431,8 +1440,7 @@ void RaceCar_SetTransform(undefined8 param_1,undefined4 *param_2,undefined4 *par
   *(undefined4 *)(iVar2 + 0x1374) = uStack_c;
   *(undefined4 *)(iVar2 + 0x1378) = uStack_8;
   *(undefined4 *)(iVar2 + 0x137c) = uStack_4;
-  Road_UpdateTracker(iVar2 + 0x1360,(int)register0x000001c0 + -0x74c0,
-                     (int)register0x000001c0 + -0x74b8);
+  Road_UpdateTracker(iVar2 + 0x1360,0x36f230,0x36f238);
   *(undefined4 *)(iVar2 + 0x17d4) = *(undefined4 *)(iVar2 + 0x17d0);
   uVar1 = Checkpoint_GetDirection(*(undefined2 *)(iVar2 + 0x1366),*(undefined4 *)(iVar2 + 0x136c));
   *(undefined4 *)(iVar2 + 0x17d0) = uVar1;
@@ -1451,15 +1459,13 @@ void RaceCar_UpdateTracker(int param_1)
   
   uVar2 = phys_sub_001651a0(*(undefined4 *)(param_1 + 0x154));
   vu0math_sub_00132ae0(param_1 + 0x1370,uVar2);
-  Road_UpdateTracker(param_1 + 0x1360,(int)register0x000001c0 + -0x74c0,
-                     (int)register0x000001c0 + -0x74b8);
+  Road_UpdateTracker(param_1 + 0x1360,0x36f230,0x36f238);
   iVar3 = 0;
   iVar4 = param_1;
   iVar5 = param_1;
   do {
     vu0math_sub_00132ae0(iVar5 + 0x13e0,iVar4 + 0x1f0);
-    Road_UpdateTracker(iVar5 + 0x13d0,(int)register0x000001c0 + -0x74c0,
-                       (int)register0x000001c0 + -0x74b8);
+    Road_UpdateTracker(iVar5 + 0x13d0,0x36f230,0x36f238);
     iVar3 = iVar3 + 1;
     iVar5 = iVar5 + 0x70;
     iVar4 = iVar4 + 0x140;

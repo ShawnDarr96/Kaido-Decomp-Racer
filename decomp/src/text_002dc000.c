@@ -101,47 +101,47 @@ void password_sub_002dc940(undefined4 *param_1,char param_2)
   undefined4 uVar1;
   
   if (param_2 == '\x03') {
-    uVar1 = (*pcGpffff91bc)(0xbb);
+    uVar1 = (*pcRam0036f8ac)(0xbb);
     *param_1 = uVar1;
-    uVar1 = (*pcGpffff91b8)(0xfd);
+    uVar1 = (*pcRam0036f8a8)(0xfd);
     param_1[0xf] = uVar1;
     param_1[0x11] = 0xd;
     param_1[0x12] = 0x12;
-    uVar1 = (*pcGpffff91b8)(0xfe);
+    uVar1 = (*pcRam0036f8a8)(0xfe);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcGpffff91b8)(0xff);
+    uVar1 = (*pcRam0036f8a8)(0xff);
     param_1[0xe] = uVar1;
     param_1[4] = 0x1b;
-    uVar1 = (*pcGpffff91c0)(1);
+    uVar1 = (*pcRam0036f8b0)(1);
     param_1[5] = uVar1;
     param_1[7] = 0x1d;
-    uVar1 = (*pcGpffff91c0)(2);
+    uVar1 = (*pcRam0036f8b0)(2);
     param_1[8] = uVar1;
   }
   else if (param_2 == '\x01') {
-    uVar1 = (*pcGpffff91bc)(0xbc);
+    uVar1 = (*pcRam0036f8ac)(0xbc);
     *param_1 = uVar1;
-    uVar1 = (*pcGpffff91b8)(0x100);
+    uVar1 = (*pcRam0036f8a8)(0x100);
     param_1[0xf] = uVar1;
     param_1[0x11] = 0xd;
-    uVar1 = (*pcGpffff91b8)(0x101);
+    uVar1 = (*pcRam0036f8a8)(0x101);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcGpffff91b8)(0x102);
+    uVar1 = (*pcRam0036f8a8)(0x102);
     param_1[0xe] = uVar1;
     param_1[4] = 0x15;
-    uVar1 = (*pcGpffff91c0)(0x2c);
+    uVar1 = (*pcRam0036f8b0)(0x2c);
     param_1[5] = uVar1;
   }
   else if (param_2 == '\0') {
-    uVar1 = (*pcGpffff91bc)(0xbd);
+    uVar1 = (*pcRam0036f8ac)(0xbd);
     *param_1 = uVar1;
-    uVar1 = (*pcGpffff91b8)(0x103);
+    uVar1 = (*pcRam0036f8a8)(0x103);
     param_1[0xf] = uVar1;
-    uVar1 = (*pcGpffff91b8)(0x104);
+    uVar1 = (*pcRam0036f8a8)(0x104);
     param_1[0x10] = uVar1;
-    uVar1 = (*pcGpffff91b8)(0x105);
+    uVar1 = (*pcRam0036f8a8)(0x105);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcGpffff91b8)(0x106);
+    uVar1 = (*pcRam0036f8a8)(0x106);
     param_1[0xe] = uVar1;
     param_1[1] = 0x14;
   }
@@ -1691,24 +1691,30 @@ undefined4 password_sub_002df190(undefined2 param_1)
 }
 
 // 0x002df200  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 GameState_Get_3a4(void)
 
 {
-  return *(undefined4 *)(iGpffff8ab8 + 0x3a4);
+  return *(undefined4 *)(_g_GameState + 0x3a4);
 }
 
 // 0x002df210  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 GameState_Get_3ac(void)
 
 {
-  return *(undefined4 *)(iGpffff8ab8 + 0x3ac);
+  return *(undefined4 *)(_g_GameState + 0x3ac);
 }
 
 // 0x002df220  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 GameState_Get_3a8(void)
 
 {
-  return *(undefined4 *)(iGpffff8ab8 + 0x3a8);
+  return *(undefined4 *)(_g_GameState + 0x3a8);
 }
 
 // 0x002df230  size 0xe8
@@ -1770,6 +1776,8 @@ bool password_sub_002df320(void)
 }
 
 // 0x002df350  size 0xa4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int password_sub_002df350(long param_1)
 
 {
@@ -1779,8 +1787,8 @@ int password_sub_002df350(long param_1)
   int iStack_c;
   undefined4 uStack_8;
   
-  if (*(int *)(iGpffff8ab8 + 0x3a4) == 0) {
-    iVar1 = password_sub_002df9f0(*(undefined4 *)(iGpffff8ab8 + 0x3a8));
+  if (*(int *)(_g_GameState + 0x3a4) == 0) {
+    iVar1 = password_sub_002df9f0(*(undefined4 *)(_g_GameState + 0x3a8));
   }
   else {
     aiStack_20[0] = DAT_003424c0;
@@ -1801,6 +1809,8 @@ int password_sub_002df350(long param_1)
 }
 
 // 0x002df400  size 0x168
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int password_sub_002df400(int param_1,int param_2)
 
 {
@@ -1815,10 +1825,10 @@ int password_sub_002df400(int param_1,int param_2)
   int iVar9;
   
   iVar4 = 5;
-  iVar2 = *(int *)(iRam0036f1a8 + 0x3b4);
-  iVar3 = *(int *)(iRam0036f1a8 + 0x3bc);
+  iVar2 = *(int *)(_g_GameState + 0x3b4);
+  iVar3 = *(int *)(_g_GameState + 0x3bc);
   if (iVar2 != 0) {
-    iVar5 = iVar2 - *(int *)(iRam0036f1a8 + 0x3b8);
+    iVar5 = iVar2 - *(int *)(_g_GameState + 0x3b8);
     iVar9 = 0;
     if (iVar5 < 0) {
       iVar5 = iVar5 + 3;
@@ -1850,7 +1860,7 @@ int password_sub_002df400(int param_1,int param_2)
   }
   iVar5 = 5;
   if (iVar3 != 0) {
-    iVar9 = iVar3 - *(int *)(iRam0036f1a8 + 0x3c0);
+    iVar9 = iVar3 - *(int *)(_g_GameState + 0x3c0);
     if (iVar9 < 0) {
       iVar9 = iVar9 + 3;
     }

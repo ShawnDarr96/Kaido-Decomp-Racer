@@ -20,7 +20,7 @@ void CarModel_RenderOpaque(undefined8 param_1)
   undefined1 auStack_500 [68];
   undefined1 auStack_4bc [64];
   int iStack_47c;
-  int iStack_2bc;
+  undefined1 *puStack_2bc;
   undefined4 uStack_130;
   uint uStack_a8;
   
@@ -30,12 +30,12 @@ void CarModel_RenderOpaque(undefined8 param_1)
   do {
     bVar1 = puVar7[2];
     iVar6 = ((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40;
-    iStack_2bc = iVar6 + 0x431100;
+    puStack_2bc = &g_Views + iVar6;
     puVar9 = (uint *)param_1;
     if (((*(int *)(iVar6 + 0x431684) != 0) && ((bVar1 != 1 || ((*puVar9 & 4) != 0)))) &&
        ((bVar1 != 2 || ((*puVar9 & 8) != 0)))) {
-      Layer_Reset(auStack_500,iStack_2bc,uStack_130,0,*(undefined4 *)(puVar7 + 4));
-      Cam_SetupViewport(iStack_2bc,*puVar7,puVar7[1]);
+      Layer_Reset(auStack_500,puStack_2bc,uStack_130,0,*(undefined4 *)(puVar7 + 4));
+      Cam_SetupViewport(puStack_2bc,*puVar7,puVar7[1]);
       Light_UpdateMatrices(uStack_130);
       uVar4 = puVar9[0x44];
       if ((uVar4 & 0x200) == 0) {
@@ -49,11 +49,11 @@ LAB_0019c6c8:
           if (((cVar2 == '\x02') || (cVar2 == '\x01')) || (cVar2 == '\0')) {
             if ((uVar4 & 0x400) == 0) {
               uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,
-                                              iStack_2bc,puVar9 + 0x48,5,0x312820);
+                                              puStack_2bc,puVar9 + 0x48,5,0x312820);
             }
             else {
               uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,
-                                              iStack_2bc,puVar9 + 0x48,5,0x312860);
+                                              puStack_2bc,puVar9 + 0x48,5,0x312860);
             }
             goto LAB_0019c6c8;
           }
@@ -66,12 +66,12 @@ LAB_0019c6c8:
       }
       else {
         if ((uVar4 & 0x400) == 0) {
-          uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
-                                          puVar9 + 0x48,5,0x312840);
+          uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,puStack_2bc
+                                          ,puVar9 + 0x48,5,0x312840);
         }
         else {
-          uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,iStack_2bc,
-                                          puVar9 + 0x48,5,0x312880);
+          uStack_a8 = CarModel_ComputeLod(*(undefined4 *)(puVar9[0x141] + 0xcb0),param_1,puStack_2bc
+                                          ,puVar9 + 0x48,5,0x312880);
         }
         uStack_a8 = CarAsset_GetPartVariant(puVar9[0x141],uStack_a8);
       }
@@ -96,7 +96,7 @@ LAB_0019c6c8:
         CarModel_DrawParts(param_1,auStack_500);
       }
       CarModel_DrawBody(param_1,auStack_500);
-      Camera_GetViewMatrix(iStack_2bc,auStack_510,puVar9 + 0x48);
+      Camera_GetViewMatrix(puStack_2bc,auStack_510,puVar9 + 0x48);
       bVar3 = true;
       if ((-1 < iStack_508) && (iStack_508 < 0xffffff)) {
         bVar3 = false;
@@ -138,6 +138,8 @@ LAB_0019c6c8:
 }
 
 // 0x0019c780  size 0x5f4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarModel_RenderTranslucent(undefined8 param_1)
 
 {
@@ -181,7 +183,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
   undefined1 auStack_4bc [64];
   int iStack_47c;
   undefined1 auStack_440 [388];
-  int iStack_2bc;
+  undefined1 *puStack_2bc;
   int iStack_130;
   uint uStack_a8;
   
@@ -189,15 +191,15 @@ void CarModel_RenderTranslucent(undefined8 param_1)
   if (*(int *)(iVar4 + 0x4f4) != 0) {
     CarModel_SetupLighting(param_1,auStack_500,1);
     if (cRam00430460 == '\0') {
-      *(undefined4 *)(*(int *)(iRam0036f1fc + 0x14) + 0x104) =
-           *(undefined4 *)(*(int *)(iRam0036f1fc + 0x14) + 0xa4);
-      iStack_2bc = 0x431100;
+      *(undefined4 *)(*(int *)(_g_Loading + 0x14) + 0x104) =
+           *(undefined4 *)(*(int *)(_g_Loading + 0x14) + 0xa4);
+      puStack_2bc = &g_Views;
     }
     else {
-      iStack_2bc = 0x432240;
+      puStack_2bc = (undefined1 *)0x432240;
     }
-    if (*(int *)(iStack_2bc + 0x584) != 0) {
-      Layer_Reset(auStack_500,iStack_2bc,iStack_130,0,4);
+    if (*(int *)(puStack_2bc + 0x584) != 0) {
+      Layer_Reset(auStack_500,puStack_2bc,iStack_130,0,4);
       if (cRam00430460 == '\x02') {
         vu0math_sub_00132b50(auStack_520,iVar4 + 400,iVar4 + 0x170);
         vu0math_sub_00132b50(auStack_530,iVar4 + 0x180,iVar4 + 400);
@@ -248,7 +250,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
       vu0math_sub_00132ae0(iStack_130 + 0x50,auStack_720);
       vu0math_sub_00132ae0(iStack_130 + 0x60,auStack_710);
       vu0math_sub_00132ae0(iStack_130 + 0x70,auStack_700);
-      Cam_SetupViewport(iStack_2bc,0,1);
+      Cam_SetupViewport(puStack_2bc,0,1);
       Light_UpdateMatrices(iStack_130);
       if (*(byte *)(iVar4 + 0x4e3) < 5) {
         uStack_a8 = (uint)*(byte *)(iVar4 + 0x4e3);
@@ -283,7 +285,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
         CarModel_DrawParts(param_1,auStack_500);
       }
       CarModel_DrawBody(param_1,auStack_500);
-      Camera_GetViewMatrix(iStack_2bc,auStack_7b0,auStack_440);
+      Camera_GetViewMatrix(puStack_2bc,auStack_7b0,auStack_440);
       bVar1 = true;
       if ((-1 < iStack_7a8) && (iStack_7a8 < 0xffffff)) {
         bVar1 = false;
@@ -501,6 +503,8 @@ void CourseStream_InitBlock(int param_1)
 }
 
 // 0x0019d120  size 0x360
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_RequestBlock
                (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
                uint param_5,uint param_6)
@@ -523,12 +527,12 @@ void CourseStream_RequestBlock
   float afStack_10 [4];
   
   iVar10 = iRam004305e0;
-  iVar9 = *(int *)((param_5 & 0xff) * 4 + iGpffff8b0c + 0x14);
+  iVar9 = *(int *)((param_5 & 0xff) * 4 + _g_Loading + 0x14);
   vu0math_sub_00132ae0(auStack_20,iVar9 + 0x70);
   afStack_10[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
   afStack_10[1] = 0.0;
   afStack_10[2] = *(float *)(iVar9 + 0x88) - *(float *)(iVar9 + 0x78);
-  iVar9 = *(int *)((param_6 & 0xff) * 4 + iGpffff8b0c + 0x14);
+  iVar9 = *(int *)((param_6 & 0xff) * 4 + _g_Loading + 0x14);
   vu0math_sub_00132ae0(auStack_40,iVar9 + 0x70);
   afStack_30[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
   afStack_30[1] = 0.0;
@@ -546,9 +550,9 @@ void CourseStream_RequestBlock
           lVar6 = BlockPool_FindFree(iRam004305d0,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar10 + 4);
-            Sema_Wait((int)register0x000001c0 + -0x7730);
+            Sema_Wait(0x36efc0);
             uVar2 = uRam00386628;
-            Sema_Signal((int)register0x000001c0 + -0x7730,0);
+            Sema_Signal(0x36efc0,0);
             puVar8 = (uint *)lVar6;
             if (uVar2 < 0x100) {
               puVar8[2] = uVar5;
@@ -1594,6 +1598,8 @@ void CourseStream_OnBlockLoaded(void)
 }
 
 // 0x0019f250  size 0x334
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_RequestLod
                (undefined4 param_1,undefined4 param_2,byte param_3,undefined8 param_4,long param_5)
 
@@ -1617,7 +1623,7 @@ void CourseStream_RequestLod
   float afStack_10 [4];
   
   iVar12 = iRam004305e0;
-  iVar10 = *(int *)((uint)param_3 * 4 + iGpffff8b0c + 0x14);
+  iVar10 = *(int *)((uint)param_3 * 4 + _g_Loading + 0x14);
   afStack_10[0] = *(float *)(iVar10 + 0x80) - *(float *)(iVar10 + 0x70);
   afStack_10[1] = 0.0;
   afStack_10[2] = *(float *)(iVar10 + 0x88) - *(float *)(iVar10 + 0x78);
@@ -1643,9 +1649,9 @@ void CourseStream_RequestLod
           lVar6 = BlockPool_FindFree(iRam004305d0,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar12 + 4);
-            Sema_Wait((int)register0x000001c0 + -0x7730);
+            Sema_Wait(0x36efc0);
             uVar2 = uRam00386628;
-            Sema_Signal((int)register0x000001c0 + -0x7730,0);
+            Sema_Signal(0x36efc0,0);
             puVar9 = (uint *)lVar6;
             if (uVar2 < 0x100) {
               puVar9[2] = uVar5;
@@ -1957,9 +1963,9 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
         lVar5 = BlockPool_FindFreeB(iRam004305c8,uRam004305c4);
         if (lVar5 != 0) {
           uVar4 = *(uint *)(iVar8 + 4);
-          Sema_Wait((int)register0x000001c0 + -0x7730);
+          Sema_Wait(0x36efc0);
           uVar2 = uRam00386628;
-          Sema_Signal((int)register0x000001c0 + -0x7730,0);
+          Sema_Signal(0x36efc0,0);
           puVar7 = (uint *)lVar5;
           if (uVar2 < 0x100) {
             puVar7[2] = uVar4;

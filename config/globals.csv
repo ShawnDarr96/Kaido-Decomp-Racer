@@ -1,0 +1,24 @@
+address,name,comment
+0x0036f1a8,g_GameState,0x3ae0-byte game state (gp-0x7548)
+0x0036f1cc,g_RaceCtx,race context (gp-0x751c)
+0x0036f1dc,g_Options,options/settings 0x1f8 bytes (gp-0x750c)
+0x0036f1e0,g_RaceTbl,race tables 0x9240 bytes
+0x0036f1e8,g_RaceSlotTbl,0x9944 bytes (gp-0x7508)
+0x0036f1fc,g_Loading,loading screen state (gp-0x74f4)
+0x0036f230,g_RoadData,course road graph (gp-0x74c0)
+0x0036f250,g_SndMgr,sound manager (gp-0x74a0)
+0x0036f2f8,g_Profiles,player profiles x2 (gp-0x73f8)
+0x0036f358,g_RaceCars,race car array
+0x0036f390,g_RaceProg,race progress / rules (gp-0x7360)
+0x0036f3d8,g_RaceScene,race scene state machine (gp-0x7318)
+0x0036f42c,g_UiMgr,UI layout manager (gp-0x72c4)
+0x0036f458,g_MenuMgr,menu manager 0x660 bytes (gp-0x7298)
+0x0036f478,g_MenuWnd,menu window state (gp-0x7278)
+0x0036f494,g_CarDb,car database (gp-0x725c)
+0x0036f4e8,g_GameDb,rival/team/course database (gp-0x7208)
+0x0036f4f8,g_Subtitle,subtitle/dialog state (gp-0x71f8)
+0x0036f0c4,g_ArcToc,BUILD.TOC entries 0x14 bytes each (gp-0x762c)
+0x00386650,g_Pads,2 x 0x498-byte pad states
+0x00430750,g_MainHeap,26 MB main heap
+0x00431100,g_Views,14 x 0x5c0-byte render views
+0x003803a0,g_GsDBuff,sceGsDBuff

@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x001ec030  size 0x2c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceIntro_Update(int param_1)
 
 {
@@ -59,7 +61,7 @@ void RaceIntro_Update(int param_1)
     *(undefined4 *)(iVar1 + 0x5c) = 0;
   }
   else if ((iVar3 != 0) && (iVar3 = *(int *)(iVar3 + 0x14), iVar3 != 0)) {
-    fVar8 = (float)Cam_NormalizeDirection(*(undefined4 *)(iRam0036f1fc + 0x14));
+    fVar8 = (float)Cam_NormalizeDirection(*(undefined4 *)(_g_Loading + 0x14));
     if (10.0 < fVar8) {
       *(undefined4 *)(iVar1 + 0x5c) = 0;
     }
@@ -1011,6 +1013,8 @@ void UiModel_DrawNode(float param_1,float param_2,undefined8 param_3,undefined8 
 }
 
 // 0x001ed540  size 0x2f4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int param_5,
                      undefined8 param_6,uint param_7)
 
@@ -1060,14 +1064,14 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
     unaff_s5_lo = *(int *)(*(int *)(param_5 + 0xc) * 0x80 + *(int *)(param_3 + 0x2d8) + 0xc) - 1;
   }
   else {
-    if (iGpffff8d3c == 0) {
+    if (_g_UiMgr == 0) {
       iVar5 = 0;
     }
-    else if (*(int *)(iGpffff8d3c + 0x508) == 0) {
+    else if (*(int *)(_g_UiMgr + 0x508) == 0) {
       iVar5 = 0;
     }
     else {
-      iVar5 = iGpffff8d3c + 0x2d0;
+      iVar5 = _g_UiMgr + 0x2d0;
     }
     if (iVar5 != 0) {
       unaff_s5_lo = *(int *)(*(int *)(param_5 + 0xc) * 0x80 + *(int *)(iVar5 + 0xc) + 0xc) - 1;
@@ -1171,6 +1175,7 @@ void UiModel_DrawTree(float param_1,float param_2,undefined8 param_3,undefined8 
 }
 
 // 0x001eda40  size 0x3dc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* (alpha, layout); 315 callers */
 
 void UiLayout_Draw(float param_1,int param_2)
@@ -1189,14 +1194,14 @@ void UiLayout_Draw(float param_1,int param_2)
   int iStack_4;
   
   iStack_4 = 0x436810;
-  if (iGpffff8d3c == 0) {
+  if (_g_UiMgr == 0) {
     piVar8 = (int *)0x0;
   }
-  else if (*(int *)(iGpffff8d3c + 0x508) == 0) {
+  else if (*(int *)(_g_UiMgr + 0x508) == 0) {
     piVar8 = (int *)0x0;
   }
   else {
-    piVar8 = (int *)(iGpffff8d3c + 0x2d0);
+    piVar8 = (int *)(_g_UiMgr + 0x2d0);
   }
   if ((piVar8 != (int *)0x0) && (*piVar8 == 1)) {
     TexSlot_Set(0,*(undefined2 *)(piVar8[1] + 6),piVar8[3]);
@@ -1639,6 +1644,8 @@ void UiLayout_OnTextureLoaded(void)
 }
 
 // 0x001ee6c0  size 0x22c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
 
 {
@@ -1658,7 +1665,7 @@ void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
   *(undefined4 *)(iVar6 + 0x2fc) = uVar7;
   *(undefined4 *)(iVar6 + 0x300) = uVar8;
   iVar2 = *(int *)(iVar6 + 0x2f8);
-  iVar5 = iVar2 * 0x14 + iRam0036f0c4;
+  iVar5 = iVar2 * 0x14 + _g_ArcToc;
   bVar1 = *(byte *)(iRam0036f1d4 + 0x15);
   iVar3 = *(int *)(iVar5 + 0x20);
   if (iVar3 == 0) {
@@ -1680,7 +1687,7 @@ void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
     *(int *)(iVar6 + 0x4ec) = (int)param_3;
   }
   if (0 < *(int *)(iVar6 + 0x2fc)) {
-    iVar5 = *(int *)(iVar6 + 0x2f8) * 0x14 + iRam0036f0c4;
+    iVar5 = *(int *)(iVar6 + 0x2f8) * 0x14 + _g_ArcToc;
     iVar3 = *(int *)(iVar5 + 0x20);
     if (iVar3 == 0) {
       uVar4 = *(uint *)(iVar5 + 0x18);
@@ -1691,7 +1698,7 @@ void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
     *(uint *)(iVar6 + 0x2d8) = *(int *)(iVar6 + 0x3c) + uVar4 * 0x800;
   }
   if ((*(int *)(iVar6 + 0x2d4) != 0) && (0 < *(int *)(iVar6 + 0x300))) {
-    iVar5 = *(int *)(iVar6 + 0x2f8) * 0x14 + iRam0036f0c4;
+    iVar5 = *(int *)(iVar6 + 0x2f8) * 0x14 + _g_ArcToc;
     iVar3 = *(int *)(iVar5 + 0x20);
     if (iVar3 == 0) {
       uVar4 = *(uint *)(iVar5 + 0x18);
@@ -2426,10 +2433,10 @@ LAB_001ef4bc:
       }
       else {
         if (iVar4 == -1) {
-          puVar6 = (ushort *)((int)register0x000001c0 + -0x7e8c);
+          puVar6 = &DAT_0036e864;
         }
         else {
-          puVar6 = (ushort *)(iGpffff8d10 + *(int *)(iGpffff8d14 + iVar4 * 4) * 2);
+          puVar6 = (ushort *)(iRam0036f400 + *(int *)(iRam0036f404 + iVar4 * 4) * 2);
         }
         while( true ) {
           uVar1 = *puVar6;

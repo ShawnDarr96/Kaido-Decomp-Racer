@@ -495,9 +495,10 @@ void PhysWorld_Integrate(float param_1,int param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  fGpffff8a14 = fGpffff8a14 + param_1;
-  if (3600.0 < fGpffff8a14) {
-    fGpffff8a14 = fGpffff8a14 - 3600.0;
+  fRam0036f104 = fRam0036f104 + param_1;
+  fRam0036f100 = param_1;
+  if (3600.0 < fRam0036f104) {
+    fRam0036f104 = fRam0036f104 - 3600.0;
     iVar4 = *(int *)(param_2 + 0x2c);
     iVar5 = *(int *)(param_2 + 0x28);
     if (iVar4 != 0) {
@@ -513,7 +514,6 @@ void PhysWorld_Integrate(float param_1,int param_2)
   iVar4 = *(int *)(param_2 + 0xc);
 LAB_00158b54:
   uVar6 = 0;
-  fGpffff8a10 = param_1;
   if (iVar4 != 0) {
     do {
       iVar4 = *(int *)(param_2 + 0x18);
@@ -533,10 +533,10 @@ LAB_00158b54:
       iVar5 = 0;
       for (; iVar4 != 0; iVar4 = iVar4 + -1) {
         if (((*(char *)(*piVar7 + 0xf7) != '\0') || (*(char *)(piVar7[1] + 0xf7) != '\0')) ||
-           ((float)piVar7[7] <= fGpffff8a14)) {
+           ((float)piVar7[7] <= fRam0036f104)) {
           fVar8 = (float)PhysPair_ComputeDistance(piVar7);
           piVar7[7] = (int)fVar8;
-          if (fVar8 < fGpffff8a14 + fGpffff8a10) {
+          if (fVar8 < fRam0036f104 + fRam0036f100) {
             puVar1 = (undefined4 *)phys_sub_00165250(*(undefined4 *)(*piVar7 + 4));
             uStack_10 = *puVar1;
             uStack_c = puVar1[1];
@@ -724,7 +724,7 @@ void PhysWorld_Init(int *param_1,int param_2,int param_3,int param_4)
   }
   param_1[0xb] = 0;
   param_1[3] = 2;
-  uGpffff89fc = 2;
+  uRam0036f0ec = 2;
   param_1[0x10] = 0x20;
   if (*param_1 == 0) {
     iVar1 = param_1[0x10];
@@ -877,7 +877,7 @@ void Phys_SetCallback(undefined4 param_1)
 void Phys_SetParamA(undefined4 param_1)
 
 {
-  uGpffff8a80 = param_1;
+  uRam0036f170 = param_1;
   return;
 }
 
@@ -885,7 +885,7 @@ void Phys_SetParamA(undefined4 param_1)
 void Phys_SetParamB(undefined4 param_1)
 
 {
-  uGpffff8a7c = param_1;
+  uRam0036f16c = param_1;
   return;
 }
 
@@ -914,8 +914,8 @@ void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefine
   uRam0042f3c0 = param_4;
   PhysWorld_Init(0x42f3c0,param_1,param_2,param_3);
   PhysMaterial_SetDefaults();
-  puGpffff8a7c = &LAB_0015d390;
-  puGpffff8a80 = &LAB_0015d370;
+  puRam0036f16c = &LAB_0015d390;
+  puRam0036f170 = &LAB_0015d370;
   puRam0042f3c4 = &LAB_0015d330;
   return;
 }

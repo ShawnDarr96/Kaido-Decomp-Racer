@@ -16,6 +16,8 @@ void CourseStream_LoadSky(void)
 }
 
 // 0x001a06f0  size 0x168
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
 
 {
@@ -34,7 +36,7 @@ int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
     iVar2 = param_1;
     do {
       iVar8 = *(int *)(iVar2 + 0x44) * 0x14;
-      iVar5 = iRam0036f0c4 + iVar8;
+      iVar5 = _g_ArcToc + iVar8;
       iVar9 = *(int *)(iVar5 + 0x20);
       if (iVar9 == 0) {
         uVar3 = *(uint *)(iVar5 + 0x18);
@@ -44,7 +46,7 @@ int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
       }
       uVar7 = *param_2;
       if (uVar7 < uVar3 << 0xb) {
-        iVar8 = iRam0036f0c4 + iVar8;
+        iVar8 = _g_ArcToc + iVar8;
         iVar9 = *(int *)(iVar8 + 0x20);
         if (iVar9 == 0) {
           uVar7 = *(uint *)(iVar8 + 0x18);
@@ -60,7 +62,7 @@ int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
       if (uVar3 <= uVar7) {
         iVar9 = uVar3 * 0x14;
         do {
-          iVar8 = iRam0036f0c4 + iVar9;
+          iVar8 = _g_ArcToc + iVar9;
           iVar5 = *(int *)(iVar8 + 0x20);
           if (iVar5 == 0) {
             uVar1 = *(uint *)(iVar8 + 0x18);
@@ -87,7 +89,7 @@ int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
       iVar2 = iVar2 + 0xc;
     } while (uVar4 < *(uint *)(param_1 + 0x40));
   }
-  iVar9 = *(int *)(param_1 + 0x3c) * 0x14 + iRam0036f0c4;
+  iVar9 = *(int *)(param_1 + 0x3c) * 0x14 + _g_ArcToc;
   iVar2 = *(int *)(iVar9 + 0x20);
   if (iVar2 == 0) {
     uVar4 = *(uint *)(iVar9 + 0x18);
@@ -106,8 +108,8 @@ void Course_Unload(void)
   int iVar2;
   uint uVar3;
   
-  RoadMesh_Free((int)register0x000001c0 + -0x74b8);
-  RoadData_Free((int)register0x000001c0 + -0x74c0);
+  RoadMesh_Free(0x36f238);
+  RoadData_Free(0x36f230);
   iVar2 = iRam004305c0;
   if (iRam00430600 != 0) {
     *(undefined4 *)(iRam004305c0 + 0x18) = 0;
@@ -249,11 +251,11 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     uVar12 = 3;
   }
   uVar4 = CourseStream_GetLoadProgress(param_3,&uStack_4,&uStack_8);
-  RoadData_MarkLoaded((int)register0x000001c0 + -0x74c0);
+  RoadData_MarkLoaded(0x36f230);
   iVar10 = (int)param_3;
-  RoadData_Load((int)register0x000001c0 + -0x74c0,*(undefined4 *)(iVar10 + 0x38));
-  RoadMesh_MarkLoaded((int)register0x000001c0 + -0x74b8);
-  RoadMesh_Load((int)register0x000001c0 + -0x74b8,*(undefined4 *)(iVar10 + 0x34));
+  RoadData_Load(0x36f230,*(undefined4 *)(iVar10 + 0x38));
+  RoadMesh_MarkLoaded(0x36f238);
+  RoadMesh_Load(0x36f238,*(undefined4 *)(iVar10 + 0x34));
   uRam004305b0 = (uint)(*param_4 == '\x01');
   iRam004305b4 = param_2;
   iRam004305b8 = iVar10;
@@ -300,7 +302,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     iVar8 = iRam004305c0;
     *(undefined4 *)(iRam004305c0 + 0x18) = 1;
     *(undefined4 *)(iVar8 + 0x1c) = 0;
-    *(uint *)(iVar8 + 0x20) = uVar2 + iGpffff8bd0;
+    *(uint *)(iVar8 + 0x20) = uVar2 + iRam0036f2c0;
     DmaBuf_Alloc(iVar8 + 0x24,param_1,0x30);
     uVar3 = Mem_Alloc16(0x80,param_1);
     *(undefined4 *)(iVar8 + 0x34) = uVar3;
@@ -320,7 +322,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   uVar1 = *(ushort *)(iVar10 + 0x18);
   *(uint *)(iRam004305bc + 0x14) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x18) = 0;
-  *(int *)(iVar8 + 0x1c) = iVar7 + iGpffff8bd0;
+  *(int *)(iVar8 + 0x1c) = iVar7 + iRam0036f2c0;
   if (uVar1 == 0) {
     DmaBuf_SetUncached(iVar8 + 0x20,0,0);
     *(undefined4 *)(iVar8 + 0x30) = 0;
@@ -335,7 +337,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   uVar1 = *(ushort *)(iVar10 + 0x28);
   *(uint *)(iRam004305bc + 0x34) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x38) = 0;
-  *(int *)(iVar8 + 0x3c) = iVar7 + iGpffff8bd0;
+  *(int *)(iVar8 + 0x3c) = iVar7 + iRam0036f2c0;
   if (uVar1 == 0) {
     DmaBuf_SetUncached(iVar8 + 0x40,0,0);
     *(undefined4 *)(iVar8 + 0x50) = 0;
@@ -350,7 +352,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   uVar1 = *(ushort *)(iVar10 + 0x2c);
   *(uint *)(iRam004305bc + 0x54) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x58) = 0;
-  *(int *)(iVar8 + 0x5c) = iVar7 + iGpffff8bd0;
+  *(int *)(iVar8 + 0x5c) = iVar7 + iRam0036f2c0;
   if (uVar1 == 0) {
     DmaBuf_SetUncached(iVar8 + 0x60,0,0);
     *(undefined4 *)(iVar8 + 0x70) = 0;
@@ -369,7 +371,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar6 = iRam004305c8 + iVar8;
       *(uint *)(iVar6 + 0x14) = (uint)uVar1;
       *(undefined4 *)(iVar6 + 0x18) = 0;
-      *(int *)(iVar6 + 0x1c) = iVar7 + iGpffff8bd0;
+      *(int *)(iVar6 + 0x1c) = iVar7 + iRam0036f2c0;
       if (uVar1 == 0) {
         DmaBuf_SetUncached(iVar6 + 0x20,0,0);
         *(undefined4 *)(iVar6 + 0x30) = 0;
@@ -384,7 +386,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar7 = iRam004305c8 + iVar8;
       *(uint *)(iVar7 + 0x34) = (uint)uVar1;
       *(undefined4 *)(iVar7 + 0x38) = 0;
-      *(int *)(iVar7 + 0x3c) = iVar6 + iGpffff8bd0;
+      *(int *)(iVar7 + 0x3c) = iVar6 + iRam0036f2c0;
       if (uVar1 == 0) {
         DmaBuf_SetUncached(iVar7 + 0x40,0,0);
         *(undefined4 *)(iVar7 + 0x50) = 0;
@@ -399,7 +401,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar6 = iRam004305c8 + iVar8;
       *(uint *)(iVar6 + 0x54) = (uint)uVar1;
       *(undefined4 *)(iVar6 + 0x58) = 0;
-      *(int *)(iVar6 + 0x5c) = iVar7 + iGpffff8bd0;
+      *(int *)(iVar6 + 0x5c) = iVar7 + iRam0036f2c0;
       if (uVar1 == 0) {
         DmaBuf_SetUncached(iVar6 + 0x60,0,0);
         *(undefined4 *)(iVar6 + 0x70) = 0;
@@ -1487,12 +1489,13 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   undefined4 *puVar6;
   int iVar7;
   int iVar8;
-  uint uVar9;
-  float *pfVar10;
-  int iVar11;
+  int iVar9;
+  uint uVar10;
+  float *pfVar11;
   int iVar12;
-  float fVar13;
+  undefined1 *puVar13;
   float fVar14;
+  float fVar15;
   float fStack_3e0;
   float fStack_3dc;
   float fStack_3d0;
@@ -1520,97 +1523,97 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   float fStack_9c;
   undefined1 auStack_80 [64];
   undefined1 auStack_40 [20];
-  int iStack_2c;
+  undefined1 *puStack_2c;
   
   puVar6 = puRam004305b8;
-  iVar11 = iRam004305b4 + 0x10;
+  iVar12 = iRam004305b4 + 0x10;
   uVar3 = puRam004305b8[2];
-  iVar8 = ((uint)(byte)param_1[8] * 0x18 - (uint)(byte)param_1[8]) * 0x40;
+  iVar9 = ((uint)(byte)param_1[8] * 0x18 - (uint)(byte)param_1[8]) * 0x40;
   uVar4 = *puRam004305b8;
-  iVar12 = iVar8 + 0x431100;
+  puVar13 = &g_Views + iVar9;
   uVar5 = puRam004305b8[1];
-  Cam_SetupViewport(iVar12,*param_1,param_1[4]);
+  Cam_SetupViewport(puVar13,*param_1,param_1[4]);
   Pkt_Init(auStack_40,1,2,0);
-  iStack_2c = iVar12;
+  puStack_2c = puVar13;
   Pkt_SubmitToChain(auStack_40,*(undefined4 *)(param_1 + 0xc));
   Pkt_Init(auStack_80,2,2,0);
   Pkt_SubmitToChain(auStack_80,0x11);
   Pkt_End(auStack_40);
   TexSlot_Set(5,*(undefined4 *)(iRam004305bc + 0x58),*(undefined4 *)(iRam004305bc + 0x70));
   if (param_2 == 0) {
-    vu0math_sub_001328b0(auStack_3b0,iVar11);
+    vu0math_sub_001328b0(auStack_3b0,iVar12);
     vu0math_sub_00132b10(0x461c4000,auStack_3b0,auStack_3b0);
-    vu0math_sub_00132b70(auStack_3b0,auStack_3b0,iVar12);
-    vu0math_sub_00133680(&iStack_3a0,iVar8 + 0x431480,auStack_3b0,1);
+    vu0math_sub_00132b70(auStack_3b0,auStack_3b0,puVar13);
+    vu0math_sub_00133680(&iStack_3a0,iVar9 + 0x431480,auStack_3b0,1);
     if (iStack_3a0 < 0) {
       iStack_3a0 = iStack_3a0 + 0xf;
     }
-    iVar11 = *(int *)(iVar8 + 0x431180);
-    if (iVar11 < 0) {
-      iVar11 = iVar11 + 1;
-    }
-    iVar11 = (iStack_3a0 >> 4) + (iVar11 >> 1);
-    if (iStack_39c < 0) {
-      iStack_39c = iStack_39c + 0xf;
-    }
-    iVar12 = *(int *)(iVar8 + 0x431184);
+    iVar12 = *(int *)(iVar9 + 0x431180);
     if (iVar12 < 0) {
       iVar12 = iVar12 + 1;
     }
-    iVar12 = (iStack_39c >> 4) + (iVar12 >> 1);
+    iVar12 = (iStack_3a0 >> 4) + (iVar12 >> 1);
+    if (iStack_39c < 0) {
+      iStack_39c = iStack_39c + 0xf;
+    }
+    iVar8 = *(int *)(iVar9 + 0x431184);
+    if (iVar8 < 0) {
+      iVar8 = iVar8 + 1;
+    }
+    iVar8 = (iStack_39c >> 4) + (iVar8 >> 1);
   }
   else {
-    vu0math_sub_001328b0(auStack_3b0,iVar11);
+    vu0math_sub_001328b0(auStack_3b0,iVar12);
     vu0math_sub_001328b0(auStack_3b0,auStack_3b0);
     vu0math_sub_00132b10(0x461c4000,auStack_3b0,auStack_3b0);
     fStack_3ac = fStack_3ac * -1.0;
-    vu0math_sub_00132b70(auStack_3b0,auStack_3b0,iVar12);
-    vu0math_sub_00133680(&iStack_3a0,iVar8 + 0x431480,auStack_3b0,1);
+    vu0math_sub_00132b70(auStack_3b0,auStack_3b0,puVar13);
+    vu0math_sub_00133680(&iStack_3a0,iVar9 + 0x431480,auStack_3b0,1);
     if (iStack_3a0 < 0) {
       iStack_3a0 = iStack_3a0 + 0xf;
     }
-    iVar11 = *(int *)(iVar8 + 0x431180);
-    if (iVar11 < 0) {
-      iVar11 = iVar11 + 1;
-    }
-    iVar11 = (iStack_3a0 >> 4) + (iVar11 >> 1);
-    if (iStack_39c < 0) {
-      iStack_39c = iStack_39c + 0xf;
-    }
-    iVar12 = *(int *)(iVar8 + 0x431184);
+    iVar12 = *(int *)(iVar9 + 0x431180);
     if (iVar12 < 0) {
       iVar12 = iVar12 + 1;
     }
-    iVar12 = (iStack_39c >> 4) + (iVar12 >> 1);
+    iVar12 = (iStack_3a0 >> 4) + (iVar12 >> 1);
+    if (iStack_39c < 0) {
+      iStack_39c = iStack_39c + 0xf;
+    }
+    iVar8 = *(int *)(iVar9 + 0x431184);
+    if (iVar8 < 0) {
+      iVar8 = iVar8 + 1;
+    }
+    iVar8 = (iStack_39c >> 4) + (iVar8 >> 1);
   }
+  fVar15 = (float)(iVar8 + -0x800);
   fVar14 = (float)(iVar12 + -0x800);
-  fVar13 = (float)(iVar11 + -0x800);
   if (param_2 == 0) {
-    iRam00430658 = (int)fVar13;
+    iRam00430658 = (int)fVar14;
     uRam00430654 = 1;
-    iRam0043065c = (int)fVar14;
+    iRam0043065c = (int)fVar15;
   }
   if (0 < iStack_394) {
     Obj_Reset(auStack_390,4,0xffffffffffffffff);
     uStack_e0 = 0x48;
     auStack_390[0] = auStack_390[0] | 2;
-    fStack_a0 = fVar13;
-    fStack_9c = fVar14;
+    fStack_a0 = fVar14;
+    fStack_9c = fVar15;
     if (param_2 == 0) {
-      iVar11 = TexSlot_GetEntry(5,uVar4);
+      iVar12 = TexSlot_GetEntry(5,uVar4);
       Obj_SetVisible(auStack_390,1,5,uVar4);
-      uVar1 = *(ushort *)(iVar11 + 10);
-      uVar2 = *(ushort *)(iVar11 + 8);
-      fStack_b0 = *(float *)(iVar8 + 0x431190);
-      fStack_ac = *(float *)(iVar8 + 0x431194);
+      uVar1 = *(ushort *)(iVar12 + 10);
+      uVar2 = *(ushort *)(iVar12 + 8);
+      fStack_b0 = *(float *)(iVar9 + 0x431190);
+      fStack_ac = *(float *)(iVar9 + 0x431194);
     }
     else {
-      iVar11 = TexSlot_GetEntry(5,uVar3);
+      iVar12 = TexSlot_GetEntry(5,uVar3);
       Obj_SetVisible(auStack_390,1,5,uVar3);
-      uVar1 = *(ushort *)(iVar11 + 10);
-      uVar2 = *(ushort *)(iVar11 + 8);
-      fStack_ac = *(float *)(iVar8 + 0x431194) * 7.0;
-      fStack_b0 = *(float *)(iVar8 + 0x431190) * 7.0;
+      uVar1 = *(ushort *)(iVar12 + 10);
+      uVar2 = *(ushort *)(iVar12 + 8);
+      fStack_ac = *(float *)(iVar9 + 0x431194) * 7.0;
+      fStack_b0 = *(float *)(iVar9 + 0x431190) * 7.0;
     }
     fStack_bc = (float)(uVar1 >> 1);
     fStack_c0 = (float)(uVar2 >> 1);
@@ -1624,7 +1627,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
     uStack_e8 = 0x50000;
     Pkt_AddPrimitives(auStack_40,auStack_390);
     if ((param_2 == 0) && (fRam00430664 != 0.0)) {
-      uVar9 = 0;
+      uVar10 = 0;
       do {
         Obj_Reset(auStack_390,4,0xffffffffffffffff);
         uStack_e0 = 0x48;
@@ -1632,52 +1635,52 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
         Obj_SetVisible(auStack_390,1,5,uVar5);
         fStack_c0 = 0.0;
         fStack_bc = 0.0;
-        fStack_ac = fRam00430664 * 2.0 * *(float *)(iVar8 + 0x431194);
-        fStack_b0 = fRam00430664 * 2.0 * *(float *)(iVar8 + 0x431190);
+        fStack_ac = fRam00430664 * 2.0 * *(float *)(iVar9 + 0x431194);
+        fStack_b0 = fRam00430664 * 2.0 * *(float *)(iVar9 + 0x431190);
         auStack_390[0] = auStack_390[0] | 4;
-        fStack_a0 = fVar13;
-        fStack_9c = fVar14;
-        Angle_Wrap((float)uVar9 * 1.5707964,auStack_390);
+        fStack_a0 = fVar14;
+        fStack_9c = fVar15;
+        Angle_Wrap((float)uVar10 * 1.5707964,auStack_390);
         uStack_d0 = 0x80;
         uStack_e8 = 0x31001;
         Pkt_AddPrimitives(auStack_80,auStack_390,1);
-        uVar9 = uVar9 + 1;
-      } while (uVar9 < 4);
-      uVar9 = 0;
-      pfVar10 = (float *)&DAT_003173d0;
+        uVar10 = uVar10 + 1;
+      } while (uVar10 < 4);
+      uVar10 = 0;
+      pfVar11 = (float *)&DAT_003173d0;
       do {
-        iVar12 = TexSlot_GetEntry(5,puVar6[(int)pfVar10[2] + 3]);
-        iVar11 = *(int *)(iVar8 + 0x431180);
-        if (iVar11 < 0) {
-          iVar11 = iVar11 + 1;
+        iVar8 = TexSlot_GetEntry(5,puVar6[(int)pfVar11[2] + 3]);
+        iVar12 = *(int *)(iVar9 + 0x431180);
+        if (iVar12 < 0) {
+          iVar12 = iVar12 + 1;
         }
-        iVar7 = *(int *)(iVar8 + 0x431184);
-        fStack_3d0 = (float)(iVar11 >> 1);
+        iVar7 = *(int *)(iVar9 + 0x431184);
+        fStack_3d0 = (float)(iVar12 >> 1);
         if (iVar7 < 0) {
           iVar7 = iVar7 + 1;
         }
         fStack_3cc = (float)(iVar7 >> 1);
-        fStack_3c0 = fVar13;
-        fStack_3bc = fVar14;
-        vu0math_sub_00132a60(pfVar10[1],&fStack_3e0,&fStack_3d0,&fStack_3c0);
+        fStack_3c0 = fVar14;
+        fStack_3bc = fVar15;
+        vu0math_sub_00132a60(pfVar11[1],&fStack_3e0,&fStack_3d0,&fStack_3c0);
         Obj_Reset(auStack_390,4,0xffffffffffffffff);
         uStack_e0 = 0x48;
         auStack_390[0] = auStack_390[0] | 2;
-        Obj_SetVisible(auStack_390,1,5,puVar6[(int)pfVar10[2] + 3]);
+        Obj_SetVisible(auStack_390,1,5,puVar6[(int)pfVar11[2] + 3]);
         fStack_a0 = fStack_3e0;
         fStack_9c = fStack_3dc;
-        fStack_bc = (float)*(ushort *)(iVar12 + 10) * 0.5;
+        fStack_bc = (float)*(ushort *)(iVar8 + 10) * 0.5;
         auStack_390[0] = auStack_390[0] | 4;
-        fStack_c0 = (float)(*(ushort *)(iVar12 + 8) >> 1);
-        fStack_ac = *pfVar10 * *(float *)(iVar8 + 0x431194);
-        fStack_b0 = *pfVar10 * *(float *)(iVar8 + 0x431190);
+        fStack_c0 = (float)(*(ushort *)(iVar8 + 8) >> 1);
+        fStack_ac = *pfVar11 * *(float *)(iVar9 + 0x431194);
+        fStack_b0 = *pfVar11 * *(float *)(iVar9 + 0x431190);
         Angle_Wrap(0,auStack_390);
         uStack_e8 = 0x31001;
-        uStack_d0 = ((uint)pfVar10[3] & 0xff0000) >> 0x10;
+        uStack_d0 = ((uint)pfVar11[3] & 0xff0000) >> 0x10;
         Pkt_AddPrimitives(auStack_80,auStack_390,1);
-        uVar9 = uVar9 + 1;
-        pfVar10 = pfVar10 + 4;
-      } while (uVar9 < 0xc);
+        uVar10 = uVar10 + 1;
+        pfVar11 = pfVar11 + 4;
+      } while (uVar10 < 0xc);
     }
   }
   Pkt_Submit(auStack_80,0);
@@ -1694,7 +1697,7 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
   undefined4 uVar3;
   bool bVar4;
   int iVar5;
-  int iVar6;
+  undefined1 *puVar6;
   int iVar7;
   long lVar8;
   ushort *puVar9;
@@ -1713,11 +1716,11 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
   
   bVar4 = false;
   iVar5 = ((uint)(byte)param_2[8] * 0x18 - (uint)(byte)param_2[8]) * 0x40;
-  iVar6 = iVar5 + 0x431100;
+  puVar6 = &g_Views + iVar5;
   maybe_Vu0_UnitMatrix(auStack_180);
-  Cam_SetupViewport(iVar6,*param_2,param_2[4]);
+  Cam_SetupViewport(puVar6,*param_2,param_2[4]);
   Light_UpdateMatrices(0x436180);
-  Layer_Reset(auStack_240,iVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
+  Layer_Reset(auStack_240,puVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
               *(undefined4 *)(param_2 + 0x10));
   if ((iRam00430600 != 0) && (param_3 != 0)) {
     uStack_1a0 = TexSlot_GetEntry(7,0);
@@ -1770,7 +1773,7 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
     iVar14 = (int)lVar8;
     puVar12 = (ushort *)(iVar14 + 0x10);
     maybe_Pkt_InitLayers
-              (auStack_3a0,iVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
+              (auStack_3a0,puVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
                *(undefined4 *)(param_2 + 0x10));
     vu0math_sub_00132a90(iVar5 + 0x431150,iVar5 + 0x431120,iVar5 + 0x431140);
     vu0math_sub_001328b0(iVar5 + 0x431150,iVar5 + 0x431150);
@@ -1808,7 +1811,7 @@ LAB_001a3634:
           puVar12 = puVar9 + (uint)*puVar12 * 0x18;
         }
         else if ((param_2[8] != '\x01') && (param_2[8] != '\x02')) {
-          lVar8 = Vu0_TransformPointPersp(iVar6,iVar5 + 0x4313c0,puVar12 + 0x18);
+          lVar8 = Vu0_TransformPointPersp(puVar6,iVar5 + 0x4313c0,puVar12 + 0x18);
           if (lVar8 != 0) {
             if (param_2[8] == '\x02') {
               uVar3 = uRam0043066c;
@@ -1816,7 +1819,7 @@ LAB_001a3634:
             else {
               uVar3 = uRam00430668;
             }
-            Course_CullBlocks(iVar6,puVar9,puVar12,uVar3,param_2[8] == '\x02');
+            Course_CullBlocks(puVar6,puVar9,puVar12,uVar3,param_2[8] == '\x02');
           }
           goto LAB_001a3634;
         }
@@ -1831,30 +1834,30 @@ LAB_001a3634:
 void Course_DrawView(undefined1 *param_1,undefined8 param_2)
 
 {
-  undefined8 uVar1;
+  byte bVar1;
   undefined8 uVar2;
-  uint uVar3;
-  int iVar4;
+  undefined8 uVar3;
+  uint uVar4;
   uint uVar5;
   undefined1 auStack_240 [576];
   
-  iVar4 = ((uint)(byte)param_1[8] * 0x18 - (uint)(byte)param_1[8]) * 0x40 + 0x431100;
-  Cam_SetupViewport(iVar4,*param_1,param_1[4]);
+  bVar1 = param_1[8];
+  Cam_SetupViewport(&g_Views + ((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40,*param_1,param_1[4]);
   Light_UpdateMatrices(0x436180);
-  Layer_Reset(auStack_240,iVar4,0x436180,*(undefined4 *)(param_1 + 0xc),
-              *(undefined4 *)(param_1 + 0x10));
+  Layer_Reset(auStack_240,&g_Views + ((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40,0x436180,
+              *(undefined4 *)(param_1 + 0xc),*(undefined4 *)(param_1 + 0x10));
   Layer_Open(auStack_240,0);
   uVar5 = 0;
   if (*(uint *)param_2 != 0) {
     do {
-      uVar1 = Gut_PackGetEntry(param_2,uVar5,0);
-      uVar3 = 0;
-      if (*(int *)((int)uVar1 + 0x24) != 0) {
+      uVar2 = Gut_PackGetEntry(param_2,uVar5,0);
+      uVar4 = 0;
+      if (*(int *)((int)uVar2 + 0x24) != 0) {
         do {
-          uVar2 = Model_GetTexture(uVar1,uVar3);
-          Model_UpdateNodeMatrix(auStack_240,uVar2);
-          uVar3 = uVar3 + 1;
-        } while (uVar3 < *(uint *)((int)uVar1 + 0x24));
+          uVar3 = Model_GetTexture(uVar2,uVar4);
+          Model_UpdateNodeMatrix(auStack_240,uVar3);
+          uVar4 = uVar4 + 1;
+        } while (uVar4 < *(uint *)((int)uVar2 + 0x24));
       }
       uVar5 = uVar5 + 1;
     } while (uVar5 < *(uint *)param_2);
@@ -1886,7 +1889,7 @@ void Course_Render(int param_1)
   undefined4 uStack_1a0;
   undefined4 uStack_19c;
   undefined1 auStack_190 [20];
-  undefined4 uStack_17c;
+  undefined1 *puStack_17c;
   undefined4 uStack_150;
   undefined4 uStack_14c;
   undefined4 uStack_148;
@@ -2242,7 +2245,7 @@ void Course_Render(int param_1)
   }
   if (iRam00433904 != 0) {
     Pkt_Init(auStack_190,1,2,0);
-    uStack_17c = 0x431100;
+    puStack_17c = &g_Views;
     Pkt_SubmitToChain(auStack_190,0);
     Obj_Reset(auStack_4a0,4,0xffffffffffffffff);
     uStack_208 = 0xffff;

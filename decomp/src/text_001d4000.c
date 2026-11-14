@@ -485,8 +485,8 @@ void Traffic_UpdateAll(int param_1)
     iVar3 = iVar3 + 1;
     puVar2 = puVar2 + 0x1d;
   } while (iVar3 < 3);
+  puRam0036f36c = puVar1;
   *puVar1 = 0;
-  puGpffff8c7c = puVar1;
   Traffic_Spawn(puVar1);
   *(code **)(param_1 + 0x1c) = Ai_DriverTask;
   return;
@@ -779,11 +779,11 @@ void Ai_DriveCar(undefined8 param_1)
   
   puVar10 = (uint *)param_1;
   uVar1 = (undefined2)puVar10[1];
-  if (iGpffff8c5c == 0) {
+  if (iRam0036f34c == 0) {
     puVar11 = (uint *)0x0;
   }
   else {
-    puVar11 = *(uint **)((char)puVar10[1] * 4 + iGpffff8c5c + 8);
+    puVar11 = *(uint **)((char)puVar10[1] * 4 + iRam0036f34c + 8);
   }
   uVar7 = RaceCar_Get(uVar1);
   uStack_34 = 0x3f800000;
@@ -1297,11 +1297,11 @@ void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,
   uStack_4c = param_5[0x11];
   uStack_48 = param_5[0x12];
   uStack_44 = param_5[0x13];
-  if (iGpffff8c5c == 0) {
+  if (iRam0036f34c == 0) {
     pfVar13 = (float *)0x0;
   }
   else {
-    pfVar13 = *(float **)((char)param_3 * 4 + iGpffff8c5c + 8);
+    pfVar13 = *(float **)((char)param_3 * 4 + iRam0036f34c + 8);
   }
   uVar8 = RaceCar_Get(param_3);
   iVar14 = (int)uVar8;
@@ -1818,6 +1818,8 @@ void AiLine_GetDirection(undefined4 *param_1)
 }
 
 // 0x001d7e10  size 0x1d0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short param_4,long param_5)
 
 {
@@ -1846,13 +1848,13 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
   
   uStack_54 = 0x3f800000;
   iVar2 = (param_3 & 0xffff) * 4;
-  psVar4 = *(short **)(*(int *)(iGpffff8b40 + 4) + iVar2);
+  psVar4 = *(short **)(*(int *)(_g_RoadData + 4) + iVar2);
   psVar4 = psVar4 + *psVar4 * 0x10 + param_4 * 6 + 0x3e;
   uStack_10 = *(undefined4 *)psVar4;
   uStack_c = *(undefined4 *)(psVar4 + 2);
   uStack_8 = *(undefined4 *)(psVar4 + 4);
   uStack_4 = 0x3f800000;
-  psVar4 = *(short **)(*(int *)(iGpffff8b40 + 4) + iVar2);
+  psVar4 = *(short **)(*(int *)(_g_RoadData + 4) + iVar2);
   sVar1 = *psVar4;
   psVar4 = psVar4 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
   uStack_20 = *(undefined4 *)psVar4;
@@ -1866,7 +1868,7 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
     vu0math_sub_00132b70(&uStack_60,&uStack_10,auStack_30);
   }
   else {
-    puVar3 = (undefined4 *)(*(int *)(*(int *)(iGpffff8b40 + 4) + iVar2) + 0x7c + param_4 * 0x20);
+    puVar3 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar2) + 0x7c + param_4 * 0x20);
     uStack_40 = *puVar3;
     uStack_3c = puVar3[1];
     uStack_38 = puVar3[2];

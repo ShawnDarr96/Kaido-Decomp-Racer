@@ -17,11 +17,16 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Executable extracted, compiler identified | done: **Metrowerks CodeWarrior MIPS C 2.4.1.01**, Sony SDK libraries **2.8.0** |
 | Full Ghidra analysis (Emotion Engine processor) | done |
 | Every function decompiled to C | done: [`decomp/src/`](decomp/src), index in [`decomp/functions.csv`](decomp/functions.csv), progress in [`decomp/PROGRESS.md`](decomp/PROGRESS.md) |
-| Functions named and typed | in progress, tracked in [`WORK.md`](WORK.md) |
+| Every function named or assigned to its module | done: 2681 named (56%), 2072 tagged `module_sub_ADDRESS` (44%); see [`config/symbols.csv`](config/symbols.csv) |
+| Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
+| Placeholders replaced with real names, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
 | Matching (byte-identical) source | not started, see the P3 rows in [`WORK.md`](WORK.md) |
 
-The executable is stripped (no symbol table), so every function starts as `FUN_xxxxxxxx`. The work now is
-naming functions, recovering structs and splitting the code into its original source files. The Sony SDK
+The executable is stripped (no symbol table). Every function now has either a name backed by its code
+(strings, SDK conventions, call graph) or a module tag such as `scrgarage_sub_00213720` that records which
+subsystem it belongs to while its real name is still open. Names prefixed `maybe_` are educated guesses.
+The work now is replacing placeholders, recovering structs and splitting the code into its original source
+files (the 200 `__sinit_*` static initializers mark many translation-unit boundaries). The Sony SDK
 code (`sceGs*`, `sceCd*`, `sceMc*`, `scePad2*`, `sceDbc*`, libipu/MPEG) and the Metrowerks runtime can be
 identified from their strings and from other games that use the same SDK version.
 
@@ -36,6 +41,10 @@ identified from their strings and from other games that use the same SDK version
 | `scripts/ghidra_export.py` | Headless import + analysis + export (PyGhidra) |
 | `scripts/setup_tools.ps1` | Installs the toolchain into `tools/` and extracts the ELF from your ISO |
 | `scripts/progress.py` | Writes `decomp/PROGRESS.md` from `functions.csv` |
+| `scripts/show.py` | Prints functions with their calls and strings, for naming work |
+| `scripts/add_names.py` | Merges `address name` lines (or a `--fill` range) into `config/symbols.csv` |
+| `decomp/xrefs.csv` | Call graph and string references of every function |
+| `config/globals.csv` | Named global singletons (applied as labels by the export) |
 | `ghidra_scripts/ExportDecomp.java` | The same export as a Ghidra GUI script |
 | `WORK.md`, `AGENTS.md`, `workboard.toml` | The shared work board (below) |
 

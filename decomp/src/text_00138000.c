@@ -522,10 +522,10 @@ bool Thread_Create(int *param_1,undefined4 param_2,undefined4 param_3,undefined4
   int iStack_10;
   
   param_1[1] = param_6;
+  puStack_20 = &_mips_gp0_value;
   uStack_2c = param_3;
   uStack_28 = param_4;
   uStack_24 = param_5;
-  puStack_20 = (undefined1 *)register0x000001c0;
   uStack_1c = param_2;
   iStack_10 = param_6;
   iVar1 = CreateThread(auStack_30);

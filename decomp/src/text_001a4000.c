@@ -15,7 +15,7 @@ void Course_UpdateFlareOcclusion(void)
   undefined1 *puVar7;
   uint *puVar8;
   uint uVar9;
-  int iVar10;
+  undefined1 *puVar10;
   uint uVar11;
   uint uVar12;
   uint uVar13;
@@ -29,7 +29,7 @@ void Course_UpdateFlareOcclusion(void)
   do {
     iVar5 = ((uint)(byte)puVar7[2] * 0x18 - (uint)(byte)puVar7[2]) * 0x40;
     if (*(int *)(iVar5 + 0x431684) != 0) {
-      Cam_SetupViewport(iVar5 + 0x431100,*puVar7,puVar7[1]);
+      Cam_SetupViewport(&g_Views + iVar5,*puVar7,puVar7[1]);
     }
     uVar9 = uVar9 + 1;
     puVar7 = puVar7 + 3;
@@ -67,23 +67,23 @@ void Course_UpdateFlareOcclusion(void)
               puVar7 = &DAT_00317500;
               do {
                 iVar6 = ((uint)(byte)puVar7[2] * 0x18 - (uint)(byte)puVar7[2]) * 0x40;
-                iVar10 = iVar6 + 0x431100;
+                puVar10 = &g_Views + iVar6;
                 if (*(int *)(iVar6 + 0x431684) != 0) {
                   if (iRam0036f1f8 == 1) {
-                    lVar2 = Vu0_TransformPointPersp(iVar10,iVar6 + 0x4313c0,puVar8 + 8);
+                    lVar2 = Vu0_TransformPointPersp(puVar10,iVar6 + 0x4313c0,puVar8 + 8);
                     if (lVar2 != 0) {
                       iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
                                                (uint)(ushort)puVar8[2] * 2 + 0xb,0);
                       lVar2 = Course_GetGroundHeight
-                                        (iVar10,iVar6 + (*(ushort *)((int)puVar8 + 10) + 1) * 0x50 +
-                                                0x10);
+                                        (puVar10,iVar6 + (*(ushort *)((int)puVar8 + 10) + 1) * 0x50
+                                                 + 0x10);
                       if (lVar2 != 0) {
                         puVar8[0x10] = puVar8[0x10] | 1 << ((byte)puVar7[2] & 0x1f);
                       }
                     }
                   }
                   else {
-                    lVar2 = Vu0_TransformPointPersp(iVar10,iVar6 + 0x4313c0,puVar8 + 8);
+                    lVar2 = Vu0_TransformPointPersp(puVar10,iVar6 + 0x4313c0,puVar8 + 8);
                     if (lVar2 != 0) {
                       puVar8[0x10] = puVar8[0x10] | 1 << ((byte)puVar7[2] & 0x1f);
                     }
@@ -163,6 +163,8 @@ void CourseScene_Unload(void)
 }
 
 // 0x001a4c30  size 0x290
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8
 CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,undefined8 param_5,
                 undefined8 param_6,undefined4 param_7,undefined4 param_8)
@@ -220,7 +222,7 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
     do {
       bVar1 = pbVar7[1];
       iVar10 = param_2 + (uint)pbVar7[3] * 0x14;
-      iVar4 = *(int *)(iGpffff8b0c + (uint)*pbVar7 * 4 + 0x14) + (uint)pbVar7[2] * 0x60;
+      iVar4 = *(int *)(_g_Loading + (uint)*pbVar7 * 4 + 0x14) + (uint)pbVar7[2] * 0x60;
       if (bVar1 < 0xe) {
         *(undefined4 *)(((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40 + 0x4311c0) =
              *(undefined4 *)(iVar10 + 0x30);
@@ -764,9 +766,9 @@ bool maybe_Game_CheckResetRequest(void)
 {
   int iVar1;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   iVar1 = iRam00386628;
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal(0x36efc0,0);
   if (iVar1 != 0) {
     File_AbortAll();
   }
@@ -786,8 +788,8 @@ void Game_MainLoop(byte param_1)
   
   bVar1 = param_1;
   do {
-    bGpffff8bb8 = bVar1;
-    iVar4 = (uint)bGpffff8bb8 * 0x20;
+    bRam0036f2a8 = bVar1;
+    iVar4 = (uint)bRam0036f2a8 * 0x20;
     Gfx_SyncAndFlip();
     Render_SetSceneMode(*(undefined1 *)(iVar4 + 0x3179f4),*(undefined4 *)(&DAT_003179fc + iVar4));
     Render_BeginScene(iVar4 + 0x3179e0);
@@ -801,7 +803,7 @@ void Game_MainLoop(byte param_1)
       Gfx_SyncAndFlip();
       Pad_Update();
       Wheel_Update();
-      iGpffff8b70 = iGpffff8b70 + 1;
+      iRam0036f260 = iRam0036f260 + 1;
       uVar3 = SndMgr_GetInstance();
       SndMgr_Update(uVar3);
       Snd_Update();
@@ -844,7 +846,7 @@ void Game_Init(void)
   
   Iop_Reboot(0x3636e0,0);
   Gfx_Init();
-  iGpffff8bb4 = 5;
+  iRam0036f2a4 = 5;
   uVar1 = GetThreadId();
   ChangeThreadPriority(uVar1,5);
   maybe_Heap_Create(0x430750,0x1a80000,0);
@@ -864,7 +866,7 @@ void Game_Init(void)
   Iop_LoadModule(0x363840,0,0,0);
   Iop_LoadModule(0x363860,0,0,0);
   Arc_SetHeap(0x430750);
-  Arc_Init(iGpffff8bb4 + 1,iGpffff8bb4 + -1);
+  Arc_Init(iRam0036f2a4 + 1,iRam0036f2a4 + -1);
   maybe_CdStream_Init(0x50,5);
   Pad_Init(0x430750);
   Wheel_Init();
@@ -872,7 +874,7 @@ void Game_Init(void)
   SaveMgr_Init(0x430750);
   maybe_Rand_Seed(0);
   Xvi_LoadIop();
-  Snd_Init(0x430750,0x20,iGpffff8bb4 + -1);
+  Snd_Init(0x430750,0x20,iRam0036f2a4 + -1);
   SndMgr_Init(0x430750);
   Movie_Init();
   Render_Init(0x430750);
@@ -926,12 +928,14 @@ void Light_SetEnabledFlag(int param_1,undefined1 param_2)
 }
 
 // 0x001a6030  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Arc_GetEntryInfo(undefined4 *param_1,int param_2)
 
 {
   *param_1 = 0;
-  param_1[1] = *(undefined4 *)(iRam0036f0c4 + *(int *)(&DAT_00317a80 + param_2 * 8) * 0x14 + 0x10);
-  param_1[2] = *(undefined4 *)(iRam0036f0c4 + *(int *)(&DAT_00317a80 + param_2 * 8) * 0x14 + 0x14);
+  param_1[1] = *(undefined4 *)(_g_ArcToc + *(int *)(&DAT_00317a80 + param_2 * 8) * 0x14 + 0x10);
+  param_1[2] = *(undefined4 *)(_g_ArcToc + *(int *)(&DAT_00317a80 + param_2 * 8) * 0x14 + 0x14);
   param_1[3] = *(undefined4 *)(&DAT_00317a84 + param_2 * 8);
   return;
 }
@@ -1330,10 +1334,10 @@ void Ptcl_EmitBackfire(undefined8 param_1,undefined8 param_2,undefined8 param_3,
   float afStack_8 [2];
   
   afStack_20[0] = DAT_00317e50;
-  afStack_8[0] = fGpffff8138;
+  afStack_8[0] = fRam0036e828;
   afStack_20[1] = DAT_00317e54;
   afStack_20[2] = DAT_00317e58;
-  afStack_8[1] = (float)uGpffff813c;
+  afStack_8[1] = (float)uRam0036e82c;
   afStack_20[3] = (float)DAT_00317e5c;
   fVar3 = (float)maybe_Rand_Next(0,0x42c80000);
   if (2.1474836e+09 <= fVar3) {
@@ -1574,7 +1578,7 @@ void PtclSys_Draw(int param_1)
       uVar1 = (uint)(byte)puVar2[2];
       uVar3 = uVar3 + 1;
       if (((uVar1 != 4) && (uVar1 != 3)) && (*(int *)(uVar1 * 0x5c0 + 0x431684) == 1)) {
-        maybe_Pkt_InitLayers(auStack_160,uVar1 * 0x5c0 + 0x431100,0x436180,*puVar2,puVar2[1]);
+        maybe_Pkt_InitLayers(auStack_160,&g_Views + uVar1 * 0x5c0,0x436180,*puVar2,puVar2[1]);
         Obj_Init(&uStack_210);
         uStack_210 = *(undefined2 *)(*(int *)(param_1 + 0x24) + 200);
         uStack_20e = *(undefined1 *)(*(int *)(param_1 + 0x24) + 0xca);

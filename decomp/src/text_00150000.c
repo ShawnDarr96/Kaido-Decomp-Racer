@@ -705,7 +705,7 @@ void Sprite_GetPoolCount(int param_1,uint *param_2)
 {
   int iVar1;
   
-  iVar1 = param_1 * 0x8280 + iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x388200;
+  iVar1 = param_1 * 0x8280 + iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x388200;
   *param_2 = (uint)*(ushort *)(iVar1 + 0x50);
   param_2[1] = (uint)*(ushort *)(iVar1 + 0x54);
   param_2[2] = (((*(ushort *)(iVar1 + 0x62) & 0x7ff) - (*(ushort *)(iVar1 + 0x60) & 0x7ff)) + 1) *
@@ -739,8 +739,8 @@ void Gfx_EndFrame(void)
   undefined4 uStack_20;
   undefined4 uStack_8;
   
-  uVar6 = iGpffff88a4 + 1U & 1;
-  uVar1 = iGpffff88a0 + 1U & 1;
+  uVar6 = iRam0036ef94 + 1U & 1;
+  uVar1 = iRam0036ef90 + 1U & 1;
   if ((uRam00387fa4 & 1) == 0) {
     uRam00387fa4 = uRam00387fa4 & 0xfffffffd;
   }
@@ -846,7 +846,7 @@ void Gfx_EndFrame(void)
   FlushCache(0);
   Gfx_SyncPath(0,0);
   maybe_Gfx_KickVif1Dma(uStack_2c,uStack_20);
-  uGpffff889c = uStack_8;
+  uRam0036ef8c = uStack_8;
   uVar6 = 0;
   do {
     piVar2 = (int *)((uVar6 & 0xff) * 0x10 + 0x387f50);
@@ -854,7 +854,7 @@ void Gfx_EndFrame(void)
     DmaChain_End();
     uVar6 = uVar6 + 1;
   } while (uVar6 < 5);
-  iGpffff89dc = iGpffff89dc + 1;
+  iRam0036f0cc = iRam0036f0cc + 1;
   FlushCache(0);
   return;
 }
@@ -1135,7 +1135,7 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
     Gfx_SetVideoMode((*(uint *)(pcVar9 + 0xc) & 1) == 0,&iStack_d0);
     Camera_SetupDefault();
     Light_SetDefaults();
-    uGpffff89dc = 0;
+    uRam0036f0cc = 0;
     Gfx_SetFade(5,0,0,0);
     Gfx_SetDisplayParam(0,0,0,0,0);
     uRam00387fa2 = 0;
@@ -1228,9 +1228,9 @@ void Snd_StreamLoadChunk(int param_1,undefined4 *param_2,uint param_3)
   if (*(char *)(param_1 + 0x42daa8) == '\x03') {
     *(undefined1 *)(param_1 + 0x42daa8) = 1;
   }
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   iVar1 = iRam00386628;
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal(0x36efc0,0);
   if (param_3 <= 0x100U - iVar1) {
     for (uVar5 = 0; (uVar3 != 0 && (uVar5 < param_3)); uVar5 = uVar5 + 1) {
       uVar4 = param_2[1];

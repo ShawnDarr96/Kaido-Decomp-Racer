@@ -561,7 +561,7 @@ sceSifCallRpc(int *param_1,undefined4 param_2,ulong param_3,long param_4,long pa
   param_1[1] = iVar1;
   *param_1 = iVar4;
   param_1[7] = (int)param_8;
-  param_1[6] = (int)register0x000001c0;
+  param_1[6] = (int)&_mips_gp0_value;
   *(undefined4 *)(iVar4 + 0x20) = param_2;
   *(int *)(iVar4 + 0x24) = (int)param_5;
   *(int *)(iVar4 + 0x28) = (int)param_6;

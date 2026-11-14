@@ -154,6 +154,8 @@ void raceui_sub_002c89d0(int param_1)
 }
 
 // 0x002c8c00  size 0x64c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void raceui_sub_002c8c00(undefined8 param_1)
 
 {
@@ -199,11 +201,11 @@ void raceui_sub_002c8c00(undefined8 param_1)
   iVar10 = (int)param_1;
   if (bVar2) {
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,*piGpffff8d3c + iVar6 * 0x4f4 + 4,4,8);
+    UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,4,8);
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,*piGpffff8d3c + iVar6 * 0x4f4 + 4,3,8);
+    UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,3,8);
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,*piGpffff8d3c + iVar6 * 0x4f4 + 4,7,8);
+    UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,7,8);
     uVar9 = *(uint *)(iVar10 + 0x98);
   }
   else {
@@ -864,18 +866,18 @@ void raceui_sub_002cae00(int param_1)
   uStack_18 = DAT_0032fc78;
   iVar6 = param_1;
   do {
-    fVar1 = fGpffff8788;
-    fVar11 = *pfVar7 - fGpffff8788;
-    fVar13 = pfVar7[1] - fGpffff878c;
-    fVar12 = fGpffff8788 + *pfVar7;
-    fVar15 = fGpffff878c;
+    fVar1 = fRam0036ee78;
+    fVar11 = *pfVar7 - fRam0036ee78;
+    fVar13 = pfVar7[1] - fRam0036ee7c;
+    fVar12 = fRam0036ee78 + *pfVar7;
+    fVar15 = fRam0036ee7c;
     uVar2 = RaceCar_Get(iVar9);
     uVar3 = RaceCar_GetFlags(uVar2);
     if ((uVar3 & 0x100) == 0) {
       pbVar5 = (byte *)(iVar6 + 0x80);
       iVar8 = 0;
       iVar10 = 8;
-      uStack_10 = CONCAT44(uGpffff8794,uGpffff8790);
+      uStack_10 = CONCAT44(uRam0036ee84,uRam0036ee80);
       do {
         fVar14 = *(float *)(pbVar5 + 4);
         if (fVar14 != 0.0) {
@@ -986,20 +988,20 @@ void raceui_sub_002cb1d0(int param_1)
   float fStack_c;
   float fStack_8;
   
-  fVar3 = fGpffff8778;
-  fVar2 = fGpffff8770;
-  fVar10 = fGpffff8770 - fGpffff8778;
-  fVar11 = fGpffff8770 + fGpffff8778;
-  fVar12 = fGpffff8774 - fGpffff877c;
-  fVar14 = fGpffff877c;
-  fVar15 = fGpffff8774;
+  fVar3 = fRam0036ee68;
+  fVar2 = fRam0036ee60;
+  fVar10 = fRam0036ee60 - fRam0036ee68;
+  fVar11 = fRam0036ee60 + fRam0036ee68;
+  fVar12 = fRam0036ee64 - fRam0036ee6c;
+  fVar14 = fRam0036ee6c;
+  fVar15 = fRam0036ee64;
   uVar4 = RaceCar_Get(0);
   uVar5 = RaceCar_GetFlags(uVar4);
   if ((uVar5 & 0x100) == 0) {
     pbVar8 = (byte *)(param_1 + 0x80);
     iVar9 = 0;
     iVar7 = 8;
-    fStack_c = fGpffff8784;
+    fStack_c = fRam0036ee74;
     do {
       fVar13 = *(float *)(pbVar8 + 4);
       if (fVar13 != 0.0) {

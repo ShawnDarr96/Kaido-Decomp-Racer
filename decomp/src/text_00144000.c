@@ -390,7 +390,7 @@ bool DmaChain_Init(uint *param_1,uint param_2)
   int iVar5;
   
   *param_1 = param_2;
-  uVar2 = Mem_Alloc16(*param_1 * 0x1c,uGpffff8990);
+  uVar2 = Mem_Alloc16(*param_1 * 0x1c,uRam0036f080);
   param_1[1] = uVar2;
   if (param_1[1] == 0) {
     bVar1 = false;
@@ -411,7 +411,7 @@ bool DmaChain_Init(uint *param_1,uint param_2)
         iVar5 = iVar5 + 0x1c;
       } while (uVar2 < *param_1);
     }
-    lVar4 = DmaBuf_Alloc(param_1 + 2,uGpffff8990,param_2 + 1);
+    lVar4 = DmaBuf_Alloc(param_1 + 2,uRam0036f080,param_2 + 1);
     bVar1 = lVar4 != 0;
   }
   return bVar1;
@@ -655,7 +655,7 @@ undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,un
   *(undefined4 *)(iVar4 + 0x387f50) = 0;
   *(undefined4 *)(iVar4 + 0x387f54) = param_2;
   *(undefined4 *)(iVar4 + 0x387f58) = 0;
-  uVar2 = Mem_Alloc16(*(int *)(iVar4 + 0x387f54) * 0x28,uGpffff8990);
+  uVar2 = Mem_Alloc16(*(int *)(iVar4 + 0x387f54) * 0x28,uRam0036f080);
   *(undefined4 *)(iVar4 + 0x387f5c) = uVar2;
   if (*(int *)(iVar4 + 0x387f5c) == 0) {
     uVar2 = 0;
@@ -671,7 +671,7 @@ undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,un
           bVar1 = false;
         }
         else {
-          lVar3 = DmaBuf_Alloc(iVar5 + 0x18,uGpffff8990,param_3);
+          lVar3 = DmaBuf_Alloc(iVar5 + 0x18,uRam0036f080,param_3);
           if (lVar3 == 0) {
             bVar1 = false;
           }
@@ -732,7 +732,7 @@ void DmaChain_DestroyAll(void)
   uRam00387f50 = 0;
   uRam00387f54 = 0;
   uRam00387f58 = 0;
-  uGpffff8990 = 0;
+  uRam0036f080 = 0;
   uRam00387f5c = 0;
   uRam00387f60 = 0;
   uRam00387f64 = 0;
@@ -757,7 +757,7 @@ void DmaChain_DestroyAll(void)
 void DmaChain_SetHeap(undefined4 param_1)
 
 {
-  uGpffff8990 = param_1;
+  uRam0036f080 = param_1;
   uRam00387f54 = 0;
   uRam00387f50 = 0;
   uRam00387f5c = 0;
@@ -939,7 +939,7 @@ void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int p
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x38fcf0);
+                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fcf0);
     }
     else {
       if (*pbVar5 == 5) {
@@ -950,7 +950,7 @@ void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int p
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x38fd30);
+                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fd30);
     }
   }
   else if (param_6 == 0) {
@@ -990,7 +990,7 @@ void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x38fce0);
+                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fce0);
     }
     else {
       if (*pbVar5 == 5) {
@@ -1001,7 +1001,7 @@ void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x38fd20);
+                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fd20);
     }
   }
   else if (param_4 == 0) {
@@ -1034,7 +1034,7 @@ void Pkt_Begin(undefined8 param_1)
       bVar1 = *pbVar3;
     }
     Pkt_AddGsRegisters(param_1,(uint)bVar1 * 0x8280 +
-                               iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x388660);
+                               iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x388660);
   }
   else {
     maybe_Gs_BuildSpritePacket
@@ -1062,7 +1062,7 @@ void Pkt_End(byte *param_1)
       bVar1 = *param_1;
     }
     Pkt_AddGsDefaults(param_1,(uint)bVar1 * 0x8280 +
-                              iGpffff88a0 * 0x28c80 + (uGpffff88a4 & 1) * 0x51900 + 0x38fca0);
+                              iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fca0);
   }
   else {
     Pkt_AddGsDefaults(param_1,*(int *)(param_1 + 0x14) + 0x480);
@@ -1507,7 +1507,7 @@ undefined4 * Pkt_AddVu1Base(undefined8 param_1,int param_2)
 {
   undefined4 *puVar1;
   
-  param_2 = param_2 * iGpffff88a0;
+  param_2 = param_2 * iRam0036ef90;
   puVar1 = (undefined4 *)Pkt_AllocDmaRef(param_1,6,0,0x10000000);
   *puVar1 = 0x30000e6;
   puVar1[1] = 0x200018d;

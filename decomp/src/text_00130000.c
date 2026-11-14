@@ -2916,23 +2916,24 @@ void vu0math_sub_001337f0
 float maybe_Rand_Next(float param_1,float param_2)
 
 {
-  iGpffff8010 = iGpffff8010 * 0x41c64e6d + 0x3039;
-  return (param_2 - param_1) * (float)(iGpffff8010 >> 0x10 & 0x7fff) * 3.051851e-05 + param_1 + 0.0;
+  iRam0036e700 = iRam0036e700 * 0x41c64e6d + 0x3039;
+  return (param_2 - param_1) * (float)(iRam0036e700 >> 0x10 & 0x7fff) * 3.051851e-05 + param_1 + 0.0
+  ;
 }
 
 // 0x00133940  size 0x58
 uint maybe_Rand_Float(void)
 
 {
-  iGpffff8010 = iGpffff8010 * 0x41c64e6d + 0x3039;
-  return iGpffff8010 >> 0x10 & 0x7fff;
+  iRam0036e700 = iRam0036e700 * 0x41c64e6d + 0x3039;
+  return iRam0036e700 >> 0x10 & 0x7fff;
 }
 
 // 0x001339a0  size 0x8
 void maybe_Rand_Seed(undefined4 param_1)
 
 {
-  uGpffff8010 = param_1;
+  uRam0036e700 = param_1;
   return;
 }
 

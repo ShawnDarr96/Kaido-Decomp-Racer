@@ -256,9 +256,9 @@ void script_sub_002b8d70(undefined8 param_1,int param_2,int *param_3,int *param_
 
 {
   param_2 = param_2 * 0xc;
-  *param_3 = *(ushort *)(*(int *)(iGpffff90f4 + 8) + param_2) + 0x1ca6;
-  *param_4 = *(ushort *)(*(int *)(iGpffff90f4 + 8) + param_2) + 0x1db4;
-  *param_5 = *(ushort *)(*(int *)(iGpffff90f4 + 8) + param_2) + 0x1ec2;
+  *param_3 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_2) + 0x1ca6;
+  *param_4 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_2) + 0x1db4;
+  *param_5 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_2) + 0x1ec2;
   return;
 }
 
@@ -1864,7 +1864,7 @@ LAB_002bb5d8:
         param_1[0x227b] = 4;
         iVar5 = Mem_AllocAligned(0x3500,0x10,param_1[0xc]);
         param_1[2] = iVar5;
-        Thread_Create(param_1,iGpffff8bb4 + 1,0x2b8a40,param_1[2],0x3500,0);
+        Thread_Create(param_1,iRam0036f2a4 + 1,0x2b8a40,param_1[2],0x3500,0);
         param_1[3] = 0;
         Thread_Start(param_1,param_1);
         uVar6 = 1;
@@ -2036,6 +2036,7 @@ void script_sub_002bb810(int param_1)
 
 // 0x002bb990  size 0x62c
 /* WARNING: Removing unreachable block (ram,0x002bbde4) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void script_sub_002bb990(int param_1)
 
@@ -2147,7 +2148,7 @@ void script_sub_002bb990(int param_1)
               bVar1 = true;
             }
             else if (iVar8 < 0) {
-              iVar9 = (iVar7 + 0x1db4) * 0x14 + iGpffff89d4;
+              iVar9 = (iVar7 + 0x1db4) * 0x14 + _g_ArcToc;
               iVar8 = *(int *)(iVar9 + 0x20);
               if (iVar8 == 0) {
                 uVar2 = *(uint *)(iVar9 + 0x18);
@@ -2187,7 +2188,7 @@ void script_sub_002bb990(int param_1)
           else {
             iVar6 = iVar5 * 0xda8;
             iVar8 = *(int *)(iVar6 + param_1 + 0x2f0) + 0x1db4;
-            iVar7 = iVar8 * 0x14 + iGpffff89d4;
+            iVar7 = iVar8 * 0x14 + _g_ArcToc;
             iVar4 = *(int *)(iVar7 + 0x20);
             if (iVar4 == 0) {
               uVar2 = *(uint *)(iVar7 + 0x18);
@@ -2259,7 +2260,7 @@ void script_sub_002bbfc0(undefined8 param_1,int param_2,int param_3)
   int iVar2;
   int iVar3;
   
-  uVar1 = *(ushort *)(*(int *)(iGpffff90f4 + 8) + param_3 * 0xc);
+  uVar1 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_3 * 0xc);
   iVar2 = (int)param_1;
   if (uVar1 == 0) {
     iVar3 = iVar2 + param_2 * 0xda8;

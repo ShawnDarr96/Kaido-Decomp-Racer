@@ -1731,7 +1731,7 @@ void Pkt_AddPrimitives(undefined8 param_1,uint *param_2,int param_3)
 void Scene_SetCallback2(undefined4 param_1)
 
 {
-  uGpffff89c4 = param_1;
+  uRam0036f0b4 = param_1;
   return;
 }
 
@@ -1739,7 +1739,7 @@ void Scene_SetCallback2(undefined4 param_1)
 void Scene_SetResetCheck(undefined4 param_1)
 
 {
-  uGpffff89c0 = param_1;
+  uRam0036f0b0 = param_1;
   return;
 }
 
@@ -1747,15 +1747,15 @@ void Scene_SetResetCheck(undefined4 param_1)
 undefined4 Scene_GetNext(void)
 
 {
-  return uGpffff89a0;
+  return uRam0036f090;
 }
 
 // 0x0014b880  size 0x10
 void Scene_RequestChange(undefined4 param_1)
 
 {
-  uGpffff89a0 = param_1;
-  uGpffff89bc = 1;
+  uRam0036f090 = param_1;
+  uRam0036f0ac = 1;
   return;
 }
 
@@ -1763,7 +1763,7 @@ void Scene_RequestChange(undefined4 param_1)
 void Scene_RequestExit(void)
 
 {
-  uGpffff89b8 = 1;
+  uRam0036f0a8 = 1;
   return;
 }
 
@@ -1773,15 +1773,15 @@ void Scene_RequestExit(void)
 undefined4 Scene_SetParam(undefined4 param_1)
 
 {
-  uGpffff89a8 = param_1;
-  return uGpffff89a4;
+  uRam0036f098 = param_1;
+  return uRam0036f094;
 }
 
 // 0x0014b8b0  size 0x8
 undefined4 Scene_GetParam(void)
 
 {
-  return uGpffff89a4;
+  return uRam0036f094;
 }
 
 // 0x0014b8c0  size 0x1f4
@@ -1799,71 +1799,71 @@ undefined4 Scene_Update(void)
   undefined4 uVar7;
   
   uVar7 = 0;
-  if (cGpffff8060 == '\x04') {
-    if (pcGpffff89c4 == (code *)0x0) {
+  if (cRam0036e750 == '\x04') {
+    if (pcRam0036f0b4 == (code *)0x0) {
       uVar7 = 1;
     }
     else {
-      lVar3 = (*pcGpffff89c4)();
+      lVar3 = (*pcRam0036f0b4)();
       if (lVar3 != 0) {
         uVar7 = 1;
       }
     }
   }
-  else if (cGpffff8060 == '\x03') {
-    iVar2 = *piGpffff89b4;
+  else if (cRam0036e750 == '\x03') {
+    iVar2 = *piRam0036f0a4;
     if (iVar2 != 0) {
       iVar5 = 0;
       do {
         Task_RunPostUpdate(**(undefined4 **)(iVar2 + 0x14));
         iVar5 = iVar5 + 4;
-        iVar2 = *(int *)((int)piGpffff89b4 + iVar5);
+        iVar2 = *(int *)((int)piRam0036f0a4 + iVar5);
       } while (iVar2 != 0);
     }
     Scene_FreeObjects();
-    cGpffff8060 = '\x04';
+    cRam0036e750 = '\x04';
   }
-  else if (cGpffff8060 == '\x02') {
-    if (pcGpffff89c0 == (code *)0x0) {
-      cGpffff8060 = '\x03';
+  else if (cRam0036e750 == '\x02') {
+    if (pcRam0036f0b0 == (code *)0x0) {
+      cRam0036e750 = '\x03';
     }
     else {
-      lVar3 = (*pcGpffff89c0)();
+      lVar3 = (*pcRam0036f0b0)();
       if (lVar3 != 0) {
-        cGpffff8060 = '\x03';
+        cRam0036e750 = '\x03';
       }
     }
   }
-  else if (cGpffff8060 == '\x01') {
-    piVar4 = *(int **)(iGpffff89b0 + uGpffff89a4 * 4);
-    while (((undefined4 *)*piVar4 != (undefined4 *)0x0 && (iGpffff89b8 == 0))) {
+  else if (cRam0036e750 == '\x01') {
+    piVar4 = *(int **)(iRam0036f0a0 + uRam0036f094 * 4);
+    while (((undefined4 *)*piVar4 != (undefined4 *)0x0 && (iRam0036f0a8 == 0))) {
       Task_RunUpdate(*(undefined4 *)*piVar4);
       piVar4 = piVar4 + 2;
     }
-    if (uGpffff89a8 != uGpffff89a4) {
-      puVar6 = *(undefined4 **)(iGpffff89b0 + uGpffff89a4 * 4);
+    if (uRam0036f098 != uRam0036f094) {
+      puVar6 = *(undefined4 **)(iRam0036f0a0 + uRam0036f094 * 4);
       puVar1 = (undefined4 *)*puVar6;
       while (puVar1 != (undefined4 *)0x0) {
-        if ((puVar6[1] & 1 << (uGpffff89a8 & 0x1f)) != 0) {
+        if ((puVar6[1] & 1 << (uRam0036f098 & 0x1f)) != 0) {
           Task_RunPostUpdate(*puVar1);
         }
         puVar6 = puVar6 + 2;
         puVar1 = (undefined4 *)*puVar6;
       }
-      uGpffff89a4 = uGpffff89a8;
+      uRam0036f094 = uRam0036f098;
     }
-    if (iGpffff89bc != 0) {
-      cGpffff8060 = '\x02';
+    if (iRam0036f0ac != 0) {
+      cRam0036e750 = '\x02';
     }
-    iGpffff89b8 = 0;
-    iGpffff89bc = 0;
+    iRam0036f0a8 = 0;
+    iRam0036f0ac = 0;
   }
   else {
-    if (cGpffff8060 != '\0') {
+    if (cRam0036e750 != '\0') {
       return 0;
     }
-    Scene_CreateObjects(piGpffff89b4);
-    cGpffff8060 = '\x01';
+    Scene_CreateObjects(piRam0036f0a4);
+    cRam0036e750 = '\x01';
   }
   return uVar7;
 }
@@ -1872,15 +1872,15 @@ undefined4 Scene_Update(void)
 void Scene_Start(int param_1)
 
 {
-  uGpffff8060 = 0;
-  uGpffff89a0 = 0;
-  uGpffff89a4 = *(undefined4 *)(param_1 + 4);
-  uGpffff89a8 = *(undefined4 *)(param_1 + 4);
-  uGpffff89ac = *(undefined4 *)(param_1 + 8);
-  uGpffff89b0 = *(undefined4 *)(param_1 + 0xc);
-  uGpffff89b4 = *(undefined4 *)(param_1 + 0x10);
-  uGpffff89b8 = 0;
-  uGpffff89bc = 0;
+  uRam0036e750 = 0;
+  uRam0036f090 = 0;
+  uRam0036f094 = *(undefined4 *)(param_1 + 4);
+  uRam0036f098 = *(undefined4 *)(param_1 + 4);
+  uRam0036f09c = *(undefined4 *)(param_1 + 8);
+  uRam0036f0a0 = *(undefined4 *)(param_1 + 0xc);
+  uRam0036f0a4 = *(undefined4 *)(param_1 + 0x10);
+  uRam0036f0a8 = 0;
+  uRam0036f0ac = 0;
   return;
 }
 
@@ -1964,7 +1964,7 @@ void Scene_CreateObjects(int *param_1)
   
   iVar5 = 0;
   iVar4 = 0;
-  iGpffff8998 = 0;
+  iRam0036f088 = 0;
   piVar6 = (int *)*param_1;
   if (piVar6 != (int *)0x0) {
     piVar3 = param_1;
@@ -1975,17 +1975,17 @@ void Scene_CreateObjects(int *param_1)
       iVar4 = iVar4 + *piVar1;
       piVar3 = piVar3 + 1;
       piVar6 = (int *)*piVar3;
-      iGpffff8998 = iGpffff8998 + *piVar1 * (iVar2 + 0xfU & 0xfffffff0);
+      iRam0036f088 = iRam0036f088 + *piVar1 * (iVar2 + 0xfU & 0xfffffff0);
     } while (piVar6 != (int *)0x0);
   }
   uVar8 = iVar5 * 0x14 + 0xfU & 0xfffffff0;
   uVar10 = iVar4 * 0x24 + 0xfU & 0xfffffff0;
-  iGpffff8998 = iGpffff8998 + uVar8 + uVar10;
-  puGpffff899c = (undefined4 *)Mem_Alloc16(iGpffff8998,uGpffff8994);
-  puVar9 = (undefined4 *)((int)puGpffff899c + uVar8);
+  iRam0036f088 = iRam0036f088 + uVar8 + uVar10;
+  puRam0036f08c = (undefined4 *)Mem_Alloc16(iRam0036f088,uRam0036f084);
+  puVar9 = (undefined4 *)((int)puRam0036f08c + uVar8);
   iVar4 = (int)puVar9 + uVar10;
   piVar6 = (int *)*param_1;
-  puVar7 = puGpffff899c;
+  puVar7 = puRam0036f08c;
   while (piVar6 != (int *)0x0) {
     if (puVar7 != (undefined4 *)0x0) {
       TaskList_ctor(puVar7);
@@ -2017,7 +2017,7 @@ void Scene_Shutdown(void)
 
 {
   Scene_FreeObjects();
-  uGpffff8994 = 0;
+  uRam0036f084 = 0;
   return;
 }
 
@@ -2025,13 +2025,15 @@ void Scene_Shutdown(void)
 void maybe_Scene_InitHeap(undefined4 param_1)
 
 {
-  uGpffff8994 = param_1;
-  uGpffff8998 = 0;
-  uGpffff899c = 0;
+  uRam0036f084 = param_1;
+  uRam0036f088 = 0;
+  uRam0036f08c = 0;
   return;
 }
 
 // 0x0014be40  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4)
 
 {
@@ -2049,7 +2051,7 @@ void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4
   
   uStack_8 = (undefined4)param_3;
   auStack_30[0] = 0x400c;
-  iVar1 = iGpffff89d4 + param_1 * 0x14;
+  iVar1 = _g_ArcToc + param_1 * 0x14;
   if (param_3 != 0) {
     auStack_30[0] = 0x600c;
   }
@@ -2058,7 +2060,7 @@ void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4
   }
   uStack_28 = 0;
   uStack_20 = 0;
-  iStack_24 = iGpffff89d0 + *(int *)(iVar1 + 0x10);
+  iStack_24 = iRam0036f0c0 + *(int *)(iVar1 + 0x10);
   if ((auStack_30[0] & 0x100) == 0) {
     uStack_1c = *(undefined4 *)(iVar1 + 0x14);
     uStack_18 = 0;
@@ -2075,6 +2077,7 @@ void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4
 }
 
 // 0x0014bf00  size 0xd4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 54 callers */
 
 void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param_4,long param_5,
@@ -2096,7 +2099,7 @@ void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param
   uStack_20 = (undefined4)param_5;
   uStack_8 = (undefined4)param_3;
   auStack_30[0] = 0x4824;
-  iVar1 = iGpffff89d4 + param_1 * 0x14;
+  iVar1 = _g_ArcToc + param_1 * 0x14;
   if (param_3 != 0) {
     auStack_30[0] = 0x6824;
   }
@@ -2107,7 +2110,7 @@ void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param
     auStack_30[0] = auStack_30[0] | 0x100;
   }
   uStack_28 = 0;
-  iStack_24 = iGpffff89d0 + *(int *)(iVar1 + 0x10);
+  iStack_24 = iRam0036f0c0 + *(int *)(iVar1 + 0x10);
   if ((auStack_30[0] & 0x100) == 0) {
     if (param_6 == 0) {
       param_6 = *(int *)(iVar1 + 0x14);
@@ -2127,6 +2130,8 @@ void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param
 }
 
 // 0x0014bfe0  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint Arc_GetFileSize(uint param_1,uint param_2,long param_3)
 
 {
@@ -2137,7 +2142,7 @@ uint Arc_GetFileSize(uint param_1,uint param_2,long param_3)
   
   uVar3 = 0;
   if (param_1 <= param_2) {
-    iVar4 = iGpffff89d4 + param_1 * 0x14;
+    iVar4 = _g_ArcToc + param_1 * 0x14;
     uVar1 = uVar3;
     do {
       uVar3 = *(uint *)(iVar4 + 0x20);

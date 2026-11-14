@@ -619,9 +619,9 @@ void CarAsset_SelectLod(undefined8 param_1,long param_2)
   uint uStack_4;
   
   iVar6 = (int)param_1;
-  if (uGpffff8be4 <= uGpffff8be8) {
-    iVar8 = iVar6 + uGpffff8be4 * 100;
-    uVar7 = uGpffff8be4;
+  if (uRam0036f2d4 <= uRam0036f2d8) {
+    iVar8 = iVar6 + uRam0036f2d4 * 100;
+    uVar7 = uRam0036f2d4;
     do {
       uVar5 = 0;
       piVar3 = &DAT_00317ff0;
@@ -649,7 +649,7 @@ void CarAsset_SelectLod(undefined8 param_1,long param_2)
       } while (uVar5 < 7);
       uVar7 = uVar7 + 1;
       iVar8 = iVar8 + 100;
-    } while (uVar7 <= uGpffff8be8);
+    } while (uVar7 <= uRam0036f2d8);
   }
   *(int *)(iVar6 + 0x2c) = (int)param_2;
   return;
@@ -700,9 +700,9 @@ void CarAsset_RelocatePart(undefined8 param_1,byte param_2,undefined8 param_3)
   *(undefined1 *)(iVar2 + 0x52) = puVar6[6];
   *(undefined1 *)(iVar2 + 0x53) = puVar6[7];
   if ((((param_2 != 4) || (*(int *)(iVar8 + 0x30) != 0)) &&
-      ((param_2 != 5 || (*(int *)(iVar8 + 0x34) != 0)))) && (uGpffff8be4 <= uGpffff8be8)) {
-    iVar8 = iVar8 + uGpffff8be4 * 100;
-    uVar7 = uGpffff8be4;
+      ((param_2 != 5 || (*(int *)(iVar8 + 0x34) != 0)))) && (uRam0036f2d4 <= uRam0036f2d8)) {
+    iVar8 = iVar8 + uRam0036f2d4 * 100;
+    uVar7 = uRam0036f2d4;
     do {
       uVar4 = 0;
       piVar3 = &DAT_00317fd0;
@@ -719,7 +719,7 @@ void CarAsset_RelocatePart(undefined8 param_1,byte param_2,undefined8 param_3)
       } while (uVar4 < 8);
       uVar7 = uVar7 + 1;
       iVar8 = iVar8 + 100;
-    } while (uVar7 <= uGpffff8be8);
+    } while (uVar7 <= uRam0036f2d8);
   }
   return;
 }
@@ -732,11 +732,11 @@ void CarAsset_SetPaintColor(undefined8 param_1,undefined8 param_2,char param_3)
   int iVar2;
   uint uVar3;
   
-  uVar1 = uGpffff8be8;
   iVar2 = ((uint)param_2 & 0xff) + (int)param_1;
   if (param_3 != *(char *)(iVar2 + 0x3c)) {
     *(char *)(iVar2 + 0x3c) = param_3;
-    for (uVar3 = uGpffff8be4; uVar3 <= uVar1; uVar3 = uVar3 + 1) {
+    uVar1 = uRam0036f2d8;
+    for (uVar3 = uRam0036f2d4; uVar3 <= uVar1; uVar3 = uVar3 + 1) {
       CarAsset_UploadPalette(param_1,uVar3,param_2);
     }
   }
@@ -752,11 +752,11 @@ void CarAsset_SetAero(undefined8 param_1,undefined1 param_2)
   int iVar3;
   uint uVar4;
   
-  uVar1 = uGpffff8be8;
   *(undefined1 *)((int)param_1 + 0x3b) = param_2;
-  if (uGpffff8be4 <= uGpffff8be8) {
-    iVar3 = (int)param_1 + uGpffff8be4 * 4;
-    uVar4 = uGpffff8be4;
+  uVar1 = uRam0036f2d8;
+  if (uRam0036f2d4 <= uRam0036f2d8) {
+    iVar3 = (int)param_1 + uRam0036f2d4 * 4;
+    uVar4 = uRam0036f2d4;
     do {
       uVar2 = Gut_PackGetEntry(*(undefined4 *)(iVar3 + 0x80),0,0);
       CarAsset_InstallPart(param_1,uVar4,uVar2,0,0x12,0x12);
@@ -776,11 +776,11 @@ void CarAsset_SetSpoiler(int param_1,undefined1 param_2)
   uint uVar3;
   uint uVar4;
   
-  uVar3 = uGpffff8be8;
   *(undefined1 *)(param_1 + 0x3a) = param_2;
-  if (uGpffff8be4 <= uGpffff8be8) {
-    iVar2 = param_1 + uGpffff8be4 * 4;
-    uVar4 = uGpffff8be4;
+  uVar3 = uRam0036f2d8;
+  if (uRam0036f2d4 <= uRam0036f2d8) {
+    iVar2 = param_1 + uRam0036f2d4 * 4;
+    uVar4 = uRam0036f2d4;
     do {
       uVar1 = Gut_PackGetEntry(*(undefined4 *)(iVar2 + 0x80),0,0);
       CarAsset_InstallPart(param_1,uVar4,uVar1,0,0x14,0x14);
@@ -808,11 +808,11 @@ void CarAsset_SetBodyKit(undefined8 param_1,undefined1 param_2)
   uint uVar4;
   int iVar5;
   
-  uVar2 = uGpffff8be8;
   *(undefined1 *)((int)param_1 + 0x39) = param_2;
-  if (uGpffff8be4 <= uGpffff8be8) {
-    iVar5 = (int)param_1 + uGpffff8be4 * 4;
-    uVar4 = uGpffff8be4;
+  uVar2 = uRam0036f2d8;
+  if (uRam0036f2d4 <= uRam0036f2d8) {
+    iVar5 = (int)param_1 + uRam0036f2d4 * 4;
+    uVar4 = uRam0036f2d4;
     do {
       uVar1 = *(undefined4 *)(iVar5 + 0x80);
       CarAsset_UploadPaletteDefault(param_1,uVar4);
@@ -829,52 +829,53 @@ void CarAsset_SetBodyKit(undefined8 param_1,undefined1 param_2)
 void CarAsset_SetWheelType(int param_1,undefined1 param_2)
 
 {
-  uint uVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  int iVar4;
+  undefined8 uVar1;
+  uint uVar2;
+  int iVar3;
+  uint uVar4;
   uint uVar5;
   
-  uVar3 = uGpffff8be8;
   if (*(int *)(param_1 + 0xc) != 0x11d) {
     *(undefined1 *)(param_1 + 0x38) = param_2;
-    if (uGpffff8be4 <= uGpffff8be8) {
-      iVar4 = param_1 + uGpffff8be4 * 4;
-      uVar1 = uGpffff8be4;
+    uVar5 = uRam0036f2d8;
+    if (uRam0036f2d4 <= uRam0036f2d8) {
+      iVar3 = param_1 + uRam0036f2d4 * 4;
+      uVar2 = uRam0036f2d4;
       do {
-        uVar2 = Gut_PackGetEntry(*(undefined4 *)(iVar4 + 0x80),0,0);
-        CarAsset_InstallPart(param_1,uVar1,uVar2,0,3,3);
-        uVar1 = uVar1 + 1;
-        iVar4 = iVar4 + 4;
-      } while (uVar1 <= uVar3);
+        uVar1 = Gut_PackGetEntry(*(undefined4 *)(iVar3 + 0x80),0,0);
+        CarAsset_InstallPart(param_1,uVar2,uVar1,0,3,3);
+        uVar2 = uVar2 + 1;
+        iVar3 = iVar3 + 4;
+      } while (uVar2 <= uVar5);
     }
-    uVar3 = uGpffff8be4 + 1;
-    if (uVar3 <= uGpffff8be8) {
-      iVar4 = param_1 + uVar3 * 100;
+    uVar5 = uRam0036f2d8;
+    uVar2 = uRam0036f2d4 + 1;
+    if (uVar2 <= uRam0036f2d8) {
+      iVar3 = param_1 + uVar2 * 100;
       do {
-        if (uVar3 == 2) {
-          *(undefined4 *)(iVar4 + 0xa4) = *(undefined4 *)(param_1 + uGpffff8be4 * 100 + 0xa4);
+        if (uVar2 == 2) {
+          *(undefined4 *)(iVar3 + 0xa4) = *(undefined4 *)(param_1 + uRam0036f2d4 * 100 + 0xa4);
         }
-        uVar3 = uVar3 + 1;
-        iVar4 = iVar4 + 100;
-      } while (uVar3 <= uGpffff8be8);
+        uVar2 = uVar2 + 1;
+        iVar3 = iVar3 + 100;
+      } while (uVar2 <= uVar5);
     }
-    uVar2 = Gut_PackGetEntry(*(undefined4 *)(uGpffff8be4 * 4 + param_1 + 0x80),0,0);
-    uVar3 = 0;
-    iVar4 = param_1;
+    uVar1 = Gut_PackGetEntry(*(undefined4 *)(uRam0036f2d4 * 4 + param_1 + 0x80),0,0);
+    uVar5 = 0;
+    iVar3 = param_1;
     do {
       if (*(byte *)(param_1 + 0x38) == 0) {
-        uVar1 = 0;
+        uVar2 = 0;
       }
       else {
-        uVar1 = (uint)(*(byte *)(param_1 + 0x38) >> 1);
+        uVar2 = (uint)(*(byte *)(param_1 + 0x38) >> 1);
       }
-      uVar5 = 1 << (uVar3 & 0x1f);
-      *(uint *)(param_1 + 0x7c) = *(uint *)(param_1 + 0x7c) & ~uVar5;
-      CarAsset_CopyPartModel(param_1,iVar4 + 0x550,uVar2,uVar3 + uVar1 * 4 + 0x25,uVar5,0);
-      uVar3 = uVar3 + 1;
-      iVar4 = iVar4 + 0x10;
-    } while (uVar3 < 4);
+      uVar4 = 1 << (uVar5 & 0x1f);
+      *(uint *)(param_1 + 0x7c) = *(uint *)(param_1 + 0x7c) & ~uVar4;
+      CarAsset_CopyPartModel(param_1,iVar3 + 0x550,uVar1,uVar5 + uVar2 * 4 + 0x25,uVar4,0);
+      uVar5 = uVar5 + 1;
+      iVar3 = iVar3 + 0x10;
+    } while (uVar5 < 4);
   }
   return;
 }
@@ -899,12 +900,12 @@ uint CarAsset_GetPartVariant(undefined8 param_1,uint param_2)
     }
   }
   else {
-    uVar1 = uGpffff8be4;
-    if (uGpffff8be4 <= param_2) {
+    uVar1 = uRam0036f2d4;
+    if (uRam0036f2d4 <= param_2) {
       uVar1 = param_2;
     }
-    param_2 = uGpffff8be8;
-    if (uVar1 <= uGpffff8be8) {
+    param_2 = uRam0036f2d8;
+    if (uVar1 <= uRam0036f2d8) {
       param_2 = uVar1;
     }
   }
@@ -1478,11 +1479,11 @@ undefined8 CarAsset_Load(undefined8 param_1)
   }
   iVar10 = 0;
   *(undefined4 *)(iVar9 + 8) = 1;
-  iVar6 = *(int *)(iVar9 + 0xc) * 5;
-  uVar11 = iGpffff8be8 + iVar6;
-  uVar7 = iGpffff8be4 + iVar6;
+  iVar6 = iRam0036f2d4;
+  iVar2 = *(int *)(iVar9 + 0xc) * 5;
+  uVar11 = iRam0036f2d8 + iVar2;
+  uVar7 = iRam0036f2d4 + iVar2;
   *(undefined4 *)(iVar9 + 0x94) = 0;
-  iVar6 = iGpffff8be4;
   for (; uVar7 <= uVar11; uVar7 = uVar7 + 1) {
     if ((cRam00436478 != '\x01') || ((iVar6 != 0 && (1 < iVar6 - 2U)))) {
       iVar2 = Arc_GetFileSize(uVar7 + 0xff,uVar7 + 0xff,1);
@@ -1508,7 +1509,7 @@ undefined8 CarAsset_Load(undefined8 param_1)
         iVar4 = iVar1;
         iVar1 = iVar1 + iVar2;
       }
-      *(int *)(iVar9 + (iGpffff8be4 + iVar10) * 4 + 0x80) = iVar4;
+      *(int *)(iVar9 + (iRam0036f2d4 + iVar10) * 4 + 0x80) = iVar4;
       *(int *)(iVar9 + 0x94) = *(int *)(iVar9 + 0x94) + iVar2;
       iVar4 = iVar8;
     }
@@ -1675,19 +1676,19 @@ void DriverAsset_Setup(undefined8 param_1,undefined8 param_2)
   uVar1 = Gut_PackGetEntry(param_2,0,0);
   uRam00436350 = (undefined4)uVar1;
   Model_Relocate(uVar1);
-  iVar2 = iGpffff8bfc + iGpffff8bd0;
+  iVar2 = iRam0036f2ec + iRam0036f2c0;
   uVar1 = Gut_PackGetEntry(param_2,1,0);
   Res_UploadTexture(0x436320,0x436354,uVar1,0,1,iVar2,0,0);
-  iVar2 = iGpffff8bfc + iGpffff8bd0;
+  iVar2 = iRam0036f2ec + iRam0036f2c0;
   uVar1 = Gut_PackGetEntry(param_2,2,0);
   Res_UploadTexture(0x436320,0x436370,uVar1,0,0,iVar2,0,0);
-  iVar2 = iGpffff8bfc + iGpffff8bd0;
+  iVar2 = iRam0036f2ec + iRam0036f2c0;
   uVar1 = Gut_PackGetEntry(param_2,3,0);
   Res_UploadTexture(0x436320,0x43638c,uVar1,0,0,iVar2,0,0);
-  iVar2 = iGpffff8bfc + iGpffff8bd0;
+  iVar2 = iRam0036f2ec + iRam0036f2c0;
   uVar1 = Gut_PackGetEntry(param_2,4,0);
   Res_UploadTexture(0x436320,0x4363a8,uVar1,0,0,iVar2,0,0);
-  iVar2 = iGpffff8bfc + iGpffff8bd0;
+  iVar2 = iRam0036f2ec + iRam0036f2c0;
   uVar1 = Gut_PackGetEntry(param_2,5,0);
   Res_UploadTexture(0x436320,0x4363c4,uVar1,0,0,iVar2,0,0);
   uRam0043634c = 1;
@@ -1759,6 +1760,8 @@ void DriverAsset_ClearFlag(undefined8 param_1)
 }
 
 // 0x001af720  size 0x17c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Rival_CountActive(int param_1)
 
 {
@@ -1777,7 +1780,7 @@ undefined4 Rival_CountActive(int param_1)
   else if ((iVar1 != -1) && (*(int *)(param_1 + 0x44) == -1)) {
     iVar5 = 0;
     iVar4 = 0;
-    iVar3 = *piGpffff8c08;
+    iVar3 = *_g_Profiles;
     do {
       if (*(int *)(iVar3 + 0x2b14) != -1) {
         iVar5 = iVar5 + 1;
@@ -1792,7 +1795,7 @@ undefined4 Rival_CountActive(int param_1)
   if ((iVar1 == -1) && (*(int *)(param_1 + 0x44) != -1)) {
     iVar5 = 0;
     iVar4 = 0;
-    iVar3 = *piGpffff8c08;
+    iVar3 = *_g_Profiles;
     do {
       if (*(int *)(iVar3 + 0x2a74) != -1) {
         iVar5 = iVar5 + 1;
@@ -1807,7 +1810,7 @@ undefined4 Rival_CountActive(int param_1)
   if ((iVar1 != -1) && (*(int *)(param_1 + 0x44) != -1)) {
     iVar6 = 0;
     iVar5 = 0;
-    iVar3 = *piGpffff8c08;
+    iVar3 = *_g_Profiles;
     iVar4 = iVar3;
     do {
       if (*(int *)(iVar4 + 0x2a74) != -1) {
@@ -1835,6 +1838,8 @@ undefined4 Rival_CountActive(int param_1)
 }
 
 // 0x001af8a0  size 0x36c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint Rival_PickEncounter(void)
 
 {
@@ -1845,7 +1850,7 @@ uint Rival_PickEncounter(void)
   uint uVar5;
   float fVar6;
   
-  iVar2 = *piGpffff8c08;
+  iVar2 = *_g_Profiles;
   sVar1 = *(short *)(iVar2 + 0x5308);
   iVar3 = (*(int *)(iVar2 + 0x2bd4) * 100) / 5000000;
   if (sVar1 < 0xfb) {
@@ -1968,6 +1973,8 @@ uint Rival_PickEncounter(void)
 }
 
 // 0x001afc10  size 0x864
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint Rival_BuildEncounterList(void)
 
 {
@@ -2104,7 +2111,7 @@ uint Rival_BuildEncounterList(void)
   iVar6 = 0;
   piVar4 = aiStack_40;
   iVar8 = 0;
-  iVar10 = *piGpffff8c08;
+  iVar10 = *_g_Profiles;
   iVar1 = *(int *)(iVar10 + 0x2bd8);
   do {
     *piVar4 = 0;

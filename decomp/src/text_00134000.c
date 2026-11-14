@@ -337,10 +337,10 @@ undefined8 maybe_Gfx_VSyncWakeThread(void)
 {
   uint auStack_30 [12];
   
-  uGpffff88a8 = uGpffff88a8 + 1;
-  if ((uRam00380340 <= uGpffff88a8) &&
-     (iReferThreadStatus(uGpffff88b4,auStack_30), (auStack_30[0] & 4) != 0)) {
-    libkernl_sub_00112650(uGpffff88b4);
+  uRam0036ef98 = uRam0036ef98 + 1;
+  if ((uRam00380340 <= uRam0036ef98) &&
+     (iReferThreadStatus(uRam0036efa4,auStack_30), (auStack_30[0] & 4) != 0)) {
+    libkernl_sub_00112650(uRam0036efa4);
   }
   SYNC(0);
   EI();
@@ -407,8 +407,8 @@ void maybe_Gfx_KickVif1Dma(long param_1,long param_2)
     do {
       uVar1 = REG_DMAC_1_VIF1_CHCR;
     } while ((uVar1 & 0x100) != 0);
-    uGpffff88bc = (uint)param_1;
-    REG_DMAC_1_VIF1_TADR = uGpffff88bc & 0xfffffff;
+    uRam0036efac = (uint)param_1;
+    REG_DMAC_1_VIF1_TADR = uRam0036efac & 0xfffffff;
     REG_DMAC_1_VIF1_QWC = 0;
     REG_DMAC_1_VIF1_CHCR = 0x145;
   }
@@ -419,7 +419,7 @@ void maybe_Gfx_KickVif1Dma(long param_1,long param_2)
     REG_DMAC_2_GIF_TADR = (uint)param_2 & 0xfffffff;
     REG_DMAC_2_GIF_QWC = 0;
     REG_DMAC_2_GIF_CHCR = 0x105;
-    uGpffff88c0 = (uint)param_2;
+    uRam0036efb0 = (uint)param_2;
   }
   return;
 }
@@ -650,20 +650,20 @@ void Gfx_SyncAndFlip(void)
     REG_GIF_CTRL = 1;
     lVar4 = sceGsSyncPath(0,0);
   }
-  uGpffff88b0 = (uint)(uRam00380340 <= uGpffff88a8);
+  uRam0036efa0 = (uint)(uRam00380340 <= uRam0036ef98);
   SleepThread();
   do {
-  } while (uGpffff88a8 < uRam00380340);
+  } while (uRam0036ef98 < uRam00380340);
   uVar3 = REG_GS_CSR;
-  uGpffff88a4 = uGpffff88a4 + 1;
-  uGpffff88a8 = 0;
-  iGpffff88a0 = (int)((uVar3 & 0x2000) >> 0xd);
-  if (uGpffff889c != 0) {
+  uRam0036ef94 = uRam0036ef94 + 1;
+  uRam0036ef98 = 0;
+  iRam0036ef90 = (int)((uVar3 & 0x2000) >> 0xd);
+  if (uRam0036ef8c != 0) {
     do {
       uVar2 = REG_DMAC_2_GIF_CHCR;
     } while ((uVar2 & 0x100) != 0);
     FlushCache(0);
-    REG_DMAC_2_GIF_TADR = uGpffff889c & 0xfffffff;
+    REG_DMAC_2_GIF_TADR = uRam0036ef8c & 0xfffffff;
     REG_DMAC_2_GIF_QWC = 0;
     lVar4 = sceGsSyncPath(0,0);
     while (lVar4 != 0) {
@@ -700,7 +700,7 @@ void Gfx_SyncAndFlip(void)
     REG_GIF_CTRL = 1;
     lVar4 = sceGsSyncPath(0,0);
   }
-  puVar5 = (undefined8 *)(iGpffff88a0 * 0x50 + (uGpffff88a4 & 1) * 0xa0 + 0x3801f0);
+  puVar5 = (undefined8 *)(iRam0036ef90 * 0x50 + (uRam0036ef94 & 1) * 0xa0 + 0x3801f0);
   REG_GS_DISPFB1 = puVar5[2];
   REG_GS_DISPLAY1 = puVar5[3];
   REG_GS_DISPFB2 = puVar5[4];
@@ -712,9 +712,9 @@ void Gfx_SyncAndFlip(void)
   REG_GS_EXTDATA = puVar5[8];
   REG_GS_EXTWRITE = puVar5[9];
   REG_GS_BGCOLOR = 0;
-  if (iGpffff88ac != 0) {
+  if (iRam0036ef9c != 0) {
     REG_GS_PMODE = 0;
-    iGpffff88ac = iGpffff88ac + -1;
+    iRam0036ef9c = iRam0036ef9c + -1;
   }
   lVar4 = sceGsSyncPath(0,0);
   while (lVar4 != 0) {
@@ -795,9 +795,9 @@ void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
     uStack_40 = uStack_40 + 1;
     puVar3 = puVar3 + 10;
   } while (uStack_40 < 2);
-  uGpffff889c = 0;
+  uRam0036ef8c = 0;
   maybe_Mem_CopyQwords(0x380330,param_2,0x40);
-  uGpffff88b8 = sceGsSyncVCallback(0x134860);
+  uRam0036efa8 = sceGsSyncVCallback(0x134860);
   EnableIntc(2);
   return;
 }
@@ -806,9 +806,9 @@ void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
 void Gfx_Shutdown(void)
 
 {
-  if (iGpffff88b8 != 0) {
+  if (iRam0036efa8 != 0) {
     DisableIntc(2);
-    sceGsSyncVCallback(iGpffff88b8);
+    sceGsSyncVCallback(iRam0036efa8);
   }
   maybe_List_Clear(0x380380);
   return;
@@ -820,15 +820,15 @@ void Gfx_ResetState(void)
 {
   libgraph_sub_00108140(0);
   sceGsResetPath();
-  uGpffff88a0 = 0;
-  uGpffff88ac = 4;
-  uGpffff88a4 = 0;
-  uGpffff88a8 = 0;
-  uGpffff88b0 = 0;
-  uGpffff88b4 = GetThreadId();
-  uGpffff88b8 = 0;
-  uGpffff88bc = 0;
-  uGpffff88c0 = 0;
+  uRam0036ef90 = 0;
+  uRam0036ef9c = 4;
+  uRam0036ef94 = 0;
+  uRam0036ef98 = 0;
+  uRam0036efa0 = 0;
+  uRam0036efa4 = GetThreadId();
+  uRam0036efa8 = 0;
+  uRam0036efac = 0;
+  uRam0036efb0 = 0;
   return;
 }
 
@@ -852,8 +852,8 @@ long Gfx_FrameCallbackList_dtor(long param_1,short param_2)
 void Dbc_Release(void)
 
 {
-  iGpffff88c4 = iGpffff88c4 + -1;
-  if (iGpffff88c4 == 0) {
+  iRam0036efb4 = iRam0036efb4 + -1;
+  if (iRam0036efb4 == 0) {
     sceDbcEnd();
   }
   return;
@@ -865,10 +865,10 @@ void Dbc_Release(void)
 void Dbc_Acquire(void)
 
 {
-  if (iGpffff88c4 == 0) {
+  if (iRam0036efb4 == 0) {
     sceDbcInit();
   }
-  iGpffff88c4 = iGpffff88c4 + 1;
+  iRam0036efb4 = iRam0036efb4 + 1;
   return;
 }
 
@@ -896,15 +896,15 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
   int iStack_8;
   int iStack_4;
   
-  if (iGpffff891c == -1) {
+  if (iRam0036f00c == -1) {
     iStack_4 = 0;
     iVar4 = 0;
     do {
       iVar2 = sceCdStRead((int)param_2 >> 0xb,param_1,1,&iStack_4);
-      iVar1 = iGpffff891c;
+      iVar1 = iRam0036f00c;
       if (iStack_4 == 0) {
-        iGpffff8920 = iGpffff8920 + iVar2;
-        iGpffff8924 = iGpffff8924 - iVar2;
+        iRam0036f010 = iRam0036f010 + iVar2;
+        iRam0036f014 = iRam0036f014 - iVar2;
         iVar2 = iVar2 << 0xb;
       }
       else {
@@ -912,19 +912,19 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
           iVar4 = iStack_4;
         }
         uStack_10 = 0;
-        iStack_c = iGpffff8920;
-        iStack_8 = iGpffff8924;
-        if (iGpffff891c == -1) {
+        iStack_c = iRam0036f010;
+        iStack_8 = iRam0036f014;
+        if (iRam0036f00c == -1) {
           libcdvd_sub_00122bd8();
         }
         else {
-          if (*(int *)(iGpffff891c * 4 + 0x3805d0) != -1) {
+          if (*(int *)(iRam0036f00c * 4 + 0x3805d0) != -1) {
             sceClose();
             *(undefined4 *)(iVar1 * 4 + 0x3805d0) = 0xffffffff;
           }
-          iGpffff891c = -1;
+          iRam0036f00c = -1;
         }
-        Sema_Signal((int)register0x000001c0 + -0x76f4,0);
+        Sema_Signal(0x36effc,0);
         do {
           lVar3 = sceCdDiskReady(0);
         } while (lVar3 == 6);
@@ -935,7 +935,7 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
   else {
     do {
       iVar2 = -1;
-      iVar4 = *(int *)(iGpffff891c * 4 + 0x3805d0);
+      iVar4 = *(int *)(iRam0036f00c * 4 + 0x3805d0);
       if (iVar4 != -1) {
         iVar2 = sceRead(iVar4,param_1,param_2);
       }
@@ -950,18 +950,18 @@ void CdStream_Close(void)
 {
   int iVar1;
   
-  iVar1 = iGpffff891c;
-  if (iGpffff891c == -1) {
+  iVar1 = iRam0036f00c;
+  if (iRam0036f00c == -1) {
     libcdvd_sub_00122bd8();
   }
   else {
-    if (*(int *)(iGpffff891c * 4 + 0x3805d0) != -1) {
+    if (*(int *)(iRam0036f00c * 4 + 0x3805d0) != -1) {
       sceClose();
       *(undefined4 *)(iVar1 * 4 + 0x3805d0) = 0xffffffff;
     }
-    iGpffff891c = -1;
+    iRam0036f00c = -1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x76f4,0);
+  Sema_Signal(0x36effc,0);
   return;
 }
 
@@ -979,12 +979,12 @@ undefined4 CdStream_Open(int *param_1)
   
   if (*param_1 == 0) {
     uStack_4 = 0;
-    uGpffff891c = 0xffffffff;
+    uRam0036f00c = 0xffffffff;
     uStack_3 = 0;
     uStack_2 = 0;
-    iGpffff8920 = param_1[1];
-    iGpffff8924 = param_1[2];
-    lVar1 = libcdvd_sub_00122b40(iGpffff8920,&uStack_4);
+    iRam0036f010 = param_1[1];
+    iRam0036f014 = param_1[2];
+    lVar1 = libcdvd_sub_00122b40(iRam0036f010,&uStack_4);
     if (lVar1 == 0) {
       return 0;
     }
@@ -1009,14 +1009,14 @@ undefined4 CdStream_Open(int *param_1)
         *(int *)(uVar4 * 4 + 0x3805d0) = (int)lVar1;
       }
     }
-    uGpffff891c = uVar4;
-    if (uGpffff891c == 0xffffffff) {
+    uRam0036f00c = uVar4;
+    if (uRam0036f00c == 0xffffffff) {
       return 0;
     }
-    iGpffff8920 = 0;
-    iGpffff8924 = 0;
+    iRam0036f010 = 0;
+    iRam0036f014 = 0;
   }
-  Sema_Wait((int)register0x000001c0 + -0x76f4);
+  Sema_Wait(0x36effc);
   return 1;
 }
 
@@ -1025,7 +1025,7 @@ void CdStream_Shutdown(void)
 
 {
   libcdvd_sub_00122bd8();
-  loadfile_sub_00118b98(uGpffff8918);
+  loadfile_sub_00118b98(uRam0036f008);
   return;
 }
 
@@ -1033,10 +1033,10 @@ void CdStream_Shutdown(void)
 undefined4 maybe_CdStream_Init(undefined8 param_1,undefined8 param_2)
 
 {
-  uGpffff891c = 0xffffffff;
-  uGpffff8920 = 0;
-  iGpffff8918 = loadfile_sub_00118a30((int)param_1 * 0x800 + 0x10);
-  libcdvd_sub_00122b10(param_1,param_2,iGpffff8918 + 0xfU & 0xfffffff0);
+  uRam0036f00c = 0xffffffff;
+  uRam0036f010 = 0;
+  iRam0036f008 = loadfile_sub_00118a30((int)param_1 * 0x800 + 0x10);
+  libcdvd_sub_00122b10(param_1,param_2,iRam0036f008 + 0xfU & 0xfffffff0);
   return 1;
 }
 
@@ -1068,9 +1068,9 @@ void File_WriteHostRequest(int param_1)
     sceClose(iVar2);
   }
   if (iVar3 < 0) {
-    uGpffff8910 = 0xfffffffb;
+    uRam0036f000 = 0xfffffffb;
   }
-  Sema_Signal((int)register0x000001c0 + -0x76f8,0);
+  Sema_Signal(0x36eff8,0);
   return;
 }
 
@@ -1102,9 +1102,9 @@ void File_ReadHostRequest(int param_1)
     sceClose(iVar2);
   }
   if (iVar3 < 0) {
-    uGpffff8910 = 0xfffffffb;
+    uRam0036f000 = 0xfffffffb;
   }
-  Sema_Signal((int)register0x000001c0 + -0x76f8,0);
+  Sema_Signal(0x36eff8,0);
   return;
 }
 
@@ -1112,16 +1112,16 @@ void File_ReadHostRequest(int param_1)
 void maybe_Cd_ToggleMotor(undefined4 param_1)
 
 {
-  Sema_Wait((int)register0x000001c0 + -0x7730);
-  if (iGpffff8910 == 0) {
-    iGpffff8910 = libcdvd_sub_001228b0();
+  Sema_Wait(0x36efc0);
+  if (iRam0036f000 == 0) {
+    iRam0036f000 = libcdvd_sub_001228b0();
   }
   else {
-    iGpffff8910 = 0;
+    iRam0036f000 = 0;
   }
-  uGpffff8914 = param_1;
-  Sema_Signal((int)register0x000001c0 + -0x76f8,0);
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  uRam0036f004 = param_1;
+  Sema_Signal(0x36eff8,0);
+  Sema_Signal(0x36efc0,0);
   return;
 }
 
@@ -1131,11 +1131,12 @@ void maybe_Cd_ToggleMotor(undefined4 param_1)
 void File_LoaderThread(void)
 
 {
-  int iVar1;
-  long lVar2;
+  bool bVar1;
+  int iVar2;
   long lVar3;
-  uint uVar4;
-  int iVar5;
+  long lVar4;
+  uint uVar5;
+  int iVar6;
   undefined1 uStack_8;
   undefined1 uStack_7;
   undefined1 uStack_6;
@@ -1146,107 +1147,108 @@ void File_LoaderThread(void)
   undefined1 uStack_1;
   
   do {
-    Sema_Wait((int)register0x000001c0 + -0x76fc);
-    for (lVar2 = File_NextRequest(0); lVar2 != 0; lVar2 = File_NextRequest(lVar2)) {
-      Sema_Wait((int)register0x000001c0 + -0x76f4);
-      Sema_Signal((int)register0x000001c0 + -0x76f4,0);
-      iVar5 = (int)lVar2;
-      switch(*(undefined1 *)(iVar5 + 0x38)) {
+    Sema_Wait(0x36eff4);
+    for (lVar3 = File_NextRequest(0); lVar3 != 0; lVar3 = File_NextRequest(lVar3)) {
+      Sema_Wait(0x36effc);
+      Sema_Signal(0x36effc,0);
+      iVar6 = (int)lVar3;
+      switch(*(undefined1 *)(iVar6 + 0x38)) {
       case 1:
       case 2:
       case 3:
-        Sema_Signal((int)register0x000001c0 + -0x76f8,0);
-        iVar1 = *(int *)(iVar5 + 0x58);
+        Sema_Signal(0x36eff8,0);
+        iVar2 = *(int *)(iVar6 + 0x58);
         goto LAB_00136060;
       case 4:
-        if (*(uint *)(iVar5 + 0x44) == 0) {
-          uVar4 = 0;
+        if (*(uint *)(iVar6 + 0x44) == 0) {
+          uVar5 = 0;
         }
         else {
-          uVar4 = *(uint *)(iVar5 + 0x44) >> 0xb;
+          uVar5 = *(uint *)(iVar6 + 0x44) >> 0xb;
         }
-        iVar1 = *(int *)(iVar5 + 0x3c);
+        iVar2 = *(int *)(iVar6 + 0x3c);
         do {
           do {
-            lVar3 = sceCdDiskReady(0);
-          } while (lVar3 == 6);
-          lVar3 = libcdvd_sub_00122698(iVar1 + uVar4);
-        } while (lVar3 == 0);
+            lVar4 = sceCdDiskReady(0);
+          } while (lVar4 == 6);
+          lVar4 = libcdvd_sub_00122698(iVar2 + uVar5);
+        } while (lVar4 == 0);
         break;
       case 5:
-        if (*(uint *)(iVar5 + 0x44) == 0) {
-          uVar4 = 0;
+        if (*(uint *)(iVar6 + 0x44) == 0) {
+          uVar5 = 0;
         }
         else {
-          uVar4 = *(uint *)(iVar5 + 0x44) >> 0xb;
+          uVar5 = *(uint *)(iVar6 + 0x44) >> 0xb;
         }
-        iVar1 = *(int *)(iVar5 + 0x3c);
-        uStack_4 = uGpffff8020;
-        uStack_3 = uGpffff8021;
-        uStack_2 = uGpffff8022;
-        uStack_1 = uGpffff8023;
+        iVar2 = *(int *)(iVar6 + 0x3c);
+        uStack_4 = uRam0036e710;
+        uStack_3 = uRam0036e711;
+        uStack_2 = uRam0036e712;
+        uStack_1 = uRam0036e713;
         do {
           do {
-            lVar3 = sceCdDiskReady(0);
-          } while (lVar3 == 6);
-          lVar3 = sceCdRead(iVar1 + uVar4,*(undefined4 *)(iVar5 + 0x40),
-                            *(undefined4 *)(iVar5 + 0x50),&uStack_4);
-        } while (lVar3 == 0);
+            lVar4 = sceCdDiskReady(0);
+          } while (lVar4 == 6);
+          lVar4 = sceCdRead(iVar2 + uVar5,*(undefined4 *)(iVar6 + 0x40),
+                            *(undefined4 *)(iVar6 + 0x50),&uStack_4);
+        } while (lVar4 == 0);
         break;
       case 6:
-        if (*(uint *)(iVar5 + 0x44) == 0) {
-          uVar4 = 0;
+        if (*(uint *)(iVar6 + 0x44) == 0) {
+          uVar5 = 0;
         }
         else {
-          uVar4 = *(uint *)(iVar5 + 0x44) >> 0xb;
+          uVar5 = *(uint *)(iVar6 + 0x44) >> 0xb;
         }
-        iVar1 = *(int *)(iVar5 + 0x3c);
-        uStack_8 = uGpffff8024;
-        uStack_7 = uGpffff8025;
-        uStack_6 = uGpffff8026;
-        uStack_5 = uGpffff8027;
+        iVar2 = *(int *)(iVar6 + 0x3c);
+        uStack_8 = uRam0036e714;
+        uStack_7 = uRam0036e715;
+        uStack_6 = uRam0036e716;
+        uStack_5 = uRam0036e717;
         do {
           do {
-            lVar3 = sceCdDiskReady(0);
-          } while (lVar3 == 6);
-          lVar3 = maybe_sceCdReadIOPm(iVar1 + uVar4,*(undefined4 *)(iVar5 + 0x40),
-                                      *(undefined4 *)(iVar5 + 0x50),&uStack_8);
-        } while (lVar3 == 0);
+            lVar4 = sceCdDiskReady(0);
+          } while (lVar4 == 6);
+          lVar4 = maybe_sceCdReadIOPm(iVar2 + uVar5,*(undefined4 *)(iVar6 + 0x40),
+                                      *(undefined4 *)(iVar6 + 0x50),&uStack_8);
+        } while (lVar4 == 0);
         break;
       case 7:
-        File_ReadHostRequest(lVar2);
+        File_ReadHostRequest(lVar3);
         break;
       case 8:
-        File_WriteHostRequest(lVar2);
+        File_WriteHostRequest(lVar3);
       }
-      iVar1 = *(int *)(iVar5 + 0x58);
+      iVar2 = *(int *)(iVar6 + 0x58);
 LAB_00136060:
-      if (iVar1 != 0) {
-        lVar3 = Gut_ArchiveDecompress
-                          (*(undefined4 *)(iVar1 + 0x5c),*(undefined4 *)(iVar1 + 0x50),
-                           *(undefined4 *)(iVar1 + 0x4c));
-        if (lVar3 == 0) {
+      if (iVar2 != 0) {
+        lVar4 = Gut_ArchiveDecompress
+                          (*(undefined4 *)(iVar2 + 0x5c),*(undefined4 *)(iVar2 + 0x50),
+                           *(undefined4 *)(iVar2 + 0x4c));
+        if (lVar4 == 0) {
           Dbg_Nop(0x361260);
         }
         FlushCache(0);
       }
-      Sema_Wait((int)register0x000001c0 + -0x76f8);
-      *(int *)(iVar5 + 0x54) = iGpffff8910;
-      if (iGpffff8910 != 0) {
+      Sema_Wait(0x36eff8);
+      bVar1 = iRam0036f000 != 0;
+      *(int *)(iVar6 + 0x54) = iRam0036f000;
+      if (bVar1) {
         sceCdSync(0);
         do {
-          lVar3 = sceCdDiskReady(0);
-        } while (lVar3 == 6);
+          lVar4 = sceCdDiskReady(0);
+        } while (lVar4 == 6);
         libcdvd_sub_00122768();
         do {
-          lVar3 = sceCdDiskReady(0);
-        } while (lVar3 == 6);
-        Sema_Wait((int)register0x000001c0 + -0x76f8);
+          lVar4 = sceCdDiskReady(0);
+        } while (lVar4 == 6);
+        Sema_Wait(0x36eff8);
       }
     }
-    if (iGpffff88d8 != 0) {
-      iGpffff88d8 = 0;
-      Sema_Signal((int)register0x000001c0 + -0x772c,0);
+    if (iRam0036efc8 != 0) {
+      iRam0036efc8 = 0;
+      Sema_Signal(0x36efc4,0);
     }
   } while( true );
 }
@@ -1539,13 +1541,13 @@ int File_NextRequest(int param_1)
 void File_AbortAll(void)
 
 {
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iGpffff88d8 = 1;
+    iRam0036efc8 = 1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
-  if (iGpffff88d8 != 0) {
-    Sema_Wait((int)register0x000001c0 + -0x772c);
+  Sema_Signal(0x36efc0,0);
+  if (iRam0036efc8 != 0) {
+    Sema_Wait(0x36efc4);
   }
   return;
 }
@@ -1557,7 +1559,7 @@ bool File_IsBusy(int param_1)
   int iVar1;
   uint uVar2;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   uVar2 = 0;
   iVar1 = 0x380610;
   do {
@@ -1570,7 +1572,7 @@ bool File_IsBusy(int param_1)
   } while (uVar2 < 0x100);
   iVar1 = 0;
 LAB_00136984:
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal(0x36efc0,0);
   return iVar1 == 0;
 }
 
@@ -1583,7 +1585,7 @@ undefined4 File_CancelRequest(int param_1)
   undefined4 uVar3;
   
   uVar3 = 0;
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   uVar2 = 0;
   iVar1 = 0x380610;
   do {
@@ -1604,7 +1606,7 @@ LAB_00136a24:
     uVar3 = 1;
     *(undefined4 *)(iVar1 + 8) = 0xffffffff;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal(0x36efc0,0);
   return uVar3;
 }
 
@@ -1618,7 +1620,7 @@ int File_QueueRequest(undefined4 *param_1)
   int iVar4;
   
   iVar4 = -1;
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   uVar3 = 0;
   iVar2 = 0x380610;
   do {
@@ -1632,15 +1634,14 @@ int File_QueueRequest(undefined4 *param_1)
   iVar2 = 0;
 LAB_00136aec:
   if (iVar2 != 0) {
-    if ((iRam0038662c == 0) &&
-       (lVar1 = Sema_GetCount((int)register0x000001c0 + -0x76fc,0), lVar1 == 0)) {
-      Sema_Signal((int)register0x000001c0 + -0x76fc,0);
-      iVar4 = iGpffff88cc;
+    if ((iRam0038662c == 0) && (lVar1 = Sema_GetCount(0x36eff4,0), lVar1 == 0)) {
+      Sema_Signal(0x36eff4,0);
+      iVar4 = iRam0036efbc;
     }
     else {
-      iVar4 = iGpffff88cc;
+      iVar4 = iRam0036efbc;
     }
-    iGpffff88cc = (iVar4 + 1) % 0x7fffffff;
+    iRam0036efbc = (iVar4 + 1) % 0x7fffffff;
     *(int *)(iVar2 + 8) = iVar4;
     *(undefined1 *)(iVar2 + 0x38) = 0;
     *(undefined4 *)(iVar2 + 0xc) = *param_1;
@@ -1656,7 +1657,7 @@ LAB_00136aec:
     *(undefined4 *)(iVar2 + 0x34) = param_1[10];
     maybe_List_Remove(0x386620,iVar2);
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal(0x36efc0,0);
   return iVar4;
 }
 
@@ -1679,13 +1680,13 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iGpffff88d8 = 1;
+    iRam0036efc8 = 1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
-  if (iGpffff88d8 != 0) {
-    Sema_Wait((int)register0x000001c0 + -0x772c);
+  Sema_Signal(0x36efc0,0);
+  if (iRam0036efc8 != 0) {
+    Sema_Wait(0x36efc4);
   }
   lVar2 = libcdvd_sub_00121728(&uStack_70,param_1);
   if (lVar2 == 0) {
@@ -1701,13 +1702,13 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
     uStack_2c = uStack_6c;
     uStack_20 = param_2;
     File_QueueRequest(auStack_40);
-    Sema_Wait((int)register0x000001c0 + -0x7730);
+    Sema_Wait(0x36efc0);
     if (iRam00386628 != 0) {
-      iGpffff88d8 = 1;
+      iRam0036efc8 = 1;
     }
-    Sema_Signal((int)register0x000001c0 + -0x7730,0);
-    if (iGpffff88d8 != 0) {
-      Sema_Wait((int)register0x000001c0 + -0x772c);
+    Sema_Signal(0x36efc0,0);
+    if (iRam0036efc8 != 0) {
+      Sema_Wait(0x36efc4);
     }
     uVar1 = 1;
   }
@@ -1725,13 +1726,13 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
   undefined1 auStack_18 [8];
   undefined4 uStack_10;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iGpffff88d8 = 1;
+    iRam0036efc8 = 1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
-  if (iGpffff88d8 != 0) {
-    Sema_Wait((int)register0x000001c0 + -0x772c);
+  Sema_Signal(0x36efc0,0);
+  if (iRam0036efc8 != 0) {
+    Sema_Wait(0x36efc4);
   }
   lVar2 = libcdvd_sub_00121728(&uStack_30,param_1);
   if (lVar2 == 0) {
@@ -1759,8 +1760,8 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
 undefined4 maybe_File_GetSectorCount(int *param_1)
 
 {
-  *param_1 = iGpffff88f0 << 1;
-  return uGpffff88f8;
+  *param_1 = iRam0036efe0 << 1;
+  return uRam0036efe8;
 }
 
 // 0x00136e30  size 0x98
@@ -1771,13 +1772,13 @@ void File_ReadClock(undefined8 param_1)
 {
   long lVar1;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iGpffff88d8 = 1;
+    iRam0036efc8 = 1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
-  if (iGpffff88d8 != 0) {
-    Sema_Wait((int)register0x000001c0 + -0x772c);
+  Sema_Signal(0x36efc0,0);
+  if (iRam0036efc8 != 0) {
+    Sema_Wait(0x36efc4);
   }
   lVar1 = sceCdReadClock(param_1);
   while (lVar1 == 0) {
@@ -1793,13 +1794,13 @@ bool File_GetDiscType(long param_1)
 {
   long lVar1;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iGpffff88d8 = 1;
+    iRam0036efc8 = 1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
-  if (iGpffff88d8 != 0) {
-    Sema_Wait((int)register0x000001c0 + -0x772c);
+  Sema_Signal(0x36efc0,0);
+  if (iRam0036efc8 != 0) {
+    Sema_Wait(0x36efc4);
   }
   lVar1 = libcdvd_sub_00122818();
   while (lVar1 == 1) {
@@ -1816,37 +1817,37 @@ bool File_GetDiscType(long param_1)
 void File_Shutdown(void)
 
 {
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iGpffff88d8 = 1;
+    iRam0036efc8 = 1;
   }
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
-  if (iGpffff88d8 != 0) {
-    Sema_Wait((int)register0x000001c0 + -0x772c);
+  Sema_Signal(0x36efc0,0);
+  if (iRam0036efc8 != 0) {
+    Sema_Wait(0x36efc4);
   }
   sceCdInit(5);
-  if (iGpffff88f0 != 0) {
-    uGpffff88f4 = 0;
-    if (iGpffff88f8 != 0) {
+  if (iRam0036efe0 != 0) {
+    uRam0036efe4 = 0;
+    if (iRam0036efe8 != 0) {
       Mem_Free();
-      iGpffff88f8 = 0;
+      iRam0036efe8 = 0;
     }
-    uGpffff88fc = 0;
+    uRam0036efec = 0;
   }
-  Thread_Delete((int)register0x000001c0 + -0x7720);
-  if (iGpffff88e8 != 0) {
+  Thread_Delete(0x36efd0);
+  if (iRam0036efd8 != 0) {
     Mem_Free();
-    iGpffff88e8 = 0;
+    iRam0036efd8 = 0;
   }
-  if (iGpffff88ec != 0) {
+  if (iRam0036efdc != 0) {
     Mem_Free();
-    iGpffff88ec = 0;
+    iRam0036efdc = 0;
   }
-  Sema_Delete((int)register0x000001c0 + -0x7730);
-  Sema_Delete((int)register0x000001c0 + -0x772c);
-  Sema_Delete((int)register0x000001c0 + -0x76f8);
-  Sema_Delete((int)register0x000001c0 + -0x76fc);
-  Sema_Delete((int)register0x000001c0 + -0x76f4);
+  Sema_Delete(0x36efc0);
+  Sema_Delete(0x36efc4);
+  Sema_Delete(0x36eff8);
+  Sema_Delete(0x36eff4);
+  Sema_Delete(0x36effc);
   return;
 }
 
@@ -1862,35 +1863,35 @@ undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
   
   sceCdInit(0);
   libcdvd_sub_00122948(2);
-  uGpffff8014 = 0xffffffff;
-  uGpffff88cc = 0;
-  uGpffff88d8 = 0;
-  uGpffff8910 = 0;
-  uGpffff8914 = 0;
-  uGpffff8900 = 0;
-  Sema_Create((int)register0x000001c0 + -0x7730,1,1);
-  Sema_Create((int)register0x000001c0 + -0x772c,0,1);
-  Sema_Create((int)register0x000001c0 + -0x76fc,0,1);
-  Sema_Create((int)register0x000001c0 + -0x76f8,0,1);
-  Sema_Create((int)register0x000001c0 + -0x76f4,1,1);
-  uVar1 = Mem_AllocAligned(0x4000,0x10,uGpffff88c8);
-  uGpffff88e8 = (undefined4)uVar1;
-  Thread_Create((int)register0x000001c0 + -0x7720,param_1,0x135e50,uVar1,0x4000,0);
-  Thread_Start((int)register0x000001c0 + -0x7720,0);
-  uVar1 = Mem_AllocAligned(0x4000,0x10,uGpffff88c8);
-  uGpffff88ec = (undefined4)uVar1;
+  DAT_0036e704 = 0xffffffff;
+  uRam0036efbc = 0;
+  uRam0036efc8 = 0;
+  uRam0036f000 = 0;
+  uRam0036f004 = 0;
+  uRam0036eff0 = 0;
+  Sema_Create(0x36efc0,1,1);
+  Sema_Create(0x36efc4,0,1);
+  Sema_Create(0x36eff4,0,1);
+  Sema_Create(0x36eff8,0,1);
+  Sema_Create(0x36effc,1,1);
+  uVar1 = Mem_AllocAligned(0x4000,0x10,uRam0036efb8);
+  uRam0036efd8 = (undefined4)uVar1;
+  Thread_Create(0x36efd0,param_1,0x135e50,uVar1,0x4000,0);
+  Thread_Start(0x36efd0,0);
+  uVar1 = Mem_AllocAligned(0x4000,0x10,uRam0036efb8);
+  uRam0036efdc = (undefined4)uVar1;
   maybe_Cd_CallbackThreadInit(param_2,uVar1,0x4000);
   maybe_sceCdSync0(0x135de0);
   if (param_3 == 0) {
-    iGpffff88f8 = 0;
-    iGpffff88fc = 0;
-    uGpffff88f0 = 0;
+    iRam0036efe8 = 0;
+    iRam0036efec = 0;
+    uRam0036efe0 = 0;
   }
   else {
-    uGpffff88f0 = (int)param_3 + 0x7ffU & 0xfffff800;
-    uGpffff88f4 = 0;
-    iGpffff88f8 = Mem_AllocAligned(uGpffff88f0 << 1,0x40,uGpffff88c8);
-    iGpffff88fc = iGpffff88f8 + uGpffff88f0;
+    uRam0036efe0 = (int)param_3 + 0x7ffU & 0xfffff800;
+    uRam0036efe4 = 0;
+    iRam0036efe8 = Mem_AllocAligned(uRam0036efe0 << 1,0x40,uRam0036efb8);
+    iRam0036efec = iRam0036efe8 + uRam0036efe0;
   }
   uVar3 = 0;
   iVar2 = 0x380610;
@@ -1960,9 +1961,9 @@ void File_ShutdownNop(void)
 void File_SetHeap(undefined4 param_1)
 
 {
-  uGpffff88c8 = param_1;
-  uGpffff8018 = 0xffffffff;
-  uGpffff801c = 0xffffffff;
+  uRam0036efb8 = param_1;
+  uRam0036e708 = 0xffffffff;
+  uRam0036e70c = 0xffffffff;
   return;
 }
 
@@ -1995,77 +1996,77 @@ void Pad_Update(void)
 {
   undefined4 uVar1;
   long lVar2;
-  int iVar3;
+  undefined1 *puVar3;
   int iVar4;
   int iVar5;
-  int iVar6;
+  undefined1 *puVar6;
   int iVar7;
   
   iVar7 = 0;
-  iVar6 = 0x386650;
+  puVar6 = &g_Pads;
   do {
-    uVar1 = libpad2_sub_00130660(*(undefined4 *)(iVar6 + 0x48c));
-    *(undefined4 *)(iVar6 + 0x47c) = uVar1;
-    if (*(int *)(iVar6 + 0x47c) != 3) {
-      if (*(int *)(iVar6 + 0x47c) == 1) {
-        if (*(int *)(iVar6 + 0x480) == 0) {
+    uVar1 = libpad2_sub_00130660(*(undefined4 *)(puVar6 + 0x48c));
+    *(undefined4 *)(puVar6 + 0x47c) = uVar1;
+    if (*(int *)(puVar6 + 0x47c) != 3) {
+      if (*(int *)(puVar6 + 0x47c) == 1) {
+        if (*(int *)(puVar6 + 0x480) == 0) {
           lVar2 = libpad2_sub_00130590
-                            (*(undefined4 *)(iVar6 + 0x48c),*(undefined4 *)(iVar6 + 0x490));
+                            (*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x490));
           if (0 < lVar2) {
-            *(undefined4 *)(iVar6 + 0x480) = 1;
+            *(undefined4 *)(puVar6 + 0x480) = 1;
           }
-          libdbc_sub_00131a88(*(undefined4 *)(iVar6 + 0x48c),*(undefined4 *)(iVar6 + 0x494));
+          libdbc_sub_00131a88(*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x494));
         }
         else {
           lVar2 = libpad2_sub_001304b8
-                            (*(undefined4 *)(iVar6 + 0x48c),*(undefined4 *)(iVar6 + 0x488));
+                            (*(undefined4 *)(puVar6 + 0x48c),*(undefined4 *)(puVar6 + 0x488));
           if (0 < lVar2) {
-            Pad_ReadButtons(iVar6);
+            Pad_ReadButtons(puVar6);
           }
         }
       }
       else {
-        *(undefined4 *)(iVar6 + 0x480) = 0;
-        Input_Clear(iVar6 + 8);
-        iVar5 = 0;
-        iVar4 = iVar6;
+        *(undefined4 *)(puVar6 + 0x480) = 0;
+        Input_Clear(puVar6 + 8);
+        iVar4 = 0;
+        puVar3 = puVar6;
         do {
-          iVar3 = iVar6 + iVar5;
-          *(undefined4 *)(iVar4 + 0x1b0) = 0;
-          iVar5 = iVar5 + 8;
-          *(undefined1 *)(iVar3 + 0x414) = 0;
-          *(undefined4 *)(iVar4 + 0x1c0) = 0;
-          *(undefined1 *)(iVar3 + 0x415) = 0;
-          *(undefined4 *)(iVar4 + 0x1d0) = 0;
-          *(undefined1 *)(iVar3 + 0x416) = 0;
-          *(undefined4 *)(iVar4 + 0x1e0) = 0;
-          *(undefined1 *)(iVar3 + 0x417) = 0;
-          *(undefined4 *)(iVar4 + 0x1f0) = 0;
-          *(undefined1 *)(iVar3 + 0x418) = 0;
-          *(undefined4 *)(iVar4 + 0x200) = 0;
-          *(undefined1 *)(iVar3 + 0x419) = 0;
-          *(undefined4 *)(iVar4 + 0x210) = 0;
-          *(undefined1 *)(iVar3 + 0x41a) = 0;
-          *(undefined4 *)(iVar4 + 0x220) = 0;
-          *(undefined1 *)(iVar3 + 0x41b) = 0;
-          iVar4 = iVar4 + 0x80;
+          *(undefined4 *)(puVar3 + 0x1b0) = 0;
+          iVar5 = iVar4 + 8;
+          puVar6[iVar4 + 0x414] = 0;
+          *(undefined4 *)(puVar3 + 0x1c0) = 0;
+          puVar6[iVar4 + 0x415] = 0;
+          *(undefined4 *)(puVar3 + 0x1d0) = 0;
+          puVar6[iVar4 + 0x416] = 0;
+          *(undefined4 *)(puVar3 + 0x1e0) = 0;
+          puVar6[iVar4 + 0x417] = 0;
+          *(undefined4 *)(puVar3 + 0x1f0) = 0;
+          puVar6[iVar4 + 0x418] = 0;
+          *(undefined4 *)(puVar3 + 0x200) = 0;
+          puVar6[iVar4 + 0x419] = 0;
+          *(undefined4 *)(puVar3 + 0x210) = 0;
+          puVar6[iVar4 + 0x41a] = 0;
+          *(undefined4 *)(puVar3 + 0x220) = 0;
+          puVar6[iVar4 + 0x41b] = 0;
+          puVar3 = puVar3 + 0x80;
+          iVar4 = iVar5;
         } while (iVar5 < 0x18);
-        *(undefined4 *)(iVar6 + 0x330) = 0;
-        *(undefined1 *)(iVar6 + 0x474) = 0x7f;
-        *(undefined4 *)(iVar6 + 0x340) = 0;
-        *(undefined1 *)(iVar6 + 0x475) = 0x7f;
-        *(undefined4 *)(iVar6 + 0x350) = 0;
-        *(undefined1 *)(iVar6 + 0x476) = 0x7f;
-        *(undefined4 *)(iVar6 + 0x360) = 0;
-        *(undefined1 *)(iVar6 + 0x477) = 0x7f;
-        *(undefined4 *)(iVar6 + 0x370) = 0;
-        *(undefined1 *)(iVar6 + 0x478) = 0x7f;
-        *(undefined4 *)(iVar6 + 0x380) = 0;
-        *(undefined1 *)(iVar6 + 0x479) = 0x7f;
+        *(undefined4 *)(puVar6 + 0x330) = 0;
+        puVar6[0x474] = 0x7f;
+        *(undefined4 *)(puVar6 + 0x340) = 0;
+        puVar6[0x475] = 0x7f;
+        *(undefined4 *)(puVar6 + 0x350) = 0;
+        puVar6[0x476] = 0x7f;
+        *(undefined4 *)(puVar6 + 0x360) = 0;
+        puVar6[0x477] = 0x7f;
+        *(undefined4 *)(puVar6 + 0x370) = 0;
+        puVar6[0x478] = 0x7f;
+        *(undefined4 *)(puVar6 + 0x380) = 0;
+        puVar6[0x479] = 0x7f;
       }
     }
     iVar7 = iVar7 + 1;
-    iVar6 = iVar6 + 0x498;
+    puVar6 = puVar6 + 0x498;
   } while (iVar7 < 2);
   return;
 }
@@ -2073,25 +2074,25 @@ void Pad_Update(void)
 // 0x001375f0  size 0x30
 /* 0x498 bytes per pad at 0x386650 */
 
-int Pad_GetPort(char param_1,char param_2)
+undefined1 * Pad_GetPort(char param_1,char param_2)
 
 {
-  return param_2 * 0x498 + param_1 * 0x498 + 0x386650;
+  return &g_Pads + param_2 * 0x498 + param_1 * 0x498;
 }
 
 // 0x00137620  size 0x5c
 void maybe_Pad_Shutdown(void)
 
 {
-  int iVar1;
+  undefined1 *puVar1;
   int iVar2;
   
   iVar2 = 0;
-  iVar1 = 0x386650;
+  puVar1 = &g_Pads;
   do {
-    Pad_Close(iVar1);
+    Pad_Close(puVar1);
     iVar2 = iVar2 + 1;
-    iVar1 = iVar1 + 0x498;
+    puVar1 = puVar1 + 0x498;
   } while (iVar2 < 2);
   libpad2_sub_001302f0();
   Dbc_Release();
@@ -2117,7 +2118,7 @@ void Pad_Init(undefined8 param_1)
   Dbc_Acquire();
   libpad2_sub_001302b0(0);
   iVar6 = 0;
-  pcVar5 = (char *)0x386650;
+  pcVar5 = &g_Pads;
   do {
     pcVar5[0x47c] = '\0';
     pcVar5[0x47d] = '\0';

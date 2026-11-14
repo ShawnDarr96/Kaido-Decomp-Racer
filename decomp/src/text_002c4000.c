@@ -50,6 +50,8 @@ void result_sub_002c40d0(int *param_1,char param_2)
 }
 
 // 0x002c41d0  size 0x2c4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void result_sub_002c41d0(undefined8 param_1)
 
 {
@@ -69,16 +71,16 @@ void result_sub_002c41d0(undefined8 param_1)
       iVar3 = UiMgr_FindLayout(piVar6[1]);
       uVar8 = 1;
       uVar7 = 2;
-      *piVar6 = *piRam0036f42c + iVar3 * 0x4f4 + 4;
+      *piVar6 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
     }
     else {
       iVar3 = UiMgr_FindLayout(piVar6[2]);
       uVar8 = 6;
       uVar7 = 7;
-      *piVar6 = *piRam0036f42c + iVar3 * 0x4f4 + 4;
+      *piVar6 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
     }
     iVar3 = UiMgr_FindLayout(piVar6[4]);
-    piVar6[3] = *piRam0036f42c + iVar3 * 0x4f4 + 4;
+    piVar6[3] = *_g_UiMgr + iVar3 * 0x4f4 + 4;
     result_sub_002c4f70(param_1);
     result_sub_002c40d0(param_1,uVar8);
     result_sub_002c40d0(param_1,uVar7);
@@ -162,6 +164,8 @@ LAB_002c432c:
 }
 
 // 0x002c44a0  size 0xac4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 param_4,
                         undefined4 param_5,undefined4 *param_6,undefined4 *param_7,
                         undefined4 *param_8)
@@ -253,25 +257,25 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   UiMgr_LoadLayout(param_3,&uStack_10,0);
   UiMgr_LoadLayout(param_4,&uStack_20,0);
   UiMgr_LoadLayout(param_5,&uStack_30,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e8a4) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e89c);
+  if (*(int *)(_g_ArcToc + 0x1e8a4) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e89c);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e8a4) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e8a4) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x20) = uVar2;
   Arc_LoadFileEx(0x186d,*(undefined4 *)(param_1 + 0x20),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e8b8) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e8b0);
+  if (*(int *)(_g_ArcToc + 0x1e8b8) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e8b0);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e8b8) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e8b8) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x24) = uVar2;
   Arc_LoadFileEx(0x186e,*(undefined4 *)(param_1 + 0x24),0,0,0,0);
-  iVar4 = (int)unaff_s3 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s3 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -282,7 +286,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x34) = uVar2;
   Arc_LoadFileEx(unaff_s3,*(undefined4 *)(param_1 + 0x34),0,0,0,0);
-  iVar4 = (int)unaff_s2 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s2 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -293,7 +297,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x38) = uVar2;
   Arc_LoadFileEx(unaff_s2,*(undefined4 *)(param_1 + 0x38),0,0,0,0);
-  iVar4 = (int)unaff_s1 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s1 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -304,7 +308,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x48) = uVar2;
   Arc_LoadFileEx(unaff_s1,*(undefined4 *)(param_1 + 0x48),0,0,0,0);
-  iVar4 = (int)unaff_s0 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s0 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -315,7 +319,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x4c) = uVar2;
   Arc_LoadFileEx(unaff_s0,*(undefined4 *)(param_1 + 0x4c),0,0,0,0);
-  iVar4 = (int)unaff_s5 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s5 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -326,7 +330,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x5c) = uVar2;
   Arc_LoadFileEx(unaff_s5,*(undefined4 *)(param_1 + 0x5c),0,0,0,0);
-  iVar4 = (int)unaff_s6 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s6 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -337,7 +341,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x60) = uVar2;
   Arc_LoadFileEx(unaff_s6,*(undefined4 *)(param_1 + 0x60),0,0,0,0);
-  iVar4 = (int)unaff_s7 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s7 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -348,7 +352,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x70) = uVar2;
   Arc_LoadFileEx(unaff_s7,*(undefined4 *)(param_1 + 0x70),0,0,0,0);
-  iVar4 = (int)unaff_s8 * 0x14 + iRam0036f0c4;
+  iVar4 = (int)unaff_s8 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -359,7 +363,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x74) = uVar2;
   Arc_LoadFileEx(unaff_s8,*(undefined4 *)(param_1 + 0x74),0,0,0,0);
-  iVar4 = iStack_50 * 0x14 + iRam0036f0c4;
+  iVar4 = iStack_50 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -370,7 +374,7 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x84) = uVar2;
   Arc_LoadFileEx(iStack_50,*(undefined4 *)(param_1 + 0x84),0,0,0,0);
-  iVar4 = iStack_60 * 0x14 + iRam0036f0c4;
+  iVar4 = iStack_60 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar4 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar4 + 0x18);
@@ -381,92 +385,92 @@ void result_sub_002c44a0(int param_1,char param_2,undefined8 param_3,undefined4 
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x88) = uVar2;
   Arc_LoadFileEx(iStack_60,*(undefined4 *)(param_1 + 0x88),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e69c) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e694);
+  if (*(int *)(_g_ArcToc + 0x1e69c) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e694);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e69c) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e69c) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x98) = uVar2;
   Arc_LoadFileEx(0x1853,*(undefined4 *)(param_1 + 0x98),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e6b0) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e6a8);
+  if (*(int *)(_g_ArcToc + 0x1e6b0) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e6a8);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e6b0) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e6b0) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0x9c) = uVar2;
   Arc_LoadFileEx(0x1854,*(undefined4 *)(param_1 + 0x9c),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e714) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e70c);
+  if (*(int *)(_g_ArcToc + 0x1e714) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e70c);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e714) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e714) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xac) = uVar2;
   Arc_LoadFileEx(0x1859,*(undefined4 *)(param_1 + 0xac),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e728) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e720);
+  if (*(int *)(_g_ArcToc + 0x1e728) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e720);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e728) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e728) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xb0) = uVar2;
   Arc_LoadFileEx(0x185a,*(undefined4 *)(param_1 + 0xb0),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e82c) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e824);
+  if (*(int *)(_g_ArcToc + 0x1e82c) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e824);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e82c) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e82c) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xc0) = uVar2;
   Arc_LoadFileEx(0x1867,*(undefined4 *)(param_1 + 0xc0),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e840) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e838);
+  if (*(int *)(_g_ArcToc + 0x1e840) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e838);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e840) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e840) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xc4) = uVar2;
   Arc_LoadFileEx(0x1868,*(undefined4 *)(param_1 + 0xc4),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e854) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e84c);
+  if (*(int *)(_g_ArcToc + 0x1e854) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e84c);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e854) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e854) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xd4) = uVar2;
   Arc_LoadFileEx(0x1869,*(undefined4 *)(param_1 + 0xd4),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e868) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e860);
+  if (*(int *)(_g_ArcToc + 0x1e868) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e860);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e868) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e868) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xd8) = uVar2;
   Arc_LoadFileEx(0x186a,*(undefined4 *)(param_1 + 0xd8),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e87c) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e874);
+  if (*(int *)(_g_ArcToc + 0x1e87c) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e874);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e87c) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e87c) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xe8) = uVar2;
   Arc_LoadFileEx(0x186b,*(undefined4 *)(param_1 + 0xe8),0,0,0,0);
-  if (*(int *)(iRam0036f0c4 + 0x1e890) == 0) {
-    uVar3 = *(uint *)(iRam0036f0c4 + 0x1e888);
+  if (*(int *)(_g_ArcToc + 0x1e890) == 0) {
+    uVar3 = *(uint *)(_g_ArcToc + 0x1e888);
   }
   else {
-    uVar3 = *(int *)(iRam0036f0c4 + 0x1e890) + 0x7ffU >> 0xb;
+    uVar3 = *(int *)(_g_ArcToc + 0x1e890) + 0x7ffU >> 0xb;
   }
   uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xec) = uVar2;
@@ -1495,8 +1499,8 @@ void raceui_sub_002c6af0(undefined8 param_1)
   iVar6 = (int)param_1;
   bVar2 = (*(uint *)(iVar6 + 8) & 0x80) != 0;
   raceui_sub_002c7920(param_1,5,0x26,*(undefined4 *)(iVar6 + 0xa8),1,6,bVar2);
-  if (((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x03') ||
-     ((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x05')) {
+  if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x03') ||
+     ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05')) {
     raceui_sub_002c7920(param_1,0x9b,0x26,*(undefined4 *)(iVar6 + 0x458),1,6,0);
     raceui_sub_002c9680(param_1,0x1bd,0x5a,iVar6 + 0x484,0);
     uVar1 = *(undefined4 *)(iVar6 + 0xac);
@@ -1620,7 +1624,7 @@ void raceui_sub_002c6fb0(undefined8 param_1)
   undefined1 auStack_8 [8];
   
   iVar8 = (int)param_1;
-  bVar1 = (&DAT_0032f535)[(uint)bGpffff9120 * 6] != '\x05';
+  bVar1 = (&DAT_0032f535)[(uint)bRam0036f810 * 6] != '\x05';
   uVar14 = 5;
   uVar7 = 4;
   uVar2 = 7;
@@ -1662,10 +1666,10 @@ void raceui_sub_002c6fb0(undefined8 param_1)
   iStack_118 = (int)((float)iStack_118 * *(float *)(iVar8 + 0x3b70));
   UiText_DrawById(auStack_130,iVar4 + 0xd1);
   if (*(int *)(iVar8 + 0x288) == 0) {
-    if ((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x03') {
+    if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x03') {
       raceui_sub_002c9680(param_1,0x1bd,0x22,iVar8 + 0x484,0);
     }
-    else if ((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x05') {
+    else if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') {
       raceui_sub_002c9680(param_1,0x1bd,0x12,iVar8 + 0x484,0);
     }
     else {
@@ -1789,7 +1793,7 @@ void raceui_sub_002c7640(int param_1,int param_2)
   undefined4 uStack_10;
   byte abStack_8 [8];
   
-  pbVar5 = (byte *)((int)register0x000001c0 + -0x7858);
+  pbVar5 = (byte *)0x36ee98;
   pbVar4 = abStack_8;
   aiStack_20[0] = DAT_0032fc80;
   aiStack_20[1] = DAT_0032fc84;
@@ -1996,10 +2000,10 @@ void raceui_sub_002c7c60(int param_1)
   puVar6 = auStack_10 + 2;
   puVar5 = auStack_10;
   iVar4 = 0;
-  auStack_10[2] = uGpffff8798;
-  auStack_10[3] = uGpffff879c;
-  auStack_10[0] = uGpffff87a0;
-  auStack_10[1] = uGpffff87a4;
+  auStack_10[2] = uRam0036ee88;
+  auStack_10[3] = uRam0036ee8c;
+  auStack_10[0] = uRam0036ee90;
+  auStack_10[1] = uRam0036ee94;
   iVar7 = param_1;
   do {
     bVar2 = (*(uint *)(iVar7 + 8) & 0x80) != 0;
@@ -2053,8 +2057,8 @@ void raceui_sub_002c7df0(undefined8 param_1)
   iVar7 = (int)param_1;
   bVar2 = (*(uint *)(iVar7 + 8) & 0x80) != 0;
   raceui_sub_002c7920(param_1,0x19,0x26,*(undefined4 *)(iVar7 + 0xa8),1,6,bVar2);
-  if (((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x03') ||
-     ((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x05')) {
+  if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x03') ||
+     ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05')) {
     raceui_sub_002c7920(param_1,0xaf,0x26,*(undefined4 *)(iVar7 + 0x458),1,6,0);
     uVar1 = *(undefined4 *)(iVar7 + 0xac);
   }
@@ -2074,7 +2078,7 @@ void raceui_sub_002c7df0(undefined8 param_1)
                      );
   raceui_sub_002c5a50(0x44158000,0x42880000,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,0x3f800000,
                       iVar7 + 0x26f0,*piRam00387f7c + -10,*(int *)(iVar7 + 0xb0) % 10 + 3,0,0);
-  if ((((&DAT_0032f535)[(uint)bGpffff9120 * 6] == '\x05') && (*(int *)(iVar7 + 0x28c) == 0)) &&
+  if ((((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') && (*(int *)(iVar7 + 0x28c) == 0)) &&
      (iVar9 = *(int *)(iVar7 + 0x9c), iVar9 != -1)) {
     iVar8 = 0;
     uVar5 = RaceProg_GetArray_34(0);

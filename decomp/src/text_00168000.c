@@ -619,7 +619,7 @@ void Car_ApplyTireForces(int param_1)
   *(undefined4 *)(param_1 + 0x674) = 0;
   fVar5 = fVar12 + *(float *)(param_1 + 0x134);
   if (fVar5 != 0.0) {
-    if ((fVar5 <= 0.3) || (fVar5 = (float)fabsf(uVar11), fGpffff8070 <= fVar5)) {
+    if ((fVar5 <= 0.3) || (fVar5 = (float)fabsf(uVar11), fRam0036e760 <= fVar5)) {
       *(undefined1 *)(param_1 + 0xab1) = 0;
       fVar5 = (float)fabsf(*(undefined4 *)(param_1 + 400));
       if (fVar5 < 103.0) {

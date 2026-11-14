@@ -481,8 +481,8 @@ long Road_AdvanceAlongPath
   ushort uStack_2;
   
   fStack_14 = 1e+06;
-  uStack_4 = uGpffff80a8;
-  uStack_2 = uGpffff80aa;
+  uStack_4 = uRam0036e798;
+  uStack_2 = uRam0036e79a;
   piVar6 = (int *)param_1;
   uVar5 = *param_3;
   uStack_10 = *(undefined4 *)param_3;
@@ -725,8 +725,8 @@ void Road_SearchNeighbours
   fVar3 = 1e+06;
   fStack_4 = 1e+06;
   piVar7 = (int *)param_1;
-  uVar10 = uGpffff80a6;
-  uVar9 = uGpffff80a4;
+  uVar10 = uRam0036e796;
+  uVar9 = uRam0036e794;
   if ((long)(short)param_4 != -1) {
     iVar11 = 0;
     iVar12 = *(int *)(*(int *)(*piVar7 + 4) + (uint)param_4 * 4);
@@ -971,6 +971,8 @@ void RoadData_Free(undefined4 *param_1)
 }
 
 // 0x0018a0d0  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 RoadData_Load(undefined8 param_1,undefined8 param_2)
 
 {
@@ -981,7 +983,7 @@ undefined8 RoadData_Load(undefined8 param_1,undefined8 param_2)
   undefined8 uVar5;
   int iVar6;
   
-  iVar6 = (int)param_2 * 0x14 + iRam0036f0c4;
+  iVar6 = (int)param_2 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar6 + 0x20);
   if (iVar1 == 0) {
     uVar3 = *(uint *)(iVar6 + 0x18);
@@ -1502,6 +1504,8 @@ void RoadMesh_Free(undefined4 *param_1)
 }
 
 // 0x0018b1e0  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 RoadMesh_Load(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1511,11 +1515,11 @@ undefined8 RoadMesh_Load(undefined8 param_1,undefined8 param_2)
   undefined8 uVar4;
   int iVar5;
   
-  Sema_Wait((int)register0x000001c0 + -0x7730);
+  Sema_Wait(0x36efc0);
   uVar2 = uRam00386628;
-  Sema_Signal((int)register0x000001c0 + -0x7730,0);
+  Sema_Signal(0x36efc0,0);
   if (uVar2 < 0x100) {
-    iVar5 = (int)param_2 * 0x14 + iGpffff89d4;
+    iVar5 = (int)param_2 * 0x14 + _g_ArcToc;
     iVar1 = *(int *)(iVar5 + 0x20);
     if (iVar1 == 0) {
       uVar2 = *(uint *)(iVar5 + 0x18);

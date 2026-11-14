@@ -1201,6 +1201,7 @@ int View_SetupForCourse(undefined8 param_1,undefined1 param_2,uint param_3)
   float fStack_c;
   float fStack_8;
   
+  uVar8 = uRam0036f2c0;
   if (iRam00387fa8 == 2) {
     fVar2 = 1.0;
   }
@@ -1209,7 +1210,7 @@ int View_SetupForCourse(undefined8 param_1,undefined1 param_2,uint param_3)
   }
   iVar7 = (int)param_1;
   *(undefined1 *)(iVar7 + 0x580) = param_2;
-  uVar8 = uGpffff8bd0 >> 5;
+  uVar8 = uVar8 >> 5;
   *(undefined4 *)(iVar7 + 0x584) = 0;
   *(undefined1 *)(iVar7 + 0x588) = 0;
   *(undefined4 *)(iVar7 + 0x58c) = 0;

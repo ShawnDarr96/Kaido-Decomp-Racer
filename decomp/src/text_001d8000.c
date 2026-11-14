@@ -446,6 +446,8 @@ void Ai_AvoidCars(undefined8 param_1,undefined4 *param_2,undefined4 param_3,long
 }
 
 // 0x001d8920  size 0x12dc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ai_ComputeTargetSpeed
                (float param_1,float param_2,int *param_3,int *param_4,int param_5,undefined8 param_6
                ,undefined4 param_7)
@@ -717,7 +719,7 @@ void Ai_ComputeTargetSpeed
   uStack_10 = iVar3;
   if ((char)uStack_10 == '\0') {
     uVar11 = *(ushort *)(puStack_60 + 0x42);
-    if ((long)(puStack_60[0x41] + 1) < (long)**(short **)(piGpffff8b40[1] + (uint)uVar11 * 4)) {
+    if ((long)(puStack_60[0x41] + 1) < (long)**(short **)(_g_RoadData[1] + (uint)uVar11 * 4)) {
       uVar9 = (undefined2)(puStack_60[0x41] + 1);
       if (param_1 == 0.0) {
         AiLine_GetPoint(aiStack_1f0,uVar2,uVar11,uVar9);
@@ -757,26 +759,26 @@ void Ai_ComputeTargetSpeed
     iVar18 = puStack_60[0x41] + 2;
     iVar13 = (int)(short)(ushort)iStack_4c;
     fVar6 = 360.0;
-    iStack_330 = (int)**(short **)(piGpffff8b40[1] + (uint)uStack_350 * 4);
+    iStack_330 = (int)**(short **)(_g_RoadData[1] + (uint)uStack_350 * 4);
     lVar17 = lVar16;
     iStack_334 = iVar18;
     iStack_320 = iStack_330;
     iVar14 = iVar18;
     do {
       if (iStack_320 <= iVar18) {
-        if (*piGpffff8b40 <= (short)lVar17 + 1) goto LAB_001d9878;
+        if (*_g_RoadData <= (short)lVar17 + 1) goto LAB_001d9878;
         uVar5 = (int)lVar17 + 1;
         lVar17 = (long)(short)uVar5;
         iVar18 = iVar18 - iStack_320;
-        iStack_320 = (int)**(short **)(piGpffff8b40[1] + (uVar5 & 0xffff) * 4);
+        iStack_320 = (int)**(short **)(_g_RoadData[1] + (uVar5 & 0xffff) * 4);
       }
       if (iStack_330 <= iVar14) {
-        if (*piGpffff8b40 <= (short)lVar16 + 1) goto LAB_001d9878;
+        if (*_g_RoadData <= (short)lVar16 + 1) goto LAB_001d9878;
         uVar5 = (int)lVar16 + 1;
         uVar11 = (ushort)uVar5;
         lVar16 = (long)(short)uVar11;
         iVar14 = iVar14 - iStack_330;
-        iStack_330 = (int)**(short **)(piGpffff8b40[1] + (uVar5 & 0xffff) * 4);
+        iStack_330 = (int)**(short **)(_g_RoadData[1] + (uVar5 & 0xffff) * 4);
         if (iStack_370 == 0) {
           uStack_350 = uVar11;
           iStack_334 = iVar14;
@@ -953,7 +955,7 @@ LAB_001d9798:
       if ((short)lVar17 + -1 < 0) goto LAB_001d9878;
       uVar5 = (int)lVar17 - 1;
       lVar17 = (long)(short)uVar5;
-      iVar18 = iVar18 + **(short **)(piGpffff8b40[1] + (uVar5 & 0xffff) * 4) + -1;
+      iVar18 = iVar18 + **(short **)(_g_RoadData[1] + (uVar5 & 0xffff) * 4) + -1;
     }
     iVar13 = iVar7;
     if (iVar7 < 0) {
@@ -961,7 +963,7 @@ LAB_001d9798:
       uVar5 = (int)lVar15 - 1;
       uVar11 = (ushort)uVar5;
       lVar15 = (long)(short)uVar11;
-      iVar13 = iVar7 + **(short **)(piGpffff8b40[1] + (uVar5 & 0xffff) * 4) + -1;
+      iVar13 = iVar7 + **(short **)(_g_RoadData[1] + (uVar5 & 0xffff) * 4) + -1;
       if (iVar14 == 0) {
         uStack_350 = uVar11;
         iStack_334 = iVar13;
@@ -1160,6 +1162,8 @@ LAB_001d9930:
 }
 
 // 0x001d9c40  size 0x650
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long param_4)
 
 {
@@ -1213,7 +1217,7 @@ float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long
   if (param_1 < 20.0) {
     param_1 = 20.0;
   }
-  if (cGpffff8b44 != '\x02') {
+  if (cRam0036f234 != '\x02') {
     return 0.0;
   }
   sVar3 = (short)param_3;
@@ -1221,7 +1225,7 @@ float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long
   if (param_4 == 0) {
     iVar4 = ((uint)param_2 & 0xffff) * 4;
     iVar5 = sVar3 + 1;
-    if ((long)iVar5 < (long)**(short **)(piGpffff8b40[1] + iVar4)) {
+    if ((long)iVar5 < (long)**(short **)(_g_RoadData[1] + iVar4)) {
       AiLine_GetPoint(auStack_80,3,param_2,(short)iVar5);
       uStack_20 = auStack_80[0];
       uStack_18 = uStack_78;
@@ -1237,16 +1241,16 @@ float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long
     iVar5 = sVar3 + 2;
     lVar8 = (long)sVar6;
     iVar2 = 0;
-    lVar7 = (long)**(short **)(piGpffff8b40[1] + iVar4);
+    lVar7 = (long)**(short **)(_g_RoadData[1] + iVar4);
     do {
       if (lVar7 <= iVar5) {
-        if (*piGpffff8b40 <= (short)lVar8 + 1) {
+        if (*_g_RoadData <= (short)lVar8 + 1) {
           AiLine_GetPoint(auStack_90,3,lVar8,(short)iVar5);
           return fVar12;
         }
         uVar1 = (int)lVar8 + 1;
         lVar8 = (long)(short)uVar1;
-        lVar7 = (long)**(short **)(piGpffff8b40[1] + (uVar1 & 0xffff) * 4);
+        lVar7 = (long)**(short **)(_g_RoadData[1] + (uVar1 & 0xffff) * 4);
         iVar5 = 0;
       }
       AiLine_GetPoint(auStack_a0,3,lVar8,(short)iVar5);
@@ -1314,7 +1318,7 @@ LAB_001d9e70:
       }
       uVar1 = (int)lVar8 - 1;
       lVar8 = (long)(short)uVar1;
-      iVar5 = **(short **)(piGpffff8b40[1] + (uVar1 & 0xffff) * 4) + -1;
+      iVar5 = **(short **)(_g_RoadData[1] + (uVar1 & 0xffff) * 4) + -1;
     }
     AiLine_GetPoint(auStack_60,3,lVar8,(short)iVar5);
     uStack_10 = auStack_60[0];
@@ -1365,6 +1369,8 @@ LAB_001da068:
 }
 
 // 0x001da2b0  size 0x5d8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ai_ThrottleControl(int *param_1,int *param_2)
 
 {
@@ -1472,7 +1478,7 @@ void Ai_ThrottleControl(int *param_1,int *param_2)
         }
         uVar3 = (int)lVar7 - 1;
         lVar7 = (long)(short)uVar3;
-        iVar4 = **(short **)(piRam0036f230[1] + (uVar3 & 0xffff) * 4) + -1;
+        iVar4 = **(short **)(_g_RoadData[1] + (uVar3 & 0xffff) * 4) + -1;
       }
       AiLine_GetPoint(aiStack_b0,uVar2,lVar7,(short)iVar4);
       iStack_60 = aiStack_b0[0];
@@ -1496,7 +1502,7 @@ void Ai_ThrottleControl(int *param_1,int *param_2)
   }
   uVar1 = *(ushort *)(iStack_10 + 0x108);
   iVar4 = *(int *)(iStack_10 + 0x104) + 1;
-  if ((long)iVar4 < (long)**(short **)(piRam0036f230[1] + (uint)uVar1 * 4)) {
+  if ((long)iVar4 < (long)**(short **)(_g_RoadData[1] + (uint)uVar1 * 4)) {
     AiLine_GetPoint(aiStack_d0,(undefined2)iStack_4,uVar1,(short)iVar4);
     iStack_70 = aiStack_d0[0];
     iStack_68 = iStack_c8;
@@ -1514,7 +1520,7 @@ void Ai_ThrottleControl(int *param_1,int *param_2)
   iStack_6c = 0;
   lVar7 = (long)(short)*(ushort *)(iStack_10 + 0x108);
   iVar4 = *(int *)(iStack_10 + 0x104) + 2;
-  lVar8 = (long)**(short **)(piRam0036f230[1] + (uint)*(ushort *)(iStack_10 + 0x108) * 4);
+  lVar8 = (long)**(short **)(_g_RoadData[1] + (uint)*(ushort *)(iStack_10 + 0x108) * 4);
 LAB_001da44c:
   if (iVar4 < lVar8) {
 LAB_001da7e0:
@@ -1539,10 +1545,10 @@ LAB_001da7e0:
     fVar12 = fVar9;
     goto LAB_001da44c;
   }
-  if ((short)lVar7 + 1 < *piRam0036f230) {
+  if ((short)lVar7 + 1 < *_g_RoadData) {
     uVar3 = (int)lVar7 + 1;
     lVar7 = (long)(short)uVar3;
-    lVar8 = (long)**(short **)(piRam0036f230[1] + (uVar3 & 0xffff) * 4);
+    lVar8 = (long)**(short **)(_g_RoadData[1] + (uVar3 & 0xffff) * 4);
     iVar4 = 0;
     goto LAB_001da7e0;
   }
@@ -1830,6 +1836,8 @@ float Race_CountActiveCars(float param_1)
 }
 
 // 0x001dada0  size 0x254
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckSprint(char param_1)
 
 {
@@ -1845,39 +1853,39 @@ void RaceRule_CheckSprint(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
   }
   iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar7 + 1);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
   }
   iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
     RaceCar_SetFlags(uVar4,8);
     RaceCar_SetFlags(uVar4,0x10);
@@ -1886,6 +1894,8 @@ void RaceRule_CheckSprint(char param_1)
 }
 
 // 0x001db000  size 0x1dc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckTimeAttack(char param_1)
 
 {
@@ -1901,33 +1911,33 @@ void RaceRule_CheckTimeAttack(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_ClearFlags(uVar4,2);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_ClearFlags(uVar4,2);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_ClearFlags(uVar4,2);
   }
   iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar7 + 1);
     RaceCar_ClearFlags(uVar4,2);
   }
   iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6);
     RaceCar_ClearFlags(uVar4,2);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
     RaceCar_ClearFlags(uVar4,2);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
     RaceCar_ClearFlags(uVar4,2);
   }
@@ -1935,6 +1945,8 @@ void RaceRule_CheckTimeAttack(char param_1)
 }
 
 // 0x001db1e0  size 0x254
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckBattle(char param_1)
 
 {
@@ -1950,39 +1962,39 @@ void RaceRule_CheckBattle(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
   }
   iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar7 + 1);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
   }
   iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
     RaceCar_ClearFlags(uVar4,1);
     RaceCar_SetFlags(uVar4,0x200);
@@ -1991,6 +2003,8 @@ void RaceRule_CheckBattle(char param_1)
 }
 
 // 0x001db440  size 0x28c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckSpBattle(char param_1)
 
 {
@@ -2006,45 +2020,45 @@ void RaceRule_CheckSpBattle(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar6 = param_1 * 4;
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
   iVar5 = (int)lVar1;
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar5 + 1);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
   iVar7 = (int)lVar2;
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar5 + iVar7);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar5 + iVar7 + 1);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar5 + iVar7 + 2);
     RaceCar_ClearFlags(uVar4,0xa01);
     RaceCar_SetFlags(uVar4,2);
@@ -2054,6 +2068,8 @@ void RaceRule_CheckSpBattle(char param_1)
 }
 
 // 0x001db6d0  size 0x254
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckTeamBattle(char param_1)
 
 {
@@ -2069,39 +2085,39 @@ void RaceRule_CheckTeamBattle(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
   }
   iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar7 + 1);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
   }
   iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
     RaceCar_ClearFlags(uVar4,3);
     RaceCar_SetFlags(uVar4,0x800);
@@ -2110,6 +2126,8 @@ void RaceRule_CheckTeamBattle(char param_1)
 }
 
 // 0x001db930  size 0x28c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckDrift(char param_1)
 
 {
@@ -2125,45 +2143,45 @@ void RaceRule_CheckDrift(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar6 = param_1 * 4;
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
   iVar5 = (int)lVar1;
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar5 + 1);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
   iVar7 = (int)lVar2;
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar5 + iVar7);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar5 + iVar7 + 1);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
     *(undefined1 *)((int)uVar4 + 0x890) = 1;
   }
-  if (((*(uint *)(iVar6 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar5 + iVar7 + 2);
     RaceCar_ClearFlags(uVar4,0x802);
     RaceCar_SetFlags(uVar4,1);
@@ -2173,6 +2191,8 @@ void RaceRule_CheckDrift(char param_1)
 }
 
 // 0x001dbbc0  size 0x344
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_CheckFreeRun(char param_1)
 
 {
@@ -2189,21 +2209,21 @@ void RaceRule_CheckFreeRun(char param_1)
   lVar2 = GameState_GetRivalCount();
   lVar3 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 1) != 0) && (0 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
     uVar4 = RaceCar_Get(0);
     RaceCar_ClearFlags(uVar4,0x803);
     if (*(char *)((int)uVar4 + 0x890) == '\x01') {
       *(undefined1 *)((int)uVar4 + 0x890) = 0;
     }
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 2) != 0) && (1 < lVar1)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
     uVar4 = RaceCar_Get(1);
     RaceCar_ClearFlags(uVar4,0x803);
     if (*(char *)((int)uVar4 + 0x890) == '\x01') {
       *(undefined1 *)((int)uVar4 + 0x890) = 0;
     }
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 4) != 0) && (0 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
     uVar4 = RaceCar_Get(lVar1);
     RaceCar_ClearFlags(uVar4,0x803);
     iVar6 = (int)uVar4;
@@ -2215,7 +2235,7 @@ void RaceRule_CheckFreeRun(char param_1)
     }
   }
   iVar6 = (int)lVar1;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 8) != 0) && (1 < lVar2)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
     uVar4 = RaceCar_Get(iVar6 + 1);
     RaceCar_ClearFlags(uVar4,0x803);
     iVar7 = (int)uVar4;
@@ -2227,7 +2247,7 @@ void RaceRule_CheckFreeRun(char param_1)
     }
   }
   iVar7 = (int)lVar2;
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x10) != 0) && (0 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
     uVar4 = RaceCar_Get(iVar6 + iVar7);
     RaceCar_ClearFlags(uVar4,0x803);
     iVar8 = (int)uVar4;
@@ -2238,7 +2258,7 @@ void RaceRule_CheckFreeRun(char param_1)
       Car_RequestShiftUp(uVar4);
     }
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x20) != 0) && (1 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
     uVar4 = RaceCar_Get(iVar6 + iVar7 + 1);
     RaceCar_ClearFlags(uVar4,0x803);
     iVar8 = (int)uVar4;
@@ -2249,7 +2269,7 @@ void RaceRule_CheckFreeRun(char param_1)
       Car_RequestShiftUp(uVar4);
     }
   }
-  if (((*(uint *)(iVar5 + iGpffff8ce8 + 4) & 0x40) != 0) && (2 < lVar3)) {
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
     uVar4 = RaceCar_Get(iVar6 + iVar7 + 2);
     RaceCar_ClearFlags(uVar4,0x803);
     iVar5 = (int)uVar4;
@@ -2264,6 +2284,8 @@ void RaceRule_CheckFreeRun(char param_1)
 }
 
 // 0x001dbfe0  size 0x128
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceRule_Finish(void)
 
 {
@@ -2277,9 +2299,9 @@ void RaceRule_Finish(void)
   ulong uVar8;
   int iVar9;
   
-  uVar1 = puGpffff8ca0[0x10];
-  if ((*puGpffff8ca0 & 0x410) == 0) {
-    if (puGpffff8ca0[0xd] == 0) {
+  uVar1 = _g_RaceProg[0x10];
+  if ((*_g_RaceProg & 0x410) == 0) {
+    if (_g_RaceProg[0xd] == 0) {
       iVar9 = 0;
     }
     else {
@@ -2301,7 +2323,7 @@ void RaceRule_Finish(void)
       uVar6 = GameState_Get_3a8();
       lVar7 = password_sub_002de940(uVar2,uVar8,uVar3,uVar4,uVar5,uVar6);
       if (lVar7 != 0) {
-        *puGpffff8ca0 = *puGpffff8ca0 | 0x20000;
+        *_g_RaceProg = *_g_RaceProg | 0x20000;
       }
     }
   }

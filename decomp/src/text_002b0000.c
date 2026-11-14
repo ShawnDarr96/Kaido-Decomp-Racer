@@ -767,6 +767,8 @@ void script_sub_002b1820(undefined8 param_1)
 }
 
 // 0x002b18e0  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void script_sub_002b18e0(undefined8 param_1,int param_2)
 
 {
@@ -776,7 +778,7 @@ void script_sub_002b18e0(undefined8 param_1,int param_2)
   int iVar4;
   
   script_sub_002b1820();
-  iVar3 = (param_2 + 0x1ec2) * 0x14 + iGpffff89d4;
+  iVar3 = (param_2 + 0x1ec2) * 0x14 + _g_ArcToc;
   iVar4 = *(int *)(iVar3 + 0x20);
   if (iVar4 == 0) {
     uVar1 = *(uint *)(iVar3 + 0x18);
