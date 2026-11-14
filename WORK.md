@@ -12,13 +12,13 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| F1 | Identify the Sony SDK 2.8.0 libraries (libgraph, libdma, libvu0, libcdvd, libmc, libpad2, libdbc, libipu/libmpeg, libkernl, sif) by matching against other SDK 2.8 games or a signature set; add names and prototypes to config/symbols.csv | any |  | ShawnDarr96/claude (2026-11-14) | Strings: PsIIlibgraph2800, PsIIlibcdvd 2800, ... 40 named from error strings already |
-| F2 | Identify the Metrowerks runtime and libc (memcpy, memset, sprintf, malloc, 64-bit math helpers, C++ ctor/dtor tables) and name them | any |  | ShawnDarr96/claude (2026-11-14) | Compiler: MW MIPS C Compiler 2.4.1.01 |
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F4 | Check the functions Ghidra found at 0x00368000-0x0036ef80 (end of the segment): real code, data, or VU microcode? Fix the Ghidra project and symbols.csv accordingly | any |  |  | 200 functions in text_00368000.c and text_0036c000.c |
 | F5 | Name the main global singletons in .data/.sbss (iRam0036f1a8 and friends) and record them in a new config/globals.csv applied by the export | any |  |  |  |
 | F6 | Reverse the BUILD.TOC / BUILD.DAT archive format (GUT_Archive) and write scripts/extract_build.py | any |  |  | BUILD.DAT is 1.3 GB, BUILD.TOC 304 KB |
 | F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  |  |  |
+| F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
+| F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
 
 ## P1 Naming
 
@@ -190,8 +190,11 @@ Columns:
 | S1 | Extract SLES_531.91, identify compiler (MWCC 2.4.1) and SDK (2.8.0) | P0 | ShawnDarr96/claude | 2026-11-14 | 6ee14e0 |
 | S2 | Ghidra 12.2 + EE processor analysis; all 4753 functions decompiled to decomp/src | P0 | ShawnDarr96/claude | 2026-11-14 | 6ee14e0 |
 | S3 | GhidraMCP built for Ghidra 12.2; headless MCP server script; config/symbols.csv sync | P0 | ShawnDarr96/claude | 2026-11-14 | 6ee14e0 |
+| F1 | libgraph, libmpeg/ipu, libkernl, sif/rpc, fileio, loadfile, libcdvd, libmc, libpad2, libdbc, vu0 math named or assigned | P0 | ShawnDarr96/claude | 2026-11-14 | af8e1a8 |
+| F2 | MSL C++ iostream/string/EH runtime, newlib libc/libm/stdio/malloc/dtoa, libgcc soft-float named; landed with F1's commit | P0 | ShawnDarr96/claude | 2026-11-14 |  |
 
 ## Changes to the board
 
 - 2026-11-14 board created with `board init`; rows for SDK identification, naming (one per 16 KiB file), types and matching added.
 - 2026-11-14 ShawnDarr96/claude: claim F1, F2.
+- 2026-11-14 ShawnDarr96/claude: F1, F2 done; added F8, F9 (gaps).
