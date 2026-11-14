@@ -718,12 +718,12 @@ LAB_001d256c:
       }
       if (uVar16 == 0) {
         iVar6 = maybe_Rand_Float();
-        iVar8 = menu_leaf_sub_00204630();
+        iVar8 = Menu_Nop_2();
         param_1[1] = (short)(iVar6 % iVar8) + 0x1e;
       }
       else {
         iVar6 = maybe_Rand_Float();
-        iVar8 = menu_leaf_sub_002045b0();
+        iVar8 = Menu_Nop();
         param_1[1] = (short)(iVar6 % iVar8) + 0x2be;
       }
     }

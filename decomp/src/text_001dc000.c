@@ -628,7 +628,7 @@ void LapTime_GetLapCount(int *param_1,long param_2,long param_3)
 }
 
 // 0x001dcdc0  size 0x8
-undefined4 raceprog_leaf_sub_001dcdc0(undefined4 *param_1)
+undefined4 Raceprog_Nop(undefined4 *param_1)
 
 {
   return *param_1;
@@ -1734,7 +1734,7 @@ void RaceProg_CheckWin(undefined8 param_1)
     break;
   case 6:
     uVar1 = RaceProg_GetArray_28(0);
-    lVar2 = raceprog_leaf_sub_001dcdc0(uVar1);
+    lVar2 = Raceprog_Nop(uVar1);
     if (lVar2 < 1) {
       Flags_Set(param_1,0x22);
     }
@@ -2044,18 +2044,18 @@ void RaceProg_CheckTimeUp(undefined8 param_1)
   if (lVar5 == 2) {
     uVar6 = RaceProg_GetArray_28(0);
     uVar7 = RaceProg_GetArray_28(1);
-    lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
-    if ((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar7), 0 < lVar5)) {
+    lVar5 = Raceprog_Nop(uVar6);
+    if ((lVar5 < 1) && (lVar5 = Raceprog_Nop(uVar7), 0 < lVar5)) {
       Flags_Set(param_1,0x22);
     }
     else {
-      lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
-      if ((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar7), lVar5 < 1)) {
+      lVar5 = Raceprog_Nop(uVar6);
+      if ((lVar5 < 1) && (lVar5 = Raceprog_Nop(uVar7), lVar5 < 1)) {
         Flags_Set(param_1,0x24);
       }
       else {
-        lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
-        if ((lVar5 < 1) || (lVar5 = raceprog_leaf_sub_001dcdc0(uVar7), 0 < lVar5)) {
+        lVar5 = Raceprog_Nop(uVar6);
+        if ((lVar5 < 1) || (lVar5 = Raceprog_Nop(uVar7), 0 < lVar5)) {
           iVar3 = RaceProg_GetArray_40(0);
           iVar4 = RaceProg_GetArray_40(1);
           iVar3 = *(int *)(iVar3 + 0x4b8);
@@ -2091,19 +2091,19 @@ void RaceProg_CheckTimeUp(undefined8 param_1)
       uVar6 = RaceProg_GetArray_28(0);
       uVar7 = RaceProg_GetArray_28(1);
       uVar8 = RaceProg_GetArray_28(2);
-      lVar5 = raceprog_leaf_sub_001dcdc0(uVar7);
-      if (((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar8), lVar5 < 1)) &&
-         (lVar5 = raceprog_leaf_sub_001dcdc0(uVar6), 0 < lVar5)) {
+      lVar5 = Raceprog_Nop(uVar7);
+      if (((lVar5 < 1) && (lVar5 = Raceprog_Nop(uVar8), lVar5 < 1)) &&
+         (lVar5 = Raceprog_Nop(uVar6), 0 < lVar5)) {
         Flags_Set(param_1,0x21);
       }
       else {
-        lVar5 = raceprog_leaf_sub_001dcdc0(uVar7);
-        if (((lVar5 < 1) && (lVar5 = raceprog_leaf_sub_001dcdc0(uVar8), lVar5 < 1)) &&
-           (lVar5 = raceprog_leaf_sub_001dcdc0(uVar6), lVar5 < 1)) {
+        lVar5 = Raceprog_Nop(uVar7);
+        if (((lVar5 < 1) && (lVar5 = Raceprog_Nop(uVar8), lVar5 < 1)) &&
+           (lVar5 = Raceprog_Nop(uVar6), lVar5 < 1)) {
           Flags_Set(param_1,0x24);
         }
         else {
-          lVar5 = raceprog_leaf_sub_001dcdc0(uVar6);
+          lVar5 = Raceprog_Nop(uVar6);
           if (lVar5 < 1) {
             Flags_Set(param_1,0x22);
           }

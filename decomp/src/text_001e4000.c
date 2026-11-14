@@ -644,12 +644,28 @@ void Race_LoadCourseAsync(undefined8 param_1)
   return;
 }
 
+// 0x001e5770  size 0x24
+void race_step_sub_001e5770(void)
+
+{
+  showroom_exit_sub_002d3550();
+  Course_FreeModels();
+  return;
+}
+
 // 0x001e57a0  size 0x34
 void Race_LoadTask(int param_1)
 
 {
   Race_LoadCourseAsync(*(undefined4 *)(param_1 + 0x14));
   *(undefined1 **)(param_1 + 0x1c) = &LAB_001e5760;
+  return;
+}
+
+// 0x001e57e0  size 0x8
+void Race_Nop(void)
+
+{
   return;
 }
 
@@ -726,7 +742,7 @@ void RaceHud_UpdateRanking(void)
     do {
       iVar2 = racehud_leaf_sub_002cfb30(iVar8);
       uVar6 = RaceProg_GetArray_28((char)iVar8);
-      uVar3 = raceprog_leaf_sub_001dcdc0(uVar6);
+      uVar3 = Raceprog_Nop(uVar6);
       *(undefined4 *)(iVar2 + 0x8c) = uVar3;
       iVar4 = *(int *)(iVar2 + 0x8c);
       iVar1 = *(int *)(iVar2 + 0x90);
@@ -758,6 +774,13 @@ void RaceHud_UpdateRanking(void)
   return;
 }
 
+// 0x001e5a80  size 0x8
+void Race_Nop_2(void)
+
+{
+  return;
+}
+
 // 0x001e5a90  size 0xa4
 void RaceHud_UpdateSprint(undefined8 param_1)
 
@@ -780,6 +803,13 @@ void RaceHud_UpdateSprint(undefined8 param_1)
       iVar1 = GameState_GetPlayerCount();
     } while (iVar4 < iVar1);
   }
+  return;
+}
+
+// 0x001e5b40  size 0x8
+void Race_Nop_3(void)
+
+{
   return;
 }
 
@@ -988,7 +1018,7 @@ void RaceHud_UpdateMap(void)
     do {
       iVar2 = racehud_leaf_sub_002cfb30(iVar7);
       uVar6 = RaceProg_GetArray_28((char)iVar7);
-      uVar3 = raceprog_leaf_sub_001dcdc0(uVar6);
+      uVar3 = Raceprog_Nop(uVar6);
       *(undefined4 *)(iVar2 + 0x8c) = uVar3;
       iVar4 = *(int *)(iVar2 + 0x8c);
       iVar1 = *(int *)(iVar2 + 0x90);
@@ -1295,17 +1325,17 @@ void RaceHud_GetLayout(undefined4 *param_1)
   undefined1 uVar17;
   
   uVar17 = GameState_Get_354_7050();
-  puVar16 = PTR_LAB_0031c3e0;
+  puVar16 = PTR_Race_Nop_0031c3e0;
   uVar15 = DAT_0031c3dc;
   puVar14 = PTR_RaceHud_UpdateBattle_0031c3d0;
   uVar13 = DAT_0031c3cc;
   puVar12 = PTR_RaceHud_UpdateRanking_0031c3c0;
   uVar11 = DAT_0031c3bc;
-  puVar10 = PTR_LAB_0031c3b0;
+  puVar10 = PTR_Race_Nop_2_0031c3b0;
   uVar9 = DAT_0031c3ac;
   puVar8 = PTR_RaceHud_UpdateSprint_0031c3a0;
   uVar7 = DAT_0031c39c;
-  puVar6 = PTR_LAB_0031c390;
+  puVar6 = PTR_Race_Nop_3_0031c390;
   uVar5 = DAT_0031c38c;
   puVar4 = PTR_RaceHud_UpdateTimeAttack_0031c380;
   uVar3 = DAT_0031c37c;
@@ -1353,6 +1383,16 @@ void RaceHud_GetLayout(undefined4 *param_1)
     param_1[1] = uVar15;
     param_1[2] = puVar16;
   }
+  return;
+}
+
+// 0x001e6ac0  size 0x2c
+void race_step_sub_001e6ac0(void)
+
+{
+  racehud_exit_sub_002cff10();
+  MenuWnd_Free();
+  UiRes_FreeFonts();
   return;
 }
 
@@ -1837,7 +1877,7 @@ void RaceSnd_UpdateCars(int param_1)
         if (0 < lVar5) {
           do {
             uVar7 = RaceProg_GetArray_28((char)iVar8);
-            iVar4 = raceprog_leaf_sub_001dcdc0(uVar7);
+            iVar4 = Raceprog_Nop(uVar7);
             if ((iVar4 < *(int *)(param_1 + 0x30)) &&
                (fVar10 = ((float)iVar4 / 0.25) / 5e+06, fVar10 < 1.0)) {
               if (*(int *)(param_1 + 0x2c) == 0) {
@@ -2031,7 +2071,7 @@ LAB_001e7bfc:
             (cVar2 = RaceProg_Get(), cVar2 == '\x03')) &&
            (uVar9 = RaceProg_Get_4(), (uVar9 & 0x80) == 0)) {
           uVar8 = RaceProg_GetArray_28(0);
-          iVar11 = raceprog_leaf_sub_001dcdc0(uVar8);
+          iVar11 = Raceprog_Nop(uVar8);
           if ((iVar11 < *(int *)(param_1 + 0x30)) &&
              (fVar13 = ((float)iVar11 / 0.25) / 5e+06, fVar13 < 1.0)) {
             if (*(int *)(param_1 + 0x2c) == 0) {

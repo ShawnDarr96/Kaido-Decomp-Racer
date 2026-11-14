@@ -48,6 +48,27 @@ void PhysPair_SetShapeB(undefined4 param_1,int param_2)
   return;
 }
 
+// 0x0015c140  size 0x8
+void Vec3_AddInPlace_Wrap(int param_1)
+
+{
+  Vec3_AddInPlace(param_1 + 0x20);
+  return;
+}
+
+// 0x0015c150  size 0x5c
+bool phys_step_sub_0015c150(int param_1,undefined8 param_2)
+
+{
+  float fStack_10;
+  float fStack_c;
+  float fStack_8;
+  
+  Vec3_Sub(&fStack_10,param_2,param_1 + 0x20);
+  return fStack_8 * fStack_8 + fStack_10 * fStack_10 + fStack_c * fStack_c <
+         *(float *)(param_1 + 0x14) * *(float *)(param_1 + 0x14);
+}
+
 // 0x0015c1b0  size 0x4c
 long PhysShapeBase_dtor(long param_1,short param_2)
 
@@ -1629,6 +1650,20 @@ bool PhysPair_InitSpherePlane(undefined8 param_1,undefined4 *param_2)
   return 0.0 < (float)puVar4[0x14];
 }
 
+// 0x0015e300  size 0x8
+void Phys_Nop_16(void)
+
+{
+  return;
+}
+
+// 0x0015e310  size 0x8
+void Phys_Nop_17(void)
+
+{
+  return;
+}
+
 // 0x0015e320  size 0x4f8
 undefined8 PhysBody_ctor(undefined8 param_1)
 
@@ -2109,6 +2144,22 @@ undefined8 PhysPlane_ctor(undefined8 param_1,int param_2)
   puVar1[0x16] = *(undefined4 *)(param_2 + 0x58);
   puVar1[0x17] = *(undefined4 *)(param_2 + 0x5c);
   return param_1;
+}
+
+// 0x0015f070  size 0x8
+void PhysPair_CollideGeneric_Wrap(undefined8 param_1)
+
+{
+  PhysPair_CollideGeneric(param_1,1);
+  return;
+}
+
+// 0x0015f080  size 0x8
+void PhysPair_CollideGeneric_Wrap2(undefined8 param_1)
+
+{
+  PhysPair_CollideGeneric(param_1,0);
+  return;
 }
 
 // 0x0015f090  size 0x488

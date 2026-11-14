@@ -3,7 +3,9 @@
 #include "ghidra_types.h"
 
 // 0x002ec550  size 0x3bc
-void eventui_step_sub_002ec550(undefined8 param_1)
+/* screen record 0x342d70 */
+
+void ScrScriptGetElem2f4xda8_Enter(undefined8 param_1)
 
 {
   short sVar1;
@@ -16,7 +18,7 @@ void eventui_step_sub_002ec550(undefined8 param_1)
   iVar6 = (int)param_1;
   lVar2 = nameentry_leaf_sub_002f81e0(iVar6 + 0xc44);
   if (lVar2 != 0) {
-    lVar2 = nameentry_leaf_sub_002f8210(iVar6 + 0xc44);
+    lVar2 = Nameentry_Nop_2(iVar6 + 0xc44);
     if (lVar2 == 6) {
       *(undefined4 *)(iVar6 + 0xcc0) = 0;
     }
@@ -127,7 +129,9 @@ void eventui_step_sub_002ec550(undefined8 param_1)
 }
 
 // 0x002ec910  size 0x6c
-void eventui_step_sub_002ec910(undefined8 param_1)
+/* screen record 0x3433d4 */
+
+void ScrNameentryGetField48200_Updateec910(undefined8 param_1)
 
 {
   int iVar1;
@@ -140,13 +144,15 @@ void eventui_step_sub_002ec910(undefined8 param_1)
       *(int *)(iVar1 + 0xd68) = *(int *)(iVar1 + 0xd68) + -1;
     }
     iVar1 = Nameentry_GetField_4_8200(iVar1 + 0xc44);
-    (*(code *)(&PTR_eventui_step_sub_002ec550_00342d70)[iVar1])(param_1);
+    (*(code *)(&PTR_ScrScriptGetElem2f4xda8_Enter_00342d70)[iVar1])(param_1);
   }
   return;
 }
 
 // 0x002ec980  size 0x38
-void eventui_step_sub_002ec980(int param_1)
+/* screen record 0x3433d4 */
+
+void ScrNameentryGetField48200_Exitec980(int param_1)
 
 {
   nameentry_step_sub_002f8020(param_1 + 0xc8c);
@@ -156,7 +162,9 @@ void eventui_step_sub_002ec980(int param_1)
 }
 
 // 0x002ec9c0  size 0x1ac
-void eventui_step_sub_002ec9c0(int param_1)
+/* screen record 0x3433d4 */
+
+void ScrNameentryGetField48200_Enterec9c0(int param_1)
 
 {
   undefined4 uVar1;
@@ -180,7 +188,7 @@ void eventui_step_sub_002ec9c0(int param_1)
   Snd_PlayStreamEx(*(undefined4 *)(param_1 + 0xca0),0x1c5b,0x1ca4,0);
   *(undefined4 *)(param_1 + 0xc98) = 0x41700000;
   *(undefined4 *)(param_1 + 0xc9c) = 0;
-  uVar1 = script_leaf_sub_002bc1f0();
+  uVar1 = Script_Nop();
   *(undefined4 *)(param_1 + 0xca4) = uVar1;
   iVar5 = 0;
   *(undefined4 *)(param_1 + 0xcc4) = 0xffffffff;
@@ -1376,8 +1384,8 @@ void Eventui_Draw_TestCourse_fa10(int param_1)
   
   lVar4 = nameentry_leaf_sub_002f81d0(param_1 + 0xc44);
   if (lVar4 != 0) {
-    lVar4 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
-    if ((lVar4 == 0xe) || (lVar4 = nameentry_leaf_sub_002f8210(param_1 + 0xc44), lVar4 == 0xb)) {
+    lVar4 = Nameentry_Nop_2(param_1 + 0xc44);
+    if ((lVar4 == 0xe) || (lVar4 = Nameentry_Nop_2(param_1 + 0xc44), lVar4 == 0xb)) {
       uVar2 = UiRes_GetLayoutData(0x3d);
       iVar1 = UiMgr_FindLayout(0x12);
       iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
@@ -1470,7 +1478,7 @@ void Eventui_Draw_TestCourse_fa10(int param_1)
     nameentry_step_sub_002f6d80(1);
   }
   lVar4 = Nameentry_Draw_Rokko(0x4c,*(undefined4 *)(param_1 + 0xd74));
-  lVar5 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
+  lVar5 = Nameentry_Nop_2(param_1 + 0xc44);
   if (lVar5 == 0xb) {
     lVar5 = UiLayout_UpdateAnimById(0x12,0);
     lVar6 = UiLayout_UpdateAnimById(0x13,0);
@@ -1488,7 +1496,7 @@ void Eventui_Draw_TestCourse_fa10(int param_1)
     }
     lVar5 = Nameentry_GetField_8_81f0(param_1 + 0xc44);
     if ((lVar5 == 7) || (lVar5 = Nameentry_GetField_8_81f0(param_1 + 0xc44), lVar5 == 0xb)) {
-      lVar5 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
+      lVar5 = Nameentry_Nop_2(param_1 + 0xc44);
       if (lVar5 == 0xe) {
         lVar5 = UiLayout_UpdateAnimById(0x12,1);
         lVar6 = UiLayout_UpdateAnimById(0x13,1);
@@ -1501,7 +1509,7 @@ void Eventui_Draw_TestCourse_fa10(int param_1)
       }
     }
     else {
-      lVar5 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
+      lVar5 = Nameentry_Nop_2(param_1 + 0xc44);
       if (lVar5 == 0xe) {
         lVar5 = Nameentry_GetField_8_81f0(param_1 + 0xc44);
         if (lVar5 == 0xe) {
@@ -1532,8 +1540,8 @@ void Eventui_Draw_TestCourse_fa10(int param_1)
       UiElem_SetPropFloat(0,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x90,8);
     }
   }
-  lVar4 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
-  if ((lVar4 == 0xe) || (lVar4 = nameentry_leaf_sub_002f8210(param_1 + 0xc44), lVar4 == 0xb)) {
+  lVar4 = Nameentry_Nop_2(param_1 + 0xc44);
+  if ((lVar4 == 0xe) || (lVar4 = Nameentry_Nop_2(param_1 + 0xc44), lVar4 == 0xb)) {
     lVar4 = nameentry_leaf_sub_002f86e0();
     if ((lVar4 == 0) || (lVar4 = nameentry_leaf_sub_002f8550(), lVar4 != 3)) {
       iVar11 = 0;

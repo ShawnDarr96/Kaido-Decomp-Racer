@@ -922,6 +922,13 @@ void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefine
   return;
 }
 
+// 0x001597e0  size 0x8
+undefined4 Phys_Nop(void)
+
+{
+  return 1;
+}
+
 // 0x001597f0  size 0x184
 void PhysContact_Resolve(int param_1)
 
@@ -1323,6 +1330,24 @@ void PhysSphere_UpdateTransform(undefined8 param_1,undefined8 param_2)
   return;
 }
 
+// 0x00159fb0  size 0x24
+void phys_leaf_sub_00159fb0(int param_1,int param_2)
+
+{
+  *(undefined4 *)(param_1 + 0x80) = *(undefined4 *)(param_2 + 0x80);
+  *(undefined4 *)(param_1 + 0x84) = *(undefined4 *)(param_2 + 0x84);
+  *(undefined4 *)(param_1 + 0x88) = *(undefined4 *)(param_2 + 0x88);
+  *(undefined4 *)(param_1 + 0x8c) = *(undefined4 *)(param_2 + 0x8c);
+  return;
+}
+
+// 0x00159fe0  size 0x8
+undefined4 Phys_Nop_2(void)
+
+{
+  return 4;
+}
+
 // 0x00159ff0  size 0x1b4
 void PhysSphere_ComputeInertia(int param_1,undefined4 *param_2)
 
@@ -1531,6 +1556,21 @@ int PhysBox_GetAxes(int param_1)
 
 {
   return param_1 + 0x60;
+}
+
+// 0x0015a400  size 0x10
+undefined4 phys_leaf_sub_0015a400(int param_1,int param_2)
+
+{
+  return *(undefined4 *)(param_2 * 4 + param_1 + 0x80);
+}
+
+// 0x0015a410  size 0x10
+void phys_leaf_sub_0015a410(int param_1,int param_2,undefined4 param_3)
+
+{
+  *(undefined4 *)(param_2 * 4 + param_1 + 0x80) = param_3;
+  return;
 }
 
 // 0x0015a420  size 0x154
@@ -1969,6 +2009,13 @@ long PhysBox_Create(int param_1,long param_2)
   return lVar5;
 }
 
+// 0x0015b040  size 0x8
+undefined4 Phys_Nop_3(void)
+
+{
+  return 2;
+}
+
 // 0x0015b050  size 0x8c
 undefined4 PhysBox_ClassifyPoint(int param_1,undefined8 param_2)
 
@@ -2116,6 +2163,20 @@ undefined4 PhysBox_GetEdgeIndexB(int param_1)
   return *(undefined4 *)(&DAT_0030ac80 + param_1 * 4);
 }
 
+// 0x0015b3f0  size 0x18
+undefined4 phys_leaf_sub_0015b3f0(undefined8 param_1,int param_2)
+
+{
+  return *(undefined4 *)(&DAT_0030acb0 + param_2 * 4);
+}
+
+// 0x0015b410  size 0x18
+undefined4 phys_leaf_sub_0015b410(undefined8 param_1,int param_2)
+
+{
+  return *(undefined4 *)(&DAT_0030ac80 + param_2 * 4);
+}
+
 // 0x0015b430  size 0x9c
 undefined4 PhysBox_GetCorner(int param_1,int param_2)
 
@@ -2142,11 +2203,39 @@ undefined4 PhysBox_GetCorner(int param_1,int param_2)
   return 0x42f540;
 }
 
+// 0x0015b4d0  size 0x8
+undefined4 Phys_Nop_4(void)
+
+{
+  return 0xc;
+}
+
 // 0x0015b4e0  size 0x10
 int PhysBox_GetPlane(int param_1,int param_2)
 
 {
   return param_1 + param_2 * 0x20 + 0x110;
+}
+
+// 0x0015b4f0  size 0x8
+undefined4 Phys_Nop_5(void)
+
+{
+  return 6;
+}
+
+// 0x0015b500  size 0x10
+int Phys_ElemPtr_90_x10(int param_1,int param_2)
+
+{
+  return param_1 + param_2 * 0x10 + 0x90;
+}
+
+// 0x0015b510  size 0x8
+undefined4 Phys_Nop_6(void)
+
+{
+  return 8;
 }
 
 // 0x0015b520  size 0x240
@@ -2569,6 +2658,83 @@ void PhysPlane_UpdateTransform(int param_1,undefined8 param_2)
   return;
 }
 
+// 0x0015bd10  size 0x8
+undefined8 Phys_Nop_7(void)
+
+{
+  return 0;
+}
+
+// 0x0015bd20  size 0x8
+void Phys_Nop_8(void)
+
+{
+  return;
+}
+
+// 0x0015bd30  size 0x8
+undefined8 Phys_Nop_9(void)
+
+{
+  return 0;
+}
+
+// 0x0015bd40  size 0x8
+undefined8 Phys_Nop_10(void)
+
+{
+  return 0;
+}
+
+// 0x0015bd50  size 0x8
+undefined8 Phys_Nop_11(void)
+
+{
+  return 0;
+}
+
+// 0x0015bd60  size 0xc
+undefined4 * phys_leaf_sub_0015bd60(void)
+
+{
+  return &DAT_003625e0;
+}
+
+// 0x0015bd70  size 0xc
+undefined4 Phys_Nop_12(void)
+
+{
+  return 0x42f440;
+}
+
+// 0x0015bd80  size 0xc
+undefined4 * phys_leaf_sub_0015bd80(void)
+
+{
+  return &DAT_003625e0;
+}
+
+// 0x0015bd90  size 0x8
+undefined8 Phys_Nop_13(void)
+
+{
+  return 0;
+}
+
+// 0x0015bda0  size 0x8
+undefined8 Phys_Nop_14(void)
+
+{
+  return 0;
+}
+
+// 0x0015bdb0  size 0x8
+undefined8 Phys_Nop_15(void)
+
+{
+  return 0;
+}
+
 // 0x0015bdc0  size 0xa0
 void PhysPlane_GetKind(undefined8 param_1,undefined8 param_2)
 
@@ -2628,6 +2794,32 @@ void PhysPlane_TransformNormal(int param_1,undefined8 param_2,int param_3)
   *(undefined4 *)(param_1 + 0x54) = uVar2;
   *(undefined4 *)(param_1 + 0x58) = uVar3;
   *(undefined4 *)(param_1 + 0x5c) = uStack_34;
+  return;
+}
+
+// 0x0015bf00  size 0x8
+void phys_leaf_sub_0015bf00(undefined4 param_1,int param_2)
+
+{
+  *(undefined4 *)(param_2 + 0x14) = param_1;
+  return;
+}
+
+// 0x0015bf10  size 0xc
+void phys_leaf_sub_0015bf10(int param_1,undefined4 *param_2)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  
+  uVar1 = param_2[1];
+  uVar2 = param_2[2];
+  uVar3 = param_2[3];
+  *(undefined4 *)(param_1 + 0x20) = *param_2;
+  *(undefined4 *)(param_1 + 0x24) = uVar1;
+  *(undefined4 *)(param_1 + 0x28) = uVar2;
+  *(undefined4 *)(param_1 + 0x2c) = uVar3;
   return;
 }
 

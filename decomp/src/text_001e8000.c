@@ -459,6 +459,30 @@ void RaceSnd_SetupChannels(undefined8 param_1,int param_2)
   return;
 }
 
+// 0x001e8d60  size 0x9c
+void race_step_sub_001e8d60(int param_1)
+
+{
+  int iVar1;
+  char cVar2;
+  
+  iVar1 = *(int *)(param_1 + 0x14);
+  (**(code **)(**(int **)(iVar1 + 4) + 0x1c))();
+  if (*(int *)(iVar1 + 0x18) == 0) {
+    (**(code **)(**(int **)(iVar1 + 0xc) + 0x1c))();
+  }
+  else {
+    (**(code **)(**(int **)(iVar1 + 0x14) + 0x1c))();
+  }
+  cVar2 = RaceCtx_GetMode();
+  if (cVar2 != '\x06') {
+    CarSnd_UpdateAll();
+    SndMgr_PauseGlobal();
+  }
+  CarSnd_Shutdown();
+  return;
+}
+
 // 0x001e8e00  size 0x4c
 void RaceSnd_Enter(int param_1)
 
@@ -916,6 +940,65 @@ void RaceScene_StateMachine(undefined8 param_1)
   return;
 }
 
+// 0x001e9740  size 0x184
+void race_step_sub_001e9740(int *param_1)
+
+{
+  char cVar1;
+  int iVar2;
+  long lVar3;
+  long lVar4;
+  uint uVar5;
+  int iVar6;
+  int *piVar7;
+  int iVar8;
+  int iVar9;
+  
+  uVar5 = 0;
+  do {
+    if (uVar5 == (uRam0036f0cc & 1)) {
+      Ffb_PlayCollision(uVar5);
+    }
+    uVar5 = uVar5 + 1;
+  } while ((int)uVar5 < 2);
+  iVar9 = 1;
+  cVar1 = RaceCtx_GetMode();
+  if (cVar1 == '\x04') {
+    iVar9 = 2;
+  }
+  iVar8 = 0;
+  if (iVar9 != 0) {
+    piVar7 = param_1;
+    do {
+      lVar3 = Wheel_GetDeviceName(iVar8);
+      if ((lVar3 == 0) || (lVar3 = (**(code **)(*(int *)((int)lVar3 + 4) + 8))(lVar3), lVar3 == 0))
+      {
+        *piVar7 = 0;
+      }
+      iVar8 = iVar8 + 1;
+      piVar7 = piVar7 + 1;
+    } while (iVar8 < iVar9);
+  }
+  iVar8 = 0;
+  if (iVar9 != 0) {
+    iVar6 = 0;
+    piVar7 = param_1;
+    do {
+      lVar3 = Wheel_GetDeviceName(iVar8);
+      if (((lVar3 != 0) && (*piVar7 == 0)) && (lVar4 = Wheel_IsActive(lVar3), lVar4 == 0)) {
+        iVar2 = maybe_Options_GetLanguage();
+        Controls_SetDefaults(iVar2 + iVar6 + 0x28,lVar3);
+        *piVar7 = 1;
+      }
+      iVar8 = iVar8 + 1;
+      piVar7 = piVar7 + 1;
+      iVar6 = iVar6 + 0xe8;
+    } while (iVar8 < iVar9);
+  }
+  RaceScene_StateMachine(param_1);
+  return;
+}
+
 // 0x001e98d0  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -930,7 +1013,7 @@ void RaceScene_StatePause(int param_1)
   if ((*(uint *)(_g_RaceScene + 0x30) & 0x80) == 0) {
     *puVar3 = *(uint *)(_g_RaceScene + 0x30) | 0x80;
     Scene_SetParam(5);
-    puVar2 = PTR_LAB_0031c7d0;
+    puVar2 = PTR_RaceScene_StateMachine_0031c7d0;
     uVar1 = DAT_0031c7cc;
     *(undefined4 *)(param_1 + 8) = DAT_0031c7c8;
     *(undefined4 *)(param_1 + 0xc) = uVar1;
@@ -1035,7 +1118,7 @@ void RaceScene_StateOptions(undefined4 *param_1)
       if (uVar8 == (uRam0036f0cc & 1)) {
         Ffb_PlayCollision(uVar8);
       }
-      puVar4 = PTR_LAB_0031c7b0;
+      puVar4 = PTR_race_step_sub_001e9740_0031c7b0;
       uVar3 = DAT_0031c7ac;
       uVar8 = uVar8 + 1;
     } while ((int)uVar8 < 2);

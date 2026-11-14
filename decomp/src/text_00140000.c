@@ -1018,6 +1018,30 @@ bool Wheel_ConsumeDisconnect(int param_1)
   return bVar1;
 }
 
+// 0x00141a30  size 0x8
+undefined4 Engine_GetField_47c(int param_1)
+
+{
+  return *(undefined4 *)(param_1 + 0x47c);
+}
+
+// 0x00141a40  size 0x18
+void engine_leaf_sub_00141a40(int param_1,uint param_2)
+
+{
+                    /* WARNING: Could not recover jumptable at 0x00141a50. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)(*(int *)(param_1 + 4) + 0xc))(param_1,1 << (param_2 & 0x1f));
+  return;
+}
+
+// 0x00141a60  size 0x14
+bool engine_leaf_sub_00141a60(int param_1,uint param_2)
+
+{
+  return param_2 == (param_2 & *(uint *)(param_1 + 0x480));
+}
+
 // 0x00141a80  size 0x970
 void Wheel_ReadInput(int param_1,undefined8 param_2)
 

@@ -4,8 +4,9 @@
 
 // 0x002ac030  size 0x264
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32ee9c */
 
-void scrcareer_input_sub_002ac030(int param_1)
+void ScrRivalIsBossId_Enter(int param_1)
 
 {
   undefined4 uVar1;
@@ -97,8 +98,9 @@ void scrcareer_input_sub_002ac030(int param_1)
 
 // 0x002ac2a0  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32ee90 */
 
-void menuscr_input_sub_002ac2a0(int param_1)
+void screc32ee90_exit_sub_002ac2a0(int param_1)
 
 {
   int iVar1;
@@ -128,8 +130,9 @@ void menuscr_input_sub_002ac2a0(int param_1)
 
 // 0x002ac370  size 0xe8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32ee90 */
 
-void scrcareer_input_sub_002ac370(int param_1)
+void screc32ee90_update_sub_002ac370(int param_1)
 
 {
   long lVar1;
@@ -160,8 +163,9 @@ void scrcareer_input_sub_002ac370(int param_1)
 
 // 0x002ac460  size 0x1a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32ee90 */
 
-void menuscr_input_sub_002ac460(undefined8 param_1)
+void screc32ee90_enter_sub_002ac460(undefined8 param_1)
 
 {
   short sVar1;
@@ -229,8 +233,9 @@ void menuscr_input_sub_002ac460(undefined8 param_1)
 
 // 0x002ac610  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32769c */
 
-void menuscr_step_sub_002ac610(void)
+void ScrGarageGetCurrentCarSpec_Exit(void)
 
 {
   short sVar1;
@@ -269,7 +274,9 @@ void menuscr_step_sub_002ac610(void)
 }
 
 // 0x002ac6e0  size 0x1d4
-void scrgarage_select_sub_002ac6e0(int param_1)
+/* screen record 0x32769c */
+
+void ScrGarageGetCurrentCarSpec_Update(int param_1)
 
 {
   undefined4 uVar1;
@@ -283,7 +290,7 @@ void scrgarage_select_sub_002ac6e0(int param_1)
   
   lVar3 = Menu_IsInputIdle(param_1 + 0xa00);
   if (lVar3 != 0) {
-    (*(code *)(&PTR_menuscr_input_sub_002ac460_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
+    (*(code *)(&PTR_screc32ee90_enter_sub_002ac460_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
     uVar5 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar5) == 0) {
       uVar5 = 0x100000;
@@ -337,8 +344,9 @@ void scrgarage_select_sub_002ac6e0(int param_1)
 
 // 0x002ac8c0  size 0x170
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32769c */
 
-void scrcareer_step_sub_002ac8c0(undefined4 *param_1)
+void ScrGarageGetCurrentCarSpec_Enter(undefined4 *param_1)
 
 {
   short sVar1;
@@ -716,7 +724,9 @@ LAB_002ad078:
 }
 
 // 0x002ad1f0  size 0x64
-void menuscr_input_sub_002ad1f0(int *param_1)
+/* screen record 0x32ef58 */
+
+void screc32ef58_exit_sub_002ad1f0(int *param_1)
 
 {
   int iStack_4;
@@ -732,7 +742,9 @@ void menuscr_input_sub_002ad1f0(int *param_1)
 }
 
 // 0x002ad260  size 0xac
-void menuscr_input_sub_002ad260(int *param_1)
+/* screen record 0x32ef58 */
+
+void screc32ef58_update_sub_002ad260(int *param_1)
 
 {
   int **ppiVar1;
@@ -762,7 +774,9 @@ void menuscr_input_sub_002ad260(int *param_1)
 }
 
 // 0x002ad310  size 0x354
-void scrgarage_input_sub_002ad310(int *param_1)
+/* screen record 0x32ef58 */
+
+void screc32ef58_enter_sub_002ad310(int *param_1)
 
 {
   int **ppiVar1;
@@ -885,7 +899,9 @@ LAB_002ad534:
 }
 
 // 0x002ad670  size 0x19c
-void scrgarage_input_sub_002ad670(int *param_1)
+/* screen record 0x32ef4c */
+
+void screc32ef4c_exit_sub_002ad670(int *param_1)
 
 {
   uint uVar1;
@@ -931,7 +947,9 @@ void scrgarage_input_sub_002ad670(int *param_1)
 }
 
 // 0x002ad810  size 0x1d0
-void scrcareer_input_sub_002ad810(int *param_1)
+/* screen record 0x32ef4c */
+
+void screc32ef4c_update_sub_002ad810(int *param_1)
 
 {
   char cVar1;
@@ -993,7 +1011,9 @@ LAB_002ad938:
 }
 
 // 0x002ad9e0  size 0xe8
-void menuscr_input_sub_002ad9e0(int *param_1)
+/* screen record 0x32ef4c */
+
+void screc32ef4c_enter_sub_002ad9e0(int *param_1)
 
 {
   int *piVar1;
@@ -1038,7 +1058,9 @@ void menuscr_input_sub_002ad9e0(int *param_1)
 }
 
 // 0x002adad0  size 0x184
-void scrgarage_input_sub_002adad0(int *param_1)
+/* screen record 0x32ef40 */
+
+void ScrCarRecGetModelId_Exitadad0(int *param_1)
 
 {
   int *piVar1;
@@ -1101,7 +1123,9 @@ void scrgarage_input_sub_002adad0(int *param_1)
 }
 
 // 0x002adc60  size 0xfc
-void scrgarage_input_sub_002adc60(undefined8 param_1)
+/* screen record 0x32ef40 */
+
+void ScrCarRecGetModelId_Updateadc60(undefined8 param_1)
 
 {
   short sVar1;
@@ -1135,7 +1159,9 @@ void scrgarage_input_sub_002adc60(undefined8 param_1)
 }
 
 // 0x002add60  size 0xe4
-void scrgarage_input_sub_002add60(undefined8 param_1)
+/* screen record 0x32ef40 */
+
+void ScrCarRecGetModelId_Enteradd60(undefined8 param_1)
 
 {
   char cVar1;
@@ -1168,8 +1194,19 @@ void scrgarage_input_sub_002add60(undefined8 param_1)
   return;
 }
 
+// 0x002ade50  size 0x8
+/* screen record 0x3276a8 */
+
+void screc3276a8_exit_sub_002ade50(void)
+
+{
+  return;
+}
+
 // 0x002ade60  size 0x98
-void menuscr_select_sub_002ade60(undefined8 param_1)
+/* screen record 0x3276a8 */
+
+void screc3276a8_update_sub_002ade60(undefined8 param_1)
 
 {
   long lVar1;
@@ -1183,7 +1220,7 @@ void menuscr_select_sub_002ade60(undefined8 param_1)
       *puVar2 = puVar2[1];
     }
     if (puVar2[0xf] == 5) {
-      (*(code *)(&PTR_scrgarage_input_sub_002add60_0032ef40)[puVar2[3]])(param_1);
+      (*(code *)(&PTR_ScrCarRecGetModelId_Enteradd60_0032ef40)[puVar2[3]])(param_1);
     }
     scrgarage_input_sub_002acdc0(param_1);
     Menu_RequestTransition(puVar2 + 2);
@@ -1192,7 +1229,9 @@ void menuscr_select_sub_002ade60(undefined8 param_1)
 }
 
 // 0x002adf00  size 0x3a4
-void scrgarage_input_sub_002adf00(undefined8 param_1)
+/* screen record 0x3276a8 */
+
+void screc3276a8_enter_sub_002adf00(undefined8 param_1)
 
 {
   char cVar1;
@@ -1312,10 +1351,20 @@ void scrgarage_input_sub_002adf00(undefined8 param_1)
   return;
 }
 
+// 0x002ae2b0  size 0x8
+/* screen record 0x3274bc */
+
+void screc3274bc_exit_sub_002ae2b0(void)
+
+{
+  return;
+}
+
 // 0x002ae2c0  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3274bc */
 
-void menuscr_input_sub_002ae2c0(undefined8 param_1)
+void screc3274bc_update_sub_002ae2c0(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1345,8 +1394,9 @@ void menuscr_input_sub_002ae2c0(undefined8 param_1)
 
 // 0x002ae3c0  size 0x88
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3274bc */
 
-void scrgarage_step_sub_002ae3c0(undefined4 *param_1)
+void screc3274bc_enter_sub_002ae3c0(undefined4 *param_1)
 
 {
   int iVar1;

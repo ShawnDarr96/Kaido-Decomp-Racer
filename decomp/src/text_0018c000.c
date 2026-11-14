@@ -1322,6 +1322,20 @@ bool SndCh_IsStreamPlaying(int param_1)
   return *(int *)(param_1 + 0x1c) != 0 && cVar1 != '\0';
 }
 
+// 0x0018ea00  size 0x20
+bool render_leaf_sub_0018ea00(void)
+
+{
+  return *(char *)(iRam0036f254 + 0x400) != '\0';
+}
+
+// 0x0018ea20  size 0x8
+undefined4 Render_Nop(void)
+
+{
+  return 1;
+}
+
 // 0x0018ea30  size 0x90
 void snd_step_sub_0018ea30(int *param_1,short param_2)
 
@@ -1452,6 +1466,26 @@ void snd_step_sub_0018ebe0
   return;
 }
 
+// 0x0018ed00  size 0x20
+bool render_leaf_sub_0018ed00(int param_1)
+
+{
+  bool bVar1;
+  
+  bVar1 = *(int *)(param_1 + 0x1c) != 0;
+  if (!bVar1) {
+    bVar1 = *(int *)(param_1 + 0x34) != 0;
+  }
+  return bVar1;
+}
+
+// 0x0018ed20  size 0x8
+undefined8 Render_Nop_2(void)
+
+{
+  return 0;
+}
+
 // 0x0018ed30  size 0x38
 undefined4 snd_leaf_sub_0018ed30(int *param_1,uint param_2)
 
@@ -1460,6 +1494,34 @@ undefined4 snd_leaf_sub_0018ed30(int *param_1,uint param_2)
   
   puVar1 = (uint *)(**(code **)(*param_1 + 0xc))();
   *puVar1 = param_2 & 0xff;
+  return 1;
+}
+
+// 0x0018ed70  size 0x8
+undefined4 Render_Nop_3(void)
+
+{
+  return 1;
+}
+
+// 0x0018ed80  size 0x8
+undefined4 Render_Nop_4(void)
+
+{
+  return 1;
+}
+
+// 0x0018ed90  size 0x8
+undefined4 Render_Nop_5(void)
+
+{
+  return 1;
+}
+
+// 0x0018eda0  size 0x8
+undefined4 Render_Nop_6(void)
+
+{
   return 1;
 }
 
@@ -1478,6 +1540,27 @@ void snd_leaf_sub_0018edb0(undefined8 param_1)
   uStack_18 = (undefined1)puVar1[2];
   (**(code **)(*(int *)param_1 + 0x10))(param_1,uStack_20,uStack_1c,uStack_18,puVar1[4]);
   return;
+}
+
+// 0x0018ee30  size 0x8
+undefined4 Render_Nop_7(void)
+
+{
+  return 1;
+}
+
+// 0x0018ee40  size 0x8
+int Render_FieldPtr_20(int param_1)
+
+{
+  return param_1 + 0x20;
+}
+
+// 0x0018ee50  size 0x8
+int Render_FieldPtr_8(int param_1)
+
+{
+  return param_1 + 8;
 }
 
 // 0x0018ee60  size 0x8

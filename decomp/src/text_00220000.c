@@ -467,10 +467,22 @@ void ScrCareer_Draw_SelectBbsThread(int *param_1)
   return;
 }
 
+// 0x00220cf0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32771c */
+
+void screc32771c_exit_sub_00220cf0(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00220d10  size 0x260
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32771c */
 
-void scrrace_anim_sub_00220d10(undefined8 param_1)
+void screc32771c_update_sub_00220d10(undefined8 param_1)
 
 {
   int iVar1;
@@ -505,6 +517,15 @@ void scrrace_anim_sub_00220d10(undefined8 param_1)
       *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
     }
   }
+  return;
+}
+
+// 0x00220f70  size 0x8
+/* screen record 0x32771c */
+
+void screc32771c_enter_sub_00220f70(void)
+
+{
   return;
 }
 
@@ -940,10 +961,22 @@ void MenuScr_Draw_Information(int *param_1)
   return;
 }
 
+// 0x00221e40  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327728 */
+
+void screc327728_exit_sub_00221e40(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00221e60  size 0x168
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327728 */
 
-void scrrace_anim_sub_00221e60(undefined8 param_1)
+void screc327728_update_sub_00221e60(undefined8 param_1)
 
 {
   int iVar1;
@@ -970,6 +1003,16 @@ void scrrace_anim_sub_00221e60(undefined8 param_1)
       }
     }
   }
+  return;
+}
+
+// 0x00221fd0  size 0x8
+/* screen record 0x327728 */
+
+void screc327728_enter_sub_00221fd0(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x37c) = 0;
   return;
 }
 
@@ -1202,10 +1245,22 @@ void ScrCareer_Draw_Information(int *param_1)
   return;
 }
 
+// 0x00222640  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327740 */
+
+void screc327740_exit_sub_00222640(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00222660  size 0xd8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327740 */
 
-void scrrace_step_sub_00222660(undefined8 param_1)
+void screc327740_update_sub_00222660(undefined8 param_1)
 
 {
   long lVar1;
@@ -1228,8 +1283,9 @@ void scrrace_step_sub_00222660(undefined8 param_1)
 
 // 0x00222740  size 0x408
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327740 */
 
-void menuscr_step_sub_00222740(void)
+void screc327740_enter_sub_00222740(void)
 
 {
   undefined4 uVar1;

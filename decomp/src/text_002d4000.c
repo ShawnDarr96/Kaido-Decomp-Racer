@@ -1483,6 +1483,21 @@ void showroom_step_sub_002d6850(undefined8 param_1,undefined8 param_2)
   return;
 }
 
+// 0x002d68a0  size 0x8
+void Showroom_Nop(void)
+
+{
+  return;
+}
+
+// 0x002d68b0  size 0x10
+void showroom_leaf_sub_002d68b0(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x1c) = 0x2d6890;
+  return;
+}
+
 // 0x002d68c0  size 0x574
 /* WARNING: Removing unreachable block (ram,0x002d6b08) */
 /* WARNING: Removing unreachable block (ram,0x002d6b54) */
@@ -1910,7 +1925,7 @@ void showroom_draw_sub_002d6e40(void)
 }
 
 // 0x002d7710  size 0x30
-void showroom_input_sub_002d7710(void)
+void Pad_GetPort_Wrap(void)
 
 {
   Pad_GetPort(0,0);

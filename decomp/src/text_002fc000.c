@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002fd080  size 0x20
-undefined1 misc_step_sub_002fd080(void)
+undefined1 GameState_LoadHeader_Wrap(void)
 
 {
   undefined1 auStack_50 [80];
@@ -13,7 +13,7 @@ undefined1 misc_step_sub_002fd080(void)
 }
 
 // 0x002fd0a0  size 0x20
-undefined1 misc_step_sub_002fd0a0(void)
+undefined1 GameState_LoadHeader_Wrap2(void)
 
 {
   undefined1 uStack_50;
@@ -88,16 +88,26 @@ undefined8 misc_step_sub_002fd180(void)
 }
 
 // 0x002fd1c0  size 0xc
-undefined4 misc_leaf_sub_002fd1c0(void)
+undefined4 Misc_Nop(void)
 
 {
   return uRam0046a598;
 }
 
+// 0x002fd1d0  size 0x8
+/* screen record 0x3276cc */
+
+void ScrRenderSetInterlace_Exit(void)
+
+{
+  return;
+}
+
 // 0x002fd1e0  size 0x398
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3276cc */
 
-void misc_input_sub_002fd1e0(int *param_1)
+void ScrRenderSetInterlace_Update(int *param_1)
 
 {
   int iVar1;
@@ -216,6 +226,37 @@ void misc_input_sub_002fd1e0(int *param_1)
   return;
 }
 
+// 0x002fd580  size 0x38
+/* screen record 0x3276cc */
+
+void ScrRenderSetInterlace_Enter(undefined4 *param_1)
+
+{
+  param_1[2] = 0;
+  param_1[1] = 0;
+  *param_1 = 0;
+  param_1[3] = 0xffffffff;
+  param_1[4] = 0;
+  param_1[5] = 0;
+  param_1[7] = 1;
+  param_1[10] = 0;
+  param_1[8] = 1;
+  param_1[6] = 1;
+  param_1[9] = 0;
+  return;
+}
+
+// 0x002fd5c0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3278fc */
+
+void ScrDraw_StartGame_Exit(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x002fd5e0  size 0x3d0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -298,6 +339,16 @@ LAB_002fd938:
       *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
     }
   }
+  return;
+}
+
+// 0x002fd9b0  size 0x8
+/* screen record 0x3278fc */
+
+void ScrDraw_StartGame_Enter(void)
+
+{
+  Menu_ClearSlot(0);
   return;
 }
 

@@ -351,12 +351,12 @@ void maybe_Mpeg_ExtensionAndUserData(undefined8 param_1)
   undefined8 uStack_60;
   undefined *puStack_58;
   
-  uStack_80 = _PTR_LAB_0035ed60;
+  uStack_80 = _PTR_ScrMpeg_PictureDisplayExtension_Enter_0035ed60;
   uStack_78 = _PTR_maybe_Mpeg_QuantMatrixExt_0035ed68;
   uStack_70 = _PTR_maybe_Mpeg_SequenceDisplayExtension_0035ed70;
-  uStack_68 = _PTR_LAB_0035ed78;
+  uStack_68 = _PTR_ScrMpeg_PictureDisplayExtension_Enter_0035ed78;
   uStack_60 = _PTR_maybe_Mpeg_PictureCodingExt2_0035ed80;
-  puStack_58 = PTR_LAB_0035ed88;
+  puStack_58 = PTR_maybe_Mpeg_Error_Wrap2_0035ed88;
   maybe_Mpeg_ByteAlign();
   while( true ) {
     while (lVar2 = maybe_Mpeg_ShowBits(param_1,0x20), lVar2 == 0x1b5) {
@@ -2349,7 +2349,7 @@ int maybe_Mpeg_WorkAlloc(undefined8 param_1,int *param_2,int param_3,long param_
   return iVar1;
 }
 
-// 0x0010fcc0  size 0x12c
+// 0x0010fcc0  size 0xe8
 /* "sceMpegGetPicture was aborted" */
 
 undefined8 sceMpegGetPicture(int param_1)
@@ -2396,6 +2396,88 @@ undefined8 sceMpegGetPicture(int param_1)
     maybe_Mpeg_Errorf(piVar1,0x35eef8);
     uVar2 = 0xffffffffffffffff;
   }
+  return uVar2;
+}
+
+// 0x0010fdec  size 0x24
+undefined8 libgraph_step_sub_0010fdec(void)
+
+{
+  bool bVar1;
+  undefined8 uVar2;
+  long lVar3;
+  int *unaff_s0_lo;
+  ulong unaff_s2;
+  
+  lVar3 = maybe_Mpeg_GetPictureDispatch();
+  unaff_s0_lo[0x2f] = unaff_s0_lo[0x2f] + 1;
+  do {
+    if (unaff_s0_lo[0x428] != 0) {
+      maybe_scePrintf(0x35ef78);
+      return 0xffffffffffffffff;
+    }
+    if (unaff_s0_lo[0x20e] != 0) {
+      return 1;
+    }
+    if (*unaff_s0_lo != 0) {
+      return 1;
+    }
+    bVar1 = unaff_s2 < 5;
+    if (lVar3 != -1) {
+      do {
+        unaff_s2 = maybe_Mpeg_GetHeader();
+        if ((long)unaff_s2 < 0) {
+          return 0xffffffffffffffff;
+        }
+        bVar1 = unaff_s2 < 5;
+      } while (((unaff_s2 != 0) && (bVar1 = unaff_s2 < 5, unaff_s0_lo[99] != unaff_s0_lo[0x3b])) &&
+              (bVar1 = unaff_s2 < 5, unaff_s0_lo[0x218] != 0));
+    }
+  } while (!bVar1);
+                    /* WARNING: Could not recover jumptable at 0x0010fda0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  uVar2 = (*(code *)(&PTR_LAB_0035efa0)[(int)unaff_s2])();
+  return uVar2;
+}
+
+// 0x0010fe10  size 0x64
+undefined8 libgraph_step_sub_0010fe10(void)
+
+{
+  bool bVar1;
+  undefined8 uVar2;
+  long lVar3;
+  int *unaff_s0_lo;
+  ulong unaff_s2;
+  
+  lVar3 = maybe_Mpeg_GetPictureDispatch();
+  unaff_s0_lo[0x30] = unaff_s0_lo[0x30] + 1;
+  do {
+    if (unaff_s0_lo[0x428] != 0) {
+      maybe_scePrintf(0x35ef78);
+      return 0xffffffffffffffff;
+    }
+    if (unaff_s0_lo[0x20e] != 0) {
+      return 1;
+    }
+    if (*unaff_s0_lo != 0) {
+      return 1;
+    }
+    bVar1 = unaff_s2 < 5;
+    if (lVar3 != -1) {
+      do {
+        unaff_s2 = maybe_Mpeg_GetHeader();
+        if ((long)unaff_s2 < 0) {
+          return 0xffffffffffffffff;
+        }
+        bVar1 = unaff_s2 < 5;
+      } while (((unaff_s2 != 0) && (bVar1 = unaff_s2 < 5, unaff_s0_lo[99] != unaff_s0_lo[0x3b])) &&
+              (bVar1 = unaff_s2 < 5, unaff_s0_lo[0x218] != 0));
+    }
+  } while (!bVar1);
+                    /* WARNING: Could not recover jumptable at 0x0010fda0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  uVar2 = (*(code *)(&PTR_LAB_0035efa0)[(int)unaff_s2])();
   return uVar2;
 }
 

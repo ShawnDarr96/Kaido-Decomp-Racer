@@ -1981,6 +1981,20 @@ long File_RequestList_dtor(long param_1,short param_2)
   return param_1;
 }
 
+// 0x001373c0  size 0x60
+long engine_step_sub_001373c0(long param_1,short param_2)
+
+{
+  if (param_1 != 0) {
+    *(undefined4 *)param_1 = &DAT_0036e0d0;
+    maybe_ListNode_dtor(param_1,0);
+    if (0 < param_2) {
+      Mem_Free(param_1);
+    }
+  }
+  return param_1;
+}
+
 // 0x00137420  size 0x38
 undefined8 File_Request_ctor(undefined8 param_1)
 
@@ -2269,6 +2283,45 @@ undefined4 Pad_SetActuator(int param_1,byte param_2,byte param_3,uint param_4)
     uVar2 = 0;
   }
   return uVar2;
+}
+
+// 0x00137920  size 0x18
+void engine_leaf_sub_00137920(int param_1,uint param_2)
+
+{
+                    /* WARNING: Could not recover jumptable at 0x00137930. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)(*(int *)(param_1 + 4) + 0xc))(param_1,1 << (param_2 & 0x1f));
+  return;
+}
+
+// 0x00137940  size 0x84
+undefined4 engine_leaf_sub_00137940(int param_1,uint param_2)
+
+{
+  byte *pbVar1;
+  undefined4 uVar2;
+  long lVar3;
+  
+  lVar3 = (**(code **)(*(int *)(param_1 + 4) + 8))();
+  if ((lVar3 == 0) ||
+     (pbVar1 = *(byte **)(param_1 + 0x490),
+     param_2 !=
+     (param_2 &
+     ((uint)*pbVar1 | (uint)pbVar1[1] << 8 | (uint)pbVar1[3] << 0x18 | (uint)pbVar1[2] << 0x10)))) {
+    uVar2 = 0;
+  }
+  else {
+    uVar2 = 1;
+  }
+  return uVar2;
+}
+
+// 0x001379d0  size 0xc
+bool engine_leaf_sub_001379d0(int param_1)
+
+{
+  return *(int *)(param_1 + 0x47c) != 0;
 }
 
 // 0x001379e0  size 0x4c4

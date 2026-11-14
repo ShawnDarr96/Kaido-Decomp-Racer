@@ -565,6 +565,148 @@ void Cam_SetTarget(undefined8 param_1,long param_2)
   return;
 }
 
+// 0x00185348  size 0x8
+/* screen record 0x363568 */
+
+undefined8 screc363568_exit_sub_00185348(void)
+
+{
+  return 0;
+}
+
+// 0x00185350  size 0x8
+/* screen record 0x363574 */
+
+undefined4 screc363574_enter_sub_00185350(void)
+
+{
+  return 2;
+}
+
+// 0x00185358  size 0x8
+/* screen record 0x363574 */
+
+undefined4 screc363574_update_sub_00185358(void)
+
+{
+  return 4;
+}
+
+// 0x00185360  size 0x8
+/* screen record 0x363574 */
+
+undefined4 screc363574_exit_sub_00185360(void)
+
+{
+  return 6;
+}
+
+// 0x00185368  size 0x8
+/* screen record 0x363580 */
+
+undefined4 screc363580_enter_sub_00185368(void)
+
+{
+  return 8;
+}
+
+// 0x00185370  size 0x8
+/* screen record 0x363580 */
+
+undefined4 screc363580_update_sub_00185370(void)
+
+{
+  return 10;
+}
+
+// 0x00185378  size 0x8
+/* screen record 0x363580 */
+
+undefined4 screc363580_exit_sub_00185378(void)
+
+{
+  return 0xc;
+}
+
+// 0x00185380  size 0x8
+undefined4 Game_Nop_2(void)
+
+{
+  return 0xe;
+}
+
+// 0x001853b8  size 0x8
+/* screen record 0x363550 */
+
+undefined4 screc363550_enter_sub_001853b8(void)
+
+{
+  return 1;
+}
+
+// 0x001853c0  size 0x8
+/* screen record 0x363550 */
+
+undefined4 screc363550_update_sub_001853c0(void)
+
+{
+  return 3;
+}
+
+// 0x001853c8  size 0x8
+/* screen record 0x363550 */
+
+undefined4 screc363550_exit_sub_001853c8(void)
+
+{
+  return 5;
+}
+
+// 0x001853d0  size 0x8
+/* screen record 0x36355c */
+
+undefined4 screc36355c_enter_sub_001853d0(void)
+
+{
+  return 7;
+}
+
+// 0x001853d8  size 0x8
+/* screen record 0x36355c */
+
+undefined4 screc36355c_update_sub_001853d8(void)
+
+{
+  return 9;
+}
+
+// 0x001853e0  size 0x8
+/* screen record 0x36355c */
+
+undefined4 screc36355c_exit_sub_001853e0(void)
+
+{
+  return 0xb;
+}
+
+// 0x001853e8  size 0x8
+/* screen record 0x363568 */
+
+undefined4 screc363568_enter_sub_001853e8(void)
+
+{
+  return 0xd;
+}
+
+// 0x001853f0  size 0x10
+/* screen record 0x363568 */
+
+undefined4 screc363568_update_sub_001853f0(void)
+
+{
+  return 0xf;
+}
+
 // 0x00185410  size 0x4a8
 void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
 

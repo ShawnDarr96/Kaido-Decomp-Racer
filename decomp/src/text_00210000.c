@@ -1514,10 +1514,22 @@ void MenuScr_Draw_SelectTheCourse(int param_1)
   return;
 }
 
+// 0x00213080  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3278e4 */
+
+void screc3278e4_exit_sub_00213080(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x002130a0  size 0x178
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3278e4 */
 
-void menuscr_draw_sub_002130a0(undefined8 param_1)
+void screc3278e4_update_sub_002130a0(undefined8 param_1)
 
 {
   int iVar1;
@@ -1551,8 +1563,9 @@ void menuscr_draw_sub_002130a0(undefined8 param_1)
 
 // 0x00213220  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3278e4 */
 
-void menuscr_step_sub_00213220(void)
+void screc3278e4_enter_sub_00213220(void)
 
 {
   undefined4 uVar1;
@@ -1626,8 +1639,9 @@ void scrcareer_draw_sub_002132c0(int param_1)
 
 // 0x00213430  size 0x17c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a02c */
 
-void scrcareer_draw_sub_00213430(int param_1)
+void ScrDoYouWant_Exit(int param_1)
 
 {
   int iVar1;
@@ -1673,8 +1687,9 @@ void scrcareer_draw_sub_00213430(int param_1)
 
 // 0x002135b0  size 0x164
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a02c */
 
-void scrcareer_draw_sub_002135b0(int param_1)
+void ScrDoYouWant_Update(int param_1)
 
 {
   int iVar1;
@@ -1757,8 +1772,9 @@ void ScrCareer_Draw_DoYouWant(int param_1)
 
 // 0x002138b0  size 0x5e8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a020 */
 
-void scrcareer_draw_sub_002138b0(int param_1)
+void screc32a020_exit_sub_002138b0(int param_1)
 
 {
   int iVar1;
@@ -1932,8 +1948,9 @@ void scrcareer_draw_sub_002138b0(int param_1)
 
 // 0x00213ea0  size 0x5f4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a020 */
 
-void scrcareer_draw_sub_00213ea0(int param_1)
+void screc32a020_update_sub_00213ea0(int param_1)
 
 {
   undefined4 uVar1;

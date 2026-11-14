@@ -677,7 +677,7 @@ void RaceProg_DetectCollisions(int param_1)
       }
       uVar2 = *(undefined4 *)(iVar8 + 0x28);
       fVar21 = 0.0;
-      lVar12 = raceprog_leaf_sub_001dcdc0(uVar2);
+      lVar12 = Raceprog_Nop(uVar2);
       if (lVar12 != 0) {
         iVar10 = RaceCar_GetTracker(iVar16);
         uVar3 = *(uint *)(iVar10 + 0x60);
@@ -686,8 +686,7 @@ void RaceProg_DetectCollisions(int param_1)
         uVar11 = PhysBody_FindShapeWithFlags(uVar4,0xffffffffff000000);
         if ((fVar20 <= 10.0) || ((uVar3 & 0x20) == 0)) {
           if (((10.0 < fVar20) &&
-              (((uVar3 & 0x10) != 0 &&
-               (lVar12 = raceprog_leaf_sub_001dcdc0(uVar2), 0x1312d0 < lVar12)))) &&
+              (((uVar3 & 0x10) != 0 && (lVar12 = Raceprog_Nop(uVar2), 0x1312d0 < lVar12)))) &&
              ((long)iStack_90 != (long)cVar18)) {
             uVar11 = PhysBody_FindShapeWithFlags(uVar4,0xffffff);
             fVar21 = (float)PhysWorld_GetFirstBody(uVar11);
@@ -719,7 +718,7 @@ void RaceProg_DetectCollisions(int param_1)
   cVar18 = '\0';
   if ('\0' < cVar7) {
     do {
-      lVar12 = raceprog_leaf_sub_001dcdc0(*(undefined4 *)(param_1 + 0x28));
+      lVar12 = Raceprog_Nop(*(undefined4 *)(param_1 + 0x28));
       if (lVar12 == 0) {
         uVar11 = RaceCar_Get(cVar18);
         RaceCar_GetIndex(uVar11);
@@ -997,7 +996,7 @@ LAB_001e1e3c:
     Cam_Update(*(undefined4 *)(_g_Loading + (uVar7 & 0xff) * 4 + 0x14));
     uVar7 = uVar7 + 1;
   } while ((int)uVar7 < 2);
-  lVar6 = misc_leaf_sub_002fd1c0();
+  lVar6 = Misc_Nop();
   if (lVar6 == 0) {
     param_1[2] = 0;
   }
@@ -1187,6 +1186,29 @@ LAB_001e210c:
     Cam_NopB(_g_Loading[(uVar5 & 0xff) + 5]);
     uVar5 = uVar5 + 1;
   } while ((int)uVar5 < 2);
+  return;
+}
+
+// 0x001e2390  size 0x8c
+void race_step_sub_001e2390(int param_1)
+
+{
+  undefined4 *puVar1;
+  char cVar2;
+  undefined8 uVar3;
+  undefined8 uVar4;
+  
+  puVar1 = *(undefined4 **)(param_1 + 0x14);
+  Loading_Begin(0x430750);
+  cVar2 = RaceCtx_Get_8();
+  uRam0036f1f8 = (uint)(cVar2 == '\r');
+  uVar3 = GameState_Get_0();
+  uVar4 = GameState_Get_1();
+  uVar3 = func_0x00185310(uVar3,uVar4);
+  Loading_LoadScreenImage(uVar3);
+  puVar1[2] = 0;
+  *puVar1 = 0;
+  *(undefined4 *)(param_1 + 0x1c) = 0x1e2370;
   return;
 }
 

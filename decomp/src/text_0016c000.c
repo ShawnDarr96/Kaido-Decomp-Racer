@@ -946,6 +946,19 @@ void Car_UpdateTractionControl(int param_1)
   return;
 }
 
+// 0x0016dae0  size 0x2c
+void car_leaf_sub_0016dae0(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x264) = 0;
+  *(undefined4 *)(param_1 + 0x3a4) = 0;
+  *(undefined4 *)(param_1 + 0x4e4) = 0;
+  *(undefined4 *)(param_1 + 0x624) = 0;
+  *(undefined4 *)(param_1 + 0x720) = *(undefined4 *)(*(int *)(param_1 + 0x120) + 0xbc);
+  *(undefined4 *)(param_1 + 0x7a0) = *(undefined4 *)(*(int *)(param_1 + 0x120) + 0xc0);
+  return;
+}
+
 // 0x0016db10  size 0x180
 void Car_UpdateAbs(int param_1)
 
@@ -1698,6 +1711,16 @@ void Car_SyncFromRigidBody(int param_1)
   return;
 }
 
+// 0x0016eae0  size 0x14
+void car_leaf_sub_0016eae0(int param_1)
+
+{
+  *(undefined1 *)(param_1 + 0x8b0) = 0;
+  *(undefined1 *)(param_1 + 0x8b1) = 0;
+  *(undefined4 *)(param_1 + 0x8f8) = *(undefined4 *)(param_1 + 0x8f4);
+  return;
+}
+
 // 0x0016eb00  size 0x1cc
 /* per-step driver */
 
@@ -1761,6 +1784,64 @@ LAB_0016eb9c:
   Car_ApplyStopFriction(param_1);
   Car_CheckUpsideDown(param_1);
   (**(code **)(*piVar2 + 0x40))(param_1);
+  return;
+}
+
+// 0x0016ecd0  size 0xc0
+void car_leaf_sub_0016ecd0(float param_1,int param_2)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  
+  *(float *)(param_2 + 0x870) = param_1;
+  param_1 = param_1 * 600.0;
+  *(float *)(param_2 + 0x874) = 1.0 / *(float *)(param_2 + 0x870);
+  if (param_1 < 2.1474836e+09) {
+    *(int *)(param_2 + 0x880) = (int)param_1;
+  }
+  else {
+    *(uint *)(param_2 + 0x880) = (int)(param_1 - 2.1474836e+09) | 0x80000000;
+  }
+  uVar3 = DAT_003625ec;
+  uVar2 = DAT_003625e8;
+  uVar1 = DAT_003625e4;
+  *(undefined4 *)(param_2 + 0x910) = DAT_003625e0;
+  *(undefined4 *)(param_2 + 0x914) = uVar1;
+  *(undefined4 *)(param_2 + 0x918) = uVar2;
+  *(undefined4 *)(param_2 + 0x91c) = uVar3;
+  uVar3 = DAT_003625ec;
+  uVar2 = DAT_003625e8;
+  uVar1 = DAT_003625e4;
+  *(undefined4 *)(param_2 + 0x920) = DAT_003625e0;
+  *(undefined4 *)(param_2 + 0x924) = uVar1;
+  *(undefined4 *)(param_2 + 0x928) = uVar2;
+  *(undefined4 *)(param_2 + 0x92c) = uVar3;
+  uVar3 = DAT_003625ec;
+  uVar2 = DAT_003625e8;
+  uVar1 = DAT_003625e4;
+  *(undefined4 *)(param_2 + 0x930) = DAT_003625e0;
+  *(undefined4 *)(param_2 + 0x934) = uVar1;
+  *(undefined4 *)(param_2 + 0x938) = uVar2;
+  *(undefined4 *)(param_2 + 0x93c) = uVar3;
+  uVar3 = DAT_003625ec;
+  uVar2 = DAT_003625e8;
+  uVar1 = DAT_003625e4;
+  *(undefined4 *)(param_2 + 0x940) = DAT_003625e0;
+  *(undefined4 *)(param_2 + 0x944) = uVar1;
+  *(undefined4 *)(param_2 + 0x948) = uVar2;
+  *(undefined4 *)(param_2 + 0x94c) = uVar3;
+  uVar3 = DAT_003625ec;
+  uVar2 = DAT_003625e8;
+  uVar1 = DAT_003625e4;
+  *(undefined4 *)(param_2 + 0x950) = DAT_003625e0;
+  *(undefined4 *)(param_2 + 0x954) = uVar1;
+  *(undefined4 *)(param_2 + 0x958) = uVar2;
+  *(undefined4 *)(param_2 + 0x95c) = uVar3;
+  *(undefined4 *)(param_2 + 0x8b4) = 0;
+  *(undefined4 *)(param_2 + 0x8b8) = 0;
+  *(int *)(param_2 + 0xb8c) = *(int *)(param_2 + 0xb8c) + 1;
   return;
 }
 

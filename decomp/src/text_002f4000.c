@@ -4,8 +4,9 @@
 
 // 0x002f4190  size 0x2a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x342dbc */
 
-void menuscr_draw_sub_002f4190(int param_1)
+void ScrDraw_TestCourse_Enter(int param_1)
 
 {
   int iVar1;
@@ -494,8 +495,9 @@ LAB_002f4770:
 
 // 0x002f5230  size 0x27c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x342db0 */
 
-void menuscr_draw_sub_002f5230(int param_1)
+void ScrDraw_Akagi_Update(int param_1)
 
 {
   int iVar1;
@@ -560,8 +562,9 @@ void menuscr_draw_sub_002f5230(int param_1)
 
 // 0x002f54b0  size 0x254
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x342db0 */
 
-void menuscr_draw_sub_002f54b0(int param_1)
+void ScrDraw_Akagi_Enter(int param_1)
 
 {
   int iVar1;
@@ -620,21 +623,25 @@ void menuscr_draw_sub_002f54b0(int param_1)
 }
 
 // 0x002f5710  size 0x54
-void menuscr_step_sub_002f5710(undefined8 param_1)
+/* screen record 0x343404 */
+
+void ScrNameentryGetField48200_Updatef5710(undefined8 param_1)
 
 {
   int iVar1;
   
   if (*(int *)((int)param_1 + 0x30) == 0) {
     iVar1 = Nameentry_GetField_4_8200((int)param_1 + 0xc44);
-    (*(code *)(&PTR_menuscr_draw_sub_002f54b0_00342db0)[iVar1])(param_1);
+    (*(code *)(&PTR_ScrDraw_Akagi_Enter_00342db0)[iVar1])(param_1);
     nameentry_draw_sub_002f7650(param_1);
   }
   return;
 }
 
 // 0x002f5770  size 0x40
-void menuscr_exit_sub_002f5770(undefined8 param_1)
+/* screen record 0x343404 */
+
+void ScrNameentryGetField48200_Exitf5770(undefined8 param_1)
 
 {
   if (*(int *)((int)param_1 + 0xc40) != 0) {
@@ -647,8 +654,9 @@ void menuscr_exit_sub_002f5770(undefined8 param_1)
 
 // 0x002f57b0  size 0x2f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x343404 */
 
-void menuscr_load_sub_002f57b0(undefined8 param_1)
+void ScrNameentryGetField48200_Enterf57b0(undefined8 param_1)
 
 {
   int iVar1;
@@ -660,8 +668,8 @@ void menuscr_load_sub_002f57b0(undefined8 param_1)
   undefined4 *puVar7;
   uint uVar8;
   
-  uVar4 = nameentry_leaf_sub_002f8340();
-  uVar5 = nameentry_leaf_sub_002f8330();
+  uVar4 = Nameentry_Nop_4();
+  uVar5 = Nameentry_Nop_3();
   nameentry_step_sub_002f7a60(param_1,0x430750,1,uVar4,uVar5,0x50010);
   nameentry_load_sub_002f7bb0(param_1,0x17fe,0);
   uVar4 = Profile_Get(0);
@@ -733,26 +741,26 @@ void menuscr_step_sub_002f5ab0(int param_1)
   long lVar4;
   
   pcVar1 = *(char **)(param_1 + 0x14);
-  uVar3 = script_leaf_sub_002bc1f0();
+  uVar3 = Script_Nop();
   lVar4 = script_leaf_sub_002bc0b0(uVar3);
   if ((lVar4 != 0) && (lVar4 = UiMgr_FindFreeSlot(), lVar4 == 0)) {
     nameentry_step_sub_002f8350();
     if (*pcVar1 == '\0') {
       uVar3 = nameentry_leaf_sub_002f85b0();
       iVar2 = nameentry_leaf_sub_002f8570();
-      (*(code *)(&PTR_attract_step_sub_002fa6e0_003433b0)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_ScrNameentryGetField48200_Enter_003433b0)[iVar2 * 3])(uVar3);
       uVar3 = nameentry_leaf_sub_002f85b0();
       iVar2 = nameentry_leaf_sub_002f8570();
-      (*(code *)(&PTR_eventui_anim_sub_002e8410_003433e0)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_ScrNameentryGetField48200_Entere8410_003433e0)[iVar2 * 3])(uVar3);
       *pcVar1 = '\x01';
     }
     if (*pcVar1 == '\x01') {
       uVar3 = nameentry_leaf_sub_002f85b0();
       iVar2 = nameentry_leaf_sub_002f8570();
-      (*(code *)(&PTR_attract_step_sub_002fa5f0_003433b4)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_ScrNameentryGetField48200_Update_003433b4)[iVar2 * 3])(uVar3);
       uVar3 = nameentry_leaf_sub_002f85b0();
       iVar2 = nameentry_leaf_sub_002f8570();
-      (*(code *)(&PTR_eventui_draw_sub_002e8380_003433e4)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_ScrNameentryGetField48200_Updatee8380_003433e4)[iVar2 * 3])(uVar3);
       lVar4 = nameentry_leaf_sub_002f86e0();
       if ((lVar4 != 0) && (lVar4 = nameentry_leaf_sub_002f8550(), lVar4 == 3)) {
         nameentry_leaf_sub_002f8540(0);
@@ -762,10 +770,10 @@ void menuscr_step_sub_002f5ab0(int param_1)
     else if (*pcVar1 == '\x02') {
       uVar3 = nameentry_leaf_sub_002f85b0();
       iVar2 = nameentry_leaf_sub_002f8570();
-      (*(code *)(&PTR_LAB_003433e8)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_ScrNameentryGetField48200_Exite8400_003433e8)[iVar2 * 3])(uVar3);
       uVar3 = nameentry_leaf_sub_002f85b0();
       iVar2 = nameentry_leaf_sub_002f8570();
-      (*(code *)(&PTR_LAB_003433b8)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_ScrNameentryGetField48200_Exit_003433b8)[iVar2 * 3])(uVar3);
       nameentry_select_sub_002f8620();
       *pcVar1 = '\0';
     }
@@ -803,7 +811,7 @@ void menuscr_step_sub_002f5d10(int param_1)
   Snd_QueueCmd2d(8,0x100);
   Snd_QueueCmd2d(9,0x100);
   Snd_QueueCmd2d(1,0x100);
-  lVar3 = script_leaf_sub_002bc1f0();
+  lVar3 = Script_Nop();
   if (lVar3 == 0) {
     script_load_sub_002bc3f0(0x430750,1,0xffff);
   }
@@ -1063,7 +1071,7 @@ undefined4 nameentry_step_sub_002f64e0(undefined4 *param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar3 = script_leaf_sub_002bc1f0();
+  uVar3 = Script_Nop();
   if ((param_1[1] & 0x80) == 0) {
     param_1[1] = 0;
     param_1[2] = 0xffffffff;
@@ -1131,7 +1139,7 @@ undefined4 nameentry_step_sub_002f66f0(undefined4 *param_1,undefined8 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar7 = script_leaf_sub_002bc1f0();
+  uVar7 = Script_Nop();
   iVar1 = param_1[2];
   iVar3 = Script_GetElem_2f0_xda8(uVar7,param_2);
   if (iVar3 == iVar1) {
@@ -1213,7 +1221,7 @@ undefined4 nameentry_step_sub_002f6990(undefined4 *param_1,long param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uVar6 = script_leaf_sub_002bc1f0();
+  uVar6 = Script_Nop();
   if ((param_2 < 0) || (0x10c < param_2)) {
     uVar5 = 0;
   }
@@ -1923,7 +1931,7 @@ undefined4 Nameentry_GetField_8(int param_1)
 }
 
 // 0x002f7c80  size 0x8
-undefined4 nameentry_leaf_sub_002f7c80(undefined4 *param_1)
+undefined4 Nameentry_Nop(undefined4 *param_1)
 
 {
   return *param_1;

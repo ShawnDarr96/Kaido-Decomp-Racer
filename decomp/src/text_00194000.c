@@ -592,6 +592,13 @@ LAB_00195670:
   return;
 }
 
+// 0x00195880  size 0x8
+undefined4 Render_GetField_c(int param_1)
+
+{
+  return *(undefined4 *)(param_1 + 0xc);
+}
+
 // 0x00195890  size 0x158
 void carsnd_leaf_sub_00195890(undefined8 param_1)
 
@@ -973,6 +980,13 @@ void carsnd_step_sub_00196500(undefined8 param_1,undefined8 param_2)
   return;
 }
 
+// 0x001965f0  size 0x8
+undefined4 Render_Nop_8(void)
+
+{
+  return 0x3c;
+}
+
 // 0x00196600  size 0x40
 void carsnd_step_sub_00196600(void)
 
@@ -989,6 +1003,30 @@ void carsnd_step_sub_00196600(void)
   uVar2 = SndMgr_GetInstance();
   SndMgr_GetChannelB(uVar2,uVar3);
   return;
+}
+
+// 0x00196640  size 0x7c
+char render_leaf_sub_00196640(int param_1,char param_2)
+
+{
+  char cVar1;
+  
+  if (param_2 == '\n') {
+    cVar1 = *(char *)(param_1 + 4) * '\x04' + '\x04';
+  }
+  else if (param_2 == '\a') {
+    cVar1 = *(char *)(param_1 + 4) * '\x04' + '\x03';
+  }
+  else if (param_2 == '\x01') {
+    cVar1 = *(char *)(param_1 + 4) * '\x04' + '\x02';
+  }
+  else if (param_2 == '\0') {
+    cVar1 = *(char *)(param_1 + 4) * '\x04' + '\x01';
+  }
+  else {
+    cVar1 = '\0';
+  }
+  return cVar1;
 }
 
 // 0x001966c0  size 0x64c

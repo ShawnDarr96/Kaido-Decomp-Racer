@@ -489,6 +489,39 @@ void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
   return;
 }
 
+// 0x00226020  size 0xc
+/* screen record 0x32a838 */
+
+void ScrMessageDeleted_Update(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x1c) = 0;
+  *(undefined4 *)(param_1 + 0x24) = 0;
+  return;
+}
+
+// 0x00226030  size 0xc
+/* screen record 0x32a838 */
+
+void ScrMessageDeleted_Enter(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x1c) = 0;
+  *(undefined4 *)(param_1 + 0x24) = 0;
+  return;
+}
+
+// 0x00226040  size 0xc
+/* screen record 0x32a82c */
+
+void ScrAcceptThisRival_Exit(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x1c) = 0;
+  *(undefined4 *)(param_1 + 0x24) = 0;
+  return;
+}
+
 // 0x00226050  size 0xcd0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 

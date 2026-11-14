@@ -820,6 +820,15 @@ LAB_00245fb0:
   return;
 }
 
+// 0x00246180  size 0x8
+/* screen record 0x32bedc */
+
+void ScrIsTakenAway_Exit(void)
+
+{
+  return;
+}
+
 // 0x00246190  size 0x384
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1220,8 +1229,9 @@ void ScrCareer_Draw_Received(int param_1)
 
 // 0x00246da0  size 0x78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32bed0 */
 
-void menuscr_step_sub_00246da0(int param_1)
+void ScrReceived_Enter(int param_1)
 
 {
   int iVar1;

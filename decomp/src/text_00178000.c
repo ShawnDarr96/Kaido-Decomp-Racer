@@ -254,6 +254,21 @@ void Course_RenderHook(void)
   return;
 }
 
+// 0x00178440  size 0x8
+void Game_Nop(void)
+
+{
+  return;
+}
+
+// 0x00178450  size 0x10
+void game_leaf_sub_00178450(int param_1)
+
+{
+  *(code **)(param_1 + 0x1c) = Course_RenderHook;
+  return;
+}
+
 // 0x00178460  size 0x24
 void Course_UpdateHook(void)
 

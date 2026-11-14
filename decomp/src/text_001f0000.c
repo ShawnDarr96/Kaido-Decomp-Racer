@@ -1853,6 +1853,177 @@ void demo_step_sub_001f3a70(undefined8 param_1,undefined8 param_2)
   return;
 }
 
+// 0x001f3b80  size 0x24
+/* WARNING: Removing unreachable block (ram,0x001f4560) */
+
+void ui_leaf_sub_001f3b80(undefined8 param_1,undefined8 param_2)
+
+{
+  long lVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  float fVar5;
+  float fVar6;
+  float fStack_c0;
+  undefined4 uStack_bc;
+  undefined4 uStack_b8;
+  undefined4 uStack_b4;
+  undefined1 auStack_b0 [16];
+  undefined1 auStack_a0 [16];
+  undefined4 uStack_90;
+  undefined4 uStack_8c;
+  undefined4 uStack_88;
+  undefined4 uStack_84;
+  float fStack_80;
+  float fStack_7c;
+  float fStack_78;
+  undefined4 uStack_74;
+  undefined1 auStack_70 [16];
+  undefined4 uStack_60;
+  undefined4 uStack_5c;
+  undefined4 uStack_58;
+  undefined4 uStack_54;
+  undefined4 uStack_50;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined1 auStack_40 [64];
+  
+  iVar4 = (int)param_2;
+  iVar3 = iVar4 + 0x510;
+  fVar6 = 0.055;
+  if (*(int *)(iVar4 + 0x7b0) != 0) {
+    *(undefined4 *)(iVar4 + 0x480) =
+         *(undefined4 *)(*(int *)(*(int *)(iVar4 + 0x7b0) + 0x120) + 0x80);
+    *(undefined4 *)(iVar4 + 0x484) =
+         *(undefined4 *)(*(int *)(*(int *)(iVar4 + 0x7b0) + 0x120) + 0x84);
+    *(undefined4 *)(iVar4 + 0x488) =
+         *(undefined4 *)(*(int *)(*(int *)(iVar4 + 0x7b0) + 0x120) + 0x88);
+    *(undefined4 *)(iVar4 + 0x48c) = 0x3f800000;
+    *(float *)(iVar4 + 0x484) = *(float *)(iVar4 + 0x484) + 1.3;
+    uStack_60 = 0x3f800000;
+    uStack_50 = 0x3f800000;
+    uStack_54 = 0x3f800000;
+    uStack_44 = 0x3f800000;
+    uStack_5c = 0;
+    uStack_4c = 0;
+    uStack_58 = 0;
+    uStack_48 = 0;
+    sceVu0ApplyMatrix(&uStack_50,iVar4 + 0x590,&uStack_50);
+    sceVu0ApplyMatrix(&uStack_60,iVar4 + 0x550,&uStack_60);
+    fVar5 = (float)sceVu0InnerProduct(&uStack_50,&uStack_60);
+    if ((float)(fVar5 < 0.0) * fVar5 * fVar5 * fVar5 * fVar5 == 0.0) {
+      fVar6 = fVar6 * 1.0;
+    }
+    else {
+      fVar6 = fVar6 * -1.0;
+    }
+    if (fVar6 < 0.07) {
+      fVar6 = 0.07;
+    }
+    Mat33_MulVec3Add(fVar6,auStack_a0,iVar4 + 0x5d0);
+    Mat33_MulVec3Add(1.0 - fVar6,auStack_b0,iVar4 + 0x5e0);
+    Quat_Conjugate(&uStack_90,auStack_a0,auStack_b0);
+    *(undefined4 *)(iVar4 + 0x5d0) = uStack_90;
+    *(undefined4 *)(iVar4 + 0x5d4) = uStack_8c;
+    *(undefined4 *)(iVar4 + 0x5d8) = uStack_88;
+    *(undefined4 *)(iVar4 + 0x5dc) = uStack_84;
+    Quat_Normalize(iVar4 + 0x5d0);
+    if (iRam0036f428 == 0) {
+      iVar2 = iVar4 + 0x530;
+    }
+    else {
+      iVar2 = iVar3;
+    }
+    sceVu0TransMatrix(auStack_40,iVar4 + 0x550,iVar2);
+    sceVu0ApplyMatrix(iVar4 + 0x430,auStack_40,iVar4 + 0x480);
+    fStack_78 = *(float *)(iVar4 + 0x478) - *(float *)(iVar4 + 0x468);
+    fStack_7c = *(float *)(iVar4 + 0x474) - *(float *)(iVar4 + 0x464);
+    fStack_80 = *(float *)(iVar4 + 0x470) - *(float *)(iVar4 + 0x460);
+    Quat_RotateVec3(&fStack_c0,iVar4 + 0x5d0,&fStack_80);
+    fStack_80 = fStack_c0;
+    fStack_7c = (float)uStack_bc;
+    fStack_78 = (float)uStack_b8;
+    uStack_74 = uStack_b4;
+    if (iRam0036f428 == 0) {
+      iVar3 = iVar4 + 0x530;
+    }
+    sceVu0TransMatrix(auStack_40,iVar4 + 0x550,iVar3);
+    sceVu0ApplyMatrix(auStack_70,auStack_40,iVar4 + 0x460);
+    sceVu0AddVector(iVar4 + 0x420,&fStack_80,auStack_70);
+    *(undefined4 *)(iVar4 + 0x42c) = 0x3f800000;
+    sceVu0CopyVector(iVar4 + 0x440,iVar4 + 0x490);
+    Cam_UpdateTargetFromCar(param_2);
+    Cam_Nop(param_2);
+    if ((*(uint *)(iVar4 + 0x7c0) & 1) != 0) {
+      Cam_BuildViewMatrix(param_2);
+    }
+    lVar1 = Cam_IsTransitioning(param_2);
+    if (lVar1 != 0) {
+      Cam_UpdateChase(param_2);
+    }
+  }
+  return;
+}
+
+// 0x001f3bb0  size 0x28
+void ui_leaf_sub_001f3bb0(undefined8 param_1,int param_2)
+
+{
+  int iVar1;
+  
+  sceVu0CopyVector(param_2 + 0x470,0x3650c0);
+  sceVu0CopyVector(param_2 + 0x480,0x3650d0);
+  sceVu0CopyVector(param_2 + 0x490,0x3650e0);
+  sceVu0CopyVector(param_2 + 0x4a0,0x3650f0);
+  sceVu0CopyVector(param_2 + 0x460,param_2 + 0x4a0);
+  *(undefined4 *)(param_2 + 0x7c4) = 0;
+  if (*(int *)(param_2 + 0x7b0) != 0) {
+    Cam_SetTarget(param_2 + 0x510);
+    iVar1 = *(int *)(param_2 + 0x7b4);
+    if (iVar1 == 0) {
+      iVar1 = *(int *)(param_2 + 0x7b0);
+    }
+    Cam_SetTarget(param_2 + 0x660,iVar1);
+    Quat_Normalize(param_2 + 0x5d0);
+    *(undefined4 *)(param_2 + 0x5e0) = *(undefined4 *)(param_2 + 0x5d0);
+    *(undefined4 *)(param_2 + 0x5e4) = *(undefined4 *)(param_2 + 0x5d4);
+    *(undefined4 *)(param_2 + 0x5e8) = *(undefined4 *)(param_2 + 0x5d8);
+    *(undefined4 *)(param_2 + 0x5ec) = *(undefined4 *)(param_2 + 0x5dc);
+    *(undefined4 *)(param_2 + 0x480) =
+         *(undefined4 *)(*(int *)(*(int *)(param_2 + 0x7b0) + 0x120) + 0x80);
+    *(undefined4 *)(param_2 + 0x484) =
+         *(undefined4 *)(*(int *)(*(int *)(param_2 + 0x7b0) + 0x120) + 0x84);
+    *(undefined4 *)(param_2 + 0x488) =
+         *(undefined4 *)(*(int *)(*(int *)(param_2 + 0x7b0) + 0x120) + 0x88);
+    *(undefined4 *)(param_2 + 0x48c) = 0x3f800000;
+    *(float *)(param_2 + 0x484) = *(float *)(param_2 + 0x484) + 1.3;
+  }
+  return;
+}
+
+// 0x001f3be0  size 0xa8
+void ui_step_sub_001f3be0(int *param_1,undefined8 param_2)
+
+{
+  int iVar1;
+  undefined1 auStack_40 [64];
+  
+  (**(code **)(*param_1 + 8))();
+  iVar1 = (int)param_2;
+  sceVu0TransMatrix(auStack_40,iVar1 + 0x550,iVar1 + 0x510);
+  sceVu0ApplyMatrix(iVar1 + 0x420,auStack_40,iVar1 + 0x470);
+  sceVu0ApplyMatrix(iVar1 + 0x430,auStack_40,iVar1 + 0x480);
+  sceVu0ApplyMatrix(iVar1 + 0x460,auStack_40,iVar1 + 0x4a0);
+  sceVu0ApplyMatrix(iVar1 + 0x440,iVar1 + 0x550,iVar1 + 0x490);
+  Cam_UpdateTargetFromCar(param_2);
+  if ((*(uint *)(iVar1 + 0x7c0) & 1) != 0) {
+    Cam_BuildViewMatrix(param_2);
+  }
+  return;
+}
+
 // 0x001f3c90  size 0x1c4
 /* WARNING: Removing unreachable block (ram,0x001f3d18) */
 /* WARNING: Removing unreachable block (ram,0x001f3db0) */

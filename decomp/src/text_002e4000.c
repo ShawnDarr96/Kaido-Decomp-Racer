@@ -475,7 +475,9 @@ void Eventui_Draw_Hakone_4b60(undefined8 param_1)
 }
 
 // 0x002e50d0  size 0xb8
-void eventui_step_sub_002e50d0(undefined8 param_1)
+/* screen record 0x3428ac */
+
+void ScrDraw_Hakone_Exit(undefined8 param_1)
 
 {
   long lVar1;
@@ -505,8 +507,9 @@ void eventui_step_sub_002e50d0(undefined8 param_1)
 
 // 0x002e5190  size 0x67c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3428ac */
 
-void eventui_draw_sub_002e5190(undefined8 param_1)
+void ScrDraw_Hakone_Update(undefined8 param_1)
 
 {
   undefined1 *puVar1;
@@ -1026,8 +1029,8 @@ void Eventui_Draw_Hakone_5810(undefined8 param_1)
                         (&DAT_003428d0)[*(int *)(iVar3 + 0x50)],8);
     Menu_ClearSlot(0);
   }
-  lVar4 = nameentry_leaf_sub_002f8210(param_1);
-  if ((lVar4 == 4) || (lVar4 = nameentry_leaf_sub_002f8210(param_1), lVar4 == 5)) {
+  lVar4 = Nameentry_Nop_2(param_1);
+  if ((lVar4 == 4) || (lVar4 = Nameentry_Nop_2(param_1), lVar4 == 5)) {
     iVar2 = UiMgr_FindLayout(7);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4,
                         (&DAT_003428d0)[*(int *)(iVar3 + 0x50)],5);
@@ -1724,7 +1727,7 @@ void Eventui_Draw_Hakone_6c90(undefined8 param_1)
   if (lVar3 == 0) {
     MenuWnd_SetItemState(7,(&DAT_003428d0)[*(int *)(iVar2 + 0x50)],1,0);
   }
-  lVar3 = nameentry_leaf_sub_002f8210(param_1);
+  lVar3 = Nameentry_Nop_2(param_1);
   if (lVar3 < 0) {
     lVar3 = UiLayout_UpdateAnimById(7,0);
     lVar4 = UiLayout_UpdateAnimById(7,2);
@@ -1819,8 +1822,9 @@ LAB_002e6d1c:
 
 // 0x002e76a0  size 0x7c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3433ec */
 
-void eventui_draw_sub_002e76a0(undefined8 param_1)
+void ScrNameentryGetField48200_Updatee76a0(undefined8 param_1)
 
 {
   int iVar1;
@@ -1833,10 +1837,20 @@ void eventui_draw_sub_002e76a0(undefined8 param_1)
   return;
 }
 
+// 0x002e7720  size 0x8
+/* screen record 0x3433ec */
+
+void ScrNameentryGetField48200_Exite7720(void)
+
+{
+  return;
+}
+
 // 0x002e7730  size 0x27c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3433ec */
 
-void eventui_anim_sub_002e7730(void)
+void ScrNameentryGetField48200_Entere7730(void)
 
 {
   undefined4 uVar1;
@@ -2213,7 +2227,7 @@ void Eventui_Draw_TestCourse_7e90(undefined8 param_1)
     *(undefined4 *)(iVar2 + 0x36c) = 1;
     Menu_ClearSlot(0);
   }
-  lVar3 = nameentry_leaf_sub_002f8210(param_1);
+  lVar3 = Nameentry_Nop_2(param_1);
   if (lVar3 == 1) {
     lVar3 = UiLayout_UpdateAnimById(5,0);
     if (lVar3 == 0) {

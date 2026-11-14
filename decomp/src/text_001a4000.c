@@ -356,7 +356,7 @@ int * Chunk_FindNext(undefined4 *param_1,int param_2,int param_3,int *param_4)
 }
 
 // 0x001a5130  size 0x8
-void course_leaf_sub_001a5130(void)
+void Course_Nop(void)
 
 {
   return;
@@ -957,6 +957,13 @@ long PtclSys_dtor(long param_1,short param_2)
   return param_1;
 }
 
+// 0x001a6100  size 0x8
+void Asset_Nop(void)
+
+{
+  return;
+}
+
 // 0x001a6110  size 0x188
 void Ptcl_EmitSphereA(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4)
 
@@ -1508,6 +1515,13 @@ void Ptcl_Spawn(int param_1,undefined8 param_2,undefined8 param_3,long param_4)
   uVar3 = *(undefined4 *)(*(int *)(*(int *)(param_1 + 0x9c) + 0x24) + 0xc0);
   *(undefined4 *)(param_1 + 0x88) = uVar3;
   *(undefined4 *)(param_1 + 0x84) = uVar3;
+  return;
+}
+
+// 0x001a7760  size 0x8
+void Asset_Nop_2(void)
+
+{
   return;
 }
 

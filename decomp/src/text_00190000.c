@@ -133,7 +133,7 @@ long SndMgr_UpdateStreams(undefined8 param_1)
   cVar3 = Snd_StreamGetState(*piVar11);
   cVar4 = Snd_IsBusy(8);
   iVar5 = _g_SndMgr;
-  uVar7 = script_leaf_sub_002bc1f0();
+  uVar7 = Script_Nop();
   cVar1 = (char)piVar11[1];
   if (((cVar1 == '\x19') || (cVar1 == '\x18')) || (cVar1 == '\x17')) {
     piVar6 = (int *)0x0;
@@ -1445,6 +1445,55 @@ uint Snd_VolumeToMidi(int param_1)
 
 {
   return (uint)(param_1 * 0x3fff) / 0xf;
+}
+
+// 0x00192820  size 0x8
+void render_step_sub_00192820(int param_1)
+
+{
+  snd_step_sub_0018e920(param_1 + -0x38);
+  return;
+}
+
+// 0x00192830  size 0x8
+void render_step_sub_00192830(int param_1)
+
+{
+  snd_step_sub_0018e480(param_1 + -0x38);
+  return;
+}
+
+// 0x00192840  size 0x8
+void render_step_sub_00192840(int param_1)
+
+{
+  snd_step_sub_0018e500(param_1 + -0x38);
+  return;
+}
+
+// 0x00192850  size 0x8
+void render_step_sub_00192850(int param_1)
+
+{
+  snd_step_sub_0018e3d0(param_1 + -0x38);
+  return;
+}
+
+// 0x00192860  size 0x30
+undefined4 render_step_sub_00192860(int param_1)
+
+{
+  undefined4 uVar1;
+  long lVar2;
+  
+  lVar2 = Loading_IsActive();
+  if (lVar2 == 0) {
+    uVar1 = *(undefined4 *)(param_1 + 0xc);
+  }
+  else {
+    uVar1 = *(undefined4 *)(param_1 + 0x54);
+  }
+  return uVar1;
 }
 
 // 0x00192890  size 0x7dc

@@ -807,10 +807,22 @@ void MenuScr_Draw_GameConfig_13f0(int param_1)
   return;
 }
 
+// 0x002418e0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327818 */
+
+void screc327818_exit_sub_002418e0(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00241900  size 0xf4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327818 */
 
-void menuscr_draw_sub_00241900(int param_1)
+void screc327818_update_sub_00241900(int param_1)
 
 {
   uint uVar1;
@@ -834,8 +846,9 @@ void menuscr_draw_sub_00241900(int param_1)
 
 // 0x00241a00  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327818 */
 
-void menuscr_step_sub_00241a00(void)
+void screc327818_enter_sub_00241a00(void)
 
 {
   undefined4 uVar1;

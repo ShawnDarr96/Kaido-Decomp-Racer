@@ -4,8 +4,9 @@
 
 // 0x002f0270  size 0x5b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x342de0 */
 
-void menuscr_draw_sub_002f0270(int param_1)
+void ScrDraw_Equipment_Exit(int param_1)
 
 {
   int iVar1;
@@ -115,7 +116,7 @@ void menuscr_draw_sub_002f0270(int param_1)
     uVar2 = *(undefined4 *)(param_1 + 0xd74);
   }
   lVar4 = Nameentry_Draw_Rokko(0x4b,uVar2);
-  lVar5 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
+  lVar5 = Nameentry_Nop_2(param_1 + 0xc44);
   if (lVar5 == 0xb) {
     lVar5 = UiLayout_UpdateAnimById(0x12,0);
     lVar6 = UiLayout_UpdateAnimById(0x13,0);
@@ -364,7 +365,7 @@ void MenuScr_Draw_Equipment(int param_1)
     Menu_ClearSlot(0);
     *(uint *)(param_1 + 0xccc) = *(uint *)(param_1 + 0xccc) & 0xfffffbff;
   }
-  lVar4 = nameentry_leaf_sub_002f8210(param_1 + 0xc44);
+  lVar4 = Nameentry_Nop_2(param_1 + 0xc44);
   if (lVar4 == 0xe) {
     lVar4 = UiLayout_UpdateAnimById(0x11,0);
     if (lVar4 == 0) {
@@ -463,8 +464,9 @@ void MenuScr_Draw_Equipment(int param_1)
 
 // 0x002f1080  size 0xf4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x342de0 */
 
-void menuscr_draw_sub_002f1080(int param_1)
+void ScrDraw_Equipment_Enter(int param_1)
 
 {
   int iVar1;
@@ -498,8 +500,9 @@ void menuscr_draw_sub_002f1080(int param_1)
 
 // 0x002f1180  size 0x6b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x342dd4 */
 
-void menuscr_draw_sub_002f1180(int param_1)
+void ScrDraw_TestCourse_Exit(int param_1)
 
 {
   undefined1 *puVar1;
@@ -1634,9 +1637,9 @@ void MenuScr_Draw_TestCourse_2920(undefined8 param_1)
     iVar2 = UiMgr_FindLayout(8);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4,0x90,8);
   }
-  lVar4 = nameentry_leaf_sub_002f8210(iVar3 + 0xc44);
-  if (((lVar4 == 8) || (lVar4 = nameentry_leaf_sub_002f8210(iVar3 + 0xc44), lVar4 == 9)) ||
-     ((lVar4 = nameentry_leaf_sub_002f8210(iVar3 + 0xc44), lVar4 == 0xf &&
+  lVar4 = Nameentry_Nop_2(iVar3 + 0xc44);
+  if (((lVar4 == 8) || (lVar4 = Nameentry_Nop_2(iVar3 + 0xc44), lVar4 == 9)) ||
+     ((lVar4 = Nameentry_Nop_2(iVar3 + 0xc44), lVar4 == 0xf &&
       ((*(uint *)(iVar3 + 0xccc) & 0x400) != 0)))) {
     nameentry_leaf_sub_002f81a0(iVar3 + 0xc44);
   }
@@ -1881,7 +1884,7 @@ void MenuScr_Draw_TestCourse_3820(undefined8 param_1)
   iVar3 = (int)param_1;
   lVar4 = nameentry_leaf_sub_002f81d0(iVar3 + 0xc44);
   if (lVar4 != 0) {
-    lVar4 = nameentry_leaf_sub_002f8210(iVar3 + 0xc44);
+    lVar4 = Nameentry_Nop_2(iVar3 + 0xc44);
     if (lVar4 != 5) {
       uVar1 = UiRes_GetLayoutData(0);
       iVar2 = UiMgr_FindLayout(0);
@@ -2175,7 +2178,7 @@ void MenuScr_Draw_TestCourse_3820(undefined8 param_1)
     iVar2 = UiMgr_FindLayout(8);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4,0x90,8);
   }
-  lVar4 = nameentry_leaf_sub_002f8210(iVar3 + 0xc44);
+  lVar4 = Nameentry_Nop_2(iVar3 + 0xc44);
   if (lVar4 == 5) {
     nameentry_leaf_sub_002f81a0(iVar3 + 0xc44);
   }

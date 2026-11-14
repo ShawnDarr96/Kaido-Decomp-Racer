@@ -184,13 +184,13 @@ void __sinit_00368c30(void)
   puRam0042fb78 = PTR_PhysPair_SphereTriangle_0030ace8;
   uRam0042fb7c = DAT_0030acf0;
   uRam0042fb80 = DAT_0030acf4;
-  puRam0042fb84 = PTR_LAB_0030acf8;
+  puRam0042fb84 = PTR_Phys_Nop_17_0030acf8;
   uRam0042fb8c = DAT_0030ad04;
   uRam0042fb88 = DAT_0030ad00;
-  puRam0042fb90 = PTR_LAB_0030ad08;
+  puRam0042fb90 = PTR_PhysPair_CollideGeneric_Wrap2_0030ad08;
   uRam0042fb98 = DAT_0030ad14;
   uRam0042fb94 = DAT_0030ad10;
-  puRam0042fb9c = PTR_LAB_0030ad18;
+  puRam0042fb9c = PTR_Phys_Nop_16_0030ad18;
   uRam0042fba4 = DAT_0030ad24;
   uRam0042fba0 = DAT_0030ad20;
   puRam0042fba8 = PTR_PhysPair_RunSphereBox_0030ad28;
@@ -199,7 +199,7 @@ void __sinit_00368c30(void)
   puRam0042fbb4 = PTR_PhysPair_RunSphereBox_0030ad38;
   uRam0042fbbc = DAT_0030ad44;
   uRam0042fbb8 = DAT_0030ad40;
-  puRam0042fbc0 = PTR_LAB_0030ad48;
+  puRam0042fbc0 = PTR_PhysPair_CollideGeneric_Wrap_0030ad48;
   uRam0042fbc8 = DAT_0030ad54;
   uRam0042fbc4 = DAT_0030ad50;
   uRam0042fbd4 = DAT_0030ad64;

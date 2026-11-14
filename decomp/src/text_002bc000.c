@@ -71,7 +71,7 @@ bool script_step_sub_002bc1a0(long param_1)
 }
 
 // 0x002bc1f0  size 0x8
-undefined4 script_leaf_sub_002bc1f0(void)
+undefined4 Script_Nop(void)
 
 {
   return uRam0036f7e0;

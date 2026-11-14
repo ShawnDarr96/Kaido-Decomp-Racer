@@ -41,6 +41,7 @@ def main():
         tx = program.startTransaction("apply symbols")
         try:
             set_gp(program)
+            create_extra_functions(program)
             apply_globals(program)
             apply_symbols(program)
             if args.auto_names:
@@ -63,6 +64,27 @@ def set_gp(program):
     gp = ctx.getRegister("gp")
     text = program.getMemory().getBlock(program.getAddressFactory().getDefaultAddressSpace().getAddress(0x100000))
     ctx.setValue(gp, text.getStart(), text.getEnd(), BigInteger.valueOf(GP_VALUE))
+
+
+def create_extra_functions(program):
+    """Create functions Ghidra's analysis missed (code addresses referenced from data tables)."""
+    from ghidra.app.cmd.function import CreateFunctionCmd
+    from ghidra.app.cmd.disassemble import DisassembleCommand
+    from ghidra.util.task import ConsoleTaskMonitor
+    path = ROOT / "config" / "extra_functions.txt"
+    if not path.exists():
+        return
+    af = program.getAddressFactory().getDefaultAddressSpace()
+    fm = program.getFunctionManager()
+    n = 0
+    for line in path.read_text().split():
+        addr = af.getAddress(int(line, 16))
+        if fm.getFunctionAt(addr) is not None:
+            continue
+        DisassembleCommand(addr, None, True).applyTo(program, ConsoleTaskMonitor())
+        if CreateFunctionCmd(addr).applyTo(program, ConsoleTaskMonitor()):
+            n += 1
+    print(f"created {n} extra functions", flush=True)
 
 
 def apply_globals(program):

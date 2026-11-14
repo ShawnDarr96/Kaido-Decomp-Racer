@@ -104,10 +104,22 @@ void ScrCareer_Draw_Shop(int param_1)
   return;
 }
 
+// 0x00218b10  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327704 */
+
+void screc327704_exit_sub_00218b10(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00218b30  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327704 */
 
-void menuscr_step_sub_00218b30(undefined8 param_1)
+void screc327704_update_sub_00218b30(undefined8 param_1)
 
 {
   long lVar1;
@@ -127,8 +139,9 @@ void menuscr_step_sub_00218b30(undefined8 param_1)
 
 // 0x00218bf0  size 0x3b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327704 */
 
-void menuscr_step_sub_00218bf0(void)
+void screc327704_enter_sub_00218bf0(void)
 
 {
   undefined4 uVar1;
@@ -678,7 +691,7 @@ void ScrRace_Draw_CaAttack(int param_1)
   undefined1 auStack_40 [12];
   char cStack_34;
   
-  password_step_sub_002df320();
+  GameState_Get_35c_Wrap();
   iVar6 = *(int *)(param_1 + 0x5c);
   *(undefined4 *)(param_1 + 0x5c) = 0;
   if (iVar6 == 0) {
@@ -936,8 +949,9 @@ void ScrRace_Draw_CaAttack(int param_1)
 
 // 0x0021a4f0  size 0x180
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a29c */
 
-void scrcareer_draw_sub_0021a4f0(undefined8 param_1)
+void ScrCaAttack_Enter(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1133,8 +1147,9 @@ void ScrCareer_Draw_Entry(undefined8 param_1)
 
 // 0x0021abf0  size 0xb90
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a290 */
 
-void scrcareer_draw_sub_0021abf0(undefined8 param_1)
+void ScrEntry_Update(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1530,8 +1545,9 @@ void scrcareer_draw_sub_0021abf0(undefined8 param_1)
 
 // 0x0021b780  size 0x9d8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32a290 */
 
-void scrcareer_draw_sub_0021b780(int param_1)
+void ScrEntry_Enter(int param_1)
 
 {
   int iVar1;

@@ -66,7 +66,9 @@ void ScrGarage_Draw_Cars_41b0(undefined8 param_1,undefined8 param_2,undefined8 p
 }
 
 // 0x00234200  size 0x9c
-void menuscr_draw_sub_00234200(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b314 */
+
+void screc32b314_exit_sub_00234200(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iStack_8;
@@ -80,7 +82,9 @@ void menuscr_draw_sub_00234200(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x002342a0  size 0x54
-void menuscr_draw_sub_002342a0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b314 */
+
+void screc32b314_update_sub_002342a0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -92,7 +96,9 @@ void menuscr_draw_sub_002342a0(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x00234300  size 0x44
-void menuscr_draw_sub_00234300(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b314 */
+
+void screc32b314_enter_sub_00234300(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -103,7 +109,9 @@ void menuscr_draw_sub_00234300(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x00234350  size 0x44
-void menuscr_draw_sub_00234350(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b308 */
+
+void screc32b308_exit_sub_00234350(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -114,7 +122,9 @@ void menuscr_draw_sub_00234350(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x002343a0  size 0x4c
-void menuscr_draw_sub_002343a0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b308 */
+
+void screc32b308_update_sub_002343a0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
@@ -126,7 +136,9 @@ void menuscr_draw_sub_002343a0(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x002343f0  size 0x48
-void menuscr_draw_sub_002343f0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b308 */
+
+void screc32b308_enter_sub_002343f0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -137,7 +149,9 @@ void menuscr_draw_sub_002343f0(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x00234440  size 0x50
-void menuscr_draw_sub_00234440(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b2fc */
+
+void ScrDraw_WinLoss_Exit(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -148,7 +162,9 @@ void menuscr_draw_sub_00234440(undefined8 param_1,undefined8 param_2,undefined8 
 }
 
 // 0x00234490  size 0xb8
-void menuscr_draw_sub_00234490(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b2fc */
+
+void ScrDraw_WinLoss_Update(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -198,7 +214,9 @@ void MenuScr_Draw_MonthWeek(undefined8 param_1,undefined8 param_2,undefined8 par
 }
 
 // 0x00234640  size 0x84
-void menuscr_draw_sub_00234640(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/* screen record 0x32b2f0 */
+
+void ScrDraw_MonthWeek_Update(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined1 uVar1;
@@ -216,8 +234,9 @@ void menuscr_draw_sub_00234640(undefined8 param_1,undefined8 param_2,undefined8 
 
 // 0x002346d0  size 0x7c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b2f0 */
 
-void scrcareer_draw_sub_002346d0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrDraw_MonthWeek_Enter(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -418,19 +437,19 @@ void ScrRace_Select_PlayerStatus(int param_1)
   do {
     iVar1 = (*(int *)(param_1 + 0x20) + iVar3) % 0x11;
     MenuWnd_DrawTextId(0xd8,*puVar6,4,iVar1 + 0x253);
-    (*(code *)(&PTR_scrcareer_draw_sub_002346d0_0032b2f0)[iVar1])(0xd8,puVar6[1],0);
+    (*(code *)(&PTR_ScrDraw_MonthWeek_Enter_0032b2f0)[iVar1])(0xd8,puVar6[1],0);
     iVar3 = iVar3 + 1;
     puVar6 = puVar6 + 2;
   } while (iVar3 < 0xc);
   if (*(char *)(param_1 + 0x24) == -1) {
     iVar3 = (*(int *)(param_1 + 0x20) + 0x10) % 0x11;
     MenuWnd_DrawTextId(0xd8,DAT_0032b3a0,4,iVar3 + 0x253);
-    (*(code *)(&PTR_scrcareer_draw_sub_002346d0_0032b2f0)[iVar3])(0xd8,DAT_0032b3a4,0);
+    (*(code *)(&PTR_ScrDraw_MonthWeek_Enter_0032b2f0)[iVar3])(0xd8,DAT_0032b3a4,0);
   }
   else {
     iVar3 = (*(int *)(param_1 + 0x20) + 0xc) % 0x11;
     MenuWnd_DrawTextId(0xd8,DAT_0032b3a0,4,iVar3 + 0x253);
-    (*(code *)(&PTR_scrcareer_draw_sub_002346d0_0032b2f0)[iVar3])(0xd8,DAT_0032b3a4,0);
+    (*(code *)(&PTR_ScrDraw_MonthWeek_Enter_0032b2f0)[iVar3])(0xd8,DAT_0032b3a4,0);
   }
   iVar3 = UiMgr_FindLayout(0xd7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
@@ -441,10 +460,22 @@ void ScrRace_Select_PlayerStatus(int param_1)
   return;
 }
 
+// 0x00234da0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277ac */
+
+void ScrScrRaceSelectPlayerStatus_Exit(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00234dc0  size 0x1f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277ac */
 
-void menuscr_draw_sub_00234dc0(undefined8 param_1)
+void ScrScrRaceSelectPlayerStatus_Update(undefined8 param_1)
 
 {
   uint uVar1;
@@ -507,8 +538,9 @@ void menuscr_draw_sub_00234dc0(undefined8 param_1)
 
 // 0x00234fc0  size 0x188
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277ac */
 
-void menuscr_anim_sub_00234fc0(void)
+void ScrScrRaceSelectPlayerStatus_Enter(void)
 
 {
   int iVar1;
@@ -1220,8 +1252,9 @@ void ScrRace_Select_PrizeInformation(int param_1)
 
 // 0x002366e0  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277b8 */
 
-void menuscr_anim_sub_002366e0(void)
+void screc3277b8_exit_sub_002366e0(void)
 
 {
   int iVar1;
@@ -1234,8 +1267,9 @@ void menuscr_anim_sub_002366e0(void)
 
 // 0x00236740  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277b8 */
 
-void menuscr_anim_sub_00236740(undefined8 param_1)
+void screc3277b8_update_sub_00236740(undefined8 param_1)
 
 {
   int iVar1;
@@ -1261,8 +1295,9 @@ void menuscr_anim_sub_00236740(undefined8 param_1)
 
 // 0x00236840  size 0x118
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277b8 */
 
-void menuscr_step_sub_00236840(void)
+void screc3277b8_enter_sub_00236840(void)
 
 {
   undefined4 uVar1;
@@ -1707,8 +1742,9 @@ void scrrace_draw_sub_002375d0(undefined8 param_1)
 
 // 0x00237740  size 0x7cc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b4fc */
 
-void scrcareer_draw_sub_00237740(undefined8 param_1)
+void ScrScrCareerDrawNoData6ac0_Exit(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1983,8 +2019,9 @@ LAB_0023779c:
 
 // 0x00237f10  size 0x1b8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b4fc */
 
-void scrcareer_draw_sub_00237f10(undefined8 param_1)
+void ScrScrCareerDrawNoData6ac0_Update(undefined8 param_1)
 
 {
   int iVar1;

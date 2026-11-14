@@ -739,8 +739,9 @@ void ScrCareer_Draw_GoBattle_9330(undefined8 param_1)
 
 // 0x00249d10  size 0x3d4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32beac */
 
-void scrcareer_draw_sub_00249d10(int param_1)
+void ScrDraw_GetPrize_Exit(int param_1)
 
 {
   undefined2 *puVar1;
@@ -931,8 +932,9 @@ void MenuScr_Draw_GetPrize_a0f0(int param_1)
 
 // 0x0024a340  size 0x25c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32beac */
 
-void scrcareer_draw_sub_0024a340(int param_1)
+void ScrDraw_GetPrize_Enter(int param_1)
 
 {
   int iVar1;

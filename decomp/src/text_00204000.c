@@ -110,7 +110,7 @@ void CarPreview_SetupWheelsAlt
 }
 
 // 0x002045b0  size 0x8
-undefined4 menu_leaf_sub_002045b0(void)
+undefined4 Menu_Nop(void)
 
 {
   return 0x2a0;
@@ -141,7 +141,7 @@ void CarPreview_GetPaletteColor(undefined1 *param_1,int param_2,int param_3)
 }
 
 // 0x00204630  size 0x8
-undefined4 menu_leaf_sub_00204630(void)
+undefined4 Menu_Nop_2(void)
 
 {
   return 0x2a0;
@@ -1436,6 +1436,14 @@ void MenuSnd_StopAll(void)
   (**(code **)(*(int *)uVar1 + 0x1c))(uVar1);
   uVar2 = SndMgr_GetSlot(uVar2,1);
   (**(code **)(*(int *)uVar2 + 0x1c))(uVar2);
+  return;
+}
+
+// 0x00206660  size 0x10
+void ui_leaf_sub_00206660(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x1c) = 0x2065f0;
   return;
 }
 

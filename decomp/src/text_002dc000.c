@@ -603,7 +603,7 @@ int password_leaf_sub_002dd460(int param_1,int param_2)
   return 1 - uVar1;
 }
 
-// 0x002dd4f0  size 0x34
+// 0x002dd4f0  size 0x28
 undefined8 password_leaf_sub_002dd4f0(ulong param_1)
 
 {
@@ -612,9 +612,30 @@ undefined8 password_leaf_sub_002dd4f0(ulong param_1)
   if (param_1 < 0x26) {
                     /* WARNING: Could not recover jumptable at 0x002dd510. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_00368170)[(int)param_1])();
+    uVar1 = (*(code *)(&PTR_Showroom_Nop_4_00368170)[(int)param_1])();
     return uVar1;
   }
+  return 0;
+}
+
+// 0x002dd528  size 0x8
+undefined4 Showroom_Nop_2(void)
+
+{
+  return 4;
+}
+
+// 0x002dd530  size 0x8
+undefined4 Showroom_Nop_3(void)
+
+{
+  return 0xe;
+}
+
+// 0x002dd538  size 0xc
+undefined8 Showroom_Nop_4(void)
+
+{
   return 0;
 }
 
@@ -1768,7 +1789,7 @@ undefined4 password_step_sub_002df230(void)
 }
 
 // 0x002df320  size 0x28
-bool password_step_sub_002df320(void)
+bool GameState_Get_35c_Wrap(void)
 
 {
   ulong uVar1;

@@ -49,9 +49,9 @@ void Demo_DriveCar(undefined4 *param_1,long param_2)
       Demo_FindRoadSection(&uStack_10,puVar8[5] + iVar6);
       uStack_8 = uStack_10;
       uStack_6 = uStack_e;
-      uVar5 = misc_step_sub_002fd080();
+      uVar5 = GameState_LoadHeader_Wrap();
       cVar1 = *(char *)((uVar5 & 0xff) + 0x36e868);
-      cVar3 = misc_step_sub_002fd0a0();
+      cVar3 = GameState_LoadHeader_Wrap2();
       bVar2 = cVar1 == cVar3;
       iVar6 = RaceCar_GetIndex(param_1[3]);
       param_1[5] = *(undefined4 *)(iVar6 + 4);
@@ -2391,7 +2391,7 @@ int MsgId_RivalTrait(int param_1)
   return param_1 + 0x6b8;
 }
 
-// 0x001f6f20  size 0x34
+// 0x001f6f20  size 0x28
 undefined8 MsgId_ForChapter(ulong param_1)
 
 {
@@ -2404,6 +2404,148 @@ undefined8 MsgId_ForChapter(ulong param_1)
     return uVar1;
   }
   return 0xffffffffffffffff;
+}
+
+// 0x001f6f58  size 0x8
+/* screen record 0x365578 */
+
+undefined4 screc365578_enter_sub_001f6f58(void)
+
+{
+  return 8;
+}
+
+// 0x001f6f60  size 0x8
+/* screen record 0x365578 */
+
+undefined4 screc365578_update_sub_001f6f60(void)
+
+{
+  return 9;
+}
+
+// 0x001f6f68  size 0x8
+/* screen record 0x365578 */
+
+undefined4 screc365578_exit_sub_001f6f68(void)
+
+{
+  return 0xb;
+}
+
+// 0x001f6f70  size 0x8
+/* screen record 0x365584 */
+
+undefined4 screc365584_enter_sub_001f6f70(void)
+
+{
+  return 0xc;
+}
+
+// 0x001f6f78  size 0x8
+/* screen record 0x365584 */
+
+undefined4 screc365584_update_sub_001f6f78(void)
+
+{
+  return 0x12;
+}
+
+// 0x001f6f80  size 0x8
+/* screen record 0x365584 */
+
+undefined4 screc365584_exit_sub_001f6f80(void)
+
+{
+  return 0x13;
+}
+
+// 0x001f6f88  size 0x8
+/* screen record 0x365590 */
+
+undefined4 screc365590_enter_sub_001f6f88(void)
+
+{
+  return 0x14;
+}
+
+// 0x001f6f90  size 0x8
+/* screen record 0x365590 */
+
+undefined4 screc365590_update_sub_001f6f90(void)
+
+{
+  return 2;
+}
+
+// 0x001f6f98  size 0x8
+/* screen record 0x365590 */
+
+undefined4 screc365590_exit_sub_001f6f98(void)
+
+{
+  return 1;
+}
+
+// 0x001f6fa0  size 0x8
+/* screen record 0x36559c */
+
+undefined4 screc36559c_update_sub_001f6fa0(void)
+
+{
+  return 3;
+}
+
+// 0x001f6fa8  size 0x8
+/* screen record 0x36559c */
+
+undefined4 screc36559c_enter_sub_001f6fa8(void)
+
+{
+  return 6;
+}
+
+// 0x001f6fb0  size 0x8
+/* screen record 0x36559c */
+
+undefined4 screc36559c_exit_sub_001f6fb0(void)
+
+{
+  return 10;
+}
+
+// 0x001f6fb8  size 0x8
+/* screen record 0x3655a8 */
+
+undefined4 screc3655a8_enter_sub_001f6fb8(void)
+
+{
+  return 0xe;
+}
+
+// 0x001f6fc0  size 0x8
+/* screen record 0x3655a8 */
+
+undefined4 screc3655a8_update_sub_001f6fc0(void)
+
+{
+  return 0x10;
+}
+
+// 0x001f6fc8  size 0x8
+/* screen record 0x3655a8 */
+
+undefined4 screc3655a8_exit_sub_001f6fc8(void)
+
+{
+  return 0x15;
+}
+
+// 0x001f6fd0  size 0x10
+undefined4 Ui_Nop(void)
+
+{
+  return 0x18;
 }
 
 // 0x001f6ff0  size 0x17c

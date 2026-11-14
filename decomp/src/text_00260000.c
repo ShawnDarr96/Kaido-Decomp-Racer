@@ -529,10 +529,22 @@ void ScrRace_Draw_Sell_0ed0(int param_1)
   return;
 }
 
+// 0x002611f0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327848 */
+
+void screc327848_exit_sub_002611f0(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00261210  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327848 */
 
-void menuscr_step_sub_00261210(undefined8 param_1)
+void screc327848_update_sub_00261210(undefined8 param_1)
 
 {
   long lVar1;
@@ -552,8 +564,9 @@ void menuscr_step_sub_00261210(undefined8 param_1)
 
 // 0x002612d0  size 0x308
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327848 */
 
-void menuscr_step_sub_002612d0(void)
+void screc327848_enter_sub_002612d0(void)
 
 {
   undefined4 uVar1;
@@ -734,8 +747,9 @@ void scrcareer_draw_sub_002615e0(undefined4 *param_1)
 
 // 0x00261740  size 0x160
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32d2e0 */
 
-void scrcareer_draw_sub_00261740(undefined4 *param_1)
+void ScrCarStatus_Exit(undefined4 *param_1)
 
 {
   int iVar1;
@@ -935,8 +949,9 @@ void ScrCareer_Draw_CarStatus(int *param_1)
 
 // 0x00261dc0  size 0x8a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32d2e0 */
 
-void scrcareer_draw_sub_00261dc0(int *param_1)
+void ScrCarStatus_Enter(int *param_1)
 
 {
   int iVar1;
@@ -1249,8 +1264,9 @@ void scrcareer_draw_sub_00261dc0(int *param_1)
 
 // 0x00262670  size 0x30
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327854 */
 
-void menuscr_step_sub_00262670(void)
+void screc327854_exit_sub_00262670(void)
 
 {
   Menu_BlockInput(_g_MenuMgr + 0x654);
@@ -1260,8 +1276,9 @@ void menuscr_step_sub_00262670(void)
 
 // 0x002626a0  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327854 */
 
-void menuscr_leaf_sub_002626a0(int param_1)
+void screc327854_update_sub_002626a0(int param_1)
 
 {
   uint uVar1;
@@ -1269,11 +1286,20 @@ void menuscr_leaf_sub_002626a0(int param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_scrcareer_draw_sub_00261dc0_0032d2e0)[*(int *)(param_1 + 0x18)])();
+  (*(code *)(&PTR_ScrCarStatus_Enter_0032d2e0)[*(int *)(param_1 + 0x18)])();
   uVar1 = *(uint *)(_g_MenuMgr + 0x28);
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
+  return;
+}
+
+// 0x00262740  size 0x8
+/* screen record 0x327854 */
+
+void screc327854_enter_sub_00262740(void)
+
+{
   return;
 }
 

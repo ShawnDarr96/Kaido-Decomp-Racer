@@ -1869,6 +1869,84 @@ LAB_001667f4:
   return;
 }
 
+// 0x00166970  size 0x38
+void car_leaf_sub_00166970(float param_1,int param_2)
+
+{
+  if (0.0 <= param_1) {
+    if (1.0 < param_1) {
+      param_1 = 1.0;
+    }
+  }
+  else {
+    param_1 = 0.0;
+  }
+  *(float *)(param_2 + 0x128) = param_1;
+  return;
+}
+
+// 0x001669b0  size 0x38
+void car_leaf_sub_001669b0(float param_1,int param_2)
+
+{
+  if (0.0 <= param_1) {
+    if (1.0 < param_1) {
+      param_1 = 1.0;
+    }
+  }
+  else {
+    param_1 = 0.0;
+  }
+  *(float *)(param_2 + 0x134) = param_1;
+  return;
+}
+
+// 0x001669f0  size 0x38
+void car_leaf_sub_001669f0(float param_1,int param_2)
+
+{
+  if (0.0 <= param_1) {
+    if (1.0 < param_1) {
+      param_1 = 1.0;
+    }
+  }
+  else {
+    param_1 = 0.0;
+  }
+  *(float *)(param_2 + 0x130) = param_1;
+  return;
+}
+
+// 0x00166a30  size 0x98
+void car_leaf_sub_00166a30(float param_1,float param_2,int param_3)
+
+{
+  float fVar1;
+  
+  if (-1.0 <= param_1) {
+    if (1.0 < param_1) {
+      param_1 = 1.0;
+    }
+  }
+  else {
+    param_1 = -1.0;
+  }
+  fVar1 = (*(float *)(param_3 + 0x124) + 0.0) -
+          param_2 * (*(float *)(param_3 + 0x124) - param_1) *
+                    *(float *)(*(int *)(param_3 + 0x120) + 0x16c);
+  *(float *)(param_3 + 0x124) = fVar1;
+  if (-1.0 <= fVar1) {
+    if (1.0 < fVar1) {
+      fVar1 = 1.0;
+    }
+  }
+  else {
+    fVar1 = -1.0;
+  }
+  *(float *)(param_3 + 0x124) = fVar1;
+  return;
+}
+
 // 0x00166ad0  size 0x1b0
 /* steering input, sin curve */
 
@@ -1924,6 +2002,86 @@ void Car_UpdateFrontTires(float param_1,undefined8 param_2)
     fVar2 = -1.2;
   }
   piVar1[0x49] = (int)fVar2;
+  return;
+}
+
+// 0x00166c80  size 0x54
+void car_leaf_sub_00166c80(float param_1,int param_2,long param_3)
+
+{
+  float fVar1;
+  
+  if (param_3 == 0) {
+    *(undefined4 *)(param_2 + 0x134) = 0;
+  }
+  else {
+    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0xb0) * param_1 +
+            *(float *)(param_2 + 0x134) + 0.0;
+    *(float *)(param_2 + 0x134) = fVar1;
+    if (1.0 < fVar1) {
+      *(undefined4 *)(param_2 + 0x134) = 0x3f800000;
+    }
+  }
+  return;
+}
+
+// 0x00166ce0  size 0x54
+void car_leaf_sub_00166ce0(float param_1,int param_2,long param_3)
+
+{
+  float fVar1;
+  
+  if (param_3 == 0) {
+    *(undefined4 *)(param_2 + 300) = 0;
+  }
+  else {
+    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0x520) * param_1 +
+            *(float *)(param_2 + 300) + 0.0;
+    *(float *)(param_2 + 300) = fVar1;
+    if (1.0 < fVar1) {
+      *(undefined4 *)(param_2 + 300) = 0x3f800000;
+    }
+  }
+  return;
+}
+
+// 0x00166d40  size 0x60
+void car_leaf_sub_00166d40(float param_1,int param_2,long param_3)
+
+{
+  float fVar1;
+  
+  if ((param_3 == 0) || (*(int *)(param_2 + 0x814) < 0)) {
+    *(undefined4 *)(param_2 + 0x128) = 0;
+  }
+  else {
+    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0x520) * param_1 +
+            *(float *)(param_2 + 0x128) + 0.0;
+    *(float *)(param_2 + 0x128) = fVar1;
+    if (1.0 < fVar1) {
+      *(undefined4 *)(param_2 + 0x128) = 0x3f800000;
+    }
+  }
+  return;
+}
+
+// 0x00166da0  size 0x54
+void car_leaf_sub_00166da0(float param_1,int param_2,long param_3)
+
+{
+  float fVar1;
+  
+  if (param_3 == 0) {
+    *(undefined4 *)(param_2 + 0x130) = 0;
+  }
+  else {
+    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0xb0) * param_1 +
+            *(float *)(param_2 + 0x130) + 0.0;
+    *(float *)(param_2 + 0x130) = fVar1;
+    if (1.0 < fVar1) {
+      *(undefined4 *)(param_2 + 0x130) = 0x3f800000;
+    }
+  }
   return;
 }
 
@@ -2006,6 +2164,32 @@ void Car_UpdateRearTires(float param_1,float param_2,int param_3,long param_4,lo
   }
   *(float *)(param_3 + 0x124) = param_1;
   return;
+}
+
+// 0x00167050  size 0x30
+undefined4 car_leaf_sub_00167050(int param_1)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = 0x3f800000;
+  if (*(char *)(param_1 + 0x88d) != '\0') {
+    uVar1 = 0x3f99999a;
+  }
+  return uVar1;
+}
+
+// 0x00167080  size 0x38
+float car_leaf_sub_00167080(int param_1)
+
+{
+  float fVar1;
+  
+  fVar1 = 1.0;
+  if (0.5 < *(float *)(param_1 + 0x130)) {
+    fVar1 = *(float *)(*(int *)(param_1 + 0x120) + 0x17c) + 1.0;
+  }
+  return fVar1;
 }
 
 // 0x001670c0  size 0x4bc

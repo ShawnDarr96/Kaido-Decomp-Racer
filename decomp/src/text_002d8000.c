@@ -265,10 +265,22 @@ void showroom_step_sub_002d88b0(undefined8 param_1,undefined8 param_2)
   return;
 }
 
+// 0x002d88f0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3276e0 */
+
+void screc3276e0_exit_sub_002d88f0(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x002d8910  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3276e0 */
 
-void showroom_draw_sub_002d8910(undefined8 param_1)
+void screc3276e0_update_sub_002d8910(undefined8 param_1)
 
 {
   uint uVar1;
@@ -333,8 +345,9 @@ LAB_002d8994:
 
 // 0x002d8b10  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3276e0 */
 
-void showroom_step_sub_002d8b10(void)
+void screc3276e0_enter_sub_002d8b10(void)
 
 {
   undefined4 uVar1;
@@ -368,6 +381,45 @@ void showroom_step_sub_002d8b10(void)
   return;
 }
 
+// 0x002d8bd0  size 0x114
+void showroom_select_sub_002d8bd0(undefined8 param_1)
+
+{
+  int iVar1;
+  uint uVar2;
+  long lVar3;
+  long lVar4;
+  int iVar5;
+  
+  iVar5 = (int)param_1;
+  lVar3 = Menu_IsInputIdle(iVar5 + 0x568);
+  if (*(int *)(iVar5 + 0x778) == 0) {
+    lVar4 = password_leaf_sub_002dcc30(iVar5 + 0x588);
+    if (lVar4 == 0) {
+      uVar2 = SaveUi_Task(param_1,lVar3,1,1);
+      *(uint *)(iVar5 + 0x770) = uVar2 & 0xff;
+      iVar1 = *(int *)(iVar5 + 0x770);
+      if (iVar1 == 3) {
+        SaveMgr_Close(param_1);
+      }
+      else if (iVar1 == 1) {
+        SaveMgr_Close(param_1);
+        *(undefined4 *)(iVar5 + 0x778) = 1;
+      }
+      else if (iVar1 == 0) {
+        SaveMgr_Open(param_1,0,0,0,0,0,0);
+      }
+    }
+  }
+  else if (lVar3 != 0) {
+    iRam0036f2b4 = *(byte *)(iRam0036f1d4 + 0x15) + 1;
+    MenuMgr_GetScreenParam(0xfffffffffffffffb);
+  }
+  Save_IsBusy();
+  Menu_RequestTransition(iVar5 + 0x568);
+  return;
+}
+
 // 0x002d8cf0  size 0xa0
 void showroom_step_sub_002d8cf0(undefined8 param_1)
 
@@ -394,6 +446,16 @@ void showroom_step_sub_002d8cf0(undefined8 param_1)
   return;
 }
 
+// 0x002d8d90  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void showroom_leaf_sub_002d8d90(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x002d8db0  size 0x78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -410,6 +472,50 @@ void showroom_step_sub_002d8db0(void)
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
   replayui_anim_sub_002db730();
+  return;
+}
+
+// 0x002d8e40  size 0xa0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void showroom_step_sub_002d8e40(int param_1)
+
+{
+  long lVar1;
+  
+  lVar1 = replayui_step_sub_002db3e0();
+  if (lVar1 != 1) {
+    if (lVar1 == 2) {
+      *(undefined4 *)(param_1 + 0x7e4) = 1;
+      *(undefined4 *)(param_1 + 0x7e8) = 1;
+      if (*(int *)(_g_MenuMgr + 0x24) == 0x20) {
+        MenuMgr_GetScreenParam();
+      }
+      else {
+        Game_StartNewCareer();
+        MenuMgr_GetScreenParam(0xfffffffffffffffe);
+      }
+    }
+    else {
+      *(undefined4 *)(param_1 + 0x7e4) = 0;
+      *(undefined4 *)(param_1 + 0x7e8) = 1;
+      RaceCtx_SetMode(9);
+      MenuMgr_GetScreenParam(*(undefined4 *)(_g_MenuMgr + 0x24));
+    }
+  }
+  Save_IsBusy();
+  return;
+}
+
+// 0x002d8ef0  size 0x60
+void showroom_step_sub_002d8ef0(undefined8 param_1)
+
+{
+  Save_AllocSlots();
+  replayui_leaf_sub_002dbf20(param_1,1,*(undefined1 *)((int)param_1 + 0x779));
+  showroom_leaf_sub_002d8f50(0x293f50,0x293f40,0x293f30);
+  replayui_anim_sub_002dbc70(param_1);
+  replayui_step_sub_002dbb80(param_1);
   return;
 }
 

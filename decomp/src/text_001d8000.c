@@ -2283,6 +2283,29 @@ void RaceRule_CheckFreeRun(char param_1)
   return;
 }
 
+// 0x001dbf40  size 0x94
+void race_step_sub_001dbf40(int param_1)
+
+{
+  char cVar1;
+  undefined2 uVar2;
+  undefined8 uVar3;
+  undefined8 uVar4;
+  
+  uVar2 = GameState_GetRacerCount();
+  uVar3 = Race_GetModeFlags();
+  uVar4 = GameState_Get_398();
+  RaceRule_Alloc(uVar2,uVar3,0x430750,uVar4);
+  cVar1 = RaceCtx_GetMode();
+  if (cVar1 == '\x06') {
+    *(undefined4 *)(param_1 + 0x1c) = 0x1dbf10;
+  }
+  else {
+    *(undefined4 *)(param_1 + 0x1c) = 0x1dbf20;
+  }
+  return;
+}
+
 // 0x001dbfe0  size 0x128
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 

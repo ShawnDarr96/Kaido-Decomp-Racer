@@ -2,6 +2,24 @@
 // Address range 0x00104000 - 0x00108000
 #include "ghidra_types.h"
 
+// 0x001040e0  size 0x10
+void msl_leaf_sub_001040e0(undefined8 *param_1)
+
+{
+  *param_1 = 0xffffffffffffffff;
+  *(undefined4 *)(param_1 + 1) = 0;
+  return;
+}
+
+// 0x001040f0  size 0x10
+void msl_leaf_sub_001040f0(undefined8 *param_1)
+
+{
+  *param_1 = 0xffffffffffffffff;
+  *(undefined4 *)(param_1 + 1) = 0;
+  return;
+}
+
 // 0x00104100  size 0xac
 undefined8 maybe_std_istream_ctor(undefined8 param_1,short param_2,undefined8 param_3)
 
@@ -635,6 +653,13 @@ ulong maybe_std_stdio_filebuf_uflow(undefined8 param_1)
   return uVar6;
 }
 
+// 0x00105200  size 0x18
+int msl_leaf_sub_00105200(int param_1)
+
+{
+  return *(int *)(param_1 + 0xc) - *(int *)(param_1 + 8);
+}
+
 // 0x00105220  size 0x50
 undefined8 maybe_std_stdio_filebuf_ctor(undefined8 param_1,undefined4 param_2)
 
@@ -1146,6 +1171,19 @@ ulong maybe_std_stdio_wfilebuf_uflow(undefined8 param_1)
   return uVar7;
 }
 
+// 0x00105da0  size 0x28
+int msl_leaf_sub_00105da0(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0xc) - *(int *)(param_1 + 8);
+  if (iVar1 < 0) {
+    iVar1 = iVar1 + 3;
+  }
+  return iVar1 >> 2;
+}
+
 // 0x00105dd0  size 0x50
 undefined8 maybe_std_stdio_wfilebuf_ctor(undefined8 param_1,undefined4 param_2)
 
@@ -1613,6 +1651,102 @@ undefined8 maybe_std_wostream_sentry_ctor(undefined8 param_1,undefined4 param_2)
   return param_1;
 }
 
+// 0x001069e0  size 0x10
+int * msl_leaf_sub_001069e0(int param_1,long param_2)
+
+{
+  int *piVar1;
+  int *piVar2;
+  
+  piVar2 = (int *)(param_1 + -8 + *(int *)(param_1 + 0x48));
+  if (piVar2 != (int *)0x0) {
+    piVar2[1] = (int)&PTR_PTR_0036dfa0;
+    piVar1 = piVar2 + 2;
+    *(undefined ***)*piVar2 = &PTR_PTR_0036dfac;
+    *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
+    if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
+      piVar2[2] = (int)&PTR_PTR_0036df88;
+      maybe_std_locale_imp_dtor(piVar1,0);
+    }
+    if (0 < (short)param_2) {
+      Mem_Free(piVar2);
+    }
+  }
+  return piVar2;
+}
+
+// 0x001069f0  size 0x10
+int * msl_leaf_sub_001069f0(int param_1,long param_2)
+
+{
+  int *piVar1;
+  int *piVar2;
+  
+  piVar2 = (int *)(param_1 + -0x18 + *(int *)(param_1 + 0x48));
+  if (piVar2 != (int *)0x0) {
+    piVar2[4] = (int)&PTR_PTR_0036df70;
+    piVar1 = piVar2 + 6;
+    *(undefined ***)*piVar2 = &PTR_PTR_0036df7c;
+    *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
+    if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
+      piVar2[6] = (int)&PTR_PTR_0036df88;
+      maybe_std_locale_imp_dtor(piVar1,0);
+    }
+    if (0 < (short)param_2) {
+      Mem_Free(piVar2);
+    }
+  }
+  return piVar2;
+}
+
+// 0x00106a00  size 0x10
+int * msl_leaf_sub_00106a00(int param_1,long param_2)
+
+{
+  int *piVar1;
+  int *piVar2;
+  
+  piVar2 = (int *)(param_1 + -8 + *(int *)(param_1 + 0x48));
+  if (piVar2 != (int *)0x0) {
+    piVar2[1] = (int)&PTR_PTR_0036ded0;
+    piVar1 = piVar2 + 2;
+    *(undefined ***)*piVar2 = &PTR_PTR_0036dedc;
+    *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
+    if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
+      piVar2[2] = (int)&PTR_PTR_0036deb8;
+      maybe_std_locale_imp_dtor(piVar1,0);
+    }
+    if (0 < (short)param_2) {
+      Mem_Free(piVar2);
+    }
+  }
+  return piVar2;
+}
+
+// 0x00106a10  size 0x10
+int * msl_leaf_sub_00106a10(int param_1,long param_2)
+
+{
+  int *piVar1;
+  int *piVar2;
+  
+  piVar2 = (int *)(param_1 + -0x18 + *(int *)(param_1 + 0x48));
+  if (piVar2 != (int *)0x0) {
+    piVar2[4] = (int)&PTR_PTR_0036dea0;
+    piVar1 = piVar2 + 6;
+    *(undefined ***)*piVar2 = &PTR_PTR_0036deac;
+    *(int *)(*piVar2 + 0x48) = (int)piVar1 - *piVar2;
+    if ((param_2 != 0) && (piVar1 != (int *)0x0)) {
+      piVar2[6] = (int)&PTR_PTR_0036deb8;
+      maybe_std_locale_imp_dtor(piVar1,0);
+    }
+    if (0 < (short)param_2) {
+      Mem_Free(piVar2);
+    }
+  }
+  return piVar2;
+}
+
 // 0x00106a20  size 0x45c
 /* basic_string out_of_range/length_error */
 
@@ -1823,6 +1957,13 @@ long maybe_std_string_dtor(long param_1,short param_2)
     }
   }
   return param_1;
+}
+
+// 0x001070c0  size 0x8
+undefined4 Msl_GetField_4_70c0(int param_1)
+
+{
+  return *(undefined4 *)(param_1 + 4);
 }
 
 // 0x001070d0  size 0x4c

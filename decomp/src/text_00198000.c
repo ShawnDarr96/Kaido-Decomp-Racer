@@ -2217,11 +2217,11 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
     }
     if (cRam00430460 == '\x02') {
       uStack_10 = DAT_003128c0;
-      puStack_8 = PTR_LAB_003128c8;
+      puStack_8 = PTR_Pkt_Flush_Wrap_003128c8;
     }
     else {
       uStack_10 = DAT_003128d0;
-      puStack_8 = PTR_LAB_003128d8;
+      puStack_8 = PTR_Pkt_AppendData_Wrap_003128d8;
     }
     iVar7 = *(int *)(param_1 + 0x504) + *(int *)(iVar13 + 0x458) * 0x1c;
     puVar17 = (undefined4 *)(iVar7 + 0x2b4);
@@ -2414,6 +2414,22 @@ switchD_0019b78c_default:
     uVar19 = 1;
   }
   return uVar19;
+}
+
+// 0x0019bdc0  size 0x1c
+void Pkt_AppendData_Wrap(int param_1,uint param_2,undefined8 param_3)
+
+{
+  Pkt_AppendData(param_1 + (param_2 & 0xff) * 0x44,param_3);
+  return;
+}
+
+// 0x0019bde0  size 0x1c
+void Pkt_Flush_Wrap(int param_1,uint param_2,undefined8 param_3)
+
+{
+  Pkt_Flush(param_1 + (param_2 & 0xff) * 0x44,param_3);
+  return;
 }
 
 // 0x0019be00  size 0x4d4

@@ -2,6 +2,31 @@
 // Address range 0x00294000 - 0x00298000
 #include "ghidra_types.h"
 
+// 0x00294140  size 0x90
+void scrsave_step_sub_00294140(undefined8 param_1)
+
+{
+  int iVar1;
+  
+  Save_AllocSlots();
+  SaveMgr_LoadIcon(param_1);
+  showroom_leaf_sub_002d8f50(0x293f50,0x293f40,0x293f30);
+  iVar1 = (int)param_1;
+  *(undefined4 *)(iVar1 + 0x568) = 0xffffffff;
+  *(undefined4 *)(iVar1 + 0x56c) = 0;
+  *(undefined4 *)(iVar1 + 0x570) = 0;
+  *(undefined4 *)(iVar1 + 0x578) = 1;
+  *(undefined4 *)(iVar1 + 0x584) = 0;
+  *(undefined4 *)(iVar1 + 0x57c) = 1;
+  *(undefined4 *)(iVar1 + 0x574) = 1;
+  *(undefined4 *)(iVar1 + 0x580) = 0;
+  password_step_sub_002dd0c0(iVar1 + 0x588,2,0);
+  *(undefined4 *)(iVar1 + 0x778) = 0;
+  *(undefined4 *)(iVar1 + 0x770) = 0;
+  *(undefined4 *)(iVar1 + 0x774) = 1;
+  return;
+}
+
 // 0x002941d0  size 0x94
 void scroptions_step_sub_002941d0(undefined4 *param_1)
 
@@ -66,8 +91,24 @@ void menuscr_input_sub_00294270(undefined4 *param_1)
   return;
 }
 
+// 0x00294360  size 0x8
+void Menuscr_Nop_7(void)
+
+{
+  return;
+}
+
+// 0x00294370  size 0x8
+void Menuscr_Nop_8(void)
+
+{
+  return;
+}
+
 // 0x00294380  size 0x138
-void scroptions_step_sub_00294380(undefined4 *param_1)
+/* screen record 0x32eae8 */
+
+void ScrmaybeOptionsGetLanguage_Exit94380(undefined4 *param_1)
 
 {
   bool bVar1;
@@ -123,7 +164,9 @@ void scroptions_step_sub_00294380(undefined4 *param_1)
 }
 
 // 0x002944c0  size 0x2f0
-void scroptions_step_sub_002944c0(undefined8 param_1)
+/* screen record 0x32eae8 */
+
+void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
 
 {
   bool bVar1;
@@ -213,7 +256,9 @@ void scroptions_step_sub_002944c0(undefined8 param_1)
 }
 
 // 0x002947b0  size 0xf4
-void scroptions_input_sub_002947b0(undefined4 *param_1)
+/* screen record 0x32eae8 */
+
+void ScrmaybeOptionsGetLanguage_Enter947b0(undefined4 *param_1)
 
 {
   undefined8 uVar1;
@@ -248,7 +293,9 @@ void scroptions_input_sub_002947b0(undefined4 *param_1)
 }
 
 // 0x002948b0  size 0x524
-void scroptions_step_sub_002948b0(undefined4 *param_1)
+/* screen record 0x32eadc */
+
+void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
 
 {
   int *piVar1;
@@ -418,7 +465,9 @@ void scroptions_step_sub_002948b0(undefined4 *param_1)
 }
 
 // 0x00294de0  size 0x1bc
-void menuscr_input_sub_00294de0(undefined4 *param_1)
+/* screen record 0x32eadc */
+
+void ScrmaybeOptionsGetLanguage_Update94de0(undefined4 *param_1)
 
 {
   int iVar1;
@@ -477,7 +526,9 @@ void menuscr_input_sub_00294de0(undefined4 *param_1)
 }
 
 // 0x00294fa0  size 0xc0
-void menuscr_input_sub_00294fa0(undefined4 *param_1)
+/* screen record 0x32eadc */
+
+void ScrmaybeOptionsGetLanguage_Enter94fa0(undefined4 *param_1)
 
 {
   int iVar1;
@@ -507,7 +558,9 @@ void menuscr_input_sub_00294fa0(undefined4 *param_1)
 }
 
 // 0x00295060  size 0x2b0
-void scroptions_input_sub_00295060(undefined4 *param_1)
+/* screen record 0x32ead0 */
+
+void ScrmaybeOptionsGetLanguage_Exit(undefined4 *param_1)
 
 {
   int iVar1;
@@ -595,7 +648,9 @@ void scroptions_input_sub_00295060(undefined4 *param_1)
 }
 
 // 0x00295320  size 0x348
-void scroptions_input_sub_00295320(undefined4 *param_1)
+/* screen record 0x32ead0 */
+
+void ScrmaybeOptionsGetLanguage_Update(undefined4 *param_1)
 
 {
   int iVar1;
@@ -707,7 +762,9 @@ LAB_002954b8:
 }
 
 // 0x00295670  size 0xdc
-void menuscr_input_sub_00295670(undefined4 *param_1)
+/* screen record 0x32ead0 */
+
+void ScrmaybeOptionsGetLanguage_Enter(undefined4 *param_1)
 
 {
   int iVar1;
@@ -825,8 +882,9 @@ void menuscr_step_sub_002958e0(int param_1,long param_2)
 
 // 0x002959b0  size 0x44
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3275e8 */
 
-void menuscr_step_sub_002959b0(void)
+void screc3275e8_exit_sub_002959b0(void)
 
 {
   if ((*(uint *)(_g_MenuMgr + 0x28) & 0x2000) != 0) {
@@ -836,7 +894,9 @@ void menuscr_step_sub_002959b0(void)
 }
 
 // 0x00295a00  size 0x60
-void menuscr_select_sub_00295a00(undefined8 param_1)
+/* screen record 0x3275e8 */
+
+void screc3275e8_update_sub_00295a00(undefined8 param_1)
 
 {
   long lVar1;
@@ -845,7 +905,7 @@ void menuscr_select_sub_00295a00(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x5b8);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_menuscr_input_sub_00295670_0032ead0)[*(int *)(iVar2 + 0x5bc)])(param_1);
+    (*(code *)(&PTR_ScrmaybeOptionsGetLanguage_Enter_0032ead0)[*(int *)(iVar2 + 0x5bc)])(param_1);
     menuscr_step_sub_00295750(param_1);
     Menu_RequestTransition(iVar2 + 0x5b8);
   }
@@ -854,8 +914,9 @@ void menuscr_select_sub_00295a00(undefined8 param_1)
 
 // 0x00295a60  size 0x344
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3275e8 */
 
-void menuscr_step_sub_00295a60(undefined4 *param_1)
+void screc3275e8_enter_sub_00295a60(undefined4 *param_1)
 
 {
   undefined4 *puVar1;

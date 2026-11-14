@@ -2,10 +2,22 @@
 // Address range 0x0021c000 - 0x00220000
 #include "ghidra_types.h"
 
+// 0x0021c160  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327710 */
+
+void screc327710_exit_sub_0021c160(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x0021c180  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327710 */
 
-void menuscr_step_sub_0021c180(undefined8 param_1)
+void screc327710_update_sub_0021c180(undefined8 param_1)
 
 {
   long lVar1;
@@ -13,13 +25,31 @@ void menuscr_step_sub_0021c180(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_scrcareer_draw_sub_0021b780_0032a290)[*(int *)((int)param_1 + 0x4c)])(param_1);
+  (*(code *)(&PTR_ScrEntry_Enter_0032a290)[*(int *)((int)param_1 + 0x4c)])(param_1);
   if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
      (lVar1 = Menu_IsInputIdle((int)param_1 + 0x48), lVar1 == 1)) {
     if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
       *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
     }
   }
+  return;
+}
+
+// 0x0021c240  size 0x8
+/* screen record 0x327710 */
+
+void screc327710_enter_sub_0021c240(void)
+
+{
+  return;
+}
+
+// 0x0021c250  size 0xc
+void menuscr_leaf_sub_0021c250(int param_1)
+
+{
+  *(undefined4 *)(param_1 + 0x18) = 0;
+  *(undefined4 *)(param_1 + 0x20) = 0;
   return;
 }
 

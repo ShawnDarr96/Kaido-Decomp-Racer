@@ -298,6 +298,20 @@ void PtclSys_Init(undefined8 param_1)
   return;
 }
 
+// 0x001a8f60  size 0x8
+void Asset_Nop_3(void)
+
+{
+  return;
+}
+
+// 0x001a8f70  size 0x8
+void Asset_Nop_4(void)
+
+{
+  return;
+}
+
 // 0x001a8f80  size 0x64
 long PtclMgr_dtor(long param_1,short param_2)
 
@@ -847,7 +861,7 @@ int ResPool_Get(int param_1)
 void Asset_FreeCourseCommon(void)
 
 {
-  course_leaf_sub_001a5130(0x436470);
+  Course_Nop(0x436470);
   if (iRam004364c0 != 0) {
     Mem_Free();
     iRam004364c0 = 0;

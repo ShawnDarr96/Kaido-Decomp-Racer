@@ -666,10 +666,22 @@ void ScrRace_Draw_CategoryRace_51c0(int param_1)
   return;
 }
 
+// 0x00255aa0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327824 */
+
+void screc327824_exit_sub_00255aa0(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x00255ac0  size 0x130
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327824 */
 
-void scrrace_anim_sub_00255ac0(undefined8 param_1)
+void screc327824_update_sub_00255ac0(undefined8 param_1)
 
 {
   long lVar1;
@@ -701,7 +713,9 @@ void scrrace_anim_sub_00255ac0(undefined8 param_1)
 }
 
 // 0x00255bf0  size 0x3c
-void scrrecord_step_sub_00255bf0(void)
+/* screen record 0x327824 */
+
+void screc327824_enter_sub_00255bf0(void)
 
 {
   char cVar1;
@@ -711,6 +725,17 @@ void scrrecord_step_sub_00255bf0(void)
     GameState_Get_35c();
   }
   Menu_ClearSlot(0);
+  return;
+}
+
+// 0x00255c30  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327830 */
+
+void ScrSell_Exit(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
   return;
 }
 
@@ -770,8 +795,9 @@ void ScrRace_Draw_Sell(int *param_1)
 
 // 0x00255e70  size 0x394
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327830 */
 
-void menuscr_step_sub_00255e70(void)
+void ScrSell_Enter(void)
 
 {
   undefined4 uVar1;

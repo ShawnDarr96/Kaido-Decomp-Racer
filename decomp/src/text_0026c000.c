@@ -4,8 +4,9 @@
 
 // 0x0026cb10  size 0xca0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32d91c */
 
-void scrgarage_select_sub_0026cb10(undefined8 param_1)
+void ScrScrGarageDrawFullAeroa980_Enter(undefined8 param_1)
 
 {
   int iVar1;
@@ -556,8 +557,9 @@ void scrgarage_select_sub_0026cb10(undefined8 param_1)
 
 // 0x0026d7b0  size 0xcac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32d910 */
 
-void scrgarage_select_sub_0026d7b0(undefined8 param_1)
+void ScrCategory_Exit(undefined8 param_1)
 
 {
   int iVar1;
@@ -1109,8 +1111,9 @@ void scrgarage_select_sub_0026d7b0(undefined8 param_1)
 
 // 0x0026e460  size 0xfb4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32d910 */
 
-void scrgarage_select_sub_0026e460(undefined8 param_1)
+void ScrCategory_Update(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -1911,10 +1914,22 @@ void ScrCareer_Draw_Category(undefined8 param_1)
   return;
 }
 
+// 0x0026f880  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32789c */
+
+void screc32789c_exit_sub_0026f880(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x0026f8a0  size 0x110
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32789c */
 
-void menuscr_anim_sub_0026f8a0(undefined8 param_1)
+void screc32789c_update_sub_0026f8a0(undefined8 param_1)
 
 {
   long lVar1;
@@ -1942,8 +1957,9 @@ void menuscr_anim_sub_0026f8a0(undefined8 param_1)
 
 // 0x0026f9b0  size 0x42c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32789c */
 
-void menuscr_anim_sub_0026f9b0(int param_1)
+void screc32789c_enter_sub_0026f9b0(int param_1)
 
 {
   int iVar1;
@@ -2176,8 +2192,9 @@ void MenuScr_Draw_Clockwise(int param_1)
 
 // 0x0026ff80  size 0x13c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32d9b8 */
 
-void scrrace_draw_sub_0026ff80(int param_1)
+void screc32d9b8_exit_sub_0026ff80(int param_1)
 
 {
   bool bVar1;

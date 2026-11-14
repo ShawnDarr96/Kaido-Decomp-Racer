@@ -116,8 +116,9 @@ void ScrRace_Draw_HillClimb(int param_1)
 
 // 0x002306e0  size 0xaa4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b140 */
 
-void scrrace_select_sub_002306e0(int *param_1)
+void ScrHillClimb_Enter(int *param_1)
 
 {
   char cVar1;
@@ -508,8 +509,9 @@ LAB_00230db8:
 
 // 0x00231190  size 0x80
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327794 */
 
-void menuscr_anim_sub_00231190(void)
+void screc327794_exit_sub_00231190(void)
 
 {
   int iVar1;
@@ -527,8 +529,9 @@ void menuscr_anim_sub_00231190(void)
 
 // 0x00231210  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327794 */
 
-void menuscr_leaf_sub_00231210(int param_1)
+void screc327794_update_sub_00231210(int param_1)
 
 {
   uint uVar1;
@@ -536,11 +539,20 @@ void menuscr_leaf_sub_00231210(int param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_scrrace_select_sub_002306e0_0032b140)[*(int *)(param_1 + 4)])();
+  (*(code *)(&PTR_ScrHillClimb_Enter_0032b140)[*(int *)(param_1 + 4)])();
   uVar1 = *(uint *)(_g_MenuMgr + 0x28);
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
+  return;
+}
+
+// 0x002312b0  size 0x8
+/* screen record 0x327794 */
+
+void screc327794_enter_sub_002312b0(void)
+
+{
   return;
 }
 
@@ -1721,8 +1733,9 @@ LAB_0023371c:
 
 // 0x00233b30  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277a0 */
 
-void menuscr_anim_sub_00233b30(void)
+void screc3277a0_exit_sub_00233b30(void)
 
 {
   int iVar1;
@@ -1735,8 +1748,9 @@ void menuscr_anim_sub_00233b30(void)
 
 // 0x00233b90  size 0x10c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277a0 */
 
-void menuscr_draw_sub_00233b90(undefined8 param_1)
+void screc3277a0_update_sub_00233b90(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1761,8 +1775,9 @@ void menuscr_draw_sub_00233b90(undefined8 param_1)
 
 // 0x00233ca0  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277a0 */
 
-void menuscr_step_sub_00233ca0(void)
+void screc3277a0_enter_sub_00233ca0(void)
 
 {
   undefined4 uVar1;

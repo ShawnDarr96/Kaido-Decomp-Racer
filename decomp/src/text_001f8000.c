@@ -158,7 +158,7 @@ void Menu_HandleList(undefined4 *param_1,int *param_2,long param_3,long param_4,
   return;
 }
 
-// 0x001f8420  size 0x34
+// 0x001f8420  size 0x28
 undefined8 Menu_ClampIndex(ulong param_1)
 
 {
@@ -167,9 +167,16 @@ undefined8 Menu_ClampIndex(ulong param_1)
   if (param_1 < 0x2c) {
                     /* WARNING: Could not recover jumptable at 0x001f8440. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_003655c0)[(int)param_1])();
+    uVar1 = (*(code *)(&PTR_Ui_Nop_2_003655c0)[(int)param_1])();
     return uVar1;
   }
+  return 0;
+}
+
+// 0x001f8458  size 0xc
+undefined8 Ui_Nop_2(void)
+
+{
   return 0;
 }
 

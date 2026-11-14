@@ -259,7 +259,7 @@ void TitleCam_StartPathB(undefined8 param_1,int param_2)
   return;
 }
 
-// 0x00209020  size 0x30
+// 0x00209020  size 0x28
 undefined4 TitleCam_GetPathCount(undefined4 param_1,ulong param_2)
 
 {
@@ -268,9 +268,100 @@ undefined4 TitleCam_GetPathCount(undefined4 param_1,ulong param_2)
   if (param_2 < 0xd) {
                     /* WARNING: Could not recover jumptable at 0x00209040. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_00365a40)[(int)param_2])();
+    uVar1 = (*(code *)(&PTR_Ui_Nop_5_00365a40)[(int)param_2])();
     return uVar1;
   }
+  return param_1;
+}
+
+// 0x00209050  size 0x8
+float Ui_Nop_4(float param_1)
+
+{
+  return param_1 * param_1;
+}
+
+// 0x00209058  size 0x4c
+float ui_leaf_sub_00209058(float param_1,int param_2)
+
+{
+  param_1 = 1.0 - param_1;
+  if (param_2 != 4) {
+    if (param_2 != 5) {
+      if (param_2 != 6) goto LAB_00209098;
+      param_1 = param_1 * param_1;
+    }
+    param_1 = param_1 * param_1;
+  }
+  param_1 = param_1 * param_1;
+LAB_00209098:
+  return 1.0 - param_1;
+}
+
+// 0x002090a4  size 0xd0
+float ui_leaf_sub_002090a4(float param_1,int param_2)
+
+{
+  float fVar1;
+  
+  if (param_1 < 0.5) {
+    fVar1 = param_1 * 2.0;
+  }
+  else {
+    fVar1 = 1.0 - (param_1 - 0.5) * 2.0;
+  }
+  if (param_2 != 7) {
+    if (param_2 != 8) {
+      if (param_2 != 9) goto LAB_00209124;
+      fVar1 = fVar1 * fVar1;
+    }
+    fVar1 = fVar1 * fVar1;
+  }
+  fVar1 = fVar1 * fVar1;
+LAB_00209124:
+  if (param_1 < 0.5) {
+    fVar1 = fVar1 / 2.0;
+  }
+  else {
+    fVar1 = (1.0 - fVar1) / 2.0 + 0.5;
+  }
+  return fVar1;
+}
+
+// 0x00209174  size 0xc4
+float ui_leaf_sub_00209174(float param_1,int param_2)
+
+{
+  float fVar1;
+  
+  if (param_1 < 0.5) {
+    fVar1 = 1.0 - param_1 * 2.0;
+  }
+  else {
+    fVar1 = (param_1 - 0.5) * 2.0;
+  }
+  if (param_2 != 10) {
+    if (param_2 != 0xb) {
+      if (param_2 != 0xc) goto LAB_002091f0;
+      fVar1 = fVar1 * fVar1;
+    }
+    fVar1 = fVar1 * fVar1;
+  }
+  fVar1 = fVar1 * fVar1;
+LAB_002091f0:
+  if (param_1 < 0.5) {
+    fVar1 = (1.0 - fVar1) / 2.0;
+  }
+  else {
+    fVar1 = fVar1 / 2.0 + 0.5;
+  }
+  return fVar1;
+}
+
+// 0x00209238  size 0x8
+undefined4 Ui_Nop_5(undefined4 param_1)
+
+{
   return param_1;
 }
 

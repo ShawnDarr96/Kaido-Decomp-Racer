@@ -1150,7 +1150,9 @@ void ScrCareer_Draw_Power(int param_1,long param_2)
 }
 
 // 0x0025abc0  size 0xc4
-void scrrace_draw_sub_0025abc0(undefined8 param_1)
+/* screen record 0x32cd5c */
+
+void ScrCanEquipThis_Exit(undefined8 param_1)
 
 {
   int iVar1;
@@ -1295,7 +1297,9 @@ void ScrRace_Draw_ThisCarPart_aea0(undefined8 param_1)
 }
 
 // 0x0025af80  size 0xc4
-void scrrace_draw_sub_0025af80(undefined8 param_1)
+/* screen record 0x32cd50 */
+
+void ScrThisCarPart_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1327,7 +1331,9 @@ void scrrace_draw_sub_0025af80(undefined8 param_1)
 }
 
 // 0x0025b050  size 0xc4
-void scrrace_draw_sub_0025b050(undefined8 param_1)
+/* screen record 0x32cd50 */
+
+void ScrThisCarPart_Enter(undefined8 param_1)
 
 {
   int iVar1;
@@ -1459,7 +1465,9 @@ void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
 }
 
 // 0x0025b3f0  size 0x3c
-void scrgarage_step_sub_0025b3f0(int *param_1)
+/* screen record 0x32cd44 */
+
+void ScrBodyColour_Update(int *param_1)
 
 {
   if (*param_1 == 3) {
@@ -1800,8 +1808,9 @@ void ScrGarage_Draw_BodyColour(int param_1)
 
 // 0x0025bd80  size 0x84c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32cd38 */
 
-void scrrace_draw_sub_0025bd80(int param_1)
+void ScrColourSchemeChanged_Exit(int param_1)
 
 {
   int iVar1;

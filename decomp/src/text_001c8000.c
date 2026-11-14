@@ -366,6 +366,37 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
   return;
 }
 
+// 0x001c99b0  size 0xc4
+void race_load_sub_001c99b0(int param_1)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  long lVar3;
+  int iVar4;
+  
+  puVar1 = *(undefined4 **)(param_1 + 0x14);
+  *puVar1 = 0;
+  puRam0036f34c = (undefined4 *)Mem_Alloc16(0x14,0x430750);
+  iVar4 = 0;
+  *puRam0036f34c = 0;
+  puRam0036f34c[1] = 0;
+  puRam0036f34c[2] = 0;
+  puRam0036f34c[3] = 0;
+  puRam0036f34c[4] = 0;
+  lVar3 = GameState_GetTotalCarCount();
+  if (0 < lVar3) {
+    do {
+      Driver_CreateAi(0x430750,iVar4);
+      iVar4 = iVar4 + 1;
+      iVar2 = GameState_GetTotalCarCount();
+    } while (iVar4 < iVar2);
+  }
+  puVar1[1] = 0;
+  *(code **)(param_1 + 0x1c) = Driver_UpdateAll;
+  return;
+}
+
 // 0x001c9a80  size 0x378
 void Driver_InitController(uint *param_1,char param_2)
 

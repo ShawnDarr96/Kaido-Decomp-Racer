@@ -4,8 +4,9 @@
 
 // 0x002380d0  size 0x510
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b4fc */
 
-void scrcareer_draw_sub_002380d0(undefined8 param_1)
+void ScrScrCareerDrawNoData6ac0_Enter(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -647,8 +648,9 @@ LAB_002387d8:
 
 // 0x00239460  size 0x330
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b4f0 */
 
-void scrcareer_draw_sub_00239460(undefined8 param_1)
+void ScrNoData_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -777,8 +779,9 @@ void scrcareer_draw_sub_00239460(undefined8 param_1)
 
 // 0x00239790  size 0xb78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b4f0 */
 
-void scrcareer_draw_sub_00239790(undefined8 param_1)
+void ScrNoData_Enter(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1162,8 +1165,9 @@ void scrcareer_draw_sub_00239790(undefined8 param_1)
 
 // 0x0023a310  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277c4 */
 
-void menuscr_anim_sub_0023a310(void)
+void ScrRivalInfo_Exit(void)
 
 {
   int iVar1;
@@ -1189,7 +1193,7 @@ void ScrRace_Draw_RivalInfo(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
   piVar4 = (int *)param_1;
-  (*(code *)(&PTR_scrcareer_draw_sub_00239790_0032b4f0)[piVar4[0x206]])(param_1);
+  (*(code *)(&PTR_ScrNoData_Enter_0032b4f0)[piVar4[0x206]])(param_1);
   if (*piVar4 == 1) {
     iVar1 = UiMgr_FindLayout(0xcb);
     UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -1225,8 +1229,9 @@ void ScrRace_Draw_RivalInfo(undefined8 param_1)
 
 // 0x0023a570  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x3277c4 */
 
-void menuscr_step_sub_0023a570(void)
+void ScrRivalInfo_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1422,8 +1427,9 @@ void ScrGarage_Draw_Sponsors(undefined8 param_1)
 
 // 0x0023ae00  size 0xec
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b71c */
 
-void scrrace_draw_sub_0023ae00(int param_1)
+void ScrContractMoney_Exit(int param_1)
 
 {
   int iVar1;
@@ -1603,8 +1609,9 @@ void ScrCareer_Draw_ContractMoney(undefined8 param_1)
 
 // 0x0023b330  size 0xe8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b71c */
 
-void scrcareer_draw_sub_0023b330(undefined8 param_1)
+void ScrContractMoney_Enter(undefined8 param_1)
 
 {
   int iVar1;
@@ -1640,8 +1647,9 @@ void scrcareer_draw_sub_0023b330(undefined8 param_1)
 
 // 0x0023b420  size 0x2a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b710 */
 
-void scrcareer_draw_sub_0023b420(undefined8 param_1)
+void ScrScrGarageDrawSponsors_Exit(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1741,8 +1749,9 @@ void scrcareer_draw_sub_0023b420(undefined8 param_1)
 
 // 0x0023b6d0  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b710 */
 
-void scrcareer_draw_sub_0023b6d0(undefined8 param_1)
+void ScrScrGarageDrawSponsors_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1778,8 +1787,9 @@ void scrcareer_draw_sub_0023b6d0(undefined8 param_1)
 
 // 0x0023b7d0  size 0xa00
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x32b710 */
 
-void scrcareer_select_sub_0023b7d0(undefined8 param_1)
+void ScrScrGarageDrawSponsors_Enter(undefined8 param_1)
 
 {
   undefined4 uVar1;

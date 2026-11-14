@@ -1246,6 +1246,13 @@ void raceui_step_sub_002c6090(long param_1,int param_2)
   return;
 }
 
+// 0x002c6150  size 0x8
+void Result_Nop(void)
+
+{
+  return;
+}
+
 // 0x002c6160  size 0x204
 void raceui_step_sub_002c6160(undefined8 param_1)
 

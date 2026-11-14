@@ -1754,6 +1754,26 @@ void maybe_kCopy_E(void)
   return;
 }
 
+// 0x0011af20  size 0x38
+undefined8 libkernl_leaf_sub_0011af20(undefined4 *param_1,undefined4 *param_2,uint param_3)
+
+{
+  undefined4 uVar1;
+  uint uVar2;
+  
+  uVar2 = 0;
+  if (param_3 >> 2 != 0) {
+    do {
+      uVar1 = *param_2;
+      uVar2 = uVar2 + 1;
+      param_2 = param_2 + 1;
+      *param_1 = uVar1;
+      param_1 = param_1 + 1;
+    } while (uVar2 < param_3 >> 2);
+  }
+  return 0;
+}
+
 // 0x0011af58  size 0x10
 void RFU091_copy3(void)
 
@@ -1777,7 +1797,7 @@ void maybe_InitTimerPatch(void)
   if ((uVar4 & 0x100) == 0) {
     uVar4 = 2;
     puVar3 = &DAT_00308158;
-    SetSyscall_copy5(DAT_00308148,PTR_LAB_0030814c);
+    SetSyscall_copy5(DAT_00308148,PTR_libkernl_leaf_sub_0011af20_0030814c);
     maybe_kCopy_E(0xffffffff80076000,0x3079e0,0x740);
     maybe_kCopy_E(0x82000,0x308120,0x28);
     FlushCache(0);

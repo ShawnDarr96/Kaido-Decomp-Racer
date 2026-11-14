@@ -2,6 +2,41 @@
 // Address range 0x00100000 - 0x00104000
 #include "ghidra_types.h"
 
+// 0x00100000  size 0x8
+void msl_leaf_sub_00100000(void)
+
+{
+  undefined4 in_zero_lo;
+  undefined4 in_zero_hi;
+  undefined4 in_zero_udw;
+  undefined4 in_register_0000000c;
+  undefined4 *puVar1;
+  undefined8 uVar2;
+  
+  SYNC(0x10);
+  for (puVar1 = (undefined4 *)0x36ef80; ((uint)puVar1 & 0xf) != 0;
+      puVar1 = (undefined4 *)((int)puVar1 + 1)) {
+    *(undefined1 *)puVar1 = 0;
+  }
+  for (; puVar1 != (undefined4 *)&DAT_0046a600; puVar1 = puVar1 + 4) {
+    *puVar1 = in_zero_lo;
+    puVar1[1] = in_zero_hi;
+    puVar1[2] = in_zero_udw;
+    puVar1[3] = in_register_0000000c;
+  }
+  for (; puVar1 != (undefined4 *)&DAT_0046a600; puVar1 = (undefined4 *)((int)puVar1 + 1)) {
+    *(undefined1 *)puVar1 = 0;
+  }
+  syscall(0x3c);
+  syscall(0x3d);
+  _InitSys(0,0,0,0,0,0,0,0,0x46a600,0xffffffffffffffff,0x80000,0x36fa00,0x100220,0,0,0);
+  FlushCache(0);
+  EI();
+  uVar2 = main(uRam0036fa00,0x36fa04);
+  maybe_exit(uVar2);
+  return;
+}
+
 // 0x00100008  size 0x210
 void entry(void)
 
@@ -520,6 +555,13 @@ long maybe_std_exception_dtor(long param_1,short param_2)
     Mem_Free();
   }
   return param_1;
+}
+
+// 0x00100db0  size 0xc
+char * Msl_Nop(void)
+
+{
+  return s_exception_0035e118;
 }
 
 // 0x00100dc0  size 0x260
@@ -1614,8 +1656,8 @@ void maybe___SkipExceptionAction(byte *param_1)
 undefined4 maybe___InitExceptionInfo(int param_1)
 
 {
-  *(undefined ***)(param_1 + 0xc) = &PTR_DAT_0036e690;
-  *(undefined ***)(param_1 + 0x10) = &PTR_DAT_0036e690;
+  *(undefined ***)(param_1 + 0xc) = &PTR_msl_leaf_sub_00100000_0036e690;
+  *(undefined ***)(param_1 + 0x10) = &PTR_msl_leaf_sub_00100000_0036e690;
   return 1;
 }
 
@@ -1801,6 +1843,20 @@ long maybe_std_locale_imp_dtor(long param_1,short param_2)
   return param_1;
 }
 
+// 0x00102bb0  size 0x8
+undefined8 Msl_Nop_2(undefined8 param_1)
+
+{
+  return param_1;
+}
+
+// 0x00102bc0  size 0x8
+undefined8 Msl_Nop_3(undefined8 param_1)
+
+{
+  return param_1;
+}
+
 // 0x00102bd0  size 0x4c
 /* rdbuf at +0x20, flags 0x1002, precision 6 */
 
@@ -1821,6 +1877,13 @@ void std_ios_base_init(int param_1,long param_2)
   *(undefined4 *)(param_1 + 0x18) = 0;
   *(undefined4 *)(param_1 + 0x1c) = 0;
   return;
+}
+
+// 0x00102c20  size 0x8
+undefined4 Msl_GetField_4(int param_1)
+
+{
+  return *(undefined4 *)(param_1 + 4);
 }
 
 // 0x00102c30  size 0x78
@@ -2167,6 +2230,57 @@ long maybe_std_streambuf_dtor(long param_1,short param_2)
   return param_1;
 }
 
+// 0x00103940  size 0x10
+undefined8 msl_leaf_sub_00103940(undefined8 param_1,undefined8 param_2,long param_3)
+
+{
+  *(bool *)((int)param_1 + 0x66) = param_3 != 0;
+  return param_1;
+}
+
+// 0x00103950  size 0x10
+undefined8 msl_leaf_sub_00103950(undefined8 param_1,undefined8 param_2,long param_3)
+
+{
+  *(bool *)((int)param_1 + 0x36) = param_3 != 0;
+  return param_1;
+}
+
+// 0x00103960  size 0x8
+undefined8 Msl_Nop_4(void)
+
+{
+  return 0;
+}
+
+// 0x00103970  size 0x8
+undefined8 Msl_Nop_5(void)
+
+{
+  return 0;
+}
+
+// 0x00103980  size 0x8
+undefined8 Msl_Nop_6(void)
+
+{
+  return 0;
+}
+
+// 0x00103990  size 0x8
+undefined8 Msl_Nop_7(void)
+
+{
+  return 0;
+}
+
+// 0x001039a0  size 0x8
+undefined4 Msl_Nop_8(void)
+
+{
+  return 0xffffffff;
+}
+
 // 0x001039b0  size 0x50
 ulong maybe_std_streambuf_uflow(int *param_1)
 
@@ -2183,6 +2297,20 @@ ulong maybe_std_streambuf_uflow(int *param_1)
     uVar3 = (ulong)*pbVar1;
   }
   return uVar3;
+}
+
+// 0x00103a00  size 0x8
+undefined4 Msl_Nop_9(void)
+
+{
+  return 0xffffffff;
+}
+
+// 0x00103a10  size 0x8
+undefined4 Msl_Nop_10(void)
+
+{
+  return 0xffffffff;
 }
 
 // 0x00103a20  size 0x12c
@@ -2289,6 +2417,31 @@ long maybe_std_streambuf_xsputn(undefined8 param_1,undefined1 *param_2,long para
   return lVar6;
 }
 
+// 0x00103c80  size 0x10
+void msl_leaf_sub_00103c80(undefined8 *param_1)
+
+{
+  *param_1 = 0xffffffffffffffff;
+  *(undefined4 *)(param_1 + 1) = 0;
+  return;
+}
+
+// 0x00103c90  size 0x10
+void msl_leaf_sub_00103c90(undefined8 *param_1)
+
+{
+  *param_1 = 0xffffffffffffffff;
+  *(undefined4 *)(param_1 + 1) = 0;
+  return;
+}
+
+// 0x00103ca0  size 0x8
+undefined4 Msl_Nop_11(void)
+
+{
+  return 0xffffffff;
+}
+
 // 0x00103cb0  size 0x1e0
 long maybe_std_wstreambuf_xsgetn(undefined8 param_1,ushort *param_2,long param_3)
 
@@ -2377,6 +2530,13 @@ long maybe_std_wstreambuf_xsgetn(undefined8 param_1,ushort *param_2,long param_3
   return lVar12;
 }
 
+// 0x00103e90  size 0x8
+undefined4 Msl_Nop_12(void)
+
+{
+  return 0xffffffff;
+}
+
 // 0x00103ea0  size 0x50
 ulong maybe_std_wstreambuf_uflow(int *param_1)
 
@@ -2393,6 +2553,13 @@ ulong maybe_std_wstreambuf_uflow(int *param_1)
     uVar3 = (ulong)*puVar1;
   }
   return uVar3;
+}
+
+// 0x00103ef0  size 0x8
+undefined4 Msl_Nop_13(void)
+
+{
+  return 0xffffffff;
 }
 
 // 0x00103f00  size 0x1dc

@@ -1351,6 +1351,13 @@ void MenuInput_Task(int param_1)
   return;
 }
 
+// 0x001fe150  size 0x8
+void Ui_Nop_3(void)
+
+{
+  return;
+}
+
 // 0x001fe160  size 0x16c
 void MenuInput_KeyRepeatTask(int param_1)
 

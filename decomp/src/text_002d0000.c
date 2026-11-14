@@ -345,7 +345,7 @@ void racehud_load_sub_002d0ad0(undefined1 *param_1)
   undefined8 uVar17;
   undefined8 uVar18;
   
-  puVar10 = PTR_LAB_0032f8a0;
+  puVar10 = PTR_Result_Nop_0032f8a0;
   uVar9 = DAT_0032f89c;
   puVar8 = PTR_raceui_step_sub_002c6160_0032f890;
   uVar7 = DAT_0032f88c;

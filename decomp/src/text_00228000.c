@@ -501,10 +501,22 @@ LAB_0022a14c:
   return;
 }
 
+// 0x0022b410  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327734 */
+
+void screc327734_exit_sub_0022b410(void)
+
+{
+  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  return;
+}
+
 // 0x0022b430  size 0xe0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* screen record 0x327734 */
 
-void scrrace_step_sub_0022b430(undefined8 param_1)
+void screc327734_update_sub_0022b430(undefined8 param_1)
 
 {
   long lVar1;
@@ -522,6 +534,15 @@ void scrrace_step_sub_0022b430(undefined8 param_1)
       *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
     }
   }
+  return;
+}
+
+// 0x0022b510  size 0x8
+/* screen record 0x327734 */
+
+void screc327734_enter_sub_0022b510(void)
+
+{
   return;
 }
 

@@ -2026,6 +2026,23 @@ void RaceWorld_Step(void)
   return;
 }
 
+// 0x001c2a00  size 0xc
+void race_leaf_sub_001c2a00(int param_1)
+
+{
+  **(undefined1 **)(param_1 + 0x14) = 0;
+  return;
+}
+
+// 0x001c2a10  size 0x1c
+void race_leaf_sub_001c2a10(int param_1)
+
+{
+  **(undefined1 **)(param_1 + 0x14) = 1;
+  *(undefined4 *)(param_1 + 0x1c) = 0x1c29f0;
+  return;
+}
+
 // 0x001c2a30  size 0x40
 undefined8
 Vu0_RaySphereTest(undefined1 (*param_1) [16],undefined1 (*param_2) [16],undefined1 (*param_3) [16])
