@@ -1849,9 +1849,9 @@ void FUN_00243bd0(int param_1)
         FUN_001f6720(0x469830,uVar5,*(undefined4 *)(param_1 + 0xc),*(undefined4 *)(param_1 + 0x10));
       }
     }
-    uVar5 = FUN_0012f600(fRam00469838 - fRam00469834);
-    uVar5 = FUN_00120158(uVar5);
-    fVar9 = (float)FUN_001301b8(uVar5);
+    uVar5 = newlib_sub_0012f600(fRam00469838 - fRam00469834);
+    uVar5 = libm_sub_00120158(uVar5);
+    fVar9 = (float)maybe___extendsfdf2(uVar5);
     FUN_002010a0(0x9f,0xb4,0x3a2,(int)(fVar9 * 1000.0),4);
     FUN_002010a0(0x9f,0xb5,0x3a2,(int)(fRam00469830 * 1000.0),4);
   }

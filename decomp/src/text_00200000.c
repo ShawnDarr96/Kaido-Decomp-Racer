@@ -292,7 +292,7 @@ void FUN_00201300(void)
 
 {
   if (iGpffff8d88 != 0) {
-    FUN_00100290();
+    Mem_Free();
   }
   iGpffff8d88 = 0;
   return;
@@ -302,7 +302,7 @@ void FUN_00201300(void)
 void FUN_00201330(undefined8 param_1)
 
 {
-  puGpffff8d88 = (undefined4 *)FUN_00100680(0x50,param_1);
+  puGpffff8d88 = (undefined4 *)Mem_Alloc16(0x50,param_1);
   *puGpffff8d88 = 0xffffffff;
   puGpffff8d88[2] = 0xffffffff;
   puGpffff8d88[1] = 0xffffffff;
@@ -1231,21 +1231,21 @@ void FUN_00202f20(int param_1,int param_2,long param_3,long param_4)
     fVar15 = (float)(int)*(char *)(iVar11 + 0xd) * 0.005 + fVar15 + 0.0;
     fVar20 = (float)(int)*(char *)(iVar11 + 4) * 0.5 + fVar20 + 0.0;
     fVar18 = (float)(int)*(char *)(iVar11 + 5) * 0.5 + fVar18 + 0.0;
-    fVar12 = (float)FUN_00120da8(((float)(int)*(char *)(iVar11 + 2) / 2.0) /
-                                 (fStack_18 * 2.0 * 1000.0),*(char *)(iVar11 + 2),
-                                 *(char *)(iVar11 + 5));
+    fVar12 = (float)maybe_asinf(((float)(int)*(char *)(iVar11 + 2) / 2.0) /
+                                (fStack_18 * 2.0 * 1000.0),*(char *)(iVar11 + 2),
+                                *(char *)(iVar11 + 5));
     fVar19 = fVar19 + (fVar12 * 180.0) / 3.1415927;
-    fVar12 = (float)FUN_00120da8(((float)(int)*(char *)(iVar11 + 3) / 2.0) /
-                                 (fStack_14 * 2.0 * 1000.0));
+    fVar12 = (float)maybe_asinf(((float)(int)*(char *)(iVar11 + 3) / 2.0) /
+                                (fStack_14 * 2.0 * 1000.0));
     fVar16 = fVar16 + (fVar12 * 180.0) / 3.1415927;
   }
   fVar18 = fVar18 * 0.017453292;
   fVar16 = fVar16 * 0.017453292;
-  FUN_00133090(param_1 + 0x10);
-  uVar13 = FUN_00120dc0(fVar14 - fVar15,*(undefined4 *)(iVar4 + 8));
-  FUN_00132d80(uVar13,param_1 + 0x10,param_1 + 0x10);
+  maybe_Vu0_UnitMatrix(param_1 + 0x10);
+  uVar13 = atan2f(fVar14 - fVar15,*(undefined4 *)(iVar4 + 8));
+  maybe_Vu0_RotMatrixX(uVar13,param_1 + 0x10,param_1 + 0x10);
   *(float *)(param_1 + 0x44) = (fVar14 + fVar15) / 2.0;
-  FUN_00133020(auStack_60,param_1 + 0x10);
+  vu0math_sub_00133020(auStack_60,param_1 + 0x10);
   if (bVar1) {
     uVar3 = 0;
     piVar2 = &DAT_003295d0;
@@ -1277,27 +1277,27 @@ void FUN_00202f20(int param_1,int param_2,long param_3,long param_4)
       iVar7 = iVar5 + 0x1a0;
       pfVar8 = (float *)(iVar10 + 0x60);
       iVar6 = iVar5 + 0xa0;
-      FUN_00133090(iVar7);
+      maybe_Vu0_UnitMatrix(iVar7);
       if (uVar9 == 1) {
-        FUN_00132e60(0x40490fdb,iVar7,iVar7);
+        maybe_Vu0_RotMatrixY(0x40490fdb,iVar7,iVar7);
       }
-      FUN_00133090(iVar6);
+      maybe_Vu0_UnitMatrix(iVar6);
       iVar7 = (1 - uVar9) + iVar11;
       if (iVar7 == 3) {
-        FUN_00132f40(fVar14,iVar6,iVar6);
-        FUN_00132e60(fVar15,iVar6,iVar6);
+        maybe_Vu0_RotMatrixZ(fVar14,iVar6,iVar6);
+        maybe_Vu0_RotMatrixY(fVar15,iVar6,iVar6);
       }
       else if (iVar7 == 2) {
-        FUN_00132f40(fVar18,iVar6,iVar6);
-        FUN_00132e60(fVar16,iVar6,iVar6);
+        maybe_Vu0_RotMatrixZ(fVar18,iVar6,iVar6);
+        maybe_Vu0_RotMatrixY(fVar16,iVar6,iVar6);
       }
       else if (iVar7 == 1) {
-        FUN_00132f40(fVar12,iVar6,iVar6);
-        FUN_00132e60(-(fVar19 * 0.017453292),iVar6,iVar6);
+        maybe_Vu0_RotMatrixZ(fVar12,iVar6,iVar6);
+        maybe_Vu0_RotMatrixY(-(fVar19 * 0.017453292),iVar6,iVar6);
       }
       else if (iVar7 == 0) {
-        FUN_00132f40(fVar20 * 0.017453292,iVar6,iVar6);
-        FUN_00132e60(fVar19 * 0.017453292,iVar6,iVar6);
+        maybe_Vu0_RotMatrixZ(fVar20 * 0.017453292,iVar6,iVar6);
+        maybe_Vu0_RotMatrixY(fVar19 * 0.017453292,iVar6,iVar6);
       }
       if (uVar3 == 0) {
         *pfVar8 = *(float *)(iVar4 + 8) / 2.0;
@@ -1319,8 +1319,8 @@ void FUN_00202f20(int param_1,int param_2,long param_3,long param_4)
       }
       *(float *)(iVar10 + 100) = *pfStack_90;
       *(undefined4 *)(iVar10 + 0x6c) = 0x3f800000;
-      FUN_00132d20(iVar6,iVar6,pfVar8);
-      FUN_00132ba0(iVar6,auStack_60,iVar6);
+      vu0math_sub_00132d20(iVar6,iVar6,pfVar8);
+      vu0math_sub_00132ba0(iVar6,auStack_60,iVar6);
       uVar9 = uVar9 + 1;
       *(undefined4 *)(iVar10 + 100) = 0;
       iVar10 = iVar10 + 0x10;
@@ -1449,8 +1449,8 @@ void FUN_00203720(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
     } while (0 < iVar2);
     uStack_25c = uStack_4ac;
     uStack_258 = uStack_4a8;
-    FUN_00132600(param_1,&uStack_320,8);
-    FUN_00132600(param_2,auStack_30c,0xb8);
+    maybe_Mem_CopyQwords(param_1,&uStack_320,8);
+    maybe_Mem_CopyQwords(param_2,auStack_30c,0xb8);
   }
   else {
     uVar5 = (undefined2)param_5;
@@ -1466,14 +1466,14 @@ void FUN_00203720(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
         puVar3 = puVar3 + 1;
       } while (0 < iVar2);
       FUN_001b49a0(auStack_180,0,auStack_250,0xffffffffffffffff,0);
-      FUN_00132600(param_1,auStack_244,8);
-      FUN_00132600(param_2,auStack_23c,0xb8);
+      maybe_Mem_CopyQwords(param_1,auStack_244,8);
+      maybe_Mem_CopyQwords(param_2,auStack_23c,0xb8);
     }
     else if (param_3 == '\x01') {
       uVar1 = FUN_001c1890(param_4);
       uVar1 = FUN_001bc390(uVar1,param_5);
-      FUN_00132600(param_1,uVar1,8);
-      FUN_00132600(param_2,(int)uVar1 + 0x14,0xb8);
+      maybe_Mem_CopyQwords(param_1,uVar1,8);
+      maybe_Mem_CopyQwords(param_2,(int)uVar1 + 0x14,0xb8);
     }
     else if (param_3 == '\0') {
       FUN_001d2100(param_1);

@@ -376,7 +376,7 @@ void FUN_00284c60(undefined8 param_1)
     iVar3 = FUN_001c1890(1);
     sVar1 = *(short *)(iVar3 + *(int *)(iVar6 + 0x4d0) * 2 + 0x13ee);
     iVar3 = FUN_001c1890(1);
-    FUN_00128268(iVar6 + *(int *)(iVar6 + 4) * 0xcc + 0x4e0,iVar3 + sVar1 * 0xcc,0xcc);
+    memcpy(iVar6 + *(int *)(iVar6 + 4) * 0xcc + 0x4e0,iVar3 + sVar1 * 0xcc,0xcc);
     iVar3 = *(int *)(iVar6 + 4);
   }
   uVar4 = 1;

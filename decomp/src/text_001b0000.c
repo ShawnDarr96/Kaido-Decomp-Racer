@@ -65,7 +65,7 @@ void FUN_001b0480(int param_1,int param_2,int *param_3)
   if (param_2 < param_1) {
     do {
       do {
-        iVar2 = FUN_00133940();
+        iVar2 = maybe_Rand_Float();
       } while (aiStack_640[iVar2 % param_1] != 0);
       *param_3 = iVar2 % param_1;
       aiStack_640[iVar2 % param_1] = 1;
@@ -191,7 +191,7 @@ void FUN_001b08d0(undefined4 *param_1,undefined8 param_2)
   undefined4 auStack_50 [20];
   
   uVar2 = FUN_00209260(param_2);
-  FUN_00128268(auStack_50,uVar2,0x50);
+  memcpy(auStack_50,uVar2,0x50);
   puVar4 = auStack_50;
   iVar3 = 10;
   do {
@@ -335,7 +335,7 @@ int FUN_001b0930(short param_1)
   iVar6 = 0;
   while( true ) {
     uVar3 = FUN_002092c0((short)iVar6);
-    FUN_00128268(&sStack_480,uVar3,0x17c);
+    memcpy(&sStack_480,uVar3,0x17c);
     puVar5 = auStack_43c;
     sStack_300 = sStack_480;
     uStack_2f8 = uStack_478;
@@ -486,7 +486,7 @@ void FUN_001b0ea0(undefined4 *param_1,undefined8 param_2)
   undefined4 auStack_50 [20];
   
   uVar1 = FUN_002092a0(param_2);
-  FUN_00128268(auStack_50,uVar1,0x44);
+  memcpy(auStack_50,uVar1,0x44);
   puVar3 = auStack_50;
   iVar2 = 0x11;
   do {
@@ -837,7 +837,7 @@ int FUN_001b0f00(int *param_1,long param_2)
         do {
           if (iVar4 != iVar1) {
             uVar6 = FUN_002092c0((short)iVar4);
-            FUN_00128268(&uStack_c10,uVar6,0x17c);
+            memcpy(&uStack_c10,uVar6,0x17c);
             puVar8 = auStack_bcc;
             uStack_790 = uStack_c10;
             uStack_778 = uStack_bf8;
@@ -979,7 +979,7 @@ int FUN_001b0f00(int *param_1,long param_2)
       }
       else if (cStack_4 == '\x02') {
         uVar6 = FUN_002092c0((short)iVar1);
-        FUN_00128268(&uStack_910,uVar6,0x17c);
+        memcpy(&uStack_910,uVar6,0x17c);
         uVar3 = uStack_8fc;
         puVar8 = auStack_8cc;
         uStack_490 = uStack_910;
@@ -1114,7 +1114,7 @@ int FUN_001b0f00(int *param_1,long param_2)
         do {
           if (iVar4 != iVar1) {
             uVar6 = FUN_002092c0((short)iVar4);
-            FUN_00128268(&uStack_a90,uVar6,0x17c);
+            memcpy(&uStack_a90,uVar6,0x17c);
             puVar8 = auStack_a4c;
             uStack_610 = uStack_a90;
             uStack_5f8 = uStack_a78;
@@ -1357,7 +1357,7 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
         iVar6 = 0;
         iVar11 = 0;
         uVar3 = FUN_002092a0();
-        FUN_00128268(auStack_b0,uVar3,0x44);
+        memcpy(auStack_b0,uVar3,0x44);
         uVar4 = auStack_b0[0];
         sVar9 = sVar1;
       }
@@ -1426,7 +1426,7 @@ long FUN_001b2130(int param_1,undefined8 param_2,char param_3)
       }
       else {
         uVar3 = FUN_002092a0(sVar9);
-        FUN_00128268(&uStack_100,uVar3,0x44);
+        memcpy(&uStack_100,uVar3,0x44);
         uStack_4c = uStack_ec;
         uStack_44 = uStack_e4;
         uStack_40 = uStack_e0;

@@ -1414,21 +1414,22 @@ void FUN_002ae580(int param_1)
   
   if (*(int *)(param_1 + 0x30) != -1) {
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x30);
-    FUN_00132600(param_1 + 0x98,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x98,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x9c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x9c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0xa0,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0xa0,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0xa4,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0xa4,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
     iVar2 = (*(int *)(param_1 + 0xa4) + 1) * 4;
-    uVar1 = FUN_00100680(iVar2,*(undefined4 *)(param_1 + 0xb4));
+    uVar1 = Mem_Alloc16(iVar2,*(undefined4 *)(param_1 + 0xb4));
     *(undefined4 *)(param_1 + 0xa8) = uVar1;
-    FUN_00132600(*(undefined4 *)(param_1 + 0xa8),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4)
-                 ,iVar2);
+    maybe_Mem_CopyQwords
+              (*(undefined4 *)(param_1 + 0xa8),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),
+               iVar2);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + iVar2;
-    uVar1 = FUN_00100680((*(int *)(param_1 + 0xa4) + 1) * 8,*(undefined4 *)(param_1 + 0xb4));
+    uVar1 = Mem_Alloc16((*(int *)(param_1 + 0xa4) + 1) * 8,*(undefined4 *)(param_1 + 0xb4));
     *(undefined4 *)(param_1 + 0xac) = uVar1;
     uVar4 = 0;
     iVar3 = 0;
@@ -1436,17 +1437,21 @@ void FUN_002ae580(int param_1)
     do {
       *(int *)(param_1 + 0xc4) =
            *(int *)(param_1 + 0x30) + *(int *)(*(int *)(param_1 + 0xa8) + iVar3);
-      FUN_00132600(*(int *)(param_1 + 0xac) + iVar2,
-                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+      maybe_Mem_CopyQwords
+                (*(int *)(param_1 + 0xac) + iVar2,
+                 *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
       *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-      FUN_00132600(*(int *)(param_1 + 0xac) + iVar2 + 4,
-                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+      maybe_Mem_CopyQwords
+                (*(int *)(param_1 + 0xac) + iVar2 + 4,
+                 *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
       *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-      FUN_00132600(*(int *)(param_1 + 0xac) + iVar2 + 6,
-                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+      maybe_Mem_CopyQwords
+                (*(int *)(param_1 + 0xac) + iVar2 + 6,
+                 *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
       *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-      FUN_00132600(*(int *)(param_1 + 0xac) + iVar2 + 7,
-                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+      maybe_Mem_CopyQwords
+                (*(int *)(param_1 + 0xac) + iVar2 + 7,
+                 *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
       uVar4 = uVar4 + 1;
       iVar3 = iVar3 + 4;
       *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
@@ -1469,22 +1474,23 @@ void FUN_002ae7a0(int param_1)
   
   if (*(int *)(param_1 + 0x2c) != -1) {
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x2c);
-    FUN_00132600(param_1 + 0x80,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x80,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x84,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x84,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x88,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x88,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x8c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x8c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
     iVar4 = (*(int *)(param_1 + 0x8c) + 1) * 4;
-    uVar2 = FUN_00100680(iVar4,*(undefined4 *)(param_1 + 0xb4));
+    uVar2 = Mem_Alloc16(iVar4,*(undefined4 *)(param_1 + 0xb4));
     *(undefined4 *)(param_1 + 0x90) = uVar2;
-    FUN_00132600(*(undefined4 *)(param_1 + 0x90),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4)
-                 ,iVar4);
+    maybe_Mem_CopyQwords
+              (*(undefined4 *)(param_1 + 0x90),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),
+               iVar4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + iVar4;
     iVar4 = (*(int *)(param_1 + 0x8c) + 1) * 0x2a;
-    lVar3 = FUN_00100680(iVar4,*(undefined4 *)(param_1 + 0xb4));
+    lVar3 = Mem_Alloc16(iVar4,*(undefined4 *)(param_1 + 0xb4));
     if (lVar3 != 0) {
       FUN_001325d0(lVar3,0,iVar4);
     }
@@ -1496,110 +1502,145 @@ void FUN_002ae7a0(int param_1)
       iVar1 = *(int *)(*(int *)(param_1 + 0x90) + iVar5);
       if (iVar1 != -1) {
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x2c) + iVar1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 2,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 2,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 3,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 3,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 4,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 4,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 5,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 5,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 6,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 6,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 7,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 7,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 8,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 8,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 9,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 9,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 10,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 10,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0xb,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0xb,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0xc,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0xc,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0xd,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0xd,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0xe,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0xe,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0xf,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0xf,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x10,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x10,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x11,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x11,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x12,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x12,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x14,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x14,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x16,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x16,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x17,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x17,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x18,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x18,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x19,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x19,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x1a,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x1a,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x1b,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x1b,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x1c,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x1c,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x1d,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x1d,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x1e,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x1e,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x1f,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x1f,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x20,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x20,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x22,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x22,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x24,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x24,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x26,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x26,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x28,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x28,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x94) + iVar4 + 0x29,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x94) + iVar4 + 0x29,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
       }
       uVar6 = uVar6 + 1;
@@ -1623,22 +1664,23 @@ void FUN_002aef60(int param_1)
   
   if (*(int *)(param_1 + 0x28) != -1) {
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x28);
-    FUN_00132600(param_1 + 0x68,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x68,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x6c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x6c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x70,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x70,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x74,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x74,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
     iVar3 = (*(int *)(param_1 + 0x74) + 1) * 4;
-    uVar1 = FUN_00100680(iVar3,*(undefined4 *)(param_1 + 0xb4));
+    uVar1 = Mem_Alloc16(iVar3,*(undefined4 *)(param_1 + 0xb4));
     *(undefined4 *)(param_1 + 0x78) = uVar1;
-    FUN_00132600(*(undefined4 *)(param_1 + 0x78),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4)
-                 ,iVar3);
+    maybe_Mem_CopyQwords
+              (*(undefined4 *)(param_1 + 0x78),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),
+               iVar3);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + iVar3;
     iVar3 = (*(int *)(param_1 + 0x74) + 1) * 8;
-    lVar2 = FUN_00100680(iVar3,*(undefined4 *)(param_1 + 0xb4));
+    lVar2 = Mem_Alloc16(iVar3,*(undefined4 *)(param_1 + 0xb4));
     if (lVar2 != 0) {
       FUN_001325d0(lVar2,0,iVar3);
     }
@@ -1650,23 +1692,28 @@ void FUN_002aef60(int param_1)
       iVar4 = *(int *)(*(int *)(param_1 + 0x78) + iVar5);
       if (iVar4 != -1) {
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x28) + iVar4;
-        FUN_00132600(*(int *)(param_1 + 0x7c) + iVar3,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x7c) + iVar3,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x7c) + iVar3 + 1,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x7c) + iVar3 + 1,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x7c) + iVar3 + 2,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x7c) + iVar3 + 2,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 0x7c) + iVar3 + 3,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 0x7c) + iVar3 + 3,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
         iVar4 = (uint)*(byte *)(*(int *)(param_1 + 0x7c) + iVar3 + 3) * 2;
-        uVar1 = FUN_00100680(iVar4,*(undefined4 *)(param_1 + 0xb4));
+        uVar1 = Mem_Alloc16(iVar4,*(undefined4 *)(param_1 + 0xb4));
         *(undefined4 *)(*(int *)(param_1 + 0x7c) + iVar3 + 4) = uVar1;
-        FUN_00132600(*(undefined4 *)(*(int *)(param_1 + 0x7c) + iVar3 + 4),
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),iVar4);
+        maybe_Mem_CopyQwords
+                  (*(undefined4 *)(*(int *)(param_1 + 0x7c) + iVar3 + 4),
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),iVar4);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + iVar4;
       }
       uVar6 = uVar6 + 1;
@@ -1690,22 +1737,23 @@ void FUN_002af210(int param_1)
   
   if (*(int *)(param_1 + 0x24) != -1) {
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x24);
-    FUN_00132600(param_1 + 0x50,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x50,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x54,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x54,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x58,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x58,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-    FUN_00132600(param_1 + 0x5c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+    maybe_Mem_CopyQwords(param_1 + 0x5c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
     iVar3 = (*(int *)(param_1 + 0x5c) + 1) * 4;
-    uVar1 = FUN_00100680(iVar3,*(undefined4 *)(param_1 + 0xb4));
+    uVar1 = Mem_Alloc16(iVar3,*(undefined4 *)(param_1 + 0xb4));
     *(undefined4 *)(param_1 + 0x60) = uVar1;
-    FUN_00132600(*(undefined4 *)(param_1 + 0x60),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4)
-                 ,iVar3);
+    maybe_Mem_CopyQwords
+              (*(undefined4 *)(param_1 + 0x60),*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),
+               iVar3);
     *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + iVar3;
     iVar3 = (*(int *)(param_1 + 0x5c) + 1) * 0x28;
-    lVar2 = FUN_00100680(iVar3,*(undefined4 *)(param_1 + 0xb4));
+    lVar2 = Mem_Alloc16(iVar3,*(undefined4 *)(param_1 + 0xb4));
     if (lVar2 != 0) {
       FUN_001325d0(lVar2,0,iVar3);
     }
@@ -1717,92 +1765,120 @@ void FUN_002af210(int param_1)
       iVar4 = *(int *)(*(int *)(param_1 + 0x60) + iVar5);
       if (iVar4 != -1) {
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0x24) + iVar4;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 4,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 4,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 5,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 5,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 6,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 6,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 7,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 7,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 8,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 8,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 9,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 9,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 10,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 10,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0xb,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0xb,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0xc,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0xc,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0xd,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0xd,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0xe,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0xe,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0xf,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0xf,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x10,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x10,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x11,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x11,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x12,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x12,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x13,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x13,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x14,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x14,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x16,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x16,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x18,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x18,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x1a,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x1a,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x1c,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x1c,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x1e,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x1e,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),2);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 2;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x20,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x20,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x21,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x21,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x22,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x22,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
-        FUN_00132600(*(int *)(param_1 + 100) + iVar3 + 0x23,
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
+        maybe_Mem_CopyQwords
+                  (*(int *)(param_1 + 100) + iVar3 + 0x23,
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),1);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 1;
         iVar4 = (uint)*(byte *)(*(int *)(param_1 + 100) + iVar3 + 4) * 0x14;
-        uVar1 = FUN_00100680(iVar4,*(undefined4 *)(param_1 + 0xb4));
+        uVar1 = Mem_Alloc16(iVar4,*(undefined4 *)(param_1 + 0xb4));
         *(undefined4 *)(*(int *)(param_1 + 100) + iVar3 + 0x24) = uVar1;
-        FUN_00132600(*(undefined4 *)(*(int *)(param_1 + 100) + iVar3 + 0x24),
-                     *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),iVar4);
+        maybe_Mem_CopyQwords
+                  (*(undefined4 *)(*(int *)(param_1 + 100) + iVar3 + 0x24),
+                   *(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),iVar4);
         *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + iVar4;
       }
       uVar6 = uVar6 + 1;
@@ -1818,27 +1894,27 @@ void FUN_002af8c0(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0xc4) = 0x10;
-  FUN_00132600(param_1 + 0x10,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x10,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x14,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x14,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x18,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x18,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x1c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x1c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x20,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x20,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x24,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x24,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x28,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x28,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x2c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x2c,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x30,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x30,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x34,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1 + 0x34,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),4);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 4;
-  FUN_00132600(param_1 + 0x38,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),0x18);
+  maybe_Mem_CopyQwords(param_1 + 0x38,*(int *)(param_1 + 0xbc) + *(int *)(param_1 + 0xc4),0x18);
   *(int *)(param_1 + 0xc4) = *(int *)(param_1 + 0xc4) + 0x18;
   *(undefined4 *)(param_1 + 0xd0) = *(undefined4 *)(param_1 + 0x20);
   return;
@@ -1852,17 +1928,17 @@ void FUN_002afa80(undefined8 param_1)
   
   iVar1 = (int)param_1;
   *(undefined4 *)(iVar1 + 0xc4) = 0;
-  FUN_00132600(param_1,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),4);
+  maybe_Mem_CopyQwords(param_1,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),4);
   *(int *)(iVar1 + 0xc4) = *(int *)(iVar1 + 0xc4) + 4;
-  FUN_00132600(iVar1 + 4,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),4);
+  maybe_Mem_CopyQwords(iVar1 + 4,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),4);
   *(int *)(iVar1 + 0xc4) = *(int *)(iVar1 + 0xc4) + 4;
-  FUN_00132600(iVar1 + 8,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),4);
+  maybe_Mem_CopyQwords(iVar1 + 8,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),4);
   *(int *)(iVar1 + 0xc4) = *(int *)(iVar1 + 0xc4) + 4;
-  FUN_00132600(iVar1 + 0xc,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),2);
+  maybe_Mem_CopyQwords(iVar1 + 0xc,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),2);
   *(int *)(iVar1 + 0xc4) = *(int *)(iVar1 + 0xc4) + 2;
-  FUN_00132600(iVar1 + 0xe,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),1);
+  maybe_Mem_CopyQwords(iVar1 + 0xe,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),1);
   *(int *)(iVar1 + 0xc4) = *(int *)(iVar1 + 0xc4) + 1;
-  FUN_00132600(iVar1 + 0xf,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),1);
+  maybe_Mem_CopyQwords(iVar1 + 0xf,*(int *)(iVar1 + 0xbc) + *(int *)(iVar1 + 0xc4),1);
   *(int *)(iVar1 + 0xc4) = *(int *)(iVar1 + 0xc4) + 1;
   return;
 }
@@ -1894,19 +1970,19 @@ void FUN_002afbd0(undefined8 param_1)
     iVar2 = 0;
     do {
       if (*(int *)(*(int *)(iVar1 + 100) + iVar2 + 0x24) != 0) {
-        FUN_00100290();
+        Mem_Free();
         *(undefined4 *)(*(int *)(iVar1 + 100) + iVar2 + 0x24) = 0;
       }
       uVar3 = uVar3 + 1;
       iVar2 = iVar2 + 0x28;
     } while (uVar3 <= *(uint *)(iVar1 + 0x5c));
     if (*(int *)(iVar1 + 100) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(iVar1 + 100) = 0;
     }
   }
   if (*(int *)(iVar1 + 0x60) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0x60) = 0;
   }
   if (*(int *)(iVar1 + 0x7c) != 0) {
@@ -1914,39 +1990,39 @@ void FUN_002afbd0(undefined8 param_1)
     iVar2 = 0;
     do {
       if (*(int *)(*(int *)(iVar1 + 0x7c) + iVar2 + 4) != 0) {
-        FUN_00100290();
+        Mem_Free();
         *(undefined4 *)(*(int *)(iVar1 + 0x7c) + iVar2 + 4) = 0;
       }
       uVar3 = uVar3 + 1;
       iVar2 = iVar2 + 8;
     } while (uVar3 <= *(uint *)(iVar1 + 0x74));
     if (*(int *)(iVar1 + 0x7c) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(iVar1 + 0x7c) = 0;
     }
   }
   if (*(int *)(iVar1 + 0x78) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0x78) = 0;
   }
   if (*(int *)(iVar1 + 0x94) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0x94) = 0;
   }
   if (*(int *)(iVar1 + 0x90) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0x90) = 0;
   }
   if (*(int *)(iVar1 + 0xac) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0xac) = 0;
   }
   if (*(int *)(iVar1 + 0xa8) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0xa8) = 0;
   }
   if (*(int *)(iVar1 + 0xbc) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0xbc) = 0;
   }
   *(undefined4 *)(iVar1 + 0xc0) = 0;
@@ -1985,14 +2061,14 @@ void FUN_002afe00(undefined8 param_1,int param_2)
   }
   iVar4 = (int)param_1;
   if (*(int *)(iVar4 + 0xbc) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar4 + 0xbc) = 0;
   }
   *(undefined4 *)(iVar4 + 0xc0) = 0;
   *(undefined4 *)(iVar4 + 0xc4) = 0xffffffff;
   *(undefined4 *)(iVar4 + 200) = 0xffffffff;
   *(undefined4 *)(iVar4 + 0xcc) = 0;
-  uVar2 = FUN_00100680(uVar1 << 0xb,*(undefined4 *)(iVar4 + 0xb8));
+  uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar4 + 0xb8));
   *(undefined4 *)(iVar4 + 0xbc) = uVar2;
   if (*(int *)(iVar4 + 0xbc) != 0) {
     *(uint *)(iVar4 + 0xc0) = uVar1 << 0xb;

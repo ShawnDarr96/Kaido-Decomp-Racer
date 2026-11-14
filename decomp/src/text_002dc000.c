@@ -925,7 +925,7 @@ void FUN_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
   FUN_002ddf50();
   lVar1 = FUN_002dd890(param_1,param_2);
   if (lVar1 < 0) {
-    FUN_00129628(0x368210);
+    printf(0x368210);
   }
   else {
     FUN_002ddbd0(param_1);
@@ -1035,7 +1035,7 @@ void FUN_002ddfd0(undefined8 param_1,undefined8 param_2,char param_3,undefined8 
   
   FUN_00182c10();
   uVar1 = FUN_002093c0((int)param_2 + ((uint)param_1 & 0xff) * 3);
-  FUN_00128268(auStack_40,uVar1,0x38);
+  memcpy(auStack_40,uVar1,0x38);
   FUN_00177da0(1,param_1,param_2,0);
   FUN_0017e880(0);
   uVar1 = FUN_001c1890(0);
@@ -1145,7 +1145,7 @@ void FUN_002de230(undefined8 param_1,int param_2,int param_3,char param_4,undefi
     if ((iStack_310 == -1) || ((iStack_30c == param_3 && (iStack_310 == param_2)))) break;
     piVar1 = piVar1 + 8;
   }
-  FUN_00128268(auStack_30,&iStack_310,0x20);
+  memcpy(auStack_30,&iStack_310,0x20);
   FUN_00177da0(0,param_1,param_2,param_3);
   FUN_0017e880(0);
   uVar2 = FUN_001c1890(0);
@@ -1937,7 +1937,7 @@ int FUN_002df680(uint param_1,int param_2,char param_3,int param_4)
   int iStack_c;
   
   uVar1 = FUN_002093c0(param_2 + (param_1 & 0xff) * 3);
-  FUN_00128268(auStack_40,uVar1,0x38);
+  memcpy(auStack_40,uVar1,0x38);
   if (param_3 == '\0') {
     iStack_14 = iStack_18;
     iStack_c = iStack_10;
@@ -1963,7 +1963,7 @@ int FUN_002df710(uint param_1,int param_2,char param_3,long param_4)
   int iStack_1c;
   
   uVar2 = FUN_002093c0(param_2 + (param_1 & 0xff) * 3);
-  FUN_00128268(auStack_40,uVar2,0x38);
+  memcpy(auStack_40,uVar2,0x38);
   if (param_3 != '\0') {
     iStack_20 = iStack_1c;
     iStack_28 = iStack_24;
@@ -2050,7 +2050,7 @@ int FUN_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long pa
     if ((iStack_40 == -1) || ((iStack_3c == param_3 && (iStack_40 == param_2)))) break;
     piVar2 = piVar2 + 8;
   }
-  FUN_00128268(auStack_20,&iStack_40,0x20);
+  memcpy(auStack_20,&iStack_40,0x20);
   if (param_4 != '\0') {
     iStack_8 = iStack_4;
     iStack_10 = iStack_c;
@@ -2295,7 +2295,7 @@ void FUN_002dfe70(undefined4 *param_1,undefined8 param_2)
   undefined4 auStack_40 [16];
   
   uVar2 = FUN_002093c0(param_2);
-  FUN_00128268(auStack_40,uVar2,0x38);
+  memcpy(auStack_40,uVar2,0x38);
   puVar4 = auStack_40;
   iVar3 = 7;
   do {
@@ -2317,7 +2317,7 @@ int FUN_002dfed0(undefined8 param_1,uint param_2,int param_3)
   
   param_3 = param_3 + (param_2 & 0xff) * 3;
   uVar1 = FUN_002093c0(param_3);
-  FUN_00128268(param_1,uVar1,0x38);
+  memcpy(param_1,uVar1,0x38);
   return param_3;
 }
 
@@ -2355,7 +2355,7 @@ int FUN_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
     piVar1 = piVar1 + 8;
     iVar2 = iVar2 + 1;
   }
-  FUN_00128268(param_1,&iStack_20,0x20);
+  memcpy(param_1,&iStack_20,0x20);
   return iVar3;
 }
 

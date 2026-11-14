@@ -1097,7 +1097,7 @@ void FUN_002c1c90(int param_1,uint param_2,undefined8 param_3,undefined4 *param_
     else {
       uVar2 = iVar4 + 0x7ffU >> 0xb;
     }
-    uVar1 = FUN_00100480(uVar2 << 0xb,0x40,0x430750);
+    uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x18) = uVar1;
     FUN_0014bf00(param_8,*(undefined4 *)(param_1 + 0x18),0,0,0,0);
   }
@@ -1110,7 +1110,7 @@ void FUN_002c1c90(int param_1,uint param_2,undefined8 param_3,undefined4 *param_
     else {
       uVar2 = iVar4 + 0x7ffU >> 0xb;
     }
-    uVar1 = FUN_00100480(uVar2 << 0xb,0x40,0x430750);
+    uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1c) = uVar1;
     FUN_0014bf00(param_9,*(undefined4 *)(param_1 + 0x1c),0,0,0,0);
   }
@@ -1123,7 +1123,7 @@ void FUN_002c1c90(int param_1,uint param_2,undefined8 param_3,undefined4 *param_
     else {
       uVar2 = iVar4 + 0x7ffU >> 0xb;
     }
-    uVar1 = FUN_00100480(uVar2 << 0xb,0x40,0x430750);
+    uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x20) = uVar1;
     FUN_0014bf00(param_10,*(undefined4 *)(param_1 + 0x20),0,0,0,0);
   }
@@ -1386,15 +1386,15 @@ void FUN_002c2620(int param_1)
   uVar1 = 0;
   do {
     if (*(int *)(param_1 + 0x18) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(param_1 + 0x18) = 0;
     }
     if (*(int *)(param_1 + 0x1c) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(param_1 + 0x1c) = 0;
     }
     if (*(int *)(param_1 + 0x20) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(param_1 + 0x20) = 0;
     }
     uVar1 = uVar1 + 1;

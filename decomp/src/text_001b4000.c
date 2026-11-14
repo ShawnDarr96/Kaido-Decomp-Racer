@@ -649,7 +649,7 @@ void FUN_001b55b0(undefined4 *param_1,undefined2 param_2)
   undefined4 auStack_180 [96];
   
   uVar1 = FUN_002092c0(param_2);
-  FUN_00128268(auStack_180,uVar1,0x17c);
+  memcpy(auStack_180,uVar1,0x17c);
   puVar3 = auStack_180;
   iVar2 = 0x5f;
   do {
@@ -789,7 +789,7 @@ int FUN_001b5610(short param_1)
   iVar6 = 0;
   do {
     uVar3 = FUN_002092c0((short)iVar6);
-    FUN_00128268(&uStack_480,uVar3,0x17c);
+    memcpy(&uStack_480,uVar3,0x17c);
     puVar5 = auStack_43c;
     uStack_300 = uStack_480;
     uStack_2f8 = uStack_478;
@@ -1051,7 +1051,7 @@ int FUN_001b5b80(short param_1)
   iVar6 = 0;
   do {
     uVar3 = FUN_002092c0((short)iVar6);
-    FUN_00128268(&uStack_480,uVar3,0x17c);
+    memcpy(&uStack_480,uVar3,0x17c);
     puVar5 = auStack_43c;
     uStack_300 = uStack_480;
     uStack_2f8 = uStack_478;
@@ -1331,7 +1331,7 @@ void FUN_001b6100(undefined4 *param_1,undefined8 param_2)
   
   uVar2 = FUN_001b5b80(param_2);
   uVar3 = FUN_002092c0(uVar2);
-  FUN_00128268(&uStack_5d0,uVar3,0x17c);
+  memcpy(&uStack_5d0,uVar3,0x17c);
   puVar6 = auStack_58c;
   puVar5 = auStack_3ec;
   iVar4 = 0x17;
@@ -1461,8 +1461,8 @@ void FUN_001b6100(undefined4 *param_1,undefined8 param_2)
   uStack_68 = uStack_458;
   uStack_7c = uStack_46c;
   FUN_001b49a0(&uStack_1e0,0,auStack_2b0,0xffffffffffffffff,0);
-  FUN_0012ad48(auStack_60,0x363b48);
-  FUN_0012ad48(auStack_47,0x363b50);
+  sprintf(auStack_60,0x363b48);
+  sprintf(auStack_47,0x363b50);
   FUN_001d1bf0(&uStack_450,auStack_2b0);
   puVar5 = auStack_60;
   iVar4 = 0x17;
@@ -1592,7 +1592,7 @@ void FUN_001b6510(undefined4 *param_1,short param_2)
   int iStack_8;
   
   uVar3 = FUN_002092c0(param_2);
-  FUN_00128268(&uStack_5d0,uVar3,0x17c);
+  memcpy(&uStack_5d0,uVar3,0x17c);
   puVar10 = auStack_58c;
   puVar8 = auStack_3ec;
   iVar7 = 0x17;
@@ -1678,8 +1678,8 @@ void FUN_001b6510(undefined4 *param_1,short param_2)
   puVar12[2] = puVar9[2];
   *(undefined4 *)(puVar12 + 3) = uVar4;
   FUN_001b49a0(auStack_1e0,0,auStack_2b0,0xffffffffffffffff,0);
-  FUN_0012ad48(auStack_60,0x363b48);
-  FUN_0012ad48(auStack_47,0x363b50);
+  sprintf(auStack_60,0x363b48);
+  sprintf(auStack_47,0x363b50);
   FUN_001d1bf0(&uStack_450,auStack_2b0);
   iVar11 = param_2 * 2;
   puVar8 = auStack_60;
@@ -2467,7 +2467,7 @@ void FUN_001b7e20(undefined4 *param_1,undefined8 param_2,undefined8 param_3)
   
   uVar3 = FUN_001b8080(param_2);
   uVar4 = FUN_002092c0(uVar3);
-  FUN_00128268(&uStack_550,uVar4,0x17c);
+  memcpy(&uStack_550,uVar4,0x17c);
   puVar11 = auStack_50c;
   puVar9 = auStack_38c;
   iVar8 = 0x17;

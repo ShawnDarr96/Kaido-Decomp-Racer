@@ -787,11 +787,11 @@ void FUN_001fd580(void)
 
 {
   if (*(int *)(iGpffff8d68 + 0x530) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iGpffff8d68 + 0x530) = 0;
   }
   if (iGpffff8d68 != 0) {
-    FUN_00100290();
+    Mem_Free();
   }
   iGpffff8d68 = 0;
   return;
@@ -808,8 +808,8 @@ void FUN_001fd5d0(undefined8 param_1,undefined4 param_2)
   int iVar5;
   int iVar6;
   
-  iGpffff8d68 = FUN_00100680(0x660,param_1);
-  uVar1 = FUN_00100680(0xca68,param_1);
+  iGpffff8d68 = Mem_Alloc16(0x660,param_1);
+  uVar1 = Mem_Alloc16(0xca68,param_1);
   iVar6 = 0;
   *(undefined4 *)(iGpffff8d68 + 0x530) = uVar1;
   *(undefined4 *)(iGpffff8d68 + 0x1c) = 0xffffffff;
@@ -1357,7 +1357,7 @@ void FUN_001fe2d0(void)
 
 {
   if (iRam0036f468 != 0) {
-    FUN_00100290();
+    Mem_Free();
   }
   iRam0036f468 = 0;
   return;
@@ -1367,7 +1367,7 @@ void FUN_001fe2d0(void)
 void FUN_001fe300(undefined8 param_1,undefined4 param_2)
 
 {
-  puRam0036f468 = (undefined4 *)FUN_00100680(0x18,param_1);
+  puRam0036f468 = (undefined4 *)Mem_Alloc16(0x18,param_1);
   puRam0036f468[1] = param_2;
   puRam0036f468[2] = 0x100000;
   puRam0036f468[4] = 0x1fffff;

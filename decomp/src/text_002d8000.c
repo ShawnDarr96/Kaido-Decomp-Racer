@@ -115,36 +115,38 @@ void FUN_002d8150(int param_1,undefined1 *param_2)
     }
     FUN_00148850(auStack_250,0);
     FUN_00148850(auStack_250,1);
-    FUN_00133090(auStack_190);
-    FUN_00132f40(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
-    FUN_00132e60(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
-    FUN_00132d80(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
-    FUN_00132d20(auStack_190,auStack_190,param_1 + 0x60);
+    maybe_Vu0_UnitMatrix(auStack_190);
+    maybe_Vu0_RotMatrixZ(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
+    maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
+    maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
+    vu0math_sub_00132d20(auStack_190,auStack_190,param_1 + 0x60);
     FUN_00148430(auStack_250,uVar2);
     FUN_00148430(auStack_250,uVar3);
     if (*(int *)(param_1 + 0x70) < 0) {
       iVar6 = *(int *)(param_1 + 0x74);
     }
     else {
-      FUN_00132ae0(auStack_260,
-                   *(int **)(param_1 + 0x3c) +
-                   **(int **)(param_1 + 0x3c) * 4 + *(int *)(param_1 + 0x70) * 8 + 4);
-      FUN_00133090(auStack_190);
-      FUN_00132f40(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
-      FUN_00132e60(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
-      FUN_00132d80(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
-      FUN_00132d20(auStack_190,auStack_190,auStack_260);
+      vu0math_sub_00132ae0
+                (auStack_260,
+                 *(int **)(param_1 + 0x3c) +
+                 **(int **)(param_1 + 0x3c) * 4 + *(int *)(param_1 + 0x70) * 8 + 4);
+      maybe_Vu0_UnitMatrix(auStack_190);
+      maybe_Vu0_RotMatrixZ(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
+      maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
+      maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
+      vu0math_sub_00132d20(auStack_190,auStack_190,auStack_260);
       FUN_00148430(auStack_250,uVar4);
       iVar6 = *(int *)(param_1 + 0x74);
     }
     if (-1 < iVar6) {
-      FUN_00132ae0(auStack_270,
-                   *(int **)(param_1 + 0x3c) + **(int **)(param_1 + 0x3c) * 4 + iVar6 * 8 + 4);
-      FUN_00133090(auStack_190);
-      FUN_00132f40(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
-      FUN_00132e60(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
-      FUN_00132d80(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
-      FUN_00132d20(auStack_190,auStack_190,auStack_270);
+      vu0math_sub_00132ae0
+                (auStack_270,
+                 *(int **)(param_1 + 0x3c) + **(int **)(param_1 + 0x3c) * 4 + iVar6 * 8 + 4);
+      maybe_Vu0_UnitMatrix(auStack_190);
+      maybe_Vu0_RotMatrixZ(*(undefined4 *)(param_1 + 0x50),auStack_190,auStack_190);
+      maybe_Vu0_RotMatrixY(*(undefined4 *)(param_1 + 0x54),auStack_190,auStack_190);
+      maybe_Vu0_RotMatrixX(*(undefined4 *)(param_1 + 0x58),auStack_190,auStack_190);
+      vu0math_sub_00132d20(auStack_190,auStack_190,auStack_270);
       FUN_00148430(auStack_250,uVar5);
     }
     FUN_00148820(auStack_250,0);
@@ -638,15 +640,15 @@ void FUN_002d9bb0(void)
 
 {
   if (*(int *)(iGpffff91c4 + 0xb4) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iGpffff91c4 + 0xb4) = 0;
   }
   if (*(int *)(iGpffff91c4 + 0xb0) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iGpffff91c4 + 0xb0) = 0;
   }
   if (iGpffff91c4 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff91c4 = 0;
   }
   return;
@@ -666,7 +668,7 @@ void FUN_002d9ca0(undefined8 param_1)
   int *piVar8;
   
   iVar7 = 0;
-  iGpffff91c4 = FUN_00100480(0xb8,0x40,param_1);
+  iGpffff91c4 = Mem_AllocAligned(0xb8,0x40,param_1);
   iVar6 = 0;
   piVar8 = &DAT_00342260;
   iVar5 = 0;
@@ -686,9 +688,9 @@ void FUN_002d9ca0(undefined8 param_1)
     piVar8 = piVar8 + 1;
     iVar5 = iVar5 + 4;
   } while (iVar6 < 0x2c);
-  uVar1 = FUN_00100480(0xb0,0x40,param_1);
+  uVar1 = Mem_AllocAligned(0xb0,0x40,param_1);
   *(undefined4 *)(iGpffff91c4 + 0xb4) = uVar1;
-  uVar1 = FUN_00100480(iVar7,0x40,param_1);
+  uVar1 = Mem_AllocAligned(iVar7,0x40,param_1);
   iVar6 = 0;
   piVar8 = &DAT_00342260;
   *(undefined4 *)(iGpffff91c4 + 0xb0) = uVar1;

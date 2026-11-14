@@ -2119,14 +2119,14 @@ void FUN_00143890(float param_1,float param_2,float param_3,float param_4,float 
   fVar5 = ((param_8 * *param_10) / param_1) / param_2;
   fVar6 = ((param_8 * param_10[1]) / param_1) / param_3;
   fVar3 = ((param_8 * in_stack_00000010) / param_1) / param_3;
-  FUN_00133090(afStack_80);
+  maybe_Vu0_UnitMatrix(afStack_80);
   uStack_58 = 0;
   uStack_54 = 0x3f800000;
   uStack_48 = 0x3f800000;
   uStack_44 = 0;
   afStack_80[0] = param_1;
   fStack_6c = param_1;
-  FUN_00133090(afStack_40);
+  maybe_Vu0_UnitMatrix(afStack_40);
   fVar8 = in_stack_00000000 * param_8;
   fStack_18 = (fVar8 * (-param_6 + param_7)) / (-param_8 + in_stack_00000000);
   fVar4 = -param_7;
@@ -2135,8 +2135,8 @@ void FUN_00143890(float param_1,float param_2,float param_3,float param_4,float 
   fStack_2c = param_3;
   fStack_10 = param_4;
   fStack_c = param_5;
-  FUN_00132ba0(param_9,afStack_40,afStack_80);
-  FUN_00133090(param_11);
+  vu0math_sub_00132ba0(param_9,afStack_40,afStack_80);
+  maybe_Vu0_UnitMatrix(param_11);
   pfVar1 = (float *)param_11;
   *pfVar1 = param_8 / fVar5;
   pfVar1[5] = param_8 / fVar6;
@@ -2146,7 +2146,7 @@ void FUN_00143890(float param_1,float param_2,float param_3,float param_4,float 
   pfVar1[0xe] = fVar8;
   pfVar1[0xb] = 1.0;
   pfVar1[0xf] = 0.0;
-  FUN_00133090(param_12);
+  maybe_Vu0_UnitMatrix(param_12);
   pfVar1 = (float *)param_12;
   *pfVar1 = (param_8 * 2.0) / (fVar2 + fVar2);
   pfVar1[5] = (param_8 * 2.0) / (fVar3 + fVar3);
@@ -2154,7 +2154,7 @@ void FUN_00143890(float param_1,float param_2,float param_3,float param_4,float 
   pfVar1[0xe] = fVar8;
   pfVar1[0xb] = 1.0;
   pfVar1[0xf] = 0.0;
-  FUN_00133090(param_13);
+  maybe_Vu0_UnitMatrix(param_13);
   pfVar1 = (float *)param_13;
   *pfVar1 = (fVar5 * param_1 * param_2) / param_8;
   pfVar1[5] = (fVar6 * param_1 * param_3) / param_8;

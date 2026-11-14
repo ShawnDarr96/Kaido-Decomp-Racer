@@ -18,11 +18,11 @@ void FUN_001d15a0(int param_1,undefined8 param_2)
   float fVar10;
   
   pcVar5 = (char *)FUN_001d2210(param_2);
-  fVar10 = (float)FUN_00120da8(((float)(int)pcVar5[2] / 2.0) /
-                               (*(float *)(param_1 + 0x1b4) * 2.0 * 1000.0));
+  fVar10 = (float)maybe_asinf(((float)(int)pcVar5[2] / 2.0) /
+                              (*(float *)(param_1 + 0x1b4) * 2.0 * 1000.0));
   *(float *)(param_1 + 0x250) = *(float *)(param_1 + 0x250) + (fVar10 * 180.0) / 3.1415927;
-  fVar10 = (float)FUN_00120da8(((float)(int)pcVar5[3] / 2.0) /
-                               (*(float *)(param_1 + 0x2c4) * 2.0 * 1000.0));
+  fVar10 = (float)maybe_asinf(((float)(int)pcVar5[3] / 2.0) /
+                              (*(float *)(param_1 + 0x2c4) * 2.0 * 1000.0));
   *(float *)(param_1 + 0x360) = *(float *)(param_1 + 0x360) + (fVar10 * 180.0) / 3.1415927;
   *(float *)(param_1 + 0x24c) = (float)(int)pcVar5[4] * 0.5 + *(float *)(param_1 + 0x24c) + 0.0;
   *(float *)(param_1 + 0x35c) = (float)(int)pcVar5[5] * 0.5 + *(float *)(param_1 + 0x35c) + 0.0;
@@ -316,9 +316,9 @@ LAB_001d1e08:
   param_1[4] = (int)fStack_60;
   param_1[5] = (int)fStack_5c;
   param_1[6] = iStack_58;
-  FUN_00107050(auStack_d08,0xffffffffffffffff);
-  FUN_00107050(auStack_d14,0xffffffffffffffff);
-  FUN_00107050(auStack_d20,0xffffffffffffffff);
+  maybe_std_string_dtor(auStack_d08,0xffffffffffffffff);
+  maybe_std_string_dtor(auStack_d14,0xffffffffffffffff);
+  maybe_std_string_dtor(auStack_d20,0xffffffffffffffff);
   return 0;
 }
 
@@ -598,7 +598,7 @@ void FUN_001d2490(short *param_1,int param_2)
                 lVar14 = FUN_001c0ed0(uVar12,5);
                 psVar17 = (short *)PTR_DAT_003197e0;
                 if (lVar14 == 0) {
-                  uVar7 = FUN_00133940();
+                  uVar7 = maybe_Rand_Float();
                   uVar19 = uVar7 & 1;
                   if (((int)uVar7 < 0) && (uVar19 != 0)) {
                     uVar19 = uVar19 - 2;
@@ -607,7 +607,7 @@ void FUN_001d2490(short *param_1,int param_2)
                 }
               }
               psVar17 = (short *)PTR_DAT_003197e4;
-              uVar7 = FUN_00133940();
+              uVar7 = maybe_Rand_Float();
               uVar19 = uVar7 & 1;
               if (((int)uVar7 < 0) && (uVar19 != 0)) {
                 uVar19 = uVar19 - 2;
@@ -616,17 +616,17 @@ void FUN_001d2490(short *param_1,int param_2)
             }
           }
           psVar17 = (short *)PTR_DAT_003197e8;
-          iVar11 = FUN_00133940();
+          iVar11 = maybe_Rand_Float();
           uVar19 = iVar11 % 3;
           goto LAB_001d2524;
         }
       }
       psVar17 = (short *)PTR_DAT_003197ec;
-      iVar11 = FUN_00133940();
+      iVar11 = maybe_Rand_Float();
       uVar19 = iVar11 % 3 + 1;
     }
     else {
-      uVar13 = FUN_00133940();
+      uVar13 = maybe_Rand_Float();
       iVar11 = (int)(uVar13 & 1);
       if (((long)uVar13 < 0) && ((uVar13 & 1) != 0)) {
         iVar11 = iVar11 + -2;
@@ -658,16 +658,16 @@ LAB_001d256c:
     if ('\0' < (char)param_1[0x1e]) {
       return;
     }
-    uVar13 = FUN_00133940();
+    uVar13 = maybe_Rand_Float();
     cVar15 = (char)(uVar13 & 3);
     if (((long)uVar13 < 0) && ((uVar13 & 3) != 0)) {
       cVar15 = cVar15 + -4;
     }
     *(char *)(param_1 + 0x1e) = cVar15 + '\x01';
-    iVar11 = FUN_00133940();
+    iVar11 = maybe_Rand_Float();
     if (iVar11 % 0x96 == 0) {
       bVar3 = true;
-      uVar13 = FUN_00133940();
+      uVar13 = maybe_Rand_Float();
       cVar15 = (char)(uVar13 & 3);
       if (((long)uVar13 < 0) && ((uVar13 & 3) != 0)) {
         cVar15 = cVar15 + -4;
@@ -675,7 +675,7 @@ LAB_001d256c:
       *(char *)(param_1 + 0x1e) = cVar15 + '\x04';
     }
     else {
-      iVar11 = FUN_00133940();
+      iVar11 = maybe_Rand_Float();
       if (iVar11 % 300 == 0) {
         bVar2 = true;
       }
@@ -694,51 +694,51 @@ LAB_001d256c:
       iVar11 = iVar11 + 1;
       piVar18 = piVar18 + 1;
     } while (iVar11 < 0x120);
-    iVar11 = FUN_00133940();
+    iVar11 = maybe_Rand_Float();
     *param_1 = asStack_240[iVar11 % (int)sVar5];
   }
   iVar11 = FUN_00205530(*param_1);
   sVar5 = *param_1;
   if (((sVar5 == 0x11d) || (sVar5 == 0xfb)) || (*(char *)(iVar11 + 0x28) == '\f')) {
-    iVar6 = FUN_00133940();
+    iVar6 = maybe_Rand_Float();
     iVar8 = FUN_00204b50(sVar5);
     param_1[1] = (short)(iVar6 % iVar8);
   }
   else {
-    iVar6 = FUN_00133940();
+    iVar6 = maybe_Rand_Float();
     if (iVar6 % 100 < 0xf) {
-      uVar7 = FUN_00133940();
+      uVar7 = maybe_Rand_Float();
       uVar16 = uVar7 & 1;
       if (((int)uVar7 < 0) && (uVar16 != 0)) {
         uVar16 = uVar16 - 2;
       }
       if (uVar16 == 0) {
-        iVar6 = FUN_00133940();
+        iVar6 = maybe_Rand_Float();
         iVar8 = FUN_00204630();
         param_1[1] = (short)(iVar6 % iVar8) + 0x1e;
       }
       else {
-        iVar6 = FUN_00133940();
+        iVar6 = maybe_Rand_Float();
         iVar8 = FUN_002045b0();
         param_1[1] = (short)(iVar6 % iVar8) + 0x2be;
       }
     }
     else {
       iVar6 = FUN_00204b50(*param_1);
-      iVar8 = FUN_00133940();
+      iVar8 = maybe_Rand_Float();
       param_1[1] = (short)(iVar8 % iVar6);
     }
   }
-  iVar6 = FUN_00133940();
+  iVar6 = maybe_Rand_Float();
   iVar6 = iVar6 % 0x32;
   if (iVar6 == 0) {
     iVar6 = 1;
   }
-  iVar8 = FUN_00133940();
+  iVar8 = maybe_Rand_Float();
   *(float *)(param_1 + 4) = (float)(iVar8 % iVar6);
-  iVar6 = FUN_00133940();
+  iVar6 = maybe_Rand_Float();
   fVar22 = *(float *)(param_1 + 4);
-  iVar8 = FUN_00133940();
+  iVar8 = maybe_Rand_Float();
   uVar7 = 0;
   *(int *)(param_1 + 2) = iVar8 % 100 + ((int)fVar22 / 5) * 4000 + 3000 + (iVar6 % 100) * 0x28;
   psVar17 = param_1;
@@ -764,7 +764,7 @@ LAB_001d256c:
         uVar19 = uVar19 + 1;
         psVar17 = psVar17 + 1;
       } while ((int)uVar19 < 0xd);
-      iVar6 = FUN_00133940();
+      iVar6 = maybe_Rand_Float();
       sVar5 = (short)(iVar6 % 0x98) + 0xad;
       param_1[0x14] = sVar5;
       param_1[0x13] = sVar5;
@@ -785,7 +785,7 @@ LAB_001d256c:
           uVar12 = FUN_001c1890(0);
           lVar14 = FUN_001bbdd0(uVar12,param_1[*piVar18 + 6]);
           if (0 < lVar14) {
-            iVar8 = FUN_00133940();
+            iVar8 = maybe_Rand_Float();
             sVar5 = FUN_001d4010(*param_1,(char)*piVar18,0xffffffffffffffff);
             param_1[*piVar18 + 6] = sVar5 + (short)(iVar8 % (int)lVar14) + 1;
             iVar8 = FUN_001ba290(param_1[*piVar18 + 6],0);
@@ -796,13 +796,13 @@ LAB_001d256c:
         } while (iVar6 < (int)uVar19);
       }
       if ((uVar19 == 0) || (uVar19 == 3)) {
-        uVar19 = FUN_00133940();
+        uVar19 = maybe_Rand_Float();
         uVar7 = uVar19 & 1;
         if (((int)uVar19 < 0) && (uVar7 != 0)) {
           uVar7 = uVar7 - 2;
         }
         if (uVar7 != 0) {
-          iVar6 = FUN_00133940();
+          iVar6 = maybe_Rand_Float();
           sVar5 = (short)(iVar6 % 0x98) + 0xad;
           param_1[0x14] = sVar5;
           param_1[0x13] = sVar5;

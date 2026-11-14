@@ -1554,7 +1554,7 @@ void FUN_0017e210(void)
 
 {
   if (iRam0036f1e0 != 0) {
-    FUN_00100290();
+    Mem_Free();
   }
   return;
 }
@@ -1573,7 +1573,7 @@ void FUN_0017e240(undefined8 param_1)
   int iVar8;
   int iVar9;
   
-  puVar1 = (undefined4 *)FUN_00100680(0x9240,param_1);
+  puVar1 = (undefined4 *)Mem_Alloc16(0x9240,param_1);
   iVar9 = 0;
   puRam0036f1e0 = puVar1;
   do {

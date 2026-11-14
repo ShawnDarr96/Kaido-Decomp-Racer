@@ -1583,7 +1583,7 @@ void FUN_00197e80(undefined8 param_1,undefined8 param_2)
   if (iRam00430588 != 0) {
     lVar1 = FUN_001984c0(param_2,0);
     while (lVar1 != 0) {
-      FUN_00101180(lVar1);
+      msl_sub_00101180(lVar1);
       uVar2 = FUN_001a5050(lVar1);
       lVar1 = FUN_001984c0(param_2,uVar2);
     }

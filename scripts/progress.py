@@ -12,7 +12,11 @@ rows = list(csv.DictReader(open(ROOT / "decomp" / "functions.csv", encoding="utf
 
 
 def named(r):
-    return not r["name"].startswith(("FUN_", "thunk_FUN_"))
+    return not r["name"].startswith(("FUN_", "thunk_FUN_")) and "_sub_" not in r["name"]
+
+
+def assigned(r):
+    return "_sub_" in r["name"]
 
 
 def pct(a, b):
@@ -41,7 +45,8 @@ out = [
     "|---|---|---|",
     f"| Functions found | {total} | |",
     f"| Decompiled by Ghidra | {ok} | {pct(ok, total)} |",
-    f"| Named (not `FUN_`) | {len(nm)} | {pct(len(nm), total)} |",
+    f"| Named (not `FUN_`, not `*_sub_*`) | {len(nm)} | {pct(len(nm), total)} |",
+    f"| Assigned to a library/module only (`*_sub_*`) | {sum(map(assigned, rows))} | {pct(sum(map(assigned, rows)), total)} |",
     f"| Code bytes in named functions | {nm_size} of {size} | {pct(nm_size, size)} |",
     f"| Matching (byte-identical) | 0 | 0.0% |",
     "",

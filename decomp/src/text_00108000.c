@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00108140  size 0x94
-uint FUN_00108140(void)
+uint libgraph_sub_00108140(void)
 
 {
   ulong uVar1;
@@ -11,9 +11,9 @@ uint FUN_00108140(void)
   uint uVar3;
   long lVar4;
   
-  psVar2 = (short *)FUN_00107568();
+  psVar2 = (short *)sceGsGetGParam();
   if (*(int *)(psVar2 + 4) == 0) {
-    FUN_00111c30();
+    libkernl_sub_00111c30();
     uVar3 = 1;
     if (*psVar2 == 1) {
       uVar1 = REG_GS_CSR;
@@ -21,7 +21,7 @@ uint FUN_00108140(void)
     }
   }
   else {
-    lVar4 = FUN_00111cc0();
+    lVar4 = libkernl_sub_00111cc0();
     uVar3 = 1;
     if (*psVar2 == 1) {
       uVar3 = (uint)(lVar4 >> 0xd) & 1;
@@ -92,27 +92,27 @@ uint sceGsSyncPath(long param_1)
       if (bVar1) {
         uVar5 = 0x35e998;
 LAB_0010836c:
-        FUN_001139c8(uVar5);
+        maybe_scePrintf(uVar5);
         uVar2 = REG_DMAC_1_VIF1_CHCR;
-        FUN_001139c8(0x35e860,uVar2);
+        maybe_scePrintf(0x35e860,uVar2);
         uVar2 = REG_DMAC_1_VIF1_TADR;
-        FUN_001139c8(0x35e870,uVar2);
+        maybe_scePrintf(0x35e870,uVar2);
         uVar2 = REG_DMAC_1_VIF1_MADR;
-        FUN_001139c8(0x35e880,uVar2);
+        maybe_scePrintf(0x35e880,uVar2);
         uVar2 = REG_DMAC_1_VIF1_QWC;
-        FUN_001139c8(0x35e890,uVar2);
+        maybe_scePrintf(0x35e890,uVar2);
         uVar2 = REG_DMAC_2_GIF_CHCR;
-        FUN_001139c8(0x35e8a0,uVar2);
+        maybe_scePrintf(0x35e8a0,uVar2);
         uVar2 = REG_DMAC_2_GIF_TADR;
-        FUN_001139c8(0x35e8b0,uVar2);
+        maybe_scePrintf(0x35e8b0,uVar2);
         uVar2 = REG_DMAC_2_GIF_MADR;
-        FUN_001139c8(0x35e8c0,uVar2);
+        maybe_scePrintf(0x35e8c0,uVar2);
         uVar2 = REG_DMAC_2_GIF_QWC;
-        FUN_001139c8(0x35e8d0,uVar2);
+        maybe_scePrintf(0x35e8d0,uVar2);
         uVar2 = REG_VIF1_STAT;
-        FUN_001139c8(0x35e8e0,uVar2);
+        maybe_scePrintf(0x35e8e0,uVar2);
         uVar2 = REG_GIF_STAT;
-        FUN_001139c8(0x35e8f8,uVar2);
+        maybe_scePrintf(0x35e8f8,uVar2);
         return 0xffffffff;
       }
       uVar4 = REG_GIF_STAT;
@@ -144,8 +144,9 @@ LAB_0010836c:
 
 // 0x001084f0  size 0x140
 undefined4
-FUN_001084f0(undefined4 *param_1,short param_2,int param_3,short param_4,short param_5,int param_6,
-            short param_7,short param_8)
+libgraph_sub_001084f0
+          (undefined4 *param_1,short param_2,int param_3,short param_4,short param_5,int param_6,
+          short param_7,short param_8)
 
 {
   param_1[4] = 0;
@@ -314,7 +315,7 @@ switchD_001086c4_caseD_3:
     uVar20 = uVar20 + 1;
     if (bVar1) {
 LAB_001089d8:
-      FUN_001139c8(0x35e9c0);
+      maybe_scePrintf(0x35e9c0);
       return 0xffffffff;
     }
     uVar8 = REG_DMAC_1_VIF1_CHCR;
@@ -324,7 +325,7 @@ LAB_001089d8:
     bVar1 = 0x1000000 < uVar20;
     uVar20 = uVar20 + 1;
     if (bVar1) {
-      FUN_001139c8(0x35e9f8);
+      maybe_scePrintf(0x35e9f8);
       REG_VIF1_FIFO = DAT_00306860;
       DAT_10005004 = DAT_00306864;
       DAT_10005008 = DAT_00306868;
@@ -388,7 +389,7 @@ LAB_001089d8:
 LAB_00108a28:
         pcVar13 = s_sceGsExecStoreImage__Enough_data_0035ea68;
 LAB_00108a30:
-        FUN_001139c8(pcVar13);
+        maybe_scePrintf(pcVar13);
         REG_GS_CSR = 0x100;
         REG_GS_BUSDIR = 0;
         REG_GIF_CTRL = 1;
@@ -440,17 +441,19 @@ LAB_00108a30:
 }
 
 // 0x00108cc0  size 0xa0
-int FUN_00108cc0(long param_1)
+/* INTC 2 (vblank start) handler swap */
+
+int sceGsSyncVCallback(long param_1)
 
 {
   int iVar1;
   int iVar2;
   undefined4 uVar3;
   
-  iVar2 = FUN_00107568();
+  iVar2 = sceGsGetGParam();
   iVar1 = *(int *)(iVar2 + 8);
   if (param_1 == 0) {
-    FUN_00112280(2);
+    DisableIntc(2);
     RemoveIntcHandler(2,*(undefined4 *)(iVar2 + 0xc));
     *(undefined4 *)(iVar2 + 8) = 0;
     *(undefined4 *)(iVar2 + 0xc) = 0;
@@ -460,19 +463,21 @@ int FUN_00108cc0(long param_1)
       *(int *)(iVar2 + 8) = (int)param_1;
     }
     else {
-      FUN_00112280(2);
+      DisableIntc(2);
       RemoveIntcHandler(2,*(undefined4 *)(iVar2 + 0xc));
       *(int *)(iVar2 + 8) = (int)param_1;
     }
     uVar3 = AddIntcHandler(2,param_1,0xffffffffffffffff);
     *(undefined4 *)(iVar2 + 0xc) = uVar3;
-    FUN_001122e8(2);
+    EnableIntc(2);
   }
   return iVar1;
 }
 
 // 0x00108d60  size 0x250
-undefined4 FUN_00108d60(undefined8 param_1,int param_2,int param_3,ulong param_4,undefined8 param_5)
+undefined4
+maybe_Mpeg_MotionCompensation
+          (undefined8 param_1,int param_2,int param_3,ulong param_4,undefined8 param_5)
 
 {
   int iVar1;
@@ -490,15 +495,15 @@ undefined4 FUN_00108d60(undefined8 param_1,int param_2,int param_3,ulong param_4
   }
   if ((param_4 & 1) == 0) {
     if (2 < (int)param_5 - 1U) {
-      FUN_00110388(param_1,0x35eb90,param_5);
+      maybe_Mpeg_Errorf(param_1,0x35eb90,param_5);
       *(undefined4 *)(iVar5 + 0x134) = 1;
       return 0;
     }
-    FUN_00108fb0(param_1,param_2 << 4,iVar1 << 4,param_4);
+    maybe_Mpeg_FormPredictions(param_1,param_2 << 4,iVar1 << 4,param_4);
     do {
       uVar2 = REG_DMAC_9_SPR_TO_CHCR;
     } while ((uVar2 >> 8 & 1) != 0);
-    FUN_0010dbc0(param_1);
+    libmpeg_sub_0010dbc0(param_1);
     *(undefined4 *)(*(int *)(iVar5 + 0x828) * 0x140 + iVar5 + 0x6e0) = 1;
   }
   else {
@@ -538,8 +543,11 @@ LAB_00108ee4:
 }
 
 // 0x00108fb0  size 0x704
-void FUN_00108fb0(undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,long param_5
-                 ,undefined4 *param_6,uint *param_7,undefined8 param_8)
+/* "invalid motion_type" */
+
+void maybe_Mpeg_FormPredictions
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,long param_5,
+               undefined4 *param_6,uint *param_7,undefined8 param_8)
 
 {
   uint uVar1;
@@ -570,18 +578,20 @@ void FUN_00108fb0(undefined8 param_1,undefined8 param_2,undefined8 param_3,uint 
     }
     else {
       if (param_5 == 1) {
-        FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d0),*param_7,0,0,8,param_2,param_3);
-        FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d0),param_7[2],1,0,8,param_2,param_3);
+        maybe_Mpeg_FormPrediction
+                  (param_1,*(undefined4 *)(iVar9 + 0x1d0),*param_7,0,0,8,param_2,param_3);
+        maybe_Mpeg_FormPrediction
+                  (param_1,*(undefined4 *)(iVar9 + 0x1d0),param_7[2],1,0,8,param_2,param_3);
         goto LAB_00109498;
       }
       if (param_5 != 3) {
-        FUN_00110388(param_1,0x35ebb8,param_5);
+        maybe_Mpeg_Errorf(param_1,0x35ebb8,param_5);
         goto LAB_00109498;
       }
-      FUN_0010ad88(param_1,auStack_d0,param_8,*param_6,(int)param_6[1] >> 1);
-      FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d0),0,0,0,8,param_2,param_3);
-      FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d0),1,0,0,8,param_2,param_3);
-      FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d0),1,1,0,8,param_2,param_3);
+      maybe_Mpeg_MotionVectors(param_1,auStack_d0,param_8,*param_6,(int)param_6[1] >> 1);
+      maybe_Mpeg_FormPrediction(param_1,*(undefined4 *)(iVar9 + 0x1d0),0,0,0,8,param_2,param_3);
+      maybe_Mpeg_FormPrediction(param_1,*(undefined4 *)(iVar9 + 0x1d0),1,0,0,8,param_2,param_3);
+      maybe_Mpeg_FormPrediction(param_1,*(undefined4 *)(iVar9 + 0x1d0),1,1,0,8,param_2,param_3);
       uVar5 = *(undefined4 *)(iVar9 + 0x1d0);
       uVar6 = 1;
       uVar7 = 0;
@@ -617,7 +627,7 @@ LAB_001092a8:
         goto LAB_001092a8;
       }
       if (param_5 == 2) {
-        FUN_001096b8(param_1,auStack_c0[uVar3 * 2 + *param_7],0,0,0,8,param_2,param_3);
+        maybe_Mpeg_FormPrediction(param_1,auStack_c0[uVar3 * 2 + *param_7],0,0,0,8,param_2,param_3);
         uVar1 = 0;
         if (*(int *)(iVar9 + 0x168) == 2) {
           uVar3 = param_7[2];
@@ -635,12 +645,12 @@ LAB_001092a8:
         goto LAB_00109470;
       }
       if (param_5 != 3) {
-        FUN_00110388(param_1,0x35ebd8,param_5);
+        maybe_Mpeg_Errorf(param_1,0x35ebd8,param_5);
         goto LAB_00109498;
       }
       iVar2 = *(int *)(iVar9 + 0x138);
-      FUN_0010ad88(param_1,auStack_d0,param_8,*param_6,param_6[1]);
-      FUN_001096b8(param_1,auStack_c0[uVar10],0,0,0,0x10,param_2,param_3);
+      maybe_Mpeg_MotionVectors(param_1,auStack_d0,param_8,*param_6,param_6[1]);
+      maybe_Mpeg_FormPrediction(param_1,auStack_c0[uVar10],0,0,0,0x10,param_2,param_3);
       iVar4 = (uint)(iVar2 != 0) * 8;
       iVar2 = iVar4 + 4;
       if (uVar10 != 0) {
@@ -653,12 +663,13 @@ LAB_001092a8:
     uVar8 = 0x10;
   }
 LAB_00109470:
-  FUN_001096b8(param_1,uVar5,0,uVar6,uVar7,uVar8,param_2,param_3);
+  maybe_Mpeg_FormPrediction(param_1,uVar5,0,uVar6,uVar7,uVar8,param_2,param_3);
 LAB_00109498:
   if ((uStack_b0 & 4) != 0) {
     if (*(int *)(iVar9 + 0x18c) == 3) {
       if (param_5 != 2) {
-        FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d4),param_7[1],0,0,8,param_2,param_3);
+        maybe_Mpeg_FormPrediction
+                  (param_1,*(undefined4 *)(iVar9 + 0x1d4),param_7[1],0,0,8,param_2,param_3);
         uVar6 = 8;
         uVar1 = param_7[3];
       }
@@ -666,8 +677,8 @@ LAB_00109498:
         uVar1 = 0;
         uVar6 = 0x10;
       }
-      FUN_001096b8(param_1,*(undefined4 *)(iVar9 + 0x1d4),uVar1,param_5 != 2,0,uVar6,param_2,param_3
-                  );
+      maybe_Mpeg_FormPrediction
+                (param_1,*(undefined4 *)(iVar9 + 0x1d4),uVar1,param_5 != 2,0,uVar6,param_2,param_3);
     }
     else if (param_5 == 1) {
       if (param_7[1] == 0) {
@@ -676,7 +687,7 @@ LAB_00109498:
       else {
         uVar5 = *(undefined4 *)(iVar9 + 500);
       }
-      FUN_001096b8(param_1,uVar5,0,0,0,0x10,param_2,param_3);
+      maybe_Mpeg_FormPrediction(param_1,uVar5,0,0,0,0x10,param_2,param_3);
     }
     else if (param_5 == 2) {
       if (param_7[1] == 0) {
@@ -685,25 +696,26 @@ LAB_00109498:
       else {
         uVar5 = *(undefined4 *)(iVar9 + 500);
       }
-      FUN_001096b8(param_1,uVar5,0,0,0,8,param_2,param_3);
+      maybe_Mpeg_FormPrediction(param_1,uVar5,0,0,0,8,param_2,param_3);
       if (param_7[3] == 0) {
         uVar5 = *(undefined4 *)(iVar9 + 0x1e4);
       }
       else {
         uVar5 = *(undefined4 *)(iVar9 + 500);
       }
-      FUN_001096b8(param_1,uVar5,0,0,8,8,param_2,param_3);
+      maybe_Mpeg_FormPrediction(param_1,uVar5,0,0,8,8,param_2,param_3);
     }
     else {
-      FUN_00110388(param_1,0x35ebf8,param_5);
+      maybe_Mpeg_Errorf(param_1,0x35ebf8,param_5);
     }
   }
   return;
 }
 
 // 0x001096b8  size 0x41c
-void FUN_001096b8(int param_1,int *param_2,int param_3,int param_4,int param_5,int param_6,
-                 int param_7,int param_8,uint param_9,uint param_10,uint param_11,int param_12)
+void maybe_Mpeg_FormPrediction
+               (int param_1,int *param_2,int param_3,int param_4,int param_5,int param_6,int param_7
+               ,int param_8,uint param_9,uint param_10,uint param_11,int param_12)
 
 {
   int iVar1;
@@ -821,7 +833,9 @@ LAB_001099bc:
 }
 
 // 0x00109ad8  size 0x2d8
-void FUN_00109ad8(undefined8 param_1,int param_2)
+/* "intra && skip MB" */
+
+void maybe_Mpeg_AddBlocks(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -857,7 +871,7 @@ void FUN_00109ad8(undefined8 param_1,int param_2)
   iStack_a8 = iVar10 + 0x6d8;
   if ((*(int *)(iStack_a8 + param_2 * 0x140) != 0) &&
      (*(int *)(iVar10 + param_2 * 0x140 + 0x6e4) != 0)) {
-    FUN_001103c0(param_1,0x35ec18);
+    maybe_Mpeg_Error(param_1,0x35ec18);
   }
   auVar3 = auRam0010aa90;
   param_2 = param_2 * 0x140;
@@ -913,7 +927,7 @@ void FUN_00109ad8(undefined8 param_1,int param_2)
 }
 
 // 0x0010aaa8  size 0x28
-void FUN_0010aaa8(int param_1)
+void maybe_Ipu_SetCtrlBit23(int param_1)
 
 {
   uint uVar1;
@@ -924,7 +938,9 @@ void FUN_0010aaa8(int param_1)
 }
 
 // 0x0010aad0  size 0x294
-undefined4 FUN_0010aad0(undefined8 param_1)
+/* "Error code detected(BDEC)" */
+
+undefined4 maybe_Mpeg_DecodeBDEC(undefined8 param_1)
 
 {
   uint uVar1;
@@ -936,7 +952,7 @@ undefined4 FUN_0010aad0(undefined8 param_1)
   undefined4 uStack_b0;
   
   uStack_b0 = 1;
-  FUN_0010bd78();
+  maybe_Ipu_Sync();
   iVar2 = REG_DMAC_3_IPU_FROM_QWC;
   iVar4 = (int)param_1;
   if (iVar2 != 0) {
@@ -947,7 +963,7 @@ undefined4 FUN_0010aad0(undefined8 param_1)
         uVar1 = REG_DMAC_4_IPU_TO_CHCR;
         if ((uVar1 & 0x100) == 0) {
           auStack_f0[0] = 1;
-          FUN_0010fab8(*(undefined4 *)(iVar4 + 0x870),auStack_f0);
+          maybe_Mpeg_DispatchCallback(*(undefined4 *)(iVar4 + 0x870),auStack_f0);
           iVar2 = *(int *)(iVar4 + 0x10a0);
         }
         else {
@@ -958,7 +974,7 @@ undefined4 FUN_0010aad0(undefined8 param_1)
         iVar2 = *(int *)(iVar4 + 0x10a0);
       }
       if (iVar2 != 0) {
-        lVar3 = FUN_0011a7e0();
+        lVar3 = DIntr();
         uVar1 = REG_DMAC_ENABLER;
         REG_DMAC_ENABLEW = uVar1 | 0x10000;
         REG_DMAC_4_IPU_TO_CHCR = 0;
@@ -966,7 +982,7 @@ undefined4 FUN_0010aad0(undefined8 param_1)
         uVar1 = REG_DMAC_ENABLER;
         REG_DMAC_ENABLEW = uVar1 & 0xfffeffff;
         if (lVar3 != 0) {
-          FUN_0011a838();
+          EIntr();
         }
         REG_DMAC_3_IPU_FROM_QWC = 0;
         REG_DMAC_4_IPU_TO_QWC = 0;
@@ -995,20 +1011,20 @@ undefined4 FUN_0010aad0(undefined8 param_1)
   *(int *)(iVar4 + 0x854) = iVar2;
   uVar1 = REG_IPU_CTRL;
   if ((uVar1 & 0x4000) != 0) {
-    FUN_001103c0(param_1,0x35ec30);
+    maybe_Mpeg_Error(param_1,0x35ec30);
     auStack_d0[0] = 2;
-    FUN_0010fab8(*(undefined4 *)(iVar4 + 0x870),auStack_d0);
+    maybe_Mpeg_DispatchCallback(*(undefined4 *)(iVar4 + 0x870),auStack_d0);
     REG_IPU_CTRL = 0x40000000;
     auStack_d0[0] = 3;
-    FUN_0010fab8(*(undefined4 *)(iVar4 + 0x870),auStack_d0);
-    lVar3 = FUN_0011a7e0();
+    maybe_Mpeg_DispatchCallback(*(undefined4 *)(iVar4 + 0x870),auStack_d0);
+    lVar3 = DIntr();
     uVar1 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar1 | 0x10000;
     REG_DMAC_3_IPU_FROM_CHCR = 0;
     uVar1 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar1 & 0xfffeffff;
     if (lVar3 != 0) {
-      FUN_0011a838();
+      EIntr();
     }
     uStack_b0 = 0;
     REG_DMAC_3_IPU_FROM_QWC = 0;
@@ -1017,15 +1033,15 @@ undefined4 FUN_0010aad0(undefined8 param_1)
 }
 
 // 0x0010ad68  size 0x1c
-void FUN_0010ad68(undefined8 param_1)
+void maybe_Mpeg_GetBits3(undefined8 param_1)
 
 {
-  FUN_0010c068(param_1,3);
+  maybe_Mpeg_GetVLC(param_1,3);
   return;
 }
 
 // 0x0010ad88  size 0x184
-void FUN_0010ad88(int param_1,int *param_2,int *param_3,long param_4,long param_5)
+void maybe_Mpeg_MotionVectors(int param_1,int *param_2,int *param_3,long param_4,long param_5)
 
 {
   int iVar1;
@@ -1101,7 +1117,9 @@ LAB_0010ae20:
 }
 
 // 0x0010af10  size 0x110
-int FUN_0010af10(undefined8 param_1)
+/* "Invalid macroblock_address_increment" */
+
+int maybe_Mpeg_GetMBAddrInc(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1111,7 +1129,7 @@ int FUN_0010af10(undefined8 param_1)
   
   iVar4 = 0;
   do {
-    uVar2 = FUN_0010c068(param_1,0);
+    uVar2 = maybe_Mpeg_GetVLC(param_1,0);
     if (uVar2 == 0x22) {
 LAB_0010afc4:
       bVar1 = true;
@@ -1119,13 +1137,13 @@ LAB_0010afc4:
     else {
       if (uVar2 < 0x23) {
         if (uVar2 == 0) {
-          lVar3 = FUN_0010c2d8(param_1,0xb);
+          lVar3 = maybe_Mpeg_ShowBits(param_1,0xb);
           if ((*(int *)((int)param_1 + 0x860) == 0) || (lVar3 != 0xf)) {
-            FUN_00110388(param_1,0x35ec50,0);
+            maybe_Mpeg_Errorf(param_1,0x35ec50,0);
             *(undefined4 *)((int)param_1 + 0x134) = 1;
             return 1;
           }
-          FUN_0010c3f8(param_1,0xb);
+          maybe_Mpeg_FlushBits(param_1,0xb);
           goto LAB_0010afc4;
         }
       }
@@ -1145,7 +1163,9 @@ LAB_0010afe8:
 }
 
 // 0x0010b020  size 0x118
-bool FUN_0010b020(undefined8 param_1)
+/* "= Skip to the next picture =" */
+
+bool maybe_Mpeg_DecodePictureData(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1163,11 +1183,11 @@ bool FUN_0010b020(undefined8 param_1)
   }
   do {
     do {
-      lVar2 = FUN_0010b268(param_1,iVar4);
+      lVar2 = maybe_Mpeg_DecodeSlice(param_1,iVar4);
     } while (lVar2 == 1);
   } while (lVar2 == 3);
-  FUN_0010bd78(param_1);
-  lVar3 = FUN_0010aad0(param_1);
+  maybe_Ipu_Sync(param_1);
+  lVar3 = maybe_Mpeg_DecodeBDEC(param_1);
   if (lVar3 == 0) {
     if (*(int *)(iVar5 + 0x10a0) != 0) {
       return (bool)4;
@@ -1178,17 +1198,20 @@ bool FUN_0010b020(undefined8 param_1)
     uVar1 = REG_DMAC_9_SPR_TO_CHCR;
   } while ((uVar1 >> 8 & 1) != 0);
   if (lVar2 == 0) {
-    FUN_00109ad8(param_1,*(int *)(iVar5 + 0x828) == 0);
+    maybe_Mpeg_AddBlocks(param_1,*(int *)(iVar5 + 0x828) == 0);
   }
   if ((int)lVar2 - 1U < 2) {
-    FUN_001103c0(param_1,0x35ec88);
+    maybe_Mpeg_Error(param_1,0x35ec88);
   }
   return lVar2 == 0;
 }
 
 // 0x0010b138  size 0x12c
+/* "slice_start_code out of range" */
+
 undefined4
-FUN_0010b138(undefined8 param_1,undefined8 param_2,int *param_3,int *param_4,undefined4 *param_5)
+maybe_Mpeg_SliceHeader
+          (undefined8 param_1,undefined8 param_2,int *param_3,int *param_4,undefined4 *param_5)
 
 {
   undefined4 uVar1;
@@ -1199,12 +1222,12 @@ FUN_0010b138(undefined8 param_1,undefined8 param_2,int *param_3,int *param_4,und
   
   iVar5 = (int)param_1;
   *(undefined4 *)(iVar5 + 0x134) = 0;
-  FUN_0010c678();
-  uVar4 = FUN_0010c2d8(param_1,0x20);
+  maybe_Mpeg_ByteAlign();
+  uVar4 = maybe_Mpeg_ShowBits(param_1,0x20);
   if ((uint)uVar4 - 0x101 < 0xaf) {
-    FUN_0010c3f8(param_1,0x20);
-    iVar2 = FUN_0010c6f8(param_1);
-    iVar3 = FUN_0010af10(param_1);
+    maybe_Mpeg_FlushBits(param_1,0x20);
+    iVar2 = libmpeg_sub_0010c6f8(param_1);
+    iVar3 = maybe_Mpeg_GetMBAddrInc(param_1);
     *param_4 = iVar3;
     if (*(int *)(iVar5 + 0x134) == 0) {
       uVar1 = 0;
@@ -1221,19 +1244,21 @@ FUN_0010b138(undefined8 param_1,undefined8 param_2,int *param_3,int *param_4,und
       param_5[3] = 0;
     }
     else {
-      FUN_001103c0(param_1,0x35ecd0);
+      maybe_Mpeg_Error(param_1,0x35ecd0);
       uVar1 = 1;
     }
   }
   else {
-    FUN_00110388(param_1,0x35eca8,uVar4);
+    maybe_Mpeg_Errorf(param_1,0x35eca8,uVar4);
     uVar1 = 2;
   }
   return uVar1;
 }
 
 // 0x0010b268  size 0x1fc
-long FUN_0010b268(undefined8 param_1,int param_2)
+/* "Too many macroblocks in picture" */
+
+long maybe_Mpeg_DecodeSlice(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
@@ -1250,13 +1275,13 @@ long FUN_0010b268(undefined8 param_1,int param_2)
   
   iStack_70 = 0;
   iStack_6c = 0;
-  lVar2 = FUN_0010b138(param_1,param_2,&iStack_70,&iStack_6c,auStack_b0);
+  lVar2 = maybe_Mpeg_SliceHeader(param_1,param_2,&iStack_70,&iStack_6c,auStack_b0);
   if (lVar2 == 0) {
     iVar3 = (int)param_1;
     *(undefined4 *)(iVar3 + 0x134) = 0;
     for (; iStack_70 < param_2; iStack_70 = iStack_70 + 1) {
       *(undefined4 *)(*(int *)(iVar3 + 0x828) * 0x140 + iVar3 + 0x6e4) = 0;
-      lVar2 = FUN_0010aad0(param_1);
+      lVar2 = maybe_Mpeg_DecodeBDEC(param_1);
       if (lVar2 == 0) {
         if (*(int *)(iVar3 + 0x10a0) == 0) {
           return 2;
@@ -1264,7 +1289,7 @@ long FUN_0010b268(undefined8 param_1,int param_2)
         return 4;
       }
       if (iStack_6c == 0) {
-        lVar2 = FUN_0010c2d8(param_1,0x17);
+        lVar2 = maybe_Mpeg_ShowBits(param_1,0x17);
         if (lVar2 == 0) {
           *(undefined4 *)(iVar3 + 0x134) = 0;
           return 3;
@@ -1273,16 +1298,17 @@ long FUN_0010b268(undefined8 param_1,int param_2)
           *(undefined4 *)(iVar3 + 0x134) = 0;
           return 3;
         }
-        iStack_6c = FUN_0010af10(param_1);
+        iStack_6c = maybe_Mpeg_GetMBAddrInc(param_1);
         if (*(int *)(iVar3 + 0x134) != 0) goto LAB_0010b3a4;
       }
       if (param_2 <= iStack_70) {
-        FUN_001103c0(param_1,0x35ecf0);
+        maybe_Mpeg_Error(param_1,0x35ecf0);
         return 2;
       }
       if (iStack_6c == 1) {
-        lVar2 = FUN_0010b528(param_1,&uStack_68,&uStack_64,auStack_60,auStack_b0,auStack_90,
-                             auStack_80);
+        lVar2 = maybe_Mpeg_DecodeMacroblock
+                          (param_1,&uStack_68,&uStack_64,auStack_60,auStack_b0,auStack_90,auStack_80
+                          );
         if (lVar2 == 0) {
 LAB_0010b3a4:
           *(undefined4 *)(iVar3 + 0x134) = 0;
@@ -1290,11 +1316,12 @@ LAB_0010b3a4:
         }
       }
       else {
-        lVar2 = FUN_0010b468(param_1,auStack_b0,&uStack_64,auStack_90,&uStack_68);
+        lVar2 = maybe_Mpeg_SkippedMacroblock(param_1,auStack_b0,&uStack_64,auStack_90,&uStack_68);
         if (lVar2 == 0) goto LAB_0010b3fc;
       }
-      lVar2 = FUN_00108d60(param_1,iStack_70,iStack_6c,uStack_68,uStack_64,auStack_b0,auStack_90,
-                           auStack_80);
+      lVar2 = maybe_Mpeg_MotionCompensation
+                        (param_1,iStack_70,iStack_6c,uStack_68,uStack_64,auStack_b0,auStack_90,
+                         auStack_80);
       if (lVar2 == 0) {
 LAB_0010b3fc:
         *(undefined4 *)(iVar3 + 0x134) = 0;
@@ -1305,7 +1332,7 @@ LAB_0010b3fc:
         iStack_70 = 0;
       }
       else {
-        FUN_00109ad8(param_1,*(uint *)(iVar3 + 0x828) ^ 1);
+        maybe_Mpeg_AddBlocks(param_1,*(uint *)(iVar3 + 0x828) ^ 1);
         uVar1 = *(uint *)(iVar3 + 0x828);
       }
       iStack_6c = iStack_6c + -1;
@@ -1317,8 +1344,9 @@ LAB_0010b3fc:
 }
 
 // 0x0010b468  size 0xbc
-bool FUN_0010b468(undefined8 param_1,undefined4 *param_2,undefined4 *param_3,uint *param_4,
-                 uint *param_5)
+bool maybe_Mpeg_SkippedMacroblock
+               (undefined8 param_1,undefined4 *param_2,undefined4 *param_3,uint *param_4,
+               uint *param_5)
 
 {
   bool bVar1;
@@ -1350,7 +1378,7 @@ bool FUN_0010b468(undefined8 param_1,undefined4 *param_2,undefined4 *param_3,uin
   }
   bVar1 = *(int *)(iVar4 + 0x168) == 1;
   if (bVar1) {
-    FUN_001103c0(param_1,0x35ed10);
+    maybe_Mpeg_Error(param_1,0x35ed10);
     uVar2 = *param_5;
   }
   else {
@@ -1361,9 +1389,12 @@ bool FUN_0010b468(undefined8 param_1,undefined4 *param_2,undefined4 *param_3,uin
 }
 
 // 0x0010b528  size 0x4a8
+/* "Invalid macroblock_type code" */
+
 undefined4
-FUN_0010b528(undefined8 param_1,uint *param_2,int *param_3,int *param_4,undefined8 param_5,
-            uint *param_6,undefined8 param_7)
+maybe_Mpeg_DecodeMacroblock
+          (undefined8 param_1,uint *param_2,int *param_3,int *param_4,undefined8 param_5,
+          uint *param_6,undefined8 param_7)
 
 {
   int iVar1;
@@ -1379,10 +1410,10 @@ FUN_0010b528(undefined8 param_1,uint *param_2,int *param_3,int *param_4,undefine
   iVar6 = (int)param_1;
   uVar5 = REG_IPU_CTRL;
   REG_IPU_CTRL = uVar5 & 0xf8ffffff | *(int *)(iVar6 + 0x168) << 0x18;
-  uVar4 = FUN_0010c068(param_1,1);
+  uVar4 = maybe_Mpeg_GetVLC(param_1,1);
   *param_2 = (uint)uVar4;
   if (uVar4 == 0) {
-    FUN_001103c0(param_1,0x35ed40);
+    maybe_Mpeg_Error(param_1,0x35ed40);
     *(undefined4 *)(iVar6 + 0x134) = 1;
     return 0;
   }
@@ -1404,7 +1435,7 @@ FUN_0010b528(undefined8 param_1,uint *param_2,int *param_3,int *param_4,undefine
       *param_3 = 2;
     }
     else {
-      iVar2 = FUN_0010c508(param_1,2);
+      iVar2 = maybe_Mpeg_GetBits(param_1,2);
       *param_3 = iVar2;
     }
 LAB_0010b638:
@@ -1426,7 +1457,7 @@ LAB_0010b638:
     }
   }
   if (((iVar2 == 3) && (*(int *)(iVar6 + 0x194) == 0)) && ((*param_2 & 3) != 0)) {
-    iVar2 = FUN_0010c508(param_1,1);
+    iVar2 = maybe_Mpeg_GetBits(param_1,1);
   }
   else {
     iVar2 = 0;
@@ -1434,7 +1465,7 @@ LAB_0010b638:
   *param_4 = iVar2;
   uVar5 = *param_2;
   if ((uVar5 & 0x10) != 0) {
-    uVar3 = FUN_0010c508(param_1,5);
+    uVar3 = maybe_Mpeg_GetBits(param_1,5);
     *(undefined4 *)(iVar6 + 0x1cc) = uVar3;
     uVar5 = *param_2;
   }
@@ -1455,11 +1486,13 @@ LAB_0010b638:
 LAB_0010b71c:
     if (iVar2 == 0) {
       iVar2 = *(int *)(iVar6 + 0x170) + -1;
-      FUN_0010bbf8(param_1,param_5,param_7,iVar2,iVar2,0,0,*(undefined4 *)(iVar6 + 0x16c));
+      maybe_Mpeg_MotionVector
+                (param_1,param_5,param_7,iVar2,iVar2,0,0,*(undefined4 *)(iVar6 + 0x16c));
       iVar2 = *(int *)(iVar6 + 0x134);
     }
     else {
-      FUN_0010ba58(param_1,param_5,param_7,param_6,0,uVar8,bVar9,*(int *)(iVar6 + 0x17c) + -1);
+      maybe_Mpeg_MotionVectorPair
+                (param_1,param_5,param_7,param_6,0,uVar8,bVar9,*(int *)(iVar6 + 0x17c) + -1);
       iVar2 = *(int *)(iVar6 + 0x134);
     }
   }
@@ -1471,11 +1504,13 @@ LAB_0010b71c:
   if ((*param_2 & 4) != 0) {
     if (*(int *)(iVar6 + 0x860) == 0) {
       iVar2 = *(int *)(iVar6 + 0x178) + -1;
-      FUN_0010bbf8(param_1,puVar7 + 2,param_7,iVar2,iVar2,0,0,*(undefined4 *)(iVar6 + 0x174));
+      maybe_Mpeg_MotionVector
+                (param_1,puVar7 + 2,param_7,iVar2,iVar2,0,0,*(undefined4 *)(iVar6 + 0x174));
       iVar2 = *(int *)(iVar6 + 0x134);
     }
     else {
-      FUN_0010ba58(param_1,param_5,param_7,param_6,1,uVar8,bVar9,*(int *)(iVar6 + 0x184) + -1);
+      maybe_Mpeg_MotionVectorPair
+                (param_1,param_5,param_7,param_6,1,uVar8,bVar9,*(int *)(iVar6 + 0x184) + -1);
       iVar2 = *(int *)(iVar6 + 0x134);
     }
   }
@@ -1484,7 +1519,7 @@ LAB_0010b71c:
   }
   uVar5 = *param_2;
   if (((uVar5 & 1) != 0) && (*(int *)(iVar6 + 0x198) != 0)) {
-    FUN_0010c3f8(param_1,1);
+    maybe_Mpeg_FlushBits(param_1,1);
     uVar5 = *param_2;
   }
   if ((uVar5 & 3) == 0) {
@@ -1492,10 +1527,10 @@ LAB_0010b71c:
     iVar2 = *(int *)(iVar6 + 0x134);
   }
   else {
-    FUN_0010dd30(*(undefined4 *)(*(int *)(iVar6 + 0x828) * 0x140 + iVar6 + 0x5ac),0x300);
-    FUN_0010bd78(param_1);
-    FUN_0010bd48(param_1,(*param_2 & 1) << 0x1b | *(int *)(iVar6 + 0x1cc) << 0x10 |
-                         *(int *)(iVar6 + 0x1c8) << 0x1a | 0x20000000U | *param_4 << 0x19);
+    maybe_Ipu_DmaFromStart(*(undefined4 *)(*(int *)(iVar6 + 0x828) * 0x140 + iVar6 + 0x5ac),0x300);
+    maybe_Ipu_Sync(param_1);
+    maybe_Ipu_Command(param_1,(*param_2 & 1) << 0x1b | *(int *)(iVar6 + 0x1cc) << 0x10 |
+                              *(int *)(iVar6 + 0x1c8) << 0x1a | 0x20000000U | *param_4 << 0x19);
     iVar2 = *(int *)(iVar6 + 0x134);
   }
   *(undefined4 *)(iVar6 + 0x1c8) = 0;
@@ -1545,7 +1580,7 @@ LAB_0010b940:
 }
 
 // 0x0010b9d0  size 0x88
-void FUN_0010b9d0(int *param_1,uint param_2,long param_3,int param_4,long param_5)
+void maybe_Mpeg_DecodeMotionVector(int *param_1,uint param_2,long param_3,int param_4,long param_5)
 
 {
   int iVar1;
@@ -1581,40 +1616,44 @@ LAB_0010ba4c:
 }
 
 // 0x0010ba58  size 0x19c
-void FUN_0010ba58(undefined8 param_1,int param_2,undefined8 param_3,int param_4,int param_5,
-                 long param_6,long param_7,undefined8 param_8,undefined4 param_9,int param_10,
-                 undefined4 param_11)
+void maybe_Mpeg_MotionVectorPair
+               (undefined8 param_1,int param_2,undefined8 param_3,int param_4,int param_5,
+               long param_6,long param_7,undefined8 param_8,undefined4 param_9,int param_10,
+               undefined4 param_11)
 
 {
   undefined4 uVar1;
   undefined4 *puVar2;
   
   if (param_6 != 1) {
-    uVar1 = FUN_0010c508(param_1,1);
+    uVar1 = maybe_Mpeg_GetBits(param_1,1);
     puVar2 = (undefined4 *)(param_5 * 4 + param_4);
     *puVar2 = uVar1;
-    FUN_0010bbf8(param_1,param_2 + param_5 * 8,param_3,param_8,param_9,param_10,param_11,0);
-    uVar1 = FUN_0010c508(param_1,1);
+    maybe_Mpeg_MotionVector
+              (param_1,param_2 + param_5 * 8,param_3,param_8,param_9,param_10,param_11,0);
+    uVar1 = maybe_Mpeg_GetBits(param_1,1);
     puVar2[2] = uVar1;
-    FUN_0010bbf8(param_1,param_2 + param_5 * 8 + 0x10,param_3,param_8,param_9,param_10,param_11,0);
+    maybe_Mpeg_MotionVector
+              (param_1,param_2 + param_5 * 8 + 0x10,param_3,param_8,param_9,param_10,param_11,0);
     return;
   }
   if ((param_7 == 0) && (param_10 == 0)) {
-    uVar1 = FUN_0010c508(param_1,1);
+    uVar1 = maybe_Mpeg_GetBits(param_1,1);
     puVar2 = (undefined4 *)(param_5 * 4 + param_4);
     puVar2[2] = uVar1;
     *puVar2 = uVar1;
   }
   puVar2 = (undefined4 *)(param_2 + param_5 * 8);
-  FUN_0010bbf8(param_1,puVar2,param_3,param_8,param_9,param_10,param_11,0);
+  maybe_Mpeg_MotionVector(param_1,puVar2,param_3,param_8,param_9,param_10,param_11,0);
   puVar2[4] = *puVar2;
   puVar2[5] = puVar2[1];
   return;
 }
 
 // 0x0010bbf8  size 0x14c
-void FUN_0010bbf8(undefined8 param_1,undefined8 param_2,undefined4 *param_3,long param_4,
-                 long param_5,long param_6,long param_7,undefined8 param_8)
+void maybe_Mpeg_MotionVector
+               (undefined8 param_1,undefined8 param_2,undefined4 *param_3,long param_4,long param_5,
+               long param_6,long param_7,undefined8 param_8)
 
 {
   undefined4 uVar1;
@@ -1622,42 +1661,44 @@ void FUN_0010bbf8(undefined8 param_1,undefined8 param_2,undefined4 *param_3,long
   undefined8 uVar3;
   int iVar4;
   
-  lVar2 = FUN_0010c068(param_1,2);
+  lVar2 = maybe_Mpeg_GetVLC(param_1,2);
   if ((param_4 == 0) || (lVar2 == 0)) {
     uVar3 = 0;
   }
   else {
-    uVar3 = FUN_0010c508(param_1,param_4);
+    uVar3 = maybe_Mpeg_GetBits(param_1,param_4);
   }
-  FUN_0010b9d0(param_2,param_4,lVar2,uVar3,param_8);
+  maybe_Mpeg_DecodeMotionVector(param_2,param_4,lVar2,uVar3,param_8);
   if (param_6 != 0) {
-    uVar1 = FUN_0010ad68(param_1);
+    uVar1 = maybe_Mpeg_GetBits3(param_1);
     *param_3 = uVar1;
   }
-  lVar2 = FUN_0010c068(param_1,2);
+  lVar2 = maybe_Mpeg_GetVLC(param_1,2);
   if ((param_5 == 0) || (lVar2 == 0)) {
     uVar3 = 0;
   }
   else {
-    uVar3 = FUN_0010c508(param_1,param_5);
+    uVar3 = maybe_Mpeg_GetBits(param_1,param_5);
   }
   iVar4 = (int)param_2;
   if (param_7 != 0) {
     *(int *)(iVar4 + 4) = *(int *)(iVar4 + 4) >> 1;
   }
-  FUN_0010b9d0(iVar4 + 4,param_5,lVar2,uVar3,param_8);
+  maybe_Mpeg_DecodeMotionVector(iVar4 + 4,param_5,lVar2,uVar3,param_8);
   if (param_7 != 0) {
     *(int *)(iVar4 + 4) = *(int *)(iVar4 + 4) << 1;
   }
   if (param_6 != 0) {
-    uVar1 = FUN_0010ad68(param_1);
+    uVar1 = maybe_Mpeg_GetBits3(param_1);
     param_3[1] = uVar1;
   }
   return;
 }
 
 // 0x0010bd48  size 0x2c
-void FUN_0010bd48(int param_1,uint param_2)
+/* writes IPU_CMD */
+
+void maybe_Ipu_Command(int param_1,uint param_2)
 
 {
   REG_IPU_CMD = param_2;
@@ -1666,7 +1707,7 @@ void FUN_0010bd48(int param_1,uint param_2)
 }
 
 // 0x0010bd78  size 0x168
-void FUN_0010bd78(int param_1)
+void maybe_Ipu_Sync(int param_1)
 
 {
   bool bVar1;
@@ -1683,7 +1724,7 @@ void FUN_0010bd78(int param_1)
       bVar1 = 5000 < iVar5;
       iVar5 = iVar5 + 1;
       if (bVar1) {
-        FUN_0010fb30(*(undefined4 *)(param_1 + 0x870));
+        maybe_Mpeg_CallbackBackground(*(undefined4 *)(param_1 + 0x870));
         iVar5 = 0;
       }
       uVar2 = REG_IPU_CTRL;
@@ -1692,7 +1733,7 @@ void FUN_0010bd78(int param_1)
       }
       iVar3 = *(int *)(param_1 + 0x10a0);
     }
-    lVar4 = FUN_0011a7e0();
+    lVar4 = DIntr();
     uVar2 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar2 | 0x10000;
     REG_DMAC_4_IPU_TO_CHCR = 0;
@@ -1700,7 +1741,7 @@ void FUN_0010bd78(int param_1)
     uVar2 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar2 & 0xfffeffff;
     if (lVar4 != 0) {
-      FUN_0011a838();
+      EIntr();
     }
     REG_DMAC_3_IPU_FROM_QWC = 0;
     REG_DMAC_4_IPU_TO_QWC = 0;
@@ -1710,7 +1751,7 @@ void FUN_0010bd78(int param_1)
 }
 
 // 0x0010bee0  size 0x184
-long FUN_0010bee0(int param_1)
+long maybe_Ipu_SyncData(int param_1)
 
 {
   bool bVar1;
@@ -1728,7 +1769,7 @@ long FUN_0010bee0(int param_1)
       bVar1 = 5000 < iVar6;
       iVar6 = iVar6 + 1;
       if (bVar1) {
-        FUN_0010fb30(*(undefined4 *)(param_1 + 0x870));
+        maybe_Mpeg_CallbackBackground(*(undefined4 *)(param_1 + 0x870));
         iVar6 = 0;
       }
       lVar5 = REG_IPU_CMD;
@@ -1741,7 +1782,7 @@ long FUN_0010bee0(int param_1)
       }
       iVar3 = *(int *)(param_1 + 0x10a0);
     }
-    lVar4 = FUN_0011a7e0();
+    lVar4 = DIntr();
     uVar2 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar2 | 0x10000;
     REG_DMAC_4_IPU_TO_CHCR = 0;
@@ -1749,7 +1790,7 @@ long FUN_0010bee0(int param_1)
     uVar2 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar2 & 0xfffeffff;
     if (lVar4 != 0) {
-      FUN_0011a838();
+      EIntr();
     }
     REG_DMAC_3_IPU_FROM_QWC = 0;
     REG_DMAC_4_IPU_TO_QWC = 0;

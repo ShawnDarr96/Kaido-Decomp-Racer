@@ -218,6 +218,32 @@ def export(program, args):
                     idx.writerow([addr, f"0x{size:x}", f.getName(), f"src/{name}",
                                   "decompiled" if ok else "failed"])
 
+    # Call graph + string references per function (for naming work without Ghidra open).
+    from ghidra.util.task import ConsoleTaskMonitor
+    mon = ConsoleTaskMonitor()
+    refman = program.getReferenceManager()
+    with open(OUT / "xrefs.csv", "w", newline="", encoding="utf-8") as xf:
+        xw = csv.writer(xf, lineterminator="\n")
+        xw.writerow(["address", "name", "callees", "callers", "strings", "data_refs"])
+        for f in funcs:
+            callees = sorted(f"0x{c.getEntryPoint().getOffset():08x}" for c in f.getCalledFunctions(mon))
+            callers = sorted(f"0x{c.getEntryPoint().getOffset():08x}" for c in f.getCallingFunctions(mon))
+            strs, datas = [], set()
+            for a in f.getBody().getAddresses(True):
+                for ref in refman.getReferencesFrom(a):
+                    if not ref.getReferenceType().isData():
+                        continue
+                    d = listing.getDataAt(ref.getToAddress())
+                    if d is not None and d.hasStringValue() and d.getValue() is not None:
+                        s = str(d.getValue())
+                        if s not in strs:
+                            strs.append(s)
+                    else:
+                        datas.add(f"0x{ref.getToAddress().getOffset():08x}")
+            xw.writerow([f"0x{f.getEntryPoint().getOffset():08x}", f.getName(), " ".join(callees),
+                         " ".join(callers), " | ".join(s.replace("\n", "\\n") for s in strs),
+                         " ".join(sorted(datas))])
+
     with open(OUT / "strings.csv", "w", newline="", encoding="utf-8") as sf:
         sw = csv.writer(sf)
         sw.writerow(["address", "string"])

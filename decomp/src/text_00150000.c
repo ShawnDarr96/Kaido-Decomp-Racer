@@ -990,7 +990,7 @@ void FUN_00153350(undefined8 param_1,long param_2)
   undefined4 uStack_4;
   
   if (param_2 == 0) {
-    FUN_00132600(0x42d7b0,param_1,0x14);
+    maybe_Mem_CopyQwords(0x42d7b0,param_1,0x14);
     uRam00387fa4 = uRam00387fa4 | 1;
   }
   else {
@@ -1146,7 +1146,7 @@ long FUN_00153960(long param_1,short param_2)
     *(undefined4 *)param_1 = &DAT_0036e178;
     FUN_00132320(param_1,0);
     if (0 < param_2) {
-      thunk_FUN_00100290(param_1);
+      Mem_Free(param_1);
     }
   }
   return param_1;
@@ -1176,12 +1176,12 @@ bool FUN_001539c0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
 void FUN_00153a90(undefined8 param_1,undefined8 param_2,undefined8 param_3,char *param_4)
 
 {
-  FUN_00112280(1);
+  DisableIntc(1);
   FUN_0013ceb0(*(undefined4 *)(param_4 + 4),param_3);
   if (*param_4 == '\x01') {
     *param_4 = '\x04';
   }
-  FUN_001122e8(1);
+  EnableIntc(1);
   return;
 }
 
@@ -1346,11 +1346,11 @@ void FUN_00153e50(undefined8 param_1)
   *(undefined4 *)(iVar3 + 0x42dabc) = 0;
   *(undefined4 *)(iVar3 + 0x42dac4) = 0;
   *(undefined4 *)(iVar3 + 0x42dac8) = 0;
-  FUN_00112280();
+  DisableIntc();
   puRam0042d854 = &LAB_00153e30;
   puRam0042d858 = (undefined1 *)(iVar3 + 0x42daa8);
   FUN_0013cf10(param_1,&uStack_10);
-  FUN_001122e8(1);
+  EnableIntc(1);
   return;
 }
 
@@ -1393,12 +1393,12 @@ void FUN_00153fd0(void)
       break;
     case '\x06':
       iVar3 = *(int *)(iVar5 + 0x29c) * 0x28;
-      FUN_00112280(1);
+      DisableIntc(1);
       puRam0042d854 = &LAB_00153a50;
       puRam0042d858 = (undefined1 *)(iVar3 + 0x42daa8);
       FUN_0013cd10(*(undefined4 *)(iVar3 + 0x42daac),*(undefined4 *)(iVar3 + 0x42dac0));
       *(undefined1 *)(iVar3 + 0x42daa8) = 7;
-      FUN_001122e8(1);
+      EnableIntc(1);
       break;
     case '\b':
       if (*(int *)(iVar5 + 0x2b0) == 1) {
@@ -1431,12 +1431,12 @@ void FUN_00153fd0(void)
   uVar6 = 0;
   iVar4 = 0x42d810;
   do {
-    FUN_00112280(1);
+    DisableIntc(1);
     if ((*(char *)(iVar4 + 0x298) == '\x05') &&
        (lVar2 = FUN_0013cdc0(*(undefined4 *)(iVar4 + 0x29c)), lVar2 != 0)) {
       *(char *)(iVar4 + 0x298) = '\x06';
     }
-    FUN_001122e8(1);
+    EnableIntc(1);
     uVar6 = uVar6 + 1;
     iVar4 = iVar4 + 0x28;
   } while (uVar6 < 2);

@@ -130,7 +130,7 @@ short FUN_001b8080(char param_1)
   sVar6 = 0;
   while( true ) {
     uVar3 = FUN_002092c0(sVar6);
-    FUN_00128268(&uStack_480,uVar3,0x17c);
+    memcpy(&uStack_480,uVar3,0x17c);
     puVar5 = auStack_43c;
     uStack_300 = uStack_480;
     uStack_2f8 = uStack_478;
@@ -288,7 +288,7 @@ void FUN_001b8610(undefined4 *param_1,undefined1 param_2)
   undefined4 uStack_c;
   
   uVar1 = FUN_00209280(param_2);
-  FUN_00128268(&uStack_30,uVar1,0x28);
+  memcpy(&uStack_30,uVar1,0x28);
   *param_1 = uStack_30;
   param_1[1] = uStack_2c;
   param_1[2] = uStack_28;
@@ -2201,7 +2201,7 @@ undefined4 FUN_001bb350(int param_1,undefined8 param_2,undefined8 param_3,undefi
   iVar7 = (int)param_4;
   puVar8 = (undefined2 *)(param_1 + *(short *)(param_1 + 0x13ec) * 0xcc);
   uVar4 = FUN_00209280((char)param_3);
-  FUN_00128268(&uStack_a0,uVar4,0x28);
+  memcpy(&uStack_a0,uVar4,0x28);
   auStack_40[0] = uStack_a0;
   auStack_40[1] = uStack_9c;
   auStack_40[2] = uStack_98;
@@ -2290,7 +2290,7 @@ undefined4 FUN_001bb4c0(short param_1,undefined1 param_2,int param_3)
   uint uStack_8;
   
   uVar5 = FUN_00209280(param_2);
-  FUN_00128268(&uStack_e0,uVar5,0x28);
+  memcpy(&uStack_e0,uVar5,0x28);
   auStack_40[0] = uStack_e0;
   auStack_40[1] = uStack_dc;
   auStack_40[2] = uStack_d8;

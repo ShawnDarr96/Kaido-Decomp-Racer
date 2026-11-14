@@ -629,9 +629,9 @@ void FUN_001bcb10(undefined8 param_1)
     iVar4 = iVar4 + 5;
     *(undefined1 *)(iVar6 + 0x2732) = 2;
   }
-  iVar3 = FUN_00133940();
+  iVar3 = maybe_Rand_Float();
   if (iVar3 % 100 < iVar4) {
-    iVar4 = FUN_00133940();
+    iVar4 = maybe_Rand_Float();
     iVar4 = iVar4 % 100;
     cVar2 = *(char *)(iVar6 + 0x2731);
     if (cVar2 == '\x04') {
@@ -779,7 +779,7 @@ void FUN_001bce70(int param_1)
     if (*(int *)(iVar9 + 0x2a74) != -1) {
       bVar1 = false;
       uVar2 = FUN_00209260(iStack_7f0);
-      FUN_00128268(&uStack_7e0,uVar2,0x50);
+      memcpy(&uStack_7e0,uVar2,0x50);
       iVar6 = 9;
       puVar13 = auStack_7dc;
       puVar10 = auStack_78c;
@@ -823,7 +823,7 @@ void FUN_001bce70(int param_1)
               iStack_8 = *(int *)(iVar11 + 0x2750);
               uStack_4 = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 1) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -848,7 +848,7 @@ void FUN_001bce70(int param_1)
               iStack_10 = *(int *)(iVar11 + 0x2750);
               uStack_c = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 2) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -873,7 +873,7 @@ void FUN_001bce70(int param_1)
               iStack_18 = *(int *)(iVar11 + 0x2750);
               uStack_14 = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 4) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -898,7 +898,7 @@ void FUN_001bce70(int param_1)
               iStack_20 = *(int *)(iVar11 + 0x2750);
               uStack_1c = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 8) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -922,7 +922,7 @@ void FUN_001bce70(int param_1)
             iVar11 = puVar13[1];
             if (iVar11 == -1) break;
             if ((*(int *)(param_1 + 0x2748) <= iVar11) && (iVar11 < *(int *)(param_1 + 0x2744))) {
-              uVar3 = FUN_00133940();
+              uVar3 = maybe_Rand_Float();
               iVar4 = (int)(uVar3 & 3);
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
@@ -941,7 +941,7 @@ void FUN_001bce70(int param_1)
         case 5:
           if ((*(char *)(param_1 + 0x273d) != *(char *)(param_1 + 0x273e)) &&
              (*(char *)(param_1 + 0x273f) != *(char *)(param_1 + 0x2740))) {
-            uVar3 = FUN_00133940();
+            uVar3 = maybe_Rand_Float();
             iVar4 = (int)(uVar3 & 3);
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
@@ -961,7 +961,7 @@ void FUN_001bce70(int param_1)
               iStack_28 = *(int *)(iVar11 + 0x2750);
               uStack_24 = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 0x40) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -987,7 +987,7 @@ void FUN_001bce70(int param_1)
             for (piVar8 = aiStack_740; piVar8[1] != -1; piVar8 = piVar8 + 2) {
               if ((piVar8[1] == iVar11) && (piVar8[2] != 0)) {
                 if (*(short *)(param_1 + iVar11 * 2 + 0x3fc4) == 1) {
-                  uVar3 = FUN_00133940();
+                  uVar3 = maybe_Rand_Float();
                   iVar11 = (int)(uVar3 & 3);
                   if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                     iVar11 = iVar11 + -4;
@@ -1015,7 +1015,7 @@ void FUN_001bce70(int param_1)
               uStack_2c = uVar15;
               iStack_30 = *(int *)(iVar11 + 0x2750);
               if (*(int *)(iVar11 + 0x2750) == 0x100) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -1040,7 +1040,7 @@ void FUN_001bce70(int param_1)
               iStack_38 = *(int *)(iVar11 + 0x2750);
               uStack_34 = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 0x200) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -1065,7 +1065,7 @@ void FUN_001bce70(int param_1)
               iStack_40 = *(int *)(iVar11 + 0x2750);
               uStack_3c = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 0x400) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -1089,7 +1089,7 @@ void FUN_001bce70(int param_1)
             if (puVar13[1] == -1) break;
             if ((*(int *)(param_1 + 0x2734) < 9999) &&
                ((*(int *)(param_1 + 0x2734) - *(int *)(iVar9 + 0x2a74)) % (int)puVar13[1] == 0)) {
-              uVar3 = FUN_00133940();
+              uVar3 = maybe_Rand_Float();
               iVar4 = (int)(uVar3 & 3);
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
@@ -1107,7 +1107,7 @@ void FUN_001bce70(int param_1)
           break;
         case 0xc:
           if ((long)aiStack_ec[0] <= (long)sStack_fc) {
-            uVar3 = FUN_00133940();
+            uVar3 = maybe_Rand_Float();
             iVar4 = (int)(uVar3 & 3);
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
@@ -1121,7 +1121,7 @@ void FUN_001bce70(int param_1)
           break;
         case 0xd:
           if (aiStack_ec[0] <= sStack_fa) {
-            uVar3 = FUN_00133940();
+            uVar3 = maybe_Rand_Float();
             iVar4 = (int)(uVar3 & 3);
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
@@ -1140,7 +1140,7 @@ void FUN_001bce70(int param_1)
             lVar7 = (long)(int)puVar13[1];
             if (lVar7 == -1) break;
             if ((*(short *)(param_1 + 0x5318) < lVar7) && (lVar7 <= *(short *)(param_1 + 0x5312))) {
-              uVar3 = FUN_00133940();
+              uVar3 = maybe_Rand_Float();
               iVar4 = (int)(uVar3 & 3);
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
@@ -1163,7 +1163,7 @@ void FUN_001bce70(int param_1)
             lVar7 = (long)(int)puVar13[1];
             if (lVar7 == -1) break;
             if ((*(short *)(param_1 + 0x531a) < lVar7) && (lVar7 <= *(short *)(param_1 + 0x5314))) {
-              uVar3 = FUN_00133940();
+              uVar3 = maybe_Rand_Float();
               iVar4 = (int)(uVar3 & 3);
               if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                 iVar4 = iVar4 + -4;
@@ -1187,7 +1187,7 @@ void FUN_001bce70(int param_1)
               iStack_48 = *(int *)(iVar11 + 0x2750);
               uStack_44 = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 0x10000) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -1212,7 +1212,7 @@ void FUN_001bce70(int param_1)
               iStack_50 = *(int *)(iVar11 + 0x2750);
               uStack_4c = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 0x20000) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -1231,7 +1231,7 @@ void FUN_001bce70(int param_1)
           break;
         case 0x12:
           if ((iStack_800 == 0x28) && (iVar5 != 0x28)) {
-            uVar3 = FUN_00133940();
+            uVar3 = maybe_Rand_Float();
             iVar4 = (int)(uVar3 & 3);
             if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
               iVar4 = iVar4 + -4;
@@ -1251,7 +1251,7 @@ void FUN_001bce70(int param_1)
               iStack_58 = *(int *)(iVar11 + 0x2750);
               uStack_54 = *(undefined4 *)(iVar11 + 0x2754);
               if (*(int *)(iVar11 + 0x2750) == 0x80000) {
-                uVar3 = FUN_00133940();
+                uVar3 = maybe_Rand_Float();
                 iVar4 = (int)(uVar3 & 3);
                 if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
                   iVar4 = iVar4 + -4;
@@ -1445,7 +1445,7 @@ void FUN_001bdd20(int param_1)
     iVar8 = param_1;
     while( true ) {
       uVar3 = FUN_002092c0(sVar7);
-      FUN_00128268(&uStack_480,uVar3,0x17c);
+      memcpy(&uStack_480,uVar3,0x17c);
       puVar6 = auStack_43c;
       uStack_300 = uStack_480;
       uStack_2e8 = uStack_468;
@@ -1992,7 +1992,7 @@ void FUN_001beaf0(void)
 
 {
   if (iGpffff8c0c != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8c0c = 0;
   }
   return;
@@ -2183,12 +2183,12 @@ void FUN_001beb20(void)
         do {
           do {
             do {
-              iVar14 = FUN_00133940();
+              iVar14 = maybe_Rand_Float();
               iVar14 = iVar14 % 5;
             } while (*(int *)(psGpffff8c0c + iVar14 * 2 + 0x1e) == 0);
             piVar8 = aiStack_370 + iVar14;
           } while (iVar4 <= *piVar8);
-          iVar10 = FUN_00133940();
+          iVar10 = maybe_Rand_Float();
         } while (psGpffff8c0c[iVar14 * 6 + iVar10 % 6] != -1);
         iVar12 = *piStack_3a0;
         iVar13 = *piVar8;
@@ -2641,12 +2641,12 @@ LAB_001bfb30:
         do {
           do {
             do {
-              iVar23 = FUN_00133940();
+              iVar23 = maybe_Rand_Float();
               iVar23 = iVar23 % 5;
             } while (*(int *)(iGpffff8c0c + iVar23 * 4 + 0x3c) == 0);
             piVar12 = aiStack_3630 + iVar23;
           } while (iVar5 <= *piVar12);
-          iVar21 = FUN_00133940();
+          iVar21 = maybe_Rand_Float();
           psVar17 = (short *)(iGpffff8c0c + iVar23 * 0xc + (iVar21 % 6) * 2);
         } while (*psVar17 != -1);
         iVar23 = *piStack_3660;
@@ -2671,7 +2671,7 @@ LAB_001bfb30:
 void FUN_001bfe00(undefined8 param_1)
 
 {
-  uGpffff8c0c = FUN_00100680(0x820,param_1);
+  uGpffff8c0c = Mem_Alloc16(0x820,param_1);
   return;
 }
 

@@ -506,7 +506,7 @@ void FUN_00218fb0(uint *param_1)
       FUN_001f6720(auStack_18,uVar11,iStack_a8,iStack_a4);
     }
   }
-  uVar11 = FUN_0012f600(auStack_18[0]);
+  uVar11 = newlib_sub_0012f600(auStack_18[0]);
   FUN_00200ff0(0x26,0x3f,4,0x15,uVar11);
   if (bVar1) {
     if (aiStack_30[0] < 1000) {

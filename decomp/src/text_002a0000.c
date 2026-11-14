@@ -1533,7 +1533,7 @@ void FUN_002a3660(undefined4 *param_1)
     iVar7 = param_1[0x10];
     if (iVar3 != iVar7) {
       bVar5 = iVar3 < iVar7;
-      lVar10 = FUN_00124aa0(iVar3 - iVar7);
+      lVar10 = abs(iVar3 - iVar7);
       if (lVar10 != 1) {
         bVar5 = !bVar5;
       }

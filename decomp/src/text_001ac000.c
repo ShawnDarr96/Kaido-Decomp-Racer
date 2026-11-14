@@ -150,7 +150,7 @@ void FUN_001ac780(undefined8 param_1)
 void FUN_001ac860(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
-  FUN_00132600((int)param_1 + 0x2c,param_3,0x20);
+  maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
   FUN_001a5a40(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
@@ -2113,7 +2113,7 @@ uint FUN_001afc10(void)
   aiStack_40[iVar6] = 0;
   do {
     uVar3 = FUN_002092c0((short)iVar11);
-    FUN_00128268(&uStack_4c0,uVar3,0x17c);
+    memcpy(&uStack_4c0,uVar3,0x17c);
     puVar7 = auStack_47c;
     uStack_340 = uStack_4c0;
     uStack_338 = uStack_4b8;

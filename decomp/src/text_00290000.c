@@ -840,7 +840,7 @@ void FUN_00291480(int param_1)
         iVar9 = iVar9 + 4;
       } while (iVar8 < iVar1);
     }
-    FUN_00129698(param_1 + 0x38,iVar7,4,0x2913e0);
+    maybe_qsort(param_1 + 0x38,iVar7,4,0x2913e0);
     break;
   case 0xb:
     iVar10 = 0;

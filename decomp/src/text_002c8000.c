@@ -296,7 +296,7 @@ void FUN_002c8c00(undefined8 param_1)
      (cVar3 = FUN_001dc1b0(), cVar3 == '\x03')) {
     lVar8 = FUN_001e9010();
     if (lVar8 == 0) {
-      iVar6 = FUN_0012a0a0();
+      iVar6 = maybe_rand();
       *(int *)(iVar10 + 0xcc) = iVar6 % 3;
     }
     iStack_8 = iStack_8 - *(int *)(iVar10 + 0xcc);
@@ -427,7 +427,7 @@ void FUN_002c9c60(int param_1)
     FUN_001465c0(auStack_40,*piRam00387f7c + -10);
     fVar9 = DAT_0032f7d4 + *(float *)(iVar2 + 8);
     fVar8 = DAT_0032f7d4 + *(float *)(iVar2 + 0xc);
-    FUN_00133090(auStack_6e0);
+    maybe_Vu0_UnitMatrix(auStack_6e0);
     fStack_6b0 = fStack_6b0 - fVar9;
     fStack_6ac = fStack_6ac - fVar8;
     if (*(float *)(iVar6 + 0x34) != 0.0) {
@@ -436,7 +436,7 @@ void FUN_002c9c60(int param_1)
       }
       for (; fVar7 < -3.1415927; fVar7 = fVar7 + 6.2831855) {
       }
-      FUN_00132d80(auStack_6e0,auStack_6e0);
+      maybe_Vu0_RotMatrixX(auStack_6e0,auStack_6e0);
     }
     uStack_698 = 0;
     uVar3 = 0;
@@ -459,7 +459,7 @@ void FUN_002c9c60(int param_1)
     fStack_68c = fStack_69c;
     fStack_66c = fStack_67c;
     do {
-      FUN_00132d50(pfVar1,auStack_6e0,pfVar1);
+      vu0math_sub_00132d50(pfVar1,auStack_6e0,pfVar1);
       uVar3 = uVar3 + 1;
       pfVar1 = pfVar1 + 4;
     } while (uVar3 < 4);
@@ -536,7 +536,7 @@ void FUN_002ca080(int param_1)
                *(float *)(&DAT_0032f5d0 + iVar8 + *(int *)(param_1 + 0x74) * 0x60);
       fVar10 = *(float *)(puVar3 + 0xc) +
                *(float *)((int)(&DAT_0032f5d0 + iVar8 + *(int *)(param_1 + 0x74) * 0x60) + 4);
-      FUN_00133090(auStack_1320);
+      maybe_Vu0_UnitMatrix(auStack_1320);
       fStack_12f0 = fStack_12f0 - fVar11;
       fStack_12ec = fStack_12ec - fVar10;
       if (*(float *)(iVar7 + 0x1c) != 0.0) {
@@ -545,7 +545,7 @@ void FUN_002ca080(int param_1)
         }
         for (; fVar9 < -3.1415927; fVar9 = fVar9 + 6.2831855) {
         }
-        FUN_00132d80(auStack_1320,auStack_1320);
+        maybe_Vu0_RotMatrixX(auStack_1320,auStack_1320);
       }
       uStack_12d8 = 0;
       uVar4 = 0;
@@ -568,7 +568,7 @@ void FUN_002ca080(int param_1)
       fStack_12cc = fStack_12dc;
       fStack_12ac = fStack_12bc;
       do {
-        FUN_00132d50(pfVar2,auStack_1320,pfVar2);
+        vu0math_sub_00132d50(pfVar2,auStack_1320,pfVar2);
         uVar4 = uVar4 + 1;
         pfVar2 = pfVar2 + 4;
       } while (uVar4 < 4);
@@ -871,9 +871,9 @@ void FUN_002cae00(int param_1)
           if (fVar14 <= uStack_10._4_4_ - 39.0) {
             fStack_4 = fVar14;
           }
-          uVar2 = FUN_0012f600(pfVar7[1] - fStack_4);
-          uVar2 = FUN_00120158(uVar2);
-          fVar14 = (float)FUN_001301b8(uVar2);
+          uVar2 = newlib_sub_0012f600(pfVar7[1] - fStack_4);
+          uVar2 = libm_sub_00120158(uVar2);
+          fVar14 = (float)maybe___extendsfdf2(uVar2);
           fVar14 = 1.0 - fVar14 / fVar15;
           if (iVar8 < 1) {
             fStack_8 = *pfVar7;
@@ -995,9 +995,9 @@ void FUN_002cb1d0(int param_1)
         if (fVar13 <= fStack_c) {
           fStack_c = fVar13;
         }
-        uVar4 = FUN_0012f600(fVar15 - fStack_c);
-        uVar4 = FUN_00120158(uVar4);
-        fVar13 = (float)FUN_001301b8(uVar4);
+        uVar4 = newlib_sub_0012f600(fVar15 - fStack_c);
+        uVar4 = libm_sub_00120158(uVar4);
+        fVar13 = (float)maybe___extendsfdf2(uVar4);
         fVar13 = 1.0 - fVar13 / fVar14;
         if (iVar9 < 1) {
           fStack_8 = fVar2;

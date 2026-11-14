@@ -43,7 +43,7 @@ void FUN_001c42a0(int *param_1,undefined8 param_2)
   
   iVar2 = iRam0036f328;
   if (iRam0036f1f8 == 0) {
-    FUN_00132ae0(auStack_10,*(int *)(iRam0036f1fc + 0x14) + 0x70);
+    vu0math_sub_00132ae0(auStack_10,*(int *)(iRam0036f1fc + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       FUN_001c4690(iRam0036f328,auStack_10,800,param_2);
@@ -55,8 +55,8 @@ void FUN_001c42a0(int *param_1,undefined8 param_2)
   else {
     iVar1 = *(int *)(iRam0036f1fc + 0x18);
     iVar3 = iRam0036f328 + 0x4b00;
-    FUN_00132ae0(auStack_20,*(int *)(iRam0036f1fc + 0x14) + 0x70);
-    FUN_00132ae0(auStack_30,iVar1 + 0x70);
+    vu0math_sub_00132ae0(auStack_20,*(int *)(iRam0036f1fc + 0x14) + 0x70);
+    vu0math_sub_00132ae0(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       FUN_001c4690(iVar2,auStack_20,400,param_2);
@@ -112,20 +112,20 @@ void FUN_001c43e0(float *param_1,undefined4 *param_2,int param_3,long param_4)
   if (0 < param_3) {
     do {
       if (param_4 == 0) {
-        fVar2 = (float)FUN_001338b0(0xbbda740e,0x3bda740e);
+        fVar2 = (float)maybe_Rand_Next(0xbbda740e,0x3bda740e);
         param_1[10] = (param_1[10] + fVar2) * 0.97;
-        fVar2 = (float)FUN_001338b0(0xbbda740e,0x3bda740e);
+        fVar2 = (float)maybe_Rand_Next(0xbbda740e,0x3bda740e);
         param_1[0xb] = (param_1[0xb] + fVar2) * 0.97;
       }
       else {
-        FUN_001339f0(DAT_0036e858,&fStack_8,&fStack_4);
-        fVar2 = (float)FUN_001338b0(0x3f000000,0x3fc00000);
+        maybe_Math_AngleToIndex(DAT_0036e858,&fStack_8,&fStack_4);
+        fVar2 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
         *param_1 = fStack_4 * fVar2 * 0.33333334 * 0.9 + *param_1 + 0.0;
-        fVar2 = (float)FUN_001338b0(0x3f000000,0x3fc00000);
+        fVar2 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
         param_1[2] = fStack_8 * fVar2 * 0.33333334 * 0.9 + param_1[2] + 0.0;
       }
       *param_1 = *param_1 + param_1[10];
-      fVar2 = (float)FUN_001338b0(0x3d088889,0x3d888889);
+      fVar2 = (float)maybe_Rand_Next(0x3d088889,0x3d888889);
       param_1[1] = param_1[1] - fVar2;
       param_1[2] = param_1[2] + param_1[0xb];
       FUN_001c2cc0(&uStack_20,param_1,&uStack_30);
@@ -153,21 +153,21 @@ void FUN_001c4690(undefined4 *param_1,float *param_2,int param_3,long param_4)
     iVar4 = 0;
     if (0 < param_3) {
       do {
-        uVar5 = FUN_001338b0(fVar1 - 50.0,fVar1 + 50.0);
+        uVar5 = maybe_Rand_Next(fVar1 - 50.0,fVar1 + 50.0);
         *param_1 = uVar5;
-        uVar5 = FUN_001338b0(fVar2 - 15.0,fVar2 + 15.0);
+        uVar5 = maybe_Rand_Next(fVar2 - 15.0,fVar2 + 15.0);
         param_1[1] = uVar5;
-        uVar5 = FUN_001338b0(fVar3 - 50.0,fVar3 + 50.0);
+        uVar5 = maybe_Rand_Next(fVar3 - 50.0,fVar3 + 50.0);
         param_1[2] = uVar5;
-        uVar5 = FUN_001338b0(0x3cf5c28f,0x3d23d70a);
+        uVar5 = maybe_Rand_Next(0x3cf5c28f,0x3d23d70a);
         param_1[3] = uVar5;
         param_1[4] = 0x43000000;
         param_1[5] = 0x43000000;
         param_1[6] = 0x43000000;
-        uVar5 = FUN_001338b0(0x42400000,0x42c00000);
+        uVar5 = maybe_Rand_Next(0x42400000,0x42c00000);
         param_1[7] = uVar5;
-        uVar5 = FUN_001338b0(0xc0490fdb,0x40490fdb);
-        FUN_001339f0(uVar5,param_1 + 8,param_1 + 9);
+        uVar5 = maybe_Rand_Next(0xc0490fdb,0x40490fdb);
+        maybe_Math_AngleToIndex(uVar5,param_1 + 8,param_1 + 9);
         param_1[10] = 0;
         iVar4 = iVar4 + 1;
         param_1[0xb] = 0;
@@ -179,21 +179,21 @@ void FUN_001c4690(undefined4 *param_1,float *param_2,int param_3,long param_4)
     iVar4 = 0;
     if (0 < param_3) {
       do {
-        uVar5 = FUN_001338b0(fVar1 - 7.0,fVar1 + 7.0);
+        uVar5 = maybe_Rand_Next(fVar1 - 7.0,fVar1 + 7.0);
         *param_1 = uVar5;
-        uVar5 = FUN_001338b0(fVar2 - 7.0,fVar2 + 7.0);
+        uVar5 = maybe_Rand_Next(fVar2 - 7.0,fVar2 + 7.0);
         param_1[1] = uVar5;
-        uVar5 = FUN_001338b0(fVar3 - 7.0,fVar3 + 7.0);
+        uVar5 = maybe_Rand_Next(fVar3 - 7.0,fVar3 + 7.0);
         param_1[2] = uVar5;
-        uVar5 = FUN_001338b0(0x3b9374bc,0x3c1374bc);
+        uVar5 = maybe_Rand_Next(0x3b9374bc,0x3c1374bc);
         param_1[3] = uVar5;
         param_1[4] = 0x43000000;
         param_1[5] = 0x43000000;
         param_1[6] = 0x43000000;
-        uVar5 = FUN_001338b0(0x42400000,0x42c00000);
+        uVar5 = maybe_Rand_Next(0x42400000,0x42c00000);
         param_1[7] = uVar5;
-        uVar5 = FUN_001338b0(0xc0490fdb,0x40490fdb);
-        FUN_001339f0(uVar5,param_1 + 8,param_1 + 9);
+        uVar5 = maybe_Rand_Next(0xc0490fdb,0x40490fdb);
+        maybe_Math_AngleToIndex(uVar5,param_1 + 8,param_1 + 9);
         param_1[10] = 0;
         iVar4 = iVar4 + 1;
         param_1[0xb] = 0;
@@ -262,7 +262,7 @@ void FUN_001c4b30(uint param_1)
     else {
       uVar3 = 800;
     }
-    FUN_00132ae0(auStack_170,iVar1 + 0x420);
+    vu0math_sub_00132ae0(auStack_170,iVar1 + 0x420);
     uRam00433fa4 = *(undefined4 *)(iVar1 + 0xa8);
     FUN_00184b20(0x433f00,0,8);
     thunk_FUN_001466e0(auStack_160,0x433f00,0x436180,8,9);
@@ -325,7 +325,7 @@ void FUN_001c4d90(int *param_1,undefined8 param_2)
     else {
       uVar3 = 800;
     }
-    FUN_00132ae0(auStack_10,*(int *)(iGpffff8b0c + 0x14) + 0x70);
+    vu0math_sub_00132ae0(auStack_10,*(int *)(iGpffff8b0c + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       if (uVar4 - 2 < 2) {
@@ -354,8 +354,8 @@ void FUN_001c4d90(int *param_1,undefined8 param_2)
       iVar5 = iGpffff8c38 + 0x4b00;
       iVar2 = iGpffff8c38;
     }
-    FUN_00132ae0(auStack_20,*(int *)(iGpffff8b0c + 0x14) + 0x70);
-    FUN_00132ae0(auStack_30,iVar1 + 0x70);
+    vu0math_sub_00132ae0(auStack_20,*(int *)(iGpffff8b0c + 0x14) + 0x70);
+    vu0math_sub_00132ae0(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       FUN_001c52b0(iVar2,auStack_20,uVar3,param_2);
@@ -424,25 +424,25 @@ void FUN_001c4f70(float *param_1,undefined4 *param_2,int param_3,char param_4)
     afStack_30[2] = 0.2;
     afStack_30[0] = afStack_30[2];
   }
-  FUN_001339f0(&fStack_8,&fStack_4);
+  maybe_Math_AngleToIndex(&fStack_8,&fStack_4);
   iVar2 = 0;
   if (0 < param_3) {
     do {
       if ((param_4 == '\x01') || (param_4 == '\0')) {
-        fVar3 = (float)FUN_001338b0(fGpffff8c40,fGpffff8c40 + 0.021666666);
+        fVar3 = (float)maybe_Rand_Next(fGpffff8c40,fGpffff8c40 + 0.021666666);
         *param_1 = fStack_4 * fVar3 + *param_1 + 0.0;
-        fVar3 = (float)FUN_001338b0(fGpffff8c40,fGpffff8c40 + 0.021666666);
+        fVar3 = (float)maybe_Rand_Next(fGpffff8c40,fGpffff8c40 + 0.021666666);
         param_1[2] = fStack_8 * fVar3 + param_1[2] + 0.0;
       }
       else {
         if (param_4 != '\x03') {
           if (param_4 != '\x02') goto LAB_001c5268;
-          fVar3 = (float)FUN_001338b0(fGpffff8c40,fGpffff8c40 + 1.275);
+          fVar3 = (float)maybe_Rand_Next(fGpffff8c40,fGpffff8c40 + 1.275);
           param_1[1] = (param_1[1] + 0.0) - fVar3 * 0.4;
         }
-        fVar3 = (float)FUN_001338b0(0x3f000000,0x3fc00000);
+        fVar3 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
         *param_1 = fGpffff8c40 * fStack_4 * fVar3 + *param_1 + 0.0;
-        fVar3 = (float)FUN_001338b0(0x3f000000,0x3fc00000);
+        fVar3 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
         param_1[2] = fGpffff8c40 * fStack_8 * fVar3 + param_1[2] + 0.0;
       }
 LAB_001c5268:
@@ -515,18 +515,18 @@ void FUN_001c52b0(undefined4 *param_1,float *param_2,int param_3,char param_4)
     fVar6 = in_f21 + in_f21;
     fVar7 = in_f2 / 2.0;
     do {
-      uVar5 = FUN_001338b0(fVar1 - fVar7,fVar7 + fVar1);
+      uVar5 = maybe_Rand_Next(fVar1 - fVar7,fVar7 + fVar1);
       *param_1 = uVar5;
-      uVar5 = FUN_001338b0(fVar2 - in_f1 / 2.0,in_f1 / 2.0 + fVar2);
+      uVar5 = maybe_Rand_Next(fVar2 - in_f1 / 2.0,in_f1 / 2.0 + fVar2);
       param_1[1] = uVar5;
-      uVar5 = FUN_001338b0(fVar3 - fVar7,fVar7 + fVar3);
+      uVar5 = maybe_Rand_Next(fVar3 - fVar7,fVar7 + fVar3);
       param_1[2] = uVar5;
-      uVar5 = FUN_001338b0(in_f21,fVar6);
+      uVar5 = maybe_Rand_Next(in_f21,fVar6);
       param_1[3] = uVar5;
       param_1[4] = 0x43000000;
       param_1[5] = 0x43000000;
       param_1[6] = 0x43000000;
-      uVar5 = FUN_001338b0(unaff_f20,unaff_f20 + in_f0);
+      uVar5 = maybe_Rand_Next(unaff_f20,unaff_f20 + in_f0);
       param_1[7] = uVar5;
       iVar4 = iVar4 + 1;
       param_1[8] = in_f21;
@@ -708,7 +708,7 @@ void FUN_001c5b00(int param_1,undefined4 param_2,undefined8 param_3)
 
 {
   *(undefined4 *)(param_1 * 0x50 + 0x436570) = param_2;
-  FUN_00132c20(param_1 * 0x50 + 0x436580,param_3);
+  vu0math_sub_00132c20(param_1 * 0x50 + 0x436580,param_3);
   return;
 }
 
@@ -728,11 +728,11 @@ void FUN_001c5b50(void)
 
 {
   if (iGpffff8c38 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8c38 = 0;
   }
   if (iGpffff8c3c != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8c3c = 0;
   }
   return;
@@ -745,13 +745,13 @@ void FUN_001c5ba0(undefined8 param_1)
   undefined4 *puVar1;
   int iVar2;
   
-  uGpffff8c38 = FUN_00100480(0x9600,0x10,param_1);
-  uGpffff8c3c = FUN_00100480(0x12c0,0x10,param_1);
+  uGpffff8c38 = Mem_AllocAligned(0x9600,0x10,param_1);
+  uGpffff8c3c = Mem_AllocAligned(0x12c0,0x10,param_1);
   iVar2 = 0;
   puVar1 = (undefined4 *)0x436570;
   do {
     *puVar1 = 0;
-    FUN_00133090(puVar1 + 4);
+    maybe_Vu0_UnitMatrix(puVar1 + 4);
     iVar2 = iVar2 + 1;
     puVar1 = puVar1 + 0x14;
   } while (iVar2 < 2);
@@ -834,7 +834,7 @@ void FUN_001c5d60(void)
           FUN_00142c80(iVar1,2);
           FUN_00142c80(iVar1,1);
         }
-        FUN_00100290(*(undefined4 *)(iGpffff8c5c + iVar2));
+        Mem_Free(*(undefined4 *)(iGpffff8c5c + iVar2));
       }
       iVar3 = iVar3 + 1;
       iVar2 = iVar2 + 4;
@@ -843,12 +843,12 @@ void FUN_001c5d60(void)
     iVar2 = 0;
     do {
       if (*(int *)(iGpffff8c5c + iVar2 + 8) != 0) {
-        FUN_00100290();
+        Mem_Free();
       }
       iVar3 = iVar3 + 1;
       iVar2 = iVar2 + 4;
     } while (iVar3 < 3);
-    FUN_00100290(iGpffff8c5c);
+    Mem_Free(iGpffff8c5c);
   }
   return;
 }
@@ -870,7 +870,7 @@ void FUN_001c5e50(undefined8 param_1)
   iVar5 = 0;
   do {
     if (*(int *)(iGpffff8c5c + iVar5 + 8) != 0) {
-      FUN_00100290();
+      Mem_Free();
     }
     iVar6 = iVar6 + 1;
     *(undefined4 *)(iGpffff8c5c + iVar5 + 8) = 0;
@@ -880,7 +880,7 @@ void FUN_001c5e50(undefined8 param_1)
   if (0 < iVar3) {
     iVar6 = 0;
     do {
-      uVar4 = FUN_00100680(0x18,param_1);
+      uVar4 = Mem_Alloc16(0x18,param_1);
       *(undefined4 *)(iGpffff8c5c + iVar6 + 8) = uVar4;
       puVar1 = *(undefined4 **)(iGpffff8c5c + iVar6 + 8);
       *puVar1 = 0;
@@ -891,7 +891,7 @@ void FUN_001c5e50(undefined8 param_1)
       *(undefined1 *)(puVar1 + 5) = 0;
       if (iVar5 < iVar2) {
         if (*(int *)(iGpffff8c5c + iVar6) == 0) {
-          uVar4 = FUN_00100680(0x6a130,param_1);
+          uVar4 = Mem_Alloc16(0x6a130,param_1);
           *(undefined4 *)(iGpffff8c5c + iVar6) = uVar4;
           FUN_001c9a80(*(undefined4 *)(iGpffff8c5c + iVar6),(char)iVar5);
         }
@@ -919,7 +919,7 @@ void FUN_001c5fc0(undefined8 param_1,undefined8 param_2)
   if ((uVar1 & 1) == 0) {
     if ((uVar1 & 2) == 0) {
       if ((uVar1 & 4) != 0) {
-        uVar4 = FUN_00100680(0x18,param_1);
+        uVar4 = Mem_Alloc16(0x18,param_1);
         *(undefined4 *)(iVar3 * 4 + iGpffff8c5c + 8) = uVar4;
         puVar2 = *(undefined4 **)(iVar3 * 4 + iGpffff8c5c + 8);
         *puVar2 = 0;
@@ -931,7 +931,7 @@ void FUN_001c5fc0(undefined8 param_1,undefined8 param_2)
       }
     }
     else {
-      uVar4 = FUN_00100680(0x18,param_1);
+      uVar4 = Mem_Alloc16(0x18,param_1);
       *(undefined4 *)(iVar3 * 4 + iGpffff8c5c + 8) = uVar4;
       puVar2 = *(undefined4 **)(iVar3 * 4 + iGpffff8c5c + 8);
       *puVar2 = 0;
@@ -944,10 +944,10 @@ void FUN_001c5fc0(undefined8 param_1,undefined8 param_2)
   }
   else {
     iVar3 = iVar3 * 4;
-    uVar4 = FUN_00100680(0x6a130,param_1);
+    uVar4 = Mem_Alloc16(0x6a130,param_1);
     *(undefined4 *)(iGpffff8c5c + iVar3) = uVar4;
     FUN_001c9a80(*(undefined4 *)(iGpffff8c5c + iVar3),(char)param_2);
-    uVar4 = FUN_00100680(0x18,param_1);
+    uVar4 = Mem_Alloc16(0x18,param_1);
     *(undefined4 *)(iVar3 + iGpffff8c5c + 8) = uVar4;
     puVar2 = *(undefined4 **)(iVar3 + iGpffff8c5c + 8);
     *puVar2 = 0;
@@ -1218,7 +1218,7 @@ void FUN_001c64c0(undefined8 param_1)
     }
   }
   else if (cVar5 == '\0') {
-    fVar10 = (float)FUN_00120a68(*(undefined4 *)(iVar9 + 0x6a11c));
+    fVar10 = (float)fabsf(*(undefined4 *)(iVar9 + 0x6a11c));
     if (0.0 < fVar10) {
       if (*(float *)(iVar9 + 0x6a11c) < 0.0) {
         *(float *)(iVar9 + 0x6a11c) = -*(float *)(iVar9 + 0x6a11c);
@@ -2004,7 +2004,7 @@ void FUN_001c7f40(uint *param_1,float *param_2,int param_3)
                   else if (0.0 < fVar8) {
                     fVar9 = 1.0;
                   }
-                  fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+                  fVar9 = (float)fabsf(fVar8 * fVar9);
                   if (0.2 <= fVar9) {
                     if (fVar9 < 0.6) {
                       fVar9 = ((fVar9 - 0.2) / 0.40000004) * 0.5;
@@ -2047,7 +2047,7 @@ void FUN_001c7f40(uint *param_1,float *param_2,int param_3)
                   else if (0.0 < fVar8) {
                     fVar9 = 1.0;
                   }
-                  fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+                  fVar9 = (float)fabsf(fVar8 * fVar9);
                   if (0.2 <= fVar9) {
                     if (fVar9 < 0.6) {
                       fVar9 = ((fVar9 - 0.2) / 0.40000004) * 0.5;
@@ -2091,7 +2091,7 @@ void FUN_001c7f40(uint *param_1,float *param_2,int param_3)
                 else if (0.0 < fVar8) {
                   fVar9 = 1.0;
                 }
-                fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+                fVar9 = (float)fabsf(fVar8 * fVar9);
                 if (0.2 <= fVar9) {
                   if (fVar9 < 0.6) {
                     fVar9 = ((fVar9 - 0.2) / 0.40000004) * 0.5;
@@ -2135,7 +2135,7 @@ void FUN_001c7f40(uint *param_1,float *param_2,int param_3)
               else if (0.0 < fVar8) {
                 fVar9 = 1.0;
               }
-              fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+              fVar9 = (float)fabsf(fVar8 * fVar9);
               if (0.2 <= fVar9) {
                 if (fVar9 < 0.6) {
                   fVar9 = ((fVar9 - 0.2) / 0.40000004) * 0.5;

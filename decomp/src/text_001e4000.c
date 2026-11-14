@@ -111,27 +111,27 @@ void FUN_001e43b0(int param_1)
           uStack_94 = *(undefined4 *)(iVar2 + 0x11c);
           iVar2 = FUN_001d2280(uVar4,0xc);
           fVar10 = ((float)iVar2 + 5.0) / 5.0 - 1.0;
-          FUN_00133090(auStack_90);
-          FUN_00132ae0(auStack_90,&uStack_d0);
-          FUN_00132ae0(auStack_80,&uStack_c0);
-          FUN_00132ae0(auStack_70,&uStack_b0);
-          FUN_00132ae0(auStack_20,&uStack_a0);
-          FUN_00132d50(auStack_30,auStack_90,&uStack_10);
-          FUN_00132ae0(auStack_e0,auStack_20);
+          maybe_Vu0_UnitMatrix(auStack_90);
+          vu0math_sub_00132ae0(auStack_90,&uStack_d0);
+          vu0math_sub_00132ae0(auStack_80,&uStack_c0);
+          vu0math_sub_00132ae0(auStack_70,&uStack_b0);
+          vu0math_sub_00132ae0(auStack_20,&uStack_a0);
+          vu0math_sub_00132d50(auStack_30,auStack_90,&uStack_10);
+          vu0math_sub_00132ae0(auStack_e0,auStack_20);
           fStack_dc = fStack_dc + 0.4;
           if (iVar5 == 0) {
-            FUN_00132ae0(0x430680,auStack_20);
-            FUN_00132ae0(0x4306a0,auStack_30);
+            vu0math_sub_00132ae0(0x430680,auStack_20);
+            vu0math_sub_00132ae0(0x4306a0,auStack_30);
           }
           else {
-            FUN_00132ae0(0x430690,auStack_20);
-            FUN_00132ae0(0x4306b0,auStack_30);
+            vu0math_sub_00132ae0(0x430690,auStack_20);
+            vu0math_sub_00132ae0(0x4306b0,auStack_30);
           }
-          FUN_00132d50(&uStack_50,auStack_90,&uStack_50);
-          FUN_001328b0(auStack_30,auStack_30);
-          FUN_001328b0(&uStack_50,&uStack_50);
-          FUN_00132b10(0x40000000,auStack_40,auStack_30);
-          FUN_00132b70(auStack_20,auStack_20,auStack_40);
+          vu0math_sub_00132d50(&uStack_50,auStack_90,&uStack_50);
+          vu0math_sub_001328b0(auStack_30,auStack_30);
+          vu0math_sub_001328b0(&uStack_50,&uStack_50);
+          vu0math_sub_00132b10(0x40000000,auStack_40,auStack_30);
+          vu0math_sub_00132b70(auStack_20,auStack_20,auStack_40);
           if ((*puVar6 & 8) == 0) {
             FUN_001443a0(fVar10 + 0.6,fVar10 + 1.0,iVar7,auStack_20,auStack_30,&uStack_50);
           }
@@ -1229,7 +1229,7 @@ void FUN_001e66a0(undefined8 param_1)
           iVar2 = FUN_00177230();
         } while (iVar6 < iVar2);
       }
-      FUN_00101180(param_1);
+      msl_sub_00101180(param_1);
       uVar4 = FUN_002cfad0();
       if ((uVar4 & 1) == 0) {
         iVar6 = FUN_002cfb30(0);

@@ -385,11 +385,11 @@ void FUN_002f8700(void)
 
 {
   if (*piRam0036f934 != 0) {
-    FUN_00100290();
+    Mem_Free();
     *piRam0036f934 = 0;
   }
   if (piRam0036f934 != (int *)0x0) {
-    FUN_00100290();
+    Mem_Free();
     piRam0036f934 = (int *)0x0;
   }
   FUN_001f4be0();
@@ -411,8 +411,8 @@ void FUN_002f8760(undefined8 param_1,undefined4 param_2)
   int iVar9;
   undefined4 *puVar10;
   
-  puRam0036f934 = (undefined4 *)FUN_00100680(0x1c,param_1);
-  uVar4 = FUN_00100680(0x17f0,param_1);
+  puRam0036f934 = (undefined4 *)Mem_Alloc16(0x1c,param_1);
+  uVar4 = Mem_Alloc16(0x17f0,param_1);
   iVar9 = 0;
   iVar6 = 0;
   piVar5 = &DAT_00343410;
@@ -564,7 +564,7 @@ void FUN_002f8ae0(void)
 
 {
   if (iGpffff9260 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff9260 = 0;
   }
   return;
@@ -577,10 +577,10 @@ void FUN_002f8b10(undefined8 param_1,undefined4 param_2)
   long lVar1;
   
   if (puGpffff9260 != (undefined1 *)0x0) {
-    FUN_00100290();
+    Mem_Free();
     puGpffff9260 = (undefined1 *)0x0;
   }
-  lVar1 = FUN_00100680(0x24,param_1);
+  lVar1 = Mem_Alloc16(0x24,param_1);
   puGpffff9260 = (undefined1 *)lVar1;
   if (lVar1 != 0) {
     *puGpffff9260 = 0;
@@ -1020,7 +1020,7 @@ LAB_002f947c:
           iVar3 = FUN_0017bf40();
           iVar3 = iVar3 + (*(int *)(iVar8 + 0x54) + -0xc) * 0x858 + 0x30;
         }
-        FUN_00132600(iVar2 + (iVar6 + -0xc) * 0x858 + 0x30,iVar3,0x858);
+        maybe_Mem_CopyQwords(iVar2 + (iVar6 + -0xc) * 0x858 + 0x30,iVar3,0x858);
         *(undefined4 *)(iVar8 + 0x54) = 0xffffffff;
       }
     }
@@ -1056,7 +1056,7 @@ void FUN_002f96c0(int param_1)
     uVar3 = FUN_002f8ab0();
     if ((uVar3 & 0x180) != 0) {
       iVar1 = FUN_0017bf40();
-      FUN_0012b470(iVar1 + (*(int *)(param_1 + 0x60) + -0xc) * 0x858 + 0x876,param_1 + 0x3c,0x10);
+      maybe_strncpy(iVar1 + (*(int *)(param_1 + 0x60) + -0xc) * 0x858 + 0x876,param_1 + 0x3c,0x10);
     }
   }
   else {
@@ -1096,7 +1096,7 @@ void FUN_002f9780(undefined8 param_1)
     do {
       if ((iVar5 != *(int *)(iVar4 + 0x60)) && (lVar1 = FUN_002bc1a0(iVar5), lVar1 != 0)) {
         uVar3 = FUN_002b8e60(*(undefined4 *)(iVar4 + 0x20),iVar5);
-        lVar1 = FUN_0012b0d8(iVar4 + 0x3c,uVar3);
+        lVar1 = newlib_sub_0012b0d8(iVar4 + 0x3c,uVar3);
         if (lVar1 == 0) {
           *(undefined4 *)(iVar4 + 0x74) = 5;
           return;
@@ -1105,7 +1105,7 @@ void FUN_002f9780(undefined8 param_1)
       iVar5 = iVar5 + 1;
     } while (iVar5 < 0x1e);
     iVar5 = FUN_0017bf40();
-    FUN_0012b470(iVar5 + (*(int *)(iVar4 + 0x60) + -0xc) * 0x858 + 0x876,iVar4 + 0x3c,0x10);
+    maybe_strncpy(iVar5 + (*(int *)(iVar4 + 0x60) + -0xc) * 0x858 + 0x876,iVar4 + 0x3c,0x10);
     *(undefined4 *)(iVar4 + 0x74) = 3;
   }
   else {
@@ -1267,9 +1267,9 @@ LAB_002f9b90:
         iVar5 = iVar2 + (*(int *)(iVar6 + 0x54) + -0xc) * 0x858 + 0x30;
         iVar2 = FUN_0017bf40();
         iVar2 = iVar2 + (*(int *)(iVar6 + 0x60) + -0xc) * 0x858 + 0x30;
-        FUN_00132600(auStack_860,iVar2);
-        FUN_00132600(iVar2,iVar5,0x858);
-        FUN_00132600(iVar5,auStack_860,0x858);
+        maybe_Mem_CopyQwords(auStack_860,iVar2);
+        maybe_Mem_CopyQwords(iVar2,iVar5,0x858);
+        maybe_Mem_CopyQwords(iVar5,auStack_860,0x858);
         if (*(int *)(iVar6 + 0x54) == *(int *)(iVar6 + 0x70)) {
           *(undefined4 *)(iVar6 + 0x70) = *(undefined4 *)(iVar6 + 0x60);
         }
@@ -1702,7 +1702,7 @@ void FUN_002fa730(int param_1)
   FUN_0014f3b0(auStack_350,4,0xffffffffffffffff);
   uStack_a0 = 0x44;
   auStack_350[0] = auStack_350[0] | 2;
-  fVar1 = (float)FUN_00120c30((float)(uint)((iRam0036f0cc << 1) % 0xb4) * 0.017453292);
+  fVar1 = (float)cosf((float)(uint)((iRam0036f0cc << 1) % 0xb4) * 0.017453292);
   fVar1 = fVar1 * 255.0;
   if (2.1474836e+09 <= fVar1) {
     fVar1 = fVar1 - 2.1474836e+09;
@@ -1908,7 +1908,7 @@ void FUN_002faab0(int param_1)
   }
   else if (iVar8 == 0) {
     uVar9 = FUN_0014bfe0(5,5);
-    iVar8 = FUN_00100480(uVar9,0x40,0x430750);
+    iVar8 = Mem_AllocAligned(uVar9,0x40,0x430750);
     piVar2[3] = iVar8;
     iVar8 = FUN_0014bf00(5,piVar2[3],0,0,0,0);
     piVar2[2] = iVar8;
@@ -1942,7 +1942,7 @@ void FUN_002fafa0(int param_1)
   
   iVar1 = *(int *)(param_1 + 0x14);
   if (*(int *)(iVar1 + 0xc) != 0) {
-    FUN_00100290();
+    Mem_Free();
     *(undefined4 *)(iVar1 + 0xc) = 0;
   }
   FUN_001fe2d0();

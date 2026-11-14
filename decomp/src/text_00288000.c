@@ -612,7 +612,7 @@ void FUN_002891d0(int param_1,undefined8 param_2)
   iVar11 = iGpffff8fa8 * 4 + param_1;
   piVar6 = (int *)(iVar11 + 0x74);
   param_1 = param_1 + iGpffff8fa8 * 800;
-  FUN_00129698(param_1 + 0x98,*(undefined4 *)(iVar11 + 0x74),4,0x289660);
+  maybe_qsort(param_1 + 0x98,*(undefined4 *)(iVar11 + 0x74),4,0x289660);
   iVar11 = 0;
   if (0 < *piVar6 + -1) {
     do {
@@ -1515,7 +1515,7 @@ void FUN_0028b1b0(undefined4 *param_1)
       iVar2 = FUN_00209460();
     } while (iVar5 < iVar2);
   }
-  FUN_00129698(param_1 + 0x16,param_1[0x15],4,0x28adc0);
+  maybe_qsort(param_1 + 0x16,param_1[0x15],4,0x28adc0);
   param_1[1] = 0xffffffff;
   param_1[2] = 0;
   param_1[3] = 0;

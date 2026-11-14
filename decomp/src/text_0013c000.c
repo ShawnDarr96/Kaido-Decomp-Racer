@@ -58,11 +58,11 @@ int FUN_0013c100(int param_1,int *param_2)
   iVar4 = 0;
   iVar1 = *param_2;
   while (iVar1 != 0) {
-    iVar1 = FUN_0012b338(*param_2);
+    iVar1 = strlen(*param_2);
     iVar1 = iVar1 + 1;
-    FUN_00132600(param_1 + iVar4,*param_2,iVar1);
+    maybe_Mem_CopyQwords(param_1 + iVar4,*param_2,iVar1);
     uVar3 = FUN_00131e20(param_1 + iVar4 + iVar1,param_2[1],10);
-    iVar2 = FUN_0012b338(uVar3);
+    iVar2 = strlen(uVar3);
     param_2 = param_2 + 2;
     iVar4 = iVar4 + iVar1 + iVar2 + 1;
     iVar1 = *param_2;
@@ -77,7 +77,7 @@ void FUN_0013c1b0(void)
   long in_a3;
   undefined4 uStack_4;
   
-  FUN_00119918();
+  loadfile_sub_00119918();
   if (in_a3 != 0) {
     *(undefined4 *)in_a3 = uStack_4;
   }
@@ -90,25 +90,25 @@ void FUN_0013c1f0(long param_1,long param_2)
 {
   long lVar1;
   
-  FUN_00114200(0);
-  FUN_00121c80(0);
+  sceSifInitRpc(0);
+  sceCdInit(0);
   if (param_2 != 0) {
     do {
-      lVar1 = FUN_001198f8(param_2,0,0);
+      lVar1 = loadfile_sub_001198f8(param_2,0,0);
     } while (lVar1 < 0);
   }
   if (param_1 != 0) {
     do {
-      lVar1 = FUN_00119e28(param_1);
+      lVar1 = sceSifRebootIop(param_1);
     } while (lVar1 == 0);
     do {
-      lVar1 = FUN_00119dd8();
+      lVar1 = maybe_sceSifIsIopReady();
     } while (lVar1 == 0);
   }
-  FUN_00114200(0);
-  FUN_00119088();
-  FUN_00115bb8();
-  FUN_001189a8();
+  sceSifInitRpc(0);
+  loadfile_sub_00119088();
+  libkernl_sub_00115bb8();
+  loadfile_sub_001189a8();
   return;
 }
 
@@ -173,7 +173,7 @@ void FUN_0013c2c0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undef
     puStack_60 = puRam00387004;
     break;
   case 0x10b:
-    FUN_00132600(0x387004,puRam00387004,0x14);
+    maybe_Mem_CopyQwords(0x387004,puRam00387004,0x14);
     goto LAB_0013c474;
   case 0x110:
     puVar1 = (undefined2 *)0x387004;
@@ -395,7 +395,7 @@ undefined4 FUN_0013c880(uint param_1,undefined8 param_2,undefined8 param_3)
       } while (uVar5 < param_1);
     }
     uGpffff8944 = param_1;
-    iGpffff8948 = FUN_00100680(param_1 * 0x6c,param_3);
+    iGpffff8948 = Mem_Alloc16(param_1 * 0x6c,param_3);
     uVar5 = 0;
     if (param_1 != 0) {
       iVar4 = 0;
@@ -482,10 +482,10 @@ void FUN_0013c9b0(undefined4 param_1,undefined8 param_2,undefined8 param_3,undef
   uStack_8 = param_8;
   switch(param_1) {
   case 0x305:
-    FUN_00132600(0x387084,uRam00387084,0x10);
+    maybe_Mem_CopyQwords(0x387084,uRam00387084,0x10);
     break;
   case 0x306:
-    FUN_00132600(0x387084,uRam00387084,0xc);
+    maybe_Mem_CopyQwords(0x387084,uRam00387084,0xc);
   default:
   }
   FUN_0013bd50(uGpffff8934,&uStack_70);
@@ -710,19 +710,19 @@ void FUN_0013d0d0(void)
   uVar1 = FUN_0013be40(uGpffff8934,1);
   uGpffff8944 = 0;
   if (iGpffff8948 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8948 = 0;
   }
   FUN_0013c9b0(0x301);
   FUN_0013be40(uGpffff8934,uVar1);
   FUN_0013bf50(0x387100);
-  FUN_00132790((int)register0x000001c0 + -0x76b4);
+  maybe_Mutex_Delete((int)register0x000001c0 + -0x76b4);
   if (iGpffff893c != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff893c = 0;
   }
   if (iGpffff8940 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8940 = 0;
   }
   return;
@@ -737,9 +737,9 @@ bool FUN_0013d170(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   undefined8 uVar2;
   
   uGpffff8938 = (undefined4)param_3;
-  uGpffff893c = FUN_00100480(0x40,0x40,param_5);
-  uGpffff8940 = FUN_00100480(0x1000,0x10,param_5);
-  FUN_001327d0((int)register0x000001c0 + -0x76b4);
+  uGpffff893c = Mem_AllocAligned(0x40,0x40,param_5);
+  uGpffff8940 = Mem_AllocAligned(0x1000,0x10,param_5);
+  maybe_Mutex_Create((int)register0x000001c0 + -0x76b4);
   lVar1 = FUN_0013bfa0(0x387100,param_3,param_4,0x40,uGpffff893c,0x1000,uGpffff8940,0x13c550);
   if (lVar1 != 0) {
     uVar2 = FUN_0013be40(uGpffff8934,1);
@@ -758,19 +758,19 @@ void FUN_0013d260(void)
   uVar1 = FUN_0013be40(uGpffff8934,1);
   uGpffff8944 = 0;
   if (iGpffff8948 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8948 = 0;
   }
   FUN_0013c9b0(0x301);
   FUN_0013be40(uGpffff8934,uVar1);
   FUN_0013bf50(0x387100);
-  FUN_00132790((int)register0x000001c0 + -0x76b4);
+  maybe_Mutex_Delete((int)register0x000001c0 + -0x76b4);
   if (iGpffff893c != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff893c = 0;
   }
   if (iGpffff8940 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8940 = 0;
   }
   return;
@@ -815,7 +815,7 @@ undefined4 FUN_0013d310(uint param_1,undefined8 param_2,undefined8 param_3)
         } while (uVar5 < param_1);
       }
       uGpffff8954 = param_1;
-      iGpffff8958 = FUN_00100680(param_1 * 0x50,param_3);
+      iGpffff8958 = Mem_Alloc16(param_1 * 0x50,param_3);
       uVar5 = 0;
       if (param_1 != 0) {
         iVar4 = 0;
@@ -967,7 +967,7 @@ void FUN_0013d620(undefined4 param_1,undefined8 param_2,undefined8 param_3,undef
   uStack_8 = param_8;
   switch(param_1) {
   case 0x205:
-    FUN_00132600(0x387204,uRam00387204,0x1c);
+    maybe_Mem_CopyQwords(0x387204,uRam00387204,0x1c);
   }
   FUN_0013bd50(uGpffff8950,&uStack_70);
   return;
@@ -994,8 +994,8 @@ void FUN_0013d770(undefined8 param_1,int *param_2)
     *(int *)piVar1[0xf] = param_2[4] + -0x10;
     *(undefined4 *)(piVar1[0xf] + 4) = 0;
     *(int *)(*(int *)(piVar1[2] + 0xc) + 4) = piVar1[0xf];
-    FUN_001247f0(piVar1 + 1);
-    FUN_00124918(piVar1 + 1,0,0xc0);
+    newlib_sub_001247f0(piVar1 + 1);
+    newlib_sub_00124918(piVar1 + 1,0,0xc0);
     piVar1[0x11] = (int)(piVar1 + 1);
     piVar1[0x10] = 0;
     *(undefined1 *)(piVar1[0xf] + *(int *)piVar1[0xf] + 8) = 1;
@@ -1022,7 +1022,7 @@ void FUN_0013d890(void)
   
   uVar1 = FUN_0013be40(uGpffff8950,1);
   if (iGpffff8958 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8958 = 0;
   }
   uGpffff8954 = 0;
@@ -1052,7 +1052,7 @@ void FUN_0013d960(void)
   
   uVar1 = FUN_0013be40(uGpffff8950,1);
   if (iGpffff8958 != 0) {
-    FUN_00100290();
+    Mem_Free();
     iGpffff8958 = 0;
   }
   uGpffff8954 = 0;

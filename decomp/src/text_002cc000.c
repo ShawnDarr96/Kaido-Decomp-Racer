@@ -246,9 +246,9 @@ void FUN_002cc690(int param_1)
     else {
       FUN_002cc1d0(param_1);
     }
-    lVar3 = FUN_001011c0(param_1 + 0xfa8);
+    lVar3 = msl_sub_001011c0(param_1 + 0xfa8);
     if (lVar3 != 0) {
-      FUN_00101180(param_1);
+      msl_sub_00101180(param_1);
     }
     FUN_002c5780(param_1 + 0x1270);
     FUN_002c5780(param_1 + 0x26f0);
@@ -1076,7 +1076,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = iVar31 + 0x7ffU >> 0xb;
     }
-    uVar11 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0xfc4) = uVar11;
     FUN_0014bf00(iVar3,*(undefined4 *)(param_1 + 0xfc4),0,0,0,0);
   }
@@ -1093,7 +1093,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e368) + 0x7ffU >> 0xb;
     }
-    uVar11 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0xfec) = uVar11;
     FUN_0014bf00(0x182a,*(undefined4 *)(param_1 + 0xfec),0,0,0,0);
     iStack_50 = DAT_0032f91c;
@@ -1108,7 +1108,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e368) + 0x7ffU >> 0xb;
     }
-    uVar11 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1000) = uVar11;
     FUN_0014bf00(0x182a,*(undefined4 *)(param_1 + 0x1000),0,0,0,0);
   }
@@ -1124,7 +1124,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
   else {
     uVar25 = *(int *)(iGpffff89d4 + 0x1e1ec) + 0x7ffU >> 0xb;
   }
-  uVar11 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+  uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
   *(undefined4 *)(param_1 + 0xfd8) = uVar11;
   FUN_0014bf00(0x1817,*(undefined4 *)(param_1 + 0xfd8),0,0,0,0);
   FUN_001f4980(0x10,&DAT_0032f8b0 + iVar13,0);
@@ -1165,7 +1165,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e200) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1014) = uVar12;
     FUN_0014bf00(0x1818,*(undefined4 *)(param_1 + 0x1014),0,0,0,0);
     iStack_80 = DAT_0032f934;
@@ -1180,7 +1180,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e1ec) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1028) = uVar12;
     FUN_0014bf00(0x1817,*(undefined4 *)(param_1 + 0x1028),0,0,0,0);
     iStack_90 = DAT_0032f940;
@@ -1195,7 +1195,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e2a0) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x103c) = uVar12;
     FUN_0014bf00(0x1820,*(undefined4 *)(param_1 + 0x103c),0,0,0,0);
     iStack_a0 = DAT_0032f94c;
@@ -1210,7 +1210,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e2b4) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1050) = uVar12;
     FUN_0014bf00(0x1821,*(undefined4 *)(param_1 + 0x1050),0,0,0,0);
     iStack_b0 = DAT_0032f958;
@@ -1225,7 +1225,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e2c8) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1064) = uVar12;
     FUN_0014bf00(0x1822,*(undefined4 *)(param_1 + 0x1064),0,0,0,0);
     iStack_c0 = DAT_0032f964;
@@ -1240,7 +1240,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e354) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x1078) = uVar12;
     FUN_0014bf00(0x1829,*(undefined4 *)(param_1 + 0x1078),0,0,0,0);
     iStack_d0 = DAT_0032f970;
@@ -1255,7 +1255,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e340) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x108c) = uVar12;
     FUN_0014bf00(0x1828,*(undefined4 *)(param_1 + 0x108c),0,0,0,0);
     iStack_e0 = DAT_0032f97c;
@@ -1270,7 +1270,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e2dc) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10a0) = uVar12;
     FUN_0014bf00(0x1823,*(undefined4 *)(param_1 + 0x10a0),0,0,0,0);
     iStack_f0 = DAT_0032f988;
@@ -1285,7 +1285,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e2f0) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10b4) = uVar12;
     FUN_0014bf00(0x1824,*(undefined4 *)(param_1 + 0x10b4),0,0,0,0);
     iStack_100 = DAT_0032f994;
@@ -1300,7 +1300,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e304) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10c8) = uVar12;
     FUN_0014bf00(0x1825,*(undefined4 *)(param_1 + 0x10c8),0,0,0,0);
     iStack_110 = DAT_0032f9a0;
@@ -1315,7 +1315,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e318) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10dc) = uVar12;
     FUN_0014bf00(0x1826,*(undefined4 *)(param_1 + 0x10dc),0,0,0,0);
     iStack_120 = DAT_0032f9ac;
@@ -1330,7 +1330,7 @@ void FUN_002ccde0(int param_1,undefined4 param_2)
     else {
       uVar25 = *(int *)(iGpffff89d4 + 0x1e32c) + 0x7ffU >> 0xb;
     }
-    uVar12 = FUN_00100480(uVar25 << 0xb,0x40,0x430750);
+    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
     *(undefined4 *)(param_1 + 0x10f0) = uVar12;
     FUN_0014bf00(0x1827,*(undefined4 *)(param_1 + 0x10f0),0,0,0,0);
   }
@@ -1660,7 +1660,7 @@ void FUN_002cff10(void)
     iVar2 = 0;
     do {
       if (*(int *)(iGpffff9114 + iVar2 + 0xfc4) != 0) {
-        FUN_00100290();
+        Mem_Free();
         *(undefined4 *)(iGpffff9114 + iVar2 + 0xfc4) = 0;
       }
       uVar4 = uVar4 + 1;
@@ -1670,22 +1670,22 @@ void FUN_002cff10(void)
     FUN_002c2620(iGpffff9114 + 0x3b8);
     iVar2 = iGpffff9114;
     if (*(int *)(iGpffff9114 + 0x1274) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(iVar2 + 0x1274) = 0;
     }
     if (*(int *)(iVar2 + 0x127c) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(iVar2 + 0x127c) = 0;
     }
     FUN_00144aa0(iVar2 + 0x1280);
     iVar3 = iGpffff9114;
     *(undefined4 *)(iVar2 + 0x12a0) = 0;
     if (*(int *)(iGpffff9114 + 0x26f4) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(iVar3 + 0x26f4) = 0;
     }
     if (*(int *)(iVar3 + 0x26fc) != 0) {
-      FUN_00100290();
+      Mem_Free();
       *(undefined4 *)(iVar3 + 0x26fc) = 0;
     }
     FUN_00144aa0(iVar3 + 0x2700);
@@ -1698,11 +1698,11 @@ void FUN_002cff10(void)
       do {
         iVar1 = iGpffff9114 + iVar2 + iVar3;
         if (*(int *)(iVar1 + 0x110c) != 0) {
-          FUN_00100290();
+          Mem_Free();
           *(undefined4 *)(iVar1 + 0x110c) = 0;
         }
         if (*(int *)(iVar1 + 0x1114) != 0) {
-          FUN_00100290();
+          Mem_Free();
           *(undefined4 *)(iVar1 + 0x1114) = 0;
         }
         FUN_00144aa0(iVar1 + 0x1118);
@@ -1714,7 +1714,7 @@ void FUN_002cff10(void)
       iVar2 = iVar2 + 0xb4;
     } while (uVar4 < 2);
     if (iGpffff9114 != 0) {
-      FUN_00100290();
+      Mem_Free();
       iGpffff9114 = 0;
     }
   }

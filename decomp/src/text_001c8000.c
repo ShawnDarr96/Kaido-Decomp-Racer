@@ -138,7 +138,7 @@ void FUN_001c8c40(uint *param_1,float *param_2,int param_3)
                   else if (0.0 < fVar8) {
                     fVar9 = 1.0;
                   }
-                  fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+                  fVar9 = (float)fabsf(fVar8 * fVar9);
                   if (0.2 <= fVar9) {
                     if (fVar9 < 0.6) {
                       fVar9 = ((fVar9 - 0.2) / 0.40000004) * 0.5;
@@ -181,7 +181,7 @@ void FUN_001c8c40(uint *param_1,float *param_2,int param_3)
                   else if (0.0 < fVar8) {
                     fVar9 = 1.0;
                   }
-                  fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+                  fVar9 = (float)fabsf(fVar8 * fVar9);
                   if (0.2 <= fVar9) {
                     if (fVar9 < 0.75) {
                       fVar9 = ((fVar9 - 0.2) / 0.55) * 0.5;
@@ -225,7 +225,7 @@ void FUN_001c8c40(uint *param_1,float *param_2,int param_3)
                 else if (0.0 < fVar8) {
                   fVar9 = 1.0;
                 }
-                fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+                fVar9 = (float)fabsf(fVar8 * fVar9);
                 if (0.2 <= fVar9) {
                   if (fVar9 < 0.6) {
                     fVar9 = ((fVar9 - 0.2) / 0.40000004) * 0.5;
@@ -269,7 +269,7 @@ void FUN_001c8c40(uint *param_1,float *param_2,int param_3)
               else if (0.0 < fVar8) {
                 fVar9 = 1.0;
               }
-              fVar9 = (float)FUN_00120a68(fVar8 * fVar9);
+              fVar9 = (float)fabsf(fVar8 * fVar9);
               if (0.05 <= fVar9) {
                 if (fVar9 < 0.5) {
                   fVar9 = ((fVar9 - 0.05) / 0.45) * 0.5;
@@ -733,13 +733,13 @@ void FUN_001ca2d0(uint *param_1)
     }
     *param_1 = uVar2 | 1;
     uVar2 = param_1[0x34];
-    fVar5 = (float)FUN_00120a68(*(undefined4 *)(uVar2 + 0x370));
-    fVar6 = (float)FUN_00120a68(*(undefined4 *)(uVar2 + 0x380));
+    fVar5 = (float)fabsf(*(undefined4 *)(uVar2 + 0x370));
+    fVar6 = (float)fabsf(*(undefined4 *)(uVar2 + 0x380));
     if ((fVar5 < 0.2) && (fVar6 < 0.2)) {
       param_1[3] = param_1[3] | 1;
     }
-    fVar5 = (float)FUN_00120a68(*(undefined4 *)(uVar2 + 0x350));
-    fVar6 = (float)FUN_00120a68(*(undefined4 *)(uVar2 + 0x360));
+    fVar5 = (float)fabsf(*(undefined4 *)(uVar2 + 0x350));
+    fVar6 = (float)fabsf(*(undefined4 *)(uVar2 + 0x360));
     if ((fVar5 < 0.2) && (fVar6 < 0.2)) {
       param_1[3] = param_1[3] | 2;
     }
@@ -1056,7 +1056,7 @@ LAB_001ca8e8:
         uStack_20 = uStack_40;
         uStack_1c = uStack_3c;
         uStack_18 = uStack_38;
-        FUN_00132a90(&uStack_20,&uStack_20,&fStack_30);
+        vu0math_sub_00132a90(&uStack_20,&uStack_20,&fStack_30);
         FUN_001c6130(iVar12,&uStack_20,&uStack_4,0);
       }
     }
@@ -1109,8 +1109,8 @@ LAB_001ca8e8:
     iVar12 = param_1;
     do {
       if ((*(int *)(iVar12 + 0x1434) - 5U < 2) &&
-         (fVar16 = (float)FUN_00120a68(*(undefined4 *)(param_1 + uVar14 * 0x140 + 0x28c)),
-         15.0 < fVar16)) {
+         (fVar16 = (float)fabsf(*(undefined4 *)(param_1 + uVar14 * 0x140 + 0x28c)), 15.0 < fVar16))
+      {
         if (*(int *)(iVar12 + 0x1434) == 6) {
           bVar2 = true;
         }
@@ -1128,8 +1128,7 @@ LAB_001ca8e8:
         iVar12 = iRam004301b0 + param_2 * 0xb900;
       }
       if (iVar12 != 0) {
-        if ((bVar2) ||
-           (fVar16 = (float)FUN_00120a68(*(float *)(param_1 + 0x40) * 3.6), fVar16 <= 60.0)) {
+        if ((bVar2) || (fVar16 = (float)fabsf(*(float *)(param_1 + 0x40) * 3.6), fVar16 <= 60.0)) {
           if (bVar2) {
             FUN_0017af90(iVar12,uVar15,1);
           }
@@ -1193,7 +1192,7 @@ LAB_001ca8e8:
       uStack_5c = 0xc4160000;
       *(undefined4 *)(iVar12 + 8) = 1;
       *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
-      FUN_00132ae0(iVar12 + 0x20,&fStack_60);
+      vu0math_sub_00132ae0(iVar12 + 0x20,&fStack_60);
     }
     else {
       uStack_58 = 0;
@@ -1202,7 +1201,7 @@ LAB_001ca8e8:
       uStack_5c = 0x44160000;
       *(undefined4 *)(iVar12 + 8) = 1;
       *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
-      FUN_00132ae0(iVar12 + 0x20,&fStack_60);
+      vu0math_sub_00132ae0(iVar12 + 0x20,&fStack_60);
     }
     FUN_0018d170(iVar12);
   }
@@ -1214,7 +1213,7 @@ LAB_001ca8e8:
     uStack_68 = 0;
     uStack_64 = 0;
     *(undefined4 *)(iVar12 + 0x58) = 0;
-    FUN_00132ae0(iVar12 + 0x70,&uStack_70);
+    vu0math_sub_00132ae0(iVar12 + 0x70,&uStack_70);
     FUN_0018d170(iVar12 + 0x50);
   }
 switchD_001caf44_caseD_2:
@@ -1225,7 +1224,7 @@ switchD_001caf44_caseD_2:
   do {
     iVar13 = param_1 + uVar14 * 0x140;
     if ((*(char *)(iVar13 + 0x1c1) != '\0') &&
-       (fVar16 = (float)FUN_00120a68(*(undefined4 *)(iVar13 + 0x28c)), 5.0 <= fVar16)) {
+       (fVar16 = (float)fabsf(*(undefined4 *)(iVar13 + 0x28c)), 5.0 <= fVar16)) {
       fVar16 = *(float *)(iVar12 + 0xbe0) + (*(float *)(iVar13 + 0x28c) * 0.3) / 60.0;
       *(float *)(iVar12 + 0xbe0) = fVar16;
       fVar16 = fVar16 - 1.0;
@@ -2174,20 +2173,20 @@ void FUN_001cba60(int param_1)
   uStack_ac = uStack_1dc;
   uStack_a8 = uStack_1d8;
   uStack_a4 = uStack_1d4;
-  fVar20 = (float)FUN_00120dc0(uStack_1d8,uStack_1e0);
+  fVar20 = (float)atan2f(uStack_1d8,uStack_1e0);
   *(float *)(param_1 + 0x171c) = (fVar20 * 180.0) / 3.1415927;
   fVar34 = fVar20 + *(float *)(param_1 + 0x1728);
   uVar12 = FUN_001dad00((fVar34 * 180.0) / 3.1415927);
   *(undefined4 *)(param_1 + 0x1718) = uVar12;
-  uVar12 = FUN_00120990(fVar34);
+  uVar12 = sinf(fVar34);
   *(undefined4 *)(param_1 + 0x16d0) = uVar12;
   *(undefined4 *)(param_1 + 0x16d4) = uStack_ac;
-  uVar12 = FUN_00120c30(fVar34);
+  uVar12 = cosf(fVar34);
   *(undefined4 *)(param_1 + 0x16d8) = uVar12;
-  uVar12 = FUN_00120990(fVar20);
+  uVar12 = sinf(fVar20);
   *(undefined4 *)(param_1 + 0x16e0) = uVar12;
   *(undefined4 *)(param_1 + 0x16e4) = uStack_ac;
-  uVar12 = FUN_00120c30(fVar20);
+  uVar12 = cosf(fVar20);
   *(undefined4 *)(param_1 + 0x16e8) = uVar12;
   uVar1 = *(ushort *)(param_1 + 0x1366);
   sVar2 = *(short *)(param_1 + 0x1368);

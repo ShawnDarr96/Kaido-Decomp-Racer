@@ -542,7 +542,7 @@ long FUN_00138e20(int param_1)
   
   uStack_4 = *(undefined4 *)(param_1 + 0xc);
   iStack_8 = 0;
-  lVar2 = FUN_00123a00(1,&uStack_4,&iStack_8);
+  lVar2 = sceMcSync(1,&uStack_4,&iStack_8);
   bVar3 = true;
   if (lVar2 != 0) {
     if (lVar2 == -1) {
@@ -640,76 +640,78 @@ long FUN_001390b0(int param_1)
   lVar2 = 0;
   switch(*(undefined4 *)(param_1 + 0xc)) {
   case 1:
-    lVar2 = FUN_00123b20(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x1c),
-                         *(undefined4 *)(param_1 + 0x20),*(undefined4 *)(param_1 + 0x24));
+    lVar2 = libmc_sub_00123b20(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
+                               *(undefined4 *)(param_1 + 0x24));
     break;
   case 2:
-    lVar2 = FUN_001233d8(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                         *(undefined4 *)(param_1 + 0x30));
+    lVar2 = libmc_sub_001233d8(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30));
     break;
   case 3:
-    lVar2 = FUN_00123538(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
+    lVar2 = libmc_sub_00123538(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
     break;
   case 4:
-    lVar2 = FUN_001235f8(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                         *(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x30));
+    lVar2 = libmc_sub_001235f8(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                               *(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x30));
     break;
   case 5:
-    lVar2 = FUN_00123770(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                         *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
+    lVar2 = libmc_sub_00123770(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                               *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
     break;
   case 6:
-    lVar2 = FUN_00123888(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                         *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
+    lVar2 = libmc_sub_00123888(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                               *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
     break;
   case 10:
-    lVar2 = FUN_00124220(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
+    lVar2 = libmc_sub_00124220(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
     break;
   case 0xb:
-    lVar2 = FUN_00123500(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28))
-    ;
+    lVar2 = libmc_sub_00123500(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28));
     break;
   case 0xc:
-    lVar2 = FUN_00123ef0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x40),
-                         *(undefined4 *)(param_1 + 0x44));
+    lVar2 = libmc_sub_00123ef0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x40),*(undefined4 *)(param_1 + 0x44));
     break;
   case 0xd:
-    lVar2 = FUN_00123d10(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                         *(undefined4 *)(param_1 + 0x30),*(undefined4 *)(param_1 + 0x48),
-                         *(undefined4 *)(param_1 + 0x4c));
+    lVar2 = libmc_sub_00123d10(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30),
+                               *(undefined4 *)(param_1 + 0x48),*(undefined4 *)(param_1 + 0x4c));
     break;
   case 0xe:
-    lVar2 = FUN_001242e0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                         *(undefined4 *)(param_1 + 0x50),*(undefined4 *)(param_1 + 0x54));
+    lVar2 = libmc_sub_001242e0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x50),
+                               *(undefined4 *)(param_1 + 0x54));
     break;
   case 0xf:
-    lVar2 = FUN_00124100(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28))
-    ;
+    lVar2 = libmc_sub_00124100(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28));
     break;
   case 0x10:
-    lVar2 = FUN_00124030(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5));
+    lVar2 = libmc_sub_00124030(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5));
     break;
   case 0x11:
-    lVar2 = FUN_00124610(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5));
+    lVar2 = libmc_sub_00124610(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5));
     break;
   case 0x12:
-    lVar2 = FUN_001246e0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x40))
-    ;
+    lVar2 = libmc_sub_001246e0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x40));
     break;
   case 0x13:
-    lVar2 = FUN_001244b0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                         *(undefined4 *)(param_1 + 0x2c));
+    lVar2 = libmc_sub_001244b0(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x2c));
   }
   if (lVar2 == 0) {
     *(undefined4 *)(param_1 + 0x10) = 0;
@@ -719,7 +721,7 @@ long FUN_001390b0(int param_1)
     if (lVar2 == -200) {
       uStack_4 = *(undefined4 *)(param_1 + 0xc);
       uStack_8 = 0;
-      FUN_00123a00(1,&uStack_4,&uStack_8);
+      sceMcSync(1,&uStack_4,&uStack_8);
       puVar1 = *(uint **)(param_1 + 8);
     }
     else {
@@ -880,7 +882,7 @@ void FUN_00139580(void)
   FUN_001322a0(0x386f94);
   FUN_001322a0(0x386fa8);
   if (iRam00386f90 != 0) {
-    FUN_001009c0(iRam00386f90,0x1395e0);
+    __destroy_new_array(iRam00386f90,0x1395e0);
     iRam00386f90 = 0;
   }
   return;
@@ -894,7 +896,7 @@ long FUN_001395e0(long param_1,short param_2)
     *(undefined4 *)param_1 = &DAT_0036e118;
     FUN_00132400(param_1,0);
     if (0 < param_2) {
-      thunk_FUN_00100290(param_1);
+      Mem_Free(param_1);
     }
   }
   return param_1;
@@ -908,11 +910,11 @@ void FUN_00139640(undefined8 param_1,uint param_2)
   uint uVar2;
   int iVar3;
   
-  FUN_00122ff0();
+  sceMcInit();
   uRam00386f98 = 0;
   uRam00386fac = 0;
-  uVar1 = FUN_00100230(param_2 * 0x58 + 0x10,param_1);
-  iRam00386f90 = FUN_00100c10(uVar1,0x139730,0x1395e0,0x58,param_2);
+  uVar1 = maybe_operator_new_heap(param_2 * 0x58 + 0x10,param_1);
+  iRam00386f90 = __construct_new_array(uVar1,0x139730,0x1395e0,0x58,param_2);
   uVar2 = 0;
   if (param_2 != 0) {
     iVar3 = 0;
@@ -1382,7 +1384,7 @@ long FUN_00139e20(long param_1,short param_2)
     *(undefined4 *)param_1 = &DAT_0036e128;
     FUN_00132400(param_1,0);
     if (0 < param_2) {
-      thunk_FUN_00100290(param_1);
+      Mem_Free(param_1);
     }
   }
   return param_1;
@@ -1403,7 +1405,7 @@ long FUN_00139e80(long param_1,short param_2)
     FUN_00132320(iVar1 + 0x18,0xffffffffffffffff);
     FUN_00132320(iVar1 + 4,0xffffffffffffffff);
     if (0 < param_2) {
-      thunk_FUN_00100290(param_1);
+      Mem_Free(param_1);
     }
   }
   return param_1;
@@ -1428,7 +1430,7 @@ int FUN_00139f10(int param_1,int param_2,int param_3,int param_4,int param_5,int
         iVar1 = param_6;
       }
       if (iVar1 != 0) {
-        FUN_00132600(param_1,param_5,iVar1);
+        maybe_Mem_CopyQwords(param_1,param_5,iVar1);
       }
       param_1 = param_1 + iVar1;
       param_5 = param_5 + iVar1;
@@ -1440,7 +1442,7 @@ int FUN_00139f10(int param_1,int param_2,int param_3,int param_4,int param_5,int
         param_6 = param_4;
       }
       if (param_6 != 0) {
-        FUN_00132600(param_3,param_5,param_6);
+        maybe_Mem_CopyQwords(param_3,param_5,param_6);
       }
       iVar1 = iVar1 + param_6;
       param_3 = param_3 + param_6;
@@ -1452,7 +1454,7 @@ int FUN_00139f10(int param_1,int param_2,int param_3,int param_4,int param_5,int
         param_2 = param_8;
       }
       if (param_2 != 0) {
-        FUN_00132600(param_1,param_7,param_2);
+        maybe_Mem_CopyQwords(param_1,param_7,param_2);
       }
       iVar1 = iVar1 + param_2;
       param_8 = param_8 - param_2;
@@ -1463,7 +1465,7 @@ int FUN_00139f10(int param_1,int param_2,int param_3,int param_4,int param_5,int
         param_8 = param_4;
       }
       if (param_8 != 0) {
-        FUN_00132600(param_3,iStack_10,param_8);
+        maybe_Mem_CopyQwords(param_3,iStack_10,param_8);
         iVar1 = iVar1 + param_8;
       }
     }
@@ -1604,11 +1606,11 @@ int FUN_0013a540(int param_1)
   iVar1 = 0;
   iVar2 = *(int *)(param_1 + 0x7c);
   if (iVar2 != 0) {
-    iVar1 = FUN_0010e9e0(param_1 + 8,
-                         *(int *)(param_1 + 0x6c) +
-                         (*(int *)(param_1 + 0x70) + (*(int *)(param_1 + 0x78) - iVar2)) %
-                         *(int *)(param_1 + 0x70),iVar2,*(undefined4 *)(param_1 + 0x6c),
-                         *(undefined4 *)(param_1 + 0x70));
+    iVar1 = maybe_Mpeg_DemuxPss(param_1 + 8,
+                                *(int *)(param_1 + 0x6c) +
+                                (*(int *)(param_1 + 0x70) + (*(int *)(param_1 + 0x78) - iVar2)) %
+                                *(int *)(param_1 + 0x70),iVar2,*(undefined4 *)(param_1 + 0x6c),
+                                *(undefined4 *)(param_1 + 0x70));
     iVar2 = *(int *)(param_1 + 0x7c);
     if (iVar1 < *(int *)(param_1 + 0x7c)) {
       iVar2 = iVar1;
@@ -1627,7 +1629,7 @@ void FUN_0013a5d0(uint *param_1)
   long lVar3;
   int iVar4;
   
-  lVar3 = FUN_0010f9a8(param_1 + 2);
+  lVar3 = libmpeg_sub_0010f9a8(param_1 + 2);
   do {
     if ((lVar3 != 0) || ((*param_1 & 0x10) != 0)) goto LAB_0013a6fc;
     if ((param_1[0x50] != 0) && ((*param_1 & 2) != 0)) {
@@ -1651,17 +1653,17 @@ void FUN_0013a5d0(uint *param_1)
       if ((int)uVar2 < 0) {
         uVar2 = uVar2 + 0xf;
       }
-      lVar3 = FUN_0010f880(param_1 + 2,iVar4,((int)uVar1 >> 4) * ((int)uVar2 >> 4));
+      lVar3 = libmpeg_sub_0010f880(param_1 + 2,iVar4,((int)uVar1 >> 4) * ((int)uVar2 >> 4));
       if (lVar3 < 0) {
 LAB_0013a6fc:
         param_1[0x3f] = 1;
-        FUN_0010f9c8(param_1 + 2);
+        libmpeg_sub_0010f9c8(param_1 + 2);
         *param_1 = *param_1 & 0xffffffbf;
         *param_1 = *param_1 | 0x80;
         *param_1 = *param_1 | 0x20;
         return;
       }
-      FUN_0011a7e0();
+      DIntr();
       param_1[0x3c] = param_1[0x3c] + 1;
       param_1[0x3b] = (int)(param_1[0x3b] + 1) % (int)param_1[0x3a];
       SYNC(0);
@@ -1669,7 +1671,7 @@ LAB_0013a6fc:
     }
     *param_1 = *param_1 | 0x40;
     RotateThreadReadyQueue(param_1[0x14]);
-    lVar3 = FUN_0010f9a8(param_1 + 2);
+    lVar3 = libmpeg_sub_0010f9a8(param_1 + 2);
   } while( true );
 }
 
@@ -1687,7 +1689,7 @@ bool FUN_0013a770(int param_1)
 {
   long lVar1;
   
-  lVar1 = FUN_0010f9b8(param_1 + 8);
+  lVar1 = maybe_sceMpegIsEnd(param_1 + 8);
   return lVar1 != 0;
 }
 
@@ -1746,8 +1748,8 @@ void FUN_0013a8e0(int param_1)
 {
   FUN_00138cf0(param_1 + 0x54);
   FUN_00138d70(param_1 + 0x54);
-  FUN_0010f838(param_1 + 8);
-  FUN_0010f628(param_1 + 8,*(undefined4 *)(param_1 + 0x5c),*(undefined4 *)(param_1 + 0x60));
+  libmpeg_sub_0010f838(param_1 + 8);
+  sceMpegCreate(param_1 + 8,*(undefined4 *)(param_1 + 0x5c),*(undefined4 *)(param_1 + 0x60));
   return;
 }
 
@@ -1759,7 +1761,7 @@ void FUN_0013a930(undefined8 param_1,long param_2,long param_3,long param_4)
   uint *puVar2;
   
   puVar2 = (uint *)param_1;
-  FUN_0010f9c8(puVar2 + 2);
+  libmpeg_sub_0010f9c8(puVar2 + 2);
   puVar2[0x50] = 0;
   puVar2[0x51] = 0;
   puVar2[0x1e] = 0;
@@ -1779,18 +1781,18 @@ void FUN_0013a930(undefined8 param_1,long param_2,long param_3,long param_4)
       puVar2[0x43] = 0;
     }
   }
-  FUN_0010fa80(puVar2 + 2,0,0x13a430,param_1);
-  FUN_0010fa80(puVar2 + 2,1,0x13a430,param_1);
-  FUN_0010fa80(puVar2 + 2,2,0x13a430,param_1);
-  FUN_0010fa80(puVar2 + 2,3,0x13a430,param_1);
-  FUN_0010fa80(puVar2 + 2,4,0x13a430,param_1);
-  FUN_0010fa80(puVar2 + 2,5,0x13a430,param_1);
+  sceMpegAddCallback(puVar2 + 2,0,0x13a430,param_1);
+  sceMpegAddCallback(puVar2 + 2,1,0x13a430,param_1);
+  sceMpegAddCallback(puVar2 + 2,2,0x13a430,param_1);
+  sceMpegAddCallback(puVar2 + 2,3,0x13a430,param_1);
+  sceMpegAddCallback(puVar2 + 2,4,0x13a430,param_1);
+  sceMpegAddCallback(puVar2 + 2,5,0x13a430,param_1);
   if (((*puVar2 & 2) != 0) && (param_2 != 0)) {
-    FUN_0010ed10(puVar2 + 2,0,0,0x13a200,param_1);
+    libmpeg_sub_0010ed10(puVar2 + 2,0,0,0x13a200,param_1);
     puVar2[0x50] = (uint)param_2;
   }
   if (((*puVar2 & 4) != 0) && (param_3 != 0)) {
-    FUN_0010ed10(puVar2 + 2,2,0,0x13a0e0,param_1);
+    libmpeg_sub_0010ed10(puVar2 + 2,2,0,0x13a0e0,param_1);
     puVar2[0x51] = (uint)param_3;
   }
   *puVar2 = *puVar2 & 0xffffff0f;
@@ -1807,7 +1809,7 @@ void FUN_0013ab20(uint *param_1)
   uint uVar1;
   
   if ((*param_1 & 2) != 0) {
-    FUN_0011a7e0();
+    DIntr();
     uVar1 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar1 | 0x10000;
     REG_DMAC_4_IPU_TO_CHCR = 5;
@@ -1820,7 +1822,7 @@ void FUN_0013ab20(uint *param_1)
     REG_DMAC_4_IPU_TO_TADR = 0;
     DeleteSema(param_1[0x30]);
   }
-  FUN_0010f838(param_1 + 2);
+  libmpeg_sub_0010f838(param_1 + 2);
   return;
 }
 
@@ -1831,7 +1833,7 @@ void FUN_0013abc0(uint *param_1,uint *param_2)
   uint uVar1;
   uint *puVar2;
   
-  FUN_0010f628(param_1 + 2,param_2[0xe],param_2[0xf]);
+  sceMpegCreate(param_1 + 2,param_2[0xe],param_2[0xf]);
   *param_1 = 1;
   param_1[0x14] = param_2[0x12];
   param_1[0x17] = param_2[0xe];
@@ -2146,7 +2148,7 @@ void FUN_0013b0f0(uint *param_1)
     REG_DMAC_3_IPU_FROM_MADR = param_1[0xb];
     REG_DMAC_3_IPU_FROM_QWC = param_1[0xc];
     uVar2 = param_1[0xd];
-    FUN_0011a7e0();
+    DIntr();
     uVar3 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar3 | 0x10000;
     REG_DMAC_3_IPU_FROM_CHCR = uVar2 | 0x100;
@@ -2168,7 +2170,7 @@ void FUN_0013b0f0(uint *param_1)
   REG_DMAC_4_IPU_TO_TADR = uVar11;
   REG_DMAC_4_IPU_TO_QWC = uVar12;
   if (param_1[4] != 0) {
-    FUN_0011a7e0();
+    DIntr();
     uVar1 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar1 | 0x10000;
     REG_DMAC_4_IPU_TO_CHCR = uVar10;
@@ -2192,7 +2194,7 @@ void FUN_0013b480(int param_1)
   
   WaitSema(*(undefined4 *)(param_1 + 0x40));
   *(undefined4 *)(param_1 + 0x44) = 0;
-  FUN_0011a7e0();
+  DIntr();
   uVar1 = REG_DMAC_ENABLER;
   REG_DMAC_ENABLEW = uVar1 | 0x10000;
   REG_DMAC_4_IPU_TO_CHCR = 5;
@@ -2211,7 +2213,7 @@ void FUN_0013b480(int param_1)
   do {
     uVar1 = REG_IPU_CTRL;
   } while ((uVar1 & 0xf0) != 0);
-  FUN_0011a7e0();
+  DIntr();
   uVar1 = REG_DMAC_ENABLER;
   REG_DMAC_ENABLEW = uVar1 | 0x10000;
   REG_DMAC_3_IPU_FROM_CHCR = 0;
@@ -2248,7 +2250,7 @@ void FUN_0013b5a0(int *param_1)
   uint uVar9;
   
   WaitSema(param_1[0x10]);
-  FUN_0011a7e0();
+  DIntr();
   uVar9 = REG_DMAC_ENABLER;
   REG_DMAC_ENABLEW = uVar9 | 0x10000;
   REG_DMAC_4_IPU_TO_CHCR = 5;
@@ -2312,7 +2314,7 @@ void FUN_0013b5a0(int *param_1)
     if (0 < iVar3) {
       uVar9 = uVar9 & 0xfffffff | 0x30000000;
     }
-    FUN_0011a7e0();
+    DIntr();
     uVar2 = REG_DMAC_ENABLER;
     REG_DMAC_ENABLEW = uVar2 | 0x10000;
     REG_DMAC_4_IPU_TO_CHCR = uVar9 | 0x100;
@@ -2459,7 +2461,7 @@ void FUN_0013b9b0(uint *param_1,long param_2)
   REG_DMAC_4_IPU_TO_QWC = 0;
   REG_DMAC_4_IPU_TO_MADR = *param_1 & 0xfffffff;
   REG_DMAC_4_IPU_TO_TADR = param_1[1] & 0xfffffff;
-  FUN_0011a7e0();
+  DIntr();
   uVar4 = REG_DMAC_ENABLER;
   REG_DMAC_ENABLEW = uVar4 | 0x10000;
   REG_DMAC_4_IPU_TO_CHCR = 5;
@@ -2560,9 +2562,9 @@ undefined4 FUN_0013bd10(int param_1)
 {
   undefined4 uVar1;
   
-  FUN_00112280(1);
+  DisableIntc(1);
   uVar1 = *(undefined4 *)(param_1 + 0x40);
-  FUN_001122e8(1);
+  EnableIntc(1);
   return uVar1;
 }
 
@@ -2578,7 +2580,7 @@ undefined4 FUN_0013bd50(undefined8 param_1,undefined4 *param_2)
   iVar3 = (int)param_1;
   WaitSema(*(undefined4 *)(iVar3 + 0x28));
   do {
-    lVar2 = FUN_00114d60(param_1);
+    lVar2 = sceSifCheckStatRpc(param_1);
   } while (lVar2 != 0);
   SignalSema(*(undefined4 *)(iVar3 + 0x28));
   FlushCache(0);
@@ -2591,8 +2593,8 @@ undefined4 FUN_0013bd50(undefined8 param_1,undefined4 *param_2)
   else {
     uVar4 = 0;
   }
-  uVar1 = FUN_00114b68(param_1,*param_2,*(int *)(iVar3 + 0x2c) == 0,param_2[2],param_2[1],param_2[4]
-                       ,param_2[3],uVar4);
+  uVar1 = sceSifCallRpc(param_1,*param_2,*(int *)(iVar3 + 0x2c) == 0,param_2[2],param_2[1],
+                        param_2[4],param_2[3],uVar4);
   if ((*(int *)(iVar3 + 0x2c) != 0) && ((undefined4 *)param_2[4] != (undefined4 *)0x0)) {
     uVar1 = *(undefined4 *)param_2[4];
   }
@@ -2614,7 +2616,7 @@ undefined4 FUN_0013be40(int param_1,undefined4 param_2)
 void FUN_0013be50(int param_1)
 
 {
-  FUN_00132790(param_1 + 0x28);
+  maybe_Mutex_Delete(param_1 + 0x28);
   return;
 }
 
@@ -2625,13 +2627,13 @@ void FUN_0013be60(undefined8 param_1,undefined8 param_2)
   int iVar1;
   
   do {
-    FUN_00114998(param_1,param_2,0);
+    sceSifBindRpc(param_1,param_2,0);
     iVar1 = (int)param_1;
     if (*(int *)(iVar1 + 0x24) == 0) {
-      FUN_00112800(10000);
+      DelayThread(10000);
     }
   } while (*(int *)(iVar1 + 0x24) == 0);
-  FUN_001327d0(iVar1 + 0x28);
+  maybe_Mutex_Create(iVar1 + 0x28);
   *(undefined4 *)(iVar1 + 0x2c) = 0;
   *(undefined4 *)(iVar1 + 0x30) = 0;
   *(undefined4 *)(iVar1 + 0x34) = 0;
@@ -2643,9 +2645,9 @@ void FUN_0013be60(undefined8 param_1,undefined8 param_2)
 void FUN_0013bef0(undefined4 *param_1)
 
 {
-  FUN_00114da0(param_1 + 6,param_1[1]);
-  FUN_00114e38(param_1 + 0xc,*param_1,param_1[5],param_1[4],0,0,param_1 + 6);
-  FUN_00115250(param_1 + 6);
+  sceSifSetRpcQueue(param_1 + 6,param_1[1]);
+  sceSifRegisterRpc(param_1 + 0xc,*param_1,param_1[5],param_1[4],0,0,param_1 + 6);
+  sceSifRpcLoop(param_1 + 6);
   return;
 }
 
@@ -2653,8 +2655,8 @@ void FUN_0013bef0(undefined4 *param_1)
 void FUN_0013bf50(int param_1)
 
 {
-  FUN_00114f08(param_1 + 0x30,param_1 + 0x18);
-  FUN_00114fa0(param_1 + 0x18);
+  maybe_sceSifRemoveRpc(param_1 + 0x30,param_1 + 0x18);
+  maybe_sceSifRemoveRpcQueue(param_1 + 0x18);
   FUN_00138cf0(param_1 + 4);
   FUN_00138d70(param_1 + 4);
   return;

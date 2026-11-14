@@ -986,15 +986,15 @@ void FUN_001f9620(byte *param_1)
           FUN_00202f20(auStack_3f0,*puStack_10d0,puStack_10c0,0);
           FUN_001aad60(*(undefined4 *)(iStack_10a4 + 0x44),auStack_1080,auStack_1090,
                        (*(uint *)(param_1 + 0xc) & 1) * 6 + *piVar17);
-          FUN_00132e60(uStack_108c,auStack_3e0,auStack_3e0);
-          FUN_00132d20(auStack_3e0,auStack_3e0,auStack_1080);
+          maybe_Vu0_RotMatrixY(uStack_108c,auStack_3e0,auStack_3e0);
+          vu0math_sub_00132d20(auStack_3e0,auStack_3e0,auStack_1080);
           uVar13 = 0;
           puVar10 = auStack_3f0;
           do {
             uVar12 = 0;
             puVar7 = puVar10;
             do {
-              FUN_00132b70(puVar7 + 0x18,puVar7 + 0x18,auStack_1080);
+              vu0math_sub_00132b70(puVar7 + 0x18,puVar7 + 0x18,auStack_1080);
               uVar12 = uVar12 + 1;
               puVar7 = puVar7 + 4;
             } while (uVar12 < 2);
@@ -1370,7 +1370,7 @@ LAB_001fa01c:
         if (0xf < (uint)param_1[0x19]) {
           param_1[0x19] = 0;
         }
-        FUN_00132600(&fStack_1340,0x327170,0x40);
+        maybe_Mem_CopyQwords(&fStack_1340,0x327170,0x40);
         iVar25 = param_1[0x19];
         if (iVar25 == 2) {
           fVar33 = DAT_00327238;
@@ -1402,9 +1402,9 @@ LAB_001fa01c:
           bVar1 = true;
         }
         else if (iVar25 == 6) {
-          FUN_00132b70(&fStack_1340,0x3272d0,*(int *)(iVar13 + 0x504) + 0x590);
-          FUN_00132b70(&fStack_1330,param_1[0x19] * 0x30 + 0x3271c0,*(int *)(iVar13 + 0x504) + 0x590
-                      );
+          vu0math_sub_00132b70(&fStack_1340,0x3272d0,*(int *)(iVar13 + 0x504) + 0x590);
+          vu0math_sub_00132b70
+                    (&fStack_1330,param_1[0x19] * 0x30 + 0x3271c0,*(int *)(iVar13 + 0x504) + 0x590);
           fVar33 = *(float *)(&DAT_003271d8 + param_1[0x19] * 0x30);
           if (180.0 <= fVar33) {
             fVar33 = fVar33 - 360.0;
@@ -1412,8 +1412,8 @@ LAB_001fa01c:
           param_1[0x1d] = fVar33 * 0.017453292;
         }
         else {
-          FUN_00132ae0(&fStack_1340,iVar25 * 0x30 + 0x3271b0);
-          FUN_00132ae0(&fStack_1330,param_1[0x19] * 0x30 + 0x3271c0);
+          vu0math_sub_00132ae0(&fStack_1340,iVar25 * 0x30 + 0x3271b0);
+          vu0math_sub_00132ae0(&fStack_1330,param_1[0x19] * 0x30 + 0x3271c0);
           fVar33 = *(float *)(&DAT_003271d8 + param_1[0x19] * 0x30);
           if (180.0 <= fVar33) {
             fVar33 = fVar33 - 360.0;
@@ -1468,7 +1468,7 @@ LAB_001fa01c:
           uStack_124 = 0;
         }
       }
-      FUN_00132e60(param_1[0x1d],&uStack_410,&uStack_410);
+      maybe_Vu0_RotMatrixY(param_1[0x1d],&uStack_410,&uStack_410);
       FUN_002d4d40(0,iVar11,1,&uStack_420);
     }
     *param_1 = 1;

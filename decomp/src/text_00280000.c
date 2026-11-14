@@ -190,7 +190,7 @@ void FUN_00280140(undefined8 param_1)
   puVar7 = &DAT_0032e400;
   do {
     if ((piVar6[0xc] & 1 << (uVar10 & 0x1f)) != 0) {
-      uVar4 = FUN_0012f600(piVar6[*piVar9 + 0x38]);
+      uVar4 = newlib_sub_0012f600(piVar6[*piVar9 + 0x38]);
       FUN_002010a0(0x39,*puVar8,0x1cf,uVar4);
       iVar5 = FUN_001f48c0(0x39);
       FUN_001eeb00(0,*piRam0036f42c + iVar5 * 0x4f4 + 4,*puVar7,8);

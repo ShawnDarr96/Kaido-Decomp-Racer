@@ -109,7 +109,7 @@ undefined4 FUN_0028c8b0(int param_1)
   uVar6 = 0;
   ppuVar5 = &PTR_DAT_0032e810;
   do {
-    lVar1 = FUN_0012b0d8(acStack_10,*ppuVar5);
+    lVar1 = newlib_sub_0012b0d8(acStack_10,*ppuVar5);
     if (lVar1 == 0) {
       return 0;
     }
@@ -135,19 +135,19 @@ void FUN_0028c960(int param_1,long param_2)
       uVar3 = 0;
       *(undefined4 *)(iGpffff8d68 + 0x538) = 0;
       *(undefined4 *)(iGpffff8d68 + 0x53c) = 0;
-      lVar1 = FUN_0012b0d8(param_1 + 0x38,0x366bc8);
+      lVar1 = newlib_sub_0012b0d8(param_1 + 0x38,0x366bc8);
       if (lVar1 == 0) {
         uVar3 = 0x10;
       }
-      lVar1 = FUN_0012b0d8(param_1 + 0x38,0x366bd0);
+      lVar1 = newlib_sub_0012b0d8(param_1 + 0x38,0x366bd0);
       if (lVar1 == 0) {
         uVar3 = 0x20;
       }
-      lVar1 = FUN_0012b0d8(param_1 + 0x38,0x366bd8);
+      lVar1 = newlib_sub_0012b0d8(param_1 + 0x38,0x366bd8);
       if (lVar1 == 0) {
         uVar3 = 0x20;
       }
-      lVar1 = FUN_0012b0d8(param_1 + 0x38,0x366be8);
+      lVar1 = newlib_sub_0012b0d8(param_1 + 0x38,0x366be8);
       if (lVar1 == 0) {
         uVar3 = 0x40;
       }
@@ -1601,7 +1601,7 @@ void FUN_0028f320(int param_1)
   uVar6 = FUN_001f6a70(*(undefined4 *)(param_1 + 0x2c));
   FUN_001f6720(&fStack_20,uVar6,iVar9,iVar8);
   *(int *)(param_1 + 0x48) = (int)(fStack_20 * 1000.0);
-  uVar5 = FUN_00124aa0((int)((fStack_1c - fStack_18) * 1000.0));
+  uVar5 = abs((int)((fStack_1c - fStack_18) * 1000.0));
   *(undefined4 *)(param_1 + 0x4c) = uVar5;
   uVar7 = piGpffff8d78[2];
   if ((piGpffff8d78[4] & uVar7) == 0) {
@@ -1848,7 +1848,7 @@ void FUN_0028fa20(undefined4 *param_1)
     uVar4 = FUN_001f6a70(param_1[0xb]);
     FUN_001f6720(&fStack_20,uVar4,iVar5,iVar2);
     param_1[0x12] = (int)(fStack_20 * 1000.0);
-    uVar3 = FUN_00124aa0((int)((fStack_1c - fStack_18) * 1000.0));
+    uVar3 = abs((int)((fStack_1c - fStack_18) * 1000.0));
     param_1[0x13] = uVar3;
   }
   FUN_001f8cd0(iGpffff8d68 + 0x654,0x123,0);
