@@ -6,6 +6,7 @@ names.txt: one `0xADDRESS name [# comment]` per line; blank lines and lines star
 Existing names are kept unless --force is given (names from the ELF/analysis are always replaceable).
 """
 import argparse
+import collections
 import csv
 import re
 from pathlib import Path
@@ -26,6 +27,7 @@ def main():
     rows = {int(r["address"], 16): r for r in csv.DictReader(open(SYM, encoding="utf-8"))}
     xrefs = {int(r["address"], 16) for r in csv.DictReader(open(ROOT / "decomp" / "xrefs.csv", encoding="utf-8"))}
     used = {r["name"] for r in rows.values()}
+    pending = []
     added = kept = 0
     lines = open(a.file, encoding="utf-8").read().splitlines() if a.file else []
     if a.fill:
@@ -46,8 +48,9 @@ def main():
         if old and old["name"] and not a.force and old["source"] not in ("analysis", "elf"):
             kept += 1
             continue
-        if name in used and (not old or old["name"] != name):
-            raise SystemExit(f"duplicate name {name} at 0x{addr:08x}")
+        if old and old["name"] != name:
+            used.discard(old["name"])
+        pending.append((addr, name))
         used.add(name)
         rows[addr] = {"address": f"0x{addr:08x}", "name": name, "signature": (old or {}).get("signature", ""),
                       "source": a.source, "comment": comment or (old or {}).get("comment", "")}
