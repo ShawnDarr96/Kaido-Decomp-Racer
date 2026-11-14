@@ -1,0 +1,20 @@
+# Game data: never commit. Bring your own legally dumped copy.
+*.iso
+*.7z
+*.bin
+*.elf
+iso_extract/
+/SLES_*
+BUILD.DAT
+BUILD.TOC
+
+# Local toolchain (Ghidra, JDK, venvs, Ghidra project database). See scripts/setup_tools.ps1.
+tools/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Board chart output
+board.html

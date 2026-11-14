@@ -1,0 +1,1630 @@
+address,string
+0x003081c0,PsIIlibcdvd 2800
+0x0030a500,PsIIlibpad2 2800
+0x0030a530,PsIIlibdbc  2800
+0x0032e7b0,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+0x00343500,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+0x0035e100,std::exception
+0x0035e118,exception
+0x0035e230,std::ios_base
+0x0035e250,std::ios_base::failure
+0x0035e280,ios_base failure in clear
+0x0035e2a0,"std::basic_istream<wchar_t, std::char_traits<wchar_t>>"
+0x0035e2e0,"std::basic_ios<wchar_t, std::char_traits<wchar_t>>"
+0x0035e350,"std::basic_ostream<wchar_t, std::char_traits<wchar_t>>"
+0x0035e3b0,"std::basic_streambuf<wchar_t, std::char_traits<wchar_t>>"
+0x0035e400,"std::basic_filebuf<wchar_t, std::char_traits<wchar_t>>"
+0x0035e450,"std::basic_istream<char, std::char_traits<char>>"
+0x0035e490,"std::basic_ios<char, std::char_traits<char>>"
+0x0035e500,"std::basic_ostream<char, std::char_traits<char>>"
+0x0035e560,"std::basic_streambuf<char, std::char_traits<char>>"
+0x0035e5a0,"std::basic_filebuf<char, std::char_traits<char>>"
+0x0035e5f0,!std::exception!!std::ios_base::failure!!
+0x0035e620,basic_string: out_of_range
+0x0035e640,!std::exception!!std::logic_error!!std::out_of_range!!
+0x0035e680,basic_string: length_error
+0x0035e6a0,!std::exception!!std::logic_error!!std::length_error!!
+0x0035e6e0,std::length_error
+0x0035e700,std::logic_error
+0x0035e750,std::out_of_range
+0x0035e790,basic_string::reserve length_error
+0x0035e7b8,rom0:ROMVER
+0x0035e7c8,"sceGsDefDispEnv:Not support displaymode for 0x%x!!
+"
+0x0035e800,"sceGsPutDrawEnv: DMA Ch.2 does not terminate
+"
+0x0035e830,"sceGsSyncPath: DMA Ch.1 does not terminate
+"
+0x0035e860,	<D1_CHCR=%08x:
+0x0035e870,D1_TADR=%08x:
+0x0035e880,D1_MADR=%08x:
+0x0035e890,"D1_QWC=%08x>
+"
+0x0035e8a0,	<D2_CHCR=%08x:
+0x0035e8b0,D2_TADR=%08x:
+0x0035e8c0,D2_MADR=%08x:
+0x0035e8d0,"D2_QWC=%08x>
+"
+0x0035e8e0,	<VIF1_STAT=%08x:
+0x0035e8f8,"GIF_STAT=%08x>
+"
+0x0035e910,"sceGsSyncPath: DMA Ch.2 does not terminate
+"
+0x0035e940,"sceGsSyncPath: VIF1 does not terminate
+"
+0x0035e970,"sceGsSyncPath: VU1 does not terminate
+"
+0x0035e998,"sceGsSyncPath: GIF does not terminate
+"
+0x0035e9c0,"sceGsExecStoreImage: DMA Ch.1 does not terminate
+"
+0x0035e9f8,"sceGsExecStoreImage: GS does not terminate
+"
+0x0035ea28,"sceGsExecStoreImage: DMA Ch.1 (GS->MEM) does not terminate
+"
+0x0035ea68,"sceGsExecStoreImage: Enough data does not reach VIF1
+"
+0x0035eb90,Invalid modion type -- ignored(%d)
+0x0035ebb8,(a) invalid motion_type(%d)-0
+0x0035ebd8,(b) invalid motion_type(%d)-1
+0x0035ebf8,(c) invalid motion_type(%d)-2
+0x0035ec18,intra && skip MB
+0x0035ec30,Error code detected(BDEC)
+0x0035ec50,Invalid macroblock_address_increment code(0x%08x)
+0x0035ec88,= Skip to the next picture =
+0x0035eca8,slice_start_code(0x%08x) out of range
+0x0035ecd0,_sliceA0(): error happens
+0x0035ecf0,Too many macroblocks in picture
+0x0035ed10,skiped macroblock in I picure is not allowed
+0x0035ed40,Invalid macroblock_type code: 0
+0x0035ed90,load_chroma_intra_quantizer_matrix == 1
+0x0035edb8,load_chroma_non_intra_quantizer_matrix == 1
+0x0035ede8,odd number of field pictures
+0x0035ee08,unknown picture sutructure
+0x0035ee28,"Too small buffer size for %dx%d picture
+"
+0x0035ee58,"CSC handler error
+"
+0x0035ee80,"pack_header_field_flag needs to be '0' in PS
+"
+0x0035eeb0,The size of work area is too small
+0x0035eed8,work area size is too small
+0x0035eef8,image buffer needs to be aligned to 64byte boundary(0x%08x)
+0x0035ef38,"Need to re-setup libipu since sceMpegGetPicture was aborted
+"
+0x0035ef78,"sceMpegGetPicture is aborted
+"
+0x0035efb8,the second field is missing
+0x0035efd8,"[MPEG ERROR]%s
+"
+0x0035efe8,vertical size > 2800
+0x0035f000,_chroma_format needs to be 1: 420
+0x0035f028,Unsupported profile/level
+0x0035f048,_sequenceScalableExtension() is not implemented
+0x0035f078,Unknown Extension
+0x0035f090,_pictureSpatialScalableExtension is not supported
+0x0035f0c8,_pictureTemporalScalableExtension is not supported
+0x0035f100,"## internel error in libkernl.a!
+"
+0x0035f128,DelayThread
+0x0035f138,"TTY: packet size larger than expect
+"
+0x0035f160,TTY: receive error
+0x0035f178,"TTY: send err %d
+"
+0x0035f190,"TTY: err ti->wlen=%08x
+"
+0x0035f392,m0:UDNL 
+0x0035f3a0,"too long parameter '%s'
+"
+0x0035f3c0,"# TLB spad=0 kernel=1:%d default=%d:%d extended=%d:%d
+"
+0x0035f3f8,# TLB over flow (1)
+0x0035f410,# TLB over flow (2)
+0x0035f428,# TLB over flow (3)
+0x0035fd00,"sceCdCbfunc= %d sceCdCbfunc_num= %d
+"
+0x0035fd28,"Libcdvd bind err CdSearchFile
+"
+0x0035fd48,"ee call cmd search %s
+"
+0x0035fd60,"search name %s
+"
+0x0035fd70,"search size %d
+"
+0x0035fd80,"search loc lbn %d
+"
+0x0035fd98,"Ncmd fail sema cur_cmd:%d keep_cmd:%d
+"
+0x0035fdc0,"Libcdvd bind err N CMD
+"
+0x0035fdd8,"N cmd wait
+"
+0x0035fde8,"S cmd wait
+"
+0x0035fdf8,"Scmd fail sema cur_cmd:%d keep_cmd:%d
+"
+0x0035fe20,"Libcdvd bind err S cmd
+"
+0x0035fe38,"Libcdvd bind err %d CD_Init %d
+"
+0x0035fe58,"Libcdvd Exit
+"
+0x0035fe68,"OLD DiskReady Call
+"
+0x0035fe80,"Libcdvd bind err CdDiskReady
+"
+0x0035fea0,"DiskReady ended
+"
+0x0035feb8,"NEW DiskReady Call
+"
+0x0035fed0,"call cdread cmd
+"
+0x0035fee8,"cdread end
+"
+0x0035fef8,"cdread end
+"
+0x0035ff08,"Libcdvd call Clock read 1
+"
+0x0035ff28,"Libcdvd call Clock read 2
+"
+0x0035ff48,"sceCdStRead call read size= %d mode= %d
+"
+0x0035ff78,"sceCdStRead BLK Read cur_size= %d read_size= %d req_size= %d err 0x%x
+"
+0x0035ffc0,"sceCdStRead BLK Read Ended
+"
+0x0035ffe0,"sceCdStPause call
+"
+0x0035fff8,"sceCdStResume call
+"
+0x00360010,"sceCdStStat call
+"
+0x00360028,"call cdreadstm call
+"
+0x00360040,"call cdreadstm cmd
+"
+0x00360058,"cdread end
+"
+0x00360068,"bind error libmc 
+"
+0x00360080,"libmc: too old release of mcserv.irx
+"
+0x003600a8,"libmc: too old release of mcman.irx
+"
+0x003600d0,"sceMcUdCheckNewCard RPC faild
+"
+0x00360200,Infinity
+0x003603cf,"
+                0000000000000000Inf"
+0x00360400,0123456789abcdef
+0x00360418,(null)
+0x00360420,0123456789ABCDEF
+0x00360438,bug in vfprintf: bad base
+0x003609f0,"libpad2: buffer addr is not 64 byte align. %08x
+"
+0x00360a28,ERROR
+0x00360a38,STABLE
+0x00360a40,NOLINK
+0x00360a50,"libdbc: bind failed
+"
+0x00360a68,libdbc: Module version mismatch 
+0x00360a90,"[libdbc.a = %d.%d, dbcman.irx = %d.%d]
+"
+0x00360ab8,"libdbc: SifDmaAddr %08x
+"
+0x00360ad8,"sceDbcSetWorkAddr: rpc error
+"
+0x00360af8,"sceDbcCreateSocket: rpc error
+"
+0x00360b18,"sceDbcDeleteSocket: rpc error
+"
+0x00360b38,"sceDbcGetDepNumber: rpc error
+"
+0x00360b58,"sceDbcInitSocket: rpc error
+"
+0x00360b78,"sceDbcResetSocket: rpc error
+"
+0x00360b98,"sceDbcGetDeviceStatus: rpc error
+"
+0x00360bc0,"sceDbcSRData: rpc error
+"
+0x00360be0,"sceDbcSendData: rpc error
+"
+0x00360c00,"libdbc: SendData2 data length too long [%d]
+"
+0x00360c30,"dbcman : SendData2 BUSY
+"
+0x00360c50,"sceDbcSendData2: rpc error
+"
+0x00360c70,"libdbc: SendData3 data length too long
+"
+0x00360c98,"dbcman : SendData3 BUSY
+"
+0x00360cb8,"sceDbcReceiveData: rpc error
+"
+0x00361200,"GUT_Archive Memory Over
+"
+0x00361220,"GUT_Archive Memory Over2
+"
+0x00361240,"GUT_Archive destSize Error
+"
+0x00361260,"decompress Error
+"
+0x00361620,\MOV\MV1\OPMOV.PSS;1
+0x00361640,\MOV\MV1\GLOGO01.PSS;1
+0x00361780,\MOV\MV1\TITLE.PSS;1
+0x003619e0,\MOV\CMV\A_BIND\A_BIND00.PSS;1
+0x00361a00,\MOV\CMV\A_BIND\A_BIND01.PSS;1
+0x00361a20,\MOV\CMV\A_BIND\A_BIND02.PSS;1
+0x00361a40,\MOV\CMV\A_BIND\A_BIND03.PSS;1
+0x00361a60,\MOV\CMV\A_BIND\A_BIND04.PSS;1
+0x00361a80,\MOV\CMV\A_BIND\A_BIND05.PSS;1
+0x00361aa0,\MOV\CMV\A_BIND\A_BIND06.PSS;1
+0x00361ac0,\MOV\CMV\A_BIND\A_BIND07.PSS;1
+0x00361ae0,\MOV\CMV\D_FINE\D_FINE00.PSS;1
+0x00361b00,\MOV\CMV\D_FINE\D_FINE01.PSS;1
+0x00361b20,\MOV\CMV\D_FINE\D_FINE02.PSS;1
+0x00361b40,\MOV\CMV\D_FINE\D_FINE03.PSS;1
+0x00361b60,\MOV\CMV\D_FINE\D_FINE04.PSS;1
+0x00361b80,\MOV\CMV\D_FINE\D_FINE05.PSS;1
+0x00361ba0,\MOV\CMV\D_FINE\D_FINE06.PSS;1
+0x00361bc0,\MOV\CMV\D_FINE\D_FINE07.PSS;1
+0x00361be0,\MOV\CMV\D_CLUD\D_CLUD00.PSS;1
+0x00361c00,\MOV\CMV\D_CLUD\D_CLUD01.PSS;1
+0x00361c20,\MOV\CMV\D_CLUD\D_CLUD02.PSS;1
+0x00361c40,\MOV\CMV\D_CLUD\D_CLUD03.PSS;1
+0x00361c60,\MOV\CMV\D_CLUD\D_CLUD04.PSS;1
+0x00361c80,\MOV\CMV\D_CLUD\D_CLUD05.PSS;1
+0x00361ca0,\MOV\CMV\D_CLUD\D_CLUD06.PSS;1
+0x00361cc0,\MOV\CMV\D_CLUD\D_CLUD07.PSS;1
+0x00361ce0,\MOV\CMV\D_RAIN\D_RAIN00.PSS;1
+0x00361d00,\MOV\CMV\D_RAIN\D_RAIN01.PSS;1
+0x00361d20,\MOV\CMV\D_RAIN\D_RAIN02.PSS;1
+0x00361d40,\MOV\CMV\D_RAIN\D_RAIN03.PSS;1
+0x00361d60,\MOV\CMV\D_RAIN\D_RAIN04.PSS;1
+0x00361d80,\MOV\CMV\D_RAIN\D_RAIN05.PSS;1
+0x00361da0,\MOV\CMV\D_RAIN\D_RAIN06.PSS;1
+0x00361dc0,\MOV\CMV\D_RAIN\D_RAIN07.PSS;1
+0x00361de0,\MOV\CMV\D_STRM\D_STRM00.PSS;1
+0x00361e00,\MOV\CMV\D_STRM\D_STRM01.PSS;1
+0x00361e20,\MOV\CMV\D_STRM\D_STRM02.PSS;1
+0x00361e40,\MOV\CMV\D_STRM\D_STRM03.PSS;1
+0x00361e60,\MOV\CMV\D_STRM\D_STRM04.PSS;1
+0x00361e80,\MOV\CMV\D_STRM\D_STRM05.PSS;1
+0x00361ea0,\MOV\CMV\D_STRM\D_STRM06.PSS;1
+0x00361ec0,\MOV\CMV\D_STRM\D_STRM07.PSS;1
+0x00361ee0,\MOV\CMV\N_FINE\N_FINE00.PSS;1
+0x00361f00,\MOV\CMV\N_FINE\N_FINE01.PSS;1
+0x00361f20,\MOV\CMV\N_FINE\N_FINE02.PSS;1
+0x00361f40,\MOV\CMV\N_FINE\N_FINE03.PSS;1
+0x00361f60,\MOV\CMV\N_FINE\N_FINE04.PSS;1
+0x00361f80,\MOV\CMV\N_FINE\N_FINE05.PSS;1
+0x00361fa0,\MOV\CMV\N_FINE\N_FINE06.PSS;1
+0x00361fc0,\MOV\CMV\N_FINE\N_FINE07.PSS;1
+0x00361fe0,\MOV\CMV\N_CLUD\N_CLUD00.PSS;1
+0x00362000,\MOV\CMV\N_CLUD\N_CLUD01.PSS;1
+0x00362020,\MOV\CMV\N_CLUD\N_CLUD02.PSS;1
+0x00362040,\MOV\CMV\N_CLUD\N_CLUD03.PSS;1
+0x00362060,\MOV\CMV\N_CLUD\N_CLUD04.PSS;1
+0x00362080,\MOV\CMV\N_CLUD\N_CLUD05.PSS;1
+0x003620a0,\MOV\CMV\N_CLUD\N_CLUD06.PSS;1
+0x003620c0,\MOV\CMV\N_CLUD\N_CLUD07.PSS;1
+0x003620e0,\MOV\CMV\N_RAIN\N_RAIN00.PSS;1
+0x00362100,\MOV\CMV\N_RAIN\N_RAIN01.PSS;1
+0x00362120,\MOV\CMV\N_RAIN\N_RAIN02.PSS;1
+0x00362140,\MOV\CMV\N_RAIN\N_RAIN03.PSS;1
+0x00362160,\MOV\CMV\N_RAIN\N_RAIN04.PSS;1
+0x00362180,\MOV\CMV\N_RAIN\N_RAIN05.PSS;1
+0x003621a0,\MOV\CMV\N_RAIN\N_RAIN06.PSS;1
+0x003621c0,\MOV\CMV\N_RAIN\N_RAIN07.PSS;1
+0x003621e0,\MOV\CMV\N_STRM\N_STRM00.PSS;1
+0x00362200,\MOV\CMV\N_STRM\N_STRM01.PSS;1
+0x00362220,\MOV\CMV\N_STRM\N_STRM02.PSS;1
+0x00362240,\MOV\CMV\N_STRM\N_STRM03.PSS;1
+0x00362260,\MOV\CMV\N_STRM\N_STRM04.PSS;1
+0x00362280,\MOV\CMV\N_STRM\N_STRM05.PSS;1
+0x003622a0,\MOV\CMV\N_STRM\N_STRM06.PSS;1
+0x003622c0,\MOV\CMV\N_STRM\N_STRM07.PSS;1
+0x003622e0,\BUILD.TOC;1
+0x003622f0,\BUILD.DAT;1
+0x00362300,cdrom0:\IRX\XVI\XVI_IOP.IRX;1
+0x00362410,cdrom0:\IRX\XVI\XVI_SND.IRX;1
+0x00362660,cdrom0:\WBRCDATA\
+0x00362680,cdrom0:\WBRCDATA\BDY\
+0x003626a0,cdrom0:\WBRCDATA\TYR\
+0x003626c0,cdrom0:\WBRCDATA\ENG\
+0x003626e0,cdrom0:\WBRCDATA\ACD\
+0x003626f8,"Version %s, built on %s at %s
+"
+0x00362720,Sep 24 2002
+0x00362730,18:34:54
+0x00362740,"lgDevInit: rpc binding error.
+"
+0x00362760,"lgDevInit: rpc error
+"
+0x00362778,"lgDevInit: system halted.
+"
+0x00362798,"lgDevInit: wrong version of lgDev.irx!
+"
+0x003627c0,"lgDevInit:  liblgdev.a is version %d.%02d
+"
+0x003627f0,"lgDevInit:  lgdev.irx is version %d.%02d
+"
+0x00362820,"lgDevInit: unable to create semaphore!
+"
+0x00362848,"lgDevInit: skipping semaphore re-creation!
+"
+0x00362878,"lgDevEnumHint: invalid parameter (hint)
+"
+0x003628a8,"lgDevEnumerate: invalid parameter (description)
+"
+0x003628e0,"lgDevEnumerate: rpc call failed
+"
+0x00362908,"lgDevOpen: invalid parameter (device)
+"
+0x00362930,"lgDevOpen: rpc call failed
+"
+0x00362950,"lgDevClose: rpc call failed
+"
+0x00362970,"lgDevGetDeviceProperty: invalid parameter (value)
+"
+0x003629a8,"lgDevGetDeviceProperty: rpc call failed
+"
+0x003629d8,"lgDevSetDeviceProperty: rpc call failed
+"
+0x00362a08,"lgDevRead: invalid parameter (position)
+"
+0x00362a38,"lgDevRead: rpc call failed
+"
+0x00362a58,"lgDevReadMulti: devicecount out of range (%d)
+"
+0x00362a88,"lgDevReadMulti: invalid parameter (devices)
+"
+0x00362ab8,"lgDevReadMulti: invalid parameter (readmodes)
+"
+0x00362ae8,"lgDevReadMulti: invalid parameter (positions)
+"
+0x00362b18,"lgDevReadMulti: rpc call failed
+"
+0x00362b40,"lgDevDownloadForceEffect: invalid parameter (effectid)
+"
+0x00362b78,"lgDevDownloadForceEffect: invalid parameter (forceeffect)
+"
+0x00362bb8,"lgDevDownloadForceEffect: rpc call failed
+"
+0x00362be8,"lgDevUpdateForceEffect: invalid parameter (effectid)
+"
+0x00362c20,"lgDevUpdateForceEffect: invalid parameter (forceeffect)
+"
+0x00362c60,"lgDevUpdateForceEffect: rpc call failed
+"
+0x00362c90,"lgDevStartForceEffect: rpc call failed
+"
+0x00362cb8,"lgDevStartForceEffectMulti: numeffects is out of range (%d)
+"
+0x00362cf8,"lgDevStartForceEffectMulti: effectids is NULL
+"
+0x00362d28,"lgDevStartForceEffectMulti: rpc call failed
+"
+0x00362d58,"lgDevStopForceEffect: rpc call failed
+"
+0x00362d80,"lgDevStopForceEffectMulti: numeffects is out of range (%d)
+"
+0x00362dc0,"lgDevStopForceEffectMulti: effectids is NULL
+"
+0x00362df0,"lgDevStopForceEffectMulti: rpc call failed
+"
+0x00362e20,"lgDevDestroyForceEffect: rpc call failed
+"
+0x00362e50,"lgDevPrepareForIOPReboot: rpc call failed
+"
+0x00362e80,"lgDevAEnumHint: error: another async call is in progress...
+"
+0x00362ec0,"lgDevARead: invalid parameter (position)
+"
+0x00362ef0,"lgDevARead: error: another async call is in progress...
+"
+0x00362f30,"lgDevAReadMulti: devicecount out of range (%d)
+"
+0x00362f60,"lgDevAReadMulti: invalid parameter (devices)
+"
+0x00362f90,"lgDevAReadMulti: invalid parameter (readmodes)
+"
+0x00362fc0,"lgDevAReadMulti: invalid parameter (positions)
+"
+0x00362ff0,"lgDevAReadMulti: error: another async call is in progress...
+"
+0x00363030,"lgDevAUpdateForceEffect: invalid parameter (effectid).
+"
+0x00363068,"lgDevAUpdateForceEffect: invalid parameter (forceeffect)
+"
+0x003630a8,"lgDevAUpdateForceEffect: error: another async call is in progress...
+"
+0x003630f0,"lgDevAStartForceEffect: error: another async call is in progress...
+"
+0x00363138,"lgDevAStartForceEffectMulti: error: another async call is in progress...
+"
+0x00363188,"lgDevAStartForceEffectMulti: numeffects is out of range (%d)
+"
+0x003631c8,"lgDevAStartForceEffectMulti: effectids is NULL
+"
+0x003631f8,"lgDevAStopForceEffect: error: another async call is in progress...
+"
+0x00363240,"lgDevAStopForceEffectMulti: error: another async call is in progress...
+"
+0x00363290,"lgDevAStopForceEffectMulti: numeffects is out of range (%d)
+"
+0x003632d0,"lgDevAStopForceEffectMulti: effectids is NULL
+"
+0x00363300,icon.sys
+0x003633c0,"blur error : viewNrm == NULL.
+"
+0x003636e0,cdrom0:\IRX\IOPRP280.IMG;1
+0x00363700,cdrom0:\IRX\CDVDSTM.IRX;1
+0x00363720,cdrom0:\IRX\SIO2MAN.IRX;1
+0x00363740,cdrom0:\IRX\DBCMAN.IRX;1
+0x00363760,cdrom0:\IRX\SIO2D.IRX;1
+0x00363780,cdrom0:\IRX\PAD2\DS2O.IRX;1
+0x003637a0,cdrom0:\IRX\LIBSD.IRX;1
+0x003637c0,cdrom0:\IRX\MODHSYN.IRX;1
+0x003637e0,cdrom0:\IRX\MODMIDI.IRX;1
+0x00363800,cdrom0:\IRX\USBD.IRX;1
+0x00363820,cdrom0:\IRX\LGD\LGDEV.IRX;1
+0x00363840,cdrom0:\IRX\MCMAN.IRX;1
+0x00363860,cdrom0:\IRX\MCSERV.IRX;1
+0x00363880,CAR_RUN
+0x00363888,ADVERTISE
+0x00363898,EVENTMOVIE
+0x003638a8,HOMEMENU
+0x003638b8,SND_EDIT
+0x003638d0,particle Error!
+0x003638e0,"particle Error! : inactive particle
+"
+0x00363910,"particleSystem Get Error! : Illegal ID[%d / %d]
+"
+0x00363950,"particleSystem Remove Error! : Illegal ID[%d / %d]
+"
+0x00363b50,nickname
+0x00364488,HARUNA
+0x00364490,HARUNA_RAIN
+0x003644a0,HARUNA_FOG
+0x003644b0,HARUNA_STORM
+0x003644c0,HARUNA_NIGHT
+0x003644d0,HARUNA_NIGHTRAIN
+0x003644f0,HARUNA_NIGHTFOG
+0x00364500,HARUNA_NIGHTSTORM
+0x00364518,HAKONE
+0x00364520,HAKONE_RAIN
+0x00364530,HAKONE_FOG
+0x00364540,HAKONE_STORM
+0x00364550,HAKONE_NIGHT
+0x00364560,HAKONE_NIGHTRAIN
+0x00364580,HAKONE_NIGHTFOG
+0x00364590,HAKONE_NIGHTSTORM
+0x003645a8,IROHA_UP
+0x003645b8,IROHA_UP_RAIN
+0x003645c8,IROHA_UP_FOG
+0x003645d8,IROHA_UP_STORM
+0x003645e8,IROHA_UP_NIGHT
+0x00364600,IROHA_UP_NIGHTRAIN
+0x00364620,IROHA_UP_NIGHTFOG
+0x00364640,IROHA_UP_NIGHTSTORM
+0x00364658,IROHA_DOWN
+0x00364670,IROHA_DOWN_RAIN
+0x00364680,IROHA_DOWN_FOG
+0x00364690,IROHA_DOWN_STORM
+0x003646b0,IROHA_DOWN_NIGHT
+0x003646d0,IROHA_DOWN_NIGHTRAIN
+0x003646f0,IROHA_DOWN_NIGHTFOG
+0x00364710,IROHA_DOWN_NIGHTSTORM
+0x00364728,ROKKOU
+0x00364730,ROKKOU_RAIN
+0x00364740,ROKKOU_FOG
+0x00364750,ROKKOU_STORM
+0x00364760,ROKKOU_NIGHT
+0x00364770,ROKKOU_NIGHTRAIN
+0x00364790,ROKKOU_NIGHTFOG
+0x003647a0,ROKKOU_NIGHTSTORM
+0x003647b8,AKAGI
+0x003647c0,AKAGI_RAIN
+0x003647d0,AKAGI_FOG
+0x003647e0,AKAGI_STORM
+0x003647f0,AKAGI_NIGHT
+0x00364800,AKAGI_NIGHTRAIN
+0x00364810,AKAGI_NIGHTFOG
+0x00364820,AKAGI_NIGHTSTORM
+0x00364840,ASO_RAIN
+0x00364850,ASO_FOG
+0x00364858,ASO_STORM
+0x00364868,ASO_NIGHT
+0x00364878,ASO_NIGHTRAIN
+0x00364888,ASO_NIGHTFOG
+0x00364898,ASO_NIGHTSTORM
+0x003648b0,ZAO_RAIN
+0x003648c0,ZAO_FOG
+0x003648c8,ZAO_STORM
+0x003648d8,ZAO_NIGHT
+0x003648e8,ZAO_NIGHTRAIN
+0x003648f8,ZAO_NIGHTFOG
+0x00364908,ZAO_NIGHTSTORM
+0x00364920,OVAL_RAIN
+0x00364930,OVAL_SNOW
+0x00364940,PARKING
+0x00364948,TEST11
+0x00365070,%s@kaido.battle
+0x00366130,BESLES-53191-SYS
+0x00366170,BESLES-53191-RTA
+0x00366bc0,CHINKO
+0x00366bc8,Hetare
+0x00366bd0,YaMaDa
+0x00366bd8,HamagakI
+0x00366be8,Ikemen
+0x00368210,"PassWord : input data error
+"
+0x003683b8,NoTitle
+0x20306abf,9PsIIlibkernl2800
+0x203081c0,PsIIlibcdvd 2800
+0x2030a500,PsIIlibpad2 2800
+0x2030a530,PsIIlibdbc  2800
+0x2032e7b0,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+0x20343500,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+0x2035e100,std::exception
+0x2035e118,exception
+0x2035e230,std::ios_base
+0x2035e250,std::ios_base::failure
+0x2035e280,ios_base failure in clear
+0x2035e2a0,"std::basic_istream<wchar_t, std::char_traits<wchar_t>>"
+0x2035e2e0,"std::basic_ios<wchar_t, std::char_traits<wchar_t>>"
+0x2035e350,"std::basic_ostream<wchar_t, std::char_traits<wchar_t>>"
+0x2035e3b0,"std::basic_streambuf<wchar_t, std::char_traits<wchar_t>>"
+0x2035e400,"std::basic_filebuf<wchar_t, std::char_traits<wchar_t>>"
+0x2035e450,"std::basic_istream<char, std::char_traits<char>>"
+0x2035e490,"std::basic_ios<char, std::char_traits<char>>"
+0x2035e500,"std::basic_ostream<char, std::char_traits<char>>"
+0x2035e560,"std::basic_streambuf<char, std::char_traits<char>>"
+0x2035e5a0,"std::basic_filebuf<char, std::char_traits<char>>"
+0x2035e5f0,!std::exception!!std::ios_base::failure!!
+0x2035e620,basic_string: out_of_range
+0x2035e640,!std::exception!!std::logic_error!!std::out_of_range!!
+0x2035e680,basic_string: length_error
+0x2035e6a0,!std::exception!!std::logic_error!!std::length_error!!
+0x2035e6e0,std::length_error
+0x2035e700,std::logic_error
+0x2035e750,std::out_of_range
+0x2035e790,basic_string::reserve length_error
+0x2035e7c8,"sceGsDefDispEnv:Not support displaymode for 0x%x!!
+"
+0x2035e800,"sceGsPutDrawEnv: DMA Ch.2 does not terminate
+"
+0x2035e830,"sceGsSyncPath: DMA Ch.1 does not terminate
+"
+0x2035e870,D1_TADR=%08x:
+0x2035e880,D1_MADR=%08x:
+0x2035e8b0,D2_TADR=%08x:
+0x2035e8c0,D2_MADR=%08x:
+0x2035e8e0,	<VIF1_STAT=%08x:
+0x2035e8f8,"GIF_STAT=%08x>
+"
+0x2035e910,"sceGsSyncPath: DMA Ch.2 does not terminate
+"
+0x2035e940,"sceGsSyncPath: VIF1 does not terminate
+"
+0x2035e970,"sceGsSyncPath: VU1 does not terminate
+"
+0x2035e998,"sceGsSyncPath: GIF does not terminate
+"
+0x2035e9c0,"sceGsExecStoreImage: DMA Ch.1 does not terminate
+"
+0x2035e9f8,"sceGsExecStoreImage: GS does not terminate
+"
+0x2035ea28,"sceGsExecStoreImage: DMA Ch.1 (GS->MEM) does not terminate
+"
+0x2035ea68,"sceGsExecStoreImage: Enough data does not reach VIF1
+"
+0x2035eb90,Invalid modion type -- ignored(%d)
+0x2035ebb8,(a) invalid motion_type(%d)-0
+0x2035ebd8,(b) invalid motion_type(%d)-1
+0x2035ebf8,(c) invalid motion_type(%d)-2
+0x2035ec18,intra && skip MB
+0x2035ec30,Error code detected(BDEC)
+0x2035ec50,Invalid macroblock_address_increment code(0x%08x)
+0x2035ec88,= Skip to the next picture =
+0x2035eca8,slice_start_code(0x%08x) out of range
+0x2035ecd0,_sliceA0(): error happens
+0x2035ecf0,Too many macroblocks in picture
+0x2035ed10,skiped macroblock in I picure is not allowed
+0x2035ed90,load_chroma_intra_quantizer_matrix == 1
+0x2035edb8,load_chroma_non_intra_quantizer_matrix == 1
+0x2035ede8,odd number of field pictures
+0x2035ee08,unknown picture sutructure
+0x2035ee28,"Too small buffer size for %dx%d picture
+"
+0x2035ee58,"CSC handler error
+"
+0x2035ee79,"( 0 0(8pack_header_field_flag needs to be '0' in PS
+"
+0x2035eeb0,The size of work area is too small
+0x2035eed8,work area size is too small
+0x2035eef8,image buffer needs to be aligned to 64byte boundary(0x%08x)
+0x2035ef38,"Need to re-setup libipu since sceMpegGetPicture was aborted
+"
+0x2035ef78,"sceMpegGetPicture is aborted
+"
+0x2035efb8,the second field is missing
+0x2035efd8,"[MPEG ERROR]%s
+"
+0x2035efe8,vertical size > 2800
+0x2035f000,_chroma_format needs to be 1: 420
+0x2035f028,Unsupported profile/level
+0x2035f048,_sequenceScalableExtension() is not implemented
+0x2035f078,Unknown Extension
+0x2035f090,_pictureSpatialScalableExtension is not supported
+0x2035f0c8,_pictureTemporalScalableExtension is not supported
+0x2035f100,"## internel error in libkernl.a!
+"
+0x2035f128,DelayThread
+0x2035f138,"TTY: packet size larger than expect
+"
+0x2035f160,TTY: receive error
+0x2035f178,"TTY: send err %d
+"
+0x2035f190,"TTY: err ti->wlen=%08x
+"
+0x2035f3a0,"too long parameter '%s'
+"
+0x2035f3c0,"# TLB spad=0 kernel=1:%d default=%d:%d extended=%d:%d
+"
+0x2035f3f8,# TLB over flow (1)
+0x2035f410,# TLB over flow (2)
+0x2035f428,# TLB over flow (3)
+0x2035fd00,"sceCdCbfunc= %d sceCdCbfunc_num= %d
+"
+0x2035fd28,"Libcdvd bind err CdSearchFile
+"
+0x2035fd48,"ee call cmd search %s
+"
+0x2035fd60,"search name %s
+"
+0x2035fd70,"search size %d
+"
+0x2035fd80,"search loc lbn %d
+"
+0x2035fd98,"Ncmd fail sema cur_cmd:%d keep_cmd:%d
+"
+0x2035fdc0,"Libcdvd bind err N CMD
+"
+0x2035fdd8,"N cmd wait
+"
+0x2035fde8,"S cmd wait
+"
+0x2035fdf8,"Scmd fail sema cur_cmd:%d keep_cmd:%d
+"
+0x2035fe20,"Libcdvd bind err S cmd
+"
+0x2035fe38,"Libcdvd bind err %d CD_Init %d
+"
+0x2035fe58,"Libcdvd Exit
+"
+0x2035fe68,"OLD DiskReady Call
+"
+0x2035fe80,"Libcdvd bind err CdDiskReady
+"
+0x2035fea0,"DiskReady ended
+"
+0x2035feb8,"NEW DiskReady Call
+"
+0x2035fed0,"call cdread cmd
+"
+0x2035fee8,"cdread end
+"
+0x2035fef8,"cdread end
+"
+0x2035ff08,"Libcdvd call Clock read 1
+"
+0x2035ff28,"Libcdvd call Clock read 2
+"
+0x2035ff48,"sceCdStRead call read size= %d mode= %d
+"
+0x2035ff78,"sceCdStRead BLK Read cur_size= %d read_size= %d req_size= %d err 0x%x
+"
+0x2035ffc0,"sceCdStRead BLK Read Ended
+"
+0x2035ffe0,"sceCdStPause call
+"
+0x2035fff8,"sceCdStResume call
+"
+0x20360010,"sceCdStStat call
+"
+0x20360028,"call cdreadstm call
+"
+0x20360040,"call cdreadstm cmd
+"
+0x20360058,"cdread end
+"
+0x20360068,"bind error libmc 
+"
+0x20360080,"libmc: too old release of mcserv.irx
+"
+0x203600a8,"libmc: too old release of mcman.irx
+"
+0x203600d0,"sceMcUdCheckNewCard RPC faild
+"
+0x20360200,Infinity
+0x203603cf,"
+                0000000000000000Inf"
+0x20360400,0123456789abcdef
+0x20360420,0123456789ABCDEF
+0x20360438,bug in vfprintf: bad base
+0x203609f0,"libpad2: buffer addr is not 64 byte align. %08x
+"
+0x20360a28,ERROR
+0x20360a38,STABLE
+0x20360a40,NOLINK
+0x20360a50,"libdbc: bind failed
+"
+0x20360a68,libdbc: Module version mismatch 
+0x20360a90,"[libdbc.a = %d.%d, dbcman.irx = %d.%d]
+"
+0x20360ab8,"libdbc: SifDmaAddr %08x
+"
+0x20360ad8,"sceDbcSetWorkAddr: rpc error
+"
+0x20360af8,"sceDbcCreateSocket: rpc error
+"
+0x20360b18,"sceDbcDeleteSocket: rpc error
+"
+0x20360b38,"sceDbcGetDepNumber: rpc error
+"
+0x20360b58,"sceDbcInitSocket: rpc error
+"
+0x20360b78,"sceDbcResetSocket: rpc error
+"
+0x20360b98,"sceDbcGetDeviceStatus: rpc error
+"
+0x20360bc0,"sceDbcSRData: rpc error
+"
+0x20360be0,"sceDbcSendData: rpc error
+"
+0x20360c00,"libdbc: SendData2 data length too long [%d]
+"
+0x20360c30,"dbcman : SendData2 BUSY
+"
+0x20360c50,"sceDbcSendData2: rpc error
+"
+0x20360c70,"libdbc: SendData3 data length too long
+"
+0x20360c98,"dbcman : SendData3 BUSY
+"
+0x20360cb8,"sceDbcReceiveData: rpc error
+"
+0x20361200,"GUT_Archive Memory Over
+"
+0x20361220,"GUT_Archive Memory Over2
+"
+0x20361240,"GUT_Archive destSize Error
+"
+0x20361260,"decompress Error
+"
+0x20361780,\MOV\MV1\TITLE.PSS;1
+0x203619e0,\MOV\CMV\A_BIND\A_BIND00.PSS;1
+0x20361a00,\MOV\CMV\A_BIND\A_BIND01.PSS;1
+0x20361a20,\MOV\CMV\A_BIND\A_BIND02.PSS;1
+0x20361a40,\MOV\CMV\A_BIND\A_BIND03.PSS;1
+0x20361a60,\MOV\CMV\A_BIND\A_BIND04.PSS;1
+0x20361a80,\MOV\CMV\A_BIND\A_BIND05.PSS;1
+0x20361aa0,\MOV\CMV\A_BIND\A_BIND06.PSS;1
+0x20361ac0,\MOV\CMV\A_BIND\A_BIND07.PSS;1
+0x20361ae0,\MOV\CMV\D_FINE\D_FINE00.PSS;1
+0x20361b00,\MOV\CMV\D_FINE\D_FINE01.PSS;1
+0x20361b20,\MOV\CMV\D_FINE\D_FINE02.PSS;1
+0x20361b40,\MOV\CMV\D_FINE\D_FINE03.PSS;1
+0x20361b60,\MOV\CMV\D_FINE\D_FINE04.PSS;1
+0x20361b80,\MOV\CMV\D_FINE\D_FINE05.PSS;1
+0x20361ba0,\MOV\CMV\D_FINE\D_FINE06.PSS;1
+0x20361bc0,\MOV\CMV\D_FINE\D_FINE07.PSS;1
+0x20361be0,\MOV\CMV\D_CLUD\D_CLUD00.PSS;1
+0x20361c00,\MOV\CMV\D_CLUD\D_CLUD01.PSS;1
+0x20361c20,\MOV\CMV\D_CLUD\D_CLUD02.PSS;1
+0x20361c40,\MOV\CMV\D_CLUD\D_CLUD03.PSS;1
+0x20361c60,\MOV\CMV\D_CLUD\D_CLUD04.PSS;1
+0x20361c80,\MOV\CMV\D_CLUD\D_CLUD05.PSS;1
+0x20361ca0,\MOV\CMV\D_CLUD\D_CLUD06.PSS;1
+0x20361cc0,\MOV\CMV\D_CLUD\D_CLUD07.PSS;1
+0x20361ce0,\MOV\CMV\D_RAIN\D_RAIN00.PSS;1
+0x20361d00,\MOV\CMV\D_RAIN\D_RAIN01.PSS;1
+0x20361d20,\MOV\CMV\D_RAIN\D_RAIN02.PSS;1
+0x20361d40,\MOV\CMV\D_RAIN\D_RAIN03.PSS;1
+0x20361d60,\MOV\CMV\D_RAIN\D_RAIN04.PSS;1
+0x20361d80,\MOV\CMV\D_RAIN\D_RAIN05.PSS;1
+0x20361da0,\MOV\CMV\D_RAIN\D_RAIN06.PSS;1
+0x20361dc0,\MOV\CMV\D_RAIN\D_RAIN07.PSS;1
+0x20361de0,\MOV\CMV\D_STRM\D_STRM00.PSS;1
+0x20361e00,\MOV\CMV\D_STRM\D_STRM01.PSS;1
+0x20361e20,\MOV\CMV\D_STRM\D_STRM02.PSS;1
+0x20361e40,\MOV\CMV\D_STRM\D_STRM03.PSS;1
+0x20361e60,\MOV\CMV\D_STRM\D_STRM04.PSS;1
+0x20361e80,\MOV\CMV\D_STRM\D_STRM05.PSS;1
+0x20361ea0,\MOV\CMV\D_STRM\D_STRM06.PSS;1
+0x20361ec0,\MOV\CMV\D_STRM\D_STRM07.PSS;1
+0x20361ee0,\MOV\CMV\N_FINE\N_FINE00.PSS;1
+0x20361f00,\MOV\CMV\N_FINE\N_FINE01.PSS;1
+0x20361f20,\MOV\CMV\N_FINE\N_FINE02.PSS;1
+0x20361f40,\MOV\CMV\N_FINE\N_FINE03.PSS;1
+0x20361f60,\MOV\CMV\N_FINE\N_FINE04.PSS;1
+0x20361f80,\MOV\CMV\N_FINE\N_FINE05.PSS;1
+0x20361fa0,\MOV\CMV\N_FINE\N_FINE06.PSS;1
+0x20361fc0,\MOV\CMV\N_FINE\N_FINE07.PSS;1
+0x20361fe0,\MOV\CMV\N_CLUD\N_CLUD00.PSS;1
+0x20362000,\MOV\CMV\N_CLUD\N_CLUD01.PSS;1
+0x20362020,\MOV\CMV\N_CLUD\N_CLUD02.PSS;1
+0x20362040,\MOV\CMV\N_CLUD\N_CLUD03.PSS;1
+0x20362060,\MOV\CMV\N_CLUD\N_CLUD04.PSS;1
+0x20362080,\MOV\CMV\N_CLUD\N_CLUD05.PSS;1
+0x203620a0,\MOV\CMV\N_CLUD\N_CLUD06.PSS;1
+0x203620c0,\MOV\CMV\N_CLUD\N_CLUD07.PSS;1
+0x203620e0,\MOV\CMV\N_RAIN\N_RAIN00.PSS;1
+0x20362100,\MOV\CMV\N_RAIN\N_RAIN01.PSS;1
+0x20362120,\MOV\CMV\N_RAIN\N_RAIN02.PSS;1
+0x20362140,\MOV\CMV\N_RAIN\N_RAIN03.PSS;1
+0x20362160,\MOV\CMV\N_RAIN\N_RAIN04.PSS;1
+0x20362180,\MOV\CMV\N_RAIN\N_RAIN05.PSS;1
+0x203621a0,\MOV\CMV\N_RAIN\N_RAIN06.PSS;1
+0x203621c0,\MOV\CMV\N_RAIN\N_RAIN07.PSS;1
+0x203621e0,\MOV\CMV\N_STRM\N_STRM00.PSS;1
+0x20362200,\MOV\CMV\N_STRM\N_STRM01.PSS;1
+0x20362220,\MOV\CMV\N_STRM\N_STRM02.PSS;1
+0x20362240,\MOV\CMV\N_STRM\N_STRM03.PSS;1
+0x20362260,\MOV\CMV\N_STRM\N_STRM04.PSS;1
+0x20362280,\MOV\CMV\N_STRM\N_STRM05.PSS;1
+0x203622a0,\MOV\CMV\N_STRM\N_STRM06.PSS;1
+0x203622c0,\MOV\CMV\N_STRM\N_STRM07.PSS;1
+0x203622e0,\BUILD.TOC;1
+0x203622f0,\BUILD.DAT;1
+0x20362660,cdrom0:\WBRCDATA\
+0x20362680,cdrom0:\WBRCDATA\BDY\
+0x203626a0,cdrom0:\WBRCDATA\TYR\
+0x203626c0,cdrom0:\WBRCDATA\ENG\
+0x203626e0,cdrom0:\WBRCDATA\ACD\
+0x203626f8,"Version %s, built on %s at %s
+"
+0x20362740,"lgDevInit: rpc binding error.
+"
+0x20362760,"lgDevInit: rpc error
+"
+0x20362778,"lgDevInit: system halted.
+"
+0x20362798,"lgDevInit: wrong version of lgDev.irx!
+"
+0x203627c0,"lgDevInit:  liblgdev.a is version %d.%02d
+"
+0x203627f0,"lgDevInit:  lgdev.irx is version %d.%02d
+"
+0x20362820,"lgDevInit: unable to create semaphore!
+"
+0x20362848,"lgDevInit: skipping semaphore re-creation!
+"
+0x20362878,"lgDevEnumHint: invalid parameter (hint)
+"
+0x203628a8,"lgDevEnumerate: invalid parameter (description)
+"
+0x203628e0,"lgDevEnumerate: rpc call failed
+"
+0x20362908,"lgDevOpen: invalid parameter (device)
+"
+0x20362930,"lgDevOpen: rpc call failed
+"
+0x20362950,"lgDevClose: rpc call failed
+"
+0x20362970,"lgDevGetDeviceProperty: invalid parameter (value)
+"
+0x203629a8,"lgDevGetDeviceProperty: rpc call failed
+"
+0x203629d8,"lgDevSetDeviceProperty: rpc call failed
+"
+0x20362a08,"lgDevRead: invalid parameter (position)
+"
+0x20362a38,"lgDevRead: rpc call failed
+"
+0x20362a58,"lgDevReadMulti: devicecount out of range (%d)
+"
+0x20362a88,"lgDevReadMulti: invalid parameter (devices)
+"
+0x20362ab8,"lgDevReadMulti: invalid parameter (readmodes)
+"
+0x20362ae8,"lgDevReadMulti: invalid parameter (positions)
+"
+0x20362b18,"lgDevReadMulti: rpc call failed
+"
+0x20362b40,"lgDevDownloadForceEffect: invalid parameter (effectid)
+"
+0x20362b78,"lgDevDownloadForceEffect: invalid parameter (forceeffect)
+"
+0x20362bb8,"lgDevDownloadForceEffect: rpc call failed
+"
+0x20362be8,"lgDevUpdateForceEffect: invalid parameter (effectid)
+"
+0x20362c20,"lgDevUpdateForceEffect: invalid parameter (forceeffect)
+"
+0x20362c60,"lgDevUpdateForceEffect: rpc call failed
+"
+0x20362c90,"lgDevStartForceEffect: rpc call failed
+"
+0x20362cb8,"lgDevStartForceEffectMulti: numeffects is out of range (%d)
+"
+0x20362cf8,"lgDevStartForceEffectMulti: effectids is NULL
+"
+0x20362d28,"lgDevStartForceEffectMulti: rpc call failed
+"
+0x20362d58,"lgDevStopForceEffect: rpc call failed
+"
+0x20362d80,"lgDevStopForceEffectMulti: numeffects is out of range (%d)
+"
+0x20362dc0,"lgDevStopForceEffectMulti: effectids is NULL
+"
+0x20362df0,"lgDevStopForceEffectMulti: rpc call failed
+"
+0x20362e20,"lgDevDestroyForceEffect: rpc call failed
+"
+0x20362e50,"lgDevPrepareForIOPReboot: rpc call failed
+"
+0x20362e80,"lgDevAEnumHint: error: another async call is in progress...
+"
+0x20362ec0,"lgDevARead: invalid parameter (position)
+"
+0x20362ef0,"lgDevARead: error: another async call is in progress...
+"
+0x20362f30,"lgDevAReadMulti: devicecount out of range (%d)
+"
+0x20362f60,"lgDevAReadMulti: invalid parameter (devices)
+"
+0x20362f90,"lgDevAReadMulti: invalid parameter (readmodes)
+"
+0x20362fc0,"lgDevAReadMulti: invalid parameter (positions)
+"
+0x20362ff0,"lgDevAReadMulti: error: another async call is in progress...
+"
+0x20363030,"lgDevAUpdateForceEffect: invalid parameter (effectid).
+"
+0x20363068,"lgDevAUpdateForceEffect: invalid parameter (forceeffect)
+"
+0x203630a8,"lgDevAUpdateForceEffect: error: another async call is in progress...
+"
+0x203630f0,"lgDevAStartForceEffect: error: another async call is in progress...
+"
+0x20363138,"lgDevAStartForceEffectMulti: error: another async call is in progress...
+"
+0x20363188,"lgDevAStartForceEffectMulti: numeffects is out of range (%d)
+"
+0x203631c8,"lgDevAStartForceEffectMulti: effectids is NULL
+"
+0x203631f8,"lgDevAStopForceEffect: error: another async call is in progress...
+"
+0x20363240,"lgDevAStopForceEffectMulti: error: another async call is in progress...
+"
+0x20363290,"lgDevAStopForceEffectMulti: numeffects is out of range (%d)
+"
+0x203632d0,"lgDevAStopForceEffectMulti: effectids is NULL
+"
+0x20363300,icon.sys
+0x203633c0,"blur error : viewNrm == NULL.
+"
+0x20363880,CAR_RUN
+0x20363888,ADVERTISE
+0x20363898,EVENTMOVIE
+0x203638a8,HOMEMENU
+0x203638b8,SND_EDIT
+0x203638d0,particle Error!
+0x203638e0,"particle Error! : inactive particle
+"
+0x20363910,"particleSystem Get Error! : Illegal ID[%d / %d]
+"
+0x20363950,"particleSystem Remove Error! : Illegal ID[%d / %d]
+"
+0x20363b50,nickname
+0x20364488,HARUNA
+0x20364490,HARUNA_RAIN
+0x203644a0,HARUNA_FOG
+0x203644b0,HARUNA_STORM
+0x203644c0,HARUNA_NIGHT
+0x203644d0,HARUNA_NIGHTRAIN
+0x203644f0,HARUNA_NIGHTFOG
+0x20364500,HARUNA_NIGHTSTORM
+0x20364518,HAKONE
+0x20364520,HAKONE_RAIN
+0x20364530,HAKONE_FOG
+0x20364540,HAKONE_STORM
+0x20364550,HAKONE_NIGHT
+0x20364560,HAKONE_NIGHTRAIN
+0x20364580,HAKONE_NIGHTFOG
+0x20364590,HAKONE_NIGHTSTORM
+0x203645a8,IROHA_UP
+0x203645b8,IROHA_UP_RAIN
+0x203645c8,IROHA_UP_FOG
+0x203645d8,IROHA_UP_STORM
+0x203645e8,IROHA_UP_NIGHT
+0x20364600,IROHA_UP_NIGHTRAIN
+0x20364620,IROHA_UP_NIGHTFOG
+0x20364640,IROHA_UP_NIGHTSTORM
+0x20364658,IROHA_DOWN
+0x20364670,IROHA_DOWN_RAIN
+0x20364680,IROHA_DOWN_FOG
+0x20364690,IROHA_DOWN_STORM
+0x203646b0,IROHA_DOWN_NIGHT
+0x203646d0,IROHA_DOWN_NIGHTRAIN
+0x203646f0,IROHA_DOWN_NIGHTFOG
+0x20364710,IROHA_DOWN_NIGHTSTORM
+0x20364730,ROKKOU_RAIN
+0x20364750,ROKKOU_STORM
+0x20364760,ROKKOU_NIGHT
+0x20364770,ROKKOU_NIGHTRAIN
+0x20364790,ROKKOU_NIGHTFOG
+0x203647a0,ROKKOU_NIGHTSTORM
+0x203647c0,AKAGI_RAIN
+0x203647d0,AKAGI_FOG
+0x203647e0,AKAGI_STORM
+0x203647f0,AKAGI_NIGHT
+0x20364800,AKAGI_NIGHTRAIN
+0x20364810,AKAGI_NIGHTFOG
+0x20364820,AKAGI_NIGHTSTORM
+0x20364840,ASO_RAIN
+0x20364858,ASO_STORM
+0x20364868,ASO_NIGHT
+0x20364878,ASO_NIGHTRAIN
+0x20364888,ASO_NIGHTFOG
+0x20364898,ASO_NIGHTSTORM
+0x203648b0,ZAO_RAIN
+0x203648c8,ZAO_STORM
+0x203648d8,ZAO_NIGHT
+0x203648e8,ZAO_NIGHTRAIN
+0x203648f8,ZAO_NIGHTFOG
+0x20364908,ZAO_NIGHTSTORM
+0x20364920,OVAL_RAIN
+0x20364930,OVAL_SNOW
+0x20364940,PARKING
+0x20365070,%s@kaido.battle
+0x20366130,BESLES-53191-SYS
+0x20366170,BESLES-53191-RTA
+0x20366bc0,CHINKO
+0x20366bc8,Hetare
+0x20366bd0,YaMaDa
+0x20366bd8,HamagakI
+0x20368210,"PassWord : input data error
+"
+0x203683b8,NoTitle
+0x30406abf,9PsIIlibkernl2800
+0x304081c0,PsIIlibcdvd 2800
+0x3040a500,PsIIlibpad2 2800
+0x3040a530,PsIIlibdbc  2800
+0x3042e7b0,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+0x30443500,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+0x3045e100,std::exception
+0x3045e118,exception
+0x3045e230,std::ios_base
+0x3045e250,std::ios_base::failure
+0x3045e280,ios_base failure in clear
+0x3045e2a0,"std::basic_istream<wchar_t, std::char_traits<wchar_t>>"
+0x3045e2e0,"std::basic_ios<wchar_t, std::char_traits<wchar_t>>"
+0x3045e350,"std::basic_ostream<wchar_t, std::char_traits<wchar_t>>"
+0x3045e3b0,"std::basic_streambuf<wchar_t, std::char_traits<wchar_t>>"
+0x3045e400,"std::basic_filebuf<wchar_t, std::char_traits<wchar_t>>"
+0x3045e450,"std::basic_istream<char, std::char_traits<char>>"
+0x3045e490,"std::basic_ios<char, std::char_traits<char>>"
+0x3045e500,"std::basic_ostream<char, std::char_traits<char>>"
+0x3045e560,"std::basic_streambuf<char, std::char_traits<char>>"
+0x3045e5a0,"std::basic_filebuf<char, std::char_traits<char>>"
+0x3045e5f0,!std::exception!!std::ios_base::failure!!
+0x3045e620,basic_string: out_of_range
+0x3045e640,!std::exception!!std::logic_error!!std::out_of_range!!
+0x3045e680,basic_string: length_error
+0x3045e6a0,!std::exception!!std::logic_error!!std::length_error!!
+0x3045e6e0,std::length_error
+0x3045e700,std::logic_error
+0x3045e750,std::out_of_range
+0x3045e790,basic_string::reserve length_error
+0x3045e7c8,"sceGsDefDispEnv:Not support displaymode for 0x%x!!
+"
+0x3045e800,"sceGsPutDrawEnv: DMA Ch.2 does not terminate
+"
+0x3045e830,"sceGsSyncPath: DMA Ch.1 does not terminate
+"
+0x3045e870,D1_TADR=%08x:
+0x3045e880,D1_MADR=%08x:
+0x3045e8b0,D2_TADR=%08x:
+0x3045e8c0,D2_MADR=%08x:
+0x3045e8e0,	<VIF1_STAT=%08x:
+0x3045e8f8,"GIF_STAT=%08x>
+"
+0x3045e910,"sceGsSyncPath: DMA Ch.2 does not terminate
+"
+0x3045e940,"sceGsSyncPath: VIF1 does not terminate
+"
+0x3045e970,"sceGsSyncPath: VU1 does not terminate
+"
+0x3045e998,"sceGsSyncPath: GIF does not terminate
+"
+0x3045e9c0,"sceGsExecStoreImage: DMA Ch.1 does not terminate
+"
+0x3045e9f8,"sceGsExecStoreImage: GS does not terminate
+"
+0x3045ea28,"sceGsExecStoreImage: DMA Ch.1 (GS->MEM) does not terminate
+"
+0x3045ea68,"sceGsExecStoreImage: Enough data does not reach VIF1
+"
+0x3045eb90,Invalid modion type -- ignored(%d)
+0x3045ebb8,(a) invalid motion_type(%d)-0
+0x3045ebd8,(b) invalid motion_type(%d)-1
+0x3045ebf8,(c) invalid motion_type(%d)-2
+0x3045ec18,intra && skip MB
+0x3045ec30,Error code detected(BDEC)
+0x3045ec50,Invalid macroblock_address_increment code(0x%08x)
+0x3045ec88,= Skip to the next picture =
+0x3045eca8,slice_start_code(0x%08x) out of range
+0x3045ecd0,_sliceA0(): error happens
+0x3045ecf0,Too many macroblocks in picture
+0x3045ed10,skiped macroblock in I picure is not allowed
+0x3045ed90,load_chroma_intra_quantizer_matrix == 1
+0x3045edb8,load_chroma_non_intra_quantizer_matrix == 1
+0x3045ede8,odd number of field pictures
+0x3045ee08,unknown picture sutructure
+0x3045ee28,"Too small buffer size for %dx%d picture
+"
+0x3045ee58,"CSC handler error
+"
+0x3045ee79,"( 0 0(8pack_header_field_flag needs to be '0' in PS
+"
+0x3045eeb0,The size of work area is too small
+0x3045eed8,work area size is too small
+0x3045eef8,image buffer needs to be aligned to 64byte boundary(0x%08x)
+0x3045ef38,"Need to re-setup libipu since sceMpegGetPicture was aborted
+"
+0x3045ef78,"sceMpegGetPicture is aborted
+"
+0x3045efb8,the second field is missing
+0x3045efd8,"[MPEG ERROR]%s
+"
+0x3045efe8,vertical size > 2800
+0x3045f000,_chroma_format needs to be 1: 420
+0x3045f028,Unsupported profile/level
+0x3045f048,_sequenceScalableExtension() is not implemented
+0x3045f078,Unknown Extension
+0x3045f090,_pictureSpatialScalableExtension is not supported
+0x3045f0c8,_pictureTemporalScalableExtension is not supported
+0x3045f100,"## internel error in libkernl.a!
+"
+0x3045f128,DelayThread
+0x3045f138,"TTY: packet size larger than expect
+"
+0x3045f160,TTY: receive error
+0x3045f178,"TTY: send err %d
+"
+0x3045f190,"TTY: err ti->wlen=%08x
+"
+0x3045f3a0,"too long parameter '%s'
+"
+0x3045f3c0,"# TLB spad=0 kernel=1:%d default=%d:%d extended=%d:%d
+"
+0x3045f3f8,# TLB over flow (1)
+0x3045f410,# TLB over flow (2)
+0x3045f428,# TLB over flow (3)
+0x3045fd00,"sceCdCbfunc= %d sceCdCbfunc_num= %d
+"
+0x3045fd28,"Libcdvd bind err CdSearchFile
+"
+0x3045fd48,"ee call cmd search %s
+"
+0x3045fd60,"search name %s
+"
+0x3045fd70,"search size %d
+"
+0x3045fd80,"search loc lbn %d
+"
+0x3045fd98,"Ncmd fail sema cur_cmd:%d keep_cmd:%d
+"
+0x3045fdc0,"Libcdvd bind err N CMD
+"
+0x3045fdd8,"N cmd wait
+"
+0x3045fde8,"S cmd wait
+"
+0x3045fdf8,"Scmd fail sema cur_cmd:%d keep_cmd:%d
+"
+0x3045fe20,"Libcdvd bind err S cmd
+"
+0x3045fe38,"Libcdvd bind err %d CD_Init %d
+"
+0x3045fe58,"Libcdvd Exit
+"
+0x3045fe68,"OLD DiskReady Call
+"
+0x3045fe80,"Libcdvd bind err CdDiskReady
+"
+0x3045fea0,"DiskReady ended
+"
+0x3045feb8,"NEW DiskReady Call
+"
+0x3045fed0,"call cdread cmd
+"
+0x3045fee8,"cdread end
+"
+0x3045fef8,"cdread end
+"
+0x3045ff08,"Libcdvd call Clock read 1
+"
+0x3045ff28,"Libcdvd call Clock read 2
+"
+0x3045ff48,"sceCdStRead call read size= %d mode= %d
+"
+0x3045ff78,"sceCdStRead BLK Read cur_size= %d read_size= %d req_size= %d err 0x%x
+"
+0x3045ffc0,"sceCdStRead BLK Read Ended
+"
+0x3045ffe0,"sceCdStPause call
+"
+0x3045fff8,"sceCdStResume call
+"
+0x30460010,"sceCdStStat call
+"
+0x30460028,"call cdreadstm call
+"
+0x30460040,"call cdreadstm cmd
+"
+0x30460058,"cdread end
+"
+0x30460068,"bind error libmc 
+"
+0x30460080,"libmc: too old release of mcserv.irx
+"
+0x304600a8,"libmc: too old release of mcman.irx
+"
+0x304600d0,"sceMcUdCheckNewCard RPC faild
+"
+0x30460200,Infinity
+0x304603cf,"
+                0000000000000000Inf"
+0x30460400,0123456789abcdef
+0x30460420,0123456789ABCDEF
+0x30460438,bug in vfprintf: bad base
+0x304609f0,"libpad2: buffer addr is not 64 byte align. %08x
+"
+0x30460a28,ERROR
+0x30460a38,STABLE
+0x30460a40,NOLINK
+0x30460a50,"libdbc: bind failed
+"
+0x30460a68,libdbc: Module version mismatch 
+0x30460a90,"[libdbc.a = %d.%d, dbcman.irx = %d.%d]
+"
+0x30460ab8,"libdbc: SifDmaAddr %08x
+"
+0x30460ad8,"sceDbcSetWorkAddr: rpc error
+"
+0x30460af8,"sceDbcCreateSocket: rpc error
+"
+0x30460b18,"sceDbcDeleteSocket: rpc error
+"
+0x30460b38,"sceDbcGetDepNumber: rpc error
+"
+0x30460b58,"sceDbcInitSocket: rpc error
+"
+0x30460b78,"sceDbcResetSocket: rpc error
+"
+0x30460b98,"sceDbcGetDeviceStatus: rpc error
+"
+0x30460bc0,"sceDbcSRData: rpc error
+"
+0x30460be0,"sceDbcSendData: rpc error
+"
+0x30460c00,"libdbc: SendData2 data length too long [%d]
+"
+0x30460c30,"dbcman : SendData2 BUSY
+"
+0x30460c50,"sceDbcSendData2: rpc error
+"
+0x30460c70,"libdbc: SendData3 data length too long
+"
+0x30460c98,"dbcman : SendData3 BUSY
+"
+0x30460cb8,"sceDbcReceiveData: rpc error
+"
+0x30461200,"GUT_Archive Memory Over
+"
+0x30461220,"GUT_Archive Memory Over2
+"
+0x30461240,"GUT_Archive destSize Error
+"
+0x30461260,"decompress Error
+"
+0x30461780,\MOV\MV1\TITLE.PSS;1
+0x304619e0,\MOV\CMV\A_BIND\A_BIND00.PSS;1
+0x30461a00,\MOV\CMV\A_BIND\A_BIND01.PSS;1
+0x30461a20,\MOV\CMV\A_BIND\A_BIND02.PSS;1
+0x30461a40,\MOV\CMV\A_BIND\A_BIND03.PSS;1
+0x30461a60,\MOV\CMV\A_BIND\A_BIND04.PSS;1
+0x30461a80,\MOV\CMV\A_BIND\A_BIND05.PSS;1
+0x30461aa0,\MOV\CMV\A_BIND\A_BIND06.PSS;1
+0x30461ac0,\MOV\CMV\A_BIND\A_BIND07.PSS;1
+0x30461ae0,\MOV\CMV\D_FINE\D_FINE00.PSS;1
+0x30461b00,\MOV\CMV\D_FINE\D_FINE01.PSS;1
+0x30461b20,\MOV\CMV\D_FINE\D_FINE02.PSS;1
+0x30461b40,\MOV\CMV\D_FINE\D_FINE03.PSS;1
+0x30461b60,\MOV\CMV\D_FINE\D_FINE04.PSS;1
+0x30461b80,\MOV\CMV\D_FINE\D_FINE05.PSS;1
+0x30461ba0,\MOV\CMV\D_FINE\D_FINE06.PSS;1
+0x30461bc0,\MOV\CMV\D_FINE\D_FINE07.PSS;1
+0x30461be0,\MOV\CMV\D_CLUD\D_CLUD00.PSS;1
+0x30461c00,\MOV\CMV\D_CLUD\D_CLUD01.PSS;1
+0x30461c20,\MOV\CMV\D_CLUD\D_CLUD02.PSS;1
+0x30461c40,\MOV\CMV\D_CLUD\D_CLUD03.PSS;1
+0x30461c60,\MOV\CMV\D_CLUD\D_CLUD04.PSS;1
+0x30461c80,\MOV\CMV\D_CLUD\D_CLUD05.PSS;1
+0x30461ca0,\MOV\CMV\D_CLUD\D_CLUD06.PSS;1
+0x30461cc0,\MOV\CMV\D_CLUD\D_CLUD07.PSS;1
+0x30461ce0,\MOV\CMV\D_RAIN\D_RAIN00.PSS;1
+0x30461d00,\MOV\CMV\D_RAIN\D_RAIN01.PSS;1
+0x30461d20,\MOV\CMV\D_RAIN\D_RAIN02.PSS;1
+0x30461d40,\MOV\CMV\D_RAIN\D_RAIN03.PSS;1
+0x30461d60,\MOV\CMV\D_RAIN\D_RAIN04.PSS;1
+0x30461d80,\MOV\CMV\D_RAIN\D_RAIN05.PSS;1
+0x30461da0,\MOV\CMV\D_RAIN\D_RAIN06.PSS;1
+0x30461dc0,\MOV\CMV\D_RAIN\D_RAIN07.PSS;1
+0x30461de0,\MOV\CMV\D_STRM\D_STRM00.PSS;1
+0x30461e00,\MOV\CMV\D_STRM\D_STRM01.PSS;1
+0x30461e20,\MOV\CMV\D_STRM\D_STRM02.PSS;1
+0x30461e40,\MOV\CMV\D_STRM\D_STRM03.PSS;1
+0x30461e60,\MOV\CMV\D_STRM\D_STRM04.PSS;1
+0x30461e80,\MOV\CMV\D_STRM\D_STRM05.PSS;1
+0x30461ea0,\MOV\CMV\D_STRM\D_STRM06.PSS;1
+0x30461ec0,\MOV\CMV\D_STRM\D_STRM07.PSS;1
+0x30461ee0,\MOV\CMV\N_FINE\N_FINE00.PSS;1
+0x30461f00,\MOV\CMV\N_FINE\N_FINE01.PSS;1
+0x30461f20,\MOV\CMV\N_FINE\N_FINE02.PSS;1
+0x30461f40,\MOV\CMV\N_FINE\N_FINE03.PSS;1
+0x30461f60,\MOV\CMV\N_FINE\N_FINE04.PSS;1
+0x30461f80,\MOV\CMV\N_FINE\N_FINE05.PSS;1
+0x30461fa0,\MOV\CMV\N_FINE\N_FINE06.PSS;1
+0x30461fc0,\MOV\CMV\N_FINE\N_FINE07.PSS;1
+0x30461fe0,\MOV\CMV\N_CLUD\N_CLUD00.PSS;1
+0x30462000,\MOV\CMV\N_CLUD\N_CLUD01.PSS;1
+0x30462020,\MOV\CMV\N_CLUD\N_CLUD02.PSS;1
+0x30462040,\MOV\CMV\N_CLUD\N_CLUD03.PSS;1
+0x30462060,\MOV\CMV\N_CLUD\N_CLUD04.PSS;1
+0x30462080,\MOV\CMV\N_CLUD\N_CLUD05.PSS;1
+0x304620a0,\MOV\CMV\N_CLUD\N_CLUD06.PSS;1
+0x304620c0,\MOV\CMV\N_CLUD\N_CLUD07.PSS;1
+0x304620e0,\MOV\CMV\N_RAIN\N_RAIN00.PSS;1
+0x30462100,\MOV\CMV\N_RAIN\N_RAIN01.PSS;1
+0x30462120,\MOV\CMV\N_RAIN\N_RAIN02.PSS;1
+0x30462140,\MOV\CMV\N_RAIN\N_RAIN03.PSS;1
+0x30462160,\MOV\CMV\N_RAIN\N_RAIN04.PSS;1
+0x30462180,\MOV\CMV\N_RAIN\N_RAIN05.PSS;1
+0x304621a0,\MOV\CMV\N_RAIN\N_RAIN06.PSS;1
+0x304621c0,\MOV\CMV\N_RAIN\N_RAIN07.PSS;1
+0x304621e0,\MOV\CMV\N_STRM\N_STRM00.PSS;1
+0x30462200,\MOV\CMV\N_STRM\N_STRM01.PSS;1
+0x30462220,\MOV\CMV\N_STRM\N_STRM02.PSS;1
+0x30462240,\MOV\CMV\N_STRM\N_STRM03.PSS;1
+0x30462260,\MOV\CMV\N_STRM\N_STRM04.PSS;1
+0x30462280,\MOV\CMV\N_STRM\N_STRM05.PSS;1
+0x304622a0,\MOV\CMV\N_STRM\N_STRM06.PSS;1
+0x304622c0,\MOV\CMV\N_STRM\N_STRM07.PSS;1
+0x304622e0,\BUILD.TOC;1
+0x304622f0,\BUILD.DAT;1
+0x30462660,cdrom0:\WBRCDATA\
+0x30462680,cdrom0:\WBRCDATA\BDY\
+0x304626a0,cdrom0:\WBRCDATA\TYR\
+0x304626c0,cdrom0:\WBRCDATA\ENG\
+0x304626e0,cdrom0:\WBRCDATA\ACD\
+0x304626f8,"Version %s, built on %s at %s
+"
+0x30462740,"lgDevInit: rpc binding error.
+"
+0x30462760,"lgDevInit: rpc error
+"
+0x30462778,"lgDevInit: system halted.
+"
+0x30462798,"lgDevInit: wrong version of lgDev.irx!
+"
+0x304627c0,"lgDevInit:  liblgdev.a is version %d.%02d
+"
+0x304627f0,"lgDevInit:  lgdev.irx is version %d.%02d
+"
+0x30462820,"lgDevInit: unable to create semaphore!
+"
+0x30462848,"lgDevInit: skipping semaphore re-creation!
+"
+0x30462878,"lgDevEnumHint: invalid parameter (hint)
+"
+0x304628a8,"lgDevEnumerate: invalid parameter (description)
+"
+0x304628e0,"lgDevEnumerate: rpc call failed
+"
+0x30462908,"lgDevOpen: invalid parameter (device)
+"
+0x30462930,"lgDevOpen: rpc call failed
+"
+0x30462950,"lgDevClose: rpc call failed
+"
+0x30462970,"lgDevGetDeviceProperty: invalid parameter (value)
+"
+0x304629a8,"lgDevGetDeviceProperty: rpc call failed
+"
+0x304629d8,"lgDevSetDeviceProperty: rpc call failed
+"
+0x30462a08,"lgDevRead: invalid parameter (position)
+"
+0x30462a38,"lgDevRead: rpc call failed
+"
+0x30462a58,"lgDevReadMulti: devicecount out of range (%d)
+"
+0x30462a88,"lgDevReadMulti: invalid parameter (devices)
+"
+0x30462ab8,"lgDevReadMulti: invalid parameter (readmodes)
+"
+0x30462ae8,"lgDevReadMulti: invalid parameter (positions)
+"
+0x30462b18,"lgDevReadMulti: rpc call failed
+"
+0x30462b40,"lgDevDownloadForceEffect: invalid parameter (effectid)
+"
+0x30462b78,"lgDevDownloadForceEffect: invalid parameter (forceeffect)
+"
+0x30462bb8,"lgDevDownloadForceEffect: rpc call failed
+"
+0x30462be8,"lgDevUpdateForceEffect: invalid parameter (effectid)
+"
+0x30462c20,"lgDevUpdateForceEffect: invalid parameter (forceeffect)
+"
+0x30462c60,"lgDevUpdateForceEffect: rpc call failed
+"
+0x30462c90,"lgDevStartForceEffect: rpc call failed
+"
+0x30462cb8,"lgDevStartForceEffectMulti: numeffects is out of range (%d)
+"
+0x30462cf8,"lgDevStartForceEffectMulti: effectids is NULL
+"
+0x30462d28,"lgDevStartForceEffectMulti: rpc call failed
+"
+0x30462d58,"lgDevStopForceEffect: rpc call failed
+"
+0x30462d80,"lgDevStopForceEffectMulti: numeffects is out of range (%d)
+"
+0x30462dc0,"lgDevStopForceEffectMulti: effectids is NULL
+"
+0x30462df0,"lgDevStopForceEffectMulti: rpc call failed
+"
+0x30462e20,"lgDevDestroyForceEffect: rpc call failed
+"
+0x30462e50,"lgDevPrepareForIOPReboot: rpc call failed
+"
+0x30462e80,"lgDevAEnumHint: error: another async call is in progress...
+"
+0x30462ec0,"lgDevARead: invalid parameter (position)
+"
+0x30462ef0,"lgDevARead: error: another async call is in progress...
+"
+0x30462f30,"lgDevAReadMulti: devicecount out of range (%d)
+"
+0x30462f60,"lgDevAReadMulti: invalid parameter (devices)
+"
+0x30462f90,"lgDevAReadMulti: invalid parameter (readmodes)
+"
+0x30462fc0,"lgDevAReadMulti: invalid parameter (positions)
+"
+0x30462ff0,"lgDevAReadMulti: error: another async call is in progress...
+"
+0x30463030,"lgDevAUpdateForceEffect: invalid parameter (effectid).
+"
+0x30463068,"lgDevAUpdateForceEffect: invalid parameter (forceeffect)
+"
+0x304630a8,"lgDevAUpdateForceEffect: error: another async call is in progress...
+"
+0x304630f0,"lgDevAStartForceEffect: error: another async call is in progress...
+"
+0x30463138,"lgDevAStartForceEffectMulti: error: another async call is in progress...
+"
+0x30463188,"lgDevAStartForceEffectMulti: numeffects is out of range (%d)
+"
+0x304631c8,"lgDevAStartForceEffectMulti: effectids is NULL
+"
+0x304631f8,"lgDevAStopForceEffect: error: another async call is in progress...
+"
+0x30463240,"lgDevAStopForceEffectMulti: error: another async call is in progress...
+"
+0x30463290,"lgDevAStopForceEffectMulti: numeffects is out of range (%d)
+"
+0x304632d0,"lgDevAStopForceEffectMulti: effectids is NULL
+"
+0x30463300,icon.sys
+0x304633c0,"blur error : viewNrm == NULL.
+"
+0x30463880,CAR_RUN
+0x30463888,ADVERTISE
+0x30463898,EVENTMOVIE
+0x304638a8,HOMEMENU
+0x304638b8,SND_EDIT
+0x304638d0,particle Error!
+0x304638e0,"particle Error! : inactive particle
+"
+0x30463910,"particleSystem Get Error! : Illegal ID[%d / %d]
+"
+0x30463950,"particleSystem Remove Error! : Illegal ID[%d / %d]
+"
+0x30463b50,nickname
+0x30464488,HARUNA
+0x30464490,HARUNA_RAIN
+0x304644a0,HARUNA_FOG
+0x304644b0,HARUNA_STORM
+0x304644c0,HARUNA_NIGHT
+0x304644d0,HARUNA_NIGHTRAIN
+0x304644f0,HARUNA_NIGHTFOG
+0x30464500,HARUNA_NIGHTSTORM
+0x30464518,HAKONE
+0x30464520,HAKONE_RAIN
+0x30464530,HAKONE_FOG
+0x30464540,HAKONE_STORM
+0x30464550,HAKONE_NIGHT
+0x30464560,HAKONE_NIGHTRAIN
+0x30464580,HAKONE_NIGHTFOG
+0x30464590,HAKONE_NIGHTSTORM
+0x304645a8,IROHA_UP
+0x304645b8,IROHA_UP_RAIN
+0x304645c8,IROHA_UP_FOG
+0x304645d8,IROHA_UP_STORM
+0x304645e8,IROHA_UP_NIGHT
+0x30464600,IROHA_UP_NIGHTRAIN
+0x30464620,IROHA_UP_NIGHTFOG
+0x30464640,IROHA_UP_NIGHTSTORM
+0x30464658,IROHA_DOWN
+0x30464670,IROHA_DOWN_RAIN
+0x30464680,IROHA_DOWN_FOG
+0x30464690,IROHA_DOWN_STORM
+0x304646b0,IROHA_DOWN_NIGHT
+0x304646d0,IROHA_DOWN_NIGHTRAIN
+0x304646f0,IROHA_DOWN_NIGHTFOG
+0x30464710,IROHA_DOWN_NIGHTSTORM
+0x30464730,ROKKOU_RAIN
+0x30464750,ROKKOU_STORM
+0x30464760,ROKKOU_NIGHT
+0x30464770,ROKKOU_NIGHTRAIN
+0x30464790,ROKKOU_NIGHTFOG
+0x304647a0,ROKKOU_NIGHTSTORM
+0x304647c0,AKAGI_RAIN
+0x304647d0,AKAGI_FOG
+0x304647e0,AKAGI_STORM
+0x304647f0,AKAGI_NIGHT
+0x30464800,AKAGI_NIGHTRAIN
+0x30464810,AKAGI_NIGHTFOG
+0x30464820,AKAGI_NIGHTSTORM
+0x30464840,ASO_RAIN
+0x30464858,ASO_STORM
+0x30464868,ASO_NIGHT
+0x30464878,ASO_NIGHTRAIN
+0x30464888,ASO_NIGHTFOG
+0x30464898,ASO_NIGHTSTORM
+0x304648b0,ZAO_RAIN
+0x304648c8,ZAO_STORM
+0x304648d8,ZAO_NIGHT
+0x304648e8,ZAO_NIGHTRAIN
+0x304648f8,ZAO_NIGHTFOG
+0x30464908,ZAO_NIGHTSTORM
+0x30464920,OVAL_RAIN
+0x30464930,OVAL_SNOW
+0x30464940,PARKING
+0x30465070,%s@kaido.battle
+0x30466130,BESLES-53191-SYS
+0x30466170,BESLES-53191-RTA
+0x30466bc0,CHINKO
+0x30466bc8,Hetare
+0x30466bd0,YaMaDa
+0x30466bd8,HamagakI
+0x30468210,"PassWord : input data error
+"
+0x304683b8,NoTitle
+0x00000000,MW MIPS C Compiler (2.4.1.01)
+0x0000001e,PlayStation2
+0x00000001,.shstrtab
+0x0000000b,.strtab
+0x00000013,.symtab
+0x0000001b,.comment
+0x00000024,.reginfo

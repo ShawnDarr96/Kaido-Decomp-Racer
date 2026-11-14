@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ghidra-mcp": {
+      "command": "tools/mcp-venv/Scripts/bridge-mcp-ghidra.exe",
+      "args": []
+    }
+  }
+}
