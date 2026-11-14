@@ -12,8 +12,8 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| F1 | Identify the Sony SDK 2.8.0 libraries (libgraph, libdma, libvu0, libcdvd, libmc, libpad2, libdbc, libipu/libmpeg, libkernl, sif) by matching against other SDK 2.8 games or a signature set; add names and prototypes to config/symbols.csv | any |  |  | Strings: PsIIlibgraph2800, PsIIlibcdvd 2800, ... 40 named from error strings already |
-| F2 | Identify the Metrowerks runtime and libc (memcpy, memset, sprintf, malloc, 64-bit math helpers, C++ ctor/dtor tables) and name them | any |  |  | Compiler: MW MIPS C Compiler 2.4.1.01 |
+| F1 | Identify the Sony SDK 2.8.0 libraries (libgraph, libdma, libvu0, libcdvd, libmc, libpad2, libdbc, libipu/libmpeg, libkernl, sif) by matching against other SDK 2.8 games or a signature set; add names and prototypes to config/symbols.csv | any |  | ShawnDarr96/claude (2026-11-14) | Strings: PsIIlibgraph2800, PsIIlibcdvd 2800, ... 40 named from error strings already |
+| F2 | Identify the Metrowerks runtime and libc (memcpy, memset, sprintf, malloc, 64-bit math helpers, C++ ctor/dtor tables) and name them | any |  | ShawnDarr96/claude (2026-11-14) | Compiler: MW MIPS C Compiler 2.4.1.01 |
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F4 | Check the functions Ghidra found at 0x00368000-0x0036ef80 (end of the segment): real code, data, or VU microcode? Fix the Ghidra project and symbols.csv accordingly | any |  |  | 200 functions in text_00368000.c and text_0036c000.c |
 | F5 | Name the main global singletons in .data/.sbss (iRam0036f1a8 and friends) and record them in a new config/globals.csv applied by the export | any |  |  |  |
@@ -194,3 +194,4 @@ Columns:
 ## Changes to the board
 
 - 2026-11-14 board created with `board init`; rows for SDK identification, naming (one per 16 KiB file), types and matching added.
+- 2026-11-14 ShawnDarr96/claude: claim F1, F2.
