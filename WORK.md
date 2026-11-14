@@ -25,38 +25,38 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | N1 | Name every function in decomp/src/text_00100000.c | any |  | ShawnDarr96/claude (2026-11-14) | 71 functions |
-| N2 | Name every function in decomp/src/text_00104000.c | any | | | 48 functions |
-| N3 | Name every function in decomp/src/text_00108000.c | any | | | 25 functions |
-| N4 | Name every function in decomp/src/text_0010c000.c | any | | | 65 functions |
-| N5 | Name every function in decomp/src/text_00110000.c | any | | | 151 functions |
-| N6 | Name every function in decomp/src/text_00114000.c | any | | | 59 functions |
-| N7 | Name every function in decomp/src/text_00118000.c | any | | | 98 functions |
-| N8 | Name every function in decomp/src/text_0011c000.c | any | | | 29 functions |
-| N9 | Name every function in decomp/src/text_00120000.c | any | | | 73 functions |
-| N10 | Name every function in decomp/src/text_00124000.c | any | | | 44 functions |
-| N11 | Name every function in decomp/src/text_00128000.c | any | | | 61 functions |
-| N12 | Name every function in decomp/src/text_0012c000.c | any | | | 27 functions |
+| N2 | Name every function in decomp/src/text_00104000.c | any |  | ShawnDarr96/claude (2026-11-14) | 48 functions |
+| N3 | Name every function in decomp/src/text_00108000.c | any |  | ShawnDarr96/claude (2026-11-14) | 25 functions |
+| N4 | Name every function in decomp/src/text_0010c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 65 functions |
+| N5 | Name every function in decomp/src/text_00110000.c | any |  | ShawnDarr96/claude (2026-11-14) | 151 functions |
+| N6 | Name every function in decomp/src/text_00114000.c | any |  | ShawnDarr96/claude (2026-11-14) | 59 functions |
+| N7 | Name every function in decomp/src/text_00118000.c | any |  | ShawnDarr96/claude (2026-11-14) | 98 functions |
+| N8 | Name every function in decomp/src/text_0011c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 29 functions |
+| N9 | Name every function in decomp/src/text_00120000.c | any |  | ShawnDarr96/claude (2026-11-14) | 73 functions |
+| N10 | Name every function in decomp/src/text_00124000.c | any |  | ShawnDarr96/claude (2026-11-14) | 44 functions |
+| N11 | Name every function in decomp/src/text_00128000.c | any |  | ShawnDarr96/claude (2026-11-14) | 61 functions |
+| N12 | Name every function in decomp/src/text_0012c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 27 functions |
 | N13 | Name every function in decomp/src/text_00130000.c | any | | | 117 functions |
 | N14 | Name every function in decomp/src/text_00134000.c | any | | | 65 functions |
 | N15 | Name every function in decomp/src/text_00138000.c | any | | | 78 functions |
 | N16 | Name every function in decomp/src/text_0013c000.c | any | | | 55 functions |
-| N17 | Name every function in decomp/src/text_00140000.c | any | | | 36 functions |
-| N18 | Name every function in decomp/src/text_00144000.c | any | | | 61 functions |
+| N17 | Name every function in decomp/src/text_00140000.c | any |  | ShawnDarr96/claude (2026-11-14) | 36 functions |
+| N18 | Name every function in decomp/src/text_00144000.c | any |  | ShawnDarr96/claude (2026-11-14) | 61 functions |
 | N19 | Name every function in decomp/src/text_00148000.c | any | | | 41 functions |
-| N20 | Name every function in decomp/src/text_0014c000.c | any | | | 60 functions |
+| N20 | Name every function in decomp/src/text_0014c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 60 functions |
 | N21 | Name every function in decomp/src/text_00150000.c | any | | | 27 functions |
 | N22 | Name every function in decomp/src/text_00154000.c | any | | | 32 functions |
-| N23 | Name every function in decomp/src/text_00158000.c | any | | | 83 functions |
-| N24 | Name every function in decomp/src/text_0015c000.c | any | | | 53 functions |
-| N25 | Name every function in decomp/src/text_00160000.c | any | | | 77 functions |
-| N26 | Name every function in decomp/src/text_00164000.c | any | | | 59 functions |
-| N27 | Name every function in decomp/src/text_00168000.c | any | | | 22 functions |
-| N28 | Name every function in decomp/src/text_0016c000.c | any | | | 23 functions |
-| N29 | Name every function in decomp/src/text_00170000.c | any | | | 55 functions |
+| N23 | Name every function in decomp/src/text_00158000.c | any |  | ShawnDarr96/claude (2026-11-14) | 83 functions |
+| N24 | Name every function in decomp/src/text_0015c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 53 functions |
+| N25 | Name every function in decomp/src/text_00160000.c | any |  | ShawnDarr96/claude (2026-11-14) | 77 functions |
+| N26 | Name every function in decomp/src/text_00164000.c | any |  | ShawnDarr96/claude (2026-11-14) | 59 functions |
+| N27 | Name every function in decomp/src/text_00168000.c | any |  | ShawnDarr96/claude (2026-11-14) | 22 functions |
+| N28 | Name every function in decomp/src/text_0016c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 23 functions |
+| N29 | Name every function in decomp/src/text_00170000.c | any |  | ShawnDarr96/claude (2026-11-14) | 55 functions |
 | N30 | Name every function in decomp/src/text_00174000.c | any | | | 92 functions |
-| N31 | Name every function in decomp/src/text_00178000.c | any | | | 39 functions |
+| N31 | Name every function in decomp/src/text_00178000.c | any |  | ShawnDarr96/claude (2026-11-14) | 39 functions |
 | N32 | Name every function in decomp/src/text_0017c000.c | any | | | 45 functions |
-| N33 | Name every function in decomp/src/text_00180000.c | any | | | 54 functions |
+| N33 | Name every function in decomp/src/text_00180000.c | any |  | ShawnDarr96/claude (2026-11-14) | 54 functions |
 | N34 | Name every function in decomp/src/text_00184000.c | any | | | 38 functions |
 | N35 | Name every function in decomp/src/text_00188000.c | any | | | 29 functions |
 | N36 | Name every function in decomp/src/text_0018c000.c | any | | | 49 functions |
@@ -153,8 +153,8 @@ Columns:
 | N127 | Name every function in decomp/src/text_002f8000.c | any | | | 71 functions |
 | N128 | Name every function in decomp/src/text_002fc000.c | any | | | 7 functions |
 | N129 | Name every function in decomp/src/text_00304000.c | any | | | 9 functions |
-| N130 | Name every function in decomp/src/text_00368000.c | any | | | 128 functions |
-| N131 | Name every function in decomp/src/text_0036c000.c | any | | | 72 functions |
+| N130 | Name every function in decomp/src/text_00368000.c | any |  | ShawnDarr96/claude (2026-11-14) | 128 functions |
+| N131 | Name every function in decomp/src/text_0036c000.c | any |  | ShawnDarr96/claude (2026-11-14) | 72 functions |
 
 ## P2 Types
 
@@ -199,3 +199,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim F1, F2.
 - 2026-11-14 ShawnDarr96/claude: F1, F2 done; added F8, F9 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim N1.
+- 2026-11-14 ShawnDarr96/claude: claim N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N17, N18, N20, N23, N24, N25, N26, N27, N28, N29, N31, N33, N130, N131.
