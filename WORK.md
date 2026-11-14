@@ -38,6 +38,7 @@ Columns:
 | N143 | Replace the libmpeg_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 53 functions |
 | N144 | Replace the garage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 51 functions |
 | N145 | Replace the password_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 50 functions |
+| N146 | Replace the newlib_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
 
 ## P2 Types
 
@@ -231,3 +232,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N143.
 - 2026-11-14 ShawnDarr96: added N144.
 - 2026-11-14 ShawnDarr96: added N145.
+- 2026-11-14 ShawnDarr96: added N146.
