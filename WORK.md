@@ -36,6 +36,7 @@ Columns:
 | N141 | Replace the showroom_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 66 functions |
 | N142 | Replace the msl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 61 functions |
 | N143 | Replace the libmpeg_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 53 functions |
+| N144 | Replace the garage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 51 functions |
 
 ## P2 Types
 
@@ -227,3 +228,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: added N141.
 - 2026-11-14 ShawnDarr96: added N142.
 - 2026-11-14 ShawnDarr96: added N143.
+- 2026-11-14 ShawnDarr96: added N144.
