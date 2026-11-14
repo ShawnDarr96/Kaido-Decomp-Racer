@@ -26,6 +26,7 @@ Columns:
 |---|---|---|---|---|---|
 | N132 | Replace the menuscr_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 382 functions |
 | N133 | Replace the scrcareer_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 169 functions |
+| N134 | Replace the scrgarage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 157 functions |
 
 ## P2 Types
 
@@ -207,3 +208,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: N13, N14, N15, N16, N19, N21, N22, N30, N32, N34, N35, N36, N37, N38, N39, N40, N41, N42, N43, N44, N45, N46, N47, N48, N49, N50, N51, N52, N53, N54, N55, N56, N57, N58, N59, N60, N61, N62, N63, N64, N65, N66, N67, N68, N69, N70, N71, N72, N73, N74, N75, N76, N77, N78, N79, N80, N81, N82, N83, N84, N85, N86, N87, N88, N89, N90, N91, N92, N93, N94, N95, N96, N97, N98, N99, N100, N101, N102, N103, N104, N105, N106, N107, N108, N109, N110, N111, N112, N113, N114, N115, N116, N117, N118, N119, N120, N121, N122, N123, N124, N125, N126, N127, N128, N129 done.
 - 2026-11-14 ShawnDarr96: added N132.
 - 2026-11-14 ShawnDarr96: added N133.
+- 2026-11-14 ShawnDarr96: added N134.
