@@ -19,7 +19,7 @@ extern RaceCarList *g_RaceCars;
 typedef struct RaceScene { int state; int handlers[10]; char handlerCount; char pad2d[3]; int flags; int flagsB; } RaceScene;
 extern RaceScene *g_RaceScene;
 
-/* NONMATCHING (80%): the game null-checks with branch-likely (beqzl); this compiles to beqz + nop */
+/* NONMATCHING: with 3.0.1b103 (the game's build) only beqz vs the game's branch-likely beqzl differs (92%) */
 RaceCar *RaceCar_Get(int i) { RaceCar *r = 0; if (g_RaceCars != 0) r = g_RaceCars->cars[i]; return r; }
 float RaceCar_GetLap(RaceCar *c) { return c->lap; }
 float RaceCar_GetPosition(RaceCar *c) { return c->trackPos; }

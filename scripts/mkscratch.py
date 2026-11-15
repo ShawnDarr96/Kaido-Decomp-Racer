@@ -54,7 +54,8 @@ def main():
             args = args.replace(m.group(0), f"%gp_rel({glob[GP + int(m.group(1))]})(gp)")
         if op in ("jal", "j") and re.search(r"([0-9a-f]{6})$", args):
             t = int(re.search(r"([0-9a-f]{6})$", args).group(1), 16)
-            args = funcs.get(t, f"func_{t:08x}") if op == "jal" else (f".L{t:06x}" if t in targets else funcs.get(t, f"func_{t:08x}"))
+            # a j to a function start is a tail call: name the function, not a local label
+            args = funcs[t] if t in funcs else (f".L{t:06x}" if op == "j" and t in targets else f"func_{t:08x}")
         elif op.startswith("b") and re.search(r"([0-9a-f]{6})$", args):
             t = int(re.search(r"([0-9a-f]{6})$", args).group(1), 16)
             args = re.sub(r"[0-9a-f]{6}$", f".L{t:06x}", args)
