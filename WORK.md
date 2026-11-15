@@ -13,7 +13,7 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
-| F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  |  |  |
+| F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  | ShawnDarr96/claude (2026-11-15) |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
@@ -346,3 +346,4 @@ Columns:
 - 2026-11-15 ShawnDarr96: added M6.
 - 2026-11-15 ShawnDarr96: added M7.
 - 2026-11-15 ShawnDarr96: added M8.
+- 2026-11-15 ShawnDarr96/claude: claim F7.
