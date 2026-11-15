@@ -1,1 +1,3 @@
 address,name,scratch,notes
+0x00177270,GameState_GetPlayerCount,https://decomp.me/scratch/zXHfU,src/gamestate.c
+0x001833f0,Options_ApplySeVolume,https://decomp.me/scratch/BJ7BQ,src/options.c; int parameter narrowed to char at each use

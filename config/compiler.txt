@@ -1,0 +1,9 @@
+# Compiler that reproduces SLES_531.91's code byte-for-byte (board row M1).
+# Verified on decomp.me (platform PS2) - see config/matched.csv for the scratches.
+compiler: mwcps2-3.0-011126   # decomp.me id; "MWCPS2 3.0 (Built 011126)" = CodeWarrior for PS2 R3.0,
+                              # whose compiler reports "MW MIPS C Compiler 2.4.1.01" as in the ELF
+flags: -O4,p
+# MWCPS2 2.4 (001213) and 2.3.3 (000906) do NOT match: they save ra with sq and copy registers
+# with paddub where the game uses sd and daddu (Options_ApplySeVolume shows it).
+# Note for writing C: char parameters are passed as int and narrowed at each use
+# (dsll32/dsra32 0x18 pairs), e.g. Options_ApplySeVolume(int vol) { ... (char)vol ... }.
