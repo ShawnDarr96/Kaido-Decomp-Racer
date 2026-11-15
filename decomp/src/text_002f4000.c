@@ -843,7 +843,7 @@ void ComposerTask_Init(int param_1)
   ComposerScene_Alloc(0x430750,0);
   ComposerInput_Alloc(0x430750,0);
   uVar4 = Profile_Get(0);
-  iVar2 = maybe_Race_GetMode();
+  iVar2 = RaceSlotTbl_Get();
   iVar5 = 0;
   do {
     lVar3 = Profile_IsEventSeen(uVar4,iVar5);
@@ -1310,7 +1310,7 @@ undefined4 Composer_GetModeSongs(int param_1)
   int *piVar1;
   int iVar2;
   
-  piVar1 = (int *)maybe_Race_GetMode();
+  piVar1 = (int *)RaceSlotTbl_Get();
   iVar2 = 0;
   do {
     if (param_1 == *piVar1) {

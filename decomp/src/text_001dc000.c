@@ -178,7 +178,7 @@ void RaceProg_Task(void)
     uVar4 = g_RaceProg->phase;
   }
   if (uVar4 == '\0') {
-    maybe_RaceScene_AddHandler(0x10f);
+    RaceScene_AddHandler(0x10f);
     RaceScene_SetFlags(0x100);
     lVar3 = RaceScene_IsRunning();
     pRVar1 = g_RaceProg;
@@ -195,8 +195,8 @@ void RaceProg_Task(void)
       }
       g_RaceProg->unk_0c = 0;
       g_RaceProg->phase = '\x03';
-      maybe_RaceScene_AddHandler(0x47f);
-      maybe_RaceScene_AddHandler(0xff);
+      RaceScene_AddHandler(0x47f);
+      RaceScene_AddHandler(0xff);
     }
   }
   else {
@@ -245,7 +245,7 @@ void RaceProg_Begin(void)
     uVar16 = g_RaceProg->phase;
   }
   if (uVar16 == '\0') {
-    maybe_RaceScene_AddHandler(0x10f);
+    RaceScene_AddHandler(0x10f);
     RaceScene_SetFlags(0x100);
     lVar9 = RaceScene_IsRunning();
     pRVar5 = g_RaceProg;
@@ -276,8 +276,8 @@ void RaceProg_Begin(void)
       if ((int)g_RaceProg->unk_0c < 1) {
         *puVar17 = 300;
         g_RaceProg->phase = '\x02';
-        maybe_RaceScene_AddHandler(0x20f);
-        maybe_RaceScene_AddHandler(0x40c);
+        RaceScene_AddHandler(0x20f);
+        RaceScene_AddHandler(0x40c);
         RaceScene_SetFlags(0x400);
       }
       else {
@@ -285,10 +285,10 @@ void RaceProg_Begin(void)
         cVar6 = GameState_Get_3();
         if (cVar6 == '\x01') {
           if (g_RaceProg->unk_0c == 0x70) {
-            maybe_RaceScene_AddHandler(0x2003);
+            RaceScene_AddHandler(0x2003);
           }
           else if (g_RaceProg->unk_0c == 0x66) {
-            maybe_RaceScene_AddHandler(0x200c);
+            RaceScene_AddHandler(0x200c);
           }
         }
       }
@@ -305,7 +305,7 @@ void RaceProg_Begin(void)
         if ((int)g_RaceProg->unk_0c < 1) {
           *puVar17 = 0;
           g_RaceProg->phase = '\x03';
-          maybe_RaceScene_AddHandler(0x8f);
+          RaceScene_AddHandler(0x8f);
           RaceScene_SetFlags(0x200);
         }
         else {
@@ -331,7 +331,7 @@ void RaceProg_Begin(void)
               GameState_MarkGhostDirty();
               g_RaceProg->unk_0c = 0x78;
               g_RaceProg->phase = '\x04';
-              maybe_RaceScene_AddHandler(0x40f);
+              RaceScene_AddHandler(0x40f);
               RaceScene_SetFlags(0x100);
               RaceScene_SetFlags(0x800);
             }
@@ -2340,21 +2340,21 @@ void RaceProg_UpdateLaps(void)
                   }
                   else {
                     if (index == 2) {
-                      maybe_RaceScene_AddHandler(0x1008);
+                      RaceScene_AddHandler(0x1008);
                     }
                     else if (index == 1) {
                       lVar7 = GameState_GetPlayerCount();
                       if (lVar7 == 2) {
-                        maybe_RaceScene_AddHandler(0x1002);
-                        maybe_RaceScene_AddHandler(0x402);
+                        RaceScene_AddHandler(0x1002);
+                        RaceScene_AddHandler(0x402);
                       }
                       else {
-                        maybe_RaceScene_AddHandler(0x1004);
+                        RaceScene_AddHandler(0x1004);
                       }
                     }
                     else if (index == 0) {
-                      maybe_RaceScene_AddHandler(0x1001);
-                      maybe_RaceScene_AddHandler(0x401);
+                      RaceScene_AddHandler(0x1001);
+                      RaceScene_AddHandler(0x401);
                     }
                     lVar7 = LapTime_GetTotal(uVar8);
                     if (lVar7 < 360000) {

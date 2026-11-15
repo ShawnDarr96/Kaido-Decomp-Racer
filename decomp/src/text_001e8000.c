@@ -1991,9 +1991,9 @@ void RaceScene_CheckRules(void)
 }
 
 // 0x001eb140  size 0x40
-/* appends to a 10-entry handler list at +4, count at +0x2c (was RaceScene_GetMode) */
+/* N153: confirmed via RaceScene.handlers/handlerCount */
 
-bool maybe_RaceScene_AddHandler(uint param_1)
+bool RaceScene_AddHandler(uint param_1)
 
 {
   uchar uVar1;

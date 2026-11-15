@@ -2244,7 +2244,9 @@ void RaceRule_CheckFreeRun(char param_1)
 }
 
 // 0x001dbf40  size 0x94
-void maybe_Race_CheckRuleEnd(int param_1)
+/* allocates RaceRule for the racer count and mode (was maybe_Race_CheckRuleEnd) */
+
+void maybe_RaceTask_InitRules(int param_1)
 
 {
   char cVar1;

@@ -204,7 +204,7 @@ void maybe_ComposerTask_State9_NameentryGetField(int param_1)
     iVar5 = iVar5 + 1;
     iVar4 = iVar4 + 4;
   } while (iVar5 < 0x1e);
-  iVar4 = maybe_Race_GetMode();
+  iVar4 = RaceSlotTbl_Get();
   iVar5 = 0;
   do {
     iVar2 = SeqGen_GetPatternEntry(iVar5);

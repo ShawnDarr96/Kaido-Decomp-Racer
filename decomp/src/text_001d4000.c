@@ -464,7 +464,9 @@ void Ai_DriverTask(int param_1)
 }
 
 // 0x001d4c20  size 0x14
-void maybe_RaceTask_GetField(int param_1)
+/* zeroes three work fields (was maybe_RaceTask_GetField) */
+
+void maybe_RaceTask_ResetCounters(int param_1)
 
 {
   int iVar1;

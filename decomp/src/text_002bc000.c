@@ -54,7 +54,7 @@ bool SeqGen_GetModeSongIndex(long param_1)
   int iVar1;
   
   if (0xb < param_1) {
-    iVar1 = maybe_Race_GetMode();
+    iVar1 = RaceSlotTbl_Get();
     *(undefined2 *)(iVar1 + (int)param_1 * 0x858 + -0x5bac) = 0;
   }
   return 0xb < param_1;
@@ -73,7 +73,7 @@ bool SeqGen_IsUserSong(long param_1)
     bVar1 = true;
   }
   else {
-    iVar2 = maybe_Race_GetMode();
+    iVar2 = RaceSlotTbl_Get();
     bVar1 = *(short *)(iVar2 + (int)param_1 * 0x858 + -0x5bac) != 0;
   }
   return bVar1;

@@ -832,7 +832,7 @@ void Game_Shutdown(void)
   Render_Shutdown();
   Movie_ShutdownNop();
   SndMgr_Shutdown();
-  maybe_Snd_Shutdown();
+  Snd_Shutdown();
   Xvi_Shutdown();
   SaveMgr_Shutdown();
   Scene_Shutdown();

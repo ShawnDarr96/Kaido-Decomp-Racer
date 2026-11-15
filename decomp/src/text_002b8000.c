@@ -316,7 +316,7 @@ int SeqGen_GetPartTextId(int param_1,long param_2)
     iVar1 = *(int *)((int)param_2 * 0x18 + param_1 + 0x3c) + 0x846;
   }
   else {
-    iVar1 = maybe_Race_GetMode();
+    iVar1 = RaceSlotTbl_Get();
     iVar1 = iVar1 + ((int)param_2 + -0xc) * 0x858 + 0x876;
   }
   return iVar1;
@@ -780,14 +780,14 @@ undefined8 SeqGen_SelectSong(undefined8 param_1,long param_2)
       bVar1 = true;
     }
     else {
-      iVar2 = maybe_Race_GetMode();
+      iVar2 = RaceSlotTbl_Get();
       bVar1 = *(short *)(iVar2 + iVar4 * 0x858 + -0x5bac) != 0;
     }
     if (!bVar1) {
       SeqGen_FreeSong(param_1);
       return 0;
     }
-    iVar2 = maybe_Race_GetMode();
+    iVar2 = RaceSlotTbl_Get();
     iVar4 = iVar2 + (iVar4 + -0xc) * 0x858 + 0x30;
   }
   uVar3 = SeqGen_LoadSong(param_1,iVar4);
@@ -861,7 +861,7 @@ undefined8 SeqGen_SaveSongSlot(undefined8 param_1,long param_2)
     uVar2 = 0;
   }
   else {
-    iVar1 = maybe_Race_GetMode();
+    iVar1 = RaceSlotTbl_Get();
     uVar2 = SeqGen_SaveSong(param_1,iVar1 + ((int)param_2 + -0xc) * 0x858 + 0x30);
   }
   return uVar2;

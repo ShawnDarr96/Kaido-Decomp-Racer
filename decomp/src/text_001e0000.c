@@ -721,21 +721,21 @@ void RaceProg_DetectCollisions(int param_1)
         uVar14 = RaceCar_GetFlags(pRVar7);
         if ((uVar14 & 0x800) == 0) {
           if (cVar18 == '\x02') {
-            maybe_RaceScene_AddHandler(0x1008);
+            RaceScene_AddHandler(0x1008);
           }
           else if (cVar18 == '\x01') {
             lVar13 = GameState_GetPlayerCount();
             if (lVar13 == 2) {
-              maybe_RaceScene_AddHandler(0x1002);
-              maybe_RaceScene_AddHandler(0x402);
+              RaceScene_AddHandler(0x1002);
+              RaceScene_AddHandler(0x402);
             }
             else {
-              maybe_RaceScene_AddHandler(0x1004);
+              RaceScene_AddHandler(0x1004);
             }
           }
           else if (cVar18 == '\0') {
-            maybe_RaceScene_AddHandler(0x1001);
-            maybe_RaceScene_AddHandler(0x401);
+            RaceScene_AddHandler(0x1001);
+            RaceScene_AddHandler(0x401);
           }
         }
       }

@@ -916,7 +916,9 @@ void maybe_CarSnd_StopAll(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00196460  size 0x2c
-undefined4 maybe_CarSnd_CanPlay(void)
+/* 0x3c, or 0x3d while loading (was maybe_CarSnd_CanPlay) */
+
+undefined4 maybe_CarSnd_GetBankId(void)
 
 {
   long lVar1;
@@ -942,7 +944,9 @@ void maybe_CarSnd_GetChannel(void)
 }
 
 // 0x001964c0  size 0x3c
-char maybe_CarSnd_PlayIfReady(int param_1)
+/* returns slot+1 unless loading; plays nothing (was maybe_CarSnd_PlayIfReady) */
+
+char maybe_CarSnd_GetSlotIndex(int param_1)
 
 {
   char cVar1;
@@ -991,7 +995,9 @@ undefined4 Render_Nop_8(void)
 }
 
 // 0x00196600  size 0x40
-void maybe_CarSnd_PlayIfNotLoading(void)
+/* picks sound channel 1 or 2 by loading state (was maybe_CarSnd_PlayIfNotLoading) */
+
+void maybe_CarSnd_SelectChannel(void)
 
 {
   long lVar1;

@@ -741,7 +741,7 @@ void Eventui_Draw_BgmConfig_13c0(int *param_1)
   }
   MenuWnd_DrawCursor(0);
   MenuWnd_DrawText(0xf4,0x25,0x1f81);
-  piVar4 = (int *)maybe_Race_GetMode();
+  piVar4 = (int *)RaceSlotTbl_Get();
   uVar11 = 0;
   puVar10 = &DAT_00342520;
   puVar9 = &DAT_00342610;
@@ -958,7 +958,7 @@ void maybe_ScrMusic_State1_SndQueueCmd1(int *param_1)
   if ((iVar2 != 0) && (param_1[0x10] = 0, *param_1 != 2)) {
     *(undefined1 *)(param_1 + 9) = 0;
     param_1[10] = -1;
-    iVar2 = maybe_Race_GetMode();
+    iVar2 = RaceSlotTbl_Get();
     param_1[0xd] = *(int *)(iVar2 + param_1[0xc] * 4);
     param_1[0xe] = ((param_1[0xd] - param_1[0xc]) + 0x21) % 0x21;
   }
@@ -1303,7 +1303,7 @@ void maybe_Jukebox_PickSong(int param_1)
     iVar7 = maybe_Rand_Float();
     iVar7 = iVar7 % 3 + 5;
   }
-  iVar4 = maybe_Race_GetMode();
+  iVar4 = RaceSlotTbl_Get();
   uVar9 = *(uint *)(iVar4 + iVar7 * 4);
   uVar2 = DAT_0036eebc;
   if (uVar9 == 0x21) {

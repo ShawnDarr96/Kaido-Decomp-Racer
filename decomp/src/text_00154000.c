@@ -1546,8 +1546,9 @@ void Snd_SetPause(long param_1)
 
 // 0x00157b20  size 0x8c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153: confirmed (shuts down IOP stream/SE, unbinds RPC, frees) */
 
-void maybe_Snd_Shutdown(void)
+void Snd_Shutdown(void)
 
 {
   Rpc_SetBlocking(0x42d824,1);

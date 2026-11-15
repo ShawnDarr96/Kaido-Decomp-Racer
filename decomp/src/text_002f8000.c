@@ -1098,7 +1098,7 @@ LAB_002f947c:
       *(undefined4 *)(iVar8 + 0x78) = 0xfffffffe;
       uVar5 = ComposerInput_GetPressed();
       if ((uVar5 & 0x180) != 0) {
-        iVar2 = maybe_Race_GetMode();
+        iVar2 = RaceSlotTbl_Get();
         iVar6 = *(int *)(iVar8 + 0x60);
         bVar7 = false;
         if ((-1 < *(int *)(iVar8 + 0x54)) && (*(int *)(iVar8 + 0x54) < 0xc)) {
@@ -1108,7 +1108,7 @@ LAB_002f947c:
           iVar3 = Script_GetElem_3c_x18(*(undefined4 *)(iVar8 + 0x20));
         }
         else {
-          iVar3 = maybe_Race_GetMode();
+          iVar3 = RaceSlotTbl_Get();
           iVar3 = iVar3 + (*(int *)(iVar8 + 0x54) + -0xc) * 0x858 + 0x30;
         }
         maybe_Mem_CopyQwords(iVar2 + (iVar6 + -0xc) * 0x858 + 0x30,iVar3,0x858);
@@ -1148,7 +1148,7 @@ void maybe_ComposerTask_State4_State5_strcmp(int param_1)
     *(undefined4 *)(param_1 + 0x74) = 3;
     uVar3 = ComposerInput_GetPressed();
     if ((uVar3 & 0x180) != 0) {
-      iVar1 = maybe_Race_GetMode();
+      iVar1 = RaceSlotTbl_Get();
       maybe_strncpy(iVar1 + (*(int *)(param_1 + 0x60) + -0xc) * 0x858 + 0x876,param_1 + 0x3c,0x10);
     }
   }
@@ -1199,7 +1199,7 @@ void maybe_ComposerTask_State4_State4_strcmp(undefined8 param_1)
       }
       iVar5 = iVar5 + 1;
     } while (iVar5 < 0x1e);
-    iVar5 = maybe_Race_GetMode();
+    iVar5 = RaceSlotTbl_Get();
     maybe_strncpy(iVar5 + (*(int *)(iVar4 + 0x60) + -0xc) * 0x858 + 0x876,iVar4 + 0x3c,0x10);
     *(undefined4 *)(iVar4 + 0x74) = 3;
   }
@@ -1363,9 +1363,9 @@ LAB_002f9b90:
       *(undefined4 *)(iVar6 + 0x78) = 0xfffffffe;
       uVar4 = ComposerInput_GetPressed();
       if ((uVar4 & 0x180) != 0) {
-        iVar2 = maybe_Race_GetMode();
+        iVar2 = RaceSlotTbl_Get();
         iVar5 = iVar2 + (*(int *)(iVar6 + 0x54) + -0xc) * 0x858 + 0x30;
-        iVar2 = maybe_Race_GetMode();
+        iVar2 = RaceSlotTbl_Get();
         iVar2 = iVar2 + (*(int *)(iVar6 + 0x60) + -0xc) * 0x858 + 0x30;
         maybe_Mem_CopyQwords(auStack_860,iVar2);
         maybe_Mem_CopyQwords(iVar2,iVar5,0x858);

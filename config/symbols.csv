@@ -1359,7 +1359,7 @@ address,name,signature,source,comment
 0x00155c20,Snd_LoadBanks,,game,big table setup
 0x00157990,Snd_Update,,game,
 0x00157a70,Snd_SetPause,,game,
-0x00157b20,maybe_Snd_Shutdown,,game,
+0x00157b20,Snd_Shutdown,,game,"N153: confirmed (shuts down IOP stream/SE, unbinds RPC, frees)"
 0x00157bb0,Snd_Init,,game,XVI_SND.IRX
 0x00157fd0,Snd_Manager_dtor,,game,
 0x00158050,Pkt_AddTextureUploadAll,,game,11 callers
@@ -1907,7 +1907,7 @@ address,name,signature,source,comment
 0x0017bd80,Skid_Alloc,,game,
 0x0017be20,Race_Shutdown,,game,
 0x0017be80,Race_Init,,game,
-0x0017bf40,maybe_Race_GetMode,,game,
+0x0017bf40,RaceSlotTbl_Get,,game,returns g_RaceSlotTbl (was maybe_Race_GetMode)
 0x0017bf50,Race_SetCarSlot,,game,
 0x0017bf90,RaceTables_Free,,game,
 0x0017bfc0,RaceTables_Alloc,,game,
@@ -2189,12 +2189,12 @@ address,name,signature,source,comment
 0x00195fc0,CarSnd_StartLoop,,game,
 0x001960b0,CarSnd_UpdateGearShift,,game,
 0x001963b0,maybe_CarSnd_StopAll,,game,
-0x00196460,maybe_CarSnd_CanPlay,,game,
+0x00196460,maybe_CarSnd_GetBankId,,game,"0x3c, or 0x3d while loading (was maybe_CarSnd_CanPlay)"
 0x00196490,maybe_CarSnd_GetChannel,,game,
-0x001964c0,maybe_CarSnd_PlayIfReady,,game,
+0x001964c0,maybe_CarSnd_GetSlotIndex,,game,returns slot+1 unless loading; plays nothing (was maybe_CarSnd_PlayIfReady)
 0x00196500,maybe_CarSnd_RestartIfIdle,,game,
 0x001965f0,Render_Nop_8,,game-module,
-0x00196600,maybe_CarSnd_PlayIfNotLoading,,game,
+0x00196600,maybe_CarSnd_SelectChannel,,game,picks sound channel 1 or 2 by loading state (was maybe_CarSnd_PlayIfNotLoading)
 0x00196640,maybe_CarSnd_GetVoiceIndex,,game,
 0x001966c0,CarSnd_SetupMidiChannel,,game,
 0x00196d10,View_Clear,,game,
@@ -2752,7 +2752,7 @@ address,name,signature,source,comment
 0x001d4240,CarDb_GetPartForModel,,game,
 0x001d4360,Ai_UpdateRivalBehaviour,,game,
 0x001d4b50,Ai_DriverTask,,game,
-0x001d4c20,maybe_RaceTask_GetField,,game,
+0x001d4c20,maybe_RaceTask_ResetCounters,,game,zeroes three work fields (was maybe_RaceTask_GetField)
 0x001d4c40,Traffic_UpdateAll,,game,
 0x001d4cd0,Traffic_Reset,,game,
 0x001d4cf0,Traffic_Spawn,,game,
@@ -2784,7 +2784,7 @@ address,name,signature,source,comment
 0x001db6d0,RaceRule_CheckTeamBattle,,game,
 0x001db930,RaceRule_CheckDrift,,game,
 0x001dbbc0,RaceRule_CheckFreeRun,,game,
-0x001dbf40,maybe_Race_CheckRuleEnd,,game,
+0x001dbf40,maybe_RaceTask_InitRules,,game,allocates RaceRule for the racer count and mode (was maybe_Race_CheckRuleEnd)
 0x001dbfe0,RaceRule_Finish,,game,
 0x001dc180,maybe_RaceProg_GetEntry,,game,
 0x001dc190,RaceProg_Get_c,,game-accessor,
@@ -2936,7 +2936,7 @@ address,name,signature,source,comment
 0x001eaec0,RaceScene_ApplyDifficulty,,game,
 0x001eaf20,RaceScene_StateFinish,,game,
 0x001eafd0,RaceScene_CheckRules,,game,
-0x001eb140,maybe_RaceScene_AddHandler,,game,"appends to a 10-entry handler list at +4, count at +0x2c (was RaceScene_GetMode)"
+0x001eb140,RaceScene_AddHandler,,game,N153: confirmed via RaceScene.handlers/handlerCount
 0x001eb180,RaceScene_Tick,,game,
 0x001eb1e0,RaceScene_StateRacing,,game,
 0x001eb2b0,RaceScene_Free,,game,

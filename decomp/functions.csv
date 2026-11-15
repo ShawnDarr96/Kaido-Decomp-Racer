@@ -1359,7 +1359,7 @@ address,size,name,file,status
 0x00155c20,0x1d70,Snd_LoadBanks,src/text_00154000.c,decompiled
 0x00157990,0xdc,Snd_Update,src/text_00154000.c,decompiled
 0x00157a70,0xa4,Snd_SetPause,src/text_00154000.c,decompiled
-0x00157b20,0x8c,maybe_Snd_Shutdown,src/text_00154000.c,decompiled
+0x00157b20,0x8c,Snd_Shutdown,src/text_00154000.c,decompiled
 0x00157bb0,0x418,Snd_Init,src/text_00154000.c,decompiled
 0x00157fd0,0x78,Snd_Manager_dtor,src/text_00154000.c,decompiled
 0x00158050,0x50,Pkt_AddTextureUploadAll,src/text_00158000.c,decompiled
@@ -1907,7 +1907,7 @@ address,size,name,file,status
 0x0017bd80,0x9c,Skid_Alloc,src/text_00178000.c,decompiled
 0x0017be20,0x60,Race_Shutdown,src/text_00178000.c,decompiled
 0x0017be80,0xb4,Race_Init,src/text_00178000.c,decompiled
-0x0017bf40,0x8,maybe_Race_GetMode,src/text_00178000.c,decompiled
+0x0017bf40,0x8,RaceSlotTbl_Get,src/text_00178000.c,decompiled
 0x0017bf50,0x3c,Race_SetCarSlot,src/text_00178000.c,decompiled
 0x0017bf90,0x2c,RaceTables_Free,src/text_00178000.c,decompiled
 0x0017bfc0,0x2ac,RaceTables_Alloc,src/text_00178000.c,decompiled
@@ -2189,12 +2189,12 @@ address,size,name,file,status
 0x00195fc0,0xf0,CarSnd_StartLoop,src/text_00194000.c,decompiled
 0x001960b0,0x2f4,CarSnd_UpdateGearShift,src/text_00194000.c,decompiled
 0x001963b0,0xa8,maybe_CarSnd_StopAll,src/text_00194000.c,decompiled
-0x00196460,0x2c,maybe_CarSnd_CanPlay,src/text_00194000.c,decompiled
+0x00196460,0x2c,maybe_CarSnd_GetBankId,src/text_00194000.c,decompiled
 0x00196490,0x28,maybe_CarSnd_GetChannel,src/text_00194000.c,decompiled
-0x001964c0,0x3c,maybe_CarSnd_PlayIfReady,src/text_00194000.c,decompiled
+0x001964c0,0x3c,maybe_CarSnd_GetSlotIndex,src/text_00194000.c,decompiled
 0x00196500,0xe4,maybe_CarSnd_RestartIfIdle,src/text_00194000.c,decompiled
 0x001965f0,0x8,Render_Nop_8,src/text_00194000.c,decompiled
-0x00196600,0x40,maybe_CarSnd_PlayIfNotLoading,src/text_00194000.c,decompiled
+0x00196600,0x40,maybe_CarSnd_SelectChannel,src/text_00194000.c,decompiled
 0x00196640,0x7c,maybe_CarSnd_GetVoiceIndex,src/text_00194000.c,decompiled
 0x001966c0,0x64c,CarSnd_SetupMidiChannel,src/text_00194000.c,decompiled
 0x00196d10,0x3c,View_Clear,src/text_00194000.c,decompiled
@@ -2752,7 +2752,7 @@ address,size,name,file,status
 0x001d4240,0x118,CarDb_GetPartForModel,src/text_001d4000.c,decompiled
 0x001d4360,0x7e8,Ai_UpdateRivalBehaviour,src/text_001d4000.c,decompiled
 0x001d4b50,0xc4,Ai_DriverTask,src/text_001d4000.c,decompiled
-0x001d4c20,0x14,maybe_RaceTask_GetField,src/text_001d4000.c,decompiled
+0x001d4c20,0x14,maybe_RaceTask_ResetCounters,src/text_001d4000.c,decompiled
 0x001d4c40,0x84,Traffic_UpdateAll,src/text_001d4000.c,decompiled
 0x001d4cd0,0x14,Traffic_Reset,src/text_001d4000.c,decompiled
 0x001d4cf0,0x224,Traffic_Spawn,src/text_001d4000.c,decompiled
@@ -2784,7 +2784,7 @@ address,size,name,file,status
 0x001db6d0,0x254,RaceRule_CheckTeamBattle,src/text_001d8000.c,decompiled
 0x001db930,0x28c,RaceRule_CheckDrift,src/text_001d8000.c,decompiled
 0x001dbbc0,0x344,RaceRule_CheckFreeRun,src/text_001d8000.c,decompiled
-0x001dbf40,0x94,maybe_Race_CheckRuleEnd,src/text_001d8000.c,decompiled
+0x001dbf40,0x94,maybe_RaceTask_InitRules,src/text_001d8000.c,decompiled
 0x001dbfe0,0x1a0,RaceRule_Finish,src/text_001d8000.c,decompiled
 0x001dc180,0xc,maybe_RaceProg_GetEntry,src/text_001dc000.c,decompiled
 0x001dc190,0xc,RaceProg_Get_c,src/text_001dc000.c,decompiled
@@ -2936,7 +2936,7 @@ address,size,name,file,status
 0x001eaec0,0x58,RaceScene_ApplyDifficulty,src/text_001e8000.c,decompiled
 0x001eaf20,0xa4,RaceScene_StateFinish,src/text_001e8000.c,decompiled
 0x001eafd0,0x150,RaceScene_CheckRules,src/text_001e8000.c,decompiled
-0x001eb140,0x40,maybe_RaceScene_AddHandler,src/text_001e8000.c,decompiled
+0x001eb140,0x40,RaceScene_AddHandler,src/text_001e8000.c,decompiled
 0x001eb180,0x54,RaceScene_Tick,src/text_001e8000.c,decompiled
 0x001eb1e0,0xc4,RaceScene_StateRacing,src/text_001e8000.c,decompiled
 0x001eb2b0,0x30,RaceScene_Free,src/text_001e8000.c,decompiled

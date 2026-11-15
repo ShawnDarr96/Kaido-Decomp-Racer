@@ -2284,7 +2284,9 @@ void Race_Init(undefined8 param_1)
 }
 
 // 0x0017bf40  size 0x8
-RaceSlotTbl * maybe_Race_GetMode(void)
+/* returns g_RaceSlotTbl (was maybe_Race_GetMode) */
+
+RaceSlotTbl * RaceSlotTbl_Get(void)
 
 {
   return g_RaceSlotTbl;
