@@ -18,7 +18,7 @@ Columns:
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
 | F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  |  | Gap of F12 |
-| F15 | 433 globals shared across modules are still unnamed; the s_<Function>_N / s_<Module>VarN statics need real names | any |  |  | Gap of F13 |
+| F15 | 433 globals shared across modules are still unnamed; the s_<Function>_N / s_<Module>VarN statics need real names | any |  | ShawnDarr96/claude (2026-11-14) | Gap of F13 |
 
 ## P1 Naming
 
@@ -291,3 +291,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: T10 done; added T11 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim F13.
 - 2026-11-14 ShawnDarr96/claude: F13 done; added F15 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim F15.
