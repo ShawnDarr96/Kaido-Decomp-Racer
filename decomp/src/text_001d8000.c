@@ -2260,10 +2260,10 @@ void maybe_RaceTask_InitRules(int param_1)
   RaceRule_Alloc(uVar2,uVar3,0x430750,uVar4);
   cVar1 = RaceCtx_GetMode();
   if (cVar1 == '\x06') {
-    *(undefined4 *)(param_1 + 0x1c) = 0x1dbf10;
+    *(code **)(param_1 + 0x1c) = RaceProg_Task_Thunk;
   }
   else {
-    *(undefined4 *)(param_1 + 0x1c) = 0x1dbf20;
+    *(code **)(param_1 + 0x1c) = RaceProg_Begin_Thunk;
   }
   return;
 }

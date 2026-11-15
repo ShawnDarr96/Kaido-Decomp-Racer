@@ -1192,6 +1192,188 @@ LAB_001e210c:
   return;
 }
 
+// 0x001e2370  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* task callback: j RaceCam_Task */
+
+void RaceCam_Task_Thunk(int param_1)
+
+{
+  undefined *puVar1;
+  undefined *puVar2;
+  undefined4 *puVar3;
+  char cVar4;
+  long lVar5;
+  undefined4 uVar6;
+  uint uVar7;
+  int iVar8;
+  
+  puVar3 = *(undefined4 **)(param_1 + 0x14);
+  uVar7 = 0;
+  do {
+    Cam_ResetTimer(g_Loading->workBufs[uVar7 & 0xff]);
+    uVar7 = uVar7 + 1;
+  } while ((int)uVar7 < 2);
+  switch(*puVar3) {
+  case 0:
+    RaceCam_UpdateFinish(puVar3);
+    uVar7 = 0;
+    goto LAB_001e210c;
+  case 1:
+    lVar5 = RaceScene_IsRunning();
+    if (lVar5 != 0) {
+      *(undefined4 *)(g_Loading->workBufs[0] + 0x500) = 1;
+      *(undefined4 *)(g_Loading->workBufs[1] + 0x500) = 1;
+      lVar5 = RaceScene_IsFlag10();
+      uVar6 = 4;
+      if (lVar5 == 0) {
+        uVar6 = 3;
+      }
+      *puVar3 = uVar6;
+    }
+    break;
+  case 2:
+    iVar8 = 2;
+    if (_s_RaceIsReplayMode == 0) {
+      iVar8 = 1;
+    }
+    uVar7 = 0;
+    if (iVar8 != 0) {
+      do {
+        Cam_Update(g_Loading->workBufs[uVar7 & 0xff]);
+        uVar7 = uVar7 + 1;
+      } while ((int)uVar7 < iVar8);
+    }
+    if ((g_Loading->flags & 1) == 0) {
+      *puVar3 = 3;
+    }
+    break;
+  case 3:
+    if (_s_RaceIsReplayMode == 0) {
+      if ((g_Loading->flags & 2) == 0) {
+        lVar5 = RaceScene_IsPaused();
+        if (lVar5 != 0) {
+          *puVar3 = 5;
+        }
+        puVar1 = g_Loading->workBufs[0];
+        if (_g_AiDrivers == 0) {
+          iVar8 = 0;
+        }
+        else {
+          iVar8 = *(int *)(_g_AiDrivers + 8);
+        }
+        if ((*(uint *)(iVar8 + 0x10) & 0x80) == 0) {
+          *(uint *)(puVar1 + 0x7c0) = *(uint *)(puVar1 + 0x7c0) & 0xfffffffe;
+        }
+        else {
+          *(uint *)(puVar1 + 0x7c0) = *(uint *)(puVar1 + 0x7c0) | 1;
+        }
+        if ((*(uint *)(iVar8 + 0x10) & 0x40) != 0) {
+          Cam_NextMode(puVar1);
+        }
+        Cam_Update(puVar1);
+      }
+      else {
+        *puVar3 = 6;
+      }
+    }
+    else if ((g_Loading->flags & 2) == 0) {
+      lVar5 = RaceScene_IsPaused();
+      if (lVar5 != 0) {
+        *puVar3 = 5;
+      }
+      puVar1 = g_Loading->workBufs[1];
+      puVar2 = g_Loading->workBufs[0];
+      if (_g_AiDrivers == 0) {
+        iVar8 = 0;
+      }
+      else {
+        iVar8 = *(int *)(_g_AiDrivers + 8);
+      }
+      if ((*(uint *)(iVar8 + 0x10) & 0x80) == 0) {
+        *(uint *)(puVar2 + 0x7c0) = *(uint *)(puVar2 + 0x7c0) & 0xfffffffe;
+      }
+      else {
+        *(uint *)(puVar2 + 0x7c0) = *(uint *)(puVar2 + 0x7c0) | 1;
+      }
+      if (_g_AiDrivers == 0) {
+        iVar8 = 0;
+      }
+      else {
+        iVar8 = *(int *)(_g_AiDrivers + 0xc);
+      }
+      if ((*(uint *)(iVar8 + 0x10) & 0x80) == 0) {
+        *(uint *)(puVar1 + 0x7c0) = *(uint *)(puVar1 + 0x7c0) & 0xfffffffe;
+      }
+      else {
+        *(uint *)(puVar1 + 0x7c0) = *(uint *)(puVar1 + 0x7c0) | 1;
+      }
+      Cam_Update();
+      Cam_Update(puVar1);
+    }
+    else {
+      *puVar3 = 6;
+    }
+    break;
+  case 4:
+    RaceCam_UpdateIntro(puVar3);
+    break;
+  case 5:
+    lVar5 = RaceScene_IsPaused();
+    if (lVar5 == 0) {
+      puVar3[2] = 0;
+      lVar5 = RaceScene_IsFlag10();
+      if (lVar5 == 0) {
+        *puVar3 = 3;
+        if ((g_Loading->flags & 2) == 0) {
+          lVar5 = RaceScene_IsPaused();
+          if (lVar5 != 0) {
+            *puVar3 = 5;
+          }
+          puVar1 = g_Loading->workBufs[0];
+          if (_g_AiDrivers == 0) {
+            iVar8 = 0;
+          }
+          else {
+            iVar8 = *(int *)(_g_AiDrivers + 8);
+          }
+          if ((*(uint *)(iVar8 + 0x10) & 0x80) == 0) {
+            *(uint *)(puVar1 + 0x7c0) = *(uint *)(puVar1 + 0x7c0) & 0xfffffffe;
+          }
+          else {
+            *(uint *)(puVar1 + 0x7c0) = *(uint *)(puVar1 + 0x7c0) | 1;
+          }
+          if ((*(uint *)(iVar8 + 0x10) & 0x40) != 0) {
+            Cam_NextMode(puVar1);
+          }
+          Cam_Update(puVar1);
+        }
+        else {
+          *puVar3 = 6;
+        }
+      }
+      else {
+        *puVar3 = 4;
+        RaceCam_UpdateIntro(puVar3);
+      }
+    }
+    break;
+  case 6:
+    g_Loading->flags = g_Loading->flags & 0xfffffffd;
+    cVar4 = RaceCtx_Get_8();
+    _s_RaceIsReplayMode = (uint)(cVar4 == '\r');
+    puVar3[2] = 0;
+    *puVar3 = 0;
+  }
+  uVar7 = 0;
+LAB_001e210c:
+  do {
+    Cam_NopB(g_Loading->workBufs[uVar7 & 0xff]);
+    uVar7 = uVar7 + 1;
+  } while ((int)uVar7 < 2);
+  return;
+}
+
 // 0x001e2390  size 0x8c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1213,7 +1395,7 @@ void RaceTask_BeginLoading(int param_1)
   Loading_LoadScreenImage(uVar3);
   puVar1[2] = 0;
   *puVar1 = 0;
-  *(undefined4 *)(param_1 + 0x1c) = 0x1e2370;
+  *(code **)(param_1 + 0x1c) = RaceCam_Task_Thunk;
   return;
 }
 

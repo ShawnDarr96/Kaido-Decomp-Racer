@@ -2074,18 +2074,18 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
       if (param_1[2] == 0) {
         if (param_1[0x12] == 0) {
           pRVar9 = RaceTbl_GetCourseEntryB(pRVar9,0,(int)cVar1,uVar16);
-          maybe_QuickRace_InitRowsB(param_1 + 0x1ff,pRVar9);
+          maybe_Table_BuildRowPtrs16(param_1 + 0x1ff,pRVar9);
           maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,cVar1,0);
           *(undefined1 *)((int)param_1 + 0x7f9) = 0;
           return;
         }
         pRVar9 = RaceTbl_GetCourseEntryB(pRVar9,1,(int)cVar1,uVar16);
-        maybe_QuickRace_InitRowsB(param_1 + 0x1ff,pRVar9);
+        maybe_Table_BuildRowPtrs16(param_1 + 0x1ff,pRVar9);
         maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,cVar1,1);
       }
       else if (param_1[0x12] == 0) {
         pRVar10 = RaceTbl_GetCourseEntry(tbl,0,(int)cVar1,uVar16);
-        maybe_QuickRace_InitRowsA(param_1 + 0x209,pRVar10);
+        maybe_Table_BuildRowPtrs20(param_1 + 0x209,pRVar10);
         iVar2 = param_1[0x14];
         auStack_10[3] = 0;
         if (*(int *)param_1[iVar2 + 0x209] < 0) {
@@ -2113,7 +2113,7 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
       }
       else {
         pRVar10 = RaceTbl_GetCourseEntry(tbl,1,(int)cVar1,uVar16);
-        maybe_QuickRace_InitRowsA(param_1 + 0x209,pRVar10);
+        maybe_Table_BuildRowPtrs20(param_1 + 0x209,pRVar10);
         iVar2 = param_1[0x14];
         auStack_10[1] = 0;
         if (*(int *)param_1[iVar2 + 0x209] < 0) {

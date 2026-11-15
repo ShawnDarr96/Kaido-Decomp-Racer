@@ -2034,6 +2034,77 @@ void RaceWorld_Step(void)
   return;
 }
 
+// 0x001c29f0  size 0x8
+/* task callback: j RaceWorld_Step */
+
+void RaceWorld_Step_Thunk(int param_1)
+
+{
+  char cVar1;
+  RaceCar *pRVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  long lVar6;
+  ulong uVar7;
+  int iVar8;
+  uint uVar9;
+  int index;
+  
+  lVar6 = RaceScene_IsPaused(*(undefined4 *)(param_1 + 0x14));
+  if ((lVar6 == 0) && (lVar6 = RaceScene_IsRunning(), lVar6 != 0)) {
+    lVar6 = RaceScene_IsFlag400();
+    if (((lVar6 == 0) && (lVar6 = RaceScene_IsFlag1000(), lVar6 == 0)) &&
+       ((cVar1 = RaceCtx_GetMode(), cVar1 != '\x01' ||
+        (((cVar1 = GameState_Get_354(), cVar1 != '\x01' &&
+          (cVar1 = GameState_Get_354(), cVar1 != '\x02')) &&
+         (cVar1 = GameState_Get_354(), cVar1 != '\x03')))))) {
+      Phys_Step(0x42700000);
+    }
+    else {
+      Phys_Step(0);
+    }
+    index = 0;
+    lVar6 = GameState_GetTotalCarCount();
+    if (0 < lVar6) {
+      do {
+        pRVar2 = RaceCar_Get(index);
+        if (pRVar2 != (RaceCar *)0x0) {
+          iVar3 = RaceCar_GetTracker(pRVar2);
+          *(uint *)(iVar3 + 0x60) = *(uint *)(iVar3 + 0x60) & 0xffffff8f;
+          RaceCar_UpdateTracker(pRVar2);
+          for (iVar4 = *(int *)(pRVar2->unk_0158 + 0xd4); iVar4 != 0;
+              iVar4 = PhysWorld_FindBodyWithFlags(iVar4,0xffffffffffffffff)) {
+            lVar6 = PhysHandle_GetValueIfValid(iVar4);
+            if (lVar6 == 0) {
+              uVar7 = PhysHandle_GetIndexIfValid(iVar4);
+              if ((uVar7 & 1) == 0) {
+                uVar9 = 0x20;
+              }
+              else {
+                uVar9 = 0x40;
+              }
+              iVar8 = 0;
+              *(uint *)(iVar3 + 0x60) = *(uint *)(iVar3 + 0x60) | uVar9;
+              do {
+                iVar5 = RaceCar_GetWheelFx(pRVar2,iVar8);
+                iVar8 = iVar8 + 1;
+                *(uint *)(iVar5 + 0x60) = *(uint *)(iVar5 + 0x60) | uVar9;
+              } while (iVar8 < 4);
+            }
+            else {
+              *(uint *)(iVar3 + 0x60) = *(uint *)(iVar3 + 0x60) | 0x10;
+            }
+          }
+        }
+        index = index + 1;
+        iVar4 = GameState_GetTotalCarCount();
+      } while (index < iVar4);
+    }
+  }
+  return;
+}
+
 // 0x001c2a00  size 0xc
 void maybe_RaceTask_ClearFlag(int param_1)
 
@@ -2043,11 +2114,13 @@ void maybe_RaceTask_ClearFlag(int param_1)
 }
 
 // 0x001c2a10  size 0x1c
-void maybe_RaceTask_SetFlag(int param_1)
+/* sets the run flag and installs RaceWorld_Step_Thunk (was maybe_RaceTask_SetFlag) */
+
+void maybe_RaceTask_StartWorld(int param_1)
 
 {
   **(undefined1 **)(param_1 + 0x14) = 1;
-  *(undefined4 *)(param_1 + 0x1c) = 0x1c29f0;
+  *(code **)(param_1 + 0x1c) = RaceWorld_Step_Thunk;
   return;
 }
 

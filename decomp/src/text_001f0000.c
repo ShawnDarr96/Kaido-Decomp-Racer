@@ -1851,8 +1851,9 @@ void maybe_DemoCam_PlaceOrbit(undefined8 param_1,undefined8 param_2)
 // 0x001f3b80  size 0x24
 /* WARNING: Removing unreachable block (ram,0x001f4560) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* copies the target car's params into the camera (was maybe_Cam_LeafTable) */
 
-void maybe_Cam_LeafTable(undefined8 param_1,undefined8 param_2)
+void maybe_Cam_UpdateFromTargetCar(undefined8 param_1,undefined8 param_2)
 
 {
   long lVar1;

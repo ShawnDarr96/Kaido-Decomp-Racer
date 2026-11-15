@@ -1442,6 +1442,15 @@ void MenuSnd_PlaySe(uint param_1,undefined4 param_2)
   return;
 }
 
+// 0x002065f0  size 0x8
+/* task callback that only returns (jr ra) */
+
+void MenuScene_NopCallback(void)
+
+{
+  return;
+}
+
 // 0x00206600  size 0x5c
 void MenuSnd_StopAll(void)
 
@@ -1458,10 +1467,12 @@ void MenuSnd_StopAll(void)
 }
 
 // 0x00206660  size 0x10
-void maybe_Ui_SetCallback(int param_1)
+/* installs MenuScene_NopCallback (was maybe_Ui_SetCallback) */
+
+void maybe_MenuSceneTask_SetIdle(int param_1)
 
 {
-  *(undefined4 *)(param_1 + 0x1c) = 0x2065f0;
+  *(code **)(param_1 + 0x1c) = MenuScene_NopCallback;
   return;
 }
 

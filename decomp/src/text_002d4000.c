@@ -1554,7 +1554,7 @@ void Showroom_Nop(void)
 void maybe_Showroom_SetCallback(int param_1)
 
 {
-  *(undefined4 *)(param_1 + 0x1c) = 0x2d6890;
+  *(code **)(param_1 + 0x1c) = Pad_GetPort_Wrap_Thunk;
   return;
 }
 

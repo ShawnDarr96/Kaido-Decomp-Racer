@@ -840,7 +840,9 @@ LAB_002a5744:
 }
 
 // 0x002a5790  size 0x44
-void maybe_QuickRace_InitRowsA(int *param_1,int param_2)
+/* 10 row pointers, 0x14 apart (was maybe_QuickRace_InitRowsA) */
+
+void maybe_Table_BuildRowPtrs20(int *param_1,int param_2)
 
 {
   int iVar1;
@@ -860,7 +862,9 @@ void maybe_QuickRace_InitRowsA(int *param_1,int param_2)
 }
 
 // 0x002a57e0  size 0x44
-void maybe_QuickRace_InitRowsB(int *param_1,int param_2)
+/* 10 row pointers, 0x10 apart (was maybe_QuickRace_InitRowsB) */
+
+void maybe_Table_BuildRowPtrs16(int *param_1,int param_2)
 
 {
   int iVar1;

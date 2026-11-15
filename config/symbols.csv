@@ -2618,8 +2618,9 @@ address,name,signature,source,comment
 0x001c2380,RaceWorld_Init,,game,physics heap 0x12488
 0x001c24f0,RaceWorld_BuildColliders,,game,
 0x001c27c0,RaceWorld_Step,,game,
+0x001c29f0,RaceWorld_Step_Thunk,,game,task callback: j RaceWorld_Step
 0x001c2a00,maybe_RaceTask_ClearFlag,,game,
-0x001c2a10,maybe_RaceTask_SetFlag,,game,
+0x001c2a10,maybe_RaceTask_StartWorld,,game,sets the run flag and installs RaceWorld_Step_Thunk (was maybe_RaceTask_SetFlag)
 0x001c2a30,Vu0_RaySphereTest,,game,
 0x001c2a70,Prop_DrawModel,,game,
 0x001c2bc0,Prop_Draw,,game,
@@ -2784,6 +2785,8 @@ address,name,signature,source,comment
 0x001db6d0,RaceRule_CheckTeamBattle,,game,
 0x001db930,RaceRule_CheckDrift,,game,
 0x001dbbc0,RaceRule_CheckFreeRun,,game,
+0x001dbf10,RaceProg_Task_Thunk,,game,task callback: j RaceProg_Task
+0x001dbf20,RaceProg_Begin_Thunk,,game,task callback: j RaceProg_Begin
 0x001dbf40,maybe_RaceTask_InitRules,,game,allocates RaceRule for the racer count and mode (was maybe_Race_CheckRuleEnd)
 0x001dbfe0,RaceRule_Finish,,game,
 0x001dc180,RaceProg_GetHeader,,game,returns RaceProg's first word: checkpointFlags + two bytes (was maybe_RaceProg_GetEntry)
@@ -2855,6 +2858,7 @@ address,name,signature,source,comment
 0x001e19e0,RaceCam_UpdateIntro,,game,
 0x001e1cc0,RaceCam_UpdateFinish,,game,
 0x001e1f10,RaceCam_Task,,game,
+0x001e2370,RaceCam_Task_Thunk,,game,task callback: j RaceCam_Task
 0x001e2390,RaceTask_BeginLoading,,game,
 0x001e2420,RaceCam_UpdateReplay,,game,
 0x001e43b0,RaceCam_UpdateFree,,game,
@@ -3027,7 +3031,7 @@ address,name,signature,source,comment
 0x001f3880,maybe_DemoCam_LookAt,,game,
 0x001f3960,maybe_DemoCam_PlaceFront,,game,
 0x001f3a70,maybe_DemoCam_PlaceOrbit,,game,
-0x001f3b80,maybe_Cam_LeafTable,,game,
+0x001f3b80,maybe_Cam_UpdateFromTargetCar,,game,copies the target car's params into the camera (was maybe_Cam_LeafTable)
 0x001f3bb0,maybe_Cam_ResetOffset,,game,
 0x001f3be0,maybe_Cam_UpdateFollow,,game,
 0x001f3c90,maybe_DemoCam_PlaceSide,,game,
@@ -3195,7 +3199,7 @@ address,name,signature,source,comment
 0x00201380,MenuWnd_DrawMoney,,game,
 0x00201c80,MenuScene_Update,,game,
 0x00202100,maybe_Ui_ClearField4,,game,
-0x00202110,maybe_Ui_ResetState,,game,
+0x00202110,maybe_MenuSceneTask_Reset,,game,resets the task state and installs MenuScene_Update (was maybe_Ui_ResetState)
 0x00202140,MenuScene_GetEntryScreen,,game,
 0x00202300,MenuText_CarFullNameDefault,,game,
 0x00202330,MenuText_CountCars,,game,
@@ -3241,8 +3245,9 @@ address,name,signature,source,comment
 0x00206480,MenuSnd_PlayVoice,,game,
 0x002064d0,MenuSnd_SetBgmVolume,,game,
 0x00206550,MenuSnd_PlaySe,,game,
+0x002065f0,MenuScene_NopCallback,,game,task callback that only returns (jr ra)
 0x00206600,MenuSnd_StopAll,,game,
-0x00206660,maybe_Ui_SetCallback,,game,
+0x00206660,maybe_MenuSceneTask_SetIdle,,game,installs MenuScene_NopCallback (was maybe_Ui_SetCallback)
 0x00206670,Title_Update,,game,
 0x002066b0,Title_Exit,,game,
 0x002066e0,Title_Enter,,game,
@@ -4139,8 +4144,8 @@ address,name,signature,source,comment
 0x002a5080,maybe_Record_FormatEntry,,game,
 0x002a51b0,maybe_QuickRace_GetOptionValue,,game,
 0x002a54a0,maybe_Record_GetOptionValue,,game,
-0x002a5790,maybe_QuickRace_InitRowsA,,game,
-0x002a57e0,maybe_QuickRace_InitRowsB,,game,
+0x002a5790,maybe_Table_BuildRowPtrs20,,game,"10 row pointers, 0x14 apart (was maybe_QuickRace_InitRowsA)"
+0x002a57e0,maybe_Table_BuildRowPtrs16,,game,"10 row pointers, 0x10 apart (was maybe_QuickRace_InitRowsB)"
 0x002a5830,maybe_ScrCarShop_State3,,game,entry 3 of state table 0x32edf0 used by maybe_ScrCarShop_Update
 0x002a58b0,maybe_ScrCarShop_State2,,game,entry 2 of state table 0x32edf0 used by maybe_ScrCarShop_Update
 0x002a58e0,maybe_ScrCarShop_State1,,game,entry 1 of state table 0x32edf0 used by maybe_ScrCarShop_Update
@@ -4509,6 +4514,7 @@ address,name,signature,source,comment
 0x002d6770,maybe_GarageBg_Draw,,game,
 0x002d6820,GarageBg_Unload,,game,
 0x002d6850,GarageBg_Load,,game,
+0x002d6890,Pad_GetPort_Wrap_Thunk,,game,task callback: j Pad_GetPort_Wrap
 0x002d68a0,Showroom_Nop,,game-module,
 0x002d68b0,maybe_Showroom_SetCallback,,game,
 0x002d68c0,maybe_IntroCar_UpdatePose,,game,
