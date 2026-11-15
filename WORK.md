@@ -35,7 +35,7 @@ Columns:
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
 | T3 | Recover the car / vehicle struct and physics state | any | F5 |  |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
-| T5 | Recover the menu / UI structs | any | F5 | ShawnDarr96/claude (2026-11-14) |  |
+| T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5 |
 
 ## P3 Matching
 
@@ -221,6 +221,7 @@ Columns:
 | F10 | 4 structs recovered and applied; ~3650 field references in the C | P0 | ShawnDarr96/claude | 2026-11-14 | f9318e2 |
 | T6 | ArcToc/ArcTocEntry recovered, verified against all 15219 TOC entries, applied in Ghidra and structs.h | P2 | ShawnDarr96/claude | 2026-11-14 | 70dc0e2 |
 | F12 | sub-struct fields recovered with widths, accessors typed; most fields still unk_/maybe_ | P0 | ShawnDarr96/claude | 2026-11-14 | d188f85 |
+| T5 | UiMgr/UiLayoutSlot/UiLayout recovered and applied; layout-table accesses now use field names | P2 | ShawnDarr96/claude | 2026-11-14 | 856b9c3 |
 
 ## Changes to the board
 
@@ -274,3 +275,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim F13.
 - 2026-11-14 ShawnDarr96: F13 released: done: 72 globals named (refs 6886 -> 4356); left: 1401 distinct unnamed .bss/.data globals
 - 2026-11-14 ShawnDarr96/claude: claim T5.
+- 2026-11-14 ShawnDarr96/claude: T5 done; added T7 (gaps).
