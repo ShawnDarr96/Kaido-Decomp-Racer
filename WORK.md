@@ -16,7 +16,7 @@ Columns:
 | F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
-| F10 | Recover the struct layouts behind g_GameState, g_RaceCtx, g_Options, g_MenuMgr (fields now appear as GameState_Get_354 etc.) | any |  |  | Gap of F5 |
+| F10 | Recover the struct layouts behind g_GameState, g_RaceCtx, g_Options, g_MenuMgr (fields now appear as GameState_Get_354 etc.) | any |  | ShawnDarr96/claude (2026-11-14) | Gap of F5 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
 
 ## P1 Naming
@@ -262,3 +262,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: N155 done.
 - 2026-11-14 ShawnDarr96/claude: claim N153.
 - 2026-11-14 ShawnDarr96: N153 released: done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm
+- 2026-11-14 ShawnDarr96/claude: claim F10.
