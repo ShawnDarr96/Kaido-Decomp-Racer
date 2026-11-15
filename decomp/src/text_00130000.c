@@ -1432,7 +1432,7 @@ void TaskList_Remove(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0xc) = *(undefined4 *)(param_1 + 8);
-  maybe_List_Remove();
+  List_Append();
   return;
 }
 
@@ -1442,7 +1442,7 @@ long TaskList_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e070;
-    maybe_List_dtor(param_1,0);
+    List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1465,7 +1465,7 @@ long Task_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e080;
-    maybe_ListNode_dtor(param_1,0);
+    ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1495,7 +1495,9 @@ Task_ctor(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4 pa
 }
 
 // 0x001321c0  size 0x88
-undefined4 maybe_List_Append(int param_1,int param_2)
+/* F9: unlinks the node from head/tail and decrements the count (was named maybe_List_Append) */
+
+undefined4 List_Remove(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1527,7 +1529,9 @@ undefined4 maybe_List_Append(int param_1,int param_2)
 }
 
 // 0x00132250  size 0x44
-undefined4 maybe_List_Remove(int param_1,long param_2)
+/* F9: links the node at the tail and increments the count (was named maybe_List_Remove) */
+
+undefined4 List_Append(int param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -1554,7 +1558,9 @@ undefined4 maybe_List_Remove(int param_1,long param_2)
 }
 
 // 0x001322a0  size 0x74
-void maybe_List_Clear(int param_1)
+/* F9: deletes owned nodes through their virtual dtor, then empties the list */
+
+void List_Clear(int param_1)
 
 {
   int iVar1;
@@ -1576,7 +1582,9 @@ void maybe_List_Clear(int param_1)
 }
 
 // 0x00132320  size 0xa8
-long maybe_List_dtor(long param_1,short param_2)
+/* F9: resets vtable 0x36e090 (set by List_ctor), clears, frees when asked */
+
+long List_dtor(long param_1,short param_2)
 
 {
   int iVar1;
@@ -1621,7 +1629,9 @@ undefined8 List_ctor(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00132400  size 0x4c
-long maybe_ListNode_dtor(long param_1,short param_2)
+/* F9: resets vtable 0x36e0a0 (set by ListNode_ctor) */
+
+long ListNode_dtor(long param_1,short param_2)
 
 {
   if ((param_1 != 0) && (*(undefined4 *)param_1 = &DAT_0036e0a0, 0 < param_2)) {
@@ -1781,9 +1791,9 @@ undefined1 * Mem_Set16(undefined1 *param_1,undefined1 param_2,int param_3)
 }
 
 // 0x00132600  size 0x188
-/* 16-byte aligned fast copy */
+/* F9: memcpy that picks Mem_Copy128/64/32/16 by alignment, tail with Mem_Copy8; returns dst */
 
-uint maybe_Mem_CopyQwords(uint param_1,uint param_2,uint param_3)
+uint Mem_Copy(uint param_1,uint param_2,uint param_3)
 
 {
   uint uVar1;
@@ -1831,7 +1841,9 @@ uint maybe_Mem_CopyQwords(uint param_1,uint param_2,uint param_3)
 }
 
 // 0x00132790  size 0x40
-void maybe_Mutex_Delete(int *param_1)
+/* F9: DeleteSema on the handle, same as Mutex_dtor */
+
+void Mutex_Delete(int *param_1)
 
 {
   if (*param_1 != 0) {
@@ -1842,7 +1854,9 @@ void maybe_Mutex_Delete(int *param_1)
 }
 
 // 0x001327d0  size 0x54
-bool maybe_Mutex_Create(int *param_1)
+/* F9: CreateSema with init 1, max 1 (binary semaphore) */
+
+bool Mutex_Create(int *param_1)
 
 {
   int iVar1;

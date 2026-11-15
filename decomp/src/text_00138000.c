@@ -882,8 +882,8 @@ Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefin
         *(undefined4 *)(iVar1 + 0x2c) = param_5;
       }
     }
-    maybe_List_Append(0x386f94,iVar1);
-    maybe_List_Remove(0x386fa8,iVar1);
+    List_Remove(0x386f94,iVar1);
+    List_Append(0x386fa8,iVar1);
     uVar2 = 1;
   }
   return uVar2;
@@ -915,8 +915,8 @@ void Mc_Update(void)
         return;
       }
       *(int *)(*(int *)(iVar3 + 8) + 0x14) = *(int *)(*(int *)(iVar3 + 8) + 0x14) + -1;
-      maybe_List_Append(0x386fa8,iVar3);
-      maybe_List_Remove(0x386f94,iVar3);
+      List_Remove(0x386fa8,iVar3);
+      List_Append(0x386f94,iVar3);
       iVar3 = iVar1;
       if (iVar1 == 0) {
         return;
@@ -932,9 +932,9 @@ void Mc_Update(void)
 void Mc_Shutdown(void)
 
 {
-  Gfx_AddFrameCallback(0x386fbc);
-  maybe_List_Clear(0x386f94);
-  maybe_List_Clear(0x386fa8);
+  Gfx_RemoveFrameCallback(0x386fbc);
+  List_Clear(0x386f94);
+  List_Clear(0x386fa8);
   if (_s_McVar1 != 0) {
     __destroy_new_array(_s_McVar1,0x1395e0);
     _s_McVar1 = 0;
@@ -948,7 +948,7 @@ long Mc_Command_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e118;
-    maybe_ListNode_dtor(param_1,0);
+    ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -976,14 +976,14 @@ void Mc_Init(undefined8 param_1,uint param_2)
   if (param_2 != 0) {
     iVar3 = 0;
     do {
-      maybe_List_Remove(0x386f94,_s_McVar1 + iVar3);
+      List_Append(0x386f94,_s_McVar1 + iVar3);
       uVar2 = uVar2 + 1;
       iVar3 = iVar3 + 0x58;
     } while (uVar2 < param_2);
   }
   _s_Mc_Init_3 = Mc_Update;
   _s_Mc_Init_4 = 0;
-  Gfx_RemoveFrameCallback(0x386fbc);
+  Gfx_AddFrameCallback(0x386fbc);
   return;
 }
 
@@ -1010,8 +1010,8 @@ void Mc_CancelCommand(uint *param_1)
     while (iVar2 = iVar1, iVar2 != 0) {
       iVar1 = *(int *)(iVar2 + 4);
       if (param_1 == *(uint **)(iVar2 + 8)) {
-        maybe_List_Append(0x386fa8,iVar2);
-        maybe_List_Remove(0x386f94,iVar2);
+        List_Remove(0x386fa8,iVar2);
+        List_Append(0x386f94,iVar2);
       }
     }
     param_1[5] = 0;
@@ -1128,8 +1128,8 @@ Mc_CancelCommand_Orphan1
       *(uint *)(iVar1 + 0x28) = param_4;
       *(undefined4 *)(iVar1 + 0x2c) = param_5;
     }
-    maybe_List_Append(0x386f94,iVar1);
-    maybe_List_Remove(0x386fa8,iVar1);
+    List_Remove(0x386f94,iVar1);
+    List_Append(0x386fa8,iVar1);
     uVar2 = 1;
   }
   return uVar2;
@@ -1148,8 +1148,8 @@ void Mc_RemoveCommandsFor(int param_1)
   while (iVar2 = iVar1, iVar2 != 0) {
     iVar1 = *(int *)(iVar2 + 4);
     if (param_1 == *(int *)(iVar2 + 8)) {
-      maybe_List_Append(0x386fa8,iVar2);
-      maybe_List_Remove(0x386f94,iVar2);
+      List_Remove(0x386fa8,iVar2);
+      List_Append(0x386f94,iVar2);
     }
   }
   *(undefined4 *)(param_1 + 0x14) = 0;
@@ -1562,7 +1562,7 @@ long Mc_Queue_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e128;
-    maybe_ListNode_dtor(param_1,0);
+    ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1580,10 +1580,10 @@ long Mc_Manager_dtor(long param_1,short param_2)
     iVar1 = (int)param_1;
     if (iVar1 + 0x2c != 0) {
       *(undefined **)(iVar1 + 0x2c) = &DAT_0036e128;
-      maybe_ListNode_dtor(iVar1 + 0x2c,0);
+      ListNode_dtor(iVar1 + 0x2c,0);
     }
-    maybe_List_dtor(iVar1 + 0x18,0xffffffffffffffff);
-    maybe_List_dtor(iVar1 + 4,0xffffffffffffffff);
+    List_dtor(iVar1 + 0x18,0xffffffffffffffff);
+    List_dtor(iVar1 + 4,0xffffffffffffffff);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1610,7 +1610,7 @@ int maybe_Gfx_ClipRect(int param_1,int param_2,int param_3,int param_4,int param
         iVar1 = param_6;
       }
       if (iVar1 != 0) {
-        maybe_Mem_CopyQwords(param_1,param_5,iVar1);
+        Mem_Copy(param_1,param_5,iVar1);
       }
       param_1 = param_1 + iVar1;
       param_5 = param_5 + iVar1;
@@ -1622,7 +1622,7 @@ int maybe_Gfx_ClipRect(int param_1,int param_2,int param_3,int param_4,int param
         param_6 = param_4;
       }
       if (param_6 != 0) {
-        maybe_Mem_CopyQwords(param_3,param_5,param_6);
+        Mem_Copy(param_3,param_5,param_6);
       }
       iVar1 = iVar1 + param_6;
       param_3 = param_3 + param_6;
@@ -1634,7 +1634,7 @@ int maybe_Gfx_ClipRect(int param_1,int param_2,int param_3,int param_4,int param
         param_2 = param_8;
       }
       if (param_2 != 0) {
-        maybe_Mem_CopyQwords(param_1,param_7,param_2);
+        Mem_Copy(param_1,param_7,param_2);
       }
       iVar1 = iVar1 + param_2;
       param_8 = param_8 - param_2;
@@ -1645,7 +1645,7 @@ int maybe_Gfx_ClipRect(int param_1,int param_2,int param_3,int param_4,int param
         param_8 = param_4;
       }
       if (param_8 != 0) {
-        maybe_Mem_CopyQwords(param_3,iStack_10,param_8);
+        Mem_Copy(param_3,iStack_10,param_8);
         iVar1 = iVar1 + param_8;
       }
     }
@@ -2811,7 +2811,7 @@ undefined4 Rpc_SetBlocking(int param_1,undefined4 param_2)
 void Rpc_Unbind(int param_1)
 
 {
-  maybe_Mutex_Delete(param_1 + 0x28);
+  Mutex_Delete(param_1 + 0x28);
   return;
 }
 
@@ -2830,7 +2830,7 @@ void Rpc_Bind(undefined8 param_1,undefined8 param_2)
       DelayThread(10000);
     }
   } while (*(int *)(iVar1 + 0x24) == 0);
-  maybe_Mutex_Create(iVar1 + 0x28);
+  Mutex_Create(iVar1 + 0x28);
   *(undefined4 *)(iVar1 + 0x2c) = 0;
   *(undefined4 *)(iVar1 + 0x30) = 0;
   *(undefined4 *)(iVar1 + 0x34) = 0;

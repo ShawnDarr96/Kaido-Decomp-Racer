@@ -1202,7 +1202,7 @@ void SaveMgr_DeserializeGame(undefined4 *param_1)
         if (0x1fff < uVar8) {
           uVar8 = 0x2000;
         }
-        maybe_Mem_CopyQwords(param_1[0x117],param_1[0x118],uVar8);
+        Mem_Copy(param_1[0x117],param_1[0x118],uVar8);
         param_1[0x117] = param_1[0x117] + uVar8;
         param_1[0x118] = param_1[0x118] + uVar8;
         param_1[0x119] = param_1[0x119] - uVar8;
@@ -1313,7 +1313,7 @@ void SaveMgr_DeserializeGame(undefined4 *param_1)
         if (0x1fff < uVar8) {
           uVar8 = 0x2000;
         }
-        maybe_Mem_CopyQwords(param_1[0x117],param_1[0x118],uVar8);
+        Mem_Copy(param_1[0x117],param_1[0x118],uVar8);
         param_1[0x117] = param_1[0x117] + uVar8;
         param_1[0x118] = param_1[0x118] + uVar8;
         param_1[0x119] = param_1[0x119] - uVar8;
@@ -1502,7 +1502,7 @@ void SaveMgr_SerializeGame(undefined4 *param_1)
         if (0x1fff < uVar7) {
           uVar7 = 0x2000;
         }
-        maybe_Mem_CopyQwords(param_1[0x117],param_1[0x118],uVar7);
+        Mem_Copy(param_1[0x117],param_1[0x118],uVar7);
         param_1[0x117] = param_1[0x117] + uVar7;
         param_1[0x118] = param_1[0x118] + uVar7;
         param_1[0x119] = param_1[0x119] - uVar7;

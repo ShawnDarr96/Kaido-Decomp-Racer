@@ -18,7 +18,7 @@ long PtclList_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e5a0;
-    maybe_List_dtor(param_1,0);
+    List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -102,8 +102,8 @@ void PtclSys_RemoveAll(void)
           while (iVar1 != 0) {
             iVar2 = *(int *)(iVar1 + 4);
             *(undefined4 *)(iVar1 + 8) = 0;
-            maybe_List_Append(*(undefined4 *)(iVar1 + 0x9c),iVar1);
-            maybe_List_Remove(0x4307a0,iVar1);
+            List_Remove(*(undefined4 *)(iVar1 + 0x9c),iVar1);
+            List_Append(0x4307a0,iVar1);
             iVar1 = iVar2;
           }
           _s_PtclSysVar1 = _s_PtclSysVar1 + -1;
@@ -154,8 +154,8 @@ void PtclSys_UpdateAll(void)
             while (iVar2 != 0) {
               iVar3 = *(int *)(iVar2 + 4);
               *(undefined4 *)(iVar2 + 8) = 0;
-              maybe_List_Append(*(undefined4 *)(iVar2 + 0x9c),iVar2);
-              maybe_List_Remove(0x4307a0,iVar2);
+              List_Remove(*(undefined4 *)(iVar2 + 0x9c),iVar2);
+              List_Append(0x4307a0,iVar2);
               iVar2 = iVar3;
             }
             _s_PtclSysVar1 = _s_PtclSysVar1 + -1;
@@ -208,8 +208,8 @@ void PtclSys_Shutdown(void)
       while (iVar1 != 0) {
         iVar2 = *(int *)(iVar1 + 4);
         *(undefined4 *)(iVar1 + 8) = 0;
-        maybe_List_Append(*(undefined4 *)(iVar1 + 0x9c),iVar1);
-        maybe_List_Remove(0x4307a0,iVar1);
+        List_Remove(*(undefined4 *)(iVar1 + 0x9c),iVar1);
+        List_Append(0x4307a0,iVar1);
         iVar1 = iVar2;
       }
       piVar3 = *(int **)(iVar4 + 0x1c);
@@ -225,7 +225,7 @@ void PtclSys_Shutdown(void)
   } while (uVar5 < 0x3b);
   while (iVar1 != 0) {
     iVar4 = *(int *)(iVar1 + 4);
-    maybe_List_Append(0x4307a0,iVar1);
+    List_Remove(0x4307a0,iVar1);
     iVar1 = iVar4;
   }
   Mem_Free(_g_Particles);
@@ -262,7 +262,7 @@ void PtclSys_Init(undefined8 param_1)
     *(undefined4 *)(iVar2 + 8) = 0;
     *(undefined4 *)(iVar2 + 0x14) = 0;
     *(undefined4 *)(iVar2 + 0x9c) = 0;
-    maybe_List_Remove(0x4307a0,_g_ParticlesC + iVar3);
+    List_Append(0x4307a0,_g_ParticlesC + iVar3);
     uVar5 = uVar5 + 1;
     iVar3 = iVar3 + 0xa0;
   } while (uVar5 < 0x300);
@@ -340,7 +340,7 @@ long PtclMgr_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     maybe_Heap_dtor((int)param_1 + 0x108,0xffffffffffffffff);
-    maybe_List_dtor(param_1,0xffffffffffffffff);
+    List_dtor(param_1,0xffffffffffffffff);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -594,7 +594,7 @@ void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
     }
   }
   else {
-    maybe_Mem_CopyQwords(0x4310e0,param_1,0x14);
+    Mem_Copy(0x4310e0,param_1,0x14);
     Gfx_ApplyVideoSettings(0x4310e0,param_3);
   }
   if (param_3 != 0) {
@@ -766,7 +766,7 @@ long Render_Task_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e5b8;
-    maybe_ListNode_dtor(param_1,0);
+    ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -858,27 +858,27 @@ long ResPool_Load(byte param_1,undefined8 param_2,undefined8 param_3)
                     /* WARNING: Switch is manually overridden */
     switch(param_1) {
     case 0:
-      maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,1);
+      Mem_Copy(iVar2 + 0x29,param_3,1);
       maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 1:
-      maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x50);
+      Mem_Copy(iVar2 + 0x2c,param_3,0x50);
       maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 2:
-      maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,10);
+      Mem_Copy(iVar2 + 0x29,param_3,10);
       maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 3:
-      maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
+      Mem_Copy(iVar2 + 0x2c,param_3,0x20);
       maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 4:
-      maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
+      Mem_Copy(iVar2 + 0x2c,param_3,0x20);
       maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
     }
@@ -1927,7 +1927,7 @@ void CarAsset_LoadBody(undefined8 param_1)
 void CarAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
-  maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
+  Mem_Copy((int)param_1 + 0x2c,param_3,0x20);
   maybe_Obj_AddRef(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;

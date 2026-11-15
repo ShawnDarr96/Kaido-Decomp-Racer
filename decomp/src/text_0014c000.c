@@ -2008,7 +2008,7 @@ void Obj_SetTexture(int param_1,undefined4 param_2,undefined4 param_3,long param
   *(undefined4 *)(param_1 + 0xa0) = param_2;
   *(undefined4 *)(param_1 + 0xa4) = param_3;
   if (param_4 != 0) {
-    maybe_Mem_CopyQwords(param_1 + 0x80,param_4,0x20);
+    Mem_Copy(param_1 + 0x80,param_4,0x20);
   }
   return;
 }

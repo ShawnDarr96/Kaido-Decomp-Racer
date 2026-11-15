@@ -1746,7 +1746,7 @@ void Snd_Shutdown(void)
   IopStrm_Reset();
   IopSe_Reset();
   IopSnd_Nop();
-  maybe_Mutex_Delete(0x42d868);
+  Mutex_Delete(0x42d868);
   Rpc_Unbind(0x42d824);
   Mem_Free(_g_Snd);
   maybe_sceSifFreeSysMemory(_s_SndVar4);
@@ -1829,7 +1829,7 @@ void Snd_Init(undefined8 param_1,undefined4 param_2,undefined4 param_3)
   uVar10 = Rpc_PackStrings(auStack_100,&puStack_120);
   Iop_LoadModule(0x362410,uVar10,auStack_100,0);
   Rpc_Bind(0x42d824,0x99900);
-  maybe_Mutex_Create(0x42d868);
+  Mutex_Create(0x42d868);
   IopSnd_SetBlocking(0x42d824);
   IopSe_SetRpcClient(0x42d824);
   IopStrm_SetRpcClient(0x42d824);

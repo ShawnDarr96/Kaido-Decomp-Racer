@@ -1409,7 +1409,7 @@ LAB_001fa01c:
         if (0xf < (uint)param_1[0x19]) {
           param_1[0x19] = 0;
         }
-        maybe_Mem_CopyQwords(&fStack_1340,0x327170,0x40);
+        Mem_Copy(&fStack_1340,0x327170,0x40);
         iVar26 = param_1[0x19];
         if (iVar26 == 2) {
           fVar34 = DAT_00327238;

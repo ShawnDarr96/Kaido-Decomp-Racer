@@ -126,7 +126,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
       uVar7 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar7 < iVar11 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar11,aiStack_10 + 2,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar11,aiStack_10 + 2,4);
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
   iVar11 = *(int *)(iVar5 + 0x6ff0);
   uVar7 = *(uint *)(iVar5 + 0x6fec);
@@ -148,7 +148,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
       uVar7 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar7 < iVar11 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar11,aiStack_10 + 1,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar11,aiStack_10 + 1,4);
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
   iVar11 = *(int *)(iVar5 + 0x6ff0);
@@ -171,7 +171,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
       uVar7 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar7 < iVar11 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar11,&iStack_14,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar11,&iStack_14,4);
   piVar16 = aiStack_60;
   iVar11 = 0;
   iVar12 = 0;
@@ -214,7 +214,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
             uVar8 = *(uint *)(iVar5 + 0x6fec);
           } while (uVar8 < iVar13 + 4U);
         }
-        maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar13,&iStack_18,4);
+        Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar13,&iStack_18,4);
         uVar7 = uVar7 + 1;
         iVar13 = *piVar15;
         iStack_70 = iStack_70 + 8;
@@ -257,7 +257,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar10 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13,1);
           iVar12 = *piVar17;
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar12 = *(int *)(iVar12 + 0x14);
@@ -281,7 +281,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar10 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13 + 1,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13 + 1,1);
           iVar12 = *piVar17;
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar12 = *(int *)(iVar12 + 0x14);
@@ -305,7 +305,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar10 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13 + 2,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13 + 2,1);
           iVar12 = *piVar17;
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar12 = *(int *)(iVar12 + 0x14);
@@ -329,7 +329,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar10 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13 + 3,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,iVar12 + iVar13 + 3,1);
           iVar12 = *piVar17;
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar10 = *(int *)(iVar12 + 0x14) + iVar13;
@@ -358,7 +358,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar12 + 2U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar12,&sStack_4,2);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar12,&sStack_4,2);
               iVar19 = iVar19 + 1;
               iVar12 = *piVar17;
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
@@ -404,7 +404,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
             uVar7 = *(uint *)(iVar5 + 0x6fec);
           } while (uVar7 < iVar13 + 1U);
         }
-        maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar13,&uStack_1,1);
+        Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar13,&uStack_1,1);
         iVar12 = iVar12 + 1;
         *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
       } while (iVar12 < iVar11);
@@ -433,7 +433,7 @@ undefined4 maybe_SeqGen_MixTracksB(int param_1)
       uVar7 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar7 < iVar9 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar9,aiStack_10,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar9,aiStack_10,4);
   *(int *)(iVar5 + 0x6ff0) = iVar11;
   return 1;
 }
@@ -562,7 +562,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
       uVar8 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar8 < iVar12 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar12,aiStack_10 + 2,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar12,aiStack_10 + 2,4);
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
   iVar12 = *(int *)(iVar5 + 0x6ff0);
   uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -584,7 +584,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
       uVar8 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar8 < iVar12 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar12,aiStack_10 + 1,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar12,aiStack_10 + 1,4);
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
   iVar12 = *(int *)(iVar5 + 0x6ff0);
@@ -607,7 +607,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
       uVar8 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar8 < iVar12 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar12,0x367928,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar12,0x367928,4);
   iVar12 = 0;
   uStack_70 = 0;
   *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
@@ -646,7 +646,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
             uVar9 = *(uint *)(iVar5 + 0x6fec);
           } while (uVar9 < iVar20 + 4U);
         }
-        maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar20,&iStack_14,4);
+        Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar20,&iStack_14,4);
         uVar8 = uVar8 + 1;
         iVar20 = *piVar14;
         iVar13 = iVar13 + 4;
@@ -684,7 +684,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
             uVar8 = *(uint *)(iVar5 + 0x6fec);
           } while (uVar8 < iVar20 + 4U);
         }
-        maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar20,0x367930,4);
+        Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar20,0x367930,4);
         iVar19 = iVar19 + 1;
         *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
       } while (iVar19 < iVar13);
@@ -723,7 +723,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 4U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13,4);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13,4);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 4;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -745,7 +745,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 4,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 4,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -767,7 +767,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 5,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 5,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -789,7 +789,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 6,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 6,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -811,7 +811,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 7,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 7,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -833,7 +833,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 8,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 8,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -855,7 +855,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 9,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 9,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -877,7 +877,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 10,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 10,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -899,7 +899,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xb,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xb,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -921,7 +921,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xc,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xc,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -943,7 +943,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xd,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xd,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -965,7 +965,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xe,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xe,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -987,7 +987,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xf,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0xf,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1009,7 +1009,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x10,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x10,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1031,7 +1031,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x11,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x11,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1053,7 +1053,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x12,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x12,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1075,7 +1075,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x13,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x13,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1097,7 +1097,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 2U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x14,2);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x14,2);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1119,7 +1119,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 2U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x16,2);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x16,2);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1141,7 +1141,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 2U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x18,2);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x18,2);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1163,7 +1163,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 2U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x1a,2);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x1a,2);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1185,7 +1185,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 2U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x1c,2);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x1c,2);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1207,7 +1207,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 2U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x1e,2);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x1e,2);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1229,7 +1229,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x20,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x20,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1251,7 +1251,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x21,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x21,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1273,7 +1273,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x22,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x22,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = *(int *)(iVar5 + 0x6ff0);
           uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1295,7 +1295,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
               uVar8 = *(uint *)(iVar5 + 0x6fec);
             } while (uVar8 < iVar19 + 1U);
           }
-          maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x23,1);
+          Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,iVar13 + 0x23,1);
           *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
           iVar19 = 0;
           if (*(char *)(iVar13 + 4) != '\0') {
@@ -1323,7 +1323,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 2U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,&sStack_4,2);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,&sStack_4,2);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1345,7 +1345,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 1,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 1,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1367,7 +1367,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 3,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 3,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1389,7 +1389,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 2,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 2,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1411,7 +1411,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 5,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 5,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1433,7 +1433,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 2U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 3,2);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 3,2);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1455,7 +1455,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 2U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 4,2);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 4,2);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 2;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1477,7 +1477,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 5,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 5,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1499,7 +1499,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0xb,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0xb,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1521,7 +1521,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 6,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 6,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1543,7 +1543,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0xd,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0xd,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1565,7 +1565,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 7,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 7,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1587,7 +1587,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0xf,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0xf,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1609,7 +1609,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 8,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 8,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1631,7 +1631,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0x11,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0x11,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1653,7 +1653,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 9,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,psVar15 + 9,1);
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar10 = *(int *)(iVar5 + 0x6ff0);
               uVar8 = *(uint *)(iVar5 + 0x6fec);
@@ -1675,7 +1675,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
                   uVar8 = *(uint *)(iVar5 + 0x6fec);
                 } while (uVar8 < iVar10 + 1U);
               }
-              maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0x13,1);
+              Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar10,(int)psVar15 + 0x13,1);
               iVar19 = iVar19 + 1;
               *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
               iVar20 = iVar20 + 0x14;
@@ -1720,7 +1720,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
             uVar8 = *(uint *)(iVar5 + 0x6fec);
           } while (uVar8 < iVar19 + 1U);
         }
-        maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar19,&uStack_1,1);
+        Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar19,&uStack_1,1);
         iVar13 = iVar13 + 1;
         *(int *)(iVar5 + 0x6ff0) = *(int *)(iVar5 + 0x6ff0) + 1;
       } while (iVar13 < iVar12);
@@ -1749,7 +1749,7 @@ undefined4 maybe_SeqGen_MixTracksFull(int param_1)
       uVar8 = *(uint *)(iVar5 + 0x6fec);
     } while (uVar8 < iVar11 + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar5 + 0x6fe8) + iVar11,aiStack_10,4);
+  Mem_Copy(*(int *)(iVar5 + 0x6fe8) + iVar11,aiStack_10,4);
   *(int *)(iVar5 + 0x6ff0) = iVar12;
   return 1;
 }
@@ -1807,7 +1807,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_40,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_40,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1826,7 +1826,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_3c,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_3c,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1845,7 +1845,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_38,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_38,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1864,7 +1864,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_34,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_34,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1883,7 +1883,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_30,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_30,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1902,7 +1902,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_2c,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_2c,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1921,7 +1921,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_28,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_28,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1940,7 +1940,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_24,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_24,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1959,7 +1959,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_20,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_20,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -1978,7 +1978,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_1c,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_1c,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 0x18U) {
     do {
@@ -1997,7 +1997,7 @@ undefined4 maybe_SeqGen_BuildSong(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 0x18U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),auStack_18,0x18);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),auStack_18,0x18);
   *(int *)(param_1 + 0x6ff0) = iVar1;
   return 1;
 }
@@ -2045,7 +2045,7 @@ undefined4 SeqGen_WriteVersChunk(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_10,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_10,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -2064,7 +2064,7 @@ undefined4 SeqGen_WriteVersChunk(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_c,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_c,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U) {
     do {
@@ -2083,7 +2083,7 @@ undefined4 SeqGen_WriteVersChunk(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_8,4);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_8,4);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 4;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 2U) {
     do {
@@ -2102,7 +2102,7 @@ undefined4 SeqGen_WriteVersChunk(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 2U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_4,2);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_4,2);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 2;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 1U) {
     do {
@@ -2121,7 +2121,7 @@ undefined4 SeqGen_WriteVersChunk(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 1U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_2,1);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_2,1);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 1;
   if (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 1U) {
     do {
@@ -2140,7 +2140,7 @@ undefined4 SeqGen_WriteVersChunk(int param_1)
       }
     } while (*(uint *)(param_1 + 0x6fec) < *(int *)(param_1 + 0x6ff0) + 1U);
   }
-  maybe_Mem_CopyQwords(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_1,1);
+  Mem_Copy(*(int *)(param_1 + 0x6fe8) + *(int *)(param_1 + 0x6ff0),&uStack_1,1);
   *(int *)(param_1 + 0x6ff0) = *(int *)(param_1 + 0x6ff0) + 1;
   return 1;
 }
@@ -2191,7 +2191,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_30,4);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_30,4);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 4;
   if (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U) {
     do {
@@ -2210,7 +2210,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_2c,4);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_2c,4);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 4;
   if (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U) {
     do {
@@ -2229,7 +2229,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),aiStack_28,4);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),aiStack_28,4);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 4;
   if (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U) {
     do {
@@ -2248,7 +2248,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),aiStack_28 + 1,4);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),aiStack_28 + 1,4);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 4;
   if (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U) {
     do {
@@ -2267,7 +2267,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_8,4);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_8,4);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 4;
   if (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U) {
     do {
@@ -2286,7 +2286,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_c,4);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_c,4);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 4;
   if (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 2U) {
     do {
@@ -2305,7 +2305,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < *(int *)(iVar4 + 0x6f04) + 2U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_2,2);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),&uStack_2,2);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + 2;
   iVar7 = *(int *)(param_1 + 0x6f04);
   uVar1 = *(undefined4 *)(param_1 + 0x6efc);
@@ -2326,7 +2326,7 @@ undefined4 maybe_SeqGen_WriteHeaderChunk(int param_1)
       }
     } while (*(uint *)(iVar4 + 0x6f00) < (uint)(*(int *)(iVar4 + 0x6f04) + iVar7));
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),uVar1,iVar7);
+  Mem_Copy(*(int *)(iVar4 + 0x6efc) + *(int *)(iVar4 + 0x6f04),uVar1,iVar7);
   *(int *)(iVar4 + 0x6f04) = *(int *)(iVar4 + 0x6f04) + iVar7;
   return 1;
 }
@@ -2376,7 +2376,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),&uStack_20,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),&uStack_20,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2395,7 +2395,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),&uStack_1c,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),&uStack_1c,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2414,7 +2414,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),&uStack_18,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),&uStack_18,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2433,7 +2433,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2452,7 +2452,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 1,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 1,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2471,7 +2471,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 2,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 2,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2490,7 +2490,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 3,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 3,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   if (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U) {
     do {
@@ -2509,7 +2509,7 @@ undefined4 SeqGen_WriteSequChunk(int param_1)
       }
     } while (*(uint *)(iVar3 + 0x6f00) < *(int *)(iVar3 + 0x6f04) + 4U);
   }
-  maybe_Mem_CopyQwords(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 4,4);
+  Mem_Copy(*(int *)(iVar3 + 0x6efc) + *(int *)(iVar3 + 0x6f04),auStack_14 + 4,4);
   *(int *)(iVar3 + 0x6f04) = *(int *)(iVar3 + 0x6f04) + 4;
   return 1;
 }

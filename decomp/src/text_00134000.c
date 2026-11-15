@@ -625,18 +625,23 @@ void maybe_Gfx_BuildDisplayEnv(int *param_1)
 }
 
 // 0x00135030  size 0x10
-void Gfx_AddFrameCallback(undefined8 param_1)
+/* F9: tail-calls List_Remove; called from Mc_Shutdown and CourseScene unload (names were swapped)
+    */
+
+void Gfx_RemoveFrameCallback(undefined8 param_1)
 
 {
-  maybe_List_Append(0x380380,param_1);
+  List_Remove(0x380380,param_1);
   return;
 }
 
 // 0x00135040  size 0x10
-void Gfx_RemoveFrameCallback(undefined8 param_1)
+/* F9: tail-calls List_Append; called from Mc_Init and CourseScene_Load (names were swapped) */
+
+void Gfx_AddFrameCallback(undefined8 param_1)
 
 {
-  maybe_List_Remove(0x380380,param_1);
+  List_Append(0x380380,param_1);
   return;
 }
 
@@ -814,7 +819,7 @@ void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
     puVar3 = puVar3 + 10;
   } while (uStack_40 < 2);
   _s_GfxVar1 = 0;
-  maybe_Mem_CopyQwords(0x380330,param_2,0x40);
+  Mem_Copy(0x380330,param_2,0x40);
   _s_GfxVar6 = sceGsSyncVCallback(0x134860);
   EnableIntc(2);
   return;
@@ -830,7 +835,7 @@ void Gfx_Shutdown(void)
     DisableIntc(2);
     sceGsSyncVCallback(_s_GfxVar6);
   }
-  maybe_List_Clear(0x380380);
+  List_Clear(0x380380);
   return;
 }
 
@@ -860,7 +865,7 @@ long Gfx_FrameCallbackList_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e0b0;
-    maybe_List_dtor(param_1,0);
+    List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -1409,14 +1414,14 @@ int File_PollRequest(int param_1,long param_2,long param_3)
     iVar3 = param_1;
   }
   if (param_2 != 0) {
-    maybe_List_Append(0x386620,param_2);
+    List_Remove(0x386620,param_2);
     iVar4 = (int)param_2;
     *(undefined4 *)(iVar4 + 8) = 0xffffffff;
     *(undefined1 *)(iVar4 + 0x38) = 0;
     *(undefined4 *)(iVar4 + 0xc) = 0;
   }
   if (param_3 != 0) {
-    maybe_List_Append(0x386620,param_3);
+    List_Remove(0x386620,param_3);
     iVar4 = (int)param_3;
     *(undefined4 *)(iVar4 + 8) = 0xffffffff;
     *(undefined1 *)(iVar4 + 0x38) = 0;
@@ -1575,7 +1580,7 @@ int File_NextRequest(int param_1)
   }
   else if (iVar7 != 0) {
     Sema_Wait(0x36efc0);
-    maybe_List_Append(0x386620,iVar7);
+    List_Remove(0x386620,iVar7);
     *(undefined4 *)(iVar7 + 8) = 0xffffffff;
     *(undefined1 *)(iVar7 + 0x38) = 0;
     *(undefined4 *)(iVar7 + 0xc) = 0;
@@ -1651,7 +1656,7 @@ LAB_00136a24:
     uVar3 = 1;
   }
   else if (*(char *)(iVar1 + 0x38) == '\0') {
-    maybe_List_Append(0x386620,iVar1);
+    List_Remove(0x386620,iVar1);
     uVar3 = 1;
     *(undefined4 *)(iVar1 + 8) = 0xffffffff;
   }
@@ -1706,7 +1711,7 @@ LAB_00136aec:
     *(undefined4 *)(iVar2 + 0x2c) = param_1[8];
     *(undefined4 *)(iVar2 + 0x30) = param_1[9];
     *(undefined4 *)(iVar2 + 0x34) = param_1[10];
-    maybe_List_Remove(0x386620,iVar2);
+    List_Append(0x386620,iVar2);
   }
   Sema_Signal(0x36efc0,0);
   return iVar4;
@@ -2038,7 +2043,7 @@ long File_RequestList_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e0c0;
-    maybe_List_dtor(param_1,0);
+    List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }
@@ -2062,7 +2067,7 @@ long maybe_EngineNode_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e0d0;
-    maybe_ListNode_dtor(param_1,0);
+    ListNode_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }

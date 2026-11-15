@@ -179,7 +179,7 @@ long SceneObj_CreateCar(undefined8 param_1)
       puVar5[0x143] = (int)lVar6;
       puVar5[0x144] = (int)lVar11;
       puVar5[0x145] = (int)lVar4;
-      maybe_Mem_CopyQwords(puVar5 + 3,param_1,0x100);
+      Mem_Copy(puVar5 + 3,param_1,0x100);
       *puVar5 = 1;
       uVar1 = DriverAsset_Load(puVar5[0x140]);
       puVar5[1] = uVar1;

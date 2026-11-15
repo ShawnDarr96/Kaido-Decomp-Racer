@@ -201,7 +201,7 @@ void CourseScene_Unload(void)
     Mem_Free();
     _g_CourseShared14 = 0;
   }
-  Gfx_AddFrameCallback(0x430644);
+  Gfx_RemoveFrameCallback(0x430644);
   Course_Unload();
   return;
 }
@@ -240,7 +240,7 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
   }
   _s_CourseScene_Load_1 = Course_CaptureReflection;
   _s_CourseScene_Load_2 = &g_CourseScene;
-  Gfx_RemoveFrameCallback(0x430644);
+  Gfx_AddFrameCallback(0x430644);
   _g_CourseShared11 = 0;
   _g_CourseShared12 = 0;
   _g_CourseShared13 = 0;
@@ -296,7 +296,7 @@ long Course_dtor(long param_1,short param_2)
     iVar1 = (int)param_1 + 4;
     if (iVar1 != 0) {
       *(undefined **)((int)param_1 + 4) = &DAT_0036e128;
-      maybe_ListNode_dtor(iVar1,0);
+      ListNode_dtor(iVar1,0);
     }
     if (0 < param_2) {
       Mem_Free(param_1);
@@ -1002,7 +1002,7 @@ long PtclSys_dtor(long param_1,short param_2)
     *(undefined4 *)param_1 = &DAT_0036e580;
     if (param_1 != 0) {
       *(undefined4 *)param_1 = &DAT_0036e5a0;
-      maybe_List_dtor(param_1,0);
+      List_dtor(param_1,0);
     }
     if (0 < param_2) {
       Mem_Free(param_1);
@@ -1614,8 +1614,8 @@ void Ptcl_Update(undefined8 param_1)
         printf(0x3638d0);
         return;
       }
-      maybe_List_Append(0x4307a0,_g_PtclShared1);
-      maybe_List_Remove(param_1,iVar1);
+      List_Remove(0x4307a0,_g_PtclShared1);
+      List_Append(param_1,iVar1);
       *(int *)(iVar1 + 0x9c) = iVar2;
       Ptcl_Spawn(iVar1,iVar2 + 0xc0,iVar2 + 0xd0,*(undefined4 *)(iVar2 + 0x114));
       uVar3 = uVar3 + 1;
@@ -1865,8 +1865,8 @@ void PtclSys_Update(undefined8 param_1)
         if (*(int *)(iVar3 + 0x10) < *(int *)(iVar3 + 0x14)) {
           iVar10 = *(int *)(iVar3 + 4);
           *(undefined4 *)(iVar3 + 8) = 0;
-          maybe_List_Append(*(undefined4 *)(iVar3 + 0x9c),iVar3);
-          maybe_List_Remove(0x4307a0,iVar3);
+          List_Remove(*(undefined4 *)(iVar3 + 0x9c),iVar3);
+          List_Append(0x4307a0,iVar3);
           *(int *)(iVar4 + 0x8c) = *(int *)(iVar4 + 0x8c) + -1;
         }
         else {

@@ -431,29 +431,29 @@ void MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8 param
                     /* WARNING: Switch is manually overridden */
     switch(param_1) {
     case 0:
-      maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x110,param_4,0x3f0);
+      Mem_Copy(*(int *)(iVar2 + 0x10) + 0x110,param_4,0x3f0);
       CarModel_SetHeadLight(*(undefined4 *)(iVar2 + 0x10),0,0);
       CarModel_SetHeadLight(*(undefined4 *)(iVar2 + 0x10),1,0);
       CarModel_SetBrakeLight(*(undefined4 *)(iVar2 + 0x10),0,0);
       CarModel_SetBrakeLight(*(undefined4 *)(iVar2 + 0x10),1,0);
       break;
     case 1:
-      maybe_Mem_CopyQwords(iVar2 + 0x14,param_4,8);
+      Mem_Copy(iVar2 + 0x14,param_4,8);
       break;
     case 2:
-      maybe_Mem_CopyQwords(iVar2 + 0x14,param_4,8);
+      Mem_Copy(iVar2 + 0x14,param_4,8);
       break;
     case 4:
-      maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x10,param_4,0x30);
+      Mem_Copy(*(int *)(iVar2 + 0x10) + 0x10,param_4,0x30);
       break;
     case 5:
-      maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x10,param_4,0x30);
+      Mem_Copy(*(int *)(iVar2 + 0x10) + 0x10,param_4,0x30);
       break;
     case 6:
-      maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x90,param_4,0x20);
+      Mem_Copy(*(int *)(iVar2 + 0x10) + 0x90,param_4,0x20);
       break;
     case 7:
-      maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x50,param_4,0x30);
+      Mem_Copy(*(int *)(iVar2 + 0x10) + 0x50,param_4,0x30);
     }
   }
   return;

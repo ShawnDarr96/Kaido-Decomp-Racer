@@ -1925,7 +1925,7 @@ void Scene_FreeObjects(void)
             (**(code **)(*piVar3 + 8))(piVar3,1);
           }
         }
-        maybe_List_Clear(piVar1);
+        List_Clear(piVar1);
         if (piVar1 != (int *)0x0) {
           (**(code **)(*piVar1 + 8))(piVar1,1);
         }

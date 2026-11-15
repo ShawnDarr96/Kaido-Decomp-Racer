@@ -181,7 +181,7 @@ long Mem_Realloc(long param_1,uint param_2)
       else {
         lVar3 = Mem_AllocAligned(param_2,*(undefined4 *)(iVar2 + 0xc));
         if (lVar3 != 0) {
-          maybe_Mem_CopyQwords(lVar3,param_1,*(undefined4 *)(iVar2 + 0x14));
+          Mem_Copy(lVar3,param_1,*(undefined4 *)(iVar2 + 0x14));
           Mem_Free(param_1);
         }
       }
@@ -304,7 +304,7 @@ void maybe_Heap_Release(undefined4 *param_1)
   param_1[2] = 0;
   param_1[3] = 0;
   param_1[4] = 0;
-  maybe_Mutex_Delete(param_1 + 5);
+  Mutex_Delete(param_1 + 5);
   return;
 }
 
@@ -316,7 +316,7 @@ bool maybe_Heap_Create(undefined4 *param_1,int param_2,undefined8 param_3)
   undefined4 *puVar2;
   long lVar3;
   
-  lVar3 = maybe_Mutex_Create(param_1 + 5);
+  lVar3 = Mutex_Create(param_1 + 5);
   if (lVar3 == 0) {
     bVar1 = false;
   }
@@ -351,7 +351,7 @@ bool maybe_Heap_CreateFromBuffer(undefined4 *param_1,long param_2,uint param_3)
   long lVar3;
   undefined4 *puVar4;
   
-  lVar3 = maybe_Mutex_Create(param_1 + 5);
+  lVar3 = Mutex_Create(param_1 + 5);
   if (lVar3 == 0) {
     bVar1 = false;
   }
@@ -397,7 +397,7 @@ long maybe_Heap_dtor(long param_1,short param_2)
     puVar1[2] = 0;
     puVar1[3] = 0;
     puVar1[4] = 0;
-    maybe_Mutex_Delete(puVar1 + 5);
+    Mutex_Delete(puVar1 + 5);
     Mutex_dtor(puVar1 + 5,0xffffffffffffffff);
     if (0 < param_2) {
       Mem_Free(param_1);

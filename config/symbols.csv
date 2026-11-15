@@ -1050,12 +1050,12 @@ address,name,signature,source,comment
 0x00132090,TaskList_ctor,,game,
 0x001320d0,Task_dtor,,game,
 0x00132130,Task_ctor,,game,
-0x001321c0,maybe_List_Append,,game,
-0x00132250,maybe_List_Remove,,game,
-0x001322a0,maybe_List_Clear,,game,
-0x00132320,maybe_List_dtor,,game,
+0x001321c0,List_Remove,,game,F9: unlinks the node from head/tail and decrements the count (was named maybe_List_Append)
+0x00132250,List_Append,,game,F9: links the node at the tail and increments the count (was named maybe_List_Remove)
+0x001322a0,List_Clear,,game,"F9: deletes owned nodes through their virtual dtor, then empties the list"
+0x00132320,List_dtor,,game,"F9: resets vtable 0x36e090 (set by List_ctor), clears, frees when asked"
 0x001323d0,List_ctor,,game,
-0x00132400,maybe_ListNode_dtor,,game,
+0x00132400,ListNode_dtor,,game,F9: resets vtable 0x36e0a0 (set by ListNode_ctor)
 0x00132450,ListNode_ctor,,game,N153 confirmed: sets vtable 0x36e0a0 and the payload
 0x00132470,Dbg_Nop,,game,
 0x001324a0,Mem_Copy8,,game,
@@ -1065,9 +1065,9 @@ address,name,signature,source,comment
 0x00132560,Mem_Copy128,,game,10 callers
 0x00132590,Str_CompareN,,game,
 0x001325d0,Mem_Set16,,game,"(dst, value, size) qword fill; 53 callers"
-0x00132600,maybe_Mem_CopyQwords,,f2,16-byte aligned fast copy
-0x00132790,maybe_Mutex_Delete,,f2,
-0x001327d0,maybe_Mutex_Create,,f2,
+0x00132600,Mem_Copy,,f2,"F9: memcpy that picks Mem_Copy128/64/32/16 by alignment, tail with Mem_Copy8; returns dst"
+0x00132790,Mutex_Delete,,f2,"F9: DeleteSema on the handle, same as Mutex_dtor"
+0x001327d0,Mutex_Create,,f2,"F9: CreateSema with init 1, max 1 (binary semaphore)"
 0x00132830,Mutex_dtor,,game,
 0x001328a0,Mutex_Init,,game,
 0x001328b0,sceVu0Normalize,,f1,36 callers
@@ -1139,8 +1139,8 @@ address,name,signature,source,comment
 0x00134ab0,Gfx_SyncPath,,game,
 0x00134b60,Gfx_Init,,game,"sceGsResetGraph(0,1,2,1), DBuff"
 0x00134cf0,maybe_Gfx_BuildDisplayEnv,,game,
-0x00135030,Gfx_AddFrameCallback,,game,
-0x00135040,Gfx_RemoveFrameCallback,,game,
+0x00135030,Gfx_RemoveFrameCallback,,game,F9: tail-calls List_Remove; called from Mc_Shutdown and CourseScene unload (names were swapped)
+0x00135040,Gfx_AddFrameCallback,,game,F9: tail-calls List_Append; called from Mc_Init and CourseScene_Load (names were swapped)
 0x00135050,Gfx_SyncAndFlip,,game,"runs vsync callbacks, sync path"
 0x00135420,Gfx_SetVideoMode,,game,sceGsResetGraph + DefDispEnv + vsync callback
 0x00135660,Gfx_Shutdown,,game,

@@ -1004,7 +1004,7 @@ void Gfx_SetFade(int param_1,uint param_2,long param_3,long param_4)
 void Gfx_AddEndFrameCallback(undefined8 param_1)
 
 {
-  maybe_List_Append(0x42d7e0,param_1);
+  List_Remove(0x42d7e0,param_1);
   return;
 }
 
@@ -1012,7 +1012,7 @@ void Gfx_AddEndFrameCallback(undefined8 param_1)
 void Gfx_RemoveEndFrameCallback(undefined8 param_1)
 
 {
-  maybe_List_Remove(0x42d7e0,param_1);
+  List_Append(0x42d7e0,param_1);
   return;
 }
 
@@ -1061,7 +1061,7 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
   undefined4 uStack_4;
   
   if (param_2 == 0) {
-    maybe_Mem_CopyQwords(0x42d7b0,param_1,0x14);
+    Mem_Copy(0x42d7b0,param_1,0x14);
     _g_GfxShared1 = _g_GfxShared1 | 1;
   }
   else {
@@ -1215,7 +1215,7 @@ long Gfx_EndFrameCallbackList_dtor(long param_1,short param_2)
 {
   if (param_1 != 0) {
     *(undefined4 *)param_1 = &DAT_0036e178;
-    maybe_List_dtor(param_1,0);
+    List_dtor(param_1,0);
     if (0 < param_2) {
       Mem_Free(param_1);
     }

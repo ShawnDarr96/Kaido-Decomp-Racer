@@ -1111,7 +1111,7 @@ LAB_002f947c:
           iVar3 = RaceSlotTbl_Get();
           iVar3 = iVar3 + (*(int *)(iVar8 + 0x54) + -0xc) * 0x858 + 0x30;
         }
-        maybe_Mem_CopyQwords(iVar2 + (iVar6 + -0xc) * 0x858 + 0x30,iVar3,0x858);
+        Mem_Copy(iVar2 + (iVar6 + -0xc) * 0x858 + 0x30,iVar3,0x858);
         *(undefined4 *)(iVar8 + 0x54) = 0xffffffff;
       }
     }
@@ -1367,9 +1367,9 @@ LAB_002f9b90:
         iVar5 = iVar2 + (*(int *)(iVar6 + 0x54) + -0xc) * 0x858 + 0x30;
         iVar2 = RaceSlotTbl_Get();
         iVar2 = iVar2 + (*(int *)(iVar6 + 0x60) + -0xc) * 0x858 + 0x30;
-        maybe_Mem_CopyQwords(auStack_860,iVar2);
-        maybe_Mem_CopyQwords(iVar2,iVar5,0x858);
-        maybe_Mem_CopyQwords(iVar5,auStack_860,0x858);
+        Mem_Copy(auStack_860,iVar2);
+        Mem_Copy(iVar2,iVar5,0x858);
+        Mem_Copy(iVar5,auStack_860,0x858);
         if (*(int *)(iVar6 + 0x54) == *(int *)(iVar6 + 0x70)) {
           *(undefined4 *)(iVar6 + 0x70) = *(undefined4 *)(iVar6 + 0x60);
         }

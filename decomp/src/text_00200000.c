@@ -1511,8 +1511,8 @@ void MenuCar_BuildRivalPreview
     } while (0 < iVar2);
     uStack_25c = uStack_4ac;
     uStack_258 = uStack_4a8;
-    maybe_Mem_CopyQwords(param_1,&uStack_320,8);
-    maybe_Mem_CopyQwords(param_2,auStack_30c,0xb8);
+    Mem_Copy(param_1,&uStack_320,8);
+    Mem_Copy(param_2,auStack_30c,0xb8);
   }
   else {
     uVar5 = (undefined2)param_5;
@@ -1528,14 +1528,14 @@ void MenuCar_BuildRivalPreview
         puVar3 = puVar3 + 1;
       } while (0 < iVar2);
       Opponent_BuildEntry(auStack_180,0,auStack_250,0xffffffffffffffff,0);
-      maybe_Mem_CopyQwords(param_1,auStack_244,8);
-      maybe_Mem_CopyQwords(param_2,auStack_23c,0xb8);
+      Mem_Copy(param_1,auStack_244,8);
+      Mem_Copy(param_2,auStack_23c,0xb8);
     }
     else if (param_3 == '\x01') {
       uVar1 = Profile_Get(param_4);
       uVar1 = Profile_GetCarRecord(uVar1,param_5);
-      maybe_Mem_CopyQwords(param_1,uVar1,8);
-      maybe_Mem_CopyQwords(param_2,(int)uVar1 + 0x14,0xb8);
+      Mem_Copy(param_1,uVar1,8);
+      Mem_Copy(param_2,(int)uVar1 + 0x14,0xb8);
     }
     else if (param_3 == '\0') {
       CarRec_Clear(param_1);

@@ -60,7 +60,7 @@ int Rpc_PackStrings(int param_1,int *param_2)
   while (iVar1 != 0) {
     iVar1 = strlen(*param_2);
     iVar1 = iVar1 + 1;
-    maybe_Mem_CopyQwords(param_1 + iVar4,*param_2,iVar1);
+    Mem_Copy(param_1 + iVar4,*param_2,iVar1);
     uVar3 = Str_FormatNumberBase(param_1 + iVar4 + iVar1,param_2[1],10);
     iVar2 = strlen(uVar3);
     param_2 = param_2 + 2;
@@ -177,7 +177,7 @@ void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8
       puStack_60 = _s_IopSnd_Command_2;
       break;
     case 0xb:
-      maybe_Mem_CopyQwords(0x387004,_s_IopSnd_Command_2,0x14);
+      Mem_Copy(0x387004,_s_IopSnd_Command_2,0x14);
       goto LAB_0013c474;
     case 0x10:
       puVar1 = (undefined2 *)&s_IopSnd_Command_2;
@@ -498,10 +498,10 @@ void IopStrm_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0x300U) {
     case 5:
-      maybe_Mem_CopyQwords(0x387084,_s_IopStrm_Command_1,0x10);
+      Mem_Copy(0x387084,_s_IopStrm_Command_1,0x10);
       goto LAB_0013cb04;
     case 6:
-      maybe_Mem_CopyQwords(0x387084,_s_IopStrm_Command_1,0xc);
+      Mem_Copy(0x387084,_s_IopStrm_Command_1,0xc);
     }
   }
 LAB_0013cb04:
@@ -755,7 +755,7 @@ void IopStrm_Shutdown(void)
   IopStrm_Command(0x301);
   Rpc_SetBlocking(_s_IopStrmRpcClient,uVar1);
   RpcServer_Stop(0x387100);
-  maybe_Mutex_Delete(0x36f03c);
+  Mutex_Delete(0x36f03c);
   if (_g_IopStrmA != 0) {
     Mem_Free();
     _g_IopStrmA = 0;
@@ -780,7 +780,7 @@ bool IopStrm_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   _s_IopStrmVar1 = (undefined4)param_3;
   _g_IopStrmA = Mem_AllocAligned(0x40,0x40,param_5);
   _g_IopStrmB = Mem_AllocAligned(0x1000,0x10,param_5);
-  maybe_Mutex_Create(0x36f03c);
+  Mutex_Create(0x36f03c);
   lVar1 = RpcServer_Start(0x387100,param_3,param_4,0x40,_g_IopStrmA,0x1000,_g_IopStrmB,0x13c550);
   if (lVar1 != 0) {
     uVar2 = Rpc_SetBlocking(_s_IopStrmRpcClient,1);
@@ -807,7 +807,7 @@ void IopStrm_Reset(void)
   IopStrm_Command(0x301);
   Rpc_SetBlocking(_s_IopStrmRpcClient,uVar1);
   RpcServer_Stop(0x387100);
-  maybe_Mutex_Delete(0x36f03c);
+  Mutex_Delete(0x36f03c);
   if (_g_IopStrmA != 0) {
     Mem_Free();
     _g_IopStrmA = 0;
@@ -1017,7 +1017,7 @@ void IopSe_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0x200U) {
     case 5:
-      maybe_Mem_CopyQwords(0x387204,_s_IopSe_Command_1,0x1c);
+      Mem_Copy(0x387204,_s_IopSe_Command_1,0x1c);
     }
   }
   Rpc_Call(_s_IopSeVar1,aiStack_70);
