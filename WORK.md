@@ -35,7 +35,7 @@ Columns:
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
 | T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5 |
-| T8 | Car_* functions still take the car as an untyped param; give them RaceCar * signatures and name the remaining ~440 unk_ fields (CarSpec at +0xbf0 too) | any |  | ShawnDarr96/claude (2026-11-14) | Gap of T3 |
+| T9 | About 440 RaceCar fields and the embedded CarSpec (+0xbf0) / params block (+0x120) are still unk_ | any |  |  | Gap of T8 |
 
 ## P3 Matching
 
@@ -223,6 +223,7 @@ Columns:
 | F12 | sub-struct fields recovered with widths, accessors typed; most fields still unk_/maybe_ | P0 | ShawnDarr96/claude | 2026-11-14 | d188f85 |
 | T5 | UiMgr/UiLayoutSlot/UiLayout recovered and applied; layout-table accesses now use field names | P2 | ShawnDarr96/claude | 2026-11-14 | 856b9c3 |
 | T3 | RaceCar 0x17e0 recovered (454 fields, ~15 named) and applied; RaceCar_Get typed | P2 | ShawnDarr96/claude | 2026-11-14 | 18464de |
+| T8 | 47 car functions typed RaceCar *; gear field named | P2 | ShawnDarr96/claude | 2026-11-14 | dc68512 |
 
 ## Changes to the board
 
@@ -280,3 +281,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim T3.
 - 2026-11-14 ShawnDarr96/claude: T3 done; added T8 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim T8.
+- 2026-11-14 ShawnDarr96/claude: T8 done; added T9 (gaps).
