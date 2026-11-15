@@ -21,7 +21,8 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Switch tables recovered | done: 210 switch-case labels that analysis had turned into functions are folded back into their parents ([`config/not_functions.txt`](config/not_functions.txt)); 339 jump tables are applied as decompiler overrides ([`config/jumptables.txt`](config/jumptables.txt)); 6 indirect jumps remain unrecovered |
 | Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
 | `maybe_` names reviewed, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
-| Matching (byte-identical) source | not started, see the P3 rows in [`WORK.md`](WORK.md) |
+| Byte-identical rebuild from assembly | done: `scripts/build.py` reproduces the retail executable exactly (sha1 `05f754ae...`) |
+| Matching (byte-identical) C source | not started: needs the original MWCC PS2 2.4.1 compiler (rows M1, M3-M5 in [`WORK.md`](WORK.md)) |
 
 The executable is stripped (no symbol table). Every function now has a name backed by its code (strings,
 SDK conventions, call graph, the screen or state table it sits in). Names prefixed `maybe_` are educated
@@ -91,8 +92,8 @@ python -I scripts/build.py --bindir <ps2dev>/ee/bin                # assemble, l
 [ps2dev](https://github.com/ps2dev/ps2dev/releases) toolchain). The Windows build of ps2dev is 32-bit and
 needs a **32-bit** `libzstd.dll` next to the executables (`dll/libzstd.dll` from the official
 `zstd-v1.5.7-win32.zip` at https://github.com/facebook/zstd/releases); without it they exit with code
-0xC000007B / 127. The byte-identical round trip has not been
-verified yet (board row M2). Matching C additionally needs the original compiler, Metrowerks CodeWarrior
+0xC000007B / 127. The round trip is **verified byte-identical**: the rebuilt file matches the retail
+`SLES_531.91` exactly (0x26f1b0 bytes, sha1 `05f754aea14cafd28d0922b8c87586f9c9ca651e`, board row M2). Matching C additionally needs the original compiler, Metrowerks CodeWarrior
 for PS2 2.4.1 (`MW MIPS C Compiler 2.4.1.01`), which is proprietary and not provided here (board row M1). The closest build the community uses is
 decomp.me's `mwcps2-2.4-001213` (CodeWarrior PS2 2.4, December 2000); whether it reproduces this game's
 2.4.1.01 output exactly still has to be tested on a few small functions, e.g. by making scratches on
