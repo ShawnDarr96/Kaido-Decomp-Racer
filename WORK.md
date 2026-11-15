@@ -23,26 +23,6 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| N133 | Replace the scrcareer_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 169 functions |
-| N134 | Replace the scrgarage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 157 functions |
-| N135 | Replace the phys_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 143 functions |
-| N136 | Replace the libkernl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 105 functions |
-| N137 | Replace the script_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 85 functions |
-| N138 | Replace the nameentry_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 85 functions |
-| N139 | Replace the eventui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 84 functions |
-| N140 | Replace the scrrace_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 82 functions |
-| N141 | Replace the showroom_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 66 functions |
-| N142 | Replace the msl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 61 functions |
-| N143 | Replace the libmpeg_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 53 functions |
-| N144 | Replace the garage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 51 functions |
-| N145 | Replace the password_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 50 functions |
-| N146 | Replace the newlib_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 46 functions |
-| N147 | Replace the result_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 46 functions |
-| N148 | Replace the raceui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 39 functions |
-| N149 | Replace the vu0math_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 35 functions |
-| N150 | Replace the snd_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
-| N151 | Replace the racehud_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
-| N152 | Replace the small-module placeholders (snd, racehud, loadfile, libmc, profile, attract, scroptions, libcdvd, misc, carsnd, replayui, libpad2, race, demo, scrrecord, libm, course, road, raceprog, menu, libdbc, libgraph, ui, scrsave) | any |  | ShawnDarr96/claude (2026-11-14) | about 330 functions |
 | N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  |  |
 | N154 | 25 layout-only menu pages (MenuPageNN_*) are named by table slot only; identify them from their UI layouts | any |  |  | Gap of N132 |
 | N155 | 6 indirect jumps still unrecovered (find_jumptables.py pattern misses them) | any |  |  | Gap of N132 |
@@ -218,6 +198,26 @@ Columns:
 | F5 | 23 singletons in config/globals.csv; gp=0x3766f0 set as context so iGp* accesses resolve | P0 | ShawnDarr96/claude | 2026-11-14 | 96cd87c |
 | F6 | scripts/extract_build.py (TOC 0x14-byte entries, uclpack NRV2B_LE32), scripts/text_table.py (u16 glyph codes, 6 languages from entry 0x1870) | P0 | ShawnDarr96/claude | 2026-11-14 | 8070a98 |
 | N132 | all 5049 functions named; 210 case-label fragments folded into parents, 339 jump tables recovered; menu screens named from the two screen tables | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N133 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N134 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N135 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N136 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N137 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N138 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N139 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N140 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N141 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N142 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N143 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N144 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N145 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N146 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N147 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N148 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N149 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N150 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N151 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
+| N152 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
 
 ## Changes to the board
 
@@ -257,3 +257,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: F6 done; added F11 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim N132, N133, N134, N135, N136, N137, N138, N139, N140, N141, N142, N143, N144, N145, N146, N147, N148, N149, N150, N151, N152.
 - 2026-11-14 ShawnDarr96/claude: N132 done; added N154, N155 (gaps).
+- 2026-11-14 ShawnDarr96/claude: N133, N134, N135, N136, N137, N138, N139, N140, N141, N142, N143, N144, N145, N146, N147, N148, N149, N150, N151, N152 done.
