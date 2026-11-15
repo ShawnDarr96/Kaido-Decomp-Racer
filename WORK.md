@@ -36,7 +36,6 @@ Columns:
 | T3 | Recover the car / vehicle struct and physics state | any | F5 |  |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
 | T5 | Recover the menu / UI structs | any | F5 |  |  |
-| T6 | Recover the file-system / archive structs used with BUILD.DAT | any | F6 | ShawnDarr96/claude (2026-11-14) |  |
 
 ## P3 Matching
 
@@ -220,6 +219,7 @@ Columns:
 | N152 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
 | N155 | 0 unrecovered indirect jumps: 6 tail-call flow overrides, 1 missing function added | P1 | ShawnDarr96/claude | 2026-11-14 | 2ef5873 |
 | F10 | 4 structs recovered and applied; ~3650 field references in the C | P0 | ShawnDarr96/claude | 2026-11-14 | f9318e2 |
+| T6 | ArcToc/ArcTocEntry recovered, verified against all 15219 TOC entries, applied in Ghidra and structs.h | P2 | ShawnDarr96/claude | 2026-11-14 | 70dc0e2 |
 
 ## Changes to the board
 
@@ -267,3 +267,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim F10.
 - 2026-11-14 ShawnDarr96/claude: F10 done; added F12, F13 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim T6.
+- 2026-11-14 ShawnDarr96/claude: T6 done.
