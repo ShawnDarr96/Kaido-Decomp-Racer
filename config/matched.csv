@@ -74,3 +74,11 @@ address,name,scratch,notes
 0x00183320,Options_SetDefaultsGame,https://decomp.me/scratch/tudGj,src/options.c
 0x00183350,Options_Elem_28_xe8,https://decomp.me/scratch/tudGj,src/options.c
 0x00183380,Options_ApplyBgmVolume,https://decomp.me/scratch/tudGj,src/options.c
+0x002cfab0,RaceHud_SetField268,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfac0,RaceHud_SetField26c,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfad0,RaceHud_GetFlags,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfae0,RaceHud_ToggleFlags,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfb00,RaceHud_SetFlags,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfb20,RaceHud_GetMeterTable,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfb30,RaceHud_GetRacerPanel,https://decomp.me/scratch/EJChW,src/racehud.c
+0x002cfb60,RaceHud_GetState,https://decomp.me/scratch/EJChW,src/racehud.c

@@ -40,7 +40,7 @@ def main():
     for a, op, args in ins:
         if (op.startswith("b") or op == "j") and re.search(r"\b([0-9a-f]{6})$", args):
             targets.add(int(re.search(r"([0-9a-f]{6})$", args).group(1), 16))
-    regs = r"\b(zero|at|v[01]|a[0-3]|t[0-9]|s[0-8]|k[01]|gp|sp|fp|ra|f[0-9]{1,2})\b"
+    regs = r"(?<!\$)\b(zero|at|v[01]|a[0-3]|t[0-9]|s[0-8]|k[01]|gp|sp|fp|ra|f[0-9]{1,2})\b"
     lines = []
     for a, op, args in ins:
         if not inside(a):
