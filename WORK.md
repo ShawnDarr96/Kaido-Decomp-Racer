@@ -35,7 +35,7 @@ Columns:
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
 | T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5 |
 | T9 | About 440 RaceCar fields and the embedded CarSpec (+0xbf0) / params block (+0x120) are still unk_ | any |  |  | Gap of T8 |
-| T10 | Race table / slot table (g_RaceTbl 0x9240, g_RaceSlotTbl 0x9944) and the AI line / road graph data are still raw offsets | any |  |  | Gap of T4 |
+| T10 | Race table / slot table (g_RaceTbl 0x9240, g_RaceSlotTbl 0x9944) and the AI line / road graph data are still raw offsets | any |  | ShawnDarr96/claude (2026-11-14) | Gap of T4 |
 
 ## P3 Matching
 
@@ -285,3 +285,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: T8 done; added T9 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim T4.
 - 2026-11-14 ShawnDarr96/claude: T4 done; added T10 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim T10.
