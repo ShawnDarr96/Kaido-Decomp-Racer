@@ -176,11 +176,15 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
   undefined8 uVar7;
   long lVar8;
   uint uVar9;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  byte extraout_a3_lo_02;
   int iVar10;
-  undefined1 auStack_d0 [20];
+  undefined4 auStack_d0 [5];
   undefined4 uStack_bc;
   int iStack_b8;
-  undefined1 auStack_90 [20];
+  undefined4 auStack_90 [5];
   undefined4 uStack_7c;
   int iStack_78;
   int iStack_50;
@@ -209,11 +213,11 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
   iVar10 = (int)param_1;
   if (bVar2) {
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar6].layout,4,8);
+    UiElem_SetPropFloat(&g_UiMgr->slots[iVar6].layout,4,8,extraout_a3_lo_00);
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar6].layout,3,8);
+    UiElem_SetPropFloat(&g_UiMgr->slots[iVar6].layout,3,8,extraout_a3_lo_01);
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar6].layout,7,8);
+    UiElem_SetPropFloat(&g_UiMgr->slots[iVar6].layout,7,8,extraout_a3_lo_02);
     uVar9 = *(uint *)(iVar10 + 0x98);
   }
   else {
@@ -242,7 +246,7 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
     uVar9 = *(uint *)(iVar10 + 0x164);
   }
   else {
-    UiElem_SetPropFloat(*(undefined4 *)(iVar10 + 0x3b70),*(undefined4 *)(iVar10 + 0x10f8),0xb,8);
+    UiElem_SetPropFloat(*(UiLayout **)(iVar10 + 0x10f8),0xb,8,extraout_a3_lo);
     cVar3 = Profile_GetFlag273d(uVar7);
     cVar4 = Profile_GetFlag273f(uVar7);
     MenuWnd_DrawRivalLabel(0x10,0xb,1,0x68,cVar3 + 0x2ab,cVar4 + 0x2c5);
@@ -266,7 +270,7 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
                       (float)*(int *)(iVar10 + 0x15c) * 6.6e-06,0x3f800000,iVar10 + 0x26f0,
                       *_s_RaceUiSpriteCursor + -0x13,0,1,0);
   }
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_90,10);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_90,10);
   uStack_7c = 1;
   iStack_78 = (int)((float)iStack_78 * *(float *)(iVar10 + 0x3b70));
   UiText_DrawById(auStack_90,iStack_30 + 0x2df);
@@ -290,7 +294,7 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
                         (float)*(int *)(iVar10 + 0x228) * 6.6e-06,0x3f800000,iVar10 + 0x26f0,
                         *_s_RaceUiSpriteCursor + -0x13,0,1,0);
     }
-    UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_d0,0xc);
+    UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_d0,0xc);
     uStack_bc = 1;
     iStack_b8 = (int)((float)iStack_b8 * *(float *)(iVar10 + 0x3b70));
     UiText_DrawById(auStack_d0,iStack_2c + 0x2df);
@@ -648,12 +652,13 @@ void RaceUi_DrawMinimap3d(int param_1)
 void RaceUi_DrawTachometer(int param_1)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  bool bVar3;
+  int iVar1;
+  bool bVar2;
+  int iVar3;
   int iVar4;
-  int iVar5;
+  UiLayout *pUVar5;
   undefined8 uVar6;
+  byte extraout_a3_lo;
   int iVar7;
   int iVar8;
   int iVar9;
@@ -661,7 +666,6 @@ void RaceUi_DrawTachometer(int param_1)
   int iVar11;
   int iVar12;
   int iVar13;
-  undefined4 uVar14;
   
   iVar12 = 0;
   iVar10 = 0x32f6f0;
@@ -698,34 +702,34 @@ void RaceUi_DrawTachometer(int param_1)
     iVar11 = 0;
     iVar8 = 0;
     do {
-      iVar2 = -iVar11;
-      iVar5 = 1;
-      iVar7 = iVar2 + 2;
-      iVar4 = 0;
+      iVar1 = -iVar11;
+      iVar4 = 1;
+      iVar7 = iVar1 + 2;
+      iVar3 = 0;
       if (0 < iVar7) {
         if (8 < iVar7) {
-          bVar3 = false;
+          bVar2 = false;
           if ((-1 < iVar7) && (iVar7 < 0x7fffffff)) {
-            bVar3 = true;
+            bVar2 = true;
           }
-          if (bVar3) {
+          if (bVar2) {
             do {
-              iVar4 = iVar4 + 8;
-              iVar5 = iVar5 * 100000000;
-            } while (iVar4 < iVar2 + -6);
+              iVar3 = iVar3 + 8;
+              iVar4 = iVar4 * 100000000;
+            } while (iVar3 < iVar1 + -6);
           }
         }
-        if (iVar4 < iVar7) {
+        if (iVar3 < iVar7) {
           do {
-            iVar4 = iVar4 + 1;
-            iVar5 = iVar5 * 10;
-          } while (iVar4 < iVar2 + 2);
+            iVar3 = iVar3 + 1;
+            iVar4 = iVar4 * 10;
+          } while (iVar3 < iVar1 + 2);
         }
       }
       RaceUi_DrawSprite(*(float *)(iVar10 + 0x38) + (float)iVar8,*(undefined4 *)(iVar10 + 0x3c),
                         *(undefined4 *)(param_1 + 0x3b70),0x3f800000,0x3f800000,param_1 + 0x1270,
                         *_s_RaceUiSpriteCursor + -10,
-                        ((int)*(float *)(iVar9 + 0x18) / iVar5) % 10 + 0x16,0,0);
+                        ((int)*(float *)(iVar9 + 0x18) / iVar4) % 10 + 0x16,0,0);
       iVar11 = iVar11 + 1;
       iVar8 = iVar8 + 0x18;
     } while (iVar11 < 3);
@@ -734,21 +738,19 @@ void RaceUi_DrawTachometer(int param_1)
       uVar6 = 3;
     }
     if (*(int *)(iVar9 + 0x60) == 0) {
-      uVar14 = 0;
-      uVar1 = *(undefined4 *)(param_1 + 0x10fc);
+      pUVar5 = *(UiLayout **)(param_1 + 0x10fc);
     }
     else {
-      uVar14 = 0x3f800000;
-      uVar1 = *(undefined4 *)(param_1 + 0x10fc);
+      pUVar5 = *(UiLayout **)(param_1 + 0x10fc);
     }
-    UiElem_SetPropFloat(uVar14,uVar1,uVar6,8);
+    UiElem_SetPropFloat(pUVar5,uVar6,8,extraout_a3_lo);
     iVar12 = iVar12 + 1;
     iVar10 = iVar10 + 0x60;
     iVar13 = iVar13 + 0xb4;
     iVar9 = iVar9 + 0xcc;
   } while (iVar12 < 2);
   RaceUi_DrawArrow3d(param_1);
-  UiLayout_Draw(*(undefined4 *)(param_1 + 0x3b70),*(undefined4 *)(param_1 + 0x10fc));
+  UiLayout_Draw(*(float *)(param_1 + 0x3b70),*(UiLayout **)(param_1 + 0x10fc));
   return;
 }
 
@@ -759,105 +761,103 @@ void RaceUi_DrawTachometer(int param_1)
 void RaceUi_DrawSpeedometer(undefined8 param_1)
 
 {
-  undefined4 uVar1;
+  int iVar1;
   int iVar2;
   int iVar3;
   int iVar4;
-  int iVar5;
+  UiLayout *pUVar5;
   int iVar6;
+  byte extraout_a3_lo;
   int iVar7;
   int iVar8;
   int iVar9;
   int iVar10;
-  undefined4 uVar11;
   
-  iVar5 = (int)param_1;
-  iVar4 = *(int *)(iVar5 + 0x74) * 0x60;
-  if (*(int *)(iVar5 + 0x74) == 0) {
+  iVar4 = (int)param_1;
+  iVar3 = *(int *)(iVar4 + 0x74) * 0x60;
+  if (*(int *)(iVar4 + 0x74) == 0) {
     RaceUi_DrawSpriteRotated
-              (_DAT_0032f5d0,_DAT_0032f5d4,*(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,
-               iVar5 + 0x1108,*_s_RaceUiSpriteCursor + -0x11,0);
-    RaceUi_DrawSprite(_DAT_0032f5e8,_DAT_0032f5ec,*(undefined4 *)(iVar5 + 0x3b70),0x3f800000,
-                      0x3f800000,iVar5 + 0x1270,*_s_RaceUiSpriteCursor + -0x11,2,0,0);
+              (_DAT_0032f5d0,_DAT_0032f5d4,*(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,
+               iVar4 + 0x1108,*_s_RaceUiSpriteCursor + -0x11,0);
+    RaceUi_DrawSprite(_DAT_0032f5e8,_DAT_0032f5ec,*(undefined4 *)(iVar4 + 0x3b70),0x3f800000,
+                      0x3f800000,iVar4 + 0x1270,*_s_RaceUiSpriteCursor + -0x11,2,0,0);
   }
   RaceUi_DrawSpriteRotated
-            (*(undefined4 *)(&DAT_0032f5d8 + iVar4),*(undefined4 *)(&DAT_0032f5dc + iVar4),
-             *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1144,
+            (*(undefined4 *)(&DAT_0032f5d8 + iVar3),*(undefined4 *)(&DAT_0032f5dc + iVar3),
+             *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1144,
              *_s_RaceUiSpriteCursor + -0x11,0);
-  RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f5f0 + iVar4),*(undefined4 *)(&DAT_0032f5f4 + iVar4),
-                    *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1270,
+  RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f5f0 + iVar3),*(undefined4 *)(&DAT_0032f5f4 + iVar3),
+                    *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1270,
                     *_s_RaceUiSpriteCursor + -0x11,2,0,0);
-  if (*(int *)(iVar5 + 0x68) != 0) {
+  if (*(int *)(iVar4 + 0x68) != 0) {
     RaceUi_DrawSpriteRotated
-              (*(undefined4 *)(&DAT_0032f5e0 + iVar4),*(undefined4 *)(&DAT_0032f5e4 + iVar4),
-               *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1180,
+              (*(undefined4 *)(&DAT_0032f5e0 + iVar3),*(undefined4 *)(&DAT_0032f5e4 + iVar3),
+               *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1180,
                *_s_RaceUiSpriteCursor + -0x11,0);
   }
   RaceUi_DrawMinimap3d(param_1);
-  if (*(int *)(iVar5 + 0x6c) == 0) {
-    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar4),*(undefined4 *)(&DAT_0032f61c + iVar4),
-                      *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1270,
-                      *_s_RaceUiSpriteCursor + -10,*(int *)(iVar5 + 0x54) + 0xe,0,0);
+  if (*(int *)(iVar4 + 0x6c) == 0) {
+    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar3),*(undefined4 *)(&DAT_0032f61c + iVar3),
+                      *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1270,
+                      *_s_RaceUiSpriteCursor + -10,*(int *)(iVar4 + 0x54) + 0xe,0,0);
   }
-  else if (*(int *)(iVar5 + 0x54) == -1) {
-    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar4),*(undefined4 *)(&DAT_0032f61c + iVar4),
-                      *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1270,
+  else if (*(int *)(iVar4 + 0x54) == -1) {
+    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar3),*(undefined4 *)(&DAT_0032f61c + iVar3),
+                      *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1270,
                       *_s_RaceUiSpriteCursor + -10,0xd,0,0);
   }
-  else if (*(int *)(iVar5 + 0x54) == 0) {
-    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar4),*(undefined4 *)(&DAT_0032f61c + iVar4),
-                      *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1270,
+  else if (*(int *)(iVar4 + 0x54) == 0) {
+    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar3),*(undefined4 *)(&DAT_0032f61c + iVar3),
+                      *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1270,
                       *_s_RaceUiSpriteCursor + -10,0xe,0,0);
   }
   else {
-    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar4),*(undefined4 *)(&DAT_0032f61c + iVar4),
-                      *(undefined4 *)(iVar5 + 0x3b70),0x3f800000,0x3f800000,iVar5 + 0x1270,
+    RaceUi_DrawSprite(*(undefined4 *)(&DAT_0032f618 + iVar3),*(undefined4 *)(&DAT_0032f61c + iVar3),
+                      *(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,iVar4 + 0x1270,
                       *_s_RaceUiSpriteCursor + -10,0xc,0,0);
   }
   iVar10 = 0;
   iVar9 = 0;
   do {
-    iVar2 = -iVar10;
+    iVar1 = -iVar10;
     iVar8 = 1;
-    iVar6 = iVar2 + 2;
+    iVar6 = iVar1 + 2;
     iVar7 = 0;
     if (0 < iVar6) {
       if (8 < iVar6) {
-        iVar3 = 0;
+        iVar2 = 0;
         if ((-1 < iVar6) && (iVar6 < 0x7fffffff)) {
-          iVar3 = iVar8;
+          iVar2 = iVar8;
         }
-        if (iVar3 != 0) {
+        if (iVar2 != 0) {
           do {
             iVar7 = iVar7 + 8;
             iVar8 = iVar8 * 100000000;
-          } while (iVar7 < iVar2 + -6);
+          } while (iVar7 < iVar1 + -6);
         }
       }
       if (iVar7 < iVar6) {
         do {
           iVar7 = iVar7 + 1;
           iVar8 = iVar8 * 10;
-        } while (iVar7 < iVar2 + 2);
+        } while (iVar7 < iVar1 + 2);
       }
     }
-    RaceUi_DrawSprite(*(float *)(&DAT_0032f608 + iVar4) + (float)iVar9,
-                      *(undefined4 *)(&DAT_0032f60c + iVar4),*(undefined4 *)(iVar5 + 0x3b70),
-                      0x3f800000,0x3f800000,iVar5 + 0x1270,*_s_RaceUiSpriteCursor + -10,
-                      ((int)*(float *)(iVar5 + 0x18) / iVar8) % 10 + 0x16,0,0);
+    RaceUi_DrawSprite(*(float *)(&DAT_0032f608 + iVar3) + (float)iVar9,
+                      *(undefined4 *)(&DAT_0032f60c + iVar3),*(undefined4 *)(iVar4 + 0x3b70),
+                      0x3f800000,0x3f800000,iVar4 + 0x1270,*_s_RaceUiSpriteCursor + -10,
+                      ((int)*(float *)(iVar4 + 0x18) / iVar8) % 10 + 0x16,0,0);
     iVar10 = iVar10 + 1;
     iVar9 = iVar9 + 0x18;
   } while (iVar10 < 3);
-  if (*(int *)(iVar5 + 0x60) == 0) {
-    uVar11 = 0;
-    uVar1 = *(undefined4 *)(iVar5 + 0x10fc);
+  if (*(int *)(iVar4 + 0x60) == 0) {
+    pUVar5 = *(UiLayout **)(iVar4 + 0x10fc);
   }
   else {
-    uVar11 = 0x3f800000;
-    uVar1 = *(undefined4 *)(iVar5 + 0x10fc);
+    pUVar5 = *(UiLayout **)(iVar4 + 0x10fc);
   }
-  UiElem_SetPropFloat(uVar11,uVar1,3,8);
-  UiLayout_Draw(*(undefined4 *)(iVar5 + 0x3b70),*(undefined4 *)(iVar5 + 0x10fc));
+  UiElem_SetPropFloat(pUVar5,3,8,extraout_a3_lo);
+  UiLayout_Draw(*(float *)(iVar4 + 0x3b70),*(UiLayout **)(iVar4 + 0x10fc));
   return;
 }
 
@@ -1126,36 +1126,44 @@ void RaceUi_DrawRivalMarkersAlt(int param_1)
 }
 
 // 0x002cb580  size 0x138
-void RaceUi_AnimateWarning(int param_1)
+void RaceUi_AnimateWarning(int param_1,undefined8 param_2,undefined8 param_3,byte param_4)
 
 {
   long lVar1;
-  int iVar2;
-  undefined8 uVar3;
-  int iVar4;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte bVar2;
+  byte extraout_a3_lo_01;
+  byte extraout_a3_lo_02;
+  int iVar3;
+  undefined8 uVar4;
+  int iVar5;
   
-  iVar4 = 0;
-  iVar2 = param_1;
+  iVar5 = 0;
+  iVar3 = param_1;
   do {
-    uVar3 = 0xc;
-    if (iVar4 != 0) {
-      uVar3 = 0xd;
+    uVar4 = 0xc;
+    if (iVar5 != 0) {
+      uVar4 = 0xd;
     }
-    if (*(int *)(iVar2 + 0x78) < 1) {
-      UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),uVar3,8);
+    if (*(int *)(iVar3 + 0x78) < 1) {
+      UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar4,8,param_4);
+      param_4 = extraout_a3_lo_02;
     }
     else {
       lVar1 = RaceScene_IsFlag10();
-      if ((lVar1 == 0) && (*(int *)(iVar2 + 0x78) == 1)) {
+      bVar2 = extraout_a3_lo;
+      if ((lVar1 == 0) && (*(int *)(iVar3 + 0x78) == 1)) {
         Se_PlayMenuVol(3,0x60);
+        bVar2 = extraout_a3_lo_00;
       }
-      *(int *)(iVar2 + 0x78) = *(int *)(iVar2 + 0x78) % 0x1e;
-      UiElem_SetPropFloat((float)((*(int *)(iVar2 + 0x78) / 5) % 6) / 5.0,
-                          *(undefined4 *)(param_1 + 0x10fc),uVar3,8);
+      *(int *)(iVar3 + 0x78) = *(int *)(iVar3 + 0x78) % 0x1e;
+      UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar4,8,bVar2);
+      param_4 = extraout_a3_lo_01;
     }
-    iVar4 = iVar4 + 1;
-    iVar2 = iVar2 + 0xcc;
-  } while (iVar4 < 2);
+    iVar5 = iVar5 + 1;
+    iVar3 = iVar3 + 0xcc;
+  } while (iVar5 < 2);
   return;
 }
 
@@ -1167,6 +1175,8 @@ void RaceUi_AnimateSpGauge(int param_1)
 {
   int iVar1;
   int iVar2;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
   int iVar3;
   int iVar4;
   undefined8 unaff_s2;
@@ -1196,7 +1206,7 @@ void RaceUi_AnimateSpGauge(int param_1)
                       *_s_RaceUiSpriteCursor + -0x12,0xb,0,0);
     iVar2 = iVar3 >> 2;
     if ((*(uint *)(iVar4 + 8) & 2) == 0) {
-      UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),unaff_s2,8);
+      UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),unaff_s2,8,extraout_a3_lo);
     }
     else {
       iVar1 = iVar2;
@@ -1207,14 +1217,14 @@ void RaceUi_AnimateSpGauge(int param_1)
       if (iVar1 < 0) {
         iVar1 = -iVar1;
       }
-      UiElem_SetPropFloat(0x3f800000,*(undefined4 *)(param_1 + 0x10fc),unaff_s2,8);
-      UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x10fc),unaff_s2,9,iVar1);
+      UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),unaff_s2,8,extraout_a3_lo);
+      UiElem_SetPropInt(*(UiLayout **)(param_1 + 0x10fc),unaff_s2,9,iVar1);
     }
     RaceUi_DrawSprite(0x43fb8000,(float)iVar7,*(undefined4 *)(param_1 + 0x3b70),
                       (fVar8 * 104.0) / 16.0,0x3f800000,param_1 + 0x1270,
                       *_s_RaceUiSpriteCursor + -0x12,0xb,0,0);
     if ((*(uint *)(iVar4 + 8) & 1) == 0) {
-      UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),unaff_s3,8);
+      UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),unaff_s3,8,extraout_a3_lo_00);
     }
     else {
       if (iVar3 < 0) {
@@ -1224,8 +1234,8 @@ void RaceUi_AnimateSpGauge(int param_1)
       if (iVar3 < 0) {
         iVar3 = -iVar3;
       }
-      UiElem_SetPropFloat(0x3f800000,*(undefined4 *)(param_1 + 0x10fc),unaff_s3,8);
-      UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x10fc),unaff_s3,9,iVar3);
+      UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),unaff_s3,8,extraout_a3_lo_00);
+      UiElem_SetPropInt(*(UiLayout **)(param_1 + 0x10fc),unaff_s3,9,iVar3);
     }
     iVar5 = iVar5 + 1;
     iVar4 = iVar4 + 0xcc;
@@ -1299,6 +1309,8 @@ void RaceUi_AnimateBoost(int param_1)
 {
   int iVar1;
   int iVar2;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
   int iVar3;
   undefined8 uVar4;
   undefined8 uVar5;
@@ -1319,7 +1331,7 @@ void RaceUi_AnimateBoost(int param_1)
                     *_s_RaceUiSpriteCursor + -0x12,0xb,0,0);
   iVar2 = iVar3 >> 2;
   if ((*(uint *)(param_1 + 8) & 2) == 0) {
-    UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),uVar4,8);
+    UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar4,8,extraout_a3_lo);
   }
   else {
     iVar1 = iVar2;
@@ -1330,13 +1342,13 @@ void RaceUi_AnimateBoost(int param_1)
     if (iVar1 < 0) {
       iVar1 = -iVar1;
     }
-    UiElem_SetPropFloat(0x3f800000,*(undefined4 *)(param_1 + 0x10fc),uVar4,8);
-    UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x10fc),uVar4,9,iVar1);
+    UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar4,8,extraout_a3_lo);
+    UiElem_SetPropInt(*(UiLayout **)(param_1 + 0x10fc),uVar4,9,iVar1);
   }
   RaceUi_DrawSprite(0x43fb8000,0x43cb0000,*(undefined4 *)(param_1 + 0x3b70),(fVar6 * 112.0) / 16.0,
                     0x3f800000,param_1 + 0x1270,*_s_RaceUiSpriteCursor + -0x12,0xb,0,0);
   if ((*(uint *)(param_1 + 8) & 1) == 0) {
-    UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),uVar5,8);
+    UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar5,8,extraout_a3_lo_00);
   }
   else {
     if (iVar3 < 0) {
@@ -1346,8 +1358,8 @@ void RaceUi_AnimateBoost(int param_1)
     if (iVar3 < 0) {
       iVar3 = -iVar3;
     }
-    UiElem_SetPropFloat(0x3f800000,*(undefined4 *)(param_1 + 0x10fc),uVar5,8);
-    UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x10fc),uVar5,9,iVar3);
+    UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar5,8,extraout_a3_lo_00);
+    UiElem_SetPropInt(*(UiLayout **)(param_1 + 0x10fc),uVar5,9,iVar3);
   }
   return;
 }

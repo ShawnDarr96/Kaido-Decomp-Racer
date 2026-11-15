@@ -281,23 +281,21 @@ undefined * UiMgr_LockedAlloc(int param_1)
 // 0x001f4980  size 0x140
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void UiMgr_LoadLayout(uint param_1,undefined8 param_2,undefined8 param_3)
+void UiMgr_LoadLayout(uint param_1,int *param_2,undefined4 param_3)
 
 {
   uint uVar1;
-  int *piVar2;
   
-  piVar2 = (int *)param_2;
-  uVar1 = g_ArcToc->entries[*piVar2].unpackedSize;
+  uVar1 = g_ArcToc->entries[*param_2].unpackedSize;
   if (uVar1 == 0) {
-    uVar1 = g_ArcToc->entries[*piVar2].sectorCount;
+    uVar1 = g_ArcToc->entries[*param_2].sectorCount;
   }
   else {
     uVar1 = uVar1 + 0x7ff >> 0xb;
   }
   if (0x100000 <
-      (int)(((piVar2[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar1 * 0x800 + piVar2[1] * 0x80))
-  {
+      (int)(((param_2[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar1 * 0x800 + param_2[1] * 0x80
+           )) {
     param_3 = 0;
   }
   g_UiMgr->slots[g_UiMgr->unk_50c].id = param_1;
@@ -332,23 +330,23 @@ undefined4 UiMgr_FindFreeSlot(void)
 // 0x001f4b20  size 0xb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void UiMgr_SetActive(undefined8 param_1,int param_2)
+void UiMgr_SetActive(int param_1,int param_2)
 
 {
   int iVar1;
   int iVar2;
   
-  _s_UiMgrVar1 = (int)param_1;
+  _s_UiMgrVar1 = param_1;
   _s_UiMgrVar2 = param_2;
   if (g_UiMgr != (UiMgr *)0x0) {
     if (g_UiMgr->unk_508 != 0) {
-      UiLayout_SetTexture(&g_UiMgr->field_0x4,param_1);
+      UiLayout_SetTexture((UiLayout *)&g_UiMgr->field_0x4,param_1,param_2);
     }
     iVar2 = 0;
     if (0 < (int)g_UiMgr->slotCount) {
       iVar1 = 0;
       do {
-        UiLayout_SetTexture(&(g_UiMgr->slots->layout).field_0x0 + iVar1,
+        UiLayout_SetTexture((UiLayout *)(&(g_UiMgr->slots->layout).field_0x0 + iVar1),
                             _s_UiMgrVar1 + g_UiMgr->unk_508,_s_UiMgrVar2 + g_UiMgr->unk_508);
         iVar2 = iVar2 + 1;
         iVar1 = iVar1 + 0x4f4;
@@ -426,8 +424,8 @@ void UiMgr_Alloc(undefined8 param_1,uint param_2,uint param_3,long param_4,uint 
     g_UiMgr->unk_4f4 = 0;
   }
   else {
-    UiLayout_Init(&g_UiMgr->field_0x4,_s_UiMgrVar1,_s_UiMgrVar2,0);
-    UiLayout_Load(&g_UiMgr->field_0x4,param_4,0);
+    UiLayout_Init((UiLayout *)&g_UiMgr->field_0x4,_s_UiMgrVar1,_s_UiMgrVar2,0);
+    UiLayout_Load((UiLayout *)&g_UiMgr->field_0x4,(undefined4 *)param_4,0);
     g_UiMgr->unk_4f4 = 1;
     g_UiMgr->unk_508 = param_5;
   }
@@ -436,8 +434,8 @@ void UiMgr_Alloc(undefined8 param_1,uint param_2,uint param_3,long param_4,uint 
     iVar4 = 0;
     do {
       *(undefined4 *)((int)&g_UiMgr->slots->id + iVar4) = 0xffffffff;
-      UiLayout_Init(&(g_UiMgr->slots->layout).field_0x0 + iVar4,_s_UiMgrVar1 + g_UiMgr->unk_508,
-                    _s_UiMgrVar2 + g_UiMgr->unk_508,1);
+      UiLayout_Init((UiLayout *)(&(g_UiMgr->slots->layout).field_0x0 + iVar4),
+                    _s_UiMgrVar1 + g_UiMgr->unk_508,_s_UiMgrVar2 + g_UiMgr->unk_508,1);
       iVar5 = iVar5 + 1;
       iVar4 = iVar4 + 0x4f4;
     } while (iVar5 < (int)param_2);
@@ -453,9 +451,9 @@ void UiMgr_DrawAll(uint param_1)
 
 {
   uchar uVar1;
-  undefined8 uVar2;
+  ulong uVar2;
   int iVar3;
-  int iVar4;
+  UiLayout *pUVar4;
   
   uVar1 = g_RaceCtx->language;
   uVar2 = 2;
@@ -474,19 +472,19 @@ void UiMgr_DrawAll(uint param_1)
   else if (uVar1 == '\x01') {
     uVar2 = 3;
   }
-  UiElem_SetNumber(0x468e10,3,0x16,uVar2);
+  UiElem_SetNumber((UiLayout *)0x468e10,3,0x16,uVar2);
   param_1 = param_1 & 0xff;
   if (param_1 == 1) {
     iVar3 = 0;
     do {
-      UiLayout_UpdateAnim(0x468e10,iVar3);
+      UiLayout_UpdateAnim((UiLayout *)0x468e10,iVar3);
       iVar3 = iVar3 + 1;
     } while (iVar3 < 0x18);
-    UiLayout_Draw(0x3f800000,0x468e10);
+    UiLayout_Draw(1.0,(UiLayout *)0x468e10);
   }
   else if (param_1 == 0) {
     if (_s_UiMgrVar3 < 0x259) {
-      UiLayout_Draw(0x3f800000,0x468920);
+      UiLayout_Draw(1.0,(UiLayout *)0x468920);
     }
     else {
       UiMgr_DrawAll();
@@ -495,12 +493,12 @@ void UiMgr_DrawAll(uint param_1)
   }
   else {
     iVar3 = 0;
-    iVar4 = param_1 * 0x4f0 + 0x468920;
+    pUVar4 = (UiLayout *)(param_1 * 0x4f0 + 0x468920);
     do {
-      UiLayout_UpdateAnim(iVar4,iVar3);
+      UiLayout_UpdateAnim(pUVar4,iVar3);
       iVar3 = iVar3 + 1;
     } while (iVar3 < 0x18);
-    UiLayout_Draw(0x3f800000,iVar4);
+    UiLayout_Draw(1.0,pUVar4);
   }
   return;
 }
@@ -549,18 +547,18 @@ void UiMgr_UpdateAll(void)
 }
 
 // 0x001f5130  size 0x68
-void UiMgr_RebindTextures(undefined8 param_1,undefined8 param_2)
+void UiMgr_RebindTextures(undefined4 param_1,undefined4 param_2)
 
 {
-  int iVar1;
+  UiLayout *pUVar1;
   int iVar2;
   
   iVar2 = 0;
-  iVar1 = 0x468920;
+  pUVar1 = (UiLayout *)0x468920;
   do {
-    UiLayout_SetTexture(iVar1,param_1,param_2);
+    UiLayout_SetTexture(pUVar1,param_1,param_2);
     iVar2 = iVar2 + 1;
-    iVar1 = iVar1 + 0x4f0;
+    pUVar1 = pUVar1 + 1;
   } while (iVar2 < 2);
   return;
 }
@@ -571,15 +569,15 @@ void UiMgr_RebindTextures(undefined8 param_1,undefined8 param_2)
 void UiMgr_FreeSystem(void)
 
 {
-  int iVar1;
+  UiLayout *pUVar1;
   int iVar2;
   
   iVar2 = 0;
-  iVar1 = 0x468920;
+  pUVar1 = (UiLayout *)0x468920;
   do {
-    UiLayout_Free(iVar1);
+    UiLayout_Free(pUVar1);
     iVar2 = iVar2 + 1;
-    iVar1 = iVar1 + 0x4f0;
+    pUVar1 = pUVar1 + 1;
   } while (iVar2 < 2);
   if (_s_UiMgrVar4 != 0) {
     Mem_Free();
@@ -591,14 +589,14 @@ void UiMgr_FreeSystem(void)
 // 0x001f5210  size 0x164
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void UiMgr_LoadSystem(undefined8 param_1)
+void UiMgr_LoadSystem(long param_1)
 
 {
   uchar uVar1;
   uint uVar2;
   undefined8 uVar3;
   undefined4 *puVar4;
-  int iVar5;
+  UiLayout *pUVar5;
   int iVar6;
   undefined4 uStack_20;
   undefined4 uStack_1c;
@@ -609,7 +607,7 @@ void UiMgr_LoadSystem(undefined8 param_1)
   int iStack_4;
   
   iVar6 = 0;
-  iVar5 = 0x468920;
+  pUVar5 = (UiLayout *)0x468920;
   puVar4 = &uStack_20;
   uStack_20 = DAT_003268c0;
   uStack_1c = DAT_003268c4;
@@ -621,10 +619,10 @@ void UiMgr_LoadSystem(undefined8 param_1)
   uVar1 = g_RaceCtx->language;
   g_RaceCtx->language = '\0';
   do {
-    UiLayout_Init(iVar5,_g_RaceIntroShared1,_g_RaceIntroShared1,1);
-    UiLayout_Load(iVar5,puVar4,param_1);
+    UiLayout_Init(pUVar5,_g_RaceIntroShared1,_g_RaceIntroShared1,1);
+    UiLayout_Load(pUVar5,puVar4,param_1);
     iVar6 = iVar6 + 1;
-    iVar5 = iVar5 + 0x4f0;
+    pUVar5 = pUVar5 + 1;
     puVar4 = puVar4 + 3;
   } while (iVar6 < 2);
   g_RaceCtx->language = uVar1;
@@ -647,9 +645,10 @@ void UiMgr_LoadSystem(undefined8 param_1)
 /* WARNING: Removing unreachable block (ram,0x001f53fc) */
 /* WARNING: Removing unreachable block (ram,0x001f53f4) */
 /* WARNING: Removing unreachable block (ram,0x001f5420) */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 17 callers */
 
-void UiElem_SetNumber(undefined8 param_1,undefined8 param_2,byte param_3,ulong param_4)
+void UiElem_SetNumber(UiLayout *param_1,undefined8 param_2,byte param_3,ulong param_4)
 
 {
   bool bVar1;
@@ -677,11 +676,11 @@ void UiElem_SetNumber(undefined8 param_1,undefined8 param_2,byte param_3,ulong p
     else {
       fVar4 = (float)(int)param_4;
     }
-    pfVar3 = (float *)UiElem_GetPropPtr(param_1);
+    pfVar3 = (float *)UiElem_GetPropPtr(param_1,(int)param_2,(int)(char)param_3);
     *pfVar3 = fVar4;
   }
   else {
-    piVar2 = (int *)UiElem_GetPropPtr(param_1);
+    piVar2 = (int *)UiElem_GetPropPtr(param_1,(int)param_2,(int)(char)param_3);
     *piVar2 = (int)param_4;
   }
   if (param_3 == 10) {

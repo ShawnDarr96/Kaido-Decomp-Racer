@@ -712,74 +712,74 @@ void Result_DrawRaceInfo(int param_1)
   char cVar3;
   byte bVar4;
   RaceEntrySetup *pRVar5;
-  int iVar6;
-  char *pcVar7;
-  byte *pbVar8;
-  uint uVar9;
-  int iVar10;
-  undefined4 uVar11;
-  int iVar12;
-  uint uVar13;
-  undefined1 auStack_350 [20];
+  char *pcVar6;
+  byte *pbVar7;
+  uint uVar8;
+  int iVar9;
+  undefined4 uVar10;
+  int iVar11;
+  uint uVar12;
+  long lVar13;
+  undefined4 auStack_350 [5];
   undefined4 uStack_33c;
   int iStack_338;
   undefined1 auStack_310 [576];
-  undefined1 auStack_d0 [20];
+  undefined4 auStack_d0 [5];
   undefined4 uStack_bc;
   int iStack_b8;
-  undefined1 auStack_90 [20];
+  undefined4 auStack_90 [5];
   undefined4 uStack_7c;
   int iStack_78;
-  undefined1 auStack_50 [20];
+  undefined4 auStack_50 [5];
   undefined4 uStack_3c;
   int iStack_38;
   undefined4 uStack_18;
   ushort uStack_14;
   char acStack_10 [16];
   
-  uVar9 = 2;
+  uVar8 = 2;
   iVar1 = *(int *)(param_1 + 0x318);
   if (*(int *)(param_1 + 0x31c) == 0) {
-    uVar9 = 0;
+    uVar8 = 0;
   }
-  iVar10 = (int)(char)(&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
-  uVar2 = *(uint *)(&DAT_0032f1c4 + iVar10 * 8);
-  uVar13 = 0;
+  iVar9 = (int)(char)(&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
+  uVar2 = *(uint *)(&DAT_0032f1c4 + iVar9 * 8);
+  uVar12 = 0;
   if (uVar2 != 0) {
-    iVar12 = 0;
+    iVar11 = 0;
     do {
-      uVar11 = 3;
-      pbVar8 = (&PTR_DAT_0032f1c0)[iVar10 * 2] + iVar12;
-      bVar4 = *pbVar8;
-      if (((iVar1 != 0 | uVar9) & *(uint *)(pbVar8 + 4)) == 0) {
-        uVar11 = 0;
+      uVar10 = 3;
+      pbVar7 = (&PTR_DAT_0032f1c0)[iVar9 * 2] + iVar11;
+      bVar4 = *pbVar7;
+      if (((iVar1 != 0 | uVar8) & *(uint *)(pbVar7 + 4)) == 0) {
+        uVar10 = 0;
       }
-      if ((*(int *)(pbVar8 + 0xc) != -1) && (bVar4 + 0x57 != -1)) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 0x28),auStack_50);
+      if (((long)*(int *)(pbVar7 + 0xc) != -1) && (bVar4 + 0x57 != -1)) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 0x28),auStack_50,(long)*(int *)(pbVar7 + 0xc));
         iStack_38 = (int)((float)iStack_38 * *(float *)(param_1 + 0x94));
-        uStack_3c = uVar11;
+        uStack_3c = uVar10;
         UiText_DrawById(auStack_50,bVar4 + 0x57);
       }
-      uVar13 = uVar13 + 1;
-      iVar12 = iVar12 + 0x14;
-    } while (uVar13 < uVar2);
+      uVar12 = uVar12 + 1;
+      iVar11 = iVar11 + 0x14;
+    } while (uVar12 < uVar2);
   }
   iVar1 = *(int *)(param_1 + 0x3b8);
-  if ((*(int *)(param_1 + 0x3b4) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 0x28),auStack_90);
+  if (((long)*(int *)(param_1 + 0x3b4) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 0x28),auStack_90,(long)*(int *)(param_1 + 0x3b4));
     uStack_7c = 0;
     iStack_78 = (int)((float)iStack_78 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_90,iVar1);
   }
-  iVar1 = *(int *)(param_1 + 0x3bc);
-  uVar11 = *(undefined4 *)(param_1 + 0x2c);
-  iVar12 = *(int *)(param_1 + 0x3c0);
-  if ((iVar1 != -1) && (iVar12 != -1)) {
+  lVar13 = (long)*(int *)(param_1 + 0x3bc);
+  uVar10 = *(undefined4 *)(param_1 + 0x2c);
+  iVar1 = *(int *)(param_1 + 0x3c0);
+  if ((lVar13 != -1) && (iVar1 != -1)) {
     if (*(int *)(param_1 + 0x318) != 0) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 0x28),auStack_350,iVar1);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 0x28),auStack_350,lVar13);
       uStack_33c = 0;
       iStack_338 = (int)((float)iStack_338 * *(float *)(param_1 + 0x94));
-      MenuWnd_DrawRivalLabel(uVar11,iVar1,0,iVar12,0x30,0x30,0x30,0x30);
+      MenuWnd_DrawRivalLabel(uVar10,lVar13,0,iVar1,0x30,0x30,0x30,0x30);
       cVar3 = *(char *)(param_1 + 0x48);
       goto LAB_002bd944;
     }
@@ -795,9 +795,9 @@ void Result_DrawRaceInfo(int param_1)
     uStack_18._0_1_ = (byte)uStack_18 & 0xfb | (cVar3 != '\0') << 2;
     cVar3 = Race_GetWeather();
     uStack_18._0_1_ = (byte)uStack_18 & 0xf7 | (cVar3 != '\0') << 3;
-    iVar6 = RaceProg_GetArray_1c(0);
-    uStack_18 = CONCAT31(uStack_18._1_3_,(byte)uStack_18 & 0xef | (*(int *)(iVar6 + 0xc) != 0) << 4)
-    ;
+    iVar11 = RaceProg_GetArray_1c(0);
+    uStack_18 = CONCAT31(uStack_18._1_3_,(byte)uStack_18 & 0xef | (*(int *)(iVar11 + 0xc) != 0) << 4
+                        );
     bVar4 = Race_GetTimeOfDay();
     if (bVar4 < 6) {
                     /* WARNING: Switch is manually overridden */
@@ -851,9 +851,9 @@ void Result_DrawRaceInfo(int param_1)
       uStack_18 = CONCAT22(uStack_18._2_2_,
                            (ushort)uStack_18 & 0xf01f |
                            (ushort)((*(uint *)(param_1 + 0x1e4) & 0x7f) << 5));
-      uVar9 = uStack_18 & 0xfffc0fff | (*(uint *)(param_1 + 0x1e8) & 0x3f) << 0xc;
-      uStack_18._2_2_ = (ushort)(uVar9 >> 0x10);
-      uStack_18._0_2_ = (ushort)uVar9;
+      uVar8 = uStack_18 & 0xfffc0fff | (*(uint *)(param_1 + 0x1e8) & 0x3f) << 0xc;
+      uStack_18._2_2_ = (ushort)(uVar8 >> 0x10);
+      uStack_18._0_2_ = (ushort)uVar8;
       uStack_18 = CONCAT22(uStack_18._2_2_ & 0xf003 |
                            (ushort)((*(uint *)(param_1 + 0x1ec) & 0x3ff) << 2),(ushort)uStack_18);
     }
@@ -861,41 +861,41 @@ void Result_DrawRaceInfo(int param_1)
       uStack_18 = uStack_18 & 0xf000001e | 1 | (*(uint *)(param_1 + 0x150) & 0x7fffff) << 5;
     }
     Password_Decode(auStack_310,&uStack_18,acStack_10);
-    uVar9 = 0;
-    pcVar7 = acStack_10;
+    uVar8 = 0;
+    pcVar6 = acStack_10;
     do {
-      cVar3 = *pcVar7;
+      cVar3 = *pcVar6;
       if (cVar3 < 'A') {
-        *pcVar7 = cVar3 + -0x32;
+        *pcVar6 = cVar3 + -0x32;
       }
       else if (cVar3 < 'J') {
-        *pcVar7 = *pcVar7 + -0x39;
+        *pcVar6 = *pcVar6 + -0x39;
       }
       else if (cVar3 < 'P') {
-        *pcVar7 = *pcVar7 + -0x3a;
+        *pcVar6 = *pcVar6 + -0x3a;
       }
       else {
-        *pcVar7 = *pcVar7 + -0x3b;
+        *pcVar6 = *pcVar6 + -0x3b;
       }
-      uVar9 = uVar9 + 1;
-      pcVar7 = pcVar7 + 1;
-    } while (uVar9 < 0xd);
+      uVar8 = uVar8 + 1;
+      pcVar6 = pcVar6 + 1;
+    } while (uVar8 < 0xd);
     MenuWnd_DrawRivalLabel
-              (uVar11,iVar1,0,iVar12,acStack_10[0] + 0x10,acStack_10[1] + 0x10,acStack_10[2] + 0x10,
+              (uVar10,lVar13,0,iVar1,acStack_10[0] + 0x10,acStack_10[1] + 0x10,acStack_10[2] + 0x10,
                acStack_10[3] + 0x10);
   }
   cVar3 = *(char *)(param_1 + 0x48);
 LAB_002bd944:
   if (cVar3 == '\x03') {
     *(undefined4 *)(param_1 + 0x348) =
-         *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar10 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
+         *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar9 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
     if ((((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') &&
         (cVar3 = GameState_Get_354_7050(), cVar3 == '\x01')) && (*(int *)(param_1 + 0x348) == 99)) {
       *(undefined4 *)(param_1 + 0x348) = 100;
     }
     iVar1 = *(int *)(param_1 + 0x348);
-    if ((*(int *)(param_1 + 0x344) != -1) && (iVar1 != -1)) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 0x4c),auStack_d0);
+    if (((long)*(int *)(param_1 + 0x344) != -1) && (iVar1 != -1)) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 0x4c),auStack_d0,(long)*(int *)(param_1 + 0x344));
       uStack_bc = 0;
       iStack_b8 = (int)((float)iStack_b8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_d0,iVar1);
@@ -919,93 +919,94 @@ void Result_ResetCursor(undefined4 *param_1)
 void Result_Draw_TestCourse(int param_1)
 
 {
-  undefined4 uVar1;
-  char cVar2;
-  uint uVar3;
+  char cVar1;
+  uint uVar2;
+  long lVar3;
   int iVar4;
-  int iVar5;
-  uint uVar6;
-  undefined1 auStack_540 [20];
+  UiLayout *pUVar5;
+  int iVar6;
+  uint uVar7;
+  undefined4 auStack_540 [5];
   undefined4 uStack_52c;
   int iStack_528;
-  undefined1 auStack_500 [20];
+  undefined4 auStack_500 [5];
   undefined4 uStack_4ec;
   int iStack_4e8;
-  undefined1 auStack_4c0 [20];
+  undefined4 auStack_4c0 [5];
   undefined4 uStack_4ac;
   int iStack_4a8;
-  undefined1 auStack_480 [20];
+  undefined4 auStack_480 [5];
   undefined4 uStack_46c;
   int iStack_468;
-  undefined1 auStack_440 [20];
+  undefined4 auStack_440 [5];
   undefined4 uStack_42c;
   int iStack_428;
-  undefined1 auStack_400 [20];
+  undefined4 auStack_400 [5];
   undefined4 uStack_3ec;
   int iStack_3e8;
-  undefined1 auStack_3c0 [20];
+  undefined4 auStack_3c0 [5];
   undefined4 uStack_3ac;
   int iStack_3a8;
-  undefined1 auStack_380 [20];
+  undefined4 auStack_380 [5];
   undefined4 uStack_36c;
   int iStack_368;
-  undefined1 auStack_340 [20];
+  undefined4 auStack_340 [5];
   undefined4 uStack_32c;
   int iStack_328;
-  undefined1 auStack_300 [20];
+  undefined4 auStack_300 [5];
   undefined4 uStack_2ec;
   int iStack_2e8;
-  undefined1 auStack_2c0 [20];
+  undefined4 auStack_2c0 [5];
   undefined4 uStack_2ac;
   int iStack_2a8;
-  undefined1 auStack_280 [20];
+  undefined4 auStack_280 [5];
   undefined4 uStack_26c;
   int iStack_268;
-  undefined1 auStack_240 [20];
+  undefined4 auStack_240 [5];
   undefined4 uStack_22c;
   int iStack_228;
-  undefined1 auStack_200 [20];
+  undefined4 auStack_200 [5];
   undefined4 uStack_1ec;
   int iStack_1e8;
-  undefined1 auStack_1c0 [20];
+  undefined4 auStack_1c0 [5];
   undefined4 uStack_1ac;
   int iStack_1a8;
-  undefined1 auStack_180 [20];
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
   int iStack_168;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
   int iStack_128;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
   int iStack_e8;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
   int iStack_a8;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
-  cVar2 = GameState_Get_354_7050();
-  if (cVar2 == '\x02') {
+  cVar1 = GameState_Get_354_7050();
+  if (cVar1 == '\x02') {
     if (*(int *)(param_1 + 0x318) == 0) {
-      if (*(int *)(param_1 + 0x364) == -1) {
-        iVar5 = *(int *)(param_1 + 900);
+      if ((long)*(int *)(param_1 + 0x364) == -1) {
+        iVar6 = *(int *)(param_1 + 900);
       }
       else {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_400);
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_400,(long)*(int *)(param_1 + 0x364));
         uStack_3ec = 0;
         iStack_3e8 = (int)((float)iStack_3e8 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
                   (auStack_400,2,*(undefined4 *)(param_1 + 0x1e4),*(undefined4 *)(param_1 + 0x1e8),
                    *(undefined4 *)(param_1 + 0x1ec));
-        iVar5 = *(int *)(param_1 + 900);
+        iVar6 = *(int *)(param_1 + 900);
       }
-      if (iVar5 != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_440);
+      if ((long)iVar6 != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_440,(long)iVar6);
         uStack_42c = 4;
         iStack_428 = (int)((float)iStack_428 * *(float *)(param_1 + 0x94));
         if (*(int *)(param_1 + 0x274) < 1) {
@@ -1028,38 +1029,40 @@ void Result_Draw_TestCourse(int param_1)
       }
     }
     else {
-      if (*(int *)(param_1 + 0x364) == -1) {
-        iVar5 = *(int *)(param_1 + 900);
+      if ((long)*(int *)(param_1 + 0x364) == -1) {
+        iVar6 = *(int *)(param_1 + 900);
       }
       else {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_380);
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_380,(long)*(int *)(param_1 + 0x364));
         uStack_36c = 0;
         iStack_368 = (int)((float)iStack_368 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_380,0xc);
-        iVar5 = *(int *)(param_1 + 900);
+        iVar6 = *(int *)(param_1 + 900);
       }
-      if (iVar5 != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_3c0);
+      if ((long)iVar6 != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_3c0,(long)iVar6);
         uStack_3ac = 0;
         iStack_3a8 = (int)((float)iStack_3a8 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_3c0,0xb);
       }
     }
-    uVar6 = 0;
-    iVar5 = param_1;
+    uVar7 = 0;
+    iVar6 = param_1;
     iVar4 = param_1;
     do {
       if (*(int *)(param_1 + 0x318) == 0) {
-        if (*(int *)(param_1 + 0x3a4) + uVar6 != -1) {
-          UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_500);
+        lVar3 = (long)(int)(*(int *)(param_1 + 0x3a4) + uVar7);
+        if (lVar3 != -1) {
+          UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_500,lVar3);
           uStack_4ec = 0;
           iStack_4e8 = (int)((float)iStack_4e8 * *(float *)(param_1 + 0x94));
           UiText_DrawRivalInfo
-                    (auStack_500,2,*(undefined4 *)(iVar5 + 0x1f0),*(undefined4 *)(iVar5 + 500),
-                     *(undefined4 *)(iVar5 + 0x1f8));
+                    (auStack_500,2,*(undefined4 *)(iVar6 + 0x1f0),*(undefined4 *)(iVar6 + 500),
+                     *(undefined4 *)(iVar6 + 0x1f8));
         }
-        if (*(int *)(param_1 + 0x3ac) + uVar6 != -1) {
-          UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_540);
+        lVar3 = (long)(int)(*(int *)(param_1 + 0x3ac) + uVar7);
+        if (lVar3 != -1) {
+          UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_540,lVar3);
           uStack_52c = 4;
           iStack_528 = (int)((float)iStack_528 * *(float *)(param_1 + 0x94));
           if (*(int *)(iVar4 + 0x284) < 1) {
@@ -1082,141 +1085,144 @@ void Result_Draw_TestCourse(int param_1)
         }
       }
       else {
-        if (*(int *)(param_1 + 0x3a4) + uVar6 != -1) {
-          UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_480);
+        lVar3 = (long)(int)(*(int *)(param_1 + 0x3a4) + uVar7);
+        if (lVar3 != -1) {
+          UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_480,lVar3);
           uStack_46c = 0;
           iStack_468 = (int)((float)iStack_468 * *(float *)(param_1 + 0x94));
           UiText_DrawById(auStack_480,0xc);
         }
-        if (*(int *)(param_1 + 0x3ac) + uVar6 != -1) {
-          UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_4c0);
+        lVar3 = (long)(int)(*(int *)(param_1 + 0x3ac) + uVar7);
+        if (lVar3 != -1) {
+          UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_4c0,lVar3);
           uStack_4ac = 0;
           iStack_4a8 = (int)((float)iStack_4a8 * *(float *)(param_1 + 0x94));
           UiText_DrawById(auStack_4c0,0xb);
         }
       }
-      uVar6 = uVar6 + 1;
-      iVar5 = iVar5 + 0xc;
+      uVar7 = uVar7 + 1;
+      iVar6 = iVar6 + 0xc;
       iVar4 = iVar4 + 0x10;
-    } while (uVar6 < 9);
+    } while (uVar7 < 9);
     return;
   }
-  if (cVar2 != '\x01') {
+  if (cVar1 != '\x01') {
     return;
   }
   if (*(int *)(param_1 + 0x318) == 0) {
-    iVar5 = *(int *)(param_1 + 0x150);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_180,*(undefined4 *)(param_1 + 0x364));
+    iVar6 = *(int *)(param_1 + 0x150);
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_180,(long)*(int *)(param_1 + 0x364));
     uStack_16c = 0;
     iStack_168 = (int)((float)iStack_168 * *(float *)(param_1 + 0x94));
-    if (iVar5 < 0) {
-      UiText_DrawRivalInfo(auStack_180,7,-iVar5);
-      uVar1 = *(undefined4 *)(param_1 + 4);
+    if (iVar6 < 0) {
+      UiText_DrawRivalInfo(auStack_180,7,-iVar6);
+      pUVar5 = *(UiLayout **)(param_1 + 4);
     }
     else {
-      UiText_DrawRivalInfo(auStack_180,6,iVar5);
-      uVar1 = *(undefined4 *)(param_1 + 4);
+      UiText_DrawRivalInfo(auStack_180,6,iVar6);
+      pUVar5 = *(UiLayout **)(param_1 + 4);
     }
-    iVar5 = *(int *)(param_1 + 0x1a8);
-    UiElem_GetRect(uVar1,auStack_1c0,*(undefined4 *)(param_1 + 900));
+    iVar6 = *(int *)(param_1 + 0x1a8);
+    UiElem_GetRect(pUVar5,auStack_1c0,(long)*(int *)(param_1 + 900));
     uStack_1ac = 4;
     iStack_1a8 = (int)((float)iStack_1a8 * *(float *)(param_1 + 0x94));
-    if (iVar5 < 1) {
-      if (iVar5 < 0) {
-        UiText_DrawRivalInfo(auStack_1c0,9,-iVar5);
+    if (iVar6 < 1) {
+      if (iVar6 < 0) {
+        UiText_DrawRivalInfo(auStack_1c0,9,-iVar6);
       }
       else {
-        UiText_DrawRivalInfo(auStack_1c0,10,iVar5);
+        UiText_DrawRivalInfo(auStack_1c0,10,iVar6);
       }
-      iVar5 = *(int *)(param_1 + 0x38c);
+      iVar6 = *(int *)(param_1 + 0x38c);
     }
     else {
-      UiText_DrawRivalInfo(auStack_1c0,8,iVar5);
-      iVar5 = *(int *)(param_1 + 0x38c);
+      UiText_DrawRivalInfo(auStack_1c0,8,iVar6);
+      iVar6 = *(int *)(param_1 + 0x38c);
     }
     iVar4 = *(int *)(param_1 + 0x390);
-    if ((iVar5 != -1) && (iVar4 != -1)) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_200);
+    if (((long)iVar6 != -1) && (iVar4 != -1)) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_200,(long)iVar6);
       uStack_1ec = 4;
       iStack_1e8 = (int)((float)iStack_1e8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_200,iVar4);
     }
-    iVar5 = *(int *)(param_1 + 0x1a4);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_240,*(undefined4 *)(param_1 + 0x394));
+    iVar6 = *(int *)(param_1 + 0x1a4);
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_240,(long)*(int *)(param_1 + 0x394));
     uStack_22c = 5;
     iStack_228 = (int)((float)iStack_228 * *(float *)(param_1 + 0x94));
-    if (-1 < iVar5) {
-      UiText_DrawRivalInfo(auStack_240,6,iVar5);
-      uVar1 = *(undefined4 *)(param_1 + 4);
+    if (-1 < iVar6) {
+      UiText_DrawRivalInfo(auStack_240,6,iVar6);
+      pUVar5 = *(UiLayout **)(param_1 + 4);
       goto LAB_002bdc40;
     }
-    UiText_DrawRivalInfo(auStack_240,7,-iVar5);
+    UiText_DrawRivalInfo(auStack_240,7,-iVar6);
   }
   else {
-    if (*(int *)(param_1 + 0x364) == -1) {
-      iVar5 = *(int *)(param_1 + 900);
+    if ((long)*(int *)(param_1 + 0x364) == -1) {
+      iVar6 = *(int *)(param_1 + 900);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x364));
       uStack_6c = 0;
       iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_80,0xc);
-      iVar5 = *(int *)(param_1 + 900);
+      iVar6 = *(int *)(param_1 + 900);
     }
-    if (iVar5 == -1) {
-      iVar5 = *(int *)(param_1 + 0x38c);
+    if ((long)iVar6 == -1) {
+      iVar6 = *(int *)(param_1 + 0x38c);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_c0);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_c0,(long)iVar6);
       uStack_ac = 0;
       iStack_a8 = (int)((float)iStack_a8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_c0,0xb);
-      iVar5 = *(int *)(param_1 + 0x38c);
+      iVar6 = *(int *)(param_1 + 0x38c);
     }
     iVar4 = *(int *)(param_1 + 0x390);
-    if ((iVar5 != -1) && (iVar4 != -1)) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_100);
+    if (((long)iVar6 != -1) && (iVar4 != -1)) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_100,(long)iVar6);
       uStack_ec = 4;
       iStack_e8 = (int)((float)iStack_e8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_100,iVar4);
     }
-    if (*(int *)(param_1 + 0x394) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_140);
+    if ((long)*(int *)(param_1 + 0x394) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_140,(long)*(int *)(param_1 + 0x394));
       uStack_12c = 5;
       iStack_128 = (int)((float)iStack_128 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_140,0xb);
     }
   }
-  uVar1 = *(undefined4 *)(param_1 + 4);
+  pUVar5 = *(UiLayout **)(param_1 + 4);
 LAB_002bdc40:
-  uVar6 = 0;
+  uVar7 = 0;
   do {
-    UiElem_GetRect(uVar1,auStack_40,*(int *)(param_1 + 0x39c) + uVar6);
+    UiElem_GetRect(pUVar5,auStack_40,(long)(int)(*(int *)(param_1 + 0x39c) + uVar7));
     uStack_2c = 4;
     iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
-    UiText_DrawRivalInfo(auStack_40,1,0,uVar6 + 1);
+    UiText_DrawRivalInfo(auStack_40,1,0,uVar7 + 1);
     if (*(int *)(_g_RaceHud + 0x298) == 0) {
-      uVar3 = 8 - uVar6;
+      uVar2 = 8 - uVar7;
     }
     else {
-      uVar3 = uVar6;
+      uVar2 = uVar7;
     }
     if (*(int *)(param_1 + 0x318) == 0) {
-      iVar4 = param_1 + uVar3 * 4;
-      iVar5 = *(int *)(iVar4 + 0x154);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_300,*(int *)(param_1 + 0x3a4) + uVar6);
+      iVar4 = param_1 + uVar2 * 4;
+      iVar6 = *(int *)(iVar4 + 0x154);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_300,
+                     (long)(int)(*(int *)(param_1 + 0x3a4) + uVar7));
       uStack_2ec = 0;
       iStack_2e8 = (int)((float)iStack_2e8 * *(float *)(param_1 + 0x94));
-      if (iVar5 < 0) {
-        UiText_DrawRivalInfo(auStack_300,7,-iVar5);
-        iVar5 = *(int *)(param_1 + 0x3ac);
+      if (iVar6 < 0) {
+        UiText_DrawRivalInfo(auStack_300,7,-iVar6);
+        iVar6 = *(int *)(param_1 + 0x3ac);
       }
       else {
-        UiText_DrawRivalInfo(auStack_300,6,iVar5);
-        iVar5 = *(int *)(param_1 + 0x3ac);
+        UiText_DrawRivalInfo(auStack_300,6,iVar6);
+        iVar6 = *(int *)(param_1 + 0x3ac);
       }
       iVar4 = *(int *)(iVar4 + 0x1ac);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_340,iVar5 + uVar6);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_340,(long)(int)(iVar6 + uVar7));
       uStack_32c = 4;
       iStack_328 = (int)((float)iStack_328 * *(float *)(param_1 + 0x94));
       if (iVar4 < 1) {
@@ -1232,25 +1238,26 @@ LAB_002bdc40:
       }
     }
     else {
-      if (*(int *)(param_1 + 0x3a4) + uVar6 == -1) {
-        iVar5 = *(int *)(param_1 + 0x3ac);
+      lVar3 = (long)(int)(*(int *)(param_1 + 0x3a4) + uVar7);
+      if (lVar3 == -1) {
+        iVar6 = *(int *)(param_1 + 0x3ac);
       }
       else {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_280);
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_280,lVar3);
         uStack_26c = 0;
         iStack_268 = (int)((float)iStack_268 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_280,0xc);
-        iVar5 = *(int *)(param_1 + 0x3ac);
+        iVar6 = *(int *)(param_1 + 0x3ac);
       }
-      if (iVar5 + uVar6 != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_2c0);
+      if ((long)(int)(iVar6 + uVar7) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_2c0,(long)(int)(iVar6 + uVar7));
         uStack_2ac = 0;
         iStack_2a8 = (int)((float)iStack_2a8 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_2c0,0xb);
       }
     }
-    uVar6 = uVar6 + 1;
-  } while (uVar6 < 9);
+    uVar7 = uVar7 + 1;
+  } while (uVar7 < 9);
   return;
 }
 
@@ -1260,46 +1267,46 @@ void Result_Draw_TestCourse_e4b0(int param_1)
 {
   char cVar1;
   int iVar2;
-  undefined1 auStack_380 [20];
+  undefined4 auStack_380 [5];
   undefined4 uStack_36c;
   int iStack_368;
-  undefined1 auStack_340 [20];
+  undefined4 auStack_340 [5];
   undefined4 uStack_32c;
   int iStack_328;
-  undefined1 auStack_300 [20];
+  undefined4 auStack_300 [5];
   undefined4 uStack_2ec;
   int iStack_2e8;
-  undefined1 auStack_2c0 [20];
+  undefined4 auStack_2c0 [5];
   undefined4 uStack_2ac;
   int iStack_2a8;
-  undefined1 auStack_280 [20];
+  undefined4 auStack_280 [5];
   undefined4 uStack_26c;
   int iStack_268;
-  undefined1 auStack_240 [20];
+  undefined4 auStack_240 [5];
   undefined4 uStack_22c;
   int iStack_228;
-  undefined1 auStack_200 [20];
+  undefined4 auStack_200 [5];
   undefined4 uStack_1ec;
   int iStack_1e8;
-  undefined1 auStack_1c0 [20];
+  undefined4 auStack_1c0 [5];
   undefined4 uStack_1ac;
   int iStack_1a8;
-  undefined1 auStack_180 [20];
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
   int iStack_168;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
   int iStack_128;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
   int iStack_e8;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
   int iStack_a8;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
@@ -1310,7 +1317,7 @@ void Result_Draw_TestCourse_e4b0(int param_1)
         return;
       }
       iVar2 = *(int *)(param_1 + 0xa0);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_40,*(undefined4 *)(param_1 + 0x354));
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_40,(long)*(int *)(param_1 + 0x354));
       uStack_2c = 0;
       iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
       if (iVar2 < 0) {
@@ -1323,7 +1330,7 @@ void Result_Draw_TestCourse_e4b0(int param_1)
       }
       if (iVar2 == 0) {
         iVar2 = *(int *)(param_1 + 0x150);
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_c0,*(undefined4 *)(param_1 + 0x364));
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_c0,(long)*(int *)(param_1 + 0x364));
         uStack_ac = 0;
         iStack_a8 = (int)((float)iStack_a8 * *(float *)(param_1 + 0x94));
         if (iVar2 < 0) {
@@ -1333,10 +1340,10 @@ void Result_Draw_TestCourse_e4b0(int param_1)
         UiText_DrawRivalInfo(auStack_c0,6,iVar2);
         return;
       }
-      if (*(int *)(param_1 + 0x364) == -1) {
+      if ((long)*(int *)(param_1 + 0x364) == -1) {
         return;
       }
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x364));
       uStack_6c = 0;
       iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_80,0xc);
@@ -1344,8 +1351,8 @@ void Result_Draw_TestCourse_e4b0(int param_1)
     }
     if (((*(int *)(param_1 + 0xcc) == 0) && (*(int *)(param_1 + 0xd0) == 0)) &&
        (*(int *)(param_1 + 0xd4) == 0)) {
-      if (*(int *)(param_1 + 0x354) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_100);
+      if ((long)*(int *)(param_1 + 0x354) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_100,(long)*(int *)(param_1 + 0x354));
         uStack_ec = 0;
         iStack_e8 = (int)((float)iStack_e8 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_100,0xb);
@@ -1353,8 +1360,8 @@ void Result_Draw_TestCourse_e4b0(int param_1)
         goto LAB_002be668;
       }
     }
-    else if (*(int *)(param_1 + 0x354) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_140);
+    else if ((long)*(int *)(param_1 + 0x354) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_140,(long)*(int *)(param_1 + 0x354));
       uStack_12c = 0;
       iStack_128 = (int)((float)iStack_128 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
@@ -1364,19 +1371,19 @@ void Result_Draw_TestCourse_e4b0(int param_1)
     iVar2 = *(int *)(param_1 + 0x318);
 LAB_002be668:
     if (iVar2 != 0) {
-      if (*(int *)(param_1 + 0x364) == -1) {
+      if ((long)*(int *)(param_1 + 0x364) == -1) {
         return;
       }
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_180);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_180,(long)*(int *)(param_1 + 0x364));
       uStack_16c = 0;
       iStack_168 = (int)((float)iStack_168 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_180,0xc);
       return;
     }
-    if (*(int *)(param_1 + 0x364) == -1) {
+    if ((long)*(int *)(param_1 + 0x364) == -1) {
       return;
     }
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_1c0);
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_1c0,(long)*(int *)(param_1 + 0x364));
     uStack_1ac = 0;
     iStack_1a8 = (int)((float)iStack_1a8 * *(float *)(param_1 + 0x94));
     UiText_DrawRivalInfo
@@ -1385,7 +1392,7 @@ LAB_002be668:
     return;
   }
   iVar2 = *(int *)(param_1 + 0xa0);
-  UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_200,*(undefined4 *)(param_1 + 0x354));
+  UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_200,(long)*(int *)(param_1 + 0x354));
   uStack_1ec = 0;
   iStack_1e8 = (int)((float)iStack_1e8 * *(float *)(param_1 + 0x94));
   if (iVar2 < 0) {
@@ -1398,7 +1405,7 @@ LAB_002be668:
   }
   if (iVar2 == 0) {
     iVar2 = *(int *)(param_1 + 0x150);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_280,*(undefined4 *)(param_1 + 0x364));
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_280,(long)*(int *)(param_1 + 0x364));
     uStack_26c = 0;
     iStack_268 = (int)((float)iStack_268 * *(float *)(param_1 + 0x94));
     if (iVar2 < 0) {
@@ -1409,8 +1416,8 @@ LAB_002be668:
     iVar2 = *(int *)(param_1 + 0xcc);
   }
   else {
-    if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_240);
+    if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_240,(long)*(int *)(param_1 + 0x364));
       uStack_22c = 0;
       iStack_228 = (int)((float)iStack_228 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_240,0xc);
@@ -1419,8 +1426,8 @@ LAB_002be7b8:
     iVar2 = *(int *)(param_1 + 0xcc);
   }
   if (((iVar2 == 0) && (*(int *)(param_1 + 0xd0) == 0)) && (*(int *)(param_1 + 0xd4) == 0)) {
-    if (*(int *)(param_1 + 0x374) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_2c0);
+    if ((long)*(int *)(param_1 + 0x374) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_2c0,(long)*(int *)(param_1 + 0x374));
       uStack_2ac = 0;
       iStack_2a8 = (int)((float)iStack_2a8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_2c0,0xb);
@@ -1428,8 +1435,8 @@ LAB_002be7b8:
       goto LAB_002be884;
     }
   }
-  else if (*(int *)(param_1 + 0x374) != -1) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_300);
+  else if ((long)*(int *)(param_1 + 0x374) != -1) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_300,(long)*(int *)(param_1 + 0x374));
     uStack_2ec = 0;
     iStack_2e8 = (int)((float)iStack_2e8 * *(float *)(param_1 + 0x94));
     UiText_DrawRivalInfo
@@ -1439,8 +1446,8 @@ LAB_002be7b8:
   iVar2 = *(int *)(param_1 + 0x318);
 LAB_002be884:
   if (iVar2 == 0) {
-    if (*(int *)(param_1 + 900) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_380);
+    if ((long)*(int *)(param_1 + 900) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_380,(long)*(int *)(param_1 + 900));
       uStack_36c = 0;
       iStack_368 = (int)((float)iStack_368 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
@@ -1448,8 +1455,8 @@ LAB_002be884:
                  *(undefined4 *)(param_1 + 0x1ec));
     }
   }
-  else if (*(int *)(param_1 + 900) != -1) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_340);
+  else if ((long)*(int *)(param_1 + 900) != -1) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_340,(long)*(int *)(param_1 + 900));
     uStack_32c = 0;
     iStack_328 = (int)((float)iStack_328 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_340,0xc);
@@ -1463,75 +1470,74 @@ LAB_002be884:
 void Result_Draw_TestCourse_ea60(int param_1)
 
 {
-  undefined4 uVar1;
+  UiLayout *pUVar1;
   byte bVar2;
   int iVar3;
   uint uVar4;
-  undefined8 uVar5;
-  uint uVar6;
-  int iVar7;
-  undefined1 auStack_500 [20];
+  uint uVar5;
+  int iVar6;
+  undefined4 auStack_500 [5];
   undefined4 uStack_4ec;
   int iStack_4e8;
-  undefined1 auStack_4c0 [20];
+  undefined4 auStack_4c0 [5];
   undefined4 uStack_4ac;
   int iStack_4a8;
-  undefined1 auStack_480 [20];
+  undefined4 auStack_480 [5];
   undefined4 uStack_46c;
   int iStack_468;
-  undefined1 auStack_440 [20];
+  undefined4 auStack_440 [5];
   undefined4 uStack_42c;
   int iStack_428;
-  undefined1 auStack_400 [20];
+  undefined4 auStack_400 [5];
   undefined4 uStack_3ec;
   int iStack_3e8;
-  undefined1 auStack_3c0 [20];
+  undefined4 auStack_3c0 [5];
   undefined4 uStack_3ac;
   int iStack_3a8;
-  undefined1 auStack_380 [20];
+  undefined4 auStack_380 [5];
   undefined4 uStack_36c;
   int iStack_368;
-  undefined1 auStack_340 [20];
+  undefined4 auStack_340 [5];
   undefined4 uStack_32c;
   int iStack_328;
-  undefined1 auStack_300 [20];
+  undefined4 auStack_300 [5];
   undefined4 uStack_2ec;
   int iStack_2e8;
-  undefined1 auStack_2c0 [20];
+  undefined4 auStack_2c0 [5];
   undefined4 uStack_2ac;
   int iStack_2a8;
-  undefined1 auStack_280 [20];
+  undefined4 auStack_280 [5];
   undefined4 uStack_26c;
   int iStack_268;
-  undefined1 auStack_240 [20];
+  undefined4 auStack_240 [5];
   undefined4 uStack_22c;
   int iStack_228;
-  undefined1 auStack_200 [20];
+  undefined4 auStack_200 [5];
   undefined4 uStack_1ec;
   int iStack_1e8;
-  undefined1 auStack_1c0 [20];
+  undefined4 auStack_1c0 [5];
   undefined4 uStack_1ac;
   int iStack_1a8;
-  undefined1 auStack_180 [20];
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
   int iStack_168;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
   int iStack_128;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
   int iStack_e8;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
   int iStack_a8;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
-  uVar1 = *(undefined4 *)(param_1 + 4);
+  pUVar1 = *(UiLayout **)(param_1 + 4);
   bVar2 = GameState_Get_354_7050();
   if (7 < bVar2) {
     return;
@@ -1539,14 +1545,14 @@ void Result_Draw_TestCourse_ea60(int param_1)
                     /* WARNING: Switch is manually overridden */
   switch(bVar2) {
   default:
-    uVar5 = 10;
+    iVar6 = 10;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar5 = 7;
+      iVar6 = 7;
     }
-    UiElem_SetPropInt(uVar1,0x1e,0x16,uVar5);
+    UiElem_SetPropInt(pUVar1,0x1e,0x16,iVar6);
     if (*(int *)(param_1 + 0x318) == 0) {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_c0);
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_c0,(long)*(int *)(param_1 + 0x364));
         uStack_ac = 0;
         iStack_a8 = (int)((float)iStack_a8 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -1554,71 +1560,71 @@ void Result_Draw_TestCourse_ea60(int param_1)
                    *(undefined4 *)(param_1 + 0x1e0));
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x364));
       uStack_6c = 0;
       iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_80,0xc);
     }
     break;
   case 1:
-    uVar5 = 10;
+    iVar6 = 10;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar5 = 7;
+      iVar6 = 7;
     }
-    UiElem_SetPropInt(uVar1,0x24,0x16,uVar5);
-    iVar7 = *(int *)(param_1 + 0x330);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_100,*(undefined4 *)(param_1 + 0x354));
+    UiElem_SetPropInt(pUVar1,0x24,0x16,iVar6);
+    iVar6 = *(int *)(param_1 + 0x330);
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_100,(long)*(int *)(param_1 + 0x354));
     uStack_ec = 0;
     iStack_e8 = (int)((float)iStack_e8 * *(float *)(param_1 + 0x94));
-    if (iVar7 < 0) {
-      UiText_DrawRivalInfo(auStack_100,7,-iVar7);
-      iVar7 = *(int *)(param_1 + 0x318);
+    if (iVar6 < 0) {
+      UiText_DrawRivalInfo(auStack_100,7,-iVar6);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiText_DrawRivalInfo(auStack_100,6,iVar7);
-      iVar7 = *(int *)(param_1 + 0x318);
+      UiText_DrawRivalInfo(auStack_100,6,iVar6);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
-    if (iVar7 == 0) {
-      iVar7 = *(int *)(param_1 + 0x150);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_180,*(undefined4 *)(param_1 + 0x364));
+    if (iVar6 == 0) {
+      iVar6 = *(int *)(param_1 + 0x150);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_180,(long)*(int *)(param_1 + 0x364));
       uStack_16c = 0;
       iStack_168 = (int)((float)iStack_168 * *(float *)(param_1 + 0x94));
-      if (iVar7 < 0) {
-        UiText_DrawRivalInfo(auStack_180,7,-iVar7);
+      if (iVar6 < 0) {
+        UiText_DrawRivalInfo(auStack_180,7,-iVar6);
       }
       else {
-        UiText_DrawRivalInfo(auStack_180,6,iVar7);
+        UiText_DrawRivalInfo(auStack_180,6,iVar6);
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_140);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_140,(long)*(int *)(param_1 + 0x364));
       uStack_12c = 0;
       iStack_128 = (int)((float)iStack_128 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_140,0xc);
     }
     break;
   case 2:
-    uVar5 = 10;
+    iVar6 = 10;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar5 = 7;
+      iVar6 = 7;
     }
-    UiElem_SetPropInt(uVar1,0x24,0x16,uVar5);
-    if (*(int *)(param_1 + 0x354) == -1) {
-      iVar7 = *(int *)(param_1 + 0x318);
+    UiElem_SetPropInt(pUVar1,0x24,0x16,iVar6);
+    if ((long)*(int *)(param_1 + 0x354) == -1) {
+      iVar6 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_1c0);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_1c0,(long)*(int *)(param_1 + 0x354));
       uStack_1ac = 0;
       iStack_1a8 = (int)((float)iStack_1a8 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
                 (auStack_1c0,2,*(undefined4 *)(param_1 + 0x334),*(undefined4 *)(param_1 + 0x338),
                  *(undefined4 *)(param_1 + 0x33c));
-      iVar7 = *(int *)(param_1 + 0x318);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
-    if (iVar7 == 0) {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_240);
+    if (iVar6 == 0) {
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_240,(long)*(int *)(param_1 + 0x364));
         uStack_22c = 0;
         iStack_228 = (int)((float)iStack_228 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -1626,68 +1632,68 @@ void Result_Draw_TestCourse_ea60(int param_1)
                    *(undefined4 *)(param_1 + 0x1ec));
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_200);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_200,(long)*(int *)(param_1 + 0x364));
       uStack_1ec = 0;
       iStack_1e8 = (int)((float)iStack_1e8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_200,0xc);
     }
     break;
   case 3:
-    uVar5 = 10;
+    iVar6 = 10;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar5 = 7;
+      iVar6 = 7;
     }
-    UiElem_SetPropInt(uVar1,0x25,0x16,uVar5);
-    iVar7 = *(int *)(param_1 + 0x330);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_340,*(undefined4 *)(param_1 + 0x354));
+    UiElem_SetPropInt(pUVar1,0x25,0x16,iVar6);
+    iVar6 = *(int *)(param_1 + 0x330);
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_340,(long)*(int *)(param_1 + 0x354));
     uStack_32c = 0;
     iStack_328 = (int)((float)iStack_328 * *(float *)(param_1 + 0x94));
-    if (iVar7 < 0) {
-      UiText_DrawRivalInfo(auStack_340,7,-iVar7);
-      iVar7 = *(int *)(param_1 + 0x318);
+    if (iVar6 < 0) {
+      UiText_DrawRivalInfo(auStack_340,7,-iVar6);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiText_DrawRivalInfo(auStack_340,6,iVar7);
-      iVar7 = *(int *)(param_1 + 0x318);
+      UiText_DrawRivalInfo(auStack_340,6,iVar6);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
-    if (iVar7 == 0) {
-      iVar7 = *(int *)(param_1 + 0x150);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_3c0,*(undefined4 *)(param_1 + 0x364));
+    if (iVar6 == 0) {
+      iVar6 = *(int *)(param_1 + 0x150);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_3c0,(long)*(int *)(param_1 + 0x364));
       uStack_3ac = 0;
       iStack_3a8 = (int)((float)iStack_3a8 * *(float *)(param_1 + 0x94));
-      if (iVar7 < 0) {
-        UiText_DrawRivalInfo(auStack_3c0,7,-iVar7);
+      if (iVar6 < 0) {
+        UiText_DrawRivalInfo(auStack_3c0,7,-iVar6);
         goto LAB_002beeec;
       }
-      UiText_DrawRivalInfo(auStack_3c0,6,iVar7);
-      iVar7 = *(int *)(param_1 + 0x374);
+      UiText_DrawRivalInfo(auStack_3c0,6,iVar6);
+      iVar6 = *(int *)(param_1 + 0x374);
     }
     else {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_380);
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_380,(long)*(int *)(param_1 + 0x364));
         uStack_36c = 0;
         iStack_368 = (int)((float)iStack_368 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_380,0xc);
       }
 LAB_002beeec:
-      iVar7 = *(int *)(param_1 + 0x374);
+      iVar6 = *(int *)(param_1 + 0x374);
     }
-    if (iVar7 == -1) {
-      iVar7 = *(int *)(param_1 + 0x318);
+    if ((long)iVar6 == -1) {
+      iVar6 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_400);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_400,(long)iVar6);
       uStack_3ec = 0;
       iStack_3e8 = (int)((float)iStack_3e8 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
                 (auStack_400,2,*(undefined4 *)(param_1 + 0x334),*(undefined4 *)(param_1 + 0x338),
                  *(undefined4 *)(param_1 + 0x33c));
-      iVar7 = *(int *)(param_1 + 0x318);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
-    if (iVar7 == 0) {
-      if (*(int *)(param_1 + 900) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_480);
+    if (iVar6 == 0) {
+      if ((long)*(int *)(param_1 + 900) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_480,(long)*(int *)(param_1 + 900));
         uStack_46c = 0;
         iStack_468 = (int)((float)iStack_468 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -1695,34 +1701,34 @@ LAB_002beeec:
                    *(undefined4 *)(param_1 + 0x1ec));
       }
     }
-    else if (*(int *)(param_1 + 900) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_440);
+    else if ((long)*(int *)(param_1 + 900) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_440,(long)*(int *)(param_1 + 900));
       uStack_42c = 0;
       iStack_428 = (int)((float)iStack_428 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_440,0xc);
     }
     break;
   case 6:
-    uVar5 = 10;
+    iVar6 = 10;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar5 = 7;
+      iVar6 = 7;
     }
-    UiElem_SetPropInt(uVar1,0x24,0x16,uVar5);
-    if (*(int *)(param_1 + 0x354) == -1) {
-      iVar7 = *(int *)(param_1 + 0x318);
+    UiElem_SetPropInt(pUVar1,0x24,0x16,iVar6);
+    if ((long)*(int *)(param_1 + 0x354) == -1) {
+      iVar6 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_280);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_280,(long)*(int *)(param_1 + 0x354));
       uStack_26c = 0;
       iStack_268 = (int)((float)iStack_268 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
                 (auStack_280,2,*(undefined4 *)(param_1 + 0x334),*(undefined4 *)(param_1 + 0x338),
                  *(undefined4 *)(param_1 + 0x33c));
-      iVar7 = *(int *)(param_1 + 0x318);
+      iVar6 = *(int *)(param_1 + 0x318);
     }
-    if (iVar7 == 0) {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_300);
+    if (iVar6 == 0) {
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_300,(long)*(int *)(param_1 + 0x364));
         uStack_2ec = 0;
         iStack_2e8 = (int)((float)iStack_2e8 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -1730,39 +1736,40 @@ LAB_002beeec:
                    *(undefined4 *)(param_1 + 0x1ec));
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_2c0);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_2c0,(long)*(int *)(param_1 + 0x364));
       uStack_2ac = 0;
       iStack_2a8 = (int)((float)iStack_2a8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_2c0,0xc);
     }
     break;
   case 7:
-    uVar5 = 8;
+    iVar6 = 8;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar5 = 7;
+      iVar6 = 7;
     }
-    UiElem_SetPropInt(uVar1,0x28,0x16,uVar5);
-    uVar1 = *(undefined4 *)(param_1 + 4);
+    UiElem_SetPropInt(pUVar1,0x28,0x16,iVar6);
+    pUVar1 = *(UiLayout **)(param_1 + 4);
     RaceProg_GetArray_34(0);
-    uVar6 = 0;
+    uVar5 = 0;
     do {
-      UiElem_GetRect(uVar1,auStack_40,*(int *)(param_1 + 0x39c) + uVar6);
+      UiElem_GetRect(pUVar1,auStack_40,(long)(int)(*(int *)(param_1 + 0x39c) + uVar5));
       uStack_2c = 4;
       iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
       if (*(int *)(_g_RaceHud + 0x298) == 0) {
-        uVar4 = 8 - uVar6;
+        uVar4 = 8 - uVar5;
       }
       else {
-        uVar4 = uVar6;
+        uVar4 = uVar5;
       }
-      iVar7 = param_1 + uVar4 * 4;
-      if (*(int *)(iVar7 + 0x17c) == 0) {
+      iVar6 = param_1 + uVar4 * 4;
+      if (*(int *)(iVar6 + 0x17c) == 0) {
         return;
       }
-      UiText_DrawRivalInfo(auStack_40,1,0,uVar6 + 1);
-      iVar3 = *(int *)(iVar7 + 0x17c);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_4c0,*(int *)(param_1 + 0x3a4) + uVar6);
+      UiText_DrawRivalInfo(auStack_40,1,0,uVar5 + 1);
+      iVar3 = *(int *)(iVar6 + 0x17c);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_4c0,
+                     (long)(int)(*(int *)(param_1 + 0x3a4) + uVar5));
       uStack_4ac = 0;
       iStack_4a8 = (int)((float)iStack_4a8 * *(float *)(param_1 + 0x94));
       if (iVar3 < 0) {
@@ -1773,18 +1780,18 @@ LAB_002beeec:
         UiText_DrawRivalInfo(auStack_4c0,6,iVar3);
         iVar3 = *(int *)(param_1 + 0x3ac);
       }
-      iVar7 = *(int *)(iVar7 + 0x154);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_500,iVar3 + uVar6);
+      iVar6 = *(int *)(iVar6 + 0x154);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_500,(long)(int)(iVar3 + uVar5));
       uStack_4ec = 0;
       iStack_4e8 = (int)((float)iStack_4e8 * *(float *)(param_1 + 0x94));
-      if (iVar7 < 0) {
-        UiText_DrawRivalInfo(auStack_500,7,-iVar7);
+      if (iVar6 < 0) {
+        UiText_DrawRivalInfo(auStack_500,7,-iVar6);
       }
       else {
-        UiText_DrawRivalInfo(auStack_500,6,iVar7);
+        UiText_DrawRivalInfo(auStack_500,6,iVar6);
       }
-      uVar6 = uVar6 + 1;
-    } while (uVar6 < 9);
+      uVar5 = uVar5 + 1;
+    } while (uVar5 < 9);
   }
   return;
 }
@@ -1793,54 +1800,53 @@ LAB_002beeec:
 void Result_Draw_TestCourse_f390(int param_1)
 
 {
-  undefined4 uVar1;
+  UiLayout *pUVar1;
   byte bVar2;
   int iVar3;
-  undefined8 uVar4;
-  undefined1 auStack_380 [20];
+  undefined4 auStack_380 [5];
   undefined4 uStack_36c;
   int iStack_368;
-  undefined1 auStack_340 [20];
+  undefined4 auStack_340 [5];
   undefined4 uStack_32c;
   int iStack_328;
-  undefined1 auStack_300 [20];
+  undefined4 auStack_300 [5];
   undefined4 uStack_2ec;
   int iStack_2e8;
-  undefined1 auStack_2c0 [20];
+  undefined4 auStack_2c0 [5];
   undefined4 uStack_2ac;
   int iStack_2a8;
-  undefined1 auStack_280 [20];
+  undefined4 auStack_280 [5];
   undefined4 uStack_26c;
   int iStack_268;
-  undefined1 auStack_240 [20];
+  undefined4 auStack_240 [5];
   undefined4 uStack_22c;
   int iStack_228;
-  undefined1 auStack_200 [20];
+  undefined4 auStack_200 [5];
   undefined4 uStack_1ec;
   int iStack_1e8;
-  undefined1 auStack_1c0 [20];
+  undefined4 auStack_1c0 [5];
   undefined4 uStack_1ac;
   int iStack_1a8;
-  undefined1 auStack_180 [20];
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
   int iStack_168;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
   int iStack_128;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
   int iStack_e8;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
   int iStack_a8;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
-  uVar1 = *(undefined4 *)(param_1 + 4);
+  pUVar1 = *(UiLayout **)(param_1 + 4);
   bVar2 = GameState_Get_354_7050();
   if (5 < bVar2) {
     return;
@@ -1848,14 +1854,14 @@ void Result_Draw_TestCourse_f390(int param_1)
                     /* WARNING: Switch is manually overridden */
   switch(bVar2) {
   case 0:
-    uVar4 = 8;
+    iVar3 = 8;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar4 = 9;
+      iVar3 = 9;
     }
-    UiElem_SetPropInt(uVar1,0x1e,0x16,uVar4);
+    UiElem_SetPropInt(pUVar1,0x1e,0x16,iVar3);
     if (*(int *)(param_1 + 0x318) == 0) {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_200);
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_200,(long)*(int *)(param_1 + 0x364));
         uStack_1ec = 0;
         iStack_1e8 = (int)((float)iStack_1e8 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -1863,21 +1869,21 @@ void Result_Draw_TestCourse_f390(int param_1)
                    *(undefined4 *)(param_1 + 0x1e0));
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_1c0);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_1c0,(long)*(int *)(param_1 + 0x364));
       uStack_1ac = 0;
       iStack_1a8 = (int)((float)iStack_1a8 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_1c0,0xc);
     }
     break;
   case 1:
-    uVar4 = 8;
+    iVar3 = 8;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar4 = 9;
+      iVar3 = 9;
     }
-    UiElem_SetPropInt(uVar1,0x24,0x16,uVar4);
+    UiElem_SetPropInt(pUVar1,0x24,0x16,iVar3);
     iVar3 = *(int *)(param_1 + 0x330);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_40,*(undefined4 *)(param_1 + 0x354));
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_40,(long)*(int *)(param_1 + 0x354));
     uStack_2c = 0;
     iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
     if (iVar3 < 0) {
@@ -1890,7 +1896,7 @@ void Result_Draw_TestCourse_f390(int param_1)
     }
     if (iVar3 == 0) {
       iVar3 = *(int *)(param_1 + 0x150);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_c0,*(undefined4 *)(param_1 + 0x364));
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_c0,(long)*(int *)(param_1 + 0x364));
       uStack_ac = 0;
       iStack_a8 = (int)((float)iStack_a8 * *(float *)(param_1 + 0x94));
       if (iVar3 < 0) {
@@ -1900,24 +1906,24 @@ void Result_Draw_TestCourse_f390(int param_1)
         UiText_DrawRivalInfo(auStack_c0,6,iVar3);
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x364));
       uStack_6c = 0;
       iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_80,0xc);
     }
     break;
   case 2:
-    uVar4 = 8;
+    iVar3 = 8;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar4 = 9;
+      iVar3 = 9;
     }
-    UiElem_SetPropInt(uVar1,0x24,0x16,uVar4);
-    if (*(int *)(param_1 + 0x354) == -1) {
+    UiElem_SetPropInt(pUVar1,0x24,0x16,iVar3);
+    if ((long)*(int *)(param_1 + 0x354) == -1) {
       iVar3 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_100);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_100,(long)*(int *)(param_1 + 0x354));
       uStack_ec = 0;
       iStack_e8 = (int)((float)iStack_e8 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
@@ -1926,8 +1932,8 @@ void Result_Draw_TestCourse_f390(int param_1)
       iVar3 = *(int *)(param_1 + 0x318);
     }
     if (iVar3 == 0) {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_180);
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_180,(long)*(int *)(param_1 + 0x364));
         uStack_16c = 0;
         iStack_168 = (int)((float)iStack_168 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -1935,21 +1941,21 @@ void Result_Draw_TestCourse_f390(int param_1)
                    *(undefined4 *)(param_1 + 0x1ec));
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_140);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_140,(long)*(int *)(param_1 + 0x364));
       uStack_12c = 0;
       iStack_128 = (int)((float)iStack_128 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_140,0xc);
     }
     break;
   case 3:
-    uVar4 = 8;
+    iVar3 = 8;
     if (*(int *)(param_1 + 0x328) == 0) {
-      uVar4 = 9;
+      iVar3 = 9;
     }
-    UiElem_SetPropInt(uVar1,0x25,0x16,uVar4);
+    UiElem_SetPropInt(pUVar1,0x25,0x16,iVar3);
     iVar3 = *(int *)(param_1 + 0x330);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_240,*(undefined4 *)(param_1 + 0x354));
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_240,(long)*(int *)(param_1 + 0x354));
     uStack_22c = 0;
     iStack_228 = (int)((float)iStack_228 * *(float *)(param_1 + 0x94));
     if (iVar3 < 0) {
@@ -1962,7 +1968,7 @@ void Result_Draw_TestCourse_f390(int param_1)
     }
     if (iVar3 == 0) {
       iVar3 = *(int *)(param_1 + 0x150);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_2c0,*(undefined4 *)(param_1 + 0x364));
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_2c0,(long)*(int *)(param_1 + 0x364));
       uStack_2ac = 0;
       iStack_2a8 = (int)((float)iStack_2a8 * *(float *)(param_1 + 0x94));
       if (iVar3 < 0) {
@@ -1973,8 +1979,8 @@ void Result_Draw_TestCourse_f390(int param_1)
       iVar3 = *(int *)(param_1 + 0x374);
     }
     else {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_280);
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_280,(long)*(int *)(param_1 + 0x364));
         uStack_26c = 0;
         iStack_268 = (int)((float)iStack_268 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_280,0xc);
@@ -1982,11 +1988,11 @@ void Result_Draw_TestCourse_f390(int param_1)
 LAB_002bf718:
       iVar3 = *(int *)(param_1 + 0x374);
     }
-    if (iVar3 == -1) {
+    if ((long)iVar3 == -1) {
       iVar3 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_300);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_300,(long)iVar3);
       uStack_2ec = 0;
       iStack_2e8 = (int)((float)iStack_2e8 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
@@ -1995,8 +2001,8 @@ LAB_002bf718:
       iVar3 = *(int *)(param_1 + 0x318);
     }
     if (iVar3 == 0) {
-      if (*(int *)(param_1 + 900) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_380);
+      if ((long)*(int *)(param_1 + 900) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_380,(long)*(int *)(param_1 + 900));
         uStack_36c = 0;
         iStack_368 = (int)((float)iStack_368 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -2004,8 +2010,8 @@ LAB_002bf718:
                    *(undefined4 *)(param_1 + 0x1ec));
       }
     }
-    else if (*(int *)(param_1 + 900) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_340);
+    else if ((long)*(int *)(param_1 + 900) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_340,(long)*(int *)(param_1 + 900));
       uStack_32c = 0;
       iStack_328 = (int)((float)iStack_328 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_340,0xc);
@@ -2018,65 +2024,65 @@ LAB_002bf718:
 void Result_Draw_TestCourse_f9a0(int param_1)
 
 {
-  undefined4 uVar1;
+  UiLayout *pUVar1;
   char cVar2;
   ulong uVar3;
   int iVar4;
-  undefined8 unaff_s0;
-  undefined1 auStack_180 [20];
+  int unaff_s0_lo;
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
   int iStack_168;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
   int iStack_128;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
   int iStack_e8;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
   int iStack_a8;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
-  uVar1 = *(undefined4 *)(param_1 + 4);
+  pUVar1 = *(UiLayout **)(param_1 + 4);
   uVar3 = Password_GetModeCode();
   if (uVar3 < 7) {
                     /* WARNING: Switch is manually overridden */
     switch((int)uVar3) {
     case 0:
-      unaff_s0 = 7;
+      unaff_s0_lo = 7;
       break;
     case 1:
-      unaff_s0 = 8;
+      unaff_s0_lo = 8;
       break;
     case 2:
-      unaff_s0 = 0xb;
+      unaff_s0_lo = 0xb;
       break;
     case 3:
-      unaff_s0 = 10;
+      unaff_s0_lo = 10;
       break;
     case 4:
-      unaff_s0 = 9;
+      unaff_s0_lo = 9;
       break;
     case 5:
-      unaff_s0 = 0xd;
+      unaff_s0_lo = 0xd;
       break;
     case 6:
-      unaff_s0 = 0xe;
+      unaff_s0_lo = 0xe;
     }
   }
-  UiElem_SetPropInt(uVar1,0x25,0x16,unaff_s0);
+  UiElem_SetPropInt(pUVar1,0x25,0x16,unaff_s0_lo);
   cVar2 = GameState_Get_354_7050();
   if (cVar2 == '\x02') {
-    if (*(int *)(param_1 + 0x354) == -1) {
+    if ((long)*(int *)(param_1 + 0x354) == -1) {
       iVar4 = *(int *)(param_1 + 0x318);
     }
     else {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_100);
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_100,(long)*(int *)(param_1 + 0x354));
       uStack_ec = 0;
       iStack_e8 = (int)((float)iStack_e8 * *(float *)(param_1 + 0x94));
       UiText_DrawRivalInfo
@@ -2085,8 +2091,8 @@ void Result_Draw_TestCourse_f9a0(int param_1)
       iVar4 = *(int *)(param_1 + 0x318);
     }
     if (iVar4 == 0) {
-      if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_180);
+      if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_180,(long)*(int *)(param_1 + 0x364));
         uStack_16c = 0;
         iStack_168 = (int)((float)iStack_168 * *(float *)(param_1 + 0x94));
         UiText_DrawRivalInfo
@@ -2094,8 +2100,8 @@ void Result_Draw_TestCourse_f9a0(int param_1)
                    *(undefined4 *)(param_1 + 0x1ec));
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_140);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_140,(long)*(int *)(param_1 + 0x364));
       uStack_12c = 0;
       iStack_128 = (int)((float)iStack_128 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_140,0xc);
@@ -2103,7 +2109,7 @@ void Result_Draw_TestCourse_f9a0(int param_1)
   }
   else if (cVar2 == '\x01') {
     iVar4 = *(int *)(param_1 + 0x330);
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_40,*(undefined4 *)(param_1 + 0x354));
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_40,(long)*(int *)(param_1 + 0x354));
     uStack_2c = 0;
     iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
     if (iVar4 < 0) {
@@ -2116,7 +2122,7 @@ void Result_Draw_TestCourse_f9a0(int param_1)
     }
     if (iVar4 == 0) {
       iVar4 = *(int *)(param_1 + 0x150);
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_c0,*(undefined4 *)(param_1 + 0x364));
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_c0,(long)*(int *)(param_1 + 0x364));
       uStack_ac = 0;
       iStack_a8 = (int)((float)iStack_a8 * *(float *)(param_1 + 0x94));
       if (iVar4 < 0) {
@@ -2126,8 +2132,8 @@ void Result_Draw_TestCourse_f9a0(int param_1)
         UiText_DrawRivalInfo(auStack_c0,6,iVar4);
       }
     }
-    else if (*(int *)(param_1 + 0x364) != -1) {
-      UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+    else if ((long)*(int *)(param_1 + 0x364) != -1) {
+      UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x364));
       uStack_6c = 0;
       iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
       UiText_DrawById(auStack_80,0xc);
@@ -2140,11 +2146,11 @@ void Result_Draw_TestCourse_f9a0(int param_1)
 void Result_Draw_TestCourse_fcc0(int param_1)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_80 [20];
+  int iVar1;
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
@@ -2164,14 +2170,14 @@ void Result_Draw_TestCourse_fcc0(int param_1)
       Result_Draw_TestCourse_e4b0();
       break;
     case 4:
-      uVar1 = 8;
+      iVar1 = 8;
       if (*(int *)(param_1 + 0x328) == 0) {
-        uVar1 = 9;
+        iVar1 = 9;
       }
-      UiElem_SetPropInt(*(undefined4 *)(param_1 + 4),0x1e,0x16,uVar1);
+      UiElem_SetPropInt(*(UiLayout **)(param_1 + 4),0x1e,0x16,iVar1);
       if (*(int *)(param_1 + 0x318) == 0) {
-        if (*(int *)(param_1 + 0x364) != -1) {
-          UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+        if ((long)*(int *)(param_1 + 0x364) != -1) {
+          UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x364));
           uStack_6c = 0;
           iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
           UiText_DrawRivalInfo
@@ -2179,8 +2185,8 @@ void Result_Draw_TestCourse_fcc0(int param_1)
                      *(undefined4 *)(param_1 + 0x1e0));
         }
       }
-      else if (*(int *)(param_1 + 0x364) != -1) {
-        UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_40);
+      else if ((long)*(int *)(param_1 + 0x364) != -1) {
+        UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_40,(long)*(int *)(param_1 + 0x364));
         uStack_2c = 0;
         iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
         UiText_DrawById(auStack_40,0xc);
@@ -2191,14 +2197,14 @@ void Result_Draw_TestCourse_fcc0(int param_1)
       break;
     case 6:
       if (*(int *)(param_1 + 0x32c) == 0) {
-        uVar1 = 7;
+        iVar1 = 7;
         if (*(int *)(param_1 + 0x328) == 0) {
-          uVar1 = 8;
+          iVar1 = 8;
         }
-        UiElem_SetPropInt(*(undefined4 *)(param_1 + 4),0x19,0x16,uVar1);
+        UiElem_SetPropInt(*(UiLayout **)(param_1 + 4),0x19,0x16,iVar1);
       }
       else {
-        UiElem_SetPropInt(*(undefined4 *)(param_1 + 4),0x19,0x16,9);
+        UiElem_SetPropInt(*(UiLayout **)(param_1 + 4),0x19,0x16,9);
       }
     }
   }
@@ -2210,83 +2216,83 @@ void Result_DrawRankingTable(int param_1)
 
 {
   int iVar1;
-  undefined1 auStack_200 [20];
+  undefined4 auStack_200 [5];
   undefined4 uStack_1ec;
   int iStack_1e8;
-  undefined1 auStack_1c0 [20];
+  undefined4 auStack_1c0 [5];
   undefined4 uStack_1ac;
   int iStack_1a8;
-  undefined1 auStack_180 [20];
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
   int iStack_168;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
   int iStack_128;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
   int iStack_e8;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
   int iStack_a8;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
   int iStack_68;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   int iStack_28;
   
   iVar1 = *(int *)(param_1 + 0x350);
-  if ((*(int *)(param_1 + 0x34c) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_40);
+  if (((long)*(int *)(param_1 + 0x34c) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_40,(long)*(int *)(param_1 + 0x34c));
     uStack_2c = 4;
     iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_40,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x358);
-  if ((*(int *)(param_1 + 0x354) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_80);
+  if (((long)*(int *)(param_1 + 0x354) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_80,(long)*(int *)(param_1 + 0x354));
     uStack_6c = 0;
     iStack_68 = (int)((float)iStack_68 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_80,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x360);
-  if ((*(int *)(param_1 + 0x35c) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_c0);
+  if (((long)*(int *)(param_1 + 0x35c) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_c0,(long)*(int *)(param_1 + 0x35c));
     uStack_ac = 4;
     iStack_a8 = (int)((float)iStack_a8 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_c0,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x368);
-  if ((*(int *)(param_1 + 0x364) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_100);
+  if (((long)*(int *)(param_1 + 0x364) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_100,(long)*(int *)(param_1 + 0x364));
     uStack_ec = 0;
     iStack_e8 = (int)((float)iStack_e8 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_100,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x370);
-  if ((*(int *)(param_1 + 0x36c) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_140);
+  if (((long)*(int *)(param_1 + 0x36c) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_140,(long)*(int *)(param_1 + 0x36c));
     uStack_12c = 4;
     iStack_128 = (int)((float)iStack_128 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_140,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x378);
-  if ((*(int *)(param_1 + 0x374) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_180);
+  if (((long)*(int *)(param_1 + 0x374) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_180,(long)*(int *)(param_1 + 0x374));
     uStack_16c = 0;
     iStack_168 = (int)((float)iStack_168 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_180,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x380);
-  if ((*(int *)(param_1 + 0x37c) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_1c0);
+  if (((long)*(int *)(param_1 + 0x37c) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_1c0,(long)*(int *)(param_1 + 0x37c));
     uStack_1ac = 4;
     iStack_1a8 = (int)((float)iStack_1a8 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_1c0,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x388);
-  if ((*(int *)(param_1 + 900) != -1) && (iVar1 != -1)) {
-    UiElem_GetRect(*(undefined4 *)(param_1 + 4),auStack_200);
+  if (((long)*(int *)(param_1 + 900) != -1) && (iVar1 != -1)) {
+    UiElem_GetRect(*(UiLayout **)(param_1 + 4),auStack_200,(long)*(int *)(param_1 + 900));
     uStack_1ec = 0;
     iStack_1e8 = (int)((float)iStack_1e8 * *(float *)(param_1 + 0x94));
     UiText_DrawById(auStack_200,iVar1);

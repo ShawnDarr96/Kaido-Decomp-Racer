@@ -2951,24 +2951,24 @@ address,name,signature,source,comment
 0x001ec3c0,UiModel_DrawPart,,game,
 0x001ec820,UiModel_BuildMatrix,,game,
 0x001ecb40,UiAnim_EvalKey,,game,
-0x001ecd80,UiLayout_UpdateAnim,,game,39 callers
-0x001ed190,UiLayout_PlayAnim,,game,27 callers
-0x001ed2c0,UiLayout_IsAnimDone,,game,18 callers
+0x001ecd80,UiLayout_UpdateAnim,"void UiLayout_UpdateAnim(UiLayout *param_1,int param_2)",game,39 callers
+0x001ed190,UiLayout_PlayAnim,"void UiLayout_PlayAnim(UiLayout *param_1,int *param_2)",game,27 callers
+0x001ed2c0,UiLayout_IsAnimDone,"void UiLayout_IsAnimDone(UiLayout *param_1,int param_2,undefined4 param_3,int param_4,undefined4 param_5)",game,18 callers
 0x001ed350,UiModel_DrawNode,,game,
 0x001ed540,UiModel_DrawMesh,,game,
 0x001ed840,UiModel_DrawTree,,game,recursive
-0x001eda40,UiLayout_Draw,,game,"(alpha, layout); 315 callers"
-0x001ede20,UiElem_GetRect,,game,47 callers
-0x001ee0c0,UiElem_Get,,game,
-0x001ee140,UiElem_GetPropPtr,,game,element = 0x128 bytes
-0x001ee2b0,UiLayout_SetTexture,,game,
-0x001ee340,UiElem_MarkDirty,,game,
+0x001eda40,UiLayout_Draw,"void UiLayout_Draw(float param_1,UiLayout *param_2)",game,"(alpha, layout); 315 callers"
+0x001ede20,UiElem_GetRect,"void UiElem_GetRect(UiLayout *param_1,undefined4 *param_2,undefined8 param_3)",game,47 callers
+0x001ee0c0,UiElem_Get,"void UiElem_Get(UiLayout *param_1,int param_2,uint param_3,uint param_4,uint param_5)",game,
+0x001ee140,UiElem_GetPropPtr,"int UiElem_GetPropPtr(UiLayout *param_1,int param_2,uint param_3)",game,element = 0x128 bytes
+0x001ee2b0,UiLayout_SetTexture,"void UiLayout_SetTexture(UiLayout *param_1,undefined4 param_2,undefined4 param_3)",game,
+0x001ee340,UiElem_MarkDirty,void UiElem_MarkDirty(UiLayout *param_1),game,
 0x001ee590,UiLayout_OnTextureLoaded,,game,
-0x001ee6c0,UiLayout_Load,,game,
-0x001ee8f0,UiLayout_Free,,game,
-0x001ee970,UiLayout_Init,,game,
-0x001eea30,UiElem_SetPropInt,,game,"(layout, elem, prop, value); 126 callers"
-0x001eeb00,UiElem_SetPropFloat,,game,"(value, layout, elem, prop); 209 callers"
+0x001ee6c0,UiLayout_Load,"void UiLayout_Load(UiLayout *param_1,undefined4 *param_2,long param_3)",game,
+0x001ee8f0,UiLayout_Free,void UiLayout_Free(UiLayout *param_1),game,
+0x001ee970,UiLayout_Init,"void UiLayout_Init(UiLayout *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)",game,
+0x001eea30,UiElem_SetPropInt,"void UiElem_SetPropInt(UiLayout *param_1,undefined8 param_2,byte param_3,int param_4)",game,"(layout, elem, prop, value); 126 callers"
+0x001eeb00,UiElem_SetPropFloat,"void UiElem_SetPropFloat(UiLayout *param_1,undefined8 param_2,undefined8 param_3,byte param_4)",game,"(value, layout, elem, prop); 209 callers"
 0x001eebf0,UiText_Reset,,game,
 0x001eece0,UiText_Layout,,game,
 0x001eefa0,UiText_Update,,game,
@@ -3049,7 +3049,7 @@ address,name,signature,source,comment
 0x001f5130,UiMgr_RebindTextures,,game,
 0x001f51a0,UiMgr_FreeSystem,,game,
 0x001f5210,UiMgr_LoadSystem,,game,
-0x001f5380,UiElem_SetNumber,,game,17 callers
+0x001f5380,UiElem_SetNumber,"void UiElem_SetNumber(UiLayout *param_1,undefined8 param_2,byte param_3,ulong param_4)",game,17 callers
 0x001f54b0,Msg_FormatRivalName,,game,17 callers
 0x001f57f0,Msg_FormatCarName,,game,13 callers
 0x001f5b40,MsgId_ForMode,,game,
@@ -3188,8 +3188,8 @@ address,name,signature,source,comment
 0x002010a0,MenuWnd_DrawLabel,,game,152 callers
 0x00201140,MenuWnd_DrawTextId,,game,80 callers
 0x002011b0,MenuWnd_DrawText,,game,245 callers
-0x00201210,UiLayout_UpdateAnimIfActive,,game,
-0x00201260,UiLayout_UpdateAnimById,,game,273 callers
+0x00201210,UiLayout_UpdateAnimIfActive,"bool UiLayout_UpdateAnimIfActive(UiLayout *param_1,int param_2)",game,
+0x00201260,UiLayout_UpdateAnimById,"bool UiLayout_UpdateAnimById(UiLayout *param_1,undefined8 param_2)",game,273 callers
 0x00201300,MenuWnd_FreeSystem,,game,
 0x00201330,MenuWnd_AllocSystem,,game,
 0x00201380,MenuWnd_DrawMoney,,game,

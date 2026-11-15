@@ -1215,7 +1215,7 @@ LAB_0028a604:
     if ((*piVar10 == 6) && (piVar10[piVar10[10] + 0x1d] != piVar10[piVar10[10] + 0xb])) {
       piVar10[0x153f] = 1;
       g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-      UiLayout_UpdateAnimById(0xab);
+      UiLayout_UpdateAnimById((UiLayout *)0xab,2);
     }
     iVar3 = piVar10[10];
     if (piVar10[iVar3 + 0x1d] < 6) {
@@ -1264,7 +1264,7 @@ LAB_00289c40:
   if ((*piVar10 == -1) && (piVar10[piVar10[10] + 0xb] != -1)) {
     piVar10[0x153f] = 2;
     g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-    UiLayout_UpdateAnimById(0xab,3);
+    UiLayout_UpdateAnimById((UiLayout *)0xab,3);
   }
   if (*piVar10 < 0) {
     *piVar10 = *piVar10 + 1;
@@ -1569,7 +1569,7 @@ void maybe_ScrEventList_HandleInput(int *param_1)
           *param_1 = *param_1 + -1;
           param_1[0xdf] = 2;
           g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-          UiLayout_UpdateAnimById(0xa8,3);
+          UiLayout_UpdateAnimById((UiLayout *)0xa8,3);
           Se_PlayMenu(7);
         }
       }
@@ -1580,7 +1580,7 @@ void maybe_ScrEventList_HandleInput(int *param_1)
           *param_1 = *param_1 + 1;
           param_1[0xdf] = 1;
           g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-          UiLayout_UpdateAnimById(0xa8);
+          UiLayout_UpdateAnimById((UiLayout *)0xa8,2);
           Se_PlayMenu(7);
         }
         else {
@@ -1918,7 +1918,7 @@ void maybe_ScrRivalList_HandleInput(undefined8 param_1)
     if ((*piVar6 == -1) && (piVar6[piVar6[0x19d] + 0x19e] != -1)) {
       piVar6[0x1a1] = 1;
       g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-      UiLayout_UpdateAnimById(0xaf,3);
+      UiLayout_UpdateAnimById((UiLayout *)0xaf,3);
     }
     if (*piVar6 < 0) {
       *piVar6 = *piVar6 + 1;
@@ -1940,7 +1940,7 @@ void maybe_ScrRivalList_HandleInput(undefined8 param_1)
     if ((*piVar6 == 10) && (piVar6[piVar6[0x19d] + 0xb] != piVar6[piVar6[0x19d] + 0x19e])) {
       piVar6[0x1a1] = 0;
       g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-      UiLayout_UpdateAnimById(0xaf);
+      UiLayout_UpdateAnimById((UiLayout *)0xaf,2);
     }
     if (piVar6[piVar6[0x19d] + 0xb] < 10) {
       if (piVar6[piVar6[0x19d] + 0xb] <= *piVar6) {

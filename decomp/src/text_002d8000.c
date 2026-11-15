@@ -330,17 +330,17 @@ void maybe_PagePasswordEntry_Update(undefined8 param_1)
 LAB_002d8994:
   if (((iVar2 == 0) || (lVar5 = Menu_IsInputIdle(iVar4 + 0x568), lVar5 == 0)) ||
      (lVar5 = PwInput_IsOpen(iVar4 + 0x588), lVar5 != 0)) {
-    UiLayout_UpdateAnimById(0xb3,0);
+    UiLayout_UpdateAnimById((UiLayout *)0xb3,0);
     uVar3 = PwInput_IsSpecialKey(param_1,*(undefined4 *)(iVar4 + 0x770));
     *(undefined4 *)(iVar4 + 0x76c) = uVar3;
     PwInput_Animate(iVar4 + 0x588);
     PwInput_Update(iVar4 + 0x588);
     iVar4 = UiMgr_FindLayout(0xb3);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar4].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar4].layout);
     iVar4 = UiMgr_FindLayout(0xb7);
     UiElem_SetPropInt(&g_UiMgr->slots[iVar4].layout,0x15,9,2);
     iVar4 = UiMgr_FindLayout(0xb7);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar4].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar4].layout);
   }
   return;
 }
@@ -352,31 +352,31 @@ void maybe_PagePasswordEntry_Enter(void)
 
 {
   UiLayoutSlot *pUVar1;
-  undefined4 uVar2;
+  uint uVar2;
   int iVar3;
   
   uVar2 = UiRes_GetLayoutData(0xfc);
   iVar3 = UiMgr_FindLayout(0xb3);
   pUVar1 = g_UiMgr->slots;
-  if (*(int *)&pUVar1[iVar3].layout.field_0x31c == 0) {
-    *(undefined4 *)&pUVar1[iVar3].layout.field_0x310 = 0xffffffff;
-    *(undefined4 *)&pUVar1[iVar3].layout.field_0x31c = 0;
-    *(undefined4 *)&pUVar1[iVar3].layout.field_0x30c = 0;
-    if (*(int *)&pUVar1[iVar3].layout.field_0x31c == 0) {
+  if (pUVar1[iVar3].layout.unk_31c == 0) {
+    pUVar1[iVar3].layout.unk_310 = 0xffffffff;
+    pUVar1[iVar3].layout.unk_31c = 0;
+    pUVar1[iVar3].layout.unk_30c = 0;
+    if (pUVar1[iVar3].layout.unk_31c == 0) {
       pUVar1[iVar3].layout.unk_318 = 0;
     }
     else {
       pUVar1[iVar3].layout.unk_318 = 1;
     }
-    *(undefined4 *)&pUVar1[iVar3].layout.field_0x30c = 0;
-    if (*(int *)&pUVar1[iVar3].layout.field_0x31c == 0) {
+    pUVar1[iVar3].layout.unk_30c = 0;
+    if (pUVar1[iVar3].layout.unk_31c == 0) {
       pUVar1[iVar3].layout.unk_318 = 0;
     }
     else {
       pUVar1[iVar3].layout.unk_318 = 1;
     }
     *(undefined4 *)&pUVar1[iVar3].layout.field_0x314 = 1;
-    *(undefined4 *)&pUVar1[iVar3].layout.field_0x31c = uVar2;
+    pUVar1[iVar3].layout.unk_31c = uVar2;
     pUVar1[iVar3].layout.unk_318 = 1;
   }
   Menu_ClearSlot(0);
@@ -857,10 +857,10 @@ void maybe_NameEntry_DrawInfo(int param_1)
   bool bVar4;
   code *pcVar5;
   code *pcVar6;
-  undefined4 uVar7;
-  int iVar8;
+  UiLayout *pUVar7;
+  undefined4 uVar8;
   int iVar9;
-  undefined8 uVar10;
+  int iVar10;
   undefined8 uVar11;
   undefined8 uVar12;
   undefined8 uVar13;
@@ -868,35 +868,35 @@ void maybe_NameEntry_DrawInfo(int param_1)
   undefined4 uStack_7c4;
   int iStack_7c0;
   int iStack_7b0;
-  undefined1 auStack_7a0 [64];
-  undefined1 auStack_760 [64];
-  undefined1 auStack_720 [64];
-  undefined1 auStack_6e0 [64];
-  undefined1 auStack_6a0 [64];
-  undefined1 auStack_660 [64];
-  undefined1 auStack_620 [64];
-  undefined1 auStack_5e0 [64];
-  undefined1 auStack_5a0 [64];
-  undefined1 auStack_560 [64];
-  undefined1 auStack_520 [64];
-  undefined1 auStack_4e0 [64];
-  undefined1 auStack_4a0 [64];
-  undefined1 auStack_460 [64];
-  undefined1 auStack_420 [64];
-  undefined1 auStack_3e0 [64];
-  undefined1 auStack_3a0 [64];
-  undefined1 auStack_360 [64];
-  undefined1 auStack_320 [64];
-  undefined1 auStack_2e0 [64];
-  undefined1 auStack_2a0 [64];
-  undefined1 auStack_260 [64];
-  undefined1 auStack_220 [64];
-  undefined1 auStack_1e0 [64];
-  undefined1 auStack_1a0 [64];
-  undefined1 auStack_160 [64];
-  undefined1 auStack_120 [64];
-  undefined1 auStack_e0 [64];
-  undefined1 auStack_a0 [64];
+  undefined4 auStack_7a0 [16];
+  undefined4 auStack_760 [16];
+  undefined4 auStack_720 [16];
+  undefined4 auStack_6e0 [16];
+  undefined4 auStack_6a0 [16];
+  undefined4 auStack_660 [16];
+  undefined4 auStack_620 [16];
+  undefined4 auStack_5e0 [16];
+  undefined4 auStack_5a0 [16];
+  undefined4 auStack_560 [16];
+  undefined4 auStack_520 [16];
+  undefined4 auStack_4e0 [16];
+  undefined4 auStack_4a0 [16];
+  undefined4 auStack_460 [16];
+  undefined4 auStack_420 [16];
+  undefined4 auStack_3e0 [16];
+  undefined4 auStack_3a0 [16];
+  undefined4 auStack_360 [16];
+  undefined4 auStack_320 [16];
+  undefined4 auStack_2e0 [16];
+  undefined4 auStack_2a0 [16];
+  undefined4 auStack_260 [16];
+  undefined4 auStack_220 [16];
+  undefined4 auStack_1e0 [16];
+  undefined4 auStack_1a0 [16];
+  undefined4 auStack_160 [16];
+  undefined4 auStack_120 [16];
+  undefined4 auStack_e0 [16];
+  undefined4 auStack_a0 [16];
   undefined4 auStack_60 [4];
   undefined4 uStack_50;
   undefined4 uStack_4c;
@@ -915,10 +915,10 @@ void maybe_NameEntry_DrawInfo(int param_1)
   
   pcVar6 = _g_NameEntryShared2;
   pcVar5 = _g_NameEntryShared1;
-  uVar10 = (*_g_NameEntryShared2)(0x1e9d);
-  uVar11 = (*pcVar5)(0xbf);
-  UiElem_GetRect(uVar11,auStack_a0,0x4a);
-  UiText_DrawById(auStack_a0,uVar10);
+  uVar11 = (*_g_NameEntryShared2)(0x1e9d);
+  pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+  UiElem_GetRect(pUVar7,auStack_a0,0x4a);
+  UiText_DrawById(auStack_a0,uVar11);
   bVar4 = false;
   if (*(char *)(param_1 + 0x778) == '\x02') {
     bVar4 = *(char *)(param_1 + 0x779) != '\0';
@@ -932,129 +932,129 @@ void maybe_NameEntry_DrawInfo(int param_1)
     bVar3 = *(int *)(param_1 + 0x79c) == 0;
   }
   if (*(char *)(param_1 + 0x7ac) == '\x03') {
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_e0,0x47);
-    UiText_DrawById(auStack_e0,uVar10);
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_120,0x48);
-    UiText_DrawById(auStack_120,uVar10);
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_160,0x49);
-    UiText_DrawById(auStack_160,uVar10);
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_1a0,0x4d);
-    UiText_DrawById(auStack_1a0,uVar10);
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_1e0,0x46);
-    UiText_DrawById(auStack_1e0,uVar10);
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_220,0x4b);
-    UiText_DrawById(auStack_220,uVar10);
-    uVar10 = (*pcVar6)(0x59);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_260,0x4c);
-    UiText_DrawById(auStack_260,uVar10);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_e0,0x47);
+    UiText_DrawById(auStack_e0,uVar11);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_120,0x48);
+    UiText_DrawById(auStack_120,uVar11);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_160,0x49);
+    UiText_DrawById(auStack_160,uVar11);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_1a0,0x4d);
+    UiText_DrawById(auStack_1a0,uVar11);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_1e0,0x46);
+    UiText_DrawById(auStack_1e0,uVar11);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_220,0x4b);
+    UiText_DrawById(auStack_220,uVar11);
+    uVar11 = (*pcVar6)(0x59);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_260,0x4c);
+    UiText_DrawById(auStack_260,uVar11);
   }
   else {
     if (bVar4) {
       if (bVar3) {
-        iVar8 = Replay_GetHeader();
-        iVar9 = *(int *)(iVar8 + 0x18) + 0x4de;
-        iStack_7b0 = *(int *)(iVar8 + 0x18) + 0x5c0;
-        iStack_7c0 = *(int *)(iVar8 + 0x14) + 0x6a3;
-        uVar10 = MsgId_ForOption(*(undefined1 *)(iVar8 + 0x28));
-        uStack_7c4 = MsgId_ForSlot(uVar10,0);
-        uStack_7c8 = MsgId_OnOff(*(undefined1 *)(iVar8 + 0x29));
-        uVar10 = MsgId_ForResult(*(undefined1 *)(iVar8 + 0x2a));
-        uVar11 = MsgId_YesNo(*(undefined1 *)(iVar8 + 0x2b));
+        iVar9 = Replay_GetHeader();
+        iVar10 = *(int *)(iVar9 + 0x18) + 0x4de;
+        iStack_7b0 = *(int *)(iVar9 + 0x18) + 0x5c0;
+        iStack_7c0 = *(int *)(iVar9 + 0x14) + 0x6a3;
+        uVar11 = MsgId_ForOption(*(undefined1 *)(iVar9 + 0x28));
+        uStack_7c4 = MsgId_ForSlot(uVar11,0);
+        uStack_7c8 = MsgId_OnOff(*(undefined1 *)(iVar9 + 0x29));
+        uVar11 = MsgId_ForResult(*(undefined1 *)(iVar9 + 0x2a));
+        uVar13 = MsgId_YesNo(*(undefined1 *)(iVar9 + 0x2b));
       }
       else {
-        iVar9 = *(int *)(param_1 + 0x7c8) + 0x4de;
+        iVar10 = *(int *)(param_1 + 0x7c8) + 0x4de;
         iStack_7b0 = *(int *)(param_1 + 0x7c8) + 0x5c0;
         iStack_7c0 = *(int *)(param_1 + 0x7cc) + 0x6a3;
-        uVar10 = MsgId_ForOption(*(undefined1 *)(param_1 + 0x7ad));
-        uStack_7c4 = MsgId_ForSlot(uVar10,0);
+        uVar11 = MsgId_ForOption(*(undefined1 *)(param_1 + 0x7ad));
+        uStack_7c4 = MsgId_ForSlot(uVar11,0);
         uStack_7c8 = MsgId_OnOff(*(undefined1 *)(param_1 + 0x7ae));
-        uVar10 = MsgId_ForResult(*(undefined1 *)(param_1 + 0x7af));
-        uVar11 = MsgId_YesNo(*(undefined1 *)(param_1 + 0x7b0));
+        uVar11 = MsgId_ForResult(*(undefined1 *)(param_1 + 0x7af));
+        uVar13 = MsgId_YesNo(*(undefined1 *)(param_1 + 0x7b0));
       }
     }
     else {
-      iVar9 = MenuText_CarShortName(*(undefined4 *)(param_1 + 0x7c4),0xffffffffffffffff);
+      iVar10 = MenuText_CarShortName(*(undefined4 *)(param_1 + 0x7c4),0xffffffffffffffff);
       iStack_7b0 = MenuText_CarGrade(*(undefined4 *)(param_1 + 0x7c4),0xffffffffffffffff);
       iStack_7c0 = MenuText_CarNameOrMaker(*(undefined4 *)(param_1 + 0x7c4),0xffffffffffffffff);
-      uVar10 = MsgId_ForOption(*(undefined1 *)(param_1 + 0x7ad));
-      uStack_7c4 = MsgId_ForSlot(uVar10,0);
+      uVar11 = MsgId_ForOption(*(undefined1 *)(param_1 + 0x7ad));
+      uStack_7c4 = MsgId_ForSlot(uVar11,0);
       uStack_7c8 = MsgId_OnOff(*(undefined1 *)(param_1 + 0x7ae));
-      uVar10 = MsgId_ForResult(*(undefined1 *)(param_1 + 0x7af));
-      uVar11 = MsgId_YesNo(*(undefined1 *)(param_1 + 0x7b0));
+      uVar11 = MsgId_ForResult(*(undefined1 *)(param_1 + 0x7af));
+      uVar13 = MsgId_YesNo(*(undefined1 *)(param_1 + 0x7b0));
     }
-    uVar7 = (*pcVar6)(iStack_7c0);
-    uVar12 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar12,auStack_2a0,0x47);
-    UiText_DrawById(auStack_2a0,uVar7);
-    uVar7 = (*pcVar6)(iStack_7b0);
-    uVar12 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar12,auStack_2e0,0x48);
-    UiText_DrawById(auStack_2e0,uVar7);
-    uVar12 = (*pcVar6)(iVar9);
-    uVar13 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar13,auStack_320,0x49);
+    uVar8 = (*pcVar6)(iStack_7c0);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_2a0,0x47);
+    UiText_DrawById(auStack_2a0,uVar8);
+    uVar8 = (*pcVar6)(iStack_7b0);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_2e0,0x48);
+    UiText_DrawById(auStack_2e0,uVar8);
+    uVar12 = (*pcVar6)(iVar10);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_320,0x49);
     UiText_DrawById(auStack_320,uVar12);
     uVar12 = (*pcVar6)(uStack_7c4);
-    uVar13 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar13,auStack_360,0x4d);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_360,0x4d);
     UiText_DrawById(auStack_360,uVar12);
     uVar12 = (*pcVar6)(uStack_7c8);
-    uVar13 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar13,auStack_3a0,0x46);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_3a0,0x46);
     UiText_DrawById(auStack_3a0,uVar12);
-    uVar10 = (*pcVar6)(uVar10);
-    uVar12 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar12,auStack_3e0,0x4b);
-    UiText_DrawById(auStack_3e0,uVar10);
-    uVar10 = (*pcVar6)(uVar11);
-    uVar11 = (*pcVar5)(0xbf);
-    UiElem_GetRect(uVar11,auStack_420,0x4c);
-    UiText_DrawById(auStack_420,uVar10);
+    uVar11 = (*pcVar6)(uVar11);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_3e0,0x4b);
+    UiText_DrawById(auStack_3e0,uVar11);
+    uVar11 = (*pcVar6)(uVar13);
+    pUVar7 = (UiLayout *)(*pcVar5)(0xbf);
+    UiElem_GetRect(pUVar7,auStack_420,0x4c);
+    UiText_DrawById(auStack_420,uVar11);
     cVar1 = *(char *)(param_1 + 0x779);
     if ((cVar1 == '\x05') || (cVar1 == '\x03')) {
       if ((bVar4) && (bVar3)) {
-        iVar8 = Replay_GetHeader();
-        uVar7 = *(undefined4 *)(iVar8 + 8);
+        iVar9 = Replay_GetHeader();
+        uVar8 = *(undefined4 *)(iVar9 + 8);
       }
       else {
-        uVar7 = *(undefined4 *)(param_1 + 0x7c0);
+        uVar8 = *(undefined4 *)(param_1 + 0x7c0);
       }
-      uVar10 = (*pcVar6)(0x1ea0);
+      uVar11 = (*pcVar6)(0x1ea0);
+      pUVar7 = (UiLayout *)(*pcVar5)(0xc2);
+      UiElem_GetRect(pUVar7,auStack_7a0,0x11);
+      UiText_DrawById(auStack_7a0,uVar11);
       uVar11 = (*pcVar5)(0xc2);
-      UiElem_GetRect(uVar11,auStack_7a0,0x11);
-      UiText_DrawById(auStack_7a0,uVar10);
-      uVar10 = (*pcVar5)(0xc2);
-      uVar11 = (*pcVar6)(0x3a);
-      PwInput_DrawName(uVar10,0x12,uVar11,uVar7);
+      uVar13 = (*pcVar6)(0x3a);
+      PwInput_DrawName(uVar11,0x12,uVar13,uVar8);
     }
     else if ((cVar1 == '\x04') || (cVar1 == '\x02')) {
       if ((bVar4) && (bVar3)) {
-        iVar8 = Replay_GetHeader();
-        Time_SplitHms(1,*(undefined4 *)(iVar8 + 4),&uStack_4,&uStack_8,&uStack_c);
+        iVar9 = Replay_GetHeader();
+        Time_SplitHms(1,*(undefined4 *)(iVar9 + 4),&uStack_4,&uStack_8,&uStack_c);
       }
       else {
         Time_SplitHms(1,*(undefined4 *)(param_1 + 0x7bc),&uStack_4,&uStack_8,&uStack_c);
       }
-      uVar10 = (*pcVar6)(0x1e9f);
+      uVar11 = (*pcVar6)(0x1e9f);
+      pUVar7 = (UiLayout *)(*pcVar5)(0xc2);
+      UiElem_GetRect(pUVar7,auStack_760,0x11);
+      UiText_DrawById(auStack_760,uVar11);
       uVar11 = (*pcVar5)(0xc2);
-      UiElem_GetRect(uVar11,auStack_760,0x11);
-      UiText_DrawById(auStack_760,uVar10);
-      uVar10 = (*pcVar5)(0xc2);
-      uVar11 = (*pcVar6)(0x1e7e);
-      PwInput_DrawName(uVar10,0x12,uVar11,uStack_4,uStack_8,uStack_c);
+      uVar13 = (*pcVar6)(0x1e7e);
+      PwInput_DrawName(uVar11,0x12,uVar13,uStack_4,uStack_8,uStack_c);
     }
     else if (cVar1 == '\x01') {
       auStack_30[1] = DAT_00342204;
@@ -1076,82 +1076,82 @@ void maybe_NameEntry_DrawInfo(int param_1)
       uStack_44 = DAT_0034224c;
       uStack_40 = DAT_00342250;
       if ((bVar4) && (bVar3)) {
-        iVar8 = Replay_GetHeader();
-        uVar10 = (*pcVar5)(0xc0);
-        uVar11 = (*pcVar6)(0x1e9e);
-        PwInput_DrawName(uVar10,0x1c,uVar11);
-        uVar10 = (*pcVar5)(0xc0);
-        uVar11 = (*pcVar6)(0x3a);
-        PwInput_DrawName(uVar10,0x20,uVar11,*(undefined4 *)(iVar8 + 0x24));
-        if (*(char *)(iVar8 + 0xd) == '\x05') {
-          uVar10 = (*pcVar6)(0x356);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_4e0,0x1d);
-          UiText_DrawById(auStack_4e0,uVar10);
-          uVar10 = (*pcVar6)(auStack_60[*(byte *)(iVar8 + 0x37c)]);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_520,0x1e);
-          UiText_DrawById(auStack_520,uVar10);
+        iVar9 = Replay_GetHeader();
+        uVar11 = (*pcVar5)(0xc0);
+        uVar13 = (*pcVar6)(0x1e9e);
+        PwInput_DrawName(uVar11,0x1c,uVar13);
+        uVar11 = (*pcVar5)(0xc0);
+        uVar13 = (*pcVar6)(0x3a);
+        PwInput_DrawName(uVar11,0x20,uVar13,*(undefined4 *)(iVar9 + 0x24));
+        if (*(char *)(iVar9 + 0xd) == '\x05') {
+          uVar11 = (*pcVar6)(0x356);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_4e0,0x1d);
+          UiText_DrawById(auStack_4e0,uVar11);
+          uVar11 = (*pcVar6)(auStack_60[*(byte *)(iVar9 + 0x37c)]);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_520,0x1e);
+          UiText_DrawById(auStack_520,uVar11);
         }
-        else if (*(char *)(iVar8 + 0xd) == '\0') {
-          uVar10 = (*pcVar6)(0xe0);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_460,0x1d);
-          UiText_DrawById(auStack_460,uVar10);
-          uVar10 = (*pcVar6)(auStack_60[*(byte *)(iVar8 + 0x37c)]);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_4a0,0x1e);
-          UiText_DrawById(auStack_4a0,uVar10);
+        else if (*(char *)(iVar9 + 0xd) == '\0') {
+          uVar11 = (*pcVar6)(0xe0);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_460,0x1d);
+          UiText_DrawById(auStack_460,uVar11);
+          uVar11 = (*pcVar6)(auStack_60[*(byte *)(iVar9 + 0x37c)]);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_4a0,0x1e);
+          UiText_DrawById(auStack_4a0,uVar11);
         }
         else {
-          uVar10 = MsgId_RivalNickname(*(undefined4 *)(iVar8 + 0x1c));
-          uVar10 = (*pcVar6)(uVar10);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_560,0x1f);
-          UiText_DrawById(auStack_560,uVar10);
-          uVar10 = (*pcVar6)(auStack_30[*(byte *)(iVar8 + 0x37c)]);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_5a0,0x1d);
-          UiText_DrawById(auStack_5a0,uVar10);
+          uVar11 = MsgId_RivalNickname(*(undefined4 *)(iVar9 + 0x1c));
+          uVar11 = (*pcVar6)(uVar11);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_560,0x1f);
+          UiText_DrawById(auStack_560,uVar11);
+          uVar11 = (*pcVar6)(auStack_30[*(byte *)(iVar9 + 0x37c)]);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_5a0,0x1d);
+          UiText_DrawById(auStack_5a0,uVar11);
         }
       }
       else {
-        uVar10 = (*pcVar5)(0xc0);
-        uVar11 = (*pcVar6)(0x1e9e);
-        PwInput_DrawName(uVar10,0x1c,uVar11);
-        uVar10 = (*pcVar5)(0xc0);
-        uVar11 = (*pcVar6)(0x3a);
-        PwInput_DrawName(uVar10,0x20,uVar11,*(undefined4 *)(param_1 + 0x7d8));
+        uVar11 = (*pcVar5)(0xc0);
+        uVar13 = (*pcVar6)(0x1e9e);
+        PwInput_DrawName(uVar11,0x1c,uVar13);
+        uVar11 = (*pcVar5)(0xc0);
+        uVar13 = (*pcVar6)(0x3a);
+        PwInput_DrawName(uVar11,0x20,uVar13,*(undefined4 *)(param_1 + 0x7d8));
         if (*(int *)(param_1 + 0x7b4) == 5) {
-          uVar10 = (*pcVar6)(0x356);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_660,0x1d);
-          UiText_DrawById(auStack_660,uVar10);
-          uVar10 = (*pcVar6)(auStack_60[*(int *)(param_1 + 0x7b8)]);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_6a0,0x1e);
-          UiText_DrawById(auStack_6a0,uVar10);
+          uVar11 = (*pcVar6)(0x356);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_660,0x1d);
+          UiText_DrawById(auStack_660,uVar11);
+          uVar11 = (*pcVar6)(auStack_60[*(int *)(param_1 + 0x7b8)]);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_6a0,0x1e);
+          UiText_DrawById(auStack_6a0,uVar11);
         }
         else if (*(int *)(param_1 + 0x7b4) == 0) {
-          uVar10 = (*pcVar6)(0xe0);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_5e0,0x1d);
-          UiText_DrawById(auStack_5e0,uVar10);
-          uVar10 = (*pcVar6)(auStack_60[*(int *)(param_1 + 0x7b8)]);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_620,0x1e);
-          UiText_DrawById(auStack_620,uVar10);
+          uVar11 = (*pcVar6)(0xe0);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_5e0,0x1d);
+          UiText_DrawById(auStack_5e0,uVar11);
+          uVar11 = (*pcVar6)(auStack_60[*(int *)(param_1 + 0x7b8)]);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_620,0x1e);
+          UiText_DrawById(auStack_620,uVar11);
         }
         else {
-          uVar10 = MsgId_RivalNickname(*(undefined4 *)(param_1 + 2000));
-          uVar10 = (*pcVar6)(uVar10);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_6e0,0x1f);
-          UiText_DrawById(auStack_6e0,uVar10);
-          uVar10 = (*pcVar6)(auStack_30[*(int *)(param_1 + 0x7b8)]);
-          uVar11 = (*pcVar5)(0xc0);
-          UiElem_GetRect(uVar11,auStack_720,0x1d);
-          UiText_DrawById(auStack_720,uVar10);
+          uVar11 = MsgId_RivalNickname(*(undefined4 *)(param_1 + 2000));
+          uVar11 = (*pcVar6)(uVar11);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_6e0,0x1f);
+          UiText_DrawById(auStack_6e0,uVar11);
+          uVar11 = (*pcVar6)(auStack_30[*(int *)(param_1 + 0x7b8)]);
+          pUVar7 = (UiLayout *)(*pcVar5)(0xc0);
+          UiElem_GetRect(pUVar7,auStack_720,0x1d);
+          UiText_DrawById(auStack_720,uVar11);
         }
       }
     }
@@ -1167,202 +1167,223 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
 {
   char cVar1;
   int iVar2;
-  int iVar3;
+  bool bVar3;
   bool bVar4;
-  bool bVar5;
-  code *pcVar6;
+  code *pcVar5;
+  UiLayout *pUVar6;
   undefined4 uVar7;
-  undefined8 uVar8;
+  UiLayout *pUVar8;
   undefined8 uVar9;
   undefined8 uVar10;
-  undefined4 *puVar11;
+  byte bVar11;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  undefined8 extraout_a3;
+  undefined8 extraout_a3_00;
+  undefined8 extraout_a3_01;
+  undefined8 extraout_a3_02;
+  undefined8 extraout_a3_03;
+  undefined8 extraout_a3_04;
+  undefined8 extraout_a3_05;
+  undefined8 extraout_a3_06;
   int *piVar12;
-  int iVar13;
-  undefined4 *puVar14;
-  undefined1 auStack_c0 [64];
-  undefined1 auStack_80 [64];
-  undefined1 auStack_40 [64];
+  int *piVar13;
+  int iVar14;
+  int *piVar15;
+  undefined4 auStack_c0 [16];
+  undefined4 auStack_80 [16];
+  undefined4 auStack_40 [16];
   
-  pcVar6 = _g_NameEntryShared1;
-  piVar12 = (int *)(param_1 + 0x784);
-  uVar8 = (*_g_NameEntryShared1)(0xc4);
-  bVar5 = false;
+  pcVar5 = _g_NameEntryShared1;
+  piVar13 = (int *)(param_1 + 0x784);
+  pUVar6 = (UiLayout *)(*_g_NameEntryShared1)(0xc4);
+  bVar4 = false;
   if (*(char *)(param_1 + 0x778) == '\x02') {
-    bVar5 = *(char *)(param_1 + 0x779) != '\0';
+    bVar4 = *(char *)(param_1 + 0x779) != '\0';
   }
-  iVar13 = (int)uVar8;
-  if (*(int *)(iVar13 + 0x354) == 1) {
-    UiLayout_UpdateAnim(uVar8,3);
+  if (*(int *)&pUVar6->field_0x354 == 1) {
+    UiLayout_UpdateAnim(pUVar6,3);
   }
   else {
-    iVar2 = *(int *)(param_1 + 0x7dc);
-    iVar3 = *(int *)(param_1 + 0x7a4);
-    if (iVar3 == iVar2) {
+    iVar14 = *(int *)(param_1 + 0x7dc);
+    iVar2 = *(int *)(param_1 + 0x7a4);
+    if (iVar2 == iVar14) {
       *(undefined4 *)(param_1 + 0x7e0) = 0;
     }
     else {
-      if (iVar2 < iVar3) {
+      if (iVar14 < iVar2) {
         uVar7 = (*_g_PwInputShared1)(0x21e);
-        *(undefined4 *)(iVar13 + 0x34c) = 0xffffffff;
-        *(undefined4 *)(iVar13 + 0x358) = 0;
-        *(undefined4 *)(iVar13 + 0x348) = 0;
-        if (*(int *)(iVar13 + 0x358) == 0) {
-          *(undefined4 *)(iVar13 + 0x354) = 0;
+        *(undefined4 *)&pUVar6->field_0x34c = 0xffffffff;
+        *(undefined4 *)&pUVar6->field_0x358 = 0;
+        *(undefined4 *)&pUVar6->field_0x348 = 0;
+        if (*(int *)&pUVar6->field_0x358 == 0) {
+          *(undefined4 *)&pUVar6->field_0x354 = 0;
         }
         else {
-          *(undefined4 *)(iVar13 + 0x354) = 1;
+          *(undefined4 *)&pUVar6->field_0x354 = 1;
         }
-        *(undefined4 *)(iVar13 + 0x348) = 0;
-        if (*(int *)(iVar13 + 0x358) == 0) {
-          *(undefined4 *)(iVar13 + 0x354) = 0;
+        *(undefined4 *)&pUVar6->field_0x348 = 0;
+        if (*(int *)&pUVar6->field_0x358 == 0) {
+          *(undefined4 *)&pUVar6->field_0x354 = 0;
         }
         else {
-          *(undefined4 *)(iVar13 + 0x354) = 1;
+          *(undefined4 *)&pUVar6->field_0x354 = 1;
         }
-        *(undefined4 *)(iVar13 + 0x350) = 0;
-        *(undefined4 *)(iVar13 + 0x358) = uVar7;
-        *(undefined4 *)(iVar13 + 0x354) = 1;
+        *(undefined4 *)&pUVar6->field_0x350 = 0;
+        *(undefined4 *)&pUVar6->field_0x358 = uVar7;
+        *(undefined4 *)&pUVar6->field_0x354 = 1;
         *(undefined4 *)(param_1 + 0x7e0) = 1;
       }
-      else if (iVar3 < iVar2) {
+      else if (iVar2 < iVar14) {
         uVar7 = (*_g_PwInputShared1)(0x21b);
-        *(undefined4 *)(iVar13 + 0x34c) = 0xffffffff;
-        *(undefined4 *)(iVar13 + 0x358) = 0;
-        *(undefined4 *)(iVar13 + 0x348) = 0;
-        if (*(int *)(iVar13 + 0x358) == 0) {
-          *(undefined4 *)(iVar13 + 0x354) = 0;
+        *(undefined4 *)&pUVar6->field_0x34c = 0xffffffff;
+        *(undefined4 *)&pUVar6->field_0x358 = 0;
+        *(undefined4 *)&pUVar6->field_0x348 = 0;
+        if (*(int *)&pUVar6->field_0x358 == 0) {
+          *(undefined4 *)&pUVar6->field_0x354 = 0;
         }
         else {
-          *(undefined4 *)(iVar13 + 0x354) = 1;
+          *(undefined4 *)&pUVar6->field_0x354 = 1;
         }
-        *(undefined4 *)(iVar13 + 0x348) = 0;
-        if (*(int *)(iVar13 + 0x358) == 0) {
-          *(undefined4 *)(iVar13 + 0x354) = 0;
+        *(undefined4 *)&pUVar6->field_0x348 = 0;
+        if (*(int *)&pUVar6->field_0x358 == 0) {
+          *(undefined4 *)&pUVar6->field_0x354 = 0;
         }
         else {
-          *(undefined4 *)(iVar13 + 0x354) = 1;
+          *(undefined4 *)&pUVar6->field_0x354 = 1;
         }
-        *(undefined4 *)(iVar13 + 0x350) = 0;
-        *(undefined4 *)(iVar13 + 0x358) = uVar7;
-        *(undefined4 *)(iVar13 + 0x354) = 1;
+        *(undefined4 *)&pUVar6->field_0x350 = 0;
+        *(undefined4 *)&pUVar6->field_0x358 = uVar7;
+        *(undefined4 *)&pUVar6->field_0x354 = 1;
         *(undefined4 *)(param_1 + 0x7e0) = 2;
       }
       *(undefined4 *)(param_1 + 0x7dc) = *(undefined4 *)(param_1 + 0x7a4);
-      uVar9 = (*pcVar6)(0xc4);
+      uVar9 = (*pcVar5)(0xc4);
       PwInput_SetKeyState(uVar9,0x3d,1,0);
-      if (*(int *)(iVar13 + 0x354) == 1) {
-        UiLayout_UpdateAnim(uVar8,3);
+      if (*(int *)&pUVar6->field_0x354 == 1) {
+        UiLayout_UpdateAnim(pUVar6,3);
       }
     }
   }
   if (*(int *)(param_1 + 0x7e0) == 1) {
-    iVar13 = 2;
-    if (!bVar5) {
-      iVar13 = 1;
+    iVar14 = 2;
+    if (!bVar4) {
+      iVar14 = 1;
     }
     cVar1 = *(char *)(param_1 + 0x779);
-    iVar13 = *(int *)(param_1 + 0x7a4) - iVar13;
+    iVar14 = *(int *)(param_1 + 0x7a4) - iVar14;
     uVar9 = (*_g_NameEntryShared1)(0xc4);
-    pcVar6 = _g_NameEntryShared2;
+    pcVar5 = _g_NameEntryShared2;
     if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
-      bVar4 = true;
+      bVar3 = true;
     }
     else {
-      bVar4 = false;
+      bVar3 = false;
     }
-    if (bVar4) {
+    if (bVar3) {
       uVar10 = (*_g_NameEntryShared2)(0x1e97);
     }
     else {
       uVar10 = (*_g_NameEntryShared2)(0x1e98);
     }
-    if (iVar13 == -1) {
-      uVar10 = (*pcVar6)(0x1e7f);
-      UiElem_GetRect(uVar9,auStack_40,DAT_003421b8);
+    if (iVar14 == -1) {
+      uVar10 = (*pcVar5)(0x1e7f);
+      UiElem_GetRect((UiLayout *)uVar9,auStack_40,(long)DAT_003421b8);
       UiText_DrawById(auStack_40,uVar10);
+      uVar9 = extraout_a3_01;
     }
     else {
-      PwInput_DrawName(uVar9,DAT_003421b8,uVar10,iVar13 + 1);
+      PwInput_DrawName(uVar9,DAT_003421b8,uVar10,iVar14 + 1);
+      uVar9 = extraout_a3_00;
     }
   }
   else if (*(int *)(param_1 + 0x7e0) == 2) {
     cVar1 = *(char *)(param_1 + 0x779);
-    iVar13 = (*(int *)(param_1 + 0x7a4) + 6) - (uint)bVar5;
+    iVar14 = (*(int *)(param_1 + 0x7a4) + 6) - (uint)bVar4;
     uVar9 = (*_g_NameEntryShared1)(0xc4);
-    pcVar6 = _g_NameEntryShared2;
+    pcVar5 = _g_NameEntryShared2;
     if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
-      bVar4 = true;
+      bVar3 = true;
     }
     else {
-      bVar4 = false;
+      bVar3 = false;
     }
-    if (bVar4) {
+    if (bVar3) {
       uVar10 = (*_g_NameEntryShared2)(0x1e97);
     }
     else {
       uVar10 = (*_g_NameEntryShared2)(0x1e98);
     }
-    if (iVar13 == -1) {
-      uVar10 = (*pcVar6)(0x1e7f);
-      UiElem_GetRect(uVar9,auStack_80,DAT_003421b8);
+    if (iVar14 == -1) {
+      uVar10 = (*pcVar5)(0x1e7f);
+      UiElem_GetRect((UiLayout *)uVar9,auStack_80,(long)DAT_003421b8);
       UiText_DrawById(auStack_80,uVar10);
+      uVar9 = extraout_a3_02;
     }
     else {
-      PwInput_DrawName(uVar9,DAT_003421b8,uVar10,iVar13 + 1);
+      PwInput_DrawName(uVar9,DAT_003421b8,uVar10,iVar14 + 1);
+      uVar9 = extraout_a3;
     }
   }
   else {
-    uVar9 = (*pcVar6)(0xc4);
+    uVar9 = (*pcVar5)(0xc4);
     PwInput_SetKeyState(uVar9,*(undefined4 *)(&DAT_003421c0 + *(int *)(param_1 + 0x79c) * 4),1,0);
+    uVar9 = extraout_a3_03;
   }
-  iVar13 = 0;
-  puVar14 = &DAT_003421e0;
-  puVar11 = &DAT_003421a0;
+  iVar14 = 0;
+  piVar15 = &DAT_003421e0;
+  piVar12 = &DAT_003421a0;
   while( true ) {
+    bVar11 = (byte)uVar9;
     if (*(int *)(param_1 + 0x7a0) < 7) {
-      bVar4 = iVar13 < *(int *)(param_1 + 0x7a0);
+      bVar3 = iVar14 < *(int *)(param_1 + 0x7a0);
     }
     else {
-      bVar4 = iVar13 < 6;
+      bVar3 = iVar14 < 6;
     }
-    if (!bVar4) break;
-    UiElem_SetPropFloat(0x3f800000,uVar8,*puVar14,8);
-    iVar2 = *piVar12;
+    if (!bVar3) break;
+    UiElem_SetPropFloat(pUVar6,(long)*piVar15,8,bVar11);
+    iVar2 = *piVar13;
     cVar1 = *(char *)(param_1 + 0x779);
-    uVar7 = (*_g_NameEntryShared1)(0xc4);
-    pcVar6 = _g_NameEntryShared2;
+    pUVar8 = (UiLayout *)(*_g_NameEntryShared1)(0xc4);
+    pcVar5 = _g_NameEntryShared2;
     if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
-      bVar4 = true;
+      bVar3 = true;
     }
     else {
-      bVar4 = false;
+      bVar3 = false;
     }
-    if (bVar4) {
+    if (bVar3) {
       uVar9 = (*_g_NameEntryShared2)(0x1e97);
     }
     else {
       uVar9 = (*_g_NameEntryShared2)(0x1e98);
     }
     if (iVar2 == -1) {
-      uVar9 = (*pcVar6)(0x1e7f);
-      UiElem_GetRect(uVar7,auStack_c0,*puVar11);
+      uVar9 = (*pcVar5)(0x1e7f);
+      UiElem_GetRect(pUVar8,auStack_c0,(long)*piVar12);
       UiText_DrawById(auStack_c0,uVar9);
+      uVar9 = extraout_a3_05;
     }
     else {
-      PwInput_DrawName(uVar7,*puVar11,uVar9,iVar2 + 1);
+      PwInput_DrawName(pUVar8,*piVar12,uVar9,iVar2 + 1);
+      uVar9 = extraout_a3_04;
     }
-    puVar14 = puVar14 + 1;
+    piVar15 = piVar15 + 1;
+    piVar13 = piVar13 + 1;
     piVar12 = piVar12 + 1;
-    puVar11 = puVar11 + 1;
-    iVar13 = iVar13 + 1;
+    iVar14 = iVar14 + 1;
   }
-  if (iVar13 < 6) {
-    puVar11 = &DAT_003421e0 + iVar13;
+  if (iVar14 < 6) {
+    piVar13 = &DAT_003421e0 + iVar14;
     do {
-      UiElem_SetPropFloat(0,uVar8,*puVar11,8);
-      iVar13 = iVar13 + 1;
-      puVar11 = puVar11 + 1;
-    } while (iVar13 < 6);
+      UiElem_SetPropFloat(pUVar6,(long)*piVar13,8,(byte)uVar9);
+      bVar11 = (byte)extraout_a3_06;
+      iVar14 = iVar14 + 1;
+      piVar13 = piVar13 + 1;
+      uVar9 = extraout_a3_06;
+    } while (iVar14 < 6);
     cVar1 = *(char *)(param_1 + 0x768);
   }
   else {
@@ -1371,20 +1392,20 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
   if (cVar1 == -1) {
     PwInput_AnimateCursor(1);
     if (*(int *)(param_1 + 0x7a8) < 7) {
-      UiElem_SetPropFloat(0,uVar8,0x42,8);
-      UiElem_SetPropFloat(0,uVar8,0x43,8);
+      UiElem_SetPropFloat(pUVar6,0x42,8,extraout_a3_lo);
+      UiElem_SetPropFloat(pUVar6,0x43,8,extraout_a3_lo_00);
     }
     else if (*(int *)(param_1 + 0x7a4) == 0) {
-      UiElem_SetPropFloat(0,uVar8,0x42,8);
+      UiElem_SetPropFloat(pUVar6,0x42,8,extraout_a3_lo);
     }
     else if (*(int *)(param_1 + 0x7a8) ==
-             (*(int *)(param_1 + 0x7a4) + *(int *)(param_1 + 0x7a0)) - (uint)bVar5) {
-      UiElem_SetPropFloat(0,uVar8,0x43,8);
+             (*(int *)(param_1 + 0x7a4) + *(int *)(param_1 + 0x7a0)) - (uint)bVar4) {
+      UiElem_SetPropFloat(pUVar6,0x43,8,extraout_a3_lo);
     }
   }
   else {
-    UiElem_SetPropFloat(0,uVar8,0x42,8);
-    UiElem_SetPropFloat(0,uVar8,0x43,8);
+    UiElem_SetPropFloat(pUVar6,0x42,8,bVar11);
+    UiElem_SetPropFloat(pUVar6,0x43,8,extraout_a3_lo_01);
   }
   return;
 }
@@ -1398,73 +1419,73 @@ void maybe_NameEntry_DrawName(int param_1,long param_2)
   char cVar1;
   undefined4 uVar2;
   code *pcVar3;
-  undefined8 uVar4;
+  UiLayout *pUVar4;
   undefined8 uVar5;
   uint uVar6;
   int iVar7;
-  undefined1 auStack_c0 [64];
-  undefined1 auStack_80 [64];
-  undefined1 auStack_40 [64];
+  undefined4 auStack_c0 [16];
+  undefined4 auStack_80 [16];
+  undefined4 auStack_40 [16];
   
   pcVar3 = _g_NameEntryShared2;
   if (*(char *)(param_1 + 0x778) == '\x02') {
-    uVar4 = (*_g_NameEntryShared1)(0xb6);
-    if (*(int *)((int)uVar4 + 0x318) == 1) {
-      UiLayout_UpdateAnim(uVar4,0);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb6);
+    if (pUVar4->unk_318 == 1) {
+      UiLayout_UpdateAnim(pUVar4,0);
     }
-    uVar4 = (*_g_NameEntryShared1)(0xb6);
-    UiLayout_Draw(0x3f800000,uVar4);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb6);
+    UiLayout_Draw(1.0,pUVar4);
   }
   else if (*(byte *)(param_1 + 0x779) - 4 < 2) {
-    uVar4 = (*_g_NameEntryShared1)(0xb5);
-    if (*(int *)((int)uVar4 + 0x318) == 1) {
-      UiLayout_UpdateAnim(uVar4,0);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb5);
+    if (pUVar4->unk_318 == 1) {
+      UiLayout_UpdateAnim(pUVar4,0);
     }
-    uVar4 = (*_g_NameEntryShared1)(0xb5);
-    UiLayout_Draw(0x3f800000,uVar4);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb5);
+    UiLayout_Draw(1.0,pUVar4);
   }
   else {
-    uVar4 = (*_g_NameEntryShared1)(0xb4);
-    if (*(int *)((int)uVar4 + 0x318) == 1) {
-      UiLayout_UpdateAnim(uVar4,0);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb4);
+    if (pUVar4->unk_318 == 1) {
+      UiLayout_UpdateAnim(pUVar4,0);
     }
-    uVar4 = (*_g_NameEntryShared1)(0xb4);
-    UiLayout_Draw(0x3f800000,uVar4);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb4);
+    UiLayout_Draw(1.0,pUVar4);
   }
   if (param_2 == 0) {
-    uVar4 = (*_g_NameEntryShared1)(0xb7);
-    UiElem_SetPropInt(uVar4,0x15,9,0);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb7);
+    UiElem_SetPropInt(pUVar4,0x15,9,0);
   }
   else {
-    uVar4 = (*_g_NameEntryShared1)(0xb7);
-    UiElem_SetPropInt(uVar4,0x15,9,2);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb7);
+    UiElem_SetPropInt(pUVar4,0x15,9,2);
   }
-  uVar4 = (*_g_NameEntryShared1)(0xb7);
-  UiLayout_Draw(0x3f800000,uVar4);
-  uVar4 = (*_g_NameEntryShared1)(0xba);
-  UiLayout_Draw(0x3f800000,uVar4);
+  pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xb7);
+  UiLayout_Draw(1.0,pUVar4);
+  pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xba);
+  UiLayout_Draw(1.0,pUVar4);
   cVar1 = *(char *)(param_1 + 0x779);
   if ((cVar1 == '\x05') || (cVar1 == '\x03')) {
-    uVar4 = (*pcVar3)(0x1e9b);
-    uVar5 = (*_g_NameEntryShared1)(0xba);
-    UiElem_GetRect(uVar5,auStack_c0,0xc);
-    UiText_DrawById(auStack_c0,uVar4);
+    uVar5 = (*pcVar3)(0x1e9b);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xba);
+    UiElem_GetRect(pUVar4,auStack_c0,0xc);
+    UiText_DrawById(auStack_c0,uVar5);
   }
   else if ((cVar1 == '\x04') || (cVar1 == '\x02')) {
-    uVar4 = (*pcVar3)(0x1e9a);
-    uVar5 = (*_g_NameEntryShared1)(0xba);
-    UiElem_GetRect(uVar5,auStack_80,0xc);
-    UiText_DrawById(auStack_80,uVar4);
+    uVar5 = (*pcVar3)(0x1e9a);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xba);
+    UiElem_GetRect(pUVar4,auStack_80,0xc);
+    UiText_DrawById(auStack_80,uVar5);
   }
   else {
     if (cVar1 != '\x01') {
       iVar7 = *(int *)(param_1 + 0x770);
       goto LAB_002db20c;
     }
-    uVar4 = (*pcVar3)(0x1e99);
-    uVar5 = (*_g_NameEntryShared1)(0xba);
-    UiElem_GetRect(uVar5,auStack_40,0xc);
-    UiText_DrawById(auStack_40,uVar4);
+    uVar5 = (*pcVar3)(0x1e99);
+    pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xba);
+    UiElem_GetRect(pUVar4,auStack_40,0xc);
+    UiText_DrawById(auStack_40,uVar5);
   }
   iVar7 = *(int *)(param_1 + 0x770);
 LAB_002db20c:
@@ -1650,11 +1671,13 @@ void maybe_NameEntry_Update(undefined8 param_1)
   undefined1 uVar1;
   char cVar2;
   uint uVar3;
-  undefined8 uVar4;
+  UiLayout *pUVar4;
   int iVar5;
   int iVar6;
   undefined4 *puVar7;
   undefined4 *puVar8;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
   uint uVar9;
   ulong uVar10;
   ulong uVar11;
@@ -1806,10 +1829,10 @@ switchD_002db7d4_caseD_0:
     PwInput_Open(iVar6 + 0x588);
   }
   *(undefined4 *)(iVar6 + 0x774) = *(undefined4 *)(iVar6 + 0x770);
-  uVar4 = (*_g_NameEntryShared1)(0xc4);
-  UiElem_SetPropFloat(0x3f800000,uVar4,0x42,8);
-  uVar4 = (*_g_NameEntryShared1)(0xc4);
-  UiElem_SetPropFloat(0x3f800000,uVar4,0x43,8);
+  pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xc4);
+  UiElem_SetPropFloat(pUVar4,0x42,8,extraout_a3_lo);
+  pUVar4 = (UiLayout *)(*_g_NameEntryShared1)(0xc4);
+  UiElem_SetPropFloat(pUVar4,0x43,8,extraout_a3_lo_00);
 LAB_002dbb08:
   PwInput_Animate(iVar6 + 0x588);
   if ((((*(int *)(iVar6 + 0x66c) == 0xc) && (*(char *)(iVar6 + 0x768) == '\0')) ||
@@ -1881,8 +1904,7 @@ void maybe_NameEntry_Animate(int param_1)
   code *pcVar2;
   undefined4 uVar3;
   int iVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
+  UiLayout *pUVar5;
   
   pcVar2 = _g_NameEntryShared1;
   if (*(char *)(param_1 + 0x778) != '\x02') {
@@ -1935,30 +1957,30 @@ void maybe_NameEntry_Animate(int param_1)
   }
   cVar1 = *(char *)(param_1 + 0x779);
   if ((cVar1 == '\x05') || (cVar1 == '\x03')) {
-    uVar5 = (*pcVar2)(0xba);
-    UiElem_SetPropInt(uVar5,0xb,0x16,6);
+    pUVar5 = (UiLayout *)(*pcVar2)(0xba);
+    UiElem_SetPropInt(pUVar5,0xb,0x16,6);
   }
   else if ((cVar1 == '\x04') || (cVar1 == '\x02')) {
-    uVar5 = (*pcVar2)(0xba);
-    UiElem_SetPropInt(uVar5,0xb,0x16,5);
+    pUVar5 = (UiLayout *)(*pcVar2)(0xba);
+    UiElem_SetPropInt(pUVar5,0xb,0x16,5);
   }
   else if (cVar1 == '\x01') {
-    uVar5 = (*pcVar2)(0xba);
-    UiElem_SetPropInt(uVar5,0xb,0x16,8);
+    pUVar5 = (UiLayout *)(*pcVar2)(0xba);
+    UiElem_SetPropInt(pUVar5,0xb,0x16,8);
   }
-  uVar5 = (*pcVar2)(0xc4);
+  pUVar5 = (UiLayout *)(*pcVar2)(0xc4);
   pcVar2 = _g_PwInputShared1;
   uVar3 = _s_NameEntry_Animate_2;
   iVar4 = _s_NameEntry_Animate_1 * 0x18;
-  *(int *)(&DAT_00342100 + iVar4) = (int)uVar5;
+  *(UiLayout **)(&DAT_00342100 + iVar4) = pUVar5;
   *(undefined4 *)(&DAT_00342104 + iVar4) = 2;
   *(undefined4 *)(iVar4 + 0x342108) = uVar3;
-  uVar6 = (*pcVar2)(0x68);
-  UiLayout_IsAnimDone(uVar5,0x13,_s_NameEntry_Animate_2,uVar6,1);
+  iVar4 = (*pcVar2)(0x68);
+  UiLayout_IsAnimDone(pUVar5,0x13,_s_NameEntry_Animate_2,iVar4,1);
   pcVar2 = _g_PwInputShared1;
   *(undefined4 *)(_s_NameEntry_Animate_1 * 0x18 + 0x34210c) = _s_NameEntry_Animate_3;
-  uVar6 = (*pcVar2)(0x6a);
-  UiLayout_IsAnimDone(uVar5,0x12,_s_NameEntry_Animate_3,uVar6,1);
+  iVar4 = (*pcVar2)(0x6a);
+  UiLayout_IsAnimDone(pUVar5,0x12,_s_NameEntry_Animate_3,iVar4,1);
   DAT_003420f0 = 0;
   DAT_003420f4 = 0xffffffff;
   return;
@@ -1979,7 +2001,7 @@ void NameEntry_SetMode(int param_1,undefined1 param_2,undefined1 param_3)
 void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
 
 {
-  int iVar1;
+  UiLayout *pUVar1;
   int iVar2;
   bool bVar3;
   undefined4 uVar4;
@@ -1993,14 +2015,14 @@ void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
   int *piVar12;
   uint uVar13;
   int iVar14;
-  undefined1 auStack_c0 [64];
-  undefined1 auStack_80 [64];
-  undefined1 auStack_40 [20];
+  undefined4 auStack_c0 [16];
+  undefined4 auStack_80 [16];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   
   pcVar5 = _g_NameEntryShared2;
-  iVar1 = *param_1;
-  if (iVar1 == 0) {
+  pUVar1 = (UiLayout *)*param_1;
+  if (pUVar1 == (UiLayout *)0x0) {
     return;
   }
   if (param_1[0x3a] < 0) {
@@ -2028,7 +2050,7 @@ void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
   if (param_2 == 0) {
     uVar6 = (*pcVar5)(0x1e8e);
     uVar4 = _DAT_00342188;
-    UiElem_GetRect(iVar1,auStack_40,param_1[0x3b]);
+    UiElem_GetRect(pUVar1,auStack_40,(long)param_1[0x3b]);
     uStack_2c = uVar4;
     UiText_DrawById(auStack_40,uVar6);
   }
@@ -2041,7 +2063,7 @@ void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
     uVar9 = (*pcVar5)(*(undefined4 *)((uint)param_2 * 4 + 0x342130));
     uVar10 = (*pcVar5)(*(undefined4 *)(param_3 * 4 + 0x342150));
     PwInput_DrawNameShort
-              (iVar1,param_1[0x3b],*(undefined4 *)(&DAT_00342188 + (uint)param_2 * 4),uVar8,uVar9,
+              (pUVar1,param_1[0x3b],*(undefined4 *)(&DAT_00342188 + (uint)param_2 * 4),uVar8,uVar9,
                uVar10);
   }
   uVar13 = param_1[0x39];
@@ -2051,145 +2073,145 @@ LAB_002dc0d0:
     switch(uVar13) {
     default:
       uVar11 = (*pcVar5)(0x1ea4);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 4:
       if (param_2 == 1) {
         uVar11 = (*pcVar5)(0x1ea2);
-        UiElem_GetRect(iVar1,auStack_c0,param_1[0x3a]);
+        UiElem_GetRect(pUVar1,auStack_c0,(long)param_1[0x3a]);
         UiText_DrawById(auStack_c0,uVar11);
       }
       else if (param_2 == 2) {
         uVar11 = (*pcVar5)(0x1ea3);
-        UiElem_GetRect(iVar1,auStack_80,param_1[0x3a]);
+        UiElem_GetRect(pUVar1,auStack_80,(long)param_1[0x3a]);
         UiText_DrawById(auStack_80,uVar11);
       }
       break;
     case 8:
       uVar11 = (*pcVar5)(0x1ea5);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 9:
       uVar11 = (*pcVar5)(0x1ea6);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14);
       break;
     case 10:
       if ((param_2 == 1) && (param_3 - 4 < 2)) {
         uVar11 = (*pcVar5)(0x1ea8);
-        PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+        PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       }
       else if ((param_2 == 1) && (param_3 != 0)) {
         uVar11 = (*pcVar5)(0x1ea9);
-        PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,
+        PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,
                          *(undefined4 *)(&DAT_00342140 + (param_3 - 1) * 4),iVar14);
       }
       else {
         uVar11 = (*pcVar5)(0x1ea7);
-        PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+        PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       }
       break;
     case 0xb:
       uVar11 = (*pcVar5)(0x1eaa);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14);
       break;
     case 0xc:
       break;
     case 0xd:
       uVar11 = (*pcVar5)(0x1eab);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0xe:
       uVar11 = (*pcVar5)(0x1ead);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14,uVar7);
       break;
     case 0xf:
       uVar11 = (*pcVar5)(0x1eae);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x10:
       uVar11 = (*pcVar5)(0x1eb0);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x11:
       uVar11 = (*pcVar5)(0x1eb2);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x12:
       uVar11 = (*pcVar5)(0x1eb4);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x13:
       uVar11 = (*pcVar5)(0x1eb6);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x14:
       uVar11 = (*pcVar5)(0x1eb8);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x15:
       uVar11 = (*pcVar5)(0x1eba);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14);
       break;
     case 0x16:
       uVar11 = (*pcVar5)(0x1ebb);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14);
       break;
     case 0x17:
       uVar11 = (*pcVar5)(0x1ebc);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x18:
       uVar11 = (*pcVar5)(0x1ebe);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x19:
       uVar11 = (*pcVar5)(0x1ec1);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x1a:
       uVar11 = (*pcVar5)(0x1ec3);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x1b:
       uVar11 = (*pcVar5)(0x1ec5);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
       break;
     case 0x1c:
       uVar11 = (*pcVar5)(0x1ec7);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,0x14,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,0x14,uVar7);
       break;
     case 0x1d:
     case 0x1e:
       uVar8 = (*pcVar5)(0x1ec8);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7);
       break;
     case 0x1f:
       uVar8 = (*pcVar5)(0x1ec9);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7,uVar7);
       break;
     case 0x20:
       uVar8 = (*pcVar5)(0x1eca);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7,uVar7);
       break;
     case 0x21:
       uVar11 = (*pcVar5)(0x1ecb);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
       break;
     case 0x22:
       uVar11 = (*pcVar5)(0x1ecc);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
       break;
     case 0x23:
       uVar11 = (*pcVar5)(0x1ece);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14);
       break;
     case 0x24:
       uVar11 = (*pcVar5)(0x1ecf);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,uVar7,iVar14);
       break;
     case 0x25:
       uVar11 = (*pcVar5)(0x1ecd);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      PwInput_DrawName(pUVar1,param_1[0x3a],uVar11,iVar14);
     }
   }
   return;

@@ -10,34 +10,42 @@ void MenuWnd_DrawCursor(long param_1)
 
 {
   int iVar1;
-  UiLayout *pUVar2;
-  int iVar3;
+  byte extraout_a3_lo;
+  byte bVar2;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  UiLayout *pUVar3;
   int iVar4;
+  int iVar5;
   
-  iVar3 = (uint)((g_MenuMgr->flags & 0x80000) == 0) * 0x18;
-  iVar1 = UiMgr_FindLayout(*(undefined4 *)(iVar3 + _g_MenuWnd + 0x30));
-  pUVar2 = &g_UiMgr->slots[iVar1].layout;
+  iVar4 = (uint)((g_MenuMgr->flags & 0x80000) == 0) * 0x18;
+  iVar1 = UiMgr_FindLayout(*(undefined4 *)(iVar4 + _g_MenuWnd + 0x30));
+  pUVar3 = &g_UiMgr->slots[iVar1].layout;
   if (param_1 == 0) {
     iVar1 = 0;
-    if (0 < *(int *)(iVar3 + _g_MenuWnd + 0x34)) {
-      iVar4 = 0;
+    if (0 < *(int *)(iVar4 + _g_MenuWnd + 0x34)) {
+      iVar5 = 0;
+      bVar2 = extraout_a3_lo;
       do {
-        UiElem_SetPropFloat(0,pUVar2,*(undefined4 *)(iVar3 + _g_MenuWnd + iVar4 + 0x20),8);
+        UiElem_SetPropFloat(pUVar3,(long)*(int *)(iVar4 + _g_MenuWnd + iVar5 + 0x20),8,bVar2);
         iVar1 = iVar1 + 1;
-        iVar4 = iVar4 + 4;
-      } while (iVar1 < *(int *)(iVar3 + _g_MenuWnd + 0x34));
+        iVar5 = iVar5 + 4;
+        bVar2 = extraout_a3_lo_00;
+      } while (iVar1 < *(int *)(iVar4 + _g_MenuWnd + 0x34));
     }
   }
   else {
     iVar1 = 0;
-    if (0 < *(int *)(iVar3 + _g_MenuWnd + 0x34)) {
-      iVar4 = 0;
+    if (0 < *(int *)(iVar4 + _g_MenuWnd + 0x34)) {
+      iVar5 = 0;
+      bVar2 = extraout_a3_lo;
       do {
-        UiElem_SetPropFloat(0x3f800000,pUVar2,*(undefined4 *)(iVar3 + _g_MenuWnd + iVar4 + 0x20),8);
-        UiLayout_UpdateAnim(pUVar2,0x13 - iVar1);
+        UiElem_SetPropFloat(pUVar3,(long)*(int *)(iVar4 + _g_MenuWnd + iVar5 + 0x20),8,bVar2);
+        UiLayout_UpdateAnim(pUVar3,0x13 - iVar1);
         iVar1 = iVar1 + 1;
-        iVar4 = iVar4 + 4;
-      } while (iVar1 < *(int *)(iVar3 + _g_MenuWnd + 0x34));
+        iVar5 = iVar5 + 4;
+        bVar2 = extraout_a3_lo_01;
+      } while (iVar1 < *(int *)(iVar4 + _g_MenuWnd + 0x34));
     }
   }
   return;
@@ -53,7 +61,7 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
   UiLayoutSlot *pUVar1;
   bool bVar2;
   int iVar3;
-  undefined8 uVar4;
+  int iVar4;
   
   bVar2 = (g_MenuMgr->flags & 0x80000) == 0;
   _s_MenuWnd_DrawDialogText_1 = (uint)bVar2;
@@ -67,47 +75,47 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
     *(undefined4 *)(iVar3 + _g_MenuWnd + 0x2c) = param_2[3];
     iVar3 = UiMgr_FindLayout(param_1);
     pUVar1 = g_UiMgr->slots;
-    uVar4 = UiRes_GetLayoutData(0x68);
-    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,uVar4,1);
+    iVar4 = UiRes_GetLayoutData(0x68);
+    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,iVar4,1);
     iVar3 = UiMgr_FindLayout(param_1);
     pUVar1 = g_UiMgr->slots;
-    uVar4 = UiRes_GetLayoutData(0x6a);
-    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x12,param_2[1],uVar4,1);
+    iVar4 = UiRes_GetLayoutData(0x6a);
+    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x12,param_2[1],iVar4,1);
     iVar3 = UiMgr_FindLayout(param_1);
     pUVar1 = g_UiMgr->slots;
-    uVar4 = UiRes_GetLayoutData(0x6b);
-    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x11,param_2[2],uVar4,1);
+    iVar4 = UiRes_GetLayoutData(0x6b);
+    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x11,param_2[2],iVar4,1);
     iVar3 = UiMgr_FindLayout(param_1);
     pUVar1 = g_UiMgr->slots;
-    uVar4 = UiRes_GetLayoutData(0x69);
-    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x10,param_2[3],uVar4,1);
+    iVar4 = UiRes_GetLayoutData(0x69);
+    UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x10,param_2[3],iVar4,1);
   }
   else {
     *(undefined4 *)(iVar3 + _g_MenuWnd + 0x20) = *param_2;
     if (param_4 == 0) {
       iVar3 = UiMgr_FindLayout(param_1);
       pUVar1 = g_UiMgr->slots;
-      uVar4 = UiRes_GetLayoutData(0x68);
-      UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,uVar4,1);
+      iVar4 = UiRes_GetLayoutData(0x68);
+      UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,iVar4,1);
       if (1 < param_3) {
         *(undefined4 *)(_s_MenuWnd_DrawDialogText_1 * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
         iVar3 = UiMgr_FindLayout(param_1);
         pUVar1 = g_UiMgr->slots;
-        uVar4 = UiRes_GetLayoutData(0x6a);
-        UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x12,param_2[1],uVar4,1);
+        iVar4 = UiRes_GetLayoutData(0x6a);
+        UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x12,param_2[1],iVar4,1);
       }
     }
     else {
       iVar3 = UiMgr_FindLayout(param_1);
       pUVar1 = g_UiMgr->slots;
-      uVar4 = UiRes_GetLayoutData(0x6b);
-      UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,uVar4,1);
+      iVar4 = UiRes_GetLayoutData(0x6b);
+      UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,iVar4,1);
       if (1 < param_3) {
         *(undefined4 *)(_s_MenuWnd_DrawDialogText_1 * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
         iVar3 = UiMgr_FindLayout(param_1);
         pUVar1 = g_UiMgr->slots;
-        uVar4 = UiRes_GetLayoutData(0x69);
-        UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x12,param_2[1],uVar4,1);
+        iVar4 = UiRes_GetLayoutData(0x69);
+        UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x12,param_2[1],iVar4,1);
       }
     }
   }
@@ -126,14 +134,14 @@ void MenuWnd_SetItemState(int param_1,int param_2,undefined8 param_3,long param_
   int iVar3;
   UiLayout *pUVar4;
   int iVar5;
-  undefined8 uVar6;
+  int iVar6;
   
   if (param_4 == 0) {
-    uVar6 = 0x16;
+    iVar6 = 0x16;
     iVar5 = 0x17;
   }
   else {
-    uVar6 = 0x14;
+    iVar6 = 0x14;
     iVar5 = 0x15;
   }
   iVar1 = UiMgr_FindLayout(param_1);
@@ -156,7 +164,7 @@ void MenuWnd_SetItemState(int param_1,int param_2,undefined8 param_3,long param_
     UiLayout_UpdateAnim(pUVar4,iVar5);
   }
   else {
-    UiLayout_UpdateAnim(pUVar4,uVar6);
+    UiLayout_UpdateAnim(pUVar4,iVar6);
   }
   return;
 }
@@ -204,7 +212,7 @@ void MenuWnd_DrawRivalLabel
 
 {
   int iVar1;
-  undefined1 auStack_a0 [20];
+  undefined4 auStack_a0 [5];
   undefined4 uStack_8c;
   undefined8 uStack_20;
   undefined8 uStack_18;
@@ -231,7 +239,7 @@ void MenuWnd_DrawLabel(undefined8 param_1,undefined8 param_2,undefined4 param_3,
 
 {
   int iVar1;
-  undefined1 auStack_a0 [120];
+  undefined4 auStack_a0 [30];
   undefined8 uStack_28;
   undefined8 uStack_20;
   undefined8 uStack_18;
@@ -256,7 +264,7 @@ void MenuWnd_DrawTextId(undefined8 param_1,undefined8 param_2,undefined4 param_3
 
 {
   int iVar1;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   
   iVar1 = UiMgr_FindLayout();
@@ -273,7 +281,7 @@ void MenuWnd_DrawText(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
-  undefined1 auStack_40 [64];
+  undefined4 auStack_40 [16];
   
   iVar1 = UiMgr_FindLayout();
   UiElem_GetRect(&g_UiMgr->slots[iVar1].layout,auStack_40,param_2);
@@ -282,32 +290,35 @@ void MenuWnd_DrawText(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x00201210  size 0x48
-bool UiLayout_UpdateAnimIfActive(int param_1,int param_2)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+bool UiLayout_UpdateAnimIfActive(UiLayout *param_1,int param_2)
 
 {
   bool bVar1;
   
-  bVar1 = *(int *)(param_2 * 0x14 + param_1 + 0x318) == 1;
+  bVar1 = (&param_1->unk_318)[param_2 * 5] == 1;
   if (bVar1) {
-    UiLayout_UpdateAnim();
+    UiLayout_UpdateAnim(param_1,param_2);
   }
   return bVar1;
 }
 
 // 0x00201260  size 0x98
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 273 callers */
 
-bool UiLayout_UpdateAnimById(undefined8 param_1,undefined8 param_2)
+bool UiLayout_UpdateAnimById(UiLayout *param_1,undefined8 param_2)
 
 {
   bool bVar1;
   int iVar2;
   
-  iVar2 = UiMgr_FindLayout();
+  iVar2 = UiMgr_FindLayout(param_1);
   bVar1 = (&g_UiMgr->slots[iVar2].layout.unk_318)[(int)param_2 * 5] == 1;
   if (bVar1) {
     iVar2 = UiMgr_FindLayout(param_1);
-    UiLayout_UpdateAnim(&g_UiMgr->slots[iVar2].layout,param_2);
+    UiLayout_UpdateAnim(&g_UiMgr->slots[iVar2].layout,(int)param_2);
   }
   return bVar1;
 }
@@ -350,17 +361,17 @@ void MenuWnd_DrawMoney(int param_1)
   int iVar5;
   undefined8 uVar6;
   undefined4 uVar7;
-  undefined1 auStack_180 [20];
+  undefined4 auStack_180 [5];
   undefined4 uStack_16c;
-  undefined1 auStack_140 [20];
+  undefined4 auStack_140 [5];
   undefined4 uStack_12c;
-  undefined1 auStack_100 [20];
+  undefined4 auStack_100 [5];
   undefined4 uStack_ec;
-  undefined1 auStack_c0 [20];
+  undefined4 auStack_c0 [5];
   undefined4 uStack_ac;
-  undefined1 auStack_80 [20];
+  undefined4 auStack_80 [5];
   undefined4 uStack_6c;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   undefined4 uStack_2c;
   
   uVar4 = g_MenuMgr->flags;
@@ -400,11 +411,11 @@ void MenuWnd_DrawMoney(int param_1)
       iVar5 = UiMgr_FindLayout(8);
       UiLayout_UpdateAnim(&g_UiMgr->slots[iVar5].layout,2);
       iVar5 = UiMgr_FindLayout(8);
-      UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar5].layout);
+      UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
       iVar5 = UiMgr_FindLayout(9);
-      UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar5].layout);
+      UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
       iVar5 = UiMgr_FindLayout(10);
-      UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar5].layout);
+      UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
       uVar6 = Profile_Get(0);
       uVar6 = Profile_GetMoney(uVar6);
       MenuWnd_DrawNumber(10,1,uVar6);
@@ -471,11 +482,11 @@ void MenuWnd_DrawMoney(int param_1)
     iVar5 = UiMgr_FindLayout(8);
     UiLayout_UpdateAnim(&g_UiMgr->slots[iVar5].layout,2);
     iVar5 = UiMgr_FindLayout(8);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar5].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
     iVar5 = UiMgr_FindLayout(9);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar5].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
     iVar5 = UiMgr_FindLayout(10);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar5].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
     uVar6 = Profile_Get(0);
     uVar6 = Profile_GetMoney(uVar6);
     MenuWnd_DrawNumber(10,1,uVar6);
@@ -540,11 +551,10 @@ void MenuScene_Update(int param_1)
   int *piVar1;
   UiLayoutSlot *pUVar2;
   uint uVar3;
-  undefined4 uVar4;
-  int iVar5;
-  long lVar6;
-  undefined8 uVar7;
-  uint uVar8;
+  int iVar4;
+  long lVar5;
+  undefined8 uVar6;
+  uint uVar7;
   int aiStack_50 [8];
   undefined4 uStack_30;
   undefined8 uStack_28;
@@ -566,52 +576,52 @@ void MenuScene_Update(int param_1)
   uStack_10 = 0;
   uStack_c = 0;
   uVar3 = g_MenuMgr->flags;
-  uVar8 = 0x80;
+  uVar7 = 0x80;
   if ((((uVar3 & 0x700) == 0) && ((uVar3 & 0x8000000) == 0)) && (-2 < (int)g_MenuMgr->curScreen)) {
     if ((uVar3 & 2) != 0) {
       if (*piVar1 < 0) {
-        uVar4 = UiRes_GetLayoutData(4);
-        iVar5 = UiMgr_FindLayout(7);
+        uVar3 = UiRes_GetLayoutData(4);
+        iVar4 = UiMgr_FindLayout(7);
         pUVar2 = g_UiMgr->slots;
-        *(undefined4 *)&pUVar2[iVar5].layout.field_0x310 = 0xffffffff;
-        *(undefined4 *)&pUVar2[iVar5].layout.field_0x31c = 0;
-        *(undefined4 *)&pUVar2[iVar5].layout.field_0x30c = 0;
-        if (*(int *)&pUVar2[iVar5].layout.field_0x31c == 0) {
-          pUVar2[iVar5].layout.unk_318 = 0;
+        pUVar2[iVar4].layout.unk_310 = 0xffffffff;
+        pUVar2[iVar4].layout.unk_31c = 0;
+        pUVar2[iVar4].layout.unk_30c = 0;
+        if (pUVar2[iVar4].layout.unk_31c == 0) {
+          pUVar2[iVar4].layout.unk_318 = 0;
         }
         else {
-          pUVar2[iVar5].layout.unk_318 = 1;
+          pUVar2[iVar4].layout.unk_318 = 1;
         }
-        *(undefined4 *)&pUVar2[iVar5].layout.field_0x30c = 0;
-        if (*(int *)&pUVar2[iVar5].layout.field_0x31c == 0) {
-          pUVar2[iVar5].layout.unk_318 = 0;
+        pUVar2[iVar4].layout.unk_30c = 0;
+        if (pUVar2[iVar4].layout.unk_31c == 0) {
+          pUVar2[iVar4].layout.unk_318 = 0;
         }
         else {
-          pUVar2[iVar5].layout.unk_318 = 1;
+          pUVar2[iVar4].layout.unk_318 = 1;
         }
-        *(undefined4 *)&pUVar2[iVar5].layout.field_0x314 = 1;
-        *(undefined4 *)&pUVar2[iVar5].layout.field_0x31c = uVar4;
-        pUVar2[iVar5].layout.unk_318 = 1;
+        *(undefined4 *)&pUVar2[iVar4].layout.field_0x314 = 1;
+        pUVar2[iVar4].layout.unk_31c = uVar3;
+        pUVar2[iVar4].layout.unk_318 = 1;
         *piVar1 = 0x14;
       }
       if (*piVar1 == 0) {
         g_MenuMgr->flags = g_MenuMgr->flags & 0xfffffffd;
         Gfx_SetFade(2,9,0,0);
-        iVar5 = *piVar1;
+        iVar4 = *piVar1;
       }
       else {
-        uVar8 = (uint)(*piVar1 << 7) / 0x14;
-        if (uVar8 < 0x81) {
-          aiStack_50[0] = uVar8 << 0x18;
+        uVar7 = (uint)(*piVar1 << 7) / 0x14;
+        if (uVar7 < 0x81) {
+          aiStack_50[0] = uVar7 << 0x18;
         }
         else {
-          uVar8 = 0x80;
+          uVar7 = 0x80;
           aiStack_50[0] = -0x80000000;
         }
         Gfx_SetFade(2,9,1,aiStack_50);
-        iVar5 = *piVar1;
+        iVar4 = *piVar1;
       }
-      *piVar1 = iVar5 + -1;
+      *piVar1 = iVar4 + -1;
     }
     if ((g_MenuMgr->flags & 1) != 0) {
       if (*piVar1 < 0) {
@@ -622,7 +632,7 @@ void MenuScene_Update(int param_1)
         g_MenuMgr->flags = g_MenuMgr->flags | 2;
       }
       else {
-        uVar3 = (uVar8 * (0x28 - *piVar1)) / 0x28;
+        uVar3 = (uVar7 * (0x28 - *piVar1)) / 0x28;
         if (uVar3 < 0x81) {
           aiStack_50[0] = uVar3 << 0x18;
         }
@@ -637,13 +647,13 @@ void MenuScene_Update(int param_1)
       if ((g_MenuMgr->flags & 8) != 0) {
         uVar3 = g_MenuMgr->curScreen;
         if (piVar1[1] == 0) {
-          uVar7 = MenuMgr_UpdateTransition(uVar3);
-          (*(code *)(&PTR_maybe_PagePasswordEntry_Enter_003276e0)[uVar3 * 3])(uVar7);
+          uVar6 = MenuMgr_UpdateTransition(uVar3);
+          (*(code *)(&PTR_maybe_PagePasswordEntry_Enter_003276e0)[uVar3 * 3])(uVar6);
           piVar1[1] = 1;
         }
         if (piVar1[1] == 1) {
-          uVar7 = MenuMgr_UpdateTransition(uVar3);
-          (*(code *)(&PTR_maybe_PagePasswordEntry_Update_003276e4)[uVar3 * 3])(uVar7);
+          uVar6 = MenuMgr_UpdateTransition(uVar3);
+          (*(code *)(&PTR_maybe_PagePasswordEntry_Update_003276e4)[uVar3 * 3])(uVar6);
           if ((g_MenuMgr->flags & 0x800) != 0) {
             g_MenuMgr->flags = g_MenuMgr->flags & 0xfffff7ff;
             g_MenuMgr->flags = g_MenuMgr->flags | 4;
@@ -651,8 +661,8 @@ void MenuScene_Update(int param_1)
           }
         }
         if (piVar1[1] == 2) {
-          uVar7 = MenuMgr_UpdateTransition(uVar3);
-          (*(code *)(&PTR_maybe_PagePasswordEntry_Exit_003276e8)[uVar3 * 3])(uVar7);
+          uVar6 = MenuMgr_UpdateTransition(uVar3);
+          (*(code *)(&PTR_maybe_PagePasswordEntry_Exit_003276e8)[uVar3 * 3])(uVar6);
           piVar1[1] = 0;
         }
       }
@@ -666,7 +676,7 @@ void MenuScene_Update(int param_1)
     Gfx_SetFade(2,9,0,0);
     UiMgr_DrawAll(0);
     if ((((g_MenuMgr->flags & 0x200) == 0) && ((g_MenuMgr->flags & 0x8000000) == 0)) &&
-       ((-2 < (int)g_MenuMgr->curScreen && (lVar6 = CarDb_IsLoading(), lVar6 == 1)))) {
+       ((-2 < (int)g_MenuMgr->curScreen && (lVar5 = CarDb_IsLoading(), lVar5 == 1)))) {
       MenuMgr_DrawCar();
     }
   }
@@ -1062,7 +1072,7 @@ void MenuScene_Exit(int param_1)
   undefined4 *puVar1;
   
   puVar1 = *(undefined4 **)(param_1 + 0x14);
-  UiLayout_Free(&g_MenuMgr->field_0x40);
+  UiLayout_Free((UiLayout *)&g_MenuMgr->field_0x40);
   *puVar1 = 0;
   MenuWnd_FreeSystem();
   MenuWnd_Free();

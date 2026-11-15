@@ -524,57 +524,57 @@ float UiAnim_EvalKey(int param_1,int param_2)
 }
 
 // 0x001ecd80  size 0x404
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 39 callers */
 
-void UiLayout_UpdateAnim(undefined8 param_1,int param_2)
+void UiLayout_UpdateAnim(UiLayout *param_1,int param_2)
 
 {
-  int iVar1;
+  uint uVar1;
   uint uVar2;
-  uint uVar3;
-  bool bVar4;
-  int *piVar5;
+  bool bVar3;
+  int *piVar4;
+  int iVar5;
   int iVar6;
-  int iVar7;
+  ulong uVar7;
+  byte extraout_a3_lo;
   int iVar8;
-  int iVar9;
-  int iVar10;
-  int *piVar11;
-  int *piVar12;
-  float fVar13;
-  uint uVar14;
+  long lVar9;
+  int *piVar10;
+  uint *puVar11;
+  float fVar12;
+  uint uVar13;
   
-  iVar6 = (int)param_1 + param_2 * 0x14;
-  piVar12 = (int *)(iVar6 + 0x30c);
-  if (*(int *)(iVar6 + 0x31c) == 0) {
-    *(undefined4 *)(iVar6 + 0x318) = 0;
+  puVar11 = &param_1->unk_30c + param_2 * 5;
+  if ((&param_1->unk_31c)[param_2 * 5] == 0) {
+    (&param_1->unk_318)[param_2 * 5] = 0;
   }
-  else if (*(int *)(iVar6 + 0x318) == 1) {
-    *(undefined4 *)(iVar6 + 0x318) = 0;
-    piVar11 = *(int **)(iVar6 + 0x31c);
-    iVar1 = *(int *)(iVar6 + 0x310);
-    if (*piVar11 != -1) {
-      iVar9 = 0;
+  else if ((&param_1->unk_318)[param_2 * 5] == 1) {
+    (&param_1->unk_318)[param_2 * 5] = 0;
+    piVar10 = (int *)(&param_1->unk_31c)[param_2 * 5];
+    uVar1 = (&param_1->unk_310)[param_2 * 5];
+    if (*piVar10 != -1) {
+      iVar8 = 0;
       do {
-        piVar11 = (int *)((int)piVar11 + iVar9);
-        if (iVar1 < 0) {
-          iVar10 = *piVar11;
+        piVar10 = (int *)((int)piVar10 + iVar8);
+        if ((long)(int)uVar1 < 0) {
+          lVar9 = (long)*piVar10;
         }
         else {
-          iVar10 = iVar1;
+          lVar9 = (long)(int)uVar1;
         }
-        if (piVar11[5] < *piVar12) {
+        if (piVar10[5] < (int)*puVar11) {
 LAB_001ece1c:
-          piVar11 = *(int **)(iVar6 + 0x31c);
+          piVar10 = (int *)(&param_1->unk_31c)[param_2 * 5];
         }
         else {
-          bVar4 = true;
-          *(undefined4 *)(iVar6 + 0x318) = 1;
-          if (piVar11[4] == *piVar12) {
-            uVar2 = piVar11[1];
-            if ((uVar2 & 0xff) < 0x49) {
+          bVar3 = true;
+          (&param_1->unk_318)[param_2 * 5] = 1;
+          if (piVar10[4] == *puVar11) {
+            uVar13 = piVar10[1];
+            if ((uVar13 & 0xff) < 0x49) {
                     /* WARNING: Switch is manually overridden */
-              switch(uVar2 & 0xff) {
+              switch(uVar13 & 0xff) {
               case 0:
                 goto switchD_001eceac_default;
               case 1:
@@ -582,105 +582,106 @@ LAB_001ece1c:
             }
             else {
 switchD_001eceac_default:
-              bVar4 = false;
+              bVar3 = false;
             }
-            if (bVar4) {
-              piVar5 = (int *)UiElem_GetPropPtr(param_1,iVar10,uVar2 & 0xff);
-              piVar11[2] = *piVar5;
+            if (bVar3) {
+              piVar4 = (int *)UiElem_GetPropPtr(param_1,(int)lVar9,uVar13 & 0xff);
+              piVar10[2] = *piVar4;
             }
             else {
-              piVar5 = (int *)UiElem_GetPropPtr(param_1,iVar10,uVar2 & 0xff);
-              piVar11[2] = *piVar5;
+              piVar4 = (int *)UiElem_GetPropPtr(param_1,(int)lVar9,uVar13 & 0xff);
+              piVar10[2] = *piVar4;
             }
           }
-          if (*piVar12 < piVar11[4]) goto LAB_001ece1c;
-          fVar13 = (float)UiAnim_EvalKey(piVar11);
-          uVar2 = piVar11[1];
-          if ((uVar2 & 0xff) < 0x49) {
+          if ((int)*puVar11 < piVar10[4]) goto LAB_001ece1c;
+          fVar12 = (float)UiAnim_EvalKey(piVar10);
+          uVar7 = (ulong)piVar10[1];
+          if ((uVar7 & 0xff) < 0x49) {
                     /* WARNING: Switch is manually overridden */
-            switch(uVar2 & 0xff) {
+            switch((int)(uVar7 & 0xff)) {
             case 0:
-              bVar4 = false;
+              bVar3 = false;
               break;
             case 1:
-              bVar4 = true;
+              bVar3 = true;
             }
           }
           else {
-            bVar4 = false;
+            bVar3 = false;
           }
-          if (!bVar4) {
-            if (fVar13 < -1000.0) {
-              uVar14 = piVar11[3];
+          if (!bVar3) {
+            if (fVar12 < -1000.0) {
+              uVar13 = piVar10[3];
             }
-            else if (((int)uVar2 < 0x39) || (0x48 < (int)uVar2)) {
-              uVar14 = (uint)(fVar13 * (float)(piVar11[3] - piVar11[2]) + (float)piVar11[2] + 0.0);
+            else if (((long)uVar7 < 0x39) || (0x48 < (long)uVar7)) {
+              uVar13 = (uint)(fVar12 * (float)(piVar10[3] - piVar10[2]) + (float)piVar10[2] + 0.0);
             }
             else {
-              uVar14 = piVar11[2];
-              uVar3 = piVar11[3];
-              iVar8 = (int)(uVar14 & 0xff0000) >> 0x10;
-              iVar7 = (int)(uVar14 & 0xff00) >> 8;
-              uVar14 = (int)(fVar13 * (float)(int)((uVar3 & 0xff) - (uVar14 & 0xff)) +
-                            (float)(uVar14 & 0xff) + 0.0) |
-                       (int)(fVar13 * (float)(((int)(uVar3 & 0xff00) >> 8) - iVar7) +
-                            (float)iVar7 + 0.0) << 8 |
-                       (int)(fVar13 * (float)(int)((uVar3 >> 0x18) - (uVar14 >> 0x18)) +
-                            (float)(uVar14 >> 0x18) + 0.0) << 0x18 |
-                       (int)(fVar13 * (float)(((int)(uVar3 & 0xff0000) >> 0x10) - iVar8) +
-                            (float)iVar8 + 0.0) << 0x10;
+              uVar13 = piVar10[2];
+              uVar2 = piVar10[3];
+              iVar6 = (int)(uVar13 & 0xff0000) >> 0x10;
+              iVar5 = (int)(uVar13 & 0xff00) >> 8;
+              uVar13 = (int)(fVar12 * (float)(int)((uVar2 & 0xff) - (uVar13 & 0xff)) +
+                            (float)(uVar13 & 0xff) + 0.0) |
+                       (int)(fVar12 * (float)(((int)(uVar2 & 0xff00) >> 8) - iVar5) +
+                            (float)iVar5 + 0.0) << 8 |
+                       (int)(fVar12 * (float)(int)((uVar2 >> 0x18) - (uVar13 >> 0x18)) +
+                            (float)(uVar13 >> 0x18) + 0.0) << 0x18 |
+                       (int)(fVar12 * (float)(((int)(uVar2 & 0xff0000) >> 0x10) - iVar6) +
+                            (float)iVar6 + 0.0) << 0x10;
             }
-            UiElem_SetPropInt(param_1,iVar10,uVar2 & 0xff,uVar14);
+            UiElem_SetPropInt(param_1,lVar9,(byte)piVar10[1],uVar13);
             goto LAB_001ece1c;
           }
-          if (-1000.0 <= fVar13) {
-            fVar13 = fVar13 * ((float)piVar11[3] - (float)piVar11[2]) + (float)piVar11[2] + 0.0;
-          }
-          else {
-            fVar13 = (float)piVar11[3];
-          }
-          UiElem_SetPropFloat(fVar13,param_1,iVar10,uVar2 & 0xff);
-          piVar11 = *(int **)(iVar6 + 0x31c);
+          UiElem_SetPropFloat(param_1,lVar9,uVar7 & 0xff,extraout_a3_lo);
+          piVar10 = (int *)(&param_1->unk_31c)[param_2 * 5];
         }
-        iVar9 = iVar9 + 0x28;
-      } while (*(int *)((int)piVar11 + iVar9) != -1);
+        iVar8 = iVar8 + 0x28;
+      } while (*(int *)((int)piVar10 + iVar8) != -1);
     }
-    if ((*(int *)(iVar6 + 0x318) == 0) && (*(int *)(iVar6 + 0x314) == 1)) {
-      *(undefined4 *)(iVar6 + 0x318) = 1;
-      *piVar12 = 0;
+    if (((&param_1->unk_318)[param_2 * 5] == 0) &&
+       (*(int *)(&param_1->field_0x314 + param_2 * 0x14) == 1)) {
+      (&param_1->unk_318)[param_2 * 5] = 1;
+      *puVar11 = 0;
     }
     else {
-      *piVar12 = *piVar12 + 1;
+      *puVar11 = *puVar11 + 1;
     }
   }
   return;
 }
 
 // 0x001ed190  size 0x130
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 27 callers */
 
-void UiLayout_PlayAnim(undefined8 param_1,int *param_2)
+void UiLayout_PlayAnim(UiLayout *param_1,int *param_2)
 
 {
-  uint uVar1;
+  int iVar1;
   bool bVar2;
   bool bVar3;
-  int *piVar4;
-  int iVar5;
+  ulong uVar4;
+  undefined8 in_a3;
+  undefined8 extraout_a3;
+  undefined8 extraout_a3_00;
+  int *piVar5;
+  int iVar6;
   
-  iVar5 = 0;
+  iVar6 = 0;
   do {
     bVar3 = false;
     if (*param_2 != -1) {
-      piVar4 = param_2;
+      piVar5 = param_2;
       do {
-        if (iVar5 <= piVar4[5]) {
+        if (iVar6 <= piVar5[5]) {
           bVar3 = true;
-          if (piVar4[5] == iVar5) {
-            uVar1 = piVar4[1];
-            if ((uVar1 & 0xff) < 0x49) {
+          if (piVar5[5] == iVar6) {
+            iVar1 = piVar5[1];
+            uVar4 = (long)iVar1 & 0xff;
+            if (uVar4 < 0x49) {
                     /* WARNING: Switch is manually overridden */
-              switch(uVar1 & 0xff) {
+              switch((int)uVar4) {
               case 0:
                 bVar2 = false;
                 break;
@@ -692,51 +693,52 @@ void UiLayout_PlayAnim(undefined8 param_1,int *param_2)
               bVar2 = false;
             }
             if (bVar2) {
-              UiElem_SetPropFloat(piVar4[3],param_1,*piVar4,uVar1 & 0xff);
+              UiElem_SetPropFloat(param_1,(long)*piVar5,(long)iVar1 & 0xff,(byte)in_a3);
+              in_a3 = extraout_a3;
             }
             else {
-              UiElem_SetPropInt(param_1,*piVar4,uVar1 & 0xff,piVar4[3]);
+              UiElem_SetPropInt(param_1,(long)*piVar5,(byte)iVar1,piVar5[3]);
+              in_a3 = extraout_a3_00;
             }
           }
         }
-        piVar4 = piVar4 + 10;
-      } while (*piVar4 != -1);
+        piVar5 = piVar5 + 10;
+      } while (*piVar5 != -1);
     }
-  } while ((bVar3) && (iVar5 = iVar5 + 1, iVar5 < 100));
+  } while ((bVar3) && (iVar6 = iVar6 + 1, iVar6 < 100));
   return;
 }
 
 // 0x001ed2c0  size 0x88
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 18 callers */
 
-void UiLayout_IsAnimDone(int param_1,int param_2,undefined4 param_3,int param_4,undefined4 param_5)
+void UiLayout_IsAnimDone(UiLayout *param_1,int param_2,uint param_3,int param_4,undefined4 param_5)
 
 {
-  int iVar1;
-  undefined4 *puVar2;
+  uint *puVar1;
   
-  iVar1 = param_2 * 0x14 + param_1;
-  *(undefined4 *)(iVar1 + 0x310) = 0xffffffff;
-  *(undefined4 *)(iVar1 + 0x31c) = 0;
-  *(undefined4 *)(iVar1 + 0x30c) = 0;
-  if (*(int *)(iVar1 + 0x31c) == 0) {
-    *(undefined4 *)(iVar1 + 0x318) = 0;
+  (&param_1->unk_310)[param_2 * 5] = 0xffffffff;
+  (&param_1->unk_31c)[param_2 * 5] = 0;
+  (&param_1->unk_30c)[param_2 * 5] = 0;
+  if ((&param_1->unk_31c)[param_2 * 5] == 0) {
+    (&param_1->unk_318)[param_2 * 5] = 0;
   }
   else {
-    *(undefined4 *)(iVar1 + 0x318) = 1;
+    (&param_1->unk_318)[param_2 * 5] = 1;
   }
-  puVar2 = (undefined4 *)(iVar1 + 0x318);
-  *(undefined4 *)(iVar1 + 0x30c) = 0;
-  if (*(int *)(iVar1 + 0x31c) == 0) {
-    *puVar2 = 0;
+  puVar1 = &param_1->unk_318 + param_2 * 5;
+  (&param_1->unk_30c)[param_2 * 5] = 0;
+  if ((&param_1->unk_31c)[param_2 * 5] == 0) {
+    *puVar1 = 0;
   }
   else {
-    *puVar2 = 1;
+    *puVar1 = 1;
   }
-  *(undefined4 *)(param_2 * 0x14 + param_1 + 0x314) = param_5;
-  *(int *)(iVar1 + 0x31c) = param_4;
-  *puVar2 = 1;
-  *(undefined4 *)(iVar1 + 0x310) = param_3;
+  *(undefined4 *)(&param_1->field_0x314 + param_2 * 0x14) = param_5;
+  (&param_1->unk_31c)[param_2 * 5] = param_4;
+  *puVar1 = 1;
+  (&param_1->unk_310)[param_2 * 5] = param_3;
   return;
 }
 
@@ -979,20 +981,21 @@ void UiModel_DrawTree(float param_1,float param_2,undefined8 param_3,undefined8 
 
 // 0x001eda40  size 0x3dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* (alpha, layout); 315 callers */
 
-void UiLayout_Draw(float param_1,int param_2)
+void UiLayout_Draw(float param_1,UiLayout *param_2)
 
 {
   int iVar1;
-  int iVar2;
-  int *piVar3;
-  int iVar4;
-  int iVar5;
+  int *piVar2;
+  int iVar3;
+  UiLayout *pUVar4;
+  long lVar5;
   int iVar6;
-  int iVar7;
+  long lVar7;
   int *piVar8;
-  undefined1 auStack_90 [64];
+  undefined4 auStack_90 [16];
   undefined1 auStack_50 [76];
   int iStack_4;
   
@@ -1009,76 +1012,78 @@ void UiLayout_Draw(float param_1,int param_2)
   if ((piVar8 != (int *)0x0) && (*piVar8 == 1)) {
     TexSlot_Set(0,*(undefined2 *)(piVar8[1] + 6),piVar8[3]);
   }
-  if (*(int *)(param_2 + 0x2cc) == 1) {
-    TexSlot_Set(1,*(undefined2 *)(*(int *)(param_2 + 0x2d0) + 6),*(undefined4 *)(param_2 + 0x2d8));
+  if (param_2->unk_2cc == 1) {
+    TexSlot_Set(1,*(undefined2 *)(param_2->unk_2d0 + 6),param_2->unk_2d8);
   }
-  iVar7 = 0;
-  iVar5 = param_2;
+  iVar6 = 0;
+  pUVar4 = param_2;
   do {
-    if ((*(uint *)(iVar5 + 0x4c) & 1) != 0) {
+    if ((*(uint *)&pUVar4->field_0x4c & 1) != 0) {
       iStack_4 = 0x436810;
-      if (iVar7 < 0x18) {
+      if (iVar6 < 0x18) {
         Pkt_Init(param_2,2,2,0);
-        Pkt_SubmitToChain(param_2,(*_s_RaceUiSpriteCursor + -2) - iVar7);
+        Pkt_SubmitToChain(param_2,(*_s_RaceUiSpriteCursor + -2) - iVar6);
       }
       else {
         Pkt_Init(param_2,0,2,0);
-        Pkt_SubmitToChain(param_2,(*_g_DmaChainShared1 + -2) - (iVar7 + -0x18));
+        Pkt_SubmitToChain(param_2,(*_g_DmaChainShared1 + -2) - (iVar6 + -0x18));
       }
       maybe_Vu0_UnitMatrix(auStack_50);
-      UiModel_DrawTree(0x3f800000,0x3f800000,param_2,&iStack_4,
-                       *(int *)(*(int *)(param_2 + 0x40) + 4) + -1,auStack_50,(int)(param_1 * 128.0)
-                       ,iVar7);
-      iVar6 = iStack_4 + -0x436810 >> 0x1f;
-      if ((iStack_4 + -0x436810) / 0x310 + iVar6 != iVar6) {
-        if ((*(int *)(param_2 + 0x2d4) == 1) && (*(int *)(param_2 + 0x2cc) == 1)) {
-          Pkt_Flush(param_2,param_2 + 0x2dc);
+      UiModel_DrawTree(0x3f800000,0x3f800000,param_2,&iStack_4,*(int *)(param_2->unk_040 + 4) + -1,
+                       auStack_50,(int)(param_1 * 128.0),iVar6);
+      iVar3 = iStack_4 + -0x436810 >> 0x1f;
+      if ((iStack_4 + -0x436810) / 0x310 + iVar3 != iVar3) {
+        if ((param_2->unk_2d4 == 1) && (param_2->unk_2cc == 1)) {
+          Pkt_Flush(param_2,&param_2->field_0x2dc);
         }
         if (((piVar8 != (int *)0x0) && (piVar8[2] == 1)) && (*piVar8 == 1)) {
           Pkt_Flush(param_2,piVar8 + 4);
         }
-        if ((*(uint *)(iVar5 + 0x4c) & 4) != 0) {
-          Pkt_SetScissor(param_2,*(undefined4 *)(iVar5 + 0x50),*(undefined4 *)(iVar5 + 0x54),
-                         *(undefined4 *)(iVar5 + 0x58),*(undefined4 *)(iVar5 + 0x5c),0);
+        if ((*(uint *)&pUVar4->field_0x4c & 4) != 0) {
+          Pkt_SetScissor(param_2,*(undefined4 *)&pUVar4->field_0x50,
+                         *(undefined4 *)&pUVar4->field_0x54,*(undefined4 *)&pUVar4->field_0x58,
+                         *(undefined4 *)&pUVar4->field_0x5c,0);
         }
         Pkt_AddPrimitives(param_2,0x436810,(iStack_4 + -0x436810) / 0x310);
-        if ((*(uint *)(iVar5 + 0x4c) & 4) != 0) {
+        if ((*(uint *)&pUVar4->field_0x4c & 4) != 0) {
           Pkt_SetScissor(param_2,0,0,0,0,0);
         }
       }
       Pkt_Submit(param_2,0);
     }
-    if ((*(uint *)(iVar5 + 0x4c) & 2) != 0) {
-      iVar2 = *(int *)(param_2 + 0x44) + *(int *)(*(int *)(param_2 + 0x40) + 4) * 0x14;
-      iVar6 = *(int *)(iVar2 + -0x10);
-      iVar2 = iVar6 + *(int *)(iVar2 + -0xc);
-      if (iVar6 < iVar2) {
-        iVar4 = iVar6 * 0x128;
+    if ((*(uint *)&pUVar4->field_0x4c & 2) != 0) {
+      iVar1 = param_2->unk_044 + *(int *)(param_2->unk_040 + 4) * 0x14;
+      iVar3 = *(int *)(iVar1 + -0x10);
+      lVar5 = (long)iVar3;
+      lVar7 = (long)(iVar3 + *(int *)(iVar1 + -0xc));
+      if (lVar5 < lVar7) {
+        iVar3 = iVar3 * 0x128;
         do {
-          piVar3 = (int *)(*(int *)(param_2 + 0x48) + iVar4);
-          if ((*piVar3 == 3) && (iVar7 == piVar3[0x18])) {
-            piVar3 = (int *)UiElem_GetPropPtr(param_2,iVar6,0x17);
-            iVar1 = *piVar3;
+          piVar2 = (int *)(param_2->unk_048 + iVar3);
+          if ((*piVar2 == 3) && (iVar6 == piVar2[0x18])) {
+            piVar2 = (int *)UiElem_GetPropPtr(param_2,(int)lVar5,0x17);
+            iVar1 = *piVar2;
             if (0 < iVar1) {
-              UiElem_GetRect(param_2,auStack_90,iVar6);
+              UiElem_GetRect(param_2,auStack_90,lVar5);
               UiText_DrawById(auStack_90,iVar1);
             }
           }
-          iVar6 = iVar6 + 1;
-          iVar4 = iVar4 + 0x128;
-        } while (iVar6 < iVar2);
+          lVar5 = (long)((int)lVar5 + 1);
+          iVar3 = iVar3 + 0x128;
+        } while (lVar5 < lVar7);
       }
     }
-    iVar7 = iVar7 + 1;
-    iVar5 = iVar5 + 0x14;
-  } while (iVar7 < 0x20);
+    iVar6 = iVar6 + 1;
+    pUVar4 = (UiLayout *)&pUVar4->field_0x14;
+  } while (iVar6 < 0x20);
   return;
 }
 
 // 0x001ede20  size 0x294
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 47 callers */
 
-void UiElem_GetRect(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
+void UiElem_GetRect(UiLayout *param_1,undefined4 *param_2,undefined8 param_3)
 
 {
   undefined4 *puVar1;
@@ -1087,35 +1092,35 @@ void UiElem_GetRect(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
   int iVar4;
   float fVar5;
   
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,10);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,10);
   *param_2 = *puVar1;
-  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,1);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,(int)param_3,1);
   param_2[1] = (int)(*pfVar2 + 0.5);
-  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,1);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,(int)param_3,1);
   fVar5 = *pfVar2;
-  piVar3 = (int *)UiElem_GetPropPtr(param_1,param_3,0x14);
+  piVar3 = (int *)UiElem_GetPropPtr(param_1,(int)param_3,0x14);
   param_2[2] = (int)(fVar5 + 0.5) + *piVar3;
-  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,2);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,(int)param_3,2);
   param_2[3] = (int)(*pfVar2 + 0.5);
-  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,2);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,(int)param_3,2);
   fVar5 = *pfVar2;
-  piVar3 = (int *)UiElem_GetPropPtr(param_1,param_3,0x15);
+  piVar3 = (int *)UiElem_GetPropPtr(param_1,(int)param_3,0x15);
   param_2[4] = (int)(fVar5 + 0.5) + *piVar3;
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x18);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,0x18);
   *(char *)(param_2 + 7) = (char)*puVar1;
-  pfVar2 = (float *)UiElem_GetPropPtr(param_1,param_3,8);
+  pfVar2 = (float *)UiElem_GetPropPtr(param_1,(int)param_3,8);
   param_2[6] = (int)(*pfVar2 * 128.0 + 0.5);
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0xb);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,0xb);
   param_2[8] = *puVar1;
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x10);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,0x10);
   param_2[10] = *puVar1;
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x11);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,0x11);
   param_2[0xc] = *puVar1;
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x12);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,0x12);
   param_2[0xb] = *puVar1;
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,0x13);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,0x13);
   param_2[0xd] = *puVar1;
-  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,param_3,9);
+  puVar1 = (undefined4 *)UiElem_GetPropPtr(param_1,(int)param_3,9);
   param_2[5] = *puVar1;
   if ((((param_2[10] == 0) && (param_2[0xb] == 0)) && (param_2[0xc] == 0)) && (param_2[0xd] == 0)) {
     param_2[9] = 0;
@@ -1137,14 +1142,16 @@ void UiElem_GetRect(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
 }
 
 // 0x001ee0c0  size 0x78
-void UiElem_Get(int param_1,int param_2,uint param_3,uint param_4,uint param_5)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void UiElem_Get(UiLayout *param_1,int param_2,uint param_3,uint param_4,uint param_5)
 
 {
   int iVar1;
   int iVar2;
   int iVar3;
   
-  iVar1 = *(int *)(param_1 + 0x48) + param_2 * 0x128;
+  iVar1 = param_1->unk_048 + param_2 * 0x128;
   iVar3 = 0;
   if (0 < *(int *)(iVar1 + 0xc)) {
     iVar2 = iVar1;
@@ -1159,95 +1166,97 @@ void UiElem_Get(int param_1,int param_2,uint param_3,uint param_4,uint param_5)
 }
 
 // 0x001ee140  size 0x16c
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* element = 0x128 bytes */
 
-int UiElem_GetPropPtr(int param_1,int param_2,uint param_3)
+int UiElem_GetPropPtr(UiLayout *param_1,int param_2,uint param_3)
 
 {
-  int iVar1;
+  uint uVar1;
+  int iVar2;
   
-  param_3 = param_3 & 0xff;
-  iVar1 = *(int *)(param_1 + 0x48) + param_2 * 0x128;
-  if (param_3 < 0x49) {
+  uVar1 = param_3 & 0xff;
+  iVar2 = param_1->unk_048 + param_2 * 0x128;
+  if (uVar1 < 0x49) {
                     /* WARNING: Switch is manually overridden */
-    switch(param_3) {
+    switch(uVar1) {
     case 0:
-      iVar1 = iVar1 + 0x10;
+      iVar2 = iVar2 + 0x10;
       break;
     case 1:
-      iVar1 = iVar1 + 0x14;
+      iVar2 = iVar2 + 0x14;
       break;
     case 2:
-      iVar1 = iVar1 + 0x18;
+      iVar2 = iVar2 + 0x18;
       break;
     case 3:
-      iVar1 = iVar1 + 0x44;
+      iVar2 = iVar2 + 0x44;
       break;
     case 4:
-      iVar1 = iVar1 + 0x48;
+      iVar2 = iVar2 + 0x48;
       break;
     case 5:
-      iVar1 = iVar1 + 0x4c;
+      iVar2 = iVar2 + 0x4c;
       break;
     case 6:
-      iVar1 = iVar1 + 0x50;
+      iVar2 = iVar2 + 0x50;
       break;
     case 7:
-      iVar1 = iVar1 + 0x54;
+      iVar2 = iVar2 + 0x54;
       break;
     case 8:
-      iVar1 = iVar1 + 0x58;
+      iVar2 = iVar2 + 0x58;
       break;
     case 9:
-      iVar1 = iVar1 + 0x5c;
+      iVar2 = iVar2 + 0x5c;
       break;
     case 10:
-      iVar1 = iVar1 + 0x60;
+      iVar2 = iVar2 + 0x60;
       break;
     case 0xb:
-      iVar1 = iVar1 + 100;
+      iVar2 = iVar2 + 100;
       break;
     case 0xc:
-      iVar1 = iVar1 + 0x1c;
+      iVar2 = iVar2 + 0x1c;
       break;
     case 0xd:
-      iVar1 = iVar1 + 0x20;
+      iVar2 = iVar2 + 0x20;
       break;
     case 0xe:
-      iVar1 = iVar1 + 0x24;
+      iVar2 = iVar2 + 0x24;
       break;
     case 0xf:
-      iVar1 = iVar1 + 0x28;
+      iVar2 = iVar2 + 0x28;
       break;
     case 0x10:
-      iVar1 = iVar1 + 0x2c;
+      iVar2 = iVar2 + 0x2c;
       break;
     case 0x11:
-      iVar1 = iVar1 + 0x30;
+      iVar2 = iVar2 + 0x30;
       break;
     case 0x12:
-      iVar1 = iVar1 + 0x34;
+      iVar2 = iVar2 + 0x34;
       break;
     case 0x13:
-      iVar1 = iVar1 + 0x38;
+      iVar2 = iVar2 + 0x38;
       break;
     case 0x14:
-      iVar1 = iVar1 + 0x3c;
+      iVar2 = iVar2 + 0x3c;
       break;
     case 0x15:
-      iVar1 = iVar1 + 0x40;
+      iVar2 = iVar2 + 0x40;
       break;
     case 0x16:
-      iVar1 = iVar1 + 0xc;
+      iVar2 = iVar2 + 0xc;
       break;
     case 0x17:
-      iVar1 = iVar1 + 8;
+      iVar2 = iVar2 + 8;
       break;
     case 0x18:
-      iVar1 = iVar1 + 0xc;
+      iVar2 = iVar2 + 0xc;
       break;
     default:
-      iVar1 = iVar1 + (param_3 - 0x19) * 0xc + 0x68;
+      iVar2 = iVar2 + (uVar1 - 0x19) * 0xc + 0x68;
       break;
     case 0x29:
     case 0x2a:
@@ -1265,114 +1274,116 @@ int UiElem_GetPropPtr(int param_1,int param_2,uint param_3)
     case 0x36:
     case 0x37:
     case 0x38:
-      iVar1 = iVar1 + (param_3 - 0x29) * 0xc + 0x6c;
+      iVar2 = iVar2 + (uVar1 - 0x29) * 0xc + 0x6c;
       break;
     case 0x39:
-      iVar1 = iVar1 + (param_3 - 0x39) * 0xc + 0x70;
+      iVar2 = iVar2 + (uVar1 - 0x39) * 0xc + 0x70;
     }
   }
   else {
-    iVar1 = 0;
+    iVar2 = 0;
   }
-  return iVar1;
+  return iVar2;
 }
 
 // 0x001ee2b0  size 0x84
-void UiLayout_SetTexture(int param_1,undefined4 param_2,undefined4 param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void UiLayout_SetTexture(UiLayout *param_1,uint param_2,uint param_3)
 
 {
-  *(undefined4 *)(param_1 + 0x2ec) = param_2;
-  *(undefined4 *)(param_1 + 0x2f0) = param_3;
-  if (*(int *)(param_1 + 0x2d0) != 0) {
-    if (*(int *)(param_1 + 0x2d4) != 0) {
-      *(undefined4 *)(param_1 + 0x2e4) = 0;
+  param_1->unk_2ec = param_2;
+  param_1->unk_2f0 = param_3;
+  if (param_1->unk_2d0 != 0) {
+    if (param_1->unk_2d4 != 0) {
+      param_1->unk_2e4 = 0;
       Pkt_AddTextureUploadAll
-                (param_1 + 0x2dc,*(undefined4 *)(param_1 + 0x2d0),*(undefined4 *)(param_1 + 0x2ec),
-                 *(undefined4 *)(param_1 + 0x2f0));
+                (&param_1->field_0x2dc,param_1->unk_2d0,param_1->unk_2ec,param_1->unk_2f0);
     }
-    TexSlot_Bind(*(undefined4 *)(param_1 + 0x2d8),*(undefined4 *)(param_1 + 0x2d0),
-                 *(undefined4 *)(param_1 + 0x2d4),*(undefined4 *)(param_1 + 0x2ec),
-                 *(undefined4 *)(param_1 + 0x2f0),*(undefined4 *)(param_1 + 0x2f4),0,0);
+    TexSlot_Bind(param_1->unk_2d8,param_1->unk_2d0,param_1->unk_2d4,param_1->unk_2ec,
+                 param_1->unk_2f0,param_1->unk_2f4,0,0);
   }
   return;
 }
 
 // 0x001ee340  size 0x244
-void UiElem_MarkDirty(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void UiElem_MarkDirty(UiLayout *param_1)
 
 {
-  int iVar1;
+  UiLayout *pUVar1;
   int *piVar2;
   int iVar3;
   int iVar4;
   int iVar5;
-  uint *puVar6;
+  uint uVar6;
+  int iVar7;
   
   iVar3 = 0;
-  iVar1 = param_1;
+  pUVar1 = param_1;
   do {
-    *(undefined4 *)(iVar1 + 0x4c) = 0;
+    *(undefined4 *)&pUVar1->field_0x4c = 0;
     iVar3 = iVar3 + 8;
-    *(undefined4 *)(iVar1 + 0x60) = 0;
-    *(undefined4 *)(iVar1 + 0x74) = 0;
-    *(undefined4 *)(iVar1 + 0x88) = 0;
-    *(undefined4 *)(iVar1 + 0x9c) = 0;
-    *(undefined4 *)(iVar1 + 0xb0) = 0;
-    *(undefined4 *)(iVar1 + 0xc4) = 0;
-    *(undefined4 *)(iVar1 + 0xd8) = 0;
-    iVar1 = iVar1 + 0xa0;
+    *(undefined4 *)&pUVar1->field_0x60 = 0;
+    *(undefined4 *)&pUVar1->field_0x74 = 0;
+    *(undefined4 *)&pUVar1->field_0x88 = 0;
+    *(undefined4 *)&pUVar1->field_0x9c = 0;
+    *(undefined4 *)&pUVar1->field_0xb0 = 0;
+    *(undefined4 *)&pUVar1->field_0xc4 = 0;
+    *(undefined4 *)&pUVar1->field_0xd8 = 0;
+    pUVar1 = (UiLayout *)&pUVar1->field_0xa0;
   } while (iVar3 < 0x20);
-  iVar1 = *(int *)(param_1 + 0x44);
-  iVar5 = *(int *)(*(int *)(param_1 + 0x40) + 4) * 0x14;
+  uVar6 = param_1->unk_044;
+  iVar5 = *(int *)(param_1->unk_040 + 4) * 0x14;
   iVar3 = 0;
-  if (0 < *(int *)(iVar5 + iVar1 + -0xc)) {
+  if (0 < *(int *)(iVar5 + uVar6 + -0xc)) {
     iVar4 = 0;
     do {
-      piVar2 = (int *)(*(int *)(param_1 + 0x48) + *(int *)(iVar1 + iVar5 + -0x10) * 0x128 + iVar4);
+      piVar2 = (int *)(param_1->unk_048 + *(int *)(uVar6 + iVar5 + -0x10) * 0x128 + iVar4);
       if (*piVar2 == 3) {
-        iVar1 = param_1 + piVar2[0x18] * 0x14;
-        *(uint *)(iVar1 + 0x4c) = *(uint *)(iVar1 + 0x4c) | 2;
+        *(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) =
+             *(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) | 2;
       }
       else {
-        iVar1 = param_1 + piVar2[0x18] * 0x14;
-        puVar6 = (uint *)(iVar1 + 0x4c);
-        if (((*(uint *)(iVar1 + 0x4c) & 4) == 0) &&
+        if (((*(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) & 4) == 0) &&
            ((((piVar2[0xb] != 0 || (piVar2[0xd] != 0)) || (piVar2[0xc] != 0)) || (piVar2[0xe] != 0))
            )) {
-          *puVar6 = *puVar6 | 4;
-          *(int *)(param_1 + piVar2[0x18] * 0x14 + 0x50) = piVar2[0xb];
+          *(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) =
+               *(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) | 4;
+          *(int *)(&param_1->field_0x50 + piVar2[0x18] * 0x14) = piVar2[0xb];
           if (piVar2[0xd] == 0) {
-            iVar1 = 0;
-          }
-          else {
-            iVar1 = piVar2[0xd] + -0x280;
-          }
-          *(int *)(param_1 + piVar2[0x18] * 0x14 + 0x54) = iVar1;
-          iVar1 = piVar2[0xc];
-          if (iVar1 < 0) {
-            iVar1 = iVar1 + 1;
-          }
-          *(int *)(param_1 + piVar2[0x18] * 0x14 + 0x58) = iVar1 >> 1;
-          iVar1 = piVar2[0xe];
-          if (iVar1 == 0) {
             iVar5 = 0;
           }
           else {
-            iVar5 = iVar1 + -0x1c0 >> 1;
-            if (iVar1 + -0x1c0 < 0) {
-              iVar5 = iVar1 + -0x1bf >> 1;
+            iVar5 = piVar2[0xd] + -0x280;
+          }
+          *(int *)(&param_1->field_0x54 + piVar2[0x18] * 0x14) = iVar5;
+          iVar5 = piVar2[0xc];
+          if (iVar5 < 0) {
+            iVar5 = iVar5 + 1;
+          }
+          *(int *)(&param_1->field_0x58 + piVar2[0x18] * 0x14) = iVar5 >> 1;
+          iVar5 = piVar2[0xe];
+          if (iVar5 == 0) {
+            iVar7 = 0;
+          }
+          else {
+            iVar7 = iVar5 + -0x1c0 >> 1;
+            if (iVar5 + -0x1c0 < 0) {
+              iVar7 = iVar5 + -0x1bf >> 1;
             }
           }
-          *(int *)(param_1 + piVar2[0x18] * 0x14 + 0x5c) = iVar5;
+          *(int *)(&param_1->field_0x5c + piVar2[0x18] * 0x14) = iVar7;
         }
-        iVar1 = param_1 + piVar2[0x18] * 0x14;
-        *(uint *)(iVar1 + 0x4c) = *(uint *)(iVar1 + 0x4c) | 1;
+        *(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) =
+             *(uint *)(&param_1->field_0x4c + piVar2[0x18] * 0x14) | 1;
       }
       iVar3 = iVar3 + 1;
-      iVar1 = *(int *)(param_1 + 0x44);
-      iVar5 = *(int *)(*(int *)(param_1 + 0x40) + 4) * 0x14;
+      uVar6 = param_1->unk_044;
+      iVar5 = *(int *)(param_1->unk_040 + 4) * 0x14;
       iVar4 = iVar4 + 0x128;
-    } while (iVar3 < *(int *)(iVar1 + iVar5 + -0xc));
+    } while (iVar3 < *(int *)(uVar6 + iVar5 + -0xc));
   }
   return;
 }
@@ -1385,58 +1396,54 @@ void UiLayout_OnTextureLoaded(void)
   uint uVar2;
   int iVar3;
   int iVar4;
-  int iVar5;
-  undefined8 in_a3;
+  UiLayout *in_a3_lo;
   
-  iVar5 = (int)in_a3;
-  piVar1 = *(int **)(iVar5 + 0x3c);
+  piVar1 = (int *)in_a3_lo->unk_03c;
   uVar2 = piVar1[1];
   iVar3 = *piVar1;
   iVar4 = piVar1[2];
   if (10 < uVar2) {
-    *(int *)(iVar5 + 0x40) = (int)piVar1 + iVar3;
-    *(int *)(iVar5 + 0x48) = *(int *)(iVar5 + 0x3c) + iVar3 + 8;
-    *(int *)(iVar5 + 0x44) = *(int *)(iVar5 + 0x3c) + iVar3 + **(int **)(iVar5 + 0x40) * 0x128 + 8;
-    UiElem_MarkDirty(in_a3);
+    in_a3_lo->unk_040 = (int)piVar1 + iVar3;
+    in_a3_lo->unk_048 = in_a3_lo->unk_03c + iVar3 + 8;
+    in_a3_lo->unk_044 = in_a3_lo->unk_03c + iVar3 + *(int *)in_a3_lo->unk_040 * 0x128 + 8;
+    UiElem_MarkDirty(in_a3_lo);
   }
   if (iVar4 == 0) {
-    *(undefined4 *)(iVar5 + 0x2cc) = 0;
+    in_a3_lo->unk_2cc = 0;
   }
   else {
-    *(undefined4 *)(iVar5 + 0x2cc) = 1;
-    *(uint *)(iVar5 + 0x2d0) = *(int *)(iVar5 + 0x3c) + iVar3 + uVar2;
-    Tex_Relocate(*(undefined4 *)(iVar5 + 0x2d0));
-    if (*(int *)(iVar5 + 0x2d4) != 0) {
+    in_a3_lo->unk_2cc = 1;
+    in_a3_lo->unk_2d0 = in_a3_lo->unk_03c + iVar3 + uVar2;
+    Tex_Relocate(in_a3_lo->unk_2d0);
+    if (in_a3_lo->unk_2d4 != 0) {
       Pkt_AddTextureUploadAll
-                (iVar5 + 0x2dc,*(undefined4 *)(iVar5 + 0x2d0),*(undefined4 *)(iVar5 + 0x2ec),
-                 *(undefined4 *)(iVar5 + 0x2f0));
+                (&in_a3_lo->field_0x2dc,in_a3_lo->unk_2d0,in_a3_lo->unk_2ec,in_a3_lo->unk_2f0);
     }
-    TexSlot_Bind(*(undefined4 *)(iVar5 + 0x2d8),*(undefined4 *)(iVar5 + 0x2d0),
-                 *(undefined4 *)(iVar5 + 0x2d4),*(undefined4 *)(iVar5 + 0x2ec),
-                 *(undefined4 *)(iVar5 + 0x2f0),*(undefined4 *)(iVar5 + 0x2f4),0,0);
+    TexSlot_Bind(in_a3_lo->unk_2d8,in_a3_lo->unk_2d0,in_a3_lo->unk_2d4,in_a3_lo->unk_2ec,
+                 in_a3_lo->unk_2f0,in_a3_lo->unk_2f4,0,0);
   }
-  *(undefined4 *)(iVar5 + 0x304) = 0;
+  in_a3_lo->maybe_inUse = 0;
   return;
 }
 
 // 0x001ee6c0  size 0x22c
-void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void UiLayout_Load(UiLayout *param_1,undefined4 *param_2,long param_3)
 
 {
   byte bVar1;
   int iVar2;
   uint uVar3;
-  int iVar4;
+  undefined4 uVar4;
   undefined4 uVar5;
-  undefined4 uVar6;
   
-  uVar5 = param_2[1];
-  uVar6 = param_2[2];
-  iVar4 = (int)param_1;
-  *(undefined4 *)(iVar4 + 0x2f8) = *param_2;
-  *(undefined4 *)(iVar4 + 0x2fc) = uVar5;
-  *(undefined4 *)(iVar4 + 0x300) = uVar6;
-  iVar2 = *(int *)(iVar4 + 0x2f8);
+  uVar4 = param_2[1];
+  uVar5 = param_2[2];
+  *(undefined4 *)&param_1->field_0x2f8 = *param_2;
+  *(undefined4 *)&param_1->field_0x2fc = uVar4;
+  *(undefined4 *)&param_1->field_0x300 = uVar5;
+  iVar2 = *(int *)&param_1->field_0x2f8;
   bVar1 = g_RaceCtx->language;
   uVar3 = g_ArcToc->entries[iVar2].unpackedSize;
   if (uVar3 == 0) {
@@ -1445,107 +1452,112 @@ void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
   else {
     uVar3 = uVar3 + 0x7ff >> 0xb;
   }
-  *(uint *)(iVar4 + 0x308) =
-       ((*(int *)(iVar4 + 0x300) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-       uVar3 * 0x800 + *(int *)(iVar4 + 0x2fc) * 0x80;
+  param_1->unk_308 =
+       ((*(int *)&param_1->field_0x300 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+       uVar3 * 0x800 + *(int *)&param_1->field_0x2fc * 0x80;
   if (param_3 == 0) {
-    uVar5 = UiMgr_LockedAlloc(*(undefined4 *)(iVar4 + 0x308));
-    *(undefined4 *)(iVar4 + 0x3c) = uVar5;
+    uVar3 = UiMgr_LockedAlloc(param_1->unk_308);
+    param_1->unk_03c = uVar3;
   }
   else {
-    uVar5 = Mem_AllocAligned(*(undefined4 *)(iVar4 + 0x308),0x40,param_3);
-    *(undefined4 *)(iVar4 + 0x3c) = uVar5;
-    *(int *)(iVar4 + 0x4ec) = (int)param_3;
+    uVar3 = Mem_AllocAligned(param_1->unk_308,0x40,param_3);
+    param_1->unk_03c = uVar3;
+    param_1->unk_4ec = (uint)param_3;
   }
-  if (0 < *(int *)(iVar4 + 0x2fc)) {
-    uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].unpackedSize;
+  if (0 < *(int *)&param_1->field_0x2fc) {
+    uVar3 = g_ArcToc->entries[*(int *)&param_1->field_0x2f8].unpackedSize;
     if (uVar3 == 0) {
-      uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].sectorCount;
+      uVar3 = g_ArcToc->entries[*(int *)&param_1->field_0x2f8].sectorCount;
     }
     else {
       uVar3 = uVar3 + 0x7ff >> 0xb;
     }
-    *(uint *)(iVar4 + 0x2d8) = *(int *)(iVar4 + 0x3c) + uVar3 * 0x800;
+    param_1->unk_2d8 = param_1->unk_03c + uVar3 * 0x800;
   }
-  if ((*(int *)(iVar4 + 0x2d4) != 0) && (0 < *(int *)(iVar4 + 0x300))) {
-    uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].unpackedSize;
+  if ((param_1->unk_2d4 != 0) && (0 < *(int *)&param_1->field_0x300)) {
+    uVar3 = g_ArcToc->entries[*(int *)&param_1->field_0x2f8].unpackedSize;
     if (uVar3 == 0) {
-      uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].sectorCount;
+      uVar3 = g_ArcToc->entries[*(int *)&param_1->field_0x2f8].sectorCount;
     }
     else {
       uVar3 = uVar3 + 0x7ff >> 0xb;
     }
-    DmaBuf_SetUncached(iVar4 + 0x2dc,
-                       *(int *)(iVar4 + 0x3c) + *(int *)(iVar4 + 0x2fc) * 0x80 + uVar3 * 0x800,
-                       *(int *)(iVar4 + 0x300) * 0xd + 1);
+    DmaBuf_SetUncached(&param_1->field_0x2dc,
+                       param_1->unk_03c + *(int *)&param_1->field_0x2fc * 0x80 + uVar3 * 0x800,
+                       *(int *)&param_1->field_0x300 * 0xd + 1);
   }
-  *(undefined4 *)(iVar4 + 0x304) = 1;
-  Arc_LoadFileEx(iVar2 + (uint)bVar1,*(undefined4 *)(iVar4 + 0x3c),0x1ee590,param_1,0,0);
+  param_1->maybe_inUse = 1;
+  Arc_LoadFileEx(iVar2 + (uint)bVar1,param_1->unk_03c,0x1ee590,param_1,0,0);
   return;
 }
 
 // 0x001ee8f0  size 0x80
-void UiLayout_Free(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void UiLayout_Free(UiLayout *param_1)
 
 {
-  *(undefined4 *)(param_1 + 0x304) = 0;
-  if (*(int *)(param_1 + 0x4ec) == 0) {
-    if (0 < *(int *)(param_1 + 0x308)) {
-      UiMgr_ReleaseMemory(param_1 + 0x308);
+  param_1->maybe_inUse = 0;
+  if (param_1->unk_4ec == 0) {
+    if (0 < (int)param_1->unk_308) {
+      UiMgr_ReleaseMemory(&param_1->unk_308);
     }
   }
   else {
-    *(undefined4 *)(param_1 + 0x4ec) = 0;
-    if ((0 < *(int *)(param_1 + 0x308)) && (*(int *)(param_1 + 0x3c) != 0)) {
+    param_1->unk_4ec = 0;
+    if ((0 < (int)param_1->unk_308) && (param_1->unk_03c != 0)) {
       Mem_Free();
-      *(undefined4 *)(param_1 + 0x3c) = 0;
+      param_1->unk_03c = 0;
     }
   }
   return;
 }
 
 // 0x001ee970  size 0xc0
-void UiLayout_Init(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void UiLayout_Init(UiLayout *param_1,uint param_2,uint param_3,uint param_4)
 
 {
   int iVar1;
   
-  *(undefined4 *)(param_1 + 0x2d0) = 0;
-  *(undefined4 *)(param_1 + 0x2d4) = param_4;
-  *(undefined4 *)(param_1 + 0x2d8) = 0;
-  DmaBuf_SetUncached(param_1 + 0x2dc,0,0);
-  *(undefined4 *)(param_1 + 0x2ec) = param_2;
-  *(undefined4 *)(param_1 + 0x2f0) = param_3;
-  *(undefined4 *)(param_1 + 0x2f4) = 0x50010;
+  param_1->unk_2d0 = 0;
+  param_1->unk_2d4 = param_4;
+  param_1->unk_2d8 = 0;
+  DmaBuf_SetUncached(&param_1->field_0x2dc,0,0);
+  param_1->unk_2ec = param_2;
+  param_1->unk_2f0 = param_3;
+  param_1->unk_2f4 = 0x50010;
   iVar1 = 0;
-  *(undefined4 *)(param_1 + 0x2cc) = 0;
-  *(undefined4 *)(param_1 + 0x304) = 0;
-  *(undefined4 *)(param_1 + 0x308) = 0;
-  *(undefined4 *)(param_1 + 0x4ec) = 0;
-  *(undefined4 *)(param_1 + 0x3c) = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)(param_1 + 0x44) = 0;
-  *(undefined4 *)(param_1 + 0x48) = 0;
+  param_1->unk_2cc = 0;
+  param_1->maybe_inUse = 0;
+  param_1->unk_308 = 0;
+  param_1->unk_4ec = 0;
+  param_1->unk_03c = 0;
+  param_1->unk_040 = 0;
+  param_1->unk_044 = 0;
+  param_1->unk_048 = 0;
   do {
-    *(undefined4 *)(param_1 + 0x310) = 0xffffffff;
-    *(undefined4 *)(param_1 + 0x31c) = 0;
-    *(undefined4 *)(param_1 + 0x30c) = 0;
-    if (*(int *)(param_1 + 0x31c) == 0) {
-      *(undefined4 *)(param_1 + 0x318) = 0;
+    param_1->unk_310 = 0xffffffff;
+    param_1->unk_31c = 0;
+    param_1->unk_30c = 0;
+    if (param_1->unk_31c == 0) {
+      param_1->unk_318 = 0;
     }
     else {
-      *(undefined4 *)(param_1 + 0x318) = 1;
+      param_1->unk_318 = 1;
     }
     iVar1 = iVar1 + 1;
-    param_1 = param_1 + 0x14;
+    param_1 = (UiLayout *)&param_1->field_0x14;
   } while (iVar1 < 0x18);
   return;
 }
 
 // 0x001eea30  size 0xc8
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* (layout, elem, prop, value); 126 callers */
 
-void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,byte param_3,int param_4)
+void UiElem_SetPropInt(UiLayout *param_1,undefined8 param_2,byte param_3,int param_4)
 
 {
   bool bVar1;
@@ -1566,11 +1578,11 @@ void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,byte param_3,int pa
     bVar1 = false;
   }
   if (bVar1) {
-    pfVar2 = (float *)UiElem_GetPropPtr(param_1);
+    pfVar2 = (float *)UiElem_GetPropPtr(param_1,(int)param_2,(int)(char)param_3);
     *pfVar2 = (float)param_4;
   }
   else {
-    piVar3 = (int *)UiElem_GetPropPtr(param_1);
+    piVar3 = (int *)UiElem_GetPropPtr(param_1,(int)param_2,(int)(char)param_3);
     *piVar3 = param_4;
   }
   if (param_3 == 10) {
@@ -1580,19 +1592,23 @@ void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,byte param_3,int pa
 }
 
 // 0x001eeb00  size 0xf0
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* (value, layout, elem, prop); 209 callers */
 
-void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,byte param_4)
+void UiElem_SetPropFloat(UiLayout *param_1,undefined8 param_2,undefined8 param_3,byte param_4)
 
 {
   bool bVar1;
   int *piVar2;
   float *pfVar3;
-  int iVar4;
+  uint uVar4;
+  int iVar5;
+  float in_f12;
   
-  if (param_4 < 0x49) {
+  uVar4 = (uint)param_3 & 0xff;
+  if (uVar4 < 0x49) {
                     /* WARNING: Switch is manually overridden */
-    switch(param_4) {
+    switch(uVar4) {
     case 0:
       bVar1 = false;
       break;
@@ -1604,19 +1620,19 @@ void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,byt
     bVar1 = false;
   }
   if (bVar1) {
-    pfVar3 = (float *)UiElem_GetPropPtr(param_2);
-    *pfVar3 = param_1;
+    pfVar3 = (float *)UiElem_GetPropPtr(param_1,(int)param_2,(uint)param_3);
+    *pfVar3 = in_f12;
   }
   else {
-    iVar4 = (int)param_1;
-    if ((float)iVar4 != param_1) {
-      iVar4 = (int)(param_1 + 0.5);
+    iVar5 = (int)in_f12;
+    if ((float)iVar5 != in_f12) {
+      iVar5 = (int)(in_f12 + 0.5);
     }
-    piVar2 = (int *)UiElem_GetPropPtr(param_2);
-    *piVar2 = iVar4;
+    piVar2 = (int *)UiElem_GetPropPtr(param_1,(int)param_2,(uint)param_3);
+    *piVar2 = iVar5;
   }
-  if (param_4 == 10) {
-    UiElem_MarkDirty(param_2);
+  if (uVar4 == 10) {
+    UiElem_MarkDirty(param_1);
   }
   return;
 }

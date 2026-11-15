@@ -275,7 +275,7 @@ void Misc_Draw_StartGame(int *param_1)
   iVar1 = param_1[4];
   if (iVar1 == 3) {
     iVar1 = UiMgr_FindLayout(0x12a);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
     MenuWnd_DrawLabel(0x12a,1,0x1f89,(600 - param_1[2]) / 0x3c + 1);
   }
   else if (iVar1 == 2) {
@@ -290,7 +290,7 @@ void Misc_Draw_StartGame(int *param_1)
       MenuWnd_SetItemVisible(0);
     }
     iVar1 = UiMgr_FindLayout(0x129);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
     if (*param_1 == 0) {
       MenuWnd_DrawLabel(0x129,0x14,0x1f82,0x1f83);
     }
@@ -325,7 +325,7 @@ void Misc_Draw_StartGame(int *param_1)
       MenuWnd_SetItemVisible(0);
     }
     iVar1 = UiMgr_FindLayout(0x128);
-    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
+    UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
     MenuWnd_DrawText(0x128,0x1f,0x1f8c);
     MenuWnd_DrawText(0x128,0x20,0x1f8d);
     MenuWnd_DrawText(0x128,0x21,0x1f8e);

@@ -279,83 +279,86 @@ bool PwInput_Animate(int *param_1)
 {
   char cVar1;
   int iVar2;
-  bool bVar3;
-  byte bVar4;
-  int *piVar5;
-  uint uVar6;
+  UiLayout *pUVar3;
+  bool bVar4;
+  byte bVar5;
+  int *piVar6;
+  uint uVar7;
   
   cVar1 = (char)param_1[0x78];
   if (cVar1 != -1) {
     if (cVar1 == '\0') {
-      bVar3 = false;
-      uVar6 = 0;
-      piVar5 = param_1;
+      bVar4 = false;
+      uVar7 = 0;
+      piVar6 = param_1;
       do {
-        if (*piVar5 == 0) {
-          bVar4 = 0;
+        pUVar3 = (UiLayout *)*piVar6;
+        if (pUVar3 == (UiLayout *)0x0) {
+          bVar5 = 0;
         }
         else {
-          if (*(int *)(*piVar5 + 0x32c) == 1) {
-            UiLayout_UpdateAnim();
+          if (pUVar3->animState == 1) {
+            UiLayout_UpdateAnim(pUVar3,1);
           }
-          if (*(int *)(*piVar5 + 0x340) == 1) {
-            UiLayout_UpdateAnim(*piVar5,2);
+          if (*(int *)&((UiLayout *)*piVar6)->field_0x340 == 1) {
+            UiLayout_UpdateAnim((UiLayout *)*piVar6,2);
           }
-          if (*(int *)(*piVar5 + 0x318) == 1) {
-            UiLayout_UpdateAnim(*piVar5,0);
-            bVar4 = 1;
+          if (((UiLayout *)*piVar6)->unk_318 == 1) {
+            UiLayout_UpdateAnim((UiLayout *)*piVar6,0);
+            bVar5 = 1;
           }
           else {
-            bVar4 = 0;
+            bVar5 = 0;
           }
         }
-        bVar3 = (bool)(bVar3 | bVar4);
-        uVar6 = uVar6 + 1;
-        piVar5 = piVar5 + 0x13;
-      } while (uVar6 < 3);
-      if (!bVar3) {
+        bVar4 = (bool)(bVar4 | bVar5);
+        uVar7 = uVar7 + 1;
+        piVar6 = piVar6 + 0x13;
+      } while (uVar7 < 3);
+      if (!bVar4) {
         *(undefined1 *)(param_1 + 0x78) = 0xff;
       }
       goto LAB_002dcfb0;
     }
     if (cVar1 == '\x01') {
-      bVar3 = false;
-      uVar6 = 0;
-      piVar5 = param_1 + 0x3c;
+      bVar4 = false;
+      uVar7 = 0;
+      piVar6 = param_1 + 0x3c;
       do {
-        if (*piVar5 == 0) {
-          bVar4 = 0;
+        pUVar3 = (UiLayout *)*piVar6;
+        if (pUVar3 == (UiLayout *)0x0) {
+          bVar5 = 0;
         }
         else {
-          if (*(int *)(*piVar5 + 0x32c) == 1) {
-            UiLayout_UpdateAnim();
+          if (pUVar3->animState == 1) {
+            UiLayout_UpdateAnim(pUVar3,1);
           }
-          if (*(int *)(*piVar5 + 0x340) == 1) {
-            UiLayout_UpdateAnim(*piVar5,2);
+          if (*(int *)&((UiLayout *)*piVar6)->field_0x340 == 1) {
+            UiLayout_UpdateAnim((UiLayout *)*piVar6,2);
           }
-          if (*(int *)(*piVar5 + 0x318) == 1) {
-            UiLayout_UpdateAnim(*piVar5,0);
-            bVar4 = 1;
+          if (((UiLayout *)*piVar6)->unk_318 == 1) {
+            UiLayout_UpdateAnim((UiLayout *)*piVar6,0);
+            bVar5 = 1;
           }
           else {
-            bVar4 = 0;
+            bVar5 = 0;
           }
         }
-        bVar3 = (bool)(bVar3 | bVar4);
-        uVar6 = uVar6 + 1;
-        piVar5 = piVar5 + 0x13;
-      } while (uVar6 < 3);
-      if (!bVar3) {
-        bVar3 = false;
-        uVar6 = 0;
-        piVar5 = param_1;
+        bVar4 = (bool)(bVar4 | bVar5);
+        uVar7 = uVar7 + 1;
+        piVar6 = piVar6 + 0x13;
+      } while (uVar7 < 3);
+      if (!bVar4) {
+        bVar4 = false;
+        uVar7 = 0;
+        piVar6 = param_1;
         do {
-          iVar2 = *piVar5;
-          uVar6 = uVar6 + 1;
-          piVar5 = piVar5 + 0x13;
-          bVar3 = (bool)(bVar3 | iVar2 != 0);
-        } while (uVar6 < 3);
-        if (bVar3) {
+          iVar2 = *piVar6;
+          uVar7 = uVar7 + 1;
+          piVar6 = piVar6 + 0x13;
+          bVar4 = (bool)(bVar4 | iVar2 != 0);
+        } while (uVar7 < 3);
+        if (bVar4) {
           DAT_003420f0 = 0;
           DAT_003420f4 = 0xffffffff;
           *(undefined1 *)(param_1 + 0x78) = 0;
@@ -364,44 +367,46 @@ bool PwInput_Animate(int *param_1)
         else {
           *(undefined1 *)(param_1 + 0x78) = 0xff;
         }
-        uVar6 = 0;
-        piVar5 = param_1;
+        uVar7 = 0;
+        piVar6 = param_1;
         do {
-          if (*piVar5 != 0) {
-            if (*(int *)(*piVar5 + 0x32c) == 1) {
-              UiLayout_UpdateAnim();
+          pUVar3 = (UiLayout *)*piVar6;
+          if (pUVar3 != (UiLayout *)0x0) {
+            if (pUVar3->animState == 1) {
+              UiLayout_UpdateAnim(pUVar3,1);
             }
-            if (*(int *)(*piVar5 + 0x340) == 1) {
-              UiLayout_UpdateAnim(*piVar5,2);
+            if (*(int *)&((UiLayout *)*piVar6)->field_0x340 == 1) {
+              UiLayout_UpdateAnim((UiLayout *)*piVar6,2);
             }
-            if (*(int *)(*piVar5 + 0x318) == 1) {
-              UiLayout_UpdateAnim(*piVar5,0);
+            if (((UiLayout *)*piVar6)->unk_318 == 1) {
+              UiLayout_UpdateAnim((UiLayout *)*piVar6,0);
             }
           }
-          uVar6 = uVar6 + 1;
-          piVar5 = piVar5 + 0x13;
-        } while (uVar6 < 3);
+          uVar7 = uVar7 + 1;
+          piVar6 = piVar6 + 0x13;
+        } while (uVar7 < 3);
       }
       goto LAB_002dcfb0;
     }
   }
-  uVar6 = 0;
-  piVar5 = param_1;
+  uVar7 = 0;
+  piVar6 = param_1;
   do {
-    if (*piVar5 != 0) {
-      if (*(int *)(*piVar5 + 0x32c) == 1) {
-        UiLayout_UpdateAnim();
+    pUVar3 = (UiLayout *)*piVar6;
+    if (pUVar3 != (UiLayout *)0x0) {
+      if (pUVar3->animState == 1) {
+        UiLayout_UpdateAnim(pUVar3,1);
       }
-      if (*(int *)(*piVar5 + 0x340) == 1) {
-        UiLayout_UpdateAnim(*piVar5,2);
+      if (*(int *)&((UiLayout *)*piVar6)->field_0x340 == 1) {
+        UiLayout_UpdateAnim((UiLayout *)*piVar6,2);
       }
-      if (*(int *)(*piVar5 + 0x318) == 1) {
-        UiLayout_UpdateAnim(*piVar5,0);
+      if (((UiLayout *)*piVar6)->unk_318 == 1) {
+        UiLayout_UpdateAnim((UiLayout *)*piVar6,0);
       }
     }
-    uVar6 = uVar6 + 1;
-    piVar5 = piVar5 + 0x13;
-  } while (uVar6 < 3);
+    uVar7 = uVar7 + 1;
+    piVar6 = piVar6 + 0x13;
+  } while (uVar7 < 3);
 LAB_002dcfb0:
   return (char)param_1[0x78] != -1;
 }
@@ -556,16 +561,16 @@ void PwInput_Draw(int *param_1,uint param_2)
   int iVar2;
   int *piVar3;
   uint uVar4;
-  undefined1 auStack_40 [20];
+  undefined4 auStack_40 [5];
   int iStack_2c;
   
   if (*param_1 != 0) {
     uVar4 = 0;
     piVar3 = param_1;
     do {
-      if ((-1 < piVar3[1]) && (iVar1 = piVar3[2], -1 < iVar1)) {
+      if ((-1 < (long)piVar3[1]) && (iVar1 = piVar3[2], -1 < iVar1)) {
         iVar2 = piVar3[3];
-        UiElem_GetRect(*param_1,auStack_40);
+        UiElem_GetRect((UiLayout *)*param_1,auStack_40,(long)piVar3[1]);
         iStack_2c = iVar2;
         UiText_DrawById(auStack_40,iVar1);
       }
@@ -581,7 +586,7 @@ void PwInput_Draw(int *param_1,uint param_2)
       uVar4 = uVar4 + 1;
       piVar3 = piVar3 + 1;
     } while (uVar4 < 2);
-    UiLayout_Draw(0x3f800000,*param_1);
+    UiLayout_Draw(1.0,(UiLayout *)*param_1);
   }
   return;
 }
@@ -641,9 +646,11 @@ override_jmp_002dd510_case_0:
 }
 
 // 0x002dd550  size 0xe4
-void PwInput_AnimateCursor(long param_1)
+void PwInput_AnimateCursor(long param_1,undefined8 param_2,undefined8 param_3,byte param_4)
 
 {
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
   int iVar1;
   undefined *puVar2;
   
@@ -652,9 +659,10 @@ void PwInput_AnimateCursor(long param_1)
     if (0 < DAT_0034211c) {
       puVar2 = &DAT_00342100;
       do {
-        UiElem_SetPropFloat(0,DAT_00342118,*(undefined4 *)(puVar2 + 0x20),8);
+        UiElem_SetPropFloat(DAT_00342118,(long)*(int *)(puVar2 + 0x20),8,param_4);
         iVar1 = iVar1 + 1;
         puVar2 = puVar2 + 4;
+        param_4 = extraout_a3_lo;
       } while (iVar1 < DAT_0034211c);
     }
   }
@@ -663,10 +671,11 @@ void PwInput_AnimateCursor(long param_1)
     if (0 < DAT_0034211c) {
       puVar2 = &DAT_00342100;
       do {
-        UiElem_SetPropFloat(0x3f800000,DAT_00342118,*(undefined4 *)(puVar2 + 0x20),8);
+        UiElem_SetPropFloat(DAT_00342118,(long)*(int *)(puVar2 + 0x20),8,param_4);
         UiLayout_UpdateAnim(DAT_00342118,0x13 - iVar1);
         iVar1 = iVar1 + 1;
         puVar2 = puVar2 + 4;
+        param_4 = extraout_a3_lo_00;
       } while (iVar1 < DAT_0034211c);
     }
   }
@@ -674,23 +683,23 @@ void PwInput_AnimateCursor(long param_1)
 }
 
 // 0x002dd640  size 0x13c
-void PwInput_SetKeyState(int param_1,int param_2,undefined8 param_3,long param_4)
+void PwInput_SetKeyState(UiLayout *param_1,int param_2,undefined8 param_3,long param_4)
 
 {
   int iVar1;
   int iVar2;
-  undefined8 uVar3;
+  int iVar3;
   
   if (param_4 == 0) {
-    uVar3 = 0x16;
+    iVar3 = 0x16;
     iVar2 = 0x17;
   }
   else {
-    uVar3 = 0x14;
+    iVar3 = 0x14;
     iVar2 = 0x15;
   }
   iVar1 = (int)param_4;
-  if ((&DAT_003420f0)[iVar1 * 2] == param_1) {
+  if ((UiLayout *)(&DAT_003420f0)[iVar1 * 2] == param_1) {
     if (param_2 != (&DAT_003420f4)[iVar1 * 2]) {
       MenuWnd_SetElementState(0,param_1,param_2,param_3);
       MenuWnd_SetElementState(1,param_1,(&DAT_003420f4)[iVar1 * 2],1,0);
@@ -702,11 +711,11 @@ void PwInput_SetKeyState(int param_1,int param_2,undefined8 param_3,long param_4
     (&DAT_003420f4)[iVar1 * 2] = param_2;
     MenuWnd_SetElementState(0,param_1,param_2,param_3);
   }
-  if (*(int *)(iVar2 * 0x14 + param_1 + 0x318) == 1) {
+  if ((&param_1->unk_318)[iVar2 * 5] == 1) {
     UiLayout_UpdateAnim(param_1,iVar2);
   }
   else {
-    UiLayout_UpdateAnim(param_1,uVar3);
+    UiLayout_UpdateAnim(param_1,iVar3);
   }
   return;
 }
@@ -715,11 +724,11 @@ void PwInput_SetKeyState(int param_1,int param_2,undefined8 param_3,long param_4
 /* WARNING: Removing unreachable block (ram,0x002dd7c4) */
 
 void PwInput_DrawNameShort
-               (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
+               (UiLayout *param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
                undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
-  undefined1 auStack_a0 [20];
+  undefined4 auStack_a0 [5];
   undefined4 uStack_8c;
   undefined8 uStack_20;
   undefined8 uStack_18;
@@ -739,11 +748,11 @@ void PwInput_DrawNameShort
 // 0x002dd810  size 0x78
 /* WARNING: Removing unreachable block (ram,0x002dd850) */
 
-void PwInput_DrawName(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
+void PwInput_DrawName(UiLayout *param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
                      undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
-  undefined1 auStack_a0 [120];
+  undefined4 auStack_a0 [30];
   undefined8 uStack_28;
   undefined8 uStack_20;
   undefined8 uStack_18;

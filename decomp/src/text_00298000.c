@@ -1512,7 +1512,7 @@ void maybe_ScrCareerStart_InputResult(undefined8 param_1)
     if (iVar2 < 6) {
       *(undefined4 *)(iVar5 + 0x668) = 1;
       g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-      UiLayout_UpdateAnimById(0x84,0);
+      UiLayout_UpdateAnimById((UiLayout *)0x84,0);
       Se_PlayMenu(7);
     }
     else {
@@ -1548,7 +1548,7 @@ void maybe_ScrCareerStart_InputResult(undefined8 param_1)
     else {
       *(undefined4 *)(iVar5 + 0x668) = 2;
       g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
-      UiLayout_UpdateAnimById(0x84,1);
+      UiLayout_UpdateAnimById((UiLayout *)0x84,1);
       Se_PlayMenu(7);
     }
     uVar4 = *(uint *)(iVar5 + 0x62c);

@@ -115,12 +115,12 @@ void RaceMenu_Draw(undefined8 param_1)
       bVar1 = true;
       piVar6[0x40] = 1;
       if ((char)piVar6[5] == '\x01') {
-        if (*(int *)(piVar6[6] * 0x14 + piVar6[3] + 0x318) == 0) {
+        if ((&((UiLayout *)piVar6[3])->unk_318)[piVar6[6] * 5] == 0) {
           *(undefined1 *)(piVar6 + 5) = 2;
         }
         else {
           bVar1 = false;
-          UiLayout_UpdateAnim();
+          UiLayout_UpdateAnim((UiLayout *)piVar6[3],piVar6[6]);
         }
       }
       if (bVar1) {
@@ -154,11 +154,11 @@ void RaceMenu_Draw(undefined8 param_1)
   }
   iVar3 = piVar6[0x40];
 LAB_002c432c:
-  if ((iVar3 != 0) && (piVar6[3] != 0)) {
-    UiLayout_Draw(0x3f800000);
+  if ((iVar3 != 0) && ((UiLayout *)piVar6[3] != (UiLayout *)0x0)) {
+    UiLayout_Draw(1.0,(UiLayout *)piVar6[3]);
   }
-  if (*piVar6 != 0) {
-    UiLayout_Draw(0x3f800000);
+  if ((UiLayout *)*piVar6 != (UiLayout *)0x0) {
+    UiLayout_Draw(1.0,(UiLayout *)*piVar6);
   }
   return;
 }
@@ -755,16 +755,18 @@ void RaceUi_Alloc(undefined4 *param_1,undefined8 param_2)
 // 0x002c54e0  size 0xf4
 /* WARNING: Removing unreachable block (ram,0x002c5554) */
 
-void RaceUi_SetElementNumber(undefined8 param_1,undefined8 param_2,byte param_3,int param_4)
+void RaceUi_SetElementNumber(UiLayout *param_1,int param_2,uint param_3,int param_4)
 
 {
   bool bVar1;
   int *piVar2;
   float *pfVar3;
+  uint uVar4;
   
-  if (param_3 < 0x49) {
+  uVar4 = param_3 & 0xff;
+  if (uVar4 < 0x49) {
                     /* WARNING: Switch is manually overridden */
-    switch(param_3) {
+    switch(uVar4) {
     case 0:
       bVar1 = false;
       break;
@@ -776,14 +778,14 @@ void RaceUi_SetElementNumber(undefined8 param_1,undefined8 param_2,byte param_3,
     bVar1 = false;
   }
   if (bVar1) {
-    pfVar3 = (float *)UiElem_GetPropPtr(param_1);
+    pfVar3 = (float *)UiElem_GetPropPtr(param_1,param_2,param_3);
     *pfVar3 = (float)param_4;
   }
   else {
-    piVar2 = (int *)UiElem_GetPropPtr(param_1);
+    piVar2 = (int *)UiElem_GetPropPtr(param_1,param_2,param_3);
     *piVar2 = (int)(char)param_4;
   }
-  if (param_3 == 10) {
+  if (uVar4 == 10) {
     UiElem_MarkDirty(param_1);
   }
   return;
@@ -1251,14 +1253,17 @@ void RaceUi_DrawRivalBanner(undefined8 param_1)
   int iVar6;
   undefined8 uVar7;
   long lVar8;
-  int iVar9;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte bVar9;
+  int iVar10;
   int iStack_10;
   int iStack_c;
   int iStack_8;
   
   uVar7 = Profile_Get(0);
-  iVar9 = (int)param_1;
-  uVar1 = *(uint *)(iVar9 + 0x98);
+  iVar10 = (int)param_1;
+  uVar1 = *(uint *)(iVar10 + 0x98);
   bVar2 = false;
   if (0 < (int)uVar1) {
     uVar5 = uVar1 & 7;
@@ -1267,33 +1272,35 @@ void RaceUi_DrawRivalBanner(undefined8 param_1)
     }
     bVar2 = (int)uVar5 < 4;
   }
+  bVar9 = extraout_a3_lo;
   if (!bVar2) {
-    if (*(int *)(iVar9 + 0x90) < *(int *)(iVar9 + 0x94)) {
-      RaceUi_DrawSprite(0x42880000,0x42140000,*(undefined4 *)(iVar9 + 0x3b70),
-                        (float)*(int *)(iVar9 + 0x94) * 1.32e-05,0x3f800000,iVar9 + 0x26f0,
+    if (*(int *)(iVar10 + 0x90) < *(int *)(iVar10 + 0x94)) {
+      RaceUi_DrawSprite(0x42880000,0x42140000,*(undefined4 *)(iVar10 + 0x3b70),
+                        (float)*(int *)(iVar10 + 0x94) * 1.32e-05,0x3f800000,iVar10 + 0x26f0,
                         *_s_RaceUiSpriteCursor + -0x12,0,2,0);
     }
-    RaceUi_DrawSprite(0x42880000,0x42140000,*(undefined4 *)(iVar9 + 0x3b70),
-                      (float)*(int *)(iVar9 + 0x90) * 1.32e-05,0x3f800000,iVar9 + 0x26f0,
+    RaceUi_DrawSprite(0x42880000,0x42140000,*(undefined4 *)(iVar10 + 0x3b70),
+                      (float)*(int *)(iVar10 + 0x90) * 1.32e-05,0x3f800000,iVar10 + 0x26f0,
                       *_s_RaceUiSpriteCursor + -0x12,0,0,0);
+    bVar9 = extraout_a3_lo_00;
   }
-  UiElem_SetPropFloat(*(undefined4 *)(iVar9 + 0x3b70),*(undefined4 *)(iVar9 + 0x10f8),5,8);
+  UiElem_SetPropFloat(*(UiLayout **)(iVar10 + 0x10f8),5,8,bVar9);
   cVar3 = Profile_GetFlag273d(uVar7);
   cVar4 = Profile_GetFlag273f(uVar7);
   MenuWnd_DrawRivalLabel(0x10,5,1,0x68,cVar3 + 0x2ab,cVar4 + 0x2c5);
-  RaceUi_DrawNumber(param_1,0x1bd,0x3a,iVar9 + 0x270,0);
-  iStack_10 = *(int *)(iVar9 + 0xc0);
-  iStack_c = *(int *)(iVar9 + 0xc4);
-  iStack_8 = *(int *)(iVar9 + 200);
+  RaceUi_DrawNumber(param_1,0x1bd,0x3a,iVar10 + 0x270,0);
+  iStack_10 = *(int *)(iVar10 + 0xc0);
+  iStack_c = *(int *)(iVar10 + 0xc4);
+  iStack_8 = *(int *)(iVar10 + 200);
   if (((((iStack_10 != 0) || (iStack_c != 0)) || (iStack_8 != 0)) &&
       (((iStack_10 != 99 || (iStack_c != 0x3b)) || (iStack_8 != 999)))) &&
      (cVar3 = RaceProg_GetPhase(), cVar3 == '\x03')) {
     lVar8 = RaceScene_IsPaused();
     if (lVar8 == 0) {
       iVar6 = maybe_rand();
-      *(int *)(iVar9 + 0xcc) = iVar6 % 3;
+      *(int *)(iVar10 + 0xcc) = iVar6 % 3;
     }
-    iStack_8 = iStack_8 - *(int *)(iVar9 + 0xcc);
+    iStack_8 = iStack_8 - *(int *)(iVar10 + 0xcc);
     if (iStack_8 < 0) {
       iStack_8 = -iStack_8;
     }
@@ -1565,16 +1572,16 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
   int iVar16;
   undefined8 uVar17;
   int iVar18;
-  undefined1 auStack_130 [20];
+  undefined4 auStack_130 [5];
   undefined4 uStack_11c;
   int iStack_118;
-  undefined1 auStack_f0 [20];
+  undefined4 auStack_f0 [5];
   undefined4 uStack_dc;
   int iStack_d8;
-  undefined1 auStack_b0 [20];
+  undefined4 auStack_b0 [5];
   undefined4 uStack_9c;
   int iStack_98;
-  undefined1 auStack_70 [24];
+  undefined4 auStack_70 [6];
   int iStack_58;
   int iStack_30;
   int iStack_2c;
@@ -1596,7 +1603,7 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
     uVar9 = 5;
     uVar3 = 4;
   }
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_70,uVar9);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_70,uVar9);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar10 + 0x3b70));
   pRVar5 = GameState_Elem_f0_xcc(0);
   if ((short)pRVar5->maybe_counter == 0x112) {
@@ -1606,25 +1613,25 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
     iVar7 = maybe_GameState_GetFlag();
     iVar7 = *(char *)(iVar7 + 0x40c) + 0x296;
   }
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_b0,uVar9);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_b0,uVar9);
   uStack_9c = 0;
   iStack_98 = (int)((float)iStack_98 * *(float *)(iVar10 + 0x3b70));
   UiText_DrawById(auStack_b0,iVar7);
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_70,uVar17);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_70,uVar17);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar10 + 0x3b70));
   pRVar5 = GameState_Elem_f0_xcc(0);
   pRVar6 = GameState_Elem_3e0_x540((int)(char)pRVar5->unk_09);
   uVar1 = pRVar6->unk_00;
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_f0,uVar17);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_f0,uVar17);
   uStack_dc = 0;
   iStack_d8 = (int)((float)iStack_d8 * *(float *)(iVar10 + 0x3b70));
   UiText_DrawById(auStack_f0,uVar1 + 0x1b3);
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_70,uVar3);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_70,uVar3);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar10 + 0x3b70));
   pRVar5 = GameState_Elem_f0_xcc(0);
   pRVar6 = GameState_Elem_3e0_x540((int)(char)pRVar5->unk_09);
   uVar1 = pRVar6->unk_00;
-  UiElem_GetRect(*(undefined4 *)(iVar10 + 0x10f8),auStack_130,uVar3);
+  UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_130,uVar3);
   uStack_11c = 0;
   iStack_118 = (int)((float)iStack_118 * *(float *)(iVar10 + 0x3b70));
   UiText_DrawById(auStack_130,uVar1 + 0xd1);
@@ -1748,10 +1755,10 @@ void RaceUi_AnimateSplit(int param_1,int param_2)
   int iVar3;
   byte *pbVar4;
   byte *pbVar5;
+  int unaff_s3_lo;
   int *piVar6;
-  undefined8 unaff_s3;
+  int unaff_s4_lo;
   uint uVar7;
-  undefined8 unaff_s4;
   int aiStack_20 [4];
   undefined4 uStack_10;
   byte abStack_8 [8];
@@ -1802,23 +1809,23 @@ void RaceUi_AnimateSplit(int param_1,int param_2)
             *(undefined1 *)(param_1 + 0x1090) = 1;
             iVar3 = *(int *)((int)uVar2 + 0x8ac);
             if (iVar3 == 2) {
-              unaff_s3 = 5;
-              unaff_s4 = 0xc;
+              unaff_s3_lo = 5;
+              unaff_s4_lo = 0xc;
             }
             else if (iVar3 == 3) {
-              unaff_s3 = 5;
-              unaff_s4 = 8;
+              unaff_s3_lo = 5;
+              unaff_s4_lo = 8;
             }
             else if (iVar3 == 4) {
-              unaff_s3 = 6;
-              unaff_s4 = 0xc;
+              unaff_s3_lo = 6;
+              unaff_s4_lo = 0xc;
             }
             else if (4 < iVar3) {
-              unaff_s3 = 7;
-              unaff_s4 = 0xc;
+              unaff_s3_lo = 7;
+              unaff_s4_lo = 0xc;
             }
-            UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x1080),3,0x16,unaff_s4);
-            UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x1080),4,0x16,unaff_s3);
+            UiElem_SetPropInt(*(UiLayout **)(param_1 + 0x1080),3,0x16,unaff_s4_lo);
+            UiElem_SetPropInt(*(UiLayout **)(param_1 + 0x1080),4,0x16,unaff_s3_lo);
           }
         }
       }

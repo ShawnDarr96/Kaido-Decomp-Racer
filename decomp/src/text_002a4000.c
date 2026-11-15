@@ -1075,23 +1075,22 @@ void maybe_ScrModeReset_Update(undefined8 param_1)
 {
   UiLayoutSlot *pUVar1;
   int iVar2;
-  undefined4 uVar3;
+  uint uVar3;
   int iVar4;
-  uint uVar5;
   
   Menu_IsInputIdle();
-  uVar5 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar5) == 0) {
-    uVar5 = 0x100000;
+  uVar3 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar3) == 0) {
+    uVar3 = 0x100000;
   }
-  else if (uVar5 == 0x80000) {
-    uVar5 = 0x80000;
+  else if (uVar3 == 0x80000) {
+    uVar3 = 0x80000;
   }
   else if (*_g_MenuInput != 1) {
-    uVar5 = 0x100000;
+    uVar3 = 0x100000;
   }
   iVar4 = (int)param_1;
-  if (uVar5 == 0x10) {
+  if (uVar3 == 0x10) {
     iVar2 = MenuMgr_UpdateTransition(0x17);
     *(undefined1 *)(iVar2 + 0x778) = 1;
     *(char *)(iVar2 + 0x779) = (char)*(undefined4 *)(iVar4 + 0x20) + '\x01';
@@ -1100,36 +1099,36 @@ void maybe_ScrModeReset_Update(undefined8 param_1)
     uVar3 = UiRes_GetLayoutData(*(undefined4 *)(*(int *)(iVar4 + 0x20) * 4 + 0x32ee00));
     iVar4 = UiMgr_FindLayout(0xb9);
     pUVar1 = g_UiMgr->slots;
-    *(undefined4 *)&pUVar1[iVar4].layout.field_0x310 = 0xffffffff;
-    *(undefined4 *)&pUVar1[iVar4].layout.field_0x31c = 0;
-    *(undefined4 *)&pUVar1[iVar4].layout.field_0x30c = 0;
-    if (*(int *)&pUVar1[iVar4].layout.field_0x31c == 0) {
+    pUVar1[iVar4].layout.unk_310 = 0xffffffff;
+    pUVar1[iVar4].layout.unk_31c = 0;
+    pUVar1[iVar4].layout.unk_30c = 0;
+    if (pUVar1[iVar4].layout.unk_31c == 0) {
       pUVar1[iVar4].layout.unk_318 = 0;
     }
     else {
       pUVar1[iVar4].layout.unk_318 = 1;
     }
-    *(undefined4 *)&pUVar1[iVar4].layout.field_0x30c = 0;
-    if (*(int *)&pUVar1[iVar4].layout.field_0x31c == 0) {
+    pUVar1[iVar4].layout.unk_30c = 0;
+    if (pUVar1[iVar4].layout.unk_31c == 0) {
       pUVar1[iVar4].layout.unk_318 = 0;
     }
     else {
       pUVar1[iVar4].layout.unk_318 = 1;
     }
     *(undefined4 *)&pUVar1[iVar4].layout.field_0x314 = 0;
-    *(undefined4 *)&pUVar1[iVar4].layout.field_0x31c = uVar3;
+    pUVar1[iVar4].layout.unk_31c = uVar3;
     pUVar1[iVar4].layout.unk_318 = 1;
     Se_PlayMenu(5);
   }
-  else if (uVar5 == 0x20) {
+  else if (uVar3 == 0x20) {
     MenuMgr_RequestScreen(0x16);
     Se_PlayMenu(6);
   }
-  else if (uVar5 == 2) {
+  else if (uVar3 == 2) {
     Menu_HandleCursor(iVar4 + 0x20,0,2,2,1,0);
     *(undefined4 *)(iVar4 + 8) = *(undefined4 *)(iVar4 + 0x20);
   }
-  else if (uVar5 == 1) {
+  else if (uVar3 == 1) {
     Menu_HandleCursor(iVar4 + 0x20,0,2,2,1,0);
     *(undefined4 *)(iVar4 + 8) = *(undefined4 *)(iVar4 + 0x20);
   }

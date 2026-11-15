@@ -186,10 +186,9 @@ void Composer_DrawLabel(long param_1,int param_2)
     MenuWnd_DrawText(1,0x1b);
   }
   iVar1 = UiMgr_FindLayout(1);
-  UiElem_SetPropInt(&g_UiMgr->slots[iVar1].layout,0x1a,9,
-                    *(undefined4 *)(&DAT_00343550 + param_2 * 4));
+  UiElem_SetPropInt(&g_UiMgr->slots[iVar1].layout,0x1a,9,*(int *)(&DAT_00343550 + param_2 * 4));
   iVar1 = UiMgr_FindLayout(1);
-  UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
   return;
 }
 
@@ -2290,73 +2289,73 @@ void maybe_AttractTask_Start(int param_1)
 void maybe_Attract_DrawLayout(long param_1,long param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined4 uVar1;
-  int iVar2;
+  uint uVar1;
+  UiLayout *pUVar2;
   
   if (param_1 != 0) {
-    iVar2 = (int)param_1;
+    pUVar2 = (UiLayout *)param_1;
     if (param_2 == 0x2fc) {
       uVar1 = maybe_ReplayUi_GetValue(param_3);
-      *(undefined4 *)(iVar2 + 0x310) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x31c) = 0;
-      *(undefined4 *)(iVar2 + 0x30c) = 0;
-      if (*(int *)(iVar2 + 0x31c) == 0) {
-        *(undefined4 *)(iVar2 + 0x318) = 0;
+      pUVar2->unk_310 = 0xffffffff;
+      pUVar2->unk_31c = 0;
+      pUVar2->unk_30c = 0;
+      if (pUVar2->unk_31c == 0) {
+        pUVar2->unk_318 = 0;
       }
       else {
-        *(undefined4 *)(iVar2 + 0x318) = 1;
+        pUVar2->unk_318 = 1;
       }
-      *(undefined4 *)(iVar2 + 0x30c) = 0;
-      if (*(int *)(iVar2 + 0x31c) == 0) {
-        *(undefined4 *)(iVar2 + 0x318) = 0;
-      }
-      else {
-        *(undefined4 *)(iVar2 + 0x318) = 1;
-      }
-      *(undefined4 *)(iVar2 + 0x314) = 0;
-      *(undefined4 *)(iVar2 + 0x31c) = uVar1;
-      *(undefined4 *)(iVar2 + 0x318) = 1;
-      *(undefined4 *)(iVar2 + 0x30c) = 0;
-      if (*(int *)(iVar2 + 0x31c) == 0) {
-        *(undefined4 *)(iVar2 + 0x318) = 0;
+      pUVar2->unk_30c = 0;
+      if (pUVar2->unk_31c == 0) {
+        pUVar2->unk_318 = 0;
       }
       else {
-        *(undefined4 *)(iVar2 + 0x318) = 1;
+        pUVar2->unk_318 = 1;
+      }
+      *(undefined4 *)&pUVar2->field_0x314 = 0;
+      pUVar2->unk_31c = uVar1;
+      pUVar2->unk_318 = 1;
+      pUVar2->unk_30c = 0;
+      if (pUVar2->unk_31c == 0) {
+        pUVar2->unk_318 = 0;
+      }
+      else {
+        pUVar2->unk_318 = 1;
       }
     }
     if (param_2 == 0x3c4) {
       uVar1 = maybe_ReplayUi_GetValue(param_4);
-      *(undefined4 *)(iVar2 + 0x310) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x31c) = 0;
-      *(undefined4 *)(iVar2 + 0x30c) = 0;
-      if (*(int *)(iVar2 + 0x31c) == 0) {
-        *(undefined4 *)(iVar2 + 0x318) = 0;
+      pUVar2->unk_310 = 0xffffffff;
+      pUVar2->unk_31c = 0;
+      pUVar2->unk_30c = 0;
+      if (pUVar2->unk_31c == 0) {
+        pUVar2->unk_318 = 0;
       }
       else {
-        *(undefined4 *)(iVar2 + 0x318) = 1;
+        pUVar2->unk_318 = 1;
       }
-      *(undefined4 *)(iVar2 + 0x30c) = 0;
-      if (*(int *)(iVar2 + 0x31c) == 0) {
-        *(undefined4 *)(iVar2 + 0x318) = 0;
-      }
-      else {
-        *(undefined4 *)(iVar2 + 0x318) = 1;
-      }
-      *(undefined4 *)(iVar2 + 0x314) = 0;
-      *(undefined4 *)(iVar2 + 0x31c) = uVar1;
-      *(undefined4 *)(iVar2 + 0x318) = 1;
-      *(undefined4 *)(iVar2 + 0x30c) = 0;
-      if (*(int *)(iVar2 + 0x31c) == 0) {
-        *(undefined4 *)(iVar2 + 0x318) = 0;
+      pUVar2->unk_30c = 0;
+      if (pUVar2->unk_31c == 0) {
+        pUVar2->unk_318 = 0;
       }
       else {
-        *(undefined4 *)(iVar2 + 0x318) = 1;
+        pUVar2->unk_318 = 1;
+      }
+      *(undefined4 *)&pUVar2->field_0x314 = 0;
+      pUVar2->unk_31c = uVar1;
+      pUVar2->unk_318 = 1;
+      pUVar2->unk_30c = 0;
+      if (pUVar2->unk_31c == 0) {
+        pUVar2->unk_318 = 0;
+      }
+      else {
+        pUVar2->unk_318 = 1;
       }
     }
-    if (*(int *)(iVar2 + 0x318) != 0) {
-      UiLayout_UpdateAnim(param_1,0);
+    if (pUVar2->unk_318 != 0) {
+      UiLayout_UpdateAnim(pUVar2,0);
     }
-    UiLayout_Draw(0x3f800000,param_1);
+    UiLayout_Draw(1.0,pUVar2);
   }
   return;
 }

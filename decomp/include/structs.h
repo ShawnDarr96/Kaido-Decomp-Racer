@@ -296,13 +296,34 @@ typedef struct ArcToc {  /* size 0x4a50c */
 extern ArcToc *g_ArcToc;
 
 typedef struct UiLayout {  /* size 0x4f0 */
-    u8 pad_0000[0x304];
+    u8 pad_0000[0x3c];
+    u32 unk_03c;  /* 0x3c */
+    u32 unk_040;  /* 0x40 */
+    u32 unk_044;  /* 0x44 */
+    u32 unk_048;  /* 0x48 */
+    u8 pad_004c[0x280];
+    u32 unk_2cc;  /* 0x2cc */
+    u32 unk_2d0;  /* 0x2d0 */
+    u32 unk_2d4;  /* 0x2d4 */
+    u32 unk_2d8;  /* 0x2d8 */
+    u8 pad_02dc[0x8];
+    u32 unk_2e4;  /* 0x2e4 */
+    u8 pad_02e8[0x4];
+    u32 unk_2ec;  /* 0x2ec */
+    u32 unk_2f0;  /* 0x2f0 */
+    u32 unk_2f4;  /* 0x2f4 */
+    u8 pad_02f8[0xc];
     u32 maybe_inUse;  /* 0x304 */
-    u8 pad_0308[0x10];
+    u32 unk_308;  /* 0x308 */
+    u32 unk_30c;  /* 0x30c */
+    u32 unk_310;  /* 0x310 */
+    u8 pad_0314[0x4];
     u32 unk_318;  /* 0x318 */
-    u8 pad_031c[0x10];
+    u32 unk_31c;  /* 0x31c */
+    u8 pad_0320[0xc];
     u32 animState;  /* 0x32c */
-    u8 pad_0330[0x1c0];
+    u8 pad_0330[0x1bc];
+    u32 unk_4ec;  /* 0x4ec */
 } UiLayout;
 
 typedef struct UiLayoutSlot {  /* size 0x4f4 */

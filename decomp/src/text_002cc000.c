@@ -70,11 +70,15 @@ void RaceHud_UpdateFinishFlag(int param_1)
 }
 
 // 0x002cc370  size 0x314
-void RaceHud_AnimateLapTimes(int param_1)
+void RaceHud_AnimateLapTimes(int param_1,undefined8 param_2,undefined8 param_3,byte param_4)
 
 {
   long lVar1;
   uint uVar2;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  byte extraout_a3_lo_02;
   int iVar3;
   undefined8 unaff_s0;
   int unaff_s1_lo;
@@ -126,23 +130,24 @@ void RaceHud_AnimateLapTimes(int param_1)
     }
     else {
       fVar6 = (float)(uint)((int)uVar2 % 0x3c);
-      UiElem_SetPropFloat(0x3f800000,*puVar4,unaff_s0,8);
-      UiElem_SetPropFloat(0x3f800000,*puVar4,iVar3 + 1,8);
-      UiElem_SetPropFloat(0x3f800000,*puVar4,iVar3 + 2,8);
+      UiElem_SetPropFloat((UiLayout *)*puVar4,unaff_s0,8,param_4);
+      UiElem_SetPropFloat((UiLayout *)*puVar4,(long)(iVar3 + 1),8,extraout_a3_lo_01);
+      UiElem_SetPropFloat((UiLayout *)*puVar4,(long)(iVar3 + 2),8,extraout_a3_lo_02);
     }
   }
   else {
     fVar6 = 0.0;
-    UiElem_SetPropFloat(0,*puVar4,unaff_s0,8);
-    UiElem_SetPropFloat(0,*puVar4,iVar3 + 1,8);
-    UiElem_SetPropFloat(0,*puVar4,iVar3 + 2,8);
+    UiElem_SetPropFloat((UiLayout *)*puVar4,unaff_s0,8,param_4);
+    UiElem_SetPropFloat((UiLayout *)*puVar4,(long)(iVar3 + 1),8,extraout_a3_lo);
+    UiElem_SetPropFloat((UiLayout *)*puVar4,(long)(iVar3 + 2),8,extraout_a3_lo_00);
   }
   iVar5 = (int)(fVar6 * 0.16667);
-  UiElem_SetPropInt(*puVar4,unaff_s0,0x16,unaff_s1_lo + iVar5);
+  UiElem_SetPropInt((UiLayout *)*puVar4,unaff_s0,0x16,unaff_s1_lo + iVar5);
   fVar6 = (fVar6 * 0.16667 - (float)iVar5) * 10.0;
   iVar5 = (int)fVar6;
-  UiElem_SetPropInt(*puVar4,iVar3 + 1,0x16,unaff_s1_lo + iVar5);
-  UiElem_SetPropInt(*puVar4,iVar3 + 2,0x16,unaff_s1_lo + (int)((fVar6 - (float)iVar5) * 10.0));
+  UiElem_SetPropInt((UiLayout *)*puVar4,(long)(iVar3 + 1),0x16,unaff_s1_lo + iVar5);
+  UiElem_SetPropInt((UiLayout *)*puVar4,(long)(iVar3 + 2),0x16,
+                    unaff_s1_lo + (int)((fVar6 - (float)iVar5) * 10.0));
   *(int *)(param_1 + 0x280) = *(int *)(param_1 + 0x280) + 1;
   fVar6 = *(float *)(param_1 + 0x3b70) + 0.016666668;
   *(float *)(param_1 + 0x3b70) = fVar6;
@@ -166,10 +171,14 @@ void RaceHud_Draw(int param_1)
   uint uVar1;
   char cVar2;
   long lVar3;
-  undefined8 uVar4;
-  int iVar5;
-  int *piVar6;
-  uint uVar7;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  byte bVar4;
+  undefined8 uVar5;
+  int iVar6;
+  int *piVar7;
+  uint uVar8;
   
   uVar1 = *(uint *)(param_1 + 0x27c);
   if (*(int *)(param_1 + 0x1100) == 0) {
@@ -190,54 +199,55 @@ void RaceHud_Draw(int param_1)
         }
       }
     }
-    uVar7 = 0;
-    iVar5 = param_1;
+    uVar8 = 0;
+    iVar6 = param_1;
     do {
-      piVar6 = (int *)(iVar5 + 0xfb8);
-      if (*(char *)(iVar5 + 0xfc8) == '\x01') {
-        if (*(int *)(*piVar6 + *(int *)(iVar5 + 0xfc0) * 0x14 + 0x318) == 0) {
-          RaceHud_ClearSlot(param_1,uVar7 & 0xff);
+      piVar7 = (int *)(iVar6 + 0xfb8);
+      if (*(char *)(iVar6 + 0xfc8) == '\x01') {
+        if (*(int *)(*piVar7 + *(int *)(iVar6 + 0xfc0) * 0x14 + 0x318) == 0) {
+          RaceHud_ClearSlot(param_1,uVar8 & 0xff);
         }
         else {
           lVar3 = RaceScene_IsPaused();
           if (lVar3 == 0) {
-            UiLayout_UpdateAnim(*piVar6,*(undefined4 *)(iVar5 + 0xfc0));
+            UiLayout_UpdateAnim((UiLayout *)*piVar7,*(int *)(iVar6 + 0xfc0));
           }
-          UiLayout_Draw(0x3f800000,*piVar6);
+          UiLayout_Draw(1.0,(UiLayout *)*piVar7);
         }
       }
-      uVar7 = uVar7 + 1;
-      iVar5 = iVar5 + 0x14;
-    } while (uVar7 < 0x10);
-    UiLayout_Draw(*(undefined4 *)(param_1 + 0x3b70),*(undefined4 *)(param_1 + 0x10f8));
+      uVar8 = uVar8 + 1;
+      iVar6 = iVar6 + 0x14;
+    } while (uVar8 < 0x10);
+    UiLayout_Draw(*(float *)(param_1 + 0x3b70),*(UiLayout **)(param_1 + 0x10f8));
     if ((uVar1 & 1) == 0) {
       if (*(int *)(param_1 + 0x74) == 0) {
-        iVar5 = UiMgr_FindLayout(0x11);
-        *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar5].layout;
+        iVar6 = UiMgr_FindLayout(0x11);
+        *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar6].layout;
       }
       else {
-        iVar5 = UiMgr_FindLayout(0x12);
-        *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar5].layout;
+        iVar6 = UiMgr_FindLayout(0x12);
+        *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar6].layout;
       }
       RaceUi_DrawPositionList(param_1);
       RaceUi_AnimateBoost(param_1);
       lVar3 = RaceScene_IsPaused();
       if (lVar3 == 0) {
-        uVar4 = 7;
+        uVar5 = 7;
         if (*(int *)(param_1 + 0x74) != 0) {
-          uVar4 = 6;
+          uVar5 = 6;
         }
         if (*(int *)(param_1 + 0x78) < 1) {
-          UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),uVar4,8);
+          UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar5,8,extraout_a3_lo);
         }
         else {
           lVar3 = RaceScene_IsFlag10();
+          bVar4 = extraout_a3_lo_00;
           if ((lVar3 == 0) && (*(int *)(param_1 + 0x78) == 1)) {
             Se_PlayMenuVol(3,0x60);
+            bVar4 = extraout_a3_lo_01;
           }
           *(int *)(param_1 + 0x78) = *(int *)(param_1 + 0x78) % 0x1e;
-          UiElem_SetPropFloat((float)((*(int *)(param_1 + 0x78) / 5) % 6) / 5.0,
-                              *(undefined4 *)(param_1 + 0x10fc),uVar4,8);
+          UiElem_SetPropFloat(*(UiLayout **)(param_1 + 0x10fc),uVar5,8,bVar4);
         }
         lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
