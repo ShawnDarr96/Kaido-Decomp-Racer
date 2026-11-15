@@ -1,4 +1,4 @@
-/* Matching C (MWCPS2 3.0 build 011126, -O4,p).
+/* Matching C (MWCPS2 3.0.1b145 (Built 050209), -O4,p).
  * 0x2cfab0-0x2cfb70 - matched: https://decomp.me/scratch/EJChW (objdiff 100%) */
 typedef struct HudPanel { int w[51]; } HudPanel;
 typedef struct RaceHud {

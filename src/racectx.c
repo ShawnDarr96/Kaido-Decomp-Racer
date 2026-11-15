@@ -1,4 +1,4 @@
-/* Matching C (MWCPS2 3.0 build 011126, -O4,p). 0x17e800-0x17e8e0: https://decomp.me/scratch/zUNmC */
+/* Matching C (MWCPS2 3.0.1b145 (Built 050209), -O4,p). 0x17e800-0x17e8e0: https://decomp.me/scratch/zUNmC */
 extern void *g_RaceCtx;
 
 void RaceCtx_Set_14(signed char v) { *(signed char *)(((char *)g_RaceCtx) + 0x14) = v; }

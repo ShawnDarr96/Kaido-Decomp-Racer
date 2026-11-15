@@ -1,4 +1,4 @@
-/* Matching C (MWCPS2 3.0 build 011126, -O4,p; see config/compiler.txt). */
+/* Matching C (MWCPS2 3.0.1b145 (Built 050209), -O4,p; see config/compiler.txt). */
 typedef struct OptBlock { int w[58]; } OptBlock;
 typedef struct Options { char pad[0x1c]; int seVolume; int bgmVolume; char pad24[4]; OptBlock block[2]; } Options;
 extern Options *g_Options;
@@ -6,7 +6,8 @@ int SndMgr_GetInstance(void);
 int Snd_VolumeToMidi(char vol);
 void SndMgr_SetPitchAll(int mgr, int value);
 
-/* 0x001833f0 - matched: https://decomp.me/scratch/BJ7BQ */
+/* 0x001833f0 - NONMATCHING under 3.0.1b145 (74%): this form matches only with MWCPS2 3.0 (011126);
+ * b103/b119/b145/b151 duplicate the final store into the "no manager" path. https://decomp.me/scratch/BJ7BQ */
 void Options_ApplySeVolume(int vol) {
     if (SndMgr_GetInstance() != 0) {
         int mgr = SndMgr_GetInstance();

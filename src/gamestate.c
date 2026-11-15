@@ -1,4 +1,4 @@
-/* Matching C (MWCPS2 3.0 build 011126, -O4,p; see config/compiler.txt).
+/* Matching C (MWCPS2 3.0.1b145 (Built 050209), -O4,p; see config/compiler.txt).
  * Functions are in their original address order. 0x176f30-0x177210: https://decomp.me/scratch/E0YK3 */
 typedef struct Rec204 { int w[51]; } Rec204;
 typedef struct Rec256 { int w[64]; } Rec256;
@@ -39,7 +39,7 @@ signed char GameState_Get_354(void) { return *(signed char *)(((char *)g_GameSta
 signed char GameState_Get_354_7050(void) { return *(signed char *)(((char *)g_GameState) + 0x354); }
 char *GameState_Ptr_354(void) { return ((char *)g_GameState) + 0x354; }
 Rec204 *GameState_Elem_f0_xcc(int i) { return &g_GameState->entry[i]; }
-/* NONMATCHING: one extra nop before the copy loop's branch (EE short-loop padding) */
+/* the extra nop 3.0 (011126) put before the copy loop is gone under 3.0.1b145: matches */
 void GameState_CopyPlayerRecord(Rec204 *dst, int i) { *dst = g_GameState->entry[i]; }
 void GameState_Set_3a48(int v) { *(int *)(((char *)g_GameState) + 0x3a48) = v; }
 int GameState_Get_3a48(void) { return *(int *)(((char *)g_GameState) + 0x3a48); }

@@ -1,5 +1,6 @@
 /* Matching C - https://decomp.me/scratch/wWxaE, all 20 at objdiff 100% with
- * MWCPS2 3.0.1b103 (Built 040528), -O4,p (see config/compiler.txt).
+ * MWCPS2 3.0.1b145 (Built 050209), -O4,p (see config/compiler.txt);
+ * also identical under 3.0.1b103.
  * 0x1b48e0-0x1b49a0 (RivalRec) and 0x1c1670-0x1c1730 (Profile). */
 typedef struct Vec3 { float x, y, z; } Vec3;
 typedef struct RivalRec {

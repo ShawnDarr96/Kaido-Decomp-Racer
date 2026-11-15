@@ -1,4 +1,4 @@
-/* Matching C (MWCPS2 3.0 build 011126, -O4,p).
+/* Matching C (MWCPS2 3.0.1b145 (Built 050209), -O4,p).
  * 0x1ca6b0-0x1ca780 and 0x1e9010-0x1e9140 - https://decomp.me/scratch/LM97T (objdiff 100% unless noted) */
 typedef struct WheelFx { int w[28]; } WheelFx;
 typedef struct RaceCar {
@@ -19,8 +19,8 @@ extern RaceCarList *g_RaceCars;
 typedef struct RaceScene { int state; int handlers[10]; char handlerCount; char pad2d[3]; int flags; int flagsB; } RaceScene;
 extern RaceScene *g_RaceScene;
 
-/* NONMATCHING: with 3.0.1b103 (the game's build) only beqz vs the game's branch-likely beqzl differs (92%) */
-RaceCar *RaceCar_Get(int i) { RaceCar *r = 0; if (g_RaceCars != 0) r = g_RaceCars->cars[i]; return r; }
+/* the ternary's else arm lands in the beqzl delay slot (3.0.1b145) */
+RaceCar *RaceCar_Get(int i) { RaceCarList *l = g_RaceCars; return l != 0 ? l->cars[i] : 0; }
 float RaceCar_GetLap(RaceCar *c) { return c->lap; }
 float RaceCar_GetPosition(RaceCar *c) { return c->trackPos; }
 int RaceCar_GetCheckpoint(RaceCar *c) { return c->checkpoint; }
@@ -31,8 +31,7 @@ WheelFx *RaceCar_GetWheelFx(RaceCar *c, int i) { return &c->wheelFx[i]; }
 int *RaceCar_GetTracker(RaceCar *c) { return c->tracker; }
 int RaceCar_GetIndex(RaceCar *c) { return c->index; }
 
-/* NONMATCHING (91%): same branch-likely difference as RaceCar_Get */
-int RaceScene_IsPaused(void) { int r = 0; if (g_RaceScene != 0) r = (g_RaceScene->flags & 0x40) != 0; return r; }
+int RaceScene_IsPaused(void) { RaceScene *s = g_RaceScene; return s != 0 ? (s->flags & 0x40) != 0 : 0; }
 void RaceScene_SetFlagB4(void) { g_RaceScene->flagsB |= 4; }
 int RaceScene_IsFlag2(void) { return (g_RaceScene->flags & 2) != 0; }
 void RaceScene_SetFlagB2(void) { g_RaceScene->flagsB |= 2; }
