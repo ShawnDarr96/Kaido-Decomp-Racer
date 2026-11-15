@@ -14,12 +14,12 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F17 | Decompile the XVI IOP modules XVI_IOP.IRX (4.9 KB) and XVI_SND.IRX (35.6 KB): separate R3000 binaries, IOP GCC toolchain | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F7 |
 | F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  |  | Gap of F11 |
 | F19 | Document the XVI model format (XVI0/XMDL/NORM chunks) from the Xvi_* loaders | any |  |  | Gap of F11 |
 | F20 | Name the unk_ fields of RaceEntrySetup (0xcc) and RacerState (0x540): read RaceSetup_Prepare / Career_ProcessRaceEnd / CarRec_Init | any |  |  | Gap of F14 |
 | F21 | Find RacerResult's users (GameState+0x28a0, stride 0x100; reached by pointer arithmetic) and recover its fields; also RivalRec 0xc/0xf0/0x168 used by Opponent_BuildEntry | any |  |  | Gap of F14 |
 | F22 | About 1,180 scoped globals (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) still need meaning-based names; work module by module from their __sinit constructors and users | any |  |  | Gap of F16 |
+| F23 | Name the 71 FUN_ functions left in XVI_SND.IRX (decomp/iop/xvi_snd.c) and the sifman/sifcmd/modhsyn/modmidi import indices (add them to config/iop_exports.csv) | any |  |  | Gap of F17 |
 
 ## P1 Naming
 
@@ -240,6 +240,7 @@ Columns:
 | F11 | scripts/catalogue_build.py + decomp/BUILD_DAT.md: 9,215 XVI model packs, 2,249 sprite sheets, 613 IECS sound banks, 103 TIM2, 102 streams, 22 glyph text; 2,914 still unidentified | P0 | ShawnDarr96/claude | 2026-11-15 | e276deb |
 | F14 | RacerStats renamed RivalRec (passed to RivalRec_* accessors); id, subId, team, carId, pos[3], type, count, max named from the matched accessors; export supports signed field types | P0 | ShawnDarr96/claude | 2026-11-15 | 8328084 |
 | F16 | 16 Mc/CourseScene/Render globals renamed by meaning (List objects, frame-callback nodes); TaskList_Add and Gfx_Add/RemoveEndFrameCallback swaps fixed | P0 | ShawnDarr96/claude | 2026-11-15 | 196b3ea |
+| F17 | scripts/iop_export.py + decomp/iop: both XVI IOP modules decompiled; XVI_IOP 46/46 named (RPC server/client, memory, DMA), XVI_SND 95/166 (import stubs from ps2sdk tables, SBasic/Synthe/Stream from debug strings) | P0 | ShawnDarr96/claude | 2026-11-15 | 3d6da77 |
 
 ## Changes to the board
 
@@ -363,3 +364,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim F16.
 - 2026-11-15 ShawnDarr96/claude: F16 done; added F22 (gaps).
 - 2026-11-15 ShawnDarr96/claude: claim F17.
+- 2026-11-15 ShawnDarr96/claude: F17 done; added F23 (gaps).
