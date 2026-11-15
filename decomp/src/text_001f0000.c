@@ -1514,10 +1514,11 @@ void maybe_DemoCam_PickCar(undefined8 param_1,undefined4 *param_2)
 {
   int *piVar1;
   bool bVar2;
-  int iVar3;
-  long lVar4;
-  int *piVar5;
-  int iVar6;
+  RaceCar *pRVar3;
+  int iVar4;
+  long lVar5;
+  int *piVar6;
+  int index;
   int iVar7;
   undefined4 uStack_10;
   undefined4 uStack_c;
@@ -1525,26 +1526,27 @@ void maybe_DemoCam_PickCar(undefined8 param_1,undefined4 *param_2)
   undefined4 uStack_4;
   
   iVar7 = 0;
-  iVar6 = 0;
+  index = 0;
   piVar1 = *(int **)(_g_Loading + 4);
-  piVar5 = piVar1 + 4;
-  *param_2 = piVar5;
-  param_2[1] = piVar5 + *piVar1 * 5 + -5;
+  piVar6 = piVar1 + 4;
+  *param_2 = piVar6;
+  param_2[1] = piVar6 + *piVar1 * 5 + -5;
   param_2[2] = 0;
   param_2[3] = 0;
-  lVar4 = GameState_GetRacerCount();
-  if (lVar4 < 1) {
+  lVar5 = GameState_GetRacerCount();
+  if (lVar5 < 1) {
     bVar2 = true;
   }
   else {
     do {
-      lVar4 = RaceCar_Get(iVar6);
-      if ((lVar4 != 0) && (iVar3 = RaceCar_GetIndex(lVar4), (*(uint *)(iVar3 + 4) & 0x100) == 0)) {
+      pRVar3 = RaceCar_Get(index);
+      if ((pRVar3 != (RaceCar *)0x0) &&
+         (iVar4 = RaceCar_GetIndex(pRVar3), (*(uint *)(iVar4 + 4) & 0x100) == 0)) {
         iVar7 = iVar7 + 1;
       }
-      iVar6 = iVar6 + 1;
-      iVar3 = GameState_GetRacerCount();
-    } while (iVar6 < iVar3);
+      index = index + 1;
+      iVar4 = GameState_GetRacerCount();
+    } while (index < iVar4);
     bVar2 = iVar7 < 2;
   }
   if (!bVar2) {

@@ -1113,9 +1113,10 @@ void RaceUi_SetupCarIcons(int *param_1,undefined8 param_2)
 
 {
   short sVar1;
-  int iVar2;
-  undefined8 uVar3;
+  RaceCar *pRVar2;
+  int iVar3;
   int *piVar4;
+  int index;
   uint uVar5;
   
   param_1[1] = 0;
@@ -1143,15 +1144,16 @@ void RaceUi_SetupCarIcons(int *param_1,undefined8 param_2)
   param_1[0x2f] = 0;
   param_1[0x30] = 0;
   param_1[0x31] = 0;
-  uVar3 = RaceCar_Get(param_2);
-  iVar2 = RaceCar_GetIndex(uVar3);
-  sVar1 = CarRec_GetModelId(iVar2 + 0xc);
+  index = (int)param_2;
+  pRVar2 = RaceCar_Get(index);
+  iVar3 = RaceCar_GetIndex(pRVar2);
+  sVar1 = CarRec_GetModelId(iVar3 + 0xc);
   *param_1 = (int)sVar1;
-  iVar2 = RaceCar_Get(param_2);
-  param_1[0x1b] = (uint)*(byte *)(iVar2 + 0x811);
-  iVar2 = RaceCar_Get(param_2);
+  pRVar2 = RaceCar_Get(index);
+  param_1[0x1b] = (uint)pRVar2->unk_0811;
+  pRVar2 = RaceCar_Get(index);
   uVar5 = 0;
-  param_1[0x1a] = (uint)(*(int *)(*(int *)(iVar2 + 0x120) + 0x524) == 1);
+  param_1[0x1a] = (uint)(*(int *)(pRVar2->maybe_params + 0x524) == 1);
   piVar4 = param_1;
   do {
     *(undefined1 *)(piVar4 + 0x1f) = 0;
@@ -1362,9 +1364,9 @@ void RaceUi_TaskSpeedometer(undefined8 param_1)
   bool bVar3;
   char cVar4;
   uint uVar5;
-  int iVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
+  RaceCar *pRVar6;
+  RaceCar *pRVar7;
+  int iVar8;
   long lVar9;
   char *pcVar10;
   float fVar11;
@@ -1381,12 +1383,12 @@ void RaceUi_TaskSpeedometer(undefined8 param_1)
     uVar5 = uVar5 - 8;
   }
   bVar1 = (int)uVar5 < 4;
-  uVar7 = RaceCar_Get(0);
-  uVar8 = RaceCar_Get(1);
-  fVar11 = (float)Race_GetTimeScale(uVar8);
-  fVar12 = (float)Race_GetTimeScale(uVar7);
+  pRVar6 = RaceCar_Get(0);
+  pRVar7 = RaceCar_Get(1);
+  fVar11 = (float)Race_GetTimeScale(pRVar7);
+  fVar12 = (float)Race_GetTimeScale(pRVar6);
   fVar11 = fVar11 - fVar12;
-  fVar12 = (float)Race_GetTimeScale(uVar7);
+  fVar12 = (float)Race_GetTimeScale(pRVar6);
   fVar12 = fVar12 * 0.001;
   if (fVar12 < 0.0) {
     fVar12 = 0.0;
@@ -1425,8 +1427,8 @@ void RaceUi_TaskSpeedometer(undefined8 param_1)
      (cVar4 = RaceProg_Get(), cVar4 == '\x03')) {
     lVar9 = RaceScene_IsPaused();
     if (lVar9 == 0) {
-      iVar6 = maybe_rand();
-      *(int *)(pcVar10 + 0xcc) = iVar6 % 3;
+      iVar8 = maybe_rand();
+      *(int *)(pcVar10 + 0xcc) = iVar8 % 3;
     }
     iStack_8 = iStack_8 - *(int *)(pcVar10 + 0xcc);
     if (iStack_8 < 0) {

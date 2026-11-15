@@ -188,38 +188,38 @@ void Cam_Nop(void)
 int Cam_GetTargetBodyB(int param_1)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
+  RaceCar *pRVar1;
+  RaceCar *pRVar2;
+  int index;
   
-  iVar3 = 0;
-  iVar1 = *(int *)(param_1 + 0x7b4);
-  while ((iVar2 = RaceCar_Get(iVar3), iVar2 == 0 || (iVar2 != iVar1))) {
-    iVar3 = iVar3 + 1;
-    if (2 < iVar3) {
+  index = 0;
+  pRVar1 = *(RaceCar **)(param_1 + 0x7b4);
+  while ((pRVar2 = RaceCar_Get(index), pRVar2 == (RaceCar *)0x0 || (pRVar2 != pRVar1))) {
+    index = index + 1;
+    if (2 < index) {
       return 0;
     }
   }
-  return iVar3;
+  return index;
 }
 
 // 0x00184870  size 0x64
 int Cam_GetTargetBodyA(int param_1)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
+  RaceCar *pRVar1;
+  RaceCar *pRVar2;
+  int index;
   
-  iVar3 = 0;
-  iVar1 = *(int *)(param_1 + 0x7b0);
-  while ((iVar2 = RaceCar_Get(iVar3), iVar2 == 0 || (iVar2 != iVar1))) {
-    iVar3 = iVar3 + 1;
-    if (2 < iVar3) {
+  index = 0;
+  pRVar1 = *(RaceCar **)(param_1 + 0x7b0);
+  while ((pRVar2 = RaceCar_Get(index), pRVar2 == (RaceCar *)0x0 || (pRVar2 != pRVar1))) {
+    index = index + 1;
+    if (2 < index) {
       return 0;
     }
   }
-  return iVar3;
+  return index;
 }
 
 // 0x001848e0  size 0x8

@@ -1140,7 +1140,7 @@ void Ffb_Update(undefined8 param_1)
   bool bVar3;
   bool bVar4;
   char cVar5;
-  int iVar6;
+  RaceCar *pRVar6;
   long lVar7;
   ulong uVar8;
   int iVar9;
@@ -1313,8 +1313,8 @@ void Ffb_Update(undefined8 param_1)
       Pad_SetActuator(uVar2,3,0,0);
       *(undefined4 *)(iVar9 + 0x6a118) = 0;
       if (!bVar4) {
-        iVar6 = RaceCar_Get(*(undefined4 *)(iVar9 + 4));
-        uStack_34 = (uint)(*(float *)(iVar6 + 0xb5c) * 5000.0);
+        pRVar6 = RaceCar_Get(*(int *)(iVar9 + 4));
+        uStack_34 = (uint)((float)pRVar6->unk_0b5c * 5000.0);
         if ((int)uStack_34 < 1) {
           if ((int)uStack_34 < 0) {
             uStack_34 = (uint)((float)(int)uStack_34 - 20.0);
@@ -1393,12 +1393,12 @@ void Driver_UpdateAll(void)
 void Driver_UpdatePlayer(undefined8 param_1,char param_2)
 
 {
-  char cVar1;
+  uchar uVar1;
   undefined4 *puVar2;
-  undefined4 uVar3;
-  int iVar4;
-  uint uVar5;
-  undefined8 uVar6;
+  RaceCar *pRVar3;
+  undefined4 uVar4;
+  int iVar5;
+  uint uVar6;
   long lVar7;
   ulong uVar8;
   int iVar9;
@@ -1413,7 +1413,7 @@ void Driver_UpdatePlayer(undefined8 param_1,char param_2)
   undefined1 uStack_d;
   undefined2 uStack_c;
   
-  uVar6 = RaceCar_Get(param_2);
+  pRVar3 = RaceCar_Get((int)param_2);
   iVar9 = (int)param_1;
   *(undefined4 *)(iVar9 + 0x1b4) = *(undefined4 *)(iVar9 + 0x19c);
   *(undefined4 *)(iVar9 + 0x1b8) = *(undefined4 *)(iVar9 + 0x1a0);
@@ -1438,18 +1438,18 @@ void Driver_UpdatePlayer(undefined8 param_1,char param_2)
   if ((*(uint *)(iVar9 + 0x1ac) & 0x80000000) != 0) {
     if (param_2 == '\0') {
       RaceScene_SetFlags(0x20);
-      cVar1 = *(char *)((int)uVar6 + 0x890);
+      uVar1 = pRVar3->unk_0890;
       goto LAB_001c6ccc;
     }
     RaceScene_SetFlags(0x100020);
   }
-  cVar1 = *(char *)((int)uVar6 + 0x890);
+  uVar1 = pRVar3->unk_0890;
 LAB_001c6ccc:
-  if (cVar1 == '\x01') {
+  if (uVar1 == '\x01') {
     *(undefined4 *)(iVar9 + 0x1a8) = 0x3f800000;
   }
   lVar7 = RaceScene_IsFlag10();
-  if ((lVar7 == 0) && (uVar8 = RaceCar_GetFlags(uVar6), (uVar8 & 0x400) == 0)) {
+  if ((lVar7 == 0) && (uVar8 = RaceCar_GetFlags(pRVar3), (uVar8 & 0x400) == 0)) {
     Driver_ReadInput(iVar9 + 0x19c,iVar9 + 0x69964);
     *(short *)(iVar9 + 0x1d0) = (short)(int)(*(float *)(iVar9 + 0x1a4) * 255.0);
     fVar10 = *(float *)(iVar9 + 0x19c) * 255.0;
@@ -1475,56 +1475,56 @@ LAB_001c6ccc:
     *(float *)(iVar9 + 0x1a8) = (float)*(byte *)(iVar9 + 0x1cf) / 255.0;
     lVar7 = RaceScene_Get_38();
     if ((((lVar7 != 0) && (uVar8 = RaceScene_Get_38(), uVar8 < 0x8ca1)) &&
-        (uVar8 = RaceCar_GetFlags(uVar6), (uVar8 & 1) == 0)) &&
-       (uVar8 = RaceCar_GetFlags(uVar6), (uVar8 & 0x800) == 0)) {
-      uVar3 = RaceScene_Get_38();
-      *(undefined4 *)(iVar9 + 0x6995c) = uVar3;
-      iVar4 = RaceScene_Get_38();
+        (uVar8 = RaceCar_GetFlags(pRVar3), (uVar8 & 1) == 0)) &&
+       (uVar8 = RaceCar_GetFlags(pRVar3), (uVar8 & 0x800) == 0)) {
+      uVar4 = RaceScene_Get_38();
+      *(undefined4 *)(iVar9 + 0x6995c) = uVar4;
+      iVar5 = RaceScene_Get_38();
       uVar11 = *(undefined4 *)(iVar9 + 0x1cc);
-      uVar3 = *(undefined4 *)(iVar9 + 0x1d4);
-      if (iVar4 + -1 < 36000) {
+      uVar4 = *(undefined4 *)(iVar9 + 0x1d4);
+      if (iVar5 + -1 < 36000) {
         uStack_10 = (undefined1)uVar11;
         uStack_f = (undefined1)((uint)uVar11 >> 8);
         uStack_e = (undefined1)((uint)uVar11 >> 0x10);
         uStack_d = (undefined1)((uint)uVar11 >> 0x18);
-        iVar4 = (iVar4 + -1) * 0xc + iVar9;
+        iVar5 = (iVar5 + -1) * 0xc + iVar9;
         uStack_c = (undefined2)*(undefined4 *)(iVar9 + 0x1d0);
-        *(undefined1 *)(iVar4 + 0x1dc) = uStack_10;
-        *(undefined1 *)(iVar4 + 0x1dd) = uStack_f;
-        *(undefined1 *)(iVar4 + 0x1de) = uStack_e;
-        *(undefined1 *)(iVar4 + 0x1df) = uStack_d;
-        *(undefined2 *)(iVar4 + 0x1e0) = uStack_c;
-        *(undefined4 *)(iVar4 + 0x1e4) = uVar3;
+        *(undefined1 *)(iVar5 + 0x1dc) = uStack_10;
+        *(undefined1 *)(iVar5 + 0x1dd) = uStack_f;
+        *(undefined1 *)(iVar5 + 0x1de) = uStack_e;
+        *(undefined1 *)(iVar5 + 0x1df) = uStack_d;
+        *(undefined2 *)(iVar5 + 0x1e0) = uStack_c;
+        *(undefined4 *)(iVar5 + 0x1e4) = uVar4;
       }
-      uVar3 = RaceScene_Get_38();
-      *(undefined4 *)(iVar9 + 0x1d8) = uVar3;
+      uVar4 = RaceScene_Get_38();
+      *(undefined4 *)(iVar9 + 0x1d8) = uVar4;
     }
     Ffb_Update(param_1);
   }
   else {
     lVar7 = RaceScene_Get_38();
-    if ((lVar7 == 0) || (uVar5 = RaceScene_Get_38(), *(uint *)(iVar9 + 0x1d8) < uVar5)) {
+    if ((lVar7 == 0) || (uVar6 = RaceScene_Get_38(), *(uint *)(iVar9 + 0x1d8) < uVar6)) {
       if ((*(uint *)((param_2 * 0x1c + (int)param_2) * 4 + iRam0036f36c + 4) & 2) != 0) {
         RaceScene_Get_38();
       }
     }
     else {
-      uVar5 = *(uint *)(iVar9 + 0x1ac);
-      iVar4 = RaceScene_Get_38();
-      iVar4 = (iVar4 + -1) * 0xc;
-      *(float *)(iVar9 + 0x19c) = (float)*(byte *)(iVar4 + iVar9 + 0x1dd) / 255.0;
-      *(float *)(iVar9 + 0x1a4) = (float)(int)*(short *)(iVar4 + iVar9 + 0x1e0) / 255.0;
-      *(float *)(iVar9 + 0x1a0) = (float)*(byte *)(iVar4 + iVar9 + 0x1de) / 255.0;
-      *(float *)(iVar9 + 0x1a8) = (float)*(byte *)(iVar4 + iVar9 + 0x1df) / 255.0;
-      *(undefined4 *)(iVar9 + 0x1ac) = *(undefined4 *)(iVar4 + iVar9 + 0x1e4);
-      *(undefined1 *)(iVar9 + 0x1b0) = *(undefined1 *)(iVar4 + iVar9 + 0x1dc);
+      uVar6 = *(uint *)(iVar9 + 0x1ac);
+      iVar5 = RaceScene_Get_38();
+      iVar5 = (iVar5 + -1) * 0xc;
+      *(float *)(iVar9 + 0x19c) = (float)*(byte *)(iVar5 + iVar9 + 0x1dd) / 255.0;
+      *(float *)(iVar9 + 0x1a4) = (float)(int)*(short *)(iVar5 + iVar9 + 0x1e0) / 255.0;
+      *(float *)(iVar9 + 0x1a0) = (float)*(byte *)(iVar5 + iVar9 + 0x1de) / 255.0;
+      *(float *)(iVar9 + 0x1a8) = (float)*(byte *)(iVar5 + iVar9 + 0x1df) / 255.0;
+      *(undefined4 *)(iVar9 + 0x1ac) = *(undefined4 *)(iVar5 + iVar9 + 0x1e4);
+      *(undefined1 *)(iVar9 + 0x1b0) = *(undefined1 *)(iVar5 + iVar9 + 0x1dc);
       *(uint *)(iVar9 + 0x1ac) = *(uint *)(iVar9 + 0x1ac) & 0x7fffff3f;
-      if ((uVar5 & 0x40) != 0) {
+      if ((uVar6 & 0x40) != 0) {
         *(uint *)(iVar9 + 0x1ac) = *(uint *)(iVar9 + 0x1ac) | 0x40;
       }
     }
   }
-  uVar3 = *(undefined4 *)(iVar9 + 0x1ac);
+  uVar4 = *(undefined4 *)(iVar9 + 0x1ac);
   puVar2 = *(undefined4 **)(param_2 * 4 + _g_AiDrivers + 8);
   uVar13 = *(undefined4 *)(iVar9 + 0x1a0);
   uVar11 = *(undefined4 *)(iVar9 + 0x1a4);
@@ -1534,7 +1534,7 @@ LAB_001c6ccc:
   puVar2[1] = uVar13;
   puVar2[2] = uVar11;
   puVar2[3] = uVar12;
-  puVar2[4] = uVar3;
+  puVar2[4] = uVar4;
   *(undefined1 *)(puVar2 + 5) = uStack_1c;
   return;
 }

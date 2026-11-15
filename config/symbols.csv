@@ -2677,7 +2677,7 @@ address,name,signature,source,comment
 0x001ca640,DriverInput_Clear,,game,
 0x001ca660,DriverInput_ClearAxes,,game,
 0x001ca680,Race_GetTimeScale,,game,
-0x001ca6b0,RaceCar_Get,,game,42 callers
+0x001ca6b0,RaceCar_Get,RaceCar * RaceCar_Get(int index),game,42 callers
 0x001ca6d0,RaceCar_GetLap,,game,
 0x001ca6e0,RaceCar_GetPosition,,game,
 0x001ca6f0,RaceCar_GetCheckpoint,,game,

@@ -9,45 +9,46 @@ void RaceIntro_Update(int param_1)
 
 {
   int iVar1;
-  int iVar2;
+  RaceCar *pRVar2;
   int iVar3;
-  long lVar4;
-  undefined8 uVar5;
+  int iVar4;
+  long lVar5;
   undefined8 uVar6;
   undefined8 uVar7;
-  float fVar8;
-  undefined4 uStack_c0;
-  undefined4 uStack_bc;
-  undefined4 uStack_b8;
-  undefined4 uStack_b4;
-  undefined4 uStack_b0;
-  undefined4 uStack_ac;
-  undefined4 uStack_a8;
-  undefined4 uStack_a4;
-  undefined4 uStack_a0;
-  undefined4 uStack_9c;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
+  undefined8 uVar8;
+  float fVar9;
+  uint uStack_c0;
+  uint uStack_bc;
+  uint uStack_b8;
+  uint uStack_b4;
+  uint uStack_b0;
+  uint uStack_ac;
+  uint uStack_a8;
+  uint uStack_a4;
+  uint uStack_a0;
+  uint uStack_9c;
+  uint uStack_98;
+  uint uStack_94;
+  uint uStack_90;
+  uint uStack_8c;
+  uint uStack_88;
+  uint uStack_84;
+  uint uStack_80;
+  uint uStack_7c;
+  uint uStack_78;
+  uint uStack_74;
+  uint uStack_70;
+  uint uStack_6c;
+  uint uStack_68;
+  uint uStack_64;
+  uint uStack_60;
+  uint uStack_5c;
+  uint uStack_58;
+  uint uStack_54;
+  uint uStack_50;
+  uint uStack_4c;
+  uint uStack_48;
+  uint uStack_44;
   undefined1 auStack_40 [16];
   undefined1 auStack_30 [16];
   undefined1 auStack_20 [16];
@@ -55,83 +56,81 @@ void RaceIntro_Update(int param_1)
   
   iVar1 = *(int *)(param_1 + 0x14);
   RaceIntro_SetupColliders(iVar1);
-  iVar3 = *(int *)(iRam0036f3b0 + 0xc);
-  lVar4 = RaceScene_IsRunning();
-  if (lVar4 == 0) {
+  iVar4 = *(int *)(iRam0036f3b0 + 0xc);
+  lVar5 = RaceScene_IsRunning();
+  if (lVar5 == 0) {
     *(undefined4 *)(iVar1 + 0x5c) = 0;
   }
-  else if ((iVar3 != 0) && (iVar3 = *(int *)(iVar3 + 0x14), iVar3 != 0)) {
-    fVar8 = (float)Cam_NormalizeDirection(*(undefined4 *)(_g_Loading + 0x14));
-    if (10.0 < fVar8) {
+  else if ((iVar4 != 0) && (iVar4 = *(int *)(iVar4 + 0x14), iVar4 != 0)) {
+    fVar9 = (float)Cam_NormalizeDirection(*(undefined4 *)(_g_Loading + 0x14));
+    if (10.0 < fVar9) {
       *(undefined4 *)(iVar1 + 0x5c) = 0;
     }
-    uVar5 = GameState_Get_0();
-    uVar6 = GameState_Get_2();
-    uVar7 = GameState_Get_3();
-    RaceScene_SetPaused(uVar5,uVar6,uVar7,0);
-    if (*(int *)(iVar3 + 0x1c) != 0) {
-      lVar4 = RaceCar_Get(0);
-      if (lVar4 == 0) {
+    uVar6 = GameState_Get_0();
+    uVar7 = GameState_Get_2();
+    uVar8 = GameState_Get_3();
+    RaceScene_SetPaused(uVar6,uVar7,uVar8,0);
+    if (*(int *)(iVar4 + 0x1c) != 0) {
+      pRVar2 = RaceCar_Get(0);
+      if (pRVar2 == (RaceCar *)0x0) {
         maybe_Vu0_UnitMatrix(auStack_40);
-        iVar2 = *(int *)(iVar3 + 0x1c);
+        iVar3 = *(int *)(iVar4 + 0x1c);
       }
       else {
-        iVar2 = (int)lVar4;
-        uStack_80 = *(undefined4 *)(iVar2 + 0xe0);
-        uStack_7c = *(undefined4 *)(iVar2 + 0xe4);
-        uStack_78 = *(undefined4 *)(iVar2 + 0xe8);
-        uStack_74 = *(undefined4 *)(iVar2 + 0xec);
-        uStack_70 = *(undefined4 *)(iVar2 + 0xf0);
-        uStack_6c = *(undefined4 *)(iVar2 + 0xf4);
-        uStack_68 = *(undefined4 *)(iVar2 + 0xf8);
-        uStack_64 = *(undefined4 *)(iVar2 + 0xfc);
-        uStack_60 = *(undefined4 *)(iVar2 + 0x100);
-        uStack_5c = *(undefined4 *)(iVar2 + 0x104);
-        uStack_58 = *(undefined4 *)(iVar2 + 0x108);
-        uStack_54 = *(undefined4 *)(iVar2 + 0x10c);
-        uStack_50 = *(undefined4 *)(iVar2 + 0x110);
-        uStack_4c = *(undefined4 *)(iVar2 + 0x114);
-        uStack_48 = *(undefined4 *)(iVar2 + 0x118);
-        uStack_44 = *(undefined4 *)(iVar2 + 0x11c);
+        uStack_80 = pRVar2->unk_00e0;
+        uStack_7c = pRVar2->unk_00e4;
+        uStack_78 = pRVar2->unk_00e8;
+        uStack_74 = pRVar2->unk_00ec;
+        uStack_70 = pRVar2->unk_00f0;
+        uStack_6c = pRVar2->unk_00f4;
+        uStack_68 = pRVar2->unk_00f8;
+        uStack_64 = pRVar2->unk_00fc;
+        uStack_60 = pRVar2->unk_0100;
+        uStack_5c = pRVar2->unk_0104;
+        uStack_58 = pRVar2->unk_0108;
+        uStack_54 = pRVar2->unk_010c;
+        uStack_50 = pRVar2->unk_0110;
+        uStack_4c = pRVar2->unk_0114;
+        uStack_48 = pRVar2->unk_0118;
+        uStack_44 = pRVar2->unk_011c;
         sceVu0CopyVector(auStack_40,&uStack_80);
         sceVu0CopyVector(auStack_30,&uStack_70);
         sceVu0CopyVector(auStack_20,&uStack_60);
         sceVu0CopyVector(auStack_10,&uStack_50);
-        iVar2 = *(int *)(iVar3 + 0x1c);
+        iVar3 = *(int *)(iVar4 + 0x1c);
       }
-      Prop_SetLight(0,(*(uint *)(iVar2 + 0x110) & 4) != 0,auStack_40);
+      Prop_SetLight(0,(*(uint *)(iVar3 + 0x110) & 4) != 0,auStack_40);
     }
-    if (*(int *)(iVar3 + 0x20) != 0) {
-      lVar4 = RaceCar_Get(1);
-      if (lVar4 == 0) {
+    if (*(int *)(iVar4 + 0x20) != 0) {
+      pRVar2 = RaceCar_Get(1);
+      if (pRVar2 == (RaceCar *)0x0) {
         maybe_Vu0_UnitMatrix(auStack_40);
-        iVar3 = *(int *)(iVar3 + 0x1c);
+        iVar4 = *(int *)(iVar4 + 0x1c);
       }
       else {
-        iVar2 = (int)lVar4;
-        uStack_c0 = *(undefined4 *)(iVar2 + 0xe0);
-        uStack_bc = *(undefined4 *)(iVar2 + 0xe4);
-        uStack_b8 = *(undefined4 *)(iVar2 + 0xe8);
-        uStack_b4 = *(undefined4 *)(iVar2 + 0xec);
-        uStack_b0 = *(undefined4 *)(iVar2 + 0xf0);
-        uStack_ac = *(undefined4 *)(iVar2 + 0xf4);
-        uStack_a8 = *(undefined4 *)(iVar2 + 0xf8);
-        uStack_a4 = *(undefined4 *)(iVar2 + 0xfc);
-        uStack_a0 = *(undefined4 *)(iVar2 + 0x100);
-        uStack_9c = *(undefined4 *)(iVar2 + 0x104);
-        uStack_98 = *(undefined4 *)(iVar2 + 0x108);
-        uStack_94 = *(undefined4 *)(iVar2 + 0x10c);
-        uStack_90 = *(undefined4 *)(iVar2 + 0x110);
-        uStack_8c = *(undefined4 *)(iVar2 + 0x114);
-        uStack_88 = *(undefined4 *)(iVar2 + 0x118);
-        uStack_84 = *(undefined4 *)(iVar2 + 0x11c);
+        uStack_c0 = pRVar2->unk_00e0;
+        uStack_bc = pRVar2->unk_00e4;
+        uStack_b8 = pRVar2->unk_00e8;
+        uStack_b4 = pRVar2->unk_00ec;
+        uStack_b0 = pRVar2->unk_00f0;
+        uStack_ac = pRVar2->unk_00f4;
+        uStack_a8 = pRVar2->unk_00f8;
+        uStack_a4 = pRVar2->unk_00fc;
+        uStack_a0 = pRVar2->unk_0100;
+        uStack_9c = pRVar2->unk_0104;
+        uStack_98 = pRVar2->unk_0108;
+        uStack_94 = pRVar2->unk_010c;
+        uStack_90 = pRVar2->unk_0110;
+        uStack_8c = pRVar2->unk_0114;
+        uStack_88 = pRVar2->unk_0118;
+        uStack_84 = pRVar2->unk_011c;
         sceVu0CopyVector(auStack_40,&uStack_c0);
         sceVu0CopyVector(auStack_30,&uStack_b0);
         sceVu0CopyVector(auStack_20,&uStack_a0);
         sceVu0CopyVector(auStack_10,&uStack_90);
-        iVar3 = *(int *)(iVar3 + 0x1c);
+        iVar4 = *(int *)(iVar4 + 0x1c);
       }
-      Prop_SetLight(1,(*(uint *)(iVar3 + 0x110) & 4) != 0,auStack_40);
+      Prop_SetLight(1,(*(uint *)(iVar4 + 0x110) & 4) != 0,auStack_40);
     }
     RaceScene_UpdateAmbient(iVar1 + 0x5c);
   }

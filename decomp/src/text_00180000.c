@@ -2906,7 +2906,7 @@ void Cam_UpdateTargetFromCar(int param_1)
 {
   bool bVar1;
   float fVar2;
-  int iVar3;
+  RaceCar *pRVar3;
   undefined8 uVar4;
   undefined8 uVar5;
   int iVar6;
@@ -2930,14 +2930,14 @@ void Cam_UpdateTargetFromCar(int param_1)
       iVar6 = 0;
       fVar2 = 1e+07;
       do {
-        iVar3 = RaceCar_Get(iVar6);
-        if ((iVar3 != 0) && (iVar3 != *(int *)(param_1 + 0x7b0))) {
-          uVar5 = PhysBody_GetWorldMatrix(*(undefined4 *)(iVar3 + 0x154));
+        pRVar3 = RaceCar_Get(iVar6);
+        if ((pRVar3 != (RaceCar *)0x0) && (pRVar3 != *(RaceCar **)(param_1 + 0x7b0))) {
+          uVar5 = PhysBody_GetWorldMatrix(pRVar3->unk_0154);
           Vec3_Sub(auStack_10,uVar5,uVar4);
           Vec3_Sub(auStack_20,uVar5,uVar4);
           fVar7 = (float)Vec3_Dot(auStack_10,auStack_20);
           if (fVar7 < fVar2) {
-            *(int *)(param_1 + 0x7b4) = iVar3;
+            *(RaceCar **)(param_1 + 0x7b4) = pRVar3;
             fVar2 = fVar7;
           }
         }

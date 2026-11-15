@@ -1965,20 +1965,20 @@ void RaceWorld_Step(void)
 
 {
   char cVar1;
-  int iVar2;
+  RaceCar *pRVar2;
   int iVar3;
   int iVar4;
-  long lVar5;
+  int iVar5;
   long lVar6;
   ulong uVar7;
   int iVar8;
   uint uVar9;
-  int iVar10;
+  int index;
   
-  lVar5 = RaceScene_IsPaused();
-  if ((lVar5 == 0) && (lVar5 = RaceScene_IsRunning(), lVar5 != 0)) {
-    lVar5 = RaceScene_IsFlag400();
-    if (((lVar5 == 0) && (lVar5 = RaceScene_IsFlag1000(), lVar5 == 0)) &&
+  lVar6 = RaceScene_IsPaused();
+  if ((lVar6 == 0) && (lVar6 = RaceScene_IsRunning(), lVar6 != 0)) {
+    lVar6 = RaceScene_IsFlag400();
+    if (((lVar6 == 0) && (lVar6 = RaceScene_IsFlag1000(), lVar6 == 0)) &&
        ((cVar1 = RaceCtx_GetMode(), cVar1 != '\x01' ||
         (((cVar1 = GameState_Get_354(), cVar1 != '\x01' &&
           (cVar1 = GameState_Get_354(), cVar1 != '\x02')) &&
@@ -1988,20 +1988,20 @@ void RaceWorld_Step(void)
     else {
       Phys_Step(0);
     }
-    iVar10 = 0;
-    lVar5 = GameState_GetTotalCarCount();
-    if (0 < lVar5) {
+    index = 0;
+    lVar6 = GameState_GetTotalCarCount();
+    if (0 < lVar6) {
       do {
-        lVar5 = RaceCar_Get(iVar10);
-        if (lVar5 != 0) {
-          iVar2 = RaceCar_GetTracker(lVar5);
-          *(uint *)(iVar2 + 0x60) = *(uint *)(iVar2 + 0x60) & 0xffffff8f;
-          RaceCar_UpdateTracker(lVar5);
-          for (iVar3 = *(int *)(*(int *)((int)lVar5 + 0x158) + 0xd4); iVar3 != 0;
-              iVar3 = PhysWorld_FindBodyWithFlags(iVar3,0xffffffffffffffff)) {
-            lVar6 = PhysHandle_GetValueIfValid(iVar3);
+        pRVar2 = RaceCar_Get(index);
+        if (pRVar2 != (RaceCar *)0x0) {
+          iVar3 = RaceCar_GetTracker(pRVar2);
+          *(uint *)(iVar3 + 0x60) = *(uint *)(iVar3 + 0x60) & 0xffffff8f;
+          RaceCar_UpdateTracker(pRVar2);
+          for (iVar4 = *(int *)(pRVar2->unk_0158 + 0xd4); iVar4 != 0;
+              iVar4 = PhysWorld_FindBodyWithFlags(iVar4,0xffffffffffffffff)) {
+            lVar6 = PhysHandle_GetValueIfValid(iVar4);
             if (lVar6 == 0) {
-              uVar7 = PhysHandle_GetIndexIfValid(iVar3);
+              uVar7 = PhysHandle_GetIndexIfValid(iVar4);
               if ((uVar7 & 1) == 0) {
                 uVar9 = 0x20;
               }
@@ -2009,21 +2009,21 @@ void RaceWorld_Step(void)
                 uVar9 = 0x40;
               }
               iVar8 = 0;
-              *(uint *)(iVar2 + 0x60) = *(uint *)(iVar2 + 0x60) | uVar9;
+              *(uint *)(iVar3 + 0x60) = *(uint *)(iVar3 + 0x60) | uVar9;
               do {
-                iVar4 = RaceCar_GetWheelFx(lVar5,iVar8);
+                iVar5 = RaceCar_GetWheelFx(pRVar2,iVar8);
                 iVar8 = iVar8 + 1;
-                *(uint *)(iVar4 + 0x60) = *(uint *)(iVar4 + 0x60) | uVar9;
+                *(uint *)(iVar5 + 0x60) = *(uint *)(iVar5 + 0x60) | uVar9;
               } while (iVar8 < 4);
             }
             else {
-              *(uint *)(iVar2 + 0x60) = *(uint *)(iVar2 + 0x60) | 0x10;
+              *(uint *)(iVar3 + 0x60) = *(uint *)(iVar3 + 0x60) | 0x10;
             }
           }
         }
-        iVar10 = iVar10 + 1;
-        iVar3 = GameState_GetTotalCarCount();
-      } while (iVar10 < iVar3);
+        index = index + 1;
+        iVar4 = GameState_GetTotalCarCount();
+      } while (index < iVar4);
     }
   }
   return;

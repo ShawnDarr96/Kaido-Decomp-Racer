@@ -1705,9 +1705,9 @@ void maybe_IntroCar_Draw(void)
   char cVar2;
   uint *puVar3;
   uint uVar4;
-  int iVar5;
-  long lVar6;
-  undefined8 uVar7;
+  RaceCar *pRVar5;
+  int iVar6;
+  long lVar7;
   uint *puVar8;
   int iVar9;
   float fVar10;
@@ -1958,17 +1958,17 @@ void maybe_IntroCar_Draw(void)
     }
     Model_UpdateNodeMatrix(auStack_1b90,*_g_IntroCar);
     iVar9 = 1;
-    lVar6 = GameState_GetRacerCount();
-    if (1 < lVar6) {
+    lVar7 = GameState_GetRacerCount();
+    if (1 < lVar7) {
       do {
-        uVar7 = RaceCar_Get(iVar9);
-        maybe_IntroCar_UpdatePose(auStack_1b90,uVar7,0xff0000);
+        pRVar5 = RaceCar_Get(iVar9);
+        maybe_IntroCar_UpdatePose(auStack_1b90,pRVar5,0xff0000);
         iVar9 = iVar9 + 1;
-        iVar5 = GameState_GetRacerCount();
-      } while (iVar9 < iVar5);
+        iVar6 = GameState_GetRacerCount();
+      } while (iVar9 < iVar6);
     }
-    uVar7 = RaceCar_Get(0);
-    maybe_IntroCar_UpdatePose(auStack_1b90,uVar7,0xff);
+    pRVar5 = RaceCar_Get(0);
+    maybe_IntroCar_UpdatePose(auStack_1b90,pRVar5,0xff);
     Layer_Close(auStack_1b90,0);
     Layer_Close(auStack_1b90,1);
   }

@@ -1800,12 +1800,12 @@ void Skid_ResetCar(int param_1)
 }
 
 // 0x0017b360  size 0x628
-void Skid_Draw(int param_1,undefined8 param_2)
+void Skid_Draw(int param_1,int param_2)
 
 {
-  int iVar1;
-  undefined4 *puVar2;
-  long lVar3;
+  RaceCar *pRVar1;
+  int iVar2;
+  undefined4 *puVar3;
   undefined8 uVar4;
   long lVar5;
   uint uVar6;
@@ -1830,44 +1830,43 @@ void Skid_Draw(int param_1,undefined8 param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  lVar3 = RaceCar_Get(param_2);
-  if (lVar3 != 0) {
+  pRVar1 = RaceCar_Get(param_2);
+  if (pRVar1 != (RaceCar *)0x0) {
     uVar9 = 0;
     iVar8 = param_1;
     do {
-      iVar1 = (int)lVar3;
       if (*(int *)(iVar8 + 0x130) != -1) {
         lVar5 = PtclSys_Get();
         if (lVar5 == 0) {
           *(undefined4 *)(iVar8 + 0x130) = 0xffffffff;
         }
         else {
-          puVar2 = (undefined4 *)PhysBody_GetRotation(*(undefined4 *)(iVar1 + 0x154));
-          uStack_10 = *puVar2;
-          uStack_c = puVar2[1];
-          uStack_8 = puVar2[2];
-          uStack_4 = puVar2[3];
-          puVar2 = (undefined4 *)PhysBody_GetWorldMatrix(*(undefined4 *)(iVar1 + 0x154));
+          puVar3 = (undefined4 *)PhysBody_GetRotation(pRVar1->unk_0154);
+          uStack_10 = *puVar3;
+          uStack_c = puVar3[1];
+          uStack_8 = puVar3[2];
+          uStack_4 = puVar3[3];
+          puVar3 = (undefined4 *)PhysBody_GetWorldMatrix(pRVar1->unk_0154);
           Mat34_Identity(auStack_a0);
           Quat_ToMat33(auStack_a0,&uStack_10);
           sceVu0CopyVector(auStack_50,auStack_a0);
           sceVu0CopyVector(auStack_40,auStack_90);
           sceVu0CopyVector(auStack_30,auStack_80);
           sceVu0CopyVector(auStack_20,auStack_70);
-          uStack_60 = *puVar2;
-          uStack_5c = puVar2[1];
-          uStack_58 = puVar2[2];
+          uStack_60 = *puVar3;
+          uStack_5c = puVar3[1];
+          uStack_58 = puVar3[2];
           uStack_54 = 0x3f800000;
           sceVu0TransMatrix(auStack_50,auStack_50,&uStack_60);
-          iVar7 = (int)lVar5;
-          sceVu0ApplyMatrix(iVar7 + 0xc0,auStack_50,iVar8 + 0x140);
+          iVar2 = (int)lVar5;
+          sceVu0ApplyMatrix(iVar2 + 0xc0,auStack_50,iVar8 + 0x140);
           maybe_Vu0_UnitMatrix(auStack_e0);
           maybe_Vu0_SetUnitW(auStack_20);
           maybe_Vu0_RotMatrixX(0x3fc90fdb,auStack_e0,auStack_e0);
-          sceVu0MulMatrix(iVar7 + 0xd0,auStack_50,auStack_e0);
+          sceVu0MulMatrix(iVar2 + 0xd0,auStack_50,auStack_e0);
           if (*(int *)(iVar8 + 0x134) == 0) {
-            *(undefined4 *)(iVar7 + 0x124) = 0;
-            *(undefined4 *)(iVar7 + 0x128) = 0;
+            *(undefined4 *)(iVar2 + 0x124) = 0;
+            *(undefined4 *)(iVar2 + 0x128) = 0;
           }
           *(undefined4 *)(iVar8 + 0x134) = 0;
         }
@@ -1881,7 +1880,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
         *(undefined4 *)(param_1 + 0x120) = 0xffffffff;
       }
       else {
-        uVar4 = PhysBody_GetWorldMatrix(*(undefined4 *)(iVar1 + 0x154));
+        uVar4 = PhysBody_GetWorldMatrix(pRVar1->unk_0154);
         iVar8 = (int)lVar5;
         sceVu0CopyVector(iVar8 + 0xc0,uVar4);
         maybe_Vu0_UnitMatrix(iVar8 + 0xd0);
@@ -1895,7 +1894,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
     uVar9 = 0;
     iVar8 = param_1;
     do {
-      iVar1 = RaceCar_GetWheelFx(lVar3,uVar9);
+      iVar2 = RaceCar_GetWheelFx(pRVar1,uVar9);
       if (*(int *)(param_1 + 0xc0) != -1) {
         lVar5 = PtclSys_Get();
         if (lVar5 == 0) {
@@ -1903,7 +1902,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
         }
         else {
           iVar7 = (int)lVar5;
-          sceVu0CopyVector(iVar7 + 0xc0,iVar1 + 0x10);
+          sceVu0CopyVector(iVar7 + 0xc0,iVar2 + 0x10);
           maybe_Vu0_UnitMatrix(iVar7 + 0xd0);
           if (*(int *)(param_1 + 0xc4) == 0) {
             *(undefined4 *)(iVar7 + 0x124) = 0;
@@ -1919,7 +1918,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
         }
         else {
           iVar7 = (int)lVar5;
-          sceVu0CopyVector(iVar7 + 0xc0,iVar1 + 0x10);
+          sceVu0CopyVector(iVar7 + 0xc0,iVar2 + 0x10);
           maybe_Vu0_UnitMatrix(iVar7 + 0xd0);
           if (*(int *)(param_1 + 0xe4) == 0) {
             *(undefined4 *)(iVar7 + 0x124) = 0;
@@ -1935,7 +1934,7 @@ void Skid_Draw(int param_1,undefined8 param_2)
         }
         else {
           iVar7 = (int)lVar5;
-          sceVu0CopyVector(iVar7 + 0xc0,iVar1 + 0x10);
+          sceVu0CopyVector(iVar7 + 0xc0,iVar2 + 0x10);
           maybe_Vu0_UnitMatrix(iVar7 + 0xd0);
           if (*(int *)(param_1 + 0x104) == 0) {
             *(undefined4 *)(iVar7 + 0x124) = 0;
@@ -1948,17 +1947,17 @@ void Skid_Draw(int param_1,undefined8 param_2)
       if (iVar7 == 0) {
         if (*(int *)(iVar8 + 0x20f8) == 0x10) {
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1cc) = 600;
-          sceVu0CopyVector(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1b0,iVar1 + 0x10);
-          iVar1 = iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20;
-          *(float *)(iVar1 + 0x1b4) = *(float *)(iVar1 + 0x1b4) + 0.05;
+          sceVu0CopyVector(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1b0,iVar2 + 0x10);
+          iVar2 = iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20;
+          *(float *)(iVar2 + 0x1b4) = *(float *)(iVar2 + 0x1b4) + 0.05;
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1c0) =
                *(undefined4 *)(iVar8 + 0x2100);
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1c4) =
                *(undefined4 *)(iVar8 + 0x2104);
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1c8) = 1;
-          iVar1 = *(int *)(iVar8 + 0x20f0) + 1;
-          if (iVar1 < 0xfa) {
-            *(int *)(iVar8 + 0x20f0) = iVar1;
+          iVar2 = *(int *)(iVar8 + 0x20f0) + 1;
+          if (iVar2 < 0xfa) {
+            *(int *)(iVar8 + 0x20f0) = iVar2;
           }
           else {
             *(int *)(iVar8 + 0x20f0) = *(int *)(iVar8 + 0x20f0) + -0xf9;
@@ -1971,16 +1970,16 @@ void Skid_Draw(int param_1,undefined8 param_2)
         if (iVar7 != 2) {
           if (iVar7 != 1) goto LAB_0017b5e8;
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1cc) = 600;
-          sceVu0CopyVector(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1b0,iVar1 + 0x10);
-          iVar1 = iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20;
-          *(float *)(iVar1 + 0x1b4) = *(float *)(iVar1 + 0x1b4) + 0.05;
+          sceVu0CopyVector(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1b0,iVar2 + 0x10);
+          iVar2 = iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20;
+          *(float *)(iVar2 + 0x1b4) = *(float *)(iVar2 + 0x1b4) + 0.05;
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1c0) =
                *(undefined4 *)(iVar8 + 0x2100);
           *(undefined4 *)(iVar8 + *(int *)(iVar8 + 0x20f0) * 0x20 + 0x1c4) =
                *(undefined4 *)(iVar8 + 0x2104);
-          iVar1 = *(int *)(iVar8 + 0x20f0) + 1;
-          if (iVar1 < 0xfa) {
-            *(int *)(iVar8 + 0x20f0) = iVar1;
+          iVar2 = *(int *)(iVar8 + 0x20f0) + 1;
+          if (iVar2 < 0xfa) {
+            *(int *)(iVar8 + 0x20f0) = iVar2;
           }
           else {
             *(int *)(iVar8 + 0x20f0) = *(int *)(iVar8 + 0x20f0) + -0xf9;
@@ -1992,10 +1991,10 @@ void Skid_Draw(int param_1,undefined8 param_2)
       }
 LAB_0017b5e8:
       uVar6 = 0;
-      iVar1 = iVar8;
+      iVar2 = iVar8;
       do {
-        if ((*(int *)(iVar1 + 0x1cc) != 0) &&
-           (iVar7 = *(int *)(iVar1 + 0x1cc) + -1, *(int *)(iVar1 + 0x1cc) = iVar7, iVar7 == 0)) {
+        if ((*(int *)(iVar2 + 0x1cc) != 0) &&
+           (iVar7 = *(int *)(iVar2 + 0x1cc) + -1, *(int *)(iVar2 + 0x1cc) = iVar7, iVar7 == 0)) {
           iVar7 = uVar6 + 1;
           if (0xf9 < iVar7) {
             iVar7 = uVar6 - 0xf9;
@@ -2009,8 +2008,8 @@ LAB_0017b5e8:
           else {
             *(undefined4 *)(iVar7 + 0x1c8) = 0;
           }
-          *(undefined4 *)(iVar1 + 0x1c8) = 3;
-          *(undefined4 *)(iVar1 + 0x1cc) = 0;
+          *(undefined4 *)(iVar2 + 0x1c8) = 3;
+          *(undefined4 *)(iVar2 + 0x1cc) = 0;
           *(int *)(iVar8 + 0x20fc) = *(int *)(iVar8 + 0x20fc) + 1;
         }
         iVar7 = *(int *)(iVar8 + 0x20f0) + 1;
@@ -2019,7 +2018,7 @@ LAB_0017b5e8:
         }
         uVar6 = uVar6 + 1;
         *(int *)(iVar8 + 0x20f0) = iVar7;
-        iVar1 = iVar1 + 0x20;
+        iVar2 = iVar2 + 0x20;
       } while (uVar6 < 0xfa);
       uVar9 = uVar9 + 1;
       param_1 = param_1 + 8;

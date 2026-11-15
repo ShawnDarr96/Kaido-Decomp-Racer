@@ -607,9 +607,9 @@ void Ai_SetupDifficulty(void)
       iVar12 = 0;
       iVar7 = 5;
       do {
-        Ai_PredictPath(0,*(int *)((int)_g_RaceCars + iVar12),0,iVar7,0,1,
-                       *(undefined4 *)(*(int *)(*(int *)((int)_g_RaceCars + iVar12) + 0x17dc) + 4));
-        Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar12));
+        iVar15 = *(int *)((int)g_RaceCars->cars + iVar12);
+        Ai_PredictPath(0,iVar15,0,iVar7,0,1,*(undefined4 *)(*(int *)(iVar15 + 0x17dc) + 4));
+        Ai_ComputeSteering(*(undefined4 *)((int)g_RaceCars->cars + iVar12));
         iVar9 = iVar9 + 1;
         iVar12 = iVar12 + 4;
         iVar7 = iVar7 + 2;
@@ -629,8 +629,8 @@ void Ai_SetupDifficulty(void)
       if ((cVar4 == '\x04') || (cVar4 = GameState_Get_354_7050(), cVar4 == '\x05')) {
         bVar2 = true;
       }
-      else if ((*(char *)(*(int *)(*_g_RaceCars + 0x17dc) + 8) == '\0') &&
-              (*(char *)(*(int *)(_g_RaceCars[1] + 0x17dc) + 8) == '\0')) {
+      else if ((*(char *)(g_RaceCars->cars[0]->index + 8) == '\0') &&
+              (*(char *)(g_RaceCars->cars[1]->index + 8) == '\0')) {
         bVar2 = true;
       }
     }
@@ -639,7 +639,7 @@ void Ai_SetupDifficulty(void)
       iVar7 = 0;
       do {
         uVar14 = 0;
-        iVar12 = *(int *)(*(int *)((int)_g_RaceCars + iVar7) + 0x17dc);
+        iVar12 = *(int *)(*(int *)((int)g_RaceCars->cars + iVar7) + 0x17dc);
         iVar15 = 0;
         if ((*(uint *)(iVar12 + 4) & 1) == 0) {
           if ((*(uint *)(iVar12 + 4) & 2) != 0) {
@@ -741,9 +741,9 @@ void Ai_SetupDifficulty(void)
           iVar15 = iVar15 * 0x20;
         }
         maybe_RaceProg_FindRecord(iVar9 + iVar15,&uStack_2,&uStack_4);
-        Ai_PredictPath(0,*(undefined4 *)((int)_g_RaceCars + iVar7),uStack_2,uStack_4,uVar14,1,
+        Ai_PredictPath(0,*(undefined4 *)((int)g_RaceCars->cars + iVar7),uStack_2,uStack_4,uVar14,1,
                        *(undefined4 *)(iVar12 + 4));
-        Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar7));
+        Ai_ComputeSteering(*(undefined4 *)((int)g_RaceCars->cars + iVar7));
         if ((_g_Skids == 0) || (uRam004301ac <= uVar6)) {
           iVar12 = 0;
         }
@@ -782,8 +782,6 @@ long RaceCar_dtor(long param_1,short param_2)
 }
 
 // 0x001cdbc0  size 0x84
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceCar_FreeAll(void)
 
 {
@@ -794,23 +792,21 @@ void RaceCar_FreeAll(void)
   iVar3 = 0;
   iVar2 = 0;
   do {
-    piVar1 = *(int **)(_g_RaceCars + iVar2);
+    piVar1 = *(int **)((int)g_RaceCars->cars + iVar2);
     if (piVar1 != (int *)0x0) {
       if (piVar1 != (int *)0x0) {
         (**(code **)(*piVar1 + 8))(piVar1,1);
       }
-      *(undefined4 *)(_g_RaceCars + iVar2) = 0;
+      *(undefined4 *)((int)g_RaceCars->cars + iVar2) = 0;
     }
     iVar3 = iVar3 + 1;
     iVar2 = iVar2 + 4;
   } while (iVar3 < 7);
-  Mem_Free(_g_RaceCars);
+  Mem_Free(g_RaceCars);
   return;
 }
 
 // 0x001cdc50  size 0x74
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceCar_PlaceAll(void)
 
 {
@@ -823,7 +819,7 @@ void RaceCar_PlaceAll(void)
   if (0 < iVar1) {
     iVar3 = 0;
     do {
-      RaceCar_PlaceOnGrid(*(undefined4 *)(_g_RaceCars + iVar3),iVar2);
+      RaceCar_PlaceOnGrid(*(undefined4 *)((int)g_RaceCars->cars + iVar3),iVar2);
       iVar2 = iVar2 + 1;
       iVar3 = iVar3 + 4;
     } while (iVar2 < iVar1);
@@ -832,8 +828,6 @@ void RaceCar_PlaceAll(void)
 }
 
 // 0x001cdcd0  size 0x138
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceCar_CreateAll(undefined8 param_1)
 
 {
@@ -845,17 +839,17 @@ void RaceCar_CreateAll(undefined8 param_1)
   int iVar6;
   
   uVar2 = Mem_Alloc16(0x1c,param_1);
-  _g_RaceCars = (undefined4 *)uVar2;
+  g_RaceCars = (RaceCarList *)uVar2;
   Mem_Set16(uVar2,0,0x1c);
   iVar1 = GameState_GetTotalCarCount();
   iVar6 = 0;
-  *_g_RaceCars = 0;
-  _g_RaceCars[1] = 0;
-  _g_RaceCars[2] = 0;
-  _g_RaceCars[3] = 0;
-  _g_RaceCars[4] = 0;
-  _g_RaceCars[5] = 0;
-  _g_RaceCars[6] = 0;
+  g_RaceCars->cars[0] = (RaceCar *)0x0;
+  g_RaceCars->cars[1] = (RaceCar *)0x0;
+  g_RaceCars->cars[2] = (RaceCar *)0x0;
+  g_RaceCars->cars[3] = (RaceCar *)0x0;
+  g_RaceCars->cars[4] = (RaceCar *)0x0;
+  g_RaceCars->cars[5] = (RaceCar *)0x0;
+  g_RaceCars->cars[6] = (RaceCar *)0x0;
   if (0 < iVar1) {
     iVar4 = 0;
     do {
@@ -872,8 +866,8 @@ void RaceCar_CreateAll(undefined8 param_1)
         puVar5[0x5bf] = 0x3f800000;
         puVar5[0x5c3] = 0x3f800000;
       }
-      *(undefined4 **)((int)_g_RaceCars + iVar4) = puVar5;
-      RaceCar_ResetToTrack(*(undefined4 *)((int)_g_RaceCars + iVar4),iVar6);
+      *(undefined4 **)((int)g_RaceCars->cars + iVar4) = puVar5;
+      RaceCar_ResetToTrack(*(undefined4 *)((int)g_RaceCars->cars + iVar4),iVar6);
       iVar6 = iVar6 + 1;
       iVar4 = iVar4 + 4;
     } while (iVar6 < iVar1);

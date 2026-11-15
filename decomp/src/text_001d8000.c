@@ -1841,54 +1841,54 @@ float Race_CountActiveCars(float param_1)
 void RaceRule_CheckSprint(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
-  iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar7 + 1);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
-  iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
-    RaceCar_SetFlags(uVar4,8);
-    RaceCar_SetFlags(uVar4,0x10);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_SetFlags(pRVar1,8);
+    RaceCar_SetFlags(pRVar1,0x10);
   }
   return;
 }
@@ -1899,47 +1899,47 @@ void RaceRule_CheckSprint(char param_1)
 void RaceRule_CheckTimeAttack(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_ClearFlags(uVar4,2);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_ClearFlags(pRVar1,2);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_ClearFlags(uVar4,2);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_ClearFlags(pRVar1,2);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_ClearFlags(uVar4,2);
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_ClearFlags(pRVar1,2);
   }
-  iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar7 + 1);
-    RaceCar_ClearFlags(uVar4,2);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_ClearFlags(pRVar1,2);
   }
-  iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6);
-    RaceCar_ClearFlags(uVar4,2);
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_ClearFlags(pRVar1,2);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
-    RaceCar_ClearFlags(uVar4,2);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_ClearFlags(pRVar1,2);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
-    RaceCar_ClearFlags(uVar4,2);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_ClearFlags(pRVar1,2);
   }
   return;
 }
@@ -1950,54 +1950,54 @@ void RaceRule_CheckTimeAttack(char param_1)
 void RaceRule_CheckBattle(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
-  iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar7 + 1);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
-  iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
-    RaceCar_ClearFlags(uVar4,1);
-    RaceCar_SetFlags(uVar4,0x200);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_ClearFlags(pRVar1,1);
+    RaceCar_SetFlags(pRVar1,0x200);
   }
   return;
 }
@@ -2008,61 +2008,61 @@ void RaceRule_CheckBattle(char param_1)
 void RaceRule_CheckSpBattle(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
-  iVar6 = param_1 * 4;
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
+  iVar5 = param_1 * 4;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
-  iVar5 = (int)lVar1;
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar5 + 1);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
-  iVar7 = (int)lVar2;
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar5 + iVar7);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar5 + iVar7 + 1);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar5 + iVar7 + 2);
-    RaceCar_ClearFlags(uVar4,0xa01);
-    RaceCar_SetFlags(uVar4,2);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_ClearFlags(pRVar1,0xa01);
+    RaceCar_SetFlags(pRVar1,2);
+    pRVar1->unk_0890 = '\x01';
   }
   return;
 }
@@ -2073,54 +2073,54 @@ void RaceRule_CheckSpBattle(char param_1)
 void RaceRule_CheckTeamBattle(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
-  iVar7 = (int)lVar1;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar7 + 1);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
-  iVar6 = (int)lVar2;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 1);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar7 + iVar6 + 2);
-    RaceCar_ClearFlags(uVar4,3);
-    RaceCar_SetFlags(uVar4,0x800);
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_ClearFlags(pRVar1,3);
+    RaceCar_SetFlags(pRVar1,0x800);
   }
   return;
 }
@@ -2131,61 +2131,61 @@ void RaceRule_CheckTeamBattle(char param_1)
 void RaceRule_CheckDrift(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
-  iVar6 = param_1 * 4;
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
+  iVar5 = param_1 * 4;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
-  iVar5 = (int)lVar1;
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar5 + 1);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
-  iVar7 = (int)lVar2;
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar5 + iVar7);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar5 + iVar7 + 1);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
-  if (((*(uint *)(iVar6 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar5 + iVar7 + 2);
-    RaceCar_ClearFlags(uVar4,0x802);
-    RaceCar_SetFlags(uVar4,1);
-    *(undefined1 *)((int)uVar4 + 0x890) = 1;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_ClearFlags(pRVar1,0x802);
+    RaceCar_SetFlags(pRVar1,1);
+    pRVar1->unk_0890 = '\x01';
   }
   return;
 }
@@ -2196,88 +2196,82 @@ void RaceRule_CheckDrift(char param_1)
 void RaceRule_CheckFreeRun(char param_1)
 
 {
-  long lVar1;
+  RaceCar *pRVar1;
   long lVar2;
   long lVar3;
-  undefined8 uVar4;
+  long lVar4;
+  int index;
   int iVar5;
   int iVar6;
-  int iVar7;
-  int iVar8;
   
-  lVar1 = GameState_GetPlayerCount();
-  lVar2 = GameState_GetRivalCount();
-  lVar3 = GameState_GetTrafficCount();
+  lVar2 = GameState_GetPlayerCount();
+  lVar3 = GameState_GetRivalCount();
+  lVar4 = GameState_GetTrafficCount();
   iVar5 = param_1 * 4;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar1)) {
-    uVar4 = RaceCar_Get(0);
-    RaceCar_ClearFlags(uVar4,0x803);
-    if (*(char *)((int)uVar4 + 0x890) == '\x01') {
-      *(undefined1 *)((int)uVar4 + 0x890) = 0;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 1) != 0) && (0 < lVar2)) {
+    pRVar1 = RaceCar_Get(0);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
     }
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar1)) {
-    uVar4 = RaceCar_Get(1);
-    RaceCar_ClearFlags(uVar4,0x803);
-    if (*(char *)((int)uVar4 + 0x890) == '\x01') {
-      *(undefined1 *)((int)uVar4 + 0x890) = 0;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 2) != 0) && (1 < lVar2)) {
+    pRVar1 = RaceCar_Get(1);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
     }
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar2)) {
-    uVar4 = RaceCar_Get(lVar1);
-    RaceCar_ClearFlags(uVar4,0x803);
-    iVar6 = (int)uVar4;
-    if ((*(char *)(iVar6 + 0x811) == '\0') && (*(int *)(iVar6 + 0x814) == 0)) {
-      Car_RequestShiftUp(uVar4);
+  index = (int)lVar2;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
+    pRVar1 = RaceCar_Get(index);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+      Car_RequestShiftUp(pRVar1);
     }
-    if (*(char *)(iVar6 + 0x890) == '\x01') {
-      *(undefined1 *)(iVar6 + 0x890) = 0;
-    }
-  }
-  iVar6 = (int)lVar1;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar2)) {
-    uVar4 = RaceCar_Get(iVar6 + 1);
-    RaceCar_ClearFlags(uVar4,0x803);
-    iVar7 = (int)uVar4;
-    if (*(char *)(iVar7 + 0x890) == '\x01') {
-      *(undefined1 *)(iVar7 + 0x890) = 0;
-    }
-    if ((*(char *)(iVar7 + 0x811) == '\0') && (*(int *)(iVar7 + 0x814) == 0)) {
-      Car_RequestShiftUp(uVar4);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
     }
   }
-  iVar7 = (int)lVar2;
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar6 + iVar7);
-    RaceCar_ClearFlags(uVar4,0x803);
-    iVar8 = (int)uVar4;
-    if (*(char *)(iVar8 + 0x890) == '\x01') {
-      *(undefined1 *)(iVar8 + 0x890) = 0;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 8) != 0) && (1 < lVar3)) {
+    pRVar1 = RaceCar_Get(index + 1);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
     }
-    if ((*(char *)(iVar8 + 0x811) == '\0') && (*(int *)(iVar8 + 0x814) == 0)) {
-      Car_RequestShiftUp(uVar4);
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+      Car_RequestShiftUp(pRVar1);
     }
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar6 + iVar7 + 1);
-    RaceCar_ClearFlags(uVar4,0x803);
-    iVar8 = (int)uVar4;
-    if (*(char *)(iVar8 + 0x890) == '\x01') {
-      *(undefined1 *)(iVar8 + 0x890) = 0;
+  iVar6 = (int)lVar3;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x10) != 0) && (0 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
     }
-    if ((*(char *)(iVar8 + 0x811) == '\0') && (*(int *)(iVar8 + 0x814) == 0)) {
-      Car_RequestShiftUp(uVar4);
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+      Car_RequestShiftUp(pRVar1);
     }
   }
-  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar3)) {
-    uVar4 = RaceCar_Get(iVar6 + iVar7 + 2);
-    RaceCar_ClearFlags(uVar4,0x803);
-    iVar5 = (int)uVar4;
-    if (*(char *)(iVar5 + 0x890) == '\x01') {
-      *(undefined1 *)(iVar5 + 0x890) = 0;
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x20) != 0) && (1 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 1);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
     }
-    if ((*(char *)(iVar5 + 0x811) == '\0') && (*(int *)(iVar5 + 0x814) == 0)) {
-      Car_RequestShiftUp(uVar4);
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+      Car_RequestShiftUp(pRVar1);
+    }
+  }
+  if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 0x40) != 0) && (2 < lVar4)) {
+    pRVar1 = RaceCar_Get(index + iVar6 + 2);
+    RaceCar_ClearFlags(pRVar1,0x803);
+    if (pRVar1->unk_0890 == '\x01') {
+      pRVar1->unk_0890 = '\0';
+    }
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+      Car_RequestShiftUp(pRVar1);
     }
   }
   return;

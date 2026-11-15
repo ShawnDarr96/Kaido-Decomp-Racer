@@ -1549,132 +1549,132 @@ void RaceProg_UpdatePositions(void)
   int iVar2;
   int iVar3;
   int iVar4;
-  int iVar5;
+  RaceCar *pRVar5;
   int iVar6;
-  int *piVar7;
-  undefined4 *puVar8;
-  undefined8 uVar9;
+  int iVar7;
+  int *piVar8;
+  undefined4 *puVar9;
   undefined8 uVar10;
   ulong uVar11;
   long lVar12;
   int *piVar13;
   int *piVar14;
   char cVar15;
-  int iVar16;
+  int index;
+  float fVar16;
   float fVar17;
-  float fVar18;
-  undefined4 uVar19;
-  float fVar20;
+  undefined4 uVar18;
+  float fVar19;
   
   iVar4 = GameState_GetRacerCount();
-  iVar16 = 0;
+  index = 0;
   if (0 < iVar4) {
     do {
-      uVar9 = RaceProg_GetArray_1c((char)iVar16);
-      uVar10 = RaceCar_Get(iVar16);
-      fVar18 = (float)RaceCar_GetSpeedKmh(uVar10);
-      iVar5 = RaceCar_GetTracker(uVar10);
-      uVar1 = *(uint *)(iVar5 + 0x60);
-      puVar8 = (undefined4 *)uVar9;
+      uVar10 = RaceProg_GetArray_1c((char)index);
+      pRVar5 = RaceCar_Get(index);
+      fVar17 = (float)RaceCar_GetSpeedKmh(pRVar5);
+      iVar6 = RaceCar_GetTracker(pRVar5);
+      uVar1 = *(uint *)(iVar6 + 0x60);
+      puVar9 = (undefined4 *)uVar10;
       if ((uVar1 & 0x20) != 0) {
-        puVar8[3] = puVar8[3] + 1;
+        puVar9[3] = puVar9[3] + 1;
       }
       if ((uVar1 & 0x10) != 0) {
-        puVar8[4] = puVar8[4] + 1;
+        puVar9[4] = puVar9[4] + 1;
       }
-      iVar5 = RaceProg_Get_c();
-      fVar17 = (float)puVar8[1];
-      fVar20 = fVar18 + 0.0;
       iVar6 = RaceProg_Get_c();
-      puVar8[1] = (fVar17 * (float)(iVar5 + -1) + fVar20) / (float)iVar6;
-      if ((float)puVar8[2] < fVar18) {
-        puVar8[2] = fVar18;
+      fVar16 = (float)puVar9[1];
+      fVar19 = fVar17 + 0.0;
+      iVar7 = RaceProg_Get_c();
+      puVar9[1] = (fVar16 * (float)(iVar6 + -1) + fVar19) / (float)iVar7;
+      if ((float)puVar9[2] < fVar17) {
+        puVar9[2] = fVar17;
       }
-      uVar19 = RaceCar_GetPosition(uVar10);
-      *puVar8 = uVar19;
-      uVar11 = RaceCar_GetFlags(uVar10);
+      uVar18 = RaceCar_GetPosition(pRVar5);
+      *puVar9 = uVar18;
+      uVar11 = RaceCar_GetFlags(pRVar5);
       if ((uVar11 & 0x100) == 0) {
-        piVar7 = (int *)RaceRule_GetParams(uVar9);
-        if (piVar7[1] != 0) {
+        piVar8 = (int *)RaceRule_GetParams(uVar10);
+        if (piVar8[1] != 0) {
           lVar12 = GameState_Get_40();
-          iVar5 = RaceCar_GetCheckpoint(uVar10);
-          fVar18 = (float)RaceCar_GetSpeedKmh(uVar10);
-          fVar18 = (fVar18 * fVar18 * 0.004) / 0.078125;
+          iVar6 = RaceCar_GetCheckpoint(pRVar5);
+          fVar17 = (float)RaceCar_GetSpeedKmh(pRVar5);
+          fVar17 = (fVar17 * fVar17 * 0.004) / 0.078125;
           if (lVar12 == 0) {
-            fVar18 = (float)iVar5 + fVar18;
+            fVar17 = (float)iVar6 + fVar17;
           }
           else {
-            fVar18 = (float)iVar5 - fVar18;
+            fVar17 = (float)iVar6 - fVar17;
           }
-          iVar5 = (int)fVar18;
+          iVar6 = (int)fVar17;
           lVar12 = GameState_Get_40();
           if (lVar12 == 0) {
-            iVar6 = *piVar7;
-            if ((iVar6 != 0) && (iVar5 < iVar6)) {
-              iVar5 = iVar6;
+            iVar7 = *piVar8;
+            if ((iVar7 != 0) && (iVar6 < iVar7)) {
+              iVar6 = iVar7;
             }
-            *(undefined1 *)(piVar7 + 2) = 0;
+            *(undefined1 *)(piVar8 + 2) = 0;
             cVar15 = '\0';
-            piVar7[3] = 0;
-            iVar6 = 0;
-            *(undefined1 *)(piVar7 + 4) = 0;
-            piVar7[5] = 0;
-            piVar14 = piVar7;
+            piVar8[3] = 0;
+            iVar7 = 0;
+            *(undefined1 *)(piVar8 + 4) = 0;
+            piVar8[5] = 0;
+            piVar14 = piVar8;
             while( true ) {
-              piVar13 = (int *)(piVar7[1] + iVar6);
+              piVar13 = (int *)(piVar8[1] + iVar7);
               iVar2 = *piVar13;
               iVar3 = piVar13[1];
               if (iVar2 == -1) break;
-              if ((iVar2 <= iVar5) && (iVar5 <= iVar3)) {
+              if ((iVar2 <= iVar6) && (iVar6 <= iVar3)) {
                 *(char *)(piVar14 + 2) = (char)piVar13[2];
                 cVar15 = cVar15 + '\x01';
-                piVar14[3] = (int)((float)(iVar5 - iVar2) / (float)(iVar3 - iVar2));
+                piVar14[3] = (int)((float)(iVar6 - iVar2) / (float)(iVar3 - iVar2));
                 piVar14 = piVar14 + 2;
                 if ('\x01' < cVar15) break;
               }
-              iVar6 = iVar6 + 0xc;
+              iVar7 = iVar7 + 0xc;
             }
           }
           else {
-            iVar6 = *piVar7;
-            if ((iVar6 != 0) && (iVar6 < iVar5)) {
-              iVar5 = iVar6;
+            iVar7 = *piVar8;
+            if ((iVar7 != 0) && (iVar7 < iVar6)) {
+              iVar6 = iVar7;
             }
-            *(undefined1 *)(piVar7 + 2) = 0;
+            *(undefined1 *)(piVar8 + 2) = 0;
             cVar15 = '\0';
-            piVar7[3] = 0;
-            iVar6 = 0;
-            *(undefined1 *)(piVar7 + 4) = 0;
-            piVar7[5] = 0;
-            piVar14 = piVar7;
+            piVar8[3] = 0;
+            iVar7 = 0;
+            *(undefined1 *)(piVar8 + 4) = 0;
+            piVar8[5] = 0;
+            piVar14 = piVar8;
             while( true ) {
-              piVar13 = (int *)(piVar7[1] + iVar6);
+              piVar13 = (int *)(piVar8[1] + iVar7);
               iVar2 = *piVar13;
               iVar3 = piVar13[1];
               if (iVar2 == -1) break;
-              if ((iVar5 <= iVar2) && (iVar3 <= iVar5)) {
+              if ((iVar6 <= iVar2) && (iVar3 <= iVar6)) {
                 *(char *)(piVar14 + 2) = (char)piVar13[2];
                 cVar15 = cVar15 + '\x01';
-                piVar14[3] = (int)((float)(iVar2 - iVar5) / (float)(iVar2 - iVar3));
+                piVar14[3] = (int)((float)(iVar2 - iVar6) / (float)(iVar2 - iVar3));
                 piVar14 = piVar14 + 2;
                 if ('\x01' < cVar15) break;
               }
-              iVar6 = iVar6 + 0xc;
+              iVar7 = iVar7 + 0xc;
             }
           }
-          *piVar7 = iVar5;
+          *piVar8 = iVar6;
         }
       }
       else {
-        puVar8 = (undefined4 *)RaceRule_GetParams(uVar9);
-        *(undefined1 *)(puVar8 + 2) = 0;
-        puVar8[3] = 0;
-        *(undefined1 *)(puVar8 + 4) = 0;
-        puVar8[5] = 0;
-        *puVar8 = 0;
+        puVar9 = (undefined4 *)RaceRule_GetParams(uVar10);
+        *(undefined1 *)(puVar9 + 2) = 0;
+        puVar9[3] = 0;
+        *(undefined1 *)(puVar9 + 4) = 0;
+        puVar9[5] = 0;
+        *puVar9 = 0;
       }
-      iVar16 = iVar16 + 1;
-    } while (iVar16 < iVar4);
+      index = index + 1;
+    } while (index < iVar4);
   }
   return;
 }
@@ -2170,28 +2170,28 @@ void RaceProg_CheckPosition(undefined8 param_1)
 
 {
   int iVar1;
-  int iVar2;
-  int iVar3;
-  long lVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
+  RaceCar *pRVar2;
+  RaceCar *pRVar3;
+  int iVar4;
+  int iVar5;
+  long lVar6;
   ulong uVar7;
   float fVar8;
   float fVar9;
   
-  lVar4 = GameState_GetRacerCount();
-  if (lVar4 == 2) {
-    uVar5 = RaceCar_Get(0);
-    uVar6 = RaceCar_Get(1);
+  lVar6 = GameState_GetRacerCount();
+  if (lVar6 == 2) {
+    pRVar2 = RaceCar_Get(0);
+    pRVar3 = RaceCar_Get(1);
     uVar7 = RaceProg_Get_4();
     if ((uVar7 & 8) == 0) {
       uVar7 = RaceProg_Get_4();
       if ((uVar7 & 0x10) != 0) {
-        fVar8 = (float)RaceCar_GetPosition(uVar5);
-        fVar9 = (float)RaceCar_GetPosition(uVar6);
+        fVar8 = (float)RaceCar_GetPosition(pRVar2);
+        fVar9 = (float)RaceCar_GetPosition(pRVar3);
         if (fVar8 - fVar9 <= 50.0) {
-          fVar8 = (float)RaceCar_GetPosition(uVar6);
-          fVar9 = (float)RaceCar_GetPosition(uVar5);
+          fVar8 = (float)RaceCar_GetPosition(pRVar3);
+          fVar9 = (float)RaceCar_GetPosition(pRVar2);
           if (150.0 < fVar8 - fVar9) {
             Flags_Set(param_1,0x102);
           }
@@ -2202,34 +2202,34 @@ void RaceProg_CheckPosition(undefined8 param_1)
       }
     }
     else {
-      fVar8 = (float)RaceCar_GetPosition(uVar6);
-      fVar9 = (float)RaceCar_GetPosition(uVar5);
+      fVar8 = (float)RaceCar_GetPosition(pRVar3);
+      fVar9 = (float)RaceCar_GetPosition(pRVar2);
       if (50.0 < fVar8 - fVar9) {
         Flags_Set(param_1,0x102);
       }
       else {
-        fVar8 = (float)RaceCar_GetPosition(uVar5);
-        fVar9 = (float)RaceCar_GetPosition(uVar6);
+        fVar8 = (float)RaceCar_GetPosition(pRVar2);
+        fVar9 = (float)RaceCar_GetPosition(pRVar3);
         if (150.0 < fVar8 - fVar9) {
           Flags_Set(param_1,0x101);
         }
       }
     }
-    iVar2 = RaceProg_GetArray_40(0);
-    iVar3 = RaceProg_GetArray_40(1);
-    iVar2 = *(int *)(iVar2 + 0x4b8);
-    if ((iVar2 == 0) || (iVar1 = *(int *)(iVar3 + 0x4b8), iVar1 == 0)) {
-      if ((iVar2 == 0) && (*(int *)(iVar3 + 0x4b8) != 0)) {
+    iVar4 = RaceProg_GetArray_40(0);
+    iVar5 = RaceProg_GetArray_40(1);
+    iVar4 = *(int *)(iVar4 + 0x4b8);
+    if ((iVar4 == 0) || (iVar1 = *(int *)(iVar5 + 0x4b8), iVar1 == 0)) {
+      if ((iVar4 == 0) && (*(int *)(iVar5 + 0x4b8) != 0)) {
         Flags_Set(param_1,0x8a);
       }
-      else if ((iVar2 != 0) && (*(int *)(iVar3 + 0x4b8) == 0)) {
+      else if ((iVar4 != 0) && (*(int *)(iVar5 + 0x4b8) == 0)) {
         Flags_Set(param_1,0x89);
       }
     }
-    else if (iVar2 < iVar1) {
+    else if (iVar4 < iVar1) {
       Flags_Set(param_1,0x89);
     }
-    else if (iVar2 == iVar1) {
+    else if (iVar4 == iVar1) {
       Flags_Set(param_1,0x8c);
     }
     else {
@@ -2245,94 +2245,94 @@ void RaceProg_UpdateLaps(void)
 {
   int iVar1;
   uint uVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  int iVar5;
-  long lVar6;
-  undefined8 uVar7;
+  RaceCar *pRVar3;
+  int iVar4;
+  undefined4 *puVar5;
+  int iVar6;
+  long lVar7;
   undefined8 uVar8;
   int *piVar9;
   int iVar10;
+  int index;
   int iVar11;
   int iVar12;
   int iVar13;
-  int iVar14;
+  float fVar14;
   float fVar15;
   float fVar16;
   float fVar17;
-  float fVar18;
   undefined2 uStack_10;
   
-  lVar6 = GameState_Get_44();
-  if (lVar6 != 0) {
+  lVar7 = GameState_Get_44();
+  if (lVar7 != 0) {
     uVar2 = GameState_Get_1();
-    iVar1 = *(int *)((int)lVar6 + (uVar2 & 0xff) * 0x10 + 0xc);
-    iVar11 = 0;
-    lVar6 = GameState_GetRacerCount();
-    if (0 < lVar6) {
+    iVar1 = *(int *)((int)lVar7 + (uVar2 & 0xff) * 0x10 + 0xc);
+    index = 0;
+    lVar7 = GameState_GetRacerCount();
+    if (0 < lVar7) {
       do {
-        iVar13 = 0;
-        uVar7 = RaceCar_Get(iVar11);
-        iVar3 = RaceCar_GetIndex(uVar7);
-        if ((*(uint *)(iVar3 + 4) & 0x20) == 0) {
-          uVar8 = RaceProg_GetArray_40((char)iVar11);
+        iVar12 = 0;
+        pRVar3 = RaceCar_Get(index);
+        iVar4 = RaceCar_GetIndex(pRVar3);
+        if ((*(uint *)(iVar4 + 4) & 0x20) == 0) {
+          uVar8 = RaceProg_GetArray_40((char)index);
           iVar10 = 0;
-          iVar3 = 0;
+          iVar4 = 0;
           do {
-            iVar12 = (int)uVar8;
-            piVar9 = (int *)(iVar12 + *(int *)(iVar12 + 0x4bc) * 0x78 + iVar3);
-            iVar5 = *piVar9;
-            if (iVar5 == -1) break;
+            iVar11 = (int)uVar8;
+            piVar9 = (int *)(iVar11 + *(int *)(iVar11 + 0x4bc) * 0x78 + iVar4);
+            iVar6 = *piVar9;
+            if (iVar6 == -1) break;
             if ((piVar9[2] & 1U) == 0) {
-              puVar4 = (undefined4 *)(iVar1 + iVar5 * 0x10);
-              iVar14 = puVar4[1];
-              uStack_10 = (undefined2)*puVar4;
-              iVar5 = GameState_GetArray_3a78(uStack_10);
-              iVar5 = iVar14 * 0x20 + iVar5;
-              if (iVar13 != iVar10) break;
-              lVar6 = GameState_Get_40();
-              if (lVar6 == 0) {
-                iVar14 = RaceCar_GetCheckpoint(uVar7);
-                if (iVar5 <= iVar14) {
-                  iVar5 = iVar12 + *(int *)(iVar12 + 0x4bc) * 0x78 + iVar3;
-                  *(uint *)(iVar5 + 8) = *(uint *)(iVar5 + 8) | 1;
+              puVar5 = (undefined4 *)(iVar1 + iVar6 * 0x10);
+              iVar13 = puVar5[1];
+              uStack_10 = (undefined2)*puVar5;
+              iVar6 = GameState_GetArray_3a78(uStack_10);
+              iVar6 = iVar13 * 0x20 + iVar6;
+              if (iVar12 != iVar10) break;
+              lVar7 = GameState_Get_40();
+              if (lVar7 == 0) {
+                iVar13 = RaceCar_GetCheckpoint(pRVar3);
+                if (iVar6 <= iVar13) {
+                  iVar6 = iVar11 + *(int *)(iVar11 + 0x4bc) * 0x78 + iVar4;
+                  *(uint *)(iVar6 + 8) = *(uint *)(iVar6 + 8) | 1;
                 }
               }
               else {
-                iVar14 = RaceCar_GetCheckpoint(uVar7);
-                if (iVar14 < iVar5) {
-                  iVar5 = iVar12 + *(int *)(iVar12 + 0x4bc) * 0x78 + iVar3;
-                  *(uint *)(iVar5 + 8) = *(uint *)(iVar5 + 8) | 1;
+                iVar13 = RaceCar_GetCheckpoint(pRVar3);
+                if (iVar13 < iVar6) {
+                  iVar6 = iVar11 + *(int *)(iVar11 + 0x4bc) * 0x78 + iVar4;
+                  *(uint *)(iVar6 + 8) = *(uint *)(iVar6 + 8) | 1;
                 }
               }
-              if ((*(uint *)(iVar12 + *(int *)(iVar12 + 0x4bc) * 0x78 + iVar3 + 8) & 1) != 0) {
-                lVar6 = LapTime_GetTotal(uVar8);
-                if (lVar6 < 360000) {
-                  iVar5 = LapTime_GetTotal(uVar8);
-                  fVar15 = (float)GameState_GetArray_18(iVar10);
-                  fVar16 = (float)RaceCar_GetPosition(uVar7);
-                  fVar17 = (float)RaceCar_GetLap(uVar7);
-                  fVar18 = (float)RaceCar_GetPosition(uVar7);
-                  *(int *)(iVar12 + *(int *)(iVar12 + 0x4bc) * 0x78 + iVar3 + 4) =
-                       (int)((float)(iVar5 * 1000) -
-                            (float)(int)(((fVar18 - fVar15) * 1000.0) / (fVar16 - fVar17)));
+              if ((*(uint *)(iVar11 + *(int *)(iVar11 + 0x4bc) * 0x78 + iVar4 + 8) & 1) != 0) {
+                lVar7 = LapTime_GetTotal(uVar8);
+                if (lVar7 < 360000) {
+                  iVar6 = LapTime_GetTotal(uVar8);
+                  fVar14 = (float)GameState_GetArray_18(iVar10);
+                  fVar15 = (float)RaceCar_GetPosition(pRVar3);
+                  fVar16 = (float)RaceCar_GetLap(pRVar3);
+                  fVar17 = (float)RaceCar_GetPosition(pRVar3);
+                  *(int *)(iVar11 + *(int *)(iVar11 + 0x4bc) * 0x78 + iVar4 + 4) =
+                       (int)((float)(iVar6 * 1000) -
+                            (float)(int)(((fVar17 - fVar14) * 1000.0) / (fVar15 - fVar16)));
                 }
                 else {
-                  *(undefined4 *)(iVar12 + *(int *)(iVar12 + 0x4bc) * 0x78 + iVar3 + 4) = 360000000;
+                  *(undefined4 *)(iVar11 + *(int *)(iVar11 + 0x4bc) * 0x78 + iVar4 + 4) = 360000000;
                 }
-                iVar5 = *(int *)(iVar12 + 0x4bc);
-                if ((*(uint *)(iVar12 + iVar5 * 0x78 + iVar3 + 8) & 2) != 0) {
-                  iVar14 = GameState_Get_8();
-                  if (iVar5 < iVar14 + -1) {
-                    *(int *)(iVar12 + 0x4bc) = *(int *)(iVar12 + 0x4bc) + 1;
+                iVar6 = *(int *)(iVar11 + 0x4bc);
+                if ((*(uint *)(iVar11 + iVar6 * 0x78 + iVar4 + 8) & 2) != 0) {
+                  iVar13 = GameState_Get_8();
+                  if (iVar6 < iVar13 + -1) {
+                    *(int *)(iVar11 + 0x4bc) = *(int *)(iVar11 + 0x4bc) + 1;
                   }
                   else {
-                    if (iVar11 == 2) {
+                    if (index == 2) {
                       RaceScene_GetMode(0x1008);
                     }
-                    else if (iVar11 == 1) {
-                      lVar6 = GameState_GetPlayerCount();
-                      if (lVar6 == 2) {
+                    else if (index == 1) {
+                      lVar7 = GameState_GetPlayerCount();
+                      if (lVar7 == 2) {
                         RaceScene_GetMode(0x1002);
                         RaceScene_GetMode(0x402);
                       }
@@ -2340,46 +2340,46 @@ void RaceProg_UpdateLaps(void)
                         RaceScene_GetMode(0x1004);
                       }
                     }
-                    else if (iVar11 == 0) {
+                    else if (index == 0) {
                       RaceScene_GetMode(0x1001);
                       RaceScene_GetMode(0x401);
                     }
-                    lVar6 = LapTime_GetTotal(uVar8);
-                    if (lVar6 < 360000) {
-                      iVar5 = LapTime_GetTotal(uVar8);
-                      fVar15 = (float)GameState_Get_14();
-                      fVar16 = (float)RaceCar_GetPosition(uVar7);
-                      fVar17 = (float)RaceCar_GetLap(uVar7);
-                      fVar18 = (float)RaceCar_GetPosition(uVar7);
-                      *(int *)(iVar12 + 0x4b8) =
-                           (int)((float)(iVar5 * 1000) -
-                                (float)(int)(((fVar18 - fVar15) * 1000.0) / (fVar16 - fVar17)));
+                    lVar7 = LapTime_GetTotal(uVar8);
+                    if (lVar7 < 360000) {
+                      iVar6 = LapTime_GetTotal(uVar8);
+                      fVar14 = (float)GameState_Get_14();
+                      fVar15 = (float)RaceCar_GetPosition(pRVar3);
+                      fVar16 = (float)RaceCar_GetLap(pRVar3);
+                      fVar17 = (float)RaceCar_GetPosition(pRVar3);
+                      *(int *)(iVar11 + 0x4b8) =
+                           (int)((float)(iVar6 * 1000) -
+                                (float)(int)(((fVar17 - fVar14) * 1000.0) / (fVar15 - fVar16)));
                     }
                     else {
-                      *(undefined4 *)(iVar12 + 0x4b8) = 360000000;
+                      *(undefined4 *)(iVar11 + 0x4b8) = 360000000;
                     }
                   }
                 }
               }
             }
             else {
-              iVar13 = iVar13 + 1;
+              iVar12 = iVar12 + 1;
             }
             iVar10 = iVar10 + 1;
-            iVar3 = iVar3 + 0xc;
+            iVar4 = iVar4 + 0xc;
           } while (iVar10 < 10);
-          if (*(int *)(iVar12 + 0x4b8) == 0) {
-            if (*(int *)(iVar12 + 0x4b0) < 360000) {
-              *(int *)(iVar12 + 0x4b0) = *(int *)(iVar12 + 0x4b0) + 1;
+          if (*(int *)(iVar11 + 0x4b8) == 0) {
+            if (*(int *)(iVar11 + 0x4b0) < 360000) {
+              *(int *)(iVar11 + 0x4b0) = *(int *)(iVar11 + 0x4b0) + 1;
             }
             else {
-              *(undefined4 *)(iVar12 + 0x4b0) = 360000;
+              *(undefined4 *)(iVar11 + 0x4b0) = 360000;
             }
           }
         }
-        iVar11 = iVar11 + 1;
-        iVar3 = GameState_GetRacerCount();
-      } while (iVar11 < iVar3);
+        index = index + 1;
+        iVar4 = GameState_GetRacerCount();
+      } while (index < iVar4);
     }
   }
   return;
@@ -2536,7 +2536,7 @@ int maybe_RaceProg_CountB(int param_1)
 // 0x001dffd0  size 0x458
 /* WARNING: Removing unreachable block (ram,0x001e0310) */
 
-void RaceProg_UpdateGapMeter(float param_1,int *param_2,undefined8 param_3,int param_4)
+void RaceProg_UpdateGapMeter(float param_1,int *param_2,int param_3,int param_4)
 
 {
   float *pfVar1;
@@ -2548,31 +2548,32 @@ void RaceProg_UpdateGapMeter(float param_1,int *param_2,undefined8 param_3,int p
   float *pfVar7;
   float *pfVar8;
   bool bVar9;
-  RaceEntrySetup *pRVar10;
-  undefined8 uVar11;
+  RaceCar *pRVar10;
+  RaceEntrySetup *pRVar11;
   int *piVar12;
   int iVar13;
   int iVar14;
   int iVar15;
   float fVar16;
-  float fVar17;
+  int iVar17;
   float fVar18;
-  int iVar19;
+  float fVar19;
+  uint uVar20;
   
-  uVar11 = RaceCar_Get(param_3);
-  fVar16 = (float)RaceCar_GetSpeedKmh(uVar11);
-  iVar19 = *(int *)((int)uVar11 + 0x6c);
-  pRVar10 = GameState_Elem_f0_xcc((int)param_3);
-  GameState_Elem_3e0_x540((int)(char)pRVar10->unk_09);
-  fVar18 = 0.0;
-  param_2[param_2[1] + 2] = iVar19;
+  pRVar10 = RaceCar_Get(param_3);
+  fVar16 = (float)RaceCar_GetSpeedKmh(pRVar10);
+  uVar20 = pRVar10->unk_006c;
+  pRVar11 = GameState_Elem_f0_xcc(param_3);
+  GameState_Elem_3e0_x540((int)(char)pRVar11->unk_09);
+  fVar19 = 0.0;
+  param_2[param_2[1] + 2] = uVar20;
   if (*param_2 == 0) {
-    iVar19 = param_2[1];
+    iVar17 = param_2[1];
     iVar15 = 0;
-    if (0 < iVar19) {
-      if (8 < iVar19) {
+    if (0 < iVar17) {
+      if (8 < iVar17) {
         bVar9 = false;
-        if ((-1 < iVar19) && (iVar19 < 0x7fffffff)) {
+        if ((-1 < iVar17) && (iVar17 < 0x7fffffff)) {
           bVar9 = true;
         }
         if (bVar9) {
@@ -2588,86 +2589,86 @@ void RaceProg_UpdateGapMeter(float param_1,int *param_2,undefined8 param_3,int p
             pfVar7 = (float *)(piVar12 + 8);
             pfVar8 = (float *)(piVar12 + 9);
             piVar12 = piVar12 + 8;
-            fVar18 = fVar18 + *pfVar1 + *pfVar2 + *pfVar3 + *pfVar4 + *pfVar5 + *pfVar6 + *pfVar7 +
+            fVar19 = fVar19 + *pfVar1 + *pfVar2 + *pfVar3 + *pfVar4 + *pfVar5 + *pfVar6 + *pfVar7 +
                      *pfVar8;
-          } while (iVar15 < iVar19 + -8);
+          } while (iVar15 < iVar17 + -8);
         }
       }
-      iVar19 = param_2[1];
-      if (iVar15 < iVar19) {
+      iVar17 = param_2[1];
+      if (iVar15 < iVar17) {
         piVar12 = param_2 + iVar15;
         do {
           iVar15 = iVar15 + 1;
-          fVar18 = fVar18 + (float)piVar12[2];
+          fVar19 = fVar19 + (float)piVar12[2];
           piVar12 = piVar12 + 1;
-        } while (iVar15 < iVar19);
+        } while (iVar15 < iVar17);
       }
     }
-    fVar18 = fVar18 / (float)(iVar19 + 1);
+    fVar19 = fVar19 / (float)(iVar17 + 1);
   }
   else {
     iVar15 = 0;
     iVar13 = param_2[1] + 2;
-    iVar19 = param_2[1];
+    iVar17 = param_2[1];
     do {
-      iVar14 = iVar19 + 1;
+      iVar14 = iVar17 + 1;
       if (0x3b < iVar14) {
-        iVar14 = iVar19 + -0x3b;
+        iVar14 = iVar17 + -0x3b;
       }
       if (0x3b < iVar13) {
         iVar13 = iVar13 + -0x3c;
       }
       iVar15 = iVar15 + 1;
       iVar13 = iVar13 + 1;
-      fVar18 = fVar18 + (float)param_2[iVar14 + 2];
-      iVar19 = iVar14;
+      fVar19 = fVar19 + (float)param_2[iVar14 + 2];
+      iVar17 = iVar14;
     } while (iVar15 < 0x3c);
-    fVar18 = fVar18 / 60.0;
+    fVar19 = fVar19 / 60.0;
   }
-  fVar18 = (float)Race_CountActiveCars((fVar18 * 180.0) / 3.1415927);
+  fVar19 = (float)Race_CountActiveCars((fVar19 * 180.0) / 3.1415927);
   if (param_1 == 1000.0) {
-    fVar17 = 2.0;
+    fVar18 = 2.0;
   }
   else if (param_1 < 0.0) {
-    if (fVar18 < 0.0) {
-      fVar17 = 3.0;
+    if (fVar19 < 0.0) {
+      fVar18 = 3.0;
     }
     else {
-      fVar17 = 1.0;
+      fVar18 = 1.0;
     }
   }
-  else if (0.0 < fVar18) {
-    fVar17 = 3.0;
+  else if (0.0 < fVar19) {
+    fVar18 = 3.0;
   }
   else {
-    fVar17 = 1.0;
+    fVar18 = 1.0;
   }
-  fVar18 = (float)fabsf(fVar18);
-  if (fVar18 <= 45.0) {
-    if (fVar18 < 10.0) {
-      fVar18 = 0.0;
+  fVar19 = (float)fabsf(fVar19);
+  if (fVar19 <= 45.0) {
+    if (fVar19 < 10.0) {
+      fVar19 = 0.0;
     }
   }
   else {
-    fVar18 = 45.0;
+    fVar19 = 45.0;
   }
-  fVar18 = (float)tanf((fVar18 * 3.1415927) / 180.0);
+  fVar19 = (float)tanf((fVar19 * 3.1415927) / 180.0);
   fVar16 = fVar16 - 10.0;
   if (fVar16 < 0.0) {
     fVar16 = 0.0;
   }
-  fVar17 = fVar18 * fVar17 * 1.0 * 10.0;
+  fVar18 = fVar19 * fVar18 * 1.0 * 10.0;
   if (fVar16 == 0.0) {
-    fVar17 = 0.0;
+    fVar18 = 0.0;
   }
-  iVar19 = (int)(((fVar16 * fVar16) / 100.0) * fVar18 * 0.5 + fVar17);
-  if (iVar19 < 10) {
-    iVar19 = 0;
+  iVar17 = (int)(((fVar16 * fVar16) / 100.0) * fVar19 * 0.5 + fVar18);
+  if (iVar17 < 10) {
+    iVar17 = 0;
   }
-  if (iVar19 % 10 != 0) {
-    iVar19 = iVar19 - iVar19 % 10;
+  if (iVar17 % 10 != 0) {
+    iVar17 = iVar17 - iVar17 % 10;
   }
-  param_2[param_4 * 7 + 0x40] = param_2[param_4 * 7 + 0x40] + iVar19;
+  param_2[param_4 * 7 + 0x40] = param_2[param_4 * 7 + 0x40] + iVar17;
   param_2[1] = param_2[1] + 1;
   if (param_2[1] == 0x3c) {
     param_2[1] = 0;

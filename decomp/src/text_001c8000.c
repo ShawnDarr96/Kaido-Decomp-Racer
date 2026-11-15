@@ -875,21 +875,21 @@ float Race_GetTimeScale(int param_1)
 }
 
 // 0x001ca6b0  size 0x20
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 42 callers */
 
-undefined4 RaceCar_Get(int param_1)
+RaceCar * RaceCar_Get(int index)
 
 {
-  undefined4 uVar1;
+  RaceCar *pRVar1;
   
-  if (_g_RaceCars == 0) {
-    uVar1 = 0;
+  if (g_RaceCars == (RaceCarList *)0x0) {
+    pRVar1 = (RaceCar *)0x0;
   }
   else {
-    uVar1 = *(undefined4 *)(_g_RaceCars + param_1 * 4);
+    pRVar1 = g_RaceCars->cars[index];
   }
-  return uVar1;
+  return pRVar1;
 }
 
 // 0x001ca6d0  size 0x8

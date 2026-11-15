@@ -868,14 +868,15 @@ void RaceUi_DrawRivalMarkers(int param_1)
 
 {
   float fVar1;
-  undefined8 uVar2;
+  RaceCar *pRVar2;
   ulong uVar3;
   undefined8 uVar4;
-  byte *pbVar5;
-  int iVar6;
-  float *pfVar7;
-  int iVar8;
+  undefined8 uVar5;
+  byte *pbVar6;
+  int iVar7;
+  float *pfVar8;
   int iVar9;
+  int index;
   int iVar10;
   float fVar11;
   float fVar12;
@@ -888,58 +889,58 @@ void RaceUi_DrawRivalMarkers(int param_1)
   float fStack_8;
   float fStack_4;
   
-  iVar9 = 0;
-  pfVar7 = (float *)&uStack_20;
+  index = 0;
+  pfVar8 = (float *)&uStack_20;
   uStack_20 = DAT_0032fc70;
   uStack_18 = DAT_0032fc78;
-  iVar6 = param_1;
+  iVar7 = param_1;
   do {
     fVar1 = fRam0036ee78;
-    fVar11 = *pfVar7 - fRam0036ee78;
-    fVar13 = pfVar7[1] - fRam0036ee7c;
-    fVar12 = fRam0036ee78 + *pfVar7;
+    fVar11 = *pfVar8 - fRam0036ee78;
+    fVar13 = pfVar8[1] - fRam0036ee7c;
+    fVar12 = fRam0036ee78 + *pfVar8;
     fVar15 = fRam0036ee7c;
-    uVar2 = RaceCar_Get(iVar9);
-    uVar3 = RaceCar_GetFlags(uVar2);
+    pRVar2 = RaceCar_Get(index);
+    uVar3 = RaceCar_GetFlags(pRVar2);
     if ((uVar3 & 0x100) == 0) {
-      pbVar5 = (byte *)(iVar6 + 0x80);
-      iVar8 = 0;
+      pbVar6 = (byte *)(iVar7 + 0x80);
+      iVar9 = 0;
       iVar10 = 8;
       uStack_10 = CONCAT44(uRam0036ee84,uRam0036ee80);
       do {
-        fVar14 = *(float *)(pbVar5 + 4);
+        fVar14 = *(float *)(pbVar6 + 4);
         if (fVar14 != 0.0) {
           if (fVar14 < 0.05) {
             fVar14 = fVar15 * (fVar14 / 0.05) + (float)(int)fVar13 + 0.0;
           }
           else if (0.95 < fVar14) {
-            fVar14 = fVar15 * ((fVar14 - 0.95) / 0.05) + pfVar7[1] + 0.0;
+            fVar14 = fVar15 * ((fVar14 - 0.95) / 0.05) + pfVar8[1] + 0.0;
           }
           else {
-            fVar14 = pfVar7[1];
+            fVar14 = pfVar8[1];
           }
           fStack_4 = uStack_10._4_4_ - 39.0;
           if (fVar14 <= uStack_10._4_4_ - 39.0) {
             fStack_4 = fVar14;
           }
-          uVar2 = maybe___sf_to_df(pfVar7[1] - fStack_4);
-          uVar2 = fabs(uVar2);
-          fVar14 = (float)maybe___extendsfdf2(uVar2);
+          uVar4 = maybe___sf_to_df(pfVar8[1] - fStack_4);
+          uVar4 = fabs(uVar4);
+          fVar14 = (float)maybe___extendsfdf2(uVar4);
           fVar14 = 1.0 - fVar14 / fVar15;
-          if (iVar8 < 1) {
-            fStack_8 = *pfVar7;
+          if (iVar9 < 1) {
+            fStack_8 = *pfVar8;
           }
-          else if (*pbVar5 < 4) {
+          else if (*pbVar6 < 4) {
             fStack_8 = ((float)(int)fVar12 + 0.0) - fVar14 * fVar1;
           }
           else {
             fStack_8 = fVar14 * fVar1 + (float)(int)fVar11 + 0.0;
           }
-          if (pfVar7[1] < fStack_4) {
+          if (pfVar8[1] < fStack_4) {
             fVar14 = fVar14 / 3.0;
           }
-          else if (0 < iVar8) {
-            fVar14 = fVar14 + 1.0 / (float)(iVar8 + 2);
+          else if (0 < iVar9) {
+            fVar14 = fVar14 + 1.0 / (float)(iVar9 + 2);
           }
           if (0.0 <= fVar14) {
             if (1.0 < fVar14) {
@@ -949,51 +950,51 @@ void RaceUi_DrawRivalMarkers(int param_1)
           else {
             fVar14 = 0.0;
           }
-          uVar2 = 7;
+          uVar4 = 7;
           uStack_10 = CONCAT44(fStack_4,fStack_8);
-          uVar4 = 0;
-          if (*pbVar5 < 8) {
+          uVar5 = 0;
+          if (*pbVar6 < 8) {
                     /* WARNING: Switch is manually overridden */
-            switch(*pbVar5) {
+            switch(*pbVar6) {
             case 0:
-              uVar4 = 1;
+              uVar5 = 1;
               break;
             case 1:
-              uVar2 = 8;
-              uVar4 = 1;
+              uVar4 = 8;
+              uVar5 = 1;
               break;
             case 2:
-              uVar2 = 9;
-              uVar4 = 1;
+              uVar4 = 9;
+              uVar5 = 1;
               break;
             case 3:
-              uVar2 = 10;
-              uVar4 = 1;
+              uVar4 = 10;
+              uVar5 = 1;
               break;
             case 4:
               break;
             case 5:
-              uVar2 = 8;
+              uVar4 = 8;
               break;
             case 6:
-              uVar2 = 9;
+              uVar4 = 9;
               break;
             case 7:
-              uVar2 = 10;
+              uVar4 = 10;
             }
           }
           RaceUi_DrawSprite(fStack_8,fStack_4,fVar14,0x3f800000,0x3f800000,param_1 + 0x1270,
-                            (*_s_RaceUiSpriteCursor + -2) - iVar10,uVar2,0,uVar4);
+                            (*_s_RaceUiSpriteCursor + -2) - iVar10,uVar4,0,uVar5);
         }
-        iVar8 = iVar8 + 1;
-        pbVar5 = pbVar5 + 8;
+        iVar9 = iVar9 + 1;
+        pbVar6 = pbVar6 + 8;
         iVar10 = iVar10 + 2;
-      } while (iVar8 < 2);
+      } while (iVar9 < 2);
     }
-    iVar9 = iVar9 + 1;
-    pfVar7 = pfVar7 + 2;
-    iVar6 = iVar6 + 0xcc;
-  } while (iVar9 < 2);
+    index = index + 1;
+    pfVar8 = pfVar8 + 2;
+    iVar7 = iVar7 + 0xcc;
+  } while (index < 2);
   return;
 }
 
@@ -1006,119 +1007,120 @@ void RaceUi_DrawRivalMarkersAlt(int param_1)
   byte bVar1;
   float fVar2;
   float fVar3;
-  undefined8 uVar4;
+  RaceCar *pRVar4;
   ulong uVar5;
   undefined8 uVar6;
-  int iVar7;
-  byte *pbVar8;
-  int iVar9;
-  float fVar10;
+  undefined8 uVar7;
+  int iVar8;
+  byte *pbVar9;
+  int iVar10;
   float fVar11;
   float fVar12;
   float fVar13;
   float fVar14;
   float fVar15;
+  float fVar16;
   float fStack_c;
   float fStack_8;
   
   fVar3 = fRam0036ee68;
   fVar2 = fRam0036ee60;
-  fVar10 = fRam0036ee60 - fRam0036ee68;
-  fVar11 = fRam0036ee60 + fRam0036ee68;
-  fVar12 = fRam0036ee64 - fRam0036ee6c;
-  fVar14 = fRam0036ee6c;
-  fVar15 = fRam0036ee64;
-  uVar4 = RaceCar_Get(0);
-  uVar5 = RaceCar_GetFlags(uVar4);
+  fVar11 = fRam0036ee60 - fRam0036ee68;
+  fVar12 = fRam0036ee60 + fRam0036ee68;
+  fVar13 = fRam0036ee64 - fRam0036ee6c;
+  fVar15 = fRam0036ee6c;
+  fVar16 = fRam0036ee64;
+  pRVar4 = RaceCar_Get(0);
+  uVar5 = RaceCar_GetFlags(pRVar4);
   if ((uVar5 & 0x100) == 0) {
-    pbVar8 = (byte *)(param_1 + 0x80);
-    iVar9 = 0;
-    iVar7 = 8;
+    pbVar9 = (byte *)(param_1 + 0x80);
+    iVar10 = 0;
+    iVar8 = 8;
     fStack_c = fRam0036ee74;
     do {
-      fVar13 = *(float *)(pbVar8 + 4);
-      if (fVar13 != 0.0) {
-        if (fVar13 < 0.05) {
-          fVar13 = fVar14 * (fVar13 / 0.05) + (float)(int)fVar12 + 0.0;
+      fVar14 = *(float *)(pbVar9 + 4);
+      if (fVar14 != 0.0) {
+        if (fVar14 < 0.05) {
+          fVar14 = fVar15 * (fVar14 / 0.05) + (float)(int)fVar13 + 0.0;
         }
-        else if (0.95 < fVar13) {
-          fVar13 = fVar14 * ((fVar13 - 0.95) / 0.05) + fVar15 + 0.0;
+        else if (0.95 < fVar14) {
+          fVar14 = fVar15 * ((fVar14 - 0.95) / 0.05) + fVar16 + 0.0;
         }
         else {
-          fVar13 = fVar15;
+          fVar14 = fVar16;
         }
         fStack_c = fStack_c - 55.0;
-        if (fVar13 <= fStack_c) {
-          fStack_c = fVar13;
+        if (fVar14 <= fStack_c) {
+          fStack_c = fVar14;
         }
-        uVar4 = maybe___sf_to_df(fVar15 - fStack_c);
-        uVar4 = fabs(uVar4);
-        fVar13 = (float)maybe___extendsfdf2(uVar4);
-        fVar13 = 1.0 - fVar13 / fVar14;
-        if (iVar9 < 1) {
+        uVar6 = maybe___sf_to_df(fVar16 - fStack_c);
+        uVar6 = fabs(uVar6);
+        fVar14 = (float)maybe___extendsfdf2(uVar6);
+        fVar14 = 1.0 - fVar14 / fVar15;
+        if (iVar10 < 1) {
           fStack_8 = fVar2;
         }
-        else if (*pbVar8 < 4) {
-          fStack_8 = ((float)(int)fVar11 + 0.0) - fVar13 * fVar3;
+        else if (*pbVar9 < 4) {
+          fStack_8 = ((float)(int)fVar12 + 0.0) - fVar14 * fVar3;
         }
         else {
-          fStack_8 = fVar13 * fVar3 + (float)(int)fVar10 + 0.0;
+          fStack_8 = fVar14 * fVar3 + (float)(int)fVar11 + 0.0;
         }
-        if (fVar15 < fStack_c) {
-          fVar13 = fVar13 / 3.0;
+        if (fVar16 < fStack_c) {
+          fVar14 = fVar14 / 3.0;
         }
-        else if (0 < iVar9) {
-          fVar13 = fVar13 + 1.0 / (float)(iVar9 + 2);
+        else if (0 < iVar10) {
+          fVar14 = fVar14 + 1.0 / (float)(iVar10 + 2);
         }
-        if (0.0 <= fVar13) {
-          if (1.0 < fVar13) {
-            fVar13 = 1.0;
+        if (0.0 <= fVar14) {
+          if (1.0 < fVar14) {
+            fVar14 = 1.0;
           }
-          bVar1 = *pbVar8;
+          bVar1 = *pbVar9;
         }
         else {
-          fVar13 = 0.0;
-          bVar1 = *pbVar8;
+          fVar14 = 0.0;
+          bVar1 = *pbVar9;
         }
-        uVar4 = 3;
-        uVar6 = 0;
+        uVar6 = 3;
+        uVar7 = 0;
         if (bVar1 < 8) {
                     /* WARNING: Switch is manually overridden */
           switch(bVar1) {
           case 0:
-            uVar6 = 1;
+            uVar7 = 1;
             break;
           case 1:
-            uVar4 = 4;
-            uVar6 = 1;
+            uVar6 = 4;
+            uVar7 = 1;
             break;
           case 2:
-            uVar4 = 5;
-            uVar6 = 1;
+            uVar6 = 5;
+            uVar7 = 1;
             break;
           case 3:
-            uVar4 = 6;
-            uVar6 = 1;
+            uVar6 = 6;
+            uVar7 = 1;
             break;
           case 4:
             break;
           case 5:
-            uVar4 = 4;
+            uVar6 = 4;
             break;
           case 6:
-            uVar4 = 5;
+            uVar6 = 5;
             break;
           case 7:
-            uVar4 = 6;
+            uVar6 = 6;
           }
         }
-        RaceUi_DrawSprite(fStack_8,fStack_c,fVar13,0x3f800000,0x3f800000,param_1 + 0x1270,
-                          (*_s_RaceUiSpriteCursor + -2) - iVar7,uVar4,0,uVar6);
+        RaceUi_DrawSprite(fStack_8,fStack_c,fVar14,0x3f800000,0x3f800000,param_1 + 0x1270,
+                          (*_s_RaceUiSpriteCursor + -2) - iVar8,uVar6,0,uVar7);
       }
-      iVar9 = iVar9 + 1;
-      pbVar8 = pbVar8 + 8;
-      iVar7 = iVar7 + 2;
-    } while (iVar9 < 2);
+      iVar10 = iVar10 + 1;
+      pbVar9 = pbVar9 + 8;
+      iVar8 = iVar8 + 2;
+    } while (iVar10 < 2);
   }
   return;
 }

@@ -9,11 +9,10 @@ void Demo_DriveCar(undefined4 *param_1,long param_2)
   char cVar1;
   bool bVar2;
   char cVar3;
-  undefined4 uVar4;
+  RaceCar *pRVar4;
   uint uVar5;
   int iVar6;
-  undefined8 uVar7;
-  undefined4 *puVar8;
+  undefined4 *puVar7;
   undefined2 uStack_10;
   undefined2 uStack_e;
   undefined2 uStack_c;
@@ -23,30 +22,30 @@ void Demo_DriveCar(undefined4 *param_1,long param_2)
   undefined2 uStack_4;
   undefined2 uStack_2;
   
-  puVar8 = (undefined4 *)param_2;
-  *param_1 = puVar8;
+  puVar7 = (undefined4 *)param_2;
+  *param_1 = puVar7;
   if (param_2 != 0) {
-    param_1[1] = *puVar8;
-    param_1[2] = param_1[1] + puVar8[1] * 0x14 + -0x14;
+    param_1[1] = *puVar7;
+    param_1[2] = param_1[1] + puVar7[1] * 0x14 + -0x14;
     param_1[4] = 0;
     param_1[6] = 0;
-    uVar4 = RaceCar_Get(1);
-    param_1[3] = uVar4;
+    pRVar4 = RaceCar_Get(1);
+    param_1[3] = pRVar4;
     if (param_1[3] == 0) {
-      uVar4 = RaceCar_Get(0);
-      param_1[3] = uVar4;
+      pRVar4 = RaceCar_Get(0);
+      param_1[3] = pRVar4;
     }
-    if (-1 < (int)puVar8[5]) {
+    if (-1 < (int)puVar7[5]) {
       Demo_FindRoadSection(&uStack_c);
       uStack_4 = uStack_c;
       uStack_2 = uStack_a;
-      if ((int)puVar8[5] < 0xc9) {
+      if ((int)puVar7[5] < 0xc9) {
         iVar6 = 100;
       }
       else {
         iVar6 = -100;
       }
-      Demo_FindRoadSection(&uStack_10,puVar8[5] + iVar6);
+      Demo_FindRoadSection(&uStack_10,puVar7[5] + iVar6);
       uStack_8 = uStack_10;
       uStack_6 = uStack_e;
       uVar5 = GameState_LoadHeader_Wrap();
@@ -57,8 +56,8 @@ void Demo_DriveCar(undefined4 *param_1,long param_2)
       param_1[5] = *(undefined4 *)(iVar6 + 4);
       iVar6 = RaceCar_GetIndex(param_1[3]);
       *(uint *)(iVar6 + 4) = *(uint *)(iVar6 + 4) & 0xfffffedf;
-      uVar7 = RaceCar_Get(0);
-      Ai_PredictPath(0,uVar7,uStack_8,uStack_6,0,bVar2,0);
+      pRVar4 = RaceCar_Get(0);
+      Ai_PredictPath(0,pRVar4,uStack_8,uStack_6,0,bVar2,0);
       Ai_PredictPath(0,param_1[3],uStack_4,uStack_2,0,bVar2,0);
       if (!bVar2) {
         RaceCar_SetFlags(param_1[3],4);
