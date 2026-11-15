@@ -76,3 +76,13 @@ int GameState_GetRivalCount(void) {
 int GameState_GetPlayerCount(void) {
     return g_GameState->playerCount;
 }
+
+/* 0x177740-0x1777c0 - matched: https://decomp.me/scratch/zUNmC */
+int GameState_Get_8(void) { return *(int *)(((char *)g_GameState) + 0x8); }
+int GameState_Get_40(void) { return *(int *)(((char *)g_GameState) + 0x40); }
+int GameState_Get_10(void) { return *(int *)(((char *)g_GameState) + 0x10); }
+int GameState_Get_c(void) { return *(int *)(((char *)g_GameState) + 0xc); }
+signed char GameState_Get_3(void) { return *(signed char *)(((char *)g_GameState) + 0x3); }
+signed char GameState_Get_2(void) { return *(signed char *)(((char *)g_GameState) + 0x2); }
+signed char GameState_Get_1(void) { return *(signed char *)(((char *)g_GameState) + 0x1); }
+signed char GameState_Get_0(void) { return *(signed char *)(((char *)g_GameState) + 0x0); }
