@@ -14,12 +14,12 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F11 |
 | F19 | Document the XVI model format (XVI0/XMDL/NORM chunks) from the Xvi_* loaders | any |  |  | Gap of F11 |
 | F20 | Name the unk_ fields of RaceEntrySetup (0xcc) and RacerState (0x540): read RaceSetup_Prepare / Career_ProcessRaceEnd / CarRec_Init | any |  |  | Gap of F14 |
 | F21 | Find RacerResult's users (GameState+0x28a0, stride 0x100; reached by pointer arithmetic) and recover its fields; also RivalRec 0xc/0xf0/0x168 used by Opponent_BuildEntry | any |  |  | Gap of F14 |
 | F22 | About 1,180 scoped globals (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) still need meaning-based names; work module by module from their __sinit constructors and users | any |  |  | Gap of F16 |
 | F23 | Name the 71 FUN_ functions left in XVI_SND.IRX (decomp/iop/xvi_snd.c) and the sifman/sifcmd/modhsyn/modmidi import indices (add them to config/iop_exports.csv) | any |  |  | Gap of F17 |
+| F24 | 938 BUILD.DAT entries still unknown: 359 zero-led float tables, 255 packs with an unknown first item, small type-id float records | any |  |  | Gap of F18 |
 
 ## P1 Naming
 
@@ -241,6 +241,7 @@ Columns:
 | F14 | RacerStats renamed RivalRec (passed to RivalRec_* accessors); id, subId, team, carId, pos[3], type, count, max named from the matched accessors; export supports signed field types | P0 | ShawnDarr96/claude | 2026-11-15 | 8328084 |
 | F16 | 16 Mc/CourseScene/Render globals renamed by meaning (List objects, frame-callback nodes); TaskList_Add and Gfx_Add/RemoveEndFrameCallback swaps fixed | P0 | ShawnDarr96/claude | 2026-11-15 | 196b3ea |
 | F17 | scripts/iop_export.py + decomp/iop: both XVI IOP modules decompiled; XVI_IOP 46/46 named (RPC server/client, memory, DMA), XVI_SND 95/166 (import stubs from ps2sdk tables, SBasic/Synthe/Stream from debug strings) | P0 | ShawnDarr96/claude | 2026-11-15 | 3d6da77 |
+| F18 | the 0xc records are UI layouts (texture block is optional); 500 float tables are probably per-car parameters; unknown down from 2,914 to 938 | P0 | ShawnDarr96/claude | 2026-11-15 | ad9d6f9 |
 
 ## Changes to the board
 
@@ -366,3 +367,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim F17.
 - 2026-11-15 ShawnDarr96/claude: F17 done; added F23 (gaps).
 - 2026-11-15 ShawnDarr96/claude: claim F18.
+- 2026-11-15 ShawnDarr96/claude: F18 done; added F24 (gaps).
