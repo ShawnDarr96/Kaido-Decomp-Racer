@@ -80,10 +80,12 @@ bool SeqGen_IsUserSong(long param_1)
 }
 
 // 0x002bc1f0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Script_Nop(void)
 
 {
-  return uRam0036f7e0;
+  return _g_SeqGenShared1;
 }
 
 // 0x002bc200  size 0x1ec
@@ -109,7 +111,7 @@ void SeqGen_Shutdown(void)
   iVar3 = 0;
   iVar2 = 0;
   do {
-    iVar1 = iRam0036f7e0 + iVar2;
+    iVar1 = _g_SeqGenShared1 + iVar2;
     maybe_SeqSrc_Free(iVar1 + 0x158);
     SeqGen_FreeData(iVar1 + 0x1ec);
     if (*(int *)(iVar1 + 0x2d8) != 0) {
@@ -134,7 +136,7 @@ void SeqGen_Shutdown(void)
   iVar3 = 0;
   iVar2 = 0;
   do {
-    iVar1 = iRam0036f7e0 + iVar2;
+    iVar1 = _g_SeqGenShared1 + iVar2;
     maybe_SeqSrc_Free(iVar1 + 0x6e98);
     SeqGen_FreeData(iVar1 + 0x6f2c);
     if (*(int *)(iVar1 + 0x7018) != 0) {
@@ -159,7 +161,7 @@ void SeqGen_Shutdown(void)
   iVar3 = 0;
   iVar2 = 0;
   do {
-    iVar1 = iRam0036f7e0 + iVar2;
+    iVar1 = _g_SeqGenShared1 + iVar2;
     if (*(int *)(iVar1 + 0x3c) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x3c) = 0;
@@ -171,9 +173,9 @@ void SeqGen_Shutdown(void)
     *(undefined4 *)(iVar1 + 0x48) = 0xffffffff;
     *(undefined4 *)(iVar1 + 0x4c) = 0;
   } while (iVar3 < 0xc);
-  if (iRam0036f7e0 != 0) {
+  if (_g_SeqGenShared1 != 0) {
     Mem_Free();
-    iRam0036f7e0 = 0;
+    _g_SeqGenShared1 = 0;
   }
   return;
 }
@@ -193,35 +195,35 @@ void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
   uint uVar6;
   
   uVar3 = Mem_Alloc16(0x8a08,param_1);
-  iRam0036f7e0 = (int)uVar3;
+  _g_SeqGenShared1 = (int)uVar3;
   Mem_Set16(uVar3,0,0x8a08);
-  *(undefined4 *)(iRam0036f7e0 + 8) = 0;
+  *(undefined4 *)(_g_SeqGenShared1 + 8) = 0;
   uVar6 = 0;
   iVar5 = 0;
-  *(undefined4 *)(iRam0036f7e0 + 0xc) = 1;
-  *(int *)(iRam0036f7e0 + 0x30) = (int)param_1;
-  *(undefined4 *)(iRam0036f7e0 + 0x34) = param_2;
-  *(undefined4 *)(iRam0036f7e0 + 0x89e8) = 0;
-  *(undefined2 *)(iRam0036f7e0 + 0x89f4) = 0x96;
-  *(undefined2 *)(iRam0036f7e0 + 0x89f0) = 0;
-  *(undefined2 *)(iRam0036f7e0 + 0x89f2) = 0x400;
-  *(undefined4 *)(iRam0036f7e0 + 0x89ec) = 4;
-  *(undefined1 *)(iRam0036f7e0 + 0x89f6) = 0;
+  *(undefined4 *)(_g_SeqGenShared1 + 0xc) = 1;
+  *(int *)(_g_SeqGenShared1 + 0x30) = (int)param_1;
+  *(undefined4 *)(_g_SeqGenShared1 + 0x34) = param_2;
+  *(undefined4 *)(_g_SeqGenShared1 + 0x89e8) = 0;
+  *(undefined2 *)(_g_SeqGenShared1 + 0x89f4) = 0x96;
+  *(undefined2 *)(_g_SeqGenShared1 + 0x89f0) = 0;
+  *(undefined2 *)(_g_SeqGenShared1 + 0x89f2) = 0x400;
+  *(undefined4 *)(_g_SeqGenShared1 + 0x89ec) = 4;
+  *(undefined1 *)(_g_SeqGenShared1 + 0x89f6) = 0;
   do {
-    iVar4 = iRam0036f7e0 + iVar5;
+    iVar4 = _g_SeqGenShared1 + iVar5;
     *(int *)(iVar4 + 0x38) = (int)param_1;
     *(undefined4 *)(iVar4 + 0x3c) = 0;
     *(undefined4 *)(iVar4 + 0x40) = 0;
     *(undefined4 *)(iVar4 + 0x44) = 0xffffffff;
     *(undefined4 *)(iVar4 + 0x48) = 0xffffffff;
     *(undefined4 *)(iVar4 + 0x4c) = 0;
-    iVar4 = *(int *)(iRam0036f7e0 + iVar5 + 0x3c);
+    iVar4 = *(int *)(_g_SeqGenShared1 + iVar5 + 0x3c);
     if (iVar4 != 0) {
-      Mem_Set16(iVar4,0,*(undefined4 *)(iRam0036f7e0 + iVar5 + 0x40));
+      Mem_Set16(iVar4,0,*(undefined4 *)(_g_SeqGenShared1 + iVar5 + 0x40));
     }
     if (((int)(param_3 & 0xffff) >> (uVar6 & 0x1f) & 1U) != 0) {
       uVar1 = g_ArcToc->entries[uVar6 + 0x17ff].unpackedSize;
-      iVar4 = iRam0036f7e0 + iVar5;
+      iVar4 = _g_SeqGenShared1 + iVar5;
       if (uVar1 == 0) {
         uVar1 = g_ArcToc->entries[uVar6 + 0x17ff].sectorCount;
       }
@@ -255,14 +257,14 @@ void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
   iVar4 = 0;
   iVar5 = 0;
   do {
-    SeqGen_ResetPart(iRam0036f7e0 + iVar5 + 0x158,param_1,param_1);
+    SeqGen_ResetPart(_g_SeqGenShared1 + iVar5 + 0x158,param_1,param_1);
     iVar4 = iVar4 + 1;
     iVar5 = iVar5 + 0xda8;
   } while (iVar4 < 8);
   iVar4 = 0;
   iVar5 = 0;
   do {
-    SeqGen_ResetPart(iRam0036f7e0 + iVar5 + 0x6e98,0x430750,param_1);
+    SeqGen_ResetPart(_g_SeqGenShared1 + iVar5 + 0x6e98,0x430750,param_1);
     iVar4 = iVar4 + 1;
     iVar5 = iVar5 + 0xda8;
   } while (iVar4 < 2);
@@ -553,7 +555,7 @@ void Result_UpdateCursor(char *param_1)
     uVar4 = 0;
   }
   uVar4 = *(int *)(param_1 + 0x318) != 0 | uVar4;
-  iVar7 = (int)(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6];
+  iVar7 = (int)(char)(&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
   iVar1 = *(int *)(&DAT_0032f1c4 + iVar7 * 8);
   if ((param_1[0x48] != '\x02') && (param_1[0x48] != '\x04')) {
     if (*param_1 == '\x01') {
@@ -740,7 +742,7 @@ void Result_DrawRaceInfo(int param_1)
   if (*(int *)(param_1 + 0x31c) == 0) {
     uVar9 = 0;
   }
-  iVar10 = (int)(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6];
+  iVar10 = (int)(char)(&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
   uVar2 = *(uint *)(&DAT_0032f1c4 + iVar10 * 8);
   uVar13 = 0;
   if (uVar2 != 0) {
@@ -887,7 +889,7 @@ LAB_002bd944:
   if (cVar3 == '\x03') {
     *(undefined4 *)(param_1 + 0x348) =
          *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar10 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
-    if ((((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
+    if ((((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') &&
         (cVar3 = GameState_Get_354_7050(), cVar3 == '\x01')) && (*(int *)(param_1 + 0x348) == 99)) {
       *(undefined4 *)(param_1 + 0x348) = 100;
     }
@@ -2146,9 +2148,9 @@ void Result_Draw_TestCourse_fcc0(int param_1)
   undefined4 uStack_2c;
   int iStack_28;
   
-  if ((byte)(&DAT_0032f535)[(uint)bRam0036f810 * 6] < 7) {
+  if ((byte)(&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] < 7) {
                     /* WARNING: Switch is manually overridden */
-    switch((&DAT_0032f535)[(uint)bRam0036f810 * 6]) {
+    switch((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6]) {
     case 0:
       Result_Draw_TestCourse_f9a0();
       break;

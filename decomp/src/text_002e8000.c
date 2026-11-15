@@ -2089,6 +2089,7 @@ void maybe_ComposerTask_State10_State2_iptGetElem2f4xda8(int param_1)
 }
 
 // 0x002ebb70  size 0x9d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ComposerTask; on-screen text/callee hint "iptGetElem2f4xda8" (was
    ScrScriptGetElem2f4xda8_Update) */
 
@@ -2169,7 +2170,7 @@ void maybe_ComposerTask_State10_State1_iptGetElem2f4xda8(undefined8 param_1)
       }
     }
     fVar9 = *(float *)(iVar8 + 0xcb8);
-    if (iRam0036f2cc == 1) {
+    if (_g_RenderShared2 == 1) {
       iVar4 = Script_GetField_89f4(*(undefined4 *)(iVar8 + 0xca4));
       fVar10 = (((float)iVar4 * 4.0) / 60.0) / 60.0;
       iVar4 = Script_GetField_89f4(*(undefined4 *)(iVar8 + 0xca4));

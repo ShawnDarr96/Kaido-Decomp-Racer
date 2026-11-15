@@ -17,7 +17,7 @@ void Prop_DrawLeaves(void)
     Cam_SetupViewport(0x431100,0,0);
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,1);
     Prop_DrawModel(0x431100,auStack_160,_g_Props,800,4,0x10);
-    if (iRam00433904 != 0) {
+    if (_g_CourseShared24 != 0) {
       maybe_Pkt_InitLayers(auStack_160,0x433380,0x436180,0,0);
       Prop_DrawModel(0x431100,auStack_160,_g_Props,800,4,0x10);
     }
@@ -279,7 +279,7 @@ void Prop_DrawBirds(uint param_1)
     else {
       Prop_DrawModel(0x433f00,auStack_160,_g_Props,uVar4,4,4);
     }
-    if (iRam00433904 != 0) {
+    if (_g_CourseShared24 != 0) {
       maybe_Pkt_InitLayers(auStack_160,0x433380,0x436180,0,0);
       if (param_1 - 2 < 2) {
         Prop_DrawModel(0x433380,auStack_160,_g_PropsB,uVar4,4,4);
@@ -410,7 +410,7 @@ void Prop_SpawnBird(float *param_1,undefined4 *param_2,int param_3,char param_4)
   afStack_30[3] = 1.0;
   if (param_4 == '\0') {
     uVar1 = 10;
-    if (iRam0036f318 == 0) {
+    if (_g_PropShared1 == 0) {
       uVar1 = 100;
     }
     _s_Prop_SpawnBird_2 = 0.021666666;
@@ -469,6 +469,8 @@ LAB_001c5268:
 }
 
 // 0x001c52b0  size 0x23c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_MoveBirds(undefined4 *param_1,float *param_2,int param_3,char param_4)
 
 {
@@ -490,7 +492,7 @@ void Prop_MoveBirds(undefined4 *param_1,float *param_2,int param_3,char param_4)
   fVar3 = param_2[2];
   if (param_4 == '\0') {
     in_f21 = 7.0;
-    if (iRam0036f318 == 0) {
+    if (_g_PropShared1 == 0) {
       unaff_f20 = 8.0;
       in_f2 = 100.0;
       in_f1 = 20.0;
@@ -599,6 +601,8 @@ void Prop_DrawOverlay(uint param_1)
 }
 
 // 0x001c5700  size 0x280
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceScene_Draw(void)
 
 {
@@ -624,8 +628,8 @@ void RaceScene_Draw(void)
       TexSlot_Set(5,1,lVar1);
     }
     Prop_DrawDebris();
-    uRam004301c0 = 2;
-    if (iRam0036f318 == 0) {
+    g_CourseShared5 = 2;
+    if (_g_PropShared1 == 0) {
       Course_SpawnAmbient();
     }
   }
@@ -672,7 +676,7 @@ void RaceScene_Draw(void)
     Prop_DrawOverlay(8);
     Prop_DrawBirds(0);
     Prop_DrawPaper(8);
-    uRam004301c0 = 1;
+    g_CourseShared5 = 1;
   }
   return;
 }
@@ -727,6 +731,8 @@ void Prop_SetLight(int param_1,undefined4 param_2,undefined8 param_3)
 }
 
 // 0x001c5b30  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceScene_SetPaused(undefined1 param_1,undefined1 param_2,undefined1 param_3,undefined4 param_4
                         )
 
@@ -734,7 +740,7 @@ void RaceScene_SetPaused(undefined1 param_1,undefined1 param_2,undefined1 param_
   s_RaceSceneVar1 = param_1;
   s_RaceSceneVar2 = param_2;
   s_RaceSceneVar3 = param_3;
-  uRam0036f318 = param_4;
+  _g_PropShared1 = param_4;
   return;
 }
 
@@ -1134,6 +1140,8 @@ void Ffb_PlayCurb(int param_1)
 }
 
 // 0x001c64c0  size 0x680
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ffb_Update(undefined8 param_1)
 
 {
@@ -1181,7 +1189,7 @@ void Ffb_Update(undefined8 param_1)
   if (*(char *)(iVar9 + 0x69960) == '\x02') {
     return;
   }
-  if (*(uint *)(iVar9 + 4) != (uRam0036f0cc & 1)) {
+  if (*(uint *)(iVar9 + 4) != (_g_ProfileShared1 & 1)) {
     return;
   }
   uVar8 = RaceScene_GetState();
@@ -1506,7 +1514,7 @@ LAB_001c6ccc:
   else {
     lVar7 = RaceScene_Get_38();
     if ((lVar7 == 0) || (uVar6 = RaceScene_Get_38(), *(uint *)(iVar9 + 0x1d8) < uVar6)) {
-      if ((*(uint *)((param_2 * 0x1c + (int)param_2) * 4 + iRam0036f36c + 4) & 2) != 0) {
+      if ((*(uint *)((param_2 * 0x1c + (int)param_2) * 4 + _g_DriverShared1 + 4) & 2) != 0) {
         RaceScene_Get_38();
       }
     }

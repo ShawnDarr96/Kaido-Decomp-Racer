@@ -941,7 +941,7 @@ void Snd_LoadBanks(void)
   undefined4 uStack_10;
   
   IopSe_OpenLocked(10,_s_SndVar2 + -1,_s_SndVar1);
-  iRam0042d874 = _g_Snd;
+  _g_ComposerShared3 = _g_Snd;
   IopSe_Command(0x214);
   _s_Snd_LoadBanks_4 = 0x110;
   _s_Snd_LoadBanks_5 = 0x110;

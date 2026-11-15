@@ -70,6 +70,7 @@ void Demo_DriveCar(undefined4 *param_1,long param_2)
 
 // 0x001f4460  size 0x2fc
 /* WARNING: Removing unreachable block (ram,0x001f4560) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
 
@@ -143,7 +144,7 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
     *(undefined4 *)(iVar4 + 0x5d8) = uStack_88;
     *(undefined4 *)(iVar4 + 0x5dc) = uStack_84;
     Quat_Normalize(iVar4 + 0x5d0);
-    if (iRam0036f428 == 0) {
+    if (_g_CamShared1 == 0) {
       iVar2 = iVar4 + 0x530;
     }
     else {
@@ -159,7 +160,7 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
     fStack_7c = (float)uStack_bc;
     fStack_78 = (float)uStack_b8;
     uStack_74 = uStack_b4;
-    if (iRam0036f428 == 0) {
+    if (_g_CamShared1 == 0) {
       iVar3 = iVar4 + 0x530;
     }
     sceVu0TransMatrix(auStack_40,iVar4 + 0x550,iVar3);
@@ -620,7 +621,7 @@ void UiMgr_LoadSystem(undefined8 param_1)
   uVar1 = g_RaceCtx->language;
   g_RaceCtx->language = '\0';
   do {
-    UiLayout_Init(iVar5,uRam0036f2c0,uRam0036f2c0,1);
+    UiLayout_Init(iVar5,_g_RaceIntroShared1,_g_RaceIntroShared1,1);
     UiLayout_Load(iVar5,puVar4,param_1);
     iVar6 = iVar6 + 1;
     iVar5 = iVar5 + 0x4f0;

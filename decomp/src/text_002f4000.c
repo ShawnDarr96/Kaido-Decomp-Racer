@@ -987,21 +987,25 @@ undefined4 Composer_MoveCursor(uint *param_1,long param_2,uint param_3,long para
 }
 
 // 0x002f63f0  size 0x44
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool Composer_GetSelectedPart(char param_1)
 
 {
   uint uVar1;
   
   if (param_1 < '\0') {
-    uVar1 = *puRam0042d874;
+    uVar1 = *_g_ComposerShared3;
   }
   else {
-    uVar1 = (int)*puRam0042d874 >> ((int)param_1 & 0x1fU) & 1;
+    uVar1 = (int)*_g_ComposerShared3 >> ((int)param_1 & 0x1fU) & 1;
   }
   return uVar1 == 0;
 }
 
 // 0x002f6440  size 0xa0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool Composer_GetPartEntry(char param_1)
 
 {
@@ -1012,9 +1016,9 @@ bool Composer_GetPartEntry(char param_1)
   int iVar5;
   int iVar6;
   
-  iVar4 = iRam0042d874 + 4;
+  iVar4 = _g_ComposerShared3 + 4;
   if ((long)param_1 < 0) {
-    bVar2 = *(int *)(iRam0042d874 + 8) == 0;
+    bVar2 = *(int *)(_g_ComposerShared3 + 8) == 0;
   }
   else {
     iVar6 = 0;
@@ -1052,6 +1056,7 @@ bool Composer_GetPartEntry(char param_1)
 // 0x002f64e0  size 0x210
 /* WARNING: Removing unreachable block (ram,0x002f6538) */
 /* WARNING: Removing unreachable block (ram,0x002f6548) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 Composer_PreviewLoop(undefined4 *param_1)
 
@@ -1084,10 +1089,10 @@ undefined4 Composer_PreviewLoop(undefined4 *param_1)
       SeqGen_GetLoopRangeA(uVar3,&uStack_14,&uStack_18);
       cVar5 = (char)*param_1;
       if (cVar5 < '\0') {
-        uVar2 = *puRam0042d874;
+        uVar2 = *_g_ComposerShared3;
       }
       else {
-        uVar2 = (int)*puRam0042d874 >> ((int)cVar5 & 0x1fU) & 1;
+        uVar2 = (int)*_g_ComposerShared3 >> ((int)cVar5 & 0x1fU) & 1;
       }
       if ((((uVar2 == 0) && (lVar4 = Composer_GetPartEntry(cVar5), lVar4 != 0)) &&
           (cVar5 = Snd_IsBusy(*param_1), cVar5 == '\0')) &&
@@ -1116,6 +1121,7 @@ undefined4 Composer_PreviewLoop(undefined4 *param_1)
 // 0x002f66f0  size 0x2a0
 /* WARNING: Removing unreachable block (ram,0x002f679c) */
 /* WARNING: Removing unreachable block (ram,0x002f67ac) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 Composer_PreviewTrack(undefined4 *param_1,undefined8 param_2)
 
@@ -1169,10 +1175,10 @@ undefined4 Composer_PreviewTrack(undefined4 *param_1,undefined8 param_2)
         uVar4 = Script_GetElem_2f0_xda8(uVar7,param_2);
         cVar9 = (char)*param_1;
         if (cVar9 < '\0') {
-          uVar5 = *puRam0042d874;
+          uVar5 = *_g_ComposerShared3;
         }
         else {
-          uVar5 = (int)*puRam0042d874 >> ((int)cVar9 & 0x1fU) & 1;
+          uVar5 = (int)*_g_ComposerShared3 >> ((int)cVar9 & 0x1fU) & 1;
         }
         if ((((uVar5 == 0) && (lVar8 = Composer_GetPartEntry(cVar9), lVar8 != 0)) &&
             (cVar9 = Snd_IsBusy(*param_1), cVar9 == '\0')) &&
@@ -1202,6 +1208,7 @@ undefined4 Composer_PreviewTrack(undefined4 *param_1,undefined8 param_2)
 // 0x002f6990  size 0x24c
 /* WARNING: Removing unreachable block (ram,0x002f6a40) */
 /* WARNING: Removing unreachable block (ram,0x002f6a50) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 Composer_PreviewInstrument(undefined4 *param_1,long param_2)
 
@@ -1248,10 +1255,10 @@ undefined4 Composer_PreviewInstrument(undefined4 *param_1,long param_2)
         uVar4 = SeqGen_GetPatternId(param_2);
         cVar8 = (char)*param_1;
         if (cVar8 < '\0') {
-          uVar3 = *puRam0042d874;
+          uVar3 = *_g_ComposerShared3;
         }
         else {
-          uVar3 = (int)*puRam0042d874 >> ((int)cVar8 & 0x1fU) & 1;
+          uVar3 = (int)*_g_ComposerShared3 >> ((int)cVar8 & 0x1fU) & 1;
         }
         if ((((uVar3 == 0) && (lVar7 = Composer_GetPartEntry(cVar8), lVar7 != 0)) &&
             (cVar8 = Snd_IsBusy(*param_1), cVar8 == '\0')) &&
@@ -1297,47 +1304,54 @@ undefined4 Composer_GetModeSongs(int param_1)
 }
 
 // 0x002f6c30  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Composer_RequestRedraw(void)
 
 {
-  uRam0036eefc = 2;
+  _g_NameentryShared2 = 2;
   return;
 }
 
 // 0x002f6c40  size 0x138
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int Nameentry_Draw_Rokko(undefined8 param_1,int param_2)
 
 {
   int iVar1;
   long lVar2;
   
-  if (iRam0036eefc == 2) {
-    lVar2 = UiLayout_UpdateAnimById(uRam0036eef4,1);
+  if (_g_NameentryShared2 == 2) {
+    lVar2 = UiLayout_UpdateAnimById(_g_NameentryShared1,1);
     if (lVar2 == 0) {
-      iRam0036eefc = 3;
+      _g_NameentryShared2 = 3;
     }
   }
-  else if ((iRam0036eefc == 0) && (lVar2 = UiLayout_UpdateAnimById(uRam0036eef4,0), lVar2 == 0)) {
-    iRam0036eefc = 1;
+  else if ((_g_NameentryShared2 == 0) &&
+          (lVar2 = UiLayout_UpdateAnimById(_g_NameentryShared1,0), lVar2 == 0)) {
+    _g_NameentryShared2 = 1;
   }
-  MenuWnd_DrawText(uRam0036eef4,uRam0036eef8,param_1);
-  if (iRam0036f940 == 1) {
+  MenuWnd_DrawText(_g_NameentryShared1,_g_ComposerShared1,param_1);
+  if (_g_ComposerShared2 == 1) {
     MenuWnd_DrawText(4,0x1b,9);
     MenuWnd_DrawText(4,0x1d,10);
-    if (iRam0036eefc == 1) {
+    if (_g_NameentryShared2 == 1) {
       MenuWnd_SetItemState(4,*(undefined4 *)(param_2 * 4 + 0x36ef00),1,0);
     }
     else {
       MenuWnd_SetItemVisible(0);
     }
   }
-  UiLayout_UpdateAnimById(uRam0036eef4,2);
-  iVar1 = UiMgr_FindLayout(uRam0036eef4);
+  UiLayout_UpdateAnimById(_g_NameentryShared1,2);
+  iVar1 = UiMgr_FindLayout(_g_NameentryShared1);
   UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
-  return iRam0036eefc;
+  return _g_NameentryShared2;
 }
 
 // 0x002f6d80  size 0x34c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Composer_ShowPanel(uint param_1)
 
 {
@@ -1345,8 +1359,8 @@ void Composer_ShowPanel(uint param_1)
   undefined4 uVar2;
   int iVar3;
   
-  uRam0036f940 = param_1 & 0xff;
-  if (uRam0036f940 == 0) {
+  _g_ComposerShared2 = param_1 & 0xff;
+  if (_g_ComposerShared2 == 0) {
     uVar2 = UiRes_GetLayoutData(0x27);
     iVar3 = UiMgr_FindLayout(3);
     pUVar1 = g_UiMgr->slots;
@@ -1413,8 +1427,8 @@ void Composer_ShowPanel(uint param_1)
     *(undefined4 *)&pUVar1[iVar3].layout.field_0x33c = 1;
     *(undefined4 *)&pUVar1[iVar3].layout.field_0x344 = uVar2;
     *(undefined4 *)&pUVar1[iVar3].layout.field_0x340 = 1;
-    uRam0036eef4 = 3;
-    uRam0036eef8 = 0xf;
+    _g_NameentryShared1 = 3;
+    _g_ComposerShared1 = 0xf;
   }
   else {
     uVar2 = UiRes_GetLayoutData(0x34);
@@ -1485,10 +1499,10 @@ void Composer_ShowPanel(uint param_1)
     *(undefined4 *)&pUVar1[iVar3].layout.field_0x340 = 1;
     MenuWnd_SetItemVisible(0);
     Menu_ClearSlot(0);
-    uRam0036eef4 = 4;
-    uRam0036eef8 = 0x1c;
+    _g_NameentryShared1 = 4;
+    _g_ComposerShared1 = 0x1c;
   }
-  uRam0036eefc = 0;
+  _g_NameentryShared2 = 0;
   return;
 }
 

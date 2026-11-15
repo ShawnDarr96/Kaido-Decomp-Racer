@@ -426,7 +426,7 @@ void maybe_ScrQuickRace_Update(undefined8 param_1)
       iVar3 = piVar5[0x221];
     }
     else {
-      uRam0036f770 = uRam0036f770 | (uint)lVar1;
+      _g_ScrQuickRaceShared1 = _g_ScrQuickRaceShared1 | (uint)lVar1;
       maybe_ScrQuickRace_UpdateCarNames(param_1);
       iVar3 = piVar5[0x221];
     }
@@ -602,7 +602,7 @@ void maybe_ScrQuickRace_Enter(int param_1)
     auVar6 = _pcpyld(in_zero_qw,auVar6);
     *(ulong *)(param_1 + 0x78) = *(ulong *)(param_1 + 0x78) & auVar6._0_8_;
   }
-  if (iRam0036f770 != 0) {
+  if (_g_ScrQuickRaceShared1 != 0) {
     maybe_ScrQuickRace_UpdateCarNames(param_1);
   }
   if (_s_ScrQuickRaceVar1 != 2) {

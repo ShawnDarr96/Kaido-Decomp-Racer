@@ -1051,10 +1051,10 @@ LAB_00191a00:
       (iVar11 = (**(code **)(*(int *)param_1[2] + 8))(), *(int *)(iVar11 + 0x14) == 0)) &&
      ((iVar11 = (**(code **)(*(int *)param_1[3] + 8))(), *(int *)(iVar11 + 0x14) == 0 &&
       (iVar11 = (**(code **)(*(int *)param_1[4] + 8))(), *(int *)(iVar11 + 0x14) == 0)))) {
-    uRam0036f25c = uRam0036f25c & 0xffffffef;
+    _g_CarSndShared1 = _g_CarSndShared1 & 0xffffffef;
   }
   else {
-    uRam0036f25c = uRam0036f25c | 0x10;
+    _g_CarSndShared1 = _g_CarSndShared1 | 0x10;
   }
   uVar10 = 0;
   if ((*(char *)(iVar3 + 0x200) == '\0') && (*(char *)(iVar2 + 0x400) == '\0')) {
@@ -1418,7 +1418,7 @@ void SndMgr_Init(undefined8 param_1)
   }
   _g_SndMgr[0xd] = puVar1;
   puVar1 = _g_SndMgr;
-  uRam0036f25c = uRam0036f25c & 1;
+  _g_CarSndShared1 = _g_CarSndShared1 & 1;
   (**(code **)(*(int *)_g_SndMgr[2] + 0x20))((int *)_g_SndMgr[2],0x3fff);
   (**(code **)(*(int *)puVar1[3] + 0x20))((int *)puVar1[3],0x3fff);
   (**(code **)(*(int *)puVar1[4] + 0x20))((int *)puVar1[4],0x3fff);

@@ -170,19 +170,19 @@ void Sprite_Draw(undefined4 *param_1,long param_2,int param_3,int param_4)
     param_1[0x1f0] = 0x59;
   }
   piStack_70 = (int *)(param_3 + 0x387fc4);
-  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < uRam00388050) {
+  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _g_ViewShared6) {
     maybe_Gs_BuildRectPacket
-              (param_1 + 0x4a8,iVar2,*(int *)(param_3 + 0x388034) << 5,_s_Sprite_Draw_7,uRam00388044
-               ,_s_Sprite_Draw_8,_s_Sprite_Draw_9,uRam0038804c);
+              (param_1 + 0x4a8,iVar2,*(int *)(&g_ViewShared1 + param_3) << 5,_s_Sprite_Draw_7,
+               _g_ViewShared3,_s_Sprite_Draw_8,_s_Sprite_Draw_9,_g_ViewShared5);
     param_1[0x4a4] = 0xac;
   }
   else {
     maybe_Gs_BuildBlendRect
-              (param_1 + 0x4a8,iVar2,*(int *)(param_3 + 0x388034) << 5,_s_Sprite_Draw_7,uRam00388044
-               ,_s_Sprite_Draw_8,_s_Sprite_Draw_9,uRam0038804c);
+              (param_1 + 0x4a8,iVar2,*(int *)(&g_ViewShared1 + param_3) << 5,_s_Sprite_Draw_7,
+               _g_ViewShared3,_s_Sprite_Draw_8,_s_Sprite_Draw_9,_g_ViewShared5);
     param_1[0x4a4] = 0x59;
   }
-  piStack_80 = (int *)(param_3 + 0x388034);
+  piStack_80 = (int *)(&g_ViewShared1 + param_3);
   if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _s_Sprite_Draw_12) {
     maybe_Gs_BuildRectPacket
               (param_1 + 0x75c,iVar5,*(int *)(param_3 + 0x3880a4) << 5,_s_Sprite_Draw_13,
@@ -211,16 +211,16 @@ void Sprite_Draw(undefined4 *param_1,long param_2,int param_3,int param_4)
     param_1[0xa0c] = 0x59;
   }
   piStack_a0 = (int *)(&s_Gfx_SetDisplayParam_1 + param_3);
-  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < uRam003881a0) {
+  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _g_SpriteShared3) {
     maybe_Gs_BuildRectPacket
               (param_1 + 0xcc4,param_4,*(int *)(param_3 + 0x388184) << 5,_s_Sprite_Draw_22,
-               uRam00388194,_s_Sprite_Draw_23,_s_Sprite_Draw_24,uRam0038819c);
+               _g_SpriteShared1,_s_Sprite_Draw_23,_s_Sprite_Draw_24,_g_SpriteShared2);
     param_1[0xcc0] = 0xac;
   }
   else {
     maybe_Gs_BuildBlendRect
               (param_1 + 0xcc4,param_4,*(int *)(param_3 + 0x388184) << 5,_s_Sprite_Draw_22,
-               uRam00388194,_s_Sprite_Draw_23,_s_Sprite_Draw_24,uRam0038819c);
+               _g_SpriteShared1,_s_Sprite_Draw_23,_s_Sprite_Draw_24,_g_SpriteShared2);
     param_1[0xcc0] = 0x59;
   }
   if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _s_Sprite_Draw_3) {
@@ -235,16 +235,16 @@ void Sprite_Draw(undefined4 *param_1,long param_2,int param_3,int param_4)
                _s_Sprite_Draw_5,_s_Sprite_Draw_6,_s_Sprite_Draw_2);
     param_1[0xf74] = 0x59;
   }
-  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < uRam00388050) {
+  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _g_ViewShared6) {
     maybe_Gs_BuildRectPacket
-              (param_1 + 0x122c,iVar2,*piStack_80 << 5,_s_Sprite_Draw_7,uRam00388044,
-               _s_Sprite_Draw_8,_s_Sprite_Draw_9,uRam0038804c);
+              (param_1 + 0x122c,iVar2,*piStack_80 << 5,_s_Sprite_Draw_7,_g_ViewShared3,
+               _s_Sprite_Draw_8,_s_Sprite_Draw_9,_g_ViewShared5);
     param_1[0x1228] = 0xac;
   }
   else {
     maybe_Gs_BuildBlendRect
-              (param_1 + 0x122c,iVar2,*piStack_80 << 5,_s_Sprite_Draw_7,uRam00388044,
-               _s_Sprite_Draw_8,_s_Sprite_Draw_9,uRam0038804c);
+              (param_1 + 0x122c,iVar2,*piStack_80 << 5,_s_Sprite_Draw_7,_g_ViewShared3,
+               _s_Sprite_Draw_8,_s_Sprite_Draw_9,_g_ViewShared5);
     param_1[0x1228] = 0x59;
   }
   if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _s_Sprite_Draw_12) {
@@ -271,16 +271,16 @@ void Sprite_Draw(undefined4 *param_1,long param_2,int param_3,int param_4)
                _s_Sprite_Draw_20,_s_Sprite_Draw_21,_s_Sprite_Draw_17);
     param_1[0x1790] = 0x59;
   }
-  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < uRam003881a0) {
+  if (*(uint *)(&s_Sprite_Draw_3 + iVar6) < _g_SpriteShared3) {
     maybe_Gs_BuildRectPacket
               (param_1 + 0x1a48,param_4,*(int *)(param_3 + 0x388184) << 5,_s_Sprite_Draw_22,
-               uRam00388194,_s_Sprite_Draw_23,_s_Sprite_Draw_24,uRam0038819c);
+               _g_SpriteShared1,_s_Sprite_Draw_23,_s_Sprite_Draw_24,_g_SpriteShared2);
     param_1[0x1a44] = 0xac;
   }
   else {
     maybe_Gs_BuildBlendRect
               (param_1 + 0x1a48,param_4,*(int *)(param_3 + 0x388184) << 5,_s_Sprite_Draw_22,
-               uRam00388194,_s_Sprite_Draw_23,_s_Sprite_Draw_24,uRam0038819c);
+               _g_SpriteShared1,_s_Sprite_Draw_23,_s_Sprite_Draw_24,_g_SpriteShared2);
     param_1[0x1a44] = 0x59;
   }
   maybe_Gs_BuildSpritePacket
@@ -348,6 +348,8 @@ void Rect_Setup(float param_1,float param_2,undefined4 *param_3,undefined4 param
 }
 
 // 0x00151580  size 0x3b8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Rect_SetupTexture(undefined4 *param_1,ulong param_2,int param_3)
 
 {
@@ -366,18 +368,18 @@ void Rect_SetupTexture(undefined4 *param_1,ulong param_2,int param_3)
   iVar2 = Tex_GetBlockCount(param_1[1],param_1[10],param_1[0xb] + iVar2);
   iVar4 = (int)uVar1 * 2;
   iVar3 = 0x200 - (int)uVar1;
-  uRam00387fa4 = 4;
+  _g_GfxShared1 = 4;
   if ((param_2 & 2) == 0) {
-    uRam00387fa4 = 0;
+    _g_GfxShared1 = 0;
   }
-  uRam00387fac = 1;
-  uRam00387fb0 = 0;
-  iRam00387fb4 = 1;
+  _g_RectShared1 = 1;
+  _g_RectShared2 = 0;
+  _g_RectShared3 = 1;
   if (param_3 != 0) {
-    iRam00387fb4 = param_3;
+    _g_RectShared3 = param_3;
   }
-  iRam00387fb8 = (iVar4 + iVar2) * 0x20;
-  iRam00387fbc = iVar3 * 0x20;
+  _g_RectShared4 = (iVar4 + iVar2) * 0x20;
+  _g_RectShared5 = iVar3 * 0x20;
   Rect_Setup((float)(int)param_1[4] / (float)(int)param_1[2],
              (float)(int)param_1[5] / (float)(int)param_1[3],0x387fc0,4,0,uVar1,iVar4,iVar4,*param_1
              ,param_1[1]);
@@ -397,6 +399,8 @@ void Rect_SetupTexture(undefined4 *param_1,ulong param_2,int param_3)
 }
 
 // 0x00151940  size 0x454
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Rect_SetupTiled(int *param_1,ulong param_2,uint param_3)
 
 {
@@ -420,29 +424,29 @@ void Rect_SetupTiled(int *param_1,ulong param_2,uint param_3)
   iVar1 = Tex_GetBlockCount(*param_1,param_1[2],param_1[3] + iVar5);
   uVar3 = Tex_GetBlockCount(param_1[1],param_1[2],param_1[3] + iVar5);
   iStack_54 = iVar1 + (int)uVar3;
-  iRam00387fb8 = (int)uVar2;
-  iStack_58 = iStack_54 + iRam00387fb8;
-  iVar5 = 0x200 - iRam00387fb8;
-  iRam00387fb8 = iStack_58 + iRam00387fb8;
+  _g_RectShared4 = (int)uVar2;
+  iStack_58 = iStack_54 + _g_RectShared4;
+  iVar5 = 0x200 - _g_RectShared4;
+  _g_RectShared4 = iStack_58 + _g_RectShared4;
   iVar4 = iVar1;
   if ((((param_2 & 4) != 0) && (*param_1 == 0)) && (param_1[1] == 0x3a)) {
     if (uVar2 <= uVar3) {
       uVar2 = uVar3;
     }
     iStack_58 = iVar1 + (int)uVar2;
-    iRam00387fb8 = iStack_58 + (int)uVar2;
+    _g_RectShared4 = iStack_58 + (int)uVar2;
     iStack_54 = iVar1;
     iVar4 = iStack_58;
   }
-  uRam00387fac = 1;
-  uRam00387fb0 = 1;
-  uRam00387fa4 = 0;
-  uRam00387fb4 = 1;
+  _g_RectShared1 = 1;
+  _g_RectShared2 = 1;
+  _g_GfxShared1 = 0;
+  _g_RectShared3 = 1;
   if (param_3 < 2) {
-    uRam00387fb4 = param_3;
+    _g_RectShared3 = param_3;
   }
-  iRam00387fbc = iVar5 * 0x20;
-  iRam00387fb8 = iRam00387fb8 << 5;
+  _g_RectShared5 = iVar5 * 0x20;
+  _g_RectShared4 = _g_RectShared4 << 5;
   Rect_Setup((float)param_1[4] / (float)param_1[2],(float)param_1[5] / (float)param_1[3],0x387fc0,4,
              0,0,iVar1,iVar4,*param_1,param_1[1]);
   Rect_Setup((float)param_1[6] / (float)param_1[2],(float)param_1[7] / (float)param_1[3],0x388030,0,
@@ -457,6 +461,8 @@ void Rect_SetupTiled(int *param_1,ulong param_2,uint param_3)
 }
 
 // 0x00151da0  size 0x3ec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Rect_SetupScaled(undefined4 *param_1,ulong param_2,uint param_3)
 
 {
@@ -477,16 +483,16 @@ void Rect_SetupScaled(undefined4 *param_1,ulong param_2,uint param_3)
   iVar2 = Tex_GetBlockCount(*param_1,param_1[2],param_1[3] + iVar4);
   iVar4 = Tex_GetBlockCount(param_1[1],param_1[2],param_1[3] + iVar4);
   iVar2 = (int)uVar1 + iVar2;
-  uRam00387fa4 = 0;
+  _g_GfxShared1 = 0;
   iVar3 = 0x200 - (int)uVar1;
-  uRam00387fac = 1;
-  uRam00387fb0 = 1;
-  uRam00387fb4 = 1;
+  _g_RectShared1 = 1;
+  _g_RectShared2 = 1;
+  _g_RectShared3 = 1;
   if (param_3 < 2) {
-    uRam00387fb4 = param_3;
+    _g_RectShared3 = param_3;
   }
-  iRam00387fb8 = (iVar2 + iVar4) * 0x20;
-  iRam00387fbc = iVar3 * 0x20;
+  _g_RectShared4 = (iVar2 + iVar4) * 0x20;
+  _g_RectShared5 = iVar3 * 0x20;
   Rect_Setup((float)(int)param_1[4] / (float)(int)param_1[2],
              (float)(int)param_1[5] / (float)(int)param_1[3],0x387fc0,4,uVar1,uVar1,iVar2,iVar2,
              *param_1,param_1[1]);
@@ -506,6 +512,8 @@ void Rect_SetupScaled(undefined4 *param_1,ulong param_2,uint param_3)
 }
 
 // 0x00152190  size 0x3bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Rect_SetupMasked(undefined4 *param_1,ulong param_2,uint param_3)
 
 {
@@ -523,16 +531,16 @@ void Rect_SetupMasked(undefined4 *param_1,ulong param_2,uint param_3)
   uVar1 = Tex_GetBlockCount(*param_1,param_1[10],param_1[0xb] + iVar2);
   iVar2 = Tex_GetBlockCount(param_1[1],param_1[10],param_1[0xb] + iVar2);
   iVar4 = (int)uVar1 * 2;
-  uRam00387fa4 = 0;
+  _g_GfxShared1 = 0;
   iVar3 = 0x200 - (int)uVar1;
-  uRam00387fac = 1;
-  uRam00387fb0 = 1;
-  uRam00387fb4 = 1;
+  _g_RectShared1 = 1;
+  _g_RectShared2 = 1;
+  _g_RectShared3 = 1;
   if (param_3 < 2) {
-    uRam00387fb4 = param_3;
+    _g_RectShared3 = param_3;
   }
-  iRam00387fb8 = (iVar4 + iVar2) * 0x20;
-  iRam00387fbc = iVar3 * 0x20;
+  _g_RectShared4 = (iVar4 + iVar2) * 0x20;
+  _g_RectShared5 = iVar3 * 0x20;
   Rect_Setup((float)(int)param_1[4] / (float)(int)param_1[2],
              (float)(int)param_1[5] / (float)(int)param_1[3],0x387fc0,4,0,uVar1,iVar4,iVar4,*param_1
              ,param_1[1]);
@@ -620,22 +628,22 @@ void Camera_SetupDefault(void)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  uStack_4c = uRam00388050;
-  uStack_60 = uRam00388034;
-  uStack_5c = uRam00388044;
-  uStack_58 = uRam0038803c;
-  iStack_54 = iRam00388048;
-  uStack_50 = uRam0038804c;
+  uStack_4c = _g_ViewShared6;
+  uStack_60 = _g_ViewShared1;
+  uStack_5c = _g_ViewShared3;
+  uStack_58 = _g_ViewShared2;
+  iStack_54 = _g_ViewShared4;
+  uStack_50 = _g_ViewShared5;
   uStack_48 = _s_Camera_SetupDefault_1;
   uStack_40 = 0x3f800000;
-  fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
-  if (iRam00387fa8 == 2) {
-    fStack_3c = ((float)uRam00388050 / (float)uRam0038804c) / 0.75;
+  fStack_44 = ((float)_g_ViewShared5 * 1.9209821) / 2.0;
+  if (_g_GfxShared2 == 2) {
+    fStack_3c = ((float)_g_ViewShared6 / (float)_g_ViewShared5) / 0.75;
   }
   else {
-    fStack_3c = ((((float)uRam00388050 / (float)uRam0038804c) / 0.75) * 625.0) / 525.0;
+    fStack_3c = ((((float)_g_ViewShared6 / (float)_g_ViewShared5) / 0.75) * 625.0) / 525.0;
   }
-  if (iRam00388048 == 0x30) {
+  if (_g_ViewShared4 == 0x30) {
     uStack_38 = 0x41a00000;
     uStack_34 = 0x4b742400;
   }
@@ -647,9 +655,9 @@ void Camera_SetupDefault(void)
   uStack_30 = 0;
   uStack_2c = 0;
   uStack_28 = 0;
-  uStack_14 = uRam00388090;
+  uStack_14 = _g_ViewShared7;
   uStack_20 = 0;
-  uStack_10 = uRam00388094;
+  uStack_10 = _g_ViewShared8;
   uStack_1c = 0;
   uStack_c = _s_Camera_SetupDefault_2;
   uStack_18 = 0;
@@ -665,7 +673,7 @@ void Camera_SetupDefault(void)
   _s_Camera_SetupDefault_15 = 0x3f800000;
   _s_Camera_SetupDefault_5 = 0x3e4ccccd;
   _s_Camera_SetupDefault_9 = 0x3e4ccccd;
-  iVar1 = iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x388200;
+  iVar1 = _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x388200;
   _s_Camera_SetupDefault_4 = 0;
   _s_Camera_SetupDefault_8 = 0;
   _s_Camera_SetupDefault_10 = 0;
@@ -717,12 +725,14 @@ void Sprite_GetPoolInfo(int param_1,undefined4 *param_2)
 }
 
 // 0x00152b20  size 0xc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Sprite_GetPoolCount(int param_1,uint *param_2)
 
 {
   int iVar1;
   
-  iVar1 = param_1 * 0x8280 + iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x388200;
+  iVar1 = param_1 * 0x8280 + _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x388200;
   *param_2 = (uint)*(ushort *)(iVar1 + 0x50);
   param_2[1] = (uint)*(ushort *)(iVar1 + 0x54);
   param_2[2] = (((*(ushort *)(iVar1 + 0x62) & 0x7ff) - (*(ushort *)(iVar1 + 0x60) & 0x7ff)) + 1) *
@@ -756,14 +766,14 @@ void Gfx_EndFrame(void)
   undefined4 uStack_20;
   undefined4 uStack_8;
   
-  uVar5 = iRam0036ef94 + 1U & 1;
-  uVar1 = iRam0036ef90 + 1U & 1;
-  if ((uRam00387fa4 & 1) == 0) {
-    uRam00387fa4 = uRam00387fa4 & 0xfffffffd;
+  uVar5 = _g_PktShared2 + 1U & 1;
+  uVar1 = _g_PktShared1 + 1U & 1;
+  if ((_g_GfxShared1 & 1) == 0) {
+    _g_GfxShared1 = _g_GfxShared1 & 0xfffffffd;
   }
   else {
     Gfx_ApplyVideoSettings(0x42d7b0,1);
-    uRam00387fa4 = uRam00387fa4 & 0xfffffffe | 2;
+    _g_GfxShared1 = _g_GfxShared1 & 0xfffffffe | 2;
   }
   uVar9 = 0;
   puVar6 = (uint *)&s_Gfx_SetFade_1;
@@ -792,8 +802,8 @@ void Gfx_EndFrame(void)
     puVar6[2] = 0;
     uVar7 = DmaChain_Begin(uVar9 & 0xff,puVar6 + 1);
     *puVar6 = uVar7;
-    if ((((uVar9 == 3) && ((uRam00387fa4 & 0x10) != 0)) ||
-        ((uVar9 == 4 && ((uRam00387fa4 & 0x20) != 0)))) && (puStack_28 != (undefined4 *)0x0)) {
+    if ((((uVar9 == 3) && ((_g_GfxShared1 & 0x10) != 0)) ||
+        ((uVar9 == 4 && ((_g_GfxShared1 & 0x20) != 0)))) && (puStack_28 != (undefined4 *)0x0)) {
       uVar7 = *puVar6;
       if (uVar7 != 0) {
         *puStack_28 = 0x20000000;
@@ -808,7 +818,7 @@ void Gfx_EndFrame(void)
     if ((uVar9 == 2) && (*(int *)(uVar5 * 4 + 0x387fc4) == *(int *)(uVar5 * 4 + 0x3880a4))) {
       uVar10 = 1;
     }
-    if ((uVar9 != 2) || ((uRam00387fa4 & 0x30) == 0)) {
+    if ((uVar9 != 2) || ((_g_GfxShared1 & 0x30) == 0)) {
       uVar7 = Sprite_Alloc(iVar8,uVar9,uVar5,uVar1,*puVar6,puVar6[1],uVar10);
       puVar6[2] = uVar7;
     }
@@ -871,7 +881,7 @@ void Gfx_EndFrame(void)
     DmaChain_End();
     uVar5 = uVar5 + 1;
   } while (uVar5 < 5);
-  iRam0036f0cc = iRam0036f0cc + 1;
+  _g_ProfileShared1 = _g_ProfileShared1 + 1;
   FlushCache(0);
   return;
 }
@@ -1042,7 +1052,7 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
   
   if (param_2 == 0) {
     maybe_Mem_CopyQwords(0x42d7b0,param_1,0x14);
-    uRam00387fa4 = uRam00387fa4 | 1;
+    _g_GfxShared1 = _g_GfxShared1 | 1;
   }
   else {
     pcVar9 = (char *)param_1;
@@ -1081,21 +1091,21 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
     uStack_4 = auStack_90[(byte)pcVar9[5] | 1];
     s_GfxVar10 = pcVar9[1];
     s_GfxVar11 = 0;
-    iRam00387fa8 = 2;
+    _g_GfxShared2 = 2;
     if (*pcVar9 != '\0') {
-      iRam00387fa8 = 3;
+      _g_GfxShared2 = 3;
     }
-    uRam00387fa4 = 0;
+    _g_GfxShared1 = 0;
     cVar1 = pcVar9[1];
     if (cVar1 == '\x04') {
       iVar10 = *(int *)(pcVar9 + 0x10);
       Rect_SetupMasked(&uStack_40,*(undefined4 *)(pcVar9 + 0xc),iVar10);
-      uRam00387fa4 = 0;
-      uRam00387fac = 0;
-      uRam00387fb0 = 1;
-      iRam00387fb4 = 1;
+      _g_GfxShared1 = 0;
+      _g_RectShared1 = 0;
+      _g_RectShared2 = 1;
+      _g_RectShared3 = 1;
       if (iVar10 != 0) {
-        iRam00387fb4 = iVar10;
+        _g_RectShared3 = iVar10;
       }
     }
     else if (cVar1 == '\x03') {
@@ -1122,9 +1132,9 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
         Sprite_Draw(iVar5 + 0x10500,2,uVar8,uVar7);
         Sprite_Draw(iVar5 + 0x18780,3,uVar8,uVar7);
         Sprite_Draw(iVar5 + 0x20a00,4,uVar8,uVar7);
-        iVar3 = iRam003881a0;
-        iVar2 = iRam0038819c;
-        iVar5 = iRam00387fa8;
+        iVar3 = _g_SpriteShared3;
+        iVar2 = _g_SpriteShared2;
+        iVar5 = _g_GfxShared2;
         uVar7 = uVar7 + 1;
         iVar6 = iVar6 + 0x28c80;
       } while (uVar7 < 2);
@@ -1134,12 +1144,12 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
     iVar10 = 0x388180;
     uVar8 = 0;
     piVar4 = &iStack_d0;
-    iStack_d0 = iRam00387fa8;
-    uStack_c4 = uRam00388194;
-    uStack_cc = uRam00387fac;
-    uStack_c8 = uRam00387fb0;
-    iStack_c0 = iRam00387fb4;
-    uStack_bc = (uint)((uRam00387fa4 & 4) != 0);
+    iStack_d0 = _g_GfxShared2;
+    uStack_c4 = _g_SpriteShared1;
+    uStack_cc = _g_RectShared1;
+    uStack_c8 = _g_RectShared2;
+    iStack_c0 = _g_RectShared3;
+    uStack_bc = (uint)((_g_GfxShared1 & 4) != 0);
     do {
       piVar4[6] = *(int *)(iVar10 + 4);
       piVar4[7] = 0;
@@ -1158,7 +1168,7 @@ void Gfx_ApplyVideoSettings(undefined8 param_1,long param_2)
     Gfx_SetVideoMode((*(uint *)(pcVar9 + 0xc) & 1) == 0,&iStack_d0);
     Camera_SetupDefault();
     Light_SetDefaults();
-    uRam0036f0cc = 0;
+    _g_ProfileShared1 = 0;
     Gfx_SetFade(5,0,0,0);
     Gfx_SetDisplayParam(0,0,0,0,0);
     s_GfxVar12 = 0;
@@ -1239,6 +1249,8 @@ void Snd_StreamPosCallback(undefined8 param_1,undefined8 param_2,undefined8 para
 }
 
 // 0x00153b00  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Snd_StreamLoadChunk(int param_1,undefined4 *param_2,uint param_3)
 
 {
@@ -1254,7 +1266,7 @@ void Snd_StreamLoadChunk(int param_1,undefined4 *param_2,uint param_3)
     (&s_Snd_LoadSystemBanks_1)[param_1] = 1;
   }
   Sema_Wait(0x36efc0);
-  iVar1 = iRam00386628;
+  iVar1 = _g_FileShared2;
   Sema_Signal(0x36efc0,0);
   if (param_3 <= 0x100U - iVar1) {
     for (uVar5 = 0; (uVar3 != 0 && (uVar5 < param_3)); uVar5 = uVar5 + 1) {

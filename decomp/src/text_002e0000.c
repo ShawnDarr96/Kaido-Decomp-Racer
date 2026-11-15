@@ -1202,6 +1202,8 @@ void maybe_JukeboxTask_Exit(int param_1)
 }
 
 // 0x002e2680  size 0xc4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_JukeboxTask_Load(int param_1)
 
 {
@@ -1217,7 +1219,7 @@ void maybe_JukeboxTask_Load(int param_1)
   lVar3 = SndMgr_IsIdle();
   if (lVar3 != 0) {
     Sema_Wait(0x36efc0);
-    iVar2 = iRam00386628;
+    iVar2 = _g_FileShared2;
     Sema_Signal(0x36efc0,0);
     if ((iVar2 == 0) && (*(int *)(iVar1 + 4) = *(int *)(iVar1 + 4) + -1, *(int *)(iVar1 + 4) < 0)) {
       uVar4 = maybe_File_GetSectorCount(&uStack_4);
@@ -1523,7 +1525,7 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
           fStack_24c = fStack_24c - 6.2831855;
         }
         fVar11 = (float)maybe_sceVu0InterVectorDist(auStack_270,&fStack_260,puVar7);
-        if (((fVar11 <= *(float *)(iVar6 + 0x4311a4) * 1.1547005) &&
+        if (((fVar11 <= *(float *)(&g_RaceCamShared2 + iVar6) * 1.1547005) &&
             (fVar12 = (float)sceVu0InnerProduct(iVar6 + 0x431140,auStack_270),
             -20.0 <= fVar11 * fVar12)) &&
            (lVar3 = Course_GetGroundHeight(puVar7,&fStack_260), lVar3 != 0)) {
@@ -1579,8 +1581,8 @@ void maybe_IntroFlag_OnLoaded(void)
     Model_Relocate(uVar3);
     Model_Relocate(uVar4);
     Tex_Relocate(uVar5);
-    TexSlot_Bind(_g_IntroFlag + iVar6 + 0x10,uVar5,0,iRam0036f2c0 + iRam004305f0,
-                 iRam0036f2c0 + iRam004305f0,0x51010,0,0);
+    TexSlot_Bind(_g_IntroFlag + iVar6 + 0x10,uVar5,0,_g_RaceIntroShared1 + _g_CourseShared8,
+                 _g_RaceIntroShared1 + _g_CourseShared8,0x51010,0,0);
     iVar8 = iVar8 + 1;
     iVar7 = iVar7 + 4;
     iVar6 = iVar6 + 0x100;

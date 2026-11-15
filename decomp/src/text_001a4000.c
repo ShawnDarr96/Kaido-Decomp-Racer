@@ -38,7 +38,7 @@ void Course_UpdateFlareOcclusion(void)
   } while (uVar9 < 6);
   uVar9 = 0;
   uStack_10 = 0;
-  if (uRam004305c4 != 0) {
+  if (_g_CourseStreamShared3 != 0) {
     iStack_20 = 0;
     iStack_30 = 0;
     do {
@@ -53,7 +53,7 @@ void Course_UpdateFlareOcclusion(void)
         *puVar3 = puVar4;
         *(undefined4 *)puVar3[1] = 0;
         uVar13 = 0;
-        if (uRam004305cc != 0) {
+        if (_g_CourseStreamShared4 != 0) {
           iVar14 = 0;
           iVar5 = 0;
           do {
@@ -102,16 +102,16 @@ void Course_UpdateFlareOcclusion(void)
             }
             uVar13 = uVar13 + 1;
             iVar14 = iVar14 + 0x50;
-          } while (uVar13 < uRam004305cc);
+          } while (uVar13 < _g_CourseStreamShared4);
         }
         if (uVar12 != 0) {
-          if (uVar12 < uRam004305cc) {
+          if (uVar12 < _g_CourseStreamShared4) {
             iVar5 = uVar12 << 2;
             do {
               uVar12 = uVar12 + 1;
               *(undefined4 *)(puVar3[1] + iVar5) = 0;
               iVar5 = iVar5 + 4;
-            } while (uVar12 < uRam004305cc);
+            } while (uVar12 < _g_CourseStreamShared4);
           }
           uVar9 = uVar9 + 1;
           iStack_20 = iStack_20 + 8;
@@ -119,15 +119,15 @@ void Course_UpdateFlareOcclusion(void)
       }
       iStack_30 = iStack_30 + 0x74;
       uStack_10 = uStack_10 + 1;
-    } while (uStack_10 < uRam004305c4);
+    } while (uStack_10 < _g_CourseStreamShared3);
   }
-  if (uVar9 < uRam004305c4) {
+  if (uVar9 < _g_CourseStreamShared3) {
     iVar5 = uVar9 << 3;
     do {
       uVar9 = uVar9 + 1;
       *(undefined4 *)(_g_CourseScene + iVar5) = 0;
       iVar5 = iVar5 + 8;
-    } while (uVar9 < uRam004305c4);
+    } while (uVar9 < _g_CourseStreamShared3);
   }
   return;
 }
@@ -143,7 +143,7 @@ void CourseScene_Unload(void)
   
   uVar1 = 0;
   iVar2 = _g_CourseScene;
-  if (uRam004305c4 != 0) {
+  if (_g_CourseStreamShared3 != 0) {
     do {
       if (*(int *)(iVar2 + 4) != 0) {
         Mem_Free();
@@ -151,15 +151,15 @@ void CourseScene_Unload(void)
       }
       uVar1 = uVar1 + 1;
       iVar2 = iVar2 + 8;
-    } while (uVar1 < uRam004305c4);
+    } while (uVar1 < _g_CourseStreamShared3);
   }
   if (_g_CourseScene != 0) {
     Mem_Free();
     _g_CourseScene = 0;
   }
-  if (iRam00430660 != 0) {
+  if (_g_CourseShared14 != 0) {
     Mem_Free();
-    iRam00430660 = 0;
+    _g_CourseShared14 = 0;
   }
   Gfx_AddFrameCallback(0x430644);
   Course_Unload();
@@ -187,31 +187,31 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
   int iVar11;
   
   uVar6 = Course_Load();
-  _g_CourseScene = Mem_Alloc16(uRam004305c4 << 3,param_1);
+  _g_CourseScene = Mem_Alloc16(_g_CourseStreamShared3 << 3,param_1);
   uVar10 = 0;
   iVar11 = _g_CourseScene;
-  if (uRam004305c4 != 0) {
+  if (_g_CourseStreamShared3 != 0) {
     do {
-      uVar5 = Mem_Alloc16(iRam004305cc << 2,param_1);
+      uVar5 = Mem_Alloc16(_g_CourseStreamShared4 << 2,param_1);
       *(undefined4 *)(iVar11 + 4) = uVar5;
       uVar10 = uVar10 + 1;
       iVar11 = iVar11 + 8;
-    } while (uVar10 < uRam004305c4);
+    } while (uVar10 < _g_CourseStreamShared3);
   }
   _s_CourseScene_Load_1 = Course_CaptureReflection;
   _s_CourseScene_Load_2 = &g_CourseScene;
   Gfx_RemoveFrameCallback(0x430644);
-  uRam00430654 = 0;
-  uRam00430658 = 0;
-  uRam0043065c = 0;
+  _g_CourseShared11 = 0;
+  _g_CourseShared12 = 0;
+  _g_CourseShared13 = 0;
   uVar7 = Mem_AllocAligned(0x200,0x80,param_1);
-  uRam00430660 = (undefined4)uVar7;
+  _g_CourseShared14 = (undefined4)uVar7;
   Mem_Set16(uVar7,0,0x200);
-  uRam00430668 = 1;
-  uRam0043067c = 0;
-  uRam004306c0 = 0;
-  uRam004306c1 = 1;
-  uRam004306c2 = 2;
+  _g_CourseShared15 = 1;
+  _g_CourseShared19 = 0;
+  g_CourseShared20 = 0;
+  g_CourseShared21 = 1;
+  g_CourseShared22 = 2;
   if (*param_4 == '\0') {
     uVar10 = 0;
     uVar9 = 8;
@@ -220,8 +220,8 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
     uVar10 = 8;
     uVar9 = 0x1a;
   }
-  uRam00430674 = param_7;
-  uRam00430678 = param_8;
+  _g_CourseShared17 = param_7;
+  _g_CourseShared18 = param_8;
   if (uVar10 < uVar9) {
     pbVar8 = &DAT_00317490 + uVar10 * 4;
     do {
@@ -767,13 +767,15 @@ undefined4 maybe_Course_IsBgmReady(void)
 }
 
 // 0x001a5b30  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool maybe_Game_CheckResetRequest(void)
 
 {
   int iVar1;
   
   Sema_Wait(0x36efc0);
-  iVar1 = iRam00386628;
+  iVar1 = _g_FileShared2;
   Sema_Signal(0x36efc0,0);
   if (iVar1 != 0) {
     File_AbortAll();
@@ -795,8 +797,8 @@ void Game_MainLoop(byte param_1)
   
   bVar1 = param_1;
   do {
-    bRam0036f2a8 = bVar1;
-    iVar4 = (uint)bRam0036f2a8 * 0x20;
+    g_TitleShared1 = bVar1;
+    iVar4 = (uint)g_TitleShared1 * 0x20;
     Gfx_SyncAndFlip();
     Render_SetSceneMode(*(undefined1 *)(iVar4 + 0x3179f4),*(undefined4 *)(&DAT_003179fc + iVar4));
     Render_BeginScene(iVar4 + 0x3179e0);
@@ -844,6 +846,7 @@ void Game_Shutdown(void)
 }
 
 // 0x001a5d10  size 0x26c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* IOP reboot + IRX loads, 26 MB heap at 0x430750, subsystem inits */
 
 void Game_Init(void)
@@ -853,7 +856,7 @@ void Game_Init(void)
   
   Iop_Reboot(0x3636e0,0);
   Gfx_Init();
-  iRam0036f2a4 = 5;
+  _g_GameShared1 = 5;
   uVar1 = GetThreadId();
   ChangeThreadPriority(uVar1,5);
   maybe_Heap_Create(0x430750,0x1a80000,0);
@@ -873,7 +876,7 @@ void Game_Init(void)
   Iop_LoadModule(0x363840,0,0,0);
   Iop_LoadModule(0x363860,0,0,0);
   Arc_SetHeap(0x430750);
-  Arc_Init(iRam0036f2a4 + 1,iRam0036f2a4 + -1);
+  Arc_Init(_g_GameShared1 + 1,_g_GameShared1 + -1);
   maybe_CdStream_Init(0x50,5);
   Pad_Init(0x430750);
   Wheel_Init();
@@ -881,7 +884,7 @@ void Game_Init(void)
   SaveMgr_Init(0x430750);
   maybe_Rand_Seed(0);
   Xvi_LoadIop();
-  Snd_Init(0x430750,0x20,iRam0036f2a4 + -1);
+  Snd_Init(0x430750,0x20,_g_GameShared1 + -1);
   SndMgr_Init(0x430750);
   Movie_Init();
   Render_Init(0x430750);
@@ -1556,7 +1559,7 @@ void Ptcl_Update(undefined8 param_1)
   uVar3 = 0;
   if (uVar5 != 0) {
     do {
-      iVar1 = iRam004307ac;
+      iVar1 = _g_PtclShared1;
       if (_s_Ptcl_Update_1 < 1) {
         if (_s_Ptcl_Update_1 == 0) {
           *(undefined4 *)(iVar2 + 0x118) = 0;
@@ -1565,7 +1568,7 @@ void Ptcl_Update(undefined8 param_1)
         printf(0x3638d0);
         return;
       }
-      maybe_List_Append(0x4307a0,iRam004307ac);
+      maybe_List_Append(0x4307a0,_g_PtclShared1);
       maybe_List_Remove(param_1,iVar1);
       *(int *)(iVar1 + 0x9c) = iVar2;
       Ptcl_Spawn(iVar1,iVar2 + 0xc0,iVar2 + 0xd0,*(undefined4 *)(iVar2 + 0x114));

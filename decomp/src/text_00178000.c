@@ -239,14 +239,14 @@ void Course_RenderHook(void)
       TexSlot_Set(5,9);
       Car_DrawAllEffects();
       PtclSys_BeginFrame();
-      uRam004301a8 = 0;
-      if (uRam004301a4 == 0) {
-        uRam004301a0 = *puVar1;
+      _g_CourseShared4 = 0;
+      if (_g_CourseShared3 == 0) {
+        _g_CourseShared2 = *puVar1;
       }
       else {
-        uRam004301a0 = puVar1[1];
+        _g_CourseShared2 = puVar1[1];
       }
-      uRam004301a4 = uRam004301a4 ^ 1;
+      _g_CourseShared3 = _g_CourseShared3 ^ 1;
     }
   }
   return;
@@ -534,7 +534,7 @@ void Course_SpawnAmbient(void)
     }
   }
   lVar2 = RaceScene_IsPaused();
-  if ((lVar2 == 0) && (iRam0046a59c == 0)) {
+  if ((lVar2 == 0) && (_g_CourseShared118 == 0)) {
     _s_Course_SpawnAmbient_1 = _s_Course_SpawnAmbient_1 - 1;
   }
   if (_s_Course_SpawnAmbient_1 < 8) {
@@ -582,13 +582,16 @@ void Course_UpdateEnvironment(void)
   uint uVar7;
   int iVar8;
   undefined2 *puVar9;
-  undefined1 *puVar10;
-  int iVar11;
+  undefined *puVar10;
+  undefined1 *puVar11;
   int iVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
+  undefined *puVar13;
+  int iVar14;
+  undefined *puVar15;
   float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
   undefined1 *puStack_5e0;
   undefined1 *puStack_5d0;
   uint uStack_5c0;
@@ -646,9 +649,9 @@ void Course_UpdateEnvironment(void)
   undefined1 uStack_15e;
   undefined4 uStack_154;
   
-  iVar2 = iRam004301a8;
-  iVar1 = iRam004301a0;
-  if (cRam004301c0 != '\0') {
+  iVar2 = _g_CourseShared4;
+  iVar1 = _g_CourseShared2;
+  if (g_CourseShared5 != '\0') {
     if (6.2831855 < _s_Course_UpdateEnvironment_1) {
       _s_Course_UpdateEnvironment_1 = _s_Course_UpdateEnvironment_1 - 6.2831855;
     }
@@ -663,7 +666,7 @@ void Course_UpdateEnvironment(void)
     uStack_168 = DAT_0030b888;
     uStack_170 = DAT_0030b880;
     uStack_164 = DAT_0030b88c;
-    if (iRam004301a0 != 0) {
+    if (_g_CourseShared2 != 0) {
       if (_s_RaceIsReplayMode == 0) {
         sceVu0CopyVector(auStack_1a0,0x431120);
         sceVu0CopyVector(0x431120,0x431140);
@@ -673,72 +676,72 @@ void Course_UpdateEnvironment(void)
         uStack_524 = DAT_0030b8ac;
         sceVu0SubVector(afStack_510,0x431110,0x431100);
         sceVu0ScaleVector(0x3f000000,afStack_510,afStack_510);
-        fVar13 = (float)sceVu0InnerProduct(afStack_510,afStack_510);
-        if (5.0 < SQRT(fVar13)) {
-          sceVu0ScaleVector(5.0 / SQRT(fVar13),afStack_510,afStack_510);
+        fVar16 = (float)sceVu0InnerProduct(afStack_510,afStack_510);
+        if (5.0 < SQRT(fVar16)) {
+          sceVu0ScaleVector(5.0 / SQRT(fVar16),afStack_510,afStack_510);
         }
         sceVu0AddVector(&fStack_520,afStack_510,&g_Views);
         sceVu0Normalize(afStack_540,afStack_510);
         sceVu0OuterProduct(afStack_540,&uStack_530,afStack_540);
         sceVu0Normalize(afStack_540,afStack_540);
         lVar3 = RaceScene_IsPaused();
-        if (((lVar3 == 0) && (iRam0046a59c == 0)) &&
-           (_s_Course_UpdateEnvironment_2 = 0xc, cRam004301c0 == '\x01')) {
-          fVar13 = (float)maybe_Rand_Next(0x3f800000,0x41400000);
-          if (fVar13 < 2.1474836e+09) {
-            _s_Course_UpdateEnvironment_2 = (uint)fVar13;
+        if (((lVar3 == 0) && (_g_CourseShared118 == 0)) &&
+           (_s_Course_UpdateEnvironment_2 = 0xc, g_CourseShared5 == '\x01')) {
+          fVar16 = (float)maybe_Rand_Next(0x3f800000,0x41400000);
+          if (fVar16 < 2.1474836e+09) {
+            _s_Course_UpdateEnvironment_2 = (uint)fVar16;
           }
           else {
-            _s_Course_UpdateEnvironment_2 = (int)(fVar13 - 2.1474836e+09) | 0x80000000;
+            _s_Course_UpdateEnvironment_2 = (int)(fVar16 - 2.1474836e+09) | 0x80000000;
           }
         }
         uVar7 = 0;
-        iVar12 = iVar2;
+        iVar14 = iVar2;
         if (_s_Course_UpdateEnvironment_2 != 0) {
-          iVar8 = 0x4301c0;
+          puVar15 = &g_CourseShared5;
           iVar6 = iVar1 + iVar2 * 0x30;
           do {
-            iVar11 = iVar8 + 0x10;
-            iVar4 = iVar8 + 0x20;
+            puVar13 = puVar15 + 0x10;
+            puVar10 = puVar15 + 0x20;
             lVar3 = RaceScene_IsPaused();
-            if ((lVar3 == 0) && (iRam0046a59c == 0)) {
-              fVar13 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
-              fVar14 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
-              fVar15 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+            if ((lVar3 == 0) && (_g_CourseShared118 == 0)) {
               fVar16 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
-              fStack_560 = fVar14 * afStack_540[0] * 5.0 +
-                           fVar13 * afStack_510[0] + fStack_520 + 0.0;
-              fStack_558 = fVar16 * fStack_538 * 5.0 + fVar15 * fStack_508 + fStack_518 + 0.0;
+              fVar17 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+              fVar18 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+              fVar19 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+              fStack_560 = fVar17 * afStack_540[0] * 5.0 +
+                           fVar16 * afStack_510[0] + fStack_520 + 0.0;
+              fStack_558 = fVar19 * fStack_538 * 5.0 + fVar18 * fStack_508 + fStack_518 + 0.0;
               fStack_54c = fStack_51c + 2.3;
               fStack_55c = fStack_51c - 1.3;
               fStack_550 = fStack_560;
               fStack_548 = fStack_558;
-              fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
-              fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-              fStack_550 = (fStack_550 + 0.0) - fVar13 * fVar14;
-              fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
-              fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-              fStack_548 = (fStack_548 + 0.0) - fVar13 * fVar14;
-              fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
-              fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-              fStack_560 = fVar13 * fVar14 + fStack_560 + 0.0;
-              fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
-              fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+              fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+              fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+              fStack_550 = (fStack_550 + 0.0) - fVar16 * fVar17;
+              fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
+              fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+              fStack_548 = (fStack_548 + 0.0) - fVar16 * fVar17;
+              fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+              fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+              fStack_560 = fVar16 * fVar17 + fStack_560 + 0.0;
+              fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
+              fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               uStack_544 = 0x3c23d70a;
               uStack_554 = 0x3c23d70a;
-              fStack_558 = fVar13 * fVar14 + fStack_558 + 0.0;
-              sceVu0CopyVector(iVar11,&fStack_550);
-              sceVu0CopyVector(iVar4,&fStack_560);
+              fStack_558 = fVar16 * fVar17 + fStack_558 + 0.0;
+              sceVu0CopyVector(puVar13,&fStack_550);
+              sceVu0CopyVector(puVar10,&fStack_560);
             }
-            maybe_Vu0_VecMin(&uStack_180,&uStack_180,iVar11);
-            maybe_Vu0_VecMax(&uStack_170,&uStack_170,iVar11);
-            maybe_Vu0_VecMin(&uStack_180,&uStack_180,iVar4);
-            maybe_Vu0_VecMax(&uStack_170,&uStack_170,iVar4);
-            sceVu0CopyVector(iVar6,iVar11);
-            sceVu0CopyVector(iVar6 + 0x20,iVar4);
+            maybe_Vu0_VecMin(&uStack_180,&uStack_180,puVar13);
+            maybe_Vu0_VecMax(&uStack_170,&uStack_170,puVar13);
+            maybe_Vu0_VecMin(&uStack_180,&uStack_180,puVar10);
+            maybe_Vu0_VecMax(&uStack_170,&uStack_170,puVar10);
+            sceVu0CopyVector(iVar6,puVar13);
+            sceVu0CopyVector(iVar6 + 0x20,puVar10);
             *(undefined4 *)(iVar6 + 0x14) = 0x43640000;
             *(undefined4 *)(iVar6 + 0x10) = 0x43640000;
-            if (cRam004301c0 == '\x01') {
+            if (g_CourseShared5 == '\x01') {
               *(undefined4 *)(iVar6 + 0x18) = 0x41700000;
             }
             else {
@@ -746,27 +749,27 @@ void Course_UpdateEnvironment(void)
             }
             *(undefined4 *)(iVar6 + 0x1c) = 0x41600000;
             uVar7 = uVar7 + 1;
-            iVar12 = iVar12 + 1;
+            iVar14 = iVar14 + 1;
             iVar6 = iVar6 + 0x30;
-            iVar8 = iVar8 + 0x20;
+            puVar15 = puVar15 + 0x20;
           } while (uVar7 < _s_Course_UpdateEnvironment_2);
         }
-        iRam004301a8 = iRam004301a8 + (iVar12 - iVar2);
-        maybe_Pkt_InitLayers(auStack_460,&g_Views,0x436180,0,1);
+        _g_CourseShared4 = _g_CourseShared4 + (iVar14 - iVar2);
+        maybe_Pkt_InitLayers(auStack_460,&g_Views,&g_CourseShared25,0,1);
         Obj_Init(&uStack_160);
         uStack_160 = 8;
         uStack_15e = 4;
         Obj_SetBlend(&uStack_160,5,1,0);
         uStack_154 = 0;
-        Obj_SetTexture(&uStack_160,iVar12 - iVar2,iVar1 + iVar2 * 0x30,&uStack_180);
+        Obj_SetTexture(&uStack_160,iVar14 - iVar2,iVar1 + iVar2 * 0x30,&uStack_180);
         Model_Draw(auStack_460,&uStack_160);
         sceVu0CopyVector(0x431120,auStack_1a0);
       }
       else {
         puStack_5d0 = auStack_1a0;
         uStack_5c0 = 0;
-        iVar6 = iRam004301a0 + iRam004301a8 * 0x30;
-        iVar12 = iRam004301a8;
+        iVar6 = _g_CourseShared2 + _g_CourseShared4 * 0x30;
+        iVar14 = _g_CourseShared4;
         puStack_5e0 = puStack_5d0;
         do {
           if (uStack_5c0 == 0) {
@@ -784,23 +787,23 @@ void Course_UpdateEnvironment(void)
           uStack_488 = DAT_0030b898;
           uStack_484 = DAT_0030b89c;
           sceVu0ScaleVector(0x40000000,afStack_470,iVar8 + 0x40);
-          fVar13 = (float)sceVu0InnerProduct(afStack_470,afStack_470);
-          if (5.0 < SQRT(fVar13)) {
-            sceVu0ScaleVector(5.0 / SQRT(fVar13),afStack_470,afStack_470);
+          fVar16 = (float)sceVu0InnerProduct(afStack_470,afStack_470);
+          if (5.0 < SQRT(fVar16)) {
+            sceVu0ScaleVector(5.0 / SQRT(fVar16),afStack_470,afStack_470);
           }
           sceVu0AddVector(&fStack_480,afStack_470,iVar8);
           sceVu0Normalize(afStack_4a0,afStack_470);
           sceVu0OuterProduct(afStack_4a0,&uStack_490,afStack_4a0);
           sceVu0Normalize(afStack_4a0,afStack_4a0);
           lVar3 = RaceScene_IsPaused();
-          if (((lVar3 == 0) && (iRam0046a59c == 0)) &&
-             (_s_Course_UpdateEnvironment_2 = 6, cRam004301c0 == '\x01')) {
-            fVar13 = (float)maybe_Rand_Next(0x3f800000,0x40c00000);
-            if (fVar13 < 2.1474836e+09) {
-              _s_Course_UpdateEnvironment_2 = (uint)fVar13;
+          if (((lVar3 == 0) && (_g_CourseShared118 == 0)) &&
+             (_s_Course_UpdateEnvironment_2 = 6, g_CourseShared5 == '\x01')) {
+            fVar16 = (float)maybe_Rand_Next(0x3f800000,0x40c00000);
+            if (fVar16 < 2.1474836e+09) {
+              _s_Course_UpdateEnvironment_2 = (uint)fVar16;
             }
             else {
-              _s_Course_UpdateEnvironment_2 = (int)(fVar13 - 2.1474836e+09) | 0x80000000;
+              _s_Course_UpdateEnvironment_2 = (int)(fVar16 - 2.1474836e+09) | 0x80000000;
             }
           }
           uVar7 = 0;
@@ -811,47 +814,47 @@ void Course_UpdateEnvironment(void)
           if (_s_Course_UpdateEnvironment_2 != 0) {
             do {
               iVar4 = (uVar7 + iVar8) * 0x20;
-              iVar11 = iVar4 + 0x4301d0;
+              iVar12 = iVar4 + 0x4301d0;
               iVar4 = iVar4 + 0x4301e0;
               lVar3 = RaceScene_IsPaused();
-              if ((lVar3 == 0) && (iRam0046a59c == 0)) {
-                fVar13 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
-                fVar14 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
-                fVar15 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+              if ((lVar3 == 0) && (_g_CourseShared118 == 0)) {
                 fVar16 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
-                fStack_4c0 = fVar14 * afStack_4a0[0] * 5.0 +
-                             fVar13 * afStack_470[0] + fStack_480 + 0.0;
-                fStack_4b8 = fVar16 * fStack_498 * 5.0 + fVar15 * fStack_468 + fStack_478 + 0.0;
+                fVar17 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+                fVar18 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+                fVar19 = (float)maybe_Rand_Next(0xbf800000,0x3f800000);
+                fStack_4c0 = fVar17 * afStack_4a0[0] * 5.0 +
+                             fVar16 * afStack_470[0] + fStack_480 + 0.0;
+                fStack_4b8 = fVar19 * fStack_498 * 5.0 + fVar18 * fStack_468 + fStack_478 + 0.0;
                 fStack_4ac = fStack_47c + 2.3;
                 fStack_4bc = fStack_47c - 1.3;
                 fStack_4b0 = fStack_4c0;
                 fStack_4a8 = fStack_4b8;
-                fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
-                fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-                fStack_4b0 = (fStack_4b0 + 0.0) - fVar13 * fVar14;
-                fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
-                fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-                fStack_4a8 = (fStack_4a8 + 0.0) - fVar13 * fVar14;
-                fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
-                fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-                fStack_4c0 = fVar13 * fVar14 + fStack_4c0 + 0.0;
-                fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
-                fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+                fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+                fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+                fStack_4b0 = (fStack_4b0 + 0.0) - fVar16 * fVar17;
+                fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
+                fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+                fStack_4a8 = (fStack_4a8 + 0.0) - fVar16 * fVar17;
+                fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+                fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
+                fStack_4c0 = fVar16 * fVar17 + fStack_4c0 + 0.0;
+                fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
+                fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 uStack_4a4 = 0x3c23d70a;
                 uStack_4b4 = 0x3c23d70a;
-                fStack_4b8 = fVar13 * fVar14 + fStack_4b8 + 0.0;
-                sceVu0CopyVector(iVar11,&fStack_4b0);
+                fStack_4b8 = fVar16 * fVar17 + fStack_4b8 + 0.0;
+                sceVu0CopyVector(iVar12,&fStack_4b0);
                 sceVu0CopyVector(iVar4,&fStack_4c0);
               }
-              maybe_Vu0_VecMin(&uStack_180,&uStack_180,iVar11);
-              maybe_Vu0_VecMax(&uStack_170,&uStack_170,iVar11);
+              maybe_Vu0_VecMin(&uStack_180,&uStack_180,iVar12);
+              maybe_Vu0_VecMax(&uStack_170,&uStack_170,iVar12);
               maybe_Vu0_VecMin(&uStack_180,&uStack_180,iVar4);
               maybe_Vu0_VecMax(&uStack_170,&uStack_170,iVar4);
-              sceVu0CopyVector(iVar6,iVar11);
+              sceVu0CopyVector(iVar6,iVar12);
               sceVu0CopyVector(iVar6 + 0x20,iVar4);
               *(undefined4 *)(iVar6 + 0x14) = 0x43640000;
               *(undefined4 *)(iVar6 + 0x10) = 0x43640000;
-              if (cRam004301c0 == '\x01') {
+              if (g_CourseShared5 == '\x01') {
                 *(undefined4 *)(iVar6 + 0x18) = 0x41700000;
               }
               else {
@@ -859,7 +862,7 @@ void Course_UpdateEnvironment(void)
               }
               *(undefined4 *)(iVar6 + 0x1c) = 0x41600000;
               uVar7 = uVar7 + 1;
-              iVar12 = iVar12 + 1;
+              iVar14 = iVar14 + 1;
               iVar6 = iVar6 + 0x30;
             } while (uVar7 < _s_Course_UpdateEnvironment_2);
           }
@@ -869,8 +872,8 @@ void Course_UpdateEnvironment(void)
         uStack_4e8 = 8;
         uStack_4e6 = 4;
         uVar7 = 0;
-        puVar10 = auStack_460;
-        iRam004301a8 = iRam004301a8 + (iVar12 - iVar2);
+        puVar11 = auStack_460;
+        _g_CourseShared4 = _g_CourseShared4 + (iVar14 - iVar2);
         puVar9 = &uStack_160;
         do {
           if (uVar7 == 0) {
@@ -883,22 +886,22 @@ void Course_UpdateEnvironment(void)
           if (uVar7 != 0) {
             uVar5 = 3;
           }
-          maybe_Pkt_InitLayers(puVar10,iVar6,0x436180,0,uVar5);
+          maybe_Pkt_InitLayers(puVar11,iVar6,&g_CourseShared25,0,uVar5);
           Obj_Init(puVar9);
           *puVar9 = 8;
           *(undefined1 *)(puVar9 + 1) = 4;
           Obj_SetBlend(puVar9,5,1,0);
           *(undefined4 *)(puVar9 + 6) = 0;
-          Obj_SetTexture(puVar9,iVar12 - iVar2,iVar1 + iVar2 * 0x30,&uStack_180);
-          Model_Draw(puVar10,puVar9);
+          Obj_SetTexture(puVar9,iVar14 - iVar2,iVar1 + iVar2 * 0x30,&uStack_180);
+          Model_Draw(puVar11,puVar9);
           sceVu0CopyVector(iVar6 + 0x20,puStack_5d0);
           uVar7 = uVar7 + 1;
-          puVar10 = puVar10 + 0x160;
+          puVar11 = puVar11 + 0x160;
           puStack_5d0 = puStack_5d0 + 0x10;
           puVar9 = puVar9 + 0x58;
         } while (uVar7 < 2);
       }
-      cRam004301c0 = '\0';
+      g_CourseShared5 = '\0';
     }
   }
   return;
@@ -964,8 +967,8 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
       uVar10 = 0;
       iStack_2e0 = 0;
       do {
-        uVar3 = uRam004301a8;
-        iVar2 = iRam004301a0;
+        uVar3 = _g_CourseShared4;
+        iVar2 = _g_CourseShared2;
         uVar7 = 10;
         iStack_2b0 = 1;
         fVar12 = 1.0;
@@ -973,8 +976,8 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
           iVar6 = 0;
           iStack_2f0 = 0;
           piVar9 = param_1 + (uVar10 + iStack_2c0) * 0x84;
-          pfVar4 = (float *)(iRam004301a0 + uRam004301a8 * 0x30);
-          uVar8 = uRam004301a8;
+          pfVar4 = (float *)(_g_CourseShared2 + _g_CourseShared4 * 0x30);
+          uVar8 = _g_CourseShared4;
           piVar5 = piVar9;
           do {
             if (iVar6 == 0) {
@@ -1003,8 +1006,8 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
                 *pfVar4 = fStack_10;
                 pfVar4[1] = fStack_c;
                 if (iVar6 == 0) {
-                  pfVar4[2] = unaff_f26 * fVar15 * 0.045 * fVar13 * fRam0043118c;
-                  pfVar4[3] = unaff_f26 * fVar14 * -0.045 * fVar13 * fRam0043118c;
+                  pfVar4[2] = unaff_f26 * fVar15 * 0.045 * fVar13 * _g_CarShared1;
+                  pfVar4[3] = unaff_f26 * fVar14 * -0.045 * fVar13 * _g_CarShared1;
                 }
                 else {
                   pfVar4[2] = in_f23;
@@ -1018,9 +1021,9 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
                 else {
                   pfVar4[7] = 65535.0;
                 }
-                in_f23 = (float)uVar7 * unaff_f26 * fVar15 * 0.045 * fVar13 * fRam0043118c * 0.1;
+                in_f23 = (float)uVar7 * unaff_f26 * fVar15 * 0.045 * fVar13 * _g_CarShared1 * 0.1;
                 unaff_f22 = (float)uVar7 *
-                            unaff_f26 * fVar14 * -0.045 * fVar13 * fRam0043118c * 0.1 * 0.466666;
+                            unaff_f26 * fVar14 * -0.045 * fVar13 * _g_CarShared1 * 0.1 * 0.466666;
                 uVar8 = uVar8 + 1;
                 uVar7 = uVar7 - 1;
                 fVar12 = fVar12 * 0.9;
@@ -1045,7 +1048,7 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
             uStack_25c = DAT_0030b864;
             uStack_258 = DAT_0030b868;
             uStack_254 = DAT_0030b86c;
-            uRam004301a8 = uRam004301a8 + iVar6;
+            _g_CourseShared4 = _g_CourseShared4 + iVar6;
             maybe_Pkt_InitLayers(auStack_1a0,0x431100,0x436180,0,1);
             Obj_Init(&uStack_250);
             uStack_244 = 0;
@@ -1339,6 +1342,8 @@ void MotionBlur_Build(undefined8 param_1,int param_2,int param_3)
 }
 
 // 0x0017a6f0  size 0x5d0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Car_DrawReflection(int param_1,undefined8 param_2)
 
 {
@@ -1380,8 +1385,8 @@ void Car_DrawReflection(int param_1,undefined8 param_2)
   undefined1 uStack_20e;
   undefined1 auStack_160 [352];
   
-  uVar13 = uRam004301a8;
-  iVar6 = iRam004301a0;
+  uVar13 = _g_CourseShared4;
+  iVar6 = _g_CourseShared2;
   iVar8 = (int)param_2;
   maybe_Pkt_InitLayers(auStack_160,param_2,0x436180,0,1);
   uStack_290 = 0;
@@ -1513,7 +1518,7 @@ void Car_DrawReflection(int param_1,undefined8 param_2)
             }
             bVar3 = false;
             bVar2 = false;
-            uRam004301a8 = uRam004301a8 + (uVar14 - uVar4);
+            _g_CourseShared4 = _g_CourseShared4 + (uVar14 - uVar4);
             uVar13 = uVar14;
           }
           uVar4 = uVar14;
@@ -2117,7 +2122,7 @@ void Skid_DrawAll(void)
   uint uVar2;
   
   uVar2 = 0;
-  if (uRam004301ac != 0) {
+  if (_g_AiShared3 != 0) {
     iVar1 = 0;
     do {
       if (_g_Skids + iVar1 != 0) {
@@ -2125,7 +2130,7 @@ void Skid_DrawAll(void)
       }
       iVar1 = iVar1 + 0xb900;
       uVar2 = uVar2 + 1;
-    } while (uVar2 < uRam004301ac);
+    } while (uVar2 < _g_AiShared3);
   }
   return;
 }
@@ -2160,7 +2165,7 @@ void Car_DrawAllEffects(void)
       sceVu0SubVector(auStack_10,iVar2 + 0x431110,&g_Views + iVar2);
       sceVu0Normalize(iVar2 + 0x431140,auStack_10);
       uVar6 = 0;
-      if (uRam004301ac != 0) {
+      if (_g_AiShared3 != 0) {
         iVar4 = 0;
         do {
           if (_g_Skids + iVar4 != 0) {
@@ -2168,7 +2173,7 @@ void Car_DrawAllEffects(void)
           }
           iVar4 = iVar4 + 0xb900;
           uVar6 = uVar6 + 1;
-        } while (uVar6 < uRam004301ac);
+        } while (uVar6 < _g_AiShared3);
       }
     }
     uVar3 = uVar3 + 1;
@@ -2208,7 +2213,7 @@ void Skid_Free(void)
     Mem_Free();
   }
   _g_Skids = 0;
-  uRam004301ac = 0;
+  _g_AiShared3 = 0;
   PtclSys_Shutdown();
   return;
 }
@@ -2223,7 +2228,7 @@ void Skid_Alloc(undefined8 param_1)
   int iVar2;
   
   PtclSys_Init();
-  uRam004301ac = 3;
+  _g_AiShared3 = 3;
   _g_Skids = Mem_Alloc16(0x22b00,param_1);
   uVar1 = 0;
   iVar2 = 0;
@@ -2232,9 +2237,9 @@ void Skid_Alloc(undefined8 param_1)
     uVar1 = uVar1 + 1;
     iVar2 = iVar2 + 0xb900;
   } while (uVar1 < 3);
-  uRam004301a8 = 0;
-  uRam004301a4 = 1;
-  uRam004301a0 = 0;
+  _g_CourseShared4 = 0;
+  _g_CourseShared3 = 1;
+  _g_CourseShared2 = 0;
   return;
 }
 

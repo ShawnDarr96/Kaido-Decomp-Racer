@@ -1076,7 +1076,7 @@ void maybe_ScrCareerRaceSetup_Enter(undefined8 param_1)
   else if (g_MenuMgr->prevScreen == 0x18) {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xff7fffff;
     g_MenuMgr->flags = g_MenuMgr->flags & 0xfeffffff;
-    if (cRam0036f8a4 == '\x02') {
+    if (g_ScrSaveShared4 == '\x02') {
       uVar6 = 6;
       Garage_BuildSortedCarList(auStack_4,8,1);
     }
@@ -1141,7 +1141,7 @@ void maybe_ScrCarPassword_HandleInput(int *param_1)
     }
     if (iVar1 < 0) {
       if (iVar1 == -2) {
-        uRam0036f2b4 = 0x10;
+        _g_CareerShared1 = 0x10;
         RaceCtx_Set_9(1);
         MenuMgr_RequestScreen(0xfffffffffffffffd);
       }
@@ -1162,7 +1162,7 @@ void maybe_ScrCarPassword_HandleInput(int *param_1)
     iVar1 = *param_1;
     if (iVar1 < 0) {
       if (iVar1 == -2) {
-        uRam0036f2b4 = 0x10;
+        _g_CareerShared1 = 0x10;
         RaceCtx_Set_9(1);
         MenuMgr_RequestScreen(0xfffffffffffffffd);
       }

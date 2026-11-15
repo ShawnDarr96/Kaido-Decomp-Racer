@@ -893,8 +893,8 @@ void RaceCam_UpdateIntro(undefined4 *param_1)
       }
       Cam_Update(puVar1);
     }
-    if (*(int *)(iRam0036f3b0 + 0xc) != 0) {
-      iVar6 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14);
+    if (*(int *)(_g_AiShared2 + 0xc) != 0) {
+      iVar6 = *(int *)(*(int *)(_g_AiShared2 + 0xc) + 0x14);
       lVar9 = Cam_IsIdle(g_Loading->workBufs[0]);
       if (lVar9 == 0) {
         *(undefined4 *)(iVar6 + 4) = 0;
@@ -956,7 +956,7 @@ void RaceCam_UpdateFinish(undefined4 *param_1)
     puVar1 = g_Loading->workBufs[0];
     lVar6 = RaceScene_IsFlag10();
     if ((lVar6 == 0) && (cVar3 = RaceCtx_GetMode(), cVar3 != '\x06')) {
-      if (iRam0046a590 == 0) {
+      if (_g_RaceSndShared1 == 0) {
         Cam_SetMode(puVar1,8);
       }
       else {
@@ -1435,8 +1435,8 @@ void RaceCam_UpdateReplay(int *param_1)
     param_1[6] = uVar28 | 0x20;
     param_1[6] = param_1[6] | 8;
     if (_s_RaceIsReplayMode == 0) {
-      CourseStream_RequestTextures(fRam004311a4,0,puVar1 + 0x420,0);
-      CourseStream_RequestLod(fRam004311a4,fRam004311a4 + 200.0,0,puVar1 + 0x420,0);
+      CourseStream_RequestTextures(_g_RaceCamShared2,0,puVar1 + 0x420,0);
+      CourseStream_RequestLod(_g_RaceCamShared2,_g_RaceCamShared2 + 200.0,0,puVar1 + 0x420,0);
     }
     else {
       CourseStream_RequestTextures(0x43fa0000,0,puVar1 + 0x420,0);
@@ -1450,14 +1450,14 @@ void RaceCam_UpdateReplay(int *param_1)
     param_1[6] = param_1[6] | 1;
     param_1[6] = param_1[6] | 8;
   }
-  if ((s_RaceCam_UpdateReplay_1 == '\x02') && (cRam0036f234 == '\x02')) {
+  if ((s_RaceCam_UpdateReplay_1 == '\x02') && (g_AiShared1 == '\x02')) {
     RaceScene_SetFlagB4();
   }
   lVar16 = RaceScene_IsFlag8000();
   if (lVar16 != 0) {
     if ((param_1[6] & 1U) != 0) {
       Sema_Wait(0x36efc0);
-      iVar20 = iRam00386628;
+      iVar20 = _g_FileShared2;
       Sema_Signal(0x36efc0,0);
       if (iVar20 == 0) {
         param_1[6] = param_1[6] & 0xfffffffe;
@@ -1474,13 +1474,14 @@ void RaceCam_UpdateReplay(int *param_1)
         if (_s_RaceIsReplayMode == 0) {
           lVar16 = RaceScene_IsFlag10();
           if (lVar16 == 0) {
-            CourseStream_RequestTextures(fRam004311a4,0,puVar1 + 0x420,0);
-            CourseStream_RequestLod(0x42c80000,fRam004311a4 + 50.0,0,puVar1 + 0x420,0);
+            CourseStream_RequestTextures(_g_RaceCamShared2,0,puVar1 + 0x420,0);
+            CourseStream_RequestLod(0x42c80000,_g_RaceCamShared2 + 50.0,0,puVar1 + 0x420,0);
           }
           else {
             Cam_UpdateShake(g_Loading->workBufs[0],auStack_10);
-            CourseStream_RequestTextures(fRam004311a4,0,puVar1 + 0x420,auStack_10);
-            CourseStream_RequestLod(0x42c80000,fRam004311a4 + 50.0,0,puVar1 + 0x420,auStack_10);
+            CourseStream_RequestTextures(_g_RaceCamShared2,0,puVar1 + 0x420,auStack_10);
+            CourseStream_RequestLod(0x42c80000,_g_RaceCamShared2 + 50.0,0,puVar1 + 0x420,auStack_10)
+            ;
           }
         }
         else {
@@ -1968,41 +1969,41 @@ LAB_001e2e10:
             }
           }
 LAB_001e311c:
-          puVar21 = puRam004305b4;
+          puVar21 = _g_RaceCamShared1;
           piStack_aa0 = piStack_aa0 + 1;
           iStack_a40 = iStack_a40 + 1;
         } while (iStack_a40 < 3);
-        sceVu0ScaleVector(0xbf800000,0x4361d0,puRam004305b4 + 4);
-        uRam004361dc = 0x3f800000;
-        fRam00436200 = (float)((uint)puVar21[9] >> 0x10 & 0xff) / 128.0;
-        fRam00436204 = (float)((uint)puVar21[9] >> 8 & 0xff) / 128.0;
-        fRam00436208 = (float)*(byte *)(puVar21 + 9) / 128.0;
+        sceVu0ScaleVector(0xbf800000,&g_CourseShared45,_g_RaceCamShared1 + 4);
+        _g_CourseShared48 = 0x3f800000;
+        _g_CourseShared57 = (float)((uint)puVar21[9] >> 0x10 & 0xff) / 128.0;
+        _g_CourseShared58 = (float)((uint)puVar21[9] >> 8 & 0xff) / 128.0;
+        _g_CourseShared59 = (float)*(byte *)(puVar21 + 9) / 128.0;
         cVar6 = GameState_Get_3();
         if (cVar6 == '\x01') {
-          uRam004361e4 = 0xbf800000;
-          uRam004361e0 = 0;
-          uRam004361ec = 0x3f800000;
-          uRam004361e8 = 0;
-          fRam00436210 = (float)((uint)puVar21[10] >> 0x10 & 0xff) / 128.0;
-          fRam00436214 = (float)((uint)puVar21[10] >> 8 & 0xff) / 128.0;
-          fRam00436218 = (float)*(byte *)(puVar21 + 10) / 128.0;
+          _g_CourseShared50 = 0xbf800000;
+          _g_CourseShared49 = 0;
+          _g_CourseShared52 = 0x3f800000;
+          _g_CourseShared51 = 0;
+          _g_CourseShared61 = (float)((uint)puVar21[10] >> 0x10 & 0xff) / 128.0;
+          _g_CourseShared62 = (float)((uint)puVar21[10] >> 8 & 0xff) / 128.0;
+          _g_CourseShared63 = (float)*(byte *)(puVar21 + 10) / 128.0;
         }
         else {
-          sceVu0ScaleVector(0x3f800000,0x4361e0,puVar21 + 4);
-          fRam00436210 = 0.0;
-          fRam00436214 = 0.0;
-          fRam00436218 = 0.0;
+          sceVu0ScaleVector(0x3f800000,&g_CourseShared49,puVar21 + 4);
+          _g_CourseShared61 = 0.0;
+          _g_CourseShared62 = 0.0;
+          _g_CourseShared63 = 0.0;
         }
-        uRam004361f0 = 0;
-        uRam004361f4 = 0x3f800000;
-        uRam004361fc = 0x3f800000;
-        uRam004361f8 = 0;
-        fRam00436220 = (float)((uint)puVar21[10] >> 0x10 & 0xff) / 128.0;
-        fRam00436224 = (float)((uint)puVar21[10] >> 8 & 0xff) / 128.0;
-        fRam00436228 = (float)*(byte *)(puVar21 + 10) / 128.0;
-        fRam00436180 = (float)((uint)puVar21[8] >> 0x10 & 0xff) / 128.0;
-        fRam00436184 = (float)((uint)puVar21[8] >> 8 & 0xff) / 128.0;
-        fRam00436188 = (float)*(byte *)(puVar21 + 8) / 128.0;
+        _g_CourseShared53 = 0;
+        _g_CourseShared54 = 0x3f800000;
+        _g_CourseShared56 = 0x3f800000;
+        _g_CourseShared55 = 0;
+        _g_CourseShared65 = (float)((uint)puVar21[10] >> 0x10 & 0xff) / 128.0;
+        _g_CourseShared66 = (float)((uint)puVar21[10] >> 8 & 0xff) / 128.0;
+        _g_CourseShared67 = (float)*(byte *)(puVar21 + 10) / 128.0;
+        _g_CourseShared25 = (float)((uint)puVar21[8] >> 0x10 & 0xff) / 128.0;
+        _g_CourseShared26 = (float)((uint)puVar21[8] >> 8 & 0xff) / 128.0;
+        _g_CourseShared27 = (float)*(byte *)(puVar21 + 8) / 128.0;
         SceneObj_ResetAll();
         bVar7 = GameState_Get_2();
         if (bVar7 < 6) {
@@ -2033,7 +2034,7 @@ LAB_001e311c:
         }
         RaceCam_UpdateFree(param_1);
         Course_Render(1);
-        puVar21 = puRam004305b4;
+        puVar21 = _g_RaceCamShared1;
         iVar20 = Cam_GetTargetBodyB(g_Loading->workBufs[0]);
         iVar20 = param_1[iVar20 + 7];
         lVar16 = RaceScene_IsFlag10();
@@ -2094,7 +2095,7 @@ LAB_001e311c:
         }
         if (*(int *)(g_Loading->workBufs[0] + 0x7c8) != 0) {
           sceVu0CopyVector(0x46a060,param_1[7] + 0x150);
-          uRam0046a028 = 8;
+          _g_ReplayCamShared3 = 8;
         }
         maybe_ReplayCam_Update();
       }

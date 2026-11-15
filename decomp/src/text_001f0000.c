@@ -213,6 +213,8 @@ void UiRes_LoadCommon(undefined8 param_1)
 }
 
 // 0x001f0950  size 0x240
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
 
 {
@@ -241,7 +243,7 @@ void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
         *piVar6 = iVar3;
         Arc_LoadFileEx(*(int *)(&DAT_00326860 + (param_2 & 0xff) * 4),*piVar6,0,0,0,0);
         File_AbortAll();
-        uVar1 = uRam0036f2c0;
+        uVar1 = _g_RaceIntroShared1;
         if (*piVar6 != 0) {
           Tex_InitDescriptor(iVar4 + 0x467ac0,2,*(undefined2 *)(iVar4 + 0x467af2));
           Tex_SetupFromHeader(iVar4 + 0x467ac0,uVar1,uVar1,0x50010,0,0x80);
@@ -264,6 +266,8 @@ void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
 }
 
 // 0x001f0b90  size 0x268
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
 
 {
@@ -297,7 +301,7 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
       puVar5 = (undefined4 *)(iVar4 + 0x4678d4);
       uVar3 = Mem_Alloc16((uint)*(ushort *)(*piVar6 + 6) << 7,param_1);
       *puVar5 = uVar3;
-      uVar3 = uRam0036f2c0;
+      uVar3 = _g_RaceIntroShared1;
       if (*piVar6 != 0) {
         *(undefined4 *)(iVar4 + 0x4678e0) = 0;
         Pkt_AddTextureUploadAll
@@ -1543,6 +1547,8 @@ void maybe_DemoCam_PickCar(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x001f3200  size 0xe4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Demo_StepFadeOut(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1575,13 +1581,15 @@ void maybe_Demo_StepFadeOut(undefined8 param_1,undefined8 param_2)
       }
     }
     if (!bVar2) {
-      uRam0046a594 = 0;
+      _g_DemoShared1 = 0;
     }
   }
   return;
 }
 
 // 0x001f32f0  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Demo_StepStart(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1591,7 +1599,7 @@ void maybe_Demo_StepStart(undefined8 param_1,undefined8 param_2)
   Demo_DriveCar(param_2,lVar1);
   Demo_Start(param_2,param_2);
   if (lVar1 == 0) {
-    uRam0046a594 = 0;
+    _g_DemoShared1 = 0;
   }
   return;
 }
@@ -1842,6 +1850,7 @@ void maybe_DemoCam_PlaceOrbit(undefined8 param_1,undefined8 param_2)
 
 // 0x001f3b80  size 0x24
 /* WARNING: Removing unreachable block (ram,0x001f4560) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_Cam_LeafTable(undefined8 param_1,undefined8 param_2)
 
@@ -1917,7 +1926,7 @@ void maybe_Cam_LeafTable(undefined8 param_1,undefined8 param_2)
     *(undefined4 *)(iVar4 + 0x5d8) = uStack_88;
     *(undefined4 *)(iVar4 + 0x5dc) = uStack_84;
     Quat_Normalize(iVar4 + 0x5d0);
-    if (iRam0036f428 == 0) {
+    if (_g_CamShared1 == 0) {
       iVar2 = iVar4 + 0x530;
     }
     else {
@@ -1933,7 +1942,7 @@ void maybe_Cam_LeafTable(undefined8 param_1,undefined8 param_2)
     fStack_7c = (float)uStack_bc;
     fStack_78 = (float)uStack_b8;
     uStack_74 = uStack_b4;
-    if (iRam0036f428 == 0) {
+    if (_g_CamShared1 == 0) {
       iVar3 = iVar4 + 0x530;
     }
     sceVu0TransMatrix(auStack_40,iVar4 + 0x550,iVar3);
@@ -2081,7 +2090,7 @@ void Demo_Start(int *param_1,undefined8 param_2)
                   iVar4 = _g_RaceSnd + iVar9;
                 }
                 CarSnd_StopVoice(iVar4);
-                if ((_g_Skids == 0) || (uRam004301ac <= uVar10)) {
+                if ((_g_Skids == 0) || (_g_AiShared3 <= uVar10)) {
                   iVar4 = 0;
                 }
                 else {
@@ -2098,7 +2107,7 @@ void Demo_Start(int *param_1,undefined8 param_2)
               uVar5 = 3;
             }
             Scene_SetParam(uVar5);
-            iRam0046a59c = piVar6[1];
+            _g_CourseShared118 = piVar6[1];
             goto LAB_001f4074;
           }
           if (iVar9 == 3) {

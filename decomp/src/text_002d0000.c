@@ -118,7 +118,7 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
   }
   if (bVar1) {
     cVar2 = GameState_Get_354_7050();
-    cVar3 = (&DAT_0032f535)[(uint)bRam0036f810 * 6];
+    cVar3 = (&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
     if (cVar2 == '\x01') {
       if ((cVar3 == '\x03') || (cVar3 == '\x05')) {
         UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x10f8),4,0x16,1);
@@ -767,13 +767,13 @@ void RaceHud_Load(undefined8 param_1)
   if (*(int *)(_g_RaceHud + 0x288) == 0) {
     if (bVar3 == 0) {
       if (bVar5 == 3) {
-        uRam0036f810 = 2;
+        g_RaceHudShared1 = 2;
       }
       else if (bVar5 == 2) {
-        uRam0036f810 = 1;
+        g_RaceHudShared1 = 1;
       }
       else if (bVar5 == 1) {
-        uRam0036f810 = 0;
+        g_RaceHudShared1 = 0;
       }
     }
     else if (bVar3 < 3) {
@@ -781,19 +781,19 @@ void RaceHud_Load(undefined8 param_1)
                     /* WARNING: Switch is manually overridden */
         switch(bVar5) {
         case 0:
-          uRam0036f810 = 6;
+          g_RaceHudShared1 = 6;
           break;
         case 1:
-          uRam0036f810 = 7;
+          g_RaceHudShared1 = 7;
           break;
         case 2:
-          uRam0036f810 = 8;
+          g_RaceHudShared1 = 8;
           break;
         case 3:
-          uRam0036f810 = 9;
+          g_RaceHudShared1 = 9;
           break;
         case 4:
-          uRam0036f810 = 10;
+          g_RaceHudShared1 = 10;
         }
       }
     }
@@ -802,67 +802,67 @@ void RaceHud_Load(undefined8 param_1)
                     /* WARNING: Switch is manually overridden */
         switch(bVar5) {
         case 0:
-          uRam0036f810 = 0xb;
+          g_RaceHudShared1 = 0xb;
           break;
         case 1:
-          uRam0036f810 = 0xc;
+          g_RaceHudShared1 = 0xc;
           break;
         case 2:
-          uRam0036f810 = 0xd;
+          g_RaceHudShared1 = 0xd;
           break;
         case 3:
-          uRam0036f810 = 0xe;
+          g_RaceHudShared1 = 0xe;
           break;
         default:
-          uRam0036f810 = 0xf;
+          g_RaceHudShared1 = 0xf;
           break;
         case 6:
-          uRam0036f810 = 0x10;
+          g_RaceHudShared1 = 0x10;
           break;
         case 7:
-          uRam0036f810 = 0x11;
+          g_RaceHudShared1 = 0x11;
         }
       }
     }
     else if (bVar3 < 6) {
       if (bVar5 == 3) {
-        uRam0036f810 = 5;
+        g_RaceHudShared1 = 5;
       }
       else if (bVar5 == 2) {
-        uRam0036f810 = 4;
+        g_RaceHudShared1 = 4;
       }
       else if (bVar5 == 1) {
-        uRam0036f810 = 3;
+        g_RaceHudShared1 = 3;
       }
     }
     else if (bVar3 == 6) {
-      uRam0036f810 = 0x17;
+      g_RaceHudShared1 = 0x17;
     }
     else if (bVar3 < 0xd) {
       if (bVar5 == 2) {
-        uRam0036f810 = 0x13;
+        g_RaceHudShared1 = 0x13;
       }
       else if (bVar5 == 1) {
-        uRam0036f810 = 0x12;
+        g_RaceHudShared1 = 0x12;
       }
     }
     else if (bVar3 == 0xd) {
       if (bVar5 == 2) {
-        uRam0036f810 = 0x14;
+        g_RaceHudShared1 = 0x14;
       }
       else if (bVar5 == 1) {
-        uRam0036f810 = 0x16;
+        g_RaceHudShared1 = 0x16;
       }
       else if (bVar5 == 0) {
-        uRam0036f810 = 0x15;
+        g_RaceHudShared1 = 0x15;
       }
     }
     else if (bVar3 == 0x10) {
-      uRam0036f810 = 0x17;
+      g_RaceHudShared1 = 0x17;
     }
   }
   else {
-    uRam0036f810 = 0x18;
+    g_RaceHudShared1 = 0x18;
   }
   RaceUi_Alloc(_g_RaceHud + 0x2a0,param_1);
   RaceMenu_Init(_g_RaceHud + 0x3b8);
@@ -1101,7 +1101,7 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   uVar6 = _s_ReplayCam_DrawOverlay_6;
   uVar5 = _s_ReplayCam_DrawOverlay_5;
   uVar4 = _s_ReplayCam_DrawOverlay_4;
-  iVar3 = iRam00431174;
+  iVar3 = _g_ReplayCamShared1;
   _s_ReplayCam_DrawOverlay_2 = 0;
   _s_ReplayCam_DrawOverlay_4 = _s_ReplayCam_DrawOverlay_4 & 0xc0ffffff | 0x3fff02000000;
   auVar8._8_4_ = in_v0_udw;
@@ -1117,7 +1117,7 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   _s_ReplayCam_DrawOverlay_3 = 0x3f;
   _s_ReplayCam_DrawOverlay_1 = 2;
   _s_ReplayCam_DrawOverlay_7 = _s_ReplayCam_DrawOverlay_7 & auVar8._0_8_ | 0x7f0000003f0000;
-  iRam00431174 = iRam00431174 << 1;
+  _g_ReplayCamShared1 = _g_ReplayCamShared1 << 1;
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = (undefined *)0x433f00;
   Pkt_SubmitToChain(auStack_40,8);
@@ -1157,7 +1157,7 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   Pkt_Submit(auStack_40,0);
   _s_ReplayCam_DrawOverlay_1 = 0;
   puStack_2c = &g_Views;
-  iRam00431174 = iVar3;
+  _g_ReplayCamShared1 = iVar3;
   _s_ReplayCam_DrawOverlay_4 = uVar4;
   _s_ReplayCam_DrawOverlay_5 = uVar5;
   _s_ReplayCam_DrawOverlay_6 = uVar6;
@@ -1217,7 +1217,7 @@ void maybe_ReplayCam_Draw(void)
   undefined1 auStack_40 [20];
   undefined *puStack_2c;
   
-  if ((uRam0046a028 & 4) != 0) {
+  if ((_g_ReplayCamShared3 & 4) != 0) {
     fVar1 = _s_ReplayCamVar15;
     if (2.1474836e+09 <= _s_ReplayCamVar15) {
       fVar1 = _s_ReplayCamVar15 - 2.1474836e+09;
@@ -1588,9 +1588,9 @@ void maybe_ReplayCam_Update(void)
   
   lVar1 = RaceScene_IsReplay();
   if (lVar1 == 0) {
-    if ((uRam0046a028 & 8) != 0) {
-      fVar2 = fRam0043118c - _s_ReplayCamVar5;
-      _s_ReplayCamVar5 = fRam0043118c;
+    if ((_g_ReplayCamShared3 & 8) != 0) {
+      fVar2 = _g_CarShared1 - _s_ReplayCamVar5;
+      _s_ReplayCamVar5 = _g_CarShared1;
       if ((20.0 < fVar2) || (fVar2 < -20.0)) {
         _s_ReplayCamVar3 = 0.033333335;
         _s_ReplayCamVar4 = 1.0;
@@ -1601,10 +1601,10 @@ void maybe_ReplayCam_Update(void)
       }
       maybe_ReplayCam_RenderFrame();
     }
-    if ((uRam0046a028 & 4) != 0) {
+    if ((_g_ReplayCamShared3 & 4) != 0) {
       maybe_ReplayCam_Draw();
     }
-    uRam0046a028 = 0;
+    _g_ReplayCamShared3 = 0;
   }
   return;
 }
@@ -1684,7 +1684,7 @@ void maybe_ReplayCam_Load(undefined8 param_1)
   uStack_10 = DAT_0032fca0;
   uStack_c = DAT_0032fca4;
   uStack_8 = DAT_0032fca8;
-  uRam0046a028 = 2;
+  _g_ReplayCamShared3 = 2;
   uStack_4 = DAT_0032fcac;
   _s_ReplayCam_Load_1 = 0x3f266666;
   sceVu0CopyVector(0x46a040,&uStack_10);
@@ -1698,7 +1698,7 @@ void maybe_ReplayCam_Load(undefined8 param_1)
   uStack_18 = DAT_0032fcb8;
   uStack_14 = DAT_0032fcbc;
   sceVu0CopyVector(0x46a060,&uStack_20);
-  uRam0046a028 = 8;
+  _g_ReplayCamShared3 = 8;
   _s_ReplayCam_Load_3 = 0x40800000;
   iVar5 = 0;
   _s_ReplayCamVar3 = 0;
@@ -1732,9 +1732,10 @@ void maybe_ReplayCam_Load(undefined8 param_1)
     *(undefined4 *)(iVar4 + 0x14) = uVar1;
     DmaBuf_Alloc(unaff_s1,param_1,0x30);
     Pkt_AddTextureUpload
-              (unaff_s1,*(undefined4 *)(iVar4 + 0x10),iRam0046a020 + iVar5,iRam0046a024 + iVar5);
+              (unaff_s1,*(undefined4 *)(iVar4 + 0x10),_g_RaceIntroShared2 + iVar5,
+               _g_ReplayCamShared2 + iVar5);
     TexSlot_BindSimple(*(undefined4 *)(iVar4 + 0x14),*(undefined4 *)(iVar4 + 0x10),0,
-                       iRam0046a020 + iVar5,iRam0046a024 + iVar5,0x11110,0,0);
+                       _g_RaceIntroShared2 + iVar5,_g_ReplayCamShared2 + iVar5,0x11110,0,0);
     cVar3 = cVar3 + '\x01';
     if (cVar3 == '\x04') break;
     iVar5 = iVar5 + 4;

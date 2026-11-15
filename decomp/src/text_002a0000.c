@@ -1486,6 +1486,8 @@ LAB_002a2f1c:
 }
 
 // 0x002a2f80  size 0x128
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrQuickRace_UpdateCarNames(int param_1)
 
 {
@@ -1494,7 +1496,7 @@ void maybe_ScrQuickRace_UpdateCarNames(int param_1)
   int iVar3;
   int iVar4;
   
-  if ((uRam0036f770 & 2) != 0) {
+  if ((_g_ScrQuickRaceShared1 & 2) != 0) {
     iVar4 = 0;
     iVar3 = param_1;
     do {
@@ -1510,7 +1512,7 @@ void maybe_ScrQuickRace_UpdateCarNames(int param_1)
       iVar3 = iVar3 + 4;
     } while (iVar4 < 0x120);
   }
-  if ((uRam0036f770 & 1) != 0) {
+  if ((_g_ScrQuickRaceShared1 & 1) != 0) {
     *(undefined4 *)(param_1 + 0x754) = 7;
     *(long *)(param_1 + 0x60) = (long)((1 << (*(uint *)(param_1 + 0x754) & 0x1f)) + -1);
   }
@@ -1538,7 +1540,7 @@ ulong maybe_QuickRace_ReadPad(void)
     }
   }
   else {
-    if ((uRam0036f770 & 1) == 0) {
+    if ((_g_ScrQuickRaceShared1 & 1) == 0) {
       if (iVar1 == *(int *)(&LAB_0032ed90 + _s_QuickRace_ReadPad_1 * 4)) {
         _s_QuickRace_ReadPad_1 = _s_QuickRace_ReadPad_1 + 1;
         if (_s_QuickRace_ReadPad_1 == 10) {
@@ -1551,7 +1553,7 @@ ulong maybe_QuickRace_ReadPad(void)
         _s_QuickRace_ReadPad_1 = 0;
       }
     }
-    if ((uRam0036f770 & 2) == 0) {
+    if ((_g_ScrQuickRaceShared1 & 2) == 0) {
       if (iVar1 == *(int *)(&LAB_0032edc0 + _s_QuickRace_ReadPad_2 * 4)) {
         _s_QuickRace_ReadPad_2 = _s_QuickRace_ReadPad_2 + 1;
         if (_s_QuickRace_ReadPad_2 == 10) {
@@ -1805,7 +1807,7 @@ void maybe_ScrQuickRace_StartRace(int param_1,int param_2)
           }
           iVar4 = *(int *)(param_1 + 0x28);
         }
-        uRam0036f1ec = (uint)(iVar4 != 2);
+        _g_GameStateShared1 = (uint)(iVar4 != 2);
         iVar4 = *(int *)(param_1 + 0x38);
         uVar6 = 0xb;
         if (*(int *)(param_1 + 8) != 0) {

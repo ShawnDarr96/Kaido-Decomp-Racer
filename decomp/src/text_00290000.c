@@ -2010,6 +2010,8 @@ LAB_002930d8:
 }
 
 // 0x00293170  size 0xe0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrModeVoice_OnResult(undefined4 *param_1,long param_2)
 
 {
@@ -2029,7 +2031,7 @@ void maybe_ScrModeVoice_OnResult(undefined4 *param_1,long param_2)
       else {
         uVar1 = 0;
       }
-      iRam0036f2b4 = (&DAT_0032e940)[param_1[4] * 2] + uVar1;
+      _g_CareerShared1 = (&DAT_0032e940)[param_1[4] * 2] + uVar1;
       RaceCtx_Set_9(5);
       MenuMgr_RequestScreen(0xfffffffffffffffd);
     }
@@ -2231,6 +2233,7 @@ void maybe_ScrModeVoice_Update(undefined8 param_1)
 }
 
 // 0x00293760  size 0x12c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 21 (table 0x3274b0) */
 
 void maybe_ScrModeVoice_Enter(undefined4 *param_1)
@@ -2257,7 +2260,7 @@ void maybe_ScrModeVoice_Enter(undefined4 *param_1)
   }
   else {
     cVar2 = RaceCtx_GetMode();
-    iVar1 = iRam0036f2b4;
+    iVar1 = _g_CareerShared1;
     if (cVar2 == '\a') {
       iVar4 = 0;
       piVar3 = &DAT_0032e940;
@@ -2431,7 +2434,7 @@ void ScrSave_SelectSlot(undefined8 param_1)
   if (*(int *)(iVar6 + 0x77c) == 0) {
     lVar5 = PwInput_IsOpen(iVar6 + 0x588);
     if (lVar5 == 0) {
-      if (iRam0036f898 == 0) {
+      if (_g_ScrSaveShared1 == 0) {
         uVar2 = SaveUi_Task(param_1,lVar3,0,0);
         *(uint *)(iVar6 + 0x770) = uVar2 & 0xff;
       }
@@ -2445,40 +2448,40 @@ void ScrSave_SelectSlot(undefined8 param_1)
       iVar1 = *(int *)(iVar6 + 0x770);
       if (iVar1 == 3) {
         SaveMgr_Close(param_1);
-        uRam0036f8a4 = 2;
+        g_ScrSaveShared4 = 2;
         if (*(int *)(iVar6 + 0x24) == 0) {
-          uRam0036f8a4 = 3;
+          g_ScrSaveShared4 = 3;
         }
       }
       else if (iVar1 == 1) {
         SaveMgr_Close(param_1);
         *(undefined4 *)(iVar6 + 0x77c) = 1;
-        if ((iRam0036f898 == 1) && (*(int *)(iVar6 + 0x24) != 0)) {
+        if ((_g_ScrSaveShared1 == 1) && (*(int *)(iVar6 + 0x24) != 0)) {
           uVar4 = Profile_Get();
           lVar3 = Garage_FindCar(uVar4);
           if (lVar3 == 0) {
             *(undefined4 *)(iVar6 + 0x770) = 0x25;
           }
         }
-        if ((*(int *)(iVar6 + 0x24) != 0) && (iRam0036f898 != 1)) {
+        if ((*(int *)(iVar6 + 0x24) != 0) && (_g_ScrSaveShared1 != 1)) {
           GameDb_ApplyToProfile(0);
           GameDb_ApplyToProfile(1);
         }
       }
       else if (iVar1 == 0) {
-        if (iRam0036f898 == 0) {
+        if (_g_ScrSaveShared1 == 0) {
           SaveMgr_Open(param_1,1,0,0,0,0,0);
         }
         else {
-          SaveMgr_Open(param_1,1,0,uRam0036f89c,iRam0036f8a0,1,0);
+          SaveMgr_Open(param_1,1,0,_g_ScrSaveShared2,_g_ScrSaveShared3,1,0);
         }
       }
     }
   }
   else if (lVar3 != 0) {
     if (*(int *)(iVar6 + 0x770) == 0x25) {
-      uVar2 = _g_MenuInput[iRam0036f8a0 + 2];
-      if ((_g_MenuInput[iRam0036f8a0 + 4] & uVar2) == 0) {
+      uVar2 = _g_MenuInput[_g_ScrSaveShared3 + 2];
+      if ((_g_MenuInput[_g_ScrSaveShared3 + 4] & uVar2) == 0) {
         uVar2 = 0x100000;
       }
       else if (uVar2 == 0x80000) {
@@ -2491,13 +2494,13 @@ void ScrSave_SelectSlot(undefined8 param_1)
         *(undefined4 *)(iVar6 + 0x770) = 1;
         Se_PlayMenu(5);
         MenuMgr_RequestScreen(g_MenuMgr->prevScreen);
-        uRam0036f8a4 = 3;
+        g_ScrSaveShared4 = 3;
       }
     }
     else {
-      uRam0036f8a4 = 2;
+      g_ScrSaveShared4 = 2;
       if (*(int *)(iVar6 + 0x24) == 0) {
-        uRam0036f8a4 = 3;
+        g_ScrSaveShared4 = 3;
       }
       uVar4 = Profile_Get(0);
       lVar3 = Profile_GetDay(uVar4);

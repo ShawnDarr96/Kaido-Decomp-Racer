@@ -1349,6 +1349,8 @@ void maybe_ScrOptionsLanguage_InitItemsB(int param_1,int *param_2)
 }
 
 // 0x00296600  size 0x240
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_Career_ApplyChapterFlags(void)
 
 {
@@ -1379,63 +1381,63 @@ int maybe_Career_ApplyChapterFlags(void)
                     Profile_ClearFlags(uVar1,2);
                     Profile_SetFlags(uVar1,0x200000);
                     Profile_SetFlags(uVar1,0x1000);
-                    uRam0036f2b4 = 0xe;
+                    _g_CareerShared1 = 0xe;
                     RaceCtx_Set_9(4);
                     iVar3 = 1;
                   }
                 }
                 else {
                   Profile_ClearFlags(uVar1,0x200);
-                  uRam0036f2b4 = 0x1e;
+                  _g_CareerShared1 = 0x1e;
                   RaceCtx_Set_9(3);
                   iVar3 = 1;
                 }
               }
               else {
                 Profile_ClearFlags(uVar1,0x100);
-                uRam0036f2b4 = 0x1f;
+                _g_CareerShared1 = 0x1f;
                 RaceCtx_Set_9(3);
                 iVar3 = 1;
               }
             }
             else {
               Profile_ClearFlags(uVar1,0x80);
-              uRam0036f2b4 = 0x1c;
+              _g_CareerShared1 = 0x1c;
               RaceCtx_Set_9(3);
               iVar3 = 1;
             }
           }
           else {
             Profile_ClearFlags(uVar1,0x40);
-            uRam0036f2b4 = 0x1b;
+            _g_CareerShared1 = 0x1b;
             RaceCtx_Set_9(3);
             iVar3 = 1;
           }
         }
         else {
           Profile_ClearFlags(uVar1,0x20);
-          uRam0036f2b4 = 0x1a;
+          _g_CareerShared1 = 0x1a;
           RaceCtx_Set_9(3);
           iVar3 = 1;
         }
       }
       else {
         Profile_ClearFlags(uVar1,0x10);
-        uRam0036f2b4 = 0x1d;
+        _g_CareerShared1 = 0x1d;
         RaceCtx_Set_9(3);
         iVar3 = 1;
       }
     }
     else {
       Profile_ClearFlags(uVar1,8);
-      uRam0036f2b4 = 0x19;
+      _g_CareerShared1 = 0x19;
       RaceCtx_Set_9(3);
       iVar3 = 1;
     }
   }
   else {
     Profile_ClearFlags(uVar1,4);
-    uRam0036f2b4 = 0x18;
+    _g_CareerShared1 = 0x18;
     RaceCtx_Set_9(3);
     iVar3 = 1;
   }
@@ -1908,7 +1910,7 @@ void maybe_ScrRecord_StepRival(int param_1)
       }
     }
     if (((uVar8 != 0x100000) && (*(int *)(param_1 + 0x64c) == 0x20)) &&
-       (*(int *)(iRam0036f4dc + 0xe8) != *(int *)(iRam0036f4dc + 0xec))) {
+       (*(int *)(_g_TitleCamShared1 + 0xe8) != *(int *)(_g_TitleCamShared1 + 0xec))) {
       return;
     }
   }

@@ -123,8 +123,8 @@ LAB_0019c6c8:
     uVar8 = uVar8 + 1;
     puVar7 = puVar7 + 8;
     if (3 < uVar8) {
-      if (cRam00430460 == '\x02') {
-        if ((_g_Skids == 0) || (uRam004301ac <= puVar9[0xff])) {
+      if (g_CarModelShared1 == '\x02') {
+        if ((_g_Skids == 0) || (_g_AiShared3 <= puVar9[0xff])) {
           iVar6 = 0;
         }
         else {
@@ -190,7 +190,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
   iVar4 = (int)param_1;
   if (*(int *)(iVar4 + 0x4f4) != 0) {
     CarModel_SetupLighting(param_1,auStack_500,1);
-    if (cRam00430460 == '\0') {
+    if (g_CarModelShared1 == '\0') {
       *(undefined4 *)(g_Loading->workBufs[0] + 0x104) =
            *(undefined4 *)(g_Loading->workBufs[0] + 0xa4);
       puStack_2bc = &g_Views;
@@ -200,7 +200,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
     }
     if (*(int *)(puStack_2bc + 0x584) != 0) {
       Layer_Reset(auStack_500,puStack_2bc,iStack_130,0,4);
-      if (cRam00430460 == '\x02') {
+      if (g_CarModelShared1 == '\x02') {
         sceVu0SubVector(auStack_520,iVar4 + 400,iVar4 + 0x170);
         sceVu0SubVector(auStack_530,iVar4 + 0x180,iVar4 + 400);
         sceVu0SubVector(auStack_540,iVar4 + 0x1a0,iVar4 + 0x180);
@@ -267,7 +267,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
         Pkt_SetFrame(auStack_500,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),1);
         Pkt_SetFrame(auStack_4bc,*(undefined4 *)(iVar4 + 0x4ec),*(undefined4 *)(iVar4 + 0x4f0),1);
       }
-      if (cRam00430460 == '\x02') {
+      if (g_CarModelShared1 == '\x02') {
         puVar2 = (undefined8 *)Pkt_AllocVif(auStack_500,1,0x13000000);
         *puVar2 = 1;
         puVar2[1] = 0x4a;
@@ -276,12 +276,12 @@ void CarModel_RenderTranslucent(undefined8 param_1)
         puVar2[1] = 0x4a;
       }
       lVar3 = CarModel_DrawWheels(param_1,auStack_500);
-      if (cRam00430460 != '\x02') {
+      if (g_CarModelShared1 != '\x02') {
         maybe_Vu0_UnitMatrix(auStack_7a0);
         uStack_78c = 0xbf800000;
         sceVu0MulMatrix(auStack_440,auStack_7a0,iVar4 + 0x120);
       }
-      if ((lVar3 != 0) && (cRam00430460 == '\0')) {
+      if ((lVar3 != 0) && (g_CarModelShared1 == '\0')) {
         CarModel_DrawParts(param_1,auStack_500);
       }
       CarModel_DrawBody(param_1,auStack_500);
@@ -294,7 +294,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
         iStack_7a8 = 0xfffff0;
       }
       iStack_47c = iStack_7a8;
-      if (cRam00430460 == '\x02') {
+      if (g_CarModelShared1 == '\x02') {
         puVar2 = (undefined8 *)Pkt_AllocVif(auStack_500,1,0x13000000);
         *puVar2 = 0;
         puVar2[1] = 0x4a;
@@ -544,21 +544,21 @@ void CourseStream_RequestBlock
   _s_CourseStreamVar1 = uVar5;
   if (uVar5 != 0) {
     do {
-      lVar8 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar11 + 4));
+      lVar8 = BlockPool_FindB(_g_CourseBufB,_g_CourseStreamShared3,*(undefined2 *)(iVar11 + 4));
       if (lVar8 != 0) {
-        lVar8 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar11 + 4));
+        lVar8 = BlockPool_Find(_g_CourseBufC,_g_CourseStreamShared4,*(undefined4 *)(iVar11 + 4));
         if (lVar8 == 0) {
-          lVar8 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
+          lVar8 = BlockPool_FindFree(_g_CourseBufC,_g_CourseStreamShared4);
           if (lVar8 != 0) {
             uVar7 = *(uint *)(iVar11 + 4);
             Sema_Wait(0x36efc0);
-            uVar4 = uRam00386628;
+            uVar4 = _g_FileShared2;
             Sema_Signal(0x36efc0,0);
             puVar10 = (uint *)lVar8;
             if (uVar4 < 0x100) {
               puVar10[2] = uVar7;
               uVar1 = *(ushort *)((int)puVar10 + 10);
-              iVar3 = *(int *)(iRam004305b8 + (uint)(ushort)puVar10[2] * 0xc + 0x48);
+              iVar3 = *(int *)(_g_CourseStreamShared2 + (uint)(ushort)puVar10[2] * 0xc + 0x48);
               iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
                                        (uint)(ushort)puVar10[2] * 2 + 0xc,0);
               iVar6 = *(int *)(iVar6 + (uint)uVar1 * 4);
@@ -590,7 +590,7 @@ void CourseStream_RequestBlock
     } while (uVar12 < uVar5);
   }
   uVar5 = 0;
-  if (uRam004305cc != 0) {
+  if (_g_CourseStreamShared4 != 0) {
     iVar11 = 0;
     do {
       puVar10 = (uint *)(_g_CourseBufC + iVar11);
@@ -606,7 +606,7 @@ void CourseStream_RequestBlock
       }
       uVar5 = uVar5 + 1;
       iVar11 = iVar11 + 0x50;
-    } while (uVar5 < uRam004305cc);
+    } while (uVar5 < _g_CourseStreamShared4);
   }
   return;
 }
@@ -663,8 +663,8 @@ uint CourseStream_UpdateVisibility
   float fStack_8;
   
   iVar4 = _g_CourseBufE;
-  uVar3 = uRam004305cc;
-  iVar2 = iRam004305b8;
+  uVar3 = _g_CourseStreamShared4;
+  iVar2 = _g_CourseStreamShared2;
   uVar15 = 0;
   sceVu0CopyVector(auStack_40);
   uStack_3c = 0;
@@ -684,7 +684,7 @@ uint CourseStream_UpdateVisibility
       bVar1 = false;
       uVar11 = 0;
       pfVar8 = _g_CourseBufD;
-      if (uRam004305c4 != 0) {
+      if (_g_CourseStreamShared3 != 0) {
         do {
           if ((0.0 <= *pfVar8) && (uVar14 == *(ushort *)(pfVar8 + 1))) {
             bVar1 = true;
@@ -692,7 +692,7 @@ uint CourseStream_UpdateVisibility
           }
           uVar11 = uVar11 + 1;
           pfVar8 = pfVar8 + 2;
-        } while (uVar11 < uRam004305c4);
+        } while (uVar11 < _g_CourseStreamShared3);
       }
       if (bVar1) {
         iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_110,0);
@@ -787,7 +787,7 @@ LAB_0019d900:
       bVar1 = false;
       uVar11 = 0;
       pfVar8 = _g_CourseBufD;
-      if (uRam004305c4 != 0) {
+      if (_g_CourseStreamShared3 != 0) {
         do {
           if ((0.0 <= *pfVar8) && (uVar14 == *(ushort *)(pfVar8 + 1))) {
             bVar1 = true;
@@ -795,7 +795,7 @@ LAB_0019d900:
           }
           uVar11 = uVar11 + 1;
           pfVar8 = pfVar8 + 2;
-        } while (uVar11 < uRam004305c4);
+        } while (uVar11 < _g_CourseStreamShared3);
       }
       if (bVar1) {
         iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iVar13,0);
@@ -1229,8 +1229,8 @@ LAB_0019e558:
 void CourseStream_FreeAll(void)
 
 {
-  BlockPool_ResetB(_g_CourseBufB,uRam004305c4);
-  BlockPool_ResetA(_g_CourseBufC,uRam004305cc);
+  BlockPool_ResetB(_g_CourseBufB,_g_CourseStreamShared3);
+  BlockPool_ResetA(_g_CourseBufC,_g_CourseStreamShared4);
   return;
 }
 
@@ -1240,8 +1240,8 @@ void CourseStream_FreeAll(void)
 void CourseStream_Update(undefined8 param_1)
 
 {
-  BlockPool_TouchB(_g_CourseBufB,uRam004305c4,param_1);
-  BlockPool_TouchA(_g_CourseBufC,uRam004305cc,param_1);
+  BlockPool_TouchB(_g_CourseBufB,_g_CourseStreamShared3,param_1);
+  BlockPool_TouchA(_g_CourseBufC,_g_CourseStreamShared4,param_1);
   return;
 }
 
@@ -1422,6 +1422,8 @@ void CourseStream_OnTextureReady(void)
 }
 
 // 0x0019ebd0  size 0x668
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_OnBlockLoaded(void)
 
 {
@@ -1599,10 +1601,10 @@ void CourseStream_OnBlockLoaded(void)
       } while (uVar6 < *(uint *)uVar4);
     }
   }
-  if (pcRam00430604 != (code *)0x0) {
+  if (_g_CourseStreamShared5 != (code *)0x0) {
     uVar4 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),7,0);
     uVar5 = Gut_PackGetEntry(*(undefined4 *)(in_a3_lo + 0xc),5,0);
-    (*pcRam00430604)(uVar5,uVar4,uRam00430608);
+    (*_g_CourseStreamShared5)(uVar5,uVar4,_g_CourseStreamShared6);
   }
   return;
 }
@@ -1653,21 +1655,21 @@ void CourseStream_RequestLod
   _s_CourseStreamVar1 = uVar5;
   if (uVar5 != 0) {
     do {
-      lVar8 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar12 + 4));
+      lVar8 = BlockPool_FindB(_g_CourseBufB,_g_CourseStreamShared3,*(undefined2 *)(iVar12 + 4));
       if (lVar8 != 0) {
-        lVar8 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar12 + 4));
+        lVar8 = BlockPool_Find(_g_CourseBufC,_g_CourseStreamShared4,*(undefined4 *)(iVar12 + 4));
         if (lVar8 == 0) {
-          lVar8 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
+          lVar8 = BlockPool_FindFree(_g_CourseBufC,_g_CourseStreamShared4);
           if (lVar8 != 0) {
             uVar7 = *(uint *)(iVar12 + 4);
             Sema_Wait(0x36efc0);
-            uVar4 = uRam00386628;
+            uVar4 = _g_FileShared2;
             Sema_Signal(0x36efc0,0);
             puVar11 = (uint *)lVar8;
             if (uVar4 < 0x100) {
               puVar11[2] = uVar7;
               uVar1 = *(ushort *)((int)puVar11 + 10);
-              iVar3 = *(int *)(iRam004305b8 + (uint)(ushort)puVar11[2] * 0xc + 0x48);
+              iVar3 = *(int *)(_g_CourseStreamShared2 + (uint)(ushort)puVar11[2] * 0xc + 0x48);
               iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
                                        (uint)(ushort)puVar11[2] * 2 + 0xc,0);
               iVar6 = *(int *)(iVar6 + (uint)uVar1 * 4);
@@ -1698,7 +1700,8 @@ void CourseStream_RequestLod
       iVar12 = iVar12 + 8;
     } while (uVar13 < uVar5);
   }
-  if (((iRam004305b0 == 0) || (param_3 == 1)) && (uVar5 = 0, uRam004305cc != 0)) {
+  if (((_g_CourseStreamShared1 == 0) || (param_3 == 1)) && (uVar5 = 0, _g_CourseStreamShared4 != 0))
+  {
     iVar12 = 0;
     do {
       puVar11 = (uint *)(_g_CourseBufC + iVar12);
@@ -1714,7 +1717,7 @@ void CourseStream_RequestLod
       }
       uVar5 = uVar5 + 1;
       iVar12 = iVar12 + 0x50;
-    } while (uVar5 < uRam004305cc);
+    } while (uVar5 < _g_CourseStreamShared4);
   }
   return;
 }
@@ -1764,8 +1767,8 @@ uint CourseStream_UpdateLod
   float fStack_8;
   
   iVar4 = _g_CourseBufE;
-  uVar3 = uRam004305cc;
-  iVar2 = iRam004305b8;
+  uVar3 = _g_CourseStreamShared4;
+  iVar2 = _g_CourseStreamShared2;
   uVar15 = 0;
   sceVu0CopyVector(auStack_40);
   uStack_3c = 0;
@@ -1785,7 +1788,7 @@ uint CourseStream_UpdateLod
       bVar1 = false;
       uVar11 = 0;
       pfVar6 = _g_CourseBufD;
-      if (uRam004305c4 != 0) {
+      if (_g_CourseStreamShared3 != 0) {
         do {
           if ((0.0 <= *pfVar6) && (uVar14 == *(ushort *)(pfVar6 + 1))) {
             bVar1 = true;
@@ -1793,7 +1796,7 @@ uint CourseStream_UpdateLod
           }
           uVar11 = uVar11 + 1;
           pfVar6 = pfVar6 + 2;
-        } while (uVar11 < uRam004305c4);
+        } while (uVar11 < _g_CourseStreamShared3);
       }
       if (bVar1) {
         iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_c0,0);
@@ -1975,18 +1978,18 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
   _s_CourseStream_RequestTextures_1 = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar5 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined4 *)(iVar8 + 4));
+      lVar5 = BlockPool_FindB(_g_CourseBufB,_g_CourseStreamShared3,*(undefined4 *)(iVar8 + 4));
       if (lVar5 == 0) {
-        lVar5 = BlockPool_FindFreeB(_g_CourseBufB,uRam004305c4);
+        lVar5 = BlockPool_FindFreeB(_g_CourseBufB,_g_CourseStreamShared3);
         if (lVar5 != 0) {
           uVar4 = *(uint *)(iVar8 + 4);
           Sema_Wait(0x36efc0);
-          uVar2 = uRam00386628;
+          uVar2 = _g_FileShared2;
           Sema_Signal(0x36efc0,0);
           puVar7 = (uint *)lVar5;
           if (uVar2 < 0x100) {
             puVar7[2] = uVar4;
-            uVar1 = *(undefined4 *)(iRam004305b8 + puVar7[2] * 0xc + 0x44);
+            uVar1 = *(undefined4 *)(_g_CourseStreamShared2 + puVar7[2] * 0xc + 0x44);
             *puVar7 = *puVar7 & 0xfffffffb;
             *puVar7 = *puVar7 | 1;
             uVar4 = Arc_LoadFileEx(uVar1,puVar7[3],0x19e8f0,lVar5,0,0);
@@ -2003,7 +2006,7 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
     } while (uVar9 < uVar3);
   }
   uVar3 = 0;
-  if (uRam004305c4 != 0) {
+  if (_g_CourseStreamShared3 != 0) {
     iVar8 = 0;
     do {
       puVar7 = (uint *)(_g_CourseBufB + iVar8);
@@ -2019,7 +2022,7 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
       }
       uVar3 = uVar3 + 1;
       iVar8 = iVar8 + 0x74;
-    } while (uVar3 < uRam004305c4);
+    } while (uVar3 < _g_CourseStreamShared3);
   }
   return;
 }
@@ -2066,12 +2069,12 @@ uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
   undefined1 auStack_10 [16];
   
   iVar5 = _g_CourseBufD;
-  uVar4 = uRam004305c4;
-  iVar3 = iRam004305b8;
+  uVar4 = _g_CourseStreamShared3;
+  iVar3 = _g_CourseStreamShared2;
   uVar16 = 0;
   uVar15 = 0;
   uVar13 = 0;
-  if (*(int *)(iRam004305b8 + 0x40) != 0) {
+  if (*(int *)(_g_CourseStreamShared2 + 0x40) != 0) {
     iStack_c0 = 0xb;
     pfVar17 = (float *)param_2;
     do {

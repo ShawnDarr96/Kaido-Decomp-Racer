@@ -152,7 +152,7 @@ void __sinit_003689b0(void)
   _s___sinit_003689b0_37 = 0;
   _s___sinit_003689b0_38 = 0x3f350481;
   _s___sinit_003689b0_39 = 0x3f350481;
-  uRam0042f54c = 0x3f800000;
+  _g_PhysBoxShared1 = 0x3f800000;
   return;
 }
 

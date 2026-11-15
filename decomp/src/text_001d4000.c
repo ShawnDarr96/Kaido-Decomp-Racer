@@ -477,6 +477,8 @@ void maybe_RaceTask_GetField(int param_1)
 }
 
 // 0x001d4c40  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Traffic_UpdateAll(int param_1)
 
 {
@@ -494,7 +496,7 @@ void Traffic_UpdateAll(int param_1)
     iVar3 = iVar3 + 1;
     puVar2 = puVar2 + 0x1d;
   } while (iVar3 < 3);
-  puRam0036f36c = puVar1;
+  _g_DriverShared1 = puVar1;
   *puVar1 = 0;
   Traffic_Spawn(puVar1);
   *(code **)(param_1 + 0x1c) = Ai_DriverTask;
@@ -884,7 +886,7 @@ void Ai_DriveCar(undefined8 param_1)
   apuStack_120[0] = puVar13;
   if (((fVar14 == -200.0) || (fVar14 == 0.0)) ||
      (((cVar5 = GameState_Get_354(), cVar5 == '\0' || (cVar5 = GameState_Get_354(), cVar5 == '\x05')
-       ) && ((uVar9 = RaceScene_Get_38(), uVar9 < 0x1e1 && (iRam0046a590 == 0)))))) {
+       ) && ((uVar9 = RaceScene_Get_38(), uVar9 < 0x1e1 && (_g_RaceSndShared1 == 0)))))) {
     fVar15 = *(float *)&pRVar6->field_0x1770 + *(float *)&pRVar6->field_0x1778;
     if (2.0 <= fVar15) {
       fVar16 = *(float *)&pRVar6->field_0x1760 - 2.0;

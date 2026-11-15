@@ -1147,7 +1147,7 @@ void Garage3d_Draw(void)
   }
   SceneObj_ResetAll();
   if (*_g_Garage3d == '\0') {
-    uRam0043058c = 1;
+    _g_SceneObjShared3 = 1;
     SceneObj_DestroyList(0);
     SceneObj_DestroyList(0,2);
     View_DrawBackground(5,_g_Garage3d[1],0);
@@ -1168,7 +1168,7 @@ void Garage3d_Draw(void)
     SceneObj_DestroyList(1,0);
   }
   else if (*_g_Garage3d == '\x01') {
-    uRam0043058c = 0;
+    _g_SceneObjShared3 = 0;
     SceneObj_DestroyList(0);
     SceneObj_DestroyList(0,0);
     DmaChain_Kick(1,0,4);
@@ -1466,12 +1466,14 @@ void maybe_Ui_SetCallback(int param_1)
 }
 
 // 0x00206670  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Title_Update(void)
 
 {
   undefined4 uVar1;
   
-  uVar1 = uRam0036f4dc;
+  uVar1 = _g_TitleCamShared1;
   Pad_GetPort(0,0);
   Title_DrawBackground(uVar1);
   return;
@@ -1487,6 +1489,8 @@ void Title_Exit(void)
 }
 
 // 0x002066e0  size 0x68
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Title_Enter(int param_1)
 
 {
@@ -1494,8 +1498,8 @@ void Title_Enter(int param_1)
   
   Loading_Begin(0x430750);
   TitleCam_Alloc(0x430750);
-  iVar1 = iRam0036f4dc;
-  TitleCam_StartPath(iRam0036f4dc + 0x10,0);
+  iVar1 = _g_TitleCamShared1;
+  TitleCam_StartPath(_g_TitleCamShared1 + 0x10,0);
   TitleCam_StartPathB(iVar1 + 0x110,0);
   *(code **)(param_1 + 0x1c) = Title_Update;
   return;
@@ -1562,7 +1566,7 @@ void Title_Draw(int param_1)
   }
   if ((iVar9 == 1) && ((iVar12 == 1 || (*(int *)(_g_MoviePlayer + 0x174) == 1)))) {
     bVar7 = true;
-    if (cRam0036f2a8 == '\x01') {
+    if (g_TitleShared1 == '\x01') {
       iVar12 = piVar1[3];
       if (((((iVar12 == 0xf) || (iVar12 == 6)) || (iVar12 == 5)) || ((iVar12 == 4 || (iVar12 == 3)))
           ) || ((iVar12 == 2 || (iVar12 == 1)))) {
@@ -1570,7 +1574,7 @@ void Title_Draw(int param_1)
       }
       if (!bVar7) goto LAB_00206864;
     }
-    if (cRam0036f2a8 == '\x01') {
+    if (g_TitleShared1 == '\x01') {
       if ((*piVar1 == 0) && ((uVar6 & 0x50) != 0)) {
         if (piVar1[3] == 0xd) {
           Se_PlayMenuVol(4,0x7f);
@@ -1593,7 +1597,7 @@ LAB_00206864:
       piVar1[4] = 0;
     }
     Gfx_SetDisplayParam(0,0,0,0,0);
-    if (cRam0036f2a8 == '\x01') {
+    if (g_TitleShared1 == '\x01') {
       iVar11 = piVar1[3];
       if ((iVar11 < 1) || (6 < iVar11)) {
         if (iVar11 == 0xf) {
@@ -1771,7 +1775,7 @@ void Opening_Exit(int param_1)
   
   iVar1 = *(int *)(param_1 + 0x14);
   MoviePlayer_Free();
-  if ((cRam0036f2a8 == '\x01') && (*(int *)(iVar1 + 0x14) != 0)) {
+  if ((g_TitleShared1 == '\x01') && (*(int *)(iVar1 + 0x14) != 0)) {
     Mem_Free();
     *(undefined4 *)(iVar1 + 0x14) = 0;
   }
@@ -1780,6 +1784,7 @@ void Opening_Exit(int param_1)
 }
 
 // 0x00206f60  size 0x1a4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* loads movie + textures */
 
 void Opening_Enter(int param_1)
@@ -1800,13 +1805,13 @@ void Opening_Enter(int param_1)
   
   puVar1 = *(undefined4 **)(param_1 + 0x14);
   MenuWnd_Alloc(0x430750,1);
-  if (cRam0036f2a8 == '\x01') {
+  if (g_TitleShared1 == '\x01') {
     uVar3 = Arc_GetFileSize(7,7);
     uVar2 = Mem_AllocAligned(uVar3,0x40,0x430750);
     puVar1[5] = uVar2;
     Arc_LoadFileEx(7,puVar1[5],0,0,0,0);
     File_AbortAll();
-    uVar2 = uRam0036f2c0;
+    uVar2 = _g_RaceIntroShared1;
     Tex_Relocate(puVar1[5]);
     TexSlot_Bind(puVar1 + 6,puVar1[5],0,uVar2,uVar2,0x11110,0,0);
   }
@@ -1822,19 +1827,19 @@ void Opening_Enter(int param_1)
   aiStack_50[8] = 0x100;
   uStack_1c = 1;
   aiStack_50[9] = 5;
-  aiStack_50[0] = iRam0036f2a4 + 1;
+  aiStack_50[0] = _g_GameShared1 + 1;
   uStack_8 = 0x800;
   uStack_24 = 8;
   uStack_20 = 8;
   uStack_18 = 0;
   uStack_14 = 0;
-  aiStack_50[10] = uRam0036f2c0;
+  aiStack_50[10] = _g_RaceIntroShared1;
   uStack_10 = 0;
   MoviePlayer_Create(aiStack_50,0x430750);
   *puVar1 = 0;
   puVar1[1] = 0;
   puVar1[2] = 0;
-  puVar1[3] = uRam0036f2b4;
+  puVar1[3] = _g_CareerShared1;
   puVar1[4] = 0;
   *(code **)(param_1 + 0x1c) = Title_Draw;
   return;
@@ -1861,12 +1866,14 @@ void Title_DrawBackground(int param_1)
 }
 
 // 0x002071f0  size 0x2c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TitleCam_Free(void)
 
 {
-  if (iRam0036f4dc != 0) {
+  if (_g_TitleCamShared1 != 0) {
     Mem_Free();
-    iRam0036f4dc = 0;
+    _g_TitleCamShared1 = 0;
   }
   return;
 }
@@ -1886,22 +1893,22 @@ void TitleCam_Alloc(undefined8 param_1)
   undefined4 uVar7;
   
   uVar4 = Mem_Alloc16(400,param_1);
-  puRam0036f4dc = (uint *)uVar4;
+  _g_TitleCamShared1 = (uint *)uVar4;
   Mem_Set16(uVar4,0,400);
-  *puRam0036f4dc = *puRam0036f4dc | 1;
-  *puRam0036f4dc = *puRam0036f4dc | 8;
-  *puRam0036f4dc = *puRam0036f4dc | 0x10;
-  *puRam0036f4dc = *puRam0036f4dc | 0x20;
-  TitleCam_SetFov(puRam0036f4dc + 4,g_Loading->workBufs[0]);
-  puVar3 = puRam0036f4dc;
+  *_g_TitleCamShared1 = *_g_TitleCamShared1 | 1;
+  *_g_TitleCamShared1 = *_g_TitleCamShared1 | 8;
+  *_g_TitleCamShared1 = *_g_TitleCamShared1 | 0x10;
+  *_g_TitleCamShared1 = *_g_TitleCamShared1 | 0x20;
+  TitleCam_SetFov(_g_TitleCamShared1 + 4,g_Loading->workBufs[0]);
+  puVar3 = _g_TitleCamShared1;
   puVar2 = PTR_DAT_003298b0;
-  puVar6 = puRam0036f4dc + 4;
-  puRam0036f4dc[0x3a] = 0;
+  puVar6 = _g_TitleCamShared1 + 4;
+  _g_TitleCamShared1[0x3a] = 0;
   puVar3[0x3b] = 0;
   puVar3[0x12] = *(uint *)(puVar2 + 0x30);
   _s_TitleCamVar1 = *(undefined4 *)(puVar2 + 0x34);
   _s_TitleCamVar2 = *(undefined4 *)(puVar2 + 0x38);
-  uVar1 = (ulong)uRam00431170;
+  uVar1 = (ulong)_g_CourseShared23;
   uVar4 = maybe___sf_to_df(((float)puVar3[0x12] / 57.29578) / 2.0);
   uVar4 = maybe_cos(uVar4);
   uVar4 = __divdf3(0x3ff0000000000000,uVar4);
@@ -1912,12 +1919,12 @@ void TitleCam_Alloc(undefined8 param_1)
   sceVu0CopyVector(puVar6,puVar2);
   sceVu0CopyVector(puVar3 + 8,puVar2 + 0x10);
   sceVu0CopyVector(puVar3 + 0xc,puVar2 + 0x20);
-  puVar3 = puRam0036f4dc;
-  Mem_Set16(puRam0036f4dc + 0x44,0,0x80);
-  puVar3[0x60] = 0x436180;
-  puVar3 = puRam0036f4dc;
+  puVar3 = _g_TitleCamShared1;
+  Mem_Set16(_g_TitleCamShared1 + 0x44,0,0x80);
+  puVar3[0x60] = (uint)&g_CourseShared25;
+  puVar3 = _g_TitleCamShared1;
   puVar2 = PTR_DAT_003298a0;
-  sceVu0CopyVector(puRam0036f4dc + 0x44,PTR_DAT_003298a0);
+  sceVu0CopyVector(_g_TitleCamShared1 + 0x44,PTR_DAT_003298a0);
   sceVu0CopyVector(puVar3 + 0x48,puVar2 + 0x10);
   sceVu0CopyVector(puVar3 + 0x4c,puVar2 + 0x20);
   sceVu0CopyVector(puVar3 + 0x50,puVar2 + 0x30);
@@ -1928,6 +1935,8 @@ void TitleCam_Alloc(undefined8 param_1)
 }
 
 // 0x00207480  size 0x460
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TitleCam_Update(undefined8 param_1)
 
 {
@@ -1992,7 +2001,7 @@ void TitleCam_Update(undefined8 param_1)
       TitleCam_EvalSpline(param_1,pfVar4[0x36]);
     }
   }
-  uVar1 = (ulong)uRam00431170;
+  uVar1 = (ulong)_g_CourseShared23;
   uVar2 = maybe___sf_to_df((pfVar4[0xe] / 57.29578) / 2.0);
   uVar2 = maybe_cos(uVar2);
   uVar2 = __divdf3(0x3ff0000000000000,uVar2);

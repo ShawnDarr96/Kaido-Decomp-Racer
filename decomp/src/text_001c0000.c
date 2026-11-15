@@ -1330,7 +1330,7 @@ void Profile_Validate(int param_1,int *param_2,uint *param_3)
   
   iVar1 = *(int *)(_g_Profiles + param_1 * 4);
   iVar2 = *(int *)(iVar1 + 0x2bec);
-  for (uVar3 = (iRam0036f0cc - *(int *)(_g_Profiles + 8)) + *(int *)(iVar1 + 0x2bf0);
+  for (uVar3 = (_g_ProfileShared1 - *(int *)(_g_Profiles + 8)) + *(int *)(iVar1 + 0x2bf0);
       0x34bbf < uVar3; uVar3 = uVar3 - 0x34bc0) {
     iVar2 = iVar2 + 1;
   }
@@ -1401,7 +1401,7 @@ void Profile_GetPlayTime(void)
   uint uVar5;
   int iVar6;
   
-  iVar2 = iRam0036f0cc - *(int *)(_g_Profiles + 8);
+  iVar2 = _g_ProfileShared1 - *(int *)(_g_Profiles + 8);
   if (iVar2 != 0) {
     iVar6 = 0;
     iVar3 = 0;
@@ -1419,7 +1419,7 @@ void Profile_GetPlayTime(void)
       iVar3 = iVar3 + 4;
     } while (iVar6 < 2);
   }
-  *(int *)(_g_Profiles + 8) = iRam0036f0cc;
+  *(int *)(_g_Profiles + 8) = _g_ProfileShared1;
   return;
 }
 
@@ -1429,7 +1429,7 @@ void Profile_GetPlayTime(void)
 void Profile_ResetPlayTimer(void)
 
 {
-  *(undefined4 *)(_g_Profiles + 8) = uRam0036f0cc;
+  *(undefined4 *)(_g_Profiles + 8) = _g_ProfileShared1;
   return;
 }
 

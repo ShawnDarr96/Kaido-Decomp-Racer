@@ -83,9 +83,9 @@ void RaceHud_AnimateLapTimes(int param_1)
   float fVar6;
   
   puVar4 = (undefined4 *)(param_1 + 0xfb8);
-  if ((byte)(&DAT_0032f531)[(uint)bRam0036f810 * 6] < 7) {
+  if ((byte)(&DAT_0032f531)[(uint)g_RaceHudShared1 * 6] < 7) {
                     /* WARNING: Switch is manually overridden */
-    switch((&DAT_0032f531)[(uint)bRam0036f810 * 6]) {
+    switch((&DAT_0032f531)[(uint)g_RaceHudShared1 * 6]) {
     case 0:
       unaff_s1_lo = 0x18;
       unaff_s0 = 0xf;
@@ -554,7 +554,7 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   bVar5 = false;
   bVar4 = (*(uint *)(param_1 + 0x27c) & 1) != 0;
   maybe_RaceHud_SetupRecordLayout(&piStack_20);
-  iVar29 = (uint)bRam0036f810 * 6;
+  iVar29 = (uint)g_RaceHudShared1 * 6;
   piStack_10 = piStack_20;
   bVar1 = (&DAT_0032f531)[iVar29];
   piStack_8 = piStack_18;
@@ -614,7 +614,7 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
       if (bVar4) {
         unaff_s1_lo = 0x1f;
       }
-      else if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') {
+      else if ((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') {
         unaff_s1_lo = 0x1d;
       }
       else {

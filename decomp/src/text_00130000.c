@@ -531,11 +531,13 @@ undefined4 maybe_Pad2_ParseData(byte *param_1,undefined4 *param_2)
 }
 
 // 0x00130b68  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_Dbc_RpcCall(void)
 
 {
   sceSifCallRpc(0x37cc08,0xffffffff80001363,0,0x37cc80,0x280,0x37cc80,0x280,0);
-  return uRam0037cc80;
+  return _g_DbcShared1;
 }
 
 // 0x00130bc0  size 0x23c
@@ -556,7 +558,7 @@ undefined4 sceDbcInit(void)
   if (ram0x0030a540 == 1) {
     return 1;
   }
-  uRam003801c0 = 0;
+  _g_sceDbcSendDataShared1 = 0;
   sceSifInitRpc(0);
   while (lVar3 = sceSifBindRpc(0x37cc08,0xffffffff80001300,0), -1 < lVar3) {
     iVar4 = 0x10000;
@@ -590,7 +592,7 @@ LAB_00130cdc:
       uStack_68 = 1;
       uStack_6c = 0x7f;
       lVar3 = CreateSema(auStack_70);
-      uRam003801c0 = (undefined4)lVar3;
+      _g_sceDbcSendDataShared1 = (undefined4)lVar3;
       if (lVar3 < 0) {
         return 0;
       }
@@ -627,7 +629,7 @@ undefined4 sceDbcEnd(void)
   else {
     ram0x0030a540 = 0;
     uVar1 = 1;
-    if (-1 < iRam003801c0) {
+    if (-1 < _g_sceDbcSendDataShared1) {
       DeleteSema();
       uVar1 = 1;
     }
@@ -636,15 +638,17 @@ undefined4 sceDbcEnd(void)
 }
 
 // 0x00130e48  size 0x6c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceDbcSetWorkAddr(undefined4 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  uRam0037cc84 = param_1;
+  _g_sceDbcSetWorkAddrShared1 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001304,0,0x37cc80,0x280,0x37cc80,0x280,0);
-  uVar1 = uRam0037cc80;
+  uVar1 = _g_DbcShared1;
   if (lVar2 < 0) {
     maybe_Dbc_GetLastError(0x360ad8);
     uVar1 = 0;
@@ -666,12 +670,12 @@ undefined4 sceDbcCreateSocket(undefined4 *param_1,undefined4 param_2,undefined4 
   
   uVar2 = 0;
   if (ram0x0030a540 != 0) {
-    uRam0037cc80 = *param_1;
-    uRam0037cc84 = param_1[1];
+    _g_DbcShared1 = *param_1;
+    _g_sceDbcSetWorkAddrShared1 = param_1[1];
     iVar5 = 0;
-    uRam0037cc88 = param_1[2];
-    uRam0037cc8c = param_1[3];
-    uRam0037cc90 = param_1[4];
+    _g_sceDbcReceiveDataShared1 = param_1[2];
+    _g_sceDbcSRDataShared1 = param_1[3];
+    _g_sceDbcCreateSocketShared1 = param_1[4];
     _s_sceDbcCreateSocket_2 = param_2;
     _s_sceDbcCreateSocket_3 = param_3;
     do {
@@ -705,20 +709,22 @@ undefined4 sceDbcDeleteSocket(undefined4 param_1)
     uVar1 = 0;
   }
   else {
-    uRam0037cc80 = param_1;
+    _g_DbcShared1 = param_1;
     lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001302,0,0x37cc80,0x280,0x37cc80,0x280,0);
     if (lVar2 < 0) {
       maybe_Dbc_GetLastError(0x360b18);
       uVar1 = 0;
     }
     else {
-      uVar1 = uRam0037cc84;
+      uVar1 = _g_sceDbcSetWorkAddrShared1;
     }
   }
   return uVar1;
 }
 
 // 0x00131018  size 0x148
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceDbcGetDepNumber(int param_1)
 
 {
@@ -727,31 +733,33 @@ undefined4 sceDbcGetDepNumber(int param_1)
   
   SyncDCache(0x380100,0x380180);
   DIntr();
-  uRam00380180 = uRam00380100;
-  uRam00380188 = uRam00380108;
-  uRam00380190 = uRam00380110;
-  uRam00380198 = uRam00380118;
-  uRam003801a0 = uRam00380120;
-  uRam003801a8 = uRam00380128;
-  uRam003801b0 = uRam00380130;
-  uRam003801b8 = uRam00380138;
+  _g_sceDbcGetDepNumberShared9 = _g_sceDbcGetDepNumberShared1;
+  _g_sceDbcGetDepNumberShared10 = _g_sceDbcGetDepNumberShared2;
+  _g_sceDbcGetDepNumberShared11 = _g_sceDbcGetDepNumberShared3;
+  _g_sceDbcGetDepNumberShared12 = _g_sceDbcGetDepNumberShared4;
+  _g_sceDbcGetDepNumberShared13 = _g_sceDbcGetDepNumberShared5;
+  _g_sceDbcGetDepNumberShared14 = _g_sceDbcGetDepNumberShared6;
+  _g_sceDbcGetDepNumberShared15 = _g_sceDbcGetDepNumberShared7;
+  _g_sceDbcGetDepNumberShared16 = _g_sceDbcGetDepNumberShared8;
   EIntr();
   uVar1 = 0xfffffff4;
-  if (*(int *)(param_1 * 4 + 0x380180) == 1) {
-    iRam0037cc80 = param_1;
+  if (*(int *)(&g_sceDbcGetDepNumberShared9 + param_1 * 4) == 1) {
+    _g_DbcShared1 = param_1;
     lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001303,0,0x37cc80,0x280,0x37cc80,0x280,0);
     if (lVar2 < 0) {
       maybe_Dbc_GetLastError(0x360b38);
       uVar1 = 0;
     }
     else {
-      uVar1 = uRam0037cc84;
+      uVar1 = _g_sceDbcSetWorkAddrShared1;
     }
   }
   return uVar1;
 }
 
 // 0x00131160  size 0xf4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_Dbc_SyncBuffers(int param_1)
 
 {
@@ -759,75 +767,81 @@ undefined4 maybe_Dbc_SyncBuffers(int param_1)
   
   SyncDCache(0x380100,0x380180);
   DIntr();
-  uRam00380180 = uRam00380100;
-  uRam00380188 = uRam00380108;
-  uRam00380190 = uRam00380110;
-  uRam00380198 = uRam00380118;
-  uRam003801a0 = uRam00380120;
-  uRam003801a8 = uRam00380128;
-  uRam003801b0 = uRam00380130;
-  uRam003801b8 = uRam00380138;
+  _g_sceDbcGetDepNumberShared9 = _g_sceDbcGetDepNumberShared1;
+  _g_sceDbcGetDepNumberShared10 = _g_sceDbcGetDepNumberShared2;
+  _g_sceDbcGetDepNumberShared11 = _g_sceDbcGetDepNumberShared3;
+  _g_sceDbcGetDepNumberShared12 = _g_sceDbcGetDepNumberShared4;
+  _g_sceDbcGetDepNumberShared13 = _g_sceDbcGetDepNumberShared5;
+  _g_sceDbcGetDepNumberShared14 = _g_sceDbcGetDepNumberShared6;
+  _g_sceDbcGetDepNumberShared15 = _g_sceDbcGetDepNumberShared7;
+  _g_sceDbcGetDepNumberShared16 = _g_sceDbcGetDepNumberShared8;
   EIntr();
   uVar1 = 3;
-  if (*(int *)(param_1 * 4 + 0x380180) == 1) {
+  if (*(int *)(&g_sceDbcGetDepNumberShared9 + param_1 * 4) == 1) {
     uVar1 = 1;
   }
   return uVar1;
 }
 
 // 0x00131258  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceDbcInitSocket(undefined4 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  uRam0037cc80 = param_1;
+  _g_DbcShared1 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001315,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
     maybe_Dbc_GetLastError(0x360b58);
     uVar1 = 0;
   }
   else {
-    uVar1 = uRam0037cc84;
+    uVar1 = _g_sceDbcSetWorkAddrShared1;
   }
   return uVar1;
 }
 
 // 0x001312c8  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceDbcResetSocket(undefined4 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  uRam0037cc80 = param_1;
+  _g_DbcShared1 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001316,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
     maybe_Dbc_GetLastError(0x360b78);
     uVar1 = 0;
   }
   else {
-    uVar1 = uRam0037cc84;
+    uVar1 = _g_sceDbcSetWorkAddrShared1;
   }
   return uVar1;
 }
 
 // 0x00131338  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceDbcGetDeviceStatus(undefined4 param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  uRam0037cc80 = param_1;
+  _g_DbcShared1 = param_1;
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001317,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
     maybe_Dbc_GetLastError(0x360b98);
     uVar1 = 0;
   }
   else {
-    uVar1 = uRam0037cc84;
+    uVar1 = _g_sceDbcSetWorkAddrShared1;
   }
   return uVar1;
 }
@@ -842,8 +856,8 @@ undefined4 maybe_Dbc_GetDeviceStatusRpc(int param_1)
   undefined4 uVar1;
   long lVar2;
   
-  uRam0037cc88 = 2;
-  uRam0037cc90 = *(undefined4 *)(param_1 + 8);
+  _g_sceDbcReceiveDataShared1 = 2;
+  _g_sceDbcCreateSocketShared1 = *(undefined4 *)(param_1 + 8);
   _s_Dbc_GetDeviceStatusRpc_1 = *(undefined4 *)(param_1 + 0xc);
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff8000131d,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
@@ -851,7 +865,7 @@ undefined4 maybe_Dbc_GetDeviceStatusRpc(int param_1)
     uVar1 = 0xffffffff;
   }
   else {
-    uVar1 = uRam0037cc84;
+    uVar1 = _g_sceDbcSetWorkAddrShared1;
   }
   return uVar1;
 }
@@ -865,19 +879,19 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
 {
   undefined1 *puVar1;
   long lVar2;
-  undefined1 *puVar3;
+  undefined *puVar3;
   int iVar4;
   int iVar5;
   
-  iRam0037cc88 = *param_3;
-  iRam0037cc8c = *param_5;
+  _g_sceDbcReceiveDataShared1 = *param_3;
+  _g_sceDbcSRDataShared1 = *param_5;
   iVar4 = 0;
-  uRam0037cc80 = param_1;
-  uRam0037cc84 = param_2;
+  _g_DbcShared1 = param_1;
+  _g_sceDbcSetWorkAddrShared1 = param_2;
   if (0 < *param_3) {
     puVar1 = param_4;
     do {
-      puVar3 = (undefined1 *)(iVar4 + 0x37cc90);
+      puVar3 = &g_sceDbcCreateSocketShared1 + iVar4;
       iVar4 = iVar4 + 1;
       *puVar3 = *puVar1;
       puVar1 = param_4 + iVar4;
@@ -891,9 +905,9 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
   else {
     iVar4 = _s_sceDbcSRData_1;
     if (-1 < _s_sceDbcSRData_1) {
-      *param_3 = iRam0037cc88;
-      *param_5 = iRam0037cc8c;
-      if (iRam0037cc8c < 1) {
+      *param_3 = _g_sceDbcReceiveDataShared1;
+      *param_5 = _g_sceDbcSRDataShared1;
+      if (_g_sceDbcSRDataShared1 < 1) {
         iVar4 = _s_sceDbcSRData_1;
       }
       else {
@@ -904,7 +918,7 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
           *(undefined1 *)(param_6 + iVar4) = *puVar1;
           puVar1 = (undefined1 *)(iVar4 + 0x37ce91);
           iVar4 = iVar5;
-        } while (iVar5 < iRam0037cc8c);
+        } while (iVar5 < _g_sceDbcSRDataShared1);
         iVar4 = _s_sceDbcSRData_1;
       }
     }
@@ -913,23 +927,25 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
 }
 
 // 0x00131578  size 0x12c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int sceDbcSendData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *param_4)
 
 {
   undefined1 *puVar1;
   long lVar2;
-  undefined1 *puVar3;
+  undefined *puVar3;
   int iVar4;
   
-  WaitSema(uRam003801c0);
-  iRam0037cc88 = *param_3;
+  WaitSema(_g_sceDbcSendDataShared1);
+  _g_sceDbcReceiveDataShared1 = *param_3;
   iVar4 = 0;
-  uRam0037cc80 = param_1;
-  uRam0037cc84 = param_2;
+  _g_DbcShared1 = param_1;
+  _g_sceDbcSetWorkAddrShared1 = param_2;
   if (0 < *param_3) {
     puVar1 = param_4;
     do {
-      puVar3 = (undefined1 *)(iVar4 + 0x37cc8c);
+      puVar3 = &g_sceDbcSRDataShared1 + iVar4;
       iVar4 = iVar4 + 1;
       *puVar3 = *puVar1;
       puVar1 = param_4 + iVar4;
@@ -938,15 +954,15 @@ int sceDbcSendData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff80001319,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
     maybe_Dbc_GetLastError(0x360be0);
-    SignalSema(uRam003801c0);
+    SignalSema(_g_sceDbcSendDataShared1);
     iVar4 = 0;
   }
   else {
-    if (-1 < iRam0037ce8c) {
-      *param_3 = iRam0037cc88;
+    if (-1 < _g_sceDbcReceiveDataShared2) {
+      *param_3 = _g_sceDbcReceiveDataShared1;
     }
-    SignalSema(uRam003801c0);
-    iVar4 = iRam0037ce8c;
+    SignalSema(_g_sceDbcSendDataShared1);
+    iVar4 = _g_sceDbcReceiveDataShared2;
   }
   return iVar4;
 }
@@ -964,7 +980,7 @@ undefined4 sceDbcSendData2(undefined4 param_1,undefined4 param_2,int *param_3,un
   int iVar5;
   
   if (*param_3 < 0x1081) {
-    WaitSema(uRam003801c0);
+    WaitSema(_g_sceDbcSendDataShared1);
     _s_sceDbcSendData2_3 = *param_3;
     iVar5 = 0;
     _s_sceDbcSendData2_1 = param_1;
@@ -985,13 +1001,13 @@ undefined4 sceDbcSendData2(undefined4 param_1,undefined4 param_2,int *param_3,un
     else {
       lVar2 = sceSifCallRpc(0x37cc30,0xffffffff8000131b,1,0x37cf00,0x1090,0x37cf00,0x1090,0);
       if (-1 < lVar2) {
-        SignalSema(uRam003801c0);
+        SignalSema(_g_sceDbcSendDataShared1);
         return 1;
       }
       pcVar4 = s_sceDbcSendData2__rpc_error_00360c50;
     }
     maybe_Dbc_GetLastError(pcVar4);
-    SignalSema(uRam003801c0);
+    SignalSema(_g_sceDbcSendDataShared1);
   }
   else {
     maybe_Dbc_GetLastError(0x360c00,*param_3);
@@ -1015,7 +1031,7 @@ maybe_sceDbcSendData3
   int iVar4;
   
   if (*param_3 < 0x2081) {
-    WaitSema(uRam003801c0);
+    WaitSema(_g_sceDbcSendDataShared1);
     _s_sceDbcSendData3_3 = *param_3;
     iVar4 = 0;
     _s_sceDbcSendData3_1 = param_1;
@@ -1036,11 +1052,11 @@ maybe_sceDbcSendData3
     else {
       lVar2 = sceSifCallRpc(0x37cc58,0xffffffff8000131c,1,0x37e000,0x2090,0x37e000,0x2090,param_5);
       if (-1 < lVar2) {
-        SignalSema(uRam003801c0);
+        SignalSema(_g_sceDbcSendDataShared1);
         return 1;
       }
     }
-    SignalSema(uRam003801c0);
+    SignalSema(_g_sceDbcSendDataShared1);
   }
   else {
     maybe_Dbc_GetLastError(0x360c70);
@@ -1049,39 +1065,41 @@ maybe_sceDbcSendData3
 }
 
 // 0x00131970  size 0xec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int sceDbcReceiveData(undefined4 param_1,undefined4 param_2,int *param_3,int param_4)
 
 {
-  undefined1 *puVar1;
+  undefined *puVar1;
   int iVar2;
   long lVar3;
   int iVar4;
   
-  iRam0037cc88 = *param_3;
-  uRam0037cc80 = param_1;
-  uRam0037cc84 = param_2;
+  _g_sceDbcReceiveDataShared1 = *param_3;
+  _g_DbcShared1 = param_1;
+  _g_sceDbcSetWorkAddrShared1 = param_2;
   lVar3 = sceSifCallRpc(0x37cc08,0xffffffff8000131a,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar3 < 0) {
     maybe_Dbc_GetLastError(0x360cb8);
     iVar2 = 0;
   }
   else {
-    iVar2 = iRam0037ce8c;
-    if (-1 < iRam0037ce8c) {
-      *param_3 = iRam0037cc88;
-      if (iRam0037cc88 < 1) {
-        iVar2 = iRam0037ce8c;
+    iVar2 = _g_sceDbcReceiveDataShared2;
+    if (-1 < _g_sceDbcReceiveDataShared2) {
+      *param_3 = _g_sceDbcReceiveDataShared1;
+      if (_g_sceDbcReceiveDataShared1 < 1) {
+        iVar2 = _g_sceDbcReceiveDataShared2;
       }
       else {
-        puVar1 = (undefined1 *)0x37cc8c;
+        puVar1 = &g_sceDbcSRDataShared1;
         iVar2 = 0;
         do {
           iVar4 = iVar2 + 1;
-          *(undefined1 *)(param_4 + iVar2) = *puVar1;
-          puVar1 = (undefined1 *)(iVar2 + 0x37cc8d);
+          *(undefined *)(param_4 + iVar2) = *puVar1;
+          puVar1 = (undefined *)(iVar2 + 0x37cc8d);
           iVar2 = iVar4;
-        } while (iVar4 < iRam0037cc88);
-        iVar2 = iRam0037ce8c;
+        } while (iVar4 < _g_sceDbcReceiveDataShared1);
+        iVar2 = _g_sceDbcReceiveDataShared2;
       }
     }
   }

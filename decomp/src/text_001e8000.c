@@ -91,7 +91,7 @@ LAB_001e8314:
   uVar3 = Snd_VolumeToMidi(uVar10);
   (**(code **)(*(int *)uVar8 + 0x20))(uVar8,uVar3);
 LAB_001e8224:
-  if (iRam0046a590 == 0) {
+  if (_g_RaceSndShared1 == 0) {
     *(undefined4 *)(puVar9 + 0x24) = 3;
   }
   else {
@@ -115,7 +115,7 @@ void RaceSnd_Task(undefined8 param_1)
   int iVar7;
   
   iVar5 = (int)param_1;
-  if ((uRam0036f25c & 0x20) != 0) {
+  if ((_g_CarSndShared1 & 0x20) != 0) {
     *(undefined4 *)(iVar5 + 0x24) = 7;
   }
   if (*(uint *)(iVar5 + 0x24) < 9) {
@@ -214,7 +214,7 @@ void RaceSnd_Task(undefined8 param_1)
       else {
         (**(code **)(**(int **)(iVar5 + 0x14) + 0x1c))();
       }
-      uRam0036f25c = uRam0036f25c & 0xffffffdf;
+      _g_CarSndShared1 = _g_CarSndShared1 & 0xffffffdf;
       uVar4 = SndMgr_GetInstance();
       SndMgr_ResumeAll(uVar4);
       *(undefined4 *)(iVar5 + 0x24) = 0;
@@ -328,7 +328,7 @@ void RaceSnd_PlayResult(undefined8 param_1,undefined8 param_2,ulong param_3)
         RaceSnd_StopSlot(param_2,0x29);
       }
     }
-    else if (iRam0046a590 == 0) {
+    else if (_g_RaceSndShared1 == 0) {
       lVar3 = maybe_RaceResult_GetCategory();
       if (lVar3 == 8) {
         RaceSnd_StopSlot(param_2,2);
@@ -914,6 +914,8 @@ void RaceScene_StateMachine(undefined8 param_1)
 }
 
 // 0x001e9740  size 0x184
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_RaceTask_SetupControls(int *param_1)
 
 {
@@ -929,7 +931,7 @@ void maybe_RaceTask_SetupControls(int *param_1)
   
   uVar5 = 0;
   do {
-    if (uVar5 == (uRam0036f0cc & 1)) {
+    if (uVar5 == (_g_ProfileShared1 & 1)) {
       Ffb_PlayCollision(uVar5);
     }
     uVar5 = uVar5 + 1;
@@ -1086,7 +1088,7 @@ void RaceScene_StateOptions(undefined4 *param_1)
     }
     uVar8 = 0;
     do {
-      if (uVar8 == (uRam0036f0cc & 1)) {
+      if (uVar8 == (_g_ProfileShared1 & 1)) {
         Ffb_PlayCollision(uVar8);
       }
       puVar4 = PTR_maybe_RaceTask_SetupControls_0031c7b0;
@@ -2137,8 +2139,8 @@ void Race_CreateCars(void)
   RaceProg_Set_10(uVar3);
   RaceRule_Set_14(uVar4);
   Driver_CreatePlayers(0x430750);
-  Traffic_Reset(uRam0036f36c);
-  uRam0036f25c = uRam0036f25c | 0x20;
+  Traffic_Reset(_g_DriverShared1);
+  _g_CarSndShared1 = _g_CarSndShared1 | 0x20;
   g_Loading->flags = g_Loading->flags | 2;
   cVar1 = RaceCtx_Get_8();
   if ((cVar1 == '\r') && (lVar7 = RaceScene_IsFlag10(), lVar7 == 0)) {
@@ -2147,8 +2149,8 @@ void Race_CreateCars(void)
   else {
     _s_RaceIsReplayMode = 0;
   }
-  if (*(int *)(iRam0036f3b0 + 0xc) != 0) {
-    Race_LoadCourse(*(undefined4 *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14),1);
+  if (*(int *)(_g_AiShared2 + 0xc) != 0) {
+    Race_LoadCourse(*(undefined4 *)(*(int *)(_g_AiShared2 + 0xc) + 0x14),1);
   }
   return;
 }
@@ -2381,19 +2383,19 @@ void RaceIntro_LoadAssets(undefined8 param_1)
     uVar11 = GameState_Get_3();
     IntroFlag_Load(0x430750,uVar3,uVar9,uVar10,uVar11);
   }
-  SceneObj_SetGlobalFlags(uRam004305f4);
-  iVar4 = *(int *)(iVar13 + 4) + iRam0036f2c0;
+  SceneObj_SetGlobalFlags(_g_CourseShared9);
+  iVar4 = *(int *)(iVar13 + 4) + _g_RaceIntroShared1;
   maybe_Font_UploadTexture(iVar4,iVar4);
-  iVar4 = *(int *)(iVar13 + 4) + iRam0036f2c0;
+  iVar4 = *(int *)(iVar13 + 4) + _g_RaceIntroShared1;
   UiRes_UploadFonts(iVar4,iVar4);
-  iVar4 = *(int *)(iVar13 + 4) + iRam0036f2c0;
+  iVar4 = *(int *)(iVar13 + 4) + _g_RaceIntroShared1;
   UiMgr_SetActive(iVar4,iVar4);
-  iVar4 = *(int *)(iVar13 + 4) + iRam0036f2c0;
+  iVar4 = *(int *)(iVar13 + 4) + _g_RaceIntroShared1;
   UiMgr_RebindTextures(iVar4,iVar4);
-  iVar4 = *(int *)(iVar13 + 4) + iRam0036f2c0;
+  iVar4 = *(int *)(iVar13 + 4) + _g_RaceIntroShared1;
   maybe_RaceHud_UploadTextures(iVar4,iVar4);
-  iRam0046a020 = *(int *)(iVar13 + 4) + iRam0036f2c0;
-  iRam0046a024 = iRam0046a020;
+  _g_RaceIntroShared2 = *(int *)(iVar13 + 4) + _g_RaceIntroShared1;
+  _g_ReplayCamShared2 = _g_RaceIntroShared2;
   iVar4 = Course_GetCurrentId();
   *(undefined **)(iVar13 + 0x10) = (&PTR_DAT_00326710)[iVar4];
   if (*(int *)(iVar13 + 0x10) != 0) {

@@ -662,9 +662,9 @@ void Gfx_SyncAndFlip(void)
   do {
   } while (_s_GfxVar2 < _s_GfxVar9);
   uVar3 = REG_GS_CSR;
-  uRam0036ef94 = uRam0036ef94 + 1;
+  _g_PktShared2 = _g_PktShared2 + 1;
   _s_GfxVar2 = 0;
-  iRam0036ef90 = (int)((uVar3 & 0x2000) >> 0xd);
+  _g_PktShared1 = (int)((uVar3 & 0x2000) >> 0xd);
   if (_s_GfxVar1 != 0) {
     do {
       uVar2 = REG_DMAC_2_GIF_CHCR;
@@ -707,7 +707,7 @@ void Gfx_SyncAndFlip(void)
     REG_GIF_CTRL = 1;
     lVar4 = sceGsSyncPath(0,0);
   }
-  puVar5 = (undefined8 *)(iRam0036ef90 * 0x50 + (uRam0036ef94 & 1) * 0xa0 + 0x3801f0);
+  puVar5 = (undefined8 *)(_g_PktShared1 * 0x50 + (_g_PktShared2 & 1) * 0xa0 + 0x3801f0);
   REG_GS_DISPFB1 = puVar5[2];
   REG_GS_DISPLAY1 = puVar5[3];
   REG_GS_DISPFB2 = puVar5[4];
@@ -832,9 +832,9 @@ void Gfx_ResetState(void)
 {
   sceGsSyncV(0);
   sceGsResetPath();
-  uRam0036ef90 = 0;
+  _g_PktShared1 = 0;
   _s_GfxVar3 = 4;
-  uRam0036ef94 = 0;
+  _g_PktShared2 = 0;
   _s_GfxVar2 = 0;
   _s_GfxVar4 = 0;
   _s_GfxVar5 = GetThreadId();
@@ -1064,6 +1064,7 @@ undefined4 maybe_CdStream_Init(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00135c00  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceOpen/sceLseek/sceWrite */
 
 void File_WriteHostRequest(int param_1)
@@ -1091,13 +1092,14 @@ void File_WriteHostRequest(int param_1)
     sceClose(iVar2);
   }
   if (iVar3 < 0) {
-    uRam0036f000 = 0xfffffffb;
+    _g_FileShared1 = 0xfffffffb;
   }
   Sema_Signal(0x36eff8,0);
   return;
 }
 
 // 0x00135cf0  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceOpen/sceLseek/sceRead */
 
 void File_ReadHostRequest(int param_1)
@@ -1125,24 +1127,26 @@ void File_ReadHostRequest(int param_1)
     sceClose(iVar2);
   }
   if (iVar3 < 0) {
-    uRam0036f000 = 0xfffffffb;
+    _g_FileShared1 = 0xfffffffb;
   }
   Sema_Signal(0x36eff8,0);
   return;
 }
 
 // 0x00135de0  size 0x68
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Cd_ToggleMotor(undefined4 param_1)
 
 {
   Sema_Wait(0x36efc0);
-  if (iRam0036f000 == 0) {
-    iRam0036f000 = maybe_sceCdTrayReq();
+  if (_g_FileShared1 == 0) {
+    _g_FileShared1 = maybe_sceCdTrayReq();
   }
   else {
-    iRam0036f000 = 0;
+    _g_FileShared1 = 0;
   }
-  uRam0036f004 = param_1;
+  _g_CdShared1 = param_1;
   Sema_Signal(0x36eff8,0);
   Sema_Signal(0x36efc0,0);
   return;
@@ -1259,8 +1263,8 @@ LAB_00136060:
         FlushCache(0);
       }
       Sema_Wait(0x36eff8);
-      bVar1 = iRam0036f000 != 0;
-      *(int *)(iVar6 + 0x54) = iRam0036f000;
+      bVar1 = _g_FileShared1 != 0;
+      *(int *)(iVar6 + 0x54) = _g_FileShared1;
       if (bVar1) {
         sceCdSync(0);
         do {
@@ -1513,7 +1517,7 @@ int File_NextRequest(int param_1)
     }
     bVar1 = false;
     if (bVar5) {
-      bVar1 = iRam0036f000 == 0;
+      bVar1 = _g_FileShared1 == 0;
     }
   }
   bVar5 = false;
@@ -1577,7 +1581,7 @@ void File_AbortAll(void)
 
 {
   Sema_Wait(0x36efc0);
-  if (iRam00386628 != 0) {
+  if (_g_FileShared2 != 0) {
     _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
@@ -1719,7 +1723,7 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
   undefined4 uStack_4;
   
   Sema_Wait(0x36efc0);
-  if (iRam00386628 != 0) {
+  if (_g_FileShared2 != 0) {
     _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
@@ -1741,7 +1745,7 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
     uStack_20 = param_2;
     File_QueueRequest(auStack_40);
     Sema_Wait(0x36efc0);
-    if (iRam00386628 != 0) {
+    if (_g_FileShared2 != 0) {
       _s_FileVar3 = 1;
     }
     Sema_Signal(0x36efc0,0);
@@ -1767,7 +1771,7 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
   undefined4 uStack_10;
   
   Sema_Wait(0x36efc0);
-  if (iRam00386628 != 0) {
+  if (_g_FileShared2 != 0) {
     _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
@@ -1816,7 +1820,7 @@ void File_ReadClock(undefined8 param_1)
   long lVar1;
   
   Sema_Wait(0x36efc0);
-  if (iRam00386628 != 0) {
+  if (_g_FileShared2 != 0) {
     _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
@@ -1840,7 +1844,7 @@ bool File_GetDiscType(long param_1)
   long lVar1;
   
   Sema_Wait(0x36efc0);
-  if (iRam00386628 != 0) {
+  if (_g_FileShared2 != 0) {
     _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
@@ -1865,7 +1869,7 @@ void File_Shutdown(void)
 
 {
   Sema_Wait(0x36efc0);
-  if (iRam00386628 != 0) {
+  if (_g_FileShared2 != 0) {
     _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
@@ -1914,8 +1918,8 @@ undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
   DAT_0036e704 = 0xffffffff;
   _s_FileVar2 = 0;
   _s_FileVar3 = 0;
-  uRam0036f000 = 0;
-  uRam0036f004 = 0;
+  _g_FileShared1 = 0;
+  _g_CdShared1 = 0;
   _s_FileVar8 = 0;
   Sema_Create(0x36efc0,1,1);
   Sema_Create(0x36efc4,0,1);

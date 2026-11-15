@@ -1417,17 +1417,21 @@ void maybe_ScrGarageCheck_Enter(undefined4 *param_1)
 }
 
 // 0x002ae470  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_SeqGen_OnPatternEnd(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
 {
   if (param_1 == *(int *)(param_4 + 0x10)) {
     *(undefined4 *)(param_4 + 0x14) = 0;
-    SeqGen_LoadPattern(uRam0036f7e0);
+    SeqGen_LoadPattern(_g_SeqGenShared1);
   }
   return;
 }
 
 // 0x002ae4b0  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_SeqGen_OnSongEnd(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
@@ -1438,12 +1442,14 @@ void maybe_SeqGen_OnSongEnd(int param_1,undefined8 param_2,undefined4 param_3,un
     *(undefined4 *)(iVar1 + 0xb0) = param_3;
     SeqGen_Parse(param_4);
     *(undefined4 *)(iVar1 + 0xcc) = 0;
-    SeqGen_LoadPattern(uRam0036f7e0);
+    SeqGen_LoadPattern(_g_SeqGenShared1);
   }
   return;
 }
 
 // 0x002ae500  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_SeqGen_OnTrackEnd(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
@@ -1455,7 +1461,7 @@ void maybe_SeqGen_OnTrackEnd(int param_1,undefined8 param_2,undefined4 param_3,u
     maybe_SeqSrc_ReadEvent(param_4);
     maybe_SeqGen_ScanTrack(param_4,0);
     *(undefined4 *)(iVar1 + 0x74) = 0;
-    SeqGen_LoadPattern(uRam0036f7e0);
+    SeqGen_LoadPattern(_g_SeqGenShared1);
   }
   return;
 }

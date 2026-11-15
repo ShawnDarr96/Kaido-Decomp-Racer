@@ -879,7 +879,7 @@ void MenuMgr_Alloc(undefined8 param_1,uint param_2)
   pMVar1->unk_0650 = 0;
   *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x10;
   *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x80;
-  UiLayout_Init(&g_MenuMgr->field_0x40,uRam0036f2c0,uRam0036f2c0,0);
+  UiLayout_Init(&g_MenuMgr->field_0x40,_g_RaceIntroShared1,_g_RaceIntroShared1,0);
   MenuMgr_ApplyNext();
   if ((int)g_MenuMgr->nextScreen < -1) {
     MenuMgr_PopScreen();

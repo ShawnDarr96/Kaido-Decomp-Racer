@@ -1048,7 +1048,7 @@ void RaceRule_PlaceCheckpoint
   uStack_54 = 0x3f800000;
   uStack_64 = 0x3f800000;
   fVar8 = 0.0;
-  if (cRam0036f234 != '\x02') {
+  if (g_AiShared1 != '\x02') {
     AiLine_Clear(&uStack_40);
     *param_2 = uStack_40;
     *(undefined2 *)(param_2 + 1) = uStack_3c;

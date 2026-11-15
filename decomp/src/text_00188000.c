@@ -975,6 +975,8 @@ void RoadData_Free(undefined4 *param_1)
 }
 
 // 0x0018a0d0  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 RoadData_Load(undefined8 param_1,undefined8 param_2)
 
 {
@@ -991,7 +993,7 @@ undefined8 RoadData_Load(undefined8 param_1,undefined8 param_2)
     uVar2 = uVar2 + 0x7ff >> 0xb;
   }
   Sema_Wait(0x36efc0);
-  uVar1 = uRam00386628;
+  uVar1 = _g_FileShared2;
   Sema_Signal(0x36efc0,0);
   if (uVar1 < 0x100) {
     uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
@@ -1504,6 +1506,8 @@ void RoadMesh_Free(undefined4 *param_1)
 }
 
 // 0x0018b1e0  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 RoadMesh_Load(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1512,7 +1516,7 @@ undefined8 RoadMesh_Load(undefined8 param_1,undefined8 param_2)
   undefined8 uVar3;
   
   Sema_Wait(0x36efc0);
-  uVar1 = uRam00386628;
+  uVar1 = _g_FileShared2;
   Sema_Signal(0x36efc0,0);
   if (uVar1 < 0x100) {
     uVar1 = g_ArcToc->entries[(int)param_2].unpackedSize;

@@ -181,7 +181,7 @@ void Result_DrawMenu(int param_1)
       MenuWnd_SetItemState
                 (*(undefined4 *)(param_1 + 0x2c),
                  *(undefined4 *)
-                  ((&PTR_DAT_0032f1c0)[(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6] * 2] +
+                  ((&PTR_DAT_0032f1c0)[(char)(&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] * 2] +
                   *(int *)(param_1 + 0x324) * 0x14 + 8),1,0);
     }
     else if (cVar1 == '\x02') {
@@ -550,7 +550,7 @@ void Result_BuildTimeAttackRecords(int param_1,undefined1 param_2)
   undefined1 auStack_8 [8];
   
   iVar3 = GameState_Ptr_354();
-  cVar1 = (&DAT_0032f535)[(uint)bRam0036f810 * 6];
+  cVar1 = (&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
   if (cVar1 == '\0') {
     Time_SplitHms(1,*(undefined4 *)(iVar3 + 0x68),param_1 + 0x334,param_1 + 0x338,param_1 + 0x33c);
   }
@@ -674,7 +674,7 @@ void Result_BuildBattleRecords(int param_1,undefined1 param_2)
   undefined8 uVar6;
   
   iVar3 = GameState_Ptr_354();
-  cVar1 = (&DAT_0032f535)[(uint)bRam0036f810 * 6];
+  cVar1 = (&DAT_0032f535)[(uint)g_RaceHudShared1 * 6];
   if (cVar1 == '\0') {
     *(undefined4 *)(param_1 + 0x330) = *(undefined4 *)(iVar3 + 0x60);
   }
@@ -853,9 +853,9 @@ void Result_BuildCareerRecords(int param_1)
 void Result_GetPageLayout(int param_1)
 
 {
-  if (bRam0036f810 < 0x18) {
+  if (g_RaceHudShared1 < 0x18) {
                     /* WARNING: Switch is manually overridden */
-    switch(bRam0036f810) {
+    switch(g_RaceHudShared1) {
     case 0:
     case 7:
     case 0xc:
@@ -916,9 +916,9 @@ void Result_SetupLayout(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x344) = 0x1b;
-  if ((byte)(&DAT_0032f532)[(uint)bRam0036f810 * 6] < 0xb) {
+  if ((byte)(&DAT_0032f532)[(uint)g_RaceHudShared1 * 6] < 0xb) {
                     /* WARNING: Switch is manually overridden */
-    switch((&DAT_0032f532)[(uint)bRam0036f810 * 6]) {
+    switch((&DAT_0032f532)[(uint)g_RaceHudShared1 * 6]) {
     case 0:
       *(undefined4 *)(param_1 + 0x3c4) = 0x20;
       *(undefined4 *)(param_1 + 0x3cc) = 0x21;
@@ -1169,7 +1169,7 @@ void Result_CheckNewRecord(int param_1,int param_2)
   b = Race_GetDirection();
   c = Race_GetCourseVariant();
   pRVar3 = RaceTbl_GetCourseEntryB(pRVar3,(int)(char)pRVar2->maybe_state,b,c);
-  if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
+  if (((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') &&
      (cVar1 = GameState_Get_354_7050(), cVar1 == '\x02')) {
     Time_SplitHms(1,*(undefined4 *)&pRVar3->field_0xc,param_1 + 0xcc,param_1 + 0xd0,param_1 + 0xd4);
     iVar6 = 0;
@@ -1229,7 +1229,7 @@ void Result_StoreRecord(int param_1,int param_2)
   b = Race_GetDirection();
   c = Race_GetCourseVariant();
   pRVar4 = RaceTbl_GetCourseEntry(tbl,(int)(char)pRVar2->maybe_state,b,c);
-  if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
+  if (((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') &&
      (cVar1 = GameState_Get_354_7050(), cVar1 == '\x01')) {
     iVar6 = 0;
     iVar5 = param_1;
@@ -1268,7 +1268,7 @@ void Result_StoreRecordAlt(undefined8 param_1,undefined8 param_2)
   RaceRecordB *pRVar6;
   ulong uVar7;
   
-  if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') {
+  if ((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') {
     pRVar2 = GameState_Elem_f0_xcc(0);
     cVar1 = GameState_Get_354_7050();
     if (cVar1 == '\x01') {
@@ -1941,6 +1941,8 @@ LAB_002c3198:
 }
 
 // 0x002c32a0  size 0x5e8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceMenu_AnimateOptions(undefined8 param_1)
 
 {
@@ -2057,7 +2059,7 @@ void RaceMenu_AnimateOptions(undefined8 param_1)
     UiElem_SetPropInt(*puVar11,auStack_60[uVar9],0x16,auStack_1a0[uVar9 * 0x10 + (int)cVar3]);
     UiElem_SetPropInt(*puVar11,auStack_20[uVar9],9,cVar2 == '\0');
     UiElem_SetPropInt(*puVar11,auStack_50[uVar9],9,cVar3 == '\0');
-    uVar1 = (uRam0036f0cc / 10) % 6;
+    uVar1 = (_g_ProfileShared1 / 10) % 6;
     if (cVar2 == '\0') {
       uVar15 = 0;
     }

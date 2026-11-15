@@ -92,10 +92,12 @@ RacerStats * maybe_RaceResult_GetRivalTeam(void)
 }
 
 // 0x002fd1c0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Misc_Nop(void)
 
 {
-  return uRam0046a598;
+  return _g_AttractShared1;
 }
 
 // 0x002fd1d0  size 0x8
@@ -191,7 +193,7 @@ void ScrRenderSetInterlace_Update(int *param_1)
     }
     else if (iVar1 == 1) {
       Sema_Wait(0x36efc0);
-      iVar1 = iRam00386628;
+      iVar1 = _g_FileShared2;
       Sema_Signal(0x36efc0,0);
       if (iVar1 == 0) {
         if (g_MenuMgr->prevScreen == 0xffffffff) {

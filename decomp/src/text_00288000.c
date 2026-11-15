@@ -20,6 +20,7 @@ void maybe_ScrCarPassword_State27(int param_1)
 }
 
 // 0x002882a0  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 17 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State17(int param_1)
@@ -38,7 +39,7 @@ void ScrGarageBuyCar_State17(int param_1)
     g_MenuMgr->unk_05f0 = *(uint *)(&DAT_0032b3d0 + *(int *)(param_1 + 0x30) * 4);
     Menu_SetField_8_9610(&g_MenuMgr->unk_05f0);
   }
-  if (*(int *)(iRam0036f4dc + 0xe8) == *(int *)(iRam0036f4dc + 0xec)) {
+  if (*(int *)(_g_TitleCamShared1 + 0xe8) == *(int *)(_g_TitleCamShared1 + 0xec)) {
     *(undefined4 *)(param_1 + 0x6c) = 1;
     *(undefined4 *)(param_1 + 0x68) = 1;
   }

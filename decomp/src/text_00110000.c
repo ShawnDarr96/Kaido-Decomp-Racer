@@ -1637,6 +1637,7 @@ void iDisableDmac(void)
 }
 
 // 0x001124a0  size 0xd8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "## internel error in libkernl.a!" */
 
 void maybe_kernl_TopThreadLoop(uint *param_1)
@@ -1649,7 +1650,7 @@ void maybe_kernl_TopThreadLoop(uint *param_1)
   do {
     while( true ) {
       while( true ) {
-        WaitSema(uRam00370700);
+        WaitSema(_g_InitThreadExtensionShared1);
         iVar2 = (*param_1 & 0x1ff) * 2;
         *param_1 = (*param_1 & 0x1ff) + 1;
         puVar3 = (undefined1 *)((int)param_1 + iVar2 + 9);
@@ -1693,7 +1694,7 @@ int maybe_InitThreadExtension(void)
     uStack_48 = 0;
     uStack_4c = 0xff;
     lVar1 = CreateSema(auStack_50);
-    uRam00370700 = (undefined4)lVar1;
+    _g_InitThreadExtensionShared1 = (undefined4)lVar1;
     if (-1 < lVar1) {
       pcStack_7c = maybe_kernl_TopThreadLoop;
       uStack_78 = 0x370300;
@@ -1704,19 +1705,21 @@ int maybe_InitThreadExtension(void)
       DAT_00306ad8 = (int)lVar1;
       if (-1 < lVar1) {
         _s_InitThreadExtension_1 = 0;
-        uRam0037070c = 0;
+        _g_iWakeupThreadExShared1 = 0;
         _StartThread(lVar1,0x370708);
         uVar2 = GetThreadId();
         ChangeThreadPriority(uVar2,1);
         return DAT_00306ad8;
       }
-      DeleteSema(uRam00370700);
+      DeleteSema(_g_InitThreadExtensionShared1);
     }
   }
   return -1;
 }
 
 // 0x00112650  size 0x94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_iWakeupThreadEx(ulong param_1)
 
 {
@@ -1724,12 +1727,12 @@ void maybe_iWakeupThreadEx(ulong param_1)
   ulong in_v0;
   int iVar2;
   
-  uVar1 = uRam00370700;
+  uVar1 = _g_InitThreadExtensionShared1;
   syscall(0xffffffffffffffd1);
   if (in_v0 == param_1) {
     if ((in_v0 < 0x100) && (DAT_00306ad8 != 0)) {
-      iVar2 = (uRam0037070c & 0x1ff) * 2;
-      uRam0037070c = (uRam0037070c & 0x1ff) + 1;
+      iVar2 = (_g_iWakeupThreadExShared1 & 0x1ff) * 2;
+      _g_iWakeupThreadExShared1 = (_g_iWakeupThreadExShared1 & 0x1ff) + 1;
       *(undefined1 *)(iVar2 + 0x370710) = 0;
       *(char *)(iVar2 + 0x370711) = (char)in_v0;
       iSignalSema(uVar1);
@@ -1742,16 +1745,18 @@ void maybe_iWakeupThreadEx(ulong param_1)
 }
 
 // 0x001126e8  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint maybe_iSignalSemaEx(uint param_1)
 
 {
   undefined4 uVar1;
   int iVar2;
   
-  uVar1 = uRam00370700;
+  uVar1 = _g_InitThreadExtensionShared1;
   if ((param_1 < 0x80) && (DAT_00306ad8 != 0)) {
-    iVar2 = (uRam0037070c & 0x1ff) * 2;
-    uRam0037070c = (uRam0037070c & 0x1ff) + 1;
+    iVar2 = (_g_iWakeupThreadExShared1 & 0x1ff) * 2;
+    _g_iWakeupThreadExShared1 = (_g_iWakeupThreadExShared1 & 0x1ff) + 1;
     *(undefined1 *)(iVar2 + 0x370710) = 1;
     *(char *)(iVar2 + 0x370711) = (char)param_1;
     iSignalSema(uVar1);
@@ -1763,6 +1768,8 @@ uint maybe_iSignalSemaEx(uint param_1)
 }
 
 // 0x00112768  size 0x98
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_iSuspendThreadEx(ulong param_1)
 
 {
@@ -1770,12 +1777,12 @@ void maybe_iSuspendThreadEx(ulong param_1)
   ulong in_v0;
   int iVar2;
   
-  uVar1 = uRam00370700;
+  uVar1 = _g_InitThreadExtensionShared1;
   syscall(0xffffffffffffffd1);
   if (in_v0 == param_1) {
     if ((in_v0 < 0x100) && (DAT_00306ad8 != 0)) {
-      iVar2 = (uRam0037070c & 0x1ff) * 2;
-      uRam0037070c = (uRam0037070c & 0x1ff) + 1;
+      iVar2 = (_g_iWakeupThreadExShared1 & 0x1ff) * 2;
+      _g_iWakeupThreadExShared1 = (_g_iWakeupThreadExShared1 & 0x1ff) + 1;
       *(undefined1 *)(iVar2 + 0x370710) = 2;
       *(char *)(iVar2 + 0x370711) = (char)in_v0;
       iSignalSema(uVar1);
@@ -2719,14 +2726,14 @@ void sceSifInitCmd(void)
   }
   DAT_00306ae8 = 1;
   puVar2 = (undefined4 *)&s_sceSifInitCmd_5;
-  puRam00371058 = &DAT_20370f80;
+  _g_sceSifCmdIntrHandlerShared1 = &DAT_20370f80;
   _s_sceSifInitCmd_4 = 0x371200;
   _s_sceSifInitCmd_3 = &DAT_20371000;
-  uRam00371068 = 0x20;
-  uRam00371060 = 0;
-  puRam00371064 = &s_sceSifInitCmd_5;
-  uRam0037106c = 0;
-  uRam00371070 = 0;
+  _g_sceSifInitCmdShared3 = 0x20;
+  _g_sceSifInitCmdShared2 = 0;
+  _g_sceSifGetCmdHandlerShared1 = &s_sceSifInitCmd_5;
+  _g_sceSifGetCmdHandlerShared2 = 0;
+  _g_sceSifInitCmdShared4 = 0;
   do {
     *puVar2 = 0;
     puVar2[1] = 0;
@@ -2741,8 +2748,8 @@ void sceSifInitCmd(void)
   } while (-1 < iVar6);
   _s_sceSifInitCmd_5 = &LAB_00113a48;
   _s_sceSifInitCmd_7 = &LAB_00113a28;
-  _s_sceSifInitCmd_8 = 0x371058;
-  _s_sceSifInitCmd_6 = 0x371058;
+  _s_sceSifInitCmd_8 = &g_sceSifCmdIntrHandlerShared1;
+  _s_sceSifInitCmd_6 = &g_sceSifCmdIntrHandlerShared1;
   EIntr();
   FlushCache(0);
   uVar1 = REG_DMAC_STAT;
@@ -2753,21 +2760,21 @@ void sceSifInitCmd(void)
   if ((uVar1 & 0x100) == 0) {
     sceSifSetDChain();
   }
-  uRam00371054 = AddDmacHandler(5,0x114008,0);
+  _g_sceSifInitCmdShared1 = AddDmacHandler(5,0x114008,0);
   EnableDmac(5);
   lVar3 = sceSifGetReg(0xffffffff80000000);
-  uRam00371060 = (undefined4)lVar3;
+  _g_sceSifInitCmdShared2 = (undefined4)lVar3;
   if (lVar3 != 0) {
     _s_sceSifInitCmd_2 = 0x370f80;
     sceSifSendCmd(0xffffffff80000000,0x371040,0x14,0,0,0);
     return;
   }
-  uRam00371060 = 0;
+  _g_sceSifInitCmdShared2 = 0;
   do {
     uVar4 = sceSifGetReg(4);
   } while ((uVar4 & 0x20000) == 0);
   uVar5 = sceSifGetReg(2);
-  uRam00371060 = (undefined4)uVar5;
+  _g_sceSifInitCmdShared2 = (undefined4)uVar5;
   sceSifSetReg(0xffffffff80000000,uVar5);
   sceSifSetReg(0xffffffff80000001,0x371058);
   _s_sceSifInitCmd_2 = 0x370f80;
@@ -2777,16 +2784,20 @@ void sceSifInitCmd(void)
 }
 
 // 0x00113d20  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void sceSifExitCmd(void)
 
 {
   DisableDmac(5);
-  RemoveDmacHandler(5,uRam00371054);
+  RemoveDmacHandler(5,_g_sceSifInitCmdShared1);
   DAT_00306ae8 = 0;
   return;
 }
 
 // 0x00113d88  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_sceSifGetCmdHandler(long param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -2796,35 +2807,39 @@ void maybe_sceSifGetCmdHandler(long param_1,undefined4 param_2,undefined4 param_
   
   if (param_1 < 0) {
     iVar3 = ((uint)param_1 & 0x7fffffff) * 0xc;
-    puVar1 = (undefined4 *)(iVar3 + iRam00371064);
+    puVar1 = (undefined4 *)(iVar3 + _g_sceSifGetCmdHandlerShared1);
     puVar1[1] = param_3;
     *puVar1 = param_2;
-    iVar2 = iRam00371064;
+    iVar2 = _g_sceSifGetCmdHandlerShared1;
   }
   else {
     iVar3 = (uint)param_1 * 0xc;
-    puVar1 = (undefined4 *)(iVar3 + iRam0037106c);
+    puVar1 = (undefined4 *)(iVar3 + _g_sceSifGetCmdHandlerShared2);
     puVar1[1] = param_3;
     *puVar1 = param_2;
-    iVar2 = iRam0037106c;
+    iVar2 = _g_sceSifGetCmdHandlerShared2;
   }
   *(undefined **)(iVar3 + iVar2 + 8) = &_mips_gp0_value;
   return;
 }
 
 // 0x00113e00  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_sceSifRemoveCmdHandler(long param_1)
 
 {
   if (param_1 < 0) {
-    *(undefined4 *)(((uint)param_1 & 0x7fffffff) * 0xc + iRam00371064) = 0;
+    *(undefined4 *)(((uint)param_1 & 0x7fffffff) * 0xc + _g_sceSifGetCmdHandlerShared1) = 0;
     return;
   }
-  *(undefined4 *)((uint)param_1 * 0xc + iRam0037106c) = 0;
+  *(undefined4 *)((uint)param_1 * 0xc + _g_sceSifGetCmdHandlerShared2) = 0;
   return;
 }
 
 // 0x00113e50  size 0x134
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8
 maybe__sceSifSendCmd
           (uint param_1,ulong param_2,undefined8 param_3,undefined8 param_4,uint param_5,
@@ -2863,7 +2878,7 @@ maybe__sceSifSendCmd
   iVar2 = iVar4 << 4;
 LAB_00113ef0:
   *(uint **)((int)auStack_80 + iVar2) = puVar3;
-  *(undefined4 *)((int)auStack_80 + iVar2 + 4) = uRam00371060;
+  *(undefined4 *)((int)auStack_80 + iVar2 + 4) = _g_sceSifInitCmdShared2;
   *(int *)((int)auStack_80 + iVar2 + 8) = (int)param_4;
   puVar3[2] = param_1;
   *(byte *)puVar3 = (byte)param_4;

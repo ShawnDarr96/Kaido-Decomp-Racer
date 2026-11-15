@@ -130,25 +130,27 @@ float maybe___floatundisf(ulong param_1)
 undefined8 maybe_Timer_FindFreeSlot(void)
 
 {
-  int *piVar1;
-  int iVar2;
+  undefined4 *puVar1;
+  undefined *puVar2;
   int iVar3;
   
   iVar3 = 0x3f;
-  uRam00377dc0 = 0x3779c0;
-  iVar2 = 0x377dc0;
-  piVar1 = (int *)&s_Timer_FindFreeSlot_1;
+  _g_SetTimerAlarmShared1 = 0x3779c0;
+  puVar2 = &g_SetTimerAlarmShared1;
+  puVar1 = (undefined4 *)&s_Timer_FindFreeSlot_1;
   do {
-    *piVar1 = iVar2;
+    *puVar1 = puVar2;
     iVar3 = iVar3 + -1;
-    piVar1 = piVar1 + -4;
-    iVar2 = iVar2 + -0x10;
+    puVar1 = puVar1 + -4;
+    puVar2 = puVar2 + -0x10;
   } while (-1 < iVar3);
   _s_Timer_FindFreeSlot_1 = 0;
   return 0;
 }
 
 // 0x0011c3f8  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_Alarm_Dispatch(uint param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4)
 
 {
@@ -159,14 +161,16 @@ long maybe_Alarm_Dispatch(uint param_1,undefined8 param_2,undefined8 param_3,und
   if (lVar2 == 0) {
     lVar2 = -1;
     puVar1 = param_4;
-    *param_4 = puRam00377dc0;
-    puRam00377dc0 = puVar1;
+    *param_4 = _g_SetTimerAlarmShared1;
+    _g_SetTimerAlarmShared1 = puVar1;
     param_4[1] = 0;
   }
   return lVar2;
 }
 
 // 0x0011c458  size 0x12c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint maybe_SetTimerAlarm(undefined8 param_1,long param_2,undefined4 param_3)
 
 {
@@ -180,20 +184,20 @@ uint maybe_SetTimerAlarm(undefined8 param_1,long param_2,undefined4 param_3)
   }
   else {
     lVar4 = DIntr();
-    puVar1 = puRam00377dc0;
-    if (puRam00377dc0 == (undefined4 *)0x0) {
+    puVar1 = _g_SetTimerAlarmShared1;
+    if (_g_SetTimerAlarmShared1 == (undefined4 *)0x0) {
       if (lVar4 != 0) {
         EIntr();
       }
       uVar3 = 0x80008005;
     }
     else {
-      puRam00377dc0 = (undefined4 *)*puRam00377dc0;
+      _g_SetTimerAlarmShared1 = (undefined4 *)*_g_SetTimerAlarmShared1;
       uVar3 = maybe_AllocTimerCounter();
       if ((int)uVar3 < 0) {
         puVar2 = puVar1;
-        *puVar1 = puRam00377dc0;
-        puRam00377dc0 = puVar2;
+        *puVar1 = _g_SetTimerAlarmShared1;
+        _g_SetTimerAlarmShared1 = puVar2;
         puVar1[1] = 0;
         if (lVar4 != 0) {
           EIntr();
@@ -216,6 +220,8 @@ uint maybe_SetTimerAlarm(undefined8 param_1,long param_2,undefined4 param_3)
 }
 
 // 0x0011c588  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint maybe_SetTimerAlarm_(undefined8 param_1,long param_2,undefined4 param_3)
 
 {
@@ -223,20 +229,20 @@ uint maybe_SetTimerAlarm_(undefined8 param_1,long param_2,undefined4 param_3)
   undefined4 *puVar2;
   uint uVar3;
   
-  puVar1 = puRam00377dc0;
+  puVar1 = _g_SetTimerAlarmShared1;
   if (param_2 == 0) {
     uVar3 = 0x80000016;
   }
-  else if (puRam00377dc0 == (undefined4 *)0x0) {
+  else if (_g_SetTimerAlarmShared1 == (undefined4 *)0x0) {
     uVar3 = 0x80008005;
   }
   else {
-    puRam00377dc0 = (undefined4 *)*puRam00377dc0;
+    _g_SetTimerAlarmShared1 = (undefined4 *)*_g_SetTimerAlarmShared1;
     uVar3 = maybe_Timer_AllocSlot();
     if ((int)uVar3 < 0) {
       puVar2 = puVar1;
-      *puVar1 = puRam00377dc0;
-      puRam00377dc0 = puVar2;
+      *puVar1 = _g_SetTimerAlarmShared1;
+      _g_SetTimerAlarmShared1 = puVar2;
       puVar1[1] = 0;
     }
     else {
@@ -252,6 +258,8 @@ uint maybe_SetTimerAlarm_(undefined8 param_1,long param_2,undefined4 param_3)
 }
 
 // 0x0011c678  size 0xa8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 maybe_ReleaseTimerAlarm(uint param_1)
 
 {
@@ -271,8 +279,8 @@ undefined8 maybe_ReleaseTimerAlarm(uint param_1)
   else {
     maybe_FreeTimerCounter(puVar4[1]);
     puVar1 = puVar4;
-    *puVar4 = puRam00377dc0;
-    puRam00377dc0 = puVar1;
+    *puVar4 = _g_SetTimerAlarmShared1;
+    _g_SetTimerAlarmShared1 = puVar1;
     puVar4[1] = 0;
     uVar3 = 0;
     if (lVar2 != 0) {
@@ -284,6 +292,8 @@ undefined8 maybe_ReleaseTimerAlarm(uint param_1)
 }
 
 // 0x0011c720  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_iReleaseTimerAlarm(uint param_1)
 
 {
@@ -299,8 +309,8 @@ long maybe_iReleaseTimerAlarm(uint param_1)
     lVar2 = maybe_iFreeTimerCounter(puVar3[1]);
     if (lVar2 == 0) {
       puVar1 = puVar3;
-      *puVar3 = puRam00377dc0;
-      puRam00377dc0 = puVar1;
+      *puVar3 = _g_SetTimerAlarmShared1;
+      _g_SetTimerAlarmShared1 = puVar1;
       puVar3[1] = 0;
     }
   }

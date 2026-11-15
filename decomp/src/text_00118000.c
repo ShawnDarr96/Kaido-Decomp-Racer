@@ -13,6 +13,7 @@ void maybe_sceUmount(undefined8 param_1)
 }
 
 // 0x00118190  size 0x234
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x16 */
 
 undefined8 maybe_sceLseek64(undefined8 param_1,undefined8 param_2,undefined4 param_3)
@@ -41,22 +42,22 @@ undefined8 maybe_sceLseek64(undefined8 param_1,undefined8 param_2,undefined4 par
       puVar6 = (undefined4 *)lVar2;
       uVar1 = puVar6[1];
       if (uVar1 != 0) {
-        uRam00372b0c = *puVar6;
-        iRam00372b1c = (int)(puVar6 + -0xdd000) >> 4;
+        _g_FioShared1 = *puVar6;
+        _g_sceReadShared1 = (int)(puVar6 + -0xdd000) >> 4;
         uStack_ac = 1;
         uStack_a8 = 0;
         uStack_9c = 0;
-        uRam00372b10 = param_2;
-        uRam00372b18 = param_3;
+        _g_sceMkdirShared1 = param_2;
+        _g_sceLseekShared2 = param_3;
         uVar3 = CreateSema(auStack_b0);
-        puRam00372b04 = auStack_90;
-        uRam00372b08 = 8;
-        iRam00372b00 = (int)uVar3;
+        _g_sceOpenShared1 = auStack_90;
+        _g_sceOpenShared2 = 8;
+        _g_sceLseekShared1 = (int)uVar3;
         if ((uVar1 & 0x8000) != 0) {
           WaitSema(DAT_00306b8c);
           if (DAT_00306af8 == -1) {
-            DAT_00306af8 = iRam00372b00;
-            iRam00372b00 = -iRam00372b00;
+            DAT_00306af8 = _g_sceLseekShared1;
+            _g_sceLseekShared1 = -_g_sceLseekShared1;
           }
           else {
             iVar5 = 1;
@@ -65,8 +66,8 @@ undefined8 maybe_sceLseek64(undefined8 param_1,undefined8 param_2,undefined4 par
               piVar4 = &DAT_00306af8 + iVar5;
               iVar5 = iVar5 + 1;
             } while (*piVar4 != -1);
-            *piVar4 = iRam00372b00;
-            iRam00372b00 = -iRam00372b00;
+            *piVar4 = _g_sceLseekShared1;
+            _g_sceLseekShared1 = -_g_sceLseekShared1;
           }
 LAB_001182ec:
           SignalSema(DAT_00306b8c);
@@ -111,7 +112,7 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
   undefined1 *puVar2;
   undefined8 uVar3;
   long lVar4;
-  undefined1 *puVar5;
+  undefined *puVar5;
   int iVar6;
   uint uVar7;
   undefined1 auStack_d0 [4];
@@ -123,28 +124,27 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
   maybe_Fio_Lock(0x17);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
-    cRam00372b0c = *param_1;
+    g_FioShared1 = *param_1;
   }
   else {
-    cRam00372b0c = *param_1;
+    g_FioShared1 = *param_1;
   }
   iVar6 = 0;
-  if (cRam00372b0c != '\0') {
+  if (g_FioShared1 != '\0') {
     for (iVar6 = 1;
-        (iVar6 < 0x400 &&
-        (cVar1 = param_1[iVar6], *(char *)(iVar6 + 0x372b0c) = cVar1, cVar1 != '\0'));
+        (iVar6 < 0x400 && (cVar1 = param_1[iVar6], (&g_FioShared1)[iVar6] = cVar1, cVar1 != '\0'));
         iVar6 = iVar6 + 1) {
     }
   }
   if (iVar6 == 0x400) {
-    uRam00372f0b = 0;
+    g_FioShared2 = 0;
   }
   if ((param_4 < 0x401) && (param_6 < 0x401)) {
     uVar7 = 0;
     if (param_4 != 0) {
       do {
         puVar2 = (undefined1 *)(param_3 + uVar7);
-        puVar5 = (undefined1 *)(uVar7 + 0x372f0c);
+        puVar5 = &g_sceFormatShared1 + uVar7;
         uVar7 = uVar7 + 1;
         *puVar5 = *puVar2;
       } while (uVar7 < param_4);
@@ -156,9 +156,9 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
     _s_sceDevctl_2 = param_4;
     uVar3 = CreateSema(auStack_d0);
     _s_sceDevctl_4 = (undefined4)param_6;
-    uRam00372b08 = 4;
-    uRam00372b00 = (undefined4)uVar3;
-    puRam00372b04 = auStack_b0;
+    _g_sceOpenShared2 = 4;
+    _g_sceLseekShared1 = (undefined4)uVar3;
+    _g_sceOpenShared1 = auStack_b0;
     _s_sceDevctl_3 = param_5;
     sceSifWriteBackDCache(0x372b00,0x81c);
     lVar4 = sceSifCallRpc(0x374200,0x17,0,0x372b00,0x81c,0x373740,4,0);
@@ -188,6 +188,8 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
 }
 
 // 0x00118600  size 0x1e0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSymlink(char *param_1,char *param_2)
 
 {
@@ -204,41 +206,40 @@ undefined4 maybe_sceSymlink(char *param_1,char *param_2)
   maybe_Fio_Lock(0x11);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
-    cRam00372b0c = *param_1;
+    g_FioShared1 = *param_1;
   }
   else {
-    cRam00372b0c = *param_1;
+    g_FioShared1 = *param_1;
   }
   iVar4 = 0;
-  if (cRam00372b0c != '\0') {
+  if (g_FioShared1 != '\0') {
     for (iVar4 = 1;
-        (iVar4 < 0x400 &&
-        (cVar1 = param_1[iVar4], *(char *)(iVar4 + 0x372b0c) = cVar1, cVar1 != '\0'));
+        (iVar4 < 0x400 && (cVar1 = param_1[iVar4], (&g_FioShared1)[iVar4] = cVar1, cVar1 != '\0'));
         iVar4 = iVar4 + 1) {
     }
   }
   if (iVar4 == 0x400) {
-    uRam00372f0b = 0;
+    g_FioShared2 = 0;
   }
-  cRam00372f0c = *param_2;
+  g_sceFormatShared1 = *param_2;
   iVar4 = 0;
-  if (cRam00372f0c != '\0') {
+  if (g_sceFormatShared1 != '\0') {
     for (iVar4 = 1;
         (iVar4 < 0x400 &&
-        (cVar1 = param_2[iVar4], *(char *)(iVar4 + 0x372f0c) = cVar1, cVar1 != '\0'));
+        (cVar1 = param_2[iVar4], (&g_sceFormatShared1)[iVar4] = cVar1, cVar1 != '\0'));
         iVar4 = iVar4 + 1) {
     }
   }
   if (iVar4 == 0x400) {
-    uRam0037330b = 0;
+    g_sceFormatShared2 = 0;
   }
   uStack_a8 = 0;
   uStack_ac = 1;
   uStack_9c = 0;
   uVar2 = CreateSema(auStack_b0);
-  uRam00372b00 = (undefined4)uVar2;
-  uRam00372b08 = 4;
-  puRam00372b04 = auStack_90;
+  _g_sceLseekShared1 = (undefined4)uVar2;
+  _g_sceOpenShared2 = 4;
+  _g_sceOpenShared1 = auStack_90;
   lVar3 = sceSifCallRpc(0x374200,0x18,0,0x372b00,0x80c,0x373740,4,0);
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
@@ -261,6 +262,8 @@ undefined4 maybe_sceSymlink(char *param_1,char *param_2)
 }
 
 // 0x001187e0  size 0x1c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceReadlink(char *param_1,undefined8 param_2,ulong param_3)
 
 {
@@ -277,35 +280,35 @@ undefined4 maybe_sceReadlink(char *param_1,undefined8 param_2,ulong param_3)
   maybe_Fio_Lock(0x11);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
-    cRam00372b14 = *param_1;
+    g_sceSyncShared1 = *param_1;
   }
   else {
-    cRam00372b14 = *param_1;
+    g_sceSyncShared1 = *param_1;
   }
   iVar4 = 0;
-  if (cRam00372b14 != '\0') {
+  if (g_sceSyncShared1 != '\0') {
     for (iVar4 = 1;
         (iVar4 < 0x400 &&
-        (cVar1 = param_1[iVar4], *(char *)(iVar4 + 0x372b14) = cVar1, cVar1 != '\0'));
+        (cVar1 = param_1[iVar4], (&g_sceSyncShared1)[iVar4] = cVar1, cVar1 != '\0'));
         iVar4 = iVar4 + 1) {
     }
   }
   if (iVar4 == 0x400) {
-    uRam00372f13 = 0;
+    g_sceOpenShared3 = 0;
   }
   if (0x3ff < param_3) {
     param_3 = 0x3ff;
   }
-  uRam00372b10 = (undefined4)param_2;
-  uRam00372b0c = (undefined4)param_3;
+  _g_sceMkdirShared1 = (undefined4)param_2;
+  _g_FioShared1 = (undefined4)param_3;
   sceSifWriteBackDCache(param_2,param_3);
   uStack_b8 = 0;
   uStack_bc = 1;
   uStack_ac = 0;
   uVar2 = CreateSema(auStack_c0);
-  uRam00372b00 = (undefined4)uVar2;
-  uRam00372b08 = 4;
-  puRam00372b04 = auStack_a0;
+  _g_sceLseekShared1 = (undefined4)uVar2;
+  _g_sceOpenShared2 = 4;
+  _g_sceOpenShared1 = auStack_a0;
   lVar3 = sceSifCallRpc(0x374200,0x19,0,0x372b00,0x80c,0x373740,4,0);
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
@@ -353,17 +356,19 @@ undefined4 sceSifInitIopHeap(void)
 }
 
 // 0x00118a30  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceSifAllocIopHeap(undefined4 param_1)
 
 {
   long lVar1;
   
   if ((DAT_00306b98 < 0) ||
-     (uRam00374380 = param_1, lVar1 = sceSifCallRpc(0x374300,1,0,0x374380,4,0x374340,4,0), lVar1 < 0
-     )) {
+     (_g_sceSifAllocIopHeapShared2 = param_1,
+     lVar1 = sceSifCallRpc(0x374300,1,0,0x374380,4,0x374340,4,0), lVar1 < 0)) {
     return 0;
   }
-  return uRam00374340;
+  return _g_sceSifAllocIopHeapShared1;
 }
 
 // 0x00118aa0  size 0x80
@@ -377,11 +382,11 @@ undefined4 maybe_sceSifAllocSysMemory(undefined4 param_1,undefined4 param_2,unde
   
   uVar1 = 0;
   if (-1 < DAT_00306b98) {
-    uRam00374380 = param_2;
+    _g_sceSifAllocIopHeapShared2 = param_2;
     _s_sceSifAllocSysMemory_1 = param_1;
     _s_sceSifAllocSysMemory_2 = param_3;
     lVar2 = sceSifCallRpc(0x374300,4,0,0x374380,0xc,0x374340,4,0);
-    uVar1 = uRam00374340;
+    uVar1 = _g_sceSifAllocIopHeapShared1;
     if (lVar2 < 0) {
       uVar1 = 0;
     }
@@ -390,6 +395,8 @@ undefined4 maybe_sceSifAllocSysMemory(undefined4 param_1,undefined4 param_2,unde
 }
 
 // 0x00118b20  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceSifFreeIopHeap(undefined4 param_1)
 
 {
@@ -400,9 +407,9 @@ undefined4 sceSifFreeIopHeap(undefined4 param_1)
     uVar1 = 0;
   }
   else {
-    uRam00374380 = param_1;
+    _g_sceSifAllocIopHeapShared2 = param_1;
     lVar2 = sceSifCallRpc(0x374300,2,0,0x374380,4,0x374340,4,0);
-    uVar1 = uRam00374340;
+    uVar1 = _g_sceSifAllocIopHeapShared1;
     if (lVar2 < 0) {
       uVar1 = 0xffffffff;
     }
@@ -448,7 +455,7 @@ undefined4 maybe_sceSifLoadIopHeap(char *param_1,undefined4 param_2)
     s_sceSifLoadIopHeap_3 = 0;
     _s_sceSifLoadIopHeap_1 = param_2;
     lVar3 = sceSifCallRpc(0x374300,3,0,0x3743c0,iVar4 + 5,0x374340,4,0);
-    uVar2 = uRam00374340;
+    uVar2 = _g_sceSifAllocIopHeapShared1;
     if (lVar3 < 0) {
       uVar2 = 0xffffffff;
     }
@@ -457,6 +464,8 @@ undefined4 maybe_sceSifLoadIopHeap(char *param_1,undefined4 param_2)
 }
 
 // 0x00118ca8  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifQueryTotalFreeMemSize(void)
 
 {
@@ -472,13 +481,15 @@ undefined4 maybe_sceSifQueryTotalFreeMemSize(void)
       uVar1 = 0xffffffff;
     }
     else {
-      uVar1 = uRam00374340;
+      uVar1 = _g_sceSifAllocIopHeapShared1;
     }
   }
   return uVar1;
 }
 
 // 0x00118d18  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifQueryMaxFreeMemSize(void)
 
 {
@@ -494,13 +505,15 @@ undefined4 maybe_sceSifQueryMaxFreeMemSize(void)
       uVar1 = 0xffffffff;
     }
     else {
-      uVar1 = uRam00374340;
+      uVar1 = _g_sceSifAllocIopHeapShared1;
     }
   }
   return uVar1;
 }
 
 // 0x00118d88  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifQueryBlockTopAddress(void)
 
 {
@@ -516,13 +529,15 @@ undefined4 maybe_sceSifQueryBlockTopAddress(void)
       uVar1 = 0xffffffff;
     }
     else {
-      uVar1 = uRam00374340;
+      uVar1 = _g_sceSifAllocIopHeapShared1;
     }
   }
   return uVar1;
 }
 
 // 0x00118df8  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifQueryBlockSize(undefined4 param_1)
 
 {
@@ -533,19 +548,21 @@ undefined4 maybe_sceSifQueryBlockSize(undefined4 param_1)
     uVar1 = 0;
   }
   else {
-    uRam00374380 = param_1;
+    _g_sceSifAllocIopHeapShared2 = param_1;
     lVar2 = sceSifCallRpc(0x374300,8,0,0x374380,4,0x374340,4,0);
     if (lVar2 < 0) {
       uVar1 = 0xffffffff;
     }
     else {
-      uVar1 = uRam00374340;
+      uVar1 = _g_sceSifAllocIopHeapShared1;
     }
   }
   return uVar1;
 }
 
 // 0x00118e78  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifQueryMemSize(undefined4 param_1)
 
 {
@@ -556,13 +573,13 @@ undefined4 maybe_sceSifQueryMemSize(undefined4 param_1)
     uVar1 = 0;
   }
   else {
-    uRam00374380 = param_1;
+    _g_sceSifAllocIopHeapShared2 = param_1;
     lVar2 = sceSifCallRpc(0x374300,9,0,0x374380,4,0x374340,4,0);
     if (lVar2 < 0) {
       uVar1 = 0xffffffff;
     }
     else {
-      uVar1 = uRam00374340;
+      uVar1 = _g_sceSifAllocIopHeapShared1;
     }
   }
   return uVar1;
@@ -587,7 +604,7 @@ undefined4 sceSifLoadFileInit(void)
         if (lVar3 < 0) {
           return 0xfffeffff;
         }
-        _s_sceSifLoadFileInit_2 = uRam003744c0;
+        _s_sceSifLoadFileInit_2 = _g_RuntimeShared1;
         return 0;
       }
       iVar2 = 0x100000;
@@ -632,6 +649,8 @@ undefined8 sceSifLoadFileReset(void)
 }
 
 // 0x001190c0  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4
 maybe__lf_module_load(undefined4 param_1,long param_2,undefined8 *param_3,undefined4 *param_4)
 
@@ -649,13 +668,13 @@ maybe__lf_module_load(undefined4 param_1,long param_2,undefined8 *param_3,undefi
   if (-1 < lVar3) {
     lVar3 = maybe_LoadFile_IsBound();
     if (lVar3 == 0) {
-      uRam003744c0 = param_1;
+      _g_RuntimeShared1 = param_1;
       if (param_3 == (undefined8 *)0x0) {
-        uRam003744c4 = 0;
+        _g_RuntimeShared2 = 0;
       }
       else if (param_2 < 0xfd) {
         memcpy(0x3745c4,param_3,param_2);
-        uRam003744c4 = (undefined4)param_2;
+        _g_RuntimeShared2 = (undefined4)param_2;
       }
       else {
         puVar4 = (undefined8 *)&s__lf_module_buffer_load_1;
@@ -694,15 +713,15 @@ maybe__lf_module_load(undefined4 param_1,long param_2,undefined8 *param_3,undefi
         puVar4[1] = uVar6;
         puVar4[2] = uVar5;
         *(undefined4 *)(puVar4 + 3) = uVar2;
-        uRam003744c4 = 0xfc;
+        _g_RuntimeShared2 = 0xfc;
       }
       lVar3 = sceSifCallRpc(0x3746c0,6,0,0x3744c0,0x200,0x3744c0,8,0);
-      uVar2 = uRam003744c0;
+      uVar2 = _g_RuntimeShared1;
       if (lVar3 < 0) {
         uVar2 = 0xfffeffff;
       }
       else {
-        *param_4 = uRam003744c4;
+        *param_4 = _g_RuntimeShared2;
       }
     }
     else {
@@ -713,6 +732,8 @@ maybe__lf_module_load(undefined4 param_1,long param_2,undefined8 *param_3,undefi
 }
 
 // 0x001192c8  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4
 maybe__lf_module_load_ex(undefined4 param_1,long param_2,undefined8 *param_3,undefined4 *param_4)
 
@@ -730,13 +751,13 @@ maybe__lf_module_load_ex(undefined4 param_1,long param_2,undefined8 *param_3,und
   if (-1 < lVar3) {
     lVar3 = maybe_LoadFile_IsBound();
     if (lVar3 == 0) {
-      uRam003744c0 = param_1;
+      _g_RuntimeShared1 = param_1;
       if (param_3 == (undefined8 *)0x0) {
-        uRam003744c4 = 0;
+        _g_RuntimeShared2 = 0;
       }
       else if (param_2 < 0xfd) {
         memcpy(0x3745c4,param_3,param_2);
-        uRam003744c4 = (undefined4)param_2;
+        _g_RuntimeShared2 = (undefined4)param_2;
       }
       else {
         puVar4 = (undefined8 *)&s__lf_module_buffer_load_1;
@@ -775,15 +796,15 @@ maybe__lf_module_load_ex(undefined4 param_1,long param_2,undefined8 *param_3,und
         puVar4[1] = uVar6;
         puVar4[2] = uVar5;
         *(undefined4 *)(puVar4 + 3) = uVar2;
-        uRam003744c4 = 0xfc;
+        _g_RuntimeShared2 = 0xfc;
       }
       lVar3 = sceSifCallRpc(0x3746c0,7,0,0x3744c0,0x200,0x3744c0,8,0);
-      uVar2 = uRam003744c0;
+      uVar2 = _g_RuntimeShared1;
       if (lVar3 < 0) {
         uVar2 = 0xfffeffff;
       }
       else {
-        *param_4 = uRam003744c4;
+        *param_4 = _g_RuntimeShared2;
       }
     }
     else {
@@ -794,6 +815,8 @@ maybe__lf_module_load_ex(undefined4 param_1,long param_2,undefined8 *param_3,und
 }
 
 // 0x001194d0  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifStopModule(undefined4 param_1)
 
 {
@@ -805,13 +828,13 @@ undefined4 maybe_sceSifStopModule(undefined4 param_1)
   if (-1 < lVar2) {
     lVar2 = maybe_LoadFile_IsBound();
     if (lVar2 == 0) {
-      uRam003744c0 = param_1;
+      _g_RuntimeShared1 = param_1;
       lVar2 = sceSifCallRpc(0x3746c0,8,0,0x3744c0,4,0x3744c0,4,0);
       if (lVar2 < 0) {
         uVar1 = 0xfffeffff;
       }
       else {
-        uVar1 = uRam003744c0;
+        uVar1 = _g_RuntimeShared1;
       }
     }
     else {
@@ -822,6 +845,8 @@ undefined4 maybe_sceSifStopModule(undefined4 param_1)
 }
 
 // 0x00119560  size 0xa0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifSearchModuleByName(undefined8 param_1)
 
 {
@@ -834,13 +859,13 @@ undefined4 maybe_sceSifSearchModuleByName(undefined8 param_1)
     lVar2 = maybe_LoadFile_IsBound();
     if (lVar2 == 0) {
       maybe_strncpy(0x3744c8,param_1,0xfc);
-      uRam003745c3 = 0;
+      g_RuntimeShared3 = 0;
       lVar2 = sceSifCallRpc(0x3746c0,9,0,0x3744c0,0x200,0x3744c0,4,0);
       if (lVar2 < 0) {
         uVar1 = 0xfffeffff;
       }
       else {
-        uVar1 = uRam003744c0;
+        uVar1 = _g_RuntimeShared1;
       }
     }
     else {
@@ -851,6 +876,8 @@ undefined4 maybe_sceSifSearchModuleByName(undefined8 param_1)
 }
 
 // 0x00119600  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifUnloadModule(undefined4 param_1)
 
 {
@@ -862,13 +889,13 @@ undefined4 maybe_sceSifUnloadModule(undefined4 param_1)
   if (-1 < lVar2) {
     lVar2 = maybe_LoadFile_IsBound();
     if (lVar2 == 0) {
-      uRam003744c0 = param_1;
+      _g_RuntimeShared1 = param_1;
       lVar2 = sceSifCallRpc(0x3746c0,10,0,0x3744c0,4,0x3744c0,4,0);
       if (lVar2 < 0) {
         uVar1 = 0xfffeffff;
       }
       else {
-        uVar1 = uRam003744c0;
+        uVar1 = _g_RuntimeShared1;
       }
     }
     else {
@@ -895,6 +922,8 @@ void maybe_sceSifLoadStartModule(void)
 }
 
 // 0x001196d0  size 0x224
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4
 maybe__lf_module_buffer_load
           (undefined8 param_1,long param_2,undefined8 *param_3,undefined4 *param_4,
@@ -915,14 +944,14 @@ maybe__lf_module_buffer_load
     lVar3 = maybe_LoadFile_IsBound();
     if (lVar3 == 0) {
       maybe_strncpy(0x3744c8,param_1,0xfc);
-      uRam003745c3 = 0;
+      g_RuntimeShared3 = 0;
       if (param_3 == (undefined8 *)0x0) {
         s__lf_module_buffer_load_1 = 0;
-        uRam003744c0 = 0;
+        _g_RuntimeShared1 = 0;
       }
       else if (param_2 < 0xfd) {
         memcpy(0x3745c4,param_3,param_2);
-        uRam003744c0 = (undefined4)param_2;
+        _g_RuntimeShared1 = (undefined4)param_2;
       }
       else {
         puVar4 = (undefined8 *)&s__lf_module_buffer_load_1;
@@ -961,15 +990,15 @@ maybe__lf_module_buffer_load
         puVar4[1] = uVar5;
         puVar4[2] = uVar6;
         *(undefined4 *)(puVar4 + 3) = uVar2;
-        uRam003744c0 = 0xfc;
+        _g_RuntimeShared1 = 0xfc;
       }
       lVar3 = sceSifCallRpc(0x3746c0,param_5,0,0x3744c0,0x200,0x3744c0,8,0);
-      uVar2 = uRam003744c0;
+      uVar2 = _g_RuntimeShared1;
       if (lVar3 < 0) {
         uVar2 = 0xfffeffff;
       }
       else {
-        *param_4 = uRam003744c4;
+        *param_4 = _g_RuntimeShared2;
       }
     }
     else {
@@ -996,6 +1025,8 @@ void maybe_sceSifLoadStartModuleBuffer(void)
 }
 
 // 0x00119938  size 0x104
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 maybe__lf_elf_load(undefined8 param_1,undefined8 param_2,int *param_3,undefined8 param_4)
 
 {
@@ -1008,20 +1039,20 @@ undefined8 maybe__lf_elf_load(undefined8 param_1,undefined8 param_2,int *param_3
     lVar1 = maybe_LoadFile_IsBound();
     if (lVar1 == 0) {
       maybe_strncpy(0x3744c8,param_1,0xfc);
-      uRam003745c3 = 0;
+      g_RuntimeShared3 = 0;
       maybe_strncpy(0x3745c4,param_2,0xfc);
       s__lf_elf_load_1 = 0;
       lVar1 = sceSifCallRpc(0x3746c0,param_4,0,0x3744c0,0x200,0x3744c0,0x10,0);
       if (lVar1 < 0) {
         uVar2 = 0xfffffffffffeffff;
       }
-      else if (iRam003744c0 == 0) {
+      else if (_g_RuntimeShared1 == 0) {
         uVar2 = 0xfffffffffffefffd;
       }
       else {
-        *param_3 = iRam003744c0;
+        *param_3 = _g_RuntimeShared1;
         uVar2 = 0;
-        param_3[1] = iRam003744c4;
+        param_3[1] = _g_RuntimeShared2;
       }
     }
     else {
@@ -1040,6 +1071,8 @@ void maybe_sceSifLoadElf(void)
 }
 
 // 0x00119a88  size 0xec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 maybe_sceSifGetIopAddr(undefined4 param_1,undefined4 *param_2,ulong param_3)
 
 {
@@ -1051,21 +1084,21 @@ undefined8 maybe_sceSifGetIopAddr(undefined4 param_1,undefined4 *param_2,ulong p
     return 0xffffffffffff0000;
   }
   if (param_3 < 3) {
-    uRam003744c4 = (undefined4)param_3;
-    uRam003744c0 = param_1;
+    _g_RuntimeShared2 = (undefined4)param_3;
+    _g_RuntimeShared1 = param_1;
     lVar1 = sceSifCallRpc(0x3746c0,3,0,0x3744c0,0x20,0x3744c0,0x20,0);
     if (lVar1 < 0) {
       return 0xfffffffffffeffff;
     }
     if (param_3 == 0) {
-      *(undefined1 *)param_2 = (undefined1)uRam003744c0;
+      *(undefined1 *)param_2 = g_RuntimeShared1;
     }
     else if (param_3 == 1) {
-      *(undefined2 *)param_2 = (undefined2)uRam003744c0;
+      *(undefined2 *)param_2 = _g_RuntimeShared1;
     }
     else {
       if (param_3 != 2) goto LAB_00119b44;
-      *param_2 = uRam003744c0;
+      *param_2 = _g_RuntimeShared1;
     }
     uVar2 = 0;
   }
@@ -1090,7 +1123,7 @@ undefined8 maybe_sceSifSetIopAddr(undefined4 param_1,undefined4 *param_2,long pa
     uVar2 = 0xffffffffffff0000;
   }
   else {
-    uRam003744c4 = (undefined4)param_3;
+    _g_RuntimeShared2 = (undefined4)param_3;
     if (param_3 == 0) {
       _s_sceSifSetIopAddr_1 = CONCAT31(s_sceSifSetIopAddr_1_1,*(undefined1 *)param_2);
     }
@@ -1099,12 +1132,12 @@ undefined8 maybe_sceSifSetIopAddr(undefined4 param_1,undefined4 *param_2,long pa
     }
     else {
       if (param_3 != 2) {
-        uRam003744c0 = param_1;
+        _g_RuntimeShared1 = param_1;
         return 0xfffffffffffefffe;
       }
       _s_sceSifSetIopAddr_1 = *param_2;
     }
-    uRam003744c0 = param_1;
+    _g_RuntimeShared1 = param_1;
     lVar1 = sceSifCallRpc(0x3746c0,2,0,0x3744c0,0x20,0x3744c0,0x10,0);
     uVar2 = 0xfffffffffffeffff;
     if (-1 < lVar1) {

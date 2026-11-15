@@ -485,6 +485,7 @@ int PhysWorld_AllocContact(int param_1)
 }
 
 // 0x00158b00  size 0x2c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* accumulates time, wraps at 3600 */
 
 void PhysWorld_Integrate(float param_1,int param_2)
@@ -508,10 +509,10 @@ void PhysWorld_Integrate(float param_1,int param_2)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  fRam0036f104 = fRam0036f104 + param_1;
-  fRam0036f100 = param_1;
-  if (3600.0 < fRam0036f104) {
-    fRam0036f104 = fRam0036f104 - 3600.0;
+  _g_PhysWorldShared2 = _g_PhysWorldShared2 + param_1;
+  _g_PhysWorldShared1 = param_1;
+  if (3600.0 < _g_PhysWorldShared2) {
+    _g_PhysWorldShared2 = _g_PhysWorldShared2 - 3600.0;
     iVar4 = *(int *)(param_2 + 0x2c);
     iVar5 = *(int *)(param_2 + 0x28);
     if (iVar4 != 0) {
@@ -546,10 +547,10 @@ LAB_00158b54:
       iVar5 = 0;
       for (; iVar4 != 0; iVar4 = iVar4 + -1) {
         if (((*(char *)(*piVar7 + 0xf7) != '\0') || (*(char *)(piVar7[1] + 0xf7) != '\0')) ||
-           ((float)piVar7[7] <= fRam0036f104)) {
+           ((float)piVar7[7] <= _g_PhysWorldShared2)) {
           fVar8 = (float)PhysPair_ComputeDistance(piVar7);
           piVar7[7] = (int)fVar8;
-          if (fVar8 < fRam0036f104 + fRam0036f100) {
+          if (fVar8 < _g_PhysWorldShared2 + _g_PhysWorldShared1) {
             puVar1 = (undefined4 *)PhysBody_GetCenterOfMass(*(undefined4 *)(*piVar7 + 4));
             uStack_10 = *puVar1;
             uStack_c = puVar1[1];
@@ -2229,7 +2230,7 @@ undefined * PhysBox_GetCorner(int param_1,int param_2)
   _s_PhysBox_GetCorner_1 = uStack_10;
   _s_PhysBox_GetCorner_2 = uStack_c;
   _s_PhysBox_GetCorner_3 = uStack_8;
-  uRam0042f54c = uStack_4;
+  _g_PhysBoxShared1 = uStack_4;
   return &s_PhysBox_GetCorner_1;
 }
 

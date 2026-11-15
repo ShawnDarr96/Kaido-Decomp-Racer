@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x00198010  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SceneObj_DestroyAll(void)
 
 {
@@ -20,11 +22,13 @@ void SceneObj_DestroyAll(void)
     }
     uVar3 = uVar3 + 1;
   } while ((int)uVar3 < 3);
-  uRam00430588 = 0;
+  _g_SceneObjShared2 = 0;
   return;
 }
 
 // 0x001980a0  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SceneObj_ResetAll(void)
 
 {
@@ -36,7 +40,7 @@ void SceneObj_ResetAll(void)
   do {
     lVar1 = SceneObj_Next(uVar3 & 0xff,0);
     while (lVar1 != 0) {
-      iRam00430588 = iRam00430588 + 1;
+      _g_SceneObjShared2 = _g_SceneObjShared2 + 1;
       uVar2 = Chunk_GetData(lVar1);
       lVar1 = SceneObj_Next(uVar3 & 0xff,uVar2);
     }
@@ -219,17 +223,17 @@ uint * SceneObj_Next(char param_1,uint *param_2)
     }
   }
   if (param_1 == '\x02') {
-    puVar2 = _g_CourseModelC + iRam00430580 * 0x12;
+    puVar2 = _g_CourseModelC + _g_CourseShared7 * 0x12;
   }
   else if (param_1 == '\x01') {
-    puVar2 = _g_CourseModelB + iRam00430578 * 0x14;
+    puVar2 = _g_CourseModelB + _g_CourseShared6 * 0x14;
   }
   else {
     if (param_1 != '\0') {
       bVar1 = false;
       goto LAB_00198568;
     }
-    puVar2 = _g_CourseModelA + iRam00430570 * 0x14c;
+    puVar2 = _g_CourseModelA + _g_SceneObjShared1 * 0x14c;
   }
   bVar1 = param_2 < puVar2;
 LAB_00198568:
@@ -259,11 +263,11 @@ int * SceneObj_AllocFromPool(char param_1)
   iVar4 = 0;
   iVar3 = 0;
   if (param_1 == '\x02') {
-    iVar3 = iRam00430580;
+    iVar3 = _g_CourseShared7;
     piVar2 = _g_CourseModelC;
   }
   else if (param_1 == '\x01') {
-    iVar3 = iRam00430578;
+    iVar3 = _g_CourseShared6;
     piVar2 = _g_CourseModelB;
   }
   else {
@@ -271,7 +275,7 @@ int * SceneObj_AllocFromPool(char param_1)
       bVar1 = false;
       goto LAB_00198690;
     }
-    iVar3 = iRam00430570;
+    iVar3 = _g_SceneObjShared1;
     piVar2 = _g_CourseModelA;
   }
   bVar1 = 0 < iVar3;
@@ -289,11 +293,13 @@ LAB_00198690:
 }
 
 // 0x001986e0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SceneObj_SetGlobalFlags(undefined4 param_1)
 
 {
-  uRam0036f284 = param_1;
-  uRam0036f2ec = param_1;
+  _g_CourseShared1 = param_1;
+  _g_DriverAssetShared1 = param_1;
   return;
 }
 
@@ -323,8 +329,8 @@ void View_DrawBackground(uint param_1,long param_2,long param_3)
   if (param_3 != 0) {
     auStack_350[0] = auStack_350[0] | 0x200;
   }
-  fStack_4c = (float)*(uint *)(iVar1 + 0x431174);
-  fStack_50 = (float)*(uint *)(iVar1 + 0x431170);
+  fStack_4c = (float)*(uint *)(&g_ReplayCamShared1 + iVar1);
+  fStack_50 = (float)*(uint *)(&g_CourseShared23 + iVar1);
   Pkt_AddPrimitives(auStack_40,auStack_350,1);
   Pkt_Submit(auStack_40,0);
   return;
@@ -431,99 +437,99 @@ void Course_DrawShadowedMeshes(long param_1)
   undefined4 uStack_14;
   undefined1 uStack_10;
   
-  uStack_180 = uRam00436180;
-  uStack_17c = uRam00436184;
-  uStack_178 = uRam00436188;
-  uStack_174 = uRam0043618c;
-  uStack_120 = uRam004361e0;
-  uStack_11c = uRam004361e4;
-  uStack_118 = uRam004361e8;
-  uStack_114 = uRam004361ec;
-  uStack_c0 = uRam00436240;
-  uStack_bc = uRam00436244;
-  uStack_b8 = uRam00436248;
-  uStack_b4 = uRam0043624c;
-  uStack_170 = uRam00436190;
-  uStack_16c = uRam00436194;
-  uStack_168 = uRam00436198;
-  uStack_164 = uRam0043619c;
-  uStack_110 = uRam004361f0;
-  uStack_10c = uRam004361f4;
-  uStack_108 = uRam004361f8;
-  uStack_104 = uRam004361fc;
-  uStack_b0 = uRam00436250;
-  uStack_ac = uRam00436254;
-  uStack_a8 = uRam00436258;
-  uStack_a4 = uRam0043625c;
-  uStack_a0 = uRam00436260;
-  uStack_9c = uRam00436264;
-  uStack_98 = uRam00436268;
-  uStack_94 = uRam0043626c;
-  uStack_160 = uRam004361a0;
-  uStack_15c = uRam004361a4;
-  uStack_158 = uRam004361a8;
-  uStack_154 = uRam004361ac;
-  uStack_90 = uRam00436270;
-  uStack_8c = uRam00436274;
-  uStack_88 = uRam00436278;
-  uStack_84 = uRam0043627c;
-  uStack_80 = uRam00436280;
-  uStack_7c = uRam00436284;
-  uStack_78 = uRam00436288;
-  uStack_74 = uRam0043628c;
-  uStack_70 = uRam00436290;
-  uStack_6c = uRam00436294;
-  uStack_68 = uRam00436298;
-  uStack_64 = uRam0043629c;
-  uStack_60 = uRam004362a0;
-  uStack_5c = uRam004362a4;
-  uStack_58 = uRam004362a8;
-  uStack_54 = uRam004362ac;
-  uStack_150 = uRam004361b0;
-  uStack_14c = uRam004361b4;
-  uStack_148 = uRam004361b8;
-  uStack_144 = uRam004361bc;
-  uStack_100 = uRam00436200;
-  uStack_fc = uRam00436204;
-  uStack_f8 = uRam00436208;
-  uStack_f4 = uRam0043620c;
-  uStack_50 = uRam004362b0;
-  uStack_4c = uRam004362b4;
-  uStack_48 = uRam004362b8;
-  uStack_44 = uRam004362bc;
-  uStack_140 = uRam004361c0;
-  uStack_13c = uRam004361c4;
-  uStack_138 = uRam004361c8;
-  uStack_134 = uRam004361cc;
-  uStack_f0 = uRam00436210;
-  uStack_ec = uRam00436214;
-  uStack_e8 = uRam00436218;
-  uStack_e4 = uRam0043621c;
-  uStack_40 = uRam004362c0;
-  uStack_3c = uRam004362c4;
-  uStack_38 = uRam004362c8;
-  uStack_34 = uRam004362cc;
-  uStack_130 = uRam004361d0;
-  uStack_12c = uRam004361d4;
-  uStack_128 = uRam004361d8;
-  uStack_124 = uRam004361dc;
-  uStack_e0 = uRam00436220;
-  uStack_dc = uRam00436224;
-  uStack_d8 = uRam00436228;
-  uStack_d4 = uRam0043622c;
-  uStack_30 = uRam004362d0;
-  uStack_2c = uRam004362d4;
-  uStack_28 = uRam004362d8;
-  uStack_24 = uRam004362dc;
-  uStack_d0 = uRam00436230;
-  uStack_cc = uRam00436234;
-  uStack_c8 = uRam00436238;
-  uStack_c4 = uRam0043623c;
-  uStack_20 = uRam004362e0;
-  uStack_1c = uRam004362e4;
-  uStack_18 = uRam004362e8;
-  uStack_14 = uRam004362ec;
-  uStack_10 = uRam004362f0;
+  uStack_180 = _g_CourseShared25;
+  uStack_17c = _g_CourseShared26;
+  uStack_178 = _g_CourseShared27;
+  uStack_174 = _g_CourseShared28;
+  uStack_120 = _g_CourseShared49;
+  uStack_11c = _g_CourseShared50;
+  uStack_118 = _g_CourseShared51;
+  uStack_114 = _g_CourseShared52;
+  uStack_c0 = _g_CourseShared73;
+  uStack_bc = _g_CourseShared74;
+  uStack_b8 = _g_CourseShared75;
+  uStack_b4 = _g_CourseShared76;
+  uStack_170 = _g_CourseShared29;
+  uStack_16c = _g_CourseShared30;
+  uStack_168 = _g_CourseShared31;
+  uStack_164 = _g_CourseShared32;
+  uStack_110 = _g_CourseShared53;
+  uStack_10c = _g_CourseShared54;
+  uStack_108 = _g_CourseShared55;
+  uStack_104 = _g_CourseShared56;
+  uStack_b0 = _g_CourseShared77;
+  uStack_ac = _g_CourseShared78;
+  uStack_a8 = _g_CourseShared79;
+  uStack_a4 = _g_CourseShared80;
+  uStack_a0 = _g_CourseShared81;
+  uStack_9c = _g_CourseShared82;
+  uStack_98 = _g_CourseShared83;
+  uStack_94 = _g_CourseShared84;
+  uStack_160 = _g_CourseShared33;
+  uStack_15c = _g_CourseShared34;
+  uStack_158 = _g_CourseShared35;
+  uStack_154 = _g_CourseShared36;
+  uStack_90 = _g_CourseShared85;
+  uStack_8c = _g_CourseShared86;
+  uStack_88 = _g_CourseShared87;
+  uStack_84 = _g_CourseShared88;
+  uStack_80 = _g_CourseShared89;
+  uStack_7c = _g_CourseShared90;
+  uStack_78 = _g_CourseShared91;
+  uStack_74 = _g_CourseShared92;
+  uStack_70 = _g_CourseShared93;
+  uStack_6c = _g_CourseShared94;
+  uStack_68 = _g_CourseShared95;
+  uStack_64 = _g_CourseShared96;
+  uStack_60 = _g_CourseShared97;
+  uStack_5c = _g_CourseShared98;
+  uStack_58 = _g_CourseShared99;
+  uStack_54 = _g_CourseShared100;
+  uStack_150 = _g_CourseShared37;
+  uStack_14c = _g_CourseShared38;
+  uStack_148 = _g_CourseShared39;
+  uStack_144 = _g_CourseShared40;
+  uStack_100 = _g_CourseShared57;
+  uStack_fc = _g_CourseShared58;
+  uStack_f8 = _g_CourseShared59;
+  uStack_f4 = _g_CourseShared60;
+  uStack_50 = _g_CourseShared101;
+  uStack_4c = _g_CourseShared102;
+  uStack_48 = _g_CourseShared103;
+  uStack_44 = _g_CourseShared104;
+  uStack_140 = _g_CourseShared41;
+  uStack_13c = _g_CourseShared42;
+  uStack_138 = _g_CourseShared43;
+  uStack_134 = _g_CourseShared44;
+  uStack_f0 = _g_CourseShared61;
+  uStack_ec = _g_CourseShared62;
+  uStack_e8 = _g_CourseShared63;
+  uStack_e4 = _g_CourseShared64;
+  uStack_40 = _g_CourseShared105;
+  uStack_3c = _g_CourseShared106;
+  uStack_38 = _g_CourseShared107;
+  uStack_34 = _g_CourseShared108;
+  uStack_130 = _g_CourseShared45;
+  uStack_12c = _g_CourseShared46;
+  uStack_128 = _g_CourseShared47;
+  uStack_124 = _g_CourseShared48;
+  uStack_e0 = _g_CourseShared65;
+  uStack_dc = _g_CourseShared66;
+  uStack_d8 = _g_CourseShared67;
+  uStack_d4 = _g_CourseShared68;
+  uStack_30 = _g_CourseShared109;
+  uStack_2c = _g_CourseShared110;
+  uStack_28 = _g_CourseShared111;
+  uStack_24 = _g_CourseShared112;
+  uStack_d0 = _g_CourseShared69;
+  uStack_cc = _g_CourseShared70;
+  uStack_c8 = _g_CourseShared71;
+  uStack_c4 = _g_CourseShared72;
+  uStack_20 = _g_CourseShared113;
+  uStack_1c = _g_CourseShared114;
+  uStack_18 = _g_CourseShared115;
+  uStack_14 = _g_CourseShared116;
+  uStack_10 = g_CourseShared117;
   if (param_1 != 0) {
     sceVu0MulVector(&uStack_180,0x436180,param_1);
     sceVu0MulVector(&uStack_100,0x436200,param_1);
@@ -646,99 +652,99 @@ void Course_DrawLitMeshes(long param_1)
   undefined4 uStack_14;
   undefined1 uStack_10;
   
-  uStack_180 = uRam00436180;
-  uStack_17c = uRam00436184;
-  uStack_178 = uRam00436188;
-  uStack_174 = uRam0043618c;
-  uStack_120 = uRam004361e0;
-  uStack_11c = uRam004361e4;
-  uStack_118 = uRam004361e8;
-  uStack_114 = uRam004361ec;
-  uStack_c0 = uRam00436240;
-  uStack_bc = uRam00436244;
-  uStack_b8 = uRam00436248;
-  uStack_b4 = uRam0043624c;
-  uStack_170 = uRam00436190;
-  uStack_16c = uRam00436194;
-  uStack_168 = uRam00436198;
-  uStack_164 = uRam0043619c;
-  uStack_110 = uRam004361f0;
-  uStack_10c = uRam004361f4;
-  uStack_108 = uRam004361f8;
-  uStack_104 = uRam004361fc;
-  uStack_b0 = uRam00436250;
-  uStack_ac = uRam00436254;
-  uStack_a8 = uRam00436258;
-  uStack_a4 = uRam0043625c;
-  uStack_a0 = uRam00436260;
-  uStack_9c = uRam00436264;
-  uStack_98 = uRam00436268;
-  uStack_94 = uRam0043626c;
-  uStack_160 = uRam004361a0;
-  uStack_15c = uRam004361a4;
-  uStack_158 = uRam004361a8;
-  uStack_154 = uRam004361ac;
-  uStack_90 = uRam00436270;
-  uStack_8c = uRam00436274;
-  uStack_88 = uRam00436278;
-  uStack_84 = uRam0043627c;
-  uStack_80 = uRam00436280;
-  uStack_7c = uRam00436284;
-  uStack_78 = uRam00436288;
-  uStack_74 = uRam0043628c;
-  uStack_70 = uRam00436290;
-  uStack_6c = uRam00436294;
-  uStack_68 = uRam00436298;
-  uStack_64 = uRam0043629c;
-  uStack_60 = uRam004362a0;
-  uStack_5c = uRam004362a4;
-  uStack_58 = uRam004362a8;
-  uStack_54 = uRam004362ac;
-  uStack_150 = uRam004361b0;
-  uStack_14c = uRam004361b4;
-  uStack_148 = uRam004361b8;
-  uStack_144 = uRam004361bc;
-  uStack_100 = uRam00436200;
-  uStack_fc = uRam00436204;
-  uStack_f8 = uRam00436208;
-  uStack_f4 = uRam0043620c;
-  uStack_50 = uRam004362b0;
-  uStack_4c = uRam004362b4;
-  uStack_48 = uRam004362b8;
-  uStack_44 = uRam004362bc;
-  uStack_140 = uRam004361c0;
-  uStack_13c = uRam004361c4;
-  uStack_138 = uRam004361c8;
-  uStack_134 = uRam004361cc;
-  uStack_f0 = uRam00436210;
-  uStack_ec = uRam00436214;
-  uStack_e8 = uRam00436218;
-  uStack_e4 = uRam0043621c;
-  uStack_40 = uRam004362c0;
-  uStack_3c = uRam004362c4;
-  uStack_38 = uRam004362c8;
-  uStack_34 = uRam004362cc;
-  uStack_130 = uRam004361d0;
-  uStack_12c = uRam004361d4;
-  uStack_128 = uRam004361d8;
-  uStack_124 = uRam004361dc;
-  uStack_e0 = uRam00436220;
-  uStack_dc = uRam00436224;
-  uStack_d8 = uRam00436228;
-  uStack_d4 = uRam0043622c;
-  uStack_30 = uRam004362d0;
-  uStack_2c = uRam004362d4;
-  uStack_28 = uRam004362d8;
-  uStack_24 = uRam004362dc;
-  uStack_d0 = uRam00436230;
-  uStack_cc = uRam00436234;
-  uStack_c8 = uRam00436238;
-  uStack_c4 = uRam0043623c;
-  uStack_20 = uRam004362e0;
-  uStack_1c = uRam004362e4;
-  uStack_18 = uRam004362e8;
-  uStack_14 = uRam004362ec;
-  uStack_10 = uRam004362f0;
+  uStack_180 = _g_CourseShared25;
+  uStack_17c = _g_CourseShared26;
+  uStack_178 = _g_CourseShared27;
+  uStack_174 = _g_CourseShared28;
+  uStack_120 = _g_CourseShared49;
+  uStack_11c = _g_CourseShared50;
+  uStack_118 = _g_CourseShared51;
+  uStack_114 = _g_CourseShared52;
+  uStack_c0 = _g_CourseShared73;
+  uStack_bc = _g_CourseShared74;
+  uStack_b8 = _g_CourseShared75;
+  uStack_b4 = _g_CourseShared76;
+  uStack_170 = _g_CourseShared29;
+  uStack_16c = _g_CourseShared30;
+  uStack_168 = _g_CourseShared31;
+  uStack_164 = _g_CourseShared32;
+  uStack_110 = _g_CourseShared53;
+  uStack_10c = _g_CourseShared54;
+  uStack_108 = _g_CourseShared55;
+  uStack_104 = _g_CourseShared56;
+  uStack_b0 = _g_CourseShared77;
+  uStack_ac = _g_CourseShared78;
+  uStack_a8 = _g_CourseShared79;
+  uStack_a4 = _g_CourseShared80;
+  uStack_a0 = _g_CourseShared81;
+  uStack_9c = _g_CourseShared82;
+  uStack_98 = _g_CourseShared83;
+  uStack_94 = _g_CourseShared84;
+  uStack_160 = _g_CourseShared33;
+  uStack_15c = _g_CourseShared34;
+  uStack_158 = _g_CourseShared35;
+  uStack_154 = _g_CourseShared36;
+  uStack_90 = _g_CourseShared85;
+  uStack_8c = _g_CourseShared86;
+  uStack_88 = _g_CourseShared87;
+  uStack_84 = _g_CourseShared88;
+  uStack_80 = _g_CourseShared89;
+  uStack_7c = _g_CourseShared90;
+  uStack_78 = _g_CourseShared91;
+  uStack_74 = _g_CourseShared92;
+  uStack_70 = _g_CourseShared93;
+  uStack_6c = _g_CourseShared94;
+  uStack_68 = _g_CourseShared95;
+  uStack_64 = _g_CourseShared96;
+  uStack_60 = _g_CourseShared97;
+  uStack_5c = _g_CourseShared98;
+  uStack_58 = _g_CourseShared99;
+  uStack_54 = _g_CourseShared100;
+  uStack_150 = _g_CourseShared37;
+  uStack_14c = _g_CourseShared38;
+  uStack_148 = _g_CourseShared39;
+  uStack_144 = _g_CourseShared40;
+  uStack_100 = _g_CourseShared57;
+  uStack_fc = _g_CourseShared58;
+  uStack_f8 = _g_CourseShared59;
+  uStack_f4 = _g_CourseShared60;
+  uStack_50 = _g_CourseShared101;
+  uStack_4c = _g_CourseShared102;
+  uStack_48 = _g_CourseShared103;
+  uStack_44 = _g_CourseShared104;
+  uStack_140 = _g_CourseShared41;
+  uStack_13c = _g_CourseShared42;
+  uStack_138 = _g_CourseShared43;
+  uStack_134 = _g_CourseShared44;
+  uStack_f0 = _g_CourseShared61;
+  uStack_ec = _g_CourseShared62;
+  uStack_e8 = _g_CourseShared63;
+  uStack_e4 = _g_CourseShared64;
+  uStack_40 = _g_CourseShared105;
+  uStack_3c = _g_CourseShared106;
+  uStack_38 = _g_CourseShared107;
+  uStack_34 = _g_CourseShared108;
+  uStack_130 = _g_CourseShared45;
+  uStack_12c = _g_CourseShared46;
+  uStack_128 = _g_CourseShared47;
+  uStack_124 = _g_CourseShared48;
+  uStack_e0 = _g_CourseShared65;
+  uStack_dc = _g_CourseShared66;
+  uStack_d8 = _g_CourseShared67;
+  uStack_d4 = _g_CourseShared68;
+  uStack_30 = _g_CourseShared109;
+  uStack_2c = _g_CourseShared110;
+  uStack_28 = _g_CourseShared111;
+  uStack_24 = _g_CourseShared112;
+  uStack_d0 = _g_CourseShared69;
+  uStack_cc = _g_CourseShared70;
+  uStack_c8 = _g_CourseShared71;
+  uStack_c4 = _g_CourseShared72;
+  uStack_20 = _g_CourseShared113;
+  uStack_1c = _g_CourseShared114;
+  uStack_18 = _g_CourseShared115;
+  uStack_14 = _g_CourseShared116;
+  uStack_10 = g_CourseShared117;
   if (param_1 != 0) {
     sceVu0MulVector(&uStack_180,0x436180,param_1);
     sceVu0MulVector(&uStack_100,0x436200,param_1);
@@ -767,17 +773,17 @@ void Course_FreeModels(void)
   if (_g_CourseModelA != 0) {
     Mem_Free();
   }
-  uRam00430570 = 0;
+  _g_SceneObjShared1 = 0;
   _g_CourseModelA = 0;
   if (_g_CourseModelB != 0) {
     Mem_Free();
   }
-  uRam00430578 = 0;
+  _g_CourseShared6 = 0;
   _g_CourseModelB = 0;
   if (_g_CourseModelC != 0) {
     Mem_Free();
   }
-  uRam00430580 = 0;
+  _g_CourseShared7 = 0;
   _g_CourseModelC = 0;
   if (_s_CourseVar2 != 0) {
     Mem_Free();
@@ -804,7 +810,7 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   undefined4 uVar9;
   
   iVar3 = (int)param_2;
-  uRam00430460 = *(undefined1 *)(iVar3 + 0x1c);
+  g_CarModelShared1 = *(undefined1 *)(iVar3 + 0x1c);
   cVar1 = *(char *)(iVar3 + 0x1c);
   uVar7 = 0x80;
   if (cVar1 != '\0') {
@@ -831,15 +837,15 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
     }
     lVar5 = Tex_BuildUploadPacket(uVar2,uVar7,uVar7,1,0,0,0x80,_s_CourseVar2);
   } while (_s_CourseVar2 == 0);
-  TexSlot_BindSimple(0x430470,_s_CourseVar2,0,iRam0036f284 + iRam0036f2c0,
-                     iRam0036f284 + iRam0036f2c0,0x11110,0,0);
+  TexSlot_BindSimple(0x430470,_s_CourseVar2,0,_g_CourseShared1 + _g_RaceIntroShared1,
+                     _g_CourseShared1 + _g_RaceIntroShared1,0x11110,0,0);
   Gfx_SetupRenderTargetEx(uVar9,0x4304f0,0,0);
   Asset_LoadCourseCommon(param_1,param_2);
-  uRam00430570 = *(undefined4 *)(iVar3 + 0x20);
+  _g_SceneObjShared1 = *(undefined4 *)(iVar3 + 0x20);
   _g_CourseModelA = Mem_Alloc16(*(int *)(iVar3 + 0x20) * 0x530,param_1);
   uVar8 = 0;
   if (*(int *)(iVar3 + 0x20) == 0) {
-    iRam00430578 = *(int *)(iVar3 + 0xc);
+    _g_CourseShared6 = *(int *)(iVar3 + 0xc);
   }
   else {
     iVar6 = 0;
@@ -861,10 +867,10 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
       uVar8 = uVar8 + 1;
       iVar6 = iVar6 + 0x530;
     } while (uVar8 < *(uint *)(iVar3 + 0x20));
-    iRam00430578 = *(int *)(iVar3 + 0xc);
+    _g_CourseShared6 = *(int *)(iVar3 + 0xc);
   }
-  if (iRam00430578 == 0) {
-    iRam00430578 = 0;
+  if (_g_CourseShared6 == 0) {
+    _g_CourseShared6 = 0;
     _g_CourseModelB = 0;
   }
   else {
@@ -872,7 +878,7 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   }
   uVar8 = 0;
   if (*(int *)(iVar3 + 0xc) == 0) {
-    iRam00430580 = *(int *)(iVar3 + 0x10);
+    _g_CourseShared7 = *(int *)(iVar3 + 0x10);
   }
   else {
     iVar6 = 0;
@@ -893,10 +899,10 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar4 + 0x34) = 0;
       iVar6 = iVar6 + 0x50;
     } while (uVar8 < *(uint *)(iVar3 + 0xc));
-    iRam00430580 = *(int *)(iVar3 + 0x10);
+    _g_CourseShared7 = *(int *)(iVar3 + 0x10);
   }
-  if (iRam00430580 == 0) {
-    iRam00430580 = 0;
+  if (_g_CourseShared7 == 0) {
+    _g_CourseShared7 = 0;
     _g_CourseModelC = 0;
   }
   else {
@@ -919,8 +925,8 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
       iVar6 = iVar6 + 0x48;
     } while (uVar8 < *(uint *)(iVar3 + 0x10));
   }
-  uRam00430588 = 0;
-  uRam0043058c = 0;
+  _g_SceneObjShared2 = 0;
+  _g_SceneObjShared3 = 0;
   return;
 }
 
@@ -970,8 +976,8 @@ void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
     if (*(int *)(param_2 + 0x1c) != 0) {
       auStack_350[0] = auStack_350[0] | 0x200;
     }
-    fStack_4c = (float)*(uint *)(iVar1 + 0x431174);
-    fStack_50 = (float)*(uint *)(iVar1 + 0x431170);
+    fStack_4c = (float)*(uint *)(&g_ReplayCamShared1 + iVar1);
+    fStack_50 = (float)*(uint *)(&g_CourseShared23 + iVar1);
     Pkt_AddPrimitives(auStack_40,auStack_350,1);
     Pkt_Submit(auStack_40,0);
   }
@@ -979,6 +985,8 @@ void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
 }
 
 // 0x001993a0  size 0x8c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SceneObj_DrawOpaque(int param_1)
 
 {
@@ -990,7 +998,7 @@ void SceneObj_DrawOpaque(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  if ((iRam00433344 == 0) || (iRam0043058c == 0)) {
+  if ((_g_SceneObjShared4 == 0) || (_g_SceneObjShared3 == 0)) {
     bVar1 = false;
   }
   else {
@@ -1011,6 +1019,8 @@ void SceneObj_DrawOpaque(int param_1)
 }
 
 // 0x00199430  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SceneObj_DrawTranslucent(int param_1)
 
 {
@@ -1022,7 +1032,7 @@ void SceneObj_DrawTranslucent(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  if ((iRam00433344 == 0) || (iRam0043058c == 0)) {
+  if ((_g_SceneObjShared4 == 0) || (_g_SceneObjShared3 == 0)) {
     bVar1 = false;
   }
   else {
@@ -1168,6 +1178,8 @@ void SceneObj_DrawShadowCaster(undefined8 param_1)
 }
 
 // 0x00199870  size 0x1a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SceneObj_DrawShadow(undefined8 param_1)
 
 {
@@ -1179,7 +1191,7 @@ void SceneObj_DrawShadow(undefined8 param_1)
   undefined4 uStack_14;
   int iStack_10;
   
-  if ((iRam00433344 == 0) || (iRam0043058c == 0)) {
+  if ((_g_SceneObjShared4 == 0) || (_g_SceneObjShared3 == 0)) {
     bVar1 = false;
   }
   else {
@@ -1319,7 +1331,7 @@ CarModel_ProjectShadow
     uVar7 = uVar7 + 1;
     iVar5 = iVar5 + 0x20;
   } while (uVar7 < 2);
-  if (cRam00430460 == '\x02') {
+  if (g_CarModelShared1 == '\x02') {
     sceVu0Normalize(&uStack_70,param_6);
     fStack_6c = fStack_6c - 1.0;
     sceVu0Normalize(&uStack_70,&uStack_70);
@@ -1604,8 +1616,8 @@ switchD_0019a314_default:
         if ((*puVar10 & 1) != 0) {
           if (*(int *)(iVar9 + 0x3f8) == 1) {
             puVar12 = puVar10 + 4;
-            if ((cRam00430460 == '\x02') ||
-               ((cRam00430460 == '\0' && (*(int *)(iVar8 + 0x458) != 0)))) {
+            if ((g_CarModelShared1 == '\x02') ||
+               ((g_CarModelShared1 == '\0' && (*(int *)(iVar8 + 0x458) != 0)))) {
               if (*(int *)(iVar8 + 0x240) == 0) {
                 uStack_60 = *(undefined4 *)(iVar5 + *(int *)(iVar9 + 0x500) + 0x30);
               }
@@ -1650,8 +1662,8 @@ switchD_0019a314_default:
             *(undefined4 *)(iStack_a0 + 0x414) = uVar13;
           }
           else {
-            if ((cRam00430460 == '\x02') ||
-               ((cRam00430460 == '\0' && (*(int *)(iVar8 + 0x458) != 0)))) {
+            if ((g_CarModelShared1 == '\x02') ||
+               ((g_CarModelShared1 == '\0' && (*(int *)(iVar8 + 0x458) != 0)))) {
               if (*(int *)(iVar8 + 0x240) == 0) {
                 uStack_b0 = *(undefined4 *)(iVar5 + *(int *)(iVar9 + 0x500) + 0x30);
               }
@@ -1775,7 +1787,7 @@ void CarModel_DrawParts(int param_1,undefined8 param_2)
   undefined1 auStack_10 [16];
   
   iVar12 = (int)param_2;
-  if (cRam00430460 == '\x02') {
+  if (g_CarModelShared1 == '\x02') {
     Vu0_Vec3Distance(auStack_10,param_1 + 0x150,*(undefined4 *)(iVar12 + 0x244));
     in_f21 = (float)sceVu0InnerProduct(param_1 + 0x120,auStack_10);
     unaff_f20 = (float)sceVu0InnerProduct(param_1 + 0x140,auStack_10);
@@ -1818,7 +1830,7 @@ LAB_0019aa5c:
         if (*(int *)(iVar12 + 0x240) == 0) {
           sceVu0CopyMatrix(iVar12 + 0xc0,param_1 + 0x120);
         }
-        if ((cRam00430460 == '\x02') || (*(int *)(param_1 + 0x498) != 0)) {
+        if ((g_CarModelShared1 == '\x02') || (*(int *)(param_1 + 0x498) != 0)) {
           sceVu0MulMatrix(iVar10,iVar10,iVar4);
           iVar6 = *(int *)(param_1 + 0x504);
         }
@@ -1839,7 +1851,7 @@ LAB_0019aa5c:
         if ((*(int *)(iVar14 + iVar6 + 0x38) != 0) && (*(uint *)(iVar12 + 0x45c) < 3)) {
           Model_UpdateNodeMatrix(param_2,*(undefined4 *)(iStack_90 + iVar6 + iStack_c0 + 0x40));
         }
-        if ((cRam00430460 == '\x02') || (*(int *)(param_1 + 0x498) != 0)) {
+        if ((g_CarModelShared1 == '\x02') || (*(int *)(param_1 + 0x498) != 0)) {
           sceVu0MulMatrix(iVar10,iVar4,iVar16 + 0x2b0);
           iVar6 = *(int *)(param_1 + 0x528);
         }
@@ -1879,12 +1891,12 @@ LAB_0019ab88:
           else if (*(byte *)(param_1 + 0x4e4) < 4) {
             *(uint *)(iVar12 + 0x45c) = (uint)*(byte *)(param_1 + 0x4e4);
           }
-          uVar5 = uRam0036f2dc;
-          if (uRam0036f2dc <= *(uint *)(iVar12 + 0x45c)) {
+          uVar5 = _g_WheelAssetShared1;
+          if (_g_WheelAssetShared1 <= *(uint *)(iVar12 + 0x45c)) {
             uVar5 = *(uint *)(iVar12 + 0x45c);
           }
-          uVar3 = uRam0036f2e0;
-          if (uVar5 <= uRam0036f2e0) {
+          uVar3 = _g_WheelAssetShared2;
+          if (uVar5 <= _g_WheelAssetShared2) {
             uVar3 = uVar5;
           }
           *(uint *)(iVar12 + 0x45c) = uVar3;
@@ -1926,12 +1938,12 @@ LAB_0019ac08:
           else if (*(byte *)(param_1 + 0x4e5) < 4) {
             *(uint *)(iVar12 + 0x45c) = (uint)*(byte *)(param_1 + 0x4e5);
           }
-          uVar5 = uRam0036f2e4;
-          if (uRam0036f2e4 <= *(uint *)(iVar12 + 0x45c)) {
+          uVar5 = _g_CarAssetShared2;
+          if (_g_CarAssetShared2 <= *(uint *)(iVar12 + 0x45c)) {
             uVar5 = *(uint *)(iVar12 + 0x45c);
           }
-          uVar3 = uRam0036f2e8;
-          if (uVar5 <= uRam0036f2e8) {
+          uVar3 = _g_CarAssetShared3;
+          if (uVar5 <= _g_CarAssetShared3) {
             uVar3 = uVar5;
           }
           *(uint *)(iVar12 + 0x45c) = uVar3;
@@ -1996,6 +2008,8 @@ LAB_0019aca4:
 }
 
 // 0x0019af50  size 0xe64
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
 
 {
@@ -2058,7 +2072,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
       iVar7 = *(int *)(iVar13 + 0x458) * 100 + *(int *)(param_1 + 0x504);
       puVar11 = *(uint **)(iVar7 + 0xf8);
       puVar1 = *(uint **)(iVar7 + 0xf4);
-      if ((cRam00430460 != '\x02') && (*(int *)(param_1 + 0x498) == 0)) {
+      if ((g_CarModelShared1 != '\x02') && (*(int *)(param_1 + 0x498) == 0)) {
         uVar15 = 0;
         iStack_e0 = 0;
         iStack_f0 = param_1;
@@ -2071,12 +2085,12 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
             maybe_Vu0_SetUnitW(iVar7 + 0x170);
             sceVu0ApplyMatrix(iVar7 + 0x170,iVar9,
                               *(int *)(param_1 + 0x504) + iStack_e0 + iStack_100 + 0x510);
-            uVar6 = uRam0036f2dc;
-            if (uRam0036f2dc == 0) {
+            uVar6 = _g_WheelAssetShared1;
+            if (_g_WheelAssetShared1 == 0) {
               uVar6 = 0;
             }
-            uVar2 = uRam0036f2e0;
-            if (uVar6 <= uRam0036f2e0) {
+            uVar2 = _g_WheelAssetShared2;
+            if (uVar6 <= _g_WheelAssetShared2) {
               uVar2 = uVar6;
             }
             puVar3 = *(uint **)(*(int *)(iStack_f0 + 0x508) + uVar2 * 4 + 0x4c);
@@ -2228,7 +2242,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
         Model_UpdateNodeMatrix(param_2,puVar1);
       }
     }
-    if (cRam00430460 == '\x02') {
+    if (g_CarModelShared1 == '\x02') {
       uStack_10 = DAT_003128c0;
       puStack_8 = PTR_Pkt_Flush_Wrap_003128c8;
     }
@@ -2282,12 +2296,12 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
       iVar7 = *(int *)(*(int *)(iVar13 + 0x458) * 100 + *(int *)(param_1 + 0x504) + 0x98);
       if (*(int *)(iVar13 + 0x240) == 0) {
         maybe_Vu0_UnitMatrix(iVar9);
-        if (cRam00430460 != '\x02') {
+        if (g_CarModelShared1 != '\x02') {
           sceVu0TransMatrix(iVar9,iVar9,iVar7 + 0x20);
         }
         sceVu0MulMatrix(iVar9,param_1 + 0x120,iVar9);
       }
-      else if (cRam00430460 != '\x02') {
+      else if (g_CarModelShared1 != '\x02') {
         maybe_Vu0_UnitMatrix(auStack_a0);
         sceVu0TransMatrix(auStack_a0,auStack_a0,iVar7 + 0x20);
         sceVu0MulMatrix(iVar9,iVar9,auStack_a0);
@@ -2316,7 +2330,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
       puVar11 = *(uint **)(*(int *)(param_1 + 0x504) + *(int *)(iVar13 + 0x458) * 100 + iVar7 + 0x98
                           );
       if (((puVar11 != (uint *)0x0) && ((*puVar11 & 0x10) != 0)) &&
-         ((cRam00430460 != '\x02' ||
+         ((g_CarModelShared1 != '\x02' ||
           ((uVar15 != 3 ||
            (fVar18 = (float)sceVu0InnerProduct(param_1 + 0x120,*(int *)(iVar13 + 0x244) + 0x40),
            0.0 <= fVar18)))))) {
@@ -2445,6 +2459,8 @@ void Pkt_Flush_Wrap(int param_1,uint param_2,undefined8 param_3)
 }
 
 // 0x0019be00  size 0x4d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
 
 {
@@ -2468,30 +2484,30 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
   undefined1 auStack_10 [16];
   
   *(undefined4 *)(param_2 + 0x240) = param_3;
-  uVar5 = uRam0043618c;
-  uVar4 = uRam00436188;
-  uVar3 = uRam00436184;
-  if (cRam00430460 == '\x02') {
-    *(undefined4 *)(param_2 + 0x250) = uRam00436180;
+  uVar5 = _g_CourseShared28;
+  uVar4 = _g_CourseShared27;
+  uVar3 = _g_CourseShared26;
+  if (g_CarModelShared1 == '\x02') {
+    *(undefined4 *)(param_2 + 0x250) = _g_CourseShared25;
     *(undefined4 *)(param_2 + 0x254) = uVar3;
     *(undefined4 *)(param_2 + 600) = uVar4;
     *(undefined4 *)(param_2 + 0x25c) = uVar5;
-    uVar17 = uRam004361cc;
-    uVar16 = uRam004361c8;
-    uVar15 = uRam004361c4;
-    uVar14 = uRam004361c0;
-    uVar13 = uRam004361bc;
-    uVar12 = uRam004361b8;
-    uVar11 = uRam004361b4;
-    uVar10 = uRam004361b0;
-    uVar9 = uRam004361ac;
-    uVar8 = uRam004361a8;
-    uVar7 = uRam004361a4;
-    uVar6 = uRam004361a0;
-    uVar5 = uRam0043619c;
-    uVar4 = uRam00436198;
-    uVar3 = uRam00436194;
-    *(undefined4 *)(param_2 + 0x260) = uRam00436190;
+    uVar17 = _g_CourseShared44;
+    uVar16 = _g_CourseShared43;
+    uVar15 = _g_CourseShared42;
+    uVar14 = _g_CourseShared41;
+    uVar13 = _g_CourseShared40;
+    uVar12 = _g_CourseShared39;
+    uVar11 = _g_CourseShared38;
+    uVar10 = _g_CourseShared37;
+    uVar9 = _g_CourseShared36;
+    uVar8 = _g_CourseShared35;
+    uVar7 = _g_CourseShared34;
+    uVar6 = _g_CourseShared33;
+    uVar5 = _g_CourseShared32;
+    uVar4 = _g_CourseShared31;
+    uVar3 = _g_CourseShared30;
+    *(undefined4 *)(param_2 + 0x260) = _g_CourseShared29;
     *(undefined4 *)(param_2 + 0x264) = uVar3;
     *(undefined4 *)(param_2 + 0x268) = uVar4;
     *(undefined4 *)(param_2 + 0x26c) = uVar5;
@@ -2507,18 +2523,18 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x294) = uVar15;
     *(undefined4 *)(param_2 + 0x298) = uVar16;
     *(undefined4 *)(param_2 + 0x29c) = uVar17;
-    uVar13 = uRam004361fc;
-    uVar12 = uRam004361f8;
-    uVar11 = uRam004361f4;
-    uVar10 = uRam004361f0;
-    uVar9 = uRam004361ec;
-    uVar8 = uRam004361e8;
-    uVar7 = uRam004361e4;
-    uVar6 = uRam004361e0;
-    uVar5 = uRam004361dc;
-    uVar4 = uRam004361d8;
-    uVar3 = uRam004361d4;
-    *(undefined4 *)(param_2 + 0x2a0) = uRam004361d0;
+    uVar13 = _g_CourseShared56;
+    uVar12 = _g_CourseShared55;
+    uVar11 = _g_CourseShared54;
+    uVar10 = _g_CourseShared53;
+    uVar9 = _g_CourseShared52;
+    uVar8 = _g_CourseShared51;
+    uVar7 = _g_CourseShared50;
+    uVar6 = _g_CourseShared49;
+    uVar5 = _g_CourseShared48;
+    uVar4 = _g_CourseShared47;
+    uVar3 = _g_CourseShared46;
+    *(undefined4 *)(param_2 + 0x2a0) = _g_CourseShared45;
     *(undefined4 *)(param_2 + 0x2a4) = uVar3;
     *(undefined4 *)(param_2 + 0x2a8) = uVar4;
     *(undefined4 *)(param_2 + 0x2ac) = uVar5;
@@ -2530,18 +2546,18 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x2c4) = uVar11;
     *(undefined4 *)(param_2 + 0x2c8) = uVar12;
     *(undefined4 *)(param_2 + 0x2cc) = uVar13;
-    uVar13 = uRam0043622c;
-    uVar12 = uRam00436228;
-    uVar11 = uRam00436224;
-    uVar10 = uRam00436220;
-    uVar9 = uRam0043621c;
-    uVar8 = uRam00436218;
-    uVar7 = uRam00436214;
-    uVar6 = uRam00436210;
-    uVar5 = uRam0043620c;
-    uVar4 = uRam00436208;
-    uVar3 = uRam00436204;
-    *(undefined4 *)(param_2 + 0x2d0) = uRam00436200;
+    uVar13 = _g_CourseShared68;
+    uVar12 = _g_CourseShared67;
+    uVar11 = _g_CourseShared66;
+    uVar10 = _g_CourseShared65;
+    uVar9 = _g_CourseShared64;
+    uVar8 = _g_CourseShared63;
+    uVar7 = _g_CourseShared62;
+    uVar6 = _g_CourseShared61;
+    uVar5 = _g_CourseShared60;
+    uVar4 = _g_CourseShared59;
+    uVar3 = _g_CourseShared58;
+    *(undefined4 *)(param_2 + 0x2d0) = _g_CourseShared57;
     *(undefined4 *)(param_2 + 0x2d4) = uVar3;
     *(undefined4 *)(param_2 + 0x2d8) = uVar4;
     *(undefined4 *)(param_2 + 0x2dc) = uVar5;
@@ -2553,22 +2569,22 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x2f4) = uVar11;
     *(undefined4 *)(param_2 + 0x2f8) = uVar12;
     *(undefined4 *)(param_2 + 0x2fc) = uVar13;
-    uVar17 = uRam0043626c;
-    uVar16 = uRam00436268;
-    uVar15 = uRam00436264;
-    uVar14 = uRam00436260;
-    uVar13 = uRam0043625c;
-    uVar12 = uRam00436258;
-    uVar11 = uRam00436254;
-    uVar10 = uRam00436250;
-    uVar9 = uRam0043624c;
-    uVar8 = uRam00436248;
-    uVar7 = uRam00436244;
-    uVar6 = uRam00436240;
-    uVar5 = uRam0043623c;
-    uVar4 = uRam00436238;
-    uVar3 = uRam00436234;
-    *(undefined4 *)(param_2 + 0x300) = uRam00436230;
+    uVar17 = _g_CourseShared84;
+    uVar16 = _g_CourseShared83;
+    uVar15 = _g_CourseShared82;
+    uVar14 = _g_CourseShared81;
+    uVar13 = _g_CourseShared80;
+    uVar12 = _g_CourseShared79;
+    uVar11 = _g_CourseShared78;
+    uVar10 = _g_CourseShared77;
+    uVar9 = _g_CourseShared76;
+    uVar8 = _g_CourseShared75;
+    uVar7 = _g_CourseShared74;
+    uVar6 = _g_CourseShared73;
+    uVar5 = _g_CourseShared72;
+    uVar4 = _g_CourseShared71;
+    uVar3 = _g_CourseShared70;
+    *(undefined4 *)(param_2 + 0x300) = _g_CourseShared69;
     *(undefined4 *)(param_2 + 0x304) = uVar3;
     *(undefined4 *)(param_2 + 0x308) = uVar4;
     *(undefined4 *)(param_2 + 0x30c) = uVar5;
@@ -2584,22 +2600,22 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x334) = uVar15;
     *(undefined4 *)(param_2 + 0x338) = uVar16;
     *(undefined4 *)(param_2 + 0x33c) = uVar17;
-    uVar17 = uRam004362ac;
-    uVar16 = uRam004362a8;
-    uVar15 = uRam004362a4;
-    uVar14 = uRam004362a0;
-    uVar13 = uRam0043629c;
-    uVar12 = uRam00436298;
-    uVar11 = uRam00436294;
-    uVar10 = uRam00436290;
-    uVar9 = uRam0043628c;
-    uVar8 = uRam00436288;
-    uVar7 = uRam00436284;
-    uVar6 = uRam00436280;
-    uVar5 = uRam0043627c;
-    uVar4 = uRam00436278;
-    uVar3 = uRam00436274;
-    *(undefined4 *)(param_2 + 0x340) = uRam00436270;
+    uVar17 = _g_CourseShared100;
+    uVar16 = _g_CourseShared99;
+    uVar15 = _g_CourseShared98;
+    uVar14 = _g_CourseShared97;
+    uVar13 = _g_CourseShared96;
+    uVar12 = _g_CourseShared95;
+    uVar11 = _g_CourseShared94;
+    uVar10 = _g_CourseShared93;
+    uVar9 = _g_CourseShared92;
+    uVar8 = _g_CourseShared91;
+    uVar7 = _g_CourseShared90;
+    uVar6 = _g_CourseShared89;
+    uVar5 = _g_CourseShared88;
+    uVar4 = _g_CourseShared87;
+    uVar3 = _g_CourseShared86;
+    *(undefined4 *)(param_2 + 0x340) = _g_CourseShared85;
     *(undefined4 *)(param_2 + 0x344) = uVar3;
     *(undefined4 *)(param_2 + 0x348) = uVar4;
     *(undefined4 *)(param_2 + 0x34c) = uVar5;
@@ -2615,22 +2631,22 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x374) = uVar15;
     *(undefined4 *)(param_2 + 0x378) = uVar16;
     *(undefined4 *)(param_2 + 0x37c) = uVar17;
-    uVar17 = uRam004362ec;
-    uVar16 = uRam004362e8;
-    uVar15 = uRam004362e4;
-    uVar14 = uRam004362e0;
-    uVar13 = uRam004362dc;
-    uVar12 = uRam004362d8;
-    uVar11 = uRam004362d4;
-    uVar10 = uRam004362d0;
-    uVar9 = uRam004362cc;
-    uVar8 = uRam004362c8;
-    uVar7 = uRam004362c4;
-    uVar6 = uRam004362c0;
-    uVar5 = uRam004362bc;
-    uVar4 = uRam004362b8;
-    uVar3 = uRam004362b4;
-    *(undefined4 *)(param_2 + 0x380) = uRam004362b0;
+    uVar17 = _g_CourseShared116;
+    uVar16 = _g_CourseShared115;
+    uVar15 = _g_CourseShared114;
+    uVar14 = _g_CourseShared113;
+    uVar13 = _g_CourseShared112;
+    uVar12 = _g_CourseShared111;
+    uVar11 = _g_CourseShared110;
+    uVar10 = _g_CourseShared109;
+    uVar9 = _g_CourseShared108;
+    uVar8 = _g_CourseShared107;
+    uVar7 = _g_CourseShared106;
+    uVar6 = _g_CourseShared105;
+    uVar5 = _g_CourseShared104;
+    uVar4 = _g_CourseShared103;
+    uVar3 = _g_CourseShared102;
+    *(undefined4 *)(param_2 + 0x380) = _g_CourseShared101;
     *(undefined4 *)(param_2 + 900) = uVar3;
     *(undefined4 *)(param_2 + 0x388) = uVar4;
     *(undefined4 *)(param_2 + 0x38c) = uVar5;
@@ -2646,7 +2662,7 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x3b4) = uVar15;
     *(undefined4 *)(param_2 + 0x3b8) = uVar16;
     *(undefined4 *)(param_2 + 0x3bc) = uVar17;
-    *(undefined1 *)(param_2 + 0x3c0) = uRam004362f0;
+    *(undefined1 *)(param_2 + 0x3c0) = g_CourseShared117;
     sceVu0MulVector(auStack_10,0x436180,param_1 + 0x160);
     sceVu0InterVector(0x3ecccccd,param_2 + 0x250,0x436180,auStack_10);
     sceVu0MulVector(param_2 + 0x2d0,0x436200,param_1 + 0x160);
@@ -2655,27 +2671,27 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     sceVu0CopyVector(param_2 + 0x2c0,param_1 + 0x3c0);
     *(int *)(param_2 + 0x3d0) = param_2 + 0x250;
   }
-  else if (cRam00430460 == '\x01') {
-    *(undefined4 *)(param_2 + 0x250) = uRam00436180;
+  else if (g_CarModelShared1 == '\x01') {
+    *(undefined4 *)(param_2 + 0x250) = _g_CourseShared25;
     *(undefined4 *)(param_2 + 0x254) = uVar3;
     *(undefined4 *)(param_2 + 600) = uVar4;
     *(undefined4 *)(param_2 + 0x25c) = uVar5;
-    uVar17 = uRam004361cc;
-    uVar16 = uRam004361c8;
-    uVar15 = uRam004361c4;
-    uVar14 = uRam004361c0;
-    uVar13 = uRam004361bc;
-    uVar12 = uRam004361b8;
-    uVar11 = uRam004361b4;
-    uVar10 = uRam004361b0;
-    uVar9 = uRam004361ac;
-    uVar8 = uRam004361a8;
-    uVar7 = uRam004361a4;
-    uVar6 = uRam004361a0;
-    uVar5 = uRam0043619c;
-    uVar4 = uRam00436198;
-    uVar3 = uRam00436194;
-    *(undefined4 *)(param_2 + 0x260) = uRam00436190;
+    uVar17 = _g_CourseShared44;
+    uVar16 = _g_CourseShared43;
+    uVar15 = _g_CourseShared42;
+    uVar14 = _g_CourseShared41;
+    uVar13 = _g_CourseShared40;
+    uVar12 = _g_CourseShared39;
+    uVar11 = _g_CourseShared38;
+    uVar10 = _g_CourseShared37;
+    uVar9 = _g_CourseShared36;
+    uVar8 = _g_CourseShared35;
+    uVar7 = _g_CourseShared34;
+    uVar6 = _g_CourseShared33;
+    uVar5 = _g_CourseShared32;
+    uVar4 = _g_CourseShared31;
+    uVar3 = _g_CourseShared30;
+    *(undefined4 *)(param_2 + 0x260) = _g_CourseShared29;
     *(undefined4 *)(param_2 + 0x264) = uVar3;
     *(undefined4 *)(param_2 + 0x268) = uVar4;
     *(undefined4 *)(param_2 + 0x26c) = uVar5;
@@ -2691,18 +2707,18 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x294) = uVar15;
     *(undefined4 *)(param_2 + 0x298) = uVar16;
     *(undefined4 *)(param_2 + 0x29c) = uVar17;
-    uVar13 = uRam004361fc;
-    uVar12 = uRam004361f8;
-    uVar11 = uRam004361f4;
-    uVar10 = uRam004361f0;
-    uVar9 = uRam004361ec;
-    uVar8 = uRam004361e8;
-    uVar7 = uRam004361e4;
-    uVar6 = uRam004361e0;
-    uVar5 = uRam004361dc;
-    uVar4 = uRam004361d8;
-    uVar3 = uRam004361d4;
-    *(undefined4 *)(param_2 + 0x2a0) = uRam004361d0;
+    uVar13 = _g_CourseShared56;
+    uVar12 = _g_CourseShared55;
+    uVar11 = _g_CourseShared54;
+    uVar10 = _g_CourseShared53;
+    uVar9 = _g_CourseShared52;
+    uVar8 = _g_CourseShared51;
+    uVar7 = _g_CourseShared50;
+    uVar6 = _g_CourseShared49;
+    uVar5 = _g_CourseShared48;
+    uVar4 = _g_CourseShared47;
+    uVar3 = _g_CourseShared46;
+    *(undefined4 *)(param_2 + 0x2a0) = _g_CourseShared45;
     *(undefined4 *)(param_2 + 0x2a4) = uVar3;
     *(undefined4 *)(param_2 + 0x2a8) = uVar4;
     *(undefined4 *)(param_2 + 0x2ac) = uVar5;
@@ -2714,18 +2730,18 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x2c4) = uVar11;
     *(undefined4 *)(param_2 + 0x2c8) = uVar12;
     *(undefined4 *)(param_2 + 0x2cc) = uVar13;
-    uVar13 = uRam0043622c;
-    uVar12 = uRam00436228;
-    uVar11 = uRam00436224;
-    uVar10 = uRam00436220;
-    uVar9 = uRam0043621c;
-    uVar8 = uRam00436218;
-    uVar7 = uRam00436214;
-    uVar6 = uRam00436210;
-    uVar5 = uRam0043620c;
-    uVar4 = uRam00436208;
-    uVar3 = uRam00436204;
-    *(undefined4 *)(param_2 + 0x2d0) = uRam00436200;
+    uVar13 = _g_CourseShared68;
+    uVar12 = _g_CourseShared67;
+    uVar11 = _g_CourseShared66;
+    uVar10 = _g_CourseShared65;
+    uVar9 = _g_CourseShared64;
+    uVar8 = _g_CourseShared63;
+    uVar7 = _g_CourseShared62;
+    uVar6 = _g_CourseShared61;
+    uVar5 = _g_CourseShared60;
+    uVar4 = _g_CourseShared59;
+    uVar3 = _g_CourseShared58;
+    *(undefined4 *)(param_2 + 0x2d0) = _g_CourseShared57;
     *(undefined4 *)(param_2 + 0x2d4) = uVar3;
     *(undefined4 *)(param_2 + 0x2d8) = uVar4;
     *(undefined4 *)(param_2 + 0x2dc) = uVar5;
@@ -2737,22 +2753,22 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x2f4) = uVar11;
     *(undefined4 *)(param_2 + 0x2f8) = uVar12;
     *(undefined4 *)(param_2 + 0x2fc) = uVar13;
-    uVar17 = uRam0043626c;
-    uVar16 = uRam00436268;
-    uVar15 = uRam00436264;
-    uVar14 = uRam00436260;
-    uVar13 = uRam0043625c;
-    uVar12 = uRam00436258;
-    uVar11 = uRam00436254;
-    uVar10 = uRam00436250;
-    uVar9 = uRam0043624c;
-    uVar8 = uRam00436248;
-    uVar7 = uRam00436244;
-    uVar6 = uRam00436240;
-    uVar5 = uRam0043623c;
-    uVar4 = uRam00436238;
-    uVar3 = uRam00436234;
-    *(undefined4 *)(param_2 + 0x300) = uRam00436230;
+    uVar17 = _g_CourseShared84;
+    uVar16 = _g_CourseShared83;
+    uVar15 = _g_CourseShared82;
+    uVar14 = _g_CourseShared81;
+    uVar13 = _g_CourseShared80;
+    uVar12 = _g_CourseShared79;
+    uVar11 = _g_CourseShared78;
+    uVar10 = _g_CourseShared77;
+    uVar9 = _g_CourseShared76;
+    uVar8 = _g_CourseShared75;
+    uVar7 = _g_CourseShared74;
+    uVar6 = _g_CourseShared73;
+    uVar5 = _g_CourseShared72;
+    uVar4 = _g_CourseShared71;
+    uVar3 = _g_CourseShared70;
+    *(undefined4 *)(param_2 + 0x300) = _g_CourseShared69;
     *(undefined4 *)(param_2 + 0x304) = uVar3;
     *(undefined4 *)(param_2 + 0x308) = uVar4;
     *(undefined4 *)(param_2 + 0x30c) = uVar5;
@@ -2768,22 +2784,22 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x334) = uVar15;
     *(undefined4 *)(param_2 + 0x338) = uVar16;
     *(undefined4 *)(param_2 + 0x33c) = uVar17;
-    uVar17 = uRam004362ac;
-    uVar16 = uRam004362a8;
-    uVar15 = uRam004362a4;
-    uVar14 = uRam004362a0;
-    uVar13 = uRam0043629c;
-    uVar12 = uRam00436298;
-    uVar11 = uRam00436294;
-    uVar10 = uRam00436290;
-    uVar9 = uRam0043628c;
-    uVar8 = uRam00436288;
-    uVar7 = uRam00436284;
-    uVar6 = uRam00436280;
-    uVar5 = uRam0043627c;
-    uVar4 = uRam00436278;
-    uVar3 = uRam00436274;
-    *(undefined4 *)(param_2 + 0x340) = uRam00436270;
+    uVar17 = _g_CourseShared100;
+    uVar16 = _g_CourseShared99;
+    uVar15 = _g_CourseShared98;
+    uVar14 = _g_CourseShared97;
+    uVar13 = _g_CourseShared96;
+    uVar12 = _g_CourseShared95;
+    uVar11 = _g_CourseShared94;
+    uVar10 = _g_CourseShared93;
+    uVar9 = _g_CourseShared92;
+    uVar8 = _g_CourseShared91;
+    uVar7 = _g_CourseShared90;
+    uVar6 = _g_CourseShared89;
+    uVar5 = _g_CourseShared88;
+    uVar4 = _g_CourseShared87;
+    uVar3 = _g_CourseShared86;
+    *(undefined4 *)(param_2 + 0x340) = _g_CourseShared85;
     *(undefined4 *)(param_2 + 0x344) = uVar3;
     *(undefined4 *)(param_2 + 0x348) = uVar4;
     *(undefined4 *)(param_2 + 0x34c) = uVar5;
@@ -2799,22 +2815,22 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x374) = uVar15;
     *(undefined4 *)(param_2 + 0x378) = uVar16;
     *(undefined4 *)(param_2 + 0x37c) = uVar17;
-    uVar17 = uRam004362ec;
-    uVar16 = uRam004362e8;
-    uVar15 = uRam004362e4;
-    uVar14 = uRam004362e0;
-    uVar13 = uRam004362dc;
-    uVar12 = uRam004362d8;
-    uVar11 = uRam004362d4;
-    uVar10 = uRam004362d0;
-    uVar9 = uRam004362cc;
-    uVar8 = uRam004362c8;
-    uVar7 = uRam004362c4;
-    uVar6 = uRam004362c0;
-    uVar5 = uRam004362bc;
-    uVar4 = uRam004362b8;
-    uVar3 = uRam004362b4;
-    *(undefined4 *)(param_2 + 0x380) = uRam004362b0;
+    uVar17 = _g_CourseShared116;
+    uVar16 = _g_CourseShared115;
+    uVar15 = _g_CourseShared114;
+    uVar14 = _g_CourseShared113;
+    uVar13 = _g_CourseShared112;
+    uVar12 = _g_CourseShared111;
+    uVar11 = _g_CourseShared110;
+    uVar10 = _g_CourseShared109;
+    uVar9 = _g_CourseShared108;
+    uVar8 = _g_CourseShared107;
+    uVar7 = _g_CourseShared106;
+    uVar6 = _g_CourseShared105;
+    uVar5 = _g_CourseShared104;
+    uVar4 = _g_CourseShared103;
+    uVar3 = _g_CourseShared102;
+    *(undefined4 *)(param_2 + 0x380) = _g_CourseShared101;
     *(undefined4 *)(param_2 + 900) = uVar3;
     *(undefined4 *)(param_2 + 0x388) = uVar4;
     *(undefined4 *)(param_2 + 0x38c) = uVar5;
@@ -2830,12 +2846,12 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(param_2 + 0x3b4) = uVar15;
     *(undefined4 *)(param_2 + 0x3b8) = uVar16;
     *(undefined4 *)(param_2 + 0x3bc) = uVar17;
-    *(undefined1 *)(param_2 + 0x3c0) = uRam004362f0;
+    *(undefined1 *)(param_2 + 0x3c0) = g_CourseShared117;
     sceVu0MulVector(param_2 + 0x250,0x436180,param_1 + 0x160);
     *(int *)(param_2 + 0x3d0) = param_2 + 0x250;
   }
   else {
-    *(undefined4 *)(param_2 + 0x3d0) = 0x436180;
+    *(undefined **)(param_2 + 0x3d0) = &g_CourseShared25;
     puVar1 = *(undefined4 **)(param_2 + 0x3d0);
     uVar3 = puVar1[1];
     uVar4 = puVar1[2];
@@ -3017,7 +3033,7 @@ void CarModel_SetupLighting(int param_1,int param_2,undefined4 param_3)
     *(undefined1 *)(param_2 + 0x3c0) = *(undefined1 *)(puVar1 + 0x5c);
     *(int *)(param_2 + 0x3d0) = param_2 + 0x250;
   }
-  if ((iRam00433344 == 0) || (iRam0043058c == 0)) {
+  if ((_g_SceneObjShared4 == 0) || (_g_SceneObjShared3 == 0)) {
     bVar2 = false;
   }
   else {

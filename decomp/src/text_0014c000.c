@@ -1711,7 +1711,7 @@ undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
   
   if (*(int *)(_g_MoviePlayer + 0x154) == 0) {
     Sema_Wait(0x36efc0);
-    iVar2 = iRam00386628;
+    iVar2 = _g_FileShared2;
     Sema_Signal(0x36efc0,0);
     if (iVar2 == 0) {
       *(undefined4 *)(_g_MoviePlayer + 0x158) = *param_1;
@@ -1730,7 +1730,7 @@ undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
         uVar1 = *(uint *)(_g_MoviePlayer + 0x15c);
         *(undefined4 *)(_g_MoviePlayer + 0x1c8) = 0xffffffff;
         *(undefined4 *)(iVar2 + 0x1d8) = 0xffffffff;
-        if (iRam00387fa8 == 2) {
+        if (_g_GfxShared2 == 2) {
           if ((uVar1 & 4) == 0) {
             *(undefined4 *)(iVar2 + 0x1cc) = 10000;
           }

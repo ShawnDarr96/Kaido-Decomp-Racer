@@ -274,7 +274,7 @@ undefined8 lgDevInit(void)
     for (iVar7 = 0xffff; iVar7 != -1; iVar7 = iVar7 + -1) {
     }
   }
-  iRam0042fd84 = 0;
+  _g_lgDevInitShared1 = 0;
   lVar1 = sceSifCallRpc(0x42fd40,0xc,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar1 != 0) {
     printf(0x362760);
@@ -283,20 +283,20 @@ undefined8 lgDevInit(void)
                     /* WARNING: Do nothing block with infinite loop */
     } while( true );
   }
-  if (iRam0042fd84 != 0x108) {
+  if (_g_lgDevInitShared1 != 0x108) {
     printf(0x362798);
     printf(0x3627c0,1,8);
-    iVar7 = iRam0042fd84;
-    if (iRam0042fd84 < 0) {
-      iVar7 = iRam0042fd84 + 0xff;
+    iVar7 = _g_lgDevInitShared1;
+    if (_g_lgDevInitShared1 < 0) {
+      iVar7 = _g_lgDevInitShared1 + 0xff;
     }
-    printf(0x3627f0,iVar7 >> 8,iRam0042fd84 + (iVar7 >> 8) * -0x100);
+    printf(0x3627f0,iVar7 >> 8,_g_lgDevInitShared1 + (iVar7 >> 8) * -0x100);
     printf(0x362778);
     do {
                     /* WARNING: Do nothing block with infinite loop */
     } while( true );
   }
-  DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
+  DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
   if (DAT_0030ae48 == -1) {
     memset(auStack_60,0,0x18);
     uStack_5c = 1;
@@ -316,7 +316,7 @@ undefined8 lgDevInit(void)
     printf(0x362848);
   }
   if (DAT_0030ae40 != 0) {
-    puVar3 = (undefined8 *)0x42fdf4;
+    puVar3 = (undefined8 *)&g_lgDevEnumerateShared2;
     puVar2 = (undefined8 *)0x42ffc0;
     do {
       uVar4 = puVar2[1];
@@ -331,7 +331,7 @@ undefined8 lgDevInit(void)
     } while (puVar2 != (undefined8 *)0x430120);
     lVar1 = sceSifCallRpc(0x42fd40,0x12,0,0x42fd80,0x240,0x42fd80,0x240,0);
     if (lVar1 == 0) {
-      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
+      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
       DAT_0030ae40 = 0;
     }
     else {
@@ -364,6 +364,8 @@ undefined8 lgDevEnumHint(long param_1)
 }
 
 // 0x00170c30  size 0x108
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevEnumerate(undefined4 param_1,long param_2)
 
 {
@@ -379,17 +381,17 @@ undefined4 lgDevEnumerate(undefined4 param_1,long param_2)
   }
   else {
     lgDev_WaitAsync(0,0);
-    uRam0042fd84 = param_1;
+    _g_lgDevInitShared1 = param_1;
     lVar4 = sceSifCallRpc(0x42fd40,1,0,0x42fd80,0x240,0x42fd80,0x240,0);
-    uVar2 = uRam0042fe04;
-    uVar1 = uRam0042fdfc;
+    uVar2 = _g_lgDevEnumerateShared4;
+    uVar1 = _g_lgDevEnumerateShared3;
     if (lVar4 == 0) {
       puVar5 = (undefined8 *)param_2;
-      *puVar5 = uRam0042fdf4;
+      *puVar5 = _g_lgDevEnumerateShared2;
       puVar5[1] = uVar1;
       puVar5[2] = uVar2;
-      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-      uVar3 = uRam0042fd80;
+      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+      uVar3 = _g_lgDevEnumerateShared1;
     }
     else {
       printf(0x3628e0);
@@ -400,6 +402,8 @@ undefined4 lgDevEnumerate(undefined4 param_1,long param_2)
 }
 
 // 0x00170d40  size 0xe0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevOpen(undefined4 param_1,long param_2)
 
 {
@@ -412,12 +416,12 @@ undefined4 lgDevOpen(undefined4 param_1,long param_2)
   }
   else {
     lgDev_WaitAsync(0,0);
-    uRam0042fd84 = param_1;
+    _g_lgDevInitShared1 = param_1;
     lVar2 = sceSifCallRpc(0x42fd40,2,0,0x42fd80,0x240,0x42fd80,0x240,0);
     if (lVar2 == 0) {
-      *(undefined4 *)param_2 = uRam0042fd88;
-      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-      uVar1 = uRam0042fd80;
+      *(undefined4 *)param_2 = _g_lgDevOpenShared1;
+      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+      uVar1 = _g_lgDevEnumerateShared1;
     }
     else {
       printf(0x362930);
@@ -428,6 +432,8 @@ undefined4 lgDevOpen(undefined4 param_1,long param_2)
 }
 
 // 0x00170e28  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevClose(undefined4 param_1)
 
 {
@@ -435,11 +441,11 @@ undefined4 lgDevClose(undefined4 param_1)
   long lVar2;
   
   lgDev_WaitAsync(0,0);
-  uRam0042fd88 = param_1;
+  _g_lgDevOpenShared1 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,3,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
-    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-    uVar1 = uRam0042fd80;
+    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+    uVar1 = _g_lgDevEnumerateShared1;
   }
   else {
     printf(0x362950);
@@ -449,6 +455,8 @@ undefined4 lgDevClose(undefined4 param_1)
 }
 
 // 0x00170ed8  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevGetDeviceProperty(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
@@ -461,13 +469,13 @@ undefined4 lgDevGetDeviceProperty(undefined4 param_1,undefined4 param_2,long par
   }
   else {
     lgDev_WaitAsync(0,0);
-    uRam0042fd88 = param_1;
-    uRam0042fdd8 = param_2;
+    _g_lgDevOpenShared1 = param_1;
+    _g_lgDevGetDevicePropertyShared1 = param_2;
     lVar2 = sceSifCallRpc(0x42fd40,4,0,0x42fd80,0x240,0x42fd80,0x240,0);
     if (lVar2 == 0) {
-      *(undefined4 *)param_3 = uRam0042fddc;
-      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-      uVar1 = uRam0042fd80;
+      *(undefined4 *)param_3 = _g_lgDevGetDevicePropertyShared2;
+      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+      uVar1 = _g_lgDevEnumerateShared1;
     }
     else {
       printf(0x3629a8);
@@ -478,6 +486,8 @@ undefined4 lgDevGetDeviceProperty(undefined4 param_1,undefined4 param_2,long par
 }
 
 // 0x00170fc8  size 0xcc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevSetDeviceProperty(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -485,13 +495,13 @@ undefined4 lgDevSetDeviceProperty(undefined4 param_1,undefined4 param_2,undefine
   long lVar2;
   
   lgDev_WaitAsync(0,0);
-  uRam0042fd88 = param_1;
-  uRam0042fdd8 = param_2;
-  uRam0042fddc = param_3;
+  _g_lgDevOpenShared1 = param_1;
+  _g_lgDevGetDevicePropertyShared1 = param_2;
+  _g_lgDevGetDevicePropertyShared2 = param_3;
   lVar2 = sceSifCallRpc(0x42fd40,5,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
-    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-    uVar1 = uRam0042fd80;
+    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+    uVar1 = _g_lgDevEnumerateShared1;
   }
   else {
     printf(0x3629d8);
@@ -516,15 +526,15 @@ undefined4 lgDevRead(undefined4 param_1,undefined4 param_2,long param_3)
   }
   else {
     lgDev_WaitAsync(0,0);
-    uRam0042fd88 = param_1;
+    _g_lgDevOpenShared1 = param_1;
     _s_lgDevRead_1 = param_2;
     lVar3 = sceSifCallRpc(0x42fd40,6,0,0x42fd80,0x240,0x42fd80,0x240,0);
-    uVar1 = uRam0042fdfc;
+    uVar1 = _g_lgDevEnumerateShared3;
     if (lVar3 == 0) {
-      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-      *(undefined8 *)param_3 = uRam0042fdf4;
+      DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+      *(undefined8 *)param_3 = _g_lgDevEnumerateShared2;
       ((undefined8 *)param_3)[1] = uVar1;
-      uVar2 = uRam0042fd80;
+      uVar2 = _g_lgDevEnumerateShared1;
     }
     else {
       printf(0x362a38);
@@ -535,6 +545,8 @@ undefined4 lgDevRead(undefined4 param_1,undefined4 param_2,long param_3)
 }
 
 // 0x001711a0  size 0x1c0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *param_4)
 
 {
@@ -566,16 +578,16 @@ undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *para
             puVar4 = puVar4 + 1;
           } while (iVar5 < param_1);
         }
-        iRam0042fddc = param_1;
+        _g_lgDevGetDevicePropertyShared2 = param_1;
         lVar1 = sceSifCallRpc(0x42fd40,0xe,0,0x42fd80,0x240,0x42fd80,0x240,0);
         if (lVar1 != 0) {
           printf(0x362b18);
           return 0x80000000;
         }
         iVar5 = 0;
-        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
+        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
         if (0 < param_1) {
-          puVar6 = (undefined8 *)0x42fdf4;
+          puVar6 = (undefined8 *)&g_lgDevEnumerateShared2;
           do {
             uVar3 = puVar6[1];
             *param_4 = *puVar6;
@@ -585,7 +597,7 @@ undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *para
             param_4 = param_4 + 2;
           } while (iVar5 < param_1);
         }
-        return uRam0042fd80;
+        return _g_lgDevEnumerateShared1;
       }
       uVar3 = 0x362ae8;
     }
@@ -598,6 +610,8 @@ undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *para
 }
 
 // 0x00171370  size 0x17c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevDownloadForceEffect(undefined4 param_1,long param_2,long param_3)
 
 {
@@ -611,22 +625,22 @@ undefined4 lgDevDownloadForceEffect(undefined4 param_1,long param_2,long param_3
   else {
     if (param_3 != 0) {
       lgDev_WaitAsync(0,0);
-      uRam0042fd98 = *(undefined4 *)param_2;
+      _g_lgDevDownloadForceEffectShared1 = *(undefined4 *)param_2;
       puVar3 = (undefined8 *)param_3;
-      uRam0042fdf4 = *puVar3;
-      uRam0042fdfc = puVar3[1];
-      uRam0042fe04 = puVar3[2];
-      uRam0042fe0c = puVar3[3];
-      uRam0042fe14 = puVar3[4];
-      uRam0042fe1c = puVar3[5];
-      uRam0042fe24 = puVar3[6];
-      uRam0042fe2c = *(undefined4 *)(puVar3 + 7);
-      uRam0042fd88 = param_1;
+      _g_lgDevEnumerateShared2 = *puVar3;
+      _g_lgDevEnumerateShared3 = puVar3[1];
+      _g_lgDevEnumerateShared4 = puVar3[2];
+      _g_lgDevDownloadForceEffectShared2 = puVar3[3];
+      _g_lgDevDownloadForceEffectShared3 = puVar3[4];
+      _g_lgDevDownloadForceEffectShared4 = puVar3[5];
+      _g_lgDevDownloadForceEffectShared5 = puVar3[6];
+      _g_lgDevDownloadForceEffectShared6 = *(undefined4 *)(puVar3 + 7);
+      _g_lgDevOpenShared1 = param_1;
       lVar1 = sceSifCallRpc(0x42fd40,7,0,0x42fd80,0x240,0x42fd80,0x240,0);
       if (lVar1 == 0) {
-        *(undefined4 *)param_2 = uRam0042fd98;
-        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-        return uRam0042fd80;
+        *(undefined4 *)param_2 = _g_lgDevDownloadForceEffectShared1;
+        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+        return _g_lgDevEnumerateShared1;
       }
       printf(0x362bb8);
       return 0x80000000;
@@ -638,6 +652,8 @@ undefined4 lgDevDownloadForceEffect(undefined4 param_1,long param_2,long param_3
 }
 
 // 0x001714f8  size 0x164
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevUpdateForceEffect(int param_1,long param_2)
 
 {
@@ -652,19 +668,19 @@ undefined4 lgDevUpdateForceEffect(int param_1,long param_2)
     if (param_2 != 0) {
       lgDev_WaitAsync(0,0);
       puVar3 = (undefined8 *)param_2;
-      uRam0042fdf4 = *puVar3;
-      uRam0042fdfc = puVar3[1];
-      uRam0042fe04 = puVar3[2];
-      uRam0042fe0c = puVar3[3];
-      uRam0042fe14 = puVar3[4];
-      uRam0042fe1c = puVar3[5];
-      uRam0042fe24 = puVar3[6];
-      uRam0042fe2c = *(undefined4 *)(puVar3 + 7);
-      iRam0042fd98 = param_1;
+      _g_lgDevEnumerateShared2 = *puVar3;
+      _g_lgDevEnumerateShared3 = puVar3[1];
+      _g_lgDevEnumerateShared4 = puVar3[2];
+      _g_lgDevDownloadForceEffectShared2 = puVar3[3];
+      _g_lgDevDownloadForceEffectShared3 = puVar3[4];
+      _g_lgDevDownloadForceEffectShared4 = puVar3[5];
+      _g_lgDevDownloadForceEffectShared5 = puVar3[6];
+      _g_lgDevDownloadForceEffectShared6 = *(undefined4 *)(puVar3 + 7);
+      _g_lgDevDownloadForceEffectShared1 = param_1;
       lVar1 = sceSifCallRpc(0x42fd40,0xd,0,0x42fd80,0x240,0x42fd80,0x240,0);
       if (lVar1 == 0) {
-        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-        return uRam0042fd80;
+        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+        return _g_lgDevEnumerateShared1;
       }
       printf(0x362c60);
       return 0x80000000;
@@ -676,6 +692,8 @@ undefined4 lgDevUpdateForceEffect(int param_1,long param_2)
 }
 
 // 0x00171668  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevStartForceEffect(undefined4 param_1)
 
 {
@@ -683,11 +701,11 @@ undefined4 lgDevStartForceEffect(undefined4 param_1)
   long lVar2;
   
   lgDev_WaitAsync(0,0);
-  uRam0042fd98 = param_1;
+  _g_lgDevDownloadForceEffectShared1 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,8,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
-    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-    uVar1 = uRam0042fd80;
+    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+    uVar1 = _g_lgDevEnumerateShared1;
   }
   else {
     printf(0x362c90);
@@ -697,6 +715,8 @@ undefined4 lgDevStartForceEffect(undefined4 param_1)
 }
 
 // 0x00171718  size 0x128
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
 
 {
@@ -710,7 +730,7 @@ undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
       lgDev_WaitAsync(0,0);
       iVar4 = 0;
       if (0 < param_1) {
-        puVar3 = (undefined4 *)0x42fd98;
+        puVar3 = (undefined4 *)&g_lgDevDownloadForceEffectShared1;
         do {
           uVar1 = *param_2;
           param_2 = param_2 + 1;
@@ -719,11 +739,11 @@ undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
           puVar3 = puVar3 + 1;
         } while (iVar4 < param_1);
       }
-      iRam0042fddc = param_1;
+      _g_lgDevGetDevicePropertyShared2 = param_1;
       lVar2 = sceSifCallRpc(0x42fd40,0xf,0,0x42fd80,0x240,0x42fd80,0x240,0);
       if (lVar2 == 0) {
-        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-        return uRam0042fd80;
+        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+        return _g_lgDevEnumerateShared1;
       }
       printf(0x362d28);
       return 0x80000000;
@@ -737,6 +757,8 @@ undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
 }
 
 // 0x00171848  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevStopForceEffect(undefined4 param_1)
 
 {
@@ -744,11 +766,11 @@ undefined4 lgDevStopForceEffect(undefined4 param_1)
   long lVar2;
   
   lgDev_WaitAsync(0,0);
-  uRam0042fd98 = param_1;
+  _g_lgDevDownloadForceEffectShared1 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,9,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
-    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-    uVar1 = uRam0042fd80;
+    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+    uVar1 = _g_lgDevEnumerateShared1;
   }
   else {
     printf(0x362d58);
@@ -758,6 +780,8 @@ undefined4 lgDevStopForceEffect(undefined4 param_1)
 }
 
 // 0x001718f8  size 0x128
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
 
 {
@@ -771,7 +795,7 @@ undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
       lgDev_WaitAsync(0,0);
       iVar4 = 0;
       if (0 < param_1) {
-        puVar3 = (undefined4 *)0x42fd98;
+        puVar3 = (undefined4 *)&g_lgDevDownloadForceEffectShared1;
         do {
           uVar1 = *param_2;
           param_2 = param_2 + 1;
@@ -780,11 +804,11 @@ undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
           puVar3 = puVar3 + 1;
         } while (iVar4 < param_1);
       }
-      iRam0042fddc = param_1;
+      _g_lgDevGetDevicePropertyShared2 = param_1;
       lVar2 = sceSifCallRpc(0x42fd40,0x10,0,0x42fd80,0x240,0x42fd80,0x240,0);
       if (lVar2 == 0) {
-        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-        return uRam0042fd80;
+        DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+        return _g_lgDevEnumerateShared1;
       }
       printf(0x362df0);
       return 0x80000000;
@@ -798,6 +822,8 @@ undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
 }
 
 // 0x00171a28  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevDestroyForceEffect(undefined4 param_1)
 
 {
@@ -805,11 +831,11 @@ undefined4 lgDevDestroyForceEffect(undefined4 param_1)
   long lVar2;
   
   lgDev_WaitAsync(0,0);
-  uRam0042fd98 = param_1;
+  _g_lgDevDownloadForceEffectShared1 = param_1;
   lVar2 = sceSifCallRpc(0x42fd40,10,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
-    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-    uVar1 = uRam0042fd80;
+    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+    uVar1 = _g_lgDevEnumerateShared1;
   }
   else {
     printf(0x362e20);
@@ -821,6 +847,7 @@ undefined4 lgDevDestroyForceEffect(undefined4 param_1)
 // 0x00171ad8  size 0x164
 /* WARNING: Removing unreachable block (ram,0x00171ba8) */
 /* WARNING: Removing unreachable block (ram,0x00171bdc) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 lgDevPrepareForIOPReboot(void)
 
@@ -836,7 +863,7 @@ undefined4 lgDevPrepareForIOPReboot(void)
   lgDev_WaitAsync(0,0);
   lVar2 = sceSifCallRpc(0x42fd40,0x11,0,0x42fd80,0x240,0x42fd80,0x240,0);
   if (lVar2 == 0) {
-    puVar4 = (undefined8 *)0x42fdf4;
+    puVar4 = (undefined8 *)&g_lgDevEnumerateShared2;
     puVar3 = (undefined8 *)0x42ffc0;
     do {
       uVar5 = puVar4[1];
@@ -850,8 +877,8 @@ undefined4 lgDevPrepareForIOPReboot(void)
       puVar3 = puVar3 + 4;
     } while (puVar4 != (undefined8 *)0x42ff54);
     DAT_0030ae40 = 1;
-    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | uRam0042fde0;
-    uVar1 = uRam0042fd80;
+    DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | _g_lgDevInitShared2;
+    uVar1 = _g_lgDevEnumerateShared1;
   }
   else {
     DAT_0030ae40 = 0;

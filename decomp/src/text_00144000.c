@@ -164,6 +164,8 @@ void Camera_Init(undefined8 param_1)
 }
 
 // 0x001448b0  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Gfx_ClearRenderTarget(int param_1)
 
 {
@@ -436,7 +438,7 @@ void DmaChain_Kick(uint param_1,int param_2,int param_3)
   else {
     iVar3 = *(int *)(&s_DmaChainVar2 + iVar2) % *(int *)(&s_DmaChainVar3 + iVar2);
   }
-  iVar2 = *(int *)(*(int *)(iVar2 + 0x387f5c) + iVar3 * 0x28 + 4);
+  iVar2 = *(int *)(*(int *)(&g_DmaChainShared1 + iVar2) + iVar3 * 0x28 + 4);
   iVar3 = iVar2 + param_2 * 0x1c;
   lVar1 = DmaChain_GetSpan(iVar2 + param_3 * 0x1c,&uStack_4,&uStack_8);
   if (lVar1 != 0) {
@@ -471,7 +473,7 @@ uint DmaChain_Begin(uint param_1,undefined4 *param_2)
     else {
       iVar4 = *(int *)(&s_DmaChainVar2 + iVar2) % iVar4;
     }
-    puVar6 = (uint *)(*(int *)(iVar2 + 0x387f5c) + iVar4 * 0x28);
+    puVar6 = (uint *)(*(int *)(&g_DmaChainShared1 + iVar2) + iVar4 * 0x28);
     puVar6[4] = 0;
     uVar5 = 0;
     if (*puVar6 == 0) {
@@ -529,7 +531,7 @@ void DmaChain_End(uint param_1)
     else {
       iVar6 = *(int *)(&s_DmaChainVar2 + iVar2) % iVar6;
     }
-    puVar3 = (uint *)(*(int *)(iVar2 + 0x387f5c) + iVar6 * 0x28);
+    puVar3 = (uint *)(*(int *)(&g_DmaChainShared1 + iVar2) + iVar6 * 0x28);
     *(undefined4 *)(&s_DmaChainVar4 + iVar2) = 1;
     puVar3[8] = 0;
     uVar1 = 0;
@@ -595,7 +597,8 @@ void DmaChain_SetFlag(uint param_1,int param_2,undefined1 param_3)
     iVar2 = 0;
     do {
       uVar3 = uVar3 + 1;
-      *(undefined1 *)(param_2 * 0x1c + *(int *)(*(int *)(iVar1 + 0x387f5c) + iVar2 + 4)) = param_3;
+      *(undefined1 *)(param_2 * 0x1c + *(int *)(*(int *)(&g_DmaChainShared1 + iVar1) + iVar2 + 4)) =
+           param_3;
       iVar2 = iVar2 + 0x28;
     } while (uVar3 < *(uint *)(&s_DmaChainVar3 + iVar1));
   }
@@ -619,7 +622,7 @@ void DmaChain_Destroy(uint param_1)
   else {
     iVar2 = 0;
     do {
-      puVar4 = (undefined4 *)(*(int *)(iVar1 + 0x387f5c) + iVar2);
+      puVar4 = (undefined4 *)(*(int *)(&g_DmaChainShared1 + iVar1) + iVar2);
       DmaBuf_Free(puVar4 + 6);
       DmaBuf_Free(puVar4 + 2);
       *puVar4 = 0;
@@ -634,9 +637,9 @@ void DmaChain_Destroy(uint param_1)
   }
   *(undefined4 *)(&s_DmaChainVar3 + iVar1) = 0;
   *(undefined4 *)(&s_DmaChainVar4 + iVar1) = 0;
-  if (*(int *)(iVar1 + 0x387f5c) != 0) {
+  if (*(int *)(&g_DmaChainShared1 + iVar1) != 0) {
     Mem_Free();
-    *(undefined4 *)(iVar1 + 0x387f5c) = 0;
+    *(undefined4 *)(&g_DmaChainShared1 + iVar1) = 0;
   }
   return;
 }
@@ -647,52 +650,52 @@ void DmaChain_Destroy(uint param_1)
 undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  bool bVar1;
-  undefined4 uVar2;
-  long lVar3;
-  int iVar4;
+  int iVar1;
+  bool bVar2;
+  undefined4 uVar3;
+  long lVar4;
   int iVar5;
   int iVar6;
   uint uVar7;
   
-  iVar4 = (param_1 & 0xff) * 0x10;
-  *(undefined4 *)(&s_DmaChainVar2 + iVar4) = 0;
-  *(undefined4 *)(&s_DmaChainVar3 + iVar4) = param_2;
-  *(undefined4 *)(&s_DmaChainVar4 + iVar4) = 0;
-  uVar2 = Mem_Alloc16(*(int *)(&s_DmaChainVar3 + iVar4) * 0x28,_s_DmaChainVar1);
-  *(undefined4 *)(iVar4 + 0x387f5c) = uVar2;
-  if (*(int *)(iVar4 + 0x387f5c) == 0) {
-    uVar2 = 0;
+  iVar5 = (param_1 & 0xff) * 0x10;
+  *(undefined4 *)(&s_DmaChainVar2 + iVar5) = 0;
+  *(undefined4 *)(&s_DmaChainVar3 + iVar5) = param_2;
+  *(undefined4 *)(&s_DmaChainVar4 + iVar5) = 0;
+  uVar3 = Mem_Alloc16(*(int *)(&s_DmaChainVar3 + iVar5) * 0x28,_s_DmaChainVar1);
+  *(undefined4 *)(&g_DmaChainShared1 + iVar5) = uVar3;
+  if (*(int *)(&g_DmaChainShared1 + iVar5) == 0) {
+    uVar3 = 0;
   }
   else {
     uVar7 = 0;
-    if (*(int *)(&s_DmaChainVar3 + iVar4) != 0) {
+    if (*(int *)(&s_DmaChainVar3 + iVar5) != 0) {
       iVar6 = 0;
       do {
-        iVar5 = *(int *)(iVar4 + 0x387f5c) + iVar6;
-        lVar3 = DmaChain_Init(iVar5,param_4);
-        if (lVar3 == 0) {
-          bVar1 = false;
+        iVar1 = *(int *)(&g_DmaChainShared1 + iVar5);
+        lVar4 = DmaChain_Init(iVar1 + iVar6,param_4);
+        if (lVar4 == 0) {
+          bVar2 = false;
         }
         else {
-          lVar3 = DmaBuf_Alloc(iVar5 + 0x18,_s_DmaChainVar1,param_3);
-          if (lVar3 == 0) {
-            bVar1 = false;
+          lVar4 = DmaBuf_Alloc(iVar1 + iVar6 + 0x18,_s_DmaChainVar1,param_3);
+          if (lVar4 == 0) {
+            bVar2 = false;
           }
           else {
-            bVar1 = true;
+            bVar2 = true;
           }
         }
-        if (!bVar1) {
+        if (!bVar2) {
           return 0;
         }
         uVar7 = uVar7 + 1;
         iVar6 = iVar6 + 0x28;
-      } while (uVar7 < *(uint *)(&s_DmaChainVar3 + iVar4));
+      } while (uVar7 < *(uint *)(&s_DmaChainVar3 + iVar5));
     }
-    uVar2 = 1;
+    uVar3 = 1;
   }
-  return uVar2;
+  return uVar3;
 }
 
 // 0x00145370  size 0x184
@@ -714,7 +717,7 @@ void DmaChain_DestroyAll(void)
     if (*(int *)(&s_DmaChainVar3 + iVar1) != 0) {
       iVar2 = 0;
       do {
-        puVar5 = (undefined4 *)(*(int *)(iVar1 + 0x387f5c) + iVar2);
+        puVar5 = (undefined4 *)(*(int *)(&g_DmaChainShared1 + iVar1) + iVar2);
         DmaBuf_Free(puVar5 + 6);
         DmaBuf_Free(puVar5 + 2);
         *puVar5 = 0;
@@ -729,9 +732,9 @@ void DmaChain_DestroyAll(void)
     *(undefined4 *)(&s_DmaChainVar2 + iVar1) = 0;
     *(undefined4 *)(&s_DmaChainVar3 + iVar1) = 0;
     *(undefined4 *)(&s_DmaChainVar4 + iVar1) = 0;
-    if (*(int *)(iVar1 + 0x387f5c) != 0) {
+    if (*(int *)(&g_DmaChainShared1 + iVar1) != 0) {
       Mem_Free();
-      *(undefined4 *)(iVar1 + 0x387f5c) = 0;
+      *(undefined4 *)(&g_DmaChainShared1 + iVar1) = 0;
     }
     uVar4 = uVar4 + 1;
   } while (uVar4 < 5);
@@ -739,7 +742,7 @@ void DmaChain_DestroyAll(void)
   _s_DmaChainVar3 = 0;
   _s_DmaChainVar4 = 0;
   _s_DmaChainVar1 = 0;
-  uRam00387f5c = 0;
+  _g_DmaChainShared1 = 0;
   _s_DmaChainVar5 = 0;
   _s_DmaChainVar6 = 0;
   _s_DmaChainVar7 = 0;
@@ -768,7 +771,7 @@ void DmaChain_SetHeap(undefined4 param_1)
   _s_DmaChainVar1 = param_1;
   _s_DmaChainVar3 = 0;
   _s_DmaChainVar2 = 0;
-  uRam00387f5c = 0;
+  _g_DmaChainShared1 = 0;
   _s_DmaChainVar4 = 0;
   _s_DmaChainVar5 = 0;
   _s_DmaChainVar6 = 0;
@@ -925,6 +928,8 @@ void Pkt_SetTexFlush(undefined8 param_1,int param_2)
 }
 
 // 0x00145860  size 0x21c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int param_5,long param_6)
 
 {
@@ -947,7 +952,7 @@ void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int p
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fcf0);
+                _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x38fcf0);
     }
     else {
       if (*pbVar5 == 5) {
@@ -958,7 +963,7 @@ void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int p
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fd30);
+                _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x38fd30);
     }
   }
   else if (param_6 == 0) {
@@ -976,6 +981,8 @@ void Pkt_SetScissor(undefined8 param_1,int param_2,int param_3,int param_4,int p
 }
 
 // 0x00145a80  size 0x1c4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
 
 {
@@ -998,7 +1005,7 @@ void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fce0);
+                _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x38fce0);
     }
     else {
       if (*pbVar5 == 5) {
@@ -1009,7 +1016,7 @@ void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
       }
       puVar4 = (ushort *)
                (((uint)bVar1 * 0x104 + (uint)bVar1) * 0x80 +
-                iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fd20);
+                _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x38fd20);
     }
   }
   else if (param_4 == 0) {
@@ -1024,6 +1031,8 @@ void Pkt_SetFrame(undefined8 param_1,int param_2,int param_3,long param_4)
 }
 
 // 0x00145c50  size 0x118
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Pkt_Begin(undefined8 param_1)
 
 {
@@ -1042,7 +1051,7 @@ void Pkt_Begin(undefined8 param_1)
       bVar1 = *pbVar3;
     }
     Pkt_AddGsRegisters(param_1,(uint)bVar1 * 0x8280 +
-                               iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x388660);
+                               _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x388660);
   }
   else {
     maybe_Gs_BuildSpritePacket
@@ -1055,6 +1064,7 @@ void Pkt_Begin(undefined8 param_1)
 }
 
 // 0x00145d70  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 25 callers */
 
 void Pkt_End(byte *param_1)
@@ -1070,7 +1080,7 @@ void Pkt_End(byte *param_1)
       bVar1 = *param_1;
     }
     Pkt_AddGsDefaults(param_1,(uint)bVar1 * 0x8280 +
-                              iRam0036ef90 * 0x28c80 + (uRam0036ef94 & 1) * 0x51900 + 0x38fca0);
+                              _g_PktShared1 * 0x28c80 + (_g_PktShared2 & 1) * 0x51900 + 0x38fca0);
   }
   else {
     Pkt_AddGsDefaults(param_1,*(int *)(param_1 + 0x14) + 0x480);
@@ -1362,7 +1372,7 @@ void Pkt_SubmitToChain(byte *param_1,int param_2)
     else {
       iVar3 = *(int *)(&s_DmaChainVar2 + iVar2) % *(int *)(&s_DmaChainVar3 + iVar2);
     }
-    iVar2 = *(int *)(iVar2 + 0x387f5c) + iVar3 * 0x28;
+    iVar2 = *(int *)(&g_DmaChainShared1 + iVar2) + iVar3 * 0x28;
     pbVar4 = (byte *)(*(int *)(iVar2 + 4) + param_2 * 0x1c);
     param_1[1] = *pbVar4;
     *(int *)(param_1 + 4) = iVar2 + 0x18;
@@ -1510,12 +1520,14 @@ Pkt_AddVu1Matrices(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 }
 
 // 0x00146a90  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 * Pkt_AddVu1Base(undefined8 param_1,int param_2)
 
 {
   undefined4 *puVar1;
   
-  param_2 = param_2 * iRam0036ef90;
+  param_2 = param_2 * _g_PktShared1;
   puVar1 = (undefined4 *)Pkt_AllocDmaRef(param_1,6,0,0x10000000);
   *puVar1 = 0x30000e6;
   puVar1[1] = 0x200018d;

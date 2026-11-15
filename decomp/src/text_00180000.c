@@ -2121,14 +2121,16 @@ void PlayerRecord_Copy(int param_1,undefined4 *param_2)
 }
 
 // 0x00182d60  size 0x170
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Controls_SetDefaults(int param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
   undefined4 uVar2;
   
-  uVar2 = uRam0036e774;
-  uVar1 = uRam0036e770;
+  uVar2 = _g_ControlsShared2;
+  uVar1 = _g_ControlsShared1;
   *(undefined4 *)(param_1 + 0x78) = 1;
   *(undefined4 *)(param_1 + 0x7c) = 4;
   *(undefined4 *)(param_1 + 0x80) = 2;
@@ -2320,6 +2322,8 @@ Options * maybe_Options_GetLanguage(void)
 }
 
 // 0x001831c0  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Options_SetDefaults(int param_1)
 
 {
@@ -2333,8 +2337,8 @@ void Options_SetDefaults(int param_1)
   *(undefined4 *)(param_1 + 0x6c) = 0x20000000;
   *(undefined4 *)(param_1 + 0x70) = 2;
   *(undefined4 *)(param_1 + 0x74) = 1;
-  uVar2 = uRam0036e774;
-  uVar1 = uRam0036e770;
+  uVar2 = _g_ControlsShared2;
+  uVar1 = _g_ControlsShared1;
   *(undefined4 *)(param_1 + 0x78) = 1;
   *(undefined4 *)(param_1 + 0x7c) = 4;
   *(undefined4 *)(param_1 + 0x80) = 2;
@@ -2535,10 +2539,12 @@ void Options_Alloc(undefined8 param_1)
 }
 
 // 0x00183590  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Fade_ToBlack(void)
 
 {
-  uRam0046a028 = uRam0046a028 & 0xfffffff3;
+  _g_ReplayCamShared3 = _g_ReplayCamShared3 & 0xfffffff3;
   Gfx_SetFade(2,1,0,0);
   Gfx_SetFade(2,3,0,0);
   Gfx_SetFade(4,9,0,0);
@@ -2657,13 +2663,15 @@ undefined4 Loading_LoadScreenImage(uint param_1)
 }
 
 // 0x001838f0  size 0xe4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Loading_End(void)
 
 {
   int iVar1;
   int iVar2;
   
-  uRam0046a028 = uRam0046a028 & 0xfffffff3;
+  _g_ReplayCamShared3 = _g_ReplayCamShared3 & 0xfffffff3;
   Gfx_SetFade(2,1,0,0);
   Gfx_SetFade(2,3,0,0);
   Gfx_SetFade(4,9,0,0);
@@ -2755,7 +2763,7 @@ undefined1 Cam_SetMode(undefined8 param_1,char param_2)
     *(undefined4 *)(iVar1 + 0x500) = 1;
     g_Loading->flags = g_Loading->flags & 10;
     *(undefined4 *)(iVar1 + 0x7c0) = 0;
-    uRam0046a028 = uRam0046a028 & 0xfffffff3;
+    _g_ReplayCamShared3 = _g_ReplayCamShared3 & 0xfffffff3;
     Gfx_SetFade(2,1,0,0);
     Gfx_SetFade(2,3,0,0);
     Gfx_SetFade(4,9,0,0);

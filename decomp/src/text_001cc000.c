@@ -743,7 +743,7 @@ void Ai_SetupDifficulty(void)
         Ai_PredictPath(0,*(undefined4 *)((int)g_RaceCars->cars + iVar7),uStack_2,uStack_4,uVar14,1,
                        *(undefined4 *)(iVar12 + 4));
         Ai_ComputeSteering(*(undefined4 *)((int)g_RaceCars->cars + iVar7));
-        if ((_g_Skids == 0) || (uRam004301ac <= uVar6)) {
+        if ((_g_Skids == 0) || (_g_AiShared3 <= uVar6)) {
           iVar12 = 0;
         }
         else {

@@ -496,9 +496,9 @@ undefined4 maybe_sceCdSync0(undefined4 param_1)
   uVar1 = 0;
   if (lVar2 == 0) {
     lVar2 = DIntr();
-    uVar1 = uRam00378000;
+    uVar1 = _g_sceCdCbfuncShared1;
     _s_sceCdSync0_1 = &_mips_gp0_value;
-    uRam00378000 = param_1;
+    _g_sceCdCbfuncShared1 = param_1;
     if (lVar2 != 0) {
       EIntr();
     }
@@ -507,6 +507,8 @@ undefined4 maybe_sceCdSync0(undefined4 param_1)
 }
 
 // 0x00120e70  size 0xa0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Cd_CallbackHandler(int *param_1)
 
 {
@@ -517,7 +519,7 @@ void maybe_Cd_CallbackHandler(int *param_1)
   }
   else {
     iSignalSema(DAT_003081e8);
-    if ((DAT_003081d4 == 0) || (iRam00378000 == 0)) {
+    if ((DAT_003081d4 == 0) || (_g_sceCdCbfuncShared1 == 0)) {
       DAT_003081f4 = 0;
     }
     else {
@@ -544,10 +546,10 @@ void sceCdCbfunc(void)
       ExitDeleteThread();
     }
     if (0 < ram0x003081d0) {
-      maybe_scePrintf(0x35fd00,pcRam00378000,DAT_0030821c);
+      maybe_scePrintf(0x35fd00,_g_sceCdCbfuncShared1,DAT_0030821c);
     }
-    if ((pcRam00378000 != (code *)0x0) && (DAT_0030821c != 0)) {
-      (*pcRam00378000)(DAT_0030821c);
+    if ((_g_sceCdCbfuncShared1 != (code *)0x0) && (DAT_0030821c != 0)) {
+      (*_g_sceCdCbfuncShared1)(DAT_0030821c);
     }
     DAT_003081f4 = 0;
   } while( true );
@@ -568,7 +570,7 @@ bool maybe_Cd_CallbackThreadInit(undefined8 param_1,undefined4 param_2,undefined
   }
   else {
     uVar2 = GetThreadId();
-    uRam00378018 = (undefined4)uVar2;
+    _g_CdShared2 = (undefined4)uVar2;
     ReferThreadStatus(uVar2,0x378020);
     _s_Cd_CallbackThreadInit_1 = sceCdCbfunc;
     _s_Cd_CallbackThreadInit_5 = (undefined4)param_1;
@@ -641,10 +643,10 @@ undefined4 maybe_sceCdCallback(undefined4 param_1,undefined4 param_2)
     maybe_Cd_SetupCallbackCmd();
   }
   lVar2 = DIntr();
-  uVar1 = uRam00378008;
+  uVar1 = _g_sceCdCallbackShared1;
   _s_sceCdCallback_1 = &_mips_gp0_value;
-  uRam00378008 = param_1;
-  uRam00378010 = param_2;
+  _g_sceCdCallbackShared1 = param_1;
+  _g_sceCdCallbackShared2 = param_2;
   if (lVar2 != 0) {
     EIntr();
   }
@@ -652,11 +654,13 @@ undefined4 maybe_sceCdCallback(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x00121340  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Cd_InvokeUserCallback(void)
 
 {
-  if ((pcRam00378008 != (code *)0x0) && (DAT_003081e4 == 0)) {
-    (*pcRam00378008)(uRam00378010);
+  if ((_g_sceCdCallbackShared1 != (code *)0x0) && (DAT_003081e4 == 0)) {
+    (*_g_sceCdCallbackShared1)(_g_sceCdCallbackShared2);
   }
   return;
 }
@@ -697,7 +701,7 @@ undefined4 sceCdSearchFile(undefined8 *param_1,char *param_2,undefined4 param_3)
   iVar6 = PollSema(DAT_003081e8);
   if (DAT_003081e8 == iVar6) {
     DAT_003081dc = 1;
-    ReferThreadStatus(uRam00378018,0x378020);
+    ReferThreadStatus(_g_CdShared2,0x378020);
     lVar7 = sceCdSync(1);
     if (lVar7 == 0) {
       sceSifInitRpc(0);
@@ -790,7 +794,7 @@ undefined4 maybe_Cd_CheckNCmd(undefined8 param_1)
   iVar1 = PollSema(DAT_003081e8);
   if (DAT_003081e8 == iVar1) {
     DAT_003081dc = (undefined4)param_1;
-    ReferThreadStatus(uRam00378018,0x378020);
+    ReferThreadStatus(_g_CdShared2,0x378020);
     lVar2 = sceCdSync(1);
     if (lVar2 == 0) {
       sceSifInitRpc(0);
@@ -915,7 +919,7 @@ undefined4 maybe_Cd_CheckSCmd(undefined8 param_1)
   iVar1 = PollSema(DAT_003081ec);
   if (DAT_003081ec == iVar1) {
     DAT_003081d8 = (undefined4)param_1;
-    ReferThreadStatus(uRam00378018,0x378020);
+    ReferThreadStatus(_g_CdShared2,0x378020);
     lVar2 = sceCdSyncS(1);
     if (lVar2 == 0) {
       sceSifInitRpc(0);
@@ -968,7 +972,7 @@ undefined4 sceCdInit(int param_1)
   uVar3 = 0;
   if (lVar2 == 0) {
     sceSifInitRpc(0);
-    uRam00378018 = GetThreadId();
+    _g_CdShared2 = GetThreadId();
     DAT_003081e4 = 1;
     DAT_00308214 = DAT_00308214 + 1;
     DAT_00308200 = 0xffffffff;
@@ -1056,14 +1060,14 @@ undefined4 maybe_sceCdDiskReadyOld(long param_1)
             } while (iVar1 != -1);
           }
           iVar1 = 0x100000;
-          if (iRam00378274 != 0) break;
+          if (_g_sceCdDiskReadyOldShared1 != 0) break;
           do {
             iVar1 = iVar1 + -1;
           } while (iVar1 != -1);
         }
         DAT_00308208 = 0;
       }
-      uRam00378290 = (undefined4)param_1;
+      _g_sceCdDiskReadyOldShared2 = (undefined4)param_1;
       sceSifWriteBackDCache(0x378290,4);
       lVar3 = sceSifCallRpc(0x378250,0,0,0x378290,4,0x3093c0,4,0);
       if (-1 < lVar3) {
@@ -1116,7 +1120,7 @@ undefined8 sceCdDiskReady(long param_1)
           } while (iVar5 != -1);
         }
         bVar1 = 0x10 < iVar2;
-        if (iRam00378274 != 0) break;
+        if (_g_sceCdDiskReadyOldShared1 != 0) break;
         iVar2 = iVar2 + 1;
         if (bVar1) {
           SignalSema(DAT_003081f0);
@@ -1130,7 +1134,7 @@ undefined8 sceCdDiskReady(long param_1)
       }
       DAT_00308208 = 0;
     }
-    uRam00378290 = (undefined4)param_1;
+    _g_sceCdDiskReadyOldShared2 = (undefined4)param_1;
     sceSifWriteBackDCache(0x378290,4);
     lVar3 = sceSifCallRpc(0x378250,0,0,0x378290,4,0x309c40,4,0);
     if (-1 < lVar3) {
@@ -1620,7 +1624,7 @@ int sceMcInit(void)
                     /* WARNING: Do nothing block with infinite loop */
       } while( true );
     }
-    if (iRam003782e4 != 0) break;
+    if (_g_sceMcInitShared1 != 0) break;
     iVar1 = 0x100000;
     do {
       iVar1 = iVar1 + -1;
@@ -1629,21 +1633,21 @@ int sceMcInit(void)
   lVar2 = sceSifCallRpc(0x3782c0,0xfe,0,0x378340,0x30,0x379880,0xc,0);
   SignalSema(DAT_00309d94);
   if (lVar2 < 0) {
-    iRam003782e4 = 0;
+    _g_sceMcInitShared1 = 0;
     iVar1 = (int)lVar2 + -100;
   }
   else if (_s_sceMcInit_1 < 0x20a) {
     maybe_scePrintf(0x360080);
-    iRam003782e4 = 0;
+    _g_sceMcInitShared1 = 0;
     iVar1 = -0x78;
   }
   else if (_s_sceMcInit_2 < 0x20e) {
     maybe_scePrintf(0x3600a8);
-    iRam003782e4 = 0;
+    _g_sceMcInitShared1 = 0;
     iVar1 = -0x79;
   }
   else {
-    iVar1 = iRam00379880;
+    iVar1 = _g_sceMcInitShared2;
   }
   return iVar1;
 }
@@ -1666,20 +1670,22 @@ undefined4 maybe_sceMcEnd(void)
 undefined4 maybe_Mc_GetSyncState(undefined4 *param_1,undefined4 *param_2)
 
 {
-  *param_1 = 0x379880;
+  *param_1 = &g_sceMcInitShared2;
   *param_2 = &DAT_00309d90;
   _s_Mc_GetSyncState_1 = DAT_00309d94;
   return 0x3782c0;
 }
 
 // 0x00123310  size 0xc4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_sceMcGetInfo(undefined4 param_1)
 
 {
   int iVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     iVar1 = -100;
   }
   else {
@@ -1688,11 +1694,11 @@ int maybe_sceMcGetInfo(undefined4 param_1)
       iVar1 = -200;
     }
     else {
-      uRam00378344 = param_1;
+      _g_sceMcGetInfoShared1 = param_1;
       iVar1 = sceSifCallRpc(0x3782c0,0x15,0,0x378340,0x30,0x379880,4,0);
       if (iVar1 == 0) {
         SignalSema(DAT_00309d94);
-        iVar1 = iRam00379880;
+        iVar1 = _g_sceMcInitShared2;
       }
       else {
         SignalSema(DAT_00309d94);
@@ -1703,13 +1709,15 @@ int maybe_sceMcGetInfo(undefined4 param_1)
 }
 
 // 0x001233d8  size 0x128
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcOpen(undefined4 param_1,undefined4 param_2,long param_3,undefined4 param_4)
 
 {
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -1722,10 +1730,10 @@ long maybe_sceMcOpen(undefined4 param_1,undefined4 param_2,long param_3,undefine
       }
       else {
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
-        uRam00378378 = param_4;
+        g_sceMcOpenShared4 = 0;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
+        _g_sceMcOpenShared3 = param_4;
         lVar1 = sceSifCallRpc(0x3782c0,2,1,0x378370,0x414,0x379880,4,0x123240);
         if (lVar1 == 0) {
           DAT_00309d90 = 2;
@@ -1753,12 +1761,14 @@ long maybe_sceMcOpenChecked(void)
 }
 
 // 0x00123538  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcClose(undefined4 param_1)
 
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -1767,7 +1777,7 @@ long maybe_sceMcClose(undefined4 param_1)
       lVar1 = -200;
     }
     else {
-      uRam00378340 = param_1;
+      _g_sceMcCloseShared1 = param_1;
       lVar1 = sceSifCallRpc(0x3782c0,3,1,0x378340,0x30,0x379880,4,0x123240);
       if (lVar1 == 0) {
         DAT_00309d90 = 3;
@@ -1781,12 +1791,14 @@ long maybe_sceMcClose(undefined4 param_1)
 }
 
 // 0x001235f8  size 0xe0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcSeek(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -1795,9 +1807,9 @@ long maybe_sceMcSeek(undefined4 param_1,undefined4 param_2,undefined4 param_3)
       lVar1 = -200;
     }
     else {
-      uRam00378340 = param_1;
-      uRam00378350 = param_2;
-      uRam00378354 = param_3;
+      _g_sceMcCloseShared1 = param_1;
+      _g_sceMcSeekShared1 = param_2;
+      _g_sceMcWriteShared2 = param_3;
       lVar1 = sceSifCallRpc(0x3782c0,4,1,0x378340,0x30,0x379880,4,0x123240);
       if (lVar1 == 0) {
         DAT_00309d90 = 4;
@@ -1811,12 +1823,14 @@ long maybe_sceMcSeek(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x00123770  size 0x114
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcRead(undefined4 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -1825,10 +1839,10 @@ long maybe_sceMcRead(undefined4 param_1,undefined8 param_2,undefined8 param_3)
       lVar1 = -200;
     }
     else {
-      uRam0037835c = 0x3787c0;
-      uRam00378358 = (undefined4)param_2;
-      uRam0037834c = (undefined4)param_3;
-      uRam00378340 = param_1;
+      _g_sceMcReadShared1 = 0x3787c0;
+      _g_sceMcWriteShared3 = (undefined4)param_2;
+      _g_sceMcWriteShared1 = (undefined4)param_3;
+      _g_sceMcCloseShared1 = param_1;
       sceSifWriteBackDCache(param_2,param_3);
       sceSifWriteBackDCache(0x3787c0,0xc0);
       lVar1 = sceSifCallRpc(0x3782c0,5,1,0x378340,0x30,0x379880,4,0x1236d8);
@@ -1844,6 +1858,8 @@ long maybe_sceMcRead(undefined4 param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x00123888  size 0x178
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcWrite(undefined4 param_1,undefined1 *param_2,long param_3)
 
 {
@@ -1852,7 +1868,7 @@ long maybe_sceMcWrite(undefined4 param_1,undefined1 *param_2,long param_3)
   uint uVar3;
   uint uVar4;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar2 = -100;
   }
   else {
@@ -1862,17 +1878,17 @@ long maybe_sceMcWrite(undefined4 param_1,undefined1 *param_2,long param_3)
     }
     else {
       if (param_3 < 0x11) {
-        puRam00378358 = (undefined1 *)0x0;
-        iRam0037834c = 0;
-        uRam00378354 = (uint)param_3;
+        _g_sceMcWriteShared3 = (undefined1 *)0x0;
+        _g_sceMcWriteShared1 = 0;
+        _g_sceMcWriteShared2 = (uint)param_3;
       }
       else {
-        uRam00378354 = ((uint)(param_2 + -1) & 0xfffffff0) - (int)(param_2 + -0x10);
-        iRam0037834c = (uint)param_3 - uRam00378354;
-        puRam00378358 = param_2 + uRam00378354;
+        _g_sceMcWriteShared2 = ((uint)(param_2 + -1) & 0xfffffff0) - (int)(param_2 + -0x10);
+        _g_sceMcWriteShared1 = (uint)param_3 - _g_sceMcWriteShared2;
+        _g_sceMcWriteShared3 = param_2 + _g_sceMcWriteShared2;
       }
-      uRam00378340 = param_1;
-      if (uRam00378354 != 0) {
+      _g_sceMcCloseShared1 = param_1;
+      if (_g_sceMcWriteShared2 != 0) {
         puVar1 = param_2;
         uVar3 = 0;
         do {
@@ -1880,7 +1896,7 @@ long maybe_sceMcWrite(undefined4 param_1,undefined1 *param_2,long param_3)
           *(undefined1 *)(uVar3 + 0x378360) = *puVar1;
           puVar1 = param_2 + uVar4;
           uVar3 = uVar4;
-        } while (uVar4 < uRam00378354);
+        } while (uVar4 < _g_sceMcWriteShared2);
       }
       FlushCache(0);
       lVar2 = sceSifCallRpc(0x3782c0,6,1,0x378340,0x30,0x379880,4,0x123240);
@@ -1896,6 +1912,8 @@ long maybe_sceMcWrite(undefined4 param_1,undefined1 *param_2,long param_3)
 }
 
 // 0x00123a00  size 0xc4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint sceMcSync(long param_1,long param_2,long param_3)
 
 {
@@ -1920,7 +1938,7 @@ uint sceMcSync(long param_1,long param_2,long param_3)
     if (uVar3 != 0) {
       DAT_00309d90 = 0;
       if (param_3 != 0) {
-        *(undefined4 *)param_3 = uRam00379880;
+        *(undefined4 *)param_3 = _g_sceMcInitShared2;
       }
       SignalSema(DAT_00309d94);
     }
@@ -1936,7 +1954,7 @@ long maybe_sceMcGetDir(undefined4 param_1,undefined4 param_2,long param_3,long p
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -1945,15 +1963,15 @@ long maybe_sceMcGetDir(undefined4 param_1,undefined4 param_2,long param_3,long p
       lVar1 = -200;
     }
     else {
-      uRam0037835c = 0x3787c0;
-      uRam00378354 = (uint)(param_3 != 0);
-      uRam00378350 = (uint)(param_4 != 0);
-      uRam0037834c = (uint)(param_5 != 0);
+      _g_sceMcReadShared1 = 0x3787c0;
+      _g_sceMcWriteShared2 = (uint)(param_3 != 0);
+      _g_sceMcSeekShared1 = (uint)(param_4 != 0);
+      _g_sceMcWriteShared1 = (uint)(param_5 != 0);
       _s_sceMcGetDir_1 = (undefined4)param_3;
       _s_sceMcGetDir_2 = (undefined4)param_4;
       _s_sceMcGetDir_3 = (undefined4)param_5;
-      uRam00378344 = param_1;
-      uRam00378348 = param_2;
+      _g_sceMcGetInfoShared1 = param_1;
+      _g_sceMcGetDirShared1 = param_2;
       sceSifWriteBackDCache(0x3787c0,0xc0);
       lVar1 = sceSifCallRpc(0x3782c0,1,1,0x378340,0x30,0x379880,4,0x123ac8);
       if (lVar1 == 0) {
@@ -1968,6 +1986,7 @@ long maybe_sceMcGetDir(undefined4 param_1,undefined4 param_2,long param_3,long p
 }
 
 // 0x00123ca0  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "sceMcUdCheckNewCard RPC faild" */
 
 undefined4 sceMcUdCheckNewCard(void)
@@ -1978,7 +1997,7 @@ undefined4 sceMcUdCheckNewCard(void)
   
   lVar2 = sceSifCallRpc(0x3782c0,0x35,0,0x378340,0x30,0x379880,4,0x123240);
   if (lVar2 == 0) {
-    uVar1 = uRam00379880;
+    uVar1 = _g_sceMcInitShared2;
   }
   else {
     maybe_scePrintf(0x3600d0);
@@ -1998,7 +2017,7 @@ long maybe_sceMcSetFileInfo
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -2010,13 +2029,13 @@ long maybe_sceMcSetFileInfo
         lVar1 = -0xd2;
       }
       else {
-        uRam00378380 = (undefined4)param_6;
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
-        uRam00378378 = param_4;
+        _g_sceMcSetFileInfoShared1 = (undefined4)param_6;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
+        _g_sceMcOpenShared3 = param_4;
         _s_sceMcSetFileInfo_1 = (int)param_5;
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
+        g_sceMcOpenShared4 = 0;
         if (-1 < param_5) {
           sceSifWriteBackDCache(param_6,(int)param_5 << 6);
         }
@@ -2056,13 +2075,15 @@ void maybe_Mc_RpcEndCallback(long param_1)
 }
 
 // 0x00123ef0  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcMkdir(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -2074,11 +2095,11 @@ long maybe_sceMcMkdir(undefined4 param_1,undefined4 param_2,long param_3)
         lVar1 = -0xd2;
       }
       else {
-        uRam00378380 = 0x378880;
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
+        _g_sceMcSetFileInfoShared1 = 0x378880;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
+        g_sceMcOpenShared4 = 0;
         sceSifWriteBackDCache(0x378880,0x400);
         lVar1 = sceSifCallRpc(0x3782c0,0xc,1,0x378370,0x414,0x379880,4,0x123e60);
         if (lVar1 == 0) {

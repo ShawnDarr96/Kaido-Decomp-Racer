@@ -1213,7 +1213,7 @@ float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long
   if (param_1 < 20.0) {
     param_1 = 20.0;
   }
-  if (cRam0036f234 != '\x02') {
+  if (g_AiShared1 != '\x02') {
     return 0.0;
   }
   sVar3 = (short)param_3;
@@ -1429,7 +1429,7 @@ void Ai_ThrottleControl(int *param_1,int *param_2)
   iStack_4 = param_2[3];
   fVar13 = 0.0;
   fVar14 = 0.0;
-  if (cRam0036f234 != '\x02') {
+  if (g_AiShared1 != '\x02') {
     *param_1 = 0;
     *(undefined2 *)(param_1 + 1) = 0;
     param_1[4] = 0;

@@ -3,6 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00100000  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 8 bytes before the ELF entry (0x100008); falls into the bss-clear loop */
 
 void maybe_crt0_Prologue(void)
@@ -34,12 +35,14 @@ void maybe_crt0_Prologue(void)
   _InitSys(0,0,0,0,0,0,0,0,0x46a600,0xffffffffffffffff,0x80000,0x36fa00,0x100220,0,0,0);
   FlushCache(0);
   EI();
-  uVar2 = main(uRam0036fa00,0x36fa04);
+  uVar2 = main(_g_crt0Shared1,0x36fa04);
   maybe_exit(uVar2);
   return;
 }
 
 // 0x00100008  size 0x210
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void entry(void)
 
 {
@@ -69,7 +72,7 @@ void entry(void)
   _InitSys(0,0,0,0,0,0,0,0,0x46a600,0xffffffffffffffff,0x80000,0x36fa00,0x100220,0,0,0);
   FlushCache(0);
   EI();
-  uVar2 = main(uRam0036fa00,0x36fa04);
+  uVar2 = main(_g_crt0Shared1,0x36fa04);
   maybe_exit(uVar2);
   return;
 }

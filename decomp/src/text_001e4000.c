@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x001e43b0  size 0x4d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceCam_UpdateFree(int param_1)
 
 {
@@ -51,8 +53,8 @@ void RaceCam_UpdateFree(int param_1)
   
   cVar1 = RaceCtx_GetMode();
   if ((cVar1 == '\x04') && (g_Loading->workBufs[0][0x4f8] == '\x03')) {
-    uRam00430668 = 0;
-    uRam0043066c = 0;
+    _g_CourseShared15 = 0;
+    _g_CourseShared16 = 0;
   }
   else {
     uVar8 = 0;
@@ -73,18 +75,18 @@ void RaceCam_UpdateFree(int param_1)
         puVar6 = (uint *)(iVar3 + 0x110);
         if ((*(uint *)(iVar3 + 0x110) & 0xc) == 0) {
           if (index == 0) {
-            uRam00430668 = 0;
+            _g_CourseShared15 = 0;
           }
           else {
-            uRam0043066c = 0;
+            _g_CourseShared16 = 0;
           }
         }
         else {
           if (index == 0) {
-            uRam00430668 = 1;
+            _g_CourseShared15 = 1;
           }
           else {
-            uRam0043066c = 1;
+            _g_CourseShared16 = 1;
           }
           if ((*puVar6 & 8) == 0) {
             fStack_c = DAT_0031c304 - 0.02;
@@ -403,7 +405,7 @@ LAB_001e4e50:
   else {
     param_2[0xe0] = 1;
   }
-  if ((g_Loading->workBufs[0][0x4f8] == '\x03') || (iRam0046a594 != 0)) {
+  if ((g_Loading->workBufs[0][0x4f8] == '\x03') || (_g_DemoShared1 != 0)) {
     param_2[0xe4] = 0;
   }
   else {
@@ -1238,7 +1240,7 @@ void RaceHud_Task(undefined8 param_1)
   
   lVar3 = maybe_RaceHud_IsBusy();
   if ((lVar3 == 0) && (cVar1 = RaceProg_GetPhase(), cVar1 != '\0')) {
-    if (iRam0046a590 == 0) {
+    if (_g_RaceSndShared1 == 0) {
       RaceHud_UpdateMessages(param_1);
       lVar3 = RaceScene_IsFlag10();
       if (lVar3 != 0) {

@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x001ec030  size 0x2c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceIntro_Update(int param_1)
 
 {
@@ -54,7 +56,7 @@ void RaceIntro_Update(int param_1)
   
   iVar1 = *(int *)(param_1 + 0x14);
   RaceIntro_SetupColliders(iVar1);
-  iVar4 = *(int *)(iRam0036f3b0 + 0xc);
+  iVar4 = *(int *)(_g_AiShared2 + 0xc);
   lVar5 = RaceScene_IsRunning();
   if (lVar5 == 0) {
     *(undefined4 *)(iVar1 + 0x5c) = 0;
@@ -136,15 +138,17 @@ void RaceIntro_Update(int param_1)
 }
 
 // 0x001ec300  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceIntro_Exit(void)
 
 {
   IntroCar_Free();
   IntroFlag_Free();
   CourseScene_Unload();
-  UiRes_UploadFonts(uRam0036f2c0,uRam0036f2c0);
-  UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
-  UiMgr_RebindTextures(uRam0036f2c0,uRam0036f2c0);
+  UiRes_UploadFonts(_g_RaceIntroShared1,_g_RaceIntroShared1);
+  UiMgr_SetActive(_g_RaceIntroShared1,_g_RaceIntroShared1);
+  UiMgr_RebindTextures(_g_RaceIntroShared1,_g_RaceIntroShared1);
   RaceScene_FreeProps();
   return;
 }
@@ -1019,7 +1023,7 @@ void UiLayout_Draw(float param_1,int param_2)
       }
       else {
         Pkt_Init(param_2,0,2,0);
-        Pkt_SubmitToChain(param_2,(*piRam00387f5c + -2) - (iVar7 + -0x18));
+        Pkt_SubmitToChain(param_2,(*_g_DmaChainShared1 + -2) - (iVar7 + -0x18));
       }
       maybe_Vu0_UnitMatrix(auStack_50);
       UiModel_DrawTree(0x3f800000,0x3f800000,param_2,&iStack_4,

@@ -1077,6 +1077,8 @@ void MenuScene_Exit(int param_1)
 }
 
 // 0x00202b90  size 0x384
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuScene_Enter(int param_1)
 
 {
@@ -1174,7 +1176,7 @@ void MenuScene_Enter(int param_1)
   UiMgr_Alloc(0x430750,299,
               iVar8 + ((iVar12 + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar7 * 0x800 + iVar11,&iStack_10
               ,0xc20,0x17fb);
-  UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
+  UiMgr_SetActive(_g_RaceIntroShared1,_g_RaceIntroShared1);
   if (puVar2[1] == -7) {
     puVar2[1] = 0xd;
     MenuMgr_Alloc(0x430750,puVar2[1]);

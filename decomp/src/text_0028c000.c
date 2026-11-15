@@ -274,6 +274,8 @@ undefined4 maybe_ScrNewProfile_CheckName(int param_1)
 }
 
 // 0x0028c960  size 0x15c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrNewProfile_OnResult(int param_1,long param_2)
 
 {
@@ -312,7 +314,7 @@ void maybe_ScrNewProfile_OnResult(int param_1,long param_2)
       uVar3 = Profile_Get(0);
       Profile_ResetCareer(uVar3,uVar4);
       Profile_ResetPlayTimer();
-      iRam0036f2b4 = g_RaceCtx->language + 7;
+      _g_CareerShared1 = g_RaceCtx->language + 7;
       RaceCtx_Set_9(0);
       MenuMgr_RequestScreen(0xfffffffffffffffd);
     }
@@ -865,6 +867,8 @@ void maybe_ScrCarListSorted_Enter(undefined4 *param_1)
 }
 
 // 0x0028d6f0  size 0x260
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_ScrProfileSetSelection_Apply(void)
 
 {
@@ -878,7 +882,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
   cVar1 = Profile_GetSelection2733(uVar2);
   if ((cVar1 == '\0') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x4000) == 0)) {
     Profile_SetFlags(uVar2,0x4000);
-    uRam0036f2b4 = 0x11;
+    _g_CareerShared1 = 0x11;
     RaceCtx_Set_9(2);
     uVar4 = 1;
   }
@@ -886,7 +890,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
     cVar1 = Profile_GetSelection2733(uVar2);
     if ((cVar1 == '\x05') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x8000) == 0)) {
       Profile_SetFlags(uVar2,0x8000);
-      uRam0036f2b4 = 0x15;
+      _g_CareerShared1 = 0x15;
       RaceCtx_Set_9(2);
       uVar4 = 1;
     }
@@ -894,7 +898,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
       cVar1 = Profile_GetSelection2733(uVar2);
       if ((cVar1 == '\x03') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x10000) == 0)) {
         Profile_SetFlags(uVar2);
-        uRam0036f2b4 = 0x13;
+        _g_CareerShared1 = 0x13;
         RaceCtx_Set_9(2);
         uVar4 = 1;
       }
@@ -902,7 +906,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
         cVar1 = Profile_GetSelection2733(uVar2);
         if ((cVar1 == '\x02') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x20000) == 0)) {
           Profile_SetFlags(uVar2);
-          uRam0036f2b4 = 0x12;
+          _g_CareerShared1 = 0x12;
           RaceCtx_Set_9(2);
           uVar4 = 1;
         }
@@ -910,7 +914,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
           cVar1 = Profile_GetSelection2733(uVar2);
           if ((cVar1 == '\x04') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x40000) == 0)) {
             Profile_SetFlags(uVar2);
-            uRam0036f2b4 = 0x14;
+            _g_CareerShared1 = 0x14;
             RaceCtx_Set_9(2);
             uVar4 = 1;
           }
@@ -918,7 +922,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
             cVar1 = Profile_GetSelection2733(uVar2);
             if ((cVar1 == '\a') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x80000) == 0)) {
               Profile_SetFlags(uVar2);
-              uRam0036f2b4 = 0x17;
+              _g_CareerShared1 = 0x17;
               RaceCtx_Set_9(2);
               uVar4 = 1;
             }
@@ -926,7 +930,7 @@ undefined4 maybe_ScrProfileSetSelection_Apply(void)
               cVar1 = Profile_GetSelection2733(uVar2);
               if ((cVar1 == '\x06') && (uVar3 = Profile_GetFlags(uVar2), (uVar3 & 0x100000) == 0)) {
                 Profile_SetFlags(uVar2);
-                uRam0036f2b4 = 0x16;
+                _g_CareerShared1 = 0x16;
                 RaceCtx_Set_9(2);
                 uVar4 = 1;
               }

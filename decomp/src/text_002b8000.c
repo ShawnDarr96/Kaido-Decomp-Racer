@@ -1815,6 +1815,8 @@ undefined4 SeqGen_StopThread(int param_1)
 }
 
 // 0x002bb4c0  size 0x1d8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 SeqGen_StartThread(int *param_1)
 
 {
@@ -1876,7 +1878,7 @@ LAB_002bb5d8:
         param_1[0x227b] = 4;
         iVar5 = Mem_AllocAligned(0x3500,0x10,param_1[0xc]);
         param_1[2] = iVar5;
-        Thread_Create(param_1,iRam0036f2a4 + 1,0x2b8a40,param_1[2],0x3500,0);
+        Thread_Create(param_1,_g_GameShared1 + 1,0x2b8a40,param_1[2],0x3500,0);
         param_1[3] = 0;
         Thread_Start(param_1,param_1);
         uVar6 = 1;

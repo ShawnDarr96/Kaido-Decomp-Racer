@@ -479,7 +479,7 @@ void ComposerScene_Alloc(undefined8 param_1,undefined4 param_2)
     iVar7 = iVar7 + ((*piVar1 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
                     uVar6 * 0x800 + *piVar2 * 0x80;
   } while (iVar5 < 0x14);
-  UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
+  UiMgr_SetActive(_g_RaceIntroShared1,_g_RaceIntroShared1);
   UiMgr_Alloc(0x430750,0x14,iVar7,0,0,0x186f);
   iVar5 = 0;
   puVar8 = &DAT_00343410;
@@ -1853,6 +1853,8 @@ void maybe_ComposerTask_State0_NameentryGetField(undefined8 param_1)
 }
 
 // 0x002fa730  size 0x1e8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Attract_DrawLogo(int param_1)
 
 {
@@ -1887,7 +1889,7 @@ void maybe_Attract_DrawLogo(int param_1)
   Obj_Reset(auStack_350,4,0xffffffffffffffff);
   uStack_a0 = 0x44;
   auStack_350[0] = auStack_350[0] | 2;
-  fVar1 = (float)cosf((float)(uint)((iRam0036f0cc << 1) % 0xb4) * 0.017453292);
+  fVar1 = (float)cosf((float)(uint)((_g_ProfileShared1 << 1) % 0xb4) * 0.017453292);
   fVar1 = fVar1 * 255.0;
   if (2.1474836e+09 <= fVar1) {
     fVar1 = fVar1 - 2.1474836e+09;
@@ -1924,15 +1926,15 @@ void maybe_Attract_SetupDemoRace(void)
   
   cVar2 = *(char *)(_s_Attract_SetupDemoRace_1 + 0x36ef10);
   if ((cVar2 == '\a') || (cVar2 == '\x04')) {
-    uVar3 = *(undefined1 *)((int)uRam0036ef94 % 7 + 0x36ef18);
+    uVar3 = *(undefined1 *)((int)_g_PktShared2 % 7 + 0x36ef18);
   }
   else {
-    uVar3 = *(undefined1 *)((int)uRam0036ef94 % 7 + 0x36ef20);
+    uVar3 = *(undefined1 *)((int)_g_PktShared2 % 7 + 0x36ef20);
   }
   _s_Attract_SetupDemoRace_1 = _s_Attract_SetupDemoRace_1 + 1 & 7;
   iVar6 = 0;
-  uVar4 = uRam0036ef94 / 7;
-  uVar7 = uRam0036ef94;
+  uVar4 = _g_PktShared2 / 7;
+  uVar7 = _g_PktShared2;
   if (-1 < DAT_00318080) {
     psVar5 = &DAT_00318080;
     do {
@@ -2008,7 +2010,7 @@ void maybe_AttractTask_Load(int param_1)
       iVar8 = iVar8 + 1;
     } while (iVar8 < 2);
     Sema_Wait(0x36efc0);
-    iVar8 = iRam00386628;
+    iVar8 = _g_FileShared2;
     Sema_Signal(0x36efc0,0);
     if (iVar8 != 0) {
       bVar3 = true;
@@ -2086,7 +2088,7 @@ void maybe_AttractTask_Load(int param_1)
     lVar10 = CarDb_IsLoading();
     if (lVar10 != 0) {
       maybe_Attract_SetupDemoRace();
-      uVar6 = uRam004305f4;
+      uVar6 = _g_CourseShared9;
       Tex_Relocate(piVar2[3]);
       TexSlot_Bind(piVar2 + 4,piVar2[3],0,uVar6,uVar6,0x11110,0,0);
       CarDb_Free();
@@ -2117,7 +2119,7 @@ void maybe_AttractTask_Load(int param_1)
     Scene_RequestExit();
   }
   if (bVar5) {
-    uRam0036f2b4 = 0xd;
+    _g_CareerShared1 = 0xd;
     Scene_SetParam(0);
   }
   return;
@@ -2172,9 +2174,9 @@ void maybe_AttractTask_Update(int *param_1)
   undefined4 uStack_8;
   
   piVar1 = (int *)g_Loading->workBufs[0];
-  if (iRam0046a594 == 0) {
+  if (_g_DemoShared1 == 0) {
     Scene_SetParam(0);
-    uRam0046a590 = 0;
+    _g_RaceSndShared1 = 0;
     RaceScene_SetFlags(0x80000);
     RaceScene_SetFlags(2);
     RaceScene_ClearFlag1();
@@ -2255,14 +2257,18 @@ LAB_002fb138:
 }
 
 // 0x002fb390  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Attract_ClearActive(void)
 
 {
-  uRam0046a598 = 0;
+  _g_AttractShared1 = 0;
   return;
 }
 
 // 0x002fb3a0  size 0x6c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_AttractTask_Start(int param_1)
 
 {
@@ -2271,10 +2277,10 @@ void maybe_AttractTask_Start(int param_1)
   puVar1 = *(undefined4 **)(param_1 + 0x14);
   *puVar1 = 0;
   puVar1[1] = 0;
-  uRam0046a598 = 1;
-  uRam0046a59c = 0;
-  uRam0046a590 = maybe_RaceResult_GetCategory();
-  uRam0046a594 = 1;
+  _g_AttractShared1 = 1;
+  _g_CourseShared118 = 0;
+  _g_RaceSndShared1 = maybe_RaceResult_GetCategory();
+  _g_DemoShared1 = 1;
   RaceScene_SetFlags(0x100);
   *(undefined1 **)(param_1 + 0x1c) = &LAB_002fb380;
   return;

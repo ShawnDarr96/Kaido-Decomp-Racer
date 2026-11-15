@@ -3,12 +3,14 @@
 #include "ghidra_types.h"
 
 // 0x00124030  size 0xcc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcFlush(undefined4 param_1,undefined4 param_2)
 
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -17,8 +19,8 @@ long maybe_sceMcFlush(undefined4 param_1,undefined4 param_2)
       lVar1 = -200;
     }
     else {
-      uRam00378344 = param_1;
-      uRam00378348 = param_2;
+      _g_sceMcGetInfoShared1 = param_1;
+      _g_sceMcGetDirShared1 = param_2;
       lVar1 = sceSifCallRpc(0x3782c0,0x10,1,0x378340,0x30,0x379880,4,0x123240);
       if (lVar1 == 0) {
         DAT_00309d90 = 0x10;
@@ -32,13 +34,15 @@ long maybe_sceMcFlush(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x00124100  size 0x11c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcChdir(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -51,10 +55,10 @@ long maybe_sceMcChdir(undefined4 param_1,undefined4 param_2,long param_3)
       }
       else {
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
-        uRam00378378 = 0;
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
+        g_sceMcOpenShared4 = 0;
+        _g_sceMcOpenShared3 = 0;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
         lVar1 = sceSifCallRpc(0x3782c0,0xf,1,0x378370,0x414,0x379880,4,0x123240);
         if (lVar1 == 0) {
           DAT_00309d90 = 0xf;
@@ -69,12 +73,14 @@ long maybe_sceMcChdir(undefined4 param_1,undefined4 param_2,long param_3)
 }
 
 // 0x00124220  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcFormat(undefined4 param_1)
 
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -83,7 +89,7 @@ long maybe_sceMcFormat(undefined4 param_1)
       lVar1 = -200;
     }
     else {
-      uRam00378340 = param_1;
+      _g_sceMcCloseShared1 = param_1;
       lVar1 = sceSifCallRpc(0x3782c0,10,1,0x378340,0x30,0x379880,4,0x123240);
       if (lVar1 == 0) {
         DAT_00309d90 = 10;
@@ -106,7 +112,7 @@ long maybe_sceMcReadDirEntry
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -118,7 +124,7 @@ long maybe_sceMcReadDirEntry
         lVar1 = -0xd2;
       }
       else {
-        uRam00378378 = param_5 & 7;
+        _g_sceMcOpenShared3 = param_5 & 7;
         _s_sceMcReadDirEntry_1 = *param_4;
         _s_sceMcReadDirEntry_2 = param_4[1];
         _s_sceMcReadDirEntry_3 = param_4[2];
@@ -127,11 +133,11 @@ long maybe_sceMcReadDirEntry
         _s_sceMcReadDirEntry_6 = param_4[5];
         _s_sceMcReadDirEntry_7 = param_4[6];
         _s_sceMcReadDirEntry_8 = param_4[7];
-        puRam00378380 = &s_sceMcReadDirEntry_1;
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
+        _g_sceMcSetFileInfoShared1 = &s_sceMcReadDirEntry_1;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
+        g_sceMcOpenShared4 = 0;
         FlushCache(0);
         lVar1 = sceSifCallRpc(0x3782c0,0xe,1,0x378370,0x414,0x379880,4,0x123240);
         if (lVar1 == 0) {
@@ -147,13 +153,15 @@ long maybe_sceMcReadDirEntry
 }
 
 // 0x001244b0  size 0x15c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcGetEntSpace(undefined4 param_1,undefined4 param_2,long param_3,long param_4)
 
 {
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -165,13 +173,13 @@ long maybe_sceMcGetEntSpace(undefined4 param_1,undefined4 param_2,long param_3,l
         lVar1 = -0xd2;
       }
       else {
-        uRam00378378 = 0x10;
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
+        _g_sceMcOpenShared3 = 0x10;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
+        g_sceMcOpenShared4 = 0;
         maybe_strncpy(0x378320,param_4,0x20);
-        puRam00378380 = &s_sceMcReadDirEntry_1;
+        _g_sceMcSetFileInfoShared1 = &s_sceMcReadDirEntry_1;
         s_sceMcGetEntSpace_1 = 0;
         FlushCache(0);
         lVar1 = sceSifCallRpc(0x3782c0,0xe,1,0x378370,0x414,0x379880,4,0x123240);
@@ -188,12 +196,14 @@ long maybe_sceMcGetEntSpace(undefined4 param_1,undefined4 param_2,long param_3,l
 }
 
 // 0x00124610  size 0xcc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcUnformat(undefined4 param_1,undefined4 param_2)
 
 {
   long lVar1;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -202,8 +212,8 @@ long maybe_sceMcUnformat(undefined4 param_1,undefined4 param_2)
       lVar1 = -200;
     }
     else {
-      uRam00378344 = param_1;
-      uRam00378348 = param_2;
+      _g_sceMcGetInfoShared1 = param_1;
+      _g_sceMcGetDirShared1 = param_2;
       lVar1 = sceSifCallRpc(0x3782c0,0x11,1,0x378340,0x30,0x379880,4,0x123240);
       if (lVar1 == 0) {
         DAT_00309d90 = 0x11;
@@ -217,13 +227,15 @@ long maybe_sceMcUnformat(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x001246e0  size 0x10c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcDelete(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
   long lVar1;
   long lVar2;
   
-  if (iRam003782e4 == 0) {
+  if (_g_sceMcInitShared1 == 0) {
     lVar1 = -100;
   }
   else {
@@ -235,10 +247,10 @@ long maybe_sceMcDelete(undefined4 param_1,undefined4 param_2,long param_3)
         lVar1 = -0xd2;
       }
       else {
-        uRam00378370 = param_1;
-        uRam00378374 = param_2;
+        _g_sceMcOpenShared1 = param_1;
+        _g_sceMcOpenShared2 = param_2;
         maybe_strncpy(0x378384,param_3,0x3ff);
-        uRam00378783 = 0;
+        g_sceMcOpenShared4 = 0;
         lVar1 = sceSifCallRpc(0x3782c0,0x12,1,0x378370,0x414,0x379880,4,0x123240);
         if (lVar1 == 0) {
           DAT_00309d90 = 0x12;

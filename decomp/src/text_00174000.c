@@ -2867,6 +2867,8 @@ void GameState_LoadRecords(uint *param_1)
 }
 
 // 0x00177aa0  size 0x28c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GameState_NewGame(void)
 
 {
@@ -2994,7 +2996,7 @@ void GameState_NewGame(void)
       goto LAB_00177cd0;
     }
   }
-  iVar4 = iRam0036f1ec;
+  iVar4 = _g_GameStateShared1;
 LAB_00177cd0:
   if (iVar4 == 0) {
     g_GameState->unk_00ec = 0;

@@ -634,6 +634,8 @@ void Menu_ShowDialog(undefined4 *param_1,long param_2,undefined4 param_3)
 }
 
 // 0x001f90c0  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuCar_Draw(int *param_1)
 
 {
@@ -674,11 +676,11 @@ void MenuCar_Draw(int *param_1)
     param_1[7] = 0;
   }
   if (*param_1 == -1) {
-    TitleCam_StartPath(iRam0036f4dc + 0x10,2);
-    TitleCam_StartPathB(iRam0036f4dc + 0x110,0);
+    TitleCam_StartPath(_g_TitleCamShared1 + 0x10,2);
+    TitleCam_StartPathB(_g_TitleCamShared1 + 0x110,0);
   }
   if ((lVar4 != 0) && (*param_1 != param_1[1])) {
-    iVar3 = iRam0036f4dc + 0x10;
+    iVar3 = _g_TitleCamShared1 + 0x10;
     maybe_MenuCar_ComputeSpin(0x42c80000,lVar4,auStack_510,auStack_520,param_1[1],param_1[2],5);
     TitleCam_SetKey(iVar3,auStack_510,auStack_520,0xf,7);
     *param_1 = param_1[1];
@@ -725,6 +727,8 @@ void Menu_SetField_8(int param_1,undefined4 param_2)
 }
 
 // 0x001f9310  size 0x2fc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuCar_DrawSpin(int *param_1)
 
 {
@@ -765,7 +769,7 @@ void MenuCar_DrawSpin(int *param_1)
     param_1[4] = 1;
   }
   if (param_1[1] == -1) {
-    iVar4 = iRam0036f4dc + 0x10;
+    iVar4 = _g_TitleCamShared1 + 0x10;
     maybe_MenuCar_GetSpinOffset(auStack_540,*param_1);
     TitleCam_Advance(iVar4,auStack_540);
     iVar4 = param_1[1];
@@ -774,7 +778,7 @@ void MenuCar_DrawSpin(int *param_1)
     iVar4 = param_1[1];
   }
   if (iVar4 == -1) {
-    iVar4 = iRam0036f4dc + 0x110;
+    iVar4 = _g_TitleCamShared1 + 0x110;
     maybe_MenuCar_GetSpinPose(auStack_5b0,*param_1);
     TitleCam_CopyPosition(iVar4,auStack_5b0);
     iVar4 = param_1[7];
@@ -784,12 +788,12 @@ void MenuCar_DrawSpin(int *param_1)
   }
   if (((iVar4 != 0) && (param_1[4] == 1)) && (param_1[1] != *param_1)) {
     if (param_1[2] != 0) {
-      iVar4 = iRam0036f4dc + 0x10;
+      iVar4 = _g_TitleCamShared1 + 0x10;
       uVar3 = maybe_MenuCar_GetSpinTable();
       TitleCam_SetSpeed(iVar4,uVar3,0xffffffffffffffff,0xffffffffffffffff);
       param_1[6] = 0;
     }
-    iVar4 = iRam0036f4dc + 0x110;
+    iVar4 = _g_TitleCamShared1 + 0x110;
     maybe_MenuCar_GetSpinPose(auStack_620,*param_1);
     TitleCam_CopyPosition(iVar4,auStack_620);
     param_1[4] = 0;
@@ -797,7 +801,7 @@ void MenuCar_DrawSpin(int *param_1)
   }
   if (param_1[6] != 0) {
     if (param_1[6] == 1) {
-      iVar4 = iRam0036f4dc + 0x10;
+      iVar4 = _g_TitleCamShared1 + 0x10;
       maybe_MenuCar_GetSpinOffset(auStack_660,*param_1);
       TitleCam_SetTarget(uStack_630,iVar4,auStack_660,auStack_650,0xf,7);
       iVar4 = param_1[6];
@@ -837,6 +841,8 @@ void Menu_SetField_8_9610(int param_1,undefined4 param_2)
 }
 
 // 0x001f9620  size 0x5f0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuCar_Setup(byte *param_1)
 
 {
@@ -986,11 +992,11 @@ void MenuCar_Setup(byte *param_1)
     *(int *)(param_1 + 0x34) = *(int *)(param_1 + 0x34) + -1;
   }
   if (*(int *)(param_1 + 0x2c) == -1) {
-    TitleCam_StartPath(iRam0036f4dc + 0x10,1);
+    TitleCam_StartPath(_g_TitleCamShared1 + 0x10,1);
   }
   if ((bVar1) && (*(int *)(param_1 + 0x2c) != *(int *)(param_1 + 0x30))) {
-    iVar9 = iRam0036f4dc + 0x10;
-    iVar11 = iRam0036f4dc + 0x110;
+    iVar9 = _g_TitleCamShared1 + 0x10;
+    iVar11 = _g_TitleCamShared1 + 0x110;
     Asset_GetPointLight(*(undefined4 *)(iStack_10a4 + 0x44),auStack_ff0,auStack_1000,
                         *(int *)(param_1 + 0x30) + (*(uint *)(param_1 + 0xc) & 1) * 6);
     TitleCam_SetKey(iVar9,auStack_ff0,auStack_1000,0xf,7);
@@ -1067,6 +1073,8 @@ void MenuCar_Setup(byte *param_1)
 }
 
 // 0x001f9c10  size 0xf94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuCar_Render(undefined4 *param_1)
 
 {
@@ -1381,8 +1389,8 @@ void MenuCar_Render(undefined4 *param_1)
   iVar26 = param_1[0x1a];
 LAB_001fa01c:
   if (iVar26 == -1) {
-    TitleCam_Advance(iRam0036f4dc + 0x10,0x327170);
-    TitleCam_CopyPosition(iRam0036f4dc + 0x110,0x327090);
+    TitleCam_Advance(_g_TitleCamShared1 + 0x10,0x327170);
+    TitleCam_CopyPosition(_g_TitleCamShared1 + 0x110,0x327090);
   }
   if ((lVar28 == 0) || (iVar12 < 0)) {
     *param_1 = 0;
@@ -1454,19 +1462,19 @@ LAB_001fa01c:
           param_1[0x1d] = fVar34 * 0.017453292;
         }
         if (bVar1) {
-          TitleCam_SetKey(iRam0036f4dc + 0x10,&fStack_1340,&fStack_1330,0x2d,7);
+          TitleCam_SetKey(_g_TitleCamShared1 + 0x10,&fStack_1340,&fStack_1330,0x2d,7);
           iVar14 = param_1[0x19];
         }
         else {
-          TitleCam_Advance(iRam0036f4dc + 0x10,&fStack_1340);
+          TitleCam_Advance(_g_TitleCamShared1 + 0x10,&fStack_1340);
           iVar14 = param_1[0x19];
         }
         if (iVar14 == 5) {
-          TitleCam_CopyPosition(iRam0036f4dc + 0x110,0x327100);
+          TitleCam_CopyPosition(_g_TitleCamShared1 + 0x110,0x327100);
           uVar11 = param_1[0x19];
         }
         else {
-          TitleCam_CopyPosition(iRam0036f4dc + 0x110,0x327090);
+          TitleCam_CopyPosition(_g_TitleCamShared1 + 0x110,0x327090);
           uVar11 = param_1[0x19];
         }
         param_1[0x1a] = uVar11;
@@ -1941,6 +1949,8 @@ void Menu_GetUnlockState(void)
 }
 
 // 0x001fb400  size 0x25c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Menu_ExitToRace(void)
 
 {
@@ -1959,7 +1969,7 @@ undefined4 Menu_ExitToRace(void)
     case 1:
       if (g_MenuMgr->unk_05a4 == 0) {
         Sema_Wait(0x36efc0);
-        iVar2 = iRam00386628;
+        iVar2 = _g_FileShared2;
         Sema_Signal(0x36efc0,0);
         if (iVar2 == 0) {
           Garage3d_Free();
@@ -1974,7 +1984,7 @@ undefined4 Menu_ExitToRace(void)
     case 2:
       if (g_MenuMgr->unk_05e4 == 0) {
         Sema_Wait(0x36efc0);
-        iVar2 = iRam00386628;
+        iVar2 = _g_FileShared2;
         Sema_Signal(0x36efc0,0);
         if (iVar2 == 0) {
           RaceScene_FreeProps();
@@ -1990,7 +2000,7 @@ undefined4 Menu_ExitToRace(void)
     case 3:
       if (g_MenuMgr->unk_0604 == 0) {
         Sema_Wait(0x36efc0);
-        iVar2 = iRam00386628;
+        iVar2 = _g_FileShared2;
         Sema_Signal(0x36efc0,0);
         if (iVar2 == 0) {
           GarageBg_Unload();
@@ -2005,7 +2015,7 @@ undefined4 Menu_ExitToRace(void)
     case 4:
       if (g_MenuMgr->unk_0638 == 0) {
         Sema_Wait(0x36efc0);
-        iVar2 = iRam00386628;
+        iVar2 = _g_FileShared2;
         Sema_Signal(0x36efc0,0);
         if (iVar2 == 0) {
           ShowroomBg_Unload();
@@ -2276,6 +2286,8 @@ void MenuMgr_Update(void)
 }
 
 // 0x001fbcd0  size 0x2ec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool MenuMgr_EnterScreen(void)
 
 {
@@ -2385,7 +2397,7 @@ bool MenuMgr_EnterScreen(void)
             g_MenuMgr->nextBgMode = g_MenuMgr->bgMode;
             pMVar2 = g_MenuMgr;
             puVar6 = &g_MenuMgr->unk_0640;
-            MenuMovie_Create(iRam0036f2c0 + 0xc20,1,0,0,0x430750);
+            MenuMovie_Create(_g_RaceIntroShared1 + 0xc20,1,0,0,0x430750);
             MenuMovie_LoadFile(pMVar2->unk_0641,*puVar6);
             pMVar2->unk_0650 = 0;
           }

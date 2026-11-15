@@ -1458,8 +1458,8 @@ void RaceUi_TaskGapMeter(undefined8 param_1)
   iVar6 = (int)param_1;
   bVar2 = (*(uint *)(iVar6 + 8) & 0x80) != 0;
   RaceUi_DrawDigits(param_1,5,0x26,*(undefined4 *)(iVar6 + 0xa8),1,6,bVar2);
-  if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x03') ||
-     ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05')) {
+  if (((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x03') ||
+     ((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05')) {
     RaceUi_DrawDigits(param_1,0x9b,0x26,*(undefined4 *)(iVar6 + 0x458),1,6,0);
     RaceUi_DrawNumber(param_1,0x1bd,0x5a,iVar6 + 0x484,0);
     uVar1 = *(undefined4 *)(iVar6 + 0xac);
@@ -1587,7 +1587,7 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
   undefined1 auStack_8 [8];
   
   iVar10 = (int)param_1;
-  bVar2 = (&DAT_0032f535)[(uint)bRam0036f810 * 6] != '\x05';
+  bVar2 = (&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] != '\x05';
   uVar17 = 5;
   uVar9 = 4;
   uVar3 = 7;
@@ -1629,10 +1629,10 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
   iStack_118 = (int)((float)iStack_118 * *(float *)(iVar10 + 0x3b70));
   UiText_DrawById(auStack_130,uVar1 + 0xd1);
   if (*(int *)(iVar10 + 0x288) == 0) {
-    if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x03') {
+    if ((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x03') {
       RaceUi_DrawNumber(param_1,0x1bd,0x22,iVar10 + 0x484,0);
     }
-    else if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') {
+    else if ((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') {
       RaceUi_DrawNumber(param_1,0x1bd,0x12,iVar10 + 0x484,0);
     }
     else {
@@ -2025,8 +2025,8 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
   iVar7 = (int)param_1;
   bVar2 = (*(uint *)(iVar7 + 8) & 0x80) != 0;
   RaceUi_DrawDigits(param_1,0x19,0x26,*(undefined4 *)(iVar7 + 0xa8),1,6,bVar2);
-  if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x03') ||
-     ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05')) {
+  if (((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x03') ||
+     ((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05')) {
     RaceUi_DrawDigits(param_1,0xaf,0x26,*(undefined4 *)(iVar7 + 0x458),1,6,0);
     uVar1 = *(undefined4 *)(iVar7 + 0xac);
   }
@@ -2047,7 +2047,7 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
   RaceUi_DrawSprite(0x44158000,0x42880000,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,0x3f800000,
                     iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,*(int *)(iVar7 + 0xb0) % 10 + 3,0,0)
   ;
-  if ((((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') && (*(int *)(iVar7 + 0x28c) == 0)) &&
+  if ((((&DAT_0032f535)[(uint)g_RaceHudShared1 * 6] == '\x05') && (*(int *)(iVar7 + 0x28c) == 0)) &&
      (iVar9 = *(int *)(iVar7 + 0x9c), iVar9 != -1)) {
     iVar8 = 0;
     uVar5 = RaceProg_GetArray_34(0);

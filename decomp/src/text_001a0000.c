@@ -8,12 +8,12 @@
 void CourseStream_LoadSky(void)
 
 {
-  if (iRam00430600 != 0) {
+  if (_g_CourseShared10 != 0) {
     Arc_LoadFileEx(*(undefined4 *)(_g_CourseBufA + 0x14),*(undefined4 *)(_g_CourseBufA + 0xc),
                    0x19eb10,_g_CourseBufA,0,0);
   }
-  Arc_LoadFileEx(*(undefined4 *)(iRam004305b8 + 0x3c),*(undefined4 *)(_g_CourseStream + 0xc),
-                 0x19ebd0,_g_CourseStream,0,0);
+  Arc_LoadFileEx(*(undefined4 *)(_g_CourseStreamShared2 + 0x3c),
+                 *(undefined4 *)(_g_CourseStream + 0xc),0x19ebd0,_g_CourseStream,0,0);
   return;
 }
 
@@ -108,7 +108,7 @@ void Course_Unload(void)
   RoadMesh_Free(0x36f238);
   RoadData_Free(0x36f230);
   iVar2 = _g_CourseBufA;
-  if (iRam00430600 != 0) {
+  if (_g_CourseShared10 != 0) {
     *(undefined4 *)(_g_CourseBufA + 0x18) = 0;
     *(undefined4 *)(iVar2 + 0x1c) = 0;
     *(undefined4 *)(iVar2 + 0x20) = 0;
@@ -120,8 +120,8 @@ void Course_Unload(void)
     BlockPool_FreeD(_g_CourseBufA,1);
   }
   BlockPool_FreeC(_g_CourseStream,1);
-  BlockPool_FreeB(_g_CourseBufB,uRam004305c4);
-  BlockPool_FreeA(_g_CourseBufC,uRam004305cc);
+  BlockPool_FreeB(_g_CourseBufB,_g_CourseStreamShared3);
+  BlockPool_FreeA(_g_CourseBufC,_g_CourseStreamShared4);
   iVar2 = _g_CourseStream;
   *(undefined4 *)(_g_CourseStream + 0x14) = 0;
   *(undefined4 *)(iVar2 + 0x18) = 0;
@@ -150,7 +150,7 @@ void Course_Unload(void)
     *(undefined4 *)(iVar2 + 0x70) = 0;
   }
   uVar3 = 0;
-  if (uRam004305c4 != 0) {
+  if (_g_CourseStreamShared3 != 0) {
     iVar2 = 0;
     do {
       iVar1 = _g_CourseBufB + iVar2;
@@ -182,7 +182,7 @@ void Course_Unload(void)
       }
       uVar3 = uVar3 + 1;
       iVar2 = iVar2 + 0x74;
-    } while (uVar3 < uRam004305c4);
+    } while (uVar3 < _g_CourseStreamShared3);
   }
   if (_g_CourseBufA != 0) {
     Mem_Free();
@@ -208,9 +208,9 @@ void Course_Unload(void)
     Mem_Free();
   }
   _g_CourseStream = 0;
-  uRam004305c4 = 0;
+  _g_CourseStreamShared3 = 0;
   _g_CourseBufB = 0;
-  uRam004305cc = 0;
+  _g_CourseStreamShared4 = 0;
   _g_CourseBufC = 0;
   _g_CourseBufD = 0;
   _g_CourseBufE = 0;
@@ -255,64 +255,64 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   RoadData_Load(0x36f230,*(undefined4 *)(iVar10 + 0x38));
   RoadMesh_MarkLoaded(0x36f238);
   RoadMesh_Load(0x36f238,*(undefined4 *)(iVar10 + 0x34));
-  uRam004305b0 = (uint)(*param_4 == '\x01');
-  iRam004305b4 = param_2;
-  iRam004305b8 = iVar10;
+  _g_CourseStreamShared1 = (uint)(*param_4 == '\x01');
+  _g_RaceCamShared1 = param_2;
+  _g_CourseStreamShared2 = iVar10;
   _g_CourseStream = Mem_Alloc16(0x74,param_1);
   _g_CourseBufA = Mem_Alloc16(0x38,param_1);
-  uRam004305c4 = uVar12;
+  _g_CourseStreamShared3 = uVar12;
   _g_CourseBufB = Mem_Alloc16(uVar12 * 0x74,param_1);
-  uRam004305cc = uVar11;
+  _g_CourseStreamShared4 = uVar11;
   _g_CourseBufC = Mem_Alloc16(uVar11 * 0x50,param_1);
   _g_CourseBufD = Mem_Alloc16(uVar12 << 3,param_1);
   uVar9 = 0;
-  if (uRam004305c4 != 0) {
+  if (_g_CourseStreamShared3 != 0) {
     iVar8 = 0;
     do {
       uVar9 = uVar9 + 1;
       *(undefined4 *)(_g_CourseBufD + iVar8) = 0xbf800000;
       iVar8 = iVar8 + 8;
-    } while (uVar9 < uRam004305c4);
+    } while (uVar9 < _g_CourseStreamShared3);
   }
   _g_CourseBufE = Mem_Alloc16(uVar11 << 3,param_1);
   uVar9 = 0;
-  if (uRam004305cc != 0) {
+  if (_g_CourseStreamShared4 != 0) {
     iVar8 = 0;
     do {
       uVar9 = uVar9 + 1;
       *(undefined4 *)(_g_CourseBufE + iVar8) = 0xbf800000;
       iVar8 = iVar8 + 8;
-    } while (uVar9 < uRam004305cc);
+    } while (uVar9 < _g_CourseStreamShared4);
   }
   _s_Course_Load_1 = 0;
   _s_Course_Load_5 = (uint)*(ushort *)(iVar10 + 0x1a);
   iVar8 = *(int *)(param_4 + 4);
   if (iVar8 < 0) {
     uVar9 = 0;
-    uRam00430600 = 0;
+    _g_CourseShared10 = 0;
   }
   else {
     uVar5 = Arc_GetFileSize(iVar8,iVar8,1);
     uVar9 = (uint)uVar5 >> 8;
     *(undefined4 *)(_g_CourseBufA + 0x14) = *(undefined4 *)(param_4 + 4);
-    uRam00430600 = 1;
+    _g_CourseShared10 = 1;
     BlockPool_AllocD(_g_CourseBufA,1,param_1,uVar5);
     uVar2 = _s_Course_Load_5;
     iVar8 = _g_CourseBufA;
     *(undefined4 *)(_g_CourseBufA + 0x18) = 1;
     *(undefined4 *)(iVar8 + 0x1c) = 0;
-    *(uint *)(iVar8 + 0x20) = uVar2 + iRam0036f2c0;
+    *(uint *)(iVar8 + 0x20) = uVar2 + _g_RaceIntroShared1;
     DmaBuf_Alloc(iVar8 + 0x24,param_1,0x30);
     uVar3 = Mem_Alloc16(0x80,param_1);
     *(undefined4 *)(iVar8 + 0x34) = uVar3;
   }
   _s_Course_Load_3 = _s_Course_Load_5 + uVar9;
-  iRam004305f0 = _s_Course_Load_3 + *(ushort *)(iVar10 + 0x22) * uVar12;
-  _s_Course_Load_2 = iRam004305f0 + (uint)*(ushort *)(iVar10 + 0x26);
-  iRam004305f4 = _s_Course_Load_2;
+  _g_CourseShared8 = _s_Course_Load_3 + *(ushort *)(iVar10 + 0x22) * uVar12;
+  _s_Course_Load_2 = _g_CourseShared8 + (uint)*(ushort *)(iVar10 + 0x26);
+  _g_CourseShared9 = _s_Course_Load_2;
   _s_Course_Load_4 = _s_Course_Load_2;
-  uRam00430604 = param_5;
-  uRam00430608 = param_6;
+  _g_CourseStreamShared5 = param_5;
+  _g_CourseStreamShared6 = param_6;
   BlockPool_AllocC(_g_CourseStream,1,param_1,uVar4);
   BlockPool_AllocB(_g_CourseBufB,uVar12,param_1,uStack_4);
   BlockPool_AllocA(_g_CourseBufC,uVar11,param_1,uStack_8);
@@ -321,7 +321,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   uVar1 = *(ushort *)(iVar10 + 0x18);
   *(uint *)(_g_CourseStream + 0x14) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x18) = 0;
-  *(int *)(iVar8 + 0x1c) = iVar7 + iRam0036f2c0;
+  *(int *)(iVar8 + 0x1c) = iVar7 + _g_RaceIntroShared1;
   if (uVar1 == 0) {
     DmaBuf_SetUncached(iVar8 + 0x20,0,0);
     *(undefined4 *)(iVar8 + 0x30) = 0;
@@ -331,12 +331,12 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     uVar3 = Mem_Alloc16((uint)uVar1 << 7,param_1);
     *(undefined4 *)(iVar8 + 0x30) = uVar3;
   }
-  iVar7 = iRam004305f4;
+  iVar7 = _g_CourseShared9;
   iVar8 = _g_CourseStream;
   uVar1 = *(ushort *)(iVar10 + 0x28);
   *(uint *)(_g_CourseStream + 0x34) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x38) = 0;
-  *(int *)(iVar8 + 0x3c) = iVar7 + iRam0036f2c0;
+  *(int *)(iVar8 + 0x3c) = iVar7 + _g_RaceIntroShared1;
   if (uVar1 == 0) {
     DmaBuf_SetUncached(iVar8 + 0x40,0,0);
     *(undefined4 *)(iVar8 + 0x50) = 0;
@@ -351,7 +351,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   uVar1 = *(ushort *)(iVar10 + 0x2c);
   *(uint *)(_g_CourseStream + 0x54) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x58) = 0;
-  *(int *)(iVar8 + 0x5c) = iVar7 + iRam0036f2c0;
+  *(int *)(iVar8 + 0x5c) = iVar7 + _g_RaceIntroShared1;
   if (uVar1 == 0) {
     DmaBuf_SetUncached(iVar8 + 0x60,0,0);
     *(undefined4 *)(iVar8 + 0x70) = 0;
@@ -370,7 +370,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar6 = _g_CourseBufB + iVar8;
       *(uint *)(iVar6 + 0x14) = (uint)uVar1;
       *(undefined4 *)(iVar6 + 0x18) = 0;
-      *(int *)(iVar6 + 0x1c) = iVar7 + iRam0036f2c0;
+      *(int *)(iVar6 + 0x1c) = iVar7 + _g_RaceIntroShared1;
       if (uVar1 == 0) {
         DmaBuf_SetUncached(iVar6 + 0x20,0,0);
         *(undefined4 *)(iVar6 + 0x30) = 0;
@@ -385,7 +385,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar7 = _g_CourseBufB + iVar8;
       *(uint *)(iVar7 + 0x34) = (uint)uVar1;
       *(undefined4 *)(iVar7 + 0x38) = 0;
-      *(int *)(iVar7 + 0x3c) = iVar6 + iRam0036f2c0;
+      *(int *)(iVar7 + 0x3c) = iVar6 + _g_RaceIntroShared1;
       if (uVar1 == 0) {
         DmaBuf_SetUncached(iVar7 + 0x40,0,0);
         *(undefined4 *)(iVar7 + 0x50) = 0;
@@ -395,12 +395,12 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
         uVar3 = Mem_Alloc16((uint)uVar1 << 7,param_1);
         *(undefined4 *)(iVar7 + 0x50) = uVar3;
       }
-      iVar7 = iRam004305f0;
+      iVar7 = _g_CourseShared8;
       uVar1 = *(ushort *)(iVar10 + 0x24);
       iVar6 = _g_CourseBufB + iVar8;
       *(uint *)(iVar6 + 0x54) = (uint)uVar1;
       *(undefined4 *)(iVar6 + 0x58) = 0;
-      *(int *)(iVar6 + 0x5c) = iVar7 + iRam0036f2c0;
+      *(int *)(iVar6 + 0x5c) = iVar7 + _g_RaceIntroShared1;
       if (uVar1 == 0) {
         DmaBuf_SetUncached(iVar6 + 0x60,0,0);
         *(undefined4 *)(iVar6 + 0x70) = 0;
@@ -1298,7 +1298,7 @@ void Course_CaptureReflection(void)
   uint uVar5;
   uint uVar6;
   
-  if (iRam00430654 != 0) {
+  if (_g_CourseShared11 != 0) {
     uVar6 = 0;
     iVar3 = 0;
     do {
@@ -1307,30 +1307,30 @@ void Course_CaptureReflection(void)
       iVar1 = iVar3 * 2;
       do {
         uVar5 = uVar5 + 8;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 2) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 4) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 6) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 8) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 10) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 0xc) = 0xffff;
-        *(undefined2 *)(iVar1 + iRam00430660 + iVar2 + 0xe) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 2) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 4) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 6) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 8) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 10) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 0xc) = 0xffff;
+        *(undefined2 *)(iVar1 + _g_CourseShared14 + iVar2 + 0xe) = 0xffff;
         iVar2 = iVar2 + 0x10;
       } while (uVar5 < 0x10);
       uVar6 = uVar6 + 1;
       iVar3 = iVar3 + 0x10;
     } while (uVar6 < 0x10);
     if (_s_CourseVar1 != 0) {
-      iRam00430654 = 0;
+      _g_CourseShared11 = 0;
       _s_CourseVar1 = 0;
-      Gfx_StoreImage(iRam00430660,0x430700);
+      Gfx_StoreImage(_g_CourseShared14,0x430700);
     }
     iVar1 = 0;
     uVar6 = 0;
     iVar3 = 0;
     do {
       uVar5 = 0;
-      psVar4 = (short *)(iRam00430660 + iVar3 * 2);
+      psVar4 = (short *)(_g_CourseShared14 + iVar3 * 2);
       do {
         if (*psVar4 == 1) {
           iVar1 = iVar1 + 1;
@@ -1366,40 +1366,40 @@ void Course_DrawReflectionPlane(void)
   undefined *puStack_2c;
   
   uVar3 = _s_Course_DrawReflectionPlane_9;
-  uVar2 = uRam0036f2bc;
-  if (iRam00430654 != 0) {
+  uVar2 = _g_RenderShared1;
+  if (_g_CourseShared11 != 0) {
     iVar5 = 0x10;
     bVar1 = true;
-    uVar10 = uRam00431170 >> 6;
-    uVar8 = iRam00430658 - 8;
-    uVar7 = iRam0043065c - 8;
+    uVar10 = _g_CourseShared23 >> 6;
+    uVar8 = _g_CourseShared12 - 8;
+    uVar7 = _g_CourseShared13 - 8;
     uVar9 = _s_Course_DrawReflectionPlane_8 << 5;
     iVar6 = iVar5;
     if ((int)uVar8 < -0x10) {
       bVar1 = false;
     }
-    else if (uRam00431170 < uVar8) {
+    else if (_g_CourseShared23 < uVar8) {
       bVar1 = false;
     }
     else if ((int)uVar8 < 0) {
       iVar6 = 0x10 - uVar8;
       uVar8 = 0;
     }
-    else if (uRam00431170 < iRam00430658 + 8U) {
-      iVar6 = 0x10 - ((uRam00431170 - uVar8) + 0x10);
+    else if (_g_CourseShared23 < _g_CourseShared12 + 8U) {
+      iVar6 = 0x10 - ((_g_CourseShared23 - uVar8) + 0x10);
     }
     if ((int)uVar7 < -0x10) {
       bVar1 = false;
     }
-    else if (uRam00431174 < uVar7) {
+    else if (_g_ReplayCamShared1 < uVar7) {
       bVar1 = false;
     }
     else if ((int)uVar7 < 0) {
       iVar5 = 0x10 - uVar7;
       uVar7 = 0;
     }
-    else if (uRam00431174 < iRam0043065c + 8U) {
-      iVar5 = 0x10 - ((uRam00431174 - uVar7) + 0x10);
+    else if (_g_ReplayCamShared1 < _g_CourseShared13 + 8U) {
+      iVar5 = 0x10 - ((_g_ReplayCamShared1 - uVar7) + 0x10);
     }
     if (iVar6 < 1) {
       bVar1 = false;
@@ -1441,6 +1441,8 @@ void Course_DrawReflectionPlane(void)
 }
 
 // 0x001a28b0  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_BindTextureSlots(undefined8 param_1,long param_2)
 
 {
@@ -1457,20 +1459,20 @@ void Course_BindTextureSlots(undefined8 param_1,long param_2)
     iVar2 = ((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40;
     uVar3 = 0;
     if (*(int *)(&s_Course_Render_2 + iVar2) != 0) {
-      if ((iRam00430600 != 0) && (param_2 != 0)) {
+      if ((_g_CourseShared10 != 0) && (param_2 != 0)) {
         *(undefined4 *)(iVar2 + 0x431154) = 0x3d4ccccd;
         *(undefined4 *)(iVar2 + 0x431158) = 0x447a0000;
         *(undefined4 *)(iVar2 + 0x43115c) = 0x43000000;
         if (bVar1 < 2) {
-          if (iRam00430668 != 0) {
+          if (_g_CourseShared15 != 0) {
             uVar3 = TexSlot_GetEntry(7,0,bVar1,0);
           }
         }
-        else if ((bVar1 == 2) && (iRam0043066c != 0)) {
+        else if ((bVar1 == 2) && (_g_CourseShared16 != 0)) {
           uVar3 = TexSlot_GetEntry(7,0,2,0);
         }
       }
-      (*pcRam00430674)(iVar4,uRam00430678,param_1,uVar3);
+      (*_g_CourseShared17)(iVar4,_g_CourseShared18,param_1,uVar3);
     }
     uVar5 = uVar5 + 1;
     iVar4 = iVar4 + 0x14;
@@ -1529,13 +1531,13 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   undefined1 auStack_40 [20];
   undefined *puStack_2c;
   
-  puVar6 = puRam004305b8;
-  iVar12 = iRam004305b4 + 0x10;
-  uVar3 = puRam004305b8[2];
+  puVar6 = _g_CourseStreamShared2;
+  iVar12 = _g_RaceCamShared1 + 0x10;
+  uVar3 = _g_CourseStreamShared2[2];
   iVar9 = ((uint)(byte)param_1[8] * 0x18 - (uint)(byte)param_1[8]) * 0x40;
-  uVar4 = *puRam004305b8;
+  uVar4 = *_g_CourseStreamShared2;
   puVar13 = &g_Views + iVar9;
-  uVar5 = puRam004305b8[1];
+  uVar5 = _g_CourseStreamShared2[1];
   Cam_SetupViewport(puVar13,*param_1,param_1[4]);
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = puVar13;
@@ -1593,9 +1595,9 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   fVar15 = (float)(iVar8 + -0x800);
   fVar14 = (float)(iVar12 + -0x800);
   if (param_2 == 0) {
-    iRam00430658 = (int)fVar14;
-    uRam00430654 = 1;
-    iRam0043065c = (int)fVar15;
+    _g_CourseShared12 = (int)fVar14;
+    _g_CourseShared11 = 1;
+    _g_CourseShared13 = (int)fVar15;
   }
   if (0 < iStack_394) {
     Obj_Reset(auStack_390,4,0xffffffffffffffff);
@@ -1693,6 +1695,8 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
 }
 
 // 0x001a3250  size 0x480
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int param_4)
 
 {
@@ -1726,7 +1730,7 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
   Light_UpdateMatrices(0x436180);
   Layer_Reset(auStack_240,puVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
               *(undefined4 *)(param_2 + 0x10));
-  if ((iRam00430600 != 0) && (param_3 != 0)) {
+  if ((_g_CourseShared10 != 0) && (param_3 != 0)) {
     uStack_1a0 = TexSlot_GetEntry(7,0);
     *(undefined4 *)(iVar5 + 0x431154) = 0x3d4ccccd;
     *(undefined4 *)(iVar5 + 0x431158) = 0x447a0000;
@@ -1738,7 +1742,7 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
     if (*(int *)(puVar11 + 0x18) != 0) {
       uStack_490 = 0;
       for (iVar10 = 0;
-          (uStack_490 < uRam004305cc &&
+          (uStack_490 < _g_CourseStreamShared4 &&
           (puVar1 = *(uint **)(param_1[1] + iVar10), puVar1 != (uint *)0x0)); iVar10 = iVar10 + 4) {
         puVar2 = (uint *)*param_1;
         if (((puVar1[0x10] & 1 << (*(uint *)(param_2 + 8) & 0x1f)) != 0) &&
@@ -1777,7 +1781,7 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
     iVar14 = (int)lVar8;
     puVar12 = (ushort *)(iVar14 + 0x10);
     maybe_Pkt_InitLayers
-              (auStack_3a0,puVar6,0x436180,*(undefined4 *)(param_2 + 0xc),
+              (auStack_3a0,puVar6,&g_CourseShared25,*(undefined4 *)(param_2 + 0xc),
                *(undefined4 *)(param_2 + 0x10));
     sceVu0OuterProduct(iVar5 + 0x431150,iVar5 + 0x431120,iVar5 + 0x431140);
     sceVu0Normalize(iVar5 + 0x431150,iVar5 + 0x431150);
@@ -1818,10 +1822,10 @@ LAB_001a3634:
           lVar8 = Vu0_TransformPointPersp(puVar6,iVar5 + 0x4313c0,puVar12 + 0x18);
           if (lVar8 != 0) {
             if (param_2[8] == '\x02') {
-              uVar3 = uRam0043066c;
+              uVar3 = _g_CourseShared16;
             }
             else {
-              uVar3 = uRam00430668;
+              uVar3 = _g_CourseShared15;
             }
             Course_CullBlocks(puVar6,puVar9,puVar12,uVar3,param_2[8] == '\x02');
           }
@@ -1952,11 +1956,11 @@ void Course_Render(int param_1)
   CourseStream_Update(0x10);
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = &s_Camera_SetupDefault_4;
-  if (iRam0043067c == 0) {
+  if (_g_CourseShared19 == 0) {
     Pkt_SubmitToChain(auStack_40,0);
     Pkt_Flush(auStack_40,_g_CourseStream + 0x20);
     Pkt_Submit(auStack_40,0);
-    iRam0043067c = 1;
+    _g_CourseShared19 = 1;
   }
   piVar2 = (int *)Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),9,0);
   uVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),0,0);
@@ -2056,7 +2060,8 @@ void Course_Render(int param_1)
     View_DrawFadeSprite(0,1);
   }
   uVar10 = 0;
-  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (*piVar2 != 0)); piVar2 = piVar2 + 2) {
+  for (piVar2 = _g_CourseScene; (uVar10 < _g_CourseStreamShared3 && (*piVar2 != 0));
+      piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       Pkt_SubmitToChain(auStack_40,0);
       Pkt_Flush(auStack_40,*piVar2 + 0x40);
@@ -2069,7 +2074,7 @@ void Course_Render(int param_1)
     DmaChain_Kick(1,0,4);
   }
   uVar10 = 0;
-  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (iVar9 = *piVar2, iVar9 != 0));
+  for (piVar2 = _g_CourseScene; (uVar10 < _g_CourseStreamShared3 && (iVar9 = *piVar2, iVar9 != 0));
       piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       TexSlot_Set(1,*(undefined4 *)(iVar9 + 0x18),*(undefined4 *)(iVar9 + 0x30));
@@ -2081,7 +2086,7 @@ void Course_Render(int param_1)
         uStack_a0 = 5;
         uStack_b0 = 0;
         uStack_a4 = 0;
-        uStack_9c = (uint)bRam004306c2;
+        uStack_9c = (uint)g_CourseShared22;
         uStack_94 = 0;
         uStack_90 = 1;
         Course_DrawLensFlare(piVar2,&uStack_b0,0);
@@ -2089,21 +2094,21 @@ void Course_Render(int param_1)
     }
     uVar10 = uVar10 + 1;
   }
-  if ((iRam00430600 != 0) && ((iRam00430668 != 0 || (iRam0043066c != 0)))) {
+  if ((_g_CourseShared10 != 0) && ((_g_CourseShared15 != 0 || (_g_CourseShared16 != 0)))) {
     lVar11 = 1;
   }
-  if ((iRam00430600 != 0) && (lVar11 != 0)) {
+  if ((_g_CourseShared10 != 0) && (lVar11 != 0)) {
     Pkt_SubmitToChain(auStack_40,0);
     Pkt_Flush(auStack_40,_g_CourseBufA + 0x24);
     Pkt_Submit(auStack_40,0);
   }
-  if ((iRam00430600 != 0) && (lVar11 != 0)) {
+  if ((_g_CourseShared10 != 0) && (lVar11 != 0)) {
     TexSlot_Set(7,*(undefined4 *)(_g_CourseBufA + 0x1c),*(undefined4 *)(_g_CourseBufA + 0x34));
   }
-  if (iRam00430674 != 0) {
+  if (_g_CourseShared17 != 0) {
     Course_BindTextureSlots(1,lVar11);
   }
-  if ((-1 < *piRam004305b8) && (_s_Course_Render_5 != 0)) {
+  if ((-1 < *_g_CourseStreamShared2) && (_s_Course_Render_5 != 0)) {
     uStack_cc = 2;
     uStack_d0 = 0;
     uStack_c8 = 3;
@@ -2115,7 +2120,7 @@ void Course_Render(int param_1)
     DmaChain_Kick(1,0,5);
   }
   uVar10 = 0;
-  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (iVar9 = *piVar2, iVar9 != 0));
+  for (piVar2 = _g_CourseScene; (uVar10 < _g_CourseStreamShared3 && (iVar9 = *piVar2, iVar9 != 0));
       piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       TexSlot_Set(1,*(undefined4 *)(iVar9 + 0x18),*(undefined4 *)(iVar9 + 0x30));
@@ -2128,9 +2133,9 @@ void Course_Render(int param_1)
         uStack_f0 = 1;
         uStack_e8 = 0;
         uStack_e4 = 1;
-        uStack_ec = (uint)bRam004306c0;
+        uStack_ec = (uint)g_CourseShared20;
         uStack_e0 = 0;
-        Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && iRam00430668 != 0,0);
+        Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && _g_CourseShared15 != 0,0);
       }
       if (_s_Course_Render_3 != 0) {
         uStack_f0 = 2;
@@ -2141,8 +2146,8 @@ void Course_Render(int param_1)
         uStack_f4 = 0;
         uStack_e8 = 0;
         uStack_e0 = 0;
-        uStack_ec = (uint)bRam004306c0;
-        Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && iRam00430668 != 0,0);
+        uStack_ec = (uint)g_CourseShared20;
+        Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && _g_CourseShared15 != 0,0);
       }
       if (_s_Course_Render_4 != 0) {
         uStack_f8 = 2;
@@ -2153,8 +2158,8 @@ void Course_Render(int param_1)
         uStack_f4 = 0;
         uStack_e8 = 0;
         uStack_e0 = 0;
-        uStack_ec = (uint)bRam004306c0;
-        Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && iRam0043066c != 0,0);
+        uStack_ec = (uint)g_CourseShared20;
+        Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && _g_CourseShared16 != 0,0);
       }
     }
     uVar10 = uVar10 + 1;
@@ -2163,7 +2168,8 @@ void Course_Render(int param_1)
     View_DrawFullscreen(0,3,0xffffffff80808080);
   }
   uVar10 = 0;
-  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (*piVar2 != 0)); piVar2 = piVar2 + 2) {
+  for (piVar2 = _g_CourseScene; (uVar10 < _g_CourseStreamShared3 && (*piVar2 != 0));
+      piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       Pkt_SubmitToChain(auStack_40,0);
       Pkt_Flush(auStack_40,*piVar2 + 0x60);
@@ -2180,9 +2186,9 @@ void Course_Render(int param_1)
         uStack_120 = 1;
         uStack_118 = 1;
         uStack_110 = 1;
-        uStack_11c = (uint)bRam004306c0;
+        uStack_11c = (uint)g_CourseShared20;
         uStack_114 = 0;
-        Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && iRam00430668 != 0,1);
+        Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && _g_CourseShared15 != 0,1);
       }
       if (_s_Course_Render_3 != 0) {
         uStack_120 = 2;
@@ -2191,10 +2197,10 @@ void Course_Render(int param_1)
         uStack_128 = 1;
         uStack_124 = 0;
         uStack_118 = 1;
-        uStack_11c = (uint)bRam004306c0;
+        uStack_11c = (uint)g_CourseShared20;
         uStack_110 = 1;
         uStack_114 = 0;
-        Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && iRam00430668 != 0,1);
+        Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && _g_CourseShared15 != 0,1);
       }
       if (_s_Course_Render_4 != 0) {
         uStack_128 = 2;
@@ -2203,10 +2209,10 @@ void Course_Render(int param_1)
         uStack_124 = 0;
         uStack_130 = 1;
         uStack_118 = 1;
-        uStack_11c = (uint)bRam004306c0;
+        uStack_11c = (uint)g_CourseShared20;
         uStack_110 = 1;
         uStack_114 = 0;
-        Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && iRam0043066c != 0,1);
+        Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && _g_CourseShared16 != 0,1);
       }
       if (_s_Course_Render_6 != 0) {
         uStack_12c = 3;
@@ -2215,19 +2221,19 @@ void Course_Render(int param_1)
         uStack_120 = 6;
         uStack_130 = 0;
         uStack_124 = 0;
-        uStack_11c = (uint)bRam004306c1;
+        uStack_11c = (uint)g_CourseShared21;
         uStack_114 = 1;
         uStack_110 = 1;
         Course_DrawLensFlare(piVar2,&uStack_130,0);
       }
-      if (iRam00433904 != 0) {
+      if (_g_CourseShared24 != 0) {
         uStack_12c = 4;
         uStack_118 = 1;
         uStack_128 = 6;
         uStack_120 = 7;
         uStack_130 = 0;
         uStack_124 = 0;
-        uStack_11c = (uint)bRam004306c1;
+        uStack_11c = (uint)g_CourseShared21;
         uStack_114 = 1;
         uStack_110 = 1;
         Course_DrawLensFlare(piVar2,&uStack_130,0);
@@ -2235,13 +2241,13 @@ void Course_Render(int param_1)
     }
     uVar10 = uVar10 + 1;
   }
-  if (iRam00430674 != 0) {
+  if (_g_CourseShared17 != 0) {
     Course_BindTextureSlots(0,lVar11);
   }
   if (_s_Course_Render_6 != 0) {
     DmaChain_Kick(1,0,6);
   }
-  if ((-1 < *piRam004305b8) && (_s_Course_Render_2 != 0)) {
+  if ((-1 < *_g_CourseStreamShared2) && (_s_Course_Render_2 != 0)) {
     uStack_140 = 1;
     uStack_150 = 0;
     uStack_14c = 0;
@@ -2249,7 +2255,7 @@ void Course_Render(int param_1)
     uStack_144 = 0;
     Course_DrawSkyAndSun(&uStack_150,0);
   }
-  if (iRam00433904 != 0) {
+  if (_g_CourseShared24 != 0) {
     Pkt_Init(auStack_190,1,2,0);
     puStack_17c = &g_Views;
     Pkt_SubmitToChain(auStack_190,0);

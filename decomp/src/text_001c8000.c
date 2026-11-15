@@ -1047,7 +1047,7 @@ void Ai_UpdateDriver(int param_1,uint param_2)
   
   cVar4 = GameState_Get_3();
   if (cVar4 == '\x01') {
-    if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
+    if ((_g_Skids == 0) || (_g_AiShared3 <= param_2)) {
       iVar12 = 0;
     }
     else {
@@ -1056,8 +1056,8 @@ void Ai_UpdateDriver(int param_1,uint param_2)
     if (*(int *)(g_Loading->workBufs[0] + 0x500) != 0) {
       MotionBlur_Setup(iVar12);
     }
-    if ((*(int *)(iRam0036f3b0 + 0xc) != 0) &&
-       (iVar13 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar13 != 0)) {
+    if ((*(int *)(_g_AiShared2 + 0xc) != 0) &&
+       (iVar13 = *(int *)(*(int *)(_g_AiShared2 + 0xc) + 0x14), iVar13 != 0)) {
       *(uint *)(*(int *)(param_2 * 4 + iVar13 + 0x1c) + 0x3fc) = param_2;
       MotionBlur_Build(iVar12,1);
     }
@@ -1112,15 +1112,15 @@ LAB_001ca8e8:
     Driver_SetInputMode(iVar12,&uStack_20,&uStack_4,1);
     cVar4 = *(char *)(param_1 + 0x8e8);
   }
-  if (((cVar4 != '\0') && (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
-     (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
+  if (((cVar4 != '\0') && (*(int *)(_g_AiShared2 + 0xc) != 0)) &&
+     (iVar12 = *(int *)(*(int *)(_g_AiShared2 + 0xc) + 0x14), iVar12 != 0)) {
     uVar14 = 0;
     iVar13 = 0;
     iVar12 = *(int *)(param_2 * 4 + iVar12 + 0x1c);
     do {
       iVar1 = *(int *)(iVar12 + 0x504);
       if ((1 << (uVar14 & 0x1f) & *(uint *)(iVar1 + 0x7c)) != 0) {
-        if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
+        if ((_g_Skids == 0) || (_g_AiShared3 <= param_2)) {
           iVar11 = 0;
         }
         else {
@@ -1153,7 +1153,7 @@ LAB_001ca8e8:
       iVar12 = iVar12 + 0x70;
     } while ((int)uVar14 < 4);
     if (bVar3) {
-      if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
+      if ((_g_Skids == 0) || (_g_AiShared3 <= param_2)) {
         iVar12 = 0;
       }
       else {
@@ -1192,7 +1192,7 @@ LAB_001ca8e8:
     if (!bVar2) {
       return;
     }
-    if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
+    if ((_g_Skids == 0) || (_g_AiShared3 <= param_2)) {
       iVar12 = 0;
     }
     else {
@@ -1205,8 +1205,8 @@ LAB_001ca8e8:
     return;
   case 1:
     if ((((param_2 == 0) || ((param_2 == 1 && (_s_RaceIsReplayMode == 1)))) &&
-        (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
-       (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
+        (*(int *)(_g_AiShared2 + 0xc) != 0)) &&
+       (iVar12 = *(int *)(*(int *)(_g_AiShared2 + 0xc) + 0x14), iVar12 != 0)) {
       fVar16 = *(float *)(param_1 + 0x40) * 3.6;
       if (param_2 == 0) {
         iVar12 = iVar12 + 0xe20;
@@ -1235,8 +1235,8 @@ LAB_001ca8e8:
       Weather_SpawnDrops(iVar12);
     }
     lVar8 = RaceScene_IsFlag10();
-    if (((lVar8 != 0) && (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
-       (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
+    if (((lVar8 != 0) && (*(int *)(_g_AiShared2 + 0xc) != 0)) &&
+       (iVar12 = *(int *)(*(int *)(_g_AiShared2 + 0xc) + 0x14), iVar12 != 0)) {
       uStack_70 = 0;
       uStack_6c = 0;
       uStack_68 = 0;
@@ -1271,7 +1271,7 @@ LAB_001ca8e8:
   if (!bVar2) {
     return;
   }
-  if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
+  if ((_g_Skids == 0) || (_g_AiShared3 <= param_2)) {
     iVar12 = 0;
   }
   else {

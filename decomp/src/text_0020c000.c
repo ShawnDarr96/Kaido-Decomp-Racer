@@ -2029,7 +2029,7 @@ void MenuMovie_Create(undefined4 param_1,undefined1 param_2,undefined4 param_3,u
   aiStack_50[1] = 1;
   aiStack_50[3] = 0x10000;
   aiStack_50[4] = 0xf;
-  aiStack_50[0] = iRam0036f2a4 + 1;
+  aiStack_50[0] = _g_GameShared1 + 1;
   aiStack_50[5] = 0x1e0;
   aiStack_50[6] = 0xc0;
   aiStack_50[7] = 0x200;

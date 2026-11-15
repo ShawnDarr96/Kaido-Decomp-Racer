@@ -384,6 +384,7 @@ void maybe_PagePasswordEntry_Enter(void)
 }
 
 // 0x002d8bd0  size 0x114
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 0 (table 0x3274b0) */
 
 void maybe_ScrMemCard_Update(undefined8 param_1)
@@ -416,7 +417,7 @@ void maybe_ScrMemCard_Update(undefined8 param_1)
     }
   }
   else if (lVar3 != 0) {
-    iRam0036f2b4 = g_RaceCtx->language + 1;
+    _g_CareerShared1 = g_RaceCtx->language + 1;
     MenuMgr_RequestScreen(0xfffffffffffffffb);
   }
   Save_IsBusy();
@@ -528,22 +529,26 @@ void maybe_ScrNewGameMemCard_Enter(undefined8 param_1)
 }
 
 // 0x002d8f50  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveUi_SetParams(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  uRam0036f8a8 = param_2;
-  uRam0036f8ac = param_1;
-  uRam0036f8b0 = param_3;
+  _g_PwInputShared1 = param_2;
+  _g_NameEntryShared1 = param_1;
+  _g_NameEntryShared2 = param_3;
   return;
 }
 
 // 0x002d8f60  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Subtitle_SetPending(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  uRam0036f898 = param_1;
-  uRam0036f89c = param_2;
-  uRam0036f8a0 = param_3;
+  _g_ScrSaveShared1 = param_1;
+  _g_ScrSaveShared2 = param_2;
+  _g_ScrSaveShared3 = param_3;
   return;
 }
 
@@ -841,6 +846,8 @@ void ReplayUi_Load(undefined8 param_1)
 }
 
 // 0x002d9e30  size 0xaf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_NameEntry_DrawInfo(int param_1)
 
 {
@@ -906,9 +913,9 @@ void maybe_NameEntry_DrawInfo(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  pcVar6 = pcRam0036f8b0;
-  pcVar5 = pcRam0036f8ac;
-  uVar10 = (*pcRam0036f8b0)(0x1e9d);
+  pcVar6 = _g_NameEntryShared2;
+  pcVar5 = _g_NameEntryShared1;
+  uVar10 = (*_g_NameEntryShared2)(0x1e9d);
   uVar11 = (*pcVar5)(0xbf);
   UiElem_GetRect(uVar11,auStack_a0,0x4a);
   UiText_DrawById(auStack_a0,uVar10);
@@ -1153,6 +1160,8 @@ void maybe_NameEntry_DrawInfo(int param_1)
 }
 
 // 0x002da920  size 0x67c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_NameEntry_DrawKeyboard(int param_1)
 
 {
@@ -1174,9 +1183,9 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
   undefined1 auStack_80 [64];
   undefined1 auStack_40 [64];
   
-  pcVar6 = pcRam0036f8ac;
+  pcVar6 = _g_NameEntryShared1;
   piVar12 = (int *)(param_1 + 0x784);
-  uVar8 = (*pcRam0036f8ac)(0xc4);
+  uVar8 = (*_g_NameEntryShared1)(0xc4);
   bVar5 = false;
   if (*(char *)(param_1 + 0x778) == '\x02') {
     bVar5 = *(char *)(param_1 + 0x779) != '\0';
@@ -1193,7 +1202,7 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
     }
     else {
       if (iVar2 < iVar3) {
-        uVar7 = (*pcRam0036f8a8)(0x21e);
+        uVar7 = (*_g_PwInputShared1)(0x21e);
         *(undefined4 *)(iVar13 + 0x34c) = 0xffffffff;
         *(undefined4 *)(iVar13 + 0x358) = 0;
         *(undefined4 *)(iVar13 + 0x348) = 0;
@@ -1216,7 +1225,7 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
         *(undefined4 *)(param_1 + 0x7e0) = 1;
       }
       else if (iVar3 < iVar2) {
-        uVar7 = (*pcRam0036f8a8)(0x21b);
+        uVar7 = (*_g_PwInputShared1)(0x21b);
         *(undefined4 *)(iVar13 + 0x34c) = 0xffffffff;
         *(undefined4 *)(iVar13 + 0x358) = 0;
         *(undefined4 *)(iVar13 + 0x348) = 0;
@@ -1253,8 +1262,8 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
     }
     cVar1 = *(char *)(param_1 + 0x779);
     iVar13 = *(int *)(param_1 + 0x7a4) - iVar13;
-    uVar9 = (*pcRam0036f8ac)(0xc4);
-    pcVar6 = pcRam0036f8b0;
+    uVar9 = (*_g_NameEntryShared1)(0xc4);
+    pcVar6 = _g_NameEntryShared2;
     if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
       bVar4 = true;
     }
@@ -1262,10 +1271,10 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
       bVar4 = false;
     }
     if (bVar4) {
-      uVar10 = (*pcRam0036f8b0)(0x1e97);
+      uVar10 = (*_g_NameEntryShared2)(0x1e97);
     }
     else {
-      uVar10 = (*pcRam0036f8b0)(0x1e98);
+      uVar10 = (*_g_NameEntryShared2)(0x1e98);
     }
     if (iVar13 == -1) {
       uVar10 = (*pcVar6)(0x1e7f);
@@ -1279,8 +1288,8 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
   else if (*(int *)(param_1 + 0x7e0) == 2) {
     cVar1 = *(char *)(param_1 + 0x779);
     iVar13 = (*(int *)(param_1 + 0x7a4) + 6) - (uint)bVar5;
-    uVar9 = (*pcRam0036f8ac)(0xc4);
-    pcVar6 = pcRam0036f8b0;
+    uVar9 = (*_g_NameEntryShared1)(0xc4);
+    pcVar6 = _g_NameEntryShared2;
     if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
       bVar4 = true;
     }
@@ -1288,10 +1297,10 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
       bVar4 = false;
     }
     if (bVar4) {
-      uVar10 = (*pcRam0036f8b0)(0x1e97);
+      uVar10 = (*_g_NameEntryShared2)(0x1e97);
     }
     else {
-      uVar10 = (*pcRam0036f8b0)(0x1e98);
+      uVar10 = (*_g_NameEntryShared2)(0x1e98);
     }
     if (iVar13 == -1) {
       uVar10 = (*pcVar6)(0x1e7f);
@@ -1320,8 +1329,8 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
     UiElem_SetPropFloat(0x3f800000,uVar8,*puVar14,8);
     iVar2 = *piVar12;
     cVar1 = *(char *)(param_1 + 0x779);
-    uVar7 = (*pcRam0036f8ac)(0xc4);
-    pcVar6 = pcRam0036f8b0;
+    uVar7 = (*_g_NameEntryShared1)(0xc4);
+    pcVar6 = _g_NameEntryShared2;
     if (((cVar1 == '\x03') || (cVar1 == '\x02')) || (cVar1 == '\x01')) {
       bVar4 = true;
     }
@@ -1329,10 +1338,10 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
       bVar4 = false;
     }
     if (bVar4) {
-      uVar9 = (*pcRam0036f8b0)(0x1e97);
+      uVar9 = (*_g_NameEntryShared2)(0x1e97);
     }
     else {
-      uVar9 = (*pcRam0036f8b0)(0x1e98);
+      uVar9 = (*_g_NameEntryShared2)(0x1e98);
     }
     if (iVar2 == -1) {
       uVar9 = (*pcVar6)(0x1e7f);
@@ -1381,6 +1390,8 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
 }
 
 // 0x002dafb0  size 0x42c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_NameEntry_DrawName(int param_1,long param_2)
 
 {
@@ -1395,53 +1406,53 @@ void maybe_NameEntry_DrawName(int param_1,long param_2)
   undefined1 auStack_80 [64];
   undefined1 auStack_40 [64];
   
-  pcVar3 = pcRam0036f8b0;
+  pcVar3 = _g_NameEntryShared2;
   if (*(char *)(param_1 + 0x778) == '\x02') {
-    uVar4 = (*pcRam0036f8ac)(0xb6);
+    uVar4 = (*_g_NameEntryShared1)(0xb6);
     if (*(int *)((int)uVar4 + 0x318) == 1) {
       UiLayout_UpdateAnim(uVar4,0);
     }
-    uVar4 = (*pcRam0036f8ac)(0xb6);
+    uVar4 = (*_g_NameEntryShared1)(0xb6);
     UiLayout_Draw(0x3f800000,uVar4);
   }
   else if (*(byte *)(param_1 + 0x779) - 4 < 2) {
-    uVar4 = (*pcRam0036f8ac)(0xb5);
+    uVar4 = (*_g_NameEntryShared1)(0xb5);
     if (*(int *)((int)uVar4 + 0x318) == 1) {
       UiLayout_UpdateAnim(uVar4,0);
     }
-    uVar4 = (*pcRam0036f8ac)(0xb5);
+    uVar4 = (*_g_NameEntryShared1)(0xb5);
     UiLayout_Draw(0x3f800000,uVar4);
   }
   else {
-    uVar4 = (*pcRam0036f8ac)(0xb4);
+    uVar4 = (*_g_NameEntryShared1)(0xb4);
     if (*(int *)((int)uVar4 + 0x318) == 1) {
       UiLayout_UpdateAnim(uVar4,0);
     }
-    uVar4 = (*pcRam0036f8ac)(0xb4);
+    uVar4 = (*_g_NameEntryShared1)(0xb4);
     UiLayout_Draw(0x3f800000,uVar4);
   }
   if (param_2 == 0) {
-    uVar4 = (*pcRam0036f8ac)(0xb7);
+    uVar4 = (*_g_NameEntryShared1)(0xb7);
     UiElem_SetPropInt(uVar4,0x15,9,0);
   }
   else {
-    uVar4 = (*pcRam0036f8ac)(0xb7);
+    uVar4 = (*_g_NameEntryShared1)(0xb7);
     UiElem_SetPropInt(uVar4,0x15,9,2);
   }
-  uVar4 = (*pcRam0036f8ac)(0xb7);
+  uVar4 = (*_g_NameEntryShared1)(0xb7);
   UiLayout_Draw(0x3f800000,uVar4);
-  uVar4 = (*pcRam0036f8ac)(0xba);
+  uVar4 = (*_g_NameEntryShared1)(0xba);
   UiLayout_Draw(0x3f800000,uVar4);
   cVar1 = *(char *)(param_1 + 0x779);
   if ((cVar1 == '\x05') || (cVar1 == '\x03')) {
     uVar4 = (*pcVar3)(0x1e9b);
-    uVar5 = (*pcRam0036f8ac)(0xba);
+    uVar5 = (*_g_NameEntryShared1)(0xba);
     UiElem_GetRect(uVar5,auStack_c0,0xc);
     UiText_DrawById(auStack_c0,uVar4);
   }
   else if ((cVar1 == '\x04') || (cVar1 == '\x02')) {
     uVar4 = (*pcVar3)(0x1e9a);
-    uVar5 = (*pcRam0036f8ac)(0xba);
+    uVar5 = (*_g_NameEntryShared1)(0xba);
     UiElem_GetRect(uVar5,auStack_80,0xc);
     UiText_DrawById(auStack_80,uVar4);
   }
@@ -1451,7 +1462,7 @@ void maybe_NameEntry_DrawName(int param_1,long param_2)
       goto LAB_002db20c;
     }
     uVar4 = (*pcVar3)(0x1e99);
-    uVar5 = (*pcRam0036f8ac)(0xba);
+    uVar5 = (*_g_NameEntryShared1)(0xba);
     UiElem_GetRect(uVar5,auStack_40,0xc);
     UiText_DrawById(auStack_40,uVar4);
   }
@@ -1631,6 +1642,8 @@ undefined4 maybe_NameEntry_StepSave(int param_1)
 }
 
 // 0x002db730  size 0x450
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_NameEntry_Update(undefined8 param_1)
 
 {
@@ -1793,9 +1806,9 @@ switchD_002db7d4_caseD_0:
     PwInput_Open(iVar6 + 0x588);
   }
   *(undefined4 *)(iVar6 + 0x774) = *(undefined4 *)(iVar6 + 0x770);
-  uVar4 = (*pcRam0036f8ac)(0xc4);
+  uVar4 = (*_g_NameEntryShared1)(0xc4);
   UiElem_SetPropFloat(0x3f800000,uVar4,0x42,8);
-  uVar4 = (*pcRam0036f8ac)(0xc4);
+  uVar4 = (*_g_NameEntryShared1)(0xc4);
   UiElem_SetPropFloat(0x3f800000,uVar4,0x43,8);
 LAB_002dbb08:
   PwInput_Animate(iVar6 + 0x588);
@@ -1871,10 +1884,10 @@ void maybe_NameEntry_Animate(int param_1)
   undefined8 uVar5;
   undefined8 uVar6;
   
-  pcVar2 = pcRam0036f8ac;
+  pcVar2 = _g_NameEntryShared1;
   if (*(char *)(param_1 + 0x778) != '\x02') {
     if (*(byte *)(param_1 + 0x779) - 4 < 2) {
-      uVar3 = (*pcRam0036f8a8)(0x239);
+      uVar3 = (*_g_PwInputShared1)(0x239);
       iVar4 = (*pcVar2)(0xb5);
       *(undefined4 *)(iVar4 + 0x310) = 0xffffffff;
       *(undefined4 *)(iVar4 + 0x31c) = 0;
@@ -1897,7 +1910,7 @@ void maybe_NameEntry_Animate(int param_1)
       *(undefined4 *)(iVar4 + 0x318) = 1;
     }
     else {
-      uVar3 = (*pcRam0036f8a8)(0x226);
+      uVar3 = (*_g_PwInputShared1)(0x226);
       iVar4 = (*pcVar2)(0xb4);
       *(undefined4 *)(iVar4 + 0x310) = 0xffffffff;
       *(undefined4 *)(iVar4 + 0x31c) = 0;
@@ -1934,7 +1947,7 @@ void maybe_NameEntry_Animate(int param_1)
     UiElem_SetPropInt(uVar5,0xb,0x16,8);
   }
   uVar5 = (*pcVar2)(0xc4);
-  pcVar2 = pcRam0036f8a8;
+  pcVar2 = _g_PwInputShared1;
   uVar3 = _s_NameEntry_Animate_2;
   iVar4 = _s_NameEntry_Animate_1 * 0x18;
   *(int *)(&DAT_00342100 + iVar4) = (int)uVar5;
@@ -1942,7 +1955,7 @@ void maybe_NameEntry_Animate(int param_1)
   *(undefined4 *)(iVar4 + 0x342108) = uVar3;
   uVar6 = (*pcVar2)(0x68);
   UiLayout_IsAnimDone(uVar5,0x13,_s_NameEntry_Animate_2,uVar6,1);
-  pcVar2 = pcRam0036f8a8;
+  pcVar2 = _g_PwInputShared1;
   *(undefined4 *)(_s_NameEntry_Animate_1 * 0x18 + 0x34210c) = _s_NameEntry_Animate_3;
   uVar6 = (*pcVar2)(0x6a);
   UiLayout_IsAnimDone(uVar5,0x12,_s_NameEntry_Animate_3,uVar6,1);
@@ -1985,7 +1998,7 @@ void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
   undefined1 auStack_40 [20];
   undefined4 uStack_2c;
   
-  pcVar5 = pcRam0036f8b0;
+  pcVar5 = _g_NameEntryShared2;
   iVar1 = *param_1;
   if (iVar1 == 0) {
     return;
@@ -1998,8 +2011,8 @@ void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
   if (param_3 != 0) {
     uVar11 = 0x1b3;
   }
-  iVar14 = iRam0036f89c + 1;
-  uVar7 = (*pcRam0036f8b0)(*(undefined4 *)(&DAT_00342170 + param_3 * 4));
+  iVar14 = _g_ScrSaveShared2 + 1;
+  uVar7 = (*_g_NameEntryShared2)(*(undefined4 *)(&DAT_00342170 + param_3 * 4));
   bVar3 = false;
   uVar13 = 0;
   piVar12 = param_1;

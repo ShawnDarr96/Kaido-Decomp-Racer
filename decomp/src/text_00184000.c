@@ -247,14 +247,14 @@ void Cam_Init(undefined8 param_1)
   iVar2 = (int)param_1;
   *(undefined4 *)(iVar2 + 0x500) = 0;
   *(undefined1 *)(iVar2 + 0x4f9) = 1;
-  Cam_SetPitch(((float)uRam0038804c * 1.9209821) / 2.0,param_1);
+  Cam_SetPitch(((float)_g_ViewShared5 * 1.9209821) / 2.0,param_1);
   Cam_SetYaw(0,param_1);
   *(undefined4 *)(iVar2 + 0x4e8) = 0x3f000000;
   _s_CamVar1 = 0x3f000000;
   *(undefined4 *)(iVar2 + 0x4ec) = *(undefined4 *)(iVar2 + 0x4e0);
   *(undefined4 *)(iVar2 + 0x4f0) = *(undefined4 *)(iVar2 + 0x4e4);
   *(undefined4 *)(iVar2 + 0x4f4) = *(undefined4 *)(iVar2 + 0x4e8);
-  *(undefined4 *)(iVar2 + 0xa8) = uRam004311a4;
+  *(undefined4 *)(iVar2 + 0xa8) = _g_RaceCamShared2;
   uVar1 = _s_Cam_Init_1;
   *(undefined4 *)(iVar2 + 0x168) = _s_Cam_Init_1;
   *(undefined4 *)(iVar2 + 0x108) = uVar1;
@@ -263,8 +263,8 @@ void Cam_Init(undefined8 param_1)
   *(undefined4 *)(iVar2 + 0x288) = 0x459c4000;
   *(undefined4 *)(iVar2 + 0x2e8) = 0x459c4000;
   *(undefined4 *)(iVar2 + 0x348) = 0x459c4000;
-  *(undefined4 *)(iVar2 + 0x3a8) = uRam004311a4;
-  *(undefined4 *)(iVar2 + 0x408) = uRam004311a4;
+  *(undefined4 *)(iVar2 + 0x3a8) = _g_RaceCamShared2;
+  *(undefined4 *)(iVar2 + 0x408) = _g_RaceCamShared2;
   *(undefined4 *)(iVar2 + 0x60) = 0;
   *(undefined4 *)(iVar2 + 0x240) = 0;
   *(undefined4 *)(iVar2 + 0xc0) = 1;
@@ -449,7 +449,7 @@ void Cam_SetPitch(float param_1,int param_2)
   
   uVar2 = _s_Cam_SetPitch_1;
   uVar1 = (ulong)_s_Cam_SetPitch_2;
-  fVar4 = param_1 / (float)uRam00431170;
+  fVar4 = param_1 / (float)_g_CourseShared23;
   fVar3 = (float)_s_Cam_SetPitch_1 * fVar4;
   *(float *)(param_2 + 0x4e4) = param_1;
   *(float *)(param_2 + 0xa4) = param_1;
@@ -1110,6 +1110,8 @@ uint * Cam_FindKeyAfter(uint *param_1,uint *param_2,uint param_3)
 }
 
 // 0x001861a0  size 0x4ec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
 
 {
@@ -1148,7 +1150,7 @@ void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
   fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 8);
   *(float *)(param_3 + 0x40) = fVar1 * 0.017453292;
   fVar1 = (float)Demo_EvalKeyB(fVar5,param_2 + 0x10);
-  *(float *)(param_3 + 0x44) = ((float)uRam00431170 * 50.0) / fVar1;
+  *(float *)(param_3 + 0x44) = ((float)_g_CourseShared23 * 50.0) / fVar1;
   uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x18);
   *(undefined4 *)(param_3 + 0x10) = uVar2;
   uVar2 = Demo_EvalKeyA(fVar5,param_2 + 0x20);
@@ -1228,6 +1230,8 @@ void Cam_InterpolatePath(float param_1,int param_2,int param_3,int param_4)
 }
 
 // 0x00186690  size 0x4ec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_InterpolatePathAlt(float param_1,int param_2,int param_3,int param_4)
 
 {
@@ -1266,7 +1270,7 @@ void Cam_InterpolatePathAlt(float param_1,int param_2,int param_3,int param_4)
   fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 8);
   *(float *)(param_3 + 0x40) = fVar1 * 0.017453292;
   fVar1 = (float)Demo_EvalKeyD(fVar5,param_2 + 0x10);
-  *(float *)(param_3 + 0x44) = ((float)uRam00431170 * 50.0) / fVar1;
+  *(float *)(param_3 + 0x44) = ((float)_g_CourseShared23 * 50.0) / fVar1;
   uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x18);
   *(undefined4 *)(param_3 + 0x10) = uVar2;
   uVar2 = Demo_EvalKeyC(fVar5,param_2 + 0x20);

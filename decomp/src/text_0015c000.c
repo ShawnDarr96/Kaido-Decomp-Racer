@@ -341,6 +341,8 @@ int PhysPair_GetOther(int *param_1,int param_2)
 }
 
 // 0x0015c660  size 0x124
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 float PhysPair_ComputeDistance(int *param_1)
 
 {
@@ -361,7 +363,7 @@ float PhysPair_ComputeDistance(int *param_1)
     fVar5 = (float)PhysBody_GetSleepTimer(*(undefined4 *)(iVar1 + 4));
     fVar6 = (float)PhysBody_GetSleepTimer(*(undefined4 *)(iVar2 + 4));
     if (fVar5 + fVar6 == 0.0) {
-      fVar5 = fRam0036f104 + fRam0036f100;
+      fVar5 = _g_PhysWorldShared2 + _g_PhysWorldShared1;
     }
     else {
       uVar3 = PhysShape_GetLocalB(*param_1 + 0x10);
@@ -370,11 +372,11 @@ float PhysPair_ComputeDistance(int *param_1)
       fVar7 = (float)Vec3_Length(auStack_10);
       fVar8 = (float)PhysShape_GetType(*(undefined4 *)(*param_1 + 8));
       fVar9 = (float)PhysShape_GetType(*(undefined4 *)(param_1[1] + 8));
-      fVar5 = fRam0036f104 + (fVar7 - (fVar8 + fVar9)) / (fVar5 + fVar6);
+      fVar5 = _g_PhysWorldShared2 + (fVar7 - (fVar8 + fVar9)) / (fVar5 + fVar6);
     }
   }
   else {
-    fVar5 = fRam0036f104 + fRam0036f100;
+    fVar5 = _g_PhysWorldShared2 + _g_PhysWorldShared1;
   }
   return fVar5;
 }

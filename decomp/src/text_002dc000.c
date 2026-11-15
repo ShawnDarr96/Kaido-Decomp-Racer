@@ -18,6 +18,8 @@ void PwInput_ResetSlots(int param_1,undefined8 param_2)
 }
 
 // 0x002dc730  size 0x20c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PwInput_SetupGrid(undefined4 *param_1,uint param_2,undefined4 param_3)
 
 {
@@ -35,30 +37,30 @@ void PwInput_SetupGrid(undefined4 *param_1,uint param_2,undefined4 param_3)
     uVar3 = uVar3 + 1;
     puVar2 = puVar2 + 0x13;
   } while (uVar3 < 3);
-  uVar1 = (*pcRam0036f8ac)(0xc4);
+  uVar1 = (*_g_NameEntryShared1)(0xc4);
   *param_1 = uVar1;
-  uVar1 = (*pcRam0036f8a8)(0x21c);
+  uVar1 = (*_g_PwInputShared1)(0x21c);
   param_1[0xd] = uVar1;
-  uVar1 = (*pcRam0036f8a8)(0x21d);
+  uVar1 = (*_g_PwInputShared1)(0x21d);
   param_1[0xe] = uVar1;
-  uVar1 = (*pcRam0036f8ac)(0xbf);
+  uVar1 = (*_g_NameEntryShared1)(0xbf);
   param_1[0x13] = uVar1;
-  uVar1 = (*pcRam0036f8a8)(0x215);
+  uVar1 = (*_g_PwInputShared1)(0x215);
   param_1[0x20] = uVar1;
-  uVar1 = (*pcRam0036f8a8)(0x216);
+  uVar1 = (*_g_PwInputShared1)(0x216);
   param_1[0x21] = uVar1;
   if (8 < (param_2 & 0xff)) {
-    uVar1 = (*pcRam0036f8ac)(0xbc);
+    uVar1 = (*_g_NameEntryShared1)(0xbc);
     *param_1 = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x100);
+    uVar1 = (*_g_PwInputShared1)(0x100);
     param_1[0xf] = uVar1;
     param_1[0x11] = 0xd;
-    uVar1 = (*pcRam0036f8a8)(0x101);
+    uVar1 = (*_g_PwInputShared1)(0x101);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x102);
+    uVar1 = (*_g_PwInputShared1)(0x102);
     param_1[0xe] = uVar1;
     param_1[4] = 0x15;
-    uVar1 = (*pcRam0036f8b0)(0x2c);
+    uVar1 = (*_g_NameEntryShared2)(0x2c);
     param_1[5] = uVar1;
   }
   uVar3 = (param_2 & 0xff) - 5;
@@ -66,27 +68,27 @@ void PwInput_SetupGrid(undefined4 *param_1,uint param_2,undefined4 param_3)
                     /* WARNING: Switch is manually overridden */
     switch(uVar3) {
     default:
-      uVar1 = (*pcRam0036f8ac)(0xc0);
+      uVar1 = (*_g_NameEntryShared1)(0xc0);
       param_1[0x26] = uVar1;
-      uVar1 = (*pcRam0036f8a8)(0x217);
+      uVar1 = (*_g_PwInputShared1)(0x217);
       param_1[0x33] = uVar1;
-      uVar1 = (*pcRam0036f8a8)(0x218);
+      uVar1 = (*_g_PwInputShared1)(0x218);
       param_1[0x34] = uVar1;
       break;
     case 2:
-      uVar1 = (*pcRam0036f8ac)(0xc2);
+      uVar1 = (*_g_NameEntryShared1)(0xc2);
       param_1[0x26] = uVar1;
-      uVar1 = (*pcRam0036f8a8)(0x219);
+      uVar1 = (*_g_PwInputShared1)(0x219);
       param_1[0x33] = uVar1;
-      uVar1 = (*pcRam0036f8a8)(0x21a);
+      uVar1 = (*_g_PwInputShared1)(0x21a);
       param_1[0x34] = uVar1;
       break;
     case 3:
-      uVar1 = (*pcRam0036f8ac)(0xc3);
+      uVar1 = (*_g_NameEntryShared1)(0xc3);
       param_1[0x26] = uVar1;
-      uVar1 = (*pcRam0036f8a8)(0x227);
+      uVar1 = (*_g_PwInputShared1)(0x227);
       param_1[0x33] = uVar1;
-      uVar1 = (*pcRam0036f8a8)(0x228);
+      uVar1 = (*_g_PwInputShared1)(0x228);
       param_1[0x34] = uVar1;
     }
   }
@@ -94,53 +96,55 @@ void PwInput_SetupGrid(undefined4 *param_1,uint param_2,undefined4 param_3)
 }
 
 // 0x002dc940  size 0x180
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PwInput_GetCharForKey(undefined4 *param_1,char param_2)
 
 {
   undefined4 uVar1;
   
   if (param_2 == '\x03') {
-    uVar1 = (*pcRam0036f8ac)(0xbb);
+    uVar1 = (*_g_NameEntryShared1)(0xbb);
     *param_1 = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0xfd);
+    uVar1 = (*_g_PwInputShared1)(0xfd);
     param_1[0xf] = uVar1;
     param_1[0x11] = 0xd;
     param_1[0x12] = 0x12;
-    uVar1 = (*pcRam0036f8a8)(0xfe);
+    uVar1 = (*_g_PwInputShared1)(0xfe);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0xff);
+    uVar1 = (*_g_PwInputShared1)(0xff);
     param_1[0xe] = uVar1;
     param_1[4] = 0x1b;
-    uVar1 = (*pcRam0036f8b0)(1);
+    uVar1 = (*_g_NameEntryShared2)(1);
     param_1[5] = uVar1;
     param_1[7] = 0x1d;
-    uVar1 = (*pcRam0036f8b0)(2);
+    uVar1 = (*_g_NameEntryShared2)(2);
     param_1[8] = uVar1;
   }
   else if (param_2 == '\x01') {
-    uVar1 = (*pcRam0036f8ac)(0xbc);
+    uVar1 = (*_g_NameEntryShared1)(0xbc);
     *param_1 = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x100);
+    uVar1 = (*_g_PwInputShared1)(0x100);
     param_1[0xf] = uVar1;
     param_1[0x11] = 0xd;
-    uVar1 = (*pcRam0036f8a8)(0x101);
+    uVar1 = (*_g_PwInputShared1)(0x101);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x102);
+    uVar1 = (*_g_PwInputShared1)(0x102);
     param_1[0xe] = uVar1;
     param_1[4] = 0x15;
-    uVar1 = (*pcRam0036f8b0)(0x2c);
+    uVar1 = (*_g_NameEntryShared2)(0x2c);
     param_1[5] = uVar1;
   }
   else if (param_2 == '\0') {
-    uVar1 = (*pcRam0036f8ac)(0xbd);
+    uVar1 = (*_g_NameEntryShared1)(0xbd);
     *param_1 = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x103);
+    uVar1 = (*_g_PwInputShared1)(0x103);
     param_1[0xf] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x104);
+    uVar1 = (*_g_PwInputShared1)(0x104);
     param_1[0x10] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x105);
+    uVar1 = (*_g_PwInputShared1)(0x105);
     param_1[0xd] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x106);
+    uVar1 = (*_g_PwInputShared1)(0x106);
     param_1[0xe] = uVar1;
     param_1[1] = 0x14;
   }
