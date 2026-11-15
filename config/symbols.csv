@@ -4900,11 +4900,11 @@ address,name,signature,source,comment
 0x002d46e0,maybe_GarageSort_Type0First,,game,+0x3c == 0 first (was maybe_GarageSort_ByClass)
 0x002d48e0,MenuObjSet_Free,,game,
 0x002d4940,MenuObjSet_Alloc,,game,
-0x002d49f0,maybe_MenuObjSet_GetObject,,game,
-0x002d4ae0,maybe_MenuObjSet_UpdateAll,,game,
-0x002d4d40,maybe_MenuObjSet_SetLights,,game,
-0x002d4f20,maybe_MenuObjSet_IsLoaded,,game,
-0x002d4fa0,maybe_MenuObjSet_FindByName,,game,
+0x002d49f0,MenuObjSet_GetObject,,game,"N153 confirmed: bounds-checked entry (0x1c bytes) of set n, if ready"
+0x002d4ae0,MenuObjSet_UpdateAll,,game,N153 confirmed: set 8 means every set (recursive)
+0x002d4d40,MenuObjSet_SetLights,,game,N153 confirmed: CarModel_SetBrakeLight / SetHeadLight on the entry
+0x002d4f20,MenuObjSet_IsLoaded,,game,N153 confirmed
+0x002d4fa0,MenuObjSet_FindByName,,game,N153 confirmed: Str_CompareN over the set's entries
 0x002d51f8,MenuObjSet_FindByName_Orphan1,,game,"follows MenuObjSet_FindByName; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002d5210,MenuObjSet_Step,,game,
 0x002d5230,MenuObj_Shutdown,,game,
@@ -4915,12 +4915,12 @@ address,name,signature,source,comment
 0x002d5c00,maybe_MenuObj_Release,,game,
 0x002d5ce0,maybe_MenuObj_Create,,game,
 0x002d5e40,MenuObj_IsReady,,game,
-0x002d5f40,maybe_GarageBg_DrawObjects,,game,
-0x002d6000,maybe_GarageBg_LoadChunk,,game,
+0x002d5f40,GarageBg_DrawObjects,,game,N153 confirmed: draws every visible object
+0x002d6000,GarageBg_LoadChunk,,game,N153 confirmed: Chunk_Find + Arc_LoadFileEx
 0x002d6090,GarageBg_Free,,game,
 0x002d60f0,GarageBg_Alloc,,game,
-0x002d6290,maybe_GarageBg_DrawObject,,game,
-0x002d6460,maybe_GarageBg_ResetObject,,game,
+0x002d6290,GarageBg_DrawObject,,game,"N153 confirmed: viewport, lights, layer, matrices"
+0x002d6460,GarageBg_ResetObject,,game,N153 confirmed: releases and reinitialises the object
 0x002d64c0,maybe_GarageBg_OnLoaded,,game,
 0x002d65e0,Quat_Identity,,game,
 0x002d6610,maybe_MenuCar_GetSpinPose,,game,

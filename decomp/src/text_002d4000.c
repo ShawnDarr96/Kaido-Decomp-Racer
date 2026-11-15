@@ -288,8 +288,9 @@ void MenuObjSet_Alloc(uint param_1,int param_2)
 
 // 0x002d49f0  size 0xe4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: bounds-checked entry (0x1c bytes) of set n, if ready */
 
-undefined4 maybe_MenuObjSet_GetObject(byte param_1,int param_2)
+undefined4 MenuObjSet_GetObject(byte param_1,int param_2)
 
 {
   char cVar1;
@@ -326,8 +327,9 @@ undefined4 maybe_MenuObjSet_GetObject(byte param_1,int param_2)
 
 // 0x002d4ae0  size 0x250
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: set 8 means every set (recursive) */
 
-void maybe_MenuObjSet_UpdateAll(ulong param_1)
+void MenuObjSet_UpdateAll(ulong param_1)
 
 {
   int iVar1;
@@ -351,7 +353,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
               if (uVar2 == 8) {
                 uVar2 = 0;
                 do {
-                  maybe_MenuObjSet_UpdateAll(uVar2 & 0xff);
+                  MenuObjSet_UpdateAll(uVar2 & 0xff);
                   uVar2 = uVar2 + 1;
                 } while ((int)uVar2 < 8);
               }
@@ -360,7 +362,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
                 iVar3 = 0;
                 if (0 < *(int *)(iVar1 + 0xc)) {
                   do {
-                    maybe_MenuObjSet_SetLights(uVar2,iVar3,0,0);
+                    MenuObjSet_SetLights(uVar2,iVar3,0,0);
                     iVar3 = iVar3 + 1;
                   } while (iVar3 < *(int *)(iVar1 + 0xc));
                 }
@@ -373,7 +375,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
             iVar3 = 0;
             if (0 < *(int *)(iVar1 + 0xc)) {
               do {
-                maybe_MenuObjSet_SetLights(uVar4,iVar3,0,0);
+                MenuObjSet_SetLights(uVar4,iVar3,0,0);
                 iVar3 = iVar3 + 1;
               } while (iVar3 < *(int *)(iVar1 + 0xc));
             }
@@ -386,7 +388,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
         iVar3 = 0;
         if (0 < *(int *)(iVar1 + 0xc)) {
           do {
-            maybe_MenuObjSet_SetLights(uVar6 & 0xff,iVar3,0,0);
+            MenuObjSet_SetLights(uVar6 & 0xff,iVar3,0,0);
             iVar3 = iVar3 + 1;
           } while (iVar3 < *(int *)(iVar1 + 0xc));
         }
@@ -399,7 +401,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
     iVar3 = 0;
     if (0 < *(int *)(iVar1 + 0xc)) {
       do {
-        maybe_MenuObjSet_SetLights(param_1,iVar3,0,0);
+        MenuObjSet_SetLights(param_1,iVar3,0,0);
         iVar3 = iVar3 + 1;
       } while (iVar3 < *(int *)(iVar1 + 0xc));
     }
@@ -409,8 +411,9 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
 
 // 0x002d4d40  size 0x1e0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: CarModel_SetBrakeLight / SetHeadLight on the entry */
 
-void maybe_MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8 param_4)
+void MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8 param_4)
 
 {
   char cVar1;
@@ -458,8 +461,9 @@ void maybe_MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8
 
 // 0x002d4f20  size 0x7c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed */
 
-undefined8 maybe_MenuObjSet_IsLoaded(uint param_1,int param_2)
+undefined8 MenuObjSet_IsLoaded(uint param_1,int param_2)
 
 {
   int iVar1;
@@ -483,8 +487,9 @@ undefined8 maybe_MenuObjSet_IsLoaded(uint param_1,int param_2)
 
 // 0x002d4fa0  size 0x24c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: Str_CompareN over the set's entries */
 
-undefined4 maybe_MenuObjSet_FindByName(uint param_1,int param_2,undefined8 param_3)
+undefined4 MenuObjSet_FindByName(uint param_1,int param_2,undefined8 param_3)
 
 {
   bool bVar1;
@@ -1088,7 +1093,7 @@ void maybe_MenuObj_Release(byte *param_1)
       CarModel_Release(*(undefined4 *)(param_1 + 0x10));
       break;
     case 6:
-      maybe_GarageBg_ResetObject(*(undefined4 *)(param_1 + 0x10));
+      GarageBg_ResetObject(*(undefined4 *)(param_1 + 0x10));
       break;
     case 7:
       maybe_ShowroomBg_ResetObject(*(undefined4 *)(param_1 + 0x10));
@@ -1154,7 +1159,7 @@ undefined4 maybe_MenuObj_Create(byte *param_1,undefined8 param_2,undefined8 para
       *(undefined4 *)(param_1 + 0x10) = uVar2;
       break;
     case 6:
-      uVar2 = maybe_GarageBg_LoadChunk(param_2);
+      uVar2 = GarageBg_LoadChunk(param_2);
       *(undefined4 *)(param_1 + 0x10) = uVar2;
       break;
     case 7:
@@ -1224,8 +1229,9 @@ ulong MenuObj_IsReady(byte *param_1)
 
 // 0x002d5f40  size 0xb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: draws every visible object */
 
-void maybe_GarageBg_DrawObjects(void)
+void GarageBg_DrawObjects(void)
 
 {
   int iVar1;
@@ -1242,7 +1248,7 @@ void maybe_GarageBg_DrawObjects(void)
       uStack_10 = 0;
       uStack_c = 0;
       uStack_8 = 0;
-      maybe_GarageBg_DrawObject(iVar2,&uStack_10);
+      GarageBg_DrawObject(iVar2,&uStack_10);
       *(uint *)(iVar2 + 0x28) = *(uint *)(iVar2 + 0x28) & 0xfffffff3;
     }
     iVar2 = iVar2 + 0xb0;
@@ -1251,7 +1257,9 @@ void maybe_GarageBg_DrawObjects(void)
 }
 
 // 0x002d6000  size 0x90
-long maybe_GarageBg_LoadChunk(int param_1)
+/* N153 confirmed: Chunk_Find + Arc_LoadFileEx */
+
+long GarageBg_LoadChunk(int param_1)
 
 {
   undefined4 uVar1;
@@ -1339,7 +1347,9 @@ void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
 }
 
 // 0x002d6290  size 0x1c4
-void maybe_GarageBg_DrawObject(int param_1,undefined1 *param_2)
+/* N153 confirmed: viewport, lights, layer, matrices */
+
+void GarageBg_DrawObject(int param_1,undefined1 *param_2)
 
 {
   undefined8 uVar1;
@@ -1389,7 +1399,9 @@ void maybe_GarageBg_DrawObject(int param_1,undefined1 *param_2)
 }
 
 // 0x002d6460  size 0x54
-void maybe_GarageBg_ResetObject(int param_1)
+/* N153 confirmed: releases and reinitialises the object */
+
+void GarageBg_ResetObject(int param_1)
 
 {
   maybe_Obj_ReleaseRef();
@@ -1537,7 +1549,7 @@ void maybe_GarageBg_Draw(void)
       iVar4 = iVar4 + 1;
     } while (iVar4 < *(int *)(iVar1 + 0x84));
   }
-  maybe_GarageBg_DrawObjects();
+  GarageBg_DrawObjects();
   return;
 }
 

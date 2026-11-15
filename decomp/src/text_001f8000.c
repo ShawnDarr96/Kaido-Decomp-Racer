@@ -651,17 +651,17 @@ void MenuCar_Draw(int *param_1)
   undefined1 auStack_10c [268];
   
   lVar4 = 0;
-  maybe_MenuObjSet_UpdateAll(8);
+  MenuObjSet_UpdateAll(8);
   if (*(char *)((int)param_1 + 0xd) != (char)param_1[3]) {
     *(char *)((int)param_1 + 0xd) = (char)param_1[3];
     param_1[10] = 0x1e;
   }
   uStack_110 = (uint)*(byte *)(param_1 + 3);
   MenuObjSet_Step(7,1,&uStack_110);
-  lVar2 = maybe_MenuObjSet_FindByName(7,uStack_110,auStack_10c);
-  bVar1 = maybe_MenuObjSet_IsLoaded(7,lVar2);
+  lVar2 = MenuObjSet_FindByName(7,uStack_110,auStack_10c);
+  bVar1 = MenuObjSet_IsLoaded(7,lVar2);
   if (2 < bVar1) {
-    lVar4 = maybe_MenuObjSet_GetObject(7,lVar2);
+    lVar4 = MenuObjSet_GetObject(7,lVar2);
   }
   if ((lVar4 == 0) || (lVar2 < 0)) {
     param_1[7] = 0;
@@ -688,7 +688,7 @@ void MenuCar_Draw(int *param_1)
     iStack_4e0 = param_1[4];
     iStack_4dc = param_1[5];
     iStack_4d8 = param_1[6];
-    maybe_MenuObjSet_SetLights(7,lVar2,1,auStack_500);
+    MenuObjSet_SetLights(7,lVar2,1,auStack_500);
     maybe_ShowroomBg_Draw();
   }
   return;
@@ -748,16 +748,16 @@ void MenuCar_DrawSpin(int *param_1)
   undefined1 auStack_10c [268];
   
   lVar5 = 0;
-  maybe_MenuObjSet_UpdateAll(8);
+  MenuObjSet_UpdateAll(8);
   if ((param_1[1] != *param_1) && (param_1[2] == 0)) {
     param_1[6] = 0x1e;
   }
   iStack_110 = *param_1;
   MenuObjSet_Step(6,1,&iStack_110);
-  lVar2 = maybe_MenuObjSet_FindByName(6,iStack_110,auStack_10c);
-  bVar1 = maybe_MenuObjSet_IsLoaded(6,lVar2);
+  lVar2 = MenuObjSet_FindByName(6,iStack_110,auStack_10c);
+  bVar1 = MenuObjSet_IsLoaded(6,lVar2);
   if (2 < bVar1) {
-    lVar5 = maybe_MenuObjSet_GetObject(6,lVar2);
+    lVar5 = MenuObjSet_GetObject(6,lVar2);
   }
   if ((lVar5 == 0) || (lVar2 < 0)) {
     param_1[8] = 0;
@@ -823,7 +823,7 @@ void MenuCar_DrawSpin(int *param_1)
         }
         iStack_4fc = param_1[8];
       }
-      maybe_MenuObjSet_SetLights(6,lVar2,1,auStack_500);
+      MenuObjSet_SetLights(6,lVar2,1,auStack_500);
       maybe_GarageBg_Draw();
     }
   }
@@ -893,7 +893,7 @@ void MenuCar_Setup(byte *param_1)
   iVar16 = 0;
   bVar2 = true;
   iStack_10a4 = 0;
-  maybe_MenuObjSet_UpdateAll(8);
+  MenuObjSet_UpdateAll(8);
   puStack_10c0 = auStack_870;
   puVar14 = auStack_e90;
   piVar17 = aiStack_eb0;
@@ -929,9 +929,9 @@ void MenuCar_Setup(byte *param_1)
   else {
     puVar6 = auStack_ed0;
     do {
-      uVar4 = maybe_MenuObjSet_FindByName(0,*puVar14,puVar14 + 1);
+      uVar4 = MenuObjSet_FindByName(0,*puVar14,puVar14 + 1);
       *puVar6 = uVar4;
-      bVar3 = maybe_MenuObjSet_IsLoaded(0,*puVar6);
+      bVar3 = MenuObjSet_IsLoaded(0,*puVar6);
       if (bVar3 < 3) {
         bVar2 = false;
       }
@@ -964,11 +964,11 @@ void MenuCar_Setup(byte *param_1)
     iStack_fe0 = iStack_fe0 + 1;
   }
   MenuObjSet_Step(5,1,&iStack_fe0);
-  uVar5 = maybe_MenuObjSet_FindByName(5,iStack_fe0,auStack_fdc);
-  bVar3 = maybe_MenuObjSet_IsLoaded(5,uVar5);
+  uVar5 = MenuObjSet_FindByName(5,iStack_fe0,auStack_fdc);
+  bVar3 = MenuObjSet_IsLoaded(5,uVar5);
   bVar1 = 2 < bVar3;
   if (bVar1) {
-    iStack_10a4 = maybe_MenuObjSet_GetObject(5,(int)uVar5);
+    iStack_10a4 = MenuObjSet_GetObject(5,(int)uVar5);
   }
   if ((bVar2) && (bVar1)) {
     param_1[4] = 1;
@@ -1044,7 +1044,7 @@ void MenuCar_Setup(byte *param_1)
             uStack_70 = 1;
             auStack_3f0[0] = auStack_3f0[0] | 4;
           }
-          maybe_MenuObjSet_SetLights(0,*puStack_10e0,1,auStack_3f0);
+          MenuObjSet_SetLights(0,*puStack_10e0,1,auStack_3f0);
           iVar11 = iVar11 + 1;
           puStack_10c0 = puStack_10c0 + 0xb8;
           puStack_10d0 = puStack_10d0 + 4;
@@ -1058,7 +1058,7 @@ void MenuCar_Setup(byte *param_1)
         iStack_3cc = iStack_3cc + 1;
       }
       iStack_3cc = iStack_3cc >> 1;
-      maybe_MenuObjSet_SetLights(5,(int)uVar5,1,auStack_3f0);
+      MenuObjSet_SetLights(5,(int)uVar5,1,auStack_3f0);
     }
     if (((*(int *)(param_1 + 0x3c) != 0) && (bVar2)) && (bVar1)) {
       Garage3d_SetMode(DAT_00327058);
@@ -1167,10 +1167,10 @@ void MenuCar_Render(undefined4 *param_1)
   
   lVar28 = 0;
   uStack_16b0 = 0;
-  maybe_MenuObjSet_UpdateAll(8);
+  MenuObjSet_UpdateAll(8);
   uStack_530 = 0;
   MenuObjSet_Step(4,1,&uStack_530);
-  uVar15 = maybe_MenuObjSet_FindByName(4,uStack_530,auStack_52c);
+  uVar15 = MenuObjSet_FindByName(4,uStack_530,auStack_52c);
   SceneObj_SetDefaultColor(&uStack_420);
   uStack_420 = DAT_00327028;
   uStack_418 = DAT_00327030;
@@ -1178,7 +1178,7 @@ void MenuCar_Render(undefined4 *param_1)
   uStack_408 = DAT_00327040;
   uStack_400 = DAT_00327048;
   uStack_3f8 = DAT_00327050;
-  maybe_MenuObjSet_SetLights(4,uVar15,1,&uStack_420);
+  MenuObjSet_SetLights(4,uVar15,1,&uStack_420);
   iVar12 = param_1[1];
   if (iVar12 == 3) {
     MenuCar_BuildRivalPreview(&uStack_18,auStack_5f0,3,param_1[3],param_1[2]);
@@ -1195,11 +1195,11 @@ void MenuCar_Render(undefined4 *param_1)
   MenuCar_ApplyPartPreview(auStack_6fc,uStack_18,sStack_16,auStack_5f0,param_1[0x18]);
   uStack_700 = uStack_6f0;
   MenuObjSet_Step(0,1,&uStack_700);
-  uVar15 = maybe_MenuObjSet_FindByName(0,uStack_700,auStack_6fc);
+  uVar15 = MenuObjSet_FindByName(0,uStack_700,auStack_6fc);
   iVar12 = (int)uVar15;
-  bVar9 = maybe_MenuObjSet_IsLoaded(0,uVar15);
+  bVar9 = MenuObjSet_IsLoaded(0,uVar15);
   if (2 < bVar9) {
-    lVar28 = maybe_MenuObjSet_GetObject(0,iVar12);
+    lVar28 = MenuObjSet_GetObject(0,iVar12);
   }
   iVar14 = (int)lVar28;
   if ((lVar28 != 0) && ((param_1[1] == 0 || (param_1[1] == 2)))) {
@@ -1334,10 +1334,10 @@ void MenuCar_Render(undefined4 *param_1)
     piVar32 = piVar27;
     piVar33 = piVar30;
     do {
-      iVar13 = maybe_MenuObjSet_FindByName(1,*puVar22,puVar22 + 1);
+      iVar13 = MenuObjSet_FindByName(1,*puVar22,puVar22 + 1);
       uVar11 = *puVar31;
       *piVar32 = iVar13;
-      iVar13 = maybe_MenuObjSet_FindByName(2,uVar11,puVar31 + 1);
+      iVar13 = MenuObjSet_FindByName(2,uVar11,puVar31 + 1);
       iVar26 = iVar26 + 1;
       *piVar33 = iVar13;
       puVar22 = puVar22 + 0x41;
@@ -1348,8 +1348,8 @@ void MenuCar_Render(undefined4 *param_1)
     uVar24 = 0;
     do {
       if (((uStack_16b0 & 1 << (uVar24 & 0x1f)) != 0) &&
-         ((bVar9 = maybe_MenuObjSet_IsLoaded(1,*piVar27), bVar9 < 3 ||
-          (bVar9 = maybe_MenuObjSet_IsLoaded(2,*piVar30), bVar9 < 3)))) {
+         ((bVar9 = MenuObjSet_IsLoaded(1,*piVar27), bVar9 < 3 ||
+          (bVar9 = MenuObjSet_IsLoaded(2,*piVar30), bVar9 < 3)))) {
         uStack_16b0 = 0;
         break;
       }
@@ -1362,27 +1362,27 @@ void MenuCar_Render(undefined4 *param_1)
     aiStack_f10[0] = iVar12;
     if (aiStack_28[2] == aiStack_28[3]) {
       aiStack_f10[1] = 3;
-      maybe_MenuObjSet_SetLights(1,aiStack_28[2],1,aiStack_f10);
+      MenuObjSet_SetLights(1,aiStack_28[2],1,aiStack_f10);
     }
     else {
       aiStack_f10[1] = 1;
-      maybe_MenuObjSet_SetLights(1,aiStack_28[2],1,aiStack_f10);
+      MenuObjSet_SetLights(1,aiStack_28[2],1,aiStack_f10);
       aiStack_f10[1] = 2;
       aiStack_f10[0] = iVar12;
-      maybe_MenuObjSet_SetLights(1,aiStack_28[3],1,aiStack_f10);
+      MenuObjSet_SetLights(1,aiStack_28[3],1,aiStack_f10);
     }
     aiStack_1300[0] = iVar12;
     if (aiStack_28[0] == aiStack_28[1]) {
       aiStack_1300[1] = 3;
-      maybe_MenuObjSet_SetLights(2,aiStack_28[0],1,aiStack_1300);
+      MenuObjSet_SetLights(2,aiStack_28[0],1,aiStack_1300);
       iVar26 = param_1[0x1a];
       goto LAB_001fa01c;
     }
     aiStack_1300[1] = 1;
-    maybe_MenuObjSet_SetLights(2,aiStack_28[0],1,aiStack_1300);
+    MenuObjSet_SetLights(2,aiStack_28[0],1,aiStack_1300);
     aiStack_1300[1] = 2;
     aiStack_1300[0] = iVar12;
-    maybe_MenuObjSet_SetLights(2,aiStack_28[1],1,aiStack_1300);
+    MenuObjSet_SetLights(2,aiStack_28[1],1,aiStack_1300);
   }
   iVar26 = param_1[0x1a];
 LAB_001fa01c:
@@ -1508,7 +1508,7 @@ LAB_001fa01c:
         }
       }
       maybe_Vu0_RotMatrixY(param_1[0x1d],&uStack_410,&uStack_410);
-      maybe_MenuObjSet_SetLights(0,iVar12,1,&uStack_420);
+      MenuObjSet_SetLights(0,iVar12,1,&uStack_420);
     }
     *param_1 = 1;
   }
@@ -2060,25 +2060,25 @@ void MenuMgr_PopScreen(void)
     case 1:
       g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
       pMVar1 = g_MenuMgr;
-      maybe_MenuObjSet_UpdateAll(8);
+      MenuObjSet_UpdateAll(8);
       pMVar1->unk_05a4 = 3;
       break;
     case 2:
       g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
       pMVar1 = g_MenuMgr;
-      maybe_MenuObjSet_UpdateAll(8);
+      MenuObjSet_UpdateAll(8);
       pMVar1->unk_05e4 = 3;
       break;
     case 3:
       g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
       pMVar1 = g_MenuMgr;
-      maybe_MenuObjSet_UpdateAll(8);
+      MenuObjSet_UpdateAll(8);
       pMVar1->unk_0604 = 3;
       break;
     case 4:
       g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
       pMVar1 = g_MenuMgr;
-      maybe_MenuObjSet_UpdateAll(8);
+      MenuObjSet_UpdateAll(8);
       pMVar1->unk_0638 = 3;
       break;
     case 5:
