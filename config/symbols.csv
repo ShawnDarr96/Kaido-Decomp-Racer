@@ -2027,6 +2027,7 @@ address,name,signature,source,comment
 0x00185030,Cam_SetPitch,,game,10 callers
 0x00185170,Cam_DistanceTo,,game,
 0x001851b0,Cam_SetTarget,,game,
+0x00185310,Loading_GetCourseImageIndex,,game,"(course 0-7, flag) -> 2*course + flag; flag is GameState_Get_1 (probably direction)"
 0x00185410,Cam_UpdateReplay,,game,
 0x001858c0,Cam_ComputeReplayOffset,,game,
 0x00185a00,Cam_GetCarAttachPoint,,game,

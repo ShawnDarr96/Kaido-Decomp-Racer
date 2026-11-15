@@ -565,6 +565,81 @@ void Cam_SetTarget(undefined8 param_1,long param_2)
   return;
 }
 
+// 0x00185310  size 0xf4
+/* (course 0-7, flag) -> 2*course + flag; flag is GameState_Get_1 (probably direction) */
+
+undefined4 Loading_GetCourseImageIndex(byte param_1,char param_2)
+
+{
+  undefined4 uVar1;
+  
+  if (param_2 == '\0') {
+    if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_1) {
+      case 0:
+        uVar1 = 0;
+        break;
+      case 1:
+        uVar1 = 2;
+        break;
+      case 2:
+        uVar1 = 4;
+        break;
+      case 3:
+        uVar1 = 6;
+        break;
+      case 4:
+        uVar1 = 8;
+        break;
+      case 5:
+        uVar1 = 10;
+        break;
+      case 6:
+        uVar1 = 0xc;
+        break;
+      case 7:
+        uVar1 = 0xe;
+      }
+    }
+    else {
+      uVar1 = 0;
+    }
+  }
+  else if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      uVar1 = 1;
+      break;
+    case 1:
+      uVar1 = 3;
+      break;
+    case 2:
+      uVar1 = 5;
+      break;
+    case 3:
+      uVar1 = 7;
+      break;
+    case 4:
+      uVar1 = 9;
+      break;
+    case 5:
+      uVar1 = 0xb;
+      break;
+    case 6:
+      uVar1 = 0xd;
+      break;
+    case 7:
+      uVar1 = 0xf;
+    }
+  }
+  else {
+    uVar1 = 0;
+  }
+  return uVar1;
+}
+
 // 0x00185410  size 0x4a8
 void Cam_UpdateReplay(short *param_1,undefined8 param_2,undefined4 param_3)
 

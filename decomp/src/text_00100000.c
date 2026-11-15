@@ -734,16 +734,13 @@ void maybe___call_static_initializers
 void __ptmf_scall(int param_1)
 
 {
-  code *UNRECOVERED_JUMPTABLE;
+  code *pcVar1;
   
-  UNRECOVERED_JUMPTABLE = (code *)&LAB_8f390008;
+  pcVar1 = (code *)&SUB_8f390008;
   if (-1 < __ptmf_scall) {
-    UNRECOVERED_JUMPTABLE =
-         *(code **)(*(int *)(&LAB_8f390008 + param_1 + ___ptmf_scall) + __ptmf_scall);
+    pcVar1 = *(code **)(*(int *)(&SUB_8f390008 + param_1 + ___ptmf_scall) + __ptmf_scall);
   }
-                    /* WARNING: Could not recover jumptable at 0x001011ac. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*UNRECOVERED_JUMPTABLE)();
+  (*pcVar1)();
   return;
 }
 
@@ -1593,12 +1590,10 @@ LAB_001025bc:
 }
 
 // 0x001026a0  size 0x64
-void maybe___JumpToHandler(undefined8 param_1,undefined8 param_2,code *UNRECOVERED_JUMPTABLE)
+void maybe___JumpToHandler(undefined8 param_1,undefined8 param_2,code *param_3)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x001026fc. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*UNRECOVERED_JUMPTABLE)();
+  (*param_3)();
   return;
 }
 

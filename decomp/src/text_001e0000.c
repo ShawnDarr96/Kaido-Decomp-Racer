@@ -1206,7 +1206,7 @@ void RaceTask_BeginLoading(int param_1)
   uRam0036f1f8 = (uint)(cVar2 == '\r');
   uVar3 = GameState_Get_0();
   uVar4 = GameState_Get_1();
-  uVar3 = func_0x00185310(uVar3,uVar4);
+  uVar3 = Loading_GetCourseImageIndex(uVar3,uVar4);
   Loading_LoadScreenImage(uVar3);
   puVar1[2] = 0;
   *puVar1 = 0;

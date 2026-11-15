@@ -861,8 +861,6 @@ int Phys_AddBody(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 void PhysShape_CallVirtual(void)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x001596b8. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
   (*pcRam0042f3c4)();
   return;
 }
@@ -1111,8 +1109,6 @@ void PhysContact_Apply(undefined8 param_1)
 void PhysShape_GetKind(undefined4 *param_1)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00159b2c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
   (**(code **)(*(int *)*param_1 + 0x18))();
   return;
 }

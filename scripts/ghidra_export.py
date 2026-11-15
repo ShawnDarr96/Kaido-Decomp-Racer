@@ -44,6 +44,7 @@ def main():
             create_extra_functions(program)
             remove_fragment_functions(program)
             apply_jumptables(program)
+            apply_flow_overrides(program)
             apply_globals(program)
             apply_symbols(program)
             if args.auto_names:
@@ -161,6 +162,26 @@ def apply_jumptables(program):
             print(f"  jumptable 0x{jr.getOffset():08x}: {e}", flush=True)
             bad += 1
     print(f"applied {n} jump tables ({bad} problems)", flush=True)
+
+
+def apply_flow_overrides(program):
+    """Mark the indirect jumps in config/flow_overrides.txt as tail calls (CALL_RETURN)."""
+    from ghidra.program.model.listing import FlowOverride
+    path = ROOT / "config" / "flow_overrides.txt"
+    if not path.exists():
+        return
+    af = program.getAddressFactory().getDefaultAddressSpace()
+    listing = program.getListing()
+    n = 0
+    for line in path.read_text().splitlines():
+        a = line.split("#")[0].strip()
+        if not a:
+            continue
+        ins = listing.getInstructionAt(af.getAddress(int(a, 16)))
+        if ins is not None:
+            ins.setFlowOverride(FlowOverride.CALL_RETURN)
+            n += 1
+    print(f"applied {n} flow overrides", flush=True)
 
 
 def create_extra_functions(program):

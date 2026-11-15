@@ -2026,6 +2026,7 @@ Cam_SetYaw = 0x00184F60; // type:func size:0xd0
 Cam_SetPitch = 0x00185030; // type:func size:0x13c
 Cam_DistanceTo = 0x00185170; // type:func size:0x34
 Cam_SetTarget = 0x001851B0; // type:func size:0x15c
+Loading_GetCourseImageIndex = 0x00185310; // type:func size:0xf4
 Cam_UpdateReplay = 0x00185410; // type:func size:0x4a8
 Cam_ComputeReplayOffset = 0x001858C0; // type:func size:0x140
 Cam_GetCarAttachPoint = 0x00185A00; // type:func size:0x148

@@ -1026,8 +1026,6 @@ undefined4 Engine_GetField_47c(int param_1)
 void maybe_EngineObj_SetBitB(int param_1,uint param_2)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00141a50. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
   (**(code **)(*(int *)(param_1 + 4) + 0xc))(param_1,1 << (param_2 & 0x1f));
   return;
 }

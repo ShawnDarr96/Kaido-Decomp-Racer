@@ -2027,6 +2027,7 @@ address,size,name,file,status
 0x00185030,0x13c,Cam_SetPitch,src/text_00184000.c,decompiled
 0x00185170,0x34,Cam_DistanceTo,src/text_00184000.c,decompiled
 0x001851b0,0x15c,Cam_SetTarget,src/text_00184000.c,decompiled
+0x00185310,0xf4,Loading_GetCourseImageIndex,src/text_00184000.c,decompiled
 0x00185410,0x4a8,Cam_UpdateReplay,src/text_00184000.c,decompiled
 0x001858c0,0x140,Cam_ComputeReplayOffset,src/text_00184000.c,decompiled
 0x00185a00,0x148,Cam_GetCarAttachPoint,src/text_00184000.c,decompiled

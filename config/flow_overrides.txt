@@ -1,0 +1,7 @@
+# Indirect jumps that are tail calls, not switches: the export marks them CALL_RETURN.
+0x001011ac  # __ptmf_scall: jr t9 to the pointer-to-member target
+0x001026fc  # maybe___JumpToHandler: restores registers, jr a2 to the saved handler
+0x00137930  # maybe_EngineObj_SetBit: tail call through vtable slot 0xc
+0x00141a50  # maybe_EngineObj_SetBitB: tail call through vtable slot 0xc
+0x001596b8  # PhysShape_CallVirtual: tail call through a function pointer at 0x42f3c4
+0x00159b2c  # PhysShape_GetKind: tail call through vtable slot 0x18

@@ -2292,8 +2292,6 @@ undefined4 Pad_SetActuator(int param_1,byte param_2,byte param_3,uint param_4)
 void maybe_EngineObj_SetBit(int param_1,uint param_2)
 
 {
-                    /* WARNING: Could not recover jumptable at 0x00137930. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
   (**(code **)(*(int *)(param_1 + 4) + 0xc))(param_1,1 << (param_2 & 0x1f));
   return;
 }
