@@ -1978,7 +1978,7 @@ address,name,signature,source,comment
 0x00183030,Controls_BuildAxisMap,,game,
 0x001830d0,Options_SetDefaultsSound,,game,
 0x00183110,Options_SetDefaultsDisplay,,game,
-0x001831b0,Options_GetInstance,,game,returns g_Options itself (was maybe_Options_GetLanguage)
+0x001831b0,Options_GetInstance,,game,returns g_Options itself; 19 callers (was maybe_Options_GetLanguage)
 0x001831c0,Options_SetDefaults,,game,
 0x00183300,Options_SetDefaultsVolume,,game,
 0x00183320,Options_SetDefaultsGame,,game,
