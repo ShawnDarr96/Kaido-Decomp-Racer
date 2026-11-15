@@ -24,7 +24,7 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  | done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm; done: car input batch reviewed (6 names fixed/confirmed); left: ~1460 maybe_ names; done: 14 names reviewed so far (car inputs, sound, race task); left: ~1455 maybe_ names; done: 21 names reviewed (car inputs, sound, race task, garage sort); left: ~1450 maybe_ names; done: 35 names reviewed (fixes + confirmations); left: maybe_ count in symbols.csv; done: 52 names reviewed; left: 1437 maybe_ names |
+| N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  | ShawnDarr96/claude (2026-11-14) | done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm; done: car input batch reviewed (6 names fixed/confirmed); left: ~1460 maybe_ names; done: 14 names reviewed so far (car inputs, sound, race task); left: ~1455 maybe_ names; done: 21 names reviewed (car inputs, sound, race task, garage sort); left: ~1450 maybe_ names; done: 35 names reviewed (fixes + confirmations); left: maybe_ count in symbols.csv; done: 52 names reviewed; left: 1437 maybe_ names |
 | N154 | 25 layout-only menu pages (MenuPageNN_*) are named by table slot only; identify them from their UI layouts | any |  |  | Gap of N132 |
 
 ## P2 Types
@@ -308,3 +308,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: N153 released: done: 35 names reviewed (fixes + confirmations); left: maybe_ count in symbols.csv
 - 2026-11-14 ShawnDarr96/claude: claim N153.
 - 2026-11-14 ShawnDarr96: N153 released: done: 52 names reviewed; left: 1437 maybe_ names
+- 2026-11-14 ShawnDarr96/claude: claim N153.
