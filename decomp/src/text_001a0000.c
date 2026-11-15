@@ -1694,7 +1694,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   return;
 }
 
-// 0x001a3250  size 0x480
+// 0x001a3250  size 0x474
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int param_4)
@@ -1838,6 +1838,16 @@ LAB_001a3634:
   return;
 }
 
+// 0x001a36d0  size 0xc
+/* follows Course_DrawLensFlare; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Course_DrawLensFlare_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001a36e0  size 0x13c
 void Course_DrawView(undefined1 *param_1,undefined8 param_2)
 
@@ -1874,7 +1884,7 @@ void Course_DrawView(undefined1 *param_1,undefined8 param_2)
   return;
 }
 
-// 0x001a3820  size 0xf18
+// 0x001a3820  size 0xef0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Course_Render(int param_1)

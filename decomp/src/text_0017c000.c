@@ -2291,7 +2291,7 @@ void RaceResult_Begin(uint param_1)
   return;
 }
 
-// 0x0017ece0  size 0xbd0
+// 0x0017ece0  size 0xbc0
 /* WARNING: Removing unreachable block (ram,0x0017f750) */
 
 void RaceResult_Compute(int param_1)
@@ -2843,6 +2843,16 @@ code_r0x0017f66c:
   psVar20 = psVar20 + 1;
   if (5 < iVar9) goto LAB_0017f008;
   goto LAB_0017f3b8;
+}
+
+// 0x0017f8b0  size 0x10
+/* follows RaceResult_Compute; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceResult_Compute_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0017f8c0  size 0x464

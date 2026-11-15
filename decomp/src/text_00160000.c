@@ -819,7 +819,7 @@ void PhysWorld_SolveIslands(undefined8 param_1)
   return;
 }
 
-// 0x00161d20  size 0x57c
+// 0x00161d20  size 0x56c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void PhysWorld_SolveIsland(int param_1,uint *param_2,uint param_3)
@@ -1062,6 +1062,16 @@ LAB_00161e50:
       puVar1 = puVar1 + 0x10;
     } while (uVar13 < uVar11);
   }
+  return;
+}
+
+// 0x0016229c  size 0x10
+/* follows PhysWorld_SolveIsland; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void PhysWorld_SolveIsland_Orphan1(void)
+
+{
   return;
 }
 
@@ -1910,7 +1920,7 @@ void Quat_FromAxisAngle(float param_1,float *param_2,float *param_3)
     param_2[3] = 1.0;
   }
   else {
-    fVar1 = (float)cosf(param_1 * 0.5);
+    fVar1 = cosf(param_1 * 0.5);
     fVar2 = (float)sinf(param_1 * 0.5);
     *param_2 = fVar1 * *param_3;
     param_2[1] = fVar1 * param_3[1];
@@ -1924,30 +1934,30 @@ void Quat_FromAxisAngle(float param_1,float *param_2,float *param_3)
 undefined8 Quat_FromAxisIndex(float param_1,undefined8 param_2,char param_3)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
+  float *pfVar1;
+  float fVar2;
+  float fVar3;
   
-  uVar2 = cosf(param_1 * 0.5);
-  uVar3 = sinf(param_1 * 0.5);
-  puVar1 = (undefined4 *)param_2;
+  fVar2 = cosf(param_1 * 0.5);
+  fVar3 = (float)sinf(param_1 * 0.5);
+  pfVar1 = (float *)param_2;
   if (param_3 == '\x02') {
-    *puVar1 = 0;
-    puVar1[1] = 0;
-    puVar1[2] = uVar2;
-    puVar1[3] = uVar3;
+    *pfVar1 = 0.0;
+    pfVar1[1] = 0.0;
+    pfVar1[2] = fVar2;
+    pfVar1[3] = fVar3;
   }
   else if (param_3 == '\x01') {
-    *puVar1 = 0;
-    puVar1[1] = uVar2;
-    puVar1[2] = 0;
-    puVar1[3] = uVar3;
+    *pfVar1 = 0.0;
+    pfVar1[1] = fVar2;
+    pfVar1[2] = 0.0;
+    pfVar1[3] = fVar3;
   }
   else if (param_3 == '\0') {
-    *puVar1 = uVar2;
-    puVar1[1] = 0;
-    puVar1[2] = 0;
-    puVar1[3] = uVar3;
+    *pfVar1 = fVar2;
+    pfVar1[1] = 0.0;
+    pfVar1[2] = 0.0;
+    pfVar1[3] = fVar3;
   }
   return param_2;
 }

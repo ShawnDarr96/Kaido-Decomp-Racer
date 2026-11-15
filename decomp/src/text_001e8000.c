@@ -283,7 +283,7 @@ switchD_001e879c_caseD_0:
   return;
 }
 
-// 0x001e8860  size 0x3b0
+// 0x001e8860  size 0x3a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceSnd_PlayResult(undefined8 param_1,undefined8 param_2,ulong param_3)
@@ -413,6 +413,16 @@ switchD_001e8b08_caseD_5:
     RaceSnd_StopSlot(param_2,0xff);
     RaceSnd_SetupChannels(param_1,param_2);
   }
+  return;
+}
+
+// 0x001e8c10  size 0x8
+/* follows RaceSnd_PlayResult; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceSnd_PlayResult_Orphan1(void)
+
+{
   return;
 }
 
@@ -2155,7 +2165,7 @@ void Race_CreateCars(void)
   return;
 }
 
-// 0x001eb550  size 0x394
+// 0x001eb550  size 0x390
 void RaceIntro_DrawCars(undefined8 param_1,int param_2,long param_3,long param_4)
 
 {
@@ -2269,6 +2279,18 @@ LAB_001eb6d0:
   }
   Layer_Close(auStack_240,0);
   Layer_Close(auStack_240,1);
+  return;
+}
+
+// 0x001eb8e4  size 0x4
+/* follows RaceIntro_DrawCars; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceIntro_DrawCars_Orphan1(undefined4 param_1,undefined4 param_2,int param_3)
+
+{
+  *(undefined4 *)(param_3 + 8) = param_1;
+  *(undefined4 *)(param_3 + 0xc) = param_2;
   return;
 }
 

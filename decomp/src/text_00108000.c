@@ -829,7 +829,7 @@ LAB_001099bc:
   return;
 }
 
-// 0x00109ad8  size 0x2d8
+// 0x00109ad8  size 0x21c
 /* "intra && skip MB" */
 
 void maybe_Mpeg_AddBlocks(undefined8 param_1,int param_2)
@@ -920,6 +920,1203 @@ void maybe_Mpeg_AddBlocks(undefined8 param_1,int param_2)
     puVar5[3] = auVar8._12_4_;
     puVar5 = puVar5 + 4;
   } while (iVar10 != 0);
+  return;
+}
+
+// 0x00109db0  size 0x74
+/* follows Mpeg_AddBlocks; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Mpeg_AddBlocks_Orphan1(int *param_1,undefined8 *param_2,undefined8 *param_3,uint param_4)
+
+{
+  bool bVar1;
+  undefined1 auVar2 [16];
+  undefined1 in_t0_qw [16];
+  undefined1 auVar3 [16];
+  undefined1 in_t1_qw [16];
+  uint uVar4;
+  int in_t3_lo;
+  int in_t4_lo;
+  undefined4 *in_t6_lo;
+  uint in_t7_lo;
+  long in_t8;
+  
+  do {
+    param_4 = param_4 - 1;
+    param_2 = (undefined8 *)((int)param_2 + in_t4_lo);
+    in_t6_lo = (undefined4 *)((int)in_t6_lo + in_t3_lo);
+    param_3 = (undefined8 *)((int)param_3 + in_t4_lo);
+    if ((int)param_4 < 1) {
+      param_2 = param_2 + 0x28;
+      param_3 = param_3 + 0x28;
+      param_4 = param_1[3];
+      uVar4 = in_t7_lo & param_4;
+      in_t7_lo = 0;
+      if (uVar4 == 0) {
+        param_2 = (undefined8 *)(param_1[5] + 0x40);
+        param_3 = (undefined8 *)(param_1[6] + 0x40);
+        in_t6_lo = (undefined4 *)(*param_1 + 0x80);
+        bVar1 = in_t8 == 0;
+        in_t8 = 0;
+        if (bVar1) {
+          return;
+        }
+        param_4 = param_1[2];
+        in_t7_lo = 0xffffffff;
+      }
+    }
+    auVar2._8_8_ = in_t0_qw._8_8_;
+    auVar2._0_8_ = *param_2;
+    auVar3._8_8_ = in_t1_qw._8_8_;
+    auVar3._0_8_ = *param_3;
+    auVar2 = _pcpyld(auVar3,auVar2);
+    in_t1_qw = _qfsrv(auVar2,auVar2);
+    in_t0_qw = _pextlb(0,in_t1_qw._0_8_);
+    *in_t6_lo = in_t0_qw._0_4_;
+    in_t6_lo[1] = in_t0_qw._4_4_;
+    in_t6_lo[2] = in_t0_qw._8_4_;
+    in_t6_lo[3] = in_t0_qw._12_4_;
+  } while( true );
+}
+
+// 0x00109e08  size 0xb4
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109db0_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan2(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 (*pauVar3) [16];
+  undefined1 (*pauVar4) [16];
+  uint uVar5;
+  undefined1 auVar6 [16];
+  uint uVar7;
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  uint uVar10;
+  undefined4 *puVar11;
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  pauVar3 = (undefined1 (*) [16])param_1[5];
+  pauVar4 = (undefined1 (*) [16])param_1[6];
+  uVar5 = param_1[2];
+  puVar11 = (undefined4 *)*param_1;
+  iVar1 = param_1[4];
+  auVar8 = _qfsrv(*pauVar4,*pauVar3);
+  auVar6 = _pextlb(0,auVar8._0_8_);
+  uVar10 = 0xffffffff;
+  auVar8 = _pextub(in_zero_qw,auVar8);
+  if (uVar5 == 0) goto LAB_00109e9c;
+  do {
+    do {
+      pauVar3 = (undefined1 (*) [16])(*pauVar3 + iVar1);
+      pauVar4 = (undefined1 (*) [16])(*pauVar4 + iVar1);
+      auVar2 = _qfsrv(*pauVar4,*pauVar3);
+      auVar9 = _pextlb(0,auVar2._0_8_);
+      uVar5 = uVar5 - 1;
+      auVar2 = _pextub(in_zero_qw,auVar2);
+      auVar6 = _paddh(auVar9,auVar6);
+      auVar8 = _paddh(auVar2,auVar8);
+      auVar6 = _paddh(auVar12,auVar6);
+      auVar8 = _paddh(auVar12,auVar8);
+      auVar6 = _psrlh(auVar6,1);
+      auVar8 = _psrlh(auVar8,1);
+      *puVar11 = auVar6._0_4_;
+      puVar11[1] = auVar6._4_4_;
+      puVar11[2] = auVar6._8_4_;
+      puVar11[3] = auVar6._12_4_;
+      puVar11[4] = auVar8._0_4_;
+      puVar11[5] = auVar8._4_4_;
+      puVar11[6] = auVar8._8_4_;
+      puVar11[7] = auVar8._12_4_;
+      puVar11 = (undefined4 *)((int)puVar11 + iVar1 * 2);
+      auVar6 = auVar9;
+      auVar8 = auVar2;
+    } while (0 < (int)uVar5);
+LAB_00109e9c:
+    pauVar3 = pauVar3 + 8;
+    pauVar4 = pauVar4 + 8;
+    uVar5 = param_1[3];
+    uVar7 = uVar10 & uVar5;
+    uVar10 = 0;
+  } while (uVar7 != 0);
+  return;
+}
+
+// 0x00109ec0  size 0xcc
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109e08_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan3(int *param_1)
+
+{
+  int iVar1;
+  undefined1 auVar2 [16];
+  uint uVar3;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar4;
+  undefined8 *puVar5;
+  ulong uVar6;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 in_t1_qw [16];
+  undefined1 auVar9 [16];
+  uint uVar10;
+  undefined8 in_t3_udw;
+  undefined4 *puVar11;
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  puVar4 = (undefined8 *)param_1[5];
+  puVar5 = (undefined8 *)param_1[6];
+  puVar11 = (undefined4 *)*param_1;
+  iVar1 = param_1[4];
+  uVar10 = 1;
+  do {
+    uVar6 = (ulong)param_1[2];
+    auVar7._8_8_ = in_t0_qw._8_8_;
+    auVar7._0_8_ = *puVar4;
+    in_t1_qw._0_8_ = *puVar5;
+    auVar7 = _pcpyld(in_t1_qw,auVar7);
+    in_t0_qw = _qfsrv(auVar7,auVar7);
+    uVar10 = uVar10 | 0x8000;
+    auVar7 = _pextlb(0,in_t0_qw._0_8_);
+    if (uVar6 == 0) goto LAB_00109f44;
+    do {
+      do {
+        puVar4 = (undefined8 *)((int)puVar4 + iVar1);
+        puVar5 = (undefined8 *)((int)puVar5 + iVar1);
+        auVar8._8_8_ = in_t0_qw._8_8_;
+        auVar8._0_8_ = *puVar4;
+        auVar9._8_8_ = in_t1_qw._8_8_;
+        auVar9._0_8_ = *puVar5;
+        auVar8 = _pcpyld(auVar9,auVar8);
+        in_t0_qw = _qfsrv(auVar8,auVar8);
+        auVar8 = _pextlb(0,in_t0_qw._0_8_);
+        uVar6 = (ulong)((int)uVar6 + -1);
+        in_t1_qw = _paddh(auVar7,auVar8);
+        auVar7 = _paddh(auVar12,in_t1_qw);
+        auVar7 = _psrlh(auVar7,1);
+        *puVar11 = auVar7._0_4_;
+        puVar11[1] = auVar7._4_4_;
+        puVar11[2] = auVar7._8_4_;
+        puVar11[3] = auVar7._12_4_;
+        puVar11 = (undefined4 *)((int)puVar11 + iVar1 * 2);
+        auVar7 = auVar8;
+      } while (0 < (long)uVar6);
+LAB_00109f44:
+      auVar2._4_4_ = 0;
+      auVar2._0_4_ = uVar10;
+      auVar2._8_8_ = in_t3_udw;
+      auVar8 = _psrah(auVar2,0xf);
+      puVar4 = puVar4 + 0x28;
+      uVar6 = (ulong)param_1[3];
+      puVar5 = puVar5 + 0x28;
+      uVar3 = uVar10 & 0x7fff;
+      uVar10 = uVar10 & 0x7fff;
+    } while ((auVar8._0_8_ & uVar6) != 0);
+    puVar4 = (undefined8 *)(param_1[5] + 0x40);
+    puVar5 = (undefined8 *)(param_1[6] + 0x40);
+    puVar11 = (undefined4 *)(*param_1 + 0x80);
+    uVar10 = 0;
+  } while (uVar3 != 0);
+  return;
+}
+
+// 0x00109f90  size 0xac
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109ec0_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan4(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 auVar3 [16];
+  undefined1 (*pauVar4) [16];
+  undefined1 (*pauVar5) [16];
+  uint uVar6;
+  undefined1 auVar7 [16];
+  uint uVar8;
+  uint uVar9;
+  undefined4 *puVar10;
+  undefined1 auVar11 [16];
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  pauVar4 = (undefined1 (*) [16])param_1[5];
+  pauVar5 = (undefined1 (*) [16])param_1[6];
+  uVar6 = param_1[2];
+  puVar10 = (undefined4 *)*param_1;
+  iVar1 = param_1[4];
+  uVar8 = 0xffffffff;
+  do {
+    do {
+      auVar2 = _qfsrv(*pauVar5,*pauVar4);
+      auVar3 = _qfsrv(*pauVar4,*pauVar5);
+      auVar7 = _pextlb(0,auVar2._0_8_);
+      uVar6 = uVar6 - 1;
+      auVar11 = _pextub(in_zero_qw,auVar2);
+      auVar3 = _qfsrv(auVar3,auVar2);
+      auVar2 = _pextlb(0,auVar3._0_8_);
+      auVar3 = _pextub(in_zero_qw,auVar3);
+      auVar2 = _paddh(auVar2,auVar7);
+      auVar3 = _paddh(auVar3,auVar11);
+      auVar2 = _paddh(auVar12,auVar2);
+      auVar3 = _paddh(auVar12,auVar3);
+      auVar2 = _psrlh(auVar2,1);
+      auVar3 = _psrlh(auVar3,1);
+      *puVar10 = auVar2._0_4_;
+      puVar10[1] = auVar2._4_4_;
+      puVar10[2] = auVar2._8_4_;
+      puVar10[3] = auVar2._12_4_;
+      puVar10[4] = auVar3._0_4_;
+      puVar10[5] = auVar3._4_4_;
+      puVar10[6] = auVar3._8_4_;
+      puVar10[7] = auVar3._12_4_;
+      pauVar4 = (undefined1 (*) [16])(*pauVar4 + iVar1);
+      pauVar5 = (undefined1 (*) [16])(*pauVar5 + iVar1);
+      puVar10 = (undefined4 *)((int)puVar10 + iVar1 * 2);
+    } while (0 < (int)uVar6);
+    pauVar4 = pauVar4 + 8;
+    pauVar5 = pauVar5 + 8;
+    uVar6 = param_1[3];
+    uVar9 = uVar8 & uVar6;
+    uVar8 = 0;
+  } while (uVar9 != 0);
+  return;
+}
+
+// 0x0010a040  size 0xb8
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109f90_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan5(int *param_1)
+
+{
+  bool bVar1;
+  int iVar2;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar3;
+  undefined8 *puVar4;
+  uint uVar5;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar6 [16];
+  undefined1 in_t1_qw [16];
+  undefined1 auVar7 [16];
+  uint uVar8;
+  uint uVar9;
+  int iVar10;
+  undefined4 *puVar11;
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  puVar3 = (undefined8 *)param_1[5];
+  puVar4 = (undefined8 *)param_1[6];
+  puVar11 = (undefined4 *)*param_1;
+  iVar10 = -1;
+  iVar2 = param_1[4];
+  do {
+    uVar5 = param_1[2];
+    uVar9 = 0xffffffff;
+    do {
+      do {
+        auVar6._8_8_ = in_t0_qw._8_8_;
+        auVar6._0_8_ = *puVar3;
+        auVar7._8_8_ = in_t1_qw._8_8_;
+        auVar7._0_8_ = *puVar4;
+        auVar6 = _pcpyld(auVar7,auVar6);
+        auVar6 = _qfsrv(auVar6,auVar6);
+        in_t1_qw = _pextlb(0,auVar6._0_8_);
+        uVar5 = uVar5 - 1;
+        puVar3 = (undefined8 *)((int)puVar3 + iVar2);
+        puVar4 = (undefined8 *)((int)puVar4 + iVar2);
+        auVar6 = _qfsrv(in_zero_qw,auVar6);
+        in_t0_qw = _pextlb(0,auVar6._0_8_);
+        auVar6 = _paddh(in_t0_qw,in_t1_qw);
+        auVar6 = _paddh(auVar12,auVar6);
+        auVar6 = _psrlh(auVar6,1);
+        *puVar11 = auVar6._0_4_;
+        puVar11[1] = auVar6._4_4_;
+        puVar11[2] = auVar6._8_4_;
+        puVar11[3] = auVar6._12_4_;
+        puVar11 = (undefined4 *)((int)puVar11 + iVar2 * 2);
+      } while (0 < (int)uVar5);
+      puVar3 = puVar3 + 0x28;
+      puVar4 = puVar4 + 0x28;
+      uVar5 = param_1[3];
+      uVar8 = uVar9 & uVar5;
+      uVar9 = 0;
+    } while (uVar8 != 0);
+    puVar3 = (undefined8 *)(param_1[5] + 0x40);
+    puVar4 = (undefined8 *)(param_1[6] + 0x40);
+    puVar11 = (undefined4 *)(*param_1 + 0x80);
+    bVar1 = iVar10 != 0;
+    iVar10 = 0;
+  } while (bVar1);
+  return;
+}
+
+// 0x0010a0f8  size 0xf8
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a040_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan6(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 (*pauVar2) [16];
+  undefined1 (*pauVar3) [16];
+  uint uVar4;
+  undefined1 auVar5 [16];
+  uint uVar6;
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  uint uVar9;
+  undefined4 *puVar10;
+  undefined1 auVar11 [16];
+  undefined1 auVar12 [16];
+  undefined1 auVar13 [16];
+  undefined1 auVar14 [16];
+  
+  auVar13 = _psrlh(~in_zero_qw,0xf);
+  auVar14 = _psllh(auVar13,1);
+  pauVar2 = (undefined1 (*) [16])param_1[5];
+  pauVar3 = (undefined1 (*) [16])param_1[6];
+  uVar4 = param_1[2];
+  puVar10 = (undefined4 *)*param_1;
+  iVar1 = param_1[4];
+  auVar7 = _qfsrv(*pauVar3,*pauVar2);
+  auVar11 = _qfsrv(*pauVar2,*pauVar3);
+  auVar13 = _pextlb(0,auVar7._0_8_);
+  auVar5 = _pextub(in_zero_qw,auVar7);
+  uVar9 = 0xffffffff;
+  auVar11 = _qfsrv(auVar11,auVar7);
+  auVar7 = _pextlb(0,auVar11._0_8_);
+  auVar11 = _pextub(in_zero_qw,auVar11);
+  auVar13 = _paddh(auVar7,auVar13);
+  auVar5 = _paddh(auVar11,auVar5);
+  if (uVar4 == 0) goto LAB_0010a1d0;
+  do {
+    do {
+      pauVar2 = (undefined1 (*) [16])(*pauVar2 + iVar1);
+      pauVar3 = (undefined1 (*) [16])(*pauVar3 + iVar1);
+      auVar7 = _qfsrv(*pauVar3,*pauVar2);
+      auVar11 = _qfsrv(*pauVar2,*pauVar3);
+      auVar8 = _pextlb(0,auVar7._0_8_);
+      uVar4 = uVar4 - 1;
+      auVar12 = _pextub(in_zero_qw,auVar7);
+      auVar11 = _qfsrv(auVar11,auVar7);
+      auVar7 = _pextlb(0,auVar11._0_8_);
+      auVar11 = _pextub(in_zero_qw,auVar11);
+      auVar7 = _paddh(auVar7,auVar8);
+      auVar11 = _paddh(auVar11,auVar12);
+      auVar13 = _paddh(auVar7,auVar13);
+      auVar5 = _paddh(auVar11,auVar5);
+      auVar13 = _paddh(auVar14,auVar13);
+      auVar5 = _paddh(auVar14,auVar5);
+      auVar13 = _psrlh(auVar13,2);
+      auVar5 = _psrlh(auVar5,2);
+      *puVar10 = auVar13._0_4_;
+      puVar10[1] = auVar13._4_4_;
+      puVar10[2] = auVar13._8_4_;
+      puVar10[3] = auVar13._12_4_;
+      puVar10[4] = auVar5._0_4_;
+      puVar10[5] = auVar5._4_4_;
+      puVar10[6] = auVar5._8_4_;
+      puVar10[7] = auVar5._12_4_;
+      puVar10 = (undefined4 *)((int)puVar10 + iVar1 * 2);
+      auVar13 = auVar7;
+      auVar5 = auVar11;
+    } while (0 < (int)uVar4);
+LAB_0010a1d0:
+    pauVar2 = pauVar2 + 8;
+    pauVar3 = pauVar3 + 8;
+    uVar4 = param_1[3];
+    uVar6 = uVar9 & uVar4;
+    uVar9 = 0;
+  } while (uVar6 != 0);
+  return;
+}
+
+// 0x0010a1f0  size 0xfc
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a0f8_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan7(int *param_1)
+
+{
+  int iVar1;
+  undefined1 auVar2 [16];
+  uint uVar3;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar4;
+  undefined8 *puVar5;
+  ulong uVar6;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 in_t1_qw [16];
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  uint uVar11;
+  undefined8 in_t3_udw;
+  undefined4 *puVar12;
+  undefined1 auVar13 [16];
+  
+  auVar13 = _psrlh(~in_zero_qw,0xf);
+  auVar13 = _psllh(auVar13,1);
+  puVar4 = (undefined8 *)param_1[5];
+  puVar5 = (undefined8 *)param_1[6];
+  puVar12 = (undefined4 *)*param_1;
+  iVar1 = param_1[4];
+  uVar11 = 1;
+  do {
+    uVar6 = (ulong)param_1[2];
+    auVar7._8_8_ = in_t0_qw._8_8_;
+    auVar7._0_8_ = *puVar4;
+    auVar8._8_8_ = in_t1_qw._8_8_;
+    auVar8._0_8_ = *puVar5;
+    auVar7 = _pcpyld(auVar8,auVar7);
+    auVar7 = _qfsrv(auVar7,auVar7);
+    in_t1_qw = _pextlb(0,auVar7._0_8_);
+    puVar4 = (undefined8 *)((int)puVar4 + iVar1);
+    uVar11 = uVar11 | 0x8000;
+    auVar7 = _qfsrv(in_zero_qw,auVar7);
+    in_t0_qw = _pextlb(0,auVar7._0_8_);
+    auVar7 = _paddh(in_t0_qw,in_t1_qw);
+    if (uVar6 == 0) goto LAB_0010a2a4;
+    do {
+      do {
+        puVar5 = (undefined8 *)((int)puVar5 + iVar1);
+        auVar10._8_8_ = in_t0_qw._8_8_;
+        auVar10._0_8_ = *puVar4;
+        auVar9._8_8_ = in_t1_qw._8_8_;
+        auVar9._0_8_ = *puVar5;
+        auVar8 = _pcpyld(auVar9,auVar10);
+        auVar8 = _qfsrv(auVar8,auVar8);
+        auVar10 = _pextlb(0,auVar8._0_8_);
+        uVar6 = (ulong)((int)uVar6 + -1);
+        puVar4 = (undefined8 *)((int)puVar4 + iVar1);
+        auVar8 = _qfsrv(in_zero_qw,auVar8);
+        auVar8 = _pextlb(0,auVar8._0_8_);
+        auVar10 = _paddh(auVar8,auVar10);
+        in_t1_qw = _paddh(auVar7,auVar10);
+        auVar7 = _paddh(auVar13,in_t1_qw);
+        in_t0_qw._8_8_ = auVar8._8_8_;
+        in_t0_qw._0_8_ = (long)(iVar1 * 2);
+        auVar7 = _psrlh(auVar7,2);
+        *puVar12 = auVar7._0_4_;
+        puVar12[1] = auVar7._4_4_;
+        puVar12[2] = auVar7._8_4_;
+        puVar12[3] = auVar7._12_4_;
+        puVar12 = (undefined4 *)((int)puVar12 + iVar1 * 2);
+        auVar7 = auVar10;
+      } while (0 < (long)uVar6);
+LAB_0010a2a4:
+      auVar2._4_4_ = 0;
+      auVar2._0_4_ = uVar11;
+      auVar2._8_8_ = in_t3_udw;
+      auVar8 = _psrah(auVar2,0xf);
+      puVar4 = puVar4 + 0x28;
+      uVar6 = (ulong)param_1[3];
+      puVar5 = puVar5 + 0x28;
+      uVar3 = uVar11 & 0x7fff;
+      uVar11 = uVar11 & 0x7fff;
+    } while ((auVar8._0_8_ & uVar6) != 0);
+    puVar4 = (undefined8 *)(param_1[5] + 0x40);
+    puVar5 = (undefined8 *)(param_1[6] + 0x40);
+    puVar12 = (undefined4 *)(*param_1 + 0x80);
+    uVar11 = 0;
+  } while (uVar3 != 0);
+  return;
+}
+
+// 0x0010a2f0  size 0x9c
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a1f0_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan8(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 (*pauVar3) [16];
+  undefined1 (*pauVar4) [16];
+  uint uVar5;
+  undefined1 auVar6 [16];
+  uint uVar7;
+  uint uVar8;
+  undefined1 (*pauVar9) [16];
+  undefined1 auVar10 [16];
+  
+  pauVar3 = (undefined1 (*) [16])param_1[5];
+  pauVar4 = (undefined1 (*) [16])param_1[6];
+  uVar5 = param_1[2];
+  pauVar9 = (undefined1 (*) [16])*param_1;
+  iVar1 = param_1[4];
+  uVar7 = 0xffffffff;
+  do {
+    do {
+      auVar2 = _qfsrv(*pauVar4,*pauVar3);
+      auVar6 = _pextlb(0,auVar2._0_8_);
+      auVar10 = _pextub(in_zero_qw,auVar2);
+      auVar2 = _paddh(auVar6,*pauVar9);
+      auVar6 = _paddh(auVar10,pauVar9[1]);
+      auVar10 = _psrlh(~in_zero_qw,0xf);
+      auVar2 = _paddh(auVar10,auVar2);
+      auVar2 = _psrlh(auVar2,1);
+      auVar6 = _paddh(auVar10,auVar6);
+      auVar6 = _psrlh(auVar6,1);
+      *(int *)*pauVar9 = auVar2._0_4_;
+      *(int *)(*pauVar9 + 4) = auVar2._4_4_;
+      *(int *)(*pauVar9 + 8) = auVar2._8_4_;
+      *(int *)(*pauVar9 + 0xc) = auVar2._12_4_;
+      *(int *)pauVar9[1] = auVar6._0_4_;
+      *(int *)(pauVar9[1] + 4) = auVar6._4_4_;
+      *(int *)(pauVar9[1] + 8) = auVar6._8_4_;
+      *(int *)(pauVar9[1] + 0xc) = auVar6._12_4_;
+      uVar5 = uVar5 - 1;
+      pauVar3 = (undefined1 (*) [16])(*pauVar3 + iVar1);
+      pauVar9 = (undefined1 (*) [16])(*pauVar9 + iVar1 * 2);
+      pauVar4 = (undefined1 (*) [16])(*pauVar4 + iVar1);
+    } while (0 < (int)uVar5);
+    pauVar3 = pauVar3 + 8;
+    pauVar4 = pauVar4 + 8;
+    uVar5 = param_1[3];
+    uVar8 = uVar7 & uVar5;
+    uVar7 = 0;
+  } while (uVar8 != 0);
+  return;
+}
+
+// 0x0010a390  size 0xac
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a2f0_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan9(int *param_1)
+
+{
+  bool bVar1;
+  int iVar2;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar3;
+  undefined8 *puVar4;
+  uint uVar5;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar6 [16];
+  undefined1 in_t1_qw [16];
+  uint uVar7;
+  undefined1 auVar8 [16];
+  uint uVar9;
+  int iVar10;
+  undefined1 (*pauVar11) [16];
+  
+  puVar3 = (undefined8 *)param_1[5];
+  puVar4 = (undefined8 *)param_1[6];
+  pauVar11 = (undefined1 (*) [16])*param_1;
+  iVar10 = -1;
+  iVar2 = param_1[4];
+  do {
+    uVar5 = param_1[2];
+    uVar9 = 0xffffffff;
+    do {
+      do {
+        auVar6._8_8_ = in_t0_qw._8_8_;
+        auVar6._0_8_ = *puVar3;
+        auVar8._8_8_ = in_t1_qw._8_8_;
+        auVar8._0_8_ = *puVar4;
+        auVar6 = _pcpyld(auVar8,auVar6);
+        auVar6 = _qfsrv(auVar6,auVar6);
+        auVar6 = _pextlb(0,auVar6._0_8_);
+        uVar5 = uVar5 - 1;
+        puVar3 = (undefined8 *)((int)puVar3 + iVar2);
+        puVar4 = (undefined8 *)((int)puVar4 + iVar2);
+        in_t0_qw = *pauVar11;
+        auVar8 = _paddh(in_t0_qw,auVar6);
+        auVar6 = _pcgth(auVar8,in_zero_qw);
+        in_t1_qw = _psrlh(auVar6,0xf);
+        auVar6 = _paddh(in_t1_qw,auVar8);
+        auVar6 = _psrlh(auVar6,1);
+        *(int *)*pauVar11 = auVar6._0_4_;
+        *(int *)(*pauVar11 + 4) = auVar6._4_4_;
+        *(int *)(*pauVar11 + 8) = auVar6._8_4_;
+        *(int *)(*pauVar11 + 0xc) = auVar6._12_4_;
+        pauVar11 = (undefined1 (*) [16])(*pauVar11 + iVar2 * 2);
+      } while (0 < (int)uVar5);
+      puVar3 = puVar3 + 0x28;
+      puVar4 = puVar4 + 0x28;
+      uVar5 = param_1[3];
+      uVar7 = uVar9 & uVar5;
+      uVar9 = 0;
+    } while (uVar7 != 0);
+    puVar3 = (undefined8 *)(param_1[5] + 0x40);
+    puVar4 = (undefined8 *)(param_1[6] + 0x40);
+    pauVar11 = (undefined1 (*) [16])(*param_1 + 0x80);
+    bVar1 = iVar10 != 0;
+    iVar10 = 0;
+  } while (bVar1);
+  return;
+}
+
+// 0x0010a440  size 0xdc
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a390_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan10(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 (*pauVar3) [16];
+  undefined1 (*pauVar4) [16];
+  uint uVar5;
+  undefined1 auVar6 [16];
+  uint uVar7;
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  uint uVar10;
+  undefined1 (*pauVar11) [16];
+  undefined1 auVar12 [16];
+  undefined1 auVar13 [16];
+  
+  auVar13 = _psrlh(~in_zero_qw,0xf);
+  pauVar3 = (undefined1 (*) [16])param_1[5];
+  pauVar4 = (undefined1 (*) [16])param_1[6];
+  uVar5 = param_1[2];
+  pauVar11 = (undefined1 (*) [16])*param_1;
+  iVar1 = param_1[4];
+  auVar8 = _qfsrv(*pauVar4,*pauVar3);
+  auVar6 = _pextlb(0,auVar8._0_8_);
+  uVar10 = 0xffffffff;
+  auVar8 = _pextub(in_zero_qw,auVar8);
+  if (uVar5 == 0) goto LAB_0010a4fc;
+  do {
+    do {
+      pauVar3 = (undefined1 (*) [16])(*pauVar3 + iVar1);
+      pauVar4 = (undefined1 (*) [16])(*pauVar4 + iVar1);
+      auVar2 = _qfsrv(*pauVar4,*pauVar3);
+      auVar9 = _pextlb(0,auVar2._0_8_);
+      uVar5 = uVar5 - 1;
+      auVar12 = _pextub(in_zero_qw,auVar2);
+      auVar6 = _paddh(auVar9,auVar6);
+      auVar8 = _paddh(auVar12,auVar8);
+      auVar6 = _paddh(auVar13,auVar6);
+      auVar8 = _paddh(auVar13,auVar8);
+      auVar6 = _psrlh(auVar6,1);
+      auVar8 = _psrlh(auVar8,1);
+      auVar6 = _paddh(*pauVar11,auVar6);
+      auVar8 = _paddh(pauVar11[1],auVar8);
+      auVar6 = _paddh(auVar13,auVar6);
+      auVar6 = _psrlh(auVar6,1);
+      auVar2 = _pcgth(auVar8,in_zero_qw);
+      auVar2 = _psrlh(auVar2,0xf);
+      auVar8 = _paddh(auVar2,auVar8);
+      auVar8 = _psrlh(auVar8,1);
+      *(int *)*pauVar11 = auVar6._0_4_;
+      *(int *)(*pauVar11 + 4) = auVar6._4_4_;
+      *(int *)(*pauVar11 + 8) = auVar6._8_4_;
+      *(int *)(*pauVar11 + 0xc) = auVar6._12_4_;
+      *(int *)pauVar11[1] = auVar8._0_4_;
+      *(int *)(pauVar11[1] + 4) = auVar8._4_4_;
+      *(int *)(pauVar11[1] + 8) = auVar8._8_4_;
+      *(int *)(pauVar11[1] + 0xc) = auVar8._12_4_;
+      pauVar11 = (undefined1 (*) [16])(*pauVar11 + iVar1 * 2);
+      auVar6 = auVar9;
+      auVar8 = auVar12;
+    } while (0 < (int)uVar5);
+LAB_0010a4fc:
+    pauVar3 = pauVar3 + 8;
+    pauVar4 = pauVar4 + 8;
+    uVar5 = param_1[3];
+    uVar7 = uVar10 & uVar5;
+    uVar10 = 0;
+  } while (uVar7 != 0);
+  return;
+}
+
+// 0x0010a520  size 0xe4
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a440_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan11(int *param_1)
+
+{
+  int iVar1;
+  undefined1 auVar2 [16];
+  uint uVar3;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar4;
+  undefined8 *puVar5;
+  ulong uVar6;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 in_t1_qw [16];
+  undefined1 auVar9 [16];
+  uint uVar10;
+  undefined8 in_t3_udw;
+  undefined1 (*pauVar11) [16];
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  puVar4 = (undefined8 *)param_1[5];
+  puVar5 = (undefined8 *)param_1[6];
+  pauVar11 = (undefined1 (*) [16])*param_1;
+  iVar1 = param_1[4];
+  uVar10 = 1;
+  do {
+    uVar6 = (ulong)param_1[2];
+    auVar7._8_8_ = in_t0_qw._8_8_;
+    auVar7._0_8_ = *puVar4;
+    in_t1_qw._0_8_ = *puVar5;
+    auVar7 = _pcpyld(in_t1_qw,auVar7);
+    in_t0_qw = _qfsrv(auVar7,auVar7);
+    uVar10 = uVar10 | 0x8000;
+    auVar7 = _pextlb(0,in_t0_qw._0_8_);
+    if (uVar6 == 0) goto LAB_0010a5bc;
+    do {
+      do {
+        puVar4 = (undefined8 *)((int)puVar4 + iVar1);
+        puVar5 = (undefined8 *)((int)puVar5 + iVar1);
+        auVar8._8_8_ = in_t0_qw._8_8_;
+        auVar8._0_8_ = *puVar4;
+        auVar9._8_8_ = in_t1_qw._8_8_;
+        auVar9._0_8_ = *puVar5;
+        auVar8 = _pcpyld(auVar9,auVar8);
+        auVar8 = _qfsrv(auVar8,auVar8);
+        auVar8 = _pextlb(0,auVar8._0_8_);
+        uVar6 = (ulong)((int)uVar6 + -1);
+        auVar7 = _paddh(auVar7,auVar8);
+        auVar7 = _paddh(auVar12,auVar7);
+        auVar7 = _psrlh(auVar7,1);
+        in_t0_qw = *pauVar11;
+        auVar9 = _paddh(in_t0_qw,auVar7);
+        auVar7 = _pcgth(auVar9,in_zero_qw);
+        in_t1_qw = _psrlh(auVar7,0xf);
+        auVar7 = _paddh(in_t1_qw,auVar9);
+        auVar7 = _psrlh(auVar7,1);
+        *(int *)*pauVar11 = auVar7._0_4_;
+        *(int *)(*pauVar11 + 4) = auVar7._4_4_;
+        *(int *)(*pauVar11 + 8) = auVar7._8_4_;
+        *(int *)(*pauVar11 + 0xc) = auVar7._12_4_;
+        pauVar11 = (undefined1 (*) [16])(*pauVar11 + iVar1 * 2);
+        auVar7 = auVar8;
+      } while (0 < (long)uVar6);
+LAB_0010a5bc:
+      auVar2._4_4_ = 0;
+      auVar2._0_4_ = uVar10;
+      auVar2._8_8_ = in_t3_udw;
+      auVar8 = _psrah(auVar2,0xf);
+      puVar4 = puVar4 + 0x28;
+      uVar6 = (ulong)param_1[3];
+      puVar5 = puVar5 + 0x28;
+      uVar3 = uVar10 & 0x7fff;
+      uVar10 = uVar10 & 0x7fff;
+    } while ((auVar8._0_8_ & uVar6) != 0);
+    puVar4 = (undefined8 *)(param_1[5] + 0x40);
+    puVar5 = (undefined8 *)(param_1[6] + 0x40);
+    pauVar11 = (undefined1 (*) [16])(*param_1 + 0x80);
+    uVar10 = 0;
+  } while (uVar3 != 0);
+  return;
+}
+
+// 0x0010a608  size 0xd4
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a520_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan12(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 auVar3 [16];
+  undefined1 (*pauVar4) [16];
+  undefined1 (*pauVar5) [16];
+  uint uVar6;
+  undefined1 auVar7 [16];
+  uint uVar8;
+  uint uVar9;
+  undefined1 (*pauVar10) [16];
+  undefined1 auVar11 [16];
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  pauVar4 = (undefined1 (*) [16])param_1[5];
+  pauVar5 = (undefined1 (*) [16])param_1[6];
+  uVar6 = param_1[2];
+  pauVar10 = (undefined1 (*) [16])*param_1;
+  iVar1 = param_1[4];
+  uVar8 = 0xffffffff;
+  do {
+    do {
+      auVar2 = _qfsrv(*pauVar5,*pauVar4);
+      auVar3 = _qfsrv(*pauVar4,*pauVar5);
+      auVar7 = _pextlb(0,auVar2._0_8_);
+      uVar6 = uVar6 - 1;
+      auVar11 = _pextub(in_zero_qw,auVar2);
+      auVar3 = _qfsrv(auVar3,auVar2);
+      auVar2 = _pextlb(0,auVar3._0_8_);
+      auVar3 = _pextub(in_zero_qw,auVar3);
+      auVar2 = _paddh(auVar2,auVar7);
+      auVar3 = _paddh(auVar3,auVar11);
+      auVar2 = _paddh(auVar12,auVar2);
+      auVar3 = _paddh(auVar12,auVar3);
+      auVar2 = _psrlh(auVar2,1);
+      auVar3 = _psrlh(auVar3,1);
+      auVar2 = _paddh(*pauVar10,auVar2);
+      auVar3 = _paddh(pauVar10[1],auVar3);
+      auVar2 = _paddh(auVar12,auVar2);
+      auVar2 = _psrlh(auVar2,1);
+      auVar7 = _pcgth(auVar3,in_zero_qw);
+      auVar7 = _psrlh(auVar7,0xf);
+      auVar3 = _paddh(auVar7,auVar3);
+      auVar3 = _psrlh(auVar3,1);
+      *(int *)*pauVar10 = auVar2._0_4_;
+      *(int *)(*pauVar10 + 4) = auVar2._4_4_;
+      *(int *)(*pauVar10 + 8) = auVar2._8_4_;
+      *(int *)(*pauVar10 + 0xc) = auVar2._12_4_;
+      *(int *)pauVar10[1] = auVar3._0_4_;
+      *(int *)(pauVar10[1] + 4) = auVar3._4_4_;
+      *(int *)(pauVar10[1] + 8) = auVar3._8_4_;
+      *(int *)(pauVar10[1] + 0xc) = auVar3._12_4_;
+      pauVar4 = (undefined1 (*) [16])(*pauVar4 + iVar1);
+      pauVar5 = (undefined1 (*) [16])(*pauVar5 + iVar1);
+      pauVar10 = (undefined1 (*) [16])(*pauVar10 + iVar1 * 2);
+    } while (0 < (int)uVar6);
+    pauVar4 = pauVar4 + 8;
+    pauVar5 = pauVar5 + 8;
+    uVar6 = param_1[3];
+    uVar9 = uVar8 & uVar6;
+    uVar8 = 0;
+  } while (uVar9 != 0);
+  return;
+}
+
+// 0x0010a6e0  size 0xd0
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a608_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan13(int *param_1)
+
+{
+  bool bVar1;
+  int iVar2;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar3;
+  undefined8 *puVar4;
+  uint uVar5;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar6 [16];
+  undefined1 in_t1_qw [16];
+  undefined1 auVar7 [16];
+  uint uVar8;
+  uint uVar9;
+  int iVar10;
+  undefined1 (*pauVar11) [16];
+  undefined1 auVar12 [16];
+  
+  auVar12 = _psrlh(~in_zero_qw,0xf);
+  puVar3 = (undefined8 *)param_1[5];
+  puVar4 = (undefined8 *)param_1[6];
+  pauVar11 = (undefined1 (*) [16])*param_1;
+  iVar10 = -1;
+  iVar2 = param_1[4];
+  do {
+    uVar5 = param_1[2];
+    uVar9 = 0xffffffff;
+    do {
+      do {
+        auVar6._8_8_ = in_t0_qw._8_8_;
+        auVar6._0_8_ = *puVar3;
+        auVar7._8_8_ = in_t1_qw._8_8_;
+        auVar7._0_8_ = *puVar4;
+        auVar6 = _pcpyld(auVar7,auVar6);
+        auVar6 = _qfsrv(auVar6,auVar6);
+        auVar7 = _pextlb(0,auVar6._0_8_);
+        uVar5 = uVar5 - 1;
+        puVar3 = (undefined8 *)((int)puVar3 + iVar2);
+        puVar4 = (undefined8 *)((int)puVar4 + iVar2);
+        auVar6 = _qfsrv(in_zero_qw,auVar6);
+        auVar6 = _pextlb(0,auVar6._0_8_);
+        auVar6 = _paddh(auVar6,auVar7);
+        auVar6 = _paddh(auVar12,auVar6);
+        auVar6 = _psrlh(auVar6,1);
+        in_t0_qw = *pauVar11;
+        auVar7 = _paddh(in_t0_qw,auVar6);
+        auVar6 = _pcgth(auVar7,in_zero_qw);
+        in_t1_qw = _psrlh(auVar6,0xf);
+        auVar6 = _paddh(in_t1_qw,auVar7);
+        auVar6 = _psrlh(auVar6,1);
+        *(int *)*pauVar11 = auVar6._0_4_;
+        *(int *)(*pauVar11 + 4) = auVar6._4_4_;
+        *(int *)(*pauVar11 + 8) = auVar6._8_4_;
+        *(int *)(*pauVar11 + 0xc) = auVar6._12_4_;
+        pauVar11 = (undefined1 (*) [16])(*pauVar11 + iVar2 * 2);
+      } while (0 < (int)uVar5);
+      puVar3 = puVar3 + 0x28;
+      puVar4 = puVar4 + 0x28;
+      uVar5 = param_1[3];
+      uVar8 = uVar9 & uVar5;
+      uVar9 = 0;
+    } while (uVar8 != 0);
+    puVar3 = (undefined8 *)(param_1[5] + 0x40);
+    puVar4 = (undefined8 *)(param_1[6] + 0x40);
+    pauVar11 = (undefined1 (*) [16])(*param_1 + 0x80);
+    bVar1 = iVar10 != 0;
+    iVar10 = 0;
+  } while (bVar1);
+  return;
+}
+
+// 0x0010a7b0  size 0x120
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a6e0_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan14(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 (*pauVar2) [16];
+  undefined1 (*pauVar3) [16];
+  uint uVar4;
+  undefined1 auVar5 [16];
+  uint uVar6;
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  uint uVar9;
+  undefined1 (*pauVar10) [16];
+  undefined1 auVar11 [16];
+  undefined1 auVar12 [16];
+  undefined1 auVar13 [16];
+  undefined1 auVar14 [16];
+  
+  auVar13 = _psrlh(~in_zero_qw,0xf);
+  auVar14 = _psllh(auVar13,1);
+  pauVar2 = (undefined1 (*) [16])param_1[5];
+  pauVar3 = (undefined1 (*) [16])param_1[6];
+  uVar4 = param_1[2];
+  pauVar10 = (undefined1 (*) [16])*param_1;
+  iVar1 = param_1[4];
+  auVar7 = _qfsrv(*pauVar3,*pauVar2);
+  auVar11 = _qfsrv(*pauVar2,*pauVar3);
+  auVar13 = _pextlb(0,auVar7._0_8_);
+  auVar5 = _pextub(in_zero_qw,auVar7);
+  uVar9 = 0xffffffff;
+  auVar11 = _qfsrv(auVar11,auVar7);
+  auVar7 = _pextlb(0,auVar11._0_8_);
+  auVar11 = _pextub(in_zero_qw,auVar11);
+  auVar13 = _paddh(auVar7,auVar13);
+  auVar5 = _paddh(auVar11,auVar5);
+  if (uVar4 == 0) goto LAB_0010a8b0;
+  do {
+    do {
+      pauVar2 = (undefined1 (*) [16])(*pauVar2 + iVar1);
+      pauVar3 = (undefined1 (*) [16])(*pauVar3 + iVar1);
+      auVar7 = _qfsrv(*pauVar3,*pauVar2);
+      auVar11 = _qfsrv(*pauVar2,*pauVar3);
+      auVar8 = _pextlb(0,auVar7._0_8_);
+      uVar4 = uVar4 - 1;
+      auVar12 = _pextub(in_zero_qw,auVar7);
+      auVar11 = _qfsrv(auVar11,auVar7);
+      auVar7 = _pextlb(0,auVar11._0_8_);
+      auVar11 = _pextub(in_zero_qw,auVar11);
+      auVar7 = _paddh(auVar7,auVar8);
+      auVar11 = _paddh(auVar11,auVar12);
+      auVar13 = _paddh(auVar7,auVar13);
+      auVar5 = _paddh(auVar11,auVar5);
+      auVar13 = _paddh(auVar14,auVar13);
+      auVar5 = _paddh(auVar14,auVar5);
+      auVar13 = _psrlh(auVar13,2);
+      auVar5 = _psrlh(auVar5,2);
+      auVar13 = _paddh(*pauVar10,auVar13);
+      auVar5 = _paddh(pauVar10[1],auVar5);
+      auVar14 = _psrlh(~in_zero_qw,0xf);
+      auVar13 = _paddh(auVar14,auVar13);
+      auVar13 = _psrlh(auVar13,1);
+      auVar5 = _paddh(auVar14,auVar5);
+      auVar5 = _psrlh(auVar5,1);
+      *(int *)*pauVar10 = auVar13._0_4_;
+      *(int *)(*pauVar10 + 4) = auVar13._4_4_;
+      *(int *)(*pauVar10 + 8) = auVar13._8_4_;
+      *(int *)(*pauVar10 + 0xc) = auVar13._12_4_;
+      *(int *)pauVar10[1] = auVar5._0_4_;
+      *(int *)(pauVar10[1] + 4) = auVar5._4_4_;
+      *(int *)(pauVar10[1] + 8) = auVar5._8_4_;
+      *(int *)(pauVar10[1] + 0xc) = auVar5._12_4_;
+      pauVar10 = (undefined1 (*) [16])(*pauVar10 + iVar1 * 2);
+      auVar13 = auVar7;
+      auVar5 = auVar11;
+    } while (0 < (int)uVar4);
+LAB_0010a8b0:
+    pauVar2 = pauVar2 + 8;
+    pauVar3 = pauVar3 + 8;
+    uVar4 = param_1[3];
+    uVar6 = uVar9 & uVar4;
+    uVar9 = 0;
+  } while (uVar6 != 0);
+  return;
+}
+
+// 0x0010a8d0  size 0x114
+/* follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a7b0_Orphan1) */
+
+void Mpeg_AddBlocks_Orphan15(int *param_1)
+
+{
+  int iVar1;
+  undefined1 auVar2 [16];
+  uint uVar3;
+  undefined1 in_zero_qw [16];
+  undefined8 *puVar4;
+  undefined8 *puVar5;
+  ulong uVar6;
+  undefined1 in_t0_qw [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 in_t1_qw [16];
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  uint uVar11;
+  undefined8 in_t3_udw;
+  undefined1 (*pauVar12) [16];
+  undefined1 auVar13 [16];
+  
+  auVar13 = _psrlh(~in_zero_qw,0xf);
+  auVar13 = _psllh(auVar13,1);
+  puVar4 = (undefined8 *)param_1[5];
+  puVar5 = (undefined8 *)param_1[6];
+  pauVar12 = (undefined1 (*) [16])*param_1;
+  iVar1 = param_1[4];
+  uVar11 = 1;
+  do {
+    uVar6 = (ulong)param_1[2];
+    auVar7._8_8_ = in_t0_qw._8_8_;
+    auVar7._0_8_ = *puVar4;
+    auVar8._8_8_ = in_t1_qw._8_8_;
+    auVar8._0_8_ = *puVar5;
+    auVar7 = _pcpyld(auVar8,auVar7);
+    auVar7 = _qfsrv(auVar7,auVar7);
+    in_t1_qw = _pextlb(0,auVar7._0_8_);
+    puVar4 = (undefined8 *)((int)puVar4 + iVar1);
+    uVar11 = uVar11 | 0x8000;
+    auVar7 = _qfsrv(in_zero_qw,auVar7);
+    in_t0_qw = _pextlb(0,auVar7._0_8_);
+    auVar7 = _paddh(in_t0_qw,in_t1_qw);
+    if (uVar6 == 0) goto LAB_0010a99c;
+    do {
+      do {
+        puVar5 = (undefined8 *)((int)puVar5 + iVar1);
+        auVar10._8_8_ = in_t0_qw._8_8_;
+        auVar10._0_8_ = *puVar4;
+        auVar9._8_8_ = in_t1_qw._8_8_;
+        auVar9._0_8_ = *puVar5;
+        auVar8 = _pcpyld(auVar9,auVar10);
+        auVar8 = _qfsrv(auVar8,auVar8);
+        auVar10 = _pextlb(0,auVar8._0_8_);
+        uVar6 = (ulong)((int)uVar6 + -1);
+        puVar4 = (undefined8 *)((int)puVar4 + iVar1);
+        auVar8 = _qfsrv(in_zero_qw,auVar8);
+        auVar8 = _pextlb(0,auVar8._0_8_);
+        auVar8 = _paddh(auVar8,auVar10);
+        auVar7 = _paddh(auVar7,auVar8);
+        auVar7 = _paddh(auVar13,auVar7);
+        auVar7 = _psrlh(auVar7,2);
+        auVar10 = _paddh(*pauVar12,auVar7);
+        auVar7 = _pcgth(auVar10,in_zero_qw);
+        in_t1_qw = _psrlh(auVar7,0xf);
+        auVar7 = _paddh(in_t1_qw,auVar10);
+        in_t0_qw._8_8_ = SUB168(*pauVar12,8);
+        in_t0_qw._0_8_ = (long)(iVar1 * 2);
+        auVar7 = _psrlh(auVar7,1);
+        *(int *)*pauVar12 = auVar7._0_4_;
+        *(int *)(*pauVar12 + 4) = auVar7._4_4_;
+        *(int *)(*pauVar12 + 8) = auVar7._8_4_;
+        *(int *)(*pauVar12 + 0xc) = auVar7._12_4_;
+        pauVar12 = (undefined1 (*) [16])(*pauVar12 + iVar1 * 2);
+        auVar7 = auVar8;
+      } while (0 < (long)uVar6);
+LAB_0010a99c:
+      auVar2._4_4_ = 0;
+      auVar2._0_4_ = uVar11;
+      auVar2._8_8_ = in_t3_udw;
+      auVar8 = _psrah(auVar2,0xf);
+      puVar4 = puVar4 + 0x28;
+      uVar6 = (ulong)param_1[3];
+      puVar5 = puVar5 + 0x28;
+      uVar3 = uVar11 & 0x7fff;
+      uVar11 = uVar11 & 0x7fff;
+    } while ((auVar8._0_8_ & uVar6) != 0);
+    puVar4 = (undefined8 *)(param_1[5] + 0x40);
+    puVar5 = (undefined8 *)(param_1[6] + 0x40);
+    pauVar12 = (undefined1 (*) [16])(*param_1 + 0x80);
+    uVar11 = 0;
+  } while (uVar3 != 0);
+  return;
+}
+
+// 0x0010a9e8  size 0x5c
+/* code jumped/branched into from Mpeg_AddBlocks; shared tail */
+
+void Mpeg_AddBlocks_Tail1(undefined4 *param_1,undefined1 (*param_2) [16],undefined1 (*param_3) [16])
+
+{
+  undefined1 auVar1 [16];
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 auVar3 [16];
+  int iVar4;
+  
+  auVar1 = auRam0010aa90;
+  iVar4 = 0x18;
+  do {
+    iVar4 = iVar4 + -1;
+    auVar2 = _paddh(*param_3,*param_2);
+    auVar2 = _pminh(auVar2,auVar1);
+    auVar3 = _paddh(param_3[1],param_2[1]);
+    auVar2 = _pmaxh(auVar2,in_zero_qw);
+    auVar3 = _pminh(auVar3,auVar1);
+    param_2 = param_2 + 2;
+    auVar3 = _pmaxh(auVar3,in_zero_qw);
+    param_3 = param_3 + 2;
+    auVar2 = _ppacb(auVar3,auVar2);
+    *param_1 = auVar2._0_4_;
+    param_1[1] = auVar2._4_4_;
+    param_1[2] = auVar2._8_4_;
+    param_1[3] = auVar2._12_4_;
+    param_1 = param_1 + 4;
+  } while (iVar4 != 0);
+  return;
+}
+
+// 0x0010aa48  size 0x60
+/* code jumped/branched into from Mpeg_AddBlocks; shared tail */
+
+void Mpeg_AddBlocks_Tail2(undefined4 *param_1,undefined1 (*param_2) [16])
+
+{
+  undefined1 auVar1 [16];
+  undefined1 in_zero_qw [16];
+  undefined1 auVar2 [16];
+  undefined1 auVar3 [16];
+  int iVar4;
+  
+  auVar1 = auRam0010aa90;
+  iVar4 = 0x18;
+  do {
+    iVar4 = iVar4 + -1;
+    auVar2 = _pminh(*param_2,auVar1);
+    auVar2 = _pmaxh(auVar2,in_zero_qw);
+    auVar3 = _pminh(param_2[1],auVar1);
+    param_2 = param_2 + 2;
+    auVar3 = _pmaxh(auVar3,in_zero_qw);
+    auVar2 = _ppacb(auVar3,auVar2);
+    *param_1 = auVar2._0_4_;
+    param_1[1] = auVar2._4_4_;
+    param_1[2] = auVar2._8_4_;
+    param_1[3] = auVar2._12_4_;
+    param_1 = param_1 + 4;
+  } while (iVar4 != 0);
   return;
 }
 

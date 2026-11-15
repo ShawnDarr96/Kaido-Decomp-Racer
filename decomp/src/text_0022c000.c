@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x0022c1f0  size 0x310
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_Continue(int *param_1)
 
 {
@@ -98,7 +96,7 @@ void MenuScr_Draw_Continue(int *param_1)
   if (!bVar2) {
     param_1[10] = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(2,*(undefined4 *)(&DAT_0036e9c8 + *param_1 * 4),1,0);
   }
   uVar6 = Profile_Get(0);
@@ -303,8 +301,6 @@ void MenuPage10_Enter(void)
 }
 
 // 0x0022c980  size 0x19c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_PlayerCar(int *param_1)
 
 {
@@ -323,7 +319,7 @@ void ScrCareer_Draw_PlayerCar(int *param_1)
   uVar2 = Profile_Get(0);
   uVar2 = Profile_GetMoney(uVar2);
   MenuWnd_DrawNumber(0x2d,0x38,uVar2);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x2d,*(undefined4 *)(&DAT_0032af00 + *param_1 * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x2c);
@@ -539,8 +535,6 @@ void PagePlayerCar_Enter(void)
 }
 
 // 0x0022d010  size 0x2f0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_SelectCourse(int *param_1)
 
 {
@@ -563,7 +557,7 @@ void MenuScr_Draw_SelectCourse(int *param_1)
   else {
     MenuWnd_DrawCursor(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x78,*(undefined4 *)(&DAT_0032af60 + param_1[1] * 4),1,0);
   }
   MenuWnd_Update(param_1 + 3,0x78,7,6);
@@ -1116,8 +1110,6 @@ LAB_0022de28:
 }
 
 // 0x0022df80  size 0x3a8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_KaidoTheatre(int param_1)
 
 {
@@ -1230,7 +1222,7 @@ void ScrCareer_Draw_KaidoTheatre(int param_1)
       iVar5 = 6;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x12,*(undefined4 *)(&DAT_0032b020 + iVar5 * 4),1,0);
   }
   iVar5 = UiMgr_FindLayout(0x12);
@@ -1863,8 +1855,6 @@ LAB_0022f30c:
 }
 
 // 0x0022f3d0  size 0x388
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_KaidoTheatre_f3d0(int param_1)
 
 {
@@ -1969,7 +1959,7 @@ void ScrCareer_Draw_KaidoTheatre_f3d0(int param_1)
       iVar5 = 6;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x12,*(undefined4 *)(&DAT_0032b090 + iVar5 * 4),1,0);
   }
   iVar5 = UiMgr_FindLayout(0x12);
@@ -2344,7 +2334,7 @@ void MenuScr_Select_Full(int param_1)
   }
   if (cVar1 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState(0xf1,_s_MenuScr_Select_Full_1,0,0);
     }
   }

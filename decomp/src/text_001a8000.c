@@ -2,6 +2,16 @@
 // Address range 0x001a8000 - 0x001ac000
 #include "ghidra_types.h"
 
+// 0x001a8718  size 0x1c
+/* follows PtclSys_Update; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void PtclSys_Update_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001a8740  size 0x60
 long PtclList_dtor(long param_1,short param_2)
 
@@ -239,9 +249,10 @@ void PtclSys_Init(undefined8 param_1)
   int iVar3;
   undefined4 *puVar4;
   uint uVar5;
-  undefined4 *puVar6;
-  undefined4 uVar7;
-  float fVar8;
+  float *pfVar6;
+  float fVar7;
+  undefined4 uVar8;
+  float __x;
   
   _g_ParticlesC = Mem_Alloc16(0x1e000,param_1);
   uVar5 = 0;
@@ -290,19 +301,19 @@ void PtclSys_Init(undefined8 param_1)
     iVar3 = iVar3 + 4;
   } while (uVar5 < 0x3b);
   uVar5 = 0;
-  puVar6 = (undefined4 *)0x4308e0;
+  pfVar6 = (float *)0x4308e0;
   puVar4 = (undefined4 *)0x430ce0;
   do {
-    fVar8 = ((float)uVar5 / 256.0) * 2.0 * 3.1415927;
-    if (3.1415927 < fVar8) {
-      fVar8 = fVar8 - 6.2831855;
+    __x = ((float)uVar5 / 256.0) * 2.0 * 3.1415927;
+    if (3.1415927 < __x) {
+      __x = __x - 6.2831855;
     }
-    uVar7 = cosf(fVar8);
-    *puVar6 = uVar7;
-    uVar7 = sinf(fVar8);
+    fVar7 = cosf(__x);
+    *pfVar6 = fVar7;
+    uVar8 = sinf(__x);
     uVar5 = uVar5 + 1;
-    puVar6 = puVar6 + 1;
-    *puVar4 = uVar7;
+    pfVar6 = pfVar6 + 1;
+    *puVar4 = uVar8;
     puVar4 = puVar4 + 1;
   } while (uVar5 < 0x100);
   _s_PtclSysVar4 = 0;

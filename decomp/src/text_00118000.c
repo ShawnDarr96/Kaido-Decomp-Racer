@@ -1070,6 +1070,17 @@ void maybe_sceSifLoadElf(void)
   return;
 }
 
+// 0x00119a60  size 0x28
+/* follows sceSifLoadElf; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void sceSifLoadElf_Orphan1(undefined8 param_1,undefined8 param_2)
+
+{
+  maybe__lf_elf_load(param_1,0x35f388,param_2,1);
+  return;
+}
+
 // 0x00119a88  size 0xec
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1302,6 +1313,35 @@ undefined8 maybe_InitTLBHandler(undefined8 param_1)
   return param_1;
 }
 
+// 0x00119f98  size 0x84
+/* follows InitTLBHandler; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+undefined4 InitTLBHandler_Orphan1(undefined8 param_1,undefined4 param_2)
+
+{
+  undefined4 uVar1;
+  undefined4 *puVar2;
+  uint uVar3;
+  
+  uVar3 = (int)param_1 - 1;
+  if (uVar3 < 0xd) {
+    puVar2 = (undefined4 *)((int)param_1 * 4 + 0x306ee0);
+    uVar1 = *puVar2;
+    *puVar2 = param_2;
+    if (uVar3 < 3) {
+      SetVTLBRefillHandler(param_1,0x11a6c0);
+    }
+    else {
+      SetVCommonHandler(param_1,0x11a6c0);
+    }
+  }
+  else {
+    uVar1 = 0xffffffff;
+  }
+  return uVar1;
+}
+
 // 0x0011a020  size 0x10
 /* syscall 0x5a */
 
@@ -1310,6 +1350,29 @@ void maybe_kCopy_A(void)
 {
   syscall(0x5a);
   return;
+}
+
+// 0x0011a030  size 0x38
+/* follows kCopy_A; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+undefined8 kCopy_A_Orphan1(undefined4 *param_1,undefined4 *param_2,uint param_3)
+
+{
+  undefined4 uVar1;
+  uint uVar2;
+  
+  uVar2 = 0;
+  if (param_3 >> 2 != 0) {
+    do {
+      uVar1 = *param_2;
+      uVar2 = uVar2 + 1;
+      param_2 = param_2 + 1;
+      *param_1 = uVar1;
+      param_1 = param_1 + 1;
+    } while (uVar2 < param_3 >> 2);
+  }
+  return 0;
 }
 
 // 0x0011a068  size 0x10
@@ -1339,7 +1402,7 @@ void maybe_InitAlarmPatch(void)
   
   uVar4 = 3;
   puVar3 = &DAT_00306f40;
-  SetSyscall(DAT_00306f28,PTR_LAB_00306f2c);
+  SetSyscall(DAT_00306f28,PTR_kCopy_A_Orphan1_00306f2c);
   maybe_kCopy_A(0xffffffff80075000,0x306ba8,0x330);
   FlushCache(0);
   FlushCache(2);
@@ -1356,6 +1419,27 @@ void maybe_InitAlarmPatch(void)
     uVar1 = *puVar3;
   }
   DAT_00306f20 = RFU091(3);
+  return;
+}
+
+// 0x0011a150  size 0x10
+/* follows InitAlarmPatch; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void InitAlarmPatch_Orphan1(void)
+
+{
+  syscall(0x55);
+  return;
+}
+
+// 0x0011a160  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU085_iClearEventFlag_copy2(void)
+
+{
+  syscall(0xffffffffffffffab);
   return;
 }
 
@@ -1380,6 +1464,69 @@ undefined8 maybe_Kernl_WaitEventFlagWrap(int param_1)
     uVar1 = 0xffffffffffffffff;
   }
   return uVar1;
+}
+
+// 0x0011a1b0  size 0x10
+/* follows Kernl_WaitEventFlagWrap; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Kernl_WaitEventFlagWrap_Orphan1(void)
+
+{
+  syscall(0xffffffffffffffaa);
+  return;
+}
+
+// 0x0011a1c0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU087_PollEvnetFlag_copy2(void)
+
+{
+  syscall(0x57);
+  return;
+}
+
+// 0x0011a1d0  size 0x10
+/* follows RFU087_PollEvnetFlag_copy2; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RFU087_PollEvnetFlag_copy2_Orphan1(void)
+
+{
+  syscall(0xffffffffffffffa9);
+  return;
+}
+
+// 0x0011a1e0  size 0x10
+/* follows RFU087_PollEvnetFlag_copy2_Orphan1; unreferenced except as noted (was
+   FUN_0011a1d0_Orphan1) */
+
+void RFU087_PollEvnetFlag_copy2_Orphan2(void)
+
+{
+  syscall(0x58);
+  return;
+}
+
+// 0x0011a1f0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU088_iPollEvnetFlag_copy2(void)
+
+{
+  syscall(0xffffffffffffffa8);
+  return;
+}
+
+// 0x0011a200  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU089_ReferEventFlagStatus_copy2(void)
+
+{
+  syscall(0x59);
+  return;
 }
 
 // 0x0011a210  size 0x40
@@ -1537,12 +1684,73 @@ void maybe_InitKernelSema(void)
   return;
 }
 
+// 0x0011a898  size 0xc
+/* follows InitKernelSema; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+undefined4 InitKernelSema_Orphan1(void)
+
+{
+  return DAT_00307214;
+}
+
 // 0x0011a8a8  size 0x10
 void maybe_kCopy_B(void)
 
 {
   syscall(0x5a);
   return;
+}
+
+// 0x0011a8b8  size 0x38
+/* address loaded as a constant in InitThreadPatch (callback / handler) */
+
+undefined8 InitThreadPatch_Callback1(undefined4 *param_1,undefined4 *param_2,uint param_3)
+
+{
+  undefined4 uVar1;
+  uint uVar2;
+  
+  uVar2 = 0;
+  if (param_3 >> 2 != 0) {
+    do {
+      uVar1 = *param_2;
+      uVar2 = uVar2 + 1;
+      param_2 = param_2 + 1;
+      *param_1 = uVar1;
+      param_1 = param_1 + 1;
+    } while (uVar2 < param_3 >> 2);
+  }
+  return 0;
+}
+
+// 0x0011a8f0  size 0x40
+/* address loaded as a constant in InitThreadPatch (callback / handler) */
+
+int * InitThreadPatch_Callback2(int *param_1,int *param_2,int param_3)
+
+{
+  bool bVar1;
+  
+  bVar1 = param_1 < param_2;
+  if (*param_1 == param_3) {
+LAB_0011a924:
+    if (!bVar1) {
+      param_1 = (int *)0x0;
+    }
+  }
+  else if (bVar1) {
+    do {
+      param_1 = param_1 + 1;
+      bVar1 = param_1 < param_2;
+      if (*param_1 == param_3) goto LAB_0011a924;
+    } while (bVar1);
+    param_1 = (int *)0x0;
+  }
+  else {
+    param_1 = (int *)0x0;
+  }
+  return param_1;
 }
 
 // 0x0011a930  size 0x10
@@ -1575,8 +1783,8 @@ void maybe_InitThreadPatch(void)
   uint uVar4;
   uint uVar5;
   
-  SetSyscall_copy2(DAT_00307200,PTR_LAB_00307204);
-  SetSyscall_copy2(DAT_00307208,PTR_LAB_0030720c);
+  SetSyscall_copy2(DAT_00307200,PTR_InitThreadPatch_Callback2_00307204);
+  SetSyscall_copy2(DAT_00307208,PTR_InitThreadPatch_Callback1_0030720c);
   iVar2 = maybe_GetSyscallTable(0xffffffff80000000,0xffffffff80080000,0x11a8f0);
   iVar3 = maybe_GetSyscallTable(0xffffffff80000000,0xffffffff80080000,0x11a8b8);
   uVar5 = iVar2 - 0x20c;
@@ -1644,6 +1852,29 @@ void maybe_kCopy_C(void)
   return;
 }
 
+// 0x0011ab00  size 0x38
+/* follows kCopy_C; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+undefined8 kCopy_C_Orphan1(undefined4 *param_1,undefined4 *param_2,uint param_3)
+
+{
+  undefined4 uVar1;
+  uint uVar2;
+  
+  uVar2 = 0;
+  if (param_3 >> 2 != 0) {
+    do {
+      uVar1 = *param_2;
+      uVar2 = uVar2 + 1;
+      param_2 = param_2 + 1;
+      *param_1 = uVar1;
+      param_1 = param_1 + 1;
+    } while (uVar2 < param_3 >> 2);
+  }
+  return 0;
+}
+
 // 0x0011ab38  size 0x10
 void RFU091_copy2(void)
 
@@ -1681,7 +1912,7 @@ void maybe_InitOsdPatch(void)
   if (lVar2 != 0) {
     uVar5 = 2;
     puVar4 = &DAT_003079d0;
-    SetSyscall_copy3(DAT_003079c0,PTR_LAB_003079c4);
+    SetSyscall_copy3(DAT_003079c0,PTR_kCopy_C_Orphan1_003079c4);
     maybe_kCopy_C(0xffffffff80074000,0x307218,0x7a8);
     FlushCache(0);
     FlushCache(2);
@@ -1708,6 +1939,29 @@ void maybe_kCopy_D(void)
   return;
 }
 
+// 0x0011ac70  size 0x30
+/* follows kCopy_D; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+undefined8 kCopy_D_Orphan1(undefined1 *param_1,undefined1 *param_2,uint param_3)
+
+{
+  undefined1 uVar1;
+  uint uVar2;
+  
+  uVar2 = 0;
+  if (param_3 != 0) {
+    do {
+      uVar1 = *param_2;
+      uVar2 = uVar2 + 1;
+      param_2 = param_2 + 1;
+      *param_1 = uVar1;
+      param_1 = param_1 + 1;
+    } while (uVar2 < param_3);
+  }
+  return 0;
+}
+
 // 0x0011aca0  size 0x10
 void SetSyscall_copy4(void)
 
@@ -1729,7 +1983,7 @@ int maybe_Exec_SetupArgs(undefined8 param_1,int param_2,undefined4 *param_3)
   iVar4 = DAT_00306f20;
   iVar2 = DAT_00306f20 + 0x40;
   aiStack_80[0] = iVar2;
-  SetSyscall_copy4(DAT_003079d8,PTR_LAB_003079dc);
+  SetSyscall_copy4(DAT_003079d8,PTR_kCopy_D_Orphan1_003079dc);
   if (0xf < param_2) {
     param_2 = 0xf;
   }
@@ -1881,6 +2135,16 @@ void Timer_WriteReg(undefined4 *param_1,undefined4 param_2)
   return;
 }
 
+// 0x0011b0a8  size 0x8
+/* follows Timer_WriteReg; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Timer_WriteReg_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0011b0b0  size 0x10
 /* T2_COUNT 0xB0001000 */
 
@@ -2001,6 +2265,22 @@ undefined8 maybe_EndTimer(void)
     uVar1 = 0xffffffff80000010;
   }
   return uVar1;
+}
+
+// 0x0011b2f0  size 0x2c
+/* follows EndTimer; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+uint EndTimer_Orphan1(void)
+
+{
+  uint uVar1;
+  
+  if (DAT_00308190 < 0) {
+    return 0x80008001;
+  }
+  uVar1 = REG_RCNT2_MODE;
+  return uVar1 & 3;
 }
 
 // 0x0011b320  size 0x90

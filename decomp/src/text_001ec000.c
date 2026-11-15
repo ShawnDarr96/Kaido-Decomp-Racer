@@ -1683,7 +1683,7 @@ void UiText_Reset(int param_1,long param_2,long param_3)
   return;
 }
 
-// 0x001eece0  size 0x2b4
+// 0x001eece0  size 0x2a8
 void UiText_Layout(int param_1)
 
 {
@@ -1786,7 +1786,17 @@ void UiText_Layout(int param_1)
   return;
 }
 
-// 0x001eefa0  size 0x1e4
+// 0x001eef94  size 0xc
+/* follows UiText_Layout; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void UiText_Layout_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001eefa0  size 0x1dc
 void UiText_Update(int param_1)
 
 {
@@ -1863,6 +1873,16 @@ void UiText_Update(int param_1)
   iVar1 = *(int *)(param_1 + 0x460c);
 LAB_001ef0a4:
   *(int *)(param_1 + 0x460c) = (iVar1 + 1) % *(int *)(param_1 + 0x4610);
+  return;
+}
+
+// 0x001ef184  size 0x8
+/* follows UiText_Update; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void UiText_Update_Orphan1(void)
+
+{
   return;
 }
 
@@ -2017,7 +2037,6 @@ void UiText_MeasureLine(int *param_1,float *param_2,int param_3,int param_4,unde
 /* WARNING: Removing unreachable block (ram,0x001ef6c4) */
 /* WARNING: Removing unreachable block (ram,0x001efe54) */
 /* WARNING: Removing unreachable block (ram,0x001eff8c) */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void UiText_FormatRivalInfo(ushort *param_1,ushort *param_2,int *param_3)
 
@@ -2086,7 +2105,7 @@ LAB_001ef4bc:
           puVar6 = &DAT_0036e864;
         }
         else {
-          puVar6 = (ushort *)(_g_Fonts + *(int *)(_g_LocalizedText + iVar4 * 4) * 2);
+          puVar6 = (ushort *)(g_Fonts + *(int *)(g_LocalizedText + iVar4 * 4) * 2);
         }
         while( true ) {
           uVar1 = *puVar6;

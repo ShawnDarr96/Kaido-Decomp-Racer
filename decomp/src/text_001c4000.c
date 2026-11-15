@@ -1855,7 +1855,7 @@ void Driver_ReadInput(float *param_1,int param_2)
   return;
 }
 
-// 0x001c7c50  size 0x2e0
+// 0x001c7c50  size 0x2d8
 void Driver_UpdateAssists(uint *param_1)
 
 {
@@ -1906,7 +1906,17 @@ void Driver_UpdateAssists(uint *param_1)
   return;
 }
 
-// 0x001c7f40  size 0xcac
+// 0x001c7f30  size 0x8
+/* follows Driver_UpdateAssists; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Driver_UpdateAssists_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001c7f40  size 0xc60
 void Driver_FilterSteering(uint *param_1,float *param_2,int param_3)
 
 {

@@ -481,7 +481,7 @@ undefined8 maybe_MenuObjSet_IsLoaded(uint param_1,int param_2)
   return uVar2;
 }
 
-// 0x002d4fa0  size 0x258
+// 0x002d4fa0  size 0x24c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 maybe_MenuObjSet_FindByName(uint param_1,int param_2,undefined8 param_3)
@@ -578,6 +578,16 @@ LAB_002d51a8:
     uVar4 = *(undefined4 *)(pcVar10 + 0xc);
   }
   return uVar4;
+}
+
+// 0x002d51f8  size 0xc
+/* follows MenuObjSet_FindByName; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void MenuObjSet_FindByName_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x002d5210  size 0x20
@@ -681,7 +691,7 @@ int MenuObjSet_GetEntry(int param_1,int param_2)
   return iVar1;
 }
 
-// 0x002d53b0  size 0x82c
+// 0x002d53b0  size 0x808
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_MenuObj_StepState(byte *param_1,uint param_2,int *param_3)
@@ -1038,6 +1048,16 @@ LAB_002d5b60:
       piVar9 = piVar9 + 1;
     } while (iVar15 < (int)uVar13);
   }
+  return;
+}
+
+// 0x002d5bdc  size 0x24
+/* follows MenuObj_StepState; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void MenuObj_StepState_Orphan1(void)
+
+{
   return;
 }
 
@@ -2121,7 +2141,7 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
   return;
 }
 
-// 0x002d7a80  size 0x110
+// 0x002d7a80  size 0x108
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_IntroCar_LoadFile(undefined8 param_1)
@@ -2172,6 +2192,16 @@ void maybe_IntroCar_LoadFile(undefined8 param_1)
     *(undefined4 *)(_g_IntroCar + 0x10) = 0;
     Arc_LoadFileEx(iVar4,*(undefined4 *)(_g_IntroCar + 0xc),0x2d7740,_g_IntroCar,0,0);
   }
+  return;
+}
+
+// 0x002d7b90  size 0x8
+/* follows IntroCar_LoadFile; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void IntroCar_LoadFile_Orphan1(void)
+
+{
   return;
 }
 

@@ -2,7 +2,7 @@
 // Address range 0x002d8000 - 0x002dc000
 #include "ghidra_types.h"
 
-// 0x002d8150  size 0x4c8
+// 0x002d8150  size 0x4bc
 void maybe_ShowroomBg_DrawObject(int param_1,undefined1 *param_2)
 
 {
@@ -148,6 +148,16 @@ void maybe_ShowroomBg_DrawObject(int param_1,undefined1 *param_2)
     Layer_Close(auStack_250,0);
     Layer_Close(auStack_250,1);
   }
+  return;
+}
+
+// 0x002d8618  size 0xc
+/* follows ShowroomBg_DrawObject; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ShowroomBg_DrawObject_Orphan1(void)
+
+{
   return;
 }
 
@@ -552,6 +562,387 @@ void Subtitle_SetPending(undefined4 param_1,undefined4 param_2,undefined4 param_
   return;
 }
 
+// 0x002d8f70  size 0x61c
+/* address loaded as a constant in Result_BuildRaceEntry (callback / handler) */
+
+int Result_BuildRaceEntry_Callback1(int param_1)
+
+{
+  if (param_1 == 0x394) {
+    param_1 = 0x6b;
+  }
+  else if (param_1 == 0x393) {
+    param_1 = 0x6a;
+  }
+  else if (param_1 == 0x392) {
+    param_1 = 0x69;
+  }
+  else if (param_1 == 0x356) {
+    param_1 = 0xcc;
+  }
+  else if (param_1 == 0x5c) {
+    param_1 = 0xd0;
+  }
+  else if (param_1 == 0x5b) {
+    param_1 = 0xcf;
+  }
+  else if (param_1 == 0x59) {
+    param_1 = 0xce;
+  }
+  else if (param_1 == 0xe0) {
+    param_1 = 0xcd;
+  }
+  else if (param_1 == 0x3a) {
+    param_1 = 0xcb;
+  }
+  else if (param_1 == 0x2c) {
+    param_1 = 0xca;
+  }
+  else if (param_1 == 2) {
+    param_1 = 0xc9;
+  }
+  else if (param_1 == 1) {
+    param_1 = 200;
+  }
+  else if (param_1 == 0x6a2) {
+    param_1 = 0x295;
+  }
+  else if (param_1 == 0x1e7f) {
+    param_1 = 0xb2;
+  }
+  else if (param_1 == 0x1e7e) {
+    param_1 = 0xb1;
+  }
+  else if (param_1 == 0x1e8c) {
+    param_1 = 0xbf;
+  }
+  else if (param_1 == 0x1e8b) {
+    param_1 = 0xbe;
+  }
+  else if (param_1 == 0x1e8a) {
+    param_1 = 0xbd;
+  }
+  else if (param_1 == 0x1e89) {
+    param_1 = 0xbc;
+  }
+  else if (param_1 == 0x1e88) {
+    param_1 = 0xbb;
+  }
+  else if (param_1 == 0x1e87) {
+    param_1 = 0xba;
+  }
+  else if (param_1 == 0x1e86) {
+    param_1 = 0xb9;
+  }
+  else if (param_1 == 0x1e85) {
+    param_1 = 0xb8;
+  }
+  else if (param_1 == 0x1e84) {
+    param_1 = 0xb7;
+  }
+  else if (param_1 == 0x1e83) {
+    param_1 = 0xb6;
+  }
+  else if (param_1 == 0x1e82) {
+    param_1 = 0xb5;
+  }
+  else if (param_1 == 0x1e81) {
+    param_1 = 0xb4;
+  }
+  else if (param_1 == 0x1e80) {
+    param_1 = 0xb3;
+  }
+  else if (param_1 == 0x1ecd) {
+    param_1 = 0xae;
+  }
+  else if (param_1 == 0x1ecc) {
+    param_1 = 0xad;
+  }
+  else if (param_1 == 0x1ecb) {
+    param_1 = 0xac;
+  }
+  else if (param_1 == 0x1eca) {
+    param_1 = 0xab;
+  }
+  else if (param_1 == 0x1ec9) {
+    param_1 = 0xaa;
+  }
+  else if (param_1 == 0x1ec8) {
+    param_1 = 0xa9;
+  }
+  else if (param_1 == 0x1ec7) {
+    param_1 = 0xa8;
+  }
+  else if (param_1 == 0x1ec6) {
+    param_1 = 0xa7;
+  }
+  else if (param_1 == 0x1ec5) {
+    param_1 = 0xa6;
+  }
+  else if (param_1 == 0x1ec4) {
+    param_1 = 0xa5;
+  }
+  else if (param_1 == 0x1ec3) {
+    param_1 = 0xa4;
+  }
+  else if (param_1 == 0x1ec2) {
+    param_1 = 0xa3;
+  }
+  else if (param_1 == 0x1ec1) {
+    param_1 = 0xa2;
+  }
+  else if (param_1 == 0x1ebf) {
+    param_1 = 0xa0;
+  }
+  else if (param_1 == 0x1ebe) {
+    param_1 = 0x9f;
+  }
+  else if (param_1 == 0x1ebd) {
+    param_1 = 0x9e;
+  }
+  else if (param_1 == 0x1ebc) {
+    param_1 = 0x9d;
+  }
+  else if (param_1 == 0x1ebb) {
+    param_1 = 0x9c;
+  }
+  else if (param_1 == 0x1eba) {
+    param_1 = 0x9b;
+  }
+  else if (param_1 == 0x1eb9) {
+    param_1 = 0x9a;
+  }
+  else if (param_1 == 0x1eb8) {
+    param_1 = 0x99;
+  }
+  else if (param_1 == 0x1eb7) {
+    param_1 = 0x98;
+  }
+  else if (param_1 == 0x1eb6) {
+    param_1 = 0x97;
+  }
+  else if (param_1 == 0x1eb5) {
+    param_1 = 0x96;
+  }
+  else if (param_1 == 0x1eb4) {
+    param_1 = 0x95;
+  }
+  else if (param_1 == 0x1eb3) {
+    param_1 = 0x94;
+  }
+  else if (param_1 == 0x1eb2) {
+    param_1 = 0x93;
+  }
+  else if (param_1 == 0x1eb1) {
+    param_1 = 0x92;
+  }
+  else if (param_1 == 0x1eb0) {
+    param_1 = 0x91;
+  }
+  else if (param_1 == 0x1eaf) {
+    param_1 = 0x90;
+  }
+  else if (param_1 == 0x1eae) {
+    param_1 = 0x8f;
+  }
+  else if (param_1 == 0x1ead) {
+    param_1 = 0x8e;
+  }
+  else if (param_1 == 0x1eac) {
+    param_1 = 0x8d;
+  }
+  else if (param_1 == 0x1eab) {
+    param_1 = 0x8c;
+  }
+  else if (param_1 == 0x1eaa) {
+    param_1 = 0x8b;
+  }
+  else if (param_1 == 0x1ea9) {
+    param_1 = 0x8a;
+  }
+  else if (param_1 == 0x1ea8) {
+    param_1 = 0x89;
+  }
+  else if (param_1 == 0x1ea7) {
+    param_1 = 0x88;
+  }
+  else if (param_1 == 0x1ea6) {
+    param_1 = 0x87;
+  }
+  else if (param_1 == 0x1ea5) {
+    param_1 = 0x86;
+  }
+  else if (param_1 == 0x1ea4) {
+    param_1 = 0x85;
+  }
+  else if (param_1 == 0x1ea3) {
+    param_1 = 0x84;
+  }
+  else if (param_1 == 0x1ea2) {
+    param_1 = 0x83;
+  }
+  else if (param_1 == 0x1ea1) {
+    param_1 = 0x82;
+  }
+  else if (param_1 == 0x1ea0) {
+    param_1 = 0x81;
+  }
+  else if (param_1 == 0x1e9f) {
+    param_1 = 0x80;
+  }
+  else if (param_1 == 0x1e9e) {
+    param_1 = 0x7f;
+  }
+  else if (param_1 == 0x1e9d) {
+    param_1 = 0x7e;
+  }
+  else if (param_1 == 0x1e9c) {
+    param_1 = 0x7d;
+  }
+  else if (param_1 == 0x1e9b) {
+    param_1 = 0x7c;
+  }
+  else if (param_1 == 0x1e9a) {
+    param_1 = 0x7b;
+  }
+  else if (param_1 == 0x1e99) {
+    param_1 = 0x7a;
+  }
+  else if (param_1 == 0x1e98) {
+    param_1 = 0x79;
+  }
+  else if (param_1 == 0x1e97) {
+    param_1 = 0x78;
+  }
+  else if (param_1 == 0x1e96) {
+    param_1 = 0x77;
+  }
+  else if (param_1 == 0x1e95) {
+    param_1 = 0x76;
+  }
+  else if (param_1 == 0x1e94) {
+    param_1 = 0x75;
+  }
+  else if (param_1 == 0x1e93) {
+    param_1 = 0x74;
+  }
+  else if (param_1 == 0x1e92) {
+    param_1 = 0x73;
+  }
+  else if (param_1 == 0x1e91) {
+    param_1 = 0x72;
+  }
+  else if (param_1 == 0x1e90) {
+    param_1 = 0x71;
+  }
+  else if (param_1 == 0x1e8f) {
+    param_1 = 0x70;
+  }
+  else if (param_1 == 0x1e8e) {
+    param_1 = 0x6f;
+  }
+  else if (param_1 == 0x1e8d) {
+    param_1 = 0x6e;
+  }
+  else if (param_1 == 0x54) {
+    param_1 = 0x4c;
+  }
+  else if (param_1 == 0x53) {
+    param_1 = 0x4b;
+  }
+  else if (param_1 == 0x52) {
+    param_1 = 0x4a;
+  }
+  else if (param_1 == 0x51) {
+    param_1 = 0x48;
+  }
+  else if (param_1 == 0x50) {
+    param_1 = 0x49;
+  }
+  else if (param_1 == 0x4f) {
+    param_1 = 0x47;
+  }
+  else if (param_1 == 0x6e) {
+    param_1 = 0x46;
+  }
+  else if (param_1 == 0x6d) {
+    param_1 = 0x45;
+  }
+  else if (param_1 == 0x6c) {
+    param_1 = 0x44;
+  }
+  else if (param_1 == 0x6b) {
+    param_1 = 0x43;
+  }
+  else if (param_1 == 0x6a) {
+    param_1 = 0x41;
+  }
+  else if (param_1 == 0x69) {
+    param_1 = 0x40;
+  }
+  else if (param_1 == 0x68) {
+    param_1 = 0x3f;
+  }
+  else if (param_1 == 0x67) {
+    param_1 = 0x42;
+  }
+  else if (param_1 == 0x56) {
+    param_1 = 0x3e;
+  }
+  else if (param_1 == 0x55) {
+    param_1 = 0x3d;
+  }
+  else if (param_1 == 0x4a) {
+    param_1 = 0x3c;
+  }
+  else if (param_1 == 0x49) {
+    param_1 = 0x3b;
+  }
+  else if (param_1 == 0xb) {
+    param_1 = 199;
+  }
+  else if (param_1 == 10) {
+    param_1 = 0xc6;
+  }
+  else if (param_1 == 9) {
+    param_1 = 0xc5;
+  }
+  else if (param_1 == 8) {
+    param_1 = 0xc4;
+  }
+  else if (param_1 == 7) {
+    param_1 = 0xc3;
+  }
+  else if (param_1 == 6) {
+    param_1 = 0xc2;
+  }
+  else if (param_1 == 5) {
+    param_1 = 0xc1;
+  }
+  else if (param_1 == 4) {
+    param_1 = 0xc0;
+  }
+  else if ((param_1 < 0x6a3) || (0x6b4 < param_1)) {
+    if ((param_1 < 0x4de) || (0x5fd < param_1)) {
+      if ((param_1 < 0x5c0) || (0x6df < param_1)) {
+        if ((0x6eb < param_1) && (param_1 < 0x8e0)) {
+          param_1 = param_1 + -0x40d;
+        }
+      }
+      else {
+        param_1 = param_1 + -0x40d;
+      }
+    }
+    else {
+      param_1 = param_1 + -0x40d;
+    }
+  }
+  else {
+    param_1 = param_1 + -0x40d;
+  }
+  return param_1;
+}
+
 // 0x002d9590  size 0x1f0
 UiLayout * maybe_ReplayUi_GetLayoutForMsg(int param_1)
 
@@ -784,6 +1175,37 @@ void ReplayUi_Free(void)
     Mem_Free();
     _g_ReplayUi = 0;
   }
+  return;
+}
+
+// 0x002d9c20  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* address loaded as a constant in ReplayUi_Load (callback / handler) */
+
+void ReplayUi_Load_Callback1(void)
+
+{
+  uint uVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  
+  iVar3 = 0;
+  iVar2 = 0;
+  iVar4 = *(int *)(_g_ReplayUi + 0xb0);
+  do {
+    *(int *)(*(int *)(_g_ReplayUi + 0xb4) + iVar2) = iVar4;
+    uVar1 = g_ArcToc->entries[*(int *)(_g_ReplayUi + iVar2)].unpackedSize;
+    if (uVar1 == 0) {
+      uVar1 = g_ArcToc->entries[*(int *)(_g_ReplayUi + iVar2)].sectorCount;
+    }
+    else {
+      uVar1 = uVar1 + 0x7ff >> 0xb;
+    }
+    iVar3 = iVar3 + 1;
+    iVar4 = iVar4 + uVar1 * 0x800;
+    iVar2 = iVar2 + 4;
+  } while (iVar3 < 0x2c);
   return;
 }
 
@@ -1159,7 +1581,7 @@ void maybe_NameEntry_DrawInfo(int param_1)
   return;
 }
 
-// 0x002da920  size 0x67c
+// 0x002da920  size 0x670
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_NameEntry_DrawKeyboard(int param_1)
@@ -1407,6 +1829,16 @@ void maybe_NameEntry_DrawKeyboard(int param_1)
     UiElem_SetPropFloat(pUVar6,0x42,8,bVar11);
     UiElem_SetPropFloat(pUVar6,0x43,8,extraout_a3_lo_01);
   }
+  return;
+}
+
+// 0x002daf9c  size 0xc
+/* follows NameEntry_DrawKeyboard; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void NameEntry_DrawKeyboard_Orphan1(void)
+
+{
   return;
 }
 

@@ -2,6 +2,16 @@
 // Address range 0x001d0000 - 0x001d4000
 #include "ghidra_types.h"
 
+// 0x001d1594  size 0x8
+/* follows CarSpec_ApplyTuning; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void CarSpec_ApplyTuning_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001d15a0  size 0x644
 void CarSpec_ApplyParts(int param_1,undefined8 param_2)
 

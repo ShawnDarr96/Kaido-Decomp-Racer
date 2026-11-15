@@ -1430,7 +1430,7 @@ int Garage_GetCarPower(undefined8 param_1)
   return (iVar1 * 0x3c) / 100;
 }
 
-// 0x001ba290  size 0xc88
+// 0x001ba290  size 0xc60
 /* 18 callers */
 
 undefined8 Garage_ComputeCarStats(undefined8 param_1,long param_2)
@@ -1951,6 +1951,16 @@ switchD_001ba76c_caseD_0:
     uVar4 = 0;
   }
   return uVar4;
+}
+
+// 0x001baf18  size 0x28
+/* follows Garage_ComputeCarStats; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+undefined4 Garage_ComputeCarStats_Orphan1(void)
+
+{
+  return 0x78;
 }
 
 // 0x001baf70  size 0x3c

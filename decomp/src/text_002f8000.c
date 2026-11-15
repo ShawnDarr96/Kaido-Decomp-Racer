@@ -1888,7 +1888,7 @@ void maybe_Attract_DrawLogo(int param_1)
   Obj_Reset(auStack_350,4,0xffffffffffffffff);
   uStack_a0 = 0x44;
   auStack_350[0] = auStack_350[0] | 2;
-  fVar1 = (float)cosf((float)(uint)((_g_ProfileShared1 << 1) % 0xb4) * 0.017453292);
+  fVar1 = cosf((float)(uint)((_g_ProfileShared1 << 1) % 0xb4) * 0.017453292);
   fVar1 = fVar1 * 255.0;
   if (2.1474836e+09 <= fVar1) {
     fVar1 = fVar1 - 2.1474836e+09;
@@ -1976,15 +1976,15 @@ void maybe_AttractTask_Load(int param_1)
   bVar1 = false;
   bVar4 = false;
   piVar2 = *(int **)(param_1 + 0x14);
-  uVar11 = _g_MenuInput[2];
+  uVar11 = g_MenuInput[2];
   bVar3 = false;
-  if ((_g_MenuInput[4] & uVar11) == 0) {
+  if ((g_MenuInput[4] & uVar11) == 0) {
     uVar11 = 0;
   }
   else if (uVar11 == 0x80000) {
     uVar11 = 0;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar11 = 0;
   }
   iVar8 = *piVar2;
@@ -2198,14 +2198,14 @@ void maybe_AttractTask_Update(int *param_1)
     else {
       fVar5 = (float)Demo_InterpolateKeys((float)piVar1[4] / (float)*(int *)(*piVar1 + 0x1c));
     }
-    uVar4 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar4) == 0) {
+    uVar4 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar4) == 0) {
       uVar4 = 0x100000;
     }
     else if (uVar4 == 0x80000) {
       uVar4 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar4 = 0x100000;
     }
     if ((uVar4 == 0x40) && (*param_1 == 0)) {

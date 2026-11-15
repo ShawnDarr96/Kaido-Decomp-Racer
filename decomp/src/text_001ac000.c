@@ -1202,7 +1202,7 @@ void CarAsset_InstallPart
   return;
 }
 
-// 0x001ae570  size 0x8a8
+// 0x001ae570  size 0x898
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void CarAsset_Build(int param_1)
@@ -1461,6 +1461,16 @@ void CarAsset_Build(int param_1)
     puVar2 = puVar2 + 0x14;
   }
   *(float *)(param_1 + 0xcb0) = ((float)puVar2[10] - (float)puVar2[6]) * 1.1;
+  return;
+}
+
+// 0x001aee18  size 0x10
+/* follows CarAsset_Build; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void CarAsset_Build_Orphan1(void)
+
+{
   return;
 }
 

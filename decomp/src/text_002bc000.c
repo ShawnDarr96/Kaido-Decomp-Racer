@@ -560,22 +560,22 @@ void Result_UpdateCursor(char *param_1)
   if ((param_1[0x48] != '\x02') && (param_1[0x48] != '\x04')) {
     if (*param_1 == '\x01') {
       if (*(float *)(param_1 + 0x94) == 1.0) {
-        if (*_g_MenuInput != 1) {
-          *_g_MenuInput = 1;
+        if (*g_MenuInput != 1) {
+          *g_MenuInput = 1;
         }
       }
-      else if (*_g_MenuInput == 1) {
-        *_g_MenuInput = 0;
+      else if (*g_MenuInput == 1) {
+        *g_MenuInput = 0;
       }
     }
-    uVar6 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar6) == 0) {
+    uVar6 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar6) == 0) {
       uVar6 = 0x100000;
     }
     else if (uVar6 == 0x80000) {
       uVar6 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar6 = 0x100000;
     }
     if (uVar6 == 0x20) {
@@ -607,7 +607,7 @@ void Result_UpdateCursor(char *param_1)
             param_1[0x340] = '\x01';
             break;
           case 1:
-            *_g_MenuInput = 0;
+            *g_MenuInput = 0;
             param_1[0x340] = '\x02';
             break;
           case 2:
@@ -624,7 +624,7 @@ void Result_UpdateCursor(char *param_1)
             param_1[0x326] = '\0';
             param_1[0x327] = '\0';
             param_1[0x340] = '\x06';
-            *_g_MenuInput = 0;
+            *g_MenuInput = 0;
             break;
           case 5:
             param_1[0x340] = '\a';
@@ -913,7 +913,7 @@ void Result_ResetCursor(undefined4 *param_1)
   return;
 }
 
-// 0x002bdb20  size 0x984
+// 0x002bdb20  size 0x978
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Result_Draw_TestCourse(int param_1)
@@ -1258,6 +1258,16 @@ LAB_002bdc40:
     }
     uVar7 = uVar7 + 1;
   } while (uVar7 < 9);
+  return;
+}
+
+// 0x002be4a4  size 0xc
+/* follows Result_Draw_TestCourse; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Result_Draw_TestCourse_Orphan1(void)
+
+{
   return;
 }
 

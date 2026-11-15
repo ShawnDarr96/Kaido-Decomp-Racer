@@ -950,6 +950,42 @@ undefined4 PhysMaterial_GetDamping(ulong param_1)
   return uVar1;
 }
 
+// 0x0015d330  size 0x3c
+/* follows PhysMaterial_GetDamping; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+undefined4 PhysMaterial_GetDamping_Orphan1(undefined4 *param_1,int param_2)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  
+  uVar3 = DAT_0036257c;
+  uVar2 = DAT_00362578;
+  uVar1 = DAT_00362574;
+  param_1[4] = DAT_00362570;
+  param_1[5] = uVar1;
+  param_1[6] = uVar2;
+  param_1[7] = uVar3;
+  param_1[0xc] = 0x4000000;
+  *param_1 = *(undefined4 *)(param_2 + 4);
+  param_1[0xd] = 0;
+  param_1[0xc] = param_1[0xc] & 0x80ffffff;
+  return 1;
+}
+
+// 0x0015d370  size 0x18
+/* follows PhysMaterial_GetDamping_Orphan1; unreferenced except as noted (was FUN_0015d330_Orphan1)
+    */
+
+void PhysMaterial_GetDamping_Orphan2(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+
+{
+  PhysPair_CollideBoxEdge(0x36f110,param_1,param_2,param_3);
+  return;
+}
+
 // 0x0015d3a0  size 0x24
 void PhysContact_Fill(undefined4 param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4,
                      undefined4 *param_5)
@@ -2490,7 +2526,7 @@ void PhysPair_RunBoxBox(undefined8 param_1)
   return;
 }
 
-// 0x0015fb40  size 0x484
+// 0x0015fb40  size 0x47c
 void PhysPair_BoxSphereContacts(undefined4 *param_1)
 
 {
@@ -2613,6 +2649,16 @@ void PhysPair_BoxSphereContacts(undefined4 *param_1)
       }
     }
   }
+  return;
+}
+
+// 0x0015ffc4  size 0x8
+/* follows PhysPair_BoxSphereContacts; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void PhysPair_BoxSphereContacts_Orphan1(void)
+
+{
   return;
 }
 

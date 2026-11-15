@@ -2,6 +2,16 @@
 // Address range 0x00154000 - 0x00158000
 #include "ghidra_types.h"
 
+// 0x00154244  size 0x14
+/* follows Snd_StreamUpdate; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Snd_StreamUpdate_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00154260  size 0x88
 undefined4 Snd_StreamIsReady(int param_1)
 
@@ -466,6 +476,17 @@ bool Snd_QueueCmd2d(undefined4 param_1,undefined4 param_2)
   return bVar1;
 }
 
+// 0x00154de0  size 0x8
+/* follows Snd_QueueCmd2d; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Snd_QueueCmd2d_Orphan1(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  *(undefined1 *)(param_3 + 4) = 0;
+  return;
+}
+
 // 0x00154df0  size 0xa0
 void Snd_BgmDmaCallback(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4
                        )
@@ -522,6 +543,70 @@ void Snd_BgmLoadNext(void)
       File_AbortAll();
     }
   }
+  return;
+}
+
+// 0x00154fe0  size 0x44
+/* follows Snd_BgmLoadNext; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Snd_BgmLoadNext_Orphan1(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  if (*(int *)(&s_Snd_LoadBanks_1 + *(int *)(param_3 + 8) * 0x2c) == 0) {
+    *(undefined1 *)(param_3 + 4) = 0;
+  }
+  else {
+    *(undefined1 *)(param_3 + 4) = 0xd;
+  }
+  return;
+}
+
+// 0x00155030  size 0xc
+/* follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00154fe0_Orphan1) */
+
+void Snd_BgmLoadNext_Orphan2(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  *(undefined1 *)(param_3 + 4) = 0xc;
+  return;
+}
+
+// 0x00155040  size 0x40
+/* follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00155030_Orphan1) */
+
+void Snd_BgmLoadNext_Orphan3(undefined8 param_1,int *param_2,int param_3)
+
+{
+  if (*param_2 == 0) {
+    *(undefined1 *)(param_3 + 4) = 10;
+  }
+  else if (*(int *)(param_3 + 0x34) == 0) {
+    *(undefined1 *)(param_3 + 4) = 0xb;
+  }
+  else {
+    *(undefined1 *)(param_3 + 4) = 6;
+  }
+  return;
+}
+
+// 0x00155080  size 0xc
+/* follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00155040_Orphan1) */
+
+void Snd_BgmLoadNext_Orphan4(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  *(undefined1 *)(param_3 + 4) = 10;
+  return;
+}
+
+// 0x00155090  size 0xc
+/* follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00155080_Orphan1) */
+
+void Snd_BgmLoadNext_Orphan5(undefined8 param_1,undefined8 param_2,int param_3)
+
+{
+  *(undefined1 *)(param_3 + 4) = 9;
   return;
 }
 
@@ -731,7 +816,7 @@ void Snd_ProcessQueue(void)
       break;
     case 8:
       DisableIntc(1);
-      _s_SndVar5 = &LAB_00155090;
+      _s_SndVar5 = Snd_BgmLoadNext_Orphan5;
       s_SndVar8 = 1;
       _s_SndVar6 = &s_SndVar7;
       IopStrm_Command(0x302,0);
@@ -741,7 +826,7 @@ void Snd_ProcessQueue(void)
       iVar3 = _s_SndVar9 * 0x2c;
       DisableIntc(1);
       _s_SndVar6 = &s_SndVar7;
-      _s_SndVar5 = &LAB_00155080;
+      _s_SndVar5 = Snd_BgmLoadNext_Orphan4;
       s_SndVar8 = 1;
       IopSnd_Command(0x103,1,0,uVar1,*(int *)(&s_Snd_LoadBanks_11 + iVar3) + _s_SndVar19,_s_SndVar21
                     );
@@ -750,7 +835,7 @@ void Snd_ProcessQueue(void)
       break;
     case 10:
       DisableIntc(1);
-      _s_SndVar5 = &LAB_00155040;
+      _s_SndVar5 = Snd_BgmLoadNext_Orphan3;
       s_SndVar8 = 1;
       _s_SndVar6 = &s_SndVar7;
       IopSnd_Command(0x104,1,0);
@@ -758,7 +843,7 @@ void Snd_ProcessQueue(void)
       break;
     case 0xb:
       DisableIntc(1);
-      _s_SndVar5 = &LAB_00155030;
+      _s_SndVar5 = Snd_BgmLoadNext_Orphan2;
       s_SndVar8 = 1;
       _s_SndVar6 = &s_SndVar7;
       IopStrm_Command(0x302,1,1);
@@ -768,7 +853,7 @@ void Snd_ProcessQueue(void)
       iVar3 = _s_SndVar9 * 0x2c;
       DisableIntc(1);
       s_SndVar8 = 1;
-      _s_SndVar5 = &LAB_00154fe0;
+      _s_SndVar5 = Snd_BgmLoadNext_Orphan1;
       _s_SndVar6 = &s_SndVar7;
       IopSe_Command(0x20d,_s_SndVar9,*(undefined4 *)(&s_Snd_LoadBanks_11 + iVar3),
                     *(undefined4 *)(&s_Snd_LoadBanks_9 + iVar3));
@@ -817,7 +902,7 @@ void Snd_ProcessQueue(void)
       iVar3 = _s_SndVar9 * 0x2c;
       DisableIntc(1);
       s_SndVar8 = 1;
-      _s_SndVar5 = &LAB_00154de0;
+      _s_SndVar5 = Snd_QueueCmd2d_Orphan1;
       _s_SndVar6 = &s_SndVar7;
       IopSe_Command(0x20e,_s_SndVar9,*(undefined4 *)(&s_Snd_LoadBanks_10 + iVar3));
       EnableIntc(1);

@@ -815,8 +815,6 @@ int SaveUi_GetResultMessage(int param_1,int param_2)
 }
 
 // 0x0020da10  size 0x2f0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined1 SaveUi_Task(undefined8 param_1,long param_2,undefined4 param_3,long param_4)
 
 {
@@ -839,14 +837,14 @@ undefined1 SaveUi_Task(undefined8 param_1,long param_2,undefined4 param_3,long p
   puVar5[8] = (uint)(*(char *)((int)puVar5 + 0x1f) != *(char *)((int)puVar5 + 0x1e));
   puVar5[10] = param_3;
   if ((puVar5[8] == 0) && (param_2 != 0)) {
-    uVar6 = _g_MenuInput[puVar5[5] + 2];
-    if ((_g_MenuInput[puVar5[5] + 4] & uVar6) == 0) {
+    uVar6 = g_MenuInput[puVar5[5] + 2];
+    if ((g_MenuInput[puVar5[5] + 4] & uVar6) == 0) {
       uVar6 = 0x100000;
     }
     else if (uVar6 == 0x80000) {
       uVar6 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar6 = 0x100000;
     }
     puVar5[0xc] = uVar6;
@@ -1268,7 +1266,7 @@ void Minimap_RotatePoint(undefined8 param_1,int param_2,int param_3,float *param
   return;
 }
 
-// 0x0020e560  size 0x5e8
+// 0x0020e560  size 0x5e0
 void Minimap_Draw(float param_1,undefined4 param_2,int *param_3,undefined4 *param_4)
 
 {
@@ -1436,6 +1434,16 @@ LAB_0020e8d8:
   Mem_Copy8(param_4,auStack_150,iVar5 << 4);
 LAB_0020e8ec:
   *param_3 = iVar5;
+  return;
+}
+
+// 0x0020eb48  size 0x8
+/* follows Minimap_Draw; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Minimap_Draw_Orphan1(void)
+
+{
   return;
 }
 
@@ -2103,8 +2111,6 @@ void MenuPage43_State8(int param_1)
 }
 
 // 0x0020fee0  size 0x560
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_SelectCarColour(int param_1)
 
 {
@@ -2233,7 +2239,7 @@ void ScrCareer_Draw_SelectCarColour(int param_1)
      (bVar3 = UiLayout_UpdateAnimById((UiLayout *)0x1a,1), !bVar3)) {
     *(undefined4 *)(param_1 + 0x6b4) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1a,*(undefined4 *)(&DAT_00329f90 + *(int *)(param_1 + 0x4d4) * 4),0,0);
   }
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 0x4d0) * 4 + param_1 + 0x4c),

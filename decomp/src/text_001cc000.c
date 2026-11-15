@@ -2,6 +2,16 @@
 // Address range 0x001cc000 - 0x001d0000
 #include "ghidra_types.h"
 
+// 0x001cc8d8  size 0x8
+/* follows Ai_ComputeSteering; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Ai_ComputeSteering_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001cc8e0  size 0x124
 void Ai_Reset(int param_1)
 
@@ -1186,7 +1196,7 @@ void RaceCar_ResetToTrack(RaceCar *param_1,undefined8 param_2)
   return;
 }
 
-// 0x001ce740  size 0x5dc
+// 0x001ce740  size 0x5d0
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void RaceCar_ApplyRecord(RaceCar *param_1,undefined8 param_2,long param_3)
@@ -1395,6 +1405,16 @@ void RaceCar_ApplyRecord(RaceCar *param_1,undefined8 param_2,long param_3)
     }
     iVar4 = iVar4 + 1;
   } while (iVar4 < 2);
+  return;
+}
+
+// 0x001ced1c  size 0xc
+/* follows RaceCar_ApplyRecord; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RaceCar_ApplyRecord_Orphan1(void)
+
+{
   return;
 }
 
@@ -1829,7 +1849,7 @@ void CarSpec_BuildFromDb(int param_1,int param_2,undefined8 param_3,long param_4
   return;
 }
 
-// 0x001cf860  size 0x1d34
+// 0x001cf860  size 0x1d2c
 /* WARNING: Removing unreachable block (ram,0x001cfe2c) */
 
 void CarSpec_ApplyTuning(int param_1,undefined8 param_2,int param_3)

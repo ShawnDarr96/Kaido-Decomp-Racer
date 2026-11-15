@@ -3,7 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x002700c0  size 0xb44
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 1 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update */
 
 void ScrSubtitleDraw_Draw1(undefined8 param_1)
@@ -321,7 +320,7 @@ void ScrSubtitleDraw_Draw1(undefined8 param_1)
                         (long)*(int *)(&DAT_0032da68 + *(int *)(iVar7 + 0x1c) * 4),8,
                         (byte)g_UiMgr->slots);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     iVar4 = *(int *)(iVar7 + 0x20);
     if (iVar4 == 2) {
       MenuWnd_SetItemState
@@ -355,7 +354,6 @@ LAB_002708ac:
 }
 
 // 0x00270c10  size 0xa34
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 0 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update */
 
 void ScrSubtitleDraw_Draw0(int param_1)
@@ -638,7 +636,7 @@ void ScrSubtitleDraw_Draw0(int param_1)
     MenuWnd_DrawCursor(0);
     MenuWnd_SetItemVisible(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x6e,*(undefined4 *)(&DAT_0032da10 + *(int *)(param_1 + 8) * 4),1,0);
     iVar6 = *(int *)(param_1 + 0xc);
   }
@@ -1492,7 +1490,6 @@ void ScrCareer_Draw_RivalCar(int param_1)
 
 // 0x00272c10  size 0x69c
 /* WARNING: Switch with 1 destination removed at 0x00272e20 */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_SponsorData_2c10(int param_1)
 
@@ -1683,7 +1680,7 @@ LAB_00272c3c:
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x73,*(undefined4 *)(&DAT_0032db20 + *(int *)(param_1 + 0x10) * 4),1,0);
   }
   MenuWnd_SetTitle(3,*(undefined4 *)(&DAT_0032db30 + *(int *)(param_1 + 0x10) * 4));
@@ -1752,8 +1749,6 @@ switchD_00272d90_caseD_1:
 }
 
 // 0x002732b0  size 0xab0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_Sponsors_32b0(int param_1)
 
 {
@@ -1986,7 +1981,7 @@ void ScrGarage_Draw_Sponsors_32b0(int param_1)
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x72,*(undefined4 *)(&DAT_0032db00 + *(int *)(param_1 + 0x10c) * 4),0,0);
     iVar9 = *(int *)(param_1 + 0x104);
   }
@@ -2220,8 +2215,6 @@ void maybe_PageRivalTitle_Enter(void)
 }
 
 // 0x00273f40  size 0x1a8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_TuneUp(int *param_1)
 
 {
@@ -2241,7 +2234,7 @@ void ScrCareer_Draw_TuneUp(int *param_1)
   uVar3 = Profile_Get(0);
   uVar3 = Profile_GetMoney(uVar3);
   MenuWnd_DrawNumber(0x2d,0x38,uVar3);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x35,*(undefined4 *)(&DAT_0032db40 + *param_1 * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x35);

@@ -39,7 +39,7 @@ void MenuNum_CountUp_Bgm(undefined8 param_1,undefined8 param_2,undefined8 param_
   return;
 }
 
-// 0x002e0360  size 0x510
+// 0x002e0360  size 0x504
 void Eventui_Draw_BgmConfig(int param_1)
 
 {
@@ -161,9 +161,17 @@ void Eventui_Draw_BgmConfig(int param_1)
   return;
 }
 
-// 0x002e0880  size 0xb2c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+// 0x002e0870  size 0xc
+/* follows Eventui_Draw_BgmConfig; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
 
+void Eventui_Draw_BgmConfig_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x002e0880  size 0xb20
 void Eventui_Draw_BgmConfig_0880(int *param_1)
 
 {
@@ -380,7 +388,7 @@ void Eventui_Draw_BgmConfig_0880(int *param_1)
   MenuWnd_DrawCursor(1);
   if ((char)param_1[0xb] == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0xf5,*(undefined4 *)
                        (&DAT_00342610 + (((param_1[0xd] - param_1[0xe]) + 0x21) % 0x21) * 0x18),0,0)
@@ -531,7 +539,17 @@ void Eventui_Draw_BgmConfig_0880(int *param_1)
   return;
 }
 
-// 0x002e13c0  size 0x860
+// 0x002e13ac  size 0xc
+/* follows Eventui_Draw_BgmConfig_0880; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void Eventui_Draw_BgmConfig_0880_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x002e13c0  size 0x850
 void Eventui_Draw_BgmConfig_13c0(int *param_1)
 
 {
@@ -802,6 +820,16 @@ void Eventui_Draw_BgmConfig_13c0(int *param_1)
   return;
 }
 
+// 0x002e1c20  size 0x10
+/* follows Eventui_Draw_BgmConfig_13c0; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void Eventui_Draw_BgmConfig_13c0_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x002e1c30  size 0x14
 /* menu page 44 (table 0x3276e0, dispatched by 0x201380) */
 
@@ -941,7 +969,6 @@ void maybe_ScrMusic_State2_SndQueueCmd1(undefined4 *param_1)
 }
 
 // 0x002e1f60  size 0x27c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrMusic; on-screen text/callee hint "SndQueueCmd1" (was ScrSndQueueCmd1_Update)
     */
 
@@ -979,14 +1006,14 @@ void maybe_ScrMusic_State1_SndQueueCmd1(int *param_1)
   else {
     param_1[0xf] = 0;
   }
-  uVar4 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar4) == 0) {
+  uVar4 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   if (uVar4 == 0x1000) {
@@ -1040,7 +1067,6 @@ void maybe_ScrMusic_State0_SndQueueCmd1(int param_1)
 }
 
 // 0x002e2250  size 0x22c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 44 (table 0x3274b0) */
 
 void maybe_ScrMusic_Update(undefined8 param_1)
@@ -1056,14 +1082,14 @@ void maybe_ScrMusic_Update(undefined8 param_1)
   lVar2 = SeqGen_FindPatternIndex(*(undefined4 *)(iVar4 + 0x20));
   if ((lVar2 != 0) && (lVar2 = Menu_IsInputIdle(param_1), lVar2 != 0)) {
     (*(code *)(&PTR_maybe_ScrMusic_State0_SndQueueCmd1_00342748)[*(int *)(iVar4 + 4)])(param_1);
-    uVar5 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar5) == 0) {
+    uVar5 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (uVar5 == 0x20) {

@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x00258370  size 0xb28
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_NoOwned(int param_1)
 
 {
@@ -259,7 +257,7 @@ void ScrGarage_Draw_NoOwned(int param_1)
         }
       }
     }
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0x51,*(undefined4 *)(&DAT_0032cfb8 + *(int *)(param_1 + 0x10) * 0x10),1,0);
     }
@@ -365,8 +363,6 @@ LAB_00258ccc:
 }
 
 // 0x00258ea0  size 0xab4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_NoOwned_8ea0(int param_1)
 
 {
@@ -616,7 +612,7 @@ void ScrGarage_Draw_NoOwned_8ea0(int param_1)
     if (!bVar5 && (!bVar4 && (!bVar2 && !bVar3))) {
       *(undefined4 *)(param_1 + 0x58) = 0;
     }
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0x57,*(undefined4 *)(&DAT_0032cf38 + *(int *)(param_1 + 0x10) * 0x10),1,0);
       iVar8 = *(int *)(param_1 + 0x60);
@@ -733,8 +729,6 @@ LAB_00259794:
 }
 
 // 0x00259960  size 0xe00
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_FullAero(int param_1)
 
 {
@@ -945,7 +939,7 @@ void ScrGarage_Draw_FullAero(int param_1)
         *(undefined4 *)(param_1 + 0x60) = 0;
       }
     }
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState(99,*(undefined4 *)(*(int *)(param_1 + 0x10) * 4 + 0x36ec48),1,0);
     }
   }
@@ -1404,8 +1398,6 @@ void maybe_PageBodyShop_State12_ThisCarPart(undefined8 param_1)
 }
 
 // 0x0025b120  size 0x2cc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
 
 {
@@ -1488,7 +1480,7 @@ void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
   if (bVar2) {
     UiLayout_UpdateAnimById((UiLayout *)0x53,2);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x53,*(undefined4 *)(*(int *)(iVar8 + 0x24) * 4 + 0x36ec28),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
@@ -1520,8 +1512,6 @@ void maybe_PageBodyShop_State10_BodyColour(int *param_1)
 }
 
 // 0x0025b430  size 0x3e0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_Front(undefined8 param_1)
 
 {
@@ -1641,7 +1631,7 @@ void ScrGarage_Draw_Front(undefined8 param_1)
       *(undefined4 *)(iVar8 + 0x60) = 0;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x67,*(undefined4 *)(&DAT_0032cf30 + *(int *)(iVar8 + 0x14) * 4),1,0);
   }
   MenuWnd_DrawText(0x67,0x1b,0x2f);
@@ -1664,8 +1654,6 @@ void ScrGarage_Draw_Front(undefined8 param_1)
 }
 
 // 0x0025b810  size 0x240
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrRace_Draw_Front(undefined8 param_1)
 
 {
@@ -1735,7 +1723,7 @@ void ScrRace_Draw_Front(undefined8 param_1)
      ) {
     *(undefined4 *)(iVar6 + 0x60) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x52,*(undefined4 *)(&DAT_0032cf20 + *(int *)(iVar6 + 0x14) * 4),1,0);
   }
   MenuWnd_DrawText(0x52,0x12,0x2f);
@@ -1749,8 +1737,6 @@ void ScrRace_Draw_Front(undefined8 param_1)
 }
 
 // 0x0025ba50  size 0x330
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_BodyColour(int param_1)
 
 {
@@ -1821,7 +1807,7 @@ void ScrGarage_Draw_BodyColour(int param_1)
      (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x4d,1), !bVar2)) {
     *(undefined4 *)(param_1 + 0x60) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4d,*(undefined4 *)(&DAT_0032cf10 + *(int *)(param_1 + 8) * 4),1,0);
   }
   uVar7 = Profile_Get(0);
@@ -1856,7 +1842,6 @@ void ScrGarage_Draw_BodyColour(int param_1)
 }
 
 // 0x0025bd80  size 0x84c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of MenuPage29; on-screen text/callee hint "ColourSchemeChanged" (was
    ScrColourSchemeChanged_Exit) */
 
@@ -2125,7 +2110,7 @@ void maybe_PageBodyShop_State8_ColourSchemeChanged(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x58,*(undefined4 *)(&DAT_0032cea0 + *(int *)(param_1 + 0x3c) * 4),1,0);
   }
   iVar5 = UiMgr_FindLayout(0x58);

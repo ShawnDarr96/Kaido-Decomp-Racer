@@ -2007,7 +2007,7 @@ LAB_0019aca4:
   } while( true );
 }
 
-// 0x0019af50  size 0xe64
+// 0x0019af50  size 0xe5c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
@@ -2440,6 +2440,16 @@ LAB_0019ba60:
     uVar19 = 1;
   }
   return uVar19;
+}
+
+// 0x0019bdb4  size 0x8
+/* follows CarModel_DrawWheels; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void CarModel_DrawWheels_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0019bdc0  size 0x1c

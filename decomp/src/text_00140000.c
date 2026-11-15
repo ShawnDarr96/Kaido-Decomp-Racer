@@ -216,7 +216,7 @@ void Wheel_Update(void)
   return;
 }
 
-// 0x00140540  size 0x73c
+// 0x00140540  size 0x724
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevDownloadForceEffect etc. */
 
@@ -441,7 +441,17 @@ void Wheel_UpdateForceEffects(void)
   return;
 }
 
-// 0x00140ca0  size 0x1e8
+// 0x00140c7c  size 0x18
+/* follows Wheel_UpdateForceEffects; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Wheel_UpdateForceEffects_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00140ca0  size 0x1e0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevRead / lgDevClose */
 
@@ -518,7 +528,17 @@ LAB_00140d98:
   } while( true );
 }
 
-// 0x00140e90  size 0x284
+// 0x00140e88  size 0x8
+/* follows Wheel_PollDevices; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Wheel_PollDevices_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00140e90  size 0x27c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevEnumerate / lgDevOpen */
 
@@ -615,6 +635,16 @@ LAB_00140f70:
   _s_WheelVar6 = *(undefined4 *)(_s_WheelVar4 + 0x498);
   _s_WheelVar3 = *(undefined4 *)(_s_WheelVar5 + 0x490);
   _s_WheelVar7 = *(undefined4 *)(_s_WheelVar5 + 0x498);
+  return;
+}
+
+// 0x00141114  size 0x8
+/* follows Wheel_EnumerateDevices; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Wheel_EnumerateDevices_Orphan1(void)
+
+{
   return;
 }
 

@@ -124,6 +124,17 @@ float maybe___floatundisf(ulong param_1)
   return 1.47456e+08 / fVar1;
 }
 
+// 0x0011c370  size 0x34
+/* follows __floatundisf; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void __floatundisf_Orphan1(float param_1)
+
+{
+  maybe___fixsfdi(1.47456e+08 / param_1);
+  return;
+}
+
 // 0x0011c3a8  size 0x4c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -327,6 +338,27 @@ void maybe_InitTimerAlarmPool(void)
   return;
 }
 
+// 0x0011c7c0  size 0x7c
+/* follows InitTimerAlarmPool; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+undefined4 InitTimerAlarmPool_Orphan1(undefined8 param_1,int param_2)
+
+{
+  undefined4 uVar1;
+  long lVar2;
+  
+  lVar2 = DIntr();
+  uVar1 = DAT_003081a8;
+  DAT_003081a8 = (undefined4)param_1;
+  DAT_003081ac = param_2;
+  memset(param_1,0,param_2 << 4);
+  if (lVar2 != 0) {
+    EIntr();
+  }
+  return uVar1;
+}
+
 // 0x0011c840  size 0xb8
 undefined8 maybe_iCancelTimerAlarm(uint param_1,undefined4 param_2,undefined4 param_3)
 
@@ -363,6 +395,32 @@ undefined8 maybe_iCancelTimerAlarm(uint param_1,undefined4 param_2,undefined4 pa
   return uVar2;
 }
 
+// 0x0011c8f8  size 0x54
+/* follows iCancelTimerAlarm; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+undefined4 iCancelTimerAlarm_Orphan1(uint param_1)
+
+{
+  uint uVar1;
+  int iVar2;
+  
+  if ((int)param_1 < 0) {
+    iVar2 = 0x377dc8;
+    param_1 = param_1 & 0x7fffffff;
+    uVar1 = 0x20;
+  }
+  else {
+    iVar2 = DAT_003081a8;
+    uVar1 = DAT_003081ac;
+  }
+  if (param_1 < uVar1) {
+    *(undefined4 *)(param_1 * 0x10 + iVar2) = 0;
+    return 0;
+  }
+  return 0xffffff97;
+}
+
 // 0x0011c950  size 0xa8
 undefined1 * maybe_SetSifCmdFlag(long param_1,undefined8 param_2)
 
@@ -393,7 +451,7 @@ undefined1 * maybe_SetSifCmdFlag(long param_1,undefined8 param_2)
   return puVar3;
 }
 
-// 0x0011c9f8  size 0x5a8
+// 0x0011c9f8  size 0x598
 int maybe___ieee754_rem_pio2(ulong param_1,undefined8 param_2)
 
 {
@@ -546,7 +604,17 @@ LAB_0011cf70:
   return -iVar7;
 }
 
-// 0x0011cfb0  size 0x41c
+// 0x0011cfa0  size 0x10
+/* follows __ieee754_rem_pio2; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void __ieee754_rem_pio2_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0011cfb0  size 0x414
 float maybe___ieee754_acosf(float param_1)
 
 {
@@ -605,7 +673,17 @@ float maybe___ieee754_acosf(float param_1)
   return fVar1;
 }
 
-// 0x0011d3d8  size 0x38c
+// 0x0011d3cc  size 0x8
+/* follows __ieee754_acosf; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void __ieee754_acosf_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0011d3d8  size 0x378
 float maybe___ieee754_asinf(float param_1)
 
 {
@@ -660,6 +738,16 @@ float maybe___ieee754_asinf(float param_1)
     fVar1 = (param_1 - param_1) / (param_1 - param_1);
   }
   return fVar1;
+}
+
+// 0x0011d764  size 0x14
+/* follows __ieee754_asinf; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void __ieee754_asinf_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0011d778  size 0x1d4
@@ -718,7 +806,7 @@ undefined * maybe___ieee754_atan2f(undefined *param_1,float param_2)
   return puVar3;
 }
 
-// 0x0011d958  size 0x248
+// 0x0011d958  size 0x23c
 float maybe___ieee754_fmodf(float param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
 {
@@ -774,7 +862,20 @@ LAB_0011da94:
   return (float)((int)fVar3 + param_4 * 0x800000);
 }
 
-// 0x0011dbb0  size 0x2d0
+// 0x0011dba0  size 0xc
+/* follows __ieee754_fmodf; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+float __ieee754_fmodf_Orphan1(void)
+
+{
+  float in_f1;
+  float in_f0;
+  
+  return in_f1 * in_f0;
+}
+
+// 0x0011dbb0  size 0x2c0
 float maybe___ieee754_sqrtf(float param_1)
 
 {
@@ -833,7 +934,20 @@ float maybe___ieee754_sqrtf(float param_1)
   return fVar4;
 }
 
-// 0x0011de90  size 0x3a0
+// 0x0011de80  size 0x10
+/* follows __ieee754_sqrtf; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+float __ieee754_sqrtf_Orphan1(float param_1)
+
+{
+  float in_f0;
+  float in_f2;
+  
+  return in_f2 - (in_f0 - param_1);
+}
+
+// 0x0011de90  size 0x390
 int maybe___ieee754_rem_pio2f(float param_1,undefined8 param_2)
 
 {
@@ -953,6 +1067,16 @@ LAB_0011e21c:
   return -iVar3;
 }
 
+// 0x0011e230  size 0x10
+/* follows __ieee754_rem_pio2f; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void __ieee754_rem_pio2f_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0011e240  size 0xcc
 float maybe_truncf(float param_1)
 
@@ -991,7 +1115,7 @@ float maybe_truncf(float param_1)
   return param_1;
 }
 
-// 0x0011e310  size 0xb24
+// 0x0011e310  size 0xafc
 /* WARNING: Removing unreachable block (ram,0x0011e368) */
 
 uint maybe___kernel_rem_pio2
@@ -1434,7 +1558,17 @@ LAB_0011eb04:
   return uStack_74 & 7;
 }
 
-// 0x0011ee60  size 0x560
+// 0x0011ee34  size 0x28
+/* follows __kernel_rem_pio2; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void __kernel_rem_pio2_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0011ee60  size 0x558
 ulong maybe___kernel_cos(ulong param_1,undefined8 param_2,int param_3)
 
 {
@@ -1535,6 +1669,16 @@ ulong maybe___kernel_cos(ulong param_1,undefined8 param_2,int param_3)
   return param_1;
 }
 
+// 0x0011f3c0  size 0x8
+/* follows __kernel_cos; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void __kernel_cos_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0011f3c8  size 0x150
 float maybe___kernel_cosf(float param_1,float param_2)
 
@@ -1564,7 +1708,7 @@ float maybe___kernel_cosf(float param_1,float param_2)
   return fVar3;
 }
 
-// 0x0011f518  size 0x844
+// 0x0011f518  size 0x824
 uint maybe___kernel_rem_pio2f
                (float *param_1,float *param_2,int param_3,int param_4,int param_5,int param_6)
 
@@ -1953,6 +2097,16 @@ LAB_0011fb30:
       } while (iVar13 <= iVar12);
     }
   } while( true );
+}
+
+// 0x0011fd5c  size 0x20
+/* follows __kernel_rem_pio2f; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void __kernel_rem_pio2f_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0011fd80  size 0x104

@@ -307,7 +307,7 @@ void maybe_ComposerUi_AnimateNameC(int param_1,long param_2)
   return;
 }
 
-// 0x002ecdf0  size 0x350
+// 0x002ecdf0  size 0x348
 bool Eventui_Draw_Akagi_cdf0(int param_1,long param_2)
 
 {
@@ -389,6 +389,16 @@ bool Eventui_Draw_Akagi_cdf0(int param_1,long param_2)
   UiLayout_UpdateAnimById((UiLayout *)0x8,5);
   bVar1 = UiLayout_UpdateAnimById((UiLayout *)0x8,6);
   return bVar1;
+}
+
+// 0x002ed140  size 0x8
+/* follows Eventui_Draw_Akagi_cdf0; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Eventui_Draw_Akagi_cdf0_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x002ed150  size 0x23c

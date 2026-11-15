@@ -530,7 +530,7 @@ void RaceUi_DrawArrow3d(int param_1)
   return;
 }
 
-// 0x002ca080  size 0x490
+// 0x002ca080  size 0x488
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceUi_DrawMinimap3d(int param_1)
@@ -642,6 +642,16 @@ void RaceUi_DrawMinimap3d(int param_1)
   } while (iVar5 < 3);
   Pkt_AddPrimitives(auStack_40,auStack_12a0,((int)puVar6 - (int)auStack_12a0) / 0x310);
   Pkt_Submit(auStack_40,0);
+  return;
+}
+
+// 0x002ca510  size 0x8
+/* follows RaceUi_DrawMinimap3d; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RaceUi_DrawMinimap3d_Orphan1(void)
+
+{
   return;
 }
 

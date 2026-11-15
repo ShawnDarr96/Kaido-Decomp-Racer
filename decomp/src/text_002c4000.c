@@ -831,7 +831,7 @@ void RaceUi_OnTextureLoaded(int param_1,undefined8 param_2,undefined8 param_3,un
   return;
 }
 
-// 0x002c5780  size 0x2bc
+// 0x002c5780  size 0x2ac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceUi_DrawSprites(int param_1)
@@ -907,6 +907,16 @@ void RaceUi_DrawSprites(int param_1)
     } while (iVar6 < 0xf);
     *(undefined4 *)(param_1 + 0x147c) = 0;
   }
+  return;
+}
+
+// 0x002c5a3c  size 0x10
+/* follows RaceUi_DrawSprites; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceUi_DrawSprites_Orphan1(void)
+
+{
   return;
 }
 
@@ -1851,7 +1861,7 @@ void RaceUi_AnimateSplit(int param_1,int param_2)
   return;
 }
 
-// 0x002c7920  size 0x330
+// 0x002c7920  size 0x328
 /* WARNING: Removing unreachable block (ram,0x002c7ab8) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1952,6 +1962,16 @@ LAB_002c79c8:
       } while (iVar9 < param_6);
     }
   }
+  return;
+}
+
+// 0x002c7c50  size 0x8
+/* follows RaceUi_DrawDigits; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceUi_DrawDigits_Orphan1(void)
+
+{
   return;
 }
 

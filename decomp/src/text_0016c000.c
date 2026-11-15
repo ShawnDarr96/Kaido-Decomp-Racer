@@ -210,8 +210,6 @@ void Car_UpdateTurbo(RaceCar *param_1)
 }
 
 // 0x0016c5f0  size 0x260
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void Car_UpdateDownforce(RaceCar *param_1)
 
 {
@@ -303,7 +301,7 @@ void Car_RequestShiftUp(int param_1)
   return;
 }
 
-// 0x0016c880  size 0x894
+// 0x0016c880  size 0x884
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void Car_UpdateTransmission(RaceCar *param_1,long param_2)
@@ -568,6 +566,16 @@ void Car_UpdateTransmission(RaceCar *param_1,long param_2)
 LAB_0016cecc:
   param_1->unk_0835 = '\0';
   param_1->unk_0834 = '\0';
+  return;
+}
+
+// 0x0016d114  size 0x10
+/* follows Car_UpdateTransmission; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Car_UpdateTransmission_Orphan1(void)
+
+{
   return;
 }
 
@@ -1180,9 +1188,9 @@ void Car_UpdateBodyDynamics(RaceCar *param_1)
       uStack_24 = uStack_144;
     }
     else {
-      uVar3 = param_1->unk_013c;
-      fVar12 = (float)cosf(uVar3);
-      uVar11 = sinf(uVar3);
+      fVar13 = (float)param_1->unk_013c;
+      fVar12 = cosf(fVar13);
+      uVar11 = sinf(fVar13);
       Vec3_Scale(uVar11,auStack_c0,&param_1->unk_0080);
       Vec3_Scale(-fVar12,auStack_d0,&param_1->unk_0090);
       Vec3_Add(auStack_40,auStack_c0,auStack_d0);
@@ -1659,7 +1667,7 @@ void Car_SyncFromRigidBody(RaceCar *param_1)
   uStack_14 = 0x3f800000;
   uStack_4 = 0x3f800000;
   uStack_44 = 0x3f800000;
-  fVar9 = (float)cosf(param_1->unk_0068);
+  fVar9 = cosf((float)param_1->unk_0068);
   puVar1 = param_1->maybe_params;
   uVar5 = 0;
   uStack_40 = *(undefined4 *)(puVar1 + 0x3b0);
@@ -2544,22 +2552,22 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x1d4) = *(undefined4 *)(param_1 + 0x184);
   *(undefined4 *)(param_1 + 0x1d8) = *(undefined4 *)(param_1 + 0x188);
   *(undefined4 *)(param_1 + 0x1dc) = *(undefined4 *)(param_1 + 0x18c);
-  fVar2 = (float)cosf(*(undefined4 *)(param_1 + 0x24c));
+  fVar2 = cosf(*(float *)(param_1 + 0x24c));
   *(float *)(param_1 + 0x1d4) =
        *(float *)(param_1 + 0x1d4) -
        (*(float *)(param_1 + 0x1bc) * 0.5 * fVar2 + *(float *)(param_1 + 0x1b4) + 0.0);
-  fVar2 = (float)cosf(*(undefined4 *)(param_1 + 0x24c));
+  fVar2 = cosf(*(float *)(param_1 + 0x24c));
   *(float *)(param_1 + 0x1d8) =
        (*(float *)(param_1 + 0x1d8) + 0.0) - *(float *)(param_1 + 0x1b4) * fVar2;
   *(undefined4 *)(param_1 + 0x2e0) = *(undefined4 *)(param_1 + 0x290);
   *(undefined4 *)(param_1 + 0x2e4) = *(undefined4 *)(param_1 + 0x294);
   *(undefined4 *)(param_1 + 0x2e8) = *(undefined4 *)(param_1 + 0x298);
   *(undefined4 *)(param_1 + 0x2ec) = *(undefined4 *)(param_1 + 0x29c);
-  fVar2 = (float)cosf(*(undefined4 *)(param_1 + 0x35c));
+  fVar2 = cosf(*(float *)(param_1 + 0x35c));
   *(float *)(param_1 + 0x2e4) =
        *(float *)(param_1 + 0x2e4) -
        (*(float *)(param_1 + 0x2cc) * 0.5 * fVar2 + *(float *)(param_1 + 0x2c4) + 0.0);
-  fVar2 = (float)cosf(*(undefined4 *)(param_1 + 0x35c));
+  fVar2 = cosf(*(float *)(param_1 + 0x35c));
   *(float *)(param_1 + 0x2e8) =
        (*(float *)(param_1 + 0x2e8) + 0.0) - *(float *)(param_1 + 0x2c4) * fVar2;
   *(float *)(param_1 + 0x1b8) = 1.0 / *(float *)(param_1 + 0x1b4);
@@ -2580,8 +2588,8 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x3b4) = *(undefined4 *)(param_1 + 0x1d4);
   *(undefined4 *)(param_1 + 0x3b8) = *(undefined4 *)(param_1 + 0x1d8);
   *(undefined4 *)(param_1 + 0x3bc) = *(undefined4 *)(param_1 + 0x1dc);
-  uVar3 = cosf(*(undefined4 *)(param_1 + 0x24c));
-  *(undefined4 *)(param_1 + 0x3c4) = uVar3;
+  fVar2 = cosf(*(float *)(param_1 + 0x24c));
+  *(float *)(param_1 + 0x3c4) = fVar2;
   uVar3 = sinf(*(undefined4 *)(param_1 + 0x24c));
   *(undefined4 *)(param_1 + 0x3c8) = uVar3;
   Quat_FromAxisAngle(*(undefined4 *)(param_1 + 0x24c),&uStack_2b0,0x362560);
@@ -2591,8 +2599,8 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x3dc) = uStack_2a4;
   *(float *)(param_1 + 0x3a8) = *(float *)(param_1 + 0x3a8) * -1.0;
   *(float *)(param_1 + 0x3b8) = *(float *)(param_1 + 0x3b8) * -1.0;
-  uVar3 = cosf(-*(float *)(param_1 + 0x24c));
-  *(undefined4 *)(param_1 + 0x424) = uVar3;
+  fVar2 = cosf(-*(float *)(param_1 + 0x24c));
+  *(float *)(param_1 + 0x424) = fVar2;
   uVar3 = sinf(-*(float *)(param_1 + 0x24c));
   *(undefined4 *)(param_1 + 0x428) = uVar3;
   Quat_FromAxisAngle(-*(float *)(param_1 + 0x24c),&uStack_2c0,0x362560);
@@ -2618,8 +2626,8 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x47c) = *(undefined4 *)(param_1 + 0x2ec);
   *(undefined4 *)(param_1 + 0x4e0) = *(undefined4 *)(param_1 + 0x2cc);
   *(undefined4 *)(param_1 + 0x480) = *(undefined4 *)(param_1 + 0x2cc);
-  uVar3 = cosf(*(undefined4 *)(param_1 + 0x35c));
-  *(undefined4 *)(param_1 + 0x484) = uVar3;
+  fVar2 = cosf(*(float *)(param_1 + 0x35c));
+  *(float *)(param_1 + 0x484) = fVar2;
   uVar3 = sinf(*(undefined4 *)(param_1 + 0x35c));
   *(undefined4 *)(param_1 + 0x488) = uVar3;
   Quat_FromAxisAngle(*(undefined4 *)(param_1 + 0x35c),&uStack_2d0,0x362560);
@@ -2629,8 +2637,8 @@ void CarSpec_Finalize(int param_1)
   *(undefined4 *)(param_1 + 0x49c) = uStack_2c4;
   *(float *)(param_1 + 0x468) = *(float *)(param_1 + 0x468) * -1.0;
   *(float *)(param_1 + 0x478) = *(float *)(param_1 + 0x478) * -1.0;
-  uVar3 = cosf(-*(float *)(param_1 + 0x35c));
-  *(undefined4 *)(param_1 + 0x4e4) = uVar3;
+  fVar2 = cosf(-*(float *)(param_1 + 0x35c));
+  *(float *)(param_1 + 0x4e4) = fVar2;
   uVar3 = sinf(-*(float *)(param_1 + 0x35c));
   *(undefined4 *)(param_1 + 0x4e8) = uVar3;
   Quat_FromAxisAngle(-*(float *)(param_1 + 0x35c),&uStack_2e0,0x362560);

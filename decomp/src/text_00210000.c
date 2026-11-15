@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x00210450  size 0x8e8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_SelectCarFor(int param_1)
 
 {
@@ -284,7 +282,7 @@ LAB_0021059c:
     iVar8 = iVar8 + 1;
     piVar10 = piVar10 + 1;
   } while (iVar8 < 0xc);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x115,*(undefined4 *)(&DAT_00329f60 + *(int *)(param_1 + 0x680) * 4),0,0);
   }
   MenuWnd_Update(param_1 + 0x698,0x115,5,4);
@@ -575,8 +573,6 @@ void MenuScr_Draw_SelectCarManufacturer(int param_1)
 }
 
 // 0x002113f0  size 0x5f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_NormalCar(int param_1)
 
 {
@@ -704,7 +700,7 @@ void MenuScr_Draw_NormalCar(int param_1)
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x114,*(undefined4 *)(&DAT_00329ec0 + *(int *)(param_1 + 8) * 4),1,0);
     iVar6 = *(int *)(param_1 + 0x68c);
   }
@@ -767,8 +763,6 @@ void MenuScr_Draw_NormalCar(int param_1)
 }
 
 // 0x002119f0  size 0x54c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_SpeedKingMode(int param_1)
 
 {
@@ -910,7 +904,7 @@ void MenuScr_Draw_SpeedKingMode(int param_1)
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x113,*(undefined4 *)(&DAT_00329ea0 + *(int *)(param_1 + 0x694) * 4),1,0);
     iVar5 = *(int *)(param_1 + 0x68c);
   }
@@ -962,8 +956,6 @@ void MenuScr_Draw_SpeedKingMode(int param_1)
 }
 
 // 0x00211f40  size 0x878
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_Downhill(int param_1)
 
 {
@@ -1146,7 +1138,7 @@ void MenuScr_Draw_Downhill(int param_1)
   UiElem_SetPropFloat(&g_UiMgr->slots[iVar4].layout,
                       (long)*(int *)(&DAT_00329e68 + *(int *)(param_1 + 0x690) * 4),8,
                       (byte)g_UiMgr->slots);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     iVar4 = *(int *)(param_1 + 0x684);
     if (iVar4 == 2) {
       MenuWnd_SetItemState(0x112,*(undefined4 *)(&DAT_00329e88 + *(int *)(param_1 + 0x690) * 4),0,0)
@@ -1205,8 +1197,6 @@ LAB_00212224:
 }
 
 // 0x002127c0  size 0x8b4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_SelectTheCourse(int param_1)
 
 {
@@ -1492,7 +1482,7 @@ void MenuScr_Draw_SelectTheCourse(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x111,*(undefined4 *)(&DAT_00329de0 + *(int *)(param_1 + 0x678) * 4),1,0);
   }
   MenuWnd_Update(param_1 + 0x698,0x111,8,9);
@@ -1793,7 +1783,6 @@ void ScrCareer_Draw_DoYouWant(int param_1)
 }
 
 // 0x002138b0  size 0x5e8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 2 of state table 0x32a020 used by maybe_PageCarPartInfo_Update */
 
 void maybe_PageCarPartInfo_State2(int param_1)
@@ -1926,7 +1915,7 @@ void maybe_PageCarPartInfo_State2(int param_1)
      (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x1a,1), !bVar2)) {
     *(undefined4 *)(param_1 + 0x4d4) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1a,*(undefined4 *)(&DAT_0032a100 + *(int *)(param_1 + 0x49c) * 4),0,0);
   }
   MenuWnd_DrawNumber(0x19,0x3d,*(undefined4 *)(param_1 + 0x4a8));
@@ -1976,7 +1965,6 @@ void maybe_PageCarPartInfo_State2(int param_1)
 }
 
 // 0x00213ea0  size 0x5f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 1 of state table 0x32a020 used by maybe_PageCarPartInfo_Update */
 
 void maybe_PageCarPartInfo_State1(int param_1)
@@ -2116,7 +2104,7 @@ void maybe_PageCarPartInfo_State1(int param_1)
     MenuWnd_DrawDialogText(0x19,0x32a090,4,0xffffffffffffffff);
     Menu_ClearSlot(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x19,*(undefined4 *)(&DAT_0032a0a0 + *(int *)(param_1 + 0x4ac) * 4),0,0);
   }
   puVar12 = &g_MenuMgr->field_0x40;

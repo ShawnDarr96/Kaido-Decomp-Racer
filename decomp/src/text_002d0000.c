@@ -1662,7 +1662,7 @@ void maybe_ReplayCam_Free(void)
   return;
 }
 
-// 0x002d36c0  size 0x2c0
+// 0x002d36c0  size 0x2b0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_ReplayCam_Load(undefined8 param_1)
@@ -1745,6 +1745,16 @@ void maybe_ReplayCam_Load(undefined8 param_1)
     iVar5 = iVar5 + 4;
   }
   _g_ReplayCam = Mem_AllocAligned(24000,0x10,0x430750);
+  return;
+}
+
+// 0x002d3980  size 0x10
+/* follows ReplayCam_Load; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void ReplayCam_Load_Orphan1(void)
+
+{
   return;
 }
 

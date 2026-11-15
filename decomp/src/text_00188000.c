@@ -963,6 +963,32 @@ int Road_DistanceToSegment
   return iVar12;
 }
 
+// 0x0018a040  size 0x5c
+/* address loaded as a constant in RoadData_Load (callback / handler) */
+
+void RoadData_Load_Callback1(void)
+
+{
+  uint *puVar1;
+  int iVar2;
+  int *in_a3_lo;
+  uint uVar3;
+  
+  puVar1 = (uint *)*in_a3_lo;
+  puVar1[1] = (int)puVar1 + puVar1[1];
+  uVar3 = 0;
+  if (*puVar1 != 0) {
+    iVar2 = 0;
+    do {
+      uVar3 = uVar3 + 1;
+      *(int *)(puVar1[1] + iVar2) = *in_a3_lo + *(int *)(puVar1[1] + iVar2);
+      iVar2 = iVar2 + 4;
+    } while (uVar3 < *puVar1);
+  }
+  *(undefined1 *)(in_a3_lo + 1) = 2;
+  return;
+}
+
 // 0x0018a0a0  size 0x30
 void RoadData_Free(undefined4 *param_1)
 
@@ -1495,6 +1521,32 @@ void RoadMesh_Init(undefined8 param_1,int param_2,int param_3,undefined8 param_4
   return;
 }
 
+// 0x0018b150  size 0x5c
+/* address loaded as a constant in RoadMesh_Load (callback / handler) */
+
+void RoadMesh_Load_Callback1(void)
+
+{
+  uint *puVar1;
+  int iVar2;
+  int *in_a3_lo;
+  uint uVar3;
+  
+  puVar1 = (uint *)*in_a3_lo;
+  puVar1[1] = (int)puVar1 + puVar1[1];
+  uVar3 = 0;
+  if (*puVar1 != 0) {
+    iVar2 = 0;
+    do {
+      uVar3 = uVar3 + 1;
+      *(int *)(puVar1[1] + iVar2) = *in_a3_lo + *(int *)(puVar1[1] + iVar2);
+      iVar2 = iVar2 + 4;
+    } while (uVar3 < *puVar1);
+  }
+  *(undefined1 *)(in_a3_lo + 1) = 2;
+  return;
+}
+
 // 0x0018b1b0  size 0x2c
 void RoadMesh_Free(undefined4 *param_1)
 
@@ -1685,7 +1737,7 @@ LAB_0018b604:
   return bVar1;
 }
 
-// 0x0018b710  size 0x528
+// 0x0018b710  size 0x520
 void maybe_Road_ClipToEdge(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
 
 {
@@ -1789,7 +1841,17 @@ void maybe_Road_ClipToEdge(float *param_1,ushort *param_2,int param_3,undefined8
   return;
 }
 
-// 0x0018bc40  size 0x240
+// 0x0018bc38  size 0x8
+/* follows Road_ClipToEdge; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Road_ClipToEdge_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0018bc40  size 0x238
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 param_3)
@@ -1874,6 +1936,16 @@ int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 para
     } while (lVar3 < *(int *)*piVar8);
   }
   return iVar10;
+}
+
+// 0x0018be80  size 0x8
+/* follows Road_FindSectionCell; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Road_FindSectionCell_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0018be90  size 0x104

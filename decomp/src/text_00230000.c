@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x00230340  size 0x3a0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrRace_Draw_HillClimb(int param_1)
 
 {
@@ -101,7 +99,7 @@ void ScrRace_Draw_HillClimb(int param_1)
      (bVar4 = UiLayout_UpdateAnimById((UiLayout *)0xf0,1), !bVar4)) {
     *(undefined4 *)(param_1 + 0x18) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0xf0,*(undefined4 *)(&DAT_0036ea00 + *(int *)(param_1 + 0x30) * 4),1,0);
   }
   iVar5 = *(int *)(param_1 + 0x2c);
@@ -123,7 +121,6 @@ void ScrRace_Draw_HillClimb(int param_1)
 }
 
 // 0x002306e0  size 0xaa4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of MenuPage15; on-screen text/callee hint "HillClimb" (was ScrHillClimb_Enter) */
 
 void maybe_PageHillClimb_State0_HillClimb(int *param_1)
@@ -426,7 +423,7 @@ void maybe_PageHillClimb_State0_HillClimb(int *param_1)
 LAB_00230db8:
   if (cVar1 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0xef,*(undefined4 *)
                        (&DAT_0032b170 +
@@ -657,7 +654,7 @@ void ScrCareer_Draw_NoData(int param_1)
   return;
 }
 
-// 0x002317e0  size 0x3b0
+// 0x002317e0  size 0x3a8
 void ScrCareer_Draw_NoData_17e0(int param_1)
 
 {
@@ -738,6 +735,16 @@ void ScrCareer_Draw_NoData_17e0(int param_1)
     uVar1 = MenuText_CarShortName(uVar1,0xffffffffffffffff);
     MenuWnd_DrawText(0xe9,(&DAT_0032b258)[iVar3 * 4],uVar1);
   }
+  return;
+}
+
+// 0x00231b90  size 0x8
+/* follows ScrCareer_Draw_NoData_17e0; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_NoData_17e0_Orphan1(void)
+
+{
   return;
 }
 
@@ -1524,8 +1531,6 @@ LAB_00233374:
 }
 
 // 0x00233540  size 0x5ec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_LoversInformation_3540(undefined8 param_1)
 
 {
@@ -1709,7 +1714,7 @@ void ScrCareer_Draw_LoversInformation_3540(undefined8 param_1)
   }
   if (*(char *)(iVar7 + 0x2c) == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0xe9,*(undefined4 *)
                        (&DAT_0032b220 +

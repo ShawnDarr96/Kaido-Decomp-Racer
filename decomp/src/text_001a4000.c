@@ -2,7 +2,17 @@
 // Address range 0x001a4000 - 0x001a8000
 #include "ghidra_types.h"
 
-// 0x001a4760  size 0x3ec
+// 0x001a4738  size 0x28
+/* follows Course_Render; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Course_Render_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001a4760  size 0x3e0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Course_UpdateFlareOcclusion(void)
@@ -129,6 +139,16 @@ void Course_UpdateFlareOcclusion(void)
       iVar5 = iVar5 + 8;
     } while (uVar9 < _g_CourseStreamShared3);
   }
+  return;
+}
+
+// 0x001a4b4c  size 0xc
+/* follows Course_UpdateFlareOcclusion; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void Course_UpdateFlareOcclusion_Orphan1(void)
+
+{
   return;
 }
 
@@ -1211,7 +1231,7 @@ void Ptcl_EmitRing(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   float *pfVar1;
-  undefined4 uVar2;
+  float fVar2;
   float fVar3;
   float fVar4;
   float fStack_10;
@@ -1223,12 +1243,12 @@ void Ptcl_EmitRing(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   fStack_c = DAT_00317e94;
   fStack_8 = (float)DAT_00317e98;
   uStack_4 = DAT_00317e9c;
-  uVar2 = maybe_Rand_Next(0xc0490fdb,0x40490fdb);
+  fVar2 = (float)maybe_Rand_Next(0xc0490fdb,0x40490fdb);
   fVar3 = (float)maybe_Rand_Next(-*(float *)((int)param_2 + 0x1c));
-  fVar4 = (float)sinf(uVar2);
+  fVar4 = (float)sinf(fVar2);
   fStack_10 = fVar3 * fVar4 * 0.5;
-  fVar4 = (float)cosf(uVar2);
-  fStack_8 = fVar3 * fVar4 * 0.5;
+  fVar2 = cosf(fVar2);
+  fStack_8 = fVar3 * fVar2 * 0.5;
   if (param_5 == 0) {
     sceVu0ApplyMatrix(&fStack_10,param_1,&fStack_10);
   }
@@ -1246,7 +1266,7 @@ void Ptcl_EmitRingB(undefined8 param_1,undefined8 param_2,undefined8 param_3,und
 
 {
   float *pfVar1;
-  undefined4 uVar2;
+  float fVar2;
   float fVar3;
   float fStack_10;
   float fStack_c;
@@ -1257,11 +1277,11 @@ void Ptcl_EmitRingB(undefined8 param_1,undefined8 param_2,undefined8 param_3,und
   fStack_c = DAT_00317e84;
   fStack_8 = (float)DAT_00317e88;
   uStack_4 = DAT_00317e8c;
-  uVar2 = maybe_Rand_Next(0xc0490fdb,0x40490fdb);
-  fVar3 = (float)sinf(uVar2);
+  fVar2 = (float)maybe_Rand_Next(0xc0490fdb,0x40490fdb);
+  fVar3 = (float)sinf(fVar2);
   fStack_10 = *(float *)((int)param_2 + 0x1c) * fVar3 * 0.5;
-  fVar3 = (float)cosf(uVar2);
-  fStack_8 = *(float *)((int)param_2 + 0x1c) * fVar3 * 0.5;
+  fVar2 = cosf(fVar2);
+  fStack_8 = *(float *)((int)param_2 + 0x1c) * fVar2 * 0.5;
   if (param_5 == 0) {
     sceVu0ApplyMatrix(&fStack_10,param_1,&fStack_10);
   }
@@ -1748,7 +1768,7 @@ void PtclSys_ResetBounds(int param_1)
   return;
 }
 
-// 0x001a7db0  size 0x968
+// 0x001a7db0  size 0x94c
 /* WARNING: Removing unreachable block (ram,0x001a8414) */
 /* WARNING: Removing unreachable block (ram,0x001a859c) */
 /* WARNING: Removing unreachable block (ram,0x001a8444) */

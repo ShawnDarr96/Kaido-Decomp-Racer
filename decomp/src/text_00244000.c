@@ -2,9 +2,25 @@
 // Address range 0x00244000 - 0x00248000
 #include "ghidra_types.h"
 
-// 0x00244b90  size 0xf54
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+// 0x00244b5c  size 0x28
+/* follows ScrRace_Draw_Interval; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
 
+void ScrRace_Draw_Interval_Orphan1(void)
+
+{
+  int iVar1;
+  
+  iVar1 = UiMgr_FindLayout(0x77);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0x9f);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xa1);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  return;
+}
+
+// 0x00244b90  size 0xf48
 void ScrCareer_Draw_MasterLord(int param_1)
 
 {
@@ -568,7 +584,7 @@ LAB_002458b0:
       iVar6 = iVar6 + 0x14;
       piVar14 = piVar14 + 1;
     } while (lVar18 < 6);
-    if ((*(int *)(param_1 + 0x64c) == 0xe) && (*_g_MenuInput == 1)) {
+    if ((*(int *)(param_1 + 0x64c) == 0xe) && (*g_MenuInput == 1)) {
       MenuWnd_SetItemState(0x87,*(undefined4 *)(&DAT_0032ca90 + *(int *)(param_1 + 0x62c) * 4),1,0);
     }
     iVar5 = UiMgr_FindLayout(0x87);
@@ -577,6 +593,16 @@ LAB_002458b0:
     UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
   }
   Menu_DrawFrame(&g_MenuMgr->field_0x654);
+  return;
+}
+
+// 0x00245ae4  size 0xc
+/* follows ScrCareer_Draw_MasterLord; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_MasterLord_Orphan1(void)
+
+{
   return;
 }
 
@@ -1315,8 +1341,6 @@ void maybe_PageBetCar_State40_Received(int param_1)
 }
 
 // 0x00246e20  size 0x4f8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_BetCar(int param_1)
 
 {
@@ -1417,7 +1441,7 @@ void ScrCareer_Draw_BetCar(int param_1)
      (bVar5 = UiLayout_UpdateAnimById((UiLayout *)0x7e,1), !bVar5)) {
     *(undefined4 *)(param_1 + 0x660) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7e,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36ebc8),1,0);
   }
   RivalDb_Copy(auStack_330,*(undefined2 *)(param_1 + 0x24));
@@ -1819,7 +1843,7 @@ void ScrCareer_Draw_Challenge(int param_1)
     puVar12 = puVar12 + 1;
   } while (0 < iVar8);
   UiElem_SetPropInt(&pUVar2[iVar7].layout,0x18,0x16,*(int *)(&DAT_0032c980 + (uint)bStack_154 * 4));
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState
               (0x7a,*(undefined4 *)(&s_ScrCareer_Draw_Challenge_1 + *(int *)(param_1 + 0x62c) * 4),1
                ,0);
@@ -2174,7 +2198,7 @@ void ScrCareer_Draw_GoBattle(int param_1)
     puVar12 = puVar12 + 1;
   } while (0 < iVar17);
   UiElem_SetPropInt(&pUVar2[iVar7].layout,0x18,0x16,*(int *)(&DAT_0032c8b0 + (uint)bStack_184 * 4));
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState
               (0x7a,*(undefined4 *)(&s_ScrCareer_Draw_GoBattle_1 + *(int *)(param_1 + 0x62c) * 4),1,
                0);

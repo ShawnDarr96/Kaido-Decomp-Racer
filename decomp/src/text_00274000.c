@@ -893,7 +893,6 @@ LAB_0027593c:
 }
 
 // 0x00275a50  size 0x85c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of MenuPage41; on-screen text/callee hint "TakeOffCar" (was ScrTakeOffCar_Exit) */
 
 void maybe_PageWheels_State25_TakeOffCar(undefined8 param_1)
@@ -1109,7 +1108,7 @@ void maybe_PageWheels_State25_TakeOffCar(undefined8 param_1)
     iVar10 = UiMgr_FindLayout(0x6b);
     UiElem_SetPropFloat(&g_UiMgr->slots[iVar10].layout,0x3e,8,extraout_a3_lo_00);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x6b,*(undefined4 *)(&DAT_0032de70 + *(int *)(iVar11 + 0x9f0) * 4),0,0);
     iVar10 = *(int *)(iVar11 + 0x604);
   }
@@ -1358,8 +1357,6 @@ void ScrGarage_Draw_TakeOffCar_6570(undefined8 param_1)
 }
 
 // 0x00276720  size 0xa94
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_TakeOffCar_6720(undefined8 param_1)
 
 {
@@ -1583,7 +1580,7 @@ void ScrGarage_Draw_TakeOffCar_6720(undefined8 param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if ((*_g_MenuInput == 1) && (iVar7 != 0)) {
+  if ((*g_MenuInput == 1) && (iVar7 != 0)) {
     MenuWnd_SetItemState(0xc,*(undefined4 *)(&DAT_0032de20 + *(int *)(iVar13 + 0x9f8) * 4),0,0);
   }
   if ((iVar7 != 0) && (iVar7 < 7)) {
@@ -1988,9 +1985,7 @@ LAB_00277734:
   return;
 }
 
-// 0x00277930  size 0xb48
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
+// 0x00277930  size 0xb40
 void ScrCareer_Draw_Front(int param_1)
 
 {
@@ -2261,7 +2256,7 @@ void ScrCareer_Draw_Front(int param_1)
       g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x6a,*(undefined4 *)(&DAT_0032dda8 + *(int *)(param_1 + 0x9f4) * 4),0,0);
   }
   iVar8 = UiMgr_FindLayout(0x6a);

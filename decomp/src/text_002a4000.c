@@ -3,7 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x002a41e0  size 0x188
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 7 of state table 0x32ed40 used by maybe_ScrQuickRace_Update */
 
 void maybe_ScrQuickRace_State7(undefined4 *param_1)
@@ -46,14 +45,14 @@ void maybe_ScrQuickRace_State7(undefined4 *param_1)
     param_1[0x21] = 1;
   }
   if (param_1[0x20] != 0) {
-    uVar4 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar4) == 0) {
+    uVar4 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar4) == 0) {
       uVar4 = 0x100000;
     }
     else if (uVar4 == 0x80000) {
       uVar4 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar4 = 0x100000;
     }
     if (uVar4 != 0x10) goto LAB_002a433c;
@@ -431,14 +430,14 @@ void maybe_ScrQuickRace_Update(undefined8 param_1)
       iVar3 = piVar5[0x221];
     }
     (*(code *)(&PTR_maybe_ScrQuickRace_State0_0032ed40)[iVar3])(param_1);
-    uVar4 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar4) == 0) {
+    uVar4 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar4) == 0) {
       uVar4 = 0x100000;
     }
     else if (uVar4 == 0x80000) {
       uVar4 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar4 = 0x100000;
     }
     if (uVar4 == 0x10) {
@@ -996,7 +995,6 @@ void maybe_ScrCarShop_Exit(void)
 }
 
 // 0x002a5a10  size 0x14c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 34 (table 0x3274b0) */
 
 void maybe_ScrCarShop_Update(undefined8 param_1)
@@ -1011,14 +1009,14 @@ void maybe_ScrCarShop_Update(undefined8 param_1)
   lVar2 = Menu_IsInputIdle(iVar4 + 4);
   if (lVar2 != 0) {
     (*(code *)(&PTR_maybe_ScrCarShop_State0_0032edf0)[*(int *)(iVar4 + 8)])(param_1);
-    uVar3 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar3) == 0) {
+    uVar3 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar3) == 0) {
       uVar3 = 0x100000;
     }
     else if (uVar3 == 0x80000) {
       uVar3 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar3 = 0x100000;
     }
     if (uVar3 == 0x10) {
@@ -1071,7 +1069,6 @@ void maybe_ScrCarShop_Enter(undefined4 *param_1)
 }
 
 // 0x002a5ba0  size 0x1e4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 33 (table 0x3274b0) */
 
 void maybe_ScrModeReset_Update(undefined8 param_1)
@@ -1083,14 +1080,14 @@ void maybe_ScrModeReset_Update(undefined8 param_1)
   int iVar4;
   
   Menu_IsInputIdle();
-  uVar3 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar3) == 0) {
+  uVar3 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   iVar4 = (int)param_1;
@@ -1169,8 +1166,6 @@ void maybe_ScrModeReset_Enter(undefined4 *param_1)
 }
 
 // 0x002a5de0  size 0x1f8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrGarageList_HandleInput(int param_1)
 
 {
@@ -1179,14 +1174,14 @@ void maybe_ScrGarageList_HandleInput(int param_1)
   undefined8 uVar3;
   uint uVar4;
   
-  uVar4 = _g_MenuInput[*(int *)(param_1 + 0x14) + 2];
-  if ((_g_MenuInput[*(int *)(param_1 + 0x14) + 4] & uVar4) == 0) {
+  uVar4 = g_MenuInput[*(int *)(param_1 + 0x14) + 2];
+  if ((g_MenuInput[*(int *)(param_1 + 0x14) + 4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   if (uVar4 == 0x1000) {
@@ -1308,7 +1303,6 @@ void maybe_ScrGarageList_State1(int param_1)
 }
 
 // 0x002a6100  size 0x1dc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 0 of state table 0x32ee10 used by maybe_ScrGarageList_Update */
 
 void maybe_ScrGarageList_State0(int param_1)
@@ -1332,14 +1326,14 @@ void maybe_ScrGarageList_State0(int param_1)
   iVar1 = *(int *)(param_1 + 0xc);
   Menu_HandleCursor(param_1 + 0xc,*(undefined4 *)(param_1 + 0x14),2,*(int *)(param_1 + 0x20) + -1,0,
                     0);
-  uVar2 = _g_MenuInput[*(int *)(param_1 + 0x14) + 2];
-  if ((_g_MenuInput[*(int *)(param_1 + 0x14) + 4] & uVar2) == 0) {
+  uVar2 = g_MenuInput[*(int *)(param_1 + 0x14) + 2];
+  if ((g_MenuInput[*(int *)(param_1 + 0x14) + 4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 2) {
@@ -1443,7 +1437,6 @@ void ScrGarageSelect_Exit(void)
 }
 
 // 0x002a6460  size 0x11c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 36 (table 0x3274b0) */
 
 void ScrGarageSelect_Update(int param_1)
@@ -1454,14 +1447,14 @@ void ScrGarageSelect_Update(int param_1)
   uint uStack_4;
   
   Menu_HandleCursor(param_1 + 8,0,2,2,1,*(undefined4 *)(param_1 + 4));
-  uVar2 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar2) == 0) {
+  uVar2 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 0x10) {
@@ -1512,7 +1505,6 @@ void ScrGarageSelect_Enter(int param_1)
 }
 
 // 0x002a6650  size 0x154
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrGarageList; on-screen text/callee hint "SubtitleHide" (was
    ScrSubtitleHide_Entera6650) */
 
@@ -1544,14 +1536,14 @@ void maybe_ScrGarageList_State9_SubtitleHide(int param_1)
       *(undefined1 *)(param_1 + 0x30) = 1;
     }
   }
-  uVar4 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar4) == 0) {
+  uVar4 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   if (uVar4 == 8) {
@@ -1565,7 +1557,6 @@ void maybe_ScrGarageList_State9_SubtitleHide(int param_1)
 }
 
 // 0x002a67b0  size 0xf0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 4 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
 void maybe_ScrCarSpec_State4(int param_1)
@@ -1573,14 +1564,14 @@ void maybe_ScrCarSpec_State4(int param_1)
 {
   uint uVar1;
   
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 2) {
@@ -1603,7 +1594,6 @@ void maybe_ScrCarSpec_State4(int param_1)
 }
 
 // 0x002a68b0  size 0xec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 3 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
 void maybe_ScrCarSpec_State3(int param_1)
@@ -1611,14 +1601,14 @@ void maybe_ScrCarSpec_State3(int param_1)
 {
   uint uVar1;
   
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 2) {
@@ -1641,7 +1631,6 @@ void maybe_ScrCarSpec_State3(int param_1)
 }
 
 // 0x002a69a0  size 0xec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 2 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
 void maybe_ScrCarSpec_State2(int param_1)
@@ -1649,14 +1638,14 @@ void maybe_ScrCarSpec_State2(int param_1)
 {
   uint uVar1;
   
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 2) {
@@ -1679,7 +1668,6 @@ void maybe_ScrCarSpec_State2(int param_1)
 }
 
 // 0x002a6a90  size 0xec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 1 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
 void maybe_ScrCarSpec_State1(int param_1)
@@ -1687,14 +1675,14 @@ void maybe_ScrCarSpec_State1(int param_1)
 {
   uint uVar1;
   
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 2) {
@@ -1717,7 +1705,6 @@ void maybe_ScrCarSpec_State1(int param_1)
 }
 
 // 0x002a6b80  size 0xa4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 0 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
 void maybe_ScrCarSpec_State0(int param_1)
@@ -1725,14 +1712,14 @@ void maybe_ScrCarSpec_State0(int param_1)
 {
   uint uVar1;
   
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 8) {
@@ -1755,7 +1742,6 @@ void maybe_ScrCarSpec_Exit(void)
 }
 
 // 0x002a6c40  size 0xfc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 37 (table 0x3274b0) */
 
 void maybe_ScrCarSpec_Update(undefined8 param_1)
@@ -1767,14 +1753,14 @@ void maybe_ScrCarSpec_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle();
   if (lVar1 != 0) {
     (*(code *)(&PTR_maybe_ScrCarSpec_State0_0032ee20)[*(int *)((int)param_1 + 4)])(param_1);
-    uVar2 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar2) == 0) {
+    uVar2 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar2) == 0) {
       uVar2 = 0x100000;
     }
     else if (uVar2 == 0x80000) {
       uVar2 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar2 = 0x100000;
     }
     if (uVar2 == 0x20) {
@@ -1940,7 +1926,6 @@ void maybe_ScrRaceStart_Build(int *param_1)
 }
 
 // 0x002a7170  size 0xd8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 8 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
 void maybe_ScrCarSpec_State8(int param_1)
@@ -1958,14 +1943,14 @@ void maybe_ScrCarSpec_State8(int param_1)
     lVar2 = Options_Get_14();
     *(uint *)(param_1 + 0x24) = (uint)(lVar2 != 0);
   }
-  uVar3 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar3) == 0) {
+  uVar3 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if ((uVar3 == 2) || (uVar3 == 1)) {
@@ -2020,7 +2005,6 @@ LAB_002a733c:
 }
 
 // 0x002a7390  size 0x2fc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrGarageList; on-screen text/callee hint "SubtitleHide" (was
    ScrSubtitleHide_Updatea7390) */
 
@@ -2072,14 +2056,14 @@ void maybe_ScrGarageList_State10_SubtitleHide(int *param_1)
       Subtitle_Hide(10,uVar3);
     }
   }
-  uVar5 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar5) == 0) {
+  uVar5 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar5) == 0) {
     uVar6 = 0x100000;
   }
   else {
     uVar6 = 0x80000;
     if (uVar5 != 0x80000) {
-      if (*_g_MenuInput == 1) {
+      if (*g_MenuInput == 1) {
         uVar6 = uVar5;
       }
       else {
@@ -2101,13 +2085,13 @@ void maybe_ScrGarageList_State10_SubtitleHide(int *param_1)
     }
   }
   else {
-    if ((_g_MenuInput[4] & uVar5) == 0) {
+    if ((g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (uVar5 == 2) {
@@ -2144,7 +2128,6 @@ void maybe_ScrRaceStart_Exit(void)
 }
 
 // 0x002a76a0  size 0x1bc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 38 (table 0x3274b0) */
 
 void maybe_ScrRaceStart_Update(undefined8 param_1)
@@ -2159,14 +2142,14 @@ void maybe_ScrRaceStart_Update(undefined8 param_1)
   lVar2 = Menu_IsInputIdle(puVar4 + 10);
   if (lVar2 != 0) {
     (*(code *)(&PTR_maybe_ScrGarageList_State10_SubtitleHide_0032ee38)[puVar4[0xb]])(param_1);
-    uVar3 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar3) == 0) {
+    uVar3 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar3) == 0) {
       uVar3 = 0x100000;
     }
     else if (uVar3 == 0x80000) {
       uVar3 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar3 = 0x100000;
     }
     if (uVar3 == 0x10) {
@@ -2406,7 +2389,6 @@ void maybe_ScrRivalIntro_OnResult(undefined4 *param_1,long param_2)
 }
 
 // 0x002a7d30  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 10 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
 void maybe_ScrRivalIntro_State10(int param_1)
@@ -2426,14 +2408,14 @@ void maybe_ScrRivalIntro_State10(int param_1)
     g_MenuMgr->unk_0634 = 0;
     g_MenuMgr->unk_0644 = 0;
   }
-  uVar2 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar2) == 0) {
+  uVar2 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 0x1000) {

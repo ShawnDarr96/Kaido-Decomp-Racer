@@ -628,7 +628,7 @@ undefined4 Script_GetElem_3c_x18(int param_1,int param_2)
   return *(undefined4 *)(param_2 * 0x18 + param_1 + 0x3c);
 }
 
-// 0x002b9440  size 0x16c
+// 0x002b9440  size 0x164
 void SeqGen_ClearPart(undefined8 param_1,int param_2,int param_3)
 
 {
@@ -679,6 +679,16 @@ void SeqGen_ClearPart(undefined8 param_1,int param_2,int param_3)
       return;
     }
   } while( true );
+}
+
+// 0x002b95ac  size 0x8
+/* follows SeqGen_ClearPart; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void SeqGen_ClearPart_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x002b95c0  size 0x1f4
@@ -1280,7 +1290,7 @@ int SeqGen_EmitEvent(undefined8 param_1,undefined8 param_2,int *param_3,long par
   return iVar4;
 }
 
-// 0x002ba4b0  size 0xe98
+// 0x002ba4b0  size 0xe74
 undefined4 SeqGen_BuildPart(undefined8 param_1,int param_2)
 
 {
@@ -1754,6 +1764,16 @@ undefined4 SeqGen_BuildPart(undefined8 param_1,int param_2)
     uVar11 = 0;
   }
   return uVar11;
+}
+
+// 0x002bb348  size 0x24
+/* follows SeqGen_BuildPart; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void SeqGen_BuildPart_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x002bb370  size 0xe4

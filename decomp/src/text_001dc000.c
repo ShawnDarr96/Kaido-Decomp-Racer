@@ -983,7 +983,7 @@ void RaceRule_SetupCheckpoints(short param_1,undefined8 param_2)
   return;
 }
 
-// 0x001dd580  size 0x62c
+// 0x001dd580  size 0x61c
 void RaceRule_PlaceCheckpoint
                (float param_1,undefined4 *param_2,ushort param_3,int param_4,long param_5,
                short param_6,long param_7)
@@ -1199,6 +1199,16 @@ LAB_001dd838:
     uStack_58 = uStack_48;
     fVar7 = unaff_f20;
   } while( true );
+}
+
+// 0x001ddbac  size 0x10
+/* follows RaceRule_PlaceCheckpoint; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RaceRule_PlaceCheckpoint_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x001ddbc0  size 0x1d4
@@ -2255,7 +2265,7 @@ void RaceProg_CheckPosition(undefined8 param_1)
   return;
 }
 
-// 0x001df7d0  size 0x4ec
+// 0x001df7d0  size 0x4d8
 void RaceProg_UpdateLaps(void)
 
 {
@@ -2398,6 +2408,16 @@ void RaceProg_UpdateLaps(void)
       } while (index < iVar4);
     }
   }
+  return;
+}
+
+// 0x001dfcbc  size 0x14
+/* follows RaceProg_UpdateLaps; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RaceProg_UpdateLaps_Orphan1(void)
+
+{
   return;
 }
 

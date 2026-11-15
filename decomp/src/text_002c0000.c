@@ -1145,7 +1145,7 @@ void Result_LoadLayouts(int param_1,uint param_2,undefined8 param_3,undefined4 *
   return;
 }
 
-// 0x002c1eb0  size 0x294
+// 0x002c1eb0  size 0x288
 void Result_CheckNewRecord(int param_1,int param_2)
 
 {
@@ -1206,6 +1206,16 @@ void Result_CheckNewRecord(int param_1,int param_2)
       pRVar3 = (RaceRecordB *)&pRVar3->field_0x4;
     } while (iVar6 < 10);
   }
+  return;
+}
+
+// 0x002c2144  size 0xc
+/* follows Result_CheckNewRecord; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Result_CheckNewRecord_Orphan1(void)
+
+{
   return;
 }
 
@@ -1642,8 +1652,6 @@ switchD_002c2a10_caseD_0:
 }
 
 // 0x002c2aa0  size 0x184
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 RaceMenu_HandleInput(undefined8 param_1)
 
 {
@@ -1655,17 +1663,17 @@ undefined4 RaceMenu_HandleInput(undefined8 param_1)
   iVar2 = (int)param_1;
   bVar1 = *(int *)(iVar2 + 0xfc) != 0;
   uVar4 = 0;
-  if (*_g_MenuInput != 1) {
-    *_g_MenuInput = 1;
+  if (*g_MenuInput != 1) {
+    *g_MenuInput = 1;
   }
-  uVar3 = _g_MenuInput[bVar1 + 2];
-  if ((_g_MenuInput[bVar1 + 4] & uVar3) == 0) {
+  uVar3 = g_MenuInput[bVar1 + 2];
+  if ((g_MenuInput[bVar1 + 4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if (uVar3 == 0x20) {
@@ -1703,8 +1711,6 @@ undefined4 RaceMenu_HandleInput(undefined8 param_1)
 }
 
 // 0x002c2c30  size 0x668
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 RaceMenu_HandleOptions(undefined8 param_1)
 
 {
@@ -1758,17 +1764,17 @@ undefined4 RaceMenu_HandleOptions(undefined8 param_1)
     return 0;
   }
   bVar5 = *(int *)(iVar14 + 0xfc) != 0;
-  if (*_g_MenuInput != 1) {
-    *_g_MenuInput = 1;
+  if (*g_MenuInput != 1) {
+    *g_MenuInput = 1;
   }
-  uVar10 = _g_MenuInput[bVar5 + 2];
-  if ((_g_MenuInput[bVar5 + 4] & uVar10) == 0) {
+  uVar10 = g_MenuInput[bVar5 + 2];
+  if ((g_MenuInput[bVar5 + 4] & uVar10) == 0) {
     uVar10 = 0x100000;
   }
   else if (uVar10 == 0x80000) {
     uVar10 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar10 = 0x100000;
   }
   if (uVar10 == 0x40) {

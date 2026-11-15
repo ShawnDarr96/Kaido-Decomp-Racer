@@ -611,7 +611,7 @@ void CourseStream_RequestBlock
   return;
 }
 
-// 0x0019d490  size 0x8a4
+// 0x0019d490  size 0x888
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 uint CourseStream_UpdateVisibility
@@ -901,6 +901,16 @@ LAB_0019dc38:
   return uVar15;
 }
 
+// 0x0019dd34  size 0x1c
+/* follows CourseStream_UpdateVisibility; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void CourseStream_UpdateVisibility_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0019dd50  size 0x340
 /* WARNING: Removing unreachable block (ram,0x0019de0c) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
@@ -1013,7 +1023,7 @@ LAB_0019df98:
   goto LAB_0019df40;
 }
 
-// 0x0019e0a0  size 0x518
+// 0x0019e0a0  size 0x50c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
@@ -1223,6 +1233,16 @@ LAB_0019e558:
   return 1;
 }
 
+// 0x0019e5b8  size 0xc
+/* follows Course_GetGroundHeight; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Course_GetGroundHeight_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0019e5d0  size 0x3c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1421,7 +1441,7 @@ void CourseStream_OnTextureReady(void)
   return;
 }
 
-// 0x0019ebd0  size 0x668
+// 0x0019ebd0  size 0x65c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void CourseStream_OnBlockLoaded(void)
@@ -1609,6 +1629,16 @@ void CourseStream_OnBlockLoaded(void)
   return;
 }
 
+// 0x0019f238  size 0xc
+/* follows CourseStream_OnBlockLoaded; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void CourseStream_OnBlockLoaded_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0019f250  size 0x334
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1722,7 +1752,7 @@ void CourseStream_RequestLod
   return;
 }
 
-// 0x0019f590  size 0x620
+// 0x0019f590  size 0x600
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 uint CourseStream_UpdateLod
@@ -1951,6 +1981,16 @@ LAB_0019f850:
     uVar15 = uVar14;
   }
   return uVar15;
+}
+
+// 0x0019fbb0  size 0x20
+/* follows CourseStream_UpdateLod; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void CourseStream_UpdateLod_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0019fbd0  size 0x22c

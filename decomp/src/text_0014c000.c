@@ -731,7 +731,7 @@ void Light_UpdateMatrices(undefined8 param_1)
   return;
 }
 
-// 0x0014d2a0  size 0x424
+// 0x0014d2a0  size 0x410
 /* 13 callers */
 
 void Model_Relocate(int param_1)
@@ -895,6 +895,16 @@ void Model_Relocate(int param_1)
       } while (uVar6 < *(uint *)(param_1 + 0x24));
     }
   }
+  return;
+}
+
+// 0x0014d6c4  size 0x14
+/* follows Model_Relocate; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Model_Relocate_Orphan1(void)
+
+{
   return;
 }
 
@@ -1456,6 +1466,17 @@ LAB_0014e304:
       _g_MoviePlayer[0x5d] = 1;
     }
   } while( true );
+}
+
+// 0x0014e580  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* address loaded as a constant in MoviePlayer_Open (callback / handler) */
+
+void MoviePlayer_Open_Callback1(void)
+
+{
+  maybe_Movie_iSuspendSelf(_g_MoviePlayer);
+  return;
 }
 
 // 0x0014e6e0  size 0x4c4

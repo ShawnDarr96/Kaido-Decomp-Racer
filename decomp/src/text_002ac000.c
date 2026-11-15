@@ -2,7 +2,7 @@
 // Address range 0x002ac000 - 0x002b0000
 #include "ghidra_types.h"
 
-// 0x002ac030  size 0x264
+// 0x002ac030  size 0x258
 /* state of maybe_ScrTuneParts; on-screen text/callee hint "RivalIsBossId" (was
    ScrRivalIsBossId_Enter) */
 
@@ -93,6 +93,16 @@ void maybe_ScrTuneParts_State3_RivalIsBossId(int param_1)
     *(undefined4 *)(param_1 + 0xa24) = 6;
   }
   g_MenuMgr->flags = g_MenuMgr->flags | 0x18000;
+  return;
+}
+
+// 0x002ac294  size 0xc
+/* follows ScrTuneParts_State3_RivalIsBossId; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void ScrTuneParts_State3_RivalIsBossId_Orphan1(void)
+
+{
   return;
 }
 
@@ -275,7 +285,6 @@ void maybe_ScrTuneParts_Exit(void)
 }
 
 // 0x002ac6e0  size 0x1d4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 41 (table 0x3274b0) */
 
 void maybe_ScrTuneParts_Update(int param_1)
@@ -293,14 +302,14 @@ void maybe_ScrTuneParts_Update(int param_1)
   lVar3 = Menu_IsInputIdle(param_1 + 0xa00);
   if (lVar3 != 0) {
     (*(code *)(&PTR_maybe_ScrTuneParts_State0_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
-    uVar5 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar5) == 0) {
+    uVar5 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (uVar5 == 0x10) {
@@ -556,8 +565,6 @@ void maybe_ScrPartInfo_BuildStats(undefined1 *param_1,undefined1 *param_2,ulong 
 }
 
 // 0x002acdc0  size 0x42c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrPartInfo_HandleInput(undefined8 param_1)
 
 {
@@ -570,14 +577,14 @@ void maybe_ScrPartInfo_HandleInput(undefined8 param_1)
   
   piVar5 = (int *)param_1;
   uVar1 = piVar5[3];
-  uVar6 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar6) == 0) {
+  uVar6 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar6) == 0) {
     uVar6 = 0x100000;
   }
   else if (uVar6 == 0x80000) {
     uVar6 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar6 = 0x100000;
   }
   if (uVar6 == 0x1000) {
@@ -1351,7 +1358,6 @@ void maybe_ScrGarageCheck_Exit(void)
 }
 
 // 0x002ae2c0  size 0xfc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 1 (table 0x3274b0) */
 
 void maybe_ScrGarageCheck_Update(undefined8 param_1)
@@ -1360,14 +1366,14 @@ void maybe_ScrGarageCheck_Update(undefined8 param_1)
   uint uVar1;
   
   Menu_HandleCursor(param_1,0,2,3,1,((int *)param_1)[1]);
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 0x10) {
@@ -1412,6 +1418,18 @@ void maybe_ScrGarageCheck_Enter(undefined4 *param_1)
   }
   else {
     param_1[1] = 0;
+  }
+  return;
+}
+
+// 0x002ae450  size 0x14
+/* address loaded as a constant in SeqGen_Init (callback / handler) */
+
+void SeqGen_Init_Callback1(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
+
+{
+  if (*(int *)(param_4 + 0x10) == param_1) {
+    *(undefined4 *)(param_4 + 0x14) = 0;
   }
   return;
 }
@@ -1462,6 +1480,18 @@ void maybe_SeqGen_OnTrackEnd(int param_1,undefined8 param_2,undefined4 param_3,u
     maybe_SeqGen_ScanTrack(param_4,0);
     *(undefined4 *)(iVar1 + 0x74) = 0;
     SeqGen_LoadPattern(_g_SeqGenShared1);
+  }
+  return;
+}
+
+// 0x002ae560  size 0x14
+/* address loaded as a constant in SeqGen_Init (callback / handler) */
+
+void SeqGen_Init_Callback2(int param_1,undefined8 param_2,undefined8 param_3,int *param_4)
+
+{
+  if (*param_4 == param_1) {
+    param_4[1] = 0;
   }
   return;
 }

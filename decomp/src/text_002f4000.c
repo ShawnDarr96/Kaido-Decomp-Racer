@@ -1738,7 +1738,7 @@ void ComposerTex_Clear(undefined4 *param_1)
   return;
 }
 
-// 0x002f7650  size 0x2fc
+// 0x002f7650  size 0x2f0
 void ComposerTex_Draw(int param_1)
 
 {
@@ -1819,6 +1819,16 @@ void ComposerTex_Draw(int param_1)
     } while (iVar6 < 0x20);
     *(undefined4 *)(param_1 + 0xc3c) = 0;
   }
+  return;
+}
+
+// 0x002f794c  size 0xc
+/* follows ComposerTex_Draw; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void ComposerTex_Draw_Orphan1(void)
+
+{
   return;
 }
 

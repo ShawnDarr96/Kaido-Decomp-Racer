@@ -2,6 +2,16 @@
 // Address range 0x00220000 - 0x00224000
 #include "ghidra_types.h"
 
+// 0x00220118  size 0x14
+/* follows ScrCareer_Draw_Subject_d1a0; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void ScrCareer_Draw_Subject_d1a0_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00220130  size 0xbb4
 void ScrCareer_Draw_SelectBbsThread(int *param_1)
 
@@ -1065,8 +1075,6 @@ void MenuPage06_Enter(int param_1)
 }
 
 // 0x00221fe0  size 0x65c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_Information(int *param_1)
 
 {
@@ -1267,7 +1275,7 @@ void ScrCareer_Draw_Information(int *param_1)
       param_1[7] = 0;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0xa7,*(undefined4 *)(&DAT_0032a800 + *param_1 * 4),1,0);
   }
   MenuWnd_DrawText(0xa7,0x26,0x432);
@@ -1526,8 +1534,6 @@ void MenuPage08_Enter(void)
 }
 
 // 0x00222b50  size 0x14c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_MenuWnd_DrawMailList(int *param_1)
 
 {
@@ -1536,7 +1542,7 @@ void maybe_MenuWnd_DrawMailList(int *param_1)
   int *piVar3;
   
   iVar1 = 0;
-  piVar2 = (int *)&s_MenuWnd_DrawMailList_1;
+  piVar2 = &s_MenuWnd_DrawMailList_1;
   piVar3 = param_1;
   do {
     if ((uint)piVar3[4] < 0xb) {
@@ -1569,13 +1575,13 @@ switchD_00222b94_caseD_a:
     iVar1 = iVar1 + 1;
     piVar2 = piVar2 + 1;
     if (2 < iVar1) {
-      if (_s_MenuWnd_DrawMailList_1 == -3) {
+      if (s_MenuWnd_DrawMailList_1 == -3) {
         MenuWnd_DrawText(0xb1,7,*param_1 + 0x1d0c);
       }
-      else if (_s_MenuWnd_DrawMailList_2 == -3) {
+      else if (s_MenuWnd_DrawMailList_2 == -3) {
         MenuWnd_DrawLabel(0xb1,7,*param_1 + 0x1d0c);
       }
-      else if (_s_MenuWnd_DrawMailList_3 == -3) {
+      else if (s_MenuWnd_DrawMailList_3 == -3) {
         MenuWnd_DrawLabel(0xb1,7,*param_1 + 0x1d0c);
       }
       else {
@@ -1797,7 +1803,7 @@ LAB_002230cc:
   return;
 }
 
-// 0x00223730  size 0x11ac
+// 0x00223730  size 0x1194
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_MessageDeleted(int param_1)

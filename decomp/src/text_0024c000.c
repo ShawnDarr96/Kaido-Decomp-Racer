@@ -2,8 +2,17 @@
 // Address range 0x0024c000 - 0x00250000
 #include "ghidra_types.h"
 
+// 0x0024cb18  size 0x8
+/* follows ScrCareer_Draw_WinLoss; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_WinLoss_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0024cb40  size 0x958
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 19 of state table 0x32be30 used by maybe_PageBetCar_Update */
 
 void maybe_PageBetCar_State19(int param_1)
@@ -265,7 +274,7 @@ void maybe_PageBetCar_State19(int param_1)
     ;
   }
   MenuWnd_DrawText(7,0x2e,0x37b);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x8a,(&DAT_0032c5e0)[*(int *)(param_1 + 0x62c)],0,0);
     pMVar2 = g_MenuMgr;
     uVar9 = *(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + param_1 + 0x3e0);
@@ -412,8 +421,6 @@ LAB_0024d574:
 }
 
 // 0x0024d680  size 0x2d4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_GoBattle_d680(int param_1)
 
 {
@@ -508,7 +515,7 @@ void ScrCareer_Draw_GoBattle_d680(int param_1)
     puVar8 = puVar8 + 1;
   } while (0 < iVar7);
   UiElem_SetPropInt(&pUVar1[iVar4].layout,0x18,0x16,*(int *)(&DAT_0032c5b0 + (uint)bStack_154 * 4));
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36eb40),1,0);
   }
   iVar7 = UiMgr_FindLayout(0x7a);
@@ -517,8 +524,6 @@ void ScrCareer_Draw_GoBattle_d680(int param_1)
 }
 
 // 0x0024d960  size 0x62c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_BetParts(undefined8 param_1)
 
 {
@@ -700,7 +705,7 @@ void ScrCareer_Draw_BetParts(undefined8 param_1)
      (*(int *)(iVar17 + 0x650) != 4)) {
     UiElem_SetPropFloat(&pUVar1[iVar7].layout,0x25,8,extraout_a3_lo);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7b,*(undefined4 *)(*(int *)(iVar17 + 0x62c) * 4 + 0x36eb30),1,0);
   }
   RivalDb_Copy(&uStack_370,*(undefined2 *)(iVar17 + 0x24));
@@ -1655,7 +1660,7 @@ void ScrRace_Draw_StartPractice(undefined8 param_1)
   MenuWnd_DrawText(0xa0,0x1c,0x39c);
   MenuWnd_DrawText(0xa0,0x1b,0x39d);
   MenuWnd_DrawText(7,0x2e,*(undefined4 *)(*(int *)(iVar7 + 0x62c) * 4 + 0x36eb10));
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState
               (0xa0,*(undefined4 *)(&s_ScrRace_Draw_StartPractice_1 + *(int *)(iVar7 + 0x62c) * 4),1
                ,0);
@@ -1669,8 +1674,6 @@ void ScrRace_Draw_StartPractice(undefined8 param_1)
 }
 
 // 0x0024f720  size 0x6a8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrRace_Draw_SelectStartingPoint(undefined8 param_1)
 
 {
@@ -1899,7 +1902,7 @@ void ScrRace_Draw_SelectStartingPoint(undefined8 param_1)
       *(undefined4 *)(iVar9 + 0x660) = 0;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     if (*(int *)(iVar9 + 0xc) == -1) {
       MenuWnd_SetItemState(0x9f,*(undefined4 *)(&DAT_0032c4d0 + *(int *)(iVar9 + 0x62c) * 4),0,0);
       iVar5 = *(int *)(iVar9 + 0xc);

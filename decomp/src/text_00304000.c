@@ -51,6 +51,60 @@ int maybe_KernelPatch_SetupTlb(uint param_1)
   return iVar2;
 }
 
+// 0x00306ea8  size 0x1
+/* WARNING: Control flow encountered bad instruction data */
+/* follows KernelPatch_SetupTlb; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void KernelPatch_SetupTlb_Orphan1(void)
+
+{
+                    /* WARNING: Bad instruction - Truncating control flow here */
+  halt_baddata();
+}
+
+// 0x003072a0  size 0xac
+/* follows KernelPatch_SetupTlb_Orphan1; unreferenced except as noted (was FUN_00306ea8_Orphan1) */
+
+void KernelPatch_SetupTlb_Orphan2(uint *param_1)
+
+{
+  uint uVar1;
+  uint uVar2;
+  uint uVar3;
+  uint uVar4;
+  uint uVar5;
+  uint uVar6;
+  
+  uVar1 = *param_1;
+  uVar2 = uRam800747a8 & 1;
+  *param_1 = uVar1 & 0xfffffffe | uVar2;
+  uVar3 = uRam800747a8 & 6;
+  *param_1 = uVar1 & 0xfffffff8 | uVar2 | uVar3;
+  uVar4 = uRam800747a8 & 8;
+  *param_1 = uVar1 & 0xfffffff0 | uVar2 | uVar3 | uVar4;
+  uVar5 = uRam800747a8 & 0x10;
+  *param_1 = uVar1 & 0xffffffe0 | uVar2 | uVar3 | uVar4 | uVar5;
+  uVar6 = uRam800747a8 & 0x1fe0;
+  *param_1 = uVar1 & 0xffffe000 | uVar2 | uVar3 | uVar4 | uVar5 | uVar6;
+  *param_1 = uVar1 & 0xffff0000 | uVar2 | uVar3 | uVar4 | uVar5 | uVar6 | uRam800747a8 & 0xe000;
+  *(undefined2 *)((int)param_1 + 2) = uRam800747a8._2_2_;
+  return;
+}
+
+// 0x00307350  size 0xac
+/* follows KernelPatch_SetupTlb_Orphan1; unreferenced except as noted (was FUN_003072a0_Tail1) */
+
+void KernelPatch_SetupTlb_Orphan3(undefined4 *param_1)
+
+{
+  uRam800747a8 = CONCAT22(*(undefined2 *)((int)param_1 + 2),
+                          (ushort)*param_1 & 1 | (ushort)*param_1 & 6 | (ushort)*param_1 & 8 |
+                          (ushort)*param_1 & 0x10 | (ushort)*param_1 & 0x1fe0 |
+                          (ushort)*param_1 & 0xe000);
+  return;
+}
+
 // 0x00307400  size 0xc0
 void maybe_KernelPatch_ScanTable(void)
 
@@ -72,6 +126,69 @@ void maybe_KernelPatch_ScanTable(void)
   }
   if (((long)(uRam80074700 << 0x1a) >> 0x20 & 7U) == 0) {
     uRam80074700 = uRam80074700 & 0xffff02ffffffffff;
+  }
+  return;
+}
+
+// 0x003074c0  size 0xa4
+/* follows KernelPatch_ScanTable; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+ulong KernelPatch_ScanTable_Orphan1(int param_1,int param_2,uint param_3)
+
+{
+  undefined1 *puVar1;
+  uint uVar2;
+  int iVar3;
+  
+  if (0x80 < param_2 + param_3) {
+    if (param_3 < 0x80) {
+      param_2 = 0x80 - param_3;
+    }
+    else {
+      param_3 = 0x80;
+      param_2 = 0;
+    }
+  }
+  uVar2 = param_2 + param_3;
+  iVar3 = 0;
+  for (; param_3 < uVar2; param_3 = param_3 + 1) {
+    puVar1 = (undefined1 *)(param_1 + iVar3);
+    iVar3 = iVar3 + 1;
+    *puVar1 = *(undefined1 *)(param_3 + 0x800747b0);
+  }
+  if (((long)(uRam80074700 << 0x1a) >> 0x20 & 7U) == 0) {
+    return 0;
+  }
+  return uRam80074700 >> 0x2c & 0xf;
+}
+
+// 0x00307568  size 0x74
+/* follows KernelPatch_ScanTable_Orphan1; unreferenced except as noted (was FUN_00307558_Orphan1) */
+
+void KernelPatch_ScanTable_Orphan2(int param_1,int param_2,uint param_3)
+
+{
+  undefined1 *puVar1;
+  int iVar2;
+  uint uVar3;
+  
+  uVar3 = param_2 + param_3;
+  if (0x80 < uVar3) {
+    if (param_3 < 0x80) {
+      iVar2 = 0x80 - param_3;
+    }
+    else {
+      param_3 = 0x80;
+      iVar2 = 0;
+    }
+    uVar3 = iVar2 + param_3;
+  }
+  iVar2 = 0;
+  for (; param_3 < uVar3; param_3 = param_3 + 1) {
+    puVar1 = (undefined1 *)(param_1 + iVar2);
+    iVar2 = iVar2 + 1;
+    *(undefined1 *)(param_3 + 0x800747b0) = *puVar1;
   }
   return;
 }
@@ -155,6 +272,50 @@ undefined8 maybe_KernelPatch_Dispatch(undefined8 param_1,undefined4 param_2,int 
   (*pcVar2)();
   (*pcRam80074768)();
   return param_1;
+}
+
+// 0x00307918  size 0x80
+/* WARNING: Control flow encountered bad instruction data */
+/* follows KernelPatch_Dispatch; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void KernelPatch_Dispatch_Orphan1(void)
+
+{
+                    /* WARNING: Bad instruction - Truncating control flow here */
+  halt_baddata();
+}
+
+// 0x00307a04  size 0x28
+/* follows KernelPatch_Dispatch_Orphan1; unreferenced except as noted (was FUN_00307918_Tail1) */
+
+int KernelPatch_Dispatch_Orphan2(int param_1,uint param_2)
+
+{
+  int *in_v1_lo;
+  int *piVar1;
+  
+  do {
+    piVar1 = in_v1_lo;
+    in_v1_lo = piVar1 + 2;
+    if (5 < param_2) {
+      return 0;
+    }
+    param_2 = param_2 + 1;
+  } while (param_1 != *in_v1_lo);
+  return piVar1[3];
+}
+
+// 0x00307a18  size 0x1c
+/* follows KernelPatch_Dispatch_Orphan1; unreferenced except as noted (was FUN_00307a04_Orphan1) */
+
+ulong KernelPatch_Dispatch_Orphan3(long param_1,ulong param_2)
+
+{
+  if ((long)param_2 < param_1) {
+    return param_2 | 0x10000;
+  }
+  return param_2;
 }
 
 // 0x00307a38  size 0x104
@@ -301,6 +462,19 @@ void maybe_KernelPatch_CallSync(undefined2 param_1)
 {
   func_0x00076160(param_1);
   SYNC(0);
+  return;
+}
+
+// 0x00307e40  size 0x24
+/* follows KernelPatch_CallSync; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void KernelPatch_CallSync_Orphan1(undefined4 param_1)
+
+{
+  uRamb0001820 = param_1;
+  SYNC(0);
+  uRamb0001810 = 0x583;
   return;
 }
 

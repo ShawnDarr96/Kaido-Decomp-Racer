@@ -351,7 +351,7 @@ LAB_00168a60:
   return;
 }
 
-// 0x00168c70  size 0x350
+// 0x00168c70  size 0x340
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void Car_ApplySuspensionForces(RaceCar *param_1)
@@ -444,6 +444,16 @@ void Car_ApplySuspensionForces(RaceCar *param_1)
     pRVar3 = (RaceCar *)&pRVar3->unk_0140;
     pRVar2 = (RaceCar *)&pRVar2->unk_0010;
   } while (uVar4 < 4);
+  return;
+}
+
+// 0x00168fc0  size 0x10
+/* follows Car_ApplySuspensionForces; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Car_ApplySuspensionForces_Orphan1(void)
+
+{
   return;
 }
 
@@ -735,7 +745,7 @@ void Car_ApplyTireForces(RaceCar *param_1)
   return;
 }
 
-// 0x00169860  size 0x7f8
+// 0x00169860  size 0x7ec
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void Car_UpdateClutchAndTorque(RaceCar *param_1)
@@ -980,6 +990,16 @@ LAB_00169930:
       iVar3 = iVar3 + 2;
     } while (uVar5 < 2);
   }
+  return;
+}
+
+// 0x0016a058  size 0xc
+/* follows Car_UpdateClutchAndTorque; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Car_UpdateClutchAndTorque_Orphan1(void)
+
+{
   return;
 }
 
@@ -1492,7 +1512,7 @@ void Car_ApplyAeroDrag(RaceCar *param_1)
   return;
 }
 
-// 0x0016afe0  size 0xf8
+// 0x0016afe0  size 0xf0
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void Car_ApplyRollingResistance(RaceCar *param_1)
@@ -1534,7 +1554,17 @@ void Car_ApplyRollingResistance(RaceCar *param_1)
   return;
 }
 
-// 0x0016b0e0  size 0x2bc
+// 0x0016b0d8  size 0x8
+/* follows Car_ApplyRollingResistance; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Car_ApplyRollingResistance_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0016b0e0  size 0x2b4
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void Car_UpdateSuspension(RaceCar *param_1)
@@ -1631,6 +1661,16 @@ void Car_UpdateSuspension(RaceCar *param_1)
     pRVar9 = (RaceCar *)&pRVar9->unk_0140;
     pRVar8 = (RaceCar *)&pRVar8->unk_0010;
   } while (uVar7 < 4);
+  return;
+}
+
+// 0x0016b39c  size 0x8
+/* follows Car_UpdateSuspension; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Car_UpdateSuspension_Orphan1(void)
+
+{
   return;
 }
 
@@ -1907,14 +1947,14 @@ void Car_UpdateSteeringGeometry(RaceCar *param_1)
   uint *puVar3;
   RaceCar *pRVar4;
   RaceCar *pRVar5;
-  float fVar6;
-  undefined4 uVar7;
-  float fVar8;
+  uint uVar6;
+  float fVar7;
+  undefined4 uVar8;
   float fVar9;
   float fVar10;
   float fVar11;
   float fVar12;
-  uint uVar13;
+  float fVar13;
   undefined4 uStack_1f0;
   undefined4 uStack_1ec;
   undefined4 uStack_1e8;
@@ -1982,59 +2022,59 @@ void Car_UpdateSteeringGeometry(RaceCar *param_1)
   
   puVar3 = &param_1->unk_0080;
   puVar2 = &param_1->unk_0090;
-  fVar12 = (float)param_1->unk_013c;
-  fVar6 = (float)cosf(fVar12);
-  uVar7 = sinf(fVar12);
-  Vec3_Scale(uVar7,auStack_20,puVar3);
-  Vec3_Scale(-fVar6,auStack_30,puVar2);
+  fVar13 = (float)param_1->unk_013c;
+  fVar7 = cosf(fVar13);
+  uVar8 = sinf(fVar13);
+  Vec3_Scale(uVar8,auStack_20,puVar3);
+  Vec3_Scale(-fVar7,auStack_30,puVar2);
   Vec3_Add(&uStack_10,auStack_20,auStack_30);
   param_1->unk_06f0 = uStack_10;
   param_1->unk_06f4 = uStack_c;
   param_1->unk_06f8 = uStack_8;
   param_1->unk_06fc = uStack_4;
-  Vec3_Scale(fVar6,auStack_50,puVar3);
-  Vec3_Scale(uVar7,auStack_60,puVar2);
+  Vec3_Scale(fVar7,auStack_50,puVar3);
+  Vec3_Scale(uVar8,auStack_60,puVar2);
   Vec3_Add(&uStack_40,auStack_50,auStack_60);
   param_1->unk_06e0 = uStack_40;
   param_1->unk_06e4 = uStack_3c;
   param_1->unk_06e8 = uStack_38;
   param_1->unk_06ec = uStack_34;
-  fVar11 = *(float *)(param_1->maybe_params + 0x250);
-  fVar8 = (float)atan2f(param_1->unk_01b0,param_1->unk_01cc);
-  fVar6 = *(float *)(param_1->unk_07c0 + 0x30);
-  fVar9 = (float)atan2f(param_1->unk_02f0,-(float)param_1->unk_030c);
-  fVar10 = *(float *)(param_1->unk_07c4 + 0x30);
-  param_1->unk_01d8 = (uint)(fVar11 + fVar6 * -fVar8);
-  param_1->unk_0318 = (uint)(-fVar11 + fVar10 * fVar9);
-  fVar8 = fVar12 + (float)param_1->unk_01d8;
-  fVar6 = (float)cosf(fVar8);
-  uVar7 = sinf(fVar8);
-  Vec3_Scale(uVar7,auStack_80,puVar3);
-  Vec3_Scale(-fVar6,auStack_90,puVar2);
+  fVar12 = *(float *)(param_1->maybe_params + 0x250);
+  fVar9 = (float)atan2f(param_1->unk_01b0,param_1->unk_01cc);
+  fVar7 = *(float *)(param_1->unk_07c0 + 0x30);
+  fVar10 = (float)atan2f(param_1->unk_02f0,-(float)param_1->unk_030c);
+  fVar11 = *(float *)(param_1->unk_07c4 + 0x30);
+  param_1->unk_01d8 = (uint)(fVar12 + fVar7 * -fVar9);
+  param_1->unk_0318 = (uint)(-fVar12 + fVar11 * fVar10);
+  fVar9 = fVar13 + (float)param_1->unk_01d8;
+  fVar7 = cosf(fVar9);
+  uVar8 = sinf(fVar9);
+  Vec3_Scale(uVar8,auStack_80,puVar3);
+  Vec3_Scale(-fVar7,auStack_90,puVar2);
   Vec3_Add(&uStack_70,auStack_80,auStack_90);
   param_1->unk_0230 = uStack_70;
   param_1->unk_0234 = uStack_6c;
   param_1->unk_0238 = uStack_68;
   param_1->unk_023c = uStack_64;
-  Vec3_Scale(fVar6,auStack_b0,puVar3);
-  Vec3_Scale(uVar7,auStack_c0,puVar2);
+  Vec3_Scale(fVar7,auStack_b0,puVar3);
+  Vec3_Scale(uVar8,auStack_c0,puVar2);
   Vec3_Add(&uStack_a0,auStack_b0,auStack_c0);
   param_1->unk_0220 = uStack_a0;
   param_1->unk_0224 = uStack_9c;
   param_1->unk_0228 = uStack_98;
   param_1->unk_022c = uStack_94;
-  fVar12 = fVar12 + (float)param_1->unk_0318;
-  fVar6 = (float)cosf(fVar12);
-  uVar7 = sinf(fVar12);
-  Vec3_Scale(uVar7,auStack_e0,puVar3);
-  Vec3_Scale(-fVar6,auStack_f0,puVar2);
+  fVar13 = fVar13 + (float)param_1->unk_0318;
+  fVar7 = cosf(fVar13);
+  uVar8 = sinf(fVar13);
+  Vec3_Scale(uVar8,auStack_e0,puVar3);
+  Vec3_Scale(-fVar7,auStack_f0,puVar2);
   Vec3_Add(&uStack_d0,auStack_e0,auStack_f0);
   param_1->unk_0370 = uStack_d0;
   param_1->unk_0374 = uStack_cc;
   param_1->unk_0378 = uStack_c8;
   param_1->unk_037c = uStack_c4;
-  Vec3_Scale(fVar6,auStack_110,puVar3);
-  Vec3_Scale(uVar7,auStack_120,puVar2);
+  Vec3_Scale(fVar7,auStack_110,puVar3);
+  Vec3_Scale(uVar8,auStack_120,puVar2);
   Vec3_Add(&uStack_100,auStack_110,auStack_120);
   param_1->unk_0360 = uStack_100;
   param_1->unk_0364 = uStack_fc;
@@ -2048,50 +2088,50 @@ void Car_UpdateSteeringGeometry(RaceCar *param_1)
   param_1->unk_0764 = param_1->unk_0094;
   param_1->unk_0768 = param_1->unk_0098;
   param_1->unk_076c = param_1->unk_009c;
-  fVar10 = *(float *)(param_1->maybe_params + 0x360);
-  fVar6 = (float)atan2f(param_1->unk_0430,param_1->unk_044c);
-  fVar6 = *(float *)(param_1->unk_07c8 + 0x30) * fVar6;
-  fVar8 = (float)atan2f(param_1->unk_0570,-(float)param_1->unk_058c);
-  fVar9 = *(float *)(param_1->unk_07cc + 0x30);
-  param_1->unk_0458 = (uint)(fVar10 + fVar6);
-  param_1->unk_0598 = (uint)(-fVar10 + fVar9 * -fVar8);
-  uVar13 = param_1->unk_0458;
-  fVar6 = (float)cosf(uVar13);
-  uVar7 = sinf(uVar13);
-  Vec3_Scale(uVar7,auStack_140,puVar3);
-  Vec3_Scale(-fVar6,auStack_150,puVar2);
+  fVar11 = *(float *)(param_1->maybe_params + 0x360);
+  fVar7 = (float)atan2f(param_1->unk_0430,param_1->unk_044c);
+  fVar7 = *(float *)(param_1->unk_07c8 + 0x30) * fVar7;
+  fVar9 = (float)atan2f(param_1->unk_0570,-(float)param_1->unk_058c);
+  fVar10 = *(float *)(param_1->unk_07cc + 0x30);
+  param_1->unk_0458 = (uint)(fVar11 + fVar7);
+  param_1->unk_0598 = (uint)(-fVar11 + fVar10 * -fVar9);
+  fVar9 = (float)param_1->unk_0458;
+  fVar7 = cosf(fVar9);
+  uVar8 = sinf(fVar9);
+  Vec3_Scale(uVar8,auStack_140,puVar3);
+  Vec3_Scale(-fVar7,auStack_150,puVar2);
   Vec3_Add(&uStack_130,auStack_140,auStack_150);
   param_1->unk_04b0 = uStack_130;
   param_1->unk_04b4 = uStack_12c;
   param_1->unk_04b8 = uStack_128;
   param_1->unk_04bc = uStack_124;
-  Vec3_Scale(fVar6,auStack_170,puVar3);
-  Vec3_Scale(uVar7,auStack_180,puVar2);
+  Vec3_Scale(fVar7,auStack_170,puVar3);
+  Vec3_Scale(uVar8,auStack_180,puVar2);
   Vec3_Add(&uStack_160,auStack_170,auStack_180);
   param_1->unk_04a0 = uStack_160;
   param_1->unk_04a4 = uStack_15c;
   param_1->unk_04a8 = uStack_158;
   param_1->unk_04ac = uStack_154;
-  uVar13 = param_1->unk_0598;
-  fVar6 = (float)cosf(uVar13);
-  uVar7 = sinf(uVar13);
-  Vec3_Scale(uVar7,auStack_1a0,puVar3);
-  Vec3_Scale(-fVar6,auStack_1b0,puVar2);
+  fVar9 = (float)param_1->unk_0598;
+  fVar7 = cosf(fVar9);
+  uVar8 = sinf(fVar9);
+  Vec3_Scale(uVar8,auStack_1a0,puVar3);
+  Vec3_Scale(-fVar7,auStack_1b0,puVar2);
   Vec3_Add(&uStack_190,auStack_1a0,auStack_1b0);
   param_1->unk_05f0 = uStack_190;
   param_1->unk_05f4 = uStack_18c;
   param_1->unk_05f8 = uStack_188;
   param_1->unk_05fc = uStack_184;
-  Vec3_Scale(fVar6,auStack_1d0,puVar3);
-  Vec3_Scale(uVar7,auStack_1e0,puVar2);
+  Vec3_Scale(fVar7,auStack_1d0,puVar3);
+  Vec3_Scale(uVar8,auStack_1e0,puVar2);
   Vec3_Add(&uStack_1c0,auStack_1d0,auStack_1e0);
-  uVar13 = 0;
+  uVar6 = 0;
   param_1->unk_05e0 = uStack_1c0;
   param_1->unk_05e4 = uStack_1bc;
   param_1->unk_05e8 = uStack_1b8;
   param_1->unk_05ec = uStack_1b4;
-  pRVar5 = param_1;
   pRVar4 = param_1;
+  pRVar5 = param_1;
   do {
     uVar1 = pRVar4->unk_07c0;
     *(undefined4 *)&pRVar5->field_0x2cc = *(undefined4 *)&pRVar5->field_0x2c8;
@@ -2100,25 +2140,25 @@ void Car_UpdateSteeringGeometry(RaceCar *param_1)
     *(undefined4 *)&pRVar5->field_0x2e4 = uStack_1ec;
     *(undefined4 *)&pRVar5->field_0x2e8 = uStack_1e8;
     *(undefined4 *)&pRVar5->field_0x2ec = uStack_1e4;
-    uVar7 = Vec3_Dot(&pRVar5->field_0x2e0,&pRVar5->unk_0230);
-    *(undefined4 *)&pRVar5->field_0x2c8 = uVar7;
-    uVar7 = Vec3_Dot(&pRVar5->field_0x2e0,&pRVar5->unk_0220);
-    *(undefined4 *)&pRVar5->field_0x2d0 = uVar7;
-    if ((uVar13 & 1) == 0) {
-      fVar6 = (float)atan2f(pRVar5->unk_01b0,pRVar5->unk_01cc);
+    uVar8 = Vec3_Dot(&pRVar5->field_0x2e0,&pRVar5->unk_0230);
+    *(undefined4 *)&pRVar5->field_0x2c8 = uVar8;
+    uVar8 = Vec3_Dot(&pRVar5->field_0x2e0,&pRVar5->unk_0220);
+    *(undefined4 *)&pRVar5->field_0x2d0 = uVar8;
+    if ((uVar6 & 1) == 0) {
+      fVar7 = (float)atan2f(pRVar5->unk_01b0,pRVar5->unk_01cc);
       *(float *)&pRVar5->field_0x1d4 =
-           (*(float *)(uVar1 + 0xcc) + 0.0) - *(float *)(uVar1 + 0x30) * fVar6;
+           (*(float *)(uVar1 + 0xcc) + 0.0) - *(float *)(uVar1 + 0x30) * fVar7;
     }
     else {
-      fVar6 = (float)atan2f(pRVar5->unk_01b0,-(float)pRVar5->unk_01cc);
+      fVar7 = (float)atan2f(pRVar5->unk_01b0,-(float)pRVar5->unk_01cc);
       *(float *)&pRVar5->field_0x1d4 =
-           *(float *)(uVar1 + 0x30) * fVar6 + -*(float *)(uVar1 + 0xcc) + 0.0;
+           *(float *)(uVar1 + 0x30) * fVar7 + -*(float *)(uVar1 + 0xcc) + 0.0;
     }
     Quat_FromAxisAngle(*(undefined4 *)&pRVar5->field_0x1d4,&pRVar5->field_0x1e0,0x362560);
-    uVar13 = uVar13 + 1;
+    uVar6 = uVar6 + 1;
     pRVar5 = (RaceCar *)&pRVar5->unk_0140;
     pRVar4 = (RaceCar *)&pRVar4->field_0x4;
-  } while (uVar13 < 4);
+  } while (uVar6 < 4);
   return;
 }
 

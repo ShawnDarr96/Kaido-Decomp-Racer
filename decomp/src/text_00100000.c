@@ -1913,7 +1913,7 @@ long maybe_std_shared_count_dtor(long param_1,short param_2)
   return param_1;
 }
 
-// 0x00102cb0  size 0x6c
+// 0x00102cb0  size 0x50
 undefined8 maybe_std_shared_count_ctor(undefined8 param_1,int param_2)
 
 {
@@ -1933,7 +1933,17 @@ undefined8 maybe_std_shared_count_ctor(undefined8 param_1,int param_2)
   return param_1;
 }
 
-// 0x00102d40  size 0x270
+// 0x00102d1c  size 0x24
+/* follows std_shared_count_ctor; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void std_shared_count_ctor_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00102d40  size 0x230
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* constructs cin/cout/cerr/clog once */
 
@@ -1974,6 +1984,21 @@ undefined8 std_ios_base_Init_ctor(undefined8 param_1)
     (**(code **)(_s_std_ios_base_Init_ctor_8 + 0xc))(0x36ff30,0,0);
   }
   return param_1;
+}
+
+// 0x00102fb0  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows std_ios_base_Init_ctor; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void std_ios_base_Init_ctor_Orphan1(undefined8 param_1,undefined8 param_2)
+
+{
+  code *in_t9_lo;
+  
+  (*in_t9_lo)(param_1,param_2,0);
+  (**(code **)(_s_std_ios_base_Init_ctor_8 + 0xc))(0x36ff30,0,0);
+  return;
 }
 
 // 0x00102ff0  size 0x60
@@ -2064,7 +2089,7 @@ long maybe_std_istream_dtor(long param_1,long param_2)
   return param_1;
 }
 
-// 0x00103290  size 0x270
+// 0x00103290  size 0x230
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* wide-char streams */
 
@@ -2105,6 +2130,21 @@ undefined8 maybe_std_wios_Init_ctor(undefined8 param_1)
     (**(code **)(_s_std_wios_Init_ctor_8 + 0xc))(0x370080,0,0);
   }
   return param_1;
+}
+
+// 0x00103500  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows std_wios_Init_ctor; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void std_wios_Init_ctor_Orphan1(undefined8 param_1,undefined8 param_2)
+
+{
+  code *in_t9_lo;
+  
+  (*in_t9_lo)(param_1,param_2,0);
+  (**(code **)(_s_std_wios_Init_ctor_8 + 0xc))(0x370080,0,0);
+  return;
 }
 
 // 0x00103540  size 0x60

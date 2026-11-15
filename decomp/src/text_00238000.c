@@ -1129,7 +1129,7 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
       g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0xc6,*(undefined4 *)(&DAT_0032b600 + *(int *)(iVar18 + 0x28) * 4),0,0);
   }
   else {
@@ -1357,7 +1357,7 @@ void ScrGarage_Draw_NoCarIs(int param_1)
   return;
 }
 
-// 0x0023aaa0  size 0x350
+// 0x0023aaa0  size 0x348
 void ScrGarage_Draw_Sponsors(undefined8 param_1)
 
 {
@@ -1435,6 +1435,16 @@ void ScrGarage_Draw_Sponsors(undefined8 param_1)
   }
   iVar7 = UiMgr_FindLayout(0xd4);
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar7].layout);
+  return;
+}
+
+// 0x0023adf0  size 0x8
+/* follows ScrGarage_Draw_Sponsors; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ScrGarage_Draw_Sponsors_Orphan1(void)
+
+{
   return;
 }
 
@@ -1802,7 +1812,6 @@ void maybe_PageSponsors_State1_GarageDrawSponsors(undefined8 param_1)
 }
 
 // 0x0023b7d0  size 0xa00
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of MenuPage20; on-screen text/callee hint "GarageDrawSponsors" (was
    ScrScrGarageDrawSponsors_Enter) */
 
@@ -2169,7 +2178,7 @@ void maybe_PageSponsors_State0_GarageDrawSponsors(undefined8 param_1)
 LAB_0023bff8:
   if ((char)piVar9[0xc] == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (((*_g_MenuInput == 1) && (piVar9[4] == 0)) && (piVar9[6] == 0)) {
+    if (((*g_MenuInput == 1) && (piVar9[4] == 0)) && (piVar9[6] == 0)) {
       MenuWnd_SetItemState(0xd4,*(undefined4 *)(&DAT_0032b728 + piVar9[0xb] * 4),0,0);
     }
   }

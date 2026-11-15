@@ -566,7 +566,7 @@ void Course_SpawnAmbient(void)
   return;
 }
 
-// 0x00178bf0  size 0xdb4
+// 0x00178bf0  size 0xdac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Course_UpdateEnvironment(void)
@@ -716,13 +716,13 @@ void Course_UpdateEnvironment(void)
               fStack_55c = fStack_51c - 1.3;
               fStack_550 = fStack_560;
               fStack_548 = fStack_558;
-              fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+              fVar16 = cosf(_s_Course_UpdateEnvironment_1);
               fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               fStack_550 = (fStack_550 + 0.0) - fVar16 * fVar17;
               fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
               fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               fStack_548 = (fStack_548 + 0.0) - fVar16 * fVar17;
-              fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+              fVar16 = cosf(_s_Course_UpdateEnvironment_1);
               fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               fStack_560 = fVar16 * fVar17 + fStack_560 + 0.0;
               fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
@@ -829,13 +829,13 @@ void Course_UpdateEnvironment(void)
                 fStack_4bc = fStack_47c - 1.3;
                 fStack_4b0 = fStack_4c0;
                 fStack_4a8 = fStack_4b8;
-                fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+                fVar16 = cosf(_s_Course_UpdateEnvironment_1);
                 fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 fStack_4b0 = (fStack_4b0 + 0.0) - fVar16 * fVar17;
                 fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
                 fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 fStack_4a8 = (fStack_4a8 + 0.0) - fVar16 * fVar17;
-                fVar16 = (float)cosf(_s_Course_UpdateEnvironment_1);
+                fVar16 = cosf(_s_Course_UpdateEnvironment_1);
                 fVar17 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 fStack_4c0 = fVar16 * fVar17 + fStack_4c0 + 0.0;
                 fVar16 = (float)sinf(_s_Course_UpdateEnvironment_1);
@@ -904,6 +904,16 @@ void Course_UpdateEnvironment(void)
       g_CourseShared5 = '\0';
     }
   }
+  return;
+}
+
+// 0x001799a4  size 0x8
+/* follows Course_UpdateEnvironment; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Course_UpdateEnvironment_Orphan1(void)
+
+{
   return;
 }
 
@@ -1782,7 +1792,7 @@ LAB_0017b220:
   } while( true );
 }
 
-// 0x0017b290  size 0xc0
+// 0x0017b290  size 0xb8
 void Skid_ResetCar(int param_1)
 
 {
@@ -1810,7 +1820,17 @@ void Skid_ResetCar(int param_1)
   return;
 }
 
-// 0x0017b360  size 0x628
+// 0x0017b350  size 0x8
+/* follows Skid_ResetCar; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Skid_ResetCar_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0017b360  size 0x620
 void Skid_Draw(int param_1,int param_2)
 
 {
@@ -2036,6 +2056,16 @@ LAB_0017b5e8:
       iVar8 = iVar8 + 0x1f60;
     } while (uVar9 < 4);
   }
+  return;
+}
+
+// 0x0017b988  size 0x8
+/* follows Skid_Draw; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void Skid_Draw_Orphan1(void)
+
+{
   return;
 }
 

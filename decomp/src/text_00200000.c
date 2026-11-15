@@ -867,8 +867,6 @@ bool MenuText_CountCars(int *param_1,int param_2,long param_3,int param_4)
 }
 
 // 0x00202400  size 0x588
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScene_HandleGarageSelect(int *param_1)
 
 {
@@ -880,30 +878,30 @@ void MenuScene_HandleGarageSelect(int *param_1)
   
   uVar5 = g_MenuMgr->curScreen;
   if ((((g_MenuMgr->flags & 4) == 0) || ((g_MenuMgr->flags & 0x1000) == 0)) &&
-     (*_g_MenuInput = 0, *param_1 != 0)) {
+     (*g_MenuInput = 0, *param_1 != 0)) {
     return;
   }
   if ((g_MenuMgr->flags & 0x400000) == 0) {
-    *_g_MenuInput = 1;
+    *g_MenuInput = 1;
   }
   else {
-    *_g_MenuInput = 0;
+    *g_MenuInput = 0;
   }
   if (((g_MenuMgr->flags & 2) != 0) || ((g_MenuMgr->flags & 1) != 0)) {
-    *_g_MenuInput = 0;
+    *g_MenuInput = 0;
   }
   if (((g_MenuMgr->flags & 0x1c000) != 0) && ((g_MenuMgr->flags & 0x1a0000) == 0)) {
     uVar1 = Profile_Get(0);
     lVar2 = Garage_FindCar(uVar1);
     if (0 < lVar2) {
-      uVar3 = _g_MenuInput[2];
-      if ((_g_MenuInput[4] & uVar3) == 0) {
+      uVar3 = g_MenuInput[2];
+      if ((g_MenuInput[4] & uVar3) == 0) {
         uVar3 = 0x100000;
       }
       else if (uVar3 == 0x80000) {
         uVar3 = 0x80000;
       }
-      else if (*_g_MenuInput != 1) {
+      else if (*g_MenuInput != 1) {
         uVar3 = 0x100000;
       }
       if (uVar3 == 0x80) {
@@ -935,29 +933,29 @@ void MenuScene_HandleGarageSelect(int *param_1)
           g_MenuMgr->flags = uVar3 & 0xffefffff;
           g_MenuMgr->flags = g_MenuMgr->flags & 0xffdfffff;
         }
-        *_g_MenuInput = 0;
+        *g_MenuInput = 0;
         g_MenuMgr->flags = g_MenuMgr->flags & 0xfffe3fff;
       }
     }
     else if (uVar5 == 0x24) {
-      uVar3 = _g_MenuInput[2];
-      if ((_g_MenuInput[4] & uVar3) == 0) {
+      uVar3 = g_MenuInput[2];
+      if ((g_MenuInput[4] & uVar3) == 0) {
         uVar4 = 0x100000;
       }
       else {
         uVar4 = 0x80000;
-        if ((uVar3 != 0x80000) && (uVar4 = uVar3, *_g_MenuInput != 1)) {
+        if ((uVar3 != 0x80000) && (uVar4 = uVar3, *g_MenuInput != 1)) {
           uVar4 = 0x100000;
         }
       }
       if (uVar4 != 0x80) {
-        if ((_g_MenuInput[4] & uVar3) == 0) {
+        if ((g_MenuInput[4] & uVar3) == 0) {
           uVar3 = 0x100000;
         }
         else if (uVar3 == 0x80000) {
           uVar3 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar3 = 0x100000;
         }
         if (uVar3 != 0x20) goto LAB_0020263c;
@@ -979,7 +977,7 @@ void MenuScene_HandleGarageSelect(int *param_1)
     g_MenuMgr->flags = g_MenuMgr->flags | 0x80000;
     MenuMgr_RequestScreen(0x24);
     MenuMgr_Back();
-    *_g_MenuInput = 0;
+    *g_MenuInput = 0;
   }
 LAB_0020263c:
   if (*param_1 == 1) {

@@ -1015,8 +1015,6 @@ void ScrRace_Draw_PrizeInformation_5c80(int param_1)
 }
 
 // 0x00235fc0  size 0x714
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrRace_Select_PrizeInformation(int param_1)
 
 {
@@ -1171,7 +1169,7 @@ void ScrRace_Select_PrizeInformation(int param_1)
   }
   if (cVar4 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState(0xe4,*(undefined4 *)(&DAT_0032b470 + *(int *)(param_1 + 0x24) * 4),0,0);
     }
   }
@@ -1744,7 +1742,6 @@ void ScrRace_Draw_RivalInfo_Draw6(undefined8 param_1)
 }
 
 // 0x00237740  size 0x7cc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of ScrRace_Draw_RivalInfo; on-screen text/callee hint "CareerDrawNoDat" (was
    ScrScrCareerDrawNoData6ac0_Exit) */
 
@@ -1955,7 +1952,7 @@ LAB_0023779c:
     }
     bVar4 = true;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0xd1,*(undefined4 *)(&DAT_0032b6b0 + iVar5 * 4),0,0);
     if (*(int *)(iVar11 + 0x18) == 0) {
       UiLayout_UpdateAnimById((UiLayout *)0xd1,2);

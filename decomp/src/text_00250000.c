@@ -35,8 +35,6 @@ void maybe_Trickster_ClearSlot(int param_1,int param_2)
 }
 
 // 0x00253630  size 0x60c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_ChangeTyres(int param_1)
 
 {
@@ -230,7 +228,7 @@ void ScrCareer_Draw_ChangeTyres(int param_1)
   }
   MenuWnd_DrawText(7,0x2e,0x3a6);
   MenuWnd_DrawStatus(0xffffffffffffffff,0,0xffffffffffffffff,0);
-  if ((*_g_MenuInput == 1) && (*(int *)(param_1 + 8) != 0)) {
+  if ((*g_MenuInput == 1) && (*(int *)(param_1 + 8) != 0)) {
     MenuWnd_SetItemState(0xa4,*(undefined4 *)(&DAT_0032c208 + *(int *)(param_1 + 0x62c) * 4),1,0);
   }
   if (*(int *)(param_1 + 8) == 0) {
@@ -251,8 +249,6 @@ void ScrCareer_Draw_ChangeTyres(int param_1)
 }
 
 // 0x00253c40  size 0x4b8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrRace_Draw_TaAttack(int param_1)
 
 {
@@ -346,7 +342,7 @@ void ScrRace_Draw_TaAttack(int param_1)
      (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x9e,1), !bVar2)) {
     *(undefined4 *)(param_1 + 0x660) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x9e,*(undefined4 *)(&DAT_0032c1e8 + *(int *)(param_1 + 0x62c) * 4),1,0);
   }
   MenuWnd_DrawText(0x9e,0x17,0x392);

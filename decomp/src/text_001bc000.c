@@ -704,7 +704,7 @@ LAB_001bce30:
   return;
 }
 
-// 0x001bce70  size 0xe34
+// 0x001bce70  size 0xdf8
 void Profile_ScheduleRivals(int param_1)
 
 {
@@ -1321,6 +1321,556 @@ void Profile_ScheduleRivals(int param_1)
     iVar10 = iVar10 + 4;
     if (0x13 < iStack_7f0) {
       return;
+    }
+  } while( true );
+}
+
+// 0x001bdca4  size 0x3c
+/* follows Profile_ScheduleRivals; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Profile_ScheduleRivals_Orphan1(void)
+
+{
+  int *piVar1;
+  undefined8 uVar2;
+  ulong uVar3;
+  int iVar4;
+  int iVar5;
+  long lVar6;
+  undefined4 *puVar7;
+  undefined1 *puVar8;
+  int iVar9;
+  undefined4 *puVar10;
+  int unaff_s1_lo;
+  int iVar11;
+  int unaff_s2_lo;
+  long unaff_s3;
+  int unaff_s4_lo;
+  int unaff_s6_lo;
+  int unaff_s7_lo;
+  undefined4 unaff_s8_lo;
+  undefined4 unaff_s8_hi;
+  undefined4 uVar12;
+  long in_stack_000000a0;
+  int in_stack_000000b0;
+  int in_stack_000000c0;
+  int in_stack_000000d0;
+  int in_stack_000000e0;
+  undefined4 uStack000000f0;
+  undefined4 uStack000000f4;
+  undefined4 uStack00000144;
+  undefined1 uStack00000190;
+  undefined4 in_stack_00000800;
+  undefined1 auStack_7ffffffe [2];
+  int aiStack_7ffffffc [536870911];
+  
+  do {
+    if (unaff_s3 == 0) {
+      unaff_s6_lo = unaff_s6_lo + 1;
+      unaff_s7_lo = unaff_s7_lo + 0x18;
+      unaff_s1_lo = unaff_s1_lo + 4;
+      iVar11 = unaff_s2_lo;
+      if (2 < unaff_s6_lo) goto LAB_001bcf40;
+    }
+    else {
+LAB_001bcf40:
+      do {
+        unaff_s1_lo = in_stack_000000c0 + 0xc;
+        in_stack_000000e0 = in_stack_000000e0 + 1;
+        iVar11 = unaff_s2_lo + 4;
+        if (0x13 < in_stack_000000e0) {
+          return;
+        }
+        piVar1 = (int *)(unaff_s2_lo + 0x2a78);
+        unaff_s2_lo = iVar11;
+        in_stack_000000c0 = unaff_s1_lo;
+      } while (*piVar1 == -1);
+      unaff_s3 = 0;
+      uVar2 = GameDb_GetRivalCar(in_stack_000000e0);
+      memcpy(&uStack000000f0,uVar2,0x50);
+      iVar5 = 9;
+      puVar10 = &uStack000000f4;
+      puVar7 = &uStack00000144;
+      do {
+        iVar5 = iVar5 + -1;
+        uVar12 = puVar10[1];
+        *puVar7 = *puVar10;
+        puVar7[1] = uVar12;
+        puVar10 = puVar10 + 2;
+        puVar7 = puVar7 + 2;
+      } while (0 < iVar5);
+      iVar5 = 9;
+      puVar10 = &uStack00000144;
+      puVar7 = (undefined4 *)((int)register0x000001d0 + 0x804);
+      do {
+        iVar5 = iVar5 + -1;
+        uVar12 = puVar10[1];
+        *puVar7 = *puVar10;
+        puVar7[1] = uVar12;
+        puVar10 = puVar10 + 2;
+        puVar7 = puVar7 + 2;
+      } while (0 < iVar5);
+      unaff_s6_lo = 0;
+      unaff_s7_lo = (int)register0x000001d0 + 0x800;
+      in_stack_00000800 = uStack000000f0;
+    }
+    unaff_s2_lo = iVar11;
+    switch(*(undefined4 *)(unaff_s7_lo + 4)) {
+    case 0:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 1) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 1:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 2) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 2:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 4) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 3:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 8) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 4:
+      iVar9 = 0;
+      iVar5 = (int)register0x000001d0 + 0x7e0;
+      do {
+        iVar4 = *(int *)(iVar5 + 4);
+        if (iVar4 == -1) break;
+        if ((*(int *)(unaff_s4_lo + 0x2748) <= iVar4) && (iVar4 < *(int *)(unaff_s4_lo + 0x2744))) {
+          uVar3 = maybe_Rand_Float();
+          iVar5 = (int)(uVar3 & 3);
+          if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+            iVar5 = iVar5 + -4;
+          }
+          Career_AssignRivalCar
+                    ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                     unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+          Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+          *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+          unaff_s3 = 1;
+          break;
+        }
+        iVar9 = iVar9 + 1;
+        iVar5 = iVar5 + 4;
+      } while (iVar9 < 5);
+      break;
+    case 5:
+      if ((*(char *)(unaff_s4_lo + 0x273d) != *(char *)(unaff_s4_lo + 0x273e)) &&
+         (*(char *)(unaff_s4_lo + 0x273f) != *(char *)(unaff_s4_lo + 0x2740))) {
+        uVar3 = maybe_Rand_Float();
+        iVar5 = (int)(uVar3 & 3);
+        if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+          iVar5 = iVar5 + -4;
+        }
+        Career_AssignRivalCar
+                  ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                   unaff_s1_lo + iVar5,in_stack_00000800,*(undefined1 *)(unaff_s4_lo + 0x273d));
+        Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+        *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+        unaff_s3 = 1;
+      }
+      break;
+    case 6:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 0x40) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 7:
+      iVar9 = 0;
+      iVar5 = (int)register0x000001d0 + 0x7e0;
+      do {
+        iVar4 = *(int *)(iVar5 + 4);
+        if (iVar4 == -1) break;
+        for (puVar8 = &uStack00000190; *(int *)(puVar8 + 4) != -1; puVar8 = puVar8 + 8) {
+          if ((*(int *)(puVar8 + 4) == iVar4) && (*(int *)(puVar8 + 8) != 0)) {
+            if (*(short *)(unaff_s4_lo + iVar4 * 2 + 0x3fc4) == 1) {
+              uVar3 = maybe_Rand_Float();
+              iVar4 = (int)(uVar3 & 3);
+              if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+                iVar4 = iVar4 + -4;
+              }
+              Career_AssignRivalCar
+                        ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                         unaff_s1_lo + iVar4,in_stack_00000800,*(undefined4 *)(iVar5 + 4));
+              Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+              *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+              unaff_s3 = 1;
+            }
+            break;
+          }
+        }
+        if (unaff_s3 != 0) break;
+        iVar9 = iVar9 + 1;
+        iVar5 = iVar5 + 4;
+      } while (iVar9 < 5);
+      break;
+    case 8:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          uVar12 = *(undefined4 *)(iVar9 + 0x2754);
+          if (*(int *)(iVar9 + 0x2750) == 0x100) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,uVar12);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 9:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 0x200) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 10:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 0x400) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 0xb:
+      iVar9 = 0;
+      iVar5 = (int)register0x000001d0 + 0x7e0;
+      do {
+        if (*(int *)(iVar5 + 4) == -1) break;
+        if ((*(int *)(unaff_s4_lo + 0x2734) < 9999) &&
+           ((*(int *)(unaff_s4_lo + 0x2734) - *(int *)(iVar11 + 0x2a74)) % *(int *)(iVar5 + 4) == 0)
+           ) {
+          uVar3 = maybe_Rand_Float();
+          iVar5 = (int)(uVar3 & 3);
+          if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+            iVar5 = iVar5 + -4;
+          }
+          Career_AssignRivalCar
+                    ((int)register0x000001d0 + 0x850,*(int *)(unaff_s4_lo + 0x2734),
+                     unaff_s1_lo + iVar5,in_stack_00000800,
+                     *(int *)(unaff_s4_lo + 0x2734) - *(int *)(iVar11 + 0x2a74));
+          Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+          *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+          unaff_s3 = 1;
+          break;
+        }
+        iVar9 = iVar9 + 1;
+        iVar5 = iVar5 + 4;
+      } while (iVar9 < 5);
+      break;
+    case 0xc:
+      if ((long)*(int *)(unaff_s7_lo + 8) <= CONCAT44(unaff_s8_hi,unaff_s8_lo)) {
+        uVar3 = maybe_Rand_Float();
+        iVar5 = (int)(uVar3 & 3);
+        if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+          iVar5 = iVar5 + -4;
+        }
+        Career_AssignRivalCar
+                  ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                   unaff_s1_lo + iVar5,in_stack_00000800);
+        Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+        *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+        unaff_s3 = 1;
+      }
+      break;
+    case 0xd:
+      if (*(int *)(unaff_s7_lo + 8) <= in_stack_000000b0) {
+        uVar3 = maybe_Rand_Float();
+        iVar5 = (int)(uVar3 & 3);
+        if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+          iVar5 = iVar5 + -4;
+        }
+        Career_AssignRivalCar
+                  ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                   unaff_s1_lo + iVar5,in_stack_00000800,in_stack_000000b0);
+        Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+        *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+        unaff_s3 = 1;
+      }
+      break;
+    case 0xe:
+      iVar9 = 0;
+      iVar5 = (int)register0x000001d0 + 0x7e0;
+      do {
+        lVar6 = (long)*(int *)(iVar5 + 4);
+        if (lVar6 == -1) break;
+        if ((*(short *)(unaff_s4_lo + 0x5318) < lVar6) &&
+           (lVar6 <= *(short *)(unaff_s4_lo + 0x5312))) {
+          uVar3 = maybe_Rand_Float();
+          iVar5 = (int)(uVar3 & 3);
+          if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+            iVar5 = iVar5 + -4;
+          }
+          Career_AssignRivalCar
+                    ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                     unaff_s1_lo + iVar5,in_stack_00000800,*(undefined2 *)(unaff_s4_lo + 0x5312));
+          Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+          *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+          unaff_s3 = 1;
+          break;
+        }
+        iVar9 = iVar9 + 1;
+        iVar5 = iVar5 + 4;
+      } while (iVar9 < 5);
+      break;
+    case 0xf:
+      iVar9 = 0;
+      iVar5 = (int)register0x000001d0 + 0x7e0;
+      do {
+        lVar6 = (long)*(int *)(iVar5 + 4);
+        if (lVar6 == -1) break;
+        if ((*(short *)(unaff_s4_lo + 0x531a) < lVar6) &&
+           (lVar6 <= *(short *)(unaff_s4_lo + 0x5314))) {
+          uVar3 = maybe_Rand_Float();
+          iVar5 = (int)(uVar3 & 3);
+          if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+            iVar5 = iVar5 + -4;
+          }
+          Career_AssignRivalCar
+                    ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                     unaff_s1_lo + iVar5,in_stack_00000800,*(undefined2 *)(unaff_s4_lo + 0x5314));
+          Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+          *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+          unaff_s3 = 1;
+          break;
+        }
+        iVar9 = iVar9 + 1;
+        iVar5 = iVar5 + 4;
+      } while (iVar9 < 5);
+      break;
+    case 0x10:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 0x10000) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 0x11:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 0x20000) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
+      break;
+    case 0x12:
+      if ((in_stack_000000d0 == 0x28) && (in_stack_000000a0 != 0x28)) {
+        uVar3 = maybe_Rand_Float();
+        iVar5 = (int)(uVar3 & 3);
+        if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+          iVar5 = iVar5 + -4;
+        }
+        Career_AssignRivalCar
+                  ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                   unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+        Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+        *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+        unaff_s3 = 1;
+      }
+      break;
+    case 0x13:
+      iVar5 = 0;
+      if (0 < *(int *)(unaff_s4_lo + 0x2a70)) {
+        iVar9 = unaff_s4_lo;
+        do {
+          if (*(int *)(iVar9 + 0x2750) == 0x80000) {
+            uVar3 = maybe_Rand_Float();
+            iVar5 = (int)(uVar3 & 3);
+            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
+              iVar5 = iVar5 + -4;
+            }
+            Career_AssignRivalCar
+                      ((int)register0x000001d0 + 0x850,*(undefined4 *)(unaff_s4_lo + 0x2734),
+                       unaff_s1_lo + iVar5,in_stack_00000800,0xffffffffffffffff);
+            Career_UpdateRivalStatus(unaff_s4_lo + 0x531c,0,(int)register0x000001d0 + 0x850);
+            *(int *)(iVar11 + 0x2ac4) = *(int *)(iVar11 + 0x2ac4) + 1;
+            unaff_s3 = 1;
+            break;
+          }
+          iVar5 = iVar5 + 1;
+          iVar9 = iVar9 + 8;
+        } while (iVar5 < *(int *)(unaff_s4_lo + 0x2a70));
+      }
     }
   } while( true );
 }
@@ -2260,7 +2810,7 @@ void RivalSchedule_SetupBattle(void)
   return;
 }
 
-// 0x001bf120  size 0xcc0
+// 0x001bf120  size 0xca8
 /* WARNING: Removing unreachable block (ram,0x001bf840) */
 /* WARNING: Removing unreachable block (ram,0x001bf578) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
@@ -2717,6 +3267,16 @@ LAB_001bfb30:
       piStack_3660 = piStack_3660 + 1;
     } while (iVar13 < 10);
   }
+  return;
+}
+
+// 0x001bfde0  size 0x18
+/* follows RivalSchedule_SetupTeamBattle; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void RivalSchedule_SetupTeamBattle_Orphan1(void)
+
+{
   return;
 }
 

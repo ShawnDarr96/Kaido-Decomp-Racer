@@ -2,7 +2,7 @@
 // Address range 0x00254000 - 0x00258000
 #include "ghidra_types.h"
 
-// 0x00254100  size 0x10a0
+// 0x00254100  size 0x1088
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_SelectSectionTo(int param_1)
@@ -241,7 +241,7 @@ void ScrCareer_Draw_SelectSectionTo(int param_1)
   uVar11 = Race_GetCourseVariant();
   iVar7 = MsgId_ForOption(uVar11);
   UiElem_SetPropInt(pUVar16,0x5f,0x16,*(int *)(&DAT_0032c010 + iVar7 * 4));
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x83,*(undefined4 *)(&DAT_0032bff0 + *(int *)(param_1 + 0x62c) * 4),1,0);
   }
   UiElem_SetPropInt(pUVar16,0x1a,9,*(int *)(param_1 + 0x62c));
@@ -428,9 +428,17 @@ LAB_00254538:
   } while( true );
 }
 
-// 0x002551c0  size 0x8dc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+// 0x002551a0  size 0x18
+/* follows ScrCareer_Draw_SelectSectionTo; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
 
+void ScrCareer_Draw_SelectSectionTo_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x002551c0  size 0x8dc
 void ScrRace_Draw_CategoryRace_51c0(int param_1)
 
 {
@@ -609,7 +617,7 @@ void ScrRace_Draw_CategoryRace_51c0(int param_1)
       *(undefined4 *)(param_1 + 0x658) = 0;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x79,*(undefined4 *)(&DAT_0032bfe0 + *(int *)(param_1 + 0x62c) * 4),1,0);
     iVar4 = *(int *)(param_1 + 0x660);
   }
@@ -769,8 +777,6 @@ void ScrSell_Exit(void)
 }
 
 // 0x00255c50  size 0x220
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrRace_Draw_Sell(int *param_1)
 
 {
@@ -789,7 +795,7 @@ void ScrRace_Draw_Sell(int *param_1)
   }
   MenuWnd_DrawText(0x43,0x1a,0x2a1);
   MenuWnd_DrawText(0x43,0x1b,0x2a2);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x43,*(undefined4 *)(*param_1 * 4 + 0x36ec00),1,0);
   }
   UiLayout_UpdateAnimById((UiLayout *)0x42,0);
@@ -1025,9 +1031,7 @@ undefined8 maybe_CarSlot_IsSpecial(long param_1,long param_2)
   return uVar1;
 }
 
-// 0x002562c0  size 0x5f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
+// 0x002562c0  size 0x5ec
 void ScrGarage_Draw_MetalColour(int param_1)
 
 {
@@ -1178,7 +1182,7 @@ void ScrGarage_Draw_MetalColour(int param_1)
         *(undefined4 *)(param_1 + 0x60) = 0;
       }
     }
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState(0x56,*(undefined4 *)(&DAT_0032d120 + *(int *)(param_1 + 0x1c) * 4),0,0);
     }
     iVar5 = UiMgr_FindLayout(0x56);
@@ -1241,6 +1245,16 @@ void ScrGarage_Draw_MetalColour(int param_1)
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
   iVar5 = UiMgr_FindLayout(0x55);
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
+  return;
+}
+
+// 0x002568b4  size 0x8
+/* follows ScrGarage_Draw_MetalColour; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ScrGarage_Draw_MetalColour_Orphan1(void)
+
+{
   return;
 }
 
@@ -1461,8 +1475,6 @@ void MenuScr_Draw_MazioraColour(int param_1)
 }
 
 // 0x00256e70  size 0x638
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_DealerColour(int param_1)
 
 {
@@ -1629,7 +1641,7 @@ void ScrGarage_Draw_DealerColour(int param_1)
         *(undefined4 *)(param_1 + 0x60) = 0;
       }
     }
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState(0x54,*(undefined4 *)(&DAT_0032d080 + *(int *)(param_1 + 0x18) * 4),0,0);
     }
   }
@@ -1673,8 +1685,6 @@ void ScrGarage_Draw_DealerColour(int param_1)
 }
 
 // 0x002574b0  size 0xeb8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_PartShop_DrawDetails(int param_1)
 
 {
@@ -2015,7 +2025,7 @@ void maybe_PartShop_DrawDetails(int param_1)
     iVar9 = *(int *)(param_1 + 0x4c);
   }
   if (iVar9 == 3) {
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       MenuWnd_SetItemState(0x68,*(undefined4 *)(&LAB_0032d050 + *(int *)(param_1 + 0x38) * 4),0,0);
     }
     iVar9 = MsgId_ForMenuHelp(*(int *)(param_1 + 0xc) + 1U & 0xff);

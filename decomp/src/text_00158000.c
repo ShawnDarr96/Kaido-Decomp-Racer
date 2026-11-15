@@ -316,7 +316,22 @@ undefined4 PhysWorld_GetBodyList(int param_1)
   return *(undefined4 *)(param_1 + 0x40);
 }
 
-// 0x00158690  size 0x258
+// 0x00158670  size 0x18
+/* address loaded as a constant in PhysWorld_Init (callback / handler) */
+
+undefined8 PhysWorld_Init_Callback1(undefined8 param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = (int)param_1;
+  *(undefined4 *)(iVar1 + 0xc) = 0x3f800000;
+  *(undefined4 *)(iVar1 + 0x1c) = 0x3f800000;
+  *(undefined4 *)(iVar1 + 0x2c) = 0x3f800000;
+  return param_1;
+}
+
+// 0x00158690  size 0x24c
 void PhysWorld_CollideBroadphase(int param_1,int param_2,uint param_3)
 
 {
@@ -417,7 +432,17 @@ LAB_00158758:
   } while( true );
 }
 
-// 0x00158900  size 0x1a4
+// 0x001588e8  size 0xc
+/* follows PhysWorld_CollideBroadphase; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void PhysWorld_CollideBroadphase_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00158900  size 0x194
 void PhysWorld_BuildPairs(int param_1,int param_2,uint param_3)
 
 {
@@ -466,6 +491,16 @@ LAB_001589c0:
   return;
 }
 
+// 0x00158aa4  size 0x10
+/* follows PhysWorld_BuildPairs; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void PhysWorld_BuildPairs_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00158ac0  size 0x3c
 int PhysWorld_AllocContact(int param_1)
 
@@ -484,7 +519,7 @@ int PhysWorld_AllocContact(int param_1)
   return iVar2;
 }
 
-// 0x00158b00  size 0x2c8
+// 0x00158b00  size 0x2c0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* accumulates time, wraps at 3600 */
 
@@ -587,6 +622,16 @@ LAB_00158b54:
       uVar6 = uVar6 + 1;
     } while (uVar6 < *(uint *)(param_2 + 0xc));
   }
+  return;
+}
+
+// 0x00158dc8  size 0x8
+/* follows PhysWorld_Integrate; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void PhysWorld_Integrate_Orphan1(void)
+
+{
   return;
 }
 
@@ -774,6 +819,21 @@ void PhysWorld_Init(int *param_1,int param_2,int param_3,int param_4)
   return;
 }
 
+// 0x00159350  size 0x18
+/* address loaded as a constant in PhysWorld_Init (callback / handler) */
+
+undefined8 PhysWorld_Init_Callback2(undefined8 param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = (int)param_1;
+  *(undefined4 *)(iVar1 + 0x1c) = 0x3f800000;
+  *(undefined4 *)(iVar1 + 0x2c) = 0x3f800000;
+  *(undefined4 *)(iVar1 + 0x3c) = 0x3f800000;
+  return param_1;
+}
+
 // 0x00159370  size 0x4c
 undefined8 PhysWorld_ctor(undefined8 param_1)
 
@@ -948,8 +1008,8 @@ void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefine
   PhysWorld_Init(0x42f3c0,param_1,param_2,param_3);
   PhysMaterial_SetDefaults();
   _s_PhysParamB = &LAB_0015d390;
-  _s_PhysParamA = &LAB_0015d370;
-  _s_PhysCallback = &LAB_0015d330;
+  _s_PhysParamA = PhysMaterial_GetDamping_Orphan2;
+  _s_PhysCallback = PhysMaterial_GetDamping_Orphan1;
   return;
 }
 
@@ -2067,7 +2127,7 @@ undefined4 PhysBox_ClassifyPoint(int param_1,undefined8 param_2)
   return 1;
 }
 
-// 0x0015b0e0  size 0x2c4
+// 0x0015b0e0  size 0x2bc
 undefined4 PhysBox_ComputeInertia(int param_1,uint *param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -2176,6 +2236,16 @@ undefined4 PhysBox_ComputeInertia(int param_1,uint *param_2,undefined8 param_3,u
       return uVar2;
     }
   } while( true );
+}
+
+// 0x0015b3a4  size 0x8
+/* follows PhysBox_ComputeInertia; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void PhysBox_ComputeInertia_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0015b3b0  size 0x18

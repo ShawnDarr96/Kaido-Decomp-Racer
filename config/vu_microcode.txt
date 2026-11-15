@@ -1,0 +1,12 @@
+# VU microcode embedded in .text (not EE code: 2428 VU upper NOPs / 1860 lower NOPs in the block).
+# EE code DMAs these programs to VU1; entry labels below are the addresses EE code references.
+# range 0x002fd9b8-0x00306d50
+0x002fda00
+0x003014c0
+0x00301800
+0x00304f90
+0x003054b0
+0x003069c0
+0x00306a00
+0x00306acc
+0x00306ba8

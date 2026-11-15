@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x00280140  size 0x69c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_GearRatio(undefined8 param_1)
 
 {
@@ -154,7 +152,7 @@ void MenuScr_Draw_GearRatio(undefined8 param_1)
   if ((piVar9[8] != 0) && (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x39,1), !bVar2)) {
     piVar9[8] = 0;
   }
-  if ((*_g_MenuInput == 1) && (piVar9[0xe] == 0)) {
+  if ((*g_MenuInput == 1) && (piVar9[0xe] == 0)) {
     MenuWnd_SetItemState(0x39,*(undefined4 *)(&DAT_0032e3d0 + (*piVar9 + piVar9[0xb]) * 4),1,0);
   }
   else {
@@ -228,8 +226,6 @@ void MenuScr_Draw_GearRatio(undefined8 param_1)
 }
 
 // 0x002807e0  size 0x11a4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_Others(undefined8 param_1)
 
 {
@@ -397,7 +393,7 @@ void MenuScr_Draw_Others(undefined8 param_1)
     iVar5 = UiMgr_FindLayout(0x40);
     UiElem_SetPropFloat(&g_UiMgr->slots[iVar5].layout,0x33,8,extraout_a3_lo_00);
   }
-  if ((*_g_MenuInput == 1) && (piVar10[0xe] == 0)) {
+  if ((*g_MenuInput == 1) && (piVar10[0xe] == 0)) {
     if (*(int *)(&DAT_0032e280 + (*piVar10 + piVar10[0xb]) * 4) != -1) {
       MenuWnd_SetItemState(0x40,*(int *)(&DAT_0032e280 + (*piVar10 + piVar10[0xb]) * 4),1,0);
       iVar5 = UiMgr_FindLayout(0x40);
@@ -546,7 +542,7 @@ LAB_00280dc4:
     UiElem_SetPropFloat(&g_UiMgr->slots[iVar5].layout,0x2b,8,extraout_a3_lo_37);
     iVar5 = UiMgr_FindLayout(0x40);
     UiElem_SetPropFloat(&g_UiMgr->slots[iVar5].layout,0x29,8,extraout_a3_lo_38);
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       iVar5 = UiMgr_FindLayout(0x40);
       UiElem_SetPropFloat(&g_UiMgr->slots[iVar5].layout,100,8,extraout_a3_lo_39);
     }
@@ -628,8 +624,6 @@ LAB_00281074:
 }
 
 // 0x00281990  size 0x628
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_Alignment(undefined8 param_1)
 
 {
@@ -735,7 +729,7 @@ void MenuScr_Draw_Alignment(undefined8 param_1)
   if ((piVar10[8] != 0) && (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x3f,1), !bVar2)) {
     piVar10[8] = 0;
   }
-  if ((*_g_MenuInput == 1) && (piVar10[0xe] == 0)) {
+  if ((*g_MenuInput == 1) && (piVar10[0xe] == 0)) {
     MenuWnd_SetItemState(0x3f,*(undefined4 *)(&DAT_0032e220 + (*piVar10 + piVar10[0xb]) * 4),1,0);
   }
   else {
@@ -1252,8 +1246,6 @@ void ScrGarage_Draw_SaveChangesAnd_1fc0(undefined8 param_1)
 }
 
 // 0x00282c40  size 0x364
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_PowerTrain(int *param_1)
 
 {
@@ -1322,7 +1314,7 @@ void MenuScr_Draw_PowerTrain(int *param_1)
   if ((param_1[8] != 0) && (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x38,1), !bVar2)) {
     param_1[8] = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x38,*(undefined4 *)(&DAT_0032dfe0 + *param_1 * 4),1,0);
   }
   else {
@@ -1374,8 +1366,6 @@ void MenuScr_Draw_PowerTrain(int *param_1)
 }
 
 // 0x00282fb0  size 0x484
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_PowerTrain_2fb0(int *param_1)
 
 {
@@ -1504,7 +1494,7 @@ void MenuScr_Draw_PowerTrain_2fb0(int *param_1)
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x37,*(undefined4 *)(&DAT_0032dfc0 + *param_1 * 4),1,0);
     uVar5 = param_1[0xc];
   }

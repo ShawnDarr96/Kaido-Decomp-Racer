@@ -2,6 +2,26 @@
 // Address range 0x0012c000 - 0x00130000
 #include "ghidra_types.h"
 
+// 0x0012d2e4  size 0x5c
+/* follows _vfprintf_r; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+undefined4 _vfprintf_r_Orphan1(undefined8 param_1)
+
+{
+  undefined4 uVar1;
+  undefined1 uStack00000010;
+  int iStack000001e8;
+  undefined4 uStack000001ec;
+  
+  maybe___sprint(param_1,&uStack00000010);
+  uVar1 = 0xffffffff;
+  if ((*(ushort *)(iStack000001e8 + 0xc) & 0x40) == 0) {
+    uVar1 = uStack000001ec;
+  }
+  return uVar1;
+}
+
 // 0x0012d340  size 0x1bc
 undefined8
 maybe_cvt(undefined8 param_1,long param_2,int param_3,ulong param_4,undefined1 *param_5,
@@ -297,7 +317,7 @@ ulong maybe___muldi3(ulong param_1,ulong param_2)
          0x20;
 }
 
-// 0x0012d8d8  size 0x680
+// 0x0012d8d8  size 0x66c
 undefined8 maybe___divdi3(long param_1,long param_2)
 
 {
@@ -606,6 +626,19 @@ LAB_0012def8:
   return uVar6;
 }
 
+// 0x0012df58  size 0x14
+/* follows __divdi3; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+ulong __divdi3_Orphan1(int param_1)
+
+{
+  int in_v1_lo;
+  ulong in_t6;
+  
+  return in_t6 | (long)(param_1 - in_v1_lo) << 0x20;
+}
+
 // 0x0012df70  size 0x680
 ulong maybe___moddi3(ulong param_1,long param_2)
 
@@ -882,7 +915,7 @@ LAB_0012e594:
   return uStack_20;
 }
 
-// 0x0012e600  size 0x56c
+// 0x0012e600  size 0x55c
 ulong maybe___udivdi3(int param_1,int param_2)
 
 {
@@ -1166,6 +1199,20 @@ LAB_0012eab4:
   uVar11 = 0;
 LAB_0012eb4c:
   return (ulong)uVar3 | uVar11 << 0x20;
+}
+
+// 0x0012eb6c  size 0x10
+/* follows __udivdi3; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+ulong __udivdi3_Orphan1(void)
+
+{
+  ulong in_v0;
+  ulong in_v1;
+  ulong in_t6;
+  
+  return in_t6 & in_v1 >> 0x20 | in_v0;
 }
 
 // 0x0012eb80  size 0x558
@@ -1685,7 +1732,7 @@ LAB_0012f6bc:
   return uVar3 & 0xfffffffffffff | (uVar4 & 0x7ff) << 0x34 | (long)(int)param_1[1] << 0x3f;
 }
 
-// 0x0012f718  size 0xb0
+// 0x0012f718  size 0xa4
 void __pack_d(ulong *param_1,undefined4 *param_2)
 
 {
@@ -1720,6 +1767,20 @@ void __pack_d(ulong *param_1,undefined4 *param_2)
     *param_2 = 1;
   }
   *(ulong *)(param_2 + 4) = uVar2;
+  return;
+}
+
+// 0x0012f7c8  size 0xc
+/* follows __pack_d; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void __pack_d_Orphan1(undefined4 param_1,undefined8 param_2,undefined4 *param_3)
+
+{
+  undefined4 in_v0_lo;
+  
+  param_3[2] = param_1;
+  *param_3 = in_v0_lo;
   return;
 }
 
@@ -1889,7 +1950,7 @@ void __subdf3(undefined8 param_1,undefined8 param_2)
   return;
 }
 
-// 0x0012faf8  size 0x278
+// 0x0012faf8  size 0x26c
 void __muldf3(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1980,6 +2041,16 @@ LAB_0012fb94:
   }
 LAB_0012fd4c:
   __unpack_d(puVar4);
+  return;
+}
+
+// 0x0012fd70  size 0xc
+/* follows __muldf3; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void __muldf3_Orphan1(void)
+
+{
   return;
 }
 

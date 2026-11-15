@@ -197,7 +197,7 @@ void CarDb_GetPartForModel(int param_1,short param_2,undefined1 *param_3)
   return;
 }
 
-// 0x001d4360  size 0x7e8
+// 0x001d4360  size 0x7e0
 void Ai_UpdateRivalBehaviour(short param_1,char *param_2)
 
 {
@@ -431,6 +431,16 @@ void Ai_UpdateRivalBehaviour(short param_1,char *param_2)
   return;
 }
 
+// 0x001d4b48  size 0x8
+/* follows Ai_UpdateRivalBehaviour; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Ai_UpdateRivalBehaviour_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001d4b50  size 0xc4
 void Ai_DriverTask(int param_1)
 
@@ -517,7 +527,7 @@ void Traffic_Reset(undefined4 *param_1)
   return;
 }
 
-// 0x001d4cf0  size 0x224
+// 0x001d4cf0  size 0x21c
 void Traffic_Spawn(int param_1)
 
 {
@@ -581,6 +591,16 @@ void Traffic_Spawn(int param_1)
       param_1 = param_1 + 0x74;
     } while (cVar8 < cVar1);
   }
+  return;
+}
+
+// 0x001d4f14  size 0x8
+/* follows Traffic_Spawn; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Traffic_Spawn_Orphan1(void)
+
+{
   return;
 }
 
@@ -1160,7 +1180,7 @@ void Ai_InitTuning(uint *param_1,int param_2,float *param_3)
   return;
 }
 
-// 0x001d5cb0  size 0x1438
+// 0x001d5cb0  size 0x142c
 /* WARNING: Removing unreachable block (ram,0x001d664c) */
 /* WARNING: Removing unreachable block (ram,0x001d6670) */
 /* WARNING: Removing unreachable block (ram,0x001d6688) */
@@ -1188,13 +1208,12 @@ void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,
   float *pfVar15;
   float fVar16;
   float fVar17;
-  undefined4 uVar18;
+  float fVar18;
   float fVar19;
   float fVar20;
   float fVar21;
   float fVar22;
   float fVar23;
-  float fVar24;
   float afStack_190 [2];
   float fStack_188;
   undefined4 uStack_184;
@@ -1332,16 +1351,16 @@ void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,
   bVar2 = false;
   bVar4 = false;
   bVar3 = true;
-  fVar19 = fStack_50;
-  fVar23 = fStack_8;
+  fVar18 = fStack_50;
+  fVar22 = fStack_8;
   DriverInput_Clear(pfVar15);
   DriverInput_Clear(&fStack_130);
   *(undefined4 *)(param_2 + 0x4c) = 0;
   if ((float)pRVar7->unk_1788 < 1.0) {
-    fVar22 = 0.0046296297;
+    fVar21 = 0.0046296297;
   }
   else {
-    fVar22 = ((float)pRVar7->unk_1788 * 1000.0) / 216000.0;
+    fVar21 = ((float)pRVar7->unk_1788 * 1000.0) / 216000.0;
   }
   uStack_e0 = 0x3e4ccccd;
   uStack_144 = 0x3f800000;
@@ -1415,17 +1434,17 @@ void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,
 LAB_001d6158:
   if ((*(uint *)(param_2 + 0x48) & 0x400) == 0) {
     if ((*(uint *)(param_2 + 0x48) & 0x800) == 0) {
-      fVar24 = 12.0;
+      fVar23 = 12.0;
     }
     else {
-      fVar24 = 10.0;
+      fVar23 = 10.0;
     }
   }
   else {
-    fVar24 = 14.0;
+    fVar23 = 14.0;
   }
-  if (fVar19 == 0.0) {
-    fVar19 = 1000.0;
+  if (fVar18 == 0.0) {
+    fVar18 = 1000.0;
   }
   if ((param_6 != 0) && (param_3 != 0)) {
     pRVar9 = RaceCar_Get(0);
@@ -1501,89 +1520,89 @@ LAB_001d6270:
       *(int *)(param_2 + 0x24) = *(int *)(param_2 + 0x24) + -1;
     }
   }
-  if (fVar23 == 1000.0) {
-    fVar21 = 1.0;
+  if (fVar22 == 1000.0) {
+    fVar20 = 1.0;
   }
   else {
-    fVar21 = 5.0;
+    fVar20 = 5.0;
   }
   if ((param_3 != 0) && (param_6 != 0)) {
     if ((*(uint *)(param_2 + 0x48) & 0x20) == 0) {
       if ((((*(uint *)(param_2 + 0x48) & 0x40) != 0) && (*pcVar14 == '\x01')) &&
          (*(short *)(pcVar14 + 2) == 0)) {
-        fVar21 = fVar21 * 1.5;
+        fVar20 = fVar20 * 1.5;
       }
     }
     else if ((*pcVar14 == '\x01') && (*(short *)(pcVar14 + 2) == 0)) {
-      fVar21 = fVar21 * 0.5;
+      fVar20 = fVar20 * 0.5;
     }
   }
   iVar13 = 0;
-  fVar20 = fStack_f0 - *(float *)&pRVar7->field_0x1718;
+  fVar19 = fStack_f0 - *(float *)&pRVar7->field_0x1718;
   do {
-    if ((fVar20 <= 180.0) && (-180.0 <= fVar20)) goto LAB_001d6580;
-    if (180.0 < fVar20) {
-      fVar20 = fVar20 - 360.0;
+    if ((fVar19 <= 180.0) && (-180.0 <= fVar19)) goto LAB_001d6580;
+    if (180.0 < fVar19) {
+      fVar19 = fVar19 - 360.0;
     }
-    else if (fVar20 < -180.0) {
-      fVar20 = fVar20 + 360.0;
+    else if (fVar19 < -180.0) {
+      fVar19 = fVar19 + 360.0;
     }
     iVar13 = iVar13 + 1;
   } while (iVar13 < 0x65);
-  fVar20 = 0.0;
+  fVar19 = 0.0;
 LAB_001d6580:
   fVar16 = *(float *)&pRVar7->field_0x1720;
-  fVar21 = (fVar20 / (fStack_ec / fVar22)) * fVar21;
-  if (((fVar16 <= fVar21) && (fVar21 < 0.0)) || ((fVar21 <= fVar16 && (0.0 < fVar21)))) {
+  fVar20 = (fVar19 / (fStack_ec / fVar21)) * fVar20;
+  if (((fVar16 <= fVar20) && (fVar20 < 0.0)) || ((fVar20 <= fVar16 && (0.0 < fVar20)))) {
     bVar2 = true;
   }
-  if (((0.0 < fVar23) && (0.0 < fVar16)) || ((fVar23 < 0.0 && (fVar16 < 0.0)))) {
+  if (((0.0 < fVar22) && (0.0 < fVar16)) || ((fVar22 < 0.0 && (fVar16 < 0.0)))) {
     bVar4 = true;
   }
   if (param_1 == 1000.0) {
-    fVar22 = (float)fabsf(fVar23);
-    if (fVar22 < 30.0) {
-      fVar22 = 30.0;
+    fVar21 = (float)fabsf(fVar22);
+    if (fVar21 < 30.0) {
+      fVar21 = 30.0;
     }
     if (param_3 != 0) {
       pRVar9 = RaceCar_Get(0);
-      fVar21 = pRVar7->trackPos - pRVar9->trackPos;
+      fVar20 = pRVar7->trackPos - pRVar9->trackPos;
       if ((*(uint *)(iVar8 + 4) & 0x100) == 0) {
         cVar5 = GameState_Get_2();
         if (cVar5 == '\0') {
-          fVar20 = *(float *)(param_2 + 0x50);
+          fVar19 = *(float *)(param_2 + 0x50);
         }
         else {
-          fVar20 = *(float *)(param_2 + 0x54);
+          fVar19 = *(float *)(param_2 + 0x54);
         }
-        fVar24 = fVar24 + fVar20;
+        fVar23 = fVar23 + fVar19;
         if ((*(uint *)(param_2 + 0x48) & 0x2000) == 0) {
-          if ((fVar21 < 4.0) && (fVar24 < 12.0)) {
-            fVar24 = 12.0;
+          if ((fVar20 < 4.0) && (fVar23 < 12.0)) {
+            fVar23 = 12.0;
           }
         }
-        else if (fVar21 < -8.0) {
-          fVar21 = 1.0 - fVar21 / 30.0;
-          if (fVar24 < 14.0) {
-            fVar24 = 14.0;
+        else if (fVar20 < -8.0) {
+          fVar20 = 1.0 - fVar20 / 30.0;
+          if (fVar23 < 14.0) {
+            fVar23 = 14.0;
           }
-          if (1.5 < fVar21) {
-            fVar21 = 1.5;
+          if (1.5 < fVar20) {
+            fVar20 = 1.5;
           }
-          pRVar7->unk_08a8 = (uint)fVar21;
+          pRVar7->unk_08a8 = (uint)fVar20;
         }
         else if ((float)pRVar7->unk_08a8 != 1.0) {
           pRVar7->unk_08a8 = 0x3f800000;
         }
       }
       else {
-        fVar24 = fVar24 + *(float *)(param_2 + 0x50);
+        fVar23 = fVar23 + *(float *)(param_2 + 0x50);
       }
     }
-    if (fVar24 < 10.0) {
-      fVar24 = 10.0;
+    if (fVar23 < 10.0) {
+      fVar23 = 10.0;
     }
-    param_1 = fVar24 * SQRT(fVar22);
+    param_1 = fVar23 * SQRT(fVar21);
   }
   else {
     bVar3 = false;
@@ -1593,35 +1612,21 @@ LAB_001d6580:
      (cVar5 = GameState_Get_0(), cVar5 == '\x04')) {
     uVar11 = maybe___sf_to_df(fStack_a8 * 3.1415927);
     uVar11 = __divdf3(uVar11,0x4066800000000000);
-    uVar18 = maybe___extendsfdf2(uVar11);
-    uVar18 = cosf(uVar18);
-    fVar22 = (float)fabsf(uVar18);
-    fVar22 = 1.0 - fVar22;
-    if (fVar22 < 0.5) {
-      fVar22 = 0.5;
+    fVar21 = (float)maybe___extendsfdf2(uVar11);
+    fVar21 = cosf(fVar21);
+    fVar21 = (float)fabsf(fVar21);
+    fVar21 = 1.0 - fVar21;
+    if (fVar21 < 0.5) {
+      fVar21 = 0.5;
     }
-    param_1 = param_1 * fVar22;
+    param_1 = param_1 * fVar21;
   }
   bVar1 = false;
   iVar8 = 0;
-  fVar22 = fStack_f0 - *(float *)&pRVar7->field_0x171c;
-  fVar21 = fStack_f0 - *(float *)&pRVar7->field_0x1718;
+  fVar21 = fStack_f0 - *(float *)&pRVar7->field_0x171c;
+  fVar20 = fStack_f0 - *(float *)&pRVar7->field_0x1718;
   do {
-    if ((fVar22 <= 180.0) && (-180.0 <= fVar22)) goto LAB_001d67a0;
-    if (180.0 < fVar22) {
-      fVar22 = fVar22 - 360.0;
-    }
-    else if (fVar22 < -180.0) {
-      fVar22 = fVar22 + 360.0;
-    }
-    iVar8 = iVar8 + 1;
-  } while (iVar8 < 0x65);
-  fVar22 = 0.0;
-LAB_001d67a0:
-  fVar22 = (float)fabsf(fVar22);
-  iVar8 = 0;
-  do {
-    if ((fVar21 <= 180.0) && (-180.0 <= fVar21)) goto LAB_001d6828;
+    if ((fVar21 <= 180.0) && (-180.0 <= fVar21)) goto LAB_001d67a0;
     if (180.0 < fVar21) {
       fVar21 = fVar21 - 360.0;
     }
@@ -1631,64 +1636,78 @@ LAB_001d67a0:
     iVar8 = iVar8 + 1;
   } while (iVar8 < 0x65);
   fVar21 = 0.0;
-LAB_001d6828:
+LAB_001d67a0:
   fVar21 = (float)fabsf(fVar21);
+  iVar8 = 0;
+  do {
+    if ((fVar20 <= 180.0) && (-180.0 <= fVar20)) goto LAB_001d6828;
+    if (180.0 < fVar20) {
+      fVar20 = fVar20 - 360.0;
+    }
+    else if (fVar20 < -180.0) {
+      fVar20 = fVar20 + 360.0;
+    }
+    iVar8 = iVar8 + 1;
+  } while (iVar8 < 0x65);
+  fVar20 = 0.0;
+LAB_001d6828:
+  fVar20 = (float)fabsf(fVar20);
   if (bVar2) {
-    fabsf((((float)pRVar7->unk_1788 * (float)pRVar7->unk_1788) / (fVar24 * fVar24)) / fStack_8);
-    fVar24 = (float)pRVar7->unk_1788;
+    fabsf((((float)pRVar7->unk_1788 * (float)pRVar7->unk_1788) / (fVar23 * fVar23)) / fStack_8);
+    fVar23 = (float)pRVar7->unk_1788;
   }
   else {
-    fVar24 = (float)pRVar7->unk_1788;
+    fVar23 = (float)pRVar7->unk_1788;
   }
-  if (40.0 < fVar24) {
-    fVar24 = 0.0;
+  if (40.0 < fVar23) {
+    fVar23 = 0.0;
     bVar6 = GameState_Get_2();
     if (5 < bVar6) goto switchD_001d6dd4_default;
                     /* WARNING: Switch is manually overridden */
     switch(bVar6) {
     case 0:
-      fVar24 = 0.2;
+      fVar23 = 0.2;
       iVar8 = *(int *)&pRVar7->field_0xccc;
       goto LAB_001d6e3c;
     case 1:
-      fVar24 = 0.25;
+      fVar23 = 0.25;
       break;
     case 2:
-      fVar24 = 0.25;
+      fVar23 = 0.25;
       break;
     case 3:
-      fVar24 = 0.25;
+      fVar23 = 0.25;
       break;
     case 4:
-      fVar24 = 0.25;
+      fVar23 = 0.25;
       break;
     case 5:
-      fVar24 = 0.25;
+      fVar23 = 0.25;
     }
 switchD_001d6dd4_default:
     iVar8 = *(int *)&pRVar7->field_0xccc;
 LAB_001d6e3c:
     if (iVar8 == 0) {
       fVar16 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x514);
-      fVar20 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x654);
+      fVar19 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x654);
     }
     else if (iVar8 == 1) {
       fVar16 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x514);
-      fVar20 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x654);
+      fVar19 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x654);
     }
     else {
       fVar16 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x514);
-      fVar20 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x654);
+      fVar19 = (float)fabsf(*(undefined4 *)&pRVar7->field_0x654);
     }
-    if ((fVar24 < fVar16) || (fVar24 < fVar20)) {
+    if ((fVar23 < fVar16) || (fVar23 < fVar19)) {
       bVar1 = true;
     }
   }
   if (!bVar3) {
     if ((float)pRVar7->unk_1788 < param_1) {
-      if (((((float)pRVar7->unk_1788 <= 30.0) || (fVar22 <= *(float *)(param_2 + 0x38))) ||
-          (fVar24 = (float)fabsf(fStack_8), 25.0 <= fVar24)) ||
-         (fVar24 = (float)fabsf(fVar19), 25.0 <= fVar24)) {
+      if (((((float)pRVar7->unk_1788 <= 30.0) || (fVar21 <= *(float *)(param_2 + 0x38))) ||
+          (fVar23 = (float)fabsf(fStack_8), 25.0 <= fVar23)) ||
+         (fVar23 = (float)fabsf(fVar18), 25.0 <= fVar23)) {
         fStack_130 = *(float *)(param_2 + 4);
         fStack_12c = 0.0;
       }
@@ -1708,7 +1727,7 @@ LAB_001d6e3c:
     fStack_12c = 0.0;
   }
   else if ((float)pRVar7->unk_1788 < param_1) {
-    if (((float)pRVar7->unk_1788 <= 30.0) || (fVar21 <= *(float *)(param_2 + 0x3c))) {
+    if (((float)pRVar7->unk_1788 <= 30.0) || (fVar20 <= *(float *)(param_2 + 0x3c))) {
 LAB_001d68ec:
       if (bVar1) {
         fStack_130 = *(float *)(param_2 + 4) - 0.016667;
@@ -1719,8 +1738,8 @@ LAB_001d68ec:
       fStack_12c = 0.0;
     }
     else {
-      fVar24 = (float)fabsf(fStack_8);
-      if ((fVar24 < 25.0) || (fVar24 = (float)fabsf(fVar19), fVar24 < 25.0)) {
+      fVar23 = (float)fabsf(fStack_8);
+      if ((fVar23 < 25.0) || (fVar23 = (float)fabsf(fVar18), fVar23 < 25.0)) {
         fStack_130 = *(float *)(param_2 + 4);
       }
       else {
@@ -1737,9 +1756,9 @@ LAB_001d68ec:
                  (SQRT((float)pRVar7->unk_1788 * (float)pRVar7->unk_1788 - param_1 * param_1) /
                  100.0) * 1.1 * *(float *)(param_2 + 0x60);
     if (*(float *)(param_2 + 8) < 0.15000299) {
-      fVar24 = *(float *)(param_2 + 8) + 0.050000995;
-      if (fVar24 <= fStack_12c) {
-        fStack_12c = fVar24;
+      fVar23 = *(float *)(param_2 + 8) + 0.050000995;
+      if (fVar23 <= fStack_12c) {
+        fStack_12c = fVar23;
       }
     }
     else {
@@ -1749,16 +1768,16 @@ LAB_001d68ec:
     *(undefined4 *)(param_2 + 0x58) = 0;
   }
 LAB_001d69ec:
-  if (((15.0 <= fVar22) &&
-      ((fVar24 = (float)fabsf(fStack_8), fVar24 < 25.0 ||
-       (fVar19 = (float)fabsf(fVar19), fVar19 < 25.0)))) || (30.0 <= fVar22)) {
-    fVar19 = (float)sinf(*(undefined4 *)&pRVar7->field_0x1728);
-    fVar19 = (float)fabsf((float)pRVar7->unk_1788 * fVar19);
-    if ((40.0 < fVar19) && ((fVar23 == 1000.0 || (bVar4)))) {
-      uVar18 = cosf(*(undefined4 *)&pRVar7->field_0x1728);
-      fVar19 = (float)fabsf(uVar18);
-      if (40.0 <= (float)pRVar7->unk_1788 * (1.0 - fVar19)) {
-        if (*(float *)(param_2 + 0x38) < fVar22) {
+  if (((15.0 <= fVar21) &&
+      ((fVar23 = (float)fabsf(fStack_8), fVar23 < 25.0 ||
+       (fVar18 = (float)fabsf(fVar18), fVar18 < 25.0)))) || (30.0 <= fVar21)) {
+    fVar18 = (float)sinf(*(undefined4 *)&pRVar7->field_0x1728);
+    fVar18 = (float)fabsf((float)pRVar7->unk_1788 * fVar18);
+    if ((40.0 < fVar18) && ((fVar22 == 1000.0 || (bVar4)))) {
+      fVar18 = cosf(*(float *)&pRVar7->field_0x1728);
+      fVar18 = (float)fabsf(fVar18);
+      if (40.0 <= (float)pRVar7->unk_1788 * (1.0 - fVar18)) {
+        if (*(float *)(param_2 + 0x38) < fVar21) {
           fStack_124 = *(float *)(param_2 + 0x10) + 0.083335;
         }
         else {
@@ -1779,8 +1798,8 @@ LAB_001d69ec:
   else {
     fStack_128 = 1.0;
   }
-  *(float *)(param_2 + 0x38) = fVar22;
-  *(float *)(param_2 + 0x3c) = fVar21;
+  *(float *)(param_2 + 0x38) = fVar21;
+  *(float *)(param_2 + 0x3c) = fVar20;
   Input_ApplyCurve(&fStack_130);
   Input_ClampPositive(&fStack_130);
   *pfVar15 = fStack_130;
@@ -1794,6 +1813,16 @@ LAB_001d69ec:
   if (*(int *)(param_2 + 0x24) != 0) {
     *(int *)(param_2 + 0x24) = *(int *)(param_2 + 0x24) + -1;
   }
+  return;
+}
+
+// 0x001d70e8  size 0xc
+/* follows Ai_PlanOvertake; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Ai_PlanOvertake_Orphan1(void)
+
+{
   return;
 }
 

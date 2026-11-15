@@ -2,7 +2,385 @@
 // Address range 0x001c8000 - 0x001cc000
 #include "ghidra_types.h"
 
-// 0x001c8c40  size 0xd00
+// 0x001c8bec  size 0x4c
+/* follows Driver_FilterSteering; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Driver_FilterSteering_Orphan1(void)
+
+{
+  uint uVar1;
+  uint uVar2;
+  float in_v1_lo;
+  int unaff_s2_lo;
+  float *unaff_s3_lo;
+  uint *unaff_s4_lo;
+  int iVar3;
+  int unaff_s5_lo;
+  uint *unaff_s6_lo;
+  byte *unaff_s7_lo;
+  int iVar4;
+  int unaff_s8_lo;
+  float fVar5;
+  float fVar6;
+  char in_stack_000000a0;
+  char in_stack_000000b0;
+  char in_stack_000000c0;
+  char in_stack_000000d0;
+  undefined8 in_stack_000000e8;
+  
+  do {
+    unaff_s3_lo[2] = in_v1_lo;
+    while( true ) {
+      do {
+        while( true ) {
+          while( true ) {
+            while( true ) {
+              while( true ) {
+                while( true ) {
+                  while( true ) {
+                    do {
+                      iVar4 = unaff_s8_lo;
+                      iVar3 = unaff_s5_lo;
+                      unaff_s5_lo = iVar3 + 1;
+                      unaff_s8_lo = iVar4 + 8;
+                      unaff_s6_lo = unaff_s6_lo + 1;
+                      unaff_s7_lo = unaff_s7_lo + 4;
+                      if (0x17 < unaff_s5_lo) {
+                        return;
+                      }
+                      uVar1 = *(uint *)(iVar4 + 0xc);
+                    } while (uVar1 == 0);
+                    uVar2 = *(uint *)(iVar4 + 0x10);
+                    if ((unaff_s5_lo < 0x10) || (0x17 < unaff_s5_lo)) break;
+                    if ((uVar2 & 1) == 0) {
+                      if ((uVar2 & 2) == 0) {
+                        if ((uVar2 & 0x30) == 0) {
+                          if ((uVar2 & 4) == 0) {
+                            if ((uVar2 & 8) == 0) {
+                              if (((uVar2 & 0x40) != 0) && (fVar6 = 0.0, unaff_s3_lo[1] == 0.0)) {
+                                fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                  0x330);
+                                switch(iVar3) {
+                                case 0xf:
+                                case 0x11:
+                                case 0x13:
+                                case 0x15:
+                                  in_stack_000000a0 = '\0';
+                                  break;
+                                case 0x10:
+                                case 0x12:
+                                case 0x14:
+                                case 0x16:
+                                  in_stack_000000a0 = '\x01';
+                                }
+                                if (in_stack_000000a0 == '\0') {
+                                  if (fVar5 < 0.0) {
+                                    fVar6 = -1.0;
+                                  }
+                                }
+                                else if (0.0 < fVar5) {
+                                  fVar6 = 1.0;
+                                }
+                                fVar6 = (float)fabsf(fVar5 * fVar6);
+                                if (0.2 <= fVar6) {
+                                  if (fVar6 < 0.6) {
+                                    fVar6 = ((fVar6 - 0.2) / 0.40000004) * 0.5;
+                                  }
+                                  else {
+                                    fVar6 = ((fVar6 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                  }
+                                }
+                                else {
+                                  fVar6 = 0.0;
+                                }
+                                if (fVar6 != 0.0) {
+                                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                                  unaff_s3_lo[3] = fVar6;
+                                }
+                              }
+                            }
+                            else {
+                              fVar6 = 0.0;
+                              if (unaff_s3_lo[1] == 0.0) {
+                                fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                  0x330);
+                                switch(iVar3) {
+                                case 0xf:
+                                case 0x11:
+                                case 0x13:
+                                case 0x15:
+                                  in_stack_000000b0 = '\0';
+                                  break;
+                                case 0x10:
+                                case 0x12:
+                                case 0x14:
+                                case 0x16:
+                                  in_stack_000000b0 = '\x01';
+                                }
+                                if (in_stack_000000b0 == '\0') {
+                                  if (fVar5 < 0.0) {
+                                    fVar6 = -1.0;
+                                  }
+                                }
+                                else if (0.0 < fVar5) {
+                                  fVar6 = 1.0;
+                                }
+                                fVar6 = (float)fabsf(fVar5 * fVar6);
+                                if (0.2 <= fVar6) {
+                                  if (fVar6 < 0.6) {
+                                    fVar6 = ((fVar6 - 0.2) / 0.40000004) * 0.5;
+                                  }
+                                  else {
+                                    fVar6 = ((fVar6 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                  }
+                                }
+                                else {
+                                  fVar6 = 0.0;
+                                }
+                                if (fVar6 != 0.0) {
+                                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                                  unaff_s3_lo[1] = fVar6;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            fVar6 = 0.0;
+                            if (*unaff_s3_lo == 0.0) {
+                              fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                0x330);
+                              switch(iVar3) {
+                              case 0xf:
+                              case 0x11:
+                              case 0x13:
+                              case 0x15:
+                                in_stack_000000c0 = '\0';
+                                break;
+                              case 0x10:
+                              case 0x12:
+                              case 0x14:
+                              case 0x16:
+                                in_stack_000000c0 = '\x01';
+                              }
+                              if (in_stack_000000c0 == '\0') {
+                                if (fVar5 < 0.0) {
+                                  fVar6 = -1.0;
+                                }
+                              }
+                              else if (0.0 < fVar5) {
+                                fVar6 = 1.0;
+                              }
+                              fVar6 = (float)fabsf(fVar5 * fVar6);
+                              if (0.2 <= fVar6) {
+                                if (fVar6 < 0.6) {
+                                  fVar6 = ((fVar6 - 0.2) / 0.40000004) * 0.5;
+                                }
+                                else {
+                                  fVar6 = ((fVar6 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                }
+                              }
+                              else {
+                                fVar6 = 0.0;
+                              }
+                              if (fVar6 != 0.0) {
+                                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                                *unaff_s3_lo = fVar6;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          fVar6 = 0.0;
+                          if (unaff_s3_lo[2] == 0.0) {
+                            fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330
+                                              );
+                            switch(iVar3) {
+                            case 0xf:
+                            case 0x11:
+                            case 0x13:
+                            case 0x15:
+                              in_stack_000000d0 = '\0';
+                              break;
+                            case 0x10:
+                            case 0x12:
+                            case 0x14:
+                            case 0x16:
+                              in_stack_000000d0 = '\x01';
+                            }
+                            if (in_stack_000000d0 == '\0') {
+                              if (fVar5 < 0.0) {
+                                fVar6 = -1.0;
+                              }
+                            }
+                            else if (0.0 < fVar5) {
+                              fVar6 = 1.0;
+                            }
+                            fVar6 = (float)fabsf(fVar5 * fVar6);
+                            if (0.2 <= fVar6) {
+                              if (fVar6 < 0.6) {
+                                fVar6 = ((fVar6 - 0.2) / 0.40000004) * 0.5;
+                              }
+                              else {
+                                fVar6 = ((fVar6 - 0.6) / 0.36499995) * 0.5 + 0.5;
+                              }
+                            }
+                            else {
+                              fVar6 = 0.0;
+                            }
+                            if (1.0 < fVar6) {
+                              fVar6 = 1.0;
+                            }
+                            if (fVar6 != 0.0) {
+                              if ((uVar2 & 0x10) == 0) {
+                                unaff_s3_lo[2] = fVar6;
+                              }
+                              else {
+                                unaff_s3_lo[2] = -fVar6;
+                              }
+                              *(undefined1 *)(unaff_s3_lo + 5) = 0;
+                            }
+                          }
+                        }
+                      }
+                      else if ((*(uint *)(in_stack_000000e8._4_4_ + 0x10) & uVar1) == 0) {
+                        fVar6 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                        switch(iVar3) {
+                        case 0xf:
+                        case 0x11:
+                          if ((fVar6 < -0.75) && ((*unaff_s4_lo & 1) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                          }
+                          break;
+                        case 0x10:
+                        case 0x12:
+                          if ((0.75 < fVar6) && ((*unaff_s4_lo & 1) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                          }
+                          break;
+                        case 0x13:
+                        case 0x15:
+                          if ((fVar6 < -0.75) && ((*unaff_s4_lo & 2) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                          }
+                          break;
+                        case 0x14:
+                        case 0x16:
+                          if ((0.75 < fVar6) && ((*unaff_s4_lo & 2) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      fVar6 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                      switch(iVar3) {
+                      case 0xf:
+                      case 0x11:
+                        if (fVar6 < -0.75) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                        break;
+                      case 0x10:
+                      case 0x12:
+                        if (0.75 < fVar6) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                        break;
+                      case 0x13:
+                      case 0x15:
+                        if (fVar6 < -0.75) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                        break;
+                      case 0x14:
+                      case 0x16:
+                        if (0.75 < fVar6) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                      }
+                    }
+                  }
+                  if ((uVar2 & 1) == 0) break;
+                  if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) != 0) {
+                    unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                  }
+                }
+                if ((uVar2 & 2) == 0) break;
+                if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0x14)) != 0) {
+                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                }
+              }
+              if ((uVar2 & 4) == 0) break;
+              fVar5 = 0.0;
+              fVar6 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+              if (fVar6 != 0.0) {
+                if (0.1 <= fVar6) {
+                  if (fVar6 < 0.5) {
+                    fVar5 = ((fVar6 - 0.1) / 0.4) * 0.5;
+                  }
+                  else {
+                    fVar5 = ((fVar6 - 0.5) / 0.5) * 0.5 + 0.5;
+                  }
+                }
+                *unaff_s3_lo = fVar5;
+                if (*unaff_s3_lo != 0.0) {
+                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                }
+              }
+            }
+            if ((uVar2 & 8) == 0) break;
+            fVar5 = 0.0;
+            fVar6 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+            if (fVar6 != 0.0) {
+              if (0.1 <= fVar6) {
+                if (fVar6 < 0.5) {
+                  fVar5 = ((fVar6 - 0.1) / 0.4) * 0.5;
+                }
+                else {
+                  fVar5 = ((fVar6 - 0.5) / 0.5) * 0.5 + 0.5;
+                }
+              }
+              unaff_s3_lo[1] = fVar5;
+              if (fVar5 != 0.0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+              }
+            }
+          }
+          if ((uVar2 & 0x30) != 0) break;
+          if ((uVar2 & 0x40) != 0) {
+            fVar5 = 0.0;
+            fVar6 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+            if (fVar6 != 0.0) {
+              if (0.1 <= fVar6) {
+                if (fVar6 < 0.5) {
+                  fVar5 = ((fVar6 - 0.1) / 0.4) * 0.5;
+                }
+                else {
+                  fVar5 = ((fVar6 - 0.5) / 0.5) * 0.5 + 0.5;
+                }
+              }
+              unaff_s3_lo[3] = fVar5;
+              if (unaff_s3_lo[1] != 0.0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+              }
+            }
+          }
+        }
+      } while ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) == 0);
+      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+      if ((uVar2 & 0x10) != 0) break;
+      unaff_s3_lo[2] = 1.0;
+    }
+    in_v1_lo = -1.0;
+  } while( true );
+}
+
+// 0x001c8c40  size 0xcb0
 void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
 
 {
@@ -354,6 +732,382 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
   return;
 }
 
+// 0x001c9940  size 0x50
+/* follows Driver_FilterPedals; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Driver_FilterPedals_Orphan1(void)
+
+{
+  uint uVar1;
+  uint uVar2;
+  int unaff_s2_lo;
+  float *unaff_s3_lo;
+  uint *unaff_s4_lo;
+  int iVar3;
+  int unaff_s5_lo;
+  uint *unaff_s6_lo;
+  byte *unaff_s7_lo;
+  int iVar4;
+  int unaff_s8_lo;
+  float fVar5;
+  float fVar6;
+  char in_stack_000000a0;
+  char in_stack_000000b0;
+  char in_stack_000000c0;
+  char in_stack_000000d0;
+  undefined8 in_stack_000000e8;
+  
+  do {
+    unaff_s3_lo[2] = -1.0;
+    while( true ) {
+      do {
+        while( true ) {
+          while( true ) {
+            while( true ) {
+              while( true ) {
+                while( true ) {
+                  while( true ) {
+                    do {
+                      iVar4 = unaff_s8_lo;
+                      iVar3 = unaff_s5_lo;
+                      unaff_s5_lo = iVar3 + 1;
+                      unaff_s8_lo = iVar4 + 8;
+                      unaff_s6_lo = unaff_s6_lo + 1;
+                      unaff_s7_lo = unaff_s7_lo + 4;
+                      if (0x17 < unaff_s5_lo) {
+                        return;
+                      }
+                      uVar1 = *(uint *)(iVar4 + 0xc);
+                    } while (uVar1 == 0);
+                    uVar2 = *(uint *)(iVar4 + 0x10);
+                    if ((unaff_s5_lo < 0x10) || (0x17 < unaff_s5_lo)) break;
+                    if ((uVar2 & 1) == 0) {
+                      if ((uVar2 & 2) == 0) {
+                        if ((uVar2 & 0x30) == 0) {
+                          if ((uVar2 & 4) == 0) {
+                            if ((uVar2 & 8) == 0) {
+                              if (((uVar2 & 0x40) != 0) && (fVar6 = 0.0, unaff_s3_lo[1] == 0.0)) {
+                                fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                  0x330);
+                                switch(iVar3) {
+                                case 0xf:
+                                case 0x11:
+                                case 0x13:
+                                case 0x15:
+                                  in_stack_000000a0 = '\0';
+                                  break;
+                                case 0x10:
+                                case 0x12:
+                                case 0x14:
+                                case 0x16:
+                                  in_stack_000000a0 = '\x01';
+                                }
+                                if (in_stack_000000a0 == '\0') {
+                                  if (fVar5 < 0.0) {
+                                    fVar6 = -1.0;
+                                  }
+                                }
+                                else if (0.0 < fVar5) {
+                                  fVar6 = 1.0;
+                                }
+                                fVar6 = (float)fabsf(fVar5 * fVar6);
+                                if (0.2 <= fVar6) {
+                                  if (fVar6 < 0.6) {
+                                    fVar6 = ((fVar6 - 0.2) / 0.40000004) * 0.5;
+                                  }
+                                  else {
+                                    fVar6 = ((fVar6 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                  }
+                                }
+                                else {
+                                  fVar6 = 0.0;
+                                }
+                                if (fVar6 != 0.0) {
+                                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                                  unaff_s3_lo[3] = fVar6;
+                                }
+                              }
+                            }
+                            else {
+                              fVar6 = 0.0;
+                              if (unaff_s3_lo[1] == 0.0) {
+                                fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                  0x330);
+                                switch(iVar3) {
+                                case 0xf:
+                                case 0x11:
+                                case 0x13:
+                                case 0x15:
+                                  in_stack_000000b0 = '\0';
+                                  break;
+                                case 0x10:
+                                case 0x12:
+                                case 0x14:
+                                case 0x16:
+                                  in_stack_000000b0 = '\x01';
+                                }
+                                if (in_stack_000000b0 == '\0') {
+                                  if (fVar5 < 0.0) {
+                                    fVar6 = -1.0;
+                                  }
+                                }
+                                else if (0.0 < fVar5) {
+                                  fVar6 = 1.0;
+                                }
+                                fVar6 = (float)fabsf(fVar5 * fVar6);
+                                if (0.2 <= fVar6) {
+                                  if (fVar6 < 0.75) {
+                                    fVar6 = ((fVar6 - 0.2) / 0.55) * 0.5;
+                                  }
+                                  else {
+                                    fVar6 = ((fVar6 - 0.75) / 0.25) * 0.5 + 0.5;
+                                  }
+                                }
+                                else {
+                                  fVar6 = 0.0;
+                                }
+                                if (fVar6 != 0.0) {
+                                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                                  unaff_s3_lo[1] = fVar6;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            fVar6 = 0.0;
+                            if (*unaff_s3_lo == 0.0) {
+                              fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                0x330);
+                              switch(iVar3) {
+                              case 0xf:
+                              case 0x11:
+                              case 0x13:
+                              case 0x15:
+                                in_stack_000000c0 = '\0';
+                                break;
+                              case 0x10:
+                              case 0x12:
+                              case 0x14:
+                              case 0x16:
+                                in_stack_000000c0 = '\x01';
+                              }
+                              if (in_stack_000000c0 == '\0') {
+                                if (fVar5 < 0.0) {
+                                  fVar6 = -1.0;
+                                }
+                              }
+                              else if (0.0 < fVar5) {
+                                fVar6 = 1.0;
+                              }
+                              fVar6 = (float)fabsf(fVar5 * fVar6);
+                              if (0.2 <= fVar6) {
+                                if (fVar6 < 0.6) {
+                                  fVar6 = ((fVar6 - 0.2) / 0.40000004) * 0.5;
+                                }
+                                else {
+                                  fVar6 = ((fVar6 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                }
+                              }
+                              else {
+                                fVar6 = 0.0;
+                              }
+                              if (fVar6 != 0.0) {
+                                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                                *unaff_s3_lo = fVar6;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          fVar6 = 0.0;
+                          if (unaff_s3_lo[2] == 0.0) {
+                            fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330
+                                              );
+                            switch(iVar3) {
+                            case 0xf:
+                            case 0x11:
+                            case 0x13:
+                            case 0x15:
+                              in_stack_000000d0 = '\0';
+                              break;
+                            case 0x10:
+                            case 0x12:
+                            case 0x14:
+                            case 0x16:
+                              in_stack_000000d0 = '\x01';
+                            }
+                            if (in_stack_000000d0 == '\0') {
+                              if (fVar5 < 0.0) {
+                                fVar6 = -1.0;
+                              }
+                            }
+                            else if (0.0 < fVar5) {
+                              fVar6 = 1.0;
+                            }
+                            fVar6 = (float)fabsf(fVar5 * fVar6);
+                            if (0.05 <= fVar6) {
+                              if (fVar6 < 0.5) {
+                                fVar6 = ((fVar6 - 0.05) / 0.45) * 0.5;
+                              }
+                              else {
+                                fVar6 = ((fVar6 - 0.5) / 0.45) * 0.5 + 0.5;
+                              }
+                            }
+                            else {
+                              fVar6 = 0.0;
+                            }
+                            if (1.0 < fVar6) {
+                              fVar6 = 1.0;
+                            }
+                            if (fVar6 != 0.0) {
+                              if ((uVar2 & 0x10) == 0) {
+                                unaff_s3_lo[2] = fVar6;
+                              }
+                              else {
+                                unaff_s3_lo[2] = -fVar6;
+                              }
+                              *(undefined1 *)(unaff_s3_lo + 5) = 1;
+                            }
+                          }
+                        }
+                      }
+                      else if ((*(uint *)(in_stack_000000e8._4_4_ + 0x10) & uVar1) == 0) {
+                        fVar6 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                        switch(iVar3) {
+                        case 0xf:
+                        case 0x11:
+                          if ((fVar6 < -0.75) && ((*unaff_s4_lo & 1) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                          }
+                          break;
+                        case 0x10:
+                        case 0x12:
+                          if ((0.75 < fVar6) && ((*unaff_s4_lo & 1) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                          }
+                          break;
+                        case 0x13:
+                        case 0x15:
+                          if ((fVar6 < -0.75) && ((*unaff_s4_lo & 2) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                          }
+                          break;
+                        case 0x14:
+                        case 0x16:
+                          if ((0.75 < fVar6) && ((*unaff_s4_lo & 2) != 0)) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                            *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      fVar6 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                      switch(iVar3) {
+                      case 0xf:
+                      case 0x11:
+                        if (fVar6 < -0.75) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                        break;
+                      case 0x10:
+                      case 0x12:
+                        if (0.75 < fVar6) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                        break;
+                      case 0x13:
+                      case 0x15:
+                        if (fVar6 < -0.75) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                        break;
+                      case 0x14:
+                      case 0x16:
+                        if (0.75 < fVar6) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                        }
+                      }
+                    }
+                  }
+                  if ((uVar2 & 1) == 0) break;
+                  if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) != 0) {
+                    unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                  }
+                }
+                if ((uVar2 & 2) == 0) break;
+                if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0x14)) != 0) {
+                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                }
+              }
+              if ((uVar2 & 4) == 0) break;
+              fVar6 = 0.0;
+              fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+              if (fVar5 != 0.0) {
+                if (0.2 <= fVar5) {
+                  if (fVar5 < 0.6) {
+                    fVar6 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                  }
+                  else {
+                    fVar6 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                  }
+                }
+                *unaff_s3_lo = fVar6;
+                if (*unaff_s3_lo != 0.0) {
+                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+                }
+              }
+            }
+            if ((uVar2 & 8) == 0) break;
+            fVar6 = 0.0;
+            fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+            if (fVar5 != 0.0) {
+              if (0.2 <= fVar5) {
+                if (fVar5 < 0.75) {
+                  fVar6 = ((fVar5 - 0.2) / 0.55) * 0.5;
+                }
+                else {
+                  fVar6 = ((fVar5 - 0.75) / 0.25) * 0.5 + 0.5;
+                }
+              }
+              unaff_s3_lo[1] = fVar6;
+              if (fVar6 != 0.0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+              }
+            }
+          }
+          if ((uVar2 & 0x30) != 0) break;
+          if ((uVar2 & 0x40) != 0) {
+            fVar6 = 0.0;
+            fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+            if (fVar5 != 0.0) {
+              if (0.2 <= fVar5) {
+                if (fVar5 < 0.6) {
+                  fVar6 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                }
+                else {
+                  fVar6 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                }
+              }
+              unaff_s3_lo[3] = fVar6;
+              if (unaff_s3_lo[1] != 0.0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+              }
+            }
+          }
+        }
+      } while ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) == 0);
+      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | uVar1);
+      if ((uVar2 & 0x10) != 0) break;
+      unaff_s3_lo[2] = 1.0;
+    }
+  } while( true );
+}
+
 // 0x001c99b0  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -546,7 +1300,7 @@ void Driver_InitController(uint *param_1,char param_2)
   return;
 }
 
-// 0x001c9e00  size 0x350
+// 0x001c9e00  size 0x340
 void Driver_ReadWheel(undefined4 *param_1,undefined8 param_2)
 
 {
@@ -656,6 +1410,16 @@ void Driver_ReadWheel(undefined4 *param_1,undefined8 param_2)
   Wheel_SetEffectGain(uVar1,2,0);
   Wheel_IsEffectIdle(uVar1,2);
   Wheel_PlayEffect(uVar1,2,auStack_40);
+  return;
+}
+
+// 0x001ca150  size 0x10
+/* follows Driver_ReadWheel; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Driver_ReadWheel_Orphan1(void)
+
+{
   return;
 }
 
@@ -1833,7 +2597,7 @@ LAB_001cba24:
   return;
 }
 
-// 0x001cba60  size 0xe78
+// 0x001cba60  size 0xe70
 void Ai_ComputeSteering(int param_1)
 
 {
@@ -2211,13 +2975,13 @@ void Ai_ComputeSteering(int param_1)
   uVar12 = sinf(fVar34);
   *(undefined4 *)(param_1 + 0x16d0) = uVar12;
   *(undefined4 *)(param_1 + 0x16d4) = uStack_ac;
-  uVar12 = cosf(fVar34);
-  *(undefined4 *)(param_1 + 0x16d8) = uVar12;
+  fVar34 = cosf(fVar34);
+  *(float *)(param_1 + 0x16d8) = fVar34;
   uVar12 = sinf(fVar20);
   *(undefined4 *)(param_1 + 0x16e0) = uVar12;
   *(undefined4 *)(param_1 + 0x16e4) = uStack_ac;
-  uVar12 = cosf(fVar20);
-  *(undefined4 *)(param_1 + 0x16e8) = uVar12;
+  fVar20 = cosf(fVar20);
+  *(float *)(param_1 + 0x16e8) = fVar20;
   uVar1 = *(ushort *)(param_1 + 0x1366);
   sVar2 = *(short *)(param_1 + 0x1368);
   uStack_b4 = 0x3f800000;

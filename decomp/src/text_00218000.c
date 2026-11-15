@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x00218770  size 0x394
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_Shop(int param_1)
 
 {
@@ -84,7 +82,7 @@ void ScrCareer_Draw_Shop(int param_1)
      (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x1c,1), !bVar2)) {
     *(undefined4 *)(param_1 + 0x70) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1c,*(undefined4 *)(&DAT_0036e8e0 + *(int *)(param_1 + 0x4c) * 4),1,0);
   }
   MenuWnd_DrawText(0x12,0x40,0x102);
@@ -990,8 +988,6 @@ void maybe_PageNaFesta_State3_CaAttack(undefined8 param_1)
 }
 
 // 0x0021a670  size 0x57c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrCareer_Draw_Entry(undefined8 param_1)
 
 {
@@ -1136,7 +1132,7 @@ void ScrCareer_Draw_Entry(undefined8 param_1)
      (bVar3 = UiLayout_UpdateAnimById((UiLayout *)0x27,1), !bVar3)) {
     *(undefined4 *)(iVar11 + 0x60) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x27,*(undefined4 *)(&DAT_0036e938 + *(int *)(iVar11 + 0xc) * 4),1,0);
   }
   MenuWnd_DrawText(0x27,0xe,0x2f6);
@@ -1155,7 +1151,6 @@ void ScrCareer_Draw_Entry(undefined8 param_1)
 }
 
 // 0x0021abf0  size 0xb90
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_PageNaFesta; on-screen text/callee hint "Entry" (was ScrEntry_Update) */
 
 void maybe_PageNaFesta_State1_Entry(undefined8 param_1)
@@ -1515,7 +1510,7 @@ void maybe_PageNaFesta_State1_Entry(undefined8 param_1)
     iVar7 = UiMgr_FindLayout(0x26);
     UiElem_SetPropFloat(&g_UiMgr->slots[iVar7].layout,0x37,8,extraout_a3_lo_04);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x26,*(undefined4 *)(&DAT_0032a330 + *(int *)(iVar12 + 0x20) * 4),1,0);
   }
   ScrRace_Draw_NaFesta(param_1);
@@ -1563,7 +1558,6 @@ void maybe_PageNaFesta_State1_Entry(undefined8 param_1)
 }
 
 // 0x0021b780  size 0x9d8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_PageNaFesta; on-screen text/callee hint "Entry" (was ScrEntry_Enter) */
 
 void maybe_PageNaFesta_State0_Entry(int param_1)
@@ -1811,7 +1805,7 @@ void maybe_PageNaFesta_State0_Entry(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x25,*(undefined4 *)(&DAT_0032a2f0 + *(int *)(param_1 + 0x10) * 4),1,0);
     iVar9 = *(int *)(param_1 + 0x28);
   }

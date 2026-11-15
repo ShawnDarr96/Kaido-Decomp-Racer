@@ -2,7 +2,17 @@
 // Address range 0x001b4000 - 0x001b8000
 #include "ghidra_types.h"
 
-// 0x001b4270  size 0x260
+// 0x001b4268  size 0x8
+/* follows Career_SpawnNightRivals; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Career_SpawnNightRivals_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001b4270  size 0x248
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Career_RefreshAvailability(int *param_1)
@@ -79,7 +89,17 @@ void Career_RefreshAvailability(int *param_1)
   return;
 }
 
-// 0x001b44f0  size 0x1d8
+// 0x001b44d0  size 0x18
+/* follows Career_RefreshAvailability; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Career_RefreshAvailability_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001b44f0  size 0x1d0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Career_UpdateTeams(int param_1)
@@ -142,6 +162,16 @@ void Career_UpdateTeams(int param_1)
     iVar8 = iVar8 + 4;
     iVar7 = iVar7 + 1;
   }
+  return;
+}
+
+// 0x001b46c8  size 0x8
+/* follows Career_UpdateTeams; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Career_UpdateTeams_Orphan1(void)
+
+{
   return;
 }
 
@@ -1748,7 +1778,7 @@ void Career_IsBelowCap(int param_1,undefined4 param_2,undefined4 param_3)
   return;
 }
 
-// 0x001b6850  size 0x1500
+// 0x001b6850  size 0x14f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Career_ProcessDay(int param_1)
@@ -2386,6 +2416,16 @@ LAB_001b7998:
       }
     }
   }
+  return;
+}
+
+// 0x001b7d50  size 0x8
+/* follows Career_ProcessDay; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Career_ProcessDay_Orphan1(void)
+
+{
   return;
 }
 

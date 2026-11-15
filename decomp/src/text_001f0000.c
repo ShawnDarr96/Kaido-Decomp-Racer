@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x001f0490  size 0x5c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int UiText_CountLinesById(int param_1)
 
 {
@@ -16,7 +14,7 @@ int UiText_CountLinesById(int param_1)
     psVar3 = &DAT_0036e864;
   }
   else {
-    psVar3 = (short *)(_g_Fonts + *(int *)(_g_LocalizedText + param_1 * 4) * 2);
+    psVar3 = (short *)(g_Fonts + *(int *)(g_LocalizedText + param_1 * 4) * 2);
   }
   iVar2 = 1;
   while( true ) {
@@ -31,8 +29,6 @@ int UiText_CountLinesById(int param_1)
 }
 
 // 0x001f04f0  size 0xbc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 UiText_CompareById(int param_1,int param_2)
 
 {
@@ -45,13 +41,13 @@ undefined4 UiText_CompareById(int param_1,int param_2)
     puVar4 = &DAT_0036e864;
   }
   else {
-    puVar4 = (ushort *)(_g_Fonts + *(int *)(_g_LocalizedText + param_1 * 4) * 2);
+    puVar4 = (ushort *)(g_Fonts + *(int *)(g_LocalizedText + param_1 * 4) * 2);
   }
   if (param_2 == -1) {
     puVar3 = &DAT_0036e864;
   }
   else {
-    puVar3 = (ushort *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
+    puVar3 = (ushort *)(g_Fonts + *(int *)(g_LocalizedText + param_2 * 4) * 2);
   }
   while( true ) {
     uVar1 = *puVar4;
@@ -76,18 +72,51 @@ undefined4 UiText_CompareById(int param_1,int param_2)
 }
 
 // 0x001f05b0  size 0x44
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiRes_FreeFonts(void)
 
 {
-  if (_g_Fonts != 0) {
+  if (g_Fonts != 0) {
     Mem_Free();
-    _g_Fonts = 0;
+    g_Fonts = 0;
   }
-  if (_g_LocalizedText != 0) {
+  if (g_LocalizedText != 0) {
     Mem_Free();
-    _g_LocalizedText = 0;
+    g_LocalizedText = 0;
+  }
+  return;
+}
+
+// 0x001f0600  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* address loaded as a constant in UiRes_LoadLocalized (callback / handler) */
+
+void UiRes_LoadLocalized_Callback1(void)
+
+{
+  short sVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  short *psVar5;
+  
+  psVar5 = g_Fonts;
+  iVar3 = 4;
+  *g_LocalizedText = 0;
+  for (iVar4 = 1; iVar4 < _s_UiResVar2; iVar4 = iVar4 + 1) {
+    sVar1 = *psVar5;
+    while (sVar1 != -1) {
+      psVar5 = psVar5 + 1;
+      _s_UiResVar3 = _s_UiResVar3 + -1;
+      sVar1 = *psVar5;
+    }
+    psVar5 = psVar5 + 1;
+    iVar2 = (int)psVar5 - (int)g_Fonts;
+    if (iVar2 < 0) {
+      iVar2 = iVar2 + 1;
+    }
+    *(int *)((int)g_LocalizedText + iVar3) = iVar2 >> 1;
+    iVar3 = iVar3 + 4;
+    _s_UiResVar3 = _s_UiResVar3 + -1;
   }
   return;
 }
@@ -110,7 +139,7 @@ void UiRes_LoadLocalized(int param_1)
     uVar1 = uVar1 + 0x7ff >> 0xb;
   }
   _s_UiResVar3 = uVar1 << 0xb;
-  Arc_LoadFileEx(param_1,_g_Fonts,0x1f0600,0,0,0);
+  Arc_LoadFileEx(param_1,g_Fonts,0x1f0600,0,0,0);
   return;
 }
 
@@ -122,8 +151,8 @@ void UiRes_AllocFonts(undefined8 param_1,undefined4 param_2,int param_3)
 {
   _s_UiResVar2 = param_3;
   _s_UiResVar3 = param_2;
-  _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
-  _g_Fonts = Mem_AllocAligned(_s_UiResVar3,0x40,param_1);
+  g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
+  g_Fonts = Mem_AllocAligned(_s_UiResVar3,0x40,param_1);
   return;
 }
 
@@ -138,7 +167,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   
   param_2 = param_2 + (uint)g_RaceCtx->language;
   _s_UiResVar2 = param_3;
-  _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
+  g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
   uVar1 = g_ArcToc->entries[param_2].unpackedSize;
   if (uVar1 == 0) {
     uVar1 = g_ArcToc->entries[param_2].sectorCount;
@@ -148,7 +177,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   }
   _s_UiResVar3 = uVar1 << 0xb;
   uVar2 = Mem_AllocAligned(_s_UiResVar3,0x40,param_1);
-  _g_Fonts = (undefined4)uVar2;
+  g_Fonts = (undefined4)uVar2;
   Arc_LoadFileEx(param_2,uVar2,0x1f0600,0,0,0);
   return;
 }
@@ -321,7 +350,7 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
   return;
 }
 
-// 0x001f0e00  size 0x364
+// 0x001f0e00  size 0x35c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void UiText_DrawString(undefined8 param_1,short *param_2)
@@ -428,6 +457,16 @@ void UiText_DrawString(undefined8 param_1,short *param_2)
   return;
 }
 
+// 0x001f1164  size 0x8
+/* follows UiText_DrawString; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void UiText_DrawString_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001f1170  size 0x130
 void UiText_CountLines(short *param_1,char *param_2)
 
@@ -499,7 +538,6 @@ void UiText_DrawPlayerName(undefined8 param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001f1350  size 0x34
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 30 callers */
 
 void UiText_DrawById(undefined8 param_1,int param_2)
@@ -511,15 +549,13 @@ void UiText_DrawById(undefined8 param_1,int param_2)
     puVar1 = &DAT_0036e864;
   }
   else {
-    puVar1 = (undefined2 *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
+    puVar1 = (undefined2 *)(g_Fonts + *(int *)(g_LocalizedText + param_2 * 4) * 2);
   }
   UiText_DrawString(param_1,puVar1);
   return;
 }
 
 // 0x001f1390  size 0x68
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiText_DrawRivalName(undefined8 param_1,int param_2)
 
 {
@@ -529,7 +565,7 @@ void UiText_DrawRivalName(undefined8 param_1,int param_2)
     puVar1 = &DAT_0036e864;
   }
   else {
-    puVar1 = (undefined2 *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
+    puVar1 = (undefined2 *)(g_Fonts + *(int *)(g_LocalizedText + param_2 * 4) * 2);
   }
   UiText_FormatRivalInfo(0x4680f0,puVar1);
   UiText_DrawString(param_1,0x4680f0);
@@ -538,7 +574,6 @@ void UiText_DrawRivalName(undefined8 param_1,int param_2)
 
 // 0x001f1400  size 0xb0
 /* WARNING: Removing unreachable block (ram,0x001f1434) */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void UiText_DrawRivalInfo
                (undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
@@ -557,7 +592,7 @@ void UiText_DrawRivalInfo
     puVar1 = &DAT_0036e864;
   }
   else {
-    puVar1 = (undefined2 *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
+    puVar1 = (undefined2 *)(g_Fonts + *(int *)(g_LocalizedText + param_2 * 4) * 2);
   }
   uStack_30 = param_3;
   uStack_28 = param_4;
@@ -674,7 +709,7 @@ void UiRes_LoadAll(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   return;
 }
 
-// 0x001f17d0  size 0xb4
+// 0x001f17d0  size 0xa8
 int UiModel_FindStatic(int param_1,ushort *param_2)
 
 {
@@ -705,6 +740,16 @@ int UiModel_FindStatic(int param_1,ushort *param_2)
     }
   }
   return iVar1;
+}
+
+// 0x001f1884  size 0xc
+/* follows UiModel_FindStatic; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void UiModel_FindStatic_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x001f1890  size 0x35c
@@ -842,7 +887,7 @@ int UiModel_FindSkinned(int param_1,ushort *param_2)
   return iVar1;
 }
 
-// 0x001f1cb0  size 0x330
+// 0x001f1cb0  size 0x320
 undefined4
 UiModel_DrawSkinned(float param_1,undefined8 param_2,uint param_3,undefined8 param_4,uint param_5,
                    undefined4 *param_6)
@@ -943,6 +988,16 @@ LAB_001f1e74:
     }
   }
   goto LAB_001f1da8;
+}
+
+// 0x001f1fe0  size 0x10
+/* follows UiModel_DrawSkinned; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void UiModel_DrawSkinned_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x001f1ff0  size 0x2c4
@@ -1230,7 +1285,7 @@ void Demo_ResetMatrix(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
 }
 
 // 0x001f2930  size 0x17c
-void Demo_BuildRotation(undefined4 param_1,undefined8 param_2,undefined8 param_3,float *param_4)
+void Demo_BuildRotation(float param_1,undefined8 param_2,undefined8 param_3,float *param_4)
 
 {
   float fVar1;
@@ -1247,7 +1302,7 @@ void Demo_BuildRotation(undefined4 param_1,undefined8 param_2,undefined8 param_3
   float fStack_18;
   
   fVar1 = (float)sinf();
-  fVar2 = (float)cosf(param_1);
+  fVar2 = cosf(param_1);
   fVar3 = 1.0 - fVar1;
   maybe_Vu0_UnitMatrix(&fStack_40);
   fStack_40 = fVar3 * *param_4 * *param_4 + fVar1 + 0.0;

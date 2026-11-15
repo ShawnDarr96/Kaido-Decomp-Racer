@@ -1032,7 +1032,7 @@ void CarDb_Alloc(undefined8 param_1)
   return;
 }
 
-// 0x00205bf0  size 0x4f0
+// 0x00205bf0  size 0x4e4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Garage3d_Draw(void)
@@ -1181,6 +1181,16 @@ void Garage3d_Draw(void)
     SceneObj_DestroyList(1,0);
   }
   SceneObj_DestroyAll();
+  return;
+}
+
+// 0x002060e0  size 0xc
+/* follows Garage3d_Draw; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Garage3d_Draw_Orphan1(void)
+
+{
   return;
 }
 
@@ -1559,15 +1569,15 @@ void Title_Draw(int param_1)
   
   iVar11 = 0;
   piVar1 = *(int **)(param_1 + 0x14);
-  uVar6 = _g_MenuInput[2];
+  uVar6 = g_MenuInput[2];
   lVar8 = -1;
-  if ((_g_MenuInput[4] & uVar6) == 0) {
+  if ((g_MenuInput[4] & uVar6) == 0) {
     uVar6 = 0;
   }
   else if (uVar6 == 0x80000) {
     uVar6 = 0;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar6 = 0;
   }
   iVar12 = piVar1[4];

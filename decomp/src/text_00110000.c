@@ -463,6 +463,17 @@ void maybe_Mpeg_Error_Wrap2(undefined8 param_1)
   return;
 }
 
+// 0x00110cc8  size 0x24
+/* follows Mpeg_Error_Wrap2; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+undefined4 Mpeg_Error_Wrap2_Orphan1(int param_1)
+
+{
+  maybe_sceMpegSaveIpuState(*(int *)(param_1 + 0x40) + 0x68);
+  return 1;
+}
+
 // 0x00110cf0  size 0x24
 undefined4 maybe_sceMpegResume(int param_1)
 
@@ -704,6 +715,26 @@ void maybe_Ipu_Reset(void)
   return;
 }
 
+// 0x00111380  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU000_FullReset(void)
+
+{
+  syscall(0);
+  return;
+}
+
+// 0x00111390  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void ResetEE(void)
+
+{
+  syscall(1);
+  return;
+}
+
 // 0x001113a0  size 0x10
 void SetGsCrt(void)
 
@@ -712,13 +743,31 @@ void SetGsCrt(void)
   return;
 }
 
-// 0x001113c0  size 0x10
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+// 0x001113b0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
 
+void RFU003(void)
+
+{
+  syscall(3);
+  return;
+}
+
+// 0x001113c0  size 0x10
 void _Exit(int __status)
 
 {
   syscall(4);
+  return;
+}
+
+// 0x001113d0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU005_ResumeIntrDispatch(void)
+
+{
+  syscall(5);
   return;
 }
 
@@ -730,11 +779,91 @@ void _LoadExecPS2(void)
   return;
 }
 
+// 0x001113f0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void _ExecPS2(void)
+
+{
+  syscall(7);
+  return;
+}
+
+// 0x00111400  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU008_ResumeT3IntrDispatch(void)
+
+{
+  syscall(8);
+  return;
+}
+
+// 0x00111410  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU009(void)
+
+{
+  syscall(9);
+  return;
+}
+
+// 0x00111420  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void AddSbusIntcHandler(void)
+
+{
+  syscall(10);
+  return;
+}
+
+// 0x00111430  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RemoveSbusIntcHandler(void)
+
+{
+  syscall(0xb);
+  return;
+}
+
+// 0x00111440  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void Interrupt2Iop(void)
+
+{
+  syscall(0xc);
+  return;
+}
+
 // 0x00111450  size 0x10
 void SetVTLBRefillHandler(void)
 
 {
   syscall(0xd);
+  return;
+}
+
+// 0x00111460  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetVCommonHandler(void)
+
+{
+  syscall(0xe);
+  return;
+}
+
+// 0x00111470  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetVInterruptHandler(void)
+
+{
+  syscall(0xf);
   return;
 }
 
@@ -818,6 +947,26 @@ void _DisableDmac(void)
   return;
 }
 
+// 0x00111520  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetAlarm(void)
+
+{
+  syscall(0xfc);
+  return;
+}
+
+// 0x00111530  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void ReleaseAlarm(void)
+
+{
+  syscall(0xfd);
+  return;
+}
+
 // 0x00111540  size 0x10
 void _iEnableIntc(void)
 
@@ -847,6 +996,26 @@ void _iDisableDmac(void)
 
 {
   syscall(0xffffffffffffffe3);
+  return;
+}
+
+// 0x00111580  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iSetAlarm(void)
+
+{
+  syscall(0xffffffffffffff02);
+  return;
+}
+
+// 0x00111590  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iReleaseAlarm(void)
+
+{
+  syscall(0xffffffffffffff01);
   return;
 }
 
@@ -898,6 +1067,36 @@ void TerminateThread(void)
   return;
 }
 
+// 0x00111600  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iTerminateThread(void)
+
+{
+  syscall(0xffffffffffffffda);
+  return;
+}
+
+// 0x00111610  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void DisableDispatchThread(void)
+
+{
+  syscall(0x27);
+  return;
+}
+
+// 0x00111620  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void EnableDispatchThread(void)
+
+{
+  syscall(0x28);
+  return;
+}
+
 // 0x00111630  size 0x10
 void ChangeThreadPriority(void)
 
@@ -906,11 +1105,51 @@ void ChangeThreadPriority(void)
   return;
 }
 
+// 0x00111640  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iChangeThreadPriority(void)
+
+{
+  syscall(0xffffffffffffffd6);
+  return;
+}
+
 // 0x00111650  size 0x10
 void RotateThreadReadyQueue(void)
 
 {
   syscall(0x2b);
+  return;
+}
+
+// 0x00111660  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void _iRotateThreadReadyQueue(void)
+
+{
+  syscall(0xffffffffffffffd4);
+  return;
+}
+
+// 0x00111670  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void ReleaseWaitThread(void)
+
+{
+  syscall(0x2d);
+  return;
+}
+
+// 0x00111680  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iReleaseWaitThread(void)
+
+{
+  syscall(0xffffffffffffffd2);
   return;
 }
 
@@ -962,6 +1201,26 @@ void _iWakeupThread(void)
   return;
 }
 
+// 0x001116f0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void CancelWakeupThread(void)
+
+{
+  syscall(0x35);
+  return;
+}
+
+// 0x00111700  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iCancelWakeupThread(void)
+
+{
+  syscall(0xffffffffffffffca);
+  return;
+}
+
 // 0x00111710  size 0x10
 void SuspendThread(void)
 
@@ -978,11 +1237,71 @@ void _iSuspendThread(void)
   return;
 }
 
+// 0x00111730  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void ResumeThread(void)
+
+{
+  syscall(0x39);
+  return;
+}
+
+// 0x00111740  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iResumeThread(void)
+
+{
+  syscall(0xffffffffffffffc6);
+  return;
+}
+
+// 0x00111750  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void JoinThread(void)
+
+{
+  syscall(0x3b);
+  return;
+}
+
+// 0x00111760  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU060_SetupThread(void)
+
+{
+  syscall(0x3c);
+  return;
+}
+
+// 0x00111770  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU061_SetupHeap(void)
+
+{
+  syscall(0x3d);
+  return;
+}
+
 // 0x00111780  size 0x10
 void EndOfHeap(void)
 
 {
   syscall(0x3e);
+  return;
+}
+
+// 0x00111790  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU063(void)
+
+{
+  syscall(0x3f);
   return;
 }
 
@@ -1034,6 +1353,16 @@ void PollSema(void)
   return;
 }
 
+// 0x00111800  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iPollSema(void)
+
+{
+  syscall(0xffffffffffffffba);
+  return;
+}
+
 // 0x00111810  size 0x10
 void ReferSemaStatus(void)
 
@@ -1047,6 +1376,16 @@ void iReferSemaStatus(void)
 
 {
   syscall(0xffffffffffffffb8);
+  return;
+}
+
+// 0x00111830  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU073(void)
+
+{
+  syscall(0x49);
   return;
 }
 
@@ -1066,11 +1405,331 @@ void GetOsdConfigParam(void)
   return;
 }
 
+// 0x00111860  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void GetGsHParam(void)
+
+{
+  syscall(0x4c);
+  return;
+}
+
+// 0x00111870  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void GetGsVParam(void)
+
+{
+  syscall(0x4d);
+  return;
+}
+
+// 0x00111880  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetGsHParam(void)
+
+{
+  syscall(0x4e);
+  return;
+}
+
+// 0x00111890  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetGsVParam(void)
+
+{
+  syscall(0x4f);
+  return;
+}
+
+// 0x001118a0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU080_CreateEventFlag(void)
+
+{
+  syscall(0x50);
+  return;
+}
+
+// 0x001118b0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU081_DeleteEventFlag(void)
+
+{
+  syscall(0x51);
+  return;
+}
+
+// 0x001118c0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU082_SetEventFlag(void)
+
+{
+  syscall(0x52);
+  return;
+}
+
+// 0x001118d0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU083_iSetEventFlag(void)
+
+{
+  syscall(0xffffffffffffffad);
+  return;
+}
+
+// 0x001118e0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU084_ClearEventFlag(void)
+
+{
+  syscall(0x54);
+  return;
+}
+
+// 0x001118f0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU085_iClearEventFlag(void)
+
+{
+  syscall(0xffffffffffffffab);
+  return;
+}
+
+// 0x00111900  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU086_WaitEvnetFlag_copy2(void)
+
+{
+  syscall(0x56);
+  return;
+}
+
+// 0x00111910  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU087_PollEvnetFlag(void)
+
+{
+  syscall(0x57);
+  return;
+}
+
+// 0x00111920  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU088_iPollEvnetFlag(void)
+
+{
+  syscall(0xffffffffffffffa8);
+  return;
+}
+
+// 0x00111930  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU089_ReferEventFlagStatus(void)
+
+{
+  syscall(0x59);
+  return;
+}
+
+// 0x00111940  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU090_iReferEventFlagStatus(void)
+
+{
+  syscall(0xffffffffffffffa6);
+  return;
+}
+
+// 0x00111950  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU091_copy4(void)
+
+{
+  syscall(0x5b);
+  return;
+}
+
+// 0x00111960  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void EnableIntcHandler(void)
+
+{
+  syscall(0x5c);
+  return;
+}
+
+// 0x00111970  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iEnableIntcHandler(void)
+
+{
+  syscall(0xffffffffffffffa4);
+  return;
+}
+
+// 0x00111980  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void DisableIntcHandler(void)
+
+{
+  syscall(0x5d);
+  return;
+}
+
+// 0x00111990  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iDisableIntcHandler(void)
+
+{
+  syscall(0xffffffffffffffa3);
+  return;
+}
+
+// 0x001119a0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void EnableDmacHandler(void)
+
+{
+  syscall(0x5e);
+  return;
+}
+
+// 0x001119b0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iEnableDmacHandler(void)
+
+{
+  syscall(0xffffffffffffffa2);
+  return;
+}
+
+// 0x001119c0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void DisableDmacHandler(void)
+
+{
+  syscall(0x5f);
+  return;
+}
+
+// 0x001119d0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iDisableDmacHandler(void)
+
+{
+  syscall(0xffffffffffffffa1);
+  return;
+}
+
+// 0x001119e0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void KSeg0(void)
+
+{
+  syscall(0x60);
+  return;
+}
+
+// 0x001119f0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void EnableCache(void)
+
+{
+  syscall(0x61);
+  return;
+}
+
+// 0x00111a00  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void DisableCache(void)
+
+{
+  syscall(0x62);
+  return;
+}
+
+// 0x00111a10  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void GetCop0(void)
+
+{
+  syscall(99);
+  return;
+}
+
 // 0x00111a20  size 0x10
 void FlushCache(void)
 
 {
   syscall(100);
+  return;
+}
+
+// 0x00111a30  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void CpuConfig(void)
+
+{
+  syscall(0x66);
+  return;
+}
+
+// 0x00111a40  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iGetCop0(void)
+
+{
+  syscall(0xffffffffffffff99);
+  return;
+}
+
+// 0x00111a50  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iFlushCache(void)
+
+{
+  syscall(0xffffffffffffff98);
+  return;
+}
+
+// 0x00111a60  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iCpuConfig(void)
+
+{
+  syscall(0xffffffffffffff96);
   return;
 }
 
@@ -1082,11 +1741,61 @@ void sceSifStopDma(void)
   return;
 }
 
+// 0x00111a80  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetCPUTimerHandler(void)
+
+{
+  syscall(0x6c);
+  return;
+}
+
+// 0x00111a90  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetCPUTimer(void)
+
+{
+  syscall(0x6d);
+  return;
+}
+
+// 0x00111aa0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetOsdConfigParam2(void)
+
+{
+  syscall(0x6e);
+  return;
+}
+
+// 0x00111ab0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void GetOsdConfigParam2(void)
+
+{
+  syscall(0x6f);
+  return;
+}
+
 // 0x00111ac0  size 0x10
 void GsGetIMR(void)
 
 {
   syscall(0x70);
+  return;
+}
+
+// 0x00111ad0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iGsGetIMR(void)
+
+{
+  syscall(0xffffffffffffff90);
   return;
 }
 
@@ -1098,6 +1807,26 @@ void GsPutIMR(void)
   return;
 }
 
+// 0x00111af0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void iGsPutIMR(void)
+
+{
+  syscall(0xffffffffffffff8f);
+  return;
+}
+
+// 0x00111b00  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void SetPgifHandler(void)
+
+{
+  syscall(0x72);
+  return;
+}
+
 // 0x00111b10  size 0x10
 void SetVSyncFlag(void)
 
@@ -1106,11 +1835,41 @@ void SetVSyncFlag(void)
   return;
 }
 
+// 0x00111b20  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void RFU116_SetSyscall(void)
+
+{
+  syscall(0x74);
+  return;
+}
+
+// 0x00111b30  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void _print(void)
+
+{
+  syscall(0x75);
+  return;
+}
+
 // 0x00111b40  size 0x10
 void sceSifDmaStat(void)
 
 {
   syscall(0x76);
+  return;
+}
+
+// 0x00111b50  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void isceSifDmaStat(void)
+
+{
+  syscall(0xffffffffffffff8a);
   return;
 }
 
@@ -1175,6 +1934,26 @@ void Deci2Call(void)
 
 {
   syscall(0x7c);
+  return;
+}
+
+// 0x00111be0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void PSMode(void)
+
+{
+  syscall(0x7d);
+  return;
+}
+
+// 0x00111bf0  size 0x10
+/* EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded) */
+
+void MachineType(void)
+
+{
+  syscall(0x7e);
   return;
 }
 
@@ -1328,6 +2107,16 @@ undefined4 maybe__getpid(void)
   return 0xffffffff;
 }
 
+// 0x00111e90  size 0x8
+/* follows _getpid; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+undefined4 _getpid_Orphan1(void)
+
+{
+  return 0xffffffff;
+}
+
 // 0x00111e98  size 0x8
 undefined4 maybe__kill(void)
 
@@ -1388,6 +2177,15 @@ undefined8 _fstat(undefined8 param_1,int param_2)
   *(undefined8 *)(param_2 + 0x48) = 0;
   *(undefined4 *)(param_2 + 4) = 0x2000;
   return 0;
+}
+
+// 0x00111f70  size 0x8
+/* code jumped/branched into from _getpid_r; shared tail */
+
+undefined4 _getpid_r_Tail1(void)
+
+{
+  return 1;
 }
 
 // 0x00111f78  size 0x28
@@ -1527,6 +2325,42 @@ void InvalidDCache(ulong param_1,ulong param_2)
     return;
   }
   EIntr();
+  return;
+}
+
+// 0x00112258  size 0x14
+/* follows InvalidDCache; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void InvalidDCache_Orphan1(uint param_1,uint param_2)
+
+{
+  uint uVar1;
+  int iVar2;
+  
+  iVar2 = 0;
+  do {
+    SYNC(0);
+    cacheOp(0x10,iVar2);
+    SYNC(0);
+    uVar1 = (TagLo & 0xfffff000) + iVar2;
+    if (((param_1 & 0xffffffc0) <= uVar1) && (uVar1 <= (param_2 & 0xffffffc0))) {
+      SYNC(0);
+      cacheOp(0x16,iVar2);
+      SYNC(0);
+    }
+    SYNC(0);
+    cacheOp(0x10,iVar2 + 1);
+    SYNC(0);
+    uVar1 = (TagLo & 0xfffff000) + iVar2;
+    if (((param_1 & 0xffffffc0) <= uVar1) && (uVar1 <= (param_2 & 0xffffffc0))) {
+      SYNC(0);
+      cacheOp(0x16,iVar2 + 1);
+      SYNC(0);
+    }
+    SYNC(0);
+    iVar2 = iVar2 + 0x40;
+  } while (iVar2 < 0x1000);
   return;
 }
 
@@ -1968,6 +2802,22 @@ void sceDeci2ExSend(undefined4 param_1,undefined4 param_2,uint param_3)
   uStack_20 = param_1;
   uStack_1c = param_2;
   Deci2Call(0xfffffffffffffffa,&uStack_20);
+  return;
+}
+
+// 0x00112a80  size 0x30
+/* follows sceDeci2ExSend; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void sceDeci2ExSend_Orphan1(undefined4 param_1,char param_2)
+
+{
+  undefined4 uStack_20;
+  int iStack_1c;
+  
+  iStack_1c = (int)param_2;
+  uStack_20 = param_1;
+  Deci2Call(0xfffffffffffffff9,&uStack_20);
   return;
 }
 
@@ -2707,11 +3557,53 @@ void maybe_scePrintf(undefined8 param_1,undefined8 param_2,undefined8 param_3,un
   return;
 }
 
+// 0x00113a28  size 0x1c
+/* follows scePrintf; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void scePrintf_Orphan1(int param_1,int param_2)
+
+{
+  *(undefined4 *)(*(int *)(param_1 + 0x10) * 4 + *(int *)(param_2 + 0x1c)) =
+       *(undefined4 *)(param_1 + 0x14);
+  return;
+}
+
+// 0x00113a48  size 0xc
+/* follows scePrintf_Orphan1; unreferenced except as noted (was FUN_00113a28_Orphan1) */
+
+void scePrintf_Orphan2(int param_1,int param_2)
+
+{
+  *(undefined4 *)(param_2 + 8) = *(undefined4 *)(param_1 + 0x10);
+  return;
+}
+
 // 0x00113a58  size 0x18
 undefined4 maybe_sceSifGetSreg(int param_1)
 
 {
   return *(undefined4 *)(param_1 * 4 + 0x371200);
+}
+
+// 0x00113a70  size 0x1c
+/* follows sceSifGetSreg; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+undefined8 sceSifGetSreg_Orphan1(int param_1,undefined8 param_2)
+
+{
+  *(int *)(param_1 * 4 + 0x371200) = (int)param_2;
+  return param_2;
+}
+
+// 0x00113a90  size 0xc
+/* follows sceSifGetSreg_Orphan1; unreferenced except as noted (was FUN_00113a70_Orphan1) */
+
+undefined * sceSifGetSreg_Orphan2(void)
+
+{
+  return &g_sceSifCmdIntrHandlerShared1;
 }
 
 // 0x00113aa0  size 0x280
@@ -2754,8 +3646,8 @@ void sceSifInitCmd(void)
     iVar6 = iVar6 + -1;
     puVar2 = puVar2 + -1;
   } while (-1 < iVar6);
-  _s_sceSifInitCmd_5 = &LAB_00113a48;
-  _s_sceSifInitCmd_7 = &LAB_00113a28;
+  _s_sceSifInitCmd_5 = scePrintf_Orphan2;
+  _s_sceSifInitCmd_7 = scePrintf_Orphan1;
   _s_sceSifInitCmd_8 = &g_sceSifCmdIntrHandlerShared1;
   _s_sceSifInitCmd_6 = &g_sceSifCmdIntrHandlerShared1;
   EIntr();
@@ -2801,6 +3693,37 @@ void sceSifExitCmd(void)
   RemoveDmacHandler(5,_g_sceSifInitCmdShared1);
   DAT_00306ae8 = 0;
   return;
+}
+
+// 0x00113d58  size 0x18
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows sceSifExitCmd; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+undefined4 sceSifExitCmd_Orphan1(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = _g_sceSifGetCmdHandlerShared2;
+  _g_sceSifInitCmdShared4 = param_2;
+  _g_sceSifGetCmdHandlerShared2 = param_1;
+  return uVar1;
+}
+
+// 0x00113d70  size 0x18
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows sceSifExitCmd_Orphan1; unreferenced except as noted (was FUN_00113d58_Orphan1) */
+
+undefined4 sceSifExitCmd_Orphan2(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = _g_sceSifGetCmdHandlerShared1;
+  _g_sceSifInitCmdShared3 = param_2;
+  _g_sceSifGetCmdHandlerShared1 = param_1;
+  return uVar1;
 }
 
 // 0x00113d88  size 0x78

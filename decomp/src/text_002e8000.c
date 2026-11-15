@@ -217,7 +217,7 @@ void maybe_ComposerTask_State8_NameentryGetField(int param_1)
   return;
 }
 
-// 0x002e88d0  size 0x10c
+// 0x002e88d0  size 0x104
 /* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
    ScrNameentryGetField48200_Entere88d0) */
 
@@ -264,6 +264,16 @@ void maybe_ComposerTask_State6_NameentryGetField(int param_1)
     iVar5 = iVar5 + 1;
     iVar4 = iVar4 + 4;
   } while (iVar5 < 0x10d);
+  return;
+}
+
+// 0x002e89dc  size 0x8
+/* follows ComposerTask_State6_NameentryGetField; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void ComposerTask_State6_NameentryGetField_Orphan1(void)
+
+{
   return;
 }
 
@@ -1728,7 +1738,7 @@ void maybe_ComposerTask_State10_State7_NameentrySetField8(int param_1)
   return;
 }
 
-// 0x002eb150  size 0x184
+// 0x002eb150  size 0x17c
 /* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
    ScrNameentrySetField8_Entereb150) */
 
@@ -1785,6 +1795,16 @@ void maybe_ComposerTask_State10_State6_NameentrySetField8(int param_1)
     *(undefined4 *)(param_1 + 0xcb4) = 0;
     Nameentry_SetField_8(param_1 + 0xc44,0);
   }
+  return;
+}
+
+// 0x002eb2d4  size 0x8
+/* follows ComposerTask_State10_State6_NameentrySetField8; no call, branch, pointer or constant
+   references it (exception landing pad or dead code) */
+
+void ComposerTask_State10_State6_NameentrySetField8_Orphan1(void)
+
+{
   return;
 }
 

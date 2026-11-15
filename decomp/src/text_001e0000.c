@@ -143,7 +143,7 @@ undefined4 Race_GetField_8b4(int param_1)
   return *(undefined4 *)(param_1 + 0x8b4);
 }
 
-// 0x001e0610  size 0x6f0
+// 0x001e0610  size 0x6e0
 void SpGauge_UpdateAll(undefined8 param_1)
 
 {
@@ -410,6 +410,16 @@ LAB_001e09b8:
   return;
 }
 
+// 0x001e0d00  size 0x10
+/* follows SpGauge_UpdateAll; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void SpGauge_UpdateAll_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001e0d10  size 0x68
 void RaceProg_UpdateDistances(void)
 
@@ -557,7 +567,7 @@ void RaceProg_ComputeDistance(int param_1,int param_2)
   return;
 }
 
-// 0x001e10f0  size 0x7c0
+// 0x001e10f0  size 0x7a0
 void RaceProg_DetectCollisions(int param_1)
 
 {
@@ -747,6 +757,16 @@ void RaceProg_DetectCollisions(int param_1)
       param_1 = param_1 + 4;
     } while (cVar18 < cVar6);
   }
+  return;
+}
+
+// 0x001e18b0  size 0x20
+/* follows RaceProg_DetectCollisions; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RaceProg_DetectCollisions_Orphan1(void)
+
+{
   return;
 }
 
@@ -1399,7 +1419,7 @@ void RaceTask_BeginLoading(int param_1)
   return;
 }
 
-// 0x001e2420  size 0x1f78
+// 0x001e2420  size 0x1f64
 /* WARNING: Removing unreachable block (ram,0x001e345c) */
 /* WARNING: Removing unreachable block (ram,0x001e3228) */
 /* WARNING: Removing unreachable block (ram,0x001e3350) */

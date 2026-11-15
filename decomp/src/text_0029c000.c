@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x0029c040  size 0x224
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrCareerStart_InputChapter(int param_1)
 
 {
@@ -15,14 +13,14 @@ void maybe_ScrCareerStart_InputChapter(int param_1)
   uint uVar5;
   
   uVar3 = Profile_Get(0);
-  uVar5 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar5) == 0) {
+  uVar5 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar5) == 0) {
     uVar5 = 0x100000;
   }
   else if (uVar5 == 0x80000) {
     uVar5 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar5 = 0x100000;
   }
   if (uVar5 == 2) {
@@ -651,7 +649,6 @@ void maybe_ScrCareerStart_Exit(void)
 }
 
 // 0x0029cb70  size 0x176c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 27 (table 0x3274b0) */
 
 void maybe_ScrCareerStart_Update(int param_1)
@@ -943,14 +940,14 @@ LAB_0029d1d0:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if ((uVar5 == 0x10) || (uVar5 == 0x20)) {
@@ -984,14 +981,14 @@ LAB_0029d2c8:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if ((uVar5 == 0x10) || (uVar5 == 0x20)) {
@@ -1220,14 +1217,14 @@ LAB_0029d95c:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (uVar5 == 0x10) {
@@ -1269,14 +1266,14 @@ LAB_0029d754:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (uVar5 == 0x10) {
@@ -1310,14 +1307,14 @@ LAB_0029d838:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (uVar5 == 0x10) {
@@ -1666,14 +1663,14 @@ LAB_0029e034:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (uVar5 == 0x10) {
@@ -1707,14 +1704,14 @@ LAB_0029e148:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (uVar5 == 0x10) {
@@ -1757,14 +1754,14 @@ LAB_0029e248:
     }
     else {
       if (iVar6 == 1) {
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if ((uVar5 == 0x10) || (uVar5 == 0x20)) {
@@ -2030,7 +2027,6 @@ void maybe_ScrBlank28_Exit(void)
 }
 
 // 0x0029e7e0  size 0xf8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 28 (table 0x3274b0) */
 
 void maybe_ScrBlank28_Update(undefined8 param_1)
@@ -2039,14 +2035,14 @@ void maybe_ScrBlank28_Update(undefined8 param_1)
   uint uVar1;
   
   Menu_HandleCursor(param_1,0,2,1,1,0);
-  uVar1 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar1) == 0) {
+  uVar1 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 0x10) {
@@ -2077,8 +2073,6 @@ void maybe_ScrBlank28_Enter(undefined4 *param_1)
 }
 
 // 0x0029e910  size 0x108
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrBuyCarColour_HandleInput(undefined8 param_1)
 
 {
@@ -2086,14 +2080,14 @@ void maybe_ScrBuyCarColour_HandleInput(undefined8 param_1)
   uint uVar2;
   int iVar3;
   
-  uVar2 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar2) == 0) {
+  uVar2 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   iVar3 = (int)param_1;
@@ -2771,7 +2765,6 @@ void maybe_ScrBuyCarColour_State9_GarageComputeCarStats(int param_1)
 }
 
 // 0x0029fb00  size 0x194
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 8 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update */
 
 void maybe_ScrBuyCarColour_State8(int param_1)
@@ -2801,14 +2794,14 @@ void maybe_ScrBuyCarColour_State8(int param_1)
     *(undefined4 *)(param_1 + 0x34) = *(undefined4 *)(param_1 + 0xc);
     Menu_HandleCursor(param_1 + 0xc,0,2,4,1,0);
   }
-  uVar2 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar2) == 0) {
+  uVar2 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 2) {
@@ -2976,7 +2969,6 @@ void maybe_ScrBuyCarColour_State4(int *param_1)
 }
 
 // 0x0029ffb0  size 0x11f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 3 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update */
 
 void maybe_ScrBuyCarColour_State3(int *param_1)
@@ -3398,14 +3390,14 @@ switchD_002a01a8_caseD_0:
     Menu_HandleCursor(param_1 + 10,0,8,iVar18 + -1,1,0);
     iVar18 = MsgId_ForMenuHelp(param_1[3] + 1U & 0xff);
     param_1[4] = param_1[10] + iVar18;
-    uVar12 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar12) == 0) {
+    uVar12 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar12) == 0) {
       uVar12 = 0x100000;
     }
     else if (uVar12 == 0x80000) {
       uVar12 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar12 = 0x100000;
     }
     if (uVar12 == 0x1000) {

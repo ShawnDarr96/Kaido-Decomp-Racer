@@ -463,8 +463,6 @@ void maybe_PageSelectCourse_State4_DrawSelectCourseTo(int param_1)
 }
 
 // 0x002654b0  size 0x6ac
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_SelectCourseTo(int param_1)
 
 {
@@ -633,7 +631,7 @@ void MenuScr_Draw_SelectCourseTo(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x103,*(undefined4 *)(&DAT_0032d410 + *(int *)(param_1 + 0x758) * 4),1,0);
   }
   MenuWnd_Update(param_1 + 0x764,0x103,6,7);
@@ -1686,8 +1684,6 @@ void maybe_PageMoney_State1_DoYouWant(int param_1)
 }
 
 // 0x00267ac0  size 0x43c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_DoYouWant_7ac0(int *param_1)
 
 {
@@ -1779,7 +1775,7 @@ void ScrGarage_Draw_DoYouWant_7ac0(int *param_1)
   if ((param_1[7] != 0) && (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x30,1), !bVar2)) {
     param_1[7] = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x30,*(undefined4 *)(*param_1 * 4 + 0x36ed08),1,0);
   }
   MenuWnd_DrawTextId(0x30,0x22,4,0x3cb);

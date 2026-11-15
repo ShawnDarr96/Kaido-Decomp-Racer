@@ -445,7 +445,7 @@ void Ai_AvoidCars(undefined8 param_1,undefined4 *param_2,undefined4 param_3,long
   return;
 }
 
-// 0x001d8920  size 0x12dc
+// 0x001d8920  size 0x129c
 void Ai_ComputeTargetSpeed
                (float param_1,float param_2,int *param_3,int *param_4,int param_5,undefined8 param_6
                ,undefined4 param_7)
@@ -1159,7 +1159,17 @@ LAB_001d9930:
   return;
 }
 
-// 0x001d9c40  size 0x650
+// 0x001d9bfc  size 0x40
+/* follows Ai_ComputeTargetSpeed; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Ai_ComputeTargetSpeed_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001d9c40  size 0x634
 float Ai_BrakeForCorner(float param_1,undefined8 param_2,undefined8 param_3,long param_4)
 
 {
@@ -1364,7 +1374,17 @@ LAB_001da068:
   } while( true );
 }
 
-// 0x001da2b0  size 0x5d8
+// 0x001da290  size 0x1c
+/* follows Ai_BrakeForCorner; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Ai_BrakeForCorner_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001da2b0  size 0x5c0
 void Ai_ThrottleControl(int *param_1,int *param_2)
 
 {
@@ -1593,6 +1613,16 @@ LAB_001da604:
   param_1[0xc] = (int)fVar13;
   param_1[0xd] = (int)fVar11;
   param_1[0xe] = (int)fVar14;
+  return;
+}
+
+// 0x001da888  size 0x18
+/* follows Ai_ThrottleControl; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Ai_ThrottleControl_Orphan1(void)
+
+{
   return;
 }
 

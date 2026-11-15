@@ -884,8 +884,6 @@ void MenuPage26_Enter(void)
 }
 
 // 0x00241ab0  size 0x364
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ButtonConfig_DrawList(uint *param_1,long param_2)
 
 {
@@ -920,14 +918,14 @@ void maybe_ButtonConfig_DrawList(uint *param_1,long param_2)
     puVar5 = puVar5 + 1;
     puVar4 = puVar4 + 5;
   } while (iVar6 < 9);
-  uVar3 = _g_MenuInput[param_1[1] + 2];
-  if ((_g_MenuInput[param_1[1] + 4] & uVar3) == 0) {
+  uVar3 = g_MenuInput[param_1[1] + 2];
+  if ((g_MenuInput[param_1[1] + 4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if (uVar3 == 0x80000) {
@@ -1002,8 +1000,6 @@ void maybe_ButtonConfig_DrawList(uint *param_1,long param_2)
 }
 
 // 0x00241e20  size 0x460
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ButtonConfig_AnimateCursor(uint *param_1,long param_2)
 
 {
@@ -1027,16 +1023,16 @@ void maybe_ButtonConfig_AnimateCursor(uint *param_1,long param_2)
   
   iVar1 = UiMgr_FindLayout(0xfc);
   uVar3 = param_1[1];
-  uVar2 = _g_MenuInput[uVar3 + 2];
+  uVar2 = g_MenuInput[uVar3 + 2];
   piVar6 = (int *)(&DAT_0032b920 + uVar3 * 0x108);
   pUVar7 = &g_UiMgr->slots[iVar1].layout;
-  if ((_g_MenuInput[uVar3 + 4] & uVar2) == 0) {
+  if ((g_MenuInput[uVar3 + 4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 0x80000) {
@@ -1793,7 +1789,7 @@ LAB_00243824:
   return;
 }
 
-// 0x00243bd0  size 0xf8c
+// 0x00243bd0  size 0xf64
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrRace_Draw_Interval(int param_1)

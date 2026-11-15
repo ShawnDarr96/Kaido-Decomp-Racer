@@ -999,6 +999,20 @@ LAB_0010d59c:
   return;
 }
 
+// 0x0010d758  size 0x28
+/* code jumped/branched into from Mpeg_OutputFrame; shared tail */
+
+void Mpeg_OutputFrame_Tail1(int param_1)
+
+{
+  if (*(int *)(param_1 + 8) != 2) {
+    *(undefined4 *)(param_1 + 8) = 2;
+    *(undefined4 *)(param_1 + 0xc4) = *(undefined4 *)(param_1 + 0x130);
+  }
+  *(undefined4 *)(param_1 + 0x838) = 1;
+  return;
+}
+
 // 0x0010d780  size 0x174
 void maybe_Mpeg_ComputeTimestamp
                (int param_1,int param_2,long *param_3,undefined8 *param_4,ulong *param_5)
@@ -1067,7 +1081,7 @@ void maybe_Mpeg_ComputeTimestamp
   return;
 }
 
-// 0x0010d8f8  size 0x138
+// 0x0010d8f8  size 0x110
 void maybe_Mpeg_OutputFrame(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1273,6 +1287,43 @@ void maybe_Ipu_CscLoop(undefined8 param_1,uint param_2,ulong param_3)
   return;
 }
 
+// 0x0010dee0  size 0x148
+/* address loaded as a constant in Ipu_CscWithHandler (callback / handler) */
+
+undefined8 Ipu_CscWithHandler_Callback1(undefined8 param_1,int *param_2)
+
+{
+  uint uVar1;
+  int iVar2;
+  
+  REG_DMAC_STAT = 8;
+  *param_2 = *param_2 + 1;
+  iVar2 = REG_DMAC_3_IPU_FROM_QWC;
+  if ((iVar2 != 0) || (uVar1 = REG_DMAC_3_IPU_FROM_CHCR, (uVar1 & 0x100) != 0)) {
+    param_2[1] = 1;
+    SYNC(0);
+    EI();
+    return 0;
+  }
+  if (*param_2 < param_2[4] + -1) {
+    REG_DMAC_3_IPU_FROM_MADR = param_2[3];
+    REG_DMAC_3_IPU_FROM_QWC = 0xffc0;
+    REG_DMAC_3_IPU_FROM_CHCR = 0x100;
+    REG_IPU_CMD = 0x700003ff;
+    param_2[3] = param_2[3] + 0xffc00U & 0xfffffff;
+  }
+  else if (*param_2 == param_2[4] + -1) {
+    param_2[2] = param_2[2] + *param_2 * -0x3ff;
+    REG_DMAC_3_IPU_FROM_MADR = param_2[3];
+    REG_DMAC_3_IPU_FROM_QWC = param_2[2] << 6;
+    REG_DMAC_3_IPU_FROM_CHCR = 0x100;
+    REG_IPU_CMD = param_2[2] | 0x70000000;
+  }
+  SYNC(0);
+  EI();
+  return 0;
+}
+
 // 0x0010e028  size 0x1c0
 /* WARNING: Removing unreachable block (ram,0x0010e060) */
 /* "CSC handler error" */
@@ -1322,6 +1373,36 @@ void maybe_Ipu_CscWithHandler(undefined8 param_1,uint param_2,int param_3)
   DisableDmac(3);
   RemoveDmacHandler(3,uVar2);
   return;
+}
+
+// 0x0010e1e8  size 0xd4
+/* address loaded as a constant in Ipu_ConvertPicture (callback / handler) */
+
+undefined4 Ipu_ConvertPicture_Callback1(undefined8 param_1,uint *param_2)
+
+{
+  REG_DMAC_STAT = 0x10;
+  if (*param_2 == 0) {
+    SYNC(0);
+    EI();
+    return 1;
+  }
+  if (*param_2 < 0x10000) {
+    REG_DMAC_4_IPU_TO_MADR = param_2[1];
+    REG_DMAC_4_IPU_TO_QWC = *param_2;
+    REG_DMAC_4_IPU_TO_CHCR = 0x101;
+    *param_2 = 0;
+  }
+  else {
+    REG_DMAC_4_IPU_TO_MADR = param_2[1];
+    REG_DMAC_4_IPU_TO_QWC = 0xffff;
+    REG_DMAC_4_IPU_TO_CHCR = 0x101;
+    *param_2 = *param_2 - 0xffff;
+    param_2[1] = param_2[1] + 0xffff0 & 0xfffffff;
+  }
+  SYNC(0);
+  EI();
+  return 0;
 }
 
 // 0x0010e2c0  size 0x288
@@ -2097,7 +2178,7 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     *(undefined4 *)(uVar4 + 0x48) = 0;
     *(undefined4 *)(uVar4 + 0x54) = 0;
     *(undefined8 *)(uVar4 + 0x108) = 0xffffffffffffffff;
-    *(undefined1 **)(uVar4 + 0x24) = &LAB_00110cc8;
+    *(code **)(uVar4 + 0x24) = Mpeg_Error_Wrap2_Orphan1;
     *(code **)(uVar4 + 0x30) = maybe_sceMpegResume;
     uVar1 = maybe_Mpeg_WorkAlloc(uVar4,iVar3,0x800,8);
     *(undefined4 *)(uVar4 + 100) = 0;
@@ -2147,6 +2228,23 @@ undefined4 maybe_sceMpegDelete(void)
   return 1;
 }
 
+// 0x0010f840  size 0x3c
+/* follows sceMpegDelete; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+undefined4 sceMpegDelete_Orphan1(int param_1,undefined8 param_2,int param_3)
+
+{
+  int iVar1;
+  
+  iVar1 = param_3 + 0x22;
+  if (-1 < param_3 + 0x13) {
+    iVar1 = param_3 + 0x13;
+  }
+  maybe_Mpeg_SetQuantMatrices(*(undefined4 *)(param_1 + 0x40),param_2,(iVar1 >> 4) << 4);
+  return 1;
+}
+
 // 0x0010f880  size 0x48
 void maybe_sceMpegGetPictureRAW8(int param_1,uint param_2,undefined4 param_3)
 
@@ -2192,6 +2290,51 @@ void maybe_sceMpegGetPictureRGB32(int param_1,uint param_2,int param_3,int param
   *(int *)(iVar1 + 0xf4) = param_3 << 4;
   *(undefined4 *)(iVar1 + 200) = 0;
   sceMpegGetPicture();
+  return;
+}
+
+// 0x0010f960  size 0x10
+/* follows sceMpegGetPictureRGB32; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void sceMpegGetPictureRGB32_Orphan1(int param_1)
+
+{
+  *(undefined4 *)(*(int *)(param_1 + 0x40) + 0x10a0) = 1;
+  return;
+}
+
+// 0x0010f970  size 0x14
+/* follows sceMpegGetPictureRGB32_Orphan1; unreferenced except as noted (was FUN_0010f960_Orphan1)
+    */
+
+void sceMpegGetPictureRGB32_Orphan2
+               (int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0x40);
+  *(undefined4 *)(iVar1 + 0xb4) = param_4;
+  *(undefined4 *)(iVar1 + 0xac) = param_2;
+  *(undefined4 *)(iVar1 + 0xb0) = param_3;
+  return;
+}
+
+// 0x0010f988  size 0x20
+/* follows sceMpegGetPictureRGB32_Orphan1; unreferenced except as noted (was FUN_0010f970_Orphan1)
+    */
+
+void sceMpegGetPictureRGB32_Orphan3
+               (int param_1,undefined4 *param_2,undefined4 *param_3,undefined4 *param_4)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0x40);
+  *param_2 = *(undefined4 *)(iVar1 + 0xac);
+  *param_3 = *(undefined4 *)(iVar1 + 0xb0);
+  *param_4 = *(undefined4 *)(iVar1 + 0xb4);
   return;
 }
 
@@ -2303,6 +2446,116 @@ undefined4 maybe_Mpeg_CallbackBackground(undefined8 param_1)
   return 1;
 }
 
+// 0x0010fb58  size 0x18
+/* follows Mpeg_CallbackBackground; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+undefined4 Mpeg_CallbackBackground_Orphan1(int param_1,undefined8 param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0x40);
+  *(undefined8 *)(iVar1 + 0x90) = param_2;
+  *(undefined4 *)(iVar1 + 0x8c) = 1;
+  return 1;
+}
+
+// 0x0010fb70  size 0x14
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb58_Orphan1)
+    */
+
+undefined4 Mpeg_CallbackBackground_Orphan2(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0x40);
+  *(undefined8 *)(iVar1 + 0x90) = 0;
+  *(undefined4 *)(iVar1 + 0x8c) = 0;
+  return 1;
+}
+
+// 0x0010fb88  size 0x10
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb70_Orphan1)
+    */
+
+undefined4 Mpeg_CallbackBackground_Orphan3(int param_1,undefined4 param_2)
+
+{
+  *(undefined4 *)(*(int *)(param_1 + 0x40) + 0xf0) = param_2;
+  return 1;
+}
+
+// 0x0010fb98  size 0xc
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb88_Orphan1)
+    */
+
+undefined4 Mpeg_CallbackBackground_Orphan4(int param_1)
+
+{
+  return *(undefined4 *)(*(int *)(param_1 + 0x40) + 0xe4);
+}
+
+// 0x0010fba8  size 0xc
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb98_Orphan1)
+    */
+
+undefined4 Mpeg_CallbackBackground_Orphan5(int param_1)
+
+{
+  return *(undefined4 *)(*(int *)(param_1 + 0x40) + 0xe8);
+}
+
+// 0x0010fbb8  size 0xc
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fba8_Orphan1)
+    */
+
+int Mpeg_CallbackBackground_Orphan6(int param_1)
+
+{
+  return *(int *)(param_1 + 0x40) + 0xcc;
+}
+
+// 0x0010fbc8  size 0xc
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fbb8_Orphan1)
+    */
+
+int Mpeg_CallbackBackground_Orphan7(int param_1)
+
+{
+  return *(int *)(param_1 + 0x40) + 0xcc;
+}
+
+// 0x0010fbd8  size 0x10
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fbc8_Orphan1)
+    */
+
+undefined4 Mpeg_CallbackBackground_Orphan8(int param_1,undefined4 param_2)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = *(undefined4 *)(*(int *)(param_1 + 0x40) + 0x100);
+  *(undefined4 *)(*(int *)(param_1 + 0x40) + 0x100) = param_2;
+  return uVar1;
+}
+
+// 0x0010fbe8  size 0x18
+/* follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fbd8_Orphan1)
+    */
+
+undefined4 Mpeg_CallbackBackground_Orphan9(int param_1,undefined8 param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(param_1 + 0x40);
+  *(undefined4 *)(iVar1 + 0x110) = 1;
+  *(undefined8 *)(iVar1 + 0x108) = param_2;
+  return 1;
+}
+
 // 0x0010fc00  size 0x14
 /* N153 confirmed: sets base/size/read/write */
 
@@ -2359,7 +2612,17 @@ int maybe_Mpeg_WorkAlloc(undefined8 param_1,int *param_2,int param_3,long param_
   return iVar1;
 }
 
-// 0x0010fcc0  size 0x184
+// 0x0010fca8  size 0x18
+/* follows Mpeg_WorkAlloc; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+int Mpeg_WorkAlloc_Orphan1(int *param_1)
+
+{
+  return (*param_1 + param_1[1]) - param_1[2];
+}
+
+// 0x0010fcc0  size 0x154
 /* "sceMpegGetPicture was aborted" */
 
 undefined4 sceMpegGetPicture(undefined8 param_1)
@@ -2433,6 +2696,48 @@ undefined4 sceMpegGetPicture(undefined8 param_1)
     uVar3 = 0xffffffff;
   }
   return uVar3;
+}
+
+// 0x0010fe44  size 0x30
+/* follows sceMpegGetPicture; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+undefined8 sceMpegGetPicture_Orphan1(void)
+
+{
+  bool bVar1;
+  undefined8 uVar2;
+  int *unaff_s0_lo;
+  ulong unaff_s2;
+  int unaff_s3_lo;
+  
+  do {
+    if (*unaff_s0_lo != 0) {
+      return 1;
+    }
+    bVar1 = unaff_s2 < 5;
+    if (unaff_s3_lo != -1) {
+      do {
+        unaff_s2 = maybe_Mpeg_GetHeader();
+        if ((long)unaff_s2 < 0) {
+          return 0xffffffffffffffff;
+        }
+        bVar1 = unaff_s2 < 5;
+      } while (((unaff_s2 != 0) && (bVar1 = unaff_s2 < 5, unaff_s0_lo[99] != unaff_s0_lo[0x3b])) &&
+              (bVar1 = unaff_s2 < 5, unaff_s0_lo[0x218] != 0));
+    }
+    if (bVar1) {
+                    /* WARNING: Could not recover jumptable at 0x0010fda0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+      uVar2 = (*(code *)(&PTR_case_0_0035efa0)[(int)unaff_s2])();
+      return uVar2;
+    }
+    if (unaff_s0_lo[0x428] != 0) {
+      maybe_scePrintf(0x35ef78);
+      return 0xffffffffffffffff;
+    }
+  } while (unaff_s0_lo[0x20e] == 0);
+  return 1;
 }
 
 // 0x0010fe78  size 0x120

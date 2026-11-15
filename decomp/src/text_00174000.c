@@ -336,7 +336,7 @@ undefined4 MovieTex_Init(uint *param_1,undefined8 param_2,int *param_3)
   return 1;
 }
 
-// 0x00174f40  size 0xeb8
+// 0x00174f40  size 0xeac
 /* WARNING: Removing unreachable block (ram,0x00175a28) */
 
 void maybe_SaveData_Serialize(int *param_1,long param_2,int param_3)
@@ -1077,6 +1077,16 @@ code_r0x0017552c:
   piVar16 = piVar16 + 1;
   if (5 < iVar3) goto LAB_00175550;
   goto LAB_00175290;
+}
+
+// 0x00175df8  size 0xc
+/* follows SaveData_Serialize; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void SaveData_Serialize_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00175e10  size 0x850

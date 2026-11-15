@@ -1259,7 +1259,7 @@ undefined4 Tex_GetPsmInfo(uint param_1)
   return *(undefined4 *)(&DAT_00361530 + (param_1 & 0xff) * 4);
 }
 
-// 0x0013dca0  size 0x70c
+// 0x0013dca0  size 0x6f0
 int Tex_BuildUploadPacket
               (ulong param_1,undefined8 param_2,undefined8 param_3,uint param_4,uint param_5,
               uint param_6,int param_7,long param_8)
@@ -1493,6 +1493,16 @@ LAB_0013df40:
     }
   }
   return iStack_20 + iVar8 + iStack_10;
+}
+
+// 0x0013e3ac  size 0x1c
+/* follows Tex_BuildUploadPacket; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Tex_BuildUploadPacket_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0013e3d0  size 0x464
@@ -2013,7 +2023,7 @@ int Tex_UploadAll(int param_1,undefined8 param_2,long param_3,undefined8 param_4
   return iVar4;
 }
 
-// 0x0013f340  size 0x5ec
+// 0x0013f340  size 0x5d0
 int Tex_Upload(undefined8 param_1,uint param_2,int param_3,int param_4,int param_5)
 
 {
@@ -2171,6 +2181,16 @@ int Tex_Upload(undefined8 param_1,uint param_2,int param_3,int param_4,int param
     }
   }
   return iVar15;
+}
+
+// 0x0013f92c  size 0x1c
+/* follows Tex_Upload; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void Tex_Upload_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x0013f950  size 0x4bc

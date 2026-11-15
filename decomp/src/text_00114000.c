@@ -539,6 +539,41 @@ undefined4 sceSifBindRpc(int *param_1,undefined4 param_2,ulong param_3)
   return uVar2;
 }
 
+// 0x00114ad8  size 0x8c
+/* address loaded as a constant in sceSifInitRpc (callback / handler) */
+
+void sceSifInitRpc_Callback1(int param_1)
+
+{
+  int iVar1;
+  int *piVar2;
+  undefined4 uVar3;
+  
+  iVar1 = *(int *)(param_1 + 0x34);
+  piVar2 = *(int **)(iVar1 + 0x40);
+  if (piVar2[3] == 0) {
+    piVar2[3] = iVar1;
+  }
+  else {
+    *(int *)(piVar2[4] + 0x3c) = iVar1;
+  }
+  piVar2[4] = iVar1;
+  uVar3 = *(undefined4 *)(param_1 + 0x1c);
+  *(undefined4 *)(iVar1 + 0x20) = *(undefined4 *)(param_1 + 0x14);
+  *(undefined4 *)(iVar1 + 0x1c) = uVar3;
+  *(undefined4 *)(iVar1 + 0x24) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(iVar1 + 0xc) = *(undefined4 *)(param_1 + 0x24);
+  *(undefined4 *)(iVar1 + 0x28) = *(undefined4 *)(param_1 + 0x28);
+  *(undefined4 *)(iVar1 + 0x2c) = *(undefined4 *)(param_1 + 0x2c);
+  *(undefined4 *)(iVar1 + 0x30) = *(undefined4 *)(param_1 + 0x30);
+  *(undefined4 *)(iVar1 + 0x34) = *(undefined4 *)(param_1 + 0x10);
+  if ((*piVar2 < 0) || (piVar2[1] != 0)) {
+    return;
+  }
+  maybe_iWakeupThreadEx();
+  return;
+}
+
 // 0x00114b68  size 0x1f4
 /* 113 callers */
 
@@ -1140,6 +1175,33 @@ void Fio_Unlock(void)
 {
   SignalSema(DAT_00306b84);
   return;
+}
+
+// 0x00115830  size 0xa4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Fio_Unlock; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+undefined4 Fio_Unlock_Orphan1(undefined4 param_1,undefined4 param_2)
+
+{
+  undefined4 uVar1;
+  long lVar2;
+  
+  Fio_Lock(0x1b);
+  if (DAT_00306b7c == 0) {
+    maybe_Fio_Bind();
+  }
+  lVar2 = DIntr();
+  uVar1 = _s_Fio_Bind_5;
+  puRam003742c0 = &_mips_gp0_value;
+  _s_Fio_Bind_5 = param_1;
+  _s_Fio_Bind_6 = param_2;
+  if (lVar2 != 0) {
+    EIntr();
+  }
+  Fio_Unlock();
+  return uVar1;
 }
 
 // 0x001158d8  size 0x44

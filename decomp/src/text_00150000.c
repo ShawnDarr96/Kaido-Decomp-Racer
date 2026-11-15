@@ -742,7 +742,7 @@ void Sprite_GetPoolCount(int param_1,uint *param_2)
   return;
 }
 
-// 0x00152bf0  size 0x528
+// 0x00152bf0  size 0x518
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* flips sprite pools, kicks DMA chains */
 
@@ -883,6 +883,16 @@ void Gfx_EndFrame(void)
   } while (uVar5 < 5);
   _g_ProfileShared1 = _g_ProfileShared1 + 1;
   FlushCache(0);
+  return;
+}
+
+// 0x00153118  size 0x10
+/* follows Gfx_EndFrame; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Gfx_EndFrame_Orphan1(void)
+
+{
   return;
 }
 
@@ -1235,6 +1245,25 @@ bool Snd_QueueCmd4(undefined4 param_1,undefined4 param_2,undefined4 param_3,unde
   return bVar1;
 }
 
+// 0x00153a50  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Snd_QueueCmd4; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Snd_QueueCmd4_Orphan1(undefined8 param_1,undefined8 param_2,undefined1 *param_3)
+
+{
+  _s_SndVar5 = 0;
+  _s_SndVar6 = 0;
+  if (*(int *)(param_3 + 0x18) == 0) {
+    *param_3 = 8;
+  }
+  else {
+    *param_3 = 9;
+  }
+  return;
+}
+
 // 0x00153a90  size 0x64
 void Snd_StreamPosCallback(undefined8 param_1,undefined8 param_2,undefined8 param_3,char *param_4)
 
@@ -1248,7 +1277,7 @@ void Snd_StreamPosCallback(undefined8 param_1,undefined8 param_2,undefined8 para
   return;
 }
 
-// 0x00153b00  size 0x140
+// 0x00153b00  size 0x138
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Snd_StreamLoadChunk(int param_1,undefined4 *param_2,uint param_3)
@@ -1286,7 +1315,17 @@ void Snd_StreamLoadChunk(int param_1,undefined4 *param_2,uint param_3)
   return;
 }
 
-// 0x00153c50  size 0x1d4
+// 0x00153c40  size 0x8
+/* follows Snd_StreamLoadChunk; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Snd_StreamLoadChunk_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00153c50  size 0x1d0
 void Snd_StreamFill(int param_1,int param_2,uint param_3)
 
 {
@@ -1363,6 +1402,20 @@ void Snd_StreamFill(int param_1,int param_2,uint param_3)
   return;
 }
 
+// 0x00153e24  size 0x4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Snd_StreamFill; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Snd_StreamFill_Orphan1(undefined8 param_1,undefined8 param_2,undefined1 *param_3)
+
+{
+  _s_SndVar5 = 0;
+  _s_SndVar6 = 0;
+  *param_3 = 3;
+  return;
+}
+
 // 0x00153e50  size 0x174
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1421,7 +1474,7 @@ void Snd_StreamPlayAll(undefined8 param_1)
   return;
 }
 
-// 0x00153fd0  size 0x274
+// 0x00153fd0  size 0x260
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Snd_StreamUpdate(void)
@@ -1467,7 +1520,7 @@ void Snd_StreamUpdate(void)
       case 6:
         iVar4 = *(int *)(puVar6 + 0x29c) * 0x28;
         DisableIntc(1);
-        _s_SndVar5 = &LAB_00153a50;
+        _s_SndVar5 = Snd_QueueCmd4_Orphan1;
         _s_SndVar6 = &s_Snd_LoadSystemBanks_1 + iVar4;
         IopStrm_Stop(*(undefined4 *)(&s_Snd_LoadSystemBanks_2 + iVar4),
                      *(undefined4 *)(&s_Snd_LoadSystemBanks_3 + iVar4));

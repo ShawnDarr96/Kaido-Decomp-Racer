@@ -241,8 +241,6 @@ void maybe_PageBodyShop_State3_ChangeColourScheme(undefined4 *param_1)
 }
 
 // 0x0025cbd0  size 0x434
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_Engine(int param_1)
 
 {
@@ -334,7 +332,7 @@ void ScrGarage_Draw_Engine(int param_1)
      (bVar2 = UiLayout_UpdateAnimById((UiLayout *)0x4d,1), !bVar2)) {
     *(undefined4 *)(param_1 + 0x60) = 0;
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4d,*(undefined4 *)(&DAT_0032ce90 + unaff_s3_lo * 4),1,0);
   }
   MenuWnd_DrawText(0x4c,0x32,0x980);
@@ -372,9 +370,7 @@ void ScrGarage_Draw_Engine(int param_1)
   return;
 }
 
-// 0x0025d010  size 0x458
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
+// 0x0025d010  size 0x448
 void ScrGarage_Draw_SportsTyres(int param_1)
 
 {
@@ -516,7 +512,7 @@ void ScrGarage_Draw_SportsTyres(int param_1)
   MenuWnd_DrawText(0x60,0x25,uStack_1c);
   MenuWnd_DrawText(0x60,0x26,uStack_14);
   MenuWnd_DrawText(0x4c,0x37,0x9bf);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x60,*(undefined4 *)(&DAT_0032ce70 + iVar11 * 4),1,0);
   }
   iVar10 = UiMgr_FindLayout(0x60);
@@ -525,9 +521,17 @@ void ScrGarage_Draw_SportsTyres(int param_1)
   return;
 }
 
-// 0x0025d480  size 0xea0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+// 0x0025d468  size 0x10
+/* follows ScrGarage_Draw_SportsTyres; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
 
+void ScrGarage_Draw_SportsTyres_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0025d480  size 0xea0
 void ScrGarage_Draw_Reinforcement(int *param_1)
 
 {
@@ -924,7 +928,7 @@ void ScrGarage_Draw_Reinforcement(int *param_1)
       uVar11 = 0x2e0;
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4c,*(undefined4 *)(&DAT_0032ce00 + unaff_s0_lo * 4),1,0);
   }
   MenuWnd_DrawText(0x4c,0x37,*(undefined4 *)(&DAT_0032ce20 + *param_1 * 4));
@@ -1085,7 +1089,6 @@ LAB_0025e244:
 }
 
 // 0x0025e320  size 0x258
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of MenuPage29; on-screen text/callee hint "Reinforcement" (was ScrReinforcement_Enter) */
 
 void maybe_PageBodyShop_State0_Reinforcement(int *param_1)
@@ -1155,7 +1158,7 @@ void maybe_PageBodyShop_State0_Reinforcement(int *param_1)
   }
   MenuWnd_DrawText(0x43,0x1a,0x2a1);
   ScrCareer_Draw_Power(*param_1,1);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x5e,*(undefined4 *)(&DAT_0032cdc0 + *param_1 * 4),1,0);
   }
   iVar3 = UiMgr_FindLayout(0x5e);
@@ -1241,8 +1244,6 @@ void maybe_PageBodyShop_Enter(void)
 }
 
 // 0x0025e760  size 0x37c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_Sell(int *param_1)
 
 {
@@ -1326,7 +1327,7 @@ void ScrGarage_Draw_Sell(int *param_1)
   MenuWnd_DrawNumber(0x4b,0x22,uVar7);
   MenuWnd_DrawText(0x4b,0x26,1);
   MenuWnd_DrawText(0x4b,0x27,2);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4b,*(undefined4 *)(&DAT_0036ec80 + *param_1 * 4),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
@@ -1345,8 +1346,6 @@ void ScrGarage_Draw_Sell(int *param_1)
 }
 
 // 0x0025eae0  size 0xf2c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_Sell_eae0(int param_1)
 
 {
@@ -1662,7 +1661,7 @@ void ScrGarage_Draw_Sell_eae0(int param_1)
   uVar14 = Profile_Get(0);
   lVar18 = Garage_FindCar(uVar14);
   MenuWnd_DrawCursor(lVar18 != 1);
-  if ((*_g_MenuInput == 1) && (*(int *)(param_1 + 0x84) != 0)) {
+  if ((*g_MenuInput == 1) && (*(int *)(param_1 + 0x84) != 0)) {
     MenuWnd_SetItemState(0xc,*(undefined4 *)(&DAT_0032d230 + *(int *)(param_1 + 0x1c) * 4),0,0);
   }
   MenuWnd_SetItemState(0x49,*(undefined4 *)(&DAT_0032d250 + *(int *)(param_1 + 0x18) * 4),0,1);
@@ -1907,8 +1906,6 @@ void ScrGarage_Draw_Sell_fa10(int param_1)
 }
 
 // 0x0025fc30  size 0x654
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ScrGarage_Draw_Sell_fc30(int *param_1)
 
 {
@@ -2082,7 +2079,7 @@ void ScrGarage_Draw_Sell_fc30(int *param_1)
   MenuWnd_DrawLabel(0x47,0x1b,0x3a,param_1[param_1[2] + 0xd4]);
   MenuWnd_DrawText(0x48,0xc,1);
   MenuWnd_DrawText(0x48,0xd,2);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x48,*(undefined4 *)(*param_1 * 4 + 0x36ec78),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);

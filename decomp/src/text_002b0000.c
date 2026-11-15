@@ -333,7 +333,7 @@ void maybe_SeqSrc_Open(undefined8 param_1,undefined8 param_2)
   return;
 }
 
-// 0x002b0d20  size 0x238
+// 0x002b0d20  size 0x230
 undefined4 maybe_SeqGen_ScanTrack(undefined8 param_1,long param_2)
 
 {
@@ -392,6 +392,16 @@ undefined4 maybe_SeqGen_ScanTrack(undefined8 param_1,long param_2)
   *(undefined1 *)(iVar6 + 0x7c) = 0;
   *(undefined4 *)(iVar6 + 0x78) = 0;
   return 1;
+}
+
+// 0x002b0f58  size 0x8
+/* follows SeqGen_ScanTrack; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void SeqGen_ScanTrack_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x002b0f60  size 0x350

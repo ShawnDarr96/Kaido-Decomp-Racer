@@ -240,7 +240,7 @@ undefined8 main(void)
   return 0;
 }
 
-// 0x00170810  size 0x3b0
+// 0x00170810  size 0x398
 /* WARNING: Removing unreachable block (ram,0x00170b28) */
 /* WARNING: Removing unreachable block (ram,0x00170b5c) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
@@ -339,6 +339,16 @@ undefined8 lgDevInit(void)
     }
   }
   return 0;
+}
+
+// 0x00170bc0  size 0x18
+/* follows lgDevInit; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void lgDevInit_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00170bd8  size 0x54
@@ -544,7 +554,7 @@ undefined4 lgDevRead(undefined4 param_1,undefined4 param_2,long param_3)
   return uVar2;
 }
 
-// 0x001711a0  size 0x1c0
+// 0x001711a0  size 0x1b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *param_4)
@@ -609,7 +619,17 @@ undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *para
   return 0x80000004;
 }
 
-// 0x00171370  size 0x17c
+// 0x00171360  size 0xc
+/* follows lgDevReadMulti; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void lgDevReadMulti_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00171370  size 0x170
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 lgDevDownloadForceEffect(undefined4 param_1,long param_2,long param_3)
@@ -651,7 +671,17 @@ undefined4 lgDevDownloadForceEffect(undefined4 param_1,long param_2,long param_3
   return 0x80000004;
 }
 
-// 0x001714f8  size 0x164
+// 0x001714ec  size 0xc
+/* follows lgDevDownloadForceEffect; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void lgDevDownloadForceEffect_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001714f8  size 0x15c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 lgDevUpdateForceEffect(int param_1,long param_2)
@@ -691,6 +721,16 @@ undefined4 lgDevUpdateForceEffect(int param_1,long param_2)
   return 0x80000004;
 }
 
+// 0x0017165c  size 0x8
+/* follows lgDevUpdateForceEffect; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void lgDevUpdateForceEffect_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00171668  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -714,7 +754,7 @@ undefined4 lgDevStartForceEffect(undefined4 param_1)
   return uVar1;
 }
 
-// 0x00171718  size 0x128
+// 0x00171718  size 0x120
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
@@ -756,6 +796,16 @@ undefined4 lgDevStartForceEffectMulti(int param_1,undefined4 *param_2)
   return 0x80000004;
 }
 
+// 0x00171840  size 0x8
+/* follows lgDevStartForceEffectMulti; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void lgDevStartForceEffectMulti_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00171848  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -779,7 +829,7 @@ undefined4 lgDevStopForceEffect(undefined4 param_1)
   return uVar1;
 }
 
-// 0x001718f8  size 0x128
+// 0x001718f8  size 0x120
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
@@ -819,6 +869,16 @@ undefined4 lgDevStopForceEffectMulti(int param_1,undefined4 *param_2)
     printf(0x362d80,param_1);
   }
   return 0x80000004;
+}
+
+// 0x00171a20  size 0x8
+/* follows lgDevStopForceEffectMulti; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void lgDevStopForceEffectMulti_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00171a28  size 0xac
@@ -888,7 +948,7 @@ undefined4 lgDevPrepareForIOPReboot(void)
   return uVar1;
 }
 
-// 0x00171c40  size 0x84
+// 0x00171c40  size 0x80
 /* sceSifCheckStatRpc; 25 callers */
 
 long lgDev_WaitAsync(long param_1,long param_2)
@@ -912,6 +972,79 @@ long lgDev_WaitAsync(long param_1,long param_2)
     }
   }
   return lVar1;
+}
+
+// 0x00171cc4  size 0x4c
+/* follows lgDev_WaitAsync; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void lgDev_WaitAsync_Orphan1(int param_1)
+
+{
+  undefined8 *puVar1;
+  undefined8 uVar2;
+  
+  puVar1 = *(undefined8 **)(param_1 + 0x240);
+  uVar2 = *(undefined8 *)(param_1 + 0x7c);
+  *puVar1 = *(undefined8 *)(param_1 + 0x74);
+  puVar1[1] = uVar2;
+  DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | *(uint *)(param_1 + 0x60);
+  return;
+}
+
+// 0x00171d10  size 0x74
+/* address loaded as a constant in lgDevAReadMulti (callback / handler) */
+
+void lgDevAReadMulti_Callback1(int param_1)
+
+{
+  undefined8 *puVar1;
+  undefined8 *puVar2;
+  int iVar3;
+  undefined8 uVar4;
+  
+  iVar3 = 0;
+  if (0 < *(int *)(param_1 + 0x5c)) {
+    puVar2 = *(undefined8 **)(param_1 + 0x240);
+    puVar1 = (undefined8 *)(param_1 + 0x74);
+    do {
+      uVar4 = puVar1[1];
+      *puVar2 = *puVar1;
+      iVar3 = iVar3 + 1;
+      puVar2[1] = uVar4;
+      puVar1 = puVar1 + 2;
+      puVar2 = puVar2 + 2;
+    } while (iVar3 < *(int *)(param_1 + 0x5c));
+  }
+  DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | *(uint *)(param_1 + 0x60);
+  return;
+}
+
+// 0x00171d88  size 0x24
+/* address loaded as a constant in lgDevAUpdateForceEffect (callback / handler) */
+
+void lgDevAUpdateForceEffect_Callback1(int param_1)
+
+{
+  DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | *(uint *)(param_1 + 0x60);
+  return;
+}
+
+// 0x00171db0  size 0x3c
+/* address loaded as a constant in lgDevAEnumHint (callback / handler) */
+
+void lgDevAEnumHint_Callback1(int param_1)
+
+{
+  bool bVar1;
+  
+  DAT_0030ae44 = DAT_0030ae44 & 0xfffffffd | *(uint *)(param_1 + 0x60);
+  bVar1 = DAT_0030ae44 == 1;
+  **(uint **)(param_1 + 0x244) = DAT_0030ae44;
+  if (bVar1) {
+    DAT_0030ae44 = 0;
+  }
+  return;
 }
 
 // 0x00171df0  size 0xa8
@@ -968,7 +1101,7 @@ undefined8 lgDevARead(undefined4 param_1,undefined4 param_2,long param_3)
   return uVar1;
 }
 
-// 0x00171f68  size 0x160
+// 0x00171f68  size 0x150
 undefined8 lgDevAReadMulti(int param_1,long param_2,long param_3,long param_4)
 
 {
@@ -1018,7 +1151,17 @@ undefined8 lgDevAReadMulti(int param_1,long param_2,long param_3,long param_4)
   return 0xffffffff80000004;
 }
 
-// 0x001720d8  size 0x144
+// 0x001720c8  size 0x10
+/* follows lgDevAReadMulti; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void lgDevAReadMulti_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001720d8  size 0x13c
 undefined8 lgDevAUpdateForceEffect(int param_1,long param_2)
 
 {
@@ -1055,6 +1198,16 @@ undefined8 lgDevAUpdateForceEffect(int param_1,long param_2)
   return 0xffffffff80000004;
 }
 
+// 0x0017221c  size 0x8
+/* follows lgDevAUpdateForceEffect; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void lgDevAUpdateForceEffect_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00172228  size 0x8c
 undefined8 lgDevAStartForceEffect(undefined4 param_1)
 
@@ -1075,7 +1228,7 @@ undefined8 lgDevAStartForceEffect(undefined4 param_1)
   return uVar2;
 }
 
-// 0x001722b8  size 0x110
+// 0x001722b8  size 0x104
 undefined8 lgDevAStartForceEffectMulti(int param_1,undefined4 *param_2)
 
 {
@@ -1118,6 +1271,16 @@ undefined8 lgDevAStartForceEffectMulti(int param_1,undefined4 *param_2)
   return uVar3;
 }
 
+// 0x001723c8  size 0xc
+/* follows lgDevAStartForceEffectMulti; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void lgDevAStartForceEffectMulti_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001723d8  size 0x8c
 undefined8 lgDevAStopForceEffect(undefined4 param_1)
 
@@ -1138,7 +1301,7 @@ undefined8 lgDevAStopForceEffect(undefined4 param_1)
   return uVar2;
 }
 
-// 0x00172468  size 0x110
+// 0x00172468  size 0x104
 undefined8 lgDevAStopForceEffectMulti(int param_1,undefined4 *param_2)
 
 {
@@ -1179,6 +1342,16 @@ undefined8 lgDevAStopForceEffectMulti(int param_1,undefined4 *param_2)
     uVar3 = 0xffffffff80000008;
   }
   return uVar3;
+}
+
+// 0x00172578  size 0xc
+/* follows lgDevAStopForceEffectMulti; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void lgDevAStopForceEffectMulti_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00172590  size 0x1c
@@ -1323,7 +1496,7 @@ int SaveSlot_BuildPath(int param_1,undefined8 param_2,long param_3,long param_4)
   return iVar1;
 }
 
-// 0x001728a0  size 0x268
+// 0x001728a0  size 0x25c
 int SaveSlot_ParseDirectory(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
@@ -1410,7 +1583,17 @@ int SaveSlot_ParseDirectory(undefined8 param_1,undefined8 param_2,int param_3)
   return iVar8;
 }
 
-// 0x00172b20  size 0x1b4
+// 0x00172b08  size 0xc
+/* follows SaveSlot_ParseDirectory; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void SaveSlot_ParseDirectory_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00172b20  size 0x1ac
 int SaveSlot_ParseFileList(undefined8 param_1,int param_2)
 
 {
@@ -1462,6 +1645,16 @@ int SaveSlot_ParseFileList(undefined8 param_1,int param_2)
     }
   }
   return iVar7;
+}
+
+// 0x00172cd4  size 0x8
+/* follows SaveSlot_ParseFileList; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void SaveSlot_ParseFileList_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00172ce0  size 0x100

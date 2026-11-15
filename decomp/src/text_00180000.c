@@ -628,7 +628,7 @@ LAB_001806c0:
   return uVar29;
 }
 
-// 0x00180fa0  size 0x1c28
+// 0x00180fa0  size 0x1c20
 /* 7 callers; builds the whole grid */
 
 undefined4 RaceSetup_Prepare(void)
@@ -2037,6 +2037,16 @@ LAB_00181390:
     }
   }
   return uStack_1220;
+}
+
+// 0x00182bc8  size 0x8
+/* follows RaceSetup_Prepare; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceSetup_Prepare_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00182bd0  size 0x40

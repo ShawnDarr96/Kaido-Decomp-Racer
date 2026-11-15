@@ -2,7 +2,17 @@
 // Address range 0x001e4000 - 0x001e8000
 #include "ghidra_types.h"
 
-// 0x001e43b0  size 0x4d4
+// 0x001e4398  size 0x14
+/* follows RaceCam_UpdateReplay; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void RaceCam_UpdateReplay_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x001e43b0  size 0x4c4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceCam_UpdateFree(int param_1)
@@ -146,6 +156,16 @@ void RaceCam_UpdateFree(int param_1)
       pbVar7 = pbVar7 + 8;
     } while (uVar8 < 3);
   }
+  return;
+}
+
+// 0x001e4884  size 0x10
+/* follows RaceCam_UpdateFree; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void RaceCam_UpdateFree_Orphan1(void)
+
+{
   return;
 }
 
@@ -533,7 +553,7 @@ void Race_SetupCarFlags(undefined8 param_1,uint *param_2,undefined8 param_3,long
   return;
 }
 
-// 0x001e54c0  size 0x208
+// 0x001e54c0  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Race_LoadCourse(undefined4 *param_1,long param_2)
@@ -611,6 +631,16 @@ void Race_LoadCourse(undefined4 *param_1,long param_2)
     puVar7 = puVar7 + 1;
   } while (index < 3);
   Skid_ClearAll();
+  return;
+}
+
+// 0x001e56c8  size 0x8
+/* follows Race_LoadCourse; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Race_LoadCourse_Orphan1(void)
+
+{
   return;
 }
 
@@ -1245,17 +1275,17 @@ void RaceHud_Task(undefined8 param_1)
       lVar3 = RaceScene_IsFlag10();
       if (lVar3 != 0) {
         RaceHud_SetFlags(4);
-        if (*_g_MenuInput != 1) {
-          *_g_MenuInput = 1;
+        if (*g_MenuInput != 1) {
+          *g_MenuInput = 1;
         }
-        uVar5 = _g_MenuInput[2];
-        if ((_g_MenuInput[4] & uVar5) == 0) {
+        uVar5 = g_MenuInput[2];
+        if ((g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*_g_MenuInput != 1) {
+        else if (*g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (((uVar5 == 0x10) && (lVar3 = RaceScene_IsPaused(), lVar3 == 0)) &&

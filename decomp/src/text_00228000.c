@@ -2,9 +2,17 @@
 // Address range 0x00228000 - 0x0022c000
 #include "ghidra_types.h"
 
-// 0x0022a0c0  size 0x1334
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+// 0x0022a094  size 0x24
+/* follows ScrCareer_Draw_Mail_7e70; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
 
+void ScrCareer_Draw_Mail_7e70_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x0022a0c0  size 0x131c
 void ScrCareer_Draw_Mail_a0c0(int *param_1)
 
 {
@@ -309,7 +317,7 @@ LAB_0022a14c:
     }
     MenuWnd_SetItemVisible(0);
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0xaf,*(undefined4 *)(&DAT_0036e990 + *param_1 * 4),0,0);
   }
   MenuWnd_DrawText(0xae,1,0x434);
@@ -541,6 +549,16 @@ LAB_0022a14c:
   return;
 }
 
+// 0x0022b3f4  size 0x18
+/* follows ScrCareer_Draw_Mail_a0c0; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_Mail_a0c0_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0022b410  size 0x14
 /* page identified from its states' on-screen text (N154) */
 
@@ -584,8 +602,6 @@ void maybe_PageMail_Enter(void)
 }
 
 // 0x0022b520  size 0x3c8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_AreYouSure(int *param_1)
 
 {
@@ -672,7 +688,7 @@ void MenuScr_Draw_AreYouSure(int *param_1)
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState(0x34,*(undefined4 *)(*param_1 * 4 + 0x36e9d0),1,0);
   }
   MenuWnd_DrawText(0x34,0x1b,1);
@@ -715,8 +731,6 @@ void MenuScr_Draw_AreYouSure(int *param_1)
 }
 
 // 0x0022b8f0  size 0x8f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScr_Draw_PleaseEnterAn(int param_1)
 
 {
@@ -947,7 +961,7 @@ void MenuScr_Draw_PleaseEnterAn(int param_1)
       }
     }
   }
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     UiLayout_UpdateAnimById((UiLayout *)0x33,5);
     UiLayout_UpdateAnimById((UiLayout *)0x33,6);
   }
@@ -975,7 +989,7 @@ void MenuScr_Draw_PleaseEnterAn(int param_1)
   if (DAT_0032adf0 != -1) {
     piVar15 = &DAT_0032adf0;
     do {
-      if ((iVar8 == *(int *)(param_1 + 4) + *(int *)(param_1 + 8) * 0xd) && (*_g_MenuInput == 1)) {
+      if ((iVar8 == *(int *)(param_1 + 4) + *(int *)(param_1 + 8) * 0xd) && (*g_MenuInput == 1)) {
         iVar10 = UiMgr_FindLayout(0x33);
         UiElem_SetPropFloat(&g_UiMgr->slots[iVar10].layout,(long)*piVar15,8,extraout_a3_lo);
       }
@@ -1031,7 +1045,7 @@ void MenuScr_Draw_PleaseEnterAn(int param_1)
     }
     UiElem_GetRect(pUVar18,auStack_40,(long)*(int *)(&DAT_0032ad90 + *(int *)(param_1 + 0xc) * 4));
     UiText_DrawPlayerName(auStack_40,acStack_8,0);
-    if (*_g_MenuInput == 1) {
+    if (*g_MenuInput == 1) {
       UiElem_GetRect(pUVar18,auStack_40,(long)*(int *)(&DAT_0032adc0 + *(int *)(param_1 + 0xc) * 4))
       ;
       uStack_2c = 2;

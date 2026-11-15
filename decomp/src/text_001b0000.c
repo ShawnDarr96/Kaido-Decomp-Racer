@@ -502,7 +502,7 @@ void Rival_GetTeamRecord(undefined4 *param_1,undefined8 param_2)
   return;
 }
 
-// 0x001b0f00  size 0x1218
+// 0x001b0f00  size 0x120c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 int Rival_SelectOpponents(int *param_1,long param_2)
@@ -1290,6 +1290,16 @@ LAB_001b20e0:
     iStack_c30 = 0;
   }
   return iStack_c30;
+}
+
+// 0x001b2118  size 0xc
+/* follows Rival_SelectOpponents; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Rival_SelectOpponents_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x001b2130  size 0x468
@@ -2556,7 +2566,7 @@ void Career_UpdateRivalStatus(int param_1,long param_2,undefined4 *param_3)
   return;
 }
 
-// 0x001b3fe0  size 0x288
+// 0x001b3fe0  size 0x280
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* reads the real-time clock */
 

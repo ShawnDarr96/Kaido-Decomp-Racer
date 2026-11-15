@@ -55,12 +55,15 @@ address,name,signature,source,comment
 0x00102c20,Msl_GetField_4,,game-module,
 0x00102c30,maybe_std_shared_count_dtor,,f2,
 0x00102cb0,maybe_std_shared_count_ctor,,f2,
+0x00102d1c,std_shared_count_ctor_Orphan1,,game,"follows std_shared_count_ctor; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00102d40,std_ios_base_Init_ctor,,f2,constructs cin/cout/cerr/clog once
+0x00102fb0,std_ios_base_Init_ctor_Orphan1,,game,"follows std_ios_base_Init_ctor; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00102ff0,maybe_std_stdio_filebuf_dtor,,f2,
 0x00103050,std_ios_base_Init_dtor,,f2,
 0x00103150,maybe_std_ostream_dtor,,f2,
 0x001031f0,maybe_std_istream_dtor,,f2,
 0x00103290,maybe_std_wios_Init_ctor,,f2,wide-char streams
+0x00103500,std_wios_Init_ctor_Orphan1,,game,"follows std_wios_Init_ctor; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00103540,maybe_std_stdio_wfilebuf_dtor,,f2,
 0x001035a0,maybe_std_wios_Init_dtor,,f2,
 0x001036a0,maybe_std_wostream_dtor,,f2,
@@ -94,8 +97,10 @@ address,name,signature,source,comment
 0x00104100,maybe_std_istream_ctor,,f2,
 0x001041b0,maybe_std_wistream_ctor,,f2,
 0x00104260,maybe_std_ostream_flush,,f2,"""ios_base failure in clear"""
+0x001043e8,std_ostream_flush_Orphan1,,game,"follows std_ostream_flush; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00104430,maybe_std_ostream_ctor,,f2,
 0x001044e0,maybe_std_wostream_flush,,f2,
+0x00104668,std_wostream_flush_Orphan1,,game,"follows std_wostream_flush; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001046b0,maybe_std_wostream_ctor,,f2,
 0x00104760,maybe_std_filebuf_sync,,f2,
 0x00104820,maybe_std_filebuf_seekpos,,f2,
@@ -122,7 +127,9 @@ address,name,signature,source,comment
 0x001061d0,maybe_std_filebuf_getmb,,f2,
 0x001062f0,maybe_std_filebuf_putmb,,f2,
 0x00106420,maybe_std_ostream_sentry_ctor,,f1,
+0x00106644,std_ostream_sentry_ctor_Tail1,,game,code jumped/branched into from std_ostream_sentry_ctor; shared tail
 0x00106700,maybe_std_wostream_sentry_ctor,,f1,
+0x00106924,std_wostream_sentry_ctor_Tail1,,game,code jumped/branched into from std_wostream_sentry_ctor; shared tail
 0x001069e0,maybe_VBaseDtorThunkA,,game,
 0x001069f0,maybe_VBaseDtorThunkB,,game,
 0x00106a00,maybe_VBaseDtorThunkC,,game,
@@ -135,6 +142,7 @@ address,name,signature,source,comment
 0x001070c0,Msl_GetField_4_70c0,,game-module,
 0x001070d0,maybe_std_string_assign,,f1,
 0x00107120,std_string_reserve,,f1,"""basic_string::reserve length_error"""
+0x001073a0,std_string_reserve_Orphan1,,game,"follows std_string_reserve; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001073d8,sceGsResetGraph,,f1,"(mode, inter, omode, ffmode); GS_CSR reset"
 0x00107568,sceGsGetGParam,,f1,
 0x00107578,sceGsResetPath,,f1,"VIF1 FBRST, VU1 reset"
@@ -155,6 +163,23 @@ address,name,signature,source,comment
 0x00108fb0,maybe_Mpeg_FormPredictions,,f1,"""invalid motion_type"""
 0x001096b8,maybe_Mpeg_FormPrediction,,f1,
 0x00109ad8,maybe_Mpeg_AddBlocks,,f1,"""intra && skip MB"""
+0x00109db0,Mpeg_AddBlocks_Orphan1,,game,"follows Mpeg_AddBlocks; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00109e08,Mpeg_AddBlocks_Orphan2,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109db0_Orphan1)
+0x00109ec0,Mpeg_AddBlocks_Orphan3,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109e08_Orphan1)
+0x00109f90,Mpeg_AddBlocks_Orphan4,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109ec0_Orphan1)
+0x0010a040,Mpeg_AddBlocks_Orphan5,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_00109f90_Orphan1)
+0x0010a0f8,Mpeg_AddBlocks_Orphan6,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a040_Orphan1)
+0x0010a1f0,Mpeg_AddBlocks_Orphan7,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a0f8_Orphan1)
+0x0010a2f0,Mpeg_AddBlocks_Orphan8,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a1f0_Orphan1)
+0x0010a390,Mpeg_AddBlocks_Orphan9,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a2f0_Orphan1)
+0x0010a440,Mpeg_AddBlocks_Orphan10,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a390_Orphan1)
+0x0010a520,Mpeg_AddBlocks_Orphan11,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a440_Orphan1)
+0x0010a608,Mpeg_AddBlocks_Orphan12,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a520_Orphan1)
+0x0010a6e0,Mpeg_AddBlocks_Orphan13,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a608_Orphan1)
+0x0010a7b0,Mpeg_AddBlocks_Orphan14,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a6e0_Orphan1)
+0x0010a8d0,Mpeg_AddBlocks_Orphan15,,game,follows Mpeg_AddBlocks_Orphan1; unreferenced except as noted (was FUN_0010a7b0_Orphan1)
+0x0010a9e8,Mpeg_AddBlocks_Tail1,,game,code jumped/branched into from Mpeg_AddBlocks; shared tail
+0x0010aa48,Mpeg_AddBlocks_Tail2,,game,code jumped/branched into from Mpeg_AddBlocks; shared tail
 0x0010aaa8,Ipu_SetCtrlBit23,,game,N153 confirmed: REG_IPU_CTRL bit 23
 0x0010aad0,maybe_Mpeg_DecodeBDEC,,f1,"""Error code detected(BDEC)"""
 0x0010ad68,Mpeg_GetBits3,,game,N153 confirmed
@@ -192,13 +217,16 @@ address,name,signature,source,comment
 0x0010d170,maybe_Mpeg_ReorderFrames,,f1,
 0x0010d428,maybe_Mpeg_CheckBufferSize,,f1,"""Too small buffer size for %dx%d picture"""
 0x0010d4c8,maybe_Mpeg_SetupCscDma,,f1,
+0x0010d758,Mpeg_OutputFrame_Tail1,,game,code jumped/branched into from Mpeg_OutputFrame; shared tail
 0x0010d780,maybe_Mpeg_ComputeTimestamp,,f1,
 0x0010d8f8,maybe_Mpeg_OutputFrame,,f1,
 0x0010da08,maybe_Mpeg_OutputField,,f1,
 0x0010dbc0,maybe_Mpeg_KickMotionComp,,f1,
 0x0010dd30,maybe_Ipu_DmaFromStart,,f1,
 0x0010ddb8,maybe_Ipu_CscLoop,,f1,
+0x0010dee0,Ipu_CscWithHandler_Callback1,,game,address loaded as a constant in Ipu_CscWithHandler (callback / handler)
 0x0010e028,maybe_Ipu_CscWithHandler,,f1,"""CSC handler error"""
+0x0010e1e8,Ipu_ConvertPicture_Callback1,,game,address loaded as a constant in Ipu_ConvertPicture (callback / handler)
 0x0010e2c0,maybe_Ipu_ConvertPicture,,f1,
 0x0010e548,maybe_Bs_Init,,f1,
 0x0010e580,Bs_ShowBits,,game,N153 confirmed: top n bits of the 64-bit window
@@ -218,9 +246,13 @@ address,name,signature,source,comment
 0x0010f578,maybe_sceMpegInit,,f1,
 0x0010f628,sceMpegCreate,,f1,"""The size of work area is too small"""
 0x0010f838,maybe_sceMpegDelete,,f1,
+0x0010f840,sceMpegDelete_Orphan1,,game,"follows sceMpegDelete; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0010f880,maybe_sceMpegGetPictureRAW8,,f1,
 0x0010f8c8,maybe_sceMpegGetPictureRAW8xy,,f1,
 0x0010f910,maybe_sceMpegGetPictureRGB32,,f1,
+0x0010f960,sceMpegGetPictureRGB32_Orphan1,,game,"follows sceMpegGetPictureRGB32; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0010f970,sceMpegGetPictureRGB32_Orphan2,,game,follows sceMpegGetPictureRGB32_Orphan1; unreferenced except as noted (was FUN_0010f960_Orphan1)
+0x0010f988,sceMpegGetPictureRGB32_Orphan3,,game,follows sceMpegGetPictureRGB32_Orphan1; unreferenced except as noted (was FUN_0010f970_Orphan1)
 0x0010f9a8,maybe_sceMpegGetDecodeMode,,f1,
 0x0010f9b8,maybe_sceMpegIsEnd,,f1,
 0x0010f9c8,maybe_sceMpegReset,,f1,
@@ -228,11 +260,22 @@ address,name,signature,source,comment
 0x0010fa80,sceMpegAddCallback,,f1,"(mp, type, func, data) into 12-byte table"
 0x0010fab8,maybe_Mpeg_DispatchCallback,,f1,
 0x0010fb30,maybe_Mpeg_CallbackBackground,,f1,
+0x0010fb58,Mpeg_CallbackBackground_Orphan1,,game,"follows Mpeg_CallbackBackground; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0010fb70,Mpeg_CallbackBackground_Orphan2,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb58_Orphan1)
+0x0010fb88,Mpeg_CallbackBackground_Orphan3,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb70_Orphan1)
+0x0010fb98,Mpeg_CallbackBackground_Orphan4,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb88_Orphan1)
+0x0010fba8,Mpeg_CallbackBackground_Orphan5,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fb98_Orphan1)
+0x0010fbb8,Mpeg_CallbackBackground_Orphan6,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fba8_Orphan1)
+0x0010fbc8,Mpeg_CallbackBackground_Orphan7,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fbb8_Orphan1)
+0x0010fbd8,Mpeg_CallbackBackground_Orphan8,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fbc8_Orphan1)
+0x0010fbe8,Mpeg_CallbackBackground_Orphan9,,game,follows Mpeg_CallbackBackground_Orphan1; unreferenced except as noted (was FUN_0010fbd8_Orphan1)
 0x0010fc00,Ringbuf_Init,,game,N153 confirmed: sets base/size/read/write
 0x0010fc18,Ringbuf_Rewind,,game,N153 confirmed: write = read
 0x0010fc28,Ringbuf_Commit,,game,N153 confirmed: read = write
 0x0010fc38,maybe_Mpeg_WorkAlloc,,f1,"""work area size is too small"""
+0x0010fca8,Mpeg_WorkAlloc_Orphan1,,game,"follows Mpeg_WorkAlloc; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0010fcc0,sceMpegGetPicture,,f1,"""sceMpegGetPicture was aborted"""
+0x0010fe44,sceMpegGetPicture_Orphan1,,game,"follows sceMpegGetPicture; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0010fe78,maybe_Mpeg_GetPictureField,,f1,
 0x0010ff98,maybe_Mpeg_GetPictureDispatch,,f1,
 0x0010ffe0,maybe_Mpeg_GetPictureFrame,,f1,
@@ -255,6 +298,7 @@ address,name,signature,source,comment
 0x00110c98,ScrMpeg_PictureDisplayExtension_Enter,,game-screen,screen record 0x35ed78
 0x00110ca8,maybe_Mpeg_Error_Wrap,,game-module,
 0x00110cb8,maybe_Mpeg_Error_Wrap2,,game-module,
+0x00110cc8,Mpeg_Error_Wrap2_Orphan1,,game,"follows Mpeg_Error_Wrap2; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00110cf0,maybe_sceMpegResume,,f1,
 0x00110d18,maybe_Dmac_SuspendCh4,,f1,
 0x00110d90,maybe_Dmac_SuspendCh3,,f1,
@@ -263,10 +307,22 @@ address,name,signature,source,comment
 0x00111040,maybe_Ipu_WaitIdle,,f1,
 0x001110a8,maybe_Dmac_SuspendCh3B,,f1,
 0x00111120,maybe_Ipu_Reset,,f1,
+0x00111380,RFU000_FullReset,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111390,ResetEE,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x001113a0,SetGsCrt,,analysis,
+0x001113b0,RFU003,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x001113c0,_Exit,,analysis,
+0x001113d0,RFU005_ResumeIntrDispatch,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x001113e0,_LoadExecPS2,,analysis,
+0x001113f0,_ExecPS2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111400,RFU008_ResumeT3IntrDispatch,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111410,RFU009,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111420,AddSbusIntcHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111430,RemoveSbusIntcHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111440,Interrupt2Iop,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111450,SetVTLBRefillHandler,,analysis,
+0x00111460,SetVCommonHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111470,SetVInterruptHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111480,AddIntcHandler,,analysis,
 0x00111490,AddIntcHandler,,analysis,
 0x001114a0,RemoveIntcHandler,,analysis,
@@ -277,43 +333,106 @@ address,name,signature,source,comment
 0x001114f0,_DisableIntc,,analysis,
 0x00111500,_EnableDmac,,analysis,
 0x00111510,_DisableDmac,,analysis,
+0x00111520,SetAlarm,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111530,ReleaseAlarm,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111540,_iEnableIntc,,analysis,
 0x00111550,_iDisableIntc,,analysis,
 0x00111560,_iEnableDmac,,analysis,
 0x00111570,_iDisableDmac,,analysis,
+0x00111580,iSetAlarm,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111590,iReleaseAlarm,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x001115a0,CreateThread,,analysis,
 0x001115b0,DeleteThread,,analysis,
 0x001115c0,_StartThread,,analysis,
 0x001115d0,ExitThread,,analysis,
 0x001115e0,ExitDeleteThread,,analysis,
 0x001115f0,TerminateThread,,analysis,
+0x00111600,iTerminateThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111610,DisableDispatchThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111620,EnableDispatchThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111630,ChangeThreadPriority,,analysis,
+0x00111640,iChangeThreadPriority,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111650,RotateThreadReadyQueue,,analysis,
+0x00111660,_iRotateThreadReadyQueue,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111670,ReleaseWaitThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111680,iReleaseWaitThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111690,GetThreadId,,analysis,
 0x001116a0,ReferThreadStatus,,analysis,
 0x001116b0,iReferThreadStatus,,analysis,
 0x001116c0,SleepThread,,analysis,
 0x001116d0,WakeupThread,,analysis,
 0x001116e0,_iWakeupThread,,analysis,
+0x001116f0,CancelWakeupThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111700,iCancelWakeupThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111710,SuspendThread,,analysis,
 0x00111720,_iSuspendThread,,analysis,
+0x00111730,ResumeThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111740,iResumeThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111750,JoinThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111760,RFU060_SetupThread,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111770,RFU061_SetupHeap,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111780,EndOfHeap,,analysis,
+0x00111790,RFU063,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x001117a0,CreateSema,,analysis,
 0x001117b0,DeleteSema,,analysis,
 0x001117c0,SignalSema,,analysis,
 0x001117d0,iSignalSema,,analysis,
 0x001117e0,WaitSema,,analysis,
 0x001117f0,PollSema,,analysis,
+0x00111800,iPollSema,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111810,ReferSemaStatus,,analysis,
 0x00111820,iReferSemaStatus,,analysis,
+0x00111830,RFU073,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111840,SetOsdConfigParam,,analysis,
 0x00111850,GetOsdConfigParam,,analysis,
+0x00111860,GetGsHParam,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111870,GetGsVParam,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111880,SetGsHParam,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111890,SetGsVParam,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001118a0,RFU080_CreateEventFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001118b0,RFU081_DeleteEventFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001118c0,RFU082_SetEventFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001118d0,RFU083_iSetEventFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001118e0,RFU084_ClearEventFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001118f0,RFU085_iClearEventFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111900,RFU086_WaitEvnetFlag_copy2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111910,RFU087_PollEvnetFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111920,RFU088_iPollEvnetFlag,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111930,RFU089_ReferEventFlagStatus,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111940,RFU090_iReferEventFlagStatus,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111950,RFU091_copy4,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111960,EnableIntcHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111970,iEnableIntcHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111980,DisableIntcHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111990,iDisableIntcHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001119a0,EnableDmacHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001119b0,iEnableDmacHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001119c0,DisableDmacHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001119d0,iDisableDmacHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001119e0,KSeg0,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x001119f0,EnableCache,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111a00,DisableCache,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111a10,GetCop0,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111a20,FlushCache,,analysis,
+0x00111a30,CpuConfig,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111a40,iGetCop0,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111a50,iFlushCache,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111a60,iCpuConfig,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111a70,sceSifStopDma,,analysis,
+0x00111a80,SetCPUTimerHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111a90,SetCPUTimer,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111aa0,SetOsdConfigParam2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111ab0,GetOsdConfigParam2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111ac0,GsGetIMR,,analysis,
+0x00111ad0,iGsGetIMR,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111ae0,GsPutIMR,,analysis,
+0x00111af0,iGsPutIMR,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111b00,SetPgifHandler,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111b10,SetVSyncFlag,,analysis,
+0x00111b20,RFU116_SetSyscall,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111b30,_print,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111b40,sceSifDmaStat,,analysis,
+0x00111b50,isceSifDmaStat,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111b60,sceSifSetDma,,analysis,
 0x00111b70,isceSifSetDma,,analysis,
 0x00111b80,sceSifSetDChain,,analysis,
@@ -322,6 +441,8 @@ address,name,signature,source,comment
 0x00111bb0,sceSifGetReg,,analysis,
 0x00111bc0,_ExecOSD,,analysis,
 0x00111bd0,Deci2Call,,analysis,
+0x00111be0,PSMode,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x00111bf0,MachineType,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x00111c00,GetMemorySize,,analysis,
 0x00111c10,_InitTLB,,analysis,
 0x00111c20,maybe__kernl_ResetTtyFlag,,f1,
@@ -331,10 +452,12 @@ address,name,signature,source,comment
 0x00111de8,_read,,f1,fd 0 -> TTY
 0x00111e60,_close,,f1,sets errno EIO
 0x00111e88,maybe__getpid,,f1,
+0x00111e90,_getpid_Orphan1,,game,"follows _getpid; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00111e98,maybe__kill,,f1,
 0x00111ea0,_sbrk,,f1,EndOfHeap
 0x00111f50,maybe__isatty,,f1,
 0x00111f58,_fstat,,f1,st_mode = S_IFCHR
+0x00111f70,_getpid_r_Tail1,,game,code jumped/branched into from _getpid_r; shared tail
 0x00111f78,maybe__exit_hook,,f1,
 0x00111fa0,_lseek,,f1,EIO
 0x00111fc8,_open,,f1,EIO
@@ -342,6 +465,7 @@ address,name,signature,source,comment
 0x00112098,SyncDCache,,f1,"(start, end)"
 0x00112130,maybe__InvalidDCacheLines,,f1,
 0x001121d8,InvalidDCache,,f1,
+0x00112258,InvalidDCache_Orphan1,,game,"follows InvalidDCache; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00112280,DisableIntc,,f1,
 0x001122e8,EnableIntc,,f1,
 0x00112350,DisableDmac,,f1,
@@ -365,6 +489,7 @@ address,name,signature,source,comment
 0x001129e8,maybe_sceDeci2ExLock,,f1,
 0x00112a10,sceDeci2ExRecv,,f1,
 0x00112a48,sceDeci2ExSend,,f1,
+0x00112a80,sceDeci2ExSend_Orphan1,,game,"follows sceDeci2ExSend; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00112ab0,maybe_sceDeci2ExUnLock,,f1,
 0x00112ad8,maybe_sceDeci2ExPoll,,f1,
 0x00112b00,maybe_sceDeci2kputs,,f1,Deci2Call(0x10)
@@ -383,9 +508,15 @@ address,name,signature,source,comment
 0x00113398,maybe_Kprintf_Format,,f1,
 0x00113990,maybe_kprintf,,f1,
 0x001139c8,maybe_scePrintf,,f1,28 callers incl. libmpeg errors
+0x00113a28,scePrintf_Orphan1,,game,"follows scePrintf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00113a48,scePrintf_Orphan2,,game,follows scePrintf_Orphan1; unreferenced except as noted (was FUN_00113a28_Orphan1)
 0x00113a58,maybe_sceSifGetSreg,,f1,
+0x00113a70,sceSifGetSreg_Orphan1,,game,"follows sceSifGetSreg; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00113a90,sceSifGetSreg_Orphan2,,game,follows sceSifGetSreg_Orphan1; unreferenced except as noted (was FUN_00113a70_Orphan1)
 0x00113aa0,sceSifInitCmd,,f1,
 0x00113d20,sceSifExitCmd,,f1,
+0x00113d58,sceSifExitCmd_Orphan1,,game,"follows sceSifExitCmd; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00113d70,sceSifExitCmd_Orphan2,,game,follows sceSifExitCmd_Orphan1; unreferenced except as noted (was FUN_00113d58_Orphan1)
 0x00113d88,maybe_sceSifGetCmdHandler,,f1,
 0x00113e00,maybe_sceSifRemoveCmdHandler,,f1,
 0x00113e50,maybe__sceSifSendCmd,,f1,
@@ -407,6 +538,7 @@ address,name,signature,source,comment
 0x00114888,maybe__request_call_end,,f1,
 0x001148c8,maybe__request_call,,f1,
 0x00114998,sceSifBindRpc,,f1,
+0x00114ad8,sceSifInitRpc_Callback1,,game,address loaded as a constant in sceSifInitRpc (callback / handler)
 0x00114b68,sceSifCallRpc,,f1,113 callers
 0x00114d60,sceSifCheckStatRpc,,f1,
 0x00114da0,sceSifSetRpcQueue,,f1,
@@ -423,6 +555,7 @@ address,name,signature,source,comment
 0x001157a0,maybe_Fio_InitLockSema,,f1,
 0x001157f0,Fio_Lock,,game,N153 confirmed: WaitSema on the fileio semaphore
 0x00115820,Fio_Unlock,,game,N153 confirmed: SignalSema
+0x00115830,Fio_Unlock_Orphan1,,game,"follows Fio_Unlock; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001158d8,maybe_Fio_AsyncCallback,,f1,
 0x00115920,maybe_Fio_Bind,,f1,
 0x00115b28,maybe_Fio_IsBound,,f1,
@@ -481,6 +614,7 @@ address,name,signature,source,comment
 0x00119918,maybe_sceSifLoadStartModuleBuffer,,f1,
 0x00119938,maybe__lf_elf_load,,f1,
 0x00119a40,maybe_sceSifLoadElf,,f1,
+0x00119a60,sceSifLoadElf_Orphan1,,game,"follows sceSifLoadElf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00119a88,maybe_sceSifGetIopAddr,,f1,
 0x00119b78,maybe_sceSifSetIopAddr,,f1,
 0x00119c58,maybe_sceSifResetIop,,f1,
@@ -488,18 +622,31 @@ address,name,signature,source,comment
 0x00119dd8,maybe_sceSifIsIopReady,,f1,
 0x00119e28,sceSifRebootIop,,f1,"""m0:UDNL """
 0x00119f38,maybe_InitTLBHandler,,f1,
+0x00119f98,InitTLBHandler_Orphan1,,game,"follows InitTLBHandler; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011a020,maybe_kCopy_A,,f1,syscall 0x5a
+0x0011a030,kCopy_A_Orphan1,,game,"follows kCopy_A; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011a068,RFU091,,analysis,
 0x0011a078,SetSyscall,,analysis,
 0x0011a088,maybe_InitAlarmPatch,,f1,
+0x0011a150,InitAlarmPatch_Orphan1,,game,"follows InitAlarmPatch; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0011a160,RFU085_iClearEventFlag_copy2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x0011a170,RFU086_WaitEvnetFlag,,analysis,
 0x0011a180,maybe_Kernl_WaitEventFlagWrap,,f1,
+0x0011a1b0,Kernl_WaitEventFlagWrap_Orphan1,,game,"follows Kernl_WaitEventFlagWrap; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0011a1c0,RFU087_PollEvnetFlag_copy2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x0011a1d0,RFU087_PollEvnetFlag_copy2_Orphan1,,game,"follows RFU087_PollEvnetFlag_copy2; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0011a1e0,RFU087_PollEvnetFlag_copy2_Orphan2,,game,follows RFU087_PollEvnetFlag_copy2_Orphan1; unreferenced except as noted (was FUN_0011a1d0_Orphan1)
+0x0011a1f0,RFU088_iPollEvnetFlag_copy2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
+0x0011a200,RFU089_ReferEventFlagStatus_copy2,,sdk,EE kernel syscall stub (pattern from ghidra-emotionengine-reloaded)
 0x0011a210,maybe_kernl_ResetTLB,,f1,
 0x0011a250,maybe_kernl_InitTLB,,f1,"""# TLB spad=0 kernel=1"""
 0x0011a7e0,DIntr,,f1,
 0x0011a838,EIntr,,f1,
 0x0011a850,maybe_InitKernelSema,,f1,
+0x0011a898,InitKernelSema_Orphan1,,game,"follows InitKernelSema; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011a8a8,maybe_kCopy_B,,f1,
+0x0011a8b8,InitThreadPatch_Callback1,,game,address loaded as a constant in InitThreadPatch (callback / handler)
+0x0011a8f0,InitThreadPatch_Callback2,,game,address loaded as a constant in InitThreadPatch (callback / handler)
 0x0011a930,maybe_GetSyscallTable,,f1,syscall 0x83
 0x0011a940,maybe_Kernl_ReadSyscallEntry,,f1,
 0x0011a978,maybe_InitThreadPatch,,f1,
@@ -507,10 +654,12 @@ address,name,signature,source,comment
 0x0011aa88,_InitSys,,f1,called from entry
 0x0011aae0,SetSyscall_copy3,,analysis,
 0x0011aaf0,maybe_kCopy_C,,f1,
+0x0011ab00,kCopy_C_Orphan1,,game,"follows kCopy_C; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011ab38,RFU091_copy2,,analysis,
 0x0011ab48,maybe_SetOsdConfigFlag,,f1,
 0x0011abb0,maybe_InitOsdPatch,,f1,
 0x0011ac60,maybe_kCopy_D,,f1,
+0x0011ac70,kCopy_D_Orphan1,,game,"follows kCopy_D; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011aca0,SetSyscall_copy4,,analysis,
 0x0011acb0,maybe_Exec_SetupArgs,,f1,
 0x0011ae40,LoadExecPS2,,f1,
@@ -522,11 +671,13 @@ address,name,signature,source,comment
 0x0011af58,RFU091_copy3,,analysis,
 0x0011af68,maybe_InitTimerPatch,,f1,RCNT3
 0x0011b040,Timer_WriteReg,,f1,
+0x0011b0a8,Timer_WriteReg_Orphan1,,game,"follows Timer_WriteReg; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011b0b0,Timer_SetCount,,f1,T2_COUNT 0xB0001000
 0x0011b0c0,Timer_SetMode,,f1,T2_MODE  0xB0001010
 0x0011b0d0,Timer_SetComp,,f1,T2_COMP  0xB0001020
 0x0011b0e0,maybe_InitTimer,,f1,RCNT2 + INTC handler
 0x0011b238,maybe_EndTimer,,f1,
+0x0011b2f0,EndTimer_Orphan1,,game,"follows EndTimer; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011b320,maybe_StartTimerSystemTime,,f1,
 0x0011b3b0,maybe_StopTimerSystemTime,,f1,
 0x0011b430,maybe_Timer_UpdateCompare,,f1,
@@ -555,6 +706,7 @@ address,name,signature,source,comment
 0x0011c200,maybe_TimerBusClock2USec,,f1,/ 0x8ca0000 (147.456 MHz)
 0x0011c2a8,maybe_TimerUSec2BusClock,,f1,
 0x0011c318,maybe___floatundisf,,f1,
+0x0011c370,__floatundisf_Orphan1,,game,"follows __floatundisf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011c3a8,maybe_Timer_FindFreeSlot,,f2,
 0x0011c3f8,maybe_Alarm_Dispatch,,f1,
 0x0011c458,maybe_SetTimerAlarm,,f2,
@@ -562,30 +714,44 @@ address,name,signature,source,comment
 0x0011c678,maybe_ReleaseTimerAlarm,,f1,
 0x0011c720,maybe_iReleaseTimerAlarm,,f1,
 0x0011c798,maybe_InitTimerAlarmPool,,f1,
+0x0011c7c0,InitTimerAlarmPool_Orphan1,,game,"follows InitTimerAlarmPool; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011c840,maybe_iCancelTimerAlarm,,f1,
+0x0011c8f8,iCancelTimerAlarm_Orphan1,,game,"follows iCancelTimerAlarm; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011c950,maybe_SetSifCmdFlag,,f1,
 0x0011c9f8,maybe___ieee754_rem_pio2,,f1,
+0x0011cfa0,__ieee754_rem_pio2_Orphan1,,game,"follows __ieee754_rem_pio2; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011cfb0,maybe___ieee754_acosf,,f2,
+0x0011d3cc,__ieee754_acosf_Orphan1,,game,"follows __ieee754_acosf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011d3d8,maybe___ieee754_asinf,,f2,
+0x0011d764,__ieee754_asinf_Orphan1,,game,"follows __ieee754_asinf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011d778,maybe___ieee754_atan2f,,f2,
 0x0011d958,maybe___ieee754_fmodf,,f2,
+0x0011dba0,__ieee754_fmodf_Orphan1,,game,"follows __ieee754_fmodf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011dbb0,maybe___ieee754_sqrtf,,f2,
+0x0011de80,__ieee754_sqrtf_Orphan1,,game,"follows __ieee754_sqrtf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011de90,maybe___ieee754_rem_pio2f,,f2,
+0x0011e230,__ieee754_rem_pio2f_Orphan1,,game,"follows __ieee754_rem_pio2f; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011e240,maybe_truncf,,f1,
 0x0011e310,maybe___kernel_rem_pio2,,f1,
+0x0011ee34,__kernel_rem_pio2_Orphan1,,game,"follows __kernel_rem_pio2; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011ee60,maybe___kernel_cos,,f1,
+0x0011f3c0,__kernel_cos_Orphan1,,game,"follows __kernel_cos; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011f3c8,maybe___kernel_cosf,,f2,
 0x0011f518,maybe___kernel_rem_pio2f,,f2,
+0x0011fd5c,__kernel_rem_pio2f_Orphan1,,game,"follows __kernel_rem_pio2f; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0011fd80,maybe___kernel_sinf,,f2,
 0x0011fe88,maybe___kernel_tanf,,f2,
 0x00120110,copysign,,f1,
 0x00120158,fabs,,f1,
 0x00120190,maybe_floor,,f1,
+0x0012039c,floor_Orphan1,,game,"follows floor; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001203a8,maybe_finite,,f1,
 0x001203f0,maybe_isnan,,f1,
 0x00120430,maybe_scalbn,,f1,
+0x00120600,scalbn_Orphan1,,game,"follows scalbn; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00120618,maybe_cos,,f1,
 0x001206c0,atanf,,f2,
+0x00120940,atanf_Orphan1,,game,"follows atanf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00120950,copysignf,,f2,
 0x00120990,sinf,,f2,
 0x00120a68,fabsf,,f2,67 callers
@@ -614,6 +780,7 @@ address,name,signature,source,comment
 0x00121950,sceCdSync,,f2,"""N cmd wait"""
 0x001219f0,sceCdSyncS,,f2,"""S cmd wait"""
 0x00121a60,maybe_Cd_CheckSCmd,,f2,"""Scmd fail sema"", ""bind err S cmd"""
+0x00121bcc,Cd_CheckSCmd_Orphan1,,game,"follows Cd_CheckSCmd; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00121c80,sceCdInit,,f2,"""Libcdvd bind err %d CD_Init"""
 0x00121f60,maybe_sceCdDiskReadyOld,,f2,"""OLD DiskReady Call"""
 0x00122158,sceCdDiskReady,,f2,"""NEW DiskReady Call"""
@@ -638,6 +805,7 @@ address,name,signature,source,comment
 0x00122ff0,sceMcInit,,f2,"""bind error libmc"""
 0x001231c0,maybe_sceMcEnd,,f2,
 0x00123210,maybe_Mc_GetSyncState,,f1,
+0x00123240,sceMcOpen_Callback1,,game,address loaded as a constant in sceMcOpen (callback / handler)
 0x00123310,maybe_sceMcGetInfo,,f1,
 0x001233d8,maybe_sceMcOpen,,f1,
 0x00123500,maybe_sceMcOpenChecked,,f1,
@@ -659,6 +827,8 @@ address,name,signature,source,comment
 0x00124610,maybe_sceMcUnformat,,f1,
 0x001246e0,maybe_sceMcDelete,,f1,
 0x001247f0,maybe_Midi_Init,,game,
+0x00124870,Midi_Init_Orphan1,,game,"follows Midi_Init; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00124878,Midi_Init_Orphan2,,game,follows Midi_Init_Orphan1; unreferenced except as noted (was FUN_00124870_Orphan1)
 0x00124880,maybe_Midi_GetChannel,,game,
 0x00124918,Midi_SendMessage,,game,"status|ch, data bytes; 23 callers"
 0x001249c8,maybe_Midi_SendSysEx,,game,
@@ -670,20 +840,26 @@ address,name,signature,source,comment
 0x00124b98,maybe__close_r,,f2,
 0x00124bf0,maybe_quorem,,f2,dtoa helper
 0x00124e20,_dtoa_r,,f2,"""Infinity"""
+0x00126038,_dtoa_r_Orphan1,,game,"follows _dtoa_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00126088,__errno,,f2,
 0x00126098,maybe_exit,,f2,
 0x00126148,maybe__fflush_r,,f2,
+0x00126254,_fflush_r_Orphan1,,game,"follows _fflush_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00126260,maybe_std_FILE_init,,f2,
 0x001262c0,maybe___sfmoreglue,,f2,
 0x00126338,maybe___sfp,,f2,
 0x00126430,_cleanup_r,,game,"N153 confirmed: _fwalk(ptr, fclose)"
 0x00126470,__sinit,,f2,newlib stdio init; 9 callers
 0x00126500,_free_r,,f2,
+0x001267e8,_free_r_Orphan1,,game,"follows _free_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001267f8,maybe__malloc_trim_r,,f2,
 0x00126968,maybe__fseek_r,,f2,
+0x00126df4,_fseek_r_Orphan1,,game,"follows _fseek_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00126e18,maybe__fstat_r,,f2,
 0x00126e78,maybe__fclose_r,,f2,
+0x00126f74,_fclose_r_Orphan1,,game,"follows _fclose_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00126f80,maybe___sfvwrite,,f2,
+0x0012734c,__sfvwrite_Orphan1,,game,"follows __sfvwrite; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00127360,maybe__fwalk,,f2,
 0x001273f8,maybe__setlocale_r,,f2,
 0x00127488,_localeconv_r,,game,N153 confirmed: returns the C locale lconv
@@ -691,9 +867,11 @@ address,name,signature,source,comment
 0x001274c0,localeconv,,game,N153 confirmed
 0x001274e0,maybe__lseek_r,,f2,
 0x00127540,maybe___smakebuf,,f2,
+0x0012768c,__smakebuf_Orphan1,,game,"follows __smakebuf; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00127698,malloc,,f2,
 0x001276f0,free,,f2,
 0x00127738,maybe_malloc_extend_top,,f2,
+0x00127980,malloc_extend_top_Orphan1,,game,"follows malloc_extend_top; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00127990,_malloc_r,,f2,
 0x001280b8,maybe__mbtowc_r,,f2,
 0x001280f0,memchr,,f2,
@@ -715,28 +893,36 @@ address,name,signature,source,comment
 0x00128d48,__lshift,,f2,
 0x00128ea0,__mcmp,,f2,
 0x00128f08,__mdiff,,f2,
+0x00129098,__mdiff_Orphan1,,game,"follows __mdiff; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00129168,maybe___b2d,,f2,
 0x00129300,maybe___d2b,,f2,
+0x0012947c,__d2b_Orphan1,,game,"follows __d2b; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00129488,maybe___ratio,,f2,
 0x00129558,maybe__mprec_log10,,f2,
 0x001295c8,maybe_fprintf,,f2,
 0x00129628,printf,,f2,32 callers -> vfprintf
 0x00129698,maybe_qsort,,f2,recursive
+0x0012a040,qsort_Orphan1,,game,"follows qsort; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0012a088,qsort_Orphan2,,game,follows qsort_Orphan1; unreferenced except as noted (was FUN_0012a040_Orphan1)
 0x0012a0a0,maybe_rand,,f2,
 0x0012a108,maybe__read_r,,f2,
 0x0012a168,_realloc_r,,f2,
+0x0012a6e8,_realloc_r_Orphan1,,game,"follows _realloc_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012a708,maybe___fflush_line,,f2,
 0x0012a740,maybe___srefill_r,,f2,
+0x0012a8b4,__srefill_r_Orphan1,,game,"follows __srefill_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012a8c0,__srget,,f2,
 0x0012a908,maybe__sbrk_r,,f2,
 0x0012a960,maybe__init_signal_r,,f2,
 0x0012a9d0,maybe__signal_r,,f2,
 0x0012aa50,_raise_r,,f2,
+0x0012ab20,_raise_r_Orphan1,,game,"follows _raise_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012ab28,maybe___sigtramp_r,,f2,
 0x0012abc0,raise,,f2,
 0x0012abe0,signal,,f2,
 0x0012ac48,maybe__kill_r,,f2,
 0x0012aca8,maybe__getpid_r,,f2,
+0x0012acc4,_getpid_r_Orphan1,,game,"follows _getpid_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012ad48,sprintf,,f2,
 0x0012add8,__sread,,f2,
 0x0012ae40,__swrite,,f2,
@@ -749,13 +935,16 @@ address,name,signature,source,comment
 0x0012b470,maybe_strncpy,,f2,
 0x0012b630,maybe_strrchr,,f2,
 0x0012b680,_strtol_r,,f2,
+0x0012b8b0,_strtol_r_Orphan1,,game,"follows _strtol_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012b8b8,strtol,,f2,
 0x0012b8e8,maybe___submore,,f2,
 0x0012b9d0,maybe__ungetc_r,,f2,
+0x0012bb50,_ungetc_r_Orphan1,,game,"follows _ungetc_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012bb58,maybe___sprint,,f2,
 0x0012bba0,maybe___sbprintf,,f2,
 0x0012bc58,vfprintf,,f2,
 0x0012bcd0,_vfprintf_r,,f2,"""bug in vfprintf: bad base"""
+0x0012d2e4,_vfprintf_r_Orphan1,,game,"follows _vfprintf_r; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012d340,maybe_cvt,,f2,
 0x0012d500,maybe__mbrtowc_r,,f2,
 0x0012d5e0,maybe___swbuf_r,,f2,
@@ -763,8 +952,10 @@ address,name,signature,source,comment
 0x0012d750,maybe___swsetup,,f2,
 0x0012d860,maybe___muldi3,,f2,
 0x0012d8d8,maybe___divdi3,,f2,
+0x0012df58,__divdi3_Orphan1,,game,"follows __divdi3; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012df70,maybe___moddi3,,f2,
 0x0012e600,maybe___udivdi3,,f2,
+0x0012eb6c,__udivdi3_Orphan1,,game,"follows __udivdi3; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012eb80,maybe___umoddi3,,f2,
 0x0012f0e8,__floatdidf,,f2,
 0x0012f190,maybe___floatdisf,,f2,
@@ -776,10 +967,12 @@ address,name,signature,source,comment
 0x0012f600,maybe___sf_to_df,,f2,unpack_f + make_dp; 15 callers
 0x0012f640,__unpack_d,,f2,
 0x0012f718,__pack_d,,f2,
+0x0012f7c8,__pack_d_Orphan1,,game,"follows __pack_d; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012f7d8,_fpadd_parts,,f2,
 0x0012fa38,__adddf3,,f2,
 0x0012fa90,__subdf3,,f2,
 0x0012faf8,__muldf3,,f2,
+0x0012fd70,__muldf3_Orphan1,,game,"follows __muldf3; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0012fd80,__divdf3,,f2,
 0x0012fec0,__fpcmp_parts_d,,f2,
 0x0012ffe0,__cmpdf2,,f2,
@@ -802,6 +995,7 @@ address,name,signature,source,comment
 0x001309b8,maybe_Pad2_SyncSendBuffer,,f1,
 0x00130a20,maybe_Pad2_CheckFrame,,f1,
 0x00130a80,maybe_Pad2_ParseData,,f1,
+0x00130b30,Pad2_ParseData_Orphan1,,game,"follows Pad2_ParseData; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00130b68,maybe_Dbc_RpcCall,,f1,
 0x00130bc0,sceDbcInit,,f2,"""libdbc: Module version mismatch"""
 0x00130e00,sceDbcEnd,,f2,
@@ -898,6 +1092,7 @@ address,name,signature,source,comment
 0x001339f0,maybe_Math_AngleToIndex,,f2,x * 40.74 (256/2pi)
 0x00133a70,Math_FloatToFixed22,,game,
 0x00133aa0,Gut_DecompressBlock,,game,
+0x00133e54,Gut_DecompressBlock_Orphan1,,game,"follows Gut_DecompressBlock; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00133e60,Color_LerpRgba,,game,
 0x00133ff0,Color_LerpRgb,,game,
 0x00134120,Color_LerpAlpha,,game,
@@ -908,6 +1103,7 @@ address,name,signature,source,comment
 0x00134400,Input_LatchButton,,game,
 0x00134430,Input_GetAnalog,,game,
 0x00134440,maybe_Gut_HashInsert,,game,recursive
+0x001345c0,Gut_HashInsert_Orphan1,,game,"follows Gut_HashInsert; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001345d0,Gut_HashInit,,game,
 0x00134630,Gut_PackGetEntry,,game,count + offset table; 32 callers
 0x00134680,Gut_ArchiveDecompress,,game,"""GUT_Archive Memory Over"", ""destSize Error"""
@@ -959,6 +1155,7 @@ address,name,signature,source,comment
 0x001373c0,maybe_EngineNode_dtor,,game,
 0x00137420,File_Request_ctor,,game,
 0x00137460,Pad_Update,,game,
+0x001375dc,Pad_Update_Orphan1,,game,"follows Pad_Update; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001375f0,Pad_GetPort,,game,0x498 bytes per pad at 0x386650
 0x00137620,maybe_Pad_Shutdown,,game,
 0x00137680,Pad_Init,,game,"scePad2CreateSocket per port, state at 0x386650"
@@ -967,12 +1164,16 @@ address,name,signature,source,comment
 0x00137940,maybe_EngineObj_ReadByte,,game,
 0x001379d0,maybe_EngineObj_HasData,,game,
 0x001379e0,Pad_ReadButtons,,game,
+0x00137ea4,Pad_ReadButtons_Orphan1,,game,"follows Pad_ReadButtons; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00137eb0,Pad_Close,,game,
 0x00137ff0,Pad_dtor,,game,
 0x00138050,maybe_Pad_ctor,,game,
 0x00138120,Pad_MapButtons,,game,
+0x00138370,Pad_MapButtons_Orphan1,,game,"follows Pad_MapButtons; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00138380,maybe_Pad_ReadAnalogAxes,,game,
+0x00138568,Pad_ReadAnalogAxes_Orphan1,,game,"follows Pad_ReadAnalogAxes; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00138580,maybe_Pad_ApplyDeadzone,,game,
+0x00138890,Pad_ApplyDeadzone_Orphan1,,game,"follows Pad_ApplyDeadzone; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001388a0,Pad_Reset,,game,
 0x00138960,Pad_InitState,,game,
 0x00138b60,Sema_GetCount,,game,
@@ -1088,6 +1289,7 @@ address,name,signature,source,comment
 0x0013dbb0,Tex_GetPsmBytesPerPixelClass,,game,psm 0x14/0x2c/0x24
 0x0013dc80,Tex_GetPsmInfo,,game,
 0x0013dca0,Tex_BuildUploadPacket,,game,
+0x0013e3ac,Tex_BuildUploadPacket_Orphan1,,game,"follows Tex_BuildUploadPacket; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0013e3d0,Tex_BuildClutPacket,,game,
 0x0013e840,Tex_GetGsParams,,game,
 0x0013eb50,Tex_GetMipLevel,,game,
@@ -1099,6 +1301,7 @@ address,name,signature,source,comment
 0x0013f060,Tex_SetFilter,,game,
 0x0013f270,Tex_UploadAll,,game,
 0x0013f340,Tex_Upload,,game,
+0x0013f92c,Tex_Upload_Orphan1,,game,"follows Tex_Upload; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0013f950,Tex_SwizzleBlocks,,game,
 0x0013fe10,Tex_GetPageCount,,game,
 0x0013ff20,Tex_GetBlockCount,,game,
@@ -1109,8 +1312,11 @@ address,name,signature,source,comment
 0x001401c0,maybe_Camera_ClampAngles,,game,
 0x00140350,Wheel_Update,,game,lgDevEnumHint / lgDevAReadMulti
 0x00140540,Wheel_UpdateForceEffects,,game,lgDevDownloadForceEffect etc.
+0x00140c7c,Wheel_UpdateForceEffects_Orphan1,,game,"follows Wheel_UpdateForceEffects; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00140ca0,Wheel_PollDevices,,game,lgDevRead / lgDevClose
+0x00140e88,Wheel_PollDevices_Orphan1,,game,"follows Wheel_PollDevices; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00140e90,Wheel_EnumerateDevices,,game,lgDevEnumerate / lgDevOpen
+0x00141114,Wheel_EnumerateDevices_Orphan1,,game,"follows Wheel_EnumerateDevices; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00141120,maybe_Wheel_SortDevices,,game,recursive
 0x00141310,Wheel_GetDeviceName,,game,
 0x00141400,Wheel_GetHandle,,game,
@@ -1270,6 +1476,7 @@ address,name,signature,source,comment
 0x0014d230,Color_SetPacked,,game,
 0x0014d240,Light_UpdateMatrices,,game,14 callers
 0x0014d2a0,Model_Relocate,,game,13 callers
+0x0014d6c4,Model_Relocate_Orphan1,,game,"follows Model_Relocate; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0014d6e0,Model_GetTexture,,game,11 callers
 0x0014d710,Model_GetNode,,game,
 0x0014d750,Model_BuildNodeMatrices,,game,
@@ -1283,6 +1490,7 @@ address,name,signature,source,comment
 0x0014df90,MovieVid_Present,,game,
 0x0014e130,MovieVid_Init,,game,
 0x0014e1d0,MoviePlayer_Thread,,game,
+0x0014e580,MoviePlayer_Open_Callback1,,game,address loaded as a constant in MoviePlayer_Open (callback / handler)
 0x0014e6e0,MoviePlayer_Setup,,game,
 0x0014ebb0,MoviePlayer_Update,,game,
 0x0014ec50,MoviePlayer_Close,,game,
@@ -1316,6 +1524,7 @@ address,name,signature,source,comment
 0x00152ac0,Sprite_GetPoolInfo,,game,
 0x00152b20,Sprite_GetPoolCount,,game,
 0x00152bf0,Gfx_EndFrame,,game,"flips sprite pools, kicks DMA chains"
+0x00153118,Gfx_EndFrame_Orphan1,,game,"follows Gfx_EndFrame; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00153130,Gfx_SetDisplayParam,,game,
 0x00153260,Gfx_SetFade,,game,
 0x00153330,Gfx_AddEndFrameCallback,,game,
@@ -1325,11 +1534,15 @@ address,name,signature,source,comment
 0x00153920,Gfx_InitAll,,game,
 0x00153960,Gfx_EndFrameCallbackList_dtor,,game,
 0x001539c0,Snd_QueueCmd4,,game,
+0x00153a50,Snd_QueueCmd4_Orphan1,,game,"follows Snd_QueueCmd4; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00153a90,Snd_StreamPosCallback,,game,
 0x00153b00,Snd_StreamLoadChunk,,game,
+0x00153c40,Snd_StreamLoadChunk_Orphan1,,game,"follows Snd_StreamLoadChunk; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00153c50,Snd_StreamFill,,game,
+0x00153e24,Snd_StreamFill_Orphan1,,game,"follows Snd_StreamFill; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00153e50,Snd_StreamPlayAll,,game,
 0x00153fd0,Snd_StreamUpdate,,game,
+0x00154244,Snd_StreamUpdate_Orphan1,,game,"follows Snd_StreamUpdate; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00154260,Snd_StreamIsReady,,game,
 0x00154300,Snd_StreamSetState,,game,
 0x001543c0,Snd_StreamGetState,,game,7 callers
@@ -1346,8 +1559,14 @@ address,name,signature,source,comment
 0x00154c30,Snd_QueueCmd3b,,game,
 0x00154cc0,Snd_QueueCmd3c,,game,
 0x00154d50,Snd_QueueCmd2d,,game,
+0x00154de0,Snd_QueueCmd2d_Orphan1,,game,"follows Snd_QueueCmd2d; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00154df0,Snd_BgmDmaCallback,,game,
 0x00154e90,Snd_BgmLoadNext,,game,
+0x00154fe0,Snd_BgmLoadNext_Orphan1,,game,"follows Snd_BgmLoadNext; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00155030,Snd_BgmLoadNext_Orphan2,,game,follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00154fe0_Orphan1)
+0x00155040,Snd_BgmLoadNext_Orphan3,,game,follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00155030_Orphan1)
+0x00155080,Snd_BgmLoadNext_Orphan4,,game,follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00155040_Orphan1)
+0x00155090,Snd_BgmLoadNext_Orphan5,,game,follows Snd_BgmLoadNext_Orphan1; unreferenced except as noted (was FUN_00155080_Orphan1)
 0x001550a0,Snd_JingleDmaCallback,,game,
 0x00155120,Snd_JingleLoadNext,,game,
 0x00155240,Snd_VoiceDmaCallback,,game,
@@ -1383,12 +1602,17 @@ address,name,signature,source,comment
 0x00158640,PhysWorld_GetContactPool,,game,
 0x00158650,PhysWorld_GetIslandList,,game,
 0x00158660,PhysWorld_GetBodyList,,game,
+0x00158670,PhysWorld_Init_Callback1,,game,address loaded as a constant in PhysWorld_Init (callback / handler)
 0x00158690,PhysWorld_CollideBroadphase,,game,
+0x001588e8,PhysWorld_CollideBroadphase_Orphan1,,game,"follows PhysWorld_CollideBroadphase; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00158900,PhysWorld_BuildPairs,,game,
+0x00158aa4,PhysWorld_BuildPairs_Orphan1,,game,"follows PhysWorld_BuildPairs; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00158ac0,PhysWorld_AllocContact,,game,
 0x00158b00,PhysWorld_Integrate,,game,"accumulates time, wraps at 3600"
+0x00158dc8,PhysWorld_Integrate_Orphan1,,game,"follows PhysWorld_Integrate; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00158dd0,PhysWorld_Step,,game,
 0x00159090,PhysWorld_Init,,game,
+0x00159350,PhysWorld_Init_Callback2,,game,address loaded as a constant in PhysWorld_Init (callback / handler)
 0x00159370,PhysWorld_ctor,,game,
 0x001593c0,Phys_SetupPools,,game,
 0x001594b0,Phys_Step,,game,
@@ -1438,6 +1662,7 @@ address,name,signature,source,comment
 0x0015b040,Phys_Nop_3,,game-module,
 0x0015b050,PhysBox_ClassifyPoint,,game,
 0x0015b0e0,PhysBox_ComputeInertia,,game,
+0x0015b3a4,PhysBox_ComputeInertia_Orphan1,,game,"follows PhysBox_ComputeInertia; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0015b3b0,PhysBox_GetEdgeIndexA,,game,
 0x0015b3d0,PhysBox_GetEdgeIndexB,,game,
 0x0015b3f0,maybe_Phys_GetTableA,,game,
@@ -1500,6 +1725,8 @@ address,name,signature,source,comment
 0x0015d270,PhysMaterial_GetRestitution,,game,
 0x0015d2b0,PhysMaterial_GetSoftness,,game,
 0x0015d2f0,PhysMaterial_GetDamping,,game,
+0x0015d330,PhysMaterial_GetDamping_Orphan1,,game,"follows PhysMaterial_GetDamping; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x0015d370,PhysMaterial_GetDamping_Orphan2,,game,follows PhysMaterial_GetDamping_Orphan1; unreferenced except as noted (was FUN_0015d330_Orphan1)
 0x0015d3a0,PhysContact_Fill,,game,
 0x0015d3d0,PhysContact_FillEx,,game,
 0x0015d400,PhysContact_FlipNormal,,game,
@@ -1528,6 +1755,7 @@ address,name,signature,source,comment
 0x0015f520,PhysPair_BoxBoxClip,,game,
 0x0015fa60,PhysPair_RunBoxBox,,game,
 0x0015fb40,PhysPair_BoxSphereContacts,,game,
+0x0015ffc4,PhysPair_BoxSphereContacts_Orphan1,,game,"follows PhysPair_BoxSphereContacts; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0015ffd0,PhysPair_SphereSphereContacts,,game,
 0x001602e0,PhysPair_SphereBoxSat,,game,
 0x00160800,PhysPair_RunSphereBox,,game,
@@ -1541,6 +1769,7 @@ address,name,signature,source,comment
 0x001619a0,PhysPair_PointMeshContacts,,game,
 0x00161bb0,PhysWorld_SolveIslands,,game,
 0x00161d20,PhysWorld_SolveIsland,,game,
+0x0016229c,PhysWorld_SolveIsland_Orphan1,,game,"follows PhysWorld_SolveIsland; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001622b0,PhysBody_SetMaterial,,game,
 0x001622c0,PhysBody_SetVelocity,,game,
 0x001622d0,PhysBody_ClearCollideMask,,game,
@@ -1678,10 +1907,12 @@ address,name,signature,source,comment
 0x00168070,Car_UpdateDiffFront,"void Car_UpdateDiffFront(RaceCar *param_1,uint param_2)",game,
 0x001686b0,Car_UpdateDiffRear,"void Car_UpdateDiffRear(RaceCar *param_1,uint param_2)",game,
 0x00168c70,Car_ApplySuspensionForces,void Car_ApplySuspensionForces(RaceCar *param_1),game,
+0x00168fc0,Car_ApplySuspensionForces_Orphan1,,game,"follows Car_ApplySuspensionForces; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00168fd0,Car_UpdateWheelSpin,,game,
 0x00169130,Car_UpdateLsd,void Car_UpdateLsd(RaceCar *param_1),game,drive type +0x888 == 2
 0x00169450,Car_ApplyTireForces,void Car_ApplyTireForces(RaceCar *param_1),game,
 0x00169860,Car_UpdateClutchAndTorque,void Car_UpdateClutchAndTorque(RaceCar *param_1),game,
+0x0016a058,Car_UpdateClutchAndTorque_Orphan1,,game,"follows Car_UpdateClutchAndTorque; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0016a070,Car_UpdateParkingBrake,void Car_UpdateParkingBrake(RaceCar *param_1),game,
 0x0016a3c0,Car_SolveAxleTires,,game,
 0x0016a7c0,Car_SolveDriveWheel,"float Car_SolveDriveWheel(RaceCar *param_1,uint param_2)",game,
@@ -1690,7 +1921,9 @@ address,name,signature,source,comment
 0x0016aca0,Car_UpdateWheelAngularVel,void Car_UpdateWheelAngularVel(RaceCar *param_1),game,
 0x0016ae20,Car_ApplyAeroDrag,void Car_ApplyAeroDrag(RaceCar *param_1),game,v^2 drag/downforce
 0x0016afe0,Car_ApplyRollingResistance,void Car_ApplyRollingResistance(RaceCar *param_1),game,
+0x0016b0d8,Car_ApplyRollingResistance_Orphan1,,game,"follows Car_ApplyRollingResistance; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0016b0e0,Car_UpdateSuspension,void Car_UpdateSuspension(RaceCar *param_1),game,
+0x0016b39c,Car_UpdateSuspension_Orphan1,,game,"follows Car_UpdateSuspension; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0016b3b0,Car_RaycastWheel,,game,
 0x0016b570,Car_WheelGroundContact,"float Car_WheelGroundContact(RaceCar *param_1,int param_2)",game,
 0x0016b7b0,Car_SpringDamperForce,"float Car_SpringDamperForce(float param_1,RaceCar *param_2,int param_3,float *param_4)",game,
@@ -1704,6 +1937,7 @@ address,name,signature,source,comment
 0x0016c860,Car_RequestShiftDown,,game,
 0x0016c870,Car_RequestShiftUp,,game,
 0x0016c880,Car_UpdateTransmission,"void Car_UpdateTransmission(RaceCar *param_1,long param_2)",game,
+0x0016d114,Car_UpdateTransmission_Orphan1,,game,"follows Car_UpdateTransmission; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0016d130,Car_UpdateAutoShift,,game,
 0x0016d510,Car_ApplyStopFriction,void Car_ApplyStopFriction(RaceCar *param_1),game,
 0x0016d690,Car_CheckUpsideDown,void Car_CheckUpsideDown(RaceCar *param_1),game,
@@ -1728,6 +1962,7 @@ address,name,signature,source,comment
 0x001705e0,CarSpec_ctor,,game,
 0x001707d0,main,,game,
 0x00170810,lgDevInit,,analysis,
+0x00170bc0,lgDevInit_Orphan1,,game,"follows lgDevInit; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00170bd8,lgDevEnumHint,,analysis,
 0x00170c30,lgDevEnumerate,,analysis,
 0x00170d40,lgDevOpen,,analysis,
@@ -1736,23 +1971,36 @@ address,name,signature,source,comment
 0x00170fc8,lgDevSetDeviceProperty,,analysis,
 0x00171098,lgDevRead,,analysis,
 0x001711a0,lgDevReadMulti,,analysis,
+0x00171360,lgDevReadMulti_Orphan1,,game,"follows lgDevReadMulti; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00171370,lgDevDownloadForceEffect,,analysis,
+0x001714ec,lgDevDownloadForceEffect_Orphan1,,game,"follows lgDevDownloadForceEffect; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001714f8,lgDevUpdateForceEffect,,analysis,
+0x0017165c,lgDevUpdateForceEffect_Orphan1,,game,"follows lgDevUpdateForceEffect; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00171668,lgDevStartForceEffect,,analysis,
 0x00171718,lgDevStartForceEffectMulti,,analysis,
+0x00171840,lgDevStartForceEffectMulti_Orphan1,,game,"follows lgDevStartForceEffectMulti; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00171848,lgDevStopForceEffect,,analysis,
 0x001718f8,lgDevStopForceEffectMulti,,analysis,
+0x00171a20,lgDevStopForceEffectMulti_Orphan1,,game,"follows lgDevStopForceEffectMulti; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00171a28,lgDevDestroyForceEffect,,analysis,
 0x00171ad8,lgDevPrepareForIOPReboot,,analysis,
 0x00171c40,lgDev_WaitAsync,,game,sceSifCheckStatRpc; 25 callers
+0x00171cc4,lgDev_WaitAsync_Orphan1,,game,"follows lgDev_WaitAsync; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00171d10,lgDevAReadMulti_Callback1,,game,address loaded as a constant in lgDevAReadMulti (callback / handler)
+0x00171d88,lgDevAUpdateForceEffect_Callback1,,game,address loaded as a constant in lgDevAUpdateForceEffect (callback / handler)
+0x00171db0,lgDevAEnumHint_Callback1,,game,address loaded as a constant in lgDevAEnumHint (callback / handler)
 0x00171df0,lgDevAEnumHint,,game,
 0x00171e98,lgDevARead,,analysis,
 0x00171f68,lgDevAReadMulti,,analysis,
+0x001720c8,lgDevAReadMulti_Orphan1,,game,"follows lgDevAReadMulti; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001720d8,lgDevAUpdateForceEffect,,analysis,
+0x0017221c,lgDevAUpdateForceEffect_Orphan1,,game,"follows lgDevAUpdateForceEffect; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00172228,lgDevAStartForceEffect,,analysis,
 0x001722b8,lgDevAStartForceEffectMulti,,analysis,
+0x001723c8,lgDevAStartForceEffectMulti_Orphan1,,game,"follows lgDevAStartForceEffectMulti; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001723d8,lgDevAStopForceEffect,,analysis,
 0x00172468,lgDevAStopForceEffectMulti,,analysis,
+0x00172578,lgDevAStopForceEffectMulti_Orphan1,,game,"follows lgDevAStopForceEffectMulti; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00172590,SaveSlot_Get,,game,0x220 bytes per slot
 0x001725b0,Save_UpdateAll,,game,
 0x00172600,Save_FreeAll,,game,
@@ -1763,7 +2011,9 @@ address,name,signature,source,comment
 0x00172740,SaveSlot_GetBuffer,,game,
 0x00172750,SaveSlot_BuildPath,,game,
 0x001728a0,SaveSlot_ParseDirectory,,game,
+0x00172b08,SaveSlot_ParseDirectory_Orphan1,,game,"follows SaveSlot_ParseDirectory; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00172b20,SaveSlot_ParseFileList,,game,
+0x00172cd4,SaveSlot_ParseFileList_Orphan1,,game,"follows SaveSlot_ParseFileList; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00172ce0,SaveSlot_ClearLists,,game,
 0x00172de0,SaveSlot_SetState,,game,"(state, substate)"
 0x00172e80,SaveSlot_FindFreeName,,game,
@@ -1784,6 +2034,7 @@ address,name,signature,source,comment
 0x00174d10,MovieTex_Free,,game,
 0x00174da0,MovieTex_Init,,game,
 0x00174f40,maybe_SaveData_Serialize,,game,
+0x00175df8,SaveData_Serialize_Orphan1,,game,"follows SaveData_Serialize; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00175e10,maybe_RaceSetup_BuildCarEntry,,game,
 0x00176660,RaceEntry_SetName,,game,
 0x00176770,RaceEntry_SetCar,,game,
@@ -1885,6 +2136,7 @@ address,name,signature,source,comment
 0x00178760,Course_DrawLayer,,game,
 0x00178a50,Course_SpawnAmbient,,game,
 0x00178bf0,Course_UpdateEnvironment,,game,
+0x001799a4,Course_UpdateEnvironment_Orphan1,,game,"follows Course_UpdateEnvironment; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001799b0,Car_DrawShadowAndBlur,,game,
 0x0017a020,MotionBlur_Setup,,game,"""blur error : viewNrm == NULL."""
 0x0017a100,MotionBlur_Advance,,game,
@@ -1898,7 +2150,9 @@ address,name,signature,source,comment
 0x0017b030,Skid_UpdateCar,,game,
 0x0017b180,Skid_UpdateCarEx,,game,
 0x0017b290,Skid_ResetCar,,game,
+0x0017b350,Skid_ResetCar_Orphan1,,game,"follows Skid_ResetCar; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0017b360,Skid_Draw,,game,
+0x0017b988,Skid_Draw_Orphan1,,game,"follows Skid_Draw; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0017b990,Skid_Clear,,game,
 0x0017bb20,Skid_DrawAll,,game,
 0x0017bba0,Car_DrawAllEffects,,game,
@@ -1953,6 +2207,7 @@ address,name,signature,source,comment
 0x0017eae0,Course_TransformStartPoint,,game,
 0x0017ec60,RaceResult_Begin,,game,
 0x0017ece0,RaceResult_Compute,,game,
+0x0017f8b0,RaceResult_Compute_Orphan1,,game,"follows RaceResult_Compute; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0017f8c0,RaceResult_Award,,game,
 0x0017fd30,maybe_Vec3_Copy,,game,
 0x0017fd70,RaceResult_BuildMessage,,game,
@@ -1968,6 +2223,7 @@ address,name,signature,source,comment
 0x001804f0,GameState_ComputeTimestamp,,game,
 0x00180600,Career_ProcessRaceEnd,,game,
 0x00180fa0,RaceSetup_Prepare,,game,7 callers; builds the whole grid
+0x00182bc8,RaceSetup_Prepare_Orphan1,,game,"follows RaceSetup_Prepare; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00182bd0,Career_ContinueStory,,game,
 0x00182c10,Career_BeginNew,,game,
 0x00182c40,Race_IsTimeTrialMode,,game,
@@ -2061,6 +2317,7 @@ address,name,signature,source,comment
 0x00189520,Road_GetSegmentPoint,,game,
 0x00189770,Road_SearchNeighbours,,game,
 0x00189ce0,Road_DistanceToSegment,,game,
+0x0018a040,RoadData_Load_Callback1,,game,address loaded as a constant in RoadData_Load (callback / handler)
 0x0018a0a0,RoadData_Free,,game,
 0x0018a0d0,RoadData_Load,,game,
 0x0018a1b0,RoadData_MarkLoaded,,game,
@@ -2068,6 +2325,7 @@ address,name,signature,source,comment
 0x0018a2c0,Road_LocatePoint,,game,
 0x0018a810,Road_RaycastGround,,game,
 0x0018b080,RoadMesh_Init,,game,
+0x0018b150,RoadMesh_Load_Callback1,,game,address loaded as a constant in RoadMesh_Load (callback / handler)
 0x0018b1b0,RoadMesh_Free,,game,
 0x0018b1e0,RoadMesh_Load,,game,
 0x0018b2b0,RoadMesh_MarkLoaded,,game,
@@ -2075,14 +2333,18 @@ address,name,signature,source,comment
 0x0018b390,maybe_Road_FindCellIndex,,game,
 0x0018b550,maybe_Road_FindCellContaining,,game,
 0x0018b710,maybe_Road_ClipToEdge,,game,
+0x0018bc38,Road_ClipToEdge_Orphan1,,game,"follows Road_ClipToEdge; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0018bc40,maybe_Road_FindSectionCell,,game,
+0x0018be80,Road_FindSectionCell_Orphan1,,game,"follows Road_FindSectionCell; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0018be90,maybe_Road_FindSectionTriangle,,game,
 0x0018bfa0,maybe_Road_FindTriangle,,game,
 0x0018c310,Road_PointInCell,,game,
 0x0018c400,Road_PointInTriangle,,game,
 0x0018c7e0,ScreenFx_Draw,,game,
+0x0018ce98,ScreenFx_Draw_Orphan1,,game,"follows ScreenFx_Draw; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0018cea0,Weather_UpdateDrop,,game,
 0x0018d170,Weather_SpawnDrops,,game,"50 slots, rand() threshold"
+0x0018d6b8,Weather_SpawnDrops_Orphan1,,game,"follows Weather_SpawnDrops; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0018d6d0,Weather_ResetDrop,,game,
 0x0018d870,Weather_Update,,game,
 0x0018da40,Weather_Draw,,game,
@@ -2230,6 +2492,7 @@ address,name,signature,source,comment
 0x0019a260,CarModel_DrawBody,,game,
 0x0019a8a0,CarModel_DrawParts,,game,
 0x0019af50,CarModel_DrawWheels,,game,
+0x0019bdb4,CarModel_DrawWheels_Orphan1,,game,"follows CarModel_DrawWheels; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0019bdc0,Pkt_AppendData_Wrap,,game-module,
 0x0019bde0,Pkt_Flush_Wrap,,game-module,
 0x0019be00,CarModel_SetupLighting,,game,
@@ -2242,16 +2505,20 @@ address,name,signature,source,comment
 0x0019d090,CourseStream_InitBlock,,game,
 0x0019d120,CourseStream_RequestBlock,,game,
 0x0019d490,CourseStream_UpdateVisibility,,game,
+0x0019dd34,CourseStream_UpdateVisibility_Orphan1,,game,"follows CourseStream_UpdateVisibility; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0019dd50,CourseStream_FindBlock,,game,
 0x0019e0a0,Course_GetGroundHeight,,game,
+0x0019e5b8,Course_GetGroundHeight_Orphan1,,game,"follows Course_GetGroundHeight; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0019e5d0,CourseStream_FreeAll,,game,
 0x0019e610,CourseStream_Update,,game,
 0x0019e660,CourseStream_OnModelLoaded,,game,
 0x0019e8f0,CourseStream_OnTextureLoaded,,game,
 0x0019eb10,CourseStream_OnTextureReady,,game,
 0x0019ebd0,CourseStream_OnBlockLoaded,,game,
+0x0019f238,CourseStream_OnBlockLoaded_Orphan1,,game,"follows CourseStream_OnBlockLoaded; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0019f250,CourseStream_RequestLod,,game,
 0x0019f590,CourseStream_UpdateLod,,game,
+0x0019fbb0,CourseStream_UpdateLod_Orphan1,,game,"follows CourseStream_UpdateLod; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0019fbd0,CourseStream_RequestTextures,,game,
 0x0019fe00,CourseStream_UpdateTextures,,game,
 0x001a0670,CourseStream_LoadSky,,game,
@@ -2280,9 +2547,12 @@ address,name,signature,source,comment
 0x001a28b0,Course_BindTextureSlots,,game,
 0x001a2a00,Course_DrawSkyAndSun,,game,
 0x001a3250,Course_DrawLensFlare,,game,
+0x001a36d0,Course_DrawLensFlare_Orphan1,,game,"follows Course_DrawLensFlare; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001a36e0,Course_DrawView,,game,
 0x001a3820,Course_Render,,game,
+0x001a4738,Course_Render_Orphan1,,game,"follows Course_Render; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001a4760,Course_UpdateFlareOcclusion,,game,
+0x001a4b4c,Course_UpdateFlareOcclusion_Orphan1,,game,"follows Course_UpdateFlareOcclusion; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001a4b60,CourseScene_Unload,,game,
 0x001a4c30,CourseScene_Load,,game,
 0x001a4ed0,Course_dtor,,game,
@@ -2339,6 +2609,7 @@ address,name,signature,source,comment
 0x001a7b60,PtclSys_ComputeRate,,game,
 0x001a7c80,PtclSys_ResetBounds,,game,
 0x001a7db0,PtclSys_Update,,game,"""particle Error! : inactive particle"""
+0x001a8718,PtclSys_Update_Orphan1,,game,"follows PtclSys_Update; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001a8740,PtclList_dtor,,game,
 0x001a87a0,PtclSys_Get,,game,"""particleSystem Get Error! : Illegal ID""; 0x3b systems"
 0x001a8810,PtclSys_Create,,game,
@@ -2413,6 +2684,7 @@ address,name,signature,source,comment
 0x001ae200,CarAsset_CopyPartModel,,game,
 0x001ae2f0,CarAsset_InstallPart,,game,
 0x001ae570,CarAsset_Build,,game,
+0x001aee18,CarAsset_Build_Orphan1,,game,"follows CarAsset_Build; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001aee30,CarAsset_OnLoaded,,game,
 0x001aeeb0,CarAsset_Load,,game,
 0x001af080,DriverAsset_Clear,,game,
@@ -2433,6 +2705,7 @@ address,name,signature,source,comment
 0x001b0930,Rival_FindByTeam,,game,
 0x001b0ea0,Rival_GetTeamRecord,,game,0x44-byte record copy
 0x001b0f00,Rival_SelectOpponents,,game,
+0x001b2118,Rival_SelectOpponents_Orphan1,,game,"follows Rival_SelectOpponents; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001b2130,Rival_SetupBattle,,game,
 0x001b25a0,Rival_IsAvailable,,game,
 0x001b2700,Rival_CheckWeatherCondition,,game,
@@ -2458,8 +2731,11 @@ address,name,signature,source,comment
 0x001b3d70,Career_CountDefeatedTeams,,game,
 0x001b3e10,Career_UpdateRivalStatus,,game,
 0x001b3fe0,Career_SpawnNightRivals,,game,reads the real-time clock
+0x001b4268,Career_SpawnNightRivals_Orphan1,,game,"follows Career_SpawnNightRivals; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001b4270,Career_RefreshAvailability,,game,
+0x001b44d0,Career_RefreshAvailability_Orphan1,,game,"follows Career_RefreshAvailability; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001b44f0,Career_UpdateTeams,,game,
+0x001b46c8,Career_UpdateTeams_Orphan1,,game,"follows Career_UpdateTeams; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001b46d0,Career_AssignRivalCar,,game,
 0x001b4810,Career_InitRivalStates,,game,
 0x001b48e0,RivalRec_GetPosition,,game,
@@ -2482,6 +2758,7 @@ address,name,signature,source,comment
 0x001b6510,Opponent_BuildFromRival,,game,"""nickname"""
 0x001b6800,Career_IsBelowCap,,game,
 0x001b6850,Career_ProcessDay,,game,
+0x001b7d50,Career_ProcessDay_Orphan1,,game,"follows Career_ProcessDay; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001b7d60,Garage_GetCurrentCarSpec,,game,
 0x001b7da0,Garage_GetCurrentCarStats,,game,
 0x001b7e20,Opponent_BuildFromTeam,,game,
@@ -2511,6 +2788,7 @@ address,name,signature,source,comment
 0x001ba220,Garage_MarkDirty,,game,
 0x001ba240,Garage_GetCarPower,,game,
 0x001ba290,Garage_ComputeCarStats,,game,18 callers
+0x001baf18,Garage_ComputeCarStats_Orphan1,,game,"follows Garage_ComputeCarStats; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001baf70,Profile_IsCurrentCarTuned,,game,
 0x001bafb0,Profile_GetCurrentCarValue,,game,
 0x001bb080,Profile_GetCarValue,,game,
@@ -2547,6 +2825,7 @@ address,name,signature,source,comment
 0x001bcb00,Profile_GetMoney,,game,+0x2738; 59 callers
 0x001bcb10,Profile_StartNight,,game,
 0x001bce70,Profile_ScheduleRivals,,game,
+0x001bdca4,Profile_ScheduleRivals_Orphan1,,game,"follows Profile_ScheduleRivals; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001bdce0,Profile_ClearFlags,,game,
 0x001bdd00,Profile_GetFlags,,game,
 0x001bdd10,Profile_SetFlags,,game,
@@ -2558,6 +2837,7 @@ address,name,signature,source,comment
 0x001beaf0,RivalSchedule_Free,,game,
 0x001beb20,RivalSchedule_SetupBattle,,game,
 0x001bf120,RivalSchedule_SetupTeamBattle,,game,
+0x001bfde0,RivalSchedule_SetupTeamBattle_Orphan1,,game,"follows RivalSchedule_SetupTeamBattle; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001bfe00,RivalSchedule_Alloc,,game,
 0x001bfe30,RivalSchedule_IsComplete,,game,
 0x001bff40,RivalSchedule_Clear,,game,
@@ -2666,11 +2946,15 @@ address,name,signature,source,comment
 0x001c6bf0,Driver_UpdatePlayer,,game,
 0x001c7260,Driver_ReadInput,,game,
 0x001c7c50,Driver_UpdateAssists,,game,
+0x001c7f30,Driver_UpdateAssists_Orphan1,,game,"follows Driver_UpdateAssists; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001c7f40,Driver_FilterSteering,,game,
+0x001c8bec,Driver_FilterSteering_Orphan1,,game,"follows Driver_FilterSteering; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001c8c40,Driver_FilterPedals,,game,
+0x001c9940,Driver_FilterPedals_Orphan1,,game,"follows Driver_FilterPedals; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001c99b0,RaceTask_CreateAiDrivers,,game,
 0x001c9a80,Driver_InitController,,game,
 0x001c9e00,Driver_ReadWheel,,game,
+0x001ca150,Driver_ReadWheel_Orphan1,,game,"follows Driver_ReadWheel; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001ca160,Driver_ReadPad,,game,
 0x001ca2d0,Driver_ApplyControls,,game,
 0x001ca4d0,Input_ClampPositive,,game,
@@ -2696,6 +2980,7 @@ address,name,signature,source,comment
 0x001ca810,Ai_UpdateDriver,,game,
 0x001cb190,Ai_FollowRacingLine,,game,
 0x001cba60,Ai_ComputeSteering,,game,
+0x001cc8d8,Ai_ComputeSteering_Orphan1,,game,"follows Ai_ComputeSteering; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001cc8e0,Ai_Reset,,game,
 0x001cca10,RaceCar_IsAirborne,,game,
 0x001cca90,RaceCar_WheelGroundDistance,,game,
@@ -2709,10 +2994,12 @@ address,name,signature,source,comment
 0x001cdf80,Ai_UpdateGearbox,,game,
 0x001ce4d0,RaceCar_ResetToTrack,"void RaceCar_ResetToTrack(RaceCar *param_1,undefined8 param_2)",game,
 0x001ce740,RaceCar_ApplyRecord,"void RaceCar_ApplyRecord(RaceCar *param_1,undefined8 param_2,long param_3)",game,
+0x001ced1c,RaceCar_ApplyRecord_Orphan1,,game,"follows RaceCar_ApplyRecord; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001ced30,RaceCar_SetTransform,,game,
 0x001cee10,RaceCar_UpdateTracker,void RaceCar_UpdateTracker(RaceCar *param_1),game,
 0x001ceef0,CarSpec_BuildFromDb,,game,
 0x001cf860,CarSpec_ApplyTuning,,game,
+0x001d1594,CarSpec_ApplyTuning_Orphan1,,game,"follows CarSpec_ApplyTuning; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001d15a0,CarSpec_ApplyParts,,game,
 0x001d1bf0,CarSpec_BuildForRecord,,game,
 0x001d20f0,CarRec_GetModelId,,game,37 callers
@@ -2752,15 +3039,18 @@ address,name,signature,source,comment
 0x001d41e0,CarDb_CopyTable,,game,
 0x001d4240,CarDb_GetPartForModel,,game,
 0x001d4360,Ai_UpdateRivalBehaviour,,game,
+0x001d4b48,Ai_UpdateRivalBehaviour_Orphan1,,game,"follows Ai_UpdateRivalBehaviour; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001d4b50,Ai_DriverTask,,game,
 0x001d4c20,maybe_RaceTask_ResetCounters,,game,zeroes three work fields (was maybe_RaceTask_GetField)
 0x001d4c40,Traffic_UpdateAll,,game,
 0x001d4cd0,Traffic_Reset,,game,
 0x001d4cf0,Traffic_Spawn,,game,
+0x001d4f14,Traffic_Spawn_Orphan1,,game,"follows Traffic_Spawn; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001d4f20,Traffic_InitSlot,,game,
 0x001d5060,Ai_DriveCar,,game,
 0x001d5b30,Ai_InitTuning,,game,
 0x001d5cb0,Ai_PlanOvertake,,game,
+0x001d70e8,Ai_PlanOvertake_Orphan1,,game,"follows Ai_PlanOvertake; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001d7100,AiLine_GetPoint,,game,
 0x001d7dc0,AiLine_GetDirection,,game,
 0x001d7e10,AiLine_BuildFrame,,game,
@@ -2768,8 +3058,11 @@ address,name,signature,source,comment
 0x001d80f0,Ai_SteerToLine,,game,
 0x001d85f0,Ai_AvoidCars,,game,
 0x001d8920,Ai_ComputeTargetSpeed,,game,
+0x001d9bfc,Ai_ComputeTargetSpeed_Orphan1,,game,"follows Ai_ComputeTargetSpeed; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001d9c40,Ai_BrakeForCorner,,game,
+0x001da290,Ai_BrakeForCorner_Orphan1,,game,"follows Ai_BrakeForCorner; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001da2b0,Ai_ThrottleControl,,game,
+0x001da888,Ai_ThrottleControl_Orphan1,,game,"follows Ai_ThrottleControl; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001da8a0,AiLine_Clear,,game,
 0x001da8c0,AiLine_TransformToWorld,,game,
 0x001da9a0,Vec3_AngleBetween,,game,
@@ -2821,6 +3114,7 @@ address,name,signature,source,comment
 0x001dcde0,RaceRule_Alloc,,game,
 0x001dd3b0,RaceRule_SetupCheckpoints,,game,
 0x001dd580,RaceRule_PlaceCheckpoint,,game,
+0x001ddbac,RaceRule_PlaceCheckpoint_Orphan1,,game,"follows RaceRule_PlaceCheckpoint; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001ddbc0,Checkpoint_Update,,game,
 0x001ddda0,maybe_RaceProg_FindRecord,,game,
 0x001dde40,Checkpoint_GetPosition,,game,
@@ -2835,6 +3129,7 @@ address,name,signature,source,comment
 0x001df100,RaceProg_CheckTimeUp,,game,
 0x001df560,RaceProg_CheckPosition,,game,
 0x001df7d0,RaceProg_UpdateLaps,,game,
+0x001dfcbc,RaceProg_UpdateLaps_Orphan1,,game,"follows RaceProg_UpdateLaps; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001dfcd0,RaceProg_UpdateTimers,,game,
 0x001dfec0,RaceProg_UpdateTimerAll,,game,
 0x001dff30,maybe_StatList_MaxValue,,game,max of entry+8 over the -1-terminated 0x1c-byte list at +0xf8 (<= 70 entries) (was maybe_RaceProg_CountA)
@@ -2851,9 +3146,11 @@ address,name,signature,source,comment
 0x001e0540,SpGauge_Update,,game,
 0x001e0600,Race_GetField_8b4,,game-module,
 0x001e0610,SpGauge_UpdateAll,,game,
+0x001e0d00,SpGauge_UpdateAll_Orphan1,,game,"follows SpGauge_UpdateAll; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001e0d10,RaceProg_UpdateDistances,,game,
 0x001e0d80,RaceProg_ComputeDistance,,game,
 0x001e10f0,RaceProg_DetectCollisions,,game,
+0x001e18b0,RaceProg_DetectCollisions_Orphan1,,game,"follows RaceProg_DetectCollisions; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001e18d0,Race_InitFrame,,game,
 0x001e19e0,RaceCam_UpdateIntro,,game,
 0x001e1cc0,RaceCam_UpdateFinish,,game,
@@ -2861,10 +3158,13 @@ address,name,signature,source,comment
 0x001e2370,RaceCam_Task_Thunk,,game,task callback: j RaceCam_Task
 0x001e2390,RaceTask_BeginLoading,,game,
 0x001e2420,RaceCam_UpdateReplay,,game,
+0x001e4398,RaceCam_UpdateReplay_Orphan1,,game,"follows RaceCam_UpdateReplay; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001e43b0,RaceCam_UpdateFree,,game,
+0x001e4884,RaceCam_UpdateFree_Orphan1,,game,"follows RaceCam_UpdateFree; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001e48a0,Race_SetupCars,,game,
 0x001e5120,Race_SetupCarFlags,,game,
 0x001e54c0,Race_LoadCourse,,game,
+0x001e56c8,Race_LoadCourse_Orphan1,,game,"follows Race_LoadCourse; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001e56d0,Race_LoadCourseAsync,,game,
 0x001e5770,RaceTask_FreeCourse,,game,
 0x001e57a0,Race_LoadTask,,game,
@@ -2894,6 +3194,7 @@ address,name,signature,source,comment
 0x001e83c0,RaceSnd_Task,,game,
 0x001e8690,RaceSnd_PlayStart,,game,
 0x001e8860,RaceSnd_PlayResult,,game,
+0x001e8c10,RaceSnd_PlayResult_Orphan1,,game,"follows RaceSnd_PlayResult; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001e8c20,RaceSnd_SetupChannels,,game,
 0x001e8d60,RaceTask_ShutdownSound,,game,
 0x001e8e00,RaceSnd_Enter,,game,
@@ -2947,6 +3248,7 @@ address,name,signature,source,comment
 0x001eb2e0,RaceScene_Alloc,,game,
 0x001eb420,Race_CreateCars,,game,
 0x001eb550,RaceIntro_DrawCars,,game,
+0x001eb8e4,RaceIntro_DrawCars_Orphan1,,game,"follows RaceIntro_DrawCars; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001eb900,RaceIntro_SetupColliders,,game,
 0x001eba40,RaceIntro_LoadAssets,,game,
 0x001ec030,RaceIntro_Update,,game,
@@ -2975,7 +3277,9 @@ address,name,signature,source,comment
 0x001eeb00,UiElem_SetPropFloat,"void UiElem_SetPropFloat(UiLayout *param_1,undefined8 param_2,undefined8 param_3,byte param_4)",game,"(value, layout, elem, prop); 209 callers"
 0x001eebf0,UiText_Reset,,game,
 0x001eece0,UiText_Layout,,game,
+0x001eef94,UiText_Layout_Orphan1,,game,"follows UiText_Layout; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001eefa0,UiText_Update,,game,
+0x001ef184,UiText_Update_Orphan1,,game,"follows UiText_Update; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001ef190,UiText_SetString,,game,
 0x001ef270,UiText_SetColor,,game,
 0x001ef360,UiText_MeasureLine,,game,
@@ -2983,6 +3287,7 @@ address,name,signature,source,comment
 0x001f0490,UiText_CountLinesById,,game,
 0x001f04f0,UiText_CompareById,,game,
 0x001f05b0,UiRes_FreeFonts,,game,
+0x001f0600,UiRes_LoadLocalized_Callback1,,game,address loaded as a constant in UiRes_LoadLocalized (callback / handler)
 0x001f06b0,UiRes_LoadLocalized,,game,language offset at +0x15
 0x001f0710,UiRes_AllocFonts,,game,
 0x001f0760,UiRes_LoadLocalizedAlloc,,game,
@@ -2990,6 +3295,7 @@ address,name,signature,source,comment
 0x001f0950,UiRes_LoadIcons,,game,
 0x001f0b90,UiRes_LoadTextures,,game,
 0x001f0e00,UiText_DrawString,,game,
+0x001f1164,UiText_DrawString_Orphan1,,game,"follows UiText_DrawString; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001f1170,UiText_CountLines,,game,
 0x001f12c0,UiText_DrawPlayerName,,game,"""%s@kaido.battle"""
 0x001f1350,UiText_DrawById,,game,30 callers
@@ -2999,9 +3305,11 @@ address,name,signature,source,comment
 0x001f15f0,UiRes_FreeAll,,game,
 0x001f1710,UiRes_LoadAll,,game,
 0x001f17d0,UiModel_FindStatic,,game,
+0x001f1884,UiModel_FindStatic_Orphan1,,game,"follows UiModel_FindStatic; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001f1890,UiModel_DrawStatic,,game,
 0x001f1bf0,UiModel_FindSkinned,,game,
 0x001f1cb0,UiModel_DrawSkinned,,game,
+0x001f1fe0,UiModel_DrawSkinned_Orphan1,,game,"follows UiModel_DrawSkinned; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001f1ff0,Demo_EvalCameraPath,,game,
 0x001f22c0,Demo_EvalKeyA,,game,
 0x001f2310,Demo_EvalKeyB,,game,
@@ -3134,6 +3442,7 @@ address,name,signature,source,comment
 0x001f9c10,MenuCar_Render,,game,
 0x001fabb0,MenuList_Init,,game,
 0x001fac40,MenuList_Update,,game,
+0x001fafac,MenuList_Update_Orphan1,,game,"follows MenuList_Update; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001fafc0,MenuList_HandleInput,,game,
 0x001fb130,MenuList_Reset,,game,
 0x001fb170,Menu_IsInputIdle,,game,59 callers
@@ -3175,6 +3484,7 @@ address,name,signature,source,comment
 0x001fe850,MenuWnd_SetElementState,,game,
 0x001feaf0,MenuWnd_RequestClose,,game,
 0x001feb00,MenuWnd_DrawHeader,,game,
+0x001ff108,MenuWnd_DrawHeader_Orphan1,,game,"follows MenuWnd_DrawHeader; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x001ff110,MenuMgr_LockInput,,game,
 0x001ff160,MenuWnd_DrawHelp,,game,
 0x001ff320,MenuWnd_DrawFooter,,game,75 callers
@@ -3234,6 +3544,7 @@ address,name,signature,source,comment
 0x00205860,CarDb_Free,,game,
 0x002058b0,CarDb_Alloc,,game,
 0x00205bf0,Garage3d_Draw,,game,
+0x002060e0,Garage3d_Draw_Orphan1,,game,"follows Garage3d_Draw; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002060f0,Garage3d_SetMode,,game,
 0x00206100,Garage3d_DrawLit,,game,
 0x00206110,Garage3d_Free,,game,
@@ -3269,6 +3580,7 @@ address,name,signature,source,comment
 0x00208f10,TitleCam_CopyPosition,,game,
 0x00208f90,TitleCam_StartPathB,,game,
 0x00209020,Math_Ease,,game,switch on 13 curve types: linear/in-pow/out-pow/in-out/out-in (was TitleCam_GetPathCount)
+0x00209238,Math_EaseLinear,,game,returns t unchanged; case 0 of Math_Ease and called directly once
 0x00209240,GameDb_GetEncounter,,game,0xc
 0x00209260,GameDb_GetRivalCar,,game,0x50
 0x00209280,GameDb_GetTeamInfo,,game,0x28
@@ -3286,6 +3598,7 @@ address,name,signature,source,comment
 0x00209490,GameDb_IsLoading,,game,
 0x002094a0,GameDb_ApplyToProfile,,game,
 0x00209540,GameDb_ApplyAllProfiles,,game,
+0x00209620,GameDb_ApplyAllProfiles_Orphan1,,game,"follows GameDb_ApplyAllProfiles; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00209630,GameDb_Load,,game,
 0x00209fe0,GameDb_Free,,game,
 0x0020a030,GameDb_Alloc,,game,
@@ -3319,6 +3632,7 @@ address,name,signature,source,comment
 0x0020e3b0,Minimap_ClampToFrame,,game,
 0x0020e490,Minimap_RotatePoint,,game,
 0x0020e560,Minimap_Draw,,game,
+0x0020eb48,Minimap_Draw_Orphan1,,game,"follows Minimap_Draw; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0020eb50,Subtitle_Draw,,game,14 callers
 0x0020edb0,Subtitle_Hide,,game,13 callers
 0x0020ee40,Subtitle_Show,,game,
@@ -3388,6 +3702,7 @@ address,name,signature,source,comment
 0x0021c260,ScrCareer_Draw_WouldYouLike,,game-module,
 0x0021c720,ScrCareer_Draw_Subject,,game-module,
 0x0021d1a0,ScrCareer_Draw_Subject_d1a0,,game-module,
+0x00220118,ScrCareer_Draw_Subject_d1a0_Orphan1,,game,"follows ScrCareer_Draw_Subject_d1a0; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00220130,ScrCareer_Draw_SelectBbsThread,,game-module,
 0x00220cf0,MenuPage05_Exit,,game,"menu page 5 (table 0x3276e0, dispatched by 0x201380)"
 0x00220d10,MenuPage05_Update,,game,"menu page 5 (table 0x3276e0, dispatched by 0x201380)"
@@ -3403,16 +3718,21 @@ address,name,signature,source,comment
 0x00222b50,maybe_MenuWnd_DrawMailList,,game,
 0x00222cb0,ScrCareer_Draw_Mail,,game-module,
 0x00223730,ScrCareer_Draw_MessageDeleted,,game-module,
+0x002248dc,ScrCareer_Draw_MessageDeleted_Orphan1,,game,"follows ScrCareer_Draw_MessageDeleted; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00224900,ScrCareer_Draw_DeleteThisMessage,,game-module,
 0x002252d0,ScrCareer_Draw_MessageDeleted_52d0,,game-module,
+0x00225ff4,ScrCareer_Draw_MessageDeleted_52d0_Orphan1,,game,"follows ScrCareer_Draw_MessageDeleted_52d0; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00226020,maybe_PageMail_State7_MessageDeleted,,game,"state of MenuPage07; on-screen text/callee hint ""MessageDeleted"" (was ScrMessageDeleted_Update)"
 0x00226030,maybe_PageMail_State6_MessageDeleted,,game,"state of MenuPage07; on-screen text/callee hint ""MessageDeleted"" (was ScrMessageDeleted_Enter)"
 0x00226040,maybe_PageMail_State5_AcceptThisRival,,game,"state of MenuPage07; on-screen text/callee hint ""AcceptThisRival"" (was ScrAcceptThisRival_Exit)"
 0x00226050,ScrCareer_Draw_DeleteThisMessage_6050,,game-module,
+0x00226d20,ScrCareer_Draw_DeleteThisMessage_6050_Orphan1,,game,"follows ScrCareer_Draw_DeleteThisMessage_6050; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00226d40,ScrCareer_Draw_AcceptThisRival,,game-module,
 0x00227450,ScrCareer_Draw_Mail_7450,,game-module,
 0x00227e70,ScrCareer_Draw_Mail_7e70,,game-module,
+0x0022a094,ScrCareer_Draw_Mail_7e70_Orphan1,,game,"follows ScrCareer_Draw_Mail_7e70; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0022a0c0,ScrCareer_Draw_Mail_a0c0,,game-module,
+0x0022b3f4,ScrCareer_Draw_Mail_a0c0_Orphan1,,game,"follows ScrCareer_Draw_Mail_a0c0; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0022b410,maybe_PageMail_Exit,,game,page identified from its states' on-screen text (N154)
 0x0022b430,maybe_PageMail_Update,,game,page identified from its states' on-screen text (N154)
 0x0022b510,maybe_PageMail_Enter,,game,page identified from its states' on-screen text (N154)
@@ -3455,6 +3775,7 @@ address,name,signature,source,comment
 0x002312c0,MenuNum_CountUp_LoversInfo,,game,
 0x00231610,ScrCareer_Draw_NoData,,game-module,
 0x002317e0,ScrCareer_Draw_NoData_17e0,,game-module,
+0x00231b90,ScrCareer_Draw_NoData_17e0_Orphan1,,game,"follows ScrCareer_Draw_NoData_17e0; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00231ba0,ScrCareer_Draw_LoversInformation,,game-module,
 0x002323a0,ScrCareer_Draw_Comment,,game-module,
 0x00232950,ScrCareer_Select_NoData,,game-module,
@@ -3508,6 +3829,7 @@ address,name,signature,source,comment
 0x0023a610,MenuNum_CountUp_NoCar,,game,
 0x0023a930,ScrGarage_Draw_NoCarIs,,game-module,
 0x0023aaa0,ScrGarage_Draw_Sponsors,,game-module,
+0x0023adf0,ScrGarage_Draw_Sponsors_Orphan1,,game,"follows ScrGarage_Draw_Sponsors; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0023ae00,maybe_PageSponsors_State5_ContractMoney,,game,"state of MenuPage20; on-screen text/callee hint ""ContractMoney"" (was ScrContractMoney_Exit)"
 0x0023aef0,ScrCareer_Draw_ContractMoney,,game-module,
 0x0023b330,maybe_PageSponsors_State3_ContractMoney,,game,"state of MenuPage20; on-screen text/callee hint ""ContractMoney"" (was ScrContractMoney_Enter)"
@@ -3564,7 +3886,9 @@ address,name,signature,source,comment
 0x002430d0,MenuScr_Draw_ContractMoney,,game-module,
 0x002432c0,ScrRecord_Draw_IsTakenAway,,game-module,
 0x00243bd0,ScrRace_Draw_Interval,,game-module,
+0x00244b5c,ScrRace_Draw_Interval_Orphan1,,game,"follows ScrRace_Draw_Interval; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00244b90,ScrCareer_Draw_MasterLord,,game-module,
+0x00245ae4,ScrCareer_Draw_MasterLord_Orphan1,,game,"follows ScrCareer_Draw_MasterLord; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00245af0,ScrCareer_Draw_Prize,,game-module,
 0x00246180,maybe_PageBetCar_State45_IsTakenAway,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""IsTakenAway"" (was ScrIsTakenAway_Exit)"
 0x00246190,ScrCareer_Draw_ThisIsYour,,game-module,
@@ -3590,6 +3914,7 @@ address,name,signature,source,comment
 0x0024b390,ScrCareer_Draw_ContractMoney_b390,,game-module,
 0x0024b6c0,ScrCareer_Draw_CarToUse,,game-module,
 0x0024baa0,ScrCareer_Draw_WinLoss,,game-module,
+0x0024cb18,ScrCareer_Draw_WinLoss_Orphan1,,game,"follows ScrCareer_Draw_WinLoss; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0024cb40,maybe_PageBetCar_State19,,game,entry 19 of state table 0x32be30 used by maybe_PageBetCar_Update
 0x0024d4a0,maybe_PageBetCar_State18,,game,entry 18 of state table 0x32be30 used by maybe_PageBetCar_Update
 0x0024d680,ScrCareer_Draw_GoBattle_d680,,game-module,
@@ -3611,6 +3936,7 @@ address,name,signature,source,comment
 0x00253630,ScrCareer_Draw_ChangeTyres,,game-module,
 0x00253c40,ScrRace_Draw_TaAttack,,game-module,
 0x00254100,ScrCareer_Draw_SelectSectionTo,,game-module,
+0x002551a0,ScrCareer_Draw_SelectSectionTo_Orphan1,,game,"follows ScrCareer_Draw_SelectSectionTo; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002551c0,ScrRace_Draw_CategoryRace_51c0,,game-module,
 0x00255aa0,maybe_PageBetCar_Exit,,game,"menu page 27 (table 0x3276e0, dispatched by 0x201380)"
 0x00255ac0,maybe_PageBetCar_Update,,game,"menu page 27 (table 0x3276e0, dispatched by 0x201380)"
@@ -3620,6 +3946,7 @@ address,name,signature,source,comment
 0x00255e70,ScrSell_Enter,,game-screen,screen record 0x327830
 0x00256210,maybe_CarSlot_IsSpecial,,game,
 0x002562c0,ScrGarage_Draw_MetalColour,,game-module,
+0x002568b4,ScrGarage_Draw_MetalColour_Orphan1,,game,"follows ScrGarage_Draw_MetalColour; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002568c0,MenuScr_Draw_MazioraColour,,game-module,
 0x00256e70,ScrGarage_Draw_DealerColour,,game-module,
 0x002574b0,maybe_PartShop_DrawDetails,,game,
@@ -3647,6 +3974,7 @@ address,name,signature,source,comment
 0x0025cb50,maybe_PageBodyShop_State3_ChangeColourScheme,,game,"state of MenuPage29; on-screen text/callee hint ""ChangeColourScheme"" (was ScrChangeColourScheme_Enter)"
 0x0025cbd0,ScrGarage_Draw_Engine,,game-module,
 0x0025d010,ScrGarage_Draw_SportsTyres,,game-module,
+0x0025d468,ScrGarage_Draw_SportsTyres_Orphan1,,game,"follows ScrGarage_Draw_SportsTyres; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0025d480,ScrGarage_Draw_Reinforcement,,game-module,
 0x0025e320,maybe_PageBodyShop_State0_Reinforcement,,game,"state of MenuPage29; on-screen text/callee hint ""Reinforcement"" (was ScrReinforcement_Enter)"
 0x0025e580,maybe_PageBodyShop_Exit,,game,page identified from its states' on-screen text (N154)
@@ -3769,6 +4097,7 @@ address,name,signature,source,comment
 0x00277310,ScrGarage_Draw_InspectCarParts_7310,,game-module,
 0x00277460,ScrCareer_Draw_InspectCarParts,,game-module,
 0x00277930,ScrCareer_Draw_Front,,game-module,
+0x00278478,ScrCareer_Draw_Front_Orphan1,,game,"follows ScrCareer_Draw_Front; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00278480,ScrRace_Draw_Front_8480,,game-module,
 0x002792a0,ScrCareer_Draw_Sponsor,,game-module,
 0x00279570,ScrGarage_Draw_Wheel,,game-module,
@@ -3779,6 +4108,7 @@ address,name,signature,source,comment
 0x0027b150,ScrGarage_Draw_Wheel_b150,,game-module,
 0x0027b590,maybe_PageWheels_State4_SportsTyres,,game,"state of MenuPage41; on-screen text/callee hint ""SportsTyres"" (was ScrSportsTyres_Update)"
 0x0027ba40,ScrGarage_Draw_SportsTyres_ba40,,game-module,
+0x0027cb00,ScrGarage_Draw_SportsTyres_ba40_Orphan1,,game,"follows ScrGarage_Draw_SportsTyres_ba40; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0027cb10,ScrRace_Draw_Equipment,,game-module,
 0x0027cd70,ScrCareer_Draw_InspectCarParts_cd70,,game-module,
 0x0027d1e0,ScrCareer_Draw_TuneUp_d1e0,,game-module,
@@ -3830,6 +4160,7 @@ address,name,signature,source,comment
 0x00286b00,maybe_ScrCarPassword_Update,,game,menu screen 2 (table 0x3274b0)
 0x00286b60,maybe_ScrCarPassword_Enter,,game,menu screen 2 (table 0x3274b0)
 0x00286bb0,maybe_ScrGarageBuyCar_HandleInput,,game,
+0x00286cfc,ScrGarageBuyCar_HandleInput_Orphan1,,game,"follows ScrGarageBuyCar_HandleInput; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00286d10,maybe_ScrGarageBuyCar_OnResult,,game,
 0x00286df0,ScrGarageBuyCar_State11,,game,entry 11 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00286e70,ScrGarageBuyCar_State10,,game,entry 10 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
@@ -3860,7 +4191,9 @@ address,name,signature,source,comment
 0x00288bc0,maybe_ScrRecordPassword_Update,,game,menu screen 4 (table 0x3274b0)
 0x00288c20,maybe_ScrRecordPassword_Enter,,game,menu screen 4 (table 0x3274b0)
 0x00288ff0,maybe_TeamList_FillPage,,game,
+0x002891c0,TeamList_FillPage_Orphan1,,game,"follows TeamList_FillPage; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002891d0,maybe_TeamList_Build,,game,
+0x00289650,TeamList_Build_Orphan1,,game,"follows TeamList_Build; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00289660,maybe_TeamList_CompareRivals,,game,
 0x002896f0,maybe_ScrTeamList_HandleInput,,game,
 0x0028a8c0,ScrGarageBuyCar_State24,,game,entry 24 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
@@ -3883,6 +4216,7 @@ address,name,signature,source,comment
 0x0028b490,maybe_ScrBlank08_Update,,game,menu screen 8 (table 0x3274b0)
 0x0028b4f0,maybe_ScrBlank08_Enter,,game,menu screen 8 (table 0x3274b0)
 0x0028b580,maybe_Mail_CountMessages,,game,
+0x0028b6a8,Mail_CountMessages_Orphan1,,game,"follows Mail_CountMessages; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0028b6b0,maybe_ScrRivalList_ClearSlots,,game,
 0x0028b7e0,maybe_ScrRivalList_HandleInput,,game,
 0x0028c480,maybe_ScrRivalList_State11,,game,entry 11 of state table 0x32e780 used by maybe_ScrRivalList_Update
@@ -3904,6 +4238,7 @@ address,name,signature,source,comment
 0x0028c960,maybe_ScrNewProfile_OnResult,,game,
 0x0028cac0,maybe_ScrNewProfile_State2,,game,entry 2 of state table 0x32e800 used by maybe_ScrNewProfile_Update
 0x0028cb20,maybe_ScrNewProfile_State1,,game,entry 1 of state table 0x32e800 used by maybe_ScrNewProfile_Update
+0x0028cea8,ScrNewProfile_State1_Orphan1,,game,"follows ScrNewProfile_State1; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x0028ceb0,maybe_ScrNewProfile_State0,,game,entry 0 of state table 0x32e800 used by maybe_ScrNewProfile_Update
 0x0028cf60,maybe_ScrNewProfile_Exit,,game,menu screen 9 (table 0x3274b0)
 0x0028cf70,maybe_ScrNewProfile_Update,,game,menu screen 9 (table 0x3274b0)
@@ -4000,6 +4335,7 @@ address,name,signature,source,comment
 0x00293ba0,ScrSave_SelectSlot,,game,
 0x00293e90,ScrSave_Exit,,game,menu screen 24 (table 0x3274b0)
 0x00293ea0,ScrSave_Enter,,game,
+0x00293f30,ScrSave_Enter_Callback1,,game,address loaded as a constant in ScrSave_Enter (callback / handler)
 0x00293f90,ScrLoad_SelectSlot,,game,
 0x00294130,ScrLoad_Exit,,game,menu screen 25 (table 0x3274b0)
 0x00294140,ScrLoad_Enter,,game,
@@ -4017,6 +4353,7 @@ address,name,signature,source,comment
 0x00295320,maybe_ScrOptionsLanguage_State1_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Update)"
 0x00295670,maybe_ScrOptionsLanguage_State0_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Enter)"
 0x00295750,maybe_ScrOptionsLanguage_HandleInput,,game,
+0x002958d4,ScrOptionsLanguage_HandleInput_Orphan1,,game,"follows ScrOptionsLanguage_HandleInput; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002958e0,maybe_ScrOptionsLanguage_OnResult,,game,
 0x002959b0,maybe_ScrOptionsLanguage_Exit,,game,menu screen 26 (table 0x3274b0)
 0x00295a00,maybe_ScrOptionsLanguage_Update,,game,menu screen 26 (table 0x3274b0)
@@ -4041,6 +4378,7 @@ address,name,signature,source,comment
 0x00297d00,maybe_ScrCareerStart_SetupTeamRace,,game,
 0x00297e10,maybe_ScrCareerStart_InputTeam,,game,
 0x00297fa0,maybe_ScrCareerStart_BuildCarInfo,,game,
+0x00298630,ScrCareerStart_BuildCarInfo_Orphan1,,game,"follows ScrCareerStart_BuildCarInfo; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00298640,maybe_ScrRecord_StepSubtitle,,game,
 0x002987f0,maybe_ScrCareerStart_SelectCourse,,game,
 0x00298a20,maybe_ScrCareerStart_InputEquip,,game,
@@ -4213,6 +4551,7 @@ address,name,signature,source,comment
 0x002a9b90,maybe_ScrTuneParts_State23,,game,entry 23 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002a9bd0,maybe_ScrTuneParts_State22,,game,entry 22 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002a9c50,maybe_ScrTuneParts_State21,,game,entry 21 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
+0x002aa0d8,ScrTuneParts_State21_Orphan1,,game,"follows ScrTuneParts_State21; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002aa0e0,maybe_ScrTuneParts_State20,,game,entry 20 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002aa120,maybe_ScrTuneParts_State19,,game,entry 19 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002aa1a0,maybe_ScrTuneParts_State18,,game,entry 18 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
@@ -4231,6 +4570,7 @@ address,name,signature,source,comment
 0x002abcd0,maybe_ScrTuneParts_State5_RivalIsBossId,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""RivalIsBossId"" (was ScrRivalIsBossId_Exit)"
 0x002abf10,maybe_ScrTuneParts_State4_RivalIsBossId,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""RivalIsBossId"" (was ScrRivalIsBossId_Update)"
 0x002ac030,maybe_ScrTuneParts_State3_RivalIsBossId,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""RivalIsBossId"" (was ScrRivalIsBossId_Enter)"
+0x002ac294,ScrTuneParts_State3_RivalIsBossId_Orphan1,,game,"follows ScrTuneParts_State3_RivalIsBossId; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002ac2a0,maybe_ScrTuneParts_State2,,game,entry 2 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002ac370,maybe_ScrTuneParts_State1,,game,entry 1 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002ac460,maybe_ScrTuneParts_State0,,game,entry 0 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
@@ -4255,9 +4595,11 @@ address,name,signature,source,comment
 0x002ae2b0,maybe_ScrGarageCheck_Exit,,game,menu screen 1 (table 0x3274b0)
 0x002ae2c0,maybe_ScrGarageCheck_Update,,game,menu screen 1 (table 0x3274b0)
 0x002ae3c0,maybe_ScrGarageCheck_Enter,,game,menu screen 1 (table 0x3274b0)
+0x002ae450,SeqGen_Init_Callback1,,game,address loaded as a constant in SeqGen_Init (callback / handler)
 0x002ae470,maybe_SeqGen_OnPatternEnd,,game,
 0x002ae4b0,maybe_SeqGen_OnSongEnd,,game,
 0x002ae500,maybe_SeqGen_OnTrackEnd,,game,
+0x002ae560,SeqGen_Init_Callback2,,game,address loaded as a constant in SeqGen_Init (callback / handler)
 0x002ae580,SeqGen_ParseChunkE,,game,
 0x002ae7a0,SeqGen_ParseChunkD,,game,
 0x002aef60,SeqGen_ParseChunkC,,game,
@@ -4276,6 +4618,7 @@ address,name,signature,source,comment
 0x002b0a80,maybe_SeqGen_FindLoopPoint,,game,
 0x002b0b70,maybe_SeqSrc_Open,,game,
 0x002b0d20,maybe_SeqGen_ScanTrack,,game,
+0x002b0f58,SeqGen_ScanTrack_Orphan1,,game,"follows SeqGen_ScanTrack; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002b0f60,maybe_SeqGen_EmitNote,,game,
 0x002b12b0,maybe_SeqGen_EmitControl,,game,
 0x002b1500,maybe_SeqGen_EmitPitchBend,,game,-0x4000..0x4000
@@ -4321,6 +4664,7 @@ address,name,signature,source,comment
 0x002b93e0,SeqGen_IsValidTempoPercent,,game,100..200
 0x002b9420,Script_GetElem_3c_x18,,game-module,
 0x002b9440,SeqGen_ClearPart,,game,
+0x002b95ac,SeqGen_ClearPart_Orphan1,,game,"follows SeqGen_ClearPart; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002b95c0,SeqGen_LoadSong,,game,
 0x002b97c0,SeqGen_SelectSong,,game,
 0x002b9890,SeqGen_SaveSong,,game,0x858-byte song record
@@ -4330,6 +4674,7 @@ address,name,signature,source,comment
 0x002ba1c0,SeqGen_FinishSong,,game,writes Vers + Sequ chunks
 0x002ba390,SeqGen_EmitEvent,,game,
 0x002ba4b0,SeqGen_BuildPart,,game,
+0x002bb348,SeqGen_BuildPart_Orphan1,,game,"follows SeqGen_BuildPart; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002bb370,SeqGen_FreeParts,,game,
 0x002bb460,SeqGen_StopThread,,game,
 0x002bb4c0,SeqGen_StartThread,,game,
@@ -4357,6 +4702,7 @@ address,name,signature,source,comment
 0x002bd2d0,Result_DrawRaceInfo,,game,
 0x002bdb10,Result_ResetCursor,,game,
 0x002bdb20,Result_Draw_TestCourse,,game-module,
+0x002be4a4,Result_Draw_TestCourse_Orphan1,,game,"follows Result_Draw_TestCourse; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002be4b0,Result_Draw_TestCourse_e4b0,,game-module,
 0x002bea60,Result_Draw_TestCourse_ea60,,game-module,
 0x002bf390,Result_Draw_TestCourse_f390,,game-module,
@@ -4379,6 +4725,7 @@ address,name,signature,source,comment
 0x002c1c40,Result_LoadPageB,,game,
 0x002c1c90,Result_LoadLayouts,,game,
 0x002c1eb0,Result_CheckNewRecord,,game,
+0x002c2144,Result_CheckNewRecord_Orphan1,,game,"follows Result_CheckNewRecord; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002c2150,Result_StoreRecord,,game,
 0x002c22a0,Result_StoreRecordAlt,,game,
 0x002c2400,Result_UpdateRow,,game,
@@ -4405,6 +4752,7 @@ address,name,signature,source,comment
 0x002c54e0,RaceUi_SetElementNumber,,game,
 0x002c55e0,RaceUi_OnTextureLoaded,,game,
 0x002c5780,RaceUi_DrawSprites,,game,
+0x002c5a3c,RaceUi_DrawSprites_Orphan1,,game,"follows RaceUi_DrawSprites; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002c5a50,RaceUi_DrawSprite,,game,20 callers
 0x002c5b90,RaceUi_InitSprites,,game,
 0x002c5c40,RaceUi_DrawSpriteRotated,,game,
@@ -4421,6 +4769,7 @@ address,name,signature,source,comment
 0x002c6fb0,RaceUi_DrawIntroCard,,game,
 0x002c7640,RaceUi_AnimateSplit,,game,
 0x002c7920,RaceUi_DrawDigits,,game,
+0x002c7c50,RaceUi_DrawDigits_Orphan1,,game,"follows RaceUi_DrawDigits; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002c7c60,RaceUi_TaskCountdown,,game,
 0x002c7df0,RaceUi_TaskLapCounter,,game,
 0x002c8330,RaceUi_DrawNeedle,,game,
@@ -4431,6 +4780,7 @@ address,name,signature,source,comment
 0x002c9680,RaceUi_DrawNumber,,game,6 callers
 0x002c9c60,RaceUi_DrawArrow3d,,game,
 0x002ca080,RaceUi_DrawMinimap3d,,game,
+0x002ca510,RaceUi_DrawMinimap3d_Orphan1,,game,"follows RaceUi_DrawMinimap3d; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002ca520,RaceUi_DrawTachometer,,game,
 0x002ca950,RaceUi_DrawSpeedometer,,game,
 0x002cae00,RaceUi_DrawRivalMarkers,,game,
@@ -4476,6 +4826,7 @@ address,name,signature,source,comment
 0x002d3430,maybe_ReplayCam_Update,,game,
 0x002d3550,maybe_ReplayCam_Free,,game,
 0x002d36c0,maybe_ReplayCam_Load,,game,
+0x002d3980,ReplayCam_Load_Orphan1,,game,"follows ReplayCam_Load; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002d3990,Garage_BuildSortedCarList,,game,
 0x002d3ba0,Garage_GetSortedCarCount,,game,
 0x002d3bd0,maybe_GarageSort_ByModelKey28,,game,compares CarModel byte +0x28 (was maybe_GarageSort_ByModel)
@@ -4492,11 +4843,13 @@ address,name,signature,source,comment
 0x002d4d40,maybe_MenuObjSet_SetLights,,game,
 0x002d4f20,maybe_MenuObjSet_IsLoaded,,game,
 0x002d4fa0,maybe_MenuObjSet_FindByName,,game,
+0x002d51f8,MenuObjSet_FindByName_Orphan1,,game,"follows MenuObjSet_FindByName; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002d5210,MenuObjSet_Step,,game,
 0x002d5230,MenuObj_Shutdown,,game,
 0x002d5260,MenuObj_Init,,game,
 0x002d5370,MenuObjSet_GetEntry,,game,
 0x002d53b0,maybe_MenuObj_StepState,,game,
+0x002d5bdc,MenuObj_StepState_Orphan1,,game,"follows MenuObj_StepState; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002d5c00,maybe_MenuObj_Release,,game,
 0x002d5ce0,maybe_MenuObj_Create,,game,
 0x002d5e40,MenuObj_IsReady,,game,
@@ -4522,6 +4875,7 @@ address,name,signature,source,comment
 0x002d7710,Pad_GetPort_Wrap,,game-module,
 0x002d7740,maybe_IntroCar_OnLoaded,,game,
 0x002d7a80,maybe_IntroCar_LoadFile,,game,
+0x002d7b90,IntroCar_LoadFile_Orphan1,,game,"follows IntroCar_LoadFile; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002d7ba0,IntroCar_Free,,game,
 0x002d7bf0,IntroCar_Load,,game,
 0x002d7c80,maybe_ShowroomBg_DrawObjects,,game,
@@ -4530,6 +4884,7 @@ address,name,signature,source,comment
 0x002d7e30,ShowroomBg_Alloc,,game,
 0x002d7fd0,maybe_MenuCar_ComputeSpin,,game,
 0x002d8150,maybe_ShowroomBg_DrawObject,,game,
+0x002d8618,ShowroomBg_DrawObject_Orphan1,,game,"follows ShowroomBg_DrawObject; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002d8630,maybe_ShowroomBg_ResetObject,,game,
 0x002d86a0,maybe_ShowroomBg_OnLoaded,,game,
 0x002d8790,Quat_IdentityB,,game,
@@ -4550,12 +4905,15 @@ address,name,signature,source,comment
 0x002d8ef0,maybe_ScrNewGameMemCard_Enter,,game,menu screen 23 (table 0x3274b0)
 0x002d8f50,SaveUi_SetParams,,game,
 0x002d8f60,Subtitle_SetPending,,game,
+0x002d8f70,Result_BuildRaceEntry_Callback1,,game,address loaded as a constant in Result_BuildRaceEntry (callback / handler)
 0x002d9590,maybe_ReplayUi_GetLayoutForMsg,,game,
 0x002d9780,maybe_ReplayUi_GetValue,,game,
 0x002d9bb0,ReplayUi_Free,,game,
+0x002d9c20,ReplayUi_Load_Callback1,,game,address loaded as a constant in ReplayUi_Load (callback / handler)
 0x002d9ca0,ReplayUi_Load,,game,
 0x002d9e30,maybe_NameEntry_DrawInfo,,game,
 0x002da920,maybe_NameEntry_DrawKeyboard,,game,
+0x002daf9c,NameEntry_DrawKeyboard_Orphan1,,game,"follows NameEntry_DrawKeyboard; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002dafb0,maybe_NameEntry_DrawName,,game,
 0x002db3e0,maybe_NameEntry_StepSave,,game,
 0x002db730,maybe_NameEntry_Update,,game,
@@ -4618,8 +4976,11 @@ address,name,signature,source,comment
 0x002dff30,Course_FindSection,,game,
 0x002e0040,MenuNum_CountUp_Bgm,,game,
 0x002e0360,Eventui_Draw_BgmConfig,,game-module,
+0x002e0870,Eventui_Draw_BgmConfig_Orphan1,,game,"follows Eventui_Draw_BgmConfig; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002e0880,Eventui_Draw_BgmConfig_0880,,game-module,
+0x002e13ac,Eventui_Draw_BgmConfig_0880_Orphan1,,game,"follows Eventui_Draw_BgmConfig_0880; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002e13c0,Eventui_Draw_BgmConfig_13c0,,game-module,
+0x002e1c20,Eventui_Draw_BgmConfig_13c0_Orphan1,,game,"follows Eventui_Draw_BgmConfig_13c0; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002e1c30,MenuPage44_Exit,,game,"menu page 44 (table 0x3276e0, dispatched by 0x201380)"
 0x002e1c50,MenuPage44_Update,,game,"menu page 44 (table 0x3276e0, dispatched by 0x201380)"
 0x002e1cf0,MenuPage44_Enter,,game,"menu page 44 (table 0x3276e0, dispatched by 0x201380)"
@@ -4668,6 +5029,7 @@ address,name,signature,source,comment
 0x002e8870,maybe_ComposerTask_State7_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatee8870)"
 0x002e88c0,maybe_ComposerTask_State8_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exite88c0)"
 0x002e88d0,maybe_ComposerTask_State6_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Entere88d0)"
+0x002e89dc,ComposerTask_State6_NameentryGetField_Orphan1,,game,"follows ComposerTask_State6_NameentryGetField; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002e89f0,maybe_ComposerUi_AnimateNameB,,game,
 0x002e8b90,Eventui_Draw_Akagi_8b90,,game-module,
 0x002e9540,maybe_ComposerTask_State19_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatee9540)"
@@ -4689,6 +5051,7 @@ address,name,signature,source,comment
 0x002eae70,maybe_ComposerTask_State10_State8_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exiteae70)"
 0x002eaf60,maybe_ComposerTask_State10_State7_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Updateeaf60)"
 0x002eb150,maybe_ComposerTask_State10_State6_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Entereb150)"
+0x002eb2d4,ComposerTask_State10_State6_NameentrySetField8_Orphan1,,game,"follows ComposerTask_State10_State6_NameentrySetField8; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002eb2e0,maybe_ComposerTask_State10_State5_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exit)"
 0x002eb3e0,maybe_ComposerTask_State10_State4_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Update)"
 0x002eb570,maybe_ComposerTask_State10_State3_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Enter)"
@@ -4700,6 +5063,7 @@ address,name,signature,source,comment
 0x002ec9c0,maybe_ComposerTask_State9_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Enterec9c0)"
 0x002ecb70,maybe_ComposerUi_AnimateNameC,,game,
 0x002ecdf0,Eventui_Draw_Akagi_cdf0,,game-module,
+0x002ed140,Eventui_Draw_Akagi_cdf0_Orphan1,,game,"follows Eventui_Draw_Akagi_cdf0; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002ed150,maybe_ComposerUi_SetCellNumber,,game,
 0x002ed390,maybe_ComposerUi_DrawGrid,,game,
 0x002ee410,maybe_ComposerUi_DrawCursorSprite,,game,
@@ -4749,6 +5113,7 @@ address,name,signature,source,comment
 0x002f7480,Composer_OnTextureLoaded,,game,
 0x002f7620,ComposerTex_Clear,,game,
 0x002f7650,ComposerTex_Draw,,game,
+0x002f794c,ComposerTex_Draw_Orphan1,,game,"follows ComposerTex_Draw; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x002f7960,ComposerTex_Animate,,game,
 0x002f7a20,ComposerTex_SetRect,,game,
 0x002f7a60,ComposerTex_Init,,game,
@@ -4853,13 +5218,22 @@ address,name,signature,source,comment
 0x002fd5e0,Misc_Draw_StartGame,,game-module,
 0x002fd9b0,ScrDraw_StartGame_Enter,,game-screen,screen record 0x3278fc
 0x00306d50,maybe_KernelPatch_SetupTlb,,game,
+0x00306ea8,KernelPatch_SetupTlb_Orphan1,,game,"follows KernelPatch_SetupTlb; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x003072a0,KernelPatch_SetupTlb_Orphan2,,game,follows KernelPatch_SetupTlb_Orphan1; unreferenced except as noted (was FUN_00306ea8_Orphan1)
+0x00307350,KernelPatch_SetupTlb_Orphan3,,game,follows KernelPatch_SetupTlb_Orphan1; unreferenced except as noted (was FUN_003072a0_Tail1)
 0x00307400,maybe_KernelPatch_ScanTable,,game,
+0x003074c0,KernelPatch_ScanTable_Orphan1,,game,"follows KernelPatch_ScanTable; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00307568,KernelPatch_ScanTable_Orphan2,,game,follows KernelPatch_ScanTable_Orphan1; unreferenced except as noted (was FUN_00307558_Orphan1)
 0x003075e0,maybe_KernelPatch_WaitIntc,,game,
 0x003076b0,maybe_KernelPatch_Dispatch,,game,
+0x00307918,KernelPatch_Dispatch_Orphan1,,game,"follows KernelPatch_Dispatch; no call, branch, pointer or constant references it (exception landing pad or dead code)"
+0x00307a04,KernelPatch_Dispatch_Orphan2,,game,follows KernelPatch_Dispatch_Orphan1; unreferenced except as noted (was FUN_00307918_Tail1)
+0x00307a18,KernelPatch_Dispatch_Orphan3,,game,follows KernelPatch_Dispatch_Orphan1; unreferenced except as noted (was FUN_00307a04_Orphan1)
 0x00307a38,maybe_KernelPatch_FindHandler,,game,
 0x00307b40,maybe_KernelPatch_AddHandler,,game,
 0x00307c80,maybe_KernelPatch_RemoveHandler,,game,
 0x00307e20,maybe_KernelPatch_CallSync,,game,
+0x00307e40,KernelPatch_CallSync_Orphan1,,game,"follows KernelPatch_CallSync; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00307e68,maybe_KernelPatch_ScanHandlers,,game,
 0x003685e0,__sinit_003685e0,,sinit,
 0x00368630,__sinit_00368630,,sinit,

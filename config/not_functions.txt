@@ -202,7 +202,6 @@
 0x001d7cb8  # ScrsceVu0Normalize_Updated7cb8 (jump-table target)
 0x001f6fd0  # Ui_Nop (jump-table target)
 0x001f8458  # Ui_Nop_2 (jump-table target)
-0x00209238  # Ui_Nop_5 (jump-table target)
 0x002748b0  # Menuscr_Nop_4 (jump-table target)
 0x00274970  # Menuscr_Nop_6 (jump-table target)
 0x0028e44c  # caseD_6 (jump-table target)
@@ -211,3 +210,29 @@
 0x002a1900  # Menuscr_Nop_13 (jump-table target)
 0x002a94f0  # Menuscr_Nop_14 (jump-table target)
 0x002dd538  # Showroom_Nop_4 (jump-table target)
+0x0010df40  # tail block of the preceding function (branch target from it), not a function
+0x0010e218  # tail block of the preceding function (branch target from it), not a function
+0x0011b30c  # tail block of the preceding function (branch target from it), not a function
+0x0011c93c  # tail block of the preceding function (branch target from it), not a function
+0x0011d94c  # tail block of the preceding function (branch target from it), not a function
+0x00120104  # tail block of the preceding function (branch target from it), not a function
+0x001206b8  # tail block of the preceding function (branch target from it), not a function
+0x00120d0c  # tail block of the preceding function (branch target from it), not a function
+0x0012808c  # tail block of the preceding function (branch target from it), not a function
+0x0012d5d4  # tail block of the preceding function (branch target from it), not a function
+0x0012e5f0  # tail block of the preceding function (branch target from it), not a function
+0x0012f0d8  # tail block of the preceding function (branch target from it), not a function
+0x0012fa28  # tail block of the preceding function (branch target from it), not a function
+0x0012ffd8  # tail block of the preceding function (branch target from it), not a function
+0x0013e834  # tail block of the preceding function (branch target from it), not a function
+0x0016ac90  # tail block of the preceding function (branch target from it), not a function
+0x0016c850  # tail block of the preceding function (branch target from it), not a function
+0x00183020  # tail block of the preceding function (branch target from it), not a function
+0x001b8ea8  # tail block of the preceding function (branch target from it), not a function
+0x001eb120  # tail block of the preceding function (branch target from it), not a function
+0x001f0448  # tail block of the preceding function (branch target from it), not a function
+0x001f12a8  # tail block of the preceding function (branch target from it), not a function
+0x001f1ca0  # tail block of the preceding function (branch target from it), not a function
+0x00222c9c  # tail block of the preceding function (branch target from it), not a function
+0x00307558  # tail block of the preceding function (branch target from it), not a function
+0x00307a2c  # tail block of the preceding function (branch target from it), not a function

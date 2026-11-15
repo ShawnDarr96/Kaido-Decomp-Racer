@@ -17,7 +17,7 @@ ulong fabs(ulong param_1)
   return param_1 & 0xffffffff | ((long)param_1 >> 0x20 & 0x7fffffffU) << 0x20;
 }
 
-// 0x00120190  size 0x20c
+// 0x00120190  size 0x204
 ulong maybe_floor(ulong param_1)
 
 {
@@ -102,6 +102,16 @@ ulong maybe_floor(ulong param_1)
   return uVar4 << 0x20 | uVar7 & 0xffffffff;
 }
 
+// 0x0012039c  size 0x8
+/* follows floor; no call, branch, pointer or constant references it (exception landing pad or dead
+   code) */
+
+void floor_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x001203a8  size 0x48
 int maybe_finite(uint param_1)
 
@@ -119,7 +129,7 @@ uint maybe_isnan(uint param_1)
   return 0x7ff00000 - ((int)param_1 >> 0x20 & 0x7fffffffU | (param_1 | -param_1) >> 0x1f) >> 0x1f;
 }
 
-// 0x00120430  size 0x1d0
+// 0x00120430  size 0x1bc
 ulong maybe_scalbn(ulong param_1,long param_2)
 
 {
@@ -168,6 +178,16 @@ ulong maybe_scalbn(ulong param_1,long param_2)
   return uVar4;
 }
 
+// 0x00120600  size 0x14
+/* follows scalbn; no call, branch, pointer or constant references it (exception landing pad or dead
+   code) */
+
+void scalbn_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00120618  size 0xa0
 void maybe_cos(long param_1)
 
@@ -191,7 +211,7 @@ void maybe_cos(long param_1)
   return;
 }
 
-// 0x001206c0  size 0x280
+// 0x001206c0  size 0x274
 float atanf(float param_1)
 
 {
@@ -263,6 +283,16 @@ LAB_00120860:
     }
   }
   return fVar5;
+}
+
+// 0x00120940  size 0xc
+/* follows atanf; no call, branch, pointer or constant references it (exception landing pad or dead
+   code) */
+
+void atanf_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00120950  size 0x3c
@@ -386,18 +416,18 @@ float maybe_scalbnf(float param_1,long param_2)
 }
 
 // 0x00120c30  size 0xdc
-float cosf(uint param_1)
+float cosf(float __x)
 
 {
   ulong uVar1;
   float fVar2;
   undefined4 uStack_30;
   undefined4 uStack_2c;
-  uint uStack_20;
+  float fStack_20;
   
-  uStack_20 = param_1;
-  if ((param_1 & 0x7fffffff) < 0x3f490fd9) {
-    fVar2 = (float)maybe___kernel_sinf(param_1,0,0);
+  fStack_20 = __x;
+  if ((uint)ABS(__x) < 0x3f490fd9) {
+    fVar2 = (float)maybe___kernel_sinf(__x,0,0);
     return fVar2;
   }
   uVar1 = maybe___ieee754_rem_pio2f(&uStack_30);
@@ -913,7 +943,7 @@ undefined8 sceCdSyncS(long param_1)
   return uVar2;
 }
 
-// 0x00121a60  size 0x16c
+// 0x00121a60  size 0x168
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "Scmd fail sema", "bind err S cmd" */
 
@@ -960,6 +990,49 @@ undefined4 maybe_Cd_CheckSCmd(undefined8 param_1)
     return 0;
   }
   return 0;
+}
+
+// 0x00121bcc  size 0x4
+/* follows Cd_CheckSCmd; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+undefined4 Cd_CheckSCmd_Orphan1(long param_1,undefined4 *param_2)
+
+{
+  undefined4 *puVar1;
+  
+  if (param_1 == 0x8001) {
+    puVar1 = DAT_003081e8;
+  }
+  else if (param_1 == 0x8003) {
+    puVar1 = (undefined4 *)&DAT_00308240;
+  }
+  else if (param_1 == 0x8002) {
+    puVar1 = &DAT_003082c0;
+  }
+  else if (param_1 == 0x8004) {
+    puVar1 = (undefined4 *)&DAT_00309390;
+  }
+  else {
+    if (param_1 == 0x8011) {
+      *param_2 = DAT_003081ec;
+      return 1;
+    }
+    if (param_1 == 0x8013) {
+      puVar1 = (undefined4 *)&DAT_003093c0;
+    }
+    else if (param_1 == 0x8012) {
+      puVar1 = &DAT_00309800;
+    }
+    else if (param_1 == 0x8014) {
+      puVar1 = (undefined4 *)&DAT_00309d40;
+    }
+    else {
+      puVar1 = (undefined4 *)0x0;
+    }
+  }
+  *param_2 = puVar1;
+  return 1;
 }
 
 // 0x00121c80  size 0x2e0
@@ -1682,6 +1755,16 @@ undefined4 maybe_Mc_GetSyncState(undefined4 *param_1,undefined4 *param_2)
   *param_2 = &DAT_00309d90;
   _s_Mc_GetSyncState_1 = DAT_00309d94;
   return 0x3782c0;
+}
+
+// 0x00123240  size 0xc
+/* address loaded as a constant in sceMcOpen (callback / handler) */
+
+void sceMcOpen_Callback1(void)
+
+{
+  iSignalSema(DAT_00309d98);
+  return;
 }
 
 // 0x00123310  size 0xc4

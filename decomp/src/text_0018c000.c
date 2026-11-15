@@ -147,7 +147,7 @@ bool Road_PointInTriangle(int param_1,int param_2,float *param_3)
   return bVar3;
 }
 
-// 0x0018c7e0  size 0x6b8
+// 0x0018c7e0  size 0x6b0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScreenFx_Draw(uint *param_1)
@@ -364,6 +364,16 @@ LAB_0018cbc8:
   return;
 }
 
+// 0x0018ce98  size 0x8
+/* follows ScreenFx_Draw; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void ScreenFx_Draw_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0018cea0  size 0x2d0
 void Weather_UpdateDrop(int param_1,int param_2)
 
@@ -489,7 +499,7 @@ LAB_0018d0f8:
   return;
 }
 
-// 0x0018d170  size 0x548
+// 0x0018d170  size 0x53c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 50 slots, rand() threshold */
 
@@ -650,6 +660,16 @@ LAB_0018d540:
   } while( true );
 }
 
+// 0x0018d6b8  size 0xc
+/* follows Weather_SpawnDrops; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Weather_SpawnDrops_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0018d6d0  size 0x19c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -697,7 +717,8 @@ void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
   int iVar1;
   uint *puVar2;
   uint uVar3;
-  uint uVar4;
+  float fVar4;
+  uint uVar5;
   
   if (_s_RaceIsReplayMode == 0) {
     param_2[3] = 0;
@@ -715,10 +736,10 @@ void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
   param_2[0xb] = 0;
   puVar2 = param_2;
   do {
-    uVar4 = cosf((float)param_2[4] * (float)uVar3);
-    puVar2[0x10] = uVar4;
-    uVar4 = sinf((float)param_2[4] * (float)uVar3);
-    puVar2[0x11] = uVar4;
+    fVar4 = cosf((float)param_2[4] * (float)uVar3);
+    puVar2[0x10] = (uint)fVar4;
+    uVar5 = sinf((float)param_2[4] * (float)uVar3);
+    puVar2[0x11] = uVar5;
     uVar3 = uVar3 + 1;
     puVar2[0x12] = 0;
     puVar2[0x13] = 0;

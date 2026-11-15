@@ -95,7 +95,6 @@ void ScrGarageBuyCar_State16(int param_1)
 }
 
 // 0x00288460  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 15 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State15(int param_1)
@@ -113,14 +112,14 @@ void ScrGarageBuyCar_State15(int param_1)
     lVar2 = Options_Get_14();
     *(uint *)(param_1 + 0x24) = (uint)(lVar2 != 0);
   }
-  uVar3 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar3) == 0) {
+  uVar3 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if ((uVar3 == 2) || (uVar3 == 1)) {
@@ -154,7 +153,6 @@ void ScrGarageBuyCar_State14(int param_1)
 }
 
 // 0x002885c0  size 0x2f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 13 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State13(undefined8 param_1)
@@ -187,14 +185,14 @@ void ScrGarageBuyCar_State13(undefined8 param_1)
   uVar3 = Menu_MapCursorToItem(puVar6[5]);
   puVar6[6] = puVar6[7];
   Menu_HandleCursor(puVar6 + 7,0,8,puVar6[2] + 1,1,0);
-  uVar8 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar8) == 0) {
+  uVar8 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar8) == 0) {
     uVar7 = 0x100000;
   }
   else {
     uVar7 = 0x80000;
     if (uVar8 != 0x80000) {
-      if (*_g_MenuInput == 1) {
+      if (*g_MenuInput == 1) {
         uVar7 = uVar8;
       }
       else {
@@ -208,13 +206,13 @@ void ScrGarageBuyCar_State13(undefined8 param_1)
     puVar6[8] = 0;
   }
   else {
-    if ((_g_MenuInput[4] & uVar8) == 0) {
+    if ((g_MenuInput[4] & uVar8) == 0) {
       uVar8 = 0x100000;
     }
     else if (uVar8 == 0x80000) {
       uVar8 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar8 = 0x100000;
     }
     if (uVar8 == 8) {
@@ -260,7 +258,6 @@ void ScrGarageBuyCar_State13(undefined8 param_1)
 }
 
 // 0x002888c0  size 0x2c8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 12 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State12(int param_1)
@@ -316,13 +313,13 @@ void ScrGarageBuyCar_State12(int param_1)
       g_MenuMgr->unk_0640 = '\a';
     }
   }
-  uVar7 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar7) == 0) {
+  uVar7 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar7) == 0) {
     uVar8 = 0x100000;
   }
   else {
     uVar8 = 0x80000;
-    if ((uVar7 != 0x80000) && (uVar8 = uVar7, *_g_MenuInput != 1)) {
+    if ((uVar7 != 0x80000) && (uVar8 = uVar7, *g_MenuInput != 1)) {
       uVar8 = 0x100000;
     }
   }
@@ -340,13 +337,13 @@ void ScrGarageBuyCar_State12(int param_1)
     }
   }
   else {
-    if ((_g_MenuInput[4] & uVar7) == 0) {
+    if ((g_MenuInput[4] & uVar7) == 0) {
       uVar7 = 0x100000;
     }
     else if (uVar7 == 0x80000) {
       uVar7 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar7 = 0x100000;
     }
     if (uVar7 == 2) {
@@ -564,7 +561,7 @@ void maybe_ScrRecordPassword_Enter(undefined8 param_1)
   return;
 }
 
-// 0x00288ff0  size 0x1d0
+// 0x00288ff0  size 0x1c8
 void maybe_TeamList_FillPage(int param_1,undefined8 param_2,int param_3)
 
 {
@@ -632,7 +629,17 @@ void maybe_TeamList_FillPage(int param_1,undefined8 param_2,int param_3)
   return;
 }
 
-// 0x002891d0  size 0x480
+// 0x002891c0  size 0x8
+/* follows TeamList_FillPage; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void TeamList_FillPage_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x002891d0  size 0x478
 /* WARNING: Removing unreachable block (ram,0x00289470) */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -786,6 +793,16 @@ void maybe_TeamList_Build(int param_1,undefined8 param_2)
   return;
 }
 
+// 0x00289650  size 0x8
+/* follows TeamList_Build; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void TeamList_Build_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00289660  size 0x90
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -802,8 +819,6 @@ int maybe_TeamList_CompareRivals(int *param_1,int *param_2)
 }
 
 // 0x002896f0  size 0x11d0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrTeamList_HandleInput(undefined8 param_1)
 
 {
@@ -821,14 +836,14 @@ void maybe_ScrTeamList_HandleInput(undefined8 param_1)
   uVar5 = Profile_Get(0);
   piVar10 = (int *)param_1;
   iVar3 = piVar10[3];
-  uVar8 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar8) == 0) {
+  uVar8 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar8) == 0) {
     uVar8 = 0x100000;
   }
   else if (uVar8 == 0x80000) {
     uVar8 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar8 = 0x100000;
   }
   if (uVar8 == 0x400) {
@@ -1512,8 +1527,6 @@ int Profile_Get_Wrap(int *param_1,int *param_2)
 }
 
 // 0x0028ae40  size 0x2e0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrEventList_HandleInput(int *param_1)
 
 {
@@ -1522,14 +1535,14 @@ void maybe_ScrEventList_HandleInput(int *param_1)
   
   iVar1 = param_1[2];
   if (param_1[0xdf] == 0) {
-    uVar2 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar2) == 0) {
+    uVar2 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar2) == 0) {
       uVar2 = 0x100000;
     }
     else if (uVar2 == 0x80000) {
       uVar2 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar2 = 0x100000;
     }
     if ((uVar2 == 0x8000) || (uVar2 == 0x200)) {
@@ -1683,22 +1696,20 @@ void maybe_ScrEventList_Enter(undefined4 *param_1)
 }
 
 // 0x0028b2c0  size 0x1a0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrBlank08_HandleInput(int *param_1)
 
 {
   int iVar1;
   uint uVar2;
   
-  uVar2 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar2) == 0) {
+  uVar2 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 2) {
@@ -1812,7 +1823,7 @@ void maybe_ScrBlank08_Enter(undefined4 *param_1)
   return;
 }
 
-// 0x0028b580  size 0x128
+// 0x0028b580  size 0x120
 int maybe_Mail_CountMessages(int param_1)
 
 {
@@ -1851,6 +1862,16 @@ int maybe_Mail_CountMessages(int param_1)
   return iVar4;
 }
 
+// 0x0028b6a8  size 0x8
+/* follows Mail_CountMessages; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Mail_CountMessages_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x0028b6b0  size 0x130
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1883,8 +1904,6 @@ void maybe_ScrRivalList_ClearSlots(int param_1)
 }
 
 // 0x0028b7e0  size 0xc9c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_ScrRivalList_HandleInput(undefined8 param_1)
 
 {
@@ -1899,14 +1918,14 @@ void maybe_ScrRivalList_HandleInput(undefined8 param_1)
   
   piVar6 = (int *)param_1;
   uVar1 = piVar6[4];
-  uVar8 = _g_MenuInput[2];
-  if ((_g_MenuInput[4] & uVar8) == 0) {
+  uVar8 = g_MenuInput[2];
+  if ((g_MenuInput[4] & uVar8) == 0) {
     uVar8 = 0x100000;
   }
   else if (uVar8 == 0x80000) {
     uVar8 = 0x80000;
   }
-  else if (*_g_MenuInput != 1) {
+  else if (*g_MenuInput != 1) {
     uVar8 = 0x100000;
   }
   if (uVar8 == 1) {

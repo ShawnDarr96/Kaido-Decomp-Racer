@@ -32,7 +32,7 @@ undefined8 maybe_Pad_ctor(undefined8 param_1)
   return param_1;
 }
 
-// 0x00138120  size 0x250
+// 0x00138120  size 0x248
 uint Pad_MapButtons(undefined8 param_1,uint param_2,int param_3)
 
 {
@@ -123,7 +123,17 @@ LAB_001382a8:
   } while( true );
 }
 
-// 0x00138380  size 0x1e8
+// 0x00138370  size 0x8
+/* follows Pad_MapButtons; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Pad_MapButtons_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00138380  size 0x1dc
 void maybe_Pad_ReadAnalogAxes(undefined4 param_1,undefined4 param_2,undefined8 param_3,uint param_4)
 
 {
@@ -184,7 +194,17 @@ void maybe_Pad_ReadAnalogAxes(undefined4 param_1,undefined4 param_2,undefined8 p
   return;
 }
 
-// 0x00138580  size 0x310
+// 0x00138568  size 0xc
+/* follows Pad_ReadAnalogAxes; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Pad_ReadAnalogAxes_Orphan1(void)
+
+{
+  return;
+}
+
+// 0x00138580  size 0x308
 void maybe_Pad_ApplyDeadzone
                (float param_1,float param_2,undefined8 param_3,uint param_4,undefined8 param_5,
                undefined8 param_6)
@@ -274,6 +294,16 @@ void maybe_Pad_ApplyDeadzone
     *(undefined1 *)(iVar2 + 0x3e4) = uVar8;
     *(undefined1 *)(iVar2 + 0x3fc) = uVar7;
   }
+  return;
+}
+
+// 0x00138890  size 0x8
+/* follows Pad_ApplyDeadzone; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Pad_ApplyDeadzone_Orphan1(void)
+
+{
   return;
 }
 

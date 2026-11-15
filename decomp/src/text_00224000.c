@@ -2,6 +2,16 @@
 // Address range 0x00224000 - 0x00228000
 #include "ghidra_types.h"
 
+// 0x002248dc  size 0x18
+/* follows ScrCareer_Draw_MessageDeleted; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void ScrCareer_Draw_MessageDeleted_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00224900  size 0x9c4
 void ScrCareer_Draw_DeleteThisMessage(undefined4 *param_1)
 
@@ -224,7 +234,7 @@ LAB_00224d38:
   return;
 }
 
-// 0x002252d0  size 0xd24
+// 0x002252d0  size 0xd04
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
@@ -524,6 +534,16 @@ void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
   return;
 }
 
+// 0x00225ff4  size 0x20
+/* follows ScrCareer_Draw_MessageDeleted_52d0; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void ScrCareer_Draw_MessageDeleted_52d0_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00226020  size 0xc
 /* state of MenuPage07; on-screen text/callee hint "MessageDeleted" (was ScrMessageDeleted_Update)
     */
@@ -559,7 +579,7 @@ void maybe_PageMail_State5_AcceptThisRival(int param_1)
   return;
 }
 
-// 0x00226050  size 0xcd0
+// 0x00226050  size 0xcb4
 void ScrCareer_Draw_DeleteThisMessage_6050(undefined4 *param_1)
 
 {
@@ -823,6 +843,16 @@ void ScrCareer_Draw_DeleteThisMessage_6050(undefined4 *param_1)
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar2].layout);
   iVar2 = UiMgr_FindLayout(0xb0);
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar2].layout);
+  return;
+}
+
+// 0x00226d20  size 0x1c
+/* follows ScrCareer_Draw_DeleteThisMessage_6050; no call, branch, pointer or constant references it
+   (exception landing pad or dead code) */
+
+void ScrCareer_Draw_DeleteThisMessage_6050_Orphan1(void)
+
+{
   return;
 }
 
@@ -1193,7 +1223,7 @@ LAB_0022782c:
   return;
 }
 
-// 0x00227e70  size 0x2224
+// 0x00227e70  size 0x2200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_Mail_7e70(int *param_1)
@@ -1661,7 +1691,7 @@ void ScrCareer_Draw_Mail_7e70(int *param_1)
       uVar6 = extraout_a3_05;
     } while (uVar15 < 0xb);
   }
-  if ((*_g_MenuInput == 1) && (param_1[0x1a1] == 2)) {
+  if ((*g_MenuInput == 1) && (param_1[0x1a1] == 2)) {
     MenuWnd_SetItemState(0xaf,(&DAT_0032a970)[*param_1],0,0);
   }
   MenuWnd_DrawText(0xae,1,0x434);

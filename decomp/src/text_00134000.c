@@ -151,7 +151,7 @@ undefined4 Input_GetAnalog(int param_1,int param_2)
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x9c);
 }
 
-// 0x00134440  size 0x180
+// 0x00134440  size 0x178
 /* recursive */
 
 void maybe_Gut_HashInsert(uint *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
@@ -229,6 +229,16 @@ void maybe_Gut_HashInsert(uint *param_1,uint param_2,undefined8 param_3,undefine
     param_1[param_2 + 0x27] = uVar6;
     param_1[param_2 + 0x47] = uVar7;
   }
+  return;
+}
+
+// 0x001345c0  size 0x8
+/* follows Gut_HashInsert; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+void Gut_HashInsert_Orphan1(void)
+
+{
   return;
 }
 
@@ -2059,7 +2069,7 @@ undefined8 File_Request_ctor(undefined8 param_1)
   return param_1;
 }
 
-// 0x00137460  size 0x17c
+// 0x00137460  size 0x174
 void Pad_Update(void)
 
 {
@@ -2137,6 +2147,16 @@ void Pad_Update(void)
     iVar7 = iVar7 + 1;
     puVar6 = puVar6 + 0x498;
   } while (iVar7 < 2);
+  return;
+}
+
+// 0x001375dc  size 0x8
+/* follows Pad_Update; no call, branch, pointer or constant references it (exception landing pad or
+   dead code) */
+
+void Pad_Update_Orphan1(void)
+
+{
   return;
 }
 
@@ -2377,7 +2397,7 @@ bool maybe_EngineObj_HasData(int param_1)
   return *(int *)(param_1 + 0x47c) != 0;
 }
 
-// 0x001379e0  size 0x4c4
+// 0x001379e0  size 0x4b8
 void Pad_ReadButtons(int param_1)
 
 {
@@ -2482,6 +2502,16 @@ void Pad_ReadButtons(int param_1)
     *(char *)(param_1 + uVar7 + 0x476) = (char)uVar6;
     uVar7 = uVar7 + 1;
   } while (uVar7 < 4);
+  return;
+}
+
+// 0x00137ea4  size 0xc
+/* follows Pad_ReadButtons; no call, branch, pointer or constant references it (exception landing
+   pad or dead code) */
+
+void Pad_ReadButtons_Orphan1(void)
+
+{
   return;
 }
 

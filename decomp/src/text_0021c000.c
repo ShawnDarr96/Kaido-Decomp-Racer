@@ -448,9 +448,7 @@ LAB_0021cd28:
   return;
 }
 
-// 0x0021d1a0  size 0x2f78
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
+// 0x0021d1a0  size 0x2f64
 void ScrCareer_Draw_Subject_d1a0(int *param_1)
 
 {
@@ -1027,7 +1025,7 @@ LAB_0021d4ac:
     }
     MenuWnd_SetItemVisible(0);
   }
-  if ((*_g_MenuInput == 1) && (param_1[0x153f] == 0)) {
+  if ((*g_MenuInput == 1) && (param_1[0x153f] == 0)) {
     MenuWnd_SetItemState(0xab,(&DAT_0032a560)[*param_1],0,0);
   }
   MenuWnd_DrawText(0xaa,1,0x433);
@@ -1508,14 +1506,14 @@ LAB_0021e9c8:
         }
       }
     }
-    uVar6 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar6) == 0) {
+    uVar6 = g_MenuInput[2];
+    if ((g_MenuInput[4] & uVar6) == 0) {
       uVar6 = 0x100000;
     }
     else if (uVar6 == 0x80000) {
       uVar6 = 0x80000;
     }
-    else if (*_g_MenuInput != 1) {
+    else if (*g_MenuInput != 1) {
       uVar6 = 0x100000;
     }
     if (uVar6 == 0x1000) {

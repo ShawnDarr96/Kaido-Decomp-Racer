@@ -532,6 +532,99 @@ undefined4 maybe_Pad2_ParseData(byte *param_1,undefined4 *param_2)
   return 1;
 }
 
+// 0x00130b30  size 0x34
+/* follows Pad2_ParseData; no call, branch, pointer or constant references it (exception landing pad
+   or dead code) */
+
+ulong * Pad2_ParseData_Orphan1(ulong param_1,ulong *param_2)
+
+{
+  char cVar1;
+  ulong uVar2;
+  undefined1 auVar3 [16];
+  ulong *puVar4;
+  undefined1 auVar5 [16];
+  undefined8 in_a0_udw;
+  undefined1 (*pauVar6) [16];
+  undefined1 (*pauVar7) [16];
+  undefined1 auVar8 [16];
+  undefined4 uVar9;
+  undefined4 uVar10;
+  undefined4 uVar11;
+  undefined4 in_t1_udw;
+  undefined4 uVar12;
+  undefined4 in_register_0000009c;
+  ulong uVar13;
+  undefined1 auVar14 [16];
+  
+  if (3 < param_1) {
+    *(char *)param_2 = cRam00360a48;
+    return (ulong *)(s_sceCdStResume_call_0035fff8 + 8);
+  }
+  pauVar7 = *(undefined1 (**) [16])((int)param_1 * 4 + 0x30a520);
+  puVar4 = param_2;
+  if ((((uint)pauVar7 | (uint)param_2) & 7) == 0) {
+    auVar3._8_8_ = in_a0_udw;
+    auVar3._0_8_ = 0x8080808080808080;
+    if ((((uint)pauVar7 | (uint)param_2) & 0xf) == 0) {
+      auVar5._8_4_ = in_t1_udw;
+      auVar5._0_8_ = 0x101010101010101;
+      auVar5._12_4_ = in_register_0000009c;
+      auVar8._8_4_ = in_t1_udw;
+      auVar8._0_8_ = 0x101010101010101;
+      auVar8._12_4_ = in_register_0000009c;
+      auVar14 = _pcpyld(auVar5,auVar8);
+      uVar9 = *(undefined4 *)*pauVar7;
+      uVar10 = *(undefined4 *)(*pauVar7 + 4);
+      uVar11 = *(undefined4 *)(*pauVar7 + 8);
+      uVar12 = *(undefined4 *)(*pauVar7 + 0xc);
+      auVar8 = _pcpyld(auVar3,auVar3);
+      auVar3 = _psubb(*pauVar7,auVar14);
+      auVar3 = _pand(auVar3,~*pauVar7);
+      auVar3 = _pand(auVar3,auVar8);
+      auVar5 = _pcpyud(auVar3,*pauVar7);
+      pauVar6 = pauVar7;
+      if (auVar3._0_8_ == 0 && auVar5._0_8_ == 0) {
+        do {
+          *(undefined4 *)puVar4 = uVar9;
+          *(undefined4 *)((int)puVar4 + 4) = uVar10;
+          *(undefined4 *)(puVar4 + 1) = uVar11;
+          *(undefined4 *)((int)puVar4 + 0xc) = uVar12;
+          pauVar7 = pauVar6 + 1;
+          uVar9 = *(undefined4 *)*pauVar7;
+          uVar10 = *(undefined4 *)(pauVar6[1] + 4);
+          uVar11 = *(undefined4 *)(pauVar6[1] + 8);
+          uVar12 = *(undefined4 *)(pauVar6[1] + 0xc);
+          auVar3 = _psubb(*pauVar7,auVar14);
+          auVar3 = _pand(auVar3,~*pauVar7);
+          auVar3 = _pand(auVar3,auVar8);
+          auVar5 = _pcpyud(auVar3,*pauVar7);
+          puVar4 = puVar4 + 2;
+          pauVar6 = pauVar7;
+        } while (auVar3._0_8_ == 0 && auVar5._0_8_ == 0);
+      }
+    }
+    else {
+      uVar13 = *(ulong *)*pauVar7;
+      uVar2 = uVar13 + 0xfefefefefefefeff & ~uVar13;
+      while ((uVar2 & 0x8080808080808080) == 0) {
+        *puVar4 = uVar13;
+        pauVar7 = (undefined1 (*) [16])(*pauVar7 + 8);
+        uVar13 = *(ulong *)*pauVar7;
+        puVar4 = puVar4 + 1;
+        uVar2 = uVar13 + 0xfefefefefefefeff & ~uVar13;
+      }
+    }
+  }
+  do {
+    cVar1 = (*pauVar7)[0];
+    pauVar7 = (undefined1 (*) [16])(*pauVar7 + 1);
+    *(char *)puVar4 = cVar1;
+    puVar4 = (ulong *)((int)puVar4 + 1);
+  } while (cVar1 != '\0');
+  return param_2;
+}
+
 // 0x00130b68  size 0x54
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -3039,7 +3132,7 @@ uint Math_FloatToFixed22(float param_1)
   return (uint)(param_1 + DAT_00360da0) & 0x3fffff;
 }
 
-// 0x00133aa0  size 0x3b4
+// 0x00133aa0  size 0x3ac
 undefined4 Gut_DecompressBlock(int param_1,uint param_2,int param_3,int *param_4)
 
 {
@@ -3190,6 +3283,16 @@ undefined4 Gut_DecompressBlock(int param_1,uint param_2,int param_3,int *param_4
       *puVar12 = *puVar11;
     } while (iVar3 != 0);
   } while( true );
+}
+
+// 0x00133e54  size 0x8
+/* follows Gut_DecompressBlock; no call, branch, pointer or constant references it (exception
+   landing pad or dead code) */
+
+void Gut_DecompressBlock_Orphan1(void)
+
+{
+  return;
 }
 
 // 0x00133e60  size 0x190

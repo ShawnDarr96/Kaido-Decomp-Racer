@@ -370,7 +370,7 @@ void ScrCareer_Draw_GoBattle_8970(undefined8 param_1)
   } while (0 < iVar16);
   UiElem_SetPropInt(&pUVar3[iVar8].layout,0x18,0x16,*(int *)(&DAT_0032c870 + (uint)bStack_154 * 4));
   ScrCareer_Draw_MasterLord(param_1);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState
               (0x7a,*(undefined4 *)
                      (&s_ScrCareer_Draw_GoBattle_8970_1 + *(int *)(iVar15 + 0x62c) * 4),1,0);
@@ -755,7 +755,7 @@ void ScrCareer_Draw_GoBattle_9330(undefined8 param_1)
   } while (0 < iVar6);
   UiElem_SetPropInt(&pUVar2[iVar7].layout,0x18,0x16,*(int *)(&DAT_0032c830 + (uint)bStack_154 * 4));
   ScrCareer_Draw_MasterLord(param_1);
-  if (*_g_MenuInput == 1) {
+  if (*g_MenuInput == 1) {
     MenuWnd_SetItemState
               (0x7a,*(undefined4 *)
                      (&s_ScrCareer_Draw_GoBattle_9330_1 + *(int *)(iVar16 + 0x62c) * 4),1,0);
@@ -1742,7 +1742,7 @@ void ScrCareer_Draw_CarToUse(int param_1)
   return;
 }
 
-// 0x0024baa0  size 0x1078
+// 0x0024baa0  size 0x1070
 void ScrCareer_Draw_WinLoss(int param_1)
 
 {
