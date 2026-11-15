@@ -46,6 +46,7 @@ Columns:
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 | M9 | Match Options_SetDefaults (54%) and Options_ApplySeVolume (74% under b145: final store duplicated into the early-out path) with another C form | any |  |  | Gap of M8 |
 | M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
+| M12 | Match batch 10: Phys/Snd/Profile garage/RaceProg/SpGauge/Msg/GameDb/Script/Composer/Course/RaceCar accessors (84 functions) | any |  |  |  |
 
 ## P4 Finish
 
@@ -379,3 +380,4 @@ Columns:
 - 2026-11-15 ShawnDarr96: added M10.
 - 2026-11-15 ShawnDarr96/claude: claim M10.
 - 2026-11-15 ShawnDarr96/claude: M10 done; added M11 (gaps).
+- 2026-11-15 ShawnDarr96: added M12.
