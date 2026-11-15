@@ -22,7 +22,7 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
 | `maybe_` names reviewed, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
 | Byte-identical rebuild from assembly | done: `scripts/build.py` reproduces the retail executable exactly (sha1 `05f754ae...`) |
-| Matching (byte-identical) C source | started: the compiler is **MWCPS2 3.0 (Built 011126), `-O4,p`** on decomp.me ([`config/compiler.txt`](config/compiler.txt)); matched functions are listed in [`config/matched.csv`](config/matched.csv) with their scratches, C in [`src/`](src) |
+| Matching (byte-identical) C source | started: the compiler is **MWCPS2 3.0.1b103 (Built 040528), `-O4,p`** on decomp.me (3.0 011126 also matches most code but adds hazard nops the game lacks) ([`config/compiler.txt`](config/compiler.txt)); matched functions are listed in [`config/matched.csv`](config/matched.csv) with their scratches, C in [`src/`](src) |
 
 The executable is stripped (no symbol table). Every function now has a name backed by its code (strings,
 SDK conventions, call graph, the screen or state table it sits in). Names prefixed `maybe_` are educated
