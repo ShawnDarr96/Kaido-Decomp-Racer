@@ -924,7 +924,9 @@ void maybe_Mpeg_AddBlocks(undefined8 param_1,int param_2)
 }
 
 // 0x0010aaa8  size 0x28
-void maybe_Ipu_SetCtrlBit23(int param_1)
+/* N153 confirmed: REG_IPU_CTRL bit 23 */
+
+void Ipu_SetCtrlBit23(int param_1)
 
 {
   uint uVar1;
@@ -1030,7 +1032,9 @@ undefined4 maybe_Mpeg_DecodeBDEC(undefined8 param_1)
 }
 
 // 0x0010ad68  size 0x1c
-void maybe_Mpeg_GetBits3(undefined8 param_1)
+/* N153 confirmed */
+
+void Mpeg_GetBits3(undefined8 param_1)
 
 {
   maybe_Mpeg_GetVLC(param_1,3);
@@ -1526,8 +1530,8 @@ LAB_0010b71c:
   else {
     maybe_Ipu_DmaFromStart(*(undefined4 *)(*(int *)(iVar6 + 0x828) * 0x140 + iVar6 + 0x5ac),0x300);
     maybe_Ipu_Sync(param_1);
-    maybe_Ipu_Command(param_1,(*param_2 & 1) << 0x1b | *(int *)(iVar6 + 0x1cc) << 0x10 |
-                              *(int *)(iVar6 + 0x1c8) << 0x1a | 0x20000000U | *param_4 << 0x19);
+    Ipu_Command(param_1,(*param_2 & 1) << 0x1b | *(int *)(iVar6 + 0x1cc) << 0x10 |
+                        *(int *)(iVar6 + 0x1c8) << 0x1a | 0x20000000U | *param_4 << 0x19);
     iVar2 = *(int *)(iVar6 + 0x134);
   }
   *(undefined4 *)(iVar6 + 0x1c8) = 0;
@@ -1667,7 +1671,7 @@ void maybe_Mpeg_MotionVector
   }
   maybe_Mpeg_DecodeMotionVector(param_2,param_4,lVar2,uVar3,param_8);
   if (param_6 != 0) {
-    uVar1 = maybe_Mpeg_GetBits3(param_1);
+    uVar1 = Mpeg_GetBits3(param_1);
     *param_3 = uVar1;
   }
   lVar2 = maybe_Mpeg_GetVLC(param_1,2);
@@ -1686,16 +1690,16 @@ void maybe_Mpeg_MotionVector
     *(int *)(iVar4 + 4) = *(int *)(iVar4 + 4) << 1;
   }
   if (param_6 != 0) {
-    uVar1 = maybe_Mpeg_GetBits3(param_1);
+    uVar1 = Mpeg_GetBits3(param_1);
     param_3[1] = uVar1;
   }
   return;
 }
 
 // 0x0010bd48  size 0x2c
-/* writes IPU_CMD */
+/* N153 confirmed: writes REG_IPU_CMD */
 
-void maybe_Ipu_Command(int param_1,uint param_2)
+void Ipu_Command(int param_1,uint param_2)
 
 {
   REG_IPU_CMD = param_2;

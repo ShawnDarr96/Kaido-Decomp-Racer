@@ -680,14 +680,14 @@ undefined4 __throw_catch_compare(char *param_1,char *param_2,long *param_3)
 void maybe_std_terminate(void)
 
 {
-  (*(code *)PTR_maybe_std_dthandler_00306800)();
+  (*(code *)PTR_std_dthandler_00306800)();
   return;
 }
 
 // 0x00101050  size 0x1c
-/* calls abort */
+/* N153 confirmed: default terminate handler, calls abort */
 
-void maybe_std_dthandler(void)
+void std_dthandler(void)
 
 {
   abort();

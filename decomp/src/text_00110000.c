@@ -21,11 +21,13 @@ undefined4 maybe_Mpeg_FlushOutput(int param_1)
 }
 
 // 0x001101c0  size 0xc
-void maybe_Ipu_EnableBusy(int param_1)
+/* N153 confirmed */
+
+void Ipu_EnableBusy(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x860) = 0;
-  maybe_Ipu_SetCtrlBit23(1);
+  Ipu_SetCtrlBit23(1);
   return;
 }
 
@@ -63,7 +65,7 @@ void maybe_Mpeg_FlushSecondField(undefined8 param_1)
 void maybe_Mpeg_InitScratchpad(int param_1)
 
 {
-  maybe_Ipu_SetCtrlBit23(1);
+  Ipu_SetCtrlBit23(1);
   *(undefined4 *)(param_1 + 0x5a8) = 0x70000000;
   *(undefined **)(param_1 + 0x5ac) = &DAT_70001800;
   *(undefined **)(param_1 + 0x6e8) = &DAT_70001b00;
@@ -101,9 +103,9 @@ void maybe_Mpeg_ResetDecoder(int param_1)
 }
 
 // 0x00110378  size 0x10
-/* "[MPEG ERROR]%s" */
+/* N153 confirmed: scePrintf with the MPEG error format */
 
-void maybe_Mpeg_ErrMessage(undefined8 param_1)
+void Mpeg_ErrMessage(undefined8 param_1)
 
 {
   maybe_scePrintf(0x35efd8,param_1);
@@ -131,7 +133,7 @@ void maybe_Mpeg_Error(long param_1,undefined8 param_2)
   
   iVar1 = *(int *)((int)param_1 + 0x870);
   if (((iVar1 == 0) || (param_1 == 0)) || (*(int *)((int)param_1 + 0xc) == 0)) {
-    maybe_Mpeg_ErrMessage(param_2);
+    Mpeg_ErrMessage(param_2);
   }
   else {
     uStack_1c = (undefined4)param_2;
@@ -185,7 +187,9 @@ void maybe_Mpeg_SetQuantMatrices(int param_1,uint param_2,int param_3)
 }
 
 // 0x00110518  size 0x20
-undefined4 maybe_Mpeg_SetPictureSize(int param_1,int param_2,int param_3)
+/* N153 confirmed: width/height in macroblocks (>> 4) */
+
+undefined4 Mpeg_SetPictureSize(int param_1,int param_2,int param_3)
 
 {
   *(int *)(param_1 + 0xc) = param_2 >> 4;
@@ -232,7 +236,7 @@ void maybe_Mpeg_SequenceHeader(undefined8 param_1)
   }
   else {
     maybe_Ipu_Sync(param_1);
-    maybe_Ipu_Command(param_1,0x50000000);
+    Ipu_Command(param_1,0x50000000);
     maybe_Ipu_Sync(param_1);
   }
   lVar6 = maybe_Mpeg_GetBits(param_1,1);
@@ -242,7 +246,7 @@ void maybe_Mpeg_SequenceHeader(undefined8 param_1)
   }
   else {
     maybe_Ipu_Sync(param_1);
-    maybe_Ipu_Command(param_1,0x58000000);
+    Ipu_Command(param_1,0x58000000);
     maybe_Ipu_Sync(param_1);
   }
   maybe_Mpeg_ExtensionAndUserData(param_1);
@@ -284,7 +288,7 @@ LAB_00110700:
   iVar8 = iVar7 + 0x120;
   iVar9 = iVar10 >> 1;
   uVar2 = (uint)(iVar11 * iVar4 * 0x1800) >> 8;
-  maybe_Ringbuf_Commit(iVar8);
+  Ringbuf_Commit(iVar8);
   uVar5 = maybe_Mpeg_WorkAlloc(iVar7,iVar8,uVar2,0x40);
   *(undefined4 *)(iVar7 + 0x114) = uVar5;
   uVar5 = maybe_Mpeg_WorkAlloc(iVar7,iVar8,uVar2,0x40);
@@ -294,15 +298,15 @@ LAB_00110700:
   maybe_Mpeg_ComputeMbAddresses
             (iVar7 + 0x200,iVar7 + 0x268,iVar7 + 0x2d0,iVar7 + 0x338,iVar7 + 0x3a0,iVar7 + 0x408,
              iVar7 + 0x470,iVar7 + 0x4d8);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x200,iVar11,iVar10);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x268,iVar11,iVar10);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x2d0,iVar11,iVar10);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x338,iVar11,iVar9);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x3a0,iVar11,iVar9);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x408,iVar11,iVar9);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x470,iVar11,iVar9);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x4d8,iVar11,iVar9);
-  maybe_Mpeg_SetPictureSize(iVar7 + 0x540,iVar11,iVar9);
+  Mpeg_SetPictureSize(iVar7 + 0x200,iVar11,iVar10);
+  Mpeg_SetPictureSize(iVar7 + 0x268,iVar11,iVar10);
+  Mpeg_SetPictureSize(iVar7 + 0x2d0,iVar11,iVar10);
+  Mpeg_SetPictureSize(iVar7 + 0x338,iVar11,iVar9);
+  Mpeg_SetPictureSize(iVar7 + 0x3a0,iVar11,iVar9);
+  Mpeg_SetPictureSize(iVar7 + 0x408,iVar11,iVar9);
+  Mpeg_SetPictureSize(iVar7 + 0x470,iVar11,iVar9);
+  Mpeg_SetPictureSize(iVar7 + 0x4d8,iVar11,iVar9);
+  Mpeg_SetPictureSize(iVar7 + 0x540,iVar11,iVar9);
   return;
 }
 
@@ -358,7 +362,7 @@ void maybe_Mpeg_DecodeIntraSlice(undefined8 param_1,undefined8 param_2,uint para
   if (lVar1 != 0) {
     EIntr();
   }
-  maybe_Ipu_Command(param_1,param_2);
+  Ipu_Command(param_1,param_2);
   maybe_Ipu_Sync(param_1);
   auStack_60[0] = 3;
   maybe_Mpeg_DispatchCallback(*(undefined4 *)((int)param_1 + 0x870),auStack_60);
@@ -378,7 +382,7 @@ void maybe_Mpeg_SequenceExtension(undefined8 param_1)
   
   iVar4 = (int)param_1;
   *(undefined4 *)(iVar4 + 0x860) = 1;
-  maybe_Ipu_SetCtrlBit23(0);
+  Ipu_SetCtrlBit23(0);
   uVar1 = maybe_Mpeg_GetBits(param_1,0x1c);
   uVar2 = uVar1 >> 0x11 & 3;
   *(uint *)(iVar4 + 0x158) = uVar2;

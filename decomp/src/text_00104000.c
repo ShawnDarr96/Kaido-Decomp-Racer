@@ -654,7 +654,9 @@ ulong maybe_std_stdio_filebuf_uflow(undefined8 param_1)
 }
 
 // 0x00105200  size 0x18
-int maybe_Vector_ByteSize(int param_1)
+/* N153 confirmed: end - begin */
+
+int Vector_ByteSize(int param_1)
 
 {
   return *(int *)(param_1 + 0xc) - *(int *)(param_1 + 8);
@@ -1172,7 +1174,9 @@ ulong maybe_std_stdio_wfilebuf_uflow(undefined8 param_1)
 }
 
 // 0x00105da0  size 0x28
-int maybe_Vector_Count(int param_1)
+/* N153 confirmed: (end - begin) / 4 */
+
+int Vector_Count(int param_1)
 
 {
   int iVar1;

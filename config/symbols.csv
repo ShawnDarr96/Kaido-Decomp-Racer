@@ -25,7 +25,7 @@ address,name,signature,source,comment
 0x00100db0,Msl_Nop,,game-module,
 0x00100dc0,__throw_catch_compare,,f2,"compares MW type strings (""PCV..."")"
 0x00101020,maybe_std_terminate,,f2,
-0x00101050,maybe_std_dthandler,,f2,calls abort
+0x00101050,std_dthandler,,game,"N153 confirmed: default terminate handler, calls abort"
 0x00101070,__destroy_global_chain,,f2,
 0x001010d0,__register_global_object,,f2,
 0x00101100,maybe___call_static_initializers,,f2,
@@ -104,7 +104,7 @@ address,name,signature,source,comment
 0x00104e90,maybe_std_stdio_filebuf_pbackfail,,f2,
 0x00104f50,maybe_std_stdio_filebuf_underflow,,f2,
 0x00105080,maybe_std_stdio_filebuf_uflow,,f2,
-0x00105200,maybe_Vector_ByteSize,,game,
+0x00105200,Vector_ByteSize,,game,N153 confirmed: end - begin
 0x00105220,maybe_std_stdio_filebuf_ctor,,f2,
 0x00105270,maybe_std_stdio_wfilebuf_sync,,f2,
 0x00105330,maybe_std_stdio_wfilebuf_seekpos,,f2,
@@ -113,7 +113,7 @@ address,name,signature,source,comment
 0x00105a20,maybe_std_stdio_wfilebuf_pbackfail,,f2,
 0x00105ae0,maybe_std_stdio_wfilebuf_underflow,,f2,
 0x00105c10,maybe_std_stdio_wfilebuf_uflow,,f2,
-0x00105da0,maybe_Vector_Count,,game,
+0x00105da0,Vector_Count,,game,N153 confirmed: (end - begin) / 4
 0x00105dd0,maybe_std_stdio_wfilebuf_ctor,,f2,
 0x00105e20,maybe_std_wfilebuf_getc,,f2,
 0x00105ed0,maybe_std_wfilebuf_getmb,,f2,
@@ -155,9 +155,9 @@ address,name,signature,source,comment
 0x00108fb0,maybe_Mpeg_FormPredictions,,f1,"""invalid motion_type"""
 0x001096b8,maybe_Mpeg_FormPrediction,,f1,
 0x00109ad8,maybe_Mpeg_AddBlocks,,f1,"""intra && skip MB"""
-0x0010aaa8,maybe_Ipu_SetCtrlBit23,,f1,
+0x0010aaa8,Ipu_SetCtrlBit23,,game,N153 confirmed: REG_IPU_CTRL bit 23
 0x0010aad0,maybe_Mpeg_DecodeBDEC,,f1,"""Error code detected(BDEC)"""
-0x0010ad68,maybe_Mpeg_GetBits3,,f1,
+0x0010ad68,Mpeg_GetBits3,,game,N153 confirmed
 0x0010ad88,maybe_Mpeg_MotionVectors,,f1,
 0x0010af10,maybe_Mpeg_GetMBAddrInc,,f1,"""Invalid macroblock_address_increment"""
 0x0010b020,maybe_Mpeg_DecodePictureData,,f1,"""= Skip to the next picture ="""
@@ -168,7 +168,7 @@ address,name,signature,source,comment
 0x0010b9d0,maybe_Mpeg_DecodeMotionVector,,f1,
 0x0010ba58,maybe_Mpeg_MotionVectorPair,,f1,
 0x0010bbf8,maybe_Mpeg_MotionVector,,f1,
-0x0010bd48,maybe_Ipu_Command,,f1,writes IPU_CMD
+0x0010bd48,Ipu_Command,,game,N153 confirmed: writes REG_IPU_CMD
 0x0010bd78,maybe_Ipu_Sync,,f1,
 0x0010bee0,maybe_Ipu_SyncData,,f1,
 0x0010c068,maybe_Mpeg_GetVLC,,f1,
@@ -201,12 +201,12 @@ address,name,signature,source,comment
 0x0010e028,maybe_Ipu_CscWithHandler,,f1,"""CSC handler error"""
 0x0010e2c0,maybe_Ipu_ConvertPicture,,f1,
 0x0010e548,maybe_Bs_Init,,f1,
-0x0010e580,maybe_Bs_ShowBits,,f1,
+0x0010e580,Bs_ShowBits,,game,N153 confirmed: top n bits of the 64-bit window
 0x0010e5a0,maybe_Bs_Skip,,f1,
 0x0010e638,maybe_Bs_GetBits,,f1,
 0x0010e688,maybe_Bs_GetBit,,f1,
 0x0010e6d0,maybe_Bs_Seek,,f1,
-0x0010e728,maybe_Bs_WrapOffset,,f1,
+0x0010e728,Bs_WrapOffset,,game,N153 confirmed: byte offset wrapped at the buffer end
 0x0010e758,maybe_Demux_GetStreamType,,f1,
 0x0010e7e0,maybe_sceMpegDemuxPssRing,,f1,
 0x0010e9e0,maybe_Mpeg_DemuxPss,,f1,
@@ -228,24 +228,24 @@ address,name,signature,source,comment
 0x0010fa80,sceMpegAddCallback,,f1,"(mp, type, func, data) into 12-byte table"
 0x0010fab8,maybe_Mpeg_DispatchCallback,,f1,
 0x0010fb30,maybe_Mpeg_CallbackBackground,,f1,
-0x0010fc00,maybe_Ringbuf_Init,,f1,
-0x0010fc18,maybe_Ringbuf_Rewind,,f1,
-0x0010fc28,maybe_Ringbuf_Commit,,f1,
+0x0010fc00,Ringbuf_Init,,game,N153 confirmed: sets base/size/read/write
+0x0010fc18,Ringbuf_Rewind,,game,N153 confirmed: write = read
+0x0010fc28,Ringbuf_Commit,,game,N153 confirmed: read = write
 0x0010fc38,maybe_Mpeg_WorkAlloc,,f1,"""work area size is too small"""
 0x0010fcc0,sceMpegGetPicture,,f1,"""sceMpegGetPicture was aborted"""
 0x0010fe78,maybe_Mpeg_GetPictureField,,f1,
 0x0010ff98,maybe_Mpeg_GetPictureDispatch,,f1,
 0x0010ffe0,maybe_Mpeg_GetPictureFrame,,f1,
 0x00110158,maybe_Mpeg_FlushOutput,,f1,
-0x001101c0,maybe_Ipu_EnableBusy,,f1,
+0x001101c0,Ipu_EnableBusy,,game,N153 confirmed
 0x001101d0,maybe_Mpeg_FlushSecondField,,f1,"""the second field is missing"""
 0x00110250,maybe_Mpeg_InitScratchpad,,f1,0x70000000 SPR
 0x001102b0,maybe_Mpeg_ResetDecoder,,f1,
-0x00110378,maybe_Mpeg_ErrMessage,,f1,"""[MPEG ERROR]%s"""
+0x00110378,Mpeg_ErrMessage,,game,N153 confirmed: scePrintf with the MPEG error format
 0x00110388,maybe_Mpeg_Errorf,,f1,
 0x001103c0,maybe_Mpeg_Error,,f1,
 0x00110418,maybe_Mpeg_SetQuantMatrices,,f1,
-0x00110518,maybe_Mpeg_SetPictureSize,,f1,
+0x00110518,Mpeg_SetPictureSize,,game,N153 confirmed: width/height in macroblocks (>> 4)
 0x00110538,maybe_Mpeg_SequenceHeader,,f1,"""vertical size > 2800"""
 0x00110908,maybe_Mpeg_ComputeMbAddresses,,f1,
 0x001109e8,maybe_Mpeg_DecodeIntraSlice,,f1,

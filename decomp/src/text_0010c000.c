@@ -529,14 +529,14 @@ void maybe_Mpeg_QuantMatrixExtension(undefined8 param_1)
   *(int *)((int)param_1 + 0x858) = (int)lVar1;
   if (lVar1 != 0) {
     maybe_Ipu_Sync(param_1);
-    maybe_Ipu_Command(param_1,0x50000000);
+    Ipu_Command(param_1,0x50000000);
     maybe_Ipu_Sync(param_1);
   }
   lVar1 = maybe_Mpeg_GetBits(param_1,1);
   *(int *)((int)param_1 + 0x85c) = (int)lVar1;
   if (lVar1 != 0) {
     maybe_Ipu_Sync(param_1);
-    maybe_Ipu_Command(param_1,0x58000000);
+    Ipu_Command(param_1,0x58000000);
     maybe_Ipu_Sync(param_1);
   }
   lVar1 = maybe_Mpeg_GetBits(param_1,1);
@@ -1261,7 +1261,7 @@ void maybe_Ipu_CscLoop(undefined8 param_1,uint param_2,ulong param_3)
   if (lVar3 != 0) {
     EIntr();
   }
-  maybe_Ipu_Command(param_1,param_3 | 0x70000000);
+  Ipu_Command(param_1,param_3 | 0x70000000);
   auStack_70[0] = 4;
   maybe_Mpeg_DispatchCallback(*(undefined4 *)((int)param_1 + 0x870),auStack_70);
   do {
@@ -1350,7 +1350,7 @@ void maybe_Ipu_ConvertPicture(undefined8 param_1,uint *param_2)
   do {
     iVar3 = REG_IPU_CTRL;
   } while (iVar3 < 0);
-  maybe_Ipu_Command(param_1,0);
+  Ipu_Command(param_1,0);
   do {
     iVar3 = REG_IPU_CTRL;
   } while (iVar3 < 0);
@@ -1422,7 +1422,9 @@ void maybe_Bs_Init(undefined8 param_1,undefined4 param_2,int param_3,int param_4
 }
 
 // 0x0010e580  size 0x1c
-undefined4 maybe_Bs_ShowBits(ulong *param_1,int param_2)
+/* N153 confirmed: top n bits of the 64-bit window */
+
+undefined4 Bs_ShowBits(ulong *param_1,int param_2)
 
 {
   return (int)(*param_1 >> (long)(0x40 - param_2));
@@ -1466,7 +1468,7 @@ undefined8 maybe_Bs_GetBits(undefined8 param_1,undefined8 param_2)
 {
   undefined8 uVar1;
   
-  uVar1 = maybe_Bs_ShowBits();
+  uVar1 = Bs_ShowBits();
   maybe_Bs_Skip(param_1,param_2);
   return uVar1;
 }
@@ -1477,7 +1479,7 @@ undefined8 maybe_Bs_GetBit(undefined8 param_1)
 {
   undefined8 uVar1;
   
-  uVar1 = maybe_Bs_ShowBits(param_1,1);
+  uVar1 = Bs_ShowBits(param_1,1);
   maybe_Bs_Skip(param_1,1);
   return uVar1;
 }
@@ -1505,7 +1507,9 @@ void maybe_Bs_Seek(undefined8 param_1,int param_2)
 }
 
 // 0x0010e728  size 0x2c
-uint maybe_Bs_WrapOffset(int param_1,int param_2)
+/* N153 confirmed: byte offset wrapped at the buffer end */
+
+uint Bs_WrapOffset(int param_1,int param_2)
 
 {
   uint uVar1;
@@ -1688,13 +1692,13 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
     } while ((pcStack_c0 == (code *)0x0) && (iVar6 < *(int *)(iVar1 + 100)));
   }
   do {
-    lVar4 = maybe_Bs_ShowBits(auStack_160,0x20);
+    lVar4 = Bs_ShowBits(auStack_160,0x20);
     if (lVar4 == 0x1ba) {
       maybe_Demux_PesHeader(auStack_160,auStack_130);
     }
-    while (((lVar4 = maybe_Bs_ShowBits(auStack_160,0x18), lVar4 == 1 &&
-            (lVar4 = maybe_Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1ba)) &&
-           (lVar4 = maybe_Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1b9))) {
+    while (((lVar4 = Bs_ShowBits(auStack_160,0x18), lVar4 == 1 &&
+            (lVar4 = Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1ba)) &&
+           (lVar4 = Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1b9))) {
       bVar2 = uVar9 < uStack_148;
       if ((uVar9 <= uStack_148) || (lVar8 == 0)) goto LAB_0010ec9c;
       maybe_Mpeg_PackHeader(iVar1,auStack_160,auStack_118);
@@ -1706,8 +1710,8 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
             puVar5 = (ulong *)(iVar7 * 0x20 + iStack_b8);
             if (*puVar5 == (auStack_118[0] & puVar5[1])) {
               uStack_e0 = 6;
-              uStack_dc = maybe_Bs_WrapOffset(auStack_160,uStack_f0);
-              uStack_d8 = maybe_Bs_WrapOffset(auStack_160,uStack_f8);
+              uStack_dc = Bs_WrapOffset(auStack_160,uStack_f0);
+              uStack_d8 = Bs_WrapOffset(auStack_160,uStack_f8);
               uStack_d0 = uStack_108;
               uStack_d4 = uStack_f4;
               uStack_c8 = uStack_100;
@@ -1721,8 +1725,8 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
         }
         if ((iVar7 == iVar6) && (pcStack_c0 != (code *)0x0)) {
           uStack_e0 = 6;
-          uStack_dc = maybe_Bs_WrapOffset(auStack_160,uStack_f0);
-          uStack_d8 = maybe_Bs_WrapOffset(auStack_160,uStack_f8);
+          uStack_dc = Bs_WrapOffset(auStack_160,uStack_f0);
+          uStack_d8 = Bs_WrapOffset(auStack_160,uStack_f8);
           uStack_d0 = uStack_108;
           uStack_d4 = uStack_f4;
           uStack_c8 = uStack_100;
@@ -1735,7 +1739,7 @@ maybe_Mpeg_DemuxPss(undefined8 param_1,undefined8 param_2,int param_3,undefined8
     }
     bVar2 = uVar9 < uStack_148;
 LAB_0010ec9c:
-    if ((bVar2) || (lVar4 = maybe_Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1ba)) {
+    if ((bVar2) || (lVar4 = Bs_ShowBits(auStack_160,0x20), lVar4 != 0x1ba)) {
       return uStack_b4;
     }
   } while( true );
@@ -1827,7 +1831,7 @@ undefined4 maybe_Demux_PesHeader(undefined8 param_1,undefined8 param_2)
       uVar7 = uVar7 + 1;
     } while (uVar7 < uVar5);
   }
-  lVar6 = maybe_Bs_ShowBits(param_1,0x20);
+  lVar6 = Bs_ShowBits(param_1,0x20);
   if (lVar6 == 0x1bb) {
     puVar8[3] = 1;
     maybe_Demux_SystemHeader(param_1,param_2);
@@ -1846,7 +1850,7 @@ undefined4 maybe_Demux_SystemHeader(undefined8 param_1)
   
   maybe_Bs_GetBits(param_1,0x38);
   maybe_Bs_GetBits(param_1,0x28);
-  while (lVar1 = maybe_Bs_ShowBits(param_1,1), lVar1 == 1) {
+  while (lVar1 = Bs_ShowBits(param_1,1), lVar1 == 1) {
     maybe_Bs_GetBits(param_1,0x18);
   }
   return 1;
@@ -2062,7 +2066,7 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     iVar3 = uVar4 + 0x120;
     puVar5 = (undefined4 *)param_1;
     puVar5[0x10] = uVar4;
-    maybe_Ringbuf_Init(iVar3,uVar4 + 0x10c0,uVar2 - 0x10c0);
+    Ringbuf_Init(iVar3,uVar4 + 0x10c0,uVar2 - 0x10c0);
     *puVar5 = 0;
     puVar5[1] = 0;
     puVar5[2] = 0;
@@ -2124,7 +2128,7 @@ bool sceMpegCreate(undefined8 param_1,undefined8 param_2,int param_3)
     *(uint *)(uVar4 + 0x1f0) = uVar4 + 0x470;
     *(uint *)(uVar4 + 500) = uVar4 + 0x4d8;
     *(uint *)(uVar4 + 0x1fc) = uVar4 + 0x540;
-    maybe_Ringbuf_Rewind(iVar3);
+    Ringbuf_Rewind(iVar3);
     *(undefined4 *)(uVar4 + 0x868) = 0xffffffff;
     *(undefined4 *)(uVar4 + 0x86c) = 0;
     *(undefined **)(uVar4 + 0x834) = &DAT_70003600;
@@ -2221,7 +2225,7 @@ undefined4 maybe_sceMpegReset(int param_1)
   puVar1[0x26] = 0xffffffff;
   maybe_Mpeg_ResetDecoder(puVar1);
   puVar1[0x4c] = 0;
-  maybe_Ipu_EnableBusy(puVar1);
+  Ipu_EnableBusy(puVar1);
   return 1;
 }
 
@@ -2300,7 +2304,9 @@ undefined4 maybe_Mpeg_CallbackBackground(undefined8 param_1)
 }
 
 // 0x0010fc00  size 0x14
-void maybe_Ringbuf_Init(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
+/* N153 confirmed: sets base/size/read/write */
+
+void Ringbuf_Init(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   param_1[3] = param_2;
@@ -2311,7 +2317,9 @@ void maybe_Ringbuf_Init(undefined4 *param_1,undefined4 param_2,undefined4 param_
 }
 
 // 0x0010fc18  size 0xc
-void maybe_Ringbuf_Rewind(int param_1)
+/* N153 confirmed: write = read */
+
+void Ringbuf_Rewind(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0xc) = *(undefined4 *)(param_1 + 8);
@@ -2319,7 +2327,9 @@ void maybe_Ringbuf_Rewind(int param_1)
 }
 
 // 0x0010fc28  size 0xc
-void maybe_Ringbuf_Commit(int param_1)
+/* N153 confirmed: read = write */
+
+void Ringbuf_Commit(int param_1)
 
 {
   *(undefined4 *)(param_1 + 8) = *(undefined4 *)(param_1 + 0xc);
