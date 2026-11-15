@@ -48,7 +48,7 @@ Columns:
 | M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
 | M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
 | M15 | Match Vec3_Scale and Vec3_ScaleCopy (97%: the game assigns x/y/z to f0/f1/f2; locals and struct-copy forms tried) | any |  |  | Gap of M14 |
-| M17 | Match batch 13: Sema/Thread wrappers, PhysMaterial, Vec3/Vec4, PhysBody lists, car clamps, Garage, Demo keys (38 functions) | any |  |  |  |
+| M17 | Match batch 13: Sema/Thread wrappers, PhysMaterial, Vec3/Vec4, PhysBody lists, car clamps, Garage, Demo keys (38 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
 
 ## P4 Finish
 
@@ -395,3 +395,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim M16.
 - 2026-11-15 ShawnDarr96/claude: M16 done.
 - 2026-11-15 ShawnDarr96: added M17.
+- 2026-11-15 ShawnDarr96/claude: claim M17.
