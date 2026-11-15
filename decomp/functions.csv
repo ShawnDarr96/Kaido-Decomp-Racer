@@ -356,7 +356,7 @@ address,size,name,file,status
 0x001126e8,0x7c,maybe_iSignalSemaEx,src/text_00110000.c,decompiled
 0x00112768,0x98,maybe_iSuspendThreadEx,src/text_00110000.c,decompiled
 0x00112800,0xc8,DelayThread,src/text_00110000.c,decompiled
-0x001128c8,0x28,maybe_Kernl_AlarmSignal,src/text_00110000.c,decompiled
+0x001128c8,0x28,Kernl_AlarmSignal,src/text_00110000.c,decompiled
 0x001128f0,0x44,sceDeci2Open,src/text_00110000.c,decompiled
 0x00112938,0x24,sceDeci2Close,src/text_00110000.c,decompiled
 0x00112960,0x30,sceDeci2ReqSend,src/text_00110000.c,decompiled
@@ -421,8 +421,8 @@ address,size,name,file,status
 0x00115378,0x6c,maybe_Fio_GetFreeSlot,src/text_00114000.c,decompiled
 0x001153e8,0x3b0,maybe_Fio_RpcCallback,src/text_00114000.c,decompiled
 0x001157a0,0x4c,maybe_Fio_InitLockSema,src/text_00114000.c,decompiled
-0x001157f0,0x2c,maybe_Fio_Lock,src/text_00114000.c,decompiled
-0x00115820,0xc,maybe_Fio_Unlock,src/text_00114000.c,decompiled
+0x001157f0,0x2c,Fio_Lock,src/text_00114000.c,decompiled
+0x00115820,0xc,Fio_Unlock,src/text_00114000.c,decompiled
 0x001158d8,0x44,maybe_Fio_AsyncCallback,src/text_00114000.c,decompiled
 0x00115920,0x204,maybe_Fio_Bind,src/text_00114000.c,decompiled
 0x00115b28,0x8c,maybe_Fio_IsBound,src/text_00114000.c,decompiled
@@ -593,11 +593,11 @@ address,size,name,file,status
 0x00120b68,0xc8,maybe_scalbnf,src/text_00120000.c,decompiled
 0x00120c30,0xdc,cosf,src/text_00120000.c,decompiled
 0x00120d18,0x78,tanf,src/text_00120000.c,decompiled
-0x00120d90,0x14,maybe_acosf,src/text_00120000.c,decompiled
-0x00120da8,0x14,maybe_asinf,src/text_00120000.c,decompiled
+0x00120d90,0x14,acosf,src/text_00120000.c,decompiled
+0x00120da8,0x14,asinf,src/text_00120000.c,decompiled
 0x00120dc0,0x14,atan2f,src/text_00120000.c,decompiled
-0x00120dd8,0x14,maybe_fmodf,src/text_00120000.c,decompiled
-0x00120df0,0x14,maybe_sqrtf,src/text_00120000.c,decompiled
+0x00120dd8,0x14,fmodf,src/text_00120000.c,decompiled
+0x00120df0,0x14,sqrtf,src/text_00120000.c,decompiled
 0x00120e08,0x68,maybe_sceCdSync0,src/text_00120000.c,decompiled
 0x00120e70,0xa0,maybe_Cd_CallbackHandler,src/text_00120000.c,decompiled
 0x00120f10,0xd0,sceCdCbfunc,src/text_00120000.c,decompiled
@@ -676,7 +676,7 @@ address,size,name,file,status
 0x00126260,0x5c,maybe_std_FILE_init,src/text_00124000.c,decompiled
 0x001262c0,0x78,maybe___sfmoreglue,src/text_00124000.c,decompiled
 0x00126338,0xf8,maybe___sfp,src/text_00124000.c,decompiled
-0x00126430,0x1c,maybe__cleanup_r,src/text_00124000.c,decompiled
+0x00126430,0x1c,_cleanup_r,src/text_00124000.c,decompiled
 0x00126470,0x8c,__sinit,src/text_00124000.c,decompiled
 0x00126500,0x2e8,_free_r,src/text_00124000.c,decompiled
 0x001267f8,0x16c,maybe__malloc_trim_r,src/text_00124000.c,decompiled
@@ -686,9 +686,9 @@ address,size,name,file,status
 0x00126f80,0x3cc,maybe___sfvwrite,src/text_00124000.c,decompiled
 0x00127360,0x94,maybe__fwalk,src/text_00124000.c,decompiled
 0x001273f8,0x88,maybe__setlocale_r,src/text_00124000.c,decompiled
-0x00127488,0xc,maybe__localeconv_r,src/text_00124000.c,decompiled
-0x00127498,0x24,maybe_setlocale,src/text_00124000.c,decompiled
-0x001274c0,0x1c,maybe_localeconv,src/text_00124000.c,decompiled
+0x00127488,0xc,_localeconv_r,src/text_00124000.c,decompiled
+0x00127498,0x24,setlocale,src/text_00124000.c,decompiled
+0x001274c0,0x1c,localeconv,src/text_00124000.c,decompiled
 0x001274e0,0x60,maybe__lseek_r,src/text_00124000.c,decompiled
 0x00127540,0x14c,maybe___smakebuf,src/text_00124000.c,decompiled
 0x00127698,0x54,malloc,src/text_00124000.c,decompiled
@@ -772,7 +772,7 @@ address,size,name,file,status
 0x0012f390,0x124,maybe___fixsfdi,src/text_0012c000.c,decompiled
 0x0012f4b8,0xb0,__pack_f,src/text_0012c000.c,decompiled
 0x0012f570,0x58,__unpack_f,src/text_0012c000.c,decompiled
-0x0012f5d0,0x2c,maybe___make_fp,src/text_0012c000.c,decompiled
+0x0012f5d0,0x2c,__make_fp,src/text_0012c000.c,decompiled
 0x0012f600,0x3c,maybe___sf_to_df,src/text_0012c000.c,decompiled
 0x0012f640,0xd4,__unpack_d,src/text_0012c000.c,decompiled
 0x0012f718,0xb0,__pack_d,src/text_0012c000.c,decompiled
@@ -785,7 +785,7 @@ address,size,name,file,status
 0x0012ffe0,0x4c,__cmpdf2,src/text_0012c000.c,decompiled
 0x00130030,0xb4,__floatsidf,src/text_00130000.c,decompiled
 0x001300e8,0x9c,__fixdfsi,src/text_00130000.c,decompiled
-0x00130188,0x2c,maybe___make_dp,src/text_00130000.c,decompiled
+0x00130188,0x2c,__make_dp,src/text_00130000.c,decompiled
 0x001301b8,0x54,maybe___extendsfdf2,src/text_00130000.c,decompiled
 0x00130210,0x9c,maybe___truncdfsf2,src/text_00130000.c,decompiled
 0x001302b0,0x40,maybe_scePad2Init,src/text_00130000.c,decompiled
@@ -837,7 +837,7 @@ address,size,name,file,status
 0x00132320,0xa8,maybe_List_dtor,src/text_00130000.c,decompiled
 0x001323d0,0x24,List_ctor,src/text_00130000.c,decompiled
 0x00132400,0x4c,maybe_ListNode_dtor,src/text_00130000.c,decompiled
-0x00132450,0x18,maybe_ListNode_ctor,src/text_00130000.c,decompiled
+0x00132450,0x18,ListNode_ctor,src/text_00130000.c,decompiled
 0x00132470,0x28,Dbg_Nop,src/text_00130000.c,decompiled
 0x001324a0,0x30,Mem_Copy8,src/text_00130000.c,decompiled
 0x001324d0,0x30,Mem_Copy16,src/text_00130000.c,decompiled
@@ -867,7 +867,7 @@ address,size,name,file,status
 0x00132b30,0x14,sceVu0MulVector,src/text_00130000.c,decompiled
 0x00132b50,0x14,sceVu0SubVector,src/text_00130000.c,decompiled
 0x00132b70,0x14,sceVu0AddVector,src/text_00130000.c,decompiled
-0x00132b90,0x8,maybe_Vu0_SetUnitW,src/text_00130000.c,decompiled
+0x00132b90,0x8,Vu0_SetUnitW,src/text_00130000.c,decompiled
 0x00132ba0,0x78,sceVu0MulMatrix,src/text_00130000.c,decompiled
 0x00132c20,0x24,sceVu0CopyMatrix,src/text_00130000.c,decompiled
 0x00132c50,0x74,maybe_Vu0_SinCos,src/text_00130000.c,decompiled
@@ -882,8 +882,8 @@ address,size,name,file,status
 0x001330c0,0x54,maybe_sceVu0RotTransPers,src/text_00130000.c,decompiled
 0x00133120,0xc4,maybe_sceVu0RotTransPersN,src/text_00130000.c,decompiled
 0x001331f0,0x64,maybe_sceVu0MulMatrixVf28,src/text_00130000.c,decompiled
-0x00133260,0x14,maybe_Vu0_LoadMatrixVf28,src/text_00130000.c,decompiled
-0x00133280,0x14,maybe_Vu0_StoreMatrixVf28,src/text_00130000.c,decompiled
+0x00133260,0x14,Vu0_LoadMatrixVf28,src/text_00130000.c,decompiled
+0x00133280,0x14,Vu0_StoreMatrixVf28,src/text_00130000.c,decompiled
 0x001332a0,0x10c,maybe_Vu0_ClearStack,src/text_00130000.c,decompiled
 0x001333b0,0x29c,maybe_Vu0_EvalCurve,src/text_00130000.c,decompiled
 0x00133650,0x24,maybe_Vu0_SqrtQ,src/text_00130000.c,decompiled

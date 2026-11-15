@@ -1453,7 +1453,9 @@ undefined4 * maybe___sfp(undefined8 param_1)
 }
 
 // 0x00126430  size 0x1c
-void maybe__cleanup_r(undefined8 param_1)
+/* N153 confirmed: _fwalk(ptr, fclose) */
+
+void _cleanup_r(undefined8 param_1)
 
 {
   maybe__fwalk(param_1,0x126148);
@@ -1469,7 +1471,7 @@ void __sinit(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  *(code **)(iVar1 + 0x3c) = maybe__cleanup_r;
+  *(code **)(iVar1 + 0x3c) = _cleanup_r;
   *(undefined4 *)(iVar1 + 0x38) = 1;
   maybe_std_FILE_init(iVar1 + 0x1e4,4,0,param_1);
   maybe_std_FILE_init(iVar1 + 0x23c,9,1,param_1);
@@ -2237,14 +2239,18 @@ undefined * maybe__setlocale_r(int param_1,undefined4 param_2,long param_3)
 }
 
 // 0x00127488  size 0xc
-undefined ** maybe__localeconv_r(void)
+/* N153 confirmed: returns the C locale lconv */
+
+undefined ** _localeconv_r(void)
 
 {
   return &PTR_DAT_00360260;
 }
 
 // 0x00127498  size 0x24
-void maybe_setlocale(undefined8 param_1,undefined8 param_2)
+/* N153 confirmed: _setlocale_r(_impure_ptr, ...) */
+
+void setlocale(undefined8 param_1,undefined8 param_2)
 
 {
   maybe__setlocale_r(PTR_DAT_0030a090,param_1,param_2);
@@ -2252,10 +2258,12 @@ void maybe_setlocale(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001274c0  size 0x1c
-void maybe_localeconv(void)
+/* N153 confirmed */
+
+void localeconv(void)
 
 {
-  maybe__localeconv_r(PTR_DAT_0030a090);
+  _localeconv_r(PTR_DAT_0030a090);
   return;
 }
 
@@ -2325,7 +2333,7 @@ LAB_001275fc:
   }
   else {
     param_1[4] = (int)lVar2;
-    *(code **)(param_1[0x15] + 0x3c) = maybe__cleanup_r;
+    *(code **)(param_1[0x15] + 0x3c) = _cleanup_r;
     *(ushort *)(param_1 + 3) = uVar3 | 0x80;
     param_1[5] = 0x400;
     *param_1 = (int)lVar2;

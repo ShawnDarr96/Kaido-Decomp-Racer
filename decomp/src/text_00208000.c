@@ -204,11 +204,11 @@ void TitleCam_SetFov(undefined4 *param_1,undefined4 param_2)
   param_1[0xc] = 0;
   param_1[0xd] = 0;
   param_1[0xe] = 0x42040000;
-  maybe_Vu0_SetUnitW(param_1 + 0x28);
-  maybe_Vu0_SetUnitW(param_1 + 0x2c);
-  maybe_Vu0_SetUnitW(param_1 + 0x30);
-  maybe_Vu0_SetUnitW(param_1 + 0x38);
-  maybe_Vu0_SetUnitW(param_1 + 0x3c);
+  Vu0_SetUnitW(param_1 + 0x28);
+  Vu0_SetUnitW(param_1 + 0x2c);
+  Vu0_SetUnitW(param_1 + 0x30);
+  Vu0_SetUnitW(param_1 + 0x38);
+  Vu0_SetUnitW(param_1 + 0x3c);
   return;
 }
 

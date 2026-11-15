@@ -18,11 +18,11 @@ void CarSpec_ApplyParts(int param_1,undefined8 param_2)
   float fVar10;
   
   pcVar5 = (char *)CarRec_GetPaintArray(param_2);
-  fVar10 = (float)maybe_asinf(((float)(int)pcVar5[2] / 2.0) /
-                              (*(float *)(param_1 + 0x1b4) * 2.0 * 1000.0));
+  fVar10 = (float)asinf(((float)(int)pcVar5[2] / 2.0) / (*(float *)(param_1 + 0x1b4) * 2.0 * 1000.0)
+                       );
   *(float *)(param_1 + 0x250) = *(float *)(param_1 + 0x250) + (fVar10 * 180.0) / 3.1415927;
-  fVar10 = (float)maybe_asinf(((float)(int)pcVar5[3] / 2.0) /
-                              (*(float *)(param_1 + 0x2c4) * 2.0 * 1000.0));
+  fVar10 = (float)asinf(((float)(int)pcVar5[3] / 2.0) / (*(float *)(param_1 + 0x2c4) * 2.0 * 1000.0)
+                       );
   *(float *)(param_1 + 0x360) = *(float *)(param_1 + 0x360) + (fVar10 * 180.0) / 3.1415927;
   *(float *)(param_1 + 0x24c) = (float)(int)pcVar5[4] * 0.5 + *(float *)(param_1 + 0x24c) + 0.0;
   *(float *)(param_1 + 0x35c) = (float)(int)pcVar5[5] * 0.5 + *(float *)(param_1 + 0x35c) + 0.0;

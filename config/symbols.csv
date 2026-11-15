@@ -356,7 +356,7 @@ address,name,signature,source,comment
 0x001126e8,maybe_iSignalSemaEx,,f1,
 0x00112768,maybe_iSuspendThreadEx,,f1,
 0x00112800,DelayThread,,f1,"""DelayThread"""
-0x001128c8,maybe_Kernl_AlarmSignal,,f1,
+0x001128c8,Kernl_AlarmSignal,,game,N153 confirmed: iSignalSema then EI
 0x001128f0,sceDeci2Open,,f1,Deci2Call(1)
 0x00112938,sceDeci2Close,,f1,Deci2Call(2)
 0x00112960,sceDeci2ReqSend,,f1,Deci2Call(3)
@@ -421,8 +421,8 @@ address,name,signature,source,comment
 0x00115378,maybe_Fio_GetFreeSlot,,f1,
 0x001153e8,maybe_Fio_RpcCallback,,f1,
 0x001157a0,maybe_Fio_InitLockSema,,f1,
-0x001157f0,maybe_Fio_Lock,,f1,
-0x00115820,maybe_Fio_Unlock,,f1,
+0x001157f0,Fio_Lock,,game,N153 confirmed: WaitSema on the fileio semaphore
+0x00115820,Fio_Unlock,,game,N153 confirmed: SignalSema
 0x001158d8,maybe_Fio_AsyncCallback,,f1,
 0x00115920,maybe_Fio_Bind,,f1,
 0x00115b28,maybe_Fio_IsBound,,f1,
@@ -593,11 +593,11 @@ address,name,signature,source,comment
 0x00120b68,maybe_scalbnf,,f2,
 0x00120c30,cosf,,f2,
 0x00120d18,tanf,,f2,
-0x00120d90,maybe_acosf,,f2,
-0x00120da8,maybe_asinf,,f2,
+0x00120d90,acosf,,game,N153 confirmed: newlib wrapper over __ieee754_acosf
+0x00120da8,asinf,,game,N153 confirmed
 0x00120dc0,atan2f,,f2,-> __ieee754_atan2f -> atanf
-0x00120dd8,maybe_fmodf,,f2,
-0x00120df0,maybe_sqrtf,,f2,
+0x00120dd8,fmodf,,game,N153 confirmed
+0x00120df0,sqrtf,,game,N153 confirmed
 0x00120e08,maybe_sceCdSync0,,f2,
 0x00120e70,maybe_Cd_CallbackHandler,,f1,
 0x00120f10,sceCdCbfunc,,analysis,
@@ -676,7 +676,7 @@ address,name,signature,source,comment
 0x00126260,maybe_std_FILE_init,,f2,
 0x001262c0,maybe___sfmoreglue,,f2,
 0x00126338,maybe___sfp,,f2,
-0x00126430,maybe__cleanup_r,,f2,
+0x00126430,_cleanup_r,,game,"N153 confirmed: _fwalk(ptr, fclose)"
 0x00126470,__sinit,,f2,newlib stdio init; 9 callers
 0x00126500,_free_r,,f2,
 0x001267f8,maybe__malloc_trim_r,,f2,
@@ -686,9 +686,9 @@ address,name,signature,source,comment
 0x00126f80,maybe___sfvwrite,,f2,
 0x00127360,maybe__fwalk,,f2,
 0x001273f8,maybe__setlocale_r,,f2,
-0x00127488,maybe__localeconv_r,,f2,
-0x00127498,maybe_setlocale,,f2,
-0x001274c0,maybe_localeconv,,f2,
+0x00127488,_localeconv_r,,game,N153 confirmed: returns the C locale lconv
+0x00127498,setlocale,,game,"N153 confirmed: _setlocale_r(_impure_ptr, ...)"
+0x001274c0,localeconv,,game,N153 confirmed
 0x001274e0,maybe__lseek_r,,f2,
 0x00127540,maybe___smakebuf,,f2,
 0x00127698,malloc,,f2,
@@ -772,7 +772,7 @@ address,name,signature,source,comment
 0x0012f390,maybe___fixsfdi,,f2,
 0x0012f4b8,__pack_f,,f2,
 0x0012f570,__unpack_f,,f2,
-0x0012f5d0,maybe___make_fp,,f2,
+0x0012f5d0,__make_fp,,game,"N153 confirmed: libgcc fp-bit, packs via __pack_f"
 0x0012f600,maybe___sf_to_df,,f2,unpack_f + make_dp; 15 callers
 0x0012f640,__unpack_d,,f2,
 0x0012f718,__pack_d,,f2,
@@ -785,7 +785,7 @@ address,name,signature,source,comment
 0x0012ffe0,__cmpdf2,,f2,
 0x00130030,__floatsidf,,f2,
 0x001300e8,__fixdfsi,,f2,
-0x00130188,maybe___make_dp,,f2,
+0x00130188,__make_dp,,game,N153 confirmed: libgcc fp-bit
 0x001301b8,maybe___extendsfdf2,,f2,
 0x00130210,maybe___truncdfsf2,,f2,
 0x001302b0,maybe_scePad2Init,,f1,
@@ -837,7 +837,7 @@ address,name,signature,source,comment
 0x00132320,maybe_List_dtor,,game,
 0x001323d0,List_ctor,,game,
 0x00132400,maybe_ListNode_dtor,,game,
-0x00132450,maybe_ListNode_ctor,,game,
+0x00132450,ListNode_ctor,,game,N153 confirmed: sets vtable 0x36e0a0 and the payload
 0x00132470,Dbg_Nop,,game,
 0x001324a0,Mem_Copy8,,game,
 0x001324d0,Mem_Copy16,,game,
@@ -867,7 +867,7 @@ address,name,signature,source,comment
 0x00132b30,sceVu0MulVector,,f1,
 0x00132b50,sceVu0SubVector,,f1,40 callers
 0x00132b70,sceVu0AddVector,,f1,43 callers
-0x00132b90,maybe_Vu0_SetUnitW,,f1,
+0x00132b90,Vu0_SetUnitW,,game,"N153 confirmed: stores vf0 (0,0,0,1)"
 0x00132ba0,sceVu0MulMatrix,,f1,26 callers
 0x00132c20,sceVu0CopyMatrix,,f1,
 0x00132c50,maybe_Vu0_SinCos,,f2,
@@ -882,8 +882,8 @@ address,name,signature,source,comment
 0x001330c0,maybe_sceVu0RotTransPers,,f1,
 0x00133120,maybe_sceVu0RotTransPersN,,f1,
 0x001331f0,maybe_sceVu0MulMatrixVf28,,f1,
-0x00133260,maybe_Vu0_LoadMatrixVf28,,f1,
-0x00133280,maybe_Vu0_StoreMatrixVf28,,f1,
+0x00133260,Vu0_LoadMatrixVf28,,game,N153 confirmed: lqc2 into vf28-vf31
+0x00133280,Vu0_StoreMatrixVf28,,game,N153 confirmed: sqc2 from vf28-vf31
 0x001332a0,maybe_Vu0_ClearStack,,f1,
 0x001333b0,maybe_Vu0_EvalCurve,,f1,
 0x00133650,maybe_Vu0_SqrtQ,,f1,

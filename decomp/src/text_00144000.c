@@ -154,11 +154,11 @@ void Camera_Init(undefined8 param_1)
   uStack_bc = 0xbf800000;
   uStack_a8 = 0xbf800000;
   sceVu0MulMatrix(iVar1 + 0x180,auStack_d0,iVar1 + 0x180);
-  maybe_Vu0_LoadMatrixVf28(iVar1 + 0x180);
+  Vu0_LoadMatrixVf28(iVar1 + 0x180);
   maybe_sceVu0MulMatrixVf28(iVar1 + 0x280,iVar1 + 0x200);
   maybe_sceVu0MulMatrixVf28(iVar1 + 0x2c0,iVar1 + 0x240);
   maybe_sceVu0MulMatrixVf28(iVar1 + 0x380,iVar1 + 0x1c0);
-  fVar2 = (float)maybe_sqrtf(*(undefined4 *)(iVar1 + 0x8c));
+  fVar2 = (float)sqrtf(*(undefined4 *)(iVar1 + 0x8c));
   *(int *)(iVar1 + 0xb8) = (int)((5.0 - fVar2 / 0.6931472) * 16.0);
   return;
 }

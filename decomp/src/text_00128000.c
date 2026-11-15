@@ -3121,7 +3121,7 @@ int _vfprintf_r(undefined4 param_1,int param_2,char *param_3,ulong *param_4)
   
   uStack_ac = param_1;
   iStack_a8 = param_2;
-  piVar4 = (int *)maybe_localeconv();
+  piVar4 = (int *)localeconv();
   iStack_9c = *piVar4;
   uVar1 = *(ushort *)(iStack_a8 + 0xc);
   aiStack_bc[1] = 0;

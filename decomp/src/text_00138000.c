@@ -951,7 +951,7 @@ void Mc_Init(undefined8 param_1,uint param_2)
 undefined8 Mc_Command_ctor(undefined8 param_1)
 
 {
-  maybe_ListNode_ctor(param_1,0);
+  ListNode_ctor(param_1,0);
   *(undefined4 *)param_1 = &DAT_0036e118;
   return param_1;
 }

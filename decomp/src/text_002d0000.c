@@ -1526,8 +1526,8 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
       unaff_s1_lo = (int)fVar11 & 0xff;
     }
     else if (param_1 == '\x01') {
-      fVar11 = (float)maybe_fmodf(((fVar1 / fVar10) /
-                                  ((float)((uVar3 & 0xff) << 8) - fVar8 / fVar10)) * -fVar9);
+      fVar11 = (float)fmodf(((fVar1 / fVar10) / ((float)((uVar3 & 0xff) << 8) - fVar8 / fVar10)) *
+                            -fVar9);
       fVar11 = (0.1 - fVar11) * 1280.0;
       if (fVar11 < 0.0) {
         fVar11 = 0.0;
@@ -1544,8 +1544,8 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
       uStack_100 = 0xff;
     }
     else if (param_1 == '\0') {
-      fVar11 = (float)maybe_fmodf(((fVar1 / fVar10) /
-                                  ((float)((uVar3 & 0xff) << 8) - fVar8 / fVar10)) * -fVar9);
+      fVar11 = (float)fmodf(((fVar1 / fVar10) / ((float)((uVar3 & 0xff) << 8) - fVar8 / fVar10)) *
+                            -fVar9);
       fVar11 = fVar11 * 128.0;
       if (fVar11 < 20.0) {
         fVar11 = 20.0;

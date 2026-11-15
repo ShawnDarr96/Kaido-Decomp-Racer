@@ -1593,7 +1593,7 @@ void Cam_UpdateCollision(float *param_1,int *param_2,int *param_3,undefined4 par
   uVar10 = PhysShape_GetCenter(uVar9);
   uVar11 = PhysShape_GetCenter(uVar8);
   sceVu0SubVector(auStack_90,uVar10,uVar11);
-  maybe_Vu0_SetUnitW(auStack_a0);
+  Vu0_SetUnitW(auStack_a0);
   uStack_84 = 0x3f800000;
   iStack_250 = 0;
   if (uVar5 != 0) {
@@ -1697,7 +1697,7 @@ void Cam_UpdateCollision(float *param_1,int *param_2,int *param_3,undefined4 par
                 uStack_e4 = 0x3f800000;
                 sceVu0CopyVector(param_2 + 0x10,auStack_f0);
                 sceVu0CopyVector(param_2 + 0x14,auStack_f0);
-                maybe_Vu0_SetUnitW(param_2 + 0xc);
+                Vu0_SetUnitW(param_2 + 0xc);
                 iVar7 = 0;
                 if (0 < iStack_130) {
                   puVar23 = auStack_230;

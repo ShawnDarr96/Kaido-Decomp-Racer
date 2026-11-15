@@ -1294,12 +1294,10 @@ void MenuCar_ComputeTurntable(int param_1,int param_2,long param_3,long param_4)
     fVar15 = (float)(int)*(char *)(iVar11 + 0xd) * 0.005 + fVar15 + 0.0;
     fVar20 = (float)(int)*(char *)(iVar11 + 4) * 0.5 + fVar20 + 0.0;
     fVar18 = (float)(int)*(char *)(iVar11 + 5) * 0.5 + fVar18 + 0.0;
-    fVar12 = (float)maybe_asinf(((float)(int)*(char *)(iVar11 + 2) / 2.0) /
-                                (fStack_18 * 2.0 * 1000.0),*(char *)(iVar11 + 2),
-                                *(char *)(iVar11 + 5));
+    fVar12 = (float)asinf(((float)(int)*(char *)(iVar11 + 2) / 2.0) / (fStack_18 * 2.0 * 1000.0),
+                          *(char *)(iVar11 + 2),*(char *)(iVar11 + 5));
     fVar19 = fVar19 + (fVar12 * 180.0) / 3.1415927;
-    fVar12 = (float)maybe_asinf(((float)(int)*(char *)(iVar11 + 3) / 2.0) /
-                                (fStack_14 * 2.0 * 1000.0));
+    fVar12 = (float)asinf(((float)(int)*(char *)(iVar11 + 3) / 2.0) / (fStack_14 * 2.0 * 1000.0));
     fVar16 = fVar16 + (fVar12 * 180.0) / 3.1415927;
   }
   fVar18 = fVar18 * 0.017453292;

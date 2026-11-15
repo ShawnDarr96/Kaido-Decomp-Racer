@@ -1872,7 +1872,7 @@ void Skid_Draw(int param_1,int param_2)
           iVar2 = (int)lVar5;
           sceVu0ApplyMatrix(iVar2 + 0xc0,auStack_50,iVar8 + 0x140);
           maybe_Vu0_UnitMatrix(auStack_e0);
-          maybe_Vu0_SetUnitW(auStack_20);
+          Vu0_SetUnitW(auStack_20);
           maybe_Vu0_RotMatrixX(0x3fc90fdb,auStack_e0,auStack_e0);
           sceVu0MulMatrix(iVar2 + 0xd0,auStack_50,auStack_e0);
           if (*(int *)(iVar8 + 0x134) == 0) {

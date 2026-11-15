@@ -1405,7 +1405,7 @@ void Mat33_ToEuler(undefined4 *param_1,undefined4 *param_2)
   float fVar3;
   undefined4 uVar4;
   
-  fVar1 = (float)maybe_asinf(param_2[8]);
+  fVar1 = (float)asinf(param_2[8]);
   uVar2 = sinf(-fVar1);
   fVar3 = (float)fabsf(uVar2);
   if (0.0005 < fVar3) {

@@ -1708,8 +1708,8 @@ void RaceCam_UpdateReplay(int *param_1)
                   uStack_55c = DAT_0031c334;
                   uStack_558 = DAT_0031c338;
                   uStack_554 = DAT_0031c33c;
-                  maybe_Vu0_SetUnitW(iVar20 + 0x3b0);
-                  maybe_Vu0_SetUnitW(iVar20 + 0x3c0);
+                  Vu0_SetUnitW(iVar20 + 0x3b0);
+                  Vu0_SetUnitW(iVar20 + 0x3c0);
                   iVar10 = 0;
                   piVar24 = param_1;
                   do {

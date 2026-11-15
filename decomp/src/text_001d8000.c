@@ -1711,7 +1711,7 @@ undefined4 Vec3_AngleBetween(undefined4 *param_1,undefined4 *param_2)
     if (1.0 < fVar1) {
       fVar1 = 1.0;
     }
-    uVar4 = maybe_acosf(fVar1);
+    uVar4 = acosf(fVar1);
   }
   return uVar4;
 }
@@ -1788,7 +1788,7 @@ void Vec3_AngleBetweenNorm(float *param_1,float *param_2)
     if (1.0 < fVar7) {
       fVar7 = 1.0;
     }
-    maybe_acosf(fVar7);
+    acosf(fVar7);
   }
   return;
 }

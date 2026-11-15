@@ -32,9 +32,9 @@ undefined8 maybe_sceLseek64(undefined8 param_1,undefined8 param_2,undefined4 par
   undefined8 auStack_90 [2];
   
   lVar2 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(0x16);
+  Fio_Lock(0x16);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar3 = 0xffffffffffffffff;
   }
   else {
@@ -76,10 +76,10 @@ LAB_001182ec:
         iVar5 = DAT_20373740;
         if (lVar2 < 0) {
           DeleteSema(uVar3);
-          maybe_Fio_Unlock();
+          Fio_Unlock();
           return 0xfffffffffffffff5;
         }
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         if (iVar5 == 0) {
           DeleteSema(uVar3);
           return 0xfffffffffffffff5;
@@ -93,7 +93,7 @@ LAB_001182ec:
         return 0;
       }
     }
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar3 = 0xfffffffffffffff7;
   }
                     /* WARNING: Read-only address (ram,0x20373740) is written */
@@ -121,7 +121,7 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
   undefined4 uStack_bc;
   undefined4 auStack_b0 [4];
   
-  maybe_Fio_Lock(0x17);
+  Fio_Lock(0x17);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_FioShared1 = *param_1;
@@ -165,11 +165,11 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
     iVar6 = DAT_20373740;
     if (lVar4 < 0) {
       DeleteSema(uVar3);
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       auStack_b0[0] = 0xfffffff5;
     }
     else {
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar6 == 0) {
         DeleteSema(uVar3);
         auStack_b0[0] = 0xfffffff5;
@@ -181,7 +181,7 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
     }
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_b0[0] = 0xffffffea;
   }
   return auStack_b0[0];
@@ -203,7 +203,7 @@ undefined4 maybe_sceSymlink(char *param_1,char *param_2)
   undefined4 uStack_9c;
   undefined4 auStack_90 [4];
   
-  maybe_Fio_Lock(0x11);
+  Fio_Lock(0x11);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_FioShared1 = *param_1;
@@ -244,11 +244,11 @@ undefined4 maybe_sceSymlink(char *param_1,char *param_2)
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_90[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar4 == 0) {
       DeleteSema(uVar2);
       auStack_90[0] = 0xfffffff5;
@@ -277,7 +277,7 @@ undefined4 maybe_sceReadlink(char *param_1,undefined8 param_2,ulong param_3)
   undefined4 uStack_ac;
   undefined4 auStack_a0 [4];
   
-  maybe_Fio_Lock(0x11);
+  Fio_Lock(0x11);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_sceSyncShared1 = *param_1;
@@ -313,11 +313,11 @@ undefined4 maybe_sceReadlink(char *param_1,undefined8 param_2,ulong param_3)
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_a0[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar4 == 0) {
       DeleteSema(uVar2);
       auStack_a0[0] = 0xfffffff5;

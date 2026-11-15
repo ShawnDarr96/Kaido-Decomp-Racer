@@ -442,7 +442,9 @@ void tanf(uint param_1)
 }
 
 // 0x00120d90  size 0x14
-void maybe_acosf(void)
+/* N153 confirmed: newlib wrapper over __ieee754_acosf */
+
+void acosf(void)
 
 {
   maybe___ieee754_acosf();
@@ -450,7 +452,9 @@ void maybe_acosf(void)
 }
 
 // 0x00120da8  size 0x14
-void maybe_asinf(void)
+/* N153 confirmed */
+
+void asinf(void)
 
 {
   maybe___ieee754_asinf();
@@ -468,7 +472,9 @@ void atan2f(void)
 }
 
 // 0x00120dd8  size 0x14
-void maybe_fmodf(void)
+/* N153 confirmed */
+
+void fmodf(void)
 
 {
   maybe___ieee754_fmodf();
@@ -476,7 +482,9 @@ void maybe_fmodf(void)
 }
 
 // 0x00120df0  size 0x14
-void maybe_sqrtf(void)
+/* N153 confirmed */
+
+void sqrtf(void)
 
 {
   maybe___ieee754_sqrtf();

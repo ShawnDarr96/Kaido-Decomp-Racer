@@ -98,20 +98,20 @@ undefined4 Model_UpdateNodeMatrix(undefined8 param_1,uint *param_2)
   }
   else {
     iVar5 = (int)param_1;
-    maybe_Vu0_LoadMatrixVf28(iVar5 + 0x100);
+    Vu0_LoadMatrixVf28(iVar5 + 0x100);
     maybe_sceVu0RotTransPers(iVar5 + 0xc0);
-    maybe_Vu0_StoreMatrixVf28(iVar5 + 0x140);
-    maybe_Vu0_LoadMatrixVf28(iVar5 + 0x140);
+    Vu0_StoreMatrixVf28(iVar5 + 0x140);
+    Vu0_LoadMatrixVf28(iVar5 + 0x140);
     maybe_sceVu0RotTransPers(*(int *)(iVar5 + 0x88) + 0x2c0);
-    maybe_Vu0_StoreMatrixVf28(iVar5 + 0x180);
+    Vu0_StoreMatrixVf28(iVar5 + 0x180);
     lVar4 = Vu0_TransformPointPersp(*(undefined4 *)(iVar5 + 0x88),iVar5 + 0x180,puVar6 + 4);
     if (lVar4 == 0) {
       uVar3 = 0;
     }
     else {
-      maybe_Vu0_LoadMatrixVf28(iVar5 + 0x140);
+      Vu0_LoadMatrixVf28(iVar5 + 0x140);
       maybe_sceVu0RotTransPers(*(int *)(iVar5 + 0x88) + 0x280);
-      maybe_Vu0_StoreMatrixVf28(iVar5 + 0x1c0);
+      Vu0_StoreMatrixVf28(iVar5 + 0x1c0);
       if ((param_2[2] & 2) == 0) {
         uVar3 = maybe_sceVu0RotTransPersN(puVar6 + 4,0xffffff);
         *(undefined4 *)(iVar5 + 0xb0) = uVar3;

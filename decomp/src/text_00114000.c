@@ -1122,7 +1122,9 @@ void maybe_Fio_InitLockSema(void)
 }
 
 // 0x001157f0  size 0x2c
-undefined8 maybe_Fio_Lock(void)
+/* N153 confirmed: WaitSema on the fileio semaphore */
+
+undefined8 Fio_Lock(void)
 
 {
   maybe_Fio_InitLockSema();
@@ -1131,7 +1133,9 @@ undefined8 maybe_Fio_Lock(void)
 }
 
 // 0x00115820  size 0xc
-void maybe_Fio_Unlock(void)
+/* N153 confirmed: SignalSema */
+
+void Fio_Unlock(void)
 
 {
   SignalSema(DAT_00306b84);
@@ -1255,7 +1259,7 @@ int sceOpen(char *param_1,uint param_2,undefined4 param_3)
   undefined4 uStack_12c;
   int aiStack_120 [4];
   
-  maybe_Fio_Lock(0);
+  Fio_Lock(0);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
@@ -1263,7 +1267,7 @@ int sceOpen(char *param_1,uint param_2,undefined4 param_3)
   if (lVar4 == 0) {
     lVar4 = maybe_Fio_WaitFree();
     if (lVar4 == 0) {
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       iVar6 = -0x13;
     }
     else {
@@ -1295,11 +1299,11 @@ int sceOpen(char *param_1,uint param_2,undefined4 param_3)
       iVar3 = DAT_20373740;
       if (lVar4 < 0) {
         DeleteSema(uVar5);
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         iVar6 = -0xb;
       }
       else {
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         if (iVar3 == 0) {
           DeleteSema(uVar5);
           iVar6 = -0xb;
@@ -1325,7 +1329,7 @@ int sceOpen(char *param_1,uint param_2,undefined4 param_3)
     }
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     iVar6 = -0x10004;
   }
   return iVar6;
@@ -1349,13 +1353,13 @@ int sceClose(void)
   int aiStack_70 [4];
   
   lVar2 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(1);
+  Fio_Lock(1);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     aiStack_70[0] = -1;
   }
   else if ((lVar2 == 0) || (puVar4 = (undefined4 *)lVar2, puVar4[1] == 0)) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     aiStack_70[0] = -9;
   }
   else {
@@ -1371,13 +1375,13 @@ int sceClose(void)
     lVar2 = sceSifCallRpc(0x374200,1,0,0x372b00,0x14,0x373740,4,0);
     if (lVar2 < 0) {
       DeleteSema(uVar3);
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       aiStack_70[0] = -0xb;
     }
     else {
       puVar4[1] = 0;
       iVar1 = DAT_20373740;
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar1 == 0) {
         DeleteSema(uVar3);
         aiStack_70[0] = -0xb;
@@ -1415,9 +1419,9 @@ undefined4 sceLseek(undefined8 param_1,undefined4 param_2,undefined4 param_3)
   undefined4 auStack_90 [4];
   
   lVar3 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(4);
+  Fio_Lock(4);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar2 = 0xffffffff;
   }
   else {
@@ -1459,10 +1463,10 @@ LAB_00116154:
         iVar6 = DAT_20373740;
         if (lVar3 < 0) {
           DeleteSema(uVar4);
-          maybe_Fio_Unlock();
+          Fio_Unlock();
           return 0xfffffff5;
         }
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         if (iVar6 == 0) {
           DeleteSema(uVar4);
           return 0xfffffff5;
@@ -1476,7 +1480,7 @@ LAB_00116154:
         return 0;
       }
     }
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar2 = 0xfffffff7;
   }
                     /* WARNING: Read-only address (ram,0x20373740) is written */
@@ -1504,9 +1508,9 @@ undefined4 sceRead(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   undefined4 auStack_b0 [4];
   
   lVar3 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(2);
+  Fio_Lock(2);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar2 = 0xffffffff;
   }
   else {
@@ -1552,10 +1556,10 @@ LAB_00116388:
         iVar6 = DAT_20373740;
         if (lVar3 < 0) {
           DeleteSema(uVar4);
-          maybe_Fio_Unlock();
+          Fio_Unlock();
           return 0xfffffff5;
         }
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         if (iVar6 == 0) {
           DeleteSema(uVar4);
           return 0xfffffff5;
@@ -1569,7 +1573,7 @@ LAB_00116388:
         return 0;
       }
     }
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar2 = 0xfffffff7;
   }
                     /* WARNING: Read-only address (ram,0x20373740) is written */
@@ -1601,9 +1605,9 @@ undefined4 sceWrite(undefined8 param_1,ulong param_2,int param_3)
   undefined4 auStack_b0 [4];
   
   lVar4 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(3);
+  Fio_Lock(3);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar2 = 0xffffffff;
   }
   else {
@@ -1668,10 +1672,10 @@ LAB_001165f4:
         iVar10 = DAT_20373740;
         if (lVar4 < 0) {
           DeleteSema(uVar5);
-          maybe_Fio_Unlock();
+          Fio_Unlock();
           return 0xfffffff5;
         }
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         if (iVar10 == 0) {
           DeleteSema(uVar5);
           return 0xfffffff5;
@@ -1685,7 +1689,7 @@ LAB_001165f4:
         return 0;
       }
     }
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     uVar2 = 0xfffffff7;
   }
                     /* WARNING: Read-only address (ram,0x20373740) is written */
@@ -1715,13 +1719,13 @@ undefined4 sceIoctl(undefined8 param_1,long param_2,undefined8 *param_3)
   undefined4 auStack_90 [4];
   
   lVar2 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(5);
+  Fio_Lock(5);
   _s_sceIoctl_1 = param_3;
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
   if ((lVar2 == 0) || (puVar9 = (undefined4 *)lVar2, puVar9[1] == 0)) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     return 0xfffffff7;
   }
   _g_sceOpenShared4 = 0;
@@ -1781,10 +1785,10 @@ LAB_001168f0:
       iVar5 = DAT_20373740;
       if (lVar2 < 0) {
         DeleteSema(uVar3);
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         return 0xfffffff5;
       }
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar5 == 0) {
         DeleteSema(uVar3);
         return 0xfffffff5;
@@ -1817,7 +1821,7 @@ LAB_001168f0:
     }
     *param_3 = *(undefined8 *)(DAT_00306b78 * 0x440 + 0x373790U | 0x20000000);
   }
-  maybe_Fio_Unlock();
+  Fio_Unlock();
                     /* WARNING: Read-only address (ram,0x20373740) is written */
   return 0;
 }
@@ -1840,14 +1844,14 @@ maybe_sceIoctl2(undefined8 param_1,undefined4 param_2,long param_3,ulong param_4
   undefined4 auStack_a0 [4];
   
   lVar2 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(0x1a);
+  Fio_Lock(0x1a);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
   if (lVar2 != 0) {
     if (((undefined4 *)lVar2)[1] != 0) {
       if ((0x400 < param_4) || (0x400 < param_6)) {
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         return 0xffffffea;
       }
       if (param_3 != 0) {
@@ -1870,10 +1874,10 @@ maybe_sceIoctl2(undefined8 param_1,undefined4 param_2,long param_3,ulong param_4
       iVar1 = DAT_20373740;
       if (lVar2 < 0) {
         DeleteSema(uVar3);
-        maybe_Fio_Unlock();
+        Fio_Unlock();
         return 0xfffffff5;
       }
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar1 == 0) {
         DeleteSema(uVar3);
         return 0xfffffff5;
@@ -1883,7 +1887,7 @@ maybe_sceIoctl2(undefined8 param_1,undefined4 param_2,long param_3,ulong param_4
       return auStack_a0[0];
     }
   }
-  maybe_Fio_Unlock();
+  Fio_Unlock();
                     /* WARNING: Read-only address (ram,0x20373740) is written */
   return 0xfffffff7;
 }
@@ -1904,7 +1908,7 @@ undefined4 maybe_Fio_PathCmd(char *param_1,undefined8 param_2)
   undefined4 uStack_ac;
   undefined4 auStack_a0 [4];
   
-  maybe_Fio_Lock(param_2);
+  Fio_Lock(param_2);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_FioShared1 = *param_1;
@@ -1934,11 +1938,11 @@ undefined4 maybe_Fio_PathCmd(char *param_1,undefined8 param_2)
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_a0[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar4 == 0) {
       DeleteSema(uVar2);
       auStack_a0[0] = 0xfffffff5;
@@ -1978,7 +1982,7 @@ undefined4 sceMkdir(char *param_1,undefined4 param_2)
   undefined4 uStack_ac;
   undefined4 auStack_a0 [4];
   
-  maybe_Fio_Lock(7);
+  Fio_Lock(7);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_sceMkdirShared1 = *param_1;
@@ -2010,11 +2014,11 @@ undefined4 sceMkdir(char *param_1,undefined4 param_2)
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_a0[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar4 == 0) {
       DeleteSema(uVar2);
       auStack_a0[0] = 0xfffffff5;
@@ -2056,7 +2060,7 @@ undefined4 maybe_sceFormat(char *param_1,long param_2,int param_3,int param_4)
   undefined4 uStack_ac;
   undefined4 auStack_a0 [4];
   
-  maybe_Fio_Lock(0xe);
+  Fio_Lock(0xe);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_FioShared1 = *param_1;
@@ -2114,11 +2118,11 @@ undefined4 maybe_sceFormat(char *param_1,long param_2,int param_3,int param_4)
     iVar6 = DAT_20373740;
     if (lVar4 < 0) {
       DeleteSema(uVar3);
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       auStack_a0[0] = 0xfffffff5;
     }
     else {
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar6 == 0) {
         DeleteSema(uVar3);
         auStack_a0[0] = 0xfffffff5;
@@ -2130,7 +2134,7 @@ undefined4 maybe_sceFormat(char *param_1,long param_2,int param_3,int param_4)
     }
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_a0[0] = 0xfffffff9;
   }
   return auStack_a0[0];
@@ -2152,7 +2156,7 @@ undefined4 maybe_sceAddDrv(undefined4 param_1)
   undefined4 uStack_6c;
   undefined4 auStack_60 [4];
   
-  maybe_Fio_Lock(0xf);
+  Fio_Lock(0xf);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
@@ -2168,11 +2172,11 @@ undefined4 maybe_sceAddDrv(undefined4 param_1)
   iVar1 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_60[0] = 0xffffffff;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar1 == 0) {
       DeleteSema(uVar2);
       auStack_60[0] = 0xffffffff;
@@ -2205,11 +2209,11 @@ int sceDopen(undefined8 param_1)
   long lVar2;
   int *piVar3;
   
-  maybe_Fio_Lock(9);
+  Fio_Lock(9);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
-  maybe_Fio_Unlock();
+  Fio_Unlock();
   lVar2 = maybe_Fio_WaitFree();
   if (lVar2 == 0) {
     iVar1 = -0x13;
@@ -2249,13 +2253,13 @@ int sceDclose(void)
   int aiStack_70 [4];
   
   lVar2 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(10);
+  Fio_Lock(10);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     aiStack_70[0] = -1;
   }
   else if ((lVar2 == 0) || (puVar4 = (undefined4 *)lVar2, puVar4[1] == 0)) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     aiStack_70[0] = -9;
   }
   else {
@@ -2270,13 +2274,13 @@ int sceDclose(void)
     lVar2 = sceSifCallRpc(0x374200,10,0,0x372b00,0x14,0x373740,4,0);
     if (lVar2 < 0) {
       DeleteSema(uVar3);
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       aiStack_70[0] = -0xb;
     }
     else {
       puVar4[1] = 0;
       iVar1 = DAT_20373740;
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar1 == 0) {
         DeleteSema(uVar3);
         aiStack_70[0] = -0xb;
@@ -2310,13 +2314,13 @@ undefined4 sceDread(undefined8 param_1,undefined4 param_2)
   undefined4 auStack_60 [4];
   
   lVar2 = maybe_Fio_GetFreeSlot();
-  maybe_Fio_Lock(0xb);
+  Fio_Lock(0xb);
   if (DAT_00306b7c == 0) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_60[0] = 0xffffffff;
   }
   else if ((lVar2 == 0) || (((undefined4 *)lVar2)[1] == 0)) {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_60[0] = 0xfffffff7;
   }
   else {
@@ -2333,11 +2337,11 @@ undefined4 sceDread(undefined8 param_1,undefined4 param_2)
     iVar1 = DAT_20373740;
     if (lVar2 < 0) {
       WaitSema(uVar3);
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       auStack_60[0] = 0xfffffff5;
     }
     else {
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar1 == 0) {
         DeleteSema(uVar3);
         auStack_60[0] = 0xfffffff5;
@@ -2369,7 +2373,7 @@ undefined4 sceGetstat(char *param_1,undefined4 param_2)
   undefined4 uStack_ac;
   undefined4 auStack_a0 [4];
   
-  maybe_Fio_Lock(0xc);
+  Fio_Lock(0xc);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_sceMkdirShared1 = *param_1;
@@ -2402,11 +2406,11 @@ undefined4 sceGetstat(char *param_1,undefined4 param_2)
   iVar2 = DAT_20373740;
   if (lVar4 < 0) {
     DeleteSema(uVar3);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_a0[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar2 == 0) {
       DeleteSema(uVar3);
       auStack_a0[0] = 0xfffffff5;
@@ -2437,7 +2441,7 @@ undefined4 sceChstat(char *param_1,undefined8 *param_2,undefined4 param_3)
   undefined4 uStack_bc;
   undefined4 auStack_b0 [4];
   
-  maybe_Fio_Lock(0xd);
+  Fio_Lock(0xd);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     s_sceChstat_7 = *param_1;
@@ -2479,11 +2483,11 @@ undefined4 sceChstat(char *param_1,undefined8 *param_2,undefined4 param_3)
   iVar2 = DAT_20373740;
   if (lVar4 < 0) {
     DeleteSema(uVar3);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_b0[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar2 == 0) {
       DeleteSema(uVar3);
       auStack_b0[0] = 0xfffffff5;
@@ -2513,7 +2517,7 @@ undefined4 maybe_sceRename(char *param_1,char *param_2)
   undefined4 uStack_9c;
   undefined4 auStack_90 [4];
   
-  maybe_Fio_Lock(0x11);
+  Fio_Lock(0x11);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_FioShared1 = *param_1;
@@ -2555,11 +2559,11 @@ undefined4 maybe_sceRename(char *param_1,char *param_2)
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_90[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar4 == 0) {
       DeleteSema(uVar2);
       auStack_90[0] = 0xfffffff5;
@@ -2599,7 +2603,7 @@ undefined4 maybe_sceSync(char *param_1,undefined4 param_2)
   undefined4 uStack_9c;
   undefined4 auStack_90 [4];
   
-  maybe_Fio_Lock(0x13);
+  Fio_Lock(0x13);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_sceSyncShared1 = *param_1;
@@ -2630,11 +2634,11 @@ undefined4 maybe_sceSync(char *param_1,undefined4 param_2)
   iVar4 = DAT_20373740;
   if (lVar3 < 0) {
     DeleteSema(uVar2);
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_90[0] = 0xfffffff5;
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     if (iVar4 == 0) {
       DeleteSema(uVar2);
       auStack_90[0] = 0xfffffff5;
@@ -2666,7 +2670,7 @@ undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int par
   undefined4 uStack_bc;
   undefined4 auStack_b0 [4];
   
-  maybe_Fio_Lock(0x14);
+  Fio_Lock(0x14);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
     g_FioShared1 = *param_1;
@@ -2720,11 +2724,11 @@ undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int par
     iVar6 = DAT_20373740;
     if (lVar4 < 0) {
       DeleteSema(uVar3);
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       auStack_b0[0] = 0xfffffff5;
     }
     else {
-      maybe_Fio_Unlock();
+      Fio_Unlock();
       if (iVar6 == 0) {
         DeleteSema(uVar3);
         auStack_b0[0] = 0xfffffff5;
@@ -2736,7 +2740,7 @@ undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int par
     }
   }
   else {
-    maybe_Fio_Unlock();
+    Fio_Unlock();
     auStack_b0[0] = 0xfffffff9;
   }
   return auStack_b0[0];

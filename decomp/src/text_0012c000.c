@@ -1608,7 +1608,9 @@ void __unpack_f(uint *param_1,undefined4 *param_2)
 }
 
 // 0x0012f5d0  size 0x2c
-void maybe___make_fp(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+/* N153 confirmed: libgcc fp-bit, packs via __pack_f */
+
+void __make_fp(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   undefined4 uStack_20;
@@ -1638,7 +1640,7 @@ void maybe___sf_to_df(undefined4 param_1)
   
   auStack_20[0] = param_1;
   __unpack_f(auStack_20,&uStack_30);
-  maybe___make_dp(uStack_30,uStack_2c,uStack_28,(ulong)uStack_24 << 0x1e);
+  __make_dp(uStack_30,uStack_2c,uStack_28,(ulong)uStack_24 << 0x1e);
   return;
 }
 

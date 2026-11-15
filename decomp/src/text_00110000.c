@@ -1840,7 +1840,9 @@ long DelayThread(undefined8 param_1)
 }
 
 // 0x001128c8  size 0x28
-undefined8 maybe_Kernl_AlarmSignal(void)
+/* N153 confirmed: iSignalSema then EI */
+
+undefined8 Kernl_AlarmSignal(void)
 
 {
   undefined8 in_a3;

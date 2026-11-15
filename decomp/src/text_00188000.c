@@ -1269,10 +1269,10 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
   sStack_34 = (short)param_3;
   sStack_50 = sStack_32;
   if (param_4 != 0) {
-    maybe_Vu0_SetUnitW(param_4);
+    Vu0_SetUnitW(param_4);
   }
   if (param_5 != 0) {
-    maybe_Vu0_SetUnitW(param_5);
+    Vu0_SetUnitW(param_5);
     *(undefined4 *)(param_5 + 4) = 0x3f800000;
   }
   uVar4 = 0xffffffffffffffff;

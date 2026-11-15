@@ -2082,7 +2082,7 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
           iStack_100 = 0;
           iVar7 = iStack_d0;
           do {
-            maybe_Vu0_SetUnitW(iVar7 + 0x170);
+            Vu0_SetUnitW(iVar7 + 0x170);
             sceVu0ApplyMatrix(iVar7 + 0x170,iVar9,
                               *(int *)(param_1 + 0x504) + iStack_e0 + iStack_100 + 0x510);
             uVar6 = _g_WheelAssetShared1;

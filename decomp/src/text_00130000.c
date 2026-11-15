@@ -81,7 +81,9 @@ int __fixdfsi(undefined8 param_1)
 }
 
 // 0x00130188  size 0x2c
-void maybe___make_dp(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4)
+/* N153 confirmed: libgcc fp-bit */
+
+void __make_dp(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   undefined4 uStack_30;
@@ -116,7 +118,7 @@ void maybe___extendsfdf2(undefined8 param_1)
   if ((uStack_30 & 0x3fffffff) == 0) {
     uVar2 = uVar1;
   }
-  maybe___make_fp(uStack_40,uStack_3c,uStack_38,uVar2);
+  __make_fp(uStack_40,uStack_3c,uStack_38,uVar2);
   return;
 }
 
@@ -1386,7 +1388,7 @@ Task_ctor(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4 pa
 {
   undefined4 *puVar1;
   
-  maybe_ListNode_ctor(param_1,0);
+  ListNode_ctor(param_1,0);
   puVar1 = (undefined4 *)param_1;
   *puVar1 = &DAT_0036e080;
   puVar1[2] = param_2;
@@ -1536,7 +1538,9 @@ long maybe_ListNode_dtor(long param_1,short param_2)
 }
 
 // 0x00132450  size 0x18
-undefined8 maybe_ListNode_ctor(undefined8 param_1,undefined4 param_2)
+/* N153 confirmed: sets vtable 0x36e0a0 and the payload */
+
+undefined8 ListNode_ctor(undefined8 param_1,undefined4 param_2)
 
 {
   *(undefined4 *)param_1 = &DAT_0036e0a0;
@@ -2094,7 +2098,9 @@ void sceVu0AddVector(undefined1 (*param_1) [16],undefined1 (*param_2) [16],
 }
 
 // 0x00132b90  size 0x8
-void maybe_Vu0_SetUnitW(undefined1 (*param_1) [16])
+/* N153 confirmed: stores vf0 (0,0,0,1) */
+
+void Vu0_SetUnitW(undefined1 (*param_1) [16])
 
 {
   undefined1 auVar1 [16];
@@ -2713,7 +2719,9 @@ void maybe_sceVu0MulMatrixVf28(undefined1 (*param_1) [16],undefined1 (*param_2) 
 }
 
 // 0x00133260  size 0x14
-void maybe_Vu0_LoadMatrixVf28(undefined1 (*param_1) [16])
+/* N153 confirmed: lqc2 into vf28-vf31 */
+
+void Vu0_LoadMatrixVf28(undefined1 (*param_1) [16])
 
 {
   _lqc2(*param_1);
@@ -2724,7 +2732,9 @@ void maybe_Vu0_LoadMatrixVf28(undefined1 (*param_1) [16])
 }
 
 // 0x00133280  size 0x14
-void maybe_Vu0_StoreMatrixVf28(undefined1 (*param_1) [16])
+/* N153 confirmed: sqc2 from vf28-vf31 */
+
+void Vu0_StoreMatrixVf28(undefined1 (*param_1) [16])
 
 {
   undefined1 auVar1 [16];
