@@ -46,4 +46,4 @@ segments:
       - [0x26DBB0, data, data2]
       - { start: 0x26F000, type: bss, vram: 0x36EF80 }
   - [0x26F000, bin, elf_sections]
-  - [0x26F070]
+  - [0x26F1B0]

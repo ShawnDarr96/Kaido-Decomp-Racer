@@ -34,10 +34,17 @@ def main():
     for s in asm:
         run([tool("as"), "-EL", "-march=r5900", "-mabi=eabi", "-G0", "-no-pad-sections",
              "-I", ROOT / "include", "-o", f"{s}.o", s])
-    for b in sorted((BUILD / "assets").glob("*.bin")):
-        run([tool("objcopy"), "-I", "binary", "-O", "elf32-littlemips", b, f"{b}.o"])
+    # splat writes binary segments to assets/ (its default asset_path); the linker script
+    # expects their objects at build/assets/<name>.bin.o
+    (BUILD / "assets").mkdir(parents=True, exist_ok=True)
+    # assembled with .incbin (not objcopy -I binary) so the objects carry the same eabi64 flags
+    for b in sorted((ROOT / "assets").glob("*.bin")):
+        s = BUILD / "assets" / f"{b.name}.s"
+        s.write_text(f'.section .data\n.incbin "{b.as_posix()}"\n', encoding="utf-8")
+        run([tool("as"), "-EL", "-march=r5900", "-mabi=eabi", "-G0", "-no-pad-sections",
+             "-o", BUILD / "assets" / f"{b.name}.o", s])
     elf = BUILD / "SLES_531.91.elf"
-    run([tool("ld"), "-T", BUILD / "SLES_531.91.ld", "-T", BUILD / "undefined_syms_auto.txt",
+    run([tool("ld"), "-m", "elf32lr5900", "-T", BUILD / "SLES_531.91.ld", "-T", BUILD / "undefined_syms_auto.txt",
          "-T", BUILD / "undefined_funcs_auto.txt", "--no-check-sections", "-o", elf])
     out = BUILD / "SLES_531.91.bin"
     run([tool("objcopy"), "-O", "binary", elf, out])
