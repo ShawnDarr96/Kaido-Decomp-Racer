@@ -44,7 +44,7 @@ Columns:
 |---|---|---|---|---|---|
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  | done: SDK library set + link order recorded (config/sdk_libraries.txt); left: map each library's functions via data refs, then split game code (sinit data order) |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
-| M7 | Match batch 8 on decomp.me: Profile play-date/stat/points/course records, CarRec, Scene gp globals (23 functions) | any |  |  | make target asm with python -I scripts/mkscratch.py <lo> <hi> |
+| M7 | Match batch 8 on decomp.me: Profile play-date/stat/points/course records, CarRec, Scene gp globals (23 functions) | any |  | ShawnDarr96/claude (2026-11-15) | make target asm with python -I scripts/mkscratch.py <lo> <hi> |
 | M9 | Match Options_SetDefaults (54%) and Options_ApplySeVolume (74% under b145: final store duplicated into the early-out path) with another C form | any |  |  | Gap of M8 |
 
 ## P4 Finish
@@ -372,3 +372,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim M6, M8.
 - 2026-11-15 ShawnDarr96/claude: M6 done.
 - 2026-11-15 ShawnDarr96/claude: M8 done; added M9 (gaps).
+- 2026-11-15 ShawnDarr96/claude: claim M7.
