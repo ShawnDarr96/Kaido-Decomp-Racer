@@ -18,7 +18,7 @@ Columns:
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
 | F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  |  | Gap of F12 |
-| F15 | 433 globals shared across modules are still unnamed; the s_<Function>_N / s_<Module>VarN statics need real names | any |  | ShawnDarr96/claude (2026-11-14) | Gap of F13 |
+| F16 | Scoped names (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) record ownership only; give them meaning-based names | any |  |  | Gap of F15 |
 
 ## P1 Naming
 
@@ -227,6 +227,7 @@ Columns:
 | T4 | 4 race/course control structs applied (~630 field refs); 2 misnamed accessors fixed | P2 | ShawnDarr96/claude | 2026-11-14 | 6f133ec |
 | T10 | RaceTbl/RaceSlotTbl layouts recovered (exact tiling) and applied; accessors typed | P2 | ShawnDarr96/claude | 2026-11-14 | 26d919d |
 | F13 | 960 globals named in total (singletons, accessor-backed, scoped statics); unnamed refs 6886 -> 2198 | P0 | ShawnDarr96/claude | 2026-11-14 | 9e67629 |
+| F15 | all .data/.bss globals referenced by code now named (1291 in globals.csv) | P0 | ShawnDarr96/claude | 2026-11-14 | 862e958 |
 
 ## Changes to the board
 
@@ -292,3 +293,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim F13.
 - 2026-11-14 ShawnDarr96/claude: F13 done; added F15 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim F15.
+- 2026-11-14 ShawnDarr96/claude: F15 done; added F16 (gaps).
