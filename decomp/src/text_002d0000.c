@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002d00e0  size 0x214
-void racehud_step_sub_002d00e0(byte *param_1)
+void maybe_RaceHud_FormatRecord(byte *param_1)
 
 {
   byte bVar1;
@@ -78,7 +78,7 @@ void racehud_step_sub_002d00e0(byte *param_1)
 // 0x002d0300  size 0x550
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void racehud_anim_sub_002d0300(int param_1)
+void maybe_RaceHud_AnimateLapInfo(int param_1)
 
 {
   bool bVar1;
@@ -217,7 +217,7 @@ void racehud_anim_sub_002d0300(int param_1)
 // 0x002d0860  size 0x268
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void racehud_load_sub_002d0860(int param_1)
+void maybe_RaceHud_LoadWeatherAssets(int param_1)
 
 {
   char cVar1;
@@ -315,7 +315,7 @@ void racehud_load_sub_002d0860(int param_1)
 // 0x002d0ad0  size 0x658
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void racehud_load_sub_002d0ad0(byte *param_1)
+void maybe_RaceHud_LoadRecordAssets(byte *param_1)
 
 {
   bool bVar1;
@@ -584,7 +584,7 @@ switchD_002d0b18_caseD_2:
 // 0x002d1130  size 0x694
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void racehud_load_sub_002d1130(undefined8 param_1)
+void RaceHud_Load(undefined8 param_1)
 
 {
   undefined1 *puVar1;
@@ -846,15 +846,15 @@ void racehud_load_sub_002d1130(undefined8 param_1)
   }
   RaceUi_Alloc(puRam0036f804 + 0x2a0,param_1);
   RaceMenu_Init(puRam0036f804 + 0x3b8);
-  replayui_load_sub_002d9ca0(param_1);
-  racehud_load_sub_002d0ad0(puRam0036f804);
-  racehud_load_sub_002d0860(puRam0036f804);
+  ReplayUi_Load(param_1);
+  maybe_RaceHud_LoadRecordAssets(puRam0036f804);
+  maybe_RaceHud_LoadWeatherAssets(puRam0036f804);
   RaceHud_LoadLayouts(puRam0036f804,param_1);
   return;
 }
 
 // 0x002d17d0  size 0x710
-void racehud_input_sub_002d17d0(void)
+void maybe_ReplayCam_RenderFrame(void)
 
 {
   float *pfVar1;
@@ -880,8 +880,8 @@ void racehud_input_sub_002d17d0(void)
   undefined1 *puStack_2c;
   
   Pad_GetPort(0,0);
-  racehud_draw_sub_002d24c0(0x431100,0x431100);
-  racehud_step_sub_002d26f0(3);
+  maybe_ReplayCam_DrawModel(0x431100,0x431100);
+  maybe_ReplayCam_DrawLensFlare(3);
   Pkt_Init(auStack_35b80,1,2,0);
   puStack_35b6c = &g_Views;
   Pkt_SubmitToChain(auStack_35b80,10);
@@ -1046,7 +1046,7 @@ void racehud_input_sub_002d17d0(void)
 }
 
 // 0x002d1ee0  size 0x4a0
-void racehud_draw_sub_002d1ee0(ulong param_1,ulong param_2)
+void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
 
 {
   undefined1 auVar1 [16];
@@ -1182,7 +1182,7 @@ void racehud_draw_sub_002d1ee0(ulong param_1,ulong param_2)
 }
 
 // 0x002d2380  size 0x134
-void racehud_draw_sub_002d2380(void)
+void maybe_ReplayCam_Draw(void)
 
 {
   float fVar1;
@@ -1199,7 +1199,7 @@ void racehud_draw_sub_002d2380(void)
     if (0x80 < ((int)fVar1 & 0xffU)) {
       fRam0046a0ec = 128.0;
     }
-    racehud_step_sub_002d26f0(2);
+    maybe_ReplayCam_DrawLensFlare(2);
     Pkt_Init(auStack_40,1,2,0);
     puStack_2c = &g_Views;
     Pkt_SubmitToChain(auStack_40,8);
@@ -1209,7 +1209,7 @@ void racehud_draw_sub_002d2380(void)
     do {
       uVar2 = 0;
       do {
-        racehud_draw_sub_002d1ee0(uVar3,uVar2);
+        maybe_ReplayCam_DrawOverlay(uVar3,uVar2);
         uVar2 = uVar2 + 1;
       } while (uVar2 < 7);
       uVar3 = uVar3 + 1;
@@ -1219,7 +1219,7 @@ void racehud_draw_sub_002d2380(void)
 }
 
 // 0x002d24c0  size 0x228
-void racehud_draw_sub_002d24c0(undefined8 param_1,undefined8 param_2)
+void maybe_ReplayCam_DrawModel(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1295,7 +1295,7 @@ void racehud_draw_sub_002d24c0(undefined8 param_1,undefined8 param_2)
 /* WARNING: Removing unreachable block (ram,0x002d2d00) */
 /* WARNING: Restarted to delay deadcode elimination for space: stack */
 
-void racehud_step_sub_002d26f0(char param_1)
+void maybe_ReplayCam_DrawLensFlare(char param_1)
 
 {
   float fVar1;
@@ -1551,13 +1551,13 @@ void racehud_step_sub_002d26f0(char param_1)
 }
 
 // 0x002d3430  size 0x118
-void showroom_step_sub_002d3430(void)
+void maybe_ReplayCam_Update(void)
 
 {
   long lVar1;
   float fVar2;
   
-  lVar1 = race_leaf_sub_001e9090();
+  lVar1 = RaceScene_IsReplay();
   if (lVar1 == 0) {
     if ((uRam0046a028 & 8) != 0) {
       fVar2 = fRam0043118c - fRam0046a074;
@@ -1570,10 +1570,10 @@ void showroom_step_sub_002d3430(void)
       if (fRam0046a054 <= 0.0) {
         fRam0046a054 = 0.0;
       }
-      racehud_input_sub_002d17d0();
+      maybe_ReplayCam_RenderFrame();
     }
     if ((uRam0046a028 & 4) != 0) {
-      racehud_draw_sub_002d2380();
+      maybe_ReplayCam_Draw();
     }
     uRam0046a028 = 0;
   }
@@ -1581,7 +1581,7 @@ void showroom_step_sub_002d3430(void)
 }
 
 // 0x002d3550  size 0x164
-void showroom_exit_sub_002d3550(void)
+void maybe_ReplayCam_Free(void)
 
 {
   if (iRam0046a0f0 != 0) {
@@ -1628,7 +1628,7 @@ void showroom_exit_sub_002d3550(void)
 }
 
 // 0x002d36c0  size 0x2c0
-void showroom_load_sub_002d36c0(undefined8 param_1)
+void maybe_ReplayCam_Load(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1711,7 +1711,7 @@ void showroom_load_sub_002d36c0(undefined8 param_1)
 }
 
 // 0x002d3990  size 0x204
-void showroom_step_sub_002d3990(int *param_1,ulong param_2,undefined8 param_3)
+void Garage_BuildSortedCarList(int *param_1,ulong param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -1787,17 +1787,17 @@ void showroom_step_sub_002d3990(int *param_1,ulong param_2,undefined8 param_3)
 }
 
 // 0x002d3ba0  size 0x28
-undefined4 showroom_step_sub_002d3ba0(undefined8 param_1)
+undefined4 Garage_GetSortedCarCount(undefined8 param_1)
 
 {
   undefined4 uStack_4;
   
-  showroom_step_sub_002d3990(&uStack_4,8,param_1);
+  Garage_BuildSortedCarList(&uStack_4,8,param_1);
   return uStack_4;
 }
 
 // 0x002d3bd0  size 0x14c
-int showroom_step_sub_002d3bd0(short *param_1,short *param_2)
+int maybe_GarageSort_ByModel(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -1840,7 +1840,7 @@ int showroom_step_sub_002d3bd0(short *param_1,short *param_2)
 }
 
 // 0x002d3d20  size 0x1c0
-int showroom_step_sub_002d3d20(short *param_1,short *param_2)
+int maybe_GarageSort_ByVariant(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -1897,7 +1897,7 @@ int showroom_step_sub_002d3d20(short *param_1,short *param_2)
 }
 
 // 0x002d3ee0  size 0x1fc
-int showroom_step_sub_002d3ee0(short *param_1,short *param_2)
+int maybe_GarageSort_ByPower(short *param_1,short *param_2)
 
 {
   char cVar1;

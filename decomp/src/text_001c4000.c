@@ -1431,7 +1431,7 @@ LAB_001c6ccc:
   if (cVar1 == '\x01') {
     *(undefined4 *)(iVar9 + 0x1a8) = 0x3f800000;
   }
-  lVar7 = race_leaf_sub_001e8fc0();
+  lVar7 = RaceScene_IsFlag10();
   if ((lVar7 == 0) && (uVar8 = RaceCar_GetFlags(uVar6), (uVar8 & 0x400) == 0)) {
     Driver_ReadInput(iVar9 + 0x19c,iVar9 + 0x69964);
     *(short *)(iVar9 + 0x1d0) = (short)(int)(*(float *)(iVar9 + 0x1a4) * 255.0);

@@ -140,7 +140,7 @@ void ScrCareer_Draw_DeleteThisMessage(undefined4 *param_1)
   }
   MenuWnd_DrawText(0xae,1,0x434);
   if (param_1[0x19d] == 1) {
-    menuscr_draw_sub_00222b50(param_1[0x1a0] + param_1[param_1[0x19f] + 0xd5] * 0x28 + 0x9994);
+    maybe_MenuWnd_DrawMailList(param_1[0x1a0] + param_1[param_1[0x19f] + 0xd5] * 0x28 + 0x9994);
     iVar2 = param_1[param_1[0x19d] * 200 + param_1[param_1[0x19d] + 0x19e] + 0xd] * 0x28 +
             param_1[0x1a0];
     iVar1 = *(int *)(iVar2 + 0x99a0);
@@ -163,7 +163,7 @@ void ScrCareer_Draw_DeleteThisMessage(undefined4 *param_1)
       iVar1 = param_1[0x19d];
       goto LAB_00224d38;
     }
-    menuscr_draw_sub_00222b50(param_1[0x1a0] + param_1[param_1[0x19e] + 0xd] * 0x28 + 0xb8d4);
+    maybe_MenuWnd_DrawMailList(param_1[0x1a0] + param_1[param_1[0x19e] + 0xd] * 0x28 + 0xb8d4);
     iVar2 = param_1[param_1[0x19d] * 200 + param_1[param_1[0x19d] + 0x19e] + 0xd] * 0x28 +
             param_1[0x1a0];
     iVar1 = *(int *)(iVar2 + 0xb8e0);
@@ -424,7 +424,7 @@ void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
       } while (iVar1 < 10);
     }
   }
-  uVar11 = menuscr_step_sub_0028b580(*(undefined4 *)(param_1 + 0x674));
+  uVar11 = maybe_Mail_CountMessages(*(undefined4 *)(param_1 + 0x674));
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar11);
   iRam0036f544 = 0;
   do {
@@ -718,7 +718,7 @@ void ScrCareer_Draw_DeleteThisMessage_6050(undefined4 *param_1)
       } while (iVar1 < 10);
     }
   }
-  uVar10 = menuscr_step_sub_0028b580(param_1[0x19d]);
+  uVar10 = maybe_Mail_CountMessages(param_1[0x19d]);
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar10);
   if ((int)param_1[param_1[0x19d] + 0xb] < 0xb) {
     iVar5 = 0;
@@ -807,7 +807,7 @@ void ScrCareer_Draw_AcceptThisRival(undefined4 *param_1)
   }
   MenuWnd_DrawText(0xae,1,0x434);
   if (param_1[0x19d] == 1) {
-    menuscr_draw_sub_00222b50(param_1[0x1a0] + param_1[param_1[0x19f] + 0xd5] * 0x28 + 0x9994);
+    maybe_MenuWnd_DrawMailList(param_1[0x1a0] + param_1[param_1[0x19f] + 0xd5] * 0x28 + 0x9994);
     iVar1 = param_1[param_1[0x19d] * 200 + param_1[param_1[0x19d] + 0x19e] + 0xd] * 0x28 +
             param_1[0x1a0];
     iVar2 = *(int *)(iVar1 + 0x99a0);
@@ -830,7 +830,7 @@ void ScrCareer_Draw_AcceptThisRival(undefined4 *param_1)
       iVar2 = param_1[0x19d];
       goto LAB_00227150;
     }
-    menuscr_draw_sub_00222b50(param_1[0x1a0] + param_1[param_1[0x19e] + 0xd] * 0x28 + 0xb8d4);
+    maybe_MenuWnd_DrawMailList(param_1[0x1a0] + param_1[param_1[0x19e] + 0xd] * 0x28 + 0xb8d4);
     iVar1 = param_1[param_1[0x19d] * 200 + param_1[param_1[0x19d] + 0x19e] + 0xd] * 0x28 +
             param_1[0x1a0];
     iVar2 = *(int *)(iVar1 + 0xb8e0);
@@ -1038,7 +1038,7 @@ void ScrCareer_Draw_Mail_7450(int param_1)
   }
   MenuWnd_DrawText(0xae,1,0x434);
   if (*(int *)(param_1 + 0x674) == 1) {
-    menuscr_draw_sub_00222b50
+    maybe_MenuWnd_DrawMailList
               (*(int *)(param_1 + 0x680) +
                *(int *)(*(int *)(param_1 + 0x67c) * 4 + param_1 + 0x354) * 0x28 + 0x9994);
     iVar2 = *(int *)(*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x678) * 4 +
@@ -1066,7 +1066,7 @@ void ScrCareer_Draw_Mail_7450(int param_1)
       iVar1 = *(int *)(param_1 + 0x674);
       goto LAB_0022782c;
     }
-    menuscr_draw_sub_00222b50
+    maybe_MenuWnd_DrawMailList
               (*(int *)(param_1 + 0x680) +
                *(int *)(*(int *)(param_1 + 0x678) * 4 + param_1 + 0x34) * 0x28 + 0xb8d4);
     iVar2 = *(int *)(*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x678) * 4 +
@@ -1888,7 +1888,7 @@ LAB_002298fc:
     *(undefined4 *)(iVar1 + 0x358) = 1;
     Menu_ClearSlot(0);
   }
-  uVar13 = menuscr_step_sub_0028b580(param_1[0x19d]);
+  uVar13 = maybe_Mail_CountMessages(param_1[0x19d]);
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar13);
   UiElem_SetPropFloat(0x3f800000,iVar11,*(undefined4 *)(param_1[0x19d] * 4 + 0x36e9a0),8);
   UiElem_SetPropFloat(0x3f800000,iVar14,0x17,8);

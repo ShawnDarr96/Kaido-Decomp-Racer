@@ -453,7 +453,7 @@ void ScrRace_Select_PlayerStatus(int param_1)
   }
   iVar3 = UiMgr_FindLayout(0xd7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  menuscr_anim_sub_00233d40(0xd8,0xc,0xd,0x100,0x11,0xc,*(undefined4 *)(param_1 + 0x20));
+  MenuNum_CountUp_PlayerStatus(0xd8,0xc,0xd,0x100,0x11,0xc,*(undefined4 *)(param_1 + 0x20));
   iVar3 = UiMgr_FindLayout(0xd8);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   MenuWnd_SetTitle(3,0xffffffffffffffff);
@@ -608,7 +608,7 @@ void ScrScrRaceSelectPlayerStatus_Enter(void)
 // 0x00235150  size 0x350
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00235150
+void MenuNum_CountUp_PrizeInfo
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 
@@ -1243,7 +1243,7 @@ void ScrRace_Select_PrizeInformation(int param_1)
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   iVar3 = UiMgr_FindLayout(0xe3);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  menuscr_anim_sub_00235150(0xe4,0x49,0x4a,0xf6,0x28,9,*(undefined4 *)(param_1 + 0x20));
+  MenuNum_CountUp_PrizeInfo(0xe4,0x49,0x4a,0xf6,0x28,9,*(undefined4 *)(param_1 + 0x20));
   iVar3 = UiMgr_FindLayout(0xe4);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   MenuWnd_SetTitle(3,0xffffffffffffffff);

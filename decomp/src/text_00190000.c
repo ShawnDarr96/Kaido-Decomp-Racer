@@ -1450,7 +1450,7 @@ uint Snd_VolumeToMidi(int param_1)
 }
 
 // 0x00192820  size 0x8
-void render_step_sub_00192820(int param_1)
+void SndStream_dtorThunk(int param_1)
 
 {
   SndStream_dtor(param_1 + -0x38);
@@ -1458,7 +1458,7 @@ void render_step_sub_00192820(int param_1)
 }
 
 // 0x00192830  size 0x8
-void render_step_sub_00192830(int param_1)
+void SndCh_FadeOutThunk(int param_1)
 
 {
   SndCh_FadeOut(param_1 + -0x38);
@@ -1466,7 +1466,7 @@ void render_step_sub_00192830(int param_1)
 }
 
 // 0x00192840  size 0x8
-void render_step_sub_00192840(int param_1)
+void SndCh_FadeInThunk(int param_1)
 
 {
   SndCh_FadeIn(param_1 + -0x38);
@@ -1474,7 +1474,7 @@ void render_step_sub_00192840(int param_1)
 }
 
 // 0x00192850  size 0x8
-void render_step_sub_00192850(int param_1)
+void SndCh_dtorThunk(int param_1)
 
 {
   SndCh_dtor(param_1 + -0x38);
@@ -1482,7 +1482,7 @@ void render_step_sub_00192850(int param_1)
 }
 
 // 0x00192860  size 0x30
-undefined4 render_step_sub_00192860(int param_1)
+undefined4 maybe_SndCh_GetHandleIfReady(int param_1)
 
 {
   undefined4 uVar1;

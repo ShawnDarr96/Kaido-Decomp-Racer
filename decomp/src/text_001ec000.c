@@ -142,8 +142,8 @@ void RaceIntro_Update(int param_1)
 void RaceIntro_Exit(void)
 
 {
-  showroom_exit_sub_002d7ba0();
-  eventui_exit_sub_002e3480();
+  IntroCar_Free();
+  IntroFlag_Free();
   CourseScene_Unload();
   UiRes_UploadFonts(uRam0036f2c0,uRam0036f2c0);
   UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);

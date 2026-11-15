@@ -1323,7 +1323,7 @@ bool SndCh_IsStreamPlaying(int param_1)
 }
 
 // 0x0018ea00  size 0x20
-bool render_leaf_sub_0018ea00(void)
+bool maybe_SndMgr_IsMuted(void)
 
 {
   return *(char *)(iRam0036f254 + 0x400) != '\0';
@@ -1467,7 +1467,7 @@ void SndStream_PlayBank(undefined8 param_1,uint param_2,undefined8 param_3,uint 
 }
 
 // 0x0018ed00  size 0x20
-bool render_leaf_sub_0018ed00(int param_1)
+bool SndStream_IsActive(int param_1)
 
 {
   bool bVar1;

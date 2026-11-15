@@ -262,7 +262,7 @@ void Game_Nop(void)
 }
 
 // 0x00178450  size 0x10
-void game_leaf_sub_00178450(int param_1)
+void Course_InstallRenderHook(int param_1)
 
 {
   *(code **)(param_1 + 0x1c) = Course_RenderHook;

@@ -1232,7 +1232,7 @@ LAB_001ca8e8:
       }
       Weather_SpawnDrops(iVar12);
     }
-    lVar8 = race_leaf_sub_001e8fc0();
+    lVar8 = RaceScene_IsFlag10();
     if (((lVar8 != 0) && (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
        (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
       uStack_70 = 0;

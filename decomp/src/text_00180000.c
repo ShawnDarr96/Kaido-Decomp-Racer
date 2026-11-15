@@ -29,7 +29,7 @@ void Race_FrameBegin(void)
   undefined8 uVar2;
   
   Race_InitFrame();
-  lVar1 = race_leaf_sub_001e8fc0();
+  lVar1 = RaceScene_IsFlag10();
   if (lVar1 == 0) {
     if (*pcRam0036f1d4 == '\x01') {
       uVar2 = Profile_Get(0);

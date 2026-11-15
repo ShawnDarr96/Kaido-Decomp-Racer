@@ -18,7 +18,7 @@ void RaceHud_DrawMeters(undefined8 param_1)
   lVar2 = RaceScene_IsPaused();
   if (lVar2 == 0) {
     RaceUi_AnimateWarning(param_1);
-    lVar2 = race_leaf_sub_001e8fc0();
+    lVar2 = RaceScene_IsFlag10();
     if (lVar2 == 0) {
       RaceUi_DrawRivalMarkers(param_1);
     }
@@ -177,11 +177,11 @@ void RaceHud_Draw(int param_1)
   
   uVar1 = *(uint *)(param_1 + 0x27c);
   if (*(int *)(param_1 + 0x1100) == 0) {
-    racehud_anim_sub_002d0300();
+    maybe_RaceHud_AnimateLapInfo();
     *(undefined4 *)(param_1 + 0x1100) = 1;
   }
   if ((*(uint *)(param_1 + 0x27c) & 10) != 0) {
-    lVar3 = race_leaf_sub_001e8fc0();
+    lVar3 = RaceScene_IsFlag10();
     if (lVar3 == 0) {
       cVar2 = RaceProg_Get();
       if (cVar2 == '\x02') {
@@ -235,7 +235,7 @@ void RaceHud_Draw(int param_1)
           UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),uVar4,8);
         }
         else {
-          lVar3 = race_leaf_sub_001e8fc0();
+          lVar3 = RaceScene_IsFlag10();
           if ((lVar3 == 0) && (*(int *)(param_1 + 0x78) == 1)) {
             Se_PlayMenuVol(3,0x60);
           }
@@ -243,7 +243,7 @@ void RaceHud_Draw(int param_1)
           UiElem_SetPropFloat((float)((*(int *)(param_1 + 0x78) / 5) % 6) / 5.0,
                               *(undefined4 *)(param_1 + 0x10fc),uVar4,8);
         }
-        lVar3 = race_leaf_sub_001e8fc0();
+        lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
           RaceUi_DrawRivalMarkersAlt(param_1);
         }
@@ -334,7 +334,7 @@ void RaceHud_FadeOutAndFree(void)
   uStack_c = 0;
   if (iRam0036ee58 < 1) {
     Gfx_SetFade(2,9,0,0);
-    racehud_step_sub_002cfb70(3);
+    RaceHud_SetState(3);
     iRam0036ee58 = 0x14;
   }
   else {
@@ -554,7 +554,7 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   
   bVar5 = false;
   bVar4 = (*(uint *)(param_1 + 0x27c) & 1) != 0;
-  attract_step_sub_002fba10(&piStack_20);
+  maybe_RaceHud_SetupRecordLayout(&piStack_20);
   iVar30 = (uint)bRam0036f810 * 6;
   piStack_10 = piStack_20;
   bVar1 = (&DAT_0032f531)[iVar30];
@@ -1379,7 +1379,7 @@ void RaceHud_Task(void)
   long lVar2;
   
   if (*(int *)(iRam0036f804 + 0x1104) == 0) {
-    racehud_step_sub_002d00e0();
+    maybe_RaceHud_FormatRecord();
     *(undefined4 *)(iRam0036f804 + 0x1104) = 1;
     Result_StoreRecordAlt(iRam0036f804 + 0x3b8,0);
   }
@@ -1424,7 +1424,7 @@ LAB_002cf918:
 }
 
 // 0x002cf9b0  size 0xf8
-undefined4 racehud_step_sub_002cf9b0(void)
+undefined4 maybe_RaceHud_IsBusy(void)
 
 {
   bool bVar1;
@@ -1476,7 +1476,7 @@ undefined4 racehud_step_sub_002cf9b0(void)
 }
 
 // 0x002cfab0  size 0xc
-void racehud_leaf_sub_002cfab0(undefined4 param_1)
+void RaceHud_SetField268(undefined4 param_1)
 
 {
   *(undefined4 *)(iRam0036f804 + 0x268) = param_1;
@@ -1484,7 +1484,7 @@ void racehud_leaf_sub_002cfab0(undefined4 param_1)
 }
 
 // 0x002cfac0  size 0xc
-void racehud_leaf_sub_002cfac0(undefined4 param_1)
+void RaceHud_SetField26c(undefined4 param_1)
 
 {
   *(undefined4 *)(iRam0036f804 + 0x26c) = param_1;
@@ -1492,14 +1492,14 @@ void racehud_leaf_sub_002cfac0(undefined4 param_1)
 }
 
 // 0x002cfad0  size 0xc
-undefined4 racehud_leaf_sub_002cfad0(void)
+undefined4 RaceHud_GetFlags(void)
 
 {
   return *(undefined4 *)(iRam0036f804 + 0x27c);
 }
 
 // 0x002cfae0  size 0x14
-void racehud_leaf_sub_002cfae0(uint param_1)
+void RaceHud_ToggleFlags(uint param_1)
 
 {
   *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) ^ param_1;
@@ -1507,7 +1507,7 @@ void racehud_leaf_sub_002cfae0(uint param_1)
 }
 
 // 0x002cfb00  size 0x14
-void racehud_leaf_sub_002cfb00(uint param_1)
+void RaceHud_SetFlags(uint param_1)
 
 {
   *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) | param_1;
@@ -1515,28 +1515,28 @@ void racehud_leaf_sub_002cfb00(uint param_1)
 }
 
 // 0x002cfb20  size 0xc
-undefined * racehud_leaf_sub_002cfb20(void)
+undefined * RaceHud_GetMeterTable(void)
 
 {
   return &DAT_0032f7b0;
 }
 
 // 0x002cfb30  size 0x24
-int racehud_leaf_sub_002cfb30(int param_1)
+int RaceHud_GetRacerPanel(int param_1)
 
 {
   return iRam0036f804 + param_1 * 0xcc + 4;
 }
 
 // 0x002cfb60  size 0xc
-undefined1 racehud_leaf_sub_002cfb60(void)
+undefined1 RaceHud_GetState(void)
 
 {
   return *(undefined1 *)(iRam0036f804 + 0xfb4);
 }
 
 // 0x002cfb70  size 0x188
-void racehud_step_sub_002cfb70(byte param_1)
+void RaceHud_SetState(byte param_1)
 
 {
   char cVar1;
@@ -1559,7 +1559,7 @@ void racehud_step_sub_002cfb70(byte param_1)
           *(undefined1 *)(iRam0036f804 + 0x400) = 2;
         }
         *puVar4 = 1;
-        lVar3 = race_leaf_sub_001e8fc0();
+        lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
           *(undefined4 *)(iRam0036f804 + 0x450) = 0;
         }
@@ -1568,7 +1568,7 @@ void racehud_step_sub_002cfb70(byte param_1)
         RaceMenu_Task(iRam0036f804 + 0x2a0);
       }
       else if (cVar1 == '\x01') {
-        lVar3 = race_leaf_sub_001e8fc0();
+        lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
           *(undefined4 *)(iRam0036f804 + 0x3b70) = 0;
           *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) & 0xfffffff3;
@@ -1596,7 +1596,7 @@ void racehud_step_sub_002cfb70(byte param_1)
 }
 
 // 0x002cfd00  size 0x208
-void racehud_step_sub_002cfd00(undefined4 param_1,undefined4 param_2)
+void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
 
 {
   undefined4 uVar1;
@@ -1668,7 +1668,7 @@ void racehud_step_sub_002cfd00(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x002cff10  size 0x1c4
-void racehud_exit_sub_002cff10(void)
+void RaceHud_Free(void)
 
 {
   int iVar1;
@@ -1740,7 +1740,7 @@ void racehud_exit_sub_002cff10(void)
       iRam0036f804 = 0;
     }
   }
-  replayui_exit_sub_002d9bb0();
+  ReplayUi_Free();
   UiMgr_Free();
   return;
 }

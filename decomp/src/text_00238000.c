@@ -1265,7 +1265,7 @@ void ScrRivalInfo_Enter(void)
 // 0x0023a610  size 0x320
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_0023a610
+void MenuNum_CountUp_NoCar
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 
@@ -1340,7 +1340,7 @@ void ScrGarage_Draw_NoCarIs(int param_1)
       MenuWnd_DrawTextId(0xd5,iVar4 + 0x25,4,uVar3);
     }
   }
-  menuscr_anim_sub_0023a610
+  MenuNum_CountUp_NoCar
             (0xd5,0xd,0xe,0x70,*(undefined4 *)(param_1 + 0x124),6,*(undefined4 *)(param_1 + 0x34));
   iVar4 = UiMgr_FindLayout(0xd5);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
@@ -1366,7 +1366,7 @@ void ScrGarage_Draw_Sponsors(undefined8 param_1)
   MenuWnd_DrawText(0xd4,0x4b,0x283);
   uVar3 = Garage_FindFreeSlot(uVar3);
   MenuWnd_DrawLabel(0xd4,0x4c,0x3d,uVar3,0xf);
-  uVar3 = menuscr_leaf_sub_00292700(param_1);
+  uVar3 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar3 = Msg_RivalNickname(uVar3);
   MenuWnd_DrawText(0xd4,0x4f,uVar3);
   iVar6 = 0;
@@ -1390,16 +1390,16 @@ void ScrGarage_Draw_Sponsors(undefined8 param_1)
     UiElem_SetPropInt(iVar2 + iVar1 * 0x4f4 + 4,iVar6 + 0x55,0x16,uVar3);
     iVar6 = iVar6 + 1;
   } while (iVar6 < 4);
-  uVar3 = menuscr_leaf_sub_00292700(param_1);
+  uVar3 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar3 = Msg_TeamInfo(uVar3);
   uVar4 = Msg_MakerCountry(uVar3);
   uVar3 = Msg_MakerInfo(uVar3);
   MenuWnd_DrawLabel(0xd4,0x4e,0x45,uVar4,uVar3);
   MenuWnd_DrawText(0xd4,0x4d,0x284);
-  uVar3 = menuscr_leaf_sub_00292700(param_1);
+  uVar3 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar3 = Msg_TeamName(uVar3);
   MenuWnd_DrawNumber(0xd4,0x4a,uVar3);
-  lVar5 = scrcareer_step_sub_00292690(param_1);
+  lVar5 = maybe_Sponsor_IsUnlocked(param_1);
   if (lVar5 == 0) {
     iVar6 = UiMgr_FindLayout(0xd4);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,0x3f,8);
@@ -1408,7 +1408,7 @@ void ScrGarage_Draw_Sponsors(undefined8 param_1)
     iVar6 = UiMgr_FindLayout(0xd4);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar6 * 0x4f4 + 4,0x3f,8);
   }
-  uVar3 = menuscr_leaf_sub_00292700(param_1);
+  uVar3 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar3 = MsgId_PartDescription(uVar3);
   MenuWnd_DrawText(0xd4,0x50,uVar3);
   if ((*(int *)(iVar7 + 0xb4) < 3) && (iVar6 = 0, 0 < 3 - *(int *)(iVar7 + 0xb4))) {
@@ -1579,21 +1579,21 @@ void ScrCareer_Draw_ContractMoney(undefined8 param_1)
   if ((*(int *)(iVar1 + 0x18) != 0) && (lVar5 = UiLayout_UpdateAnimById(0xd6), lVar5 == 0)) {
     *(undefined4 *)(iVar1 + 0x18) = 0;
   }
-  uVar7 = menuscr_leaf_sub_00292700(param_1);
+  uVar7 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar7 = Msg_RivalNickname(uVar7);
   MenuWnd_DrawLabel(0xd6,0x28,0x286,uVar7);
-  uVar7 = menuscr_leaf_sub_00292700(param_1);
+  uVar7 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar7 = Msg_TeamInfo(uVar7);
   uVar8 = Msg_MakerCountry(uVar7);
   uVar7 = Msg_MakerInfo(uVar7);
   MenuWnd_DrawLabel(0xd6,0x27,0x45,uVar8,uVar7);
   MenuWnd_DrawText(0xd6,0x26,0x284);
-  uVar7 = menuscr_leaf_sub_00292700(param_1);
+  uVar7 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar7 = Msg_TeamName(uVar7);
   MenuWnd_DrawNumber(0xd6,0x29,uVar7);
   iVar1 = UiMgr_FindLayout(0xd6);
   iVar2 = *_g_UiMgr;
-  uVar7 = menuscr_leaf_sub_00292700(param_1);
+  uVar7 = maybe_Sponsor_GetCycledEntry(param_1);
   uVar7 = MsgId_Symbol(uVar7);
   UiElem_SetPropInt(iVar2 + iVar1 * 0x4f4 + 4,0x24,0x16,uVar7);
   UiLayout_UpdateAnimById(0xd3,0);
@@ -2192,7 +2192,7 @@ LAB_0023bff8:
   iVar2 = UiMgr_FindLayout(0xd3);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
   ScrGarage_Draw_Sponsors(param_1);
-  lVar4 = scrcareer_step_sub_00292690(param_1);
+  lVar4 = maybe_Sponsor_IsUnlocked(param_1);
   uVar6 = 0x281;
   if (lVar4 == 0) {
     uVar6 = 0x282;

@@ -419,13 +419,13 @@ void maybe_ScrQuickRace_Update(undefined8 param_1)
   piVar5 = (int *)param_1;
   lVar1 = Menu_IsInputIdle(piVar5 + 0x220);
   if (lVar1 != 0) {
-    lVar1 = scroptions_input_sub_002a30b0();
+    lVar1 = maybe_QuickRace_ReadPad();
     if (lVar1 == 0) {
       iVar3 = piVar5[0x221];
     }
     else {
       uRam0036f770 = uRam0036f770 | (uint)lVar1;
-      scrgarage_step_sub_002a2f80(param_1);
+      maybe_ScrQuickRace_UpdateCarNames(param_1);
       iVar3 = piVar5[0x221];
     }
     (*(code *)(&PTR_maybe_ScrQuickRace_State0_0032ed40)[iVar3])(param_1);
@@ -454,7 +454,7 @@ void maybe_ScrQuickRace_Update(undefined8 param_1)
         Se_PlayMenu(uVar2);
         iVar3 = piVar5[1];
       }
-      scrgarage_step_sub_002a3200(param_1,iVar3);
+      maybe_ScrQuickRace_StartRace(param_1,iVar3);
     }
     else if (uVar4 == 0x20) {
       if (*piVar5 == piVar5[0x221]) {
@@ -468,7 +468,7 @@ void maybe_ScrQuickRace_Update(undefined8 param_1)
         piVar5[2] = 2;
       }
       else {
-        scrgarage_step_sub_002a3200(param_1,*piVar5);
+        maybe_ScrQuickRace_StartRace(param_1,*piVar5);
       }
     }
     Menu_RequestTransition(piVar5 + 0x220);
@@ -601,7 +601,7 @@ void maybe_ScrQuickRace_Enter(int param_1)
     *(ulong *)(param_1 + 0x78) = *(ulong *)(param_1 + 0x78) & auVar6._0_8_;
   }
   if (iRam0036f770 != 0) {
-    scrgarage_step_sub_002a2f80(param_1);
+    maybe_ScrQuickRace_UpdateCarNames(param_1);
   }
   if (iRam0036ee28 != 2) {
     *(int *)(param_1 + 8) = iRam0036ee28;
@@ -619,7 +619,7 @@ void maybe_ScrQuickRace_Enter(int param_1)
 }
 
 // 0x002a5080  size 0x12c
-void scrrecord_step_sub_002a5080(undefined8 param_1,int *param_2)
+void maybe_Record_FormatEntry(undefined8 param_1,int *param_2)
 
 {
   undefined1 *puVar1;
@@ -649,7 +649,7 @@ void scrrecord_step_sub_002a5080(undefined8 param_1,int *param_2)
     *(undefined1 *)((int)param_1 + iVar2) = 0x2d;
   }
   else {
-    menuscr_leaf_sub_002a54a0(&uStack_18);
+    maybe_Record_GetOptionValue(&uStack_18);
     uStack_18 = uStack_18 & 0xfffffffe;
     Time_SplitHms(1,*(undefined4 *)(*param_2 + 0xc),&uStack_4,&uStack_8,&uStack_c);
     uStack_18 = CONCAT22(uStack_18._2_2_,
@@ -665,7 +665,8 @@ void scrrecord_step_sub_002a5080(undefined8 param_1,int *param_2)
 }
 
 // 0x002a51b0  size 0x2f0
-void menuscr_leaf_sub_002a51b0(byte *param_1,uint *param_2,byte param_3,char param_4,char param_5)
+void maybe_QuickRace_GetOptionValue
+               (byte *param_1,uint *param_2,byte param_3,char param_4,char param_5)
 
 {
   byte bVar1;
@@ -751,7 +752,7 @@ LAB_002a5454:
 }
 
 // 0x002a54a0  size 0x2f0
-void menuscr_leaf_sub_002a54a0(byte *param_1,uint *param_2,byte param_3,char param_4,char param_5)
+void maybe_Record_GetOptionValue(byte *param_1,uint *param_2,byte param_3,char param_4,char param_5)
 
 {
   byte bVar1;
@@ -837,7 +838,7 @@ LAB_002a5744:
 }
 
 // 0x002a5790  size 0x44
-void menuscr_leaf_sub_002a5790(int *param_1,int param_2)
+void maybe_QuickRace_InitRowsA(int *param_1,int param_2)
 
 {
   int iVar1;
@@ -857,7 +858,7 @@ void menuscr_leaf_sub_002a5790(int *param_1,int param_2)
 }
 
 // 0x002a57e0  size 0x44
-void menuscr_leaf_sub_002a57e0(int *param_1,int param_2)
+void maybe_QuickRace_InitRowsB(int *param_1,int param_2)
 
 {
   int iVar1;
@@ -1164,7 +1165,7 @@ void maybe_ScrModeReset_Enter(undefined4 *param_1)
 // 0x002a5de0  size 0x1f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_step_sub_002a5de0(int param_1)
+void maybe_ScrGarageList_HandleInput(int param_1)
 
 {
   undefined2 uVar1;
@@ -1205,7 +1206,7 @@ void scrgarage_step_sub_002a5de0(int param_1)
       iVar2 = *(int *)(param_1 + 0x2c);
     }
     if (iVar2 == 1) {
-      showroom_step_sub_002d3990
+      Garage_BuildSortedCarList
                 (param_1 + 4,*(undefined4 *)(param_1 + 8),*(undefined4 *)(param_1 + 0x10));
       *(undefined4 *)(_g_MenuMgr + 0x2c) = 0;
       *(undefined4 *)(param_1 + 0xc) = 0;
@@ -1381,7 +1382,7 @@ void maybe_ScrGarageList_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle(iVar2 + 0x28);
   if (lVar1 != 0) {
     (*(code *)(&PTR_maybe_ScrGarageList_State0_0032ee10)[*(int *)(iVar2 + 0x2c)])(param_1);
-    scrgarage_step_sub_002a5de0(param_1);
+    maybe_ScrGarageList_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x28);
   }
   return;
@@ -1415,7 +1416,7 @@ void maybe_ScrGarageList_Enter(int param_1)
     *(undefined4 *)(param_1 + 0xc) = 0;
     *(undefined4 *)(param_1 + 0x18) = 0;
   }
-  showroom_step_sub_002d3990(param_1 + 4,8,*(undefined4 *)(param_1 + 0x10));
+  Garage_BuildSortedCarList(param_1 + 4,8,*(undefined4 *)(param_1 + 0x10));
   *(undefined4 *)(param_1 + 0x28) = 0xffffffff;
   *(undefined4 *)(param_1 + 0x2c) = 0;
   *(undefined4 *)(param_1 + 0x30) = 0;
@@ -1466,7 +1467,7 @@ void ScrGarageSelect_Update(int param_1)
     }
     else if (iVar1 == 1) {
       uStack_4 = 0;
-      showroom_step_sub_002d3990(&uStack_4,8,0);
+      Garage_BuildSortedCarList(&uStack_4,8,0);
       *(undefined4 *)(_g_MenuMgr + 0x2c) = uStack_4;
       MenuMgr_GetScreenParam(0x25);
     }
@@ -1869,14 +1870,14 @@ void maybe_ScrCarSpec_Enter(undefined4 *param_1)
     param_1[0xcd] = (uint)(0 < lVar5);
   }
   Mem_Set16((int)param_1 + 0x32,0,0x2c4);
-  scrcareer_step_sub_002a1e50((int)param_1 + 0x32,auStack_5b0,param_1 + 0xbe);
+  maybe_CarList_BuildOwned((int)param_1 + 0x32,auStack_5b0,param_1 + 0xbe);
   return;
 }
 
 // 0x002a6ff0  size 0x174
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrecord_step_sub_002a6ff0(int *param_1)
+void maybe_ScrRaceStart_Build(int *param_1)
 
 {
   int iVar1;
@@ -2169,7 +2170,7 @@ void maybe_ScrRaceStart_Update(undefined8 param_1)
           MenuMgr_GetScreenParam(*puVar4);
         }
         if (iVar1 == -2) {
-          scrrecord_step_sub_002a6ff0(param_1);
+          maybe_ScrRaceStart_Build(param_1);
           MenuMgr_GetScreenParam(0xfffffffffffffffe);
         }
       }
@@ -2188,7 +2189,7 @@ void maybe_ScrRaceStart_Update(undefined8 param_1)
           MenuMgr_GetScreenParam(*puVar4);
         }
         if (iVar1 == -2) {
-          scrrecord_step_sub_002a6ff0(param_1);
+          maybe_ScrRaceStart_Build(param_1);
           MenuMgr_GetScreenParam(0xfffffffffffffffe);
         }
       }
@@ -2278,7 +2279,7 @@ void maybe_ScrRaceStart_Enter(undefined8 param_1)
 // 0x002a79e0  size 0x348
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_step_sub_002a79e0(undefined4 *param_1,long param_2)
+void maybe_ScrRivalIntro_OnResult(undefined4 *param_1,long param_2)
 
 {
   char cVar1;

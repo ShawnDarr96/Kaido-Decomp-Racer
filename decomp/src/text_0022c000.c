@@ -877,7 +877,7 @@ void MenuPage12_Enter(void)
 }
 
 // 0x0022d910  size 0xa4
-int menuscr_step_sub_0022d910(void)
+int maybe_Profile_CountNewItems(void)
 
 {
   int iVar1;
@@ -991,7 +991,7 @@ void ScrGarage_Draw_ThereIsNew(void)
     else {
       MenuWnd_DrawLabel(0x12,0x31,0x149,iVar12);
     }
-    lVar10 = menuscr_step_sub_0022d910();
+    lVar10 = maybe_Profile_CountNewItems();
     if (lVar10 < 2) {
       if (lVar10 == 1) {
         MenuWnd_DrawLabel(0x12,0x32,0x16d,1);

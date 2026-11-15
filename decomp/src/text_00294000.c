@@ -10,7 +10,7 @@ void ScrLoad_Enter(undefined8 param_1)
   
   Save_AllocSlots();
   SaveMgr_LoadIcon(param_1);
-  showroom_leaf_sub_002d8f50(0x293f50,0x293f40,0x293f30);
+  SaveUi_SetParams(0x293f50,0x293f40,0x293f30);
   iVar1 = (int)param_1;
   *(undefined4 *)(iVar1 + 0x568) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x56c) = 0;
@@ -56,7 +56,7 @@ void ScrOptions_ResetDefaults(undefined4 *param_1)
 }
 
 // 0x00294270  size 0xf0
-void menuscr_input_sub_00294270(undefined4 *param_1)
+void maybe_ScrOptions_HandleInputA(undefined4 *param_1)
 
 {
   int iVar1;
@@ -189,7 +189,7 @@ void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
     puVar4 = puVar6;
     do {
       iVar3 = iVar5 + puVar2[0x81] * 0x50 + 0x32eb70;
-      menuscr_leaf_sub_002425a0(puVar4 + 0x18,0xfc,iVar3,iVar3 + 4);
+      MenuOpt_InitItem(puVar4 + 0x18,0xfc,iVar3,iVar3 + 4);
       uVar7 = uVar7 + 1;
       iVar5 = iVar5 + 8;
       puVar4 = puVar4 + 5;
@@ -198,15 +198,15 @@ void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
     iVar5 = 0;
     do {
       iVar3 = iVar5 + puVar2[0x81] * 0x48 + 0x32ec10;
-      menuscr_leaf_sub_002425a0(puVar6 + 0x4a,0xfd,iVar3,iVar3 + 4);
+      MenuOpt_InitItem(puVar6 + 0x4a,0xfd,iVar3,iVar3 + 4);
       uVar7 = uVar7 + 1;
       iVar5 = iVar5 + 8;
       puVar6 = puVar6 + 5;
     } while (uVar7 < 9);
     iVar5 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002964c0(puVar2 + 0x82,iVar5 + puVar2[0x81] * 0xe8 + 0x28);
+    maybe_ScrOptionsLanguage_InitItemsB(puVar2 + 0x82,iVar5 + puVar2[0x81] * 0xe8 + 0x28);
     iVar5 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002963b0(puVar2 + 0x8e,iVar5 + puVar2[0x81] * 0xe8 + 0x88);
+    maybe_ScrOptionsLanguage_InitItemsA(puVar2 + 0x8e,iVar5 + puVar2[0x81] * 0xe8 + 0x88);
     puVar6 = puVar2 + 0xf7;
     puVar2[0xf8] = 1;
     uVar7 = 0;
@@ -215,7 +215,7 @@ void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
     puVar4 = puVar6;
     do {
       iVar3 = iVar5 + puVar2[0xf8] * 0x50 + 0x32eb70;
-      menuscr_leaf_sub_002425a0(puVar4 + 0x18,0xfc,iVar3,iVar3 + 4);
+      MenuOpt_InitItem(puVar4 + 0x18,0xfc,iVar3,iVar3 + 4);
       uVar7 = uVar7 + 1;
       iVar5 = iVar5 + 8;
       puVar4 = puVar4 + 5;
@@ -224,15 +224,15 @@ void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
     iVar5 = 0;
     do {
       iVar3 = iVar5 + puVar2[0xf8] * 0x48 + 0x32ec10;
-      menuscr_leaf_sub_002425a0(puVar6 + 0x4a,0xfd,iVar3,iVar3 + 4);
+      MenuOpt_InitItem(puVar6 + 0x4a,0xfd,iVar3,iVar3 + 4);
       uVar7 = uVar7 + 1;
       iVar5 = iVar5 + 8;
       puVar6 = puVar6 + 5;
     } while (uVar7 < 9);
     iVar5 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002964c0(puVar2 + 0xf9,iVar5 + puVar2[0xf8] * 0xe8 + 0x28);
+    maybe_ScrOptionsLanguage_InitItemsB(puVar2 + 0xf9,iVar5 + puVar2[0xf8] * 0xe8 + 0x28);
     iVar5 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002963b0(puVar2 + 0x105,iVar5 + puVar2[0xf8] * 0xe8 + 0x88);
+    maybe_ScrOptionsLanguage_InitItemsA(puVar2 + 0x105,iVar5 + puVar2[0xf8] * 0xe8 + 0x88);
   }
   puVar2[1] = 6;
   *puVar2 = 6;
@@ -322,7 +322,7 @@ void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
     puVar9 = puVar8;
     do {
       iVar10 = iVar7 + param_1[0x81] * 0x50 + 0x32eb70;
-      menuscr_leaf_sub_002425a0(puVar9 + 0x18,0xfc,iVar10,iVar10 + 4);
+      MenuOpt_InitItem(puVar9 + 0x18,0xfc,iVar10,iVar10 + 4);
       uVar12 = uVar12 + 1;
       iVar7 = iVar7 + 8;
       puVar9 = puVar9 + 5;
@@ -331,15 +331,15 @@ void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
     iVar7 = 0;
     do {
       iVar10 = iVar7 + param_1[0x81] * 0x48 + 0x32ec10;
-      menuscr_leaf_sub_002425a0(puVar8 + 0x4a,0xfd,iVar10,iVar10 + 4);
+      MenuOpt_InitItem(puVar8 + 0x4a,0xfd,iVar10,iVar10 + 4);
       uVar12 = uVar12 + 1;
       iVar7 = iVar7 + 8;
       puVar8 = puVar8 + 5;
     } while (uVar12 < 9);
     iVar7 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002964c0(param_1 + 0x82,iVar7 + param_1[0x81] * 0xe8 + 0x28);
+    maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0x82,iVar7 + param_1[0x81] * 0xe8 + 0x28);
     iVar7 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002963b0(param_1 + 0x8e,iVar7 + param_1[0x81] * 0xe8 + 0x88);
+    maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x8e,iVar7 + param_1[0x81] * 0xe8 + 0x88);
     puVar8 = param_1 + 0xf7;
     param_1[0xf8] = 1;
     uVar12 = 0;
@@ -348,7 +348,7 @@ void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
     puVar9 = puVar8;
     do {
       iVar10 = iVar7 + param_1[0xf8] * 0x50 + 0x32eb70;
-      menuscr_leaf_sub_002425a0(puVar9 + 0x18,0xfc,iVar10,iVar10 + 4);
+      MenuOpt_InitItem(puVar9 + 0x18,0xfc,iVar10,iVar10 + 4);
       uVar12 = uVar12 + 1;
       iVar7 = iVar7 + 8;
       puVar9 = puVar9 + 5;
@@ -357,15 +357,15 @@ void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
     iVar7 = 0;
     do {
       iVar10 = iVar7 + param_1[0xf8] * 0x48 + 0x32ec10;
-      menuscr_leaf_sub_002425a0(puVar8 + 0x4a,0xfd,iVar10,iVar10 + 4);
+      MenuOpt_InitItem(puVar8 + 0x4a,0xfd,iVar10,iVar10 + 4);
       uVar12 = uVar12 + 1;
       iVar7 = iVar7 + 8;
       puVar8 = puVar8 + 5;
     } while (uVar12 < 9);
     iVar7 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002964c0(param_1 + 0xf9,iVar7 + param_1[0xf8] * 0xe8 + 0x28);
+    maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0xf9,iVar7 + param_1[0xf8] * 0xe8 + 0x28);
     iVar7 = maybe_Options_GetLanguage();
-    menuscr_leaf_sub_002963b0(param_1 + 0x105,iVar7 + param_1[0xf8] * 0xe8 + 0x88);
+    maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x105,iVar7 + param_1[0xf8] * 0xe8 + 0x88);
   }
   *param_1 = 4;
   param_1[1] = 4;
@@ -807,7 +807,7 @@ void ScrmaybeOptionsGetLanguage_Enter(undefined4 *param_1)
 }
 
 // 0x00295750  size 0x184
-void menuscr_step_sub_00295750(undefined8 param_1)
+void maybe_ScrOptionsLanguage_HandleInput(undefined8 param_1)
 
 {
   uint uVar1;
@@ -826,11 +826,11 @@ void menuscr_step_sub_00295750(undefined8 param_1)
   puVar2 = (undefined4 *)param_1;
   if (uVar1 == 0x10) {
     Se_PlayMenu(5);
-    menuscr_step_sub_002958e0(param_1,puVar2[1]);
+    maybe_ScrOptionsLanguage_OnResult(param_1,puVar2[1]);
   }
   else if (uVar1 == 0x20) {
     Se_PlayMenu(6);
-    menuscr_step_sub_002958e0(param_1,*puVar2);
+    maybe_ScrOptionsLanguage_OnResult(param_1,*puVar2);
   }
   else if ((puVar2[0x16f] == 5) || (puVar2[0x16f] == 7)) {
     uVar1 = piRam0036f468[3];
@@ -845,11 +845,11 @@ void menuscr_step_sub_00295750(undefined8 param_1)
     }
     if (uVar1 == 0x10) {
       Se_PlayMenu(5);
-      menuscr_step_sub_002958e0(param_1,puVar2[1]);
+      maybe_ScrOptionsLanguage_OnResult(param_1,puVar2[1]);
     }
     else if (uVar1 == 0x20) {
       Se_PlayMenu(6);
-      menuscr_step_sub_002958e0(param_1,*puVar2);
+      maybe_ScrOptionsLanguage_OnResult(param_1,*puVar2);
     }
   }
   return;
@@ -858,7 +858,7 @@ void menuscr_step_sub_00295750(undefined8 param_1)
 // 0x002958e0  size 0xcc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_002958e0(int param_1,long param_2)
+void maybe_ScrOptionsLanguage_OnResult(int param_1,long param_2)
 
 {
   *(int *)(param_1 + 0x5c0) = (int)param_2;
@@ -868,7 +868,7 @@ void menuscr_step_sub_002958e0(int param_1,long param_2)
       MenuMgr_GetScreenParam(0x2c);
     }
     else if (param_2 == -2) {
-      showroom_leaf_sub_002d8f60(0,0,0);
+      Subtitle_SetPending(0,0,0);
       MenuMgr_GetScreenParam(0x18);
     }
     else if (param_2 == -3) {
@@ -912,7 +912,7 @@ void maybe_ScrOptionsLanguage_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle(iVar2 + 0x5b8);
   if (lVar1 != 0) {
     (*(code *)(&PTR_ScrmaybeOptionsGetLanguage_Enter_0032ead0)[*(int *)(iVar2 + 0x5bc)])(param_1);
-    menuscr_step_sub_00295750(param_1);
+    maybe_ScrOptionsLanguage_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x5b8);
   }
   return;
@@ -962,7 +962,7 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
   puVar1 = puVar4;
   do {
     iVar2 = iVar3 + param_1[0x81] * 0x50 + 0x32eb70;
-    menuscr_leaf_sub_002425a0(puVar1 + 0x18,0xfc,iVar2,iVar2 + 4);
+    MenuOpt_InitItem(puVar1 + 0x18,0xfc,iVar2,iVar2 + 4);
     uVar5 = uVar5 + 1;
     iVar3 = iVar3 + 8;
     puVar1 = puVar1 + 5;
@@ -971,15 +971,15 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
   iVar2 = 0;
   do {
     iVar3 = iVar2 + param_1[0x81] * 0x48 + 0x32ec10;
-    menuscr_leaf_sub_002425a0(puVar4 + 0x4a,0xfd,iVar3,iVar3 + 4);
+    MenuOpt_InitItem(puVar4 + 0x4a,0xfd,iVar3,iVar3 + 4);
     uVar5 = uVar5 + 1;
     iVar2 = iVar2 + 8;
     puVar4 = puVar4 + 5;
   } while (uVar5 < 9);
   iVar2 = maybe_Options_GetLanguage();
-  menuscr_leaf_sub_002964c0(param_1 + 0x82,iVar2 + param_1[0x81] * 0xe8 + 0x28);
+  maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0x82,iVar2 + param_1[0x81] * 0xe8 + 0x28);
   iVar2 = maybe_Options_GetLanguage();
-  menuscr_leaf_sub_002963b0(param_1 + 0x8e,iVar2 + param_1[0x81] * 0xe8 + 0x88);
+  maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x8e,iVar2 + param_1[0x81] * 0xe8 + 0x88);
   puVar4 = param_1 + 0xf7;
   param_1[0xf8] = 1;
   uVar5 = 0;
@@ -988,7 +988,7 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
   puVar1 = puVar4;
   do {
     iVar3 = iVar2 + param_1[0xf8] * 0x50 + 0x32eb70;
-    menuscr_leaf_sub_002425a0(puVar1 + 0x18,0xfc,iVar3,iVar3 + 4);
+    MenuOpt_InitItem(puVar1 + 0x18,0xfc,iVar3,iVar3 + 4);
     uVar5 = uVar5 + 1;
     iVar2 = iVar2 + 8;
     puVar1 = puVar1 + 5;
@@ -997,15 +997,15 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
   iVar2 = 0;
   do {
     iVar3 = iVar2 + param_1[0xf8] * 0x48 + 0x32ec10;
-    menuscr_leaf_sub_002425a0(puVar4 + 0x4a,0xfd,iVar3,iVar3 + 4);
+    MenuOpt_InitItem(puVar4 + 0x4a,0xfd,iVar3,iVar3 + 4);
     uVar5 = uVar5 + 1;
     iVar2 = iVar2 + 8;
     puVar4 = puVar4 + 5;
   } while (uVar5 < 9);
   iVar2 = maybe_Options_GetLanguage();
-  menuscr_leaf_sub_002964c0(param_1 + 0xf9,iVar2 + param_1[0xf8] * 0xe8 + 0x28);
+  maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0xf9,iVar2 + param_1[0xf8] * 0xe8 + 0x28);
   iVar2 = maybe_Options_GetLanguage();
-  menuscr_leaf_sub_002963b0(param_1 + 0x105,iVar2 + param_1[0xf8] * 0xe8 + 0x88);
+  maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x105,iVar2 + param_1[0xf8] * 0xe8 + 0x88);
   param_1[0x16e] = 0xffffffff;
   param_1[0x16f] = 0;
   param_1[0x170] = 0;
@@ -1053,7 +1053,7 @@ void ScrOptions_InputSound(int *param_1,int param_2)
       iVar5 = maybe_Options_GetLanguage();
       Options_SetDefaultsSound(iVar5 + param_1[1] * 0xe8 + 0x88);
       iVar5 = maybe_Options_GetLanguage();
-      menuscr_leaf_sub_002963b0(param_1 + 0xe,iVar5 + param_1[1] * 0xe8 + 0x88);
+      maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0xe,iVar5 + param_1[1] * 0xe8 + 0x88);
       *(undefined4 *)(param_2 + 4) = 7;
     }
   }
@@ -1141,7 +1141,7 @@ void ScrOptions_InputDisplay(int *param_1,int param_2)
       piVar5 = param_1;
       do {
         iVar3 = iVar1 + param_1[1] * 0x50 + 0x32eb70;
-        menuscr_leaf_sub_002425a0(piVar5 + 0x18,0xfc,iVar3,iVar3 + 4);
+        MenuOpt_InitItem(piVar5 + 0x18,0xfc,iVar3,iVar3 + 4);
         uVar6 = uVar6 + 1;
         iVar1 = iVar1 + 8;
         piVar5 = piVar5 + 5;
@@ -1151,15 +1151,15 @@ void ScrOptions_InputDisplay(int *param_1,int param_2)
       piVar5 = param_1;
       do {
         iVar3 = iVar1 + param_1[1] * 0x48 + 0x32ec10;
-        menuscr_leaf_sub_002425a0(piVar5 + 0x4a,0xfd,iVar3,iVar3 + 4);
+        MenuOpt_InitItem(piVar5 + 0x4a,0xfd,iVar3,iVar3 + 4);
         uVar6 = uVar6 + 1;
         iVar1 = iVar1 + 8;
         piVar5 = piVar5 + 5;
       } while (uVar6 < 9);
       iVar1 = maybe_Options_GetLanguage();
-      menuscr_leaf_sub_002964c0(param_1 + 2,iVar1 + param_1[1] * 0xe8 + 0x28);
+      maybe_ScrOptionsLanguage_InitItemsB(param_1 + 2,iVar1 + param_1[1] * 0xe8 + 0x28);
       iVar1 = maybe_Options_GetLanguage();
-      menuscr_leaf_sub_002963b0(param_1 + 0xe,iVar1 + param_1[1] * 0xe8 + 0x88);
+      maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0xe,iVar1 + param_1[1] * 0xe8 + 0x88);
       *param_1 = 10;
       *(undefined4 *)(param_2 + 4) = 5;
     }
@@ -1220,7 +1220,7 @@ LAB_002962b0:
 }
 
 // 0x002963b0  size 0x104
-void menuscr_leaf_sub_002963b0(undefined4 *param_1,int *param_2)
+void maybe_ScrOptionsLanguage_InitItemsA(undefined4 *param_1,int *param_2)
 
 {
   int iVar1;
@@ -1273,7 +1273,7 @@ void menuscr_leaf_sub_002963b0(undefined4 *param_1,int *param_2)
 }
 
 // 0x002964c0  size 0x140
-void menuscr_leaf_sub_002964c0(int param_1,int *param_2)
+void maybe_ScrOptionsLanguage_InitItemsB(int param_1,int *param_2)
 
 {
   int iVar1;
@@ -1331,7 +1331,7 @@ void menuscr_leaf_sub_002964c0(int param_1,int *param_2)
 }
 
 // 0x00296600  size 0x240
-int scrrace_step_sub_00296600(void)
+int maybe_Career_ApplyChapterFlags(void)
 
 {
   undefined8 uVar1;
@@ -1428,7 +1428,7 @@ int scrrace_step_sub_00296600(void)
 }
 
 // 0x00296840  size 0xe4
-void menuscr_step_sub_00296840(int param_1)
+void maybe_ScrCareerStart_InputA(int param_1)
 
 {
   uint uVar1;
@@ -1464,7 +1464,7 @@ void menuscr_step_sub_00296840(int param_1)
 }
 
 // 0x00296930  size 0x150
-void menuscr_select_sub_00296930(int param_1)
+void maybe_ScrCareerStart_SelectA(int param_1)
 
 {
   int iVar1;
@@ -1523,7 +1523,7 @@ LAB_00296a58:
 }
 
 // 0x00296a90  size 0x370
-void scrcareer_select_sub_00296a90(int param_1)
+void maybe_ScrCareerStart_SelectOpponent(int param_1)
 
 {
   undefined2 uVar1;
@@ -1702,7 +1702,7 @@ LAB_00296bfc:
 }
 
 // 0x00296e10  size 0x1cc
-void scrcareer_select_sub_00296e10(int param_1)
+void maybe_ScrCareerStart_SelectRival(int param_1)
 
 {
   undefined4 uVar1;
@@ -1795,7 +1795,7 @@ LAB_00296fb4:
 }
 
 // 0x00296fe0  size 0x138
-void menuscr_step_sub_00296fe0(int param_1)
+void maybe_ScrCareerStart_InputB(int param_1)
 
 {
   uint uVar1;
@@ -1967,7 +1967,7 @@ LAB_002972e8:
 // 0x00297450  size 0x18c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_00297450(int param_1)
+void maybe_ScrCareerStart_InputCursor(int param_1)
 
 {
   int iVar1;
@@ -2023,7 +2023,7 @@ LAB_00297594:
 }
 
 // 0x002975e0  size 0x1cc
-void menuscr_step_sub_002975e0(int param_1)
+void maybe_ScrCareerStart_InputC(int param_1)
 
 {
   int iVar1;
@@ -2093,7 +2093,7 @@ LAB_00297748:
 }
 
 // 0x002977b0  size 0xd4
-void menuscr_step_sub_002977b0(int param_1)
+void maybe_ScrCareerStart_ClearRaceSlots(int param_1)
 
 {
   int iVar1;
@@ -2134,7 +2134,7 @@ void menuscr_step_sub_002977b0(int param_1)
 }
 
 // 0x00297890  size 0x288
-void menuscr_step_sub_00297890(int param_1)
+void maybe_ScrCareerStart_InputD(int param_1)
 
 {
   uint uVar1;
@@ -2231,7 +2231,7 @@ LAB_00297a44:
 }
 
 // 0x00297b20  size 0x80
-void menuscr_leaf_sub_00297b20(int param_1)
+void maybe_ScrCareerStart_ClassifyChoice(int param_1)
 
 {
   int iVar1;
@@ -2255,7 +2255,7 @@ void menuscr_leaf_sub_00297b20(int param_1)
 }
 
 // 0x00297ba0  size 0x150
-void menuscr_select_sub_00297ba0(int param_1)
+void maybe_ScrCareerStart_SelectB(int param_1)
 
 {
   int iVar1;
@@ -2314,7 +2314,7 @@ LAB_00297cc8:
 }
 
 // 0x00297d00  size 0x10c
-undefined4 scrcareer_step_sub_00297d00(int param_1)
+undefined4 maybe_ScrCareerStart_SetupTeamRace(int param_1)
 
 {
   undefined4 uVar1;
@@ -2381,7 +2381,7 @@ switchD_00297d88_caseD_5:
 }
 
 // 0x00297e10  size 0x184
-void scrcareer_step_sub_00297e10(undefined8 param_1)
+void maybe_ScrCareerStart_InputTeam(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -2415,7 +2415,7 @@ void scrcareer_step_sub_00297e10(undefined8 param_1)
     Se_PlayMenu(7);
   }
   else if (uVar3 == 0x10) {
-    uVar1 = scrcareer_step_sub_00297d00(param_1);
+    uVar1 = maybe_ScrCareerStart_SetupTeamRace(param_1);
     *(undefined4 *)(iVar4 + 0x640) = uVar1;
     *(undefined4 *)(iVar4 + 0x644) = 2;
     Se_PlayMenu(5);
@@ -2441,7 +2441,7 @@ LAB_00297f4c:
 }
 
 // 0x00297fa0  size 0x690
-undefined4 scrgarage_step_sub_00297fa0(int param_1)
+undefined4 maybe_ScrCareerStart_BuildCarInfo(int param_1)
 
 {
   bool bVar1;

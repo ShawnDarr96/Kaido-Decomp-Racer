@@ -44,7 +44,7 @@ void maybe_ScrRecord_StepSubtitle(undefined8 param_1)
       *puVar3 = 0;
     }
     puVar3[0x191] = 2;
-    scrcareer_step_sub_0029c370(param_1);
+    Career_StartNewGame(param_1);
     MenuMgr_GetScreenParam(0xfffffffffffffffe);
     Se_PlayMenu(5);
   }
@@ -78,7 +78,7 @@ LAB_0029878c:
 // 0x002987f0  size 0x228
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_select_sub_002987f0(int param_1)
+void maybe_ScrCareerStart_SelectCourse(int param_1)
 
 {
   int iVar1;
@@ -170,7 +170,7 @@ LAB_002989e8:
 // 0x00298a20  size 0x3cc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_step_sub_00298a20(int param_1)
+void maybe_ScrCareerStart_InputEquip(int param_1)
 
 {
   undefined8 uVar1;
@@ -292,7 +292,7 @@ LAB_00298c54:
 }
 
 // 0x00298df0  size 0x260
-void scrgarage_step_sub_00298df0(int param_1)
+void maybe_ScrCareerStart_BuildPartList(int param_1)
 
 {
   short sVar1;
@@ -376,7 +376,7 @@ void scrgarage_step_sub_00298df0(int param_1)
 // 0x00299060  size 0xba4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_step_sub_00299060(int param_1)
+void maybe_ScrCareerStart_InputRivalCourse(int param_1)
 
 {
   short sVar1;
@@ -857,7 +857,7 @@ LAB_0029943c:
 // 0x00299c10  size 0xe4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_leaf_sub_00299c10(int param_1)
+void maybe_ScrCareerStart_IsChoiceLocked(int param_1)
 
 {
   int iVar1;
@@ -879,7 +879,7 @@ void menuscr_leaf_sub_00299c10(int param_1)
 // 0x00299d00  size 0x3a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_00299d00(int param_1)
+void maybe_ScrCareerStart_InputSubtitle(int param_1)
 
 {
   int iVar1;
@@ -1028,7 +1028,7 @@ LAB_00299e84:
 }
 
 // 0x0029a0b0  size 0x140
-void menuscr_select_sub_0029a0b0(int param_1)
+void maybe_ScrCareerStart_SelectSubtitle(int param_1)
 
 {
   undefined4 uVar1;
@@ -1043,7 +1043,7 @@ void menuscr_select_sub_0029a0b0(int param_1)
     *(undefined4 *)(param_1 + 0x630) = 0;
   }
   else if (iVar2 == 1) {
-    menuscr_step_sub_00299d00();
+    maybe_ScrCareerStart_InputSubtitle();
   }
   else {
     if (iVar2 != 0) {
@@ -1097,7 +1097,7 @@ LAB_0029a1a4:
 }
 
 // 0x0029a1f0  size 0x970
-int scrgarage_step_sub_0029a1f0(int param_1)
+int maybe_Career_CommitRaceResult(int param_1)
 
 {
   bool bVar1;
@@ -1487,7 +1487,7 @@ int scrgarage_step_sub_0029a1f0(int param_1)
 // 0x0029ab70  size 0x458
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_anim_sub_0029ab70(undefined8 param_1)
+void maybe_ScrCareerStart_InputResult(undefined8 param_1)
 
 {
   int iVar1;
@@ -1582,7 +1582,7 @@ void scrgarage_anim_sub_0029ab70(undefined8 param_1)
       Se_PlayMenu(7);
       Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
     }
-    scrcareer_step_sub_0029afd0(param_1);
+    maybe_ScrCareerStart_AdvanceSchedule(param_1);
     iVar1 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x5bc) = *(undefined4 *)(iVar4 + 0x100);
     *(undefined4 *)(iVar1 + 0x5c0) = *(undefined4 *)(iVar4 + 0x104);
@@ -1603,7 +1603,7 @@ void scrgarage_anim_sub_0029ab70(undefined8 param_1)
       *(undefined4 *)(iVar4 + 0x1c) = 4;
       Se_PlayMenu();
     }
-    scrcareer_step_sub_0029afd0(param_1);
+    maybe_ScrCareerStart_AdvanceSchedule(param_1);
     iVar1 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x5bc) = *(undefined4 *)(iVar4 + 0x100);
     *(undefined4 *)(iVar1 + 0x5c0) = *(undefined4 *)(iVar4 + 0x104);
@@ -1628,7 +1628,7 @@ void scrgarage_anim_sub_0029ab70(undefined8 param_1)
     }
     else {
       *(int *)(iVar4 + 0x24) = iVar1;
-      uVar2 = scrgarage_step_sub_0029a1f0(param_1);
+      uVar2 = maybe_Career_CommitRaceResult(param_1);
       *(undefined4 *)(iVar4 + 0x640) = uVar2;
       *(undefined4 *)(iVar4 + 0x644) = 2;
       if (*(int *)(iVar4 + 0x640) == 0xd) {
@@ -1669,7 +1669,7 @@ LAB_0029af18:
 // 0x0029afd0  size 0x5f0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_step_sub_0029afd0(int param_1)
+void maybe_ScrCareerStart_AdvanceSchedule(int param_1)
 
 {
   int iVar1;
@@ -1972,7 +1972,7 @@ void scrcareer_step_sub_0029afd0(int param_1)
 }
 
 // 0x0029b5c0  size 0xec
-void scrcareer_select_sub_0029b5c0(undefined8 param_1)
+void maybe_ScrCareerStart_SelectResult(undefined8 param_1)
 
 {
   int iVar1;
@@ -1996,7 +1996,7 @@ void scrcareer_select_sub_0029b5c0(undefined8 param_1)
     }
   }
   else if (iVar1 == 1) {
-    scrgarage_anim_sub_0029ab70();
+    maybe_ScrCareerStart_InputResult();
   }
   else {
     if (iVar1 != 0) {
@@ -2011,7 +2011,7 @@ void scrcareer_select_sub_0029b5c0(undefined8 param_1)
       *(undefined4 *)(iVar3 + 0x630) = 0;
       *(undefined4 *)(iVar3 + 0x644) = 1;
     }
-    scrcareer_step_sub_0029afd0(param_1);
+    maybe_ScrCareerStart_AdvanceSchedule(param_1);
     *(undefined4 *)(iVar3 + 0x668) = 0;
   }
   uVar2 = *(undefined4 *)(iVar3 + 0x640);
@@ -2024,7 +2024,7 @@ LAB_0029b680:
 // 0x0029b6b0  size 0x2f0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_0029b6b0(int param_1)
+void maybe_ScrCareerStart_InputE(int param_1)
 
 {
   int *piVar1;
@@ -2133,7 +2133,7 @@ void menuscr_step_sub_0029b6b0(int param_1)
 }
 
 // 0x0029b9b0  size 0x220
-void scrgarage_step_sub_0029b9b0(int param_1)
+void maybe_ScrCareerStart_BuildStockList(int param_1)
 
 {
   uint uVar1;
@@ -2214,7 +2214,7 @@ void scrgarage_step_sub_0029b9b0(int param_1)
 // 0x0029bbe0  size 0x15c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_0029bbe0(int param_1)
+void maybe_ScrCareerStart_InputF(int param_1)
 
 {
   int iVar1;
@@ -2271,7 +2271,7 @@ LAB_0029bcf8:
 // 0x0029bd40  size 0x1bc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_step_sub_0029bd40(undefined8 param_1)
+void maybe_ScrCareerStart_InputSchedule(undefined8 param_1)
 
 {
   int iVar1;
@@ -2303,7 +2303,7 @@ void scrcareer_step_sub_0029bd40(undefined8 param_1)
     *(undefined4 *)(iVar3 + 0x1c) = *(undefined4 *)(iVar3 + 0x62c);
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 1;
     *(undefined4 *)(_g_MenuMgr + 0x5b8) = *(undefined4 *)(iVar3 + 0x1c);
-    scrcareer_step_sub_0029afd0(param_1);
+    maybe_ScrCareerStart_AdvanceSchedule(param_1);
     iVar1 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x5bc) = *(undefined4 *)(iVar3 + 0x100);
     *(undefined4 *)(iVar1 + 0x5c0) = *(undefined4 *)(iVar3 + 0x104);
@@ -2337,7 +2337,7 @@ LAB_0029beb8:
 }
 
 // 0x0029bf00  size 0x13c
-void scrcareer_step_sub_0029bf00(int param_1)
+void maybe_ScrCareerStart_BuildBattleList(int param_1)
 
 {
   short sVar1;

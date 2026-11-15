@@ -964,7 +964,7 @@ void ScrSell_Enter(void)
 }
 
 // 0x00256210  size 0xa8
-undefined8 scrcareer_step_sub_00256210(long param_1,long param_2)
+undefined8 maybe_CarSlot_IsSpecial(long param_1,long param_2)
 
 {
   undefined8 uVar1;
@@ -977,7 +977,7 @@ undefined8 scrcareer_step_sub_00256210(long param_1,long param_2)
     uVar1 = 1;
   }
   else {
-    lVar2 = scrcareer_step_sub_0029f130();
+    lVar2 = maybe_MenuText_CurrentCarSpec();
     if (lVar2 == 1) {
       if (param_1 == 0x21) {
         return 1;
@@ -1640,7 +1640,7 @@ void ScrGarage_Draw_DealerColour(int param_1)
 // 0x002574b0  size 0xeb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_draw_sub_002574b0(int param_1)
+void maybe_PartShop_DrawDetails(int param_1)
 
 {
   bool bVar1;
@@ -1982,7 +1982,7 @@ void scrgarage_draw_sub_002574b0(int param_1)
         iVar8 = 9;
       }
       if (iVar8 <= iVar9) break;
-      sVar3 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar7 % iVar4 + iVar6);
+      sVar3 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),iVar7 % iVar4 + iVar6);
       iVar8 = UiMgr_FindLayout(0x68);
       UiElem_SetPropInt(*_g_UiMgr + iVar8 * 0x4f4 + 4,*puVar14,0x16,sVar3 + -0xa8);
       iVar7 = iVar7 % iVar4 + 1;
@@ -2037,7 +2037,7 @@ LAB_002580a4:
         iVar6 = *(int *)(param_1 + 0x28);
         iVar7 = *(int *)(param_1 + 0x38);
         iVar9 = MsgId_ForMenuHelp(*(int *)(param_1 + 0xc) + 1U & 0xff);
-        sVar3 = scrcareer_step_sub_002a1600
+        sVar3 = maybe_CarModel_IsBossCar
                           (*(undefined4 *)(param_1 + 4),
                            (iVar4 + (iVar6 - iVar7) + -1) % iVar4 + iVar9);
         iVar6 = UiMgr_FindLayout(0x68);
@@ -2068,7 +2068,7 @@ LAB_002580a4:
         iVar6 = *(int *)(param_1 + 0x28);
         iVar7 = *(int *)(param_1 + 0x38);
         iVar9 = MsgId_ForMenuHelp(*(int *)(param_1 + 0xc) + 1U & 0xff);
-        sVar3 = scrcareer_step_sub_002a1600
+        sVar3 = maybe_CarModel_IsBossCar
                           (*(undefined4 *)(param_1 + 4),
                            (iVar4 + (iVar6 - iVar7) + 9) % iVar4 + iVar9);
         iVar6 = UiMgr_FindLayout(0x68);
@@ -2078,22 +2078,22 @@ LAB_002580a4:
   }
   uVar5 = *(undefined4 *)(param_1 + 0x10);
 LAB_00257d98:
-  uVar13 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),uVar5);
+  uVar13 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),uVar5);
   uVar13 = Garage_ComputeCarStats(uVar13,0);
   MenuWnd_DrawNumber(0x4f,4,uVar13);
   uVar13 = Profile_Get(0);
   uVar13 = Profile_GetMoney(uVar13);
   MenuWnd_DrawNumber(0x4f,3,uVar13);
-  uVar2 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
+  uVar2 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
   if (*(int *)(param_1 + 0x4c) == 3) {
-    scrgarage_draw_sub_00274d20(uVar2,iVar4,1,0);
+    maybe_Wheel_DrawList(uVar2,iVar4,1,0);
   }
   else {
-    scrgarage_draw_sub_00274d20(uVar2,iVar4,0,0);
+    maybe_Wheel_DrawList(uVar2,iVar4,0,0);
   }
   iVar6 = UiMgr_FindLayout(0x4f);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar6 * 0x4f4 + 4);
-  lVar10 = scrcareer_step_sub_0029f130(*(undefined4 *)(param_1 + 4));
+  lVar10 = maybe_MenuText_CurrentCarSpec(*(undefined4 *)(param_1 + 4));
   if (lVar10 == 0) {
     iVar6 = UiMgr_FindLayout(0x59);
     UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar6 * 0x4f4 + 4);

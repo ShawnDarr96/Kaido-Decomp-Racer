@@ -1,5 +1,5 @@
 address,name,signature,source,comment
-0x00100000,msl_leaf_sub_00100000,,game-module,
+0x00100000,maybe_crt0_Prologue,,game,8 bytes before the ELF entry (0x100008); falls into the bss-clear loop
 0x00100008,entry,,elf,
 0x00100230,maybe_operator_new_heap,,f2,"alloc(size, 16, heap)"
 0x00100240,maybe_operator_new_arr_heap,,f2,
@@ -69,8 +69,8 @@ address,name,signature,source,comment
 0x00103840,maybe_std_wstreambuf_dtor,,f2,
 0x00103890,maybe_std_ios_dtor,,f2,
 0x001038f0,maybe_std_streambuf_dtor,,f2,
-0x00103940,msl_leaf_sub_00103940,,game-module,
-0x00103950,msl_leaf_sub_00103950,,game-module,
+0x00103940,maybe_Stream_SetFlag66,,game,
+0x00103950,maybe_Stream_SetFlag36,,game,
 0x00103960,Msl_Nop_4,,game-module,
 0x00103970,Msl_Nop_5,,game-module,
 0x00103980,Msl_Nop_6,,game-module,
@@ -81,16 +81,16 @@ address,name,signature,source,comment
 0x00103a10,Msl_Nop_10,,game-module,
 0x00103a20,maybe_std_streambuf_xsgetn,,f2,
 0x00103b50,maybe_std_streambuf_xsputn,,f2,
-0x00103c80,msl_leaf_sub_00103c80,,game-module,
-0x00103c90,msl_leaf_sub_00103c90,,game-module,
+0x00103c80,maybe_Pos_InitA,,game,
+0x00103c90,maybe_Pos_InitB,,game,
 0x00103ca0,Msl_Nop_11,,game-module,
 0x00103cb0,maybe_std_wstreambuf_xsgetn,,f2,
 0x00103e90,Msl_Nop_12,,game-module,
 0x00103ea0,maybe_std_wstreambuf_uflow,,f2,
 0x00103ef0,Msl_Nop_13,,game-module,
 0x00103f00,maybe_std_wstreambuf_xsputn,,f2,
-0x001040e0,msl_leaf_sub_001040e0,,game-module,
-0x001040f0,msl_leaf_sub_001040f0,,game-module,
+0x001040e0,maybe_Pos_InitC,,game,
+0x001040f0,maybe_Pos_InitD,,game,
 0x00104100,maybe_std_istream_ctor,,f2,
 0x001041b0,maybe_std_wistream_ctor,,f2,
 0x00104260,maybe_std_ostream_flush,,f2,"""ios_base failure in clear"""
@@ -104,7 +104,7 @@ address,name,signature,source,comment
 0x00104e90,maybe_std_stdio_filebuf_pbackfail,,f2,
 0x00104f50,maybe_std_stdio_filebuf_underflow,,f2,
 0x00105080,maybe_std_stdio_filebuf_uflow,,f2,
-0x00105200,msl_leaf_sub_00105200,,game-module,
+0x00105200,maybe_Vector_ByteSize,,game,
 0x00105220,maybe_std_stdio_filebuf_ctor,,f2,
 0x00105270,maybe_std_stdio_wfilebuf_sync,,f2,
 0x00105330,maybe_std_stdio_wfilebuf_seekpos,,f2,
@@ -113,7 +113,7 @@ address,name,signature,source,comment
 0x00105a20,maybe_std_stdio_wfilebuf_pbackfail,,f2,
 0x00105ae0,maybe_std_stdio_wfilebuf_underflow,,f2,
 0x00105c10,maybe_std_stdio_wfilebuf_uflow,,f2,
-0x00105da0,msl_leaf_sub_00105da0,,game-module,
+0x00105da0,maybe_Vector_Count,,game,
 0x00105dd0,maybe_std_stdio_wfilebuf_ctor,,f2,
 0x00105e20,maybe_std_wfilebuf_getc,,f2,
 0x00105ed0,maybe_std_wfilebuf_getmb,,f2,
@@ -123,10 +123,10 @@ address,name,signature,source,comment
 0x001062f0,maybe_std_filebuf_putmb,,f2,
 0x00106420,maybe_std_ostream_sentry_ctor,,f1,
 0x00106700,maybe_std_wostream_sentry_ctor,,f1,
-0x001069e0,msl_leaf_sub_001069e0,,game-module,
-0x001069f0,msl_leaf_sub_001069f0,,game-module,
-0x00106a00,msl_leaf_sub_00106a00,,game-module,
-0x00106a10,msl_leaf_sub_00106a10,,game-module,
+0x001069e0,maybe_VBaseDtorThunkA,,game,
+0x001069f0,maybe_VBaseDtorThunkB,,game,
+0x00106a00,maybe_VBaseDtorThunkC,,game,
+0x00106a10,maybe_VBaseDtorThunkD,,game,
 0x00106a20,maybe_std_string_replace,,f1,basic_string out_of_range/length_error
 0x00106e80,maybe_std_exception_dtor_b,,f2,
 0x00106f10,maybe_std_out_of_range_dtor,,f2,
@@ -518,7 +518,7 @@ address,name,signature,source,comment
 0x0011aeb0,ExecOSD,,f1,
 0x0011af00,SetSyscall_copy5,,analysis,
 0x0011af10,maybe_kCopy_E,,f1,
-0x0011af20,libkernl_leaf_sub_0011af20,,game-module,
+0x0011af20,maybe_Kernel_CopyWords,,game,
 0x0011af58,RFU091_copy3,,analysis,
 0x0011af68,maybe_InitTimerPatch,,f1,RCNT3
 0x0011b040,Timer_WriteReg,,f1,
@@ -956,16 +956,16 @@ address,name,signature,source,comment
 0x00137310,File_ShutdownNop,,game,
 0x00137320,File_SetHeap,,game,
 0x00137340,File_RequestList_dtor,,game,
-0x001373c0,engine_step_sub_001373c0,,game-module,
+0x001373c0,maybe_EngineNode_dtor,,game,
 0x00137420,File_Request_ctor,,game,
 0x00137460,Pad_Update,,game,
 0x001375f0,Pad_GetPort,,game,0x498 bytes per pad at 0x386650
 0x00137620,maybe_Pad_Shutdown,,game,
 0x00137680,Pad_Init,,game,"scePad2CreateSocket per port, state at 0x386650"
 0x00137810,Pad_SetActuator,,game,sceDbcSendData2 (vibration)
-0x00137920,engine_leaf_sub_00137920,,game-module,
-0x00137940,engine_leaf_sub_00137940,,game-module,
-0x001379d0,engine_leaf_sub_001379d0,,game-module,
+0x00137920,maybe_EngineObj_SetBit,,game,
+0x00137940,maybe_EngineObj_ReadByte,,game,
+0x001379d0,maybe_EngineObj_HasData,,game,
 0x001379e0,Pad_ReadButtons,,game,
 0x00137eb0,Pad_Close,,game,
 0x00137ff0,Pad_dtor,,game,
@@ -1122,8 +1122,8 @@ address,name,signature,source,comment
 0x001419f0,Wheel_IsActive,,game,
 0x00141a00,Wheel_ConsumeDisconnect,,game,
 0x00141a30,Engine_GetField_47c,,game-module,
-0x00141a40,engine_leaf_sub_00141a40,,game-module,
-0x00141a60,engine_leaf_sub_00141a60,,game-module,
+0x00141a40,maybe_EngineObj_SetBitB,,game,
+0x00141a60,maybe_EngineObj_HasFlags,,game,
 0x00141a80,Wheel_ReadInput,,game,
 0x001423f0,Wheel_ReadAxis,,game,
 0x00142910,Wheel_ReadButtons,,game,
@@ -1418,15 +1418,15 @@ address,name,signature,source,comment
 0x00159db0,PhysWorld_dtor,,game,
 0x00159e40,PhysWorld_InitDefaults,,game,
 0x00159e60,PhysSphere_UpdateTransform,,game,
-0x00159fb0,phys_leaf_sub_00159fb0,,game-module,
+0x00159fb0,maybe_PhysBody_CopyState,,game,
 0x00159fe0,Phys_Nop_2,,game-module,
 0x00159ff0,PhysSphere_ComputeInertia,,game,
 0x0015a1b0,PhysSphere_Setup,,game,
 0x0015a3b0,PhysSphere_SetRadius,,game,
 0x0015a3e0,PhysBox_GetHalfExtents,,game,
 0x0015a3f0,PhysBox_GetAxes,,game,
-0x0015a400,phys_leaf_sub_0015a400,,game-module,
-0x0015a410,phys_leaf_sub_0015a410,,game-module,
+0x0015a400,PhysBody_GetParam,,game,
+0x0015a410,PhysBody_SetParam,,game,
 0x0015a420,PhysBox_ProjectPoint,,game,
 0x0015a580,PhysBox_ContactPlane,,game,
 0x0015a660,PhysBox_ContactPlaneEx,,game,
@@ -1440,8 +1440,8 @@ address,name,signature,source,comment
 0x0015b0e0,PhysBox_ComputeInertia,,game,
 0x0015b3b0,PhysBox_GetEdgeIndexA,,game,
 0x0015b3d0,PhysBox_GetEdgeIndexB,,game,
-0x0015b3f0,phys_leaf_sub_0015b3f0,,game-module,
-0x0015b410,phys_leaf_sub_0015b410,,game-module,
+0x0015b3f0,maybe_Phys_GetTableA,,game,
+0x0015b410,maybe_Phys_GetTableB,,game,
 0x0015b430,PhysBox_GetCorner,,game,
 0x0015b4d0,Phys_Nop_4,,game-module,
 0x0015b4e0,PhysBox_GetPlane,,game,
@@ -1458,16 +1458,16 @@ address,name,signature,source,comment
 0x0015bd30,Phys_Nop_9,,game-module,
 0x0015bd40,Phys_Nop_10,,game-module,
 0x0015bd50,Phys_Nop_11,,game-module,
-0x0015bd60,phys_leaf_sub_0015bd60,,game-module,
+0x0015bd60,maybe_Phys_GetDefaultA,,game,
 0x0015bd70,Phys_Nop_12,,game-module,
-0x0015bd80,phys_leaf_sub_0015bd80,,game-module,
+0x0015bd80,maybe_Phys_GetDefaultB,,game,
 0x0015bd90,Phys_Nop_13,,game-module,
 0x0015bda0,Phys_Nop_14,,game-module,
 0x0015bdb0,Phys_Nop_15,,game-module,
 0x0015bdc0,PhysPlane_GetKind,,game,
 0x0015be60,PhysPlane_TransformNormal,,game,
-0x0015bf00,phys_leaf_sub_0015bf00,,game-module,
-0x0015bf10,phys_leaf_sub_0015bf10,,game-module,
+0x0015bf00,maybe_PhysSphere_SetRadius,,game,
+0x0015bf10,maybe_PhysSphere_SetCenter,,game,
 0x0015bf20,PhysShape_GetCenter,,game,
 0x0015bf30,PhysPlane_RayIntersect,,game,
 0x0015c0e0,PhysPair_SetBodyA,,game,
@@ -1477,7 +1477,7 @@ address,name,signature,source,comment
 0x0015c120,PhysPair_SetShapeA,,game,
 0x0015c130,PhysPair_SetShapeB,,game,
 0x0015c140,Vec3_AddInPlace_Wrap,,game-module,
-0x0015c150,phys_step_sub_0015c150,,game-module,
+0x0015c150,PhysSphere_ContainsPoint,,game,
 0x0015c1b0,PhysShapeBase_dtor,,game,
 0x0015c200,PhysShapeBase_ctor,,game,
 0x0015c3c0,PhysPairList_Add,,game,
@@ -1658,18 +1658,18 @@ address,name,signature,source,comment
 0x001663f0,Tire_SetupLoad,,game,
 0x00166570,Car_GetSurfaceGrip,,game,
 0x001666f0,Car_UpdateGearRatio,,game,gear at +0x814 (-1 = reverse)
-0x00166970,car_leaf_sub_00166970,,game-module,
-0x001669b0,car_leaf_sub_001669b0,,game-module,
-0x001669f0,car_leaf_sub_001669f0,,game-module,
-0x00166a30,car_leaf_sub_00166a30,,game-module,
+0x00166970,maybe_Car_ClampThrottle,,game,
+0x001669b0,maybe_Car_ClampBrake,,game,
+0x001669f0,maybe_Car_ClampClutch,,game,
+0x00166a30,maybe_Car_ClampSteer,,game,
 0x00166ad0,Car_UpdateFrontTires,,game,"steering input, sin curve"
-0x00166c80,car_leaf_sub_00166c80,,game-module,
-0x00166ce0,car_leaf_sub_00166ce0,,game-module,
-0x00166d40,car_leaf_sub_00166d40,,game-module,
-0x00166da0,car_leaf_sub_00166da0,,game-module,
+0x00166c80,maybe_Car_SetThrottleInput,,game,
+0x00166ce0,maybe_Car_SetBrakeInput,,game,
+0x00166d40,maybe_Car_SetHandbrakeInput,,game,
+0x00166da0,maybe_Car_SetClutchInput,,game,
 0x00166e00,Car_UpdateRearTires,,game,
-0x00167050,car_leaf_sub_00167050,,game-module,
-0x00167080,car_leaf_sub_00167080,,game-module,
+0x00167050,maybe_Car_GetNitroScale,,game,
+0x00167080,maybe_Car_GetBoostScale,,game,
 0x001670c0,Car_Init,,game,
 0x00167580,Car_Reset,,game,
 0x00167a60,Car_GetWheelLoad,,game,
@@ -1708,16 +1708,16 @@ address,name,signature,source,comment
 0x0016d510,Car_ApplyStopFriction,,game,
 0x0016d690,Car_CheckUpsideDown,,game,
 0x0016d890,Car_UpdateTractionControl,,game,
-0x0016dae0,car_leaf_sub_0016dae0,,game-module,
+0x0016dae0,maybe_Car_ResetWheelForces,,game,
 0x0016db10,Car_UpdateAbs,,game,
 0x0016dc90,Car_SetHandbrake,,game,
 0x0016ddb0,Car_UpdateBodyDynamics,,game,
 0x0016e2b0,Car_CheckStuck,,game,
 0x0016e460,Car_UpdateWheelTransforms,,game,
 0x0016e840,Car_SyncFromRigidBody,,game,
-0x0016eae0,car_leaf_sub_0016eae0,,game-module,
+0x0016eae0,maybe_Car_ResetShift,,game,
 0x0016eb00,Car_Simulate,,game,per-step driver
-0x0016ecd0,car_leaf_sub_0016ecd0,,game-module,
+0x0016ecd0,maybe_Car_SetRpmLimit,,game,
 0x0016ed90,Car_dtor,,game,
 0x0016ee40,Car_Clear,,game,
 0x0016f310,Car_ctor,,game,
@@ -1877,7 +1877,7 @@ address,name,signature,source,comment
 0x00178390,maybe_GameState_GetFlag,,game,
 0x001783a0,Course_RenderHook,,game,
 0x00178440,Game_Nop,,game-module,
-0x00178450,game_leaf_sub_00178450,,game-module,
+0x00178450,Course_InstallRenderHook,,game,
 0x00178460,Course_UpdateHook,,game,
 0x00178490,Course_FreeHook,,game,
 0x001784f0,Course_AllocHook,,game,
@@ -2099,13 +2099,13 @@ address,name,signature,source,comment
 0x0018e860,SndCh_PlayAtPosition,,game,
 0x0018e920,SndStream_dtor,,game,
 0x0018e9b0,SndCh_IsStreamPlaying,,game,
-0x0018ea00,render_leaf_sub_0018ea00,,game-module,
+0x0018ea00,maybe_SndMgr_IsMuted,,game,
 0x0018ea20,Render_Nop,,game-module,
 0x0018ea30,SndStream_Play,,game,
 0x0018eac0,SndStream_PlayLooped,,game,
 0x0018eb50,SndStream_Stop,,game,
 0x0018ebe0,SndStream_PlayBank,,game,
-0x0018ed00,render_leaf_sub_0018ed00,,game-module,
+0x0018ed00,SndStream_IsActive,,game,
 0x0018ed20,Render_Nop_2,,game-module,
 0x0018ed30,SndStream_GetFlags,,game,
 0x0018ed70,Render_Nop_3,,game-module,
@@ -2161,11 +2161,11 @@ address,name,signature,source,comment
 0x00192050,SndMgr_Init,,game,
 0x00192770,Snd_RpmToPitch,,game,x * 384 / 15
 0x00192800,Snd_VolumeToMidi,,game,x * 0x3fff / 15
-0x00192820,render_step_sub_00192820,,game-module,
-0x00192830,render_step_sub_00192830,,game-module,
-0x00192840,render_step_sub_00192840,,game-module,
-0x00192850,render_step_sub_00192850,,game-module,
-0x00192860,render_step_sub_00192860,,game-module,
+0x00192820,SndStream_dtorThunk,,game,
+0x00192830,SndCh_FadeOutThunk,,game,
+0x00192840,SndCh_FadeInThunk,,game,
+0x00192850,SndCh_dtorThunk,,game,
+0x00192860,maybe_SndCh_GetHandleIfReady,,game,
 0x00192890,CarSnd_Update3d,,game,
 0x00193070,CarSnd_StopVoice,,game,
 0x00193140,CarSnd_Attach,,game,
@@ -2194,7 +2194,7 @@ address,name,signature,source,comment
 0x00196500,maybe_CarSnd_RestartIfIdle,,game,
 0x001965f0,Render_Nop_8,,game-module,
 0x00196600,maybe_CarSnd_PlayIfNotLoading,,game,
-0x00196640,render_leaf_sub_00196640,,game-module,
+0x00196640,maybe_CarSnd_GetVoiceIndex,,game,
 0x001966c0,CarSnd_SetupMidiChannel,,game,
 0x00196d10,View_Clear,,game,
 0x00196d50,View_ResetDirty,,game,
@@ -2895,19 +2895,19 @@ address,name,signature,source,comment
 0x001e8e50,RaceSnd_StopSlot,,game,
 0x001e8f20,RaceScene_Get_38,,game-accessor,
 0x001e8f30,RaceScene_Get_40,,game-accessor,
-0x001e8f40,race_leaf_sub_001e8f40,,game-module,
-0x001e8f60,race_leaf_sub_001e8f60,,game-module,
-0x001e8f80,race_leaf_sub_001e8f80,,game-module,
-0x001e8fa0,race_leaf_sub_001e8fa0,,game-module,
-0x001e8fc0,race_leaf_sub_001e8fc0,,game-module,
+0x001e8f40,RaceScene_IsFlag1000,,game,
+0x001e8f60,RaceScene_IsFlag400,,game,
+0x001e8f80,RaceScene_ClearFlag800,,game,
+0x001e8fa0,RaceScene_IsFlag800,,game,
+0x001e8fc0,RaceScene_IsFlag10,,game,
 0x001e8fe0,RaceScene_IsActive,,game,
 0x001e9010,RaceScene_IsPaused,,game,26 callers
-0x001e9030,race_leaf_sub_001e9030,,game-module,
-0x001e9050,race_leaf_sub_001e9050,,game-module,
-0x001e9070,race_leaf_sub_001e9070,,game-module,
-0x001e9090,race_leaf_sub_001e9090,,game-module,
-0x001e90b0,race_leaf_sub_001e90b0,,game-module,
-0x001e90d0,race_leaf_sub_001e90d0,,game-module,
+0x001e9030,RaceScene_SetFlagB4,,game,
+0x001e9050,RaceScene_IsFlag2,,game,
+0x001e9070,RaceScene_SetFlagB2,,game,
+0x001e9090,RaceScene_IsReplay,,game,
+0x001e90b0,RaceScene_IsFlag8000,,game,
+0x001e90d0,RaceScene_ClearFlag1,,game,
 0x001e90f0,RaceScene_IsRunning,,game,flag 1; 13 callers
 0x001e9110,RaceScene_GetState,,game,
 0x001e9120,RaceScene_SetFlags,,game,10 callers
@@ -3322,14 +3322,14 @@ address,name,signature,source,comment
 0x0020f380,Subtitle_FreeBuffer,,game,
 0x0020f3e0,Subtitle_Free,,game,
 0x0020f480,Subtitle_Alloc,,game,
-0x0020f570,menuscr_draw_sub_0020f570,,game-module,
-0x0020f900,menuscr_leaf_sub_0020f900,,game-module,
-0x0020f950,menuscr_step_sub_0020f950,,game-module,
-0x0020f970,menuscr_step_sub_0020f970,,game-module,
-0x0020fa10,menuscr_exit_sub_0020fa10,,game-module,
-0x0020fa90,menuscr_load_sub_0020fa90,,game-module,
-0x0020fb60,menuscr_exit_sub_0020fb60,,game-module,
-0x0020fba0,menuscr_load_sub_0020fba0,,game-module,
+0x0020f570,MenuMovie_Draw,,game,
+0x0020f900,MenuMovie_SetParams,,game,
+0x0020f950,MenuMovie_Stop,,game,
+0x0020f970,maybe_MenuMovie_BindTexture,,game,
+0x0020fa10,MenuMovie_Reset,,game,
+0x0020fa90,MenuMovie_LoadFile,,game,
+0x0020fb60,MenuMovie_Free,,game,
+0x0020fba0,MenuMovie_Create,,game,
 0x0020fd00,MenuPage43_State8,,game,entry 8 of state table 0x329d70 used by MenuPage43_Update
 0x0020fee0,ScrCareer_Draw_SelectCarColour,,game-module,
 0x00210450,ScrCareer_Draw_SelectCarFor,,game-module,
@@ -3351,7 +3351,7 @@ address,name,signature,source,comment
 0x00214c60,maybe_PageCarPartInfo_Exit,,game,"menu page 2 (table 0x3276e0, dispatched by 0x201380)"
 0x00214c80,maybe_PageCarPartInfo_Update,,game,"menu page 2 (table 0x3276e0, dispatched by 0x201380)"
 0x00214d40,maybe_PageCarPartInfo_Enter,,game,"menu page 2 (table 0x3276e0, dispatched by 0x201380)"
-0x00214d60,scrgarage_step_sub_00214d60,,game-module,
+0x00214d60,maybe_Garage_InstallPartDated,,game,
 0x00214ee0,ScrGarage_Draw_AreYouSure,,game-module,
 0x00215330,ScrGarage_Draw_AreYouSure_5330,,game-module,
 0x00215790,ScrGarage_Draw_SellAll,,game-module,
@@ -3394,7 +3394,7 @@ address,name,signature,source,comment
 0x00222640,MenuPage08_Exit,,game,"menu page 8 (table 0x3276e0, dispatched by 0x201380)"
 0x00222660,MenuPage08_Update,,game,"menu page 8 (table 0x3276e0, dispatched by 0x201380)"
 0x00222740,MenuPage08_Enter,,game,"menu page 8 (table 0x3276e0, dispatched by 0x201380)"
-0x00222b50,menuscr_draw_sub_00222b50,,game-module,
+0x00222b50,maybe_MenuWnd_DrawMailList,,game,
 0x00222cb0,ScrCareer_Draw_Mail,,game-module,
 0x00223730,ScrCareer_Draw_MessageDeleted,,game-module,
 0x00224900,ScrCareer_Draw_DeleteThisMessage,,game-module,
@@ -3427,7 +3427,7 @@ address,name,signature,source,comment
 0x0022d300,MenuPage12_Exit,,game,"menu page 12 (table 0x3276e0, dispatched by 0x201380)"
 0x0022d380,MenuPage12_Update,,game,"menu page 12 (table 0x3276e0, dispatched by 0x201380)"
 0x0022d4a0,MenuPage12_Enter,,game,"menu page 12 (table 0x3276e0, dispatched by 0x201380)"
-0x0022d910,menuscr_step_sub_0022d910,,game-module,
+0x0022d910,maybe_Profile_CountNewItems,,game,
 0x0022d9c0,ScrGarage_Draw_ThereIsNew,,game-module,
 0x0022dcf0,ScrRace_Draw_WelcomeToKaido,,game-module,
 0x0022df80,ScrCareer_Draw_KaidoTheatre,,game-module,
@@ -3446,7 +3446,7 @@ address,name,signature,source,comment
 0x00231190,MenuPage15_Exit,,game,"menu page 15 (table 0x3276e0, dispatched by 0x201380)"
 0x00231210,MenuPage15_Update,,game,"menu page 15 (table 0x3276e0, dispatched by 0x201380)"
 0x002312b0,MenuPage15_Enter,,game,"menu page 15 (table 0x3276e0, dispatched by 0x201380)"
-0x002312c0,menuscr_anim_sub_002312c0,,game-module,
+0x002312c0,MenuNum_CountUp_LoversInfo,,game,
 0x00231610,ScrCareer_Draw_NoData,,game-module,
 0x002317e0,ScrCareer_Draw_NoData_17e0,,game-module,
 0x00231ba0,ScrCareer_Draw_LoversInformation,,game-module,
@@ -3456,7 +3456,7 @@ address,name,signature,source,comment
 0x00233b30,MenuPage16_Exit,,game,"menu page 16 (table 0x3276e0, dispatched by 0x201380)"
 0x00233b90,MenuPage16_Update,,game,"menu page 16 (table 0x3276e0, dispatched by 0x201380)"
 0x00233ca0,MenuPage16_Enter,,game,"menu page 16 (table 0x3276e0, dispatched by 0x201380)"
-0x00233d40,menuscr_anim_sub_00233d40,,game-module,
+0x00233d40,MenuNum_CountUp_PlayerStatus,,game,
 0x00234060,MenuScr_Draw_Prizes,,game-module,
 0x002340b0,MenuScr_Draw_People,,game-module,
 0x00234100,MenuScr_Draw_People_4100,,game-module,
@@ -3478,7 +3478,7 @@ address,name,signature,source,comment
 0x00234da0,ScrScrRaceSelectPlayerStatus_Exit,,game-screen,screen record 0x3277ac
 0x00234dc0,ScrScrRaceSelectPlayerStatus_Update,,game-screen,screen record 0x3277ac
 0x00234fc0,ScrScrRaceSelectPlayerStatus_Enter,,game-screen,screen record 0x3277ac
-0x00235150,menuscr_anim_sub_00235150,,game-module,
+0x00235150,MenuNum_CountUp_PrizeInfo,,game,
 0x002354a0,ScrRace_Draw_YouHaveNot,,game-module,
 0x00235940,ScrRace_Draw_PrizeInformation,,game-module,
 0x00235c80,ScrRace_Draw_PrizeInformation_5c80,,game-module,
@@ -3499,7 +3499,7 @@ address,name,signature,source,comment
 0x0023a310,ScrRivalInfo_Exit,,game-screen,screen record 0x3277c4
 0x0023a370,ScrRace_Draw_RivalInfo,,game-module,
 0x0023a570,ScrRivalInfo_Enter,,game-screen,screen record 0x3277c4
-0x0023a610,menuscr_anim_sub_0023a610,,game-module,
+0x0023a610,MenuNum_CountUp_NoCar,,game,
 0x0023a930,ScrGarage_Draw_NoCarIs,,game-module,
 0x0023aaa0,ScrGarage_Draw_Sponsors,,game-module,
 0x0023ae00,ScrContractMoney_Exit,,game-screen,screen record 0x32b71c
@@ -3543,16 +3543,16 @@ address,name,signature,source,comment
 0x002418e0,MenuPage26_Exit,,game,"menu page 26 (table 0x3276e0, dispatched by 0x201380)"
 0x00241900,MenuPage26_Update,,game,"menu page 26 (table 0x3276e0, dispatched by 0x201380)"
 0x00241a00,MenuPage26_Enter,,game,"menu page 26 (table 0x3276e0, dispatched by 0x201380)"
-0x00241ab0,menuscr_draw_sub_00241ab0,,game-module,
-0x00241e20,menuscr_anim_sub_00241e20,,game-module,
-0x00242290,menuscr_anim_sub_00242290,,game-module,
-0x002425a0,menuscr_leaf_sub_002425a0,,game-module,
-0x002425c0,menuscr_anim_sub_002425c0,,game-module,
-0x00242800,menuscr_anim_sub_00242800,,game-module,
-0x00242960,menuscr_anim_sub_00242960,,game-module,
-0x00242a90,menuscr_anim_sub_00242a90,,game-module,
-0x00242b40,menuscr_anim_sub_00242b40,,game-module,
-0x00242ce0,menuscr_leaf_sub_00242ce0,,game-module,
+0x00241ab0,maybe_ButtonConfig_DrawList,,game,
+0x00241e20,maybe_ButtonConfig_AnimateCursor,,game,
+0x00242290,maybe_MenuOpt_SetItemActive,,game,
+0x002425a0,MenuOpt_InitItem,,game,
+0x002425c0,maybe_MenuOpt_SetSelected,,game,
+0x00242800,maybe_MenuOpt_Init,,game,
+0x00242960,maybe_MenuOpt_SetSelectedB,,game,
+0x00242a90,maybe_MenuOpt_InitB,,game,
+0x00242b40,maybe_MenuOpt_SetValue,,game,
+0x00242ce0,MenuOpt_InitIndex,,game,
 0x00242cf0,MenuScr_Draw_YouDonHave,,game-module,
 0x00242ee0,MenuScr_Draw_YouDonHave_2ee0,,game-module,
 0x002430d0,MenuScr_Draw_ContractMoney,,game-module,
@@ -3600,8 +3600,8 @@ address,name,signature,source,comment
 0x0024f270,ScrRace_Draw_StartPractice,,game-module,
 0x0024f720,ScrRace_Draw_SelectStartingPoint,,game-module,
 0x0024fdd0,ScrCareer_Draw_Trickster,,game-module,
-0x002535c0,menuscr_leaf_sub_002535c0,,game-module,
-0x002535f0,menuscr_leaf_sub_002535f0,,game-module,
+0x002535c0,maybe_Trickster_ResetSlot,,game,
+0x002535f0,maybe_Trickster_ClearSlot,,game,
 0x00253630,ScrCareer_Draw_ChangeTyres,,game-module,
 0x00253c40,ScrRace_Draw_TaAttack,,game-module,
 0x00254100,ScrCareer_Draw_SelectSectionTo,,game-module,
@@ -3612,15 +3612,15 @@ address,name,signature,source,comment
 0x00255c30,ScrSell_Exit,,game-screen,screen record 0x327830
 0x00255c50,ScrRace_Draw_Sell,,game-module,
 0x00255e70,ScrSell_Enter,,game-screen,screen record 0x327830
-0x00256210,scrcareer_step_sub_00256210,,game-module,
+0x00256210,maybe_CarSlot_IsSpecial,,game,
 0x002562c0,ScrGarage_Draw_MetalColour,,game-module,
 0x002568c0,MenuScr_Draw_MazioraColour,,game-module,
 0x00256e70,ScrGarage_Draw_DealerColour,,game-module,
-0x002574b0,scrgarage_draw_sub_002574b0,,game-module,
+0x002574b0,maybe_PartShop_DrawDetails,,game,
 0x00258370,ScrGarage_Draw_NoOwned,,game-module,
 0x00258ea0,ScrGarage_Draw_NoOwned_8ea0,,game-module,
 0x00259960,ScrGarage_Draw_FullAero,,game-module,
-0x0025a760,scrgarage_draw_sub_0025a760,,game-module,
+0x0025a760,maybe_PartShop_Draw,,game,
 0x0025a940,ScrCareer_Draw_Power,,game-module,
 0x0025abc0,ScrCanEquipThis_Exit,,game-screen,screen record 0x32cd5c
 0x0025ac90,ScrRace_Draw_ThisCarPart,,game-module,
@@ -3678,8 +3678,8 @@ address,name,signature,source,comment
 0x00266600,MenuPage32_Exit,,game,"menu page 32 (table 0x3276e0, dispatched by 0x201380)"
 0x00266640,MenuPage32_Update,,game,"menu page 32 (table 0x3276e0, dispatched by 0x201380)"
 0x002666e0,MenuPage32_Enter,,game,"menu page 32 (table 0x3276e0, dispatched by 0x201380)"
-0x002668e0,menuscr_draw_sub_002668e0,,game-module,
-0x00266a40,menuscr_anim_sub_00266a40,,game-module,
+0x002668e0,maybe_MenuWnd_DrawRivalLabels,,game,
+0x00266a40,maybe_GhostData_AnimateLayout,,game,
 0x00266ce0,ScrGarage_Draw_NoData,,game-module,
 0x002670c0,ScrRecord_Draw_NoData,,game-module,
 0x002674e0,ScrCareer_Draw_YourGarageHas,,game-module,
@@ -3703,9 +3703,9 @@ address,name,signature,source,comment
 0x00269a50,ScrShortcutMenu_Exit,,game-screen,screen record 0x327890
 0x00269b10,ScrRace_Draw_ShortcutMenu,,game-module,
 0x00269e40,ScrShortcutMenu_Enter,,game-screen,screen record 0x327890
-0x0026a2e0,menuscr_leaf_sub_0026a2e0,,game-module,
-0x0026a4e0,menuscr_anim_sub_0026a4e0,,game-module,
-0x0026a630,menuscr_anim_sub_0026a630,,game-module,
+0x0026a2e0,maybe_Tune_GetPartGroup,,game,
+0x0026a4e0,maybe_CarStatus_ResetBars,,game,
+0x0026a630,MenuNum_CountUp_Tune,,game,
 0x0026a980,ScrGarage_Draw_FullAero_a980,,game-module,
 0x0026ad80,ScrGarage_Draw_BodyTune,,game-module,
 0x0026b1f0,ScrGarage_Draw_PowerTune,,game-module,
@@ -3744,15 +3744,15 @@ address,name,signature,source,comment
 0x002740f0,ScrScrCareerDrawTuneUp_Exit,,game-screen,screen record 0x3278c0
 0x00274120,ScrScrCareerDrawTuneUp_Update,,game-screen,screen record 0x3278c0
 0x00274240,ScrScrCareerDrawTuneUp_Enter,,game-screen,screen record 0x3278c0
-0x00274470,scrcareer_draw_sub_00274470,,game-module,
-0x00274610,menuscr_leaf_sub_00274610,,game-module,
-0x00274810,menuscr_leaf_sub_00274810,,game-module,
-0x002748d0,menuscr_leaf_sub_002748d0,,game-module,
+0x00274470,maybe_TakeOffCar_DrawPartStatus,,game,
+0x00274610,maybe_Tune_GetPartGroupB,,game,
+0x00274810,maybe_Rival_HasCarClass,,game,
+0x002748d0,maybe_PartSlot_IsAvailable,,game,
 0x00274990,ScrGarage_Draw_Sponsors_4990,,game-module,
 0x00274b50,ScrGarage_Draw_Front_4b50,,game-module,
-0x00274d20,scrgarage_draw_sub_00274d20,,game-module,
-0x002750b0,scrgarage_draw_sub_002750b0,,game-module,
-0x002754a0,scrgarage_draw_sub_002754a0,,game-module,
+0x00274d20,maybe_Wheel_DrawList,,game,
+0x002750b0,maybe_Wheel_DrawDetails,,game,
+0x002754a0,maybe_Wheel_DrawCarInfo,,game,
 0x00275890,ScrGarage_Draw_AreCurrentlyEquipped,,game-module,
 0x00275a50,ScrTakeOffCar_Exit,,game-screen,screen record 0x32dbbc
 0x002762b0,ScrGarage_Draw_TakeOffCar,,game-module,
@@ -3779,11 +3779,11 @@ address,name,signature,source,comment
 0x0027d4d0,MenuPage41_Exit,,game,"menu page 41 (table 0x3276e0, dispatched by 0x201380)"
 0x0027d4f0,MenuPage41_Update,,game,"menu page 41 (table 0x3276e0, dispatched by 0x201380)"
 0x0027d620,MenuPage41_Enter,,game,"menu page 41 (table 0x3276e0, dispatched by 0x201380)"
-0x0027d7c0,menuscr_anim_sub_0027d7c0,,game-module,
+0x0027d7c0,maybe_Setting_AnimateGauge,,game,
 0x0027dbc0,ScrGarage_Draw_InitialTorque,,game-module,
 0x0027e190,MenuScr_Draw_SpringRate,,game-module,
-0x0027e4b0,menuscr_draw_sub_0027e4b0,,game-module,
-0x0027e5f0,scrgarage_draw_sub_0027e5f0,,game-module,
+0x0027e4b0,maybe_Setting_DrawValueLabel,,game,
+0x0027e5f0,maybe_PartInfo_Draw,,game,
 0x0027e970,MenuScr_Draw_Cancel,,game-module,
 0x0027ef40,MenuScr_Draw_TractionControl,,game-module,
 0x0027f440,ScrGarage_Draw_SaveChangesAnd,,game-module,
@@ -3799,8 +3799,8 @@ address,name,signature,source,comment
 0x00284400,ScrShop_Exit,,game-screen,screen record 0x3276ec
 0x00284420,ScrCareer_Draw_Shop_4420,,game-module,
 0x00284740,ScrShop_Enter,,game-screen,screen record 0x3276ec
-0x00284c60,scrgarage_step_sub_00284c60,,game-module,
-0x00284fa0,menuscr_step_sub_00284fa0,,game-module,
+0x00284c60,maybe_ScrCareerRaceSetup_HandleInput,,game,
+0x00284fa0,maybe_Garage_StepSubtitle,,game,
 0x002851d0,maybe_ScrCareerRaceSetup_State8,,game,entry 8 of state table 0x32e690 used by maybe_ScrCareerRaceSetup_Update
 0x00285310,maybe_ScrCareerRaceSetup_State7,,game,entry 7 of state table 0x32e690 used by maybe_ScrCareerRaceSetup_Update
 0x002853c0,maybe_ScrCareerRaceSetup_State6,,game,entry 6 of state table 0x32e690 used by maybe_ScrCareerRaceSetup_Update
@@ -3812,7 +3812,7 @@ address,name,signature,source,comment
 0x00285de0,maybe_ScrCareerRaceSetup_Update,,game,menu screen 43 (table 0x3274b0)
 0x00285e40,maybe_ScrCareerRaceSetup_Exit,,game,menu screen 43 (table 0x3274b0)
 0x00285eb0,maybe_ScrCareerRaceSetup_Enter,,game,menu screen 43 (table 0x3274b0)
-0x002860d0,scrrace_step_sub_002860d0,,game-module,
+0x002860d0,maybe_ScrCarPassword_HandleInput,,game,
 0x002862a0,ScrGarageIsSlotUsed_Update,,game-screen,screen record 0x32e6e8
 0x00286390,ScrGarageIsSlotUsed_Enter,,game-screen,screen record 0x32e6e8
 0x002863a0,ScrGarageFindCar_Update863a0,,game-screen,screen record 0x32e6dc
@@ -3823,8 +3823,8 @@ address,name,signature,source,comment
 0x00286af0,maybe_ScrCarPassword_Exit,,game,menu screen 2 (table 0x3274b0)
 0x00286b00,maybe_ScrCarPassword_Update,,game,menu screen 2 (table 0x3274b0)
 0x00286b60,maybe_ScrCarPassword_Enter,,game,menu screen 2 (table 0x3274b0)
-0x00286bb0,menuscr_step_sub_00286bb0,,game-module,
-0x00286d10,menuscr_step_sub_00286d10,,game-module,
+0x00286bb0,maybe_ScrGarageBuyCar_HandleInput,,game,
+0x00286d10,maybe_ScrGarageBuyCar_OnResult,,game,
 0x00286df0,ScrGarageBuyCar_State11,,game,entry 11 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00286e70,ScrGarageBuyCar_State10,,game,entry 10 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00286ef0,ScrGarageFindCar_Exit86ef0,,game-screen,screen record 0x32e70c
@@ -3840,9 +3840,9 @@ address,name,signature,source,comment
 0x00287850,ScrGarageBuyCar_Exit,,game,menu screen 3 (table 0x3274b0)
 0x00287880,ScrGarageBuyCar_Update,,game,menu screen 3 (table 0x3274b0)
 0x00287a60,ScrGarageBuyCar_Enter,,game,menu screen 3 (table 0x3274b0)
-0x00287c70,scrgarage_step_sub_00287c70,,game-module,
-0x00287da0,scrrace_step_sub_00287da0,,game-module,
-0x00287ec0,scrrace_step_sub_00287ec0,,game-module,
+0x00287c70,maybe_Password_GetCurrentCarInfo,,game,
+0x00287da0,maybe_ScrRecordPassword_HandleInput,,game,
+0x00287ec0,maybe_ScrRecordPassword_OnResult,,game,
 0x00288270,maybe_ScrCarPassword_State27,,game,entry 27 of state table 0x32e6d0 used by maybe_ScrCarPassword_Update
 0x002882a0,ScrGarageBuyCar_State17,,game,entry 17 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00288370,ScrGarageBuyCar_State16,,game,entry 16 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
@@ -3853,10 +3853,10 @@ address,name,signature,source,comment
 0x00288b90,maybe_ScrRecordPassword_Exit,,game,menu screen 4 (table 0x3274b0)
 0x00288bc0,maybe_ScrRecordPassword_Update,,game,menu screen 4 (table 0x3274b0)
 0x00288c20,maybe_ScrRecordPassword_Enter,,game,menu screen 4 (table 0x3274b0)
-0x00288ff0,scrcareer_step_sub_00288ff0,,game-module,
-0x002891d0,scrcareer_step_sub_002891d0,,game-module,
-0x00289660,scrcareer_step_sub_00289660,,game-module,
-0x002896f0,scrcareer_anim_sub_002896f0,,game-module,
+0x00288ff0,maybe_TeamList_FillPage,,game,
+0x002891d0,maybe_TeamList_Build,,game,
+0x00289660,maybe_TeamList_CompareRivals,,game,
+0x002896f0,maybe_ScrTeamList_HandleInput,,game,
 0x0028a8c0,ScrGarageBuyCar_State24,,game,entry 24 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x0028a8e0,ScrGarageBuyCar_State23,,game,entry 23 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x0028a900,ScrGarageBuyCar_State22,,game,entry 22 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
@@ -3866,19 +3866,19 @@ address,name,signature,source,comment
 0x0028ac60,maybe_ScrTeamList_Update,,game,menu screen 5 (table 0x3274b0)
 0x0028acc0,maybe_ScrTeamList_Enter,,game,menu screen 5 (table 0x3274b0)
 0x0028adc0,Profile_Get_Wrap,,game-module,
-0x0028ae40,menuscr_anim_sub_0028ae40,,game-module,
-0x0028b120,menuscr_leaf_sub_0028b120,,game-module,
+0x0028ae40,maybe_ScrEventList_HandleInput,,game,
+0x0028b120,maybe_MenuMgr_SetLeaveFlagsA,,game,
 0x0028b140,maybe_ScrEventList_Exit,,game,menu screen 6 (table 0x3274b0)
 0x0028b150,maybe_ScrEventList_Update,,game,menu screen 6 (table 0x3274b0)
 0x0028b1b0,maybe_ScrEventList_Enter,,game,menu screen 6 (table 0x3274b0)
-0x0028b2c0,menuscr_step_sub_0028b2c0,,game-module,
-0x0028b460,menuscr_leaf_sub_0028b460,,game-module,
+0x0028b2c0,maybe_ScrBlank08_HandleInput,,game,
+0x0028b460,maybe_MenuMgr_SetLeaveFlagsB,,game,
 0x0028b480,maybe_ScrBlank08_Exit,,game,menu screen 8 (table 0x3274b0)
 0x0028b490,maybe_ScrBlank08_Update,,game,menu screen 8 (table 0x3274b0)
 0x0028b4f0,maybe_ScrBlank08_Enter,,game,menu screen 8 (table 0x3274b0)
-0x0028b580,menuscr_step_sub_0028b580,,game-module,
-0x0028b6b0,menuscr_leaf_sub_0028b6b0,,game-module,
-0x0028b7e0,scrcareer_anim_sub_0028b7e0,,game-module,
+0x0028b580,maybe_Mail_CountMessages,,game,
+0x0028b6b0,maybe_ScrRivalList_ClearSlots,,game,
+0x0028b7e0,maybe_ScrRivalList_HandleInput,,game,
 0x0028c480,maybe_ScrRivalList_State11,,game,entry 11 of state table 0x32e780 used by maybe_ScrRivalList_Update
 0x0028c4a0,maybe_ScrRivalList_State10,,game,entry 10 of state table 0x32e780 used by maybe_ScrRivalList_Update
 0x0028c4b0,maybe_ScrRivalList_State9,,game,entry 9 of state table 0x32e780 used by maybe_ScrRivalList_Update
@@ -3894,8 +3894,8 @@ address,name,signature,source,comment
 0x0028c7c0,maybe_ScrRivalList_Exit,,game,menu screen 7 (table 0x3274b0)
 0x0028c7d0,maybe_ScrRivalList_Update,,game,menu screen 7 (table 0x3274b0)
 0x0028c830,maybe_ScrRivalList_Enter,,game,menu screen 7 (table 0x3274b0)
-0x0028c8b0,menuscr_step_sub_0028c8b0,,game-module,
-0x0028c960,scrcareer_step_sub_0028c960,,game-module,
+0x0028c8b0,maybe_ScrNewProfile_CheckName,,game,
+0x0028c960,maybe_ScrNewProfile_OnResult,,game,
 0x0028cac0,maybe_ScrNewProfile_State2,,game,entry 2 of state table 0x32e800 used by maybe_ScrNewProfile_Update
 0x0028cb20,maybe_ScrNewProfile_State1,,game,entry 1 of state table 0x32e800 used by maybe_ScrNewProfile_Update
 0x0028ceb0,maybe_ScrNewProfile_State0,,game,entry 0 of state table 0x32e800 used by maybe_ScrNewProfile_Update
@@ -3908,25 +3908,25 @@ address,name,signature,source,comment
 0x0028d370,maybe_ScrCarListSorted_Exit,,game,menu screen 11 (table 0x3274b0)
 0x0028d3f0,maybe_ScrCarListSorted_Update,,game,menu screen 11 (table 0x3274b0)
 0x0028d510,maybe_ScrCarListSorted_Enter,,game,menu screen 11 (table 0x3274b0)
-0x0028d6f0,scrrace_step_sub_0028d6f0,,game-module,
+0x0028d6f0,maybe_ScrProfileSetSelection_Apply,,game,
 0x0028d950,ScrProfileSetSelection2733_Exit,,game,menu screen 12 (table 0x3274b0)
 0x0028d960,ScrProfileSetSelection2733_Update,,game,menu screen 12 (table 0x3274b0)
 0x0028dc60,ScrProfileSetSelection2733_Enter,,game,menu screen 12 (table 0x3274b0)
-0x0028dde0,menuscr_leaf_sub_0028dde0,,game-module,
-0x0028de70,menuscr_step_sub_0028de70,,game-module,
+0x0028dde0,maybe_ScrDay_PickMode,,game,
+0x0028de70,maybe_ScrDayResult_HandleInput,,game,
 0x0028e0c0,maybe_ScrDayResult_State2,,game,entry 2 of state table 0x32e850 used by maybe_ScrDayResult_Update
 0x0028e560,maybe_ScrDayResult_State0,,game,entry 0 of state table 0x32e850 used by maybe_ScrDayResult_Update
 0x0028e5e0,maybe_ScrDayResult_Exit,,game,menu screen 13 (table 0x3274b0)
 0x0028e630,maybe_ScrDayResult_Update,,game,menu screen 13 (table 0x3274b0)
 0x0028e690,maybe_ScrDayResult_Enter,,game,menu screen 13 (table 0x3274b0)
-0x0028ea70,menuscr_step_sub_0028ea70,,game-module,
+0x0028ea70,maybe_ScrNightBegin_HandleInput,,game,
 0x0028ec90,maybe_ScrNightBegin_State2,,game,entry 2 of state table 0x32e8b0 used by maybe_ScrNightBegin_Update
 0x0028ee00,maybe_ScrNightBegin_State1,,game,entry 1 of state table 0x32e8b0 used by maybe_ScrNightBegin_Update
 0x0028ef30,maybe_ScrNightBegin_State0,,game,entry 0 of state table 0x32e8b0 used by maybe_ScrNightBegin_Update
 0x0028ef90,maybe_ScrNightBegin_Exit,,game,menu screen 14 (table 0x3274b0)
 0x0028efe0,maybe_ScrNightBegin_Update,,game,menu screen 14 (table 0x3274b0)
 0x0028f040,maybe_ScrNightBegin_Enter,,game,menu screen 14 (table 0x3274b0)
-0x0028f160,menuscr_step_sub_0028f160,,game-module,
+0x0028f160,maybe_ScrRaceInfo_HandleInput,,game,
 0x0028f320,maybe_ScrRaceInfo_State2,,game,entry 2 of state table 0x32e8c0 used by maybe_ScrRaceInfo_Update
 0x0028f710,maybe_ScrRaceInfo_State1,,game,entry 1 of state table 0x32e8c0 used by maybe_ScrRaceInfo_Update
 0x0028f790,maybe_ScrRaceInfo_State0,,game,entry 0 of state table 0x32e8c0 used by maybe_ScrRaceInfo_Update
@@ -3943,8 +3943,8 @@ address,name,signature,source,comment
 0x002904d0,maybe_ScrBlank17_Exit,,game,menu screen 17 (table 0x3274b0)
 0x002904e0,maybe_ScrBlank17_Update,,game,menu screen 17 (table 0x3274b0)
 0x00290660,maybe_ScrBlank17_Enter,,game,menu screen 17 (table 0x3274b0)
-0x002906a0,menuscr_step_sub_002906a0,,game-module,
-0x002907f0,menuscr_leaf_sub_002907f0,,game-module,
+0x002906a0,maybe_ScrRivalSelect_HandleInput,,game,
+0x002907f0,maybe_ScrRivalProfile_GetSlotState,,game,
 0x00290870,maybe_ScrRivalProfile_State10,,game,entry 10 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update
 0x00290a10,maybe_ScrRivalProfile_State8,,game,entry 8 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update
 0x00290be0,maybe_ScrRivalProfile_State6,,game,entry 6 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update
@@ -3952,10 +3952,10 @@ address,name,signature,source,comment
 0x00290f90,maybe_ScrRivalSelect_Exit,,game,menu screen 18 (table 0x3274b0)
 0x00290fa0,maybe_ScrRivalSelect_Update,,game,menu screen 18 (table 0x3274b0)
 0x00291000,maybe_ScrRivalSelect_Enter,,game,menu screen 18 (table 0x3274b0)
-0x002910e0,scrrace_step_sub_002910e0,,game-module,
-0x00291280,scrrace_step_sub_00291280,,game-module,
-0x002913e0,scrcareer_step_sub_002913e0,,game-module,
-0x00291480,scrcareer_step_sub_00291480,,game-module,
+0x002910e0,maybe_ScrRivalRaceSetup_HandleInput,,game,
+0x00291280,maybe_ScrRivalRaceSetup_OnResult,,game,
+0x002913e0,maybe_RivalSel_CompareByCar,,game,
+0x00291480,maybe_ScrRivalRaceSetup_BuildList,,game,
 0x00291830,maybe_ScrOptions_StepCursor,,game,
 0x00291920,maybe_ScrRivalRaceSetup_State5,,game,entry 5 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update
 0x00291a10,maybe_ScrRivalRaceSetup_State4,,game,entry 4 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update
@@ -3966,10 +3966,10 @@ address,name,signature,source,comment
 0x00292250,maybe_ScrRivalRaceSetup_Exit,,game,menu screen 19 (table 0x3274b0)
 0x00292260,maybe_ScrRivalRaceSetup_Update,,game,menu screen 19 (table 0x3274b0)
 0x002922c0,maybe_ScrRivalRaceSetup_Enter,,game,menu screen 19 (table 0x3274b0)
-0x00292570,scrgarage_step_sub_00292570,,game-module,
-0x00292690,scrcareer_step_sub_00292690,,game-module,
-0x00292700,menuscr_leaf_sub_00292700,,game-module,
-0x00292730,scrgarage_step_sub_00292730,,game-module,
+0x00292570,maybe_ScrPartApply_BuildList,,game,
+0x00292690,maybe_Sponsor_IsUnlocked,,game,
+0x00292700,maybe_Sponsor_GetCycledEntry,,game,
+0x00292730,maybe_ScrPartApply_HandleInput,,game,
 0x00292930,maybe_ScrPartApply_State5,,game,entry 5 of state table 0x32e920 used by maybe_ScrPartApply_Update
 0x00292960,maybe_ScrPartApply_State4,,game,entry 4 of state table 0x32e920 used by maybe_ScrPartApply_Update
 0x00292990,maybe_ScrPartApply_State3,,game,entry 3 of state table 0x32e920 used by maybe_ScrPartApply_Update
@@ -3980,7 +3980,7 @@ address,name,signature,source,comment
 0x00292de0,maybe_ScrPartApply_Update,,game,menu screen 20 (table 0x3274b0)
 0x00292e40,maybe_ScrPartApply_Enter,,game,menu screen 20 (table 0x3274b0)
 0x00292fb0,maybe_ScrOptions_StepVoice,,game,
-0x00293170,scrrace_step_sub_00293170,,game-module,
+0x00293170,maybe_ScrModeVoice_OnResult,,game,
 0x00293250,maybe_ScrModeVoice_State3,,game,entry 3 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update
 0x002933b0,maybe_ScrModeVoice_State2,,game,entry 2 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update
 0x002934e0,maybe_ScrModeVoice_State1,,game,entry 1 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update
@@ -3998,7 +3998,7 @@ address,name,signature,source,comment
 0x00294130,ScrLoad_Exit,,game,menu screen 25 (table 0x3274b0)
 0x00294140,ScrLoad_Enter,,game,
 0x002941d0,ScrOptions_ResetDefaults,,game,
-0x00294270,menuscr_input_sub_00294270,,game-module,
+0x00294270,maybe_ScrOptions_HandleInputA,,game,
 0x00294360,Menuscr_Nop_7,,game-module,
 0x00294370,Menuscr_Nop_8,,game-module,
 0x00294380,ScrmaybeOptionsGetLanguage_Exit94380,,game-screen,screen record 0x32eae8
@@ -4010,63 +4010,63 @@ address,name,signature,source,comment
 0x00295060,ScrmaybeOptionsGetLanguage_Exit,,game-screen,screen record 0x32ead0
 0x00295320,ScrmaybeOptionsGetLanguage_Update,,game-screen,screen record 0x32ead0
 0x00295670,ScrmaybeOptionsGetLanguage_Enter,,game-screen,screen record 0x32ead0
-0x00295750,menuscr_step_sub_00295750,,game-module,
-0x002958e0,menuscr_step_sub_002958e0,,game-module,
+0x00295750,maybe_ScrOptionsLanguage_HandleInput,,game,
+0x002958e0,maybe_ScrOptionsLanguage_OnResult,,game,
 0x002959b0,maybe_ScrOptionsLanguage_Exit,,game,menu screen 26 (table 0x3274b0)
 0x00295a00,maybe_ScrOptionsLanguage_Update,,game,menu screen 26 (table 0x3274b0)
 0x00295a60,maybe_ScrOptionsLanguage_Enter,,game,menu screen 26 (table 0x3274b0)
 0x00295db0,ScrOptions_InputSound,,game,
 0x00296030,ScrOptions_InputDisplay,,game,
-0x002963b0,menuscr_leaf_sub_002963b0,,game-module,
-0x002964c0,menuscr_leaf_sub_002964c0,,game-module,
-0x00296600,scrrace_step_sub_00296600,,game-module,
-0x00296840,menuscr_step_sub_00296840,,game-module,
-0x00296930,menuscr_select_sub_00296930,,game-module,
-0x00296a90,scrcareer_select_sub_00296a90,,game-module,
-0x00296e10,scrcareer_select_sub_00296e10,,game-module,
-0x00296fe0,menuscr_step_sub_00296fe0,,game-module,
+0x002963b0,maybe_ScrOptionsLanguage_InitItemsA,,game,
+0x002964c0,maybe_ScrOptionsLanguage_InitItemsB,,game,
+0x00296600,maybe_Career_ApplyChapterFlags,,game,
+0x00296840,maybe_ScrCareerStart_InputA,,game,
+0x00296930,maybe_ScrCareerStart_SelectA,,game,
+0x00296a90,maybe_ScrCareerStart_SelectOpponent,,game,
+0x00296e10,maybe_ScrCareerStart_SelectRival,,game,
+0x00296fe0,maybe_ScrCareerStart_InputB,,game,
 0x00297120,maybe_ScrRecord_StepRival,,game,
-0x00297450,menuscr_step_sub_00297450,,game-module,
-0x002975e0,menuscr_step_sub_002975e0,,game-module,
-0x002977b0,menuscr_step_sub_002977b0,,game-module,
-0x00297890,menuscr_step_sub_00297890,,game-module,
-0x00297b20,menuscr_leaf_sub_00297b20,,game-module,
-0x00297ba0,menuscr_select_sub_00297ba0,,game-module,
-0x00297d00,scrcareer_step_sub_00297d00,,game-module,
-0x00297e10,scrcareer_step_sub_00297e10,,game-module,
-0x00297fa0,scrgarage_step_sub_00297fa0,,game-module,
+0x00297450,maybe_ScrCareerStart_InputCursor,,game,
+0x002975e0,maybe_ScrCareerStart_InputC,,game,
+0x002977b0,maybe_ScrCareerStart_ClearRaceSlots,,game,
+0x00297890,maybe_ScrCareerStart_InputD,,game,
+0x00297b20,maybe_ScrCareerStart_ClassifyChoice,,game,
+0x00297ba0,maybe_ScrCareerStart_SelectB,,game,
+0x00297d00,maybe_ScrCareerStart_SetupTeamRace,,game,
+0x00297e10,maybe_ScrCareerStart_InputTeam,,game,
+0x00297fa0,maybe_ScrCareerStart_BuildCarInfo,,game,
 0x00298640,maybe_ScrRecord_StepSubtitle,,game,
-0x002987f0,scrrace_select_sub_002987f0,,game-module,
-0x00298a20,scrgarage_step_sub_00298a20,,game-module,
-0x00298df0,scrgarage_step_sub_00298df0,,game-module,
-0x00299060,scrcareer_step_sub_00299060,,game-module,
-0x00299c10,menuscr_leaf_sub_00299c10,,game-module,
-0x00299d00,menuscr_step_sub_00299d00,,game-module,
-0x0029a0b0,menuscr_select_sub_0029a0b0,,game-module,
-0x0029a1f0,scrgarage_step_sub_0029a1f0,,game-module,
-0x0029ab70,scrgarage_anim_sub_0029ab70,,game-module,
-0x0029afd0,scrcareer_step_sub_0029afd0,,game-module,
-0x0029b5c0,scrcareer_select_sub_0029b5c0,,game-module,
-0x0029b6b0,menuscr_step_sub_0029b6b0,,game-module,
-0x0029b9b0,scrgarage_step_sub_0029b9b0,,game-module,
-0x0029bbe0,menuscr_step_sub_0029bbe0,,game-module,
-0x0029bd40,scrcareer_step_sub_0029bd40,,game-module,
-0x0029bf00,scrcareer_step_sub_0029bf00,,game-module,
-0x0029c040,menuscr_step_sub_0029c040,,game-module,
-0x0029c270,scrrace_step_sub_0029c270,,game-module,
-0x0029c370,scrcareer_step_sub_0029c370,,game-module,
-0x0029ca00,menuscr_step_sub_0029ca00,,game-module,
+0x002987f0,maybe_ScrCareerStart_SelectCourse,,game,
+0x00298a20,maybe_ScrCareerStart_InputEquip,,game,
+0x00298df0,maybe_ScrCareerStart_BuildPartList,,game,
+0x00299060,maybe_ScrCareerStart_InputRivalCourse,,game,
+0x00299c10,maybe_ScrCareerStart_IsChoiceLocked,,game,
+0x00299d00,maybe_ScrCareerStart_InputSubtitle,,game,
+0x0029a0b0,maybe_ScrCareerStart_SelectSubtitle,,game,
+0x0029a1f0,maybe_Career_CommitRaceResult,,game,
+0x0029ab70,maybe_ScrCareerStart_InputResult,,game,
+0x0029afd0,maybe_ScrCareerStart_AdvanceSchedule,,game,
+0x0029b5c0,maybe_ScrCareerStart_SelectResult,,game,
+0x0029b6b0,maybe_ScrCareerStart_InputE,,game,
+0x0029b9b0,maybe_ScrCareerStart_BuildStockList,,game,
+0x0029bbe0,maybe_ScrCareerStart_InputF,,game,
+0x0029bd40,maybe_ScrCareerStart_InputSchedule,,game,
+0x0029bf00,maybe_ScrCareerStart_BuildBattleList,,game,
+0x0029c040,maybe_ScrCareerStart_InputChapter,,game,
+0x0029c270,maybe_ScrCareerStart_CheckChapter,,game,
+0x0029c370,Career_StartNewGame,,game,
+0x0029ca00,ScrCareerStart_Reset,,game,
 0x0029cb60,maybe_ScrCareerStart_Exit,,game,menu screen 27 (table 0x3274b0)
 0x0029cb70,maybe_ScrCareerStart_Update,,game,menu screen 27 (table 0x3274b0)
 0x0029e2e0,maybe_ScrCareerStart_Enter,,game,menu screen 27 (table 0x3274b0)
 0x0029e7d0,maybe_ScrBlank28_Exit,,game,menu screen 28 (table 0x3274b0)
 0x0029e7e0,maybe_ScrBlank28_Update,,game,menu screen 28 (table 0x3274b0)
 0x0029e8e0,maybe_ScrBlank28_Enter,,game,menu screen 28 (table 0x3274b0)
-0x0029e910,scrcareer_step_sub_0029e910,,game-module,
-0x0029ea20,scrcareer_step_sub_0029ea20,,game-module,
-0x0029eec0,scrgarage_step_sub_0029eec0,,game-module,
-0x0029f130,scrcareer_step_sub_0029f130,,game-module,
-0x0029f470,scrcareer_step_sub_0029f470,,game-module,
+0x0029e910,maybe_ScrBuyCarColour_HandleInput,,game,
+0x0029ea20,maybe_ScrBuyCarColour_OnResult,,game,
+0x0029eec0,maybe_ScrBuyCarColour_Confirm,,game,
+0x0029f130,maybe_MenuText_CurrentCarSpec,,game,
+0x0029f470,maybe_MenuText_CarSpecGrade,,game,
 0x0029f4e0,maybe_ScrBuyCarColour_State17,,game,entry 17 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029f520,maybe_ScrBuyCarColour_State16,,game,entry 16 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029f5f0,maybe_ScrBuyCarColour_State15,,game,entry 15 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
@@ -4085,17 +4085,17 @@ address,name,signature,source,comment
 0x002a11b0,ScrCarRecGetModelId_Exit,,game-screen,screen record 0x32eca0
 0x002a1270,ScrCarRecGetModelId_Update,,game-screen,screen record 0x32eca0
 0x002a1420,ScrCarRecGetModelId_Enter,,game-screen,screen record 0x32eca0
-0x002a14f0,menuscr_leaf_sub_002a14f0,,game-module,
-0x002a1600,scrcareer_step_sub_002a1600,,game-module,
-0x002a1690,menuscr_leaf_sub_002a1690,,game-module,
-0x002a17d0,menuscr_leaf_sub_002a17d0,,game-module,
+0x002a14f0,maybe_CarModel_GetClassA,,game,
+0x002a1600,maybe_CarModel_IsBossCar,,game,
+0x002a1690,maybe_CarModel_GetClassB,,game,
+0x002a17d0,maybe_CarModel_GetClassC,,game,
 0x002a1910,maybe_ScrBuyCarColour_Exit,,game,menu screen 29 (table 0x3274b0)
 0x002a1990,maybe_ScrBuyCarColour_Update,,game,menu screen 29 (table 0x3274b0)
 0x002a19f0,maybe_ScrBuyCarColour_Enter,,game,menu screen 29 (table 0x3274b0)
-0x002a1a70,menuscr_step_sub_002a1a70,,game-module,
-0x002a1be0,scrgarage_step_sub_002a1be0,,game-module,
-0x002a1d40,scrgarage_step_sub_002a1d40,,game-module,
-0x002a1e50,scrcareer_step_sub_002a1e50,,game-module,
+0x002a1a70,maybe_ScrCarValue_HandleInput,,game,
+0x002a1be0,maybe_ScrCarValue_ApplySale,,game,
+0x002a1d40,maybe_ScrCarValue_BuildList,,game,
+0x002a1e50,maybe_CarList_BuildOwned,,game,
 0x002a1fb0,maybe_ScrCarValue_State6,,game,entry 6 of state table 0x32ed10 used by maybe_ScrCarValue_Update
 0x002a2030,maybe_ScrCarValue_State5,,game,entry 5 of state table 0x32ed10 used by maybe_ScrCarValue_Update
 0x002a2360,maybe_ScrCarValue_State4,,game,entry 4 of state table 0x32ed10 used by maybe_ScrCarValue_Update
@@ -4106,7 +4106,7 @@ address,name,signature,source,comment
 0x002a27b0,maybe_ScrCarValue_Exit,,game,menu screen 30 (table 0x3274b0)
 0x002a27c0,maybe_ScrCarValue_Update,,game,menu screen 30 (table 0x3274b0)
 0x002a2820,maybe_ScrCarValue_Enter,,game,menu screen 30 (table 0x3274b0)
-0x002a2850,scrgarage_step_sub_002a2850,,game-module,
+0x002a2850,maybe_ScrReplayList_HandleInput,,game,
 0x002a2a90,maybe_ScrReplayList_State3,,game,entry 3 of state table 0x32ed30 used by maybe_ScrReplayList_Update
 0x002a2ac0,maybe_ScrReplayList_State2,,game,entry 2 of state table 0x32ed30 used by maybe_ScrReplayList_Update
 0x002a2b40,maybe_ScrReplayList_State1,,game,entry 1 of state table 0x32ed30 used by maybe_ScrReplayList_Update
@@ -4114,12 +4114,12 @@ address,name,signature,source,comment
 0x002a2cc0,maybe_ScrReplayList_Exit,,game,menu screen 31 (table 0x3274b0)
 0x002a2cf0,maybe_ScrReplayList_Update,,game,menu screen 31 (table 0x3274b0)
 0x002a2d50,maybe_ScrReplayList_Enter,,game,menu screen 31 (table 0x3274b0)
-0x002a2f80,scrgarage_step_sub_002a2f80,,game-module,
-0x002a30b0,scroptions_input_sub_002a30b0,,game-module,
-0x002a31d0,menuscr_leaf_sub_002a31d0,,game-module,
-0x002a31e0,menuscr_leaf_sub_002a31e0,,game-module,
-0x002a31f0,menuscr_leaf_sub_002a31f0,,game-module,
-0x002a3200,scrgarage_step_sub_002a3200,,game-module,
+0x002a2f80,maybe_ScrQuickRace_UpdateCarNames,,game,
+0x002a30b0,maybe_QuickRace_ReadPad,,game,
+0x002a31d0,maybe_CourseSel_IsUnlocked,,game,
+0x002a31e0,maybe_Record_IsSlotUsed,,game,
+0x002a31f0,Record_GetTableEntry,,game,
+0x002a3200,maybe_ScrQuickRace_StartRace,,game,
 0x002a3660,maybe_ScrQuickRace_State11,,game,entry 11 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
 0x002a3e10,ScrCarDbGetModelEntry_Exit,,game-screen,screen record 0x32ed60
 0x002a3ec0,ScrCarDbGetModelEntry_Update,,game-screen,screen record 0x32ed60
@@ -4135,11 +4135,11 @@ address,name,signature,source,comment
 0x002a4b70,maybe_ScrQuickRace_Exit,,game,menu screen 32 (table 0x3274b0)
 0x002a4b80,maybe_ScrQuickRace_Update,,game,menu screen 32 (table 0x3274b0)
 0x002a4d20,maybe_ScrQuickRace_Enter,,game,menu screen 32 (table 0x3274b0)
-0x002a5080,scrrecord_step_sub_002a5080,,game-module,
-0x002a51b0,menuscr_leaf_sub_002a51b0,,game-module,
-0x002a54a0,menuscr_leaf_sub_002a54a0,,game-module,
-0x002a5790,menuscr_leaf_sub_002a5790,,game-module,
-0x002a57e0,menuscr_leaf_sub_002a57e0,,game-module,
+0x002a5080,maybe_Record_FormatEntry,,game,
+0x002a51b0,maybe_QuickRace_GetOptionValue,,game,
+0x002a54a0,maybe_Record_GetOptionValue,,game,
+0x002a5790,maybe_QuickRace_InitRowsA,,game,
+0x002a57e0,maybe_QuickRace_InitRowsB,,game,
 0x002a5830,maybe_ScrCarShop_State3,,game,entry 3 of state table 0x32edf0 used by maybe_ScrCarShop_Update
 0x002a58b0,maybe_ScrCarShop_State2,,game,entry 2 of state table 0x32edf0 used by maybe_ScrCarShop_Update
 0x002a58e0,maybe_ScrCarShop_State1,,game,entry 1 of state table 0x32edf0 used by maybe_ScrCarShop_Update
@@ -4150,7 +4150,7 @@ address,name,signature,source,comment
 0x002a5ba0,maybe_ScrModeReset_Update,,game,menu screen 33 (table 0x3274b0)
 0x002a5d90,maybe_ScrModeReset_Exit,,game,menu screen 33 (table 0x3274b0)
 0x002a5da0,maybe_ScrModeReset_Enter,,game,menu screen 33 (table 0x3274b0)
-0x002a5de0,scrgarage_step_sub_002a5de0,,game-module,
+0x002a5de0,maybe_ScrGarageList_HandleInput,,game,
 0x002a5fe0,maybe_ScrGarageList_State3,,game,entry 3 of state table 0x32ee10 used by maybe_ScrGarageList_Update
 0x002a6020,maybe_ScrGarageList_State2,,game,entry 2 of state table 0x32ee10 used by maybe_ScrGarageList_Update
 0x002a60a0,maybe_ScrGarageList_State1,,game,entry 1 of state table 0x32ee10 used by maybe_ScrGarageList_Update
@@ -4170,14 +4170,14 @@ address,name,signature,source,comment
 0x002a6c30,maybe_ScrCarSpec_Exit,,game,menu screen 37 (table 0x3274b0)
 0x002a6c40,maybe_ScrCarSpec_Update,,game,menu screen 37 (table 0x3274b0)
 0x002a6d40,maybe_ScrCarSpec_Enter,,game,menu screen 37 (table 0x3274b0)
-0x002a6ff0,scrrecord_step_sub_002a6ff0,,game-module,
+0x002a6ff0,maybe_ScrRaceStart_Build,,game,
 0x002a7170,maybe_ScrCarSpec_State8,,game,entry 8 of state table 0x32ee20 used by maybe_ScrCarSpec_Update
 0x002a7250,ScrSubtitleHide_Exita7250,,game-screen,screen record 0x32ee34
 0x002a7390,ScrSubtitleHide_Updatea7390,,game-screen,screen record 0x32ee34
 0x002a7690,maybe_ScrRaceStart_Exit,,game,menu screen 38 (table 0x3274b0)
 0x002a76a0,maybe_ScrRaceStart_Update,,game,menu screen 38 (table 0x3274b0)
 0x002a7860,maybe_ScrRaceStart_Enter,,game,menu screen 38 (table 0x3274b0)
-0x002a79e0,scrcareer_step_sub_002a79e0,,game-module,
+0x002a79e0,maybe_ScrRivalIntro_OnResult,,game,
 0x002a7d30,maybe_ScrRivalIntro_State10,,game,entry 10 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update
 0x002a7e10,maybe_ScrRivalIntro_State9,,game,entry 9 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update
 0x002a7eb0,maybe_ScrRivalIntro_State8,,game,entry 8 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update
@@ -4195,11 +4195,11 @@ address,name,signature,source,comment
 0x002a8c70,maybe_ScrCarListB_Exit,,game,menu screen 40 (table 0x3274b0)
 0x002a8d40,maybe_ScrCarListB_Update,,game,menu screen 40 (table 0x3274b0)
 0x002a8ea0,maybe_ScrCarListB_Enter,,game,menu screen 40 (table 0x3274b0)
-0x002a8ff0,scrgarage_step_sub_002a8ff0,,game-module,
-0x002a9200,scrgarage_step_sub_002a9200,,game-module,
-0x002a92f0,scrgarage_step_sub_002a92f0,,game-module,
-0x002a9410,menuscr_leaf_sub_002a9410,,game-module,
-0x002a9510,scrgarage_step_sub_002a9510,,game-module,
+0x002a8ff0,maybe_ScrTuneParts_HandleInput,,game,
+0x002a9200,maybe_ScrTuneParts_ResetParts,,game,
+0x002a92f0,maybe_ScrTuneParts_EquipPart,,game,
+0x002a9410,maybe_PartSlot_GetCategory,,game,
+0x002a9510,maybe_ScrTuneParts_BuildRow,,game,
 0x002a9760,maybe_ScrTuneParts_State29,,game,entry 29 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002a97a0,ScrTeamDbCopy_Exit,,game-screen,screen record 0x32eef0
 0x002a97e0,ScrTeamDbCopy_Update,,game-screen,screen record 0x32eef0
@@ -4231,9 +4231,9 @@ address,name,signature,source,comment
 0x002ac610,maybe_ScrTuneParts_Exit,,game,menu screen 41 (table 0x3274b0)
 0x002ac6e0,maybe_ScrTuneParts_Update,,game,menu screen 41 (table 0x3274b0)
 0x002ac8c0,maybe_ScrTuneParts_Enter,,game,menu screen 41 (table 0x3274b0)
-0x002aca40,menuscr_leaf_sub_002aca40,,game-module,
-0x002acaa0,scrgarage_step_sub_002acaa0,,game-module,
-0x002acdc0,scrgarage_input_sub_002acdc0,,game-module,
+0x002aca40,maybe_Setting_IsModified,,game,
+0x002acaa0,maybe_ScrPartInfo_BuildStats,,game,
+0x002acdc0,maybe_ScrPartInfo_HandleInput,,game,
 0x002ad1f0,maybe_ScrPartInfo_State8,,game,entry 8 of state table 0x32ef40 used by maybe_ScrPartInfo_Update
 0x002ad260,maybe_ScrPartInfo_State7,,game,entry 7 of state table 0x32ef40 used by maybe_ScrPartInfo_Update
 0x002ad310,maybe_ScrPartInfo_State6,,game,entry 6 of state table 0x32ef40 used by maybe_ScrPartInfo_Update
@@ -4249,20 +4249,20 @@ address,name,signature,source,comment
 0x002ae2b0,maybe_ScrGarageCheck_Exit,,game,menu screen 1 (table 0x3274b0)
 0x002ae2c0,maybe_ScrGarageCheck_Update,,game,menu screen 1 (table 0x3274b0)
 0x002ae3c0,maybe_ScrGarageCheck_Enter,,game,menu screen 1 (table 0x3274b0)
-0x002ae470,menuscr_step_sub_002ae470,,game-module,
-0x002ae4b0,menuscr_step_sub_002ae4b0,,game-module,
-0x002ae500,menuscr_step_sub_002ae500,,game-module,
-0x002ae580,menuscr_load_sub_002ae580,,game-module,
-0x002ae7a0,menuscr_load_sub_002ae7a0,,game-module,
-0x002aef60,menuscr_load_sub_002aef60,,game-module,
-0x002af210,menuscr_load_sub_002af210,,game-module,
-0x002af8c0,menuscr_step_sub_002af8c0,,game-module,
-0x002afa80,menuscr_step_sub_002afa80,,game-module,
-0x002afb80,menuscr_step_sub_002afb80,,game-module,
-0x002afbd0,menuscr_exit_sub_002afbd0,,game-module,
-0x002afe00,menuscr_load_sub_002afe00,,game-module,
-0x002afef0,menuscr_leaf_sub_002afef0,,game-module,
-0x002affd0,menuscr_leaf_sub_002affd0,,game-module,
+0x002ae470,maybe_SeqGen_OnPatternEnd,,game,
+0x002ae4b0,maybe_SeqGen_OnSongEnd,,game,
+0x002ae500,maybe_SeqGen_OnTrackEnd,,game,
+0x002ae580,SeqGen_ParseChunkE,,game,
+0x002ae7a0,SeqGen_ParseChunkD,,game,
+0x002aef60,SeqGen_ParseChunkC,,game,
+0x002af210,SeqGen_ParseChunkB,,game,
+0x002af8c0,SeqGen_ParseChunkOffsets,,game,
+0x002afa80,SeqGen_ParseHeader,,game,
+0x002afb80,SeqGen_Parse,,game,
+0x002afbd0,SeqGen_FreeData,,game,
+0x002afe00,SeqGen_LoadFile,,game,
+0x002afef0,maybe_SeqGen_ReadVarLen,,game,
+0x002affd0,maybe_SeqGen_NextEvent,,game,
 0x002b02c0,maybe_SeqSrc_LoadTrack,,game,
 0x002b0510,maybe_SeqSrc_ReadEventHeader,,game,
 0x002b0650,maybe_SeqSrc_ReadEvent,,game,
@@ -4445,90 +4445,90 @@ address,name,signature,source,comment
 0x002ccd10,RaceHud_ClearSlot,,game,
 0x002ccde0,RaceHud_LoadLayouts,,game,
 0x002cf820,RaceHud_Task,,game,
-0x002cf9b0,racehud_step_sub_002cf9b0,,game-module,
-0x002cfab0,racehud_leaf_sub_002cfab0,,game-module,
-0x002cfac0,racehud_leaf_sub_002cfac0,,game-module,
-0x002cfad0,racehud_leaf_sub_002cfad0,,game-module,
-0x002cfae0,racehud_leaf_sub_002cfae0,,game-module,
-0x002cfb00,racehud_leaf_sub_002cfb00,,game-module,
-0x002cfb20,racehud_leaf_sub_002cfb20,,game-module,
-0x002cfb30,racehud_leaf_sub_002cfb30,,game-module,
-0x002cfb60,racehud_leaf_sub_002cfb60,,game-module,
-0x002cfb70,racehud_step_sub_002cfb70,,game-module,
-0x002cfd00,racehud_step_sub_002cfd00,,game-module,
-0x002cff10,racehud_exit_sub_002cff10,,game-module,
-0x002d00e0,racehud_step_sub_002d00e0,,game-module,
-0x002d0300,racehud_anim_sub_002d0300,,game-module,
-0x002d0860,racehud_load_sub_002d0860,,game-module,
-0x002d0ad0,racehud_load_sub_002d0ad0,,game-module,
-0x002d1130,racehud_load_sub_002d1130,,game-module,
-0x002d17d0,racehud_input_sub_002d17d0,,game-module,
-0x002d1ee0,racehud_draw_sub_002d1ee0,,game-module,
-0x002d2380,racehud_draw_sub_002d2380,,game-module,
-0x002d24c0,racehud_draw_sub_002d24c0,,game-module,
-0x002d26f0,racehud_step_sub_002d26f0,,game-module,
-0x002d3430,showroom_step_sub_002d3430,,game-module,
-0x002d3550,showroom_exit_sub_002d3550,,game-module,
-0x002d36c0,showroom_load_sub_002d36c0,,game-module,
-0x002d3990,showroom_step_sub_002d3990,,game-module,
-0x002d3ba0,showroom_step_sub_002d3ba0,,game-module,
-0x002d3bd0,showroom_step_sub_002d3bd0,,game-module,
-0x002d3d20,showroom_step_sub_002d3d20,,game-module,
-0x002d3ee0,showroom_step_sub_002d3ee0,,game-module,
-0x002d40e0,showroom_step_sub_002d40e0,,game-module,
-0x002d42e0,showroom_step_sub_002d42e0,,game-module,
-0x002d44e0,showroom_step_sub_002d44e0,,game-module,
-0x002d46e0,showroom_step_sub_002d46e0,,game-module,
-0x002d48e0,showroom_exit_sub_002d48e0,,game-module,
-0x002d4940,showroom_load_sub_002d4940,,game-module,
-0x002d49f0,showroom_step_sub_002d49f0,,game-module,
-0x002d4ae0,showroom_step_sub_002d4ae0,,game-module,
-0x002d4d40,showroom_step_sub_002d4d40,,game-module,
-0x002d4f20,showroom_step_sub_002d4f20,,game-module,
-0x002d4fa0,showroom_step_sub_002d4fa0,,game-module,
-0x002d5210,showroom_step_sub_002d5210,,game-module,
-0x002d5230,showroom_exit_sub_002d5230,,game-module,
-0x002d5260,showroom_load_sub_002d5260,,game-module,
-0x002d5370,showroom_leaf_sub_002d5370,,game-module,
-0x002d53b0,showroom_step_sub_002d53b0,,game-module,
-0x002d5c00,showroom_step_sub_002d5c00,,game-module,
-0x002d5ce0,showroom_step_sub_002d5ce0,,game-module,
-0x002d5e40,showroom_step_sub_002d5e40,,game-module,
-0x002d5f40,showroom_step_sub_002d5f40,,game-module,
-0x002d6000,showroom_load_sub_002d6000,,game-module,
-0x002d6090,showroom_exit_sub_002d6090,,game-module,
-0x002d60f0,showroom_load_sub_002d60f0,,game-module,
-0x002d6290,showroom_step_sub_002d6290,,game-module,
-0x002d6460,showroom_step_sub_002d6460,,game-module,
-0x002d64c0,showroom_step_sub_002d64c0,,game-module,
-0x002d65e0,showroom_leaf_sub_002d65e0,,game-module,
-0x002d6610,showroom_leaf_sub_002d6610,,game-module,
-0x002d66b0,showroom_leaf_sub_002d66b0,,game-module,
-0x002d6750,showroom_leaf_sub_002d6750,,game-module,
-0x002d6770,showroom_step_sub_002d6770,,game-module,
-0x002d6820,showroom_step_sub_002d6820,,game-module,
-0x002d6850,showroom_step_sub_002d6850,,game-module,
+0x002cf9b0,maybe_RaceHud_IsBusy,,game,
+0x002cfab0,RaceHud_SetField268,,game,
+0x002cfac0,RaceHud_SetField26c,,game,
+0x002cfad0,RaceHud_GetFlags,,game,
+0x002cfae0,RaceHud_ToggleFlags,,game,
+0x002cfb00,RaceHud_SetFlags,,game,
+0x002cfb20,RaceHud_GetMeterTable,,game,
+0x002cfb30,RaceHud_GetRacerPanel,,game,
+0x002cfb60,RaceHud_GetState,,game,
+0x002cfb70,RaceHud_SetState,,game,
+0x002cfd00,maybe_RaceHud_UploadTextures,,game,
+0x002cff10,RaceHud_Free,,game,
+0x002d00e0,maybe_RaceHud_FormatRecord,,game,
+0x002d0300,maybe_RaceHud_AnimateLapInfo,,game,
+0x002d0860,maybe_RaceHud_LoadWeatherAssets,,game,
+0x002d0ad0,maybe_RaceHud_LoadRecordAssets,,game,
+0x002d1130,RaceHud_Load,,game,
+0x002d17d0,maybe_ReplayCam_RenderFrame,,game,
+0x002d1ee0,maybe_ReplayCam_DrawOverlay,,game,
+0x002d2380,maybe_ReplayCam_Draw,,game,
+0x002d24c0,maybe_ReplayCam_DrawModel,,game,
+0x002d26f0,maybe_ReplayCam_DrawLensFlare,,game,
+0x002d3430,maybe_ReplayCam_Update,,game,
+0x002d3550,maybe_ReplayCam_Free,,game,
+0x002d36c0,maybe_ReplayCam_Load,,game,
+0x002d3990,Garage_BuildSortedCarList,,game,
+0x002d3ba0,Garage_GetSortedCarCount,,game,
+0x002d3bd0,maybe_GarageSort_ByModel,,game,
+0x002d3d20,maybe_GarageSort_ByVariant,,game,
+0x002d3ee0,maybe_GarageSort_ByPower,,game,
+0x002d40e0,maybe_GarageSort_ByWeight,,game,
+0x002d42e0,maybe_GarageSort_ByValue,,game,
+0x002d44e0,maybe_GarageSort_ByMaker,,game,
+0x002d46e0,maybe_GarageSort_ByClass,,game,
+0x002d48e0,MenuObjSet_Free,,game,
+0x002d4940,MenuObjSet_Alloc,,game,
+0x002d49f0,maybe_MenuObjSet_GetObject,,game,
+0x002d4ae0,maybe_MenuObjSet_UpdateAll,,game,
+0x002d4d40,maybe_MenuObjSet_SetLights,,game,
+0x002d4f20,maybe_MenuObjSet_IsLoaded,,game,
+0x002d4fa0,maybe_MenuObjSet_FindByName,,game,
+0x002d5210,MenuObjSet_Step,,game,
+0x002d5230,MenuObj_Shutdown,,game,
+0x002d5260,MenuObj_Init,,game,
+0x002d5370,MenuObjSet_GetEntry,,game,
+0x002d53b0,maybe_MenuObj_StepState,,game,
+0x002d5c00,maybe_MenuObj_Release,,game,
+0x002d5ce0,maybe_MenuObj_Create,,game,
+0x002d5e40,MenuObj_IsReady,,game,
+0x002d5f40,maybe_GarageBg_DrawObjects,,game,
+0x002d6000,maybe_GarageBg_LoadChunk,,game,
+0x002d6090,GarageBg_Free,,game,
+0x002d60f0,GarageBg_Alloc,,game,
+0x002d6290,maybe_GarageBg_DrawObject,,game,
+0x002d6460,maybe_GarageBg_ResetObject,,game,
+0x002d64c0,maybe_GarageBg_OnLoaded,,game,
+0x002d65e0,Quat_Identity,,game,
+0x002d6610,maybe_MenuCar_GetSpinPose,,game,
+0x002d66b0,maybe_MenuCar_GetSpinOffset,,game,
+0x002d6750,maybe_MenuCar_GetSpinTable,,game,
+0x002d6770,maybe_GarageBg_Draw,,game,
+0x002d6820,GarageBg_Unload,,game,
+0x002d6850,GarageBg_Load,,game,
 0x002d68a0,Showroom_Nop,,game-module,
-0x002d68b0,showroom_leaf_sub_002d68b0,,game-module,
-0x002d68c0,showroom_step_sub_002d68c0,,game-module,
-0x002d6e40,showroom_draw_sub_002d6e40,,game-module,
+0x002d68b0,maybe_Showroom_SetCallback,,game,
+0x002d68c0,maybe_IntroCar_UpdatePose,,game,
+0x002d6e40,maybe_IntroCar_Draw,,game,
 0x002d7710,Pad_GetPort_Wrap,,game-module,
-0x002d7740,showroom_step_sub_002d7740,,game-module,
-0x002d7a80,showroom_load_sub_002d7a80,,game-module,
-0x002d7ba0,showroom_exit_sub_002d7ba0,,game-module,
-0x002d7bf0,showroom_load_sub_002d7bf0,,game-module,
-0x002d7c80,showroom_step_sub_002d7c80,,game-module,
-0x002d7d40,showroom_load_sub_002d7d40,,game-module,
-0x002d7dd0,showroom_exit_sub_002d7dd0,,game-module,
-0x002d7e30,showroom_load_sub_002d7e30,,game-module,
-0x002d7fd0,showroom_step_sub_002d7fd0,,game-module,
-0x002d8150,showroom_step_sub_002d8150,,game-module,
-0x002d8630,showroom_step_sub_002d8630,,game-module,
-0x002d86a0,showroom_step_sub_002d86a0,,game-module,
-0x002d8790,showroom_leaf_sub_002d8790,,game-module,
-0x002d87d0,showroom_step_sub_002d87d0,,game-module,
-0x002d8880,showroom_step_sub_002d8880,,game-module,
-0x002d88b0,showroom_step_sub_002d88b0,,game-module,
+0x002d7740,maybe_IntroCar_OnLoaded,,game,
+0x002d7a80,maybe_IntroCar_LoadFile,,game,
+0x002d7ba0,IntroCar_Free,,game,
+0x002d7bf0,IntroCar_Load,,game,
+0x002d7c80,maybe_ShowroomBg_DrawObjects,,game,
+0x002d7d40,maybe_ShowroomBg_LoadChunk,,game,
+0x002d7dd0,ShowroomBg_Free,,game,
+0x002d7e30,ShowroomBg_Alloc,,game,
+0x002d7fd0,maybe_MenuCar_ComputeSpin,,game,
+0x002d8150,maybe_ShowroomBg_DrawObject,,game,
+0x002d8630,maybe_ShowroomBg_ResetObject,,game,
+0x002d86a0,maybe_ShowroomBg_OnLoaded,,game,
+0x002d8790,Quat_IdentityB,,game,
+0x002d87d0,maybe_ShowroomBg_Draw,,game,
+0x002d8880,ShowroomBg_Unload,,game,
+0x002d88b0,ShowroomBg_Load,,game,
 0x002d88f0,maybe_PagePasswordEntry_Exit,,game,"menu page 0 (table 0x3276e0, dispatched by 0x201380)"
 0x002d8910,maybe_PagePasswordEntry_Update,,game,"menu page 0 (table 0x3276e0, dispatched by 0x201380)"
 0x002d8b10,maybe_PagePasswordEntry_Enter,,game,"menu page 0 (table 0x3276e0, dispatched by 0x201380)"
@@ -4541,21 +4541,21 @@ address,name,signature,source,comment
 0x002d8e40,maybe_ScrNewGameMemCard_Update,,game,menu screen 23 (table 0x3274b0)
 0x002d8ee0,maybe_ScrNewGameMemCard_Exit,,game,menu screen 23 (table 0x3274b0)
 0x002d8ef0,maybe_ScrNewGameMemCard_Enter,,game,menu screen 23 (table 0x3274b0)
-0x002d8f50,showroom_leaf_sub_002d8f50,,game-module,
-0x002d8f60,showroom_leaf_sub_002d8f60,,game-module,
-0x002d9590,replayui_step_sub_002d9590,,game-module,
-0x002d9780,replayui_leaf_sub_002d9780,,game-module,
-0x002d9bb0,replayui_exit_sub_002d9bb0,,game-module,
-0x002d9ca0,replayui_load_sub_002d9ca0,,game-module,
-0x002d9e30,replayui_draw_sub_002d9e30,,game-module,
-0x002da920,replayui_draw_sub_002da920,,game-module,
-0x002dafb0,replayui_draw_sub_002dafb0,,game-module,
-0x002db3e0,replayui_step_sub_002db3e0,,game-module,
-0x002db730,replayui_anim_sub_002db730,,game-module,
-0x002dbb80,replayui_step_sub_002dbb80,,game-module,
-0x002dbc70,replayui_anim_sub_002dbc70,,game-module,
-0x002dbf20,replayui_leaf_sub_002dbf20,,game-module,
-0x002dbf30,replayui_draw_sub_002dbf30,,game-module,
+0x002d8f50,SaveUi_SetParams,,game,
+0x002d8f60,Subtitle_SetPending,,game,
+0x002d9590,maybe_ReplayUi_GetLayoutForMsg,,game,
+0x002d9780,maybe_ReplayUi_GetValue,,game,
+0x002d9bb0,ReplayUi_Free,,game,
+0x002d9ca0,ReplayUi_Load,,game,
+0x002d9e30,maybe_NameEntry_DrawInfo,,game,
+0x002da920,maybe_NameEntry_DrawKeyboard,,game,
+0x002dafb0,maybe_NameEntry_DrawName,,game,
+0x002db3e0,maybe_NameEntry_StepSave,,game,
+0x002db730,maybe_NameEntry_Update,,game,
+0x002dbb80,maybe_NameEntry_Reset,,game,
+0x002dbc70,maybe_NameEntry_Animate,,game,
+0x002dbf20,NameEntry_SetMode,,game,
+0x002dbf30,maybe_NameEntry_DrawField,,game,
 0x002dc6d0,PwInput_ResetSlots,,game,
 0x002dc730,PwInput_SetupGrid,,game,
 0x002dc940,PwInput_GetCharForKey,,game,
@@ -4609,7 +4609,7 @@ address,name,signature,source,comment
 0x002dfe70,Course_GetSectionCount,,game,
 0x002dfed0,Course_GetVariantInfo,,game,
 0x002dff30,Course_FindSection,,game,
-0x002e0040,eventui_anim_sub_002e0040,,game-module,
+0x002e0040,MenuNum_CountUp_Bgm,,game,
 0x002e0360,Eventui_Draw_BgmConfig,,game-module,
 0x002e0880,Eventui_Draw_BgmConfig_0880,,game-module,
 0x002e13c0,Eventui_Draw_BgmConfig_13c0,,game-module,
@@ -4622,20 +4622,20 @@ address,name,signature,source,comment
 0x002e2240,maybe_ScrMusic_Exit,,game,menu screen 44 (table 0x3274b0)
 0x002e2250,maybe_ScrMusic_Update,,game,menu screen 44 (table 0x3274b0)
 0x002e2480,maybe_ScrMusic_Enter,,game,menu screen 44 (table 0x3274b0)
-0x002e2530,eventui_draw_sub_002e2530,,game-module,
-0x002e2650,eventui_step_sub_002e2650,,game-module,
-0x002e2680,eventui_draw_sub_002e2680,,game-module,
-0x002e2750,eventui_step_sub_002e2750,,game-module,
-0x002e2800,eventui_step_sub_002e2800,,game-module,
-0x002e2ac0,eventui_step_sub_002e2ac0,,game-module,
-0x002e2ee0,eventui_step_sub_002e2ee0,,game-module,
-0x002e32c0,eventui_step_sub_002e32c0,,game-module,
-0x002e3400,eventui_step_sub_002e3400,,game-module,
-0x002e3440,eventui_step_sub_002e3440,,game-module,
-0x002e3480,eventui_exit_sub_002e3480,,game-module,
-0x002e3500,eventui_load_sub_002e3500,,game-module,
+0x002e2530,maybe_JukeboxTask_Draw,,game,
+0x002e2650,maybe_JukeboxTask_Exit,,game,
+0x002e2680,maybe_JukeboxTask_Load,,game,
+0x002e2750,maybe_JukeboxTask_Init,,game,
+0x002e2800,maybe_Jukebox_PickSong,,game,
+0x002e2ac0,maybe_IntroFlag_Update,,game,
+0x002e2ee0,maybe_IntroFlag_Draw,,game,
+0x002e32c0,maybe_IntroFlag_OnLoaded,,game,
+0x002e3400,maybe_IntroFlag_Step,,game,
+0x002e3440,maybe_IntroFlag_DrawAll,,game,
+0x002e3480,IntroFlag_Free,,game,
+0x002e3500,IntroFlag_Load,,game,
 0x002e3670,Eventui_Draw_Akagi,,game-module,
-0x002e39e0,eventui_anim_sub_002e39e0,,game-module,
+0x002e39e0,maybe_ComposerUi_AnimateNameA,,game,
 0x002e3c30,Eventui_Draw_Hakone,,game-module,
 0x002e3eb0,Eventui_Draw_Hakone_3eb0,,game-module,
 0x002e41b0,Eventui_Draw_Rokko,,game-module,
@@ -4657,21 +4657,21 @@ address,name,signature,source,comment
 0x002e8380,ScrNameentryGetField48200_Updatee8380,,game-screen,screen record 0x3433e0
 0x002e8400,ScrNameentryGetField48200_Exite8400,,game-screen,screen record 0x3433e0
 0x002e8410,ScrNameentryGetField48200_Entere8410,,game-screen,screen record 0x3433e0
-0x002e84e0,eventui_step_sub_002e84e0,,game-module,
+0x002e84e0,maybe_ComposerUi_InputInstrument,,game,
 0x002e8870,ScrNameentryGetField48200_Updatee8870,,game-screen,screen record 0x3433c8
 0x002e88c0,ScrNameentryGetField48200_Exite88c0,,game-screen,screen record 0x3433c8
 0x002e88d0,ScrNameentryGetField48200_Entere88d0,,game-screen,screen record 0x3433c8
-0x002e89f0,eventui_anim_sub_002e89f0,,game-module,
+0x002e89f0,maybe_ComposerUi_AnimateNameB,,game,
 0x002e8b90,Eventui_Draw_Akagi_8b90,,game-module,
 0x002e9540,ScrNameentryGetField48200_Updatee9540,,game-screen,screen record 0x3433f8
 0x002e9580,ScrNameentryGetField48200_Exite9580,,game-screen,screen record 0x3433f8
 0x002e9590,ScrNameentryGetField48200_Entere9590,,game-screen,screen record 0x3433f8
-0x002e96a0,eventui_step_sub_002e96a0,,game-module,
-0x002e97e0,eventui_step_sub_002e97e0,,game-module,
-0x002e99f0,eventui_step_sub_002e99f0,,game-module,
-0x002e9b30,eventui_leaf_sub_002e9b30,,game-module,
-0x002e9bc0,eventui_step_sub_002e9bc0,,game-module,
-0x002ea2d0,eventui_step_sub_002ea2d0,,game-module,
+0x002e96a0,maybe_ComposerUi_SetGridCell,,game,
+0x002e97e0,maybe_ComposerUi_PlayNote,,game,
+0x002e99f0,maybe_ComposerUi_UpdatePlayback,,game,
+0x002e9b30,maybe_ComposerUi_ClearTracks,,game,
+0x002e9bc0,maybe_ComposerUi_InputEdit,,game,
+0x002ea2d0,maybe_ComposerUi_InputRange,,game,
 0x002ea690,ScrNameentryGetField48200_Updateec910_State15,,game,entry 15 of state table 0x342d70 used by ScrNameentryGetField48200_Updateec910
 0x002ea7c0,ScrScriptFieldPtr89f6_Exit,,game-screen,screen record 0x342da0
 0x002ea8c0,ScrScriptFieldPtr89f6_Update,,game-screen,screen record 0x342da0
@@ -4691,15 +4691,15 @@ address,name,signature,source,comment
 0x002ec910,ScrNameentryGetField48200_Updateec910,,game-screen,screen record 0x3433d4
 0x002ec980,ScrNameentryGetField48200_Exitec980,,game-screen,screen record 0x3433d4
 0x002ec9c0,ScrNameentryGetField48200_Enterec9c0,,game-screen,screen record 0x3433d4
-0x002ecb70,eventui_anim_sub_002ecb70,,game-module,
+0x002ecb70,maybe_ComposerUi_AnimateNameC,,game,
 0x002ecdf0,Eventui_Draw_Akagi_cdf0,,game-module,
-0x002ed150,eventui_anim_sub_002ed150,,game-module,
-0x002ed390,eventui_draw_sub_002ed390,,game-module,
-0x002ee410,eventui_step_sub_002ee410,,game-module,
-0x002ee670,eventui_draw_sub_002ee670,,game-module,
-0x002ee830,eventui_draw_sub_002ee830,,game-module,
-0x002ef1c0,eventui_draw_sub_002ef1c0,,game-module,
-0x002ef5f0,eventui_step_sub_002ef5f0,,game-module,
+0x002ed150,maybe_ComposerUi_SetCellNumber,,game,
+0x002ed390,maybe_ComposerUi_DrawGrid,,game,
+0x002ee410,maybe_ComposerUi_DrawCursorSprite,,game,
+0x002ee670,maybe_ComposerUi_DrawCursor,,game,
+0x002ee830,maybe_ComposerUi_DrawNotes,,game,
+0x002ef1c0,maybe_ComposerUi_DrawPlayhead,,game,
+0x002ef5f0,maybe_ComposerUi_ScrollView,,game,
 0x002efa10,Eventui_Draw_TestCourse_fa10,,game-module,
 0x002f0270,ScrDraw_Equipment_Exit,,game-screen,screen record 0x342de0
 0x002f0830,MenuScr_Draw_Equipment,,game-module,
@@ -4719,11 +4719,11 @@ address,name,signature,source,comment
 0x002f5710,ScrNameentryGetField48200_Updatef5710,,game-screen,screen record 0x343404
 0x002f5770,ScrNameentryGetField48200_Exitf5770,,game-screen,screen record 0x343404
 0x002f57b0,ScrNameentryGetField48200_Enterf57b0,,game-screen,screen record 0x343404
-0x002f5ab0,menuscr_step_sub_002f5ab0,,game-module,
-0x002f5cd0,menuscr_step_sub_002f5cd0,,game-module,
-0x002f5d10,menuscr_step_sub_002f5d10,,game-module,
+0x002f5ab0,maybe_ComposerTask_Update,,game,
+0x002f5cd0,ComposerTask_Exit,,game,
+0x002f5d10,ComposerTask_Init,,game,
 0x002f5e60,Menuscr_FieldPtr_52,,game-module,
-0x002f5e70,menuscr_anim_sub_002f5e70,,game-module,
+0x002f5e70,MenuNum_CountUp_Event,,game,
 0x002f6190,Composer_MoveCursor,,game,24 callers
 0x002f63f0,Composer_GetSelectedPart,,game,
 0x002f6440,Composer_GetPartEntry,,game,
@@ -4798,7 +4798,7 @@ address,name,signature,source,comment
 0x002f8b10,ComposerInput_Alloc,,game,
 0x002f8bc0,ComposerInput_Task,,game,
 0x002f8cc0,Frontend_Nop,,game-module,
-0x002f8cd0,frontend_leaf_sub_002f8cd0,,game-module,
+0x002f8cd0,ComposerInput_InstallTask,,game,
 0x002f8ce0,Composer_GetSlotLabel,,game,
 0x002f8f20,Composer_StatePlay,,game,
 0x002f9090,Composer_StateIdle,,game,
@@ -4814,7 +4814,7 @@ address,name,signature,source,comment
 0x002fa080,ScrNameentryGetField48200_Updatefa080,,game-screen,screen record 0x3433bc
 0x002fa210,ScrNameentryGetField48200_Exitfa210,,game-screen,screen record 0x3433bc
 0x002fa220,ScrNameentryGetField48200_Enterfa220,,game-screen,screen record 0x3433bc
-0x002fa2c0,attract_step_sub_002fa2c0,,game-module,
+0x002fa2c0,maybe_Composer_OnMenuResult,,game,
 0x002fa3a0,ScrNameentryGetField48200_State3,,game,entry 3 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
 0x002fa410,ScrNameentryGetField48200_State2,,game,entry 2 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
 0x002fa480,ScrNameentryGetField48200_State1,,game,entry 1 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
@@ -4822,22 +4822,22 @@ address,name,signature,source,comment
 0x002fa5f0,ScrNameentryGetField48200_Update,,game-screen,screen record 0x3433b0
 0x002fa6d0,ScrNameentryGetField48200_Exit,,game-screen,screen record 0x3433b0
 0x002fa6e0,ScrNameentryGetField48200_Enter,,game-screen,screen record 0x3433b0
-0x002fa730,attract_draw_sub_002fa730,,game-module,
-0x002fa920,attract_step_sub_002fa920,,game-module,
-0x002faab0,attract_load_sub_002faab0,,game-module,
-0x002fafa0,attract_exit_sub_002fafa0,,game-module,
-0x002fafe0,attract_step_sub_002fafe0,,game-module,
-0x002fb040,attract_step_sub_002fb040,,game-module,
-0x002fb390,frontend_leaf_sub_002fb390,,game-module,
-0x002fb3a0,attract_step_sub_002fb3a0,,game-module,
-0x002fb410,attract_draw_sub_002fb410,,game-module,
-0x002fb5a0,attract_step_sub_002fb5a0,,game-module,
-0x002fb8e0,attract_step_sub_002fb8e0,,game-module,
-0x002fba10,attract_step_sub_002fba10,,game-module,
+0x002fa730,maybe_Attract_DrawLogo,,game,
+0x002fa920,maybe_Attract_SetupDemoRace,,game,
+0x002faab0,maybe_AttractTask_Load,,game,
+0x002fafa0,AttractTask_Exit,,game,
+0x002fafe0,AttractTask_Init,,game,
+0x002fb040,maybe_AttractTask_Update,,game,
+0x002fb390,maybe_Attract_ClearActive,,game,
+0x002fb3a0,maybe_AttractTask_Start,,game,
+0x002fb410,maybe_Attract_DrawLayout,,game,
+0x002fb5a0,maybe_Attract_PickDemo,,game,
+0x002fb8e0,maybe_Attract_StepLayout,,game,
+0x002fba10,maybe_RaceHud_SetupRecordLayout,,game,
 0x002fd080,GameState_LoadHeader_Wrap,,game-module,
 0x002fd0a0,GameState_LoadHeader_Wrap2,,game-module,
-0x002fd0c0,misc_step_sub_002fd0c0,,game-module,
-0x002fd180,misc_step_sub_002fd180,,game-module,
+0x002fd0c0,maybe_RaceResult_GetCategory,,game,
+0x002fd180,maybe_RaceResult_GetRivalTeam,,game,
 0x002fd1c0,Misc_Nop,,game-module,
 0x002fd1d0,ScrRenderSetInterlace_Exit,,game,menu screen 45 (table 0x3274b0)
 0x002fd1e0,ScrRenderSetInterlace_Update,,game,menu screen 45 (table 0x3274b0)
@@ -4845,15 +4845,15 @@ address,name,signature,source,comment
 0x002fd5c0,ScrDraw_StartGame_Exit,,game-screen,screen record 0x3278fc
 0x002fd5e0,Misc_Draw_StartGame,,game-module,
 0x002fd9b0,ScrDraw_StartGame_Enter,,game-screen,screen record 0x3278fc
-0x00306d50,misc_leaf_sub_00306d50,,game-module,
-0x00307400,misc_leaf_sub_00307400,,game-module,
-0x003075e0,misc_leaf_sub_003075e0,,game-module,
-0x003076b0,misc_leaf_sub_003076b0,,game-module,
-0x00307a38,misc_leaf_sub_00307a38,,game-module,
-0x00307b40,misc_leaf_sub_00307b40,,game-module,
-0x00307c80,misc_leaf_sub_00307c80,,game-module,
-0x00307e20,misc_leaf_sub_00307e20,,game-module,
-0x00307e68,misc_leaf_sub_00307e68,,game-module,
+0x00306d50,maybe_KernelPatch_SetupTlb,,game,
+0x00307400,maybe_KernelPatch_ScanTable,,game,
+0x003075e0,maybe_KernelPatch_WaitIntc,,game,
+0x003076b0,maybe_KernelPatch_Dispatch,,game,
+0x00307a38,maybe_KernelPatch_FindHandler,,game,
+0x00307b40,maybe_KernelPatch_AddHandler,,game,
+0x00307c80,maybe_KernelPatch_RemoveHandler,,game,
+0x00307e20,maybe_KernelPatch_CallSync,,game,
+0x00307e68,maybe_KernelPatch_ScanHandlers,,game,
 0x003685e0,__sinit_003685e0,,sinit,
 0x00368630,__sinit_00368630,,sinit,
 0x003686c0,__sinit_003686c0,,sinit,

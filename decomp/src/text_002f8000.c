@@ -657,7 +657,7 @@ void Frontend_Nop(void)
 }
 
 // 0x002f8cd0  size 0x10
-void frontend_leaf_sub_002f8cd0(int param_1)
+void ComposerInput_InstallTask(int param_1)
 
 {
   *(code **)(param_1 + 0x1c) = ComposerInput_Task;
@@ -1580,7 +1580,7 @@ void ScrNameentryGetField48200_Enterfa220(int param_1)
 }
 
 // 0x002fa2c0  size 0xd8
-void attract_step_sub_002fa2c0(undefined8 param_1,long param_2)
+void maybe_Composer_OnMenuResult(undefined8 param_1,long param_2)
 
 {
   uint uVar1;
@@ -1758,14 +1758,14 @@ void ScrNameentryGetField48200_Update(undefined8 param_1)
         if (*(int *)(iVar1 + 0x2c) != -8) {
           Se_PlayMenuVol(6,0x60);
         }
-        attract_step_sub_002fa2c0(param_1,*(undefined4 *)(iVar1 + 0x2c));
+        maybe_Composer_OnMenuResult(param_1,*(undefined4 *)(iVar1 + 0x2c));
       }
     }
     else {
       if (*(int *)(iVar1 + 0x28) != -8) {
         Se_PlayMenuVol(5,0x60);
       }
-      attract_step_sub_002fa2c0(param_1,*(undefined4 *)(iVar1 + 0x28));
+      maybe_Composer_OnMenuResult(param_1,*(undefined4 *)(iVar1 + 0x28));
     }
   }
   return;
@@ -1802,7 +1802,7 @@ void ScrNameentryGetField48200_Enter(undefined8 param_1)
 }
 
 // 0x002fa730  size 0x1e8
-void attract_draw_sub_002fa730(int param_1)
+void maybe_Attract_DrawLogo(int param_1)
 
 {
   float fVar1;
@@ -1857,7 +1857,7 @@ void attract_draw_sub_002fa730(int param_1)
 }
 
 // 0x002fa920  size 0x18c
-void attract_step_sub_002fa920(void)
+void maybe_Attract_SetupDemoRace(void)
 
 {
   int iVar1;
@@ -1901,7 +1901,7 @@ void attract_step_sub_002fa920(void)
 }
 
 // 0x002faab0  size 0x4e4
-void attract_load_sub_002faab0(int param_1)
+void maybe_AttractTask_Load(int param_1)
 
 {
   bool bVar1;
@@ -2030,7 +2030,7 @@ void attract_load_sub_002faab0(int param_1)
   else if (iVar8 == 1) {
     lVar10 = CarDb_IsLoading();
     if (lVar10 != 0) {
-      attract_step_sub_002fa920();
+      maybe_Attract_SetupDemoRace();
       uVar6 = uRam004305f4;
       Tex_Relocate(piVar2[3]);
       TexSlot_Bind(piVar2 + 4,piVar2[3],0,uVar6,uVar6,0x11110,0,0);
@@ -2056,7 +2056,7 @@ void attract_load_sub_002faab0(int param_1)
     UiMgr_DrawAll(1);
   }
   if (bVar4) {
-    attract_draw_sub_002fa730(piVar2);
+    maybe_Attract_DrawLogo(piVar2);
   }
   if (bVar3) {
     Scene_RequestExit();
@@ -2069,7 +2069,7 @@ void attract_load_sub_002faab0(int param_1)
 }
 
 // 0x002fafa0  size 0x40
-void attract_exit_sub_002fafa0(int param_1)
+void AttractTask_Exit(int param_1)
 
 {
   int iVar1;
@@ -2084,7 +2084,7 @@ void attract_exit_sub_002fafa0(int param_1)
 }
 
 // 0x002fafe0  size 0x54
-void attract_step_sub_002fafe0(int param_1)
+void AttractTask_Init(int param_1)
 
 {
   undefined4 *puVar1;
@@ -2094,14 +2094,14 @@ void attract_step_sub_002fafe0(int param_1)
   *puVar1 = 0;
   puVar1[3] = 0;
   Scene_RequestExit();
-  *(code **)(param_1 + 0x1c) = attract_load_sub_002faab0;
+  *(code **)(param_1 + 0x1c) = maybe_AttractTask_Load;
   return;
 }
 
 // 0x002fb040  size 0x338
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void attract_step_sub_002fb040(int *param_1)
+void maybe_AttractTask_Update(int *param_1)
 
 {
   int *piVar1;
@@ -2122,7 +2122,7 @@ void attract_step_sub_002fb040(int *param_1)
     uRam0046a590 = 0;
     RaceScene_SetFlags(0x80000);
     RaceScene_SetFlags(2);
-    race_leaf_sub_001e90d0();
+    RaceScene_ClearFlag1();
     return;
   }
   fVar5 = 0.0;
@@ -2175,24 +2175,24 @@ LAB_002fb138:
     }
   }
   if (0x2fb < piVar1[4]) {
-    attract_step_sub_002fb8e0(&uStack_20);
+    maybe_Attract_StepLayout(&uStack_20);
     uStack_10 = uStack_20;
     uStack_c = uStack_1c;
     uStack_8 = uStack_18;
-    lVar2 = misc_step_sub_002fd0c0();
+    lVar2 = maybe_RaceResult_GetCategory();
     if (lVar2 == 4) {
-      attract_draw_sub_002fb410(uStack_c,piVar1[4],0x1920,0x1921);
+      maybe_Attract_DrawLayout(uStack_c,piVar1[4],0x1920,0x1921);
     }
     else {
-      lVar2 = misc_step_sub_002fd0c0();
+      lVar2 = maybe_RaceResult_GetCategory();
       if (lVar2 == 5) {
-        attract_draw_sub_002fb410(uStack_10,piVar1[4],0x1922,0x1923);
-        attract_draw_sub_002fb410(uStack_c,piVar1[4],0x191e,0x191f);
-        attract_draw_sub_002fb410(uStack_8,piVar1[4],0x1924,0x1925);
+        maybe_Attract_DrawLayout(uStack_10,piVar1[4],0x1922,0x1923);
+        maybe_Attract_DrawLayout(uStack_c,piVar1[4],0x191e,0x191f);
+        maybe_Attract_DrawLayout(uStack_8,piVar1[4],0x1924,0x1925);
       }
       else {
-        attract_draw_sub_002fb410(uStack_10,piVar1[4],0x1922,0x1923);
-        attract_draw_sub_002fb410(uStack_c,piVar1[4],0x191e,0x191f);
+        maybe_Attract_DrawLayout(uStack_10,piVar1[4],0x1922,0x1923);
+        maybe_Attract_DrawLayout(uStack_c,piVar1[4],0x191e,0x191f);
       }
     }
   }
@@ -2200,7 +2200,7 @@ LAB_002fb138:
 }
 
 // 0x002fb390  size 0xc
-void frontend_leaf_sub_002fb390(void)
+void maybe_Attract_ClearActive(void)
 
 {
   uRam0046a598 = 0;
@@ -2208,7 +2208,7 @@ void frontend_leaf_sub_002fb390(void)
 }
 
 // 0x002fb3a0  size 0x6c
-void attract_step_sub_002fb3a0(int param_1)
+void maybe_AttractTask_Start(int param_1)
 
 {
   undefined4 *puVar1;
@@ -2218,7 +2218,7 @@ void attract_step_sub_002fb3a0(int param_1)
   puVar1[1] = 0;
   uRam0046a598 = 1;
   uRam0046a59c = 0;
-  uRam0046a590 = misc_step_sub_002fd0c0();
+  uRam0046a590 = maybe_RaceResult_GetCategory();
   uRam0046a594 = 1;
   RaceScene_SetFlags(0x100);
   *(undefined1 **)(param_1 + 0x1c) = &LAB_002fb380;
@@ -2226,7 +2226,7 @@ void attract_step_sub_002fb3a0(int param_1)
 }
 
 // 0x002fb410  size 0x18c
-void attract_draw_sub_002fb410(long param_1,long param_2,undefined8 param_3,undefined8 param_4)
+void maybe_Attract_DrawLayout(long param_1,long param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -2235,7 +2235,7 @@ void attract_draw_sub_002fb410(long param_1,long param_2,undefined8 param_3,unde
   if (param_1 != 0) {
     iVar2 = (int)param_1;
     if (param_2 == 0x2fc) {
-      uVar1 = replayui_leaf_sub_002d9780(param_3);
+      uVar1 = maybe_ReplayUi_GetValue(param_3);
       *(undefined4 *)(iVar2 + 0x310) = 0xffffffff;
       *(undefined4 *)(iVar2 + 0x31c) = 0;
       *(undefined4 *)(iVar2 + 0x30c) = 0;
@@ -2264,7 +2264,7 @@ void attract_draw_sub_002fb410(long param_1,long param_2,undefined8 param_3,unde
       }
     }
     if (param_2 == 0x3c4) {
-      uVar1 = replayui_leaf_sub_002d9780(param_4);
+      uVar1 = maybe_ReplayUi_GetValue(param_4);
       *(undefined4 *)(iVar2 + 0x310) = 0xffffffff;
       *(undefined4 *)(iVar2 + 0x31c) = 0;
       *(undefined4 *)(iVar2 + 0x30c) = 0;
@@ -2301,7 +2301,7 @@ void attract_draw_sub_002fb410(long param_1,long param_2,undefined8 param_3,unde
 }
 
 // 0x002fb5a0  size 0x33c
-undefined ** attract_step_sub_002fb5a0(void)
+undefined ** maybe_Attract_PickDemo(void)
 
 {
   ulong uVar1;
@@ -2313,7 +2313,7 @@ undefined ** attract_step_sub_002fb5a0(void)
   byte abStack_50 [80];
   
   ppuVar2 = (undefined **)0x0;
-  uVar1 = misc_step_sub_002fd0c0();
+  uVar1 = maybe_RaceResult_GetCategory();
   if (uVar1 < 9) {
                     /* WARNING: Switch is manually overridden */
     switch((int)uVar1) {
@@ -2484,7 +2484,7 @@ undefined ** attract_step_sub_002fb5a0(void)
 // 0x002fb8e0  size 0x130
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void attract_step_sub_002fb8e0(int *param_1)
+void maybe_Attract_StepLayout(int *param_1)
 
 {
   int *piVar1;
@@ -2505,7 +2505,7 @@ void attract_step_sub_002fb8e0(int *param_1)
     piVar2 = (int *)((int)piVar2 + -1);
     piVar1 = piVar2;
   }
-  lVar4 = misc_step_sub_002fd0c0();
+  lVar4 = maybe_RaceResult_GetCategory();
   if (lVar4 == 0) {
     *param_1 = iStack_10;
     param_1[1] = iStack_c;
@@ -2514,7 +2514,7 @@ void attract_step_sub_002fb8e0(int *param_1)
   else {
     iVar3 = UiMgr_FindLayout(0x28);
     iStack_c = *_g_UiMgr + iVar3 * 0x4f4 + 4;
-    lVar4 = misc_step_sub_002fd0c0();
+    lVar4 = maybe_RaceResult_GetCategory();
     if (lVar4 == 4) {
       iStack_10 = 0;
     }
@@ -2522,7 +2522,7 @@ void attract_step_sub_002fb8e0(int *param_1)
       iVar3 = UiMgr_FindLayout(0x27);
       iStack_10 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
     }
-    lVar4 = misc_step_sub_002fd0c0();
+    lVar4 = maybe_RaceResult_GetCategory();
     if (lVar4 == 5) {
       iVar3 = UiMgr_FindLayout(0x29);
       iStack_8 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
@@ -2538,7 +2538,7 @@ void attract_step_sub_002fb8e0(int *param_1)
 }
 
 // 0x002fba10  size 0x1670
-void attract_step_sub_002fba10(undefined4 *param_1)
+void maybe_RaceHud_SetupRecordLayout(undefined4 *param_1)
 
 {
   ulong uVar1;
@@ -2547,7 +2547,7 @@ void attract_step_sub_002fba10(undefined4 *param_1)
   undefined *puStack_c;
   undefined *puStack_8;
   
-  uVar1 = misc_step_sub_002fd0c0();
+  uVar1 = maybe_RaceResult_GetCategory();
   if (uVar1 < 9) {
                     /* WARNING: Switch is manually overridden */
     switch((int)uVar1) {
@@ -2582,7 +2582,7 @@ void attract_step_sub_002fba10(undefined4 *param_1)
 switchD_002fba44_caseD_0:
     puStack_c = (undefined *)0x0;
   }
-  lVar2 = misc_step_sub_002fd0c0();
+  lVar2 = maybe_RaceResult_GetCategory();
   if (lVar2 == 5) {
     lVar2 = GameState_GetCurrentRecordValue();
     if (lVar2 == 0x14a) {

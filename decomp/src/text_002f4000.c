@@ -36,7 +36,7 @@ void ScrDraw_TestCourse_Enter(int param_1)
       Composer_ConsumeRedraw(param_1 + 0xc44);
     }
   }
-  eventui_step_sub_002ef5f0(param_1);
+  maybe_ComposerUi_ScrollView(param_1);
   iVar7 = 0;
   puVar6 = &DAT_00343350;
   puVar5 = &DAT_00343370;
@@ -65,10 +65,10 @@ void ScrDraw_TestCourse_Enter(int param_1)
   } while (iVar7 < 8);
   iVar1 = UiMgr_FindLayout(0xc);
   UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x69,9,*(undefined4 *)(param_1 + 0xcc0));
-  eventui_draw_sub_002ef1c0(param_1);
-  eventui_draw_sub_002ee830(param_1,1);
-  eventui_draw_sub_002ee670(param_1,1);
-  eventui_draw_sub_002ed390(param_1,0);
+  maybe_ComposerUi_DrawPlayhead(param_1);
+  maybe_ComposerUi_DrawNotes(param_1,1);
+  maybe_ComposerUi_DrawCursor(param_1,1);
+  maybe_ComposerUi_DrawGrid(param_1,0);
   iVar1 = UiMgr_FindLayout(0xc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   return;
@@ -462,7 +462,7 @@ LAB_002f4770:
         iVar2 = UiMgr_FindLayout(0xb);
         iVar12 = *_g_UiMgr;
         iVar3 = SeqGen_GetPatternEntry(*puVar13);
-        eventui_step_sub_002e96a0
+        maybe_ComposerUi_SetGridCell
                   (iVar12 + iVar2 * 0x4f4 + 4,*puVar14,9,*(undefined1 *)(iVar3 + 0xb));
         uVar11 = Menuscr_FieldPtr_52(*puVar13);
         MenuWnd_DrawText(0xb,puVar14[3],uVar11);
@@ -486,7 +486,7 @@ LAB_002f4770:
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
   iVar5 = UiMgr_FindLayout(0xf);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
-  menuscr_anim_sub_002f5e70
+  MenuNum_CountUp_Event
             (0xb,3,4,200,*(undefined4 *)(param_1 + 0x1234),6,*(undefined4 *)(param_1 + 0x1240));
   iVar5 = UiMgr_FindLayout(0xb);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
@@ -515,7 +515,7 @@ void ScrDraw_Akagi_Update(int param_1)
   if (lVar2 != 0) {
     Composer_ConsumeRedraw(param_1 + 0xc44);
   }
-  eventui_step_sub_002ef5f0(param_1);
+  maybe_ComposerUi_ScrollView(param_1);
   iVar7 = 0;
   puVar5 = &DAT_00343350;
   puVar4 = &DAT_00343370;
@@ -544,10 +544,10 @@ void ScrDraw_Akagi_Update(int param_1)
   } while (iVar7 < 8);
   iVar6 = UiMgr_FindLayout(0xc);
   UiElem_SetPropInt(*_g_UiMgr + iVar6 * 0x4f4 + 4,0x69,9,*(undefined4 *)(param_1 + 0xcc0));
-  eventui_draw_sub_002ef1c0(param_1);
-  eventui_draw_sub_002ee830(param_1,0);
-  eventui_draw_sub_002ee670(param_1,0);
-  eventui_draw_sub_002ed390(param_1,1);
+  maybe_ComposerUi_DrawPlayhead(param_1);
+  maybe_ComposerUi_DrawNotes(param_1,0);
+  maybe_ComposerUi_DrawCursor(param_1,0);
+  maybe_ComposerUi_DrawGrid(param_1,1);
   iVar6 = UiMgr_FindLayout(0xc);
   uVar8 = (uint)(*(float *)(param_1 + 0xcb8) + 16.0);
   uVar3 = uVar8 & 0xf;
@@ -584,7 +584,7 @@ void ScrDraw_Akagi_Enter(int param_1)
   if (lVar3 != 0) {
     Composer_ConsumeRedraw(param_1 + 0xc44);
   }
-  eventui_step_sub_002ef5f0(param_1);
+  maybe_ComposerUi_ScrollView(param_1);
   iVar6 = 0;
   puVar5 = &DAT_00343350;
   puVar4 = &DAT_00343370;
@@ -613,10 +613,10 @@ void ScrDraw_Akagi_Enter(int param_1)
   } while (iVar6 < 8);
   iVar1 = UiMgr_FindLayout(0xc);
   UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x69,9,*(undefined4 *)(param_1 + 0xcc0));
-  eventui_draw_sub_002ef1c0(param_1);
-  eventui_draw_sub_002ee830(param_1,1);
-  eventui_draw_sub_002ee670(param_1,1);
-  eventui_draw_sub_002ed390(param_1,1);
+  maybe_ComposerUi_DrawPlayhead(param_1);
+  maybe_ComposerUi_DrawNotes(param_1,1);
+  maybe_ComposerUi_DrawCursor(param_1,1);
+  maybe_ComposerUi_DrawGrid(param_1,1);
   iVar1 = UiMgr_FindLayout(0xc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   return;
@@ -732,7 +732,7 @@ void ScrNameentryGetField48200_Enterf57b0(undefined8 param_1)
 }
 
 // 0x002f5ab0  size 0x214
-void menuscr_step_sub_002f5ab0(int param_1)
+void maybe_ComposerTask_Update(int param_1)
 
 {
   char *pcVar1;
@@ -782,7 +782,7 @@ void menuscr_step_sub_002f5ab0(int param_1)
 }
 
 // 0x002f5cd0  size 0x3c
-void menuscr_step_sub_002f5cd0(void)
+void ComposerTask_Exit(void)
 
 {
   ComposerInput_Free();
@@ -794,7 +794,7 @@ void menuscr_step_sub_002f5cd0(void)
 }
 
 // 0x002f5d10  size 0x148
-void menuscr_step_sub_002f5d10(int param_1)
+void ComposerTask_Init(int param_1)
 
 {
   undefined1 *puVar1;
@@ -829,7 +829,7 @@ void menuscr_step_sub_002f5d10(int param_1)
     iVar2 = iVar2 + 4;
   } while (iVar5 < 0xb9);
   *puVar1 = 0;
-  *(code **)(param_1 + 0x1c) = menuscr_step_sub_002f5ab0;
+  *(code **)(param_1 + 0x1c) = maybe_ComposerTask_Update;
   return;
 }
 
@@ -843,7 +843,7 @@ int Menuscr_FieldPtr_52(int param_1)
 // 0x002f5e70  size 0x320
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_002f5e70
+void MenuNum_CountUp_Event
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 

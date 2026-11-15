@@ -709,8 +709,6 @@ void SetGsCrt(void)
 }
 
 // 0x001113c0  size 0x10
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void _Exit(int __status)
 
 {

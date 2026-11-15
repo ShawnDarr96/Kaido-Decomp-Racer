@@ -158,7 +158,7 @@ undefined4 maybe_SeqGen_AppendBytes(undefined8 param_1,int *param_2)
     *(byte *)(iVar4 + -1) = *(byte *)(iVar4 + -1) | 0x80;
   }
   else {
-    menuscr_leaf_sub_002afef0(param_1,*param_2,acStack_10,&iStack_4);
+    maybe_SeqGen_ReadVarLen(param_1,*param_2,acStack_10,&iStack_4);
     if (iStack_4 == 0) {
       return 0;
     }
@@ -242,7 +242,7 @@ undefined4 maybe_SeqGen_FindLoopPoint(undefined8 param_1,undefined8 param_2,long
   iVar3 = 0;
   do {
     while( true ) {
-      lVar2 = menuscr_leaf_sub_002affd0(param_1,param_2);
+      lVar2 = maybe_SeqGen_NextEvent(param_1,param_2);
       if (lVar2 == 0) {
         return 0;
       }
@@ -291,7 +291,7 @@ void maybe_SeqSrc_Open(undefined8 param_1,undefined8 param_2)
     *(int *)(iVar7 + 0x68) = (int)param_2;
     *(undefined4 *)(iVar7 + 0x6c) = 0;
   }
-  lVar3 = menuscr_leaf_sub_002afef0(param_1,0,auStack_10,&iStack_4);
+  lVar3 = maybe_SeqGen_ReadVarLen(param_1,0,auStack_10,&iStack_4);
   if (lVar3 != 0) {
     auStack_10[iStack_4] = 0xff;
     auStack_10[iStack_4 + 1] = 0x2f;
@@ -349,7 +349,7 @@ undefined4 maybe_SeqGen_ScanTrack(undefined8 param_1,long param_2)
   char cStack_6;
   
   do {
-    lVar3 = menuscr_leaf_sub_002affd0(param_1,auStack_10);
+    lVar3 = maybe_SeqGen_NextEvent(param_1,auStack_10);
     if (lVar3 == 0) {
       return 0;
     }
@@ -410,7 +410,7 @@ undefined4 maybe_SeqGen_EmitNote(undefined8 param_1,undefined8 param_2)
   int iStack_4;
   
   iStack_4 = 0;
-  lVar4 = menuscr_leaf_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
+  lVar4 = maybe_SeqGen_ReadVarLen(param_1,param_2,auStack_10,&iStack_4);
   iVar7 = (int)param_1;
   if (lVar4 == 0) {
     uVar2 = 0;
@@ -448,7 +448,7 @@ undefined4 maybe_SeqGen_EmitNote(undefined8 param_1,undefined8 param_2)
     if (bVar1) {
       *(undefined4 *)(iVar7 + 0x50) = *(undefined4 *)(iVar7 + 100);
     }
-    menuscr_leaf_sub_002afef0(param_1,1,auStack_10,&iStack_4);
+    maybe_SeqGen_ReadVarLen(param_1,1,auStack_10,&iStack_4);
     auStack_10[iStack_4] = 0xb0;
     auStack_10[iStack_4 + 1] = 6;
     iVar8 = iStack_4 + 3;
@@ -482,7 +482,7 @@ undefined4 maybe_SeqGen_EmitNote(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar7 + 0x50) = *(undefined4 *)(iVar7 + 100);
     }
     uVar2 = 2;
-    menuscr_leaf_sub_002afef0(param_1,1,auStack_10,&iStack_4);
+    maybe_SeqGen_ReadVarLen(param_1,1,auStack_10,&iStack_4);
     auStack_10[iStack_4] = 0xb0;
     auStack_10[iStack_4 + 1] = 0x26;
     iVar8 = iStack_4 + 3;
@@ -537,7 +537,7 @@ long maybe_SeqGen_EmitControl(undefined8 param_1,undefined8 param_2)
   int iStack_4;
   
   iStack_4 = 0;
-  lVar3 = menuscr_leaf_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
+  lVar3 = maybe_SeqGen_ReadVarLen(param_1,param_2,auStack_10,&iStack_4);
   iVar8 = (int)param_1;
   if (lVar3 == 0) {
     lVar3 = 0;
@@ -576,7 +576,7 @@ long maybe_SeqGen_EmitControl(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar8 + 0x50) = *(undefined4 *)(iVar8 + 100);
     }
     lVar3 = 1;
-    menuscr_leaf_sub_002afef0(param_1,1,auStack_10,&iStack_4);
+    maybe_SeqGen_ReadVarLen(param_1,1,auStack_10,&iStack_4);
     auStack_10[iStack_4] = 0xb0;
     auStack_10[iStack_4 + 1] = 6;
     iVar7 = iStack_4 + 3;
@@ -634,7 +634,7 @@ maybe_SeqGen_EmitPitchBend(undefined8 param_1,undefined8 param_2,byte param_3,sh
   
   if ((-1 < param_4) && (param_4 < 0x4000)) {
     iStack_4 = 0;
-    lVar3 = menuscr_leaf_sub_002afef0(param_1,param_2,abStack_10,&iStack_4);
+    lVar3 = maybe_SeqGen_ReadVarLen(param_1,param_2,abStack_10,&iStack_4);
     iVar7 = (int)param_1;
     if (lVar3 != 0) {
       abStack_10[iStack_4] = param_3 & 0xf | 0xe0;
@@ -694,7 +694,7 @@ undefined8 maybe_SeqGen_EmitTempo(undefined8 param_1,undefined8 param_2,ulong pa
   
   if ((0x3971d < param_3) && (param_3 < 0x2dc6c1)) {
     iStack_4 = 0;
-    lVar3 = menuscr_leaf_sub_002afef0(param_1,param_2,auStack_10,&iStack_4);
+    lVar3 = maybe_SeqGen_ReadVarLen(param_1,param_2,auStack_10,&iStack_4);
     iVar7 = (int)param_1;
     if (lVar3 != 0) {
       auStack_10[iStack_4] = 0xff;

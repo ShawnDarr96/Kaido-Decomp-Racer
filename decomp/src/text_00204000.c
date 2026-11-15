@@ -1062,11 +1062,11 @@ void Garage3d_Draw(void)
   }
   else {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar8,iVar6);
+      uVar3 = MenuObjSet_GetEntry(iVar8,iVar6);
       iVar5 = (int)uVar3;
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
-        lVar4 = showroom_leaf_sub_002d5370(iVar7,*(undefined4 *)(iVar5 + 0x14));
+        lVar4 = MenuObjSet_GetEntry(iVar7,*(undefined4 *)(iVar5 + 0x14));
         if ((lVar4 != 0) && ((*(uint *)(iVar5 + 0x18) & 1) != 0)) {
           CarModel_SetHeadLight(*(undefined4 *)((int)lVar4 + 0x10),0,*(undefined4 *)(iVar5 + 0x10));
         }
@@ -1084,11 +1084,11 @@ void Garage3d_Draw(void)
   }
   else {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar9,iVar8);
+      uVar3 = MenuObjSet_GetEntry(iVar9,iVar8);
       iVar6 = (int)uVar3;
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
-        lVar4 = showroom_leaf_sub_002d5370(iVar7,*(undefined4 *)(iVar6 + 0x14));
+        lVar4 = MenuObjSet_GetEntry(iVar7,*(undefined4 *)(iVar6 + 0x14));
         if ((lVar4 != 0) && ((*(uint *)(iVar6 + 0x18) & 1) != 0)) {
           CarModel_SetBrakeLight(*(undefined4 *)((int)lVar4 + 0x10),0,*(undefined4 *)(iVar6 + 0x10))
           ;
@@ -1108,8 +1108,8 @@ void Garage3d_Draw(void)
   }
   else {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar7,iVar8);
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      uVar3 = MenuObjSet_GetEntry(iVar7,iVar8);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
         AsyncRes_Poll(*(undefined4 *)((int)uVar3 + 0x10),0xc);
       }
@@ -1123,8 +1123,8 @@ void Garage3d_Draw(void)
   }
   else {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar10,iVar7);
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      uVar3 = MenuObjSet_GetEntry(iVar10,iVar7);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
         AsyncRes_Poll(*(undefined4 *)((int)uVar3 + 0x10),0xc);
       }
@@ -1135,8 +1135,8 @@ void Garage3d_Draw(void)
   iVar7 = 0;
   if (0 < iVar6) {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar11,iVar7);
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      uVar3 = MenuObjSet_GetEntry(iVar11,iVar7);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
         AsyncRes_Poll(*(undefined4 *)((int)uVar3 + 0x10),0xc);
       }
@@ -1206,7 +1206,7 @@ void Garage3d_Free(void)
   
   uVar1 = 0;
   do {
-    showroom_exit_sub_002d48e0(uVar1 & 0xff);
+    MenuObjSet_Free(uVar1 & 0xff);
     uVar1 = uVar1 + 1;
   } while ((int)uVar1 < 8);
   Course_FreeModels();
@@ -1237,7 +1237,7 @@ void Garage3d_Load(char param_1,undefined8 param_2)
   uVar1 = 0;
   pcRam0036f4a0[1] = '@';
   do {
-    showroom_load_sub_002d4940(uVar1 & 0xff,6);
+    MenuObjSet_Alloc(uVar1 & 0xff,6);
     uVar1 = uVar1 + 1;
   } while ((int)uVar1 < 8);
   SceneObj_SetGlobalFlags(param_2);

@@ -104,7 +104,7 @@ void SeqGen_Shutdown(void)
   do {
     iVar1 = iRam0036f7e0 + iVar2;
     maybe_SeqSrc_Free(iVar1 + 0x158);
-    menuscr_exit_sub_002afbd0(iVar1 + 0x1ec);
+    SeqGen_FreeData(iVar1 + 0x1ec);
     if (*(int *)(iVar1 + 0x2d8) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x2d8) = 0;
@@ -129,7 +129,7 @@ void SeqGen_Shutdown(void)
   do {
     iVar1 = iRam0036f7e0 + iVar2;
     maybe_SeqSrc_Free(iVar1 + 0x6e98);
-    menuscr_exit_sub_002afbd0(iVar1 + 0x6f2c);
+    SeqGen_FreeData(iVar1 + 0x6f2c);
     if (*(int *)(iVar1 + 0x7018) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x7018) = 0;
@@ -473,27 +473,27 @@ void Result_BuildRaceEntry(int param_1)
   cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x03') {
     if (iRam0036f7f0 == 0) {
-      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2);
+      NameEntry_SetMode(param_1 + 0x40c,2);
     }
     else {
-      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,5);
+      NameEntry_SetMode(param_1 + 0x40c,2,5);
     }
   }
   else if (cVar2 == '\x02') {
     if (iRam0036f7f0 == 0) {
-      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,2);
+      NameEntry_SetMode(param_1 + 0x40c,2,2);
     }
     else {
-      replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,4);
+      NameEntry_SetMode(param_1 + 0x40c,2,4);
     }
   }
   else {
-    replayui_leaf_sub_002dbf20(param_1 + 0x40c,2,1);
+    NameEntry_SetMode(param_1 + 0x40c,2,1);
   }
-  showroom_leaf_sub_002d8f50(0x2d9590,0x2d9780,0x2d8f70);
+  SaveUi_SetParams(0x2d9590,0x2d9780,0x2d8f70);
   *(undefined4 *)(param_1 + 0xb88) = 0;
-  replayui_anim_sub_002dbc70(param_1 + 0x40c);
-  replayui_step_sub_002dbb80(param_1 + 0x40c);
+  maybe_NameEntry_Animate(param_1 + 0x40c);
+  maybe_NameEntry_Reset(param_1 + 0x40c);
   return;
 }
 

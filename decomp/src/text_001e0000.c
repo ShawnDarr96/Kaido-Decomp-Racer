@@ -830,7 +830,7 @@ void RaceCam_UpdateIntro(undefined4 *param_1)
     if (lVar6 != 0) {
       *param_1 = 5;
     }
-    lVar6 = race_leaf_sub_001e9090();
+    lVar6 = RaceScene_IsReplay();
     if ((lVar6 != 0) && (param_1[2] == 0)) {
       param_1[2] = 1;
       Fade_ToBlack();
@@ -930,7 +930,7 @@ void RaceCam_UpdateFinish(undefined4 *param_1)
   long lVar6;
   uint uVar7;
   
-  lVar6 = race_leaf_sub_001e90b0();
+  lVar6 = RaceScene_IsFlag8000();
   if (lVar6 == 0) {
     return;
   }
@@ -958,7 +958,7 @@ void RaceCam_UpdateFinish(undefined4 *param_1)
   } while ((int)uVar7 < 2);
   if (uRam0036f1f8 == 0) {
     iVar1 = *(int *)(_g_Loading + 0x14);
-    lVar6 = race_leaf_sub_001e8fc0();
+    lVar6 = RaceScene_IsFlag10();
     if ((lVar6 == 0) && (cVar3 = RaceCtx_GetMode(), cVar3 != '\x06')) {
       if (iRam0046a590 == 0) {
         Cam_SetMode(iVar1,8);
@@ -976,7 +976,7 @@ void RaceCam_UpdateFinish(undefined4 *param_1)
     }
   }
   else {
-    lVar6 = race_leaf_sub_001e8fc0();
+    lVar6 = RaceScene_IsFlag10();
     if (lVar6 == 0) {
       uVar7 = 0;
       do {
@@ -1040,7 +1040,7 @@ void RaceCam_Task(undefined8 param_1)
       if (lVar3 != 0) {
         *(undefined4 *)(_g_Loading[5] + 0x500) = 1;
         *(undefined4 *)(_g_Loading[6] + 0x500) = 1;
-        lVar3 = race_leaf_sub_001e8fc0();
+        lVar3 = RaceScene_IsFlag10();
         uVar4 = 4;
         if (lVar3 == 0) {
           uVar4 = 3;
@@ -1138,7 +1138,7 @@ void RaceCam_Task(undefined8 param_1)
       lVar3 = RaceScene_IsPaused();
       if (lVar3 == 0) {
         puVar6[2] = 0;
-        lVar3 = race_leaf_sub_001e8fc0();
+        lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
           *puVar6 = 3;
           if ((*_g_Loading & 2) == 0) {
@@ -1452,9 +1452,9 @@ void RaceCam_UpdateReplay(int *param_1)
     param_1[6] = param_1[6] | 8;
   }
   if ((cRam0036f23c == '\x02') && (cRam0036f234 == '\x02')) {
-    race_leaf_sub_001e9030();
+    RaceScene_SetFlagB4();
   }
-  lVar13 = race_leaf_sub_001e90b0();
+  lVar13 = RaceScene_IsFlag8000();
   if (lVar13 != 0) {
     if ((param_1[6] & 1U) != 0) {
       Sema_Wait(0x36efc0);
@@ -1465,15 +1465,15 @@ void RaceCam_UpdateReplay(int *param_1)
       }
     }
     if ((param_1[6] & 7U) == 6) {
-      lVar13 = race_leaf_sub_001e9050();
+      lVar13 = RaceScene_IsFlag2();
       if (lVar13 == 0) {
-        race_leaf_sub_001e9070();
+        RaceScene_SetFlagB2();
       }
       lVar13 = RaceScene_IsRunning();
-      if ((lVar13 == 1) && (lVar13 = race_leaf_sub_001e9090(), lVar13 == 0)) {
+      if ((lVar13 == 1) && (lVar13 = RaceScene_IsReplay(), lVar13 == 0)) {
         Loading_Update();
         if (iRam0036f1f8 == 0) {
-          lVar13 = race_leaf_sub_001e8fc0();
+          lVar13 = RaceScene_IsFlag10();
           if (lVar13 == 0) {
             CourseStream_RequestTextures(fRam004311a4,0,iVar1 + 0x420,0);
             CourseStream_RequestLod(0x42c80000,fRam004311a4 + 50.0,0,iVar1 + 0x420,0);
@@ -1504,13 +1504,13 @@ void RaceCam_UpdateReplay(int *param_1)
             puVar19 = puVar19 + 1;
           } while (0 < iVar18);
           if (((((((uStack_dc & 0x60) == 0) || (lVar14 = GameState_Get_ec(), lVar14 != 0)) &&
-                (((uStack_dc & 0x20) == 0 || (lVar14 = race_leaf_sub_001e8f60(), lVar14 != 0)))) &&
-               (((uStack_dc & 0x40) == 0 || (lVar14 = race_leaf_sub_001e8f40(), lVar14 != 0)))) &&
+                (((uStack_dc & 0x20) == 0 || (lVar14 = RaceScene_IsFlag400(), lVar14 != 0)))) &&
+               (((uStack_dc & 0x40) == 0 || (lVar14 = RaceScene_IsFlag1000(), lVar14 != 0)))) &&
               (((uStack_dc & 0x100) == 0 || (bVar5 = RaceProg_Get(), 2 < bVar5)))) &&
              ((uStack_a50 = 0xc, lVar13 != 0 && (piStack_aa0[7] != 0)))) {
             Race_SetupCars(param_1,piStack_aa0[7] + 0x110,lVar13,iStack_a40);
             iVar18 = (int)lVar13;
-            if ((iStack_a40 == 0) && (lVar14 = race_leaf_sub_001e8fa0(), lVar14 != 0)) {
+            if ((iStack_a40 == 0) && (lVar14 = RaceScene_IsFlag800(), lVar14 != 0)) {
               puVar11 = (undefined1 *)0x10;
               puVar20 = auStack_f0;
               puVar3 = puVar20;
@@ -1570,7 +1570,7 @@ void RaceCam_UpdateReplay(int *param_1)
             }
             lVar14 = AsyncRes_IsReady(piStack_aa0[7]);
             if (lVar14 != 0) {
-              lVar14 = race_leaf_sub_001e8f60();
+              lVar14 = RaceScene_IsFlag400();
               if ((lVar14 == 0) || ((uStack_dc & 0x20) == 0)) {
                 puVar11 = (undefined1 *)0x10;
                 puVar20 = auStack_360;
@@ -2037,7 +2037,7 @@ LAB_001e311c:
         puVar19 = puRam004305b4;
         iVar10 = Cam_GetTargetBodyB(*(undefined4 *)(_g_Loading + 0x14));
         iVar10 = param_1[iVar10 + 7];
-        lVar13 = race_leaf_sub_001e8fc0();
+        lVar13 = RaceScene_IsFlag10();
         if (lVar13 == 0) {
           if ((iRam0036f1f8 == 1) || (cVar4 = GameState_Get_3(), cVar4 == '\x01')) {
             if (param_1[5] == 0) {
@@ -2069,7 +2069,7 @@ LAB_001e311c:
         if (*param_1 == 0) {
           cVar4 = GameState_Get_2();
           if ((cVar4 == '\x01') || (cVar4 = GameState_Get_2(), cVar4 == '\x04')) {
-            lVar13 = race_leaf_sub_001e8fc0();
+            lVar13 = RaceScene_IsFlag10();
             if (lVar13 == 0) {
               lVar13 = Cam_IsIdle(iVar1);
               if ((lVar13 != 0) && (ScreenFx_Draw(param_1 + 0x388), iRam0036f1f8 == 1)) {
@@ -2087,7 +2087,7 @@ LAB_001e311c:
           }
         }
         else {
-          lVar13 = race_leaf_sub_001e8fc0();
+          lVar13 = RaceScene_IsFlag10();
           if (lVar13 != 0) {
             iRam0036f3b4 = iRam0036f3b4 + 1;
             Weather_Draw(param_1[3]);
@@ -2097,7 +2097,7 @@ LAB_001e311c:
           sceVu0CopyVector(0x46a060,param_1[7] + 0x150);
           uRam0046a028 = 8;
         }
-        showroom_step_sub_002d3430();
+        maybe_ReplayCam_Update();
       }
     }
   }

@@ -947,7 +947,7 @@ void Car_UpdateTractionControl(int param_1)
 }
 
 // 0x0016dae0  size 0x2c
-void car_leaf_sub_0016dae0(int param_1)
+void maybe_Car_ResetWheelForces(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x264) = 0;
@@ -1712,7 +1712,7 @@ void Car_SyncFromRigidBody(int param_1)
 }
 
 // 0x0016eae0  size 0x14
-void car_leaf_sub_0016eae0(int param_1)
+void maybe_Car_ResetShift(int param_1)
 
 {
   *(undefined1 *)(param_1 + 0x8b0) = 0;
@@ -1788,7 +1788,7 @@ LAB_0016eb9c:
 }
 
 // 0x0016ecd0  size 0xc0
-void car_leaf_sub_0016ecd0(float param_1,int param_2)
+void maybe_Car_SetRpmLimit(float param_1,int param_2)
 
 {
   undefined4 uVar1;

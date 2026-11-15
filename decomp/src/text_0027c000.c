@@ -441,7 +441,7 @@ void MenuPage41_Enter(void)
 // 0x0027d7c0  size 0x400
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_0027d7c0
+void maybe_Setting_AnimateGauge
                (float param_1,float param_2,float *param_3,int param_4,long param_5,int param_6)
 
 {
@@ -562,7 +562,7 @@ void ScrGarage_Draw_InitialTorque(int param_1,long param_2)
       uVar5 = *(uint *)(param_1 + 0x30);
     }
     else {
-      menuscr_draw_sub_0027e4b0(cVar1 * 10,0x3a,0x2a,0x1d3,0x1d4,0x1d5,0);
+      maybe_Setting_DrawValueLabel(cVar1 * 10,0x3a,0x2a,0x1d3,0x1d4,0x1d5,0);
       iVar4 = UiMgr_FindLayout(0x3a);
       UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,DAT_0032e650,8);
       uVar5 = *(uint *)(param_1 + 0x30);
@@ -572,7 +572,7 @@ void ScrGarage_Draw_InitialTorque(int param_1,long param_2)
       UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,0x19,8);
     }
     else {
-      menuscr_draw_sub_0027e4b0(cVar2 * 10,0x3a,0x2b,0x1d3,0x1d4,0x1d5,0);
+      maybe_Setting_DrawValueLabel(cVar2 * 10,0x3a,0x2b,0x1d3,0x1d4,0x1d5,0);
       iVar4 = UiMgr_FindLayout(0x3a);
       UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,DAT_0032e654,8);
     }
@@ -653,10 +653,10 @@ void MenuScr_Draw_SpringRate(int param_1,long param_2)
     MenuWnd_DrawText(0x3d,0x3c,0x1a5);
     MenuWnd_DrawText(0x3d,0x3f,0x1a4);
     MenuWnd_DrawText(0x3d,0x40,0x1a5);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xce) * 10,0x3d,0x48,0x1d0,0x1d1,0x1d2,0);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xcf) * 10,0x3d,0x49,0x1d0,0x1d1,0x1d2,0);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xd0) * 10,0x3d,0x4a,0x1d0,0x1d1,0x1d2,0);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xd1) * 10,0x3d,0x4b,0x1d0,0x1d1,0x1d2,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xce) * 10,0x3d,0x48,0x1d0,0x1d1,0x1d2,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xcf) * 10,0x3d,0x49,0x1d0,0x1d1,0x1d2,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xd0) * 10,0x3d,0x4a,0x1d0,0x1d1,0x1d2,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xd1) * 10,0x3d,0x4b,0x1d0,0x1d1,0x1d2,0);
   }
   else {
     MenuWnd_DrawText(0x3e,0x4b,0x1a8);
@@ -672,16 +672,16 @@ void MenuScr_Draw_SpringRate(int param_1,long param_2)
     MenuWnd_DrawText(0x3e,0x59,0x2c);
     MenuWnd_DrawText(0x3e,0x5a,0x2d);
     MenuWnd_DrawText(0x3e,0x5b,0x2e);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xd2) * 10,0x3e,0x5e,0x1d0,0x1d1,0x1d2,0);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xd3) * 10,0x3e,0x5f,0x1d0,0x1d1,0x1d2,0);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xd4) * 5,0x3e,0x60,0x1d6,0x1d7,0x1d8,0);
-    menuscr_draw_sub_0027e4b0(*(char *)(param_1 + 0xd5) * 5,0x3e,0x61,0x1d6,0x1d7,0x1d8,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xd2) * 10,0x3e,0x5e,0x1d0,0x1d1,0x1d2,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xd3) * 10,0x3e,0x5f,0x1d0,0x1d1,0x1d2,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xd4) * 5,0x3e,0x60,0x1d6,0x1d7,0x1d8,0);
+    maybe_Setting_DrawValueLabel(*(char *)(param_1 + 0xd5) * 5,0x3e,0x61,0x1d6,0x1d7,0x1d8,0);
   }
   return;
 }
 
 // 0x0027e4b0  size 0x13c
-void menuscr_draw_sub_0027e4b0
+void maybe_Setting_DrawValueLabel
                (long param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                undefined8 param_5,undefined8 param_6,long param_7)
 
@@ -719,7 +719,7 @@ void menuscr_draw_sub_0027e4b0
 // 0x0027e5f0  size 0x380
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_draw_sub_0027e5f0(int *param_1)
+void maybe_PartInfo_Draw(int *param_1)
 
 {
   short sVar1;
@@ -1033,7 +1033,7 @@ void MenuScr_Draw_Cancel(undefined8 param_1)
   else {
     MenuWnd_DrawText(7,0x2e,*(undefined4 *)(*piVar7 * 4 + 0x36ee00));
   }
-  lVar5 = menuscr_leaf_sub_002aca40(param_1);
+  lVar5 = maybe_Setting_IsModified(param_1);
   if (lVar5 == 1) {
     iVar2 = UiMgr_FindLayout(0x3c);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4,0x24,8);
@@ -1160,7 +1160,7 @@ void MenuScr_Draw_TractionControl(undefined8 param_1)
   else {
     MenuWnd_SetItemVisible(0);
   }
-  lVar4 = menuscr_leaf_sub_002aca40(param_1);
+  lVar4 = maybe_Setting_IsModified(param_1);
   if (lVar4 == 1) {
     iVar3 = UiMgr_FindLayout(0x3b);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x29,8);
@@ -1178,7 +1178,7 @@ void MenuScr_Draw_TractionControl(undefined8 param_1)
       *(undefined4 *)(iVar3 + 0x3bc) = 1;
     }
   }
-  menuscr_anim_sub_0027d7c0(0x42d00000,0x44020000,&uStack_30,1,piVar6[0xe],*piVar6);
+  maybe_Setting_AnimateGauge(0x42d00000,0x44020000,&uStack_30,1,piVar6[0xe],*piVar6);
   MenuWnd_DrawText(0x3b,0x2a,0x198);
   MenuWnd_DrawLabel(0x3b,0x1e,0x29,0);
   MenuWnd_DrawLabel(0x3b,0x1f,0x29,100);
@@ -1524,7 +1524,7 @@ void ScrGarage_Draw_SaveChangesAnd(undefined8 param_1)
       }
     }
   }
-  menuscr_anim_sub_0027d7c0(0x43300000,0x44020000,afStack_f0,6,piVar11[0xe],*piVar11);
+  maybe_Setting_AnimateGauge(0x43300000,0x44020000,afStack_f0,6,piVar11[0xe],*piVar11);
   if (*piVar11 < 2) {
     if (piVar11[0xd] == 1) {
       MenuWnd_DrawCursor(0);
@@ -1620,7 +1620,7 @@ void ScrGarage_Draw_SaveChangesAnd(undefined8 param_1)
   else {
     MenuWnd_SetItemVisible(0);
   }
-  lVar7 = menuscr_leaf_sub_002aca40(param_1);
+  lVar7 = maybe_Setting_IsModified(param_1);
   if (lVar7 == 1) {
     iVar3 = UiMgr_FindLayout(0x3a);
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x2e,8);

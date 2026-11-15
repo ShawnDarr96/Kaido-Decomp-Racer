@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002d40e0  size 0x200
-int showroom_step_sub_002d40e0(short *param_1,short *param_2)
+int maybe_GarageSort_ByWeight(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -58,7 +58,7 @@ int showroom_step_sub_002d40e0(short *param_1,short *param_2)
 }
 
 // 0x002d42e0  size 0x200
-int showroom_step_sub_002d42e0(short *param_1,short *param_2)
+int maybe_GarageSort_ByValue(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -113,7 +113,7 @@ int showroom_step_sub_002d42e0(short *param_1,short *param_2)
 }
 
 // 0x002d44e0  size 0x200
-int showroom_step_sub_002d44e0(short *param_1,short *param_2)
+int maybe_GarageSort_ByMaker(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -168,7 +168,7 @@ int showroom_step_sub_002d44e0(short *param_1,short *param_2)
 }
 
 // 0x002d46e0  size 0x200
-int showroom_step_sub_002d46e0(short *param_1,short *param_2)
+int maybe_GarageSort_ByClass(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -223,7 +223,7 @@ int showroom_step_sub_002d46e0(short *param_1,short *param_2)
 }
 
 // 0x002d48e0  size 0x54
-void showroom_exit_sub_002d48e0(uint param_1)
+void MenuObjSet_Free(uint param_1)
 
 {
   int iVar1;
@@ -239,7 +239,7 @@ void showroom_exit_sub_002d48e0(uint param_1)
 }
 
 // 0x002d4940  size 0xa8
-void showroom_load_sub_002d4940(uint param_1,int param_2)
+void MenuObjSet_Alloc(uint param_1,int param_2)
 
 {
   int iVar1;
@@ -271,7 +271,7 @@ void showroom_load_sub_002d4940(uint param_1,int param_2)
 }
 
 // 0x002d49f0  size 0xe4
-undefined4 showroom_step_sub_002d49f0(byte param_1,int param_2)
+undefined4 maybe_MenuObjSet_GetObject(byte param_1,int param_2)
 
 {
   char cVar1;
@@ -286,7 +286,7 @@ undefined4 showroom_step_sub_002d49f0(byte param_1,int param_2)
     iVar2 = *(int *)(iVar2 + 0x14) + param_2 * 0x1c;
   }
   uVar3 = 0;
-  if ((iVar2 != 0) && (cVar1 = showroom_step_sub_002d5e40(iVar2), cVar1 != '\x01')) {
+  if ((iVar2 != 0) && (cVar1 = MenuObj_IsReady(iVar2), cVar1 != '\x01')) {
     if (param_1 == 7) {
       uVar3 = *(undefined4 *)(iVar2 + 0x10);
     }
@@ -307,7 +307,7 @@ undefined4 showroom_step_sub_002d49f0(byte param_1,int param_2)
 }
 
 // 0x002d4ae0  size 0x250
-void showroom_step_sub_002d4ae0(ulong param_1)
+void maybe_MenuObjSet_UpdateAll(ulong param_1)
 
 {
   int iVar1;
@@ -331,7 +331,7 @@ void showroom_step_sub_002d4ae0(ulong param_1)
               if (uVar2 == 8) {
                 uVar2 = 0;
                 do {
-                  showroom_step_sub_002d4ae0(uVar2 & 0xff);
+                  maybe_MenuObjSet_UpdateAll(uVar2 & 0xff);
                   uVar2 = uVar2 + 1;
                 } while ((int)uVar2 < 8);
               }
@@ -340,7 +340,7 @@ void showroom_step_sub_002d4ae0(ulong param_1)
                 iVar3 = 0;
                 if (0 < *(int *)(iVar1 + 0xc)) {
                   do {
-                    showroom_step_sub_002d4d40(uVar2,iVar3,0,0);
+                    maybe_MenuObjSet_SetLights(uVar2,iVar3,0,0);
                     iVar3 = iVar3 + 1;
                   } while (iVar3 < *(int *)(iVar1 + 0xc));
                 }
@@ -353,7 +353,7 @@ void showroom_step_sub_002d4ae0(ulong param_1)
             iVar3 = 0;
             if (0 < *(int *)(iVar1 + 0xc)) {
               do {
-                showroom_step_sub_002d4d40(uVar4,iVar3,0,0);
+                maybe_MenuObjSet_SetLights(uVar4,iVar3,0,0);
                 iVar3 = iVar3 + 1;
               } while (iVar3 < *(int *)(iVar1 + 0xc));
             }
@@ -366,7 +366,7 @@ void showroom_step_sub_002d4ae0(ulong param_1)
         iVar3 = 0;
         if (0 < *(int *)(iVar1 + 0xc)) {
           do {
-            showroom_step_sub_002d4d40(uVar6 & 0xff,iVar3,0,0);
+            maybe_MenuObjSet_SetLights(uVar6 & 0xff,iVar3,0,0);
             iVar3 = iVar3 + 1;
           } while (iVar3 < *(int *)(iVar1 + 0xc));
         }
@@ -379,7 +379,7 @@ void showroom_step_sub_002d4ae0(ulong param_1)
     iVar3 = 0;
     if (0 < *(int *)(iVar1 + 0xc)) {
       do {
-        showroom_step_sub_002d4d40(param_1,iVar3,0,0);
+        maybe_MenuObjSet_SetLights(param_1,iVar3,0,0);
         iVar3 = iVar3 + 1;
       } while (iVar3 < *(int *)(iVar1 + 0xc));
     }
@@ -388,7 +388,7 @@ void showroom_step_sub_002d4ae0(ulong param_1)
 }
 
 // 0x002d4d40  size 0x1e0
-void showroom_step_sub_002d4d40(byte param_1,int param_2,long param_3,undefined8 param_4)
+void maybe_MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8 param_4)
 
 {
   char cVar1;
@@ -401,7 +401,7 @@ void showroom_step_sub_002d4d40(byte param_1,int param_2,long param_3,undefined8
   else {
     iVar2 = *(int *)(iVar2 + 0x14) + param_2 * 0x1c;
   }
-  if ((((iVar2 != 0) && (cVar1 = showroom_step_sub_002d5e40(iVar2), cVar1 != '\x01')) &&
+  if ((((iVar2 != 0) && (cVar1 = MenuObj_IsReady(iVar2), cVar1 != '\x01')) &&
       (*(int *)(iVar2 + 4) = (int)param_3, param_3 != 0)) && (param_1 < 8)) {
                     /* WARNING: Switch is manually overridden */
     switch(param_1) {
@@ -435,7 +435,7 @@ void showroom_step_sub_002d4d40(byte param_1,int param_2,long param_3,undefined8
 }
 
 // 0x002d4f20  size 0x7c
-undefined8 showroom_step_sub_002d4f20(uint param_1,int param_2)
+undefined8 maybe_MenuObjSet_IsLoaded(uint param_1,int param_2)
 
 {
   int iVar1;
@@ -452,13 +452,13 @@ undefined8 showroom_step_sub_002d4f20(uint param_1,int param_2)
     uVar2 = 0;
   }
   else {
-    uVar2 = showroom_step_sub_002d5e40();
+    uVar2 = MenuObj_IsReady();
   }
   return uVar2;
 }
 
 // 0x002d4fa0  size 0x258
-undefined4 showroom_step_sub_002d4fa0(uint param_1,int param_2,undefined8 param_3)
+undefined4 maybe_MenuObjSet_FindByName(uint param_1,int param_2,undefined8 param_3)
 
 {
   bool bVar1;
@@ -486,14 +486,14 @@ undefined4 showroom_step_sub_002d4fa0(uint param_1,int param_2,undefined8 param_
       }
       if (param_2 == *(int *)(pcVar10 + 8)) {
         if (param_2 < 0) goto LAB_002d51a8;
-        cVar2 = showroom_step_sub_002d5e40(pcVar10);
+        cVar2 = MenuObj_IsReady(pcVar10);
         if (cVar2 == '\x01') {
           bVar1 = false;
         }
         else {
           iVar6 = *(int *)(pcVar10 + 8);
           iVar8 = 0;
-          cVar2 = showroom_step_sub_002d5e40(pcVar10);
+          cVar2 = MenuObj_IsReady(pcVar10);
           if (cVar2 != '\x01') {
             cVar2 = *pcVar10;
             if (cVar2 == '\x02') {
@@ -555,15 +555,15 @@ LAB_002d51a8:
 }
 
 // 0x002d5210  size 0x20
-void showroom_step_sub_002d5210(uint param_1)
+void MenuObjSet_Step(uint param_1)
 
 {
-  showroom_step_sub_002d53b0(iRam0036f834 + (param_1 & 0xff) * 0x14 + 4);
+  maybe_MenuObj_StepState(iRam0036f834 + (param_1 & 0xff) * 0x14 + 4);
   return;
 }
 
 // 0x002d5230  size 0x2c
-void showroom_exit_sub_002d5230(void)
+void MenuObj_Shutdown(void)
 
 {
   if (iRam0036f834 != 0) {
@@ -574,7 +574,7 @@ void showroom_exit_sub_002d5230(void)
 }
 
 // 0x002d5260  size 0x110
-void showroom_load_sub_002d5260(undefined8 param_1)
+void MenuObj_Init(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -635,7 +635,7 @@ void showroom_load_sub_002d5260(undefined8 param_1)
 }
 
 // 0x002d5370  size 0x40
-int showroom_leaf_sub_002d5370(int param_1,int param_2)
+int MenuObjSet_GetEntry(int param_1,int param_2)
 
 {
   int iVar1;
@@ -650,7 +650,7 @@ int showroom_leaf_sub_002d5370(int param_1,int param_2)
 }
 
 // 0x002d53b0  size 0x82c
-void showroom_step_sub_002d53b0(byte *param_1,uint param_2,int *param_3)
+void maybe_MenuObj_StepState(byte *param_1,uint param_2,int *param_3)
 
 {
   byte bVar1;
@@ -803,7 +803,7 @@ LAB_002d5608:
       else {
         pcVar16 = (char *)(*(int *)(param_1 + 0x10) + iStack_a0);
       }
-      cVar4 = showroom_step_sub_002d5e40(pcVar16);
+      cVar4 = MenuObj_IsReady(pcVar16);
       bVar2 = true;
       if (cVar4 != '\x01') {
         iVar15 = 0;
@@ -813,14 +813,14 @@ LAB_002d5608:
           do {
             if (-1 < *piVar8) {
               iVar10 = *piVar9;
-              cVar5 = showroom_step_sub_002d5e40(pcVar16);
+              cVar5 = MenuObj_IsReady(pcVar16);
               if (cVar5 == '\x01') {
                 bVar3 = false;
               }
               else {
                 iVar12 = *(int *)(pcVar16 + 8);
                 iVar11 = 0;
-                cVar5 = showroom_step_sub_002d5e40(pcVar16);
+                cVar5 = MenuObj_IsReady(pcVar16);
                 if (cVar5 != '\x01') {
                   cVar5 = *pcVar16;
                   if (cVar5 == '\x02') {
@@ -874,7 +874,7 @@ LAB_002d5938:
           } while (iVar15 < (int)uVar13);
         }
         if ((bVar2) && (cVar4 != '\x02')) {
-          showroom_step_sub_002d5c00(pcVar16);
+          maybe_MenuObj_Release(pcVar16);
         }
       }
       iVar15 = *(int *)(param_1 + 8);
@@ -902,14 +902,14 @@ LAB_002d5938:
             }
             if (iVar10 == *(int *)(pcVar16 + 8)) {
               if (iVar10 < 0) goto LAB_002d5aa0;
-              cVar4 = showroom_step_sub_002d5e40(pcVar16);
+              cVar4 = MenuObj_IsReady(pcVar16);
               if (cVar4 == '\x01') {
                 bVar2 = false;
               }
               else {
                 iVar15 = *(int *)(pcVar16 + 8);
                 iVar7 = 0;
-                cVar4 = showroom_step_sub_002d5e40(pcVar16);
+                cVar4 = MenuObj_IsReady(pcVar16);
                 if (cVar4 != '\x01') {
                   cVar4 = *pcVar16;
                   if (cVar4 == '\x02') {
@@ -996,7 +996,7 @@ LAB_002d5aa0:
         iVar7 = 0;
 LAB_002d5b60:
         if (iVar7 != 0) {
-          showroom_step_sub_002d5ce0(iVar7,*piStack_60,piStack_60 + 1);
+          maybe_MenuObj_Create(iVar7,*piStack_60,piStack_60 + 1);
         }
       }
       iVar15 = iVar15 + 1;
@@ -1008,12 +1008,12 @@ LAB_002d5b60:
 }
 
 // 0x002d5c00  size 0xd4
-void showroom_step_sub_002d5c00(byte *param_1)
+void maybe_MenuObj_Release(byte *param_1)
 
 {
   char cVar1;
   
-  cVar1 = showroom_step_sub_002d5e40();
+  cVar1 = MenuObj_IsReady();
   if (cVar1 == '\x01') {
     return;
   }
@@ -1036,10 +1036,10 @@ void showroom_step_sub_002d5c00(byte *param_1)
       CarModel_Release(*(undefined4 *)(param_1 + 0x10));
       break;
     case 6:
-      showroom_step_sub_002d6460(*(undefined4 *)(param_1 + 0x10));
+      maybe_GarageBg_ResetObject(*(undefined4 *)(param_1 + 0x10));
       break;
     case 7:
-      showroom_step_sub_002d8630(*(undefined4 *)(param_1 + 0x10));
+      maybe_ShowroomBg_ResetObject(*(undefined4 *)(param_1 + 0x10));
     }
   }
 LAB_002d5cbc:
@@ -1055,14 +1055,14 @@ LAB_002d5cbc:
 }
 
 // 0x002d5ce0  size 0x154
-undefined4 showroom_step_sub_002d5ce0(byte *param_1,undefined8 param_2,undefined8 param_3)
+undefined4 maybe_MenuObj_Create(byte *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   char cVar1;
   undefined4 uVar2;
   int iVar3;
   
-  cVar1 = showroom_step_sub_002d5e40();
+  cVar1 = MenuObj_IsReady();
   if (cVar1 != '\x01') {
     return 0xffffffff;
   }
@@ -1102,11 +1102,11 @@ undefined4 showroom_step_sub_002d5ce0(byte *param_1,undefined8 param_2,undefined
       *(undefined4 *)(param_1 + 0x10) = uVar2;
       break;
     case 6:
-      uVar2 = showroom_load_sub_002d6000(param_2);
+      uVar2 = maybe_GarageBg_LoadChunk(param_2);
       *(undefined4 *)(param_1 + 0x10) = uVar2;
       break;
     case 7:
-      uVar2 = showroom_load_sub_002d7d40(param_2);
+      uVar2 = maybe_ShowroomBg_LoadChunk(param_2);
       *(undefined4 *)(param_1 + 0x10) = uVar2;
     }
   }
@@ -1123,7 +1123,7 @@ LAB_002d5e04:
 }
 
 // 0x002d5e40  size 0xf8
-ulong showroom_step_sub_002d5e40(byte *param_1)
+ulong MenuObj_IsReady(byte *param_1)
 
 {
   int iVar1;
@@ -1171,7 +1171,7 @@ ulong showroom_step_sub_002d5e40(byte *param_1)
 }
 
 // 0x002d5f40  size 0xb8
-void showroom_step_sub_002d5f40(void)
+void maybe_GarageBg_DrawObjects(void)
 
 {
   int iVar1;
@@ -1188,7 +1188,7 @@ void showroom_step_sub_002d5f40(void)
       uStack_10 = 0;
       uStack_c = 0;
       uStack_8 = 0;
-      showroom_step_sub_002d6290(iVar2,&uStack_10);
+      maybe_GarageBg_DrawObject(iVar2,&uStack_10);
       *(uint *)(iVar2 + 0x28) = *(uint *)(iVar2 + 0x28) & 0xfffffff3;
     }
     iVar2 = iVar2 + 0xb0;
@@ -1197,7 +1197,7 @@ void showroom_step_sub_002d5f40(void)
 }
 
 // 0x002d6000  size 0x90
-long showroom_load_sub_002d6000(int param_1)
+long maybe_GarageBg_LoadChunk(int param_1)
 
 {
   undefined4 uVar1;
@@ -1219,7 +1219,7 @@ long showroom_load_sub_002d6000(int param_1)
 }
 
 // 0x002d6090  size 0x54
-void showroom_exit_sub_002d6090(void)
+void GarageBg_Free(void)
 
 {
   if (iRam0046a1a0 != 0) {
@@ -1234,7 +1234,7 @@ void showroom_exit_sub_002d6090(void)
 }
 
 // 0x002d60f0  size 0x19c
-void showroom_load_sub_002d60f0(undefined8 param_1,uint param_2,undefined4 param_3)
+void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -1281,7 +1281,7 @@ void showroom_load_sub_002d60f0(undefined8 param_1,uint param_2,undefined4 param
 }
 
 // 0x002d6290  size 0x1c4
-void showroom_step_sub_002d6290(int param_1,undefined1 *param_2)
+void maybe_GarageBg_DrawObject(int param_1,undefined1 *param_2)
 
 {
   undefined8 uVar1;
@@ -1331,7 +1331,7 @@ void showroom_step_sub_002d6290(int param_1,undefined1 *param_2)
 }
 
 // 0x002d6460  size 0x54
-void showroom_step_sub_002d6460(int param_1)
+void maybe_GarageBg_ResetObject(int param_1)
 
 {
   maybe_Course_GetItemA();
@@ -1348,7 +1348,7 @@ void showroom_step_sub_002d6460(int param_1)
 }
 
 // 0x002d64c0  size 0x120
-void showroom_step_sub_002d64c0
+void maybe_GarageBg_OnLoaded
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -1375,7 +1375,7 @@ void showroom_step_sub_002d64c0
 }
 
 // 0x002d65e0  size 0x28
-void showroom_leaf_sub_002d65e0(undefined4 *param_1)
+void Quat_Identity(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -1390,7 +1390,7 @@ void showroom_leaf_sub_002d65e0(undefined4 *param_1)
 }
 
 // 0x002d6610  size 0x98
-void showroom_leaf_sub_002d6610(undefined4 *param_1,int param_2)
+void maybe_MenuCar_GetSpinPose(undefined4 *param_1,int param_2)
 
 {
   float *pfVar1;
@@ -1421,7 +1421,7 @@ void showroom_leaf_sub_002d6610(undefined4 *param_1,int param_2)
 }
 
 // 0x002d66b0  size 0xa0
-void showroom_leaf_sub_002d66b0(float *param_1,int param_2)
+void maybe_MenuCar_GetSpinOffset(float *param_1,int param_2)
 
 {
   float *pfVar1;
@@ -1446,14 +1446,14 @@ void showroom_leaf_sub_002d66b0(float *param_1,int param_2)
 }
 
 // 0x002d6750  size 0x18
-undefined * showroom_leaf_sub_002d6750(int param_1)
+undefined * maybe_MenuCar_GetSpinTable(int param_1)
 
 {
   return (&PTR_DAT_00341ec0)[param_1];
 }
 
 // 0x002d6770  size 0xac
-void showroom_step_sub_002d6770(void)
+void maybe_GarageBg_Draw(void)
 
 {
   int iVar1;
@@ -1467,33 +1467,33 @@ void showroom_step_sub_002d6770(void)
   iVar4 = 0;
   if (0 < *(int *)(iRam0036f834 + 0x84)) {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar5,iVar4);
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      uVar3 = MenuObjSet_GetEntry(iVar5,iVar4);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
         AsyncRes_Poll(*(int *)((int)uVar3 + 0x10) + 0x28,0xc);
       }
       iVar4 = iVar4 + 1;
     } while (iVar4 < *(int *)(iVar1 + 0x84));
   }
-  showroom_step_sub_002d5f40();
+  maybe_GarageBg_DrawObjects();
   return;
 }
 
 // 0x002d6820  size 0x24
-void showroom_step_sub_002d6820(void)
+void GarageBg_Unload(void)
 
 {
-  showroom_exit_sub_002d48e0(6);
-  showroom_exit_sub_002d6090();
+  MenuObjSet_Free(6);
+  GarageBg_Free();
   return;
 }
 
 // 0x002d6850  size 0x40
-void showroom_step_sub_002d6850(undefined8 param_1,undefined8 param_2)
+void GarageBg_Load(undefined8 param_1,undefined8 param_2)
 
 {
-  showroom_load_sub_002d60f0(*puRam0036f834,param_1,param_2);
-  showroom_load_sub_002d4940(6,param_1);
+  GarageBg_Alloc(*puRam0036f834,param_1,param_2);
+  MenuObjSet_Alloc(6,param_1);
   return;
 }
 
@@ -1505,7 +1505,7 @@ void Showroom_Nop(void)
 }
 
 // 0x002d68b0  size 0x10
-void showroom_leaf_sub_002d68b0(int param_1)
+void maybe_Showroom_SetCallback(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0x2d6890;
@@ -1517,7 +1517,7 @@ void showroom_leaf_sub_002d68b0(int param_1)
 /* WARNING: Removing unreachable block (ram,0x002d6b54) */
 /* WARNING: Removing unreachable block (ram,0x002d6ba0) */
 
-void showroom_step_sub_002d68c0(undefined8 param_1,int param_2,uint param_3)
+void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
 
 {
   char cVar1;
@@ -1661,7 +1661,7 @@ void showroom_step_sub_002d68c0(undefined8 param_1,int param_2,uint param_3)
 // 0x002d6e40  size 0x8c4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void showroom_draw_sub_002d6e40(void)
+void maybe_IntroCar_Draw(void)
 
 {
   uint *puVar1;
@@ -1925,13 +1925,13 @@ void showroom_draw_sub_002d6e40(void)
     if (1 < lVar6) {
       do {
         uVar7 = RaceCar_Get(iVar9);
-        showroom_step_sub_002d68c0(auStack_1b90,uVar7,0xff0000);
+        maybe_IntroCar_UpdatePose(auStack_1b90,uVar7,0xff0000);
         iVar9 = iVar9 + 1;
         iVar5 = GameState_GetRacerCount();
       } while (iVar9 < iVar5);
     }
     uVar7 = RaceCar_Get(0);
-    showroom_step_sub_002d68c0(auStack_1b90,uVar7,0xff);
+    maybe_IntroCar_UpdatePose(auStack_1b90,uVar7,0xff);
     Layer_Close(auStack_1b90,0);
     Layer_Close(auStack_1b90,1);
   }
@@ -1947,7 +1947,7 @@ void Pad_GetPort_Wrap(void)
 }
 
 // 0x002d7740  size 0x340
-void showroom_step_sub_002d7740(undefined8 param_1,undefined8 param_2)
+void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
 
 {
   uint *puVar1;
@@ -2072,7 +2072,7 @@ void showroom_step_sub_002d7740(undefined8 param_1,undefined8 param_2)
 // 0x002d7a80  size 0x110
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void showroom_load_sub_002d7a80(undefined8 param_1)
+void maybe_IntroCar_LoadFile(undefined8 param_1)
 
 {
   int iVar1;
@@ -2127,7 +2127,7 @@ void showroom_load_sub_002d7a80(undefined8 param_1)
 }
 
 // 0x002d7ba0  size 0x4c
-void showroom_exit_sub_002d7ba0(void)
+void IntroCar_Free(void)
 
 {
   if (*(int *)(iRam0036f85c + 0xc) != 0) {
@@ -2142,7 +2142,7 @@ void showroom_exit_sub_002d7ba0(void)
 }
 
 // 0x002d7bf0  size 0x84
-void showroom_load_sub_002d7bf0(undefined8 param_1)
+void IntroCar_Load(undefined8 param_1)
 
 {
   puRam0036f85c = (undefined4 *)Mem_Alloc16(0x24,param_1);
@@ -2155,12 +2155,12 @@ void showroom_load_sub_002d7bf0(undefined8 param_1)
   puRam0036f85c[6] = 1;
   puRam0036f85c[7] = 0;
   puRam0036f85c[8] = 0x41800000;
-  showroom_load_sub_002d7a80(param_1);
+  maybe_IntroCar_LoadFile(param_1);
   return;
 }
 
 // 0x002d7c80  size 0xb8
-void showroom_step_sub_002d7c80(void)
+void maybe_ShowroomBg_DrawObjects(void)
 
 {
   int iVar1;
@@ -2177,7 +2177,7 @@ void showroom_step_sub_002d7c80(void)
       uStack_10 = 0;
       uStack_c = 0;
       uStack_8 = 0;
-      showroom_step_sub_002d8150(iVar2,&uStack_10);
+      maybe_ShowroomBg_DrawObject(iVar2,&uStack_10);
       *(uint *)(iVar2 + 0x28) = *(uint *)(iVar2 + 0x28) & 0xfffffff3;
     }
     iVar2 = iVar2 + 0x80;
@@ -2186,7 +2186,7 @@ void showroom_step_sub_002d7c80(void)
 }
 
 // 0x002d7d40  size 0x90
-long showroom_load_sub_002d7d40(int param_1)
+long maybe_ShowroomBg_LoadChunk(int param_1)
 
 {
   undefined4 uVar1;
@@ -2208,7 +2208,7 @@ long showroom_load_sub_002d7d40(int param_1)
 }
 
 // 0x002d7dd0  size 0x54
-void showroom_exit_sub_002d7dd0(void)
+void ShowroomBg_Free(void)
 
 {
   if (iRam0046a238 != 0) {
@@ -2223,7 +2223,7 @@ void showroom_exit_sub_002d7dd0(void)
 }
 
 // 0x002d7e30  size 0x19c
-void showroom_load_sub_002d7e30(undefined8 param_1,uint param_2,undefined4 param_3)
+void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
 
 {
   int iVar1;
@@ -2274,7 +2274,7 @@ void showroom_load_sub_002d7e30(undefined8 param_1,uint param_2,undefined4 param
 
 // 0x002d7fd0  size 0x178
 undefined4
-showroom_step_sub_002d7fd0
+maybe_MenuCar_ComputeSpin
           (float param_1,int param_2,undefined8 param_3,undefined8 param_4,long param_5,int param_6,
           int param_7)
 

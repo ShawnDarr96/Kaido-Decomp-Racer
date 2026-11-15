@@ -43,7 +43,7 @@ void ScrRivalIsBossId_Enter(int param_1)
     uVar6 = 0;
     *(undefined4 *)(param_1 + 0x6c) = *(undefined4 *)(&DAT_0032ef20 + *(int *)(param_1 + 8) * 4);
     do {
-      lVar5 = scrcareer_step_sub_0029f130(uVar6);
+      lVar5 = maybe_MenuText_CurrentCarSpec(uVar6);
       if (lVar5 == 0) {
         *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & ~(1 << (uVar6 & 0x1f));
       }
@@ -52,7 +52,7 @@ void ScrRivalIsBossId_Enter(int param_1)
     if (*(int *)(param_1 + 8) == 0) {
       uVar6 = 0;
       do {
-        lVar5 = scrcareer_step_sub_0029f130(uVar6);
+        lVar5 = maybe_MenuText_CurrentCarSpec(uVar6);
         if (lVar5 == 1) {
           *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) | 1 << (uVar6 & 0x1f);
         }
@@ -61,9 +61,9 @@ void ScrRivalIsBossId_Enter(int param_1)
     }
     uVar6 = 0x15;
     do {
-      sVar2 = menuscr_leaf_sub_002a17d0(uVar6);
+      sVar2 = maybe_CarModel_GetClassC(uVar6);
       lVar5 = (long)sVar2;
-      sVar3 = menuscr_leaf_sub_002a1690(uVar6);
+      sVar3 = maybe_CarModel_GetClassB(uVar6);
       iVar8 = 0;
       if (lVar5 <= sVar3) {
         iVar7 = (int)sVar2 << 1;
@@ -192,7 +192,7 @@ void maybe_ScrTuneParts_State0(undefined8 param_1)
     }
   }
   iVar2 = Profile_Get(0);
-  iVar3 = showroom_step_sub_002d3ba0(0);
+  iVar3 = Garage_GetSortedCarCount(0);
   iVar4 = _g_MenuMgr;
   iVar5 = 0;
   sVar1 = *(short *)(iVar2 + iVar3 * 2 + 0x13ee);
@@ -253,7 +253,7 @@ void maybe_ScrTuneParts_Exit(void)
   *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
   *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
   iVar2 = Profile_Get(0);
-  iVar3 = showroom_step_sub_002d3ba0(0);
+  iVar3 = Garage_GetSortedCarCount(0);
   iVar4 = _g_MenuMgr;
   iVar5 = 0;
   sVar1 = *(short *)(iVar2 + iVar3 * 2 + 0x13ee);
@@ -313,7 +313,7 @@ void maybe_ScrTuneParts_Update(int param_1)
         Se_PlayMenu(5);
         uVar1 = *(undefined4 *)(param_1 + 0xa24);
       }
-      scrgarage_step_sub_002a8ff0(param_1,uVar1);
+      maybe_ScrTuneParts_HandleInput(param_1,uVar1);
     }
     else if (uVar5 == 0x20) {
       Se_PlayMenu(6);
@@ -338,7 +338,7 @@ void maybe_ScrTuneParts_Update(int param_1)
           iVar7 = iVar7 + 4;
         } while (iVar6 < 0x10);
       }
-      scrgarage_step_sub_002a8ff0(param_1,*(undefined4 *)(param_1 + 0xa20));
+      maybe_ScrTuneParts_HandleInput(param_1,*(undefined4 *)(param_1 + 0xa20));
     }
     Menu_RequestTransition(param_1 + 0xa00);
   }
@@ -364,7 +364,7 @@ void maybe_ScrTuneParts_Enter(undefined4 *param_1)
   *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
   *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
   iVar3 = Profile_Get(0);
-  iVar4 = showroom_step_sub_002d3ba0(0);
+  iVar4 = Garage_GetSortedCarCount(0);
   iVar5 = _g_MenuMgr;
   sVar1 = *(short *)(iVar3 + iVar4 * 2 + 0x13ee);
   *(undefined4 *)(_g_MenuMgr + 0x538) = 2;
@@ -412,7 +412,7 @@ void maybe_ScrTuneParts_Enter(undefined4 *param_1)
 }
 
 // 0x002aca40  size 0x58
-undefined4 menuscr_leaf_sub_002aca40(int *param_1)
+undefined4 maybe_Setting_IsModified(int *param_1)
 
 {
   if ((param_1[0xe] == 0) && ((uint)param_1[3] < 9)) {
@@ -428,7 +428,7 @@ undefined4 menuscr_leaf_sub_002aca40(int *param_1)
 }
 
 // 0x002acaa0  size 0x320
-void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,ulong param_3)
+void maybe_ScrPartInfo_BuildStats(undefined1 *param_1,undefined1 *param_2,ulong param_3)
 
 {
   undefined8 uVar1;
@@ -558,7 +558,7 @@ void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,ulong p
 }
 
 // 0x002acdc0  size 0x42c
-void scrgarage_input_sub_002acdc0(undefined8 param_1)
+void maybe_ScrPartInfo_HandleInput(undefined8 param_1)
 
 {
   uint uVar1;
@@ -620,7 +620,7 @@ switchD_002ad01c_caseD_0:
         piVar5[0x10] = 1;
         uVar4 = Profile_Get(0);
         iVar3 = Profile_GetCurrentCar(uVar4);
-        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar3 + 0x14,*piVar5 + 1);
+        maybe_ScrPartInfo_BuildStats(piVar5 + 0x32,iVar3 + 0x14,*piVar5 + 1);
         break;
       case 1:
         piVar5[4] = *piVar5 + 5;
@@ -628,18 +628,18 @@ switchD_002ad01c_caseD_0:
         piVar5[0x10] = 1;
         uVar4 = Profile_Get(0);
         iVar3 = Profile_GetCurrentCar(uVar4);
-        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar3 + 0x14,*piVar5 + 5);
+        maybe_ScrPartInfo_BuildStats(piVar5 + 0x32,iVar3 + 0x14,*piVar5 + 5);
         break;
       case 2:
         if (*piVar5 == piVar5[10]) {
           if (piVar5[0xb] == 2) {
-            scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x41,uVar1);
+            maybe_ScrPartInfo_BuildStats(piVar5 + 0x32,piVar5 + 0x41,uVar1);
           }
           else {
             if (piVar5[0xb] == 0) {
               uVar4 = Profile_Get(0);
               iVar3 = Profile_GetCurrentCar(uVar4);
-              scrgarage_step_sub_002acaa0(iVar3 + 0x14,piVar5 + 0x32,uVar1);
+              maybe_ScrPartInfo_BuildStats(iVar3 + 0x14,piVar5 + 0x32,uVar1);
             }
             if ((int)uVar1 < 5) {
               piVar5[1] = uVar1 - 1;
@@ -655,7 +655,7 @@ switchD_002ad01c_caseD_0:
         }
         else if ((uVar1 != 8) && ((uVar1 != 4 || (*piVar5 != 2)))) {
           if (piVar5[0xe] == 0) {
-            scrgarage_step_sub_002acaa0(piVar5 + 0x23,piVar5 + 0x32,uVar1);
+            maybe_ScrPartInfo_BuildStats(piVar5 + 0x23,piVar5 + 0x32,uVar1);
             iVar3 = piVar5[0xe];
           }
           else {
@@ -677,7 +677,7 @@ switchD_002ad01c_caseD_0:
     }
     else if (piVar5[0xe] == 1) {
       piVar5[0xe] = 0;
-      scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x23,uVar1);
+      maybe_ScrPartInfo_BuildStats(piVar5 + 0x32,piVar5 + 0x23,uVar1);
     }
     else if (uVar1 < 9) {
                     /* WARNING: Switch is manually overridden */
@@ -1209,7 +1209,7 @@ void maybe_ScrPartInfo_Update(undefined8 param_1)
     if (puVar2[0xf] == 5) {
       (*(code *)(&PTR_ScrCarRecGetModelId_Enteradd60_0032ef40)[puVar2[3]])(param_1);
     }
-    scrgarage_input_sub_002acdc0(param_1);
+    maybe_ScrPartInfo_HandleInput(param_1);
     Menu_RequestTransition(puVar2 + 2);
   }
   return;
@@ -1415,7 +1415,7 @@ void maybe_ScrGarageCheck_Enter(undefined4 *param_1)
 }
 
 // 0x002ae470  size 0x34
-void menuscr_step_sub_002ae470(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
+void maybe_SeqGen_OnPatternEnd(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
 {
   if (param_1 == *(int *)(param_4 + 0x10)) {
@@ -1426,7 +1426,7 @@ void menuscr_step_sub_002ae470(int param_1,undefined8 param_2,undefined8 param_3
 }
 
 // 0x002ae4b0  size 0x4c
-void menuscr_step_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+void maybe_SeqGen_OnSongEnd(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1434,7 +1434,7 @@ void menuscr_step_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3
   iVar1 = (int)param_4;
   if (param_1 == *(int *)(iVar1 + 200)) {
     *(undefined4 *)(iVar1 + 0xb0) = param_3;
-    menuscr_step_sub_002afb80(param_4);
+    SeqGen_Parse(param_4);
     *(undefined4 *)(iVar1 + 0xcc) = 0;
     SeqGen_LoadPattern(uRam0036f7e0);
   }
@@ -1442,7 +1442,7 @@ void menuscr_step_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3
 }
 
 // 0x002ae500  size 0x58
-void menuscr_step_sub_002ae500(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+void maybe_SeqGen_OnTrackEnd(int param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -1459,7 +1459,7 @@ void menuscr_step_sub_002ae500(int param_1,undefined8 param_2,undefined4 param_3
 }
 
 // 0x002ae580  size 0x21c
-void menuscr_load_sub_002ae580(int param_1)
+void SeqGen_ParseChunkE(int param_1)
 
 {
   undefined4 uVar1;
@@ -1517,7 +1517,7 @@ void menuscr_load_sub_002ae580(int param_1)
 }
 
 // 0x002ae7a0  size 0x7b8
-void menuscr_load_sub_002ae7a0(int param_1)
+void SeqGen_ParseChunkD(int param_1)
 
 {
   int iVar1;
@@ -1707,7 +1707,7 @@ void menuscr_load_sub_002ae7a0(int param_1)
 }
 
 // 0x002aef60  size 0x2ac
-void menuscr_load_sub_002aef60(int param_1)
+void SeqGen_ParseChunkC(int param_1)
 
 {
   undefined4 uVar1;
@@ -1780,7 +1780,7 @@ void menuscr_load_sub_002aef60(int param_1)
 }
 
 // 0x002af210  size 0x6b0
-void menuscr_load_sub_002af210(int param_1)
+void SeqGen_ParseChunkB(int param_1)
 
 {
   undefined4 uVar1;
@@ -1945,7 +1945,7 @@ void menuscr_load_sub_002af210(int param_1)
 }
 
 // 0x002af8c0  size 0x1bc
-void menuscr_step_sub_002af8c0(int param_1)
+void SeqGen_ParseChunkOffsets(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0xc4) = 0x10;
@@ -1976,7 +1976,7 @@ void menuscr_step_sub_002af8c0(int param_1)
 }
 
 // 0x002afa80  size 0xf8
-void menuscr_step_sub_002afa80(undefined8 param_1)
+void SeqGen_ParseHeader(undefined8 param_1)
 
 {
   int iVar1;
@@ -1999,20 +1999,20 @@ void menuscr_step_sub_002afa80(undefined8 param_1)
 }
 
 // 0x002afb80  size 0x4c
-void menuscr_step_sub_002afb80(undefined8 param_1)
+void SeqGen_Parse(undefined8 param_1)
 
 {
-  menuscr_step_sub_002afa80();
-  menuscr_step_sub_002af8c0(param_1);
-  menuscr_load_sub_002ae580(param_1);
-  menuscr_load_sub_002ae7a0(param_1);
-  menuscr_load_sub_002aef60(param_1);
-  menuscr_load_sub_002af210(param_1);
+  SeqGen_ParseHeader();
+  SeqGen_ParseChunkOffsets(param_1);
+  SeqGen_ParseChunkE(param_1);
+  SeqGen_ParseChunkD(param_1);
+  SeqGen_ParseChunkC(param_1);
+  SeqGen_ParseChunkB(param_1);
   return;
 }
 
 // 0x002afbd0  size 0x230
-void menuscr_exit_sub_002afbd0(undefined8 param_1)
+void SeqGen_FreeData(undefined8 param_1)
 
 {
   int iVar1;
@@ -2099,7 +2099,7 @@ void menuscr_exit_sub_002afbd0(undefined8 param_1)
 // 0x002afe00  size 0xf0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_load_sub_002afe00(undefined8 param_1,int param_2)
+void SeqGen_LoadFile(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
@@ -2107,7 +2107,7 @@ void menuscr_load_sub_002afe00(undefined8 param_1,int param_2)
   int iVar3;
   int iVar4;
   
-  menuscr_exit_sub_002afbd0();
+  SeqGen_FreeData();
   iVar3 = (param_2 + 0x1ca6) * 0x14 + _g_ArcToc;
   iVar4 = *(int *)(iVar3 + 0x20);
   if (iVar4 == 0) {
@@ -2141,7 +2141,7 @@ void menuscr_load_sub_002afe00(undefined8 param_1,int param_2)
 
 // 0x002afef0  size 0xd8
 undefined4
-menuscr_leaf_sub_002afef0(undefined8 param_1,ulong param_2,byte *param_3,undefined4 *param_4)
+maybe_SeqGen_ReadVarLen(undefined8 param_1,ulong param_2,byte *param_3,undefined4 *param_4)
 
 {
   undefined4 uVar1;
@@ -2184,7 +2184,7 @@ menuscr_leaf_sub_002afef0(undefined8 param_1,ulong param_2,byte *param_3,undefin
 }
 
 // 0x002affd0  size 0x2e8
-undefined4 menuscr_leaf_sub_002affd0(int param_1,uint *param_2)
+undefined4 maybe_SeqGen_NextEvent(int param_1,uint *param_2)
 
 {
   int iVar1;

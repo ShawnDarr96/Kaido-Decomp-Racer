@@ -285,10 +285,10 @@ void MenuScr_Draw_SoundConfig(int param_1)
     *(undefined4 *)(param_1 + 0x94) = uVar3;
     *(undefined4 *)(param_1 + 0x98) = 0;
     *(undefined4 *)(param_1 + 0x9c) = 0;
-    menuscr_anim_sub_00242800(param_1 + 0x140,0x101,0x32bdf0,0x32bdf8);
+    maybe_MenuOpt_Init(param_1 + 0x140,0x101,0x32bdf0,0x32bdf8);
     iVar4 = *(int *)(param_1 + 0x14);
   }
-  menuscr_anim_sub_002425c0(param_1 + 0x140,*(undefined4 *)(param_1 + 0x5c),iVar4 == 2);
+  maybe_MenuOpt_SetSelected(param_1 + 0x140,*(undefined4 *)(param_1 + 0x5c),iVar4 == 2);
   if (*(int *)(param_1 + 0x5c8) != 0) {
     lVar6 = UiLayout_UpdateAnimById(0xfa,0);
     lVar7 = UiLayout_UpdateAnimById(0x101,0);
@@ -381,11 +381,11 @@ void MenuScr_Draw_SoundConfig(int param_1)
   UiElem_SetPropInt(iVar4,0x2b,0x16,uVar8);
   MenuWnd_DrawText(0xf8,0x1b,*(undefined4 *)(&DAT_0032bdd0 + *(int *)(param_1 + 0x14) * 4));
   if (bVar1) {
-    menuscr_anim_sub_002425c0(param_1 + 0x140,*(undefined4 *)(param_1 + 0x5c),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x140,*(undefined4 *)(param_1 + 0x5c),0);
     iVar4 = *(int *)(param_1 + 0x14);
   }
   else {
-    menuscr_anim_sub_00242b40
+    maybe_MenuOpt_SetValue
               (param_1 + 0x6c,*(undefined4 *)(&DAT_0032bdc0 + *(int *)(param_1 + 0x14) * 4));
     iVar4 = *(int *)(param_1 + 0x14);
   }
@@ -403,7 +403,7 @@ void MenuScr_Draw_SoundConfig(int param_1)
   else {
     uVar8 = 0;
   }
-  menuscr_anim_sub_00242290(param_1 + 0x78,uVar8);
+  maybe_MenuOpt_SetItemActive(param_1 + 0x78,uVar8);
   if (*(int *)(param_1 + 0x14) == 1 && !bVar1) {
     if (*(int *)(param_1 + 0x58) == 0) {
       uVar8 = 3;
@@ -418,7 +418,7 @@ void MenuScr_Draw_SoundConfig(int param_1)
   else {
     uVar8 = 0;
   }
-  menuscr_anim_sub_00242290(param_1 + 0x8c,uVar8);
+  maybe_MenuOpt_SetItemActive(param_1 + 0x8c,uVar8);
   iVar4 = UiMgr_FindLayout(0xfa);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
   iVar4 = UiMgr_FindLayout(0x101);
@@ -503,21 +503,21 @@ void MenuScr_Draw_GameConfig(int param_1)
     *(undefined4 *)(param_1 + 0x80) = uVar2;
     *(undefined4 *)(param_1 + 0x84) = 0;
     *(undefined4 *)(param_1 + 0x88) = 0;
-    menuscr_anim_sub_00242800(param_1 + 0x140,0xfb,0x32bd70,0x32bd78);
-    menuscr_anim_sub_00242800(param_1 + 0x160,0xfb,0x32bd80,0x32bd88);
-    menuscr_anim_sub_00242800(param_1 + 0x180,0xfb,0x32bd90,0x32bd98);
-    menuscr_anim_sub_00242800(param_1 + 0x1a0,0xfb,0x32bda0,0x32bda8);
-    menuscr_anim_sub_00242800(param_1 + 0x1c0,0xfb,0x32bdb0,0x32bdb8);
+    maybe_MenuOpt_Init(param_1 + 0x140,0xfb,0x32bd70,0x32bd78);
+    maybe_MenuOpt_Init(param_1 + 0x160,0xfb,0x32bd80,0x32bd88);
+    maybe_MenuOpt_Init(param_1 + 0x180,0xfb,0x32bd90,0x32bd98);
+    maybe_MenuOpt_Init(param_1 + 0x1a0,0xfb,0x32bda0,0x32bda8);
+    maybe_MenuOpt_Init(param_1 + 0x1c0,0xfb,0x32bdb0,0x32bdb8);
     iVar3 = *(int *)(param_1 + 0x10);
   }
-  menuscr_anim_sub_002425c0(param_1 + 0x140,*(undefined4 *)(param_1 + 0x3c),iVar3 == 1);
-  menuscr_anim_sub_002425c0
+  maybe_MenuOpt_SetSelected(param_1 + 0x140,*(undefined4 *)(param_1 + 0x3c),iVar3 == 1);
+  maybe_MenuOpt_SetSelected
             (param_1 + 0x160,*(undefined4 *)(param_1 + 0x40),*(int *)(param_1 + 0x10) == 2);
-  menuscr_anim_sub_002425c0
+  maybe_MenuOpt_SetSelected
             (param_1 + 0x180,*(undefined4 *)(param_1 + 0x44),*(int *)(param_1 + 0x10) == 3);
-  menuscr_anim_sub_002425c0
+  maybe_MenuOpt_SetSelected
             (param_1 + 0x1a0,*(undefined4 *)(param_1 + 0x48),*(int *)(param_1 + 0x10) == 4);
-  menuscr_anim_sub_002425c0
+  maybe_MenuOpt_SetSelected
             (param_1 + 0x1c0,*(undefined4 *)(param_1 + 0x4c),*(int *)(param_1 + 0x10) == 5);
   if (*(int *)(param_1 + 0x5c8) != 0) {
     lVar6 = UiLayout_UpdateAnimById(0xfa,0);
@@ -605,15 +605,15 @@ void MenuScr_Draw_GameConfig(int param_1)
   MenuWnd_DrawText(0xfb,0x4c,*(undefined4 *)(&DAT_0032bd20 + *(int *)(param_1 + 0x38) * 4));
   MenuWnd_DrawText(0xf8,0x1b,*(undefined4 *)(&DAT_0032bd50 + *(int *)(param_1 + 0x10) * 4));
   if (bVar1) {
-    menuscr_anim_sub_002425c0(param_1 + 0x140,*(undefined4 *)(param_1 + 0x3c),0);
-    menuscr_anim_sub_002425c0(param_1 + 0x160,*(undefined4 *)(param_1 + 0x40),0);
-    menuscr_anim_sub_002425c0(param_1 + 0x180,*(undefined4 *)(param_1 + 0x44),0);
-    menuscr_anim_sub_002425c0(param_1 + 0x1a0,*(undefined4 *)(param_1 + 0x48),0);
-    menuscr_anim_sub_002425c0(param_1 + 0x1c0,*(undefined4 *)(param_1 + 0x4c),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x140,*(undefined4 *)(param_1 + 0x3c),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x160,*(undefined4 *)(param_1 + 0x40),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x180,*(undefined4 *)(param_1 + 0x44),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x1a0,*(undefined4 *)(param_1 + 0x48),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x1c0,*(undefined4 *)(param_1 + 0x4c),0);
     iVar3 = *(int *)(param_1 + 0x10);
   }
   else {
-    menuscr_anim_sub_00242b40
+    maybe_MenuOpt_SetValue
               (param_1 + 0x6c,*(undefined4 *)(&DAT_0032bd30 + *(int *)(param_1 + 0x10) * 4));
     iVar3 = *(int *)(param_1 + 0x10);
   }
@@ -623,7 +623,7 @@ void MenuScr_Draw_GameConfig(int param_1)
   else {
     uVar5 = 1;
   }
-  menuscr_anim_sub_00242290(param_1 + 0x78,uVar5);
+  maybe_MenuOpt_SetItemActive(param_1 + 0x78,uVar5);
   iVar3 = UiMgr_FindLayout(0xfa);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   iVar3 = UiMgr_FindLayout(0xfb);
@@ -885,7 +885,7 @@ void MenuPage26_Enter(void)
 // 0x00241ab0  size 0x364
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_draw_sub_00241ab0(uint *param_1,long param_2)
+void maybe_ButtonConfig_DrawList(uint *param_1,long param_2)
 
 {
   int iVar1;
@@ -944,7 +944,7 @@ void menuscr_draw_sub_00241ab0(uint *param_1,long param_2)
     }
     uVar3 = 0;
     do {
-      menuscr_anim_sub_00242290(param_1 + 0x4a,0);
+      maybe_MenuOpt_SetItemActive(param_1 + 0x4a,0);
       uVar3 = uVar3 + 1;
       param_1 = param_1 + 5;
     } while (uVar3 < 9);
@@ -972,7 +972,7 @@ void menuscr_draw_sub_00241ab0(uint *param_1,long param_2)
     uVar3 = 0;
     puVar4 = param_1;
     do {
-      menuscr_anim_sub_00242290(puVar4 + 0x4a,uVar3 == *param_1);
+      maybe_MenuOpt_SetItemActive(puVar4 + 0x4a,uVar3 == *param_1);
       uVar3 = uVar3 + 1;
       puVar4 = puVar4 + 5;
     } while (uVar3 < 9);
@@ -981,7 +981,7 @@ void menuscr_draw_sub_00241ab0(uint *param_1,long param_2)
   else {
     uVar3 = 0;
     do {
-      menuscr_anim_sub_00242290(param_1 + 0x4a,0);
+      maybe_MenuOpt_SetItemActive(param_1 + 0x4a,0);
       uVar3 = uVar3 + 1;
       param_1 = param_1 + 5;
     } while (uVar3 < 9);
@@ -992,7 +992,7 @@ void menuscr_draw_sub_00241ab0(uint *param_1,long param_2)
 // 0x00241e20  size 0x460
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00241e20(uint *param_1,long param_2)
+void maybe_ButtonConfig_AnimateCursor(uint *param_1,long param_2)
 
 {
   int iVar1;
@@ -1055,7 +1055,7 @@ void menuscr_anim_sub_00241e20(uint *param_1,long param_2)
     }
     uVar4 = 0;
     do {
-      menuscr_anim_sub_00242290(param_1 + 0x18,0);
+      maybe_MenuOpt_SetItemActive(param_1 + 0x18,0);
       uVar4 = uVar4 + 1;
       param_1 = param_1 + 5;
     } while (uVar4 < 10);
@@ -1087,7 +1087,7 @@ void menuscr_anim_sub_00241e20(uint *param_1,long param_2)
     uVar4 = 0;
     puVar5 = param_1;
     do {
-      menuscr_anim_sub_00242290(puVar5 + 0x18,uVar4 == *param_1);
+      maybe_MenuOpt_SetItemActive(puVar5 + 0x18,uVar4 == *param_1);
       uVar4 = uVar4 + 1;
       puVar5 = puVar5 + 5;
     } while (uVar4 < 10);
@@ -1097,7 +1097,7 @@ void menuscr_anim_sub_00241e20(uint *param_1,long param_2)
     uVar4 = 0;
     puVar5 = param_1;
     do {
-      menuscr_anim_sub_00242290(puVar5 + 0x18,0);
+      maybe_MenuOpt_SetItemActive(puVar5 + 0x18,0);
       uVar4 = uVar4 + 1;
       puVar5 = puVar5 + 5;
     } while (uVar4 < 10);
@@ -1117,7 +1117,7 @@ void menuscr_anim_sub_00241e20(uint *param_1,long param_2)
 // 0x00242290  size 0x310
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00242290(undefined4 *param_1,int param_2)
+void maybe_MenuOpt_SetItemActive(undefined4 *param_1,int param_2)
 
 {
   int iVar1;
@@ -1177,8 +1177,8 @@ void menuscr_anim_sub_00242290(undefined4 *param_1,int param_2)
 }
 
 // 0x002425a0  size 0x20
-void menuscr_leaf_sub_002425a0
-               (undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4)
+void MenuOpt_InitItem(undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4
+                     )
 
 {
   *param_1 = param_2;
@@ -1192,7 +1192,7 @@ void menuscr_leaf_sub_002425a0
 // 0x002425c0  size 0x23c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_002425c0(undefined4 *param_1,int param_2,long param_3)
+void maybe_MenuOpt_SetSelected(undefined4 *param_1,int param_2,long param_3)
 
 {
   uint uVar1;
@@ -1252,8 +1252,8 @@ void menuscr_anim_sub_002425c0(undefined4 *param_1,int param_2,long param_3)
 // 0x00242800  size 0x160
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00242800
-               (undefined8 param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4)
+void maybe_MenuOpt_Init(undefined8 param_1,undefined4 param_2,undefined4 *param_3,
+                       undefined4 *param_4)
 
 {
   int iVar1;
@@ -1282,14 +1282,14 @@ void menuscr_anim_sub_00242800
   UiElem_SetPropFloat(0,*_g_UiMgr + iVar1 * 0x4f4 + 4,puVar2[5],8);
   iVar1 = UiMgr_FindLayout(puVar2[6]);
   UiElem_SetPropFloat(0,*_g_UiMgr + iVar1 * 0x4f4 + 4,puVar2[4],8);
-  menuscr_anim_sub_002425c0(param_1,0,0);
+  maybe_MenuOpt_SetSelected(param_1,0,0);
   return;
 }
 
 // 0x00242960  size 0x128
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00242960(undefined4 *param_1,int param_2,long param_3)
+void maybe_MenuOpt_SetSelectedB(undefined4 *param_1,int param_2,long param_3)
 
 {
   int iVar1;
@@ -1318,7 +1318,7 @@ void menuscr_anim_sub_00242960(undefined4 *param_1,int param_2,long param_3)
 // 0x00242a90  size 0xb0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00242a90(undefined4 *param_1,undefined4 param_2,undefined4 *param_3)
+void maybe_MenuOpt_InitB(undefined4 *param_1,undefined4 param_2,undefined4 *param_3)
 
 {
   int iVar1;
@@ -1340,7 +1340,7 @@ void menuscr_anim_sub_00242a90(undefined4 *param_1,undefined4 param_2,undefined4
 // 0x00242b40  size 0x1a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00242b40(undefined4 *param_1,int param_2)
+void maybe_MenuOpt_SetValue(undefined4 *param_1,int param_2)
 
 {
   int iVar1;
@@ -1378,7 +1378,7 @@ void menuscr_anim_sub_00242b40(undefined4 *param_1,int param_2)
 }
 
 // 0x00242ce0  size 0x10
-void menuscr_leaf_sub_00242ce0(undefined4 *param_1,undefined4 param_2)
+void MenuOpt_InitIndex(undefined4 *param_1,undefined4 param_2)
 
 {
   *param_1 = param_2;

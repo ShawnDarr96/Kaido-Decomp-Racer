@@ -639,7 +639,7 @@ void Race_LoadCourseAsync(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x1c) = 0;
   *(undefined4 *)(iVar1 + 0x20) = 0;
   *(undefined4 *)(iVar1 + 0x24) = 0;
-  showroom_load_sub_002d36c0(0x430750);
+  maybe_ReplayCam_Load(0x430750);
   Race_LoadCourse(param_1,1);
   return;
 }
@@ -648,7 +648,7 @@ void Race_LoadCourseAsync(undefined8 param_1)
 void RaceTask_FreeCourse(void)
 
 {
-  showroom_exit_sub_002d3550();
+  maybe_ReplayCam_Free();
   Course_FreeModels();
   return;
 }
@@ -682,7 +682,7 @@ void RaceHud_UpdateBattle(undefined8 param_1)
   undefined8 uVar7;
   int iVar8;
   
-  iVar2 = racehud_leaf_sub_002cfb30(0);
+  iVar2 = RaceHud_GetRacerPanel(0);
   iVar1 = *(int *)(iVar2 + 0xb0);
   iVar8 = 0;
   lVar6 = GameState_GetPlayerCount();
@@ -691,7 +691,7 @@ void RaceHud_UpdateBattle(undefined8 param_1)
   }
   else {
     do {
-      iVar4 = racehud_leaf_sub_002cfb30(iVar8);
+      iVar4 = RaceHud_GetRacerPanel(iVar8);
       uVar7 = RaceHud_UpdateTimePanel(param_1,iVar8);
       RaceHud_UpdateLapPanel(param_1,iVar8,uVar7);
       RaceHud_UpdatePlayerPanel(param_1,iVar8);
@@ -719,7 +719,7 @@ void RaceHud_UpdateBattle(undefined8 param_1)
   }
   uVar7 = RaceProg_GetArray_34(0);
   uVar7 = SpGauge_Update(uVar7);
-  racehud_leaf_sub_002cfac0(uVar7);
+  RaceHud_SetField26c(uVar7);
   return;
 }
 
@@ -740,7 +740,7 @@ void RaceHud_UpdateRanking(void)
   lVar5 = GameState_GetTotalCarCount();
   if (0 < lVar5) {
     do {
-      iVar2 = racehud_leaf_sub_002cfb30(iVar8);
+      iVar2 = RaceHud_GetRacerPanel(iVar8);
       uVar6 = RaceProg_GetArray_28((char)iVar8);
       uVar3 = Raceprog_Nop(uVar6);
       *(undefined4 *)(iVar2 + 0x8c) = uVar3;
@@ -794,7 +794,7 @@ void RaceHud_UpdateSprint(undefined8 param_1)
   lVar2 = GameState_GetPlayerCount();
   if (0 < lVar2) {
     do {
-      iVar1 = racehud_leaf_sub_002cfb30(iVar4);
+      iVar1 = RaceHud_GetRacerPanel(iVar4);
       uVar3 = RaceHud_UpdateTimePanel(param_1,iVar4);
       RaceHud_UpdateLapPanel(param_1,iVar4,uVar3);
       RaceHud_UpdatePlayerPanel(param_1,iVar4);
@@ -825,7 +825,7 @@ void RaceHud_UpdatePlayerPanel(undefined8 param_1,long param_2)
   ulong uVar6;
   long lVar7;
   
-  iVar1 = racehud_leaf_sub_002cfb30(param_2);
+  iVar1 = RaceHud_GetRacerPanel(param_2);
   uVar4 = RaceProg_GetArray_34((char)param_2);
   iVar2 = SpGauge_GetValue(uVar4);
   *(uint *)(iVar1 + 4) = *(uint *)(iVar1 + 4) & 0xffffff7f;
@@ -873,18 +873,16 @@ void RaceHud_UpdatePlayerPanel(undefined8 param_1,long param_2)
     }
   }
   if (iVar3 - iVar2 < 1) {
-    lVar7 = race_leaf_sub_001e8fc0();
-    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = racehud_leaf_sub_002cfad0(), (uVar6 & 1) != 0))))
-    {
+    lVar7 = RaceScene_IsFlag10();
+    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = RaceHud_GetFlags(), (uVar6 & 1) != 0)))) {
       RaceUi_PlayCue(0,param_2);
       iVar2 = *(int *)(iVar1 + 0x98);
       goto LAB_001e5cc8;
     }
   }
   else {
-    lVar7 = race_leaf_sub_001e8fc0();
-    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = racehud_leaf_sub_002cfad0(), (uVar6 & 1) != 0))))
-    {
+    lVar7 = RaceScene_IsFlag10();
+    if ((lVar7 == 0) && ((param_2 == 0 || (uVar6 = RaceHud_GetFlags(), (uVar6 & 1) != 0)))) {
       RaceUi_PlayCue(1,param_2);
     }
   }
@@ -904,7 +902,7 @@ void RaceHud_UpdateLapPanel(undefined8 param_1,undefined8 param_2,int param_3)
   int iVar3;
   int iVar4;
   
-  iVar3 = racehud_leaf_sub_002cfb30(param_2);
+  iVar3 = RaceHud_GetRacerPanel(param_2);
   if (param_3 == -1) {
     iVar4 = RaceProg_GetArray_34((char)param_2);
     if (*(int *)(iVar3 + 0x9c) != *(int *)(iVar3 + 0x98)) {
@@ -954,7 +952,7 @@ int RaceHud_UpdateTimePanel(undefined8 param_1,undefined8 param_2)
   int iVar3;
   int iVar4;
   
-  iVar1 = racehud_leaf_sub_002cfb30(param_2);
+  iVar1 = RaceHud_GetRacerPanel(param_2);
   iVar2 = RaceProg_GetArray_34((char)param_2);
   iVar4 = -1;
   *(undefined4 *)(iVar1 + 0xac) = 0;
@@ -988,7 +986,7 @@ void RaceHud_UpdateTimeAttack(undefined8 param_1)
   lVar2 = GameState_GetPlayerCount();
   if (0 < lVar2) {
     do {
-      iVar1 = racehud_leaf_sub_002cfb30(iVar4);
+      iVar1 = RaceHud_GetRacerPanel(iVar4);
       uVar3 = RaceHud_UpdateTimePanel(param_1,iVar4);
       RaceHud_UpdateLapPanel(param_1,iVar4,uVar3);
       RaceHud_UpdatePlayerPanel(param_1,iVar4);
@@ -1016,7 +1014,7 @@ void RaceHud_UpdateMap(void)
   lVar5 = GameState_GetTotalCarCount();
   if (0 < lVar5) {
     do {
-      iVar2 = racehud_leaf_sub_002cfb30(iVar7);
+      iVar2 = RaceHud_GetRacerPanel(iVar7);
       uVar6 = RaceProg_GetArray_28((char)iVar7);
       uVar3 = Raceprog_Nop(uVar6);
       *(undefined4 *)(iVar2 + 0x8c) = uVar3;
@@ -1071,7 +1069,7 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
   float fVar14;
   float fVar15;
   
-  iVar1 = racehud_leaf_sub_002cfb30(param_2);
+  iVar1 = RaceHud_GetRacerPanel(param_2);
   uVar5 = RaceCar_Get(param_2);
   uVar13 = RaceCar_GetSpeedKmh(uVar5);
   *(undefined4 *)(iVar1 + 0x14) = uVar13;
@@ -1083,7 +1081,7 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
   *(float *)(iVar1 + 0x44) = *(float *)(iVar12 + 0xac0) - 1.0;
   iVar4 = iVar1;
   do {
-    iVar2 = racehud_leaf_sub_002cfb20();
+    iVar2 = RaceHud_GetMeterTable();
     pfVar3 = (float *)(iVar2 + iVar10);
     *(float *)(iVar4 + 0x18) =
          pfVar3[1] +
@@ -1186,37 +1184,37 @@ void RaceHud_UpdateMessages(void)
   cVar1 = RaceProg_Get();
   if (cVar1 == '\x05') {
     if (*(int *)(iRam0036f804 + 0x288) == 0) {
-      cVar1 = racehud_leaf_sub_002cfb60();
+      cVar1 = RaceHud_GetState();
       if (cVar1 != '\x04') {
-        racehud_step_sub_002cfb70();
+        RaceHud_SetState();
       }
     }
     else {
-      cVar1 = racehud_leaf_sub_002cfb60();
+      cVar1 = RaceHud_GetState();
       if (cVar1 != '\x02') {
-        racehud_step_sub_002cfb70();
+        RaceHud_SetState();
       }
     }
   }
   else if (cVar1 == '\x03') {
     lVar2 = RaceScene_IsPaused();
     if (lVar2 == 0) {
-      cVar1 = racehud_leaf_sub_002cfb60();
+      cVar1 = RaceHud_GetState();
       if (cVar1 == '\x05') {
-        racehud_step_sub_002cfb70(3);
+        RaceHud_SetState(3);
       }
     }
     else {
-      cVar1 = racehud_leaf_sub_002cfb60();
+      cVar1 = RaceHud_GetState();
       if (cVar1 == '\x03') {
         Se_PlayMenuVol(9,0x60);
-        racehud_step_sub_002cfb70(5);
+        RaceHud_SetState(5);
       }
     }
   }
-  else if (((cVar1 == '\x01') && (cVar1 = racehud_leaf_sub_002cfb60(), cVar1 != '\x01')) &&
-          (cVar1 = racehud_leaf_sub_002cfb60(), cVar1 != '\x03')) {
-    racehud_step_sub_002cfb70(1);
+  else if (((cVar1 == '\x01') && (cVar1 = RaceHud_GetState(), cVar1 != '\x01')) &&
+          (cVar1 = RaceHud_GetState(), cVar1 != '\x03')) {
+    RaceHud_SetState(1);
   }
   return;
 }
@@ -1235,13 +1233,13 @@ void RaceHud_Task(undefined8 param_1)
   int iVar6;
   undefined4 uVar7;
   
-  lVar3 = racehud_step_sub_002cf9b0();
+  lVar3 = maybe_RaceHud_IsBusy();
   if ((lVar3 == 0) && (cVar1 = RaceProg_Get(), cVar1 != '\0')) {
     if (iRam0046a590 == 0) {
       RaceHud_UpdateMessages(param_1);
-      lVar3 = race_leaf_sub_001e8fc0();
+      lVar3 = RaceScene_IsFlag10();
       if (lVar3 != 0) {
-        racehud_leaf_sub_002cfb00(4);
+        RaceHud_SetFlags(4);
         if (*piRam0036f468 != 1) {
           *piRam0036f468 = 1;
         }
@@ -1256,14 +1254,14 @@ void RaceHud_Task(undefined8 param_1)
           uVar5 = 0x100000;
         }
         if (((uVar5 == 0x10) && (lVar3 = RaceScene_IsPaused(), lVar3 == 0)) &&
-           (uVar4 = racehud_leaf_sub_002cfad0(), (uVar4 & 1) == 0)) {
-          racehud_leaf_sub_002cfae0(8);
+           (uVar4 = RaceHud_GetFlags(), (uVar4 & 1) == 0)) {
+          RaceHud_ToggleFlags(8);
           *(undefined4 *)(iRam0036f804 + 0x3b70) = 0x3f800000;
         }
       }
       maybe_GameState_GetFlag();
       uVar7 = GameState_Get_14();
-      racehud_leaf_sub_002cfab0(uVar7);
+      RaceHud_SetField268(uVar7);
       iVar6 = 0;
       lVar3 = GameState_GetTotalCarCount();
       if (0 < lVar3) {
@@ -1274,11 +1272,11 @@ void RaceHud_Task(undefined8 param_1)
         } while (iVar6 < iVar2);
       }
       __ptmf_scall(param_1);
-      uVar4 = racehud_leaf_sub_002cfad0();
+      uVar4 = RaceHud_GetFlags();
       if ((uVar4 & 1) == 0) {
-        iVar6 = racehud_leaf_sub_002cfb30(0);
+        iVar6 = RaceHud_GetRacerPanel(0);
         lVar3 = Cam_IsIdle(*(undefined4 *)(_g_Loading + 0x14));
-        if ((lVar3 == 0) || (lVar3 = race_leaf_sub_001e8fc0(), lVar3 != 0)) {
+        if ((lVar3 == 0) || (lVar3 = RaceScene_IsFlag10(), lVar3 != 0)) {
           *(undefined4 *)(iVar6 + 0x70) = 1;
         }
         else {
@@ -1286,13 +1284,13 @@ void RaceHud_Task(undefined8 param_1)
         }
       }
       RaceHud_Task();
-      uVar4 = racehud_leaf_sub_002cfad0();
-      if ((((uVar4 & 10) != 0) && (cVar1 = racehud_leaf_sub_002cfb60(), cVar1 != '\x04')) &&
+      uVar4 = RaceHud_GetFlags();
+      if ((((uVar4 & 10) != 0) && (cVar1 = RaceHud_GetState(), cVar1 != '\x04')) &&
          ((lVar3 = Options_Get_c(), lVar3 == 1 && (iRam0036f1f8 == 0)))) {
         if (iRam0036f85c != 0) {
           *(undefined4 *)(iRam0036f85c + 0x1c) = *(undefined4 *)(iRam0036f804 + 0x3b70);
         }
-        showroom_draw_sub_002d6e40();
+        maybe_IntroCar_Draw();
       }
     }
   }
@@ -1395,7 +1393,7 @@ switchD_001e6958_caseD_2:
 void RaceTask_FreeUi(void)
 
 {
-  racehud_exit_sub_002cff10();
+  RaceHud_Free();
   MenuWnd_Free();
   UiRes_FreeFonts();
   return;
@@ -1411,7 +1409,7 @@ void RaceHud_Init(int param_1)
   Gfx_SetFade(2,9,0,0);
   UiRes_LoadLocalizedAlloc(0x430750,0x1876,0x485);
   MenuWnd_Alloc(0x430750,0);
-  racehud_load_sub_002d1130(0x430750);
+  RaceHud_Load(0x430750);
   RaceHud_GetLayout(uVar1);
   UiMgr_DrawAll(1);
   *(undefined1 **)(param_1 + 0x1c) = &LAB_001e6ab0;
@@ -1900,7 +1898,7 @@ void RaceSnd_UpdateCars(int param_1)
         uVar9 = uVar9 + 1;
         iVar8 = iVar8 + 0x80;
       } while ((int)uVar9 < 2);
-      lVar5 = race_leaf_sub_001e8fc0();
+      lVar5 = RaceScene_IsFlag10();
       if (((lVar5 == 0) && (uVar6 = RaceProg_Get_4(), (uVar6 & 1) != 0)) &&
          (cVar2 = RaceProg_Get(), cVar2 == '\x03')) {
         iVar8 = 0;
@@ -2100,7 +2098,7 @@ LAB_001e7bfc:
     else {
       lVar7 = RaceScene_IsPaused();
       if (lVar7 == 0) {
-        lVar7 = race_leaf_sub_001e8fc0();
+        lVar7 = RaceScene_IsFlag10();
         if ((((lVar7 == 0) && (uVar9 = RaceProg_Get_4(), (uVar9 & 1) != 0)) &&
             (cVar2 = RaceProg_Get(), cVar2 == '\x03')) &&
            (uVar9 = RaceProg_Get_4(), (uVar9 & 0x80) == 0)) {

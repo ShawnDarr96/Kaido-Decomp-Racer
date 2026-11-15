@@ -260,7 +260,7 @@ void Eventui_Draw_Hakone_46a0(undefined8 param_1)
   if (lVar4 != 0) {
     Composer_ConsumeRedraw(param_1);
   }
-  eventui_anim_sub_002e39e0(param_1);
+  maybe_ComposerUi_AnimateNameA(param_1);
   Composer_DrawLabel(0x2a,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
@@ -433,7 +433,7 @@ void Eventui_Draw_Hakone_4b60(undefined8 param_1)
   if (lVar4 != 0) {
     Composer_ConsumeRedraw(param_1);
   }
-  eventui_anim_sub_002e39e0(param_1);
+  maybe_ComposerUi_AnimateNameA(param_1);
   if (*(int *)(iVar3 + 0x54) == -1) {
     Composer_DrawLabel(0x28,3);
   }
@@ -1064,7 +1064,7 @@ void Eventui_Draw_Hakone_5810(undefined8 param_1)
       Composer_ConsumeRedraw(param_1);
     }
   }
-  eventui_anim_sub_002e39e0(param_1);
+  maybe_ComposerUi_AnimateNameA(param_1);
   Composer_DrawLabel(0x26,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
@@ -1237,7 +1237,7 @@ void Eventui_Draw_Hakone_6260(undefined8 param_1)
   if (lVar4 != 0) {
     Composer_ConsumeRedraw(param_1);
   }
-  eventui_anim_sub_002e39e0(param_1);
+  maybe_ComposerUi_AnimateNameA(param_1);
   if (*(int *)(iVar3 + 0x54) == -1) {
     Composer_DrawLabel(0x24,3);
   }
@@ -1393,7 +1393,7 @@ void Eventui_Draw_Hakone_67d0(undefined8 param_1)
   if (lVar4 != 0) {
     Composer_ConsumeRedraw(param_1);
   }
-  eventui_anim_sub_002e39e0(param_1);
+  maybe_ComposerUi_AnimateNameA(param_1);
   Composer_DrawLabel(0x23,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||

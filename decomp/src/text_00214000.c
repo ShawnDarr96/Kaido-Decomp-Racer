@@ -358,7 +358,7 @@ void maybe_PageCarPartInfo_Enter(void)
 }
 
 // 0x00214d60  size 0x17c
-void scrgarage_step_sub_00214d60(undefined8 param_1)
+void maybe_Garage_InstallPartDated(undefined8 param_1)
 
 {
   undefined2 uVar1;

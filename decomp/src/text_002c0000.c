@@ -255,7 +255,7 @@ void Result_Finish(undefined8 param_1)
       lVar3 = GameState_GetTotalCarCount();
       if (0 < lVar3) {
         do {
-          uVar4 = racehud_leaf_sub_002cfb30(iVar6);
+          uVar4 = RaceHud_GetRacerPanel(iVar6);
           RaceUi_SetupCarIcons(uVar4,iVar6);
           iVar6 = iVar6 + 1;
           iVar2 = GameState_GetTotalCarCount();
@@ -437,38 +437,38 @@ void Result_Init(undefined8 param_1)
         pbVar8[0x95] = 0;
         pbVar8[0x96] = 0x80;
         pbVar8[0x97] = 0x3f;
-        lVar7 = race_leaf_sub_001e9090();
+        lVar7 = RaceScene_IsReplay();
         if (lVar7 == 0) {
           RaceScene_SetFlags(0x40000);
           GameState_FreeReplay();
-          race_leaf_sub_001e8f80();
+          RaceScene_ClearFlag800();
         }
       }
       Result_DrawMenu(param_1);
       Result_UpdateCursor(param_1);
       break;
     case 3:
-      lVar7 = replayui_step_sub_002db3e0(pbVar8 + 0x40c);
+      lVar7 = maybe_NameEntry_StepSave(pbVar8 + 0x40c);
       if (lVar7 != 1) {
         *pbVar8 = 5;
         pbVar8[0x340] = 5;
       }
       Save_IsBusy();
-      replayui_anim_sub_002db730(pbVar8 + 0x40c);
+      maybe_NameEntry_Update(pbVar8 + 0x40c);
       break;
     case 4:
       lVar7 = Result_FadeOut(param_1);
       if (lVar7 != 0) {
         *pbVar8 = 3;
       }
-      replayui_anim_sub_002db730(pbVar8 + 0x40c);
+      maybe_NameEntry_Update(pbVar8 + 0x40c);
       break;
     case 5:
       lVar7 = Result_FadeOutAndFinish(param_1);
       if (lVar7 != 0) {
         return;
       }
-      replayui_anim_sub_002db730(pbVar8 + 0x40c);
+      maybe_NameEntry_Update(pbVar8 + 0x40c);
       break;
     case 6:
       if ((bVar1 == 1) || (bVar1 == 8)) {
@@ -476,11 +476,11 @@ void Result_Init(undefined8 param_1)
         pbVar8[0x95] = 0;
         pbVar8[0x96] = 0x80;
         pbVar8[0x97] = 0x3f;
-        lVar7 = race_leaf_sub_001e9090();
+        lVar7 = RaceScene_IsReplay();
         if (lVar7 == 0) {
           RaceScene_SetFlags(0x40000);
           GameState_FreeReplay();
-          race_leaf_sub_001e8f80();
+          RaceScene_ClearFlag800();
         }
       }
       Result_DrawMenu(param_1);
@@ -492,11 +492,11 @@ void Result_Init(undefined8 param_1)
         pbVar8[0x95] = 0;
         pbVar8[0x96] = 0x80;
         pbVar8[0x97] = 0x3f;
-        lVar7 = race_leaf_sub_001e9090();
+        lVar7 = RaceScene_IsReplay();
         if (lVar7 == 0) {
           RaceScene_SetFlags(0x40000);
           GameState_FreeReplay();
-          race_leaf_sub_001e8f80();
+          RaceScene_ClearFlag800();
         }
       }
       Result_FadeOutAndFinish(param_1);
@@ -512,11 +512,11 @@ void Result_Init(undefined8 param_1)
         pbVar8[0x95] = 0;
         pbVar8[0x96] = 0x80;
         pbVar8[0x97] = 0x3f;
-        lVar7 = race_leaf_sub_001e9090();
+        lVar7 = RaceScene_IsReplay();
         if (lVar7 == 0) {
           RaceScene_SetFlags(0x40000);
           GameState_FreeReplay();
-          race_leaf_sub_001e8f80();
+          RaceScene_ClearFlag800();
         }
       }
       Result_DrawMenu(param_1);
@@ -1586,7 +1586,7 @@ void RaceMenu_MoveUp(undefined8 param_1)
   }
   else {
     RaceMenu_IsItemEnabled(param_1,10);
-    lVar1 = race_leaf_sub_001e8fc0();
+    lVar1 = RaceScene_IsFlag10();
     uVar2 = 7;
     if (lVar1 == 0) {
       uVar2 = 2;
@@ -1606,7 +1606,7 @@ void RaceMenu_MoveDown(undefined8 param_1)
   int iVar4;
   
   Se_PlayMenuVol(5,0x60);
-  lVar2 = race_leaf_sub_001e8fc0();
+  lVar2 = RaceScene_IsFlag10();
   iVar4 = (int)param_1;
   if (lVar2 == 0) {
     uVar1 = (uint)*(char *)(iVar4 + 0xf4);
@@ -1621,7 +1621,7 @@ void RaceMenu_MoveDown(undefined8 param_1)
       goto switchD_002c2a10_caseD_0;
     case 1:
       *(undefined4 *)(iVar4 + 0xf0) = 6;
-      lVar2 = race_leaf_sub_001e8fc0();
+      lVar2 = RaceScene_IsFlag10();
       uVar3 = 6;
       if (lVar2 == 0) {
         uVar3 = 1;
@@ -1724,7 +1724,7 @@ undefined4 RaceMenu_HandleOptions(undefined8 param_1)
   int iVar14;
   undefined4 uVar15;
   
-  lVar8 = race_leaf_sub_001e8fc0();
+  lVar8 = RaceScene_IsFlag10();
   iVar14 = (int)param_1;
   if (lVar8 == 0) {
     uVar7 = (uint)*(char *)(iVar14 + 0xf4);
@@ -1737,8 +1737,8 @@ undefined4 RaceMenu_HandleOptions(undefined8 param_1)
   uVar15 = 0;
   iVar3 = *(int *)(&DAT_0032f374 + uVar7 * 8);
   bVar5 = true;
-  lVar8 = race_leaf_sub_001e8fc0();
-  lVar9 = race_leaf_sub_001e8fc0();
+  lVar8 = RaceScene_IsFlag10();
+  lVar9 = RaceScene_IsFlag10();
   cVar11 = '\v';
   if (lVar9 == 0) {
     cVar11 = '\x06';
@@ -1985,7 +1985,7 @@ void RaceMenu_AnimateOptions(undefined8 param_1)
   cVar2 = *(char *)((int)puVar11 + 0x10a);
   cVar3 = *(char *)((int)puVar11 + 0x10e);
   iVar5 = puVar11[0x45];
-  lVar10 = race_leaf_sub_001e8fc0();
+  lVar10 = RaceScene_IsFlag10();
   if (lVar10 == 0) {
     uVar9 = (uint)*(char *)(puVar11 + 0x3d);
   }
@@ -2112,7 +2112,7 @@ void RaceMenu_AnimateOptions(undefined8 param_1)
       uVar15 = auStack_80[uVar9 * 2 + 1];
     }
     UiElem_SetPropFloat(uVar16,*puVar11,uVar15,8);
-    lVar10 = race_leaf_sub_001e8fc0();
+    lVar10 = RaceScene_IsFlag10();
     if (lVar10 == 0) {
       uVar15 = puVar11[1];
     }
@@ -2140,12 +2140,12 @@ void RaceMenu_Confirm(undefined8 param_1,uint param_2)
   undefined8 uVar2;
   undefined8 uVar3;
   
-  lVar1 = race_leaf_sub_001e8fc0();
+  lVar1 = RaceScene_IsFlag10();
   uVar2 = 6;
   if (lVar1 == 0) {
     uVar2 = 1;
   }
-  lVar1 = race_leaf_sub_001e8fc0();
+  lVar1 = RaceScene_IsFlag10();
   *(uint *)((int)param_1 + 0xf0) = param_2 & 0xff;
   uVar3 = 7;
   if (lVar1 == 0) {
@@ -2182,7 +2182,7 @@ int RaceMenu_AnimateOpen(undefined8 param_1)
       UiLayout_UpdateAnim();
     }
   }
-  lVar4 = race_leaf_sub_001e8fc0();
+  lVar4 = RaceScene_IsFlag10();
   cVar9 = '\x06';
   if (lVar4 == 0) {
     cVar9 = '\x01';
@@ -2261,13 +2261,13 @@ long RaceMenu_AnimateClose(undefined8 param_1)
   int *piVar8;
   
   lVar7 = 1;
-  lVar2 = race_leaf_sub_001e8fc0();
+  lVar2 = RaceScene_IsFlag10();
   cVar1 = '\x06';
   if (lVar2 == 0) {
     cVar1 = '\x01';
   }
   uVar6 = (ulong)cVar1;
-  lVar2 = race_leaf_sub_001e8fc0();
+  lVar2 = RaceScene_IsFlag10();
   cVar4 = '\v';
   if (lVar2 == 0) {
     cVar4 = '\x06';
@@ -2324,7 +2324,7 @@ LAB_002c3bf8:
     piVar8[0x3c] = 0xb;
     *piVar8 = 0;
     piVar8[3] = 0;
-    racehud_step_sub_002cfb70(3);
+    RaceHud_SetState(3);
   }
   return lVar7;
 }
@@ -2341,8 +2341,8 @@ void RaceMenu_AnimateCursor(int *param_1)
   ulong uVar6;
   
   bVar1 = true;
-  lVar2 = race_leaf_sub_001e8fc0();
-  lVar3 = race_leaf_sub_001e8fc0();
+  lVar2 = RaceScene_IsFlag10();
+  lVar3 = RaceScene_IsFlag10();
   cVar4 = '\v';
   if (lVar3 == 0) {
     cVar4 = '\x06';
@@ -2468,7 +2468,7 @@ void RaceMenu_Update(int *param_1)
   int iVar6;
   undefined4 *puVar7;
   
-  lVar4 = race_leaf_sub_001e8fc0();
+  lVar4 = RaceScene_IsFlag10();
   cVar5 = '\x06';
   if (lVar4 == 0) {
     cVar5 = '\x01';

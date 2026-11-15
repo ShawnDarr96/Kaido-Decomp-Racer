@@ -3,7 +3,9 @@
 #include "ghidra_types.h"
 
 // 0x00100000  size 0x8
-void msl_leaf_sub_00100000(void)
+/* 8 bytes before the ELF entry (0x100008); falls into the bss-clear loop */
+
+void maybe_crt0_Prologue(void)
 
 {
   undefined4 in_zero_lo;
@@ -1655,8 +1657,8 @@ void maybe___SkipExceptionAction(byte *param_1)
 undefined4 maybe___InitExceptionInfo(int param_1)
 
 {
-  *(undefined ***)(param_1 + 0xc) = &PTR_msl_leaf_sub_00100000_0036e690;
-  *(undefined ***)(param_1 + 0x10) = &PTR_msl_leaf_sub_00100000_0036e690;
+  *(undefined ***)(param_1 + 0xc) = &PTR_maybe_crt0_Prologue_0036e690;
+  *(undefined ***)(param_1 + 0x10) = &PTR_maybe_crt0_Prologue_0036e690;
   return 1;
 }
 
@@ -2230,7 +2232,7 @@ long maybe_std_streambuf_dtor(long param_1,short param_2)
 }
 
 // 0x00103940  size 0x10
-undefined8 msl_leaf_sub_00103940(undefined8 param_1,undefined8 param_2,long param_3)
+undefined8 maybe_Stream_SetFlag66(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   *(bool *)((int)param_1 + 0x66) = param_3 != 0;
@@ -2238,7 +2240,7 @@ undefined8 msl_leaf_sub_00103940(undefined8 param_1,undefined8 param_2,long para
 }
 
 // 0x00103950  size 0x10
-undefined8 msl_leaf_sub_00103950(undefined8 param_1,undefined8 param_2,long param_3)
+undefined8 maybe_Stream_SetFlag36(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   *(bool *)((int)param_1 + 0x36) = param_3 != 0;
@@ -2417,7 +2419,7 @@ long maybe_std_streambuf_xsputn(undefined8 param_1,undefined1 *param_2,long para
 }
 
 // 0x00103c80  size 0x10
-void msl_leaf_sub_00103c80(undefined8 *param_1)
+void maybe_Pos_InitA(undefined8 *param_1)
 
 {
   *param_1 = 0xffffffffffffffff;
@@ -2426,7 +2428,7 @@ void msl_leaf_sub_00103c80(undefined8 *param_1)
 }
 
 // 0x00103c90  size 0x10
-void msl_leaf_sub_00103c90(undefined8 *param_1)
+void maybe_Pos_InitB(undefined8 *param_1)
 
 {
   *param_1 = 0xffffffffffffffff;

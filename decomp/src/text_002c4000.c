@@ -66,7 +66,7 @@ void RaceMenu_Draw(undefined8 param_1)
   
   piVar6 = (int *)param_1;
   if (*piVar6 == 0) {
-    lVar5 = race_leaf_sub_001e8fc0();
+    lVar5 = RaceScene_IsFlag10();
     if (lVar5 == 0) {
       iVar3 = UiMgr_FindLayout(piVar6[1]);
       uVar8 = 1;
@@ -94,7 +94,7 @@ void RaceMenu_Draw(undefined8 param_1)
     piVar6[0x45] = iVar3;
     piVar6[0x44] = iVar3;
   }
-  uVar4 = racehud_leaf_sub_002cfad0();
+  uVar4 = RaceHud_GetFlags();
   if ((uVar4 & 6) == 0) {
     return;
   }
@@ -604,7 +604,7 @@ void RaceMenu_Task(int *param_1)
       uVar6 = uVar6 + 1;
       piVar3 = piVar3 + 5;
     } while (uVar6 < 0xb);
-    lVar4 = race_leaf_sub_001e8fc0();
+    lVar4 = RaceScene_IsFlag10();
     cVar5 = '\x06';
     if (lVar4 == 0) {
       cVar5 = '\x01';
@@ -1206,7 +1206,7 @@ void RaceUi_TaskSplits(undefined8 param_1)
                     iVar4 + 0x26f0,*piRam00387f7c + -10,(*(int *)(iVar4 + 0xb0) / 10) % 10 + 3,0,0);
   RaceUi_DrawSprite(0x44158000,0x42880000,*(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,
                     iVar4 + 0x26f0,*piRam00387f7c + -10,*(int *)(iVar4 + 0xb0) % 10 + 3,0,0);
-  lVar3 = race_leaf_sub_001e8fc0();
+  lVar3 = RaceScene_IsFlag10();
   if (lVar3 == 0) {
     RaceUi_AnimateSplit(param_1,0);
     if ((*(uint *)(iVar4 + 8) & 0x200) != 0) {
@@ -1467,7 +1467,7 @@ void RaceUi_TaskGapMeter(undefined8 param_1)
                     iVar6 + 0x26f0,*piRam00387f7c + -10,(*(int *)(iVar6 + 0xb0) / 10) % 10 + 3,0,0);
   RaceUi_DrawSprite(0x44158000,0x42880000,*(undefined4 *)(iVar6 + 0x3b70),0x3f800000,0x3f800000,
                     iVar6 + 0x26f0,*piRam00387f7c + -10,*(int *)(iVar6 + 0xb0) % 10 + 3,0,0);
-  lVar5 = race_leaf_sub_001e8fc0();
+  lVar5 = RaceScene_IsFlag10();
   if (lVar5 == 0) {
     RaceUi_AnimateSplit(param_1,0);
     iStack_10 = *(int *)(iVar6 + 0xc0);
@@ -1953,7 +1953,7 @@ void RaceUi_TaskCountdown(int param_1)
     bVar2 = (*(uint *)(iVar7 + 8) & 0x80) != 0;
     RaceUi_DrawDigits(param_1,0x35,*puVar6,*(undefined4 *)(iVar7 + 0xa8),1,6,bVar2);
     RaceUi_DrawDigits(param_1,0x10c,*puVar5,*(undefined4 *)(iVar7 + 0xac),1,5,bVar2);
-    lVar3 = race_leaf_sub_001e8fc0();
+    lVar3 = RaceScene_IsFlag10();
     if (lVar3 == 0) {
       uVar1 = *(uint *)(iVar7 + 8);
       if ((uVar1 & 4) == 0) {
@@ -2069,7 +2069,7 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
       }
     }
   }
-  lVar4 = race_leaf_sub_001e8fc0();
+  lVar4 = RaceScene_IsFlag10();
   if (lVar4 == 0) {
     RaceUi_AnimateSplit(param_1,0);
   }

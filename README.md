@@ -17,15 +17,17 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Executable extracted, compiler identified | done: **Metrowerks CodeWarrior MIPS C 2.4.1.01**, Sony SDK libraries **2.8.0** |
 | Full Ghidra analysis (Emotion Engine processor) | done |
 | Every function decompiled to C | done: [`decomp/src/`](decomp/src), index in [`decomp/functions.csv`](decomp/functions.csv), progress in [`decomp/PROGRESS.md`](decomp/PROGRESS.md) |
-| Every function named or assigned to its module | done: 5259 functions (519 of them missed by Ghidra's analysis and added from `config/extra_functions.txt`); 3919 named (74.5%), 1340 tagged `module_role_sub_ADDRESS` (25.5%); see [`config/symbols.csv`](config/symbols.csv) |
+| Every function named | done: 5049 functions, all named (no `FUN_`/`_sub_` placeholders left); 1278 of the names are `maybe_` guesses still to review (row N153), and the 25 layout-only menu pages are named by table slot (`MenuPageNN_*`); see [`config/symbols.csv`](config/symbols.csv) |
+| Switch tables recovered | done: 210 switch-case labels that analysis had turned into functions are folded back into their parents ([`config/not_functions.txt`](config/not_functions.txt)); 339 jump tables are applied as decompiler overrides ([`config/jumptables.txt`](config/jumptables.txt)); 6 indirect jumps remain unrecovered |
 | Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
-| Placeholders replaced with real names, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
+| `maybe_` names reviewed, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
 | Matching (byte-identical) source | not started, see the P3 rows in [`WORK.md`](WORK.md) |
 
-The executable is stripped (no symbol table). Every function now has either a name backed by its code
-(strings, SDK conventions, call graph) or a module tag such as `scrgarage_sub_00213720` that records which
-subsystem it belongs to while its real name is still open. Names prefixed `maybe_` are educated guesses.
-The work now is replacing placeholders, recovering structs and splitting the code into its original source
+The executable is stripped (no symbol table). Every function now has a name backed by its code (strings,
+SDK conventions, call graph, the screen or state table it sits in). Names prefixed `maybe_` are educated
+guesses. The menu system is two 46-entry {Enter, Update, Exit} screen tables (0x3274b0 logic screens,
+0x3276e0 pages) whose states dispatch through per-screen arrays (`<Screen>_StateN`, `<Screen>_DrawN`).
+The work now is reviewing the `maybe_` names, recovering structs and splitting the code into its original source
 files (the 200 `__sinit_*` static initializers mark many translation-unit boundaries). The Sony SDK
 code (`sceGs*`, `sceCd*`, `sceMc*`, `scePad2*`, `sceDbc*`, libipu/MPEG) and the Metrowerks runtime can be
 identified from their strings and from other games that use the same SDK version.

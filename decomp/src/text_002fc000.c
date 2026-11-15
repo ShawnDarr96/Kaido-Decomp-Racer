@@ -24,7 +24,7 @@ undefined1 GameState_LoadHeader_Wrap2(void)
 }
 
 // 0x002fd0c0  size 0xbc
-undefined4 misc_step_sub_002fd0c0(void)
+undefined4 maybe_RaceResult_GetCategory(void)
 
 {
   byte bVar1;
@@ -74,7 +74,7 @@ undefined4 misc_step_sub_002fd0c0(void)
 }
 
 // 0x002fd180  size 0x34
-undefined8 misc_step_sub_002fd180(void)
+undefined8 maybe_RaceResult_GetRivalTeam(void)
 
 {
   long lVar1;

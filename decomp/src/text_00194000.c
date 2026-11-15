@@ -1006,7 +1006,7 @@ void maybe_CarSnd_PlayIfNotLoading(void)
 }
 
 // 0x00196640  size 0x7c
-char render_leaf_sub_00196640(int param_1,char param_2)
+char maybe_CarSnd_GetVoiceIndex(int param_1,char param_2)
 
 {
   char cVar1;

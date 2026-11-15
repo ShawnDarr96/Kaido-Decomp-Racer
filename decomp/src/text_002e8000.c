@@ -66,7 +66,7 @@ void ScrNameentryGetField48200_Entere8410(void)
 }
 
 // 0x002e84e0  size 0x388
-void eventui_step_sub_002e84e0(int param_1)
+void maybe_ComposerUi_InputInstrument(int param_1)
 
 {
   char cVar1;
@@ -265,7 +265,7 @@ void ScrNameentryGetField48200_Entere88d0(int param_1)
 // 0x002e89f0  size 0x194
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void eventui_anim_sub_002e89f0(undefined8 param_1)
+void maybe_ComposerUi_AnimateNameB(undefined8 param_1)
 
 {
   int iVar1;
@@ -511,7 +511,7 @@ void Eventui_Draw_Akagi_8b90(undefined8 param_1)
     iVar7 = UiMgr_FindLayout(0xb);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar7 * 0x4f4 + 4,0x9f,8);
   }
-  eventui_anim_sub_002e89f0(param_1);
+  maybe_ComposerUi_AnimateNameB(param_1);
   iVar7 = (int)param_1;
   iVar8 = *(int *)(iVar7 + 0x3c) + *(int *)(iVar7 + 0x38) * 3 + 1;
   MenuWnd_DrawText(10,0x13,2);
@@ -564,7 +564,7 @@ void Eventui_Draw_Akagi_8b90(undefined8 param_1)
           iVar4 = UiMgr_FindLayout(0xb);
           iVar1 = *_g_UiMgr;
           iVar5 = SeqGen_GetPatternEntry(iVar13 + 1);
-          eventui_step_sub_002e96a0
+          maybe_ComposerUi_SetGridCell
                     (iVar1 + iVar4 * 0x4f4 + 4,*puVar12,9,*(undefined1 *)(iVar5 + 0xb));
           uVar11 = Menuscr_FieldPtr_52(iVar13 + 1);
           MenuWnd_DrawText(0xb,puVar12[3],uVar11);
@@ -608,8 +608,7 @@ LAB_002e8f80:
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar8 * 0x4f4 + 4);
   iVar8 = UiMgr_FindLayout(10);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar8 * 0x4f4 + 4);
-  menuscr_anim_sub_002f5e70
-            (0xb,3,4,200,*(undefined4 *)(iVar7 + 0x34),6,*(undefined4 *)(iVar7 + 0x40));
+  MenuNum_CountUp_Event(0xb,3,4,200,*(undefined4 *)(iVar7 + 0x34),6,*(undefined4 *)(iVar7 + 0x40));
   iVar7 = UiMgr_FindLayout(0xb);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar7 * 0x4f4 + 4);
   return;
@@ -682,7 +681,7 @@ void ScrNameentryGetField48200_Entere9590(void)
 /* WARNING: Removing unreachable block (ram,0x002e9718) */
 /* WARNING: Removing unreachable block (ram,0x002e9744) */
 
-void eventui_step_sub_002e96a0(undefined8 param_1,undefined8 param_2,byte param_3,ulong param_4)
+void maybe_ComposerUi_SetGridCell(undefined8 param_1,undefined8 param_2,byte param_3,ulong param_4)
 
 {
   bool bVar1;
@@ -724,7 +723,7 @@ void eventui_step_sub_002e96a0(undefined8 param_1,undefined8 param_2,byte param_
 }
 
 // 0x002e97e0  size 0x204
-void eventui_step_sub_002e97e0(float param_1,float *param_2,long param_3)
+void maybe_ComposerUi_PlayNote(float param_1,float *param_2,long param_3)
 
 {
   int iVar1;
@@ -781,7 +780,7 @@ LAB_002e9918:
 }
 
 // 0x002e99f0  size 0x13c
-void eventui_step_sub_002e99f0(int param_1,undefined8 param_2)
+void maybe_ComposerUi_UpdatePlayback(int param_1,undefined8 param_2)
 
 {
   undefined1 *puVar1;
@@ -792,7 +791,7 @@ void eventui_step_sub_002e99f0(int param_1,undefined8 param_2)
   int iVar6;
   
   if (*(int *)(param_1 + 0xd68) < 1) {
-    eventui_leaf_sub_002e9b30();
+    maybe_ComposerUi_ClearTracks();
     iVar6 = 0;
     iVar5 = 0;
     iVar4 = 1;
@@ -823,7 +822,7 @@ void eventui_step_sub_002e99f0(int param_1,undefined8 param_2)
 }
 
 // 0x002e9b30  size 0x90
-void eventui_leaf_sub_002e9b30(int param_1)
+void maybe_ComposerUi_ClearTracks(int param_1)
 
 {
   bool bVar1;
@@ -856,7 +855,7 @@ void eventui_leaf_sub_002e9b30(int param_1)
 }
 
 // 0x002e9bc0  size 0x704
-void eventui_step_sub_002e9bc0(int param_1)
+void maybe_ComposerUi_InputEdit(int param_1)
 
 {
   short sVar1;
@@ -1164,7 +1163,7 @@ LAB_002e9dd8:
 }
 
 // 0x002ea2d0  size 0x3b8
-void eventui_step_sub_002ea2d0(int param_1)
+void maybe_ComposerUi_InputRange(int param_1)
 
 {
   short sVar1;
@@ -2133,7 +2132,7 @@ void ScrScriptGetElem2f4xda8_Update(undefined8 param_1)
     if ((uVar6 & 0x100) != 0) {
       *(uint *)(iVar8 + 0xc9c) = *(int *)(iVar8 + 0xc9c) != 0 ^ 1;
     }
-    eventui_step_sub_002e97e0(iVar8 + 0xc98,*(float *)(iVar8 + 0xcb8) < *(float *)(iVar8 + 0xcb4));
+    maybe_ComposerUi_PlayNote(iVar8 + 0xc98,*(float *)(iVar8 + 0xcb8) < *(float *)(iVar8 + 0xcb4));
     if (0.0 <= *(float *)(iVar8 + 0xcb8)) {
       fVar9 = (*(float *)(iVar8 + 0xcb8) * 480.0) / 4.0;
       if (fVar9 < 2.1474836e+09) {
@@ -2144,7 +2143,7 @@ void ScrScriptGetElem2f4xda8_Update(undefined8 param_1)
       }
       PreviewSnd_Play(iVar8 + 0xc80,uVar11,0xffffffffffffffff,0xffffffffffffffff);
       if ((*(uint *)(iVar8 + 0xccc) & 0x200) == 0) {
-        eventui_step_sub_002e99f0(param_1,iVar8 + 0xc80);
+        maybe_ComposerUi_UpdatePlayback(param_1,iVar8 + 0xc80);
         *(uint *)(iVar8 + 0xccc) = *(uint *)(iVar8 + 0xccc) | 0x200;
       }
     }
@@ -2219,7 +2218,7 @@ void ScrScriptGetElem2f4xda8_Update(undefined8 param_1)
            (*(int *)(iVar8 + 0xd68) < 1)) {
           iVar4 = *(int *)(iVar8 + 0xcc0) * 4 + iVar8;
           *(uint *)(iVar4 + 0xd28) = *(int *)(iVar4 + 0xd28) != 0 ^ 1;
-          eventui_step_sub_002e99f0(param_1,iVar8 + 0xc80);
+          maybe_ComposerUi_UpdatePlayback(param_1,iVar8 + 0xc80);
         }
       }
       else {
@@ -2227,7 +2226,7 @@ void ScrScriptGetElem2f4xda8_Update(undefined8 param_1)
         if ((lVar5 != 0) && (*(int *)(iVar8 + 0xd68) < 1)) {
           iVar4 = *(int *)(iVar8 + 0xcc0) * 4 + iVar8;
           *(uint *)(iVar4 + 0xd08) = *(int *)(iVar4 + 0xd08) != 0 ^ 1;
-          eventui_step_sub_002e99f0(param_1,iVar8 + 0xc80);
+          maybe_ComposerUi_UpdatePlayback(param_1,iVar8 + 0xc80);
         }
       }
       uVar6 = ComposerInput_GetHeld();

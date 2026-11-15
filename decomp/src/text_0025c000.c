@@ -45,18 +45,18 @@ void ScrGarage_Draw_ColourSchemeChanged(undefined8 param_1)
       MenuWnd_DrawLabel(5,0x1c,0x2c7,0x98f,0xffffffffffffffff);
     }
     else {
-      uVar4 = scrcareer_step_sub_002a1600(iVar1,puVar6[4]);
+      uVar4 = maybe_CarModel_IsBossCar(iVar1,puVar6[4]);
       uVar5 = Msg_PartInfo(uVar4);
       uVar4 = Msg_MakerName(uVar4);
       MenuWnd_DrawLabel(5,0x1c,0x2c7,uVar5,uVar4);
     }
     uVar2 = *puVar6;
   }
-  lVar3 = scrcareer_step_sub_00256210(puVar6[1],uVar2);
+  lVar3 = maybe_CarSlot_IsSpecial(puVar6[1],uVar2);
   if (lVar3 == 1) {
     Menu_DrawFrame(_g_MenuMgr + 0x654);
   }
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -103,18 +103,18 @@ void ScrGarage_Draw_ColourSchemeChanged_c740(undefined8 param_1)
       MenuWnd_DrawLabel(5,0x1c,0x2c3,0x98f,0xffffffffffffffff);
     }
     else {
-      uVar4 = scrcareer_step_sub_002a1600(iVar1,puVar6[4]);
+      uVar4 = maybe_CarModel_IsBossCar(iVar1,puVar6[4]);
       uVar5 = Msg_PartInfo(uVar4);
       uVar4 = Msg_MakerName(uVar4);
       MenuWnd_DrawLabel(5,0x1c,0x2c3,uVar5,uVar4);
     }
     uVar2 = *puVar6;
   }
-  lVar3 = scrcareer_step_sub_00256210(puVar6[1],uVar2);
+  lVar3 = maybe_CarSlot_IsSpecial(puVar6[1],uVar2);
   if (lVar3 == 1) {
     Menu_DrawFrame(_g_MenuMgr + 0x654);
   }
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -150,15 +150,15 @@ void ScrGarage_Draw_Equip(undefined8 param_1)
     puVar5[0x16] = 0;
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
-  uVar3 = scrcareer_step_sub_002a1600(puVar5[1],puVar5[4]);
+  uVar3 = maybe_CarModel_IsBossCar(puVar5[1],puVar5[4]);
   uVar4 = Msg_PartInfo(uVar3);
   uVar3 = Msg_MakerName(uVar3);
   MenuWnd_DrawLabel(5,0x1c,0x2c6,uVar4,uVar3);
-  lVar2 = scrcareer_step_sub_00256210(puVar5[1],*puVar5);
+  lVar2 = maybe_CarSlot_IsSpecial(puVar5[1],*puVar5);
   if (lVar2 == 1) {
     Menu_DrawFrame(_g_MenuMgr + 0x654);
   }
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -205,18 +205,18 @@ void ScrGarage_Draw_ChangeColourScheme(undefined8 param_1)
       MenuWnd_DrawLabel(5,0x1c,0x2c2,0x98f,0xffffffffffffffff);
     }
     else {
-      uVar4 = scrcareer_step_sub_002a1600(iVar1,puVar6[4]);
+      uVar4 = maybe_CarModel_IsBossCar(iVar1,puVar6[4]);
       uVar5 = Msg_PartInfo(uVar4);
       uVar4 = Msg_MakerName(uVar4);
       MenuWnd_DrawLabel(5,0x1c,0x2c2,uVar5,uVar4);
     }
     uVar2 = *puVar6;
   }
-  lVar3 = scrcareer_step_sub_00256210(puVar6[1],uVar2);
+  lVar3 = maybe_CarSlot_IsSpecial(puVar6[1],uVar2);
   if (lVar3 == 1) {
     Menu_DrawFrame(_g_MenuMgr + 0x654);
   }
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -230,7 +230,7 @@ void ScrChangeColourScheme_Enter(undefined4 *param_1)
   long lVar1;
   undefined8 uVar2;
   
-  scrgarage_draw_sub_0025a760();
+  maybe_PartShop_Draw();
   if (param_1[1] == 0x19) {
     uVar2 = 0x2e6;
   }
@@ -241,7 +241,7 @@ void ScrChangeColourScheme_Enter(undefined4 *param_1)
     uVar2 = 0x2be;
   }
   MenuWnd_SetTitle(3,uVar2);
-  lVar1 = scrcareer_step_sub_00256210(param_1[1],*param_1);
+  lVar1 = maybe_CarSlot_IsSpecial(param_1[1],*param_1);
   if (lVar1 == 1) {
     Menu_DrawFrame(_g_MenuMgr + 0x654);
   }
@@ -265,7 +265,7 @@ void ScrGarage_Draw_Engine(int param_1)
   undefined4 *puVar6;
   int iVar7;
   
-  iVar1 = scrcareer_step_sub_0029f470(0xffffffffffffffff,0);
+  iVar1 = maybe_MenuText_CarSpecGrade(0xffffffffffffffff,0);
   iVar7 = *(int *)(param_1 + 4);
   if (iVar7 < 4) {
     unaff_s2_lo = iVar7 + 0x2f1;
@@ -1018,7 +1018,7 @@ void ScrGarage_Draw_Reinforcement(int *param_1)
     goto LAB_0025e244;
   }
   MenuWnd_DrawText(0x4c,0x32,0x98d);
-  lVar6 = scrcareer_step_sub_0029f130(0x19);
+  lVar6 = maybe_MenuText_CurrentCarSpec(0x19);
   if (lVar6 == 0) {
     MenuWnd_DrawTextId(0x4c,0x33,3,0x98e);
   }

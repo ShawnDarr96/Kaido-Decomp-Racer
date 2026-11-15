@@ -481,7 +481,7 @@ LAB_0022a14c:
       puVar9 = puVar9 + 1;
     } while (iVar1 < 0xb);
   }
-  uVar13 = menuscr_step_sub_0028b580(param_1[0x19d]);
+  uVar13 = maybe_Mail_CountMessages(param_1[0x19d]);
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar13);
   if (param_1[param_1[0x19d] + 0xb] < 1) {
     DAT_0032a850 = 1;

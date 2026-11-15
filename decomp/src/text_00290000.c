@@ -284,7 +284,7 @@ void maybe_ScrBlank17_Enter(undefined4 *param_1)
 // 0x002906a0  size 0x140
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_002906a0(int param_1)
+void maybe_ScrRivalSelect_HandleInput(int param_1)
 
 {
   int iVar1;
@@ -330,7 +330,7 @@ void menuscr_step_sub_002906a0(int param_1)
 }
 
 // 0x002907f0  size 0x7c
-undefined4 menuscr_leaf_sub_002907f0(int param_1,int param_2)
+undefined4 maybe_ScrRivalProfile_GetSlotState(int param_1,int param_2)
 
 {
   undefined4 uVar1;
@@ -389,9 +389,9 @@ void maybe_ScrRivalProfile_State10(undefined8 param_1)
     else if (0x27 < iVar3) {
       iVar3 = 0;
     }
-    uVar1 = menuscr_leaf_sub_002907f0(param_1,iVar3);
+    uVar1 = maybe_ScrRivalProfile_GetSlotState(param_1,iVar3);
     *(undefined4 *)(extraout_a0_lo + 0x38) = uVar1;
-    uVar1 = menuscr_leaf_sub_002907f0();
+    uVar1 = maybe_ScrRivalProfile_GetSlotState();
     *(undefined4 *)((int)extraout_a0 + 0x3c) = uVar1;
     param_1 = extraout_a0;
   }
@@ -448,7 +448,7 @@ void maybe_ScrRivalProfile_State8(undefined8 param_1)
     else if (0x27 < iVar2) {
       iVar2 = 0;
     }
-    iVar2 = menuscr_leaf_sub_002907f0(param_1,iVar2);
+    iVar2 = maybe_ScrRivalProfile_GetSlotState(param_1,iVar2);
     piVar1[0xe] = iVar2;
     iVar2 = piVar1[10] + 1;
     if (iVar2 < 0) {
@@ -457,7 +457,7 @@ void maybe_ScrRivalProfile_State8(undefined8 param_1)
     else if (0x27 < iVar2) {
       iVar2 = 0;
     }
-    iVar2 = menuscr_leaf_sub_002907f0(param_1,iVar2);
+    iVar2 = maybe_ScrRivalProfile_GetSlotState(param_1,iVar2);
     piVar1[0xf] = iVar2;
     Menu_ShowDialog(_g_MenuMgr + 0x654,0x121,2);
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
@@ -514,7 +514,7 @@ void maybe_ScrRivalProfile_State6(undefined8 param_1)
     else if (0x27 < iVar2) {
       iVar2 = 0;
     }
-    iVar2 = menuscr_leaf_sub_002907f0(param_1,iVar2);
+    iVar2 = maybe_ScrRivalProfile_GetSlotState(param_1,iVar2);
     piVar1[0xe] = iVar2;
     iVar2 = piVar1[10] + 1;
     if (iVar2 < 0) {
@@ -523,7 +523,7 @@ void maybe_ScrRivalProfile_State6(undefined8 param_1)
     else if (0x27 < iVar2) {
       iVar2 = 0;
     }
-    iVar2 = menuscr_leaf_sub_002907f0(param_1,iVar2);
+    iVar2 = maybe_ScrRivalProfile_GetSlotState(param_1,iVar2);
     piVar1[0xf] = iVar2;
     Menu_ShowDialog(_g_MenuMgr + 0x654,0x121,2);
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
@@ -630,7 +630,7 @@ void maybe_ScrRivalSelect_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle();
   if (lVar1 != 0) {
     (*(code *)(&PTR_maybe_ScrRivalSelect_State0_0032e8e0)[*(int *)((int)param_1 + 4)])(param_1);
-    menuscr_step_sub_002906a0(param_1);
+    maybe_ScrRivalSelect_HandleInput(param_1);
     Menu_RequestTransition(param_1);
   }
   return;
@@ -677,7 +677,7 @@ void maybe_ScrRivalSelect_Enter(undefined4 *param_1)
 }
 
 // 0x002910e0  size 0x194
-void scrrace_step_sub_002910e0(undefined8 param_1)
+void maybe_ScrRivalRaceSetup_HandleInput(undefined8 param_1)
 
 {
   int iVar1;
@@ -699,11 +699,11 @@ void scrrace_step_sub_002910e0(undefined8 param_1)
     if (*(int *)(iVar3 + 0x818) == 1) {
       Se_PlayMenu(5);
       *(undefined4 *)(iVar3 + 4) = *(undefined4 *)(iVar3 + 8);
-      scrrace_step_sub_00291280(param_1,0);
+      maybe_ScrRivalRaceSetup_OnResult(param_1,0);
     }
     else if (*(int *)(iVar3 + 0x818) == 0) {
       Se_PlayMenu(5);
-      scrrace_step_sub_00291280(param_1,1);
+      maybe_ScrRivalRaceSetup_OnResult(param_1,1);
     }
   }
   else if (uVar2 == 0x10) {
@@ -718,7 +718,7 @@ void scrrace_step_sub_002910e0(undefined8 param_1)
     if (iVar1 == 1) {
       *(undefined4 *)(iVar3 + 0x24) = 1;
     }
-    scrrace_step_sub_00291280(param_1,*(undefined4 *)(iVar3 + 0x868));
+    maybe_ScrRivalRaceSetup_OnResult(param_1,*(undefined4 *)(iVar3 + 0x868));
   }
   else if (uVar2 == 0x20) {
     if (*(int *)(iVar3 + 0x864) == -3) {
@@ -732,13 +732,13 @@ void scrrace_step_sub_002910e0(undefined8 param_1)
     if (iVar1 == 1) {
       *(undefined4 *)(iVar3 + 4) = *(undefined4 *)(iVar3 + 8);
     }
-    scrrace_step_sub_00291280(param_1,*(undefined4 *)(iVar3 + 0x864));
+    maybe_ScrRivalRaceSetup_OnResult(param_1,*(undefined4 *)(iVar3 + 0x864));
   }
   return;
 }
 
 // 0x00291280  size 0x160
-void scrrace_step_sub_00291280(int *param_1,long param_2)
+void maybe_ScrRivalRaceSetup_OnResult(int *param_1,long param_2)
 
 {
   int iVar1;
@@ -788,7 +788,7 @@ void scrrace_step_sub_00291280(int *param_1,long param_2)
 }
 
 // 0x002913e0  size 0x98
-int scrcareer_step_sub_002913e0(int *param_1,int *param_2)
+int maybe_RivalSel_CompareByCar(int *param_1,int *param_2)
 
 {
   int iVar1;
@@ -813,7 +813,7 @@ int scrcareer_step_sub_002913e0(int *param_1,int *param_2)
 }
 
 // 0x00291480  size 0x3a4
-void scrcareer_step_sub_00291480(int param_1)
+void maybe_ScrRivalRaceSetup_BuildList(int param_1)
 
 {
   int iVar1;
@@ -1251,7 +1251,7 @@ void maybe_ScrRivalRaceSetup_State0(int param_1)
     *(undefined4 *)(param_1 + 0x2c) = 2;
     if (*(int *)(param_1 + 0x24) == 1) {
       *(undefined4 *)(param_1 + 0x24) = 0;
-      scrcareer_step_sub_00291480();
+      maybe_ScrRivalRaceSetup_BuildList();
       *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_1 + 0x14);
       *(undefined4 *)(param_1 + 0x1c) = 0;
       iVar2 = *(int *)(param_1 + 0x10);
@@ -1370,7 +1370,7 @@ void maybe_ScrRivalRaceSetup_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle(iVar2 + 0x814);
   if (lVar1 != 0) {
     (*(code *)(&PTR_maybe_ScrRivalRaceSetup_State0_0032e900)[*(int *)(iVar2 + 0x818)])(param_1);
-    scrrace_step_sub_002910e0(param_1);
+    maybe_ScrRivalRaceSetup_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x814);
   }
   return;
@@ -1478,7 +1478,7 @@ void maybe_ScrRivalRaceSetup_Enter(undefined8 param_1)
   puVar12[0x20b] = 0;
   puVar12[1] = 0xc;
   puVar12[2] = 0xc;
-  scrcareer_step_sub_00291480(param_1);
+  maybe_ScrRivalRaceSetup_BuildList(param_1);
   puVar12[4] = puVar12[5];
   iVar7 = puVar12[4];
   if (iVar7 < 9) {
@@ -1505,7 +1505,7 @@ void maybe_ScrRivalRaceSetup_Enter(undefined8 param_1)
 }
 
 // 0x00292570  size 0x120
-void scrgarage_step_sub_00292570(int param_1)
+void maybe_ScrPartApply_BuildList(int param_1)
 
 {
   short sVar1;
@@ -1550,7 +1550,7 @@ void scrgarage_step_sub_00292570(int param_1)
 }
 
 // 0x00292690  size 0x64
-bool scrcareer_step_sub_00292690(int param_1)
+bool maybe_Sponsor_IsUnlocked(int param_1)
 
 {
   char cVar1;
@@ -1565,7 +1565,7 @@ bool scrcareer_step_sub_00292690(int param_1)
 }
 
 // 0x00292700  size 0x28
-undefined4 menuscr_leaf_sub_00292700(int param_1)
+undefined4 maybe_Sponsor_GetCycledEntry(int param_1)
 
 {
   return *(undefined4 *)
@@ -1574,7 +1574,7 @@ undefined4 menuscr_leaf_sub_00292700(int param_1)
 }
 
 // 0x00292730  size 0x1f0
-void scrgarage_step_sub_00292730(int param_1)
+void maybe_ScrPartApply_HandleInput(int param_1)
 
 {
   undefined8 uVar1;
@@ -1717,7 +1717,7 @@ void maybe_ScrPartApply_State2(int *param_1)
   if (iVar1 != 0) {
     param_1[8] = 3;
     param_1[9] = 0;
-    scrgarage_step_sub_00292570();
+    maybe_ScrPartApply_BuildList();
     if (*param_1 == 0) {
       param_1[0xd] = 0;
     }
@@ -1868,7 +1868,7 @@ void maybe_ScrPartApply_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle();
   if (lVar1 != 0) {
     (*(code *)(&PTR_maybe_ScrPartApply_State0_0032e920)[*(int *)((int)param_1 + 4)])(param_1);
-    scrgarage_step_sub_00292730(param_1);
+    maybe_ScrPartApply_HandleInput(param_1);
     Menu_RequestTransition(param_1);
   }
   return;
@@ -1972,7 +1972,7 @@ void maybe_ScrOptions_StepVoice(undefined8 param_1)
       Se_PlayMenu(6);
       iVar1 = piVar5[0xf];
     }
-    scrrace_step_sub_00293170(param_1,iVar1);
+    maybe_ScrModeVoice_OnResult(param_1,iVar1);
     return;
   }
   iVar1 = piVar5[0x10];
@@ -2002,12 +2002,12 @@ void maybe_ScrOptions_StepVoice(undefined8 param_1)
   }
   iVar1 = piVar5[0x10];
 LAB_002930d8:
-  scrrace_step_sub_00293170(param_1,iVar1);
+  maybe_ScrModeVoice_OnResult(param_1,iVar1);
   return;
 }
 
 // 0x00293170  size 0xe0
-void scrrace_step_sub_00293170(undefined4 *param_1,long param_2)
+void maybe_ScrModeVoice_OnResult(undefined4 *param_1,long param_2)
 
 {
   uint uVar1;
@@ -2521,7 +2521,7 @@ void ScrSave_Enter(undefined8 param_1)
   
   Save_AllocSlots();
   SaveMgr_LoadIcon(param_1);
-  showroom_leaf_sub_002d8f50(0x293f50,0x293f40,0x293f30);
+  SaveUi_SetParams(0x293f50,0x293f40,0x293f30);
   iVar1 = (int)param_1;
   *(undefined4 *)(iVar1 + 0x568) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x56c) = 0;

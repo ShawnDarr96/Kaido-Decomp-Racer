@@ -239,7 +239,7 @@ void PwInput_Update(int param_1)
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
-      replayui_draw_sub_002dbf30
+      maybe_NameEntry_DrawField
                 (param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
       return;
     }
@@ -251,7 +251,7 @@ void PwInput_Update(int param_1)
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
-      replayui_draw_sub_002dbf30
+      maybe_NameEntry_DrawField
                 (param_1 + 0xf0,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
       return;
     }
@@ -264,7 +264,7 @@ void PwInput_Update(int param_1)
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x4c;
   } while (uVar4 < 3);
-  replayui_draw_sub_002dbf30
+  maybe_NameEntry_DrawField
             (param_1,*(undefined1 *)(param_1 + 0x1e1),*(undefined1 *)(param_1 + 0x1e2));
   return;
 }

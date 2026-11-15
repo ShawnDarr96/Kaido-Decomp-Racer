@@ -1115,7 +1115,7 @@ void RaceUi_AnimateWarning(int param_1)
       UiElem_SetPropFloat(0,*(undefined4 *)(param_1 + 0x10fc),uVar3,8);
     }
     else {
-      lVar1 = race_leaf_sub_001e8fc0();
+      lVar1 = RaceScene_IsFlag10();
       if ((lVar1 == 0) && (*(int *)(iVar2 + 0x78) == 1)) {
         Se_PlayMenuVol(3,0x60);
       }

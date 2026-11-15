@@ -1086,7 +1086,7 @@ void MenuScene_Exit(int param_1)
   CarDb_Free();
   Subtitle_Free();
   GameDb_Free();
-  showroom_exit_sub_002d5230();
+  MenuObj_Shutdown();
   UiRes_FreeFonts();
   return;
 }
@@ -1143,7 +1143,7 @@ void MenuScene_Enter(int param_1)
   *puVar2 = 0;
   uVar5 = MenuScene_GetEntryScreen();
   puVar2[1] = uVar5;
-  showroom_load_sub_002d5260(0x430750);
+  MenuObj_Init(0x430750);
   CarDb_Alloc(0x430750);
   CarDb_Load();
   GameDb_Alloc(0x430750);

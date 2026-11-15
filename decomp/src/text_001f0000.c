@@ -1570,7 +1570,7 @@ void maybe_Demo_StepFadeOut(undefined8 param_1,undefined8 param_2)
   
   SndMgr_GetInstance();
   Demo_Start(param_2,param_2);
-  lVar5 = misc_step_sub_002fd0c0();
+  lVar5 = maybe_RaceResult_GetCategory();
   if ((lVar5 == 0) || (cVar3 = Snd_StreamGetState(0), cVar3 == '\t')) {
     piVar6 = (int *)param_2;
     iVar1 = *piVar6;
@@ -1602,7 +1602,7 @@ void maybe_Demo_StepStart(undefined8 param_1,undefined8 param_2)
 {
   long lVar1;
   
-  lVar1 = attract_step_sub_002fb5a0();
+  lVar1 = maybe_Attract_PickDemo();
   Demo_DriveCar(param_2,lVar1);
   Demo_Start(param_2,param_2);
   if (lVar1 == 0) {

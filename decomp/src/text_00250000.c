@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002535c0  size 0x30
-void menuscr_leaf_sub_002535c0(int param_1,int param_2)
+void maybe_Trickster_ResetSlot(int param_1,int param_2)
 
 {
   param_1 = param_2 * 0x14 + param_1;
@@ -18,7 +18,7 @@ void menuscr_leaf_sub_002535c0(int param_1,int param_2)
 }
 
 // 0x002535f0  size 0x3c
-void menuscr_leaf_sub_002535f0(int param_1,int param_2)
+void maybe_Trickster_ClearSlot(int param_1,int param_2)
 
 {
   param_1 = param_2 * 0x14 + param_1;

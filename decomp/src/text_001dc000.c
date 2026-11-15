@@ -163,7 +163,7 @@ void RaceProg_UpdateAll(undefined8 param_1)
     }
   }
   lVar3 = RaceScene_Get_38();
-  if ((lVar3 == 36000) && (lVar3 = race_leaf_sub_001e8fc0(), lVar3 != 0)) {
+  if ((lVar3 == 36000) && (lVar3 = RaceScene_IsFlag10(), lVar3 != 0)) {
     if (*_g_RaceProg == 0) {
       *puVar4 = *puVar4 | 0x10;
       uVar2 = GameState_Get_35c();
@@ -389,7 +389,7 @@ void RaceProg_Begin(void)
             }
             else {
               *(undefined1 *)(_g_RaceProg + 2) = 5;
-              lVar5 = race_leaf_sub_001e8fc0();
+              lVar5 = RaceScene_IsFlag10();
               if (lVar5 == 0) {
                 cVar4 = RaceCtx_GetMode();
                 if (cVar4 == '\x01') {

@@ -546,7 +546,7 @@ void ScrScrGarageDrawFullAeroa980_Enter(undefined8 param_1)
     }
   }
   MenuScr_Select_CarStatus(param_1);
-  menuscr_anim_sub_0026a630(0xdc,3,4,0xf8,4,1,2);
+  MenuNum_CountUp_Tune(0xdc,3,4,0xf8,4,1,2);
   UiLayout_UpdateAnimById(0xdc,2);
   iVar1 = UiMgr_FindLayout(0xdc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -1099,7 +1099,7 @@ void ScrCategory_Exit(undefined8 param_1)
     }
   }
   MenuScr_Select_CarStatus(param_1);
-  menuscr_anim_sub_0026a630(0xdc,3,4,0xf8,4,1,1);
+  MenuNum_CountUp_Tune(0xdc,3,4,0xf8,4,1,1);
   UiLayout_UpdateAnimById(0xdc,2);
   iVar1 = UiMgr_FindLayout(0xdc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -1800,7 +1800,7 @@ void ScrCategory_Update(undefined8 param_1)
     }
   }
   MenuScr_Select_CarStatus(param_1);
-  menuscr_anim_sub_0026a630(0xdc,3,4,0xf8,4,1,0);
+  MenuNum_CountUp_Tune(0xdc,3,4,0xf8,4,1,0);
   UiLayout_UpdateAnimById(0xdc,2);
   iVar2 = UiMgr_FindLayout(0xdc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
@@ -1873,7 +1873,7 @@ void ScrCareer_Draw_Category(undefined8 param_1)
   lVar4 = UiLayout_UpdateAnimById(0xdb,0);
   if (lVar4 == 0) {
     if ((*piVar5 == -1) && (piVar5[4] != 0)) {
-      menuscr_anim_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + piVar5[0xbf] * 4));
+      maybe_CarStatus_ResetBars(*(undefined4 *)(&DAT_0032d928 + piVar5[0xbf] * 4));
     }
     piVar5[4] = 0;
   }
@@ -2161,7 +2161,7 @@ void MenuPage37_Enter(int param_1)
   }
   *(undefined4 *)(param_1 + 0x2fc) = uVar2;
 LAB_0026fd2c:
-  menuscr_anim_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + *(int *)(param_1 + 0x2fc) * 4));
+  maybe_CarStatus_ResetBars(*(undefined4 *)(&DAT_0032d928 + *(int *)(param_1 + 0x2fc) * 4));
   return;
 }
 

@@ -1473,7 +1473,7 @@ void MenuPage08_Enter(void)
 }
 
 // 0x00222b50  size 0x14c
-void menuscr_draw_sub_00222b50(int *param_1)
+void maybe_MenuWnd_DrawMailList(int *param_1)
 
 {
   int iVar1;
@@ -1616,7 +1616,7 @@ void ScrCareer_Draw_Mail(int param_1)
   }
   MenuWnd_DrawText(0xae,1,0x434);
   if (*(int *)(param_1 + 0x674) == 1) {
-    menuscr_draw_sub_00222b50
+    maybe_MenuWnd_DrawMailList
               (*(int *)(param_1 + 0x680) +
                *(int *)(*(int *)(param_1 + 0x67c) * 4 + param_1 + 0x354) * 0x28 + 0x9994);
     iVar2 = *(int *)(*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x678) * 4 +
@@ -1644,7 +1644,7 @@ void ScrCareer_Draw_Mail(int param_1)
       iVar1 = *(int *)(param_1 + 0x674);
       goto LAB_002230cc;
     }
-    menuscr_draw_sub_00222b50
+    maybe_MenuWnd_DrawMailList
               (*(int *)(param_1 + 0x680) +
                *(int *)(*(int *)(param_1 + 0x678) * 4 + param_1 + 0x34) * 0x28 + 0xb8d4);
     iVar2 = *(int *)(*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x678) * 4 +
@@ -2138,7 +2138,7 @@ void ScrCareer_Draw_MessageDeleted(int param_1)
       } while (iVar1 < 10);
     }
   }
-  uVar13 = menuscr_step_sub_0028b580(*(undefined4 *)(param_1 + 0x674));
+  uVar13 = maybe_Mail_CountMessages(*(undefined4 *)(param_1 + 0x674));
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar13);
   if (*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x2c) < 0xb) {
     iVar8 = 0;

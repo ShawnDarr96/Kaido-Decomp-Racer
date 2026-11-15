@@ -27,7 +27,7 @@ void ScrGarage_Draw_NoOwned(int param_1)
   undefined8 uVar17;
   undefined4 *puVar18;
   
-  uVar9 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
+  uVar9 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
   iVar7 = *(int *)(param_1 + 0x5c);
   *(undefined4 *)(param_1 + 0x5c) = 0;
   if (iVar7 != 0) {
@@ -257,7 +257,7 @@ void ScrGarage_Draw_NoOwned(int param_1)
                 (0x51,*(undefined4 *)(&DAT_0032cfb8 + *(int *)(param_1 + 0x10) * 0x10),1,0);
     }
   }
-  lVar10 = scrcareer_step_sub_0029f130(*(undefined4 *)(param_1 + 4));
+  lVar10 = maybe_MenuText_CurrentCarSpec(*(undefined4 *)(param_1 + 4));
   if (lVar10 == 1) {
     iVar7 = *(int *)(param_1 + 0x4c);
     if (((iVar7 == 7) || (iVar7 == 10)) || (iVar7 == 0xb)) {
@@ -267,7 +267,7 @@ void ScrGarage_Draw_NoOwned(int param_1)
       if (iVar7 != 0x11) goto LAB_00258ccc;
       uVar6 = *(undefined4 *)(param_1 + 4);
     }
-    uVar2 = scrcareer_step_sub_002a1600(uVar6,*(undefined4 *)(param_1 + 0x10));
+    uVar2 = maybe_CarModel_IsBossCar(uVar6,*(undefined4 *)(param_1 + 0x10));
     MenuWnd_DrawStatus(0xffffffffffffffff,0,uVar2,*(undefined4 *)(param_1 + 0x14));
   }
   else {
@@ -290,10 +290,9 @@ LAB_00258ccc:
   iVar7 = 0;
   puVar18 = &DAT_0032cfc0;
   do {
-    sVar5 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar7 + 1);
+    sVar5 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),iVar7 + 1);
     if ((sVar3 != sVar5) &&
-       (sVar5 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar7 + 1), sVar4 != sVar5)
-       ) {
+       (sVar5 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),iVar7 + 1), sVar4 != sVar5)) {
       iVar8 = UiMgr_FindLayout(0x51);
       UiElem_SetPropFloat(0,*_g_UiMgr + iVar8 * 0x4f4 + 4,*puVar18,8);
     }
@@ -326,7 +325,7 @@ LAB_00258ccc:
   uVar16 = Msg_PartInfo(uVar16);
   MenuWnd_DrawText(0x4e,6,0x2e9);
   MenuWnd_DrawLabel(0x4e,7,0x3f,uVar2);
-  uVar17 = menuscr_leaf_sub_002a17d0(*(undefined4 *)(param_1 + 4));
+  uVar17 = maybe_CarModel_GetClassC(*(undefined4 *)(param_1 + 4));
   uVar17 = Msg_PartInfo(uVar17);
   MenuWnd_DrawText(0x51,0x30,uVar17);
   MenuWnd_DrawTextId(0x51,0x2f,4,0x44);
@@ -336,7 +335,7 @@ LAB_00258ccc:
   if (1 < *(int *)(param_1 + 0x40)) {
     iVar8 = 0x32cfd0;
     do {
-      uVar9 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar7);
+      uVar9 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),iVar7);
       uVar9 = Msg_MakerInfo(uVar9);
       MenuWnd_DrawText(0x51,*(undefined4 *)(iVar8 + -4),uVar9);
       iVar7 = iVar7 + 1;
@@ -345,7 +344,7 @@ LAB_00258ccc:
   }
   iVar8 = UiMgr_FindLayout(100);
   iVar7 = *_g_UiMgr;
-  uVar9 = menuscr_leaf_sub_002a14f0(*(undefined4 *)(param_1 + 4),0xffffffffffffffff);
+  uVar9 = maybe_CarModel_GetClassA(*(undefined4 *)(param_1 + 4),0xffffffffffffffff);
   uVar9 = MsgId_ForGrade(uVar9);
   UiElem_SetPropInt(iVar7 + iVar8 * 0x4f4 + 4,5,0x16,uVar9);
   iVar7 = UiMgr_FindLayout(0x51);
@@ -379,7 +378,7 @@ void ScrGarage_Draw_NoOwned_8ea0(int param_1)
   long lVar14;
   undefined4 *puVar15;
   
-  uVar8 = menuscr_leaf_sub_002a14f0(*(undefined4 *)(param_1 + 4),0xffffffffffffffff);
+  uVar8 = maybe_CarModel_GetClassA(*(undefined4 *)(param_1 + 4),0xffffffffffffffff);
   uVar9 = Profile_Get(0);
   uVar9 = Profile_GetCurrentCar(uVar9);
   uVar9 = CarRec_GetName(uVar9);
@@ -394,9 +393,9 @@ void ScrGarage_Draw_NoOwned_8ea0(int param_1)
       puVar15 = puVar15 + 4;
     } while (iVar4 < 8);
   }
-  uVar8 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
+  uVar8 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
   uVar9 = Profile_Get(0);
-  uVar10 = menuscr_leaf_sub_002a14f0(*(undefined4 *)(param_1 + 4),0xffffffffffffffff);
+  uVar10 = maybe_CarModel_GetClassA(*(undefined4 *)(param_1 + 4),0xffffffffffffffff);
   uVar9 = Profile_GetCurrentPartSlot(uVar9,uVar10);
   iVar5 = PartDb_Get(uVar9);
   iVar4 = *(int *)(param_1 + 0x5c);
@@ -647,7 +646,7 @@ void ScrGarage_Draw_NoOwned_8ea0(int param_1)
     puVar15 = puVar15 + 4;
   } while (iVar4 < 8);
   if ((0 < iVar5) &&
-     (lVar11 = scrcareer_step_sub_0029f130(*(undefined4 *)(param_1 + 4)), lVar11 == 1)) {
+     (lVar11 = maybe_MenuText_CurrentCarSpec(*(undefined4 *)(param_1 + 4)), lVar11 == 1)) {
     if (*(int *)(param_1 + 4) == 0xd) {
       uVar9 = Profile_Get(0);
       uVar9 = Profile_GetCurrentPartSlot(uVar9,7);
@@ -690,24 +689,23 @@ LAB_00259794:
   uVar3 = *(undefined2 *)(iVar4 + (short)uVar8 * 2 + 0x1420);
   MenuWnd_DrawText(0x4e,6,0x2e9);
   MenuWnd_DrawLabel(0x4e,7,0x3f,uVar3);
-  uVar8 = menuscr_leaf_sub_002a17d0(*(undefined4 *)(param_1 + 4));
+  uVar8 = maybe_CarModel_GetClassC(*(undefined4 *)(param_1 + 4));
   uVar8 = Msg_PartInfo(uVar8);
   MenuWnd_DrawText(0x57,0x42,uVar8);
   iVar4 = 1;
   if (1 < *(int *)(param_1 + 0x40)) {
     puVar15 = &DAT_0032cf50;
     do {
-      uVar8 = scrcareer_step_sub_002a1600(*(undefined4 *)(param_1 + 4),iVar4);
+      uVar8 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),iVar4);
       uVar8 = Msg_MakerInfo(uVar8);
       MenuWnd_DrawText(0x57,puVar15[-1],uVar8);
       iVar4 = iVar4 + 1;
       puVar15 = puVar15 + 4;
     } while (iVar4 < *(int *)(param_1 + 0x40));
   }
-  lVar11 = scrcareer_step_sub_0029f130(*(undefined4 *)(param_1 + 4));
+  lVar11 = maybe_MenuText_CurrentCarSpec(*(undefined4 *)(param_1 + 4));
   if (lVar11 == 1) {
-    uVar3 = scrcareer_step_sub_002a1600
-                      (*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
+    uVar3 = maybe_CarModel_IsBossCar(*(undefined4 *)(param_1 + 4),*(undefined4 *)(param_1 + 0x10));
     MenuWnd_DrawStatus(0xffffffffffffffff,0,uVar3,0);
   }
   else {
@@ -1053,7 +1051,7 @@ void ScrGarage_Draw_FullAero(int param_1)
 // 0x0025a760  size 0x1dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_draw_sub_0025a760(undefined8 param_1)
+void maybe_PartShop_Draw(undefined8 param_1)
 
 {
   int iVar1;
@@ -1080,11 +1078,11 @@ void scrgarage_draw_sub_0025a760(undefined8 param_1)
     ScrGarage_Draw_FullAero();
   }
   else if (iVar2 == 0x21) {
-    scrgarage_draw_sub_002574b0();
+    maybe_PartShop_DrawDetails();
   }
-  else if (((iVar2 < 4) || (7 < iVar2)) || (lVar3 = scrcareer_step_sub_0029f130(iVar2), lVar3 != 1))
-  {
-    if ((*piVar5 == 5) && (lVar3 = scrcareer_step_sub_0029f130(piVar5[1]), lVar3 == 1)) {
+  else if (((iVar2 < 4) || (7 < iVar2)) ||
+          (lVar3 = maybe_MenuText_CurrentCarSpec(iVar2), lVar3 != 1)) {
+    if ((*piVar5 == 5) && (lVar3 = maybe_MenuText_CurrentCarSpec(piVar5[1]), lVar3 == 1)) {
       ScrGarage_Draw_NoOwned_8ea0(param_1);
     }
     else if (*piVar5 == 3) {
@@ -1094,7 +1092,7 @@ void scrgarage_draw_sub_0025a760(undefined8 param_1)
       ScrGarage_Draw_NoOwned_8ea0(param_1);
       iVar1 = UiMgr_FindLayout(100);
       iVar2 = *_g_UiMgr;
-      uVar4 = menuscr_leaf_sub_002a14f0(piVar5[1],0xffffffffffffffff);
+      uVar4 = maybe_CarModel_GetClassA(piVar5[1],0xffffffffffffffff);
       uVar4 = MsgId_ForGrade(uVar4);
       UiElem_SetPropInt(iVar2 + iVar1 * 0x4f4 + 4,5,0x16,uVar4);
       iVar2 = UiMgr_FindLayout(100);
@@ -1142,7 +1140,7 @@ void ScrCareer_Draw_Power(int param_1,long param_2)
     }
   }
   else if (param_1 == 0) {
-    iVar1 = scrcareer_step_sub_0029f470(0xffffffffffffffff,0);
+    iVar1 = maybe_MenuText_CarSpecGrade(0xffffffffffffffff,0);
     if (param_2 != 0) {
       iVar1 = 4;
     }
@@ -1182,7 +1180,7 @@ void ScrCanEquipThis_Exit(undefined8 param_1)
     *(undefined4 *)(iVar3 + 0x58) = 0;
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1229,7 +1227,7 @@ LAB_0025acec:
   if (*(int *)(iVar3 + 4) != 0x19) {
     MenuWnd_DrawLabel(5,0x1c,0x2c5);
   }
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1262,7 +1260,7 @@ void ScrRace_Draw_CanEquipThis(undefined8 param_1)
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   MenuWnd_DrawLabel(5,0x1c,0x2c1);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1295,7 +1293,7 @@ void ScrRace_Draw_ThisCarPart_aea0(undefined8 param_1)
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   MenuWnd_DrawLabel(5,0x1c,0x2c4);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1329,7 +1327,7 @@ void ScrThisCarPart_Update(undefined8 param_1)
     *(undefined4 *)(iVar3 + 0x58) = 0;
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1363,7 +1361,7 @@ void ScrThisCarPart_Enter(undefined8 param_1)
     *(undefined4 *)(iVar3 + 0x58) = 0;
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1455,7 +1453,7 @@ void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
     MenuWnd_SetItemState(0x53,*(undefined4 *)(*(int *)(iVar7 + 0x24) * 4 + 0x36ec28),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
-  uVar6 = scrcareer_step_sub_002a1600(*(undefined4 *)(iVar7 + 4),*(undefined4 *)(iVar7 + 0x10));
+  uVar6 = maybe_CarModel_IsBossCar(*(undefined4 *)(iVar7 + 4),*(undefined4 *)(iVar7 + 0x10));
   iVar2 = Garage_ComputeCarStats(uVar6,0);
   MenuWnd_DrawLabel(0x53,0x1f,0x2d7);
   MenuWnd_DrawText(0x53,0x1e,1);
@@ -1463,7 +1461,7 @@ void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
   MenuWnd_DrawNumber(0x53,0x1d,iVar2 << 1);
   iVar2 = UiMgr_FindLayout(0x53);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1620,7 +1618,7 @@ void ScrGarage_Draw_Front(undefined8 param_1)
   iVar1 = UiMgr_FindLayout(0x67);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   MenuWnd_SetTitle(3,0x2d5);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 
@@ -1702,7 +1700,7 @@ void ScrRace_Draw_Front(undefined8 param_1)
   iVar1 = UiMgr_FindLayout(0x52);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   MenuWnd_SetTitle(3,0x2d5);
-  scrgarage_draw_sub_0025a760(param_1);
+  maybe_PartShop_Draw(param_1);
   return;
 }
 

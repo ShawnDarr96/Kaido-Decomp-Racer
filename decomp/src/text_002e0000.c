@@ -5,9 +5,8 @@
 // 0x002e0040  size 0x320
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void eventui_anim_sub_002e0040
-               (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
-               ulong param_6,int param_7)
+void MenuNum_CountUp_Bgm(undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,
+                        ulong param_5,ulong param_6,int param_7)
 
 {
   uint uVar1;
@@ -160,7 +159,7 @@ void Eventui_Draw_BgmConfig(int param_1)
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
   iVar4 = UiMgr_FindLayout(0xf5);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
-  eventui_anim_sub_002e0040(0xf6,3,4,0xfc,0x21,0xc,*(undefined4 *)(param_1 + 0x38));
+  MenuNum_CountUp_Bgm(0xf6,3,4,0xfc,0x21,0xc,*(undefined4 *)(param_1 + 0x38));
   UiLayout_UpdateAnimById(0xf6,2);
   iVar4 = UiMgr_FindLayout(0xf6);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
@@ -505,7 +504,7 @@ void Eventui_Draw_BgmConfig_0880(int *param_1)
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
   iVar5 = UiMgr_FindLayout(0xf5);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
-  eventui_anim_sub_002e0040(0xf6,3,4,0xfc,0x21,0xc,param_1[0xe]);
+  MenuNum_CountUp_Bgm(0xf6,3,4,0xfc,0x21,0xc,param_1[0xe]);
   UiLayout_UpdateAnimById(0xf6,2);
   iVar5 = UiMgr_FindLayout(0xf6);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
@@ -1157,7 +1156,7 @@ void maybe_ScrMusic_Enter(undefined4 *param_1)
 }
 
 // 0x002e2530  size 0x118
-void eventui_draw_sub_002e2530(void)
+void maybe_JukeboxTask_Draw(void)
 
 {
   char cVar1;
@@ -1178,7 +1177,7 @@ void eventui_draw_sub_002e2530(void)
       lVar5 = (**(code **)(*(int *)uVar3 + 0x2c))(uVar3);
       if (lVar5 == 0) {
         lVar5 = Misc_Nop();
-        if ((lVar5 == 0) && (lVar5 = misc_step_sub_002fd0c0(), lVar5 != 0)) {
+        if ((lVar5 == 0) && (lVar5 = maybe_RaceResult_GetCategory(), lVar5 != 0)) {
           uVar3 = Profile_Get(0);
           uVar4 = GameState_GetCurrentRecordValue();
           sVar2 = Profile_GetRivalTotalRaces(uVar3,uVar4);
@@ -1195,7 +1194,7 @@ void eventui_draw_sub_002e2530(void)
 }
 
 // 0x002e2650  size 0x2c
-void eventui_step_sub_002e2650(int param_1)
+void maybe_JukeboxTask_Exit(int param_1)
 
 {
   int iVar1;
@@ -1207,7 +1206,7 @@ void eventui_step_sub_002e2650(int param_1)
 }
 
 // 0x002e2680  size 0xc4
-void eventui_draw_sub_002e2680(int param_1)
+void maybe_JukeboxTask_Load(int param_1)
 
 {
   int iVar1;
@@ -1227,15 +1226,15 @@ void eventui_draw_sub_002e2680(int param_1)
     if ((iVar2 == 0) && (*(int *)(iVar1 + 4) = *(int *)(iVar1 + 4) + -1, *(int *)(iVar1 + 4) < 0)) {
       uVar4 = maybe_File_GetSectorCount(&uStack_4);
       maybe_Heap_CreateFromBuffer(iVar1 + 8,uVar4,uStack_4);
-      eventui_step_sub_002e2800(iVar1);
-      *(code **)(param_1 + 0x1c) = eventui_draw_sub_002e2530;
+      maybe_Jukebox_PickSong(iVar1);
+      *(code **)(param_1 + 0x1c) = maybe_JukeboxTask_Draw;
     }
   }
   return;
 }
 
 // 0x002e2750  size 0xac
-void eventui_step_sub_002e2750(int param_1)
+void maybe_JukeboxTask_Init(int param_1)
 
 {
   int iVar1;
@@ -1252,14 +1251,14 @@ void eventui_step_sub_002e2750(int param_1)
   uVar3 = SndMgr_GetSlot(uVar2,1);
   (**(code **)(*(int *)uVar3 + 0x1c))(uVar3);
   SndMgr_PauseAll(uVar2);
-  *(code **)(param_1 + 0x1c) = eventui_draw_sub_002e2680;
+  *(code **)(param_1 + 0x1c) = maybe_JukeboxTask_Load;
   return;
 }
 
 // 0x002e2800  size 0x2b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void eventui_step_sub_002e2800(int param_1)
+void maybe_Jukebox_PickSong(int param_1)
 
 {
   bool bVar1;
@@ -1279,8 +1278,7 @@ void eventui_step_sub_002e2800(int param_1)
   GameState_LoadHeader(auStack_50);
   GameState_LoadHeader(auStack_a0);
   cVar3 = RaceCtx_GetMode();
-  if ((cVar3 == '\x05') || ((_g_RaceScene != 0 && (lVar5 = race_leaf_sub_001e8fc0(), lVar5 != 0))))
-  {
+  if ((cVar3 == '\x05') || ((_g_RaceScene != 0 && (lVar5 = RaceScene_IsFlag10(), lVar5 != 0)))) {
     iVar7 = 10;
     if (cStack_9d != '\0') {
       iVar7 = 0xb;
@@ -1370,7 +1368,7 @@ LAB_002e2904:
 /* WARNING: Removing unreachable block (ram,0x002e2c84) */
 /* WARNING: Removing unreachable block (ram,0x002e2d78) */
 
-void eventui_step_sub_002e2ac0(int param_1)
+void maybe_IntroFlag_Update(int param_1)
 
 {
   float *pfVar1;
@@ -1464,7 +1462,7 @@ void eventui_step_sub_002e2ac0(int param_1)
 // 0x002e2ee0  size 0x3dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void eventui_step_sub_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_3,int param_4)
+void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
 {
   short *psVar1;
@@ -1557,7 +1555,7 @@ void eventui_step_sub_002e2ee0(uint param_1,undefined8 param_2,undefined8 param_
 }
 
 // 0x002e32c0  size 0x140
-void eventui_step_sub_002e32c0(void)
+void maybe_IntroFlag_OnLoaded(void)
 
 {
   undefined4 uVar1;
@@ -1593,23 +1591,23 @@ void eventui_step_sub_002e32c0(void)
 }
 
 // 0x002e3400  size 0x3c
-void eventui_step_sub_002e3400(void)
+void maybe_IntroFlag_Step(void)
 
 {
   if (piRam0036f8ec != (int *)0x0) {
     *piRam0036f8ec = *piRam0036f8ec + 1;
-    eventui_step_sub_002e2ac0(0);
-    eventui_step_sub_002e2ac0(4);
+    maybe_IntroFlag_Update(0);
+    maybe_IntroFlag_Update(4);
   }
   return;
 }
 
 // 0x002e3440  size 0x34
-void eventui_step_sub_002e3440(int param_1,undefined8 param_2)
+void maybe_IntroFlag_DrawAll(int param_1,undefined8 param_2)
 
 {
   if (iRam0036f8ec != 0) {
-    eventui_step_sub_002e2ee0
+    maybe_IntroFlag_Draw
               (*(undefined1 *)(param_1 + 8),*(undefined4 *)(param_1 + 0xc),
                *(undefined4 *)(param_1 + 0x10),param_2);
   }
@@ -1617,7 +1615,7 @@ void eventui_step_sub_002e3440(int param_1,undefined8 param_2)
 }
 
 // 0x002e3480  size 0x74
-void eventui_exit_sub_002e3480(void)
+void IntroFlag_Free(void)
 
 {
   if (iRam0036f8ec != 0) {
@@ -1638,8 +1636,7 @@ void eventui_exit_sub_002e3480(void)
 }
 
 // 0x002e3500  size 0x170
-void eventui_load_sub_002e3500
-               (undefined8 param_1,int param_2,byte param_3,uint param_4,uint param_5)
+void IntroFlag_Load(undefined8 param_1,int param_2,byte param_3,uint param_4,uint param_5)
 
 {
   undefined4 uVar1;
@@ -1744,7 +1741,7 @@ void Eventui_Draw_Akagi(int param_1)
     uVar6 = uVar6 + 1;
     puVar5 = puVar5 + 7;
   } while (uVar6 < 0xd);
-  menuscr_anim_sub_002f5e70(7,3,4,0xfc,0x1e,0xc,*(undefined4 *)(param_1 + 0x58));
+  MenuNum_CountUp_Event(7,3,4,0xfc,0x1e,0xc,*(undefined4 *)(param_1 + 0x58));
   *(undefined4 *)(param_1 + 0x5c) = *(undefined4 *)(param_1 + 0x58);
   return;
 }
@@ -1752,7 +1749,7 @@ void Eventui_Draw_Akagi(int param_1)
 // 0x002e39e0  size 0x250
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void eventui_anim_sub_002e39e0(undefined8 param_1)
+void maybe_ComposerUi_AnimateNameA(undefined8 param_1)
 
 {
   int iVar1;

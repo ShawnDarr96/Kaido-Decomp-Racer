@@ -176,10 +176,10 @@ void ScrDraw_Equipment_Exit(int param_1)
     } while (iVar9 < 8);
     iVar3 = UiMgr_FindLayout(0xc);
     UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,0x69,9,*(undefined4 *)(param_1 + 0xcc0));
-    eventui_draw_sub_002ef1c0(param_1);
-    eventui_draw_sub_002ee830(param_1,1);
-    eventui_draw_sub_002ee670(param_1,1);
-    eventui_draw_sub_002ed390(param_1,0);
+    maybe_ComposerUi_DrawPlayhead(param_1);
+    maybe_ComposerUi_DrawNotes(param_1,1);
+    maybe_ComposerUi_DrawCursor(param_1,1);
+    maybe_ComposerUi_DrawGrid(param_1,0);
   }
   iVar3 = UiMgr_FindLayout(0xc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
@@ -432,10 +432,10 @@ void MenuScr_Draw_Equipment(int param_1)
     } while (iVar9 < 8);
     iVar3 = UiMgr_FindLayout(0xc);
     UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,0x69,9,*(undefined4 *)(param_1 + 0xcc0));
-    eventui_draw_sub_002ef1c0(param_1);
-    eventui_draw_sub_002ee830(param_1,1);
-    eventui_draw_sub_002ee670(param_1,1);
-    eventui_draw_sub_002ed390(param_1,0);
+    maybe_ComposerUi_DrawPlayhead(param_1);
+    maybe_ComposerUi_DrawNotes(param_1,1);
+    maybe_ComposerUi_DrawCursor(param_1,1);
+    maybe_ComposerUi_DrawGrid(param_1,0);
   }
   MenuWnd_DrawText(0x11,0x21,0x3f);
   MenuWnd_DrawText(0x11,0x22,0x40);
@@ -1671,7 +1671,7 @@ void MenuScr_Draw_TestCourse_2920(undefined8 param_1)
       }
     }
   }
-  eventui_anim_sub_002ecb70(param_1,0);
+  maybe_ComposerUi_AnimateNameC(param_1,0);
   MenuWnd_DrawText(0xd,0x26,3);
   MenuWnd_DrawText(0xd,0x27,0x40);
   Eventui_Draw_Akagi_cdf0(param_1,0);
@@ -2211,7 +2211,7 @@ void MenuScr_Draw_TestCourse_3820(undefined8 param_1)
       UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x90,8);
     }
   }
-  eventui_anim_sub_002ecb70(param_1,1);
+  maybe_ComposerUi_AnimateNameC(param_1,1);
   MenuWnd_DrawText(0xd,0x26,3);
   MenuWnd_DrawText(0xd,0x27,0x40);
   Eventui_Draw_Akagi_cdf0(param_1,1);

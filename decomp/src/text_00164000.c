@@ -1870,7 +1870,7 @@ LAB_001667f4:
 }
 
 // 0x00166970  size 0x38
-void car_leaf_sub_00166970(float param_1,int param_2)
+void maybe_Car_ClampThrottle(float param_1,int param_2)
 
 {
   if (0.0 <= param_1) {
@@ -1886,7 +1886,7 @@ void car_leaf_sub_00166970(float param_1,int param_2)
 }
 
 // 0x001669b0  size 0x38
-void car_leaf_sub_001669b0(float param_1,int param_2)
+void maybe_Car_ClampBrake(float param_1,int param_2)
 
 {
   if (0.0 <= param_1) {
@@ -1902,7 +1902,7 @@ void car_leaf_sub_001669b0(float param_1,int param_2)
 }
 
 // 0x001669f0  size 0x38
-void car_leaf_sub_001669f0(float param_1,int param_2)
+void maybe_Car_ClampClutch(float param_1,int param_2)
 
 {
   if (0.0 <= param_1) {
@@ -1918,7 +1918,7 @@ void car_leaf_sub_001669f0(float param_1,int param_2)
 }
 
 // 0x00166a30  size 0x98
-void car_leaf_sub_00166a30(float param_1,float param_2,int param_3)
+void maybe_Car_ClampSteer(float param_1,float param_2,int param_3)
 
 {
   float fVar1;
@@ -2006,7 +2006,7 @@ void Car_UpdateFrontTires(float param_1,undefined8 param_2)
 }
 
 // 0x00166c80  size 0x54
-void car_leaf_sub_00166c80(float param_1,int param_2,long param_3)
+void maybe_Car_SetThrottleInput(float param_1,int param_2,long param_3)
 
 {
   float fVar1;
@@ -2026,7 +2026,7 @@ void car_leaf_sub_00166c80(float param_1,int param_2,long param_3)
 }
 
 // 0x00166ce0  size 0x54
-void car_leaf_sub_00166ce0(float param_1,int param_2,long param_3)
+void maybe_Car_SetBrakeInput(float param_1,int param_2,long param_3)
 
 {
   float fVar1;
@@ -2046,7 +2046,7 @@ void car_leaf_sub_00166ce0(float param_1,int param_2,long param_3)
 }
 
 // 0x00166d40  size 0x60
-void car_leaf_sub_00166d40(float param_1,int param_2,long param_3)
+void maybe_Car_SetHandbrakeInput(float param_1,int param_2,long param_3)
 
 {
   float fVar1;
@@ -2066,7 +2066,7 @@ void car_leaf_sub_00166d40(float param_1,int param_2,long param_3)
 }
 
 // 0x00166da0  size 0x54
-void car_leaf_sub_00166da0(float param_1,int param_2,long param_3)
+void maybe_Car_SetClutchInput(float param_1,int param_2,long param_3)
 
 {
   float fVar1;
@@ -2167,7 +2167,7 @@ void Car_UpdateRearTires(float param_1,float param_2,int param_3,long param_4,lo
 }
 
 // 0x00167050  size 0x30
-undefined4 car_leaf_sub_00167050(int param_1)
+undefined4 maybe_Car_GetNitroScale(int param_1)
 
 {
   undefined4 uVar1;
@@ -2180,7 +2180,7 @@ undefined4 car_leaf_sub_00167050(int param_1)
 }
 
 // 0x00167080  size 0x38
-float car_leaf_sub_00167080(int param_1)
+float maybe_Car_GetBoostScale(int param_1)
 
 {
   float fVar1;

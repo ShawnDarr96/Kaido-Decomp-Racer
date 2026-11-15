@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002d8150  size 0x4c8
-void showroom_step_sub_002d8150(int param_1,undefined1 *param_2)
+void maybe_ShowroomBg_DrawObject(int param_1,undefined1 *param_2)
 
 {
   uint *puVar1;
@@ -152,7 +152,7 @@ void showroom_step_sub_002d8150(int param_1,undefined1 *param_2)
 }
 
 // 0x002d8630  size 0x64
-void showroom_step_sub_002d8630(int param_1)
+void maybe_ShowroomBg_ResetObject(int param_1)
 
 {
   maybe_Course_GetItemA();
@@ -172,7 +172,7 @@ void showroom_step_sub_002d8630(int param_1)
 }
 
 // 0x002d86a0  size 0xe8
-void showroom_step_sub_002d86a0
+void maybe_ShowroomBg_OnLoaded
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -203,7 +203,7 @@ void showroom_step_sub_002d86a0
 }
 
 // 0x002d8790  size 0x38
-void showroom_leaf_sub_002d8790(undefined4 *param_1)
+void Quat_IdentityB(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -221,7 +221,7 @@ void showroom_leaf_sub_002d8790(undefined4 *param_1)
 }
 
 // 0x002d87d0  size 0xac
-void showroom_step_sub_002d87d0(void)
+void maybe_ShowroomBg_Draw(void)
 
 {
   int iVar1;
@@ -235,33 +235,33 @@ void showroom_step_sub_002d87d0(void)
   iVar4 = 0;
   if (0 < *(int *)(iRam0036f834 + 0x98)) {
     do {
-      uVar3 = showroom_leaf_sub_002d5370(iVar5,iVar4);
-      cVar2 = showroom_step_sub_002d5e40(uVar3);
+      uVar3 = MenuObjSet_GetEntry(iVar5,iVar4);
+      cVar2 = MenuObj_IsReady(uVar3);
       if (cVar2 == '\x04') {
         AsyncRes_Poll(*(int *)((int)uVar3 + 0x10) + 0x28,0xc);
       }
       iVar4 = iVar4 + 1;
     } while (iVar4 < *(int *)(iVar1 + 0x98));
   }
-  showroom_step_sub_002d7c80();
+  maybe_ShowroomBg_DrawObjects();
   return;
 }
 
 // 0x002d8880  size 0x24
-void showroom_step_sub_002d8880(void)
+void ShowroomBg_Unload(void)
 
 {
-  showroom_exit_sub_002d48e0(7);
-  showroom_exit_sub_002d7dd0();
+  MenuObjSet_Free(7);
+  ShowroomBg_Free();
   return;
 }
 
 // 0x002d88b0  size 0x40
-void showroom_step_sub_002d88b0(undefined8 param_1,undefined8 param_2)
+void ShowroomBg_Load(undefined8 param_1,undefined8 param_2)
 
 {
-  showroom_load_sub_002d7e30(*puRam0036f834,param_1,param_2);
-  showroom_load_sub_002d4940(7,param_1);
+  ShowroomBg_Alloc(*puRam0036f834,param_1,param_2);
+  MenuObjSet_Alloc(7,param_1);
   return;
 }
 
@@ -432,8 +432,8 @@ void maybe_ScrMemCard_Enter(undefined8 param_1)
   
   Save_AllocSlots();
   SaveMgr_LoadIcon(param_1);
-  showroom_leaf_sub_002d8f60(0,0,0);
-  showroom_leaf_sub_002d8f50(0x293f50,0x293f40,0x293f30);
+  Subtitle_SetPending(0,0,0);
+  SaveUi_SetParams(0x293f50,0x293f40,0x293f30);
   iVar1 = (int)param_1;
   *(undefined4 *)(iVar1 + 0x568) = 0xffffffff;
   *(undefined4 *)(iVar1 + 0x56c) = 0;
@@ -477,7 +477,7 @@ void maybe_PageNameEntry_Update(void)
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
-  replayui_anim_sub_002db730();
+  maybe_NameEntry_Update();
   return;
 }
 
@@ -490,7 +490,7 @@ void maybe_ScrNewGameMemCard_Update(int param_1)
 {
   long lVar1;
   
-  lVar1 = replayui_step_sub_002db3e0();
+  lVar1 = maybe_NameEntry_StepSave();
   if (lVar1 != 1) {
     if (lVar1 == 2) {
       *(undefined4 *)(param_1 + 0x7e4) = 1;
@@ -521,15 +521,15 @@ void maybe_ScrNewGameMemCard_Enter(undefined8 param_1)
 
 {
   Save_AllocSlots();
-  replayui_leaf_sub_002dbf20(param_1,1,*(undefined1 *)((int)param_1 + 0x779));
-  showroom_leaf_sub_002d8f50(0x293f50,0x293f40,0x293f30);
-  replayui_anim_sub_002dbc70(param_1);
-  replayui_step_sub_002dbb80(param_1);
+  NameEntry_SetMode(param_1,1,*(undefined1 *)((int)param_1 + 0x779));
+  SaveUi_SetParams(0x293f50,0x293f40,0x293f30);
+  maybe_NameEntry_Animate(param_1);
+  maybe_NameEntry_Reset(param_1);
   return;
 }
 
 // 0x002d8f50  size 0x10
-void showroom_leaf_sub_002d8f50(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+void SaveUi_SetParams(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
   uRam0036f8a8 = param_2;
@@ -539,7 +539,7 @@ void showroom_leaf_sub_002d8f50(undefined4 param_1,undefined4 param_2,undefined4
 }
 
 // 0x002d8f60  size 0x10
-void showroom_leaf_sub_002d8f60(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+void Subtitle_SetPending(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
   uRam0036f898 = param_1;
@@ -551,7 +551,7 @@ void showroom_leaf_sub_002d8f60(undefined4 param_1,undefined4 param_2,undefined4
 // 0x002d9590  size 0x1f0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int replayui_step_sub_002d9590(int param_1)
+int maybe_ReplayUi_GetLayoutForMsg(int param_1)
 
 {
   int iVar1;
@@ -618,7 +618,7 @@ switchD_002d95b8_caseD_b8:
 }
 
 // 0x002d9780  size 0x42c
-undefined4 replayui_leaf_sub_002d9780(int param_1)
+undefined4 maybe_ReplayUi_GetValue(int param_1)
 
 {
   undefined4 uVar1;
@@ -762,7 +762,7 @@ undefined4 replayui_leaf_sub_002d9780(int param_1)
 }
 
 // 0x002d9bb0  size 0x6c
-void replayui_exit_sub_002d9bb0(void)
+void ReplayUi_Free(void)
 
 {
   if (*(int *)(iRam0036f8b4 + 0xb4) != 0) {
@@ -783,7 +783,7 @@ void replayui_exit_sub_002d9bb0(void)
 // 0x002d9ca0  size 0x190
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void replayui_load_sub_002d9ca0(undefined8 param_1)
+void ReplayUi_Load(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -842,7 +842,7 @@ void replayui_load_sub_002d9ca0(undefined8 param_1)
 }
 
 // 0x002d9e30  size 0xaf0
-void replayui_draw_sub_002d9e30(int param_1)
+void maybe_NameEntry_DrawInfo(int param_1)
 
 {
   char cVar1;
@@ -1154,7 +1154,7 @@ void replayui_draw_sub_002d9e30(int param_1)
 }
 
 // 0x002da920  size 0x67c
-void replayui_draw_sub_002da920(int param_1)
+void maybe_NameEntry_DrawKeyboard(int param_1)
 
 {
   char cVar1;
@@ -1382,7 +1382,7 @@ void replayui_draw_sub_002da920(int param_1)
 }
 
 // 0x002dafb0  size 0x42c
-void replayui_draw_sub_002dafb0(int param_1,long param_2)
+void maybe_NameEntry_DrawName(int param_1,long param_2)
 
 {
   char cVar1;
@@ -1483,7 +1483,7 @@ LAB_002db20c:
         uVar6 = uVar6 + 1;
         iVar7 = iVar7 + 0x4c;
       } while (uVar6 < 3);
-      replayui_draw_sub_002dbf30
+      maybe_NameEntry_DrawField
                 (param_1 + 0x588,*(undefined1 *)(param_1 + 0x769),*(undefined1 *)(param_1 + 0x76a));
       return;
     }
@@ -1495,7 +1495,7 @@ LAB_002db20c:
         uVar6 = uVar6 + 1;
         iVar7 = iVar7 + 0x4c;
       } while (uVar6 < 3);
-      replayui_draw_sub_002dbf30
+      maybe_NameEntry_DrawField
                 (param_1 + 0x678,*(undefined1 *)(param_1 + 0x769),*(undefined1 *)(param_1 + 0x76a));
       return;
     }
@@ -1508,13 +1508,13 @@ LAB_002db20c:
     uVar6 = uVar6 + 1;
     iVar7 = iVar7 + 0x4c;
   } while (uVar6 < 3);
-  replayui_draw_sub_002dbf30
+  maybe_NameEntry_DrawField
             (param_1 + 0x588,*(undefined1 *)(param_1 + 0x769),*(undefined1 *)(param_1 + 0x76a));
   return;
 }
 
 // 0x002db3e0  size 0x34c
-undefined4 replayui_step_sub_002db3e0(int param_1)
+undefined4 maybe_NameEntry_StepSave(int param_1)
 
 {
   uint uVar1;
@@ -1632,7 +1632,7 @@ undefined4 replayui_step_sub_002db3e0(int param_1)
 }
 
 // 0x002db730  size 0x450
-void replayui_anim_sub_002db730(undefined8 param_1)
+void maybe_NameEntry_Update(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -1803,18 +1803,18 @@ LAB_002dbb08:
   if ((((*(int *)(iVar6 + 0x66c) == 0xc) && (*(char *)(iVar6 + 0x768) == '\0')) ||
       ((*(int *)(iVar6 + 0x75c) == 0xc && (*(char *)(iVar6 + 0x768) == '\x01')))) ||
      ((*(int *)(iVar6 + 0x66c) == 0xc && (*(char *)(iVar6 + 0x768) == -1)))) {
-    replayui_draw_sub_002da920(param_1);
-    replayui_draw_sub_002d9e30(param_1);
-    replayui_draw_sub_002dafb0(param_1,0);
+    maybe_NameEntry_DrawKeyboard(param_1);
+    maybe_NameEntry_DrawInfo(param_1);
+    maybe_NameEntry_DrawName(param_1,0);
   }
   else {
-    replayui_draw_sub_002dafb0(param_1,1);
+    maybe_NameEntry_DrawName(param_1,1);
   }
   return;
 }
 
 // 0x002dbb80  size 0xe8
-void replayui_step_sub_002dbb80(int param_1)
+void maybe_NameEntry_Reset(int param_1)
 
 {
   undefined1 uVar1;
@@ -1860,7 +1860,7 @@ void replayui_step_sub_002dbb80(int param_1)
 }
 
 // 0x002dbc70  size 0x2a8
-void replayui_anim_sub_002dbc70(int param_1)
+void maybe_NameEntry_Animate(int param_1)
 
 {
   char cVar1;
@@ -1951,7 +1951,7 @@ void replayui_anim_sub_002dbc70(int param_1)
 }
 
 // 0x002dbf20  size 0xc
-void replayui_leaf_sub_002dbf20(int param_1,undefined1 param_2,undefined1 param_3)
+void NameEntry_SetMode(int param_1,undefined1 param_2,undefined1 param_3)
 
 {
   *(undefined1 *)(param_1 + 0x778) = param_2;
@@ -1962,7 +1962,7 @@ void replayui_leaf_sub_002dbf20(int param_1,undefined1 param_2,undefined1 param_
 // 0x002dbf30  size 0x7a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void replayui_draw_sub_002dbf30(int *param_1,byte param_2,uint param_3)
+void maybe_NameEntry_DrawField(int *param_1,byte param_2,uint param_3)
 
 {
   int iVar1;

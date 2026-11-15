@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00306d50  size 0x130
-int misc_leaf_sub_00306d50(uint param_1)
+int maybe_KernelPatch_SetupTlb(uint param_1)
 
 {
   int iVar1;
@@ -52,7 +52,7 @@ int misc_leaf_sub_00306d50(uint param_1)
 }
 
 // 0x00307400  size 0xc0
-void misc_leaf_sub_00307400(void)
+void maybe_KernelPatch_ScanTable(void)
 
 {
   undefined1 *puVar1;
@@ -77,7 +77,7 @@ void misc_leaf_sub_00307400(void)
 }
 
 // 0x003075e0  size 0xd0
-void misc_leaf_sub_003075e0(void)
+void maybe_KernelPatch_WaitIntc(void)
 
 {
   uint uVar1;
@@ -98,7 +98,7 @@ void misc_leaf_sub_003075e0(void)
 }
 
 // 0x003076b0  size 0x1e4
-undefined8 misc_leaf_sub_003076b0(undefined8 param_1,undefined4 param_2,int param_3,int param_4)
+undefined8 maybe_KernelPatch_Dispatch(undefined8 param_1,undefined4 param_2,int param_3,int param_4)
 
 {
   int iVar1;
@@ -158,7 +158,7 @@ undefined8 misc_leaf_sub_003076b0(undefined8 param_1,undefined4 param_2,int para
 }
 
 // 0x00307a38  size 0x104
-int misc_leaf_sub_00307a38(undefined8 param_1,long param_2)
+int maybe_KernelPatch_FindHandler(undefined8 param_1,long param_2)
 
 {
   long lVar1;
@@ -192,7 +192,7 @@ int misc_leaf_sub_00307a38(undefined8 param_1,long param_2)
 }
 
 // 0x00307b40  size 0x13c
-long misc_leaf_sub_00307b40(uint param_1,undefined4 param_2,undefined4 param_3)
+long maybe_KernelPatch_AddHandler(uint param_1,undefined4 param_2,undefined4 param_3)
 
 {
   undefined2 uVar1;
@@ -239,7 +239,7 @@ LAB_00307be0:
 }
 
 // 0x00307c80  size 0x1a0
-int misc_leaf_sub_00307c80(long param_1)
+int maybe_KernelPatch_RemoveHandler(long param_1)
 
 {
   ushort uVar1;
@@ -296,7 +296,7 @@ int misc_leaf_sub_00307c80(long param_1)
 }
 
 // 0x00307e20  size 0x20
-void misc_leaf_sub_00307e20(undefined2 param_1)
+void maybe_KernelPatch_CallSync(undefined2 param_1)
 
 {
   func_0x00076160(param_1);
@@ -305,7 +305,7 @@ void misc_leaf_sub_00307e20(undefined2 param_1)
 }
 
 // 0x00307e68  size 0x1e0
-void misc_leaf_sub_00307e68(void)
+void maybe_KernelPatch_ScanHandlers(void)
 
 {
   short sVar1;

@@ -5,7 +5,7 @@
 // 0x0029c040  size 0x224
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_0029c040(int param_1)
+void maybe_ScrCareerStart_InputChapter(int param_1)
 
 {
   int iVar1;
@@ -86,7 +86,7 @@ void menuscr_step_sub_0029c040(int param_1)
 // 0x0029c270  size 0xf4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_step_sub_0029c270(int param_1)
+void maybe_ScrCareerStart_CheckChapter(int param_1)
 
 {
   int iVar1;
@@ -116,7 +116,7 @@ void scrrace_step_sub_0029c270(int param_1)
   *(undefined4 *)(param_1 + 4) = 0;
   iVar1 = *(int *)(param_1 + 0x648);
   if ((((iVar1 != 0x14) && (iVar1 != 0x29)) && (iVar1 != 0x2a)) &&
-     (lVar4 = scrrace_step_sub_00296600(), lVar4 != 0)) {
+     (lVar4 = maybe_Career_ApplyChapterFlags(), lVar4 != 0)) {
     *(undefined4 *)(param_1 + 0x6b8) = 1;
   }
   return;
@@ -125,7 +125,7 @@ void scrrace_step_sub_0029c270(int param_1)
 // 0x0029c370  size 0x684
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_step_sub_0029c370(undefined4 *param_1)
+void Career_StartNewGame(undefined4 *param_1)
 
 {
   undefined4 uVar1;
@@ -568,7 +568,7 @@ void scrcareer_step_sub_0029c370(undefined4 *param_1)
 }
 
 // 0x0029ca00  size 0x158
-void menuscr_step_sub_0029ca00(undefined4 *param_1)
+void ScrCareerStart_Reset(undefined4 *param_1)
 
 {
   undefined4 *puVar1;
@@ -700,14 +700,14 @@ LAB_0029cc60:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_0029c040(param_1);
+        maybe_ScrCareerStart_InputChapter(param_1);
         goto LAB_0029cc60;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        scrrace_step_sub_0029c270(param_1);
+        maybe_ScrCareerStart_CheckChapter(param_1);
         goto LAB_0029cc60;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -728,14 +728,14 @@ LAB_0029ccec:
     }
     else {
       if (iVar6 == 1) {
-        scrcareer_step_sub_0029bd40(param_1);
+        maybe_ScrCareerStart_InputSchedule(param_1);
         goto LAB_0029ccec;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        scrcareer_step_sub_0029bf00(param_1);
+        maybe_ScrCareerStart_BuildBattleList(param_1);
         goto LAB_0029ccec;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -756,7 +756,7 @@ LAB_0029cdc0:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_0029bbe0(param_1);
+        maybe_ScrCareerStart_InputF(param_1);
         goto LAB_0029cdc0;
       }
       if (iVar6 == 0) {
@@ -799,14 +799,14 @@ LAB_0029ce4c:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_0029b6b0(param_1);
+        maybe_ScrCareerStart_InputE(param_1);
         goto LAB_0029ce4c;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        scrgarage_step_sub_0029b9b0(param_1);
+        maybe_ScrCareerStart_BuildStockList(param_1);
         goto LAB_0029ce4c;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -815,10 +815,10 @@ LAB_0029ce4c:
     Menu_RequestTransition(param_1 + 0x648);
     break;
   case 4:
-    scrcareer_select_sub_0029b5c0(param_1);
+    maybe_ScrCareerStart_SelectResult(param_1);
     break;
   case 5:
-    menuscr_select_sub_0029a0b0(param_1);
+    maybe_ScrCareerStart_SelectSubtitle(param_1);
     break;
   default:
     iVar6 = *(int *)(param_1 + 0x644);
@@ -834,12 +834,12 @@ LAB_0029cf00:
     }
     else {
       if (iVar6 == 1) {
-        scrcareer_step_sub_00299060(param_1);
+        maybe_ScrCareerStart_InputRivalCourse(param_1);
         goto LAB_0029cf00;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x644) = 1;
-        menuscr_leaf_sub_00299c10(param_1);
+        maybe_ScrCareerStart_IsChoiceLocked(param_1);
         goto LAB_0029cf00;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -860,14 +860,14 @@ LAB_0029cf8c:
     }
     else {
       if (iVar6 == 1) {
-        scrgarage_step_sub_00298a20(param_1);
+        maybe_ScrCareerStart_InputEquip(param_1);
         goto LAB_0029cf8c;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        scrgarage_step_sub_00298df0(param_1);
+        maybe_ScrCareerStart_BuildPartList(param_1);
         goto LAB_0029cf8c;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -876,7 +876,7 @@ LAB_0029cf8c:
     Menu_RequestTransition(param_1 + 0x648);
     break;
   case 8:
-    scrrace_select_sub_002987f0(param_1);
+    maybe_ScrCareerStart_SelectCourse(param_1);
     break;
   case 9:
     iVar6 = *(int *)(param_1 + 0x644);
@@ -916,7 +916,7 @@ LAB_0029d048:
     break;
   case 10:
     if (*(int *)(param_1 + 0x644) == 1) {
-      scrcareer_step_sub_0029c370(param_1);
+      Career_StartNewGame(param_1);
       MenuMgr_GetScreenParam(0xfffffffffffffffe);
     }
     else if (*(int *)(param_1 + 0x644) == 0) {
@@ -959,7 +959,7 @@ LAB_0029d1d0:
           uVar5 = 0x100000;
         }
         if ((uVar5 == 0x10) || (uVar5 == 0x20)) {
-          uVar1 = scrgarage_step_sub_00297fa0(param_1);
+          uVar1 = maybe_ScrCareerStart_BuildCarInfo(param_1);
           *(undefined4 *)(param_1 + 0x640) = uVar1;
           *(undefined4 *)(param_1 + 0x644) = 2;
           Se_PlayMenu(5);
@@ -1029,7 +1029,7 @@ LAB_0029d338:
     }
     else {
       if (iVar6 == 1) {
-        scrcareer_step_sub_00297e10(param_1);
+        maybe_ScrCareerStart_InputTeam(param_1);
         goto LAB_0029d338;
       }
       if (iVar6 == 0) {
@@ -1042,7 +1042,7 @@ LAB_0029d338:
     Menu_RequestTransition(param_1 + 0x648);
     break;
   case 0xf:
-    menuscr_select_sub_00297ba0(param_1);
+    maybe_ScrCareerStart_SelectB(param_1);
     break;
   case 0x10:
     iVar6 = *(int *)(param_1 + 0x644);
@@ -1060,14 +1060,14 @@ LAB_0029d3ec:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00297890(param_1);
+        maybe_ScrCareerStart_InputD(param_1);
         goto LAB_0029d3ec;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        menuscr_leaf_sub_00297b20(param_1);
+        maybe_ScrCareerStart_ClassifyChoice(param_1);
         goto LAB_0029d3ec;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -1092,14 +1092,14 @@ LAB_0029d478:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_002975e0(param_1);
+        maybe_ScrCareerStart_InputC(param_1);
         goto LAB_0029d478;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        menuscr_step_sub_002977b0(param_1);
+        maybe_ScrCareerStart_ClearRaceSlots(param_1);
         goto LAB_0029d478;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -1120,7 +1120,7 @@ LAB_0029d538:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00297450(param_1);
+        maybe_ScrCareerStart_InputCursor(param_1);
         goto LAB_0029d538;
       }
       if (iVar6 == 0) {
@@ -1159,8 +1159,8 @@ LAB_0029d538:
       *(undefined4 *)(param_1 + 0x638) = *(undefined4 *)(param_1 + 0x640);
       *(undefined4 *)(param_1 + 0x62c) = 0;
       *(undefined4 *)(param_1 + 0x630) = 0;
-      if ((*(int *)(param_1 + 0x640) != 0x2e) && (lVar2 = scrrace_step_sub_00296600(), lVar2 != 0))
-      {
+      if ((*(int *)(param_1 + 0x640) != 0x2e) &&
+         (lVar2 = maybe_Career_ApplyChapterFlags(), lVar2 != 0)) {
         *(undefined4 *)(param_1 + 0x6b8) = 1;
       }
 LAB_0029d5e0:
@@ -1195,7 +1195,7 @@ LAB_0029d660:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00296fe0(param_1);
+        maybe_ScrCareerStart_InputB(param_1);
         goto LAB_0029d660;
       }
       if (iVar6 == 0) {
@@ -1210,7 +1210,7 @@ LAB_0029d660:
     Menu_RequestTransition(param_1 + 0x648);
     break;
   case 0x16:
-    scrcareer_select_sub_00296e10(param_1);
+    maybe_ScrCareerStart_SelectRival(param_1);
     break;
   case 0x17:
     iVar6 = *(int *)(param_1 + 0x644);
@@ -1259,7 +1259,7 @@ LAB_0029d95c:
     Menu_RequestTransition(param_1 + 0x648);
     break;
   case 0x18:
-    scrcareer_select_sub_00296a90(param_1);
+    maybe_ScrCareerStart_SelectOpponent(param_1);
     break;
   case 0x19:
     iVar6 = *(int *)(param_1 + 0x644);
@@ -1549,7 +1549,7 @@ LAB_0029dd70:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00296fe0(param_1);
+        maybe_ScrCareerStart_InputB(param_1);
         goto LAB_0029dd70;
       }
       if (iVar6 == 0) {
@@ -1564,7 +1564,7 @@ LAB_0029dd70:
     Menu_RequestTransition(param_1 + 0x648);
     break;
   case 0x26:
-    menuscr_select_sub_00296930(param_1);
+    maybe_ScrCareerStart_SelectA(param_1);
     break;
   case 0x27:
     iVar6 = *(int *)(param_1 + 0x644);
@@ -1579,14 +1579,14 @@ LAB_0029de0c:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00297890(param_1);
+        maybe_ScrCareerStart_InputD(param_1);
         goto LAB_0029de0c;
       }
       if (iVar6 == 0) {
         *(undefined4 *)(param_1 + 0x62c) = 0;
         *(undefined4 *)(param_1 + 0x630) = 0;
         *(undefined4 *)(param_1 + 0x644) = 1;
-        menuscr_leaf_sub_00297b20(param_1);
+        maybe_ScrCareerStart_ClassifyChoice(param_1);
         goto LAB_0029de0c;
       }
       uVar1 = *(undefined4 *)(param_1 + 0x640);
@@ -1602,7 +1602,7 @@ LAB_0029de0c:
       *(undefined4 *)(param_1 + 0x638) = *(undefined4 *)(param_1 + 0x640);
       *(undefined4 *)(param_1 + 0x62c) = 0;
       *(undefined4 *)(param_1 + 0x630) = 0;
-      lVar2 = scrrace_step_sub_00296600();
+      lVar2 = maybe_Career_ApplyChapterFlags();
       if (lVar2 != 0) {
         *(undefined4 *)(param_1 + 0x6b8) = 1;
       }
@@ -1611,7 +1611,7 @@ LAB_0029dea0:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00296840(param_1);
+        maybe_ScrCareerStart_InputA(param_1);
         goto LAB_0029dea0;
       }
       if (iVar6 == 0) {
@@ -1634,7 +1634,7 @@ LAB_0029dea0:
       *(undefined4 *)(param_1 + 0x62c) = 0;
       *(undefined4 *)(param_1 + 0x630) = 0;
       Menu_BlockInput(_g_MenuMgr + 0x654);
-      lVar2 = scrrace_step_sub_00296600();
+      lVar2 = maybe_Career_ApplyChapterFlags();
       if (lVar2 != 0) {
         *(undefined4 *)(param_1 + 0x6b8) = 1;
       }
@@ -1643,7 +1643,7 @@ LAB_0029df44:
     }
     else {
       if (iVar6 == 1) {
-        menuscr_step_sub_00296840(param_1);
+        maybe_ScrCareerStart_InputA(param_1);
         goto LAB_0029df44;
       }
       if (iVar6 == 0) {
@@ -1753,7 +1753,7 @@ LAB_0029e148:
       *(undefined4 *)(param_1 + 0x638) = *(undefined4 *)(param_1 + 0x640);
       *(undefined4 *)(param_1 + 0x62c) = 0;
       *(undefined4 *)(param_1 + 0x630) = 0;
-      lVar2 = scrrace_step_sub_00296600();
+      lVar2 = maybe_Career_ApplyChapterFlags();
       if (lVar2 != 0) {
         *(undefined4 *)(param_1 + 0x6b8) = 1;
       }
@@ -1882,7 +1882,7 @@ void maybe_ScrCareerStart_Enter(undefined8 param_1)
       *(undefined4 *)(iVar10 + 0x660) = 0;
     }
     else {
-      menuscr_step_sub_0029ca00(param_1);
+      ScrCareerStart_Reset(param_1);
       cVar3 = RaceCtx_Get_8();
       if (cVar3 == '\x02') {
         RaceCtx_Set_8(0x13);
@@ -2084,7 +2084,7 @@ void maybe_ScrBlank28_Enter(undefined4 *param_1)
 }
 
 // 0x0029e910  size 0x108
-void scrcareer_step_sub_0029e910(undefined8 param_1)
+void maybe_ScrBuyCarColour_HandleInput(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -2111,7 +2111,7 @@ void scrcareer_step_sub_0029e910(undefined8 param_1)
       Se_PlayMenu(5);
       uVar1 = *(undefined4 *)(iVar3 + 0x6c);
     }
-    scrcareer_step_sub_0029ea20(param_1,uVar1);
+    maybe_ScrBuyCarColour_OnResult(param_1,uVar1);
   }
   else if (uVar2 == 0x20) {
     if (*(int *)(iVar3 + 0x68) - 6U < 2) {
@@ -2122,7 +2122,7 @@ void scrcareer_step_sub_0029e910(undefined8 param_1)
       Se_PlayMenu(6);
       uVar1 = *(undefined4 *)(iVar3 + 0x68);
     }
-    scrcareer_step_sub_0029ea20(param_1,uVar1);
+    maybe_ScrBuyCarColour_OnResult(param_1,uVar1);
   }
   return;
 }
@@ -2130,7 +2130,7 @@ void scrcareer_step_sub_0029e910(undefined8 param_1)
 // 0x0029ea20  size 0x49c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrcareer_step_sub_0029ea20(undefined8 param_1,long param_2)
+void maybe_ScrBuyCarColour_OnResult(undefined8 param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -2154,15 +2154,15 @@ void scrcareer_step_sub_0029ea20(undefined8 param_1,long param_2)
   else {
     uVar1 = *(undefined4 *)(iVar9 + 4);
     uVar2 = *(undefined4 *)(iVar9 + 0x10);
-    uVar6 = menuscr_leaf_sub_002a17d0(uVar1);
+    uVar6 = maybe_CarModel_GetClassC(uVar1);
     lVar7 = Rival_IsBossId(uVar6);
     sVar10 = (short)uVar2;
     if (lVar7 == 1) {
-      sVar3 = menuscr_leaf_sub_002a17d0(uVar1);
+      sVar3 = maybe_CarModel_GetClassC(uVar1);
       sVar10 = sVar10 + sVar3;
     }
     else {
-      sVar3 = menuscr_leaf_sub_002a17d0(uVar1);
+      sVar3 = maybe_CarModel_GetClassC(uVar1);
       sVar10 = sVar10 + sVar3 + -1;
     }
     iVar5 = Profile_Get(0);
@@ -2192,15 +2192,15 @@ void scrcareer_step_sub_0029ea20(undefined8 param_1,long param_2)
       }
       else {
         uVar1 = *(undefined4 *)(iVar9 + 0x10);
-        uVar6 = menuscr_leaf_sub_002a17d0(iVar5);
+        uVar6 = maybe_CarModel_GetClassC(iVar5);
         lVar7 = Rival_IsBossId(uVar6);
         sVar3 = (short)uVar1;
         if (lVar7 == 1) {
-          sVar4 = menuscr_leaf_sub_002a17d0(iVar5);
+          sVar4 = maybe_CarModel_GetClassC(iVar5);
           sVar3 = sVar3 + sVar4;
         }
         else {
-          sVar4 = menuscr_leaf_sub_002a17d0(iVar5);
+          sVar4 = maybe_CarModel_GetClassC(iVar5);
           sVar3 = sVar3 + sVar4 + -1;
         }
         uVar6 = Profile_Get(0);
@@ -2233,24 +2233,24 @@ void scrcareer_step_sub_0029ea20(undefined8 param_1,long param_2)
         }
         else {
           uVar1 = *(undefined4 *)(iVar9 + 0x10);
-          uVar6 = menuscr_leaf_sub_002a17d0(iVar5);
+          uVar6 = maybe_CarModel_GetClassC(iVar5);
           lVar7 = Rival_IsBossId(uVar6);
           sVar10 = (short)uVar1;
           if (lVar7 == 1) {
-            sVar3 = menuscr_leaf_sub_002a17d0(iVar5);
+            sVar3 = maybe_CarModel_GetClassC(iVar5);
             sVar10 = sVar10 + sVar3;
           }
           else {
-            sVar3 = menuscr_leaf_sub_002a17d0(iVar5);
+            sVar3 = maybe_CarModel_GetClassC(iVar5);
             sVar10 = sVar10 + sVar3 + -1;
           }
           uVar6 = Profile_Get(0);
           Profile_PayForCar(uVar6,sVar10);
         }
-        scrgarage_step_sub_0029eec0(param_1);
+        maybe_ScrBuyCarColour_Confirm(param_1);
       }
       else {
-        scrgarage_step_sub_0029eec0(param_1);
+        maybe_ScrBuyCarColour_Confirm(param_1);
         iVar5 = *(int *)(iVar9 + 4);
         if (iVar5 == 0x19) {
           uVar6 = Profile_Get(0);
@@ -2271,15 +2271,15 @@ void scrcareer_step_sub_0029ea20(undefined8 param_1,long param_2)
         else {
           if (iVar5 != 0x1a) {
             uVar1 = *(undefined4 *)(iVar9 + 0x10);
-            uVar6 = menuscr_leaf_sub_002a17d0(iVar5);
+            uVar6 = maybe_CarModel_GetClassC(iVar5);
             lVar7 = Rival_IsBossId(uVar6);
             sVar10 = (short)uVar1;
             if (lVar7 == 1) {
-              sVar3 = menuscr_leaf_sub_002a17d0(iVar5);
+              sVar3 = maybe_CarModel_GetClassC(iVar5);
               sVar10 = sVar10 + sVar3;
             }
             else {
-              sVar3 = menuscr_leaf_sub_002a17d0(iVar5);
+              sVar3 = maybe_CarModel_GetClassC(iVar5);
               sVar10 = sVar10 + sVar3 + -1;
             }
             uVar6 = Profile_Get(0);
@@ -2301,7 +2301,7 @@ void scrcareer_step_sub_0029ea20(undefined8 param_1,long param_2)
 // 0x0029eec0  size 0x268
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_step_sub_0029eec0(int *param_1)
+void maybe_ScrBuyCarColour_Confirm(int *param_1)
 
 {
   int iVar1;
@@ -2315,17 +2315,17 @@ void scrgarage_step_sub_0029eec0(int *param_1)
   iVar1 = param_1[1];
   if ((iVar1 != 0x19) && (iVar1 != 0x1a)) {
     if ((1 < *param_1 - 3U) || (param_1[5] != 2)) {
-      uVar4 = menuscr_leaf_sub_002a14f0(iVar1,param_1[5]);
+      uVar4 = maybe_CarModel_GetClassA(iVar1,param_1[5]);
       iVar1 = param_1[1];
       iVar2 = param_1[4];
-      uVar6 = menuscr_leaf_sub_002a17d0(iVar1);
+      uVar6 = maybe_CarModel_GetClassC(iVar1);
       lVar5 = Rival_IsBossId(uVar6);
       if (lVar5 == 1) {
-        sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+        sVar3 = maybe_CarModel_GetClassC(iVar1);
         sVar3 = (short)iVar2 + sVar3;
       }
       else {
-        sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+        sVar3 = maybe_CarModel_GetClassC(iVar1);
         sVar3 = (short)iVar2 + sVar3 + -1;
       }
       uVar6 = Profile_Get(0);
@@ -2334,30 +2334,30 @@ void scrgarage_step_sub_0029eec0(int *param_1)
       goto LAB_0029f048;
     }
     iVar2 = param_1[4];
-    uVar4 = menuscr_leaf_sub_002a17d0(iVar1);
+    uVar4 = maybe_CarModel_GetClassC(iVar1);
     lVar5 = Rival_IsBossId(uVar4);
     if (lVar5 == 1) {
-      sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+      sVar3 = maybe_CarModel_GetClassC(iVar1);
       sVar3 = (short)iVar2 + sVar3;
     }
     else {
-      sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+      sVar3 = maybe_CarModel_GetClassC(iVar1);
       sVar3 = (short)iVar2 + sVar3 + -1;
     }
     uVar4 = Profile_Get(0);
     Profile_PayForCar(uVar4,sVar3);
-    uVar4 = menuscr_leaf_sub_002a14f0(param_1[1],0);
-    uVar6 = menuscr_leaf_sub_002a14f0(param_1[1],1);
+    uVar4 = maybe_CarModel_GetClassA(param_1[1],0);
+    uVar6 = maybe_CarModel_GetClassA(param_1[1],1);
     iVar1 = param_1[1];
     iVar2 = param_1[4];
-    uVar7 = menuscr_leaf_sub_002a17d0(iVar1);
+    uVar7 = maybe_CarModel_GetClassC(iVar1);
     lVar5 = Rival_IsBossId(uVar7);
     if (lVar5 == 1) {
-      sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+      sVar3 = maybe_CarModel_GetClassC(iVar1);
       sVar3 = (short)iVar2 + sVar3;
     }
     else {
-      sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+      sVar3 = maybe_CarModel_GetClassC(iVar1);
       sVar3 = (short)iVar2 + sVar3 + -1;
     }
     uVar7 = Profile_Get(0);
@@ -2367,7 +2367,7 @@ void scrgarage_step_sub_0029eec0(int *param_1)
   }
   iVar1 = *param_1;
 LAB_0029f048:
-  lVar5 = scrcareer_step_sub_00256210(param_1[1],iVar1);
+  lVar5 = maybe_CarSlot_IsSpecial(param_1[1],iVar1);
   if (lVar5 == 1) {
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,0);
   }
@@ -2375,7 +2375,7 @@ LAB_0029f048:
 }
 
 // 0x0029f130  size 0x338
-bool scrcareer_step_sub_0029f130(int param_1)
+bool maybe_MenuText_CurrentCarSpec(int param_1)
 
 {
   char cVar1;
@@ -2480,7 +2480,7 @@ bool scrcareer_step_sub_0029f130(int param_1)
 }
 
 // 0x0029f470  size 0x64
-undefined4 scrcareer_step_sub_0029f470(void)
+undefined4 maybe_MenuText_CarSpecGrade(void)
 
 {
   byte bVar1;
@@ -2682,28 +2682,28 @@ void ScrGarageComputeCarStats_Update(int *param_1)
   }
   iVar3 = param_1[1];
   iVar4 = param_1[4];
-  uVar5 = menuscr_leaf_sub_002a17d0(iVar3);
+  uVar5 = maybe_CarModel_GetClassC(iVar3);
   lVar6 = Rival_IsBossId(uVar5);
   if (lVar6 == 1) {
-    sVar1 = menuscr_leaf_sub_002a17d0(iVar3);
+    sVar1 = maybe_CarModel_GetClassC(iVar3);
     sVar1 = (short)iVar4 + sVar1;
   }
   else {
-    sVar1 = menuscr_leaf_sub_002a17d0(iVar3);
+    sVar1 = maybe_CarModel_GetClassC(iVar3);
     sVar1 = (short)iVar4 + sVar1 + -1;
   }
   Menu_HandleCursor(param_1 + 5,0,2,2,1,0);
   if (*param_1 == 4) {
     iVar3 = param_1[1];
     iVar4 = param_1[4];
-    uVar5 = menuscr_leaf_sub_002a17d0(iVar3);
+    uVar5 = maybe_CarModel_GetClassC(iVar3);
     lVar6 = Rival_IsBossId(uVar5);
     if (lVar6 == 1) {
-      sVar2 = menuscr_leaf_sub_002a17d0(iVar3);
+      sVar2 = maybe_CarModel_GetClassC(iVar3);
       sVar2 = (short)iVar4 + sVar2;
     }
     else {
-      sVar2 = menuscr_leaf_sub_002a17d0(iVar3);
+      sVar2 = maybe_CarModel_GetClassC(iVar3);
       sVar2 = (short)iVar4 + sVar2 + -1;
     }
     iVar3 = param_1[5];
@@ -2905,18 +2905,18 @@ void maybe_ScrBuyCarColour_State5(int *param_1)
     if (*param_1 == 4) {
       iVar1 = param_1[1];
       iVar2 = param_1[4];
-      uVar6 = menuscr_leaf_sub_002a17d0(iVar1);
+      uVar6 = maybe_CarModel_GetClassC(iVar1);
       lVar7 = Rival_IsBossId(uVar6);
       if (lVar7 == 1) {
-        sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+        sVar3 = maybe_CarModel_GetClassC(iVar1);
         sVar3 = (short)iVar2 + sVar3;
       }
       else {
-        sVar3 = menuscr_leaf_sub_002a17d0(iVar1);
+        sVar3 = maybe_CarModel_GetClassC(iVar1);
         sVar3 = (short)iVar2 + sVar3 + -1;
       }
-      uVar4 = menuscr_leaf_sub_002a14f0(param_1[1],0);
-      uVar5 = menuscr_leaf_sub_002a14f0(param_1[1],1);
+      uVar4 = maybe_CarModel_GetClassA(param_1[1],0);
+      uVar5 = maybe_CarModel_GetClassA(param_1[1],1);
       *(short *)((uVar4 & 0xff) * 2 + _g_MenuMgr + 0x548) = sVar3;
       *(short *)((uVar5 & 0xff) * 2 + _g_MenuMgr + 0x548) = sVar3;
     }
@@ -3027,7 +3027,7 @@ void maybe_ScrBuyCarColour_State3(int *param_1)
     } while (iVar17 < 0x15);
     *(undefined4 *)(_g_MenuMgr + 0x544) = 0xfffffffe;
     iVar17 = Profile_Get(0);
-    iVar10 = showroom_step_sub_002d3ba0(0);
+    iVar10 = Garage_GetSortedCarCount(0);
     iVar16 = _g_MenuMgr;
     sVar6 = *(short *)(iVar17 + iVar10 * 2 + 0x13ee);
     *(undefined4 *)(_g_MenuMgr + 0x538) = 2;
@@ -3037,7 +3037,7 @@ void maybe_ScrBuyCarColour_State3(int *param_1)
     *(undefined4 *)(_g_MenuMgr + 0x60c) = 0;
     *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
     *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
-    lVar12 = scrcareer_step_sub_0029f130(param_1[1]);
+    lVar12 = maybe_MenuText_CurrentCarSpec(param_1[1]);
     if (lVar12 == 1) {
       iVar16 = param_1[1];
       if (iVar16 == 0x21) {
@@ -3319,14 +3319,14 @@ switchD_002a01a8_caseD_0:
         param_1[0x10] = 0;
       }
       else {
-        uVar13 = menuscr_leaf_sub_002a17d0();
+        uVar13 = maybe_CarModel_GetClassC();
         lVar12 = Rival_IsBossId(uVar13);
         if (lVar12 == 0) {
           param_1[0x10] = param_1[0x10] + 1;
         }
-        sVar6 = menuscr_leaf_sub_002a17d0(param_1[1]);
+        sVar6 = maybe_CarModel_GetClassC(param_1[1]);
         lVar12 = (long)sVar6;
-        sVar5 = menuscr_leaf_sub_002a1690(param_1[1]);
+        sVar5 = maybe_CarModel_GetClassB(param_1[1]);
         if (lVar12 <= sVar5) {
           iVar16 = (int)sVar6 << 2;
           do {
@@ -3335,7 +3335,7 @@ switchD_002a01a8_caseD_0:
             iVar16 = iVar16 + 4;
             param_1[0x10] = param_1[0x10] + 1;
             lVar12 = (long)((int)lVar12 + 1);
-            sVar6 = menuscr_leaf_sub_002a1690(param_1[1]);
+            sVar6 = maybe_CarModel_GetClassB(param_1[1]);
           } while (lVar12 <= sVar6);
         }
       }
@@ -3353,17 +3353,17 @@ switchD_002a01a8_caseD_0:
       param_1[4] = param_1[4] + -1;
       Menu_HandleCursor(param_1 + 4,0,2,param_1[0x10] + -2,1,0);
       param_1[4] = param_1[4] + 1;
-      bVar3 = menuscr_leaf_sub_002a14f0(param_1[1],0);
+      bVar3 = maybe_CarModel_GetClassA(param_1[1],0);
       iVar16 = param_1[1];
       iVar17 = param_1[4];
-      uVar13 = menuscr_leaf_sub_002a17d0(iVar16);
+      uVar13 = maybe_CarModel_GetClassC(iVar16);
       lVar12 = Rival_IsBossId(uVar13);
       if (lVar12 == 1) {
-        sVar5 = menuscr_leaf_sub_002a17d0(iVar16);
+        sVar5 = maybe_CarModel_GetClassC(iVar16);
         sVar5 = (short)iVar17 + sVar5;
       }
       else {
-        sVar6 = menuscr_leaf_sub_002a17d0(iVar16);
+        sVar6 = maybe_CarModel_GetClassC(iVar16);
         sVar5 = (short)iVar17 + sVar6 + -1;
       }
       iVar16 = Profile_Get(0);
@@ -3373,7 +3373,7 @@ switchD_002a01a8_caseD_0:
       uVar13 = Profile_GetCurrentPartSlot(uVar13,bVar3);
       iVar16 = PartDb_Get(uVar13);
       if (*param_1 == 3) {
-        uVar13 = menuscr_leaf_sub_002a14f0(param_1[1],1);
+        uVar13 = maybe_CarModel_GetClassA(param_1[1],1);
         uVar14 = Profile_Get(0);
         uVar13 = Profile_GetCurrentPartSlot(uVar14,uVar13);
         iVar17 = PartDb_Get(uVar13);
@@ -3386,7 +3386,7 @@ switchD_002a01a8_caseD_0:
         }
       }
       else {
-        uVar4 = menuscr_leaf_sub_002a14f0(param_1[1],0xffffffffffffffff);
+        uVar4 = maybe_CarModel_GetClassA(param_1[1],0xffffffffffffffff);
         uVar14 = Profile_Get(0);
         uVar14 = Profile_GetCurrentCar(uVar14);
         uVar14 = CarRec_GetName(uVar14);
@@ -3512,19 +3512,19 @@ switchD_002a0ac8_caseD_0:
       iVar16 = param_1[1];
     }
     iVar17 = param_1[4];
-    uVar13 = menuscr_leaf_sub_002a17d0(iVar16);
+    uVar13 = maybe_CarModel_GetClassC(iVar16);
     lVar12 = Rival_IsBossId(uVar13);
     if (lVar12 == 1) {
-      sVar5 = menuscr_leaf_sub_002a17d0(iVar16);
+      sVar5 = maybe_CarModel_GetClassC(iVar16);
       sVar5 = (short)iVar17 + sVar5;
     }
     else {
-      sVar6 = menuscr_leaf_sub_002a17d0(iVar16);
+      sVar6 = maybe_CarModel_GetClassC(iVar16);
       sVar5 = (short)iVar17 + sVar6 + -1;
     }
-    uVar11 = menuscr_leaf_sub_002a14f0(param_1[1],0);
+    uVar11 = maybe_CarModel_GetClassA(param_1[1],0);
     *(short *)((uVar11 & 0xff) * 2 + _g_MenuMgr + 0x548) = sVar5;
-    uVar11 = menuscr_leaf_sub_002a14f0(param_1[1],1);
+    uVar11 = maybe_CarModel_GetClassA(param_1[1],1);
     *(short *)((uVar11 & 0xff) * 2 + _g_MenuMgr + 0x548) = sVar5;
     iVar16 = Profile_Get(0);
     sVar6 = *(short *)(iVar16 + sVar5 * 2 + 0x1420);
@@ -3535,7 +3535,7 @@ switchD_002a0ac8_caseD_0:
     if (sVar7 == sVar8) {
       uVar13 = Profile_Get(0);
       sVar7 = Profile_GetCurrentPartSlot(uVar13,0xd);
-      sVar8 = menuscr_leaf_sub_002a17d0(param_1[1]);
+      sVar8 = maybe_CarModel_GetClassC(param_1[1]);
       bVar2 = param_1[4] == (int)sVar7 - (int)sVar8;
     }
     lVar12 = Garage_ComputeCarStats(sVar5,0);
@@ -3593,7 +3593,7 @@ LAB_002a0f0c:
     param_1[0x1b] = 0xd;
   }
   else if (sVar6 < 99) {
-    lVar12 = scrcareer_step_sub_0029f130(param_1[1]);
+    lVar12 = maybe_MenuText_CurrentCarSpec(param_1[1]);
     if (lVar12 == 0) {
       param_1[0x1b] = 0xf;
     }

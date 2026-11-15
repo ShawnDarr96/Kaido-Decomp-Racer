@@ -1977,8 +1977,8 @@ void RaceWorld_Step(void)
   
   lVar5 = RaceScene_IsPaused();
   if ((lVar5 == 0) && (lVar5 = RaceScene_IsRunning(), lVar5 != 0)) {
-    lVar5 = race_leaf_sub_001e8f60();
-    if (((lVar5 == 0) && (lVar5 = race_leaf_sub_001e8f40(), lVar5 == 0)) &&
+    lVar5 = RaceScene_IsFlag400();
+    if (((lVar5 == 0) && (lVar5 = RaceScene_IsFlag1000(), lVar5 == 0)) &&
        ((cVar1 = RaceCtx_GetMode(), cVar1 != '\x01' ||
         (((cVar1 = GameState_Get_354(), cVar1 != '\x01' &&
           (cVar1 = GameState_Get_354(), cVar1 != '\x02')) &&

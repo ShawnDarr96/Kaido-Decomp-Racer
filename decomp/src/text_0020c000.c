@@ -1769,7 +1769,7 @@ void Subtitle_Alloc(undefined8 param_1,undefined8 param_2,undefined4 param_3)
 }
 
 // 0x0020f570  size 0x390
-void menuscr_draw_sub_0020f570(void)
+void MenuMovie_Draw(void)
 
 {
   int iVar1;
@@ -1864,8 +1864,8 @@ LAB_0020f5a8:
 }
 
 // 0x0020f900  size 0x4c
-void menuscr_leaf_sub_0020f900
-               (undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4)
+void MenuMovie_SetParams(undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4
+                        )
 
 {
   if (iRam0036f4fc != 0) {
@@ -1880,7 +1880,7 @@ void menuscr_leaf_sub_0020f900
 }
 
 // 0x0020f950  size 0x18
-void menuscr_step_sub_0020f950(void)
+void MenuMovie_Stop(void)
 
 {
   *(undefined1 *)(iRam0036f4fc + 5) = 8;
@@ -1890,7 +1890,7 @@ void menuscr_step_sub_0020f950(void)
 }
 
 // 0x0020f970  size 0x9c
-undefined4 menuscr_step_sub_0020f970(void)
+undefined4 maybe_MenuMovie_BindTexture(void)
 
 {
   long lVar1;
@@ -1910,7 +1910,7 @@ undefined4 menuscr_step_sub_0020f970(void)
 }
 
 // 0x0020fa10  size 0x7c
-undefined4 menuscr_exit_sub_0020fa10(void)
+undefined4 MenuMovie_Reset(void)
 
 {
   undefined4 uVar1;
@@ -1938,7 +1938,7 @@ undefined4 menuscr_exit_sub_0020fa10(void)
 }
 
 // 0x0020fa90  size 0xd0
-bool menuscr_load_sub_0020fa90(undefined1 param_1,undefined1 param_2)
+bool MenuMovie_LoadFile(undefined1 param_1,undefined1 param_2)
 
 {
   char cVar1;
@@ -1964,7 +1964,7 @@ bool menuscr_load_sub_0020fa90(undefined1 param_1,undefined1 param_2)
 }
 
 // 0x0020fb60  size 0x34
-void menuscr_exit_sub_0020fb60(void)
+void MenuMovie_Free(void)
 
 {
   MoviePlayer_Free();
@@ -1976,9 +1976,8 @@ void menuscr_exit_sub_0020fb60(void)
 }
 
 // 0x0020fba0  size 0x160
-void menuscr_load_sub_0020fba0
-               (undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4,
-               undefined8 param_5)
+void MenuMovie_Create(undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4,
+                     undefined8 param_5)
 
 {
   int aiStack_50 [11];

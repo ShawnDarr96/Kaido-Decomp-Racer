@@ -1797,8 +1797,8 @@ void MenuScr_Draw_ButtonConfig(int param_1)
     *(undefined4 *)(iVar2 + 0x318) = 0;
     *(undefined4 *)(iVar2 + 800) = uVar3;
     *(undefined4 *)(iVar2 + 0x31c) = 1;
-    menuscr_draw_sub_00241ab0(param_1 + 0x200);
-    menuscr_draw_sub_00241ab0(param_1 + 0x3dc,1);
+    maybe_ButtonConfig_DrawList(param_1 + 0x200);
+    maybe_ButtonConfig_DrawList(param_1 + 0x3dc,1);
     iVar2 = *(int *)(param_1 + 0x5c8);
   }
   if (iVar2 != 0) {
@@ -1881,8 +1881,8 @@ void MenuScr_Draw_ButtonConfig(int param_1)
   MenuWnd_DrawText(0xfd,0xb0,0x1ed0);
   MenuWnd_DrawTextId(0xfd,0xa5,1,0x1ef5);
   MenuWnd_DrawTextId(0xfd,0xa6,1,0x1ef6);
-  menuscr_draw_sub_00241ab0(param_1 + 0x200,uVar6);
-  menuscr_draw_sub_00241ab0(param_1 + 0x3dc,uVar6);
+  maybe_ButtonConfig_DrawList(param_1 + 0x200,uVar6);
+  maybe_ButtonConfig_DrawList(param_1 + 0x3dc,uVar6);
   bVar1 = *(int *)(param_1 + 0x20c) != 0;
   if (!bVar1) {
     bVar1 = *(int *)(param_1 + 0x238) != 0;
@@ -2121,8 +2121,8 @@ void MenuScr_Draw_ButtonConfig_f7b0(int param_1)
     *(undefined4 *)(iVar2 + 0x318) = 0;
     *(undefined4 *)(iVar2 + 800) = uVar3;
     *(undefined4 *)(iVar2 + 0x31c) = 1;
-    menuscr_anim_sub_00241e20(param_1 + 0x200);
-    menuscr_anim_sub_00241e20(param_1 + 0x3dc,1);
+    maybe_ButtonConfig_AnimateCursor(param_1 + 0x200);
+    maybe_ButtonConfig_AnimateCursor(param_1 + 0x3dc,1);
     iVar2 = *(int *)(param_1 + 0x5c8);
   }
   if (iVar2 != 0) {
@@ -2206,8 +2206,8 @@ void MenuScr_Draw_ButtonConfig_f7b0(int param_1)
   MenuWnd_DrawText(0xfc,0xe1,0x1ed0);
   MenuWnd_DrawTextId(0xfc,0xd5,1,0x1ef5);
   MenuWnd_DrawTextId(0xfc,0xd6,1,0x1ef6);
-  menuscr_anim_sub_00241e20(param_1 + 0x200,uVar6);
-  menuscr_anim_sub_00241e20(param_1 + 0x3dc,uVar6);
+  maybe_ButtonConfig_AnimateCursor(param_1 + 0x200,uVar6);
+  maybe_ButtonConfig_AnimateCursor(param_1 + 0x3dc,uVar6);
   bVar1 = *(int *)(param_1 + 0x20c) != 0;
   if (!bVar1) {
     bVar1 = *(int *)(param_1 + 0x238) != 0;
@@ -2294,10 +2294,10 @@ void MenuScr_Draw_Controller(int param_1)
     *(undefined4 *)(iVar2 + 0x318) = 0;
     *(undefined4 *)(iVar2 + 800) = uVar3;
     *(undefined4 *)(iVar2 + 0x31c) = 1;
-    menuscr_anim_sub_00242800(param_1 + 0x140,0xfe,0x32be20,0x32be28);
+    maybe_MenuOpt_Init(param_1 + 0x140,0xfe,0x32be20,0x32be28);
     iVar2 = *(int *)(param_1 + 0x1c);
   }
-  menuscr_anim_sub_002425c0(param_1 + 0x140,*(undefined4 *)(param_1 + 0x50),iVar2 == 1);
+  maybe_MenuOpt_SetSelected(param_1 + 0x140,*(undefined4 *)(param_1 + 0x50),iVar2 == 1);
   if (*(int *)(param_1 + 0x5c8) != 0) {
     lVar4 = UiLayout_UpdateAnimById(0xfa,0);
     lVar5 = UiLayout_UpdateAnimById(0xfe,0);
@@ -2370,7 +2370,7 @@ void MenuScr_Draw_Controller(int param_1)
   MenuWnd_DrawText(0xfe,0x1e,0x1ee7);
   MenuWnd_DrawText(0xf8,0x1b,*(undefined4 *)(*(int *)(param_1 + 0x1c) * 4 + 0x36eae0));
   if (bVar1) {
-    menuscr_anim_sub_002425c0(param_1 + 0x140,*(undefined4 *)(param_1 + 0x50),0);
+    maybe_MenuOpt_SetSelected(param_1 + 0x140,*(undefined4 *)(param_1 + 0x50),0);
   }
   else {
     MenuWnd_SetItemState(0xfe,*(undefined4 *)(*(int *)(param_1 + 0x1c) * 4 + 0x36ead8),1,0);

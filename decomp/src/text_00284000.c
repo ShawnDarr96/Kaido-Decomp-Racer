@@ -338,7 +338,7 @@ void ScrShop_Enter(void)
 // 0x00284c60  size 0x338
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrgarage_step_sub_00284c60(undefined8 param_1)
+void maybe_ScrCareerRaceSetup_HandleInput(undefined8 param_1)
 
 {
   short sVar1;
@@ -372,13 +372,13 @@ void scrgarage_step_sub_00284c60(undefined8 param_1)
     }
     *(undefined4 *)(_g_MenuMgr + 0x2c) = *(undefined4 *)(iVar6 + 0x4d0);
     Se_PlayMenu(5);
-    menuscr_step_sub_00284fa0(param_1,0xffffffffffffffff);
+    maybe_Garage_StepSubtitle(param_1,0xffffffffffffffff);
     return;
   }
   if (uVar7 != 0x10) {
     if (uVar7 == 0x20) {
       Se_PlayMenu(6);
-      menuscr_step_sub_00284fa0(param_1,*(undefined4 *)(iVar6 + 0x6bc));
+      maybe_Garage_StepSubtitle(param_1,*(undefined4 *)(iVar6 + 0x6bc));
       return;
     }
     return;
@@ -447,14 +447,14 @@ LAB_00284e20:
              *(undefined4 *)(iVar6 + 0x4d8),iVar6 + 0x5ac);
 LAB_00284ed4:
   Se_PlayMenu(5);
-  menuscr_step_sub_00284fa0(param_1,*(undefined4 *)(iVar6 + 0x6c0));
+  maybe_Garage_StepSubtitle(param_1,*(undefined4 *)(iVar6 + 0x6c0));
   return;
 }
 
 // 0x00284fa0  size 0x224
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_00284fa0(int param_1,long param_2)
+void maybe_Garage_StepSubtitle(int param_1,long param_2)
 
 {
   int iVar1;
@@ -493,7 +493,7 @@ void menuscr_step_sub_00284fa0(int param_1,long param_2)
       else {
         *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000000;
       }
-      showroom_leaf_sub_002d8f60(1,*(int *)(param_1 + 8) + -1,*(undefined4 *)(param_1 + 4));
+      Subtitle_SetPending(1,*(int *)(param_1 + 8) + -1,*(undefined4 *)(param_1 + 4));
       MenuMgr_GetScreenParam(0x18);
     }
     else if (param_2 == -2) {
@@ -1016,7 +1016,7 @@ void maybe_ScrCareerRaceSetup_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle(iVar2 + 0x69c);
   if (lVar1 != 0) {
     (*(code *)(&PTR_maybe_ScrCareerRaceSetup_State0_0032e690)[*(int *)(iVar2 + 0x6a0)])(param_1);
-    scrgarage_step_sub_00284c60(param_1);
+    maybe_ScrCareerRaceSetup_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x69c);
   }
   return;
@@ -1088,7 +1088,7 @@ void maybe_ScrCareerRaceSetup_Enter(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xfeffffff;
     if (cRam0036f8a4 == '\x02') {
       uVar6 = 6;
-      showroom_step_sub_002d3990(auStack_4,8,1);
+      Garage_BuildSortedCarList(auStack_4,8,1);
     }
     else if (*(int *)(iVar4 + 4) == 0) {
       uVar6 = 3;
@@ -1125,7 +1125,7 @@ void maybe_ScrCareerRaceSetup_Enter(undefined8 param_1)
 // 0x002860d0  size 0x1c4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_step_sub_002860d0(int *param_1)
+void maybe_ScrCarPassword_HandleInput(int *param_1)
 
 {
   int iVar1;
@@ -1551,7 +1551,7 @@ void maybe_ScrCarPassword_Update(undefined8 param_1)
   lVar1 = Menu_IsInputIdle(iVar2 + 0x4bc);
   if (lVar1 != 0) {
     (*(code *)(&PTR_ScrGarageFindCar_Enter_0032e6d0)[*(int *)(iVar2 + 0x4c0)])(param_1);
-    scrrace_step_sub_002860d0(param_1);
+    maybe_ScrCarPassword_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x4bc);
   }
   return;
@@ -1581,7 +1581,7 @@ void maybe_ScrCarPassword_Enter(int param_1)
 }
 
 // 0x00286bb0  size 0x14c
-void menuscr_step_sub_00286bb0(undefined8 param_1)
+void maybe_ScrGarageBuyCar_HandleInput(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1602,7 +1602,7 @@ void menuscr_step_sub_00286bb0(undefined8 param_1)
   if (uVar2 != 0x10) {
     if (uVar2 == 0x20) {
       Se_PlayMenu(6);
-      menuscr_step_sub_00286d10(param_1,*(undefined4 *)(iVar3 + 0x44));
+      maybe_ScrGarageBuyCar_OnResult(param_1,*(undefined4 *)(iVar3 + 0x44));
       return;
     }
     return;
@@ -1630,14 +1630,14 @@ void menuscr_step_sub_00286bb0(undefined8 param_1)
   }
   uVar1 = *(undefined4 *)(iVar3 + 0x48);
 LAB_00286c74:
-  menuscr_step_sub_00286d10(param_1,uVar1);
+  maybe_ScrGarageBuyCar_OnResult(param_1,uVar1);
   return;
 }
 
 // 0x00286d10  size 0xd4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_step_sub_00286d10(int param_1,long param_2)
+void maybe_ScrGarageBuyCar_OnResult(int param_1,long param_2)
 
 {
   if (param_2 < 0) {
@@ -1788,7 +1788,7 @@ void ScrGarageFindCar_Update86fc0(int param_1)
     *(undefined4 *)(param_1 + 0x38) = 0xffffffff;
     *(undefined4 *)(param_1 + 0x40) = 0;
   }
-  showroom_step_sub_002d3990(param_1 + 0x28,8,0);
+  Garage_BuildSortedCarList(param_1 + 0x28,8,0);
   uVar4 = Profile_Get(0);
   iVar2 = Garage_FindCar(uVar4);
   lVar5 = Menu_HandleCursor(param_1 + 0x34,0,8,iVar2 + -1,1,0);
@@ -2067,7 +2067,7 @@ void ScrGarageBuyCar_State1(undefined4 *param_1)
     if (lVar7 == 1) {
       Menu_SetCursorAlpha(_g_MenuMgr + 0x654);
     }
-    lVar7 = scrgarage_step_sub_00214d60(param_1[param_1[2] + 3]);
+    lVar7 = maybe_Garage_InstallPartDated(param_1[param_1[2] + 3]);
     uVar6 = Profile_Get(0);
     lVar8 = Profile_GetMoney(uVar6);
     if (lVar8 < lVar7) {
@@ -2193,7 +2193,7 @@ void ScrGarageBuyCar_Update(undefined8 param_1)
       uVar6 = Profile_Get(0);
       Garage_BuyCar(uVar6,0,*(undefined2 *)(iVar3 + 0x13ee + *(int *)(iVar7 + 0x34) * 2));
       *(uint *)(iVar7 + 0x30) = *(uint *)(iVar7 + 0x30) & 0xfffffffb;
-      showroom_step_sub_002d3990(iVar7 + 0x28,8,0);
+      Garage_BuildSortedCarList(iVar7 + 0x28,8,0);
       uVar1 = *(uint *)(iVar7 + 0x30);
     }
     if ((uVar1 & 8) == 0) {
@@ -2204,11 +2204,11 @@ void ScrGarageBuyCar_Update(undefined8 param_1)
       uVar6 = Profile_Get(0);
       Garage_BuyCar(uVar6,1,*(undefined2 *)(iVar3 + 0x13ee + *(int *)(iVar7 + 0x34) * 2));
       *(uint *)(iVar7 + 0x30) = *(uint *)(iVar7 + 0x30) & 0xfffffff7;
-      showroom_step_sub_002d3990(iVar7 + 0x28,8,0);
+      Garage_BuildSortedCarList(iVar7 + 0x28,8,0);
       iVar3 = *(int *)(iVar7 + 0x5c);
     }
     (*(code *)(&PTR_ScrGarageIsSlotUsed_Exit_0032e6f0)[iVar3])(param_1);
-    menuscr_step_sub_00286bb0(param_1);
+    maybe_ScrGarageBuyCar_HandleInput(param_1);
     Menu_RequestTransition(iVar7 + 0x58);
   }
   return;
@@ -2309,7 +2309,7 @@ void ScrGarageBuyCar_Enter(undefined8 param_1)
 }
 
 // 0x00287c70  size 0x128
-void scrgarage_step_sub_00287c70(uint *param_1)
+void maybe_Password_GetCurrentCarInfo(uint *param_1)
 
 {
   undefined8 uVar1;
@@ -2353,7 +2353,7 @@ void scrgarage_step_sub_00287c70(uint *param_1)
 }
 
 // 0x00287da0  size 0x110
-void scrrace_step_sub_00287da0(undefined8 param_1)
+void maybe_ScrRecordPassword_HandleInput(undefined8 param_1)
 
 {
   uint uVar1;
@@ -2375,14 +2375,14 @@ void scrrace_step_sub_00287da0(undefined8 param_1)
        ((*(int *)(iVar2 + 0x4c) != 4 || (*(int *)(iVar2 + 0x6c) != 4)))) {
       Se_PlayMenu(5);
     }
-    scrrace_step_sub_00287ec0(param_1,*(undefined4 *)(iVar2 + 0x6c));
+    maybe_ScrRecordPassword_OnResult(param_1,*(undefined4 *)(iVar2 + 0x6c));
   }
   else if (uVar1 == 0x20) {
     if ((*(int *)(iVar2 + 0x68) != -4) &&
        ((*(int *)(iVar2 + 0x4c) != 4 || (*(int *)(iVar2 + 0x68) != 4)))) {
       Se_PlayMenu(6);
     }
-    scrrace_step_sub_00287ec0(param_1,*(undefined4 *)(iVar2 + 0x68));
+    maybe_ScrRecordPassword_OnResult(param_1,*(undefined4 *)(iVar2 + 0x68));
   }
   return;
 }
@@ -2390,7 +2390,7 @@ void scrrace_step_sub_00287da0(undefined8 param_1)
 // 0x00287ec0  size 0x3ac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrrace_step_sub_00287ec0(int param_1,long param_2)
+void maybe_ScrRecordPassword_OnResult(int param_1,long param_2)
 
 {
   char cVar1;

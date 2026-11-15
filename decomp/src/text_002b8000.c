@@ -697,7 +697,7 @@ undefined4 SeqGen_LoadSong(int param_1,int *param_2)
   iVar3 = param_1;
   do {
     maybe_SeqSrc_Free(iVar3 + 0x6e98);
-    menuscr_exit_sub_002afbd0(iVar3 + 0x6f2c);
+    SeqGen_FreeData(iVar3 + 0x6f2c);
     if (*(int *)(iVar3 + 0x7018) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar3 + 0x7018) = 0;
@@ -722,7 +722,7 @@ undefined4 SeqGen_LoadSong(int param_1,int *param_2)
   iVar3 = param_1;
   do {
     maybe_SeqSrc_Free(iVar3 + 0x158);
-    menuscr_exit_sub_002afbd0(iVar3 + 0x1ec);
+    SeqGen_FreeData(iVar3 + 0x1ec);
     if (*(int *)(iVar3 + 0x2d8) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar3 + 0x2d8) = 0;
@@ -1047,7 +1047,7 @@ undefined4 SeqGen_LoadPartData(int param_1)
   undefined1 uStack_1;
   
   iVar5 = param_1 + *(int *)(param_1 + 0x89e8) * 0xda8;
-  menuscr_exit_sub_002afbd0(iVar5 + 0x6f2c);
+  SeqGen_FreeData(iVar5 + 0x6f2c);
   if (*(int *)(iVar5 + 0x6fe8) != 0) {
     Mem_Free();
     *(undefined4 *)(iVar5 + 0x6fe8) = 0;
@@ -1159,7 +1159,7 @@ undefined4 SeqGen_LoadPartData(int param_1)
     iVar5 = param_1;
     do {
       *(undefined4 *)(iVar5 + 0x10) = *(undefined4 *)(param_1 + 700);
-      menuscr_exit_sub_002afbd0(param_1 + 0x1ec);
+      SeqGen_FreeData(param_1 + 0x1ec);
       iVar9 = iVar9 + 1;
       param_1 = param_1 + 0xda8;
       iVar5 = iVar5 + 4;
@@ -1708,7 +1708,7 @@ undefined4 SeqGen_BuildPart(undefined8 param_1,int param_2)
     SeqGen_EmitEvent(param_1,iVar16,auStack_430,2,&iStack_4,param_2);
     SeqGen_EmitEvent(param_1,iVar16,auStack_2430,0x10,&iStack_4,0);
     maybe_SeqGen_EmitNote(iVar16,iStack_4);
-    lVar12 = menuscr_leaf_sub_002afef0(iVar16,0,auStack_30,&iStack_8);
+    lVar12 = maybe_SeqGen_ReadVarLen(iVar16,0,auStack_30,&iStack_8);
     if (lVar12 != 0) {
       auStack_30[iStack_8] = 0xff;
       auStack_30[iStack_8 + 1] = 0x2f;
@@ -1766,7 +1766,7 @@ undefined4 SeqGen_FreeParts(int param_1)
   do {
     if (*(int *)(param_1 + 0x34) == 1) {
       maybe_SeqSrc_Free(iVar1 + 0x6e98);
-      menuscr_exit_sub_002afbd0(iVar1 + 0x6f2c);
+      SeqGen_FreeData(iVar1 + 0x6f2c);
       if (*(int *)(iVar1 + 0x7018) != 0) {
         Mem_Free();
         *(undefined4 *)(iVar1 + 0x7018) = 0;
@@ -1992,7 +1992,7 @@ void SeqGen_FreeSong(int param_1)
   iVar1 = param_1;
   do {
     maybe_SeqSrc_Free(iVar1 + 0x6e98);
-    menuscr_exit_sub_002afbd0(iVar1 + 0x6f2c);
+    SeqGen_FreeData(iVar1 + 0x6f2c);
     if (*(int *)(iVar1 + 0x7018) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x7018) = 0;
@@ -2016,7 +2016,7 @@ void SeqGen_FreeSong(int param_1)
   iVar1 = param_1;
   do {
     maybe_SeqSrc_Free(iVar1 + 0x158);
-    menuscr_exit_sub_002afbd0(iVar1 + 0x1ec);
+    SeqGen_FreeData(iVar1 + 0x1ec);
     if (*(int *)(iVar1 + 0x2d8) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x2d8) = 0;
@@ -2247,12 +2247,12 @@ void SeqGen_LoadPattern(int param_1)
       bVar1 = true;
     }
     else {
-      menuscr_load_sub_002afe00(iVar4 + 0x1ec);
+      SeqGen_LoadFile(iVar4 + 0x1ec);
     }
   }
   else {
     iVar4 = param_1 + iVar5 * 0xda8;
-    menuscr_load_sub_002afe00(iVar4 + 0x1ec,*(undefined4 *)(iVar4 + 0x2f0));
+    SeqGen_LoadFile(iVar4 + 0x1ec,*(undefined4 *)(iVar4 + 0x2f0));
   }
   *(undefined4 *)(iVar5 * 0xda8 + param_1 + 0x2d0) = 0;
   if (bVar1) {
@@ -2275,7 +2275,7 @@ void SeqGen_ReloadPattern(undefined8 param_1,int param_2,int param_3)
   if (uVar1 == 0) {
     iVar3 = iVar2 + param_2 * 0xda8;
     maybe_SeqSrc_Free(iVar3 + 0x158);
-    menuscr_exit_sub_002afbd0(iVar3 + 0x1ec);
+    SeqGen_FreeData(iVar3 + 0x1ec);
     if (*(int *)(iVar3 + 0x2d8) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar3 + 0x2d8) = 0;

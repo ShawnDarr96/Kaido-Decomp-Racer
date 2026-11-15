@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001040e0  size 0x10
-void msl_leaf_sub_001040e0(undefined8 *param_1)
+void maybe_Pos_InitC(undefined8 *param_1)
 
 {
   *param_1 = 0xffffffffffffffff;
@@ -12,7 +12,7 @@ void msl_leaf_sub_001040e0(undefined8 *param_1)
 }
 
 // 0x001040f0  size 0x10
-void msl_leaf_sub_001040f0(undefined8 *param_1)
+void maybe_Pos_InitD(undefined8 *param_1)
 
 {
   *param_1 = 0xffffffffffffffff;
@@ -654,7 +654,7 @@ ulong maybe_std_stdio_filebuf_uflow(undefined8 param_1)
 }
 
 // 0x00105200  size 0x18
-int msl_leaf_sub_00105200(int param_1)
+int maybe_Vector_ByteSize(int param_1)
 
 {
   return *(int *)(param_1 + 0xc) - *(int *)(param_1 + 8);
@@ -1172,7 +1172,7 @@ ulong maybe_std_stdio_wfilebuf_uflow(undefined8 param_1)
 }
 
 // 0x00105da0  size 0x28
-int msl_leaf_sub_00105da0(int param_1)
+int maybe_Vector_Count(int param_1)
 
 {
   int iVar1;
@@ -1652,7 +1652,7 @@ undefined8 maybe_std_wostream_sentry_ctor(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x001069e0  size 0x10
-int * msl_leaf_sub_001069e0(int param_1,long param_2)
+int * maybe_VBaseDtorThunkA(int param_1,long param_2)
 
 {
   int *piVar1;
@@ -1676,7 +1676,7 @@ int * msl_leaf_sub_001069e0(int param_1,long param_2)
 }
 
 // 0x001069f0  size 0x10
-int * msl_leaf_sub_001069f0(int param_1,long param_2)
+int * maybe_VBaseDtorThunkB(int param_1,long param_2)
 
 {
   int *piVar1;
@@ -1700,7 +1700,7 @@ int * msl_leaf_sub_001069f0(int param_1,long param_2)
 }
 
 // 0x00106a00  size 0x10
-int * msl_leaf_sub_00106a00(int param_1,long param_2)
+int * maybe_VBaseDtorThunkC(int param_1,long param_2)
 
 {
   int *piVar1;
@@ -1724,7 +1724,7 @@ int * msl_leaf_sub_00106a00(int param_1,long param_2)
 }
 
 // 0x00106a10  size 0x10
-int * msl_leaf_sub_00106a10(int param_1,long param_2)
+int * maybe_VBaseDtorThunkD(int param_1,long param_2)
 
 {
   int *piVar1;

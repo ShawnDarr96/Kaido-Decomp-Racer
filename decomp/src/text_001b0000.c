@@ -119,7 +119,7 @@ undefined4 Rival_HasCar(int param_1,undefined2 param_2)
   undefined4 uVar3;
   
   uVar3 = 0;
-  uVar1 = menuscr_leaf_sub_00274810(param_2);
+  uVar1 = maybe_Rival_HasCarClass(param_2);
   if (uVar1 < 2) {
     uVar3 = *(undefined4 *)(param_1 + 0x20);
   }

@@ -1358,8 +1358,8 @@ void ScrRecord_Draw_NormalCar(undefined8 param_1)
     *(undefined4 *)(iVar2 + 0x318) = 0;
     *(undefined4 *)(iVar2 + 800) = uVar5;
     *(undefined4 *)(iVar2 + 0x31c) = 1;
-    menuscr_leaf_sub_002425a0(iVar4 + 0x858,0x10e,0x32d710,0x32d714);
-    menuscr_leaf_sub_002425a0(iVar4 + 0x86c,0x10e,0x32d718,0x32d71c);
+    MenuOpt_InitItem(iVar4 + 0x858,0x10e,0x32d710,0x32d714);
+    MenuOpt_InitItem(iVar4 + 0x86c,0x10e,0x32d718,0x32d71c);
     iVar2 = UiMgr_FindLayout(0x10e);
     UiElem_SetPropInt(*_g_UiMgr + iVar2 * 0x4f4 + 4,2,0x16,
                       *(undefined4 *)(&DAT_0036ecf0 + *(int *)(iVar4 + 8) * 4));
@@ -1416,8 +1416,8 @@ void ScrRecord_Draw_NormalCar(undefined8 param_1)
       *(undefined4 *)(iVar4 + 0x54) = 0;
     }
   }
-  menuscr_leaf_sub_002a31e0(param_1,*(undefined4 *)(iVar4 + 0x40));
-  menuscr_leaf_sub_002a31f0(param_1,*(undefined4 *)(iVar4 + 0x44));
+  maybe_Record_IsSlotUsed(param_1,*(undefined4 *)(iVar4 + 0x40));
+  Record_GetTableEntry(param_1,*(undefined4 *)(iVar4 + 0x44));
   if (*(int *)(iVar4 + 8) == 0) {
     ScrRecord_Draw_NoData(param_1,iVar4 + 0x7fc);
     iVar2 = *(int *)(iVar4 + 0x54);
@@ -1445,20 +1445,20 @@ void ScrRecord_Draw_NormalCar(undefined8 param_1)
     MenuWnd_DrawTextId(0x10e,0x9b,5,uVar8);
   }
   if ((bVar1) || ((*(uint *)(_g_MenuMgr + 0x28) & 1) != 0)) {
-    menuscr_anim_sub_00242290(iVar4 + 0x858,0);
-    menuscr_anim_sub_00242290(iVar4 + 0x86c,0);
+    maybe_MenuOpt_SetItemActive(iVar4 + 0x858,0);
+    maybe_MenuOpt_SetItemActive(iVar4 + 0x86c,0);
   }
   else {
     if (*(int *)(iVar4 + 0x4c) == 0) {
-      menuscr_anim_sub_00242290(iVar4 + 0x858,3);
+      maybe_MenuOpt_SetItemActive(iVar4 + 0x858,3);
     }
     else if (*(int *)(iVar4 + 0x4c) == 6) {
-      menuscr_anim_sub_00242290(iVar4 + 0x858,2);
+      maybe_MenuOpt_SetItemActive(iVar4 + 0x858,2);
     }
     else {
-      menuscr_anim_sub_00242290(iVar4 + 0x858,1);
+      maybe_MenuOpt_SetItemActive(iVar4 + 0x858,1);
     }
-    menuscr_anim_sub_00242290(iVar4 + 0x86c,1);
+    maybe_MenuOpt_SetItemActive(iVar4 + 0x86c,1);
     iVar2 = UiMgr_FindLayout(0x10e);
     iVar2 = *_g_UiMgr + iVar2 * 0x4f4 + 4;
     if (*(int *)(iVar4 + 0x44) == 0) {
@@ -1497,7 +1497,7 @@ LAB_00262a40:
   MenuWnd_DrawText(0x10e,0x71,0x418);
   MenuWnd_DrawText(0x10e,0x72,0x419);
   MenuWnd_DrawText(0x10e,0xa1,0x1f41);
-  menuscr_draw_sub_002668e0(0x10e,0xa2,iVar4 + 0x7ec);
+  maybe_MenuWnd_DrawRivalLabels(0x10e,0xa2,iVar4 + 0x7ec);
   iVar4 = UiMgr_FindLayout(0x10e);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
   iVar4 = UiMgr_FindLayout(0x10b);

@@ -1755,7 +1755,7 @@ void maybe_kCopy_E(void)
 }
 
 // 0x0011af20  size 0x38
-undefined8 libkernl_leaf_sub_0011af20(undefined4 *param_1,undefined4 *param_2,uint param_3)
+undefined8 maybe_Kernel_CopyWords(undefined4 *param_1,undefined4 *param_2,uint param_3)
 
 {
   undefined4 uVar1;
@@ -1797,7 +1797,7 @@ void maybe_InitTimerPatch(void)
   if ((uVar4 & 0x100) == 0) {
     uVar4 = 2;
     puVar3 = &DAT_00308158;
-    SetSyscall_copy5(DAT_00308148,PTR_libkernl_leaf_sub_0011af20_0030814c);
+    SetSyscall_copy5(DAT_00308148,PTR_maybe_Kernel_CopyWords_0030814c);
     maybe_kCopy_E(0xffffffff80076000,0x3079e0,0x740);
     maybe_kCopy_E(0x82000,0x308120,0x28);
     FlushCache(0);

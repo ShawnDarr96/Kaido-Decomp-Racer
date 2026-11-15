@@ -1159,7 +1159,7 @@ void ScrShortcutMenu_Enter(undefined4 *param_1)
 }
 
 // 0x0026a2e0  size 0x1f4
-undefined4 menuscr_leaf_sub_0026a2e0(short param_1)
+undefined4 maybe_Tune_GetPartGroup(short param_1)
 
 {
   undefined4 uVar1;
@@ -1246,7 +1246,7 @@ undefined4 menuscr_leaf_sub_0026a2e0(short param_1)
 // 0x0026a4e0  size 0x150
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_0026a4e0(undefined8 param_1)
+void maybe_CarStatus_ResetBars(undefined8 param_1)
 
 {
   int iVar1;
@@ -1299,7 +1299,7 @@ void menuscr_anim_sub_0026a4e0(undefined8 param_1)
 // 0x0026a630  size 0x350
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_0026a630
+void MenuNum_CountUp_Tune
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 
@@ -1372,7 +1372,7 @@ void ScrGarage_Draw_FullAero_a980(int param_1)
   else {
     uVar3 = 0x24d;
   }
-  uVar4 = menuscr_leaf_sub_0026a2e0(uVar4);
+  uVar4 = maybe_Tune_GetPartGroup(uVar4);
   uVar5 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x26,0x24e,uVar4,uVar5,uVar3);
   MenuWnd_DrawTextId(0xdf,0x21,4,0x98f);
@@ -1395,7 +1395,7 @@ void ScrGarage_Draw_FullAero_a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x28,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdf,0x23,4,0x992);
@@ -1409,7 +1409,7 @@ void ScrGarage_Draw_FullAero_a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x29,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdf,0x24,4,0x993);
@@ -1423,7 +1423,7 @@ void ScrGarage_Draw_FullAero_a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x2a,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdf,0x25,4,0x994);
@@ -1437,7 +1437,7 @@ void ScrGarage_Draw_FullAero_a980(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdf,0x2b,0x24e,uVar3,uVar4,uVar2);
   iVar1 = UiMgr_FindLayout(0xdf);
@@ -1469,7 +1469,7 @@ void ScrGarage_Draw_BodyTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x2d,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x28,4,0x98b);
@@ -1483,7 +1483,7 @@ void ScrGarage_Draw_BodyTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x2e,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x34,1,0x241);
@@ -1498,7 +1498,7 @@ void ScrGarage_Draw_BodyTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x2f,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x2a,4,0x248);
@@ -1512,7 +1512,7 @@ void ScrGarage_Draw_BodyTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x30,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x35,1,0x242);
@@ -1527,7 +1527,7 @@ void ScrGarage_Draw_BodyTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x31,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xde,0x2c,4,0x248);
@@ -1541,7 +1541,7 @@ void ScrGarage_Draw_BodyTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xde,0x32,0x24e,uVar3,uVar4,uVar2);
   iVar1 = UiMgr_FindLayout(0xde);
@@ -1573,7 +1573,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2c,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x25,4,0x981);
@@ -1587,7 +1587,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2d,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x26,4,0x982);
@@ -1601,7 +1601,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2e,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x27,4,0x983);
@@ -1615,7 +1615,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x2f,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x28,4,0x984);
@@ -1629,7 +1629,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x30,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x37,1,0x23f);
@@ -1644,7 +1644,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x31,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x2a,4,0x986);
@@ -1658,7 +1658,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x32,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x2b,4,0x987);
@@ -1672,7 +1672,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x33,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x34,4,0x988);
@@ -1686,7 +1686,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x35,0x24e,uVar3,uVar4,uVar2);
   MenuWnd_DrawTextId(0xdd,0x38,4,0x989);
@@ -1700,7 +1700,7 @@ void ScrGarage_Draw_PowerTune(int param_1)
   else {
     uVar2 = 0x24d;
   }
-  uVar3 = menuscr_leaf_sub_0026a2e0(uVar3);
+  uVar3 = maybe_Tune_GetPartGroup(uVar3);
   uVar4 = Msg_MakerInfo();
   MenuWnd_DrawLabel(0xdd,0x39,0x24e,uVar3,uVar4,uVar2);
   iVar1 = UiMgr_FindLayout(0xdd);
@@ -1778,7 +1778,7 @@ LAB_0026b9ac:
         uVar2 = *(undefined4 *)(&DAT_0032d928 + *(int *)(param_1 + 0x2fc) * 4);
         iVar4 = UiMgr_FindLayout(0xda);
         UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,uVar2,8);
-        menuscr_anim_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + iVar3 * 4));
+        maybe_CarStatus_ResetBars(*(undefined4 *)(&DAT_0032d928 + iVar3 * 4));
         *(int *)(param_1 + 0x2fc) = iVar3;
       }
       if (*(int *)(param_1 + 0x18) == 0) {
@@ -2429,7 +2429,7 @@ void ScrScrGarageDrawFullAeroa980_Update(undefined8 param_1)
     }
   }
   MenuScr_Select_CarStatus(param_1);
-  menuscr_anim_sub_0026a630(0xdc,3,4,0xf8,4,1,3);
+  MenuNum_CountUp_Tune(0xdc,3,4,0xf8,4,1,3);
   UiLayout_UpdateAnimById(0xdc,2);
   iVar1 = UiMgr_FindLayout(0xdc);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);

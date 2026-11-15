@@ -562,7 +562,7 @@ void MenuPage15_Enter(void)
 // 0x002312c0  size 0x350
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_002312c0
+void MenuNum_CountUp_LoversInfo
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 
@@ -914,7 +914,7 @@ void ScrCareer_Draw_LoversInformation(undefined8 param_1)
   UiText_DrawById(auStack_40,uVar9);
   iVar7 = UiMgr_FindLayout(0xec);
   UiElem_SetPropInt(*_g_UiMgr + iVar7 * 0x4f4 + 4,0x10,0x16,*(int *)(iVar11 + 0x24) + 0x45);
-  menuscr_anim_sub_002312c0
+  MenuNum_CountUp_LoversInfo
             (0xec,0x1e,0x1f,0x60,*(int *)(iVar11 + 0x34) + 5,5,*(undefined4 *)(iVar11 + 0x30));
   iVar7 = UiMgr_FindLayout(0xec);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar7 * 0x4f4 + 4);
@@ -1058,7 +1058,7 @@ void ScrCareer_Draw_Comment(undefined8 param_1)
   UiText_DrawById(auStack_40,uVar4);
   iVar2 = UiMgr_FindLayout(0xeb);
   UiElem_SetPropInt(*_g_UiMgr + iVar2 * 0x4f4 + 4,0x11,0x16,*(int *)(iVar5 + 0x24) + 0x45);
-  menuscr_anim_sub_002312c0
+  MenuNum_CountUp_LoversInfo
             (0xeb,0x1e,0x1f,0x60,*(int *)(iVar5 + 0x34) + 5,5,*(undefined4 *)(iVar5 + 0x30));
   iVar2 = UiMgr_FindLayout(0xeb);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
@@ -1726,7 +1726,7 @@ void ScrCareer_Draw_LoversInformation_3540(undefined8 param_1)
 LAB_0023371c:
   MenuWnd_DrawLabel(0xe9,0x6d,0x3c,iVar1 + 1,0x14);
   ScrCareer_Draw_NoData_17e0(param_1);
-  menuscr_anim_sub_002312c0(0xe9,3,4,0xf8,0x14,9,*(undefined4 *)(iVar5 + 0x20));
+  MenuNum_CountUp_LoversInfo(0xe9,3,4,0xf8,0x14,9,*(undefined4 *)(iVar5 + 0x20));
   MenuWnd_DrawText(0xe9,0x6c,0x273);
   iVar1 = UiMgr_FindLayout(0xe9);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -1814,7 +1814,7 @@ void MenuPage16_Enter(void)
 // 0x00233d40  size 0x320
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void menuscr_anim_sub_00233d40
+void MenuNum_CountUp_PlayerStatus
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,ulong param_5,
                ulong param_6,int param_7)
 

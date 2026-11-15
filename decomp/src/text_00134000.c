@@ -1985,7 +1985,7 @@ long File_RequestList_dtor(long param_1,short param_2)
 }
 
 // 0x001373c0  size 0x60
-long engine_step_sub_001373c0(long param_1,short param_2)
+long maybe_EngineNode_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -2289,7 +2289,7 @@ undefined4 Pad_SetActuator(int param_1,byte param_2,byte param_3,uint param_4)
 }
 
 // 0x00137920  size 0x18
-void engine_leaf_sub_00137920(int param_1,uint param_2)
+void maybe_EngineObj_SetBit(int param_1,uint param_2)
 
 {
                     /* WARNING: Could not recover jumptable at 0x00137930. Too many branches */
@@ -2299,7 +2299,7 @@ void engine_leaf_sub_00137920(int param_1,uint param_2)
 }
 
 // 0x00137940  size 0x84
-undefined4 engine_leaf_sub_00137940(int param_1,uint param_2)
+undefined4 maybe_EngineObj_ReadByte(int param_1,uint param_2)
 
 {
   byte *pbVar1;
@@ -2321,7 +2321,7 @@ undefined4 engine_leaf_sub_00137940(int param_1,uint param_2)
 }
 
 // 0x001379d0  size 0xc
-bool engine_leaf_sub_001379d0(int param_1)
+bool maybe_EngineObj_HasData(int param_1)
 
 {
   return *(int *)(param_1 + 0x47c) != 0;

@@ -1331,7 +1331,7 @@ void PhysSphere_UpdateTransform(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00159fb0  size 0x24
-void phys_leaf_sub_00159fb0(int param_1,int param_2)
+void maybe_PhysBody_CopyState(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_1 + 0x80) = *(undefined4 *)(param_2 + 0x80);
@@ -1559,14 +1559,14 @@ int PhysBox_GetAxes(int param_1)
 }
 
 // 0x0015a400  size 0x10
-undefined4 phys_leaf_sub_0015a400(int param_1,int param_2)
+undefined4 PhysBody_GetParam(int param_1,int param_2)
 
 {
   return *(undefined4 *)(param_2 * 4 + param_1 + 0x80);
 }
 
 // 0x0015a410  size 0x10
-void phys_leaf_sub_0015a410(int param_1,int param_2,undefined4 param_3)
+void PhysBody_SetParam(int param_1,int param_2,undefined4 param_3)
 
 {
   *(undefined4 *)(param_2 * 4 + param_1 + 0x80) = param_3;
@@ -2164,14 +2164,14 @@ undefined4 PhysBox_GetEdgeIndexB(int param_1)
 }
 
 // 0x0015b3f0  size 0x18
-undefined4 phys_leaf_sub_0015b3f0(undefined8 param_1,int param_2)
+undefined4 maybe_Phys_GetTableA(undefined8 param_1,int param_2)
 
 {
   return *(undefined4 *)(&DAT_0030acb0 + param_2 * 4);
 }
 
 // 0x0015b410  size 0x18
-undefined4 phys_leaf_sub_0015b410(undefined8 param_1,int param_2)
+undefined4 maybe_Phys_GetTableB(undefined8 param_1,int param_2)
 
 {
   return *(undefined4 *)(&DAT_0030ac80 + param_2 * 4);
@@ -2694,7 +2694,7 @@ undefined8 Phys_Nop_11(void)
 }
 
 // 0x0015bd60  size 0xc
-undefined4 * phys_leaf_sub_0015bd60(void)
+undefined4 * maybe_Phys_GetDefaultA(void)
 
 {
   return &DAT_003625e0;
@@ -2708,7 +2708,7 @@ undefined4 Phys_Nop_12(void)
 }
 
 // 0x0015bd80  size 0xc
-undefined4 * phys_leaf_sub_0015bd80(void)
+undefined4 * maybe_Phys_GetDefaultB(void)
 
 {
   return &DAT_003625e0;
@@ -2798,7 +2798,7 @@ void PhysPlane_TransformNormal(int param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0015bf00  size 0x8
-void phys_leaf_sub_0015bf00(undefined4 param_1,int param_2)
+void maybe_PhysSphere_SetRadius(undefined4 param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0x14) = param_1;
@@ -2806,7 +2806,7 @@ void phys_leaf_sub_0015bf00(undefined4 param_1,int param_2)
 }
 
 // 0x0015bf10  size 0xc
-void phys_leaf_sub_0015bf10(int param_1,undefined4 *param_2)
+void maybe_PhysSphere_SetCenter(int param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;

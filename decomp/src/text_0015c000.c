@@ -57,7 +57,7 @@ void Vec3_AddInPlace_Wrap(int param_1)
 }
 
 // 0x0015c150  size 0x5c
-bool phys_step_sub_0015c150(int param_1,undefined8 param_2)
+bool PhysSphere_ContainsPoint(int param_1,undefined8 param_2)
 
 {
   float fStack_10;

@@ -1023,7 +1023,7 @@ undefined4 Engine_GetField_47c(int param_1)
 }
 
 // 0x00141a40  size 0x18
-void engine_leaf_sub_00141a40(int param_1,uint param_2)
+void maybe_EngineObj_SetBitB(int param_1,uint param_2)
 
 {
                     /* WARNING: Could not recover jumptable at 0x00141a50. Too many branches */
@@ -1033,7 +1033,7 @@ void engine_leaf_sub_00141a40(int param_1,uint param_2)
 }
 
 // 0x00141a60  size 0x14
-bool engine_leaf_sub_00141a60(int param_1,uint param_2)
+bool maybe_EngineObj_HasFlags(int param_1,uint param_2)
 
 {
   return param_2 == (param_2 & *(uint *)(param_1 + 0x480));
