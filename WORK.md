@@ -44,7 +44,6 @@ Columns:
 |---|---|---|---|---|---|
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  | done: SDK library set + link order recorded (config/sdk_libraries.txt); left: map each library's functions via data refs, then split game code (sinit data order) |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
-| M6 | Recheck earlier decomp.me scratches (wWxaE, LM97T, zXHfU, BJ7BQ, DAiek, E0YK3, zUNmC, tudGj, EJChW) under MWCPS2 3.0.1b145; make it the official compiler if they hold | any |  | ShawnDarr96/claude (2026-11-15) | compiler notes in config/compiler.txt; b145 matched tIAOp 26/26 incl. branch-likely |
 | M7 | Match batch 8 on decomp.me: Profile play-date/stat/points/course records, CarRec, Scene gp globals (23 functions) | any |  |  | make target asm with python -I scripts/mkscratch.py <lo> <hi> |
 | M8 | Close the NONMATCHING functions in src/ (racecar.c, gamestate.c CopyPlayerRecord, options.c SetDefaults) | any |  | ShawnDarr96/claude (2026-11-15) | RaceCar_Get / RaceScene_IsPaused: write as s != 0 ? ... : 0 under b145 |
 
@@ -242,6 +241,7 @@ Columns:
 | F16 | 16 Mc/CourseScene/Render globals renamed by meaning (List objects, frame-callback nodes); TaskList_Add and Gfx_Add/RemoveEndFrameCallback swaps fixed | P0 | ShawnDarr96/claude | 2026-11-15 | 196b3ea |
 | F17 | scripts/iop_export.py + decomp/iop: both XVI IOP modules decompiled; XVI_IOP 46/46 named (RPC server/client, memory, DMA), XVI_SND 95/166 (import stubs from ps2sdk tables, SBasic/Synthe/Stream from debug strings) | P0 | ShawnDarr96/claude | 2026-11-15 | 3d6da77 |
 | F18 | the 0xc records are UI layouts (texture block is optional); 500 float tables are probably per-car parameters; unknown down from 2,914 to 938 | P0 | ShawnDarr96/claude | 2026-11-15 | ad9d6f9 |
+| M6 | compiler = mwcps2-3.0.1b145-050209 -O4,p; all scratches rechecked; +3 matches (RaceCar_Get, RaceScene_IsPaused, GameState_CopyPlayerRecord), -1 (Options_ApplySeVolume only matches under 3.0); 149 matched | P3 | ShawnDarr96/claude | 2026-11-15 | 3bd316f |
 
 ## Changes to the board
 
@@ -369,3 +369,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim F18.
 - 2026-11-15 ShawnDarr96/claude: F18 done; added F24 (gaps).
 - 2026-11-15 ShawnDarr96/claude: claim M6, M8.
+- 2026-11-15 ShawnDarr96/claude: M6 done.
