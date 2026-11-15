@@ -2211,25 +2211,29 @@ void Prop_CollideWithCar(undefined8 param_1,undefined8 param_2,float *param_3)
 }
 
 // 0x001c2e10  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_DrawAll(void)
 
 {
   undefined1 auStack_160 [352];
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
-    Prop_Draw(auStack_160,uRam0036f328,400);
+    Prop_Draw(auStack_160,_g_Props,400);
   }
   else {
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
-    Prop_Draw(auStack_160,uRam0036f328,400);
+    Prop_Draw(auStack_160,_g_Props,400);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
-    Prop_Draw(auStack_160,uRam0036f328,400);
+    Prop_Draw(auStack_160,_g_Props,400);
   }
   return;
 }
 
 // 0x001c2ed0  size 0x324
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_UpdateDebris(int *param_1)
 
 {
@@ -2244,8 +2248,8 @@ void Prop_UpdateDebris(int *param_1)
   
   iVar4 = 0;
   iVar3 = 0;
-  pfVar5 = (float *)(puRam0036f328 + 0x12c0);
-  puVar6 = puRam0036f328;
+  pfVar5 = (float *)(_g_Props + 0x12c0);
+  puVar6 = _g_Props;
   do {
     iVar4 = iVar4 + 1;
     iVar2 = (iVar4 % 0x42) * 0x10;
@@ -2306,6 +2310,8 @@ void Prop_UpdateDebris(int *param_1)
 }
 
 // 0x001c3200  size 0xd4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_DrawDebris(void)
 
 {
@@ -2313,13 +2319,13 @@ void Prop_DrawDebris(void)
   int iVar2;
   undefined1 auStack_160 [352];
   
-  iVar1 = iRam0036f328;
-  if (iRam0036f1f8 == 0) {
+  iVar1 = _g_Props;
+  if (_s_RaceIsReplayMode == 0) {
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
     Prop_Draw(auStack_160,iVar1,400);
   }
   else {
-    iVar2 = iRam0036f328 + 0x4b00;
+    iVar2 = _g_Props + 0x4b00;
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
     Prop_Draw(auStack_160,iVar1,200);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
@@ -2344,9 +2350,9 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  iVar1 = iRam0036f328;
-  if (iRam0036f1f8 == 0) {
-    iVar3 = iRam0036f328 + 0x4b00;
+  iVar1 = _g_Props;
+  if (_s_RaceIsReplayMode == 0) {
+    iVar3 = _g_Props + 0x4b00;
     sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
@@ -2356,9 +2362,9 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
   }
   else {
     iVar3 = *(int *)(_g_Loading + 0x18);
-    iVar5 = iRam0036f328 + 0x2580;
-    iVar4 = iRam0036f328 + 0x4b00;
-    iVar6 = iRam0036f328 + 0x7080;
+    iVar5 = _g_Props + 0x2580;
+    iVar4 = _g_Props + 0x4b00;
+    iVar6 = _g_Props + 0x7080;
     sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
     sceVu0CopyVector(auStack_30,iVar3 + 0x70);
     if (*param_1 == 0) {
@@ -2536,6 +2542,8 @@ void Prop_SpawnSmoke(undefined4 *param_1,undefined4 *param_2,float *param_3,int 
 }
 
 // 0x001c3b00  size 0x124
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_DrawSparks(void)
 
 {
@@ -2544,14 +2552,14 @@ void Prop_DrawSparks(void)
   undefined1 auStack_170 [16];
   undefined1 auStack_160 [352];
   
-  iVar1 = iRam0036f328;
-  if (iRam0036f1f8 == 0) {
+  iVar1 = _g_Props;
+  if (_s_RaceIsReplayMode == 0) {
     sceVu0CopyVector(auStack_170,0x431100);
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,0);
     Prop_DrawModel(0x431100,auStack_160,iVar1,100,4,0x10);
   }
   else {
-    iVar2 = iRam0036f328 + 0x12c0;
+    iVar2 = _g_Props + 0x12c0;
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
     Prop_DrawModel(0x4316c0,auStack_160,iVar1,100,2,0x10);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
@@ -2573,8 +2581,8 @@ void Prop_UpdateLeaves(int *param_1)
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  iVar2 = iRam0036f328;
-  if (iRam0036f1f8 == 0) {
+  iVar2 = _g_Props;
+  if (_s_RaceIsReplayMode == 0) {
     sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
@@ -2584,7 +2592,7 @@ void Prop_UpdateLeaves(int *param_1)
   }
   else {
     iVar1 = *(int *)(_g_Loading + 0x18);
-    iVar3 = iRam0036f328 + 0x12c0;
+    iVar3 = _g_Props + 0x12c0;
     sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
     sceVu0CopyVector(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {

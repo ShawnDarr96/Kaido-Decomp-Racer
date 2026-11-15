@@ -148,7 +148,7 @@ void MenuScr_Draw_GearRatio(undefined8 param_1)
   if ((piVar6[8] != 0) && (lVar3 = UiLayout_UpdateAnimById(0x39), lVar3 == 0)) {
     piVar6[8] = 0;
   }
-  if ((*piRam0036f468 == 1) && (piVar6[0xe] == 0)) {
+  if ((*_g_MenuInput == 1) && (piVar6[0xe] == 0)) {
     MenuWnd_SetItemState(0x39,*(undefined4 *)(&DAT_0032e3d0 + (*piVar6 + piVar6[0xb]) * 4),1,0);
   }
   else {
@@ -348,7 +348,7 @@ void MenuScr_Draw_Others(undefined8 param_1)
     iVar3 = UiMgr_FindLayout(0x40);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x33,8);
   }
-  if ((*piRam0036f468 == 1) && (piVar7[0xe] == 0)) {
+  if ((*_g_MenuInput == 1) && (piVar7[0xe] == 0)) {
     if (*(int *)(&DAT_0032e280 + (*piVar7 + piVar7[0xb]) * 4) != -1) {
       MenuWnd_SetItemState(0x40,*(int *)(&DAT_0032e280 + (*piVar7 + piVar7[0xb]) * 4),1,0);
       iVar3 = UiMgr_FindLayout(0x40);
@@ -497,7 +497,7 @@ LAB_00280dc4:
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x2b,8);
     iVar3 = UiMgr_FindLayout(0x40);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x29,8);
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       iVar3 = UiMgr_FindLayout(0x40);
       UiElem_SetPropFloat(0x3f000000,*_g_UiMgr + iVar3 * 0x4f4 + 4,100,8);
     }
@@ -685,7 +685,7 @@ void MenuScr_Draw_Alignment(undefined8 param_1)
   if ((piVar8[8] != 0) && (lVar3 = UiLayout_UpdateAnimById(0x3f), lVar3 == 0)) {
     piVar8[8] = 0;
   }
-  if ((*piRam0036f468 == 1) && (piVar8[0xe] == 0)) {
+  if ((*_g_MenuInput == 1) && (piVar8[0xe] == 0)) {
     MenuWnd_SetItemState(0x3f,*(undefined4 *)(&DAT_0032e220 + (*piVar8 + piVar8[0xb]) * 4),1,0);
   }
   else {
@@ -1265,7 +1265,7 @@ void MenuScr_Draw_PowerTrain(int *param_1)
   if ((param_1[8] != 0) && (lVar4 = UiLayout_UpdateAnimById(0x38), lVar4 == 0)) {
     param_1[8] = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x38,*(undefined4 *)(&DAT_0032dfe0 + *param_1 * 4),1,0);
   }
   else {
@@ -1446,7 +1446,7 @@ void MenuScr_Draw_PowerTrain_2fb0(int *param_1)
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x37,*(undefined4 *)(&DAT_0032dfc0 + *param_1 * 4),1,0);
     uVar2 = param_1[0xc];
   }

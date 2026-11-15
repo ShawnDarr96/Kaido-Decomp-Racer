@@ -580,6 +580,8 @@ switchD_002d0b18_caseD_2:
 }
 
 // 0x002d1130  size 0x694
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_Load(undefined8 param_1)
 
 {
@@ -598,13 +600,13 @@ void RaceHud_Load(undefined8 param_1)
   int iVar13;
   
   bVar3 = RaceCtx_Get_8();
-  puRam0036f804 = (undefined1 *)Mem_Alloc16(0x3b78,param_1);
+  _g_RaceHud = (undefined1 *)Mem_Alloc16(0x3b78,param_1);
   iVar13 = 0;
   lVar8 = GameState_GetTotalCarCount();
   if (0 < lVar8) {
     iVar11 = 0;
     do {
-      RaceUi_SetupCarIcons(puRam0036f804 + iVar11 + 4,iVar13);
+      RaceUi_SetupCarIcons(_g_RaceHud + iVar11 + 4,iVar13);
       iVar11 = iVar11 + 0xcc;
       iVar13 = iVar13 + 1;
       iVar7 = GameState_GetTotalCarCount();
@@ -613,51 +615,51 @@ void RaceHud_Load(undefined8 param_1)
   uVar9 = 0;
   iVar13 = 0;
   do {
-    puVar1 = puRam0036f804;
+    puVar1 = _g_RaceHud;
     uVar9 = uVar9 + 8;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0xfb8) = 0;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0xfb8) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0xfbc) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xfc0) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xfc4) = 0;
     puVar1[iVar13 + 0xfc8] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0xfcc) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0xfcc) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0xfd0) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xfd4) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xfd8) = 0;
     puVar1[iVar13 + 0xfdc] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0xfe0) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0xfe0) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0xfe4) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xfe8) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xfec) = 0;
     puVar1[iVar13 + 0xff0] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0xff4) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0xff4) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0xff8) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0xffc) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1000) = 0;
     puVar1[iVar13 + 0x1004] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0x1008) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0x1008) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0x100c) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1010) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1014) = 0;
     puVar1[iVar13 + 0x1018] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0x101c) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0x101c) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0x1020) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1024) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1028) = 0;
     puVar1[iVar13 + 0x102c] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0x1030) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0x1030) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0x1034) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1038) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x103c) = 0;
     puVar1[iVar13 + 0x1040] = 0;
-    puVar1 = puRam0036f804;
-    *(undefined4 *)(puRam0036f804 + iVar13 + 0x1044) = 0;
+    puVar1 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + iVar13 + 0x1044) = 0;
     *(undefined4 *)(puVar1 + iVar13 + 0x1048) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x104c) = 0xffffffff;
     *(undefined4 *)(puVar1 + iVar13 + 0x1050) = 0;
@@ -665,36 +667,36 @@ void RaceHud_Load(undefined8 param_1)
     iVar13 = iVar13 + 0xa0;
   } while (uVar9 < 0x10);
   uVar6 = 1;
-  puRam0036f804[0xfb4] = 0;
-  *(undefined4 *)(puRam0036f804 + 0x10f8) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x10fc) = 0;
+  _g_RaceHud[0xfb4] = 0;
+  *(undefined4 *)(_g_RaceHud + 0x10f8) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x10fc) = 0;
   if ((bVar3 != 9) && (bVar3 != 10)) {
     uVar6 = 0;
   }
-  *(undefined4 *)(puRam0036f804 + 0x288) = uVar6;
-  *(undefined4 *)(puRam0036f804 + 0x28c) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x1100) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x1104) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x29c) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x3b70) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x288) = uVar6;
+  *(undefined4 *)(_g_RaceHud + 0x28c) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x1100) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x1104) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x29c) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x3b70) = 0;
   uVar4 = GameState_Get_354_7050();
-  *puRam0036f804 = uVar4;
-  *(undefined4 *)(puRam0036f804 + 0x268) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x26c) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x270) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x274) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x278) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x290) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x294) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x280) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x284) = 0;
-  *(undefined4 *)(puRam0036f804 + 0x27c) = 0;
-  *(uint *)(puRam0036f804 + 0x27c) = *(uint *)(puRam0036f804 + 0x27c) | 2;
+  *_g_RaceHud = uVar4;
+  *(undefined4 *)(_g_RaceHud + 0x268) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x26c) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x270) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x274) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x278) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x290) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x294) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x280) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x284) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x27c) = 0;
+  *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) | 2;
   if (bVar3 == 0xd) {
-    *(uint *)(puRam0036f804 + 0x27c) = *(uint *)(puRam0036f804 + 0x27c) | 1;
+    *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) | 1;
   }
   else {
-    *(uint *)(puRam0036f804 + 0x27c) = *(uint *)(puRam0036f804 + 0x27c) & 0xfffffffe;
+    *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) & 0xfffffffe;
   }
   uVar9 = 0;
   iVar13 = 0;
@@ -704,9 +706,9 @@ void RaceHud_Load(undefined8 param_1)
     do {
       uVar2 = uRam0036f80c;
       uVar6 = uRam0036f808;
-      puVar1 = puRam0036f804;
+      puVar1 = _g_RaceHud;
       iVar7 = iVar11 + iVar13;
-      *(int *)(puRam0036f804 + iVar7 + 0x1108) = (int)param_1;
+      *(int *)(_g_RaceHud + iVar7 + 0x1108) = (int)param_1;
       *(undefined4 *)(puVar1 + iVar7 + 0x110c) = 0;
       *(undefined4 *)(puVar1 + iVar7 + 0x1110) = 1;
       *(undefined4 *)(puVar1 + iVar7 + 0x1114) = 0;
@@ -723,11 +725,11 @@ void RaceHud_Load(undefined8 param_1)
     uVar9 = uVar9 + 1;
     iVar13 = iVar13 + 0xb4;
   } while (uVar9 < 2);
-  RaceUi_InitSprites(puRam0036f804 + 0x1270,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
-  RaceUi_InitSprites(puRam0036f804 + 0x26f0,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
-  puVar1 = puRam0036f804;
+  RaceUi_InitSprites(_g_RaceHud + 0x1270,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
+  RaceUi_InitSprites(_g_RaceHud + 0x26f0,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
+  puVar1 = _g_RaceHud;
   uVar9 = g_ArcToc->entries[0xa02].unpackedSize;
-  puVar10 = (undefined4 *)(puRam0036f804 + 0x1270);
+  puVar10 = (undefined4 *)(_g_RaceHud + 0x1270);
   if (uVar9 == 0) {
     uVar9 = g_ArcToc->entries[0xa02].sectorCount;
   }
@@ -741,7 +743,7 @@ void RaceHud_Load(undefined8 param_1)
   *(undefined4 *)(puVar1 + 0x12a4) = 0;
   *(undefined4 *)(puVar1 + 0x12a0) = 1;
   bVar5 = GameState_Get_354_7050();
-  if (*(int *)(puRam0036f804 + 0x288) == 0) {
+  if (*(int *)(_g_RaceHud + 0x288) == 0) {
     if (bVar3 == 0) {
       if (bVar5 == 3) {
         uRam0036f810 = 2;
@@ -841,12 +843,12 @@ void RaceHud_Load(undefined8 param_1)
   else {
     uRam0036f810 = 0x18;
   }
-  RaceUi_Alloc(puRam0036f804 + 0x2a0,param_1);
-  RaceMenu_Init(puRam0036f804 + 0x3b8);
+  RaceUi_Alloc(_g_RaceHud + 0x2a0,param_1);
+  RaceMenu_Init(_g_RaceHud + 0x3b8);
   ReplayUi_Load(param_1);
-  maybe_RaceHud_LoadRecordAssets(puRam0036f804);
-  maybe_RaceHud_LoadWeatherAssets(puRam0036f804);
-  RaceHud_LoadLayouts(puRam0036f804,param_1);
+  maybe_RaceHud_LoadRecordAssets(_g_RaceHud);
+  maybe_RaceHud_LoadWeatherAssets(_g_RaceHud);
+  RaceHud_LoadLayouts(_g_RaceHud,param_1);
   return;
 }
 
@@ -1578,12 +1580,14 @@ void maybe_ReplayCam_Update(void)
 }
 
 // 0x002d3550  size 0x164
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ReplayCam_Free(void)
 
 {
-  if (iRam0046a0f0 != 0) {
+  if (_g_ReplayCam != 0) {
     Mem_Free();
-    iRam0046a0f0 = 0;
+    _g_ReplayCam = 0;
   }
   DmaBuf_Free(0x46a080);
   DmaBuf_Free(0x46a098);
@@ -1625,6 +1629,8 @@ void maybe_ReplayCam_Free(void)
 }
 
 // 0x002d36c0  size 0x2c0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ReplayCam_Load(undefined8 param_1)
 
 {
@@ -1703,11 +1709,13 @@ void maybe_ReplayCam_Load(undefined8 param_1)
     if (cVar3 == '\x04') break;
     iVar5 = iVar5 + 4;
   }
-  uRam0046a0f0 = Mem_AllocAligned(24000,0x10,0x430750);
+  _g_ReplayCam = Mem_AllocAligned(24000,0x10,0x430750);
   return;
 }
 
 // 0x002d3990  size 0x204
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Garage_BuildSortedCarList(int *param_1,ulong param_2,undefined8 param_3)
 
 {
@@ -1720,15 +1728,15 @@ void Garage_BuildSortedCarList(int *param_1,ulong param_2,undefined8 param_3)
   int iVar7;
   short *psVar8;
   
-  uRam0036f828 = (undefined4)param_3;
+  _s_GarageSortProfile = (undefined4)param_3;
   iVar3 = Profile_Get(param_3);
   psVar8 = (short *)(iVar3 + 0x13ee);
-  uVar2 = Profile_Get(uRam0036f828);
+  uVar2 = Profile_Get(_s_GarageSortProfile);
   iVar3 = Garage_FindCar(uVar2);
-  iVar4 = Profile_Get(uRam0036f828);
+  iVar4 = Profile_Get(_s_GarageSortProfile);
   sVar1 = *(short *)(iVar4 + 0x13ec);
   iVar7 = 0;
-  iVar4 = Profile_Get(uRam0036f828);
+  iVar4 = Profile_Get(_s_GarageSortProfile);
   psVar6 = (short *)(iVar4 + 0x13ee);
   iVar4 = 0;
   psVar5 = psVar6;
@@ -1794,6 +1802,8 @@ undefined4 Garage_GetSortedCarCount(undefined8 param_1)
 }
 
 // 0x002d3bd0  size 0x14c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByModel(short *param_1,short *param_2)
 
 {
@@ -1808,26 +1818,26 @@ int maybe_GarageSort_ByModel(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   cVar1 = *(char *)(iVar6 + 0x28);
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   iVar6 = (int)*(char *)(iVar6 + 0x28) - (int)cVar1;
   if (iVar6 == 0) {
-    uVar8 = Profile_Get(uRam0036f828);
+    uVar8 = Profile_Get(_s_GarageSortProfile);
     psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar4);
     sVar2 = *psVar7;
-    uVar8 = Profile_Get(uRam0036f828);
+    uVar8 = Profile_Get(_s_GarageSortProfile);
     psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar5);
     iVar6 = (int)sVar2 - (int)*psVar7;
     if (iVar6 == 0) {
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       uVar8 = Profile_GetCarRecordB(uVar8,sVar4);
       sVar4 = CarRec_GetVariant(uVar8);
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       uVar8 = Profile_GetCarRecordB(uVar8,sVar5);
       sVar5 = CarRec_GetVariant(uVar8);
       iVar6 = (int)sVar4 - (int)sVar5;
@@ -1837,6 +1847,8 @@ int maybe_GarageSort_ByModel(short *param_1,short *param_2)
 }
 
 // 0x002d3d20  size 0x1c0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByVariant(short *param_1,short *param_2)
 
 {
@@ -1853,37 +1865,37 @@ int maybe_GarageSort_ByVariant(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  uVar10 = Profile_Get(uRam0036f828);
+  uVar10 = Profile_Get(_s_GarageSortProfile);
   puVar6 = (undefined2 *)Profile_GetCarRecordB(uVar10,sVar4);
   iVar7 = CarDb_GetModel(*puVar6);
   iVar7 = *(int *)(iVar7 + 0x84);
-  uVar10 = Profile_Get(uRam0036f828);
+  uVar10 = Profile_Get(_s_GarageSortProfile);
   puVar6 = (undefined2 *)Profile_GetCarRecordB(uVar10,sVar5);
   iVar8 = CarDb_GetModel(*puVar6);
   iVar7 = iVar7 - *(int *)(iVar8 + 0x84);
   if (iVar7 == 0) {
     sVar4 = *param_1;
     sVar5 = *param_2;
-    iVar7 = Profile_Get(uRam0036f828);
+    iVar7 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar7 + sVar5 * 0xcc);
     iVar7 = CarDb_GetModel(uVar3);
     cVar1 = *(char *)(iVar7 + 0x28);
-    iVar7 = Profile_Get(uRam0036f828);
+    iVar7 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar7 + sVar4 * 0xcc);
     iVar7 = CarDb_GetModel(uVar3);
     iVar7 = (int)*(char *)(iVar7 + 0x28) - (int)cVar1;
     if (iVar7 == 0) {
-      uVar10 = Profile_Get(uRam0036f828);
+      uVar10 = Profile_Get(_s_GarageSortProfile);
       psVar9 = (short *)Profile_GetCarRecordB(uVar10,sVar4);
       sVar2 = *psVar9;
-      uVar10 = Profile_Get(uRam0036f828);
+      uVar10 = Profile_Get(_s_GarageSortProfile);
       psVar9 = (short *)Profile_GetCarRecordB(uVar10,sVar5);
       iVar7 = (int)sVar2 - (int)*psVar9;
       if (iVar7 == 0) {
-        uVar10 = Profile_Get(uRam0036f828);
+        uVar10 = Profile_Get(_s_GarageSortProfile);
         uVar10 = Profile_GetCarRecordB(uVar10,sVar4);
         sVar4 = CarRec_GetVariant(uVar10);
-        uVar10 = Profile_Get(uRam0036f828);
+        uVar10 = Profile_Get(_s_GarageSortProfile);
         uVar10 = Profile_GetCarRecordB(uVar10,sVar5);
         sVar5 = CarRec_GetVariant(uVar10);
         iVar7 = (int)sVar4 - (int)sVar5;
@@ -1894,6 +1906,8 @@ int maybe_GarageSort_ByVariant(short *param_1,short *param_2)
 }
 
 // 0x002d3ee0  size 0x1fc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByPower(short *param_1,short *param_2)
 
 {
@@ -1910,43 +1924,43 @@ int maybe_GarageSort_ByPower(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  uVar9 = Profile_Get(uRam0036f828);
+  uVar9 = Profile_Get(_s_GarageSortProfile);
   iVar6 = Profile_GetCarRecordB(uVar9,sVar4);
   iVar6 = *(int *)(iVar6 + 0xc);
-  uVar9 = Profile_Get(uRam0036f828);
+  uVar9 = Profile_Get(_s_GarageSortProfile);
   iVar7 = Profile_GetCarRecordB(uVar9,sVar5);
   iVar6 = iVar6 - *(int *)(iVar7 + 0xc);
   if (iVar6 == 0) {
-    uVar9 = Profile_Get(uRam0036f828);
+    uVar9 = Profile_Get(_s_GarageSortProfile);
     iVar6 = Profile_GetCarRecordB(uVar9,sVar4);
     fVar10 = *(float *)(iVar6 + 0x10);
-    uVar9 = Profile_Get(uRam0036f828);
+    uVar9 = Profile_Get(_s_GarageSortProfile);
     iVar6 = Profile_GetCarRecordB(uVar9,sVar5);
     iVar6 = (int)(fVar10 - *(float *)(iVar6 + 0x10));
   }
   if (iVar6 == 0) {
     sVar4 = *param_1;
     sVar5 = *param_2;
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     cVar1 = *(char *)(iVar6 + 0x28);
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     iVar6 = (int)*(char *)(iVar6 + 0x28) - (int)cVar1;
     if (iVar6 == 0) {
-      uVar9 = Profile_Get(uRam0036f828);
+      uVar9 = Profile_Get(_s_GarageSortProfile);
       psVar8 = (short *)Profile_GetCarRecordB(uVar9,sVar4);
       sVar2 = *psVar8;
-      uVar9 = Profile_Get(uRam0036f828);
+      uVar9 = Profile_Get(_s_GarageSortProfile);
       psVar8 = (short *)Profile_GetCarRecordB(uVar9,sVar5);
       iVar6 = (int)sVar2 - (int)*psVar8;
       if (iVar6 == 0) {
-        uVar9 = Profile_Get(uRam0036f828);
+        uVar9 = Profile_Get(_s_GarageSortProfile);
         uVar9 = Profile_GetCarRecordB(uVar9,sVar4);
         sVar4 = CarRec_GetVariant(uVar9);
-        uVar9 = Profile_Get(uRam0036f828);
+        uVar9 = Profile_Get(_s_GarageSortProfile);
         uVar9 = Profile_GetCarRecordB(uVar9,sVar5);
         sVar5 = CarRec_GetVariant(uVar9);
         iVar6 = (int)sVar4 - (int)sVar5;

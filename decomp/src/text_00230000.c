@@ -96,7 +96,7 @@ void ScrRace_Draw_HillClimb(int param_1)
   if ((*(int *)(param_1 + 0x18) != 0) && (lVar5 = UiLayout_UpdateAnimById(0xf0), lVar5 == 0)) {
     *(undefined4 *)(param_1 + 0x18) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0xf0,*(undefined4 *)(&DAT_0036ea00 + *(int *)(param_1 + 0x30) * 4),1,0);
   }
   iVar3 = *(int *)(param_1 + 0x2c);
@@ -412,7 +412,7 @@ void maybe_PageHillClimb_State0_HillClimb(int *param_1)
 LAB_00230db8:
   if (cVar1 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0xef,*(undefined4 *)
                        (&DAT_0032b170 +
@@ -1676,7 +1676,7 @@ void ScrCareer_Draw_LoversInformation_3540(undefined8 param_1)
   }
   if (*(char *)(iVar5 + 0x2c) == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0xe9,*(undefined4 *)
                        (&DAT_0032b220 +

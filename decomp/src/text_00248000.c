@@ -362,7 +362,7 @@ void ScrCareer_Draw_GoBattle_8970(undefined8 param_1)
   UiElem_SetPropInt(iVar2 + iVar7 * 0x4f4 + 4,0x18,0x16,
                     *(undefined4 *)(&DAT_0032c870 + (uint)bStack_154 * 4));
   ScrCareer_Draw_MasterLord(param_1);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(iVar14 + 0x62c) * 4 + 0x36eba0),1,0);
   }
   iVar15 = UiMgr_FindLayout(0x7a);
@@ -736,7 +736,7 @@ void ScrCareer_Draw_GoBattle_9330(undefined8 param_1)
   UiElem_SetPropInt(iVar2 + iVar7 * 0x4f4 + 4,0x18,0x16,
                     *(undefined4 *)(&DAT_0032c830 + (uint)bStack_154 * 4));
   ScrCareer_Draw_MasterLord(param_1);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(iVar15 + 0x62c) * 4 + 0x36eb90),1,0);
   }
   iVar6 = UiMgr_FindLayout(0x7a);

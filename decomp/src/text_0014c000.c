@@ -1325,6 +1325,8 @@ void MovieVid_Init(int param_1,undefined4 param_2,undefined4 *param_3,undefined8
 }
 
 // 0x0014e1d0  size 0x3a8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint MoviePlayer_Thread(void)
 
 {
@@ -1346,68 +1348,68 @@ uint MoviePlayer_Thread(void)
   
   do {
     do {
-      if ((puRam0036f0c8[0x5b] < 5) || ((*puRam0036f0c8 & 0x20) != 0)) {
-        puRam0036f0c8[0x55] = 2;
-        lVar8 = Movie_FeedData(puRam0036f0c8);
+      if ((_g_MoviePlayer[0x5b] < 5) || ((*_g_MoviePlayer & 0x20) != 0)) {
+        _g_MoviePlayer[0x55] = 2;
+        lVar8 = Movie_FeedData(_g_MoviePlayer);
         while (lVar8 == 0) {
-          maybe_Movie_iSuspendSelf(puRam0036f0c8);
-          lVar8 = Movie_FeedData(puRam0036f0c8);
+          maybe_Movie_iSuspendSelf(_g_MoviePlayer);
+          lVar8 = Movie_FeedData(_g_MoviePlayer);
         }
-        if ((*puRam0036f0c8 & 0x80) == 0) {
+        if ((*_g_MoviePlayer & 0x80) == 0) {
           lVar8 = Movie_IsEnd();
           while (lVar8 != 0) {
-            maybe_Movie_iSuspendSelf(puRam0036f0c8);
-            lVar8 = Movie_IsEnd(puRam0036f0c8);
+            maybe_Movie_iSuspendSelf(_g_MoviePlayer);
+            lVar8 = Movie_IsEnd(_g_MoviePlayer);
           }
         }
-        puRam0036f0c8[0x55] = 3;
-        if ((*puRam0036f0c8 & 0x20) == 0) {
+        _g_MoviePlayer[0x55] = 3;
+        if ((*_g_MoviePlayer & 0x20) == 0) {
           do {
             maybe_Movie_iSuspendSelf();
-          } while ((*puRam0036f0c8 & 0x20) == 0);
-          uVar7 = *puRam0036f0c8;
+          } while ((*_g_MoviePlayer & 0x20) == 0);
+          uVar7 = *_g_MoviePlayer;
         }
         else {
-          uVar7 = *puRam0036f0c8;
+          uVar7 = *_g_MoviePlayer;
         }
         if ((uVar7 & 0x10) == 0) {
-          uVar7 = puRam0036f0c8[0x5c];
+          uVar7 = _g_MoviePlayer[0x5c];
         }
         else {
           uVar7 = 0;
         }
         return uVar7;
       }
-      puVar11 = puRam0036f0c8 + 0x1b;
+      puVar11 = _g_MoviePlayer + 0x1b;
       lVar8 = Stream_GetReadPtr(puVar11,&uStack_c);
       lVar9 = Stream_GetSize(puVar11);
-      if ((puRam0036f0c8[0x5a] != 0) && (lVar9 <= lVar8)) {
+      if ((_g_MoviePlayer[0x5a] != 0) && (lVar9 <= lVar8)) {
         uVar10 = CdStream_ReadSector(uStack_c,lVar9);
         Stream_Advance(puVar11,uVar10);
-        puRam0036f0c8[0x5a] = puRam0036f0c8[0x5a] - (int)uVar10;
+        _g_MoviePlayer[0x5a] = _g_MoviePlayer[0x5a] - (int)uVar10;
       }
-      maybe_Movie_iSuspendSelf(puRam0036f0c8);
-      iVar6 = Movie_Demux(puRam0036f0c8);
-      puRam0036f0c8[0x5b] = puRam0036f0c8[0x5b] - iVar6;
-    } while (puRam0036f0c8[0x5d] != 0);
+      maybe_Movie_iSuspendSelf(_g_MoviePlayer);
+      iVar6 = Movie_Demux(_g_MoviePlayer);
+      _g_MoviePlayer[0x5b] = _g_MoviePlayer[0x5b] - iVar6;
+    } while (_g_MoviePlayer[0x5d] != 0);
     bVar2 = false;
     bVar3 = false;
-    if ((puRam0036f0c8[0x57] & 1) == 0) {
+    if ((_g_MoviePlayer[0x57] & 1) == 0) {
       bVar2 = true;
     }
     else {
-      lVar8 = Movie_IsBufferFull(puRam0036f0c8 + 0x20);
+      lVar8 = Movie_IsBufferFull(_g_MoviePlayer + 0x20);
       if (lVar8 != 0) {
         bVar2 = true;
       }
     }
-    puVar11 = puRam0036f0c8;
-    if ((puRam0036f0c8[0x57] & 2) == 0) {
+    puVar11 = _g_MoviePlayer;
+    if ((_g_MoviePlayer[0x57] & 2) == 0) {
 LAB_0014e304:
       bVar3 = true;
     }
     else {
-      lVar8 = RingBuf_GetFree(puRam0036f0c8[0x7a]);
+      lVar8 = RingBuf_GetFree(_g_MoviePlayer[0x7a]);
       if (lVar8 == 0) {
         bVar1 = false;
       }
@@ -1420,25 +1422,25 @@ LAB_0014e304:
       if (bVar1) goto LAB_0014e304;
     }
     if ((bVar2) && (bVar3)) {
-      if ((puRam0036f0c8[0x57] & 1) != 0) {
-        Movie_IsFrameReady(puRam0036f0c8,&uStack_4,&uStack_8);
+      if ((_g_MoviePlayer[0x57] & 1) != 0) {
+        Movie_IsFrameReady(_g_MoviePlayer,&uStack_4,&uStack_8);
         uVar5 = uStack_4;
         uVar4 = uStack_8;
-        puVar11 = puRam0036f0c8;
-        puVar12 = puRam0036f0c8 + 0x67;
+        puVar11 = _g_MoviePlayer;
+        puVar12 = _g_MoviePlayer + 0x67;
         iVar6 = 0;
-        if (0 < (int)puRam0036f0c8[0x75]) {
+        if (0 < (int)_g_MoviePlayer[0x75]) {
           do {
             uVar10 = Movie_GetFrameBuffer(puVar11[0x71],iVar6);
             MovieTex_BuildPacket(puVar12,iVar6,uVar10,0,0,uVar5,uVar4);
             iVar6 = iVar6 + 1;
           } while (iVar6 < (int)puVar11[0x75]);
         }
-        puRam0036f0c8[0x66] = 1;
+        _g_MoviePlayer[0x66] = 1;
       }
-      puVar11 = puRam0036f0c8;
-      if ((puRam0036f0c8[0x57] & 2) != 0) {
-        uVar10 = Rpc_SetBlocking(puRam0036f0c8[0x7b],1);
+      puVar11 = _g_MoviePlayer;
+      if ((_g_MoviePlayer[0x57] & 2) != 0) {
+        uVar10 = Rpc_SetBlocking(_g_MoviePlayer[0x7b],1);
         IopSnd_Command(0x10d,0xf80,puVar11[0x7c]);
         IopSnd_Command(0x10d,0x1080,puVar11[0x7c]);
         uVar7 = puVar11[0x7d];
@@ -1449,15 +1451,16 @@ LAB_0014e304:
                        puVar11[0x7e] + puVar11[0x83]);
         Rpc_SetBlocking(puVar11[0x7b],uVar10);
         puVar11[0x80] = 2;
-        puRam0036f0c8[0x79] = 1;
+        _g_MoviePlayer[0x79] = 1;
       }
-      puRam0036f0c8[0x5d] = 1;
+      _g_MoviePlayer[0x5d] = 1;
     }
   } while( true );
 }
 
 // 0x0014e6e0  size 0x4c4
 /* WARNING: Removing unreachable block (ram,0x0014e820) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void MoviePlayer_Setup(undefined4 *param_1,undefined8 param_2)
 
@@ -1487,16 +1490,16 @@ void MoviePlayer_Setup(undefined4 *param_1,undefined8 param_2)
   undefined4 uStack_14;
   undefined4 uStack_10;
   
-  *(undefined4 *)(iRam0036f0c8 + 0x148) = 0;
-  *(undefined4 *)(iRam0036f0c8 + 0x14c) = 0;
-  *(undefined4 *)(iRam0036f0c8 + 400) = param_1[1];
-  *(undefined4 *)(iRam0036f0c8 + 0x1dc) = param_1[2];
-  iVar1 = *(int *)(iRam0036f0c8 + 0x148);
+  *(undefined4 *)(_g_MoviePlayer + 0x148) = 0;
+  *(undefined4 *)(_g_MoviePlayer + 0x14c) = 0;
+  *(undefined4 *)(_g_MoviePlayer + 400) = param_1[1];
+  *(undefined4 *)(_g_MoviePlayer + 0x1dc) = param_1[2];
+  iVar1 = *(int *)(_g_MoviePlayer + 0x148);
   while (iVar1 == 0) {
-    if (*(int *)(iRam0036f0c8 + 0x14c) != 0) {
-      uVar2 = Mem_AllocAligned(*(int *)(iRam0036f0c8 + 0x14c),0x40,param_2);
-      *(undefined4 *)(iRam0036f0c8 + 0x148) = uVar2;
-      *(undefined4 *)(iRam0036f0c8 + 0x14c) = 0;
+    if (*(int *)(_g_MoviePlayer + 0x14c) != 0) {
+      uVar2 = Mem_AllocAligned(*(int *)(_g_MoviePlayer + 0x14c),0x40,param_2);
+      *(undefined4 *)(_g_MoviePlayer + 0x148) = uVar2;
+      *(undefined4 *)(_g_MoviePlayer + 0x14c) = 0;
     }
     iVar1 = param_1[5] * param_1[6] * 9;
     if (iVar1 < 0) {
@@ -1504,176 +1507,182 @@ void MoviePlayer_Setup(undefined4 *param_1,undefined8 param_2)
     }
     iVar1 = iVar1 >> 1;
     iStack_24 = iVar1 + 0x2800;
-    if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+    if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
       iStack_28 = 0;
     }
     else {
-      iStack_28 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+      iStack_28 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
     }
     iVar3 = iVar1 + 0x283f;
     if (iVar3 < 0) {
       iVar3 = iVar1 + 0x287e;
     }
-    *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar3 >> 6) * 0x40;
+    *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar3 >> 6) * 0x40;
     uStack_1c = 0x10000;
-    if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+    if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
       iStack_20 = 0;
     }
     else {
-      iStack_20 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+      iStack_20 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
     }
-    *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + 0x10000;
+    *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + 0x10000;
     iStack_5c = param_1[3];
     iStack_58 = param_1[4];
-    if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+    if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
       iStack_60 = 0;
     }
     else {
-      iStack_60 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+      iStack_60 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
     }
     iVar1 = iStack_5c * iStack_58 + 0x3f;
     if (iVar1 < 0) {
       iVar1 = iStack_5c * iStack_58 + 0x7e;
     }
-    *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar1 >> 6) * 0x40;
-    if (*(int *)(iRam0036f0c8 + 400) != 0) {
+    *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar1 >> 6) * 0x40;
+    if (*(int *)(_g_MoviePlayer + 400) != 0) {
       iStack_50 = param_1[7];
-      if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+      if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
         iStack_54 = 0;
       }
       else {
-        iStack_54 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+        iStack_54 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
       }
       iVar1 = iStack_50 * 0x18 + 0x3f;
       if (iVar1 < 0) {
         iVar1 = iStack_50 * 0x18 + 0x7e;
       }
-      *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar1 >> 6) * 0x40;
+      *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar1 >> 6) * 0x40;
     }
-    if (*(int *)(iRam0036f0c8 + 400) != 0) {
+    if (*(int *)(_g_MoviePlayer + 400) != 0) {
       iStack_44 = param_1[8];
-      if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+      if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
         iStack_4c = 0;
       }
       else {
-        iStack_4c = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+        iStack_4c = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
       }
       iVar1 = iStack_44 * 0x800 + 0x3f;
       if (iVar1 < 0) {
         iVar1 = iStack_44 * 0x800 + 0x7e;
       }
-      *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar1 >> 6) * 0x40;
-      if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+      *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar1 >> 6) * 0x40;
+      if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
         iStack_48 = 0;
       }
       else {
-        iStack_48 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+        iStack_48 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
       }
       iVar1 = iStack_44 * 0x10 + 0x4f;
       if (iVar1 < 0) {
         iVar1 = iStack_44 * 0x10 + 0x8e;
       }
-      *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar1 >> 6) * 0x40;
+      *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar1 >> 6) * 0x40;
     }
-    if (*(int *)(iRam0036f0c8 + 400) != 0) {
+    if (*(int *)(_g_MoviePlayer + 400) != 0) {
       iStack_3c = param_1[9];
-      if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+      if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
         iStack_40 = 0;
       }
       else {
-        iStack_40 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+        iStack_40 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
       }
       iVar1 = iStack_3c * param_1[5] * param_1[6] * 4;
       iVar3 = iVar1 + 0x3f;
       if (iVar3 < 0) {
         iVar3 = iVar1 + 0x7e;
       }
-      *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar3 >> 6) * 0x40;
+      *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar3 >> 6) * 0x40;
       uStack_38 = param_1[5];
       uStack_34 = param_1[6];
     }
-    if (*(int *)(iRam0036f0c8 + 0x1dc) != 0) {
+    if (*(int *)(_g_MoviePlayer + 0x1dc) != 0) {
       iStack_2c = param_1[0x12];
-      if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+      if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
         iStack_30 = 0;
       }
       else {
-        iStack_30 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+        iStack_30 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
       }
       iVar1 = iStack_2c * 0x60 + 0x3f;
       if (iVar1 < 0) {
         iVar1 = iStack_2c * 0x60 + 0x7e;
       }
-      *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + (iVar1 >> 6) * 0x40;
+      *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + (iVar1 >> 6) * 0x40;
     }
-    if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+    if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
       iVar1 = 0;
     }
     else {
-      iVar1 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+      iVar1 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
     }
-    *(int *)(iRam0036f0c8 + 0x178) = iVar1;
-    *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + 0x10000;
-    if (*(int *)(iRam0036f0c8 + 0x148) == 0) {
+    *(int *)(_g_MoviePlayer + 0x178) = iVar1;
+    *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + 0x10000;
+    if (*(int *)(_g_MoviePlayer + 0x148) == 0) {
       iVar1 = 0;
     }
     else {
-      iVar1 = *(int *)(iRam0036f0c8 + 0x148) + *(int *)(iRam0036f0c8 + 0x14c);
+      iVar1 = *(int *)(_g_MoviePlayer + 0x148) + *(int *)(_g_MoviePlayer + 0x14c);
     }
-    *(int *)(iRam0036f0c8 + 0x184) = iVar1;
-    *(int *)(iRam0036f0c8 + 0x14c) = *(int *)(iRam0036f0c8 + 0x14c) + 0x4000;
-    iVar1 = *(int *)(iRam0036f0c8 + 0x148);
+    *(int *)(_g_MoviePlayer + 0x184) = iVar1;
+    *(int *)(_g_MoviePlayer + 0x14c) = *(int *)(_g_MoviePlayer + 0x14c) + 0x4000;
+    iVar1 = *(int *)(_g_MoviePlayer + 0x148);
   }
-  uStack_14 = *(undefined4 *)(iRam0036f0c8 + 400);
-  uStack_10 = *(undefined4 *)(iRam0036f0c8 + 0x1dc);
-  *(undefined4 *)(iRam0036f0c8 + 0x150) = *param_1;
-  uStack_18 = *(undefined4 *)(iRam0036f0c8 + 0x150);
-  Movie_Open(iRam0036f0c8,&iStack_60);
+  uStack_14 = *(undefined4 *)(_g_MoviePlayer + 400);
+  uStack_10 = *(undefined4 *)(_g_MoviePlayer + 0x1dc);
+  *(undefined4 *)(_g_MoviePlayer + 0x150) = *param_1;
+  uStack_18 = *(undefined4 *)(_g_MoviePlayer + 0x150);
+  Movie_Open(_g_MoviePlayer,&iStack_60);
   return;
 }
 
 // 0x0014ebb0  size 0x94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MoviePlayer_Update(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
-  if ((*(uint *)(iRam0036f0c8 + 0x15c) & 2) != 0) {
-    MovieSnd_Feed(iRam0036f0c8 + 0x1e8);
+  if ((*(uint *)(_g_MoviePlayer + 0x15c) & 2) != 0) {
+    MovieSnd_Feed(_g_MoviePlayer + 0x1e8);
   }
-  if (((*(uint *)(iRam0036f0c8 + 0x15c) & 1) != 0) && (*(int *)(iRam0036f0c8 + 0x198) != 0)) {
-    MovieVid_Present(iRam0036f0c8 + 0x19c,param_1,param_2,param_3);
+  if (((*(uint *)(_g_MoviePlayer + 0x15c) & 1) != 0) && (*(int *)(_g_MoviePlayer + 0x198) != 0)) {
+    MovieVid_Present(_g_MoviePlayer + 0x19c,param_1,param_2,param_3);
   }
   return;
 }
 
 // 0x0014ec50  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool MoviePlayer_Close(void)
 
 {
   bool bVar1;
   
-  bVar1 = *(int *)(iRam0036f0c8 + 0x154) == 4;
+  bVar1 = *(int *)(_g_MoviePlayer + 0x154) == 4;
   if (bVar1) {
-    Thread_Terminate(iRam0036f0c8 + 0x188);
-    Thread_Delete(iRam0036f0c8 + 0x188);
-    Thread_Terminate(iRam0036f0c8 + 0x17c);
-    Thread_Delete(iRam0036f0c8 + 0x17c);
-    Movie_Close(iRam0036f0c8);
+    Thread_Terminate(_g_MoviePlayer + 0x188);
+    Thread_Delete(_g_MoviePlayer + 0x188);
+    Thread_Terminate(_g_MoviePlayer + 0x17c);
+    Thread_Delete(_g_MoviePlayer + 0x17c);
+    Movie_Close(_g_MoviePlayer);
     CdStream_Close();
-    *(undefined4 *)(iRam0036f0c8 + 0x154) = 0;
+    *(undefined4 *)(_g_MoviePlayer + 0x154) = 0;
   }
   return bVar1;
 }
 
 // 0x0014ecd0  size 0x6c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 MoviePlayer_IsFinished(void)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  if (*(int *)(iRam0036f0c8 + 0x154) == 1) {
+  if (*(int *)(_g_MoviePlayer + 0x154) == 1) {
     lVar2 = Movie_GetFrameCount();
-    if ((lVar2 < 0xb) || (*(int *)(iRam0036f0c8 + 0x174) != 1)) {
+    if ((lVar2 < 0xb) || (*(int *)(_g_MoviePlayer + 0x174) != 1)) {
       uVar1 = 0;
     }
     else {
@@ -1688,6 +1697,8 @@ undefined4 MoviePlayer_IsFinished(void)
 }
 
 // 0x0014ed40  size 0x250
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
 
 {
@@ -1698,26 +1709,26 @@ undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  if (*(int *)(iRam0036f0c8 + 0x154) == 0) {
+  if (*(int *)(_g_MoviePlayer + 0x154) == 0) {
     Sema_Wait(0x36efc0);
     iVar2 = iRam00386628;
     Sema_Signal(0x36efc0,0);
     if (iVar2 == 0) {
-      *(undefined4 *)(iRam0036f0c8 + 0x158) = *param_1;
-      *(undefined4 *)(iRam0036f0c8 + 0x15c) = param_1[3];
-      *(undefined4 *)(iRam0036f0c8 + 0x160) = param_1[1];
-      *(undefined4 *)(iRam0036f0c8 + 0x164) = param_1[2];
-      *(undefined4 *)(iRam0036f0c8 + 0x168) = 0;
-      *(undefined4 *)(iRam0036f0c8 + 0x16c) = 0;
-      *(undefined4 *)(iRam0036f0c8 + 0x170) = param_2;
-      *(undefined4 *)(iRam0036f0c8 + 0x174) = 0;
-      *(undefined4 *)(iRam0036f0c8 + 0x198) = 0;
-      *(undefined4 *)(iRam0036f0c8 + 0x1e4) = 0;
-      if ((*(int *)(iRam0036f0c8 + 400) != 0) && ((*(uint *)(iRam0036f0c8 + 0x15c) & 1) != 0)) {
-        *(undefined4 *)(iRam0036f0c8 + 0x194) = 1;
-        iVar2 = iRam0036f0c8;
-        uVar1 = *(uint *)(iRam0036f0c8 + 0x15c);
-        *(undefined4 *)(iRam0036f0c8 + 0x1c8) = 0xffffffff;
+      *(undefined4 *)(_g_MoviePlayer + 0x158) = *param_1;
+      *(undefined4 *)(_g_MoviePlayer + 0x15c) = param_1[3];
+      *(undefined4 *)(_g_MoviePlayer + 0x160) = param_1[1];
+      *(undefined4 *)(_g_MoviePlayer + 0x164) = param_1[2];
+      *(undefined4 *)(_g_MoviePlayer + 0x168) = 0;
+      *(undefined4 *)(_g_MoviePlayer + 0x16c) = 0;
+      *(undefined4 *)(_g_MoviePlayer + 0x170) = param_2;
+      *(undefined4 *)(_g_MoviePlayer + 0x174) = 0;
+      *(undefined4 *)(_g_MoviePlayer + 0x198) = 0;
+      *(undefined4 *)(_g_MoviePlayer + 0x1e4) = 0;
+      if ((*(int *)(_g_MoviePlayer + 400) != 0) && ((*(uint *)(_g_MoviePlayer + 0x15c) & 1) != 0)) {
+        *(undefined4 *)(_g_MoviePlayer + 0x194) = 1;
+        iVar2 = _g_MoviePlayer;
+        uVar1 = *(uint *)(_g_MoviePlayer + 0x15c);
+        *(undefined4 *)(_g_MoviePlayer + 0x1c8) = 0xffffffff;
         *(undefined4 *)(iVar2 + 0x1d8) = 0xffffffff;
         if (iRam00387fa8 == 2) {
           if ((uVar1 & 4) == 0) {
@@ -1735,26 +1746,27 @@ undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
         }
         MovieTex_Reset();
       }
-      if ((*(int *)(iRam0036f0c8 + 0x1dc) != 0) && ((*(uint *)(iRam0036f0c8 + 0x15c) & 2) != 0)) {
-        *(undefined4 *)(iRam0036f0c8 + 0x1e0) = 1;
-        MovieSnd_Start(iRam0036f0c8 + 0x1e8);
+      if ((*(int *)(_g_MoviePlayer + 0x1dc) != 0) && ((*(uint *)(_g_MoviePlayer + 0x15c) & 2) != 0))
+      {
+        *(undefined4 *)(_g_MoviePlayer + 0x1e0) = 1;
+        MovieSnd_Start(_g_MoviePlayer + 0x1e8);
       }
-      *(undefined4 *)(iRam0036f0c8 + 0x168) = *(undefined4 *)(iRam0036f0c8 + 0x164);
-      *(undefined4 *)(iRam0036f0c8 + 0x16c) = *(undefined4 *)(iRam0036f0c8 + 0x164);
-      uStack_10 = *(undefined4 *)(iRam0036f0c8 + 0x158);
-      uStack_c = *(undefined4 *)(iRam0036f0c8 + 0x160);
-      uStack_8 = *(undefined4 *)(iRam0036f0c8 + 0x164);
+      *(undefined4 *)(_g_MoviePlayer + 0x168) = *(undefined4 *)(_g_MoviePlayer + 0x164);
+      *(undefined4 *)(_g_MoviePlayer + 0x16c) = *(undefined4 *)(_g_MoviePlayer + 0x164);
+      uStack_10 = *(undefined4 *)(_g_MoviePlayer + 0x158);
+      uStack_c = *(undefined4 *)(_g_MoviePlayer + 0x160);
+      uStack_8 = *(undefined4 *)(_g_MoviePlayer + 0x164);
       CdStream_Open(&uStack_10);
-      Movie_Start(iRam0036f0c8,*(undefined4 *)(iRam0036f0c8 + 0x194),
-                  *(undefined4 *)(iRam0036f0c8 + 0x1e0),0);
-      Thread_Create(iRam0036f0c8 + 0x17c,*(undefined4 *)(iRam0036f0c8 + 0x150),0x14e590,
-                    *(undefined4 *)(iRam0036f0c8 + 0x178),0x10000,0);
-      Thread_Start(iRam0036f0c8 + 0x17c);
-      Thread_Create(iRam0036f0c8 + 0x188,*(undefined4 *)(iRam0036f0c8 + 0x150),0x14e580,
-                    *(undefined4 *)(iRam0036f0c8 + 0x184),0x4000,0);
-      Thread_Start(iRam0036f0c8 + 0x188);
+      Movie_Start(_g_MoviePlayer,*(undefined4 *)(_g_MoviePlayer + 0x194),
+                  *(undefined4 *)(_g_MoviePlayer + 0x1e0),0);
+      Thread_Create(_g_MoviePlayer + 0x17c,*(undefined4 *)(_g_MoviePlayer + 0x150),0x14e590,
+                    *(undefined4 *)(_g_MoviePlayer + 0x178),0x10000,0);
+      Thread_Start(_g_MoviePlayer + 0x17c);
+      Thread_Create(_g_MoviePlayer + 0x188,*(undefined4 *)(_g_MoviePlayer + 0x150),0x14e580,
+                    *(undefined4 *)(_g_MoviePlayer + 0x184),0x4000,0);
+      Thread_Start(_g_MoviePlayer + 0x188);
       uVar3 = 1;
-      *(undefined4 *)(iRam0036f0c8 + 0x154) = 1;
+      *(undefined4 *)(_g_MoviePlayer + 0x154) = 1;
     }
     else {
       uVar3 = 0;
@@ -1767,61 +1779,67 @@ undefined4 MoviePlayer_Open(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x0014ef90  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MoviePlayer_Free(void)
 
 {
   int iVar1;
   
-  iVar1 = iRam0036f0c8;
-  if (*(int *)(iRam0036f0c8 + 0x1dc) != 0) {
-    if (*(int *)(iRam0036f0c8 + 0x1fc) != 0) {
+  iVar1 = _g_MoviePlayer;
+  if (*(int *)(_g_MoviePlayer + 0x1dc) != 0) {
+    if (*(int *)(_g_MoviePlayer + 0x1fc) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x1fc) = 0;
     }
     maybe_sceSifFreeSysMemory(*(undefined4 *)(iVar1 + 0x1f8));
   }
-  if (*(int *)(iRam0036f0c8 + 400) != 0) {
-    MovieTex_Free(iRam0036f0c8 + 0x19c);
+  if (*(int *)(_g_MoviePlayer + 400) != 0) {
+    MovieTex_Free(_g_MoviePlayer + 0x19c);
   }
-  Movie_StopDma(iRam0036f0c8);
-  if (*(int *)(iRam0036f0c8 + 0x148) != 0) {
+  Movie_StopDma(_g_MoviePlayer);
+  if (*(int *)(_g_MoviePlayer + 0x148) != 0) {
     Mem_Free();
-    *(undefined4 *)(iRam0036f0c8 + 0x148) = 0;
+    *(undefined4 *)(_g_MoviePlayer + 0x148) = 0;
   }
-  *(undefined4 *)(iRam0036f0c8 + 0x14c) = 0;
-  Mem_Free(iRam0036f0c8);
+  *(undefined4 *)(_g_MoviePlayer + 0x14c) = 0;
+  Mem_Free(_g_MoviePlayer);
   return;
 }
 
 // 0x0014f030  size 0xd0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MoviePlayer_Create(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
   
   uVar1 = maybe_operator_new_arr_heap(0x210);
-  iRam0036f0c8 = (int)uVar1;
+  _g_MoviePlayer = (int)uVar1;
   Mem_Set16(uVar1,0,0x210);
   MoviePlayer_Setup(param_1,param_2);
-  *(undefined4 *)(iRam0036f0c8 + 0x154) = 0;
-  *(undefined4 *)(iRam0036f0c8 + 0x194) = 0;
-  *(undefined4 *)(iRam0036f0c8 + 0x198) = 0;
-  *(undefined4 *)(iRam0036f0c8 + 0x1e0) = 0;
-  *(undefined4 *)(iRam0036f0c8 + 0x1e4) = 0;
-  if (*(int *)(iRam0036f0c8 + 400) != 0) {
-    MovieVid_Init(iRam0036f0c8 + 0x19c,iRam0036f0c8 + 0x80,(int)param_1 + 0x14,param_2);
+  *(undefined4 *)(_g_MoviePlayer + 0x154) = 0;
+  *(undefined4 *)(_g_MoviePlayer + 0x194) = 0;
+  *(undefined4 *)(_g_MoviePlayer + 0x198) = 0;
+  *(undefined4 *)(_g_MoviePlayer + 0x1e0) = 0;
+  *(undefined4 *)(_g_MoviePlayer + 0x1e4) = 0;
+  if (*(int *)(_g_MoviePlayer + 400) != 0) {
+    MovieVid_Init(_g_MoviePlayer + 0x19c,_g_MoviePlayer + 0x80,(int)param_1 + 0x14,param_2);
   }
-  if (*(int *)(iRam0036f0c8 + 0x1dc) != 0) {
-    MovieSnd_Init(iRam0036f0c8 + 0x1e8,iRam0036f0c8 + 0x100,(int)param_1 + 0x44,param_2);
+  if (*(int *)(_g_MoviePlayer + 0x1dc) != 0) {
+    MovieSnd_Init(_g_MoviePlayer + 0x1e8,_g_MoviePlayer + 0x100,(int)param_1 + 0x44,param_2);
   }
   return;
 }
 
 // 0x0014f110  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Movie_Init(void)
 
 {
-  uRam0036f0c8 = 0;
+  _g_MoviePlayer = 0;
   maybe_sceMpegInit();
   return;
 }

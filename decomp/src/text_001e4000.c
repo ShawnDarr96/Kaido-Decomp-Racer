@@ -166,11 +166,11 @@ void Race_SetupCars(undefined8 param_1,uint *param_2,undefined8 param_3,long par
   int iVar7;
   float fVar8;
   
-  if (iRam0036f34c == 0) {
+  if (_g_AiDrivers == 0) {
     iVar6 = 0;
   }
   else {
-    iVar6 = *(int *)((char)param_4 * 4 + iRam0036f34c + 8);
+    iVar6 = *(int *)((char)param_4 * 4 + _g_AiDrivers + 8);
   }
   iVar3 = RaceCar_GetIndex(param_3);
   if ((*(uint *)(iVar3 + 4) & 0x100) == 0) {
@@ -418,6 +418,8 @@ LAB_001e4e50:
 }
 
 // 0x001e5120  size 0x398
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Race_SetupCarFlags(undefined8 param_1,uint *param_2,undefined8 param_3,long param_4)
 
 {
@@ -426,11 +428,11 @@ void Race_SetupCarFlags(undefined8 param_1,uint *param_2,undefined8 param_3,long
   ulong uVar3;
   int iVar4;
   
-  if (iRam0036f34c == 0) {
+  if (_g_AiDrivers == 0) {
     iVar4 = 0;
   }
   else {
-    iVar4 = *(int *)((char)param_4 * 4 + iRam0036f34c + 8);
+    iVar4 = *(int *)((char)param_4 * 4 + _g_AiDrivers + 8);
   }
   iVar2 = RaceCar_GetIndex(param_3);
   if ((*(uint *)(iVar2 + 4) & 0x100) != 0) {
@@ -534,6 +536,8 @@ void Race_SetupCarFlags(undefined8 param_1,uint *param_2,undefined8 param_3,long
 }
 
 // 0x001e54c0  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Race_LoadCourse(undefined4 *param_1,long param_2)
 
 {
@@ -548,7 +552,7 @@ void Race_LoadCourse(undefined4 *param_1,long param_2)
   undefined4 auStack_200 [64];
   undefined4 auStack_100 [64];
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     Weather_Update(0x42c80000,param_1 + 0x14,100,1);
     Weather_Update(0x42c80000,param_1 + 0x388,100,1);
   }
@@ -1050,6 +1054,7 @@ void RaceHud_UpdateMap(void)
 }
 
 // 0x001e61c0  size 0x380
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* rpm, speed, gear */
 
 void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
@@ -1127,11 +1132,11 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
     uVar6 = RaceProg_GetArray_40(cVar9);
     LapTime_FormatBest(uVar6,iVar1 + 0xbc,iVar1 + 0xc0,iVar1 + 0xc4);
   }
-  if (iRam0036f34c == 0) {
+  if (_g_AiDrivers == 0) {
     iVar4 = 0;
   }
   else {
-    iVar4 = *(int *)(cVar9 * 4 + iRam0036f34c + 8);
+    iVar4 = *(int *)(cVar9 * 4 + _g_AiDrivers + 8);
   }
   *(uint *)(iVar1 + 0x5c) = (uint)(0.0 < *(float *)(iVar4 + 0xc));
   fVar14 = *(float *)(iVar12 + 0xbd0) / 100.0;
@@ -1177,6 +1182,8 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001e6550  size 0x14c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_UpdateMessages(void)
 
 {
@@ -1185,7 +1192,7 @@ void RaceHud_UpdateMessages(void)
   
   cVar1 = RaceProg_Get();
   if (cVar1 == '\x05') {
-    if (*(int *)(iRam0036f804 + 0x288) == 0) {
+    if (*(int *)(_g_RaceHud + 0x288) == 0) {
       cVar1 = RaceHud_GetState();
       if (cVar1 != '\x04') {
         RaceHud_SetState();
@@ -1242,23 +1249,23 @@ void RaceHud_Task(undefined8 param_1)
       lVar3 = RaceScene_IsFlag10();
       if (lVar3 != 0) {
         RaceHud_SetFlags(4);
-        if (*piRam0036f468 != 1) {
-          *piRam0036f468 = 1;
+        if (*_g_MenuInput != 1) {
+          *_g_MenuInput = 1;
         }
-        uVar5 = piRam0036f468[2];
-        if ((piRam0036f468[4] & uVar5) == 0) {
+        uVar5 = _g_MenuInput[2];
+        if ((_g_MenuInput[4] & uVar5) == 0) {
           uVar5 = 0x100000;
         }
         else if (uVar5 == 0x80000) {
           uVar5 = 0x80000;
         }
-        else if (*piRam0036f468 != 1) {
+        else if (*_g_MenuInput != 1) {
           uVar5 = 0x100000;
         }
         if (((uVar5 == 0x10) && (lVar3 = RaceScene_IsPaused(), lVar3 == 0)) &&
            (uVar4 = RaceHud_GetFlags(), (uVar4 & 1) == 0)) {
           RaceHud_ToggleFlags(8);
-          *(undefined4 *)(iRam0036f804 + 0x3b70) = 0x3f800000;
+          *(undefined4 *)(_g_RaceHud + 0x3b70) = 0x3f800000;
         }
       }
       maybe_GameState_GetFlag();
@@ -1288,9 +1295,9 @@ void RaceHud_Task(undefined8 param_1)
       RaceHud_Task();
       uVar4 = RaceHud_GetFlags();
       if ((((uVar4 & 10) != 0) && (cVar1 = RaceHud_GetState(), cVar1 != '\x04')) &&
-         ((lVar3 = Options_Get_c(), lVar3 == 1 && (iRam0036f1f8 == 0)))) {
-        if (iRam0036f85c != 0) {
-          *(undefined4 *)(iRam0036f85c + 0x1c) = *(undefined4 *)(iRam0036f804 + 0x3b70);
+         ((lVar3 = Options_Get_c(), lVar3 == 1 && (_s_RaceIsReplayMode == 0)))) {
+        if (_g_IntroCar != 0) {
+          *(undefined4 *)(_g_IntroCar + 0x1c) = *(undefined4 *)(_g_RaceHud + 0x3b70);
         }
         maybe_IntroCar_Draw();
       }
@@ -1419,6 +1426,8 @@ void RaceHud_Init(int param_1)
 }
 
 // 0x001e6b80  size 0x3d8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceSnd_SetupCars(void)
 
 {
@@ -1445,11 +1454,11 @@ void RaceSnd_SetupCars(void)
     do {
       lVar9 = RaceCar_Get(iVar12);
       if (lVar9 != 0) {
-        if (iRam0036f26c == 0) {
+        if (_g_RaceSnd == 0) {
           iVar8 = 0;
         }
         else {
-          iVar8 = iRam0036f26c + iVar13;
+          iVar8 = _g_RaceSnd + iVar13;
         }
         iVar6 = RaceCar_GetIndex(lVar9);
         sVar5 = CarRec_GetModelId(iVar6 + 0xc);
@@ -1591,6 +1600,8 @@ void RaceSnd_SetupCars(void)
 }
 
 // 0x001e6f60  size 0x4d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceSnd_UpdateMusic(int param_1)
 
 {
@@ -1631,7 +1642,7 @@ LAB_001e7340:
       *(int *)(param_1 + 0x18) = iVar5;
     }
     fVar12 = DAT_0036e860;
-    if (iRam0036f1f8 != 0) goto LAB_001e7340;
+    if (_s_RaceIsReplayMode != 0) goto LAB_001e7340;
     cVar3 = Options_Get_1c();
     *(int *)(param_1 + 0x1c) = (int)cVar3;
     lVar8 = Loading_IsActive();
@@ -1677,7 +1688,7 @@ LAB_001e7114:
   }
   cVar3 = Options_Get_1c();
   fVar12 = DAT_0036e860;
-  if (((long)iVar5 == (long)cVar3) || (iRam0036f1f8 != 0)) goto LAB_001e72f0;
+  if (((long)iVar5 == (long)cVar3) || (_s_RaceIsReplayMode != 0)) goto LAB_001e72f0;
   cVar3 = Options_Get_1c();
   *(int *)(param_1 + 0x1c) = (int)cVar3;
   lVar8 = Loading_IsActive();
@@ -1753,6 +1764,8 @@ LAB_001e72f0:
 }
 
 // 0x001e7440  size 0x2f8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceSnd_UpdateAmbient(undefined8 param_1)
 
 {
@@ -1795,7 +1808,7 @@ void RaceSnd_UpdateAmbient(undefined8 param_1)
               (*(int **)(puVar9 + 0x14),puVar9[0x10],uVar3,0x3f,1);
   }
   fVar14 = DAT_0036e860;
-  if (iRam0036f1f8 != 0) goto LAB_001e7580;
+  if (_s_RaceIsReplayMode != 0) goto LAB_001e7580;
   cVar2 = Options_Get_1c();
   *(int *)(puVar9 + 0x1c) = (int)cVar2;
   lVar6 = Loading_IsActive();
@@ -1843,11 +1856,11 @@ LAB_001e7580:
   if (0 < lVar6) {
     iVar11 = 0;
     do {
-      if (iRam0036f26c == 0) {
+      if (_g_RaceSnd == 0) {
         iVar10 = 0;
       }
       else {
-        iVar10 = iRam0036f26c + iVar11;
+        iVar10 = _g_RaceSnd + iVar11;
       }
       CarSnd_StopVoice(iVar10);
       iVar11 = iVar11 + 0x80;
@@ -1893,11 +1906,11 @@ void RaceSnd_UpdateCars(int param_1)
       uVar9 = 0;
       iVar8 = 0;
       do {
-        if (iRam0036f26c == 0) {
+        if (_g_RaceSnd == 0) {
           iVar4 = 0;
         }
         else {
-          iVar4 = iRam0036f26c + iVar8;
+          iVar4 = _g_RaceSnd + iVar8;
         }
         CarSnd_Update3d(iVar4,*(undefined4 *)(_g_Loading + (uVar9 & 0xff) * 4 + 0x14));
         uVar9 = uVar9 + 1;
@@ -1937,11 +1950,11 @@ void RaceSnd_UpdateCars(int param_1)
     if (0 < lVar5) {
       iVar4 = 0;
       do {
-        if (iRam0036f26c == 0) {
+        if (_g_RaceSnd == 0) {
           iVar3 = 0;
         }
         else {
-          iVar3 = iRam0036f26c + iVar4;
+          iVar3 = _g_RaceSnd + iVar4;
         }
         CarSnd_StopVoice(iVar3);
         iVar4 = iVar4 + 0x80;
@@ -1999,11 +2012,11 @@ void RaceSnd_UpdateAnnouncer(int param_1)
       if (0 < lVar8) {
         iVar11 = 0;
         do {
-          if (iRam0036f26c == 0) {
+          if (_g_RaceSnd == 0) {
             iVar4 = 0;
           }
           else {
-            iVar4 = iRam0036f26c + iVar11;
+            iVar4 = _g_RaceSnd + iVar11;
           }
           CarSnd_StopVoice(iVar4);
           iVar11 = iVar11 + 0x80;
@@ -2022,16 +2035,16 @@ void RaceSnd_UpdateAnnouncer(int param_1)
         do {
           fVar14 = DAT_0036e860;
           if (*(int *)(iVar12 + 0x500) == 0) {
-            if (iRam0036f26c == 0) {
+            if (_g_RaceSnd == 0) {
               iVar7 = 0;
             }
             else {
-              iVar7 = iRam0036f26c + iVar4;
+              iVar7 = _g_RaceSnd + iVar4;
             }
             CarSnd_Update3d(iVar7,iVar12);
           }
           else {
-            if ((iVar11 == 0) && (iRam0036f1f8 == 0)) {
+            if ((iVar11 == 0) && (_s_RaceIsReplayMode == 0)) {
               cVar2 = Options_Get_1c();
               *(int *)(param_1 + 0x1c) = (int)cVar2;
               lVar8 = Loading_IsActive();
@@ -2074,11 +2087,11 @@ LAB_001e7bfc:
               uVar3 = Snd_VolumeToMidi(uVar13);
               (**(code **)(*(int *)uVar10 + 0x20))(uVar10,uVar3);
             }
-            if (iRam0036f26c == 0) {
+            if (_g_RaceSnd == 0) {
               iVar7 = 0;
             }
             else {
-              iVar7 = iRam0036f26c + iVar4;
+              iVar7 = _g_RaceSnd + iVar4;
             }
             CarSnd_StopVoice(iVar7);
           }
@@ -2130,16 +2143,16 @@ LAB_001e7bfc:
           do {
             fVar14 = DAT_0036e860;
             if (*(int *)(iVar12 + 0x500) == 0) {
-              if (iRam0036f26c == 0) {
+              if (_g_RaceSnd == 0) {
                 iVar7 = 0;
               }
               else {
-                iVar7 = iRam0036f26c + iVar4;
+                iVar7 = _g_RaceSnd + iVar4;
               }
               CarSnd_Update3d(iVar7,iVar12);
             }
             else {
-              if ((iVar11 == 0) && (iRam0036f1f8 == 0)) {
+              if ((iVar11 == 0) && (_s_RaceIsReplayMode == 0)) {
                 cVar2 = Options_Get_1c();
                 *(int *)(param_1 + 0x1c) = (int)cVar2;
                 lVar8 = Loading_IsActive();
@@ -2182,11 +2195,11 @@ LAB_001e7fb4:
                 uVar3 = Snd_VolumeToMidi(uVar13);
                 (**(code **)(*(int *)uVar10 + 0x20))(uVar10,uVar3);
               }
-              if (iRam0036f26c == 0) {
+              if (_g_RaceSnd == 0) {
                 iVar7 = 0;
               }
               else {
-                iVar7 = iRam0036f26c + iVar4;
+                iVar7 = _g_RaceSnd + iVar4;
               }
               CarSnd_StopVoice(iVar7);
             }
@@ -2202,11 +2215,11 @@ LAB_001e7fb4:
         if (0 < lVar8) {
           iVar11 = 0;
           do {
-            if (iRam0036f26c == 0) {
+            if (_g_RaceSnd == 0) {
               iVar4 = 0;
             }
             else {
-              iVar4 = iRam0036f26c + iVar11;
+              iVar4 = _g_RaceSnd + iVar11;
             }
             CarSnd_StopVoice(iVar4);
             iVar11 = iVar11 + 0x80;

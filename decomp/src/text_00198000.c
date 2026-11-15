@@ -198,6 +198,8 @@ long SceneObj_CreateCar(undefined8 param_1)
 }
 
 // 0x001984c0  size 0x150
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint * SceneObj_Next(char param_1,uint *param_2)
 
 {
@@ -207,27 +209,27 @@ uint * SceneObj_Next(char param_1,uint *param_2)
   puVar2 = (uint *)0x0;
   if (param_2 == (uint *)0x0) {
     if (param_1 == '\x02') {
-      param_2 = puRam00430584;
+      param_2 = _g_CourseModelC;
     }
     else if (param_1 == '\x01') {
-      param_2 = puRam0043057c;
+      param_2 = _g_CourseModelB;
     }
     else if (param_1 == '\0') {
-      param_2 = puRam00430574;
+      param_2 = _g_CourseModelA;
     }
   }
   if (param_1 == '\x02') {
-    puVar2 = puRam00430584 + iRam00430580 * 0x12;
+    puVar2 = _g_CourseModelC + iRam00430580 * 0x12;
   }
   else if (param_1 == '\x01') {
-    puVar2 = puRam0043057c + iRam00430578 * 0x14;
+    puVar2 = _g_CourseModelB + iRam00430578 * 0x14;
   }
   else {
     if (param_1 != '\0') {
       bVar1 = false;
       goto LAB_00198568;
     }
-    puVar2 = puRam00430574 + iRam00430570 * 0x14c;
+    puVar2 = _g_CourseModelA + iRam00430570 * 0x14c;
   }
   bVar1 = param_2 < puVar2;
 LAB_00198568:
@@ -243,6 +245,8 @@ LAB_00198568:
 }
 
 // 0x00198610  size 0xd0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int * SceneObj_AllocFromPool(char param_1)
 
 {
@@ -256,11 +260,11 @@ int * SceneObj_AllocFromPool(char param_1)
   iVar3 = 0;
   if (param_1 == '\x02') {
     iVar3 = iRam00430580;
-    piVar2 = piRam00430584;
+    piVar2 = _g_CourseModelC;
   }
   else if (param_1 == '\x01') {
     iVar3 = iRam00430578;
-    piVar2 = piRam0043057c;
+    piVar2 = _g_CourseModelB;
   }
   else {
     if (param_1 != '\0') {
@@ -268,7 +272,7 @@ int * SceneObj_AllocFromPool(char param_1)
       goto LAB_00198690;
     }
     iVar3 = iRam00430570;
-    piVar2 = piRam00430574;
+    piVar2 = _g_CourseModelA;
   }
   bVar1 = 0 < iVar3;
 LAB_00198690:
@@ -751,24 +755,26 @@ void Course_DrawLitMeshes(long param_1)
 }
 
 // 0x00198d30  size 0xc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_FreeModels(void)
 
 {
-  if (iRam00430574 != 0) {
+  if (_g_CourseModelA != 0) {
     Mem_Free();
   }
   uRam00430570 = 0;
-  iRam00430574 = 0;
-  if (iRam0043057c != 0) {
+  _g_CourseModelA = 0;
+  if (_g_CourseModelB != 0) {
     Mem_Free();
   }
   uRam00430578 = 0;
-  iRam0043057c = 0;
-  if (iRam00430584 != 0) {
+  _g_CourseModelB = 0;
+  if (_g_CourseModelC != 0) {
     Mem_Free();
   }
   uRam00430580 = 0;
-  iRam00430584 = 0;
+  _g_CourseModelC = 0;
   if (iRam00430464 != 0) {
     Mem_Free();
     iRam00430464 = 0;
@@ -778,6 +784,8 @@ void Course_FreeModels(void)
 }
 
 // 0x00198df0  size 0x3b8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_LoadModels(undefined8 param_1,undefined8 param_2)
 
 {
@@ -824,7 +832,7 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   Gfx_SetupRenderTargetEx(uVar9,0x4304f0,0,0);
   Asset_LoadCourseCommon(param_1,param_2);
   uRam00430570 = *(undefined4 *)(iVar3 + 0x20);
-  iRam00430574 = Mem_Alloc16(*(int *)(iVar3 + 0x20) * 0x530,param_1);
+  _g_CourseModelA = Mem_Alloc16(*(int *)(iVar3 + 0x20) * 0x530,param_1);
   uVar8 = 0;
   if (*(int *)(iVar3 + 0x20) == 0) {
     iRam00430578 = *(int *)(iVar3 + 0xc);
@@ -832,7 +840,7 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   else {
     iVar6 = 0;
     do {
-      iVar4 = iRam00430574 + iVar6;
+      iVar4 = _g_CourseModelA + iVar6;
       Chunk_Init(iVar4,0x530);
       *(undefined4 *)(iVar4 + 0x500) = 0;
       *(undefined4 *)(iVar4 + 0x504) = 0;
@@ -853,10 +861,10 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   }
   if (iRam00430578 == 0) {
     iRam00430578 = 0;
-    iRam0043057c = 0;
+    _g_CourseModelB = 0;
   }
   else {
-    iRam0043057c = Mem_Alloc16(*(int *)(iVar3 + 0xc) * 0x50,param_1);
+    _g_CourseModelB = Mem_Alloc16(*(int *)(iVar3 + 0xc) * 0x50,param_1);
   }
   uVar8 = 0;
   if (*(int *)(iVar3 + 0xc) == 0) {
@@ -865,7 +873,7 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   else {
     iVar6 = 0;
     do {
-      iVar4 = iRam0043057c + iVar6;
+      iVar4 = _g_CourseModelB + iVar6;
       Chunk_Init(iVar4,0x50);
       *(undefined4 *)(iVar4 + 0x44) = 0;
       *(undefined4 *)(iVar4 + 0x10) = 0;
@@ -885,16 +893,16 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   }
   if (iRam00430580 == 0) {
     iRam00430580 = 0;
-    iRam00430584 = 0;
+    _g_CourseModelC = 0;
   }
   else {
-    iRam00430584 = Mem_Alloc16(*(int *)(iVar3 + 0x10) * 0x48,param_1);
+    _g_CourseModelC = Mem_Alloc16(*(int *)(iVar3 + 0x10) * 0x48,param_1);
   }
   uVar8 = 0;
   if (*(int *)(iVar3 + 0x10) != 0) {
     iVar6 = 0;
     do {
-      iVar4 = iRam00430584 + iVar6;
+      iVar4 = _g_CourseModelC + iVar6;
       Chunk_Init(iVar4,0x48);
       *(undefined4 *)(iVar4 + 0x40) = 0;
       *(undefined8 *)(iVar4 + 0x10) = 0x48;

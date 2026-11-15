@@ -856,36 +856,43 @@ int Phys_AddBody(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001596b0  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* indirect jump through vtable */
 
 void PhysShape_CallVirtual(void)
 
 {
-  (*pcRam0042f3c4)();
+  (*_s_PhysCallback)();
   return;
 }
 
 // 0x001596c0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_SetCallback(undefined4 param_1)
 
 {
-  uRam0042f3c4 = param_1;
+  _s_PhysCallback = param_1;
   return;
 }
 
 // 0x001596d0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_SetParamA(undefined4 param_1)
 
 {
-  uRam0036f170 = param_1;
+  _s_PhysParamA = param_1;
   return;
 }
 
 // 0x001596e0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_SetParamB(undefined4 param_1)
 
 {
-  uRam0036f16c = param_1;
+  _s_PhysParamB = param_1;
   return;
 }
 
@@ -908,15 +915,17 @@ void Phys_Shutdown(void)
 }
 
 // 0x00159770  size 0x6c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
 
 {
   uRam0042f3c0 = param_4;
   PhysWorld_Init(0x42f3c0,param_1,param_2,param_3);
   PhysMaterial_SetDefaults();
-  puRam0036f16c = &LAB_0015d390;
-  puRam0036f170 = &LAB_0015d370;
-  puRam0042f3c4 = &LAB_0015d330;
+  _s_PhysParamB = &LAB_0015d390;
+  _s_PhysParamA = &LAB_0015d370;
+  _s_PhysCallback = &LAB_0015d330;
   return;
 }
 

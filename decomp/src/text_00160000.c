@@ -769,6 +769,7 @@ void PhysPair_PointMeshContacts(undefined4 *param_1)
 
 // 0x00161bb0  size 0x164
 /* WARNING: Removing unreachable block (ram,0x00161c58) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void PhysWorld_SolveIslands(undefined8 param_1)
 
@@ -792,7 +793,7 @@ void PhysWorld_SolveIslands(undefined8 param_1)
     do {
       iVar7 = (int)param_1;
       if (bVar3) {
-        lVar5 = (*pcRam0036f16c)(uVar4,iVar7 + 0x10,*(undefined4 *)(iVar7 + 0xdc));
+        lVar5 = (*_s_PhysParamB)(uVar4,iVar7 + 0x10,*(undefined4 *)(iVar7 + 0xdc));
         if (lVar5 != 0) {
           PhysWorld_SolveIsland(param_1,uVar4);
         }
@@ -800,7 +801,7 @@ void PhysWorld_SolveIslands(undefined8 param_1)
       }
       if (bVar2) {
         uVar6 = PhysShape_GetBody(iVar7 + 0x10);
-        lVar5 = (*pcRam0036f170)(uVar4,uVar6,*(undefined4 *)(iVar7 + 0xdc));
+        lVar5 = (*_s_PhysParamA)(uVar4,uVar6,*(undefined4 *)(iVar7 + 0xdc));
         if (lVar5 == 0) {
           bVar2 = false;
         }

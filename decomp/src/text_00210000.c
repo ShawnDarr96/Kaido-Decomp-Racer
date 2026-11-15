@@ -278,7 +278,7 @@ LAB_0021059c:
     iVar3 = iVar3 + 1;
     puVar9 = puVar9 + 1;
   } while (iVar3 < 0xc);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x115,*(undefined4 *)(&DAT_00329f60 + *(int *)(param_1 + 0x680) * 4),0,0);
   }
   MenuWnd_Update(param_1 + 0x698,0x115,5,4);
@@ -695,7 +695,7 @@ void MenuScr_Draw_NormalCar(int param_1)
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x114,*(undefined4 *)(&DAT_00329ec0 + *(int *)(param_1 + 8) * 4),1,0);
     iVar3 = *(int *)(param_1 + 0x68c);
   }
@@ -899,7 +899,7 @@ void MenuScr_Draw_SpeedKingMode(int param_1)
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x113,*(undefined4 *)(&DAT_00329ea0 + *(int *)(param_1 + 0x694) * 4),1,0);
     iVar2 = *(int *)(param_1 + 0x68c);
   }
@@ -1125,7 +1125,7 @@ void MenuScr_Draw_Downhill(int param_1)
   iVar2 = UiMgr_FindLayout(0x112);
   UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4,
                       *(undefined4 *)(&DAT_00329e68 + *(int *)(param_1 + 0x690) * 4),8);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     iVar2 = *(int *)(param_1 + 0x684);
     if (iVar2 == 2) {
       MenuWnd_SetItemState(0x112,*(undefined4 *)(&DAT_00329e88 + *(int *)(param_1 + 0x690) * 4),0,0)
@@ -1467,7 +1467,7 @@ void MenuScr_Draw_SelectTheCourse(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x111,*(undefined4 *)(&DAT_00329de0 + *(int *)(param_1 + 0x678) * 4),1,0);
   }
   MenuWnd_Update(param_1 + 0x698,0x111,8,9);
@@ -1899,7 +1899,7 @@ void maybe_PageCarPartInfo_State2(int param_1)
   if ((*(int *)(param_1 + 0x4d4) != 0) && (lVar4 = UiLayout_UpdateAnimById(0x1a), lVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x4d4) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1a,*(undefined4 *)(&DAT_0032a100 + *(int *)(param_1 + 0x49c) * 4),0,0);
   }
   MenuWnd_DrawNumber(0x19,0x3d,*(undefined4 *)(param_1 + 0x4a8));
@@ -2085,7 +2085,7 @@ void maybe_PageCarPartInfo_State1(int param_1)
     MenuWnd_DrawDialogText(0x19,0x32a090,4,0xffffffffffffffff);
     Menu_ClearSlot(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x19,*(undefined4 *)(&DAT_0032a0a0 + *(int *)(param_1 + 0x4ac) * 4),0,0);
   }
   puVar11 = &g_MenuMgr->field_0x40;

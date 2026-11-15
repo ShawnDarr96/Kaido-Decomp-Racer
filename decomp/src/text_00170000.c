@@ -1152,15 +1152,18 @@ undefined8 lgDevAStopForceEffectMulti(int param_1,undefined4 *param_2)
 }
 
 // 0x00172590  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x220 bytes per slot */
 
 int SaveSlot_Get(int param_1,int param_2)
 
 {
-  return iRam0036f19c + (param_1 + param_2) * 0x220;
+  return _g_SaveSlots + (param_1 + param_2) * 0x220;
 }
 
 // 0x001725b0  size 0x48
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Save_UpdateAll(void)
 
 {
@@ -1168,13 +1171,15 @@ void Save_UpdateAll(void)
   
   uVar1 = 0;
   do {
-    SaveSlot_Update(iRam0036f19c + uVar1 * 0x220);
+    SaveSlot_Update(_g_SaveSlots + uVar1 * 0x220);
     uVar1 = uVar1 + 1;
   } while (uVar1 < 2);
   return;
 }
 
 // 0x00172600  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Save_FreeAll(void)
 
 {
@@ -1182,27 +1187,29 @@ void Save_FreeAll(void)
   
   uVar1 = 0;
   do {
-    Mc_RemoveCommandsFor(iRam0036f19c + uVar1 * 0x220);
+    Mc_RemoveCommandsFor(_g_SaveSlots + uVar1 * 0x220);
     uVar1 = uVar1 + 1;
   } while (uVar1 < 2);
-  if (iRam0036f19c != 0) {
+  if (_g_SaveSlots != 0) {
     Mem_Free();
-    iRam0036f19c = 0;
+    _g_SaveSlots = 0;
   }
   return;
 }
 
 // 0x00172660  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Save_AllocSlots(void)
 
 {
   uint uVar1;
   int iVar2;
   
-  iRam0036f19c = Mem_Alloc16(0x440,uRam0036f198);
+  _g_SaveSlots = Mem_Alloc16(0x440,uRam0036f198);
   uVar1 = 0;
   do {
-    iVar2 = iRam0036f19c + uVar1 * 0x220;
+    iVar2 = _g_SaveSlots + uVar1 * 0x220;
     *(undefined4 *)(iVar2 + 0x38) = uRam0036f198;
     *(undefined4 *)(iVar2 + 0x70) = 0;
     *(undefined4 *)(iVar2 + 0x74) = 0;
@@ -1215,22 +1222,25 @@ void Save_AllocSlots(void)
 }
 
 // 0x001726f0  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Save_Shutdown(void)
 
 {
   Mc_Shutdown();
   uRam0036f198 = 0;
-  uRam0036f19c = 0;
+  _g_SaveSlots = 0;
   return;
 }
 
 // 0x00172720  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* Mc_Init(heap, 0x14) */
 
 void Save_Init(undefined4 param_1)
 
 {
-  uRam0036f19c = 0;
+  _g_SaveSlots = 0;
   uRam0036f198 = param_1;
   Mc_Init(param_1,0x14);
   return;

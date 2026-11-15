@@ -1623,6 +1623,8 @@ void maybe_RaceSetup_BuildCarEntry(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x00176660  size 0x108
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 RaceEntry_SetName(long param_1,char *param_2)
 
 {
@@ -1644,7 +1646,7 @@ undefined4 RaceEntry_SetName(long param_1,char *param_2)
   if ((bVar2) &&
      ((cVar1 = RaceCtx_GetMode(), cVar1 == '\x02' || (cVar1 = RaceCtx_GetMode(), cVar1 == '\x03'))))
   {
-    memcpy(*(int *)(iRam0036f34c + 4) + 0x1d8,iVar4 + 0x40c,0x69784);
+    memcpy(*(int *)(_g_AiDrivers + 4) + 0x1d8,iVar4 + 0x40c,0x69784);
     uVar3 = 1;
   }
   return uVar3;
@@ -1921,54 +1923,62 @@ RaceEntry_Create(long param_1,long param_2,long param_3,undefined4 param_4,undef
 }
 
 // 0x00176da0  size 0x18
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Replay_GetHeader(void)
 
 {
   undefined4 uVar1;
   
-  if (puRam0036f1ac == (undefined4 *)0x0) {
+  if (_g_Replay == (undefined4 *)0x0) {
     uVar1 = 0;
   }
   else {
-    uVar1 = *puRam0036f1ac;
+    uVar1 = *_g_Replay;
   }
   return uVar1;
 }
 
 // 0x00176dc0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_Replay_GetSize(void)
 
 {
-  return uRam0036f1ac;
+  return _g_Replay;
 }
 
 // 0x00176dd0  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Replay_Free(void)
 
 {
-  if (piRam0036f1ac != (int *)0x0) {
-    if (*piRam0036f1ac != 0) {
+  if (_g_Replay != (int *)0x0) {
+    if (*_g_Replay != 0) {
       Mem_Free();
     }
-    Mem_Free(piRam0036f1ac);
-    piRam0036f1ac = (int *)0x0;
+    Mem_Free(_g_Replay);
+    _g_Replay = (int *)0x0;
   }
   return;
 }
 
 // 0x00176e10  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Replay_Alloc(undefined8 param_1)
 
 {
   int iVar1;
   
-  if (piRam0036f1ac != (int *)0x0) {
+  if (_g_Replay != (int *)0x0) {
     Mem_Free();
   }
-  piRam0036f1ac = (int *)Mem_Alloc16(4,param_1);
+  _g_Replay = (int *)Mem_Alloc16(4,param_1);
   iVar1 = Mem_Alloc16(0x69b90,param_1);
-  *piRam0036f1ac = iVar1;
-  iVar1 = *piRam0036f1ac;
+  *_g_Replay = iVar1;
+  iVar1 = *_g_Replay;
   *(undefined1 *)(iVar1 + 0xc) = 9;
   *(undefined1 *)(iVar1 + 0xd) = 0x13;
   *(undefined4 *)(iVar1 + 4) = 0;

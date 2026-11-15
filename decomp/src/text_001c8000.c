@@ -355,6 +355,8 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
 }
 
 // 0x001c99b0  size 0xc4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceTask_CreateAiDrivers(int param_1)
 
 {
@@ -365,13 +367,13 @@ void RaceTask_CreateAiDrivers(int param_1)
   
   puVar1 = *(undefined4 **)(param_1 + 0x14);
   *puVar1 = 0;
-  puRam0036f34c = (undefined4 *)Mem_Alloc16(0x14,0x430750);
+  _g_AiDrivers = (undefined4 *)Mem_Alloc16(0x14,0x430750);
   iVar4 = 0;
-  *puRam0036f34c = 0;
-  puRam0036f34c[1] = 0;
-  puRam0036f34c[2] = 0;
-  puRam0036f34c[3] = 0;
-  puRam0036f34c[4] = 0;
+  *_g_AiDrivers = 0;
+  _g_AiDrivers[1] = 0;
+  _g_AiDrivers[2] = 0;
+  _g_AiDrivers[3] = 0;
+  _g_AiDrivers[4] = 0;
   lVar3 = GameState_GetTotalCarCount();
   if (0 < lVar3) {
     do {
@@ -1045,11 +1047,11 @@ void Ai_UpdateDriver(int param_1,uint param_2)
   
   cVar4 = GameState_Get_3();
   if (cVar4 == '\x01') {
-    if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
+    if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
       iVar12 = 0;
     }
     else {
-      iVar12 = iRam004301b0 + param_2 * 0xb900;
+      iVar12 = _g_Skids + param_2 * 0xb900;
     }
     if (*(int *)(*(int *)(_g_Loading + 0x14) + 0x500) != 0) {
       MotionBlur_Setup(iVar12);
@@ -1067,7 +1069,7 @@ LAB_001ca8e8:
   else {
     lVar8 = PhysBody_FindShapeWithFlags(*(undefined4 *)(param_1 + 0x158),0xffffffffffffffff);
     uStack_34 = 0x3f800000;
-    iVar12 = *(int *)(iRam0036f34c + (char)param_2 * 4);
+    iVar12 = *(int *)(_g_AiDrivers + (char)param_2 * 4);
     uVar9 = PhysBody_GetRotation(*(undefined4 *)(param_1 + 0x154));
     AiLine_TransformToWorld(&fStack_50,uVar9);
     for (; lVar8 != 0; lVar8 = PhysWorld_FindBodyWithFlags(lVar8,0xffffffffffffffff)) {
@@ -1118,11 +1120,11 @@ LAB_001ca8e8:
     do {
       iVar1 = *(int *)(iVar12 + 0x504);
       if ((1 << (uVar14 & 0x1f) & *(uint *)(iVar1 + 0x7c)) != 0) {
-        if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
+        if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
           iVar11 = 0;
         }
         else {
-          iVar11 = iRam004301b0 + param_2 * 0xb900;
+          iVar11 = _g_Skids + param_2 * 0xb900;
         }
         Skid_UpdateWheel(iVar11,iVar1 + iVar13 + 0x550,uVar14);
       }
@@ -1151,11 +1153,11 @@ LAB_001ca8e8:
       iVar12 = iVar12 + 0x70;
     } while ((int)uVar14 < 4);
     if (bVar3) {
-      if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
+      if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
         iVar12 = 0;
       }
       else {
-        iVar12 = iRam004301b0 + param_2 * 0xb900;
+        iVar12 = _g_Skids + param_2 * 0xb900;
       }
       if (iVar12 != 0) {
         if ((bVar2) || (fVar16 = (float)fabsf(*(float *)(param_1 + 0x40) * 3.6), fVar16 <= 60.0)) {
@@ -1190,11 +1192,11 @@ LAB_001ca8e8:
     if (!bVar2) {
       return;
     }
-    if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
+    if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
       iVar12 = 0;
     }
     else {
-      iVar12 = iRam004301b0 + param_2 * 0xb900;
+      iVar12 = _g_Skids + param_2 * 0xb900;
     }
     if (iVar12 == 0) {
       return;
@@ -1202,7 +1204,7 @@ LAB_001ca8e8:
     Skid_UpdateCarEx(iVar12,uVar15);
     return;
   case 1:
-    if ((((param_2 == 0) || ((param_2 == 1 && (iRam0036f1f8 == 1)))) &&
+    if ((((param_2 == 0) || ((param_2 == 1 && (_s_RaceIsReplayMode == 1)))) &&
         (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
        (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
       fVar16 = *(float *)(param_1 + 0x40) * 3.6;
@@ -1269,11 +1271,11 @@ LAB_001ca8e8:
   if (!bVar2) {
     return;
   }
-  if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
+  if ((_g_Skids == 0) || (uRam004301ac <= param_2)) {
     iVar12 = 0;
   }
   else {
-    iVar12 = iRam004301b0 + param_2 * 0xb900;
+    iVar12 = _g_Skids + param_2 * 0xb900;
   }
   if (iVar12 == 0) {
     return;

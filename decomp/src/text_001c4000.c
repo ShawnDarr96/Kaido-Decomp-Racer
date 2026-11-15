@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x001c4130  size 0x170
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_DrawLeaves(void)
 
 {
@@ -10,18 +12,18 @@ void Prop_DrawLeaves(void)
   int iVar2;
   undefined1 auStack_160 [352];
   
-  iVar1 = iRam0036f328;
-  if (iRam0036f1f8 == 0) {
+  iVar1 = _g_Props;
+  if (_s_RaceIsReplayMode == 0) {
     Cam_SetupViewport(0x431100,0,0);
     maybe_Pkt_InitLayers(auStack_160,0x431100,0x436180,0,1);
-    Prop_DrawModel(0x431100,auStack_160,iRam0036f328,800,4,0x10);
+    Prop_DrawModel(0x431100,auStack_160,_g_Props,800,4,0x10);
     if (iRam00433904 != 0) {
       maybe_Pkt_InitLayers(auStack_160,0x433380,0x436180,0,0);
-      Prop_DrawModel(0x431100,auStack_160,iRam0036f328,800,4,0x10);
+      Prop_DrawModel(0x431100,auStack_160,_g_Props,800,4,0x10);
     }
   }
   else {
-    iVar2 = iRam0036f328 + 0x4b00;
+    iVar2 = _g_Props + 0x4b00;
     maybe_Pkt_InitLayers(auStack_160,0x4316c0,0x436180,0,0);
     Prop_DrawModel(0x4316c0,auStack_160,iVar1,400,4,0x10);
     maybe_Pkt_InitLayers(auStack_160,0x431c80,0x436180,0,0);
@@ -43,20 +45,20 @@ void Prop_UpdatePaper(int *param_1,undefined8 param_2)
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  iVar2 = iRam0036f328;
-  if (iRam0036f1f8 == 0) {
+  iVar2 = _g_Props;
+  if (_s_RaceIsReplayMode == 0) {
     sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      Prop_MovePaper(iRam0036f328,auStack_10,800,param_2);
+      Prop_MovePaper(_g_Props,auStack_10,800,param_2);
     }
     else {
-      Prop_SpawnPaper(iRam0036f328,auStack_10,800,param_2);
+      Prop_SpawnPaper(_g_Props,auStack_10,800,param_2);
     }
   }
   else {
     iVar1 = *(int *)(_g_Loading + 0x18);
-    iVar3 = iRam0036f328 + 0x4b00;
+    iVar3 = _g_Props + 0x4b00;
     sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
     sceVu0CopyVector(auStack_30,iVar1 + 0x70);
     if (*param_1 == 0) {
@@ -257,7 +259,7 @@ void Prop_DrawBirds(uint param_1)
   undefined1 auStack_170 [16];
   undefined1 auStack_160 [352];
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     param_1 = param_1 & 0xff;
     iVar1 = *(int *)(_g_Loading + 0x14);
     if (param_1 - 2 < 2) {
@@ -271,31 +273,31 @@ void Prop_DrawBirds(uint param_1)
     Cam_SetupViewport(0x433f00,0,8);
     maybe_Pkt_InitLayers(auStack_160,0x433f00,0x436180,8,9);
     if (param_1 - 2 < 2) {
-      Prop_DrawModel(0x433f00,auStack_160,iRam0036f32c,uVar3,4,4);
+      Prop_DrawModel(0x433f00,auStack_160,_g_PropsB,uVar3,4,4);
     }
     else {
-      Prop_DrawModel(0x433f00,auStack_160,iRam0036f328,uVar3,4,4);
+      Prop_DrawModel(0x433f00,auStack_160,_g_Props,uVar3,4,4);
     }
     if (iRam00433904 != 0) {
       maybe_Pkt_InitLayers(auStack_160,0x433380,0x436180,0,0);
       if (param_1 - 2 < 2) {
-        Prop_DrawModel(0x433380,auStack_160,iRam0036f32c,uVar3,4,4);
+        Prop_DrawModel(0x433380,auStack_160,_g_PropsB,uVar3,4,4);
       }
       else {
-        Prop_DrawModel(0x433380,auStack_160,iRam0036f328,uVar3,4,4);
+        Prop_DrawModel(0x433380,auStack_160,_g_Props,uVar3,4,4);
       }
     }
   }
   else {
     if ((param_1 & 0xff) - 2 < 2) {
       uVar3 = 0x32;
-      iVar2 = iRam0036f32c + 0x960;
-      iVar1 = iRam0036f32c;
+      iVar2 = _g_PropsB + 0x960;
+      iVar1 = _g_PropsB;
     }
     else {
       uVar3 = 400;
-      iVar2 = iRam0036f328 + 0x4b00;
-      iVar1 = iRam0036f328;
+      iVar2 = _g_Props + 0x4b00;
+      iVar1 = _g_Props;
     }
     Cam_SetupViewport(0x434a80,0,8);
     maybe_Pkt_InitLayers(auStack_160,0x434a80,0x436180,8,9);
@@ -323,7 +325,7 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     uVar4 = (uint)param_2 & 0xff;
     if (uVar4 - 2 < 2) {
       uVar3 = 100;
@@ -335,30 +337,30 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
     if (*param_1 == 0) {
       *param_1 = 1;
       if (uVar4 - 2 < 2) {
-        Prop_MoveBirds(iRam0036f32c,auStack_10,uVar3,param_2);
+        Prop_MoveBirds(_g_PropsB,auStack_10,uVar3,param_2);
       }
       else {
-        Prop_MoveBirds(iRam0036f328,auStack_10,uVar3,param_2);
+        Prop_MoveBirds(_g_Props,auStack_10,uVar3,param_2);
       }
     }
     else if (uVar4 - 2 < 2) {
-      Prop_SpawnBird(iRam0036f32c,auStack_10,uVar3,param_2);
+      Prop_SpawnBird(_g_PropsB,auStack_10,uVar3,param_2);
     }
     else {
-      Prop_SpawnBird(iRam0036f328,auStack_10,uVar3,param_2);
+      Prop_SpawnBird(_g_Props,auStack_10,uVar3,param_2);
     }
   }
   else {
     iVar1 = *(int *)(_g_Loading + 0x18);
     if (((uint)param_2 & 0xff) - 2 < 2) {
       uVar3 = 0x32;
-      iVar5 = iRam0036f32c + 0x960;
-      iVar2 = iRam0036f32c;
+      iVar5 = _g_PropsB + 0x960;
+      iVar2 = _g_PropsB;
     }
     else {
       uVar3 = 400;
-      iVar5 = iRam0036f328 + 0x4b00;
-      iVar2 = iRam0036f328;
+      iVar5 = _g_Props + 0x4b00;
+      iVar2 = _g_Props;
     }
     sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
     sceVu0CopyVector(auStack_30,iVar1 + 0x70);
@@ -735,29 +737,33 @@ void RaceScene_SetPaused(undefined1 param_1,undefined1 param_2,undefined1 param_
 }
 
 // 0x001c5b50  size 0x44
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceScene_FreeProps(void)
 
 {
-  if (iRam0036f328 != 0) {
+  if (_g_Props != 0) {
     Mem_Free();
-    iRam0036f328 = 0;
+    _g_Props = 0;
   }
-  if (iRam0036f32c != 0) {
+  if (_g_PropsB != 0) {
     Mem_Free();
-    iRam0036f32c = 0;
+    _g_PropsB = 0;
   }
   return;
 }
 
 // 0x001c5ba0  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceScene_AllocProps(undefined8 param_1)
 
 {
   undefined4 *puVar1;
   int iVar2;
   
-  uRam0036f328 = Mem_AllocAligned(0x9600,0x10,param_1);
-  uRam0036f32c = Mem_AllocAligned(0x12c0,0x10,param_1);
+  _g_Props = Mem_AllocAligned(0x9600,0x10,param_1);
+  _g_PropsB = Mem_AllocAligned(0x12c0,0x10,param_1);
   iVar2 = 0;
   puVar1 = (undefined4 *)0x436570;
   do {
@@ -802,6 +808,8 @@ void RaceScene_Enter(int param_1)
 }
 
 // 0x001c5cd0  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceScene_SetupPlayerCar(void)
 
 {
@@ -817,7 +825,7 @@ void RaceScene_SetupPlayerCar(void)
     do {
       pRVar2 = GameState_Elem_f0_xcc((int)lVar4);
       if ((pRVar2->unk_04 & 0x100) == 0) {
-        *(undefined4 *)(*(int *)(iRam0036f34c + iVar3) + 0x1d8) = 0;
+        *(undefined4 *)(*(int *)(_g_AiDrivers + iVar3) + 0x1d8) = 0;
       }
       lVar4 = (long)((int)lVar4 + 1);
       iVar3 = iVar3 + 4;
@@ -827,6 +835,8 @@ void RaceScene_SetupPlayerCar(void)
 }
 
 // 0x001c5d60  size 0xe8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Driver_FreeAll(void)
 
 {
@@ -834,18 +844,18 @@ void Driver_FreeAll(void)
   int iVar2;
   int iVar3;
   
-  if (iRam0036f34c != 0) {
+  if (_g_AiDrivers != 0) {
     iVar3 = 0;
     iVar2 = 0;
     do {
-      if (*(int *)(iRam0036f34c + iVar2) != 0) {
-        iVar1 = *(int *)(*(int *)(iRam0036f34c + iVar2) + 0x198);
+      if (*(int *)(_g_AiDrivers + iVar2) != 0) {
+        iVar1 = *(int *)(*(int *)(_g_AiDrivers + iVar2) + 0x198);
         if (iVar1 != 0) {
           Wheel_IsEffectPlaying(iVar1,0);
           Wheel_IsEffectPlaying(iVar1,2);
           Wheel_IsEffectPlaying(iVar1,1);
         }
-        Mem_Free(*(undefined4 *)(iRam0036f34c + iVar2));
+        Mem_Free(*(undefined4 *)(_g_AiDrivers + iVar2));
       }
       iVar3 = iVar3 + 1;
       iVar2 = iVar2 + 4;
@@ -853,18 +863,20 @@ void Driver_FreeAll(void)
     iVar3 = 0;
     iVar2 = 0;
     do {
-      if (*(int *)(iRam0036f34c + iVar2 + 8) != 0) {
+      if (*(int *)(_g_AiDrivers + iVar2 + 8) != 0) {
         Mem_Free();
       }
       iVar3 = iVar3 + 1;
       iVar2 = iVar2 + 4;
     } while (iVar3 < 3);
-    Mem_Free(iRam0036f34c);
+    Mem_Free(_g_AiDrivers);
   }
   return;
 }
 
 // 0x001c5e50  size 0x168
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Driver_CreatePlayers(undefined8 param_1)
 
 {
@@ -880,11 +892,11 @@ void Driver_CreatePlayers(undefined8 param_1)
   iVar6 = 0;
   iVar5 = 0;
   do {
-    if (*(int *)(iRam0036f34c + iVar5 + 8) != 0) {
+    if (*(int *)(_g_AiDrivers + iVar5 + 8) != 0) {
       Mem_Free();
     }
     iVar6 = iVar6 + 1;
-    *(undefined4 *)(iRam0036f34c + iVar5 + 8) = 0;
+    *(undefined4 *)(_g_AiDrivers + iVar5 + 8) = 0;
     iVar5 = iVar5 + 4;
   } while (iVar6 < 3);
   iVar5 = 0;
@@ -892,8 +904,8 @@ void Driver_CreatePlayers(undefined8 param_1)
     iVar6 = 0;
     do {
       uVar4 = Mem_Alloc16(0x18,param_1);
-      *(undefined4 *)(iRam0036f34c + iVar6 + 8) = uVar4;
-      puVar1 = *(undefined4 **)(iRam0036f34c + iVar6 + 8);
+      *(undefined4 *)(_g_AiDrivers + iVar6 + 8) = uVar4;
+      puVar1 = *(undefined4 **)(_g_AiDrivers + iVar6 + 8);
       *puVar1 = 0;
       puVar1[1] = 0;
       puVar1[2] = 0;
@@ -901,12 +913,12 @@ void Driver_CreatePlayers(undefined8 param_1)
       puVar1[4] = 0;
       *(undefined1 *)(puVar1 + 5) = 0;
       if (iVar5 < iVar2) {
-        if (*(int *)(iRam0036f34c + iVar6) == 0) {
+        if (*(int *)(_g_AiDrivers + iVar6) == 0) {
           uVar4 = Mem_Alloc16(0x6a130,param_1);
-          *(undefined4 *)(iRam0036f34c + iVar6) = uVar4;
-          Driver_InitController(*(undefined4 *)(iRam0036f34c + iVar6),(char)iVar5);
+          *(undefined4 *)(_g_AiDrivers + iVar6) = uVar4;
+          Driver_InitController(*(undefined4 *)(_g_AiDrivers + iVar6),(char)iVar5);
         }
-        **(undefined4 **)(iRam0036f34c + iVar6) = 0;
+        **(undefined4 **)(_g_AiDrivers + iVar6) = 0;
       }
       iVar5 = iVar5 + 1;
       iVar6 = iVar6 + 4;
@@ -916,6 +928,8 @@ void Driver_CreatePlayers(undefined8 param_1)
 }
 
 // 0x001c5fc0  size 0x168
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Driver_CreateAi(undefined8 param_1,int param_2)
 
 {
@@ -931,8 +945,8 @@ void Driver_CreateAi(undefined8 param_1,int param_2)
     if ((uVar1 & 2) == 0) {
       if ((uVar1 & 4) != 0) {
         uVar4 = Mem_Alloc16(0x18,param_1);
-        *(undefined4 *)(param_2 * 4 + iRam0036f34c + 8) = uVar4;
-        puVar2 = *(undefined4 **)(param_2 * 4 + iRam0036f34c + 8);
+        *(undefined4 *)(param_2 * 4 + _g_AiDrivers + 8) = uVar4;
+        puVar2 = *(undefined4 **)(param_2 * 4 + _g_AiDrivers + 8);
         *puVar2 = 0;
         puVar2[1] = 0;
         puVar2[2] = 0;
@@ -943,8 +957,8 @@ void Driver_CreateAi(undefined8 param_1,int param_2)
     }
     else {
       uVar4 = Mem_Alloc16(0x18,param_1);
-      *(undefined4 *)(param_2 * 4 + iRam0036f34c + 8) = uVar4;
-      puVar2 = *(undefined4 **)(param_2 * 4 + iRam0036f34c + 8);
+      *(undefined4 *)(param_2 * 4 + _g_AiDrivers + 8) = uVar4;
+      puVar2 = *(undefined4 **)(param_2 * 4 + _g_AiDrivers + 8);
       *puVar2 = 0;
       puVar2[1] = 0;
       puVar2[2] = 0;
@@ -956,11 +970,11 @@ void Driver_CreateAi(undefined8 param_1,int param_2)
   else {
     iVar5 = param_2 * 4;
     uVar4 = Mem_Alloc16(0x6a130,param_1);
-    *(undefined4 *)(iRam0036f34c + iVar5) = uVar4;
-    Driver_InitController(*(undefined4 *)(iRam0036f34c + iVar5),(char)param_2);
+    *(undefined4 *)(_g_AiDrivers + iVar5) = uVar4;
+    Driver_InitController(*(undefined4 *)(_g_AiDrivers + iVar5),(char)param_2);
     uVar4 = Mem_Alloc16(0x18,param_1);
-    *(undefined4 *)(iVar5 + iRam0036f34c + 8) = uVar4;
-    puVar2 = *(undefined4 **)(iVar5 + iRam0036f34c + 8);
+    *(undefined4 *)(iVar5 + _g_AiDrivers + 8) = uVar4;
+    puVar2 = *(undefined4 **)(iVar5 + _g_AiDrivers + 8);
     *puVar2 = 0;
     puVar2[1] = 0;
     puVar2[2] = 0;
@@ -1338,6 +1352,8 @@ void Ffb_Update(undefined8 param_1)
 }
 
 // 0x001c6b40  size 0xa8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Driver_UpdateAll(void)
 
 {
@@ -1355,7 +1371,7 @@ void Driver_UpdateAll(void)
     if (0 < lVar2) {
       iVar3 = 0;
       do {
-        Driver_UpdatePlayer(*(undefined4 *)(iRam0036f34c + iVar3),cVar4);
+        Driver_UpdatePlayer(*(undefined4 *)(_g_AiDrivers + iVar3),cVar4);
         cVar4 = cVar4 + '\x01';
         iVar3 = iVar3 + 4;
         cVar1 = GameState_GetPlayerCount();
@@ -1372,6 +1388,7 @@ void Driver_UpdateAll(void)
 /* WARNING: Removing unreachable block (ram,0x001c6ea4) */
 /* WARNING: Removing unreachable block (ram,0x001c70d4) */
 /* WARNING: Removing unreachable block (ram,0x001c7184) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Driver_UpdatePlayer(undefined8 param_1,char param_2)
 
@@ -1508,7 +1525,7 @@ LAB_001c6ccc:
     }
   }
   uVar3 = *(undefined4 *)(iVar9 + 0x1ac);
-  puVar2 = *(undefined4 **)(param_2 * 4 + iRam0036f34c + 8);
+  puVar2 = *(undefined4 **)(param_2 * 4 + _g_AiDrivers + 8);
   uVar13 = *(undefined4 *)(iVar9 + 0x1a0);
   uVar11 = *(undefined4 *)(iVar9 + 0x1a4);
   uVar12 = *(undefined4 *)(iVar9 + 0x1a8);

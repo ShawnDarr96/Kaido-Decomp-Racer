@@ -581,6 +581,8 @@ void maybe_ScrBuyCarColour_Enter(undefined4 *param_1)
 }
 
 // 0x002a1a70  size 0x16c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCarValue_HandleInput(undefined8 param_1)
 
 {
@@ -588,14 +590,14 @@ void maybe_ScrCarValue_HandleInput(undefined8 param_1)
   uint uVar2;
   int iVar3;
   
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   iVar3 = (int)param_1;
@@ -793,6 +795,7 @@ void maybe_ScrCarValue_State6(undefined8 param_1)
 }
 
 // 0x002a2030  size 0x320
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 5 of state table 0x32ed10 used by maybe_ScrCarValue_Update */
 
 void maybe_ScrCarValue_State5(int param_1)
@@ -817,14 +820,14 @@ void maybe_ScrCarValue_State5(int param_1)
   Menu_HandleCursor(param_1 + 0x20,0,8,iVar3 + -1,1,0);
   iVar4 = *(int *)(param_1 + 0x28);
   Menu_HandleCursor(param_1 + 0x28,0,2,*(int *)(param_1 + 0x84) + -1,0,0);
-  uVar5 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar5) == 0) {
+  uVar5 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar5) == 0) {
     uVar5 = 0x100000;
   }
   else if (uVar5 == 0x80000) {
     uVar5 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar5 = 0x100000;
   }
   if (uVar5 == 2) {
@@ -991,6 +994,7 @@ void maybe_ScrCarValue_State2(int param_1)
 }
 
 // 0x002a24c0  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 1 of state table 0x32ed10 used by maybe_ScrCarValue_Update */
 
 void maybe_ScrCarValue_State1(int param_1)
@@ -1015,14 +1019,14 @@ void maybe_ScrCarValue_State1(int param_1)
     return;
   }
   Menu_HandleCursor(param_1 + 8,0,2,iVar1 + -1,1,0);
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 4) {
@@ -1155,6 +1159,8 @@ void maybe_ScrCarValue_Enter(int param_1)
 }
 
 // 0x002a2850  size 0x238
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrReplayList_HandleInput(uint *param_1)
 
 {
@@ -1163,14 +1169,14 @@ void maybe_ScrReplayList_HandleInput(uint *param_1)
   undefined8 uVar3;
   uint uVar4;
   
-  uVar4 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar4) == 0) {
+  uVar4 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   if (uVar4 == 0x1000) {
@@ -1905,28 +1911,28 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
     lVar8 = Menu_HandleCursor(param_1 + 0x14,0,2,9,0,0);
     lVar9 = Menu_HandleCursor(param_1 + 0x10,0,8,7,1,param_1[0x18]);
     UiMgr_FindLayout(0x10e);
-    uVar14 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar14) == 0) {
+    uVar14 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar14) == 0) {
       uVar14 = 0x100000;
     }
     else if (uVar14 == 0x80000) {
       uVar14 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar14 = 0x100000;
     }
     if (uVar14 == 0x1000) {
       Se_PlayMenu(7);
       param_1[0x11] = param_1[0x11] != 0 ^ 1;
     }
-    uVar15 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar15) == 0) {
+    uVar15 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar15) == 0) {
       uVar15 = 0x100000;
     }
     else if (uVar15 == 0x80000) {
       uVar15 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar15 = 0x100000;
     }
     if (uVar15 == 0x2000) {

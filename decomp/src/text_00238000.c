@@ -1106,7 +1106,7 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
                % *(int *)(iVar14 + 0x10);
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0xc6,*(undefined4 *)(&DAT_0032b600 + *(int *)(iVar14 + 0x28) * 4),0,0);
   }
   else {
@@ -2152,7 +2152,7 @@ void maybe_PageSponsors_State0_GarageDrawSponsors(undefined8 param_1)
 LAB_0023bff8:
   if ((char)piVar7[0xc] == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (((*piRam0036f468 == 1) && (piVar7[4] == 0)) && (piVar7[6] == 0)) {
+    if (((*_g_MenuInput == 1) && (piVar7[4] == 0)) && (piVar7[6] == 0)) {
       MenuWnd_SetItemState(0xd4,*(undefined4 *)(&DAT_0032b728 + piVar7[0xb] * 4),0,0);
     }
   }

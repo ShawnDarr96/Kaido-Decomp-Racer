@@ -297,7 +297,7 @@ void Cam_SetupViewport(undefined8 param_1,uint param_2,byte param_3)
   int iVar1;
   uint *puVar2;
   
-  if ((param_3 == 0) && (iRam0036f1f8 != 0)) {
+  if ((param_3 == 0) && (_s_RaceIsReplayMode != 0)) {
     puVar2 = (uint *)(*(int *)((param_2 & 0xff) * 4 + _g_Loading + 0x14) + 0x3c0);
   }
   else {

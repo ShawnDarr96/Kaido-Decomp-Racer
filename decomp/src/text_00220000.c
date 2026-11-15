@@ -1209,7 +1209,7 @@ void ScrCareer_Draw_Information(int *param_1)
       param_1[7] = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0xa7,*(undefined4 *)(&DAT_0032a800 + *param_1 * 4),1,0);
   }
   MenuWnd_DrawText(0xa7,0x26,0x432);

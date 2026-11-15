@@ -2585,7 +2585,7 @@ void Loading_Update(void)
   byte bVar2;
   bool bVar3;
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     View_Clear(0x431100);
     View_Clear(0x432240);
     View_Clear(0x432800);

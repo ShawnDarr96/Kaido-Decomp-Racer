@@ -301,7 +301,7 @@ void ScrSubtitleDraw_Draw1(undefined8 param_1)
     UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,
                         *(undefined4 *)(&DAT_0032da68 + *(int *)(iVar6 + 0x1c) * 4),8);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     iVar3 = *(int *)(iVar6 + 0x20);
     if (iVar3 == 2) {
       MenuWnd_SetItemState
@@ -614,7 +614,7 @@ void ScrSubtitleDraw_Draw0(int param_1)
     MenuWnd_DrawCursor(0);
     MenuWnd_SetItemVisible(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x6e,*(undefined4 *)(&DAT_0032da10 + *(int *)(param_1 + 8) * 4),1,0);
     iVar2 = *(int *)(param_1 + 0xc);
   }
@@ -1663,7 +1663,7 @@ LAB_00272c3c:
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x73,*(undefined4 *)(&DAT_0032db20 + *(int *)(param_1 + 0x10) * 4),1,0);
   }
   MenuWnd_SetTitle(3,*(undefined4 *)(&DAT_0032db30 + *(int *)(param_1 + 0x10) * 4));
@@ -1962,7 +1962,7 @@ void ScrGarage_Draw_Sponsors_32b0(int param_1)
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x72,*(undefined4 *)(&DAT_0032db00 + *(int *)(param_1 + 0x10c) * 4),0,0);
     iVar5 = *(int *)(param_1 + 0x104);
   }
@@ -2218,7 +2218,7 @@ void ScrCareer_Draw_TuneUp(int *param_1)
   uVar3 = Profile_Get(0);
   uVar3 = Profile_GetMoney(uVar3);
   MenuWnd_DrawNumber(0x2d,0x38,uVar3);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x35,*(undefined4 *)(&DAT_0032db40 + *param_1 * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x35);

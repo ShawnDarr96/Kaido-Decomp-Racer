@@ -221,6 +221,8 @@ void Quat_IdentityB(undefined4 *param_1)
 }
 
 // 0x002d87d0  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ShowroomBg_Draw(void)
 
 {
@@ -230,10 +232,10 @@ void maybe_ShowroomBg_Draw(void)
   int iVar4;
   int iVar5;
   
-  iVar1 = iRam0036f834;
-  iVar5 = iRam0036f834 + 0x90;
+  iVar1 = _g_MenuObj;
+  iVar5 = _g_MenuObj + 0x90;
   iVar4 = 0;
-  if (0 < *(int *)(iRam0036f834 + 0x98)) {
+  if (0 < *(int *)(_g_MenuObj + 0x98)) {
     do {
       uVar3 = MenuObjSet_GetEntry(iVar5,iVar4);
       cVar2 = MenuObj_IsReady(uVar3);
@@ -257,10 +259,12 @@ void ShowroomBg_Unload(void)
 }
 
 // 0x002d88b0  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ShowroomBg_Load(undefined8 param_1,undefined8 param_2)
 
 {
-  ShowroomBg_Alloc(*puRam0036f834,param_1,param_2);
+  ShowroomBg_Alloc(*_g_MenuObj,param_1,param_2);
   MenuObjSet_Alloc(7,param_1);
   return;
 }
@@ -614,142 +618,144 @@ switchD_002d95b8_caseD_b8:
 }
 
 // 0x002d9780  size 0x42c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_ReplayUi_GetValue(int param_1)
 
 {
   undefined4 uVar1;
   
   if (param_1 == 0x1925) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0xac);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0xac);
   }
   else if (param_1 == 0x1924) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0xa8);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0xa8);
   }
   else if (param_1 == 0x1923) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0xa4);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0xa4);
   }
   else if (param_1 == 0x1922) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0xa0);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0xa0);
   }
   else if (param_1 == 0x1921) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x9c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x9c);
   }
   else if (param_1 == 0x1920) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x98);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x98);
   }
   else if (param_1 == 0x191f) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x94);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x94);
   }
   else if (param_1 == 0x191e) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x90);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x90);
   }
   else if (param_1 == 0x69) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x8c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x8c);
   }
   else if (param_1 == 0x6b) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x88);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x88);
   }
   else if (param_1 == 0x6a) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x84);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x84);
   }
   else if (param_1 == 0x68) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x80);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x80);
   }
   else if (param_1 == 0x225) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x7c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x7c);
   }
   else if (param_1 == 0x224) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x78);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x78);
   }
   else if (param_1 == 0x21e) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x74);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x74);
   }
   else if (param_1 == 0x21d) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x70);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x70);
   }
   else if (param_1 == 0x21c) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x6c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x6c);
   }
   else if (param_1 == 0x21b) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x68);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x68);
   }
   else if (param_1 == 0x3eb) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 100);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 100);
   }
   else if (param_1 == 0x228) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x60);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x60);
   }
   else if (param_1 == 0x227) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x5c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x5c);
   }
   else if (param_1 == 0x3ea) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x58);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x58);
   }
   else if (param_1 == 0x21a) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x54);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x54);
   }
   else if (param_1 == 0x219) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x50);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x50);
   }
   else if (param_1 == 0x3e9) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x4c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x4c);
   }
   else if (param_1 == 0x218) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x48);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x48);
   }
   else if (param_1 == 0x217) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x44);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x44);
   }
   else if (param_1 == 1000) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x40);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x40);
   }
   else if (param_1 == 0x216) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x3c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x3c);
   }
   else if (param_1 == 0x215) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x38);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x38);
   }
   else if (param_1 == 0x419) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x34);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x34);
   }
   else if (param_1 == 0x418) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x30);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x30);
   }
   else if (param_1 == 0x41a) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x2c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x2c);
   }
   else if (param_1 == 0x106) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x28);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x28);
   }
   else if (param_1 == 0x105) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x24);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x24);
   }
   else if (param_1 == 0x104) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x20);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x20);
   }
   else if (param_1 == 0x103) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x1c);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x1c);
   }
   else if (param_1 == 0x102) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x18);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x18);
   }
   else if (param_1 == 0x101) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x14);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x14);
   }
   else if (param_1 == 0x100) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0x10);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0x10);
   }
   else if (param_1 == 0xff) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 0xc);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 0xc);
   }
   else if (param_1 == 0xfe) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 8);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 8);
   }
   else if (param_1 == 0xfd) {
-    uVar1 = *(undefined4 *)(*(int *)(iRam0036f8b4 + 0xb4) + 4);
+    uVar1 = *(undefined4 *)(*(int *)(_g_ReplayUi + 0xb4) + 4);
   }
   else if (param_1 == 0x417) {
-    uVar1 = **(undefined4 **)(iRam0036f8b4 + 0xb4);
+    uVar1 = **(undefined4 **)(_g_ReplayUi + 0xb4);
   }
   else {
     uVar1 = 0;
@@ -758,25 +764,29 @@ undefined4 maybe_ReplayUi_GetValue(int param_1)
 }
 
 // 0x002d9bb0  size 0x6c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ReplayUi_Free(void)
 
 {
-  if (*(int *)(iRam0036f8b4 + 0xb4) != 0) {
+  if (*(int *)(_g_ReplayUi + 0xb4) != 0) {
     Mem_Free();
-    *(undefined4 *)(iRam0036f8b4 + 0xb4) = 0;
+    *(undefined4 *)(_g_ReplayUi + 0xb4) = 0;
   }
-  if (*(int *)(iRam0036f8b4 + 0xb0) != 0) {
+  if (*(int *)(_g_ReplayUi + 0xb0) != 0) {
     Mem_Free();
-    *(undefined4 *)(iRam0036f8b4 + 0xb0) = 0;
+    *(undefined4 *)(_g_ReplayUi + 0xb0) = 0;
   }
-  if (iRam0036f8b4 != 0) {
+  if (_g_ReplayUi != 0) {
     Mem_Free();
-    iRam0036f8b4 = 0;
+    _g_ReplayUi = 0;
   }
   return;
 }
 
 // 0x002d9ca0  size 0x190
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ReplayUi_Load(undefined8 param_1)
 
 {
@@ -789,13 +799,13 @@ void ReplayUi_Load(undefined8 param_1)
   int *piVar7;
   
   iVar6 = 0;
-  iRam0036f8b4 = Mem_AllocAligned(0xb8,0x40,param_1);
+  _g_ReplayUi = Mem_AllocAligned(0xb8,0x40,param_1);
   iVar5 = 0;
   piVar7 = &DAT_00342260;
   iVar4 = 0;
   do {
     iVar1 = *piVar7;
-    *(int *)(iRam0036f8b4 + iVar4) = iVar1;
+    *(int *)(_g_ReplayUi + iVar4) = iVar1;
     uVar3 = g_ArcToc->entries[iVar1].unpackedSize;
     if (uVar3 == 0) {
       uVar3 = g_ArcToc->entries[iVar1].sectorCount;
@@ -809,12 +819,12 @@ void ReplayUi_Load(undefined8 param_1)
     iVar4 = iVar4 + 4;
   } while (iVar5 < 0x2c);
   uVar2 = Mem_AllocAligned(0xb0,0x40,param_1);
-  *(undefined4 *)(iRam0036f8b4 + 0xb4) = uVar2;
+  *(undefined4 *)(_g_ReplayUi + 0xb4) = uVar2;
   uVar2 = Mem_AllocAligned(iVar6,0x40,param_1);
   iVar5 = 0;
   piVar7 = &DAT_00342260;
-  *(undefined4 *)(iRam0036f8b4 + 0xb0) = uVar2;
-  iVar4 = *(int *)(iRam0036f8b4 + 0xb0);
+  *(undefined4 *)(_g_ReplayUi + 0xb0) = uVar2;
+  iVar4 = *(int *)(_g_ReplayUi + 0xb0);
   do {
     Arc_LoadFileEx(*piVar7,iVar4,0,0,0,0);
     uVar3 = g_ArcToc->entries[*piVar7].unpackedSize;

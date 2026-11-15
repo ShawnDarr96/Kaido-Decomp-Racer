@@ -233,139 +233,144 @@ void ScrCareer_Draw_SelectSectionTo(int param_1)
   uVar10 = Race_GetCourseVariant();
   iVar4 = MsgId_ForOption(uVar10);
   UiElem_SetPropInt(iVar13,0x5f,0x16,*(undefined4 *)(&DAT_0032c010 + iVar4 * 4));
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x83,*(undefined4 *)(&DAT_0032bff0 + *(int *)(param_1 + 0x62c) * 4),1,0);
   }
   UiElem_SetPropInt(iVar13,0x1a,9,*(undefined4 *)(param_1 + 0x62c));
   UiElem_SetPropInt(iVar13,0x1d,9,*(undefined4 *)(param_1 + 0x62c));
-  iRam0036f5dc = 0;
+  _s_SectionSelA = 0;
   do {
-    iRam0036f5e0 = 0;
+    _s_SectionSelB = 0;
     do {
-      lVar8 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+      lVar8 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
       if (lVar8 == -1) {
         UiElem_SetPropFloat(0,iVar13,*(undefined4 *)
-                                      (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8);
+                                      (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
         UiElem_SetPropFloat(0,iVar13,*(undefined4 *)
-                                      (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
+                                      (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),8);
       }
       else {
-        uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+        uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
         uVar10 = RivalDb_Get(uVar2);
         cVar1 = RivalRec_GetTeam(uVar10);
         if ((cVar1 == '\x06') || (cVar1 == '\x05')) {
-          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
           uVar10 = RivalDb_Get(uVar2);
           uVar6 = RivalRec_GetTeam(uVar10);
           UiElem_SetPropInt(iVar13,*(undefined4 *)
-                                    (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,
+                                    (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
                             *(undefined4 *)(&DAT_0032c130 + (uVar6 & 0xff) * 4));
           UiElem_SetPropFloat(0x3f666666,iVar13,
-                              *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8);
+                              *(undefined4 *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030)
+                              ,8);
           UiElem_SetPropFloat(0x3f800000,iVar13,
-                              *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
+                              *(undefined4 *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0)
+                              ,8);
         }
         else if (cVar1 == '\x01') {
-          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
           uVar10 = RivalDb_Get(uVar2);
           sVar3 = RivalRec_GetId(uVar10);
           iVar4 = Profile_Get(0);
           if (*(short *)(iVar4 + sVar3 * 2 + 0x4b7c) < 1) {
-            uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+            uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
             uVar10 = RivalDb_Get(uVar2);
             uVar6 = RivalRec_GetTeam(uVar10);
             UiElem_SetPropInt(iVar13,*(undefined4 *)
-                                      (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,
+                                      (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
                               *(undefined4 *)(&DAT_0032c130 + (uVar6 & 0xff) * 4));
             UiElem_SetPropFloat(0x3f666666,iVar13,
-                                *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8
-                               );
+                                *(undefined4 *)
+                                 (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
           }
           else {
             UiElem_SetPropInt(iVar13,*(undefined4 *)
-                                      (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,0);
+                                      (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,0);
             UiElem_SetPropFloat(0x3ecccccd,iVar13,
-                                *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8
-                               );
+                                *(undefined4 *)
+                                 (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
           }
           UiElem_SetPropFloat(0x3f800000,iVar13,
-                              *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
+                              *(undefined4 *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0)
+                              ,8);
         }
         else if (cVar1 == '\0') {
-          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
           uVar10 = RivalDb_Get(uVar2);
           sVar3 = RivalRec_GetId(uVar10);
           iVar4 = Profile_Get(0);
           if (*(short *)(iVar4 + sVar3 * 2 + 0x4b7c) < 1) {
-            uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+            uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
             uVar10 = RivalDb_Get(uVar2);
             lVar8 = RivalRec_IsValid(uVar10);
             if (lVar8 == 0) goto LAB_00254538;
             UiElem_SetPropInt(iVar13,*(undefined4 *)
-                                      (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,1);
+                                      (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,1);
             UiElem_SetPropFloat(0x3f666666,iVar13,
-                                *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8
-                               );
+                                *(undefined4 *)
+                                 (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
           }
           else {
 LAB_00254538:
-            uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+            uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
             uVar10 = RivalDb_Get(uVar2);
             uVar6 = RivalRec_GetTeam(uVar10);
             UiElem_SetPropInt(iVar13,*(undefined4 *)
-                                      (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,
+                                      (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
                               *(undefined4 *)(&DAT_0032c130 + (uVar6 & 0xff) * 4));
             uVar10 = Profile_Get(0);
-            uVar11 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+            uVar11 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
             sVar3 = Profile_GetRivalBattleCount(uVar10,uVar11);
             if (sVar3 < 1) {
               UiElem_SetPropFloat(0x3f666666,iVar13,
-                                  *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030)
-                                  ,8);
+                                  *(undefined4 *)
+                                   (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
             }
             else {
               UiElem_SetPropFloat(0x3ecccccd,iVar13,
-                                  *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030)
-                                  ,8);
+                                  *(undefined4 *)
+                                   (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
             }
           }
           UiElem_SetPropFloat(0x3f800000,iVar13,
-                              *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
+                              *(undefined4 *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0)
+                              ,8);
         }
         else if (cVar1 == '\r') {
           UiElem_SetPropFloat(0,iVar13,*(undefined4 *)
-                                        (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8);
+                                        (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
           UiElem_SetPropFloat(0,iVar13,*(undefined4 *)
-                                        (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
+                                        (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),8);
         }
         else {
-          uVar2 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
           uVar10 = RivalDb_Get(uVar2);
           uVar6 = RivalRec_GetTeam(uVar10);
           UiElem_SetPropInt(iVar13,*(undefined4 *)
-                                    (iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),9,
+                                    (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
                             *(undefined4 *)(&DAT_0032c130 + (uVar6 & 0xff) * 4));
           uVar10 = Profile_Get(0);
-          uVar11 = RivalSchedule_Get(iRam0036f5dc,iRam0036f5e0);
+          uVar11 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
           sVar3 = Profile_GetRivalBattleCount(uVar10,uVar11);
           if (sVar3 < 1) {
             UiElem_SetPropFloat(0x3f666666,iVar13,
-                                *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8
-                               );
+                                *(undefined4 *)
+                                 (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
           }
           else {
             UiElem_SetPropFloat(0x3ecccccd,iVar13,
-                                *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c030),8
-                               );
+                                *(undefined4 *)
+                                 (_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8);
           }
           UiElem_SetPropFloat(0x3f800000,iVar13,
-                              *(undefined4 *)(iRam0036f5e0 * 4 + iRam0036f5dc * 0x18 + 0x32c0b0),8);
+                              *(undefined4 *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0)
+                              ,8);
         }
       }
-      iRam0036f5e0 = iRam0036f5e0 + 1;
-    } while (iRam0036f5e0 < 6);
-    iRam0036f5dc = iRam0036f5dc + 1;
-    if (4 < iRam0036f5dc) {
+      _s_SectionSelB = _s_SectionSelB + 1;
+    } while (_s_SectionSelB < 6);
+    _s_SectionSelA = _s_SectionSelA + 1;
+    if (4 < _s_SectionSelA) {
       iRam0036f5e4 = 0;
       do {
         MenuWnd_DrawText(0x83,*(undefined4 *)(&DAT_0032c190 + iRam0036f5e4 * 4),
@@ -579,7 +584,7 @@ void ScrRace_Draw_CategoryRace_51c0(int param_1)
       *(undefined4 *)(param_1 + 0x658) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x79,*(undefined4 *)(&DAT_0032bfe0 + *(int *)(param_1 + 0x62c) * 4),1,0);
     iVar2 = *(int *)(param_1 + 0x660);
   }
@@ -756,7 +761,7 @@ void ScrRace_Draw_Sell(int *param_1)
   }
   MenuWnd_DrawText(0x43,0x1a,0x2a1);
   MenuWnd_DrawText(0x43,0x1b,0x2a2);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x43,*(undefined4 *)(*param_1 * 4 + 0x36ec00),1,0);
   }
   UiLayout_UpdateAnimById(0x42,0);
@@ -1143,7 +1148,7 @@ void ScrGarage_Draw_MetalColour(int param_1)
         *(undefined4 *)(param_1 + 0x60) = 0;
       }
     }
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(0x56,*(undefined4 *)(&DAT_0032d120 + *(int *)(param_1 + 0x1c) * 4),0,0);
     }
     iVar3 = UiMgr_FindLayout(0x56);
@@ -1591,7 +1596,7 @@ void ScrGarage_Draw_DealerColour(int param_1)
         *(undefined4 *)(param_1 + 0x60) = 0;
       }
     }
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(0x54,*(undefined4 *)(&DAT_0032d080 + *(int *)(param_1 + 0x18) * 4),0,0);
     }
   }
@@ -1966,7 +1971,7 @@ void maybe_PartShop_DrawDetails(int param_1)
     iVar6 = *(int *)(param_1 + 0x4c);
   }
   if (iVar6 == 3) {
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(0x68,*(undefined4 *)(&LAB_0032d050 + *(int *)(param_1 + 0x38) * 4),0,0);
     }
     iVar6 = MsgId_ForMenuHelp(*(int *)(param_1 + 0xc) + 1U & 0xff);

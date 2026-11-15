@@ -1184,16 +1184,18 @@ long Gfx_EndFrameCallbackList_dtor(long param_1,short param_2)
 }
 
 // 0x001539c0  size 0x8c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool Snd_QueueCmd4(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   bool bVar1;
   int iVar2;
   
-  bVar1 = iRam0042dafc < 0x30;
+  bVar1 = _s_SndCmdCount < 0x30;
   if (bVar1) {
-    iVar2 = iRam0042dafc * 0x14;
-    iRam0042dafc = iRam0042dafc + 1;
+    iVar2 = _s_SndCmdCount * 0x14;
+    _s_SndCmdCount = _s_SndCmdCount + 1;
     *(undefined4 *)(iVar2 + 0x42db00) = 0x304;
     *(undefined4 *)(iVar2 + 0x42db04) = param_1;
     *(undefined4 *)(iVar2 + 0x42db08) = param_2;

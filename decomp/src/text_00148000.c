@@ -1728,18 +1728,22 @@ void Pkt_AddPrimitives(undefined8 param_1,uint *param_2,int param_3)
 }
 
 // 0x0014b850  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Scene_SetCallback2(undefined4 param_1)
 
 {
-  uRam0036f0b4 = param_1;
+  _s_SceneCallback2 = param_1;
   return;
 }
 
 // 0x0014b860  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Scene_SetResetCheck(undefined4 param_1)
 
 {
-  uRam0036f0b0 = param_1;
+  _s_SceneResetCheck = param_1;
   return;
 }
 
@@ -1785,6 +1789,7 @@ undefined4 Scene_GetParam(void)
 }
 
 // 0x0014b8c0  size 0x1f4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* returns nonzero when the scene ends */
 
 undefined4 Scene_Update(void)
@@ -1800,11 +1805,11 @@ undefined4 Scene_Update(void)
   
   uVar7 = 0;
   if (cRam0036e750 == '\x04') {
-    if (pcRam0036f0b4 == (code *)0x0) {
+    if (_s_SceneCallback2 == (code *)0x0) {
       uVar7 = 1;
     }
     else {
-      lVar3 = (*pcRam0036f0b4)();
+      lVar3 = (*_s_SceneCallback2)();
       if (lVar3 != 0) {
         uVar7 = 1;
       }
@@ -1824,11 +1829,11 @@ undefined4 Scene_Update(void)
     cRam0036e750 = '\x04';
   }
   else if (cRam0036e750 == '\x02') {
-    if (pcRam0036f0b0 == (code *)0x0) {
+    if (_s_SceneResetCheck == (code *)0x0) {
       cRam0036e750 = '\x03';
     }
     else {
-      lVar3 = (*pcRam0036f0b0)();
+      lVar3 = (*_s_SceneResetCheck)();
       if (lVar3 != 0) {
         cRam0036e750 = '\x03';
       }
@@ -1885,6 +1890,8 @@ void Scene_Start(int param_1)
 }
 
 // 0x0014bb00  size 0xe0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Scene_FreeObjects(void)
 
 {
@@ -1915,12 +1922,12 @@ void Scene_FreeObjects(void)
         iVar4 = *(int *)((int)piRam0036f0a4 + iVar5);
       } while (iVar4 != 0);
     }
-    if (iRam0036f08c != 0) {
+    if (_g_SceneObjects != 0) {
       Mem_Free();
     }
     piRam0036f0a4 = (int *)0x0;
     uRam0036f088 = 0;
-    iRam0036f08c = 0;
+    _g_SceneObjects = 0;
   }
   return;
 }
@@ -1948,6 +1955,8 @@ long Scene_Task_dtor(long param_1)
 }
 
 // 0x0014bc60  size 0x1a8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Scene_CreateObjects(int *param_1)
 
 {
@@ -1981,11 +1990,11 @@ void Scene_CreateObjects(int *param_1)
   uVar8 = iVar5 * 0x14 + 0xfU & 0xfffffff0;
   uVar10 = iVar4 * 0x24 + 0xfU & 0xfffffff0;
   iRam0036f088 = iRam0036f088 + uVar8 + uVar10;
-  puRam0036f08c = (undefined4 *)Mem_Alloc16(iRam0036f088,uRam0036f084);
-  puVar9 = (undefined4 *)((int)puRam0036f08c + uVar8);
+  _g_SceneObjects = (undefined4 *)Mem_Alloc16(iRam0036f088,uRam0036f084);
+  puVar9 = (undefined4 *)((int)_g_SceneObjects + uVar8);
   iVar4 = (int)puVar9 + uVar10;
   piVar6 = (int *)*param_1;
-  puVar7 = puRam0036f08c;
+  puVar7 = _g_SceneObjects;
   while (piVar6 != (int *)0x0) {
     if (puVar7 != (undefined4 *)0x0) {
       TaskList_ctor(puVar7);
@@ -2022,12 +2031,14 @@ void Scene_Shutdown(void)
 }
 
 // 0x0014be30  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Scene_InitHeap(undefined4 param_1)
 
 {
   uRam0036f084 = param_1;
   uRam0036f088 = 0;
-  uRam0036f08c = 0;
+  _g_SceneObjects = 0;
   return;
 }
 

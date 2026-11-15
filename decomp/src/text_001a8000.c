@@ -155,21 +155,25 @@ void PtclSys_UpdateAll(void)
 }
 
 // 0x001a8b40  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PtclSys_BeginFrame(void)
 
 {
   uRam004308d4 = 0;
   if (uRam004308cc == 0) {
-    uRam004308c8 = uRam004308c0;
+    uRam004308c8 = _g_Particles;
   }
   else {
-    uRam004308c8 = uRam004308c4;
+    uRam004308c8 = _g_ParticlesB;
   }
   uRam004308cc = uRam004308cc ^ 1;
   return;
 }
 
 // 0x001a8b90  size 0x150
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PtclSys_Shutdown(void)
 
 {
@@ -209,17 +213,19 @@ void PtclSys_Shutdown(void)
     maybe_List_Append(0x4307a0,iVar1);
     iVar1 = iVar4;
   }
-  Mem_Free(uRam004308c0);
-  Mem_Free(uRam004308c4);
+  Mem_Free(_g_Particles);
+  Mem_Free(_g_ParticlesB);
   maybe_Heap_Release(0x4308a8);
-  if (iRam004308d8 != 0) {
+  if (_g_ParticlesC != 0) {
     Mem_Free();
   }
-  iRam004308d8 = 0;
+  _g_ParticlesC = 0;
   return;
 }
 
 // 0x001a8ce0  size 0x278
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PtclSys_Init(undefined8 param_1)
 
 {
@@ -232,15 +238,15 @@ void PtclSys_Init(undefined8 param_1)
   undefined4 uVar7;
   float fVar8;
   
-  iRam004308d8 = Mem_Alloc16(0x1e000,param_1);
+  _g_ParticlesC = Mem_Alloc16(0x1e000,param_1);
   uVar5 = 0;
   iVar3 = 0;
   do {
-    iVar2 = iRam004308d8 + iVar3;
+    iVar2 = _g_ParticlesC + iVar3;
     *(undefined4 *)(iVar2 + 8) = 0;
     *(undefined4 *)(iVar2 + 0x14) = 0;
     *(undefined4 *)(iVar2 + 0x9c) = 0;
-    maybe_List_Remove(0x4307a0,iRam004308d8 + iVar3);
+    maybe_List_Remove(0x4307a0,_g_ParticlesC + iVar3);
     uVar5 = uVar5 + 1;
     iVar3 = iVar3 + 0xa0;
   } while (uVar5 < 0x300);
@@ -249,8 +255,8 @@ void PtclSys_Init(undefined8 param_1)
   uRam004308c8 = 0;
   uRam004308cc = 1;
   maybe_Heap_Create(0x4308a8,0x18500,0x430750);
-  uRam004308c0 = Mem_AllocAligned(0x9000,0x10,0x4308a8);
-  uRam004308c4 = Mem_AllocAligned(0x9000,0x10,0x4308a8);
+  _g_Particles = Mem_AllocAligned(0x9000,0x10,0x4308a8);
+  _g_ParticlesB = Mem_AllocAligned(0x9000,0x10,0x4308a8);
   uVar5 = 0;
   iVar3 = 0x4307a0;
   do {
@@ -786,6 +792,7 @@ int ResPool_CountUsedB(void)
 /* WARNING: Removing unreachable block (ram,0x001a9d9c) */
 /* WARNING: Removing unreachable block (ram,0x001a9dac) */
 /* WARNING: Removing unreachable block (ram,0x001a9dcc) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 long ResPool_Load(byte param_1,undefined8 param_2,undefined8 param_3)
 
@@ -794,7 +801,7 @@ long ResPool_Load(byte param_1,undefined8 param_2,undefined8 param_3)
   int iVar2;
   undefined4 uVar3;
   
-  for (lVar1 = Chunk_FindNext(0x436470,param_1,param_2,uRam0043649c); lVar1 != 0;
+  for (lVar1 = Chunk_FindNext(0x436470,param_1,param_2,_g_CourseAssetsB); lVar1 != 0;
       lVar1 = Chunk_FindNext(0x436470,param_1,param_2,(int)lVar1 + *(int *)((int)lVar1 + 4))) {
     if (param_1 < 7) {
                     /* WARNING: Switch is manually overridden */
@@ -862,21 +869,23 @@ int ResPool_Get(int param_1)
 }
 
 // 0x001a9f20  size 0xe0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Asset_FreeCourseCommon(void)
 
 {
   Course_Nop(0x436470);
-  if (iRam004364c0 != 0) {
+  if (_g_CourseAssetsC != 0) {
     Mem_Free();
-    iRam004364c0 = 0;
+    _g_CourseAssetsC = 0;
   }
-  if (iRam004364c4 != 0) {
+  if (_g_CourseAssetsD != 0) {
     Mem_Free();
-    iRam004364c4 = 0;
+    _g_CourseAssetsD = 0;
   }
-  if (iRam0043647c != 0) {
+  if (_g_CourseAssets != 0) {
     Mem_Free();
-    iRam0043647c = 0;
+    _g_CourseAssets = 0;
   }
   if (iRam00436480 != 0) {
     Mem_Free();
@@ -886,14 +895,16 @@ void Asset_FreeCourseCommon(void)
     Mem_Free();
     iRam00436484 = 0;
   }
-  if (iRam0043649c != 0) {
+  if (_g_CourseAssetsB != 0) {
     Mem_Free();
-    iRam0043649c = 0;
+    _g_CourseAssetsB = 0;
   }
   return;
 }
 
 // 0x001aa000  size 0xb98
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
 
 {
@@ -929,14 +940,14 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
   cRam00436478 = *param_2;
   if ((cRam00436478 == '\x02') || (cRam00436478 == '\x01')) {
     uRam0036f2d8 = 4;
-    uRam0036f2d4 = 1;
+    _s_CarAssetLod = 1;
     uRam0036f2dc = 1;
     uRam0036f2e4 = 1;
     uRam0036f2e0 = 3;
     uRam0036f2e8 = 3;
   }
   else if (cRam00436478 == '\0') {
-    uRam0036f2d4 = 0;
+    _s_CarAssetLod = 0;
     uRam0036f2d8 = 0;
     uRam0036f2dc = 0;
     uRam0036f2e0 = 0;
@@ -950,9 +961,9 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
   iVar12 = uVar2 * 0xa0 + *(int *)(param_2 + 4) * 0xcc0 + *(int *)(param_2 + 8) * 400 +
            *(int *)(param_2 + 0xc) * 0x2d0 + *(int *)(param_2 + 0x10) * 0x50;
   uRam00436488 = uVar2;
-  iRam0043649c = Mem_Alloc16(iVar12,param_1);
-  iRam004364a0 = iRam0043649c + iVar12;
-  iRam004364a8 = iRam0043649c + uVar2 * 0xa0;
+  _g_CourseAssetsB = Mem_Alloc16(iVar12,param_1);
+  iRam004364a0 = _g_CourseAssetsB + iVar12;
+  iRam004364a8 = _g_CourseAssetsB + uVar2 * 0xa0;
   uVar14 = 0xff;
   iRam004364ac = iRam004364a8 + *(int *)(param_2 + 4) * 0xcc0;
   iRam004364b0 = iRam004364ac + *(int *)(param_2 + 8) * 0x80;
@@ -960,13 +971,13 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
   iRam004364b8 = iRam004364b4 + *(int *)(param_2 + 8) * 0x70;
   iRam004364bc = iRam004364b8 + *(int *)(param_2 + 0xc) * 0x2d0;
   uVar11 = 0;
-  iRam004364a4 = iRam0043649c;
+  iRam004364a4 = _g_CourseAssetsB;
   uVar3 = 0;
   do {
     uVar19 = 0;
     uVar13 = 0;
-    uVar10 = uRam0036f2d4;
-    if (uRam0036f2d4 <= uRam0036f2d8) {
+    uVar10 = _s_CarAssetLod;
+    if (_s_CarAssetLod <= uRam0036f2d8) {
       do {
         if ((cRam00436478 != '\x01') || (((uVar10 != 0 && (uVar10 != 2)) && (uVar10 != 3)))) {
           iVar12 = Arc_GetFileSize(uVar14 + uVar10,uVar14 + uVar10,0);
@@ -1028,29 +1039,30 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
     uVar14 = uVar7;
   }
   if (*param_2 == '\x02') {
-    uRam0043647c = Mem_AllocAligned(uVar14,0x40,param_1);
+    _g_CourseAssets = Mem_AllocAligned(uVar14,0x40,param_1);
   }
   else {
-    uRam0043647c = 0;
+    _g_CourseAssets = 0;
   }
-  iRam004364c0 = 0;
-  iRam004364c4 = 0;
+  _g_CourseAssetsC = 0;
+  _g_CourseAssetsD = 0;
   uRam004364c8 = 0;
   iRam004364cc = 0;
   uRam004364d0 = 0;
   iRam004364d4 = 0;
   if (*(int *)(param_2 + 0x14) + *(int *)(param_2 + 0x18) != 0) {
-    iRam004364c0 = Mem_Alloc16(*(int *)(param_2 + 0x14) * 0x80 + *(int *)(param_2 + 0x18) * 0xa0,
-                               param_1);
+    _g_CourseAssetsC =
+         Mem_Alloc16(*(int *)(param_2 + 0x14) * 0x80 + *(int *)(param_2 + 0x18) * 0xa0,param_1);
     uRam004364c8 = *(uint *)(param_2 + 0x14);
     uRam004364d0 = *(uint *)(param_2 + 0x18);
-    iRam004364d4 = iRam004364c0 + *(int *)(param_2 + 0x14) * 0x80;
+    iRam004364d4 = _g_CourseAssetsC + *(int *)(param_2 + 0x14) * 0x80;
     uVar14 = (uVar3 + 0x1000) * *(int *)(param_2 + 0x14);
-    iRam004364cc = iRam004364c0;
-    iRam004364c4 = Mem_AllocAligned((uVar14 | (int)uVar14 >> 0x1f) +
-                                    (uVar18 + 0x1000) * *(int *)(param_2 + 0x18),0x40,param_1);
+    iRam004364cc = _g_CourseAssetsC;
+    _g_CourseAssetsD =
+         Mem_AllocAligned((uVar14 | (int)uVar14 >> 0x1f) +
+                          (uVar18 + 0x1000) * *(int *)(param_2 + 0x18),0x40,param_1);
     uVar14 = 0;
-    iVar5 = iRam004364c4;
+    iVar5 = _g_CourseAssetsD;
     if (uRam004364c8 != 0) {
       iVar20 = 0;
       do {
@@ -1209,7 +1221,7 @@ LAB_001aa5ac:
       iVar12 = iVar12 + 0x50;
     } while (uVar2 < *(uint *)(param_2 + 0x10));
   }
-  Chunk_SetRange(0x436470,iRam0043649c,iRam004364a0);
+  Chunk_SetRange(0x436470,_g_CourseAssetsB,iRam004364a0);
   return;
 }
 
@@ -1234,6 +1246,8 @@ void Asset_OnCourseTexLoaded
 }
 
 // 0x001aac60  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Asset_LoadCourseTex(undefined8 param_1,int param_2)
 
 {
@@ -1252,7 +1266,7 @@ void Asset_LoadCourseTex(undefined8 param_1,int param_2)
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   if (cRam00436478 == '\x02') {
-    uVar1 = uRam0043647c;
+    uVar1 = _g_CourseAssets;
   }
   else {
     uVar1 = *(undefined4 *)(iVar4 + 0x20);
@@ -1426,6 +1440,8 @@ void Asset_OnEnvLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 }
 
 // 0x001ab110  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Asset_LoadEnv(undefined8 param_1,int param_2)
 
 {
@@ -1444,7 +1460,7 @@ void Asset_LoadEnv(undefined8 param_1,int param_2)
     iVar2 = *(int *)(iVar2 + 0x20);
   }
   if (cRam00436478 == '\x02') {
-    uVar1 = uRam0043647c;
+    uVar1 = _g_CourseAssets;
   }
   else {
     uVar1 = *(undefined4 *)(iVar4 + 0x20);
@@ -1826,6 +1842,8 @@ void CarAsset_OnBodyLoaded
 }
 
 // 0x001abe20  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarAsset_LoadBody(undefined8 param_1)
 
 {
@@ -1842,7 +1860,7 @@ void CarAsset_LoadBody(undefined8 param_1)
   }
   iVar4 = (int)param_1;
   if (cRam00436478 == '\x02') {
-    uVar1 = uRam0043647c;
+    uVar1 = _g_CourseAssets;
   }
   else {
     uVar1 = *(undefined4 *)(iVar4 + 0x20);

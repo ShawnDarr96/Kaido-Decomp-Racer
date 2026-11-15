@@ -789,6 +789,7 @@ void MenuMgr_FreeBuffers(void)
 }
 
 // 0x001fd5d0  size 0x260
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x660 bytes */
 
 void MenuMgr_Alloc(undefined8 param_1,uint param_2)
@@ -876,8 +877,8 @@ void MenuMgr_Alloc(undefined8 param_1,uint param_2)
   pMVar1->unk_0648 = 0xa0;
   pMVar1->unk_064c = 0x31;
   pMVar1->unk_0650 = 0;
-  *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) | 0x10;
-  *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) | 0x80;
+  *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x10;
+  *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x80;
   UiLayout_Init(&g_MenuMgr->field_0x40,uRam0036f2c0,uRam0036f2c0,0);
   MenuMgr_ApplyNext();
   if ((int)g_MenuMgr->nextScreen < -1) {
@@ -895,21 +896,23 @@ void MenuMgr_Alloc(undefined8 param_1,uint param_2)
 }
 
 // 0x001fd830  size 0x238
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Menu_GetInput(int param_1,ulong param_2)
 
 {
   undefined4 uVar1;
   uint uVar2;
   
-  uVar2 = piRam0036f468[param_1 + 2];
+  uVar2 = _g_MenuInput[param_1 + 2];
   uVar1 = 0;
-  if ((piRam0036f468[param_1 + 4] & uVar2) == 0) {
+  if ((_g_MenuInput[param_1 + 4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if ((uVar2 == 0x40000) || (uVar2 == 0x2000)) {
@@ -996,6 +999,8 @@ undefined4 Menu_GetInput(int param_1,ulong param_2)
 }
 
 // 0x001fda70  size 0x378
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 MenuInput_SetupDevices(int param_1)
 
 {
@@ -1015,12 +1020,12 @@ undefined4 MenuInput_SetupDevices(int param_1)
     if (lVar4 != 0) {
       lVar4 = Wheel_IsActive(lVar3);
       if (lVar4 != 0) {
-        if (*(int *)(iRam0036f468 + 4) == 1) {
+        if (*(int *)(_g_MenuInput + 4) == 1) {
           *(undefined4 *)(param_1 + 8) = 0;
         }
         return 0x100000;
       }
-      if ((*(int *)(iRam0036f468 + 4) == 1) && (*(int *)(param_1 + 8) == 0)) {
+      if ((*(int *)(_g_MenuInput + 4) == 1) && (*(int *)(param_1 + 8) == 0)) {
         *(undefined4 *)(param_1 + 8) = 1;
         iVar2 = maybe_Options_GetLanguage();
         Controls_SetDefaults
@@ -1112,7 +1117,7 @@ undefined4 MenuInput_SetupDevices(int param_1)
       return 2;
     }
   }
-  if (*(int *)(iRam0036f468 + 4) == 1) {
+  if (*(int *)(_g_MenuInput + 4) == 1) {
     *(undefined4 *)(param_1 + 8) = 0;
   }
   return 0x80000;
@@ -1303,6 +1308,8 @@ long MenuInput_Update(undefined8 param_1)
 }
 
 // 0x001fe100  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuInput_Task(int param_1)
 
 {
@@ -1310,10 +1317,10 @@ void MenuInput_Task(int param_1)
   undefined4 uVar2;
   
   iVar1 = *(int *)(param_1 + 0x14);
-  if (iRam0036f468 != 0) {
+  if (_g_MenuInput != 0) {
     uVar2 = MenuInput_Update(iVar1);
     *(undefined4 *)(iVar1 + 0x18) = uVar2;
-    *(undefined4 *)(*(char *)(iVar1 + 0x1c) * 4 + iRam0036f468 + 8) = *(undefined4 *)(iVar1 + 0x18);
+    *(undefined4 *)(*(char *)(iVar1 + 0x1c) * 4 + _g_MenuInput + 8) = *(undefined4 *)(iVar1 + 0x18);
   }
   return;
 }
@@ -1360,27 +1367,31 @@ void MenuInput_KeyRepeatTask(int param_1)
 }
 
 // 0x001fe2d0  size 0x2c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuWnd_Free(void)
 
 {
-  if (iRam0036f468 != 0) {
+  if (_g_MenuInput != 0) {
     Mem_Free();
   }
-  iRam0036f468 = 0;
+  _g_MenuInput = 0;
   return;
 }
 
 // 0x001fe300  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuWnd_Alloc(undefined8 param_1,undefined4 param_2)
 
 {
-  puRam0036f468 = (undefined4 *)Mem_Alloc16(0x18,param_1);
-  puRam0036f468[1] = param_2;
-  puRam0036f468[2] = 0x100000;
-  puRam0036f468[4] = 0x1fffff;
-  puRam0036f468[3] = 0x100000;
-  puRam0036f468[5] = 0x1fffff;
-  *puRam0036f468 = 1;
+  _g_MenuInput = (undefined4 *)Mem_Alloc16(0x18,param_1);
+  _g_MenuInput[1] = param_2;
+  _g_MenuInput[2] = 0x100000;
+  _g_MenuInput[4] = 0x1fffff;
+  _g_MenuInput[3] = 0x100000;
+  _g_MenuInput[5] = 0x1fffff;
+  *_g_MenuInput = 1;
   return;
 }
 

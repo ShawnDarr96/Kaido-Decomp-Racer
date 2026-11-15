@@ -2024,21 +2024,24 @@ void Profile_CopyRivalStates(undefined4 *param_1,int param_2)
 }
 
 // 0x001beac0  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* table at 0x36f2fc */
 
 undefined2 RivalSchedule_Get(int param_1,int param_2)
 
 {
-  return *(undefined2 *)(iRam0036f2fc + param_1 * 0xc + param_2 * 2);
+  return *(undefined2 *)(_g_RivalSchedule + param_1 * 0xc + param_2 * 2);
 }
 
 // 0x001beaf0  size 0x2c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RivalSchedule_Free(void)
 
 {
-  if (iRam0036f2fc != 0) {
+  if (_g_RivalSchedule != 0) {
     Mem_Free();
-    iRam0036f2fc = 0;
+    _g_RivalSchedule = 0;
   }
   return;
 }
@@ -2079,7 +2082,7 @@ void RivalSchedule_SetupBattle(void)
     iVar4 = Profile_GetChapterRivalCount
                       (*(int *)(iVar1 + 0x2734) % 7,*(undefined1 *)(iVar1 + 0x2731));
     iVar11 = 0;
-    psVar9 = psRam0036f2fc;
+    psVar9 = _g_RivalSchedule;
     do {
       iVar10 = 0;
       psVar7 = psVar9;
@@ -2121,7 +2124,7 @@ void RivalSchedule_SetupBattle(void)
           iVar5 = GameDb_GetRival((short)iVar12);
           if (*(short *)(iVar5 + 2) == -1) break;
           if ((((*(int *)(*_g_Profiles + iVar10 + 0x2fe0) == 0) &&
-               (*(int *)((int)psRam0036f2fc + iVar10 + 0x50) == 0)) &&
+               (*(int *)((int)_g_RivalSchedule + iVar10 + 0x50) == 0)) &&
               (lVar6 = Rival_SetupBattle(iVar12,*(undefined1 *)(iVar1 + 0x2733),cVar3), lVar6 != 0))
              && ((0 < *(short *)(*_g_Profiles + iVar11 + 0x3fc4) && (iVar13 < 100)))) {
             *piVar8 = iVar12;
@@ -2207,7 +2210,7 @@ void RivalSchedule_SetupBattle(void)
     }
     iVar11 = 0;
     piVar8 = aiStack_370;
-    psVar9 = psRam0036f2fc;
+    psVar9 = _g_RivalSchedule;
     do {
       iVar10 = 0;
       iVar14 = 0;
@@ -2232,16 +2235,16 @@ void RivalSchedule_SetupBattle(void)
             do {
               iVar14 = maybe_Rand_Float();
               iVar14 = iVar14 % 5;
-            } while (*(int *)(psRam0036f2fc + iVar14 * 2 + 0x1e) == 0);
+            } while (*(int *)(_g_RivalSchedule + iVar14 * 2 + 0x1e) == 0);
             piVar8 = aiStack_370 + iVar14;
           } while (iVar4 <= *piVar8);
           iVar10 = maybe_Rand_Float();
-        } while (psRam0036f2fc[iVar14 * 6 + iVar10 % 6] != -1);
+        } while (_g_RivalSchedule[iVar14 * 6 + iVar10 % 6] != -1);
         iVar12 = *piStack_3a0;
         iVar13 = *piVar8;
-        psRam0036f2fc[iVar14 * 6 + iVar10 % 6] = (short)iVar12;
+        _g_RivalSchedule[iVar14 * 6 + iVar10 % 6] = (short)iVar12;
         *piVar8 = iVar13 + 1;
-        psVar9 = psRam0036f2fc + iVar12 * 2 + 0x28;
+        psVar9 = _g_RivalSchedule + iVar12 * 2 + 0x28;
         psVar9[0] = 1;
         psVar9[1] = 0;
         iVar14 = *_g_Profiles + (uint)*(byte *)(iVar1 + 0x2733);
@@ -2329,7 +2332,7 @@ void RivalSchedule_SetupTeamBattle(void)
   iVar13 = 0;
   do {
     *piVar12 = 0;
-    *(undefined4 *)(iRam0036f2fc + iVar13 + 0x50) = 0;
+    *(undefined4 *)(_g_RivalSchedule + iVar13 + 0x50) = 0;
     iVar6 = GameDb_GetRival((short)iVar21);
     if (*(short *)(iVar6 + 2) == -1) break;
     piVar12 = piVar12 + 1;
@@ -2345,14 +2348,14 @@ void RivalSchedule_SetupTeamBattle(void)
   iVar13 = 0;
   do {
     iVar6 = iVar6 + 1;
-    *(undefined2 *)(iRam0036f2fc + iVar21) = 0xffff;
-    *(undefined2 *)(iRam0036f2fc + iVar21 + 2) = 0xffff;
-    *(undefined2 *)(iRam0036f2fc + iVar21 + 4) = 0xffff;
-    *(undefined2 *)(iRam0036f2fc + iVar21 + 6) = 0xffff;
-    *(undefined2 *)(iRam0036f2fc + iVar21 + 8) = 0xffff;
-    *(undefined2 *)(iRam0036f2fc + iVar21 + 10) = 0xffff;
+    *(undefined2 *)(_g_RivalSchedule + iVar21) = 0xffff;
+    *(undefined2 *)(_g_RivalSchedule + iVar21 + 2) = 0xffff;
+    *(undefined2 *)(_g_RivalSchedule + iVar21 + 4) = 0xffff;
+    *(undefined2 *)(_g_RivalSchedule + iVar21 + 6) = 0xffff;
+    *(undefined2 *)(_g_RivalSchedule + iVar21 + 8) = 0xffff;
+    *(undefined2 *)(_g_RivalSchedule + iVar21 + 10) = 0xffff;
     iVar21 = iVar21 + 0xc;
-    *(undefined4 *)(iRam0036f2fc + iVar13 + 0x3c) = 1;
+    *(undefined4 *)(_g_RivalSchedule + iVar13 + 0x3c) = 1;
     iVar13 = iVar13 + 4;
   } while (iVar6 < 5);
   piStack_3660 = aiStack_40;
@@ -2387,7 +2390,7 @@ void RivalSchedule_SetupTeamBattle(void)
           aiStack_3280[iVar6] = 1;
           aiStack_40[0] = iVar6;
           iVar13 = iVar21 * 8 + iVar2;
-          *(undefined4 *)(iVar20 + iRam0036f2fc + 0x50) = 1;
+          *(undefined4 *)(iVar20 + _g_RivalSchedule + 0x50) = 1;
           *(undefined4 *)(iVar13 + 0x2ef0) = 0xffffffff;
           *(undefined4 *)(iVar13 + 0x2ef4) = 0;
           break;
@@ -2646,7 +2649,7 @@ LAB_001bfb30:
     piVar24 = aiStack_35d0;
     do {
       iVar13 = *piVar24;
-      *(undefined4 *)(iRam0036f2fc + *piVar12 * 4 + 0x3c) = 0;
+      *(undefined4 *)(_g_RivalSchedule + *piVar12 * 4 + 0x3c) = 0;
       psVar17 = (short *)GameDb_GetRival((short)iVar13);
       uVar11 = Rival_FindByTeam(*psVar17);
       Rival_RandomizeBehaviour(6,uVar11,aiStack_3610);
@@ -2659,8 +2662,8 @@ LAB_001bfb30:
         if (*psVar17 == *psVar9) {
           iVar6 = *piVar22;
           piVar22 = piVar22 + 1;
-          *(short *)(iRam0036f2fc + *piVar12 * 0xc + iVar6 * 2) = (short)iVar21;
-          *(undefined4 *)(iRam0036f2fc + iVar13 + 0x50) = 1;
+          *(short *)(_g_RivalSchedule + *piVar12 * 0xc + iVar6 * 2) = (short)iVar21;
+          *(undefined4 *)(_g_RivalSchedule + iVar13 + 0x50) = 1;
         }
         iVar21 = iVar21 + 1;
         iVar13 = iVar13 + 4;
@@ -2693,17 +2696,17 @@ LAB_001bfb30:
             do {
               iVar23 = maybe_Rand_Float();
               iVar23 = iVar23 % 5;
-            } while (*(int *)(iRam0036f2fc + iVar23 * 4 + 0x3c) == 0);
+            } while (*(int *)(_g_RivalSchedule + iVar23 * 4 + 0x3c) == 0);
             piVar12 = aiStack_3630 + iVar23;
           } while (iVar5 <= *piVar12);
           iVar21 = maybe_Rand_Float();
-          psVar17 = (short *)(iRam0036f2fc + iVar23 * 0xc + (iVar21 % 6) * 2);
+          psVar17 = (short *)(_g_RivalSchedule + iVar23 * 0xc + (iVar21 % 6) * 2);
         } while (*psVar17 != -1);
         iVar23 = *piStack_3660;
         iVar21 = *piVar12;
         *psVar17 = (short)iVar23;
         *piVar12 = iVar21 + 1;
-        *(undefined4 *)(iRam0036f2fc + iVar23 * 4 + 0x50) = 1;
+        *(undefined4 *)(_g_RivalSchedule + iVar23 * 4 + 0x50) = 1;
         iVar23 = iVar2 + (uint)*(byte *)(iVar2 + 0x2733);
         *(char *)(iVar23 + 0x3fbc) = *(char *)(iVar23 + 0x3fbc) + '\x01';
         if ('\n' < *(char *)(iVar2 + (uint)*(byte *)(iVar2 + 0x2733) + 0x3fbc)) {
@@ -2718,14 +2721,18 @@ LAB_001bfb30:
 }
 
 // 0x001bfe00  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RivalSchedule_Alloc(undefined8 param_1)
 
 {
-  uRam0036f2fc = Mem_Alloc16(0x820,param_1);
+  _g_RivalSchedule = Mem_Alloc16(0x820,param_1);
   return;
 }
 
 // 0x001bfe30  size 0x10c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RivalSchedule_IsComplete(int param_1,short param_2,int param_3)
 
 {
@@ -2755,12 +2762,13 @@ void RivalSchedule_IsComplete(int param_1,short param_2,int param_3)
     iVar4 = 0;
     do {
       iVar8 = 0;
-      psVar7 = (short *)(iRam0036f2fc + iVar5);
+      psVar7 = (short *)(_g_RivalSchedule + iVar5);
       do {
         if (param_2 == *psVar7) {
-          ((short *)(iRam0036f2fc + iVar5))[iVar8] = -1;
-          if ((*(char *)(param_1 + 4) == '\x01') && (*(int *)(iRam0036f2fc + iVar4 + 0x3c) == 0)) {
-            *(undefined4 *)(iRam0036f2fc + iVar4 + 0x3c) = 1;
+          ((short *)(_g_RivalSchedule + iVar5))[iVar8] = -1;
+          if ((*(char *)(param_1 + 4) == '\x01') && (*(int *)(_g_RivalSchedule + iVar4 + 0x3c) == 0)
+             ) {
+            *(undefined4 *)(_g_RivalSchedule + iVar4 + 0x3c) = 1;
           }
           bVar3 = true;
           break;
@@ -2780,10 +2788,12 @@ void RivalSchedule_IsComplete(int param_1,short param_2,int param_3)
 }
 
 // 0x001bff40  size 0x28
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RivalSchedule_Clear(int param_1,int param_2)
 
 {
-  *(undefined2 *)(iRam0036f2fc + param_1 * 0xc + param_2 * 2) = 0xffff;
+  *(undefined2 *)(_g_RivalSchedule + param_1 * 0xc + param_2 * 2) = 0xffff;
   return;
 }
 

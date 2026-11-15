@@ -1640,6 +1640,8 @@ switchD_002c2a10_caseD_0:
 }
 
 // 0x002c2aa0  size 0x184
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 RaceMenu_HandleInput(undefined8 param_1)
 
 {
@@ -1651,17 +1653,17 @@ undefined4 RaceMenu_HandleInput(undefined8 param_1)
   iVar2 = (int)param_1;
   bVar1 = *(int *)(iVar2 + 0xfc) != 0;
   uVar4 = 0;
-  if (*piRam0036f468 != 1) {
-    *piRam0036f468 = 1;
+  if (*_g_MenuInput != 1) {
+    *_g_MenuInput = 1;
   }
-  uVar3 = piRam0036f468[bVar1 + 2];
-  if ((piRam0036f468[bVar1 + 4] & uVar3) == 0) {
+  uVar3 = _g_MenuInput[bVar1 + 2];
+  if ((_g_MenuInput[bVar1 + 4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if (uVar3 == 0x20) {
@@ -1699,6 +1701,8 @@ undefined4 RaceMenu_HandleInput(undefined8 param_1)
 }
 
 // 0x002c2c30  size 0x668
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 RaceMenu_HandleOptions(undefined8 param_1)
 
 {
@@ -1752,17 +1756,17 @@ undefined4 RaceMenu_HandleOptions(undefined8 param_1)
     return 0;
   }
   bVar5 = *(int *)(iVar14 + 0xfc) != 0;
-  if (*piRam0036f468 != 1) {
-    *piRam0036f468 = 1;
+  if (*_g_MenuInput != 1) {
+    *_g_MenuInput = 1;
   }
-  uVar10 = piRam0036f468[bVar5 + 2];
-  if ((piRam0036f468[bVar5 + 4] & uVar10) == 0) {
+  uVar10 = _g_MenuInput[bVar5 + 2];
+  if ((_g_MenuInput[bVar5 + 4] & uVar10) == 0) {
     uVar10 = 0x100000;
   }
   else if (uVar10 == 0x80000) {
     uVar10 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar10 = 0x100000;
   }
   if (uVar10 == 0x40) {

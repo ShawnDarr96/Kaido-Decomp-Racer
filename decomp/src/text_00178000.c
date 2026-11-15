@@ -563,6 +563,8 @@ void Course_SpawnAmbient(void)
 }
 
 // 0x00178bf0  size 0xdb4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_UpdateEnvironment(void)
 
 {
@@ -658,7 +660,7 @@ void Course_UpdateEnvironment(void)
     uStack_170 = DAT_0030b880;
     uStack_164 = DAT_0030b88c;
     if (iRam004301a0 != 0) {
-      if (iRam0036f1f8 == 0) {
+      if (_s_RaceIsReplayMode == 0) {
         sceVu0CopyVector(auStack_1a0,0x431120);
         sceVu0CopyVector(0x431120,0x431140);
         uStack_530 = DAT_0030b8a0;
@@ -897,6 +899,8 @@ void Course_UpdateEnvironment(void)
 }
 
 // 0x001799b0  size 0x66c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Car_DrawShadowAndBlur(int *param_1,int param_2)
 
 {
@@ -946,7 +950,7 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
   float fStack_c;
   float fStack_4;
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     uStack_2a0 = 0;
     iStack_2c0 = 0;
     iStack_2d0 = 0;
@@ -1060,6 +1064,7 @@ void Car_DrawShadowAndBlur(int *param_1,int param_2)
 
 // 0x0017a020  size 0xd8
 /* WARNING: Removing unreachable block (ram,0x0017a0d4) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "blur error : viewNrm == NULL." */
 
 void MotionBlur_Setup(int param_1)
@@ -1072,7 +1077,7 @@ void MotionBlur_Setup(int param_1)
   uint uVar5;
   uint uVar6;
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     *(undefined4 *)(param_1 + 4) = 0;
     uVar6 = 0;
     iVar3 = 0;
@@ -1157,6 +1162,8 @@ bool MotionBlur_FindSample
 }
 
 // 0x0017a200  size 0x4e4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MotionBlur_Build(undefined8 param_1,int param_2,int param_3)
 
 {
@@ -1200,7 +1207,7 @@ void MotionBlur_Build(undefined8 param_1,int param_2,int param_3)
   undefined4 uStack_4;
   
   puVar11 = (uint *)(param_3 + 0x110);
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     uStack_20 = DAT_0030b840;
     uStack_1c = DAT_0030b844;
     uStack_18 = DAT_0030b848;
@@ -2096,6 +2103,8 @@ void Skid_Clear(int param_1)
 }
 
 // 0x0017bb20  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Skid_DrawAll(void)
 
 {
@@ -2106,8 +2115,8 @@ void Skid_DrawAll(void)
   if (uRam004301ac != 0) {
     iVar1 = 0;
     do {
-      if (iRam004301b0 + iVar1 != 0) {
-        Skid_Draw(iRam004301b0 + iVar1,uVar2);
+      if (_g_Skids + iVar1 != 0) {
+        Skid_Draw(_g_Skids + iVar1,uVar2);
       }
       iVar1 = iVar1 + 0xb900;
       uVar2 = uVar2 + 1;
@@ -2117,6 +2126,8 @@ void Skid_DrawAll(void)
 }
 
 // 0x0017bba0  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Car_DrawAllEffects(void)
 
 {
@@ -2147,8 +2158,8 @@ void Car_DrawAllEffects(void)
       if (uRam004301ac != 0) {
         iVar4 = 0;
         do {
-          if (iRam004301b0 + iVar4 != 0) {
-            Car_DrawReflection(iRam004301b0 + iVar4,&g_Views + iVar2);
+          if (_g_Skids + iVar4 != 0) {
+            Car_DrawReflection(_g_Skids + iVar4,&g_Views + iVar2);
           }
           iVar4 = iVar4 + 0xb900;
           uVar6 = uVar6 + 1;
@@ -2163,6 +2174,8 @@ void Car_DrawAllEffects(void)
 }
 
 // 0x0017bce0  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Skid_ClearAll(void)
 
 {
@@ -2172,7 +2185,7 @@ void Skid_ClearAll(void)
   uVar2 = 0;
   iVar1 = 0;
   do {
-    Skid_Clear(iRam004301b0 + iVar1);
+    Skid_Clear(_g_Skids + iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0xb900;
   } while (uVar2 < 3);
@@ -2181,19 +2194,23 @@ void Skid_ClearAll(void)
 }
 
 // 0x0017bd40  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Skid_Free(void)
 
 {
-  if (iRam004301b0 != 0) {
+  if (_g_Skids != 0) {
     Mem_Free();
   }
-  iRam004301b0 = 0;
+  _g_Skids = 0;
   uRam004301ac = 0;
   PtclSys_Shutdown();
   return;
 }
 
 // 0x0017bd80  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Skid_Alloc(undefined8 param_1)
 
 {
@@ -2202,11 +2219,11 @@ void Skid_Alloc(undefined8 param_1)
   
   PtclSys_Init();
   uRam004301ac = 3;
-  iRam004301b0 = Mem_Alloc16(0x22b00,param_1);
+  _g_Skids = Mem_Alloc16(0x22b00,param_1);
   uVar1 = 0;
   iVar2 = 0;
   do {
-    Skid_Clear(iRam004301b0 + iVar2);
+    Skid_Clear(_g_Skids + iVar2);
     uVar1 = uVar1 + 1;
     iVar2 = iVar2 + 0xb900;
   } while (uVar1 < 3);

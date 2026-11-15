@@ -692,6 +692,8 @@ undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,un
 }
 
 // 0x00145370  size 0x184
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void DmaChain_DestroyAll(void)
 
 {
@@ -741,7 +743,7 @@ void DmaChain_DestroyAll(void)
   uRam00387f70 = 0;
   uRam00387f74 = 0;
   uRam00387f78 = 0;
-  uRam00387f7c = 0;
+  _s_RaceUiSpriteCursor = 0;
   uRam00387f80 = 0;
   uRam00387f84 = 0;
   uRam00387f88 = 0;
@@ -754,6 +756,8 @@ void DmaChain_DestroyAll(void)
 }
 
 // 0x00145500  size 0x88
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void DmaChain_SetHeap(undefined4 param_1)
 
 {
@@ -769,7 +773,7 @@ void DmaChain_SetHeap(undefined4 param_1)
   uRam00387f70 = 0;
   uRam00387f74 = 0;
   uRam00387f78 = 0;
-  uRam00387f7c = 0;
+  _s_RaceUiSpriteCursor = 0;
   uRam00387f80 = 0;
   uRam00387f84 = 0;
   uRam00387f88 = 0;

@@ -353,6 +353,8 @@ void RaceHud_FadeOutAndFree(void)
 }
 
 // 0x002ccbd0  size 0xe8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_ResetSlots(void)
 
 {
@@ -361,25 +363,25 @@ void RaceHud_ResetSlots(void)
   int iVar3;
   int iVar4;
   
-  *(undefined4 *)(iRam0036f804 + 0x28c) = 0;
-  *(undefined4 *)(iRam0036f804 + 0x1104) = 0;
-  *(undefined4 *)(iRam0036f804 + 0x280) = 0;
-  RaceHud_ClearSlots(iRam0036f804);
+  *(undefined4 *)(_g_RaceHud + 0x28c) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x1104) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x280) = 0;
+  RaceHud_ClearSlots(_g_RaceHud);
   iVar4 = 0;
-  *(undefined4 *)(iRam0036f804 + 0x2a0) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x2a0) = 0;
   lVar2 = GameState_GetTotalCarCount();
   if (0 < lVar2) {
     iVar3 = 0;
     do {
       iVar4 = iVar4 + 1;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0xa8) = 0;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0xac) = 0;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0xbc) = 0;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 8) = 0;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0x9c) = 0xffffffff;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0xa0) = 0xffffffff;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0xa4) = 0xffffffff;
-      *(undefined4 *)(iRam0036f804 + iVar3 + 0x98) = 0;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0xa8) = 0;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0xac) = 0;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0xbc) = 0;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 8) = 0;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0x9c) = 0xffffffff;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0xa0) = 0xffffffff;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0xa4) = 0xffffffff;
+      *(undefined4 *)(_g_RaceHud + iVar3 + 0x98) = 0;
       iVar3 = iVar3 + 0xcc;
       iVar1 = GameState_GetTotalCarCount();
     } while (iVar4 < iVar1);
@@ -1382,58 +1384,62 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
 }
 
 // 0x002cf820  size 0x18c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_Task(void)
 
 {
   char cVar1;
   long lVar2;
   
-  if (*(int *)(iRam0036f804 + 0x1104) == 0) {
+  if (*(int *)(_g_RaceHud + 0x1104) == 0) {
     maybe_RaceHud_FormatRecord();
-    *(undefined4 *)(iRam0036f804 + 0x1104) = 1;
-    Result_StoreRecordAlt(iRam0036f804 + 0x3b8,0);
+    *(undefined4 *)(_g_RaceHud + 0x1104) = 1;
+    Result_StoreRecordAlt(_g_RaceHud + 0x3b8,0);
   }
-  cVar1 = *(char *)(iRam0036f804 + 0xfb4);
+  cVar1 = *(char *)(_g_RaceHud + 0xfb4);
   if (cVar1 == '\x02') {
     RaceHud_FadeOut();
-    RaceHud_Draw(iRam0036f804);
-    if (*(int *)(iRam0036f804 + 0x390) == 0xb) {
-      *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) & 0xfffffffd;
+    RaceHud_Draw(_g_RaceHud);
+    if (*(int *)(_g_RaceHud + 0x390) == 0xb) {
+      *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) & 0xfffffffd;
     }
     else {
-      RaceMenu_Draw(iRam0036f804 + 0x2a0);
+      RaceMenu_Draw(_g_RaceHud + 0x2a0);
     }
   }
   else if (cVar1 == '\x04') {
-    Result_Init(iRam0036f804 + 0x3b8);
+    Result_Init(_g_RaceHud + 0x3b8);
   }
   else if (cVar1 == '\x05') {
     RaceHud_Draw();
-    RaceMenu_Draw(iRam0036f804 + 0x2a0);
+    RaceMenu_Draw(_g_RaceHud + 0x2a0);
   }
   else {
     if (cVar1 != '\x03') {
       if (cVar1 != '\x01') goto LAB_002cf918;
       RaceHud_FadeOutAndFree();
     }
-    RaceHud_Draw(iRam0036f804);
-    if (*(int *)(iRam0036f804 + 0x390) != 0xb) {
-      RaceMenu_Draw(iRam0036f804 + 0x2a0);
+    RaceHud_Draw(_g_RaceHud);
+    if (*(int *)(_g_RaceHud + 0x390) != 0xb) {
+      RaceMenu_Draw(_g_RaceHud + 0x2a0);
     }
   }
 LAB_002cf918:
   lVar2 = RaceScene_IsPaused();
   if (lVar2 == 0) {
-    *(int *)(iRam0036f804 + 0x284) = *(int *)(iRam0036f804 + 0x284) + 1;
+    *(int *)(_g_RaceHud + 0x284) = *(int *)(_g_RaceHud + 0x284) + 1;
   }
-  if (*(int *)(iRam0036f804 + 0x29c) != 0) {
+  if (*(int *)(_g_RaceHud + 0x29c) != 0) {
     RaceHud_ResetSlots();
   }
-  *(undefined4 *)(iRam0036f804 + 0x29c) = 0;
+  *(undefined4 *)(_g_RaceHud + 0x29c) = 0;
   return;
 }
 
 // 0x002cf9b0  size 0xf8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_RaceHud_IsBusy(void)
 
 {
@@ -1445,22 +1451,22 @@ undefined4 maybe_RaceHud_IsBusy(void)
   uint uVar6;
   uint uVar7;
   
-  if (iRam0036f804 == 0) {
+  if (_g_RaceHud == 0) {
     uVar2 = 0;
   }
   else {
-    if (((*(uint *)(iRam0036f804 + 0x27c) & 0x20) != 0) &&
-       (lVar3 = UiMgr_FindFreeSlot(), lVar3 == 0)) {
-      *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) & 0xffffffdf;
+    if (((*(uint *)(_g_RaceHud + 0x27c) & 0x20) != 0) && (lVar3 = UiMgr_FindFreeSlot(), lVar3 == 0))
+    {
+      *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) & 0xffffffdf;
     }
-    if ((*(uint *)(iRam0036f804 + 0x27c) & 0x20) == 0) {
-      bVar1 = *(int *)(iRam0036f804 + 0x12a0) != 0;
+    if ((*(uint *)(_g_RaceHud + 0x27c) & 0x20) == 0) {
+      bVar1 = *(int *)(_g_RaceHud + 0x12a0) != 0;
       if (!bVar1) {
-        bVar1 = *(int *)(iRam0036f804 + 0x2720) != 0;
+        bVar1 = *(int *)(_g_RaceHud + 0x2720) != 0;
       }
       if (!bVar1) {
         uVar7 = 0;
-        iVar5 = iRam0036f804;
+        iVar5 = _g_RaceHud;
         do {
           uVar6 = 0;
           iVar4 = iVar5;
@@ -1486,41 +1492,51 @@ undefined4 maybe_RaceHud_IsBusy(void)
 }
 
 // 0x002cfab0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_SetField268(undefined4 param_1)
 
 {
-  *(undefined4 *)(iRam0036f804 + 0x268) = param_1;
+  *(undefined4 *)(_g_RaceHud + 0x268) = param_1;
   return;
 }
 
 // 0x002cfac0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_SetField26c(undefined4 param_1)
 
 {
-  *(undefined4 *)(iRam0036f804 + 0x26c) = param_1;
+  *(undefined4 *)(_g_RaceHud + 0x26c) = param_1;
   return;
 }
 
 // 0x002cfad0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 RaceHud_GetFlags(void)
 
 {
-  return *(undefined4 *)(iRam0036f804 + 0x27c);
+  return *(undefined4 *)(_g_RaceHud + 0x27c);
 }
 
 // 0x002cfae0  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_ToggleFlags(uint param_1)
 
 {
-  *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) ^ param_1;
+  *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) ^ param_1;
   return;
 }
 
 // 0x002cfb00  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_SetFlags(uint param_1)
 
 {
-  *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) | param_1;
+  *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) | param_1;
   return;
 }
 
@@ -1532,20 +1548,26 @@ undefined * RaceHud_GetMeterTable(void)
 }
 
 // 0x002cfb30  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int RaceHud_GetRacerPanel(int param_1)
 
 {
-  return iRam0036f804 + param_1 * 0xcc + 4;
+  return _g_RaceHud + param_1 * 0xcc + 4;
 }
 
 // 0x002cfb60  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined1 RaceHud_GetState(void)
 
 {
-  return *(undefined1 *)(iRam0036f804 + 0xfb4);
+  return *(undefined1 *)(_g_RaceHud + 0xfb4);
 }
 
 // 0x002cfb70  size 0x188
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_SetState(byte param_1)
 
 {
@@ -1557,43 +1579,43 @@ void RaceHud_SetState(byte param_1)
   int iVar6;
   
   if (param_1 < 10) {
-    *(byte *)(iRam0036f804 + 0xfb4) = param_1;
-    cVar1 = *(char *)(iRam0036f804 + 0xfb4);
+    *(byte *)(_g_RaceHud + 0xfb4) = param_1;
+    cVar1 = *(char *)(_g_RaceHud + 0xfb4);
     if (cVar1 != '\x02') {
       if (cVar1 == '\x04') {
-        *(undefined4 *)(iRam0036f804 + 0x280) = 0;
-        RaceHud_ClearSlots(iRam0036f804);
-        puVar4 = (undefined1 *)(iRam0036f804 + 0x3b8);
-        if (((*(char *)(iRam0036f804 + 0x3b8) != '\x05') && (*(int *)(iRam0036f804 + 0x6d8) != 0))
-           && (*(char *)(iRam0036f804 + 0x400) == '\0')) {
-          *(undefined1 *)(iRam0036f804 + 0x400) = 2;
+        *(undefined4 *)(_g_RaceHud + 0x280) = 0;
+        RaceHud_ClearSlots(_g_RaceHud);
+        puVar4 = (undefined1 *)(_g_RaceHud + 0x3b8);
+        if (((*(char *)(_g_RaceHud + 0x3b8) != '\x05') && (*(int *)(_g_RaceHud + 0x6d8) != 0)) &&
+           (*(char *)(_g_RaceHud + 0x400) == '\0')) {
+          *(undefined1 *)(_g_RaceHud + 0x400) = 2;
         }
         *puVar4 = 1;
         lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
-          *(undefined4 *)(iRam0036f804 + 0x450) = 0;
+          *(undefined4 *)(_g_RaceHud + 0x450) = 0;
         }
       }
       else if (cVar1 == '\x05') {
-        RaceMenu_Task(iRam0036f804 + 0x2a0);
+        RaceMenu_Task(_g_RaceHud + 0x2a0);
       }
       else if (cVar1 == '\x01') {
         lVar3 = RaceScene_IsFlag10();
         if (lVar3 == 0) {
-          *(undefined4 *)(iRam0036f804 + 0x3b70) = 0;
-          *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) & 0xfffffff3;
-          *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) | 2;
+          *(undefined4 *)(_g_RaceHud + 0x3b70) = 0;
+          *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) & 0xfffffff3;
+          *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) | 2;
         }
         else {
-          *(undefined4 *)(iRam0036f804 + 0x3b70) = 0;
-          *(uint *)(iRam0036f804 + 0x27c) = *(uint *)(iRam0036f804 + 0x27c) & 0xfffffffd;
+          *(undefined4 *)(_g_RaceHud + 0x3b70) = 0;
+          *(uint *)(_g_RaceHud + 0x27c) = *(uint *)(_g_RaceHud + 0x27c) & 0xfffffffd;
         }
         iVar6 = 0;
         lVar3 = GameState_GetTotalCarCount();
         if (0 < lVar3) {
           iVar5 = 0;
           do {
-            RaceUi_SetupCarIcons(iRam0036f804 + iVar5 + 4,iVar6);
+            RaceUi_SetupCarIcons(_g_RaceHud + iVar5 + 4,iVar6);
             iVar5 = iVar5 + 0xcc;
             iVar6 = iVar6 + 1;
             iVar2 = GameState_GetTotalCarCount();
@@ -1606,6 +1628,8 @@ void RaceHud_SetState(byte param_1)
 }
 
 // 0x002cfd00  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
 
 {
@@ -1618,7 +1642,7 @@ void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
   
   uRam0036f808 = param_1;
   uRam0036f80c = param_2;
-  if (iRam0036f804 != 0) {
+  if (_g_RaceHud != 0) {
     uVar6 = 0;
     iVar4 = 0;
     do {
@@ -1626,7 +1650,7 @@ void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
       iVar3 = 0;
       do {
         uVar1 = uRam0036f80c;
-        iVar2 = iRam0036f804 + iVar4 + iVar3;
+        iVar2 = _g_RaceHud + iVar4 + iVar3;
         *(undefined4 *)(iVar2 + 0x1128) = uRam0036f808;
         *(undefined4 *)(iVar2 + 0x112c) = uVar1;
         if (((*(int *)(iVar2 + 0x1110) != 0) && (*(int *)(iVar2 + 0x110c) != 0)) &&
@@ -1640,14 +1664,14 @@ void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
                      *(undefined4 *)(iVar2 + 0x1110),*(undefined4 *)(iVar2 + 0x1128),
                      *(undefined4 *)(iVar2 + 0x112c),*(undefined4 *)(iVar2 + 0x1130),0,0);
         uVar1 = uRam0036f80c;
-        iVar2 = iRam0036f804;
+        iVar2 = _g_RaceHud;
         uVar5 = uVar5 + 1;
         iVar3 = iVar3 + 0x3c;
       } while (uVar5 < 3);
       uVar6 = uVar6 + 1;
       iVar4 = iVar4 + 0xb4;
     } while (uVar6 < 2);
-    *(undefined4 *)(iRam0036f804 + 0x1290) = uRam0036f808;
+    *(undefined4 *)(_g_RaceHud + 0x1290) = uRam0036f808;
     *(undefined4 *)(iVar2 + 0x1294) = uVar1;
     if (((*(int *)(iVar2 + 0x1278) != 0) && (*(int *)(iVar2 + 0x1274) != 0)) &&
        (*(int *)(iVar2 + 0x12a0) == 0)) {
@@ -1660,8 +1684,8 @@ void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
                  *(undefined4 *)(iVar2 + 0x1278),*(undefined4 *)(iVar2 + 0x1290),
                  *(undefined4 *)(iVar2 + 0x1294),*(undefined4 *)(iVar2 + 0x1298),0,0);
     uVar1 = uRam0036f80c;
-    iVar4 = iRam0036f804;
-    *(undefined4 *)(iRam0036f804 + 10000) = uRam0036f808;
+    iVar4 = _g_RaceHud;
+    *(undefined4 *)(_g_RaceHud + 10000) = uRam0036f808;
     *(undefined4 *)(iVar4 + 0x2714) = uVar1;
     if (((*(int *)(iVar4 + 0x26f8) != 0) && (*(int *)(iVar4 + 0x26f4) != 0)) &&
        (*(int *)(iVar4 + 0x2720) == 0)) {
@@ -1678,6 +1702,8 @@ void maybe_RaceHud_UploadTextures(undefined4 param_1,undefined4 param_2)
 }
 
 // 0x002cff10  size 0x1c4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceHud_Free(void)
 
 {
@@ -1687,21 +1713,21 @@ void RaceHud_Free(void)
   uint uVar4;
   uint uVar5;
   
-  if (iRam0036f804 != 0) {
+  if (_g_RaceHud != 0) {
     uVar4 = 0;
     iVar2 = 0;
     do {
-      if (*(int *)(iRam0036f804 + iVar2 + 0xfc4) != 0) {
+      if (*(int *)(_g_RaceHud + iVar2 + 0xfc4) != 0) {
         Mem_Free();
-        *(undefined4 *)(iRam0036f804 + iVar2 + 0xfc4) = 0;
+        *(undefined4 *)(_g_RaceHud + iVar2 + 0xfc4) = 0;
       }
       uVar4 = uVar4 + 1;
       iVar2 = iVar2 + 0x14;
     } while (uVar4 < 0x10);
-    RaceUi_Free(iRam0036f804 + 0x2a0);
-    Result_Free(iRam0036f804 + 0x3b8);
-    iVar2 = iRam0036f804;
-    if (*(int *)(iRam0036f804 + 0x1274) != 0) {
+    RaceUi_Free(_g_RaceHud + 0x2a0);
+    Result_Free(_g_RaceHud + 0x3b8);
+    iVar2 = _g_RaceHud;
+    if (*(int *)(_g_RaceHud + 0x1274) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar2 + 0x1274) = 0;
     }
@@ -1711,8 +1737,8 @@ void RaceHud_Free(void)
     }
     DmaBuf_Free(iVar2 + 0x1280);
     *(undefined4 *)(iVar2 + 0x12a0) = 0;
-    iVar2 = iRam0036f804;
-    if (*(int *)(iRam0036f804 + 0x26f4) != 0) {
+    iVar2 = _g_RaceHud;
+    if (*(int *)(_g_RaceHud + 0x26f4) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar2 + 0x26f4) = 0;
     }
@@ -1728,7 +1754,7 @@ void RaceHud_Free(void)
       uVar5 = 0;
       iVar3 = 0;
       do {
-        iVar1 = iRam0036f804 + iVar2 + iVar3;
+        iVar1 = _g_RaceHud + iVar2 + iVar3;
         if (*(int *)(iVar1 + 0x110c) != 0) {
           Mem_Free();
           *(undefined4 *)(iVar1 + 0x110c) = 0;
@@ -1745,9 +1771,9 @@ void RaceHud_Free(void)
       uVar4 = uVar4 + 1;
       iVar2 = iVar2 + 0xb4;
     } while (uVar4 < 2);
-    if (iRam0036f804 != 0) {
+    if (_g_RaceHud != 0) {
       Mem_Free();
-      iRam0036f804 = 0;
+      _g_RaceHud = 0;
     }
   }
   ReplayUi_Free();

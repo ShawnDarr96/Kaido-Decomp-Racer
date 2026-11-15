@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x001a4760  size 0x3ec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_UpdateFlareOcclusion(void)
 
 {
@@ -40,8 +42,8 @@ void Course_UpdateFlareOcclusion(void)
     iStack_20 = 0;
     iStack_30 = 0;
     do {
-      puVar3 = (undefined4 *)(iRam00430640 + iStack_20);
-      puVar4 = (uint *)(iRam004305c8 + iStack_30);
+      puVar3 = (undefined4 *)(_g_CourseScene + iStack_20);
+      puVar4 = (uint *)(_g_CourseBufB + iStack_30);
       bVar1 = false;
       if (((*puVar4 & 2) == 0) && ((*puVar4 & 4) != 0)) {
         bVar1 = true;
@@ -55,7 +57,7 @@ void Course_UpdateFlareOcclusion(void)
           iVar14 = 0;
           iVar5 = 0;
           do {
-            puVar8 = (uint *)(iRam004305d0 + iVar14);
+            puVar8 = (uint *)(_g_CourseBufC + iVar14);
             uVar11 = *puVar8;
             bVar1 = false;
             if (((uVar11 & 2) == 0) && ((uVar11 & 4) != 0)) {
@@ -69,10 +71,10 @@ void Course_UpdateFlareOcclusion(void)
                 iVar6 = ((uint)(byte)puVar7[2] * 0x18 - (uint)(byte)puVar7[2]) * 0x40;
                 puVar10 = &g_Views + iVar6;
                 if (*(int *)(iVar6 + 0x431684) != 0) {
-                  if (iRam0036f1f8 == 1) {
+                  if (_s_RaceIsReplayMode == 1) {
                     lVar2 = Vu0_TransformPointPersp(puVar10,iVar6 + 0x4313c0,puVar8 + 8);
                     if (lVar2 != 0) {
-                      iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
+                      iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
                                                (uint)(ushort)puVar8[2] * 2 + 0xb,0);
                       lVar2 = Course_GetGroundHeight
                                         (puVar10,iVar6 + (*(ushort *)((int)puVar8 + 10) + 1) * 0x50
@@ -123,7 +125,7 @@ void Course_UpdateFlareOcclusion(void)
     iVar5 = uVar9 << 3;
     do {
       uVar9 = uVar9 + 1;
-      *(undefined4 *)(iRam00430640 + iVar5) = 0;
+      *(undefined4 *)(_g_CourseScene + iVar5) = 0;
       iVar5 = iVar5 + 8;
     } while (uVar9 < uRam004305c4);
   }
@@ -131,6 +133,8 @@ void Course_UpdateFlareOcclusion(void)
 }
 
 // 0x001a4b60  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseScene_Unload(void)
 
 {
@@ -138,7 +142,7 @@ void CourseScene_Unload(void)
   int iVar2;
   
   uVar1 = 0;
-  iVar2 = iRam00430640;
+  iVar2 = _g_CourseScene;
   if (uRam004305c4 != 0) {
     do {
       if (*(int *)(iVar2 + 4) != 0) {
@@ -149,9 +153,9 @@ void CourseScene_Unload(void)
       iVar2 = iVar2 + 8;
     } while (uVar1 < uRam004305c4);
   }
-  if (iRam00430640 != 0) {
+  if (_g_CourseScene != 0) {
     Mem_Free();
-    iRam00430640 = 0;
+    _g_CourseScene = 0;
   }
   if (iRam00430660 != 0) {
     Mem_Free();
@@ -182,9 +186,9 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
   int iVar10;
   
   uVar5 = Course_Load();
-  iRam00430640 = Mem_Alloc16(uRam004305c4 << 3,param_1);
+  _g_CourseScene = Mem_Alloc16(uRam004305c4 << 3,param_1);
   uVar9 = 0;
-  iVar10 = iRam00430640;
+  iVar10 = _g_CourseScene;
   if (uRam004305c4 != 0) {
     do {
       uVar3 = Mem_Alloc16(iRam004305cc << 2,param_1);
@@ -194,7 +198,7 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
     } while (uVar9 < uRam004305c4);
   }
   pcRam0043064c = Course_CaptureReflection;
-  uRam00430650 = 0x430640;
+  puRam00430650 = &g_CourseScene;
   Gfx_RemoveFrameCallback(0x430644);
   uRam00430654 = 0;
   uRam00430658 = 0;

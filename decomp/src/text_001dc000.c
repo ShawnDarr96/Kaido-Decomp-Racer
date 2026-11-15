@@ -385,7 +385,7 @@ void RaceProg_Begin(void)
             cVar4 = RaceCtx_GetMode();
             if (cVar4 == '\x05') {
               RaceScene_SetFlags(0x10);
-              *(undefined4 *)(iRam0036f804 + 0x29c) = 1;
+              *(undefined4 *)(_g_RaceHud + 0x29c) = 1;
             }
             else {
               *(undefined1 *)(_g_RaceProg + 2) = 5;
@@ -425,7 +425,7 @@ void RaceProg_Begin(void)
                   cVar4 = RaceCtx_GetMode();
                   if (cVar4 == '\x02') {
                     if ((*_g_RaceProg & 0x410) == 0) {
-                      iVar1 = *piRam0036f34c;
+                      iVar1 = *_g_AiDrivers;
                       uVar11 = _g_RaceProg[0x10];
                       Replay_GetHeader();
                       Ranking_FindBestRival();
@@ -442,7 +442,7 @@ void RaceProg_Begin(void)
                     cVar4 = RaceCtx_GetMode();
                     if ((cVar4 == '\x03') && ((*_g_RaceProg & 0x410) == 0)) {
                       uVar11 = _g_RaceProg[0xd];
-                      iVar1 = *piRam0036f34c;
+                      iVar1 = *_g_AiDrivers;
                       uVar3 = _g_RaceProg[0x10];
                       Replay_GetHeader();
                       Ranking_ComputePlayerRank();

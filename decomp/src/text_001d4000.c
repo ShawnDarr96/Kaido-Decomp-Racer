@@ -651,6 +651,8 @@ void Traffic_InitSlot(undefined4 *param_1)
 }
 
 // 0x001d5060  size 0xacc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ai_DriveCar(undefined8 param_1)
 
 {
@@ -797,11 +799,11 @@ void Ai_DriveCar(undefined8 param_1)
   
   puVar10 = (uint *)param_1;
   uVar1 = (undefined2)puVar10[1];
-  if (iRam0036f34c == 0) {
+  if (_g_AiDrivers == 0) {
     puVar11 = (uint *)0x0;
   }
   else {
-    puVar11 = *(uint **)((char)puVar10[1] * 4 + iRam0036f34c + 8);
+    puVar11 = *(uint **)((char)puVar10[1] * 4 + _g_AiDrivers + 8);
   }
   uVar7 = RaceCar_Get(uVar1);
   uStack_34 = 0x3f800000;
@@ -1165,6 +1167,7 @@ void Ai_InitTuning(uint *param_1,int param_2,float *param_3)
 /* WARNING: Removing unreachable block (ram,0x001d6670) */
 /* WARNING: Removing unreachable block (ram,0x001d6688) */
 /* WARNING: Removing unreachable block (ram,0x001d6668) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,undefined4 *param_5,
                     long param_6)
@@ -1315,11 +1318,11 @@ void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,
   uStack_4c = param_5[0x11];
   uStack_48 = param_5[0x12];
   uStack_44 = param_5[0x13];
-  if (iRam0036f34c == 0) {
+  if (_g_AiDrivers == 0) {
     pfVar13 = (float *)0x0;
   }
   else {
-    pfVar13 = *(float **)((char)param_3 * 4 + iRam0036f34c + 8);
+    pfVar13 = *(float **)((char)param_3 * 4 + _g_AiDrivers + 8);
   }
   uVar8 = RaceCar_Get(param_3);
   iVar14 = (int)uVar8;

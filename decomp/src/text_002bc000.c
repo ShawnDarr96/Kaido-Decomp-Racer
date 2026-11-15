@@ -3,6 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002bc0b0  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 10 callers */
 
 undefined4 SeqGen_FindPatternIndex(int param_1)
@@ -19,7 +20,7 @@ undefined4 SeqGen_FindPatternIndex(int param_1)
     iVar2 = iVar2 + 1;
     param_1 = param_1 + 0x18;
   } while (iVar2 < 0xc);
-  if ((iRam0036f7e4 == 0) || (*(int *)(iRam0036f7e4 + 4) == 0)) {
+  if ((_g_SeqGen == 0) || (*(int *)(_g_SeqGen + 4) == 0)) {
     uVar1 = 1;
   }
   else {
@@ -29,17 +30,21 @@ undefined4 SeqGen_FindPatternIndex(int param_1)
 }
 
 // 0x002bc110  size 0x20
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined2 SeqGen_GetPatternId(int param_1)
 
 {
-  return *(undefined2 *)(*(int *)(iRam0036f7e4 + 8) + param_1 * 0xc);
+  return *(undefined2 *)(*(int *)(_g_SeqGen + 8) + param_1 * 0xc);
 }
 
 // 0x002bc130  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int SeqGen_GetPatternEntry(int param_1)
 
 {
-  return *(int *)(iRam0036f7e4 + 8) + param_1 * 0xc;
+  return *(int *)(_g_SeqGen + 8) + param_1 * 0xc;
 }
 
 // 0x002bc150  size 0x50
@@ -82,6 +87,8 @@ undefined4 Script_Nop(void)
 }
 
 // 0x002bc200  size 0x1ec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SeqGen_Shutdown(void)
 
 {
@@ -89,14 +96,14 @@ void SeqGen_Shutdown(void)
   int iVar2;
   int iVar3;
   
-  if (iRam0036f7e4 != 0) {
-    if (*(int *)(iRam0036f7e4 + 8) != 0) {
+  if (_g_SeqGen != 0) {
+    if (*(int *)(_g_SeqGen + 8) != 0) {
       Mem_Free();
-      *(undefined4 *)(iRam0036f7e4 + 8) = 0;
+      *(undefined4 *)(_g_SeqGen + 8) = 0;
     }
-    if (iRam0036f7e4 != 0) {
+    if (_g_SeqGen != 0) {
       Mem_Free();
-      iRam0036f7e4 = 0;
+      _g_SeqGen = 0;
     }
   }
   iVar3 = 0;
@@ -172,6 +179,7 @@ void SeqGen_Shutdown(void)
 }
 
 // 0x002bc3f0  size 0x33c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x8a08-byte state */
 
 void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
@@ -266,12 +274,12 @@ void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
     else {
       uVar6 = uVar6 + 0x7ff >> 0xb;
     }
-    puRam0036f7e4 = (undefined4 *)Mem_Alloc16(0xc,param_1);
+    _g_SeqGen = (undefined4 *)Mem_Alloc16(0xc,param_1);
     uVar2 = Mem_Alloc16(uVar6 << 0xb,param_1);
-    puRam0036f7e4[2] = uVar2;
-    uVar2 = Arc_LoadFileEx(0x180b,puRam0036f7e4[2],0x2ae560,puRam0036f7e4,0,0);
-    *puRam0036f7e4 = uVar2;
-    puRam0036f7e4[1] = 1;
+    _g_SeqGen[2] = uVar2;
+    uVar2 = Arc_LoadFileEx(0x180b,_g_SeqGen[2],0x2ae560,_g_SeqGen,0,0);
+    *_g_SeqGen = uVar2;
+    _g_SeqGen[1] = 1;
   }
   return;
 }
@@ -432,6 +440,8 @@ void SeqGen_ResetPart(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x002bcb00  size 0x1d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Result_BuildRaceEntry(int param_1)
 
 {
@@ -446,7 +456,7 @@ void Result_BuildRaceEntry(int param_1)
   undefined8 uVar9;
   
   uVar9 = 0;
-  iVar1 = *piRam0036f34c;
+  iVar1 = *_g_AiDrivers;
   uVar8 = 0;
   cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x01') {
@@ -525,6 +535,8 @@ int LapTime_Compare(int *param_1,int *param_2,int *param_3)
 }
 
 // 0x002bce00  size 0x4d0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Result_UpdateCursor(char *param_1)
 
 {
@@ -546,22 +558,22 @@ void Result_UpdateCursor(char *param_1)
   if ((param_1[0x48] != '\x02') && (param_1[0x48] != '\x04')) {
     if (*param_1 == '\x01') {
       if (*(float *)(param_1 + 0x94) == 1.0) {
-        if (*piRam0036f468 != 1) {
-          *piRam0036f468 = 1;
+        if (*_g_MenuInput != 1) {
+          *_g_MenuInput = 1;
         }
       }
-      else if (*piRam0036f468 == 1) {
-        *piRam0036f468 = 0;
+      else if (*_g_MenuInput == 1) {
+        *_g_MenuInput = 0;
       }
     }
-    uVar6 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar6) == 0) {
+    uVar6 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar6) == 0) {
       uVar6 = 0x100000;
     }
     else if (uVar6 == 0x80000) {
       uVar6 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar6 = 0x100000;
     }
     if (uVar6 == 0x20) {
@@ -593,7 +605,7 @@ void Result_UpdateCursor(char *param_1)
             param_1[0x340] = '\x01';
             break;
           case 1:
-            *piRam0036f468 = 0;
+            *_g_MenuInput = 0;
             param_1[0x340] = '\x02';
             break;
           case 2:
@@ -610,7 +622,7 @@ void Result_UpdateCursor(char *param_1)
             param_1[0x326] = '\0';
             param_1[0x327] = '\0';
             param_1[0x340] = '\x06';
-            *piRam0036f468 = 0;
+            *_g_MenuInput = 0;
             break;
           case 5:
             param_1[0x340] = '\a';
@@ -900,6 +912,8 @@ void Result_ResetCursor(undefined4 *param_1)
 }
 
 // 0x002bdb20  size 0x984
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Result_Draw_TestCourse(int param_1)
 
 {
@@ -1179,7 +1193,7 @@ LAB_002bdc40:
     uStack_2c = 4;
     iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
     UiText_DrawRivalInfo(auStack_40,1,0,uVar6 + 1);
-    if (*(int *)(iRam0036f804 + 0x298) == 0) {
+    if (*(int *)(_g_RaceHud + 0x298) == 0) {
       uVar3 = 8 - uVar6;
     }
     else {
@@ -1442,6 +1456,8 @@ LAB_002be884:
 }
 
 // 0x002bea60  size 0x930
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Result_Draw_TestCourse_ea60(int param_1)
 
 {
@@ -1732,7 +1748,7 @@ LAB_002beeec:
       UiElem_GetRect(uVar1,auStack_40,*(int *)(param_1 + 0x39c) + uVar6);
       uStack_2c = 4;
       iStack_28 = (int)((float)iStack_28 * *(float *)(param_1 + 0x94));
-      if (*(int *)(iRam0036f804 + 0x298) == 0) {
+      if (*(int *)(_g_RaceHud + 0x298) == 0) {
         uVar4 = 8 - uVar6;
       }
       else {

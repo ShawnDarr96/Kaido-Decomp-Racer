@@ -149,6 +149,7 @@ void maybe_Camera_ClampAngles
 }
 
 // 0x00140350  size 0x1e4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevEnumHint / lgDevAReadMulti */
 
 void Wheel_Update(void)
@@ -162,19 +163,19 @@ void Wheel_Update(void)
   
   bVar1 = false;
   if (iRam0036f050 == 0) {
-    if (iRam0036f074 == 0) {
+    if (_g_Wheel == 0) {
       lgDevAEnumHint(0x36f070);
-      iRam0036f074 = 1;
+      _g_Wheel = 1;
     }
     else {
-      if ((iRam0036f074 != 0) && (lVar2 = lgDev_WaitAsync(1,0x36f078), lVar2 == 0)) {
-        iRam0036f074 = 0;
+      if ((_g_Wheel != 0) && (lVar2 = lgDev_WaitAsync(1,0x36f078), lVar2 == 0)) {
+        _g_Wheel = 0;
       }
-      if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+      if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
         uRam0036f07c = 1;
       }
     }
-    if (iRam0036f074 == 0) {
+    if (_g_Wheel == 0) {
       bVar1 = true;
     }
   }
@@ -187,15 +188,15 @@ void Wheel_Update(void)
     Wheel_EnumerateDevices();
   }
   if (iRam0036f050 != 0) {
-    if ((iRam0036f074 != 0) && (lVar2 = lgDev_WaitAsync(0,0x36f078), lVar2 == 0)) {
-      iRam0036f074 = 0;
+    if ((_g_Wheel != 0) && (lVar2 = lgDev_WaitAsync(0,0x36f078), lVar2 == 0)) {
+      _g_Wheel = 0;
     }
-    if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+    if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
       uRam0036f07c = 1;
     }
-    if (iRam0036f074 == 0) {
+    if (_g_Wheel == 0) {
       lgDevAReadMulti(iRam0036f050,0x36f058,0x36f068,0x387da0);
-      iRam0036f074 = 1;
+      _g_Wheel = 1;
     }
   }
   iVar5 = 0;
@@ -216,6 +217,7 @@ void Wheel_Update(void)
 }
 
 // 0x00140540  size 0x73c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevDownloadForceEffect etc. */
 
 void Wheel_UpdateForceEffects(void)
@@ -256,14 +258,14 @@ void Wheel_UpdateForceEffects(void)
       uVar1 = *(undefined4 *)(iVar10 + 0x49c);
       *(uint *)(iVar10 + 0x494) = uVar6 & 0xfffffffe;
       if ((uVar6 & 1) != 0) {
-        if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-          iRam0036f074 = 0;
+        if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+          _g_Wheel = 0;
         }
-        if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+        if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
           uRam0036f07c = 1;
         }
         lgDevSetDeviceProperty(*(undefined4 *)(iVar10 + 0x490),2,uVar1);
-        iRam0036f074 = 1;
+        _g_Wheel = 1;
       }
       iVar11 = iVar11 + 1;
       piVar7 = piVar7 + 1;
@@ -278,14 +280,14 @@ void Wheel_UpdateForceEffects(void)
       uVar1 = *(undefined4 *)(iVar10 + 0x4a0);
       *(uint *)(iVar10 + 0x494) = uVar6 & 0xfffffffd;
       if ((uVar6 & 2) != 0) {
-        if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-          iRam0036f074 = 0;
+        if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+          _g_Wheel = 0;
         }
-        if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+        if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
           uRam0036f07c = 1;
         }
         lgDevSetDeviceProperty(*(undefined4 *)(iVar10 + 0x490),3,uVar1);
-        iRam0036f074 = 1;
+        _g_Wheel = 1;
       }
       iVar11 = iVar11 + 1;
       piVar7 = piVar7 + 1;
@@ -303,14 +305,14 @@ void Wheel_UpdateForceEffects(void)
     } while (iVar11 < iRam0036f050);
   }
   if (iVar10 != 0) {
-    if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-      iRam0036f074 = 0;
+    if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+      _g_Wheel = 0;
     }
-    if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+    if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
       uRam0036f07c = 1;
     }
     lgDevAStopForceEffectMulti(iVar10,0x387dc0);
-    iRam0036f074 = 1;
+    _g_Wheel = 1;
   }
   uVar6 = 0;
   iVar11 = 0;
@@ -324,10 +326,10 @@ void Wheel_UpdateForceEffects(void)
       if (uVar6 != 0) {
         piVar9 = (int *)0x387dc0;
         do {
-          if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-            iRam0036f074 = 0;
+          if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+            _g_Wheel = 0;
           }
-          if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+          if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
             uRam0036f07c = 1;
           }
           iVar3 = iVar10 + *piVar9 * 4;
@@ -337,7 +339,7 @@ void Wheel_UpdateForceEffects(void)
             lgDevDestroyForceEffect(*puVar8);
             *puVar8 = 0xffffffff;
           }
-          iRam0036f074 = 1;
+          _g_Wheel = 1;
           uVar12 = uVar12 + 1;
           piVar9 = piVar9 + 1;
         } while (uVar12 < uVar6);
@@ -358,10 +360,10 @@ void Wheel_UpdateForceEffects(void)
       if (uVar6 != 0) {
         piVar9 = (int *)0x387dc0;
         do {
-          if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-            iRam0036f074 = 0;
+          if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+            _g_Wheel = 0;
           }
-          if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+          if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
             uRam0036f07c = 1;
           }
           iVar3 = iVar10 + *piVar9 * 4;
@@ -373,7 +375,7 @@ void Wheel_UpdateForceEffects(void)
              )) {
             *puVar8 = 0xffffffff;
           }
-          iRam0036f074 = 1;
+          _g_Wheel = 1;
           uVar12 = uVar12 + 1;
           piVar9 = piVar9 + 1;
         } while (uVar12 < uVar6);
@@ -402,15 +404,15 @@ void Wheel_UpdateForceEffects(void)
     iVar11 = 0x387de0;
     puVar8 = (undefined4 *)0x387dc0;
     do {
-      if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-        iRam0036f074 = 0;
+      if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+        _g_Wheel = 0;
       }
-      if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+      if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
         uRam0036f07c = 1;
       }
       lgDevAUpdateForceEffect(*puVar8,iVar11);
       uVar12 = uVar12 + 1;
-      iRam0036f074 = 1;
+      _g_Wheel = 1;
       iVar11 = iVar11 + 0x3c;
       puVar8 = puVar8 + 1;
     } while (uVar12 < uVar6);
@@ -427,14 +429,14 @@ void Wheel_UpdateForceEffects(void)
     } while (iVar10 < iRam0036f050);
   }
   if (iVar11 != 0) {
-    if ((iRam0036f074 != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
-      iRam0036f074 = 0;
+    if ((_g_Wheel != 0) && (lVar5 = lgDev_WaitAsync(0,0x36f078), lVar5 == 0)) {
+      _g_Wheel = 0;
     }
-    if ((iRam0036f074 == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
+    if ((_g_Wheel == 0) && ((uRam0036f078 & 0x80000000) != 0)) {
       uRam0036f07c = 1;
     }
     lgDevAStartForceEffectMulti(iVar11,0x387dc0);
-    iRam0036f074 = 1;
+    _g_Wheel = 1;
   }
   return;
 }
@@ -809,6 +811,7 @@ void maybe_Wheel_Shutdown(void)
 }
 
 // 0x00141530  size 0x8c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevInit */
 
 void Wheel_Init(void)
@@ -835,7 +838,7 @@ void Wheel_Init(void)
     piVar1 = piVar1 + 1;
   } while (iVar4 < 2);
   uRam0036f070 = 0;
-  uRam0036f074 = 0;
+  _g_Wheel = 0;
   uRam0036f078 = 0;
   uRam0036f07c = 0;
   return;

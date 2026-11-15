@@ -462,7 +462,7 @@ void ScrGarage_Draw_FfSort(undefined8 param_1)
   if ((*(int *)(iVar4 + 0x40) != 0) && (lVar3 = UiLayout_UpdateAnimById(0xf), lVar3 == 0)) {
     *(undefined4 *)(iVar4 + 0x40) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0xf,*(undefined4 *)(&DAT_0032d7c0 + *(int *)(iVar4 + 8) * 4),1,0);
   }
   MenuWnd_DrawText(0xf,0x36,0x163);
@@ -637,7 +637,7 @@ void maybe_PageChangeCar_State0_FfSort(undefined8 param_1)
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0xe,*(undefined4 *)(&DAT_0032d780 + *(int *)(iVar2 + 0x18) * 4),1,0);
     iVar4 = *(int *)(iVar2 + 0x1c);
   }
@@ -909,7 +909,7 @@ void ScrRace_Draw_ShortcutMenu(int *param_1)
       Menu_ClearSlot(0);
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(9,*(undefined4 *)(&DAT_0032d900 + param_1[2] * 4),1,0);
   }
   if ((g_MenuMgr->flags & 0x10000) == 0) {

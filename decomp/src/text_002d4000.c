@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x002d40e0  size 0x200
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByWeight(short *param_1,short *param_2)
 
 {
@@ -17,37 +19,37 @@ int maybe_GarageSort_ByWeight(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   cVar1 = *(char *)(iVar6 + 0x3c);
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   iVar6 = (uint)(*(char *)(iVar6 + 0x3c) == '\x04') - (uint)(cVar1 == '\x04');
   if (iVar6 == 0) {
     sVar4 = *param_1;
     sVar5 = *param_2;
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     cVar1 = *(char *)(iVar6 + 0x28);
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     iVar6 = (int)*(char *)(iVar6 + 0x28) - (int)cVar1;
     if (iVar6 == 0) {
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar4);
       sVar2 = *psVar7;
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar5);
       iVar6 = (int)sVar2 - (int)*psVar7;
       if (iVar6 == 0) {
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar4);
         sVar4 = CarRec_GetVariant(uVar8);
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar5);
         sVar5 = CarRec_GetVariant(uVar8);
         iVar6 = (int)sVar4 - (int)sVar5;
@@ -58,6 +60,8 @@ int maybe_GarageSort_ByWeight(short *param_1,short *param_2)
 }
 
 // 0x002d42e0  size 0x200
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByValue(short *param_1,short *param_2)
 
 {
@@ -72,37 +76,37 @@ int maybe_GarageSort_ByValue(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   cVar1 = *(char *)(iVar6 + 0x3c);
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   iVar6 = (uint)(*(char *)(iVar6 + 0x3c) == '\x02') - (uint)(cVar1 == '\x02');
   if (iVar6 == 0) {
     sVar4 = *param_1;
     sVar5 = *param_2;
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     cVar1 = *(char *)(iVar6 + 0x28);
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     iVar6 = (int)*(char *)(iVar6 + 0x28) - (int)cVar1;
     if (iVar6 == 0) {
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar4);
       sVar2 = *psVar7;
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar5);
       iVar6 = (int)sVar2 - (int)*psVar7;
       if (iVar6 == 0) {
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar4);
         sVar4 = CarRec_GetVariant(uVar8);
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar5);
         sVar5 = CarRec_GetVariant(uVar8);
         iVar6 = (int)sVar4 - (int)sVar5;
@@ -113,6 +117,8 @@ int maybe_GarageSort_ByValue(short *param_1,short *param_2)
 }
 
 // 0x002d44e0  size 0x200
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByMaker(short *param_1,short *param_2)
 
 {
@@ -127,37 +133,37 @@ int maybe_GarageSort_ByMaker(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   cVar1 = *(char *)(iVar6 + 0x3c);
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   iVar6 = (uint)(*(char *)(iVar6 + 0x3c) == '\x01') - (uint)(cVar1 == '\x01');
   if (iVar6 == 0) {
     sVar4 = *param_1;
     sVar5 = *param_2;
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     cVar1 = *(char *)(iVar6 + 0x28);
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     iVar6 = (int)*(char *)(iVar6 + 0x28) - (int)cVar1;
     if (iVar6 == 0) {
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar4);
       sVar2 = *psVar7;
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar5);
       iVar6 = (int)sVar2 - (int)*psVar7;
       if (iVar6 == 0) {
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar4);
         sVar4 = CarRec_GetVariant(uVar8);
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar5);
         sVar5 = CarRec_GetVariant(uVar8);
         iVar6 = (int)sVar4 - (int)sVar5;
@@ -168,6 +174,8 @@ int maybe_GarageSort_ByMaker(short *param_1,short *param_2)
 }
 
 // 0x002d46e0  size 0x200
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_GarageSort_ByClass(short *param_1,short *param_2)
 
 {
@@ -182,37 +190,37 @@ int maybe_GarageSort_ByClass(short *param_1,short *param_2)
   
   sVar4 = *param_1;
   sVar5 = *param_2;
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   cVar1 = *(char *)(iVar6 + 0x3c);
-  iVar6 = Profile_Get(uRam0036f828);
+  iVar6 = Profile_Get(_s_GarageSortProfile);
   uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
   iVar6 = CarDb_GetModel(uVar3);
   iVar6 = (uint)(*(char *)(iVar6 + 0x3c) == '\0') - (uint)(cVar1 == '\0');
   if (iVar6 == 0) {
     sVar4 = *param_1;
     sVar5 = *param_2;
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar5 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     cVar1 = *(char *)(iVar6 + 0x28);
-    iVar6 = Profile_Get(uRam0036f828);
+    iVar6 = Profile_Get(_s_GarageSortProfile);
     uVar3 = CarRec_GetModelId(iVar6 + sVar4 * 0xcc);
     iVar6 = CarDb_GetModel(uVar3);
     iVar6 = (int)*(char *)(iVar6 + 0x28) - (int)cVar1;
     if (iVar6 == 0) {
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar4);
       sVar2 = *psVar7;
-      uVar8 = Profile_Get(uRam0036f828);
+      uVar8 = Profile_Get(_s_GarageSortProfile);
       psVar7 = (short *)Profile_GetCarRecordB(uVar8,sVar5);
       iVar6 = (int)sVar2 - (int)*psVar7;
       if (iVar6 == 0) {
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar4);
         sVar4 = CarRec_GetVariant(uVar8);
-        uVar8 = Profile_Get(uRam0036f828);
+        uVar8 = Profile_Get(_s_GarageSortProfile);
         uVar8 = Profile_GetCarRecordB(uVar8,sVar5);
         sVar5 = CarRec_GetVariant(uVar8);
         iVar6 = (int)sVar4 - (int)sVar5;
@@ -223,12 +231,14 @@ int maybe_GarageSort_ByClass(short *param_1,short *param_2)
 }
 
 // 0x002d48e0  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuObjSet_Free(uint param_1)
 
 {
   int iVar1;
   
-  iVar1 = iRam0036f834 + (param_1 & 0xff) * 0x14;
+  iVar1 = _g_MenuObj + (param_1 & 0xff) * 0x14;
   if (*(int *)(iVar1 + 0x14) != 0) {
     Mem_Free();
     *(undefined4 *)(iVar1 + 0x14) = 0;
@@ -239,6 +249,8 @@ void MenuObjSet_Free(uint param_1)
 }
 
 // 0x002d4940  size 0xa8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuObjSet_Alloc(uint param_1,int param_2)
 
 {
@@ -248,7 +260,7 @@ void MenuObjSet_Alloc(uint param_1,int param_2)
   int iVar4;
   int iVar5;
   
-  iVar1 = iRam0036f834 + (param_1 & 0xff) * 0x14;
+  iVar1 = _g_MenuObj + (param_1 & 0xff) * 0x14;
   *(int *)(iVar1 + 0xc) = param_2;
   *(undefined4 *)(iVar1 + 0x10) = 0;
   uVar2 = Mem_Alloc16(param_2 * 0x1c,*(undefined4 *)(iVar1 + 8));
@@ -271,6 +283,8 @@ void MenuObjSet_Alloc(uint param_1,int param_2)
 }
 
 // 0x002d49f0  size 0xe4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_MenuObjSet_GetObject(byte param_1,int param_2)
 
 {
@@ -278,7 +292,7 @@ undefined4 maybe_MenuObjSet_GetObject(byte param_1,int param_2)
   int iVar2;
   undefined4 uVar3;
   
-  iVar2 = iRam0036f834 + (uint)param_1 * 0x14;
+  iVar2 = _g_MenuObj + (uint)param_1 * 0x14;
   if ((param_2 < 0) || (*(int *)(iVar2 + 0xc) <= param_2)) {
     iVar2 = 0;
   }
@@ -307,6 +321,8 @@ undefined4 maybe_MenuObjSet_GetObject(byte param_1,int param_2)
 }
 
 // 0x002d4ae0  size 0x250
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_MenuObjSet_UpdateAll(ulong param_1)
 
 {
@@ -336,7 +352,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
                 } while ((int)uVar2 < 8);
               }
               else {
-                iVar1 = iRam0036f834 + uVar2 * 0x14;
+                iVar1 = _g_MenuObj + uVar2 * 0x14;
                 iVar3 = 0;
                 if (0 < *(int *)(iVar1 + 0xc)) {
                   do {
@@ -349,7 +365,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
             } while ((int)uVar4 < 8);
           }
           else {
-            iVar1 = iRam0036f834 + uVar4 * 0x14;
+            iVar1 = _g_MenuObj + uVar4 * 0x14;
             iVar3 = 0;
             if (0 < *(int *)(iVar1 + 0xc)) {
               do {
@@ -362,7 +378,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
         } while ((int)uVar5 < 8);
       }
       else {
-        iVar1 = iRam0036f834 + (uVar6 & 0xff) * 0x14;
+        iVar1 = _g_MenuObj + (uVar6 & 0xff) * 0x14;
         iVar3 = 0;
         if (0 < *(int *)(iVar1 + 0xc)) {
           do {
@@ -375,7 +391,7 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
     } while ((int)uVar6 < 8);
   }
   else {
-    iVar1 = iRam0036f834 + (int)(param_1 & 0xff) * 0x14;
+    iVar1 = _g_MenuObj + (int)(param_1 & 0xff) * 0x14;
     iVar3 = 0;
     if (0 < *(int *)(iVar1 + 0xc)) {
       do {
@@ -388,13 +404,15 @@ void maybe_MenuObjSet_UpdateAll(ulong param_1)
 }
 
 // 0x002d4d40  size 0x1e0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8 param_4)
 
 {
   char cVar1;
   int iVar2;
   
-  iVar2 = iRam0036f834 + (uint)param_1 * 0x14;
+  iVar2 = _g_MenuObj + (uint)param_1 * 0x14;
   if ((param_2 < 0) || (*(int *)(iVar2 + 0xc) <= param_2)) {
     iVar2 = 0;
   }
@@ -435,13 +453,15 @@ void maybe_MenuObjSet_SetLights(byte param_1,int param_2,long param_3,undefined8
 }
 
 // 0x002d4f20  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 maybe_MenuObjSet_IsLoaded(uint param_1,int param_2)
 
 {
   int iVar1;
   undefined8 uVar2;
   
-  iVar1 = iRam0036f834 + (param_1 & 0xff) * 0x14;
+  iVar1 = _g_MenuObj + (param_1 & 0xff) * 0x14;
   if ((param_2 < 0) || (*(int *)(iVar1 + 0xc) <= param_2)) {
     iVar1 = 0;
   }
@@ -458,6 +478,8 @@ undefined8 maybe_MenuObjSet_IsLoaded(uint param_1,int param_2)
 }
 
 // 0x002d4fa0  size 0x258
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_MenuObjSet_FindByName(uint param_1,int param_2,undefined8 param_3)
 
 {
@@ -473,7 +495,7 @@ undefined4 maybe_MenuObjSet_FindByName(uint param_1,int param_2,undefined8 param
   char *pcVar10;
   
   iVar9 = 0;
-  iVar3 = iRam0036f834 + (param_1 & 0xff) * 0x14;
+  iVar3 = _g_MenuObj + (param_1 & 0xff) * 0x14;
   iVar6 = *(int *)(iVar3 + 0xc);
   if (0 < iVar6) {
     iVar7 = 0;
@@ -555,78 +577,84 @@ LAB_002d51a8:
 }
 
 // 0x002d5210  size 0x20
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuObjSet_Step(uint param_1)
 
 {
-  maybe_MenuObj_StepState(iRam0036f834 + (param_1 & 0xff) * 0x14 + 4);
+  maybe_MenuObj_StepState(_g_MenuObj + (param_1 & 0xff) * 0x14 + 4);
   return;
 }
 
 // 0x002d5230  size 0x2c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuObj_Shutdown(void)
 
 {
-  if (iRam0036f834 != 0) {
+  if (_g_MenuObj != 0) {
     Mem_Free();
-    iRam0036f834 = 0;
+    _g_MenuObj = 0;
   }
   return;
 }
 
 // 0x002d5260  size 0x110
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuObj_Init(undefined8 param_1)
 
 {
   undefined4 *puVar1;
   undefined4 uVar2;
   
-  puRam0036f834 = (undefined4 *)Mem_Alloc16(0xa4,param_1);
+  _g_MenuObj = (undefined4 *)Mem_Alloc16(0xa4,param_1);
   uVar2 = (undefined4)param_1;
-  *puRam0036f834 = uVar2;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 1) = 0;
+  *_g_MenuObj = uVar2;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 1) = 0;
   puVar1[2] = uVar2;
   puVar1[3] = 0;
   puVar1[4] = 0;
   puVar1[5] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 6) = 1;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 6) = 1;
   puVar1[7] = uVar2;
   puVar1[8] = 0;
   puVar1[9] = 0;
   puVar1[10] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 0xb) = 2;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 0xb) = 2;
   puVar1[0xc] = uVar2;
   puVar1[0xd] = 0;
   puVar1[0xe] = 0;
   puVar1[0xf] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 0x10) = 3;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 0x10) = 3;
   puVar1[0x11] = uVar2;
   puVar1[0x12] = 0;
   puVar1[0x13] = 0;
   puVar1[0x14] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 0x15) = 4;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 0x15) = 4;
   puVar1[0x16] = uVar2;
   puVar1[0x17] = 0;
   puVar1[0x18] = 0;
   puVar1[0x19] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 0x1a) = 5;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 0x1a) = 5;
   puVar1[0x1b] = uVar2;
   puVar1[0x1c] = 0;
   puVar1[0x1d] = 0;
   puVar1[0x1e] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 0x1f) = 6;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 0x1f) = 6;
   puVar1[0x20] = uVar2;
   puVar1[0x21] = 0;
   puVar1[0x22] = 0;
   puVar1[0x23] = 0;
-  puVar1 = puRam0036f834;
-  *(undefined1 *)(puRam0036f834 + 0x24) = 7;
+  puVar1 = _g_MenuObj;
+  *(undefined1 *)(_g_MenuObj + 0x24) = 7;
   puVar1[0x25] = uVar2;
   puVar1[0x26] = 0;
   puVar1[0x27] = 0;
@@ -1219,21 +1247,25 @@ long maybe_GarageBg_LoadChunk(int param_1)
 }
 
 // 0x002d6090  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GarageBg_Free(void)
 
 {
-  if (iRam0046a1a0 != 0) {
+  if (_g_GarageBgBuf != 0) {
     Mem_Free();
-    iRam0046a1a0 = 0;
+    _g_GarageBgBuf = 0;
   }
-  if (iRam0046a198 != 0) {
+  if (_g_GarageBgData != 0) {
     Mem_Free();
-    iRam0046a198 = 0;
+    _g_GarageBgData = 0;
   }
   return;
 }
 
 // 0x002d60f0  size 0x19c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
 
 {
@@ -1247,19 +1279,19 @@ void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
   iVar1 = Arc_GetFileSize(0x1989,0x19b0,1);
   iVar1 = iVar1 + 0x1400;
   Mem_Set16(0x46a190,0,0x20);
-  iRam0046a198 = Mem_AllocAligned(iVar1 * param_2,0x40,param_1);
+  _g_GarageBgData = Mem_AllocAligned(iVar1 * param_2,0x40,param_1);
   uRam0046a19c = param_2;
-  iRam0046a1a0 = Mem_Alloc16(param_2 * 0xb0,param_1);
+  _g_GarageBgBuf = Mem_Alloc16(param_2 * 0xb0,param_1);
   uVar5 = 0;
-  iRam0046a1a4 = iRam0046a1a0 + param_2 * 0x28;
-  iRam0046a1a8 = iRam0046a1a0;
+  iRam0046a1a4 = _g_GarageBgBuf + param_2 * 0x28;
+  iRam0046a1a8 = _g_GarageBgBuf;
   uRam0046a1ac = param_3;
   if (param_2 != 0) {
     iVar3 = 0;
     iVar2 = 0;
     do {
       iVar4 = iRam0046a1a8 + iVar3;
-      iVar6 = iRam0046a198 + iVar2;
+      iVar6 = _g_GarageBgData + iVar2;
       maybe_Course_InitHeader(iVar4,0,0xb0);
       Course_SetField18(iVar4,iVar1,iVar6);
       Chunk_Init(iVar4 + 0x28,0xb0);
@@ -1276,7 +1308,7 @@ void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
       *(undefined4 *)(iVar4 + 0xac) = 0x3f800000;
     } while (uVar5 < param_2);
   }
-  Chunk_SetRange(0x46a190,iRam0046a1a0,iRam0046a1a4);
+  Chunk_SetRange(0x46a190,_g_GarageBgBuf,iRam0046a1a4);
   return;
 }
 
@@ -1453,6 +1485,8 @@ undefined * maybe_MenuCar_GetSpinTable(int param_1)
 }
 
 // 0x002d6770  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_GarageBg_Draw(void)
 
 {
@@ -1462,10 +1496,10 @@ void maybe_GarageBg_Draw(void)
   int iVar4;
   int iVar5;
   
-  iVar1 = iRam0036f834;
-  iVar5 = iRam0036f834 + 0x7c;
+  iVar1 = _g_MenuObj;
+  iVar5 = _g_MenuObj + 0x7c;
   iVar4 = 0;
-  if (0 < *(int *)(iRam0036f834 + 0x84)) {
+  if (0 < *(int *)(_g_MenuObj + 0x84)) {
     do {
       uVar3 = MenuObjSet_GetEntry(iVar5,iVar4);
       cVar2 = MenuObj_IsReady(uVar3);
@@ -1489,10 +1523,12 @@ void GarageBg_Unload(void)
 }
 
 // 0x002d6850  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void GarageBg_Load(undefined8 param_1,undefined8 param_2)
 
 {
-  GarageBg_Alloc(*puRam0036f834,param_1,param_2);
+  GarageBg_Alloc(*_g_MenuObj,param_1,param_2);
   MenuObjSet_Alloc(6,param_1);
   return;
 }
@@ -1516,6 +1552,7 @@ void maybe_Showroom_SetCallback(int param_1)
 /* WARNING: Removing unreachable block (ram,0x002d6b08) */
 /* WARNING: Removing unreachable block (ram,0x002d6b54) */
 /* WARNING: Removing unreachable block (ram,0x002d6ba0) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
 
@@ -1564,11 +1601,11 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
   *(undefined4 *)(iVar8 + 0x128) = 0x3f666666;
   maybe_Vu0_RotMatrixY(fVar9,puVar7,puVar7);
   sceVu0TransMatrix(puVar7,puVar7,afStack_60);
-  if ((**(uint **)(iRam0036f85c + 4) & 0x10) == 0) {
+  if ((**(uint **)(_g_IntroCar + 4) & 0x10) == 0) {
     puVar2 = (uint *)0x0;
   }
   else {
-    puVar2 = *(uint **)(iRam0036f85c + 4) + 0x14;
+    puVar2 = *(uint **)(_g_IntroCar + 4) + 0x14;
   }
   if (puVar2 == (uint *)0x0) {
     uVar3 = 0;
@@ -1587,8 +1624,8 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
       puVar5 = puVar5 + (puVar5[0x1e] + 1) * 4 + 0x28;
     } while (uVar3 != 0);
   }
-  if (*(float *)(iRam0036f85c + 0x1c) != 1.0) {
-    puVar2 = *(uint **)(iRam0036f85c + 4);
+  if (*(float *)(_g_IntroCar + 0x1c) != 1.0) {
+    puVar2 = *(uint **)(_g_IntroCar + 4);
     if ((*puVar2 & 0x10) == 0) {
       puVar5 = (uint *)0x0;
     }
@@ -1610,7 +1647,7 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
       do {
         uVar3 = uVar3 - 1;
         *puVar6 = *puVar6 | 0x80000;
-        puVar6[0xb] = *(uint *)(iRam0036f85c + 0x1c);
+        puVar6[0xb] = *(uint *)(_g_IntroCar + 0x1c);
         puVar6[0x16] = 0x30000;
         puVar6[0x17] = 0;
         puVar6 = puVar6 + (puVar6[0x1e] + 1) * 4 + 0x28;
@@ -1620,9 +1657,9 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
     *puVar2 = uVar3 | 0x20;
     *puVar2 = *puVar2 & 0xffffffbf;
   }
-  Model_UpdateNodeMatrix(param_1,*(undefined4 *)(iRam0036f85c + 4));
-  if (*(float *)(iRam0036f85c + 0x1c) != 1.0) {
-    puVar2 = *(uint **)(iRam0036f85c + 8);
+  Model_UpdateNodeMatrix(param_1,*(undefined4 *)(_g_IntroCar + 4));
+  if (*(float *)(_g_IntroCar + 0x1c) != 1.0) {
+    puVar2 = *(uint **)(_g_IntroCar + 8);
     if ((*puVar2 & 0x10) == 0) {
       puVar5 = (uint *)0x0;
     }
@@ -1644,7 +1681,7 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
       do {
         uVar3 = uVar3 - 1;
         *puVar6 = *puVar6 | 0x80000;
-        puVar6[0xb] = *(uint *)(iRam0036f85c + 0x1c);
+        puVar6[0xb] = *(uint *)(_g_IntroCar + 0x1c);
         puVar6[0x16] = 0x30000;
         puVar6[0x17] = 0;
         puVar6 = puVar6 + (puVar6[0x1e] + 1) * 4 + 0x28;
@@ -1654,7 +1691,7 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
     *puVar2 = uVar3 | 0x20;
     *puVar2 = *puVar2 & 0xffffffbf;
   }
-  Model_UpdateNodeMatrix(param_1,*(undefined4 *)(iRam0036f85c + 8));
+  Model_UpdateNodeMatrix(param_1,*(undefined4 *)(_g_IntroCar + 8));
   return;
 }
 
@@ -1750,18 +1787,18 @@ void maybe_IntroCar_Draw(void)
   float afStack_20 [8];
   
   iVar9 = *(int *)(_g_Loading + 0x14);
-  if ((((piRam0036f85c != (int *)0x0) && (piRam0036f85c[4] != 0)) && (piRam0036f85c[6] != 0)) &&
-     ((float)piRam0036f85c[7] != 0.0)) {
+  if ((((_g_IntroCar != (int *)0x0) && (_g_IntroCar[4] != 0)) && (_g_IntroCar[6] != 0)) &&
+     ((float)_g_IntroCar[7] != 0.0)) {
     maybe_Vu0_UnitMatrix(auStack_60);
     maybe_Vu0_RotMatrixX(0,auStack_60,auStack_60);
     maybe_Vu0_RotMatrixY(&UNK_bfc90fdb,auStack_60,auStack_60);
-    if (piRam0036f85c[5] != 0) {
+    if (_g_IntroCar[5] != 0) {
       sceVu0MulMatrix(auStack_60,iVar9 + 0x550,auStack_60);
     }
     uStack_68 = DAT_003420c8;
     uStack_70 = DAT_003420c0;
     uStack_64 = DAT_003420cc;
-    iStack_6c = piRam0036f85c[8];
+    iStack_6c = _g_IntroCar[8];
     uStack_80 = DAT_003420d0;
     uStack_7c = DAT_003420d4;
     uStack_78 = DAT_003420d8;
@@ -1803,7 +1840,7 @@ void maybe_IntroCar_Draw(void)
     uStack_193c = 0;
     uStack_192c = 0;
     auStack_1950[0] = auStack_1950[0] | 2;
-    fVar10 = (float)piRam0036f85c[7] * 128.0;
+    fVar10 = (float)_g_IntroCar[7] * 128.0;
     if (2.1474836e+09 <= fVar10) {
       fVar10 = fVar10 - 2.1474836e+09;
     }
@@ -1818,7 +1855,7 @@ void maybe_IntroCar_Draw(void)
     uStack_1378 = 0xff;
     uStack_162c = 0;
     auStack_1640[0] = auStack_1640[0] | 2;
-    fVar10 = (float)piRam0036f85c[7] * 128.0;
+    fVar10 = (float)_g_IntroCar[7] * 128.0;
     if (2.1474836e+09 <= fVar10) {
       fVar10 = fVar10 - 2.1474836e+09;
     }
@@ -1833,7 +1870,7 @@ void maybe_IntroCar_Draw(void)
     uStack_1068 = 0xff;
     uStack_1310 = 0;
     auStack_1330[0] = auStack_1330[0] | 2;
-    fVar10 = (float)piRam0036f85c[7] * 128.0;
+    fVar10 = (float)_g_IntroCar[7] * 128.0;
     if (2.1474836e+09 <= fVar10) {
       fVar10 = fVar10 - 2.1474836e+09;
     }
@@ -1848,7 +1885,7 @@ void maybe_IntroCar_Draw(void)
     uStack_1000 = 0;
     uStack_ffc = 0;
     auStack_1020[0] = auStack_1020[0] | 2;
-    fVar10 = (float)piRam0036f85c[7] * 128.0;
+    fVar10 = (float)_g_IntroCar[7] * 128.0;
     if (2.1474836e+09 <= fVar10) {
       fVar10 = fVar10 - 2.1474836e+09;
     }
@@ -1867,7 +1904,7 @@ void maybe_IntroCar_Draw(void)
     auStack_d10[0] = auStack_d10[0] | 2;
     uStack_a4c = 0xff;
     uStack_a48 = 0xff;
-    fVar10 = 128.0 - (float)piRam0036f85c[7] * 56.0;
+    fVar10 = 128.0 - (float)_g_IntroCar[7] * 56.0;
     if (2.1474836e+09 <= fVar10) {
       fVar10 = fVar10 - 2.1474836e+09;
     }
@@ -1879,15 +1916,15 @@ void maybe_IntroCar_Draw(void)
     Layer_Reset(auStack_1b90,0x435bc0,0x436180,0xc,0xd);
     Layer_Open(auStack_1b90,0);
     Layer_Open(auStack_1b90,1);
-    iVar9 = *piRam0036f85c;
+    iVar9 = *_g_IntroCar;
     maybe_Vu0_UnitMatrix(auStack_1a90);
     uStack_1a7c = 0;
     maybe_Vu0_RotMatrixZ(*(undefined4 *)(iVar9 + 0x30),auStack_1a90,auStack_1a90);
     maybe_Vu0_RotMatrixY(*(undefined4 *)(iVar9 + 0x34),auStack_1a90,auStack_1a90);
     maybe_Vu0_RotMatrixX(*(undefined4 *)(iVar9 + 0x38),auStack_1a90,auStack_1a90);
     sceVu0TransMatrix(auStack_1a90,auStack_1a90,iVar9 + 0x20);
-    if ((float)piRam0036f85c[7] != 1.0) {
-      puVar1 = (uint *)*piRam0036f85c;
+    if ((float)_g_IntroCar[7] != 1.0) {
+      puVar1 = (uint *)*_g_IntroCar;
       if ((*puVar1 & 0x10) == 0) {
         puVar3 = (uint *)0x0;
       }
@@ -1909,7 +1946,7 @@ void maybe_IntroCar_Draw(void)
         do {
           uVar4 = uVar4 - 1;
           *puVar8 = *puVar8 | 0x80000;
-          puVar8[0xb] = piRam0036f85c[7];
+          puVar8[0xb] = _g_IntroCar[7];
           puVar8[0x16] = 0x30000;
           puVar8[0x17] = 0;
           puVar8 = puVar8 + (puVar8[0x1e] + 1) * 4 + 0x28;
@@ -1919,7 +1956,7 @@ void maybe_IntroCar_Draw(void)
       *puVar1 = uVar4 | 0x20;
       *puVar1 = *puVar1 & 0xffffffbf;
     }
-    Model_UpdateNodeMatrix(auStack_1b90,*piRam0036f85c);
+    Model_UpdateNodeMatrix(auStack_1b90,*_g_IntroCar);
     iVar9 = 1;
     lVar6 = GameState_GetRacerCount();
     if (1 < lVar6) {
@@ -1939,6 +1976,8 @@ void maybe_IntroCar_Draw(void)
 }
 
 // 0x002d7710  size 0x30
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Pad_GetPort_Wrap(void)
 
 {
@@ -1947,6 +1986,8 @@ void Pad_GetPort_Wrap(void)
 }
 
 // 0x002d7740  size 0x340
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1960,18 +2001,18 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
   uVar2 = Gut_PackGetEntry(param_2,0,0);
   Model_Relocate(uVar2);
   iVar3 = Model_GetTexture(uVar2,0);
-  *piRam0036f85c = iVar3;
+  *_g_IntroCar = iVar3;
   uVar2 = Gut_PackGetEntry(param_2,1,0);
   Model_Relocate(uVar2);
   iVar3 = Model_GetTexture(uVar2,0);
-  piRam0036f85c[1] = iVar3;
+  _g_IntroCar[1] = iVar3;
   uVar2 = Gut_PackGetEntry(param_2,2,0);
   Model_Relocate(uVar2);
   iVar3 = Model_GetTexture(uVar2,0);
-  piRam0036f85c[2] = iVar3;
+  _g_IntroCar[2] = iVar3;
   GameState_Get_0();
-  piRam0036f85c[7] = 0x3f800000;
-  puVar1 = (uint *)piRam0036f85c[2];
+  _g_IntroCar[7] = 0x3f800000;
+  puVar1 = (uint *)_g_IntroCar[2];
   if ((*puVar1 & 0x10) == 0) {
     puVar4 = (uint *)0x0;
   }
@@ -1993,7 +2034,7 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
     do {
       uVar5 = uVar5 - 1;
       *puVar6 = *puVar6 | 0x80000;
-      puVar6[0xb] = piRam0036f85c[7];
+      puVar6[0xb] = _g_IntroCar[7];
       puVar6[0x16] = 0x30000;
       puVar6[0x17] = 0;
       puVar6 = puVar6 + (puVar6[0x1e] + 1) * 4 + 0x28;
@@ -2002,7 +2043,7 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
   }
   *puVar1 = uVar5 | 0x20;
   *puVar1 = *puVar1 & 0xffffffbf;
-  puVar1 = (uint *)piRam0036f85c[1];
+  puVar1 = (uint *)_g_IntroCar[1];
   if ((*puVar1 & 0x10) == 0) {
     puVar4 = (uint *)0x0;
   }
@@ -2024,7 +2065,7 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
     do {
       uVar5 = uVar5 - 1;
       *puVar6 = *puVar6 | 0x80000;
-      puVar6[0xb] = piRam0036f85c[7];
+      puVar6[0xb] = _g_IntroCar[7];
       puVar6[0x16] = 0x30000;
       puVar6[0x17] = 0;
       puVar6 = puVar6 + (puVar6[0x1e] + 1) * 4 + 0x28;
@@ -2033,7 +2074,7 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
   }
   *puVar1 = uVar5 | 0x20;
   *puVar1 = *puVar1 & 0xffffffbf;
-  puVar1 = (uint *)*piRam0036f85c;
+  puVar1 = (uint *)*_g_IntroCar;
   if ((*puVar1 & 0x10) == 0) {
     puVar4 = (uint *)0x0;
   }
@@ -2055,7 +2096,7 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
     do {
       uVar5 = uVar5 - 1;
       *puVar6 = *puVar6 | 0x80000;
-      puVar6[0xb] = piRam0036f85c[7];
+      puVar6[0xb] = _g_IntroCar[7];
       puVar6[0x16] = 0x30000;
       puVar6[0x17] = 0;
       puVar6 = puVar6 + (puVar6[0x1e] + 1) * 4 + 0x28;
@@ -2064,12 +2105,14 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
   }
   *puVar1 = uVar5 | 0x20;
   *puVar1 = *puVar1 & 0xffffffbf;
-  piRam0036f85c[7] = 0;
-  piRam0036f85c[4] = 1;
+  _g_IntroCar[7] = 0;
+  _g_IntroCar[4] = 1;
   return;
 }
 
 // 0x002d7a80  size 0x110
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_IntroCar_LoadFile(undefined8 param_1)
 
 {
@@ -2114,42 +2157,46 @@ void maybe_IntroCar_LoadFile(undefined8 param_1)
       uVar2 = uVar2 + 0x7ff >> 0xb;
     }
     uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
-    *(undefined4 *)(iRam0036f85c + 0xc) = uVar3;
-    *(undefined4 *)(iRam0036f85c + 0x10) = 0;
-    Arc_LoadFileEx(iVar4,*(undefined4 *)(iRam0036f85c + 0xc),0x2d7740,iRam0036f85c,0,0);
+    *(undefined4 *)(_g_IntroCar + 0xc) = uVar3;
+    *(undefined4 *)(_g_IntroCar + 0x10) = 0;
+    Arc_LoadFileEx(iVar4,*(undefined4 *)(_g_IntroCar + 0xc),0x2d7740,_g_IntroCar,0,0);
   }
   return;
 }
 
 // 0x002d7ba0  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IntroCar_Free(void)
 
 {
-  if (*(int *)(iRam0036f85c + 0xc) != 0) {
+  if (*(int *)(_g_IntroCar + 0xc) != 0) {
     Mem_Free();
-    *(undefined4 *)(iRam0036f85c + 0xc) = 0;
+    *(undefined4 *)(_g_IntroCar + 0xc) = 0;
   }
-  if (iRam0036f85c != 0) {
+  if (_g_IntroCar != 0) {
     Mem_Free();
-    iRam0036f85c = 0;
+    _g_IntroCar = 0;
   }
   return;
 }
 
 // 0x002d7bf0  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IntroCar_Load(undefined8 param_1)
 
 {
-  puRam0036f85c = (undefined4 *)Mem_Alloc16(0x24,param_1);
-  *puRam0036f85c = 0;
-  puRam0036f85c[1] = 0;
-  puRam0036f85c[2] = 0;
-  puRam0036f85c[3] = 0;
-  puRam0036f85c[4] = 0;
-  puRam0036f85c[5] = 1;
-  puRam0036f85c[6] = 1;
-  puRam0036f85c[7] = 0;
-  puRam0036f85c[8] = 0x41800000;
+  _g_IntroCar = (undefined4 *)Mem_Alloc16(0x24,param_1);
+  *_g_IntroCar = 0;
+  _g_IntroCar[1] = 0;
+  _g_IntroCar[2] = 0;
+  _g_IntroCar[3] = 0;
+  _g_IntroCar[4] = 0;
+  _g_IntroCar[5] = 1;
+  _g_IntroCar[6] = 1;
+  _g_IntroCar[7] = 0;
+  _g_IntroCar[8] = 0x41800000;
   maybe_IntroCar_LoadFile(param_1);
   return;
 }
@@ -2203,21 +2250,25 @@ long maybe_ShowroomBg_LoadChunk(int param_1)
 }
 
 // 0x002d7dd0  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ShowroomBg_Free(void)
 
 {
-  if (iRam0046a238 != 0) {
+  if (_g_ShowroomBgData != 0) {
     Mem_Free();
-    iRam0046a238 = 0;
+    _g_ShowroomBgData = 0;
   }
-  if (iRam0046a240 != 0) {
+  if (_g_ShowroomBgBuf != 0) {
     Mem_Free();
-    iRam0046a240 = 0;
+    _g_ShowroomBgBuf = 0;
   }
   return;
 }
 
 // 0x002d7e30  size 0x19c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
 
 {
@@ -2231,19 +2282,19 @@ void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
   iVar1 = Arc_GetFileSize(0x188d,0x1894,1);
   iVar1 = iVar1 + 0x1400;
   Mem_Set16(0x46a230,0,0x20);
-  iRam0046a238 = Mem_AllocAligned(iVar1 * param_2,0x40,param_1);
+  _g_ShowroomBgData = Mem_AllocAligned(iVar1 * param_2,0x40,param_1);
   uRam0046a23c = param_2;
-  iRam0046a240 = Mem_Alloc16(param_2 << 7,param_1);
+  _g_ShowroomBgBuf = Mem_Alloc16(param_2 << 7,param_1);
   uVar5 = 0;
-  iRam0046a244 = iRam0046a240 + param_2 * 0x28;
-  iRam0046a248 = iRam0046a240;
+  iRam0046a244 = _g_ShowroomBgBuf + param_2 * 0x28;
+  iRam0046a248 = _g_ShowroomBgBuf;
   uRam0046a24c = param_3;
   if (param_2 != 0) {
     iVar3 = 0;
     iVar2 = 0;
     do {
       iVar4 = iRam0046a248 + iVar3;
-      iVar6 = iRam0046a238 + iVar2;
+      iVar6 = _g_ShowroomBgData + iVar2;
       maybe_Course_InitHeader(iVar4,0,0x80);
       Course_SetField18(iVar4,iVar1,iVar6);
       Chunk_Init(iVar4 + 0x28,0x80);
@@ -2263,7 +2314,7 @@ void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
       *(undefined4 *)(iVar4 + 0x78) = 0;
     } while (uVar5 < param_2);
   }
-  Chunk_SetRange(0x46a230,iRam0046a240,iRam0046a244);
+  Chunk_SetRange(0x46a230,_g_ShowroomBgBuf,iRam0046a244);
   return;
 }
 

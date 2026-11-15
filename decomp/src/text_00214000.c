@@ -550,7 +550,7 @@ void ScrGarage_Draw_AreYouSure(int param_1)
     *(undefined4 *)(iVar1 + 0x344) = 1;
     Menu_ClearSlot(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x23,*(undefined4 *)(*(int *)(param_1 + 0x54) * 4 + 0x36e920),1,0);
   }
   lVar4 = UiLayout_UpdateAnimById(0x23,0);
@@ -688,7 +688,7 @@ void ScrGarage_Draw_AreYouSure_5330(int param_1)
   if ((*(int *)(param_1 + 0x70) != 0) && (lVar3 = UiLayout_UpdateAnimById(0x22), lVar3 == 0)) {
     *(undefined4 *)(param_1 + 0x70) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x22,*(undefined4 *)(*(int *)(param_1 + 0x54) * 4 + 0x36e918),1,0);
   }
   MenuWnd_DrawStatus(*(undefined4 *)(param_1 + 0x34),0,0xffffffffffffffff,0);
@@ -839,7 +839,7 @@ void ScrGarage_Draw_SellAll(int param_1)
   uVar5 = Profile_Get(0);
   uVar5 = Profile_GetMoney(uVar5);
   MenuWnd_DrawNumber(0x20,0x3d,uVar5);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x21,*(undefined4 *)(&DAT_0032a270 + *(int *)(param_1 + 0x50) * 4),1,0);
   }
   MenuWnd_SetTitle(3,*(undefined4 *)(&DAT_0032a280 + *(int *)(param_1 + 0x50) * 4));
@@ -1112,7 +1112,7 @@ void maybe_PagePartShop_State8_GarageGetPartSlot(int param_1)
     iVar4 = iVar4 + 1;
     puVar14 = puVar14 + 1;
   } while (iVar4 < 0xc);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x20,*(undefined4 *)(&DAT_0032a240 + *(int *)(param_1 + 0x3c) * 4),0,0);
   }
   MenuWnd_DrawStatus(*(undefined4 *)(param_1 + 0x34),0,0xffffffffffffffff,0);
@@ -2222,7 +2222,7 @@ void ScrGarage_Draw_DemonstrationModel(int param_1)
       *(undefined4 *)(param_1 + 0x70) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1f,*(undefined4 *)(*(int *)(param_1 + 0x50) * 4 + 0x36e8f8),1,0);
   }
   MenuWnd_DrawText(0x1f,0xd,0x171);
@@ -2561,7 +2561,7 @@ LAB_00217f44:
       }
     }
   }
-  if ((*(int *)(param_1 + 4) != 0) && (*piRam0036f468 == 1)) {
+  if ((*(int *)(param_1 + 4) != 0) && (*_g_MenuInput == 1)) {
     MenuWnd_SetItemState(0x1e,*(undefined4 *)(&DAT_0032a1c0 + *(int *)(param_1 + 8) * 4),0,0);
   }
   if (*(int *)(param_1 + 4) != 0) {

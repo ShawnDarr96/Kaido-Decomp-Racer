@@ -1517,7 +1517,7 @@ void ScrCareer_Draw_Mail_7e70(int *param_1)
       puVar8 = puVar8 + 1;
     } while (uVar9 < 0xb);
   }
-  if ((*piRam0036f468 == 1) && (param_1[0x1a1] == 2)) {
+  if ((*_g_MenuInput == 1) && (param_1[0x1a1] == 2)) {
     MenuWnd_SetItemState(0xaf,(&DAT_0032a970)[*param_1],0,0);
   }
   MenuWnd_DrawText(0xae,1,0x434);

@@ -630,7 +630,7 @@ void MenuScr_Draw_SelectCourseTo(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x103,*(undefined4 *)(&DAT_0032d410 + *(int *)(param_1 + 0x758) * 4),1,0);
   }
   MenuWnd_Update(param_1 + 0x764,0x103,6,7);
@@ -1776,7 +1776,7 @@ void ScrGarage_Draw_DoYouWant_7ac0(int *param_1)
   if ((param_1[7] != 0) && (lVar5 = UiLayout_UpdateAnimById(0x30), lVar5 == 0)) {
     param_1[7] = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x30,*(undefined4 *)(*param_1 * 4 + 0x36ed08),1,0);
   }
   MenuWnd_DrawTextId(0x30,0x22,4,0x3cb);

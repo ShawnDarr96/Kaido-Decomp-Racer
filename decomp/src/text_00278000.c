@@ -401,7 +401,7 @@ LAB_00278a98:
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x69,*(undefined4 *)(&DAT_0032dd70 + *(int *)(param_1 + 0x9ec) * 4),1,0);
     iVar1 = *(int *)(param_1 + 0x18);
   }
@@ -503,7 +503,7 @@ void ScrCareer_Draw_Sponsor(int param_1)
   if ((*(int *)(param_1 + 0xa18) != 0) && (lVar3 = UiLayout_UpdateAnimById(0x62), lVar3 == 0)) {
     *(undefined4 *)(param_1 + 0xa18) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x62,*(undefined4 *)(*(int *)(param_1 + 0x14) * 4 + 0x36ed88),1,0);
     iVar1 = *(int *)(param_1 + 0x604);
   }
@@ -904,7 +904,7 @@ void ScrGarage_Draw_Wheel_9d80(int param_1)
       *(undefined4 *)(param_1 + 0xa18) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x68,*(undefined4 *)(&LAB_0032dd40 + *(int *)(param_1 + 0x9dc) * 4),0,0);
     iVar3 = *(int *)(param_1 + 0x10);
   }
@@ -1168,7 +1168,7 @@ void maybe_PageWheels_State7_Wheel(undefined8 param_1)
       *(undefined4 *)(iVar5 + 0xa18) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x66,*(undefined4 *)(&DAT_0032dcf0 + *(int *)(iVar5 + 0x10) * 4),1,0);
   }
   maybe_Wheel_DrawDetails(param_1);
@@ -1368,7 +1368,7 @@ void maybe_PageWheels_State6_Wheel(undefined8 param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(99,*(undefined4 *)(&DAT_0032dcd0 + *(int *)(iVar7 + 0x9fc) * 4),1,0);
     iVar1 = *(int *)(iVar7 + 0x9e0);
   }
@@ -1559,7 +1559,7 @@ void ScrGarage_Draw_Wheel_b150(int param_1)
       }
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x67,*(undefined4 *)(&DAT_0032dcc0 + *(int *)(param_1 + 0x68) * 4),1,0);
   }
   iVar1 = *(int *)(param_1 + 0x6c);
@@ -1779,7 +1779,7 @@ void maybe_PageWheels_State4_SportsTyres(int param_1)
       *(undefined4 *)(param_1 + 0xa18) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x65,*(undefined4 *)(&DAT_0032dcb0 + *(int *)(param_1 + 0x68) * 4),1,0);
   }
   MenuWnd_SetTitle(3,0x209);
@@ -2212,7 +2212,7 @@ LAB_0027baac:
       uVar9 = 0x20d;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     if (unaff_s2 == 0x60) {
       MenuWnd_SetItemState(0x60,*(undefined4 *)(unaff_s0_lo * 4 + 0x32dc80),1,0);
     }

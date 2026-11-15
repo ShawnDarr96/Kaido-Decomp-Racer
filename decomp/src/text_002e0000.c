@@ -385,7 +385,7 @@ void Eventui_Draw_BgmConfig_0880(int *param_1)
   MenuWnd_DrawCursor(1);
   if ((char)param_1[0xb] == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0xf5,*(undefined4 *)
                        (&DAT_00342610 + (((param_1[0xd] - param_1[0xe]) + 0x21) % 0x21) * 0x18),0,0)
@@ -943,6 +943,7 @@ void maybe_ScrMusic_State2_SndQueueCmd1(undefined4 *param_1)
 }
 
 // 0x002e1f60  size 0x27c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrMusic; on-screen text/callee hint "SndQueueCmd1" (was ScrSndQueueCmd1_Update)
     */
 
@@ -980,14 +981,14 @@ void maybe_ScrMusic_State1_SndQueueCmd1(int *param_1)
   else {
     param_1[0xf] = 0;
   }
-  uVar4 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar4) == 0) {
+  uVar4 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   if (uVar4 == 0x1000) {
@@ -1041,6 +1042,7 @@ void maybe_ScrMusic_State0_SndQueueCmd1(int param_1)
 }
 
 // 0x002e2250  size 0x22c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 44 (table 0x3274b0) */
 
 void maybe_ScrMusic_Update(undefined8 param_1)
@@ -1056,14 +1058,14 @@ void maybe_ScrMusic_Update(undefined8 param_1)
   lVar2 = SeqGen_FindPatternIndex(*(undefined4 *)(iVar4 + 0x20));
   if ((lVar2 != 0) && (lVar2 = Menu_IsInputIdle(param_1), lVar2 != 0)) {
     (*(code *)(&PTR_maybe_ScrMusic_State0_SndQueueCmd1_00342748)[*(int *)(iVar4 + 4)])(param_1);
-    uVar5 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar5) == 0) {
+    uVar5 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (uVar5 == 0x20) {
@@ -1365,6 +1367,7 @@ LAB_002e2904:
 // 0x002e2ac0  size 0x418
 /* WARNING: Removing unreachable block (ram,0x002e2c84) */
 /* WARNING: Removing unreachable block (ram,0x002e2d78) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_IntroFlag_Update(int param_1)
 
@@ -1390,8 +1393,8 @@ void maybe_IntroFlag_Update(int param_1)
   float fStack_8;
   float fStack_4;
   
-  if (((puRam0036f8ec[1] != 0) && (puRam0036f8ec[2] != 0)) && (puRam0036f8ec[3] != 0)) {
-    uVar6 = Gut_PackGetEntry(puRam0036f8ec[2],param_1 + 2,0);
+  if (((_g_IntroFlag[1] != 0) && (_g_IntroFlag[2] != 0)) && (_g_IntroFlag[3] != 0)) {
+    uVar6 = Gut_PackGetEntry(_g_IntroFlag[2],param_1 + 2,0);
     puVar2 = (uint *)Model_GetTexture(uVar6,0);
     if ((*puVar2 & 0x10) == 0) {
       puVar2 = (uint *)0x0;
@@ -1400,7 +1403,7 @@ void maybe_IntroFlag_Update(int param_1)
       puVar2 = puVar2 + 0x14;
     }
     puStack_30 = puVar2 + 0xc;
-    uVar6 = Gut_PackGetEntry(puRam0036f8ec[2],param_1 + (*puRam0036f8ec & 1),0);
+    uVar6 = Gut_PackGetEntry(_g_IntroFlag[2],param_1 + (*_g_IntroFlag & 1),0);
     puVar3 = (uint *)Model_GetTexture(uVar6,0);
     if ((*puVar3 & 0x10) == 0) {
       puVar3 = (uint *)0x0;
@@ -1421,7 +1424,7 @@ void maybe_IntroFlag_Update(int param_1)
             pfVar9 = (float *)(puVar4 + 0x20);
             puVar8 = puVar5 + 0x20;
             maybe_Math_AngleToIndex
-                      (((float)(*puRam0036f8ec & 0x7f) / 128.0) * 6.2831855,auStack_14,&fStack_4);
+                      (((float)(*_g_IntroFlag & 0x7f) / 128.0) * 6.2831855,auStack_14,&fStack_4);
             uVar7 = 0;
             if (*(int *)(puVar4 + 6) != 0) {
               do {
@@ -1430,7 +1433,7 @@ void maybe_IntroFlag_Update(int param_1)
                 fVar11 = (pfVar9[1] - (float)puVar2[5]) / ((float)puVar2[9] - (float)puVar2[5]) -
                          0.3;
                 maybe_Math_AngleToIndex
-                          (((float)(*puRam0036f8ec & 0x3f) / 64.0) * 6.2831855 +
+                          (((float)(*_g_IntroFlag & 0x3f) / 64.0) * 6.2831855 +
                            SQRT(fVar12 * fVar12 + fVar11 * fVar11 * fVar11 * fVar11 * fVar11) *
                            6.2831855,auStack_14,&fStack_8);
                 maybe_Math_AngleToIndex(fVar13 * 3.1415927,auStack_14,&fStack_c);
@@ -1491,9 +1494,9 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
   iVar7 = (param_1 & 0xff) * 0x5c0;
   puVar8 = &g_Views + iVar7;
   bVar2 = false;
-  if (((puRam0036f8ec[1] != 0) && (puRam0036f8ec[2] != 0)) && (puRam0036f8ec[3] != 0)) {
+  if (((_g_IntroFlag[1] != 0) && (_g_IntroFlag[2] != 0)) && (_g_IntroFlag[3] != 0)) {
     Layer_Reset(auStack_240,puVar8,0x436180,param_2,param_3);
-    piVar5 = (int *)puRam0036f8ec[3];
+    piVar5 = (int *)_g_IntroFlag[3];
     iVar10 = 0;
     if (0 < *piVar5) {
       iVar11 = 0;
@@ -1503,12 +1506,12 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
         pfVar9 = (float *)(psVar1 + *psVar1 * 0x10 +
                                     *(int *)((int)piVar5 + iVar11 + 0x14) * 6 + 0x3e);
         if (*(int *)((int)piVar5 + iVar11 + 0x18) == 0) {
-          uVar3 = Gut_PackGetEntry(puRam0036f8ec[2],*puRam0036f8ec & 1,0);
-          puVar6 = puRam0036f8ec + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 4;
+          uVar3 = Gut_PackGetEntry(_g_IntroFlag[2],*_g_IntroFlag & 1,0);
+          puVar6 = _g_IntroFlag + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 4;
         }
         else {
-          uVar3 = Gut_PackGetEntry(puRam0036f8ec[2],(*puRam0036f8ec & 1) + 4,0);
-          puVar6 = puRam0036f8ec + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 0x44;
+          uVar3 = Gut_PackGetEntry(_g_IntroFlag[2],(*_g_IntroFlag & 1) + 4,0);
+          puVar6 = _g_IntroFlag + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 0x44;
         }
         TexSlot_Set(0xf,1,puVar6);
         uStack_244 = 0x3f800000;
@@ -1541,7 +1544,7 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
           Model_UpdateNodeMatrix(auStack_240,uVar3);
         }
         iVar10 = iVar10 + 1;
-        piVar5 = (int *)puRam0036f8ec[3];
+        piVar5 = (int *)_g_IntroFlag[3];
         iVar11 = iVar11 + 0x30;
       } while (iVar10 < *piVar5);
     }
@@ -1553,6 +1556,8 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
 }
 
 // 0x002e32c0  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_IntroFlag_OnLoaded(void)
 
 {
@@ -1568,7 +1573,7 @@ void maybe_IntroFlag_OnLoaded(void)
   iVar8 = 0;
   iVar7 = 0;
   iVar6 = 0;
-  uVar1 = *(undefined4 *)(iRam0036f8ec + 8);
+  uVar1 = *(undefined4 *)(_g_IntroFlag + 8);
   do {
     uVar2 = Gut_PackGetEntry(uVar1,iVar7,0);
     uVar3 = Gut_PackGetEntry(uVar1,iVar7 + 1,0);
@@ -1578,22 +1583,24 @@ void maybe_IntroFlag_OnLoaded(void)
     Model_Relocate(uVar3);
     Model_Relocate(uVar4);
     Tex_Relocate(uVar5);
-    TexSlot_Bind(iRam0036f8ec + iVar6 + 0x10,uVar5,0,iRam0036f2c0 + iRam004305f0,
+    TexSlot_Bind(_g_IntroFlag + iVar6 + 0x10,uVar5,0,iRam0036f2c0 + iRam004305f0,
                  iRam0036f2c0 + iRam004305f0,0x51010,0,0);
     iVar8 = iVar8 + 1;
     iVar7 = iVar7 + 4;
     iVar6 = iVar6 + 0x100;
   } while (iVar8 < 2);
-  *(undefined4 *)(iRam0036f8ec + 4) = 1;
+  *(undefined4 *)(_g_IntroFlag + 4) = 1;
   return;
 }
 
 // 0x002e3400  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_IntroFlag_Step(void)
 
 {
-  if (piRam0036f8ec != (int *)0x0) {
-    *piRam0036f8ec = *piRam0036f8ec + 1;
+  if (_g_IntroFlag != (int *)0x0) {
+    *_g_IntroFlag = *_g_IntroFlag + 1;
     maybe_IntroFlag_Update(0);
     maybe_IntroFlag_Update(4);
   }
@@ -1601,10 +1608,12 @@ void maybe_IntroFlag_Step(void)
 }
 
 // 0x002e3440  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_IntroFlag_DrawAll(int param_1,undefined8 param_2)
 
 {
-  if (iRam0036f8ec != 0) {
+  if (_g_IntroFlag != 0) {
     maybe_IntroFlag_Draw
               (*(undefined1 *)(param_1 + 8),*(undefined4 *)(param_1 + 0xc),
                *(undefined4 *)(param_1 + 0x10),param_2);
@@ -1613,27 +1622,31 @@ void maybe_IntroFlag_DrawAll(int param_1,undefined8 param_2)
 }
 
 // 0x002e3480  size 0x74
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IntroFlag_Free(void)
 
 {
-  if (iRam0036f8ec != 0) {
-    if (*(int *)(iRam0036f8ec + 8) != 0) {
+  if (_g_IntroFlag != 0) {
+    if (*(int *)(_g_IntroFlag + 8) != 0) {
       Mem_Free();
-      *(undefined4 *)(iRam0036f8ec + 8) = 0;
+      *(undefined4 *)(_g_IntroFlag + 8) = 0;
     }
-    if (*(int *)(iRam0036f8ec + 0xc) != 0) {
+    if (*(int *)(_g_IntroFlag + 0xc) != 0) {
       Mem_Free();
-      *(undefined4 *)(iRam0036f8ec + 0xc) = 0;
+      *(undefined4 *)(_g_IntroFlag + 0xc) = 0;
     }
   }
-  if (iRam0036f8ec != 0) {
+  if (_g_IntroFlag != 0) {
     Mem_Free();
-    iRam0036f8ec = 0;
+    _g_IntroFlag = 0;
   }
   return;
 }
 
 // 0x002e3500  size 0x170
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IntroFlag_Load(undefined8 param_1,int param_2,byte param_3,uint param_4,uint param_5)
 
 {
@@ -1643,22 +1656,22 @@ void IntroFlag_Load(undefined8 param_1,int param_2,byte param_3,uint param_4,uin
   int iVar4;
   
   if (param_3 < 8) {
-    puRam0036f8ec = (undefined4 *)Mem_Alloc16(0x210,param_1);
-    *puRam0036f8ec = 0;
-    puRam0036f8ec[1] = 0;
-    puRam0036f8ec[2] = 0;
-    puRam0036f8ec[3] = 0;
+    _g_IntroFlag = (undefined4 *)Mem_Alloc16(0x210,param_1);
+    *_g_IntroFlag = 0;
+    _g_IntroFlag[1] = 0;
+    _g_IntroFlag[2] = 0;
+    _g_IntroFlag[3] = 0;
     uVar1 = *(undefined4 *)(&DAT_00342850 + (uint)param_3 * 4);
     iVar4 = *(int *)(&DAT_003427b0 + param_2 * 4) +
             *(int *)((param_4 & 0xff) * 4 + (param_5 & 0xff) * 0x18 + 0x342870);
     uVar3 = Arc_GetFileSize(iVar4,iVar4,1);
     uVar2 = Mem_AllocAligned(uVar3,0x40,0x430750);
-    puRam0036f8ec[2] = uVar2;
-    Arc_LoadFileEx(iVar4,puRam0036f8ec[2],0,0,0,0);
+    _g_IntroFlag[2] = uVar2;
+    Arc_LoadFileEx(iVar4,_g_IntroFlag[2],0,0,0,0);
     uVar3 = Arc_GetFileSize(uVar1,uVar1,1);
     uVar2 = Mem_AllocAligned(uVar3,0x40,0x430750);
-    puRam0036f8ec[3] = uVar2;
-    Arc_LoadFileEx(uVar1,puRam0036f8ec[3],0x2e32c0,puRam0036f8ec,0,0);
+    _g_IntroFlag[3] = uVar2;
+    Arc_LoadFileEx(uVar1,_g_IntroFlag[3],0x2e32c0,_g_IntroFlag,0,0);
   }
   return;
 }

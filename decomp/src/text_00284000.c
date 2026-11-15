@@ -33,7 +33,7 @@ void ScrCareer_Draw_Shop_4420(int *param_1)
       g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x18,*(undefined4 *)(&DAT_0032e670 + *param_1 * 4),1,0);
   }
   MenuWnd_DrawText(0x12,0x40,0x102);
@@ -335,6 +335,8 @@ void ScrShop_Enter(void)
 }
 
 // 0x00284c60  size 0x338
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerRaceSetup_HandleInput(undefined8 param_1)
 
 {
@@ -350,14 +352,14 @@ void maybe_ScrCareerRaceSetup_HandleInput(undefined8 param_1)
   
   iVar6 = (int)param_1;
   iVar3 = *(int *)(iVar6 + 4);
-  uVar7 = piRam0036f468[iVar3 + 2];
-  if ((piRam0036f468[iVar3 + 4] & uVar7) == 0) {
+  uVar7 = _g_MenuInput[iVar3 + 2];
+  if ((_g_MenuInput[iVar3 + 4] & uVar7) == 0) {
     uVar7 = 0x100000;
   }
   else if (uVar7 == 0x80000) {
     uVar7 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar7 = 0x100000;
   }
   if (uVar7 == 0x1000) {
@@ -511,6 +513,7 @@ void maybe_Garage_StepSubtitle(int param_1,long param_2)
 }
 
 // 0x002851d0  size 0x13c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 8 of state table 0x32e690 used by maybe_ScrCareerRaceSetup_Update */
 
 void maybe_ScrCareerRaceSetup_State8(int param_1)
@@ -536,14 +539,14 @@ void maybe_ScrCareerRaceSetup_State8(int param_1)
     g_MenuMgr->unk_0644 = 1;
     *(undefined4 *)(*(int *)(param_1 + 4) * 4 + param_1 + 0x4d8) = 1;
   }
-  uVar2 = piRam0036f468[*(int *)(param_1 + 4) + 2];
-  if ((piRam0036f468[*(int *)(param_1 + 4) + 4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[*(int *)(param_1 + 4) + 2];
+  if ((_g_MenuInput[*(int *)(param_1 + 4) + 4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if ((uVar2 == 2) || (uVar2 == 1)) {
@@ -708,6 +711,7 @@ void maybe_ScrCareerRaceSetup_State6(int param_1)
 }
 
 // 0x002856d0  size 0x1cc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 5 of state table 0x32e690 used by maybe_ScrCareerRaceSetup_Update */
 
 void maybe_ScrCareerRaceSetup_State5(int param_1)
@@ -759,14 +763,14 @@ void maybe_ScrCareerRaceSetup_State5(int param_1)
     *(undefined4 *)(param_1 + 0x14) = 1;
   }
   if (*(int *)(param_1 + 0x10) != 0) {
-    uVar4 = piRam0036f468[*(int *)(param_1 + 4) + 2];
-    if ((piRam0036f468[*(int *)(param_1 + 4) + 4] & uVar4) == 0) {
+    uVar4 = _g_MenuInput[*(int *)(param_1 + 4) + 2];
+    if ((_g_MenuInput[*(int *)(param_1 + 4) + 4] & uVar4) == 0) {
       uVar4 = 0x100000;
     }
     else if (uVar4 == 0x80000) {
       uVar4 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar4 = 0x100000;
     }
     if (uVar4 != 0x10) {
@@ -1110,20 +1114,22 @@ void maybe_ScrCareerRaceSetup_Enter(undefined8 param_1)
 }
 
 // 0x002860d0  size 0x1c4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCarPassword_HandleInput(int *param_1)
 
 {
   int iVar1;
   uint uVar2;
   
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 0x10) {
@@ -1177,6 +1183,7 @@ void maybe_ScrCarPassword_HandleInput(int *param_1)
 }
 
 // 0x002862a0  size 0xe8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageIsSlotUsed" (was
    ScrGarageIsSlotUsed_Update) */
 
@@ -1189,14 +1196,14 @@ void maybe_ScrCarPassword_State7_GarageIsSlotUsed(undefined4 *param_1)
   param_1[1] = 0;
   *param_1 = 7;
   Menu_HandleCursor(param_1 + 0x128,0,2,1,1,0);
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 0x10) {
@@ -1250,6 +1257,7 @@ void maybe_ScrCarPassword_State4_GarageFindCar(undefined4 *param_1)
 }
 
 // 0x00286420  size 0x188
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
    ScrGarageFindCar_Enter86420) */
 
@@ -1279,14 +1287,14 @@ void maybe_ScrCarPassword_State3_GarageFindCar(undefined4 *param_1)
   Menu_HandleCursor(param_1 + 0x128,0,2,1,1,0);
   if (param_1[0x128] == 0) {
     param_1[1] = 4;
-    uVar7 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar7) == 0) {
+    uVar7 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar7) == 0) {
       uVar7 = 0x100000;
     }
     else if (uVar7 == 0x80000) {
       uVar7 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar7 = 0x100000;
     }
     if (uVar7 == 0x10) {
@@ -1438,6 +1446,7 @@ void maybe_ScrCarPassword_State1_GarageFindCar(undefined4 *param_1)
 }
 
 // 0x002868f0  size 0x1f8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
    ScrGarageFindCar_Enter) */
 
@@ -1492,14 +1501,14 @@ void maybe_ScrCarPassword_State0_GarageFindCar(undefined4 *param_1)
     param_1[0x12e] = 1;
   }
   if (param_1[0x12d] != 0) {
-    uVar3 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar3) == 0) {
+    uVar3 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar3) == 0) {
       uVar3 = 0x100000;
     }
     else if (uVar3 == 0x80000) {
       uVar3 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar3 = 0x100000;
     }
     if (uVar3 != 0x10) goto LAB_00286a78;
@@ -1570,6 +1579,8 @@ void maybe_ScrCarPassword_Enter(int param_1)
 }
 
 // 0x00286bb0  size 0x14c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrGarageBuyCar_HandleInput(undefined8 param_1)
 
 {
@@ -1577,14 +1588,14 @@ void maybe_ScrGarageBuyCar_HandleInput(undefined8 param_1)
   uint uVar2;
   int iVar3;
   
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   iVar3 = (int)param_1;
@@ -1799,6 +1810,7 @@ void maybe_ScrCarPassword_State16_GarageFindCar(int param_1)
 }
 
 // 0x00287150  size 0xe8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
    ScrGarageFindCar_Enter87150) */
 
@@ -1816,14 +1828,14 @@ void maybe_ScrCarPassword_State15_GarageFindCar(int param_1)
     *(undefined4 *)(param_1 + 0x54) = 0;
   }
   Menu_HandleCursor(param_1 + 0x54,0,2,1,1,0);
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if ((uVar2 == 0x10) &&
@@ -1834,6 +1846,7 @@ void maybe_ScrCarPassword_State15_GarageFindCar(int param_1)
 }
 
 // 0x00287240  size 0xf8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 6 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State6(int param_1)
@@ -1861,14 +1874,14 @@ void ScrGarageBuyCar_State6(int param_1)
   uVar2 = Profile_Get(0);
   lVar3 = Garage_FindCar(uVar2);
   if (lVar3 == 0) {
-    uVar4 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar4) == 0) {
+    uVar4 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar4) == 0) {
       uVar4 = 0x100000;
     }
     else if (uVar4 == 0x80000) {
       uVar4 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar4 = 0x100000;
     }
     if (uVar4 == 0x10) {
@@ -2339,20 +2352,22 @@ void maybe_Password_GetCurrentCarInfo(uint *param_1)
 }
 
 // 0x00287da0  size 0x110
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrRecordPassword_HandleInput(undefined8 param_1)
 
 {
   uint uVar1;
   int iVar2;
   
-  uVar1 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar1) == 0) {
+  uVar1 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   iVar2 = (int)param_1;

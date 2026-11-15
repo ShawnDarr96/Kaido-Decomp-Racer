@@ -832,6 +832,8 @@ void RaceUi_OnTextureLoaded(int param_1,undefined8 param_2,undefined8 param_3,un
 }
 
 // 0x002c5780  size 0x2bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_DrawSprites(int param_1)
 
 {
@@ -856,7 +858,7 @@ void RaceUi_DrawSprites(int param_1)
         iVar4 = 0;
         puVar5 = auStack_18840;
         Pkt_Init(auStack_40,2,2,0);
-        Pkt_SubmitToChain(auStack_40,(*piRam00387f7c + -2) - (iVar6 + 8));
+        Pkt_SubmitToChain(auStack_40,(*_s_RaceUiSpriteCursor + -2) - (iVar6 + 8));
         if (*(int *)(param_1 + 8) != 0) {
           Pkt_Flush(auStack_40,param_1 + 0x10);
         }
@@ -909,6 +911,7 @@ void RaceUi_DrawSprites(int param_1)
 }
 
 // 0x002c5a50  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 20 callers */
 
 void RaceUi_DrawSprite(undefined4 param_1,undefined4 param_2,float param_3,undefined4 param_4,
@@ -919,7 +922,7 @@ void RaceUi_DrawSprite(undefined4 param_1,undefined4 param_2,float param_3,undef
   int iVar1;
   
   if (param_3 != 0.0) {
-    param_7 = (*piRam00387f7c + -10) - param_7;
+    param_7 = (*_s_RaceUiSpriteCursor + -10) - param_7;
     *(int *)(*(int *)(param_6 + 0x147c) * 0x28 + param_6 + 0x40) = param_7;
     iVar1 = param_7 * 4 + param_6;
     *(undefined4 *)(*(int *)(param_6 + 0x147c) * 0x28 + param_6 + 0x48) = param_1;
@@ -1163,19 +1166,21 @@ void RaceUi_SetupCarIcons(int *param_1,undefined8 param_2)
 }
 
 // 0x002c6090  size 0xc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_PlayCue(long param_1,int param_2)
 
 {
   if (param_1 == 0) {
-    if ((((*(int *)(iRam0036f804 + 0x290) != 0) || (*(int *)(iRam0036f804 + 0x294) != 0)) &&
-        (*(undefined4 *)(param_2 * 4 + iRam0036f804 + 0x290) = 0,
-        *(int *)(iRam0036f804 + 0x290) == 0)) && (*(int *)(iRam0036f804 + 0x294) == 0)) {
+    if ((((*(int *)(_g_RaceHud + 0x290) != 0) || (*(int *)(_g_RaceHud + 0x294) != 0)) &&
+        (*(undefined4 *)(param_2 * 4 + _g_RaceHud + 0x290) = 0, *(int *)(_g_RaceHud + 0x290) == 0))
+       && (*(int *)(_g_RaceHud + 0x294) == 0)) {
       MenuSnd_Stop(0xb);
     }
   }
-  else if ((*(int *)(iRam0036f804 + 0x290) == 0) && (*(int *)(iRam0036f804 + 0x294) == 0)) {
+  else if ((*(int *)(_g_RaceHud + 0x290) == 0) && (*(int *)(_g_RaceHud + 0x294) == 0)) {
     Se_PlayMenuVol(0xb,0x60);
-    *(undefined4 *)(param_2 * 4 + iRam0036f804 + 0x290) = 1;
+    *(undefined4 *)(param_2 * 4 + _g_RaceHud + 0x290) = 1;
   }
   return;
 }
@@ -1188,6 +1193,8 @@ void Result_Nop(void)
 }
 
 // 0x002c6160  size 0x204
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_TaskSplits(undefined8 param_1)
 
 {
@@ -1201,9 +1208,11 @@ void RaceUi_TaskSplits(undefined8 param_1)
   RaceUi_DrawDigits(param_1,0x24,0x26,*(undefined4 *)(iVar4 + 0x26c),1,5,0);
   RaceUi_DrawDigits(param_1,0x19a,0x14,*(undefined4 *)(iVar4 + 0xac),2,5,(uVar1 & 0x80) != 0);
   RaceUi_DrawSprite(0x44118000,0x42880000,*(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,
-                    iVar4 + 0x26f0,*piRam00387f7c + -10,(*(int *)(iVar4 + 0xb0) / 10) % 10 + 3,0,0);
+                    iVar4 + 0x26f0,*_s_RaceUiSpriteCursor + -10,
+                    (*(int *)(iVar4 + 0xb0) / 10) % 10 + 3,0,0);
   RaceUi_DrawSprite(0x44158000,0x42880000,*(undefined4 *)(iVar4 + 0x3b70),0x3f800000,0x3f800000,
-                    iVar4 + 0x26f0,*piRam00387f7c + -10,*(int *)(iVar4 + 0xb0) % 10 + 3,0,0);
+                    iVar4 + 0x26f0,*_s_RaceUiSpriteCursor + -10,*(int *)(iVar4 + 0xb0) % 10 + 3,0,0)
+  ;
   lVar3 = RaceScene_IsFlag10();
   if (lVar3 == 0) {
     RaceUi_AnimateSplit(param_1,0);
@@ -1229,6 +1238,8 @@ void RaceUi_TaskSplits(undefined8 param_1)
 }
 
 // 0x002c6370  size 0x288
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_DrawRivalBanner(undefined8 param_1)
 
 {
@@ -1260,11 +1271,11 @@ void RaceUi_DrawRivalBanner(undefined8 param_1)
     if (*(int *)(iVar9 + 0x90) < *(int *)(iVar9 + 0x94)) {
       RaceUi_DrawSprite(0x42880000,0x42140000,*(undefined4 *)(iVar9 + 0x3b70),
                         (float)*(int *)(iVar9 + 0x94) * 1.32e-05,0x3f800000,iVar9 + 0x26f0,
-                        *piRam00387f7c + -0x12,0,2,0);
+                        *_s_RaceUiSpriteCursor + -0x12,0,2,0);
     }
     RaceUi_DrawSprite(0x42880000,0x42140000,*(undefined4 *)(iVar9 + 0x3b70),
                       (float)*(int *)(iVar9 + 0x90) * 1.32e-05,0x3f800000,iVar9 + 0x26f0,
-                      *piRam00387f7c + -0x12,0,0,0);
+                      *_s_RaceUiSpriteCursor + -0x12,0,0,0);
   }
   UiElem_SetPropFloat(*(undefined4 *)(iVar9 + 0x3b70),*(undefined4 *)(iVar9 + 0x10f8),5,8);
   cVar3 = Profile_GetFlag273d(uVar7);
@@ -1292,6 +1303,8 @@ void RaceUi_DrawRivalBanner(undefined8 param_1)
 }
 
 // 0x002c6600  size 0x218
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_DrawGapBar(float param_1,int param_2,int param_3,int param_4,long param_5)
 
 {
@@ -1313,7 +1326,7 @@ void RaceUi_DrawGapBar(float param_1,int param_2,int param_3,int param_4,long pa
     iVar5 = (int)fVar6;
     if (((iVar5 != 0) || (bVar1)) || (iVar3 < 2)) {
       RaceUi_DrawSprite((float)param_3,(float)param_4,*(undefined4 *)(param_2 + 0x3b70),0x3f800000,
-                        0x3f800000,param_2 + 0x1270,*piRam00387f7c + -10,iVar5 + 0x20,0,0);
+                        0x3f800000,param_2 + 0x1270,*_s_RaceUiSpriteCursor + -10,iVar5 + 0x20,0,0);
       bVar1 = true;
     }
     else {
@@ -1322,7 +1335,8 @@ void RaceUi_DrawGapBar(float param_1,int param_2,int param_3,int param_4,long pa
     fVar6 = (fVar6 - (float)iVar5) * 10.0;
     if (iVar3 == 1) {
       RaceUi_DrawSprite((float)(param_3 + 0x14),(float)param_4,*(undefined4 *)(param_2 + 0x3b70),
-                        0x3f800000,0x3f800000,param_2 + 0x1270,*piRam00387f7c + -10,0x2b,0,0);
+                        0x3f800000,0x3f800000,param_2 + 0x1270,*_s_RaceUiSpriteCursor + -10,0x2b,0,0
+                       );
       param_3 = param_3 + 0x1e;
     }
     else {
@@ -1336,7 +1350,7 @@ void RaceUi_DrawGapBar(float param_1,int param_2,int param_3,int param_4,long pa
       uVar2 = 0x2c;
     }
     RaceUi_DrawSprite((float)iVar4,(float)param_4,*(undefined4 *)(param_2 + 0x3b70),0x3f800000,
-                      0x3f800000,param_2 + 0x1270,*piRam00387f7c + -10,uVar2,0,0);
+                      0x3f800000,param_2 + 0x1270,*_s_RaceUiSpriteCursor + -10,uVar2,0,0);
   }
   return;
 }
@@ -1426,6 +1440,8 @@ void RaceUi_TaskSpeedometer(undefined8 param_1)
 }
 
 // 0x002c6af0  size 0x3a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_TaskGapMeter(undefined8 param_1)
 
 {
@@ -1462,9 +1478,11 @@ void RaceUi_TaskGapMeter(undefined8 param_1)
   }
   RaceUi_DrawDigits(param_1,0x19a,0x14,uVar1,2,5,bVar2);
   RaceUi_DrawSprite(0x44118000,0x42880000,*(undefined4 *)(iVar6 + 0x3b70),0x3f800000,0x3f800000,
-                    iVar6 + 0x26f0,*piRam00387f7c + -10,(*(int *)(iVar6 + 0xb0) / 10) % 10 + 3,0,0);
+                    iVar6 + 0x26f0,*_s_RaceUiSpriteCursor + -10,
+                    (*(int *)(iVar6 + 0xb0) / 10) % 10 + 3,0,0);
   RaceUi_DrawSprite(0x44158000,0x42880000,*(undefined4 *)(iVar6 + 0x3b70),0x3f800000,0x3f800000,
-                    iVar6 + 0x26f0,*piRam00387f7c + -10,*(int *)(iVar6 + 0xb0) % 10 + 3,0,0);
+                    iVar6 + 0x26f0,*_s_RaceUiSpriteCursor + -10,*(int *)(iVar6 + 0xb0) % 10 + 3,0,0)
+  ;
   lVar5 = RaceScene_IsFlag10();
   if (lVar5 == 0) {
     RaceUi_AnimateSplit(param_1,0);
@@ -1828,6 +1846,7 @@ void RaceUi_AnimateSplit(int param_1,int param_2)
 
 // 0x002c7920  size 0x330
 /* WARNING: Removing unreachable block (ram,0x002c7ab8) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceUi_DrawDigits(int param_1,int param_2,int param_3,int param_4,long param_5,int param_6,
                       undefined4 param_7)
@@ -1875,8 +1894,8 @@ LAB_002c79c8:
       iVar8 = 0;
       do {
         RaceUi_DrawSprite((float)(param_2 + iVar8),(float)param_3,*(undefined4 *)(param_1 + 0x3b70),
-                          0x3f800000,0x3f800000,unaff_s1_lo,*piRam00387f7c + -0x11,unaff_s6,param_7,
-                          0);
+                          0x3f800000,0x3f800000,unaff_s1_lo,*_s_RaceUiSpriteCursor + -0x11,unaff_s6,
+                          param_7,0);
         iVar9 = iVar9 + 1;
         iVar8 = iVar8 + unaff_s0_lo;
       } while (iVar9 < param_6);
@@ -1919,7 +1938,7 @@ LAB_002c79c8:
         if (bVar2) {
           RaceUi_DrawSprite((float)(param_2 + iVar8),(float)param_3,
                             *(undefined4 *)(param_1 + 0x3b70),0x3f800000,0x3f800000,unaff_s1_lo,
-                            *piRam00387f7c + -0x11,(int)unaff_s6 + iVar4,param_7,0);
+                            *_s_RaceUiSpriteCursor + -0x11,(int)unaff_s6 + iVar4,param_7,0);
         }
         iVar9 = iVar9 + 1;
         iVar8 = iVar8 + unaff_s0_lo;
@@ -1985,6 +2004,8 @@ void RaceUi_TaskCountdown(int param_1)
 }
 
 // 0x002c7df0  size 0x53c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_TaskLapCounter(undefined8 param_1)
 
 {
@@ -2019,9 +2040,11 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
   }
   RaceUi_DrawDigits(param_1,0x1b6,0x14,uVar1,2,5,bVar2);
   RaceUi_DrawSprite(0x44118000,0x42880000,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,0x3f800000,
-                    iVar7 + 0x26f0,*piRam00387f7c + -10,(*(int *)(iVar7 + 0xb0) / 10) % 10 + 3,0,0);
+                    iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,
+                    (*(int *)(iVar7 + 0xb0) / 10) % 10 + 3,0,0);
   RaceUi_DrawSprite(0x44158000,0x42880000,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,0x3f800000,
-                    iVar7 + 0x26f0,*piRam00387f7c + -10,*(int *)(iVar7 + 0xb0) % 10 + 3,0,0);
+                    iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,*(int *)(iVar7 + 0xb0) % 10 + 3,0,0)
+  ;
   if ((((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') && (*(int *)(iVar7 + 0x28c) == 0)) &&
      (iVar9 = *(int *)(iVar7 + 0x9c), iVar9 != -1)) {
     iVar8 = 0;
@@ -2038,9 +2061,10 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
           do {
             uVar6 = maybe_RaceProg_CountD(uVar5,iVar9);
             RaceUi_DrawSprite(0x43fc0000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,
-                              0x3f800000,iVar7 + 0x26f0,*piRam00387f7c + -10,0xc - iVar9,1,0);
+                              0x3f800000,iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,0xc - iVar9,1,0
+                             );
             RaceUi_DrawSprite(0x44020000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,
-                              0x3f800000,iVar7 + 0x26f0,*piRam00387f7c + -10,0,1,0);
+                              0x3f800000,iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,0,1,0);
             RaceUi_DrawDigits(param_1,0x216,iVar10,uVar6,0,5,0);
             iVar8 = iVar8 + 1;
             iVar9 = iVar9 + 1;
@@ -2057,9 +2081,9 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
           do {
             uVar6 = maybe_RaceProg_CountD(uVar5,iVar9);
             RaceUi_DrawSprite(0x43fc0000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,
-                              0x3f800000,iVar7 + 0x26f0,*piRam00387f7c + -10,iVar9 + 4,1,0);
+                              0x3f800000,iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,iVar9 + 4,1,0);
             RaceUi_DrawSprite(0x44020000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,
-                              0x3f800000,iVar7 + 0x26f0,*piRam00387f7c + -10,0,1,0);
+                              0x3f800000,iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,0,1,0);
             RaceUi_DrawDigits(param_1,0x216,iVar10,uVar6,0,5,0);
             iVar8 = iVar8 + 1;
             iVar9 = iVar9 + -1;

@@ -95,7 +95,7 @@ void MenuScr_Draw_Continue(int *param_1)
   if (lVar3 == 0) {
     param_1[10] = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(2,*(undefined4 *)(&DAT_0036e9c8 + *param_1 * 4),1,0);
   }
   uVar4 = Profile_Get(0);
@@ -320,7 +320,7 @@ void ScrCareer_Draw_PlayerCar(int *param_1)
   uVar2 = Profile_Get(0);
   uVar2 = Profile_GetMoney(uVar2);
   MenuWnd_DrawNumber(0x2d,0x38,uVar2);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x2d,*(undefined4 *)(&DAT_0032af00 + *param_1 * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x2c);
@@ -556,7 +556,7 @@ void MenuScr_Draw_SelectCourse(int *param_1)
   else {
     MenuWnd_DrawCursor(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x78,*(undefined4 *)(&DAT_0032af60 + param_1[1] * 4),1,0);
   }
   MenuWnd_Update(param_1 + 3,0x78,7,6);
@@ -1225,7 +1225,7 @@ void ScrCareer_Draw_KaidoTheatre(int param_1)
       iVar3 = 6;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x12,*(undefined4 *)(&DAT_0032b020 + iVar3 * 4),1,0);
   }
   iVar3 = UiMgr_FindLayout(0x12);
@@ -1955,7 +1955,7 @@ void ScrCareer_Draw_KaidoTheatre_f3d0(int param_1)
       iVar3 = 6;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x12,*(undefined4 *)(&DAT_0032b090 + iVar3 * 4),1,0);
   }
   iVar3 = UiMgr_FindLayout(0x12);
@@ -2324,7 +2324,7 @@ void MenuScr_Select_Full(int param_1)
   }
   if (cVar1 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(0xf1,uRam0036ea10,0,0);
     }
   }

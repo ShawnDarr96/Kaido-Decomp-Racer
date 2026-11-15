@@ -1344,7 +1344,7 @@ void File_StartRequest(long param_1)
     }
     if (((*(uint *)(iVar5 + 0xc) & 0x100) != 0) && ((*(uint *)(iVar5 + 0xc) & 8) == 0)) {
       *(undefined4 *)(iVar5 + 0x5c) = *(undefined4 *)(iVar5 + 0x50);
-      *(undefined4 *)(iVar5 + 0x50) = *(undefined4 *)((uRam0036efe4 & 1) * 4 + 0x36efe8);
+      *(undefined4 *)(iVar5 + 0x50) = *(undefined4 *)(&g_File + (uRam0036efe4 & 1) * 4);
       uRam0036efe4 = uRam0036efe4 + 1;
     }
   }
@@ -1760,11 +1760,13 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
 }
 
 // 0x00136e10  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_File_GetSectorCount(int *param_1)
 
 {
-  *param_1 = iRam0036efe0 << 1;
-  return uRam0036efe8;
+  *param_1 = _s_FileSectorCount << 1;
+  return _g_File;
 }
 
 // 0x00136e30  size 0x98
@@ -1817,6 +1819,8 @@ bool File_GetDiscType(long param_1)
 }
 
 // 0x00136fa0  size 0xe8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void File_Shutdown(void)
 
 {
@@ -1829,11 +1833,11 @@ void File_Shutdown(void)
     Sema_Wait(0x36efc4);
   }
   sceCdInit(5);
-  if (iRam0036efe0 != 0) {
+  if (_s_FileSectorCount != 0) {
     uRam0036efe4 = 0;
-    if (iRam0036efe8 != 0) {
+    if (_g_File != 0) {
       Mem_Free();
-      iRam0036efe8 = 0;
+      _g_File = 0;
     }
     uRam0036efec = 0;
   }
@@ -1855,6 +1859,7 @@ void File_Shutdown(void)
 }
 
 // 0x00137090  size 0x1b4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceCdInit, loader thread */
 
 undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
@@ -1886,15 +1891,15 @@ undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
   maybe_Cd_CallbackThreadInit(param_2,uVar1,0x4000);
   maybe_sceCdSync0(0x135de0);
   if (param_3 == 0) {
-    iRam0036efe8 = 0;
+    _g_File = 0;
     iRam0036efec = 0;
-    uRam0036efe0 = 0;
+    _s_FileSectorCount = 0;
   }
   else {
-    uRam0036efe0 = (int)param_3 + 0x7ffU & 0xfffff800;
+    _s_FileSectorCount = (int)param_3 + 0x7ffU & 0xfffff800;
     uRam0036efe4 = 0;
-    iRam0036efe8 = Mem_AllocAligned(uRam0036efe0 << 1,0x40,uRam0036efb8);
-    iRam0036efec = iRam0036efe8 + uRam0036efe0;
+    _g_File = Mem_AllocAligned(_s_FileSectorCount << 1,0x40,uRam0036efb8);
+    iRam0036efec = _g_File + _s_FileSectorCount;
   }
   uVar3 = 0;
   iVar2 = 0x380610;

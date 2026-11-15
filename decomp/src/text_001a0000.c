@@ -3,15 +3,17 @@
 #include "ghidra_types.h"
 
 // 0x001a0670  size 0x74
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_LoadSky(void)
 
 {
   if (iRam00430600 != 0) {
-    Arc_LoadFileEx(*(undefined4 *)(iRam004305c0 + 0x14),*(undefined4 *)(iRam004305c0 + 0xc),0x19eb10
-                   ,iRam004305c0,0,0);
+    Arc_LoadFileEx(*(undefined4 *)(_g_CourseBufA + 0x14),*(undefined4 *)(_g_CourseBufA + 0xc),
+                   0x19eb10,_g_CourseBufA,0,0);
   }
-  Arc_LoadFileEx(*(undefined4 *)(iRam004305b8 + 0x3c),*(undefined4 *)(iRam004305bc + 0xc),0x19ebd0,
-                 iRam004305bc,0,0);
+  Arc_LoadFileEx(*(undefined4 *)(iRam004305b8 + 0x3c),*(undefined4 *)(_g_CourseStream + 0xc),
+                 0x19ebd0,_g_CourseStream,0,0);
   return;
 }
 
@@ -94,6 +96,8 @@ int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
 }
 
 // 0x001a0860  size 0x368
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_Unload(void)
 
 {
@@ -103,9 +107,9 @@ void Course_Unload(void)
   
   RoadMesh_Free(0x36f238);
   RoadData_Free(0x36f230);
-  iVar2 = iRam004305c0;
+  iVar2 = _g_CourseBufA;
   if (iRam00430600 != 0) {
-    *(undefined4 *)(iRam004305c0 + 0x18) = 0;
+    *(undefined4 *)(_g_CourseBufA + 0x18) = 0;
     *(undefined4 *)(iVar2 + 0x1c) = 0;
     *(undefined4 *)(iVar2 + 0x20) = 0;
     DmaBuf_Free(iVar2 + 0x24);
@@ -113,13 +117,13 @@ void Course_Unload(void)
       Mem_Free();
       *(undefined4 *)(iVar2 + 0x34) = 0;
     }
-    BlockPool_FreeD(iRam004305c0,1);
+    BlockPool_FreeD(_g_CourseBufA,1);
   }
-  BlockPool_FreeC(iRam004305bc,1);
-  BlockPool_FreeB(iRam004305c8,uRam004305c4);
-  BlockPool_FreeA(iRam004305d0,uRam004305cc);
-  iVar2 = iRam004305bc;
-  *(undefined4 *)(iRam004305bc + 0x14) = 0;
+  BlockPool_FreeC(_g_CourseStream,1);
+  BlockPool_FreeB(_g_CourseBufB,uRam004305c4);
+  BlockPool_FreeA(_g_CourseBufC,uRam004305cc);
+  iVar2 = _g_CourseStream;
+  *(undefined4 *)(_g_CourseStream + 0x14) = 0;
   *(undefined4 *)(iVar2 + 0x18) = 0;
   *(undefined4 *)(iVar2 + 0x1c) = 0;
   DmaBuf_Free(iVar2 + 0x20);
@@ -127,8 +131,8 @@ void Course_Unload(void)
     Mem_Free();
     *(undefined4 *)(iVar2 + 0x30) = 0;
   }
-  iVar2 = iRam004305bc;
-  *(undefined4 *)(iRam004305bc + 0x34) = 0;
+  iVar2 = _g_CourseStream;
+  *(undefined4 *)(_g_CourseStream + 0x34) = 0;
   *(undefined4 *)(iVar2 + 0x38) = 0;
   *(undefined4 *)(iVar2 + 0x3c) = 0;
   DmaBuf_Free(iVar2 + 0x40);
@@ -136,8 +140,8 @@ void Course_Unload(void)
     Mem_Free();
     *(undefined4 *)(iVar2 + 0x50) = 0;
   }
-  iVar2 = iRam004305bc;
-  *(undefined4 *)(iRam004305bc + 0x54) = 0;
+  iVar2 = _g_CourseStream;
+  *(undefined4 *)(_g_CourseStream + 0x54) = 0;
   *(undefined4 *)(iVar2 + 0x58) = 0;
   *(undefined4 *)(iVar2 + 0x5c) = 0;
   DmaBuf_Free(iVar2 + 0x60);
@@ -149,7 +153,7 @@ void Course_Unload(void)
   if (uRam004305c4 != 0) {
     iVar2 = 0;
     do {
-      iVar1 = iRam004305c8 + iVar2;
+      iVar1 = _g_CourseBufB + iVar2;
       *(undefined4 *)(iVar1 + 0x14) = 0;
       *(undefined4 *)(iVar1 + 0x18) = 0;
       *(undefined4 *)(iVar1 + 0x1c) = 0;
@@ -158,7 +162,7 @@ void Course_Unload(void)
         Mem_Free();
         *(undefined4 *)(iVar1 + 0x30) = 0;
       }
-      iVar1 = iRam004305c8 + iVar2;
+      iVar1 = _g_CourseBufB + iVar2;
       *(undefined4 *)(iVar1 + 0x34) = 0;
       *(undefined4 *)(iVar1 + 0x38) = 0;
       *(undefined4 *)(iVar1 + 0x3c) = 0;
@@ -167,7 +171,7 @@ void Course_Unload(void)
         Mem_Free();
         *(undefined4 *)(iVar1 + 0x50) = 0;
       }
-      iVar1 = iRam004305c8 + iVar2;
+      iVar1 = _g_CourseBufB + iVar2;
       *(undefined4 *)(iVar1 + 0x54) = 0;
       *(undefined4 *)(iVar1 + 0x58) = 0;
       *(undefined4 *)(iVar1 + 0x5c) = 0;
@@ -180,40 +184,42 @@ void Course_Unload(void)
       iVar2 = iVar2 + 0x74;
     } while (uVar3 < uRam004305c4);
   }
-  if (iRam004305c0 != 0) {
+  if (_g_CourseBufA != 0) {
     Mem_Free();
-    iRam004305c0 = 0;
+    _g_CourseBufA = 0;
   }
-  if (iRam004305bc != 0) {
+  if (_g_CourseStream != 0) {
     Mem_Free();
-    iRam004305bc = 0;
+    _g_CourseStream = 0;
   }
-  if (iRam004305c8 != 0) {
+  if (_g_CourseBufB != 0) {
     Mem_Free();
-    iRam004305c8 = 0;
+    _g_CourseBufB = 0;
   }
-  if (iRam004305d0 != 0) {
+  if (_g_CourseBufC != 0) {
     Mem_Free();
-    iRam004305d0 = 0;
+    _g_CourseBufC = 0;
   }
-  if (iRam004305d8 != 0) {
+  if (_g_CourseBufD != 0) {
     Mem_Free();
-    iRam004305d8 = 0;
+    _g_CourseBufD = 0;
   }
-  if (iRam004305e0 != 0) {
+  if (_g_CourseBufE != 0) {
     Mem_Free();
   }
-  iRam004305bc = 0;
+  _g_CourseStream = 0;
   uRam004305c4 = 0;
-  iRam004305c8 = 0;
+  _g_CourseBufB = 0;
   uRam004305cc = 0;
-  iRam004305d0 = 0;
-  iRam004305d8 = 0;
-  iRam004305e0 = 0;
+  _g_CourseBufC = 0;
+  _g_CourseBufD = 0;
+  _g_CourseBufE = 0;
   return;
 }
 
 // 0x001a0bd0  size 0x688
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,undefined4 param_5,
                undefined4 param_6)
 
@@ -252,29 +258,29 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   uRam004305b0 = (uint)(*param_4 == '\x01');
   iRam004305b4 = param_2;
   iRam004305b8 = iVar10;
-  iRam004305bc = Mem_Alloc16(0x74,param_1);
-  iRam004305c0 = Mem_Alloc16(0x38,param_1);
+  _g_CourseStream = Mem_Alloc16(0x74,param_1);
+  _g_CourseBufA = Mem_Alloc16(0x38,param_1);
   uRam004305c4 = uVar12;
-  iRam004305c8 = Mem_Alloc16(uVar12 * 0x74,param_1);
+  _g_CourseBufB = Mem_Alloc16(uVar12 * 0x74,param_1);
   uRam004305cc = uVar11;
-  uRam004305d0 = Mem_Alloc16(uVar11 * 0x50,param_1);
-  iRam004305d8 = Mem_Alloc16(uVar12 << 3,param_1);
+  _g_CourseBufC = Mem_Alloc16(uVar11 * 0x50,param_1);
+  _g_CourseBufD = Mem_Alloc16(uVar12 << 3,param_1);
   uVar9 = 0;
   if (uRam004305c4 != 0) {
     iVar8 = 0;
     do {
       uVar9 = uVar9 + 1;
-      *(undefined4 *)(iRam004305d8 + iVar8) = 0xbf800000;
+      *(undefined4 *)(_g_CourseBufD + iVar8) = 0xbf800000;
       iVar8 = iVar8 + 8;
     } while (uVar9 < uRam004305c4);
   }
-  iRam004305e0 = Mem_Alloc16(uVar11 << 3,param_1);
+  _g_CourseBufE = Mem_Alloc16(uVar11 << 3,param_1);
   uVar9 = 0;
   if (uRam004305cc != 0) {
     iVar8 = 0;
     do {
       uVar9 = uVar9 + 1;
-      *(undefined4 *)(iRam004305e0 + iVar8) = 0xbf800000;
+      *(undefined4 *)(_g_CourseBufE + iVar8) = 0xbf800000;
       iVar8 = iVar8 + 8;
     } while (uVar9 < uRam004305cc);
   }
@@ -288,12 +294,12 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   else {
     uVar5 = Arc_GetFileSize(iVar8,iVar8,1);
     uVar9 = (uint)uVar5 >> 8;
-    *(undefined4 *)(iRam004305c0 + 0x14) = *(undefined4 *)(param_4 + 4);
+    *(undefined4 *)(_g_CourseBufA + 0x14) = *(undefined4 *)(param_4 + 4);
     uRam00430600 = 1;
-    BlockPool_AllocD(iRam004305c0,1,param_1,uVar5);
+    BlockPool_AllocD(_g_CourseBufA,1,param_1,uVar5);
     uVar2 = uRam004305fc;
-    iVar8 = iRam004305c0;
-    *(undefined4 *)(iRam004305c0 + 0x18) = 1;
+    iVar8 = _g_CourseBufA;
+    *(undefined4 *)(_g_CourseBufA + 0x18) = 1;
     *(undefined4 *)(iVar8 + 0x1c) = 0;
     *(uint *)(iVar8 + 0x20) = uVar2 + iRam0036f2c0;
     DmaBuf_Alloc(iVar8 + 0x24,param_1,0x30);
@@ -307,13 +313,13 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   iRam004305f8 = iRam004305e8;
   uRam00430604 = param_5;
   uRam00430608 = param_6;
-  BlockPool_AllocC(iRam004305bc,1,param_1,uVar4);
-  BlockPool_AllocB(iRam004305c8,uVar12,param_1,uStack_4);
-  BlockPool_AllocA(uRam004305d0,uVar11,param_1,uStack_8);
+  BlockPool_AllocC(_g_CourseStream,1,param_1,uVar4);
+  BlockPool_AllocB(_g_CourseBufB,uVar12,param_1,uStack_4);
+  BlockPool_AllocA(_g_CourseBufC,uVar11,param_1,uStack_8);
   iVar7 = iRam004305e4;
-  iVar8 = iRam004305bc;
+  iVar8 = _g_CourseStream;
   uVar1 = *(ushort *)(iVar10 + 0x18);
-  *(uint *)(iRam004305bc + 0x14) = (uint)uVar1;
+  *(uint *)(_g_CourseStream + 0x14) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x18) = 0;
   *(int *)(iVar8 + 0x1c) = iVar7 + iRam0036f2c0;
   if (uVar1 == 0) {
@@ -326,9 +332,9 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     *(undefined4 *)(iVar8 + 0x30) = uVar3;
   }
   iVar7 = iRam004305f4;
-  iVar8 = iRam004305bc;
+  iVar8 = _g_CourseStream;
   uVar1 = *(ushort *)(iVar10 + 0x28);
-  *(uint *)(iRam004305bc + 0x34) = (uint)uVar1;
+  *(uint *)(_g_CourseStream + 0x34) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x38) = 0;
   *(int *)(iVar8 + 0x3c) = iVar7 + iRam0036f2c0;
   if (uVar1 == 0) {
@@ -341,9 +347,9 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     *(undefined4 *)(iVar8 + 0x50) = uVar3;
   }
   iVar7 = iRam004305f8;
-  iVar8 = iRam004305bc;
+  iVar8 = _g_CourseStream;
   uVar1 = *(ushort *)(iVar10 + 0x2c);
-  *(uint *)(iRam004305bc + 0x54) = (uint)uVar1;
+  *(uint *)(_g_CourseStream + 0x54) = (uint)uVar1;
   *(undefined4 *)(iVar8 + 0x58) = 0;
   *(int *)(iVar8 + 0x5c) = iVar7 + iRam0036f2c0;
   if (uVar1 == 0) {
@@ -361,7 +367,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     do {
       iVar7 = iRam004305e8;
       uVar1 = *(ushort *)(iVar10 + 0x1c);
-      iVar6 = iRam004305c8 + iVar8;
+      iVar6 = _g_CourseBufB + iVar8;
       *(uint *)(iVar6 + 0x14) = (uint)uVar1;
       *(undefined4 *)(iVar6 + 0x18) = 0;
       *(int *)(iVar6 + 0x1c) = iVar7 + iRam0036f2c0;
@@ -376,7 +382,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       }
       uVar1 = *(ushort *)(iVar10 + 0x20);
       iVar6 = iRam004305ec + *(ushort *)(iVar10 + 0x22) * uVar11;
-      iVar7 = iRam004305c8 + iVar8;
+      iVar7 = _g_CourseBufB + iVar8;
       *(uint *)(iVar7 + 0x34) = (uint)uVar1;
       *(undefined4 *)(iVar7 + 0x38) = 0;
       *(int *)(iVar7 + 0x3c) = iVar6 + iRam0036f2c0;
@@ -391,7 +397,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       }
       iVar7 = iRam004305f0;
       uVar1 = *(ushort *)(iVar10 + 0x24);
-      iVar6 = iRam004305c8 + iVar8;
+      iVar6 = _g_CourseBufB + iVar8;
       *(uint *)(iVar6 + 0x54) = (uint)uVar1;
       *(undefined4 *)(iVar6 + 0x58) = 0;
       *(int *)(iVar6 + 0x5c) = iVar7 + iRam0036f2c0;
@@ -1470,6 +1476,7 @@ void Course_BindTextureSlots(undefined8 param_1,long param_2)
 
 // 0x001a2a00  size 0x84c
 /* WARNING: Removing unreachable block (ram,0x001a2fec) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
 
@@ -1532,7 +1539,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   Pkt_Init(auStack_80,2,2,0);
   Pkt_SubmitToChain(auStack_80,0x11);
   Pkt_End(auStack_40);
-  TexSlot_Set(5,*(undefined4 *)(iRam004305bc + 0x58),*(undefined4 *)(iRam004305bc + 0x70));
+  TexSlot_Set(5,*(undefined4 *)(_g_CourseStream + 0x58),*(undefined4 *)(_g_CourseStream + 0x70));
   if (param_2 == 0) {
     sceVu0Normalize(auStack_3b0,iVar12);
     sceVu0ScaleVector(0x461c4000,auStack_3b0,auStack_3b0);
@@ -1860,6 +1867,8 @@ void Course_DrawView(undefined1 *param_1,undefined8 param_2)
 }
 
 // 0x001a3820  size 0xf18
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_Render(int param_1)
 
 {
@@ -1941,36 +1950,36 @@ void Course_Render(int param_1)
   uStack_2c = 0x42d0c0;
   if (iRam0043067c == 0) {
     Pkt_SubmitToChain(auStack_40,0);
-    Pkt_Flush(auStack_40,iRam004305bc + 0x20);
+    Pkt_Flush(auStack_40,_g_CourseStream + 0x20);
     Pkt_Submit(auStack_40,0);
     iRam0043067c = 1;
   }
-  piVar2 = (int *)Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),9,0);
-  uVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),0,0);
-  uVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),1,0);
+  piVar2 = (int *)Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),9,0);
+  uVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),0,0);
+  uVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),1,0);
   iVar9 = piVar2[2];
   while (iVar9 != 0) {
     uVar1 = *(undefined1 *)
              ((int)piVar2 + (iRam00430670 % (piVar2[1] * piVar2[2])) / piVar2[1] + 0x10);
     if (*piVar2 == 0) {
       uVar6 = Tex_GetEntry(uVar4,uVar1);
-      iVar9 = *(int *)(iRam004305bc + 0x30) + piVar2[3] * 0x80;
+      iVar9 = *(int *)(_g_CourseStream + 0x30) + piVar2[3] * 0x80;
       Pkt_SubmitToChain(auStack_40,0);
       Pkt_AddTexture(auStack_40,*(undefined4 *)(iVar9 + 100),*(undefined4 *)(iVar9 + 0x68),uVar6);
       Pkt_Submit(auStack_40,0);
     }
     else {
       uVar3 = Tex_GetEntry(uVar5,uVar1);
-      *(undefined4 *)(*(int *)(iRam004305bc + 0x50) + piVar2[3] * 0x80 + 0x6c) = uVar3;
+      *(undefined4 *)(*(int *)(_g_CourseStream + 0x50) + piVar2[3] * 0x80 + 0x6c) = uVar3;
     }
     iVar9 = piVar2[10];
     piVar2 = piVar2 + 8;
   }
   iRam00430670 = iRam00430670 + param_1;
-  TexSlot_Set(0,*(undefined4 *)(iRam004305bc + 0x18),*(undefined4 *)(iRam004305bc + 0x30));
-  TexSlot_Set(4,*(undefined4 *)(iRam004305bc + 0x38),*(undefined4 *)(iRam004305bc + 0x50));
-  lVar7 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),3,0);
-  lVar8 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),4,0);
+  TexSlot_Set(0,*(undefined4 *)(_g_CourseStream + 0x18),*(undefined4 *)(_g_CourseStream + 0x30));
+  TexSlot_Set(4,*(undefined4 *)(_g_CourseStream + 0x38),*(undefined4 *)(_g_CourseStream + 0x50));
+  lVar7 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),3,0);
+  lVar8 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),4,0);
   if ((lVar7 != 0) && (iRam00431684 != 0)) {
     uStack_5c = 5;
     uStack_50 = 1;
@@ -2006,7 +2015,7 @@ void Course_Render(int param_1)
   if (iRam004327c4 != 0) {
     View_DrawFadeSprite(0,1);
   }
-  lVar7 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),6,0);
+  lVar7 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),6,0);
   if ((lVar7 != 0) && (iRam00431684 != 0)) {
     uStack_7c = 7;
     uStack_70 = 1;
@@ -2043,7 +2052,7 @@ void Course_Render(int param_1)
     View_DrawFadeSprite(0,1);
   }
   uVar10 = 0;
-  for (piVar2 = piRam00430640; (uVar10 < uRam004305c4 && (*piVar2 != 0)); piVar2 = piVar2 + 2) {
+  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (*piVar2 != 0)); piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       Pkt_SubmitToChain(auStack_40,0);
       Pkt_Flush(auStack_40,*piVar2 + 0x40);
@@ -2056,7 +2065,7 @@ void Course_Render(int param_1)
     DmaChain_Kick(1,0,4);
   }
   uVar10 = 0;
-  for (piVar2 = piRam00430640; (uVar10 < uRam004305c4 && (iVar9 = *piVar2, iVar9 != 0));
+  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (iVar9 = *piVar2, iVar9 != 0));
       piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       TexSlot_Set(1,*(undefined4 *)(iVar9 + 0x18),*(undefined4 *)(iVar9 + 0x30));
@@ -2081,11 +2090,11 @@ void Course_Render(int param_1)
   }
   if ((iRam00430600 != 0) && (lVar11 != 0)) {
     Pkt_SubmitToChain(auStack_40,0);
-    Pkt_Flush(auStack_40,iRam004305c0 + 0x24);
+    Pkt_Flush(auStack_40,_g_CourseBufA + 0x24);
     Pkt_Submit(auStack_40,0);
   }
   if ((iRam00430600 != 0) && (lVar11 != 0)) {
-    TexSlot_Set(7,*(undefined4 *)(iRam004305c0 + 0x1c),*(undefined4 *)(iRam004305c0 + 0x34));
+    TexSlot_Set(7,*(undefined4 *)(_g_CourseBufA + 0x1c),*(undefined4 *)(_g_CourseBufA + 0x34));
   }
   if (iRam00430674 != 0) {
     Course_BindTextureSlots(1,lVar11);
@@ -2102,7 +2111,7 @@ void Course_Render(int param_1)
     DmaChain_Kick(1,0,5);
   }
   uVar10 = 0;
-  for (piVar2 = piRam00430640; (uVar10 < uRam004305c4 && (iVar9 = *piVar2, iVar9 != 0));
+  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (iVar9 = *piVar2, iVar9 != 0));
       piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       TexSlot_Set(1,*(undefined4 *)(iVar9 + 0x18),*(undefined4 *)(iVar9 + 0x30));
@@ -2150,7 +2159,7 @@ void Course_Render(int param_1)
     View_DrawFullscreen(0,3,0xffffffff80808080);
   }
   uVar10 = 0;
-  for (piVar2 = piRam00430640; (uVar10 < uRam004305c4 && (*piVar2 != 0)); piVar2 = piVar2 + 2) {
+  for (piVar2 = _g_CourseScene; (uVar10 < uRam004305c4 && (*piVar2 != 0)); piVar2 = piVar2 + 2) {
     if (*(int *)piVar2[1] != 0) {
       Pkt_SubmitToChain(auStack_40,0);
       Pkt_Flush(auStack_40,*piVar2 + 0x60);

@@ -744,11 +744,11 @@ void Ai_SetupDifficulty(void)
         Ai_PredictPath(0,*(undefined4 *)((int)_g_RaceCars + iVar7),uStack_2,uStack_4,uVar14,1,
                        *(undefined4 *)(iVar12 + 4));
         Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar7));
-        if ((iRam004301b0 == 0) || (uRam004301ac <= uVar6)) {
+        if ((_g_Skids == 0) || (uRam004301ac <= uVar6)) {
           iVar12 = 0;
         }
         else {
-          iVar12 = iRam004301b0 + uVar6 * 0xb900;
+          iVar12 = _g_Skids + uVar6 * 0xb900;
         }
         MotionBlur_Advance(iVar12);
         uVar6 = uVar6 + 1;
@@ -949,6 +949,8 @@ void RaceCar_PlaceOnGrid(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001cdf80  size 0x548
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ai_UpdateGearbox(undefined8 param_1,char param_2)
 
 {
@@ -960,11 +962,11 @@ void Ai_UpdateGearbox(undefined8 param_1,char param_2)
   int iVar6;
   
   bVar3 = false;
-  if (iRam0036f34c == 0) {
+  if (_g_AiDrivers == 0) {
     puVar4 = (undefined4 *)0x0;
   }
   else {
-    puVar4 = *(undefined4 **)(param_2 * 4 + iRam0036f34c + 8);
+    puVar4 = *(undefined4 **)(param_2 * 4 + _g_AiDrivers + 8);
   }
   if (puVar4 == (undefined4 *)0x0) {
     return;

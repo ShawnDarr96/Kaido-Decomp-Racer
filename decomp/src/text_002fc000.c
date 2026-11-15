@@ -108,6 +108,7 @@ void ScrRenderSetInterlace_Exit(void)
 }
 
 // 0x002fd1e0  size 0x398
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 45 (table 0x3274b0) */
 
 void ScrRenderSetInterlace_Update(int *param_1)
@@ -130,14 +131,14 @@ void ScrRenderSetInterlace_Update(int *param_1)
           Render_SetInterlace(1);
         }
       }
-      uVar3 = piRam0036f468[2];
-      if ((piRam0036f468[4] & uVar3) == 0) {
+      uVar3 = _g_MenuInput[2];
+      if ((_g_MenuInput[4] & uVar3) == 0) {
         uVar3 = 0x100000;
       }
       else if (uVar3 == 0x80000) {
         uVar3 = 0x80000;
       }
-      else if (*piRam0036f468 != 1) {
+      else if (*_g_MenuInput != 1) {
         uVar3 = 0x100000;
       }
       if (uVar3 == 0x40) {
@@ -154,14 +155,14 @@ void ScrRenderSetInterlace_Update(int *param_1)
       }
     }
     else if (iVar1 == 2) {
-      uVar3 = piRam0036f468[2];
-      if ((piRam0036f468[4] & uVar3) == 0) {
+      uVar3 = _g_MenuInput[2];
+      if ((_g_MenuInput[4] & uVar3) == 0) {
         uVar3 = 0x100000;
       }
       else if (uVar3 == 0x80000) {
         uVar3 = 0x80000;
       }
-      else if (*piRam0036f468 != 1) {
+      else if (*_g_MenuInput != 1) {
         uVar3 = 0x100000;
       }
       if (uVar3 == 0x10) {
@@ -202,14 +203,14 @@ void ScrRenderSetInterlace_Update(int *param_1)
       }
     }
     else if (iVar1 == 0) {
-      uVar3 = piRam0036f468[2];
-      if ((piRam0036f468[4] & uVar3) == 0) {
+      uVar3 = _g_MenuInput[2];
+      if ((_g_MenuInput[4] & uVar3) == 0) {
         uVar3 = 0x100000;
       }
       else if (uVar3 == 0x80000) {
         uVar3 = 0x80000;
       }
-      else if (*piRam0036f468 != 1) {
+      else if (*_g_MenuInput != 1) {
         uVar3 = 0x100000;
       }
       if (uVar3 == 0x10) {

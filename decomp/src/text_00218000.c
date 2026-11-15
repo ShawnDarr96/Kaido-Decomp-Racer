@@ -82,7 +82,7 @@ void ScrCareer_Draw_Shop(int param_1)
   if ((*(int *)(param_1 + 0x70) != 0) && (lVar4 = UiLayout_UpdateAnimById(0x1c), lVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x70) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1c,*(undefined4 *)(&DAT_0036e8e0 + *(int *)(param_1 + 0x4c) * 4),1,0);
   }
   MenuWnd_DrawText(0x12,0x40,0x102);
@@ -1126,7 +1126,7 @@ void ScrCareer_Draw_Entry(undefined8 param_1)
   if ((*(int *)(iVar7 + 0x60) != 0) && (lVar6 = UiLayout_UpdateAnimById(0x27), lVar6 == 0)) {
     *(undefined4 *)(iVar7 + 0x60) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x27,*(undefined4 *)(&DAT_0036e938 + *(int *)(iVar7 + 0xc) * 4),1,0);
   }
   MenuWnd_DrawText(0x27,0xe,0x2f6);
@@ -1495,7 +1495,7 @@ void maybe_PageNaFesta_State1_Entry(undefined8 param_1)
     iVar3 = UiMgr_FindLayout(0x26);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x37,8);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x26,*(undefined4 *)(&DAT_0032a330 + *(int *)(iVar9 + 0x20) * 4),1,0);
   }
   ScrRace_Draw_NaFesta(param_1);
@@ -1786,7 +1786,7 @@ void maybe_PageNaFesta_State0_Entry(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x25,*(undefined4 *)(&DAT_0032a2f0 + *(int *)(param_1 + 0x10) * 4),1,0);
     iVar4 = *(int *)(param_1 + 0x28);
   }

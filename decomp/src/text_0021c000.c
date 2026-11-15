@@ -834,7 +834,7 @@ LAB_0021d4ac:
     }
     MenuWnd_SetItemVisible(0);
   }
-  if ((*piRam0036f468 == 1) && (param_1[0x153f] == 0)) {
+  if ((*_g_MenuInput == 1) && (param_1[0x153f] == 0)) {
     MenuWnd_SetItemState(0xab,(&DAT_0032a560)[*param_1],0,0);
   }
   MenuWnd_DrawText(0xaa,1,0x433);
@@ -1289,14 +1289,14 @@ LAB_0021e9c8:
         }
       }
     }
-    uVar7 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar7) == 0) {
+    uVar7 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar7) == 0) {
       uVar7 = 0x100000;
     }
     else if (uVar7 == 0x80000) {
       uVar7 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar7 = 0x100000;
     }
     if (uVar7 == 0x1000) {

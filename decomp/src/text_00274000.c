@@ -1096,7 +1096,7 @@ void maybe_PageWheels_State25_TakeOffCar(undefined8 param_1)
     iVar5 = UiMgr_FindLayout(0x6b);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar5 * 0x4f4 + 4,0x3e,8);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x6b,*(undefined4 *)(&DAT_0032de70 + *(int *)(iVar10 + 0x9f0) * 4),0,0);
     iVar5 = *(int *)(iVar10 + 0x604);
   }
@@ -1564,7 +1564,7 @@ void ScrGarage_Draw_TakeOffCar_6720(undefined8 param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if ((*piRam0036f468 == 1) && (iVar4 != 0)) {
+  if ((*_g_MenuInput == 1) && (iVar4 != 0)) {
     MenuWnd_SetItemState(0xc,*(undefined4 *)(&DAT_0032de20 + *(int *)(iVar11 + 0x9f8) * 4),0,0);
   }
   if ((iVar4 != 0) && (iVar4 < 7)) {
@@ -2232,7 +2232,7 @@ void ScrCareer_Draw_Front(int param_1)
                3) % *(int *)(param_1 + 0x74);
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x6a,*(undefined4 *)(&DAT_0032dda8 + *(int *)(param_1 + 0x9f4) * 4),0,0);
   }
   iVar2 = UiMgr_FindLayout(0x6a);

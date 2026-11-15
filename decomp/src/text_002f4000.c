@@ -2074,6 +2074,8 @@ undefined4 PreviewSnd_StopIfPlaying(undefined4 *param_1)
 }
 
 // 0x002f7fe0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool PreviewSnd_QueueStop(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -2083,10 +2085,10 @@ bool PreviewSnd_QueueStop(undefined4 *param_1,undefined4 param_2,undefined4 para
   undefined4 uStack_10;
   
   uVar1 = *param_1;
-  bVar2 = iRam0042dafc < 0x30;
+  bVar2 = _s_SndCmdCount < 0x30;
   if (bVar2) {
-    iVar3 = iRam0042dafc * 0x14;
-    iRam0042dafc = iRam0042dafc + 1;
+    iVar3 = _s_SndCmdCount * 0x14;
+    _s_SndCmdCount = _s_SndCmdCount + 1;
     *(undefined4 *)(iVar3 + 0x42db00) = 0x208;
     *(undefined4 *)(iVar3 + 0x42db04) = uVar1;
     *(undefined4 *)(iVar3 + 0x42db08) = param_2;
@@ -2097,6 +2099,8 @@ bool PreviewSnd_QueueStop(undefined4 *param_1,undefined4 param_2,undefined4 para
 }
 
 // 0x002f7ff0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool PreviewSnd_QueuePause(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -2106,10 +2110,10 @@ bool PreviewSnd_QueuePause(undefined4 *param_1,undefined4 param_2,undefined4 par
   undefined4 uStack_10;
   
   uVar1 = *param_1;
-  bVar2 = iRam0042dafc < 0x30;
+  bVar2 = _s_SndCmdCount < 0x30;
   if (bVar2) {
-    iVar3 = iRam0042dafc * 0x14;
-    iRam0042dafc = iRam0042dafc + 1;
+    iVar3 = _s_SndCmdCount * 0x14;
+    _s_SndCmdCount = _s_SndCmdCount + 1;
     *(undefined4 *)(iVar3 + 0x42db00) = 0x209;
     *(undefined4 *)(iVar3 + 0x42db04) = uVar1;
     *(undefined4 *)(iVar3 + 0x42db08) = param_2;

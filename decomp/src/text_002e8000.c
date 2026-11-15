@@ -732,6 +732,8 @@ void maybe_ComposerUi_SetGridCell(undefined8 param_1,undefined8 param_2,byte par
 }
 
 // 0x002e97e0  size 0x204
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ComposerUi_PlayNote(float param_1,float *param_2,long param_3)
 
 {
@@ -754,7 +756,7 @@ void maybe_ComposerUi_PlayNote(float param_1,float *param_2,long param_3)
         uVar3 = uVar3 - 0x10;
       }
       if (uVar3 != 0) {
-        iVar1 = iRam0036f048 + (int)param_2[2] * 0x50;
+        iVar1 = _g_IopSe + (int)param_2[2] * 0x50;
         Midi_SendMessage(*(undefined4 *)(iVar1 + 0x44),*(undefined4 *)(iVar1 + 0x40),0x3f0ab0);
         lVar2 = Midi_SendMessage(*(undefined4 *)(iVar1 + 0x44),*(undefined4 *)(iVar1 + 0x40),0xc0);
         if (lVar2 == 0) {
@@ -774,7 +776,7 @@ void maybe_ComposerUi_PlayNote(float param_1,float *param_2,long param_3)
         uVar3 = uVar3 - 4;
       }
       if (uVar3 != 0) {
-        iVar1 = iRam0036f048 + (int)param_2[2] * 0x50;
+        iVar1 = _g_IopSe + (int)param_2[2] * 0x50;
         Midi_SendMessage(*(undefined4 *)(iVar1 + 0x44),*(undefined4 *)(iVar1 + 0x40),0x3f0ab0);
         lVar2 = Midi_SendMessage(*(undefined4 *)(iVar1 + 0x44),*(undefined4 *)(iVar1 + 0x40),0xc0);
         if (lVar2 == 0) {

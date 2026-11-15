@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x0019c2e0  size 0x494
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarModel_RenderOpaque(undefined8 param_1)
 
 {
@@ -122,11 +124,11 @@ LAB_0019c6c8:
     puVar7 = puVar7 + 8;
     if (3 < uVar8) {
       if (cRam00430460 == '\x02') {
-        if ((iRam004301b0 == 0) || (uRam004301ac <= puVar9[0xff])) {
+        if ((_g_Skids == 0) || (uRam004301ac <= puVar9[0xff])) {
           iVar6 = 0;
         }
         else {
-          iVar6 = iRam004301b0 + puVar9[0xff] * 0xb900;
+          iVar6 = _g_Skids + puVar9[0xff] * 0xb900;
         }
         if (iVar6 != 0) {
           Car_DrawShadowAndBlur(iVar6,param_1);
@@ -526,7 +528,7 @@ void CourseStream_RequestBlock
   undefined1 auStack_20 [16];
   float afStack_10 [4];
   
-  iVar10 = iRam004305e0;
+  iVar10 = _g_CourseBufE;
   iVar9 = *(int *)((param_5 & 0xff) * 4 + _g_Loading + 0x14);
   sceVu0CopyVector(auStack_20,iVar9 + 0x70);
   afStack_10[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
@@ -543,11 +545,11 @@ void CourseStream_RequestBlock
   uRam004305dc = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar6 = BlockPool_FindB(uRam004305c8,uRam004305c4,*(undefined2 *)(iVar10 + 4));
+      lVar6 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar10 + 4));
       if (lVar6 != 0) {
-        lVar6 = BlockPool_Find(iRam004305d0,uRam004305cc,*(undefined4 *)(iVar10 + 4));
+        lVar6 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar10 + 4));
         if (lVar6 == 0) {
-          lVar6 = BlockPool_FindFree(iRam004305d0,uRam004305cc);
+          lVar6 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar10 + 4);
             Sema_Wait(0x36efc0);
@@ -558,7 +560,7 @@ void CourseStream_RequestBlock
               puVar8[2] = uVar5;
               uVar1 = *(ushort *)((int)puVar8 + 10);
               iVar9 = *(int *)(iRam004305b8 + (uint)(ushort)puVar8[2] * 0xc + 0x48);
-              iVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
+              iVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
                                        (uint)(ushort)puVar8[2] * 2 + 0xc,0);
               iVar4 = *(int *)(iVar4 + (uint)uVar1 * 4);
               if (iVar4 < 0) {
@@ -592,7 +594,7 @@ void CourseStream_RequestBlock
   if (uRam004305cc != 0) {
     iVar9 = 0;
     do {
-      puVar8 = (uint *)(iRam004305d0 + iVar9);
+      puVar8 = (uint *)(_g_CourseBufC + iVar9);
       bVar7 = false;
       if (((*puVar8 & 0x10) == 0) && ((*puVar8 & 1) != 0)) {
         bVar7 = true;
@@ -611,6 +613,8 @@ void CourseStream_RequestBlock
 }
 
 // 0x0019d490  size 0x8a4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint CourseStream_UpdateVisibility
                (float param_1,undefined4 param_2,float param_3,undefined4 param_4,float *param_5,
                undefined8 param_6,float *param_7,undefined4 param_8)
@@ -659,7 +663,7 @@ uint CourseStream_UpdateVisibility
   float fStack_10;
   float fStack_8;
   
-  iVar4 = iRam004305e0;
+  iVar4 = _g_CourseBufE;
   uVar3 = uRam004305cc;
   iVar2 = iRam004305b8;
   uVar15 = 0;
@@ -680,7 +684,7 @@ uint CourseStream_UpdateVisibility
     do {
       bVar1 = false;
       uVar11 = 0;
-      pfVar8 = pfRam004305d8;
+      pfVar8 = _g_CourseBufD;
       if (uRam004305c4 != 0) {
         do {
           if ((0.0 <= *pfVar8) && (uVar14 == *(ushort *)(pfVar8 + 1))) {
@@ -692,7 +696,7 @@ uint CourseStream_UpdateVisibility
         } while (uVar11 < uRam004305c4);
       }
       if (bVar1) {
-        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_110,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_110,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iStack_130 = 0;
@@ -783,7 +787,7 @@ LAB_0019d900:
     do {
       bVar1 = false;
       uVar11 = 0;
-      pfVar8 = pfRam004305d8;
+      pfVar8 = _g_CourseBufD;
       if (uRam004305c4 != 0) {
         do {
           if ((0.0 <= *pfVar8) && (uVar14 == *(ushort *)(pfVar8 + 1))) {
@@ -795,7 +799,7 @@ LAB_0019d900:
         } while (uVar11 < uRam004305c4);
       }
       if (bVar1) {
-        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iVar13,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iVar13,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iVar17 = 0;
@@ -900,6 +904,7 @@ LAB_0019dc38:
 
 // 0x0019dd50  size 0x340
 /* WARNING: Removing unreachable block (ram,0x0019de0c) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 int CourseStream_FindBlock(int param_1,int param_2,float *param_3,int param_4,int param_5)
 
@@ -917,7 +922,7 @@ int CourseStream_FindBlock(int param_1,int param_2,float *param_3,int param_4,in
   float fVar11;
   int iStack_20;
   
-  lVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),10,1);
+  lVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),10,1);
   iStack_20 = 0;
   iVar6 = 0;
   if (0 < param_2) {
@@ -1010,6 +1015,8 @@ LAB_0019df98:
 }
 
 // 0x0019e0a0  size 0x518
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
 
 {
@@ -1056,7 +1063,7 @@ undefined4 Course_GetGroundHeight(float *param_1,float *param_2)
   float afStack_10 [3];
   undefined4 uStack_4;
   
-  uVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),8,0);
+  uVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),8,0);
   afStack_10[0] = *param_1;
   afStack_10[1] = 0.0;
   afStack_10[2] = param_1[2];
@@ -1218,20 +1225,24 @@ LAB_0019e558:
 }
 
 // 0x0019e5d0  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_FreeAll(void)
 
 {
-  BlockPool_ResetB(uRam004305c8,uRam004305c4);
-  BlockPool_ResetA(uRam004305d0,uRam004305cc);
+  BlockPool_ResetB(_g_CourseBufB,uRam004305c4);
+  BlockPool_ResetA(_g_CourseBufC,uRam004305cc);
   return;
 }
 
 // 0x0019e610  size 0x50
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_Update(undefined8 param_1)
 
 {
-  BlockPool_TouchB(uRam004305c8,uRam004305c4,param_1);
-  BlockPool_TouchA(uRam004305d0,uRam004305cc,param_1);
+  BlockPool_TouchB(_g_CourseBufB,uRam004305c4,param_1);
+  BlockPool_TouchA(_g_CourseBufC,uRam004305cc,param_1);
   return;
 }
 
@@ -1622,7 +1633,7 @@ void CourseStream_RequestLod
   undefined4 uStack_1c;
   float afStack_10 [4];
   
-  iVar12 = iRam004305e0;
+  iVar12 = _g_CourseBufE;
   iVar10 = *(int *)((uint)param_3 * 4 + _g_Loading + 0x14);
   afStack_10[0] = *(float *)(iVar10 + 0x80) - *(float *)(iVar10 + 0x70);
   afStack_10[1] = 0.0;
@@ -1642,11 +1653,11 @@ void CourseStream_RequestLod
   uRam004305dc = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar6 = BlockPool_FindB(uRam004305c8,uRam004305c4,*(undefined2 *)(iVar12 + 4));
+      lVar6 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar12 + 4));
       if (lVar6 != 0) {
-        lVar6 = BlockPool_Find(iRam004305d0,uRam004305cc,*(undefined4 *)(iVar12 + 4));
+        lVar6 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar12 + 4));
         if (lVar6 == 0) {
-          lVar6 = BlockPool_FindFree(iRam004305d0,uRam004305cc);
+          lVar6 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
           if (lVar6 != 0) {
             uVar5 = *(uint *)(iVar12 + 4);
             Sema_Wait(0x36efc0);
@@ -1657,7 +1668,7 @@ void CourseStream_RequestLod
               puVar9[2] = uVar5;
               uVar1 = *(ushort *)((int)puVar9 + 10);
               iVar10 = *(int *)(iRam004305b8 + (uint)(ushort)puVar9[2] * 0xc + 0x48);
-              iVar4 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),
+              iVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
                                        (uint)(ushort)puVar9[2] * 2 + 0xc,0);
               iVar4 = *(int *)(iVar4 + (uint)uVar1 * 4);
               if (iVar4 < 0) {
@@ -1690,7 +1701,7 @@ void CourseStream_RequestLod
   if (((iRam004305b0 == 0) || (param_3 == 1)) && (uVar3 = 0, uRam004305cc != 0)) {
     iVar10 = 0;
     do {
-      puVar9 = (uint *)(iRam004305d0 + iVar10);
+      puVar9 = (uint *)(_g_CourseBufC + iVar10);
       bVar7 = false;
       if (((*puVar9 & 0x10) == 0) && ((*puVar9 & 1) != 0)) {
         bVar7 = true;
@@ -1709,6 +1720,8 @@ void CourseStream_RequestLod
 }
 
 // 0x0019f590  size 0x620
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint CourseStream_UpdateLod
                (float param_1,undefined4 param_2,undefined4 param_3,undefined8 param_4,int param_5)
 
@@ -1750,7 +1763,7 @@ uint CourseStream_UpdateLod
   float fStack_10;
   float fStack_8;
   
-  iVar4 = iRam004305e0;
+  iVar4 = _g_CourseBufE;
   uVar3 = uRam004305cc;
   iVar2 = iRam004305b8;
   uVar15 = 0;
@@ -1771,7 +1784,7 @@ uint CourseStream_UpdateLod
     do {
       bVar1 = false;
       uVar11 = 0;
-      pfVar6 = pfRam004305d8;
+      pfVar6 = _g_CourseBufD;
       if (uRam004305c4 != 0) {
         do {
           if ((0.0 <= *pfVar6) && (uVar14 == *(ushort *)(pfVar6 + 1))) {
@@ -1783,7 +1796,7 @@ uint CourseStream_UpdateLod
         } while (uVar11 < uRam004305c4);
       }
       if (bVar1) {
-        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_c0,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_c0,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iStack_d0 = 0;
@@ -1861,7 +1874,7 @@ LAB_0019f850:
     if (uVar11 != 0) {
       iStack_b0 = 0xb;
       do {
-        iVar5 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_b0,0);
+        iVar5 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_b0,0);
         uVar11 = 0;
         if (*(int *)(iVar5 + 8) != 1) {
           iVar17 = 0;
@@ -1938,6 +1951,8 @@ LAB_0019f850:
 }
 
 // 0x0019fbd0  size 0x22c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
@@ -1951,7 +1966,7 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
   int iVar8;
   uint uVar9;
   
-  iVar8 = iRam004305d8;
+  iVar8 = _g_CourseBufD;
   if (param_3 == 0) {
     param_3 = 0;
   }
@@ -1960,9 +1975,9 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
   uRam004305d4 = uVar3;
   if (uVar3 != 0) {
     do {
-      lVar5 = BlockPool_FindB(iRam004305c8,uRam004305c4,*(undefined4 *)(iVar8 + 4));
+      lVar5 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined4 *)(iVar8 + 4));
       if (lVar5 == 0) {
-        lVar5 = BlockPool_FindFreeB(iRam004305c8,uRam004305c4);
+        lVar5 = BlockPool_FindFreeB(_g_CourseBufB,uRam004305c4);
         if (lVar5 != 0) {
           uVar4 = *(uint *)(iVar8 + 4);
           Sema_Wait(0x36efc0);
@@ -1991,7 +2006,7 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
   if (uRam004305c4 != 0) {
     iVar8 = 0;
     do {
-      puVar7 = (uint *)(iRam004305c8 + iVar8);
+      puVar7 = (uint *)(_g_CourseBufB + iVar8);
       bVar6 = false;
       if (((*puVar7 & 0x10) == 0) && ((*puVar7 & 1) != 0)) {
         bVar6 = true;
@@ -2010,6 +2025,8 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
 }
 
 // 0x0019fe00  size 0x860
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
 
 {
@@ -2048,7 +2065,7 @@ uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
   undefined4 uStack_1c;
   undefined1 auStack_10 [16];
   
-  iVar5 = iRam004305d8;
+  iVar5 = _g_CourseBufD;
   uVar4 = uRam004305c4;
   iVar3 = iRam004305b8;
   uVar16 = 0;
@@ -2058,7 +2075,7 @@ uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
     iStack_c0 = 0xb;
     pfVar17 = (float *)param_2;
     do {
-      iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_c0,0);
+      iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_c0,0);
       pfVar14 = (float *)(iVar6 + 0x20);
       bVar1 = true;
       iVar12 = 0;
@@ -2171,7 +2188,7 @@ uint CourseStream_UpdateTextures(float param_1,undefined8 param_2,long param_3)
       pfVar7 = (float *)param_3;
       pfVar17 = pfVar7 + 2;
       do {
-        iVar6 = Gut_PackGetEntry(*(undefined4 *)(iRam004305bc + 0xc),iStack_90,0);
+        iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),iStack_90,0);
         pfVar14 = (float *)(iVar6 + 0x20);
         bVar2 = true;
         bVar1 = false;

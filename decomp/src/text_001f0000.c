@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x001f0490  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int UiText_CountLinesById(int param_1)
 
 {
@@ -14,7 +16,7 @@ int UiText_CountLinesById(int param_1)
     psVar3 = &DAT_0036e864;
   }
   else {
-    psVar3 = (short *)(iRam0036f400 + *(int *)(iRam0036f404 + param_1 * 4) * 2);
+    psVar3 = (short *)(_g_Fonts + *(int *)(_g_LocalizedText + param_1 * 4) * 2);
   }
   iVar2 = 1;
   while( true ) {
@@ -29,6 +31,8 @@ int UiText_CountLinesById(int param_1)
 }
 
 // 0x001f04f0  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 UiText_CompareById(int param_1,int param_2)
 
 {
@@ -41,13 +45,13 @@ undefined4 UiText_CompareById(int param_1,int param_2)
     puVar4 = &DAT_0036e864;
   }
   else {
-    puVar4 = (ushort *)(iRam0036f400 + *(int *)(iRam0036f404 + param_1 * 4) * 2);
+    puVar4 = (ushort *)(_g_Fonts + *(int *)(_g_LocalizedText + param_1 * 4) * 2);
   }
   if (param_2 == -1) {
     puVar3 = &DAT_0036e864;
   }
   else {
-    puVar3 = (ushort *)(iRam0036f400 + *(int *)(iRam0036f404 + param_2 * 4) * 2);
+    puVar3 = (ushort *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
   }
   while( true ) {
     uVar1 = *puVar4;
@@ -72,21 +76,24 @@ undefined4 UiText_CompareById(int param_1,int param_2)
 }
 
 // 0x001f05b0  size 0x44
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_FreeFonts(void)
 
 {
-  if (iRam0036f400 != 0) {
+  if (_g_Fonts != 0) {
     Mem_Free();
-    iRam0036f400 = 0;
+    _g_Fonts = 0;
   }
-  if (iRam0036f404 != 0) {
+  if (_g_LocalizedText != 0) {
     Mem_Free();
-    iRam0036f404 = 0;
+    _g_LocalizedText = 0;
   }
   return;
 }
 
 // 0x001f06b0  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* language offset at +0x15 */
 
 void UiRes_LoadLocalized(int param_1)
@@ -103,22 +110,26 @@ void UiRes_LoadLocalized(int param_1)
     uVar1 = uVar1 + 0x7ff >> 0xb;
   }
   iRam0036f40c = uVar1 << 0xb;
-  Arc_LoadFileEx(param_1,uRam0036f400,0x1f0600,0,0,0);
+  Arc_LoadFileEx(param_1,_g_Fonts,0x1f0600,0,0,0);
   return;
 }
 
 // 0x001f0710  size 0x50
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_AllocFonts(undefined8 param_1,undefined4 param_2,int param_3)
 
 {
   iRam0036f408 = param_3;
   uRam0036f40c = param_2;
-  uRam0036f404 = Mem_AllocAligned(param_3 << 2,0x40,param_1);
-  uRam0036f400 = Mem_AllocAligned(uRam0036f40c,0x40,param_1);
+  _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
+  _g_Fonts = Mem_AllocAligned(uRam0036f40c,0x40,param_1);
   return;
 }
 
 // 0x001f0760  size 0xb4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
 
 {
@@ -127,7 +138,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   
   param_2 = param_2 + (uint)g_RaceCtx->unk_0015;
   iRam0036f408 = param_3;
-  uRam0036f404 = Mem_AllocAligned(param_3 << 2,0x40,param_1);
+  _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
   uVar1 = g_ArcToc->entries[param_2].unpackedSize;
   if (uVar1 == 0) {
     uVar1 = g_ArcToc->entries[param_2].sectorCount;
@@ -137,7 +148,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   }
   iRam0036f40c = uVar1 << 0xb;
   uVar2 = Mem_AllocAligned(iRam0036f40c,0x40,param_1);
-  uRam0036f400 = (undefined4)uVar2;
+  _g_Fonts = (undefined4)uVar2;
   Arc_LoadFileEx(param_2,uVar2,0x1f0600,0,0,0);
   return;
 }
@@ -304,6 +315,8 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
 }
 
 // 0x001f0e00  size 0x364
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiText_DrawString(undefined8 param_1,short *param_2)
 
 {
@@ -361,7 +374,7 @@ void UiText_DrawString(undefined8 param_1,short *param_2)
     iVar11 = iVar6 + 0x467830;
     if (*(int *)(iVar6 + 0x4678d0) != 0) {
       Pkt_Init(iVar11,2,2,0);
-      Pkt_SubmitToChain(iVar11,(*piRam00387f7c + -2) - *piVar7);
+      Pkt_SubmitToChain(iVar11,(*_s_RaceUiSpriteCursor + -2) - *piVar7);
       Pkt_Flush(iVar11,iVar6 + 0x4678d8);
       if (piVar7[9] != 0) {
         Pkt_SetScissor(iVar11,unaff_s6_lo,unaff_s7_lo,unaff_s1_lo,unaff_s0_lo,0);
@@ -386,7 +399,7 @@ void UiText_DrawString(undefined8 param_1,short *param_2)
     iVar11 = iVar6 + 0x467a70;
     if (*(int *)(iVar6 + 0x467da0) != 0) {
       Pkt_Init(iVar11,2,2,0);
-      Pkt_SubmitToChain(iVar11,(*piRam00387f7c + -2) - *piVar7);
+      Pkt_SubmitToChain(iVar11,(*_s_RaceUiSpriteCursor + -2) - *piVar7);
       if (piVar7[9] != 0) {
         Pkt_SetScissor(iVar11,unaff_s6_lo,unaff_s7_lo,unaff_s1_lo,unaff_s0_lo,0);
       }
@@ -479,6 +492,7 @@ void UiText_DrawPlayerName(undefined8 param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001f1350  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 30 callers */
 
 void UiText_DrawById(undefined8 param_1,int param_2)
@@ -490,13 +504,15 @@ void UiText_DrawById(undefined8 param_1,int param_2)
     puVar1 = &DAT_0036e864;
   }
   else {
-    puVar1 = (undefined2 *)(iRam0036f400 + *(int *)(iRam0036f404 + param_2 * 4) * 2);
+    puVar1 = (undefined2 *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
   }
   UiText_DrawString(param_1,puVar1);
   return;
 }
 
 // 0x001f1390  size 0x68
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiText_DrawRivalName(undefined8 param_1,int param_2)
 
 {
@@ -506,7 +522,7 @@ void UiText_DrawRivalName(undefined8 param_1,int param_2)
     puVar1 = &DAT_0036e864;
   }
   else {
-    puVar1 = (undefined2 *)(iRam0036f400 + *(int *)(iRam0036f404 + param_2 * 4) * 2);
+    puVar1 = (undefined2 *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
   }
   UiText_FormatRivalInfo(0x4680f0,puVar1);
   UiText_DrawString(param_1,0x4680f0);
@@ -515,6 +531,7 @@ void UiText_DrawRivalName(undefined8 param_1,int param_2)
 
 // 0x001f1400  size 0xb0
 /* WARNING: Removing unreachable block (ram,0x001f1434) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void UiText_DrawRivalInfo
                (undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
@@ -533,7 +550,7 @@ void UiText_DrawRivalInfo
     puVar1 = &DAT_0036e864;
   }
   else {
-    puVar1 = (undefined2 *)(iRam0036f400 + *(int *)(iRam0036f404 + param_2 * 4) * 2);
+    puVar1 = (undefined2 *)(_g_Fonts + *(int *)(_g_LocalizedText + param_2 * 4) * 2);
   }
   uStack_30 = param_3;
   uStack_28 = param_4;
@@ -2036,6 +2053,8 @@ void maybe_DemoCam_PlaceSide(undefined8 param_1,int param_2)
 }
 
 // 0x001f3e60  size 0x45c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Demo_Start(int *param_1,undefined8 param_2)
 
 {
@@ -2071,18 +2090,18 @@ void Demo_Start(int *param_1,undefined8 param_2)
             if (0 < lVar3) {
               iVar9 = 0;
               do {
-                if (iRam0036f26c == 0) {
+                if (_g_RaceSnd == 0) {
                   iVar4 = 0;
                 }
                 else {
-                  iVar4 = iRam0036f26c + iVar9;
+                  iVar4 = _g_RaceSnd + iVar9;
                 }
                 CarSnd_StopVoice(iVar4);
-                if ((iRam004301b0 == 0) || (uRam004301ac <= uVar10)) {
+                if ((_g_Skids == 0) || (uRam004301ac <= uVar10)) {
                   iVar4 = 0;
                 }
                 else {
-                  iVar4 = iRam004301b0 + uVar10 * 0xb900;
+                  iVar4 = _g_Skids + uVar10 * 0xb900;
                 }
                 Skid_Clear(iVar4);
                 iVar9 = iVar9 + 0x80;

@@ -254,13 +254,15 @@ void SeqGen_GetTrackRangeC(int param_1,int param_2,undefined4 *param_3,undefined
 }
 
 // 0x002b8d70  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SeqGen_GetInstrumentIds(undefined8 param_1,int param_2,int *param_3,int *param_4,int *param_5)
 
 {
   param_2 = param_2 * 0xc;
-  *param_3 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_2) + 0x1ca6;
-  *param_4 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_2) + 0x1db4;
-  *param_5 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_2) + 0x1ec2;
+  *param_3 = *(ushort *)(*(int *)(_g_SeqGen + 8) + param_2) + 0x1ca6;
+  *param_4 = *(ushort *)(*(int *)(_g_SeqGen + 8) + param_2) + 0x1db4;
+  *param_5 = *(ushort *)(*(int *)(_g_SeqGen + 8) + param_2) + 0x1ec2;
   return;
 }
 
@@ -2260,6 +2262,8 @@ void SeqGen_LoadPattern(int param_1)
 }
 
 // 0x002bbfc0  size 0xec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SeqGen_ReloadPattern(undefined8 param_1,int param_2,int param_3)
 
 {
@@ -2267,7 +2271,7 @@ void SeqGen_ReloadPattern(undefined8 param_1,int param_2,int param_3)
   int iVar2;
   int iVar3;
   
-  uVar1 = *(ushort *)(*(int *)(iRam0036f7e4 + 8) + param_3 * 0xc);
+  uVar1 = *(ushort *)(*(int *)(_g_SeqGen + 8) + param_3 * 0xc);
   iVar2 = (int)param_1;
   if (uVar1 == 0) {
     iVar3 = iVar2 + param_2 * 0xda8;

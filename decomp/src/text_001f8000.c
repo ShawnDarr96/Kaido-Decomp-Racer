@@ -436,8 +436,8 @@ void Menu_DrawFrame(int *param_1)
     lVar4 = UiLayout_UpdateAnimById(0x127,2);
     if (lVar4 == 0 && lVar3 == 0) {
       *param_1 = 4;
-      *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) | 0x10;
-      *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) | 0x80;
+      *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x10;
+      *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x80;
     }
   }
 LAB_001f8a54:
@@ -502,21 +502,22 @@ void Menu_SetCursorAlpha(int *param_1,long param_2)
       *(undefined4 *)(iVar1 + 0x344) = 1;
     }
     if (param_2 == 1) {
-      *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) & 0xffffffef;
-      *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) & 0xffffff7f;
+      *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) & 0xffffffef;
+      *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) & 0xffffff7f;
     }
   }
   return;
 }
 
 // 0x001f8ca0  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 23 callers */
 
 void Menu_BlockInput(void)
 
 {
-  *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) | 0x10;
-  *(uint *)(iRam0036f468 + 0x10) = *(uint *)(iRam0036f468 + 0x10) | 0x80;
+  *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x10;
+  *(uint *)(_g_MenuInput + 0x10) = *(uint *)(_g_MenuInput + 0x10) | 0x80;
   return;
 }
 
@@ -1625,7 +1626,7 @@ void MenuList_Update(int *param_1,int param_2,int param_3)
   iVar6 = *param_1;
   if (iVar6 == 2) {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(param_1[1],*(undefined4 *)(param_2 + param_1[3] * 8),1,0);
     }
   }
@@ -1792,6 +1793,7 @@ void MenuList_Reset(undefined4 *param_1,undefined4 param_2,undefined4 param_3,un
 }
 
 // 0x001fb170  size 0xd0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 59 callers */
 
 undefined4 Menu_IsInputIdle(int *param_1)
@@ -1800,12 +1802,12 @@ undefined4 Menu_IsInputIdle(int *param_1)
   undefined4 uVar1;
   
   uVar1 = 1;
-  *puRam0036f468 = 0;
+  *_g_MenuInput = 0;
   if (param_1[4] != 1) {
     if (param_1[1] == param_1[2]) {
       if ((g_MenuMgr->curScreen == g_MenuMgr->nextScreen) || (param_1[6] != 1)) {
         if ((g_MenuMgr->flags & 0x400000) == 0) {
-          *puRam0036f468 = 1;
+          *_g_MenuInput = 1;
         }
         uVar1 = 1;
       }
@@ -1828,6 +1830,7 @@ undefined4 Menu_IsInputIdle(int *param_1)
 }
 
 // 0x001fb240  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 44 callers */
 
 void Menu_RequestTransition(int param_1)
@@ -1835,7 +1838,7 @@ void Menu_RequestTransition(int param_1)
 {
   if ((*(int *)(param_1 + 4) != *(int *)(param_1 + 8)) ||
      (g_MenuMgr->curScreen != g_MenuMgr->nextScreen)) {
-    *puRam0036f468 = 0;
+    *_g_MenuInput = 0;
     *(undefined4 *)(param_1 + 0x1c) = 1;
     *(undefined4 *)(param_1 + 0x18) = 1;
   }

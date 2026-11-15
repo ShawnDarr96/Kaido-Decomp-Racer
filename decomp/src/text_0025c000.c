@@ -329,7 +329,7 @@ void ScrGarage_Draw_Engine(int param_1)
   if ((*(int *)(param_1 + 0x60) != 0) && (lVar4 = UiLayout_UpdateAnimById(0x4d), lVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x60) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4d,*(undefined4 *)(&DAT_0032ce90 + unaff_s3_lo * 4),1,0);
   }
   MenuWnd_DrawText(0x4c,0x32,0x980);
@@ -508,7 +508,7 @@ void ScrGarage_Draw_SportsTyres(int param_1)
   MenuWnd_DrawText(0x60,0x25,uStack_1c);
   MenuWnd_DrawText(0x60,0x26,uStack_14);
   MenuWnd_DrawText(0x4c,0x37,0x9bf);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x60,*(undefined4 *)(&DAT_0032ce70 + iVar9 * 4),1,0);
   }
   iVar8 = UiMgr_FindLayout(0x60);
@@ -913,7 +913,7 @@ void ScrGarage_Draw_Reinforcement(int *param_1)
       uVar8 = 0x2e0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4c,*(undefined4 *)(&DAT_0032ce00 + unaff_s0_lo * 4),1,0);
   }
   MenuWnd_DrawText(0x4c,0x37,*(undefined4 *)(&DAT_0032ce20 + *param_1 * 4));
@@ -1142,7 +1142,7 @@ void maybe_PageBodyShop_State0_Reinforcement(int *param_1)
   }
   MenuWnd_DrawText(0x43,0x1a,0x2a1);
   ScrCareer_Draw_Power(*param_1,1);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x5e,*(undefined4 *)(&DAT_0032cdc0 + *param_1 * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x5e);
@@ -1311,7 +1311,7 @@ void ScrGarage_Draw_Sell(int *param_1)
   MenuWnd_DrawNumber(0x4b,0x22,uVar5);
   MenuWnd_DrawText(0x4b,0x26,1);
   MenuWnd_DrawText(0x4b,0x27,2);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4b,*(undefined4 *)(&DAT_0036ec80 + *param_1 * 4),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
@@ -1632,7 +1632,7 @@ void ScrGarage_Draw_Sell_eae0(int param_1)
   uVar11 = Profile_Get(0);
   lVar14 = Garage_FindCar(uVar11);
   MenuWnd_DrawCursor(lVar14 != 1);
-  if ((*piRam0036f468 == 1) && (*(int *)(param_1 + 0x84) != 0)) {
+  if ((*_g_MenuInput == 1) && (*(int *)(param_1 + 0x84) != 0)) {
     MenuWnd_SetItemState(0xc,*(undefined4 *)(&DAT_0032d230 + *(int *)(param_1 + 0x1c) * 4),0,0);
   }
   MenuWnd_SetItemState(0x49,*(undefined4 *)(&DAT_0032d250 + *(int *)(param_1 + 0x18) * 4),0,1);
@@ -2051,7 +2051,7 @@ void ScrGarage_Draw_Sell_fc30(int *param_1)
   MenuWnd_DrawLabel(0x47,0x1b,0x3a,param_1[param_1[2] + 0xd4]);
   MenuWnd_DrawText(0x48,0xc,1);
   MenuWnd_DrawText(0x48,0xd,2);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x48,*(undefined4 *)(*param_1 * 4 + 0x36ec78),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);

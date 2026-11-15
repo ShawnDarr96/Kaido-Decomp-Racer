@@ -220,6 +220,8 @@ void IopSnd_SetBlocking(undefined8 param_1)
 }
 
 // 0x0013c550  size 0x1dc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
 
 {
@@ -231,7 +233,7 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
   
   iVar1 = *param_2;
   iVar5 = iVar1 * 0x6c;
-  iVar4 = iRam0036f038 + iVar5;
+  iVar4 = _g_IopStrm + iVar5;
   WaitSema(uRam0036f03c);
   if (param_1 - 0x400U < 6) {
                     /* WARNING: Switch is manually overridden */
@@ -241,7 +243,7 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
       break;
     case 1:
       *(undefined4 *)(iVar4 + 0x3c) = 0;
-      iVar5 = iRam0036f038 + iVar5;
+      iVar5 = _g_IopStrm + iVar5;
       *(undefined4 *)(iVar5 + 0x10) = 0;
       *(undefined4 *)(iVar5 + 0x18) = 0;
       *(undefined4 *)(iVar5 + 0x2c) = 0;
@@ -251,7 +253,7 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
       break;
     case 2:
       *(undefined4 *)(iVar4 + 0x3c) = 0;
-      iVar5 = iRam0036f038 + iVar5;
+      iVar5 = _g_IopStrm + iVar5;
       *(undefined4 *)(iVar5 + 0x10) = 0;
       *(undefined4 *)(iVar5 + 0x18) = 0;
       *(undefined4 *)(iVar5 + 0x2c) = 0;
@@ -289,7 +291,7 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
       break;
     case 5:
       *(undefined4 *)(iVar4 + 0x3c) = 0;
-      iVar5 = iRam0036f038 + iVar5;
+      iVar5 = _g_IopStrm + iVar5;
       *(undefined4 *)(iVar5 + 0x10) = 0;
       *(undefined4 *)(iVar5 + 0x18) = 0;
       *(undefined4 *)(iVar5 + 0x2c) = 0;
@@ -303,6 +305,8 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
 }
 
 // 0x0013c730  size 0x148
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 IopStrm_TransferChunk(int param_1,int param_2,uint param_3)
 
 {
@@ -321,7 +325,7 @@ undefined8 IopStrm_TransferChunk(int param_1,int param_2,uint param_3)
   int iVar13;
   int aiStack_40 [16];
   
-  piVar12 = (int *)(iRam0036f038 + param_1 * 0x6c);
+  piVar12 = (int *)(_g_IopStrm + param_1 * 0x6c);
   uVar1 = piVar12[6];
   piVar7 = piVar12 + 0x11;
   if (uVar1 != 0) {
@@ -378,6 +382,8 @@ undefined8 IopStrm_TransferChunk(int param_1,int param_2,uint param_3)
 }
 
 // 0x0013c880  size 0x124
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 
 {
@@ -400,13 +406,13 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
       } while (uVar5 < param_1);
     }
     uRam0036f034 = param_1;
-    iRam0036f038 = Mem_Alloc16(param_1 * 0x6c,param_3);
+    _g_IopStrm = Mem_Alloc16(param_1 * 0x6c,param_3);
     uVar5 = 0;
     if (param_1 != 0) {
       iVar4 = 0;
       do {
         uVar5 = uVar5 + 1;
-        puVar3 = (undefined4 *)(iRam0036f038 + iVar4);
+        puVar3 = (undefined4 *)(_g_IopStrm + iVar4);
         *puVar3 = 0;
         iVar4 = iVar4 + 0x6c;
         puVar3[1] = 0;
@@ -436,6 +442,7 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 
 // 0x0013c9b0  size 0x168
 /* WARNING: Removing unreachable block (ram,0x0013c9e0) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 11 callers */
 
 void IopStrm_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
@@ -493,18 +500,20 @@ void IopStrm_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined
     }
   }
 LAB_0013cb04:
-  Rpc_Call(uRam0036f024,aiStack_70);
+  Rpc_Call(_s_IopStrmRpcClient,aiStack_70);
   return;
 }
 
 // 0x0013cb20  size 0x94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool IopStrm_IsPlaying(undefined8 param_1)
 
 {
   bool bVar1;
   int iVar2;
   
-  iVar2 = iRam0036f038 + (int)param_1 * 0x6c;
+  iVar2 = _g_IopStrm + (int)param_1 * 0x6c;
   WaitSema(uRam0036f03c);
   bVar1 = *(int *)(iVar2 + 0x3c) - 2U < 2;
   if (bVar1) {
@@ -517,6 +526,8 @@ bool IopStrm_IsPlaying(undefined8 param_1)
 }
 
 // 0x0013cbc0  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
 
 {
@@ -525,7 +536,7 @@ undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
   undefined4 uVar3;
   
   uVar3 = 0;
-  iVar2 = iRam0036f038 + (int)param_1 * 0x6c;
+  iVar2 = _g_IopStrm + (int)param_1 * 0x6c;
   WaitSema(uRam0036f03c);
   if ((*(int *)(iVar2 + 0x40) != param_2) && (*(int *)(iVar2 + 0x3c) - 2U < 2)) {
     IopStrm_Command(0x309,param_1,param_2);
@@ -542,13 +553,15 @@ undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
 }
 
 // 0x0013cc80  size 0x8c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool IopStrm_IsStopped(undefined8 param_1)
 
 {
   bool bVar1;
   int iVar2;
   
-  iVar2 = iRam0036f038 + (int)param_1 * 0x6c;
+  iVar2 = _g_IopStrm + (int)param_1 * 0x6c;
   WaitSema(uRam0036f03c);
   bVar1 = *(int *)(iVar2 + 0x3c) == 0;
   if (bVar1) {
@@ -561,12 +574,14 @@ bool IopStrm_IsStopped(undefined8 param_1)
 }
 
 // 0x0013cd10  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_Stop(undefined8 param_1,long param_2)
 
 {
   int iVar1;
   
-  iVar1 = iRam0036f038 + (int)param_1 * 0x6c;
+  iVar1 = _g_IopStrm + (int)param_1 * 0x6c;
   if (param_2 != 0) {
     *(undefined4 *)(iVar1 + 0x3c) = 1;
     *(undefined4 *)(iVar1 + 0x40) = 0;
@@ -576,13 +591,15 @@ void IopStrm_Stop(undefined8 param_1,long param_2)
 }
 
 // 0x0013cd70  size 0x50
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined1 IopStrm_GetState(int param_1)
 
 {
   undefined1 uVar1;
   int iVar2;
   
-  iVar2 = iRam0036f038 + param_1 * 0x6c;
+  iVar2 = _g_IopStrm + param_1 * 0x6c;
   WaitSema(uRam0036f03c);
   uVar1 = *(undefined1 *)(iVar2 + 0x3c);
   SignalSema(uRam0036f03c);
@@ -590,6 +607,8 @@ undefined1 IopStrm_GetState(int param_1)
 }
 
 // 0x0013cdc0  size 0x68
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 IopStrm_WaitIdle(int param_1)
 
 {
@@ -598,7 +617,7 @@ undefined4 IopStrm_WaitIdle(int param_1)
   long lVar3;
   int iVar4;
   
-  iVar4 = iRam0036f038 + param_1 * 0x6c;
+  iVar4 = _g_IopStrm + param_1 * 0x6c;
   iVar1 = *(int *)(iVar4 + 0x30);
   if ((iVar1 == 0) || (lVar3 = Sif_WaitDma(iVar1,0), -1 < lVar3)) {
     uVar2 = 0;
@@ -611,13 +630,15 @@ undefined4 IopStrm_WaitIdle(int param_1)
 }
 
 // 0x0013ce30  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 IopStrm_Flush(undefined8 param_1)
 
 {
   undefined8 uVar1;
   int *piVar2;
   
-  piVar2 = (int *)(iRam0036f038 + (int)param_1 * 0x6c);
+  piVar2 = (int *)(_g_IopStrm + (int)param_1 * 0x6c);
   WaitSema(uRam0036f03c);
   uVar1 = IopStrm_TransferChunk(param_1,piVar2[8],*piVar2 * piVar2[9]);
   piVar2[0xb] = piVar2[0xd];
@@ -626,12 +647,14 @@ undefined8 IopStrm_Flush(undefined8 param_1)
 }
 
 // 0x0013ceb0  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_AddPosition(int param_1,int param_2)
 
 {
   int iVar1;
   
-  iVar1 = iRam0036f038 + param_1 * 0x6c;
+  iVar1 = _g_IopStrm + param_1 * 0x6c;
   WaitSema(uRam0036f03c);
   *(int *)(iVar1 + 0x18) = *(int *)(iVar1 + 0x18) + param_2;
   SignalSema(uRam0036f03c);
@@ -639,6 +662,8 @@ void IopStrm_AddPosition(int param_1,int param_2)
 }
 
 // 0x0013cf10  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_Play(undefined8 param_1,undefined4 *param_2)
 
 {
@@ -650,14 +675,14 @@ void IopStrm_Play(undefined8 param_1,undefined4 *param_2)
   
   uStack_10 = *param_2;
   iVar2 = (int)param_1 * 0x6c;
-  iVar1 = iRam0036f038 + iVar2;
+  iVar1 = _g_IopStrm + iVar2;
   iStack_c = (int)(((float)(uint)param_2[1] * 4096.0) / 48000.0);
   uStack_8 = param_2[2];
   *(undefined4 *)(iVar1 + 4) = *param_2;
   *(undefined4 *)(iVar1 + 8) = param_2[1];
   *(undefined4 *)(iVar1 + 0x18) = 0;
   *(undefined4 *)(iVar1 + 0x1c) = param_2[2];
-  iVar2 = iRam0036f038 + iVar2;
+  iVar2 = _g_IopStrm + iVar2;
   *(undefined4 *)(iVar2 + 0x10) = 0;
   *(undefined4 *)(iVar2 + 0x18) = 0;
   *(undefined4 *)(iVar2 + 0x2c) = 0;
@@ -669,6 +694,8 @@ void IopStrm_Play(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x0013d000  size 0xcc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_PlayEx(undefined8 param_1,undefined4 *param_2)
 
 {
@@ -679,7 +706,7 @@ void IopStrm_PlayEx(undefined8 param_1,undefined4 *param_2)
   undefined4 uStack_4;
   
   uStack_10 = *param_2;
-  puVar1 = (undefined4 *)(iRam0036f038 + (int)param_1 * 0x6c);
+  puVar1 = (undefined4 *)(_g_IopStrm + (int)param_1 * 0x6c);
   uStack_c = param_2[4];
   uStack_8 = param_2[3];
   uStack_4 = param_2[5];
@@ -707,33 +734,37 @@ void IopStrm_PlayEx(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x0013d0d0  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_Shutdown(void)
 
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uRam0036f024,1);
+  uVar1 = Rpc_SetBlocking(_s_IopStrmRpcClient,1);
   uRam0036f034 = 0;
-  if (iRam0036f038 != 0) {
+  if (_g_IopStrm != 0) {
     Mem_Free();
-    iRam0036f038 = 0;
+    _g_IopStrm = 0;
   }
   IopStrm_Command(0x301);
-  Rpc_SetBlocking(uRam0036f024,uVar1);
+  Rpc_SetBlocking(_s_IopStrmRpcClient,uVar1);
   RpcServer_Stop(0x387100);
   maybe_Mutex_Delete(0x36f03c);
-  if (iRam0036f02c != 0) {
+  if (_g_IopStrmA != 0) {
     Mem_Free();
-    iRam0036f02c = 0;
+    _g_IopStrmA = 0;
   }
-  if (iRam0036f030 != 0) {
+  if (_g_IopStrmB != 0) {
     Mem_Free();
-    iRam0036f030 = 0;
+    _g_IopStrmB = 0;
   }
   return;
 }
 
 // 0x0013d170  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool IopStrm_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                  undefined8 param_5)
 
@@ -742,54 +773,60 @@ bool IopStrm_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   undefined8 uVar2;
   
   uRam0036f028 = (undefined4)param_3;
-  uRam0036f02c = Mem_AllocAligned(0x40,0x40,param_5);
-  uRam0036f030 = Mem_AllocAligned(0x1000,0x10,param_5);
+  _g_IopStrmA = Mem_AllocAligned(0x40,0x40,param_5);
+  _g_IopStrmB = Mem_AllocAligned(0x1000,0x10,param_5);
   maybe_Mutex_Create(0x36f03c);
-  lVar1 = RpcServer_Start(0x387100,param_3,param_4,0x40,uRam0036f02c,0x1000,uRam0036f030,0x13c550);
+  lVar1 = RpcServer_Start(0x387100,param_3,param_4,0x40,_g_IopStrmA,0x1000,_g_IopStrmB,0x13c550);
   if (lVar1 != 0) {
-    uVar2 = Rpc_SetBlocking(uRam0036f024,1);
+    uVar2 = Rpc_SetBlocking(_s_IopStrmRpcClient,1);
     IopStrm_Open(param_1,param_2,param_5);
-    Rpc_SetBlocking(uRam0036f024,uVar2);
+    Rpc_SetBlocking(_s_IopStrmRpcClient,uVar2);
   }
   return lVar1 != 0;
 }
 
 // 0x0013d260  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_Reset(void)
 
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uRam0036f024,1);
+  uVar1 = Rpc_SetBlocking(_s_IopStrmRpcClient,1);
   uRam0036f034 = 0;
-  if (iRam0036f038 != 0) {
+  if (_g_IopStrm != 0) {
     Mem_Free();
-    iRam0036f038 = 0;
+    _g_IopStrm = 0;
   }
   IopStrm_Command(0x301);
-  Rpc_SetBlocking(uRam0036f024,uVar1);
+  Rpc_SetBlocking(_s_IopStrmRpcClient,uVar1);
   RpcServer_Stop(0x387100);
   maybe_Mutex_Delete(0x36f03c);
-  if (iRam0036f02c != 0) {
+  if (_g_IopStrmA != 0) {
     Mem_Free();
-    iRam0036f02c = 0;
+    _g_IopStrmA = 0;
   }
-  if (iRam0036f030 != 0) {
+  if (_g_IopStrmB != 0) {
     Mem_Free();
-    iRam0036f030 = 0;
+    _g_IopStrmB = 0;
   }
   return;
 }
 
 // 0x0013d300  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopStrm_SetRpcClient(undefined4 param_1)
 
 {
-  uRam0036f024 = param_1;
+  _s_IopStrmRpcClient = param_1;
   return;
 }
 
 // 0x0013d310  size 0x170
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 IopSe_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 
 {
@@ -820,13 +857,13 @@ undefined4 IopSe_Open(uint param_1,undefined8 param_2,undefined8 param_3)
         } while (uVar5 < param_1);
       }
       uRam0036f044 = param_1;
-      iRam0036f048 = Mem_Alloc16(param_1 * 0x50,param_3);
+      _g_IopSe = Mem_Alloc16(param_1 * 0x50,param_3);
       uVar5 = 0;
       if (param_1 != 0) {
         iVar4 = 0;
         do {
           uVar5 = uVar5 + 1;
-          puVar3 = (undefined4 *)(iRam0036f048 + iVar4);
+          puVar3 = (undefined4 *)(_g_IopSe + iVar4);
           puVar3[0xc] = 0;
           puVar3[0xd] = 0;
           *puVar3 = 0;
@@ -853,6 +890,8 @@ undefined4 IopSe_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x0013d480  size 0x17c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSe_FlushDma(void)
 
 {
@@ -872,7 +911,7 @@ void IopSe_FlushDma(void)
     iVar6 = 0;
     piVar4 = aiStack_200;
     do {
-      piVar5 = (int *)(iRam0036f048 + iVar6);
+      piVar5 = (int *)(_g_IopSe + iVar6);
       if ((*piVar5 == 0) && (piVar1 = (int *)piVar5[0xf], piVar1[1] != 0)) {
         iVar8 = iVar8 + 1;
         *(undefined1 *)((int)piVar1 + *piVar1 + 8) = 1;
@@ -899,7 +938,7 @@ void IopSe_FlushDma(void)
   if (uRam0036f044 != 0) {
     iVar8 = 0;
     do {
-      piVar4 = (int *)(iRam0036f048 + iVar8);
+      piVar4 = (int *)(_g_IopSe + iVar8);
       if ((*piVar4 == 0) && (piVar5 = (int *)piVar4[0xf], piVar5[1] != 0)) {
         *(undefined1 *)((int)piVar5 + *piVar5 + 8) = 0;
         *(undefined4 *)(piVar4[0xf] + 4) = 0;
@@ -912,10 +951,12 @@ void IopSe_FlushDma(void)
 }
 
 // 0x0013d600  size 0x20
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSe_ClearPending(int param_1)
 
 {
-  *(undefined4 *)(*(int *)(iRam0036f048 + param_1 * 0x50 + 0x3c) + 4) = 0;
+  *(undefined4 *)(*(int *)(_g_IopSe + param_1 * 0x50 + 0x3c) + 4) = 0;
   return;
 }
 
@@ -978,6 +1019,8 @@ void IopSe_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 
 }
 
 // 0x0013d770  size 0x118
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSe_LoadBank(undefined8 param_1,int *param_2)
 
 {
@@ -990,7 +1033,7 @@ void IopSe_LoadBank(undefined8 param_1,int *param_2)
   int iStack_c;
   int iStack_8;
   
-  piVar1 = (int *)(iRam0036f048 + (int)param_1 * 0x50);
+  piVar1 = (int *)(_g_IopSe + (int)param_1 * 0x50);
   if (*param_2 == 0) {
     *piVar1 = 0;
     piVar1[0xe] = param_2[5];
@@ -1019,15 +1062,17 @@ void IopSe_LoadBank(undefined8 param_1,int *param_2)
 }
 
 // 0x0013d890  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSe_Shutdown(void)
 
 {
   undefined8 uVar1;
   
   uVar1 = Rpc_SetBlocking(uRam0036f040,1);
-  if (iRam0036f048 != 0) {
+  if (_g_IopSe != 0) {
     Mem_Free();
-    iRam0036f048 = 0;
+    _g_IopSe = 0;
   }
   uRam0036f044 = 0;
   IopSe_Command(0x201);
@@ -1049,32 +1094,36 @@ undefined8 IopSe_OpenLocked(undefined8 param_1,undefined8 param_2,undefined8 par
 }
 
 // 0x0013d960  size 0x64
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSe_Reset(void)
 
 {
   undefined8 uVar1;
   
   uVar1 = Rpc_SetBlocking(uRam0036f040,1);
-  if (iRam0036f048 != 0) {
+  if (_g_IopSe != 0) {
     Mem_Free();
-    iRam0036f048 = 0;
+    _g_IopSe = 0;
   }
   uRam0036f044 = 0;
   IopSe_Command(0x201);
   Rpc_SetBlocking(uRam0036f040,uVar1);
   uRam0036f040 = 0;
   uRam0036f044 = 0;
-  iRam0036f048 = 0;
+  _g_IopSe = 0;
   return;
 }
 
 // 0x0013d9d0  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSe_SetRpcClient(undefined4 param_1)
 
 {
   uRam0036f040 = param_1;
   uRam0036f044 = 0;
-  uRam0036f048 = 0;
+  _g_IopSe = 0;
   return;
 }
 

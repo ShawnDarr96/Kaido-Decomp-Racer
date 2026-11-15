@@ -1030,6 +1030,8 @@ void GameDb_Alloc(undefined8 param_1)
 }
 
 // 0x0020a5d0  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Save_IsBusy(void)
 
 {
@@ -1037,13 +1039,13 @@ void Save_IsBusy(void)
   long lVar2;
   
   bVar1 = false;
-  if (-1 < *(int *)(iRam0036f4f4 + 4)) {
+  if (-1 < *(int *)(_g_SaveMgr + 4)) {
     lVar2 = File_IsBusy();
     if (lVar2 == 0) {
       bVar1 = true;
     }
     else {
-      *(undefined4 *)(iRam0036f4f4 + 4) = 0xffffffff;
+      *(undefined4 *)(_g_SaveMgr + 4) = 0xffffffff;
     }
   }
   if (!bVar1) {
@@ -1053,38 +1055,44 @@ void Save_IsBusy(void)
 }
 
 // 0x0020a640  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveMgr_FreeAll(void)
 
 {
   Save_FreeAll();
-  if (*(int *)(iRam0036f4f4 + 0xc) != 0) {
+  if (*(int *)(_g_SaveMgr + 0xc) != 0) {
     Mem_Free();
-    *(undefined4 *)(iRam0036f4f4 + 0xc) = 0;
+    *(undefined4 *)(_g_SaveMgr + 0xc) = 0;
   }
   return;
 }
 
 // 0x0020a690  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveMgr_Shutdown(void)
 
 {
   Save_Shutdown();
-  if (iRam0036f4f4 != 0) {
+  if (_g_SaveMgr != 0) {
     Mem_Free();
-    iRam0036f4f4 = 0;
+    _g_SaveMgr = 0;
   }
   return;
 }
 
 // 0x0020a6d0  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveMgr_Init(undefined8 param_1)
 
 {
-  puRam0036f4f4 = (undefined4 *)Mem_Alloc16(0x10,param_1);
-  *puRam0036f4f4 = (int)param_1;
-  puRam0036f4f4[1] = 0xffffffff;
-  puRam0036f4f4[2] = 0;
-  puRam0036f4f4[3] = 0;
+  _g_SaveMgr = (undefined4 *)Mem_Alloc16(0x10,param_1);
+  *_g_SaveMgr = (int)param_1;
+  _g_SaveMgr[1] = 0xffffffff;
+  _g_SaveMgr[2] = 0;
+  _g_SaveMgr[3] = 0;
   Save_Init(param_1);
   return;
 }

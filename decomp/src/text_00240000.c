@@ -908,14 +908,14 @@ void maybe_ButtonConfig_DrawList(uint *param_1,long param_2)
     puVar4 = puVar4 + 1;
     puVar2 = puVar2 + 5;
   } while (iVar5 < 9);
-  uVar3 = piRam0036f468[param_1[1] + 2];
-  if ((piRam0036f468[param_1[1] + 4] & uVar3) == 0) {
+  uVar3 = _g_MenuInput[param_1[1] + 2];
+  if ((_g_MenuInput[param_1[1] + 4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if (uVar3 == 0x80000) {
@@ -1007,16 +1007,16 @@ void maybe_ButtonConfig_AnimateCursor(uint *param_1,long param_2)
   
   iVar1 = UiMgr_FindLayout(0xfc);
   uVar4 = param_1[1];
-  uVar3 = piRam0036f468[uVar4 + 2];
+  uVar3 = _g_MenuInput[uVar4 + 2];
   puVar7 = (undefined4 *)(&DAT_0032b920 + uVar4 * 0x108);
   iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-  if ((piRam0036f468[uVar4 + 4] & uVar3) == 0) {
+  if ((_g_MenuInput[uVar4 + 4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if (uVar3 == 0x80000) {

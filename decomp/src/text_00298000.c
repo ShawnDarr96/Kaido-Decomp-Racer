@@ -3,6 +3,8 @@
 #include "ghidra_types.h"
 
 // 0x00298640  size 0x1b0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrRecord_StepSubtitle(undefined8 param_1)
 
 {
@@ -10,14 +12,14 @@ void maybe_ScrRecord_StepSubtitle(undefined8 param_1)
   uint uVar2;
   undefined4 *puVar3;
   
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   puVar3 = (undefined4 *)param_1;
@@ -76,6 +78,8 @@ LAB_0029878c:
 }
 
 // 0x002987f0  size 0x228
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_SelectCourse(int param_1)
 
 {
@@ -94,14 +98,14 @@ void maybe_ScrCareerStart_SelectCourse(int param_1)
     *(undefined4 *)(param_1 + 0x630) = 0;
   }
   else if (iVar1 == 1) {
-    uVar5 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar5) == 0) {
+    uVar5 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (((uVar5 != 2) && (uVar5 != 1)) && ((uVar5 == 0x10 || (uVar5 == 0x20)))) {
@@ -166,6 +170,8 @@ LAB_002989e8:
 }
 
 // 0x00298a20  size 0x3cc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputEquip(int param_1)
 
 {
@@ -173,14 +179,14 @@ void maybe_ScrCareerStart_InputEquip(int param_1)
   int iVar2;
   uint uVar3;
   
-  uVar3 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar3) == 0) {
+  uVar3 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if (uVar3 == 2) {
@@ -370,6 +376,8 @@ void maybe_ScrCareerStart_BuildPartList(int param_1)
 }
 
 // 0x00299060  size 0xba4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputRivalCourse(int param_1)
 
 {
@@ -400,14 +408,14 @@ void maybe_ScrCareerStart_InputRivalCourse(int param_1)
   undefined1 auStack_50 [20];
   int iStack_3c;
   
-  uVar10 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar10) == 0) {
+  uVar10 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar10) == 0) {
     uVar10 = 0x100000;
   }
   else if (uVar10 == 0x80000) {
     uVar10 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar10 = 0x100000;
   }
   if (uVar10 == 2) {
@@ -868,6 +876,8 @@ void maybe_ScrCareerStart_IsChoiceLocked(int param_1)
 }
 
 // 0x00299d00  size 0x3a4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputSubtitle(int param_1)
 
 {
@@ -877,14 +887,14 @@ void maybe_ScrCareerStart_InputSubtitle(int param_1)
   uint uVar4;
   int iVar5;
   
-  uVar4 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar4) == 0) {
+  uVar4 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   if (uVar4 == 8) {
@@ -1474,6 +1484,8 @@ int maybe_Career_CommitRaceResult(int param_1)
 }
 
 // 0x0029ab70  size 0x458
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputResult(undefined8 param_1)
 
 {
@@ -1483,14 +1495,14 @@ void maybe_ScrCareerStart_InputResult(undefined8 param_1)
   uint uVar4;
   int iVar5;
   
-  uVar4 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar4) == 0) {
+  uVar4 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar4) == 0) {
     uVar4 = 0x100000;
   }
   else if (uVar4 == 0x80000) {
     uVar4 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar4 = 0x100000;
   }
   iVar5 = (int)param_1;
@@ -2009,6 +2021,8 @@ LAB_0029b680:
 }
 
 // 0x0029b6b0  size 0x2f0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputE(int param_1)
 
 {
@@ -2029,14 +2043,14 @@ void maybe_ScrCareerStart_InputE(int param_1)
     piVar1 = piVar2;
   }
   if (*(uint *)(param_1 + 8) == 0) {
-    uVar5 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar5) == 0) {
+    uVar5 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if ((uVar5 == 0x20) || (uVar5 == 0x10)) {
@@ -2056,14 +2070,14 @@ void maybe_ScrCareerStart_InputE(int param_1)
     if ((*(uint *)(param_1 + 8) & 4) != 0) {
       aiStack_10[2] = 1;
     }
-    uVar5 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar5) == 0) {
+    uVar5 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (uVar5 == 2) {
@@ -2197,20 +2211,22 @@ void maybe_ScrCareerStart_BuildStockList(int param_1)
 }
 
 // 0x0029bbe0  size 0x15c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputF(int param_1)
 
 {
   int iVar1;
   uint uVar2;
   
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 2) {
@@ -2252,6 +2268,8 @@ LAB_0029bcf8:
 }
 
 // 0x0029bd40  size 0x1bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrCareerStart_InputSchedule(undefined8 param_1)
 
 {
@@ -2260,14 +2278,14 @@ void maybe_ScrCareerStart_InputSchedule(undefined8 param_1)
   uint uVar3;
   int iVar4;
   
-  uVar3 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar3) == 0) {
+  uVar3 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   iVar4 = (int)param_1;

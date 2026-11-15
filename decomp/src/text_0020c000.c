@@ -586,19 +586,21 @@ bool SaveMgr_BuildFileName(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x0020d4b0  size 0x12c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveMgr_BuildHeader(int param_1)
 
 {
   undefined4 uVar1;
   
-  uVar1 = Mem_Alloc16(0x2c,*puRam0036f4f4);
+  uVar1 = Mem_Alloc16(0x2c,*_g_SaveMgr);
   *(undefined4 *)(param_1 + 0x434) = uVar1;
   uVar1 = 0x208d8;
   if (*(char *)(param_1 + 0xd) != '\0') {
     uVar1 = 0x69b90;
   }
   *(undefined4 *)(*(int *)(param_1 + 0x434) + 0x14) = uVar1;
-  uVar1 = Mem_Alloc16(*(undefined4 *)(*(int *)(param_1 + 0x434) + 0x14),*puRam0036f4f4);
+  uVar1 = Mem_Alloc16(*(undefined4 *)(*(int *)(param_1 + 0x434) + 0x14),*_g_SaveMgr);
   *(undefined4 *)(*(int *)(param_1 + 0x434) + 0x10) = uVar1;
   *(undefined4 *)(*(int *)(param_1 + 0x434) + 0x18) = 0;
   *(undefined4 *)(*(int *)(param_1 + 0x434) + 0x1c) = 0;
@@ -813,6 +815,8 @@ int SaveUi_GetResultMessage(int param_1,int param_2)
 }
 
 // 0x0020da10  size 0x2f0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined1 SaveUi_Task(undefined8 param_1,long param_2,undefined4 param_3,long param_4)
 
 {
@@ -835,14 +839,14 @@ undefined1 SaveUi_Task(undefined8 param_1,long param_2,undefined4 param_3,long p
   puVar5[8] = (uint)(*(char *)((int)puVar5 + 0x1f) != *(char *)((int)puVar5 + 0x1e));
   puVar5[10] = param_3;
   if ((puVar5[8] == 0) && (param_2 != 0)) {
-    uVar6 = piRam0036f468[puVar5[5] + 2];
-    if ((piRam0036f468[puVar5[5] + 4] & uVar6) == 0) {
+    uVar6 = _g_MenuInput[puVar5[5] + 2];
+    if ((_g_MenuInput[puVar5[5] + 4] & uVar6) == 0) {
       uVar6 = 0x100000;
     }
     else if (uVar6 == 0x80000) {
       uVar6 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar6 = 0x100000;
     }
     puVar5[0xc] = uVar6;
@@ -930,6 +934,8 @@ LAB_0020db74:
 }
 
 // 0x0020dd00  size 0x1ac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 SaveMgr_Close(undefined4 *param_1)
 
 {
@@ -980,13 +986,13 @@ undefined4 SaveMgr_Close(undefined4 *param_1)
     *(undefined1 *)((int)param_1 + 0x1d) = 0;
     *(undefined1 *)((int)param_1 + 0x1e) = 0;
     *(undefined1 *)((int)param_1 + 0x1f) = *(undefined1 *)((int)param_1 + 0x1e);
-    if (puRam0036f4f4[3] == 0) {
+    if (_g_SaveMgr[3] == 0) {
       uVar3 = Arc_GetFileSize(4,4,1);
-      puRam0036f4f4[2] = uVar3;
-      uVar3 = Mem_AllocAligned(puRam0036f4f4[2],0x40,*puRam0036f4f4);
-      puRam0036f4f4[3] = uVar3;
-      uVar3 = Arc_LoadFileEx(4,puRam0036f4f4[3],0,0,0,0);
-      puRam0036f4f4[1] = uVar3;
+      _g_SaveMgr[2] = uVar3;
+      uVar3 = Mem_AllocAligned(_g_SaveMgr[2],0x40,*_g_SaveMgr);
+      _g_SaveMgr[3] = uVar3;
+      uVar3 = Arc_LoadFileEx(4,_g_SaveMgr[3],0,0,0,0);
+      _g_SaveMgr[1] = uVar3;
     }
     uVar2 = g_ArcToc->entries[4].unpackedSize;
     if (uVar2 == 0) {
@@ -994,12 +1000,14 @@ undefined4 SaveMgr_Close(undefined4 *param_1)
     }
     param_1[0x107] = uVar2;
     uVar3 = 1;
-    param_1[0x106] = puRam0036f4f4[3];
+    param_1[0x106] = _g_SaveMgr[3];
   }
   return uVar3;
 }
 
 // 0x0020deb0  size 0x254
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveMgr_Open(undefined8 param_1,undefined1 param_2,byte param_3,undefined8 param_4,
                  undefined4 param_5,undefined4 param_6,long param_7)
 
@@ -1053,7 +1061,7 @@ void SaveMgr_Open(undefined8 param_1,undefined1 param_2,byte param_3,undefined8 
   puVar6[0x118] = 0;
   puVar6[0x119] = 0;
   puVar6[0x11a] = 0;
-  uVar1 = Mem_Alloc16(*(int *)(puVar6[1] + 4) * 0x2c,*puRam0036f4f4);
+  uVar1 = Mem_Alloc16(*(int *)(puVar6[1] + 4) * 0x2c,*_g_SaveMgr);
   puVar6[0x10c] = uVar1;
   iVar3 = *(int *)(puVar6[1] + 4);
   iVar5 = 0;
@@ -1070,7 +1078,7 @@ void SaveMgr_Open(undefined8 param_1,undefined1 param_2,byte param_3,undefined8 
         *(undefined4 *)(iVar3 + 0x28) = 0;
       }
       else {
-        uVar1 = Mem_Alloc16(*(int *)(iVar3 + 0x24),*puRam0036f4f4);
+        uVar1 = Mem_Alloc16(*(int *)(iVar3 + 0x24),*_g_SaveMgr);
         *(undefined4 *)(iVar3 + 0x28) = uVar1;
       }
       iVar5 = iVar5 + 1;
@@ -1102,6 +1110,8 @@ void SaveMgr_Open(undefined8 param_1,undefined1 param_2,byte param_3,undefined8 
 }
 
 // 0x0020e110  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SaveMgr_LoadIcon(undefined4 *param_1)
 
 {
@@ -1118,20 +1128,20 @@ void SaveMgr_LoadIcon(undefined4 *param_1)
   *(undefined1 *)((int)param_1 + 0x1d) = 0;
   *(undefined1 *)((int)param_1 + 0x1e) = 0;
   *(undefined1 *)((int)param_1 + 0x1f) = *(undefined1 *)((int)param_1 + 0x1e);
-  if (puRam0036f4f4[3] == 0) {
+  if (_g_SaveMgr[3] == 0) {
     uVar1 = Arc_GetFileSize(4,4,1);
-    puRam0036f4f4[2] = uVar1;
-    uVar1 = Mem_AllocAligned(puRam0036f4f4[2],0x40,*puRam0036f4f4);
-    puRam0036f4f4[3] = uVar1;
-    uVar1 = Arc_LoadFileEx(4,puRam0036f4f4[3],0,0,0,0);
-    puRam0036f4f4[1] = uVar1;
+    _g_SaveMgr[2] = uVar1;
+    uVar1 = Mem_AllocAligned(_g_SaveMgr[2],0x40,*_g_SaveMgr);
+    _g_SaveMgr[3] = uVar1;
+    uVar1 = Arc_LoadFileEx(4,_g_SaveMgr[3],0,0,0,0);
+    _g_SaveMgr[1] = uVar1;
   }
   uVar2 = g_ArcToc->entries[4].unpackedSize;
   if (uVar2 == 0) {
     uVar2 = g_ArcToc->entries[4].storedSize;
   }
   param_1[0x107] = uVar2;
-  param_1[0x106] = puRam0036f4f4[3];
+  param_1[0x106] = _g_SaveMgr[3];
   return;
 }
 
@@ -1763,6 +1773,8 @@ void Subtitle_Alloc(undefined8 param_1,undefined8 param_2,undefined4 param_3)
 }
 
 // 0x0020f570  size 0x390
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuMovie_Draw(void)
 
 {
@@ -1777,151 +1789,159 @@ void MenuMovie_Draw(void)
   undefined1 auStack_50 [64];
   undefined1 auStack_10 [16];
   
-  if (iRam0036f4fc == 0) {
+  if (_g_MenuMovie == 0) {
     return;
   }
-  if (*(char *)(iRam0036f4fc + 4) == '\t') {
+  if (*(char *)(_g_MenuMovie + 4) == '\t') {
     return;
   }
-  if (-1 < *(int *)(iRam0036f4fc + 0x18)) {
+  if (-1 < *(int *)(_g_MenuMovie + 0x18)) {
     lVar2 = File_IsBusy();
     if (lVar2 != 1) {
       bVar3 = false;
       goto LAB_0020f5a8;
     }
-    Tex_Relocate(*(undefined4 *)(iRam0036f4fc + 0x1c));
-    TexSlot_Bind(iRam0036f4fc + 0x20,*(undefined4 *)(iRam0036f4fc + 0x1c),0,
-                 *(undefined4 *)(iRam0036f4fc + 0x42c),*(undefined4 *)(iRam0036f4fc + 0x42c),0x11010
+    Tex_Relocate(*(undefined4 *)(_g_MenuMovie + 0x1c));
+    TexSlot_Bind(_g_MenuMovie + 0x20,*(undefined4 *)(_g_MenuMovie + 0x1c),0,
+                 *(undefined4 *)(_g_MenuMovie + 0x42c),*(undefined4 *)(_g_MenuMovie + 0x42c),0x11010
                  ,0,0);
-    *(undefined4 *)(iRam0036f4fc + 0x18) = 0xffffffff;
+    *(undefined4 *)(_g_MenuMovie + 0x18) = 0xffffffff;
   }
   bVar3 = true;
 LAB_0020f5a8:
   if (bVar3) {
-    iVar1 = *(int *)(iRam0036f0c8 + 0x154);
+    iVar1 = *(int *)(_g_MoviePlayer + 0x154);
     if (iVar1 == 4) {
       MoviePlayer_Close();
     }
     else if ((iVar1 != 3) && (iVar1 != 2)) {
       if (iVar1 == 1) {
-        if (*(char *)(iRam0036f4fc + 5) == '\b') {
-          *(undefined4 *)(iRam0036f4fc + 8) = 0;
+        if (*(char *)(_g_MenuMovie + 5) == '\b') {
+          *(undefined4 *)(_g_MenuMovie + 8) = 0;
         }
-        else if (*(char *)(iRam0036f4fc + 6) == *(char *)(iRam0036f4fc + 5)) {
-          *(uint *)(iRam0036f4fc + 0xc) = *(int *)(iRam0036f0c8 + 0x174) != 0 ^ 1;
-          *(uint *)(iRam0036f4fc + 8) = *(int *)(iRam0036f4fc + 0xc) != 0 ^ 1;
+        else if (*(char *)(_g_MenuMovie + 6) == *(char *)(_g_MenuMovie + 5)) {
+          *(uint *)(_g_MenuMovie + 0xc) = *(int *)(_g_MoviePlayer + 0x174) != 0 ^ 1;
+          *(uint *)(_g_MenuMovie + 8) = *(int *)(_g_MenuMovie + 0xc) != 0 ^ 1;
         }
         else {
-          *(undefined4 *)(iRam0036f4fc + 8) = 0;
-          *(undefined4 *)(iRam0036f4fc + 0xc) = 1;
+          *(undefined4 *)(_g_MenuMovie + 8) = 0;
+          *(undefined4 *)(_g_MenuMovie + 0xc) = 1;
           MoviePlayer_IsFinished();
         }
       }
-      else if ((iVar1 == 0) && (*(byte *)(iRam0036f4fc + 5) != 8)) {
+      else if ((iVar1 == 0) && (*(byte *)(_g_MenuMovie + 5) != 8)) {
         Arc_GetEntryInfo(auStack_10,
-                         (uint)*(byte *)(iRam0036f4fc + 5) +
-                         *(int *)(&DAT_00329d24 + (uint)*(byte *)(iRam0036f4fc + 4) * 8));
+                         (uint)*(byte *)(_g_MenuMovie + 5) +
+                         *(int *)(&DAT_00329d24 + (uint)*(byte *)(_g_MenuMovie + 4) * 8));
         lVar2 = MoviePlayer_Open(auStack_10,1);
         if (lVar2 == 0) {
-          *(undefined4 *)(iRam0036f4fc + 0xc) = 1;
+          *(undefined4 *)(_g_MenuMovie + 0xc) = 1;
         }
         else {
-          *(undefined1 *)(iRam0036f4fc + 6) = *(undefined1 *)(iRam0036f4fc + 5);
-          *(undefined4 *)(iRam0036f4fc + 8) = 1;
+          *(undefined1 *)(_g_MenuMovie + 6) = *(undefined1 *)(_g_MenuMovie + 5);
+          *(undefined4 *)(_g_MenuMovie + 8) = 1;
         }
       }
     }
     bVar3 = false;
-    if ((*(int *)(iRam0036f4fc + 0x10) != 0) && (bVar3 = false, *(int *)(iRam0036f4fc + 0xc) == 0))
+    if ((*(int *)(_g_MenuMovie + 0x10) != 0) && (bVar3 = false, *(int *)(_g_MenuMovie + 0xc) == 0))
     {
-      bVar3 = *(int *)(iRam0036f4fc + 8) != 0;
+      bVar3 = *(int *)(_g_MenuMovie + 8) != 0;
     }
-    MoviePlayer_Update(bVar3,*(int *)(iRam0036f4fc + 0x430) * -0x10,
-                       *(int *)(iRam0036f4fc + 0x434) * -0x10);
-    if (((*(int *)(iRam0036f4fc + 0x10) != 0) && (*(int *)(iRam0036f4fc + 0xc) != 0)) &&
-       (*(char *)(iRam0036f4fc + 5) != '\b')) {
-      TexSlot_Set(0,*(undefined2 *)(*(int *)(iRam0036f4fc + 0x1c) + 6),iRam0036f4fc + 0x20);
-      Pkt_Init(auStack_50,*(undefined1 *)(iRam0036f4fc + 0x420),2,0);
+    MoviePlayer_Update(bVar3,*(int *)(_g_MenuMovie + 0x430) * -0x10,
+                       *(int *)(_g_MenuMovie + 0x434) * -0x10);
+    if (((*(int *)(_g_MenuMovie + 0x10) != 0) && (*(int *)(_g_MenuMovie + 0xc) != 0)) &&
+       (*(char *)(_g_MenuMovie + 5) != '\b')) {
+      TexSlot_Set(0,*(undefined2 *)(*(int *)(_g_MenuMovie + 0x1c) + 6),_g_MenuMovie + 0x20);
+      Pkt_Init(auStack_50,*(undefined1 *)(_g_MenuMovie + 0x420),2,0);
       Obj_Reset(auStack_360,4,0xffffffffffffffff);
-      Obj_SetVisible(auStack_360,1,0,*(undefined1 *)(iRam0036f4fc + 5));
-      fStack_6c = (float)*(uint *)(iRam0036f4fc + 0x434);
-      fStack_70 = (float)*(uint *)(iRam0036f4fc + 0x430);
+      Obj_SetVisible(auStack_360,1,0,*(undefined1 *)(_g_MenuMovie + 5));
+      fStack_6c = (float)*(uint *)(_g_MenuMovie + 0x434);
+      fStack_70 = (float)*(uint *)(_g_MenuMovie + 0x430);
       uStack_80 = 0x3f800000;
       uStack_7c = 0x3f800000;
       auStack_360[0] = auStack_360[0] | 4;
-      Pkt_SubmitToChain(auStack_50,*(undefined4 *)(iRam0036f4fc + 0x424));
+      Pkt_SubmitToChain(auStack_50,*(undefined4 *)(_g_MenuMovie + 0x424));
       Pkt_AddPrimitives(auStack_50,auStack_360,1);
-      Pkt_Submit(auStack_50,*(undefined4 *)(iRam0036f4fc + 0x428));
+      Pkt_Submit(auStack_50,*(undefined4 *)(_g_MenuMovie + 0x428));
     }
   }
   return;
 }
 
 // 0x0020f900  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuMovie_SetParams(undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4
                         )
 
 {
-  if (iRam0036f4fc != 0) {
-    *(undefined4 *)(iRam0036f4fc + 0x10) = param_1;
-    if (*(char *)(iRam0036f4fc + 5) != '\b') {
-      *(undefined1 *)(iRam0036f4fc + 5) = param_2;
-      *(undefined4 *)(iRam0036f4fc + 0x430) = param_3;
-      *(undefined4 *)(iRam0036f4fc + 0x434) = param_4;
+  if (_g_MenuMovie != 0) {
+    *(undefined4 *)(_g_MenuMovie + 0x10) = param_1;
+    if (*(char *)(_g_MenuMovie + 5) != '\b') {
+      *(undefined1 *)(_g_MenuMovie + 5) = param_2;
+      *(undefined4 *)(_g_MenuMovie + 0x430) = param_3;
+      *(undefined4 *)(_g_MenuMovie + 0x434) = param_4;
     }
   }
   return;
 }
 
 // 0x0020f950  size 0x18
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuMovie_Stop(void)
 
 {
-  *(undefined1 *)(iRam0036f4fc + 5) = 8;
-  *(undefined4 *)(iRam0036f4fc + 8) = 0;
+  *(undefined1 *)(_g_MenuMovie + 5) = 8;
+  *(undefined4 *)(_g_MenuMovie + 8) = 0;
   MoviePlayer_IsFinished();
   return;
 }
 
 // 0x0020f970  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_MenuMovie_BindTexture(void)
 
 {
   long lVar1;
   
-  if (-1 < *(int *)(iRam0036f4fc + 0x18)) {
+  if (-1 < *(int *)(_g_MenuMovie + 0x18)) {
     lVar1 = File_IsBusy();
     if (lVar1 != 1) {
       return 0;
     }
-    Tex_Relocate(*(undefined4 *)(iRam0036f4fc + 0x1c));
-    TexSlot_Bind(iRam0036f4fc + 0x20,*(undefined4 *)(iRam0036f4fc + 0x1c),0,
-                 *(undefined4 *)(iRam0036f4fc + 0x42c),*(undefined4 *)(iRam0036f4fc + 0x42c),0x11010
+    Tex_Relocate(*(undefined4 *)(_g_MenuMovie + 0x1c));
+    TexSlot_Bind(_g_MenuMovie + 0x20,*(undefined4 *)(_g_MenuMovie + 0x1c),0,
+                 *(undefined4 *)(_g_MenuMovie + 0x42c),*(undefined4 *)(_g_MenuMovie + 0x42c),0x11010
                  ,0,0);
-    *(undefined4 *)(iRam0036f4fc + 0x18) = 0xffffffff;
+    *(undefined4 *)(_g_MenuMovie + 0x18) = 0xffffffff;
   }
   return 1;
 }
 
 // 0x0020fa10  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 MenuMovie_Reset(void)
 
 {
   undefined4 uVar1;
   
-  if (*(int *)(iRam0036f0c8 + 0x154) == 0) {
-    *(undefined4 *)(iRam0036f4fc + 0xc) = 0;
-    *(undefined4 *)(iRam0036f4fc + 8) = 0;
-    if (*(int *)(iRam0036f4fc + 0x10) == 0) {
-      if (*(int *)(iRam0036f4fc + 0x1c) != 0) {
+  if (*(int *)(_g_MoviePlayer + 0x154) == 0) {
+    *(undefined4 *)(_g_MenuMovie + 0xc) = 0;
+    *(undefined4 *)(_g_MenuMovie + 8) = 0;
+    if (*(int *)(_g_MenuMovie + 0x10) == 0) {
+      if (*(int *)(_g_MenuMovie + 0x1c) != 0) {
         Mem_Free();
-        *(undefined4 *)(iRam0036f4fc + 0x1c) = 0;
+        *(undefined4 *)(_g_MenuMovie + 0x1c) = 0;
       }
       uVar1 = 1;
-      *(undefined1 *)(iRam0036f4fc + 4) = 9;
+      *(undefined1 *)(_g_MenuMovie + 4) = 9;
     }
     else {
-      *(undefined4 *)(iRam0036f4fc + 0x10) = 0;
+      *(undefined4 *)(_g_MenuMovie + 0x10) = 0;
       uVar1 = 0;
     }
   }
@@ -1932,6 +1952,8 @@ undefined4 MenuMovie_Reset(void)
 }
 
 // 0x0020fa90  size 0xd0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool MenuMovie_LoadFile(undefined1 param_1,undefined1 param_2)
 
 {
@@ -1940,36 +1962,40 @@ bool MenuMovie_LoadFile(undefined1 param_1,undefined1 param_2)
   undefined4 uVar3;
   undefined8 uVar4;
   
-  cVar1 = *(char *)(puRam0036f4fc + 1);
+  cVar1 = *(char *)(_g_MenuMovie + 1);
   if (cVar1 == '\t') {
-    *(undefined1 *)(puRam0036f4fc + 1) = param_1;
-    *(undefined1 *)((int)puRam0036f4fc + 5) = param_2;
-    puRam0036f4fc[2] = 0;
-    puRam0036f4fc[3] = 1;
-    puRam0036f4fc[4] = 1;
-    uVar3 = *(undefined4 *)(&DAT_00329d20 + (uint)*(byte *)(puRam0036f4fc + 1) * 8);
+    *(undefined1 *)(_g_MenuMovie + 1) = param_1;
+    *(undefined1 *)((int)_g_MenuMovie + 5) = param_2;
+    _g_MenuMovie[2] = 0;
+    _g_MenuMovie[3] = 1;
+    _g_MenuMovie[4] = 1;
+    uVar3 = *(undefined4 *)(&DAT_00329d20 + (uint)*(byte *)(_g_MenuMovie + 1) * 8);
     uVar4 = Arc_GetFileSize(uVar3,uVar3);
-    uVar2 = Mem_AllocAligned(uVar4,0x40,*puRam0036f4fc);
-    puRam0036f4fc[7] = uVar2;
-    uVar3 = Arc_LoadFileEx(uVar3,puRam0036f4fc[7],0,0,0,0);
-    puRam0036f4fc[6] = uVar3;
+    uVar2 = Mem_AllocAligned(uVar4,0x40,*_g_MenuMovie);
+    _g_MenuMovie[7] = uVar2;
+    uVar3 = Arc_LoadFileEx(uVar3,_g_MenuMovie[7],0,0,0,0);
+    _g_MenuMovie[6] = uVar3;
   }
   return cVar1 == '\t';
 }
 
 // 0x0020fb60  size 0x34
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuMovie_Free(void)
 
 {
   MoviePlayer_Free();
-  if (iRam0036f4fc != 0) {
+  if (_g_MenuMovie != 0) {
     Mem_Free();
-    iRam0036f4fc = 0;
+    _g_MenuMovie = 0;
   }
   return;
 }
 
 // 0x0020fba0  size 0x160
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuMovie_Create(undefined4 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4,
                      undefined8 param_5)
 
@@ -1984,19 +2010,19 @@ void MenuMovie_Create(undefined4 param_1,undefined1 param_2,undefined4 param_3,u
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  puRam0036f4fc = (undefined4 *)Mem_Alloc16(0x438,param_5);
-  *puRam0036f4fc = (int)param_5;
-  *(undefined1 *)(puRam0036f4fc + 1) = 9;
-  *(undefined1 *)((int)puRam0036f4fc + 5) = 8;
-  *(undefined1 *)((int)puRam0036f4fc + 6) = 8;
-  *(undefined1 *)(puRam0036f4fc + 0x108) = param_2;
-  puRam0036f4fc[0x109] = param_3;
-  puRam0036f4fc[0x10a] = param_4;
-  puRam0036f4fc[0x10b] = param_1;
-  puRam0036f4fc[2] = 0;
-  puRam0036f4fc[3] = 0;
-  puRam0036f4fc[6] = 0xffffffff;
-  puRam0036f4fc[7] = 0;
+  _g_MenuMovie = (undefined4 *)Mem_Alloc16(0x438,param_5);
+  *_g_MenuMovie = (int)param_5;
+  *(undefined1 *)(_g_MenuMovie + 1) = 9;
+  *(undefined1 *)((int)_g_MenuMovie + 5) = 8;
+  *(undefined1 *)((int)_g_MenuMovie + 6) = 8;
+  *(undefined1 *)(_g_MenuMovie + 0x108) = param_2;
+  _g_MenuMovie[0x109] = param_3;
+  _g_MenuMovie[0x10a] = param_4;
+  _g_MenuMovie[0x10b] = param_1;
+  _g_MenuMovie[2] = 0;
+  _g_MenuMovie[3] = 0;
+  _g_MenuMovie[6] = 0xffffffff;
+  _g_MenuMovie[7] = 0;
   uStack_24 = 8;
   uStack_20 = 8;
   aiStack_50[9] = 5;
@@ -2009,14 +2035,14 @@ void MenuMovie_Create(undefined4 param_1,undefined1 param_2,undefined4 param_3,u
   aiStack_50[7] = 0x200;
   aiStack_50[8] = 0x100;
   aiStack_50[2] = 0;
-  uStack_1c = *(undefined1 *)(puRam0036f4fc + 0x108);
+  uStack_1c = *(undefined1 *)(_g_MenuMovie + 0x108);
   uStack_18 = 0;
-  uStack_14 = puRam0036f4fc[0x109];
-  uStack_10 = puRam0036f4fc[0x10a];
+  uStack_14 = _g_MenuMovie[0x109];
+  uStack_10 = _g_MenuMovie[0x10a];
   uStack_c = 0x7fff;
   uStack_8 = 0x800;
   aiStack_50[10] = param_1;
-  MoviePlayer_Create(aiStack_50,*puRam0036f4fc);
+  MoviePlayer_Create(aiStack_50,*_g_MenuMovie);
   return;
 }
 
@@ -2202,7 +2228,7 @@ void ScrCareer_Draw_SelectCarColour(int param_1)
   if ((*(int *)(param_1 + 0x6b4) != 0) && (lVar5 = UiLayout_UpdateAnimById(0x1a), lVar5 == 0)) {
     *(undefined4 *)(param_1 + 0x6b4) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x1a,*(undefined4 *)(&DAT_00329f90 + *(int *)(param_1 + 0x4d4) * 4),0,0);
   }
   MenuWnd_DrawStatus(*(undefined4 *)(*(int *)(param_1 + 0x4d0) * 4 + param_1 + 0x4c),

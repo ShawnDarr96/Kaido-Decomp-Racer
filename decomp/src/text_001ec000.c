@@ -1019,7 +1019,7 @@ void UiLayout_Draw(float param_1,int param_2)
       iStack_4 = 0x436810;
       if (iVar7 < 0x18) {
         Pkt_Init(param_2,2,2,0);
-        Pkt_SubmitToChain(param_2,(*piRam00387f7c + -2) - iVar7);
+        Pkt_SubmitToChain(param_2,(*_s_RaceUiSpriteCursor + -2) - iVar7);
       }
       else {
         Pkt_Init(param_2,0,2,0);
@@ -2001,6 +2001,7 @@ void UiText_MeasureLine(int *param_1,float *param_2,int param_3,int param_4,unde
 /* WARNING: Removing unreachable block (ram,0x001ef6c4) */
 /* WARNING: Removing unreachable block (ram,0x001efe54) */
 /* WARNING: Removing unreachable block (ram,0x001eff8c) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void UiText_FormatRivalInfo(ushort *param_1,ushort *param_2,int *param_3)
 
@@ -2069,7 +2070,7 @@ LAB_001ef4bc:
           puVar6 = &DAT_0036e864;
         }
         else {
-          puVar6 = (ushort *)(iRam0036f400 + *(int *)(iRam0036f404 + iVar4 * 4) * 2);
+          puVar6 = (ushort *)(_g_Fonts + *(int *)(_g_LocalizedText + iVar4 * 4) * 2);
         }
         while( true ) {
           uVar1 = *puVar6;

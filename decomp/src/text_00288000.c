@@ -94,6 +94,7 @@ void ScrGarageBuyCar_State16(int param_1)
 }
 
 // 0x00288460  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 15 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State15(int param_1)
@@ -111,14 +112,14 @@ void ScrGarageBuyCar_State15(int param_1)
     lVar2 = Options_Get_14();
     *(uint *)(param_1 + 0x24) = (uint)(lVar2 != 0);
   }
-  uVar3 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar3) == 0) {
+  uVar3 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar3) == 0) {
     uVar3 = 0x100000;
   }
   else if (uVar3 == 0x80000) {
     uVar3 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar3 = 0x100000;
   }
   if ((uVar3 == 2) || (uVar3 == 1)) {
@@ -152,6 +153,7 @@ void ScrGarageBuyCar_State14(int param_1)
 }
 
 // 0x002885c0  size 0x2f4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 13 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State13(undefined8 param_1)
@@ -184,14 +186,14 @@ void ScrGarageBuyCar_State13(undefined8 param_1)
   uVar3 = Menu_MapCursorToItem(puVar6[5]);
   puVar6[6] = puVar6[7];
   Menu_HandleCursor(puVar6 + 7,0,8,puVar6[2] + 1,1,0);
-  uVar8 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar8) == 0) {
+  uVar8 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar8) == 0) {
     uVar7 = 0x100000;
   }
   else {
     uVar7 = 0x80000;
     if (uVar8 != 0x80000) {
-      if (*piRam0036f468 == 1) {
+      if (*_g_MenuInput == 1) {
         uVar7 = uVar8;
       }
       else {
@@ -205,13 +207,13 @@ void ScrGarageBuyCar_State13(undefined8 param_1)
     puVar6[8] = 0;
   }
   else {
-    if ((piRam0036f468[4] & uVar8) == 0) {
+    if ((_g_MenuInput[4] & uVar8) == 0) {
       uVar8 = 0x100000;
     }
     else if (uVar8 == 0x80000) {
       uVar8 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar8 = 0x100000;
     }
     if (uVar8 == 8) {
@@ -257,6 +259,7 @@ void ScrGarageBuyCar_State13(undefined8 param_1)
 }
 
 // 0x002888c0  size 0x2c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 12 of state table 0x32e6f0 used by ScrGarageBuyCar_Update */
 
 void ScrGarageBuyCar_State12(int param_1)
@@ -312,13 +315,13 @@ void ScrGarageBuyCar_State12(int param_1)
       g_MenuMgr->unk_0640 = '\a';
     }
   }
-  uVar7 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar7) == 0) {
+  uVar7 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar7) == 0) {
     uVar8 = 0x100000;
   }
   else {
     uVar8 = 0x80000;
-    if ((uVar7 != 0x80000) && (uVar8 = uVar7, *piRam0036f468 != 1)) {
+    if ((uVar7 != 0x80000) && (uVar8 = uVar7, *_g_MenuInput != 1)) {
       uVar8 = 0x100000;
     }
   }
@@ -336,13 +339,13 @@ void ScrGarageBuyCar_State12(int param_1)
     }
   }
   else {
-    if ((piRam0036f468[4] & uVar7) == 0) {
+    if ((_g_MenuInput[4] & uVar7) == 0) {
       uVar7 = 0x100000;
     }
     else if (uVar7 == 0x80000) {
       uVar7 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar7 = 0x100000;
     }
     if (uVar7 == 2) {
@@ -795,6 +798,8 @@ int maybe_TeamList_CompareRivals(int *param_1,int *param_2)
 }
 
 // 0x002896f0  size 0x11d0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrTeamList_HandleInput(undefined8 param_1)
 
 {
@@ -812,14 +817,14 @@ void maybe_ScrTeamList_HandleInput(undefined8 param_1)
   uVar5 = Profile_Get(0);
   piVar10 = (int *)param_1;
   iVar3 = piVar10[3];
-  uVar8 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar8) == 0) {
+  uVar8 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar8) == 0) {
     uVar8 = 0x100000;
   }
   else if (uVar8 == 0x80000) {
     uVar8 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar8 = 0x100000;
   }
   if (uVar8 == 0x400) {
@@ -1503,6 +1508,8 @@ int Profile_Get_Wrap(int *param_1,int *param_2)
 }
 
 // 0x0028ae40  size 0x2e0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrEventList_HandleInput(int *param_1)
 
 {
@@ -1511,14 +1518,14 @@ void maybe_ScrEventList_HandleInput(int *param_1)
   
   iVar1 = param_1[2];
   if (param_1[0xdf] == 0) {
-    uVar2 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar2) == 0) {
+    uVar2 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar2) == 0) {
       uVar2 = 0x100000;
     }
     else if (uVar2 == 0x80000) {
       uVar2 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar2 = 0x100000;
     }
     if ((uVar2 == 0x8000) || (uVar2 == 0x200)) {
@@ -1672,20 +1679,22 @@ void maybe_ScrEventList_Enter(undefined4 *param_1)
 }
 
 // 0x0028b2c0  size 0x1a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrBlank08_HandleInput(int *param_1)
 
 {
   int iVar1;
   uint uVar2;
   
-  uVar2 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar2) == 0) {
+  uVar2 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar2) == 0) {
     uVar2 = 0x100000;
   }
   else if (uVar2 == 0x80000) {
     uVar2 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar2 = 0x100000;
   }
   if (uVar2 == 2) {
@@ -1868,6 +1877,8 @@ void maybe_ScrRivalList_ClearSlots(int param_1)
 }
 
 // 0x0028b7e0  size 0xc9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrRivalList_HandleInput(undefined8 param_1)
 
 {
@@ -1882,14 +1893,14 @@ void maybe_ScrRivalList_HandleInput(undefined8 param_1)
   
   piVar6 = (int *)param_1;
   uVar1 = piVar6[4];
-  uVar8 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar8) == 0) {
+  uVar8 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar8) == 0) {
     uVar8 = 0x100000;
   }
   else if (uVar8 == 0x80000) {
     uVar8 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar8 = 0x100000;
   }
   if (uVar8 == 1) {

@@ -1171,7 +1171,7 @@ void ScrRace_Select_PrizeInformation(int param_1)
   }
   if (cVar2 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(0xe4,*(undefined4 *)(&DAT_0032b470 + *(int *)(param_1 + 0x24) * 4),0,0);
     }
   }
@@ -1945,7 +1945,7 @@ LAB_0023779c:
     }
     bVar1 = true;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0xd1,*(undefined4 *)(&DAT_0032b6b0 + iVar2 * 4),0,0);
     if (*(int *)(iVar8 + 0x18) == 0) {
       UiLayout_UpdateAnimById(0xd1,2);

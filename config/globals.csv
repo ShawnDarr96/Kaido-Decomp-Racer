@@ -26,3 +26,71 @@ address,name,comment
 0x0036f0c0,g_ArcDatSector,start sector of BUILD.DAT on disc; added to each entry's sector
 0x0036f0bc,g_ArcDiscOk,1 when BUILD.TOC/BUILD.DAT were found and the TOC size matched
 0x0036f0b8,g_ArcHeap,heap the TOC buffer is allocated from
+0x0036efe8,g_File,file system state (allocated in File_Init)
+0x0036f02c,g_IopStrmA,IOP stream buffer A (IopStrm_Init)
+0x0036f030,g_IopStrmB,IOP stream buffer B (IopStrm_Init)
+0x0036f038,g_IopStrm,open IOP stream (IopStrm_Open)
+0x0036f048,g_IopSe,IOP sound-effect bank (IopSe_Open)
+0x0036f08c,g_SceneObjects,scene object pool (Scene_CreateObjects)
+0x0036f19c,g_SaveSlots,save slot table (Save_AllocSlots)
+0x0036f1ac,g_Replay,replay buffer (Replay_Alloc)
+0x0036f2fc,g_RivalSchedule,rival schedule (RivalSchedule_Alloc)
+0x0036f328,g_Props,race props (RaceScene_AllocProps)
+0x0036f32c,g_PropsB,race props second buffer (RaceScene_AllocProps)
+0x0036f34c,g_AiDrivers,AI drivers (RaceTask_CreateAiDrivers)
+0x0036f400,g_Fonts,UI fonts (UiRes_AllocFonts)
+0x0036f404,g_LocalizedText,localized text table (UiRes_LoadLocalizedAlloc)
+0x0036f468,g_MenuInput,menu pad input state; [2]/[4] are pressed/held masks (MenuWnd_Alloc)
+0x0036f4a0,g_Garage3d,garage 3D scene (Garage3d_Load)
+0x0036f4f4,g_SaveMgr,memory card save manager (SaveMgr_Init)
+0x0036f4fc,g_MenuMovie,menu background movie (MenuMovie_Create)
+0x0036f7e4,g_SeqGen,music sequencer (SeqGen_Init)
+0x0036f804,g_RaceHud,race HUD (RaceHud_Load)
+0x0036f834,g_MenuObj,menu 3D object sets (MenuObj_Init)
+0x0036f85c,g_IntroCar,race intro car (IntroCar_Load)
+0x0036f8b4,g_ReplayUi,replay UI (ReplayUi_Load)
+0x0036f8ec,g_IntroFlag,race intro flag (IntroFlag_Load)
+0x0036f934,g_ComposerScene,music composer scene (ComposerScene_Alloc)
+0x0042d81c,g_Snd,sound system (Snd_Init)
+0x004301b0,g_Skids,skid marks (Skid_Alloc)
+0x00430574,g_CourseModelA,course model buffer A (Course_LoadModels)
+0x0043057c,g_CourseModelB,course model buffer B (Course_LoadModels)
+0x00430584,g_CourseModelC,course model buffer C (Course_LoadModels)
+0x004305bc,g_CourseStream,course streaming buffer (Course_Load)
+0x004305c0,g_CourseBufA,course buffer A (Course_Load)
+0x004305c8,g_CourseBufB,course buffer B (Course_Load)
+0x004305d0,g_CourseBufC,course buffer C (Course_Load)
+0x004305d8,g_CourseBufD,course buffer D (Course_Load)
+0x004305e0,g_CourseBufE,course buffer E (Course_Load)
+0x00430640,g_CourseScene,course scene (CourseScene_Load)
+0x004308c0,g_Particles,particle system (PtclSys_Init)
+0x004308c4,g_ParticlesB,particle system buffer B (PtclSys_Init)
+0x004308d8,g_ParticlesC,particle system buffer C (PtclSys_Init)
+0x0043647c,g_CourseAssets,common course assets (Asset_LoadCourseCommon)
+0x0043649c,g_CourseAssetsB,common course assets B (Asset_LoadCourseCommon)
+0x004364c0,g_CourseAssetsC,common course assets C (Asset_LoadCourseCommon)
+0x004364c4,g_CourseAssetsD,common course assets D (Asset_LoadCourseCommon)
+0x0046a0f0,g_ReplayCam,replay camera (maybe_ReplayCam_Load)
+0x0046a198,g_GarageBgData,garage background data (GarageBg_Alloc)
+0x0046a1a0,g_GarageBgBuf,garage background buffer (GarageBg_Alloc)
+0x0046a238,g_ShowroomBgData,showroom background data (ShowroomBg_Alloc)
+0x0046a240,g_ShowroomBgBuf,showroom background buffer (ShowroomBg_Alloc)
+0x0036efe0,s_FileSectorCount,getter/setter: File_*SectorCount
+0x0036f024,s_IopStrmRpcClient,getter/setter: IopStrm_*RpcClient
+0x0036f0b0,s_SceneResetCheck,getter/setter: Scene_*ResetCheck
+0x0036f0b4,s_SceneCallback2,getter/setter: Scene_*Callback2
+0x0036f16c,s_PhysParamB,getter/setter: Phys_*ParamB
+0x0036f170,s_PhysParamA,getter/setter: Phys_*ParamA
+0x0042f3c4,s_PhysCallback,getter/setter: Phys_*Callback
+0x0036f0c8,g_MoviePlayer,MPEG movie player state (MoviePlayer_Setup/Open/Thread)
+0x00387f7c,s_RaceUiSpriteCursor,sprite write cursor used by the RaceUi draw helpers
+0x0042dafc,s_SndCmdCount,queued sound command count (< 0x30; Snd_QueueCmd*)
+0x0036f828,s_GarageSortProfile,profile index used by the GarageSort_* comparators
+0x0036f258,s_SndMgrStreams,sound manager stream state (SndMgr_IsIdle)
+0x0036f254,s_SndMgrVoices,sound manager voice state (SndMgr_IsIdle)
+0x0036f26c,g_RaceSnd,race sound state (RaceSnd_Task)
+0x0036f074,g_Wheel,steering wheel / force feedback state (Wheel_Update)
+0x0036f2d4,s_CarAssetLod,car asset LOD / build mode (CarAsset_*)
+0x0036f1f8,s_RaceIsReplayMode,1 when RaceCtx mode is 0xd (set in RaceTask_BeginLoading)
+0x0036f5dc,s_SectionSelA,cursor state in ScrCareer_Draw_SelectSectionTo
+0x0036f5e0,s_SectionSelB,cursor state in ScrCareer_Draw_SelectSectionTo

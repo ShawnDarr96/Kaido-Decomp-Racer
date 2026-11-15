@@ -70,7 +70,7 @@ void ScrRace_Draw_Equipment(int param_1)
   }
   MenuWnd_DrawText(0x5d,0x26,0x44);
   ScrCareer_Draw_Power(*(undefined4 *)(param_1 + 8),0);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x5e,*(undefined4 *)(&DAT_0032dc00 + *(int *)(param_1 + 8) * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x5d);
@@ -227,7 +227,7 @@ void ScrCareer_Draw_InspectCarParts_cd70(int param_1)
       *(undefined4 *)(param_1 + 0xa18) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x5d,*(undefined4 *)(&DAT_0032dbd8 + *(int *)(param_1 + 4) * 4),1,0);
   }
   lVar3 = MenuText_CarFullName(0xffffffffffffffff,0);
@@ -290,7 +290,7 @@ void ScrCareer_Draw_TuneUp_d1e0(int *param_1)
     param_1[0x286] = 0;
     Menu_BlockInput(&g_MenuMgr->field_0x654);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x5c,*(undefined4 *)(*param_1 * 4 + 0x36ed60),1,0);
   }
   MenuWnd_DrawText(0x2d,0x39,0xec);
@@ -1152,7 +1152,7 @@ void MenuScr_Draw_TractionControl(undefined8 param_1)
   if ((piVar6[8] != 0) && (lVar4 = UiLayout_UpdateAnimById(0x3b), lVar4 == 0)) {
     piVar6[8] = 0;
   }
-  if ((*piRam0036f468 == 1) && (piVar6[0xe] == 0)) {
+  if ((*_g_MenuInput == 1) && (piVar6[0xe] == 0)) {
     MenuWnd_SetItemState(0x3b,*(undefined4 *)(&DAT_0032e610 + (*piVar6 + piVar6[0xb]) * 4),1,0);
   }
   else {

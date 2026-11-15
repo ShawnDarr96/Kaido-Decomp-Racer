@@ -512,7 +512,7 @@ void ScrRace_Draw_Sell_0ed0(int param_1)
   if ((*(int *)(param_1 + 0x8f0) != 0) && (lVar3 = UiLayout_UpdateAnimById(0x44), lVar3 == 0)) {
     *(undefined4 *)(param_1 + 0x8f0) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x44,*(undefined4 *)(*(int *)(param_1 + 4) * 4 + 0x36ec60),1,0);
   }
   MenuWnd_DrawText(0x43,0x1b,0x2a2);
@@ -919,7 +919,7 @@ void ScrCareer_Draw_CarStatus(int *param_1)
   if ((param_1[0xb] != 0) && (lVar4 = UiLayout_UpdateAnimById(0x2f), lVar4 == 0)) {
     param_1[0xb] = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x2f,*(undefined4 *)(param_1[1] * 4 + 0x36ec88),1,0);
     iVar1 = *param_1;
   }
@@ -1244,7 +1244,7 @@ void maybe_PageCarStatus_State0_CarStatus(int *param_1)
     iVar3 = iVar3 + 1;
     puVar10 = puVar10 + 1;
   } while (iVar3 < 0xc);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x2e,*(undefined4 *)(&DAT_0032d330 + param_1[4] * 4),0,0);
   }
   MenuWnd_DrawStatus(*param_1,0,0xffffffffffffffff,0);
@@ -1690,7 +1690,7 @@ void ScrCareer_Draw_SelectCarColour_3190(int param_1)
       *(undefined4 *)(param_1 + 0x898) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x105,*(undefined4 *)(&DAT_0032d6b0 + *(int *)(param_1 + 0x34) * 4),0,0);
   }
   iVar7 = 0;
@@ -1956,7 +1956,7 @@ void ScrCareer_Draw_SelectCarTo(int param_1)
     iVar3 = iVar3 + 1;
     puVar9 = puVar9 + 1;
   } while (iVar3 < 0xc);
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x107,*(undefined4 *)(&DAT_0032d680 + *(int *)(param_1 + 0x8c) * 4),0,0);
   }
   MenuWnd_Update(param_1 + 0x764,0x107,7,6);

@@ -521,7 +521,7 @@ LAB_002458b0:
       iVar5 = iVar5 + 0x14;
       puVar9 = puVar9 + 1;
     } while (iVar6 < 6);
-    if ((*(int *)(param_1 + 0x64c) == 0xe) && (*piRam0036f468 == 1)) {
+    if ((*(int *)(param_1 + 0x64c) == 0xe) && (*_g_MenuInput == 1)) {
       MenuWnd_SetItemState(0x87,*(undefined4 *)(&DAT_0032ca90 + *(int *)(param_1 + 0x62c) * 4),1,0);
     }
     iVar3 = UiMgr_FindLayout(0x87);
@@ -1362,7 +1362,7 @@ void ScrCareer_Draw_BetCar(int param_1)
   if ((*(int *)(param_1 + 0x660) != 0) && (lVar9 = UiLayout_UpdateAnimById(0x7e), lVar9 == 0)) {
     *(undefined4 *)(param_1 + 0x660) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7e,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36ebc8),1,0);
   }
   RivalDb_Copy(auStack_330,*(undefined2 *)(param_1 + 0x24));
@@ -1759,7 +1759,7 @@ void ScrCareer_Draw_Challenge(int param_1)
   } while (0 < iVar7);
   UiElem_SetPropInt(iVar2 + iVar6 * 0x4f4 + 4,0x18,0x16,
                     *(undefined4 *)(&DAT_0032c980 + (uint)bStack_154 * 4));
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36ebc0),1,0);
   }
   MenuWnd_DrawStatus(*(undefined4 *)(param_1 + 0x24),0xfffffffffffffffd,0xffffffffffffffff,0);
@@ -2095,7 +2095,7 @@ void ScrCareer_Draw_GoBattle(int param_1)
   } while (0 < iVar14);
   UiElem_SetPropInt(iVar2 + iVar6 * 0x4f4 + 4,0x18,0x16,
                     *(undefined4 *)(&DAT_0032c8b0 + (uint)bStack_184 * 4));
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36ebb0),1,0);
     iVar14 = *(int *)(param_1 + 0x688);
   }

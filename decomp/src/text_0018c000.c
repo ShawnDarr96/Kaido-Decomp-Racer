@@ -148,6 +148,8 @@ bool Road_PointInTriangle(int param_1,int param_2,float *param_3)
 }
 
 // 0x0018c7e0  size 0x6b8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ScreenFx_Draw(uint *param_1)
 
 {
@@ -188,7 +190,7 @@ void ScreenFx_Draw(uint *param_1)
   undefined1 auStack_40 [20];
   undefined4 uStack_2c;
   
-  if ((iRam0036f1f8 == 0) && (param_1[3] == 2)) {
+  if ((_s_RaceIsReplayMode == 0) && (param_1[3] == 2)) {
     return;
   }
   uVar9 = param_1[3];
@@ -488,6 +490,7 @@ LAB_0018d0f8:
 }
 
 // 0x0018d170  size 0x548
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 50 slots, rand() threshold */
 
 void Weather_SpawnDrops(uint *param_1)
@@ -537,7 +540,7 @@ LAB_0018d1f4:
         puVar4[0x54] = 0;
         goto LAB_0018d4b8;
       }
-      if (iRam0036f1f8 == 0) {
+      if (_s_RaceIsReplayMode == 0) {
         if (((284.0 < (float)puVar4[0x5d]) || ((float)puVar4[0x5d] < -284.0)) ||
            ((380.0 < (float)puVar4[0x5c] || ((float)puVar4[0x5c] < -380.0)))) {
           puVar4[0x54] = 0;
@@ -648,6 +651,8 @@ LAB_0018d540:
 }
 
 // 0x0018d6d0  size 0x19c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Weather_ResetDrop(int param_1,int param_2)
 
 {
@@ -660,7 +665,7 @@ void Weather_ResetDrop(int param_1,int param_2)
   *(undefined4 *)(iVar3 + 0x150) = 1;
   iVar1 = maybe_rand();
   *(float *)(iVar3 + 0x170) = ((float)iVar1 / 2.1474836e+09 - 0.5) * 640.0;
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     iVar1 = maybe_rand();
     *(float *)(iVar3 + 0x174) = ((float)iVar1 / 2.1474836e+09 - 0.5) * 448.0;
   }
@@ -684,6 +689,8 @@ void Weather_ResetDrop(int param_1,int param_2)
 }
 
 // 0x0018d870  size 0x1c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
 
 {
@@ -692,7 +699,7 @@ void Weather_Update(uint param_1,uint *param_2,ulong param_3,uint param_4)
   uint uVar3;
   uint uVar4;
   
-  if (iRam0036f1f8 == 0) {
+  if (_s_RaceIsReplayMode == 0) {
     param_2[3] = 0;
   }
   else {
@@ -921,6 +928,8 @@ void Weather_Draw(float param_1,uint param_2)
 }
 
 // 0x0018e1c0  size 0xc8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 SndCh_Play(int *param_1,byte param_2)
 
 {
@@ -958,13 +967,15 @@ undefined8 SndCh_Play(int *param_1,byte param_2)
       uStack_8 = puVar1[4];
       uStack_4 = puVar1[5];
       uStack_1c = 0x13;
-      uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
+      uVar2 = SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
     }
   }
   return uVar2;
 }
 
 // 0x0018e290  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndCh_Stop(int *param_1)
 
 {
@@ -989,11 +1000,13 @@ void SndCh_Stop(int *param_1)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 0x11;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
 // 0x0018e310  size 0xc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 SndCh_SetVolume(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
@@ -1027,7 +1040,7 @@ undefined8 SndCh_SetVolume(undefined8 param_1,uint param_2,undefined8 param_3)
     uStack_8 = puVar1[4];
     uStack_4 = puVar1[5];
     uStack_1c = 0xd;
-    uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
+    uVar2 = SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   }
   return uVar2;
 }
@@ -1060,6 +1073,8 @@ long SndCh_dtor(long param_1,short param_2)
 }
 
 // 0x0018e480  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 ulong SndCh_FadeOut(int *param_1)
 
 {
@@ -1083,11 +1098,13 @@ ulong SndCh_FadeOut(int *param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  uVar2 = SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return uVar1 & 1 & uVar2;
 }
 
 // 0x0018e500  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 ulong SndCh_FadeIn(int *param_1)
 
 {
@@ -1111,11 +1128,13 @@ ulong SndCh_FadeIn(int *param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  uVar2 = SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  uVar2 = SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return uVar1 & 1 & uVar2;
 }
 
 // 0x0018e580  size 0x78
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 byte SndCh_IsPlaying(int param_1)
 
 {
@@ -1126,7 +1145,8 @@ byte SndCh_IsPlaying(int param_1)
   cVar3 = Snd_IsBusy(*(undefined4 *)(param_1 + 0x40));
   bVar2 = 0;
   bVar1 = false;
-  if ((*(char *)(iRam0036f254 + 0x400) == '\0') && (*(char *)(iRam0036f258 + 0x200) == '\0')) {
+  if ((*(char *)(_s_SndMgrVoices + 0x400) == '\0') && (*(char *)(_s_SndMgrStreams + 0x200) == '\0'))
+  {
     bVar1 = true;
   }
   if ((bVar1) && (cVar3 == '\0')) {
@@ -1136,6 +1156,8 @@ byte SndCh_IsPlaying(int param_1)
 }
 
 // 0x0018e600  size 0xa4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndCh_PlayLooped(int *param_1,uint param_2)
 
 {
@@ -1165,11 +1187,13 @@ void SndCh_PlayLooped(int *param_1,uint param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 0xb;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
 // 0x0018e6b0  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndCh_PlayOneShot(int *param_1,short param_2)
 
 {
@@ -1193,7 +1217,7 @@ void SndCh_PlayOneShot(int *param_1,short param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 0xc;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
@@ -1222,6 +1246,8 @@ void SndCh_GetHandle(undefined8 param_1,long param_2)
 }
 
 // 0x0018e7e0  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndCh_PlayPanned(int *param_1)
 
 {
@@ -1246,11 +1272,13 @@ void SndCh_PlayPanned(int *param_1)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 9;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
 // 0x0018e860  size 0xc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndCh_PlayAtPosition(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
@@ -1285,7 +1313,7 @@ void SndCh_PlayAtPosition(undefined8 param_1,uint param_2,undefined8 param_3)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 5;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
@@ -1323,10 +1351,12 @@ bool SndCh_IsStreamPlaying(int param_1)
 }
 
 // 0x0018ea00  size 0x20
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool maybe_SndMgr_IsMuted(void)
 
 {
-  return *(char *)(iRam0036f254 + 0x400) != '\0';
+  return *(char *)(_s_SndMgrVoices + 0x400) != '\0';
 }
 
 // 0x0018ea20  size 0x8
@@ -1337,6 +1367,8 @@ undefined4 Render_Nop(void)
 }
 
 // 0x0018ea30  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndStream_Play(int *param_1,short param_2)
 
 {
@@ -1360,11 +1392,13 @@ void SndStream_Play(int *param_1,short param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 3;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
 // 0x0018eac0  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndStream_PlayLooped(int *param_1)
 
 {
@@ -1390,11 +1424,13 @@ void SndStream_PlayLooped(int *param_1)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 2;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
 // 0x0018eb50  size 0x88
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndStream_Stop(int *param_1,undefined4 param_2)
 
 {
@@ -1418,12 +1454,13 @@ void SndStream_Stop(int *param_1,undefined4 param_2)
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 4;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
 // 0x0018ebe0  size 0x114
 /* WARNING: Removing unreachable block (ram,0x0018ecc8) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void SndStream_PlayBank(undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5
                        )
@@ -1462,7 +1499,7 @@ void SndStream_PlayBank(undefined8 param_1,uint param_2,undefined8 param_3,uint 
   uStack_8 = puVar1[4];
   uStack_4 = puVar1[5];
   uStack_1c = 1;
-  SndMgr_PostEvent(uRam0036f254,&iStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&iStack_20);
   return;
 }
 
@@ -1919,6 +1956,8 @@ long MidiCh_dtor(long param_1,short param_2)
 }
 
 // 0x0018f990  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndVoice_Play(int param_1)
 
 {
@@ -1939,11 +1978,13 @@ void SndVoice_Play(int param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  SndMgr_PostEvent(uRam0036f254,&uStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&uStack_20);
   return;
 }
 
 // 0x0018f9f0  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void SndVoice_Stop(int param_1)
 
 {
@@ -1964,11 +2005,12 @@ void SndVoice_Stop(int param_1)
   uStack_c = 0;
   uStack_8 = 0;
   uStack_4 = 0;
-  SndMgr_PostEvent(uRam0036f254,&uStack_20);
+  SndMgr_PostEvent(_s_SndMgrVoices,&uStack_20);
   return;
 }
 
 // 0x0018fa50  size 0x94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 9 callers */
 
 bool SndMgr_IsChannelBusy(int param_1)
@@ -1980,10 +2022,10 @@ bool SndMgr_IsChannelBusy(int param_1)
   int iVar4;
   ulong uVar5;
   
-  uVar5 = (ulong)*(char *)(iRam0036f258 + 0x201);
+  uVar5 = (ulong)*(char *)(_s_SndMgrStreams + 0x201);
   do {
-    if ((long)((int)*(char *)(iRam0036f258 + 0x201) + (int)*(char *)(iRam0036f258 + 0x200)) <=
-        (long)uVar5) {
+    if ((long)((int)*(char *)(_s_SndMgrStreams + 0x201) + (int)*(char *)(_s_SndMgrStreams + 0x200))
+        <= (long)uVar5) {
       bVar1 = false;
 LAB_0018fab4:
       bVar3 = true;
@@ -1997,7 +2039,7 @@ LAB_0018fab4:
     if (((long)uVar5 < 0) && ((uVar5 & 0x1f) != 0)) {
       iVar4 = iVar4 + -0x20;
     }
-    if (*(int *)(param_1 + 8) == *(int *)(iRam0036f258 + iVar4 * 0x10)) {
+    if (*(int *)(param_1 + 8) == *(int *)(_s_SndMgrStreams + iVar4 * 0x10)) {
       bVar1 = true;
       goto LAB_0018fab4;
     }
@@ -2006,6 +2048,8 @@ LAB_0018fab4:
 }
 
 // 0x0018faf0  size 0x94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8
 SndMgr_PlayStreamSlot
           (int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
@@ -2017,15 +2061,15 @@ SndMgr_PlayStreamSlot
   uint uVar4;
   undefined4 *puVar5;
   
-  iVar1 = iRam0036f258;
+  iVar1 = _s_SndMgrStreams;
   if (param_5 == 0) {
-    if (*(char *)(iRam0036f258 + 0x200) < ' ') {
-      uVar4 = (int)*(char *)(iRam0036f258 + 0x201) + (int)*(char *)(iRam0036f258 + 0x200);
+    if (*(char *)(_s_SndMgrStreams + 0x200) < ' ') {
+      uVar4 = (int)*(char *)(_s_SndMgrStreams + 0x201) + (int)*(char *)(_s_SndMgrStreams + 0x200);
       uVar2 = uVar4 & 0x1f;
       if (((int)uVar4 < 0) && (uVar2 != 0)) {
         uVar2 = uVar2 - 0x20;
       }
-      puVar5 = (undefined4 *)(iRam0036f258 + uVar2 * 0x10);
+      puVar5 = (undefined4 *)(_s_SndMgrStreams + uVar2 * 0x10);
       uVar3 = 1;
       *puVar5 = *(undefined4 *)(param_1 + 8);
       puVar5[1] = param_2;

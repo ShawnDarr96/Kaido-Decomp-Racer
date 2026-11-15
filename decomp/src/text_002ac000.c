@@ -275,6 +275,7 @@ void maybe_ScrTuneParts_Exit(void)
 }
 
 // 0x002ac6e0  size 0x1d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 41 (table 0x3274b0) */
 
 void maybe_ScrTuneParts_Update(int param_1)
@@ -292,14 +293,14 @@ void maybe_ScrTuneParts_Update(int param_1)
   lVar3 = Menu_IsInputIdle(param_1 + 0xa00);
   if (lVar3 != 0) {
     (*(code *)(&PTR_maybe_ScrTuneParts_State0_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
-    uVar5 = piRam0036f468[2];
-    if ((piRam0036f468[4] & uVar5) == 0) {
+    uVar5 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar5) == 0) {
       uVar5 = 0x100000;
     }
     else if (uVar5 == 0x80000) {
       uVar5 = 0x80000;
     }
-    else if (*piRam0036f468 != 1) {
+    else if (*_g_MenuInput != 1) {
       uVar5 = 0x100000;
     }
     if (uVar5 == 0x10) {
@@ -555,6 +556,8 @@ void maybe_ScrPartInfo_BuildStats(undefined1 *param_1,undefined1 *param_2,ulong 
 }
 
 // 0x002acdc0  size 0x42c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrPartInfo_HandleInput(undefined8 param_1)
 
 {
@@ -567,14 +570,14 @@ void maybe_ScrPartInfo_HandleInput(undefined8 param_1)
   
   piVar5 = (int *)param_1;
   uVar1 = piVar5[3];
-  uVar6 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar6) == 0) {
+  uVar6 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar6) == 0) {
     uVar6 = 0x100000;
   }
   else if (uVar6 == 0x80000) {
     uVar6 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar6 = 0x100000;
   }
   if (uVar6 == 0x1000) {
@@ -1348,6 +1351,7 @@ void maybe_ScrGarageCheck_Exit(void)
 }
 
 // 0x002ae2c0  size 0xfc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 1 (table 0x3274b0) */
 
 void maybe_ScrGarageCheck_Update(undefined8 param_1)
@@ -1356,14 +1360,14 @@ void maybe_ScrGarageCheck_Update(undefined8 param_1)
   uint uVar1;
   
   Menu_HandleCursor(param_1,0,2,3,1,((int *)param_1)[1]);
-  uVar1 = piRam0036f468[2];
-  if ((piRam0036f468[4] & uVar1) == 0) {
+  uVar1 = _g_MenuInput[2];
+  if ((_g_MenuInput[4] & uVar1) == 0) {
     uVar1 = 0x100000;
   }
   else if (uVar1 == 0x80000) {
     uVar1 = 0x80000;
   }
-  else if (*piRam0036f468 != 1) {
+  else if (*_g_MenuInput != 1) {
     uVar1 = 0x100000;
   }
   if (uVar1 == 0x10) {

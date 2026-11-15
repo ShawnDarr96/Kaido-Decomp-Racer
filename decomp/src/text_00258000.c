@@ -252,7 +252,7 @@ void ScrGarage_Draw_NoOwned(int param_1)
         }
       }
     }
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0x51,*(undefined4 *)(&DAT_0032cfb8 + *(int *)(param_1 + 0x10) * 0x10),1,0);
     }
@@ -603,7 +603,7 @@ void ScrGarage_Draw_NoOwned_8ea0(int param_1)
     if (lVar14 == 0 && (lVar13 == 0 && (lVar11 == 0 && lVar12 == 0))) {
       *(undefined4 *)(param_1 + 0x58) = 0;
     }
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState
                 (0x57,*(undefined4 *)(&DAT_0032cf38 + *(int *)(param_1 + 0x10) * 0x10),1,0);
       iVar4 = *(int *)(param_1 + 0x60);
@@ -906,7 +906,7 @@ void ScrGarage_Draw_FullAero(int param_1)
         *(undefined4 *)(param_1 + 0x60) = 0;
       }
     }
-    if (*piRam0036f468 == 1) {
+    if (*_g_MenuInput == 1) {
       MenuWnd_SetItemState(99,*(undefined4 *)(*(int *)(param_1 + 0x10) * 4 + 0x36ec48),1,0);
     }
   }
@@ -1449,7 +1449,7 @@ void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
   if (bVar1) {
     UiLayout_UpdateAnimById(0x53,2);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x53,*(undefined4 *)(*(int *)(iVar7 + 0x24) * 4 + 0x36ec28),1,0);
   }
   MenuWnd_SetTitle(3,0xffffffffffffffff);
@@ -1600,7 +1600,7 @@ void ScrGarage_Draw_Front(undefined8 param_1)
       *(undefined4 *)(iVar6 + 0x60) = 0;
     }
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x67,*(undefined4 *)(&DAT_0032cf30 + *(int *)(iVar6 + 0x14) * 4),1,0);
   }
   MenuWnd_DrawText(0x67,0x1b,0x2f);
@@ -1691,7 +1691,7 @@ void ScrRace_Draw_Front(undefined8 param_1)
   if ((*(int *)(iVar4 + 0x60) != 0) && (lVar3 = UiLayout_UpdateAnimById(0x52), lVar3 == 0)) {
     *(undefined4 *)(iVar4 + 0x60) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x52,*(undefined4 *)(&DAT_0032cf20 + *(int *)(iVar4 + 0x14) * 4),1,0);
   }
   MenuWnd_DrawText(0x52,0x12,0x2f);
@@ -1773,7 +1773,7 @@ void ScrGarage_Draw_BodyColour(int param_1)
   if ((*(int *)(param_1 + 0x60) != 0) && (lVar4 = UiLayout_UpdateAnimById(0x4d), lVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x60) = 0;
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x4d,*(undefined4 *)(&DAT_0032cf10 + *(int *)(param_1 + 8) * 4),1,0);
   }
   uVar5 = Profile_Get(0);
@@ -2070,7 +2070,7 @@ void maybe_PageBodyShop_State8_ColourSchemeChanged(int param_1)
     }
     MenuWnd_DrawCursor(0);
   }
-  if (*piRam0036f468 == 1) {
+  if (*_g_MenuInput == 1) {
     MenuWnd_SetItemState(0x58,*(undefined4 *)(&DAT_0032cea0 + *(int *)(param_1 + 0x3c) * 4),1,0);
   }
   iVar1 = UiMgr_FindLayout(0x58);
