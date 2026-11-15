@@ -404,10 +404,10 @@ void Result_Init(undefined8 param_1)
     }
     *(int *)(pbVar8 + 0x3f8) = iVar3;
     pRVar2 = GameState_Elem_f0_xcc(0);
-    pRVar4 = GameState_Elem_3e0_x540((int)(char)pRVar2->unk_09);
+    pRVar4 = GameState_Elem_3e0_x540((int)(char)pRVar2->racerSlot);
     *(uint *)(pbVar8 + 0x400) = pRVar4->unk_00 + 0x1b3;
     pRVar2 = GameState_Elem_f0_xcc(0);
-    pRVar4 = GameState_Elem_3e0_x540((int)(char)pRVar2->unk_09);
+    pRVar4 = GameState_Elem_3e0_x540((int)(char)pRVar2->racerSlot);
     *(uint *)(pbVar8 + 0x408) = pRVar4->unk_00 + 0xd1;
     Result_BuildTimeAttackRecords(param_1,0);
     uVar5 = RaceProg_Get_4();

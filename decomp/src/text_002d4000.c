@@ -1569,7 +1569,9 @@ void Showroom_Nop(void)
 }
 
 // 0x002d68b0  size 0x10
-void maybe_Showroom_SetCallback(int param_1)
+/* installs Pad_GetPort_Wrap_Thunk as the task callback (was maybe_Showroom_SetCallback) */
+
+void maybe_Showroom_InstallPadTask(int param_1)
 
 {
   *(code **)(param_1 + 0x1c) = Pad_GetPort_Wrap_Thunk;

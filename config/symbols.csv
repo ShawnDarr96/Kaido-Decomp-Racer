@@ -4931,7 +4931,7 @@ address,name,signature,source,comment
 0x002d6850,GarageBg_Load,,game,
 0x002d6890,Pad_GetPort_Wrap_Thunk,,game,task callback: j Pad_GetPort_Wrap
 0x002d68a0,Showroom_Nop,,game-module,
-0x002d68b0,maybe_Showroom_SetCallback,,game,
+0x002d68b0,maybe_Showroom_InstallPadTask,,game,installs Pad_GetPort_Wrap_Thunk as the task callback (was maybe_Showroom_SetCallback)
 0x002d68c0,maybe_IntroCar_UpdatePose,,game,
 0x002d6e40,maybe_IntroCar_Draw,,game,
 0x002d7710,Pad_GetPort_Wrap,,game-module,
@@ -5263,7 +5263,7 @@ address,name,signature,source,comment
 0x002fafe0,AttractTask_Init,,game,
 0x002fb040,maybe_AttractTask_Update,,game,
 0x002fb380,AttractTask_Update_Orphan1,,game,"follows AttractTask_Update; no call, branch, pointer or constant reference (exception landing pad or dead code)"
-0x002fb390,maybe_Attract_ClearActive,,game,
+0x002fb390,Attract_ClearActive,,game,N153 confirmed: clears g_AttractShared1
 0x002fb3a0,maybe_AttractTask_Start,,game,
 0x002fb410,maybe_Attract_DrawLayout,,game,
 0x002fb5a0,maybe_Attract_PickDemo,,game,
@@ -5272,7 +5272,7 @@ address,name,signature,source,comment
 0x002fd080,GameState_LoadHeader_Wrap,,game-module,
 0x002fd0a0,GameState_LoadHeader_Wrap2,,game-module,
 0x002fd0c0,maybe_RaceResult_GetCategory,,game,
-0x002fd180,maybe_RaceResult_GetRivalTeam,,game,
+0x002fd180,maybe_Race_GetRivalStats,,game,stats record (0x17c) of setup entry 1's racer slot (was maybe_RaceResult_GetRivalTeam)
 0x002fd1c0,Misc_Nop,,game-module,
 0x002fd1d0,ScrRenderSetInterlace_Exit,,game,menu screen 45 (table 0x3274b0)
 0x002fd1e0,ScrRenderSetInterlace_Update,,game,menu screen 45 (table 0x3274b0)

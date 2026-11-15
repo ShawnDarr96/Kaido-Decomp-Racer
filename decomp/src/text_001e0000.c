@@ -496,7 +496,7 @@ void RaceProg_ComputeDistance(int param_1,int param_2)
   iVar9 = puVar2[1];
   GameState_Get_394();
   pRVar3 = GameState_Elem_f0_xcc(param_2);
-  GameState_Elem_3e0_x540((int)(char)pRVar3->unk_09);
+  GameState_Elem_3e0_x540((int)(char)pRVar3->racerSlot);
   lVar6 = GameState_Get_40();
   uStack_40 = (undefined2)uVar15;
   uStack_50 = (undefined2)uVar16;

@@ -611,7 +611,7 @@ void Race_LoadCourse(undefined4 *param_1,long param_2)
       if (puVar7[7] != 0) {
         CarModel_SwapParts();
       }
-      GameState_CopyCourseRecord(auStack_200,pRVar2->unk_09);
+      GameState_CopyCourseRecord(auStack_200,pRVar2->racerSlot);
       puVar6 = auStack_200;
       puVar5 = auStack_100;
       iVar4 = 0x20;

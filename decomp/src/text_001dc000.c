@@ -2605,7 +2605,7 @@ void RaceProg_UpdateGapMeter(float param_1,int *param_2,int param_3,int param_4)
   fVar16 = (float)RaceCar_GetSpeedKmh(pRVar10);
   uVar20 = pRVar10->unk_006c;
   pRVar11 = GameState_Elem_f0_xcc(param_3);
-  GameState_Elem_3e0_x540((int)(char)pRVar11->unk_09);
+  GameState_Elem_3e0_x540((int)(char)pRVar11->racerSlot);
   fVar19 = 0.0;
   param_2[param_2[1] + 2] = uVar20;
   if (*param_2 == 0) {

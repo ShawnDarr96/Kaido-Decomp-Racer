@@ -1630,7 +1630,7 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
   UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_70,uVar17);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar10 + 0x3b70));
   pRVar5 = GameState_Elem_f0_xcc(0);
-  pRVar6 = GameState_Elem_3e0_x540((int)(char)pRVar5->unk_09);
+  pRVar6 = GameState_Elem_3e0_x540((int)(char)pRVar5->racerSlot);
   uVar1 = pRVar6->unk_00;
   UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_f0,uVar17);
   uStack_dc = 0;
@@ -1639,7 +1639,7 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
   UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_70,uVar3);
   iStack_58 = (int)((float)iStack_58 * *(float *)(iVar10 + 0x3b70));
   pRVar5 = GameState_Elem_f0_xcc(0);
-  pRVar6 = GameState_Elem_3e0_x540((int)(char)pRVar5->unk_09);
+  pRVar6 = GameState_Elem_3e0_x540((int)(char)pRVar5->racerSlot);
   uVar1 = pRVar6->unk_00;
   UiElem_GetRect(*(UiLayout **)(iVar10 + 0x10f8),auStack_130,uVar3);
   uStack_11c = 0;

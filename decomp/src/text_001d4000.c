@@ -557,8 +557,8 @@ void Traffic_Spawn(int param_1)
       *(undefined4 *)(param_1 + 4) = 1;
       *(int *)(param_1 + 8) = (int)cVar8;
       pRVar3 = GameState_Elem_f0_xcc((int)cVar8);
-      pRVar4 = GameState_Elem_2fa0_x17c((int)(char)pRVar3->unk_09);
-      pRVar5 = GameState_Elem_3e0_x540((int)(char)pRVar3->unk_09);
+      pRVar4 = GameState_Elem_2fa0_x17c((int)(char)pRVar3->racerSlot);
+      pRVar5 = GameState_Elem_3e0_x540((int)(char)pRVar3->racerSlot);
       cVar2 = RaceCtx_GetMode();
       if (cVar2 == '\x06') {
         *(undefined4 *)(param_1 + 0x54) = 0x1800;

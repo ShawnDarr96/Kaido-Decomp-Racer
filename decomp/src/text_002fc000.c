@@ -38,7 +38,7 @@ undefined4 maybe_RaceResult_GetCategory(void)
     pRVar3 = (RacerStats *)0x0;
   }
   else {
-    pRVar3 = GameState_Elem_2fa0_x17c((int)(char)pRVar2->unk_09);
+    pRVar3 = GameState_Elem_2fa0_x17c((int)(char)pRVar2->racerSlot);
   }
   if (pRVar3 != (RacerStats *)0x0) {
     bVar1 = RivalRec_GetTeam(pRVar3);
@@ -75,7 +75,9 @@ undefined4 maybe_RaceResult_GetCategory(void)
 }
 
 // 0x002fd180  size 0x34
-RacerStats * maybe_RaceResult_GetRivalTeam(void)
+/* stats record (0x17c) of setup entry 1's racer slot (was maybe_RaceResult_GetRivalTeam) */
+
+RacerStats * maybe_Race_GetRivalStats(void)
 
 {
   RaceEntrySetup *pRVar1;
@@ -86,7 +88,7 @@ RacerStats * maybe_RaceResult_GetRivalTeam(void)
     pRVar2 = (RacerStats *)0x0;
   }
   else {
-    pRVar2 = GameState_Elem_2fa0_x17c((int)(char)pRVar1->unk_09);
+    pRVar2 = GameState_Elem_2fa0_x17c((int)(char)pRVar1->racerSlot);
   }
   return pRVar2;
 }

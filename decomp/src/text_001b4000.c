@@ -1880,7 +1880,7 @@ void Career_ProcessDay(int param_1)
   }
   if (iStack_20 != -1) {
     pRVar5 = GameState_Elem_f0_xcc(1);
-    pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->unk_09);
+    pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->racerSlot);
     iVar12 = GameState_Ptr_48();
     uVar10 = RaceProg_GetHeader();
     if ((uVar10 & 1) == 0) {
@@ -1932,7 +1932,7 @@ LAB_001b7ba8:
           }
           if (iStack_1c != -1) {
             pRVar5 = GameState_Elem_f0_xcc(2);
-            pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->unk_09);
+            pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->racerSlot);
             iVar12 = iStack_1c * 2 + param_1;
             *(short *)(iVar12 + 0x4794) = *(short *)(iVar12 + 0x4794) + 1;
             if (999 < *(short *)(iVar12 + 0x4794)) {
@@ -2012,7 +2012,7 @@ LAB_001b7998:
         }
         if (iStack_1c != -1) {
           pRVar5 = GameState_Elem_f0_xcc(2);
-          pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->unk_09);
+          pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->racerSlot);
           iVar12 = iStack_1c * 2 + param_1;
           *(short *)(iVar12 + 0x43ac) = *(short *)(iVar12 + 0x43ac) + 1;
           if (999 < *(short *)(iVar12 + 0x43ac)) {
@@ -2204,7 +2204,7 @@ LAB_001b7998:
       }
       if (iStack_1c != -1) {
         pRVar5 = GameState_Elem_f0_xcc(2);
-        pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->unk_09);
+        pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->racerSlot);
         iVar13 = iStack_1c * 2 + param_1;
         *(short *)(iVar13 + 0x3fc4) = *(short *)(iVar13 + 0x3fc4) + 1;
         if (999 < *(short *)(iVar13 + 0x3fc4)) {

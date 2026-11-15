@@ -233,7 +233,7 @@ LAB_0017c464:
   pGVar3->entrySetup[0].unk_04 = uVar2;
   puVar13 = &pGVar3->entrySetup[0].unk_14;
   pGVar3->entrySetup[0].unk_08 = uVar5;
-  pGVar3->entrySetup[0].unk_09 = uVar6;
+  pGVar3->entrySetup[0].racerSlot = uVar6;
   pGVar3->entrySetup[0].maybe_counter = uStack_394;
   pGVar3->entrySetup[0].maybe_accum = fVar7;
   do {
@@ -327,7 +327,7 @@ LAB_0017c704:
   pGVar3->entrySetup[1].unk_04 = uVar2;
   puVar13 = &pGVar3->entrySetup[1].unk_14;
   pGVar3->entrySetup[1].unk_08 = uVar5;
-  pGVar3->entrySetup[1].unk_09 = uStack_277;
+  pGVar3->entrySetup[1].racerSlot = uStack_277;
   pGVar3->entrySetup[1].maybe_counter = uStack_464;
   pGVar3->entrySetup[1].maybe_accum = fStack_270;
   do {
@@ -553,7 +553,7 @@ void RaceSetup_FromQuickRace
   pGVar3->entrySetup[0].unk_04 = uVar2;
   puVar10 = &pGVar3->entrySetup[0].unk_14;
   pGVar3->entrySetup[0].unk_08 = uVar5;
-  pGVar3->entrySetup[0].unk_09 = uStack_1a7;
+  pGVar3->entrySetup[0].racerSlot = uStack_1a7;
   pGVar3->entrySetup[0].maybe_counter = uStack_2c4;
   pGVar3->entrySetup[0].maybe_accum = fStack_1a0;
   do {
@@ -1053,7 +1053,7 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   pGVar4->entrySetup[0].unk_04 = uVar2;
   puVar13 = &pGVar4->entrySetup[0].unk_14;
   pGVar4->entrySetup[0].unk_08 = uVar6;
-  pGVar4->entrySetup[0].unk_09 = uStack_d7;
+  pGVar4->entrySetup[0].racerSlot = uStack_d7;
   pGVar4->entrySetup[0].maybe_counter = uStack_954;
   pGVar4->entrySetup[0].maybe_accum = fStack_d0;
   do {
@@ -1257,7 +1257,7 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
         pGVar4->entrySetup[0].unk_04 = uVar2;
         pGVar4->entrySetup[0].unk_08 = uVar6;
         puVar13 = &pGVar4->entrySetup[0].unk_14;
-        pGVar4->entrySetup[0].unk_09 = uVar7;
+        pGVar4->entrySetup[0].racerSlot = uVar7;
         pGVar4->entrySetup[0].maybe_counter = uStack_a24;
         pGVar4->entrySetup[0].maybe_accum = fVar8;
         do {

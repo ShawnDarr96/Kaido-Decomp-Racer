@@ -28,7 +28,7 @@
     [
      "0x9",
      "u8",
-     "unk_09",
+     "racerSlot",
      1
     ],
     [
@@ -333,7 +333,8 @@
      "unk_1c",
      1
     ]
-   ]
+   ],
+   "note": "passed to RivalRec_GetTeam: likely the racer's rival record"
   },
   "GameState": {
    "size": "0x3ae0",

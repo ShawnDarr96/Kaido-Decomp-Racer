@@ -2268,8 +2268,9 @@ void AttractTask_Update_Orphan1(int param_1)
 
 // 0x002fb390  size 0xc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: clears g_AttractShared1 */
 
-void maybe_Attract_ClearActive(void)
+void Attract_ClearActive(void)
 
 {
   _g_AttractShared1 = 0;

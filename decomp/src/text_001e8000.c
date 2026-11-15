@@ -319,7 +319,7 @@ void RaceSnd_PlayResult(undefined8 param_1,undefined8 param_2,ulong param_3)
   case 3:
     lVar3 = maybe_RaceResult_GetCategory();
     if (lVar3 == 0) {
-      uVar5 = maybe_RaceResult_GetRivalTeam();
+      uVar5 = maybe_Race_GetRivalStats();
       cVar1 = RivalRec_GetTeam(uVar5);
       if (cVar1 == '\x05') {
         RaceSnd_StopSlot(param_2);

@@ -12,7 +12,7 @@ typedef struct RaceEntrySetup {  /* size 0xcc */
     u8 pad_0001[0x3];
     u32 unk_04;  /* 0x4 */
     u8 unk_08;  /* 0x8 */
-    u8 unk_09;  /* 0x9 */
+    u8 racerSlot;  /* 0x9 */
     u8 pad_000a[0x2];
     u32 maybe_counter;  /* 0xc */
     f32 maybe_accum;  /* 0x10 */

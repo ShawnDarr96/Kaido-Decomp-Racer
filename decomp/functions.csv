@@ -4926,7 +4926,7 @@ address,size,name,file,status
 0x002d6820,0x24,GarageBg_Unload,src/text_002d4000.c,decompiled
 0x002d6850,0x40,GarageBg_Load,src/text_002d4000.c,decompiled
 0x002d68a0,0x8,Showroom_Nop,src/text_002d4000.c,decompiled
-0x002d68b0,0x10,maybe_Showroom_SetCallback,src/text_002d4000.c,decompiled
+0x002d68b0,0x10,maybe_Showroom_InstallPadTask,src/text_002d4000.c,decompiled
 0x002d68c0,0x574,maybe_IntroCar_UpdatePose,src/text_002d4000.c,decompiled
 0x002d6e40,0x8c4,maybe_IntroCar_Draw,src/text_002d4000.c,decompiled
 0x002d7710,0x30,Pad_GetPort_Wrap,src/text_002d4000.c,decompiled
@@ -5254,7 +5254,7 @@ address,size,name,file,status
 0x002fafe0,0x54,AttractTask_Init,src/text_002f8000.c,decompiled
 0x002fb040,0x338,maybe_AttractTask_Update,src/text_002f8000.c,decompiled
 0x002fb380,0x8,AttractTask_Update_Orphan1,src/text_002f8000.c,decompiled
-0x002fb390,0xc,maybe_Attract_ClearActive,src/text_002f8000.c,decompiled
+0x002fb390,0xc,Attract_ClearActive,src/text_002f8000.c,decompiled
 0x002fb3a0,0x6c,maybe_AttractTask_Start,src/text_002f8000.c,decompiled
 0x002fb410,0x18c,maybe_Attract_DrawLayout,src/text_002f8000.c,decompiled
 0x002fb5a0,0x33c,maybe_Attract_PickDemo,src/text_002f8000.c,decompiled
@@ -5263,7 +5263,7 @@ address,size,name,file,status
 0x002fd080,0x20,GameState_LoadHeader_Wrap,src/text_002fc000.c,decompiled
 0x002fd0a0,0x20,GameState_LoadHeader_Wrap2,src/text_002fc000.c,decompiled
 0x002fd0c0,0xbc,maybe_RaceResult_GetCategory,src/text_002fc000.c,decompiled
-0x002fd180,0x34,maybe_RaceResult_GetRivalTeam,src/text_002fc000.c,decompiled
+0x002fd180,0x34,maybe_Race_GetRivalStats,src/text_002fc000.c,decompiled
 0x002fd1c0,0xc,Misc_Nop,src/text_002fc000.c,decompiled
 0x002fd1d0,0x8,ScrRenderSetInterlace_Exit,src/text_002fc000.c,decompiled
 0x002fd1e0,0x398,ScrRenderSetInterlace_Update,src/text_002fc000.c,decompiled

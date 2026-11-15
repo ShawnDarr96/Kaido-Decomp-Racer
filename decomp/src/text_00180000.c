@@ -449,7 +449,7 @@ LAB_00180b1c:
   puVar18 = &pGVar3->entrySetup[index].unk_14;
   iVar24 = 0x17;
   pGVar3->entrySetup[index].unk_08 = uVar4;
-  pGVar3->entrySetup[index].unk_09 = uVar5;
+  pGVar3->entrySetup[index].racerSlot = uVar5;
   pGVar3->entrySetup[index].maybe_counter = uStack_2a4;
   pGVar3->entrySetup[index].maybe_accum = fVar6;
   do {
@@ -526,7 +526,7 @@ LAB_00180b1c:
     puVar18 = &pGVar3->entrySetup[index + 1].unk_14;
     puVar22 = auStack_36c;
     iVar9 = 0x17;
-    pGVar3->entrySetup[index + 1].unk_09 = uVar27 + '\x01';
+    pGVar3->entrySetup[index + 1].racerSlot = uVar27 + '\x01';
     pGVar3->entrySetup[index + 1].maybe_counter = uStack_374;
     pGVar3->entrySetup[index + 1].maybe_accum = fStack_d0;
     do {
@@ -1223,7 +1223,7 @@ undefined4 RaceSetup_Prepare(void)
     if (0 < iVar23) {
       do {
         pRVar13 = GameState_Elem_f0_xcc(iVar12);
-        pRVar13->unk_09 = (uchar)iVar12;
+        pRVar13->racerSlot = (uchar)iVar12;
         iVar12 = iVar12 + 1;
       } while (iVar12 < iVar23);
     }
@@ -1484,7 +1484,7 @@ LAB_00181d98:
       puVar24 = &pGVar3->entrySetup[iVar12].unk_14;
       iVar23 = 0x17;
       pGVar3->entrySetup[iVar12].unk_08 = uVar4;
-      pGVar3->entrySetup[iVar12].unk_09 = uVar5;
+      pGVar3->entrySetup[iVar12].racerSlot = uVar5;
       pGVar3->entrySetup[iVar12].maybe_counter = uStack_1134;
       pGVar3->entrySetup[iVar12].maybe_accum = fVar40;
       do {
@@ -1620,7 +1620,7 @@ LAB_00181d98:
         pGVar3->entrySetup[iVar12 + 1].unk_08 = uStack_168;
         puVar24 = &pGVar3->entrySetup[iVar12 + 1].unk_14;
         iVar23 = 0x17;
-        pGVar3->entrySetup[iVar12 + 1].unk_09 = uStack_167;
+        pGVar3->entrySetup[iVar12 + 1].racerSlot = uStack_167;
         pGVar3->entrySetup[iVar12 + 1].maybe_counter = uStack_1204;
         pGVar3->entrySetup[iVar12 + 1].maybe_accum = fStack_160;
         do {
@@ -2116,7 +2116,7 @@ void PlayerRecord_Copy(int param_1,undefined4 *param_2)
   puVar4 = &pGVar2->entrySetup[param_1].unk_14;
   iVar3 = 0x17;
   pGVar2->entrySetup[param_1].unk_08 = uStack_c8;
-  pGVar2->entrySetup[param_1].unk_09 = uStack_c7;
+  pGVar2->entrySetup[param_1].racerSlot = uStack_c7;
   pGVar2->entrySetup[param_1].maybe_counter = uStack_c4;
   pGVar2->entrySetup[param_1].maybe_accum = fStack_c0;
   do {
