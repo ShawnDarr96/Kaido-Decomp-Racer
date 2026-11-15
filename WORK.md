@@ -26,7 +26,6 @@ Columns:
 |---|---|---|---|---|---|
 | N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  | done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm; done: car input batch reviewed (6 names fixed/confirmed); left: ~1460 maybe_ names; done: 14 names reviewed so far (car inputs, sound, race task); left: ~1455 maybe_ names; done: 21 names reviewed (car inputs, sound, race task, garage sort); left: ~1450 maybe_ names; done: 35 names reviewed (fixes + confirmations); left: maybe_ count in symbols.csv; done: 52 names reviewed; left: 1437 maybe_ names; done: 61 names reviewed; left: 1428 maybe_ names; done: 66 names reviewed; left: 1428 maybe_ names; done: 72 names reviewed; left: 1426 maybe_ names; done: 84 names reviewed, 6 missing callback functions added; left: 1426 maybe_ names |
 | N154 | 25 layout-only menu pages (MenuPageNN_*) are named by table slot only; identify them from their UI layouts | any |  |  | Gap of N132 |
-| N158 | 1476 non-zero words of EE .text outside functions (kernel syscall table at 0x306eb0, literals, padding) - type the data, check the rest | any |  | ShawnDarr96/claude (2026-11-14) | Gap of N157 |
 
 ## P2 Types
 
@@ -231,6 +230,7 @@ Columns:
 | F15 | all .data/.bss globals referenced by code now named (1291 in globals.csv) | P0 | ShawnDarr96/claude | 2026-11-14 | 862e958 |
 | N156 | 400 missed functions added and named (5427 total); VU microcode recorded | P1 | ShawnDarr96/claude | 2026-11-14 | 9ca1613 |
 | N157 | 69 more functions incl. kernel exception handlers; reusable name_new_functions.py; 1476 words left outside functions | P1 | ShawnDarr96/claude | 2026-11-14 | 8aa245d |
+| N158 | exact coverage measured: 338 words left outside functions (COVERAGE.md); non-EE regions recorded | P1 | ShawnDarr96/claude | 2026-11-14 | 602604d |
 
 ## Changes to the board
 
@@ -325,3 +325,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim N157.
 - 2026-11-14 ShawnDarr96/claude: N157 done; added N158 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim N158.
+- 2026-11-14 ShawnDarr96/claude: N158 done.
