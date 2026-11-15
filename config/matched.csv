@@ -148,3 +148,26 @@ address,name,scratch,notes
 0x001770a0,GameState_CopyPlayerRecord,https://decomp.me/scratch/E0YK3,src/gamestate.c; mwcps2-3.0.1b145-050209
 0x001ca6b0,RaceCar_Get,https://decomp.me/scratch/LM97T,src/racecar.c; mwcps2-3.0.1b145-050209 (branch-likely)
 0x001e9010,RaceScene_IsPaused,https://decomp.me/scratch/LM97T,src/racecar.c; mwcps2-3.0.1b145-050209 (branch-likely)
+0x001c0ea0,Profile_GetPlayYear,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0eb0,Profile_GetPlayDay,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0ec0,Profile_GetPlayMonth,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0ed0,Profile_GetStat,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0ef0,Profile_GetPoints,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0f00,Profile_IsEventSeen,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0f10,Profile_GetCourseRecordB,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001c0f20,Profile_GetCourseRecord,https://decomp.me/scratch/peXXi,src/profile.c; mwcps2-3.0.1b145-050209
+0x001d20f0,CarRec_GetModelId,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2100,CarRec_Clear,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2120,CarRec_ClearModel,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2130,CarRec_GetModelIdRaw,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2140,CarRec_SetModel,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2150,CarRec_SetModelAndColor,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2160,CarRec_ClearParts,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x001d2180,CarRec_SetMileage,https://decomp.me/scratch/peXXi,src/carrec.c; mwcps2-3.0.1b145-050209
+0x0014b850,Scene_SetCallback2,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
+0x0014b860,Scene_SetResetCheck,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
+0x0014b870,Scene_GetNext,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
+0x0014b880,Scene_RequestChange,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
+0x0014b890,Scene_RequestExit,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
+0x0014b8a0,Scene_SetParam,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
+0x0014b8b0,Scene_GetParam,https://decomp.me/scratch/peXXi,src/scene.c; mwcps2-3.0.1b145-050209
