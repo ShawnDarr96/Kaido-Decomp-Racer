@@ -50,6 +50,8 @@ def main():
              f"- functions: {nfuncs}",
              f"- .text: 0x{TEXT[0]:x}-0x{TEXT[1]:x} ({size} bytes); not EE code: {not_ee} bytes",
              f"- EE bytes inside function bodies: {covered} ({100 * covered / ee:.2f}% of the EE code bytes)",
+             f"- EE bytes outside function bodies: {ee - covered}, of which zero padding: "
+             f"{ee - covered - 4 * len(left)}",
              f"- non-zero EE words outside every function: {len(left)} in {len(runs)} runs "
              f"({sum(1 for r in runs if len(r) == 1)} single words)", "",
              "## Not EE code", ""]
