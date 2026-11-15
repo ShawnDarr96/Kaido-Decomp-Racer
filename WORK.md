@@ -45,6 +45,7 @@ Columns:
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 | M6 | Recheck earlier decomp.me scratches (wWxaE, LM97T, zXHfU, BJ7BQ, DAiek, E0YK3, zUNmC, tudGj, EJChW) under MWCPS2 3.0.1b145; make it the official compiler if they hold | any |  |  | compiler notes in config/compiler.txt; b145 matched tIAOp 26/26 incl. branch-likely |
 | M7 | Match batch 8 on decomp.me: Profile play-date/stat/points/course records, CarRec, Scene gp globals (23 functions) | any |  |  | make target asm with python -I scripts/mkscratch.py <lo> <hi> |
+| M8 | Close the NONMATCHING functions in src/ (racecar.c, gamestate.c CopyPlayerRecord, options.c SetDefaults) | any |  |  | RaceCar_Get / RaceScene_IsPaused: write as s != 0 ? ... : 0 under b145 |
 
 ## P4 Finish
 
@@ -344,3 +345,4 @@ Columns:
 - 2026-11-15 ShawnDarr96: N153 released: done: ~105 names reviewed; left: 1413 maybe_ names
 - 2026-11-15 ShawnDarr96: added M6.
 - 2026-11-15 ShawnDarr96: added M7.
+- 2026-11-15 ShawnDarr96: added M8.
