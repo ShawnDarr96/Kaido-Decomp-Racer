@@ -1870,7 +1870,10 @@ LAB_001667f4:
 }
 
 // 0x00166970  size 0x38
-void maybe_Car_ClampThrottle(float param_1,int param_2)
+/* writes +0x128 clamped 0..1 (was maybe_Car_ClampThrottle; the field is the one SetHandbrakeInput
+   ramps) */
+
+void maybe_Car_SetHandbrakeDirect(float param_1,int param_2)
 
 {
   if (0.0 <= param_1) {
@@ -1886,7 +1889,9 @@ void maybe_Car_ClampThrottle(float param_1,int param_2)
 }
 
 // 0x001669b0  size 0x38
-void maybe_Car_ClampBrake(float param_1,int param_2)
+/* writes +0x134 clamped 0..1 (was maybe_Car_ClampBrake) */
+
+void maybe_Car_SetThrottleDirect(float param_1,int param_2)
 
 {
   if (0.0 <= param_1) {
@@ -1902,7 +1907,10 @@ void maybe_Car_ClampBrake(float param_1,int param_2)
 }
 
 // 0x001669f0  size 0x38
-void maybe_Car_ClampClutch(float param_1,int param_2)
+/* writes +0x130 clamped 0..1 (was maybe_Car_ClampClutch; +0x130 > 0.5 enables the boost multiplier)
+    */
+
+void maybe_Car_SetBoostDirect(float param_1,int param_2)
 
 {
   if (0.0 <= param_1) {
@@ -1919,8 +1927,10 @@ void maybe_Car_ClampClutch(float param_1,int param_2)
 
 // 0x00166a30  size 0x98
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
+/* clamps to -1..1 and eases RaceCar.steerInput (+0x124) toward it (N153: confirmed, was
+   maybe_Car_ClampSteer) */
 
-void maybe_Car_ClampSteer(float param_1,float param_2,RaceCar *param_3)
+void Car_SetSteerInput(float param_1,float param_2,RaceCar *param_3)
 
 {
   float fVar1;
@@ -1933,10 +1943,9 @@ void maybe_Car_ClampSteer(float param_1,float param_2,RaceCar *param_3)
   else {
     param_1 = -1.0;
   }
-  fVar1 = ((float)param_3->unk_0124 + 0.0) -
-          param_2 * ((float)param_3->unk_0124 - param_1) * *(float *)(param_3->maybe_params + 0x16c)
-  ;
-  param_3->unk_0124 = (uint)fVar1;
+  fVar1 = (param_3->steerInput + 0.0) -
+          param_2 * (param_3->steerInput - param_1) * *(float *)(param_3->maybe_params + 0x16c);
+  param_3->steerInput = fVar1;
   if (-1.0 <= fVar1) {
     if (1.0 < fVar1) {
       fVar1 = 1.0;
@@ -1945,7 +1954,7 @@ void maybe_Car_ClampSteer(float param_1,float param_2,RaceCar *param_3)
   else {
     fVar1 = -1.0;
   }
-  param_3->unk_0124 = (uint)fVar1;
+  param_3->steerInput = fVar1;
   return;
 }
 
@@ -2073,20 +2082,21 @@ void maybe_Car_SetHandbrakeInput(float param_1,RaceCar *param_2,long param_3)
 
 // 0x00166da0  size 0x54
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
+/* ramps +0x130 (was maybe_Car_SetClutchInput) */
 
-void maybe_Car_SetClutchInput(float param_1,RaceCar *param_2,long param_3)
+void maybe_Car_SetBoostInput(float param_1,RaceCar *param_2,long param_3)
 
 {
   float fVar1;
   
   if (param_3 == 0) {
-    param_2->maybe_clutchInput = 0.0;
+    param_2->maybe_boostInput = 0.0;
   }
   else {
-    fVar1 = *(float *)(param_2->maybe_params + 0xb0) * param_1 + param_2->maybe_clutchInput + 0.0;
-    param_2->maybe_clutchInput = fVar1;
+    fVar1 = *(float *)(param_2->maybe_params + 0xb0) * param_1 + param_2->maybe_boostInput + 0.0;
+    param_2->maybe_boostInput = fVar1;
     if (1.0 < fVar1) {
-      param_2->maybe_clutchInput = 1.0;
+      param_2->maybe_boostInput = 1.0;
     }
   }
   return;
@@ -2121,7 +2131,7 @@ void Car_UpdateRearTires(float param_1,float param_2,RaceCar *param_3,long param
   if (param_5 != 0) {
     param_1 = 1.0;
   }
-  fVar3 = (float)param_3->unk_0124;
+  fVar3 = param_3->steerInput;
   fVar6 = param_1 - fVar3;
   if (0.0 < fVar6) {
     if (fVar3 < 0.0) {
@@ -2163,8 +2173,8 @@ void Car_UpdateRearTires(float param_1,float param_2,RaceCar *param_3,long param
       fVar6 = -fVar4;
     }
   }
-  fVar6 = (float)param_3->unk_0124 + fVar6;
-  param_3->unk_0124 = (uint)fVar6;
+  fVar6 = param_3->steerInput + fVar6;
+  param_3->steerInput = fVar6;
   if (-1.0 <= fVar6) {
     if (1.0 < fVar6) {
       fVar6 = 1.0;
@@ -2173,7 +2183,7 @@ void Car_UpdateRearTires(float param_1,float param_2,RaceCar *param_3,long param
   else {
     fVar6 = -1.0;
   }
-  param_3->unk_0124 = (uint)fVar6;
+  param_3->steerInput = fVar6;
   return;
 }
 
@@ -2191,7 +2201,9 @@ undefined4 maybe_Car_GetNitroScale(int param_1)
 }
 
 // 0x00167080  size 0x38
-float maybe_Car_GetBoostScale(int param_1)
+/* 1 + params[0x17c] while +0x130 > 0.5 (N153: confirmed) */
+
+float Car_GetBoostScale(int param_1)
 
 {
   float fVar1;
@@ -2616,7 +2628,7 @@ void Car_UpdateWheelContacts(RaceCar *param_1)
          *(float *)(uVar1 + 0x8c) *
          (*(float *)(uVar1 + 0xbc) * (1.0 - (float)param_1->unk_0964) +
          *(float *)(uVar1 + 0xc0) * (float)param_1->unk_0964);
-    if ((param_1->unk_088f != '\0') && (1.0 < param_1->maybe_clutchInput)) {
+    if ((param_1->unk_088f != '\0') && (1.0 < param_1->maybe_boostInput)) {
       *(float *)(uVar2 + 0x60) = *(float *)(uVar2 + 0x60) * 1.25;
     }
     uVar6 = uVar6 + 1;

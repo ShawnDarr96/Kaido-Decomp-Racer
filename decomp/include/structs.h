@@ -419,10 +419,10 @@ typedef struct RaceCar {  /* size 0x17e0 */
     u32 unk_0118;  /* 0x118 */
     u32 unk_011c;  /* 0x11c */
     void * maybe_params;  /* 0x120 */
-    u32 unk_0124;  /* 0x124 */
+    f32 steerInput;  /* 0x124 */
     f32 maybe_handbrakeInput;  /* 0x128 */
     f32 maybe_brakeInput;  /* 0x12c */
-    f32 maybe_clutchInput;  /* 0x130 */
+    f32 maybe_boostInput;  /* 0x130 */
     f32 maybe_throttleInput;  /* 0x134 */
     u32 unk_0138;  /* 0x138 */
     u32 unk_013c;  /* 0x13c */

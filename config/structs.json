@@ -1777,8 +1777,8 @@
     ],
     [
      "0x124",
-     "u32",
-     "unk_0124",
+     "f32",
+     "steerInput",
      1
     ],
     [
@@ -1796,7 +1796,7 @@
     [
      "0x130",
      "f32",
-     "maybe_clutchInput",
+     "maybe_boostInput",
      1
     ],
     [

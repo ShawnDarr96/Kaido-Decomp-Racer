@@ -58,7 +58,7 @@ void Car_UpdateSteeringAngle(RaceCar *param_1)
   else if ((fVar4 < fVar5) && (fVar4 = fVar5, fVar3 < fVar5)) {
     fVar4 = fVar3;
   }
-  fVar3 = (float)param_1->unk_0124;
+  fVar3 = param_1->steerInput;
   if (0.0 <= fVar3) {
     param_1->unk_013c = (uint)(fVar7 * fVar3);
   }
@@ -226,12 +226,12 @@ void Car_UpdateDownforce(RaceCar *param_1)
   
   fVar3 = 0.0;
   fVar4 = 0.0;
-  if ((0.0 < param_1->maybe_clutchInput) && (0.0 < *(float *)(param_1->maybe_params + 0x138))) {
+  if ((0.0 < param_1->maybe_boostInput) && (0.0 < *(float *)(param_1->maybe_params + 0x138))) {
     fVar3 = *(float *)(param_1->maybe_params + 0x1b4) *
             ((float)param_1->unk_026c + (float)param_1->unk_03ac) * 0.5;
     fVar3 = param_1->maybe_rpmLimitInv * ((fVar3 * fVar3 * 0.5) / (float)param_1->unk_0044) * 10.0;
   }
-  if ((0.0 < param_1->maybe_clutchInput) && (0.0 < *(float *)(param_1->maybe_params + 0x13c))) {
+  if ((0.0 < param_1->maybe_boostInput) && (0.0 < *(float *)(param_1->maybe_params + 0x13c))) {
     fVar4 = *(float *)(param_1->maybe_params + 0x2c4) *
             ((float)param_1->unk_04ec + (float)param_1->unk_062c) * 0.5;
     fVar4 = param_1->maybe_rpmLimitInv * ((fVar4 * fVar4 * 0.5) / (float)param_1->unk_0044) * 10.0;
@@ -263,7 +263,7 @@ void Car_UpdateDownforce(RaceCar *param_1)
       fVar5 = 20.0;
     }
     pRVar1->unk_0270 = (uint)fVar5;
-    if ((0.0 < param_1->maybe_clutchInput) && (fVar8 < fVar7)) {
+    if ((0.0 < param_1->maybe_boostInput) && (fVar8 < fVar7)) {
       fVar7 = *(float *)(param_1->maybe_params + 0xd8);
       if (fVar7 < (float)pRVar1->unk_0270) {
         fVar7 = (float)param_1->unk_0bd0 +
@@ -393,7 +393,7 @@ void Car_UpdateTransmission(RaceCar *param_1,long param_2)
   if (param_1->unk_0890 == '\0') {
     if (((param_1->maybe_brakeInput == 0.0) || (param_1->gear != 0xffffffff)) ||
        ((float)param_1->unk_0820 != 1.0)) {
-      if (((param_1->maybe_clutchInput == 0.0) || (param_1->maybe_handbrakeInput == 0.0)) ||
+      if (((param_1->maybe_boostInput == 0.0) || (param_1->maybe_handbrakeInput == 0.0)) ||
          (param_1->gear != 0)) {
         if (0.0 < (float)param_1->unk_0824) {
           fVar8 = (float)param_1->unk_0824 - param_1->maybe_rpmLimit;
@@ -443,7 +443,7 @@ void Car_UpdateTransmission(RaceCar *param_1,long param_2)
                 bVar4 = true;
               }
             }
-            else if (((param_1->maybe_clutchInput == 0.0) || (param_1->maybe_handbrakeInput == 0.0))
+            else if (((param_1->maybe_boostInput == 0.0) || (param_1->maybe_handbrakeInput == 0.0))
                     || (uVar5 != 0)) {
               if (((uVar5 != 0) || (param_1->maybe_handbrakeInput == 0.0)) ||
                  ((float)param_1->unk_07f4 <= *(float *)(puVar1 + 0x530) * 0.1)) {
@@ -882,10 +882,10 @@ void Car_UpdateTractionControl(RaceCar *param_1)
   float fStack_4;
   
   param_1->unk_08a1 = '\0';
-  param_1->unk_0260 = (uint)param_1->maybe_clutchInput;
-  param_1->unk_03a0 = (uint)param_1->maybe_clutchInput;
-  param_1->unk_04e0 = (uint)param_1->maybe_clutchInput;
-  param_1->unk_0620 = (uint)param_1->maybe_clutchInput;
+  param_1->unk_0260 = (uint)param_1->maybe_boostInput;
+  param_1->unk_03a0 = (uint)param_1->maybe_boostInput;
+  param_1->unk_04e0 = (uint)param_1->maybe_boostInput;
+  param_1->unk_0620 = (uint)param_1->maybe_boostInput;
   if (param_1->unk_0892 != '\0') {
     fStack_4 = ((float)param_1->unk_02a0 + (float)param_1->unk_03e0) * 0.5;
     Tire_SetupLoad(fStack_4,0x3f800000,*(undefined4 *)(param_1->maybe_params + 0x214),
@@ -907,7 +907,7 @@ void Car_UpdateTractionControl(RaceCar *param_1)
       fVar5 = 0.3;
     }
     fVar10 = (float)param_1->unk_07a0;
-    if (0.0 < param_1->maybe_clutchInput) {
+    if (0.0 < param_1->maybe_boostInput) {
       fVar6 = (float)param_1->unk_086c;
       uVar11 = 0;
       pRVar3 = param_1;
@@ -1934,9 +1934,9 @@ void Car_Clear(RaceCar *param_1)
   param_1->unk_0058 = 0;
   param_1->unk_0054 = 0;
   param_1->unk_0050 = 0;
-  param_1->unk_0124 = 0;
+  param_1->steerInput = 0.0;
   param_1->maybe_handbrakeInput = 0.0;
-  param_1->maybe_clutchInput = 0.0;
+  param_1->maybe_boostInput = 0.0;
   param_1->maybe_throttleInput = 0.0;
   param_1->unk_0138 = 0;
   param_1->maybe_brakeInput = 0.0;

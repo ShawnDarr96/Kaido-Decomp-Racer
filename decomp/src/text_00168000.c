@@ -617,7 +617,7 @@ void Car_ApplyTireForces(RaceCar *param_1)
   undefined4 uStack_4;
   
   uVar11 = param_1->unk_0190;
-  fVar12 = param_1->maybe_clutchInput;
+  fVar12 = param_1->maybe_boostInput;
   param_1->unk_026c = 0;
   param_1->unk_02b4 = 0;
   param_1->unk_03ac = 0;
@@ -1125,8 +1125,7 @@ void Car_SolveAxleTires(undefined8 param_1,long param_2,undefined8 param_3)
   if (*(float *)(&pRVar5->field_0x404 + uVar4 * 0x140) <=
       *(float *)(&pRVar5->field_0x2c4 + uVar4 * 0x140)) {
     fVar8 = 0.0;
-    if (((float)pRVar5->unk_0124 < 0.0) && (fVar8 = -(float)pRVar5->unk_0124 * 0.5, fVar9 < fVar8))
-    {
+    if ((pRVar5->steerInput < 0.0) && (fVar8 = -pRVar5->steerInput * 0.5, fVar9 < fVar8)) {
       fVar8 = fVar9;
     }
     *(float *)(&pRVar5->field_0x400 + uVar4 * 0x140) =
@@ -1136,7 +1135,7 @@ void Car_SolveAxleTires(undefined8 param_1,long param_2,undefined8 param_3)
   }
   else {
     fVar8 = 0.0;
-    if ((0.0 < (float)pRVar5->unk_0124) && (fVar8 = (float)pRVar5->unk_0124 * 0.5, fVar9 < fVar8)) {
+    if ((0.0 < pRVar5->steerInput) && (fVar8 = pRVar5->steerInput * 0.5, fVar9 < fVar8)) {
       fVar8 = fVar9;
     }
     *(float *)(&pRVar5->field_0x2c0 + uVar4 * 0x140) =
