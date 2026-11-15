@@ -3,60 +3,56 @@
 #include "ghidra_types.h"
 
 // 0x001dc180  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 maybe_RaceProg_GetEntry(void)
 
 {
-  return *_g_RaceProg;
+  undefined4 uVar1;
+  
+  uVar1._0_2_ = g_RaceProg->checkpointFlags;
+  uVar1._2_1_ = g_RaceProg->unk_02;
+  uVar1._3_1_ = g_RaceProg->field_0x3;
+  return uVar1;
 }
 
 // 0x001dc190  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceProg_Get_c(void)
+uint RaceProg_Get_c(void)
 
 {
-  return *(undefined4 *)(_g_RaceProg + 0xc);
+  return g_RaceProg->unk_0c;
 }
 
 // 0x001dc1a0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void RaceProg_Set_8(undefined1 param_1)
+void RaceProg_Set_8(uchar param_1)
 
 {
-  *(undefined1 *)(_g_RaceProg + 8) = param_1;
+  g_RaceProg->phase = param_1;
   return;
 }
 
 // 0x001dc1b0  size 0x18
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* 17 callers */
+/* returns RaceProg+8, or 3 when no race is running (was RaceProg_Get) */
 
-undefined1 RaceProg_Get(void)
+uchar RaceProg_GetPhase(void)
 
 {
-  undefined1 uVar1;
+  uchar uVar1;
   
-  if (_g_RaceProg == 0) {
-    uVar1 = 3;
+  if (g_RaceProg == (RaceProg *)0x0) {
+    uVar1 = '\x03';
   }
   else {
-    uVar1 = *(undefined1 *)(_g_RaceProg + 8);
+    uVar1 = g_RaceProg->phase;
   }
   return uVar1;
 }
 
 // 0x001dc1d0  size 0x30
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 RaceProg_IsFinished(void)
 
 {
   undefined4 uVar1;
   
-  if ((_g_RaceProg == 0) || ((*(uint *)(_g_RaceProg + 4) & 2) == 0)) {
+  if ((g_RaceProg == (RaceProg *)0x0) || ((g_RaceProg->stateFlags & 2) == 0)) {
     uVar1 = 0;
   }
   else {
@@ -66,57 +62,45 @@ undefined4 RaceProg_IsFinished(void)
 }
 
 // 0x001dc200  size 0x1c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceProg_GetArray_1c(char param_1)
+uint RaceProg_GetArray_1c(char param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_RaceProg + 0x1c);
+  return (&g_RaceProg[1].stateFlags)[param_1];
 }
 
 // 0x001dc220  size 0x1c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceProg_GetArray_40(char param_1)
+uint RaceProg_GetArray_40(char param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_RaceProg + 0x40);
+  return (&g_RaceProg[2].unk_10)[param_1];
 }
 
 // 0x001dc240  size 0x1c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceProg_GetArray_34(char param_1)
+uint RaceProg_GetArray_34(char param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_RaceProg + 0x34);
+  return (&g_RaceProg[2].stateFlags)[param_1];
 }
 
 // 0x001dc260  size 0x1c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceProg_GetArray_28(char param_1)
+uint RaceProg_GetArray_28(char param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_RaceProg + 0x28);
+  return (&g_RaceProg[1].unk_10)[param_1];
 }
 
 // 0x001dc280  size 0x8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 maybe_RaceProg_GetEntryB(void)
+RaceProg * maybe_RaceProg_GetEntryB(void)
 
 {
-  return _g_RaceProg;
+  return g_RaceProg;
 }
 
 // 0x001dc290  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceProg_Get_4(void)
+uint RaceProg_Get_4(void)
 
 {
-  return *(undefined4 *)(_g_RaceProg + 4);
+  return g_RaceProg->stateFlags;
 }
 
 // 0x001dc2a0  size 0x10
@@ -130,44 +114,46 @@ void Flags_Set(uint *param_1,uint param_2)
 }
 
 // 0x001dc2b0  size 0xfc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceProg_UpdateAll(undefined8 param_1)
 
 {
-  char cVar1;
-  uint uVar2;
-  long lVar3;
-  uint *puVar4;
+  int iVar1;
+  char cVar2;
+  uint uVar3;
+  long lVar4;
+  uint *puVar5;
   
   RaceProg_UpdatePositions();
-  cVar1 = GameState_Get_0();
-  puVar4 = (uint *)param_1;
-  if (cVar1 != '\b') {
-    if ((puVar4[1] & 1) == 0) {
-      uVar2 = puVar4[1];
+  cVar2 = GameState_Get_0();
+  puVar5 = (uint *)param_1;
+  if (cVar2 != '\b') {
+    if ((puVar5[1] & 1) == 0) {
+      uVar3 = puVar5[1];
     }
     else {
       RaceProg_DetectCollisions(param_1);
-      uVar2 = puVar4[1];
+      uVar3 = puVar5[1];
     }
-    if ((uVar2 & 2) == 0) {
-      uVar2 = puVar4[1];
+    if ((uVar3 & 2) == 0) {
+      uVar3 = puVar5[1];
     }
     else {
       SpGauge_UpdateAll(param_1);
-      uVar2 = puVar4[1];
+      uVar3 = puVar5[1];
     }
-    if ((uVar2 & 4) != 0) {
+    if ((uVar3 & 4) != 0) {
       RaceProg_UpdateLaps(param_1);
     }
   }
-  lVar3 = RaceScene_Get_38();
-  if ((lVar3 == 36000) && (lVar3 = RaceScene_IsFlag10(), lVar3 != 0)) {
-    if (*_g_RaceProg == 0) {
-      *puVar4 = *puVar4 | 0x10;
-      uVar2 = GameState_Get_35c();
-      *puVar4 = *puVar4 | uVar2;
+  lVar4 = RaceScene_Get_38();
+  if ((lVar4 == 36000) && (lVar4 = RaceScene_IsFlag10(), lVar4 != 0)) {
+    iVar1._0_2_ = g_RaceProg->checkpointFlags;
+    iVar1._2_1_ = g_RaceProg->unk_02;
+    iVar1._3_1_ = g_RaceProg->field_0x3;
+    if (iVar1 == 0) {
+      *puVar5 = *puVar5 | 0x10;
+      uVar3 = GameState_Get_35c();
+      *puVar5 = *puVar5 | uVar3;
     }
   }
   else {
@@ -177,53 +163,51 @@ void RaceProg_UpdateAll(undefined8 param_1)
 }
 
 // 0x001dc3b0  size 0x104
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceProg_Task(void)
 
 {
-  int iVar1;
+  RaceProg *pRVar1;
   uint uVar2;
   long lVar3;
-  char cVar4;
+  uchar uVar4;
   
-  if (_g_RaceProg == 0) {
-    cVar4 = '\x03';
+  if (g_RaceProg == (RaceProg *)0x0) {
+    uVar4 = '\x03';
   }
   else {
-    cVar4 = *(char *)(_g_RaceProg + 8);
+    uVar4 = g_RaceProg->phase;
   }
-  if (cVar4 == '\0') {
-    RaceScene_GetMode(0x10f);
+  if (uVar4 == '\0') {
+    maybe_RaceScene_AddHandler(0x10f);
     RaceScene_SetFlags(0x100);
     lVar3 = RaceScene_IsRunning();
-    iVar1 = _g_RaceProg;
+    pRVar1 = g_RaceProg;
     if (lVar3 == 1) {
-      if ((*(uint *)(_g_RaceProg + 4) & 2) == 0) {
-        uVar2 = *(uint *)(_g_RaceProg + 4);
+      if ((g_RaceProg->stateFlags & 2) == 0) {
+        uVar2 = g_RaceProg->stateFlags;
       }
       else {
-        RaceProg_UpdateDistances(_g_RaceProg);
-        uVar2 = *(uint *)(iVar1 + 4);
+        RaceProg_UpdateDistances(g_RaceProg);
+        uVar2 = pRVar1->stateFlags;
       }
       if ((uVar2 & 4) != 0) {
-        RaceProg_UpdateTimerAll(iVar1);
+        RaceProg_UpdateTimerAll(pRVar1);
       }
-      *(undefined4 *)(_g_RaceProg + 0xc) = 0;
-      *(undefined1 *)(_g_RaceProg + 8) = 3;
-      RaceScene_GetMode(0x47f);
-      RaceScene_GetMode(0xff);
+      g_RaceProg->unk_0c = 0;
+      g_RaceProg->phase = '\x03';
+      maybe_RaceScene_AddHandler(0x47f);
+      maybe_RaceScene_AddHandler(0xff);
     }
   }
   else {
-    if (_g_RaceProg == 0) {
-      cVar4 = '\x03';
+    if (g_RaceProg == (RaceProg *)0x0) {
+      uVar4 = '\x03';
     }
     else {
-      cVar4 = *(char *)(_g_RaceProg + 8);
+      uVar4 = g_RaceProg->phase;
     }
-    if (cVar4 == '\x03') {
-      *(int *)(_g_RaceProg + 0xc) = *(int *)(_g_RaceProg + 0xc) + 1;
+    if (uVar4 == '\x03') {
+      g_RaceProg->unk_0c = g_RaceProg->unk_0c + 1;
     }
   }
   return;
@@ -235,229 +219,265 @@ void RaceProg_Task(void)
 void RaceProg_Begin(void)
 
 {
-  int iVar1;
-  undefined4 uVar2;
-  uint uVar3;
-  char cVar4;
-  long lVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  undefined8 uVar9;
+  uint uVar1;
+  int iVar2;
+  undefined4 uVar3;
+  uint uVar4;
+  RaceProg *pRVar5;
+  char cVar6;
+  uint uVar7;
+  uint uVar8;
+  long lVar9;
   undefined8 uVar10;
-  uint uVar11;
-  uint *puVar12;
-  char cVar13;
+  undefined8 uVar11;
+  undefined8 uVar12;
+  undefined8 uVar13;
+  undefined8 uVar14;
+  uint uVar15;
+  uchar uVar16;
+  uint *puVar17;
+  uchar uVar18;
   
-  if (_g_RaceProg == (uint *)0x0) {
-    cVar4 = '\x03';
+  if (g_RaceProg == (RaceProg *)0x0) {
+    uVar16 = '\x03';
   }
   else {
-    cVar4 = (char)_g_RaceProg[2];
+    uVar16 = g_RaceProg->phase;
   }
-  if (cVar4 == '\0') {
-    RaceScene_GetMode(0x10f);
+  if (uVar16 == '\0') {
+    maybe_RaceScene_AddHandler(0x10f);
     RaceScene_SetFlags(0x100);
-    lVar5 = RaceScene_IsRunning();
-    puVar12 = _g_RaceProg;
-    if (lVar5 == 1) {
-      if ((_g_RaceProg[1] & 2) == 0) {
-        uVar11 = _g_RaceProg[1];
+    lVar9 = RaceScene_IsRunning();
+    pRVar5 = g_RaceProg;
+    if (lVar9 == 1) {
+      if ((g_RaceProg->stateFlags & 2) == 0) {
+        uVar15 = g_RaceProg->stateFlags;
       }
       else {
-        RaceProg_UpdateDistances(_g_RaceProg);
-        uVar11 = puVar12[1];
+        RaceProg_UpdateDistances(g_RaceProg);
+        uVar15 = pRVar5->stateFlags;
       }
-      if ((uVar11 & 4) != 0) {
-        RaceProg_UpdateTimerAll(puVar12);
+      if ((uVar15 & 4) != 0) {
+        RaceProg_UpdateTimerAll(pRVar5);
       }
-      _g_RaceProg[3] = 0xb4;
-      *(undefined1 *)(_g_RaceProg + 2) = 1;
+      g_RaceProg->unk_0c = 0xb4;
+      g_RaceProg->phase = '\x01';
     }
   }
   else {
-    if (_g_RaceProg == (uint *)0x0) {
-      cVar4 = '\x03';
+    if (g_RaceProg == (RaceProg *)0x0) {
+      uVar16 = '\x03';
     }
     else {
-      cVar4 = (char)_g_RaceProg[2];
+      uVar16 = g_RaceProg->phase;
     }
-    if (cVar4 == '\x01') {
-      puVar12 = _g_RaceProg + 3;
-      if ((int)_g_RaceProg[3] < 1) {
-        *puVar12 = 300;
-        *(undefined1 *)(_g_RaceProg + 2) = 2;
-        RaceScene_GetMode(0x20f);
-        RaceScene_GetMode(0x40c);
+    if (uVar16 == '\x01') {
+      puVar17 = &g_RaceProg->unk_0c;
+      if ((int)g_RaceProg->unk_0c < 1) {
+        *puVar17 = 300;
+        g_RaceProg->phase = '\x02';
+        maybe_RaceScene_AddHandler(0x20f);
+        maybe_RaceScene_AddHandler(0x40c);
         RaceScene_SetFlags(0x400);
       }
       else {
-        *puVar12 = *puVar12 - 1;
-        cVar4 = GameState_Get_3();
-        if (cVar4 == '\x01') {
-          if (_g_RaceProg[3] == 0x70) {
-            RaceScene_GetMode(0x2003);
+        *puVar17 = *puVar17 - 1;
+        cVar6 = GameState_Get_3();
+        if (cVar6 == '\x01') {
+          if (g_RaceProg->unk_0c == 0x70) {
+            maybe_RaceScene_AddHandler(0x2003);
           }
-          else if (_g_RaceProg[3] == 0x66) {
-            RaceScene_GetMode(0x200c);
+          else if (g_RaceProg->unk_0c == 0x66) {
+            maybe_RaceScene_AddHandler(0x200c);
           }
         }
       }
     }
     else {
-      if (_g_RaceProg == (uint *)0x0) {
-        cVar4 = '\x03';
+      if (g_RaceProg == (RaceProg *)0x0) {
+        uVar16 = '\x03';
       }
       else {
-        cVar4 = (char)_g_RaceProg[2];
+        uVar16 = g_RaceProg->phase;
       }
-      if (cVar4 == '\x02') {
-        puVar12 = _g_RaceProg + 3;
-        if ((int)_g_RaceProg[3] < 1) {
-          *puVar12 = 0;
-          *(undefined1 *)(_g_RaceProg + 2) = 3;
-          RaceScene_GetMode(0x8f);
+      if (uVar16 == '\x02') {
+        puVar17 = &g_RaceProg->unk_0c;
+        if ((int)g_RaceProg->unk_0c < 1) {
+          *puVar17 = 0;
+          g_RaceProg->phase = '\x03';
+          maybe_RaceScene_AddHandler(0x8f);
           RaceScene_SetFlags(0x200);
         }
         else {
-          *puVar12 = *puVar12 - 1;
+          *puVar17 = *puVar17 - 1;
         }
       }
       else {
-        if (_g_RaceProg == (uint *)0x0) {
-          cVar4 = '\x03';
+        if (g_RaceProg == (RaceProg *)0x0) {
+          uVar16 = '\x03';
         }
         else {
-          cVar4 = (char)_g_RaceProg[2];
+          uVar16 = g_RaceProg->phase;
         }
-        cVar13 = '\x03';
-        if (cVar4 == '\x03') {
-          _g_RaceProg[3] = _g_RaceProg[3] + 1;
-          RaceProg_UpdateAll(_g_RaceProg);
-          if (*_g_RaceProg != 0) {
-            if ((*_g_RaceProg & 0x410) == 0) {
+        uVar18 = '\x03';
+        if (uVar16 == '\x03') {
+          g_RaceProg->unk_0c = g_RaceProg->unk_0c + 1;
+          RaceProg_UpdateAll(g_RaceProg);
+          uVar15._0_2_ = g_RaceProg->checkpointFlags;
+          uVar15._2_1_ = g_RaceProg->unk_02;
+          uVar15._3_1_ = g_RaceProg->field_0x3;
+          if (uVar15 != 0) {
+            if ((uVar15 & 0x410) == 0) {
               GameState_MarkGhostDirty();
-              _g_RaceProg[3] = 0x78;
-              *(undefined1 *)(_g_RaceProg + 2) = 4;
-              RaceScene_GetMode(0x40f);
+              g_RaceProg->unk_0c = 0x78;
+              g_RaceProg->phase = '\x04';
+              maybe_RaceScene_AddHandler(0x40f);
               RaceScene_SetFlags(0x100);
               RaceScene_SetFlags(0x800);
             }
             else {
-              _g_RaceProg[3] = 0;
-              *(undefined1 *)(_g_RaceProg + 2) = 6;
+              g_RaceProg->unk_0c = 0;
+              g_RaceProg->phase = '\x06';
             }
-            RaceProg_UpdateOrder(_g_RaceProg);
+            RaceProg_UpdateOrder(g_RaceProg);
           }
         }
         else {
-          if (_g_RaceProg != (uint *)0x0) {
-            cVar13 = (char)_g_RaceProg[2];
+          if (g_RaceProg != (RaceProg *)0x0) {
+            uVar18 = g_RaceProg->phase;
           }
-          if (cVar13 == '\x04') {
-            puVar12 = _g_RaceProg + 3;
-            if ((int)_g_RaceProg[3] < 1) {
-              *puVar12 = 0;
-              *(undefined1 *)(_g_RaceProg + 2) = 6;
+          if (uVar18 == '\x04') {
+            puVar17 = &g_RaceProg->unk_0c;
+            if ((int)g_RaceProg->unk_0c < 1) {
+              *puVar17 = 0;
+              g_RaceProg->phase = '\x06';
             }
             else {
-              *puVar12 = *puVar12 - 1;
+              *puVar17 = *puVar17 - 1;
             }
           }
           else {
-            if (_g_RaceProg == (uint *)0x0) {
-              cVar4 = '\x03';
+            if (g_RaceProg == (RaceProg *)0x0) {
+              uVar16 = '\x03';
             }
             else {
-              cVar4 = (char)_g_RaceProg[2];
+              uVar16 = g_RaceProg->phase;
             }
-            if (cVar4 != '\x06') {
-              if (_g_RaceProg == (uint *)0x0) {
-                cVar4 = '\x03';
+            if (uVar16 != '\x06') {
+              if (g_RaceProg == (RaceProg *)0x0) {
+                uVar16 = '\x03';
               }
               else {
-                cVar4 = (char)_g_RaceProg[2];
+                uVar16 = g_RaceProg->phase;
               }
-              if (cVar4 != '\x05') {
+              if (uVar16 != '\x05') {
                 return;
               }
             }
-            cVar4 = RaceCtx_GetMode();
-            if (cVar4 == '\x05') {
+            cVar6 = RaceCtx_GetMode();
+            if (cVar6 == '\x05') {
               RaceScene_SetFlags(0x10);
               *(undefined4 *)(_g_RaceHud + 0x29c) = 1;
             }
             else {
-              *(undefined1 *)(_g_RaceProg + 2) = 5;
-              lVar5 = RaceScene_IsFlag10();
-              if (lVar5 == 0) {
-                cVar4 = RaceCtx_GetMode();
-                if (cVar4 == '\x01') {
-                  cVar4 = RaceCtx_Get_8();
-                  if (cVar4 == '\x05') {
-                    if ((_g_RaceProg[1] & 2) != 0) {
-                      if (_g_RaceProg[4] == 0) {
-                        _g_RaceProg[4] = *(uint *)(_g_RaceProg[0xd] + 0x8a0);
+              g_RaceProg->phase = '\x05';
+              lVar9 = RaceScene_IsFlag10();
+              if (lVar9 == 0) {
+                cVar6 = RaceCtx_GetMode();
+                if (cVar6 == '\x01') {
+                  cVar6 = RaceCtx_Get_8();
+                  if (cVar6 == '\x05') {
+                    if ((g_RaceProg->stateFlags & 2) != 0) {
+                      if (g_RaceProg->unk_10 == 0) {
+                        g_RaceProg->unk_10 = *(uint *)(g_RaceProg[2].stateFlags + 0x8a0);
                       }
-                      else if ((int)_g_RaceProg[4] < (int)*(uint *)(_g_RaceProg[0xd] + 0x8a0)) {
-                        _g_RaceProg[4] = *(uint *)(_g_RaceProg[0xd] + 0x8a0);
+                      else {
+                        uVar15 = *(uint *)(g_RaceProg[2].stateFlags + 0x8a0);
+                        if ((int)g_RaceProg->unk_10 < (int)uVar15) {
+                          g_RaceProg->unk_10 = uVar15;
+                        }
                       }
                     }
-                    if ((_g_RaceProg[1] & 4) != 0) {
-                      if (_g_RaceProg[5] == 0) {
-                        _g_RaceProg[5] = *(uint *)(_g_RaceProg[0x10] + 0x4b8);
+                    if ((g_RaceProg->stateFlags & 4) != 0) {
+                      if (g_RaceProg->unk_14 == 0) {
+                        g_RaceProg->unk_14 = *(uint *)(g_RaceProg[2].unk_10 + 0x4b8);
                       }
-                      else if ((int)*(uint *)(_g_RaceProg[0x10] + 0x4b8) < (int)_g_RaceProg[5]) {
-                        _g_RaceProg[5] = *(uint *)(_g_RaceProg[0x10] + 0x4b8);
+                      else {
+                        uVar15 = *(uint *)(g_RaceProg[2].unk_10 + 0x4b8);
+                        if ((int)uVar15 < (int)g_RaceProg->unk_14) {
+                          g_RaceProg->unk_14 = uVar15;
+                        }
                       }
                     }
                   }
                   else {
-                    cVar4 = RaceCtx_Get_8();
-                    if (cVar4 == '\0') {
+                    cVar6 = RaceCtx_Get_8();
+                    if (cVar6 == '\0') {
                       RaceRule_Finish();
                     }
                   }
-                  uVar9 = Profile_Get(0);
-                  Career_ProcessDay(uVar9);
+                  uVar13 = Profile_Get(0);
+                  Career_ProcessDay(uVar13);
                 }
                 else {
-                  cVar4 = RaceCtx_GetMode();
-                  if (cVar4 == '\x02') {
-                    if ((*_g_RaceProg & 0x410) == 0) {
-                      iVar1 = *_g_AiDrivers;
-                      uVar11 = _g_RaceProg[0x10];
+                  cVar6 = RaceCtx_GetMode();
+                  if (cVar6 == '\x02') {
+                    uVar1._0_2_ = g_RaceProg->checkpointFlags;
+                    uVar1._2_1_ = g_RaceProg->unk_02;
+                    uVar1._3_1_ = g_RaceProg->field_0x3;
+                    if ((uVar1 & 0x410) == 0) {
+                      iVar2 = *_g_AiDrivers;
+                      uVar15 = g_RaceProg[2].unk_10;
                       Replay_GetHeader();
                       Ranking_FindBestRival();
-                      *_g_RaceProg = *_g_RaceProg | 0x40000;
-                      uVar2 = *(undefined4 *)(uVar11 + 0x4b8);
-                      uVar9 = Replay_GetHeader();
-                      uVar6 = maybe_GameState_GetFlag();
-                      uVar7 = RaceCtx_GetMode();
-                      uVar8 = RaceCtx_Get_8();
-                      RaceEntry_Create(uVar9,uVar6,iVar1 + 0x1d8,uVar2,0,uVar7,uVar8,0);
+                      uVar7._0_2_ = g_RaceProg->checkpointFlags;
+                      uVar7._2_1_ = g_RaceProg->unk_02;
+                      uVar7._3_1_ = g_RaceProg->field_0x3;
+                      uVar7 = uVar7 | 0x40000;
+                      pRVar5 = g_RaceProg;
+                      pRVar5->checkpointFlags = (short)uVar7;
+                      pRVar5->unk_02 = (char)(uVar7 >> 0x10);
+                      pRVar5->field_0x3 = (char)(uVar7 >> 0x18);
+                      uVar3 = *(undefined4 *)(uVar15 + 0x4b8);
+                      uVar13 = Replay_GetHeader();
+                      uVar10 = maybe_GameState_GetFlag();
+                      uVar11 = RaceCtx_GetMode();
+                      uVar12 = RaceCtx_Get_8();
+                      RaceEntry_Create(uVar13,uVar10,iVar2 + 0x1d8,uVar3,0,uVar11,uVar12,0);
                     }
                   }
                   else {
-                    cVar4 = RaceCtx_GetMode();
-                    if ((cVar4 == '\x03') && ((*_g_RaceProg & 0x410) == 0)) {
-                      uVar11 = _g_RaceProg[0xd];
-                      iVar1 = *_g_AiDrivers;
-                      uVar3 = _g_RaceProg[0x10];
+                    cVar6 = RaceCtx_GetMode();
+                    if ((cVar6 == '\x03') &&
+                       (uVar4._0_2_ = g_RaceProg->checkpointFlags, uVar4._2_1_ = g_RaceProg->unk_02,
+                       uVar4._3_1_ = g_RaceProg->field_0x3, (uVar4 & 0x410) == 0)) {
+                      uVar15 = g_RaceProg[2].stateFlags;
+                      iVar2 = *_g_AiDrivers;
+                      uVar4 = g_RaceProg[2].unk_10;
                       Replay_GetHeader();
                       Ranking_ComputePlayerRank();
-                      *_g_RaceProg = *_g_RaceProg | 0x40000;
-                      uVar2 = *(undefined4 *)(uVar3 + 0x4b8);
-                      uVar9 = Replay_GetHeader();
-                      uVar6 = maybe_GameState_GetFlag();
-                      uVar7 = SpGauge_GetValue(uVar11);
-                      uVar8 = RaceCtx_GetMode();
-                      uVar10 = RaceCtx_Get_8();
-                      RaceEntry_Create(uVar9,uVar6,iVar1 + 0x1d8,uVar2,uVar7,uVar8,uVar10,0);
+                      uVar8._0_2_ = g_RaceProg->checkpointFlags;
+                      uVar8._2_1_ = g_RaceProg->unk_02;
+                      uVar8._3_1_ = g_RaceProg->field_0x3;
+                      uVar8 = uVar8 | 0x40000;
+                      pRVar5 = g_RaceProg;
+                      pRVar5->checkpointFlags = (short)uVar8;
+                      pRVar5->unk_02 = (char)(uVar8 >> 0x10);
+                      pRVar5->field_0x3 = (char)(uVar8 >> 0x18);
+                      uVar3 = *(undefined4 *)(uVar4 + 0x4b8);
+                      uVar13 = Replay_GetHeader();
+                      uVar10 = maybe_GameState_GetFlag();
+                      uVar11 = SpGauge_GetValue(uVar15);
+                      uVar12 = RaceCtx_GetMode();
+                      uVar14 = RaceCtx_Get_8();
+                      RaceEntry_Create(uVar13,uVar10,iVar2 + 0x1d8,uVar3,uVar11,uVar12,uVar14,0);
                     }
                   }
                 }
-                GameState_Set_35c(*_g_RaceProg);
+                uVar3._0_2_ = g_RaceProg->checkpointFlags;
+                uVar3._2_1_ = g_RaceProg->unk_02;
+                uVar3._3_1_ = g_RaceProg->field_0x3;
+                GameState_Set_35c(uVar3);
               }
               RaceScene_SetFlags(0x40);
               RaceScene_SetFlags(0x100);
@@ -471,36 +491,34 @@ void RaceProg_Begin(void)
 }
 
 // 0x001dcaf0  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceRule_Free(void)
 
 {
   int iVar1;
   int iVar2;
   
-  if (_g_RaceProg != 0) {
+  if (g_RaceProg != (RaceProg *)0x0) {
     iVar2 = 0;
     iVar1 = 0;
     do {
-      if (*(int *)(_g_RaceProg + iVar1 + 0x28) != 0) {
+      if (*(int *)((int)&g_RaceProg[1].unk_10 + iVar1) != 0) {
         Mem_Free();
       }
-      if (*(int *)(_g_RaceProg + iVar1 + 0x34) != 0) {
+      if (*(int *)((int)&g_RaceProg[2].stateFlags + iVar1) != 0) {
         Mem_Free();
       }
-      if (*(int *)(_g_RaceProg + iVar1 + 0x40) != 0) {
+      if (*(int *)((int)&g_RaceProg[2].unk_10 + iVar1) != 0) {
         Mem_Free();
       }
-      if (*(int *)(_g_RaceProg + iVar1 + 0x1c) != 0) {
+      if (*(int *)((int)&g_RaceProg[1].stateFlags + iVar1) != 0) {
         Mem_Free();
       }
       iVar2 = iVar2 + 1;
       iVar1 = iVar1 + 4;
     } while (iVar2 < 3);
-    if (_g_RaceProg != 0) {
+    if (g_RaceProg != (RaceProg *)0x0) {
       Mem_Free();
-      _g_RaceProg = 0;
+      g_RaceProg = (RaceProg *)0x0;
     }
   }
   return;
@@ -540,22 +558,18 @@ undefined4 LapTime_GetLap(int param_1,int param_2)
 }
 
 // 0x001dcc50  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void RaceRule_Set_14(undefined4 param_1)
+void RaceRule_Set_14(uint param_1)
 
 {
-  *(undefined4 *)(_g_RaceProg + 0x14) = param_1;
+  g_RaceProg->unk_14 = param_1;
   return;
 }
 
 // 0x001dcc60  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceRule_Get_14(void)
+uint RaceRule_Get_14(void)
 
 {
-  return *(undefined4 *)(_g_RaceProg + 0x14);
+  return g_RaceProg->unk_14;
 }
 
 // 0x001dcc70  size 0x50
@@ -642,8 +656,6 @@ int RaceRule_GetParams(int param_1)
 }
 
 // 0x001dcde0  size 0x5c4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceRule_Alloc(undefined8 param_1,ulong param_2,undefined8 param_3,undefined4 param_4)
 
 {
@@ -658,32 +670,32 @@ void RaceRule_Alloc(undefined8 param_1,ulong param_2,undefined8 param_3,undefine
   long lVar9;
   short sVar10;
   
-  _g_RaceProg = 0;
+  g_RaceProg = (RaceProg *)0x0;
   sVar10 = (short)param_1;
   if ((param_2 & 1) != 0) {
     uVar2 = Mem_Alloc16(0x4c,param_3);
-    _g_RaceProg = (int)uVar2;
+    g_RaceProg = (RaceProg *)uVar2;
     Mem_Set16(uVar2,0,0x4c);
     RaceRule_SetupCheckpoints(param_1,param_3);
     lVar9 = (long)sVar10;
-    *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 1;
+    g_RaceProg->stateFlags = g_RaceProg->stateFlags | 1;
     if (lVar9 == 1) {
-      *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 0x80;
+      g_RaceProg->stateFlags = g_RaceProg->stateFlags | 0x80;
     }
     lVar8 = 0;
     if (0 < lVar9) {
       iVar7 = 0;
       do {
         uVar1 = Mem_Alloc16(8,param_3);
-        *(undefined4 *)(_g_RaceProg + iVar7 + 0x28) = uVar1;
-        Mem_Set16(*(undefined4 *)(_g_RaceProg + iVar7 + 0x28),0,8);
+        *(undefined4 *)((int)&g_RaceProg[1].unk_10 + iVar7) = uVar1;
+        Mem_Set16(*(undefined4 *)((int)&g_RaceProg[1].unk_10 + iVar7),0,8);
         if (lVar8 == 0) {
-          puVar4 = *(undefined4 **)(_g_RaceProg + iVar7 + 0x28);
+          puVar4 = *(undefined4 **)((int)&g_RaceProg[1].unk_10 + iVar7);
           *puVar4 = param_4;
           puVar4[1] = param_4;
         }
         else {
-          puVar4 = *(undefined4 **)(_g_RaceProg + iVar7 + 0x28);
+          puVar4 = *(undefined4 **)((int)&g_RaceProg[1].unk_10 + iVar7);
           *puVar4 = 5000000;
           puVar4[1] = 5000000;
         }
@@ -693,22 +705,22 @@ void RaceRule_Alloc(undefined8 param_1,ulong param_2,undefined8 param_3,undefine
     }
   }
   if ((param_2 & 2) != 0) {
-    if (_g_RaceProg == 0) {
+    if (g_RaceProg == (RaceProg *)0x0) {
       uVar2 = Mem_Alloc16(0x4c,param_3);
-      _g_RaceProg = (int)uVar2;
+      g_RaceProg = (RaceProg *)uVar2;
       Mem_Set16(uVar2,0,0x4c);
       RaceRule_SetupCheckpoints(param_1,param_3);
     }
     lVar9 = 0;
-    *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 2;
+    g_RaceProg->stateFlags = g_RaceProg->stateFlags | 2;
     if (0 < (long)sVar10) {
       iVar7 = 0;
       do {
         uVar1 = Mem_Alloc16(0x8b8,param_3);
-        *(undefined4 *)(_g_RaceProg + iVar7 + 0x34) = uVar1;
-        Mem_Set16(*(undefined4 *)(_g_RaceProg + iVar7 + 0x34),0,0x8b8);
+        *(undefined4 *)((int)&g_RaceProg[2].stateFlags + iVar7) = uVar1;
+        Mem_Set16(*(undefined4 *)((int)&g_RaceProg[2].stateFlags + iVar7),0,0x8b8);
         iVar5 = 0;
-        puVar4 = *(undefined4 **)(_g_RaceProg + iVar7 + 0x34);
+        puVar4 = *(undefined4 **)((int)&g_RaceProg[2].stateFlags + iVar7);
         puVar4[0x228] = 0;
         puVar4[0x22b] = 0;
         puVar4[0x22c] = 0xffffffff;
@@ -826,22 +838,22 @@ void RaceRule_Alloc(undefined8 param_1,ulong param_2,undefined8 param_3,undefine
     }
   }
   if ((param_2 & 4) != 0) {
-    if (_g_RaceProg == 0) {
+    if (g_RaceProg == (RaceProg *)0x0) {
       uVar2 = Mem_Alloc16(0x4c,param_3);
-      _g_RaceProg = (int)uVar2;
+      g_RaceProg = (RaceProg *)uVar2;
       Mem_Set16(uVar2,0,0x4c);
       RaceRule_SetupCheckpoints(param_1,param_3);
     }
     lVar9 = 0;
-    *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 4;
+    g_RaceProg->stateFlags = g_RaceProg->stateFlags | 4;
     if (0 < (long)sVar10) {
       iVar7 = 0;
       do {
         uVar1 = Mem_Alloc16(0x4c0,param_3);
-        *(undefined4 *)(_g_RaceProg + iVar7 + 0x40) = uVar1;
-        Mem_Set16(*(undefined4 *)(_g_RaceProg + iVar7 + 0x40),0,0x4c0);
+        *(undefined4 *)((int)&g_RaceProg[2].unk_10 + iVar7) = uVar1;
+        Mem_Set16(*(undefined4 *)((int)&g_RaceProg[2].unk_10 + iVar7),0,0x4c0);
         iVar5 = 0;
-        puVar4 = *(undefined4 **)(_g_RaceProg + iVar7 + 0x40);
+        puVar4 = *(undefined4 **)((int)&g_RaceProg[2].unk_10 + iVar7);
         puVar4[300] = 0;
         puVar4[0x12d] = 0xffffffff;
         puVar4[0x12e] = 0;
@@ -877,17 +889,17 @@ void RaceRule_Alloc(undefined8 param_1,ulong param_2,undefined8 param_3,undefine
     }
   }
   if ((param_2 & 8) != 0) {
-    *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 8;
+    g_RaceProg->stateFlags = g_RaceProg->stateFlags | 8;
   }
   if ((param_2 & 0x10) != 0) {
-    *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 0x10;
+    g_RaceProg->stateFlags = g_RaceProg->stateFlags | 0x10;
   }
   if ((param_2 & 0x40) != 0) {
-    *(uint *)(_g_RaceProg + 4) = *(uint *)(_g_RaceProg + 4) | 0x40;
+    g_RaceProg->stateFlags = g_RaceProg->stateFlags | 0x40;
   }
-  if (_g_RaceProg == 0) {
+  if (g_RaceProg == (RaceProg *)0x0) {
     uVar2 = Mem_Alloc16(0x4c,param_3);
-    _g_RaceProg = (int)uVar2;
+    g_RaceProg = (RaceProg *)uVar2;
     Mem_Set16(uVar2,0,0x4c);
     RaceRule_SetupCheckpoints(param_1,param_3);
   }
@@ -895,39 +907,44 @@ void RaceRule_Alloc(undefined8 param_1,ulong param_2,undefined8 param_3,undefine
 }
 
 // 0x001dd3b0  size 0x1c4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceRule_SetupCheckpoints(short param_1,undefined8 param_2)
 
 {
   undefined4 *puVar1;
-  undefined4 uVar2;
-  uint uVar3;
+  RaceProg *pRVar2;
+  undefined4 uVar3;
   uint uVar4;
-  long lVar5;
-  int iVar6;
-  long lVar7;
+  uint uVar5;
+  long lVar6;
+  int iVar7;
+  long lVar8;
   
-  lVar7 = 0;
-  _g_RaceProg[10] = 0;
-  _g_RaceProg[0xd] = 0;
-  _g_RaceProg[0x10] = 0;
-  *(undefined1 *)(_g_RaceProg + 6) = 0xff;
-  _g_RaceProg[0xb] = 0;
-  _g_RaceProg[0xe] = 0;
-  _g_RaceProg[0x11] = 0;
-  *(undefined1 *)((int)_g_RaceProg + 0x19) = 0xff;
-  _g_RaceProg[0xc] = 0;
-  _g_RaceProg[0xf] = 0;
-  _g_RaceProg[0x12] = 0;
-  *(undefined1 *)((int)_g_RaceProg + 0x1a) = 0xff;
+  lVar8 = 0;
+  g_RaceProg[1].unk_10 = 0;
+  g_RaceProg[2].stateFlags = 0;
+  g_RaceProg[2].unk_10 = 0;
+  *(undefined1 *)&g_RaceProg[1].checkpointFlags = 0xff;
+  g_RaceProg[1].unk_14 = 0;
+  *(undefined4 *)&g_RaceProg[2].phase = 0;
+  g_RaceProg[2].unk_14 = 0;
+  *(undefined1 *)((int)&g_RaceProg[1].checkpointFlags + 1) = 0xff;
+  pRVar2 = g_RaceProg;
+  pRVar2[2].checkpointFlags = 0;
+  pRVar2[2].unk_02 = '\0';
+  pRVar2[2].field_0x3 = 0;
+  g_RaceProg[2].unk_0c = 0;
+  pRVar2 = g_RaceProg;
+  pRVar2[3].checkpointFlags = 0;
+  pRVar2[3].unk_02 = '\0';
+  pRVar2[3].field_0x3 = 0;
+  g_RaceProg[1].unk_02 = 0xff;
   if (0 < (long)param_1) {
-    iVar6 = 0;
+    iVar7 = 0;
     do {
-      uVar2 = Mem_Alloc16(0x30,param_2);
-      *(undefined4 *)((int)_g_RaceProg + iVar6 + 0x1c) = uVar2;
-      Mem_Set16(*(undefined4 *)((int)_g_RaceProg + iVar6 + 0x1c),0,0x30);
-      puVar1 = *(undefined4 **)((int)_g_RaceProg + iVar6 + 0x1c);
+      uVar3 = Mem_Alloc16(0x30,param_2);
+      *(undefined4 *)((int)&g_RaceProg[1].stateFlags + iVar7) = uVar3;
+      Mem_Set16(*(undefined4 *)((int)&g_RaceProg[1].stateFlags + iVar7),0,0x30);
+      puVar1 = *(undefined4 **)((int)&g_RaceProg[1].stateFlags + iVar7);
       *puVar1 = 0;
       puVar1[1] = 0;
       puVar1[2] = 0;
@@ -937,31 +954,32 @@ void RaceRule_SetupCheckpoints(short param_1,undefined8 param_2)
       puVar1[8] = 0;
       *(undefined1 *)(puVar1 + 9) = 0;
       puVar1[10] = 0;
-      lVar5 = Options_Get_8();
-      if (lVar5 != 0) {
-        uVar3 = Race_GetDirection();
-        uVar4 = Race_GetCourseVariant();
-        puVar1[6] = (&PTR_DAT_0031bd90)[(uVar3 & 0xff) + (uVar4 & 0xff) * 2];
+      lVar6 = Options_Get_8();
+      if (lVar6 != 0) {
+        uVar4 = Race_GetDirection();
+        uVar5 = Race_GetCourseVariant();
+        puVar1[6] = (&PTR_DAT_0031bd90)[(uVar4 & 0xff) + (uVar5 & 0xff) * 2];
       }
-      lVar7 = (long)((int)lVar7 + 1);
+      lVar8 = (long)((int)lVar8 + 1);
       puVar1[3] = 0;
       puVar1[4] = 0;
-      iVar6 = iVar6 + 4;
-    } while (lVar7 < param_1);
+      iVar7 = iVar7 + 4;
+    } while (lVar8 < param_1);
   }
-  *_g_RaceProg = 0;
-  _g_RaceProg[1] = 0;
-  *(undefined1 *)(_g_RaceProg + 2) = 0;
-  _g_RaceProg[3] = 0;
-  _g_RaceProg[5] = 0;
-  _g_RaceProg[4] = 0;
-  *(undefined1 *)((int)_g_RaceProg + 0x1b) = 0;
+  pRVar2 = g_RaceProg;
+  pRVar2->checkpointFlags = 0;
+  pRVar2->unk_02 = '\0';
+  pRVar2->field_0x3 = 0;
+  g_RaceProg->stateFlags = 0;
+  g_RaceProg->phase = '\0';
+  g_RaceProg->unk_0c = 0;
+  g_RaceProg->unk_14 = 0;
+  g_RaceProg->unk_10 = 0;
+  g_RaceProg[1].field_0x3 = 0;
   return;
 }
 
 // 0x001dd580  size 0x62c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceRule_PlaceCheckpoint
                (float param_1,undefined4 *param_2,ushort param_3,int param_4,long param_5,
                short param_6,long param_7)
@@ -1056,17 +1074,17 @@ void RaceRule_PlaceCheckpoint
     iVar4 = (param_4 + 2) - iVar4;
     lVar6 = (long)(short)param_3;
     iVar2 = 0;
-    lVar3 = (long)**(short **)(_g_RoadData[1] + (uint)param_3 * 4);
+    lVar3 = (long)**(short **)(g_RoadData->aiLine + (uint)param_3 * 4);
     fVar7 = 0.0;
     do {
       lVar5 = (long)iVar4;
       uStack_54 = uStack_44;
       if (lVar3 <= lVar5) {
-        if (*_g_RoadData <= (short)lVar6 + 1) goto LAB_001dd838;
+        if ((int)g_RoadData->unk_00 <= (short)lVar6 + 1) goto LAB_001dd838;
         uVar1 = (int)lVar6 + 1;
         lVar5 = (long)(iVar4 - (int)lVar3);
         lVar6 = (long)(short)uVar1;
-        lVar3 = (long)**(short **)(_g_RoadData[1] + (uVar1 & 0xffff) * 4);
+        lVar3 = (long)**(short **)(g_RoadData->aiLine + (uVar1 & 0xffff) * 4);
       }
       AiLine_GetDirection(auStack_b0,3,lVar6,(short)lVar5);
       uStack_50 = auStack_b0[0];
@@ -1147,7 +1165,7 @@ LAB_001dd838:
       }
       uVar1 = (int)lVar6 - 1;
       lVar6 = (long)(short)uVar1;
-      lVar5 = (long)(iVar4 + **(short **)(_g_RoadData[1] + (uVar1 & 0xffff) * 4) + -1);
+      lVar5 = (long)(iVar4 + **(short **)(g_RoadData->aiLine + (uVar1 & 0xffff) * 4) + -1);
     }
     AiLine_GetDirection(auStack_90,3,lVar6,(short)lVar5);
     uStack_50 = auStack_90[0];
@@ -1245,30 +1263,26 @@ undefined4 Checkpoint_Update(int param_1,int param_2)
 }
 
 // 0x001ddda0  size 0xa0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_RaceProg_FindRecord(int param_1,short *param_2,undefined2 *param_3)
 
 {
-  int iVar1;
+  uint uVar1;
   undefined2 uVar2;
-  int iVar3;
-  long lVar4;
+  long lVar3;
   
-  iVar1 = *_g_RoadData;
+  uVar1 = g_RoadData->unk_00;
   *param_2 = -1;
   *param_3 = 0xffff;
   if (param_1 < 0) {
     param_1 = 0;
   }
-  lVar4 = 0;
-  if (0 < (long)iVar1) {
+  lVar3 = 0;
+  if (0 < (long)(int)uVar1) {
     do {
-      iVar3 = (int)**(short **)(_g_RoadData[1] + ((uint)lVar4 & 0xffff) * 4);
-      param_1 = param_1 + iVar3 * -0x20;
+      param_1 = param_1 + **(short **)(g_RoadData->aiLine + ((uint)lVar3 & 0xffff) * 4) * -0x20;
       if (param_1 < 0) {
-        param_1 = param_1 + iVar3 * 0x20;
-        *param_2 = (short)lVar4;
+        param_1 = param_1 + **(short **)(g_RoadData->aiLine + ((uint)lVar3 & 0xffff) * 4) * 0x20;
+        *param_2 = (short)lVar3;
         uVar2 = (undefined2)(param_1 >> 5);
         if (param_1 < 0) {
           uVar2 = (undefined2)(param_1 + 0x1f >> 5);
@@ -1276,8 +1290,8 @@ void maybe_RaceProg_FindRecord(int param_1,short *param_2,undefined2 *param_3)
         *param_3 = uVar2;
         return;
       }
-      lVar4 = (long)(short)((short)lVar4 + 1);
-    } while (lVar4 < iVar1);
+      lVar3 = (long)(short)((short)lVar3 + 1);
+    } while (lVar3 < (int)uVar1);
   }
   return;
 }
@@ -1303,8 +1317,6 @@ int Checkpoint_GetDirection(undefined2 param_1,int param_2)
 }
 
 // 0x001ddeb0  size 0x440
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1421,7 +1433,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
     }
   }
   else {
-    sVar1 = **(short **)(*(int *)(_g_RoadData + 4) + (uStack_e8 & 0xffff) * 4);
+    sVar1 = **(short **)(g_RoadData->aiLine + (uStack_e8 & 0xffff) * 4);
     iVar4 = (int)sVar1;
     if ((long)sVar1 < 0) {
       iVar4 = iVar4 + 1;
@@ -1480,7 +1492,7 @@ float Checkpoint_BuildGate(undefined8 param_1,undefined8 param_2)
       fVar7 = (float)maybe_sceVu0InterVectorDist(auStack_30,&uStack_10,&uStack_20);
       fVar9 = fVar9 + fVar7;
     }
-    sVar5 = **(short **)(*(int *)(_g_RoadData + 4) + (uVar2 & 0xffff) * 4);
+    sVar5 = **(short **)(g_RoadData->aiLine + (uVar2 & 0xffff) * 4);
     iVar4 = (int)sVar5;
     if ((long)sVar5 < 0) {
       iVar4 = iVar4 + 1;
@@ -2328,21 +2340,21 @@ void RaceProg_UpdateLaps(void)
                   }
                   else {
                     if (index == 2) {
-                      RaceScene_GetMode(0x1008);
+                      maybe_RaceScene_AddHandler(0x1008);
                     }
                     else if (index == 1) {
                       lVar7 = GameState_GetPlayerCount();
                       if (lVar7 == 2) {
-                        RaceScene_GetMode(0x1002);
-                        RaceScene_GetMode(0x402);
+                        maybe_RaceScene_AddHandler(0x1002);
+                        maybe_RaceScene_AddHandler(0x402);
                       }
                       else {
-                        RaceScene_GetMode(0x1004);
+                        maybe_RaceScene_AddHandler(0x1004);
                       }
                     }
                     else if (index == 0) {
-                      RaceScene_GetMode(0x1001);
-                      RaceScene_GetMode(0x401);
+                      maybe_RaceScene_AddHandler(0x1001);
+                      maybe_RaceScene_AddHandler(0x401);
                     }
                     lVar7 = LapTime_GetTotal(uVar8);
                     if (lVar7 < 360000) {

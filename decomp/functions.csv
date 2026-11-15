@@ -2789,7 +2789,7 @@ address,size,name,file,status
 0x001dc180,0xc,maybe_RaceProg_GetEntry,src/text_001dc000.c,decompiled
 0x001dc190,0xc,RaceProg_Get_c,src/text_001dc000.c,decompiled
 0x001dc1a0,0xc,RaceProg_Set_8,src/text_001dc000.c,decompiled
-0x001dc1b0,0x18,RaceProg_Get,src/text_001dc000.c,decompiled
+0x001dc1b0,0x18,RaceProg_GetPhase,src/text_001dc000.c,decompiled
 0x001dc1d0,0x30,RaceProg_IsFinished,src/text_001dc000.c,decompiled
 0x001dc200,0x1c,RaceProg_GetArray_1c,src/text_001dc000.c,decompiled
 0x001dc220,0x1c,RaceProg_GetArray_40,src/text_001dc000.c,decompiled
@@ -2936,7 +2936,7 @@ address,size,name,file,status
 0x001eaec0,0x58,RaceScene_ApplyDifficulty,src/text_001e8000.c,decompiled
 0x001eaf20,0xa4,RaceScene_StateFinish,src/text_001e8000.c,decompiled
 0x001eafd0,0x150,RaceScene_CheckRules,src/text_001e8000.c,decompiled
-0x001eb140,0x40,RaceScene_GetMode,src/text_001e8000.c,decompiled
+0x001eb140,0x40,maybe_RaceScene_AddHandler,src/text_001e8000.c,decompiled
 0x001eb180,0x54,RaceScene_Tick,src/text_001e8000.c,decompiled
 0x001eb1e0,0xc4,RaceScene_StateRacing,src/text_001e8000.c,decompiled
 0x001eb2b0,0x30,RaceScene_Free,src/text_001e8000.c,decompiled

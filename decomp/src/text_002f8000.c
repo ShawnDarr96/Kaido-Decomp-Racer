@@ -2150,7 +2150,7 @@ void maybe_AttractTask_Update(int *param_1)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  piVar1 = *(int **)(_g_Loading + 0x14);
+  piVar1 = (int *)g_Loading->workBufs[0];
   if (iRam0046a594 == 0) {
     Scene_SetParam(0);
     uRam0046a590 = 0;

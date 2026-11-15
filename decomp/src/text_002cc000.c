@@ -179,12 +179,12 @@ void RaceHud_Draw(int param_1)
   if ((*(uint *)(param_1 + 0x27c) & 10) != 0) {
     lVar3 = RaceScene_IsFlag10();
     if (lVar3 == 0) {
-      cVar2 = RaceProg_Get();
+      cVar2 = RaceProg_GetPhase();
       if (cVar2 == '\x02') {
         RaceHud_AnimateLapTimes(param_1);
       }
       else {
-        cVar2 = RaceProg_Get();
+        cVar2 = RaceProg_GetPhase();
         if (cVar2 == '\x04') {
           RaceHud_UpdateFinishFlag(param_1);
         }

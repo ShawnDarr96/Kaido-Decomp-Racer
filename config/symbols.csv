@@ -2789,7 +2789,7 @@ address,name,signature,source,comment
 0x001dc180,maybe_RaceProg_GetEntry,,game,
 0x001dc190,RaceProg_Get_c,,game-accessor,
 0x001dc1a0,RaceProg_Set_8,,game-accessor,
-0x001dc1b0,RaceProg_Get,,game,17 callers
+0x001dc1b0,RaceProg_GetPhase,,game,"returns RaceProg+8, or 3 when no race is running (was RaceProg_Get)"
 0x001dc1d0,RaceProg_IsFinished,,game,
 0x001dc200,RaceProg_GetArray_1c,,game-accessor,
 0x001dc220,RaceProg_GetArray_40,,game-accessor,
@@ -2936,7 +2936,7 @@ address,name,signature,source,comment
 0x001eaec0,RaceScene_ApplyDifficulty,,game,
 0x001eaf20,RaceScene_StateFinish,,game,
 0x001eafd0,RaceScene_CheckRules,,game,
-0x001eb140,RaceScene_GetMode,,game,
+0x001eb140,maybe_RaceScene_AddHandler,,game,"appends to a 10-entry handler list at +4, count at +0x2c (was RaceScene_GetMode)"
 0x001eb180,RaceScene_Tick,,game,
 0x001eb1e0,RaceScene_StateRacing,,game,
 0x001eb2b0,RaceScene_Free,,game,

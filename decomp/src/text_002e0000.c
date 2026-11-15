@@ -1252,8 +1252,6 @@ void maybe_JukeboxTask_Init(int param_1)
 }
 
 // 0x002e2800  size 0x2b4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_Jukebox_PickSong(int param_1)
 
 {
@@ -1274,7 +1272,8 @@ void maybe_Jukebox_PickSong(int param_1)
   GameState_LoadHeader(auStack_50);
   GameState_LoadHeader(auStack_a0);
   cVar3 = RaceCtx_GetMode();
-  if ((cVar3 == '\x05') || ((_g_RaceScene != 0 && (lVar5 = RaceScene_IsFlag10(), lVar5 != 0)))) {
+  if ((cVar3 == '\x05') ||
+     ((g_RaceScene != (RaceScene *)0x0 && (lVar5 = RaceScene_IsFlag10(), lVar5 != 0)))) {
     iVar7 = 10;
     if (cStack_9d != '\0') {
       iVar7 = 0xb;
@@ -1462,19 +1461,18 @@ void maybe_IntroFlag_Update(int param_1)
 void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int param_4)
 
 {
-  short *psVar1;
-  bool bVar2;
-  undefined8 uVar3;
-  long lVar4;
-  int *piVar5;
-  uint *puVar6;
-  int iVar7;
-  undefined *puVar8;
-  float *pfVar9;
+  bool bVar1;
+  undefined8 uVar2;
+  long lVar3;
+  int *piVar4;
+  uint *puVar5;
+  int iVar6;
+  undefined *puVar7;
+  float *pfVar8;
+  int iVar9;
   int iVar10;
-  int iVar11;
+  float fVar11;
   float fVar12;
-  float fVar13;
   undefined1 auStack_270 [16];
   float fStack_260;
   float fStack_25c;
@@ -1487,64 +1485,66 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
   undefined1 auStack_240 [192];
   undefined1 auStack_180 [384];
   
-  iVar7 = (param_1 & 0xff) * 0x5c0;
-  puVar8 = &g_Views + iVar7;
-  bVar2 = false;
+  iVar6 = (param_1 & 0xff) * 0x5c0;
+  puVar7 = &g_Views + iVar6;
+  bVar1 = false;
   if (((_g_IntroFlag[1] != 0) && (_g_IntroFlag[2] != 0)) && (_g_IntroFlag[3] != 0)) {
-    Layer_Reset(auStack_240,puVar8,0x436180,param_2,param_3);
-    piVar5 = (int *)_g_IntroFlag[3];
-    iVar10 = 0;
-    if (0 < *piVar5) {
-      iVar11 = 0;
+    Layer_Reset(auStack_240,puVar7,0x436180,param_2,param_3);
+    piVar4 = (int *)_g_IntroFlag[3];
+    iVar9 = 0;
+    if (0 < *piVar4) {
+      iVar10 = 0;
       do {
-        psVar1 = *(short **)
-                  (*(int *)(_g_RoadData + 4) + (uint)*(ushort *)((int)piVar5 + iVar11 + 0x10) * 4);
-        pfVar9 = (float *)(psVar1 + *psVar1 * 0x10 +
-                                    *(int *)((int)piVar5 + iVar11 + 0x14) * 6 + 0x3e);
-        if (*(int *)((int)piVar5 + iVar11 + 0x18) == 0) {
-          uVar3 = Gut_PackGetEntry(_g_IntroFlag[2],*_g_IntroFlag & 1,0);
-          puVar6 = _g_IntroFlag + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 4;
+        pfVar8 = (float *)(*(short **)
+                            (g_RoadData->aiLine + (uint)*(ushort *)((int)piVar4 + iVar10 + 0x10) * 4
+                            ) + **(short **)
+                                  (g_RoadData->aiLine +
+                                  (uint)*(ushort *)((int)piVar4 + iVar10 + 0x10) * 4) * 0x10 +
+                                *(int *)((int)piVar4 + iVar10 + 0x14) * 6 + 0x3e);
+        if (*(int *)((int)piVar4 + iVar10 + 0x18) == 0) {
+          uVar2 = Gut_PackGetEntry(_g_IntroFlag[2],*_g_IntroFlag & 1,0);
+          puVar5 = _g_IntroFlag + *(int *)((int)piVar4 + iVar10 + 0x1c) * 0x20 + 4;
         }
         else {
-          uVar3 = Gut_PackGetEntry(_g_IntroFlag[2],(*_g_IntroFlag & 1) + 4,0);
-          puVar6 = _g_IntroFlag + *(int *)((int)piVar5 + iVar11 + 0x1c) * 0x20 + 0x44;
+          uVar2 = Gut_PackGetEntry(_g_IntroFlag[2],(*_g_IntroFlag & 1) + 4,0);
+          puVar5 = _g_IntroFlag + *(int *)((int)piVar4 + iVar10 + 0x1c) * 0x20 + 0x44;
         }
-        TexSlot_Set(0xf,1,puVar6);
+        TexSlot_Set(0xf,1,puVar5);
         uStack_244 = 0x3f800000;
-        fStack_248 = *(float *)((int)piVar5 + iVar11 + 0x28) * 0.017453292;
-        fStack_260 = *(float *)((int)piVar5 + iVar11 + 0x30) * 10.0 + *pfVar9 + 0.0;
-        fStack_250 = *(float *)((int)piVar5 + iVar11 + 0x20) * 0.017453292;
-        fStack_25c = *(float *)((int)piVar5 + iVar11 + 0x34) * 10.0 + pfVar9[1] + 0.0;
-        fStack_24c = *(float *)((int)piVar5 + iVar11 + 0x24) * 0.017453292;
+        fStack_248 = *(float *)((int)piVar4 + iVar10 + 0x28) * 0.017453292;
+        fStack_260 = *(float *)((int)piVar4 + iVar10 + 0x30) * 10.0 + *pfVar8 + 0.0;
+        fStack_250 = *(float *)((int)piVar4 + iVar10 + 0x20) * 0.017453292;
+        fStack_25c = *(float *)((int)piVar4 + iVar10 + 0x34) * 10.0 + pfVar8[1] + 0.0;
+        fStack_24c = *(float *)((int)piVar4 + iVar10 + 0x24) * 0.017453292;
         uStack_254 = 0x3f800000;
-        fStack_258 = *(float *)((int)piVar5 + iVar11 + 0x38) * 10.0 + pfVar9[2] + 0.0;
-        if (((*(int *)((int)piVar5 + iVar11 + 0x18) == 0) && (param_4 == 0)) &&
+        fStack_258 = *(float *)((int)piVar4 + iVar10 + 0x38) * 10.0 + pfVar8[2] + 0.0;
+        if (((*(int *)((int)piVar4 + iVar10 + 0x18) == 0) && (param_4 == 0)) &&
            (fStack_24c = fStack_24c + 3.1415927, 3.1415927 < fStack_24c)) {
           fStack_24c = fStack_24c - 6.2831855;
         }
-        fVar12 = (float)maybe_sceVu0InterVectorDist(auStack_270,&fStack_260,puVar8);
-        if (((fVar12 <= *(float *)(iVar7 + 0x4311a4) * 1.1547005) &&
-            (fVar13 = (float)sceVu0InnerProduct(iVar7 + 0x431140,auStack_270),
-            -20.0 <= fVar12 * fVar13)) &&
-           (lVar4 = Course_GetGroundHeight(puVar8,&fStack_260), lVar4 != 0)) {
-          if (!bVar2) {
+        fVar11 = (float)maybe_sceVu0InterVectorDist(auStack_270,&fStack_260,puVar7);
+        if (((fVar11 <= *(float *)(iVar6 + 0x4311a4) * 1.1547005) &&
+            (fVar12 = (float)sceVu0InnerProduct(iVar6 + 0x431140,auStack_270),
+            -20.0 <= fVar11 * fVar12)) &&
+           (lVar3 = Course_GetGroundHeight(puVar7,&fStack_260), lVar3 != 0)) {
+          if (!bVar1) {
             Layer_Open(auStack_240,0);
-            bVar2 = true;
+            bVar1 = true;
           }
           maybe_Vu0_UnitMatrix(auStack_180);
           maybe_Vu0_RotMatrixZ(fStack_250,auStack_180,auStack_180);
           maybe_Vu0_RotMatrixY(fStack_24c,auStack_180,auStack_180);
           maybe_Vu0_RotMatrixX(fStack_248,auStack_180,auStack_180);
           sceVu0TransMatrix(auStack_180,auStack_180,&fStack_260);
-          uVar3 = Model_GetTexture(uVar3,0);
-          Model_UpdateNodeMatrix(auStack_240,uVar3);
+          uVar2 = Model_GetTexture(uVar2,0);
+          Model_UpdateNodeMatrix(auStack_240,uVar2);
         }
-        iVar10 = iVar10 + 1;
-        piVar5 = (int *)_g_IntroFlag[3];
-        iVar11 = iVar11 + 0x30;
-      } while (iVar10 < *piVar5);
+        iVar9 = iVar9 + 1;
+        piVar4 = (int *)_g_IntroFlag[3];
+        iVar10 = iVar10 + 0x30;
+      } while (iVar9 < *piVar4);
     }
-    if (bVar2) {
+    if (bVar1) {
       Layer_Close(auStack_240,0);
     }
   }

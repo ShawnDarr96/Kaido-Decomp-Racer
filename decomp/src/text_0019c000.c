@@ -140,8 +140,6 @@ LAB_0019c6c8:
 }
 
 // 0x0019c780  size 0x5f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void CarModel_RenderTranslucent(undefined8 param_1)
 
 {
@@ -193,8 +191,8 @@ void CarModel_RenderTranslucent(undefined8 param_1)
   if (*(int *)(iVar4 + 0x4f4) != 0) {
     CarModel_SetupLighting(param_1,auStack_500,1);
     if (cRam00430460 == '\0') {
-      *(undefined4 *)(*(int *)(_g_Loading + 0x14) + 0x104) =
-           *(undefined4 *)(*(int *)(_g_Loading + 0x14) + 0xa4);
+      *(undefined4 *)(g_Loading->workBufs[0] + 0x104) =
+           *(undefined4 *)(g_Loading->workBufs[0] + 0xa4);
       puStack_2bc = &g_Views;
     }
     else {
@@ -513,101 +511,102 @@ void CourseStream_RequestBlock
 
 {
   ushort uVar1;
-  uint uVar2;
-  uint uVar3;
-  int iVar4;
+  undefined *puVar2;
+  int iVar3;
+  uint uVar4;
   uint uVar5;
-  long lVar6;
-  bool bVar7;
-  uint *puVar8;
-  int iVar9;
-  int iVar10;
-  uint uVar11;
+  int iVar6;
+  uint uVar7;
+  long lVar8;
+  bool bVar9;
+  uint *puVar10;
+  int iVar11;
+  uint uVar12;
   undefined1 auStack_40 [16];
   float afStack_30 [4];
   undefined1 auStack_20 [16];
   float afStack_10 [4];
   
-  iVar10 = _g_CourseBufE;
-  iVar9 = *(int *)((param_5 & 0xff) * 4 + _g_Loading + 0x14);
-  sceVu0CopyVector(auStack_20,iVar9 + 0x70);
-  afStack_10[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
+  iVar11 = _g_CourseBufE;
+  puVar2 = g_Loading->workBufs[param_5 & 0xff];
+  sceVu0CopyVector(auStack_20,puVar2 + 0x70);
+  afStack_10[0] = *(float *)(puVar2 + 0x80) - *(float *)(puVar2 + 0x70);
   afStack_10[1] = 0.0;
-  afStack_10[2] = *(float *)(iVar9 + 0x88) - *(float *)(iVar9 + 0x78);
-  iVar9 = *(int *)((param_6 & 0xff) * 4 + _g_Loading + 0x14);
-  sceVu0CopyVector(auStack_40,iVar9 + 0x70);
-  afStack_30[0] = *(float *)(iVar9 + 0x80) - *(float *)(iVar9 + 0x70);
+  afStack_10[2] = *(float *)(puVar2 + 0x88) - *(float *)(puVar2 + 0x78);
+  puVar2 = g_Loading->workBufs[param_6 & 0xff];
+  sceVu0CopyVector(auStack_40,puVar2 + 0x70);
+  afStack_30[0] = *(float *)(puVar2 + 0x80) - *(float *)(puVar2 + 0x70);
   afStack_30[1] = 0.0;
-  afStack_30[2] = *(float *)(iVar9 + 0x88) - *(float *)(iVar9 + 0x78);
-  uVar3 = CourseStream_UpdateVisibility
+  afStack_30[2] = *(float *)(puVar2 + 0x88) - *(float *)(puVar2 + 0x78);
+  uVar5 = CourseStream_UpdateVisibility
                     (param_1,param_2,param_3,param_4,auStack_20,afStack_10,auStack_40,afStack_30);
-  uVar11 = 0;
-  uRam004305dc = uVar3;
-  if (uVar3 != 0) {
+  uVar12 = 0;
+  uRam004305dc = uVar5;
+  if (uVar5 != 0) {
     do {
-      lVar6 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar10 + 4));
-      if (lVar6 != 0) {
-        lVar6 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar10 + 4));
-        if (lVar6 == 0) {
-          lVar6 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
-          if (lVar6 != 0) {
-            uVar5 = *(uint *)(iVar10 + 4);
+      lVar8 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar11 + 4));
+      if (lVar8 != 0) {
+        lVar8 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar11 + 4));
+        if (lVar8 == 0) {
+          lVar8 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
+          if (lVar8 != 0) {
+            uVar7 = *(uint *)(iVar11 + 4);
             Sema_Wait(0x36efc0);
-            uVar2 = uRam00386628;
+            uVar4 = uRam00386628;
             Sema_Signal(0x36efc0,0);
-            puVar8 = (uint *)lVar6;
-            if (uVar2 < 0x100) {
-              puVar8[2] = uVar5;
-              uVar1 = *(ushort *)((int)puVar8 + 10);
-              iVar9 = *(int *)(iRam004305b8 + (uint)(ushort)puVar8[2] * 0xc + 0x48);
-              iVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
-                                       (uint)(ushort)puVar8[2] * 2 + 0xc,0);
-              iVar4 = *(int *)(iVar4 + (uint)uVar1 * 4);
-              if (iVar4 < 0) {
-                bVar7 = false;
+            puVar10 = (uint *)lVar8;
+            if (uVar4 < 0x100) {
+              puVar10[2] = uVar7;
+              uVar1 = *(ushort *)((int)puVar10 + 10);
+              iVar3 = *(int *)(iRam004305b8 + (uint)(ushort)puVar10[2] * 0xc + 0x48);
+              iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
+                                       (uint)(ushort)puVar10[2] * 2 + 0xc,0);
+              iVar6 = *(int *)(iVar6 + (uint)uVar1 * 4);
+              if (iVar6 < 0) {
+                bVar9 = false;
               }
               else {
-                *puVar8 = *puVar8 & 0xfffffffb;
-                *puVar8 = *puVar8 | 1;
-                uVar5 = Arc_LoadFileEx(iVar9 + iVar4,puVar8[3],0x19e660,lVar6,0,0);
-                puVar8[4] = uVar5;
-                bVar7 = true;
+                *puVar10 = *puVar10 & 0xfffffffb;
+                *puVar10 = *puVar10 | 1;
+                uVar7 = Arc_LoadFileEx(iVar3 + iVar6,puVar10[3],0x19e660,lVar8,0,0);
+                puVar10[4] = uVar7;
+                bVar9 = true;
               }
             }
             else {
-              bVar7 = false;
+              bVar9 = false;
             }
-            if (bVar7) {
-              *puVar8 = *puVar8 | 0x10;
+            if (bVar9) {
+              *puVar10 = *puVar10 | 0x10;
             }
           }
         }
         else {
-          *(uint *)lVar6 = *(uint *)lVar6 | 0x10;
+          *(uint *)lVar8 = *(uint *)lVar8 | 0x10;
         }
       }
-      uVar11 = uVar11 + 1;
-      iVar10 = iVar10 + 8;
-    } while (uVar11 < uVar3);
+      uVar12 = uVar12 + 1;
+      iVar11 = iVar11 + 8;
+    } while (uVar12 < uVar5);
   }
-  uVar3 = 0;
+  uVar5 = 0;
   if (uRam004305cc != 0) {
-    iVar9 = 0;
+    iVar11 = 0;
     do {
-      puVar8 = (uint *)(_g_CourseBufC + iVar9);
-      bVar7 = false;
-      if (((*puVar8 & 0x10) == 0) && ((*puVar8 & 1) != 0)) {
-        bVar7 = true;
+      puVar10 = (uint *)(_g_CourseBufC + iVar11);
+      bVar9 = false;
+      if (((*puVar10 & 0x10) == 0) && ((*puVar10 & 1) != 0)) {
+        bVar9 = true;
       }
-      if ((bVar7) && (lVar6 = File_CancelRequest(puVar8[4]), lVar6 != 0)) {
-        *puVar8 = 0;
-        puVar8[1] = 0;
-        *(undefined2 *)(puVar8 + 2) = 0xffff;
-        *(undefined2 *)((int)puVar8 + 10) = 0xffff;
+      if ((bVar9) && (lVar8 = File_CancelRequest(puVar10[4]), lVar8 != 0)) {
+        *puVar10 = 0;
+        puVar10[1] = 0;
+        *(undefined2 *)(puVar10 + 2) = 0xffff;
+        *(undefined2 *)((int)puVar10 + 10) = 0xffff;
       }
-      uVar3 = uVar3 + 1;
-      iVar9 = iVar9 + 0x50;
-    } while (uVar3 < uRam004305cc);
+      uVar5 = uVar5 + 1;
+      iVar11 = iVar11 + 0x50;
+    } while (uVar5 < uRam004305cc);
   }
   return;
 }
@@ -1616,17 +1615,18 @@ void CourseStream_RequestLod
 
 {
   ushort uVar1;
-  uint uVar2;
-  uint uVar3;
-  int iVar4;
+  undefined *puVar2;
+  int iVar3;
+  uint uVar4;
   uint uVar5;
-  long lVar6;
-  bool bVar7;
-  undefined1 *puVar8;
-  uint *puVar9;
-  int iVar10;
-  uint uVar11;
+  int iVar6;
+  uint uVar7;
+  long lVar8;
+  bool bVar9;
+  undefined1 *puVar10;
+  uint *puVar11;
   int iVar12;
+  uint uVar13;
   undefined1 auStack_30 [4];
   undefined4 uStack_2c;
   undefined1 auStack_20 [4];
@@ -1634,87 +1634,87 @@ void CourseStream_RequestLod
   float afStack_10 [4];
   
   iVar12 = _g_CourseBufE;
-  iVar10 = *(int *)((uint)param_3 * 4 + _g_Loading + 0x14);
-  afStack_10[0] = *(float *)(iVar10 + 0x80) - *(float *)(iVar10 + 0x70);
+  puVar2 = g_Loading->workBufs[param_3];
+  afStack_10[0] = *(float *)(puVar2 + 0x80) - *(float *)(puVar2 + 0x70);
   afStack_10[1] = 0.0;
-  afStack_10[2] = *(float *)(iVar10 + 0x88) - *(float *)(iVar10 + 0x78);
+  afStack_10[2] = *(float *)(puVar2 + 0x88) - *(float *)(puVar2 + 0x78);
   sceVu0CopyVector(auStack_20);
   uStack_1c = 0;
   if (param_5 == 0) {
-    puVar8 = (undefined1 *)0x0;
+    puVar10 = (undefined1 *)0x0;
   }
   else {
     sceVu0CopyVector(auStack_30,param_5);
     uStack_2c = 0;
-    puVar8 = auStack_30;
+    puVar10 = auStack_30;
   }
-  uVar3 = CourseStream_UpdateLod(param_1,param_2,auStack_20,afStack_10,puVar8);
-  uVar11 = 0;
-  uRam004305dc = uVar3;
-  if (uVar3 != 0) {
+  uVar5 = CourseStream_UpdateLod(param_1,param_2,auStack_20,afStack_10,puVar10);
+  uVar13 = 0;
+  uRam004305dc = uVar5;
+  if (uVar5 != 0) {
     do {
-      lVar6 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar12 + 4));
-      if (lVar6 != 0) {
-        lVar6 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar12 + 4));
-        if (lVar6 == 0) {
-          lVar6 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
-          if (lVar6 != 0) {
-            uVar5 = *(uint *)(iVar12 + 4);
+      lVar8 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar12 + 4));
+      if (lVar8 != 0) {
+        lVar8 = BlockPool_Find(_g_CourseBufC,uRam004305cc,*(undefined4 *)(iVar12 + 4));
+        if (lVar8 == 0) {
+          lVar8 = BlockPool_FindFree(_g_CourseBufC,uRam004305cc);
+          if (lVar8 != 0) {
+            uVar7 = *(uint *)(iVar12 + 4);
             Sema_Wait(0x36efc0);
-            uVar2 = uRam00386628;
+            uVar4 = uRam00386628;
             Sema_Signal(0x36efc0,0);
-            puVar9 = (uint *)lVar6;
-            if (uVar2 < 0x100) {
-              puVar9[2] = uVar5;
-              uVar1 = *(ushort *)((int)puVar9 + 10);
-              iVar10 = *(int *)(iRam004305b8 + (uint)(ushort)puVar9[2] * 0xc + 0x48);
-              iVar4 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
-                                       (uint)(ushort)puVar9[2] * 2 + 0xc,0);
-              iVar4 = *(int *)(iVar4 + (uint)uVar1 * 4);
-              if (iVar4 < 0) {
-                bVar7 = false;
+            puVar11 = (uint *)lVar8;
+            if (uVar4 < 0x100) {
+              puVar11[2] = uVar7;
+              uVar1 = *(ushort *)((int)puVar11 + 10);
+              iVar3 = *(int *)(iRam004305b8 + (uint)(ushort)puVar11[2] * 0xc + 0x48);
+              iVar6 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),
+                                       (uint)(ushort)puVar11[2] * 2 + 0xc,0);
+              iVar6 = *(int *)(iVar6 + (uint)uVar1 * 4);
+              if (iVar6 < 0) {
+                bVar9 = false;
               }
               else {
-                *puVar9 = *puVar9 & 0xfffffffb;
-                *puVar9 = *puVar9 | 1;
-                uVar5 = Arc_LoadFileEx(iVar10 + iVar4,puVar9[3],0x19e660,lVar6,0,0);
-                puVar9[4] = uVar5;
-                bVar7 = true;
+                *puVar11 = *puVar11 & 0xfffffffb;
+                *puVar11 = *puVar11 | 1;
+                uVar7 = Arc_LoadFileEx(iVar3 + iVar6,puVar11[3],0x19e660,lVar8,0,0);
+                puVar11[4] = uVar7;
+                bVar9 = true;
               }
             }
             else {
-              bVar7 = false;
+              bVar9 = false;
             }
-            if (bVar7) {
-              *puVar9 = *puVar9 | 0x10;
+            if (bVar9) {
+              *puVar11 = *puVar11 | 0x10;
             }
           }
         }
         else {
-          *(uint *)lVar6 = *(uint *)lVar6 | 0x10;
+          *(uint *)lVar8 = *(uint *)lVar8 | 0x10;
         }
       }
-      uVar11 = uVar11 + 1;
+      uVar13 = uVar13 + 1;
       iVar12 = iVar12 + 8;
-    } while (uVar11 < uVar3);
+    } while (uVar13 < uVar5);
   }
-  if (((iRam004305b0 == 0) || (param_3 == 1)) && (uVar3 = 0, uRam004305cc != 0)) {
-    iVar10 = 0;
+  if (((iRam004305b0 == 0) || (param_3 == 1)) && (uVar5 = 0, uRam004305cc != 0)) {
+    iVar12 = 0;
     do {
-      puVar9 = (uint *)(_g_CourseBufC + iVar10);
-      bVar7 = false;
-      if (((*puVar9 & 0x10) == 0) && ((*puVar9 & 1) != 0)) {
-        bVar7 = true;
+      puVar11 = (uint *)(_g_CourseBufC + iVar12);
+      bVar9 = false;
+      if (((*puVar11 & 0x10) == 0) && ((*puVar11 & 1) != 0)) {
+        bVar9 = true;
       }
-      if ((bVar7) && (lVar6 = File_CancelRequest(puVar9[4]), lVar6 != 0)) {
-        *puVar9 = 0;
-        puVar9[1] = 0;
-        *(undefined2 *)(puVar9 + 2) = 0xffff;
-        *(undefined2 *)((int)puVar9 + 10) = 0xffff;
+      if ((bVar9) && (lVar8 = File_CancelRequest(puVar11[4]), lVar8 != 0)) {
+        *puVar11 = 0;
+        puVar11[1] = 0;
+        *(undefined2 *)(puVar11 + 2) = 0xffff;
+        *(undefined2 *)((int)puVar11 + 10) = 0xffff;
       }
-      uVar3 = uVar3 + 1;
-      iVar10 = iVar10 + 0x50;
-    } while (uVar3 < uRam004305cc);
+      uVar5 = uVar5 + 1;
+      iVar12 = iVar12 + 0x50;
+    } while (uVar5 < uRam004305cc);
   }
   return;
 }

@@ -175,27 +175,28 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
 
 {
   byte bVar1;
-  uint uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  undefined8 uVar5;
+  byte bVar2;
+  undefined *puVar3;
+  uint uVar4;
+  undefined4 uVar5;
   undefined8 uVar6;
-  byte *pbVar7;
-  uint uVar8;
+  undefined8 uVar7;
+  byte *pbVar8;
   uint uVar9;
-  int iVar10;
+  uint uVar10;
+  int iVar11;
   
-  uVar5 = Course_Load();
+  uVar6 = Course_Load();
   _g_CourseScene = Mem_Alloc16(uRam004305c4 << 3,param_1);
-  uVar9 = 0;
-  iVar10 = _g_CourseScene;
+  uVar10 = 0;
+  iVar11 = _g_CourseScene;
   if (uRam004305c4 != 0) {
     do {
-      uVar3 = Mem_Alloc16(iRam004305cc << 2,param_1);
-      *(undefined4 *)(iVar10 + 4) = uVar3;
-      uVar9 = uVar9 + 1;
-      iVar10 = iVar10 + 8;
-    } while (uVar9 < uRam004305c4);
+      uVar5 = Mem_Alloc16(iRam004305cc << 2,param_1);
+      *(undefined4 *)(iVar11 + 4) = uVar5;
+      uVar10 = uVar10 + 1;
+      iVar11 = iVar11 + 8;
+    } while (uVar10 < uRam004305c4);
   }
   pcRam0043064c = Course_CaptureReflection;
   puRam00430650 = &g_CourseScene;
@@ -203,45 +204,46 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
   uRam00430654 = 0;
   uRam00430658 = 0;
   uRam0043065c = 0;
-  uVar6 = Mem_AllocAligned(0x200,0x80,param_1);
-  uRam00430660 = (undefined4)uVar6;
-  Mem_Set16(uVar6,0,0x200);
+  uVar7 = Mem_AllocAligned(0x200,0x80,param_1);
+  uRam00430660 = (undefined4)uVar7;
+  Mem_Set16(uVar7,0,0x200);
   uRam00430668 = 1;
   uRam0043067c = 0;
   uRam004306c0 = 0;
   uRam004306c1 = 1;
   uRam004306c2 = 2;
   if (*param_4 == '\0') {
-    uVar9 = 0;
-    uVar8 = 8;
+    uVar10 = 0;
+    uVar9 = 8;
   }
   else {
-    uVar9 = 8;
-    uVar8 = 0x1a;
+    uVar10 = 8;
+    uVar9 = 0x1a;
   }
   uRam00430674 = param_7;
   uRam00430678 = param_8;
-  if (uVar9 < uVar8) {
-    pbVar7 = &DAT_00317490 + uVar9 * 4;
+  if (uVar10 < uVar9) {
+    pbVar8 = &DAT_00317490 + uVar10 * 4;
     do {
-      bVar1 = pbVar7[1];
-      iVar10 = param_2 + (uint)pbVar7[3] * 0x14;
-      iVar4 = *(int *)(_g_Loading + (uint)*pbVar7 * 4 + 0x14) + (uint)pbVar7[2] * 0x60;
-      if (bVar1 < 0xe) {
-        *(undefined4 *)(((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40 + 0x4311c0) =
-             *(undefined4 *)(iVar10 + 0x30);
+      bVar1 = pbVar8[2];
+      bVar2 = pbVar8[1];
+      puVar3 = g_Loading->workBufs[*pbVar8];
+      iVar11 = param_2 + (uint)pbVar8[3] * 0x14;
+      if (bVar2 < 0xe) {
+        *(undefined4 *)(((uint)bVar2 * 0x18 - (uint)bVar2) * 0x40 + 0x4311c0) =
+             *(undefined4 *)(iVar11 + 0x30);
       }
-      uVar9 = uVar9 + 1;
-      pbVar7 = pbVar7 + 4;
-      *(undefined4 *)(iVar4 + 0xa8) = *(undefined4 *)(iVar10 + 0x2c);
-      uVar2 = *(uint *)(iVar10 + 0x34);
-      *(uint *)(iVar4 + 0xb4) = (uVar2 & 0xff0000) >> 0x10 | (uVar2 & 0xff) << 0x10 | uVar2 & 0xff00
-      ;
-      *(undefined4 *)(iVar4 + 0xac) = *(undefined4 *)(iVar10 + 0x38);
-      *(undefined4 *)(iVar4 + 0xb0) = *(undefined4 *)(iVar10 + 0x3c);
-    } while ((int)uVar9 < (int)uVar8);
+      uVar10 = uVar10 + 1;
+      pbVar8 = pbVar8 + 4;
+      *(undefined4 *)(puVar3 + (uint)bVar1 * 0x60 + 0xa8) = *(undefined4 *)(iVar11 + 0x2c);
+      uVar4 = *(uint *)(iVar11 + 0x34);
+      *(uint *)(puVar3 + (uint)bVar1 * 0x60 + 0xb4) =
+           (uVar4 & 0xff0000) >> 0x10 | (uVar4 & 0xff) << 0x10 | uVar4 & 0xff00;
+      *(undefined4 *)(puVar3 + (uint)bVar1 * 0x60 + 0xac) = *(undefined4 *)(iVar11 + 0x38);
+      *(undefined4 *)(puVar3 + (uint)bVar1 * 0x60 + 0xb0) = *(undefined4 *)(iVar11 + 0x3c);
+    } while ((int)uVar10 < (int)uVar9);
   }
-  return uVar5;
+  return uVar6;
 }
 
 // 0x001a4ed0  size 0x78

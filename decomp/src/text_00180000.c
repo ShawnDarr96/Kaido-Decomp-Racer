@@ -2544,35 +2544,31 @@ void Fade_ToBlack(void)
 }
 
 // 0x00183600  size 0x70
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 Loading_IsActive(void)
 
 {
-  char cVar1;
-  bool bVar2;
-  int iVar3;
-  undefined4 uVar4;
+  bool bVar1;
+  int iVar2;
+  undefined4 uVar3;
   
-  if (_g_Loading == 0) {
-    uVar4 = 0;
+  if (g_Loading == (LoadingCtx *)0x0) {
+    uVar3 = 0;
   }
   else {
-    cVar1 = *(char *)(*(int *)(_g_Loading + 0x14) + 0x4f8);
-    if ((cVar1 == '\0') || (cVar1 == '\x04')) {
-      bVar2 = true;
+    if ((g_Loading->workBufs[0][0x4f8] == '\0') || (g_Loading->workBufs[0][0x4f8] == '\x04')) {
+      bVar1 = true;
     }
     else {
-      bVar2 = false;
+      bVar1 = false;
     }
-    if ((bVar2) && (iVar3 = maybe_Options_GetLanguage(), *(int *)(iVar3 + 0x24) == 0)) {
-      uVar4 = 1;
+    if ((bVar1) && (iVar2 = maybe_Options_GetLanguage(), *(int *)(iVar2 + 0x24) == 0)) {
+      uVar3 = 1;
     }
     else {
-      uVar4 = 0;
+      uVar3 = 0;
     }
   }
-  return uVar4;
+  return uVar3;
 }
 
 // 0x00183670  size 0x1a0
@@ -2590,14 +2586,14 @@ void Loading_Update(void)
     View_Clear(0x432240);
     View_Clear(0x432800);
     View_Clear(0x435bc0);
-    cVar1 = *(char *)(*(int *)(_g_Loading + 0x14) + 0x4f8);
+    cVar1 = g_Loading->workBufs[0][0x4f8];
     if ((cVar1 == '\0') || (cVar1 == '\x04')) {
       bVar3 = true;
     }
     else {
       bVar3 = false;
     }
-    if ((bVar3) && ((*(uint *)(*(int *)(_g_Loading + 0x14) + 0x7c0) & 1) == 0)) {
+    if ((bVar3) && ((*(uint *)(g_Loading->workBufs[0] + 0x7c0) & 1) == 0)) {
       bVar3 = true;
     }
     else {
@@ -2606,7 +2602,7 @@ void Loading_Update(void)
     if (bVar3) {
       View_Clear(0x433380);
     }
-    bVar2 = *(byte *)(*(int *)(_g_Loading + 0x14) + 0x4f8);
+    bVar2 = g_Loading->workBufs[0][0x4f8];
     bVar3 = false;
     if ((2 < bVar2) && (bVar2 < 7)) {
       bVar3 = true;
@@ -2632,13 +2628,12 @@ void Loading_Update(void)
 }
 
 // 0x00183810  size 0xe0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 Loading_LoadScreenImage(uint param_1)
 
 {
   int iVar1;
   uint uVar2;
+  undefined4 uVar3;
   
   iVar1 = *(int *)(&DAT_0030ba00 + (param_1 & 0xff) * 4);
   uVar2 = g_ArcToc->entries[iVar1].unpackedSize;
@@ -2648,20 +2643,18 @@ undefined4 Loading_LoadScreenImage(uint param_1)
   else {
     uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  if (_g_Loading[1] != 0) {
+  if (g_Loading->unk_04 != 0) {
     Mem_Free();
   }
   uVar2 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
-  _g_Loading[1] = uVar2;
-  uVar2 = Arc_LoadFileEx(iVar1,_g_Loading[1],0x185b50,_g_Loading,0,0);
-  _g_Loading[3] = uVar2;
-  *_g_Loading = *_g_Loading | 8;
+  g_Loading->unk_04 = uVar2;
+  uVar3 = Arc_LoadFileEx(iVar1,g_Loading->unk_04,0x185b50,g_Loading,0,0);
+  *(undefined4 *)&g_Loading->field_0xc = uVar3;
+  g_Loading->flags = g_Loading->flags | 8;
   return 1;
 }
 
 // 0x001838f0  size 0xe4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Loading_End(void)
 
 {
@@ -2672,27 +2665,25 @@ void Loading_End(void)
   Gfx_SetFade(2,1,0,0);
   Gfx_SetFade(2,3,0,0);
   Gfx_SetFade(4,9,0,0);
-  if (*(int *)(_g_Loading + 4) != 0) {
+  if (g_Loading->unk_04 != 0) {
     Mem_Free();
   }
-  if (*(int *)(_g_Loading + 8) != 0) {
+  if (g_Loading->unk_08 != 0) {
     Mem_Free();
   }
   iVar2 = 0;
   iVar1 = 0;
   do {
-    Mem_Free(*(undefined4 *)(_g_Loading + iVar1 + 0x14));
+    Mem_Free(*(undefined4 *)((int)g_Loading->workBufs + iVar1));
     iVar2 = iVar2 + 1;
     iVar1 = iVar1 + 4;
   } while (iVar2 < 2);
-  Mem_Free(_g_Loading);
-  _g_Loading = 0;
+  Mem_Free(g_Loading);
+  g_Loading = (LoadingCtx *)0x0;
   return;
 }
 
 // 0x001839e0  size 0xc0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Loading_Begin(undefined8 param_1)
 
 {
@@ -2702,21 +2693,21 @@ void Loading_Begin(undefined8 param_1)
   int iVar4;
   
   uVar2 = Mem_Alloc16(0x1c,param_1);
-  _g_Loading = (int)uVar2;
+  g_Loading = (LoadingCtx *)uVar2;
   Mem_Set16(uVar2,0,0x1c);
   iVar4 = 0;
   iVar3 = 0;
   do {
     uVar1 = Mem_Alloc16(2000,param_1);
-    *(undefined4 *)(_g_Loading + iVar3 + 0x14) = uVar1;
-    Mem_Set16(*(undefined4 *)(_g_Loading + iVar3 + 0x14),0,2000);
+    *(undefined4 *)((int)g_Loading->workBufs + iVar3) = uVar1;
+    Mem_Set16(*(undefined4 *)((int)g_Loading->workBufs + iVar3),0,2000);
     iVar4 = iVar4 + 1;
     iVar3 = iVar3 + 4;
   } while (iVar4 < 2);
-  *(undefined4 *)(_g_Loading + 4) = 0;
-  *(undefined4 *)(_g_Loading + 8) = 0;
-  Cam_Init(*(undefined4 *)(_g_Loading + 0x14));
-  Cam_Init(*(undefined4 *)(_g_Loading + 0x18));
+  g_Loading->unk_04 = 0;
+  g_Loading->unk_08 = 0;
+  Cam_Init(g_Loading->workBufs[0]);
+  Cam_Init(g_Loading->workBufs[1]);
   return;
 }
 
@@ -2747,8 +2738,6 @@ void Cam_Update(undefined8 param_1)
 }
 
 // 0x00183b40  size 0x1a8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined1 Cam_SetMode(undefined8 param_1,char param_2)
 
 {
@@ -2760,7 +2749,7 @@ undefined1 Cam_SetMode(undefined8 param_1,char param_2)
   }
   else {
     *(undefined4 *)(iVar1 + 0x500) = 1;
-    *_g_Loading = *_g_Loading & 10;
+    g_Loading->flags = g_Loading->flags & 10;
     *(undefined4 *)(iVar1 + 0x7c0) = 0;
     uRam0046a028 = uRam0046a028 & 0xfffffff3;
     Gfx_SetFade(2,1,0,0);

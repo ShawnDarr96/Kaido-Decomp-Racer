@@ -880,4 +880,49 @@ typedef struct RaceCarList {  /* size 0x1c */
 
 extern RaceCarList *g_RaceCars;
 
+typedef struct RaceScene {  /* size 0x44 */
+    u32 unk_00;  /* 0x0 */
+    u32 handlers[10];  /* 0x4 */
+    u8 handlerCount;  /* 0x2c */
+    u8 pad_002d[0x3];
+    u32 flags;  /* 0x30 */
+    u32 flagsB;  /* 0x34 */
+    u32 unk_38;  /* 0x38 */
+    u32 unk_3c;  /* 0x3c */
+    u32 unk_40;  /* 0x40 */
+} RaceScene;
+
+extern RaceScene *g_RaceScene;
+
+typedef struct RaceProg {  /* size 0x18 */
+    u16 checkpointFlags;  /* 0x0 */
+    u8 unk_02;  /* 0x2 */
+    u8 pad_0003[0x1];
+    u32 stateFlags;  /* 0x4 */
+    u8 phase;  /* 0x8 */
+    u8 pad_0009[0x3];
+    u32 unk_0c;  /* 0xc */
+    u32 unk_10;  /* 0x10 */
+    u32 unk_14;  /* 0x14 */
+} RaceProg;
+
+extern RaceProg *g_RaceProg;
+
+typedef struct LoadingCtx {  /* size 0x1c */
+    u32 flags;  /* 0x0 */
+    u32 unk_04;  /* 0x4 */
+    u32 unk_08;  /* 0x8 */
+    u8 pad_000c[0x8];
+    void * workBufs[2];  /* 0x14 */
+} LoadingCtx;
+
+extern LoadingCtx *g_Loading;
+
+typedef struct RoadData {  /* size 0x8 */
+    u32 unk_00;  /* 0x0 */
+    void * aiLine;  /* 0x4 */
+} RoadData;
+
+extern RoadData *g_RoadData;
+
 #endif

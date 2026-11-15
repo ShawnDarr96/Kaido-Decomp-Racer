@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x001ec030  size 0x2c8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceIntro_Update(int param_1)
 
 {
@@ -62,7 +60,7 @@ void RaceIntro_Update(int param_1)
     *(undefined4 *)(iVar1 + 0x5c) = 0;
   }
   else if ((iVar4 != 0) && (iVar4 = *(int *)(iVar4 + 0x14), iVar4 != 0)) {
-    fVar9 = (float)Cam_NormalizeDirection(*(undefined4 *)(_g_Loading + 0x14));
+    fVar9 = (float)Cam_NormalizeDirection(g_Loading->workBufs[0]);
     if (10.0 < fVar9) {
       *(undefined4 *)(iVar1 + 0x5c) = 0;
     }

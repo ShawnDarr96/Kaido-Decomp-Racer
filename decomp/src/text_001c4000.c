@@ -38,7 +38,7 @@ void Prop_DrawLeaves(void)
 void Prop_UpdatePaper(int *param_1,undefined8 param_2)
 
 {
-  int iVar1;
+  undefined *puVar1;
   int iVar2;
   int iVar3;
   undefined1 auStack_30 [16];
@@ -47,7 +47,7 @@ void Prop_UpdatePaper(int *param_1,undefined8 param_2)
   
   iVar2 = _g_Props;
   if (_s_RaceIsReplayMode == 0) {
-    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,g_Loading->workBufs[0] + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MovePaper(_g_Props,auStack_10,800,param_2);
@@ -57,10 +57,10 @@ void Prop_UpdatePaper(int *param_1,undefined8 param_2)
     }
   }
   else {
-    iVar1 = *(int *)(_g_Loading + 0x18);
+    puVar1 = g_Loading->workBufs[1];
     iVar3 = _g_Props + 0x4b00;
-    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    sceVu0CopyVector(auStack_30,iVar1 + 0x70);
+    sceVu0CopyVector(auStack_20,g_Loading->workBufs[0] + 0x70);
+    sceVu0CopyVector(auStack_30,puVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MovePaper(iVar2,auStack_20,400,param_2);
@@ -253,58 +253,59 @@ void Prop_DrawPaper(uint param_1)
 void Prop_DrawBirds(uint param_1)
 
 {
-  int iVar1;
+  undefined *puVar1;
   int iVar2;
-  undefined8 uVar3;
+  int iVar3;
+  undefined8 uVar4;
   undefined1 auStack_170 [16];
   undefined1 auStack_160 [352];
   
   if (_s_RaceIsReplayMode == 0) {
     param_1 = param_1 & 0xff;
-    iVar1 = *(int *)(_g_Loading + 0x14);
+    puVar1 = g_Loading->workBufs[0];
     if (param_1 - 2 < 2) {
-      uVar3 = 100;
+      uVar4 = 100;
     }
     else {
-      uVar3 = 800;
+      uVar4 = 800;
     }
-    sceVu0CopyVector(auStack_170,iVar1 + 0x420);
-    uRam00433fa4 = *(undefined4 *)(iVar1 + 0xa8);
+    sceVu0CopyVector(auStack_170,puVar1 + 0x420);
+    uRam00433fa4 = *(undefined4 *)(puVar1 + 0xa8);
     Cam_SetupViewport(0x433f00,0,8);
     maybe_Pkt_InitLayers(auStack_160,0x433f00,0x436180,8,9);
     if (param_1 - 2 < 2) {
-      Prop_DrawModel(0x433f00,auStack_160,_g_PropsB,uVar3,4,4);
+      Prop_DrawModel(0x433f00,auStack_160,_g_PropsB,uVar4,4,4);
     }
     else {
-      Prop_DrawModel(0x433f00,auStack_160,_g_Props,uVar3,4,4);
+      Prop_DrawModel(0x433f00,auStack_160,_g_Props,uVar4,4,4);
     }
     if (iRam00433904 != 0) {
       maybe_Pkt_InitLayers(auStack_160,0x433380,0x436180,0,0);
       if (param_1 - 2 < 2) {
-        Prop_DrawModel(0x433380,auStack_160,_g_PropsB,uVar3,4,4);
+        Prop_DrawModel(0x433380,auStack_160,_g_PropsB,uVar4,4,4);
       }
       else {
-        Prop_DrawModel(0x433380,auStack_160,_g_Props,uVar3,4,4);
+        Prop_DrawModel(0x433380,auStack_160,_g_Props,uVar4,4,4);
       }
     }
   }
   else {
     if ((param_1 & 0xff) - 2 < 2) {
-      uVar3 = 0x32;
-      iVar2 = _g_PropsB + 0x960;
-      iVar1 = _g_PropsB;
+      uVar4 = 0x32;
+      iVar3 = _g_PropsB + 0x960;
+      iVar2 = _g_PropsB;
     }
     else {
-      uVar3 = 400;
-      iVar2 = _g_Props + 0x4b00;
-      iVar1 = _g_Props;
+      uVar4 = 400;
+      iVar3 = _g_Props + 0x4b00;
+      iVar2 = _g_Props;
     }
     Cam_SetupViewport(0x434a80,0,8);
     maybe_Pkt_InitLayers(auStack_160,0x434a80,0x436180,8,9);
-    Prop_DrawModel(0x434a80,auStack_160,iVar1,uVar3,4,4);
+    Prop_DrawModel(0x434a80,auStack_160,iVar2,uVar4,4,4);
     Cam_SetupViewport(0x435040,1,8);
     maybe_Pkt_InitLayers(auStack_160,0x435040,0x436180,8,9);
-    Prop_DrawModel(0x435040,auStack_160,iVar2,uVar3,4,4);
+    Prop_DrawModel(0x435040,auStack_160,iVar3,uVar4,4,4);
   }
   DmaChain_Kick(1,8,9);
   return;
@@ -316,7 +317,7 @@ void Prop_DrawBirds(uint param_1)
 void Prop_UpdateBirds(int *param_1,undefined8 param_2)
 
 {
-  int iVar1;
+  undefined *puVar1;
   int iVar2;
   undefined8 uVar3;
   uint uVar4;
@@ -333,7 +334,7 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
     else {
       uVar3 = 800;
     }
-    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,g_Loading->workBufs[0] + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       if (uVar4 - 2 < 2) {
@@ -351,7 +352,7 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
     }
   }
   else {
-    iVar1 = *(int *)(_g_Loading + 0x18);
+    puVar1 = g_Loading->workBufs[1];
     if (((uint)param_2 & 0xff) - 2 < 2) {
       uVar3 = 0x32;
       iVar5 = _g_PropsB + 0x960;
@@ -362,8 +363,8 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
       iVar5 = _g_Props + 0x4b00;
       iVar2 = _g_Props;
     }
-    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    sceVu0CopyVector(auStack_30,iVar1 + 0x70);
+    sceVu0CopyVector(auStack_20,g_Loading->workBufs[0] + 0x70);
+    sceVu0CopyVector(auStack_30,puVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MoveBirds(iVar2,auStack_20,uVar3,param_2);
@@ -1183,7 +1184,7 @@ void Ffb_Update(undefined8 param_1)
     return;
   }
   uVar8 = RaceScene_GetState();
-  if (((uVar8 & 0x20) != 0) || (cVar5 = RaceProg_Get(), cVar5 != '\x03')) {
+  if (((uVar8 & 0x20) != 0) || (cVar5 = RaceProg_GetPhase(), cVar5 != '\x03')) {
     Ffb_PlayCurb(param_1);
     *(undefined1 *)(iVar9 + 0x6a114) = 0xff;
     *(undefined4 *)(iVar9 + 0x6a118) = 0;

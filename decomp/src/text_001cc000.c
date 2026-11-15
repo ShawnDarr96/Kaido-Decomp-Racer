@@ -139,8 +139,6 @@ float RaceCar_WheelGroundDistance(int param_1,int param_2)
 }
 
 // 0x001ccc10  size 0xac8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Ai_PredictPath(float param_1,RaceCar *param_2,ushort param_3,int param_4,byte param_5,
                    long param_6,ulong param_7)
 
@@ -424,7 +422,7 @@ void Ai_PredictPath(float param_1,RaceCar *param_2,ushort param_3,int param_4,by
   uStack_cc = DAT_003191e4;
   uStack_c8 = DAT_003191e8;
   uStack_c4 = DAT_003191ec;
-  psVar3 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)param_3 * 4);
+  psVar3 = *(short **)(g_RoadData->aiLine + (uint)param_3 * 4);
   sVar2 = *psVar3;
   pfVar7 = (float *)(psVar3 + param_4 * 0x10 + 0x3e);
   pfVar12 = (float *)(psVar3 + sVar2 * 0x10 + param_4 * 6 + 0x3e);

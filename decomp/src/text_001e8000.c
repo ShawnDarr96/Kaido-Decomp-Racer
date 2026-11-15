@@ -106,76 +106,77 @@ LAB_001e8224:
 void RaceSnd_Task(undefined8 param_1)
 
 {
-  int iVar1;
-  long lVar2;
-  undefined8 uVar3;
-  int iVar4;
+  undefined *puVar1;
+  int iVar2;
+  long lVar3;
+  undefined8 uVar4;
   int iVar5;
   int iVar6;
+  int iVar7;
   
-  iVar4 = (int)param_1;
+  iVar5 = (int)param_1;
   if ((uRam0036f25c & 0x20) != 0) {
-    *(undefined4 *)(iVar4 + 0x24) = 7;
+    *(undefined4 *)(iVar5 + 0x24) = 7;
   }
-  if (*(uint *)(iVar4 + 0x24) < 9) {
+  if (*(uint *)(iVar5 + 0x24) < 9) {
                     /* WARNING: Switch is manually overridden */
-    switch(*(uint *)(iVar4 + 0x24)) {
+    switch(*(uint *)(iVar5 + 0x24)) {
     case 0:
-      (**(code **)(**(int **)(iVar4 + 4) + 0x1c))();
-      if (*(int *)(iVar4 + 0x18) == 0) {
-        (**(code **)(**(int **)(iVar4 + 0xc) + 0x1c))();
+      (**(code **)(**(int **)(iVar5 + 4) + 0x1c))();
+      if (*(int *)(iVar5 + 0x18) == 0) {
+        (**(code **)(**(int **)(iVar5 + 0xc) + 0x1c))();
       }
       else {
-        (**(code **)(**(int **)(iVar4 + 0x14) + 0x1c))();
+        (**(code **)(**(int **)(iVar5 + 0x14) + 0x1c))();
       }
       RaceSnd_SetupCars(param_1);
-      *(undefined4 *)(iVar4 + 0x24) = 1;
+      *(undefined4 *)(iVar5 + 0x24) = 1;
       break;
     case 1:
       RaceSnd_UpdateCrowd(param_1);
       break;
     case 2:
-      iVar6 = *(int *)(_g_Loading + 0x14);
+      puVar1 = g_Loading->workBufs[0];
       Snd_StreamGetState(0);
-      lVar2 = Scene_GetParam();
-      if (lVar2 == 4) {
+      lVar3 = Scene_GetParam();
+      if (lVar3 == 4) {
         return;
       }
-      lVar2 = RaceScene_IsPaused();
-      if (lVar2 == 0) {
-        if (*(int *)(iVar6 + 0x500) == 0) {
+      lVar3 = RaceScene_IsPaused();
+      if (lVar3 == 0) {
+        if (*(int *)(puVar1 + 0x500) == 0) {
           if (_g_RaceSnd == 0) {
-            iVar4 = 0;
+            iVar5 = 0;
           }
           else {
-            iVar4 = _g_RaceSnd + 0x80;
+            iVar5 = _g_RaceSnd + 0x80;
           }
-          CarSnd_Update3d(iVar4,iVar6);
+          CarSnd_Update3d(iVar5,puVar1);
         }
         else {
           if (_g_RaceSnd == 0) {
-            iVar4 = 0;
+            iVar5 = 0;
           }
           else {
-            iVar4 = _g_RaceSnd + 0x80;
+            iVar5 = _g_RaceSnd + 0x80;
           }
-          CarSnd_StopVoice(iVar4);
+          CarSnd_StopVoice(iVar5);
         }
       }
       else {
         if (_g_RaceSnd == 0) {
-          iVar6 = 0;
+          iVar7 = 0;
         }
         else {
-          iVar6 = _g_RaceSnd + 0x80;
+          iVar7 = _g_RaceSnd + 0x80;
         }
-        CarSnd_StopVoice(iVar6);
-        *(undefined4 *)(iVar4 + 0x24) = 6;
+        CarSnd_StopVoice(iVar7);
+        *(undefined4 *)(iVar5 + 0x24) = 6;
       }
       break;
     case 3:
-      lVar2 = RaceScene_IsFlag10();
-      if ((lVar2 == 0) && (_s_RaceIsReplayMode != 0)) {
+      lVar3 = RaceScene_IsFlag10();
+      if ((lVar3 == 0) && (_s_RaceIsReplayMode != 0)) {
         RaceSnd_UpdateCars(param_1);
       }
       else {
@@ -189,34 +190,34 @@ void RaceSnd_Task(undefined8 param_1)
       RaceSnd_UpdateMusic(param_1);
       break;
     case 7:
-      iVar6 = 0;
-      lVar2 = GameState_GetRacerCount();
-      if (0 < lVar2) {
-        iVar5 = 0;
+      iVar7 = 0;
+      lVar3 = GameState_GetRacerCount();
+      if (0 < lVar3) {
+        iVar6 = 0;
         do {
           if (_g_RaceSnd == 0) {
-            iVar1 = 0;
+            iVar2 = 0;
           }
           else {
-            iVar1 = _g_RaceSnd + iVar5;
+            iVar2 = _g_RaceSnd + iVar6;
           }
-          CarSnd_StopVoice(iVar1);
-          iVar5 = iVar5 + 0x80;
-          iVar6 = iVar6 + 1;
-          iVar1 = GameState_GetRacerCount();
-        } while (iVar6 < iVar1);
+          CarSnd_StopVoice(iVar2);
+          iVar6 = iVar6 + 0x80;
+          iVar7 = iVar7 + 1;
+          iVar2 = GameState_GetRacerCount();
+        } while (iVar7 < iVar2);
       }
-      (**(code **)(**(int **)(iVar4 + 4) + 0x1c))();
-      if (*(int *)(iVar4 + 0x18) == 0) {
-        (**(code **)(**(int **)(iVar4 + 0xc) + 0x1c))();
+      (**(code **)(**(int **)(iVar5 + 4) + 0x1c))();
+      if (*(int *)(iVar5 + 0x18) == 0) {
+        (**(code **)(**(int **)(iVar5 + 0xc) + 0x1c))();
       }
       else {
-        (**(code **)(**(int **)(iVar4 + 0x14) + 0x1c))();
+        (**(code **)(**(int **)(iVar5 + 0x14) + 0x1c))();
       }
       uRam0036f25c = uRam0036f25c & 0xffffffdf;
-      uVar3 = SndMgr_GetInstance();
-      SndMgr_ResumeAll(uVar3);
-      *(undefined4 *)(iVar4 + 0x24) = 0;
+      uVar4 = SndMgr_GetInstance();
+      SndMgr_ResumeAll(uVar4);
+      *(undefined4 *)(iVar5 + 0x24) = 0;
     }
   }
   return;
@@ -538,88 +539,71 @@ void RaceSnd_StopSlot(undefined4 *param_1,long param_2)
 }
 
 // 0x001e8f20  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceScene_Get_38(void)
+uint RaceScene_Get_38(void)
 
 {
-  return *(undefined4 *)(_g_RaceScene + 0x38);
+  return g_RaceScene->unk_38;
 }
 
 // 0x001e8f30  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceScene_Get_40(void)
+uint RaceScene_Get_40(void)
 
 {
-  return *(undefined4 *)(_g_RaceScene + 0x40);
+  return g_RaceScene->unk_40;
 }
 
 // 0x001e8f40  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsFlag1000(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 0x1000) != 0;
+  return (g_RaceScene->flags & 0x1000) != 0;
 }
 
 // 0x001e8f60  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsFlag400(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 0x400) != 0;
+  return (g_RaceScene->flags & 0x400) != 0;
 }
 
 // 0x001e8f80  size 0x18
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_ClearFlag800(void)
 
 {
-  *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) & 0xfffff7ff;
+  g_RaceScene->flags = g_RaceScene->flags & 0xfffff7ff;
   return;
 }
 
 // 0x001e8fa0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsFlag800(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 0x800) != 0;
+  return (g_RaceScene->flags & 0x800) != 0;
 }
 
 // 0x001e8fc0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsFlag10(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 0x10) != 0;
+  return (g_RaceScene->flags & 0x10) != 0;
 }
 
 // 0x001e8fe0  size 0x24
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsActive(void)
 
 {
   bool bVar1;
   
-  if (_g_RaceScene == 0) {
+  if (g_RaceScene == (RaceScene *)0x0) {
     bVar1 = false;
   }
   else {
-    bVar1 = (*(uint *)(_g_RaceScene + 0x30) & 0x20000) != 0;
+    bVar1 = (g_RaceScene->flags & 0x20000) != 0;
   }
   return bVar1;
 }
 
 // 0x001e9010  size 0x20
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 26 callers */
 
 bool RaceScene_IsPaused(void)
@@ -627,105 +611,87 @@ bool RaceScene_IsPaused(void)
 {
   bool bVar1;
   
-  if (_g_RaceScene == 0) {
+  if (g_RaceScene == (RaceScene *)0x0) {
     bVar1 = false;
   }
   else {
-    bVar1 = (*(uint *)(_g_RaceScene + 0x30) & 0x40) != 0;
+    bVar1 = (g_RaceScene->flags & 0x40) != 0;
   }
   return bVar1;
 }
 
 // 0x001e9030  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_SetFlagB4(void)
 
 {
-  *(uint *)(_g_RaceScene + 0x34) = *(uint *)(_g_RaceScene + 0x34) | 4;
+  g_RaceScene->flagsB = g_RaceScene->flagsB | 4;
   return;
 }
 
 // 0x001e9050  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsFlag2(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 2) != 0;
+  return (g_RaceScene->flags & 2) != 0;
 }
 
 // 0x001e9070  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_SetFlagB2(void)
 
 {
-  *(uint *)(_g_RaceScene + 0x34) = *(uint *)(_g_RaceScene + 0x34) | 2;
+  g_RaceScene->flagsB = g_RaceScene->flagsB | 2;
   return;
 }
 
 // 0x001e9090  size 0x18
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsReplay(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 0x10000) != 0;
+  return (g_RaceScene->flags & 0x10000) != 0;
 }
 
 // 0x001e90b0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool RaceScene_IsFlag8000(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 0x8000) != 0;
+  return (g_RaceScene->flags & 0x8000) != 0;
 }
 
 // 0x001e90d0  size 0x18
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_ClearFlag1(void)
 
 {
-  *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) & 0xfffffffe;
+  g_RaceScene->flags = g_RaceScene->flags & 0xfffffffe;
   return;
 }
 
 // 0x001e90f0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* flag 1; 13 callers */
 
 bool RaceScene_IsRunning(void)
 
 {
-  return (*(uint *)(_g_RaceScene + 0x30) & 1) != 0;
+  return (g_RaceScene->flags & 1) != 0;
 }
 
 // 0x001e9110  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 RaceScene_GetState(void)
+uint RaceScene_GetState(void)
 
 {
-  return *_g_RaceScene;
+  return g_RaceScene->unk_00;
 }
 
 // 0x001e9120  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 10 callers */
 
 void RaceScene_SetFlags(uint param_1)
 
 {
-  *_g_RaceScene = *_g_RaceScene | param_1;
+  g_RaceScene->unk_00 = g_RaceScene->unk_00 | param_1;
   return;
 }
 
 // 0x001e9140  size 0x5f0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateMachine(undefined8 param_1)
 
 {
@@ -751,14 +717,14 @@ void RaceScene_StateMachine(undefined8 param_1)
   undefined8 uStack_10;
   undefined *puStack_8;
   
-  uVar1 = *_g_RaceScene;
+  uVar1 = g_RaceScene->unk_00;
   iVar5 = (int)param_1;
   if ((uVar1 & 1) == 0) {
     if ((uVar1 & 2) == 0) {
       if ((uVar1 & 4) == 0) {
         if ((uVar1 & 8) == 0) {
           if ((uVar1 & 0x10) != 0) {
-            *_g_RaceScene = *_g_RaceScene & 0xffffffef;
+            g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffffef;
             puVar2 = PTR_RaceScene_StateResult_0031c820;
             uStack_50 = DAT_0031c818;
             uVar3 = uStack_50;
@@ -776,7 +742,7 @@ void RaceScene_StateMachine(undefined8 param_1)
           }
         }
         else {
-          *_g_RaceScene = *_g_RaceScene & 0xfffffff7;
+          g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffffff7;
           puVar2 = PTR_RaceScene_StateRetry_0031c810;
           uStack_40 = DAT_0031c808;
           uVar3 = uStack_40;
@@ -794,7 +760,7 @@ void RaceScene_StateMachine(undefined8 param_1)
         }
       }
       else {
-        *_g_RaceScene = *_g_RaceScene & 0xfffffffb;
+        g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffffffb;
         puVar2 = PTR_RaceScene_StateNextRace_0031c800;
         uStack_30 = DAT_0031c7f8;
         uVar3 = uStack_30;
@@ -812,7 +778,7 @@ void RaceScene_StateMachine(undefined8 param_1)
       }
     }
     else {
-      *_g_RaceScene = *_g_RaceScene & 0xfffffffd;
+      g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffffffd;
       puVar2 = PTR_RaceScene_StateSaveGhost_0031c7f0;
       uStack_20 = DAT_0031c7e8;
       uVar3 = uStack_20;
@@ -830,7 +796,7 @@ void RaceScene_StateMachine(undefined8 param_1)
     }
   }
   else {
-    *_g_RaceScene = uVar1 & 0xfffffffe;
+    g_RaceScene->unk_00 = uVar1 & 0xfffffffe;
     puVar2 = PTR_RaceScene_StateSaveReplay_0031c7e0;
     uStack_10 = DAT_0031c7d8;
     uVar3 = uStack_10;
@@ -846,22 +812,22 @@ void RaceScene_StateMachine(undefined8 param_1)
       __ptmf_scall(param_1);
     }
   }
-  if ((*_g_RaceScene & 0x40000) != 0) {
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x10000;
+  if ((g_RaceScene->unk_00 & 0x40000) != 0) {
+    g_RaceScene->flags = g_RaceScene->flags | 0x10000;
   }
-  if ((*_g_RaceScene & 0x80000) != 0) {
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xfffeffff;
+  if ((g_RaceScene->unk_00 & 0x80000) != 0) {
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffeffff;
   }
-  if ((*_g_RaceScene & 0x400) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xfffffbff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] | 8;
+  if ((g_RaceScene->unk_00 & 0x400) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffffbff;
+    g_RaceScene->flags = g_RaceScene->flags | 8;
   }
-  if ((*_g_RaceScene & 0x800) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xfffff7ff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xfffffff7;
+  if ((g_RaceScene->unk_00 & 0x800) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffff7ff;
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffffff7;
   }
-  if ((*_g_RaceScene & 0x40) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xffffffbf;
+  if ((g_RaceScene->unk_00 & 0x40) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffffbf;
     puVar2 = PTR_RaceScene_StateOptions_0031c830;
     uStack_60 = DAT_0031c828;
     uVar3 = uStack_60;
@@ -877,8 +843,8 @@ void RaceScene_StateMachine(undefined8 param_1)
       __ptmf_scall(param_1);
     }
   }
-  if ((*_g_RaceScene & 0x80) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xffffff7f;
+  if ((g_RaceScene->unk_00 & 0x80) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffff7f;
     puVar2 = PTR_RaceScene_StatePause_0031c840;
     uStack_70 = DAT_0031c838;
     uVar3 = uStack_70;
@@ -894,41 +860,41 @@ void RaceScene_StateMachine(undefined8 param_1)
       __ptmf_scall(param_1);
     }
   }
-  if ((*_g_RaceScene & 0x100) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xfffffeff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x100;
+  if ((g_RaceScene->unk_00 & 0x100) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffffeff;
+    g_RaceScene->flags = g_RaceScene->flags | 0x100;
   }
-  if ((*_g_RaceScene & 0x200) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xfffffdff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xfffffeff;
+  if ((g_RaceScene->unk_00 & 0x200) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffffdff;
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffffeff;
   }
-  if ((*_g_RaceScene & 0x4000) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xffffbfff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x400;
+  if ((g_RaceScene->unk_00 & 0x4000) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffbfff;
+    g_RaceScene->flags = g_RaceScene->flags | 0x400;
   }
-  if ((*_g_RaceScene & 0x8000) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xffff7fff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xfffffbff;
+  if ((g_RaceScene->unk_00 & 0x8000) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffff7fff;
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffffbff;
   }
-  if ((*_g_RaceScene & 0x1000) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xffffefff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x800;
+  if ((g_RaceScene->unk_00 & 0x1000) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffefff;
+    g_RaceScene->flags = g_RaceScene->flags | 0x800;
   }
-  if ((*_g_RaceScene & 0x2000) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xffffdfff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xfffff7ff;
+  if ((g_RaceScene->unk_00 & 0x2000) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffdfff;
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffff7ff;
   }
-  if ((*_g_RaceScene & 0x10000) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xfffeffff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x1000;
+  if ((g_RaceScene->unk_00 & 0x10000) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffeffff;
+    g_RaceScene->flags = g_RaceScene->flags | 0x1000;
   }
-  if ((*_g_RaceScene & 0x20000) != 0) {
-    *_g_RaceScene = *_g_RaceScene & 0xfffdffff;
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xffffefff;
+  if ((g_RaceScene->unk_00 & 0x20000) != 0) {
+    g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xfffdffff;
+    g_RaceScene->flags = g_RaceScene->flags & 0xffffefff;
   }
-  if (((*_g_RaceScene & 0x20) != 0) &&
-     (*_g_RaceScene = *_g_RaceScene & 0xffffffdf, puVar2 = PTR_RaceScene_StateOptions_0031c850,
-     (_g_RaceScene[0xc] & 0x100) == 0)) {
+  if (((g_RaceScene->unk_00 & 0x20) != 0) &&
+     (g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffffffdf,
+     puVar2 = PTR_RaceScene_StateOptions_0031c850, (g_RaceScene->flags & 0x100) == 0)) {
     uStack_80 = DAT_0031c848;
     uVar3 = uStack_80;
     uStack_80._0_4_ = (undefined4)DAT_0031c848;
@@ -943,7 +909,7 @@ void RaceScene_StateMachine(undefined8 param_1)
       __ptmf_scall(param_1);
     }
   }
-  *_g_RaceScene = 0;
+  g_RaceScene->unk_00 = 0;
   return;
 }
 
@@ -1007,8 +973,6 @@ void maybe_RaceTask_SetupControls(int *param_1)
 }
 
 // 0x001e98d0  size 0xac
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StatePause(int param_1)
 
 {
@@ -1016,9 +980,9 @@ void RaceScene_StatePause(int param_1)
   undefined *puVar2;
   uint *puVar3;
   
-  puVar3 = (uint *)(_g_RaceScene + 0x30);
-  if ((*(uint *)(_g_RaceScene + 0x30) & 0x80) == 0) {
-    *puVar3 = *(uint *)(_g_RaceScene + 0x30) | 0x80;
+  puVar3 = &g_RaceScene->flags;
+  if ((g_RaceScene->flags & 0x80) == 0) {
+    *puVar3 = g_RaceScene->flags | 0x80;
     Scene_SetParam(5);
     puVar2 = PTR_RaceScene_StateMachine_0031c7d0;
     uVar1 = DAT_0031c7cc;
@@ -1062,14 +1026,14 @@ void RaceScene_StateOptions(undefined4 *param_1)
   if (cVar5 == '\r') {
     iVar11 = 2;
   }
-  if (_g_RaceScene == (uint *)0x0) {
+  if (g_RaceScene == (RaceScene *)0x0) {
     bVar2 = false;
   }
   else {
-    bVar2 = (_g_RaceScene[0xc] & 0x40) != 0;
+    bVar2 = (g_RaceScene->flags & 0x40) != 0;
   }
   if (bVar2) {
-    _g_RaceScene[0xc] = _g_RaceScene[0xc] & 0xfffdffbf;
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffdffbf;
     Scene_SetParam(0);
     iVar10 = 0;
     if (iVar11 != 0) {
@@ -1091,13 +1055,13 @@ void RaceScene_StateOptions(undefined4 *param_1)
     param_1[4] = puVar4;
   }
   else {
-    if ((*_g_RaceScene & 0x100000) == 0) {
-      _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x40;
+    if ((g_RaceScene->unk_00 & 0x100000) == 0) {
+      g_RaceScene->flags = g_RaceScene->flags | 0x40;
     }
     else {
-      *_g_RaceScene = *_g_RaceScene & 0xffefffff;
-      _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x20000;
-      _g_RaceScene[0xc] = _g_RaceScene[0xc] | 0x40;
+      g_RaceScene->unk_00 = g_RaceScene->unk_00 & 0xffefffff;
+      g_RaceScene->flags = g_RaceScene->flags | 0x20000;
+      g_RaceScene->flags = g_RaceScene->flags | 0x40;
     }
     Scene_SetParam(1);
     iVar10 = 0;
@@ -1137,8 +1101,6 @@ void RaceScene_StateOptions(undefined4 *param_1)
 }
 
 // 0x001e9bf0  size 0x1a0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateResult(undefined8 param_1)
 
 {
@@ -1154,25 +1116,25 @@ void RaceScene_StateResult(undefined8 param_1)
   
   lVar7 = RaceScene_IsFlag10();
   if (lVar7 == 0) {
-    *(int *)(_g_RaceScene + 0x3c) = *(int *)(_g_RaceScene + 0x38) + -1;
+    g_RaceScene->unk_3c = g_RaceScene->unk_38 - 1;
   }
-  *(undefined4 *)(_g_RaceScene + 0x40) = 0;
-  *(undefined4 *)(_g_RaceScene + 0x38) = 0;
-  if (_g_RaceScene == 0) {
+  g_RaceScene->unk_40 = 0;
+  g_RaceScene->unk_38 = 0;
+  if (g_RaceScene == (RaceScene *)0x0) {
     bVar1 = false;
   }
   else {
-    bVar1 = (*(uint *)(_g_RaceScene + 0x30) & 0x40) != 0;
+    bVar1 = (g_RaceScene->flags & 0x40) != 0;
   }
   if (bVar1) {
     Scene_SetParam(0);
   }
-  *(undefined4 *)(_g_RaceScene + 0x30) = 0;
-  *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x10;
+  g_RaceScene->flags = 0;
+  g_RaceScene->flags = g_RaceScene->flags | 0x10;
   lVar7 = GameState_Get_3ac8();
   if (lVar7 != -1) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x400;
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x400;
+    g_RaceScene->flags = g_RaceScene->flags | 0x2000;
   }
   RaceScene_CountFinished();
   cVar5 = GameState_Get_354_7050();
@@ -1185,7 +1147,7 @@ void RaceScene_StateResult(undefined8 param_1)
   iVar6 = (int)param_1;
   if (lVar7 != -1) {
     GameState_FreeReplay();
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) & 0xfffff7ff;
+    g_RaceScene->flags = g_RaceScene->flags & 0xfffff7ff;
     puVar3 = PTR_RaceScene_LoadGhost_0031c780;
     uVar2 = DAT_0031c77c;
     *(undefined4 *)(iVar6 + 8) = DAT_0031c778;
@@ -1284,8 +1246,6 @@ void RaceScene_StateReplayMenu(undefined8 param_1)
 }
 
 // 0x001e9f50  size 0x19c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateNextRace(undefined8 param_1)
 
 {
@@ -1303,20 +1263,20 @@ void RaceScene_StateNextRace(undefined8 param_1)
   
   lVar5 = RaceScene_IsFlag10();
   if (lVar5 == 0) {
-    *(int *)(_g_RaceScene + 0x3c) = *(int *)(_g_RaceScene + 0x38) + -1;
+    g_RaceScene->unk_3c = g_RaceScene->unk_38 - 1;
   }
-  *(undefined4 *)(_g_RaceScene + 0x40) = 0;
-  *(undefined4 *)(_g_RaceScene + 0x38) = 0;
-  if (_g_RaceScene == 0) {
+  g_RaceScene->unk_40 = 0;
+  g_RaceScene->unk_38 = 0;
+  if (g_RaceScene == (RaceScene *)0x0) {
     bVar1 = false;
   }
   else {
-    bVar1 = (*(uint *)(_g_RaceScene + 0x30) & 0x40) != 0;
+    bVar1 = (g_RaceScene->flags & 0x40) != 0;
   }
   if (bVar1) {
     Scene_SetParam(0);
   }
-  *(undefined4 *)(_g_RaceScene + 0x30) = 0;
+  g_RaceScene->flags = 0;
   lVar5 = Race_AdvanceCheckpoint();
   puVar2 = PTR_RaceScene_StateRetry_0031c750;
   iVar7 = (int)param_1;
@@ -1403,20 +1363,20 @@ void RaceScene_StateSaveGhost(undefined8 param_1)
   bVar3 = false;
   lVar7 = RaceScene_IsFlag10();
   if (lVar7 == 0) {
-    *(int *)(_g_RaceScene + 0x3c) = *(int *)(_g_RaceScene + 0x38) + -1;
+    g_RaceScene->unk_3c = g_RaceScene->unk_38 - 1;
   }
-  *(undefined4 *)(_g_RaceScene + 0x40) = 0;
-  *(undefined4 *)(_g_RaceScene + 0x38) = 0;
-  if (_g_RaceScene == 0) {
+  g_RaceScene->unk_40 = 0;
+  g_RaceScene->unk_38 = 0;
+  if (g_RaceScene == (RaceScene *)0x0) {
     bVar2 = false;
   }
   else {
-    bVar2 = (*(uint *)(_g_RaceScene + 0x30) & 0x40) != 0;
+    bVar2 = (g_RaceScene->flags & 0x40) != 0;
   }
   if (bVar2) {
     Scene_SetParam(0);
   }
-  *(undefined4 *)(_g_RaceScene + 0x30) = 0;
+  g_RaceScene->flags = 0;
   uVar8 = GameState_Get_35c();
   GameState_Set_360(uVar8);
   GameState_Set_35c(0);
@@ -1482,8 +1442,8 @@ void RaceScene_StateSaveGhost(undefined8 param_1)
     iVar14 = *(int *)(_g_AiDrivers + 4);
     iVar6 = Replay_GetHeader();
     memcpy(iVar14 + 0x1d8,iVar6 + 0x40c,0x69784);
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x1000;
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x1000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x2000;
   }
   puVar4 = PTR_RaceScene_StateFinish_0031c740;
   uStack_10 = DAT_0031c738;
@@ -1519,11 +1479,11 @@ void RaceScene_StateLoadGhost(undefined8 param_1)
   undefined *puStack_8;
   
   RaceScene_CheckReplayData();
-  *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x10;
+  g_RaceScene->flags = g_RaceScene->flags | 0x10;
   iVar5 = *_g_AiDrivers;
   piVar3 = (int *)maybe_Replay_GetSize();
   memcpy(iVar5 + 0x1d8,*piVar3 + 0x40c,0x69784);
-  *(undefined4 *)(_g_RaceScene + 0x3c) = *(undefined4 *)(*piVar3 + 0x40c);
+  g_RaceScene->unk_3c = *(uint *)(*piVar3 + 0x40c);
   puVar1 = PTR_RaceScene_StateFinish_0031c730;
   uStack_10 = DAT_0031c728;
   uVar2 = uStack_10;
@@ -1543,8 +1503,6 @@ void RaceScene_StateLoadGhost(undefined8 param_1)
 }
 
 // 0x001ea4f0  size 0xf0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateSaveReplay(undefined8 param_1)
 
 {
@@ -1566,7 +1524,7 @@ void RaceScene_StateSaveReplay(undefined8 param_1)
     uVar5 = maybe_GameState_GetFlag();
     lVar3 = RaceEntry_SetName(uVar4,uVar5);
     if (lVar3 != 0) {
-      *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x1000;
+      g_RaceScene->flags = g_RaceScene->flags | 0x1000;
     }
   }
   puVar1 = PTR_RaceScene_StateFinish_0031c720;
@@ -1605,23 +1563,21 @@ undefined8 RaceScene_CountFinished(void)
       if (*(int *)(*_g_AiDrivers + 0x1d8) == 0) {
         return 0;
       }
-      *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x1000;
-      *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+      g_RaceScene->flags = g_RaceScene->flags | 0x1000;
+      g_RaceScene->flags = g_RaceScene->flags | 0x2000;
       return 1;
     }
     lVar2 = GameState_GetTotalCarCount();
     if ((lVar2 == 2) && (lVar2 = GameState_GetPlayerCount(), lVar2 == 2)) {
       uVar3 = 1;
-      *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x1000;
-      *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+      g_RaceScene->flags = g_RaceScene->flags | 0x1000;
+      g_RaceScene->flags = g_RaceScene->flags | 0x2000;
     }
   }
   return uVar3;
 }
 
 // 0x001ea6d0  size 0x188
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 RaceScene_CheckReplayData(void)
 
 {
@@ -1633,18 +1589,18 @@ undefined4 RaceScene_CheckReplayData(void)
   cVar1 = GameState_Get_354();
   if (((((cVar1 == '\a') || (cVar1 == '\x03')) || (cVar1 == '\x02')) || (cVar1 == '\x01')) &&
      (lVar2 = GameState_Get_48(), 0 < lVar2)) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x2000;
   }
   lVar2 = GameState_Get_3acc();
   if (lVar2 != 0) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x2000;
     lVar2 = GameState_Get_3ad0();
     if (lVar2 == 0) {
       lVar2 = GameState_GetReplayValue();
       if (lVar2 != 0) {
         uVar3 = 1;
-        *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x400;
-        *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+        g_RaceScene->flags = g_RaceScene->flags | 0x400;
+        g_RaceScene->flags = g_RaceScene->flags | 0x2000;
       }
     }
     else {
@@ -1656,28 +1612,26 @@ undefined4 RaceScene_CheckReplayData(void)
         }
         else {
           uVar3 = 1;
-          *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x400;
-          *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+          g_RaceScene->flags = g_RaceScene->flags | 0x400;
+          g_RaceScene->flags = g_RaceScene->flags | 0x2000;
         }
       }
       else {
         uVar3 = 1;
-        *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x400;
-        *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+        g_RaceScene->flags = g_RaceScene->flags | 0x400;
+        g_RaceScene->flags = g_RaceScene->flags | 0x2000;
       }
     }
   }
   lVar2 = GameState_Get_3ad0();
   if (lVar2 != 0) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x800;
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x2000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x800;
+    g_RaceScene->flags = g_RaceScene->flags | 0x2000;
   }
   return uVar3;
 }
 
 // 0x001ea860  size 0x94
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateWaitSound(int param_1)
 
 {
@@ -1685,9 +1639,9 @@ void RaceScene_StateWaitSound(int param_1)
   undefined *puVar2;
   long lVar3;
   
-  if ((((*(uint *)(_g_RaceScene + 0x30) & 2) != 0) && (lVar3 = SndMgr_IsIdle(), lVar3 != 0)) &&
+  if ((((g_RaceScene->flags & 2) != 0) && (lVar3 = SndMgr_IsIdle(), lVar3 != 0)) &&
      (lVar3 = maybe_RaceHud_IsBusy(), lVar3 == 0)) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 1;
+    g_RaceScene->flags = g_RaceScene->flags | 1;
     puVar2 = PTR_RaceScene_Tick_0031c710;
     uVar1 = DAT_0031c70c;
     *(undefined4 *)(param_1 + 8) = DAT_0031c708;
@@ -1698,8 +1652,6 @@ void RaceScene_StateWaitSound(int param_1)
 }
 
 // 0x001ea900  size 0x8c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateEnterA(undefined8 param_1)
 
 {
@@ -1711,7 +1663,7 @@ void RaceScene_StateEnterA(undefined8 param_1)
   undefined *puStack_8;
   
   puVar1 = PTR_RaceScene_StateReplayMenu_0031c700;
-  if ((*(uint *)(_g_RaceScene + 0x30) & 0x4000) != 0) {
+  if ((g_RaceScene->flags & 0x4000) != 0) {
     uStack_10 = DAT_0031c6f8;
     uVar2 = uStack_10;
     uStack_10._0_4_ = (undefined4)DAT_0031c6f8;
@@ -1731,8 +1683,6 @@ void RaceScene_StateEnterA(undefined8 param_1)
 }
 
 // 0x001ea990  size 0xe8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_LoadReplay(int param_1)
 
 {
@@ -1744,7 +1694,7 @@ void RaceScene_LoadReplay(int param_1)
   
   lVar3 = GameState_Get_3ac8();
   if (lVar3 == -1) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x4000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x4000;
   }
   else {
     lVar3 = GameState_Get_3acc();
@@ -1765,8 +1715,6 @@ void RaceScene_LoadReplay(int param_1)
 }
 
 // 0x001eaa80  size 0x8c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateEnterB(undefined8 param_1)
 
 {
@@ -1778,7 +1726,7 @@ void RaceScene_StateEnterB(undefined8 param_1)
   undefined *puStack_8;
   
   puVar1 = PTR_RaceScene_StateFinish_0031c6e0;
-  if ((*(uint *)(_g_RaceScene + 0x30) & 0x4000) != 0) {
+  if ((g_RaceScene->flags & 0x4000) != 0) {
     uStack_10 = DAT_0031c6d8;
     uVar2 = uStack_10;
     uStack_10._0_4_ = (undefined4)DAT_0031c6d8;
@@ -1798,8 +1746,6 @@ void RaceScene_StateEnterB(undefined8 param_1)
 }
 
 // 0x001eab10  size 0xf4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateCountdown(undefined8 param_1)
 
 {
@@ -1814,7 +1760,7 @@ void RaceScene_StateCountdown(undefined8 param_1)
   undefined8 uStack_10;
   undefined *puStack_8;
   
-  if ((*(uint *)(_g_RaceScene + 0x30) & 0x4000) != 0) {
+  if ((g_RaceScene->flags & 0x4000) != 0) {
     cVar4 = RaceCtx_GetMode();
     puVar2 = PTR_RaceScene_StateSaveReplay_0031c6d0;
     puVar1 = PTR_RaceScene_StateLoadGhost_0031c6c0;
@@ -1854,8 +1800,6 @@ void RaceScene_StateCountdown(undefined8 param_1)
 }
 
 // 0x001eac10  size 0xd0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_LoadGhost(int param_1)
 
 {
@@ -1867,7 +1811,7 @@ void RaceScene_LoadGhost(int param_1)
   
   lVar3 = GameState_Get_3ac8();
   if (lVar3 == -1) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x4000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x4000;
   }
   else {
     uVar4 = GameState_Get_3ac8();
@@ -1884,8 +1828,6 @@ void RaceScene_LoadGhost(int param_1)
 }
 
 // 0x001eace0  size 0xe8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_ReloadReplay(int param_1)
 
 {
@@ -1897,7 +1839,7 @@ void RaceScene_ReloadReplay(int param_1)
   
   lVar3 = GameState_Get_3ac8();
   if (lVar3 == -1) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x4000;
+    g_RaceScene->flags = g_RaceScene->flags | 0x4000;
   }
   else {
     lVar3 = GameState_Get_3acc();
@@ -1918,8 +1860,6 @@ void RaceScene_ReloadReplay(int param_1)
 }
 
 // 0x001eadd0  size 0xe8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StartReplay(void)
 
 {
@@ -1936,13 +1876,11 @@ void RaceScene_StartReplay(void)
     iVar2 = GameState_Get_3acc();
     GameState_Set_364(*(undefined4 *)(iVar2 + 4));
   }
-  *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x4000;
+  g_RaceScene->flags = g_RaceScene->flags | 0x4000;
   return;
 }
 
 // 0x001eaec0  size 0x58
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_ApplyDifficulty(int param_1)
 
 {
@@ -1950,7 +1888,7 @@ void RaceScene_ApplyDifficulty(int param_1)
   undefined *puVar2;
   
   Ai_SetupDifficulty();
-  *(uint *)(_g_RaceScene + 0x34) = *(uint *)(_g_RaceScene + 0x34) | 0x8000;
+  g_RaceScene->flagsB = g_RaceScene->flagsB | 0x8000;
   puVar2 = PTR_RaceScene_StateWaitSound_0031c690;
   uVar1 = DAT_0031c68c;
   *(undefined4 *)(param_1 + 8) = DAT_0031c688;
@@ -1960,8 +1898,6 @@ void RaceScene_ApplyDifficulty(int param_1)
 }
 
 // 0x001eaf20  size 0xa4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateFinish(undefined8 param_1)
 
 {
@@ -1972,7 +1908,7 @@ void RaceScene_StateFinish(undefined8 param_1)
   undefined8 uStack_10;
   undefined *puStack_8;
   
-  if ((*(uint *)(_g_RaceScene + 0x30) & 4) != 0) {
+  if ((g_RaceScene->flags & 4) != 0) {
     GameState_SetupStartGrid();
     GameState_UpdateTimestamp();
     GameState_ApplyGarage();
@@ -1996,8 +1932,6 @@ void RaceScene_StateFinish(undefined8 param_1)
 }
 
 // 0x001eafd0  size 0x150
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_CheckRules(void)
 
 {
@@ -2007,10 +1941,10 @@ void RaceScene_CheckRules(void)
   long lVar4;
   
   lVar4 = 0;
-  if ('\0' < *(char *)(_g_RaceScene + 0x2c)) {
+  if ('\0' < (char)g_RaceScene->handlerCount) {
     iVar3 = 0;
     do {
-      uVar1 = *(uint *)(_g_RaceScene + iVar3 + 4);
+      uVar1 = *(uint *)((int)g_RaceScene->handlers + iVar3);
       uVar2 = (undefined1)lVar4;
       if ((uVar1 & 0x80) == 0) {
         if ((uVar1 & 0x100) == 0) {
@@ -2046,47 +1980,43 @@ void RaceScene_CheckRules(void)
         RaceRule_CheckFreeRun(uVar2);
       }
       lVar4 = (long)((int)lVar4 + 1);
-      *(undefined4 *)(_g_RaceScene + iVar3 + 4) = 0;
+      *(undefined4 *)((int)g_RaceScene->handlers + iVar3) = 0;
       iVar3 = iVar3 + 4;
-    } while (lVar4 < *(char *)(_g_RaceScene + 0x2c));
+    } while (lVar4 < (char)g_RaceScene->handlerCount);
   }
-  *(undefined1 *)(_g_RaceScene + 0x2c) = 0;
+  g_RaceScene->handlerCount = '\0';
   return;
 }
 
 // 0x001eb140  size 0x40
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* appends to a 10-entry handler list at +4, count at +0x2c (was RaceScene_GetMode) */
 
-bool RaceScene_GetMode(undefined4 param_1)
+bool maybe_RaceScene_AddHandler(uint param_1)
 
 {
-  char cVar1;
+  uchar uVar1;
   
-  cVar1 = *(char *)(_g_RaceScene + 0x2c);
-  if (cVar1 < '\n') {
-    *(undefined4 *)(cVar1 * 4 + _g_RaceScene + 4) = param_1;
-    *(char *)(_g_RaceScene + 0x2c) = *(char *)(_g_RaceScene + 0x2c) + '\x01';
+  uVar1 = g_RaceScene->handlerCount;
+  if ((char)uVar1 < '\n') {
+    g_RaceScene->handlers[(char)uVar1] = param_1;
+    g_RaceScene->handlerCount = g_RaceScene->handlerCount + '\x01';
   }
-  return cVar1 < '\n';
+  return (char)uVar1 < '\n';
 }
 
 // 0x001eb180  size 0x54
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_Tick(void)
 
 {
   RaceScene_StateMachine();
-  *(int *)(_g_RaceScene + 0x40) = *(int *)(_g_RaceScene + 0x40) + 1;
-  if ((*(uint *)(_g_RaceScene + 0x30) & 8) != 0) {
-    *(int *)(_g_RaceScene + 0x38) = *(int *)(_g_RaceScene + 0x38) + 1;
+  g_RaceScene->unk_40 = g_RaceScene->unk_40 + 1;
+  if ((g_RaceScene->flags & 8) != 0) {
+    g_RaceScene->unk_38 = g_RaceScene->unk_38 + 1;
   }
   return;
 }
 
 // 0x001eb1e0  size 0xc4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_StateRacing(int param_1)
 
 {
@@ -2094,19 +2024,19 @@ void RaceScene_StateRacing(int param_1)
   long lVar2;
   
   iVar1 = *(int *)(param_1 + 0x14);
-  if ((*(uint *)(_g_RaceScene + 0x34) & 2) != 0) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 2;
+  if ((g_RaceScene->flagsB & 2) != 0) {
+    g_RaceScene->flags = g_RaceScene->flags | 2;
   }
-  if ((*(uint *)(_g_RaceScene + 0x34) & 4) != 0) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 4;
+  if ((g_RaceScene->flagsB & 4) != 0) {
+    g_RaceScene->flags = g_RaceScene->flags | 4;
   }
-  if ((*(uint *)(_g_RaceScene + 0x34) & 0x8000) != 0) {
-    *(uint *)(_g_RaceScene + 0x30) = *(uint *)(_g_RaceScene + 0x30) | 0x8000;
+  if ((g_RaceScene->flagsB & 0x8000) != 0) {
+    g_RaceScene->flags = g_RaceScene->flags | 0x8000;
   }
-  if ((*(uint *)(_g_RaceScene + 0x34) & 0x20) != 0) {
-    *(undefined4 *)(_g_RaceScene + 0x30) = 0;
+  if ((g_RaceScene->flagsB & 0x20) != 0) {
+    g_RaceScene->flags = 0;
   }
-  *(undefined4 *)(_g_RaceScene + 0x34) = 0;
+  g_RaceScene->flagsB = 0;
   RaceScene_CheckRules();
   lVar2 = __ptmf_test(iVar1 + 8);
   if (lVar2 != 0) {
@@ -2116,21 +2046,17 @@ void RaceScene_StateRacing(int param_1)
 }
 
 // 0x001eb2b0  size 0x30
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_Free(void)
 
 {
   GameState_FreeReplay();
   GameState_FreeGhost();
-  Mem_Free(_g_RaceScene);
-  _g_RaceScene = 0;
+  Mem_Free(g_RaceScene);
+  g_RaceScene = (RaceScene *)0x0;
   return;
 }
 
 // 0x001eb2e0  size 0x140
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceScene_Alloc(int param_1)
 
 {
@@ -2145,26 +2071,26 @@ void RaceScene_Alloc(int param_1)
   
   puVar1 = *(undefined4 **)(param_1 + 0x14);
   uVar3 = Mem_Alloc16(0x44,0x430750);
-  _g_RaceScene = (undefined4 *)uVar3;
+  g_RaceScene = (RaceScene *)uVar3;
   Mem_Set16(uVar3,0,0x44);
   iVar6 = 0;
   iVar5 = 0;
-  *_g_RaceScene = 0;
+  g_RaceScene->unk_00 = 0;
   do {
     iVar6 = iVar6 + 5;
-    *(undefined4 *)((int)_g_RaceScene + iVar5 + 4) = 0;
-    *(undefined4 *)((int)_g_RaceScene + iVar5 + 8) = 0;
-    *(undefined4 *)((int)_g_RaceScene + iVar5 + 0xc) = 0;
-    *(undefined4 *)((int)_g_RaceScene + iVar5 + 0x10) = 0;
-    *(undefined4 *)((int)_g_RaceScene + iVar5 + 0x14) = 0;
+    *(undefined4 *)((int)g_RaceScene->handlers + iVar5) = 0;
+    *(undefined4 *)((int)g_RaceScene->handlers + iVar5 + 4) = 0;
+    *(undefined4 *)((int)g_RaceScene->handlers + iVar5 + 8) = 0;
+    *(undefined4 *)((int)g_RaceScene->handlers + iVar5 + 0xc) = 0;
+    *(undefined4 *)((int)g_RaceScene->handlers + iVar5 + 0x10) = 0;
     iVar5 = iVar5 + 0x14;
   } while (iVar6 < 10);
-  *(undefined1 *)(_g_RaceScene + 0xb) = 0;
-  _g_RaceScene[0xc] = 0;
-  _g_RaceScene[0xd] = 0;
-  _g_RaceScene[0x10] = 0;
-  _g_RaceScene[0xe] = 0;
-  _g_RaceScene[0xf] = 0;
+  g_RaceScene->handlerCount = '\0';
+  g_RaceScene->flags = 0;
+  g_RaceScene->flagsB = 0;
+  g_RaceScene->unk_40 = 0;
+  g_RaceScene->unk_38 = 0;
+  g_RaceScene->unk_3c = 0;
   *puVar1 = 0;
   puVar1[1] = 0;
   puVar2 = PTR_RaceScene_ReloadReplay_0031c670;
@@ -2213,7 +2139,7 @@ void Race_CreateCars(void)
   Driver_CreatePlayers(0x430750);
   Traffic_Reset(uRam0036f36c);
   uRam0036f25c = uRam0036f25c | 0x20;
-  *_g_Loading = *_g_Loading | 2;
+  g_Loading->flags = g_Loading->flags | 2;
   cVar1 = RaceCtx_Get_8();
   if ((cVar1 == '\r') && (lVar7 = RaceScene_IsFlag10(), lVar7 == 0)) {
     _s_RaceIsReplayMode = 1;
@@ -2228,8 +2154,6 @@ void Race_CreateCars(void)
 }
 
 // 0x001eb550  size 0x394
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceIntro_DrawCars(undefined8 param_1,int param_2,long param_3,long param_4)
 
 {
@@ -2279,8 +2203,8 @@ LAB_001eb620:
   else {
     puVar8 = (ushort *)(*(int *)(param_2 + 0x18) + *(int *)(param_2 + 0x34) * 0x10);
     puVar5 = (undefined4 *)
-             (*(int *)(*(int *)(_g_RoadData + 4) + (uint)*puVar8 * 4) + 0x7c +
-             *(int *)(puVar8 + 2) * 0x20);
+             (*(int *)(g_RoadData->aiLine + (uint)*puVar8 * 4) + 0x7c + *(int *)(puVar8 + 2) * 0x20)
+    ;
     uStack_250 = *puVar5;
     uStack_24c = puVar5[1];
     uStack_248 = puVar5[2];
@@ -2297,8 +2221,8 @@ LAB_001eb620:
   if (-1 < iVar11) {
     puVar8 = (ushort *)(*(int *)(param_2 + 0x20) + iVar11 * 0x10);
     puVar5 = (undefined4 *)
-             (*(int *)(*(int *)(_g_RoadData + 4) + (uint)*puVar8 * 4) + 0x7c +
-             *(int *)(puVar8 + 2) * 0x20);
+             (*(int *)(g_RoadData->aiLine + (uint)*puVar8 * 4) + 0x7c + *(int *)(puVar8 + 2) * 0x20)
+    ;
     uStack_260 = *puVar5;
     uStack_25c = puVar5[1];
     uStack_258 = puVar5[2];

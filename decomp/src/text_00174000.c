@@ -2442,16 +2442,14 @@ undefined4 GameState_GetArray_3a50(int param_1)
 }
 
 // 0x001774b0  size 0x240
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_SetupStartGrid(void)
 
 {
   short sVar1;
-  int iVar2;
-  long lVar3;
-  int iVar4;
-  long lVar5;
+  short sVar2;
+  int iVar3;
+  long lVar4;
+  int iVar5;
   uint uVar6;
   float fVar7;
   float fVar8;
@@ -2490,21 +2488,21 @@ void GameState_SetupStartGrid(void)
   uStack_14 = 0x3f800000;
   uStack_24 = 0x3f800000;
   uVar6 = 0;
-  if (0 < *_g_RoadData) {
-    iVar4 = 0;
+  if (0 < (int)g_RoadData->unk_00) {
+    iVar5 = 0;
     do {
-      sVar1 = (short)uVar6;
+      sVar2 = (short)uVar6;
       fVar8 = 0.0;
-      lVar3 = (long)**(short **)(_g_RoadData[1] + (uVar6 & 0xffff) * 4);
-      AiLine_GetDirection(&uStack_40,3,sVar1,0);
-      lVar5 = 1;
+      sVar1 = **(short **)(g_RoadData->aiLine + (uVar6 & 0xffff) * 4);
+      AiLine_GetDirection(&uStack_40,3,sVar2,0);
+      lVar4 = 1;
       uStack_10 = uStack_40;
       uStack_c = uStack_3c;
       uStack_8 = uStack_38;
       uStack_4 = uStack_34;
-      if (1 < lVar3) {
+      if (1 < (long)sVar1) {
         do {
-          AiLine_GetDirection(&uStack_50,3,sVar1,(short)lVar5);
+          AiLine_GetDirection(&uStack_50,3,sVar2,(short)lVar4);
           uStack_20 = uStack_50;
           uStack_1c = uStack_4c;
           uStack_18 = uStack_48;
@@ -2515,16 +2513,16 @@ void GameState_SetupStartGrid(void)
           uStack_24 = uStack_54;
           uStack_2c = 0;
           fVar7 = (float)Vec3_LengthB(&uStack_30);
-          lVar5 = (long)((int)lVar5 + 1);
+          lVar4 = (long)((int)lVar4 + 1);
           fVar8 = fVar8 + fVar7;
           uStack_10 = uStack_20;
           uStack_c = uStack_1c;
           uStack_8 = uStack_18;
           uStack_4 = uStack_14;
-        } while (lVar5 < lVar3);
+        } while (lVar4 < sVar1);
       }
-      if ((int)uVar6 < *_g_RoadData + -1) {
-        AiLine_GetDirection(&uStack_70,3,sVar1 + 1,0);
+      if ((int)uVar6 < (int)(g_RoadData->unk_00 - 1)) {
+        AiLine_GetDirection(&uStack_70,3,sVar2 + 1,0);
         uStack_20 = uStack_70;
         uStack_1c = uStack_6c;
         uStack_18 = uStack_68;
@@ -2538,24 +2536,24 @@ void GameState_SetupStartGrid(void)
         fVar8 = fVar8 + fVar7;
       }
       uVar6 = uVar6 + 1;
-      *(float *)((int)(g_GameState->stats + 7) + iVar4 + 0x4c) = fVar8;
-      iVar4 = iVar4 + 4;
-    } while ((int)uVar6 < *_g_RoadData);
+      *(float *)((int)(g_GameState->stats + 7) + iVar5 + 0x4c) = fVar8;
+      iVar5 = iVar5 + 4;
+    } while ((int)uVar6 < (int)g_RoadData->unk_00);
   }
-  iVar4 = 0;
+  iVar5 = 0;
   g_GameState->unk_3a78 = 0;
-  lVar3 = 0;
-  if (0 < *_g_RoadData) {
-    iVar2 = 0;
+  lVar4 = 0;
+  if (0 < (int)g_RoadData->unk_00) {
+    iVar3 = 0;
     do {
-      uVar6 = (uint)lVar3;
-      lVar3 = (long)(short)((short)lVar3 + 1);
-      *(int *)((int)(g_GameState->stats + 7) + iVar2 + 0x9c) =
-           (int)**(short **)(_g_RoadData[1] + (uVar6 & 0xffff) * 4);
-      iVar4 = iVar4 + *(int *)((int)(g_GameState->stats + 7) + iVar2 + 0x9c) * 0x20;
-      *(int *)((int)(g_GameState->stats + 7) + iVar2 + 0x78) = iVar4;
-      iVar2 = iVar2 + 4;
-    } while (lVar3 < *_g_RoadData);
+      uVar6 = (uint)lVar4;
+      lVar4 = (long)(short)((short)lVar4 + 1);
+      *(int *)((int)(g_GameState->stats + 7) + iVar3 + 0x9c) =
+           (int)**(short **)(g_RoadData->aiLine + (uVar6 & 0xffff) * 4);
+      iVar5 = iVar5 + *(int *)((int)(g_GameState->stats + 7) + iVar3 + 0x9c) * 0x20;
+      *(int *)((int)(g_GameState->stats + 7) + iVar3 + 0x78) = iVar5;
+      iVar3 = iVar3 + 4;
+    } while (lVar4 < (int)g_RoadData->unk_00);
   }
   return;
 }

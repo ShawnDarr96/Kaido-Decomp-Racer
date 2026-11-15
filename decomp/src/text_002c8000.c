@@ -308,7 +308,7 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
   iStack_8 = *(int *)(iVar10 + 200);
   if (((((iStack_10 != 0) || (iStack_c != 0)) || (iStack_8 != 0)) &&
       (((iStack_10 != 99 || (iStack_c != 0x3b)) || (iStack_8 != 999)))) &&
-     (cVar3 = RaceProg_Get(), cVar3 == '\x03')) {
+     (cVar3 = RaceProg_GetPhase(), cVar3 == '\x03')) {
     lVar8 = RaceScene_IsPaused();
     if (lVar8 == 0) {
       iVar6 = maybe_rand();

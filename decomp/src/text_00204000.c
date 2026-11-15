@@ -1862,8 +1862,6 @@ void TitleCam_Free(void)
 }
 
 // 0x00207220  size 0x258
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void TitleCam_Alloc(undefined8 param_1)
 
 {
@@ -1882,7 +1880,7 @@ void TitleCam_Alloc(undefined8 param_1)
   *puRam0036f4dc = *puRam0036f4dc | 8;
   *puRam0036f4dc = *puRam0036f4dc | 0x10;
   *puRam0036f4dc = *puRam0036f4dc | 0x20;
-  TitleCam_SetFov(puRam0036f4dc + 4,*(undefined4 *)(_g_Loading + 0x14));
+  TitleCam_SetFov(puRam0036f4dc + 4,g_Loading->workBufs[0]);
   puVar3 = puRam0036f4dc;
   puVar2 = PTR_DAT_003298b0;
   puVar6 = puRam0036f4dc + 4;

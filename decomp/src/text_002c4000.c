@@ -1287,7 +1287,7 @@ void RaceUi_DrawRivalBanner(undefined8 param_1)
   iStack_8 = *(int *)(iVar9 + 200);
   if (((((iStack_10 != 0) || (iStack_c != 0)) || (iStack_8 != 0)) &&
       (((iStack_10 != 99 || (iStack_c != 0x3b)) || (iStack_8 != 999)))) &&
-     (cVar3 = RaceProg_Get(), cVar3 == '\x03')) {
+     (cVar3 = RaceProg_GetPhase(), cVar3 == '\x03')) {
     lVar8 = RaceScene_IsPaused();
     if (lVar8 == 0) {
       iVar6 = maybe_rand();
@@ -1424,7 +1424,7 @@ void RaceUi_TaskSpeedometer(undefined8 param_1)
   iStack_8 = *(int *)(pcVar10 + 200);
   if (((((iStack_10 != 0) || (iStack_c != 0)) || (iStack_8 != 0)) &&
       (((iStack_10 != 99 || (iStack_c != 0x3b)) || (iStack_8 != 999)))) &&
-     (cVar4 = RaceProg_Get(), cVar4 == '\x03')) {
+     (cVar4 = RaceProg_GetPhase(), cVar4 == '\x03')) {
     lVar9 = RaceScene_IsPaused();
     if (lVar9 == 0) {
       iVar8 = maybe_rand();
@@ -1495,7 +1495,7 @@ void RaceUi_TaskGapMeter(undefined8 param_1)
   iStack_8 = *(int *)(iVar6 + 200);
   if (((((iStack_10 != 0) || (iStack_c != 0)) || (iStack_8 != 0)) &&
       (((iStack_10 != 99 || (iStack_c != 0x3b)) || (iStack_8 != 999)))) &&
-     (cVar3 = RaceProg_Get(), cVar3 == '\x03')) {
+     (cVar3 = RaceProg_GetPhase(), cVar3 == '\x03')) {
     lVar5 = RaceScene_IsPaused();
     if (lVar5 == 0) {
       iVar4 = maybe_rand();
@@ -1528,7 +1528,7 @@ void RaceUi_TaskWarning(undefined8 param_1)
   iStack_8 = *(int *)(iVar4 + 200);
   if (((((iStack_10 != 0) || (iStack_c != 0)) || (iStack_8 != 0)) &&
       (((iStack_10 != 99 || (iStack_c != 0x3b)) || (iStack_8 != 999)))) &&
-     (cVar1 = RaceProg_Get(), cVar1 == '\x03')) {
+     (cVar1 = RaceProg_GetPhase(), cVar1 == '\x03')) {
     lVar3 = RaceScene_IsPaused();
     if (lVar3 == 0) {
       iVar2 = maybe_rand();
@@ -1650,7 +1650,7 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
       iStack_28 = *(int *)(iVar10 + 200);
       if (((((iStack_30 != 0) || (iStack_2c != 0)) || (iStack_28 != 0)) &&
           (((iStack_30 != 99 || (iStack_2c != 0x3b)) || (iStack_28 != 999)))) &&
-         (cVar4 = RaceProg_Get(), cVar4 == '\x03')) {
+         (cVar4 = RaceProg_GetPhase(), cVar4 == '\x03')) {
         lVar8 = RaceScene_IsPaused();
         if (lVar8 == 0) {
           iVar7 = maybe_rand();
@@ -1669,7 +1669,7 @@ void RaceUi_DrawIntroCard(undefined8 param_1)
       iStack_18 = *(int *)(iVar10 + 200);
       if ((((iStack_20 != 0) || (iStack_1c != 0)) || (iStack_18 != 0)) &&
          ((((iStack_20 != 99 || (iStack_1c != 0x3b)) || (iStack_18 != 999)) &&
-          (cVar4 = RaceProg_Get(), cVar4 == '\x03')))) {
+          (cVar4 = RaceProg_GetPhase(), cVar4 == '\x03')))) {
         lVar8 = RaceScene_IsPaused();
         if (lVar8 == 0) {
           iVar7 = maybe_rand();

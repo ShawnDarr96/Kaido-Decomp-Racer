@@ -2340,9 +2340,9 @@ void Prop_DrawDebris(void)
 void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  int iVar3;
+  undefined *puVar1;
+  int iVar2;
+  undefined8 uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
@@ -2350,34 +2350,34 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
   undefined1 auStack_20 [16];
   undefined1 auStack_10 [16];
   
-  iVar1 = _g_Props;
+  iVar2 = _g_Props;
   if (_s_RaceIsReplayMode == 0) {
-    iVar3 = _g_Props + 0x4b00;
-    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    iVar4 = _g_Props + 0x4b00;
+    sceVu0CopyVector(auStack_10,g_Loading->workBufs[0] + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      Prop_SpawnSmoke(iVar1,iVar3,auStack_10,400,param_3);
+      Prop_SpawnSmoke(iVar2,iVar4,auStack_10,400,param_3);
     }
-    Prop_SpawnSpark(iVar1,iVar3,auStack_10,400,-(param_2 != 0 ^ 1),uRam00436570,param_3);
+    Prop_SpawnSpark(iVar2,iVar4,auStack_10,400,-(param_2 != 0 ^ 1),uRam00436570,param_3);
   }
   else {
-    iVar3 = *(int *)(_g_Loading + 0x18);
+    puVar1 = g_Loading->workBufs[1];
     iVar5 = _g_Props + 0x2580;
     iVar4 = _g_Props + 0x4b00;
     iVar6 = _g_Props + 0x7080;
-    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    sceVu0CopyVector(auStack_30,iVar3 + 0x70);
+    sceVu0CopyVector(auStack_20,g_Loading->workBufs[0] + 0x70);
+    sceVu0CopyVector(auStack_30,puVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
-      Prop_SpawnSmoke(iVar1,iVar5,auStack_20,200,param_3);
+      Prop_SpawnSmoke(iVar2,iVar5,auStack_20,200,param_3);
       Prop_SpawnSmoke(iVar4,iVar6,auStack_30,200,param_3);
     }
-    Prop_SpawnSpark(iVar1,iVar5,auStack_20,200,-(param_2 != 0 ^ 1),uRam00436570,param_3);
-    uVar2 = 1;
+    Prop_SpawnSpark(iVar2,iVar5,auStack_20,200,-(param_2 != 0 ^ 1),uRam00436570,param_3);
+    uVar3 = 1;
     if (param_2 == 0) {
-      uVar2 = 0xffffffffffffffff;
+      uVar3 = 0xffffffffffffffff;
     }
-    Prop_SpawnSpark(iVar4,iVar6,auStack_30,200,uVar2,uRam004365c0,param_3);
+    Prop_SpawnSpark(iVar4,iVar6,auStack_30,200,uVar3,uRam004365c0,param_3);
   }
   return;
 }
@@ -2574,7 +2574,7 @@ void Prop_DrawSparks(void)
 void Prop_UpdateLeaves(int *param_1)
 
 {
-  int iVar1;
+  undefined *puVar1;
   int iVar2;
   int iVar3;
   undefined1 auStack_30 [16];
@@ -2583,7 +2583,7 @@ void Prop_UpdateLeaves(int *param_1)
   
   iVar2 = _g_Props;
   if (_s_RaceIsReplayMode == 0) {
-    sceVu0CopyVector(auStack_10,*(int *)(_g_Loading + 0x14) + 0x70);
+    sceVu0CopyVector(auStack_10,g_Loading->workBufs[0] + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MoveLeaves(iVar2,auStack_10,100);
@@ -2591,10 +2591,10 @@ void Prop_UpdateLeaves(int *param_1)
     Prop_SpawnLeaf(iVar2,auStack_10,100,0,uRam00436570);
   }
   else {
-    iVar1 = *(int *)(_g_Loading + 0x18);
+    puVar1 = g_Loading->workBufs[1];
     iVar3 = _g_Props + 0x12c0;
-    sceVu0CopyVector(auStack_20,*(int *)(_g_Loading + 0x14) + 0x70);
-    sceVu0CopyVector(auStack_30,iVar1 + 0x70);
+    sceVu0CopyVector(auStack_20,g_Loading->workBufs[0] + 0x70);
+    sceVu0CopyVector(auStack_30,puVar1 + 0x70);
     if (*param_1 == 0) {
       *param_1 = 1;
       Prop_MoveLeaves(iVar2,auStack_20,100);

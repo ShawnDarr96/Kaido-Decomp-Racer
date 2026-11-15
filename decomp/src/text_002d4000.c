@@ -1701,16 +1701,17 @@ void maybe_IntroCar_UpdatePose(undefined8 param_1,int param_2,uint param_3)
 void maybe_IntroCar_Draw(void)
 
 {
-  uint *puVar1;
-  char cVar2;
-  uint *puVar3;
-  uint uVar4;
-  RaceCar *pRVar5;
-  int iVar6;
-  long lVar7;
-  uint *puVar8;
-  int iVar9;
-  float fVar10;
+  undefined *puVar1;
+  uint *puVar2;
+  char cVar3;
+  uint *puVar4;
+  uint uVar5;
+  RaceCar *pRVar6;
+  int iVar7;
+  long lVar8;
+  uint *puVar9;
+  int iVar10;
+  float fVar11;
   undefined1 auStack_1b90 [256];
   undefined1 auStack_1a90 [20];
   undefined4 uStack_1a7c;
@@ -1786,14 +1787,14 @@ void maybe_IntroCar_Draw(void)
   undefined1 auStack_60 [64];
   float afStack_20 [8];
   
-  iVar9 = *(int *)(_g_Loading + 0x14);
+  puVar1 = g_Loading->workBufs[0];
   if ((((_g_IntroCar != (int *)0x0) && (_g_IntroCar[4] != 0)) && (_g_IntroCar[6] != 0)) &&
      ((float)_g_IntroCar[7] != 0.0)) {
     maybe_Vu0_UnitMatrix(auStack_60);
     maybe_Vu0_RotMatrixX(0,auStack_60,auStack_60);
     maybe_Vu0_RotMatrixY(&UNK_bfc90fdb,auStack_60,auStack_60);
     if (_g_IntroCar[5] != 0) {
-      sceVu0MulMatrix(auStack_60,iVar9 + 0x550,auStack_60);
+      sceVu0MulMatrix(auStack_60,puVar1 + 0x550,auStack_60);
     }
     uStack_68 = DAT_003420c8;
     uStack_70 = DAT_003420c0;
@@ -1812,13 +1813,13 @@ void maybe_IntroCar_Draw(void)
     sceVu0TransposeMatrix(auStack_60,auStack_60);
     sceVu0InversMatrix(auStack_60,auStack_60);
     sceVu0ApplyMatrix(0x435be0,auStack_60,&uStack_90);
-    sceVu0ScaleVector(0x3c23d70a,afStack_20,iVar9 + 0x510);
-    cVar2 = GameState_Get_0();
-    if (cVar2 == '\x03') {
+    sceVu0ScaleVector(0x3c23d70a,afStack_20,puVar1 + 0x510);
+    cVar3 = GameState_Get_0();
+    if (cVar3 == '\x03') {
       afStack_20[0] = afStack_20[0] + -17.5417;
       afStack_20[2] = afStack_20[2] + 18.2577;
     }
-    else if (cVar2 == '\x02') {
+    else if (cVar3 == '\x02') {
       afStack_20[0] = afStack_20[0] + -6.65728;
       afStack_20[2] = afStack_20[2] + 8.67468;
     }
@@ -1840,11 +1841,11 @@ void maybe_IntroCar_Draw(void)
     uStack_193c = 0;
     uStack_192c = 0;
     auStack_1950[0] = auStack_1950[0] | 2;
-    fVar10 = (float)_g_IntroCar[7] * 128.0;
-    if (2.1474836e+09 <= fVar10) {
-      fVar10 = fVar10 - 2.1474836e+09;
+    fVar11 = (float)_g_IntroCar[7] * 128.0;
+    if (2.1474836e+09 <= fVar11) {
+      fVar11 = fVar11 - 2.1474836e+09;
     }
-    uStack_1684 = (int)fVar10 & 0xff;
+    uStack_1684 = (int)fVar11 & 0xff;
     uStack_16a8 = 0x30000;
     Obj_Reset(auStack_1640,1,0xffffffffffffffff);
     uStack_1630 = 0x42fe0000;
@@ -1855,11 +1856,11 @@ void maybe_IntroCar_Draw(void)
     uStack_1378 = 0xff;
     uStack_162c = 0;
     auStack_1640[0] = auStack_1640[0] | 2;
-    fVar10 = (float)_g_IntroCar[7] * 128.0;
-    if (2.1474836e+09 <= fVar10) {
-      fVar10 = fVar10 - 2.1474836e+09;
+    fVar11 = (float)_g_IntroCar[7] * 128.0;
+    if (2.1474836e+09 <= fVar11) {
+      fVar11 = fVar11 - 2.1474836e+09;
     }
-    uStack_1374 = (int)fVar10 & 0xff;
+    uStack_1374 = (int)fVar11 & 0xff;
     uStack_1398 = 0x30000;
     Obj_Reset(auStack_1330,1,0xffffffffffffffff);
     uStack_1320 = 0x42fe0000;
@@ -1870,11 +1871,11 @@ void maybe_IntroCar_Draw(void)
     uStack_1068 = 0xff;
     uStack_1310 = 0;
     auStack_1330[0] = auStack_1330[0] | 2;
-    fVar10 = (float)_g_IntroCar[7] * 128.0;
-    if (2.1474836e+09 <= fVar10) {
-      fVar10 = fVar10 - 2.1474836e+09;
+    fVar11 = (float)_g_IntroCar[7] * 128.0;
+    if (2.1474836e+09 <= fVar11) {
+      fVar11 = fVar11 - 2.1474836e+09;
     }
-    uStack_1064 = (int)fVar10 & 0xff;
+    uStack_1064 = (int)fVar11 & 0xff;
     uStack_1088 = 0x30000;
     Obj_Reset(auStack_1020,1,0xffffffffffffffff);
     uStack_100c = 0x42fe0000;
@@ -1885,11 +1886,11 @@ void maybe_IntroCar_Draw(void)
     uStack_1000 = 0;
     uStack_ffc = 0;
     auStack_1020[0] = auStack_1020[0] | 2;
-    fVar10 = (float)_g_IntroCar[7] * 128.0;
-    if (2.1474836e+09 <= fVar10) {
-      fVar10 = fVar10 - 2.1474836e+09;
+    fVar11 = (float)_g_IntroCar[7] * 128.0;
+    if (2.1474836e+09 <= fVar11) {
+      fVar11 = fVar11 - 2.1474836e+09;
     }
-    uStack_d54 = (int)fVar10 & 0xff;
+    uStack_d54 = (int)fVar11 & 0xff;
     uStack_d78 = 0x30000;
     Obj_Reset(auStack_d10,3,0xffffffffffffffff);
     uStack_d00 = 0x3f800000;
@@ -1904,11 +1905,11 @@ void maybe_IntroCar_Draw(void)
     auStack_d10[0] = auStack_d10[0] | 2;
     uStack_a4c = 0xff;
     uStack_a48 = 0xff;
-    fVar10 = 128.0 - (float)_g_IntroCar[7] * 56.0;
-    if (2.1474836e+09 <= fVar10) {
-      fVar10 = fVar10 - 2.1474836e+09;
+    fVar11 = 128.0 - (float)_g_IntroCar[7] * 56.0;
+    if (2.1474836e+09 <= fVar11) {
+      fVar11 = fVar11 - 2.1474836e+09;
     }
-    uStack_a44 = (int)fVar10 & 0xff;
+    uStack_a44 = (int)fVar11 & 0xff;
     uStack_a68 = 0x30000;
     uStack_a60 = 0x89;
     Pkt_AddPrimitives(auStack_d0,auStack_1950,5);
@@ -1916,59 +1917,59 @@ void maybe_IntroCar_Draw(void)
     Layer_Reset(auStack_1b90,0x435bc0,0x436180,0xc,0xd);
     Layer_Open(auStack_1b90,0);
     Layer_Open(auStack_1b90,1);
-    iVar9 = *_g_IntroCar;
+    iVar10 = *_g_IntroCar;
     maybe_Vu0_UnitMatrix(auStack_1a90);
     uStack_1a7c = 0;
-    maybe_Vu0_RotMatrixZ(*(undefined4 *)(iVar9 + 0x30),auStack_1a90,auStack_1a90);
-    maybe_Vu0_RotMatrixY(*(undefined4 *)(iVar9 + 0x34),auStack_1a90,auStack_1a90);
-    maybe_Vu0_RotMatrixX(*(undefined4 *)(iVar9 + 0x38),auStack_1a90,auStack_1a90);
-    sceVu0TransMatrix(auStack_1a90,auStack_1a90,iVar9 + 0x20);
+    maybe_Vu0_RotMatrixZ(*(undefined4 *)(iVar10 + 0x30),auStack_1a90,auStack_1a90);
+    maybe_Vu0_RotMatrixY(*(undefined4 *)(iVar10 + 0x34),auStack_1a90,auStack_1a90);
+    maybe_Vu0_RotMatrixX(*(undefined4 *)(iVar10 + 0x38),auStack_1a90,auStack_1a90);
+    sceVu0TransMatrix(auStack_1a90,auStack_1a90,iVar10 + 0x20);
     if ((float)_g_IntroCar[7] != 1.0) {
-      puVar1 = (uint *)*_g_IntroCar;
-      if ((*puVar1 & 0x10) == 0) {
-        puVar3 = (uint *)0x0;
+      puVar2 = (uint *)*_g_IntroCar;
+      if ((*puVar2 & 0x10) == 0) {
+        puVar4 = (uint *)0x0;
       }
       else {
-        puVar3 = puVar1 + 0x14;
+        puVar4 = puVar2 + 0x14;
       }
-      if (puVar3 == (uint *)0x0) {
-        uVar4 = 0;
-        puVar8 = (uint *)0x0;
+      if (puVar4 == (uint *)0x0) {
+        uVar5 = 0;
+        puVar9 = (uint *)0x0;
       }
       else {
-        puVar8 = puVar3 + 0xc;
-        uVar4 = puVar3[3];
+        puVar9 = puVar4 + 0xc;
+        uVar5 = puVar4[3];
       }
-      if (uVar4 == 0) {
-        uVar4 = *puVar1;
+      if (uVar5 == 0) {
+        uVar5 = *puVar2;
       }
       else {
         do {
-          uVar4 = uVar4 - 1;
-          *puVar8 = *puVar8 | 0x80000;
-          puVar8[0xb] = _g_IntroCar[7];
-          puVar8[0x16] = 0x30000;
-          puVar8[0x17] = 0;
-          puVar8 = puVar8 + (puVar8[0x1e] + 1) * 4 + 0x28;
-        } while (uVar4 != 0);
-        uVar4 = *puVar1;
+          uVar5 = uVar5 - 1;
+          *puVar9 = *puVar9 | 0x80000;
+          puVar9[0xb] = _g_IntroCar[7];
+          puVar9[0x16] = 0x30000;
+          puVar9[0x17] = 0;
+          puVar9 = puVar9 + (puVar9[0x1e] + 1) * 4 + 0x28;
+        } while (uVar5 != 0);
+        uVar5 = *puVar2;
       }
-      *puVar1 = uVar4 | 0x20;
-      *puVar1 = *puVar1 & 0xffffffbf;
+      *puVar2 = uVar5 | 0x20;
+      *puVar2 = *puVar2 & 0xffffffbf;
     }
     Model_UpdateNodeMatrix(auStack_1b90,*_g_IntroCar);
-    iVar9 = 1;
-    lVar7 = GameState_GetRacerCount();
-    if (1 < lVar7) {
+    iVar10 = 1;
+    lVar8 = GameState_GetRacerCount();
+    if (1 < lVar8) {
       do {
-        pRVar5 = RaceCar_Get(iVar9);
-        maybe_IntroCar_UpdatePose(auStack_1b90,pRVar5,0xff0000);
-        iVar9 = iVar9 + 1;
-        iVar6 = GameState_GetRacerCount();
-      } while (iVar9 < iVar6);
+        pRVar6 = RaceCar_Get(iVar10);
+        maybe_IntroCar_UpdatePose(auStack_1b90,pRVar6,0xff0000);
+        iVar10 = iVar10 + 1;
+        iVar7 = GameState_GetRacerCount();
+      } while (iVar10 < iVar7);
     }
-    pRVar5 = RaceCar_Get(0);
-    maybe_IntroCar_UpdatePose(auStack_1b90,pRVar5,0xff);
+    pRVar6 = RaceCar_Get(0);
+    maybe_IntroCar_UpdatePose(auStack_1b90,pRVar6,0xff);
     Layer_Close(auStack_1b90,0);
     Layer_Close(auStack_1b90,1);
   }

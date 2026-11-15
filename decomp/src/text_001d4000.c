@@ -951,7 +951,7 @@ void Ai_DriveCar(undefined8 param_1)
   }
   uVar2 = puVar11[4];
   if ((fVar14 == 0.0) || (uVar3 = *puVar10, (uVar3 & 0x20) != 0)) {
-    cVar5 = RaceProg_Get();
+    cVar5 = RaceProg_GetPhase();
     if (cVar5 == '\x02') {
       Ai_InitTuning(param_1,pRVar6,puVar11,puVar10 + 3);
     }
@@ -1794,8 +1794,6 @@ LAB_001d69ec:
 }
 
 // 0x001d7100  size 0xcc0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
 
 {
@@ -1907,14 +1905,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
     case 0:
       lVar3 = GameState_Get_40();
       if (lVar3 == 0) {
-        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
-        sVar1 = *psVar5;
-        psVar5 = psVar5 + sVar1 * 0x18 + sVar1 * 4 + 0x3e;
+        sVar1 = **(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4);
+        psVar5 = *(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4) +
+                 sVar1 * 0x18 + sVar1 * 4 + 0x3e;
       }
       else {
-        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
-        sVar1 = *psVar5;
-        psVar5 = psVar5 + sVar1 * 0x1c + sVar1 * 6 + 0x3e;
+        sVar1 = **(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4);
+        psVar5 = *(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4) +
+                 sVar1 * 0x1c + sVar1 * 6 + 0x3e;
       }
       pfVar2 = (float *)(psVar5 + param_4 * 6);
       fStack_10 = *pfVar2;
@@ -1923,24 +1921,25 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       fStack_4 = 1.0;
       break;
     case 1:
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
-      pfVar2 = (float *)(psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e);
+      pfVar2 = (float *)(*(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4) +
+                        **(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4) * 0x10 +
+                        param_4 * 6 + 0x3e);
       fStack_10 = *pfVar2;
       fStack_c = pfVar2[1];
       fStack_8 = pfVar2[2];
       fStack_4 = 1.0;
       break;
     case 2:
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
-      sVar1 = *psVar5;
-      pfVar2 = (float *)(psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e);
+      sVar1 = **(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4);
+      pfVar2 = (float *)(*(short **)(g_RoadData->aiLine + (param_3 & 0xffff) * 4) +
+                        sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e);
       fStack_10 = *pfVar2;
       fStack_c = pfVar2[1];
       fStack_8 = pfVar2[2];
       fStack_4 = 1.0;
       break;
     case 3:
-      pfVar2 = (float *)(*(int *)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4) + 0x7c +
+      pfVar2 = (float *)(*(int *)(g_RoadData->aiLine + (param_3 & 0xffff) * 4) + 0x7c +
                         param_4 * 0x20);
       fStack_10 = *pfVar2;
       fStack_c = pfVar2[1];
@@ -1951,18 +1950,16 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       lVar3 = GameState_Get_40();
       if (lVar3 == 0) {
         iVar6 = (param_3 & 0xffff) * 4;
-        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-        sVar1 = *psVar5;
-        psVar5 = psVar5 + sVar1 * 0x18 + sVar1 * 4 + 0x3e;
+        sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+        psVar5 = *(short **)(g_RoadData->aiLine + iVar6) + sVar1 * 0x18 + sVar1 * 4 + 0x3e;
       }
       else {
         iVar6 = (param_3 & 0xffff) * 4;
-        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-        sVar1 = *psVar5;
-        psVar5 = psVar5 + sVar1 * 0x1c + sVar1 * 6 + 0x3e;
+        sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+        psVar5 = *(short **)(g_RoadData->aiLine + iVar6) + sVar1 * 0x1c + sVar1 * 6 + 0x3e;
       }
       pfVar7 = (float *)(psVar5 + param_4 * 6);
-      pfVar2 = (float *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      pfVar2 = (float *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       fStack_10 = *pfVar7 + *pfVar2;
       fStack_c = pfVar7[1] + pfVar2[1];
       fStack_8 = pfVar7[2] + pfVar2[2];
@@ -1971,15 +1968,15 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 5:
       iVar6 = (param_3 & 0xffff) * 4;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 + param_4 * 6 + 0x3e;
       uStack_80 = *(undefined4 *)psVar5;
       uStack_7c = *(undefined4 *)(psVar5 + 2);
       uStack_78 = *(undefined4 *)(psVar5 + 4);
       uStack_74 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
       uStack_90 = *(undefined4 *)psVar5;
       uStack_8c = *(undefined4 *)(psVar5 + 2);
       uStack_88 = *(undefined4 *)(psVar5 + 4);
@@ -1991,15 +1988,15 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 6:
       iVar6 = (param_3 & 0xffff) * 4;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 + param_4 * 6 + 0x3e;
       uStack_b0 = *(undefined4 *)psVar5;
       uStack_ac = *(undefined4 *)(psVar5 + 2);
       uStack_a8 = *(undefined4 *)(psVar5 + 4);
       uStack_a4 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
       uStack_c0 = *(undefined4 *)psVar5;
       uStack_bc = *(undefined4 *)(psVar5 + 2);
       uStack_b8 = *(undefined4 *)(psVar5 + 4);
@@ -2011,13 +2008,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 7:
       iVar6 = (param_3 & 0xffff) * 4;
-      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      puVar4 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       uStack_30 = *puVar4;
       uStack_2c = puVar4[1];
       uStack_28 = puVar4[2];
       uStack_24 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 +
+               (param_4 * 2 + (int)param_4) * 2 + 0x3e;
       uStack_20 = *(undefined4 *)psVar5;
       uStack_1c = *(undefined4 *)(psVar5 + 2);
       uStack_18 = *(undefined4 *)(psVar5 + 4);
@@ -2029,14 +2027,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 8:
       iVar6 = (param_3 & 0xffff) * 4;
-      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      puVar4 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       uStack_60 = *puVar4;
       uStack_5c = puVar4[1];
       uStack_58 = puVar4[2];
       uStack_54 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
       uStack_50 = *(undefined4 *)psVar5;
       uStack_4c = *(undefined4 *)(psVar5 + 2);
       uStack_48 = *(undefined4 *)(psVar5 + 4);
@@ -2048,15 +2046,15 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 9:
       iVar6 = (param_3 & 0xffff) * 4;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 + param_4 * 6 + 0x3e;
       uStack_e0 = *(undefined4 *)psVar5;
       uStack_dc = *(undefined4 *)(psVar5 + 2);
       uStack_d8 = *(undefined4 *)(psVar5 + 4);
       uStack_d4 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
       uStack_f0 = *(undefined4 *)psVar5;
       uStack_ec = *(undefined4 *)(psVar5 + 2);
       uStack_e8 = *(undefined4 *)(psVar5 + 4);
@@ -2068,15 +2066,15 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 10:
       iVar6 = (param_3 & 0xffff) * 4;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 + param_4 * 6 + 0x3e;
       uStack_110 = *(undefined4 *)psVar5;
       uStack_10c = *(undefined4 *)(psVar5 + 2);
       uStack_108 = *(undefined4 *)(psVar5 + 4);
       uStack_104 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
       uStack_120 = *(undefined4 *)psVar5;
       uStack_11c = *(undefined4 *)(psVar5 + 2);
       uStack_118 = *(undefined4 *)(psVar5 + 4);
@@ -2088,13 +2086,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 0xb:
       iVar6 = (param_3 & 0xffff) * 4;
-      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      puVar4 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       uStack_1b0 = *puVar4;
       uStack_1ac = puVar4[1];
       uStack_1a8 = puVar4[2];
       uStack_1a4 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 +
+               (param_4 * 2 + (int)param_4) * 2 + 0x3e;
       uStack_1a0 = *(undefined4 *)psVar5;
       uStack_19c = *(undefined4 *)(psVar5 + 2);
       uStack_198 = *(undefined4 *)(psVar5 + 4);
@@ -2106,14 +2105,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 0xc:
       iVar6 = (param_3 & 0xffff) * 4;
-      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      puVar4 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       uStack_1d0 = *puVar4;
       uStack_1cc = puVar4[1];
       uStack_1c8 = puVar4[2];
       uStack_1c4 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
       uStack_1e0 = *(undefined4 *)psVar5;
       uStack_1dc = *(undefined4 *)(psVar5 + 2);
       uStack_1d8 = *(undefined4 *)(psVar5 + 4);
@@ -2125,13 +2124,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 0xd:
       iVar6 = (param_3 & 0xffff) * 4;
-      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      puVar4 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       uStack_150 = *puVar4;
       uStack_14c = puVar4[1];
       uStack_148 = puVar4[2];
       uStack_144 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      psVar5 = psVar5 + *psVar5 * 0x10 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               **(short **)(g_RoadData->aiLine + iVar6) * 0x10 +
+               (param_4 * 2 + (int)param_4) * 2 + 0x3e;
       uStack_140 = *(undefined4 *)psVar5;
       uStack_13c = *(undefined4 *)(psVar5 + 2);
       uStack_138 = *(undefined4 *)(psVar5 + 4);
@@ -2143,14 +2143,14 @@ void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
       break;
     case 0xe:
       iVar6 = (param_3 & 0xffff) * 4;
-      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      puVar4 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar6) + 0x7c + param_4 * 0x20);
       uStack_170 = *puVar4;
       uStack_16c = puVar4[1];
       uStack_168 = puVar4[2];
       uStack_164 = 0x3f800000;
-      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
-      sVar1 = *psVar5;
-      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      sVar1 = **(short **)(g_RoadData->aiLine + iVar6);
+      psVar5 = *(short **)(g_RoadData->aiLine + iVar6) +
+               sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
       uStack_180 = *(undefined4 *)psVar5;
       uStack_17c = *(undefined4 *)(psVar5 + 2);
       uStack_178 = *(undefined4 *)(psVar5 + 4);
@@ -2185,8 +2185,6 @@ void AiLine_GetDirection(undefined4 *param_1)
 }
 
 // 0x001d7e10  size 0x1d0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short param_4,long param_5)
 
 {
@@ -2215,15 +2213,14 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
   
   uStack_54 = 0x3f800000;
   iVar2 = (param_3 & 0xffff) * 4;
-  psVar4 = *(short **)(*(int *)(_g_RoadData + 4) + iVar2);
-  psVar4 = psVar4 + *psVar4 * 0x10 + param_4 * 6 + 0x3e;
+  psVar4 = *(short **)(g_RoadData->aiLine + iVar2) +
+           **(short **)(g_RoadData->aiLine + iVar2) * 0x10 + param_4 * 6 + 0x3e;
   uStack_10 = *(undefined4 *)psVar4;
   uStack_c = *(undefined4 *)(psVar4 + 2);
   uStack_8 = *(undefined4 *)(psVar4 + 4);
   uStack_4 = 0x3f800000;
-  psVar4 = *(short **)(*(int *)(_g_RoadData + 4) + iVar2);
-  sVar1 = *psVar4;
-  psVar4 = psVar4 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+  sVar1 = **(short **)(g_RoadData->aiLine + iVar2);
+  psVar4 = *(short **)(g_RoadData->aiLine + iVar2) + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
   uStack_20 = *(undefined4 *)psVar4;
   uStack_1c = *(undefined4 *)(psVar4 + 2);
   uStack_18 = *(undefined4 *)(psVar4 + 4);
@@ -2235,7 +2232,7 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
     sceVu0AddVector(&uStack_60,&uStack_10,auStack_30);
   }
   else {
-    puVar3 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar2) + 0x7c + param_4 * 0x20);
+    puVar3 = (undefined4 *)(*(int *)(g_RoadData->aiLine + iVar2) + 0x7c + param_4 * 0x20);
     uStack_40 = *puVar3;
     uStack_3c = puVar3[1];
     uStack_38 = puVar3[2];
@@ -2272,7 +2269,7 @@ undefined4 Ai_CheckRaceEnd(int param_1)
   pRVar2 = GameState_Elem_f0_xcc(param_1);
   pRVar3 = RaceCar_Get(param_1);
   if ((pRVar2->unk_04 & 4) == 0) {
-    bVar1 = RaceProg_Get();
+    bVar1 = RaceProg_GetPhase();
     if (bVar1 < 8) {
                     /* WARNING: Switch is manually overridden */
       switch(bVar1) {

@@ -936,8 +936,6 @@ LAB_001f1e74:
 }
 
 // 0x001f1ff0  size 0x2c4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 float Demo_EvalCameraPath(uint param_1,undefined8 param_2)
 
 {
@@ -963,7 +961,7 @@ float Demo_EvalCameraPath(uint param_1,undefined8 param_2)
   short sStack_2;
   
   sStack_72 = (short)(param_1 >> 0x10);
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (param_1 & 0xffff) * 4);
+  psVar2 = *(short **)(g_RoadData->aiLine + (param_1 & 0xffff) * 4);
   sVar1 = *psVar2;
   psVar3 = psVar2 + sVar1 * 0x10 + sStack_72 * 6 + 0x3e;
   uStack_20 = *(undefined4 *)psVar3;
@@ -982,7 +980,7 @@ float Demo_EvalCameraPath(uint param_1,undefined8 param_2)
   sceVu0ScaleVector(fVar4 / fVar5,auStack_60,auStack_40);
   sceVu0AddVector(auStack_60,&uStack_20,auStack_60);
   Demo_GetRoadPoint(&uStack_4,param_1,1);
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)uStack_4 * 4);
+  psVar2 = *(short **)(g_RoadData->aiLine + (uint)uStack_4 * 4);
   sVar1 = *psVar2;
   psVar3 = psVar2 + sVar1 * 0x10 + sStack_2 * 6 + 0x3e;
   uStack_20 = *(undefined4 *)psVar3;
@@ -1291,14 +1289,11 @@ void Demo_LookAtSimple(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 }
 
 // 0x001f2c10  size 0x124
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Demo_GetRoadPoint(short *param_1,uint param_2,short param_3)
 
 {
-  short sVar1;
-  int iVar2;
-  uint uVar3;
+  int iVar1;
+  uint uVar2;
   short sStack_4;
   short sStack_2;
   
@@ -1306,29 +1301,26 @@ void Demo_GetRoadPoint(short *param_1,uint param_2,short param_3)
   sStack_2 = sStack_2 + param_3;
   sStack_4 = (short)param_2;
   if (sStack_2 < 0) {
-    uVar3 = (int)sStack_4 - 1;
-    if ((int)uVar3 < 0) {
-      uVar3 = *_g_RoadData - 1;
+    uVar2 = (int)sStack_4 - 1;
+    if ((int)uVar2 < 0) {
+      uVar2 = g_RoadData->unk_00 - 1;
     }
-    else if (*_g_RoadData + -1 < (int)uVar3) {
-      uVar3 = 0;
+    else if ((int)(g_RoadData->unk_00 - 1) < (int)uVar2) {
+      uVar2 = 0;
     }
-    sStack_4 = (short)uVar3;
-    sStack_2 = sStack_2 + **(short **)(_g_RoadData[1] + (uVar3 & 0xffff) * 4);
+    sStack_4 = (short)uVar2;
+    sStack_2 = sStack_2 + **(short **)(g_RoadData->aiLine + (uVar2 & 0xffff) * 4);
   }
-  else {
-    sVar1 = **(short **)(_g_RoadData[1] + (param_2 & 0xffff) * 4);
-    if (sVar1 <= sStack_2) {
-      sStack_2 = sStack_2 - sVar1;
-      iVar2 = sStack_4 + 1;
-      if (iVar2 < 0) {
-        iVar2 = *_g_RoadData + -1;
-      }
-      else if (*_g_RoadData + -1 < iVar2) {
-        iVar2 = 0;
-      }
-      sStack_4 = (short)iVar2;
+  else if (**(short **)(g_RoadData->aiLine + (param_2 & 0xffff) * 4) <= sStack_2) {
+    sStack_2 = sStack_2 - **(short **)(g_RoadData->aiLine + (param_2 & 0xffff) * 4);
+    iVar1 = sStack_4 + 1;
+    if (iVar1 < 0) {
+      iVar1 = g_RoadData->unk_00 - 1;
     }
+    else if ((int)(g_RoadData->unk_00 - 1) < iVar1) {
+      iVar1 = 0;
+    }
+    sStack_4 = (short)iVar1;
   }
   *param_1 = sStack_4;
   param_1[1] = sStack_2;
@@ -1336,66 +1328,61 @@ void Demo_GetRoadPoint(short *param_1,uint param_2,short param_3)
 }
 
 // 0x001f2d40  size 0xe4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Demo_FindRoadSection(ushort *param_1,long param_2)
 
 {
-  short sVar1;
+  ushort *puVar1;
   ushort *puVar2;
-  ushort *puVar3;
-  long lVar4;
-  ushort *puVar5;
-  long lVar6;
-  uint uVar7;
+  long lVar3;
+  ushort *puVar4;
+  long lVar5;
+  uint uVar6;
   ushort uStack_4;
   short sStack_2;
   
-  puVar3 = (ushort *)0x4;
-  puVar5 = &uStack_4;
-  puVar2 = puVar5;
-  while (puVar2 != (ushort *)0x0) {
-    *(undefined1 *)puVar5 = 0;
-    puVar5 = (ushort *)((int)puVar5 + 1);
-    puVar3 = (ushort *)((int)puVar3 + -1);
-    puVar2 = puVar3;
+  puVar2 = (ushort *)0x4;
+  puVar4 = &uStack_4;
+  puVar1 = puVar4;
+  while (puVar1 != (ushort *)0x0) {
+    *(undefined1 *)puVar4 = 0;
+    puVar4 = (ushort *)((int)puVar4 + 1);
+    puVar2 = (ushort *)((int)puVar2 + -1);
+    puVar1 = puVar2;
   }
-  uVar7 = 0;
-  if (0 < *_g_RoadData) {
+  uVar6 = 0;
+  if (0 < (int)g_RoadData->unk_00) {
     do {
-      sVar1 = **(short **)(_g_RoadData[1] + (uVar7 & 0xffff) * 4);
-      if (param_2 < sVar1) {
+      if (param_2 < **(short **)(g_RoadData->aiLine + (uVar6 & 0xffff) * 4)) {
         sStack_2 = (short)param_2;
         break;
       }
-      param_2 = (long)((int)param_2 - (int)sVar1);
-      uVar7 = uVar7 + 1;
+      param_2 = (long)((int)param_2 - (int)**(short **)(g_RoadData->aiLine + (uVar6 & 0xffff) * 4));
+      uVar6 = uVar6 + 1;
       uStack_4 = uStack_4 + 1;
-    } while ((int)uVar7 < *_g_RoadData);
+    } while ((int)uVar6 < (int)g_RoadData->unk_00);
   }
-  lVar6 = (long)sStack_2;
-  if (lVar6 < 0) {
-    lVar6 = 0;
+  lVar5 = (long)sStack_2;
+  if (lVar5 < 0) {
+    lVar5 = 0;
   }
   else {
-    lVar4 = (long)(**(short **)(_g_RoadData[1] + (uint)uStack_4 * 4) + -1);
-    if (lVar4 < lVar6) {
-      lVar6 = lVar4;
+    lVar3 = (long)(**(short **)(g_RoadData->aiLine + (uint)uStack_4 * 4) + -1);
+    if (lVar3 < lVar5) {
+      lVar5 = lVar3;
     }
   }
   *param_1 = uStack_4;
-  param_1[1] = (ushort)lVar6;
+  param_1[1] = (ushort)lVar5;
   return;
 }
 
 // 0x001f2e30  size 0x1e4
 /* WARNING: Removing unreachable block (ram,0x001f2ea8) */
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 long Demo_ProjectOnRoad(undefined4 param_1)
 
 {
-  int iVar1;
+  undefined *puVar1;
   uint uVar2;
   bool bVar3;
   long lVar4;
@@ -1408,7 +1395,7 @@ long Demo_ProjectOnRoad(undefined4 param_1)
   lVar5 = (long)sStack_4;
   sStack_2 = (short)((uint)param_1 >> 0x10);
   lVar4 = (long)sStack_2;
-  if (*_g_RoadData < lVar5) {
+  if ((int)g_RoadData->unk_00 < lVar5) {
     lVar4 = 0;
   }
   else {
@@ -1420,18 +1407,18 @@ long Demo_ProjectOnRoad(undefined4 param_1)
           bVar3 = true;
         }
         if (bVar3) {
-          iVar1 = _g_RoadData[1];
+          puVar1 = g_RoadData->aiLine;
           do {
             uVar2 = (uint)lVar6;
             lVar6 = (long)(int)(uVar2 + 8);
-            lVar4 = (long)((int)lVar4 + (int)**(short **)(iVar1 + (uVar2 & 0xffff) * 4) +
-                           (int)**(short **)(iVar1 + (uVar2 + 1 & 0xffff) * 4) +
-                           (int)**(short **)(iVar1 + (uVar2 + 2 & 0xffff) * 4) +
-                           (int)**(short **)(iVar1 + (uVar2 + 3 & 0xffff) * 4) +
-                           (int)**(short **)(iVar1 + (uVar2 + 4 & 0xffff) * 4) +
-                           (int)**(short **)(iVar1 + (uVar2 + 5 & 0xffff) * 4) +
-                           (int)**(short **)(iVar1 + (uVar2 + 6 & 0xffff) * 4) +
-                          (int)**(short **)(iVar1 + (uVar2 + 7 & 0xffff) * 4));
+            lVar4 = (long)((int)lVar4 + (int)**(short **)(puVar1 + (uVar2 & 0xffff) * 4) +
+                           (int)**(short **)(puVar1 + (uVar2 + 1 & 0xffff) * 4) +
+                           (int)**(short **)(puVar1 + (uVar2 + 2 & 0xffff) * 4) +
+                           (int)**(short **)(puVar1 + (uVar2 + 3 & 0xffff) * 4) +
+                           (int)**(short **)(puVar1 + (uVar2 + 4 & 0xffff) * 4) +
+                           (int)**(short **)(puVar1 + (uVar2 + 5 & 0xffff) * 4) +
+                           (int)**(short **)(puVar1 + (uVar2 + 6 & 0xffff) * 4) +
+                          (int)**(short **)(puVar1 + (uVar2 + 7 & 0xffff) * 4));
           } while (lVar6 < sStack_4 + -8);
         }
       }
@@ -1439,7 +1426,7 @@ long Demo_ProjectOnRoad(undefined4 param_1)
         do {
           uVar2 = (uint)lVar6;
           lVar6 = (long)(int)(uVar2 + 1);
-          lVar4 = (long)((int)lVar4 + (int)**(short **)(_g_RoadData[1] + (uVar2 & 0xffff) * 4));
+          lVar4 = (long)((int)lVar4 + (int)**(short **)(g_RoadData->aiLine + (uVar2 & 0xffff) * 4));
         } while (lVar6 < lVar5);
       }
     }
@@ -1448,40 +1435,31 @@ long Demo_ProjectOnRoad(undefined4 param_1)
 }
 
 // 0x001f3020  size 0x30
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RoadData_GetSectionStart(undefined4 *param_1,uint param_2)
 
 {
-  short *psVar1;
-  
-  psVar1 = *(short **)(*(int *)(_g_RoadData + 4) + (param_2 & 0xffff) * 4);
-  *param_1 = psVar1 + *psVar1 * 0x10 + 0x3e;
+  *param_1 = *(short **)(g_RoadData->aiLine + (param_2 & 0xffff) * 4) +
+             **(short **)(g_RoadData->aiLine + (param_2 & 0xffff) * 4) * 0x10 + 0x3e;
   return;
 }
 
 // 0x001f3050  size 0x40
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RoadData_GetSectionEnd(undefined4 *param_1,uint param_2)
 
 {
   short sVar1;
-  short *psVar2;
   
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (param_2 & 0xffff) * 4);
-  sVar1 = *psVar2;
-  *param_1 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + 0x3e;
+  sVar1 = **(short **)(g_RoadData->aiLine + (param_2 & 0xffff) * 4);
+  *param_1 = *(short **)(g_RoadData->aiLine + (param_2 & 0xffff) * 4) +
+             sVar1 * 0x14 + sVar1 * 2 + 0x3e;
   return;
 }
 
 // 0x001f3090  size 0x24
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RoadData_GetSegmentTable(int *param_1,uint param_2)
 
 {
-  *param_1 = *(int *)(*(int *)(_g_RoadData + 4) + (param_2 & 0xffff) * 4) + 0x7c;
+  *param_1 = *(int *)(g_RoadData->aiLine + (param_2 & 0xffff) * 4) + 0x7c;
   return;
 }
 
@@ -1507,8 +1485,6 @@ void maybe_DemoCam_Reset(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x001f3100  size 0xf8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_DemoCam_PickCar(undefined8 param_1,undefined4 *param_2)
 
 {
@@ -1527,7 +1503,7 @@ void maybe_DemoCam_PickCar(undefined8 param_1,undefined4 *param_2)
   
   iVar7 = 0;
   index = 0;
-  piVar1 = *(int **)(_g_Loading + 4);
+  piVar1 = (int *)g_Loading->unk_04;
   piVar6 = piVar1 + 4;
   *param_2 = piVar6;
   param_2[1] = piVar6 + *piVar1 * 5 + -5;

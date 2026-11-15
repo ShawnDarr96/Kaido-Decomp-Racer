@@ -1053,7 +1053,7 @@ void Ai_UpdateDriver(int param_1,uint param_2)
     else {
       iVar12 = _g_Skids + param_2 * 0xb900;
     }
-    if (*(int *)(*(int *)(_g_Loading + 0x14) + 0x500) != 0) {
+    if (*(int *)(g_Loading->workBufs[0] + 0x500) != 0) {
       MotionBlur_Setup(iVar12);
     }
     if ((*(int *)(iRam0036f3b0 + 0xc) != 0) &&
@@ -1300,8 +1300,6 @@ LAB_001cae70:
 }
 
 // 0x001cb190  size 0x8c4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Ai_FollowRacingLine(int param_1)
 
 {
@@ -1622,7 +1620,7 @@ void Ai_FollowRacingLine(int param_1)
   uStack_f4 = 0x3f800000;
   uStack_104 = 0x3f800000;
   uStack_114 = 0x3f800000;
-  if ((long)iVar12 < (long)**(short **)(_g_RoadData[1] + (uint)uVar1 * 4)) {
+  if ((long)iVar12 < (long)**(short **)(g_RoadData->aiLine + (uint)uVar1 * 4)) {
     AiLine_GetDirection(&uStack_250,3,uVar1,(short)iVar12);
     uStack_100 = uStack_250;
     uStack_fc = uStack_24c;
@@ -1695,7 +1693,7 @@ void Ai_FollowRacingLine(int param_1)
         lVar9 = (long)(short)uVar1;
       }
       else {
-        iVar14 = **(short **)(_g_RoadData[1] + ((int)(short)uVar1 - 1U & 0xffff) * 4) + -1;
+        iVar14 = **(short **)(g_RoadData->aiLine + ((int)(short)uVar1 - 1U & 0xffff) * 4) + -1;
       }
     }
     AiLine_GetDirection(&uStack_2b0,0,(short)lVar9,(short)iVar14);
@@ -1726,10 +1724,10 @@ void Ai_FollowRacingLine(int param_1)
   else {
     lVar13 = (long)(iVar12 + 1);
     lVar9 = (long)(short)uVar1;
-    if (**(short **)(_g_RoadData[1] + (uint)uVar1 * 4) <= lVar13) {
+    if (**(short **)(g_RoadData->aiLine + (uint)uVar1 * 4) <= lVar13) {
       lVar13 = 0;
       lVar9 = (long)((short)uVar1 + 1);
-      if ((long)*_g_RoadData <= (long)((short)uVar1 + 1)) {
+      if ((long)(int)g_RoadData->unk_00 <= (long)((short)uVar1 + 1)) {
         lVar13 = (long)(iVar12 + -1);
         lVar9 = (long)(short)uVar1;
       }
@@ -1836,8 +1834,6 @@ LAB_001cba24:
 }
 
 // 0x001cba60  size 0xe78
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Ai_ComputeSteering(int param_1)
 
 {
@@ -2304,7 +2300,7 @@ void Ai_ComputeSteering(int param_1)
   uStack_114 = 0x3f800000;
   uStack_124 = 0x3f800000;
   uStack_134 = 0x3f800000;
-  if ((long)iVar15 < (long)**(short **)(_g_RoadData[1] + (uint)uVar1 * 4)) {
+  if ((long)iVar15 < (long)**(short **)(g_RoadData->aiLine + (uint)uVar1 * 4)) {
     AiLine_GetDirection(&uStack_2a0,3,uVar1,(short)iVar15);
     uStack_120 = uStack_2a0;
     uStack_11c = uStack_29c;
@@ -2375,7 +2371,7 @@ void Ai_ComputeSteering(int param_1)
         iVar5 = iVar15 + 1;
       }
       else {
-        iVar5 = **(short **)(_g_RoadData[1] + (uVar17 & 0xffff) * 4) + -1;
+        iVar5 = **(short **)(g_RoadData->aiLine + (uVar17 & 0xffff) * 4) + -1;
         lVar9 = (long)(int)uVar17;
       }
     }
@@ -2406,10 +2402,10 @@ void Ai_ComputeSteering(int param_1)
   else {
     lVar10 = (long)(sVar2 + 1);
     lVar9 = (long)(short)uVar1;
-    if (**(short **)(_g_RoadData[1] + (uint)uVar1 * 4) <= lVar10) {
+    if (**(short **)(g_RoadData->aiLine + (uint)uVar1 * 4) <= lVar10) {
       lVar10 = 0;
       lVar9 = (long)((short)uVar1 + 1);
-      if ((long)*_g_RoadData <= (long)((short)uVar1 + 1)) {
+      if ((long)(int)g_RoadData->unk_00 <= (long)((short)uVar1 + 1)) {
         lVar10 = (long)(iVar15 + -1);
         lVar9 = (long)(short)uVar1;
       }
