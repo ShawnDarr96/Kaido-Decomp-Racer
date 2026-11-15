@@ -26,9 +26,16 @@ def main():
                           str(ROOT / "build/SLES_531.91.elf")], capture_output=True, text=True).stdout
     ins = []
     for line in out.splitlines():
-        m = re.match(r"\s+([0-9a-f]+):\t[0-9a-f]{8} \t(\S+)\t?(.*)", line)
+        m = re.match(r"\s+([0-9a-f]+):\t([0-9a-f]{8}) \t(\S+)\t?(.*)", line)
         if m:
-            ins.append((int(m.group(1), 16), m.group(2), m.group(3).split("<")[0].strip()))
+            word, op, args = int(m.group(2), 16), m.group(3), m.group(4).split("<")[0].strip()
+            if op == "move":
+                # objdump prints daddu/or/addu rd,rs,zero all as "move", and GAS assembles "move" as
+                # only one of them, so spell out the instruction the game actually uses
+                real = {0x2d: "daddu", 0x25: "or", 0x21: "addu"}.get(word & 0x3f)
+                if real:
+                    op, args = real, args + ",zero"
+            ins.append((int(m.group(1), 16), op, args))
     targets = set()
     for a, op, args in ins:
         if (op.startswith("b") or op == "j") and re.search(r"\b([0-9a-f]{6})$", args):

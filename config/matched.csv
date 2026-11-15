@@ -67,3 +67,10 @@ address,name,scratch,notes
 0x00177790,GameState_Get_2,https://decomp.me/scratch/zUNmC,src/gamestate.c
 0x001777a0,GameState_Get_1,https://decomp.me/scratch/zUNmC,src/gamestate.c
 0x001777b0,GameState_Get_0,https://decomp.me/scratch/zUNmC,src/gamestate.c
+0x001830d0,Options_SetDefaultsSound,https://decomp.me/scratch/tudGj,src/options.c
+0x00183110,Options_SetDefaultsDisplay,https://decomp.me/scratch/tudGj,src/options.c
+0x001831b0,Options_GetInstance,https://decomp.me/scratch/tudGj,src/options.c
+0x00183300,Options_SetDefaultsVolume,https://decomp.me/scratch/tudGj,src/options.c
+0x00183320,Options_SetDefaultsGame,https://decomp.me/scratch/tudGj,src/options.c
+0x00183350,Options_Elem_28_xe8,https://decomp.me/scratch/tudGj,src/options.c
+0x00183380,Options_ApplyBgmVolume,https://decomp.me/scratch/tudGj,src/options.c
