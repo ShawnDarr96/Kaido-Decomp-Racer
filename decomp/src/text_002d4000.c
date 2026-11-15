@@ -4,8 +4,9 @@
 
 // 0x002d40e0  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cars with CarModel byte +0x3c == 4 first (was maybe_GarageSort_ByWeight) */
 
-int maybe_GarageSort_ByWeight(short *param_1,short *param_2)
+int maybe_GarageSort_Type4First(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -61,8 +62,9 @@ int maybe_GarageSort_ByWeight(short *param_1,short *param_2)
 
 // 0x002d42e0  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* +0x3c == 2 first (was maybe_GarageSort_ByValue) */
 
-int maybe_GarageSort_ByValue(short *param_1,short *param_2)
+int maybe_GarageSort_Type2First(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -118,8 +120,9 @@ int maybe_GarageSort_ByValue(short *param_1,short *param_2)
 
 // 0x002d44e0  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* +0x3c == 1 first (was maybe_GarageSort_ByMaker) */
 
-int maybe_GarageSort_ByMaker(short *param_1,short *param_2)
+int maybe_GarageSort_Type1First(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -175,8 +178,9 @@ int maybe_GarageSort_ByMaker(short *param_1,short *param_2)
 
 // 0x002d46e0  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* +0x3c == 0 first (was maybe_GarageSort_ByClass) */
 
-int maybe_GarageSort_ByClass(short *param_1,short *param_2)
+int maybe_GarageSort_Type0First(short *param_1,short *param_2)
 
 {
   char cVar1;

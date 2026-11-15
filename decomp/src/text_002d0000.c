@@ -1838,8 +1838,9 @@ undefined4 Garage_GetSortedCarCount(undefined8 param_1)
 
 // 0x002d3bd0  size 0x14c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* compares CarModel byte +0x28 (was maybe_GarageSort_ByModel) */
 
-int maybe_GarageSort_ByModel(short *param_1,short *param_2)
+int maybe_GarageSort_ByModelKey28(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -1883,8 +1884,9 @@ int maybe_GarageSort_ByModel(short *param_1,short *param_2)
 
 // 0x002d3d20  size 0x1c0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* compares CarModel int +0x84 (was maybe_GarageSort_ByVariant) */
 
-int maybe_GarageSort_ByVariant(short *param_1,short *param_2)
+int maybe_GarageSort_ByModelValue84(short *param_1,short *param_2)
 
 {
   char cVar1;
@@ -1942,8 +1944,9 @@ int maybe_GarageSort_ByVariant(short *param_1,short *param_2)
 
 // 0x002d3ee0  size 0x1fc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* compares CarModel int +0xc, then float +0x10 (was maybe_GarageSort_ByPower) */
 
-int maybe_GarageSort_ByPower(short *param_1,short *param_2)
+int maybe_GarageSort_ByModelStat(short *param_1,short *param_2)
 
 {
   char cVar1;

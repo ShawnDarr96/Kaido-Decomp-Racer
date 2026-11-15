@@ -4473,13 +4473,13 @@ address,name,signature,source,comment
 0x002d36c0,maybe_ReplayCam_Load,,game,
 0x002d3990,Garage_BuildSortedCarList,,game,
 0x002d3ba0,Garage_GetSortedCarCount,,game,
-0x002d3bd0,maybe_GarageSort_ByModel,,game,
-0x002d3d20,maybe_GarageSort_ByVariant,,game,
-0x002d3ee0,maybe_GarageSort_ByPower,,game,
-0x002d40e0,maybe_GarageSort_ByWeight,,game,
-0x002d42e0,maybe_GarageSort_ByValue,,game,
-0x002d44e0,maybe_GarageSort_ByMaker,,game,
-0x002d46e0,maybe_GarageSort_ByClass,,game,
+0x002d3bd0,maybe_GarageSort_ByModelKey28,,game,compares CarModel byte +0x28 (was maybe_GarageSort_ByModel)
+0x002d3d20,maybe_GarageSort_ByModelValue84,,game,compares CarModel int +0x84 (was maybe_GarageSort_ByVariant)
+0x002d3ee0,maybe_GarageSort_ByModelStat,,game,"compares CarModel int +0xc, then float +0x10 (was maybe_GarageSort_ByPower)"
+0x002d40e0,maybe_GarageSort_Type4First,,game,cars with CarModel byte +0x3c == 4 first (was maybe_GarageSort_ByWeight)
+0x002d42e0,maybe_GarageSort_Type2First,,game,+0x3c == 2 first (was maybe_GarageSort_ByValue)
+0x002d44e0,maybe_GarageSort_Type1First,,game,+0x3c == 1 first (was maybe_GarageSort_ByMaker)
+0x002d46e0,maybe_GarageSort_Type0First,,game,+0x3c == 0 first (was maybe_GarageSort_ByClass)
 0x002d48e0,MenuObjSet_Free,,game,
 0x002d4940,MenuObjSet_Alloc,,game,
 0x002d49f0,maybe_MenuObjSet_GetObject,,game,
