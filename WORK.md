@@ -48,7 +48,7 @@ Columns:
 | M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
 | M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
 | M15 | Match Vec3_Scale and Vec3_ScaleCopy (97%: the game assigns x/y/z to f0/f1/f2; locals and struct-copy forms tried) | any |  |  | Gap of M14 |
-| M17 | Match batch 13: Sema/Thread wrappers, PhysMaterial, Vec3/Vec4, PhysBody lists, car clamps, Garage, Demo keys (38 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
+| M18 | Batch 13 leftovers: Sema/Thread wrappers (slt $at macro shape - check if they come from an asm/GCC library), Vec3_Sub/Add/Vec4_Sub/Quat_Mul (float regs), car clamps (bc1tl), Demo_EvalKeyC/D | any |  |  | Gap of M17 |
 
 ## P4 Finish
 
@@ -251,6 +251,7 @@ Columns:
 | M12 | 83/84 matched (https://decomp.me/scratch/Drv7c, src/batch10_accessors.c); 316 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 1c8d959 |
 | M14 | 80/82 matched (https://decomp.me/scratch/K6LSo, src/batch11_accessors.c); 396 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | f160237 |
 | M16 | 67/67 matched (https://decomp.me/scratch/j5YB4, src/batch12_accessors.c); 463 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 4a2f7e3 |
+| M17 | 22/38 matched (https://decomp.me/scratch/jwxlJ, src/batch13_helpers.c); 485 matched | P3 | ShawnDarr96/claude | 2026-11-15 | 1a152ea |
 
 ## Changes to the board
 
@@ -396,3 +397,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: M16 done.
 - 2026-11-15 ShawnDarr96: added M17.
 - 2026-11-15 ShawnDarr96/claude: claim M17.
+- 2026-11-15 ShawnDarr96/claude: M17 done; added M18 (gaps).
