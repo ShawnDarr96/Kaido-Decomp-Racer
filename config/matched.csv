@@ -100,3 +100,23 @@ address,name,scratch,notes
 0x001e90f0,RaceScene_IsRunning,https://decomp.me/scratch/LM97T,src/racecar.c
 0x001e9110,RaceScene_GetState,https://decomp.me/scratch/LM97T,src/racecar.c
 0x001e9120,RaceScene_SetFlags,https://decomp.me/scratch/LM97T,src/racecar.c
+0x001b48e0,RivalRec_GetPosition,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4900,RivalRec_GetId,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4910,RivalRec_IsBelowMax,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4920,RivalRec_GetType,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4930,RivalRec_GetTeam,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4940,RivalRec_IsValid,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4950,RivalRec_IsBoss,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4960,RivalRec_GetCarId,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4970,RivalRec_GetCourse,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001b4990,RivalRec_GetSubId,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c1670,Profile_SetEventSeen,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c1690,Profile_SetCourseRecord,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c16a0,Profile_SetCourseBest,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c16b0,Profile_GetFlag273f,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c16c0,Profile_GetFlag273d,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c16d0,Profile_GetDifficulty,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c16e0,Profile_GetChapter,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c16f0,Profile_SetSelection2733,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c1700,Profile_GetSelection2733,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528
+0x001c1710,Profile_GetWeekday,https://decomp.me/scratch/wWxaE,src/rival_profile.c; mwcps2-3.0.1b103-040528

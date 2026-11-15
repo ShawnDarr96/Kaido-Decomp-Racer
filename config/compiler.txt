@@ -1,11 +1,19 @@
-# Compiler that reproduces SLES_531.91's code byte-for-byte (board row M1).
-# Verified on decomp.me (platform PS2) - see config/matched.csv for the scratches.
-compiler: mwcps2-3.0-011126   # decomp.me id; "MWCPS2 3.0 (Built 011126)" = CodeWarrior for PS2 R3.0,
-                              # whose compiler reports "MW MIPS C Compiler 2.4.1.01" as in the ELF
+# Compiler that reproduces SLES_531.91's code byte-for-byte (board row M1). Verified on decomp.me
+# (platform PS2); see config/matched.csv for the scratches.
+compiler: mwcps2-3.0.1b103-040528   # "MWCPS2 3.0.1b103 (Built 040528)"
 flags: -O4,p
-# MWCPS2 2.4 (001213) and 2.3.3 (000906) do NOT match: they save ra with sq and copy registers
-# with paddub where the game uses sd and daddu (Options_ApplySeVolume shows it).
-# Open question: the game uses branch-likely (beqzl) for some null checks (RaceCar_Get,
-# RaceScene_IsPaused); -O4,p gives beqz+nop. Probably a code-generation option still to find.
+#
+# How it was narrowed down:
+# - 2.3.3 (000906) and 2.4 (001213) save ra with sq and copy registers with paddub; the game uses
+#   sd and daddu. 3.0 (011126) gets those right and matched the first 101 functions.
+# - But 3.0 inserts hazard nops the game does not have (an extra nop after a load before a branch,
+#   two nops after div instead of one with mfhi in the jr delay slot). Scratch wWxaE (20 functions)
+#   was tried with 3.0, 3.0.1, 3.0.3, 3.0b22, 3.0b38, 3.0.1b44, 3.0.1b103 and 3.0.1b210:
+#   only 3.0.1b103 matches all 20; b210 drops the div nop entirely; the older builds keep extra nops.
+# - TODO: re-check the scratches made with 3.0 under b103 (zXHfU, BJ7BQ, DAiek, E0YK3, zUNmC,
+#   tudGj, EJChW, LM97T). The near misses there (RaceCar_Get / RaceScene_IsPaused branch-likely,
+#   GameState_CopyPlayerRecord extra nop, Options_SetDefaults) may be this same build difference.
+#
 # Note for writing C: char parameters are passed as int and narrowed at each use
 # (dsll32/dsra32 0x18 pairs), e.g. Options_ApplySeVolume(int vol) { ... (char)vol ... }.
+# Small fixed-size copies are struct assignments (all loads, then all stores).
