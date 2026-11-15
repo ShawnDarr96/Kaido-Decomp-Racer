@@ -312,7 +312,7 @@ void maybe_ScrNewProfile_OnResult(int param_1,long param_2)
       uVar3 = Profile_Get(0);
       Profile_ResetCareer(uVar3,uVar4);
       Profile_ResetPlayTimer();
-      iRam0036f2b4 = g_RaceCtx->unk_0015 + 7;
+      iRam0036f2b4 = g_RaceCtx->language + 7;
       RaceCtx_Set_9(0);
       MenuMgr_RequestScreen(0xfffffffffffffffd);
     }

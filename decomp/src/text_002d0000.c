@@ -76,8 +76,6 @@ void maybe_RaceHud_FormatRecord(byte *param_1)
 }
 
 // 0x002d0300  size 0x550
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_RaceHud_AnimateLapInfo(int param_1)
 
 {
@@ -96,7 +94,7 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
   do {
     if ((*(int *)(iVar7 + 0xfb8) == 0) && (*(int *)(iVar7 + 0xfbc) != -1)) {
       iVar4 = UiMgr_FindLayout();
-      *(int *)(iVar7 + 0xfb8) = *_g_UiMgr + iVar4 * 0x4f4 + 4;
+      *(UiLayout **)(iVar7 + 0xfb8) = &g_UiMgr->slots[iVar4].layout;
       RaceHud_ClearSlot(param_1,uVar8 & 0xff);
     }
     uVar8 = uVar8 + 1;
@@ -104,7 +102,7 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
   } while (uVar8 < 0x10);
   if (*(int *)(param_1 + 0x10f8) == 0) {
     iVar7 = UiMgr_FindLayout(0x10);
-    *(int *)(param_1 + 0x10f8) = *_g_UiMgr + iVar7 * 0x4f4 + 4;
+    *(UiLayout **)(param_1 + 0x10f8) = &g_UiMgr->slots[iVar7].layout;
   }
   if (bVar1) {
     cVar2 = GameState_Get_354_7050();
@@ -152,15 +150,15 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
       }
       else {
         iVar7 = UiMgr_FindLayout(0x10);
-        UiElem_SetPropFloat(0,*_g_UiMgr + iVar7 * 0x4f4 + 4,0,8);
+        UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,0,8);
         iVar7 = UiMgr_FindLayout(0x10);
-        UiElem_SetPropFloat(0,*_g_UiMgr + iVar7 * 0x4f4 + 4,1,8);
+        UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,1,8);
         iVar7 = UiMgr_FindLayout(0x10);
-        UiElem_SetPropFloat(0,*_g_UiMgr + iVar7 * 0x4f4 + 4,7,8);
+        UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,7,8);
         iVar7 = UiMgr_FindLayout(0x11);
-        UiElem_SetPropFloat(0,*_g_UiMgr + iVar7 * 0x4f4 + 4,1,8);
+        UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,1,8);
         iVar7 = UiMgr_FindLayout(0x12);
-        UiElem_SetPropFloat(0,*_g_UiMgr + iVar7 * 0x4f4 + 4,1,8);
+        UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,1,8);
       }
     }
     else if (cVar2 == '\x03') {
@@ -183,14 +181,14 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
   }
   if (bVar1) {
     iVar7 = UiMgr_FindLayout(0x11);
-    *(int *)(param_1 + 0x10fc) = *_g_UiMgr + iVar7 * 0x4f4 + 4;
+    *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar7].layout;
     uVar6 = 7;
     if (*(int *)(param_1 + 0x70) == 0) {
       uVar6 = 3;
     }
     UiElem_SetPropInt(*(undefined4 *)(param_1 + 0x10fc),4,0x16,uVar6);
     iVar7 = UiMgr_FindLayout(0x12);
-    *(int *)(param_1 + 0x10fc) = *_g_UiMgr + iVar7 * 0x4f4 + 4;
+    *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar7].layout;
     uVar6 = 1;
     if (*(int *)(param_1 + 0x70) == 0) {
       uVar6 = 7;
@@ -199,7 +197,7 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
   }
   else {
     iVar7 = UiMgr_FindLayout(0x11);
-    *(int *)(param_1 + 0x10fc) = *_g_UiMgr + iVar7 * 0x4f4 + 4;
+    *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar7].layout;
     uVar6 = 2;
     if (*(int *)(param_1 + 0x70) == 0) {
       uVar6 = 5;

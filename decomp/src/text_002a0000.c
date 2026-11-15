@@ -1878,17 +1878,18 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
   int iVar2;
   int iVar3;
   int iVar4;
-  bool bVar5;
-  undefined4 uVar6;
-  int iVar7;
-  long lVar8;
+  UiLayoutSlot *pUVar5;
+  bool bVar6;
+  undefined4 uVar7;
+  int iVar8;
   long lVar9;
   long lVar10;
-  undefined8 uVar11;
+  long lVar11;
   undefined8 uVar12;
   undefined8 uVar13;
-  uint uVar14;
+  undefined8 uVar14;
   uint uVar15;
+  uint uVar16;
   undefined1 auStack_490 [576];
   undefined1 auStack_250 [576];
   uint auStack_10 [4];
@@ -1906,25 +1907,11 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
     param_1[0x12] = 0;
   }
   if (param_1[0x15] == 0) {
-    iVar7 = param_1[0x14];
+    iVar8 = param_1[0x14];
     iVar3 = param_1[0x10];
-    lVar8 = Menu_HandleCursor(param_1 + 0x14,0,2,9,0,0);
-    lVar9 = Menu_HandleCursor(param_1 + 0x10,0,8,7,1,param_1[0x18]);
+    lVar9 = Menu_HandleCursor(param_1 + 0x14,0,2,9,0,0);
+    lVar10 = Menu_HandleCursor(param_1 + 0x10,0,8,7,1,param_1[0x18]);
     UiMgr_FindLayout(0x10e);
-    uVar14 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar14) == 0) {
-      uVar14 = 0x100000;
-    }
-    else if (uVar14 == 0x80000) {
-      uVar14 = 0x80000;
-    }
-    else if (*_g_MenuInput != 1) {
-      uVar14 = 0x100000;
-    }
-    if (uVar14 == 0x1000) {
-      Se_PlayMenu(7);
-      param_1[0x11] = param_1[0x11] != 0 ^ 1;
-    }
     uVar15 = _g_MenuInput[2];
     if ((_g_MenuInput[4] & uVar15) == 0) {
       uVar15 = 0x100000;
@@ -1935,162 +1922,176 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
     else if (*_g_MenuInput != 1) {
       uVar15 = 0x100000;
     }
-    if (uVar15 == 0x2000) {
+    if (uVar15 == 0x1000) {
+      Se_PlayMenu(7);
+      param_1[0x11] = param_1[0x11] != 0 ^ 1;
+    }
+    uVar16 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar16) == 0) {
+      uVar16 = 0x100000;
+    }
+    else if (uVar16 == 0x80000) {
+      uVar16 = 0x80000;
+    }
+    else if (*_g_MenuInput != 1) {
+      uVar16 = 0x100000;
+    }
+    if (uVar16 == 0x2000) {
       Se_PlayMenu(7);
       param_1[0x12] = param_1[0x12] != 0 ^ 1;
     }
     iVar4 = param_1[0x14];
     if ((3 < iVar4 - param_1[0x13]) || (iVar4 < (int)param_1[0x13])) {
-      if (iVar7 < iVar4) {
+      if (iVar8 < iVar4) {
         param_1[0x13] = param_1[0x13] + 1;
         param_1[0x15] = 1;
-        uVar6 = UiRes_GetLayoutData(0x38d);
-        iVar7 = UiMgr_FindLayout(0x10e);
-        iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
-        *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
-        *(undefined4 *)(iVar7 + 0x334) = 0;
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        uVar7 = UiRes_GetLayoutData(0x38d);
+        iVar8 = UiMgr_FindLayout(0x10e);
+        pUVar5 = g_UiMgr->slots;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x324 = 0xffffffff;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x32c) = 0;
-        *(undefined4 *)(iVar7 + 0x334) = uVar6;
-        *(undefined4 *)(iVar7 + 0x330) = 1;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x328 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = uVar7;
+        pUVar5[iVar8].layout.animState = 1;
       }
-      else if (iVar4 < iVar7) {
+      else if (iVar4 < iVar8) {
         param_1[0x13] = param_1[0x13] + -1;
         param_1[0x15] = 2;
-        uVar6 = UiRes_GetLayoutData(0x388);
-        iVar7 = UiMgr_FindLayout(0x10e);
-        iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
-        *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
-        *(undefined4 *)(iVar7 + 0x334) = 0;
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        uVar7 = UiRes_GetLayoutData(0x388);
+        iVar8 = UiMgr_FindLayout(0x10e);
+        pUVar5 = g_UiMgr->slots;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x324 = 0xffffffff;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x32c) = 0;
-        *(undefined4 *)(iVar7 + 0x334) = uVar6;
-        *(undefined4 *)(iVar7 + 0x330) = 1;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x328 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = uVar7;
+        pUVar5[iVar8].layout.animState = 1;
       }
     }
-    iVar7 = param_1[0x10];
-    if (iVar3 != iVar7) {
-      bVar5 = iVar3 < iVar7;
-      lVar10 = abs(iVar3 - iVar7);
-      if (lVar10 != 1) {
-        bVar5 = !bVar5;
+    iVar8 = param_1[0x10];
+    if (iVar3 != iVar8) {
+      bVar6 = iVar3 < iVar8;
+      lVar11 = abs(iVar3 - iVar8);
+      if (lVar11 != 1) {
+        bVar6 = !bVar6;
       }
-      if (bVar5) {
+      if (bVar6) {
         param_1[0x15] = 4;
-        uVar6 = UiRes_GetLayoutData(0x38a);
-        iVar7 = UiMgr_FindLayout(0x10e);
-        iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
-        *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
-        *(undefined4 *)(iVar7 + 0x334) = 0;
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        uVar7 = UiRes_GetLayoutData(0x38a);
+        iVar8 = UiMgr_FindLayout(0x10e);
+        pUVar5 = g_UiMgr->slots;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x324 = 0xffffffff;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x32c) = 0;
-        *(undefined4 *)(iVar7 + 0x334) = uVar6;
-        *(undefined4 *)(iVar7 + 0x330) = 1;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x328 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = uVar7;
+        pUVar5[iVar8].layout.animState = 1;
       }
       else {
         param_1[0x15] = 5;
-        uVar6 = UiRes_GetLayoutData(0x38c);
-        iVar7 = UiMgr_FindLayout(0x10e);
-        iVar7 = *_g_UiMgr + iVar7 * 0x4f4;
-        *(undefined4 *)(iVar7 + 0x328) = 0xffffffff;
-        *(undefined4 *)(iVar7 + 0x334) = 0;
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        uVar7 = UiRes_GetLayoutData(0x38c);
+        iVar8 = UiMgr_FindLayout(0x10e);
+        pUVar5 = g_UiMgr->slots;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x324 = 0xffffffff;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x324) = 0;
-        if (*(int *)(iVar7 + 0x334) == 0) {
-          *(undefined4 *)(iVar7 + 0x330) = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x320 = 0;
+        if (*(int *)&pUVar5[iVar8].layout.field_0x330 == 0) {
+          pUVar5[iVar8].layout.animState = 0;
         }
         else {
-          *(undefined4 *)(iVar7 + 0x330) = 1;
+          pUVar5[iVar8].layout.animState = 1;
         }
-        *(undefined4 *)(iVar7 + 0x32c) = 0;
-        *(undefined4 *)(iVar7 + 0x334) = uVar6;
-        *(undefined4 *)(iVar7 + 0x330) = 1;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x328 = 0;
+        *(undefined4 *)&pUVar5[iVar8].layout.field_0x330 = uVar7;
+        pUVar5[iVar8].layout.animState = 1;
       }
     }
-    if (uVar15 == 0x2000 || (uVar14 == 0x1000 || (lVar9 != 0 || (lVar8 != 0 || iVar2 != 0)))) {
-      uVar11 = RaceTbl_Ptr_5fa0();
-      uVar12 = maybe_RaceTbl_GetCount();
-      uVar13 = Menu_MapCursorToItem(param_1[0x10]);
+    if (uVar16 == 0x2000 || (uVar15 == 0x1000 || (lVar10 != 0 || (lVar9 != 0 || iVar2 != 0)))) {
+      uVar12 = RaceTbl_Ptr_5fa0();
+      uVar13 = maybe_RaceTbl_GetCount();
+      uVar14 = Menu_MapCursorToItem(param_1[0x10]);
       uVar1 = (&DAT_0036ee2c)[param_1[0x11]];
       if (param_1[2] == 0) {
         if (param_1[0x12] == 0) {
-          uVar11 = RaceTbl_GetCourseEntryB(uVar11,0,uVar1,uVar13);
-          maybe_QuickRace_InitRowsB(param_1 + 0x1ff,uVar11);
-          maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar13,uVar1,0);
+          uVar12 = RaceTbl_GetCourseEntryB(uVar12,0,uVar1,uVar14);
+          maybe_QuickRace_InitRowsB(param_1 + 0x1ff,uVar12);
+          maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,uVar1,0);
           *(undefined1 *)((int)param_1 + 0x7f9) = 0;
           return;
         }
-        uVar11 = RaceTbl_GetCourseEntryB(uVar11,1,uVar1,uVar13);
-        maybe_QuickRace_InitRowsB(param_1 + 0x1ff,uVar11);
-        maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar13,uVar1,1);
+        uVar12 = RaceTbl_GetCourseEntryB(uVar12,1,uVar1,uVar14);
+        maybe_QuickRace_InitRowsB(param_1 + 0x1ff,uVar12);
+        maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,uVar1,1);
       }
       else if (param_1[0x12] == 0) {
-        uVar11 = RaceTbl_GetCourseEntry(uVar12,0,uVar1,uVar13);
-        maybe_QuickRace_InitRowsA(param_1 + 0x209,uVar11);
+        uVar12 = RaceTbl_GetCourseEntry(uVar13,0,uVar1,uVar14);
+        maybe_QuickRace_InitRowsA(param_1 + 0x209,uVar12);
         iVar2 = param_1[0x14];
         auStack_10[3] = 0;
         if (*(int *)param_1[iVar2 + 0x209] < 0) {
           iVar2 = 0;
           do {
-            iVar7 = iVar2;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ec) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ed) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ee) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ef) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7f0) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7f1) = 0x2d;
-            iVar2 = iVar7 + 6;
-          } while (iVar7 + 6 < 7);
-          *(undefined1 *)((int)param_1 + iVar7 + 0x7f2) = 0x2d;
+            iVar8 = iVar2;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ec) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ed) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ee) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ef) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7f0) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7f1) = 0x2d;
+            iVar2 = iVar8 + 6;
+          } while (iVar8 + 6 < 7);
+          *(undefined1 *)((int)param_1 + iVar8 + 0x7f2) = 0x2d;
         }
         else {
           auStack_10[2] = 1;
-          maybe_QuickRace_GetOptionValue(auStack_10 + 2,param_1[iVar2 + 0x209],uVar13,uVar1,0);
+          maybe_QuickRace_GetOptionValue(auStack_10 + 2,param_1[iVar2 + 0x209],uVar14,uVar1,0);
           auStack_10[2] =
                auStack_10[2] & 0xf000001f |
                (*(uint *)(param_1[iVar2 + 0x209] + 0x10) & 0x7fffff) << 5;
@@ -2098,27 +2099,27 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
         }
       }
       else {
-        uVar11 = RaceTbl_GetCourseEntry(uVar12,1,uVar1,uVar13);
-        maybe_QuickRace_InitRowsA(param_1 + 0x209,uVar11);
+        uVar12 = RaceTbl_GetCourseEntry(uVar13,1,uVar1,uVar14);
+        maybe_QuickRace_InitRowsA(param_1 + 0x209,uVar12);
         iVar2 = param_1[0x14];
         auStack_10[1] = 0;
         if (*(int *)param_1[iVar2 + 0x209] < 0) {
           iVar2 = 0;
           do {
-            iVar7 = iVar2;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ec) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ed) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ee) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7ef) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7f0) = 0x2d;
-            *(undefined1 *)((int)param_1 + iVar7 + 0x7f1) = 0x2d;
-            iVar2 = iVar7 + 6;
-          } while (iVar7 + 6 < 7);
-          *(undefined1 *)((int)param_1 + iVar7 + 0x7f2) = 0x2d;
+            iVar8 = iVar2;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ec) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ed) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ee) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7ef) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7f0) = 0x2d;
+            *(undefined1 *)((int)param_1 + iVar8 + 0x7f1) = 0x2d;
+            iVar2 = iVar8 + 6;
+          } while (iVar8 + 6 < 7);
+          *(undefined1 *)((int)param_1 + iVar8 + 0x7f2) = 0x2d;
         }
         else {
           auStack_10[0] = 1;
-          maybe_QuickRace_GetOptionValue(auStack_10,param_1[iVar2 + 0x209],uVar13,uVar1,1);
+          maybe_QuickRace_GetOptionValue(auStack_10,param_1[iVar2 + 0x209],uVar14,uVar1,1);
           auStack_10[0] =
                auStack_10[0] & 0xf000001f |
                (*(uint *)(param_1[iVar2 + 0x209] + 0x10) & 0x7fffff) << 5;

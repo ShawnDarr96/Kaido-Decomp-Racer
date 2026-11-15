@@ -101,7 +101,7 @@ void UiRes_LoadLocalized(int param_1)
 {
   uint uVar1;
   
-  param_1 = param_1 + (uint)g_RaceCtx->unk_0015;
+  param_1 = param_1 + (uint)g_RaceCtx->language;
   uVar1 = g_ArcToc->entries[param_1].unpackedSize;
   if (uVar1 == 0) {
     uVar1 = g_ArcToc->entries[param_1].sectorCount;
@@ -136,7 +136,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   uint uVar1;
   undefined8 uVar2;
   
-  param_2 = param_2 + (uint)g_RaceCtx->unk_0015;
+  param_2 = param_2 + (uint)g_RaceCtx->language;
   iRam0036f408 = param_3;
   _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
   uVar1 = g_ArcToc->entries[param_2].unpackedSize;

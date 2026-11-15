@@ -175,7 +175,6 @@ void Composer_InitPanel(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x002f8260  size 0xa4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 26 callers */
 
 void Composer_DrawLabel(long param_1,int param_2)
@@ -187,10 +186,10 @@ void Composer_DrawLabel(long param_1,int param_2)
     MenuWnd_DrawText(1,0x1b);
   }
   iVar1 = UiMgr_FindLayout(1);
-  UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x1a,9,
+  UiElem_SetPropInt(&g_UiMgr->slots[iVar1].layout,0x1a,9,
                     *(undefined4 *)(&DAT_00343550 + param_2 * 4));
   iVar1 = UiMgr_FindLayout(1);
-  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
+  UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
   return;
 }
 
@@ -2517,57 +2516,55 @@ undefined ** maybe_Attract_PickDemo(void)
 }
 
 // 0x002fb8e0  size 0x130
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void maybe_Attract_StepLayout(int *param_1)
+void maybe_Attract_StepLayout(undefined4 *param_1)
 
 {
-  int *piVar1;
-  int *piVar2;
+  UiLayout **ppUVar1;
+  UiLayout **ppUVar2;
   int iVar3;
   long lVar4;
-  int *piVar5;
-  int iStack_10;
-  int iStack_c;
-  int iStack_8;
+  UiLayout **ppUVar5;
+  UiLayout *pUStack_10;
+  UiLayout *pUStack_c;
+  UiLayout *pUStack_8;
   
-  piVar2 = (int *)0xc;
-  piVar5 = &iStack_10;
-  piVar1 = piVar5;
-  while (piVar1 != (int *)0x0) {
-    *(undefined1 *)piVar5 = 0;
-    piVar5 = (int *)((int)piVar5 + 1);
-    piVar2 = (int *)((int)piVar2 + -1);
-    piVar1 = piVar2;
+  ppUVar2 = (UiLayout **)0xc;
+  ppUVar5 = &pUStack_10;
+  ppUVar1 = ppUVar5;
+  while (ppUVar1 != (UiLayout **)0x0) {
+    *(undefined1 *)ppUVar5 = 0;
+    ppUVar5 = (UiLayout **)((int)ppUVar5 + 1);
+    ppUVar2 = (UiLayout **)((int)ppUVar2 + -1);
+    ppUVar1 = ppUVar2;
   }
   lVar4 = maybe_RaceResult_GetCategory();
   if (lVar4 == 0) {
-    *param_1 = iStack_10;
-    param_1[1] = iStack_c;
-    param_1[2] = iStack_8;
+    *param_1 = pUStack_10;
+    param_1[1] = pUStack_c;
+    param_1[2] = pUStack_8;
   }
   else {
     iVar3 = UiMgr_FindLayout(0x28);
-    iStack_c = *_g_UiMgr + iVar3 * 0x4f4 + 4;
+    pUStack_c = &g_UiMgr->slots[iVar3].layout;
     lVar4 = maybe_RaceResult_GetCategory();
     if (lVar4 == 4) {
-      iStack_10 = 0;
+      pUStack_10 = (UiLayout *)0x0;
     }
     else {
       iVar3 = UiMgr_FindLayout(0x27);
-      iStack_10 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
+      pUStack_10 = &g_UiMgr->slots[iVar3].layout;
     }
     lVar4 = maybe_RaceResult_GetCategory();
     if (lVar4 == 5) {
       iVar3 = UiMgr_FindLayout(0x29);
-      iStack_8 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
+      pUStack_8 = &g_UiMgr->slots[iVar3].layout;
     }
     else {
-      iStack_8 = 0;
+      pUStack_8 = (UiLayout *)0x0;
     }
-    *param_1 = iStack_10;
-    param_1[1] = iStack_c;
-    param_1[2] = iStack_8;
+    *param_1 = pUStack_10;
+    param_1[1] = pUStack_c;
+    param_1[2] = pUStack_8;
   }
   return;
 }

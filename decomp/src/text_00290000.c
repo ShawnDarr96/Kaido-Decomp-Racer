@@ -2024,7 +2024,7 @@ void maybe_ScrModeVoice_OnResult(undefined4 *param_1,long param_2)
     }
     else if (param_2 == -3) {
       if ((&DAT_0032e940)[param_1[4] * 2] == 7) {
-        uVar1 = (uint)g_RaceCtx->unk_0015;
+        uVar1 = (uint)g_RaceCtx->language;
       }
       else {
         uVar1 = 0;

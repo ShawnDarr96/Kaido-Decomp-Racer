@@ -280,7 +280,6 @@ void maybe_PagePasswordEntry_Exit(void)
 }
 
 // 0x002d8910  size 0x200
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 0 (table 0x3276e0, dispatched by 0x201380) */
 
 void maybe_PagePasswordEntry_Update(undefined8 param_1)
@@ -337,48 +336,48 @@ LAB_002d8994:
     PwInput_Animate(iVar4 + 0x588);
     PwInput_Update(iVar4 + 0x588);
     iVar4 = UiMgr_FindLayout(0xb3);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
+    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar4].layout);
     iVar4 = UiMgr_FindLayout(0xb7);
-    UiElem_SetPropInt(*_g_UiMgr + iVar4 * 0x4f4 + 4,0x15,9,2);
+    UiElem_SetPropInt(&g_UiMgr->slots[iVar4].layout,0x15,9,2);
     iVar4 = UiMgr_FindLayout(0xb7);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
+    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar4].layout);
   }
   return;
 }
 
 // 0x002d8b10  size 0xac
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 0 (table 0x3276e0, dispatched by 0x201380) */
 
 void maybe_PagePasswordEntry_Enter(void)
 
 {
-  undefined4 uVar1;
-  int iVar2;
+  UiLayoutSlot *pUVar1;
+  undefined4 uVar2;
+  int iVar3;
   
-  uVar1 = UiRes_GetLayoutData(0xfc);
-  iVar2 = UiMgr_FindLayout(0xb3);
-  iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
-  if (*(int *)(iVar2 + 800) == 0) {
-    *(undefined4 *)(iVar2 + 0x314) = 0xffffffff;
-    *(undefined4 *)(iVar2 + 800) = 0;
-    *(undefined4 *)(iVar2 + 0x310) = 0;
-    if (*(int *)(iVar2 + 800) == 0) {
-      *(undefined4 *)(iVar2 + 0x31c) = 0;
+  uVar2 = UiRes_GetLayoutData(0xfc);
+  iVar3 = UiMgr_FindLayout(0xb3);
+  pUVar1 = g_UiMgr->slots;
+  if (*(int *)&pUVar1[iVar3].layout.field_0x31c == 0) {
+    *(undefined4 *)&pUVar1[iVar3].layout.field_0x310 = 0xffffffff;
+    *(undefined4 *)&pUVar1[iVar3].layout.field_0x31c = 0;
+    *(undefined4 *)&pUVar1[iVar3].layout.field_0x30c = 0;
+    if (*(int *)&pUVar1[iVar3].layout.field_0x31c == 0) {
+      pUVar1[iVar3].layout.unk_318 = 0;
     }
     else {
-      *(undefined4 *)(iVar2 + 0x31c) = 1;
+      pUVar1[iVar3].layout.unk_318 = 1;
     }
-    *(undefined4 *)(iVar2 + 0x310) = 0;
-    if (*(int *)(iVar2 + 800) == 0) {
-      *(undefined4 *)(iVar2 + 0x31c) = 0;
+    *(undefined4 *)&pUVar1[iVar3].layout.field_0x30c = 0;
+    if (*(int *)&pUVar1[iVar3].layout.field_0x31c == 0) {
+      pUVar1[iVar3].layout.unk_318 = 0;
     }
     else {
-      *(undefined4 *)(iVar2 + 0x31c) = 1;
+      pUVar1[iVar3].layout.unk_318 = 1;
     }
-    *(undefined4 *)(iVar2 + 0x318) = 1;
-    *(undefined4 *)(iVar2 + 800) = uVar1;
-    *(undefined4 *)(iVar2 + 0x31c) = 1;
+    *(undefined4 *)&pUVar1[iVar3].layout.field_0x314 = 1;
+    *(undefined4 *)&pUVar1[iVar3].layout.field_0x31c = uVar2;
+    pUVar1[iVar3].layout.unk_318 = 1;
   }
   Menu_ClearSlot(0);
   return;
@@ -417,7 +416,7 @@ void maybe_ScrMemCard_Update(undefined8 param_1)
     }
   }
   else if (lVar3 != 0) {
-    iRam0036f2b4 = g_RaceCtx->unk_0015 + 1;
+    iRam0036f2b4 = g_RaceCtx->language + 1;
     MenuMgr_RequestScreen(0xfffffffffffffffb);
   }
   Save_IsBusy();
@@ -549,72 +548,71 @@ void Subtitle_SetPending(undefined4 param_1,undefined4 param_2,undefined4 param_
 }
 
 // 0x002d9590  size 0x1f0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int maybe_ReplayUi_GetLayoutForMsg(int param_1)
+UiLayout * maybe_ReplayUi_GetLayoutForMsg(int param_1)
 
 {
   int iVar1;
+  UiLayout *pUVar2;
   
   if (param_1 - 0xb6U < 0xf) {
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0xb6U) {
     case 0:
       iVar1 = UiMgr_FindLayout(0x1b);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 1:
       iVar1 = UiMgr_FindLayout(0x24);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     default:
       goto switchD_002d95b8_caseD_b8;
     case 4:
       iVar1 = UiMgr_FindLayout(0x26);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 5:
       iVar1 = UiMgr_FindLayout(0x1c);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 6:
       iVar1 = UiMgr_FindLayout(0x1d);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 7:
       iVar1 = UiMgr_FindLayout(0x1e);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 8:
       iVar1 = UiMgr_FindLayout(0x1f);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 9:
       iVar1 = UiMgr_FindLayout(0x20);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 10:
       iVar1 = UiMgr_FindLayout(0x21);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 0xc:
       iVar1 = UiMgr_FindLayout(0x22);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 0xd:
       iVar1 = UiMgr_FindLayout(0x23);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
       break;
     case 0xe:
       iVar1 = UiMgr_FindLayout(0x25);
-      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      pUVar2 = &g_UiMgr->slots[iVar1].layout;
     }
   }
   else {
 switchD_002d95b8_caseD_b8:
-    iVar1 = 0;
+    pUVar2 = (UiLayout *)0x0;
   }
-  return iVar1;
+  return pUVar2;
 }
 
 // 0x002d9780  size 0x42c

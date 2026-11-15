@@ -50,8 +50,6 @@ void RaceMenu_SetItemAlpha(int *param_1,char param_2)
 }
 
 // 0x002c41d0  size 0x2c4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceMenu_Draw(undefined8 param_1)
 
 {
@@ -71,16 +69,16 @@ void RaceMenu_Draw(undefined8 param_1)
       iVar3 = UiMgr_FindLayout(piVar6[1]);
       uVar8 = 1;
       uVar7 = 2;
-      *piVar6 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
+      *piVar6 = (int)&g_UiMgr->slots[iVar3].layout;
     }
     else {
       iVar3 = UiMgr_FindLayout(piVar6[2]);
       uVar8 = 6;
       uVar7 = 7;
-      *piVar6 = *_g_UiMgr + iVar3 * 0x4f4 + 4;
+      *piVar6 = (int)&g_UiMgr->slots[iVar3].layout;
     }
     iVar3 = UiMgr_FindLayout(piVar6[4]);
-    piVar6[3] = *_g_UiMgr + iVar3 * 0x4f4 + 4;
+    piVar6[3] = (int)&g_UiMgr->slots[iVar3].layout;
     RaceMenu_Task(param_1);
     RaceMenu_SetItemAlpha(param_1,uVar8);
     RaceMenu_SetItemAlpha(param_1,uVar7);

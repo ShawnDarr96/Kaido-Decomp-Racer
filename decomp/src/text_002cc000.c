@@ -3,8 +3,6 @@
 #include "ghidra_types.h"
 
 // 0x002cc1d0  size 0x8c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceHud_DrawMeters(undefined8 param_1)
 
 {
@@ -12,7 +10,7 @@ void RaceHud_DrawMeters(undefined8 param_1)
   long lVar2;
   
   iVar1 = UiMgr_FindLayout(0x11);
-  *(int *)((int)param_1 + 0x10fc) = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+  *(UiLayout **)((int)param_1 + 0x10fc) = &g_UiMgr->slots[iVar1].layout;
   RaceUi_DrawSpGauge(param_1);
   RaceUi_AnimateSpGauge(param_1);
   lVar2 = RaceScene_IsPaused();
@@ -162,8 +160,6 @@ void RaceHud_AnimateLapTimes(int param_1)
 }
 
 // 0x002cc690  size 0x340
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceHud_Draw(int param_1)
 
 {
@@ -217,11 +213,11 @@ void RaceHud_Draw(int param_1)
     if ((uVar1 & 1) == 0) {
       if (*(int *)(param_1 + 0x74) == 0) {
         iVar5 = UiMgr_FindLayout(0x11);
-        *(int *)(param_1 + 0x10fc) = *_g_UiMgr + iVar5 * 0x4f4 + 4;
+        *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar5].layout;
       }
       else {
         iVar5 = UiMgr_FindLayout(0x12);
-        *(int *)(param_1 + 0x10fc) = *_g_UiMgr + iVar5 * 0x4f4 + 4;
+        *(UiLayout **)(param_1 + 0x10fc) = &g_UiMgr->slots[iVar5].layout;
       }
       RaceUi_DrawPositionList(param_1);
       RaceUi_AnimateBoost(param_1);

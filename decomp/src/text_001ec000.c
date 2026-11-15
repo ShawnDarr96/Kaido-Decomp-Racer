@@ -816,8 +816,6 @@ void UiModel_DrawNode(float param_1,float param_2,undefined8 param_3,undefined8 
 }
 
 // 0x001ed540  size 0x2f4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int param_5,
                      undefined8 param_6,uint param_7)
 
@@ -825,15 +823,16 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
   uint *puVar1;
   int iVar2;
   int iVar3;
-  uint *puVar4;
-  int iVar5;
+  undefined1 *puVar4;
+  uint *puVar5;
+  int iVar6;
   uint unaff_s5_lo;
-  uint uVar6;
   uint uVar7;
-  float fVar8;
+  uint uVar8;
   float fVar9;
   float fVar10;
   float fVar11;
+  float fVar12;
   float fStack_10;
   float fStack_c;
   undefined4 uStack_8;
@@ -842,10 +841,10 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
   *param_4 = (int)(puVar1 + 0xc4);
   iVar2 = *(int *)(param_5 + 0x24);
   iVar3 = *(int *)(param_5 + 0x28);
-  fVar11 = (float)*(int *)(param_5 + 0x1c);
-  fVar10 = (float)*(int *)(param_5 + 0x20);
-  fVar8 = (float)(iVar2 - *(int *)(param_5 + 0x1c));
-  fVar9 = (float)(iVar3 - *(int *)(param_5 + 0x20));
+  fVar12 = (float)*(int *)(param_5 + 0x1c);
+  fVar11 = (float)*(int *)(param_5 + 0x20);
+  fVar9 = (float)(iVar2 - *(int *)(param_5 + 0x1c));
+  fVar10 = (float)(iVar3 - *(int *)(param_5 + 0x20));
   Obj_Reset(puVar1,5,4);
   *puVar1 = *puVar1 | 2;
   Obj_SetVisible(puVar1,1,*(undefined4 *)(param_5 + 8),*(undefined4 *)(param_5 + 0xc));
@@ -867,28 +866,28 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
     unaff_s5_lo = *(int *)(*(int *)(param_5 + 0xc) * 0x80 + *(int *)(param_3 + 0x2d8) + 0xc) - 1;
   }
   else {
-    if (_g_UiMgr == 0) {
-      iVar5 = 0;
+    if (g_UiMgr == (UiMgr *)0x0) {
+      puVar4 = (undefined1 *)0x0;
     }
-    else if (*(int *)(_g_UiMgr + 0x508) == 0) {
-      iVar5 = 0;
+    else if (g_UiMgr->unk_508 == 0) {
+      puVar4 = (undefined1 *)0x0;
     }
     else {
-      iVar5 = _g_UiMgr + 0x2d0;
+      puVar4 = &g_UiMgr->field_0x2d0;
     }
-    if (iVar5 != 0) {
-      unaff_s5_lo = *(int *)(*(int *)(param_5 + 0xc) * 0x80 + *(int *)(iVar5 + 0xc) + 0xc) - 1;
+    if (puVar4 != (undefined1 *)0x0) {
+      unaff_s5_lo = *(int *)(*(int *)(param_5 + 0xc) * 0x80 + *(int *)(puVar4 + 0xc) + 0xc) - 1;
     }
   }
-  uVar6 = *(uint *)(param_5 + 0x5c);
-  if ((int)uVar6 < 0) {
+  uVar7 = *(uint *)(param_5 + 0x5c);
+  if ((int)uVar7 < 0) {
     puVar1[0xa7] = 0;
   }
   else {
-    if ((int)unaff_s5_lo < (int)uVar6) {
-      uVar6 = unaff_s5_lo;
+    if ((int)unaff_s5_lo < (int)uVar7) {
+      uVar7 = unaff_s5_lo;
     }
-    puVar1[0xa7] = uVar6;
+    puVar1[0xa7] = uVar7;
   }
   uStack_8 = 0;
   fStack_c = -*(float *)(param_5 + 0x48) * param_2;
@@ -896,38 +895,38 @@ void UiModel_DrawMesh(float param_1,float param_2,int param_3,int *param_4,int p
   sceVu0TransMatrix(param_6,param_6,&fStack_10);
   puVar1[4] = 0;
   puVar1[5] = 0;
-  iVar5 = 0;
+  iVar6 = 0;
   puVar1[6] = 0;
   puVar1[7] = 0x3f800000;
   puVar1[8] = 0;
-  puVar1[9] = (uint)fVar9;
+  puVar1[9] = (uint)fVar10;
   puVar1[10] = 0;
   puVar1[0xb] = 0x3f800000;
-  puVar1[0xc] = (uint)fVar8;
+  puVar1[0xc] = (uint)fVar9;
   puVar1[0xd] = 0;
   puVar1[0xe] = 0;
   puVar1[0xf] = 0x3f800000;
-  puVar1[0x10] = (uint)fVar8;
-  puVar1[0x11] = (uint)fVar9;
+  puVar1[0x10] = (uint)fVar9;
+  puVar1[0x11] = (uint)fVar10;
   puVar1[0x12] = 0;
   puVar1[0x13] = 0x3f800000;
-  puVar4 = puVar1;
+  puVar5 = puVar1;
   do {
-    sceVu0ApplyMatrix(puVar4 + 4,param_6,puVar4 + 4);
-    iVar5 = iVar5 + 1;
-    puVar4 = puVar4 + 4;
-  } while (iVar5 < 4);
+    sceVu0ApplyMatrix(puVar5 + 4,param_6,puVar5 + 4);
+    iVar6 = iVar6 + 1;
+    puVar5 = puVar5 + 4;
+  } while (iVar6 < 4);
   *puVar1 = *puVar1 | 0x10;
-  puVar1[0x84] = (int)fVar11;
-  uVar6 = (uint)(float)iVar3;
-  puVar1[0x85] = (int)fVar10;
-  puVar1[0x86] = (int)fVar11;
-  uVar7 = (uint)(float)iVar2;
-  puVar1[0x87] = uVar6;
-  puVar1[0x88] = uVar7;
-  puVar1[0x89] = (int)fVar10;
-  puVar1[0x8a] = uVar7;
-  puVar1[0x8b] = uVar6;
+  puVar1[0x84] = (int)fVar12;
+  uVar7 = (uint)(float)iVar3;
+  puVar1[0x85] = (int)fVar11;
+  puVar1[0x86] = (int)fVar12;
+  uVar8 = (uint)(float)iVar2;
+  puVar1[0x87] = uVar7;
+  puVar1[0x88] = uVar8;
+  puVar1[0x89] = (int)fVar11;
+  puVar1[0x8a] = uVar8;
+  puVar1[0x8b] = uVar7;
   return;
 }
 
@@ -997,14 +996,14 @@ void UiLayout_Draw(float param_1,int param_2)
   int iStack_4;
   
   iStack_4 = 0x436810;
-  if (_g_UiMgr == 0) {
+  if (g_UiMgr == (UiMgr *)0x0) {
     piVar8 = (int *)0x0;
   }
-  else if (*(int *)(_g_UiMgr + 0x508) == 0) {
+  else if (g_UiMgr->unk_508 == 0) {
     piVar8 = (int *)0x0;
   }
   else {
-    piVar8 = (int *)(_g_UiMgr + 0x2d0);
+    piVar8 = (int *)&g_UiMgr->field_0x2d0;
   }
   if ((piVar8 != (int *)0x0) && (*piVar8 == 1)) {
     TexSlot_Set(0,*(undefined2 *)(piVar8[1] + 6),piVar8[3]);
@@ -1437,7 +1436,7 @@ void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
   *(undefined4 *)(iVar4 + 0x2fc) = uVar5;
   *(undefined4 *)(iVar4 + 0x300) = uVar6;
   iVar2 = *(int *)(iVar4 + 0x2f8);
-  bVar1 = g_RaceCtx->unk_0015;
+  bVar1 = g_RaceCtx->language;
   uVar3 = g_ArcToc->entries[iVar2].unpackedSize;
   if (uVar3 == 0) {
     uVar3 = g_ArcToc->entries[iVar2].sectorCount;

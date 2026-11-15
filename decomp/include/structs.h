@@ -271,7 +271,7 @@ typedef struct RaceCtx {  /* size 0x18 */
     u8 unk_0012;  /* 0x12 */
     u8 unk_0013;  /* 0x13 */
     u8 unk_0014;  /* 0x14 */
-    u8 unk_0015;  /* 0x15 */
+    u8 language;  /* 0x15 */
     u8 pad_0016[0x2];
 } RaceCtx;
 
@@ -294,5 +294,36 @@ typedef struct ArcToc {  /* size 0x4a50c */
 } ArcToc;
 
 extern ArcToc *g_ArcToc;
+
+typedef struct UiLayout {  /* size 0x4f0 */
+    u8 pad_0000[0x304];
+    u32 maybe_inUse;  /* 0x304 */
+    u8 pad_0308[0x10];
+    u32 unk_318;  /* 0x318 */
+    u8 pad_031c[0x10];
+    u32 animState;  /* 0x32c */
+    u8 pad_0330[0x1c0];
+} UiLayout;
+
+typedef struct UiLayoutSlot {  /* size 0x4f4 */
+    u32 id;  /* 0x0 */
+    UiLayout layout;  /* 0x4 */
+} UiLayoutSlot;
+
+typedef struct UiMgr {  /* size 0x518 */
+    UiLayoutSlot * slots;  /* 0x0 */
+    u8 pad_0004[0x4f0];
+    u32 unk_4f4;  /* 0x4f4 */
+    u32 unk_4f8;  /* 0x4f8 */
+    u32 unk_4fc;  /* 0x4fc */
+    void * buffer;  /* 0x500 */
+    u32 slotCount;  /* 0x504 */
+    u32 unk_508;  /* 0x508 */
+    u32 unk_50c;  /* 0x50c */
+    void * bufferB;  /* 0x510 */
+    u32 unk_514;  /* 0x514 */
+} UiMgr;
+
+extern UiMgr *g_UiMgr;
 
 #endif

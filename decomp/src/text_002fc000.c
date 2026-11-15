@@ -215,7 +215,7 @@ void ScrRenderSetInterlace_Update(int *param_1)
       }
       if (uVar3 == 0x10) {
         Se_PlayMenu(5);
-        g_RaceCtx->unk_0015 = *(uchar *)(param_1[1] + 0x36ef28);
+        g_RaceCtx->language = *(uchar *)(param_1[1] + 0x36ef28);
         UiRes_LoadLocalized(0x1870);
         param_1[1] = 0;
         param_1[5] = 1;
@@ -261,8 +261,6 @@ void ScrDraw_StartGame_Exit(void)
 }
 
 // 0x002fd5e0  size 0x3d0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Misc_Draw_StartGame(int *param_1)
 
 {
@@ -275,7 +273,7 @@ void Misc_Draw_StartGame(int *param_1)
   iVar1 = param_1[4];
   if (iVar1 == 3) {
     iVar1 = UiMgr_FindLayout(0x12a);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
+    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
     MenuWnd_DrawLabel(0x12a,1,0x1f89,(600 - param_1[2]) / 0x3c + 1);
   }
   else if (iVar1 == 2) {
@@ -290,7 +288,7 @@ void Misc_Draw_StartGame(int *param_1)
       MenuWnd_SetItemVisible(0);
     }
     iVar1 = UiMgr_FindLayout(0x129);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
+    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
     if (*param_1 == 0) {
       MenuWnd_DrawLabel(0x129,0x14,0x1f82,0x1f83);
     }
@@ -325,7 +323,7 @@ void Misc_Draw_StartGame(int *param_1)
       MenuWnd_SetItemVisible(0);
     }
     iVar1 = UiMgr_FindLayout(0x128);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
+    UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar1].layout);
     MenuWnd_DrawText(0x128,0x1f,0x1f8c);
     MenuWnd_DrawText(0x128,0x20,0x1f8d);
     MenuWnd_DrawText(0x128,0x21,0x1f8e);

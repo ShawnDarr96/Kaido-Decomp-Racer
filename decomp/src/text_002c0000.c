@@ -111,8 +111,6 @@ void Result_DrawRewardTable(int param_1)
 }
 
 // 0x002c0490  size 0x304
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Result_DrawMenu(int param_1)
 
 {
@@ -126,7 +124,7 @@ void Result_DrawMenu(int param_1)
   do {
     if ((*(int *)(iVar3 + 4) == 0) && (*(int *)(iVar3 + 8) != -1)) {
       iVar2 = UiMgr_FindLayout();
-      *(int *)(iVar3 + 4) = *_g_UiMgr + iVar2 * 0x4f4 + 4;
+      *(UiLayout **)(iVar3 + 4) = &g_UiMgr->slots[iVar2].layout;
       Result_UpdateRow(param_1,uVar4 & 0xff);
     }
     uVar4 = uVar4 + 1;

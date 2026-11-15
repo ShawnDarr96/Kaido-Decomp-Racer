@@ -2261,7 +2261,7 @@ void Race_Init(undefined8 param_1)
   RaceCtx_Set_8(0x13);
   RaceCtx_Set_9(6);
   RaceCtx_SetDefaults(&g_RaceCtx->courseOverride);
-  g_RaceCtx->unk_0015 = '\x01';
+  g_RaceCtx->language = '\x01';
   GameState_Alloc(param_1);
   Profile_InitTable(param_1);
   Profile_Create(0,param_1);

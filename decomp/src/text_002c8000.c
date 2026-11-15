@@ -209,11 +209,11 @@ void RaceUi_DrawResultBanner(undefined8 param_1)
   iVar10 = (int)param_1;
   if (bVar2) {
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,4,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar6].layout,4,8);
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,3,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar6].layout,3,8);
     iVar6 = UiMgr_FindLayout(0x10);
-    UiElem_SetPropFloat(0,*_g_UiMgr + iVar6 * 0x4f4 + 4,7,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar6].layout,7,8);
     uVar9 = *(uint *)(iVar10 + 0x98);
   }
   else {

@@ -207,6 +207,8 @@ def apply_structs(program):
     def get(name):
         if name in prim:
             return prim[name]
+        if name.startswith("ptr:"):
+            return PointerDataType(get(name[4:]))
         if name not in built:
             t = spec[name]
             st = StructureDataType(cat, name, int(t["size"], 16))
@@ -233,7 +235,8 @@ def apply_structs(program):
             if o > pos:
                 hdr.append(f"    u8 pad_{pos:04x}[0x{o - pos:x}];")
             arr = f"[{count}]" if count > 1 else ""
-            hdr.append(f"    {ctype.get(ty, ty)} {fname}{arr};  /* {off} */")
+            cty = ty[4:] + " *" if ty.startswith("ptr:") else ctype.get(ty, ty)
+            hdr.append(f"    {cty} {fname}{arr};  /* {off} */")
             pos = o + get(ty).getLength() * count
         size = int(t["size"], 16)
         if pos < size:

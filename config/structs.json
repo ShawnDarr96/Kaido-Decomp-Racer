@@ -1092,7 +1092,7 @@
     [
      "0x15",
      "u8",
-     "unk_0015",
+     "language",
      1
     ]
    ]
@@ -1165,6 +1165,112 @@
      "ArcTocEntry",
      "entries",
      15219
+    ]
+   ]
+  },
+  "UiLayout": {
+   "size": "0x4f0",
+   "fields": [
+    [
+     "0x304",
+     "u32",
+     "maybe_inUse",
+     1
+    ],
+    [
+     "0x318",
+     "u32",
+     "unk_318",
+     1
+    ],
+    [
+     "0x32c",
+     "u32",
+     "animState",
+     1
+    ]
+   ]
+  },
+  "UiLayoutSlot": {
+   "size": "0x4f4",
+   "fields": [
+    [
+     "0x0",
+     "u32",
+     "id",
+     1
+    ],
+    [
+     "0x4",
+     "UiLayout",
+     "layout",
+     1
+    ]
+   ]
+  },
+  "UiMgr": {
+   "size": "0x518",
+   "global": "g_UiMgr",
+   "fields": [
+    [
+     "0x0",
+     "ptr:UiLayoutSlot",
+     "slots",
+     1
+    ],
+    [
+     "0x4f4",
+     "u32",
+     "unk_4f4",
+     1
+    ],
+    [
+     "0x4f8",
+     "u32",
+     "unk_4f8",
+     1
+    ],
+    [
+     "0x4fc",
+     "u32",
+     "unk_4fc",
+     1
+    ],
+    [
+     "0x500",
+     "ptr",
+     "buffer",
+     1
+    ],
+    [
+     "0x504",
+     "u32",
+     "slotCount",
+     1
+    ],
+    [
+     "0x508",
+     "u32",
+     "unk_508",
+     1
+    ],
+    [
+     "0x50c",
+     "u32",
+     "unk_50c",
+     1
+    ],
+    [
+     "0x510",
+     "ptr",
+     "bufferB",
+     1
+    ],
+    [
+     "0x514",
+     "u32",
+     "unk_514",
+     1
     ]
    ]
   }
