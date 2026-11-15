@@ -1223,144 +1223,141 @@ void eventui_step_sub_002ef5f0(int param_1)
   int iVar4;
   float fVar5;
   
-  switch(*(undefined1 *)(param_1 + 0xce0)) {
-  case 0:
-    break;
-  case 1:
-    fVar5 = *(float *)(param_1 + 0xcb4);
-    if (88.0 <= fVar5) {
-      if (fVar5 < 936.0) {
-        *(int *)(param_1 + 0xce4) = (int)(fVar5 - 88.0);
+  if (*(byte *)(param_1 + 0xce0) < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(param_1 + 0xce0)) {
+    case 1:
+      fVar5 = *(float *)(param_1 + 0xcb4);
+      if (88.0 <= fVar5) {
+        if (fVar5 < 936.0) {
+          *(int *)(param_1 + 0xce4) = (int)(fVar5 - 88.0);
+        }
+        else {
+          *(undefined4 *)(param_1 + 0xce4) = 0x350;
+        }
       }
       else {
-        *(undefined4 *)(param_1 + 0xce4) = 0x350;
+        *(undefined4 *)(param_1 + 0xce4) = 0;
       }
-    }
-    else {
-      *(undefined4 *)(param_1 + 0xce4) = 0;
-    }
-    if (((*(uint *)(param_1 + 0xccc) & 1) != 0) &&
-       (iVar4 = *(int *)(param_1 + 0xce4),
-       sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4)),
-       (long)sVar2 <= (long)(iVar4 + 0xb0))) {
-      fVar5 = *(float *)(param_1 + 0xcb4) - 88.0;
-      sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-      if ((float)(sVar2 + -0xb0) < fVar5) {
-        sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-        fVar5 = (float)(sVar2 + -0xb0);
-      }
-      if (fVar5 <= 0.0) {
-        iVar4 = 0;
-      }
-      else {
+      if (((*(uint *)(param_1 + 0xccc) & 1) != 0) &&
+         (iVar4 = *(int *)(param_1 + 0xce4),
+         sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4)),
+         (long)sVar2 <= (long)(iVar4 + 0xb0))) {
         fVar5 = *(float *)(param_1 + 0xcb4) - 88.0;
         sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
         if ((float)(sVar2 + -0xb0) < fVar5) {
           sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
           fVar5 = (float)(sVar2 + -0xb0);
         }
-        iVar4 = (int)fVar5;
+        if (fVar5 <= 0.0) {
+          iVar4 = 0;
+        }
+        else {
+          fVar5 = *(float *)(param_1 + 0xcb4) - 88.0;
+          sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+          if ((float)(sVar2 + -0xb0) < fVar5) {
+            sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+            fVar5 = (float)(sVar2 + -0xb0);
+          }
+          iVar4 = (int)fVar5;
+        }
+        *(int *)(param_1 + 0xce4) = iVar4;
       }
-      *(int *)(param_1 + 0xce4) = iVar4;
-    }
-    if ((*(uint *)(param_1 + 0xccc) & 2) == 0) {
-      return;
-    }
-    sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
-    sVar1 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-    if ((long)(sVar2 + 0xb0) < (long)sVar1) {
-      iVar4 = *(int *)(param_1 + 0xce4);
-      sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
-      if ((long)sVar2 < (long)iVar4) {
+      if ((*(uint *)(param_1 + 0xccc) & 2) == 0) {
         return;
       }
       sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
-      *(int *)(param_1 + 0xce4) = (int)sVar2;
-    }
-    else {
-      sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-      if (sVar2 + -0xb0 < 1) {
-        iVar4 = 0;
-      }
-      else {
-        sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-        iVar4 = sVar2 + -0xb0;
-      }
-      *(int *)(param_1 + 0xce4) = iVar4;
-    }
-    break;
-  case 2:
-    sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
-    if (sVar2 < 0x58) {
-      *(undefined4 *)(param_1 + 0xce4) = 0;
-    }
-    else {
-      sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
-      if (sVar2 < 0x3a8) {
+      sVar1 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+      if ((long)(sVar2 + 0xb0) < (long)sVar1) {
+        iVar4 = *(int *)(param_1 + 0xce4);
         sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
-        *(int *)(param_1 + 0xce4) = sVar2 + -0x58;
+        if ((long)sVar2 < (long)iVar4) {
+          return;
+        }
+        sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
+        *(int *)(param_1 + 0xce4) = (int)sVar2;
       }
       else {
-        *(undefined4 *)(param_1 + 0xce4) = 0x350;
-      }
-    }
-    break;
-  case 3:
-    sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-    if (sVar2 < 0x58) {
-      *(undefined4 *)(param_1 + 0xce4) = 0;
-    }
-    else {
-      sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
-      if (sVar2 < 0x3a8) {
         sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+        if (sVar2 + -0xb0 < 1) {
+          iVar4 = 0;
+        }
+        else {
+          sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+          iVar4 = sVar2 + -0xb0;
+        }
+        *(int *)(param_1 + 0xce4) = iVar4;
+      }
+      break;
+    case 2:
+      sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
+      if (sVar2 < 0x58) {
+        *(undefined4 *)(param_1 + 0xce4) = 0;
+      }
+      else {
+        sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
+        if (sVar2 < 0x3a8) {
+          sVar2 = Script_GetField_89f0(*(undefined4 *)(param_1 + 0xca4));
+          *(int *)(param_1 + 0xce4) = sVar2 + -0x58;
+        }
+        else {
+          *(undefined4 *)(param_1 + 0xce4) = 0x350;
+        }
+      }
+      break;
+    case 3:
+      sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+      if (sVar2 < 0x58) {
+        *(undefined4 *)(param_1 + 0xce4) = 0;
+      }
+      else {
+        sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+        if (sVar2 < 0x3a8) {
+          sVar2 = Script_GetField_89f2(*(undefined4 *)(param_1 + 0xca4));
+          *(int *)(param_1 + 0xce4) = sVar2 + -0x58;
+        }
+        else {
+          *(undefined4 *)(param_1 + 0xce4) = 0x350;
+        }
+      }
+      break;
+    case 4:
+      lVar3 = SeqGen_GetTrackLength
+                        (*(undefined4 *)(param_1 + 0xca4),*(undefined4 *)(param_1 + 0xcc0),
+                         *(undefined4 *)(param_1 + 0xcc4));
+      if (lVar3 == 0) {
+        return;
+      }
+      sVar2 = *(short *)lVar3;
+      if (sVar2 < 0x58) {
+        *(undefined4 *)(param_1 + 0xce4) = 0;
+      }
+      else if (sVar2 < 0x3a8) {
         *(int *)(param_1 + 0xce4) = sVar2 + -0x58;
       }
       else {
         *(undefined4 *)(param_1 + 0xce4) = 0x350;
       }
+      break;
+    case 5:
+      lVar3 = SeqGen_GetTrackLength
+                        (*(undefined4 *)(param_1 + 0xca4),*(undefined4 *)(param_1 + 0xcc0),
+                         *(undefined4 *)(param_1 + 0xcc4));
+      if (lVar3 == 0) {
+        return;
+      }
+      iVar4 = (int)*(short *)lVar3 + (int)((short *)lVar3)[1];
+      if (iVar4 < 0x58) {
+        *(undefined4 *)(param_1 + 0xce4) = 0;
+      }
+      else if (iVar4 < 0x3a8) {
+        *(int *)(param_1 + 0xce4) = iVar4 + -0x58;
+      }
+      else {
+        *(undefined4 *)(param_1 + 0xce4) = 0x350;
+      }
     }
-    break;
-  case 4:
-    lVar3 = SeqGen_GetTrackLength
-                      (*(undefined4 *)(param_1 + 0xca4),*(undefined4 *)(param_1 + 0xcc0),
-                       *(undefined4 *)(param_1 + 0xcc4));
-    if (lVar3 == 0) {
-      return;
-    }
-    sVar2 = *(short *)lVar3;
-    if (sVar2 < 0x58) {
-      *(undefined4 *)(param_1 + 0xce4) = 0;
-    }
-    else if (sVar2 < 0x3a8) {
-      *(int *)(param_1 + 0xce4) = sVar2 + -0x58;
-    }
-    else {
-      *(undefined4 *)(param_1 + 0xce4) = 0x350;
-    }
-    break;
-  case 5:
-    lVar3 = SeqGen_GetTrackLength
-                      (*(undefined4 *)(param_1 + 0xca4),*(undefined4 *)(param_1 + 0xcc0),
-                       *(undefined4 *)(param_1 + 0xcc4));
-    if (lVar3 == 0) {
-      return;
-    }
-    iVar4 = (int)*(short *)lVar3 + (int)((short *)lVar3)[1];
-    if (iVar4 < 0x58) {
-      *(undefined4 *)(param_1 + 0xce4) = 0;
-    }
-    else if (iVar4 < 0x3a8) {
-      *(int *)(param_1 + 0xce4) = iVar4 + -0x58;
-    }
-    else {
-      *(undefined4 *)(param_1 + 0xce4) = 0x350;
-    }
-    break;
-  default:
-    goto switchD_002ef62c_default;
   }
-switchD_002ef62c_default:
   return;
 }
 

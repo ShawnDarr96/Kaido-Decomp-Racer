@@ -968,71 +968,74 @@ void ScrGarage_Draw_FullAero(int param_1)
   uVar7 = Profile_GetMoney(uVar7);
   MenuWnd_DrawNumber(0x55,4,uVar7);
   iVar3 = MenuText_CarModelId(0xffffffffffffffff,0);
-  uVar2 = CarDb_GetVariantCount(iVar3 + 1);
-  switch(uVar2) {
-  case 3:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xe);
-    break;
-  case 4:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,10);
-    break;
-  case 5:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,1);
-    break;
-  case 6:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,4);
-    break;
-  case 7:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,3);
-    break;
-  case 8:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,2);
-    break;
-  case 9:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,6);
-    break;
-  case 10:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,5);
-    break;
-  case 0xb:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xd);
-    break;
-  case 0xc:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xc);
-    break;
-  case 0xd:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,7);
-    break;
-  case 0xe:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xf);
-    break;
-  case 0xf:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,8);
-    break;
-  case 0x10:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,9);
-    break;
-  case 0x11:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xb);
-    break;
-  case 0x12:
-    iVar3 = UiMgr_FindLayout(0x5a);
-    UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0x10);
+  iVar3 = CarDb_GetVariantCount(iVar3 + 1);
+  if (iVar3 - 3U < 0x10) {
+                    /* WARNING: Switch is manually overridden */
+    switch(iVar3 - 3U) {
+    case 0:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xe);
+      break;
+    case 1:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,10);
+      break;
+    case 2:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,1);
+      break;
+    case 3:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,4);
+      break;
+    case 4:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,3);
+      break;
+    case 5:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,2);
+      break;
+    case 6:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,6);
+      break;
+    case 7:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,5);
+      break;
+    case 8:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xd);
+      break;
+    case 9:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xc);
+      break;
+    case 10:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,7);
+      break;
+    case 0xb:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xf);
+      break;
+    case 0xc:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,8);
+      break;
+    case 0xd:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,9);
+      break;
+    case 0xe:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0xb);
+      break;
+    case 0xf:
+      iVar3 = UiMgr_FindLayout(0x5a);
+      UiElem_SetPropInt(*_g_UiMgr + iVar3 * 0x4f4 + 4,1,0x16,0x10);
+    }
   }
   iVar3 = MenuText_CarModelId(0xffffffffffffffff,0);
   lVar4 = CarDb_GetVariantCount(iVar3 + 1);

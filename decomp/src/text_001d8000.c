@@ -2284,7 +2284,7 @@ void RaceRule_CheckFreeRun(char param_1)
 }
 
 // 0x001dbf40  size 0x94
-void race_step_sub_001dbf40(int param_1)
+void maybe_Race_CheckRuleEnd(int param_1)
 
 {
   char cVar1;
@@ -2306,7 +2306,7 @@ void race_step_sub_001dbf40(int param_1)
   return;
 }
 
-// 0x001dbfe0  size 0x128
+// 0x001dbfe0  size 0x1a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceRule_Finish(void)
@@ -2333,10 +2333,26 @@ void RaceRule_Finish(void)
     }
     uVar8 = Password_EncodeFields(iVar9,*(undefined4 *)(uVar1 + 0x4b8));
     if (uVar8 < 6) {
-                    /* WARNING: Could not recover jumptable at 0x001dc074. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-      (*(code *)(&PTR_LAB_003641c0)[(int)uVar8])();
-      return;
+                    /* WARNING: Switch is manually overridden */
+      switch((int)uVar8) {
+      case 0:
+        *_g_RaceProg = *_g_RaceProg | 0x800;
+        break;
+      case 1:
+        *_g_RaceProg = *_g_RaceProg | 0x1000;
+        break;
+      case 2:
+        *_g_RaceProg = *_g_RaceProg | 0x2000;
+        break;
+      case 3:
+        *_g_RaceProg = *_g_RaceProg | 0x4000;
+        break;
+      case 4:
+        *_g_RaceProg = *_g_RaceProg | 0x8000;
+        break;
+      case 5:
+        *_g_RaceProg = *_g_RaceProg | 0x10000;
+      }
     }
     if (uVar8 != 5) {
       uVar2 = Profile_Get(0);

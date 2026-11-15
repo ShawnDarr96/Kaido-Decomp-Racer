@@ -1440,7 +1440,7 @@ void MenuSnd_StopAll(void)
 }
 
 // 0x00206660  size 0x10
-void ui_leaf_sub_00206660(int param_1)
+void maybe_Ui_SetCallback(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0x2065f0;
@@ -1952,8 +1952,7 @@ void TitleCam_Update(undefined8 param_1)
   if (fVar5 != pfVar4[0x37]) {
     if (pfVar4[0x35] == 0.0) {
       pfVar4[0x36] = (float)((int)fVar5 + 1);
-      fVar5 = (float)TitleCam_GetPathCount
-                               ((float)(int)pfVar4[0x36] / (float)(int)pfVar4[0x37],pfVar4[0x25]);
+      fVar5 = (float)Math_Ease((float)(int)pfVar4[0x36] / (float)(int)pfVar4[0x37],pfVar4[0x25]);
       fVar7 = 1.0 - fVar5;
       pfVar4[0xe] = pfVar4[0x18] * fVar7 + pfVar4[0x24] * fVar5;
       sceVu0ScaleVector(fVar7,auStack_10,pfVar4 + 0x10);

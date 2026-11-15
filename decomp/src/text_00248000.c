@@ -124,18 +124,21 @@ void ScrCareer_Draw_GoBattle_8970(undefined8 param_1)
     *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
     *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
     uVar8 = *(undefined4 *)(iVar13 + 0x6a8);
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = uVar8;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = uVar8;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = uVar8;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = uVar8;
+    if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(_g_MenuMgr + 0x34)) {
+      case 1:
+        *(undefined4 *)(_g_MenuMgr + 0x598) = uVar8;
+        break;
+      case 2:
+        *(undefined4 *)(_g_MenuMgr + 0x5dc) = uVar8;
+        break;
+      case 3:
+        *(undefined4 *)(_g_MenuMgr + 0x5fc) = uVar8;
+        break;
+      case 4:
+        *(undefined4 *)(_g_MenuMgr + 0x618) = uVar8;
+      }
     }
     Menu_ShowDialog(_g_MenuMgr + 0x654,0x124,0);
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
@@ -485,18 +488,21 @@ void ScrCareer_Draw_GoBattle_9330(undefined8 param_1)
     *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
     *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
     uVar8 = *(undefined4 *)(iVar14 + 0x6a8);
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = uVar8;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = uVar8;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = uVar8;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = uVar8;
+    if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(_g_MenuMgr + 0x34)) {
+      case 1:
+        *(undefined4 *)(_g_MenuMgr + 0x598) = uVar8;
+        break;
+      case 2:
+        *(undefined4 *)(_g_MenuMgr + 0x5dc) = uVar8;
+        break;
+      case 3:
+        *(undefined4 *)(_g_MenuMgr + 0x5fc) = uVar8;
+        break;
+      case 4:
+        *(undefined4 *)(_g_MenuMgr + 0x618) = uVar8;
+      }
     }
     Menu_ShowDialog(_g_MenuMgr + 0x654,0x124,0);
     Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);

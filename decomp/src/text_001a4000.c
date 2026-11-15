@@ -241,7 +241,7 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
 }
 
 // 0x001a4ed0  size 0x78
-long course_step_sub_001a4ed0(long param_1,short param_2)
+long Course_dtor(long param_1,short param_2)
 
 {
   int iVar1;
@@ -677,7 +677,7 @@ undefined4 Course_GetField_24(int param_1)
 }
 
 // 0x001a5a00  size 0x40
-void course_leaf_sub_001a5a00(int param_1)
+void maybe_Course_GetItemA(int param_1)
 
 {
   int iVar1;
@@ -694,7 +694,7 @@ void course_leaf_sub_001a5a00(int param_1)
 }
 
 // 0x001a5a40  size 0x28
-void course_leaf_sub_001a5a40(int param_1)
+void maybe_Course_GetItemB(int param_1)
 
 {
   int iVar1;
@@ -708,7 +708,7 @@ void course_leaf_sub_001a5a40(int param_1)
 }
 
 // 0x001a5a70  size 0x8
-void course_leaf_sub_001a5a70(int param_1)
+void Course_ClearCount(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0;
@@ -716,7 +716,7 @@ void course_leaf_sub_001a5a70(int param_1)
 }
 
 // 0x001a5a80  size 0x20
-void course_leaf_sub_001a5a80(int param_1,undefined4 param_2,uint param_3)
+void Course_SetField18(int param_1,undefined4 param_2,uint param_3)
 
 {
   *(undefined4 *)(param_1 + 0x18) = param_2;
@@ -726,7 +726,7 @@ void course_leaf_sub_001a5a80(int param_1,undefined4 param_2,uint param_3)
 }
 
 // 0x001a5aa0  size 0x30
-void course_leaf_sub_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
+void maybe_Course_InitHeader(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   *param_1 = param_2;
@@ -743,7 +743,7 @@ void course_leaf_sub_001a5aa0(undefined4 *param_1,undefined4 param_2,undefined4 
 }
 
 // 0x001a5ad0  size 0x50
-undefined4 course_step_sub_001a5ad0(void)
+undefined4 maybe_Course_IsBgmReady(void)
 
 {
   char cVar1;

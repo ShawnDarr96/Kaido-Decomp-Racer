@@ -141,8 +141,8 @@ float RaceCar_WheelGroundDistance(int param_1,int param_2)
 // 0x001ccc10  size 0xac8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefined1 param_5,
-                   long param_6,ulong param_7)
+void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,byte param_5,long param_6,
+                   ulong param_7)
 
 {
   short sVar1;
@@ -252,7 +252,7 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   fStack_8 = (float)param_2[0x4de];
   fStack_10 = (float)param_2[0x4dc];
   fStack_c = (float)param_2[0x4dd] + 0.1;
-  road_step_sub_00188b50
+  maybe_Road_InterpolateSegment
             (0x3f800000,0x36f230,auStack_30,*(undefined2 *)((int)param_2 + 0x1366),param_2[0x4db],
              *(undefined2 *)((int)param_2 + 0x136a),lVar16);
   sceVu0SubVector(&fStack_50,auStack_30,param_2 + 0x4dc);
@@ -451,6 +451,8 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
   Vec3_Normalize(&fStack_a0);
   Vec3_Normalize(&fStack_c0);
   Vec3_Normalize(&fStack_b0);
+  if (8 < param_5) goto switchD_001cd468_caseD_0;
+                    /* WARNING: Switch is manually overridden */
   switch(param_5) {
   case 1:
     fVar20 = 1.5;
@@ -471,32 +473,32 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,undefi
     fVar20 = 4.5;
     break;
   case 7:
-  case 8:
     uVar7 = Race_GetCourseVariant();
     fVar20 = afStack_f0[uVar7 & 0xff];
   }
+switchD_001cd468_caseD_0:
 LAB_001cd4e8:
-  switch(param_5) {
-  default:
+  if (param_5 < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_5) {
+    case 0:
+      goto switchD_001cd504_caseD_0;
+    case 1:
+      fStack_c = fStack_ac * fVar20;
+      fStack_10 = fStack_b0 * fVar20;
+      fStack_8 = fStack_a8 * fVar20;
+      break;
+    case 2:
+      fStack_c = fStack_bc * fVar20;
+      fStack_10 = fStack_c0 * fVar20;
+      fStack_8 = fStack_b8 * fVar20;
+    }
+  }
+  else {
+switchD_001cd504_caseD_0:
     fStack_10 = 0.0;
     fStack_c = 0.0;
     fStack_8 = 0.0;
-    break;
-  case 1:
-  case 3:
-  case 5:
-  case 8:
-    fStack_c = fStack_ac * fVar20;
-    fStack_10 = fStack_b0 * fVar20;
-    fStack_8 = fStack_a8 * fVar20;
-    break;
-  case 2:
-  case 4:
-  case 6:
-  case 7:
-    fStack_c = fStack_bc * fVar20;
-    fStack_10 = fStack_c0 * fVar20;
-    fStack_8 = fStack_b8 * fVar20;
   }
   fStack_10 = *pfVar4 + fStack_10;
   fStack_c = pfVar4[1] + fStack_c;
@@ -738,7 +740,7 @@ void Ai_SetupDifficulty(void)
         else {
           iVar15 = iVar15 * 0x20;
         }
-        raceprog_leaf_sub_001ddda0(iVar9 + iVar15,&uStack_2,&uStack_4);
+        maybe_RaceProg_FindRecord(iVar9 + iVar15,&uStack_2,&uStack_4);
         Ai_PredictPath(0,*(undefined4 *)((int)_g_RaceCars + iVar7),uStack_2,uStack_4,uVar14,1,
                        *(undefined4 *)(iVar12 + 4));
         Ai_ComputeSteering(*(undefined4 *)((int)_g_RaceCars + iVar7));

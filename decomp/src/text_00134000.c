@@ -1152,10 +1152,12 @@ void File_LoaderThread(void)
       Sema_Wait(0x36effc);
       Sema_Signal(0x36effc,0);
       iVar6 = (int)lVar3;
-      switch(*(undefined1 *)(iVar6 + 0x38)) {
-      case 1:
-      case 2:
-      case 3:
+      if (8 < *(byte *)(iVar6 + 0x38)) goto switchD_00135eec_caseD_0;
+                    /* WARNING: Switch is manually overridden */
+      switch(*(byte *)(iVar6 + 0x38)) {
+      case 0:
+        break;
+      default:
         Sema_Signal(0x36eff8,0);
         iVar2 = *(int *)(iVar6 + 0x58);
         goto LAB_00136060;
@@ -1220,6 +1222,7 @@ void File_LoaderThread(void)
       case 8:
         File_WriteHostRequest(lVar3);
       }
+switchD_00135eec_caseD_0:
       iVar2 = *(int *)(iVar6 + 0x58);
 LAB_00136060:
       if (iVar2 != 0) {
@@ -2367,12 +2370,10 @@ void Pad_ReadButtons(int param_1)
                         (*(undefined4 *)(param_1 + 0x48c),*(undefined4 *)(param_1 + 0x488),iVar2);
     }
     lVar5 = (**(code **)(*(int *)(param_1 + 4) + 0x10))(param_1,iVar2);
-    if (lVar5 != 0) {
-      switch(uVar7) {
-      case 0x10:
-      case 0x12:
-      case 0x14:
-      case 0x16:
+    if ((lVar5 != 0) && (uVar7 - 0x10 < 8)) {
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar7 - 0x10) {
+      case 0:
         if ((int)uVar4 < 0x7f) {
           uVar4 = (uint)((127.5 - (float)(int)uVar4) * 2.0);
           iVar3 = 1;
@@ -2382,10 +2383,7 @@ void Pad_ReadButtons(int param_1)
           uVar4 = 0;
         }
         break;
-      case 0x11:
-      case 0x13:
-      case 0x15:
-      case 0x17:
+      case 1:
         if ((int)uVar4 < 0x80) {
           iVar3 = 0;
           uVar4 = 0;

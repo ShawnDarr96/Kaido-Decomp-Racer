@@ -807,9 +807,9 @@ void Eventui_Draw_BgmConfig_13c0(int *param_1)
 
 // 0x002e1c30  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278f0 */
+/* menu page 44 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278f0_exit_sub_002e1c30(void)
+void MenuPage44_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -818,9 +818,9 @@ void screc3278f0_exit_sub_002e1c30(void)
 
 // 0x002e1c50  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278f0 */
+/* menu page 44 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278f0_update_sub_002e1c50(int param_1)
+void MenuPage44_Update(int param_1)
 
 {
   uint uVar1;
@@ -838,9 +838,9 @@ void screc3278f0_update_sub_002e1c50(int param_1)
 
 // 0x002e1cf0  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278f0 */
+/* menu page 44 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278f0_enter_sub_002e1cf0(void)
+void MenuPage44_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1044,8 +1044,9 @@ void ScrSndQueueCmd1_Enter(int param_1)
 
 // 0x002e2250  size 0x22c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* menu screen 44 (table 0x3274b0) */
 
-void frontend_select_sub_002e2250(undefined8 param_1)
+void maybe_ScrMusic_Update(undefined8 param_1)
 
 {
   char cVar1;
@@ -1120,7 +1121,9 @@ void frontend_select_sub_002e2250(undefined8 param_1)
 }
 
 // 0x002e2480  size 0xb0
-void eventui_step_sub_002e2480(undefined4 *param_1)
+/* menu screen 44 (table 0x3274b0) */
+
+void maybe_ScrMusic_Enter(undefined4 *param_1)
 
 {
   undefined4 uVar1;

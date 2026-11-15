@@ -5,7 +5,7 @@
 // 0x001dc180  size 0xc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 raceprog_leaf_sub_001dc180(void)
+undefined4 maybe_RaceProg_GetEntry(void)
 
 {
   return *_g_RaceProg;
@@ -104,7 +104,7 @@ undefined4 RaceProg_GetArray_28(char param_1)
 // 0x001dc280  size 0x8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 raceprog_leaf_sub_001dc280(void)
+undefined4 maybe_RaceProg_GetEntryB(void)
 
 {
   return _g_RaceProg;
@@ -1247,7 +1247,7 @@ undefined4 Checkpoint_Update(int param_1,int param_2)
 // 0x001ddda0  size 0xa0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void raceprog_leaf_sub_001ddda0(int param_1,short *param_2,undefined2 *param_3)
+void maybe_RaceProg_FindRecord(int param_1,short *param_2,undefined2 *param_3)
 
 {
   int iVar1;
@@ -1711,50 +1711,52 @@ void RaceProg_CheckWin(undefined8 param_1)
   undefined8 uVar1;
   long lVar2;
   int iVar3;
-  undefined1 uVar4;
+  byte bVar4;
   int iVar5;
   
-  uVar4 = GameState_Get_354();
-  switch(uVar4) {
-  case 0:
-    RaceProg_CheckTimeUp(param_1);
-    break;
-  case 1:
-    RaceProg_CheckBattleFinish(param_1);
-    break;
-  case 2:
-    RaceProg_CheckSprintFinish(param_1);
-    break;
-  case 3:
-    RaceProg_CheckLose(param_1);
-    break;
-  case 4:
-  case 5:
-    RaceProg_CheckPosition(param_1);
-    break;
-  case 6:
-    uVar1 = RaceProg_GetArray_28(0);
-    lVar2 = Raceprog_Nop(uVar1);
-    if (lVar2 < 1) {
-      Flags_Set(param_1,0x22);
-    }
-    iVar5 = RaceProg_GetArray_40(0);
-    if ((*(int *)(iVar5 + 0x4b8) != 0) && (lVar2 = GameState_Get_364(), lVar2 != 0)) {
-      iVar5 = *(int *)(iVar5 + 0x4b8);
-      iVar3 = GameState_Get_364();
-      if (iVar5 < iVar3) {
-        Flags_Set(param_1,0x81);
+  bVar4 = GameState_Get_354();
+  if (bVar4 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar4) {
+    case 0:
+      RaceProg_CheckTimeUp(param_1);
+      break;
+    case 1:
+      RaceProg_CheckBattleFinish(param_1);
+      break;
+    case 2:
+      RaceProg_CheckSprintFinish(param_1);
+      break;
+    case 3:
+      RaceProg_CheckLose(param_1);
+      break;
+    default:
+      RaceProg_CheckPosition(param_1);
+      break;
+    case 6:
+      uVar1 = RaceProg_GetArray_28(0);
+      lVar2 = Raceprog_Nop(uVar1);
+      if (lVar2 < 1) {
+        Flags_Set(param_1,0x22);
       }
-      else {
-        Flags_Set(param_1,0x82);
+      iVar5 = RaceProg_GetArray_40(0);
+      if ((*(int *)(iVar5 + 0x4b8) != 0) && (lVar2 = GameState_Get_364(), lVar2 != 0)) {
+        iVar5 = *(int *)(iVar5 + 0x4b8);
+        iVar3 = GameState_Get_364();
+        if (iVar5 < iVar3) {
+          Flags_Set(param_1,0x81);
+        }
+        else {
+          Flags_Set(param_1,0x82);
+        }
       }
-    }
-    break;
-  case 7:
-    iVar5 = RaceProg_GetArray_40(0);
-    RaceProg_GetArray_34(0);
-    if (*(int *)(iVar5 + 0x4b8) != 0) {
-      Flags_Set(param_1,0x41);
+      break;
+    case 7:
+      iVar5 = RaceProg_GetArray_40(0);
+      RaceProg_GetArray_34(0);
+      if (*(int *)(iVar5 + 0x4b8) != 0) {
+        Flags_Set(param_1,0x41);
+      }
     }
   }
   return;
@@ -2489,7 +2491,7 @@ void RaceProg_UpdateTimerAll(void)
 }
 
 // 0x001dff30  size 0x48
-void raceprog_leaf_sub_001dff30(int param_1)
+void maybe_RaceProg_CountA(int param_1)
 
 {
   int iVar1;
@@ -2511,7 +2513,7 @@ void raceprog_leaf_sub_001dff30(int param_1)
 }
 
 // 0x001dff80  size 0x50
-int raceprog_leaf_sub_001dff80(int param_1)
+int maybe_RaceProg_CountB(int param_1)
 
 {
   int iVar1;

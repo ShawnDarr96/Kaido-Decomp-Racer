@@ -106,9 +106,9 @@ void ScrCareer_Draw_Shop(int param_1)
 
 // 0x00218b10  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327704 */
+/* menu page 3 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327704_exit_sub_00218b10(void)
+void MenuPage03_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -117,9 +117,9 @@ void screc327704_exit_sub_00218b10(void)
 
 // 0x00218b30  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327704 */
+/* menu page 3 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327704_update_sub_00218b30(undefined8 param_1)
+void MenuPage03_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -139,9 +139,9 @@ void screc327704_update_sub_00218b30(undefined8 param_1)
 
 // 0x00218bf0  size 0x3b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327704 */
+/* menu page 3 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327704_enter_sub_00218bf0(void)
+void MenuPage03_Enter(void)
 
 {
   undefined4 uVar1;
@@ -506,12 +506,12 @@ void ScrRace_Draw_NaFesta(uint *param_1)
     MenuWnd_DrawText(0x26,0x3e,uVar13);
     cVar6 = Race_IsTimeTrialMode(uVar11,0);
     if (cVar6 == '\0') {
-      ui_leaf_sub_001f6720(auStack_18,uVar11,9 - iStack_e0,9 - iStack_dc);
+      maybe_Ui_LeafF6720(auStack_18,uVar11,9 - iStack_e0,9 - iStack_dc);
     }
     else {
-      ui_leaf_sub_001f6720(auStack_18,uVar11,iStack_e0,iStack_dc);
+      maybe_Ui_LeafF6720(auStack_18,uVar11,iStack_e0,iStack_dc);
     }
-    ui_leaf_sub_001f6720(auStack_18,uVar11,iStack_e0,iStack_dc);
+    maybe_Ui_LeafF6720(auStack_18,uVar11,iStack_e0,iStack_dc);
   }
   else {
     Course_FindSection(auStack_b0,uVar11,param_1[7],param_1[8]);
@@ -519,10 +519,10 @@ void ScrRace_Draw_NaFesta(uint *param_1)
     MenuWnd_DrawText(0x26,0x3e,uVar13);
     cVar6 = Race_IsTimeTrialMode(uVar11,0);
     if (cVar6 == '\0') {
-      ui_leaf_sub_001f6720(auStack_18,uVar11,9 - iStack_a8,9 - iStack_a4);
+      maybe_Ui_LeafF6720(auStack_18,uVar11,9 - iStack_a8,9 - iStack_a4);
     }
     else {
-      ui_leaf_sub_001f6720(auStack_18,uVar11,iStack_a8,iStack_a4);
+      maybe_Ui_LeafF6720(auStack_18,uVar11,iStack_a8,iStack_a4);
     }
   }
   uVar11 = maybe___sf_to_df(auStack_18[0]);
@@ -587,8 +587,9 @@ void ScrRace_Draw_NaFesta(uint *param_1)
 
 // 0x002199f0  size 0x14c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 7 of state table 0x32a290 used by maybe_PageNaFesta_Update */
 
-void scrcareer_draw_sub_002199f0(undefined8 param_1)
+void maybe_PageNaFesta_State7(undefined8 param_1)
 
 {
   int iVar1;

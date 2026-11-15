@@ -294,7 +294,7 @@ void Road_ProjectOnSegment
 }
 
 // 0x00188b50  size 0x2b0
-void road_step_sub_00188b50
+void maybe_Road_InterpolateSegment
                (float param_1,undefined8 param_2,undefined8 param_3,ushort param_4,int param_5,
                undefined8 param_6,long param_7)
 
@@ -1078,7 +1078,7 @@ undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 par
   sVar1 = psVar10[1];
   uStack_10 = 0;
   if (*psVar10 == -1) {
-    road_step_sub_0018bc40(param_2,param_3,param_1);
+    maybe_Road_FindSectionCell(param_2,param_3,param_1);
     uStack_10 = 0;
   }
   else {
@@ -1127,7 +1127,7 @@ undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 par
             if (CONCAT44((int)((ulong)(long)sVar8 >> 0x20),(int)sVar8) < (long)*psVar4) {
               if (CONCAT44((int)((ulong)(long)sVar7 >> 0x20),(int)sVar7) < 1) {
                 psVar10[1] = sVar7;
-                lVar15 = road_step_sub_0018b550(param_1,param_2,param_3);
+                lVar15 = maybe_Road_FindCellContaining(param_1,param_2,param_3);
               }
               else {
                 lVar15 = 0;
@@ -1155,7 +1155,7 @@ undefined4 Road_LocatePoint(undefined8 param_1,undefined8 param_2,undefined8 par
             }
             else {
               psVar10[1] = sVar8;
-              lVar15 = road_step_sub_0018b550(param_1,param_2,param_3);
+              lVar15 = maybe_Road_FindCellContaining(param_1,param_2,param_3);
             }
           }
           else {
@@ -1203,10 +1203,10 @@ LAB_0018a750:
         }
         if (sVar2 == -1) {
           uStack_10 = 0xffffffff;
-          lVar15 = road_step_sub_0018bc40(param_2,param_3,param_1);
+          lVar15 = maybe_Road_FindSectionCell(param_2,param_3,param_1);
           if (lVar15 != 1) {
             uStack_10 = 0xfffffffe;
-            lVar15 = road_step_sub_0018be90(param_2,param_3,param_1);
+            lVar15 = maybe_Road_FindSectionTriangle(param_2,param_3,param_1);
             if (lVar15 != 1) {
               psVar10[1] = sVar1;
               uStack_10 = 0xfffffffd;
@@ -1280,7 +1280,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
     piVar16 = (int *)param_1;
     psVar14 = *(short **)(*(int *)(*piVar16 + 4) + sStack_34 * 4);
     if (sStack_32 != -1) {
-      lVar5 = road_leaf_sub_0018b390(psVar14,sStack_32,param_2,0);
+      lVar5 = maybe_Road_FindCellIndex(psVar14,sStack_32,param_2,0);
       sVar7 = sStack_50;
       if (lVar5 == -1) {
         uVar10 = 0;
@@ -1298,7 +1298,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
           }
           if (sVar8 != -1) {
             psVar14 = *(short **)(*(int *)(*piVar16 + 4) + sVar8 * 4);
-            lVar5 = road_leaf_sub_0018b390(psVar14,sVar7,param_2,0);
+            lVar5 = maybe_Road_FindCellIndex(psVar14,sVar7,param_2,0);
             if (lVar5 != -1) break;
           }
           uVar10 = uVar10 + 1;
@@ -1314,7 +1314,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
           if ((psVar12[2] != -1) && (psVar12[2] == sStack_32)) {
             sVar7 = psVar12[4];
             psVar1 = *(short **)(*(int *)(*piVar16 + 4) + psVar12[3] * 4);
-            lVar5 = road_leaf_sub_0018b390(psVar1,sVar7,param_2,0);
+            lVar5 = maybe_Road_FindCellIndex(psVar1,sVar7,param_2,0);
             if (lVar5 != -1) {
               psVar14 = psVar1;
               sStack_50 = sVar7;
@@ -1344,7 +1344,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
                 sVar7 = -1;
               }
               if ((sVar7 != -1) &&
-                 (lVar5 = road_leaf_sub_0018b390(psVar1,sVar8,param_2,0), lVar5 != -1)) {
+                 (lVar5 = maybe_Road_FindCellIndex(psVar1,sVar8,param_2,0), lVar5 != -1)) {
                 psVar14 = psVar1;
                 sStack_50 = sVar8;
                 break;
@@ -1364,18 +1364,18 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
         uVar4 = (ulong)puVar13[4];
         pfVar9 = (float *)((int)psVar14 + (uint)*puVar13 * 0x10 + *(int *)(psVar14 + 0x20));
         if (uVar4 == 4) {
-          lVar5 = road_leaf_sub_0018b390(psVar14,sStack_50,param_2,1);
+          lVar5 = maybe_Road_FindCellIndex(psVar14,sStack_50,param_2,1);
           if ((lVar5 == -1) && ((long)(sStack_50 + 1) < (long)*psVar14)) {
-            lVar5 = road_leaf_sub_0018b390(psVar14,(long)(sStack_50 + 1),param_2,1);
+            lVar5 = maybe_Road_FindCellIndex(psVar14,(long)(sStack_50 + 1),param_2,1);
           }
           if ((lVar5 == -1) && (-1 < sStack_50 + -1)) {
-            lVar5 = road_leaf_sub_0018b390(psVar14,sStack_50 + -1,param_2,1);
+            lVar5 = maybe_Road_FindCellIndex(psVar14,sStack_50 + -1,param_2,1);
           }
           if ((lVar5 == -1) && ((long)(sStack_50 + 2) < (long)*psVar14)) {
-            lVar5 = road_leaf_sub_0018b390(psVar14,(long)(sStack_50 + 2),param_2,1);
+            lVar5 = maybe_Road_FindCellIndex(psVar14,(long)(sStack_50 + 2),param_2,1);
           }
           if ((lVar5 == -1) && (-1 < sStack_50 + -2)) {
-            lVar5 = road_leaf_sub_0018b390(psVar14,sStack_50 + -2,param_2,1);
+            lVar5 = maybe_Road_FindCellIndex(psVar14,sStack_50 + -2,param_2,1);
           }
           if (lVar5 == -1) {
             bVar2 = false;
@@ -1437,7 +1437,7 @@ ulong Road_RaycastGround(undefined8 param_1,undefined8 param_2,undefined4 param_
         if (fVar19 < 9.0) {
           pfVar15[1] = fVar18;
           if ((int)param_4 != 0) {
-            road_step_sub_0018b710
+            maybe_Road_ClipToEdge
                       (param_2,puVar13,(int)psVar14 + *(int *)(psVar14 + 0x20),(int)param_4);
           }
           if (param_5 != 0) {
@@ -1492,7 +1492,7 @@ void RoadMesh_Init(undefined8 param_1,int param_2,int param_3,undefined8 param_4
   uStack_14 = 0x3f800000;
   uStack_4 = 0x3f800000;
   *(undefined4 *)((int)param_4 + 0xc) = 0x3f800000;
-  road_step_sub_0018b2c0(param_4,&uStack_10,&uStack_20,&uStack_30);
+  maybe_Road_NormalizeDir(param_4,&uStack_10,&uStack_20,&uStack_30);
   return;
 }
 
@@ -1549,7 +1549,7 @@ void RoadMesh_MarkLoaded(undefined4 *param_1)
 }
 
 // 0x0018b2c0  size 0xcc
-void road_step_sub_0018b2c0(undefined8 param_1,float *param_2,float *param_3,float *param_4)
+void maybe_Road_NormalizeDir(undefined8 param_1,float *param_2,float *param_3,float *param_4)
 
 {
   float *pfVar1;
@@ -1567,7 +1567,7 @@ void road_step_sub_0018b2c0(undefined8 param_1,float *param_2,float *param_3,flo
 }
 
 // 0x0018b390  size 0x1b4
-int road_leaf_sub_0018b390(int param_1,int param_2,float *param_3,int param_4)
+int maybe_Road_FindCellIndex(int param_1,int param_2,float *param_3,int param_4)
 
 {
   ushort uVar1;
@@ -1633,7 +1633,7 @@ LAB_0018b508:
 }
 
 // 0x0018b550  size 0x1b4
-bool road_step_sub_0018b550(int *param_1,undefined8 param_2,short *param_3)
+bool maybe_Road_FindCellContaining(int *param_1,undefined8 param_2,short *param_3)
 
 {
   bool bVar1;
@@ -1690,7 +1690,7 @@ LAB_0018b604:
 }
 
 // 0x0018b710  size 0x528
-void road_step_sub_0018b710(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
+void maybe_Road_ClipToEdge(float *param_1,ushort *param_2,int param_3,undefined8 param_4)
 
 {
   ushort uVar1;
@@ -1794,7 +1794,7 @@ void road_step_sub_0018b710(float *param_1,ushort *param_2,int param_3,undefined
 }
 
 // 0x0018bc40  size 0x240
-int road_step_sub_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
+int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 param_3)
 
 {
   short sVar1;
@@ -1879,7 +1879,7 @@ int road_step_sub_0018bc40(undefined8 param_1,short *param_2,undefined8 param_3)
 }
 
 // 0x0018be90  size 0x104
-undefined4 road_step_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefined8 param_3)
+undefined4 maybe_Road_FindSectionTriangle(undefined8 param_1,undefined2 *param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -1898,7 +1898,7 @@ undefined4 road_step_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefin
     do {
       lVar1 = RoadData_GetSection(param_3,param_1,(short)iVar4);
       if ((lVar1 == 0) &&
-         (lVar1 = road_step_sub_0018bfa0
+         (lVar1 = maybe_Road_FindTriangle
                             (*(undefined4 *)(*(int *)(*piVar2 + 4) + iVar3),param_1,&fStack_4),
          lVar1 != -1)) {
         param_2[1] = (short)lVar1;
@@ -1918,7 +1918,7 @@ undefined4 road_step_sub_0018be90(undefined8 param_1,undefined2 *param_2,undefin
 // 0x0018bfa0  size 0x368
 /* WARNING: Removing unreachable block (ram,0x0018c0d8) */
 
-long road_step_sub_0018bfa0(short *param_1,undefined8 param_2,float *param_3)
+long maybe_Road_FindTriangle(short *param_1,undefined8 param_2,float *param_3)
 
 {
   ushort *puVar1;

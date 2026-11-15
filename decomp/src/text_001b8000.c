@@ -1437,594 +1437,520 @@ undefined8 Garage_ComputeCarStats(undefined8 param_1,long param_2)
 
 {
   short sVar1;
-  long lVar2;
-  undefined8 uVar3;
+  undefined4 uVar2;
+  ulong uVar3;
+  undefined8 uVar4;
   
   Maker_GetInfo();
   sVar1 = PartDb_GetInfo(param_1);
-  lVar2 = PartDb_Get(param_1);
-  if (param_2 == 0) {
-    if (sVar1 == 0xaa) {
-      uVar3 = 0x29;
+  uVar3 = PartDb_Get(param_1);
+  if (param_2 != 0) {
+    return 300;
+  }
+  if (sVar1 == 0xaa) {
+    return 0x29;
+  }
+  if (sVar1 == 0xa9) {
+    return 100;
+  }
+  if (sVar1 == 0xa2) {
+    return 0x78;
+  }
+  if (sVar1 == 0xa4) {
+    return 0x96;
+  }
+  if (sVar1 == 0x89) {
+    if (uVar3 == 3) {
+      return 0x96;
     }
-    else if (sVar1 == 0xa9) {
-      uVar3 = 100;
+    if (uVar3 == 2) {
+      return 10;
     }
-    else {
-      uVar3 = 0xa2;
-      if (sVar1 == 0xa2) {
-        uVar3 = 0x78;
-      }
-      else if (sVar1 == 0xa4) {
-        uVar3 = 0x96;
-      }
-      else if (sVar1 == 0x89) {
-        if (lVar2 == 3) {
-          uVar3 = 0x96;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 10;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 5;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x9d) {
-        if (lVar2 == 5) {
-          uVar3 = 0x96;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x7d;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 100;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x4b;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x32;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x98) {
-        if (lVar2 == 5) {
-          uVar3 = 0x87;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 100;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x50;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x41;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x2d;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x93) {
-        if (lVar2 == 5) {
-          uVar3 = 200;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0xb4;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x96;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x73;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x50;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x8d) {
-        if (lVar2 == 5) {
-          uVar3 = 0xa5;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x82;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x5a;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x4b;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x32;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x83) {
-        if (lVar2 == 5) {
-          uVar3 = 0x28a;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x200;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x17b;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 200;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x87;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x7d) {
-        if (lVar2 == 5) {
-          uVar3 = 0x2d5;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x288;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x20a;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x15e;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 200;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x6e) {
-        if (lVar2 == 3) {
-          uVar3 = 300;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0xb9;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 100;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x6b) {
-        if (lVar2 == 3) {
-          uVar3 = 200;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x7e;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x4c;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x67) {
-        if (lVar2 == 3) {
-          uVar3 = 200;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x7d;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x4b;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x77) {
-        if (lVar2 == 5) {
-          uVar3 = 0xfa;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0xb6;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0xaf;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x91;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 100;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x71) {
-        if (lVar2 == 5) {
-          uVar3 = 500;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x15e;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0xfc;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0xc3;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x78;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x61) {
-        if (lVar2 == 5) {
-          uVar3 = 0x228;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x17b;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0xf2;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0xb9;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 100;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x5b) {
-        if (lVar2 == 5) {
-          uVar3 = 0x311;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 500;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x177;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0xe0;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x96;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x55) {
-        if (lVar2 == 5) {
-          uVar3 = 500;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 0x18a;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0xff;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0x94;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 100;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x4f) {
-        if (lVar2 == 5) {
-          uVar3 = 0x15e;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 200;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x87;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 100;
-        }
-        else if (lVar2 == 1) {
-          uVar3 = 0x4d;
-        }
-        else {
-          uVar3 = 0;
-        }
-      }
-      else if (sVar1 == 0x24) {
-        if (lVar2 == 5) {
-          uVar3 = 0x2f1;
-        }
-        else if (lVar2 == 4) {
-          uVar3 = 500;
-        }
-        else if (lVar2 == 3) {
-          uVar3 = 0x17c;
-        }
-        else if (lVar2 == 2) {
-          uVar3 = 0xe0;
-        }
-        else {
-          if (lVar2 != 1) {
-            return 0;
-          }
-          uVar3 = 0x96;
-        }
-      }
-      else if (sVar1 == 0x45) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+    if (uVar3 == 1) {
+      return 5;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x9d) {
+    if (uVar3 == 5) {
+      return 0x96;
+    }
+    if (uVar3 == 4) {
+      return 0x7d;
+    }
+    if (uVar3 == 3) {
+      return 100;
+    }
+    if (uVar3 == 2) {
+      return 0x4b;
+    }
+    if (uVar3 == 1) {
+      return 0x32;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x98) {
+    if (uVar3 == 5) {
+      return 0x87;
+    }
+    if (uVar3 == 4) {
+      return 100;
+    }
+    if (uVar3 == 3) {
+      return 0x50;
+    }
+    if (uVar3 == 2) {
+      return 0x41;
+    }
+    if (uVar3 == 1) {
+      return 0x2d;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x93) {
+    if (uVar3 == 5) {
+      return 200;
+    }
+    if (uVar3 == 4) {
+      return 0xb4;
+    }
+    if (uVar3 == 3) {
+      return 0x96;
+    }
+    if (uVar3 == 2) {
+      return 0x73;
+    }
+    if (uVar3 == 1) {
+      return 0x50;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x8d) {
+    if (uVar3 == 5) {
+      return 0xa5;
+    }
+    if (uVar3 == 4) {
+      return 0x82;
+    }
+    if (uVar3 == 3) {
+      return 0x5a;
+    }
+    if (uVar3 == 2) {
+      return 0x4b;
+    }
+    if (uVar3 == 1) {
+      return 0x32;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x83) {
+    if (uVar3 == 5) {
+      return 0x28a;
+    }
+    if (uVar3 == 4) {
+      return 0x200;
+    }
+    if (uVar3 == 3) {
+      return 0x17b;
+    }
+    if (uVar3 == 2) {
+      return 200;
+    }
+    if (uVar3 == 1) {
+      return 0x87;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x7d) {
+    if (uVar3 == 5) {
+      return 0x2d5;
+    }
+    if (uVar3 == 4) {
+      return 0x288;
+    }
+    if (uVar3 == 3) {
+      return 0x20a;
+    }
+    if (uVar3 == 2) {
+      return 0x15e;
+    }
+    if (uVar3 == 1) {
+      return 200;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x6e) {
+    if (uVar3 == 3) {
+      return 300;
+    }
+    if (uVar3 == 2) {
+      return 0xb9;
+    }
+    if (uVar3 == 1) {
+      return 100;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x6b) {
+    if (uVar3 == 3) {
+      return 200;
+    }
+    if (uVar3 == 2) {
+      return 0x7e;
+    }
+    if (uVar3 == 1) {
+      return 0x4c;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x67) {
+    if (uVar3 == 3) {
+      return 200;
+    }
+    if (uVar3 == 2) {
+      return 0x7d;
+    }
+    if (uVar3 == 1) {
+      return 0x4b;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x77) {
+    if (uVar3 == 5) {
+      return 0xfa;
+    }
+    if (uVar3 == 4) {
+      return 0xb6;
+    }
+    if (uVar3 == 3) {
+      return 0xaf;
+    }
+    if (uVar3 == 2) {
+      return 0x91;
+    }
+    if (uVar3 == 1) {
+      return 100;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x71) {
+    if (uVar3 == 5) {
+      return 500;
+    }
+    if (uVar3 == 4) {
+      return 0x15e;
+    }
+    if (uVar3 == 3) {
+      return 0xfc;
+    }
+    if (uVar3 == 2) {
+      return 0xc3;
+    }
+    if (uVar3 == 1) {
+      return 0x78;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x61) {
+    if (uVar3 == 5) {
+      return 0x228;
+    }
+    if (uVar3 == 4) {
+      return 0x17b;
+    }
+    if (uVar3 == 3) {
+      return 0xf2;
+    }
+    if (uVar3 == 2) {
+      return 0xb9;
+    }
+    if (uVar3 == 1) {
+      return 100;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x5b) {
+    if (uVar3 == 5) {
+      return 0x311;
+    }
+    if (uVar3 == 4) {
+      return 500;
+    }
+    if (uVar3 == 3) {
+      return 0x177;
+    }
+    if (uVar3 == 2) {
+      return 0xe0;
+    }
+    if (uVar3 == 1) {
+      return 0x96;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x55) {
+    if (uVar3 == 5) {
+      return 500;
+    }
+    if (uVar3 == 4) {
+      return 0x18a;
+    }
+    if (uVar3 == 3) {
+      return 0xff;
+    }
+    if (uVar3 == 2) {
+      return 0x94;
+    }
+    if (uVar3 == 1) {
+      return 100;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x4f) {
+    if (uVar3 == 5) {
+      return 0x15e;
+    }
+    if (uVar3 == 4) {
+      return 200;
+    }
+    if (uVar3 == 3) {
+      return 0x87;
+    }
+    if (uVar3 == 2) {
+      return 100;
+    }
+    if (uVar3 == 1) {
+      return 0x4d;
+    }
+    return 0;
+  }
+  if (sVar1 == 0x24) {
+    if (uVar3 == 5) {
+      return 0x2f1;
+    }
+    if (uVar3 == 4) {
+      return 500;
+    }
+    if (uVar3 == 3) {
+      return 0x17c;
+    }
+    if (uVar3 == 2) {
+      return 0xe0;
+    }
+    if (uVar3 == 1) {
+      return 0x96;
+    }
+    return 0;
+  }
+  uVar2 = (undefined4)uVar3;
+  if (sVar1 != 0x45) {
+    if (sVar1 == 0x3c) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 0x7a;
-          break;
+          return 0x6c;
         case 2:
-          uVar3 = 0xe1;
-          break;
+          return 0xa2;
         case 3:
-          uVar3 = 0x137;
-          break;
+          return 0xf0;
         case 4:
-          uVar3 = 0x1ca;
-          break;
+          return 0x13b;
         case 5:
-          uVar3 = 0x2d6;
-          break;
+          return 0x1e8;
         case 6:
-          uVar3 = 0x37c;
-          break;
+          return 700;
         case 7:
-          uVar3 = 0x4e2;
-          break;
+          return 899;
         case 8:
-          uVar3 = 0x5dc;
+          return 0x458;
         }
       }
-      else if (sVar1 == 0x3c) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+      return 0;
+    }
+    if (sVar1 == 0x33) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 0x6c;
-          break;
+          return 0x73;
         case 2:
-          break;
+          return 0xb1;
         case 3:
-          uVar3 = 0xf0;
-          break;
+          return 0x102;
         case 4:
-          uVar3 = 0x13b;
-          break;
+          return 0x159;
         case 5:
-          uVar3 = 0x1e8;
-          break;
+          return 500;
         case 6:
-          uVar3 = 700;
-          break;
+          return 0x2e9;
         case 7:
-          uVar3 = 899;
-          break;
+          return 1000;
         case 8:
-          uVar3 = 0x458;
+          return 0x4ea;
         }
       }
-      else if (sVar1 == 0x33) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+      return 0;
+    }
+    if (sVar1 == 0x2a) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 0x73;
-          break;
+          return 100;
         case 2:
-          uVar3 = 0xb1;
-          break;
+          return 0x96;
         case 3:
-          uVar3 = 0x102;
-          break;
+          return 0xe1;
         case 4:
-          uVar3 = 0x159;
-          break;
+          return 300;
         case 5:
-          uVar3 = 500;
-          break;
+          return 0x1c2;
         case 6:
-          uVar3 = 0x2e9;
-          break;
+          return 0x28c;
         case 7:
-          uVar3 = 1000;
-          break;
+          return 0x34d;
         case 8:
-          uVar3 = 0x4ea;
+          return 1000;
         }
       }
-      else if (sVar1 == 0x2a) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+      return 0;
+    }
+    if (sVar1 == 0x1b) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 100;
-          break;
+          return 300;
         case 2:
-          uVar3 = 0x96;
-          break;
+          return 0x2d1;
         case 3:
-          uVar3 = 0xe1;
-          break;
+          return 1000;
         case 4:
-          uVar3 = 300;
-          break;
+          return 0x8ca;
         case 5:
-          uVar3 = 0x1c2;
-          break;
+          return 0xe74;
         case 6:
-          uVar3 = 0x28c;
-          break;
+          return 0x1068;
         case 7:
-          uVar3 = 0x34d;
-          break;
+          return 0x136f;
         case 8:
-          uVar3 = 1000;
+          return 0x1467;
         }
       }
-      else if (sVar1 == 0x1b) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+      return 0;
+    }
+    if (sVar1 == 0x12) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 300;
-          break;
+          return 0x104;
         case 2:
-          uVar3 = 0x2d1;
-          break;
+          return 400;
         case 3:
-          uVar3 = 1000;
-          break;
+          return 0x2e9;
         case 4:
-          uVar3 = 0x8ca;
-          break;
+          return 0x60e;
         case 5:
-          uVar3 = 0xe74;
-          break;
+          return 0x8e8;
         case 6:
-          uVar3 = 0x1068;
-          break;
+          return 3000;
         case 7:
-          uVar3 = 0x136f;
-          break;
+          return 0xea6;
         case 8:
-          uVar3 = 0x1467;
+          return 4000;
         }
       }
-      else if (sVar1 == 0x12) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+      return 0;
+    }
+    if (sVar1 == 9) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 0x104;
-          break;
+          return 0x102;
         case 2:
-          uVar3 = 400;
-          break;
+          return 0x1c7;
         case 3:
-          uVar3 = 0x2e9;
-          break;
+          return 0x352;
         case 4:
-          uVar3 = 0x60e;
-          break;
+          return 0x6b8;
         case 5:
-          uVar3 = 0x8e8;
-          break;
+          return 0xa41;
         case 6:
-          uVar3 = 3000;
-          break;
+          return 0xc4e;
         case 7:
-          uVar3 = 0xea6;
-          break;
+          return 4000;
         case 8:
-          uVar3 = 4000;
+          return 0x11c6;
         }
       }
-      else if (sVar1 == 9) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
+      return 0;
+    }
+    if (sVar1 == 0) {
+      if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar2) {
         case 1:
-          uVar3 = 0x102;
-          break;
+          return 200;
         case 2:
-          uVar3 = 0x1c7;
-          break;
+          return 0x17c;
         case 3:
-          uVar3 = 0x352;
-          break;
+          return 0x2d5;
         case 4:
-          uVar3 = 0x6b8;
-          break;
+          return 0x3d4;
         case 5:
-          uVar3 = 0xa41;
-          break;
+          return 0x5dc;
         case 6:
-          uVar3 = 0xc4e;
-          break;
+          return 0x9b5;
         case 7:
-          uVar3 = 4000;
-          break;
+          return 3000;
         case 8:
-          uVar3 = 0x11c6;
+          return 0xf0a;
         }
       }
-      else if (sVar1 == 0) {
-        switch(lVar2) {
-        default:
-          uVar3 = 0;
-          break;
-        case 1:
-          uVar3 = 200;
-          break;
-        case 2:
-          uVar3 = 0x17c;
-          break;
-        case 3:
-          uVar3 = 0x2d5;
-          break;
-        case 4:
-          uVar3 = 0x3d4;
-          break;
-        case 5:
-          uVar3 = 0x5dc;
-          break;
-        case 6:
-          uVar3 = 0x9b5;
-          break;
-        case 7:
-          uVar3 = 3000;
-          break;
-        case 8:
-          uVar3 = 0xf0a;
-        }
-      }
-      else {
-        uVar3 = 0x6e;
-        if (sVar1 != 0xad) {
-          uVar3 = 99999999;
-        }
-      }
+      return 0;
+    }
+    if (sVar1 == 0xad) {
+      return 0x6e;
+    }
+    return 99999999;
+  }
+  if (uVar3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar2) {
+    case 0:
+      goto switchD_001ba76c_caseD_0;
+    case 1:
+      uVar4 = 0x7a;
+      break;
+    case 2:
+      uVar4 = 0xe1;
+      break;
+    case 3:
+      uVar4 = 0x137;
+      break;
+    case 4:
+      uVar4 = 0x1ca;
+      break;
+    case 5:
+      uVar4 = 0x2d6;
+      break;
+    case 6:
+      uVar4 = 0x37c;
+      break;
+    case 7:
+      uVar4 = 0x4e2;
+      break;
+    case 8:
+      uVar4 = 0x5dc;
     }
   }
   else {
-    uVar3 = 300;
+switchD_001ba76c_caseD_0:
+    uVar4 = 0;
   }
-  return uVar3;
+  return uVar4;
 }
 
 // 0x001baf70  size 0x3c

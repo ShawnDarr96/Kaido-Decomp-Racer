@@ -171,32 +171,36 @@ void Career_AssignRivalCar
   do {
     param_1[4] = *(undefined4 *)(iVar2 + 0x18);
     param_1[5] = 0xffffffff;
-    switch(*(undefined4 *)(iVar2 + 0x18)) {
-    case 1:
-      param_1[5] = param_5;
-      break;
-    case 2:
-    case 3:
-      param_1[5] = param_5;
-      break;
-    case 4:
-      param_1[5] = param_5;
-      break;
-    case 5:
-      param_1[5] = param_5;
-      break;
-    case 6:
-      param_1[5] = param_5;
-      break;
-    case 7:
-      param_1[5] = param_5;
-      break;
-    case 8:
-      param_1[5] = param_5;
-      break;
-    case 9:
-      sVar1 = Profile_GetRivalBattleCountById(*_g_Profiles);
-      param_1[5] = (int)sVar1;
+    if (*(uint *)(iVar2 + 0x18) < 10) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(iVar2 + 0x18)) {
+      case 0:
+        break;
+      case 1:
+        param_1[5] = param_5;
+        break;
+      default:
+        param_1[5] = param_5;
+        break;
+      case 4:
+        param_1[5] = param_5;
+        break;
+      case 5:
+        param_1[5] = param_5;
+        break;
+      case 6:
+        param_1[5] = param_5;
+        break;
+      case 7:
+        param_1[5] = param_5;
+        break;
+      case 8:
+        param_1[5] = param_5;
+        break;
+      case 9:
+        sVar1 = Profile_GetRivalBattleCountById(*_g_Profiles);
+        param_1[5] = (int)sVar1;
+      }
     }
     iVar4 = iVar4 + 1;
     iVar2 = iVar2 + 4;
@@ -357,7 +361,7 @@ undefined2 RivalRec_GetSubId(int param_1)
 }
 
 // 0x001b49a0  size 0xa8c
-void Opponent_BuildEntry(int param_1,undefined1 param_2,int param_3,long param_4,undefined1 param_5)
+void Opponent_BuildEntry(int param_1,undefined1 param_2,int param_3,long param_4,byte param_5)
 
 {
   char cVar1;
@@ -420,20 +424,20 @@ void Opponent_BuildEntry(int param_1,undefined1 param_2,int param_3,long param_4
           iVar10 = 1;
         }
         sVar3 = (short)iVar10;
-        switch(param_5) {
-        case 0:
-          CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x92);
-          break;
-        case 1:
-        case 3:
-        case 4:
-          CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x97);
-          break;
-        case 2:
-        case 5:
-          CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x9c);
-          break;
-        default:
+        if (param_5 < 6) {
+                    /* WARNING: Switch is manually overridden */
+          switch(param_5) {
+          case 0:
+            CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x92);
+            break;
+          case 1:
+            CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x97);
+            break;
+          case 2:
+            CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x9c);
+          }
+        }
+        else {
           CarRec_SetModelAndColor(param_3 + (uint)*pbVar6 * 4 + 0x70,sVar3 + 0x92);
         }
       }
@@ -1842,12 +1846,12 @@ void Career_ProcessDay(int param_1)
     iVar8 = GameState_Elem_f0_xcc(1);
     uVar5 = GameState_Elem_2fa0_x17c(*(undefined1 *)(iVar8 + 9));
     iVar8 = GameState_Ptr_48();
-    uVar6 = raceprog_leaf_sub_001dc180();
+    uVar6 = maybe_RaceProg_GetEntry();
     psVar12 = (short *)uVar5;
     if ((uVar6 & 1) == 0) {
-      uVar6 = raceprog_leaf_sub_001dc180();
+      uVar6 = maybe_RaceProg_GetEntry();
       if ((uVar6 & 2) == 0) {
-        uVar6 = raceprog_leaf_sub_001dc180();
+        uVar6 = maybe_RaceProg_GetEntry();
         if ((uVar6 & 4) != 0) {
           *(short *)(param_1 + 0x5316) = *(short *)(param_1 + 0x5316) + 1;
           if (9999 < *(short *)(param_1 + 0x5316)) {
@@ -1917,7 +1921,7 @@ LAB_001b7ba8:
         }
       }
       else {
-        uVar7 = raceprog_leaf_sub_001dc280();
+        uVar7 = maybe_RaceProg_GetEntryB();
         *(short *)(param_1 + 0x5314) = *(short *)(param_1 + 0x5314) + 1;
         if (9999 < *(short *)(param_1 + 0x5314)) {
           *(undefined2 *)(param_1 + 0x5314) = 9999;
@@ -2082,9 +2086,10 @@ LAB_001b7998:
           RivalSchedule_IsComplete(uVar5,iStack_20,1);
         }
       }
-      if (*(short *)(iStack_20 * 2 + param_1 + 0x3fc4) == 1) {
-        switch((char)psVar12[2]) {
-        case '\t':
+      if ((*(short *)(iStack_20 * 2 + param_1 + 0x3fc4) == 1) && (*(byte *)(psVar12 + 2) < 0xd)) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(byte *)(psVar12 + 2)) {
+        case 9:
           uVar1 = *(uint *)(psVar12 + 10);
           if ((uVar1 & 4) == 0) {
             if ((uVar1 & 2) == 0) {
@@ -2120,7 +2125,7 @@ LAB_001b7998:
             *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) | 4;
           }
           break;
-        case '\n':
+        case 10:
           *(uint *)(param_1 + 0x272c) = *(uint *)(param_1 + 0x272c) | 2;
         }
       }
@@ -2226,9 +2231,10 @@ LAB_001b7998:
             RivalSchedule_IsComplete(uVar5,iStack_1c,1);
           }
         }
-        if (*(short *)(iStack_1c * 2 + param_1 + 0x3fc4) == 1) {
-          switch((char)psVar12[2]) {
-          case '\x06':
+        if ((*(short *)(iStack_1c * 2 + param_1 + 0x3fc4) == 1) && (*(byte *)(psVar12 + 2) < 0xd)) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(byte *)(psVar12 + 2)) {
+          case 6:
             iVar8 = *_g_Profiles;
             if (*(int *)(iVar8 + 0x2a70) < 100) {
               *(undefined4 *)(*(int *)(iVar8 + 0x2a70) * 8 + iVar8 + 0x2750) = 0x100;
@@ -2315,7 +2321,7 @@ LAB_001b7998:
     }
     else if (cVar2 == '\x01') {
       uVar5 = RaceProg_GetArray_34(0);
-      iVar9 = raceprog_leaf_sub_001dff80(uVar5);
+      iVar9 = maybe_RaceProg_CountB(uVar5);
       if (*(int *)(param_1 + 0x2bcc) < iVar9) {
         *(int *)(param_1 + 0x2bcc) = iVar9;
       }
@@ -2327,7 +2333,7 @@ LAB_001b7998:
         *(int *)(param_1 + 0x2bc4) =
              (iVar9 + (sVar3 + -1) * *(int *)(param_1 + 0x2bc4)) / (int)sVar3;
       }
-      iVar9 = raceprog_leaf_sub_001dff30(uVar5);
+      iVar9 = maybe_RaceProg_CountA(uVar5);
       if (*(int *)(param_1 + 0x2bd0) < iVar9) {
         *(int *)(param_1 + 0x2bd0) = iVar9;
         iVar9 = *_g_Profiles;

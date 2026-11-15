@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x00294140  size 0x90
-void scrsave_step_sub_00294140(undefined8 param_1)
+void ScrLoad_Enter(undefined8 param_1)
 
 {
   int iVar1;
@@ -28,7 +28,7 @@ void scrsave_step_sub_00294140(undefined8 param_1)
 }
 
 // 0x002941d0  size 0x94
-void scroptions_step_sub_002941d0(undefined4 *param_1)
+void ScrOptions_ResetDefaults(undefined4 *param_1)
 
 {
   undefined8 uVar1;
@@ -236,8 +236,8 @@ void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
   }
   puVar2[1] = 6;
   *puVar2 = 6;
-  scroptions_input_sub_00295db0(puVar2 + 0x80,param_1);
-  scroptions_input_sub_00295db0(puVar2 + 0xf7,param_1);
+  ScrOptions_InputSound(puVar2 + 0x80,param_1);
+  ScrOptions_InputSound(puVar2 + 0xf7,param_1);
   bVar1 = puVar2[0x83] != 0;
   if (!bVar1) {
     bVar1 = puVar2[0x8e] != 0;
@@ -369,8 +369,8 @@ void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
   }
   *param_1 = 4;
   param_1[1] = 4;
-  scroptions_input_sub_00296030(param_1 + 0x80,param_1);
-  scroptions_input_sub_00296030(param_1 + 0xf7,param_1);
+  ScrOptions_InputDisplay(param_1 + 0x80,param_1);
+  ScrOptions_InputDisplay(param_1 + 0xf7,param_1);
   bVar6 = param_1[0x83] != 0;
   if (!bVar6) {
     bVar6 = param_1[0x8e] != 0;
@@ -674,43 +674,46 @@ void ScrmaybeOptionsGetLanguage_Update(undefined4 *param_1)
     param_1[0x14] = puVar2[6];
   }
   Menu_HandleCursor(param_1 + 4,0,2,6,1,0);
-  switch(param_1[4]) {
-  case 0:
-    Menu_HandleCursor(param_1 + 0xe,0,8,2,1,0);
-    goto LAB_002954b8;
-  case 1:
-    lVar3 = Menu_GetInput(0,8);
-    if (lVar3 != 0) {
-      Se_PlayMenu(7);
-      param_1[0xf] = param_1[0xf] != 0 ^ 1;
-    }
-    break;
-  case 2:
-    lVar3 = Menu_GetInput(0,8);
-    if (lVar3 != 0) {
-      Se_PlayMenu(7);
-      param_1[0x10] = param_1[0x10] != 0 ^ 1;
-    }
-    break;
-  case 3:
-    lVar3 = Menu_GetInput(0,8);
-    if (lVar3 != 0) {
-      Se_PlayMenu(7);
-      param_1[0x11] = param_1[0x11] != 0 ^ 1;
-    }
-    break;
-  case 4:
-    lVar3 = Menu_GetInput(0,8);
-    if (lVar3 != 0) {
-      Se_PlayMenu(7);
-      param_1[0x12] = param_1[0x12] != 0 ^ 1;
-    }
-    break;
-  case 5:
-    lVar3 = Menu_GetInput(0,8);
-    if (lVar3 != 0) {
-      Se_PlayMenu(7);
-      param_1[0x13] = param_1[0x13] != 0 ^ 1;
+  if ((uint)param_1[4] < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1[4]) {
+    case 0:
+      Menu_HandleCursor(param_1 + 0xe,0,8,2,1,0);
+      goto LAB_002954b8;
+    case 1:
+      lVar3 = Menu_GetInput(0,8);
+      if (lVar3 != 0) {
+        Se_PlayMenu(7);
+        param_1[0xf] = param_1[0xf] != 0 ^ 1;
+      }
+      break;
+    case 2:
+      lVar3 = Menu_GetInput(0,8);
+      if (lVar3 != 0) {
+        Se_PlayMenu(7);
+        param_1[0x10] = param_1[0x10] != 0 ^ 1;
+      }
+      break;
+    case 3:
+      lVar3 = Menu_GetInput(0,8);
+      if (lVar3 != 0) {
+        Se_PlayMenu(7);
+        param_1[0x11] = param_1[0x11] != 0 ^ 1;
+      }
+      break;
+    case 4:
+      lVar3 = Menu_GetInput(0,8);
+      if (lVar3 != 0) {
+        Se_PlayMenu(7);
+        param_1[0x12] = param_1[0x12] != 0 ^ 1;
+      }
+      break;
+    case 5:
+      lVar3 = Menu_GetInput(0,8);
+      if (lVar3 != 0) {
+        Se_PlayMenu(7);
+        param_1[0x13] = param_1[0x13] != 0 ^ 1;
+      }
     }
   }
 LAB_002954b8:
@@ -775,27 +778,30 @@ void ScrmaybeOptionsGetLanguage_Enter(undefined4 *param_1)
     *param_1 = 0xffffffff;
   }
   Menu_HandleCursor(param_1 + 3,0,2,6,1,0);
-  switch(param_1[3]) {
-  case 0:
-    param_1[1] = 1;
-    break;
-  case 1:
-    param_1[1] = 2;
-    break;
-  case 2:
-    param_1[1] = 3;
-    break;
-  case 3:
-    param_1[1] = 0xfffffffe;
-    break;
-  case 4:
-    param_1[1] = 0xfffffffd;
-    break;
-  case 5:
-    param_1[1] = 0xfffffffc;
-    break;
-  case 6:
-    param_1[1] = 0xc;
+  if ((uint)param_1[3] < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1[3]) {
+    case 0:
+      param_1[1] = 1;
+      break;
+    case 1:
+      param_1[1] = 2;
+      break;
+    case 2:
+      param_1[1] = 3;
+      break;
+    case 3:
+      param_1[1] = 0xfffffffe;
+      break;
+    case 4:
+      param_1[1] = 0xfffffffd;
+      break;
+    case 5:
+      param_1[1] = 0xfffffffc;
+      break;
+    case 6:
+      param_1[1] = 0xc;
+    }
   }
   return;
 }
@@ -882,9 +888,9 @@ void menuscr_step_sub_002958e0(int param_1,long param_2)
 
 // 0x002959b0  size 0x44
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3275e8 */
+/* menu screen 26 (table 0x3274b0) */
 
-void screc3275e8_exit_sub_002959b0(void)
+void maybe_ScrOptionsLanguage_Exit(void)
 
 {
   if ((*(uint *)(_g_MenuMgr + 0x28) & 0x2000) != 0) {
@@ -894,9 +900,9 @@ void screc3275e8_exit_sub_002959b0(void)
 }
 
 // 0x00295a00  size 0x60
-/* screen record 0x3275e8 */
+/* menu screen 26 (table 0x3274b0) */
 
-void screc3275e8_update_sub_00295a00(undefined8 param_1)
+void maybe_ScrOptionsLanguage_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -914,9 +920,9 @@ void screc3275e8_update_sub_00295a00(undefined8 param_1)
 
 // 0x00295a60  size 0x344
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3275e8 */
+/* menu screen 26 (table 0x3274b0) */
 
-void screc3275e8_enter_sub_00295a60(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
 
 {
   undefined4 *puVar1;
@@ -1016,7 +1022,7 @@ void screc3275e8_enter_sub_00295a60(undefined4 *param_1)
 }
 
 // 0x00295db0  size 0x27c
-void scroptions_input_sub_00295db0(int *param_1,int param_2)
+void ScrOptions_InputSound(int *param_1,int param_2)
 
 {
   int *piVar1;
@@ -1102,7 +1108,7 @@ LAB_00295f88:
 }
 
 // 0x00296030  size 0x378
-void scroptions_input_sub_00296030(int *param_1,int param_2)
+void ScrOptions_InputDisplay(int *param_1,int param_2)
 
 {
   int iVar1;
@@ -1838,7 +1844,7 @@ void menuscr_step_sub_00296fe0(int param_1)
 }
 
 // 0x00297120  size 0x32c
-void scrrecord_step_sub_00297120(int param_1)
+void maybe_ScrRecord_StepRival(int param_1)
 
 {
   byte bVar1;
@@ -2336,33 +2342,39 @@ undefined4 scrcareer_step_sub_00297d00(int param_1)
   *(undefined1 *)(param_1 + 0x480) = uStack_4c;
   *(undefined4 *)(param_1 + 0x484) = uStack_48;
   *(undefined4 *)(param_1 + 0x488) = uStack_44;
-  switch(*(undefined1 *)(param_1 + 0x480)) {
-  case 0:
-  case 1:
-  case 2:
-    uVar1 = 0xc;
-    break;
-  case 3:
-  case 4:
-  case 7:
-    *(undefined4 *)(param_1 + 0x48c) = *(undefined4 *)(param_1 + 0x488);
-    uVar2 = Profile_Get(0);
-    iVar3 = Profile_GetMoney(uVar2);
-    if (iVar3 < *(int *)(param_1 + 0x48c)) {
-      uVar1 = 0xd;
-      *(uint *)(param_1 + 0x494) = *(uint *)(param_1 + 0x494) | 1;
-    }
-    else {
+  if (*(byte *)(param_1 + 0x480) < 10) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(param_1 + 0x480)) {
+    default:
+      uVar1 = 0xc;
+      break;
+    case 3:
+    case 4:
+    case 7:
+      *(undefined4 *)(param_1 + 0x48c) = *(undefined4 *)(param_1 + 0x488);
+      uVar2 = Profile_Get(0);
+      iVar3 = Profile_GetMoney(uVar2);
+      if (iVar3 < *(int *)(param_1 + 0x48c)) {
+        uVar1 = 0xd;
+        *(uint *)(param_1 + 0x494) = *(uint *)(param_1 + 0x494) | 1;
+      }
+      else {
+        uVar1 = 0x22;
+        *(undefined1 *)(param_1 + 0x474) = 3;
+        *(undefined4 *)(param_1 + 0x478) = 0xffffffff;
+        *(undefined4 *)(param_1 + 0x47c) = *(undefined4 *)(param_1 + 0x48c);
+      }
+      break;
+    case 5:
+    case 6:
+    case 8:
+      goto switchD_00297d88_caseD_5;
+    case 9:
       uVar1 = 0x22;
-      *(undefined1 *)(param_1 + 0x474) = 3;
-      *(undefined4 *)(param_1 + 0x478) = 0xffffffff;
-      *(undefined4 *)(param_1 + 0x47c) = *(undefined4 *)(param_1 + 0x48c);
     }
-    break;
-  default:
-    uVar1 = 0x22;
-    break;
-  case 9:
+  }
+  else {
+switchD_00297d88_caseD_5:
     uVar1 = 0x22;
   }
   return uVar1;

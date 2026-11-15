@@ -571,83 +571,17 @@ LAB_001ece1c:
           *(undefined4 *)(iVar6 + 0x318) = 1;
           if (piVar11[4] == *piVar12) {
             uVar2 = piVar11[1];
-            switch(uVar2 & 0xff) {
-            case 0:
-            case 9:
-            case 10:
-            case 0xb:
-            case 0xc:
-            case 0xd:
-            case 0xe:
-            case 0xf:
-            case 0x10:
-            case 0x11:
-            case 0x12:
-            case 0x13:
-            case 0x14:
-            case 0x15:
-            case 0x16:
-            case 0x17:
-            case 0x18:
-            case 0x39:
-            case 0x3a:
-            case 0x3b:
-            case 0x3c:
-            case 0x3d:
-            case 0x3e:
-            case 0x3f:
-            case 0x40:
-            case 0x41:
-            case 0x42:
-            case 0x43:
-            case 0x44:
-            case 0x45:
-            case 0x46:
-            case 0x47:
-            case 0x48:
-            default:
+            if ((uVar2 & 0xff) < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+              switch(uVar2 & 0xff) {
+              case 0:
+                goto switchD_001eceac_default;
+              case 1:
+              }
+            }
+            else {
+switchD_001eceac_default:
               bVar4 = false;
-              break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 0x19:
-            case 0x1a:
-            case 0x1b:
-            case 0x1c:
-            case 0x1d:
-            case 0x1e:
-            case 0x1f:
-            case 0x20:
-            case 0x21:
-            case 0x22:
-            case 0x23:
-            case 0x24:
-            case 0x25:
-            case 0x26:
-            case 0x27:
-            case 0x28:
-            case 0x29:
-            case 0x2a:
-            case 0x2b:
-            case 0x2c:
-            case 0x2d:
-            case 0x2e:
-            case 0x2f:
-            case 0x30:
-            case 0x31:
-            case 0x32:
-            case 0x33:
-            case 0x34:
-            case 0x35:
-            case 0x36:
-            case 0x37:
-            case 0x38:
             }
             if (bVar4) {
               piVar5 = (int *)UiElem_GetPropPtr(param_1,iVar10,uVar2 & 0xff);
@@ -661,85 +595,17 @@ LAB_001ece1c:
           if (*piVar12 < piVar11[4]) goto LAB_001ece1c;
           fVar13 = (float)UiAnim_EvalKey(piVar11);
           uVar2 = piVar11[1];
-          switch(uVar2 & 0xff) {
-          case 0:
-          case 9:
-          case 10:
-          case 0xb:
-          case 0xc:
-          case 0xd:
-          case 0xe:
-          case 0xf:
-          case 0x10:
-          case 0x11:
-          case 0x12:
-          case 0x13:
-          case 0x14:
-          case 0x15:
-          case 0x16:
-          case 0x17:
-          case 0x18:
-          case 0x39:
-          case 0x3a:
-          case 0x3b:
-          case 0x3c:
-          case 0x3d:
-          case 0x3e:
-          case 0x3f:
-          case 0x40:
-          case 0x41:
-          case 0x42:
-          case 0x43:
-          case 0x44:
-          case 0x45:
-          case 0x46:
-          case 0x47:
-          case 0x48:
-            bVar4 = false;
-            break;
-          case 1:
-          case 2:
-          case 3:
-          case 4:
-          case 5:
-          case 6:
-          case 7:
-          case 8:
-          case 0x19:
-          case 0x1a:
-          case 0x1b:
-          case 0x1c:
-          case 0x1d:
-          case 0x1e:
-          case 0x1f:
-          case 0x20:
-          case 0x21:
-          case 0x22:
-          case 0x23:
-          case 0x24:
-          case 0x25:
-          case 0x26:
-          case 0x27:
-          case 0x28:
-          case 0x29:
-          case 0x2a:
-          case 0x2b:
-          case 0x2c:
-          case 0x2d:
-          case 0x2e:
-          case 0x2f:
-          case 0x30:
-          case 0x31:
-          case 0x32:
-          case 0x33:
-          case 0x34:
-          case 0x35:
-          case 0x36:
-          case 0x37:
-          case 0x38:
-            bVar4 = true;
-            break;
-          default:
+          if ((uVar2 & 0xff) < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+            switch(uVar2 & 0xff) {
+            case 0:
+              bVar4 = false;
+              break;
+            case 1:
+              bVar4 = true;
+            }
+          }
+          else {
             bVar4 = false;
           }
           if (!bVar4) {
@@ -807,94 +673,29 @@ void UiLayout_PlayAnim(undefined8 param_1,int *param_2)
     if (*param_2 != -1) {
       piVar4 = param_2;
       do {
-        if ((iVar5 <= piVar4[5]) && (bVar3 = true, piVar4[5] == iVar5)) {
-          uVar1 = piVar4[1];
-          switch(uVar1 & 0xff) {
-          case 0:
-          case 9:
-          case 10:
-          case 0xb:
-          case 0xc:
-          case 0xd:
-          case 0xe:
-          case 0xf:
-          case 0x10:
-          case 0x11:
-          case 0x12:
-          case 0x13:
-          case 0x14:
-          case 0x15:
-          case 0x16:
-          case 0x17:
-          case 0x18:
-          case 0x39:
-          case 0x3a:
-          case 0x3b:
-          case 0x3c:
-          case 0x3d:
-          case 0x3e:
-          case 0x3f:
-          case 0x40:
-          case 0x41:
-          case 0x42:
-          case 0x43:
-          case 0x44:
-          case 0x45:
-          case 0x46:
-          case 0x47:
-          case 0x48:
-            bVar2 = false;
-            break;
-          case 1:
-          case 2:
-          case 3:
-          case 4:
-          case 5:
-          case 6:
-          case 7:
-          case 8:
-          case 0x19:
-          case 0x1a:
-          case 0x1b:
-          case 0x1c:
-          case 0x1d:
-          case 0x1e:
-          case 0x1f:
-          case 0x20:
-          case 0x21:
-          case 0x22:
-          case 0x23:
-          case 0x24:
-          case 0x25:
-          case 0x26:
-          case 0x27:
-          case 0x28:
-          case 0x29:
-          case 0x2a:
-          case 0x2b:
-          case 0x2c:
-          case 0x2d:
-          case 0x2e:
-          case 0x2f:
-          case 0x30:
-          case 0x31:
-          case 0x32:
-          case 0x33:
-          case 0x34:
-          case 0x35:
-          case 0x36:
-          case 0x37:
-          case 0x38:
-            bVar2 = true;
-            break;
-          default:
-            bVar2 = false;
-          }
-          if (bVar2) {
-            UiElem_SetPropFloat(piVar4[3],param_1,*piVar4,uVar1 & 0xff);
-          }
-          else {
-            UiElem_SetPropInt(param_1,*piVar4,uVar1 & 0xff,piVar4[3]);
+        if (iVar5 <= piVar4[5]) {
+          bVar3 = true;
+          if (piVar4[5] == iVar5) {
+            uVar1 = piVar4[1];
+            if ((uVar1 & 0xff) < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+              switch(uVar1 & 0xff) {
+              case 0:
+                bVar2 = false;
+                break;
+              case 1:
+                bVar2 = true;
+              }
+            }
+            else {
+              bVar2 = false;
+            }
+            if (bVar2) {
+              UiElem_SetPropFloat(piVar4[3],param_1,*piVar4,uVar1 & 0xff);
+            }
+            else {
+              UiElem_SetPropInt(param_1,*piVar4,uVar1 & 0xff,piVar4[3]);
+            }
           }
         }
         piVar4 = piVar4 + 10;
@@ -1367,137 +1168,110 @@ int UiElem_GetPropPtr(int param_1,int param_2,uint param_3)
   
   param_3 = param_3 & 0xff;
   iVar1 = *(int *)(param_1 + 0x48) + param_2 * 0x128;
-  switch(param_3) {
-  case 0:
-    iVar1 = iVar1 + 0x10;
-    break;
-  case 1:
-    iVar1 = iVar1 + 0x14;
-    break;
-  case 2:
-    iVar1 = iVar1 + 0x18;
-    break;
-  case 3:
-    iVar1 = iVar1 + 0x44;
-    break;
-  case 4:
-    iVar1 = iVar1 + 0x48;
-    break;
-  case 5:
-    iVar1 = iVar1 + 0x4c;
-    break;
-  case 6:
-    iVar1 = iVar1 + 0x50;
-    break;
-  case 7:
-    iVar1 = iVar1 + 0x54;
-    break;
-  case 8:
-    iVar1 = iVar1 + 0x58;
-    break;
-  case 9:
-    iVar1 = iVar1 + 0x5c;
-    break;
-  case 10:
-    iVar1 = iVar1 + 0x60;
-    break;
-  case 0xb:
-    iVar1 = iVar1 + 100;
-    break;
-  case 0xc:
-    iVar1 = iVar1 + 0x1c;
-    break;
-  case 0xd:
-    iVar1 = iVar1 + 0x20;
-    break;
-  case 0xe:
-    iVar1 = iVar1 + 0x24;
-    break;
-  case 0xf:
-    iVar1 = iVar1 + 0x28;
-    break;
-  case 0x10:
-    iVar1 = iVar1 + 0x2c;
-    break;
-  case 0x11:
-    iVar1 = iVar1 + 0x30;
-    break;
-  case 0x12:
-    iVar1 = iVar1 + 0x34;
-    break;
-  case 0x13:
-    iVar1 = iVar1 + 0x38;
-    break;
-  case 0x14:
-    iVar1 = iVar1 + 0x3c;
-    break;
-  case 0x15:
-    iVar1 = iVar1 + 0x40;
-    break;
-  case 0x16:
-    iVar1 = iVar1 + 0xc;
-    break;
-  case 0x17:
-    iVar1 = iVar1 + 8;
-    break;
-  case 0x18:
-    iVar1 = iVar1 + 0xc;
-    break;
-  case 0x19:
-  case 0x1a:
-  case 0x1b:
-  case 0x1c:
-  case 0x1d:
-  case 0x1e:
-  case 0x1f:
-  case 0x20:
-  case 0x21:
-  case 0x22:
-  case 0x23:
-  case 0x24:
-  case 0x25:
-  case 0x26:
-  case 0x27:
-  case 0x28:
-    iVar1 = iVar1 + (param_3 - 0x19) * 0xc + 0x68;
-    break;
-  case 0x29:
-  case 0x2a:
-  case 0x2b:
-  case 0x2c:
-  case 0x2d:
-  case 0x2e:
-  case 0x2f:
-  case 0x30:
-  case 0x31:
-  case 0x32:
-  case 0x33:
-  case 0x34:
-  case 0x35:
-  case 0x36:
-  case 0x37:
-  case 0x38:
-    iVar1 = iVar1 + (param_3 - 0x29) * 0xc + 0x6c;
-    break;
-  case 0x39:
-  case 0x3a:
-  case 0x3b:
-  case 0x3c:
-  case 0x3d:
-  case 0x3e:
-  case 0x3f:
-  case 0x40:
-  case 0x41:
-  case 0x42:
-  case 0x43:
-  case 0x44:
-  case 0x45:
-  case 0x46:
-  case 0x47:
-  case 0x48:
-    iVar1 = iVar1 + (param_3 - 0x39) * 0xc + 0x70;
-    break;
-  default:
+  if (param_3 < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_3) {
+    case 0:
+      iVar1 = iVar1 + 0x10;
+      break;
+    case 1:
+      iVar1 = iVar1 + 0x14;
+      break;
+    case 2:
+      iVar1 = iVar1 + 0x18;
+      break;
+    case 3:
+      iVar1 = iVar1 + 0x44;
+      break;
+    case 4:
+      iVar1 = iVar1 + 0x48;
+      break;
+    case 5:
+      iVar1 = iVar1 + 0x4c;
+      break;
+    case 6:
+      iVar1 = iVar1 + 0x50;
+      break;
+    case 7:
+      iVar1 = iVar1 + 0x54;
+      break;
+    case 8:
+      iVar1 = iVar1 + 0x58;
+      break;
+    case 9:
+      iVar1 = iVar1 + 0x5c;
+      break;
+    case 10:
+      iVar1 = iVar1 + 0x60;
+      break;
+    case 0xb:
+      iVar1 = iVar1 + 100;
+      break;
+    case 0xc:
+      iVar1 = iVar1 + 0x1c;
+      break;
+    case 0xd:
+      iVar1 = iVar1 + 0x20;
+      break;
+    case 0xe:
+      iVar1 = iVar1 + 0x24;
+      break;
+    case 0xf:
+      iVar1 = iVar1 + 0x28;
+      break;
+    case 0x10:
+      iVar1 = iVar1 + 0x2c;
+      break;
+    case 0x11:
+      iVar1 = iVar1 + 0x30;
+      break;
+    case 0x12:
+      iVar1 = iVar1 + 0x34;
+      break;
+    case 0x13:
+      iVar1 = iVar1 + 0x38;
+      break;
+    case 0x14:
+      iVar1 = iVar1 + 0x3c;
+      break;
+    case 0x15:
+      iVar1 = iVar1 + 0x40;
+      break;
+    case 0x16:
+      iVar1 = iVar1 + 0xc;
+      break;
+    case 0x17:
+      iVar1 = iVar1 + 8;
+      break;
+    case 0x18:
+      iVar1 = iVar1 + 0xc;
+      break;
+    default:
+      iVar1 = iVar1 + (param_3 - 0x19) * 0xc + 0x68;
+      break;
+    case 0x29:
+    case 0x2a:
+    case 0x2b:
+    case 0x2c:
+    case 0x2d:
+    case 0x2e:
+    case 0x2f:
+    case 0x30:
+    case 0x31:
+    case 0x32:
+    case 0x33:
+    case 0x34:
+    case 0x35:
+    case 0x36:
+    case 0x37:
+    case 0x38:
+      iVar1 = iVar1 + (param_3 - 0x29) * 0xc + 0x6c;
+      break;
+    case 0x39:
+      iVar1 = iVar1 + (param_3 - 0x39) * 0xc + 0x70;
+    }
+  }
+  else {
     iVar1 = 0;
   }
   return iVar1;
@@ -1778,92 +1552,24 @@ void UiLayout_Init(int param_1,undefined4 param_2,undefined4 param_3,undefined4 
 // 0x001eea30  size 0xc8
 /* (layout, elem, prop, value); 126 callers */
 
-void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,char param_3,int param_4)
+void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,byte param_3,int param_4)
 
 {
   bool bVar1;
   float *pfVar2;
   int *piVar3;
   
-  switch(param_3) {
-  case '\0':
-  case '\t':
-  case '\n':
-  case '\v':
-  case '\f':
-  case '\r':
-  case '\x0e':
-  case '\x0f':
-  case '\x10':
-  case '\x11':
-  case '\x12':
-  case '\x13':
-  case '\x14':
-  case '\x15':
-  case '\x16':
-  case '\x17':
-  case '\x18':
-  case '9':
-  case ':':
-  case ';':
-  case '<':
-  case '=':
-  case '>':
-  case '?':
-  case '@':
-  case 'A':
-  case 'B':
-  case 'C':
-  case 'D':
-  case 'E':
-  case 'F':
-  case 'G':
-  case 'H':
-    bVar1 = false;
-    break;
-  case '\x01':
-  case '\x02':
-  case '\x03':
-  case '\x04':
-  case '\x05':
-  case '\x06':
-  case '\a':
-  case '\b':
-  case '\x19':
-  case '\x1a':
-  case '\x1b':
-  case '\x1c':
-  case '\x1d':
-  case '\x1e':
-  case '\x1f':
-  case ' ':
-  case '!':
-  case '\"':
-  case '#':
-  case '$':
-  case '%':
-  case '&':
-  case '\'':
-  case '(':
-  case ')':
-  case '*':
-  case '+':
-  case ',':
-  case '-':
-  case '.':
-  case '/':
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-    bVar1 = true;
-    break;
-  default:
+  if (param_3 < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_3) {
+    case 0:
+      bVar1 = false;
+      break;
+    case 1:
+      bVar1 = true;
+    }
+  }
+  else {
     bVar1 = false;
   }
   if (bVar1) {
@@ -1874,7 +1580,7 @@ void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,char param_3,int pa
     piVar3 = (int *)UiElem_GetPropPtr(param_1);
     *piVar3 = param_4;
   }
-  if (param_3 == '\n') {
+  if (param_3 == 10) {
     UiElem_MarkDirty(param_1);
   }
   return;
@@ -1883,7 +1589,7 @@ void UiElem_SetPropInt(undefined8 param_1,undefined8 param_2,char param_3,int pa
 // 0x001eeb00  size 0xf0
 /* (value, layout, elem, prop); 209 callers */
 
-void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,char param_4)
+void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,byte param_4)
 
 {
   bool bVar1;
@@ -1891,85 +1597,17 @@ void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,cha
   float *pfVar3;
   int iVar4;
   
-  switch(param_4) {
-  case '\0':
-  case '\t':
-  case '\n':
-  case '\v':
-  case '\f':
-  case '\r':
-  case '\x0e':
-  case '\x0f':
-  case '\x10':
-  case '\x11':
-  case '\x12':
-  case '\x13':
-  case '\x14':
-  case '\x15':
-  case '\x16':
-  case '\x17':
-  case '\x18':
-  case '9':
-  case ':':
-  case ';':
-  case '<':
-  case '=':
-  case '>':
-  case '?':
-  case '@':
-  case 'A':
-  case 'B':
-  case 'C':
-  case 'D':
-  case 'E':
-  case 'F':
-  case 'G':
-  case 'H':
-    bVar1 = false;
-    break;
-  case '\x01':
-  case '\x02':
-  case '\x03':
-  case '\x04':
-  case '\x05':
-  case '\x06':
-  case '\a':
-  case '\b':
-  case '\x19':
-  case '\x1a':
-  case '\x1b':
-  case '\x1c':
-  case '\x1d':
-  case '\x1e':
-  case '\x1f':
-  case ' ':
-  case '!':
-  case '\"':
-  case '#':
-  case '$':
-  case '%':
-  case '&':
-  case '\'':
-  case '(':
-  case ')':
-  case '*':
-  case '+':
-  case ',':
-  case '-':
-  case '.':
-  case '/':
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-    bVar1 = true;
-    break;
-  default:
+  if (param_4 < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_4) {
+    case 0:
+      bVar1 = false;
+      break;
+    case 1:
+      bVar1 = true;
+    }
+  }
+  else {
     bVar1 = false;
   }
   if (bVar1) {
@@ -1984,7 +1622,7 @@ void UiElem_SetPropFloat(float param_1,undefined8 param_2,undefined8 param_3,cha
     piVar2 = (int *)UiElem_GetPropPtr(param_2);
     *piVar2 = iVar4;
   }
-  if (param_4 == '\n') {
+  if (param_4 == 10) {
     UiElem_MarkDirty(param_2);
   }
   return;

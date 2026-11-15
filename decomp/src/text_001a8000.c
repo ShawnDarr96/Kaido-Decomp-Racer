@@ -787,7 +787,7 @@ int ResPool_CountUsedB(void)
 /* WARNING: Removing unreachable block (ram,0x001a9dac) */
 /* WARNING: Removing unreachable block (ram,0x001a9dcc) */
 
-long ResPool_Load(undefined1 param_1,undefined8 param_2,undefined8 param_3)
+long ResPool_Load(byte param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
@@ -796,46 +796,50 @@ long ResPool_Load(undefined1 param_1,undefined8 param_2,undefined8 param_3)
   
   for (lVar1 = Chunk_FindNext(0x436470,param_1,param_2,uRam0043649c); lVar1 != 0;
       lVar1 = Chunk_FindNext(0x436470,param_1,param_2,(int)lVar1 + *(int *)((int)lVar1 + 4))) {
-    switch(param_1) {
-    case 0:
-      break;
-    case 1:
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-    case 4:
+    if (param_1 < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_1) {
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+      }
     }
   }
   lVar1 = Chunk_Find(0x436470,param_1);
-  if (lVar1 != 0) {
+  if ((lVar1 != 0) && (param_1 < 7)) {
     uVar3 = (undefined4)param_2;
     iVar2 = (int)lVar1;
+                    /* WARNING: Switch is manually overridden */
     switch(param_1) {
     case 0:
       maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,1);
-      course_leaf_sub_001a5a40(lVar1);
+      maybe_Course_GetItemB(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 1:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x50);
-      course_leaf_sub_001a5a40(lVar1);
+      maybe_Course_GetItemB(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 2:
       maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,10);
-      course_leaf_sub_001a5a40(lVar1);
+      maybe_Course_GetItemB(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 3:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
-      course_leaf_sub_001a5a40(lVar1);
+      maybe_Course_GetItemB(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 4:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
-      course_leaf_sub_001a5a40(lVar1);
+      maybe_Course_GetItemB(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
     }
   }
@@ -1051,8 +1055,8 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
       iVar20 = 0;
       do {
         iVar8 = iRam004364cc + iVar20;
-        course_leaf_sub_001a5aa0(iVar8,3,0x80);
-        course_leaf_sub_001a5a80(iVar8,uVar3 + 0x1000,iVar5);
+        maybe_Course_InitHeader(iVar8,3,0x80);
+        Course_SetField18(iVar8,uVar3 + 0x1000,iVar5);
         uVar14 = uVar14 + 1;
         iVar5 = iVar5 + uVar3 + 0x1000;
         iVar20 = iVar20 + 0x80;
@@ -1063,8 +1067,8 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
       iVar20 = 0;
       do {
         iVar8 = iRam004364d4 + iVar20;
-        course_leaf_sub_001a5aa0(iVar8,4,0xa0);
-        course_leaf_sub_001a5a80(iVar8,uVar18 + 0x1000,iVar5);
+        maybe_Course_InitHeader(iVar8,4,0xa0);
+        Course_SetField18(iVar8,uVar18 + 0x1000,iVar5);
         uVar14 = uVar14 + 1;
         iVar5 = iVar5 + uVar18 + 0x1000;
         iVar20 = iVar20 + 0xa0;
@@ -1084,13 +1088,13 @@ LAB_001aa5ac:
   }
   uVar9 = Mem_AllocAligned(iVar12 + uVar11 + 0x500,0x40,param_1);
   iRam00436484 = (int)uVar9;
-  course_leaf_sub_001a5aa0(0x436320,0,0xc0);
-  course_leaf_sub_001a5a80(0x436320,iVar12,uVar9);
+  maybe_Course_InitHeader(0x436320,0,0xc0);
+  Course_SetField18(0x436320,iVar12,uVar9);
   uRam00436348 = 0;
   uRam0043634c = 0;
   iVar12 = iRam00436484 + iVar12;
-  course_leaf_sub_001a5aa0(0x4363e0,0,0x8c);
-  course_leaf_sub_001a5a80(0x4363e0,uVar11 + 0x500,iVar12);
+  maybe_Course_InitHeader(0x4363e0,0,0x8c);
+  Course_SetField18(0x4363e0,uVar11 + 0x500,iVar12);
   uRam00436408 = 0;
   if (*param_2 == '\x02') {
     iVar12 = uVar13 + 0x1680;
@@ -1126,8 +1130,8 @@ LAB_001aa5ac:
     iVar15 = 0;
     do {
       iVar17 = iRam004364a4 + iVar15;
-      course_leaf_sub_001a5aa0(iVar17,0,0xa0);
-      course_leaf_sub_001a5a80(iVar17,0,iVar8);
+      maybe_Course_InitHeader(iVar17,0,0xa0);
+      Course_SetField18(iVar17,0,iVar8);
       uVar11 = uVar11 + 1;
       *(undefined4 *)(iVar17 + 0x2c) = 0;
       iVar15 = iVar15 + 0xa0;
@@ -1142,8 +1146,8 @@ LAB_001aa5ac:
     iVar15 = 0;
     do {
       iVar17 = iRam004364a8 + iVar15;
-      course_leaf_sub_001a5aa0(iVar17,1,0xcc0);
-      course_leaf_sub_001a5a80(iVar17,iVar12,iVar8);
+      maybe_Course_InitHeader(iVar17,1,0xcc0);
+      Course_SetField18(iVar17,iVar12,iVar8);
       uVar2 = uVar2 + 1;
       iVar8 = iVar8 + iVar12;
       iVar15 = iVar15 + 0xcc0;
@@ -1160,15 +1164,15 @@ LAB_001aa5ac:
     iVar17 = 0;
     do {
       iVar16 = iRam004364ac + iVar15;
-      course_leaf_sub_001a5aa0(iVar16,3,0x80);
-      course_leaf_sub_001a5a80(iVar16,iStack_70,iVar8);
+      maybe_Course_InitHeader(iVar16,3,0x80);
+      Course_SetField18(iVar16,iStack_70,iVar8);
       iVar16 = iRam004364b0 + iVar12;
-      course_leaf_sub_001a5aa0(iVar16,4,0xa0);
-      course_leaf_sub_001a5a80(iVar16,iVar5,iVar8 + iStack_70);
+      maybe_Course_InitHeader(iVar16,4,0xa0);
+      Course_SetField18(iVar16,iVar5,iVar8 + iStack_70);
       iVar8 = iVar8 + iStack_70 + iVar5;
       iVar16 = iRam004364b4 + iVar17;
-      course_leaf_sub_001a5aa0(iVar16,2,0x70);
-      course_leaf_sub_001a5a80(iVar16,0,iVar8);
+      maybe_Course_InitHeader(iVar16,2,0x70);
+      Course_SetField18(iVar16,0,iVar8);
       *(undefined4 *)(iVar16 + 0x34) = 0;
       uVar2 = uVar2 + 1;
       iVar15 = iVar15 + 0x80;
@@ -1185,8 +1189,8 @@ LAB_001aa5ac:
     iVar12 = 0;
     do {
       iVar5 = iRam004364b8 + iVar12;
-      course_leaf_sub_001a5aa0(iVar5,5,0x2d0);
-      course_leaf_sub_001a5a80(iVar5,iVar20,iVar8);
+      maybe_Course_InitHeader(iVar5,5,0x2d0);
+      Course_SetField18(iVar5,iVar20,iVar8);
       uVar2 = uVar2 + 1;
       iVar8 = iVar8 + iVar20;
       iVar12 = iVar12 + 0x2d0;
@@ -1198,8 +1202,8 @@ LAB_001aa5ac:
     iVar12 = 0;
     do {
       iVar5 = iRam004364bc + iVar12;
-      course_leaf_sub_001a5aa0(iVar5,6,0x50);
-      course_leaf_sub_001a5a80(iVar5,iStack_80,iVar8);
+      maybe_Course_InitHeader(iVar5,6,0x50);
+      Course_SetField18(iVar5,iStack_80,iVar8);
       uVar2 = uVar2 + 1;
       iVar8 = iVar8 + iStack_80;
       iVar12 = iVar12 + 0x50;
@@ -1218,7 +1222,7 @@ void Asset_OnCourseTexLoaded
   undefined8 uVar2;
   int iVar3;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,param_3);
   }
@@ -1239,7 +1243,7 @@ void Asset_LoadCourseTex(undefined8 param_1,int param_2)
   int iVar4;
   
   iVar2 = 0;
-  course_leaf_sub_001a5a40();
+  maybe_Course_GetItemB();
   iVar4 = (int)param_1;
   *(int *)(iVar4 + 0xc) = param_2;
   lVar3 = Course_GetField_24(param_1);
@@ -1412,7 +1416,7 @@ void Asset_OnEnvLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 {
   long lVar1;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,param_3);
   }
@@ -1431,7 +1435,7 @@ void Asset_LoadEnv(undefined8 param_1,int param_2)
   int iVar4;
   
   iVar2 = 0;
-  course_leaf_sub_001a5a40();
+  maybe_Course_GetItemB();
   iVar4 = (int)param_1;
   *(int *)(iVar4 + 0xc) = param_2;
   lVar3 = Course_GetField_24(param_1);
@@ -1566,13 +1570,13 @@ void Asset_OnCarPartsLoaded
   int iVar1;
   int iVar2;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   iVar2 = (int)param_4;
   if (*(int *)(iVar2 + 0x34) == 0) {
     iVar1 = *(int *)(iVar2 + 0x34);
   }
   else {
-    course_leaf_sub_001a5a70(0x4363e0);
+    Course_ClearCount(0x4363e0);
     Arena_Alloc(0x4363e0,param_3);
     iVar1 = *(int *)(iVar2 + 0x34);
   }
@@ -1812,7 +1816,7 @@ void CarAsset_OnBodyLoaded
 {
   long lVar1;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,param_3);
   }
@@ -1860,7 +1864,7 @@ void CarAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
   maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
-  course_leaf_sub_001a5a40(param_1);
+  maybe_Course_GetItemB(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
 }

@@ -23,7 +23,7 @@ void ScrCareer_Draw_MasterLord(int param_1)
   int aiStack_7d0 [20];
   undefined2 uStack_780;
   undefined2 uStack_77e;
-  undefined1 uStack_77c;
+  byte bStack_77c;
   undefined4 uStack_778;
   undefined4 uStack_774;
   undefined4 uStack_770;
@@ -61,7 +61,7 @@ void ScrCareer_Draw_MasterLord(int param_1)
   undefined4 uStack_608;
   undefined2 uStack_600;
   undefined2 uStack_5fe;
-  undefined1 uStack_5fc;
+  byte bStack_5fc;
   undefined4 uStack_5f8;
   undefined4 uStack_5f4;
   undefined4 uStack_5f0;
@@ -103,7 +103,7 @@ void ScrCareer_Draw_MasterLord(int param_1)
   char cStack_2fc;
   undefined2 uStack_180;
   undefined2 uStack_17e;
-  undefined1 uStack_17c;
+  byte bStack_17c;
   undefined4 uStack_178;
   undefined4 uStack_174;
   undefined4 uStack_170;
@@ -220,7 +220,7 @@ void ScrCareer_Draw_MasterLord(int param_1)
     uStack_168 = uStack_5e8;
     uStack_164 = uStack_5e4;
     uStack_178 = uStack_5f8;
-    uStack_17c = uStack_5fc;
+    bStack_17c = bStack_5fc;
     uStack_174 = uStack_5f4;
     uStack_158 = uStack_5d8;
     uStack_180 = uStack_600;
@@ -287,7 +287,7 @@ void ScrCareer_Draw_MasterLord(int param_1)
     uStack_168 = uStack_768;
     uStack_164 = uStack_764;
     uStack_178 = uStack_778;
-    uStack_17c = uStack_77c;
+    bStack_17c = bStack_77c;
     uStack_174 = uStack_774;
     uStack_158 = uStack_758;
     uStack_180 = uStack_780;
@@ -345,78 +345,82 @@ void ScrCareer_Draw_MasterLord(int param_1)
     uStack_8 = uStack_608;
     uStack_1c = uStack_61c;
   }
-  switch(uStack_17c) {
-  case 0:
-    RivalRec_IsValid(&uStack_180);
-    iVar3 = *(int *)(param_1 + 0xe4);
-    goto LAB_00245414;
-  case 2:
-    UiElem_SetPropInt(iVar10,1,0x16,0x44);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 3:
-    UiElem_SetPropInt(iVar10,1,0x16,0x41);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 4:
-    UiElem_SetPropInt(iVar10,1,0x16,0x3f);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 5:
-    UiElem_SetPropInt(iVar10,1,0x16,0x40);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 6:
-    UiElem_SetPropInt(iVar10,1,0x16,0x40);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    MenuWnd_DrawText(0x86,2,0xa4);
-    break;
-  case 7:
-    iVar3 = 0;
-    do {
-      iVar5 = *(int *)(param_1 + 0x24);
-      Rival_GetRecord(aiStack_7d0,iVar3);
-      if (iVar5 == aiStack_7d0[0]) {
-        UiElem_SetPropInt(iVar10,1,0x16,*(undefined4 *)(&DAT_0032c9c0 + iVar3 * 4));
-        break;
+  if (bStack_17c < 0xd) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bStack_17c) {
+    case 0:
+      RivalRec_IsValid(&uStack_180);
+      iVar3 = *(int *)(param_1 + 0xe4);
+      goto LAB_00245414;
+    case 2:
+      UiElem_SetPropInt(iVar10,1,0x16,0x44);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 3:
+      UiElem_SetPropInt(iVar10,1,0x16,0x41);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 4:
+      UiElem_SetPropInt(iVar10,1,0x16,0x3f);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 5:
+      UiElem_SetPropInt(iVar10,1,0x16,0x40);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 6:
+      UiElem_SetPropInt(iVar10,1,0x16,0x40);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      MenuWnd_DrawText(0x86,2,0xa4);
+      break;
+    case 7:
+      iVar3 = 0;
+      do {
+        iVar5 = *(int *)(param_1 + 0x24);
+        Rival_GetRecord(aiStack_7d0,iVar3);
+        if (iVar5 == aiStack_7d0[0]) {
+          UiElem_SetPropInt(iVar10,1,0x16,*(undefined4 *)(&DAT_0032c9c0 + iVar3 * 4));
+          break;
+        }
+        iVar3 = iVar3 + 1;
+      } while (iVar3 < 0x14);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 8:
+      UiElem_SetPropInt(iVar10,1,0x16,0x43);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 9:
+      UiElem_SetPropInt(iVar10,1,0x16,0x42);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 10:
+      UiElem_SetPropInt(iVar10,1,0x16,0x3e);
+      iVar3 = UiMgr_FindLayout(0x86);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      break;
+    case 0xb:
+      sVar2 = RivalRec_GetCourse(&uStack_180);
+      UiElem_SetPropInt(iVar5 + iVar6 * 0x4f4 + 4,2,0x16,*(undefined4 *)(&DAT_0032ca10 + sVar2 * 4))
+      ;
+      iVar3 = UiMgr_FindLayout(0x91);
+      UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+      if (*(int *)(param_1 + 0x64c) == 0x16) {
+        iVar3 = UiMgr_FindLayout(0x91);
+        UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0xc,8);
       }
-      iVar3 = iVar3 + 1;
-    } while (iVar3 < 0x14);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 8:
-    UiElem_SetPropInt(iVar10,1,0x16,0x43);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 9:
-    UiElem_SetPropInt(iVar10,1,0x16,0x42);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 10:
-    UiElem_SetPropInt(iVar10,1,0x16,0x3e);
-    iVar3 = UiMgr_FindLayout(0x86);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    break;
-  case 0xb:
-    sVar2 = RivalRec_GetCourse(&uStack_180);
-    UiElem_SetPropInt(iVar5 + iVar6 * 0x4f4 + 4,2,0x16,*(undefined4 *)(&DAT_0032ca10 + sVar2 * 4));
-    iVar3 = UiMgr_FindLayout(0x91);
-    UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-    if (*(int *)(param_1 + 0x64c) == 0x16) {
-      iVar3 = UiMgr_FindLayout(0x91);
-      UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0xc,8);
-    }
-    else {
-      iVar3 = UiMgr_FindLayout(0x91);
-      UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,0xc,8);
+      else {
+        iVar3 = UiMgr_FindLayout(0x91);
+        UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,0xc,8);
+      }
     }
   }
   iVar3 = *(int *)(param_1 + 0xe4);
@@ -546,7 +550,7 @@ void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
   undefined4 auStack_3c0 [20];
   undefined2 uStack_370;
   undefined2 uStack_36e;
-  undefined1 uStack_36c;
+  byte bStack_36c;
   undefined4 uStack_368;
   undefined4 uStack_364;
   undefined4 uStack_360;
@@ -589,7 +593,7 @@ void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
   char cStack_1e0;
   undefined2 uStack_1a0;
   undefined2 uStack_19e;
-  undefined1 uStack_19c;
+  byte bStack_19c;
   undefined4 uStack_198;
   undefined4 uStack_194;
   undefined4 uStack_190;
@@ -643,7 +647,7 @@ void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
   uStack_188 = uStack_358;
   uStack_198 = uStack_368;
   uStack_184 = uStack_354;
-  uStack_19c = uStack_36c;
+  bStack_19c = bStack_36c;
   uStack_194 = uStack_364;
   uStack_178 = uStack_348;
   uStack_1a0 = uStack_370;
@@ -745,7 +749,8 @@ void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
   }
   MenuWnd_DrawRivalLabel(0x84,*(undefined4 *)(param_3 + 0x36ebe0),1,0x36f,(uVar10 & 0xff) + 0x370);
   sVar2 = RivalRec_GetCourse(&uStack_1a0);
-  if (sVar2 == -1) {
+  if ((sVar2 == -1) && ((byte)uStack_10 < 10)) {
+                    /* WARNING: Switch is manually overridden */
     switch(uStack_10 & 0xff) {
     case 0:
       uVar3 = (undefined2)uStack_c;
@@ -762,8 +767,7 @@ void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
       uVar4 = MenuText_CarShortName(uStack_c,0xfffffffffffffffe);
       MenuWnd_DrawText(0x84,*(undefined4 *)(param_3 + 0x36ebe8),uVar4);
       break;
-    case 3:
-    case 4:
+    default:
       MenuWnd_DrawNumber(0x84,*(undefined4 *)(param_3 + 0x36ebe8),uStack_8);
       break;
     case 5:
@@ -771,12 +775,16 @@ void ScrCareer_Draw_Prize(int param_1,long param_2,int param_3)
       break;
     case 6:
       MenuWnd_DrawText(0x84,*(undefined4 *)(param_3 + 0x36ebe8),0x3af);
+      break;
+    case 7:
+      break;
     }
   }
   iVar7 = *(int *)(param_1 + 0x668);
 LAB_00245fb0:
-  if (iVar7 == 0) {
-    switch(uStack_19c) {
+  if ((iVar7 == 0) && (bStack_19c < 0xc)) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bStack_19c) {
     case 2:
       MenuWnd_DrawText(0x86,2,0x75);
       return;

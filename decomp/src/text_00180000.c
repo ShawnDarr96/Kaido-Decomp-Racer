@@ -35,7 +35,7 @@ void Race_FrameBegin(void)
       uVar2 = Profile_Get(0);
       Career_ProcessDay(uVar2);
     }
-    uVar2 = raceprog_leaf_sub_001dc180();
+    uVar2 = maybe_RaceProg_GetEntry();
     GameState_Set_35c(uVar2);
     RaceScene_SetupPlayerCar();
   }
@@ -83,32 +83,35 @@ undefined4 Race_GetModeFlags(void)
 {
   undefined4 uVar1;
   
-  switch(*(undefined1 *)(_g_GameState + 0x354)) {
-  case 0:
-    uVar1 = 5;
-    break;
-  case 1:
-    uVar1 = 6;
-    break;
-  case 2:
-    uVar1 = 4;
-    break;
-  case 3:
-    uVar1 = 6;
-    break;
-  case 4:
-    uVar1 = 0xc;
-    break;
-  case 5:
-    uVar1 = 0x14;
-    break;
-  case 6:
-    uVar1 = 5;
-    break;
-  case 7:
-    uVar1 = 0x46;
-    break;
-  default:
+  if (*(byte *)(_g_GameState + 0x354) < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(_g_GameState + 0x354)) {
+    case 0:
+      uVar1 = 5;
+      break;
+    case 1:
+      uVar1 = 6;
+      break;
+    case 2:
+      uVar1 = 4;
+      break;
+    case 3:
+      uVar1 = 6;
+      break;
+    case 4:
+      uVar1 = 0xc;
+      break;
+    case 5:
+      uVar1 = 0x14;
+      break;
+    case 6:
+      uVar1 = 5;
+      break;
+    case 7:
+      uVar1 = 0x46;
+    }
+  }
+  else {
     uVar1 = 0;
   }
   return uVar1;
@@ -673,7 +676,7 @@ undefined4 RaceSetup_Prepare(void)
   int iVar6;
   char cVar7;
   char cVar8;
-  undefined1 uVar9;
+  byte bVar9;
   short sVar10;
   int iVar11;
   int iVar12;
@@ -1390,11 +1393,14 @@ undefined4 RaceSetup_Prepare(void)
     _g_GameState[1] = cVar8;
     *(undefined4 *)(_g_GameState + 0xc) = uStack_4;
     *(undefined4 *)(_g_GameState + 0x10) = uStack_8;
-    uVar9 = GameState_Get_354_7050();
+    bVar9 = GameState_Get_354_7050();
     uVar18 = uStack_16c;
-    switch(uVar9) {
-    case 1:
-    case 3:
+    if (7 < bVar9) goto switchD_00181ca8_caseD_0;
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar9) {
+    case 0:
+      break;
+    default:
       if (iStack_2b4 != 0) {
         GameState_Set_390();
       }
@@ -1433,6 +1439,7 @@ undefined4 RaceSetup_Prepare(void)
       GameState_Set_390();
       goto LAB_00181d98;
     }
+switchD_00181ca8_caseD_0:
     uStack_16c = uVar18;
 LAB_00181d98:
     uVar34 = uStack_160;
@@ -2811,33 +2818,36 @@ undefined1 Cam_SetMode(undefined8 param_1,char param_2)
     Gfx_SetFade(4,9,0,0);
     *(char *)(iVar1 + 0x4f8) = param_2;
   }
-  switch(*(undefined1 *)(iVar1 + 0x4f8)) {
-  case 0:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f200;
-    break;
-  case 1:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f204;
-    break;
-  case 2:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f208;
-    break;
-  case 3:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f21c;
-    break;
-  case 4:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f200;
-    break;
-  case 5:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f204;
-    break;
-  case 6:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f208;
-    break;
-  case 7:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f210;
-    break;
-  case 8:
-    *(undefined4 *)(iVar1 + 0x4fc) = 0x36f214;
+  if (*(byte *)(iVar1 + 0x4f8) < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(iVar1 + 0x4f8)) {
+    case 0:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f200;
+      break;
+    case 1:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f204;
+      break;
+    case 2:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f208;
+      break;
+    case 3:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f21c;
+      break;
+    case 4:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f200;
+      break;
+    case 5:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f204;
+      break;
+    case 6:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f208;
+      break;
+    case 7:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f210;
+      break;
+    case 8:
+      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f214;
+    }
   }
   (**(code **)(**(int **)(iVar1 + 0x4fc) + 8))(*(int **)(iVar1 + 0x4fc),param_1);
   *(undefined4 *)(iVar1 + 0x4e0) = *(undefined4 *)(iVar1 + 0x4ec);

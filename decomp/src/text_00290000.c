@@ -4,9 +4,9 @@
 
 // 0x002900a0  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e8d0 */
+/* entry 0 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update */
 
-void screc32e8d0_enter_sub_002900a0(int param_1)
+void maybe_ScrRivalProfile_State0(int param_1)
 
 {
   int iVar1;
@@ -39,9 +39,9 @@ void screc32e8d0_enter_sub_002900a0(int param_1)
 }
 
 // 0x002901a0  size 0x8
-/* screen record 0x327570 */
+/* menu screen 16 (table 0x3274b0) */
 
-void screc327570_exit_sub_002901a0(void)
+void maybe_ScrRivalProfile_Exit(void)
 
 {
   return;
@@ -49,9 +49,9 @@ void screc327570_exit_sub_002901a0(void)
 
 // 0x002901b0  size 0x1f4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327570 */
+/* menu screen 16 (table 0x3274b0) */
 
-void screc327570_update_sub_002901b0(undefined8 param_1)
+void maybe_ScrRivalProfile_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -64,7 +64,7 @@ void screc327570_update_sub_002901b0(undefined8 param_1)
     return;
   }
   iVar4 = (int)param_1;
-  (*(code *)(&PTR_screc32e8d0_enter_sub_002900a0_0032e8d0)[*(int *)(iVar4 + 4)])(param_1);
+  (*(code *)(&PTR_maybe_ScrRivalProfile_State0_0032e8d0)[*(int *)(iVar4 + 4)])(param_1);
   uVar3 = piRam0036f468[2];
   if ((piRam0036f468[4] & uVar3) == 0) {
     uVar3 = 0x100000;
@@ -131,9 +131,9 @@ LAB_002902f0:
 }
 
 // 0x002903b0  size 0x114
-/* screen record 0x327570 */
+/* menu screen 16 (table 0x3274b0) */
 
-void screc327570_enter_sub_002903b0(undefined4 *param_1)
+void maybe_ScrRivalProfile_Enter(undefined4 *param_1)
 
 {
   int iVar1;
@@ -195,9 +195,9 @@ void screc327570_enter_sub_002903b0(undefined4 *param_1)
 }
 
 // 0x002904d0  size 0x8
-/* screen record 0x32757c */
+/* menu screen 17 (table 0x3274b0) */
 
-void screc32757c_exit_sub_002904d0(void)
+void maybe_ScrBlank17_Exit(void)
 
 {
   return;
@@ -205,9 +205,9 @@ void screc32757c_exit_sub_002904d0(void)
 
 // 0x002904e0  size 0x178
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32757c */
+/* menu screen 17 (table 0x3274b0) */
 
-void screc32757c_update_sub_002904e0(undefined8 param_1)
+void maybe_ScrBlank17_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -263,9 +263,9 @@ void screc32757c_update_sub_002904e0(undefined8 param_1)
 }
 
 // 0x00290660  size 0x34
-/* screen record 0x32757c */
+/* menu screen 17 (table 0x3274b0) */
 
-void screc32757c_enter_sub_00290660(undefined4 *param_1)
+void maybe_ScrBlank17_Enter(undefined4 *param_1)
 
 {
   *param_1 = 0xffffffff;
@@ -359,7 +359,9 @@ undefined4 menuscr_leaf_sub_002907f0(int param_1,int param_2)
 }
 
 // 0x00290870  size 0x19c
-void menuscr_step_sub_00290870(undefined8 param_1)
+/* entry 10 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update */
+
+void maybe_ScrRivalProfile_State10(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -419,8 +421,9 @@ void menuscr_step_sub_00290870(undefined8 param_1)
 
 // 0x00290a10  size 0x1cc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 8 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update */
 
-void menuscr_step_sub_00290a10(undefined8 param_1)
+void maybe_ScrRivalProfile_State8(undefined8 param_1)
 
 {
   int *piVar1;
@@ -484,9 +487,9 @@ void menuscr_step_sub_00290a10(undefined8 param_1)
 
 // 0x00290be0  size 0x1cc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e8dc */
+/* entry 6 of state table 0x32e8d0 used by maybe_ScrRivalProfile_Update */
 
-void screc32e8dc_exit_sub_00290be0(undefined8 param_1)
+void maybe_ScrRivalProfile_State6(undefined8 param_1)
 
 {
   int *piVar1;
@@ -550,9 +553,9 @@ void screc32e8dc_exit_sub_00290be0(undefined8 param_1)
 
 // 0x00290db0  size 0x1dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e8dc */
+/* entry 0 of state table 0x32e8e0 used by maybe_ScrRivalSelect_Update */
 
-void screc32e8dc_update_sub_00290db0(int param_1)
+void maybe_ScrRivalSelect_State0(int param_1)
 
 {
   int iVar1;
@@ -608,25 +611,25 @@ void screc32e8dc_update_sub_00290db0(int param_1)
 }
 
 // 0x00290f90  size 0x8
-/* screen record 0x327588 */
+/* menu screen 18 (table 0x3274b0) */
 
-void screc327588_exit_sub_00290f90(void)
+void maybe_ScrRivalSelect_Exit(void)
 
 {
   return;
 }
 
 // 0x00290fa0  size 0x5c
-/* screen record 0x327588 */
+/* menu screen 18 (table 0x3274b0) */
 
-void screc327588_update_sub_00290fa0(undefined8 param_1)
+void maybe_ScrRivalSelect_Update(undefined8 param_1)
 
 {
   long lVar1;
   
   lVar1 = Menu_IsInputIdle();
   if (lVar1 != 0) {
-    (*(code *)(&PTR_screc32e8dc_update_sub_00290db0_0032e8e0)[*(int *)((int)param_1 + 4)])(param_1);
+    (*(code *)(&PTR_maybe_ScrRivalSelect_State0_0032e8e0)[*(int *)((int)param_1 + 4)])(param_1);
     menuscr_step_sub_002906a0(param_1);
     Menu_RequestTransition(param_1);
   }
@@ -634,9 +637,9 @@ void screc327588_update_sub_00290fa0(undefined8 param_1)
 }
 
 // 0x00291000  size 0xd4
-/* screen record 0x327588 */
+/* menu screen 18 (table 0x3274b0) */
 
-void screc327588_enter_sub_00291000(undefined4 *param_1)
+void maybe_ScrRivalSelect_Enter(undefined4 *param_1)
 
 {
   undefined8 uVar1;
@@ -826,127 +829,123 @@ void scrcareer_step_sub_00291480(int param_1)
   
   iVar7 = 0;
   iVar1 = GameDb_FindRival();
-  switch(*(undefined4 *)(param_1 + 4)) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-  case 5:
-  case 6:
-  case 7:
-    uVar5 = Menu_MapCursorToItem();
-    uVar4 = Race_GetOpponentCount(uVar5);
-    iVar10 = 0;
-    iVar8 = param_1;
-    if (0 < iVar1) {
-      do {
-        uVar5 = RivalDb_Get((short)iVar10);
-        uVar2 = RivalRec_GetTeam(uVar5);
-        if ((2 < (uVar2 & 0xff) - 0xb) &&
-           (iVar9 = RivalDb_Get((short)iVar10), (uVar4 & *(uint *)(iVar9 + 0x14)) != 0)) {
-          *(int *)(iVar8 + 0x38) = iVar10;
-          iVar7 = iVar7 + 1;
-          iVar8 = iVar8 + 4;
-        }
-        iVar10 = iVar10 + 1;
-      } while (iVar10 < iVar1);
-      *(int *)(param_1 + 0x14) = iVar7;
-      return;
-    }
-    break;
-  case 8:
-    iVar8 = 0;
-    if (0 < iVar1) {
-      iVar9 = 0;
-      iVar10 = param_1;
-      do {
-        uVar5 = RivalDb_Get((short)iVar8);
-        uVar4 = RivalRec_GetTeam(uVar5);
-        if ((2 < (uVar4 & 0xff) - 0xb) &&
-           (iVar3 = Profile_Get(0), 0 < *(short *)(iVar3 + iVar9 + 0x3fc4))) {
-          *(int *)(iVar10 + 0x38) = iVar8;
-          iVar7 = iVar7 + 1;
-          iVar10 = iVar10 + 4;
-        }
-        iVar8 = iVar8 + 1;
-        iVar9 = iVar9 + 2;
-      } while (iVar8 < iVar1);
-    }
-    break;
-  case 9:
-    iVar8 = 0;
-    if (0 < iVar1) {
-      iVar9 = 0;
-      iVar10 = param_1;
-      do {
-        uVar5 = RivalDb_Get((short)iVar8);
-        uVar4 = RivalRec_GetTeam(uVar5);
-        if ((2 < (uVar4 & 0xff) - 0xb) &&
-           (iVar3 = Profile_Get(0), *(short *)(iVar3 + iVar9 + 0x3fc4) < 1)) {
-          *(int *)(iVar10 + 0x38) = iVar8;
-          iVar7 = iVar7 + 1;
-          iVar10 = iVar10 + 4;
-        }
-        iVar8 = iVar8 + 1;
-        iVar9 = iVar9 + 2;
-      } while (iVar8 < iVar1);
-    }
-    break;
-  case 10:
-    iVar8 = 0;
-    if (0 < iVar1) {
-      iVar9 = 0;
-      iVar10 = param_1;
-      do {
-        uVar5 = RivalDb_Get((short)iVar8);
-        uVar4 = RivalRec_GetTeam(uVar5);
-        if ((2 < (uVar4 & 0xff) - 0xb) &&
-           (iVar3 = Profile_Get(0), *(int *)(iVar3 + iVar9 + 0x37b0) == 1)) {
-          *(int *)(iVar10 + 0x38) = iVar8;
-          iVar7 = iVar7 + 1;
-          iVar10 = iVar10 + 4;
-        }
-        iVar8 = iVar8 + 1;
-        iVar9 = iVar9 + 4;
-      } while (iVar8 < iVar1);
-    }
-    maybe_qsort(param_1 + 0x38,iVar7,4,0x2913e0);
-    break;
-  case 0xb:
-    iVar10 = 0;
-    iVar8 = param_1;
-    if (0 < iVar1) {
-      do {
-        uVar5 = RivalDb_Get((short)iVar10);
-        uVar4 = RivalRec_GetTeam(uVar5);
-        if (2 < (uVar4 & 0xff) - 0xb) {
+  if (*(uint *)(param_1 + 4) < 0xd) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 4)) {
+    default:
+      uVar5 = Menu_MapCursorToItem();
+      uVar4 = Race_GetOpponentCount(uVar5);
+      iVar10 = 0;
+      iVar8 = param_1;
+      if (0 < iVar1) {
+        do {
           uVar5 = RivalDb_Get((short)iVar10);
-          lVar6 = RivalRec_IsValid(uVar5);
-          if (lVar6 != 0) {
+          uVar2 = RivalRec_GetTeam(uVar5);
+          if ((2 < (uVar2 & 0xff) - 0xb) &&
+             (iVar9 = RivalDb_Get((short)iVar10), (uVar4 & *(uint *)(iVar9 + 0x14)) != 0)) {
             *(int *)(iVar8 + 0x38) = iVar10;
             iVar7 = iVar7 + 1;
             iVar8 = iVar8 + 4;
           }
-        }
-        iVar10 = iVar10 + 1;
-      } while (iVar10 < iVar1);
-    }
-    break;
-  case 0xc:
-    iVar10 = 0;
-    iVar8 = param_1;
-    if (0 < iVar1) {
-      do {
-        uVar5 = RivalDb_Get((short)iVar10);
-        uVar4 = RivalRec_GetTeam(uVar5);
-        if (2 < (uVar4 & 0xff) - 0xb) {
-          *(int *)(iVar8 + 0x38) = iVar10;
-          iVar7 = iVar7 + 1;
-          iVar8 = iVar8 + 4;
-        }
-        iVar10 = iVar10 + 1;
-      } while (iVar10 < iVar1);
+          iVar10 = iVar10 + 1;
+        } while (iVar10 < iVar1);
+        *(int *)(param_1 + 0x14) = iVar7;
+        return;
+      }
+      break;
+    case 8:
+      iVar8 = 0;
+      if (0 < iVar1) {
+        iVar9 = 0;
+        iVar10 = param_1;
+        do {
+          uVar5 = RivalDb_Get((short)iVar8);
+          uVar4 = RivalRec_GetTeam(uVar5);
+          if ((2 < (uVar4 & 0xff) - 0xb) &&
+             (iVar3 = Profile_Get(0), 0 < *(short *)(iVar3 + iVar9 + 0x3fc4))) {
+            *(int *)(iVar10 + 0x38) = iVar8;
+            iVar7 = iVar7 + 1;
+            iVar10 = iVar10 + 4;
+          }
+          iVar8 = iVar8 + 1;
+          iVar9 = iVar9 + 2;
+        } while (iVar8 < iVar1);
+      }
+      break;
+    case 9:
+      iVar8 = 0;
+      if (0 < iVar1) {
+        iVar9 = 0;
+        iVar10 = param_1;
+        do {
+          uVar5 = RivalDb_Get((short)iVar8);
+          uVar4 = RivalRec_GetTeam(uVar5);
+          if ((2 < (uVar4 & 0xff) - 0xb) &&
+             (iVar3 = Profile_Get(0), *(short *)(iVar3 + iVar9 + 0x3fc4) < 1)) {
+            *(int *)(iVar10 + 0x38) = iVar8;
+            iVar7 = iVar7 + 1;
+            iVar10 = iVar10 + 4;
+          }
+          iVar8 = iVar8 + 1;
+          iVar9 = iVar9 + 2;
+        } while (iVar8 < iVar1);
+      }
+      break;
+    case 10:
+      iVar8 = 0;
+      if (0 < iVar1) {
+        iVar9 = 0;
+        iVar10 = param_1;
+        do {
+          uVar5 = RivalDb_Get((short)iVar8);
+          uVar4 = RivalRec_GetTeam(uVar5);
+          if ((2 < (uVar4 & 0xff) - 0xb) &&
+             (iVar3 = Profile_Get(0), *(int *)(iVar3 + iVar9 + 0x37b0) == 1)) {
+            *(int *)(iVar10 + 0x38) = iVar8;
+            iVar7 = iVar7 + 1;
+            iVar10 = iVar10 + 4;
+          }
+          iVar8 = iVar8 + 1;
+          iVar9 = iVar9 + 4;
+        } while (iVar8 < iVar1);
+      }
+      maybe_qsort(param_1 + 0x38,iVar7,4,0x2913e0);
+      break;
+    case 0xb:
+      iVar10 = 0;
+      iVar8 = param_1;
+      if (0 < iVar1) {
+        do {
+          uVar5 = RivalDb_Get((short)iVar10);
+          uVar4 = RivalRec_GetTeam(uVar5);
+          if (2 < (uVar4 & 0xff) - 0xb) {
+            uVar5 = RivalDb_Get((short)iVar10);
+            lVar6 = RivalRec_IsValid(uVar5);
+            if (lVar6 != 0) {
+              *(int *)(iVar8 + 0x38) = iVar10;
+              iVar7 = iVar7 + 1;
+              iVar8 = iVar8 + 4;
+            }
+          }
+          iVar10 = iVar10 + 1;
+        } while (iVar10 < iVar1);
+      }
+      break;
+    case 0xc:
+      iVar10 = 0;
+      iVar8 = param_1;
+      if (0 < iVar1) {
+        do {
+          uVar5 = RivalDb_Get((short)iVar10);
+          uVar4 = RivalRec_GetTeam(uVar5);
+          if (2 < (uVar4 & 0xff) - 0xb) {
+            *(int *)(iVar8 + 0x38) = iVar10;
+            iVar7 = iVar7 + 1;
+            iVar8 = iVar8 + 4;
+          }
+          iVar10 = iVar10 + 1;
+        } while (iVar10 < iVar1);
+      }
     }
   }
   *(int *)(param_1 + 0x14) = iVar7;
@@ -954,7 +953,7 @@ void scrcareer_step_sub_00291480(int param_1)
 }
 
 // 0x00291830  size 0xe0
-void scroptions_step_sub_00291830(int param_1)
+void maybe_ScrOptions_StepCursor(int param_1)
 
 {
   int iVar1;
@@ -988,9 +987,9 @@ void scroptions_step_sub_00291830(int param_1)
 
 // 0x00291920  size 0xe4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e90c */
+/* entry 5 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update */
 
-void screc32e90c_exit_sub_00291920(int param_1)
+void maybe_ScrRivalRaceSetup_State5(int param_1)
 
 {
   int iVar1;
@@ -1019,9 +1018,9 @@ void screc32e90c_exit_sub_00291920(int param_1)
 
 // 0x00291a10  size 0xb0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e90c */
+/* entry 4 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update */
 
-void screc32e90c_update_sub_00291a10(int param_1)
+void maybe_ScrRivalRaceSetup_State4(int param_1)
 
 {
   int iVar1;
@@ -1051,9 +1050,9 @@ void screc32e90c_update_sub_00291a10(int param_1)
 
 // 0x00291ac0  size 0xc8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e90c */
+/* entry 3 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update */
 
-void screc32e90c_enter_sub_00291ac0(int *param_1)
+void maybe_ScrRivalRaceSetup_State3(int *param_1)
 
 {
   int iVar1;
@@ -1089,9 +1088,9 @@ void screc32e90c_enter_sub_00291ac0(int *param_1)
 
 // 0x00291b90  size 0x2a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e900 */
+/* entry 2 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update */
 
-void screc32e900_exit_sub_00291b90(int param_1)
+void maybe_ScrRivalRaceSetup_State2(int param_1)
 
 {
   undefined4 uVar1;
@@ -1194,9 +1193,9 @@ LAB_00291d80:
 
 // 0x00291e40  size 0xe4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e900 */
+/* entry 1 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update */
 
-void screc32e900_update_sub_00291e40(int param_1)
+void maybe_ScrRivalRaceSetup_State1(int param_1)
 
 {
   int iVar1;
@@ -1234,9 +1233,9 @@ void screc32e900_update_sub_00291e40(int param_1)
 
 // 0x00291f30  size 0x31c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e900 */
+/* entry 0 of state table 0x32e900 used by maybe_ScrRivalRaceSetup_Update */
 
-void screc32e900_enter_sub_00291f30(int param_1)
+void maybe_ScrRivalRaceSetup_State0(int param_1)
 
 {
   int iVar1;
@@ -1350,18 +1349,18 @@ void screc32e900_enter_sub_00291f30(int param_1)
 }
 
 // 0x00292250  size 0x8
-/* screen record 0x327594 */
+/* menu screen 19 (table 0x3274b0) */
 
-void screc327594_exit_sub_00292250(void)
+void maybe_ScrRivalRaceSetup_Exit(void)
 
 {
   return;
 }
 
 // 0x00292260  size 0x60
-/* screen record 0x327594 */
+/* menu screen 19 (table 0x3274b0) */
 
-void screc327594_update_sub_00292260(undefined8 param_1)
+void maybe_ScrRivalRaceSetup_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -1370,7 +1369,7 @@ void screc327594_update_sub_00292260(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x814);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_screc32e900_enter_sub_00291f30_0032e900)[*(int *)(iVar2 + 0x818)])(param_1);
+    (*(code *)(&PTR_maybe_ScrRivalRaceSetup_State0_0032e900)[*(int *)(iVar2 + 0x818)])(param_1);
     scrrace_step_sub_002910e0(param_1);
     Menu_RequestTransition(iVar2 + 0x814);
   }
@@ -1379,9 +1378,9 @@ void screc327594_update_sub_00292260(undefined8 param_1)
 
 // 0x002922c0  size 0x2b0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327594 */
+/* menu screen 19 (table 0x3274b0) */
 
-void screc327594_enter_sub_002922c0(undefined8 param_1)
+void maybe_ScrRivalRaceSetup_Enter(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1397,18 +1396,21 @@ void screc327594_enter_sub_002922c0(undefined8 param_1)
   int iVar11;
   undefined4 *puVar12;
   
-  switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-  case 1:
-    *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
-    break;
-  case 2:
-    *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
-    break;
-  case 3:
-    *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
-    break;
-  case 4:
-    *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+  if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x34)) {
+    case 1:
+      *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
+      break;
+    case 2:
+      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
+      break;
+    case 3:
+      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
+      break;
+    case 4:
+      *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+    }
   }
   puVar12 = (undefined4 *)param_1;
   if (*(int *)(_g_MenuMgr + 0x24) == 0xb) {
@@ -1644,9 +1646,9 @@ LAB_00292804:
 }
 
 // 0x00292930  size 0x30
-/* screen record 0x32e92c */
+/* entry 5 of state table 0x32e920 used by maybe_ScrPartApply_Update */
 
-void screc32e92c_exit_sub_00292930(int param_1)
+void maybe_ScrPartApply_State5(int param_1)
 
 {
   int iVar1;
@@ -1661,9 +1663,9 @@ void screc32e92c_exit_sub_00292930(int param_1)
 }
 
 // 0x00292960  size 0x30
-/* screen record 0x32e92c */
+/* entry 4 of state table 0x32e920 used by maybe_ScrPartApply_Update */
 
-void screc32e92c_update_sub_00292960(int param_1)
+void maybe_ScrPartApply_State4(int param_1)
 
 {
   int iVar1;
@@ -1678,9 +1680,9 @@ void screc32e92c_update_sub_00292960(int param_1)
 }
 
 // 0x00292990  size 0x80
-/* screen record 0x32e92c */
+/* entry 3 of state table 0x32e920 used by maybe_ScrPartApply_Update */
 
-void screc32e92c_enter_sub_00292990(int param_1)
+void maybe_ScrPartApply_State3(int param_1)
 
 {
   int iVar1;
@@ -1703,9 +1705,9 @@ void screc32e92c_enter_sub_00292990(int param_1)
 
 // 0x00292a10  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e920 */
+/* entry 2 of state table 0x32e920 used by maybe_ScrPartApply_Update */
 
-void screc32e920_exit_sub_00292a10(int *param_1)
+void maybe_ScrPartApply_State2(int *param_1)
 
 {
   int iVar1;
@@ -1730,9 +1732,9 @@ void screc32e920_exit_sub_00292a10(int *param_1)
 }
 
 // 0x00292ab0  size 0x2c
-/* screen record 0x32e920 */
+/* entry 1 of state table 0x32e920 used by maybe_ScrPartApply_Update */
 
-void screc32e920_update_sub_00292ab0(int param_1)
+void maybe_ScrPartApply_State1(int param_1)
 
 {
   int iVar1;
@@ -1748,9 +1750,9 @@ void screc32e920_update_sub_00292ab0(int param_1)
 
 // 0x00292ae0  size 0x2ec
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e920 */
+/* entry 0 of state table 0x32e920 used by maybe_ScrPartApply_Update */
 
-void screc32e920_enter_sub_00292ae0(int param_1)
+void maybe_ScrPartApply_State0(int param_1)
 
 {
   char cVar1;
@@ -1847,25 +1849,25 @@ void screc32e920_enter_sub_00292ae0(int param_1)
 }
 
 // 0x00292dd0  size 0x8
-/* screen record 0x3275a0 */
+/* menu screen 20 (table 0x3274b0) */
 
-void screc3275a0_exit_sub_00292dd0(void)
+void maybe_ScrPartApply_Exit(void)
 
 {
   return;
 }
 
 // 0x00292de0  size 0x5c
-/* screen record 0x3275a0 */
+/* menu screen 20 (table 0x3274b0) */
 
-void screc3275a0_update_sub_00292de0(undefined8 param_1)
+void maybe_ScrPartApply_Update(undefined8 param_1)
 
 {
   long lVar1;
   
   lVar1 = Menu_IsInputIdle();
   if (lVar1 != 0) {
-    (*(code *)(&PTR_screc32e920_enter_sub_00292ae0_0032e920)[*(int *)((int)param_1 + 4)])(param_1);
+    (*(code *)(&PTR_maybe_ScrPartApply_State0_0032e920)[*(int *)((int)param_1 + 4)])(param_1);
     scrgarage_step_sub_00292730(param_1);
     Menu_RequestTransition(param_1);
   }
@@ -1873,9 +1875,9 @@ void screc3275a0_update_sub_00292de0(undefined8 param_1)
 }
 
 // 0x00292e40  size 0x164
-/* screen record 0x3275a0 */
+/* menu screen 20 (table 0x3274b0) */
 
-void screc3275a0_enter_sub_00292e40(undefined4 *param_1)
+void maybe_ScrPartApply_Enter(undefined4 *param_1)
 
 {
   char cVar1;
@@ -1937,7 +1939,7 @@ void screc3275a0_enter_sub_00292e40(undefined4 *param_1)
 }
 
 // 0x00292fb0  size 0x1b0
-void scroptions_step_sub_00292fb0(undefined8 param_1)
+void maybe_ScrOptions_StepVoice(undefined8 param_1)
 
 {
   int iVar1;
@@ -2040,8 +2042,9 @@ void scrrace_step_sub_00293170(undefined4 *param_1,long param_2)
 
 // 0x00293250  size 0x160
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 3 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update */
 
-void menuscr_input_sub_00293250(int param_1)
+void maybe_ScrModeVoice_State3(int param_1)
 
 {
   int iVar1;
@@ -2086,9 +2089,9 @@ void menuscr_input_sub_00293250(int param_1)
 
 // 0x002933b0  size 0x12c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e9e0 */
+/* entry 2 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update */
 
-void screc32e9e0_exit_sub_002933b0(int param_1)
+void maybe_ScrModeVoice_State2(int param_1)
 
 {
   int iVar1;
@@ -2127,9 +2130,9 @@ void screc32e9e0_exit_sub_002933b0(int param_1)
 
 // 0x002934e0  size 0x13c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e9e0 */
+/* entry 1 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update */
 
-void screc32e9e0_update_sub_002934e0(int param_1)
+void maybe_ScrModeVoice_State1(int param_1)
 
 {
   int iVar1;
@@ -2171,9 +2174,9 @@ void screc32e9e0_update_sub_002934e0(int param_1)
 
 // 0x00293620  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e9e0 */
+/* entry 0 of state table 0x32e9e0 used by maybe_ScrModeVoice_Update */
 
-void screc32e9e0_enter_sub_00293620(undefined8 param_1)
+void maybe_ScrModeVoice_State0(undefined8 param_1)
 
 {
   int iVar1;
@@ -2194,18 +2197,18 @@ void screc32e9e0_enter_sub_00293620(undefined8 param_1)
 }
 
 // 0x002936c0  size 0x8
-/* screen record 0x3275ac */
+/* menu screen 21 (table 0x3274b0) */
 
-void screc3275ac_exit_sub_002936c0(void)
+void maybe_ScrModeVoice_Exit(void)
 
 {
   return;
 }
 
 // 0x002936d0  size 0x84
-/* screen record 0x3275ac */
+/* menu screen 21 (table 0x3274b0) */
 
-void screc3275ac_update_sub_002936d0(undefined8 param_1)
+void maybe_ScrModeVoice_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -2218,8 +2221,8 @@ void screc3275ac_update_sub_002936d0(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x1c);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_screc32e9e0_enter_sub_00293620_0032e9e0)[*(int *)(iVar2 + 0x20)])(param_1);
-    scroptions_step_sub_00292fb0(param_1);
+    (*(code *)(&PTR_maybe_ScrModeVoice_State0_0032e9e0)[*(int *)(iVar2 + 0x20)])(param_1);
+    maybe_ScrOptions_StepVoice(param_1);
     Menu_RequestTransition(iVar2 + 0x1c);
   }
   return;
@@ -2227,9 +2230,9 @@ void screc3275ac_update_sub_002936d0(undefined8 param_1)
 
 // 0x00293760  size 0x12c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3275ac */
+/* menu screen 21 (table 0x3274b0) */
 
-void screc3275ac_enter_sub_00293760(undefined4 *param_1)
+void maybe_ScrModeVoice_Enter(undefined4 *param_1)
 
 {
   int iVar1;
@@ -2292,18 +2295,18 @@ void screc3275ac_enter_sub_00293760(undefined4 *param_1)
 }
 
 // 0x00293890  size 0x8
-/* screen record 0x3275b8 */
+/* menu screen 22 (table 0x3274b0) */
 
-void screc3275b8_exit_sub_00293890(void)
+void maybe_ScrModeSelect_Exit(void)
 
 {
   return;
 }
 
 // 0x002938a0  size 0x15c
-/* screen record 0x3275b8 */
+/* menu screen 22 (table 0x3274b0) */
 
-void screc3275b8_update_sub_002938a0(int param_1)
+void maybe_ScrModeSelect_Update(int param_1)
 
 {
   uint uVar1;
@@ -2354,9 +2357,9 @@ void screc3275b8_update_sub_002938a0(int param_1)
 
 // 0x00293a00  size 0x19c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3275b8 */
+/* menu screen 22 (table 0x3274b0) */
 
-void screc3275b8_enter_sub_00293a00(int *param_1)
+void maybe_ScrModeSelect_Enter(int *param_1)
 
 {
   int iVar1;
@@ -2412,7 +2415,7 @@ void screc3275b8_enter_sub_00293a00(int *param_1)
 // 0x00293ba0  size 0x2e8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrsave_select_sub_00293ba0(undefined8 param_1)
+void ScrSave_SelectSlot(undefined8 param_1)
 
 {
   int iVar1;
@@ -2511,7 +2514,7 @@ void scrsave_select_sub_00293ba0(undefined8 param_1)
 }
 
 // 0x00293ea0  size 0x90
-void scrsave_step_sub_00293ea0(undefined8 param_1)
+void ScrSave_Enter(undefined8 param_1)
 
 {
   int iVar1;
@@ -2539,7 +2542,7 @@ void scrsave_step_sub_00293ea0(undefined8 param_1)
 // 0x00293f90  size 0x19c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void scrsave_select_sub_00293f90(undefined8 param_1)
+void ScrLoad_SelectSlot(undefined8 param_1)
 
 {
   int iVar1;

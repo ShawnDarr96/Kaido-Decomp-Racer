@@ -401,8 +401,9 @@ void showroom_step_sub_002d4d40(byte param_1,int param_2,long param_3,undefined8
   else {
     iVar2 = *(int *)(iVar2 + 0x14) + param_2 * 0x1c;
   }
-  if (((iVar2 != 0) && (cVar1 = showroom_step_sub_002d5e40(iVar2), cVar1 != '\x01')) &&
-     (*(int *)(iVar2 + 4) = (int)param_3, param_3 != 0)) {
+  if ((((iVar2 != 0) && (cVar1 = showroom_step_sub_002d5e40(iVar2), cVar1 != '\x01')) &&
+      (*(int *)(iVar2 + 4) = (int)param_3, param_3 != 0)) && (param_1 < 8)) {
+                    /* WARNING: Switch is manually overridden */
     switch(param_1) {
     case 0:
       maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x110,param_4,0x3f0);
@@ -417,8 +418,6 @@ void showroom_step_sub_002d4d40(byte param_1,int param_2,long param_3,undefined8
     case 2:
       maybe_Mem_CopyQwords(iVar2 + 0x14,param_4,8);
       break;
-    case 3:
-      break;
     case 4:
       maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x10,param_4,0x30);
       break;
@@ -430,12 +429,8 @@ void showroom_step_sub_002d4d40(byte param_1,int param_2,long param_3,undefined8
       break;
     case 7:
       maybe_Mem_CopyQwords(*(int *)(iVar2 + 0x10) + 0x50,param_4,0x30);
-      break;
-    default:
-      goto switchD_002d4df8_default;
     }
   }
-switchD_002d4df8_default:
   return;
 }
 
@@ -655,25 +650,26 @@ int showroom_leaf_sub_002d5370(int param_1,int param_2)
 }
 
 // 0x002d53b0  size 0x82c
-void showroom_step_sub_002d53b0(char *param_1,uint param_2,int *param_3)
+void showroom_step_sub_002d53b0(byte *param_1,uint param_2,int *param_3)
 
 {
-  bool bVar1;
+  byte bVar1;
   bool bVar2;
-  char cVar3;
+  bool bVar3;
   char cVar4;
-  long lVar5;
-  int iVar6;
-  int *piVar7;
+  char cVar5;
+  long lVar6;
+  int iVar7;
   int *piVar8;
-  int iVar9;
+  int *piVar9;
   int iVar10;
   int iVar11;
-  uint uVar12;
-  int *piVar13;
-  int iVar14;
-  char *pcVar15;
-  int *piVar16;
+  int iVar12;
+  uint uVar13;
+  int *piVar14;
+  int iVar15;
+  char *pcVar16;
+  int *piVar17;
   int iStack_a0;
   int *piStack_90;
   int iStack_80;
@@ -681,177 +677,269 @@ void showroom_step_sub_002d53b0(char *param_1,uint param_2,int *param_3)
   int *piStack_60;
   int aiStack_50 [20];
   
-  uVar12 = param_2;
-  switch(*param_1) {
-  case '\0':
-    uVar12 = uRam00430570;
-    if (param_2 <= uRam00430570) {
-      uVar12 = param_2;
-    }
-    iVar14 = *(int *)(param_1 + 8);
-    goto LAB_002d54b4;
-  case '\x01':
-    uVar12 = uRam004364c8;
-    if (param_2 <= uRam004364c8) {
-      uVar12 = param_2;
-    }
-    break;
-  case '\x02':
-    uVar12 = uRam004364d0;
-    if (param_2 <= uRam004364d0) {
-      uVar12 = param_2;
-    }
-    break;
-  case '\x04':
-    uVar12 = uRam00430580;
-    if (param_2 <= uRam00430580) {
-      uVar12 = param_2;
-    }
-    break;
-  case '\x05':
-    uVar12 = uRam00430578;
-    if (param_2 <= uRam00430578) {
-      uVar12 = param_2;
-    }
-    break;
-  case '\x06':
-    uVar12 = uRam0046a19c;
-    if (param_2 <= uRam0046a19c) {
-      uVar12 = param_2;
-    }
-    break;
-  case '\a':
-    uVar12 = uRam0046a23c;
-    if (param_2 <= uRam0046a23c) {
-      uVar12 = param_2;
+  uVar13 = param_2;
+  if (*param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*param_1) {
+    case 0:
+      uVar13 = uRam00430570;
+      if (param_2 <= uRam00430570) {
+        uVar13 = param_2;
+      }
+      iVar15 = *(int *)(param_1 + 8);
+      goto LAB_002d54b4;
+    case 1:
+      uVar13 = uRam004364c8;
+      if (param_2 <= uRam004364c8) {
+        uVar13 = param_2;
+      }
+      break;
+    case 2:
+      uVar13 = uRam004364d0;
+      if (param_2 <= uRam004364d0) {
+        uVar13 = param_2;
+      }
+      break;
+    case 4:
+      uVar13 = uRam00430580;
+      if (param_2 <= uRam00430580) {
+        uVar13 = param_2;
+      }
+      break;
+    case 5:
+      uVar13 = uRam00430578;
+      if (param_2 <= uRam00430578) {
+        uVar13 = param_2;
+      }
+      break;
+    case 6:
+      uVar13 = uRam0046a19c;
+      if (param_2 <= uRam0046a19c) {
+        uVar13 = param_2;
+      }
+      break;
+    case 7:
+      uVar13 = uRam0046a23c;
+      if (param_2 <= uRam0046a23c) {
+        uVar13 = param_2;
+      }
     }
   }
-  iVar14 = *(int *)(param_1 + 8);
+  iVar15 = *(int *)(param_1 + 8);
 LAB_002d54b4:
-  iVar9 = 0;
-  if (0 < iVar14) {
-    piVar7 = aiStack_50;
-    piVar8 = param_3;
+  iVar10 = 0;
+  if (0 < iVar15) {
+    piVar8 = aiStack_50;
+    piVar9 = param_3;
     do {
-      if (iVar9 < (int)uVar12) {
-        *piVar7 = *piVar8;
+      if (iVar10 < (int)uVar13) {
+        *piVar8 = *piVar9;
       }
       else {
-        *piVar7 = -1;
+        *piVar8 = -1;
       }
-      iVar9 = iVar9 + 1;
-      piVar8 = piVar8 + 0x41;
-      piVar7 = piVar7 + 1;
-    } while (iVar9 < *(int *)(param_1 + 8));
+      iVar10 = iVar10 + 1;
+      piVar9 = piVar9 + 0x41;
+      piVar8 = piVar8 + 1;
+    } while (iVar10 < *(int *)(param_1 + 8));
   }
-  iVar14 = 0;
-  if (0 < (int)uVar12) {
-    piVar7 = aiStack_50;
-    piVar8 = param_3;
+  iVar15 = 0;
+  if (0 < (int)uVar13) {
+    piVar8 = aiStack_50;
+    piVar9 = param_3;
     do {
-      iVar9 = iVar14 + 1;
-      if (iVar9 < (int)uVar12) {
-        piVar16 = aiStack_50 + iVar9;
-        piVar13 = param_3 + iVar9 * 0x41;
+      iVar10 = iVar15 + 1;
+      if (iVar10 < (int)uVar13) {
+        piVar17 = aiStack_50 + iVar10;
+        piVar14 = param_3 + iVar10 * 0x41;
         do {
-          if (*piVar7 == *piVar16) {
-            cVar3 = *param_1;
-            if (*piVar8 == *piVar13) {
-              if (cVar3 == '\x02') {
-                lVar5 = Str_CompareN(piVar8 + 1,piVar13 + 1,0x20);
-                if (lVar5 == 0) goto LAB_002d5608;
-                bVar1 = false;
+          if (*piVar8 == *piVar17) {
+            bVar1 = *param_1;
+            if (*piVar9 == *piVar14) {
+              if (bVar1 == 2) {
+                lVar6 = Str_CompareN(piVar9 + 1,piVar14 + 1,0x20);
+                if (lVar6 == 0) goto LAB_002d5608;
+                bVar2 = false;
               }
-              else if (cVar3 == '\x01') {
-                lVar5 = Str_CompareN(piVar8 + 1,piVar13 + 1,0x20);
-                if (lVar5 == 0) goto LAB_002d5608;
-                bVar1 = false;
+              else if (bVar1 == 1) {
+                lVar6 = Str_CompareN(piVar9 + 1,piVar14 + 1,0x20);
+                if (lVar6 == 0) goto LAB_002d5608;
+                bVar2 = false;
               }
-              else if ((cVar3 == '\0') &&
-                      (lVar5 = Str_CompareN(piVar8 + 1,piVar13 + 1,0x100), lVar5 != 0)) {
-                bVar1 = false;
+              else if ((bVar1 == 0) &&
+                      (lVar6 = Str_CompareN(piVar9 + 1,piVar14 + 1,0x100), lVar6 != 0)) {
+                bVar2 = false;
               }
               else {
 LAB_002d5608:
-                bVar1 = true;
+                bVar2 = true;
               }
             }
             else {
-              bVar1 = false;
+              bVar2 = false;
             }
-            if (bVar1) {
-              *piVar16 = -1;
+            if (bVar2) {
+              *piVar17 = -1;
             }
           }
-          iVar9 = iVar9 + 1;
-          piVar16 = piVar16 + 1;
-          piVar13 = piVar13 + 0x41;
-        } while (iVar9 < (int)uVar12);
+          iVar10 = iVar10 + 1;
+          piVar17 = piVar17 + 1;
+          piVar14 = piVar14 + 0x41;
+        } while (iVar10 < (int)uVar13);
       }
-      iVar14 = iVar14 + 1;
-      piVar7 = piVar7 + 1;
-      piVar8 = piVar8 + 0x41;
-    } while (iVar14 < (int)uVar12);
+      iVar15 = iVar15 + 1;
+      piVar8 = piVar8 + 1;
+      piVar9 = piVar9 + 0x41;
+    } while (iVar15 < (int)uVar13);
   }
-  iVar14 = *(int *)(param_1 + 8);
+  iVar15 = *(int *)(param_1 + 8);
   iStack_70 = 0;
-  if (0 < iVar14) {
+  if (0 < iVar15) {
     iStack_a0 = 0;
     do {
-      if ((iStack_70 < 0) || (iVar14 <= iStack_70)) {
-        pcVar15 = (char *)0x0;
+      if ((iStack_70 < 0) || (iVar15 <= iStack_70)) {
+        pcVar16 = (char *)0x0;
       }
       else {
-        pcVar15 = (char *)(*(int *)(param_1 + 0x10) + iStack_a0);
+        pcVar16 = (char *)(*(int *)(param_1 + 0x10) + iStack_a0);
       }
-      cVar3 = showroom_step_sub_002d5e40(pcVar15);
-      bVar1 = true;
-      if (cVar3 != '\x01') {
-        iVar14 = 0;
-        if (0 < (int)uVar12) {
-          piVar7 = aiStack_50;
-          piVar8 = param_3;
+      cVar4 = showroom_step_sub_002d5e40(pcVar16);
+      bVar2 = true;
+      if (cVar4 != '\x01') {
+        iVar15 = 0;
+        if (0 < (int)uVar13) {
+          piVar8 = aiStack_50;
+          piVar9 = param_3;
           do {
-            if (-1 < *piVar7) {
-              iVar9 = *piVar8;
-              cVar4 = showroom_step_sub_002d5e40(pcVar15);
+            if (-1 < *piVar8) {
+              iVar10 = *piVar9;
+              cVar5 = showroom_step_sub_002d5e40(pcVar16);
+              if (cVar5 == '\x01') {
+                bVar3 = false;
+              }
+              else {
+                iVar12 = *(int *)(pcVar16 + 8);
+                iVar11 = 0;
+                cVar5 = showroom_step_sub_002d5e40(pcVar16);
+                if (cVar5 != '\x01') {
+                  cVar5 = *pcVar16;
+                  if (cVar5 == '\x02') {
+                    iVar11 = *(int *)(pcVar16 + 0x10) + 0x2c;
+                  }
+                  else if (cVar5 == '\x01') {
+                    iVar11 = *(int *)(pcVar16 + 0x10) + 0x2c;
+                  }
+                  else if (cVar5 == '\0') {
+                    iVar11 = *(int *)(pcVar16 + 0x10) + 0xc;
+                  }
+                }
+                cVar5 = *pcVar16;
+                if (iVar12 == iVar10) {
+                  if (cVar5 == '\x02') {
+                    lVar6 = Str_CompareN(iVar11,piVar9 + 1,0x20);
+                    if (lVar6 == 0) goto LAB_002d5938;
+                    bVar3 = false;
+                  }
+                  else if (cVar5 == '\x01') {
+                    lVar6 = Str_CompareN(iVar11,piVar9 + 1,0x20);
+                    if (lVar6 == 0) goto LAB_002d5938;
+                    bVar3 = false;
+                  }
+                  else if ((cVar5 == '\0') &&
+                          (lVar6 = Str_CompareN(iVar11,piVar9 + 1,0x100), lVar6 != 0)) {
+                    bVar3 = false;
+                  }
+                  else {
+LAB_002d5938:
+                    bVar3 = true;
+                  }
+                }
+                else {
+                  bVar3 = false;
+                }
+                if (bVar3) {
+                  bVar3 = true;
+                }
+                else {
+                  bVar3 = false;
+                }
+              }
+              if (bVar3) {
+                bVar2 = false;
+              }
+            }
+            iVar15 = iVar15 + 1;
+            piVar8 = piVar8 + 1;
+            piVar9 = piVar9 + 0x41;
+          } while (iVar15 < (int)uVar13);
+        }
+        if ((bVar2) && (cVar4 != '\x02')) {
+          showroom_step_sub_002d5c00(pcVar16);
+        }
+      }
+      iVar15 = *(int *)(param_1 + 8);
+      iStack_a0 = iStack_a0 + 0x1c;
+      iStack_70 = iStack_70 + 1;
+    } while (iStack_70 < iVar15);
+  }
+  iStack_80 = 0;
+  if (0 < (int)uVar13) {
+    piStack_90 = aiStack_50;
+    piVar9 = param_3;
+    do {
+      if (-1 < *piStack_90) {
+        iVar15 = *(int *)(param_1 + 8);
+        iVar10 = *piVar9;
+        iVar12 = 0;
+        if (0 < iVar15) {
+          iVar11 = 0;
+          do {
+            if ((iVar12 < 0) || (iVar15 <= iVar12)) {
+              pcVar16 = (char *)0x0;
+            }
+            else {
+              pcVar16 = (char *)(*(int *)(param_1 + 0x10) + iVar11);
+            }
+            if (iVar10 == *(int *)(pcVar16 + 8)) {
+              if (iVar10 < 0) goto LAB_002d5aa0;
+              cVar4 = showroom_step_sub_002d5e40(pcVar16);
               if (cVar4 == '\x01') {
                 bVar2 = false;
               }
               else {
-                iVar11 = *(int *)(pcVar15 + 8);
-                iVar10 = 0;
-                cVar4 = showroom_step_sub_002d5e40(pcVar15);
+                iVar15 = *(int *)(pcVar16 + 8);
+                iVar7 = 0;
+                cVar4 = showroom_step_sub_002d5e40(pcVar16);
                 if (cVar4 != '\x01') {
-                  cVar4 = *pcVar15;
+                  cVar4 = *pcVar16;
                   if (cVar4 == '\x02') {
-                    iVar10 = *(int *)(pcVar15 + 0x10) + 0x2c;
+                    iVar7 = *(int *)(pcVar16 + 0x10) + 0x2c;
                   }
                   else if (cVar4 == '\x01') {
-                    iVar10 = *(int *)(pcVar15 + 0x10) + 0x2c;
+                    iVar7 = *(int *)(pcVar16 + 0x10) + 0x2c;
                   }
                   else if (cVar4 == '\0') {
-                    iVar10 = *(int *)(pcVar15 + 0x10) + 0xc;
+                    iVar7 = *(int *)(pcVar16 + 0x10) + 0xc;
                   }
                 }
-                cVar4 = *pcVar15;
-                if (iVar11 == iVar9) {
+                cVar4 = *pcVar16;
+                if (iVar15 == iVar10) {
                   if (cVar4 == '\x02') {
-                    lVar5 = Str_CompareN(iVar10,piVar8 + 1,0x20);
-                    if (lVar5 == 0) goto LAB_002d5938;
+                    lVar6 = Str_CompareN(iVar7,piVar9 + 1,0x20);
+                    if (lVar6 == 0) goto LAB_002d5a78;
                     bVar2 = false;
                   }
                   else if (cVar4 == '\x01') {
-                    lVar5 = Str_CompareN(iVar10,piVar8 + 1,0x20);
-                    if (lVar5 == 0) goto LAB_002d5938;
+                    lVar6 = Str_CompareN(iVar7,piVar9 + 1,0x20);
+                    if (lVar6 == 0) goto LAB_002d5a78;
                     bVar2 = false;
                   }
                   else if ((cVar4 == '\0') &&
-                          (lVar5 = Str_CompareN(iVar10,piVar8 + 1,0x100), lVar5 != 0)) {
+                          (lVar6 = Str_CompareN(iVar7,piVar9 + 1,0x100), lVar6 != 0)) {
                     bVar2 = false;
                   }
                   else {
-LAB_002d5938:
+LAB_002d5a78:
                     bVar2 = true;
                   }
                 }
@@ -865,151 +953,62 @@ LAB_002d5938:
                   bVar2 = false;
                 }
               }
-              if (bVar2) {
-                bVar1 = false;
-              }
+              if (bVar2) goto LAB_002d5aa0;
             }
-            iVar14 = iVar14 + 1;
-            piVar7 = piVar7 + 1;
-            piVar8 = piVar8 + 0x41;
-          } while (iVar14 < (int)uVar12);
+            iVar15 = *(int *)(param_1 + 8);
+            iVar12 = iVar12 + 1;
+            iVar11 = iVar11 + 0x1c;
+          } while (iVar12 < iVar15);
         }
-        if ((bVar1) && (cVar3 != '\x02')) {
-          showroom_step_sub_002d5c00(pcVar15);
-        }
-      }
-      iVar14 = *(int *)(param_1 + 8);
-      iStack_a0 = iStack_a0 + 0x1c;
-      iStack_70 = iStack_70 + 1;
-    } while (iStack_70 < iVar14);
-  }
-  iStack_80 = 0;
-  if (0 < (int)uVar12) {
-    piStack_90 = aiStack_50;
-    piVar8 = param_3;
-    do {
-      if (-1 < *piStack_90) {
-        iVar14 = *(int *)(param_1 + 8);
-        iVar9 = *piVar8;
-        iVar11 = 0;
-        if (0 < iVar14) {
-          iVar10 = 0;
-          do {
-            if ((iVar11 < 0) || (iVar14 <= iVar11)) {
-              pcVar15 = (char *)0x0;
-            }
-            else {
-              pcVar15 = (char *)(*(int *)(param_1 + 0x10) + iVar10);
-            }
-            if (iVar9 == *(int *)(pcVar15 + 8)) {
-              if (iVar9 < 0) goto LAB_002d5aa0;
-              cVar3 = showroom_step_sub_002d5e40(pcVar15);
-              if (cVar3 == '\x01') {
-                bVar1 = false;
-              }
-              else {
-                iVar14 = *(int *)(pcVar15 + 8);
-                iVar6 = 0;
-                cVar3 = showroom_step_sub_002d5e40(pcVar15);
-                if (cVar3 != '\x01') {
-                  cVar3 = *pcVar15;
-                  if (cVar3 == '\x02') {
-                    iVar6 = *(int *)(pcVar15 + 0x10) + 0x2c;
-                  }
-                  else if (cVar3 == '\x01') {
-                    iVar6 = *(int *)(pcVar15 + 0x10) + 0x2c;
-                  }
-                  else if (cVar3 == '\0') {
-                    iVar6 = *(int *)(pcVar15 + 0x10) + 0xc;
-                  }
-                }
-                cVar3 = *pcVar15;
-                if (iVar14 == iVar9) {
-                  if (cVar3 == '\x02') {
-                    lVar5 = Str_CompareN(iVar6,piVar8 + 1,0x20);
-                    if (lVar5 == 0) goto LAB_002d5a78;
-                    bVar1 = false;
-                  }
-                  else if (cVar3 == '\x01') {
-                    lVar5 = Str_CompareN(iVar6,piVar8 + 1,0x20);
-                    if (lVar5 == 0) goto LAB_002d5a78;
-                    bVar1 = false;
-                  }
-                  else if ((cVar3 == '\0') &&
-                          (lVar5 = Str_CompareN(iVar6,piVar8 + 1,0x100), lVar5 != 0)) {
-                    bVar1 = false;
-                  }
-                  else {
-LAB_002d5a78:
-                    bVar1 = true;
-                  }
-                }
-                else {
-                  bVar1 = false;
-                }
-                if (bVar1) {
-                  bVar1 = true;
-                }
-                else {
-                  bVar1 = false;
-                }
-              }
-              if (bVar1) goto LAB_002d5aa0;
-            }
-            iVar14 = *(int *)(param_1 + 8);
-            iVar11 = iVar11 + 1;
-            iVar10 = iVar10 + 0x1c;
-          } while (iVar11 < iVar14);
-        }
-        pcVar15 = (char *)0x0;
+        pcVar16 = (char *)0x0;
 LAB_002d5aa0:
-        if (pcVar15 != (char *)0x0) {
+        if (pcVar16 != (char *)0x0) {
           *piStack_90 = -1;
         }
       }
       piStack_90 = piStack_90 + 1;
       iStack_80 = iStack_80 + 1;
-      piVar8 = piVar8 + 0x41;
-    } while (iStack_80 < (int)uVar12);
+      piVar9 = piVar9 + 0x41;
+    } while (iStack_80 < (int)uVar13);
   }
-  iVar14 = 0;
-  if (0 < (int)uVar12) {
-    piVar8 = aiStack_50;
+  iVar15 = 0;
+  if (0 < (int)uVar13) {
+    piVar9 = aiStack_50;
     piStack_60 = param_3;
     do {
-      if (-1 < *piVar8) {
-        iVar9 = *(int *)(param_1 + 8);
-        iVar11 = 0;
-        if (0 < iVar9) {
-          iVar10 = 0;
+      if (-1 < *piVar9) {
+        iVar10 = *(int *)(param_1 + 8);
+        iVar12 = 0;
+        if (0 < iVar10) {
+          iVar11 = 0;
           do {
-            if ((iVar11 < 0) || (iVar9 <= iVar11)) {
-              iVar6 = 0;
+            if ((iVar12 < 0) || (iVar10 <= iVar12)) {
+              iVar7 = 0;
             }
             else {
-              iVar6 = *(int *)(param_1 + 0x10) + iVar10;
+              iVar7 = *(int *)(param_1 + 0x10) + iVar11;
             }
-            if (*(int *)(iVar6 + 8) == -1) goto LAB_002d5b60;
-            iVar11 = iVar11 + 1;
-            iVar10 = iVar10 + 0x1c;
-          } while (iVar11 < iVar9);
+            if (*(int *)(iVar7 + 8) == -1) goto LAB_002d5b60;
+            iVar12 = iVar12 + 1;
+            iVar11 = iVar11 + 0x1c;
+          } while (iVar12 < iVar10);
         }
-        iVar6 = 0;
+        iVar7 = 0;
 LAB_002d5b60:
-        if (iVar6 != 0) {
-          showroom_step_sub_002d5ce0(iVar6,*piStack_60,piStack_60 + 1);
+        if (iVar7 != 0) {
+          showroom_step_sub_002d5ce0(iVar7,*piStack_60,piStack_60 + 1);
         }
       }
-      iVar14 = iVar14 + 1;
+      iVar15 = iVar15 + 1;
       piStack_60 = piStack_60 + 0x41;
-      piVar8 = piVar8 + 1;
-    } while (iVar14 < (int)uVar12);
+      piVar9 = piVar9 + 1;
+    } while (iVar15 < (int)uVar13);
   }
   return;
 }
 
 // 0x002d5c00  size 0xd4
-void showroom_step_sub_002d5c00(undefined1 *param_1)
+void showroom_step_sub_002d5c00(byte *param_1)
 
 {
   char cVar1;
@@ -1018,36 +1017,45 @@ void showroom_step_sub_002d5c00(undefined1 *param_1)
   if (cVar1 == '\x01') {
     return;
   }
-  switch(*param_1) {
-  case 0:
-    CarModel_SwapParts(*(undefined4 *)(param_1 + 0x10));
-    goto LAB_002d5cbc;
-  case 1:
-    course_leaf_sub_001a5a00(*(undefined4 *)(param_1 + 0x10));
-    break;
-  case 2:
-    course_leaf_sub_001a5a00(*(undefined4 *)(param_1 + 0x10));
-    break;
-  case 4:
-    SceneObj_Release(*(undefined4 *)(param_1 + 0x10));
-    break;
-  case 5:
-    CarModel_Release(*(undefined4 *)(param_1 + 0x10));
-    break;
-  case 6:
-    showroom_step_sub_002d6460(*(undefined4 *)(param_1 + 0x10));
-    break;
-  case 7:
-    showroom_step_sub_002d8630(*(undefined4 *)(param_1 + 0x10));
+  if (*param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*param_1) {
+    case 0:
+      CarModel_SwapParts(*(undefined4 *)(param_1 + 0x10));
+      goto LAB_002d5cbc;
+    case 1:
+      maybe_Course_GetItemA(*(undefined4 *)(param_1 + 0x10));
+      break;
+    case 2:
+      maybe_Course_GetItemA(*(undefined4 *)(param_1 + 0x10));
+      break;
+    case 4:
+      SceneObj_Release(*(undefined4 *)(param_1 + 0x10));
+      break;
+    case 5:
+      CarModel_Release(*(undefined4 *)(param_1 + 0x10));
+      break;
+    case 6:
+      showroom_step_sub_002d6460(*(undefined4 *)(param_1 + 0x10));
+      break;
+    case 7:
+      showroom_step_sub_002d8630(*(undefined4 *)(param_1 + 0x10));
+    }
   }
 LAB_002d5cbc:
-  *(undefined4 *)(param_1 + 8) = 0xffffffff;
-  *(undefined4 *)(param_1 + 0x10) = 0;
+  param_1[8] = 0xff;
+  param_1[9] = 0xff;
+  param_1[10] = 0xff;
+  param_1[0xb] = 0xff;
+  param_1[0x10] = 0;
+  param_1[0x11] = 0;
+  param_1[0x12] = 0;
+  param_1[0x13] = 0;
   return;
 }
 
 // 0x002d5ce0  size 0x154
-undefined4 showroom_step_sub_002d5ce0(undefined1 *param_1,undefined8 param_2,undefined8 param_3)
+undefined4 showroom_step_sub_002d5ce0(byte *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   char cVar1;
@@ -1058,46 +1066,49 @@ undefined4 showroom_step_sub_002d5ce0(undefined1 *param_1,undefined8 param_2,und
   if (cVar1 != '\x01') {
     return 0xffffffff;
   }
-  switch(*param_1) {
-  case 0:
-    uVar2 = SceneObj_CreateCar(param_3);
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
-    break;
-  case 1:
-    uVar2 = ResPool_CountUsedB();
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
-    iVar3 = *(int *)(param_1 + 0x10);
-    if (iVar3 != 0) {
-      WheelAsset_SetColor(iVar3,param_2,param_3);
-      WheelAsset_Load(iVar3);
+  if (*param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*param_1) {
+    case 0:
+      uVar2 = SceneObj_CreateCar(param_3);
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
+      break;
+    case 1:
+      uVar2 = ResPool_CountUsedB();
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
       iVar3 = *(int *)(param_1 + 0x10);
-      goto LAB_002d5e04;
+      if (iVar3 != 0) {
+        WheelAsset_SetColor(iVar3,param_2,param_3);
+        WheelAsset_Load(iVar3);
+        iVar3 = *(int *)(param_1 + 0x10);
+        goto LAB_002d5e04;
+      }
+      break;
+    case 2:
+      uVar2 = ResPool_CountUsedA();
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
+      iVar3 = *(int *)(param_1 + 0x10);
+      if (iVar3 != 0) {
+        CarAsset_SetColor(iVar3,param_2,param_3);
+        CarAsset_LoadBody(iVar3);
+      }
+      break;
+    case 4:
+      uVar2 = SceneObj_CreateEffect(param_2);
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
+      break;
+    case 5:
+      uVar2 = SceneObj_CreateModel(param_2);
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
+      break;
+    case 6:
+      uVar2 = showroom_load_sub_002d6000(param_2);
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
+      break;
+    case 7:
+      uVar2 = showroom_load_sub_002d7d40(param_2);
+      *(undefined4 *)(param_1 + 0x10) = uVar2;
     }
-    break;
-  case 2:
-    uVar2 = ResPool_CountUsedA();
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
-    iVar3 = *(int *)(param_1 + 0x10);
-    if (iVar3 != 0) {
-      CarAsset_SetColor(iVar3,param_2,param_3);
-      CarAsset_LoadBody(iVar3);
-    }
-    break;
-  case 4:
-    uVar2 = SceneObj_CreateEffect(param_2);
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
-    break;
-  case 5:
-    uVar2 = SceneObj_CreateModel(param_2);
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
-    break;
-  case 6:
-    uVar2 = showroom_load_sub_002d6000(param_2);
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
-    break;
-  case 7:
-    uVar2 = showroom_load_sub_002d7d40(param_2);
-    *(undefined4 *)(param_1 + 0x10) = uVar2;
   }
   iVar3 = *(int *)(param_1 + 0x10);
 LAB_002d5e04:
@@ -1112,7 +1123,7 @@ LAB_002d5e04:
 }
 
 // 0x002d5e40  size 0xf8
-ulong showroom_step_sub_002d5e40(undefined1 *param_1)
+ulong showroom_step_sub_002d5e40(byte *param_1)
 
 {
   int iVar1;
@@ -1121,27 +1132,30 @@ ulong showroom_step_sub_002d5e40(undefined1 *param_1)
   iVar1 = *(int *)(param_1 + 0x10);
   uVar2 = 1;
   if (iVar1 != 0) {
-    switch(*param_1) {
-    case 0:
-      uVar2 = AsyncRes_IsReady();
-      break;
-    case 1:
-      uVar2 = (ulong)(*(int *)(iVar1 + 8) != 0) ^ 1;
-      break;
-    case 2:
-      uVar2 = (ulong)(*(int *)(iVar1 + 8) != 0) ^ 1;
-      break;
-    case 4:
-      uVar2 = AsyncRes_IsReady();
-      break;
-    case 5:
-      uVar2 = AsyncRes_IsReady();
-      break;
-    case 6:
-      uVar2 = AsyncRes_IsReady(iVar1 + 0x28);
-      break;
-    case 7:
-      uVar2 = AsyncRes_IsReady(iVar1 + 0x28);
+    if (*param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*param_1) {
+      case 0:
+        uVar2 = AsyncRes_IsReady();
+        break;
+      case 1:
+        uVar2 = (ulong)(*(int *)(iVar1 + 8) != 0) ^ 1;
+        break;
+      case 2:
+        uVar2 = (ulong)(*(int *)(iVar1 + 8) != 0) ^ 1;
+        break;
+      case 4:
+        uVar2 = AsyncRes_IsReady();
+        break;
+      case 5:
+        uVar2 = AsyncRes_IsReady();
+        break;
+      case 6:
+        uVar2 = AsyncRes_IsReady(iVar1 + 0x28);
+        break;
+      case 7:
+        uVar2 = AsyncRes_IsReady(iVar1 + 0x28);
+      }
     }
     if (uVar2 == 0) {
       uVar2 = 2;
@@ -1194,7 +1208,7 @@ long showroom_load_sub_002d6000(int param_1)
   if (lVar2 != 0) {
     iVar3 = (int)lVar2;
     uVar1 = *(undefined4 *)(iVar3 + 0x20);
-    course_leaf_sub_001a5a40(lVar2);
+    maybe_Course_GetItemB(lVar2);
     *(int *)(iVar3 + 0xc) = param_1;
     *(undefined4 *)(iVar3 + 0x28) = 1;
     *(undefined4 *)(iVar3 + 8) = 1;
@@ -1246,8 +1260,8 @@ void showroom_load_sub_002d60f0(undefined8 param_1,uint param_2,undefined4 param
     do {
       iVar4 = iRam0046a1a8 + iVar3;
       iVar6 = iRam0046a198 + iVar2;
-      course_leaf_sub_001a5aa0(iVar4,0,0xb0);
-      course_leaf_sub_001a5a80(iVar4,iVar1,iVar6);
+      maybe_Course_InitHeader(iVar4,0,0xb0);
+      Course_SetField18(iVar4,iVar1,iVar6);
       Chunk_Init(iVar4 + 0x28,0xb0);
       *(undefined4 *)(iVar4 + 0x90) = 0;
       uVar5 = uVar5 + 1;
@@ -1320,7 +1334,7 @@ void showroom_step_sub_002d6290(int param_1,undefined1 *param_2)
 void showroom_step_sub_002d6460(int param_1)
 
 {
-  course_leaf_sub_001a5a00();
+  maybe_Course_GetItemA();
   Chunk_Init(param_1 + 0x28,0xb0);
   *(undefined4 *)(param_1 + 0x90) = 0;
   *(undefined4 *)(param_1 + 0x94) = 0;
@@ -1344,7 +1358,7 @@ void showroom_step_sub_002d64c0
   int iVar4;
   
   iVar4 = iRam0046a1ac + iRam0036f2c0;
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   Arena_Alloc(param_4,param_3);
   uVar1 = Gut_PackGetEntry(param_2,0,0);
   iVar3 = (int)param_4;
@@ -2062,54 +2076,53 @@ void showroom_load_sub_002d7a80(undefined8 param_1)
 
 {
   int iVar1;
-  undefined1 uVar2;
+  byte bVar2;
   uint uVar3;
   undefined4 uVar4;
   int iVar5;
   int iVar6;
   
-  uVar2 = GameState_Get_0();
-  switch(uVar2) {
-  case 0:
-    iVar6 = 0x1984;
-    break;
-  case 1:
-    iVar6 = 0x1983;
-    break;
-  case 2:
-    iVar6 = 0x1986;
-    break;
-  case 3:
-    iVar6 = 0x1985;
-    break;
-  case 4:
-    iVar6 = 0x1987;
-    break;
-  case 5:
-    iVar6 = 0x1981;
-    break;
-  case 6:
-    iVar6 = 0x1982;
-    break;
-  case 7:
-    iVar6 = 0x1988;
-    break;
-  default:
-    goto switchD_002d7abc_default;
+  bVar2 = GameState_Get_0();
+  if (bVar2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar2) {
+    case 0:
+      iVar6 = 0x1984;
+      break;
+    case 1:
+      iVar6 = 0x1983;
+      break;
+    case 2:
+      iVar6 = 0x1986;
+      break;
+    case 3:
+      iVar6 = 0x1985;
+      break;
+    case 4:
+      iVar6 = 0x1987;
+      break;
+    case 5:
+      iVar6 = 0x1981;
+      break;
+    case 6:
+      iVar6 = 0x1982;
+      break;
+    case 7:
+      iVar6 = 0x1988;
+    }
+    iVar5 = iVar6 * 0x14 + _g_ArcToc;
+    iVar1 = *(int *)(iVar5 + 0x20);
+    if (iVar1 == 0) {
+      uVar3 = *(uint *)(iVar5 + 0x18);
+    }
+    else {
+      uVar3 = iVar1 + 0x7ffU >> 0xb;
+    }
+    uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,param_1);
+    *(undefined4 *)(iRam0036f85c + 0xc) = uVar4;
+    *(undefined4 *)(iRam0036f85c + 0x10) = 0;
+    Arc_LoadFileEx(iVar6,*(undefined4 *)(iRam0036f85c + 0xc),0x2d7740,iRam0036f85c,0,0);
   }
-  iVar5 = iVar6 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar5 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar5 + 0x18);
-  }
-  else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
-  }
-  uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,param_1);
-  *(undefined4 *)(iRam0036f85c + 0xc) = uVar4;
-  *(undefined4 *)(iRam0036f85c + 0x10) = 0;
-  Arc_LoadFileEx(iVar6,*(undefined4 *)(iRam0036f85c + 0xc),0x2d7740,iRam0036f85c,0,0);
-switchD_002d7abc_default:
   return;
 }
 
@@ -2184,7 +2197,7 @@ long showroom_load_sub_002d7d40(int param_1)
   if (lVar2 != 0) {
     iVar3 = (int)lVar2;
     uVar1 = *(undefined4 *)(iVar3 + 0x20);
-    course_leaf_sub_001a5a40(lVar2);
+    maybe_Course_GetItemB(lVar2);
     *(int *)(iVar3 + 0xc) = param_1;
     *(undefined4 *)(iVar3 + 0x28) = 1;
     *(undefined4 *)(iVar3 + 8) = 1;
@@ -2236,8 +2249,8 @@ void showroom_load_sub_002d7e30(undefined8 param_1,uint param_2,undefined4 param
     do {
       iVar4 = iRam0046a248 + iVar3;
       iVar6 = iRam0046a238 + iVar2;
-      course_leaf_sub_001a5aa0(iVar4,0,0x80);
-      course_leaf_sub_001a5a80(iVar4,iVar1,iVar6);
+      maybe_Course_InitHeader(iVar4,0,0x80);
+      Course_SetField18(iVar4,iVar1,iVar6);
       Chunk_Init(iVar4 + 0x28,0x80);
       *(undefined4 *)(iVar4 + 0x50) = 0;
       uVar5 = uVar5 + 1;

@@ -4,9 +4,9 @@
 
 // 0x002a41e0  size 0x188
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ed54 */
+/* entry 7 of state table 0x32ed40 used by maybe_ScrQuickRace_Update */
 
-void screc32ed54_exit_sub_002a41e0(undefined4 *param_1)
+void maybe_ScrQuickRace_State7(undefined4 *param_1)
 
 {
   int iVar1;
@@ -72,46 +72,49 @@ LAB_002a433c:
 
 // 0x002a4370  size 0x16c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ed54 */
+/* entry 6 of state table 0x32ed40 used by maybe_ScrQuickRace_Update */
 
-void screc32ed54_update_sub_002a4370(undefined4 *param_1)
+void maybe_ScrQuickRace_State6(undefined4 *param_1)
 
 {
   int iVar1;
-  undefined1 uVar2;
+  byte bVar2;
   
   iVar1 = param_1[0x223];
   param_1[0x223] = 0;
   if (iVar1 != 0) {
-    uVar2 = Menu_MapCursorToItem(param_1[4]);
-    *(undefined1 *)(_g_MenuMgr + 0x620) = uVar2;
+    bVar2 = Menu_MapCursorToItem(param_1[4]);
+    *(byte *)(_g_MenuMgr + 0x620) = bVar2;
     *(undefined4 *)(_g_MenuMgr + 0x624) = 0xffffffff;
     *(undefined4 *)(_g_MenuMgr + 0x628) = 0xffffffff;
-    *(undefined1 *)(_g_MenuMgr + 0x5ac) = uVar2;
-    switch(uVar2) {
-    case 0:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
-      break;
-    case 1:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
-      break;
-    case 2:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
-      break;
-    case 3:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
-      break;
-    case 4:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
-      break;
-    case 5:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
-      break;
-    case 6:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
-      break;
-    case 7:
-      *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+    *(byte *)(_g_MenuMgr + 0x5ac) = bVar2;
+    if (bVar2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bVar2) {
+      case 0:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
+        break;
+      case 1:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
+        break;
+      case 2:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
+        break;
+      case 3:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
+        break;
+      case 4:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
+        break;
+      case 5:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
+        break;
+      case 6:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
+        break;
+      case 7:
+        *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+      }
     }
     if ((param_1[0x220] == 5) || (param_1[0x220] == -1)) {
       param_1[9] = 0;
@@ -129,9 +132,9 @@ void screc32ed54_update_sub_002a4370(undefined4 *param_1)
 }
 
 // 0x002a44e0  size 0x1bc
-/* screen record 0x32ed54 */
+/* entry 5 of state table 0x32ed40 used by maybe_ScrQuickRace_Update */
 
-void screc32ed54_enter_sub_002a44e0(undefined4 *param_1)
+void maybe_ScrQuickRace_State5(undefined4 *param_1)
 
 {
   undefined1 in_zero_qw [16];
@@ -239,7 +242,7 @@ void ScrSubtitleHide_Exita46a0(undefined4 *param_1)
 void ScrSubtitleHide_Updatea47a0(undefined4 *param_1)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   int iVar2;
   long lVar3;
   undefined8 uVar4;
@@ -286,35 +289,38 @@ void ScrSubtitleHide_Updatea47a0(undefined4 *param_1)
   iVar2 = param_1[0x1d5];
 LAB_002a4838:
   Menu_HandleList(param_1 + 0x1d9,param_1 + 0x1d6,iVar2 + 1,4,0,2);
-  uVar1 = Menu_MapCursorToItem(param_1[4]);
-  *(undefined1 *)(_g_MenuMgr + 0x620) = uVar1;
+  bVar1 = Menu_MapCursorToItem(param_1[4]);
+  *(byte *)(_g_MenuMgr + 0x620) = bVar1;
   *(undefined4 *)(_g_MenuMgr + 0x624) = 0xffffffff;
   *(undefined4 *)(_g_MenuMgr + 0x628) = 0xffffffff;
-  *(undefined1 *)(_g_MenuMgr + 0x5ac) = uVar1;
-  switch(uVar1) {
-  case 0:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
-    break;
-  case 1:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
-    break;
-  case 2:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
-    break;
-  case 3:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
-    break;
-  case 4:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
-    break;
-  case 5:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
-    break;
-  case 6:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
-    break;
-  case 7:
-    *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+  *(byte *)(_g_MenuMgr + 0x5ac) = bVar1;
+  if (bVar1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
+      break;
+    case 1:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
+      break;
+    case 2:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
+      break;
+    case 3:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
+      break;
+    case 4:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
+      break;
+    case 5:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
+      break;
+    case 6:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
+      break;
+    case 7:
+      *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+    }
   }
   return;
 }
@@ -343,9 +349,9 @@ void ScrSubtitleHide_Entera49f0(undefined4 *param_1)
 }
 
 // 0x002a4a80  size 0x78
-/* screen record 0x32ed3c */
+/* entry 1 of state table 0x32ed40 used by maybe_ScrQuickRace_Update */
 
-void screc32ed3c_exit_sub_002a4a80(undefined4 *param_1)
+void maybe_ScrQuickRace_State1(undefined4 *param_1)
 
 {
   int iVar1;
@@ -367,9 +373,9 @@ void screc32ed3c_exit_sub_002a4a80(undefined4 *param_1)
 }
 
 // 0x002a4b00  size 0x70
-/* screen record 0x32ed3c */
+/* entry 0 of state table 0x32ed40 used by maybe_ScrQuickRace_Update */
 
-void screc32ed3c_update_sub_002a4b00(undefined4 *param_1)
+void maybe_ScrQuickRace_State0(undefined4 *param_1)
 
 {
   int iVar1;
@@ -390,18 +396,18 @@ void screc32ed3c_update_sub_002a4b00(undefined4 *param_1)
 }
 
 // 0x002a4b70  size 0x8
-/* screen record 0x327630 */
+/* menu screen 32 (table 0x3274b0) */
 
-void screc327630_exit_sub_002a4b70(void)
+void maybe_ScrQuickRace_Exit(void)
 
 {
   return;
 }
 
 // 0x002a4b80  size 0x194
-/* screen record 0x327630 */
+/* menu screen 32 (table 0x3274b0) */
 
-void screc327630_update_sub_002a4b80(undefined8 param_1)
+void maybe_ScrQuickRace_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -422,7 +428,7 @@ void screc327630_update_sub_002a4b80(undefined8 param_1)
       scrgarage_step_sub_002a2f80(param_1);
       iVar3 = piVar5[0x221];
     }
-    (*(code *)(&PTR_screc32ed3c_update_sub_002a4b00_0032ed40)[iVar3])(param_1);
+    (*(code *)(&PTR_maybe_ScrQuickRace_State0_0032ed40)[iVar3])(param_1);
     uVar4 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar4) == 0) {
       uVar4 = 0x100000;
@@ -472,9 +478,9 @@ void screc327630_update_sub_002a4b80(undefined8 param_1)
 
 // 0x002a4d20  size 0x350
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327630 */
+/* menu screen 32 (table 0x3274b0) */
 
-void screc327630_enter_sub_002a4d20(int param_1)
+void maybe_ScrQuickRace_Enter(int param_1)
 
 {
   undefined1 in_zero_qw [16];
@@ -659,64 +665,67 @@ void scrrecord_step_sub_002a5080(undefined8 param_1,int *param_2)
 }
 
 // 0x002a51b0  size 0x2f0
-void menuscr_leaf_sub_002a51b0
-               (byte *param_1,uint *param_2,undefined1 param_3,char param_4,char param_5)
+void menuscr_leaf_sub_002a51b0(byte *param_1,uint *param_2,byte param_3,char param_4,char param_5)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   uint uVar2;
   
-  switch(param_3) {
-  case 0:
-    param_1[4] = param_1[4] & 0x83;
-    break;
-  case 1:
-    param_1[4] = param_1[4] & 0x83 | 4;
-    break;
-  case 2:
-    param_1[4] = param_1[4] & 0x83 | 8;
-    break;
-  case 3:
-    param_1[4] = param_1[4] & 0x83 | 0xc;
-    break;
-  case 4:
-    param_1[4] = param_1[4] & 0x83 | 0x10;
-    break;
-  case 5:
-    param_1[4] = param_1[4] & 0x83 | 0x14;
-    break;
-  case 6:
-    param_1[4] = param_1[4] & 0x83 | 0x18;
-    break;
-  case 7:
-    param_1[4] = param_1[4] & 0x83 | 0x1c;
+  if (param_3 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_3) {
+    case 0:
+      param_1[4] = param_1[4] & 0x83;
+      break;
+    case 1:
+      param_1[4] = param_1[4] & 0x83 | 4;
+      break;
+    case 2:
+      param_1[4] = param_1[4] & 0x83 | 8;
+      break;
+    case 3:
+      param_1[4] = param_1[4] & 0x83 | 0xc;
+      break;
+    case 4:
+      param_1[4] = param_1[4] & 0x83 | 0x10;
+      break;
+    case 5:
+      param_1[4] = param_1[4] & 0x83 | 0x14;
+      break;
+    case 6:
+      param_1[4] = param_1[4] & 0x83 | 0x18;
+      break;
+    case 7:
+      param_1[4] = param_1[4] & 0x83 | 0x1c;
+    }
   }
   if (param_4 == '\0') {
     *param_1 = *param_1 & 0xfb;
 LAB_002a5310:
-    uVar1 = (undefined1)param_2[1];
+    bVar1 = (byte)param_2[1];
   }
   else {
     if (param_4 == '\x01') {
       *param_1 = *param_1 & 0xfb | 4;
       goto LAB_002a5310;
     }
-    uVar1 = (undefined1)param_2[1];
+    bVar1 = (byte)param_2[1];
   }
-  switch(uVar1) {
-  case 0:
-    param_1[4] = param_1[4] & 0xfc;
-    break;
-  case 1:
-  case 2:
-    param_1[4] = param_1[4] & 0xfc | 1;
-    break;
-  case 3:
-    param_1[4] = param_1[4] & 0xfc | 2;
-    break;
-  case 4:
-  case 5:
-    param_1[4] = param_1[4] & 0xfc | 3;
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      param_1[4] = param_1[4] & 0xfc;
+      break;
+    default:
+      param_1[4] = param_1[4] & 0xfc | 1;
+      break;
+    case 3:
+      param_1[4] = param_1[4] & 0xfc | 2;
+      break;
+    case 4:
+      param_1[4] = param_1[4] & 0xfc | 3;
+    }
   }
   if (*(char *)((int)param_2 + 5) == '\x01') {
     *param_1 = *param_1 & 0xf7 | 8;
@@ -742,64 +751,67 @@ LAB_002a5454:
 }
 
 // 0x002a54a0  size 0x2f0
-void menuscr_leaf_sub_002a54a0
-               (byte *param_1,uint *param_2,undefined1 param_3,char param_4,char param_5)
+void menuscr_leaf_sub_002a54a0(byte *param_1,uint *param_2,byte param_3,char param_4,char param_5)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   uint uVar2;
   
-  switch(param_3) {
-  case 0:
-    param_1[4] = param_1[4] & 0x83;
-    break;
-  case 1:
-    param_1[4] = param_1[4] & 0x83 | 4;
-    break;
-  case 2:
-    param_1[4] = param_1[4] & 0x83 | 8;
-    break;
-  case 3:
-    param_1[4] = param_1[4] & 0x83 | 0xc;
-    break;
-  case 4:
-    param_1[4] = param_1[4] & 0x83 | 0x10;
-    break;
-  case 5:
-    param_1[4] = param_1[4] & 0x83 | 0x14;
-    break;
-  case 6:
-    param_1[4] = param_1[4] & 0x83 | 0x18;
-    break;
-  case 7:
-    param_1[4] = param_1[4] & 0x83 | 0x1c;
+  if (param_3 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_3) {
+    case 0:
+      param_1[4] = param_1[4] & 0x83;
+      break;
+    case 1:
+      param_1[4] = param_1[4] & 0x83 | 4;
+      break;
+    case 2:
+      param_1[4] = param_1[4] & 0x83 | 8;
+      break;
+    case 3:
+      param_1[4] = param_1[4] & 0x83 | 0xc;
+      break;
+    case 4:
+      param_1[4] = param_1[4] & 0x83 | 0x10;
+      break;
+    case 5:
+      param_1[4] = param_1[4] & 0x83 | 0x14;
+      break;
+    case 6:
+      param_1[4] = param_1[4] & 0x83 | 0x18;
+      break;
+    case 7:
+      param_1[4] = param_1[4] & 0x83 | 0x1c;
+    }
   }
   if (param_4 == '\0') {
     *param_1 = *param_1 & 0xfb;
 LAB_002a5600:
-    uVar1 = (undefined1)param_2[1];
+    bVar1 = (byte)param_2[1];
   }
   else {
     if (param_4 == '\x01') {
       *param_1 = *param_1 & 0xfb | 4;
       goto LAB_002a5600;
     }
-    uVar1 = (undefined1)param_2[1];
+    bVar1 = (byte)param_2[1];
   }
-  switch(uVar1) {
-  case 0:
-    param_1[4] = param_1[4] & 0xfc;
-    break;
-  case 1:
-  case 2:
-    param_1[4] = param_1[4] & 0xfc | 1;
-    break;
-  case 3:
-    param_1[4] = param_1[4] & 0xfc | 2;
-    break;
-  case 4:
-  case 5:
-    param_1[4] = param_1[4] & 0xfc | 3;
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      param_1[4] = param_1[4] & 0xfc;
+      break;
+    default:
+      param_1[4] = param_1[4] & 0xfc | 1;
+      break;
+    case 3:
+      param_1[4] = param_1[4] & 0xfc | 2;
+      break;
+    case 4:
+      param_1[4] = param_1[4] & 0xfc | 3;
+    }
   }
   if (*(char *)((int)param_2 + 5) == '\x01') {
     *param_1 = *param_1 & 0xf7 | 8;
@@ -865,7 +877,9 @@ void menuscr_leaf_sub_002a57e0(int *param_1,int param_2)
 }
 
 // 0x002a5830  size 0x74
-void scrgarage_step_sub_002a5830(int param_1)
+/* entry 3 of state table 0x32edf0 used by maybe_ScrCarShop_Update */
+
+void maybe_ScrCarShop_State3(int param_1)
 
 {
   int iVar1;
@@ -887,9 +901,9 @@ void scrgarage_step_sub_002a5830(int param_1)
 }
 
 // 0x002a58b0  size 0x30
-/* screen record 0x32edf0 */
+/* entry 2 of state table 0x32edf0 used by maybe_ScrCarShop_Update */
 
-void screc32edf0_exit_sub_002a58b0(int param_1)
+void maybe_ScrCarShop_State2(int param_1)
 
 {
   int iVar1;
@@ -904,9 +918,9 @@ void screc32edf0_exit_sub_002a58b0(int param_1)
 }
 
 // 0x002a58e0  size 0x30
-/* screen record 0x32edf0 */
+/* entry 1 of state table 0x32edf0 used by maybe_ScrCarShop_Update */
 
-void screc32edf0_update_sub_002a58e0(int param_1)
+void maybe_ScrCarShop_State1(int param_1)
 
 {
   int iVar1;
@@ -921,9 +935,9 @@ void screc32edf0_update_sub_002a58e0(int param_1)
 }
 
 // 0x002a5910  size 0xe8
-/* screen record 0x32edf0 */
+/* entry 0 of state table 0x32edf0 used by maybe_ScrCarShop_Update */
 
-void screc32edf0_enter_sub_002a5910(undefined8 param_1)
+void maybe_ScrCarShop_State0(undefined8 param_1)
 
 {
   int iVar1;
@@ -966,9 +980,9 @@ void screc32edf0_enter_sub_002a5910(undefined8 param_1)
 }
 
 // 0x002a5a00  size 0x8
-/* screen record 0x327648 */
+/* menu screen 34 (table 0x3274b0) */
 
-void screc327648_exit_sub_002a5a00(void)
+void maybe_ScrCarShop_Exit(void)
 
 {
   return;
@@ -976,9 +990,9 @@ void screc327648_exit_sub_002a5a00(void)
 
 // 0x002a5a10  size 0x14c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327648 */
+/* menu screen 34 (table 0x3274b0) */
 
-void screc327648_update_sub_002a5a10(undefined8 param_1)
+void maybe_ScrCarShop_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -989,7 +1003,7 @@ void screc327648_update_sub_002a5a10(undefined8 param_1)
   iVar4 = (int)param_1;
   lVar2 = Menu_IsInputIdle(iVar4 + 4);
   if (lVar2 != 0) {
-    (*(code *)(&PTR_screc32edf0_enter_sub_002a5910_0032edf0)[*(int *)(iVar4 + 8)])(param_1);
+    (*(code *)(&PTR_maybe_ScrCarShop_State0_0032edf0)[*(int *)(iVar4 + 8)])(param_1);
     uVar3 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar3) == 0) {
       uVar3 = 0x100000;
@@ -1031,9 +1045,9 @@ void screc327648_update_sub_002a5a10(undefined8 param_1)
 }
 
 // 0x002a5b60  size 0x34
-/* screen record 0x327648 */
+/* menu screen 34 (table 0x3274b0) */
 
-void screc327648_enter_sub_002a5b60(undefined4 *param_1)
+void maybe_ScrCarShop_Enter(undefined4 *param_1)
 
 {
   *param_1 = 0;
@@ -1051,9 +1065,9 @@ void screc327648_enter_sub_002a5b60(undefined4 *param_1)
 
 // 0x002a5ba0  size 0x1e4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32763c */
+/* menu screen 33 (table 0x3274b0) */
 
-void screc32763c_update_sub_002a5ba0(undefined8 param_1)
+void maybe_ScrModeReset_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1120,18 +1134,18 @@ void screc32763c_update_sub_002a5ba0(undefined8 param_1)
 }
 
 // 0x002a5d90  size 0x8
-/* screen record 0x32763c */
+/* menu screen 33 (table 0x3274b0) */
 
-void screc32763c_exit_sub_002a5d90(void)
+void maybe_ScrModeReset_Exit(void)
 
 {
   return;
 }
 
 // 0x002a5da0  size 0x38
-/* screen record 0x32763c */
+/* menu screen 33 (table 0x3274b0) */
 
-void screc32763c_enter_sub_002a5da0(undefined4 *param_1)
+void maybe_ScrModeReset_Enter(undefined4 *param_1)
 
 {
   param_1[8] = 0;
@@ -1225,9 +1239,9 @@ void scrgarage_step_sub_002a5de0(int param_1)
 }
 
 // 0x002a5fe0  size 0x34
-/* screen record 0x32ee1c */
+/* entry 3 of state table 0x32ee10 used by maybe_ScrGarageList_Update */
 
-void screc32ee1c_enter_sub_002a5fe0(int param_1)
+void maybe_ScrGarageList_State3(int param_1)
 
 {
   int iVar1;
@@ -1242,9 +1256,9 @@ void screc32ee1c_enter_sub_002a5fe0(int param_1)
 }
 
 // 0x002a6020  size 0x74
-/* screen record 0x32ee10 */
+/* entry 2 of state table 0x32ee10 used by maybe_ScrGarageList_Update */
 
-void screc32ee10_exit_sub_002a6020(undefined8 param_1)
+void maybe_ScrGarageList_State2(undefined8 param_1)
 
 {
   int iVar1;
@@ -1268,9 +1282,9 @@ void screc32ee10_exit_sub_002a6020(undefined8 param_1)
 }
 
 // 0x002a60a0  size 0x5c
-/* screen record 0x32ee10 */
+/* entry 1 of state table 0x32ee10 used by maybe_ScrGarageList_Update */
 
-void screc32ee10_update_sub_002a60a0(int param_1)
+void maybe_ScrGarageList_State1(int param_1)
 
 {
   int iVar1;
@@ -1288,9 +1302,9 @@ void screc32ee10_update_sub_002a60a0(int param_1)
 
 // 0x002a6100  size 0x1dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee10 */
+/* entry 0 of state table 0x32ee10 used by maybe_ScrGarageList_Update */
 
-void screc32ee10_enter_sub_002a6100(int param_1)
+void maybe_ScrGarageList_State0(int param_1)
 
 {
   int iVar1;
@@ -1346,18 +1360,18 @@ void screc32ee10_enter_sub_002a6100(int param_1)
 }
 
 // 0x002a62e0  size 0x8
-/* screen record 0x327654 */
+/* menu screen 35 (table 0x3274b0) */
 
-void screc327654_exit_sub_002a62e0(void)
+void maybe_ScrGarageList_Exit(void)
 
 {
   return;
 }
 
 // 0x002a62f0  size 0x60
-/* screen record 0x327654 */
+/* menu screen 35 (table 0x3274b0) */
 
-void screc327654_update_sub_002a62f0(undefined8 param_1)
+void maybe_ScrGarageList_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -1366,7 +1380,7 @@ void screc327654_update_sub_002a62f0(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x28);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_screc32ee10_enter_sub_002a6100_0032ee10)[*(int *)(iVar2 + 0x2c)])(param_1);
+    (*(code *)(&PTR_maybe_ScrGarageList_State0_0032ee10)[*(int *)(iVar2 + 0x2c)])(param_1);
     scrgarage_step_sub_002a5de0(param_1);
     Menu_RequestTransition(iVar2 + 0x28);
   }
@@ -1375,9 +1389,9 @@ void screc327654_update_sub_002a62f0(undefined8 param_1)
 
 // 0x002a6350  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327654 */
+/* menu screen 35 (table 0x3274b0) */
 
-void screc327654_enter_sub_002a6350(int param_1)
+void maybe_ScrGarageList_Enter(int param_1)
 
 {
   undefined4 uVar1;
@@ -1414,9 +1428,9 @@ void screc327654_enter_sub_002a6350(int param_1)
 }
 
 // 0x002a6450  size 0x8
-/* screen record 0x327660 */
+/* menu screen 36 (table 0x3274b0) */
 
-void screc327660_exit_sub_002a6450(void)
+void ScrGarageSelect_Exit(void)
 
 {
   return;
@@ -1424,9 +1438,9 @@ void screc327660_exit_sub_002a6450(void)
 
 // 0x002a6460  size 0x11c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327660 */
+/* menu screen 36 (table 0x3274b0) */
 
-void screc327660_update_sub_002a6460(int param_1)
+void ScrGarageSelect_Update(int param_1)
 
 {
   int iVar1;
@@ -1465,9 +1479,9 @@ void screc327660_update_sub_002a6460(int param_1)
 
 // 0x002a6580  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327660 */
+/* menu screen 36 (table 0x3274b0) */
 
-void screc327660_enter_sub_002a6580(int param_1)
+void ScrGarageSelect_Enter(int param_1)
 
 {
   if (*(int *)(_g_MenuMgr + 0x24) == 0x23) {
@@ -1544,9 +1558,9 @@ void ScrSubtitleHide_Entera6650(int param_1)
 }
 
 // 0x002a67b0  size 0xf0
-/* screen record 0x32ee28 */
+/* entry 4 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
-void screc32ee28_exit_sub_002a67b0(int param_1)
+void maybe_ScrCarSpec_State4(int param_1)
 
 {
   uint uVar1;
@@ -1581,9 +1595,9 @@ void screc32ee28_exit_sub_002a67b0(int param_1)
 }
 
 // 0x002a68b0  size 0xec
-/* screen record 0x32ee28 */
+/* entry 3 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
-void screc32ee28_update_sub_002a68b0(int param_1)
+void maybe_ScrCarSpec_State3(int param_1)
 
 {
   uint uVar1;
@@ -1618,9 +1632,9 @@ void screc32ee28_update_sub_002a68b0(int param_1)
 }
 
 // 0x002a69a0  size 0xec
-/* screen record 0x32ee28 */
+/* entry 2 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
-void screc32ee28_enter_sub_002a69a0(int param_1)
+void maybe_ScrCarSpec_State2(int param_1)
 
 {
   uint uVar1;
@@ -1655,9 +1669,9 @@ void screc32ee28_enter_sub_002a69a0(int param_1)
 }
 
 // 0x002a6a90  size 0xec
-/* screen record 0x32ee1c */
+/* entry 1 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
-void screc32ee1c_exit_sub_002a6a90(int param_1)
+void maybe_ScrCarSpec_State1(int param_1)
 
 {
   uint uVar1;
@@ -1692,9 +1706,9 @@ void screc32ee1c_exit_sub_002a6a90(int param_1)
 }
 
 // 0x002a6b80  size 0xa4
-/* screen record 0x32ee1c */
+/* entry 0 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
 
-void screc32ee1c_update_sub_002a6b80(int param_1)
+void maybe_ScrCarSpec_State0(int param_1)
 
 {
   uint uVar1;
@@ -1720,9 +1734,9 @@ void screc32ee1c_update_sub_002a6b80(int param_1)
 }
 
 // 0x002a6c30  size 0x8
-/* screen record 0x32766c */
+/* menu screen 37 (table 0x3274b0) */
 
-void screc32766c_exit_sub_002a6c30(void)
+void maybe_ScrCarSpec_Exit(void)
 
 {
   return;
@@ -1730,9 +1744,9 @@ void screc32766c_exit_sub_002a6c30(void)
 
 // 0x002a6c40  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32766c */
+/* menu screen 37 (table 0x3274b0) */
 
-void screc32766c_update_sub_002a6c40(undefined8 param_1)
+void maybe_ScrCarSpec_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -1740,7 +1754,7 @@ void screc32766c_update_sub_002a6c40(undefined8 param_1)
   
   lVar1 = Menu_IsInputIdle();
   if (lVar1 != 0) {
-    (*(code *)(&PTR_screc32ee1c_update_sub_002a6b80_0032ee20)[*(int *)((int)param_1 + 4)])(param_1);
+    (*(code *)(&PTR_maybe_ScrCarSpec_State0_0032ee20)[*(int *)((int)param_1 + 4)])(param_1);
     uVar2 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar2) == 0) {
       uVar2 = 0x100000;
@@ -1766,9 +1780,9 @@ void screc32766c_update_sub_002a6c40(undefined8 param_1)
 
 // 0x002a6d40  size 0x2a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32766c */
+/* menu screen 37 (table 0x3274b0) */
 
-void screc32766c_enter_sub_002a6d40(undefined4 *param_1)
+void maybe_ScrCarSpec_Enter(undefined4 *param_1)
 
 {
   short sVar1;
@@ -1830,7 +1844,7 @@ void screc32766c_enter_sub_002a6d40(undefined4 *param_1)
       param_1[8] = *(undefined4 *)(_g_MenuMgr + 0x2c);
       param_1[9] = (int)*(short *)(param_1[8] * 2 + (int)uVar4 + 0x13ee);
     }
-    ui_step_sub_001f6af0(auStack_20,param_1[8],0,0xffffffffffffffff,0);
+    maybe_Ui_BuildCarSpec(auStack_20,param_1[8],0,0xffffffffffffffff,0);
     puVar2 = (undefined2 *)Profile_GetCarRecordB(uVar4,param_1[9]);
     iVar3 = CarDb_GetModel(*puVar2);
     param_1[0xc0] = *(undefined4 *)(iVar3 + 0x88);
@@ -1918,7 +1932,9 @@ void scrrecord_step_sub_002a6ff0(int *param_1)
 }
 
 // 0x002a7170  size 0xd8
-void scroptions_step_sub_002a7170(int param_1)
+/* entry 8 of state table 0x32ee20 used by maybe_ScrCarSpec_Update */
+
+void maybe_ScrCarSpec_State8(int param_1)
 
 {
   int iVar1;
@@ -2109,18 +2125,18 @@ void ScrSubtitleHide_Updatea7390(int *param_1)
 }
 
 // 0x002a7690  size 0x8
-/* screen record 0x327678 */
+/* menu screen 38 (table 0x3274b0) */
 
-void ScrSubtitleHide_Exit(void)
+void maybe_ScrRaceStart_Exit(void)
 
 {
   return;
 }
 
 // 0x002a76a0  size 0x1bc
-/* screen record 0x327678 */
+/* menu screen 38 (table 0x3274b0) */
 
-void ScrSubtitleHide_Update(undefined8 param_1)
+void maybe_ScrRaceStart_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -2187,9 +2203,9 @@ void ScrSubtitleHide_Update(undefined8 param_1)
 
 // 0x002a7860  size 0x17c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327678 */
+/* menu screen 38 (table 0x3274b0) */
 
-void ScrSubtitleHide_Enter(undefined8 param_1)
+void maybe_ScrRaceStart_Enter(undefined8 param_1)
 
 {
   char cVar1;
@@ -2266,7 +2282,7 @@ void scrcareer_step_sub_002a79e0(undefined4 *param_1,long param_2)
 
 {
   char cVar1;
-  undefined1 uVar2;
+  byte bVar2;
   undefined2 uVar3;
   undefined8 uVar4;
   undefined8 uVar5;
@@ -2284,69 +2300,75 @@ void scrcareer_step_sub_002a79e0(undefined4 *param_1,long param_2)
       uVar6 = Msg_RivalCourse(param_1[2]);
       cVar1 = Race_IsTimeTrialMode(uVar6,0);
       if (cVar1 == '\0') {
-        uVar2 = Msg_RivalCourse(param_1[2]);
-        *(undefined1 *)(_g_MenuMgr + 0x620) = uVar2;
+        bVar2 = Msg_RivalCourse(param_1[2]);
+        *(byte *)(_g_MenuMgr + 0x620) = bVar2;
         *(undefined4 *)(_g_MenuMgr + 0x624) = 0xffffffff;
         *(undefined4 *)(_g_MenuMgr + 0x628) = 0xffffffff;
-        *(undefined1 *)(_g_MenuMgr + 0x5ac) = uVar2;
-        switch(uVar2) {
-        case 0:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
-          break;
-        case 1:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
-          break;
-        case 2:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
-          break;
-        case 3:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
-          break;
-        case 4:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
-          break;
-        case 5:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
-          break;
-        case 6:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
-          break;
-        case 7:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+        *(byte *)(_g_MenuMgr + 0x5ac) = bVar2;
+        if (bVar2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+          switch(bVar2) {
+          case 0:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
+            break;
+          case 1:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
+            break;
+          case 2:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
+            break;
+          case 3:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
+            break;
+          case 4:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
+            break;
+          case 5:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
+            break;
+          case 6:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
+            break;
+          case 7:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+          }
         }
         *(int *)(_g_MenuMgr + 0x624) = 9 - sStack_148;
         *(int *)(_g_MenuMgr + 0x628) = 9 - sStack_2c6;
       }
       else {
-        uVar2 = Msg_RivalCourse(param_1[2]);
-        *(undefined1 *)(_g_MenuMgr + 0x620) = uVar2;
+        bVar2 = Msg_RivalCourse(param_1[2]);
+        *(byte *)(_g_MenuMgr + 0x620) = bVar2;
         *(undefined4 *)(_g_MenuMgr + 0x624) = 0xffffffff;
         *(undefined4 *)(_g_MenuMgr + 0x628) = 0xffffffff;
-        *(undefined1 *)(_g_MenuMgr + 0x5ac) = uVar2;
-        switch(uVar2) {
-        case 0:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
-          break;
-        case 1:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
-          break;
-        case 2:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
-          break;
-        case 3:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
-          break;
-        case 4:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
-          break;
-        case 5:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
-          break;
-        case 6:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
-          break;
-        case 7:
-          *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+        *(byte *)(_g_MenuMgr + 0x5ac) = bVar2;
+        if (bVar2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+          switch(bVar2) {
+          case 0:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 1;
+            break;
+          case 1:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 0;
+            break;
+          case 2:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 2;
+            break;
+          case 3:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 3;
+            break;
+          case 4:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 4;
+            break;
+          case 5:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 5;
+            break;
+          case 6:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 6;
+            break;
+          case 7:
+            *(undefined1 *)(_g_MenuMgr + 0x640) = 7;
+          }
         }
         *(int *)(_g_MenuMgr + 0x624) = (int)sStack_148;
         *(int *)(_g_MenuMgr + 0x628) = (int)sStack_2c6;
@@ -2377,8 +2399,9 @@ void scrcareer_step_sub_002a79e0(undefined4 *param_1,long param_2)
 
 // 0x002a7d30  size 0xdc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 10 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void menuscr_step_sub_002a7d30(int param_1)
+void maybe_ScrRivalIntro_State10(int param_1)
 
 {
   int iVar1;
@@ -2414,8 +2437,9 @@ void menuscr_step_sub_002a7d30(int param_1)
 
 // 0x002a7e10  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 9 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void menuscr_input_sub_002a7e10(int param_1)
+void maybe_ScrRivalIntro_State9(int param_1)
 
 {
   int iVar1;
@@ -2443,9 +2467,9 @@ void menuscr_input_sub_002a7e10(int param_1)
 
 // 0x002a7eb0  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee68 */
+/* entry 8 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void screc32ee68_exit_sub_002a7eb0(int param_1)
+void maybe_ScrRivalIntro_State8(int param_1)
 
 {
   int iVar1;
@@ -2466,9 +2490,9 @@ void screc32ee68_exit_sub_002a7eb0(int param_1)
 
 // 0x002a7f10  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee68 */
+/* entry 7 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void screc32ee68_update_sub_002a7f10(int param_1)
+void maybe_ScrRivalIntro_State7(int param_1)
 
 {
   int iVar1;
@@ -2489,9 +2513,9 @@ void screc32ee68_update_sub_002a7f10(int param_1)
 
 // 0x002a7f70  size 0x184
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee68 */
+/* entry 6 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void screc32ee68_enter_sub_002a7f70(int param_1)
+void maybe_ScrRivalIntro_State6(int param_1)
 
 {
   undefined2 uVar1;

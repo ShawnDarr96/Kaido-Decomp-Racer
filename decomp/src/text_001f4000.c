@@ -182,7 +182,7 @@ void Demo_PlaceCamera(float param_1,float param_2,undefined8 param_3)
 }
 
 // 0x001f4760  size 0x12c
-void demo_step_sub_001f4760
+void maybe_DemoCam_SetPath
                (int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                undefined8 param_5)
 
@@ -657,7 +657,7 @@ void UiMgr_LoadSystem(undefined8 param_1)
 /* WARNING: Removing unreachable block (ram,0x001f5420) */
 /* 17 callers */
 
-void UiElem_SetNumber(undefined8 param_1,undefined8 param_2,char param_3,ulong param_4)
+void UiElem_SetNumber(undefined8 param_1,undefined8 param_2,byte param_3,ulong param_4)
 
 {
   bool bVar1;
@@ -665,85 +665,17 @@ void UiElem_SetNumber(undefined8 param_1,undefined8 param_2,char param_3,ulong p
   float *pfVar3;
   float fVar4;
   
-  switch(param_3) {
-  case '\0':
-  case '\t':
-  case '\n':
-  case '\v':
-  case '\f':
-  case '\r':
-  case '\x0e':
-  case '\x0f':
-  case '\x10':
-  case '\x11':
-  case '\x12':
-  case '\x13':
-  case '\x14':
-  case '\x15':
-  case '\x16':
-  case '\x17':
-  case '\x18':
-  case '9':
-  case ':':
-  case ';':
-  case '<':
-  case '=':
-  case '>':
-  case '?':
-  case '@':
-  case 'A':
-  case 'B':
-  case 'C':
-  case 'D':
-  case 'E':
-  case 'F':
-  case 'G':
-  case 'H':
-    bVar1 = false;
-    break;
-  case '\x01':
-  case '\x02':
-  case '\x03':
-  case '\x04':
-  case '\x05':
-  case '\x06':
-  case '\a':
-  case '\b':
-  case '\x19':
-  case '\x1a':
-  case '\x1b':
-  case '\x1c':
-  case '\x1d':
-  case '\x1e':
-  case '\x1f':
-  case ' ':
-  case '!':
-  case '\"':
-  case '#':
-  case '$':
-  case '%':
-  case '&':
-  case '\'':
-  case '(':
-  case ')':
-  case '*':
-  case '+':
-  case ',':
-  case '-':
-  case '.':
-  case '/':
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-    bVar1 = true;
-    break;
-  default:
+  if (param_3 < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_3) {
+    case 0:
+      bVar1 = false;
+      break;
+    case 1:
+      bVar1 = true;
+    }
+  }
+  else {
     bVar1 = false;
   }
   if (bVar1) {
@@ -760,7 +692,7 @@ void UiElem_SetNumber(undefined8 param_1,undefined8 param_2,char param_3,ulong p
     piVar2 = (int *)UiElem_GetPropPtr(param_1);
     *piVar2 = (int)param_4;
   }
-  if (param_3 == '\n') {
+  if (param_3 == 10) {
     UiElem_MarkDirty(param_1);
   }
   return;
@@ -1160,70 +1092,76 @@ void Msg_FormatCarName(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f5b40  size 0x78
-int MsgId_ForMode(undefined1 param_1,int param_2)
+int MsgId_ForMode(byte param_1,int param_2)
 
 {
-  switch(param_1) {
-  case 0:
-    param_2 = param_2 + 0x332;
-    break;
-  case 1:
-    param_2 = param_2 + 0x335;
-    break;
-  case 2:
-    param_2 = param_2 + 0x33b;
-    break;
-  case 3:
-    param_2 = param_2 + 0x338;
-    break;
-  case 4:
-    param_2 = param_2 + 0x33e;
-    break;
-  case 5:
-    param_2 = param_2 + 0x341;
-    break;
-  case 6:
-    param_2 = param_2 + 0x344;
-    break;
-  case 7:
-    param_2 = param_2 + 0x347;
-    break;
-  default:
+  if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      param_2 = param_2 + 0x332;
+      break;
+    case 1:
+      param_2 = param_2 + 0x335;
+      break;
+    case 2:
+      param_2 = param_2 + 0x33b;
+      break;
+    case 3:
+      param_2 = param_2 + 0x338;
+      break;
+    case 4:
+      param_2 = param_2 + 0x33e;
+      break;
+    case 5:
+      param_2 = param_2 + 0x341;
+      break;
+    case 6:
+      param_2 = param_2 + 0x344;
+      break;
+    case 7:
+      param_2 = param_2 + 0x347;
+    }
+  }
+  else {
     param_2 = -1;
   }
   return param_2;
 }
 
 // 0x001f5bc0  size 0x78
-int MsgId_ForModeShort(undefined1 param_1,int param_2)
+int MsgId_ForModeShort(byte param_1,int param_2)
 
 {
-  switch(param_1) {
-  case 0:
-    param_2 = param_2 + 0x309;
-    break;
-  case 1:
-    param_2 = param_2 + 0x30c;
-    break;
-  case 2:
-    param_2 = param_2 + 0x312;
-    break;
-  case 3:
-    param_2 = param_2 + 0x30f;
-    break;
-  case 4:
-    param_2 = param_2 + 0x315;
-    break;
-  case 5:
-    param_2 = param_2 + 0x318;
-    break;
-  case 6:
-    param_2 = param_2 + 0x31b;
-    break;
-  case 7:
-    param_2 = param_2 + 0x31e;
-    break;
-  default:
+  if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      param_2 = param_2 + 0x309;
+      break;
+    case 1:
+      param_2 = param_2 + 0x30c;
+      break;
+    case 2:
+      param_2 = param_2 + 0x312;
+      break;
+    case 3:
+      param_2 = param_2 + 0x30f;
+      break;
+    case 4:
+      param_2 = param_2 + 0x315;
+      break;
+    case 5:
+      param_2 = param_2 + 0x318;
+      break;
+    case 6:
+      param_2 = param_2 + 0x31b;
+      break;
+    case 7:
+      param_2 = param_2 + 0x31e;
+    }
+  }
+  else {
     param_2 = -1;
   }
   return param_2;
@@ -1364,32 +1302,38 @@ int Msg_RivalNickname(void)
 void MsgId_ForMenuItem(uint param_1)
 
 {
-  switch(*(undefined1 *)((param_1 & 0xff) + 0x36e878)) {
-  case 0:
-    break;
-  case 1:
-    break;
-  case 2:
-    break;
-  case 3:
-    break;
-  case 4:
-    break;
-  case 5:
-    break;
-  case 6:
-    break;
-  case 7:
-    break;
-  case 8:
-    break;
-  case 9:
-    break;
-  case 10:
-    break;
-  case 0xb:
-    break;
-  case 0xc:
+  byte bVar1;
+  
+  bVar1 = *(byte *)((param_1 & 0xff) + 0x36e878);
+  if (bVar1 < 0xd) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+    case 9:
+      break;
+    case 10:
+      break;
+    case 0xb:
+      break;
+    case 0xc:
+    }
   }
   return;
 }
@@ -1398,32 +1342,38 @@ void MsgId_ForMenuItem(uint param_1)
 void MsgId_ForMenuHelp(uint param_1)
 
 {
-  switch(*(undefined1 *)((param_1 & 0xff) + 0x36e878)) {
-  case 0:
-    break;
-  case 1:
-    break;
-  case 2:
-    break;
-  case 3:
-    break;
-  case 4:
-    break;
-  case 5:
-    break;
-  case 6:
-    break;
-  case 7:
-    break;
-  case 8:
-    break;
-  case 9:
-    break;
-  case 10:
-    break;
-  case 0xb:
-    break;
-  case 0xc:
+  byte bVar1;
+  
+  bVar1 = *(byte *)((param_1 & 0xff) + 0x36e878);
+  if (bVar1 < 0xd) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+    case 9:
+      break;
+    case 10:
+      break;
+    case 0xb:
+      break;
+    case 0xc:
+    }
   }
   return;
 }
@@ -1448,31 +1398,34 @@ int MsgId_ForMenuTitle(uint param_1)
 }
 
 // 0x001f5fd0  size 0x68
-undefined4 MsgId_ForResult(undefined1 param_1)
+undefined4 MsgId_ForResult(byte param_1)
 
 {
   undefined4 uVar1;
   
-  switch(param_1) {
-  case 0:
-    uVar1 = 0x4f;
-    break;
-  case 1:
-    uVar1 = 0x50;
-    break;
-  case 2:
-    uVar1 = 0x53;
-    break;
-  case 3:
-    uVar1 = 0x51;
-    break;
-  case 4:
-    uVar1 = 0x52;
-    break;
-  case 5:
-    uVar1 = 0x54;
-    break;
-  default:
+  if (param_1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      uVar1 = 0x4f;
+      break;
+    case 1:
+      uVar1 = 0x50;
+      break;
+    case 2:
+      uVar1 = 0x53;
+      break;
+    case 3:
+      uVar1 = 0x51;
+      break;
+    case 4:
+      uVar1 = 0x52;
+      break;
+    case 5:
+      uVar1 = 0x54;
+    }
+  }
+  else {
     uVar1 = 0xffffffff;
   }
   return uVar1;
@@ -1538,152 +1491,158 @@ undefined4 Rival_IsBossId(short param_1)
 }
 
 // 0x001f61d0  size 0xe0
-undefined4 MsgId_ForGrade(undefined1 param_1)
+undefined4 MsgId_ForGrade(byte param_1)
 
 {
   undefined4 uVar1;
   
-  switch(param_1) {
-  case 0:
-    uVar1 = 1;
-    break;
-  case 1:
-    uVar1 = 6;
-    break;
-  case 2:
-    uVar1 = 7;
-    break;
-  case 3:
-    uVar1 = 5;
-    break;
-  case 4:
-    uVar1 = 0xd;
-    break;
-  case 5:
-    uVar1 = 0xb;
-    break;
-  case 6:
-    uVar1 = 4;
-    break;
-  case 7:
-    uVar1 = 2;
-    break;
-  case 8:
-    uVar1 = 9;
-    break;
-  case 9:
-    uVar1 = 3;
-    break;
-  case 10:
-    uVar1 = 8;
-    break;
-  case 0xb:
-    uVar1 = 0xc;
-    break;
-  case 0xc:
-    uVar1 = 0xf;
-    break;
-  case 0xd:
-    uVar1 = 0x12;
-    break;
-  case 0xe:
-    uVar1 = 0x12;
-    break;
-  case 0xf:
-    uVar1 = 10;
-    break;
-  case 0x10:
-    uVar1 = 10;
-    break;
-  case 0x11:
-    uVar1 = 0xe;
-    break;
-  case 0x12:
-    uVar1 = 0x13;
-    break;
-  case 0x13:
-    uVar1 = 0x11;
-    break;
-  case 0x14:
-    uVar1 = 0x10;
-    break;
-  default:
+  if (param_1 < 0x15) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      uVar1 = 1;
+      break;
+    case 1:
+      uVar1 = 6;
+      break;
+    case 2:
+      uVar1 = 7;
+      break;
+    case 3:
+      uVar1 = 5;
+      break;
+    case 4:
+      uVar1 = 0xd;
+      break;
+    case 5:
+      uVar1 = 0xb;
+      break;
+    case 6:
+      uVar1 = 4;
+      break;
+    case 7:
+      uVar1 = 2;
+      break;
+    case 8:
+      uVar1 = 9;
+      break;
+    case 9:
+      uVar1 = 3;
+      break;
+    case 10:
+      uVar1 = 8;
+      break;
+    case 0xb:
+      uVar1 = 0xc;
+      break;
+    case 0xc:
+      uVar1 = 0xf;
+      break;
+    case 0xd:
+      uVar1 = 0x12;
+      break;
+    case 0xe:
+      uVar1 = 0x12;
+      break;
+    case 0xf:
+      uVar1 = 10;
+      break;
+    case 0x10:
+      uVar1 = 10;
+      break;
+    case 0x11:
+      uVar1 = 0xe;
+      break;
+    case 0x12:
+      uVar1 = 0x13;
+      break;
+    case 0x13:
+      uVar1 = 0x11;
+      break;
+    case 0x14:
+      uVar1 = 0x10;
+    }
+  }
+  else {
     uVar1 = 0xffffffff;
   }
   return uVar1;
 }
 
 // 0x001f62b0  size 0xe0
-undefined4 MsgId_ForGradeShort(undefined1 param_1)
+undefined4 MsgId_ForGradeShort(byte param_1)
 
 {
   undefined4 uVar1;
   
-  switch(param_1) {
-  case 0:
-    uVar1 = 0x980;
-    break;
-  case 1:
-    uVar1 = 0x982;
-    break;
-  case 2:
-    uVar1 = 0x981;
-    break;
-  case 3:
-    uVar1 = 0x983;
-    break;
-  case 4:
-    uVar1 = 0x984;
-    break;
-  case 5:
-    uVar1 = 0x985;
-    break;
-  case 6:
-    uVar1 = 0x986;
-    break;
-  case 7:
-    uVar1 = 0x987;
-    break;
-  case 8:
-    uVar1 = 0x988;
-    break;
-  case 9:
-    uVar1 = 0x989;
-    break;
-  case 10:
-    uVar1 = 0x98a;
-    break;
-  case 0xb:
-    uVar1 = 0x98b;
-    break;
-  case 0xc:
-    uVar1 = 0x98d;
-    break;
-  case 0xd:
-    uVar1 = 0x9b5;
-    break;
-  case 0xe:
-    uVar1 = 0x9b6;
-    break;
-  case 0xf:
-    uVar1 = 0x9b3;
-    break;
-  case 0x10:
-    uVar1 = 0x9b4;
-    break;
-  case 0x11:
-    uVar1 = 0x992;
-    break;
-  case 0x12:
-    uVar1 = 0x991;
-    break;
-  case 0x13:
-    uVar1 = 0x993;
-    break;
-  case 0x14:
-    uVar1 = 0x994;
-    break;
-  default:
+  if (param_1 < 0x15) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      uVar1 = 0x980;
+      break;
+    case 1:
+      uVar1 = 0x982;
+      break;
+    case 2:
+      uVar1 = 0x981;
+      break;
+    case 3:
+      uVar1 = 0x983;
+      break;
+    case 4:
+      uVar1 = 0x984;
+      break;
+    case 5:
+      uVar1 = 0x985;
+      break;
+    case 6:
+      uVar1 = 0x986;
+      break;
+    case 7:
+      uVar1 = 0x987;
+      break;
+    case 8:
+      uVar1 = 0x988;
+      break;
+    case 9:
+      uVar1 = 0x989;
+      break;
+    case 10:
+      uVar1 = 0x98a;
+      break;
+    case 0xb:
+      uVar1 = 0x98b;
+      break;
+    case 0xc:
+      uVar1 = 0x98d;
+      break;
+    case 0xd:
+      uVar1 = 0x9b5;
+      break;
+    case 0xe:
+      uVar1 = 0x9b6;
+      break;
+    case 0xf:
+      uVar1 = 0x9b3;
+      break;
+    case 0x10:
+      uVar1 = 0x9b4;
+      break;
+    case 0x11:
+      uVar1 = 0x992;
+      break;
+    case 0x12:
+      uVar1 = 0x991;
+      break;
+    case 0x13:
+      uVar1 = 0x993;
+      break;
+    case 0x14:
+      uVar1 = 0x994;
+    }
+  }
+  else {
     uVar1 = 0xffffffff;
   }
   return uVar1;
@@ -1846,80 +1805,82 @@ undefined8 Msg_PartInfo(undefined8 param_1)
 undefined4 Msg_MakerCountry(void)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   undefined4 uVar2;
   
-  uVar1 = Maker_GetInfo();
-  switch(uVar1) {
-  case 0:
-    uVar2 = 0x980;
-    break;
-  case 1:
-    uVar2 = 0x982;
-    break;
-  case 2:
-    uVar2 = 0x981;
-    break;
-  case 3:
-    uVar2 = 0x983;
-    break;
-  case 4:
-    uVar2 = 0x984;
-    break;
-  case 5:
-    uVar2 = 0x985;
-    break;
-  case 6:
-    uVar2 = 0x986;
-    break;
-  case 7:
-    uVar2 = 0x987;
-    break;
-  case 8:
-    uVar2 = 0x988;
-    break;
-  case 9:
-    uVar2 = 0x989;
-    break;
-  case 10:
-    uVar2 = 0x98a;
-    break;
-  case 0xb:
-    uVar2 = 0x98b;
-    break;
-  case 0xc:
-    uVar2 = 0x98d;
-    break;
-  case 0xd:
-  case 0xe:
-    uVar2 = 0x995;
-    break;
-  case 0xf:
-  case 0x10:
-    uVar2 = 0x98c;
-    break;
-  case 0x11:
-    uVar2 = 0x992;
-    break;
-  case 0x12:
-    uVar2 = 0x991;
-    break;
-  case 0x13:
-    uVar2 = 0x993;
-    break;
-  case 0x14:
-    uVar2 = 0x994;
-    break;
-  default:
+  bVar1 = Maker_GetInfo();
+  if (bVar1 < 0x15) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      uVar2 = 0x980;
+      break;
+    case 1:
+      uVar2 = 0x982;
+      break;
+    case 2:
+      uVar2 = 0x981;
+      break;
+    case 3:
+      uVar2 = 0x983;
+      break;
+    case 4:
+      uVar2 = 0x984;
+      break;
+    case 5:
+      uVar2 = 0x985;
+      break;
+    case 6:
+      uVar2 = 0x986;
+      break;
+    case 7:
+      uVar2 = 0x987;
+      break;
+    case 8:
+      uVar2 = 0x988;
+      break;
+    case 9:
+      uVar2 = 0x989;
+      break;
+    case 10:
+      uVar2 = 0x98a;
+      break;
+    case 0xb:
+      uVar2 = 0x98b;
+      break;
+    case 0xc:
+      uVar2 = 0x98d;
+      break;
+    default:
+      uVar2 = 0x995;
+      break;
+    case 0xf:
+    case 0x10:
+      uVar2 = 0x98c;
+      break;
+    case 0x11:
+      uVar2 = 0x992;
+      break;
+    case 0x12:
+      uVar2 = 0x991;
+      break;
+    case 0x13:
+      uVar2 = 0x993;
+      break;
+    case 0x14:
+      uVar2 = 0x994;
+    }
+  }
+  else {
     uVar2 = 0xffffffff;
   }
   return uVar2;
 }
 
-// 0x001f6720  size 0x34
-/* WARNING: Switch with 1 destination removed at 0x001f6744 : 8 cases all go to same destination */
+// 0x001f6720  size 0xd0
+/* WARNING: Switch with 1 destination removed at 0x001f6744 */
 
-void ui_leaf_sub_001f6720(float *param_1,uint param_2,int param_3,int param_4)
+void maybe_Ui_LeafF6720(float *param_1,uint param_2,int param_3,int param_4)
 
 {
   undefined *puVar1;
@@ -1930,6 +1891,7 @@ void ui_leaf_sub_001f6720(float *param_1,uint param_2,int param_3,int param_4)
   float fVar6;
   
   if ((param_2 & 0xff) < 8) {
+                    /* WARNING: Switch is manually overridden */
     puVar1 = (&PTR_DAT_00327000)[param_2 & 0xff];
     fVar6 = *(float *)(puVar1 + param_3 * 8);
     fVar4 = *(float *)(puVar1 + param_4 * 8);
@@ -1955,64 +1917,67 @@ void ui_leaf_sub_001f6720(float *param_1,uint param_2,int param_3,int param_4)
 }
 
 // 0x001f67f0  size 0xc0
-undefined4 MsgId_ForDriveType(undefined1 param_1,long param_2)
+undefined4 MsgId_ForDriveType(byte param_1,long param_2)
 
 {
   undefined4 uVar1;
   
-  switch(param_1) {
-  case 0:
-    uVar1 = 3;
-    if (param_2 != 0) {
-      uVar1 = 0xe;
+  if (param_1 < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      uVar1 = 3;
+      if (param_2 != 0) {
+        uVar1 = 0xe;
+      }
+      break;
+    case 1:
+      uVar1 = 2;
+      if (param_2 != 0) {
+        uVar1 = 0xd;
+      }
+      break;
+    case 2:
+      uVar1 = 5;
+      if (param_2 != 0) {
+        uVar1 = 0x10;
+      }
+      break;
+    case 3:
+      uVar1 = 4;
+      if (param_2 != 0) {
+        uVar1 = 0xf;
+      }
+      break;
+    case 4:
+      uVar1 = 6;
+      if (param_2 != 0) {
+        uVar1 = 0x11;
+      }
+      break;
+    case 5:
+      uVar1 = 0;
+      if (param_2 != 0) {
+        uVar1 = 0xb;
+      }
+      break;
+    case 6:
+      uVar1 = 1;
+      if (param_2 != 0) {
+        uVar1 = 0xc;
+      }
+      break;
+    case 7:
+      uVar1 = 7;
+      if (param_2 != 0) {
+        uVar1 = 0x12;
+      }
+      break;
+    case 8:
+      uVar1 = 0x13;
     }
-    break;
-  case 1:
-    uVar1 = 2;
-    if (param_2 != 0) {
-      uVar1 = 0xd;
-    }
-    break;
-  case 2:
-    uVar1 = 5;
-    if (param_2 != 0) {
-      uVar1 = 0x10;
-    }
-    break;
-  case 3:
-    uVar1 = 4;
-    if (param_2 != 0) {
-      uVar1 = 0xf;
-    }
-    break;
-  case 4:
-    uVar1 = 6;
-    if (param_2 != 0) {
-      uVar1 = 0x11;
-    }
-    break;
-  case 5:
-    uVar1 = 0;
-    if (param_2 != 0) {
-      uVar1 = 0xb;
-    }
-    break;
-  case 6:
-    uVar1 = 1;
-    if (param_2 != 0) {
-      uVar1 = 0xc;
-    }
-    break;
-  case 7:
-    uVar1 = 7;
-    if (param_2 != 0) {
-      uVar1 = 0x12;
-    }
-    break;
-  case 8:
-    uVar1 = 0x13;
-    break;
-  default:
+  }
+  else {
     uVar1 = 0xffffffff;
   }
   return uVar1;
@@ -2035,35 +2000,38 @@ int Msg_ProfileStat(int param_1)
   uVar4 = iVar3 + 1;
   if (uVar4 < 8) {
     do {
-      switch(uVar4) {
-      case 0:
-        uVar5 = 1;
-        break;
-      case 1:
-        uVar5 = 0;
-        break;
-      case 2:
-        uVar5 = 5;
-        break;
-      case 3:
-        uVar5 = 3;
-        break;
-      case 4:
-        uVar5 = 2;
-        break;
-      case 5:
-        uVar5 = 4;
-        break;
-      case 6:
-        uVar5 = 7;
-        break;
-      case 7:
-        uVar5 = 6;
-        break;
-      case 0xffffffff:
-        uVar5 = 8;
-        break;
-      default:
+      if (uVar4 + 1 < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar4 + 1) {
+        case 0:
+          uVar5 = 8;
+          break;
+        case 1:
+          uVar5 = 1;
+          break;
+        case 2:
+          uVar5 = 0;
+          break;
+        case 3:
+          uVar5 = 5;
+          break;
+        case 4:
+          uVar5 = 3;
+          break;
+        case 5:
+          uVar5 = 2;
+          break;
+        case 6:
+          uVar5 = 4;
+          break;
+        case 7:
+          uVar5 = 7;
+          break;
+        case 8:
+          uVar5 = 6;
+        }
+      }
+      else {
         uVar5 = 1;
       }
       uVar1 = Profile_Get(0);
@@ -2102,37 +2070,40 @@ int MsgId_ForSlot(long param_1,int param_2)
 }
 
 // 0x001f69f0  size 0x78
-undefined4 MsgId_ForOption(undefined1 param_1)
+undefined4 MsgId_ForOption(byte param_1)
 
 {
   undefined4 uVar1;
   
-  switch(param_1) {
-  case 0:
-    uVar1 = 1;
-    break;
-  case 1:
-    uVar1 = 0;
-    break;
-  case 2:
-    uVar1 = 4;
-    break;
-  case 3:
-    uVar1 = 3;
-    break;
-  case 4:
-    uVar1 = 5;
-    break;
-  case 5:
-    uVar1 = 2;
-    break;
-  case 6:
-    uVar1 = 7;
-    break;
-  case 7:
-    uVar1 = 6;
-    break;
-  default:
+  if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      uVar1 = 1;
+      break;
+    case 1:
+      uVar1 = 0;
+      break;
+    case 2:
+      uVar1 = 4;
+      break;
+    case 3:
+      uVar1 = 3;
+      break;
+    case 4:
+      uVar1 = 5;
+      break;
+    case 5:
+      uVar1 = 2;
+      break;
+    case 6:
+      uVar1 = 7;
+      break;
+    case 7:
+      uVar1 = 6;
+    }
+  }
+  else {
     uVar1 = 0xffffffff;
   }
   return uVar1;
@@ -2141,47 +2112,50 @@ undefined4 MsgId_ForOption(undefined1 param_1)
 // 0x001f6a70  size 0x80
 /* 26 callers */
 
-undefined4 Menu_MapCursorToItem(undefined4 param_1)
+undefined4 Menu_MapCursorToItem(int param_1)
 
 {
   undefined4 uVar1;
   
-  switch(param_1) {
-  case 0:
-    uVar1 = 1;
-    break;
-  case 1:
-    uVar1 = 0;
-    break;
-  case 2:
-    uVar1 = 5;
-    break;
-  case 3:
-    uVar1 = 3;
-    break;
-  case 4:
-    uVar1 = 2;
-    break;
-  case 5:
-    uVar1 = 4;
-    break;
-  case 6:
-    uVar1 = 7;
-    break;
-  case 7:
-    uVar1 = 6;
-    break;
-  case 0xffffffff:
-    uVar1 = 8;
-    break;
-  default:
+  if (param_1 + 1U < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1 + 1U) {
+    case 0:
+      uVar1 = 8;
+      break;
+    case 1:
+      uVar1 = 1;
+      break;
+    case 2:
+      uVar1 = 0;
+      break;
+    case 3:
+      uVar1 = 5;
+      break;
+    case 4:
+      uVar1 = 3;
+      break;
+    case 5:
+      uVar1 = 2;
+      break;
+    case 6:
+      uVar1 = 4;
+      break;
+    case 7:
+      uVar1 = 7;
+      break;
+    case 8:
+      uVar1 = 6;
+    }
+  }
+  else {
     uVar1 = 1;
   }
   return uVar1;
 }
 
 // 0x001f6af0  size 0x3cc
-void ui_step_sub_001f6af0
+void maybe_Ui_BuildCarSpec
                (undefined4 *param_1,long param_2,undefined8 param_3,undefined8 param_4,long param_5)
 
 {
@@ -2391,161 +2365,74 @@ int MsgId_RivalTrait(int param_1)
   return param_1 + 0x6b8;
 }
 
-// 0x001f6f20  size 0x28
-undefined8 MsgId_ForChapter(ulong param_1)
+// 0x001f6f20  size 0xc4
+undefined4 MsgId_ForChapter(ulong param_1)
 
 {
-  undefined8 uVar1;
+  undefined4 uVar1;
   
   if (param_1 < 0x12) {
-                    /* WARNING: Could not recover jumptable at 0x001f6f40. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_00365570)[(int)param_1])();
-    return uVar1;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    case 0:
+      uVar1 = 0;
+      break;
+    case 1:
+      uVar1 = 4;
+      break;
+    case 2:
+      uVar1 = 8;
+      break;
+    case 3:
+      uVar1 = 9;
+      break;
+    case 4:
+      uVar1 = 0xb;
+      break;
+    case 5:
+      uVar1 = 0xc;
+      break;
+    case 6:
+      uVar1 = 0x12;
+      break;
+    case 7:
+      uVar1 = 0x13;
+      break;
+    case 8:
+      uVar1 = 0x14;
+      break;
+    case 9:
+      uVar1 = 2;
+      break;
+    case 10:
+      uVar1 = 1;
+      break;
+    case 0xb:
+      uVar1 = 6;
+      break;
+    case 0xc:
+      uVar1 = 3;
+      break;
+    case 0xd:
+      uVar1 = 10;
+      break;
+    case 0xe:
+      uVar1 = 0xe;
+      break;
+    case 0xf:
+      uVar1 = 0x10;
+      break;
+    case 0x10:
+      uVar1 = 0x15;
+      break;
+    case 0x11:
+      uVar1 = 0x18;
+    }
   }
-  return 0xffffffffffffffff;
-}
-
-// 0x001f6f58  size 0x8
-/* screen record 0x365578 */
-
-undefined4 screc365578_enter_sub_001f6f58(void)
-
-{
-  return 8;
-}
-
-// 0x001f6f60  size 0x8
-/* screen record 0x365578 */
-
-undefined4 screc365578_update_sub_001f6f60(void)
-
-{
-  return 9;
-}
-
-// 0x001f6f68  size 0x8
-/* screen record 0x365578 */
-
-undefined4 screc365578_exit_sub_001f6f68(void)
-
-{
-  return 0xb;
-}
-
-// 0x001f6f70  size 0x8
-/* screen record 0x365584 */
-
-undefined4 screc365584_enter_sub_001f6f70(void)
-
-{
-  return 0xc;
-}
-
-// 0x001f6f78  size 0x8
-/* screen record 0x365584 */
-
-undefined4 screc365584_update_sub_001f6f78(void)
-
-{
-  return 0x12;
-}
-
-// 0x001f6f80  size 0x8
-/* screen record 0x365584 */
-
-undefined4 screc365584_exit_sub_001f6f80(void)
-
-{
-  return 0x13;
-}
-
-// 0x001f6f88  size 0x8
-/* screen record 0x365590 */
-
-undefined4 screc365590_enter_sub_001f6f88(void)
-
-{
-  return 0x14;
-}
-
-// 0x001f6f90  size 0x8
-/* screen record 0x365590 */
-
-undefined4 screc365590_update_sub_001f6f90(void)
-
-{
-  return 2;
-}
-
-// 0x001f6f98  size 0x8
-/* screen record 0x365590 */
-
-undefined4 screc365590_exit_sub_001f6f98(void)
-
-{
-  return 1;
-}
-
-// 0x001f6fa0  size 0x8
-/* screen record 0x36559c */
-
-undefined4 screc36559c_update_sub_001f6fa0(void)
-
-{
-  return 3;
-}
-
-// 0x001f6fa8  size 0x8
-/* screen record 0x36559c */
-
-undefined4 screc36559c_enter_sub_001f6fa8(void)
-
-{
-  return 6;
-}
-
-// 0x001f6fb0  size 0x8
-/* screen record 0x36559c */
-
-undefined4 screc36559c_exit_sub_001f6fb0(void)
-
-{
-  return 10;
-}
-
-// 0x001f6fb8  size 0x8
-/* screen record 0x3655a8 */
-
-undefined4 screc3655a8_enter_sub_001f6fb8(void)
-
-{
-  return 0xe;
-}
-
-// 0x001f6fc0  size 0x8
-/* screen record 0x3655a8 */
-
-undefined4 screc3655a8_update_sub_001f6fc0(void)
-
-{
-  return 0x10;
-}
-
-// 0x001f6fc8  size 0x8
-/* screen record 0x3655a8 */
-
-undefined4 screc3655a8_exit_sub_001f6fc8(void)
-
-{
-  return 0x15;
-}
-
-// 0x001f6fd0  size 0x10
-undefined4 Ui_Nop(void)
-
-{
-  return 0x18;
+  else {
+    uVar1 = 0xffffffff;
+  }
+  return uVar1;
 }
 
 // 0x001f6ff0  size 0x17c

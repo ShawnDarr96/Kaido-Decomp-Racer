@@ -507,17 +507,17 @@ void ScrScrGarageDrawFullAeroa980_Enter(undefined8 param_1)
   *(undefined4 *)(iVar5 + 0x10) = 0;
   if (*(int *)(iVar5 + 0x18) != 0) {
     lVar3 = 0;
-    switch(*(undefined1 *)(iVar5 + 8)) {
-    case 0:
-      break;
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      lVar3 = 1;
-      break;
-    case 5:
-      lVar3 = 2;
+    if (*(byte *)(iVar5 + 8) < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(byte *)(iVar5 + 8)) {
+      case 0:
+        break;
+      default:
+        lVar3 = 1;
+        break;
+      case 5:
+        lVar3 = 2;
+      }
     }
     if ((lVar3 == 1) && (lVar3 = MenuMgr_Goto(), lVar3 == 0)) {
       if (*(int *)(iVar5 + 8) == 2) {
@@ -1061,17 +1061,17 @@ void ScrCategory_Exit(undefined8 param_1)
   *(undefined4 *)(iVar6 + 0x10) = 0;
   if (*(int *)(iVar6 + 0x18) != 0) {
     lVar3 = 0;
-    switch(*(undefined1 *)(iVar6 + 8)) {
-    case 0:
-      break;
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      lVar3 = 1;
-      break;
-    case 5:
-      lVar3 = 2;
+    if (*(byte *)(iVar6 + 8) < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(byte *)(iVar6 + 8)) {
+      case 0:
+        break;
+      default:
+        lVar3 = 1;
+        break;
+      case 5:
+        lVar3 = 2;
+      }
     }
     if ((lVar3 == 1) && (lVar3 = MenuMgr_Goto(), lVar3 == 0)) {
       if (*(int *)(iVar6 + 8) == 1) {
@@ -1116,20 +1116,23 @@ void ScrCategory_Exit(undefined8 param_1)
 void ScrCategory_Update(undefined8 param_1)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   int iVar2;
   undefined4 uVar3;
   int iVar4;
   undefined8 uVar5;
   long lVar6;
   long lVar7;
-  undefined1 *puVar8;
+  byte *pbVar8;
   
-  puVar8 = (undefined1 *)param_1;
-  iVar2 = *(int *)(puVar8 + 0x14);
-  *(undefined4 *)(puVar8 + 0x14) = 0;
+  pbVar8 = (byte *)param_1;
+  iVar2 = *(int *)(pbVar8 + 0x14);
+  pbVar8[0x14] = 0;
+  pbVar8[0x15] = 0;
+  pbVar8[0x16] = 0;
+  pbVar8[0x17] = 0;
   if (iVar2 == 0) {
-    uVar1 = *puVar8;
+    bVar1 = *pbVar8;
   }
   else {
     uVar3 = UiRes_GetLayoutData(0x1f8);
@@ -1716,52 +1719,61 @@ void ScrCategory_Update(undefined8 param_1)
     iVar2 = *_g_UiMgr;
     uVar5 = UiRes_GetLayoutData(0x20e);
     UiLayout_PlayAnim(iVar2 + iVar4 * 0x4f4 + 4,uVar5);
-    uVar1 = *puVar8;
+    bVar1 = *pbVar8;
   }
   iVar2 = 0;
-  switch(uVar1) {
-  case 0:
-    break;
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-    iVar2 = 1;
-    break;
-  case 5:
-    iVar2 = 2;
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      break;
+    default:
+      iVar2 = 1;
+      break;
+    case 5:
+      iVar2 = 2;
+    }
   }
   if (iVar2 == 1) {
-    *(undefined4 *)(puVar8 + 0x10) = 0;
+    pbVar8[0x10] = 0;
+    pbVar8[0x11] = 0;
+    pbVar8[0x12] = 0;
+    pbVar8[0x13] = 0;
   }
   else {
     lVar6 = UiLayout_UpdateAnimById(0xdc,0);
     lVar7 = UiLayout_UpdateAnimById(0xdd,0);
     if (lVar6 == 0 && lVar7 == 0) {
-      *(undefined4 *)(puVar8 + 0x10) = 0;
+      pbVar8[0x10] = 0;
+      pbVar8[0x11] = 0;
+      pbVar8[0x12] = 0;
+      pbVar8[0x13] = 0;
     }
   }
-  if (*(int *)(puVar8 + 0x18) != 0) {
+  if (*(int *)(pbVar8 + 0x18) != 0) {
     lVar6 = 0;
-    switch(puVar8[8]) {
-    case 0:
-      break;
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      lVar6 = 1;
-      break;
-    case 5:
-      lVar6 = 2;
+    if (pbVar8[8] < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(pbVar8[8]) {
+      case 0:
+        break;
+      default:
+        lVar6 = 1;
+        break;
+      case 5:
+        lVar6 = 2;
+      }
     }
     if ((lVar6 == 1) && (lVar6 = MenuMgr_Goto(), lVar6 == 0)) {
-      if (*(int *)(puVar8 + 8) == 4) {
+      if (*(int *)(pbVar8 + 8) == 4) {
         ScrGarage_Draw_FullAero_a980(param_1);
         lVar6 = UiLayout_UpdateAnimById(0xdd,5);
         lVar7 = UiLayout_UpdateAnimById(0xdf,5);
         if (lVar6 == 0 && lVar7 == 0) {
-          *(undefined4 *)(puVar8 + 0x18) = 0;
+          pbVar8[0x18] = 0;
+          pbVar8[0x19] = 0;
+          pbVar8[0x1a] = 0;
+          pbVar8[0x1b] = 0;
         }
       }
       else {
@@ -1769,7 +1781,10 @@ void ScrCategory_Update(undefined8 param_1)
         lVar6 = UiLayout_UpdateAnimById(0xdd,2);
         lVar7 = UiLayout_UpdateAnimById(0xde,4);
         if (lVar6 == 0 && lVar7 == 0) {
-          *(undefined4 *)(puVar8 + 0x18) = 0;
+          pbVar8[0x18] = 0;
+          pbVar8[0x19] = 0;
+          pbVar8[0x1a] = 0;
+          pbVar8[0x1b] = 0;
         }
       }
     }
@@ -1777,7 +1792,10 @@ void ScrCategory_Update(undefined8 param_1)
       lVar6 = UiLayout_UpdateAnimById(0xdc,1);
       lVar7 = UiLayout_UpdateAnimById(0xdd,1);
       if (lVar6 == 0 && lVar7 == 0) {
-        *(undefined4 *)(puVar8 + 0x18) = 0;
+        pbVar8[0x18] = 0;
+        pbVar8[0x19] = 0;
+        pbVar8[0x1a] = 0;
+        pbVar8[0x1b] = 0;
       }
     }
   }
@@ -1916,9 +1934,9 @@ void ScrCareer_Draw_Category(undefined8 param_1)
 
 // 0x0026f880  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32789c */
+/* menu page 37 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32789c_exit_sub_0026f880(void)
+void MenuPage37_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1927,9 +1945,9 @@ void screc32789c_exit_sub_0026f880(void)
 
 // 0x0026f8a0  size 0x110
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32789c */
+/* menu page 37 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32789c_update_sub_0026f8a0(undefined8 param_1)
+void MenuPage37_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -1957,9 +1975,9 @@ void screc32789c_update_sub_0026f8a0(undefined8 param_1)
 
 // 0x0026f9b0  size 0x42c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32789c */
+/* menu page 37 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32789c_enter_sub_0026f9b0(int param_1)
+void MenuPage37_Enter(int param_1)
 
 {
   int iVar1;
@@ -2128,18 +2146,18 @@ void screc32789c_enter_sub_0026f9b0(int param_1)
   *(undefined4 *)(iVar3 + 0x35c) = uVar2;
   *(undefined4 *)(iVar3 + 0x358) = 1;
   uVar2 = 0;
-  switch(*(undefined1 *)(param_1 + 4)) {
-  case 0:
-    *(undefined4 *)(param_1 + 0x2fc) = 0;
-    goto LAB_0026fd2c;
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-    uVar2 = 1;
-    break;
-  case 5:
-    uVar2 = 2;
+  if (*(byte *)(param_1 + 4) < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(param_1 + 4)) {
+    case 0:
+      *(undefined4 *)(param_1 + 0x2fc) = 0;
+      goto LAB_0026fd2c;
+    default:
+      uVar2 = 1;
+      break;
+    case 5:
+      uVar2 = 2;
+    }
   }
   *(undefined4 *)(param_1 + 0x2fc) = uVar2;
 LAB_0026fd2c:
@@ -2192,9 +2210,9 @@ void MenuScr_Draw_Clockwise(int param_1)
 
 // 0x0026ff80  size 0x13c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d9b8 */
+/* entry 2 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update */
 
-void screc32d9b8_exit_sub_0026ff80(int param_1)
+void ScrSubtitleDraw_Draw2(int param_1)
 
 {
   bool bVar1;

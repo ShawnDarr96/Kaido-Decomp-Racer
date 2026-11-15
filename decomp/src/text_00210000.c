@@ -1516,9 +1516,9 @@ void MenuScr_Draw_SelectTheCourse(int param_1)
 
 // 0x00213080  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278e4 */
+/* menu page 43 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278e4_exit_sub_00213080(void)
+void MenuPage43_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1527,9 +1527,9 @@ void screc3278e4_exit_sub_00213080(void)
 
 // 0x002130a0  size 0x178
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278e4 */
+/* menu page 43 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278e4_update_sub_002130a0(undefined8 param_1)
+void MenuPage43_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1563,9 +1563,9 @@ void screc3278e4_update_sub_002130a0(undefined8 param_1)
 
 // 0x00213220  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278e4 */
+/* menu page 43 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278e4_enter_sub_00213220(void)
+void MenuPage43_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1598,8 +1598,9 @@ void screc3278e4_enter_sub_00213220(void)
 
 // 0x002132c0  size 0x164
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 7 of state table 0x32a020 used by maybe_PageCarPartInfo_Update */
 
-void scrcareer_draw_sub_002132c0(int param_1)
+void maybe_PageCarPartInfo_State7(int param_1)
 
 {
   int iVar1;
@@ -1772,9 +1773,9 @@ void ScrCareer_Draw_DoYouWant(int param_1)
 
 // 0x002138b0  size 0x5e8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a020 */
+/* entry 2 of state table 0x32a020 used by maybe_PageCarPartInfo_Update */
 
-void screc32a020_exit_sub_002138b0(int param_1)
+void maybe_PageCarPartInfo_State2(int param_1)
 
 {
   int iVar1;
@@ -1948,9 +1949,9 @@ void screc32a020_exit_sub_002138b0(int param_1)
 
 // 0x00213ea0  size 0x5f4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a020 */
+/* entry 1 of state table 0x32a020 used by maybe_PageCarPartInfo_Update */
 
-void screc32a020_update_sub_00213ea0(int param_1)
+void maybe_PageCarPartInfo_State1(int param_1)
 
 {
   undefined4 uVar1;

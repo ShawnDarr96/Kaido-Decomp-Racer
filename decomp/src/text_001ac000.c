@@ -104,7 +104,7 @@ void WheelAsset_OnLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_
 {
   long lVar1;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,param_3);
   }
@@ -152,7 +152,7 @@ void WheelAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_
 
 {
   maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
-  course_leaf_sub_001a5a40(param_1);
+  maybe_Course_GetItemB(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
 }
@@ -669,24 +669,27 @@ void CarAsset_RelocatePart(undefined8 param_1,byte param_2,undefined8 param_3)
   int iVar8;
   
   uVar5 = 0;
-  switch(param_2) {
-  case 0:
-    uVar5 = 0x440;
-    break;
-  case 1:
-    uVar5 = 0x200;
-    break;
-  case 2:
-    uVar5 = 0x100;
-    break;
-  case 3:
-    uVar5 = 0x80;
-    break;
-  case 4:
-    uVar5 = 0x40;
-    break;
-  case 5:
-    uVar5 = 0x20;
+  if (param_2 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_2) {
+    case 0:
+      uVar5 = 0x440;
+      break;
+    case 1:
+      uVar5 = 0x200;
+      break;
+    case 2:
+      uVar5 = 0x100;
+      break;
+    case 3:
+      uVar5 = 0x80;
+      break;
+    case 4:
+      uVar5 = 0x40;
+      break;
+    case 5:
+      uVar5 = 0x20;
+    }
   }
   puVar6 = (undefined1 *)param_3;
   iVar8 = (int)param_1;
@@ -1079,79 +1082,77 @@ void CarAsset_InstallPart
       bVar1 = false;
       lVar7 = 0;
       iVar6 = 0;
-      switch(param_5) {
-      case 0:
-        iVar4 = 0;
-        bVar1 = true;
-        break;
-      case 1:
-      case 2:
-        iVar4 = param_5 + 3;
-        break;
-      case 3:
-        if (*(int *)(iVar8 + 0xc) == 0x11d) {
-          *(undefined1 *)(iVar8 + 0x38) = 0;
+      if (param_5 < 0x19) {
+                    /* WARNING: Switch is manually overridden */
+        switch(param_5) {
+        case 0:
+          iVar4 = 0;
+          bVar1 = true;
+          break;
+        case 1:
+        case 2:
+          iVar4 = param_5 + 3;
+          break;
+        case 3:
+          if (*(int *)(iVar8 + 0xc) == 0x11d) {
+            *(undefined1 *)(iVar8 + 0x38) = 0;
+          }
+          uVar2 = 0;
+          if (*(byte *)(iVar8 + 0x38) != 0) {
+            uVar2 = (uint)(*(byte *)(iVar8 + 0x38) >> 1);
+          }
+          iVar4 = uVar2 + 8;
+          break;
+        case 4:
+          iVar4 = *(byte *)(iVar8 + 0x39) + 0xe;
+          break;
+        case 5:
+          iVar4 = *(byte *)(iVar8 + 0x39) + 0x13;
+          break;
+        case 6:
+          iVar4 = 0x24;
+          break;
+        default:
+          iVar4 = param_5 + 0x11;
+          break;
+        case 0xc:
+        case 0xd:
+          iVar4 = param_5 + 0x11;
+          break;
+        case 0xe:
+          iVar4 = 0x1f;
+          break;
+        case 0xf:
+        case 0x10:
+          iVar4 = param_5 + 0x11;
+          break;
+        case 0x11:
+          iVar4 = 0xd;
+          break;
+        case 0x12:
+          if (*(byte *)(iVar8 + 0x3b) != 0) {
+            iVar4 = 7;
+            lVar7 = 0x36e840;
+            iVar6 = (*(byte *)(iVar8 + 0x3b) - 1) * 3 + 0x317f98;
+          }
+          break;
+        case 0x13:
+          iVar4 = 1;
+          break;
+        case 0x14:
+          if (*(char *)(iVar8 + 0x3a) == '\x01') {
+            iVar4 = 6;
+          }
+          break;
+        case 0x15:
+          iVar4 = 2;
+          break;
+        case 0x16:
+          iVar4 = 3;
+          break;
+        case 0x17:
+          iVar4 = param_5 + 0xb;
         }
-        uVar2 = 0;
-        if (*(byte *)(iVar8 + 0x38) != 0) {
-          uVar2 = (uint)(*(byte *)(iVar8 + 0x38) >> 1);
-        }
-        iVar4 = uVar2 + 8;
-        break;
-      case 4:
-        iVar4 = *(byte *)(iVar8 + 0x39) + 0xe;
-        break;
-      case 5:
-        iVar4 = *(byte *)(iVar8 + 0x39) + 0x13;
-        break;
-      case 6:
-        iVar4 = 0x24;
-        break;
-      case 7:
-      case 8:
-      case 9:
-      case 10:
-      case 0xb:
-        iVar4 = param_5 + 0x11;
-        break;
-      case 0xc:
-      case 0xd:
-        iVar4 = param_5 + 0x11;
-        break;
-      case 0xe:
-        iVar4 = 0x1f;
-        break;
-      case 0xf:
-      case 0x10:
-        iVar4 = param_5 + 0x11;
-        break;
-      case 0x11:
-        iVar4 = 0xd;
-        break;
-      case 0x12:
-        if (*(byte *)(iVar8 + 0x3b) != 0) {
-          iVar4 = 7;
-          lVar7 = 0x36e840;
-          iVar6 = (*(byte *)(iVar8 + 0x3b) - 1) * 3 + 0x317f98;
-        }
-        break;
-      case 0x13:
-        iVar4 = 1;
-        break;
-      case 0x14:
-        if (*(char *)(iVar8 + 0x3a) == '\x01') {
-          iVar4 = 6;
-        }
-        break;
-      case 0x15:
-        iVar4 = 2;
-        break;
-      case 0x16:
-        iVar4 = 3;
-        break;
-      case 0x17:
-      case 0x18:
-        iVar4 = param_5 + 0xb;
       }
       if (iVar4 != -1) {
         lVar3 = Res_GetModelSize(param_1,param_3);
@@ -1438,7 +1439,7 @@ void CarAsset_OnLoaded(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 {
   long lVar1;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   if ((cRam00436478 != '\x02') && (lVar1 = Course_GetField_24(param_4), lVar1 == 0)) {
     Arena_Alloc(param_4,*(undefined4 *)((int)param_4 + 0x94));
   }
@@ -1703,13 +1704,13 @@ void DriverAsset_OnLoaded
   int iVar1;
   int iVar2;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   iVar2 = (int)param_4;
   if (*(int *)(iVar2 + 0x2c) == 0) {
     iVar1 = *(int *)(iVar2 + 0x2c);
   }
   else {
-    course_leaf_sub_001a5a70(0x436320);
+    Course_ClearCount(0x436320);
     Arena_Alloc(0x436320,param_3);
     iVar1 = *(int *)(iVar2 + 0x2c);
   }

@@ -155,7 +155,7 @@ void showroom_step_sub_002d8150(int param_1,undefined1 *param_2)
 void showroom_step_sub_002d8630(int param_1)
 
 {
-  course_leaf_sub_001a5a00();
+  maybe_Course_GetItemA();
   Chunk_Init(param_1 + 0x28,0x80);
   *(undefined4 *)(param_1 + 0x50) = 0;
   *(undefined4 *)(param_1 + 0x54) = 0;
@@ -179,7 +179,7 @@ void showroom_step_sub_002d86a0
   undefined4 uVar1;
   int iVar2;
   
-  course_leaf_sub_001a5a70(param_4);
+  Course_ClearCount(param_4);
   Arena_Alloc(param_4,param_3);
   uVar1 = Gut_PackGetEntry(param_2,0,0);
   iVar2 = (int)param_4;
@@ -267,9 +267,9 @@ void showroom_step_sub_002d88b0(undefined8 param_1,undefined8 param_2)
 
 // 0x002d88f0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276e0 */
+/* menu page 0 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3276e0_exit_sub_002d88f0(void)
+void maybe_PagePasswordEntry_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -278,9 +278,9 @@ void screc3276e0_exit_sub_002d88f0(void)
 
 // 0x002d8910  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276e0 */
+/* menu page 0 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3276e0_update_sub_002d8910(undefined8 param_1)
+void maybe_PagePasswordEntry_Update(undefined8 param_1)
 
 {
   uint uVar1;
@@ -345,9 +345,9 @@ LAB_002d8994:
 
 // 0x002d8b10  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276e0 */
+/* menu page 0 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3276e0_enter_sub_002d8b10(void)
+void maybe_PagePasswordEntry_Enter(void)
 
 {
   undefined4 uVar1;
@@ -382,7 +382,9 @@ void screc3276e0_enter_sub_002d8b10(void)
 }
 
 // 0x002d8bd0  size 0x114
-void showroom_select_sub_002d8bd0(undefined8 param_1)
+/* menu screen 0 (table 0x3274b0) */
+
+void maybe_ScrMemCard_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -421,7 +423,9 @@ void showroom_select_sub_002d8bd0(undefined8 param_1)
 }
 
 // 0x002d8cf0  size 0xa0
-void showroom_step_sub_002d8cf0(undefined8 param_1)
+/* menu screen 0 (table 0x3274b0) */
+
+void maybe_ScrMemCard_Enter(undefined8 param_1)
 
 {
   int iVar1;
@@ -448,8 +452,9 @@ void showroom_step_sub_002d8cf0(undefined8 param_1)
 
 // 0x002d8d90  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* menu page 23 (table 0x3276e0, dispatched by 0x201380) */
 
-void showroom_leaf_sub_002d8d90(void)
+void maybe_PageNameEntry_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -458,8 +463,9 @@ void showroom_leaf_sub_002d8d90(void)
 
 // 0x002d8db0  size 0x78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* menu page 23 (table 0x3276e0, dispatched by 0x201380) */
 
-void showroom_step_sub_002d8db0(void)
+void maybe_PageNameEntry_Update(void)
 
 {
   uint uVar1;
@@ -477,8 +483,9 @@ void showroom_step_sub_002d8db0(void)
 
 // 0x002d8e40  size 0xa0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* menu screen 23 (table 0x3274b0) */
 
-void showroom_step_sub_002d8e40(int param_1)
+void maybe_ScrNewGameMemCard_Update(int param_1)
 
 {
   long lVar1;
@@ -508,7 +515,9 @@ void showroom_step_sub_002d8e40(int param_1)
 }
 
 // 0x002d8ef0  size 0x60
-void showroom_step_sub_002d8ef0(undefined8 param_1)
+/* menu screen 23 (table 0x3274b0) */
+
+void maybe_ScrNewGameMemCard_Enter(undefined8 param_1)
 
 {
   Save_AllocSlots();
@@ -542,62 +551,68 @@ void showroom_leaf_sub_002d8f60(undefined4 param_1,undefined4 param_2,undefined4
 // 0x002d9590  size 0x1f0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int replayui_step_sub_002d9590(undefined4 param_1)
+int replayui_step_sub_002d9590(int param_1)
 
 {
   int iVar1;
   
-  switch(param_1) {
-  case 0xb6:
-    iVar1 = UiMgr_FindLayout(0x1b);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xb7:
-    iVar1 = UiMgr_FindLayout(0x24);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  default:
+  if (param_1 - 0xb6U < 0xf) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1 - 0xb6U) {
+    case 0:
+      iVar1 = UiMgr_FindLayout(0x1b);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 1:
+      iVar1 = UiMgr_FindLayout(0x24);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    default:
+      goto switchD_002d95b8_caseD_b8;
+    case 4:
+      iVar1 = UiMgr_FindLayout(0x26);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 5:
+      iVar1 = UiMgr_FindLayout(0x1c);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 6:
+      iVar1 = UiMgr_FindLayout(0x1d);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 7:
+      iVar1 = UiMgr_FindLayout(0x1e);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 8:
+      iVar1 = UiMgr_FindLayout(0x1f);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 9:
+      iVar1 = UiMgr_FindLayout(0x20);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 10:
+      iVar1 = UiMgr_FindLayout(0x21);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 0xc:
+      iVar1 = UiMgr_FindLayout(0x22);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 0xd:
+      iVar1 = UiMgr_FindLayout(0x23);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+      break;
+    case 0xe:
+      iVar1 = UiMgr_FindLayout(0x25);
+      iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
+    }
+  }
+  else {
+switchD_002d95b8_caseD_b8:
     iVar1 = 0;
-    break;
-  case 0xba:
-    iVar1 = UiMgr_FindLayout(0x26);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xbb:
-    iVar1 = UiMgr_FindLayout(0x1c);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xbc:
-    iVar1 = UiMgr_FindLayout(0x1d);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xbd:
-    iVar1 = UiMgr_FindLayout(0x1e);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xbe:
-    iVar1 = UiMgr_FindLayout(0x1f);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xbf:
-    iVar1 = UiMgr_FindLayout(0x20);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xc0:
-    iVar1 = UiMgr_FindLayout(0x21);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xc2:
-    iVar1 = UiMgr_FindLayout(0x22);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xc3:
-    iVar1 = UiMgr_FindLayout(0x23);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
-    break;
-  case 0xc4:
-    iVar1 = UiMgr_FindLayout(0x25);
-    iVar1 = *_g_UiMgr + iVar1 * 0x4f4 + 4;
   }
   return iVar1;
 }
@@ -1622,7 +1637,7 @@ void replayui_anim_sub_002db730(undefined8 param_1)
 {
   undefined1 uVar1;
   char cVar2;
-  int iVar3;
+  uint uVar3;
   undefined8 uVar4;
   int iVar5;
   int iVar6;
@@ -1633,133 +1648,90 @@ void replayui_anim_sub_002db730(undefined8 param_1)
   ulong uVar11;
   
   iVar6 = (int)param_1;
-  iVar3 = *(int *)(iVar6 + 0x770);
-  if (iVar3 != *(int *)(iVar6 + 0x774)) {
-    switch(*(int *)(iVar6 + 0x774)) {
+  uVar9 = *(uint *)(iVar6 + 0x774);
+  uVar3 = *(uint *)(iVar6 + 0x770);
+  if (uVar3 == uVar9) goto LAB_002dbb08;
+  if (uVar9 < 0x26) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar9) {
     default:
-      uVar11 = 0;
-      break;
+      goto switchD_002db788_caseD_0;
     case 1:
       uVar11 = 0xe;
       break;
     case 4:
-    case 0xd:
-    case 0xe:
-    case 0xf:
-    case 0x10:
-    case 0x11:
-    case 0x1f:
-    case 0x20:
-    case 0x21:
-    case 0x22:
       uVar11 = 3;
       break;
     case 8:
     case 9:
     case 10:
     case 0xb:
-    case 0x13:
-    case 0x14:
-    case 0x16:
-    case 0x18:
-    case 0x19:
-    case 0x1a:
-    case 0x1b:
-    case 0x1c:
-    case 0x1d:
-    case 0x1e:
-    case 0x25:
       uVar11 = 1;
       break;
     case 0xc:
       uVar11 = 4;
     }
-    switch(iVar3) {
+  }
+  else {
+switchD_002db788_caseD_0:
+    uVar11 = 0;
+  }
+  if (uVar3 < 0x26) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar3) {
     default:
-      uVar10 = 0;
-      break;
+      goto switchD_002db7d4_caseD_0;
     case 1:
       uVar10 = 0xe;
       break;
     case 4:
-    case 0xd:
-    case 0xe:
-    case 0xf:
-    case 0x10:
-    case 0x11:
-    case 0x1f:
-    case 0x20:
-    case 0x21:
-    case 0x22:
       uVar10 = 3;
       break;
     case 8:
     case 9:
     case 10:
     case 0xb:
-    case 0x13:
-    case 0x14:
-    case 0x16:
-    case 0x18:
-    case 0x19:
-    case 0x1a:
-    case 0x1b:
-    case 0x1c:
-    case 0x1d:
-    case 0x1e:
-    case 0x25:
       uVar10 = 1;
       break;
     case 0xc:
       uVar10 = 4;
     }
-    if (uVar10 == 4) {
-      cVar2 = *(char *)(iVar6 + 0x779);
-      if ((((cVar2 == '\x05') || (cVar2 == '\x03')) || (cVar2 == '\x04')) || (cVar2 == '\x02')) {
-        puVar8 = (undefined4 *)(iVar6 + 0x588);
-        puVar7 = (undefined4 *)(iVar6 + 0x678);
-        iVar5 = 0x39;
-        do {
-          iVar5 = iVar5 + -1;
-          *puVar7 = *puVar8;
-          puVar8 = puVar8 + 1;
-          puVar7 = puVar7 + 1;
-        } while (0 < iVar5);
-        *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
-        *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
-        *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-        PwInput_SetupGrid(iVar6 + 0x588,7,iVar3);
-      }
-      else if (cVar2 == '\x01') {
-        puVar8 = (undefined4 *)(iVar6 + 0x588);
-        puVar7 = (undefined4 *)(iVar6 + 0x678);
-        iVar5 = 0x39;
-        do {
-          iVar5 = iVar5 + -1;
-          *puVar7 = *puVar8;
-          puVar8 = puVar8 + 1;
-          puVar7 = puVar7 + 1;
-        } while (0 < iVar5);
-        *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
-        *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
-        *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-        PwInput_SetupGrid(iVar6 + 0x588,5,iVar3);
-      }
-      else {
-        puVar8 = (undefined4 *)(iVar6 + 0x588);
-        puVar7 = (undefined4 *)(iVar6 + 0x678);
-        iVar5 = 0x39;
-        do {
-          iVar5 = iVar5 + -1;
-          *puVar7 = *puVar8;
-          puVar8 = puVar8 + 1;
-          puVar7 = puVar7 + 1;
-        } while (0 < iVar5);
-        *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
-        *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
-        *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-        PwInput_SetupGrid(iVar6 + 0x588,6,iVar3);
-      }
+  }
+  else {
+switchD_002db7d4_caseD_0:
+    uVar10 = 0;
+  }
+  if (uVar10 == 4) {
+    cVar2 = *(char *)(iVar6 + 0x779);
+    if ((((cVar2 == '\x05') || (cVar2 == '\x03')) || (cVar2 == '\x04')) || (cVar2 == '\x02')) {
+      puVar8 = (undefined4 *)(iVar6 + 0x588);
+      puVar7 = (undefined4 *)(iVar6 + 0x678);
+      iVar5 = 0x39;
+      do {
+        iVar5 = iVar5 + -1;
+        *puVar7 = *puVar8;
+        puVar8 = puVar8 + 1;
+        puVar7 = puVar7 + 1;
+      } while (0 < iVar5);
+      *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
+      *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
+      *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
+      PwInput_SetupGrid(iVar6 + 0x588,7,uVar3);
+    }
+    else if (cVar2 == '\x01') {
+      puVar8 = (undefined4 *)(iVar6 + 0x588);
+      puVar7 = (undefined4 *)(iVar6 + 0x678);
+      iVar5 = 0x39;
+      do {
+        iVar5 = iVar5 + -1;
+        *puVar7 = *puVar8;
+        puVar8 = puVar8 + 1;
+        puVar7 = puVar7 + 1;
+      } while (0 < iVar5);
+      *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
+      *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
+      *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
+      PwInput_SetupGrid(iVar6 + 0x588,5,uVar3);
     }
     else {
       puVar8 = (undefined4 *)(iVar6 + 0x588);
@@ -1774,43 +1746,59 @@ void replayui_anim_sub_002db730(undefined8 param_1)
       *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
       *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
       *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-      if ((uVar10 < 4) || (0xd < uVar10)) {
-        uVar1 = *(undefined1 *)(iVar6 + 0x769);
-        uVar9 = 0;
-        iVar5 = iVar6 + 0x588;
-        do {
-          PwInput_ResetBuffer(iVar5);
-          uVar9 = uVar9 + 1;
-          iVar5 = iVar5 + 0x4c;
-        } while (uVar9 < 3);
-        *(int *)(iVar6 + 0x66c) = iVar3;
-        if (uVar10 == 3) {
-          *(undefined4 *)(iVar6 + 0x670) = 0x1c;
-          *(undefined4 *)(iVar6 + 0x674) = 0x1e;
-        }
-        else if (uVar10 == 1) {
-          *(undefined4 *)(iVar6 + 0x670) = 0x16;
-          *(undefined4 *)(iVar6 + 0x674) = 0x17;
-        }
-        else if (uVar10 == 0) {
-          *(undefined4 *)(iVar6 + 0x670) = 0x13;
-          *(undefined4 *)(iVar6 + 0x674) = 0x14;
-        }
-        PwInput_GetCharForKey(iVar6 + 0x588,uVar10,uVar1);
-      }
-      else {
-        PwInput_SetupGrid(iVar6 + 0x588,uVar10,iVar3);
-      }
+      PwInput_SetupGrid(iVar6 + 0x588,6,uVar3);
     }
-    if (uVar11 != uVar10) {
-      PwInput_Open(iVar6 + 0x588);
-    }
-    *(undefined4 *)(iVar6 + 0x774) = *(undefined4 *)(iVar6 + 0x770);
-    uVar4 = (*pcRam0036f8ac)(0xc4);
-    UiElem_SetPropFloat(0x3f800000,uVar4,0x42,8);
-    uVar4 = (*pcRam0036f8ac)(0xc4);
-    UiElem_SetPropFloat(0x3f800000,uVar4,0x43,8);
   }
+  else {
+    puVar8 = (undefined4 *)(iVar6 + 0x588);
+    puVar7 = (undefined4 *)(iVar6 + 0x678);
+    iVar5 = 0x39;
+    do {
+      iVar5 = iVar5 + -1;
+      *puVar7 = *puVar8;
+      puVar8 = puVar8 + 1;
+      puVar7 = puVar7 + 1;
+    } while (0 < iVar5);
+    *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
+    *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
+    *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
+    if ((uVar10 < 4) || (0xd < uVar10)) {
+      uVar1 = *(undefined1 *)(iVar6 + 0x769);
+      uVar9 = 0;
+      iVar5 = iVar6 + 0x588;
+      do {
+        PwInput_ResetBuffer(iVar5);
+        uVar9 = uVar9 + 1;
+        iVar5 = iVar5 + 0x4c;
+      } while (uVar9 < 3);
+      *(uint *)(iVar6 + 0x66c) = uVar3;
+      if (uVar10 == 3) {
+        *(undefined4 *)(iVar6 + 0x670) = 0x1c;
+        *(undefined4 *)(iVar6 + 0x674) = 0x1e;
+      }
+      else if (uVar10 == 1) {
+        *(undefined4 *)(iVar6 + 0x670) = 0x16;
+        *(undefined4 *)(iVar6 + 0x674) = 0x17;
+      }
+      else if (uVar10 == 0) {
+        *(undefined4 *)(iVar6 + 0x670) = 0x13;
+        *(undefined4 *)(iVar6 + 0x674) = 0x14;
+      }
+      PwInput_GetCharForKey(iVar6 + 0x588,uVar10,uVar1);
+    }
+    else {
+      PwInput_SetupGrid(iVar6 + 0x588,uVar10,uVar3);
+    }
+  }
+  if (uVar11 != uVar10) {
+    PwInput_Open(iVar6 + 0x588);
+  }
+  *(undefined4 *)(iVar6 + 0x774) = *(undefined4 *)(iVar6 + 0x770);
+  uVar4 = (*pcRam0036f8ac)(0xc4);
+  UiElem_SetPropFloat(0x3f800000,uVar4,0x42,8);
+  uVar4 = (*pcRam0036f8ac)(0xc4);
+  UiElem_SetPropFloat(0x3f800000,uVar4,0x43,8);
+LAB_002dbb08:
   PwInput_Animate(iVar6 + 0x588);
   if ((((*(int *)(iVar6 + 0x66c) == 0xc) && (*(char *)(iVar6 + 0x768) == '\0')) ||
       ((*(int *)(iVar6 + 0x75c) == 0xc && (*(char *)(iVar6 + 0x768) == '\x01')))) ||
@@ -1978,16 +1966,16 @@ void replayui_draw_sub_002dbf30(int *param_1,byte param_2,uint param_3)
 
 {
   int iVar1;
-  bool bVar2;
-  undefined4 uVar3;
-  code *pcVar4;
-  undefined4 uVar5;
-  undefined8 uVar6;
+  int iVar2;
+  bool bVar3;
+  undefined4 uVar4;
+  code *pcVar5;
+  undefined4 uVar6;
   undefined8 uVar7;
   undefined8 uVar8;
   undefined8 uVar9;
   undefined8 uVar10;
-  int iVar11;
+  undefined8 uVar11;
   int *piVar12;
   uint uVar13;
   int iVar14;
@@ -1996,7 +1984,7 @@ void replayui_draw_sub_002dbf30(int *param_1,byte param_2,uint param_3)
   undefined1 auStack_40 [20];
   undefined4 uStack_2c;
   
-  pcVar4 = pcRam0036f8b0;
+  pcVar5 = pcRam0036f8b0;
   iVar1 = *param_1;
   if (iVar1 == 0) {
     return;
@@ -2005,198 +1993,191 @@ void replayui_draw_sub_002dbf30(int *param_1,byte param_2,uint param_3)
     return;
   }
   param_3 = param_3 & 0xff;
-  uVar10 = 0x96;
+  uVar11 = 0x96;
   if (param_3 != 0) {
-    uVar10 = 0x1b3;
+    uVar11 = 0x1b3;
   }
   iVar14 = iRam0036f89c + 1;
-  uVar6 = (*pcRam0036f8b0)(*(undefined4 *)(&DAT_00342170 + param_3 * 4));
-  bVar2 = false;
+  uVar7 = (*pcRam0036f8b0)(*(undefined4 *)(&DAT_00342170 + param_3 * 4));
+  bVar3 = false;
   uVar13 = 0;
   piVar12 = param_1;
   do {
-    iVar11 = *piVar12;
+    iVar2 = *piVar12;
     uVar13 = uVar13 + 1;
     piVar12 = piVar12 + 0x13;
-    bVar2 = (bool)(bVar2 | iVar11 != 0);
+    bVar3 = (bool)(bVar3 | iVar2 != 0);
   } while (uVar13 < 3);
-  if (!bVar2) {
+  if (!bVar3) {
     return;
   }
   if (param_2 == 0) {
-    uVar5 = (*pcVar4)(0x1e8e);
-    uVar3 = _DAT_00342188;
+    uVar6 = (*pcVar5)(0x1e8e);
+    uVar4 = _DAT_00342188;
     UiElem_GetRect(iVar1,auStack_40,param_1[0x3b]);
-    uStack_2c = uVar3;
-    UiText_DrawById(auStack_40,uVar5);
-LAB_002dc0cc:
-    iVar11 = param_1[0x39];
+    uStack_2c = uVar4;
+    UiText_DrawById(auStack_40,uVar6);
   }
   else {
-    if ((param_2 == 1) || (param_2 == 2)) {
-      uVar7 = (*pcVar4)(0x1e8d);
-      uVar8 = (*pcVar4)(*(undefined4 *)((uint)param_2 * 4 + 0x342130));
-      uVar9 = (*pcVar4)(*(undefined4 *)(param_3 * 4 + 0x342150));
-      PwInput_DrawNameShort
-                (iVar1,param_1[0x3b],*(undefined4 *)(&DAT_00342188 + (uint)param_2 * 4),uVar7,uVar8,
-                 uVar9);
-      goto LAB_002dc0cc;
+    if ((param_2 != 1) && (param_2 != 2)) {
+      uVar13 = param_1[0x39];
+      goto LAB_002dc0d0;
     }
-    iVar11 = param_1[0x39];
+    uVar8 = (*pcVar5)(0x1e8d);
+    uVar9 = (*pcVar5)(*(undefined4 *)((uint)param_2 * 4 + 0x342130));
+    uVar10 = (*pcVar5)(*(undefined4 *)(param_3 * 4 + 0x342150));
+    PwInput_DrawNameShort
+              (iVar1,param_1[0x3b],*(undefined4 *)(&DAT_00342188 + (uint)param_2 * 4),uVar8,uVar9,
+               uVar10);
   }
-  switch(iVar11) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-  case 5:
-  case 6:
-  case 7:
-    uVar10 = (*pcVar4)(0x1ea4);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 4:
-    if (param_2 == 1) {
-      uVar10 = (*pcVar4)(0x1ea2);
-      UiElem_GetRect(iVar1,auStack_c0,param_1[0x3a]);
-      UiText_DrawById(auStack_c0,uVar10);
+  uVar13 = param_1[0x39];
+LAB_002dc0d0:
+  if (uVar13 < 0x26) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar13) {
+    default:
+      uVar11 = (*pcVar5)(0x1ea4);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 4:
+      if (param_2 == 1) {
+        uVar11 = (*pcVar5)(0x1ea2);
+        UiElem_GetRect(iVar1,auStack_c0,param_1[0x3a]);
+        UiText_DrawById(auStack_c0,uVar11);
+      }
+      else if (param_2 == 2) {
+        uVar11 = (*pcVar5)(0x1ea3);
+        UiElem_GetRect(iVar1,auStack_80,param_1[0x3a]);
+        UiText_DrawById(auStack_80,uVar11);
+      }
+      break;
+    case 8:
+      uVar11 = (*pcVar5)(0x1ea5);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 9:
+      uVar11 = (*pcVar5)(0x1ea6);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      break;
+    case 10:
+      if ((param_2 == 1) && (param_3 - 4 < 2)) {
+        uVar11 = (*pcVar5)(0x1ea8);
+        PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      }
+      else if ((param_2 == 1) && (param_3 != 0)) {
+        uVar11 = (*pcVar5)(0x1ea9);
+        PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,
+                         *(undefined4 *)(&DAT_00342140 + (param_3 - 1) * 4),iVar14);
+      }
+      else {
+        uVar11 = (*pcVar5)(0x1ea7);
+        PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      }
+      break;
+    case 0xb:
+      uVar11 = (*pcVar5)(0x1eaa);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      break;
+    case 0xc:
+      break;
+    case 0xd:
+      uVar11 = (*pcVar5)(0x1eab);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0xe:
+      uVar11 = (*pcVar5)(0x1ead);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14,uVar7);
+      break;
+    case 0xf:
+      uVar11 = (*pcVar5)(0x1eae);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x10:
+      uVar11 = (*pcVar5)(0x1eb0);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x11:
+      uVar11 = (*pcVar5)(0x1eb2);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x12:
+      uVar11 = (*pcVar5)(0x1eb4);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x13:
+      uVar11 = (*pcVar5)(0x1eb6);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x14:
+      uVar11 = (*pcVar5)(0x1eb8);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x15:
+      uVar11 = (*pcVar5)(0x1eba);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      break;
+    case 0x16:
+      uVar11 = (*pcVar5)(0x1ebb);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      break;
+    case 0x17:
+      uVar11 = (*pcVar5)(0x1ebc);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x18:
+      uVar11 = (*pcVar5)(0x1ebe);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x19:
+      uVar11 = (*pcVar5)(0x1ec1);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x1a:
+      uVar11 = (*pcVar5)(0x1ec3);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x1b:
+      uVar11 = (*pcVar5)(0x1ec5);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
+      break;
+    case 0x1c:
+      uVar11 = (*pcVar5)(0x1ec7);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,0x14,uVar7);
+      break;
+    case 0x1d:
+    case 0x1e:
+      uVar8 = (*pcVar5)(0x1ec8);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7);
+      break;
+    case 0x1f:
+      uVar8 = (*pcVar5)(0x1ec9);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7,uVar7);
+      break;
+    case 0x20:
+      uVar8 = (*pcVar5)(0x1eca);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar8,iVar14,uVar11,uVar7,uVar7);
+      break;
+    case 0x21:
+      uVar11 = (*pcVar5)(0x1ecb);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
+      break;
+    case 0x22:
+      uVar11 = (*pcVar5)(0x1ecc);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14,uVar7);
+      break;
+    case 0x23:
+      uVar11 = (*pcVar5)(0x1ece);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
+      break;
+    case 0x24:
+      uVar11 = (*pcVar5)(0x1ecf);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,uVar7,iVar14);
+      break;
+    case 0x25:
+      uVar11 = (*pcVar5)(0x1ecd);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar11,iVar14);
     }
-    else if (param_2 == 2) {
-      uVar10 = (*pcVar4)(0x1ea3);
-      UiElem_GetRect(iVar1,auStack_80,param_1[0x3a]);
-      UiText_DrawById(auStack_80,uVar10);
-    }
-    break;
-  case 8:
-    uVar10 = (*pcVar4)(0x1ea5);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 9:
-    uVar10 = (*pcVar4)(0x1ea6);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
-    break;
-  case 10:
-    if ((param_2 == 1) && (param_3 - 4 < 2)) {
-      uVar10 = (*pcVar4)(0x1ea8);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    }
-    else if ((param_2 == 1) && (param_3 != 0)) {
-      uVar10 = (*pcVar4)(0x1ea9);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,
-                       *(undefined4 *)(&DAT_00342140 + (param_3 - 1) * 4),iVar14);
-    }
-    else {
-      uVar10 = (*pcVar4)(0x1ea7);
-      PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    }
-    break;
-  case 0xb:
-    uVar10 = (*pcVar4)(0x1eaa);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
-    break;
-  case 0xc:
-    break;
-  case 0xd:
-    uVar10 = (*pcVar4)(0x1eab);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0xe:
-    uVar10 = (*pcVar4)(0x1ead);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14,uVar6);
-    break;
-  case 0xf:
-    uVar10 = (*pcVar4)(0x1eae);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x10:
-    uVar10 = (*pcVar4)(0x1eb0);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x11:
-    uVar10 = (*pcVar4)(0x1eb2);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x12:
-    uVar10 = (*pcVar4)(0x1eb4);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x13:
-    uVar10 = (*pcVar4)(0x1eb6);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x14:
-    uVar10 = (*pcVar4)(0x1eb8);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x15:
-    uVar10 = (*pcVar4)(0x1eba);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
-    break;
-  case 0x16:
-    uVar10 = (*pcVar4)(0x1ebb);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
-    break;
-  case 0x17:
-    uVar10 = (*pcVar4)(0x1ebc);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x18:
-    uVar10 = (*pcVar4)(0x1ebe);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x19:
-    uVar10 = (*pcVar4)(0x1ec1);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x1a:
-    uVar10 = (*pcVar4)(0x1ec3);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x1b:
-    uVar10 = (*pcVar4)(0x1ec5);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
-    break;
-  case 0x1c:
-    uVar10 = (*pcVar4)(0x1ec7);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,0x14,uVar6);
-    break;
-  case 0x1d:
-  case 0x1e:
-    uVar7 = (*pcVar4)(0x1ec8);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6);
-    break;
-  case 0x1f:
-    uVar7 = (*pcVar4)(0x1ec9);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6,uVar6);
-    break;
-  case 0x20:
-    uVar7 = (*pcVar4)(0x1eca);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6,uVar6);
-    break;
-  case 0x21:
-    uVar10 = (*pcVar4)(0x1ecb);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
-    break;
-  case 0x22:
-    uVar10 = (*pcVar4)(0x1ecc);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
-    break;
-  case 0x23:
-    uVar10 = (*pcVar4)(0x1ece);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
-    break;
-  case 0x24:
-    uVar10 = (*pcVar4)(0x1ecf);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
-    break;
-  case 0x25:
-    uVar10 = (*pcVar4)(0x1ecd);
-    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
-    break;
-  default:
-    goto switchD_002dc0f0_default;
   }
-switchD_002dc0f0_default:
   return;
 }
 

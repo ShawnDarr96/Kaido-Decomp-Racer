@@ -21,7 +21,7 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
   int *piVar11;
   float fVar12;
   undefined1 auStack_50 [2];
-  undefined1 uStack_4e;
+  byte bStack_4e;
   
   if ((param_1[1] & 1) == 0) {
     return;
@@ -53,7 +53,7 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
     uVar1 = *(undefined1 *)(param_1 + 3);
     piVar11 = (int *)*param_1;
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_step_sub_0018fa50(uVar7);
+    lVar8 = SndMgr_IsChannelBusy(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
@@ -81,32 +81,33 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
     param_1[4] = iVar6;
   }
   GameState_LoadHeader(auStack_50);
-  switch(uStack_4e) {
-  case 1:
-  case 4:
-    param_1[4] = (int)param_1[4] / 3;
-    break;
-  case 2:
-  case 5:
-    iVar6 = param_1[4];
-    if (iVar6 < 0) {
-      iVar6 = iVar6 + 1;
+  if (bStack_4e < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bStack_4e) {
+    case 1:
+      param_1[4] = (int)param_1[4] / 3;
+      break;
+    case 2:
+      iVar6 = param_1[4];
+      if (iVar6 < 0) {
+        iVar6 = iVar6 + 1;
+      }
+      param_1[4] = iVar6 >> 1;
+      break;
+    case 3:
+      iVar6 = param_1[4];
+      if (iVar6 < 0) {
+        iVar6 = iVar6 + 1;
+      }
+      param_1[4] = iVar6 >> 1;
     }
-    param_1[4] = iVar6 >> 1;
-    break;
-  case 3:
-    iVar6 = param_1[4];
-    if (iVar6 < 0) {
-      iVar6 = iVar6 + 1;
-    }
-    param_1[4] = iVar6 >> 1;
   }
   if ((param_1[1] & 2) != 0) {
     uVar2 = *(ushort *)(param_1 + 4);
     uVar1 = *(undefined1 *)(param_1 + 3);
     piVar11 = (int *)*param_1;
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_step_sub_0018fa50(uVar7);
+    lVar8 = SndMgr_IsChannelBusy(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
@@ -123,14 +124,14 @@ void CarSnd_UpdateTurbo(undefined4 *param_1,undefined8 param_2)
   uVar2 = *(ushort *)(param_1 + 4);
   uVar1 = *(undefined1 *)(param_1 + 3);
   uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-  lVar8 = snd_step_sub_0018fa50(uVar7);
+  lVar8 = SndMgr_IsChannelBusy(uVar7);
   if (lVar8 == 0) {
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
     uVar9 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
     uVar10 = (**(code **)(*piVar11 + 0x10))(piVar11);
     (**(code **)(*(int *)uVar7 + 0x24))(uVar7,uVar1,uVar9,0x7f,uVar10,0x40,0);
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_step_sub_0018fa50(uVar7);
+    lVar8 = SndMgr_IsChannelBusy(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar1);
@@ -208,14 +209,14 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             piVar12 = (int *)*param_1;
             uVar1 = *(ushort *)(param_1 + 2);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_step_sub_0018fa50(uVar7);
+            lVar8 = SndMgr_IsChannelBusy(uVar7);
             if (lVar8 == 0) {
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
               uVar9 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
               uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
               (**(code **)(*(int *)uVar7 + 0x24))(uVar7,7,uVar9,0x7f,uVar10,0x40,0);
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-              lVar8 = snd_step_sub_0018fa50(uVar7);
+              lVar8 = SndMgr_IsChannelBusy(uVar7);
               if (lVar8 == 0) {
                 uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
                 uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
@@ -231,7 +232,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             piVar12 = (int *)*param_1;
             uVar1 = *(ushort *)(param_1 + 2);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_step_sub_0018fa50(uVar7);
+            lVar8 = SndMgr_IsChannelBusy(uVar7);
             if (lVar8 == 0) {
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
               uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
@@ -258,7 +259,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             piVar12 = (int *)*param_1;
             uVar1 = *(ushort *)(param_1 + 2);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_step_sub_0018fa50(uVar7);
+            lVar8 = SndMgr_IsChannelBusy(uVar7);
             if (lVar8 == 0) {
               uVar11 = ((int)fVar13 & 0xffffU) + 3;
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
@@ -266,7 +267,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
               uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
               (**(code **)(*(int *)uVar7 + 0x24))(uVar7,uVar11 & 0xff,uVar9,0x7f,uVar10,0x40,0);
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-              lVar8 = snd_step_sub_0018fa50(uVar7);
+              lVar8 = SndMgr_IsChannelBusy(uVar7);
               if (lVar8 == 0) {
                 uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
                 uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,uVar11 & 0xff);
@@ -309,7 +310,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
           piVar12 = (int *)*param_1;
           uVar1 = *(ushort *)(param_1 + 2);
           uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-          lVar8 = snd_step_sub_0018fa50(uVar7);
+          lVar8 = SndMgr_IsChannelBusy(uVar7);
           if (lVar8 == 0) {
             uVar11 = ((int)fVar14 & 0xffffU) + 3;
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
@@ -317,7 +318,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
             uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
             (**(code **)(*(int *)uVar7 + 0x24))(uVar7,uVar11 & 0xff,uVar9,0x7f,uVar10,0x40,0);
             uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            lVar8 = snd_step_sub_0018fa50(uVar7);
+            lVar8 = SndMgr_IsChannelBusy(uVar7);
             if (lVar8 == 0) {
               uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
               uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,uVar11 & 0xff);
@@ -341,7 +342,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
         uVar1 = *(ushort *)(param_1 + 2);
         piVar12 = (int *)*param_1;
         uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        lVar8 = snd_step_sub_0018fa50(uVar7);
+        lVar8 = SndMgr_IsChannelBusy(uVar7);
         if (lVar8 == 0) {
           uVar7 = (**(code **)(*piVar12 + 0x14))(piVar12);
           uVar4 = (**(code **)(*piVar12 + 0xc))(piVar12,7);
@@ -358,7 +359,7 @@ void CarSnd_UpdateTireSqueal(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x001950f0  size 0x1f8
-void carsnd_leaf_sub_001950f0(undefined4 *param_1)
+void maybe_CarSnd_UpdatePitch(undefined4 *param_1)
 
 {
   undefined1 uVar1;
@@ -437,15 +438,14 @@ void carsnd_leaf_sub_001950f0(undefined4 *param_1)
 }
 
 // 0x001952f0  size 0x50
-undefined4 carsnd_step_sub_001952f0(int param_1)
+undefined4 CarSnd_IsEnginePlaying(int param_1)
 
 {
   undefined4 uVar1;
   long lVar2;
   
-  lVar2 = snd_step_sub_0018fa50(*(undefined4 *)(param_1 + 0xc));
-  if ((lVar2 == 0) && (lVar2 = snd_step_sub_0018fa50(*(undefined4 *)(param_1 + 0x54)), lVar2 == 0))
-  {
+  lVar2 = SndMgr_IsChannelBusy(*(undefined4 *)(param_1 + 0xc));
+  if ((lVar2 == 0) && (lVar2 = SndMgr_IsChannelBusy(*(undefined4 *)(param_1 + 0x54)), lVar2 == 0)) {
     *(undefined4 *)(param_1 + 0x48) = 0;
     uVar1 = 1;
   }
@@ -456,7 +456,7 @@ undefined4 carsnd_step_sub_001952f0(int param_1)
 }
 
 // 0x00195340  size 0x104
-void carsnd_step_sub_00195340(int param_1,int param_2,int param_3)
+void CarSnd_StartEngine(int param_1,int param_2,int param_3)
 
 {
   uint uVar1;
@@ -481,10 +481,10 @@ void carsnd_step_sub_00195340(int param_1,int param_2,int param_3)
     *(int *)(param_1 + 0x40) = param_2;
     *(int *)(param_1 + 0x44) = param_3;
     *(undefined4 *)(param_1 + 0x48) = 1;
-    snd_step_sub_0018faf0
+    SndMgr_PlayStreamSlot
               (*(undefined4 *)(param_1 + 0xc),**(undefined4 **)(param_1 + 0x10),
                (*(undefined4 **)(param_1 + 0x10))[1],0,0);
-    snd_step_sub_0018faf0
+    SndMgr_PlayStreamSlot
               (*(undefined4 *)(param_1 + 0x54),*(undefined4 *)(*(int *)(param_1 + 0x10) + 8),
                *(undefined4 *)(*(int *)(param_1 + 0x10) + 0xc),0,0);
   }
@@ -525,14 +525,14 @@ void CarSnd_UpdateCollision(undefined4 *param_1,int param_2)
       piVar11 = (int *)*param_1;
       sVar1 = *(short *)(param_1 + 0x13);
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar8 = snd_step_sub_0018fa50(uVar7);
+      lVar8 = SndMgr_IsChannelBusy(uVar7);
       if (lVar8 == 0) {
         uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar5 = (**(code **)(*piVar11 + 0xc))(piVar11,10);
         uVar6 = (**(code **)(*piVar11 + 0x10))(piVar11);
         (**(code **)(*(int *)uVar7 + 0x24))(uVar7,10,uVar5,0x7f,uVar6,0x40,0);
         uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-        lVar8 = snd_step_sub_0018fa50(uVar7);
+        lVar8 = SndMgr_IsChannelBusy(uVar7);
         if (lVar8 == 0) {
           uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
           uVar2 = (**(code **)(*piVar11 + 0xc))(piVar11,10);
@@ -575,7 +575,7 @@ LAB_00195670:
     piVar11 = (int *)*param_1;
     sVar1 = *(short *)(param_1 + 0x13);
     uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar8 = snd_step_sub_0018fa50(uVar7);
+    lVar8 = SndMgr_IsChannelBusy(uVar7);
     if (lVar8 == 0) {
       uVar7 = (**(code **)(*piVar11 + 0x14))(piVar11);
       uVar2 = (**(code **)(*piVar11 + 0xc))(piVar11,10);
@@ -600,7 +600,7 @@ undefined4 Render_GetField_c(int param_1)
 }
 
 // 0x00195890  size 0x158
-void carsnd_leaf_sub_00195890(undefined8 param_1)
+void maybe_CarSnd_UpdateVolume(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -705,7 +705,7 @@ void CarSnd_UpdateWind(undefined8 param_1,undefined8 param_2)
         uVar4 = 0x7f;
       }
       uVar2 = (**(code **)(*(int *)(iVar6 + 8) + 0x14))(param_1);
-      carsnd_step_sub_001966c0(fVar10,iVar6 + 0x14,*(undefined4 *)(iVar6 + 0x10),uVar2);
+      CarSnd_SetupMidiChannel(fVar10,iVar6 + 0x14,*(undefined4 *)(iVar6 + 0x10),uVar2);
       SndCh_SetVolumeCc(uVar2,*(undefined1 *)(iVar6 + 0x14),*(undefined1 *)(iVar6 + 0x14),0x40);
       SndCh_ProgramChange(uVar2,*(undefined1 *)(iVar6 + 0x14),*(undefined1 *)(iVar6 + 0x14),uVar4);
     }
@@ -764,7 +764,7 @@ void CarSnd_UpdateWind(undefined8 param_1,undefined8 param_2)
         uVar4 = 0x7f;
       }
       uVar2 = (**(code **)(*(int *)(iVar6 + 8) + 0x14))(param_1);
-      carsnd_step_sub_001966c0(fVar10,iVar6 + 0x25,*(undefined4 *)(iVar6 + 0x10),uVar2);
+      CarSnd_SetupMidiChannel(fVar10,iVar6 + 0x25,*(undefined4 *)(iVar6 + 0x10),uVar2);
       SndCh_SetVolumeCc(uVar2,*(undefined1 *)(iVar6 + 0x25),*(undefined1 *)(iVar6 + 0x25),0x40);
       SndCh_ProgramChange(uVar2,*(undefined1 *)(iVar6 + 0x25),*(undefined1 *)(iVar6 + 0x25),uVar4);
     }
@@ -773,14 +773,14 @@ void CarSnd_UpdateWind(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00195f70  size 0x48
-bool carsnd_step_sub_00195f70(int param_1)
+bool CarSnd_IsLoopPlaying(int param_1)
 
 {
   undefined8 uVar1;
   long lVar2;
   
   uVar1 = (**(code **)(*(int *)(param_1 + 8) + 0x14))();
-  lVar2 = snd_step_sub_0018fa50(uVar1);
+  lVar2 = SndMgr_IsChannelBusy(uVar1);
   if (lVar2 == 0) {
     *(undefined4 *)(param_1 + 0x48) = 0;
   }
@@ -788,7 +788,7 @@ bool carsnd_step_sub_00195f70(int param_1)
 }
 
 // 0x00195fc0  size 0xf0
-void carsnd_step_sub_00195fc0(int param_1,int param_2,int param_3)
+void CarSnd_StartLoop(int param_1,int param_2,int param_3)
 
 {
   undefined4 *puVar1;
@@ -817,7 +817,7 @@ void carsnd_step_sub_00195fc0(int param_1,int param_2,int param_3)
     *(undefined4 *)(param_1 + 0x48) = 1;
     puVar1 = *(undefined4 **)(param_1 + 0x10);
     uVar2 = (**(code **)(*(int *)(param_1 + 8) + 0x14))();
-    snd_step_sub_0018faf0(uVar2,*puVar1,puVar1[1],0,0);
+    SndMgr_PlayStreamSlot(uVar2,*puVar1,puVar1[1],0,0);
   }
   return;
 }
@@ -854,14 +854,14 @@ void CarSnd_UpdateGearShift(undefined4 *param_1,int param_2)
     uVar1 = DAT_0036e80c;
     piVar9 = (int *)*param_1;
     uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
-    lVar6 = snd_step_sub_0018fa50(uVar5);
+    lVar6 = SndMgr_IsChannelBusy(uVar5);
     if (lVar6 == 0) {
       uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
       uVar7 = (**(code **)(*piVar9 + 0xc))(piVar9,0);
       uVar8 = (**(code **)(*piVar9 + 0x10))(piVar9);
       (**(code **)(*(int *)uVar5 + 0x24))(uVar5,0,uVar7,0x7f,uVar8,0x40,0);
       uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
-      lVar6 = snd_step_sub_0018fa50(uVar5);
+      lVar6 = SndMgr_IsChannelBusy(uVar5);
       if (lVar6 != 0) goto LAB_001961a0;
       uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
       uVar2 = (**(code **)(*piVar9 + 0xc))(piVar9,0);
@@ -883,7 +883,7 @@ LAB_00196124:
   uVar1 = DAT_0036e80c;
   piVar9 = (int *)*param_1;
   uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
-  lVar6 = snd_step_sub_0018fa50(uVar5);
+  lVar6 = SndMgr_IsChannelBusy(uVar5);
   if (lVar6 == 0) {
     uVar5 = (**(code **)(*piVar9 + 0x14))(piVar9);
     uVar2 = (**(code **)(*piVar9 + 0xc))(piVar9,0);
@@ -897,7 +897,7 @@ LAB_00196124:
 }
 
 // 0x001963b0  size 0xa8
-void carsnd_step_sub_001963b0(undefined8 param_1,undefined8 param_2)
+void maybe_CarSnd_StopAll(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -913,7 +913,7 @@ void carsnd_step_sub_001963b0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00196460  size 0x2c
-undefined4 carsnd_step_sub_00196460(void)
+undefined4 maybe_CarSnd_CanPlay(void)
 
 {
   long lVar1;
@@ -928,7 +928,7 @@ undefined4 carsnd_step_sub_00196460(void)
 }
 
 // 0x00196490  size 0x28
-void carsnd_step_sub_00196490(void)
+void maybe_CarSnd_GetChannel(void)
 
 {
   undefined8 uVar1;
@@ -939,7 +939,7 @@ void carsnd_step_sub_00196490(void)
 }
 
 // 0x001964c0  size 0x3c
-char carsnd_step_sub_001964c0(int param_1)
+char maybe_CarSnd_PlayIfReady(int param_1)
 
 {
   char cVar1;
@@ -956,7 +956,7 @@ char carsnd_step_sub_001964c0(int param_1)
 }
 
 // 0x00196500  size 0xe4
-void carsnd_step_sub_00196500(undefined8 param_1,undefined8 param_2)
+void maybe_CarSnd_RestartIfIdle(undefined8 param_1,undefined8 param_2)
 
 {
   undefined8 uVar1;
@@ -967,7 +967,7 @@ void carsnd_step_sub_00196500(undefined8 param_1,undefined8 param_2)
   
   piVar5 = (int *)param_1;
   uVar1 = (**(code **)(*piVar5 + 0x14))();
-  lVar2 = snd_step_sub_0018fa50(uVar1);
+  lVar2 = SndMgr_IsChannelBusy(uVar1);
   if (lVar2 == 0) {
     uVar1 = SndMgr_GetInstance();
     uVar3 = SndMgr_GetChannelB(uVar1,1);
@@ -988,7 +988,7 @@ undefined4 Render_Nop_8(void)
 }
 
 // 0x00196600  size 0x40
-void carsnd_step_sub_00196600(void)
+void maybe_CarSnd_PlayIfNotLoading(void)
 
 {
   long lVar1;
@@ -1033,7 +1033,7 @@ char render_leaf_sub_00196640(int param_1,char param_2)
 /* WARNING: Removing unreachable block (ram,0x00196af0) */
 /* WARNING: Removing unreachable block (ram,0x00196bec) */
 
-void carsnd_step_sub_001966c0(float param_1,undefined1 *param_2,long param_3,undefined8 param_4)
+void CarSnd_SetupMidiChannel(float param_1,undefined1 *param_2,long param_3,undefined8 param_4)
 
 {
   undefined1 uVar1;
@@ -1053,7 +1053,7 @@ void carsnd_step_sub_001966c0(float param_1,undefined1 *param_2,long param_3,und
     uVar1 = *param_2;
     puVar7 = (uint *)((int)param_3 + 0x18);
     pcVar9 = param_2 + 1;
-    snd_step_sub_0018fb90(param_4,uVar1,uVar1);
+    MidiCh_SetProgram(param_4,uVar1,uVar1);
     if (DAT_0036e808 < param_1) {
       param_1 = DAT_0036e808;
     }
@@ -1082,12 +1082,12 @@ void carsnd_step_sub_001966c0(float param_1,undefined1 *param_2,long param_3,und
           cVar10 = (char)(int)fVar12;
           if (*pcVar9 == '\0') {
             if (uVar11 == 0) goto LAB_0019685c;
-            snd_step_sub_0018ff10(param_4,*param_2,uVar1,0x7f,uVar6 & 0xff,0x40,0);
+            MidiCh_SetReverb(param_4,*param_2,uVar1,0x7f,uVar6 & 0xff,0x40,0);
             *pcVar9 = cVar10;
           }
           else {
             if (uVar11 == 0) {
-              snd_step_sub_0018fe50(param_4,*param_2,uVar1,uVar6 & 0xff);
+              MidiCh_SetBank(param_4,*param_2,uVar1,uVar6 & 0xff);
             }
 LAB_0019685c:
             *pcVar9 = cVar10;
@@ -1109,12 +1109,12 @@ LAB_0019685c:
         cVar10 = (char)(int)fVar12;
         if (*pcVar9 == '\0') {
           if (uVar6 == 0) goto LAB_00196978;
-          snd_step_sub_0018ff10(param_4,*param_2,uVar1,0x7f,(char)*puVar7,0x40,0);
+          MidiCh_SetReverb(param_4,*param_2,uVar1,0x7f,(char)*puVar7,0x40,0);
           *pcVar9 = cVar10;
         }
         else {
           if (uVar6 == 0) {
-            snd_step_sub_0018fe50(param_4,*param_2,uVar1,(char)*puVar7);
+            MidiCh_SetBank(param_4,*param_2,uVar1,(char)*puVar7);
           }
 LAB_00196978:
           *pcVar9 = cVar10;
@@ -1198,7 +1198,7 @@ void View_ResetDirty(int param_1)
 int View_SetupForCourse(undefined8 param_1,undefined1 param_2,uint param_3)
 
 {
-  char cVar1;
+  byte bVar1;
   float fVar2;
   int iVar3;
   int iVar4;
@@ -1296,313 +1296,307 @@ int View_SetupForCourse(undefined8 param_1,undefined1 param_2,uint param_3)
     uStack_c0 = uVar8 + iVar3;
     uVar5 = uVar8 + iVar3 + iVar4;
   }
-  cVar1 = *(char *)(iVar7 + 0x580);
-  switch(cVar1) {
-  case '\0':
-  case '\x01':
-  case '\x02':
-  case '\a':
-    if (cVar1 == '\a') {
-      uStack_60 = uRam0038803c;
-    }
-    else {
-      uStack_60 = uRam00388034;
-    }
-    iStack_5c = iRam00388044;
-    uStack_58 = uRam0038803c;
-    iStack_54 = iRam00388048;
-    uStack_50 = uRam0038804c;
-    uStack_4c = uRam00388050;
-    if (*(char *)(iVar7 + 0x580) == '\a') {
-      uStack_48 = 0;
-    }
-    else {
-      uStack_48 = 8;
-    }
-    uStack_40 = 0x3f800000;
-    fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
-    if (iRam00388048 == 0x30) {
-      uStack_38 = 0x41a00000;
-      uStack_34 = 0x4b742400;
-    }
-    else {
-      uStack_38 = 0x40000000;
-      uStack_34 = 0x477de800;
-    }
-    uStack_28 = 0x8011100f;
-    uStack_30 = 0;
-    uStack_2c = 1;
-    uStack_24 = 1;
-    uStack_20 = 0;
-    uStack_18 = 0;
-    uStack_1c = 0xf1011;
-    fStack_10 = fRam00388094;
-    fStack_c = -(fRam00388090 / 2.0);
-    fStack_8 = -(fRam00388094 / 2.0);
-    fStack_14 = fRam00388090;
-    if (*(char *)(iVar7 + 0x580) == '\x01') {
-      unaff_s6_lo = 0;
-      unaff_s4_lo = uRam00388050 >> 1;
-      fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
-    }
-    else if (*(char *)(iVar7 + 0x580) == '\x02') {
-      fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
-      unaff_s6_lo = uRam00388050 >> 1;
-      unaff_s4_lo = unaff_s6_lo;
-    }
-    else {
-      unaff_s6_lo = 0;
-      fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
-      unaff_s4_lo = uRam00388050;
-    }
-    uStack_d0 = 0;
-    unaff_f22 = 0x3f000000;
-    in_f21 = 0x43fa0000;
-    unaff_s5_lo = uRam0038804c;
-    goto LAB_00197c3c;
-  case '\x03':
-  case '\x04':
-    if (cVar1 == '\x04') {
-      iStack_54 = 0x3a;
-      fStack_44 = 32.0;
-      iStack_5c = 0;
-      uStack_60 = uStack_b0;
-      uStack_58 = uVar6;
-    }
-    else {
-      iStack_5c = 2;
-      iStack_54 = 0x32;
-      uStack_60 = uStack_90;
-      uStack_58 = uStack_a0;
-      fStack_44 = ((((float)uRam0038804c * 1.9209821) / 2.0) / (float)uRam0038804c) * 128.0;
-    }
-    uStack_30 = (uint)(cVar1 == '\x04');
-    uStack_38 = 0x40000000;
-    uStack_48 = 0;
-    uStack_50 = 0x80;
-    uStack_34 = 0x476a6000;
-    uStack_4c = 0x80;
-    if (*(char *)(iVar7 + 0x580) == '\x04') {
-      fStack_3c = fVar2;
-    }
-    else {
-      fStack_3c = fVar2 * (((438.0 / (float)uRam0038804c) / 0.75) / 0.75);
-    }
-    uStack_40 = 0x3f800000;
-    uStack_28 = 0;
-    unaff_s4_lo = 0x80;
-    uStack_2c = 1;
-    unaff_s6_lo = 0;
-    uStack_24 = 1;
-    uStack_20 = 0;
-    fStack_14 = 1.0;
-    fStack_10 = 1.0;
-    uStack_18 = 0;
-    fStack_c = -0.5;
-    fStack_8 = -0.5;
-    uStack_1c = 0;
-    uStack_d0 = 0;
-    unaff_s5_lo = unaff_s4_lo;
-    if (*(char *)(iVar7 + 0x580) == '\x04') {
-      unaff_f22 = 0x3dcccccd;
-      in_f21 = 0x43480000;
-    }
-    else {
-      unaff_f22 = 0x3f000000;
-      in_f21 = 0x43480000;
-    }
-    break;
-  case '\x05':
-    unaff_s4_lo = 0x100;
-    uStack_28 = 0;
-    unaff_s6_lo = 0;
-    fStack_c = -0.5;
-    uStack_60 = uStack_b0;
-    fStack_8 = -0.5;
-    iStack_54 = 0x3a;
-    fStack_44 = 64.0;
-    iStack_5c = 0;
-    uStack_38 = 0x40000000;
-    uStack_50 = 0x100;
-    uStack_4c = 0x100;
-    uStack_34 = 0x476a6000;
-    uStack_48 = 0;
-    uStack_30 = 1;
-    uStack_2c = 1;
-    uStack_24 = 1;
-    uStack_40 = 0x3f800000;
-    uStack_d0 = 0;
-    unaff_f22 = 0x3dcccccd;
-    uStack_20 = 0;
-    uStack_18 = 0;
-    fStack_14 = 1.0;
-    in_f21 = 0x43480000;
-    fStack_10 = 1.0;
-    uStack_1c = 0;
-    uStack_58 = uVar9;
+  bVar1 = *(byte *)(iVar7 + 0x580);
+  if (bVar1 < 0xe) {
+    uStack_60 = uVar8;
+    uStack_58 = uVar6;
     fStack_3c = fVar2;
-    unaff_s5_lo = unaff_s4_lo;
-    break;
-  case '\x06':
-    uStack_48 = 0;
-    uStack_58 = uStack_80;
-    iStack_5c = iRam00388044;
-    uStack_50 = 0x100;
-    uStack_4c = 0x40;
-    iStack_54 = iRam00388048;
-    uStack_40 = 0x3f800000;
-    fStack_44 = ((((float)uRam0038804c * 1.9209821) / 2.0) / (float)uRam0038804c) * 256.0;
-    if (iRam00388048 == 0x30) {
-      uStack_38 = 0x41a00000;
-      uStack_34 = 0x4b742400;
-    }
-    else {
-      uStack_38 = 0x40000000;
-      uStack_34 = 0x477de800;
-    }
-    uStack_30 = 1;
-    uStack_2c = 1;
-    unaff_s6_lo = 0;
-    uStack_28 = 0x373839;
-    uStack_24 = 1;
-    uStack_20 = 1;
-    unaff_s4_lo = 0x40;
-    uStack_18 = 0;
-    fStack_14 = 1.0;
-    fStack_10 = 1.0;
-    uStack_1c = 0x393837;
-    fStack_c = -0.5;
-    fStack_8 = -0.5;
-    unaff_f22 = 0x3f000000;
-    in_f21 = 0x43160000;
-    uStack_d0 = 0;
-    uStack_60 = uVar8;
-    fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
-    unaff_s5_lo = 0x100;
-    break;
-  case '\b':
-  case '\t':
-  case '\n':
-  case '\v':
-    if (cVar1 == '\t') {
-      iStack_5c = iRam00388048;
-      uStack_60 = uVar6;
-    }
-    else {
-      iStack_5c = iRam00388044;
-      uStack_60 = uStack_b0;
-    }
-    uStack_48 = 0;
-    uStack_50 = 0x40;
-    uStack_4c = 0x40;
-    iStack_54 = iRam00388048;
-    uStack_40 = 0x3f800000;
-    fStack_44 = ((((float)uRam0038804c * 1.9209821) / 2.0) / (float)uRam0038804c) * 64.0;
-    fStack_3c = (438.0 / (float)uRam0038804c) / 0.75;
-    if (iRam00388048 == 0x30) {
-      uStack_38 = 0x41a00000;
-      uStack_34 = 0x4b742400;
-    }
-    else {
-      uStack_38 = 0x40000000;
-      uStack_34 = 0x477de800;
-    }
-    uStack_28 = 0;
-    unaff_s5_lo = 0x40;
-    uStack_2c = 1;
-    uStack_24 = 1;
-    unaff_f22 = 0x3f000000;
-    uStack_30 = 0;
-    fStack_14 = 1.0;
-    unaff_s6_lo = 0;
-    fStack_10 = 1.0;
-    fStack_c = -0.5;
-    fStack_8 = -0.5;
-    uStack_20 = 0;
-    uStack_18 = 0;
-    in_f21 = 0x43fa0000;
-    uStack_1c = 0;
-    uStack_d0 = 0;
-    if (*(char *)(iVar7 + 0x580) == '\n') {
-      unaff_s4_lo = 0x20;
-      uStack_58 = uVar6;
-    }
-    else {
-      uStack_58 = uVar6;
-      unaff_s4_lo = unaff_s5_lo;
-      if (*(char *)(iVar7 + 0x580) == '\v') {
-        unaff_s4_lo = 0x20;
-        unaff_s6_lo = unaff_s4_lo;
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    default:
+      if (bVar1 == 7) {
+        uStack_60 = uRam0038803c;
       }
-    }
-    break;
-  case '\f':
-    uStack_50 = 0x140;
-    uStack_40 = 0x3f800000;
-    iStack_54 = 0x3a;
-    iStack_5c = 0;
-    uStack_58 = uStack_c0;
-    uStack_4c = 0xe0;
-    uStack_48 = 0;
-    uStack_38 = 0x40000000;
-    fStack_14 = 1.0;
-    fStack_10 = 1.0;
-    uStack_34 = 0x477de800;
-    fStack_c = -0.5;
-    uStack_28 = 0;
-    fStack_8 = -0.5;
-    uStack_30 = 0;
-    uStack_2c = 0;
-    uStack_24 = 0;
-    uStack_20 = 0;
-    uStack_18 = 0;
-    uStack_1c = 0;
-    uStack_d0 = 0;
-    unaff_f22 = 0x3f000000;
-    fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
-    in_f21 = 0x43fa0000;
-    uStack_60 = uVar8;
-    fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
-    unaff_s4_lo = 0xe0;
-    unaff_s5_lo = 0x140;
-    unaff_s6_lo = 0;
-    break;
-  case '\r':
-    uStack_48 = 8;
-    uStack_60 = uRam00388034;
-    iStack_5c = iRam00388044;
-    uStack_40 = 0x3f800000;
-    uStack_58 = uRam0038803c;
-    uStack_4c = uRam00388050;
-    iStack_54 = iRam00388048;
-    uStack_50 = uRam0038804c;
-    if (iRam00388048 == 0x30) {
-      uStack_38 = 0x41a00000;
-      uStack_34 = 0x4b742400;
-    }
-    else {
+      else {
+        uStack_60 = uRam00388034;
+      }
+      iStack_5c = iRam00388044;
+      uStack_58 = uRam0038803c;
+      iStack_54 = iRam00388048;
+      uStack_50 = uRam0038804c;
+      uStack_4c = uRam00388050;
+      if (*(char *)(iVar7 + 0x580) == '\a') {
+        uStack_48 = 0;
+      }
+      else {
+        uStack_48 = 8;
+      }
+      uStack_40 = 0x3f800000;
+      fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
+      if (iRam00388048 == 0x30) {
+        uStack_38 = 0x41a00000;
+        uStack_34 = 0x4b742400;
+      }
+      else {
+        uStack_38 = 0x40000000;
+        uStack_34 = 0x477de800;
+      }
+      uStack_28 = 0x8011100f;
+      uStack_30 = 0;
+      uStack_2c = 1;
+      uStack_24 = 1;
+      uStack_20 = 0;
+      uStack_18 = 0;
+      uStack_1c = 0xf1011;
+      fStack_10 = fRam00388094;
+      fStack_c = -(fRam00388090 / 2.0);
+      fStack_8 = -(fRam00388094 / 2.0);
+      fStack_14 = fRam00388090;
+      if (*(char *)(iVar7 + 0x580) == '\x01') {
+        unaff_s6_lo = 0;
+        unaff_s4_lo = uRam00388050 >> 1;
+        fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
+      }
+      else if (*(char *)(iVar7 + 0x580) == '\x02') {
+        fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
+        unaff_s6_lo = uRam00388050 >> 1;
+        unaff_s4_lo = unaff_s6_lo;
+      }
+      else {
+        unaff_s6_lo = 0;
+        fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
+        unaff_s4_lo = uRam00388050;
+      }
+      uStack_d0 = 0;
+      unaff_f22 = 0x3f000000;
+      in_f21 = 0x43fa0000;
+      unaff_s5_lo = uRam0038804c;
+      goto LAB_00197c3c;
+    case 3:
+    case 4:
+      if (bVar1 == 4) {
+        iStack_54 = 0x3a;
+        fStack_44 = 32.0;
+        iStack_5c = 0;
+        uStack_60 = uStack_b0;
+      }
+      else {
+        iStack_5c = 2;
+        iStack_54 = 0x32;
+        uStack_60 = uStack_90;
+        uStack_58 = uStack_a0;
+        fStack_44 = ((((float)uRam0038804c * 1.9209821) / 2.0) / (float)uRam0038804c) * 128.0;
+      }
+      uStack_30 = (uint)(bVar1 == 4);
       uStack_38 = 0x40000000;
+      uStack_48 = 0;
+      uStack_50 = 0x80;
+      uStack_34 = 0x476a6000;
+      uStack_4c = 0x80;
+      if (*(char *)(iVar7 + 0x580) != '\x04') {
+        fStack_3c = fVar2 * (((438.0 / (float)uRam0038804c) / 0.75) / 0.75);
+      }
+      uStack_40 = 0x3f800000;
+      uStack_28 = 0;
+      unaff_s4_lo = 0x80;
+      uStack_2c = 1;
+      unaff_s6_lo = 0;
+      uStack_24 = 1;
+      uStack_20 = 0;
+      fStack_14 = 1.0;
+      fStack_10 = 1.0;
+      uStack_18 = 0;
+      fStack_c = -0.5;
+      fStack_8 = -0.5;
+      uStack_1c = 0;
+      uStack_d0 = 0;
+      unaff_s5_lo = unaff_s4_lo;
+      if (*(char *)(iVar7 + 0x580) == '\x04') {
+        unaff_f22 = 0x3dcccccd;
+        in_f21 = 0x43480000;
+      }
+      else {
+        unaff_f22 = 0x3f000000;
+        in_f21 = 0x43480000;
+      }
+      break;
+    case 5:
+      unaff_s4_lo = 0x100;
+      uStack_28 = 0;
+      unaff_s6_lo = 0;
+      fStack_c = -0.5;
+      uStack_60 = uStack_b0;
+      fStack_8 = -0.5;
+      iStack_54 = 0x3a;
+      fStack_44 = 64.0;
+      iStack_5c = 0;
+      uStack_38 = 0x40000000;
+      uStack_50 = 0x100;
+      uStack_4c = 0x100;
+      uStack_34 = 0x476a6000;
+      uStack_48 = 0;
+      uStack_30 = 1;
+      uStack_2c = 1;
+      uStack_24 = 1;
+      uStack_40 = 0x3f800000;
+      uStack_d0 = 0;
+      unaff_f22 = 0x3dcccccd;
+      uStack_20 = 0;
+      uStack_18 = 0;
+      fStack_14 = 1.0;
+      in_f21 = 0x43480000;
+      fStack_10 = 1.0;
+      uStack_1c = 0;
+      uStack_58 = uVar9;
+      unaff_s5_lo = unaff_s4_lo;
+      break;
+    case 6:
+      uStack_48 = 0;
+      uStack_58 = uStack_80;
+      iStack_5c = iRam00388044;
+      uStack_50 = 0x100;
+      uStack_4c = 0x40;
+      iStack_54 = iRam00388048;
+      uStack_40 = 0x3f800000;
+      fStack_44 = ((((float)uRam0038804c * 1.9209821) / 2.0) / (float)uRam0038804c) * 256.0;
+      if (iRam00388048 == 0x30) {
+        uStack_38 = 0x41a00000;
+        uStack_34 = 0x4b742400;
+      }
+      else {
+        uStack_38 = 0x40000000;
+        uStack_34 = 0x477de800;
+      }
+      uStack_30 = 1;
+      uStack_2c = 1;
+      unaff_s6_lo = 0;
+      uStack_28 = 0x373839;
+      uStack_24 = 1;
+      uStack_20 = 1;
+      unaff_s4_lo = 0x40;
+      uStack_18 = 0;
+      fStack_14 = 1.0;
+      fStack_10 = 1.0;
+      uStack_1c = 0x393837;
+      fStack_c = -0.5;
+      fStack_8 = -0.5;
+      unaff_f22 = 0x3f000000;
+      in_f21 = 0x43160000;
+      uStack_d0 = 0;
+      fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
+      unaff_s5_lo = 0x100;
+      break;
+    case 8:
+    case 9:
+    case 10:
+    case 0xb:
+      if (bVar1 == 9) {
+        iStack_5c = iRam00388048;
+        uStack_60 = uVar6;
+      }
+      else {
+        iStack_5c = iRam00388044;
+        uStack_60 = uStack_b0;
+      }
+      uStack_48 = 0;
+      uStack_50 = 0x40;
+      uStack_4c = 0x40;
+      iStack_54 = iRam00388048;
+      uStack_40 = 0x3f800000;
+      fStack_44 = ((((float)uRam0038804c * 1.9209821) / 2.0) / (float)uRam0038804c) * 64.0;
+      fStack_3c = (438.0 / (float)uRam0038804c) / 0.75;
+      if (iRam00388048 == 0x30) {
+        uStack_38 = 0x41a00000;
+        uStack_34 = 0x4b742400;
+      }
+      else {
+        uStack_38 = 0x40000000;
+        uStack_34 = 0x477de800;
+      }
+      uStack_28 = 0;
+      unaff_s5_lo = 0x40;
+      uStack_2c = 1;
+      uStack_24 = 1;
+      unaff_f22 = 0x3f000000;
+      uStack_30 = 0;
+      fStack_14 = 1.0;
+      unaff_s6_lo = 0;
+      fStack_10 = 1.0;
+      fStack_c = -0.5;
+      fStack_8 = -0.5;
+      uStack_20 = 0;
+      uStack_18 = 0;
+      in_f21 = 0x43fa0000;
+      uStack_1c = 0;
+      uStack_d0 = 0;
+      if (*(char *)(iVar7 + 0x580) == '\n') {
+        unaff_s4_lo = 0x20;
+      }
+      else {
+        unaff_s4_lo = unaff_s5_lo;
+        if (*(char *)(iVar7 + 0x580) == '\v') {
+          unaff_s4_lo = 0x20;
+          unaff_s6_lo = unaff_s4_lo;
+        }
+      }
+      break;
+    case 0xc:
+      uStack_50 = 0x140;
+      uStack_40 = 0x3f800000;
+      iStack_54 = 0x3a;
+      iStack_5c = 0;
+      uStack_58 = uStack_c0;
+      uStack_4c = 0xe0;
+      uStack_48 = 0;
+      uStack_38 = 0x40000000;
+      fStack_14 = 1.0;
+      fStack_10 = 1.0;
       uStack_34 = 0x477de800;
+      fStack_c = -0.5;
+      uStack_28 = 0;
+      fStack_8 = -0.5;
+      uStack_30 = 0;
+      uStack_2c = 0;
+      uStack_24 = 0;
+      uStack_20 = 0;
+      uStack_18 = 0;
+      uStack_1c = 0;
+      uStack_d0 = 0;
+      unaff_f22 = 0x3f000000;
+      fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
+      in_f21 = 0x43fa0000;
+      fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
+      unaff_s4_lo = 0xe0;
+      unaff_s5_lo = 0x140;
+      unaff_s6_lo = 0;
+      break;
+    case 0xd:
+      uStack_48 = 8;
+      uStack_60 = uRam00388034;
+      iStack_5c = iRam00388044;
+      uStack_40 = 0x3f800000;
+      uStack_58 = uRam0038803c;
+      uStack_4c = uRam00388050;
+      iStack_54 = iRam00388048;
+      uStack_50 = uRam0038804c;
+      if (iRam00388048 == 0x30) {
+        uStack_38 = 0x41a00000;
+        uStack_34 = 0x4b742400;
+      }
+      else {
+        uStack_38 = 0x40000000;
+        uStack_34 = 0x477de800;
+      }
+      uStack_28 = 0;
+      uStack_30 = 0;
+      uStack_2c = 0;
+      uStack_24 = 0;
+      uStack_20 = 0;
+      uStack_18 = 0;
+      fStack_10 = fRam00388094;
+      fStack_14 = fRam00388090;
+      fStack_c = -(fRam00388090 / 2.0);
+      fStack_8 = -(fRam00388094 / 2.0);
+      uStack_1c = 0;
+      uStack_d0 = 0x34;
+      unaff_f22 = 0x3f000000;
+      fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
+      in_f21 = 0x43fa0000;
+      fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
+      unaff_s4_lo = 0x80;
+      unaff_s5_lo = 0x80;
+      unaff_s6_lo = 0x78;
     }
-    uStack_28 = 0;
-    uStack_30 = 0;
-    uStack_2c = 0;
-    uStack_24 = 0;
-    uStack_20 = 0;
-    uStack_18 = 0;
-    fStack_10 = fRam00388094;
-    fStack_14 = fRam00388090;
-    fStack_c = -(fRam00388090 / 2.0);
-    fStack_8 = -(fRam00388094 / 2.0);
-    uStack_1c = 0;
-    uStack_d0 = 0x34;
-    unaff_f22 = 0x3f000000;
-    fStack_44 = ((float)uRam0038804c * 1.9209821) / 2.0;
-    in_f21 = 0x43fa0000;
-    fStack_3c = fVar2 * ((438.0 / (float)uRam0038804c) / 0.75);
-    unaff_s4_lo = 0x80;
-    unaff_s5_lo = 0x80;
-    unaff_s6_lo = 0x78;
   }
 LAB_00197c3c:
   Gfx_CopyRenderTarget(param_1,&uStack_60);

@@ -14,7 +14,7 @@ undefined2 CarDb_FindDefaultPart(undefined2 param_1,uint param_2,long param_3)
   undefined2 *puVar4;
   undefined2 uVar5;
   undefined2 auStack_70 [24];
-  undefined1 uStack_40;
+  byte bStack_40;
   char cStack_3f;
   undefined4 uStack_38;
   undefined4 uStack_34;
@@ -44,7 +44,7 @@ undefined2 CarDb_FindDefaultPart(undefined2 param_1,uint param_2,long param_3)
   puVar3 = auStack_70;
   iVar1 = 0x15;
   uStack_34 = *(undefined4 *)(iVar2 + 0x50);
-  uStack_40 = *(undefined1 *)(iVar2 + 0x44);
+  bStack_40 = *(byte *)(iVar2 + 0x44);
   uStack_30 = *(undefined4 *)(iVar2 + 0x54);
   cStack_3f = *(char *)(iVar2 + 0x45);
   uStack_2c = *(undefined4 *)(iVar2 + 0x58);
@@ -65,43 +65,43 @@ undefined2 CarDb_FindDefaultPart(undefined2 param_1,uint param_2,long param_3)
   } while (0 < iVar1);
   param_2 = param_2 & 0xff;
   if (param_2 == 0) {
-    switch(uStack_40) {
-    case 0:
-    case 1:
-    case 2:
-      uVar5 = 0;
-      break;
-    case 3:
-    case 4:
-      uVar5 = 0x12;
-      break;
-    case 5:
-    case 6:
-    case 8:
-      uVar5 = 9;
-      break;
-    case 7:
-      uVar5 = 0x1b;
+    if (bStack_40 < 9) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bStack_40) {
+      default:
+        uVar5 = 0;
+        break;
+      case 3:
+      case 4:
+        uVar5 = 0x12;
+        break;
+      case 5:
+      case 6:
+        uVar5 = 9;
+        break;
+      case 7:
+        uVar5 = 0x1b;
+      }
     }
   }
   else if (param_2 == 2) {
-    switch(uStack_40) {
-    case 0:
-    case 1:
-    case 2:
-      uVar5 = 0x2a;
-      break;
-    case 3:
-    case 4:
-      uVar5 = 0x3c;
-      break;
-    case 5:
-    case 6:
-    case 8:
-      uVar5 = 0x33;
-      break;
-    case 7:
-      uVar5 = 0x45;
+    if (bStack_40 < 9) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bStack_40) {
+      default:
+        uVar5 = 0x2a;
+        break;
+      case 3:
+      case 4:
+        uVar5 = 0x3c;
+        break;
+      case 5:
+      case 6:
+        uVar5 = 0x33;
+        break;
+      case 7:
+        uVar5 = 0x45;
+      }
     }
   }
   else if (param_2 == 1) {
@@ -468,7 +468,7 @@ void Ai_DriverTask(int param_1)
 }
 
 // 0x001d4c20  size 0x14
-void race_leaf_sub_001d4c20(int param_1)
+void maybe_RaceTask_GetField(int param_1)
 
 {
   int iVar1;
@@ -587,7 +587,7 @@ void Traffic_Spawn(int param_1)
 void Traffic_InitSlot(undefined4 *param_1)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   
   *param_1 = 0;
   param_1[1] = 0;
@@ -616,31 +616,34 @@ void Traffic_InitSlot(undefined4 *param_1)
   param_1[0x17] = 0x3f800000;
   param_1[0x18] = 0x3f800000;
   param_1[0x19] = 0x3f800000;
-  uVar1 = GameState_Get_2();
-  switch(uVar1) {
-  case 0:
-    param_1[0x17] = 0x3f800000;
-    param_1[0x18] = 0x3f800000;
-    break;
-  case 1:
-    param_1[0x17] = 0x3f8ccccd;
-    param_1[0x18] = 0x3f8ccccd;
-    break;
-  case 2:
-    param_1[0x17] = 0x3f8ccccd;
-    param_1[0x18] = 0x3f8ccccd;
-    break;
-  case 3:
-    param_1[0x17] = 0x3f8851ec;
-    param_1[0x18] = 0x3f8ccccd;
-    break;
-  case 4:
-    param_1[0x17] = 0x3f933333;
-    param_1[0x18] = 0x3f933333;
-    break;
-  case 5:
-    param_1[0x17] = 0x3f933333;
-    param_1[0x18] = 0x3f933333;
+  bVar1 = GameState_Get_2();
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      param_1[0x17] = 0x3f800000;
+      param_1[0x18] = 0x3f800000;
+      break;
+    case 1:
+      param_1[0x17] = 0x3f8ccccd;
+      param_1[0x18] = 0x3f8ccccd;
+      break;
+    case 2:
+      param_1[0x17] = 0x3f8ccccd;
+      param_1[0x18] = 0x3f8ccccd;
+      break;
+    case 3:
+      param_1[0x17] = 0x3f8851ec;
+      param_1[0x18] = 0x3f8ccccd;
+      break;
+    case 4:
+      param_1[0x17] = 0x3f933333;
+      param_1[0x18] = 0x3f933333;
+      break;
+    case 5:
+      param_1[0x17] = 0x3f933333;
+      param_1[0x18] = 0x3f933333;
+    }
   }
   return;
 }
@@ -1170,7 +1173,7 @@ void Ai_PlanOvertake(float param_1,int param_2,long param_3,undefined4 *param_4,
   bool bVar3;
   bool bVar4;
   char cVar5;
-  undefined1 uVar6;
+  byte bVar6;
   int iVar7;
   undefined8 uVar8;
   ulong uVar9;
@@ -1640,8 +1643,10 @@ LAB_001d6828:
   }
   if (40.0 < fVar23) {
     fVar23 = 0.0;
-    uVar6 = GameState_Get_2();
-    switch(uVar6) {
+    bVar6 = GameState_Get_2();
+    if (5 < bVar6) goto switchD_001d6dd4_default;
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar6) {
     case 0:
       fVar23 = 0.2;
       iVar7 = *(int *)(iVar14 + 0xccc);
@@ -1661,6 +1666,7 @@ LAB_001d6828:
     case 5:
       fVar23 = 0.25;
     }
+switchD_001d6dd4_default:
     iVar7 = *(int *)(iVar14 + 0xccc);
 LAB_001d6e3c:
     if (iVar7 == 0) {
@@ -1792,637 +1798,378 @@ LAB_001d69ec:
   return;
 }
 
-// 0x001d7100  size 0x44
-void AiLine_GetPoint(undefined4 *param_1,ulong param_2)
+// 0x001d7100  size 0xcc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void AiLine_GetPoint(float *param_1,ulong param_2,uint param_3,short param_4)
 
 {
-  undefined4 uStack_10;
-  undefined4 uStack_c;
-  undefined4 uStack_8;
-  undefined4 uStack_4;
+  short sVar1;
+  float *pfVar2;
+  long lVar3;
+  undefined4 *puVar4;
+  short *psVar5;
+  int iVar6;
+  float *pfVar7;
+  undefined1 auStack_1f0 [16];
+  undefined4 uStack_1e0;
+  undefined4 uStack_1dc;
+  undefined4 uStack_1d8;
+  undefined4 uStack_1d4;
+  undefined4 uStack_1d0;
+  undefined4 uStack_1cc;
+  undefined4 uStack_1c8;
+  undefined4 uStack_1c4;
+  undefined1 auStack_1c0 [16];
+  undefined4 uStack_1b0;
+  undefined4 uStack_1ac;
+  undefined4 uStack_1a8;
+  undefined4 uStack_1a4;
+  undefined4 uStack_1a0;
+  undefined4 uStack_19c;
+  undefined4 uStack_198;
+  undefined4 uStack_194;
+  undefined1 auStack_190 [16];
+  undefined4 uStack_180;
+  undefined4 uStack_17c;
+  undefined4 uStack_178;
+  undefined4 uStack_174;
+  undefined4 uStack_170;
+  undefined4 uStack_16c;
+  undefined4 uStack_168;
+  undefined4 uStack_164;
+  undefined1 auStack_160 [16];
+  undefined4 uStack_150;
+  undefined4 uStack_14c;
+  undefined4 uStack_148;
+  undefined4 uStack_144;
+  undefined4 uStack_140;
+  undefined4 uStack_13c;
+  undefined4 uStack_138;
+  undefined4 uStack_134;
+  undefined1 auStack_130 [16];
+  undefined4 uStack_120;
+  undefined4 uStack_11c;
+  undefined4 uStack_118;
+  undefined4 uStack_114;
+  undefined4 uStack_110;
+  undefined4 uStack_10c;
+  undefined4 uStack_108;
+  undefined4 uStack_104;
+  undefined1 auStack_100 [16];
+  undefined4 uStack_f0;
+  undefined4 uStack_ec;
+  undefined4 uStack_e8;
+  undefined4 uStack_e4;
+  undefined4 uStack_e0;
+  undefined4 uStack_dc;
+  undefined4 uStack_d8;
+  undefined4 uStack_d4;
+  undefined1 auStack_d0 [16];
+  undefined4 uStack_c0;
+  undefined4 uStack_bc;
+  undefined4 uStack_b8;
+  undefined4 uStack_b4;
+  undefined4 uStack_b0;
+  undefined4 uStack_ac;
+  undefined4 uStack_a8;
+  undefined4 uStack_a4;
+  undefined1 auStack_a0 [16];
+  undefined4 uStack_90;
+  undefined4 uStack_8c;
+  undefined4 uStack_88;
+  undefined4 uStack_84;
+  undefined4 uStack_80;
+  undefined4 uStack_7c;
+  undefined4 uStack_78;
+  undefined4 uStack_74;
+  undefined1 auStack_70 [16];
+  undefined4 uStack_60;
+  undefined4 uStack_5c;
+  undefined4 uStack_58;
+  undefined4 uStack_54;
+  undefined4 uStack_50;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined1 auStack_40 [16];
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  float fStack_10;
+  float fStack_c;
+  float fStack_8;
+  float fStack_4;
   
   if (param_2 < 0xf) {
-                    /* WARNING: Could not recover jumptable at 0x001d713c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    (*(code *)(&PTR_screc364160_enter_sub_001d7280_00364160)[(int)param_2])();
-    return;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_2) {
+    case 0:
+      lVar3 = GameState_Get_40();
+      if (lVar3 == 0) {
+        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
+        sVar1 = *psVar5;
+        psVar5 = psVar5 + sVar1 * 0x18 + sVar1 * 4 + 0x3e;
+      }
+      else {
+        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
+        sVar1 = *psVar5;
+        psVar5 = psVar5 + sVar1 * 0x1c + sVar1 * 6 + 0x3e;
+      }
+      pfVar2 = (float *)(psVar5 + param_4 * 6);
+      fStack_10 = *pfVar2;
+      fStack_c = pfVar2[1];
+      fStack_8 = pfVar2[2];
+      fStack_4 = 1.0;
+      break;
+    case 1:
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
+      pfVar2 = (float *)(psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e);
+      fStack_10 = *pfVar2;
+      fStack_c = pfVar2[1];
+      fStack_8 = pfVar2[2];
+      fStack_4 = 1.0;
+      break;
+    case 2:
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4);
+      sVar1 = *psVar5;
+      pfVar2 = (float *)(psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e);
+      fStack_10 = *pfVar2;
+      fStack_c = pfVar2[1];
+      fStack_8 = pfVar2[2];
+      fStack_4 = 1.0;
+      break;
+    case 3:
+      pfVar2 = (float *)(*(int *)(*(int *)(_g_RoadData + 4) + (param_3 & 0xffff) * 4) + 0x7c +
+                        param_4 * 0x20);
+      fStack_10 = *pfVar2;
+      fStack_c = pfVar2[1];
+      fStack_8 = pfVar2[2];
+      fStack_4 = 1.0;
+      break;
+    case 4:
+      lVar3 = GameState_Get_40();
+      if (lVar3 == 0) {
+        iVar6 = (param_3 & 0xffff) * 4;
+        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+        sVar1 = *psVar5;
+        psVar5 = psVar5 + sVar1 * 0x18 + sVar1 * 4 + 0x3e;
+      }
+      else {
+        iVar6 = (param_3 & 0xffff) * 4;
+        psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+        sVar1 = *psVar5;
+        psVar5 = psVar5 + sVar1 * 0x1c + sVar1 * 6 + 0x3e;
+      }
+      pfVar7 = (float *)(psVar5 + param_4 * 6);
+      pfVar2 = (float *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      fStack_10 = *pfVar7 + *pfVar2;
+      fStack_c = pfVar7[1] + pfVar2[1];
+      fStack_8 = pfVar7[2] + pfVar2[2];
+      fStack_4 = 1.0;
+      maybe_sceVu0ScaleVectorXYZ(0x3f000000,&fStack_10,&fStack_10);
+      break;
+    case 5:
+      iVar6 = (param_3 & 0xffff) * 4;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      uStack_80 = *(undefined4 *)psVar5;
+      uStack_7c = *(undefined4 *)(psVar5 + 2);
+      uStack_78 = *(undefined4 *)(psVar5 + 4);
+      uStack_74 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      uStack_90 = *(undefined4 *)psVar5;
+      uStack_8c = *(undefined4 *)(psVar5 + 2);
+      uStack_88 = *(undefined4 *)(psVar5 + 4);
+      uStack_84 = 0x3f800000;
+      sceVu0SubVector(auStack_a0,&uStack_90,&uStack_80);
+      sceVu0Normalize(auStack_a0,auStack_a0);
+      maybe_sceVu0ScaleVectorXYZ(0x40400000,auStack_a0,auStack_a0);
+      sceVu0AddVector(&fStack_10,&uStack_80,auStack_a0);
+      break;
+    case 6:
+      iVar6 = (param_3 & 0xffff) * 4;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      uStack_b0 = *(undefined4 *)psVar5;
+      uStack_ac = *(undefined4 *)(psVar5 + 2);
+      uStack_a8 = *(undefined4 *)(psVar5 + 4);
+      uStack_a4 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      uStack_c0 = *(undefined4 *)psVar5;
+      uStack_bc = *(undefined4 *)(psVar5 + 2);
+      uStack_b8 = *(undefined4 *)(psVar5 + 4);
+      uStack_b4 = 0x3f800000;
+      sceVu0SubVector(auStack_d0,&uStack_b0,&uStack_c0);
+      sceVu0Normalize(auStack_d0,auStack_d0);
+      maybe_sceVu0ScaleVectorXYZ(0x40400000,auStack_d0,auStack_d0);
+      sceVu0AddVector(&fStack_10,&uStack_c0,auStack_d0);
+      break;
+    case 7:
+      iVar6 = (param_3 & 0xffff) * 4;
+      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      uStack_30 = *puVar4;
+      uStack_2c = puVar4[1];
+      uStack_28 = puVar4[2];
+      uStack_24 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      uStack_20 = *(undefined4 *)psVar5;
+      uStack_1c = *(undefined4 *)(psVar5 + 2);
+      uStack_18 = *(undefined4 *)(psVar5 + 4);
+      uStack_14 = 0x3f800000;
+      sceVu0SubVector(auStack_40,&uStack_20,&uStack_30);
+      sceVu0Normalize(auStack_40,auStack_40);
+      maybe_sceVu0ScaleVectorXYZ(0x3fc00000,auStack_40,auStack_40);
+      sceVu0AddVector(&fStack_10,&uStack_30,auStack_40);
+      break;
+    case 8:
+      iVar6 = (param_3 & 0xffff) * 4;
+      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      uStack_60 = *puVar4;
+      uStack_5c = puVar4[1];
+      uStack_58 = puVar4[2];
+      uStack_54 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      uStack_50 = *(undefined4 *)psVar5;
+      uStack_4c = *(undefined4 *)(psVar5 + 2);
+      uStack_48 = *(undefined4 *)(psVar5 + 4);
+      uStack_44 = 0x3f800000;
+      sceVu0SubVector(auStack_70,&uStack_50,&uStack_60);
+      sceVu0Normalize(auStack_70,auStack_70);
+      maybe_sceVu0ScaleVectorXYZ(0x3fc00000,auStack_70,auStack_70);
+      sceVu0AddVector(&fStack_10,&uStack_60,auStack_70);
+      break;
+    case 9:
+      iVar6 = (param_3 & 0xffff) * 4;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      uStack_e0 = *(undefined4 *)psVar5;
+      uStack_dc = *(undefined4 *)(psVar5 + 2);
+      uStack_d8 = *(undefined4 *)(psVar5 + 4);
+      uStack_d4 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      uStack_f0 = *(undefined4 *)psVar5;
+      uStack_ec = *(undefined4 *)(psVar5 + 2);
+      uStack_e8 = *(undefined4 *)(psVar5 + 4);
+      uStack_e4 = 0x3f800000;
+      sceVu0SubVector(auStack_100,&uStack_f0,&uStack_e0);
+      sceVu0Normalize(auStack_100,auStack_100);
+      maybe_sceVu0ScaleVectorXYZ(0x3f99999a,auStack_100,auStack_100);
+      sceVu0AddVector(&fStack_10,&uStack_e0,auStack_100);
+      break;
+    case 10:
+      iVar6 = (param_3 & 0xffff) * 4;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + param_4 * 6 + 0x3e;
+      uStack_110 = *(undefined4 *)psVar5;
+      uStack_10c = *(undefined4 *)(psVar5 + 2);
+      uStack_108 = *(undefined4 *)(psVar5 + 4);
+      uStack_104 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e;
+      uStack_120 = *(undefined4 *)psVar5;
+      uStack_11c = *(undefined4 *)(psVar5 + 2);
+      uStack_118 = *(undefined4 *)(psVar5 + 4);
+      uStack_114 = 0x3f800000;
+      sceVu0SubVector(auStack_130,&uStack_110,&uStack_120);
+      sceVu0Normalize(auStack_130,auStack_130);
+      maybe_sceVu0ScaleVectorXYZ(0x3f99999a,auStack_130,auStack_130);
+      sceVu0AddVector(&fStack_10,&uStack_120,auStack_130);
+      break;
+    case 0xb:
+      iVar6 = (param_3 & 0xffff) * 4;
+      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      uStack_1b0 = *puVar4;
+      uStack_1ac = puVar4[1];
+      uStack_1a8 = puVar4[2];
+      uStack_1a4 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      uStack_1a0 = *(undefined4 *)psVar5;
+      uStack_19c = *(undefined4 *)(psVar5 + 2);
+      uStack_198 = *(undefined4 *)(psVar5 + 4);
+      uStack_194 = 0x3f800000;
+      sceVu0SubVector(auStack_1c0,&uStack_1a0,&uStack_1b0);
+      sceVu0Normalize(auStack_1c0,auStack_1c0);
+      maybe_sceVu0ScaleVectorXYZ(0x3fd9999a,auStack_1c0,auStack_1c0);
+      sceVu0AddVector(&fStack_10,&uStack_1b0,auStack_1c0);
+      break;
+    case 0xc:
+      iVar6 = (param_3 & 0xffff) * 4;
+      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      uStack_1d0 = *puVar4;
+      uStack_1cc = puVar4[1];
+      uStack_1c8 = puVar4[2];
+      uStack_1c4 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      uStack_1e0 = *(undefined4 *)psVar5;
+      uStack_1dc = *(undefined4 *)(psVar5 + 2);
+      uStack_1d8 = *(undefined4 *)(psVar5 + 4);
+      uStack_1d4 = 0x3f800000;
+      sceVu0SubVector(auStack_1f0,&uStack_1e0,&uStack_1d0);
+      sceVu0Normalize(auStack_1f0,auStack_1f0);
+      maybe_sceVu0ScaleVectorXYZ(0x3fd9999a,auStack_1f0,auStack_1f0);
+      sceVu0AddVector(&fStack_10,&uStack_1d0,auStack_1f0);
+      break;
+    case 0xd:
+      iVar6 = (param_3 & 0xffff) * 4;
+      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      uStack_150 = *puVar4;
+      uStack_14c = puVar4[1];
+      uStack_148 = puVar4[2];
+      uStack_144 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      psVar5 = psVar5 + *psVar5 * 0x10 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      uStack_140 = *(undefined4 *)psVar5;
+      uStack_13c = *(undefined4 *)(psVar5 + 2);
+      uStack_138 = *(undefined4 *)(psVar5 + 4);
+      uStack_134 = 0x3f800000;
+      sceVu0SubVector(auStack_160,&uStack_140,&uStack_150);
+      sceVu0Normalize(auStack_160,auStack_160);
+      maybe_sceVu0ScaleVectorXYZ(0x40200000,auStack_160,auStack_160);
+      sceVu0AddVector(&fStack_10,&uStack_150,auStack_160);
+      break;
+    case 0xe:
+      iVar6 = (param_3 & 0xffff) * 4;
+      puVar4 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar6) + 0x7c + param_4 * 0x20);
+      uStack_170 = *puVar4;
+      uStack_16c = puVar4[1];
+      uStack_168 = puVar4[2];
+      uStack_164 = 0x3f800000;
+      psVar5 = *(short **)(*(int *)(_g_RoadData + 4) + iVar6);
+      sVar1 = *psVar5;
+      psVar5 = psVar5 + sVar1 * 0x14 + sVar1 * 2 + (param_4 * 2 + (int)param_4) * 2 + 0x3e;
+      uStack_180 = *(undefined4 *)psVar5;
+      uStack_17c = *(undefined4 *)(psVar5 + 2);
+      uStack_178 = *(undefined4 *)(psVar5 + 4);
+      uStack_174 = 0x3f800000;
+      sceVu0SubVector(auStack_190,&uStack_180,&uStack_170);
+      sceVu0Normalize(auStack_190,auStack_190);
+      maybe_sceVu0ScaleVectorXYZ(0x40200000,auStack_190,auStack_190);
+      sceVu0AddVector(&fStack_10,&uStack_170,auStack_190);
+    }
   }
-  *param_1 = uStack_10;
-  param_1[1] = uStack_c;
-  param_1[2] = uStack_8;
-  param_1[3] = uStack_4;
-  return;
-}
-
-// 0x001d7280  size 0xc8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364160 */
-
-void screc364160_enter_sub_001d7280(void)
-
-{
-  short sVar1;
-  long lVar2;
-  short *psVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  
-  lVar2 = GameState_Get_40();
-  if (lVar2 == 0) {
-    psVar3 = *(short **)(*(int *)(_g_RoadData + 4) + (unaff_s1_lo & 0xffff) * 4);
-    sVar1 = *psVar3;
-    psVar3 = psVar3 + sVar1 * 0x18 + sVar1 * 4 + 0x3e;
-  }
-  else {
-    psVar3 = *(short **)(*(int *)(_g_RoadData + 4) + (unaff_s1_lo & 0xffff) * 4);
-    sVar1 = *psVar3;
-    psVar3 = psVar3 + sVar1 * 0x1c + sVar1 * 6 + 0x3e;
-  }
-  psVar3 = psVar3 + unaff_s0_lo * 6;
-  uVar4 = *(undefined4 *)(psVar3 + 2);
-  uVar5 = *(undefined4 *)(psVar3 + 4);
-  *unaff_s2_lo = *(undefined4 *)psVar3;
-  unaff_s2_lo[1] = uVar4;
-  unaff_s2_lo[2] = uVar5;
-  unaff_s2_lo[3] = 0x3f800000;
-  return;
-}
-
-// 0x001d7348  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364174 */
-
-void ScrsceVu0Normalize_Exit(void)
-
-{
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack000001f0;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  sceVu0SubVector(&uStack000001f0,(int)register0x000001d0 + 0x210,(int)register0x000001d0 + 0x200);
-  sceVu0Normalize(&uStack000001f0,&uStack000001f0);
-  maybe_sceVu0ScaleVectorXYZ(0x3fc00000,&uStack000001f0,&uStack000001f0);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,(int)register0x000001d0 + 0x200,&uStack000001f0);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7424  size 0xec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364180 */
-
-void ScrsceVu0Normalize_Enterd7424(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  undefined4 *puVar3;
-  int iVar4;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack000001c0;
-  undefined1 uStack000001d0;
-  undefined4 uStack000001d4;
-  undefined4 uStack000001d8;
-  undefined4 uStack000001dc;
-  undefined1 uStack000001e0;
-  undefined4 uStack000001e4;
-  undefined4 uStack000001e8;
-  undefined4 uStack000001ec;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar4 = (unaff_s1_lo & 0xffff) * 4;
-  puVar3 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar4) + 0x7c + unaff_s0_lo * 0x20);
-  _uStack000001d0 = *puVar3;
-  uStack000001d4 = puVar3[1];
-  uStack000001d8 = puVar3[2];
-  uStack000001dc = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar4);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + (unaff_s0_lo * 2 + (int)unaff_s0_lo) * 2 + 0x3e;
-  _uStack000001e0 = *(undefined4 *)psVar2;
-  uStack000001e4 = *(undefined4 *)(psVar2 + 2);
-  uStack000001e8 = *(undefined4 *)(psVar2 + 4);
-  uStack000001ec = 0x3f800000;
-  sceVu0SubVector(&uStack000001c0,&uStack000001e0,&uStack000001d0);
-  sceVu0Normalize(&uStack000001c0,&uStack000001c0);
-  maybe_sceVu0ScaleVectorXYZ(0x3fc00000,&uStack000001c0,&uStack000001c0);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack000001d0,&uStack000001c0);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7510  size 0x64
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364160 */
-
-void screc364160_update_sub_001d7510(void)
-
-{
-  short *psVar1;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  
-  psVar1 = *(short **)(*(int *)(_g_RoadData + 4) + (unaff_s1_lo & 0xffff) * 4);
-  psVar1 = psVar1 + *psVar1 * 0x10 + unaff_s0_lo * 6 + 0x3e;
-  uVar2 = *(undefined4 *)(psVar1 + 2);
-  uVar3 = *(undefined4 *)(psVar1 + 4);
-  *unaff_s2_lo = *(undefined4 *)psVar1;
-  unaff_s2_lo[1] = uVar2;
-  unaff_s2_lo[2] = uVar3;
-  unaff_s2_lo[3] = 0x3f800000;
-  return;
-}
-
-// 0x001d7574  size 0x74
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364160 */
-
-void screc364160_exit_sub_001d7574(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (unaff_s1_lo & 0xffff) * 4);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + unaff_s0_lo * 6 + 0x3e;
-  uVar3 = *(undefined4 *)(psVar2 + 2);
-  uVar4 = *(undefined4 *)(psVar2 + 4);
-  *unaff_s2_lo = *(undefined4 *)psVar2;
-  unaff_s2_lo[1] = uVar3;
-  unaff_s2_lo[2] = uVar4;
-  unaff_s2_lo[3] = 0x3f800000;
-  return;
-}
-
-// 0x001d75e8  size 0x50
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void race_leaf_sub_001d75e8(void)
-
-{
-  undefined4 *puVar1;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  
-  puVar1 = (undefined4 *)
-           (*(int *)(*(int *)(_g_RoadData + 4) + (unaff_s1_lo & 0xffff) * 4) + 0x7c +
-           unaff_s0_lo * 0x20);
-  uVar2 = puVar1[1];
-  uVar3 = puVar1[2];
-  *unaff_s2_lo = *puVar1;
-  unaff_s2_lo[1] = uVar2;
-  unaff_s2_lo[2] = uVar3;
-  unaff_s2_lo[3] = 0x3f800000;
-  return;
-}
-
-// 0x001d7638  size 0xf4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364174 */
-
-void ScrsceVu0Normalize_Enter(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  int iVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack00000190;
-  undefined1 uStack000001a0;
-  undefined4 uStack000001a4;
-  undefined4 uStack000001a8;
-  undefined4 uStack000001ac;
-  undefined1 uStack000001b0;
-  undefined4 uStack000001b4;
-  undefined4 uStack000001b8;
-  undefined4 uStack000001bc;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar3 = (unaff_s1_lo & 0xffff) * 4;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  psVar2 = psVar2 + *psVar2 * 0x10 + unaff_s0_lo * 6 + 0x3e;
-  _uStack000001b0 = *(undefined4 *)psVar2;
-  uStack000001b4 = *(undefined4 *)(psVar2 + 2);
-  uStack000001b8 = *(undefined4 *)(psVar2 + 4);
-  uStack000001bc = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + unaff_s0_lo * 6 + 0x3e;
-  _uStack000001a0 = *(undefined4 *)psVar2;
-  uStack000001a4 = *(undefined4 *)(psVar2 + 2);
-  uStack000001a8 = *(undefined4 *)(psVar2 + 4);
-  uStack000001ac = 0x3f800000;
-  sceVu0SubVector(&uStack00000190,&uStack000001a0,&uStack000001b0);
-  sceVu0Normalize(&uStack00000190,&uStack00000190);
-  maybe_sceVu0ScaleVectorXYZ(0x40400000,&uStack00000190,&uStack00000190);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack000001b0,&uStack00000190);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d772c  size 0xf4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364174 */
-
-void ScrsceVu0Normalize_Update(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  int iVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack00000160;
-  undefined1 uStack00000170;
-  undefined4 uStack00000174;
-  undefined4 uStack00000178;
-  undefined4 uStack0000017c;
-  undefined1 uStack00000180;
-  undefined4 uStack00000184;
-  undefined4 uStack00000188;
-  undefined4 uStack0000018c;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar3 = (unaff_s1_lo & 0xffff) * 4;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  psVar2 = psVar2 + *psVar2 * 0x10 + unaff_s0_lo * 6 + 0x3e;
-  _uStack00000180 = *(undefined4 *)psVar2;
-  uStack00000184 = *(undefined4 *)(psVar2 + 2);
-  uStack00000188 = *(undefined4 *)(psVar2 + 4);
-  uStack0000018c = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + unaff_s0_lo * 6 + 0x3e;
-  _uStack00000170 = *(undefined4 *)psVar2;
-  uStack00000174 = *(undefined4 *)(psVar2 + 2);
-  uStack00000178 = *(undefined4 *)(psVar2 + 4);
-  uStack0000017c = 0x3f800000;
-  sceVu0SubVector(&uStack00000160,&uStack00000180,&uStack00000170);
-  sceVu0Normalize(&uStack00000160,&uStack00000160);
-  maybe_sceVu0ScaleVectorXYZ(0x40400000,&uStack00000160,&uStack00000160);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack00000170,&uStack00000160);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7820  size 0xf8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364180 */
-
-void ScrsceVu0Normalize_Updated7820(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  int iVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack00000130;
-  undefined1 uStack00000140;
-  undefined4 uStack00000144;
-  undefined4 uStack00000148;
-  undefined4 uStack0000014c;
-  undefined1 uStack00000150;
-  undefined4 uStack00000154;
-  undefined4 uStack00000158;
-  undefined4 uStack0000015c;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar3 = (unaff_s1_lo & 0xffff) * 4;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  psVar2 = psVar2 + *psVar2 * 0x10 + unaff_s0_lo * 6 + 0x3e;
-  _uStack00000150 = *(undefined4 *)psVar2;
-  uStack00000154 = *(undefined4 *)(psVar2 + 2);
-  uStack00000158 = *(undefined4 *)(psVar2 + 4);
-  uStack0000015c = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + unaff_s0_lo * 6 + 0x3e;
-  _uStack00000140 = *(undefined4 *)psVar2;
-  uStack00000144 = *(undefined4 *)(psVar2 + 2);
-  uStack00000148 = *(undefined4 *)(psVar2 + 4);
-  uStack0000014c = 0x3f800000;
-  sceVu0SubVector(&uStack00000130,&uStack00000140,&uStack00000150);
-  sceVu0Normalize(&uStack00000130,&uStack00000130);
-  maybe_sceVu0ScaleVectorXYZ(0x3f99999a,&uStack00000130,&uStack00000130);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack00000150,&uStack00000130);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7918  size 0xf8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x364180 */
-
-void ScrsceVu0Normalize_Exitd7918(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  int iVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack00000100;
-  undefined1 uStack00000110;
-  undefined4 uStack00000114;
-  undefined4 uStack00000118;
-  undefined4 uStack0000011c;
-  undefined1 uStack00000120;
-  undefined4 uStack00000124;
-  undefined4 uStack00000128;
-  undefined4 uStack0000012c;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar3 = (unaff_s1_lo & 0xffff) * 4;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  psVar2 = psVar2 + *psVar2 * 0x10 + unaff_s0_lo * 6 + 0x3e;
-  _uStack00000120 = *(undefined4 *)psVar2;
-  uStack00000124 = *(undefined4 *)(psVar2 + 2);
-  uStack00000128 = *(undefined4 *)(psVar2 + 4);
-  uStack0000012c = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + unaff_s0_lo * 6 + 0x3e;
-  _uStack00000110 = *(undefined4 *)psVar2;
-  uStack00000114 = *(undefined4 *)(psVar2 + 2);
-  uStack00000118 = *(undefined4 *)(psVar2 + 4);
-  uStack0000011c = 0x3f800000;
-  sceVu0SubVector(&uStack00000100,&uStack00000120,&uStack00000110);
-  sceVu0Normalize(&uStack00000100,&uStack00000100);
-  maybe_sceVu0ScaleVectorXYZ(0x3f99999a,&uStack00000100,&uStack00000100);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack00000110,&uStack00000100);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7a10  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x36418c */
-
-void ScrsceVu0Normalize_Exitd7a10(void)
-
-{
-  short *psVar1;
-  undefined4 *puVar2;
-  int iVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack000000d0;
-  undefined1 uStack000000e0;
-  undefined4 uStack000000e4;
-  undefined4 uStack000000e8;
-  undefined4 uStack000000ec;
-  undefined1 uStack000000f0;
-  undefined4 uStack000000f4;
-  undefined4 uStack000000f8;
-  undefined4 uStack000000fc;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar3 = (unaff_s1_lo & 0xffff) * 4;
-  puVar2 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar3) + 0x7c + unaff_s0_lo * 0x20);
-  _uStack000000e0 = *puVar2;
-  uStack000000e4 = puVar2[1];
-  uStack000000e8 = puVar2[2];
-  uStack000000ec = 0x3f800000;
-  psVar1 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  psVar1 = psVar1 + *psVar1 * 0x10 + (unaff_s0_lo * 2 + (int)unaff_s0_lo) * 2 + 0x3e;
-  _uStack000000f0 = *(undefined4 *)psVar1;
-  uStack000000f4 = *(undefined4 *)(psVar1 + 2);
-  uStack000000f8 = *(undefined4 *)(psVar1 + 4);
-  uStack000000fc = 0x3f800000;
-  sceVu0SubVector(&uStack000000d0,&uStack000000f0,&uStack000000e0);
-  sceVu0Normalize(&uStack000000d0,&uStack000000d0);
-  maybe_sceVu0ScaleVectorXYZ(0x40200000,&uStack000000d0,&uStack000000d0);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack000000e0,&uStack000000d0);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7aec  size 0xec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void race_step_sub_001d7aec(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  undefined4 *puVar3;
-  int iVar4;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack000000a0;
-  undefined1 uStack000000b0;
-  undefined4 uStack000000b4;
-  undefined4 uStack000000b8;
-  undefined4 uStack000000bc;
-  undefined1 uStack000000c0;
-  undefined4 uStack000000c4;
-  undefined4 uStack000000c8;
-  undefined4 uStack000000cc;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar4 = (unaff_s1_lo & 0xffff) * 4;
-  puVar3 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar4) + 0x7c + unaff_s0_lo * 0x20);
-  _uStack000000c0 = *puVar3;
-  uStack000000c4 = puVar3[1];
-  uStack000000c8 = puVar3[2];
-  uStack000000cc = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar4);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + (unaff_s0_lo * 2 + (int)unaff_s0_lo) * 2 + 0x3e;
-  _uStack000000b0 = *(undefined4 *)psVar2;
-  uStack000000b4 = *(undefined4 *)(psVar2 + 2);
-  uStack000000b8 = *(undefined4 *)(psVar2 + 4);
-  uStack000000bc = 0x3f800000;
-  sceVu0SubVector(&uStack000000a0,&uStack000000b0,&uStack000000c0);
-  sceVu0Normalize(&uStack000000a0,&uStack000000a0);
-  maybe_sceVu0ScaleVectorXYZ(0x40200000,&uStack000000a0,&uStack000000a0);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack000000c0,&uStack000000a0);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7bd8  size 0xe0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x36418c */
-
-void ScrsceVu0Normalize_Enterd7bd8(void)
-
-{
-  short *psVar1;
-  undefined4 *puVar2;
-  int iVar3;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack00000070;
-  undefined1 uStack00000080;
-  undefined4 uStack00000084;
-  undefined4 uStack00000088;
-  undefined4 uStack0000008c;
-  undefined1 uStack00000090;
-  undefined4 uStack00000094;
-  undefined4 uStack00000098;
-  undefined4 uStack0000009c;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar3 = (unaff_s1_lo & 0xffff) * 4;
-  puVar2 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar3) + 0x7c + unaff_s0_lo * 0x20);
-  _uStack00000080 = *puVar2;
-  uStack00000084 = puVar2[1];
-  uStack00000088 = puVar2[2];
-  uStack0000008c = 0x3f800000;
-  psVar1 = *(short **)(*(int *)(_g_RoadData + 4) + iVar3);
-  psVar1 = psVar1 + *psVar1 * 0x10 + (unaff_s0_lo * 2 + (int)unaff_s0_lo) * 2 + 0x3e;
-  _uStack00000090 = *(undefined4 *)psVar1;
-  uStack00000094 = *(undefined4 *)(psVar1 + 2);
-  uStack00000098 = *(undefined4 *)(psVar1 + 4);
-  uStack0000009c = 0x3f800000;
-  sceVu0SubVector(&uStack00000070,&uStack00000090,&uStack00000080);
-  sceVu0Normalize(&uStack00000070,&uStack00000070);
-  maybe_sceVu0ScaleVectorXYZ(0x3fd9999a,&uStack00000070,&uStack00000070);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack00000080,&uStack00000070);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
-  return;
-}
-
-// 0x001d7cb8  size 0x108
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x36418c */
-
-void ScrsceVu0Normalize_Updated7cb8(void)
-
-{
-  short sVar1;
-  short *psVar2;
-  undefined4 *puVar3;
-  int iVar4;
-  short unaff_s0_lo;
-  uint unaff_s1_lo;
-  undefined4 *unaff_s2_lo;
-  undefined1 uStack00000040;
-  undefined1 uStack00000050;
-  undefined4 uStack00000054;
-  undefined4 uStack00000058;
-  undefined4 uStack0000005c;
-  undefined1 uStack00000060;
-  undefined4 uStack00000064;
-  undefined4 uStack00000068;
-  undefined4 uStack0000006c;
-  undefined4 in_stack_00000220;
-  undefined4 in_stack_00000224;
-  undefined4 in_stack_00000228;
-  undefined4 in_stack_0000022c;
-  undefined1 auStack_7ffffffe [2147483646];
-  
-  iVar4 = (unaff_s1_lo & 0xffff) * 4;
-  puVar3 = (undefined4 *)(*(int *)(*(int *)(_g_RoadData + 4) + iVar4) + 0x7c + unaff_s0_lo * 0x20);
-  _uStack00000060 = *puVar3;
-  uStack00000064 = puVar3[1];
-  uStack00000068 = puVar3[2];
-  uStack0000006c = 0x3f800000;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + iVar4);
-  sVar1 = *psVar2;
-  psVar2 = psVar2 + sVar1 * 0x14 + sVar1 * 2 + (unaff_s0_lo * 2 + (int)unaff_s0_lo) * 2 + 0x3e;
-  _uStack00000050 = *(undefined4 *)psVar2;
-  uStack00000054 = *(undefined4 *)(psVar2 + 2);
-  uStack00000058 = *(undefined4 *)(psVar2 + 4);
-  uStack0000005c = 0x3f800000;
-  sceVu0SubVector(&uStack00000040,&uStack00000050,&uStack00000060);
-  sceVu0Normalize(&uStack00000040,&uStack00000040);
-  maybe_sceVu0ScaleVectorXYZ(0x3fd9999a,&uStack00000040,&uStack00000040);
-  sceVu0AddVector((int)register0x000001d0 + 0x220,&uStack00000060,&uStack00000040);
-  *unaff_s2_lo = in_stack_00000220;
-  unaff_s2_lo[1] = in_stack_00000224;
-  unaff_s2_lo[2] = in_stack_00000228;
-  unaff_s2_lo[3] = in_stack_0000022c;
+  *param_1 = fStack_10;
+  param_1[1] = fStack_c;
+  param_1[2] = fStack_8;
+  param_1[3] = fStack_4;
   return;
 }
 
@@ -2520,7 +2267,7 @@ void AiLine_BuildFrame(float param_1,undefined4 *param_2,uint param_3,short para
 undefined4 Ai_CheckRaceEnd(undefined8 param_1)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   int iVar2;
   undefined8 uVar3;
   ulong uVar4;
@@ -2530,32 +2277,36 @@ undefined4 Ai_CheckRaceEnd(undefined8 param_1)
   iVar2 = GameState_Elem_f0_xcc();
   uVar3 = RaceCar_Get(param_1);
   if ((*(uint *)(iVar2 + 4) & 4) == 0) {
-    uVar1 = RaceProg_Get();
-    switch(uVar1) {
-    case 1:
-      uVar5 = 0;
-      break;
-    case 2:
-      uVar5 = 0;
-      break;
-    case 3:
-      uVar4 = RaceCar_GetFlags(uVar3);
-      if ((uVar4 & 0x800) == 0) {
-        uVar5 = 0x447a0000;
-      }
-      else {
+    bVar1 = RaceProg_Get();
+    if (bVar1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bVar1) {
+      case 0:
+        break;
+      case 1:
+        uVar5 = 0;
+        break;
+      case 2:
+        uVar5 = 0;
+        break;
+      case 3:
+        uVar4 = RaceCar_GetFlags(uVar3);
+        if ((uVar4 & 0x800) == 0) {
+          uVar5 = 0x447a0000;
+        }
+        else {
+          uVar5 = 0;
+        }
+        break;
+      case 4:
+        uVar5 = 0xc3480000;
+        break;
+      default:
+        uVar5 = 0;
+        break;
+      case 7:
         uVar5 = 0;
       }
-      break;
-    case 4:
-      uVar5 = 0xc3480000;
-      break;
-    case 5:
-    case 6:
-      uVar5 = 0;
-      break;
-    case 7:
-      uVar5 = 0;
     }
   }
   else {

@@ -809,9 +809,9 @@ void MenuScr_Draw_GameConfig_13f0(int param_1)
 
 // 0x002418e0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327818 */
+/* menu page 26 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327818_exit_sub_002418e0(void)
+void MenuPage26_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -820,9 +820,9 @@ void screc327818_exit_sub_002418e0(void)
 
 // 0x00241900  size 0xf4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327818 */
+/* menu page 26 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327818_update_sub_00241900(int param_1)
+void MenuPage26_Update(int param_1)
 
 {
   uint uVar1;
@@ -846,9 +846,9 @@ void screc327818_update_sub_00241900(int param_1)
 
 // 0x00241a00  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327818 */
+/* menu page 26 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327818_enter_sub_00241a00(void)
+void MenuPage26_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1886,13 +1886,13 @@ void ScrRace_Draw_Interval(int param_1)
       cVar2 = Race_IsTimeTrialMode(uVar5,0);
       if (cVar2 == '\0') {
         uVar5 = Race_GetCourseVariant();
-        ui_leaf_sub_001f6720
-                  (0x469830,uVar5,9 - *(int *)(param_1 + 0xc),9 - *(int *)(param_1 + 0x62c));
+        maybe_Ui_LeafF6720(0x469830,uVar5,9 - *(int *)(param_1 + 0xc),9 - *(int *)(param_1 + 0x62c))
+        ;
       }
       else {
         uVar5 = Race_GetCourseVariant();
-        ui_leaf_sub_001f6720
-                  (0x469830,uVar5,*(undefined4 *)(param_1 + 0xc),*(undefined4 *)(param_1 + 0x62c));
+        maybe_Ui_LeafF6720(0x469830,uVar5,*(undefined4 *)(param_1 + 0xc),
+                           *(undefined4 *)(param_1 + 0x62c));
       }
     }
     else {
@@ -1900,13 +1900,12 @@ void ScrRace_Draw_Interval(int param_1)
       cVar2 = Race_IsTimeTrialMode(uVar5,0);
       if (cVar2 == '\0') {
         uVar5 = Race_GetCourseVariant();
-        ui_leaf_sub_001f6720
-                  (0x469830,uVar5,9 - *(int *)(param_1 + 0xc),9 - *(int *)(param_1 + 0x10));
+        maybe_Ui_LeafF6720(0x469830,uVar5,9 - *(int *)(param_1 + 0xc),9 - *(int *)(param_1 + 0x10));
       }
       else {
         uVar5 = Race_GetCourseVariant();
-        ui_leaf_sub_001f6720
-                  (0x469830,uVar5,*(undefined4 *)(param_1 + 0xc),*(undefined4 *)(param_1 + 0x10));
+        maybe_Ui_LeafF6720(0x469830,uVar5,*(undefined4 *)(param_1 + 0xc),
+                           *(undefined4 *)(param_1 + 0x10));
       }
     }
     uVar5 = maybe___sf_to_df(fRam00469838 - fRam00469834);

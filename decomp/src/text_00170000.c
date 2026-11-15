@@ -1674,38 +1674,46 @@ undefined4 SaveSlot_FindFile(int param_1,int param_2,int *param_3,int param_4)
 undefined4 SaveSlot_StartCheck(int param_1)
 
 {
+  uint uVar1;
+  
   if (*(char *)(param_1 + 0x3c) != '\x04') {
     return 0;
   }
   if (*(int *)(param_1 + 0x48) == 0) {
-    switch(*(undefined1 *)(param_1 + 0x3d)) {
-    case 5:
-    case 6:
-      SaveSlot_SetState(param_1,1,1);
-      return 1;
-    case 9:
-    case 10:
-      if (*(int *)(param_1 + 0x80) == 0) {
-        SaveSlot_SetState(param_1,3,7);
+    uVar1 = *(byte *)(param_1 + 0x3d) - 5;
+    if (uVar1 < 10) {
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar1) {
+      default:
+        SaveSlot_SetState(param_1,1,1);
+        return 1;
+      case 2:
+      case 3:
+        break;
+      case 4:
+      case 5:
+        if (*(int *)(param_1 + 0x80) == 0) {
+          SaveSlot_SetState(param_1,3,7);
+        }
+        else {
+          SaveSlot_SetState(param_1,3,8);
+        }
+        break;
+      case 6:
+        SaveSlot_SetState(param_1,1,1);
+        break;
+      case 7:
+      case 8:
+        if (*(int *)(param_1 + 0x80) == 0) {
+          SaveSlot_SetState(param_1,3,7);
+        }
+        else {
+          SaveSlot_SetState(param_1,3,8);
+        }
+        break;
+      case 9:
+        SaveSlot_SetState(param_1,1,1);
       }
-      else {
-        SaveSlot_SetState(param_1,3,8);
-      }
-      break;
-    case 0xb:
-      SaveSlot_SetState(param_1,1,1);
-      break;
-    case 0xc:
-    case 0xd:
-      if (*(int *)(param_1 + 0x80) == 0) {
-        SaveSlot_SetState(param_1,3,7);
-      }
-      else {
-        SaveSlot_SetState(param_1,3,8);
-      }
-      break;
-    case 0xe:
-      SaveSlot_SetState(param_1,1,1);
     }
   }
   else {
@@ -1879,102 +1887,107 @@ undefined4 SaveSlot_Open(undefined8 param_1,undefined4 param_2)
 void SaveSlot_Update(undefined8 param_1)
 
 {
-  char cVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int *piVar4;
-  uint *puVar5;
-  uint uVar6;
+  byte bVar1;
+  char cVar2;
+  undefined4 uVar3;
+  int iVar4;
+  int *piVar5;
+  uint *puVar6;
   uint uVar7;
-  uint *puVar8;
+  uint uVar8;
+  uint *puVar9;
   
-  puVar5 = (uint *)param_1;
-  uVar6 = *puVar5;
-  uVar7 = uVar6 & 8;
-  if ((uVar7 == 0) && (puVar5[5] != 0)) {
+  puVar6 = (uint *)param_1;
+  uVar7 = *puVar6;
+  uVar8 = uVar7 & 8;
+  if ((uVar8 == 0) && (puVar6[5] != 0)) {
     return;
   }
-  switch((char)puVar5[0xf]) {
-  case '\0':
+  bVar1 = (byte)puVar6[0xf];
+  if (0x10 < bVar1) {
+    return;
+  }
+                    /* WARNING: Switch is manually overridden */
+  switch(bVar1) {
+  case 0:
     break;
-  case '\x01':
+  case 1:
     Mc_QueueCommand(param_1,0,1,7,0,0,0);
     SaveSlot_SetState(param_1,2,1);
     break;
-  case '\x02':
-    if (puVar5[0x11] == 0) {
-      puVar5[0x13] = uVar6;
-      puVar5[0x15] = puVar5[2];
-      puVar5[0x16] = puVar5[4];
-      puVar5[0x17] = puVar5[3];
-      puVar5[0x11] = puVar5[0x11] + 1;
+  case 2:
+    if (puVar6[0x11] == 0) {
+      puVar6[0x13] = uVar7;
+      puVar6[0x15] = puVar6[2];
+      puVar6[0x16] = puVar6[4];
+      puVar6[0x17] = puVar6[3];
+      puVar6[0x11] = puVar6[0x11] + 1;
     }
-    else if ((((puVar5[0x13] == uVar6) && (puVar5[0x15] == puVar5[2])) &&
-             (puVar5[0x16] == puVar5[4])) && (puVar5[0x17] == puVar5[3])) {
-      puVar5[0x11] = puVar5[0x11] + 1;
+    else if ((((puVar6[0x13] == uVar7) && (puVar6[0x15] == puVar6[2])) &&
+             (puVar6[0x16] == puVar6[4])) && (puVar6[0x17] == puVar6[3])) {
+      puVar6[0x11] = puVar6[0x11] + 1;
     }
     else {
-      puVar5[0x11] = 0;
+      puVar6[0x11] = 0;
     }
-    if ((*puVar5 & 8) == 0) {
-      if ((int)puVar5[0x11] < 4) {
+    if ((*puVar6 & 8) == 0) {
+      if ((int)puVar6[0x11] < 4) {
         Mc_QueueCommand(param_1,0,1,7,0,0,0);
       }
       else {
-        if (puVar5[0x15] == 2) {
-          if (puVar5[0x16] == 0) {
+        if (puVar6[0x15] == 2) {
+          if (puVar6[0x16] == 0) {
             SaveSlot_SetState(param_1,3,4);
-            puVar5[0x11] = 0;
-            break;
+            puVar6[0x11] = 0;
+            return;
           }
           SaveSlot_SetState(param_1,7,1);
         }
         else {
           SaveSlot_SetState(param_1,3);
-          puVar5[0x13] = *puVar5;
-          puVar5[0x15] = puVar5[2];
-          puVar5[0x16] = puVar5[4];
-          puVar5[0x17] = puVar5[3];
+          puVar6[0x13] = *puVar6;
+          puVar6[0x15] = puVar6[2];
+          puVar6[0x16] = puVar6[4];
+          puVar6[0x17] = puVar6[3];
         }
-        puVar5[0x11] = 0;
+        puVar6[0x11] = 0;
       }
     }
     else {
       Mc_CancelCommand(param_1);
-      puVar5[0x11] = 0;
+      puVar6[0x11] = 0;
     }
     break;
-  case '\x03':
-  case '\x04':
-    if (uVar7 == 0) {
-      if (puVar5[0x13] == uVar6) {
-        if ((int)puVar5[0x14] < 10) {
-          puVar5[0x14] = puVar5[0x14] + 1;
+  default:
+    if (uVar8 == 0) {
+      if (puVar6[0x13] == uVar7) {
+        if ((int)puVar6[0x14] < 10) {
+          puVar6[0x14] = puVar6[0x14] + 1;
         }
         else {
           Mc_QueueCommand(param_1,0,1,0,0,0,0);
-          puVar5[0x14] = 0;
+          puVar6[0x14] = 0;
         }
       }
-      else if ((char)puVar5[0xf] == '\x03') {
+      else if (bVar1 == 3) {
         SaveSlot_SetState(param_1,1,1);
       }
       else {
-        puVar5[0x12] = 1;
+        puVar6[0x12] = 1;
       }
     }
     else {
       Mc_CancelCommand(param_1);
-      puVar5[0x14] = 0;
+      puVar6[0x14] = 0;
     }
     break;
-  case '\x05':
+  case 5:
     Mc_QueueCommand(param_1,0,0x10,0,0,0,0);
     SaveSlot_SetState(param_1,6,1);
     break;
-  case '\x06':
-    if (uVar7 == 0) {
-      if (puVar5[0x10] == 0) {
+  case 6:
+    if (uVar8 == 0) {
+      if (puVar6[0x10] == 0) {
         SaveSlot_SetState(param_1,4,5);
       }
       else {
@@ -1986,17 +1999,17 @@ void SaveSlot_Update(undefined8 param_1)
       SaveSlot_SetState(param_1,4,6);
     }
     break;
-  case '\a':
-    *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-    iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,0xffffffffffffffff,0xffffffffffffffff);
-    maybe_strcpy((int)puVar5 + iVar3 + 0xa1,0x363358);
-    Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,puVar5[0x1c],puVar5[0x1d]);
+  case 7:
+    *(undefined1 *)(puVar6 + 0x28) = 0x2f;
+    iVar4 = SaveSlot_BuildPath(param_1,(int)puVar6 + 0xa1,0xffffffffffffffff,0xffffffffffffffff);
+    maybe_strcpy((int)puVar6 + iVar4 + 0xa1,0x363358);
+    Mc_QueueCommand(param_1,0,0xd,puVar6 + 0x28,0,puVar6[0x1c],puVar6[0x1d]);
     SaveSlot_SetState(param_1,8,1);
     break;
-  case '\b':
-    if (uVar7 == 0) {
-      SaveSlot_ClearLists(param_1,puVar5[8]);
-      if ((int)puVar5[8] < 1) {
+  case 8:
+    if (uVar8 == 0) {
+      SaveSlot_ClearLists(param_1,puVar6[8]);
+      if ((int)puVar6[8] < 1) {
         SaveSlot_SetState(param_1,3,7);
       }
       else {
@@ -2005,10 +2018,10 @@ void SaveSlot_Update(undefined8 param_1)
     }
     else {
       Mc_CancelCommand(param_1);
-      if (puVar5[10] == 0x13) {
+      if (puVar6[10] == 0x13) {
         SaveSlot_SetState(param_1,3,2);
       }
-      else if (puVar5[10] == 5) {
+      else if (puVar6[10] == 5) {
         SaveSlot_SetState(param_1,3,3);
       }
       else {
@@ -2016,43 +2029,43 @@ void SaveSlot_Update(undefined8 param_1)
       }
     }
     break;
-  case '\t':
-    uVar6 = puVar5[0x21];
-    iVar3 = *(int *)(puVar5[0x1b] + 4);
-    if ((int)uVar6 < iVar3) {
+  case 9:
+    uVar7 = puVar6[0x21];
+    iVar4 = *(int *)(puVar6[0x1b] + 4);
+    if ((int)uVar7 < iVar4) {
       do {
-        if (*(int *)(puVar5[0x1e] + uVar6 * 0x28) != 0) break;
-        puVar5[0x21] = puVar5[0x21] + 1;
-        uVar6 = puVar5[0x21];
-        iVar3 = *(int *)(puVar5[0x1b] + 4);
-      } while ((int)uVar6 < iVar3);
+        if (*(int *)(puVar6[0x1e] + uVar7 * 0x28) != 0) break;
+        puVar6[0x21] = puVar6[0x21] + 1;
+        uVar7 = puVar6[0x21];
+        iVar4 = *(int *)(puVar6[0x1b] + 4);
+      } while ((int)uVar7 < iVar4);
     }
-    if ((int)uVar6 < iVar3) {
-      *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-      iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
-      maybe_strcpy((int)puVar5 + iVar3 + 0xa1,0x363360);
-      Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,puVar5[0x1c],puVar5[0x1d]);
+    if ((int)uVar7 < iVar4) {
+      *(undefined1 *)(puVar6 + 0x28) = 0x2f;
+      iVar4 = SaveSlot_BuildPath(param_1,(int)puVar6 + 0xa1,uVar7,0xffffffffffffffff);
+      maybe_strcpy((int)puVar6 + iVar4 + 0xa1,0x363360);
+      Mc_QueueCommand(param_1,0,0xd,puVar6 + 0x28,0,puVar6[0x1c],puVar6[0x1d]);
       SaveSlot_SetState(param_1,10,1);
     }
     else {
       SaveSlot_SetState(param_1,3,8);
     }
     break;
-  case '\n':
-    if (uVar7 == 0) {
-      uVar6 = puVar5[0x21];
-      puVar5[0x21] = uVar6 + 1;
-      uVar7 = puVar5[0x1e];
-      uVar2 = SaveSlot_ParseDirectory(param_1,uVar6,puVar5[8]);
-      *(undefined4 *)(uVar7 + uVar6 * 0x28 + 0x20) = uVar2;
+  case 10:
+    if (uVar8 == 0) {
+      uVar7 = puVar6[0x21];
+      puVar6[0x21] = uVar7 + 1;
+      uVar8 = puVar6[0x1e];
+      uVar3 = SaveSlot_ParseDirectory(param_1,uVar7,puVar6[8]);
+      *(undefined4 *)(uVar8 + uVar7 * 0x28 + 0x20) = uVar3;
       SaveSlot_SetState(param_1,9,1);
     }
     else {
       Mc_CancelCommand(param_1);
-      if (puVar5[10] == 0x13) {
+      if (puVar6[10] == 0x13) {
         SaveSlot_SetState(param_1,3,2);
       }
-      else if (puVar5[10] == 5) {
+      else if (puVar6[10] == 5) {
         SaveSlot_SetState(param_1,3,3);
       }
       else {
@@ -2060,36 +2073,36 @@ void SaveSlot_Update(undefined8 param_1)
       }
     }
     break;
-  case '\v':
-    cVar1 = SaveSlot_FindFile(param_1,puVar5[0x22],puVar5[0x24],puVar5[0x27]);
-    if (cVar1 == '\0') {
+  case 0xb:
+    cVar2 = SaveSlot_FindFile(param_1,puVar6[0x22],puVar6[0x24],puVar6[0x27]);
+    if (cVar2 == '\0') {
       SaveSlot_SetState(param_1,0xc,1);
     }
     else {
       SaveSlot_SetState(param_1,4,10);
     }
     break;
-  case '\f':
-    if (uVar7 == 0) {
-      if ((int)puVar5[0x26] < (int)puVar5[0x27]) {
-        puVar8 = (uint *)(puVar5[0x24] + puVar5[0x26] * 0xc);
-        if (puVar5[0x23] != *puVar8) {
-          if (-1 < (int)puVar5[0x23]) {
+  case 0xc:
+    if (uVar8 == 0) {
+      if ((int)puVar6[0x26] < (int)puVar6[0x27]) {
+        puVar9 = (uint *)(puVar6[0x24] + puVar6[0x26] * 0xc);
+        if (puVar6[0x23] != *puVar9) {
+          if (-1 < (int)puVar6[0x23]) {
             Mc_QueueCommand(param_1,0,3,0,0,0,0);
           }
-          puVar5[0x23] = *puVar8;
-          uVar6 = puVar5[0x22];
-          uVar7 = puVar5[0x23];
-          *(undefined1 *)(puVar5 + 0x48) = 0x2f;
-          iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
-          if (-1 < (int)uVar7) {
-            *(undefined1 *)((int)puVar5 + iVar3 + 0x121) = 0x2f;
-            SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,uVar7);
+          puVar6[0x23] = *puVar9;
+          uVar7 = puVar6[0x22];
+          uVar8 = puVar6[0x23];
+          *(undefined1 *)(puVar6 + 0x48) = 0x2f;
+          iVar4 = SaveSlot_BuildPath(param_1,(int)puVar6 + 0x121,uVar7,0xffffffffffffffff);
+          if (-1 < (int)uVar8) {
+            *(undefined1 *)((int)puVar6 + iVar4 + 0x121) = 0x2f;
+            SaveSlot_BuildPath(param_1,(int)puVar6 + iVar4 + 0x122,uVar7,uVar8);
           }
-          Mc_QueueCommand(param_1,0,2,puVar5 + 0x48,1,0,0);
+          Mc_QueueCommand(param_1,0,2,puVar6 + 0x48,1,0,0);
         }
-        Mc_QueueCommand(param_1,0,5,puVar8[1],puVar8[2],0,0);
-        puVar5[0x26] = puVar5[0x26] + 1;
+        Mc_QueueCommand(param_1,0,5,puVar9[1],puVar9[2],0,0);
+        puVar6[0x26] = puVar6[0x26] + 1;
       }
       else {
         Mc_QueueCommand(param_1,0,3,0,0,0,0);
@@ -2098,7 +2111,7 @@ void SaveSlot_Update(undefined8 param_1)
     }
     else {
       Mc_CancelCommand(param_1);
-      if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
+      if ((puVar6[10] == 0x13) || (puVar6[10] == 9)) {
         SaveSlot_SetState(param_1,3,2);
       }
       else {
@@ -2106,13 +2119,13 @@ void SaveSlot_Update(undefined8 param_1)
       }
     }
     break;
-  case '\r':
-    if (uVar7 == 0) {
+  case 0xd:
+    if (uVar8 == 0) {
       SaveSlot_SetState(param_1,4,9);
     }
     else {
       Mc_CancelCommand(param_1);
-      if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
+      if ((puVar6[10] == 0x13) || (puVar6[10] == 9)) {
         SaveSlot_SetState(param_1,3,2);
       }
       else {
@@ -2120,23 +2133,23 @@ void SaveSlot_Update(undefined8 param_1)
       }
     }
     break;
-  case '\x0e':
-    cVar1 = SaveSlot_FindFreeName(param_1,puVar5[0x22],puVar5[0x24],puVar5[0x27]);
-    if (cVar1 == '\0') {
-      uVar6 = puVar5[0x22];
-      piVar4 = (int *)(puVar5[0x1e] + uVar6 * 0x28);
-      if (*piVar4 == 0) {
-        *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-        SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
-        Mc_QueueCommand(param_1,0,0xb,puVar5 + 0x28,0,0,0);
-        Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,1,puVar5[0x1d]);
+  case 0xe:
+    cVar2 = SaveSlot_FindFreeName(param_1,puVar6[0x22],puVar6[0x24],puVar6[0x27]);
+    if (cVar2 == '\0') {
+      uVar7 = puVar6[0x22];
+      piVar5 = (int *)(puVar6[0x1e] + uVar7 * 0x28);
+      if (*piVar5 == 0) {
+        *(undefined1 *)(puVar6 + 0x28) = 0x2f;
+        SaveSlot_BuildPath(param_1,(int)puVar6 + 0xa1,uVar7,0xffffffffffffffff);
+        Mc_QueueCommand(param_1,0,0xb,puVar6 + 0x28,0,0,0);
+        Mc_QueueCommand(param_1,0,0xd,puVar6 + 0x28,0,1,puVar6[0x1d]);
       }
-      else if (*(int *)piVar4[9] == 1) {
-        *(undefined1 *)(puVar5 + 0x48) = 0x2f;
-        iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
-        *(undefined1 *)((int)puVar5 + iVar3 + 0x121) = 0x2f;
-        SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,0);
-        Mc_QueueCommand(param_1,0,0xf,puVar5 + 0x48,0,0,0);
+      else if (*(int *)piVar5[9] == 1) {
+        *(undefined1 *)(puVar6 + 0x48) = 0x2f;
+        iVar4 = SaveSlot_BuildPath(param_1,(int)puVar6 + 0x121,uVar7,0xffffffffffffffff);
+        *(undefined1 *)((int)puVar6 + iVar4 + 0x121) = 0x2f;
+        SaveSlot_BuildPath(param_1,(int)puVar6 + iVar4 + 0x122,uVar7,0);
+        Mc_QueueCommand(param_1,0,0xf,puVar6 + 0x48,0,0,0);
       }
       SaveSlot_SetState(param_1,0xf,1);
     }
@@ -2144,61 +2157,61 @@ void SaveSlot_Update(undefined8 param_1)
       SaveSlot_SetState(param_1,4,0xd);
     }
     break;
-  case '\x0f':
-    if (uVar7 == 0) {
-      if (*(int *)(puVar5[0x1e] + puVar5[0x22] * 0x28) == 0) {
-        puVar5[0x20] = puVar5[0x20] + puVar5[8];
+  case 0xf:
+    if (uVar8 == 0) {
+      if (*(int *)(puVar6[0x1e] + puVar6[0x22] * 0x28) == 0) {
+        puVar6[0x20] = puVar6[0x20] + puVar6[8];
         SaveSlot_ParseFileList(param_1);
-        uVar6 = puVar5[0x26];
+        uVar7 = puVar6[0x26];
       }
       else {
-        uVar6 = puVar5[0x26];
+        uVar7 = puVar6[0x26];
       }
-      if ((int)uVar6 < (int)puVar5[0x27]) {
-        puVar8 = (uint *)(puVar5[0x24] + uVar6 * 0xc);
-        if ((int)puVar5[0x23] < 0) {
-          puVar5[0x23] = *puVar8;
-          uVar6 = puVar5[0x22];
-          uVar7 = puVar5[0x23];
-          *(undefined1 *)(puVar5 + 0x48) = 0x2f;
-          iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0x121,uVar6,0xffffffffffffffff);
-          if (-1 < (int)uVar7) {
-            *(undefined1 *)((int)puVar5 + iVar3 + 0x121) = 0x2f;
-            SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0x122,uVar6,uVar7);
+      if ((int)uVar7 < (int)puVar6[0x27]) {
+        puVar9 = (uint *)(puVar6[0x24] + uVar7 * 0xc);
+        if ((int)puVar6[0x23] < 0) {
+          puVar6[0x23] = *puVar9;
+          uVar7 = puVar6[0x22];
+          uVar8 = puVar6[0x23];
+          *(undefined1 *)(puVar6 + 0x48) = 0x2f;
+          iVar4 = SaveSlot_BuildPath(param_1,(int)puVar6 + 0x121,uVar7,0xffffffffffffffff);
+          if (-1 < (int)uVar8) {
+            *(undefined1 *)((int)puVar6 + iVar4 + 0x121) = 0x2f;
+            SaveSlot_BuildPath(param_1,(int)puVar6 + iVar4 + 0x122,uVar7,uVar8);
           }
-          Mc_QueueCommand(param_1,0,2,puVar5 + 0x48,0x202,0,0);
-          uVar6 = puVar8[1];
+          Mc_QueueCommand(param_1,0,2,puVar6 + 0x48,0x202,0,0);
+          uVar7 = puVar9[1];
         }
         else {
-          uVar6 = puVar8[1];
+          uVar7 = puVar9[1];
         }
-        Mc_QueueCommand(param_1,0,6,uVar6,puVar8[2],0,0);
-        if ((puVar5[0x26] + 1 == puVar5[0x27]) ||
-           (*puVar8 != *(uint *)(puVar5[0x26] * 0xc + puVar5[0x24] + 0xc))) {
+        Mc_QueueCommand(param_1,0,6,uVar7,puVar9[2],0,0);
+        if ((puVar6[0x26] + 1 == puVar6[0x27]) ||
+           (*puVar9 != *(uint *)(puVar6[0x26] * 0xc + puVar6[0x24] + 0xc))) {
           Mc_QueueCommand(param_1,0,3,0,0,0,0);
-          uVar6 = puVar5[0x22];
-          uVar7 = puVar5[0x23];
-          *(undefined1 *)(puVar5 + 0x28) = 0x2f;
-          iVar3 = SaveSlot_BuildPath(param_1,(int)puVar5 + 0xa1,uVar6,0xffffffffffffffff);
-          if (-1 < (int)uVar7) {
-            *(undefined1 *)((int)puVar5 + iVar3 + 0xa1) = 0x2f;
-            SaveSlot_BuildPath(param_1,(int)puVar5 + iVar3 + 0xa2,uVar6,uVar7);
+          uVar7 = puVar6[0x22];
+          uVar8 = puVar6[0x23];
+          *(undefined1 *)(puVar6 + 0x28) = 0x2f;
+          iVar4 = SaveSlot_BuildPath(param_1,(int)puVar6 + 0xa1,uVar7,0xffffffffffffffff);
+          if (-1 < (int)uVar8) {
+            *(undefined1 *)((int)puVar6 + iVar4 + 0xa1) = 0x2f;
+            SaveSlot_BuildPath(param_1,(int)puVar6 + iVar4 + 0xa2,uVar7,uVar8);
           }
-          Mc_QueueCommand(param_1,0,0xd,puVar5 + 0x28,0,1,puVar5[0x1d] + puVar5[0x25] * 0x40);
-          puVar5[0x23] = 0xffffffff;
-          puVar5[0x25] = puVar5[0x25] + 1;
+          Mc_QueueCommand(param_1,0,0xd,puVar6 + 0x28,0,1,puVar6[0x1d] + puVar6[0x25] * 0x40);
+          puVar6[0x23] = 0xffffffff;
+          puVar6[0x25] = puVar6[0x25] + 1;
         }
-        puVar5[0x26] = puVar5[0x26] + 1;
+        puVar6[0x26] = puVar6[0x26] + 1;
       }
       else {
-        SaveSlot_ParseDirectory(param_1,puVar5[0x22],puVar5[0x25]);
+        SaveSlot_ParseDirectory(param_1,puVar6[0x22],puVar6[0x25]);
         Mc_QueueCommand(param_1,0,1,7,0,0,0);
         SaveSlot_SetState(param_1,0x10,1);
       }
     }
     else {
       Mc_CancelCommand(param_1);
-      if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
+      if ((puVar6[10] == 0x13) || (puVar6[10] == 9)) {
         SaveSlot_SetState(param_1,3,2);
       }
       else {
@@ -2206,28 +2219,24 @@ void SaveSlot_Update(undefined8 param_1)
       }
     }
     break;
-  case '\x10':
-    puVar5[0x10] = 0;
-    if ((*puVar5 & 8) == 0) {
-      puVar5[0x15] = puVar5[2];
-      puVar5[0x16] = puVar5[4];
-      puVar5[0x17] = puVar5[3];
+  case 0x10:
+    puVar6[0x10] = 0;
+    if ((*puVar6 & 8) == 0) {
+      puVar6[0x15] = puVar6[2];
+      puVar6[0x16] = puVar6[4];
+      puVar6[0x17] = puVar6[3];
       SaveSlot_SetState(param_1,4,0xc);
     }
     else {
       Mc_CancelCommand(param_1);
-      if ((puVar5[10] == 0x13) || (puVar5[10] == 9)) {
+      if ((puVar6[10] == 0x13) || (puVar6[10] == 9)) {
         SaveSlot_SetState(param_1,3,2);
       }
       else {
         SaveSlot_SetState(param_1,4,0xe);
       }
     }
-    break;
-  default:
-    goto switchD_001736ac_default;
   }
-switchD_001736ac_default:
   return;
 }
 

@@ -622,19 +622,17 @@ void Snd_ProcessQueue(void)
   
   lVar2 = Rpc_GetPendingCount(0x42d824);
   uVar1 = uRam0042da9c;
-  if (lVar2 != 0) {
-    switch(uRam0042da34) {
-    case 0:
-    case 1:
-      break;
+  if ((lVar2 != 0) && (bRam0042da34 < 0x11)) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bRam0042da34) {
     case 2:
       DisableIntc(1);
       if (iRam0042da3c == 0) {
         if (iRam0042da48 == 0) {
-          uRam0042da34 = 5;
+          bRam0042da34 = 5;
         }
         else {
-          uRam0042da34 = 3;
+          bRam0042da34 = 3;
           iRam0042da64 = iRam0042da4c;
         }
       }
@@ -644,7 +642,7 @@ void Snd_ProcessQueue(void)
         if (iRam0042da64 == 0) {
           iRam0042da64 = *(int *)(iVar3 + 0x14);
         }
-        uRam0042da34 = 3;
+        bRam0042da34 = 3;
       }
       iRam0042da60 = 0;
       iRam0042da68 = 0;
@@ -658,10 +656,10 @@ void Snd_ProcessQueue(void)
       lVar2 = Sif_WaitDma(uRam0042da6c,uRam0042da30);
       if (lVar2 < 0) {
         if (iRam0042da64 == 0) {
-          uRam0042da34 = 5;
+          bRam0042da34 = 5;
         }
         else {
-          uRam0042da34 = 3;
+          bRam0042da34 = 3;
           iRam0042da60 = iRam0042da60 + iRam0042da68;
         }
       }
@@ -671,10 +669,10 @@ void Snd_ProcessQueue(void)
       DisableIntc(1);
       if (iRam0042da40 == 0) {
         if (iRam0042da50 == 0) {
-          uRam0042da34 = 0xd;
+          bRam0042da34 = 0xd;
         }
         else {
-          uRam0042da34 = 6;
+          bRam0042da34 = 6;
           iRam0042da64 = iRam0042da54;
         }
       }
@@ -684,7 +682,7 @@ void Snd_ProcessQueue(void)
         if (iRam0042da64 == 0) {
           iRam0042da64 = *(int *)(iVar3 + 0x14);
         }
-        uRam0042da34 = 6;
+        bRam0042da34 = 6;
       }
       iRam0042da60 = 0;
       iRam0042da68 = 0;
@@ -697,14 +695,14 @@ void Snd_ProcessQueue(void)
       DisableIntc(1);
       lVar2 = Sif_WaitDma(uRam0042da6c,uRam0042da30);
       if (lVar2 < 0) {
-        uRam0042da34 = 8;
+        bRam0042da34 = 8;
       }
       EnableIntc(1);
       break;
     case 8:
       DisableIntc(1);
       puRam0042d854 = &LAB_00155090;
-      uRam0042da34 = 1;
+      bRam0042da34 = 1;
       uRam0042d858 = 0x42da30;
       IopStrm_Command(0x302,0);
       EnableIntc(1);
@@ -714,7 +712,7 @@ void Snd_ProcessQueue(void)
       DisableIntc(1);
       uRam0042d858 = 0x42da30;
       puRam0042d854 = &LAB_00155080;
-      uRam0042da34 = 1;
+      bRam0042da34 = 1;
       IopSnd_Command(0x103,1,0,uVar1,*(int *)(iVar3 + 0x42d8a0) + iRam0042da60,iRam0042da68);
       iRam0042da60 = iRam0042da60 + iRam0042da68;
       EnableIntc(1);
@@ -722,7 +720,7 @@ void Snd_ProcessQueue(void)
     case 10:
       DisableIntc(1);
       puRam0042d854 = &LAB_00155040;
-      uRam0042da34 = 1;
+      bRam0042da34 = 1;
       uRam0042d858 = 0x42da30;
       IopSnd_Command(0x104,1,0);
       EnableIntc(1);
@@ -730,7 +728,7 @@ void Snd_ProcessQueue(void)
     case 0xb:
       DisableIntc(1);
       puRam0042d854 = &LAB_00155030;
-      uRam0042da34 = 1;
+      bRam0042da34 = 1;
       uRam0042d858 = 0x42da30;
       IopStrm_Command(0x302,1,1);
       EnableIntc(1);
@@ -738,7 +736,7 @@ void Snd_ProcessQueue(void)
     case 0xc:
       iVar3 = iRam0042da38 * 0x2c;
       DisableIntc(1);
-      uRam0042da34 = 1;
+      bRam0042da34 = 1;
       puRam0042d854 = &LAB_00154fe0;
       uRam0042d858 = 0x42da30;
       IopSe_Command(0x20d,iRam0042da38,*(undefined4 *)(iVar3 + 0x42d8a0),
@@ -749,10 +747,10 @@ void Snd_ProcessQueue(void)
       DisableIntc(1);
       if (iRam0042da44 == 0) {
         if (iRam0042da58 == 0) {
-          uRam0042da34 = 0;
+          bRam0042da34 = 0;
         }
         else {
-          uRam0042da34 = 0xe;
+          bRam0042da34 = 0xe;
           iRam0042da64 = iRam0042da5c;
         }
       }
@@ -762,7 +760,7 @@ void Snd_ProcessQueue(void)
         if (iRam0042da64 == 0) {
           iRam0042da64 = *(int *)(iVar3 + 0x14);
         }
-        uRam0042da34 = 0xe;
+        bRam0042da34 = 0xe;
       }
       iRam0042da60 = 0;
       iRam0042da68 = 0;
@@ -776,10 +774,10 @@ void Snd_ProcessQueue(void)
       lVar2 = Sif_WaitDma(uRam0042da6c,uRam0042da30);
       if (lVar2 < 0) {
         if (iRam0042da64 == 0) {
-          uRam0042da34 = 0x10;
+          bRam0042da34 = 0x10;
         }
         else {
-          uRam0042da34 = 0xe;
+          bRam0042da34 = 0xe;
           iRam0042da60 = iRam0042da60 + iRam0042da68;
         }
       }
@@ -788,17 +786,13 @@ void Snd_ProcessQueue(void)
     case 0x10:
       iVar3 = iRam0042da38 * 0x2c;
       DisableIntc(1);
-      uRam0042da34 = 1;
+      bRam0042da34 = 1;
       puRam0042d854 = &LAB_00154de0;
       uRam0042d858 = 0x42da30;
       IopSe_Command(0x20e,iRam0042da38,*(undefined4 *)(iVar3 + 0x42d89c));
       EnableIntc(1);
-      break;
-    default:
-      goto switchD_00155484_default;
     }
   }
-switchD_00155484_default:
   return;
 }
 

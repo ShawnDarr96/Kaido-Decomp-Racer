@@ -1033,7 +1033,7 @@ undefined8 SndCh_SetVolume(undefined8 param_1,uint param_2,undefined8 param_3)
 }
 
 // 0x0018e3d0  size 0xa8
-long snd_step_sub_0018e3d0(long param_1,short param_2)
+long SndCh_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1060,7 +1060,7 @@ long snd_step_sub_0018e3d0(long param_1,short param_2)
 }
 
 // 0x0018e480  size 0x80
-ulong snd_step_sub_0018e480(int *param_1)
+ulong SndCh_FadeOut(int *param_1)
 
 {
   ulong uVar1;
@@ -1088,7 +1088,7 @@ ulong snd_step_sub_0018e480(int *param_1)
 }
 
 // 0x0018e500  size 0x80
-ulong snd_step_sub_0018e500(int *param_1)
+ulong SndCh_FadeIn(int *param_1)
 
 {
   ulong uVar1;
@@ -1136,7 +1136,7 @@ byte SndCh_IsPlaying(int param_1)
 }
 
 // 0x0018e600  size 0xa4
-void snd_step_sub_0018e600(int *param_1,uint param_2)
+void SndCh_PlayLooped(int *param_1,uint param_2)
 
 {
   uint *puVar1;
@@ -1170,7 +1170,7 @@ void snd_step_sub_0018e600(int *param_1,uint param_2)
 }
 
 // 0x0018e6b0  size 0x90
-void snd_step_sub_0018e6b0(int *param_1,short param_2)
+void SndCh_PlayOneShot(int *param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1198,7 +1198,7 @@ void snd_step_sub_0018e6b0(int *param_1,short param_2)
 }
 
 // 0x0018e740  size 0x9c
-void snd_leaf_sub_0018e740(undefined8 param_1,long param_2)
+void SndCh_GetHandle(undefined8 param_1,long param_2)
 
 {
   undefined4 *puVar1;
@@ -1222,7 +1222,7 @@ void snd_leaf_sub_0018e740(undefined8 param_1,long param_2)
 }
 
 // 0x0018e7e0  size 0x80
-void snd_step_sub_0018e7e0(int *param_1)
+void SndCh_PlayPanned(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -1251,7 +1251,7 @@ void snd_step_sub_0018e7e0(int *param_1)
 }
 
 // 0x0018e860  size 0xc0
-void snd_step_sub_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
+void SndCh_PlayAtPosition(undefined8 param_1,uint param_2,undefined8 param_3)
 
 {
   uint *puVar1;
@@ -1290,7 +1290,7 @@ void snd_step_sub_0018e860(undefined8 param_1,uint param_2,undefined8 param_3)
 }
 
 // 0x0018e920  size 0x8c
-long snd_step_sub_0018e920(long param_1,short param_2)
+long SndStream_dtor(long param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1337,7 +1337,7 @@ undefined4 Render_Nop(void)
 }
 
 // 0x0018ea30  size 0x90
-void snd_step_sub_0018ea30(int *param_1,short param_2)
+void SndStream_Play(int *param_1,short param_2)
 
 {
   undefined4 *puVar1;
@@ -1365,7 +1365,7 @@ void snd_step_sub_0018ea30(int *param_1,short param_2)
 }
 
 // 0x0018eac0  size 0x84
-void snd_step_sub_0018eac0(int *param_1)
+void SndStream_PlayLooped(int *param_1)
 
 {
   undefined4 *puVar1;
@@ -1395,7 +1395,7 @@ void snd_step_sub_0018eac0(int *param_1)
 }
 
 // 0x0018eb50  size 0x88
-void snd_step_sub_0018eb50(int *param_1,undefined4 param_2)
+void SndStream_Stop(int *param_1,undefined4 param_2)
 
 {
   undefined4 *puVar1;
@@ -1425,8 +1425,8 @@ void snd_step_sub_0018eb50(int *param_1,undefined4 param_2)
 // 0x0018ebe0  size 0x114
 /* WARNING: Removing unreachable block (ram,0x0018ecc8) */
 
-void snd_step_sub_0018ebe0
-               (undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5)
+void SndStream_PlayBank(undefined8 param_1,uint param_2,undefined8 param_3,uint param_4,uint param_5
+                       )
 
 {
   uint *puVar1;
@@ -1487,7 +1487,7 @@ undefined8 Render_Nop_2(void)
 }
 
 // 0x0018ed30  size 0x38
-undefined4 snd_leaf_sub_0018ed30(int *param_1,uint param_2)
+undefined4 SndStream_GetFlags(int *param_1,uint param_2)
 
 {
   uint *puVar1;
@@ -1526,7 +1526,7 @@ undefined4 Render_Nop_6(void)
 }
 
 // 0x0018edb0  size 0x7c
-void snd_leaf_sub_0018edb0(undefined8 param_1)
+void SndStream_GetInfo(undefined8 param_1)
 
 {
   undefined4 *puVar1;
@@ -1683,7 +1683,7 @@ SndCh_ControlChange(int param_1,uint param_2,byte param_3,uint param_4,undefined
 /* WARNING: Removing unreachable block (ram,0x0018f27c) */
 
 undefined4
-snd_step_sub_0018f180
+MidiCh_NoteOnVelocity
           (undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
           uint param_6,short param_7)
 
@@ -1751,7 +1751,7 @@ snd_step_sub_0018f180
 // 0x0018f390  size 0xe8
 /* WARNING: Removing unreachable block (ram,0x0018f3f8) */
 
-undefined4 snd_step_sub_0018f390(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 MidiCh_AllNotesOff(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1770,7 +1770,7 @@ undefined4 snd_step_sub_0018f390(int param_1,uint param_2,byte param_3,uint para
 }
 
 // 0x0018f480  size 0xd8
-undefined4 snd_step_sub_0018f480(int param_1,uint param_2,byte param_3,short param_4)
+undefined4 MidiCh_NoteOnRelative(int param_1,uint param_2,byte param_3,short param_4)
 
 {
   short sVar1;
@@ -1798,7 +1798,7 @@ undefined4 snd_step_sub_0018f480(int param_1,uint param_2,byte param_3,short par
 }
 
 // 0x0018f560  size 0xc0
-undefined4 snd_step_sub_0018f560(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 MidiCh_NoteOffRelative(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1825,7 +1825,7 @@ undefined4 snd_step_sub_0018f560(int param_1,uint param_2,byte param_3,uint para
 // 0x0018f620  size 0xe8
 /* WARNING: Removing unreachable block (ram,0x0018f688) */
 
-undefined4 snd_step_sub_0018f620(int param_1,uint param_2,byte param_3,uint param_4)
+undefined4 MidiCh_ResetControllers(int param_1,uint param_2,byte param_3,uint param_4)
 
 {
   uint uVar1;
@@ -1847,9 +1847,8 @@ undefined4 snd_step_sub_0018f620(int param_1,uint param_2,byte param_3,uint para
 /* WARNING: Removing unreachable block (ram,0x0018f810) */
 
 undefined4
-snd_step_sub_0018f710
-          (undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,undefined8 param_5,
-          uint param_6,short param_7)
+MidiCh_SetPitchBend(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,
+                   undefined8 param_5,uint param_6,short param_7)
 
 {
   byte bVar1;
@@ -1904,7 +1903,7 @@ snd_step_sub_0018f710
 }
 
 // 0x0018f930  size 0x60
-long snd_step_sub_0018f930(long param_1,short param_2)
+long MidiCh_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
@@ -1920,7 +1919,7 @@ long snd_step_sub_0018f930(long param_1,short param_2)
 }
 
 // 0x0018f990  size 0x54
-void snd_step_sub_0018f990(int param_1)
+void SndVoice_Play(int param_1)
 
 {
   undefined4 uStack_20;
@@ -1945,7 +1944,7 @@ void snd_step_sub_0018f990(int param_1)
 }
 
 // 0x0018f9f0  size 0x54
-void snd_step_sub_0018f9f0(int param_1)
+void SndVoice_Stop(int param_1)
 
 {
   undefined4 uStack_20;
@@ -1970,7 +1969,9 @@ void snd_step_sub_0018f9f0(int param_1)
 }
 
 // 0x0018fa50  size 0x94
-bool snd_step_sub_0018fa50(int param_1)
+/* 9 callers */
+
+bool SndMgr_IsChannelBusy(int param_1)
 
 {
   bool bVar1;
@@ -2006,7 +2007,7 @@ LAB_0018fab4:
 
 // 0x0018faf0  size 0x94
 undefined8
-snd_step_sub_0018faf0
+SndMgr_PlayStreamSlot
           (int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,long param_5)
 
 {
@@ -2043,7 +2044,7 @@ snd_step_sub_0018faf0
 }
 
 // 0x0018fb90  size 0x4c
-undefined4 snd_step_sub_0018fb90(int param_1,byte param_2,uint param_3)
+undefined4 MidiCh_SetProgram(int param_1,byte param_2,uint param_3)
 
 {
   *(char *)(param_1 + 0xc) = (char)param_3;
@@ -2055,7 +2056,7 @@ undefined4 snd_step_sub_0018fb90(int param_1,byte param_2,uint param_3)
 
 // 0x0018fbe0  size 0xd8
 undefined4
-snd_step_sub_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5)
+MidiCh_SetVolumeEx(int param_1,uint param_2,byte param_3,ushort param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -2080,7 +2081,7 @@ snd_step_sub_0018fbe0(int param_1,uint param_2,byte param_3,ushort param_4,undef
 
 // 0x0018fcc0  size 0xc4
 undefined4
-snd_step_sub_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
+MidiCh_SetPanEx(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -2105,7 +2106,7 @@ snd_step_sub_0018fcc0(int param_1,uint param_2,byte param_3,undefined1 param_4,u
 
 // 0x0018fd90  size 0xc0
 undefined4
-snd_step_sub_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
+MidiCh_SetExpressionEx(int param_1,uint param_2,byte param_3,undefined1 param_4,undefined1 param_5)
 
 {
   int iVar1;
@@ -2129,7 +2130,7 @@ snd_step_sub_0018fd90(int param_1,uint param_2,byte param_3,undefined1 param_4,u
 }
 
 // 0x0018fe50  size 0xb8
-undefined4 snd_step_sub_0018fe50(int param_1,uint param_2,byte param_3,undefined1 param_4)
+undefined4 MidiCh_SetBank(int param_1,uint param_2,byte param_3,undefined1 param_4)
 
 {
   int iVar1;
@@ -2154,9 +2155,8 @@ undefined4 snd_step_sub_0018fe50(int param_1,uint param_2,byte param_3,undefined
 
 // 0x0018ff10  size 0x148
 undefined4
-snd_step_sub_0018ff10
-          (undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param_4,undefined8 param_5,
-          ulong param_6,undefined8 param_7)
+MidiCh_SetReverb(undefined8 param_1,undefined8 param_2,uint param_3,undefined1 param_4,
+                undefined8 param_5,ulong param_6,undefined8 param_7)
 
 {
   int iVar1;

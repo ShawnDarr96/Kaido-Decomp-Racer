@@ -27,7 +27,7 @@ undefined1 GameState_LoadHeader_Wrap2(void)
 undefined4 misc_step_sub_002fd0c0(void)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   long lVar2;
   undefined4 uVar3;
   
@@ -40,31 +40,34 @@ undefined4 misc_step_sub_002fd0c0(void)
     lVar2 = GameState_Elem_2fa0_x17c(*(undefined1 *)((int)lVar2 + 9));
   }
   if (lVar2 != 0) {
-    uVar1 = RivalRec_GetTeam(lVar2);
-    switch(uVar1) {
-    case 2:
-      uVar3 = 1;
-      break;
-    case 3:
-      uVar3 = 2;
-      break;
-    case 4:
-      uVar3 = 3;
-      break;
-    case 6:
-      uVar3 = 4;
-      break;
-    case 7:
-      uVar3 = 5;
-      break;
-    case 8:
-      uVar3 = 6;
-      break;
-    case 9:
-      uVar3 = 7;
-      break;
-    case 10:
-      uVar3 = 8;
+    bVar1 = RivalRec_GetTeam(lVar2);
+    if (bVar1 < 0xb) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bVar1) {
+      case 2:
+        uVar3 = 1;
+        break;
+      case 3:
+        uVar3 = 2;
+        break;
+      case 4:
+        uVar3 = 3;
+        break;
+      case 6:
+        uVar3 = 4;
+        break;
+      case 7:
+        uVar3 = 5;
+        break;
+      case 8:
+        uVar3 = 6;
+        break;
+      case 9:
+        uVar3 = 7;
+        break;
+      case 10:
+        uVar3 = 8;
+      }
     }
   }
   return uVar3;
@@ -95,7 +98,7 @@ undefined4 Misc_Nop(void)
 }
 
 // 0x002fd1d0  size 0x8
-/* screen record 0x3276cc */
+/* menu screen 45 (table 0x3274b0) */
 
 void ScrRenderSetInterlace_Exit(void)
 
@@ -105,7 +108,7 @@ void ScrRenderSetInterlace_Exit(void)
 
 // 0x002fd1e0  size 0x398
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276cc */
+/* menu screen 45 (table 0x3274b0) */
 
 void ScrRenderSetInterlace_Update(int *param_1)
 
@@ -227,7 +230,7 @@ void ScrRenderSetInterlace_Update(int *param_1)
 }
 
 // 0x002fd580  size 0x38
-/* screen record 0x3276cc */
+/* menu screen 45 (table 0x3274b0) */
 
 void ScrRenderSetInterlace_Enter(undefined4 *param_1)
 

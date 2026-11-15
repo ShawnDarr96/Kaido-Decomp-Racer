@@ -3,38 +3,41 @@
 #include "ghidra_types.h"
 
 // 0x001c0040  size 0x8c
-int Profile_GetChapterRivalCount(undefined8 param_1,undefined1 param_2)
+int Profile_GetChapterRivalCount(ulong param_1,byte param_2)
 
 {
   int iVar1;
   
   iVar1 = 0;
-  switch(param_1) {
-  case 0:
-    iVar1 = 7;
-    break;
-  case 1:
-  case 2:
-    iVar1 = 6;
-    break;
-  case 3:
-    iVar1 = 6;
-    break;
-  case 4:
-    iVar1 = 6;
-    break;
-  case 5:
-  case 6:
-    iVar1 = 8;
+  if (param_1 < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    case 0:
+      iVar1 = 7;
+      break;
+    default:
+      iVar1 = 6;
+      break;
+    case 3:
+      iVar1 = 6;
+      break;
+    case 4:
+      iVar1 = 6;
+      break;
+    case 5:
+      iVar1 = 8;
+    }
   }
-  switch(param_2) {
-  case 1:
-  case 2:
-    iVar1 = iVar1 + -1;
-    break;
-  case 4:
-  case 5:
-    iVar1 = iVar1 + -2;
+  if (param_2 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_2) {
+    case 1:
+    case 2:
+      iVar1 = iVar1 + -1;
+      break;
+    case 4:
+      iVar1 = iVar1 + -2;
+    }
   }
   return iVar1;
 }
@@ -2027,7 +2030,7 @@ void RaceWorld_Step(void)
 }
 
 // 0x001c2a00  size 0xc
-void race_leaf_sub_001c2a00(int param_1)
+void maybe_RaceTask_ClearFlag(int param_1)
 
 {
   **(undefined1 **)(param_1 + 0x14) = 0;
@@ -2035,7 +2038,7 @@ void race_leaf_sub_001c2a00(int param_1)
 }
 
 // 0x001c2a10  size 0x1c
-void race_leaf_sub_001c2a10(int param_1)
+void maybe_RaceTask_SetFlag(int param_1)
 
 {
   **(undefined1 **)(param_1 + 0x14) = 1;

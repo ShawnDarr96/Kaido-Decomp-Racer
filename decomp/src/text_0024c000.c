@@ -4,8 +4,9 @@
 
 // 0x0024cb40  size 0x958
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 19 of state table 0x32be30 used by maybe_PageBetCar_Update */
 
-void scrcareer_draw_sub_0024cb40(int param_1)
+void maybe_PageBetCar_State19(int param_1)
 
 {
   char cVar1;
@@ -316,8 +317,9 @@ void scrcareer_draw_sub_0024cb40(int param_1)
 
 // 0x0024d4a0  size 0x1d4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 18 of state table 0x32be30 used by maybe_PageBetCar_Update */
 
-void scrgarage_draw_sub_0024d4a0(int param_1)
+void maybe_PageBetCar_State18(int param_1)
 
 {
   int iVar1;

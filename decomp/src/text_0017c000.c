@@ -18,7 +18,7 @@ void Game_StartNewCareer(void)
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceSetup_FromCareer
-               (int param_1,ulong param_2,char param_3,undefined1 param_4,int param_5,int *param_6,
+               (int param_1,ulong param_2,byte param_3,undefined1 param_4,int param_5,int *param_6,
                undefined8 param_7,undefined4 *param_8,undefined4 param_9)
 
 {
@@ -79,7 +79,7 @@ void RaceSetup_FromCareer
   undefined4 uStack_2d8;
   undefined1 uStack_2d0;
   undefined1 uStack_2cf;
-  char cStack_2ce;
+  byte bStack_2ce;
   undefined1 uStack_2cd;
   undefined4 uStack_2c8;
   undefined4 uStack_2c4;
@@ -129,11 +129,11 @@ void RaceSetup_FromCareer
   } while (0 < iVar9);
   uVar17 = param_2 & 0xff;
   if ((uVar17 == 4) || (uVar17 == 7)) {
-    if (param_3 == '\x04') {
-      param_3 = '\x05';
+    if (param_3 == 4) {
+      param_3 = 5;
     }
-    else if (param_3 == '\x01') {
-      param_3 = '\x02';
+    else if (param_3 == 1) {
+      param_3 = 2;
     }
   }
   GameState_NewGame();
@@ -142,9 +142,10 @@ void RaceSetup_FromCareer
   if (aiStack_e0[2] != 0) goto switchD_0017c3e8_caseD_0;
   uVar7 = CarRec_GetPartSlotB(aiStack_e0,0xf);
   uVar8 = CarRec_GetPartSlotB(aiStack_e0,0x10);
+  if (5 < param_3) goto switchD_0017c3e8_caseD_0;
+                    /* WARNING: Switch is manually overridden */
   switch(param_3) {
-  case '\x01':
-  case '\x04':
+  case 1:
     if ((uVar17 == 7) || (uVar17 == 4)) {
       CarRec_SetModelAndColor(uVar7,0x9d);
       CarRec_SetModelAndColor(uVar8,0x9d);
@@ -154,12 +155,11 @@ void RaceSetup_FromCareer
       CarRec_SetModelAndColor(uVar8,0x98);
     }
     break;
-  case '\x02':
-  case '\x05':
+  case 2:
     CarRec_SetModelAndColor(uVar7,0x9d);
     CarRec_SetModelAndColor(uVar8,0x9d);
     break;
-  case '\x03':
+  case 3:
     CarRec_SetModelAndColor(uVar7,0x98);
     CarRec_SetModelAndColor(uVar8,0x98);
     goto LAB_0017c464;
@@ -248,27 +248,28 @@ LAB_0017c464:
   if (iStack_1a8 == 0) {
     uVar7 = CarRec_GetPartSlotB(aiStack_e0,0xf);
     uVar8 = CarRec_GetPartSlotB(aiStack_e0,0x10);
-    switch(param_3) {
-    case '\x01':
-    case '\x04':
-      if ((uVar17 == 7) || (uVar17 == 4)) {
+    if (param_3 < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_3) {
+      case 1:
+        if ((uVar17 == 7) || (uVar17 == 4)) {
+          CarRec_SetModelAndColor(uVar7,0x9d);
+          CarRec_SetModelAndColor(uVar8,0x9d);
+        }
+        else {
+          CarRec_SetModelAndColor(uVar7,0x98);
+          CarRec_SetModelAndColor(uVar8,0x98);
+        }
+        break;
+      case 2:
         CarRec_SetModelAndColor(uVar7,0x9d);
         CarRec_SetModelAndColor(uVar8,0x9d);
-      }
-      else {
+        break;
+      case 3:
         CarRec_SetModelAndColor(uVar7,0x98);
         CarRec_SetModelAndColor(uVar8,0x98);
+        goto LAB_0017c704;
       }
-      break;
-    case '\x02':
-    case '\x05':
-      CarRec_SetModelAndColor(uVar7,0x9d);
-      CarRec_SetModelAndColor(uVar8,0x9d);
-      break;
-    case '\x03':
-      CarRec_SetModelAndColor(uVar7,0x98);
-      CarRec_SetModelAndColor(uVar8,0x98);
-      goto LAB_0017c704;
     }
   }
 LAB_0017c704:
@@ -353,7 +354,7 @@ LAB_0017c704:
   uStack_2c8 = 0;
   uStack_2c4 = uStack_4;
   uStack_2c0 = uStack_8;
-  cStack_2ce = param_3;
+  bStack_2ce = param_3;
   uStack_2cd = param_4;
   GameState_SaveHeader(&uStack_2d0);
   if (param_1 == 0) {
@@ -375,7 +376,7 @@ LAB_0017c704:
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void RaceSetup_FromQuickRace
-               (char param_1,undefined8 param_2,ulong param_3,char param_4,undefined1 param_5,
+               (char param_1,undefined8 param_2,ulong param_3,byte param_4,undefined1 param_5,
                int param_6,undefined4 *param_7,undefined1 param_8)
 
 {
@@ -411,7 +412,7 @@ void RaceSetup_FromQuickRace
   undefined4 uStack_208;
   undefined1 uStack_200;
   undefined1 uStack_1ff;
-  char cStack_1fe;
+  byte bStack_1fe;
   undefined1 uStack_1fd;
   undefined4 uStack_1f8;
   undefined4 uStack_1f4;
@@ -452,11 +453,11 @@ void RaceSetup_FromQuickRace
   } while (0 < iVar7);
   uVar14 = param_3 & 0xff;
   if ((uVar14 == 4) || (uVar14 == 7)) {
-    if (param_4 == '\x04') {
-      param_4 = '\x05';
+    if (param_4 == 4) {
+      param_4 = 5;
     }
-    else if (param_4 == '\x01') {
-      param_4 = '\x02';
+    else if (param_4 == 1) {
+      param_4 = 2;
     }
   }
   GameState_NewGame();
@@ -469,30 +470,31 @@ void RaceSetup_FromQuickRace
     if (param_1 == '\x0f') {
       sVar15 = 4;
     }
-    switch(param_4) {
-    case '\0':
-      CarRec_SetModelAndColor(uVar5,sVar15 + 0x8d);
-      CarRec_SetModelAndColor(uVar6,sVar15 + 0x8d);
-      break;
-    case '\x01':
-    case '\x04':
-      if ((uVar14 == 7) || (uVar14 == 4)) {
+    if (param_4 < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_4) {
+      case 0:
+        CarRec_SetModelAndColor(uVar5,sVar15 + 0x8d);
+        CarRec_SetModelAndColor(uVar6,sVar15 + 0x8d);
+        break;
+      case 1:
+        if ((uVar14 == 7) || (uVar14 == 4)) {
+          CarRec_SetModelAndColor(uVar5,sVar15 + 0x9d);
+          CarRec_SetModelAndColor(uVar6,sVar15 + 0x9d);
+        }
+        else {
+          CarRec_SetModelAndColor(uVar5,sVar15 + 0x98);
+          CarRec_SetModelAndColor(uVar6,sVar15 + 0x98);
+        }
+        break;
+      case 2:
         CarRec_SetModelAndColor(uVar5,sVar15 + 0x9d);
         CarRec_SetModelAndColor(uVar6,sVar15 + 0x9d);
-      }
-      else {
+        break;
+      case 3:
         CarRec_SetModelAndColor(uVar5,sVar15 + 0x98);
         CarRec_SetModelAndColor(uVar6,sVar15 + 0x98);
       }
-      break;
-    case '\x02':
-    case '\x05':
-      CarRec_SetModelAndColor(uVar5,sVar15 + 0x9d);
-      CarRec_SetModelAndColor(uVar6,sVar15 + 0x9d);
-      break;
-    case '\x03':
-      CarRec_SetModelAndColor(uVar5,sVar15 + 0x98);
-      CarRec_SetModelAndColor(uVar6,sVar15 + 0x98);
     }
   }
   CarRec_Copy(auStack_e0,auStack_1b0);
@@ -579,7 +581,7 @@ void RaceSetup_FromQuickRace
   uStack_1f8 = 0;
   uStack_1f4 = uStack_4;
   uStack_1f0 = uStack_8;
-  cStack_1fe = param_4;
+  bStack_1fe = param_4;
   uStack_1fd = param_5;
   GameState_SaveHeader(&uStack_200);
   if (param_1 == '\f') {
@@ -1772,35 +1774,38 @@ undefined4 Race_GetLapCountForMode(ulong param_1)
 }
 
 // 0x0017e4e0  size 0x70
-undefined4 Race_GetOpponentCount(undefined1 param_1)
+undefined4 Race_GetOpponentCount(byte param_1)
 
 {
   undefined4 uVar1;
   
   uVar1 = 2;
-  switch(param_1) {
-  case 0:
-    break;
-  case 1:
-    uVar1 = 4;
-    break;
-  case 2:
-    uVar1 = 8;
-    break;
-  case 3:
-    uVar1 = 0x10;
-    break;
-  case 4:
-    uVar1 = 0x20;
-    break;
-  case 5:
-    uVar1 = 0x40;
-    break;
-  case 6:
-    uVar1 = 0x80;
-    break;
-  case 7:
-    uVar1 = 0x100;
+  if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1) {
+    case 0:
+      break;
+    case 1:
+      uVar1 = 4;
+      break;
+    case 2:
+      uVar1 = 8;
+      break;
+    case 3:
+      uVar1 = 0x10;
+      break;
+    case 4:
+      uVar1 = 0x20;
+      break;
+    case 5:
+      uVar1 = 0x40;
+      break;
+    case 6:
+      uVar1 = 0x80;
+      break;
+    case 7:
+      uVar1 = 0x100;
+    }
   }
   return uVar1;
 }
@@ -2860,10 +2865,10 @@ void RaceResult_Award(void)
   char acStack_30 [4];
   undefined4 uStack_2c;
   undefined4 uStack_28;
-  undefined1 auStack_20 [4];
+  byte abStack_20 [4];
   int iStack_1c;
   undefined4 uStack_18;
-  char cStack_10;
+  byte bStack_10;
   short asStack_4 [2];
   
   uVar4 = GameState_Get_35c();
@@ -2874,7 +2879,7 @@ void RaceResult_Award(void)
     }
     else {
       GameState_GetVec3c4(acStack_30);
-      cStack_10 = acStack_30[0];
+      bStack_10 = acStack_30[0];
       if (acStack_30[0] == '\x06') {
         uVar6 = Profile_Get(0);
         Profile_SpendMoney(uVar6,uStack_28,1);
@@ -2898,10 +2903,14 @@ void RaceResult_Award(void)
     }
   }
   else {
-    GameState_GetVec3d0(auStack_20);
-    cStack_10 = auStack_20[0];
+    GameState_GetVec3d0(abStack_20);
+    bStack_10 = abStack_20[0];
+    if (8 < abStack_20[0]) {
+      return;
+    }
     uVar7 = (undefined2)iStack_1c;
-    switch(auStack_20[0]) {
+                    /* WARNING: Switch is manually overridden */
+    switch(abStack_20[0]) {
     case 0:
       CarRec_SetModelAndColor(asStack_4,uVar7);
       uVar6 = Profile_Get(0);
@@ -2928,9 +2937,6 @@ void RaceResult_Award(void)
       Garage_ResetCarRecord(uVar6,auStack_100);
       uVar6 = Profile_Get(0);
       Career_IsBelowCap(uVar6,4,0xffffffffffffffff);
-      break;
-    case 2:
-    case 4:
       break;
     case 3:
       uVar6 = Profile_Get(0);
@@ -2986,12 +2992,8 @@ void RaceResult_Award(void)
       uVar5 = Profile_Get(0);
       uVar5 = Profile_GetDay(uVar5);
       Profile_SetCourseRecord(uVar6,iStack_1c,uVar5);
-      break;
-    default:
-      goto switchD_0017f91c_default;
     }
   }
-switchD_0017f91c_default:
   return;
 }
 

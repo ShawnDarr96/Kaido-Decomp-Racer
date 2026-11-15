@@ -4,9 +4,9 @@
 
 // 0x00268000  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327878 */
+/* menu page 34 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327878_enter_sub_00268000(void)
+void maybe_PageMoney_Enter(void)
 
 {
   undefined4 uVar1;
@@ -321,8 +321,9 @@ void ScrGarage_Draw_ChangeCar(int param_1)
 
 // 0x00268a70  size 0x118
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 3 of state table 0x32d770 used by maybe_PageChangeCar_Update */
 
-void scrgarage_draw_sub_00268a70(undefined8 param_1)
+void maybe_PageChangeCar_State3(undefined8 param_1)
 
 {
   int iVar1;
@@ -736,9 +737,9 @@ void ScrFfSort_Enter(undefined8 param_1)
 
 // 0x002696d0  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327884 */
+/* menu page 35 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327884_exit_sub_002696d0(void)
+void maybe_PageChangeCar_Exit(void)
 
 {
   int iVar1;
@@ -751,9 +752,9 @@ void screc327884_exit_sub_002696d0(void)
 
 // 0x00269730  size 0x120
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327884 */
+/* menu page 35 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327884_update_sub_00269730(undefined8 param_1)
+void maybe_PageChangeCar_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -779,9 +780,9 @@ void screc327884_update_sub_00269730(undefined8 param_1)
 
 // 0x00269850  size 0x200
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327884 */
+/* menu page 35 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327884_enter_sub_00269850(void)
+void maybe_PageChangeCar_Enter(void)
 
 {
   int iVar1;
@@ -1713,114 +1714,116 @@ void ScrGarage_Draw_PowerTune(int param_1)
 void MenuScr_Select_CarStatus(int param_1)
 
 {
-  undefined4 uVar1;
-  int iVar2;
+  byte bVar1;
+  undefined4 uVar2;
   int iVar3;
-  uint uVar4;
-  long lVar5;
+  int iVar4;
+  uint uVar5;
   long lVar6;
+  long lVar7;
   
-  iVar2 = UiMgr_FindLayout(8);
-  UiLayout_UpdateAnim(*_g_UiMgr + iVar2 * 0x4f4 + 4,2);
-  iVar2 = UiMgr_FindLayout(8);
-  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
+  iVar3 = UiMgr_FindLayout(8);
+  UiLayout_UpdateAnim(*_g_UiMgr + iVar3 * 0x4f4 + 4,2);
+  iVar3 = UiMgr_FindLayout(8);
+  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   MenuWnd_DrawText(0xd9,1,0xfd);
-  iVar2 = UiMgr_FindLayout(0xd9);
-  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
-  iVar2 = 0;
-  switch(*(undefined1 *)(param_1 + 4)) {
-  case 0:
-    uVar4 = *(uint *)(param_1 + 8);
-    goto LAB_0026b9ac;
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-    iVar2 = 1;
-    break;
-  case 5:
-    iVar2 = 2;
+  iVar3 = UiMgr_FindLayout(0xd9);
+  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
+  bVar1 = *(byte *)(param_1 + 4);
+  iVar3 = 0;
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      uVar5 = *(uint *)(param_1 + 8);
+      goto LAB_0026b9ac;
+    default:
+      iVar3 = 1;
+      break;
+    case 5:
+      iVar3 = 2;
+    }
   }
-  uVar4 = *(uint *)(param_1 + 8);
+  uVar5 = *(uint *)(param_1 + 8);
 LAB_0026b9ac:
+  lVar7 = 0;
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      break;
+    default:
+      lVar7 = 1;
+      break;
+    case 5:
+      lVar7 = 2;
+    }
+  }
   lVar6 = 0;
-  switch(*(undefined1 *)(param_1 + 4)) {
-  case 0:
-    break;
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-    lVar6 = 1;
-    break;
-  case 5:
-    lVar6 = 2;
+  if ((uVar5 & 0xff) < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar5 & 0xff) {
+    case 0:
+      break;
+    default:
+      lVar6 = 1;
+      break;
+    case 5:
+      lVar6 = 2;
+    }
   }
-  lVar5 = 0;
-  switch(uVar4 & 0xff) {
-  case 0:
-    break;
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-    lVar5 = 1;
-    break;
-  case 5:
-    lVar5 = 2;
-  }
-  if (lVar6 == lVar5) {
+  if (lVar7 == lVar6) {
     if (*(int *)(param_1 + 0x10) == 0) {
-      if (*(int *)(param_1 + 0x2fc) != iVar2) {
-        uVar1 = *(undefined4 *)(&DAT_0032d928 + *(int *)(param_1 + 0x2fc) * 4);
-        iVar3 = UiMgr_FindLayout(0xda);
-        UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,uVar1,8);
-        menuscr_anim_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + iVar2 * 4));
-        *(int *)(param_1 + 0x2fc) = iVar2;
+      if (*(int *)(param_1 + 0x2fc) != iVar3) {
+        uVar2 = *(undefined4 *)(&DAT_0032d928 + *(int *)(param_1 + 0x2fc) * 4);
+        iVar4 = UiMgr_FindLayout(0xda);
+        UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,uVar2,8);
+        menuscr_anim_sub_0026a4e0(*(undefined4 *)(&DAT_0032d928 + iVar3 * 4));
+        *(int *)(param_1 + 0x2fc) = iVar3;
       }
       if (*(int *)(param_1 + 0x18) == 0) {
-        iVar3 = UiMgr_FindLayout(0xda);
-        UiLayout_UpdateAnim(*_g_UiMgr + iVar3 * 0x4f4 + 4,9);
+        iVar4 = UiMgr_FindLayout(0xda);
+        UiLayout_UpdateAnim(*_g_UiMgr + iVar4 * 0x4f4 + 4,9);
       }
     }
   }
   else {
-    uVar1 = *(undefined4 *)(&DAT_0032d928 + iVar2 * 4);
-    iVar3 = UiMgr_FindLayout(0xda);
-    UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,uVar1,8);
+    uVar2 = *(undefined4 *)(&DAT_0032d928 + iVar3 * 4);
+    iVar4 = UiMgr_FindLayout(0xda);
+    UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,uVar2,8);
   }
-  lVar6 = MenuMgr_Goto();
-  if (lVar6 == 0) {
-    if (iVar2 == 0) {
+  lVar7 = MenuMgr_Goto();
+  if (lVar7 == 0) {
+    if (iVar3 == 0) {
+      iVar4 = UiMgr_FindLayout(0xda);
+      UiElem_SetPropFloat(0,*_g_UiMgr + iVar4 * 0x4f4 + 4,7,8);
+    }
+    else {
+      iVar4 = UiMgr_FindLayout(0xda);
+      UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4,7,8);
+    }
+    if (iVar3 == 2) {
       iVar3 = UiMgr_FindLayout(0xda);
-      UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,7,8);
+      UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,8,8);
     }
     else {
       iVar3 = UiMgr_FindLayout(0xda);
-      UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,7,8);
-    }
-    if (iVar2 == 2) {
-      iVar2 = UiMgr_FindLayout(0xda);
-      UiElem_SetPropFloat(0,*_g_UiMgr + iVar2 * 0x4f4 + 4,8,8);
-    }
-    else {
-      iVar2 = UiMgr_FindLayout(0xda);
-      UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4,8,8);
+      UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4,8,8);
     }
   }
   else {
-    iVar2 = UiMgr_FindLayout(0xda);
-    UiElem_SetPropFloat(0,*_g_UiMgr + iVar2 * 0x4f4 + 4,7,8);
-    iVar2 = UiMgr_FindLayout(0xda);
-    UiElem_SetPropFloat(0,*_g_UiMgr + iVar2 * 0x4f4 + 4,8,8);
+    iVar3 = UiMgr_FindLayout(0xda);
+    UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,7,8);
+    iVar3 = UiMgr_FindLayout(0xda);
+    UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,8,8);
   }
   UiLayout_UpdateAnimById(0xda,2);
   UiLayout_UpdateAnimById(0xda,3);
   MenuWnd_DrawText(0xda,9,0x23b);
   MenuWnd_DrawText(0xda,10,0x23c);
   MenuWnd_DrawText(0xda,0xb,0x23d);
-  iVar2 = UiMgr_FindLayout(0xda);
-  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
+  iVar3 = UiMgr_FindLayout(0xda);
+  UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   return;
 }
 
@@ -2387,17 +2390,17 @@ void ScrScrGarageDrawFullAeroa980_Update(undefined8 param_1)
   *(undefined4 *)(iVar5 + 0x10) = 0;
   if (*(int *)(iVar5 + 0x18) != 0) {
     lVar3 = 0;
-    switch(*(undefined1 *)(iVar5 + 8)) {
-    case 0:
-      break;
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      lVar3 = 1;
-      break;
-    case 5:
-      lVar3 = 2;
+    if (*(byte *)(iVar5 + 8) < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(byte *)(iVar5 + 8)) {
+      case 0:
+        break;
+      default:
+        lVar3 = 1;
+        break;
+      case 5:
+        lVar3 = 2;
+      }
     }
     if ((lVar3 == 1) && (lVar3 = MenuMgr_Goto(), lVar3 == 0)) {
       if (*(int *)(iVar5 + 8) == 3) {

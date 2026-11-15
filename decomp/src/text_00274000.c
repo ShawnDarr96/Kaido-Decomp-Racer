@@ -282,278 +282,132 @@ undefined4 menuscr_leaf_sub_00274610(short param_1)
   return uVar1;
 }
 
-// 0x00274810  size 0x28
-undefined8 menuscr_leaf_sub_00274810(ulong param_1)
+// 0x00274810  size 0xb4
+undefined4 menuscr_leaf_sub_00274810(ulong param_1)
 
 {
-  undefined8 uVar1;
+  undefined4 uVar1;
   
   if (param_1 < 0x10) {
-                    /* WARNING: Could not recover jumptable at 0x00274830. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_00366870)[(int)param_1])();
-    return uVar1;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    case 0:
+      uVar1 = 1;
+      break;
+    case 1:
+      uVar1 = 0;
+      break;
+    case 2:
+      uVar1 = 2;
+      break;
+    case 3:
+      uVar1 = 6;
+      break;
+    case 4:
+      uVar1 = 7;
+      break;
+    case 5:
+      uVar1 = 8;
+      break;
+    case 6:
+      uVar1 = 0xb;
+      break;
+    case 7:
+      uVar1 = 0xc;
+      break;
+    case 8:
+      uVar1 = 0xd;
+      break;
+    case 9:
+      uVar1 = 9;
+      break;
+    case 10:
+      uVar1 = 10;
+      break;
+    case 0xb:
+      uVar1 = 0xe;
+      break;
+    case 0xc:
+      uVar1 = 0xf;
+      break;
+    case 0xd:
+      uVar1 = 3;
+      break;
+    case 0xe:
+      uVar1 = 4;
+      break;
+    case 0xf:
+      uVar1 = 5;
+    }
   }
-  return 0xffffffffffffffff;
+  else {
+    uVar1 = 0xffffffff;
+  }
+  return uVar1;
 }
 
-// 0x00274848  size 0x8
-/* screen record 0x366878 */
-
-undefined4 screc366878_enter_sub_00274848(void)
+// 0x002748d0  size 0xb4
+undefined4 menuscr_leaf_sub_002748d0(ulong param_1)
 
 {
-  return 2;
-}
-
-// 0x00274850  size 0x8
-/* screen record 0x366878 */
-
-undefined4 screc366878_update_sub_00274850(void)
-
-{
-  return 6;
-}
-
-// 0x00274858  size 0x8
-/* screen record 0x366878 */
-
-undefined4 screc366878_exit_sub_00274858(void)
-
-{
-  return 7;
-}
-
-// 0x00274860  size 0x8
-/* screen record 0x366884 */
-
-undefined4 screc366884_enter_sub_00274860(void)
-
-{
-  return 8;
-}
-
-// 0x00274868  size 0x8
-/* screen record 0x366884 */
-
-undefined4 screc366884_update_sub_00274868(void)
-
-{
-  return 0xb;
-}
-
-// 0x00274870  size 0x8
-/* screen record 0x366884 */
-
-undefined4 screc366884_exit_sub_00274870(void)
-
-{
-  return 0xc;
-}
-
-// 0x00274878  size 0x8
-/* screen record 0x366890 */
-
-undefined4 screc366890_enter_sub_00274878(void)
-
-{
-  return 0xd;
-}
-
-// 0x00274880  size 0x8
-/* screen record 0x366890 */
-
-undefined4 screc366890_update_sub_00274880(void)
-
-{
-  return 9;
-}
-
-// 0x00274888  size 0x8
-/* screen record 0x366890 */
-
-undefined4 screc366890_exit_sub_00274888(void)
-
-{
-  return 10;
-}
-
-// 0x00274890  size 0x8
-/* screen record 0x36689c */
-
-undefined4 screc36689c_enter_sub_00274890(void)
-
-{
-  return 0xe;
-}
-
-// 0x00274898  size 0x8
-/* screen record 0x36689c */
-
-undefined4 screc36689c_update_sub_00274898(void)
-
-{
-  return 0xf;
-}
-
-// 0x002748a0  size 0x8
-/* screen record 0x36689c */
-
-undefined4 screc36689c_exit_sub_002748a0(void)
-
-{
-  return 3;
-}
-
-// 0x002748a8  size 0x8
-undefined4 Menuscr_Nop_3(void)
-
-{
-  return 4;
-}
-
-// 0x002748b0  size 0x10
-undefined4 Menuscr_Nop_4(void)
-
-{
-  return 5;
-}
-
-// 0x002748d0  size 0x28
-undefined8 menuscr_leaf_sub_002748d0(ulong param_1)
-
-{
-  undefined8 uVar1;
+  undefined4 uVar1;
   
   if (param_1 < 0x10) {
-                    /* WARNING: Could not recover jumptable at 0x002748f0. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_003668b0)[(int)param_1])();
-    return uVar1;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    case 0:
+      uVar1 = 1;
+      break;
+    case 1:
+      uVar1 = 0;
+      break;
+    case 2:
+      uVar1 = 2;
+      break;
+    case 3:
+      uVar1 = 0xd;
+      break;
+    case 4:
+      uVar1 = 0xe;
+      break;
+    case 5:
+      uVar1 = 0xf;
+      break;
+    case 6:
+      uVar1 = 3;
+      break;
+    case 7:
+      uVar1 = 4;
+      break;
+    case 8:
+      uVar1 = 5;
+      break;
+    case 9:
+      uVar1 = 9;
+      break;
+    case 10:
+      uVar1 = 10;
+      break;
+    case 0xb:
+      uVar1 = 6;
+      break;
+    case 0xc:
+      uVar1 = 7;
+      break;
+    case 0xd:
+      uVar1 = 8;
+      break;
+    case 0xe:
+      uVar1 = 0xb;
+      break;
+    case 0xf:
+      uVar1 = 0xc;
+    }
   }
-  return 0xffffffffffffffff;
-}
-
-// 0x00274908  size 0x8
-/* screen record 0x3668b8 */
-
-undefined4 screc3668b8_enter_sub_00274908(void)
-
-{
-  return 2;
-}
-
-// 0x00274910  size 0x8
-/* screen record 0x3668b8 */
-
-undefined4 screc3668b8_update_sub_00274910(void)
-
-{
-  return 0xd;
-}
-
-// 0x00274918  size 0x8
-/* screen record 0x3668b8 */
-
-undefined4 screc3668b8_exit_sub_00274918(void)
-
-{
-  return 0xe;
-}
-
-// 0x00274920  size 0x8
-/* screen record 0x3668c4 */
-
-undefined4 screc3668c4_enter_sub_00274920(void)
-
-{
-  return 0xf;
-}
-
-// 0x00274928  size 0x8
-/* screen record 0x3668c4 */
-
-undefined4 screc3668c4_update_sub_00274928(void)
-
-{
-  return 3;
-}
-
-// 0x00274930  size 0x8
-/* screen record 0x3668c4 */
-
-undefined4 screc3668c4_exit_sub_00274930(void)
-
-{
-  return 4;
-}
-
-// 0x00274938  size 0x8
-/* screen record 0x3668d0 */
-
-undefined4 screc3668d0_enter_sub_00274938(void)
-
-{
-  return 5;
-}
-
-// 0x00274940  size 0x8
-/* screen record 0x3668d0 */
-
-undefined4 screc3668d0_update_sub_00274940(void)
-
-{
-  return 9;
-}
-
-// 0x00274948  size 0x8
-/* screen record 0x3668d0 */
-
-undefined4 screc3668d0_exit_sub_00274948(void)
-
-{
-  return 10;
-}
-
-// 0x00274950  size 0x8
-/* screen record 0x3668dc */
-
-undefined4 screc3668dc_enter_sub_00274950(void)
-
-{
-  return 6;
-}
-
-// 0x00274958  size 0x8
-/* screen record 0x3668dc */
-
-undefined4 screc3668dc_update_sub_00274958(void)
-
-{
-  return 7;
-}
-
-// 0x00274960  size 0x8
-/* screen record 0x3668dc */
-
-undefined4 screc3668dc_exit_sub_00274960(void)
-
-{
-  return 8;
-}
-
-// 0x00274968  size 0x8
-undefined4 Menuscr_Nop_5(void)
-
-{
-  return 0xb;
-}
-
-// 0x00274970  size 0x10
-undefined4 Menuscr_Nop_6(void)
-
-{
-  return 0xc;
+  else {
+    uVar1 = 0xffffffff;
+  }
+  return uVar1;
 }
 
 // 0x00274990  size 0x1c0
@@ -2437,31 +2291,26 @@ void ScrCareer_Draw_Front(int param_1)
     puVar11 = puVar11 + 1;
     puVar9 = puVar9 + 1;
   } while (iVar10 < 4);
-  switch(*(undefined4 *)(param_1 + 0x18)) {
-  case 0:
-  case 1:
-  case 2:
-    MenuWnd_DrawText(0x69,0x3c,0x1e4);
-    iVar5 = *(int *)(param_1 + 0x14);
-    goto LAB_00277ce8;
-  case 3:
-  case 4:
-  case 5:
-    MenuWnd_DrawText(0x69,0x3c,0x1e5);
-    break;
-  case 6:
-  case 7:
-  case 8:
-  case 9:
-  case 10:
-    MenuWnd_DrawText(0x69,0x3c,0x1e6);
-    break;
-  case 0xb:
-  case 0xc:
-  case 0xd:
-  case 0xe:
-  case 0xf:
-    MenuWnd_DrawText(0x69,0x3c,0x1e7);
+  if (*(uint *)(param_1 + 0x18) < 0x10) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 0x18)) {
+    case 0:
+    case 1:
+    case 2:
+      MenuWnd_DrawText(0x69,0x3c,0x1e4);
+      iVar5 = *(int *)(param_1 + 0x14);
+      goto LAB_00277ce8;
+    case 3:
+    case 4:
+    case 5:
+      MenuWnd_DrawText(0x69,0x3c,0x1e5);
+      break;
+    default:
+      MenuWnd_DrawText(0x69,0x3c,0x1e6);
+      break;
+    case 0xb:
+      MenuWnd_DrawText(0x69,0x3c,0x1e7);
+    }
   }
   iVar5 = *(int *)(param_1 + 0x14);
 LAB_00277ce8:

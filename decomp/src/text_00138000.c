@@ -556,61 +556,53 @@ long Mc_PollResult(int param_1)
       *(undefined4 *)(*(int *)(param_1 + 8) + 0x28) = 0x16;
     }
     else {
-      switch(*(int *)(param_1 + 0xc)) {
-      case 1:
-        if (iStack_8 == 0) {
-          **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 1;
-          **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) & 0xfffffffd;
-        }
-        else if (iStack_8 + 2U < 2) {
-          **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 1;
-          **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 2;
-        }
-        else if (iStack_8 == -5) {
-          **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 1;
-          **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 4;
-        }
-        else {
-          **(undefined4 **)(param_1 + 8) = 0;
-          *(undefined4 *)(*(int *)(param_1 + 8) + 8) = 0;
-          *(undefined4 *)(*(int *)(param_1 + 8) + 0xc) = 0;
-          *(undefined4 *)(*(int *)(param_1 + 8) + 0x10) = 0;
-        }
-        bVar3 = false;
-        break;
-      case 2:
-        if (-1 < iStack_8) {
-          bVar3 = false;
-          *(int *)(*(int *)(param_1 + 8) + 0x18) = iStack_8;
-        }
-        break;
-      case 3:
-        if (iStack_8 == 0) {
-          bVar3 = false;
-          *(undefined4 *)(*(int *)(param_1 + 8) + 0x18) = 0xffffffff;
-        }
-        break;
-      case 4:
-      case 5:
-      case 6:
-      case 10:
-      case 0xb:
-      case 0xc:
-      case 0xd:
-      case 0xe:
-      case 0xf:
-      case 0x10:
-      case 0x11:
-      case 0x12:
-      case 0x13:
-        if (-1 < iStack_8) {
-          if (*(int *)(param_1 + 0xc) == 0xd) {
-            *(int *)(*(int *)(param_1 + 8) + 0x20) = iStack_8;
+      uVar1 = *(uint *)(param_1 + 0xc);
+      if (uVar1 < 0x14) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar1) {
+        case 1:
+          if (iStack_8 == 0) {
+            **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 1;
+            **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) & 0xfffffffd;
           }
-          if (*(int *)(param_1 + 0xc) == 0x12) {
-            *(int *)(*(int *)(param_1 + 8) + 0x1c) = iStack_8;
+          else if (iStack_8 + 2U < 2) {
+            **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 1;
+            **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 2;
+          }
+          else if (iStack_8 == -5) {
+            **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 1;
+            **(uint **)(param_1 + 8) = **(uint **)(param_1 + 8) | 4;
+          }
+          else {
+            **(undefined4 **)(param_1 + 8) = 0;
+            *(undefined4 *)(*(int *)(param_1 + 8) + 8) = 0;
+            *(undefined4 *)(*(int *)(param_1 + 8) + 0xc) = 0;
+            *(undefined4 *)(*(int *)(param_1 + 8) + 0x10) = 0;
           }
           bVar3 = false;
+          break;
+        case 2:
+          if (-1 < iStack_8) {
+            bVar3 = false;
+            *(int *)(*(int *)(param_1 + 8) + 0x18) = iStack_8;
+          }
+          break;
+        case 3:
+          if (iStack_8 == 0) {
+            bVar3 = false;
+            *(undefined4 *)(*(int *)(param_1 + 8) + 0x18) = 0xffffffff;
+          }
+          break;
+        case 4:
+          if (-1 < iStack_8) {
+            if (uVar1 == 0xd) {
+              *(int *)(*(int *)(param_1 + 8) + 0x20) = iStack_8;
+            }
+            if (*(int *)(param_1 + 0xc) == 0x12) {
+              *(int *)(*(int *)(param_1 + 8) + 0x1c) = iStack_8;
+            }
+            bVar3 = false;
+          }
         }
       }
       if (bVar3) {
@@ -645,82 +637,86 @@ long Mc_IssueCommand(int param_1)
   undefined4 uStack_4;
   
   lVar2 = 0;
-  switch(*(undefined4 *)(param_1 + 0xc)) {
-  case 1:
-    lVar2 = maybe_sceMcGetDir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+  if (*(uint *)(param_1 + 0xc) < 0x14) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 0xc)) {
+    case 1:
+      lVar2 = maybe_sceMcGetDir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                                *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                                *(undefined4 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
+                                *(undefined4 *)(param_1 + 0x24));
+      break;
+    case 2:
+      lVar2 = maybe_sceMcOpen(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                              *(undefined4 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
-                              *(undefined4 *)(param_1 + 0x24));
-    break;
-  case 2:
-    lVar2 = maybe_sceMcOpen(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                            *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                            *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30));
-    break;
-  case 3:
-    lVar2 = maybe_sceMcClose(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
-    break;
-  case 4:
-    lVar2 = maybe_sceMcSeek(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                            *(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x30));
-    break;
-  case 5:
-    lVar2 = maybe_sceMcRead(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                            *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
-    break;
-  case 6:
-    lVar2 = maybe_sceMcWrite(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
-                             *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
-    break;
-  case 10:
-    lVar2 = maybe_sceMcFormat(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
-    break;
-  case 0xb:
-    lVar2 = maybe_sceMcOpenChecked
-                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28));
-    break;
-  case 0xc:
-    lVar2 = maybe_sceMcMkdir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                             *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                             *(undefined4 *)(param_1 + 0x40),*(undefined4 *)(param_1 + 0x44));
-    break;
-  case 0xd:
-    lVar2 = maybe_sceMcSetFileInfo
-                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                       *(undefined4 *)(param_1 + 0x30),*(undefined4 *)(param_1 + 0x48),
-                       *(undefined4 *)(param_1 + 0x4c));
-    break;
-  case 0xe:
-    lVar2 = maybe_sceMcReadDirEntry
-                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                       *(undefined4 *)(param_1 + 0x50),*(undefined4 *)(param_1 + 0x54));
-    break;
-  case 0xf:
-    lVar2 = maybe_sceMcChdir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                             *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                             *(undefined4 *)(param_1 + 0x28));
-    break;
-  case 0x10:
-    lVar2 = maybe_sceMcFlush(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                             *(undefined1 *)(*(int *)(param_1 + 8) + 5));
-    break;
-  case 0x11:
-    lVar2 = maybe_sceMcUnformat(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                                *(undefined1 *)(*(int *)(param_1 + 8) + 5));
-    break;
-  case 0x12:
-    lVar2 = maybe_sceMcDelete(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                              *(undefined1 *)(*(int *)(param_1 + 8) + 5),
-                              *(undefined4 *)(param_1 + 0x40));
-    break;
-  case 0x13:
-    lVar2 = maybe_sceMcGetEntSpace
-                      (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
-                       *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
-                       *(undefined4 *)(param_1 + 0x2c));
+                              *(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x30));
+      break;
+    case 3:
+      lVar2 = maybe_sceMcClose(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
+      break;
+    case 4:
+      lVar2 = maybe_sceMcSeek(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                              *(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x30));
+      break;
+    case 5:
+      lVar2 = maybe_sceMcRead(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                              *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
+      break;
+    case 6:
+      lVar2 = maybe_sceMcWrite(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18),
+                               *(undefined4 *)(param_1 + 0x38),*(undefined4 *)(param_1 + 0x3c));
+      break;
+    case 10:
+      lVar2 = maybe_sceMcFormat(*(undefined4 *)(*(int *)(param_1 + 8) + 0x18));
+      break;
+    case 0xb:
+      lVar2 = maybe_sceMcOpenChecked
+                        (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28))
+      ;
+      break;
+    case 0xc:
+      lVar2 = maybe_sceMcMkdir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x40),*(undefined4 *)(param_1 + 0x44));
+      break;
+    case 0xd:
+      lVar2 = maybe_sceMcSetFileInfo
+                        (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
+                         *(undefined4 *)(param_1 + 0x30),*(undefined4 *)(param_1 + 0x48),
+                         *(undefined4 *)(param_1 + 0x4c));
+      break;
+    case 0xe:
+      lVar2 = maybe_sceMcReadDirEntry
+                        (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
+                         *(undefined4 *)(param_1 + 0x50),*(undefined4 *)(param_1 + 0x54));
+      break;
+    case 0xf:
+      lVar2 = maybe_sceMcChdir(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                               *(undefined4 *)(param_1 + 0x28));
+      break;
+    case 0x10:
+      lVar2 = maybe_sceMcFlush(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                               *(undefined1 *)(*(int *)(param_1 + 8) + 5));
+      break;
+    case 0x11:
+      lVar2 = maybe_sceMcUnformat(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                                  *(undefined1 *)(*(int *)(param_1 + 8) + 5));
+      break;
+    case 0x12:
+      lVar2 = maybe_sceMcDelete(*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                                *(undefined1 *)(*(int *)(param_1 + 8) + 5),
+                                *(undefined4 *)(param_1 + 0x40));
+      break;
+    case 0x13:
+      lVar2 = maybe_sceMcGetEntSpace
+                        (*(undefined1 *)(*(int *)(param_1 + 8) + 4),
+                         *(undefined1 *)(*(int *)(param_1 + 8) + 5),*(undefined4 *)(param_1 + 0x28),
+                         *(undefined4 *)(param_1 + 0x2c));
+    }
   }
   if (lVar2 == 0) {
     *(undefined4 *)(param_1 + 0x10) = 0;
@@ -776,70 +772,73 @@ Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefin
     }
     *(undefined4 *)(iVar1 + 0x18) = uVar2;
     *(int *)(param_1 + 0x14) = *(int *)(param_1 + 0x14) + 1;
-    switch(*(undefined4 *)(iVar1 + 0xc)) {
-    case 1:
-      if ((param_4 & 1) == 0) {
-        iVar3 = 0;
+    if (*(uint *)(iVar1 + 0xc) < 0x14) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(iVar1 + 0xc)) {
+      case 1:
+        if ((param_4 & 1) == 0) {
+          iVar3 = 0;
+        }
+        else {
+          iVar3 = param_1 + 8;
+        }
+        *(int *)(iVar1 + 0x1c) = iVar3;
+        if ((param_4 & 2) == 0) {
+          iVar3 = 0;
+        }
+        else {
+          iVar3 = param_1 + 0xc;
+        }
+        *(int *)(iVar1 + 0x20) = iVar3;
+        if ((param_4 & 4) == 0) {
+          param_1 = 0;
+        }
+        else {
+          param_1 = param_1 + 0x10;
+        }
+        *(int *)(iVar1 + 0x24) = param_1;
+        break;
+      case 2:
+        *(uint *)(iVar1 + 0x28) = param_4;
+        *(undefined4 *)(iVar1 + 0x30) = param_5;
+        break;
+      case 4:
+        *(uint *)(iVar1 + 0x34) = param_4;
+        *(undefined4 *)(iVar1 + 0x30) = param_5;
+        break;
+      case 5:
+      case 6:
+        *(uint *)(iVar1 + 0x38) = param_4;
+        *(undefined4 *)(iVar1 + 0x3c) = param_5;
+        break;
+      case 0xb:
+        *(uint *)(iVar1 + 0x28) = param_4;
+        break;
+      case 0xc:
+        *(uint *)(iVar1 + 0x40) = param_4;
+        *(undefined4 *)(iVar1 + 0x44) = param_5;
+        break;
+      case 0xd:
+        *(uint *)(iVar1 + 0x28) = param_4;
+        *(undefined4 *)(iVar1 + 0x30) = param_5;
+        *(undefined4 *)(iVar1 + 0x48) = param_6;
+        *(undefined4 *)(iVar1 + 0x4c) = param_7;
+        break;
+      case 0xe:
+        *(uint *)(iVar1 + 0x28) = param_4;
+        *(undefined4 *)(iVar1 + 0x50) = param_5;
+        *(undefined4 *)(iVar1 + 0x54) = param_6;
+        break;
+      case 0xf:
+        *(uint *)(iVar1 + 0x28) = param_4;
+        break;
+      case 0x12:
+        *(uint *)(iVar1 + 0x40) = param_4;
+        break;
+      case 0x13:
+        *(uint *)(iVar1 + 0x28) = param_4;
+        *(undefined4 *)(iVar1 + 0x2c) = param_5;
       }
-      else {
-        iVar3 = param_1 + 8;
-      }
-      *(int *)(iVar1 + 0x1c) = iVar3;
-      if ((param_4 & 2) == 0) {
-        iVar3 = 0;
-      }
-      else {
-        iVar3 = param_1 + 0xc;
-      }
-      *(int *)(iVar1 + 0x20) = iVar3;
-      if ((param_4 & 4) == 0) {
-        param_1 = 0;
-      }
-      else {
-        param_1 = param_1 + 0x10;
-      }
-      *(int *)(iVar1 + 0x24) = param_1;
-      break;
-    case 2:
-      *(uint *)(iVar1 + 0x28) = param_4;
-      *(undefined4 *)(iVar1 + 0x30) = param_5;
-      break;
-    case 4:
-      *(uint *)(iVar1 + 0x34) = param_4;
-      *(undefined4 *)(iVar1 + 0x30) = param_5;
-      break;
-    case 5:
-    case 6:
-      *(uint *)(iVar1 + 0x38) = param_4;
-      *(undefined4 *)(iVar1 + 0x3c) = param_5;
-      break;
-    case 0xb:
-      *(uint *)(iVar1 + 0x28) = param_4;
-      break;
-    case 0xc:
-      *(uint *)(iVar1 + 0x40) = param_4;
-      *(undefined4 *)(iVar1 + 0x44) = param_5;
-      break;
-    case 0xd:
-      *(uint *)(iVar1 + 0x28) = param_4;
-      *(undefined4 *)(iVar1 + 0x30) = param_5;
-      *(undefined4 *)(iVar1 + 0x48) = param_6;
-      *(undefined4 *)(iVar1 + 0x4c) = param_7;
-      break;
-    case 0xe:
-      *(uint *)(iVar1 + 0x28) = param_4;
-      *(undefined4 *)(iVar1 + 0x50) = param_5;
-      *(undefined4 *)(iVar1 + 0x54) = param_6;
-      break;
-    case 0xf:
-      *(uint *)(iVar1 + 0x28) = param_4;
-      break;
-    case 0x12:
-      *(uint *)(iVar1 + 0x40) = param_4;
-      break;
-    case 0x13:
-      *(uint *)(iVar1 + 0x28) = param_4;
-      *(undefined4 *)(iVar1 + 0x2c) = param_5;
     }
     maybe_List_Append(0x386f94,iVar1);
     maybe_List_Remove(0x386fa8,iVar1);
@@ -1014,19 +1013,19 @@ undefined4 Mc_InitCommand(undefined4 *param_1,undefined1 param_2,undefined1 para
 }
 
 // 0x00139910  size 0x510
-undefined4 Mc_TranslateResult(undefined1 param_1,int param_2)
+undefined4 Mc_TranslateResult(byte param_1,int param_2)
 
 {
   undefined4 uVar1;
   
   if (param_2 == 0) {
-    uVar1 = 0;
+    return 0;
   }
-  else {
+  if (param_1 < 0x14) {
+                    /* WARNING: Switch is manually overridden */
     switch(param_1) {
     default:
-      uVar1 = 0x16;
-      break;
+      goto switchD_0013993c_caseD_0;
     case 1:
       if (param_2 == -5) {
         uVar1 = 0x6f;
@@ -1384,6 +1383,10 @@ undefined4 Mc_TranslateResult(undefined1 param_1,int param_2)
       }
     }
   }
+  else {
+switchD_0013993c_caseD_0:
+    uVar1 = 0x16;
+  }
   return uVar1;
 }
 
@@ -1560,27 +1563,30 @@ bool Movie_CopyVideoChunk(undefined8 param_1,int param_2,int param_3)
 // 0x0013a430  size 0xac
 /* sceMpeg callback dispatch */
 
-undefined4 Movie_HandleCallback(undefined8 param_1,undefined1 *param_2,int param_3)
+undefined4 Movie_HandleCallback(undefined8 param_1,byte *param_2,int param_3)
 
 {
   undefined8 uStack_20;
   undefined8 uStack_18;
   
-  switch(*param_2) {
-  case 1:
-    RotateThreadReadyQueue(*(undefined4 *)(param_3 + 0x50));
-    Movie_KickDma(param_3 + 0x80);
-    return 1;
-  case 2:
-    Movie_ResetDma(param_3 + 0x80);
-    break;
-  case 3:
-    Movie_ReadDmaHandler(param_3 + 0x80);
-    break;
-  case 5:
-    Movie_IpuDmaHandler(param_3 + 0x80,&uStack_20);
-    *(undefined8 *)(param_2 + 8) = uStack_20;
-    *(undefined8 *)(param_2 + 0x10) = uStack_18;
+  if (*param_2 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*param_2) {
+    case 1:
+      RotateThreadReadyQueue(*(undefined4 *)(param_3 + 0x50));
+      Movie_KickDma(param_3 + 0x80);
+      return 1;
+    case 2:
+      Movie_ResetDma(param_3 + 0x80);
+      break;
+    case 3:
+      Movie_ReadDmaHandler(param_3 + 0x80);
+      break;
+    case 5:
+      Movie_IpuDmaHandler(param_3 + 0x80,&uStack_20);
+      *(undefined8 *)(param_2 + 8) = uStack_20;
+      *(undefined8 *)(param_2 + 0x10) = uStack_18;
+    }
   }
   return 1;
 }

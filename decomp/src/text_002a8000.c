@@ -4,9 +4,9 @@
 
 // 0x002a8100  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee5c */
+/* entry 5 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void screc32ee5c_exit_sub_002a8100(int param_1)
+void maybe_ScrRivalIntro_State5(int param_1)
 
 {
   int iVar1;
@@ -27,9 +27,9 @@ void screc32ee5c_exit_sub_002a8100(int param_1)
 
 // 0x002a8160  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee5c */
+/* entry 4 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void screc32ee5c_update_sub_002a8160(int param_1)
+void maybe_ScrRivalIntro_State4(int param_1)
 
 {
   int iVar1;
@@ -49,9 +49,9 @@ void screc32ee5c_update_sub_002a8160(int param_1)
 }
 
 // 0x002a81c0  size 0xe0
-/* screen record 0x32ee5c */
+/* entry 3 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update */
 
-void screc32ee5c_enter_sub_002a81c0(uint *param_1)
+void maybe_ScrRivalIntro_State3(uint *param_1)
 
 {
   long lVar1;
@@ -107,11 +107,11 @@ void ScrRivalDbFindByName_Exit(int param_1)
     iVar1 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x538) = 1;
     *(undefined4 *)(iVar1 + 0x53c) = uVar2;
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 0:
-    case 5:
-    case 6:
-      break;
+    if (6 < *(uint *)(_g_MenuMgr + 0x34)) {
+      return;
+    }
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x34)) {
     case 1:
       *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
       break;
@@ -123,23 +123,20 @@ void ScrRivalDbFindByName_Exit(int param_1)
       break;
     case 4:
       *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
-      break;
-    default:
-      goto switchD_002a8368_default;
     }
   }
-switchD_002a8368_default:
   return;
 }
 
 // 0x002a83b0  size 0x220
+/* WARNING: Switch with 1 destination removed at 0x002a8404 */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x32ee50 */
 
 void ScrRivalDbFindByName_Update(int param_1)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   undefined4 uVar2;
   int iVar3;
   uint uVar4;
@@ -158,32 +155,30 @@ void ScrRivalDbFindByName_Update(int param_1)
     iVar3 = _g_MenuMgr;
     *(undefined4 *)(_g_MenuMgr + 0x538) = 1;
     *(undefined4 *)(iVar3 + 0x53c) = uVar2;
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 0xf;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xf;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xf;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 0xf;
+    if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(_g_MenuMgr + 0x34)) {
+      case 1:
+        *(undefined4 *)(_g_MenuMgr + 0x598) = 0xf;
+        break;
+      case 2:
+        *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xf;
+        break;
+      case 3:
+        *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xf;
+        break;
+      case 4:
+        *(undefined4 *)(_g_MenuMgr + 0x618) = 0xf;
+      }
     }
   }
-  uVar1 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
-  switch(uVar1) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-  case 5:
+  bVar1 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
+  if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
     Menu_HandleCursor(param_1 + 0x10,0,2,2,1,0);
     iVar3 = *(int *)(param_1 + 0x10);
-    break;
-  default:
+  }
+  else {
     Menu_HandleCursor(param_1 + 0x10,0,2,1,1,0);
     iVar3 = *(int *)(param_1 + 0x10);
   }
@@ -307,9 +302,9 @@ void ScrRivalDbFindByName_Enter(int param_1)
 
 // 0x002a8870  size 0x2c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327684 */
+/* menu screen 39 (table 0x3274b0) */
 
-void ScrCareerGetFlag_Exit(void)
+void maybe_ScrRivalIntro_Exit(void)
 
 {
   *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
@@ -321,9 +316,9 @@ void ScrCareerGetFlag_Exit(void)
 }
 
 // 0x002a88a0  size 0x19c
-/* screen record 0x327684 */
+/* menu screen 39 (table 0x3274b0) */
 
-void ScrCareerGetFlag_Update(undefined8 param_1)
+void maybe_ScrRivalIntro_Update(undefined8 param_1)
 
 {
   char cVar1;
@@ -379,9 +374,9 @@ void ScrCareerGetFlag_Update(undefined8 param_1)
 
 // 0x002a8a40  size 0x228
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327684 */
+/* menu screen 39 (table 0x3274b0) */
 
-void ScrCareerGetFlag_Enter(int param_1)
+void maybe_ScrRivalIntro_Enter(int param_1)
 
 {
   char cVar1;
@@ -468,9 +463,9 @@ void ScrCareerGetFlag_Enter(int param_1)
 
 // 0x002a8c70  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327690 */
+/* menu screen 40 (table 0x3274b0) */
 
-void screc327690_exit_sub_002a8c70(void)
+void maybe_ScrCarListB_Exit(void)
 
 {
   short sVar1;
@@ -510,9 +505,9 @@ void screc327690_exit_sub_002a8c70(void)
 
 // 0x002a8d40  size 0x158
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327690 */
+/* menu screen 40 (table 0x3274b0) */
 
-void screc327690_update_sub_002a8d40(undefined8 param_1)
+void maybe_ScrCarListB_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -552,9 +547,9 @@ void screc327690_update_sub_002a8d40(undefined8 param_1)
 
 // 0x002a8ea0  size 0x148
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327690 */
+/* menu screen 40 (table 0x3274b0) */
 
-void screc327690_enter_sub_002a8ea0(undefined4 *param_1)
+void maybe_ScrCarListB_Enter(undefined4 *param_1)
 
 {
   short sVar1;
@@ -577,18 +572,21 @@ void screc327690_enter_sub_002a8ea0(undefined4 *param_1)
   *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
   *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
   *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-  switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-  case 1:
-    *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
-    break;
-  case 2:
-    *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
-    break;
-  case 3:
-    *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
-    break;
-  case 4:
-    *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+  if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x34)) {
+    case 1:
+      *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
+      break;
+    case 2:
+      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
+      break;
+    case 3:
+      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
+      break;
+    case 4:
+      *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+    }
   }
   iVar2 = Profile_Get(0);
   iVar3 = showroom_step_sub_002d3ba0(0);
@@ -766,215 +764,92 @@ void scrgarage_step_sub_002a92f0(int param_1)
   return;
 }
 
-// 0x002a9410  size 0x28
-undefined8 menuscr_leaf_sub_002a9410(ulong param_1)
+// 0x002a9410  size 0xf4
+undefined4 menuscr_leaf_sub_002a9410(ulong param_1)
 
 {
-  undefined8 uVar1;
+  undefined4 uVar1;
   
   if (param_1 < 0x18) {
-                    /* WARNING: Could not recover jumptable at 0x002a9430. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_LAB_00367560)[(int)param_1])();
-    return uVar1;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    case 0:
+      uVar1 = 0;
+      break;
+    case 1:
+      uVar1 = 2;
+      break;
+    case 2:
+      uVar1 = 1;
+      break;
+    case 3:
+      uVar1 = 3;
+      break;
+    case 4:
+      uVar1 = 4;
+      break;
+    case 5:
+      uVar1 = 5;
+      break;
+    case 6:
+      uVar1 = 6;
+      break;
+    case 7:
+      uVar1 = 7;
+      break;
+    case 8:
+      uVar1 = 8;
+      break;
+    case 9:
+      uVar1 = 9;
+      break;
+    case 10:
+      uVar1 = 10;
+      break;
+    case 0xb:
+      uVar1 = 0xb;
+      break;
+    case 0xc:
+      uVar1 = 0xf;
+      break;
+    case 0xd:
+      uVar1 = 0x10;
+      break;
+    case 0xe:
+      uVar1 = 0x16;
+      break;
+    case 0xf:
+      uVar1 = 0xd;
+      break;
+    case 0x10:
+      uVar1 = 0xe;
+      break;
+    case 0x11:
+      uVar1 = 0x16;
+      break;
+    case 0x12:
+      uVar1 = 0xc;
+      break;
+    case 0x13:
+      uVar1 = 0x16;
+      break;
+    case 0x14:
+      uVar1 = 0x12;
+      break;
+    case 0x15:
+      uVar1 = 0x11;
+      break;
+    case 0x16:
+      uVar1 = 0x13;
+      break;
+    case 0x17:
+      uVar1 = 0x14;
+    }
   }
-  return 0x16;
-}
-
-// 0x002a9448  size 0x8
-/* screen record 0x367568 */
-
-undefined4 screc367568_enter_sub_002a9448(void)
-
-{
-  return 1;
-}
-
-// 0x002a9450  size 0x8
-/* screen record 0x367568 */
-
-undefined4 screc367568_update_sub_002a9450(void)
-
-{
-  return 3;
-}
-
-// 0x002a9458  size 0x8
-/* screen record 0x367568 */
-
-undefined4 screc367568_exit_sub_002a9458(void)
-
-{
-  return 4;
-}
-
-// 0x002a9460  size 0x8
-/* screen record 0x367574 */
-
-undefined4 screc367574_enter_sub_002a9460(void)
-
-{
-  return 5;
-}
-
-// 0x002a9468  size 0x8
-/* screen record 0x367574 */
-
-undefined4 screc367574_update_sub_002a9468(void)
-
-{
-  return 6;
-}
-
-// 0x002a9470  size 0x8
-/* screen record 0x367574 */
-
-undefined4 screc367574_exit_sub_002a9470(void)
-
-{
-  return 7;
-}
-
-// 0x002a9478  size 0x8
-/* screen record 0x367580 */
-
-undefined4 screc367580_enter_sub_002a9478(void)
-
-{
-  return 8;
-}
-
-// 0x002a9480  size 0x8
-/* screen record 0x367580 */
-
-undefined4 screc367580_update_sub_002a9480(void)
-
-{
-  return 9;
-}
-
-// 0x002a9488  size 0x8
-/* screen record 0x367580 */
-
-undefined4 screc367580_exit_sub_002a9488(void)
-
-{
-  return 10;
-}
-
-// 0x002a9490  size 0x8
-/* screen record 0x36758c */
-
-undefined4 screc36758c_enter_sub_002a9490(void)
-
-{
-  return 0xb;
-}
-
-// 0x002a9498  size 0x8
-/* screen record 0x36758c */
-
-undefined4 screc36758c_update_sub_002a9498(void)
-
-{
-  return 0xf;
-}
-
-// 0x002a94a0  size 0x8
-/* screen record 0x36758c */
-
-undefined4 screc36758c_exit_sub_002a94a0(void)
-
-{
-  return 0x10;
-}
-
-// 0x002a94a8  size 0x8
-/* screen record 0x367598 */
-
-undefined4 screc367598_enter_sub_002a94a8(void)
-
-{
-  return 0x16;
-}
-
-// 0x002a94b0  size 0x8
-/* screen record 0x367598 */
-
-undefined4 screc367598_update_sub_002a94b0(void)
-
-{
-  return 0xd;
-}
-
-// 0x002a94b8  size 0x8
-/* screen record 0x367598 */
-
-undefined4 screc367598_exit_sub_002a94b8(void)
-
-{
-  return 0xe;
-}
-
-// 0x002a94c0  size 0x8
-/* screen record 0x3675a4 */
-
-undefined4 screc3675a4_enter_sub_002a94c0(void)
-
-{
-  return 0x16;
-}
-
-// 0x002a94c8  size 0x8
-/* screen record 0x3675a4 */
-
-undefined4 screc3675a4_update_sub_002a94c8(void)
-
-{
-  return 0xc;
-}
-
-// 0x002a94d0  size 0x8
-/* screen record 0x3675a4 */
-
-undefined4 screc3675a4_exit_sub_002a94d0(void)
-
-{
-  return 0x16;
-}
-
-// 0x002a94d8  size 0x8
-/* screen record 0x3675b0 */
-
-undefined4 screc3675b0_enter_sub_002a94d8(void)
-
-{
-  return 0x12;
-}
-
-// 0x002a94e0  size 0x8
-/* screen record 0x3675b0 */
-
-undefined4 screc3675b0_update_sub_002a94e0(void)
-
-{
-  return 0x11;
-}
-
-// 0x002a94e8  size 0x8
-/* screen record 0x3675b0 */
-
-undefined4 screc3675b0_exit_sub_002a94e8(void)
-
-{
-  return 0x13;
-}
-
-// 0x002a94f0  size 0x10
-undefined4 Menuscr_Nop_14(void)
-
-{
-  return 0x14;
+  else {
+    uVar1 = 0x16;
+  }
+  return uVar1;
 }
 
 // 0x002a9510  size 0x24c
@@ -1060,7 +935,9 @@ LAB_002a96e8:
 }
 
 // 0x002a9760  size 0x34
-void menuscr_leaf_sub_002a9760(int param_1)
+/* entry 29 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
+
+void maybe_ScrTuneParts_State29(int param_1)
 
 {
   int iVar1;
@@ -1260,9 +1137,9 @@ void ScrTeamDbCopy_Enter(int param_1)
 }
 
 // 0x002a9b90  size 0x34
-/* screen record 0x32eee4 */
+/* entry 23 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eee4_exit_sub_002a9b90(int param_1)
+void maybe_ScrTuneParts_State23(int param_1)
 
 {
   int iVar1;
@@ -1277,9 +1154,9 @@ void screc32eee4_exit_sub_002a9b90(int param_1)
 }
 
 // 0x002a9bd0  size 0x80
-/* screen record 0x32eee4 */
+/* entry 22 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eee4_update_sub_002a9bd0(int param_1)
+void maybe_ScrTuneParts_State22(int param_1)
 
 {
   int iVar1;
@@ -1302,9 +1179,9 @@ void screc32eee4_update_sub_002a9bd0(int param_1)
 
 // 0x002a9c50  size 0x488
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eee4 */
+/* entry 21 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eee4_enter_sub_002a9c50(int param_1)
+void maybe_ScrTuneParts_State21(int param_1)
 
 {
   short sVar1;
@@ -1454,9 +1331,9 @@ LAB_002a9ef0:
 }
 
 // 0x002aa0e0  size 0x34
-/* screen record 0x32eed8 */
+/* entry 20 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eed8_exit_sub_002aa0e0(int param_1)
+void maybe_ScrTuneParts_State20(int param_1)
 
 {
   int iVar1;
@@ -1471,9 +1348,9 @@ void screc32eed8_exit_sub_002aa0e0(int param_1)
 }
 
 // 0x002aa120  size 0x7c
-/* screen record 0x32eed8 */
+/* entry 19 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eed8_update_sub_002aa120(int param_1)
+void maybe_ScrTuneParts_State19(int param_1)
 
 {
   int iVar1;
@@ -1494,9 +1371,9 @@ void screc32eed8_update_sub_002aa120(int param_1)
 }
 
 // 0x002aa1a0  size 0x88
-/* screen record 0x32eed8 */
+/* entry 18 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eed8_enter_sub_002aa1a0(int param_1)
+void maybe_ScrTuneParts_State18(int param_1)
 
 {
   int iVar1;
@@ -1523,9 +1400,9 @@ void screc32eed8_enter_sub_002aa1a0(int param_1)
 
 // 0x002aa230  size 0x3b0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eecc */
+/* entry 17 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eecc_exit_sub_002aa230(int param_1)
+void maybe_ScrTuneParts_State17(int param_1)
 
 {
   undefined2 uVar1;
@@ -1665,15 +1542,15 @@ void screc32eecc_exit_sub_002aa230(int param_1)
 
 // 0x002aa5e0  size 0x404
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eecc */
+/* entry 16 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eecc_update_sub_002aa5e0(int param_1)
+void maybe_ScrTuneParts_State16(int param_1)
 
 {
   short sVar1;
   int iVar2;
   int iVar3;
-  undefined8 uVar4;
+  ulong uVar4;
   int iVar5;
   uint uVar6;
   int iVar7;
@@ -1751,77 +1628,86 @@ void screc32eecc_update_sub_002aa5e0(int param_1)
     }
   }
   uVar4 = menuscr_leaf_sub_002748d0(*(undefined4 *)(param_1 + 0x18));
-  switch(uVar4) {
-  case 0:
-  case 1:
-  case 2:
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
+  if (uVar4 < 0x10) {
+                    /* WARNING: Switch is manually overridden */
+    switch((int)uVar4) {
+    case 0:
     case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 0xb;
-      break;
     case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xb;
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 0xb;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xb;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xb;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 0xb;
+        }
+      }
       break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xb;
+    default:
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 0xd;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xd;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xd;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 0xd;
+        }
+      }
       break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 0xb;
-    }
-    break;
-  case 3:
-  case 4:
-  case 5:
-  case 9:
-  case 10:
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 0xd;
+    case 6:
+    case 7:
+    case 8:
+    case 0xb:
+    case 0xc:
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 0xe;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xe;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xe;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 0xe;
+        }
+      }
       break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xd;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xd;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 0xd;
-    }
-    break;
-  case 6:
-  case 7:
-  case 8:
-  case 0xb:
-  case 0xc:
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 0xe;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xe;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xe;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 0xe;
-    }
-    break;
-  case 0xd:
-  case 0xe:
-  case 0xf:
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 0xc;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xc;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xc;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 0xc;
+    case 0xd:
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 0xc;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0xc;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0xc;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 0xc;
+        }
+      }
     }
   }
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x18000;
@@ -1830,9 +1716,9 @@ void screc32eecc_update_sub_002aa5e0(int param_1)
 
 // 0x002aa9f0  size 0x224
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eecc */
+/* entry 15 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eecc_enter_sub_002aa9f0(int param_1)
+void maybe_ScrTuneParts_State15(int param_1)
 
 {
   short *psVar1;
@@ -1918,9 +1804,9 @@ void screc32eecc_enter_sub_002aa9f0(int param_1)
 }
 
 // 0x002aac20  size 0x34
-/* screen record 0x32eec0 */
+/* entry 14 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eec0_exit_sub_002aac20(int param_1)
+void maybe_ScrTuneParts_State14(int param_1)
 
 {
   int iVar1;
@@ -1935,9 +1821,9 @@ void screc32eec0_exit_sub_002aac20(int param_1)
 }
 
 // 0x002aac60  size 0x34
-/* screen record 0x32eec0 */
+/* entry 13 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eec0_update_sub_002aac60(int param_1)
+void maybe_ScrTuneParts_State13(int param_1)
 
 {
   int iVar1;
@@ -1952,9 +1838,9 @@ void screc32eec0_update_sub_002aac60(int param_1)
 }
 
 // 0x002aaca0  size 0x34
-/* screen record 0x32eec0 */
+/* entry 12 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eec0_enter_sub_002aaca0(int param_1)
+void maybe_ScrTuneParts_State12(int param_1)
 
 {
   int iVar1;
@@ -1969,9 +1855,9 @@ void screc32eec0_enter_sub_002aaca0(int param_1)
 }
 
 // 0x002aace0  size 0x80
-/* screen record 0x32eeb4 */
+/* entry 11 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eeb4_exit_sub_002aace0(int param_1)
+void maybe_ScrTuneParts_State11(int param_1)
 
 {
   int iVar1;
@@ -1993,9 +1879,9 @@ void screc32eeb4_exit_sub_002aace0(int param_1)
 }
 
 // 0x002aad60  size 0x80
-/* screen record 0x32eeb4 */
+/* entry 10 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eeb4_update_sub_002aad60(int param_1)
+void maybe_ScrTuneParts_State10(int param_1)
 
 {
   int iVar1;
@@ -2017,9 +1903,9 @@ void screc32eeb4_update_sub_002aad60(int param_1)
 }
 
 // 0x002aade0  size 0x80
-/* screen record 0x32eeb4 */
+/* entry 9 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eeb4_enter_sub_002aade0(int param_1)
+void maybe_ScrTuneParts_State9(int param_1)
 
 {
   int iVar1;
@@ -2042,9 +1928,9 @@ void screc32eeb4_enter_sub_002aade0(int param_1)
 
 // 0x002aae60  size 0x590
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eea8 */
+/* entry 8 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eea8_exit_sub_002aae60(int param_1)
+void maybe_ScrTuneParts_State8(int param_1)
 
 {
   undefined2 uVar1;
@@ -2068,18 +1954,21 @@ void screc32eea8_exit_sub_002aae60(int param_1)
       scrgarage_step_sub_002a9510(param_1 + 0x7c,param_1 + 0x78,*(undefined4 *)(param_1 + 0xc),1);
       *(undefined4 *)(param_1 + 0x9d0) = 0;
     }
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+    if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(_g_MenuMgr + 0x34)) {
+      case 1:
+        *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
+        break;
+      case 2:
+        *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
+        break;
+      case 3:
+        *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
+        break;
+      case 4:
+        *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+      }
     }
   }
   Menu_HandleCursor(param_1 + 0x10,0,8,*(int *)(param_1 + 0x78) + -1,1,0);
@@ -2163,50 +2052,59 @@ void screc32eea8_exit_sub_002aae60(int param_1)
     *(int *)(param_1 + 0x9d0) = (*(int *)(param_1 + 0x9d0) + 1) % 3;
     iVar3 = *(int *)(param_1 + 0x9d0);
     if (iVar3 == 2) {
-      switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-      case 1:
-        *(undefined4 *)(_g_MenuMgr + 0x598) = 4;
-        break;
-      case 2:
-        *(undefined4 *)(_g_MenuMgr + 0x5dc) = 4;
-        break;
-      case 3:
-        *(undefined4 *)(_g_MenuMgr + 0x5fc) = 4;
-        break;
-      case 4:
-        *(undefined4 *)(_g_MenuMgr + 0x618) = 4;
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 4;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 4;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 4;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 4;
+        }
       }
       goto switchD_002ab308_caseD_0;
     }
     if (iVar3 == 1) {
-      switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-      case 1:
-        *(undefined4 *)(_g_MenuMgr + 0x598) = 3;
-        break;
-      case 2:
-        *(undefined4 *)(_g_MenuMgr + 0x5dc) = 3;
-        break;
-      case 3:
-        *(undefined4 *)(_g_MenuMgr + 0x5fc) = 3;
-        break;
-      case 4:
-        *(undefined4 *)(_g_MenuMgr + 0x618) = 3;
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 3;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 3;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 3;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 3;
+        }
       }
       goto switchD_002ab308_caseD_0;
     }
     if (iVar3 == 0) {
-      switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-      case 1:
-        *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
-        break;
-      case 2:
-        *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
-        break;
-      case 3:
-        *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
-        break;
-      case 4:
-        *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+      if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(*(uint *)(_g_MenuMgr + 0x34)) {
+        case 1:
+          *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
+          break;
+        case 2:
+          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
+          break;
+        case 3:
+          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
+          break;
+        case 4:
+          *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+        }
       }
       goto switchD_002ab308_caseD_0;
     }
@@ -2242,18 +2140,21 @@ switchD_002ab308_caseD_0:
     if (uVar4 != 0x20) goto switchD_002ab114_caseD_0;
   }
   *(undefined4 *)(param_1 + 0x9d0) = 0;
-  switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-  case 1:
-    *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
-    break;
-  case 2:
-    *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
-    break;
-  case 3:
-    *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
-    break;
-  case 4:
-    *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+  if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x34)) {
+    case 1:
+      *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
+      break;
+    case 2:
+      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
+      break;
+    case 3:
+      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
+      break;
+    case 4:
+      *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+    }
   }
 switchD_002ab114_caseD_0:
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x18000;
@@ -2262,9 +2163,9 @@ switchD_002ab114_caseD_0:
 
 // 0x002ab3f0  size 0xb4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eea8 */
+/* entry 7 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eea8_update_sub_002ab3f0(int param_1)
+void maybe_ScrTuneParts_State7(int param_1)
 
 {
   int iVar1;
@@ -2290,9 +2191,9 @@ LAB_002ab460:
 
 // 0x002ab4b0  size 0x818
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eea8 */
+/* entry 6 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32eea8_enter_sub_002ab4b0(int param_1)
+void maybe_ScrTuneParts_State6(int param_1)
 
 {
   short sVar1;
@@ -2351,18 +2252,21 @@ void screc32eea8_enter_sub_002ab4b0(int param_1)
         *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-        switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-        case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x598) = 1;
-          break;
-        case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 1;
-          break;
-        case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 1;
-          break;
-        case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x618) = 1;
+        if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(uint *)(_g_MenuMgr + 0x34)) {
+          case 1:
+            *(undefined4 *)(_g_MenuMgr + 0x598) = 1;
+            break;
+          case 2:
+            *(undefined4 *)(_g_MenuMgr + 0x5dc) = 1;
+            break;
+          case 3:
+            *(undefined4 *)(_g_MenuMgr + 0x5fc) = 1;
+            break;
+          case 4:
+            *(undefined4 *)(_g_MenuMgr + 0x618) = 1;
+          }
         }
       }
       else if (iVar10 == 0x1e) {
@@ -2374,18 +2278,21 @@ void screc32eea8_enter_sub_002ab4b0(int param_1)
         *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-        switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-        case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x598) = 10;
-          break;
-        case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 10;
-          break;
-        case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 10;
-          break;
-        case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x618) = 10;
+        if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(uint *)(_g_MenuMgr + 0x34)) {
+          case 1:
+            *(undefined4 *)(_g_MenuMgr + 0x598) = 10;
+            break;
+          case 2:
+            *(undefined4 *)(_g_MenuMgr + 0x5dc) = 10;
+            break;
+          case 3:
+            *(undefined4 *)(_g_MenuMgr + 0x5fc) = 10;
+            break;
+          case 4:
+            *(undefined4 *)(_g_MenuMgr + 0x618) = 10;
+          }
         }
       }
       else if (iVar10 == 0x1d) {
@@ -2397,18 +2304,21 @@ void screc32eea8_enter_sub_002ab4b0(int param_1)
         *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-        switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-        case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x598) = 9;
-          break;
-        case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 9;
-          break;
-        case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 9;
-          break;
-        case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x618) = 9;
+        if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(uint *)(_g_MenuMgr + 0x34)) {
+          case 1:
+            *(undefined4 *)(_g_MenuMgr + 0x598) = 9;
+            break;
+          case 2:
+            *(undefined4 *)(_g_MenuMgr + 0x5dc) = 9;
+            break;
+          case 3:
+            *(undefined4 *)(_g_MenuMgr + 0x5fc) = 9;
+            break;
+          case 4:
+            *(undefined4 *)(_g_MenuMgr + 0x618) = 9;
+          }
         }
       }
       else if (iVar10 == 0x1c) {
@@ -2420,18 +2330,21 @@ void screc32eea8_enter_sub_002ab4b0(int param_1)
         *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-        switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-        case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x598) = 8;
-          break;
-        case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 8;
-          break;
-        case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 8;
-          break;
-        case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x618) = 8;
+        if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(uint *)(_g_MenuMgr + 0x34)) {
+          case 1:
+            *(undefined4 *)(_g_MenuMgr + 0x598) = 8;
+            break;
+          case 2:
+            *(undefined4 *)(_g_MenuMgr + 0x5dc) = 8;
+            break;
+          case 3:
+            *(undefined4 *)(_g_MenuMgr + 0x5fc) = 8;
+            break;
+          case 4:
+            *(undefined4 *)(_g_MenuMgr + 0x618) = 8;
+          }
         }
       }
       else if (iVar10 == 0x1b) {
@@ -2443,18 +2356,21 @@ void screc32eea8_enter_sub_002ab4b0(int param_1)
         *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-        switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-        case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x598) = 6;
-          break;
-        case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 6;
-          break;
-        case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 6;
-          break;
-        case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x618) = 6;
+        if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(uint *)(_g_MenuMgr + 0x34)) {
+          case 1:
+            *(undefined4 *)(_g_MenuMgr + 0x598) = 6;
+            break;
+          case 2:
+            *(undefined4 *)(_g_MenuMgr + 0x5dc) = 6;
+            break;
+          case 3:
+            *(undefined4 *)(_g_MenuMgr + 0x5fc) = 6;
+            break;
+          case 4:
+            *(undefined4 *)(_g_MenuMgr + 0x618) = 6;
+          }
         }
       }
       else {
@@ -2470,18 +2386,21 @@ void screc32eea8_enter_sub_002ab4b0(int param_1)
         *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
         *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-        switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-        case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x598) = 5;
-          break;
-        case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x5dc) = 5;
-          break;
-        case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x5fc) = 5;
-          break;
-        case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x618) = 5;
+        if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(*(uint *)(_g_MenuMgr + 0x34)) {
+          case 1:
+            *(undefined4 *)(_g_MenuMgr + 0x598) = 5;
+            break;
+          case 2:
+            *(undefined4 *)(_g_MenuMgr + 0x5dc) = 5;
+            break;
+          case 3:
+            *(undefined4 *)(_g_MenuMgr + 0x5fc) = 5;
+            break;
+          case 4:
+            *(undefined4 *)(_g_MenuMgr + 0x618) = 5;
+          }
         }
       }
     }
@@ -2635,18 +2554,21 @@ void ScrRivalIsBossId_Exit(int param_1)
     sVar1 = *(short *)(iVar4 + iVar3 * 2 + 0x13ee);
     *(undefined4 *)(_g_MenuMgr + 0x538) = 2;
     *(int *)(iVar6 + 0x53c) = (int)sVar1;
-    switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-    case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
-      break;
-    case 2:
-      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
-      break;
-    case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
-      break;
-    case 4:
-      *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+    if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(uint *)(_g_MenuMgr + 0x34)) {
+      case 1:
+        *(undefined4 *)(_g_MenuMgr + 0x598) = 2;
+        break;
+      case 2:
+        *(undefined4 *)(_g_MenuMgr + 0x5dc) = 2;
+        break;
+      case 3:
+        *(undefined4 *)(_g_MenuMgr + 0x5fc) = 2;
+        break;
+      case 4:
+        *(undefined4 *)(_g_MenuMgr + 0x618) = 2;
+      }
     }
   }
   Menu_HandleCursor(param_1 + 0x68,0,2,2,1,*(undefined4 *)(param_1 + 0x6c));

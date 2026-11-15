@@ -147,22 +147,22 @@ long SceneObj_CreateCar(undefined8 param_1)
         ((lVar11 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0x94),iVar10 + 0x98), lVar11 == 0 ||
          (lVar4 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0xdc),iVar10 + 0xe0), lVar4 == 0)))))) {
       if (lVar3 != 0) {
-        course_leaf_sub_001a5a00(lVar3);
+        maybe_Course_GetItemA(lVar3);
       }
       if (lVar9 != 0) {
-        course_leaf_sub_001a5a00(lVar9);
+        maybe_Course_GetItemA(lVar9);
       }
       if (lVar8 != 0) {
-        course_leaf_sub_001a5a00(lVar8);
+        maybe_Course_GetItemA(lVar8);
       }
       if (lVar7 != 0) {
-        course_leaf_sub_001a5a00(lVar7);
+        maybe_Course_GetItemA(lVar7);
       }
       if (lVar6 != 0) {
-        course_leaf_sub_001a5a00(lVar6);
+        maybe_Course_GetItemA(lVar6);
       }
       if (lVar11 != 0) {
-        course_leaf_sub_001a5a00(lVar11);
+        maybe_Course_GetItemA(lVar11);
       }
       lVar2 = 0;
     }
@@ -1037,7 +1037,7 @@ void SceneObj_Release(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
+  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x40));
   Chunk_Init(param_1,0x48);
   *(undefined4 *)(iVar1 + 0x40) = 0;
   *(undefined8 *)(iVar1 + 0x10) = 0x48;
@@ -1223,8 +1223,8 @@ void CarModel_Release(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x40));
-  course_leaf_sub_001a5a00(*(undefined4 *)(iVar1 + 0x44));
+  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x40));
+  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x44));
   Chunk_Init(param_1,0x50);
   *(undefined4 *)(iVar1 + 0x44) = 0;
   *(undefined4 *)(iVar1 + 0x10) = 0;
@@ -1512,8 +1512,6 @@ uint CarModel_ComputeLod(float param_1,undefined8 param_2,int param_3,undefined8
 }
 
 // 0x0019a260  size 0x638
-/* WARNING: Type propagation algorithm not settling */
-
 void CarModel_DrawBody(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1557,32 +1555,33 @@ void CarModel_DrawBody(undefined8 param_1,undefined8 param_2)
   iStack_90 = iVar9;
   do {
     puVar10 = (uint *)(*(int *)(iVar9 + 0x504) + iStack_80 + 0x5a0);
-    switch(uVar11) {
-    case 0:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 4;
-      break;
-    case 1:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 8;
-      break;
-    case 2:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 0x10;
-      break;
-    case 3:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 9;
-      break;
-    case 4:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 10;
-      break;
-    case 5:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 4;
-      break;
-    case 6:
-      uVar4 = *(uint *)(iVar9 + 0x110) & 0x20;
-      break;
-    default:
-      goto switchD_0019a314_default;
+    if (uVar11 < 7) {
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar11) {
+      case 0:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 4;
+        break;
+      case 1:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 8;
+        break;
+      case 2:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 0x10;
+        break;
+      case 3:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 9;
+        break;
+      case 4:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 10;
+        break;
+      case 5:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 4;
+        break;
+      case 6:
+        uVar4 = *(uint *)(iVar9 + 0x110) & 0x20;
+      }
+      if (uVar4 != 0) goto switchD_0019a314_default;
     }
-    if (uVar4 != 0) {
+    else {
 switchD_0019a314_default:
       uStack_70 = 0;
       iStack_a0 = iStack_90;
@@ -1981,8 +1980,6 @@ LAB_0019aca4:
 }
 
 // 0x0019af50  size 0xe64
-/* WARNING: Type propagation algorithm not settling */
-
 undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
 
 {
@@ -2316,83 +2313,82 @@ undefined4 CarModel_DrawWheels(int param_1,undefined8 param_2)
             TexSlot_Set(0,*puVar17,puVar17[6]);
           }
         }
-        switch(uVar15) {
-        case 7:
-          uVar16 = *(uint *)(param_1 + 0x110) & 4;
-          break;
-        case 8:
-          uVar16 = *(uint *)(param_1 + 0x110) & 8;
-          break;
-        case 9:
-          uVar16 = *(uint *)(param_1 + 0x110) & 0x10;
-          break;
-        case 10:
-          uVar16 = *(uint *)(param_1 + 0x110) & 9;
-          break;
-        case 0xb:
-          uVar16 = *(uint *)(param_1 + 0x110) & 10;
-          break;
-        case 0xc:
-          uVar16 = *(uint *)(param_1 + 0x110) & 4;
-          break;
-        case 0xd:
-          uVar16 = *(uint *)(param_1 + 0x110) & 0x20;
-          break;
-        case 0xe:
-          uVar16 = *(uint *)(param_1 + 0x110) & 0x40;
-          break;
-        case 0xf:
-          uVar16 = *(uint *)(param_1 + 0x110) & 0x80;
-          break;
-        case 0x10:
-          uVar16 = *(uint *)(param_1 + 0x110) & 0x100;
-          break;
-        default:
-          goto switchD_0019b78c_default;
-        }
-        if (uVar16 != 0) {
-switchD_0019b78c_default:
-          if (((uVar15 != 0x11) && (uVar15 != 0x17)) && (uVar15 != 0x18)) {
-            if ((uVar15 - 0xf < 2) &&
-               (iVar4 = *(int *)(*(int *)(param_1 + 0x504) + *(int *)(iVar13 + 0x458) * 8 + iVar7 +
-                                0x250), iVar4 != 0)) {
-              *(undefined4 *)(iVar4 + 0x2c) = *(undefined4 *)(iVar9 + 0x3b4);
-            }
-            maybe_Vu0_UnitMatrix(iVar12);
-            if (uVar15 == 0x15) {
-              *(int *)(iVar13 + 0xa4) = iVar13 + 0x3d8;
-              *(undefined4 *)(iVar13 + 0xa8) = 0;
-              if (*(int *)(iVar13 + 0x94) != 0) {
-                maybe_Model_DrawSimple(param_2,0);
-              }
-              if (*(int *)(iVar13 + 0x98) != 0) {
-                maybe_Model_DrawSimple(param_2,1);
-              }
-            }
-            else if (uVar15 == 6) {
-              maybe_Vu0_RotMatrixZ(puVar11[0xc],iVar12,iVar12);
-              maybe_Vu0_RotMatrixY(puVar11[0xd],iVar12,iVar12);
-              maybe_Vu0_RotMatrixX(puVar11[0xe],iVar12,iVar12);
-              maybe_sceVu0ScaleVectorXYZ(*(undefined4 *)(param_1 + 0x48c),auStack_c0,puVar11 + 8);
-              sceVu0TransMatrix(iVar12,iVar12,auStack_c0);
-            }
-            else if ((uVar15 == 2) || (uVar15 == 1)) {
-              maybe_sceVu0ScaleVectorXYZ(*(undefined4 *)(param_1 + 0x484),&uStack_b0,puVar11 + 0xc);
-              maybe_Vu0_RotMatrixZ(uStack_b0,iVar12,iVar12);
-              maybe_Vu0_RotMatrixY(uStack_ac,iVar12,iVar12);
-              maybe_Vu0_RotMatrixX(uStack_a8,iVar12,iVar12);
-              sceVu0TransMatrix(iVar12,iVar12,puVar11 + 8);
-            }
-            else {
-              maybe_Vu0_RotMatrixZ(puVar11[0xc],iVar12,iVar12);
-              maybe_Vu0_RotMatrixY(puVar11[0xd],iVar12,iVar12);
-              maybe_Vu0_RotMatrixX(puVar11[0xe],iVar12,iVar12);
-              sceVu0TransMatrix(iVar12,iVar12,puVar11 + 8);
-            }
-            Model_UpdateNodeMatrix(param_2,puVar11);
+        if (uVar15 - 7 < 10) {
+                    /* WARNING: Switch is manually overridden */
+          switch(uVar15 - 7) {
+          case 0:
+            uVar16 = *(uint *)(param_1 + 0x110) & 4;
+            break;
+          case 1:
+            uVar16 = *(uint *)(param_1 + 0x110) & 8;
+            break;
+          case 2:
+            uVar16 = *(uint *)(param_1 + 0x110) & 0x10;
+            break;
+          case 3:
+            uVar16 = *(uint *)(param_1 + 0x110) & 9;
+            break;
+          case 4:
+            uVar16 = *(uint *)(param_1 + 0x110) & 10;
+            break;
+          case 5:
+            uVar16 = *(uint *)(param_1 + 0x110) & 4;
+            break;
+          case 6:
+            uVar16 = *(uint *)(param_1 + 0x110) & 0x20;
+            break;
+          case 7:
+            uVar16 = *(uint *)(param_1 + 0x110) & 0x40;
+            break;
+          case 8:
+            uVar16 = *(uint *)(param_1 + 0x110) & 0x80;
+            break;
+          case 9:
+            uVar16 = *(uint *)(param_1 + 0x110) & 0x100;
           }
+          if (uVar16 == 0) goto LAB_0019ba60;
+        }
+        if (((uVar15 != 0x11) && (uVar15 != 0x17)) && (uVar15 != 0x18)) {
+          if ((uVar15 - 0xf < 2) &&
+             (iVar4 = *(int *)(*(int *)(param_1 + 0x504) + *(int *)(iVar13 + 0x458) * 8 + iVar7 +
+                              0x250), iVar4 != 0)) {
+            *(undefined4 *)(iVar4 + 0x2c) = *(undefined4 *)(iVar9 + 0x3b4);
+          }
+          maybe_Vu0_UnitMatrix(iVar12);
+          if (uVar15 == 0x15) {
+            *(int *)(iVar13 + 0xa4) = iVar13 + 0x3d8;
+            *(undefined4 *)(iVar13 + 0xa8) = 0;
+            if (*(int *)(iVar13 + 0x94) != 0) {
+              maybe_Model_DrawSimple(param_2,0);
+            }
+            if (*(int *)(iVar13 + 0x98) != 0) {
+              maybe_Model_DrawSimple(param_2,1);
+            }
+          }
+          else if (uVar15 == 6) {
+            maybe_Vu0_RotMatrixZ(puVar11[0xc],iVar12,iVar12);
+            maybe_Vu0_RotMatrixY(puVar11[0xd],iVar12,iVar12);
+            maybe_Vu0_RotMatrixX(puVar11[0xe],iVar12,iVar12);
+            maybe_sceVu0ScaleVectorXYZ(*(undefined4 *)(param_1 + 0x48c),auStack_c0,puVar11 + 8);
+            sceVu0TransMatrix(iVar12,iVar12,auStack_c0);
+          }
+          else if ((uVar15 == 2) || (uVar15 == 1)) {
+            maybe_sceVu0ScaleVectorXYZ(*(undefined4 *)(param_1 + 0x484),&uStack_b0,puVar11 + 0xc);
+            maybe_Vu0_RotMatrixZ(uStack_b0,iVar12,iVar12);
+            maybe_Vu0_RotMatrixY(uStack_ac,iVar12,iVar12);
+            maybe_Vu0_RotMatrixX(uStack_a8,iVar12,iVar12);
+            sceVu0TransMatrix(iVar12,iVar12,puVar11 + 8);
+          }
+          else {
+            maybe_Vu0_RotMatrixZ(puVar11[0xc],iVar12,iVar12);
+            maybe_Vu0_RotMatrixY(puVar11[0xd],iVar12,iVar12);
+            maybe_Vu0_RotMatrixX(puVar11[0xe],iVar12,iVar12);
+            sceVu0TransMatrix(iVar12,iVar12,puVar11 + 8);
+          }
+          Model_UpdateNodeMatrix(param_2,puVar11);
         }
       }
+LAB_0019ba60:
       uVar15 = uVar15 + 1;
       iVar7 = iVar7 + 4;
       iVar9 = iVar9 + 4;

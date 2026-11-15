@@ -1078,23 +1078,23 @@ undefined4 CarRec_ApplyDefaultParts(undefined2 *param_1,byte param_2,undefined4 
   int iVar3;
   undefined4 uVar4;
   int iVar5;
-  undefined4 *puVar6;
+  byte *pbVar6;
   undefined4 *puVar7;
   short sStack_44;
   undefined1 uStack_42;
-  undefined1 auStack_40 [64];
+  byte abStack_40 [64];
   
   iVar3 = CarDb_GetModel(*param_1);
-  puVar6 = (undefined4 *)auStack_40;
+  pbVar6 = abStack_40;
   puVar7 = (undefined4 *)(iVar3 + 0x44);
   iVar5 = 8;
   do {
     iVar5 = iVar5 + -1;
     uVar4 = puVar7[1];
-    *puVar6 = *puVar7;
-    puVar6[1] = uVar4;
+    *(undefined4 *)pbVar6 = *puVar7;
+    *(undefined4 *)(pbVar6 + 4) = uVar4;
     puVar7 = puVar7 + 2;
-    puVar6 = puVar6 + 2;
+    pbVar6 = pbVar6 + 8;
   } while (0 < iVar5);
   sStack_44 = (short)param_3;
   bVar1 = false;
@@ -1115,30 +1115,30 @@ undefined4 CarRec_ApplyDefaultParts(undefined2 *param_1,byte param_2,undefined4 
   if (bVar1) {
     if (param_2 == 0) {
       bVar1 = false;
-      switch(auStack_40[0]) {
-      case 0:
-      case 1:
-      case 2:
-        if ((-1 < sStack_44) && (sStack_44 < 9)) {
-          bVar1 = true;
-        }
-        break;
-      case 3:
-      case 4:
-        if ((0x11 < sStack_44) && (sStack_44 < 0x1b)) {
-          bVar1 = true;
-        }
-        break;
-      case 5:
-      case 6:
-      case 8:
-        if ((8 < sStack_44) && (sStack_44 < 0x12)) {
-          bVar1 = true;
-        }
-        break;
-      case 7:
-        if ((0x1a < sStack_44) && (sStack_44 < 0x24)) {
-          bVar1 = true;
+      if (abStack_40[0] < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_40[0]) {
+        default:
+          if ((-1 < sStack_44) && (sStack_44 < 9)) {
+            bVar1 = true;
+          }
+          break;
+        case 3:
+        case 4:
+          if ((0x11 < sStack_44) && (sStack_44 < 0x1b)) {
+            bVar1 = true;
+          }
+          break;
+        case 5:
+        case 6:
+          if ((8 < sStack_44) && (sStack_44 < 0x12)) {
+            bVar1 = true;
+          }
+          break;
+        case 7:
+          if ((0x1a < sStack_44) && (sStack_44 < 0x24)) {
+            bVar1 = true;
+          }
         }
       }
       if (!bVar1) {
@@ -1147,30 +1147,30 @@ undefined4 CarRec_ApplyDefaultParts(undefined2 *param_1,byte param_2,undefined4 
     }
     else if (param_2 == 2) {
       bVar1 = false;
-      switch(auStack_40[0]) {
-      case 0:
-      case 1:
-      case 2:
-        if ((0x29 < sStack_44) && (sStack_44 < 0x33)) {
-          bVar1 = true;
-        }
-        break;
-      case 3:
-      case 4:
-        if ((0x3b < sStack_44) && (sStack_44 < 0x45)) {
-          bVar1 = true;
-        }
-        break;
-      case 5:
-      case 6:
-      case 8:
-        if ((0x32 < sStack_44) && (sStack_44 < 0x3c)) {
-          bVar1 = true;
-        }
-        break;
-      case 7:
-        if ((0x44 < sStack_44) && (sStack_44 < 0x4e)) {
-          bVar1 = true;
+      if (abStack_40[0] < 9) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_40[0]) {
+        default:
+          if ((0x29 < sStack_44) && (sStack_44 < 0x33)) {
+            bVar1 = true;
+          }
+          break;
+        case 3:
+        case 4:
+          if ((0x3b < sStack_44) && (sStack_44 < 0x45)) {
+            bVar1 = true;
+          }
+          break;
+        case 5:
+        case 6:
+          if ((0x32 < sStack_44) && (sStack_44 < 0x3c)) {
+            bVar1 = true;
+          }
+          break;
+        case 7:
+          if ((0x44 < sStack_44) && (sStack_44 < 0x4e)) {
+            bVar1 = true;
+          }
         }
       }
       if (!bVar1) {

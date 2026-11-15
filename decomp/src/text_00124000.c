@@ -764,31 +764,33 @@ char * _dtoa_r(undefined8 param_1,ulong param_2,uint param_3,uint param_4,int *p
   iStack_7c = 1;
   uStack_88 = 0xffffffff;
   uStack_90 = 0xffffffff;
-  switch(uStack_a8) {
-  case 0:
-  case 1:
-    uVar17 = 0x12;
-    uStack_a4 = 0;
-    break;
-  case 2:
-    iStack_7c = 0;
-  case 4:
-    uVar17 = 1;
-    if (0 < (int)uStack_a4) {
-      uVar17 = uStack_a4;
-    }
-    uStack_a4 = uVar17;
-    uStack_90 = uVar17;
-    uStack_88 = uVar17;
-    break;
-  case 3:
-    iStack_7c = 0;
-  case 5:
-    uStack_88 = uStack_a4 + uVar12;
-    uStack_90 = uStack_88 + 1;
-    uVar17 = uStack_90;
-    if ((int)uStack_90 < 1) {
+  if (uStack_a8 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uStack_a8) {
+    default:
+      uVar17 = 0x12;
+      uStack_a4 = 0;
+      break;
+    case 2:
+      iStack_7c = 0;
+    case 4:
       uVar17 = 1;
+      if (0 < (int)uStack_a4) {
+        uVar17 = uStack_a4;
+      }
+      uStack_a4 = uVar17;
+      uStack_90 = uVar17;
+      uStack_88 = uVar17;
+      break;
+    case 3:
+      iStack_7c = 0;
+    case 5:
+      uStack_88 = uStack_a4 + uVar12;
+      uStack_90 = uStack_88 + 1;
+      uVar17 = uStack_90;
+      if ((int)uStack_90 < 1) {
+        uVar17 = 1;
+      }
     }
   }
   *(undefined4 *)(iVar16 + 0x44) = 0;

@@ -98,9 +98,9 @@ void ScrRivalIsBossId_Enter(int param_1)
 
 // 0x002ac2a0  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee90 */
+/* entry 2 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32ee90_exit_sub_002ac2a0(int param_1)
+void maybe_ScrTuneParts_State2(int param_1)
 
 {
   int iVar1;
@@ -130,9 +130,9 @@ void screc32ee90_exit_sub_002ac2a0(int param_1)
 
 // 0x002ac370  size 0xe8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee90 */
+/* entry 1 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32ee90_update_sub_002ac370(int param_1)
+void maybe_ScrTuneParts_State1(int param_1)
 
 {
   long lVar1;
@@ -163,9 +163,9 @@ void screc32ee90_update_sub_002ac370(int param_1)
 
 // 0x002ac460  size 0x1a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee90 */
+/* entry 0 of state table 0x32ee90 used by maybe_ScrTuneParts_Update */
 
-void screc32ee90_enter_sub_002ac460(undefined8 param_1)
+void maybe_ScrTuneParts_State0(undefined8 param_1)
 
 {
   short sVar1;
@@ -175,18 +175,21 @@ void screc32ee90_enter_sub_002ac460(undefined8 param_1)
   int iVar5;
   int *piVar6;
   
-  switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-  case 1:
-    *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
-    break;
-  case 2:
-    *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
-    break;
-  case 3:
-    *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
-    break;
-  case 4:
-    *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+  if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x34)) {
+    case 1:
+      *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
+      break;
+    case 2:
+      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
+      break;
+    case 3:
+      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
+      break;
+    case 4:
+      *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+    }
   }
   iVar2 = Profile_Get(0);
   iVar3 = showroom_step_sub_002d3ba0(0);
@@ -233,9 +236,9 @@ void screc32ee90_enter_sub_002ac460(undefined8 param_1)
 
 // 0x002ac610  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32769c */
+/* menu screen 41 (table 0x3274b0) */
 
-void ScrGarageGetCurrentCarSpec_Exit(void)
+void maybe_ScrTuneParts_Exit(void)
 
 {
   short sVar1;
@@ -274,9 +277,9 @@ void ScrGarageGetCurrentCarSpec_Exit(void)
 }
 
 // 0x002ac6e0  size 0x1d4
-/* screen record 0x32769c */
+/* menu screen 41 (table 0x3274b0) */
 
-void ScrGarageGetCurrentCarSpec_Update(int param_1)
+void maybe_ScrTuneParts_Update(int param_1)
 
 {
   undefined4 uVar1;
@@ -290,7 +293,7 @@ void ScrGarageGetCurrentCarSpec_Update(int param_1)
   
   lVar3 = Menu_IsInputIdle(param_1 + 0xa00);
   if (lVar3 != 0) {
-    (*(code *)(&PTR_screc32ee90_enter_sub_002ac460_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
+    (*(code *)(&PTR_maybe_ScrTuneParts_State0_0032ee90)[*(int *)(param_1 + 0xa04)])(param_1);
     uVar5 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar5) == 0) {
       uVar5 = 0x100000;
@@ -344,9 +347,9 @@ void ScrGarageGetCurrentCarSpec_Update(int param_1)
 
 // 0x002ac8c0  size 0x170
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32769c */
+/* menu screen 41 (table 0x3274b0) */
 
-void ScrGarageGetCurrentCarSpec_Enter(undefined4 *param_1)
+void maybe_ScrTuneParts_Enter(undefined4 *param_1)
 
 {
   short sVar1;
@@ -366,18 +369,21 @@ void ScrGarageGetCurrentCarSpec_Enter(undefined4 *param_1)
   sVar1 = *(short *)(iVar3 + iVar4 * 2 + 0x13ee);
   *(undefined4 *)(_g_MenuMgr + 0x538) = 2;
   *(int *)(iVar5 + 0x53c) = (int)sVar1;
-  switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-  case 1:
-    *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
-    break;
-  case 2:
-    *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
-    break;
-  case 3:
-    *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
-    break;
-  case 4:
-    *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+  if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x34)) {
+    case 1:
+      *(undefined4 *)(_g_MenuMgr + 0x598) = 0;
+      break;
+    case 2:
+      *(undefined4 *)(_g_MenuMgr + 0x5dc) = 0;
+      break;
+    case 3:
+      *(undefined4 *)(_g_MenuMgr + 0x5fc) = 0;
+      break;
+    case 4:
+      *(undefined4 *)(_g_MenuMgr + 0x618) = 0;
+    }
   }
   param_1[0x280] = 0xffffffff;
   iVar5 = 0;
@@ -409,15 +415,10 @@ void ScrGarageGetCurrentCarSpec_Enter(undefined4 *param_1)
 undefined4 menuscr_leaf_sub_002aca40(int *param_1)
 
 {
-  if (param_1[0xe] == 0) {
+  if ((param_1[0xe] == 0) && ((uint)param_1[3] < 9)) {
+                    /* WARNING: Switch is manually overridden */
     switch(param_1[3]) {
     case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
       if (*param_1 != param_1[10]) {
         return 1;
       }
@@ -427,7 +428,7 @@ undefined4 menuscr_leaf_sub_002aca40(int *param_1)
 }
 
 // 0x002acaa0  size 0x320
-void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long param_3)
+void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,ulong param_3)
 
 {
   undefined8 uVar1;
@@ -465,8 +466,9 @@ void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long pa
       param_1 = param_1 + 0xc;
     } while (iVar5 < 9);
   }
-  else {
-    switch(param_3) {
+  else if (param_3 < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_3) {
     case 2:
       param_1[6] = param_2[6];
       param_1[7] = param_2[7];
@@ -559,15 +561,15 @@ void scrgarage_step_sub_002acaa0(undefined1 *param_1,undefined1 *param_2,long pa
 void scrgarage_input_sub_002acdc0(undefined8 param_1)
 
 {
-  bool bVar1;
-  int iVar2;
+  uint uVar1;
+  bool bVar2;
   int iVar3;
   undefined8 uVar4;
   int *piVar5;
   uint uVar6;
   
   piVar5 = (int *)param_1;
-  iVar2 = piVar5[3];
+  uVar1 = piVar5[3];
   uVar6 = piRam0036f468[2];
   if ((piRam0036f468[4] & uVar6) == 0) {
     uVar6 = 0x100000;
@@ -579,26 +581,21 @@ void scrgarage_input_sub_002acdc0(undefined8 param_1)
     uVar6 = 0x100000;
   }
   if (uVar6 == 0x1000) {
-    if (piVar5[0xe] == 0) {
-      switch(iVar2) {
+    if ((piVar5[0xe] == 0) && (uVar1 < 9)) {
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar1) {
       default:
         goto switchD_002ad01c_caseD_0;
       case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
         if (*piVar5 == piVar5[10]) goto switchD_002ad01c_caseD_0;
-        bVar1 = true;
+        bVar2 = true;
       }
     }
     else {
 switchD_002ad01c_caseD_0:
-      bVar1 = false;
+      bVar2 = false;
     }
-    if (bVar1) {
+    if (bVar2) {
       if (piVar5[0xf] == 2) {
         Se_PlayMenu(5);
         piVar5[0xf] = 3;
@@ -614,69 +611,64 @@ switchD_002ad01c_caseD_0:
     if (piVar5[0xf] == 2) {
       piVar5[0xf] = 3;
     }
-    else {
-      switch(iVar2) {
+    else if (uVar1 < 9) {
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar1) {
       case 0:
         piVar5[4] = *piVar5 + 1;
         piVar5[1] = 0;
         piVar5[0x10] = 1;
         uVar4 = Profile_Get(0);
-        iVar2 = Profile_GetCurrentCar(uVar4);
-        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar2 + 0x14,*piVar5 + 1);
+        iVar3 = Profile_GetCurrentCar(uVar4);
+        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar3 + 0x14,*piVar5 + 1);
         break;
       case 1:
         piVar5[4] = *piVar5 + 5;
         piVar5[1] = 0;
         piVar5[0x10] = 1;
         uVar4 = Profile_Get(0);
-        iVar2 = Profile_GetCurrentCar(uVar4);
-        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar2 + 0x14,*piVar5 + 5);
+        iVar3 = Profile_GetCurrentCar(uVar4);
+        scrgarage_step_sub_002acaa0(piVar5 + 0x32,iVar3 + 0x14,*piVar5 + 5);
         break;
       case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
         if (*piVar5 == piVar5[10]) {
           if (piVar5[0xb] == 2) {
-            scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x41,iVar2);
+            scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x41,uVar1);
           }
           else {
             if (piVar5[0xb] == 0) {
               uVar4 = Profile_Get(0);
               iVar3 = Profile_GetCurrentCar(uVar4);
-              scrgarage_step_sub_002acaa0(iVar3 + 0x14,piVar5 + 0x32,iVar2);
+              scrgarage_step_sub_002acaa0(iVar3 + 0x14,piVar5 + 0x32,uVar1);
             }
-            if (iVar2 < 5) {
-              piVar5[1] = iVar2 + -1;
+            if ((int)uVar1 < 5) {
+              piVar5[1] = uVar1 - 1;
               piVar5[0x10] = 1;
               piVar5[4] = 0;
             }
             else {
-              piVar5[1] = iVar2 + -5;
+              piVar5[1] = uVar1 - 5;
               piVar5[0x10] = 1;
               piVar5[4] = 1;
             }
           }
         }
-        else if ((iVar2 != 8) && ((iVar2 != 4 || (*piVar5 != 2)))) {
+        else if ((uVar1 != 8) && ((uVar1 != 4 || (*piVar5 != 2)))) {
           if (piVar5[0xe] == 0) {
-            scrgarage_step_sub_002acaa0(piVar5 + 0x23,piVar5 + 0x32,iVar2);
-            iVar2 = piVar5[0xe];
+            scrgarage_step_sub_002acaa0(piVar5 + 0x23,piVar5 + 0x32,uVar1);
+            iVar3 = piVar5[0xe];
           }
           else {
-            iVar2 = piVar5[0xe];
+            iVar3 = piVar5[0xe];
           }
-          piVar5[0xe] = iVar2 != 0 ^ 1;
+          piVar5[0xe] = iVar3 != 0 ^ 1;
         }
       }
     }
   }
   else {
     if (uVar6 != 0x20) {
-      iVar2 = piVar5[10];
+      iVar3 = piVar5[10];
       goto LAB_002ad078;
     }
     Se_PlayMenu(6);
@@ -685,10 +677,11 @@ switchD_002ad01c_caseD_0:
     }
     else if (piVar5[0xe] == 1) {
       piVar5[0xe] = 0;
-      scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x23,iVar2);
+      scrgarage_step_sub_002acaa0(piVar5 + 0x32,piVar5 + 0x23,uVar1);
     }
-    else {
-      switch(iVar2) {
+    else if (uVar1 < 9) {
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar1) {
       case 0:
         MenuMgr_GetScreenParam(0x28);
         break;
@@ -698,21 +691,15 @@ switchD_002ad01c_caseD_0:
         piVar5[0x10] = 1;
         break;
       case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
         *piVar5 = piVar5[10];
         piVar5[0xb] = 1;
       }
     }
   }
-  iVar2 = piVar5[10];
+  iVar3 = piVar5[10];
 LAB_002ad078:
-  if (((iVar2 != -1) && (piVar5[0xf] == 5)) && (piVar5[0xe] == 0)) {
-    Menu_HandleCursor(param_1,0,2,iVar2,1,piVar5[0xc]);
+  if (((iVar3 != -1) && (piVar5[0xf] == 5)) && (piVar5[0xe] == 0)) {
+    Menu_HandleCursor(param_1,0,2,iVar3,1,piVar5[0xc]);
     if (*piVar5 == piVar5[10]) {
       Menu_HandleCursor(piVar5 + 0xb,0,8,2,1,0);
     }
@@ -724,9 +711,9 @@ LAB_002ad078:
 }
 
 // 0x002ad1f0  size 0x64
-/* screen record 0x32ef58 */
+/* entry 8 of state table 0x32ef40 used by maybe_ScrPartInfo_Update */
 
-void screc32ef58_exit_sub_002ad1f0(int *param_1)
+void maybe_ScrPartInfo_State8(int *param_1)
 
 {
   int iStack_4;
@@ -742,9 +729,9 @@ void screc32ef58_exit_sub_002ad1f0(int *param_1)
 }
 
 // 0x002ad260  size 0xac
-/* screen record 0x32ef58 */
+/* entry 7 of state table 0x32ef40 used by maybe_ScrPartInfo_Update */
 
-void screc32ef58_update_sub_002ad260(int *param_1)
+void maybe_ScrPartInfo_State7(int *param_1)
 
 {
   int **ppiVar1;
@@ -774,9 +761,9 @@ void screc32ef58_update_sub_002ad260(int *param_1)
 }
 
 // 0x002ad310  size 0x354
-/* screen record 0x32ef58 */
+/* entry 6 of state table 0x32ef40 used by maybe_ScrPartInfo_Update */
 
-void screc32ef58_enter_sub_002ad310(int *param_1)
+void maybe_ScrPartInfo_State6(int *param_1)
 
 {
   int **ppiVar1;
@@ -899,9 +886,9 @@ LAB_002ad534:
 }
 
 // 0x002ad670  size 0x19c
-/* screen record 0x32ef4c */
+/* entry 5 of state table 0x32ef40 used by maybe_ScrPartInfo_Update */
 
-void screc32ef4c_exit_sub_002ad670(int *param_1)
+void maybe_ScrPartInfo_State5(int *param_1)
 
 {
   uint uVar1;
@@ -947,9 +934,9 @@ void screc32ef4c_exit_sub_002ad670(int *param_1)
 }
 
 // 0x002ad810  size 0x1d0
-/* screen record 0x32ef4c */
+/* entry 4 of state table 0x32ef40 used by maybe_ScrPartInfo_Update */
 
-void screc32ef4c_update_sub_002ad810(int *param_1)
+void maybe_ScrPartInfo_State4(int *param_1)
 
 {
   char cVar1;
@@ -1011,9 +998,9 @@ LAB_002ad938:
 }
 
 // 0x002ad9e0  size 0xe8
-/* screen record 0x32ef4c */
+/* entry 3 of state table 0x32ef40 used by maybe_ScrPartInfo_Update */
 
-void screc32ef4c_enter_sub_002ad9e0(int *param_1)
+void maybe_ScrPartInfo_State3(int *param_1)
 
 {
   int *piVar1;
@@ -1195,18 +1182,18 @@ void ScrCarRecGetModelId_Enteradd60(undefined8 param_1)
 }
 
 // 0x002ade50  size 0x8
-/* screen record 0x3276a8 */
+/* menu screen 42 (table 0x3274b0) */
 
-void screc3276a8_exit_sub_002ade50(void)
+void maybe_ScrPartInfo_Exit(void)
 
 {
   return;
 }
 
 // 0x002ade60  size 0x98
-/* screen record 0x3276a8 */
+/* menu screen 42 (table 0x3274b0) */
 
-void screc3276a8_update_sub_002ade60(undefined8 param_1)
+void maybe_ScrPartInfo_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -1229,9 +1216,9 @@ void screc3276a8_update_sub_002ade60(undefined8 param_1)
 }
 
 // 0x002adf00  size 0x3a4
-/* screen record 0x3276a8 */
+/* menu screen 42 (table 0x3274b0) */
 
-void screc3276a8_enter_sub_002adf00(undefined8 param_1)
+void maybe_ScrPartInfo_Enter(undefined8 param_1)
 
 {
   char cVar1;
@@ -1352,9 +1339,9 @@ void screc3276a8_enter_sub_002adf00(undefined8 param_1)
 }
 
 // 0x002ae2b0  size 0x8
-/* screen record 0x3274bc */
+/* menu screen 1 (table 0x3274b0) */
 
-void screc3274bc_exit_sub_002ae2b0(void)
+void maybe_ScrGarageCheck_Exit(void)
 
 {
   return;
@@ -1362,9 +1349,9 @@ void screc3274bc_exit_sub_002ae2b0(void)
 
 // 0x002ae2c0  size 0xfc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3274bc */
+/* menu screen 1 (table 0x3274b0) */
 
-void screc3274bc_update_sub_002ae2c0(undefined8 param_1)
+void maybe_ScrGarageCheck_Update(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1394,9 +1381,9 @@ void screc3274bc_update_sub_002ae2c0(undefined8 param_1)
 
 // 0x002ae3c0  size 0x88
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3274bc */
+/* menu screen 1 (table 0x3274b0) */
 
-void screc3274bc_enter_sub_002ae3c0(undefined4 *param_1)
+void maybe_ScrGarageCheck_Enter(undefined4 *param_1)
 
 {
   int iVar1;

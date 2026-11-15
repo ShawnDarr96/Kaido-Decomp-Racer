@@ -1042,9 +1042,9 @@ void MenuScr_Select_TimeAttack(int param_1)
 
 // 0x00266600  size 0x3c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327860 */
+/* menu page 32 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327860_exit_sub_00266600(void)
+void MenuPage32_Exit(void)
 
 {
   *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
@@ -1058,9 +1058,9 @@ void screc327860_exit_sub_00266600(void)
 
 // 0x00266640  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327860 */
+/* menu page 32 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327860_update_sub_00266640(int param_1)
+void MenuPage32_Update(int param_1)
 
 {
   uint uVar1;
@@ -1078,9 +1078,9 @@ void screc327860_update_sub_00266640(int param_1)
 
 // 0x002666e0  size 0x1f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327860 */
+/* menu page 32 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327860_enter_sub_002666e0(int param_1)
+void MenuPage32_Enter(int param_1)
 
 {
   undefined4 uVar1;
@@ -1820,9 +1820,9 @@ void ScrGarage_Draw_DoYouWant_7ac0(int *param_1)
 
 // 0x00267f00  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327878 */
+/* menu page 34 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327878_exit_sub_00267f00(void)
+void maybe_PageMoney_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1831,9 +1831,9 @@ void screc327878_exit_sub_00267f00(void)
 
 // 0x00267f20  size 0xe0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327878 */
+/* menu page 34 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327878_update_sub_00267f20(undefined8 param_1)
+void maybe_PageMoney_Update(undefined8 param_1)
 
 {
   undefined8 uVar1;

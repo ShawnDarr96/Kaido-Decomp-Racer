@@ -825,96 +825,101 @@ void ScrGarage_Draw_Reinforcement(int *param_1)
     param_1[0x18] = 0;
   }
   uVar8 = 0x41;
-  switch(param_1[1]) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-    unaff_s0_lo = 0;
-    uVar8 = 0x2b7;
-    break;
-  case 4:
-  case 5:
-  case 6:
-  case 7:
-    unaff_s0_lo = 1;
-    uVar8 = 0x2b8;
-    break;
-  case 8:
-    unaff_s0_lo = 2;
-    uVar8 = 0x2b9;
-    break;
-  case 9:
-    unaff_s0_lo = 3;
-    uVar8 = 0x2ba;
-    break;
-  case 10:
-    unaff_s0_lo = 4;
-    uVar8 = 699;
-    break;
-  case 0xb:
-    unaff_s0_lo = 0;
-    uVar8 = 0x2c8;
-    break;
-  case 0xc:
-    unaff_s0_lo = 1;
-    uVar8 = 0x2c9;
-    break;
-  case 0xd:
-    unaff_s0_lo = 2;
-    uVar8 = 0x2ca;
-    break;
-  case 0xe:
-    unaff_s0_lo = 3;
-    uVar8 = 0x2cb;
-    break;
-  case 0xf:
-    unaff_s0_lo = 4;
-    uVar8 = 0x2cc;
-    break;
-  case 0x10:
-    unaff_s0_lo = 5;
-    uVar8 = 0x2cd;
-    break;
-  case 0x11:
-    unaff_s0_lo = 6;
-    uVar8 = 0x2ce;
-    break;
-  case 0x12:
-    unaff_s0_lo = 0;
-    uVar8 = 0x2cf;
-    break;
-  case 0x13:
-    unaff_s0_lo = 1;
-    uVar8 = 0x2d0;
-    break;
-  case 0x18:
-    unaff_s0_lo = 0;
-    uVar8 = 0x2da;
-    break;
-  case 0x19:
-    unaff_s0_lo = 1;
-    uVar8 = 0x2db;
-    break;
-  case 0x1a:
-    unaff_s0_lo = 2;
-    uVar8 = 0x2dc;
-    break;
-  case 0x1b:
-    unaff_s0_lo = 3;
-    uVar8 = 0x2dd;
-    break;
-  case 0x1c:
-    unaff_s0_lo = 4;
-    uVar8 = 0x2de;
-    break;
-  case 0x1d:
-    unaff_s0_lo = 5;
-    uVar8 = 0x2df;
-    break;
-  case 0x1e:
-    unaff_s0_lo = 6;
-    uVar8 = 0x2e0;
+  if ((uint)param_1[1] < 0x1f) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1[1]) {
+    default:
+      unaff_s0_lo = 0;
+      uVar8 = 0x2b7;
+      break;
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+      unaff_s0_lo = 1;
+      uVar8 = 0x2b8;
+      break;
+    case 8:
+      unaff_s0_lo = 2;
+      uVar8 = 0x2b9;
+      break;
+    case 9:
+      unaff_s0_lo = 3;
+      uVar8 = 0x2ba;
+      break;
+    case 10:
+      unaff_s0_lo = 4;
+      uVar8 = 699;
+      break;
+    case 0xb:
+      unaff_s0_lo = 0;
+      uVar8 = 0x2c8;
+      break;
+    case 0xc:
+      unaff_s0_lo = 1;
+      uVar8 = 0x2c9;
+      break;
+    case 0xd:
+      unaff_s0_lo = 2;
+      uVar8 = 0x2ca;
+      break;
+    case 0xe:
+      unaff_s0_lo = 3;
+      uVar8 = 0x2cb;
+      break;
+    case 0xf:
+      unaff_s0_lo = 4;
+      uVar8 = 0x2cc;
+      break;
+    case 0x10:
+      unaff_s0_lo = 5;
+      uVar8 = 0x2cd;
+      break;
+    case 0x11:
+      unaff_s0_lo = 6;
+      uVar8 = 0x2ce;
+      break;
+    case 0x12:
+      unaff_s0_lo = 0;
+      uVar8 = 0x2cf;
+      break;
+    case 0x13:
+      unaff_s0_lo = 1;
+      uVar8 = 0x2d0;
+      break;
+    case 0x14:
+    case 0x15:
+    case 0x16:
+    case 0x17:
+      break;
+    case 0x18:
+      unaff_s0_lo = 0;
+      uVar8 = 0x2da;
+      break;
+    case 0x19:
+      unaff_s0_lo = 1;
+      uVar8 = 0x2db;
+      break;
+    case 0x1a:
+      unaff_s0_lo = 2;
+      uVar8 = 0x2dc;
+      break;
+    case 0x1b:
+      unaff_s0_lo = 3;
+      uVar8 = 0x2dd;
+      break;
+    case 0x1c:
+      unaff_s0_lo = 4;
+      uVar8 = 0x2de;
+      break;
+    case 0x1d:
+      unaff_s0_lo = 5;
+      uVar8 = 0x2df;
+      break;
+    case 0x1e:
+      unaff_s0_lo = 6;
+      uVar8 = 0x2e0;
+    }
   }
   if (*piRam0036f468 == 1) {
     MenuWnd_SetItemState(0x4c,*(undefined4 *)(&DAT_0032ce00 + unaff_s0_lo * 4),1,0);
@@ -1158,9 +1163,9 @@ void ScrReinforcement_Enter(int *param_1)
 
 // 0x0025e580  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32783c */
+/* menu page 29 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32783c_exit_sub_0025e580(void)
+void MenuPage29_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1169,9 +1174,9 @@ void screc32783c_exit_sub_0025e580(void)
 
 // 0x0025e5a0  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32783c */
+/* menu page 29 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32783c_update_sub_0025e5a0(undefined8 param_1)
+void MenuPage29_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1195,9 +1200,9 @@ void screc32783c_update_sub_0025e5a0(undefined8 param_1)
 
 // 0x0025e6a0  size 0xb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32783c */
+/* menu page 29 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32783c_enter_sub_0025e6a0(void)
+void MenuPage29_Enter(void)
 
 {
   undefined4 uVar1;

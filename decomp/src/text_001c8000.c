@@ -117,18 +117,15 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
               if ((uVar3 & 8) == 0) {
                 if (((uVar3 & 0x40) != 0) && (fVar9 = 0.0, param_2[1] == 0.0)) {
                   fVar8 = *(float *)(uVar1 + (uint)(byte)*puVar5 * 0x10 + 0x330);
-                  switch(iVar4) {
-                  case 0x10:
-                  case 0x12:
-                  case 0x14:
-                  case 0x16:
-                    cStack_50 = '\0';
-                    break;
-                  case 0x11:
-                  case 0x13:
-                  case 0x15:
-                  case 0x17:
-                    cStack_50 = '\x01';
+                  if (iVar4 - 0x10U < 8) {
+                    /* WARNING: Switch is manually overridden */
+                    switch(iVar4 - 0x10U) {
+                    case 0:
+                      cStack_50 = '\0';
+                      break;
+                    case 1:
+                      cStack_50 = '\x01';
+                    }
                   }
                   if (cStack_50 == '\0') {
                     if (fVar8 < 0.0) {
@@ -160,18 +157,15 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
                 fVar9 = 0.0;
                 if (param_2[1] == 0.0) {
                   fVar8 = *(float *)(uVar1 + (uint)(byte)*puVar5 * 0x10 + 0x330);
-                  switch(iVar4) {
-                  case 0x10:
-                  case 0x12:
-                  case 0x14:
-                  case 0x16:
-                    cStack_40 = '\0';
-                    break;
-                  case 0x11:
-                  case 0x13:
-                  case 0x15:
-                  case 0x17:
-                    cStack_40 = '\x01';
+                  if (iVar4 - 0x10U < 8) {
+                    /* WARNING: Switch is manually overridden */
+                    switch(iVar4 - 0x10U) {
+                    case 0:
+                      cStack_40 = '\0';
+                      break;
+                    case 1:
+                      cStack_40 = '\x01';
+                    }
                   }
                   if (cStack_40 == '\0') {
                     if (fVar8 < 0.0) {
@@ -204,18 +198,15 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
               fVar9 = 0.0;
               if (*param_2 == 0.0) {
                 fVar8 = *(float *)(uVar1 + (uint)(byte)*puVar5 * 0x10 + 0x330);
-                switch(iVar4) {
-                case 0x10:
-                case 0x12:
-                case 0x14:
-                case 0x16:
-                  cStack_30 = '\0';
-                  break;
-                case 0x11:
-                case 0x13:
-                case 0x15:
-                case 0x17:
-                  cStack_30 = '\x01';
+                if (iVar4 - 0x10U < 8) {
+                    /* WARNING: Switch is manually overridden */
+                  switch(iVar4 - 0x10U) {
+                  case 0:
+                    cStack_30 = '\0';
+                    break;
+                  case 1:
+                    cStack_30 = '\x01';
+                  }
                 }
                 if (cStack_30 == '\0') {
                   if (fVar8 < 0.0) {
@@ -248,18 +239,15 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
             fVar9 = 0.0;
             if (param_2[2] == 0.0) {
               fVar8 = *(float *)(uVar1 + (uint)(byte)*puVar5 * 0x10 + 0x330);
-              switch(iVar4) {
-              case 0x10:
-              case 0x12:
-              case 0x14:
-              case 0x16:
-                cStack_20 = '\0';
-                break;
-              case 0x11:
-              case 0x13:
-              case 0x15:
-              case 0x17:
-                cStack_20 = '\x01';
+              if (iVar4 - 0x10U < 8) {
+                    /* WARNING: Switch is manually overridden */
+                switch(iVar4 - 0x10U) {
+                case 0:
+                  cStack_20 = '\0';
+                  break;
+                case 1:
+                  cStack_20 = '\x01';
+                }
               }
               if (cStack_20 == '\0') {
                 if (fVar8 < 0.0) {
@@ -298,62 +286,62 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
         }
         else if ((*(uint *)(param_3 + 0x10) & uVar2) == 0) {
           fVar9 = *(float *)(uVar1 + (uint)(byte)*puVar5 * 0x10 + 0x330);
-          switch(iVar4) {
-          case 0x10:
-          case 0x12:
-            if ((fVar9 < -0.75) && ((*param_1 & 1) != 0)) {
-              param_2[4] = (float)((uint)param_2[4] | uVar2);
-              *param_1 = *param_1 & 0xfffffffe;
-            }
-            break;
-          case 0x11:
-          case 0x13:
-            if ((0.75 < fVar9) && ((*param_1 & 1) != 0)) {
-              param_2[4] = (float)((uint)param_2[4] | uVar2);
-              *param_1 = *param_1 & 0xfffffffe;
-            }
-            break;
-          case 0x14:
-          case 0x16:
-            if ((fVar9 < -0.75) && ((*param_1 & 2) != 0)) {
-              param_2[4] = (float)((uint)param_2[4] | uVar2);
-              *param_1 = *param_1 & 0xfffffffd;
-            }
-            break;
-          case 0x15:
-          case 0x17:
-            if ((0.75 < fVar9) && ((*param_1 & 2) != 0)) {
-              param_2[4] = (float)((uint)param_2[4] | uVar2);
-              *param_1 = *param_1 & 0xfffffffd;
+          if (iVar4 - 0x10U < 8) {
+                    /* WARNING: Switch is manually overridden */
+            switch(iVar4 - 0x10U) {
+            default:
+              if ((fVar9 < -0.75) && ((*param_1 & 1) != 0)) {
+                param_2[4] = (float)((uint)param_2[4] | uVar2);
+                *param_1 = *param_1 & 0xfffffffe;
+              }
+              break;
+            case 1:
+            case 3:
+              if ((0.75 < fVar9) && ((*param_1 & 1) != 0)) {
+                param_2[4] = (float)((uint)param_2[4] | uVar2);
+                *param_1 = *param_1 & 0xfffffffe;
+              }
+              break;
+            case 4:
+              if ((fVar9 < -0.75) && ((*param_1 & 2) != 0)) {
+                param_2[4] = (float)((uint)param_2[4] | uVar2);
+                *param_1 = *param_1 & 0xfffffffd;
+              }
+              break;
+            case 5:
+              if ((0.75 < fVar9) && ((*param_1 & 2) != 0)) {
+                param_2[4] = (float)((uint)param_2[4] | uVar2);
+                *param_1 = *param_1 & 0xfffffffd;
+              }
             }
           }
         }
       }
       else {
         fVar9 = *(float *)(uVar1 + (uint)(byte)*puVar5 * 0x10 + 0x330);
-        switch(iVar4) {
-        case 0x10:
-        case 0x12:
-          if (fVar9 < -0.75) {
-            param_2[4] = (float)((uint)param_2[4] | uVar2);
-          }
-          break;
-        case 0x11:
-        case 0x13:
-          if (0.75 < fVar9) {
-            param_2[4] = (float)((uint)param_2[4] | uVar2);
-          }
-          break;
-        case 0x14:
-        case 0x16:
-          if (fVar9 < -0.75) {
-            param_2[4] = (float)((uint)param_2[4] | uVar2);
-          }
-          break;
-        case 0x15:
-        case 0x17:
-          if (0.75 < fVar9) {
-            param_2[4] = (float)((uint)param_2[4] | uVar2);
+        if (iVar4 - 0x10U < 8) {
+                    /* WARNING: Switch is manually overridden */
+          switch(iVar4 - 0x10U) {
+          default:
+            if (fVar9 < -0.75) {
+              param_2[4] = (float)((uint)param_2[4] | uVar2);
+            }
+            break;
+          case 1:
+          case 3:
+            if (0.75 < fVar9) {
+              param_2[4] = (float)((uint)param_2[4] | uVar2);
+            }
+            break;
+          case 4:
+            if (fVar9 < -0.75) {
+              param_2[4] = (float)((uint)param_2[4] | uVar2);
+            }
+            break;
+          case 5:
+            if (0.75 < fVar9) {
+              param_2[4] = (float)((uint)param_2[4] | uVar2);
+            }
           }
         }
       }
@@ -367,7 +355,7 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
 }
 
 // 0x001c99b0  size 0xc4
-void race_load_sub_001c99b0(int param_1)
+void RaceTask_CreateAiDrivers(int param_1)
 
 {
   undefined4 *puVar1;
@@ -1020,7 +1008,7 @@ void Ai_UpdateDriver(int param_1,uint param_2)
   bool bVar2;
   bool bVar3;
   char cVar4;
-  undefined1 uVar5;
+  byte bVar5;
   undefined4 *puVar6;
   undefined4 uVar7;
   long lVar8;
@@ -1181,8 +1169,12 @@ LAB_001ca8e8:
       }
     }
   }
-  uVar5 = GameState_Get_2();
-  switch(uVar5) {
+  bVar5 = GameState_Get_2();
+  if (5 < bVar5) {
+    return;
+  }
+                    /* WARNING: Switch is manually overridden */
+  switch(bVar5) {
   case 0:
     bVar2 = false;
     uVar15 = 0;
@@ -1195,70 +1187,63 @@ LAB_001ca8e8:
       }
       uVar14 = uVar14 + 1;
     } while ((int)uVar14 < 4);
-    if (bVar2) {
-      if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
-        iVar12 = 0;
+    if (!bVar2) {
+      return;
+    }
+    if ((iRam004301b0 == 0) || (uRam004301ac <= param_2)) {
+      iVar12 = 0;
+    }
+    else {
+      iVar12 = iRam004301b0 + param_2 * 0xb900;
+    }
+    if (iVar12 == 0) {
+      return;
+    }
+    Skid_UpdateCarEx(iVar12,uVar15);
+    return;
+  case 1:
+    if ((((param_2 == 0) || ((param_2 == 1 && (iRam0036f1f8 == 1)))) &&
+        (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
+       (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
+      fVar16 = *(float *)(param_1 + 0x40) * 3.6;
+      if (param_2 == 0) {
+        iVar12 = iVar12 + 0xe20;
       }
       else {
-        iVar12 = iRam004301b0 + param_2 * 0xb900;
+        iVar12 = iVar12 + 0x1bf0;
       }
-      if (iVar12 != 0) {
-        Skid_UpdateCarEx(iVar12,uVar15);
+      if (*(float *)(param_1 + 400) < 0.0) {
+        uStack_58 = 0;
+        uStack_54 = 0;
+        fStack_60 = *(float *)(param_1 + 0x198) * 40.0;
+        uStack_5c = 0xc4160000;
+        *(undefined4 *)(iVar12 + 8) = 1;
+        *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
+        sceVu0CopyVector(iVar12 + 0x20,&fStack_60);
       }
+      else {
+        uStack_58 = 0;
+        uStack_54 = 0;
+        fStack_60 = *(float *)(param_1 + 0x198) * 40.0;
+        uStack_5c = 0x44160000;
+        *(undefined4 *)(iVar12 + 8) = 1;
+        *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
+        sceVu0CopyVector(iVar12 + 0x20,&fStack_60);
+      }
+      Weather_SpawnDrops(iVar12);
     }
-    goto switchD_001caf44_default;
-  case 1:
-  case 4:
-    break;
-  case 2:
-  case 3:
-  case 5:
-    goto switchD_001caf44_caseD_2;
-  default:
-    goto switchD_001caf44_default;
+    lVar8 = race_leaf_sub_001e8fc0();
+    if (((lVar8 != 0) && (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
+       (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
+      uStack_70 = 0;
+      uStack_6c = 0;
+      uStack_68 = 0;
+      uStack_64 = 0;
+      *(undefined4 *)(iVar12 + 0x58) = 0;
+      sceVu0CopyVector(iVar12 + 0x70,&uStack_70);
+      Weather_SpawnDrops(iVar12 + 0x50);
+    }
   }
-  if ((((param_2 == 0) || ((param_2 == 1 && (iRam0036f1f8 == 1)))) &&
-      (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
-     (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
-    fVar16 = *(float *)(param_1 + 0x40) * 3.6;
-    if (param_2 == 0) {
-      iVar12 = iVar12 + 0xe20;
-    }
-    else {
-      iVar12 = iVar12 + 0x1bf0;
-    }
-    if (*(float *)(param_1 + 400) < 0.0) {
-      uStack_58 = 0;
-      uStack_54 = 0;
-      fStack_60 = *(float *)(param_1 + 0x198) * 40.0;
-      uStack_5c = 0xc4160000;
-      *(undefined4 *)(iVar12 + 8) = 1;
-      *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
-      sceVu0CopyVector(iVar12 + 0x20,&fStack_60);
-    }
-    else {
-      uStack_58 = 0;
-      uStack_54 = 0;
-      fStack_60 = *(float *)(param_1 + 0x198) * 40.0;
-      uStack_5c = 0x44160000;
-      *(undefined4 *)(iVar12 + 8) = 1;
-      *(float *)(iVar12 + 0x14) = fVar16 / 20.0;
-      sceVu0CopyVector(iVar12 + 0x20,&fStack_60);
-    }
-    Weather_SpawnDrops(iVar12);
-  }
-  lVar8 = race_leaf_sub_001e8fc0();
-  if (((lVar8 != 0) && (*(int *)(iRam0036f3b0 + 0xc) != 0)) &&
-     (iVar12 = *(int *)(*(int *)(iRam0036f3b0 + 0xc) + 0x14), iVar12 != 0)) {
-    uStack_70 = 0;
-    uStack_6c = 0;
-    uStack_68 = 0;
-    uStack_64 = 0;
-    *(undefined4 *)(iVar12 + 0x58) = 0;
-    sceVu0CopyVector(iVar12 + 0x70,&uStack_70);
-    Weather_SpawnDrops(iVar12 + 0x50);
-  }
-switchD_001caf44_caseD_2:
   bVar2 = false;
   uVar15 = 0;
   uVar14 = 0;
@@ -1296,20 +1281,19 @@ switchD_001caf44_caseD_2:
   lVar8 = CarRec_GetPartData(*(undefined4 *)(param_1 + 0x17dc),0x14);
   if (lVar8 == 0) {
     cVar4 = GameState_Get_2();
-    if (cVar4 != '\x04') {
-      uVar7 = 0x40a00000;
-      goto LAB_001cae6c;
+    if (cVar4 == '\x04') {
+      uVar10 = 0x42700000;
+      uVar7 = 0x41200000;
+      goto LAB_001cae70;
     }
-    uVar10 = 0x42700000;
-    uVar7 = 0x41200000;
+    uVar7 = 0x40a00000;
   }
   else {
     uVar7 = 0x40000000;
-LAB_001cae6c:
-    uVar10 = 0x41f00000;
   }
+  uVar10 = 0x41f00000;
+LAB_001cae70:
   Skid_UpdateCar(uVar10,uVar7,iVar12,uVar15);
-switchD_001caf44_default:
   return;
 }
 

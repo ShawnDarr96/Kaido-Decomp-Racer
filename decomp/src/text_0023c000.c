@@ -4,9 +4,9 @@
 
 // 0x0023c1d0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277d0 */
+/* menu page 20 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277d0_exit_sub_0023c1d0(void)
+void MenuPage20_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -15,9 +15,9 @@ void screc3277d0_exit_sub_0023c1d0(void)
 
 // 0x0023c1f0  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277d0 */
+/* menu page 20 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277d0_update_sub_0023c1f0(int param_1)
+void MenuPage20_Update(int param_1)
 
 {
   uint uVar1;
@@ -35,9 +35,9 @@ void screc3277d0_update_sub_0023c1f0(int param_1)
 
 // 0x0023c290  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277d0 */
+/* menu page 20 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277d0_enter_sub_0023c290(void)
+void MenuPage20_Enter(void)
 
 {
   undefined4 uVar1;
@@ -70,8 +70,9 @@ void screc3277d0_enter_sub_0023c290(void)
 
 // 0x0023c330  size 0x5b0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 3 of draw table 0x32b740 used by MenuScr_Draw_Movie */
 
-void scrrace_draw_sub_0023c330(int param_1)
+void MenuScr_Draw_Movie_Draw3(int param_1)
 
 {
   int iVar1;
@@ -265,9 +266,9 @@ void scrrace_draw_sub_0023c330(int param_1)
 
 // 0x0023c8e0  size 0x480
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32b740 */
+/* entry 2 of draw table 0x32b740 used by MenuScr_Draw_Movie */
 
-void screc32b740_exit_sub_0023c8e0(int param_1)
+void MenuScr_Draw_Movie_Draw2(int param_1)
 
 {
   int iVar1;
@@ -432,9 +433,9 @@ void screc32b740_exit_sub_0023c8e0(int param_1)
 
 // 0x0023cd60  size 0x480
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32b740 */
+/* entry 1 of draw table 0x32b740 used by MenuScr_Draw_Movie */
 
-void screc32b740_update_sub_0023cd60(int param_1)
+void MenuScr_Draw_Movie_Draw1(int param_1)
 
 {
   int iVar1;
@@ -599,9 +600,9 @@ void screc32b740_update_sub_0023cd60(int param_1)
 
 // 0x0023d1e0  size 0x5b8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32b740 */
+/* entry 0 of draw table 0x32b740 used by MenuScr_Draw_Movie */
 
-void screc32b740_enter_sub_0023d1e0(int *param_1)
+void MenuScr_Draw_Movie_Draw0(int *param_1)
 
 {
   undefined4 uVar1;
@@ -850,7 +851,7 @@ void MenuScr_Draw_Movie(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
   iVar3 = (int)param_1;
-  (*(code *)(&PTR_screc32b740_enter_sub_0023d1e0_0032b740)[*(int *)(iVar3 + 0x20)])(param_1);
+  (*(code *)(&PTR_MenuScr_Draw_Movie_Draw0_0032b740)[*(int *)(iVar3 + 0x20)])(param_1);
   MenuWnd_DrawText(0xcd,0x1f,0x103);
   MenuWnd_DrawText(0xcd,0x20,0x104);
   MenuWnd_DrawText(0xcd,0x21,0x105);
@@ -914,9 +915,9 @@ void ScrDraw_Movie_Enter(void)
 
 // 0x0023da40  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277e8 */
+/* menu page 22 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277e8_exit_sub_0023da40(void)
+void MenuPage22_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -925,9 +926,9 @@ void screc3277e8_exit_sub_0023da40(void)
 
 // 0x0023da60  size 0x288
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277e8 */
+/* menu page 22 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277e8_update_sub_0023da60(int param_1)
+void MenuPage22_Update(int param_1)
 
 {
   undefined4 uVar1;
@@ -1013,9 +1014,9 @@ LAB_0023db74:
 
 // 0x0023dcf0  size 0x2c0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277e8 */
+/* menu page 22 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277e8_enter_sub_0023dcf0(void)
+void MenuPage22_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1140,9 +1141,9 @@ void screc3277e8_enter_sub_0023dcf0(void)
 
 // 0x0023dfb0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327800 */
+/* menu page 24 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327800_exit_sub_0023dfb0(void)
+void maybe_PagePasswordEntryB_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1151,9 +1152,9 @@ void screc327800_exit_sub_0023dfb0(void)
 
 // 0x0023dfd0  size 0x1a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327800 */
+/* menu page 24 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327800_update_sub_0023dfd0(undefined8 param_1)
+void maybe_PagePasswordEntryB_Update(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1201,9 +1202,9 @@ void screc327800_update_sub_0023dfd0(undefined8 param_1)
 
 // 0x0023e180  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327800 */
+/* menu page 24 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327800_enter_sub_0023e180(void)
+void maybe_PagePasswordEntryB_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1239,9 +1240,9 @@ void screc327800_enter_sub_0023e180(void)
 
 // 0x0023e230  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32780c */
+/* menu page 25 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32780c_exit_sub_0023e230(void)
+void maybe_PagePasswordEntryC_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1250,9 +1251,9 @@ void screc32780c_exit_sub_0023e230(void)
 
 // 0x0023e250  size 0x1a8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32780c */
+/* menu page 25 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32780c_update_sub_0023e250(undefined8 param_1)
+void maybe_PagePasswordEntryC_Update(undefined8 param_1)
 
 {
   uint uVar1;
@@ -1300,9 +1301,9 @@ void screc32780c_update_sub_0023e250(undefined8 param_1)
 
 // 0x0023e400  size 0xac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32780c */
+/* menu page 25 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc32780c_enter_sub_0023e400(void)
+void maybe_PagePasswordEntryC_Enter(void)
 
 {
   undefined4 uVar1;

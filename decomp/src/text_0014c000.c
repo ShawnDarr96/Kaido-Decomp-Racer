@@ -1894,20 +1894,23 @@ void Obj_SetType(int param_1,undefined4 param_2,undefined4 param_3)
   uint uVar3;
   
   *(undefined4 *)(param_1 + 4) = param_2;
-  switch(*(undefined4 *)(param_1 + 4)) {
-  case 1:
-    *(undefined4 *)(param_1 + 8) = 2;
-    break;
-  case 2:
-    *(undefined4 *)(param_1 + 8) = 3;
-    break;
-  case 3:
-  case 4:
-    *(undefined4 *)(param_1 + 8) = 4;
-    break;
-  case 5:
-  case 6:
-    *(undefined4 *)(param_1 + 8) = param_3;
+  if (*(uint *)(param_1 + 4) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 4)) {
+    case 0:
+      break;
+    case 1:
+      *(undefined4 *)(param_1 + 8) = 2;
+      break;
+    case 2:
+      *(undefined4 *)(param_1 + 8) = 3;
+      break;
+    default:
+      *(undefined4 *)(param_1 + 8) = 4;
+      break;
+    case 5:
+      *(undefined4 *)(param_1 + 8) = param_3;
+    }
   }
   uVar3 = 0;
   if (*(int *)(param_1 + 8) != 0) {

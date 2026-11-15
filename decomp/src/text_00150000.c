@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x001505c0  size 0x36c
-void Sprite_SetupAlpha(int param_1,undefined8 param_2,long param_3,uint *param_4)
+void Sprite_SetupAlpha(int param_1,ulong param_2,long param_3,uint *param_4)
 
 {
   uint uVar1;
@@ -16,49 +16,52 @@ void Sprite_SetupAlpha(int param_1,undefined8 param_2,long param_3,uint *param_4
   uVar4 = 0;
   puVar3 = (undefined8 *)0x0;
   puVar6 = (undefined4 *)0x0;
-  switch(param_2) {
-  case 0:
-    uVar4 = 1;
-    break;
-  case 1:
-    uVar4 = 2;
-    puVar3 = (undefined8 *)(param_1 + 0x100);
-    break;
-  case 2:
-    uVar4 = 8;
-    puVar6 = (undefined4 *)(param_1 + 0x7c0);
-    break;
-  case 3:
-    uVar4 = 0x10;
-    puVar6 = (undefined4 *)(param_1 + 0x1290);
-    break;
-  case 4:
-    uVar4 = 0x20;
-    puVar6 = (undefined4 *)(param_1 + 0x1d60);
-    break;
-  case 5:
-    uVar4 = 0x40;
-    puVar6 = (undefined4 *)(param_1 + 0x2830);
-    break;
-  case 6:
-    uVar4 = 0x80;
-    puVar6 = (undefined4 *)(param_1 + 0x3300);
-    break;
-  case 7:
-    uVar4 = 0x2000;
-    puVar3 = (undefined8 *)(param_1 + 0x73e0);
-    break;
-  case 8:
-    uVar4 = 0x4000;
-    puVar3 = (undefined8 *)(param_1 + 0x7740);
-    break;
-  case 9:
-    uVar4 = 0x8000;
-    puVar3 = (undefined8 *)(param_1 + 0x7b90);
-    break;
-  case 10:
-    uVar4 = 0x10000;
-    puVar3 = (undefined8 *)(param_1 + 0x7ef0);
+  if (param_2 < 0xb) {
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_2) {
+    case 0:
+      uVar4 = 1;
+      break;
+    case 1:
+      uVar4 = 2;
+      puVar3 = (undefined8 *)(param_1 + 0x100);
+      break;
+    case 2:
+      uVar4 = 8;
+      puVar6 = (undefined4 *)(param_1 + 0x7c0);
+      break;
+    case 3:
+      uVar4 = 0x10;
+      puVar6 = (undefined4 *)(param_1 + 0x1290);
+      break;
+    case 4:
+      uVar4 = 0x20;
+      puVar6 = (undefined4 *)(param_1 + 0x1d60);
+      break;
+    case 5:
+      uVar4 = 0x40;
+      puVar6 = (undefined4 *)(param_1 + 0x2830);
+      break;
+    case 6:
+      uVar4 = 0x80;
+      puVar6 = (undefined4 *)(param_1 + 0x3300);
+      break;
+    case 7:
+      uVar4 = 0x2000;
+      puVar3 = (undefined8 *)(param_1 + 0x73e0);
+      break;
+    case 8:
+      uVar4 = 0x4000;
+      puVar3 = (undefined8 *)(param_1 + 0x7740);
+      break;
+    case 9:
+      uVar4 = 0x8000;
+      puVar3 = (undefined8 *)(param_1 + 0x7b90);
+      break;
+    case 10:
+      uVar4 = 0x10000;
+      puVar3 = (undefined8 *)(param_1 + 0x7ef0);
+    }
   }
   if (param_3 == 0) {
     *(uint *)(param_1 + 4) = *(uint *)(param_1 + 4) & ~uVar4;
@@ -1386,88 +1389,92 @@ void Snd_StreamPlayAll(undefined8 param_1)
 void Snd_StreamUpdate(void)
 
 {
-  char cVar1;
-  long lVar2;
-  int iVar3;
+  byte bVar1;
+  char cVar2;
+  long lVar3;
   int iVar4;
   int iVar5;
-  uint uVar6;
-  char *pcVar7;
+  int iVar6;
+  uint uVar7;
+  byte *pbVar8;
   undefined4 uStack_8;
   int iStack_4;
   
-  uVar6 = 0;
-  iVar5 = 0x42d810;
-  iVar4 = iVar5;
+  uVar7 = 0;
+  iVar6 = 0x42d810;
+  iVar5 = iVar6;
   do {
-    pcVar7 = (char *)(iVar5 + 0x298);
-    lVar2 = Rpc_GetPendingCount(0x42d824);
-    if (lVar2 == 0) {
+    pbVar8 = (byte *)(iVar6 + 0x298);
+    lVar3 = Rpc_GetPendingCount(0x42d824);
+    if (lVar3 == 0) {
       return;
     }
-    switch(*pcVar7) {
-    case '\x02':
-      Snd_StreamPlayAll(*(undefined4 *)(iVar5 + 0x29c));
-      break;
-    case '\x03':
-      uStack_8 = *(undefined4 *)(iVar4 + 0x268);
-      iStack_4 = *(int *)(iVar4 + 0x260) * *(int *)(iVar4 + 0x26c);
-      Snd_StreamFill(*(undefined4 *)(iVar5 + 0x29c),&uStack_8,1);
-      break;
-    case '\x04':
-      iVar3 = *(int *)(iVar5 + 0x29c) * 0x28;
-      IopStrm_Flush(*(undefined4 *)(iVar3 + 0x42daac));
-      *(undefined1 *)(iVar3 + 0x42daa8) = 5;
-      break;
-    case '\x06':
-      iVar3 = *(int *)(iVar5 + 0x29c) * 0x28;
-      DisableIntc(1);
-      puRam0042d854 = &LAB_00153a50;
-      puRam0042d858 = (undefined1 *)(iVar3 + 0x42daa8);
-      IopStrm_Stop(*(undefined4 *)(iVar3 + 0x42daac),*(undefined4 *)(iVar3 + 0x42dac0));
-      *(undefined1 *)(iVar3 + 0x42daa8) = 7;
-      EnableIntc(1);
-      break;
-    case '\b':
-      if (*(int *)(iVar5 + 0x2b0) == 1) {
-        IopStrm_IsStopped(*(undefined4 *)(iVar5 + 0x29c));
-        *pcVar7 = '\t';
-      }
-      break;
-    case '\t':
-    case '\n':
-      if ((*pcVar7 == '\t') && (*(int *)(iVar5 + 0x2b0) == 0)) {
-        *pcVar7 = '\n';
-      }
-      else {
-        cVar1 = IopStrm_GetState(*(undefined4 *)(iVar5 + 0x29c));
-        if (cVar1 == '\0') {
-          lVar2 = File_IsBusy(*(undefined4 *)(iVar5 + 700));
-          if (lVar2 != 0) {
-            *pcVar7 = '\0';
+    bVar1 = *pbVar8;
+    if (bVar1 < 0xb) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bVar1) {
+      case 2:
+        Snd_StreamPlayAll(*(undefined4 *)(iVar6 + 0x29c));
+        break;
+      case 3:
+        uStack_8 = *(undefined4 *)(iVar5 + 0x268);
+        iStack_4 = *(int *)(iVar5 + 0x260) * *(int *)(iVar5 + 0x26c);
+        Snd_StreamFill(*(undefined4 *)(iVar6 + 0x29c),&uStack_8,1);
+        break;
+      case 4:
+        iVar4 = *(int *)(iVar6 + 0x29c) * 0x28;
+        IopStrm_Flush(*(undefined4 *)(iVar4 + 0x42daac));
+        *(undefined1 *)(iVar4 + 0x42daa8) = 5;
+        break;
+      case 6:
+        iVar4 = *(int *)(iVar6 + 0x29c) * 0x28;
+        DisableIntc(1);
+        puRam0042d854 = &LAB_00153a50;
+        puRam0042d858 = (undefined1 *)(iVar4 + 0x42daa8);
+        IopStrm_Stop(*(undefined4 *)(iVar4 + 0x42daac),*(undefined4 *)(iVar4 + 0x42dac0));
+        *(undefined1 *)(iVar4 + 0x42daa8) = 7;
+        EnableIntc(1);
+        break;
+      case 8:
+        if (*(int *)(iVar6 + 0x2b0) == 1) {
+          IopStrm_IsStopped(*(undefined4 *)(iVar6 + 0x29c));
+          *pbVar8 = 9;
+        }
+        break;
+      case 9:
+        if ((bVar1 == 9) && (*(int *)(iVar6 + 0x2b0) == 0)) {
+          *pbVar8 = 10;
+        }
+        else {
+          cVar2 = IopStrm_GetState(*(undefined4 *)(iVar6 + 0x29c));
+          if (cVar2 == '\0') {
+            lVar3 = File_IsBusy(*(undefined4 *)(iVar6 + 700));
+            if (lVar3 != 0) {
+              *pbVar8 = 0;
+            }
+          }
+          else if (*pbVar8 == 10) {
+            IopStrm_IsPlaying(*(undefined4 *)(iVar6 + 0x29c));
           }
         }
-        else if (*pcVar7 == '\n') {
-          IopStrm_IsPlaying(*(undefined4 *)(iVar5 + 0x29c));
-        }
       }
     }
-    uVar6 = uVar6 + 1;
-    iVar5 = iVar5 + 0x28;
-    iVar4 = iVar4 + 0x1c;
-  } while (uVar6 < 2);
-  uVar6 = 0;
-  iVar4 = 0x42d810;
+    uVar7 = uVar7 + 1;
+    iVar6 = iVar6 + 0x28;
+    iVar5 = iVar5 + 0x1c;
+  } while (uVar7 < 2);
+  uVar7 = 0;
+  iVar5 = 0x42d810;
   do {
     DisableIntc(1);
-    if ((*(char *)(iVar4 + 0x298) == '\x05') &&
-       (lVar2 = IopStrm_WaitIdle(*(undefined4 *)(iVar4 + 0x29c)), lVar2 != 0)) {
-      *(char *)(iVar4 + 0x298) = '\x06';
+    if ((*(char *)(iVar5 + 0x298) == '\x05') &&
+       (lVar3 = IopStrm_WaitIdle(*(undefined4 *)(iVar5 + 0x29c)), lVar3 != 0)) {
+      *(char *)(iVar5 + 0x298) = '\x06';
     }
     EnableIntc(1);
-    uVar6 = uVar6 + 1;
-    iVar4 = iVar4 + 0x28;
-  } while (uVar6 < 2);
+    uVar7 = uVar7 + 1;
+    iVar5 = iVar5 + 0x28;
+  } while (uVar7 < 2);
   return;
 }
 

@@ -93,7 +93,7 @@ SndCh_PlayVoice(undefined8 param_1,undefined8 param_2,uint param_3,uint param_4,
 }
 
 // 0x001904e0  size 0x4c
-long snd_step_sub_001904e0(long param_1,short param_2)
+long MidiChBase_dtor(long param_1,short param_2)
 
 {
   if ((param_1 != 0) && (*(undefined4 *)param_1 = &DAT_0036e4c0, 0 < param_2)) {
@@ -141,75 +141,138 @@ long SndMgr_UpdateStreams(undefined8 param_1)
   else {
     piVar6 = (int *)(**(code **)(**(int **)(iVar5 + *piVar11 * 4) + 8))();
   }
-  switch((char)piVar11[1]) {
-  case '\x01':
-    if ((piVar6[5] == 0) || ((cVar3 != '\t' && (piVar6[4] != 0)))) {
-      if (cVar3 == '\0') {
-        lVar10 = Snd_StreamSetState(*piVar11,piVar11[2]);
-      }
-      else {
-        lVar10 = 0;
-      }
-    }
-    break;
-  case '\x02':
-    if (piVar6[5] == 1) {
-      if (cVar3 == '\t') {
-        lVar10 = Snd_StreamIsReady(*piVar11);
-      }
-      else {
-        lVar10 = 0;
-      }
-    }
-    break;
-  case '\x03':
-    if (cVar4 == '\0') {
-      iVar5 = piVar11[4];
-      if (iVar5 < 0x41) {
-        iVar9 = iVar5;
-      }
-      else {
-        iVar9 = 0x40;
-      }
-      iVar9 = piVar11[3] * iVar9;
-      if (iVar9 < 0) {
-        iVar9 = iVar9 + 0x3f;
-      }
-      if (iVar5 < 0x40) {
-        iVar5 = 0x40;
-      }
-      else {
-        iVar5 = 0x7f - iVar5;
-      }
-      iVar5 = piVar11[3] * iVar5;
-      if (iVar5 < 0) {
-        iVar5 = iVar5 + 0x3f;
-      }
-      lVar10 = Snd_QueueCmd4(*piVar11,iVar5 >> 6 & 0xffff,iVar9 >> 6 & 0xffff,1);
-    }
-    else {
-      lVar10 = 0;
-    }
-    break;
-  case '\x04':
-    if (piVar6[5] == 1) {
-      if (piVar6[3] != piVar11[5]) {
-        if (cVar3 == '\t') {
-          lVar10 = IopStrm_SetVolume(*piVar11);
+  if (*(byte *)(piVar11 + 1) < 0x1a) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(piVar11 + 1)) {
+    case 1:
+      if ((piVar6[5] == 0) || ((cVar3 != '\t' && (piVar6[4] != 0)))) {
+        if (cVar3 == '\0') {
+          lVar10 = Snd_StreamSetState(*piVar11,piVar11[2]);
         }
         else {
           lVar10 = 0;
         }
       }
-    }
-    else if (piVar6[4] != 0) {
-      SndMgr_PostEvent(param_1,piVar11);
-      cVar1 = (char)piVar11[1];
-      goto LAB_00190a7c;
-    }
-    break;
-  case '\x05':
-    if (*piVar6 != piVar11[2]) {
+      break;
+    case 2:
+      if (piVar6[5] == 1) {
+        if (cVar3 == '\t') {
+          lVar10 = Snd_StreamIsReady(*piVar11);
+        }
+        else {
+          lVar10 = 0;
+        }
+      }
+      break;
+    case 3:
+      if (cVar4 == '\0') {
+        iVar5 = piVar11[4];
+        if (iVar5 < 0x41) {
+          iVar9 = iVar5;
+        }
+        else {
+          iVar9 = 0x40;
+        }
+        iVar9 = piVar11[3] * iVar9;
+        if (iVar9 < 0) {
+          iVar9 = iVar9 + 0x3f;
+        }
+        if (iVar5 < 0x40) {
+          iVar5 = 0x40;
+        }
+        else {
+          iVar5 = 0x7f - iVar5;
+        }
+        iVar5 = piVar11[3] * iVar5;
+        if (iVar5 < 0) {
+          iVar5 = iVar5 + 0x3f;
+        }
+        lVar10 = Snd_QueueCmd4(*piVar11,iVar5 >> 6 & 0xffff,iVar9 >> 6 & 0xffff,1);
+      }
+      else {
+        lVar10 = 0;
+      }
+      break;
+    case 4:
+      if (piVar6[5] == 1) {
+        if (piVar6[3] != piVar11[5]) {
+          if (cVar3 == '\t') {
+            lVar10 = IopStrm_SetVolume(*piVar11);
+          }
+          else {
+            lVar10 = 0;
+          }
+        }
+      }
+      else if (piVar6[4] != 0) {
+        SndMgr_PostEvent(param_1,piVar11);
+        cVar1 = (char)piVar11[1];
+        goto LAB_00190a7c;
+      }
+      break;
+    case 5:
+      if (*piVar6 != piVar11[2]) {
+        lVar10 = Composer_GetPartEntry(8);
+        if ((lVar10 == 0) || (lVar10 = Composer_GetSelectedPart(8), lVar10 == 0)) {
+          lVar10 = 0;
+        }
+        else {
+          iVar9 = piVar11[2] * 0xc;
+          lVar10 = Snd_PlayStreamEx(*(undefined4 *)(*(int *)(iVar5 + *piVar11 * 4) + 0x40),
+                                    *(undefined4 *)(&DAT_0030c750 + iVar9),
+                                    *(undefined4 *)(&DAT_0030c754 + iVar9),
+                                    *(undefined4 *)(&DAT_0030c758 + iVar9),0);
+        }
+      }
+      if (lVar10 == 1) {
+        lVar10 = 0;
+        *(undefined1 *)(piVar11 + 1) = 6;
+      }
+      break;
+    case 6:
+      if ((*(char *)(iRam0036f258 + 0x200) == '\0') && (cVar4 == '\0')) {
+        lVar10 = Snd_QueueCmd3(8,0,0);
+      }
+      else {
+        lVar10 = 0;
+      }
+      if (lVar10 == 1) {
+        lVar10 = 0;
+        *(undefined1 *)(piVar11 + 1) = 7;
+      }
+      break;
+    case 7:
+    case 0xf:
+      Snd_StopAllVoices(0xfff);
+      lVar10 = 0;
+      *(char *)(piVar11 + 1) = (char)piVar11[1] + '\x01';
+      break;
+    case 8:
+    case 0x10:
+      lVar10 = Snd_QueueCmd2(8,1);
+      break;
+    case 9:
+    case 0x11:
+      if (piVar6[5] == 1) {
+        if (cVar4 == '\0') {
+          lVar8 = Snd_QueueCmd1(8);
+        }
+        else {
+          lVar8 = 0;
+        }
+        lVar10 = 0;
+        if (lVar8 != 0) {
+          lVar10 = 0;
+          *(char *)(piVar11 + 1) = (char)piVar11[1] + '\x01';
+        }
+      }
+      break;
+    case 10:
+    case 0x12:
+      Snd_StopAllVoices(0);
+      lVar10 = 1;
+      break;
+    case 0xb:
       lVar10 = Composer_GetPartEntry(8);
       if ((lVar10 == 0) || (lVar10 = Composer_GetSelectedPart(8), lVar10 == 0)) {
         lVar10 = 0;
@@ -221,146 +284,86 @@ long SndMgr_UpdateStreams(undefined8 param_1)
                                   *(undefined4 *)(&DAT_0030c754 + iVar9),
                                   *(undefined4 *)(&DAT_0030c758 + iVar9),0);
       }
-    }
-    if (lVar10 == 1) {
-      lVar10 = 0;
-      *(undefined1 *)(piVar11 + 1) = 6;
-    }
-    break;
-  case '\x06':
-    if ((*(char *)(iRam0036f258 + 0x200) == '\0') && (cVar4 == '\0')) {
-      lVar10 = Snd_QueueCmd3(8,0,0);
-    }
-    else {
-      lVar10 = 0;
-    }
-    if (lVar10 == 1) {
-      lVar10 = 0;
-      *(undefined1 *)(piVar11 + 1) = 7;
-    }
-    break;
-  case '\a':
-  case '\x0f':
-    Snd_StopAllVoices(0xfff);
-    lVar10 = 0;
-    *(char *)(piVar11 + 1) = (char)piVar11[1] + '\x01';
-    break;
-  case '\b':
-  case '\x10':
-    lVar10 = Snd_QueueCmd2(8,1);
-    break;
-  case '\t':
-  case '\x11':
-    if (piVar6[5] == 1) {
+      break;
+    case 0xc:
       if (cVar4 == '\0') {
-        lVar8 = Snd_QueueCmd1(8);
+        fVar12 = ((float)(uint)piVar11[3] * 256.0) / 16383.0;
+        if (fVar12 < 2.1474836e+09) {
+          uVar13 = (uint)fVar12;
+        }
+        else {
+          uVar13 = (int)(fVar12 - 2.1474836e+09) | 0x80000000;
+        }
+        lVar10 = Snd_QueueCmd2d(8,uVar13);
       }
-      else {
-        lVar8 = 0;
+      break;
+    case 0xd:
+      if ((*(char *)(iRam0036f258 + 0x200) == '\0') && (cVar4 == '\0')) {
+        lVar10 = Snd_QueueCmd3(8,0,0);
+      }
+      if (lVar10 == 1) {
+        *(undefined1 *)(piVar11 + 1) = 0xf;
       }
       lVar10 = 0;
-      if (lVar8 != 0) {
-        lVar10 = 0;
-        *(char *)(piVar11 + 1) = (char)piVar11[1] + '\x01';
+      break;
+    case 0x13:
+      lVar10 = SeqGen_FindPatternIndex(uVar7);
+      if ((lVar10 != 0) && (lVar10 = SeqGen_GetPosition(uVar7,0xffffffffffffffff), lVar10 == 0)) {
+        SeqGen_SelectSong(uVar7,piVar11[2]);
+        *(undefined1 *)(piVar11 + 1) = 0x14;
+        *piVar6 = piVar11[2];
       }
-    }
-    break;
-  case '\n':
-  case '\x12':
-    Snd_StopAllVoices(0);
-    lVar10 = 1;
-    break;
-  case '\v':
-    lVar10 = Composer_GetPartEntry(8);
-    if ((lVar10 == 0) || (lVar10 = Composer_GetSelectedPart(8), lVar10 == 0)) {
       lVar10 = 0;
-    }
-    else {
-      iVar9 = piVar11[2] * 0xc;
-      lVar10 = Snd_PlayStreamEx(*(undefined4 *)(*(int *)(iVar5 + *piVar11 * 4) + 0x40),
-                                *(undefined4 *)(&DAT_0030c750 + iVar9),
-                                *(undefined4 *)(&DAT_0030c754 + iVar9),
-                                *(undefined4 *)(&DAT_0030c758 + iVar9),0);
-    }
-    break;
-  case '\f':
-    if (cVar4 == '\0') {
-      fVar12 = ((float)(uint)piVar11[3] * 256.0) / 16383.0;
-      if (fVar12 < 2.1474836e+09) {
-        uVar13 = (uint)fVar12;
+      break;
+    case 0x14:
+      lVar10 = SeqGen_GetPosition(uVar7,0xffffffffffffffff);
+      if (lVar10 == 0) {
+        SeqGen_StartThread(uVar7);
+        *(undefined1 *)(piVar11 + 1) = 0x15;
       }
-      else {
-        uVar13 = (int)(fVar12 - 2.1474836e+09) | 0x80000000;
-      }
-      lVar10 = Snd_QueueCmd2d(8,uVar13);
-    }
-    break;
-  case '\r':
-    if ((*(char *)(iRam0036f258 + 0x200) == '\0') && (cVar4 == '\0')) {
-      lVar10 = Snd_QueueCmd3(8,0,0);
-    }
-    if (lVar10 == 1) {
-      *(undefined1 *)(piVar11 + 1) = 0xf;
-    }
-    lVar10 = 0;
-    break;
-  case '\x13':
-    lVar10 = SeqGen_FindPatternIndex(uVar7);
-    if ((lVar10 != 0) && (lVar10 = SeqGen_GetPosition(uVar7,0xffffffffffffffff), lVar10 == 0)) {
-      SeqGen_SelectSong(uVar7,piVar11[2]);
-      *(undefined1 *)(piVar11 + 1) = 0x14;
-      *piVar6 = piVar11[2];
-    }
-    lVar10 = 0;
-    break;
-  case '\x14':
-    lVar10 = SeqGen_GetPosition(uVar7,0xffffffffffffffff);
-    if (lVar10 == 0) {
-      SeqGen_StartThread(uVar7);
-      *(undefined1 *)(piVar11 + 1) = 0x15;
-    }
-    lVar10 = 0;
-    break;
-  case '\x15':
-    lVar8 = SeqGen_StopThread(uVar7);
-    if (lVar8 == 0) {
       lVar10 = 0;
-    }
-    else {
-      lVar8 = SeqGen_IsReady(uVar7);
+      break;
+    case 0x15:
+      lVar8 = SeqGen_StopThread(uVar7);
       if (lVar8 == 0) {
-        piVar2 = *(int **)(iVar5 + *piVar11 * 4);
-        (**(code **)(*piVar2 + 0x28))(piVar2,0xff);
+        lVar10 = 0;
       }
       else {
-        SeqGen_GetLoopRangeC(uVar7,&uStack_4,&uStack_10);
-        SeqGen_GetLoopRangeB(uVar7,&uStack_8,&uStack_14);
-        SeqGen_GetLoopRangeA(uVar7,&uStack_c,&uStack_18);
-        Snd_PlayStream(*(undefined4 *)(*(int *)(iVar5 + *piVar11 * 4) + 0x40),uStack_4,uStack_10,
-                       uStack_8,uStack_14,uStack_c,uStack_18);
+        lVar8 = SeqGen_IsReady(uVar7);
+        if (lVar8 == 0) {
+          piVar2 = *(int **)(iVar5 + *piVar11 * 4);
+          (**(code **)(*piVar2 + 0x28))(piVar2,0xff);
+        }
+        else {
+          SeqGen_GetLoopRangeC(uVar7,&uStack_4,&uStack_10);
+          SeqGen_GetLoopRangeB(uVar7,&uStack_8,&uStack_14);
+          SeqGen_GetLoopRangeA(uVar7,&uStack_c,&uStack_18);
+          Snd_PlayStream(*(undefined4 *)(*(int *)(iVar5 + *piVar11 * 4) + 0x40),uStack_4,uStack_10,
+                         uStack_8,uStack_14,uStack_c,uStack_18);
+        }
       }
+      break;
+    case 0x16:
+      if (cVar4 == '\0') {
+        fVar12 = ((float)(uint)piVar11[3] * 256.0) / 16383.0;
+        if (fVar12 < 2.1474836e+09) {
+          uVar13 = (uint)fVar12;
+        }
+        else {
+          uVar13 = (int)(fVar12 - 2.1474836e+09) | 0x80000000;
+        }
+        lVar10 = Snd_QueueCmd2d(8,uVar13);
+      }
+      break;
+    case 0x17:
+      lVar10 = Snd_QueueCmd2d(*piVar11,piVar11[3]);
+      break;
+    case 0x18:
+      lVar10 = Snd_QueueCmd1c(*piVar11);
+      break;
+    case 0x19:
+      lVar10 = Snd_QueueCmd1b(*piVar11);
     }
-    break;
-  case '\x16':
-    if (cVar4 == '\0') {
-      fVar12 = ((float)(uint)piVar11[3] * 256.0) / 16383.0;
-      if (fVar12 < 2.1474836e+09) {
-        uVar13 = (uint)fVar12;
-      }
-      else {
-        uVar13 = (int)(fVar12 - 2.1474836e+09) | 0x80000000;
-      }
-      lVar10 = Snd_QueueCmd2d(8,uVar13);
-    }
-    break;
-  case '\x17':
-    lVar10 = Snd_QueueCmd2d(*piVar11,piVar11[3]);
-    break;
-  case '\x18':
-    lVar10 = Snd_QueueCmd1c(*piVar11);
-    break;
-  case '\x19':
-    lVar10 = Snd_QueueCmd1b(*piVar11);
   }
   cVar1 = (char)piVar11[1];
 LAB_00190a7c:
@@ -1450,7 +1453,7 @@ uint Snd_VolumeToMidi(int param_1)
 void render_step_sub_00192820(int param_1)
 
 {
-  snd_step_sub_0018e920(param_1 + -0x38);
+  SndStream_dtor(param_1 + -0x38);
   return;
 }
 
@@ -1458,7 +1461,7 @@ void render_step_sub_00192820(int param_1)
 void render_step_sub_00192830(int param_1)
 
 {
-  snd_step_sub_0018e480(param_1 + -0x38);
+  SndCh_FadeOut(param_1 + -0x38);
   return;
 }
 
@@ -1466,7 +1469,7 @@ void render_step_sub_00192830(int param_1)
 void render_step_sub_00192840(int param_1)
 
 {
-  snd_step_sub_0018e500(param_1 + -0x38);
+  SndCh_FadeIn(param_1 + -0x38);
   return;
 }
 
@@ -1474,7 +1477,7 @@ void render_step_sub_00192840(int param_1)
 void render_step_sub_00192850(int param_1)
 
 {
-  snd_step_sub_0018e3d0(param_1 + -0x38);
+  SndCh_dtor(param_1 + -0x38);
   return;
 }
 
@@ -1510,13 +1513,14 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
   int iVar6;
   long lVar7;
   undefined8 uVar8;
-  undefined8 uVar9;
+  ulong uVar9;
   undefined8 uVar10;
-  int *piVar11;
+  undefined8 uVar11;
   int *piVar12;
-  float fVar13;
+  int *piVar13;
   float fVar14;
   float fVar15;
+  float fVar16;
   undefined1 auStack_40 [16];
   undefined1 auStack_30 [16];
   float fStack_20;
@@ -1524,18 +1528,18 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
   float fStack_18;
   undefined1 auStack_10 [16];
   
-  piVar11 = (int *)param_1;
-  if (*piVar11 == 0) {
+  piVar12 = (int *)param_1;
+  if (*piVar12 == 0) {
     return;
   }
   iVar4 = RaceCar_GetIndex();
   if ((*(uint *)(iVar4 + 4) & 0x100) != 0) {
     return;
   }
-  (**(code **)(*(int *)(piVar11[3] + 8) + 0x10))();
+  (**(code **)(*(int *)(piVar12[3] + 8) + 0x10))();
   bRam0036f270 = CarSnd_ComputeListener(param_1,param_2);
-  fVar13 = (float)Cam_ComputeFov(param_2,*piVar11);
-  iRam0036f274 = (int)(fVar13 * 8192.0 - 8192.0);
+  fVar14 = (float)Cam_ComputeFov(param_2,*piVar12);
+  iRam0036f274 = (int)(fVar14 * 8192.0 - 8192.0);
   if (iRam0036f274 < -0x2000) {
     iRam0036f274 = -0x2000;
   }
@@ -1544,11 +1548,11 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
   }
   iVar6 = (int)param_2;
   sceVu0SubVector(auStack_10,iVar6 + 0x430,iVar6 + 0x420);
-  pfVar5 = (float *)PhysBody_GetWorldMatrix(*(undefined4 *)(*piVar11 + 0x154));
+  pfVar5 = (float *)PhysBody_GetWorldMatrix(*(undefined4 *)(*piVar12 + 0x154));
   fStack_20 = *pfVar5 - *(float *)(iVar6 + 0x420);
-  iVar4 = PhysBody_GetWorldMatrix(*(undefined4 *)(*piVar11 + 0x154));
+  iVar4 = PhysBody_GetWorldMatrix(*(undefined4 *)(*piVar12 + 0x154));
   fStack_1c = *(float *)(iVar4 + 4) - *(float *)(iVar6 + 0x424);
-  iVar4 = PhysBody_GetWorldMatrix(*(undefined4 *)(*piVar11 + 0x154));
+  iVar4 = PhysBody_GetWorldMatrix(*(undefined4 *)(*piVar12 + 0x154));
   fStack_18 = *(float *)(iVar4 + 8) - *(float *)(iVar6 + 0x428);
   sceVu0Normalize(&fStack_20,&fStack_20);
   sceVu0Normalize(auStack_10,auStack_10);
@@ -1556,115 +1560,117 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
   sceVu0OuterProduct(auStack_30,&fStack_20,auStack_10);
   sceVu0CopyVector(auStack_40,iVar6 + 0x440);
   sceVu0Normalize(auStack_40,auStack_40);
-  fVar13 = (float)sceVu0InnerProduct(iVar6 + 0x440,auStack_30);
-  sVar3 = (short)(int)(fVar13 * 64.0 + 64.0);
+  fVar14 = (float)sceVu0InnerProduct(iVar6 + 0x440,auStack_30);
+  sVar3 = (short)(int)(fVar14 * 64.0 + 64.0);
   if (0x7f < sVar3) {
     sVar3 = 0x7f;
   }
   cRam0036f271 = (char)sVar3 + -0x40;
   lVar7 = Loading_IsActive();
-  if ((lVar7 == 0) || (iRam0036f1f8 != 0)) goto LAB_00192ba0;
-  uVar8 = GameState_Elem_f0_xcc(0);
-  uVar8 = CarRec_GetPartData(uVar8,0xb);
-  fVar13 = 1.0;
-  switch(uVar8) {
-  case 0:
-    fVar13 = 0.8;
-    goto LAB_00192b24;
-  case 1:
-    fVar13 = 0.9;
-    break;
-  case 2:
-    break;
-  case 3:
-    break;
-  case 4:
-    fVar13 = 1.1;
-    break;
-  case 5:
-    fVar13 = 1.2;
+  if ((lVar7 != 0) && (iRam0036f1f8 == 0)) {
+    uVar8 = GameState_Elem_f0_xcc(0);
+    uVar9 = CarRec_GetPartData(uVar8,0xb);
+    fVar14 = 1.0;
+    if (uVar9 < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch((int)uVar9) {
+      case 0:
+        fVar14 = 0.8;
+        break;
+      case 1:
+        fVar14 = 0.9;
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        fVar14 = 1.1;
+        break;
+      case 5:
+        fVar14 = 1.2;
+      }
+    }
+    fVar14 = (float)bRam0036f270 * fVar14;
+    if (2.1474836e+09 <= fVar14) {
+      fVar14 = fVar14 - 2.1474836e+09;
+    }
+    bRam0036f270 = (byte)(int)fVar14;
   }
-LAB_00192b24:
-  fVar13 = (float)bRam0036f270 * fVar13;
-  if (2.1474836e+09 <= fVar13) {
-    fVar13 = fVar13 - 2.1474836e+09;
-  }
-  bRam0036f270 = (byte)(int)fVar13;
-LAB_00192ba0:
   if ((float)bRam0036f270 == 0.0) {
-    (**(code **)(*(int *)(piVar11[3] + 8) + 0xc))();
-    (**(code **)(*(int *)piVar11[9] + 8))((int *)piVar11[9],(char)piVar11[0xc]);
-    piVar11[10] = piVar11[10] & 0xfffffffd;
-    (**(code **)(*(int *)piVar11[0xf] + 8))((int *)piVar11[0xf],(char)piVar11[0x16]);
-    piVar11[0x10] = piVar11[0x10] & 0xfffffffd;
-    (**(code **)(*(int *)piVar11[4] + 8))((int *)piVar11[4],7);
-    piVar11[5] = piVar11[5] & 0xfffffffd;
+    (**(code **)(*(int *)(piVar12[3] + 8) + 0xc))();
+    (**(code **)(*(int *)piVar12[9] + 8))((int *)piVar12[9],(char)piVar12[0xc]);
+    piVar12[10] = piVar12[10] & 0xfffffffd;
+    (**(code **)(*(int *)piVar12[0xf] + 8))((int *)piVar12[0xf],(char)piVar12[0x16]);
+    piVar12[0x10] = piVar12[0x10] & 0xfffffffd;
+    (**(code **)(*(int *)piVar12[4] + 8))((int *)piVar12[4],7);
+    piVar12[5] = piVar12[5] & 0xfffffffd;
   }
   else {
-    CarSnd_UpdateTireSqueal(piVar11 + 4,*piVar11);
-    iVar4 = *piVar11;
-    if ((piVar11[0x18] & 1U) != 0) {
+    CarSnd_UpdateTireSqueal(piVar12 + 4,*piVar12);
+    iVar4 = *piVar12;
+    if ((piVar12[0x18] & 1U) != 0) {
       iVar6 = RaceCar_GetTracker(iVar4);
       uVar8 = PhysBody_FindShapeWithFlags(*(undefined4 *)(iVar4 + 0x158),0xffffffffffffffff);
       if ((*(uint *)(iVar6 + 0x60) & 0x40) != 0) {
-        fVar14 = (float)PhysWorld_GetFirstBody(uVar8);
-        fVar13 = 1.0;
-        if (fVar14 / DAT_0036e7d8 <= 1.0) {
-          fVar13 = fVar14 / DAT_0036e7d8;
+        fVar15 = (float)PhysWorld_GetFirstBody(uVar8);
+        fVar14 = 1.0;
+        if (fVar15 / DAT_0036e7d8 <= 1.0) {
+          fVar14 = fVar15 / DAT_0036e7d8;
         }
-        piVar12 = (int *)piVar11[0x17];
-        fVar15 = DAT_0036e7e8 + 0.0;
-        fVar14 = 127.0 - DAT_0036e7e8;
-        uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        lVar7 = snd_step_sub_0018fa50(uVar8);
+        piVar13 = (int *)piVar12[0x17];
+        fVar16 = DAT_0036e7e8 + 0.0;
+        fVar15 = 127.0 - DAT_0036e7e8;
+        uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+        lVar7 = SndMgr_IsChannelBusy(uVar8);
         if (lVar7 == 0) {
-          uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-          uVar9 = (**(code **)(*piVar12 + 0xc))(piVar12,6);
-          uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
-          (**(code **)(*(int *)uVar8 + 0x24))(uVar8,6,uVar9,0x7f,uVar10,0x40,0);
-          uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-          lVar7 = snd_step_sub_0018fa50(uVar8);
+          uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+          uVar10 = (**(code **)(*piVar13 + 0xc))(piVar13,6);
+          uVar11 = (**(code **)(*piVar13 + 0x10))(piVar13);
+          (**(code **)(*(int *)uVar8 + 0x24))(uVar8,6,uVar10,0x7f,uVar11,0x40,0);
+          uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+          lVar7 = SndMgr_IsChannelBusy(uVar8);
           if (lVar7 == 0) {
-            uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-            uVar1 = (**(code **)(*piVar12 + 0xc))(piVar12,6);
-            uVar2 = (**(code **)(*piVar12 + 0x10))(piVar12);
-            piVar12 = (int *)uVar8;
-            (**(code **)(*piVar12 + 0x2c))
-                      (uVar8,6,uVar1,(ushort)(int)(fVar14 * fVar13 + fVar15) & 0xff,uVar2);
-            (**(code **)(*piVar12 + 0x30))(uVar8,6,uVar1,0x40,uVar2);
-            (**(code **)(*piVar12 + 0x34))(uVar8,6,uVar1,0x2000,uVar2);
+            uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+            uVar1 = (**(code **)(*piVar13 + 0xc))(piVar13,6);
+            uVar2 = (**(code **)(*piVar13 + 0x10))(piVar13);
+            piVar13 = (int *)uVar8;
+            (**(code **)(*piVar13 + 0x2c))
+                      (uVar8,6,uVar1,(ushort)(int)(fVar15 * fVar14 + fVar16) & 0xff,uVar2);
+            (**(code **)(*piVar13 + 0x30))(uVar8,6,uVar1,0x40,uVar2);
+            (**(code **)(*piVar13 + 0x34))(uVar8,6,uVar1,0x2000,uVar2);
           }
         }
       }
     }
-    CarSnd_UpdateWind(piVar11[3],*piVar11);
-    CarSnd_UpdateTurbo(piVar11 + 9,*piVar11);
-    CarSnd_UpdateEngine(piVar11 + 0xf,*piVar11);
-    if (((piVar11[0x1a] & 1U) != 0) && (*(char *)(*piVar11 + 0x8e8) != '\0')) {
-      fVar13 = (float)fabsf(*(undefined4 *)(*piVar11 + 0x8ec));
-      piVar12 = (int *)piVar11[0x19];
-      uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-      lVar7 = snd_step_sub_0018fa50(uVar8);
+    CarSnd_UpdateWind(piVar12[3],*piVar12);
+    CarSnd_UpdateTurbo(piVar12 + 9,*piVar12);
+    CarSnd_UpdateEngine(piVar12 + 0xf,*piVar12);
+    if (((piVar12[0x1a] & 1U) != 0) && (*(char *)(*piVar12 + 0x8e8) != '\0')) {
+      fVar14 = (float)fabsf(*(undefined4 *)(*piVar12 + 0x8ec));
+      piVar13 = (int *)piVar12[0x19];
+      uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+      lVar7 = SndMgr_IsChannelBusy(uVar8);
       if (lVar7 == 0) {
-        uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        uVar9 = (**(code **)(*piVar12 + 0xc))(piVar12,2);
-        uVar10 = (**(code **)(*piVar12 + 0x10))(piVar12);
-        (**(code **)(*(int *)uVar8 + 0x24))(uVar8,2,uVar9,0x7f,uVar10,0x40,0);
-        uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-        lVar7 = snd_step_sub_0018fa50(uVar8);
+        uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+        uVar10 = (**(code **)(*piVar13 + 0xc))(piVar13,2);
+        uVar11 = (**(code **)(*piVar13 + 0x10))(piVar13);
+        (**(code **)(*(int *)uVar8 + 0x24))(uVar8,2,uVar10,0x7f,uVar11,0x40,0);
+        uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+        lVar7 = SndMgr_IsChannelBusy(uVar8);
         if (lVar7 == 0) {
-          uVar8 = (**(code **)(*piVar12 + 0x14))(piVar12);
-          uVar1 = (**(code **)(*piVar12 + 0xc))(piVar12,2);
-          uVar2 = (**(code **)(*piVar12 + 0x10))(piVar12);
-          piVar12 = (int *)uVar8;
-          (**(code **)(*piVar12 + 0x2c))
-                    (uVar8,2,uVar1,(ushort)(int)(fVar13 * 127.0 * 2.0 + 64.0) & 0xff,uVar2);
-          (**(code **)(*piVar12 + 0x30))(uVar8,2,uVar1,0x40,uVar2);
-          (**(code **)(*piVar12 + 0x34))(uVar8,2,uVar1,0x2000,uVar2);
+          uVar8 = (**(code **)(*piVar13 + 0x14))(piVar13);
+          uVar1 = (**(code **)(*piVar13 + 0xc))(piVar13,2);
+          uVar2 = (**(code **)(*piVar13 + 0x10))(piVar13);
+          piVar13 = (int *)uVar8;
+          (**(code **)(*piVar13 + 0x2c))
+                    (uVar8,2,uVar1,(ushort)(int)(fVar14 * 127.0 * 2.0 + 64.0) & 0xff,uVar2);
+          (**(code **)(*piVar13 + 0x30))(uVar8,2,uVar1,0x40,uVar2);
+          (**(code **)(*piVar13 + 0x34))(uVar8,2,uVar1,0x2000,uVar2);
         }
       }
     }
-    CarSnd_UpdateGearShift(piVar11 + 0x1b,*piVar11);
+    CarSnd_UpdateGearShift(piVar12 + 0x1b,*piVar12);
   }
   return;
 }
@@ -1711,7 +1717,7 @@ void CarSnd_Attach(undefined4 *param_1,long param_2)
       uVar1 = SndMgr_GetChannelB(uVar1,3);
       if (param_1[0x1d] != 2) {
         param_1[0x1d] = 2;
-        snd_step_sub_0018faf0(uVar1,0x1c1c,0x1c65,0,0);
+        SndMgr_PlayStreamSlot(uVar1,0x1c1c,0x1c65,0,0);
       }
     }
     else {
@@ -2031,7 +2037,7 @@ void CarSnd_UpdateEngine(undefined4 *param_1,undefined8 param_2)
       fVar13 = (1.0 - fVar12) * DAT_0036e7c0;
       fVar12 = fVar12 * DAT_0036e7bc;
       uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar7 = snd_step_sub_0018fa50(uVar6);
+      lVar7 = SndMgr_IsChannelBusy(uVar6);
       if (lVar7 == 0) {
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar1 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar3);
@@ -2049,14 +2055,14 @@ void CarSnd_UpdateEngine(undefined4 *param_1,undefined8 param_2)
   piVar11 = (int *)*param_1;
   uVar3 = *(undefined1 *)(param_1 + 7);
   uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-  lVar7 = snd_step_sub_0018fa50(uVar6);
+  lVar7 = SndMgr_IsChannelBusy(uVar6);
   if (lVar7 == 0) {
     uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
     uVar8 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar3);
     uVar9 = (**(code **)(*piVar11 + 0x10))(piVar11);
     (**(code **)(*(int *)uVar6 + 0x24))(uVar6,uVar3,uVar8,0x7f,uVar9,0x40,0);
     uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-    lVar7 = snd_step_sub_0018fa50(uVar6);
+    lVar7 = SndMgr_IsChannelBusy(uVar6);
     if (lVar7 != 0) goto LAB_00193bc4;
     uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
     uVar1 = (**(code **)(*piVar11 + 0xc))(piVar11,uVar3);
@@ -2080,14 +2086,14 @@ LAB_00193bd4:
     if (param_1[4] == 0) {
       piVar11 = (int *)*param_1;
       uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar7 = snd_step_sub_0018fa50(uVar6);
+      lVar7 = SndMgr_IsChannelBusy(uVar6);
       if (lVar7 == 0) {
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar8 = (**(code **)(*piVar11 + 0xc))(piVar11,8);
         uVar9 = (**(code **)(*piVar11 + 0x10))(piVar11);
         (**(code **)(*(int *)uVar6 + 0x24))(uVar6,8,uVar8,0x7f,uVar9,0x40,0);
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-        lVar7 = snd_step_sub_0018fa50(uVar6);
+        lVar7 = SndMgr_IsChannelBusy(uVar6);
         if (lVar7 == 0) {
           uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
           uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,8);
@@ -2110,14 +2116,14 @@ LAB_00193bd4:
     if (param_1[3] == 0) {
       piVar11 = (int *)*param_1;
       uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-      lVar7 = snd_step_sub_0018fa50(uVar6);
+      lVar7 = SndMgr_IsChannelBusy(uVar6);
       if (lVar7 == 0) {
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
         uVar8 = (**(code **)(*piVar11 + 0xc))(piVar11,9);
         uVar9 = (**(code **)(*piVar11 + 0x10))(piVar11);
         (**(code **)(*(int *)uVar6 + 0x24))(uVar6,9,uVar8,0x7f,uVar9,0x40,0);
         uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
-        lVar7 = snd_step_sub_0018fa50(uVar6);
+        lVar7 = SndMgr_IsChannelBusy(uVar6);
         if (lVar7 == 0) {
           uVar6 = (**(code **)(*piVar11 + 0x14))(piVar11);
           uVar3 = (**(code **)(*piVar11 + 0xc))(piVar11,9);

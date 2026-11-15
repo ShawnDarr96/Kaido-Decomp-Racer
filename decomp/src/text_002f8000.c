@@ -665,107 +665,116 @@ void frontend_leaf_sub_002f8cd0(int param_1)
 }
 
 // 0x002f8ce0  size 0x240
-undefined4 Composer_GetSlotLabel(int param_1,undefined1 param_2)
+undefined4 Composer_GetSlotLabel(int param_1,byte param_2)
 
 {
   int iVar1;
   bool bVar2;
-  long lVar3;
+  undefined4 uVar3;
+  long lVar4;
   
-  switch(param_2) {
-  default:
-    return 6;
-  case 1:
-    lVar3 = SeqGen_IsUserSong(*(undefined4 *)(param_1 + 0x60));
-    if (lVar3 == 0) {
-      return 5;
+  if (param_2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_2) {
+    case 0:
+      goto switchD_002f8d10_caseD_0;
+    case 1:
+      lVar4 = SeqGen_IsUserSong(*(undefined4 *)(param_1 + 0x60));
+      if (lVar4 == 0) {
+        return 5;
+      }
+      break;
+    case 2:
+      iVar1 = *(int *)(param_1 + 0x60);
+      bVar2 = false;
+      if ((-1 < iVar1) && (iVar1 < 0xc)) {
+        bVar2 = true;
+      }
+      if (bVar2) {
+        return 2;
+      }
+      if (*(int *)(iVar1 * 4 + param_1 + 0x7c) != 0) {
+        return 1;
+      }
+      break;
+    case 3:
+      iVar1 = *(int *)(param_1 + 0x60);
+      bVar2 = false;
+      if ((-1 < iVar1) && (iVar1 < 0xc)) {
+        bVar2 = true;
+      }
+      if (bVar2) {
+        return 2;
+      }
+      if (iVar1 == *(int *)(param_1 + 0x54)) {
+        return 3;
+      }
+      if (*(int *)(iVar1 * 4 + param_1 + 0x7c) != 0) {
+        return 1;
+      }
+      break;
+    case 4:
+      bVar2 = false;
+      if ((-1 < *(int *)(param_1 + 0x60)) && (*(int *)(param_1 + 0x60) < 0xc)) {
+        bVar2 = true;
+      }
+      if (bVar2) {
+        return 2;
+      }
+      lVar4 = SeqGen_IsUserSong();
+      if (lVar4 == 0) {
+        return 5;
+      }
+      if (*(int *)(*(int *)(param_1 + 0x60) * 4 + param_1 + 0x7c) != 0) {
+        return 1;
+      }
+      break;
+    case 5:
+      lVar4 = SeqGen_IsUserSong(*(undefined4 *)(param_1 + 0x60));
+      if (lVar4 == 0) {
+        return 5;
+      }
+      break;
+    case 6:
+      iVar1 = *(int *)(param_1 + 0x60);
+      bVar2 = false;
+      if ((-1 < iVar1) && (iVar1 < 0xc)) {
+        bVar2 = true;
+      }
+      if (bVar2) {
+        return 2;
+      }
+      if (iVar1 == *(int *)(param_1 + 0x54)) {
+        return 3;
+      }
+      lVar4 = SeqGen_IsUserSong();
+      if (lVar4 != 0) {
+        return 4;
+      }
+      break;
+    case 7:
+      bVar2 = false;
+      if ((-1 < *(int *)(param_1 + 0x60)) && (*(int *)(param_1 + 0x60) < 0xc)) {
+        bVar2 = true;
+      }
+      if (bVar2) {
+        return 2;
+      }
+      lVar4 = SeqGen_IsUserSong();
+      if (lVar4 == 0) {
+        return 5;
+      }
+      if (*(int *)(*(int *)(param_1 + 0x60) * 4 + param_1 + 0x7c) != 0) {
+        return 1;
+      }
     }
-    break;
-  case 2:
-    iVar1 = *(int *)(param_1 + 0x60);
-    bVar2 = false;
-    if ((-1 < iVar1) && (iVar1 < 0xc)) {
-      bVar2 = true;
-    }
-    if (bVar2) {
-      return 2;
-    }
-    if (*(int *)(iVar1 * 4 + param_1 + 0x7c) != 0) {
-      return 1;
-    }
-    break;
-  case 3:
-    iVar1 = *(int *)(param_1 + 0x60);
-    bVar2 = false;
-    if ((-1 < iVar1) && (iVar1 < 0xc)) {
-      bVar2 = true;
-    }
-    if (bVar2) {
-      return 2;
-    }
-    if (iVar1 == *(int *)(param_1 + 0x54)) {
-      return 3;
-    }
-    if (*(int *)(iVar1 * 4 + param_1 + 0x7c) != 0) {
-      return 1;
-    }
-    break;
-  case 4:
-    bVar2 = false;
-    if ((-1 < *(int *)(param_1 + 0x60)) && (*(int *)(param_1 + 0x60) < 0xc)) {
-      bVar2 = true;
-    }
-    if (bVar2) {
-      return 2;
-    }
-    lVar3 = SeqGen_IsUserSong();
-    if (lVar3 == 0) {
-      return 5;
-    }
-    if (*(int *)(*(int *)(param_1 + 0x60) * 4 + param_1 + 0x7c) != 0) {
-      return 1;
-    }
-    break;
-  case 5:
-    lVar3 = SeqGen_IsUserSong(*(undefined4 *)(param_1 + 0x60));
-    if (lVar3 == 0) {
-      return 5;
-    }
-    break;
-  case 6:
-    iVar1 = *(int *)(param_1 + 0x60);
-    bVar2 = false;
-    if ((-1 < iVar1) && (iVar1 < 0xc)) {
-      bVar2 = true;
-    }
-    if (bVar2) {
-      return 2;
-    }
-    if (iVar1 == *(int *)(param_1 + 0x54)) {
-      return 3;
-    }
-    lVar3 = SeqGen_IsUserSong();
-    if (lVar3 != 0) {
-      return 4;
-    }
-    break;
-  case 7:
-    bVar2 = false;
-    if ((-1 < *(int *)(param_1 + 0x60)) && (*(int *)(param_1 + 0x60) < 0xc)) {
-      bVar2 = true;
-    }
-    if (bVar2) {
-      return 2;
-    }
-    lVar3 = SeqGen_IsUserSong();
-    if (lVar3 == 0) {
-      return 5;
-    }
-    if (*(int *)(*(int *)(param_1 + 0x60) * 4 + param_1 + 0x7c) != 0) {
-      return 1;
-    }
+    uVar3 = 0;
   }
-  return 0;
+  else {
+switchD_002f8d10_caseD_0:
+    uVar3 = 6;
+  }
+  return uVar3;
 }
 
 // 0x002f8f20  size 0x170
@@ -1408,36 +1417,39 @@ void ScrNameentrySetField8_Enterf9f00(int param_1)
     *(undefined1 *)(param_1 + 100) = 0;
   }
   Composer_MoveCursor(param_1 + 0x50,0,5,1,0);
-  switch(*(undefined4 *)(param_1 + 0x50)) {
-  case 0:
-    uVar2 = Nameentry_GetField_4(param_1 + 0x24);
-    if ((uVar2 & 0x80) == 0) {
-      *(undefined4 *)(param_1 + 0x74) = 1;
-    }
-    else {
-      *(undefined4 *)(param_1 + 0x74) = 0;
-      uVar2 = ComposerInput_GetPressed();
-      if ((uVar2 & 0x180) != 0) {
-        PreviewSnd_StopIfPlaying(param_1 + 0x24);
-        *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
-        *(undefined1 *)(param_1 + 0x4c) = 0;
+  if (*(uint *)(param_1 + 0x50) < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 0x50)) {
+    case 0:
+      uVar2 = Nameentry_GetField_4(param_1 + 0x24);
+      if ((uVar2 & 0x80) == 0) {
+        *(undefined4 *)(param_1 + 0x74) = 1;
       }
+      else {
+        *(undefined4 *)(param_1 + 0x74) = 0;
+        uVar2 = ComposerInput_GetPressed();
+        if ((uVar2 & 0x180) != 0) {
+          PreviewSnd_StopIfPlaying(param_1 + 0x24);
+          *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
+          *(undefined1 *)(param_1 + 0x4c) = 0;
+        }
+      }
+      break;
+    case 1:
+      *(undefined4 *)(param_1 + 0x74) = 2;
+      break;
+    case 2:
+      *(undefined4 *)(param_1 + 0x74) = 3;
+      break;
+    case 3:
+      *(undefined4 *)(param_1 + 0x74) = 6;
+      break;
+    case 4:
+      *(undefined4 *)(param_1 + 0x74) = 7;
+      break;
+    case 5:
+      *(undefined4 *)(param_1 + 0x74) = 0xffffffff;
     }
-    break;
-  case 1:
-    *(undefined4 *)(param_1 + 0x74) = 2;
-    break;
-  case 2:
-    *(undefined4 *)(param_1 + 0x74) = 3;
-    break;
-  case 3:
-    *(undefined4 *)(param_1 + 0x74) = 6;
-    break;
-  case 4:
-    *(undefined4 *)(param_1 + 0x74) = 7;
-    break;
-  case 5:
-    *(undefined4 *)(param_1 + 0x74) = 0xffffffff;
   }
   uVar2 = ComposerInput_GetPressed();
   if ((uVar2 & 0x800) != 0) {
@@ -1571,46 +1583,49 @@ void ScrNameentryGetField48200_Enterfa220(int param_1)
 void attract_step_sub_002fa2c0(undefined8 param_1,long param_2)
 
 {
+  uint uVar1;
+  
   if (param_2 < 0) {
-    switch((int)param_2) {
-    case -8:
-      break;
-    case -7:
+    uVar1 = (int)param_2 + 8;
+    if (7 < uVar1) {
+      return;
+    }
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar1) {
+    case 1:
       ComposerScene_RequestState(0xfffffffffffffffd);
       break;
-    case -6:
+    case 2:
       ComposerScene_RequestState(0xfffffffffffffffe);
       break;
-    case -5:
+    case 3:
       ComposerScene_RequestState(0xffffffffffffffff);
       break;
-    case -4:
+    case 4:
       ComposerScene_RequestState(1);
       break;
-    case -3:
+    case 5:
       ComposerScene_RequestState(2);
       break;
-    case -2:
+    case 6:
       ComposerScene_SetMode(0);
       ComposerScene_RequestState(3);
       break;
-    case -1:
+    case 7:
       ComposerScene_SetMode(1);
       ComposerScene_RequestState(3);
-      break;
-    default:
-      goto switchD_002fa2f4_default;
     }
   }
   else {
     Nameentry_SetField_8();
   }
-switchD_002fa2f4_default:
   return;
 }
 
 // 0x002fa3a0  size 0x70
-void attract_step_sub_002fa3a0(int param_1)
+/* entry 3 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
+
+void ScrNameentryGetField48200_State3(int param_1)
 
 {
   long lVar1;
@@ -1631,9 +1646,9 @@ void attract_step_sub_002fa3a0(int param_1)
 }
 
 // 0x002fa410  size 0x68
-/* screen record 0x3435b0 */
+/* entry 2 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void screc3435b0_exit_sub_002fa410(int param_1)
+void ScrNameentryGetField48200_State2(int param_1)
 
 {
   long lVar1;
@@ -1654,9 +1669,9 @@ void screc3435b0_exit_sub_002fa410(int param_1)
 }
 
 // 0x002fa480  size 0x6c
-/* screen record 0x3435b0 */
+/* entry 1 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void screc3435b0_update_sub_002fa480(int param_1)
+void ScrNameentryGetField48200_State1(int param_1)
 
 {
   long lVar1;
@@ -1677,9 +1692,9 @@ void screc3435b0_update_sub_002fa480(int param_1)
 }
 
 // 0x002fa4f0  size 0xfc
-/* screen record 0x3435b0 */
+/* entry 0 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void screc3435b0_enter_sub_002fa4f0(int param_1)
+void ScrNameentryGetField48200_State0(int param_1)
 
 {
   int iVar1;
@@ -1734,7 +1749,7 @@ void ScrNameentryGetField48200_Update(undefined8 param_1)
   if (lVar2 != 0) {
     ComposerInput_Lock();
     iVar1 = Nameentry_GetField_4_8200(param_1);
-    (*(code *)(&PTR_screc3435b0_enter_sub_002fa4f0_003435b0)[iVar1])(param_1);
+    (*(code *)(&PTR_ScrNameentryGetField48200_State0_003435b0)[iVar1])(param_1);
     uVar3 = ComposerInput_GetPressed();
     iVar1 = (int)param_1;
     if ((uVar3 & 0x180) == 0) {
@@ -2289,161 +2304,179 @@ void attract_draw_sub_002fb410(long param_1,long param_2,undefined8 param_3,unde
 undefined ** attract_step_sub_002fb5a0(void)
 
 {
-  undefined8 uVar1;
+  ulong uVar1;
   undefined **ppuVar2;
-  undefined1 auStack_190 [80];
-  undefined1 auStack_140 [80];
-  undefined1 auStack_f0 [80];
-  undefined1 auStack_a0 [80];
-  undefined1 auStack_50 [80];
+  byte abStack_190 [80];
+  byte abStack_140 [80];
+  byte abStack_f0 [80];
+  byte abStack_a0 [80];
+  byte abStack_50 [80];
   
   ppuVar2 = (undefined **)0x0;
   uVar1 = misc_step_sub_002fd0c0();
-  switch(uVar1) {
-  case 1:
-    GameState_LoadHeader(auStack_a0);
-    switch(auStack_a0[0]) {
+  if (uVar1 < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch((int)uVar1) {
     case 0:
-      ppuVar2 = &PTR_DAT_0035d3f0;
       break;
     case 1:
-      ppuVar2 = &PTR_DAT_0035d350;
+      GameState_LoadHeader(abStack_a0);
+      if (abStack_a0[0] < 8) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_a0[0]) {
+        case 0:
+          ppuVar2 = &PTR_DAT_0035d3f0;
+          break;
+        case 1:
+          ppuVar2 = &PTR_DAT_0035d350;
+          break;
+        case 2:
+          ppuVar2 = &PTR_DAT_0035d530;
+          break;
+        case 3:
+          ppuVar2 = &PTR_DAT_0035d490;
+          break;
+        case 4:
+          ppuVar2 = &PTR_DAT_0035d5d0;
+          break;
+        case 5:
+          ppuVar2 = &PTR_DAT_0035d1f0;
+          break;
+        case 6:
+          ppuVar2 = &PTR_DAT_0035d2b0;
+          break;
+        case 7:
+          ppuVar2 = &PTR_DAT_0035d6d0;
+        }
+      }
       break;
-    case 2:
-      ppuVar2 = &PTR_DAT_0035d530;
-      break;
-    case 3:
-      ppuVar2 = &PTR_DAT_0035d490;
-      break;
-    case 4:
-      ppuVar2 = &PTR_DAT_0035d5d0;
-      break;
-    case 5:
-      ppuVar2 = &PTR_DAT_0035d1f0;
-      break;
-    case 6:
-      ppuVar2 = &PTR_DAT_0035d2b0;
-      break;
-    case 7:
-      ppuVar2 = &PTR_DAT_0035d6d0;
-    }
-    break;
-  case 2:
-  case 3:
-  case 6:
-    GameState_LoadHeader(auStack_140);
-    switch(auStack_140[0]) {
-    case 0:
-      ppuVar2 = &PTR_DAT_0035d3d0;
-      break;
-    case 1:
-      ppuVar2 = &PTR_DAT_0035d330;
-      break;
-    case 2:
-      ppuVar2 = &PTR_DAT_0035d510;
-      break;
-    case 3:
-      ppuVar2 = &PTR_DAT_0035d470;
-      break;
-    case 4:
-      ppuVar2 = &PTR_DAT_0035d5b0;
-      break;
-    case 5:
-      ppuVar2 = &PTR_DAT_0035d1d0;
-      break;
-    case 6:
-      ppuVar2 = &PTR_DAT_0035d290;
-      break;
-    case 7:
-      ppuVar2 = &PTR_DAT_0035d6b0;
-    }
-    break;
-  case 4:
-    GameState_LoadHeader(auStack_50);
-    switch(auStack_50[0]) {
-    case 0:
-      ppuVar2 = &PTR_DAT_0035d390;
-      break;
-    case 1:
-      ppuVar2 = &PTR_DAT_0035d2f0;
-      break;
-    case 2:
-      ppuVar2 = &PTR_DAT_0035d4d0;
-      break;
-    case 3:
-      ppuVar2 = &PTR_DAT_0035d430;
+    default:
+      GameState_LoadHeader(abStack_140);
+      if (abStack_140[0] < 8) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_140[0]) {
+        case 0:
+          ppuVar2 = &PTR_DAT_0035d3d0;
+          break;
+        case 1:
+          ppuVar2 = &PTR_DAT_0035d330;
+          break;
+        case 2:
+          ppuVar2 = &PTR_DAT_0035d510;
+          break;
+        case 3:
+          ppuVar2 = &PTR_DAT_0035d470;
+          break;
+        case 4:
+          ppuVar2 = &PTR_DAT_0035d5b0;
+          break;
+        case 5:
+          ppuVar2 = &PTR_DAT_0035d1d0;
+          break;
+        case 6:
+          ppuVar2 = &PTR_DAT_0035d290;
+          break;
+        case 7:
+          ppuVar2 = &PTR_DAT_0035d6b0;
+        }
+      }
       break;
     case 4:
-      ppuVar2 = &PTR_DAT_0035d570;
+      GameState_LoadHeader(abStack_50);
+      if (abStack_50[0] < 8) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_50[0]) {
+        case 0:
+          ppuVar2 = &PTR_DAT_0035d390;
+          break;
+        case 1:
+          ppuVar2 = &PTR_DAT_0035d2f0;
+          break;
+        case 2:
+          ppuVar2 = &PTR_DAT_0035d4d0;
+          break;
+        case 3:
+          ppuVar2 = &PTR_DAT_0035d430;
+          break;
+        case 4:
+          ppuVar2 = &PTR_DAT_0035d570;
+          break;
+        case 5:
+          ppuVar2 = &PTR_DAT_0035d190;
+          break;
+        case 6:
+          ppuVar2 = &PTR_DAT_0035d250;
+          break;
+        case 7:
+          ppuVar2 = &PTR_DAT_0035d670;
+        }
+      }
       break;
     case 5:
-      ppuVar2 = &PTR_DAT_0035d190;
-      break;
-    case 6:
-      ppuVar2 = &PTR_DAT_0035d250;
-      break;
-    case 7:
-      ppuVar2 = &PTR_DAT_0035d670;
-    }
-    break;
-  case 5:
-    GameState_LoadHeader(auStack_f0);
-    switch(auStack_f0[0]) {
-    case 0:
-      ppuVar2 = &PTR_DAT_0035d370;
-      break;
-    case 1:
-      ppuVar2 = &PTR_DAT_0035d2d0;
-      break;
-    case 2:
-      ppuVar2 = &PTR_DAT_0035d4b0;
-      break;
-    case 3:
-      ppuVar2 = &PTR_DAT_0035d410;
-      break;
-    case 4:
-      ppuVar2 = &PTR_DAT_0035d550;
-      break;
-    case 5:
-      ppuVar2 = &PTR_DAT_0035d170;
-      break;
-    case 6:
-      ppuVar2 = &PTR_DAT_0035d230;
+      GameState_LoadHeader(abStack_f0);
+      if (abStack_f0[0] < 8) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_f0[0]) {
+        case 0:
+          ppuVar2 = &PTR_DAT_0035d370;
+          break;
+        case 1:
+          ppuVar2 = &PTR_DAT_0035d2d0;
+          break;
+        case 2:
+          ppuVar2 = &PTR_DAT_0035d4b0;
+          break;
+        case 3:
+          ppuVar2 = &PTR_DAT_0035d410;
+          break;
+        case 4:
+          ppuVar2 = &PTR_DAT_0035d550;
+          break;
+        case 5:
+          ppuVar2 = &PTR_DAT_0035d170;
+          break;
+        case 6:
+          ppuVar2 = &PTR_DAT_0035d230;
+          break;
+        case 7:
+          ppuVar2 = &PTR_DAT_0035d650;
+        }
+      }
       break;
     case 7:
-      ppuVar2 = &PTR_DAT_0035d650;
+      GameState_LoadHeader(abStack_190);
+      if (abStack_190[0] < 8) {
+                    /* WARNING: Switch is manually overridden */
+        switch(abStack_190[0]) {
+        case 0:
+          ppuVar2 = &PTR_DAT_0035d3b0;
+          break;
+        case 1:
+          ppuVar2 = &PTR_DAT_0035d310;
+          break;
+        case 2:
+          ppuVar2 = &PTR_DAT_0035d4f0;
+          break;
+        case 3:
+          ppuVar2 = &PTR_DAT_0035d450;
+          break;
+        case 4:
+          ppuVar2 = &PTR_DAT_0035d590;
+          break;
+        case 5:
+          ppuVar2 = &PTR_DAT_0035d1b0;
+          break;
+        case 6:
+          ppuVar2 = &PTR_DAT_0035d270;
+          break;
+        case 7:
+          ppuVar2 = &PTR_DAT_0035d690;
+        }
+      }
+      break;
+    case 8:
+      ppuVar2 = &PTR_DAT_0035d210;
     }
-    break;
-  case 7:
-    GameState_LoadHeader(auStack_190);
-    switch(auStack_190[0]) {
-    case 0:
-      ppuVar2 = &PTR_DAT_0035d3b0;
-      break;
-    case 1:
-      ppuVar2 = &PTR_DAT_0035d310;
-      break;
-    case 2:
-      ppuVar2 = &PTR_DAT_0035d4f0;
-      break;
-    case 3:
-      ppuVar2 = &PTR_DAT_0035d450;
-      break;
-    case 4:
-      ppuVar2 = &PTR_DAT_0035d590;
-      break;
-    case 5:
-      ppuVar2 = &PTR_DAT_0035d1b0;
-      break;
-    case 6:
-      ppuVar2 = &PTR_DAT_0035d270;
-      break;
-    case 7:
-      ppuVar2 = &PTR_DAT_0035d690;
-    }
-    break;
-  case 8:
-    ppuVar2 = &PTR_DAT_0035d210;
   }
   return ppuVar2;
 }
@@ -2508,40 +2541,46 @@ void attract_step_sub_002fb8e0(int *param_1)
 void attract_step_sub_002fba10(undefined4 *param_1)
 
 {
-  undefined8 uVar1;
+  ulong uVar1;
   long lVar2;
   undefined *puStack_10;
   undefined *puStack_c;
   undefined *puStack_8;
   
   uVar1 = misc_step_sub_002fd0c0();
-  switch(uVar1) {
-  default:
+  if (uVar1 < 9) {
+                    /* WARNING: Switch is manually overridden */
+    switch((int)uVar1) {
+    case 0:
+      goto switchD_002fba44_caseD_0;
+    case 1:
+      puStack_c = &DAT_0035d738;
+      break;
+    case 2:
+      puStack_c = &DAT_0035d714;
+      break;
+    case 3:
+      puStack_c = &DAT_0035d6fc;
+      break;
+    case 4:
+      puStack_c = &DAT_0035d744;
+      break;
+    case 5:
+      puStack_c = &DAT_0035d708;
+      break;
+    case 6:
+      puStack_c = &DAT_0035d72c;
+      break;
+    case 7:
+      puStack_c = &DAT_0035d720;
+      break;
+    case 8:
+      puStack_c = &DAT_0035d6f0;
+    }
+  }
+  else {
+switchD_002fba44_caseD_0:
     puStack_c = (undefined *)0x0;
-    break;
-  case 1:
-    puStack_c = &DAT_0035d738;
-    break;
-  case 2:
-    puStack_c = &DAT_0035d714;
-    break;
-  case 3:
-    puStack_c = &DAT_0035d6fc;
-    break;
-  case 4:
-    puStack_c = &DAT_0035d744;
-    break;
-  case 5:
-    puStack_c = &DAT_0035d708;
-    break;
-  case 6:
-    puStack_c = &DAT_0035d72c;
-    break;
-  case 7:
-    puStack_c = &DAT_0035d720;
-    break;
-  case 8:
-    puStack_c = &DAT_0035d6f0;
   }
   lVar2 = misc_step_sub_002fd0c0();
   if (lVar2 == 5) {

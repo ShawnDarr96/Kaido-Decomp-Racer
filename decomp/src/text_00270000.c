@@ -4,9 +4,9 @@
 
 // 0x002700c0  size 0xb44
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d9b8 */
+/* entry 1 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update */
 
-void screc32d9b8_update_sub_002700c0(undefined8 param_1)
+void ScrSubtitleDraw_Draw1(undefined8 param_1)
 
 {
   bool bVar1;
@@ -336,9 +336,9 @@ LAB_002708ac:
 
 // 0x00270c10  size 0xa34
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d9b8 */
+/* entry 0 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update */
 
-void screc32d9b8_enter_sub_00270c10(int param_1)
+void ScrSubtitleDraw_Draw0(int param_1)
 
 {
   int iVar1;
@@ -737,7 +737,7 @@ void ScrSubtitleDraw_Update(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
   piVar3 = (int *)param_1;
-  (*(code *)(&PTR_screc32d9b8_enter_sub_00270c10_0032d9b8)[piVar3[0xb]])(param_1);
+  (*(code *)(&PTR_ScrSubtitleDraw_Draw0_0032d9b8)[piVar3[0xb]])(param_1);
   iVar1 = UiMgr_FindLayout(0x6d);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   Subtitle_Draw();
@@ -767,11 +767,12 @@ void ScrSubtitleDraw_Enter(void)
 
 // 0x002717c0  size 0x244
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 10 of state table 0x32dac0 used by maybe_PageRivalTitle_Update */
 
-void scrcareer_draw_sub_002717c0(int param_1)
+void maybe_PageRivalTitle_State10(int param_1)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   uint uVar2;
   int iVar3;
   undefined4 uVar4;
@@ -836,28 +837,34 @@ void scrcareer_draw_sub_002717c0(int param_1)
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   uVar2 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
   MenuWnd_DrawTextId(0x10,0xf,4,(uVar2 & 0xff) + 0x67);
-  uVar1 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
-  switch(uVar1) {
-  case 0:
-    uVar6 = 0xc2;
-    break;
-  default:
+  bVar1 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
+  if (bVar1 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1) {
+    case 0:
+      uVar6 = 0xc2;
+      break;
+    default:
+      goto switchD_0027187c_caseD_1;
+    case 3:
+      uVar6 = 0xc3;
+      break;
+    case 4:
+      uVar6 = 0xc6;
+      break;
+    case 5:
+      uVar6 = 199;
+      break;
+    case 6:
+      uVar6 = 0xc4;
+      break;
+    case 7:
+      uVar6 = 0xc5;
+    }
+  }
+  else {
+switchD_0027187c_caseD_1:
     uVar6 = 0xffffffffffffffff;
-    break;
-  case 3:
-    uVar6 = 0xc3;
-    break;
-  case 4:
-    uVar6 = 0xc6;
-    break;
-  case 5:
-    uVar6 = 199;
-    break;
-  case 6:
-    uVar6 = 0xc4;
-    break;
-  case 7:
-    uVar6 = 0xc5;
   }
   MenuWnd_DrawText(0x10,0x10,uVar6);
   iVar3 = UiMgr_FindLayout(0x10);
@@ -1267,6 +1274,7 @@ void ScrCareer_Draw_ContractMoney_2450(int param_1)
 }
 
 // 0x002726c0  size 0x2a4
+/* WARNING: Switch with 1 destination removed at 0x00272894 */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_SponsorData(int *param_1)
@@ -1274,7 +1282,7 @@ void ScrCareer_Draw_SponsorData(int *param_1)
 {
   int iVar1;
   char cVar2;
-  undefined1 uVar3;
+  byte bVar3;
   uint uVar4;
   int iVar5;
   long lVar6;
@@ -1313,43 +1321,44 @@ void ScrCareer_Draw_SponsorData(int *param_1)
   }
   uVar8 = MsgId_ForSlot(uVar8,0);
   MenuWnd_DrawLabel(0x73,0x14,0x46,uVar8,uVar9);
-  uVar3 = Msg_RivalTitle(param_1[2]);
-  switch(uVar3) {
-  case 0:
-    uVar8 = 0x6f;
-    break;
-  default:
+  bVar3 = Msg_RivalTitle(param_1[2]);
+  if (bVar3 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar3) {
+    case 0:
+      uVar8 = 0x6f;
+      break;
+    default:
+      goto switchD_00272804_caseD_1;
+    case 3:
+      uVar8 = 0x70;
+      break;
+    case 4:
+      uVar8 = 0x73;
+      break;
+    case 5:
+      uVar8 = 0x74;
+      break;
+    case 6:
+      uVar8 = 0x71;
+      break;
+    case 7:
+      uVar8 = 0x72;
+    }
+  }
+  else {
+switchD_00272804_caseD_1:
     uVar8 = 0xffffffffffffffff;
-    break;
-  case 3:
-    uVar8 = 0x70;
-    break;
-  case 4:
-    uVar8 = 0x73;
-    break;
-  case 5:
-    uVar8 = 0x74;
-    break;
-  case 6:
-    uVar8 = 0x71;
-    break;
-  case 7:
-    uVar8 = 0x72;
   }
   MenuWnd_DrawText(0x73,0x15,uVar8);
   uVar4 = Msg_RivalTitle(param_1[2]);
   MenuWnd_DrawText(0x73,0x16,(uVar4 & 0xff) + 0x67);
-  uVar3 = Msg_RivalTitle(param_1[2]);
-  switch(uVar3) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-  case 5:
+  bVar3 = Msg_RivalTitle(param_1[2]);
+  if (bVar3 < 6) {
+                    /* WARNING: Switch is manually overridden */
     MenuWnd_DrawText(0x73,0x1d,0x13a);
-    break;
-  default:
+  }
+  else {
     MenuWnd_DrawTextId(0x73,0x1d,3,0x13a);
   }
   MenuWnd_DrawText(0x73,0x1b,0x138);
@@ -1465,13 +1474,14 @@ void ScrCareer_Draw_RivalCar(int param_1)
 }
 
 // 0x00272c10  size 0x69c
+/* WARNING: Switch with 1 destination removed at 0x00272e20 */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_SponsorData_2c10(int param_1)
 
 {
   char cVar1;
-  undefined1 uVar2;
+  byte bVar2;
   uint uVar3;
   int iVar4;
   undefined4 uVar5;
@@ -1482,7 +1492,11 @@ void ScrCareer_Draw_SponsorData_2c10(int param_1)
   
   iVar4 = *(int *)(param_1 + 0x128);
   *(undefined4 *)(param_1 + 0x128) = 0;
-  if (iVar4 != 0) {
+  if (iVar4 == 0) {
+LAB_00272c3c:
+    iVar4 = *(int *)(param_1 + 0x114);
+  }
+  else {
     uVar5 = UiRes_GetLayoutData(0x2c9);
     iVar4 = UiMgr_FindLayout(0x73);
     iVar4 = *_g_UiMgr + iVar4 * 0x4f4;
@@ -1617,14 +1631,10 @@ void ScrCareer_Draw_SponsorData_2c10(int param_1)
     *(undefined4 *)(iVar4 + 0x380) = 1;
     Menu_ClearSlot(0);
     Menu_ShowDialog(_g_MenuMgr + 0x654,0x11e,2);
-    if (*(int *)(param_1 + 0x114) != 3) {
-      Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
-      iVar4 = *(int *)(param_1 + 0x114);
-      goto LAB_00272c40;
-    }
+    if (*(int *)(param_1 + 0x114) == 3) goto LAB_00272c3c;
+    Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
+    iVar4 = *(int *)(param_1 + 0x114);
   }
-  iVar4 = *(int *)(param_1 + 0x114);
-LAB_00272c40:
   if (iVar4 == 3) {
     lVar6 = UiLayout_UpdateAnimById(0x73);
     if (lVar6 == 0) {
@@ -1670,43 +1680,44 @@ LAB_00272c40:
   }
   uVar7 = MsgId_ForSlot(uVar7,0);
   MenuWnd_DrawLabel(0x73,0x14,0x46,uVar7,uVar9);
-  uVar2 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
-  switch(uVar2) {
-  case 0:
-    uVar7 = 0x6f;
-    break;
-  default:
+  bVar2 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
+  if (bVar2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar2) {
+    case 0:
+      uVar7 = 0x6f;
+      break;
+    default:
+      goto switchD_00272d90_caseD_1;
+    case 3:
+      uVar7 = 0x70;
+      break;
+    case 4:
+      uVar7 = 0x73;
+      break;
+    case 5:
+      uVar7 = 0x74;
+      break;
+    case 6:
+      uVar7 = 0x71;
+      break;
+    case 7:
+      uVar7 = 0x72;
+    }
+  }
+  else {
+switchD_00272d90_caseD_1:
     uVar7 = 0xffffffffffffffff;
-    break;
-  case 3:
-    uVar7 = 0x70;
-    break;
-  case 4:
-    uVar7 = 0x73;
-    break;
-  case 5:
-    uVar7 = 0x74;
-    break;
-  case 6:
-    uVar7 = 0x71;
-    break;
-  case 7:
-    uVar7 = 0x72;
   }
   MenuWnd_DrawText(0x73,0x15,uVar7);
   uVar3 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
   MenuWnd_DrawText(0x73,0x16,(uVar3 & 0xff) + 0x67);
-  uVar2 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
-  switch(uVar2) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-  case 5:
+  bVar2 = Msg_RivalTitle(*(undefined4 *)(param_1 + 8));
+  if (bVar2 < 6) {
+                    /* WARNING: Switch is manually overridden */
     MenuWnd_DrawText(0x73,0x1d,0x13a);
-    break;
-  default:
+  }
+  else {
     MenuWnd_DrawTextId(0x73,0x1d,3,0x13a);
   }
   MenuWnd_DrawText(0x73,0x1b,0x138);
@@ -2117,9 +2128,9 @@ LAB_00273534:
 
 // 0x00273d60  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278b4 */
+/* menu page 39 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278b4_exit_sub_00273d60(void)
+void maybe_PageRivalTitle_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -2128,9 +2139,9 @@ void screc3278b4_exit_sub_00273d60(void)
 
 // 0x00273d80  size 0x114
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278b4 */
+/* menu page 39 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278b4_update_sub_00273d80(undefined8 param_1)
+void maybe_PageRivalTitle_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -2155,9 +2166,9 @@ void screc3278b4_update_sub_00273d80(undefined8 param_1)
 
 // 0x00273ea0  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278b4 */
+/* menu page 39 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278b4_enter_sub_00273ea0(void)
+void maybe_PageRivalTitle_Enter(void)
 
 {
   undefined4 uVar1;

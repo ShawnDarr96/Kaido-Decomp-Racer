@@ -1498,9 +1498,9 @@ void MenuScr_Draw_PowerTrain_2fb0(int *param_1)
 
 // 0x00283440  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278d8 */
+/* menu page 42 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278d8_exit_sub_00283440(void)
+void maybe_PagePartInfo_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1509,9 +1509,9 @@ void screc3278d8_exit_sub_00283440(void)
 
 // 0x00283460  size 0x16c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278d8 */
+/* menu page 42 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278d8_update_sub_00283460(undefined8 param_1)
+void maybe_PagePartInfo_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1544,9 +1544,9 @@ void screc3278d8_update_sub_00283460(undefined8 param_1)
 
 // 0x002835d0  size 0xe2c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3278d8 */
+/* menu page 42 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3278d8_enter_sub_002835d0(void)
+void maybe_PagePartInfo_Enter(void)
 
 {
   undefined4 uVar1;

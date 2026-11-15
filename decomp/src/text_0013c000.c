@@ -117,7 +117,7 @@ void Iop_Reboot(long param_1,long param_2)
 // 0x0013c2c0  size 0x1d8
 /* WARNING: Removing unreachable block (ram,0x0013c2f0) */
 
-void IopSnd_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                    undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
@@ -128,10 +128,7 @@ void IopSnd_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,und
   uint uVar5;
   undefined8 *puVar6;
   int iVar7;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
+  int aiStack_70 [4];
   undefined2 *puStack_60;
   undefined8 uStack_38;
   undefined8 uStack_30;
@@ -158,11 +155,11 @@ void IopSnd_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,und
     puVar4 = puVar4 + 8;
     puVar6 = puVar6 + 8;
   } while (uVar5 < 0x10);
-  uStack_68 = 0x387000;
-  uStack_6c = 0x40;
-  uStack_64 = 0x40;
+  aiStack_70[2] = 0x387000;
+  aiStack_70[1] = 0x40;
+  aiStack_70[3] = 0x40;
   puStack_60 = (undefined2 *)0x387040;
-  uStack_70 = param_1;
+  aiStack_70[0] = param_1;
   uStack_38 = param_2;
   uStack_30 = param_3;
   uStack_28 = param_4;
@@ -170,27 +167,30 @@ void IopSnd_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,und
   uStack_18 = param_6;
   uStack_10 = param_7;
   uStack_8 = param_8;
-  switch(param_1) {
-  case 0x10a:
-    puStack_60 = puRam00387004;
-    break;
-  case 0x10b:
-    maybe_Mem_CopyQwords(0x387004,puRam00387004,0x14);
-    goto LAB_0013c474;
-  case 0x110:
-    puVar1 = (undefined2 *)0x387004;
-    puVar2 = puRam00387004;
-    for (iVar7 = iRam00387000; iVar7 != 0; iVar7 = iVar7 + -1) {
-      *puVar1 = *puVar2;
-      puVar1[1] = puVar2[1];
-      *(undefined4 *)(puVar1 + 2) = *(undefined4 *)(puVar2 + 2);
-      puVar1 = puVar1 + 4;
-      puVar2 = puVar2 + 4;
+  if (param_1 - 0x100U < 0x11) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1 - 0x100U) {
+    case 10:
+      puStack_60 = puRam00387004;
+      break;
+    case 0xb:
+      maybe_Mem_CopyQwords(0x387004,puRam00387004,0x14);
+      goto LAB_0013c474;
+    case 0x10:
+      puVar1 = (undefined2 *)0x387004;
+      puVar2 = puRam00387004;
+      for (iVar7 = iRam00387000; iVar7 != 0; iVar7 = iVar7 + -1) {
+        *puVar1 = *puVar2;
+        puVar1[1] = puVar2[1];
+        *(undefined4 *)(puVar1 + 2) = *(undefined4 *)(puVar2 + 2);
+        puVar1 = puVar1 + 4;
+        puVar2 = puVar2 + 4;
+      }
+      puStack_60 = puVar3;
     }
-    puStack_60 = puVar3;
   }
 LAB_0013c474:
-  Rpc_Call(uRam0036f020,&uStack_70);
+  Rpc_Call(uRam0036f020,aiStack_70);
   return;
 }
 
@@ -220,7 +220,7 @@ void IopSnd_SetBlocking(undefined8 param_1)
 }
 
 // 0x0013c550  size 0x1dc
-undefined4 IopStrm_RpcHandler(undefined4 param_1,int *param_2)
+undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
 
 {
   int iVar1;
@@ -233,67 +233,70 @@ undefined4 IopStrm_RpcHandler(undefined4 param_1,int *param_2)
   iVar5 = iVar1 * 0x6c;
   iVar4 = iRam0036f038 + iVar5;
   WaitSema(uRam0036f03c);
-  switch(param_1) {
-  case 0x400:
-    *(undefined4 *)(iVar4 + 0x3c) = 2;
-    break;
-  case 0x401:
-    *(undefined4 *)(iVar4 + 0x3c) = 0;
-    iVar5 = iRam0036f038 + iVar5;
-    *(undefined4 *)(iVar5 + 0x10) = 0;
-    *(undefined4 *)(iVar5 + 0x18) = 0;
-    *(undefined4 *)(iVar5 + 0x2c) = 0;
-    *(undefined4 *)(iVar5 + 0x30) = 0;
-    *(undefined4 *)(iVar5 + 0x34) = 0;
-    *(undefined4 *)(iVar5 + 0x38) = 0;
-    break;
-  case 0x402:
-    *(undefined4 *)(iVar4 + 0x3c) = 0;
-    iVar5 = iRam0036f038 + iVar5;
-    *(undefined4 *)(iVar5 + 0x10) = 0;
-    *(undefined4 *)(iVar5 + 0x18) = 0;
-    *(undefined4 *)(iVar5 + 0x2c) = 0;
-    *(undefined4 *)(iVar5 + 0x30) = 0;
-    *(undefined4 *)(iVar5 + 0x34) = 0;
-    *(undefined4 *)(iVar5 + 0x38) = 0;
-    break;
-  case 0x403:
-    iVar5 = param_2[2];
-    iVar2 = param_2[1];
-    if (*(int *)(iVar4 + 0x14) == 0) {
-      *(int *)(iVar4 + 0x44) = iVar2;
-      *(int *)(iVar4 + 0x48) = iVar5;
-      if (*(code **)(iVar4 + 0x68) != (code *)0x0) {
-        (**(code **)(iVar4 + 0x68))(iVar1,iVar4 + 0x44,1);
+  if (param_1 - 0x400U < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1 - 0x400U) {
+    case 0:
+      *(undefined4 *)(iVar4 + 0x3c) = 2;
+      break;
+    case 1:
+      *(undefined4 *)(iVar4 + 0x3c) = 0;
+      iVar5 = iRam0036f038 + iVar5;
+      *(undefined4 *)(iVar5 + 0x10) = 0;
+      *(undefined4 *)(iVar5 + 0x18) = 0;
+      *(undefined4 *)(iVar5 + 0x2c) = 0;
+      *(undefined4 *)(iVar5 + 0x30) = 0;
+      *(undefined4 *)(iVar5 + 0x34) = 0;
+      *(undefined4 *)(iVar5 + 0x38) = 0;
+      break;
+    case 2:
+      *(undefined4 *)(iVar4 + 0x3c) = 0;
+      iVar5 = iRam0036f038 + iVar5;
+      *(undefined4 *)(iVar5 + 0x10) = 0;
+      *(undefined4 *)(iVar5 + 0x18) = 0;
+      *(undefined4 *)(iVar5 + 0x2c) = 0;
+      *(undefined4 *)(iVar5 + 0x30) = 0;
+      *(undefined4 *)(iVar5 + 0x34) = 0;
+      *(undefined4 *)(iVar5 + 0x38) = 0;
+      break;
+    case 3:
+      iVar5 = param_2[2];
+      iVar2 = param_2[1];
+      if (*(int *)(iVar4 + 0x14) == 0) {
+        *(int *)(iVar4 + 0x44) = iVar2;
+        *(int *)(iVar4 + 0x48) = iVar5;
+        if (*(code **)(iVar4 + 0x68) != (code *)0x0) {
+          (**(code **)(iVar4 + 0x68))(iVar1,iVar4 + 0x44,1);
+        }
       }
-    }
-    else {
-      if (*(code **)(iVar4 + 0x68) != (code *)0x0) {
-        (**(code **)(iVar4 + 0x68))(iVar1,iVar4 + 0x44,*(undefined4 *)(iVar4 + 100));
+      else {
+        if (*(code **)(iVar4 + 0x68) != (code *)0x0) {
+          (**(code **)(iVar4 + 0x68))(iVar1,iVar4 + 0x44,*(undefined4 *)(iVar4 + 100));
+        }
+        IopStrm_TransferChunk(iVar1,iVar2,iVar5);
+        *(undefined4 *)(iVar4 + 0x2c) = 0;
       }
-      IopStrm_TransferChunk(iVar1,iVar2,iVar5);
-      *(undefined4 *)(iVar4 + 0x2c) = 0;
+      break;
+    case 4:
+      if ((*(int *)(iVar4 + 0x30) == 0) ||
+         (lVar3 = Sif_WaitDma(*(int *)(iVar4 + 0x30),0), -1 < lVar3)) {
+        uRam003871c0 = 0;
+      }
+      else {
+        uRam003871c0 = *(undefined4 *)(iVar4 + 0x34);
+        *(undefined4 *)(iVar4 + 0x34) = 0;
+      }
+      break;
+    case 5:
+      *(undefined4 *)(iVar4 + 0x3c) = 0;
+      iVar5 = iRam0036f038 + iVar5;
+      *(undefined4 *)(iVar5 + 0x10) = 0;
+      *(undefined4 *)(iVar5 + 0x18) = 0;
+      *(undefined4 *)(iVar5 + 0x2c) = 0;
+      *(undefined4 *)(iVar5 + 0x30) = 0;
+      *(undefined4 *)(iVar5 + 0x34) = 0;
+      *(undefined4 *)(iVar5 + 0x38) = 0;
     }
-    break;
-  case 0x404:
-    if ((*(int *)(iVar4 + 0x30) == 0) || (lVar3 = Sif_WaitDma(*(int *)(iVar4 + 0x30),0), -1 < lVar3)
-       ) {
-      uRam003871c0 = 0;
-    }
-    else {
-      uRam003871c0 = *(undefined4 *)(iVar4 + 0x34);
-      *(undefined4 *)(iVar4 + 0x34) = 0;
-    }
-    break;
-  case 0x405:
-    *(undefined4 *)(iVar4 + 0x3c) = 0;
-    iVar5 = iRam0036f038 + iVar5;
-    *(undefined4 *)(iVar5 + 0x10) = 0;
-    *(undefined4 *)(iVar5 + 0x18) = 0;
-    *(undefined4 *)(iVar5 + 0x2c) = 0;
-    *(undefined4 *)(iVar5 + 0x30) = 0;
-    *(undefined4 *)(iVar5 + 0x34) = 0;
-    *(undefined4 *)(iVar5 + 0x38) = 0;
   }
   SignalSema(uRam0036f03c);
   return 0x3871c0;
@@ -435,18 +438,14 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
 /* WARNING: Removing unreachable block (ram,0x0013c9e0) */
 /* 11 callers */
 
-void IopStrm_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+void IopStrm_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                     undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined4 *puVar1;
   uint uVar2;
   undefined8 *puVar3;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
+  int aiStack_70 [14];
   undefined8 uStack_38;
   undefined8 uStack_30;
   undefined8 uStack_28;
@@ -471,11 +470,11 @@ void IopStrm_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,un
     puVar1 = puVar1 + 8;
     puVar3 = puVar3 + 8;
   } while (uVar2 < 0x10);
-  uStack_68 = 0x387080;
-  uStack_6c = 0x40;
-  uStack_60 = 0x3870c0;
-  uStack_64 = 0x40;
-  uStack_70 = param_1;
+  aiStack_70[2] = 0x387080;
+  aiStack_70[1] = 0x40;
+  aiStack_70[4] = 0x3870c0;
+  aiStack_70[3] = 0x40;
+  aiStack_70[0] = param_1;
   uStack_38 = param_2;
   uStack_30 = param_3;
   uStack_28 = param_4;
@@ -483,15 +482,18 @@ void IopStrm_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,un
   uStack_18 = param_6;
   uStack_10 = param_7;
   uStack_8 = param_8;
-  switch(param_1) {
-  case 0x305:
-    maybe_Mem_CopyQwords(0x387084,uRam00387084,0x10);
-    break;
-  case 0x306:
-    maybe_Mem_CopyQwords(0x387084,uRam00387084,0xc);
-  default:
+  if (param_1 - 0x300U < 0xc) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1 - 0x300U) {
+    case 5:
+      maybe_Mem_CopyQwords(0x387084,uRam00387084,0x10);
+      goto LAB_0013cb04;
+    case 6:
+      maybe_Mem_CopyQwords(0x387084,uRam00387084,0xc);
+    }
   }
-  Rpc_Call(uRam0036f024,&uStack_70);
+LAB_0013cb04:
+  Rpc_Call(uRam0036f024,aiStack_70);
   return;
 }
 
@@ -920,18 +922,14 @@ void IopSe_ClearPending(int param_1)
 // 0x0013d620  size 0x148
 /* WARNING: Removing unreachable block (ram,0x0013d650) */
 
-void IopSe_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+void IopSe_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                   undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined4 *puVar1;
   uint uVar2;
   undefined8 *puVar3;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
+  int aiStack_70 [14];
   undefined8 uStack_38;
   undefined8 uStack_30;
   undefined8 uStack_28;
@@ -956,11 +954,11 @@ void IopSe_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,unde
     puVar1 = puVar1 + 8;
     puVar3 = puVar3 + 8;
   } while (uVar2 < 0x10);
-  uStack_68 = 0x387200;
-  uStack_6c = 0x40;
-  uStack_60 = 0x387240;
-  uStack_64 = 0x40;
-  uStack_70 = param_1;
+  aiStack_70[2] = 0x387200;
+  aiStack_70[1] = 0x40;
+  aiStack_70[4] = 0x387240;
+  aiStack_70[3] = 0x40;
+  aiStack_70[0] = param_1;
   uStack_38 = param_2;
   uStack_30 = param_3;
   uStack_28 = param_4;
@@ -968,11 +966,14 @@ void IopSe_Command(undefined4 param_1,undefined8 param_2,undefined8 param_3,unde
   uStack_18 = param_6;
   uStack_10 = param_7;
   uStack_8 = param_8;
-  switch(param_1) {
-  case 0x205:
-    maybe_Mem_CopyQwords(0x387204,uRam00387204,0x1c);
+  if (param_1 - 0x200U < 0x15) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_1 - 0x200U) {
+    case 5:
+      maybe_Mem_CopyQwords(0x387204,uRam00387204,0x1c);
+    }
   }
-  Rpc_Call(uRam0036f040,&uStack_70);
+  Rpc_Call(uRam0036f040,aiStack_70);
   return;
 }
 
@@ -1992,34 +1993,37 @@ int Tex_Upload(undefined8 param_1,uint param_2,int param_3,int param_4,int param
     uVar13 = 0;
     if (*(char *)(iVar10 + 0x11) != '\0') {
       do {
-        switch(uVar13) {
-        case 0:
-          uStack_20 = *(ushort *)(iVar10 + 0x18) & 0x3fff;
-          uStack_1c = (uint)((*(ulong *)(iVar10 + 0x18) & 0xfffff) >> 0xe);
-          break;
-        case 1:
-          uStack_20 = (ushort)*puVar3 & 0x3fff;
-          uStack_1c = (uint)((*puVar3 & 0xfffff) >> 0xe);
-          break;
-        case 2:
-          uStack_20 = (uint)((*puVar3 & 0x3ffffffff) >> 0x14);
-          uStack_1c = (uint)(*(byte *)((int)puVar3 + 4) >> 2);
-          break;
-        case 3:
-          uStack_20 = ((uint)(*puVar3 >> 0x20) & 0x3fffff) >> 8;
-          uStack_1c = (uint)(((ulong)*(ushort *)((int)puVar3 + 6) & 0xfff) >> 6);
-          break;
-        case 4:
-          uStack_20 = (ushort)puVar3[1] & 0x3fff;
-          uStack_1c = (uint)((puVar3[1] & 0xfffff) >> 0xe);
-          break;
-        case 5:
-          uStack_20 = (uint)((puVar3[1] & 0x3ffffffff) >> 0x14);
-          uStack_1c = (uint)(*(byte *)((int)puVar3 + 0xc) >> 2);
-          break;
-        case 6:
-          uStack_20 = ((uint)(puVar3[1] >> 0x20) & 0x3fffff) >> 8;
-          uStack_1c = (uint)(((ulong)*(ushort *)((int)puVar3 + 0xe) & 0xfff) >> 6);
+        if (uVar13 < 7) {
+                    /* WARNING: Switch is manually overridden */
+          switch(uVar13) {
+          case 0:
+            uStack_20 = *(ushort *)(iVar10 + 0x18) & 0x3fff;
+            uStack_1c = (uint)((*(ulong *)(iVar10 + 0x18) & 0xfffff) >> 0xe);
+            break;
+          case 1:
+            uStack_20 = (ushort)*puVar3 & 0x3fff;
+            uStack_1c = (uint)((*puVar3 & 0xfffff) >> 0xe);
+            break;
+          case 2:
+            uStack_20 = (uint)((*puVar3 & 0x3ffffffff) >> 0x14);
+            uStack_1c = (uint)(*(byte *)((int)puVar3 + 4) >> 2);
+            break;
+          case 3:
+            uStack_20 = ((uint)(*puVar3 >> 0x20) & 0x3fffff) >> 8;
+            uStack_1c = (uint)(((ulong)*(ushort *)((int)puVar3 + 6) & 0xfff) >> 6);
+            break;
+          case 4:
+            uStack_20 = (ushort)puVar3[1] & 0x3fff;
+            uStack_1c = (uint)((puVar3[1] & 0xfffff) >> 0xe);
+            break;
+          case 5:
+            uStack_20 = (uint)((puVar3[1] & 0x3ffffffff) >> 0x14);
+            uStack_1c = (uint)(*(byte *)((int)puVar3 + 0xc) >> 2);
+            break;
+          case 6:
+            uStack_20 = ((uint)(puVar3[1] >> 0x20) & 0x3fffff) >> 8;
+            uStack_1c = (uint)(((ulong)*(ushort *)((int)puVar3 + 0xe) & 0xfff) >> 6);
+          }
         }
         uStack_20 = uStack_20 + param_4;
         iStack_18 = (int)(((ulong)*(ushort *)(iVar10 + 0x1a) & 0x3ff) >> 4);

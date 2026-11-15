@@ -1485,7 +1485,7 @@ void RoadData_GetSegmentTable(int *param_1,uint param_2)
 }
 
 // 0x001f30c0  size 0x40
-void demo_step_sub_001f30c0(undefined8 param_1,undefined4 *param_2)
+void maybe_DemoCam_Reset(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined4 uStack_10;
@@ -1508,7 +1508,7 @@ void demo_step_sub_001f30c0(undefined8 param_1,undefined4 *param_2)
 // 0x001f3100  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void demo_step_sub_001f3100(undefined8 param_1,undefined4 *param_2)
+void maybe_DemoCam_PickCar(undefined8 param_1,undefined4 *param_2)
 
 {
   int *piVar1;
@@ -1558,7 +1558,7 @@ void demo_step_sub_001f3100(undefined8 param_1,undefined4 *param_2)
 }
 
 // 0x001f3200  size 0xe4
-void demo_step_sub_001f3200(undefined8 param_1,undefined8 param_2)
+void maybe_Demo_StepFadeOut(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1597,7 +1597,7 @@ void demo_step_sub_001f3200(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f32f0  size 0x60
-void demo_step_sub_001f32f0(undefined8 param_1,undefined8 param_2)
+void maybe_Demo_StepStart(undefined8 param_1,undefined8 param_2)
 
 {
   long lVar1;
@@ -1612,7 +1612,7 @@ void demo_step_sub_001f32f0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3350  size 0xbc
-void demo_step_sub_001f3350(undefined8 param_1,undefined8 param_2)
+void maybe_Demo_StepCamera(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1646,7 +1646,7 @@ void demo_step_sub_001f3350(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3410  size 0x78
-void demo_input_sub_001f3410(undefined8 param_1,undefined8 param_2)
+void Demo_HandlePad(undefined8 param_1,undefined8 param_2)
 
 {
   uint uVar1;
@@ -1671,7 +1671,7 @@ void demo_input_sub_001f3410(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3490  size 0x3f0
-void demo_input_sub_001f3490(undefined8 param_1,undefined8 param_2)
+void maybe_DemoCam_FreeLook(undefined8 param_1,undefined8 param_2)
 
 {
   float *pfVar1;
@@ -1791,7 +1791,7 @@ void demo_input_sub_001f3490(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3880  size 0xe0
-void demo_step_sub_001f3880(undefined8 param_1,undefined8 param_2)
+void maybe_DemoCam_LookAt(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1818,7 +1818,7 @@ void demo_step_sub_001f3880(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3960  size 0x104
-void demo_step_sub_001f3960(undefined8 param_1,undefined8 param_2)
+void maybe_DemoCam_PlaceFront(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -1836,13 +1836,13 @@ void demo_step_sub_001f3960(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3a70  size 0x10c
-void demo_step_sub_001f3a70(undefined8 param_1,undefined8 param_2)
+void maybe_DemoCam_PlaceOrbit(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
   int iVar2;
   
-  demo_step_sub_001f4760(param_2,0x365100,0x365110,0x365120,0x365130);
+  maybe_DemoCam_SetPath(param_2,0x365100,0x365110,0x365120,0x365130);
   iVar2 = (int)param_2;
   if (*(int *)(iVar2 + 0x7b0) != 0) {
     iVar1 = RaceCar_GetIndex();
@@ -1856,7 +1856,7 @@ void demo_step_sub_001f3a70(undefined8 param_1,undefined8 param_2)
 // 0x001f3b80  size 0x24
 /* WARNING: Removing unreachable block (ram,0x001f4560) */
 
-void ui_leaf_sub_001f3b80(undefined8 param_1,undefined8 param_2)
+void maybe_Cam_LeafTable(undefined8 param_1,undefined8 param_2)
 
 {
   long lVar1;
@@ -1968,7 +1968,7 @@ void ui_leaf_sub_001f3b80(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f3bb0  size 0x28
-void ui_leaf_sub_001f3bb0(undefined8 param_1,int param_2)
+void maybe_Cam_ResetOffset(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -2004,7 +2004,7 @@ void ui_leaf_sub_001f3bb0(undefined8 param_1,int param_2)
 }
 
 // 0x001f3be0  size 0xa8
-void ui_step_sub_001f3be0(int *param_1,undefined8 param_2)
+void maybe_Cam_UpdateFollow(int *param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -2028,7 +2028,7 @@ void ui_step_sub_001f3be0(int *param_1,undefined8 param_2)
 /* WARNING: Removing unreachable block (ram,0x001f3d18) */
 /* WARNING: Removing unreachable block (ram,0x001f3db0) */
 
-void demo_step_sub_001f3c90(undefined8 param_1,int param_2)
+void maybe_DemoCam_PlaceSide(undefined8 param_1,int param_2)
 
 {
   int iVar1;

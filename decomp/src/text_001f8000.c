@@ -158,26 +158,29 @@ void Menu_HandleList(undefined4 *param_1,int *param_2,long param_3,long param_4,
   return;
 }
 
-// 0x001f8420  size 0x28
-undefined8 Menu_ClampIndex(ulong param_1)
+// 0x001f8420  size 0x44
+undefined4 Menu_ClampIndex(ulong param_1)
 
 {
-  undefined8 uVar1;
+  undefined4 uVar1;
   
   if (param_1 < 0x2c) {
-                    /* WARNING: Could not recover jumptable at 0x001f8440. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_Ui_Nop_2_003655c0)[(int)param_1])();
-    return uVar1;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    case 0:
+      goto override_jmp_001f8440_case_0;
+    default:
+      uVar1 = 1;
+      break;
+    case 5:
+      uVar1 = 0;
+    }
   }
-  return 0;
-}
-
-// 0x001f8458  size 0xc
-undefined8 Ui_Nop_2(void)
-
-{
-  return 0;
+  else {
+override_jmp_001f8440_case_0:
+    uVar1 = 0;
+  }
+  return uVar1;
 }
 
 // 0x001f8470  size 0xf4
@@ -365,24 +368,25 @@ void Menu_DrawFrame(int *param_1)
       if (iVar2 != 3) {
         bVar1 = true;
         if (iVar2 == 1) {
-          switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-          case 0:
-          case 5:
-          case 6:
-            break;
-          case 1:
-            bVar1 = *(int *)(_g_MenuMgr + 0x534) == 1;
-            break;
-          case 2:
-            bVar1 = *(int *)(_g_MenuMgr + 0x5b0) == 1;
-            break;
-          case 3:
-            bVar1 = *(int *)(_g_MenuMgr + 0x600) == 1;
-            break;
-          case 4:
-            bVar1 = *(int *)(_g_MenuMgr + 0x630) == 1;
-            break;
-          default:
+          if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+            switch(*(uint *)(_g_MenuMgr + 0x34)) {
+            case 0:
+              break;
+            case 1:
+              bVar1 = *(int *)(_g_MenuMgr + 0x534) == 1;
+              break;
+            case 2:
+              bVar1 = *(int *)(_g_MenuMgr + 0x5b0) == 1;
+              break;
+            case 3:
+              bVar1 = *(int *)(_g_MenuMgr + 0x600) == 1;
+              break;
+            case 4:
+              bVar1 = *(int *)(_g_MenuMgr + 0x630) == 1;
+            }
+          }
+          else {
             bVar1 = true;
           }
           if (bVar1) {
@@ -396,25 +400,26 @@ void Menu_DrawFrame(int *param_1)
           }
           lVar3 = UiLayout_UpdateAnimById(0x127,0);
           if (lVar3 == 0) {
-            switch(*(undefined4 *)(_g_MenuMgr + 0x34)) {
-            case 0:
-            case 5:
-            case 6:
-              bVar1 = true;
-              break;
-            case 1:
-              bVar1 = *(int *)(_g_MenuMgr + 0x534) == 1;
-              break;
-            case 2:
-              bVar1 = *(int *)(_g_MenuMgr + 0x5b0) == 1;
-              break;
-            case 3:
-              bVar1 = *(int *)(_g_MenuMgr + 0x600) == 1;
-              break;
-            case 4:
-              bVar1 = *(int *)(_g_MenuMgr + 0x630) == 1;
-              break;
-            default:
+            if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+                    /* WARNING: Switch is manually overridden */
+              switch(*(uint *)(_g_MenuMgr + 0x34)) {
+              case 0:
+                bVar1 = true;
+                break;
+              case 1:
+                bVar1 = *(int *)(_g_MenuMgr + 0x534) == 1;
+                break;
+              case 2:
+                bVar1 = *(int *)(_g_MenuMgr + 0x5b0) == 1;
+                break;
+              case 3:
+                bVar1 = *(int *)(_g_MenuMgr + 0x600) == 1;
+                break;
+              case 4:
+                bVar1 = *(int *)(_g_MenuMgr + 0x630) == 1;
+              }
+            }
+            else {
               bVar1 = true;
             }
             if (bVar1) {
@@ -1505,36 +1510,34 @@ LAB_001fa01c:
   }
   if (param_1[0x1b] != 0) {
     uVar14 = 1;
-    switch(param_1[0x19]) {
-    case 0:
-    case 6:
-    case 7:
-      break;
-    case 1:
-      uVar14 = 4;
-      break;
-    case 2:
-    case 3:
-    case 4:
-      uVar14 = 0;
-      break;
-    case 5:
-      uVar14 = 2;
-      break;
-    case 8:
-      uVar14 = 0;
-      break;
-    case 9:
-      uVar14 = 5;
-      break;
-    case 10:
-      uVar14 = 3;
-      break;
-    case 0xb:
-    case 0xc:
-    case 0xd:
-    case 0xe:
-      uVar14 = 7;
+    if ((uint)param_1[0x19] < 0xf) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_1[0x19]) {
+      default:
+        break;
+      case 1:
+        uVar14 = 4;
+        break;
+      case 2:
+      case 3:
+      case 4:
+        uVar14 = 0;
+        break;
+      case 5:
+        uVar14 = 2;
+        break;
+      case 8:
+        uVar14 = 0;
+        break;
+      case 9:
+        uVar14 = 5;
+        break;
+      case 10:
+        uVar14 = 3;
+        break;
+      case 0xb:
+        uVar14 = 7;
+      }
     }
     iVar11 = UiMgr_FindLayout(4);
     iVar11 = *_g_UiMgr + iVar11 * 0x4f4;
@@ -1885,7 +1888,7 @@ void Menu_GetChapterIndex(void)
 void Menu_GetUnlockState(void)
 
 {
-  undefined1 uVar1;
+  byte bVar1;
   char cVar2;
   undefined8 uVar3;
   undefined1 unaff_s1_lo;
@@ -1895,44 +1898,45 @@ void Menu_GetUnlockState(void)
   }
   else {
     uVar3 = Profile_Get(0);
-    uVar1 = Profile_GetDifficulty(uVar3);
-    switch(uVar1) {
-    case 0:
-      cVar2 = Profile_GetChapter(uVar3);
-      if (cVar2 == '\0') {
-        unaff_s1_lo = 1;
-      }
-      else {
-        unaff_s1_lo = 5;
-      }
-      break;
-    case 1:
-    case 2:
-      cVar2 = Profile_GetChapter(uVar3);
-      if (cVar2 == '\0') {
-        unaff_s1_lo = 3;
-      }
-      else {
-        unaff_s1_lo = 7;
-      }
-      break;
-    case 3:
-      cVar2 = Profile_GetChapter(uVar3);
-      if (cVar2 == '\0') {
-        unaff_s1_lo = 2;
-      }
-      else {
-        unaff_s1_lo = 6;
-      }
-      break;
-    case 4:
-    case 5:
-      cVar2 = Profile_GetChapter(uVar3);
-      if (cVar2 == '\0') {
-        unaff_s1_lo = 4;
-      }
-      else {
-        unaff_s1_lo = 8;
+    bVar1 = Profile_GetDifficulty(uVar3);
+    if (bVar1 < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bVar1) {
+      case 0:
+        cVar2 = Profile_GetChapter(uVar3);
+        if (cVar2 == '\0') {
+          unaff_s1_lo = 1;
+        }
+        else {
+          unaff_s1_lo = 5;
+        }
+        break;
+      default:
+        cVar2 = Profile_GetChapter(uVar3);
+        if (cVar2 == '\0') {
+          unaff_s1_lo = 3;
+        }
+        else {
+          unaff_s1_lo = 7;
+        }
+        break;
+      case 3:
+        cVar2 = Profile_GetChapter(uVar3);
+        if (cVar2 == '\0') {
+          unaff_s1_lo = 2;
+        }
+        else {
+          unaff_s1_lo = 6;
+        }
+        break;
+      case 4:
+        cVar2 = Profile_GetChapter(uVar3);
+        if (cVar2 == '\0') {
+          unaff_s1_lo = 4;
+        }
+        else {
+          unaff_s1_lo = 8;
+        }
       }
     }
   }
@@ -1953,82 +1957,85 @@ undefined4 Menu_ExitToRace(void)
   
   iVar1 = _g_MenuMgr;
   uVar3 = 0;
-  switch(*(undefined4 *)(_g_MenuMgr + 0x30)) {
-  case 0:
-    break;
-  case 1:
-    if (*(int *)(_g_MenuMgr + 0x5a4) == 0) {
-      Sema_Wait(0x36efc0);
-      iVar2 = iRam00386628;
-      Sema_Signal(0x36efc0,0);
-      if (iVar2 == 0) {
-        Garage3d_Free();
-        return 0;
+  if (*(uint *)(_g_MenuMgr + 0x30) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    case 0:
+      break;
+    case 1:
+      if (*(int *)(_g_MenuMgr + 0x5a4) == 0) {
+        Sema_Wait(0x36efc0);
+        iVar2 = iRam00386628;
+        Sema_Signal(0x36efc0,0);
+        if (iVar2 == 0) {
+          Garage3d_Free();
+          return 0;
+        }
       }
-    }
-    if (*(int *)(iVar1 + 0x5a4) != 0) {
-      *(int *)(iVar1 + 0x5a4) = *(int *)(iVar1 + 0x5a4) + -1;
-    }
-    uVar3 = 1;
-    break;
-  case 2:
-    if (*(int *)(_g_MenuMgr + 0x5e4) == 0) {
-      Sema_Wait(0x36efc0);
-      iVar2 = iRam00386628;
-      Sema_Signal(0x36efc0,0);
-      if (iVar2 == 0) {
-        RaceScene_FreeProps();
-        Garage3d_Free();
-        return 0;
+      if (*(int *)(iVar1 + 0x5a4) != 0) {
+        *(int *)(iVar1 + 0x5a4) = *(int *)(iVar1 + 0x5a4) + -1;
       }
-    }
-    if (*(int *)(iVar1 + 0x5e4) != 0) {
-      *(int *)(iVar1 + 0x5e4) = *(int *)(iVar1 + 0x5e4) + -1;
-    }
-    uVar3 = 1;
-    break;
-  case 3:
-    if (*(int *)(_g_MenuMgr + 0x604) == 0) {
-      Sema_Wait(0x36efc0);
-      iVar2 = iRam00386628;
-      Sema_Signal(0x36efc0,0);
-      if (iVar2 == 0) {
-        showroom_step_sub_002d6820();
-        return 0;
-      }
-    }
-    if (*(int *)(iVar1 + 0x604) != 0) {
-      *(int *)(iVar1 + 0x604) = *(int *)(iVar1 + 0x604) + -1;
-    }
-    uVar3 = 1;
-    break;
-  case 4:
-    if (*(int *)(_g_MenuMgr + 0x638) == 0) {
-      Sema_Wait(0x36efc0);
-      iVar2 = iRam00386628;
-      Sema_Signal(0x36efc0,0);
-      if (iVar2 == 0) {
-        showroom_step_sub_002d8880();
-        return 0;
-      }
-    }
-    if (*(int *)(iVar1 + 0x638) != 0) {
-      *(int *)(iVar1 + 0x638) = *(int *)(iVar1 + 0x638) + -1;
-    }
-    uVar3 = 1;
-    break;
-  case 5:
-  case 6:
-    if ((*(int *)(_g_MenuMgr + 0x650) != 0) && (lVar4 = menuscr_step_sub_0020f950(), lVar4 != 0)) {
-      *(undefined4 *)(iVar1 + 0x650) = 0;
-    }
-    if ((*(int *)(iVar1 + 0x650) == 0) && (lVar4 = menuscr_exit_sub_0020fa10(), lVar4 == 1)) {
-      menuscr_exit_sub_0020fb60();
-      uVar3 = 0;
-    }
-    else {
-      menuscr_draw_sub_0020f570();
       uVar3 = 1;
+      break;
+    case 2:
+      if (*(int *)(_g_MenuMgr + 0x5e4) == 0) {
+        Sema_Wait(0x36efc0);
+        iVar2 = iRam00386628;
+        Sema_Signal(0x36efc0,0);
+        if (iVar2 == 0) {
+          RaceScene_FreeProps();
+          Garage3d_Free();
+          return 0;
+        }
+      }
+      if (*(int *)(iVar1 + 0x5e4) != 0) {
+        *(int *)(iVar1 + 0x5e4) = *(int *)(iVar1 + 0x5e4) + -1;
+      }
+      uVar3 = 1;
+      break;
+    case 3:
+      if (*(int *)(_g_MenuMgr + 0x604) == 0) {
+        Sema_Wait(0x36efc0);
+        iVar2 = iRam00386628;
+        Sema_Signal(0x36efc0,0);
+        if (iVar2 == 0) {
+          showroom_step_sub_002d6820();
+          return 0;
+        }
+      }
+      if (*(int *)(iVar1 + 0x604) != 0) {
+        *(int *)(iVar1 + 0x604) = *(int *)(iVar1 + 0x604) + -1;
+      }
+      uVar3 = 1;
+      break;
+    case 4:
+      if (*(int *)(_g_MenuMgr + 0x638) == 0) {
+        Sema_Wait(0x36efc0);
+        iVar2 = iRam00386628;
+        Sema_Signal(0x36efc0,0);
+        if (iVar2 == 0) {
+          showroom_step_sub_002d8880();
+          return 0;
+        }
+      }
+      if (*(int *)(iVar1 + 0x638) != 0) {
+        *(int *)(iVar1 + 0x638) = *(int *)(iVar1 + 0x638) + -1;
+      }
+      uVar3 = 1;
+      break;
+    case 5:
+      if ((*(int *)(_g_MenuMgr + 0x650) != 0) && (lVar4 = menuscr_step_sub_0020f950(), lVar4 != 0))
+      {
+        *(undefined4 *)(iVar1 + 0x650) = 0;
+      }
+      if ((*(int *)(iVar1 + 0x650) == 0) && (lVar4 = menuscr_exit_sub_0020fa10(), lVar4 == 1)) {
+        menuscr_exit_sub_0020fb60();
+        uVar3 = 0;
+      }
+      else {
+        menuscr_draw_sub_0020f570();
+        uVar3 = 1;
+      }
     }
   }
   return uVar3;
@@ -2043,40 +2050,42 @@ void MenuMgr_PopScreen(void)
   int iVar1;
   long lVar2;
   
-  switch(*(undefined4 *)(_g_MenuMgr + 0x30)) {
-  case 1:
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-    iVar1 = _g_MenuMgr;
-    showroom_step_sub_002d4ae0(8);
-    *(undefined4 *)(iVar1 + 0x5a4) = 3;
-    break;
-  case 2:
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-    iVar1 = _g_MenuMgr;
-    showroom_step_sub_002d4ae0(8);
-    *(undefined4 *)(iVar1 + 0x5e4) = 3;
-    break;
-  case 3:
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-    iVar1 = _g_MenuMgr;
-    showroom_step_sub_002d4ae0(8);
-    *(undefined4 *)(iVar1 + 0x604) = 3;
-    break;
-  case 4:
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-    iVar1 = _g_MenuMgr;
-    showroom_step_sub_002d4ae0(8);
-    *(undefined4 *)(iVar1 + 0x638) = 3;
-    break;
-  case 5:
-  case 6:
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-    iVar1 = _g_MenuMgr;
-    lVar2 = menuscr_step_sub_0020f950();
-    if (lVar2 == 0) {
-      *(undefined4 *)(iVar1 + 0x650) = 1;
+  if (*(uint *)(_g_MenuMgr + 0x30) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    case 1:
+      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
+      iVar1 = _g_MenuMgr;
+      showroom_step_sub_002d4ae0(8);
+      *(undefined4 *)(iVar1 + 0x5a4) = 3;
+      break;
+    case 2:
+      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
+      iVar1 = _g_MenuMgr;
+      showroom_step_sub_002d4ae0(8);
+      *(undefined4 *)(iVar1 + 0x5e4) = 3;
+      break;
+    case 3:
+      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
+      iVar1 = _g_MenuMgr;
+      showroom_step_sub_002d4ae0(8);
+      *(undefined4 *)(iVar1 + 0x604) = 3;
+      break;
+    case 4:
+      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
+      iVar1 = _g_MenuMgr;
+      showroom_step_sub_002d4ae0(8);
+      *(undefined4 *)(iVar1 + 0x638) = 3;
+      break;
+    case 5:
+      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
+      iVar1 = _g_MenuMgr;
+      lVar2 = menuscr_step_sub_0020f950();
+      if (lVar2 == 0) {
+        *(undefined4 *)(iVar1 + 0x650) = 1;
+      }
+      menuscr_draw_sub_0020f570();
     }
-    menuscr_draw_sub_0020f570();
   }
   return;
 }
@@ -2115,75 +2124,77 @@ undefined8 MenuMgr_ChangeScreen(void)
     UiLayout_Free(_g_MenuMgr + 0x40);
   }
   iVar2 = _g_MenuMgr;
-  switch(*(undefined4 *)(_g_MenuMgr + 0x30)) {
-  case 1:
-    *(undefined4 *)(_g_MenuMgr + 0x534) = 0;
-    iVar4 = iVar2 + 0x534;
-    *(undefined4 *)(iVar2 + 0x538) = 0;
-    *(undefined4 *)(iVar2 + 0x53c) = 0;
-    iVar3 = 0;
-    *(undefined4 *)(iVar2 + 0x540) = 0;
-    *(undefined4 *)(iVar2 + 0x594) = 0;
-    *(undefined4 *)(iVar2 + 0x598) = 0;
-    *(undefined4 *)(iVar2 + 0x59c) = *(undefined4 *)(iVar2 + 0x598);
-    *(undefined4 *)(iVar2 + 0x5a0) = 0;
-    *(undefined4 *)(iVar2 + 0x544) = 0xfffffffe;
-    iVar2 = iVar4;
-    do {
-      *(undefined2 *)(iVar2 + 0x14) = 0x162;
-      iVar3 = iVar3 + 7;
-      *(undefined2 *)(iVar2 + 0x16) = 0x162;
-      *(undefined2 *)(iVar2 + 0x18) = 0x162;
-      *(undefined2 *)(iVar2 + 0x1a) = 0x162;
-      *(undefined2 *)(iVar2 + 0x1c) = 0x162;
-      *(undefined2 *)(iVar2 + 0x1e) = 0x162;
-      *(undefined2 *)(iVar2 + 0x20) = 0x162;
-      iVar2 = iVar2 + 0xe;
-    } while (iVar3 < 0x15);
-    iVar2 = 0;
-    do {
-      *(undefined2 *)(iVar4 + 0x3e) = 0xfffe;
-      iVar2 = iVar2 + 8;
-      *(undefined2 *)(iVar4 + 0x40) = 0xfffe;
-      *(undefined2 *)(iVar4 + 0x42) = 0xfffe;
-      *(undefined2 *)(iVar4 + 0x44) = 0xfffe;
-      *(undefined2 *)(iVar4 + 0x46) = 0xfffe;
-      *(undefined2 *)(iVar4 + 0x48) = 0xfffe;
-      *(undefined2 *)(iVar4 + 0x4a) = 0xfffe;
-      *(undefined2 *)(iVar4 + 0x4c) = 0xfffe;
-      iVar4 = iVar4 + 0x10;
-    } while (iVar2 < 0x10);
-    goto LAB_001fb9f0;
-  case 2:
-    *(undefined1 *)(_g_MenuMgr + 0x5ac) = 1;
-    *(undefined4 *)(iVar2 + 0x5b8) = 0;
-    *(undefined4 *)(iVar2 + 0x5b4) = 0xffffffff;
-    *(undefined4 *)(iVar2 + 0x5e8) = 0;
-    *(undefined4 *)(iVar2 + 0x5d8) = 0xffffffff;
-    *(undefined4 *)(iVar2 + 0x5dc) = 0;
-    break;
-  case 3:
-    *(undefined4 *)(_g_MenuMgr + 0x5f0) = 0;
-    *(undefined4 *)(iVar2 + 0x60c) = 0;
-    *(undefined4 *)(iVar2 + 0x5fc) = 0;
-    *(undefined4 *)(iVar2 + 0x600) = 0;
-    break;
-  case 4:
-    *(undefined1 *)(_g_MenuMgr + 0x620) = 1;
-    *(undefined4 *)(iVar2 + 0x624) = 0xffffffff;
-    *(undefined4 *)(iVar2 + 0x628) = 0xffffffff;
-    *(undefined4 *)(iVar2 + 0x634) = 0;
-    *(undefined4 *)(iVar2 + 0x62c) = 0;
-    *(undefined4 *)(iVar2 + 0x614) = 0xffffffff;
-    *(undefined4 *)(iVar2 + 0x618) = 0;
-    break;
-  case 5:
-  case 6:
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
-    *(undefined1 *)(iVar2 + 0x640) = 0;
-    *(undefined4 *)(iVar2 + 0x648) = 0xa0;
-    *(undefined4 *)(iVar2 + 0x64c) = 0x31;
-    *(undefined4 *)(iVar2 + 0x650) = 0;
+  if (*(uint *)(_g_MenuMgr + 0x30) < 7) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    case 1:
+      *(undefined4 *)(_g_MenuMgr + 0x534) = 0;
+      iVar4 = iVar2 + 0x534;
+      *(undefined4 *)(iVar2 + 0x538) = 0;
+      *(undefined4 *)(iVar2 + 0x53c) = 0;
+      iVar3 = 0;
+      *(undefined4 *)(iVar2 + 0x540) = 0;
+      *(undefined4 *)(iVar2 + 0x594) = 0;
+      *(undefined4 *)(iVar2 + 0x598) = 0;
+      *(undefined4 *)(iVar2 + 0x59c) = *(undefined4 *)(iVar2 + 0x598);
+      *(undefined4 *)(iVar2 + 0x5a0) = 0;
+      *(undefined4 *)(iVar2 + 0x544) = 0xfffffffe;
+      iVar2 = iVar4;
+      do {
+        *(undefined2 *)(iVar2 + 0x14) = 0x162;
+        iVar3 = iVar3 + 7;
+        *(undefined2 *)(iVar2 + 0x16) = 0x162;
+        *(undefined2 *)(iVar2 + 0x18) = 0x162;
+        *(undefined2 *)(iVar2 + 0x1a) = 0x162;
+        *(undefined2 *)(iVar2 + 0x1c) = 0x162;
+        *(undefined2 *)(iVar2 + 0x1e) = 0x162;
+        *(undefined2 *)(iVar2 + 0x20) = 0x162;
+        iVar2 = iVar2 + 0xe;
+      } while (iVar3 < 0x15);
+      iVar2 = 0;
+      do {
+        *(undefined2 *)(iVar4 + 0x3e) = 0xfffe;
+        iVar2 = iVar2 + 8;
+        *(undefined2 *)(iVar4 + 0x40) = 0xfffe;
+        *(undefined2 *)(iVar4 + 0x42) = 0xfffe;
+        *(undefined2 *)(iVar4 + 0x44) = 0xfffe;
+        *(undefined2 *)(iVar4 + 0x46) = 0xfffe;
+        *(undefined2 *)(iVar4 + 0x48) = 0xfffe;
+        *(undefined2 *)(iVar4 + 0x4a) = 0xfffe;
+        *(undefined2 *)(iVar4 + 0x4c) = 0xfffe;
+        iVar4 = iVar4 + 0x10;
+      } while (iVar2 < 0x10);
+      goto LAB_001fb9f0;
+    case 2:
+      *(undefined1 *)(_g_MenuMgr + 0x5ac) = 1;
+      *(undefined4 *)(iVar2 + 0x5b8) = 0;
+      *(undefined4 *)(iVar2 + 0x5b4) = 0xffffffff;
+      *(undefined4 *)(iVar2 + 0x5e8) = 0;
+      *(undefined4 *)(iVar2 + 0x5d8) = 0xffffffff;
+      *(undefined4 *)(iVar2 + 0x5dc) = 0;
+      break;
+    case 3:
+      *(undefined4 *)(_g_MenuMgr + 0x5f0) = 0;
+      *(undefined4 *)(iVar2 + 0x60c) = 0;
+      *(undefined4 *)(iVar2 + 0x5fc) = 0;
+      *(undefined4 *)(iVar2 + 0x600) = 0;
+      break;
+    case 4:
+      *(undefined1 *)(_g_MenuMgr + 0x620) = 1;
+      *(undefined4 *)(iVar2 + 0x624) = 0xffffffff;
+      *(undefined4 *)(iVar2 + 0x628) = 0xffffffff;
+      *(undefined4 *)(iVar2 + 0x634) = 0;
+      *(undefined4 *)(iVar2 + 0x62c) = 0;
+      *(undefined4 *)(iVar2 + 0x614) = 0xffffffff;
+      *(undefined4 *)(iVar2 + 0x618) = 0;
+      break;
+    case 5:
+      *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
+      *(undefined1 *)(iVar2 + 0x640) = 0;
+      *(undefined4 *)(iVar2 + 0x648) = 0xa0;
+      *(undefined4 *)(iVar2 + 0x64c) = 0x31;
+      *(undefined4 *)(iVar2 + 0x650) = 0;
+    }
   }
 LAB_001fb9f0:
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xf7ffffff;
@@ -2196,8 +2207,9 @@ LAB_001fb9f0:
 void MenuMgr_DrawCar(void)
 
 {
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 0x200) == 0) {
-    switch(*(undefined4 *)(_g_MenuMgr + 0x30)) {
+  if (((*(uint *)(_g_MenuMgr + 0x28) & 0x200) == 0) && (*(uint *)(_g_MenuMgr + 0x30) < 7)) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(_g_MenuMgr + 0x30)) {
     case 1:
       MenuCar_Render(_g_MenuMgr + 0x534);
       return;
@@ -2211,7 +2223,6 @@ void MenuMgr_DrawCar(void)
       MenuCar_Draw(_g_MenuMgr + 0x614);
       break;
     case 5:
-    case 6:
       menuscr_leaf_sub_0020f900
                 (*(undefined4 *)(_g_MenuMgr + 0x644),*(undefined1 *)(_g_MenuMgr + 0x640),
                  *(undefined4 *)(_g_MenuMgr + 0x648),*(undefined4 *)(_g_MenuMgr + 0x64c));
@@ -2286,7 +2297,7 @@ void MenuMgr_Update(void)
 bool MenuMgr_EnterScreen(void)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   int iVar2;
   long lVar3;
   bool bVar4;
@@ -2297,23 +2308,26 @@ bool MenuMgr_EnterScreen(void)
     bVar4 = false;
   }
   else {
+    uVar1 = *(uint *)(_g_MenuMgr + 0x30);
     bVar4 = false;
-    if (*(int *)(_g_MenuMgr + 0x30) == *(int *)(_g_MenuMgr + 0x34)) {
-      switch(*(int *)(_g_MenuMgr + 0x30)) {
-      case 0:
-        break;
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-      case 5:
-      case 6:
-        lVar3 = menuscr_step_sub_0020f970();
-        bVar4 = lVar3 != 1;
+    if (uVar1 == *(uint *)(_g_MenuMgr + 0x34)) {
+      if (uVar1 < 7) {
+                    /* WARNING: Switch is manually overridden */
+        switch(uVar1) {
+        case 0:
+          break;
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+        case 4:
+          break;
+        case 5:
+          lVar3 = menuscr_step_sub_0020f970();
+          bVar4 = lVar3 != 1;
+        }
       }
       if (bVar4 == false) {
         *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xfffffdff;
@@ -2322,14 +2336,15 @@ bool MenuMgr_EnterScreen(void)
     else {
       bVar4 = true;
       lVar3 = MenuMgr_ChangeScreen();
-      if ((lVar3 == 0) && ((*(uint *)(_g_MenuMgr + 0x28) & 0x100) == 0)) {
-        uVar1 = *(undefined4 *)(_g_MenuMgr + 0x34);
+      if (((lVar3 == 0) && ((*(uint *)(_g_MenuMgr + 0x28) & 0x100) == 0)) &&
+         (uVar1 = *(uint *)(_g_MenuMgr + 0x34), uVar1 < 7)) {
+                    /* WARNING: Switch is manually overridden */
         switch(uVar1) {
         case 0:
-          *(undefined4 *)(_g_MenuMgr + 0x30) = uVar1;
+          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
           break;
         case 1:
-          *(undefined4 *)(_g_MenuMgr + 0x30) = uVar1;
+          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
           iVar2 = _g_MenuMgr;
           puVar5 = (undefined4 *)(_g_MenuMgr + 0x534);
           Garage3d_Load(0,0xc20);
@@ -2340,7 +2355,7 @@ bool MenuMgr_EnterScreen(void)
           *(undefined4 *)(iVar2 + 0x59c) = 0xffffffff;
           break;
         case 2:
-          *(undefined4 *)(_g_MenuMgr + 0x30) = uVar1;
+          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
           iVar2 = _g_MenuMgr;
           puVar6 = (undefined1 *)(_g_MenuMgr + 0x5ac);
           Garage3d_Load(1,0xc20);
@@ -2355,7 +2370,7 @@ bool MenuMgr_EnterScreen(void)
           *(undefined4 *)(iVar2 + 0x5ec) = 0;
           break;
         case 3:
-          *(undefined4 *)(_g_MenuMgr + 0x30) = uVar1;
+          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
           iVar2 = _g_MenuMgr;
           showroom_step_sub_002d6850(1,0xc20);
           *(undefined4 *)(iVar2 + 0x600) = 0;
@@ -2364,7 +2379,7 @@ bool MenuMgr_EnterScreen(void)
           *(undefined4 *)(iVar2 + 0x608) = 0;
           break;
         case 4:
-          *(undefined4 *)(_g_MenuMgr + 0x30) = uVar1;
+          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
           iVar2 = _g_MenuMgr;
           puVar5 = (undefined4 *)(_g_MenuMgr + 0x614);
           showroom_step_sub_002d88b0(1,0xc20);
@@ -2376,7 +2391,6 @@ bool MenuMgr_EnterScreen(void)
           *(undefined4 *)(iVar2 + 0x63c) = 0;
           break;
         case 5:
-        case 6:
           if (*(int *)(_g_MenuMgr + 0x38) != *(int *)(_g_MenuMgr + 0x3c)) {
             MenuSnd_PlayVoice();
             *(undefined4 *)(_g_MenuMgr + 0x38) = *(undefined4 *)(_g_MenuMgr + 0x3c);

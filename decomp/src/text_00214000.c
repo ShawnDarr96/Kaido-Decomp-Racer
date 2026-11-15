@@ -4,9 +4,9 @@
 
 // 0x002144a0  size 0x7b8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a020 */
+/* entry 0 of state table 0x32a020 used by maybe_PageCarPartInfo_Update */
 
-void screc32a020_enter_sub_002144a0(int param_1)
+void maybe_PageCarPartInfo_State0(int param_1)
 
 {
   int iVar1;
@@ -315,9 +315,9 @@ void screc32a020_enter_sub_002144a0(int param_1)
 
 // 0x00214c60  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276f8 */
+/* menu page 2 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3276f8_exit_sub_00214c60(void)
+void maybe_PageCarPartInfo_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -326,9 +326,9 @@ void screc3276f8_exit_sub_00214c60(void)
 
 // 0x00214c80  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276f8 */
+/* menu page 2 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3276f8_update_sub_00214c80(undefined8 param_1)
+void maybe_PageCarPartInfo_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -336,8 +336,7 @@ void screc3276f8_update_sub_00214c80(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_screc32a020_enter_sub_002144a0_0032a020)[*(int *)((int)param_1 + 0x4c0)])(param_1)
-  ;
+  (*(code *)(&PTR_maybe_PageCarPartInfo_State0_0032a020)[*(int *)((int)param_1 + 0x4c0)])(param_1);
   if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
      (lVar1 = Menu_IsInputIdle((int)param_1 + 0x4bc), lVar1 == 1)) {
     if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
@@ -349,9 +348,9 @@ void screc3276f8_update_sub_00214c80(undefined8 param_1)
 
 // 0x00214d40  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3276f8 */
+/* menu page 2 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3276f8_enter_sub_00214d40(void)
+void maybe_PageCarPartInfo_Enter(void)
 
 {
   Menu_ShowDialog(_g_MenuMgr + 0x654,0x117,4);

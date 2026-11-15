@@ -1753,37 +1753,40 @@ void Eventui_Draw_Hakone_6c90(undefined8 param_1)
       lVar6 = UiLayout_UpdateAnimById(8,1);
       if (lVar6 == 0 && (lVar5 == 0 && (lVar3 == 0 && lVar4 == 0))) {
         Composer_ConsumeRedraw(param_1);
-        uVar1 = *(undefined4 *)(iVar2 + 0x50);
+        uVar9 = *(uint *)(iVar2 + 0x50);
         goto LAB_002e6d1c;
       }
     }
   }
-  uVar1 = *(undefined4 *)(iVar2 + 0x50);
+  uVar9 = *(uint *)(iVar2 + 0x50);
 LAB_002e6d1c:
   uVar7 = 0xffffffffffffffff;
-  switch(uVar1) {
-  case 0:
-    if (*(int *)(iVar2 + 0x70) == -1) {
-      uVar7 = 0x1d;
+  if (uVar9 < 6) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar9) {
+    case 0:
+      if (*(int *)(iVar2 + 0x70) == -1) {
+        uVar7 = 0x1d;
+      }
+      else {
+        uVar7 = 0x33;
+      }
+      break;
+    case 1:
+      uVar7 = 0x1e;
+      break;
+    case 2:
+      uVar7 = 0x1f;
+      break;
+    case 3:
+      uVar7 = 0x20;
+      break;
+    case 4:
+      uVar7 = 0x21;
+      break;
+    case 5:
+      uVar7 = 0x22;
     }
-    else {
-      uVar7 = 0x33;
-    }
-    break;
-  case 1:
-    uVar7 = 0x1e;
-    break;
-  case 2:
-    uVar7 = 0x1f;
-    break;
-  case 3:
-    uVar7 = 0x20;
-    break;
-  case 4:
-    uVar7 = 0x21;
-    break;
-  case 5:
-    uVar7 = 0x22;
   }
   Composer_DrawLabel(uVar7,3);
   MenuWnd_DrawText(7,0x45,1);

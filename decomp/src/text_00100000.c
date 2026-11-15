@@ -972,11 +972,12 @@ byte * maybe___FindExceptionHandler(undefined8 param_1,undefined8 param_2,undefi
   else {
     bVar3 = *pbStack_2f8 & 0x1f;
   }
-  do {
+  while (bVar3 < 0x10) {
+                    /* WARNING: Switch is manually overridden */
     switch(bVar3) {
-    default:
-      maybe_std_terminate();
-      return pbStack_2f8;
+    case 1:
+    case 0xe:
+      goto switchD_0010161c_caseD_1;
     case 0xc:
       iStack_10 = *(int *)(pbStack_2f8 + 1);
       if (iStack_10 == 0) {
@@ -1022,21 +1023,13 @@ LAB_001016f0:
         puVar5[5] = pbVar2;
         maybe___JumpToHandler(param_1,param_2,*piVar14 + iStack_30c);
       }
-    case 0:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 0xb:
-    case 0xd:
+    default:
     }
     bVar3 = maybe___UnwindFrame(&iStack_300);
-  } while( true );
+  }
+switchD_0010161c_caseD_1:
+  maybe_std_terminate();
+  return pbStack_2f8;
 }
 
 // 0x00101810  size 0x168
@@ -1114,35 +1107,28 @@ void maybe___UnwindStack(undefined4 *param_1,undefined4 *param_2)
   else {
     bVar1 = *pbStack_2e8 & 0x1f;
   }
-  do {
+  while (bVar1 < 0x10) {
+                    /* WARNING: Switch is manually overridden */
     switch(bVar1) {
-    case 0:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 0xb:
-    case 0xc:
-    case 0xf:
+    default:
       bVar1 = maybe___UnwindFrame(&uStack_2f0);
       break;
-    default:
-      maybe_std_terminate();
+    case 1:
+      goto switchD_00101908_caseD_1;
     case 0xd:
-      maybe___DecodeSignedNumber(pbStack_2e8 + 1,&iStack_4);
-      puVar3 = (undefined4 *)(iStack_2b8 + iStack_4);
-      *param_1 = puVar3[1];
-      param_1[1] = *puVar3;
-      param_1[2] = 0;
-      param_1[3] = puVar3;
-      return;
+      goto switchD_00101908_caseD_d;
     }
-  } while( true );
+  }
+switchD_00101908_caseD_1:
+  maybe_std_terminate();
+switchD_00101908_caseD_d:
+  maybe___DecodeSignedNumber(pbStack_2e8 + 1,&iStack_4);
+  puVar3 = (undefined4 *)(iStack_2b8 + iStack_4);
+  *param_1 = puVar3[1];
+  param_1[1] = *puVar3;
+  param_1[2] = 0;
+  param_1[3] = puVar3;
+  return;
 }
 
 // 0x00101980  size 0x834
@@ -1206,183 +1192,189 @@ code_r0x001019c4:
   if (pbVar9 == (byte *)0x0) goto LAB_001019b8;
   bVar1 = *pbVar9;
 LAB_001020dc:
-  iVar5 = (int)param_1;
-  switch(bVar1 & 0x1f) {
-  default:
-    maybe_std_terminate();
-    break;
-  case 1:
-    maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_4);
-    *(int *)(iVar11 + 8) = *(int *)(iVar11 + 8) + iStack_4;
-    break;
-  case 2:
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_8);
-    (*(code *)*puVar3)(*(int *)(iVar5 + 0x18) + iStack_8,0xffffffffffffffff);
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 3:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_c);
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_10);
-    if ((bVar1 & 0x40) == 0) {
-      cVar8 = *(char *)(*(int *)(iVar5 + 0x18) + iStack_c);
-    }
-    else {
-      cVar8 = (char)*(undefined8 *)(iVar5 + iStack_c * 0x10 + 0x20);
-    }
-    if (cVar8 != '\0') {
-      (*(code *)*puVar3)(*(int *)(iVar5 + 0x18) + iStack_10,0xffffffffffffffff);
-    }
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 4:
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_14);
-    if ((bVar1 & 0x20) == 0) {
-      uVar4 = *(undefined4 *)(*(int *)(iVar5 + 0x18) + iStack_14);
-    }
-    else {
-      uVar4 = (undefined4)*(undefined8 *)(iVar5 + iStack_14 * 0x10 + 0x20);
-    }
-    (*(code *)*puVar3)(uVar4,0xffffffffffffffff);
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 5:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_18);
-    uVar6 = maybe___DecodeUnsignedNumber(uVar6,&iStack_1c);
-    puVar3 = (undefined4 *)maybe___DecodeUnsignedNumber(uVar6,&iStack_20);
-    pcVar2 = (code *)*puVar3;
-    iVar5 = *(int *)(iVar5 + 0x18) + iStack_18 + iStack_1c * iStack_20;
-    for (iVar10 = iStack_1c; iVar10 != 0; iVar10 = iVar10 + -1) {
-      iVar5 = iVar5 - iStack_20;
-      (*pcVar2)(iVar5,0xffffffffffffffff);
-    }
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 6:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_24);
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_28);
-    if ((bVar1 & 0x20) == 0) {
-      iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_24);
-    }
-    else {
-      iVar5 = (int)*(undefined8 *)(iVar5 + iStack_24 * 0x10 + 0x20);
-    }
-    (*(code *)*puVar3)(iVar5 + iStack_28,0);
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 7:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_2c);
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_30);
-    if ((bVar1 & 0x20) == 0) {
-      iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_2c);
-    }
-    else {
-      iVar5 = (int)*(undefined8 *)(iVar5 + iStack_2c * 0x10 + 0x20);
-    }
-    (*(code *)*puVar3)(iVar5 + iStack_30,0xffffffffffffffff);
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 8:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_34);
-    uVar6 = maybe___DecodeSignedNumber(uVar6,&iStack_38);
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_3c);
-    if ((bVar1 & 0x40) == 0) {
-      cVar8 = *(char *)(*(int *)(iVar5 + 0x18) + iStack_34);
-    }
-    else {
-      cVar8 = (char)*(undefined8 *)(iVar5 + iStack_34 * 0x10 + 0x20);
-    }
-    if (cVar8 != '\0') {
-      if ((bVar1 & 0x20) == 0) {
-        iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_38);
+  if ((bVar1 & 0x1f) < 0x10) {
+    iVar5 = (int)param_1;
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar1 & 0x1f) {
+    default:
+      goto switchD_00102100_caseD_0;
+    case 1:
+      maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_4);
+      *(int *)(iVar11 + 8) = *(int *)(iVar11 + 8) + iStack_4;
+      break;
+    case 2:
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_8);
+      (*(code *)*puVar3)(*(int *)(iVar5 + 0x18) + iStack_8,0xffffffffffffffff);
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 3:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_c);
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_10);
+      if ((bVar1 & 0x40) == 0) {
+        cVar8 = *(char *)(*(int *)(iVar5 + 0x18) + iStack_c);
       }
       else {
-        iVar5 = (int)*(undefined8 *)(iVar5 + iStack_38 * 0x10 + 0x20);
+        cVar8 = (char)*(undefined8 *)(iVar5 + iStack_c * 0x10 + 0x20);
       }
-      (*(code *)*puVar3)(iVar5 + iStack_3c,0xffffffffffffffff);
-    }
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 9:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_40);
-    uVar6 = maybe___DecodeSignedNumber(uVar6,&iStack_44);
-    uVar6 = maybe___DecodeUnsignedNumber(uVar6,&iStack_48);
-    puVar3 = (undefined4 *)maybe___DecodeUnsignedNumber(uVar6,&iStack_4c);
-    pcVar2 = (code *)*puVar3;
-    if ((bVar1 & 0x20) == 0) {
-      iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_40);
-    }
-    else {
-      iVar5 = (int)*(undefined8 *)(iVar5 + iStack_40 * 0x10 + 0x20);
-    }
-    iVar5 = iVar5 + iStack_44 + iStack_48 * iStack_4c;
-    for (iVar10 = iStack_48; iVar10 != 0; iVar10 = iVar10 + -1) {
-      iVar5 = iVar5 - iStack_4c;
-      (*pcVar2)(iVar5,0xffffffffffffffff);
-    }
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 10:
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_50);
-    if ((bVar1 & 0x20) == 0) {
-      uVar4 = *(undefined4 *)(*(int *)(iVar5 + 0x18) + iStack_50);
-    }
-    else {
-      uVar4 = (undefined4)*(undefined8 *)(iVar5 + iStack_50 * 0x10 + 0x20);
-    }
-    (*(code *)*puVar3)(uVar4);
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 0xb:
-    uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_54);
-    puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_58);
-    if ((bVar1 & 0x40) == 0) {
-      cVar8 = *(char *)(*(int *)(iVar5 + 0x18) + iStack_54);
-    }
-    else {
-      cVar8 = (char)*(undefined8 *)(iVar5 + iStack_54 * 0x10 + 0x20);
-    }
-    if (cVar8 != '\0') {
+      if (cVar8 != '\0') {
+        (*(code *)*puVar3)(*(int *)(iVar5 + 0x18) + iStack_10,0xffffffffffffffff);
+      }
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 4:
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_14);
       if ((bVar1 & 0x20) == 0) {
-        uVar4 = *(undefined4 *)(*(int *)(iVar5 + 0x18) + iStack_58);
+        uVar4 = *(undefined4 *)(*(int *)(iVar5 + 0x18) + iStack_14);
       }
       else {
-        uVar4 = (undefined4)*(undefined8 *)(iVar5 + iStack_58 * 0x10 + 0x20);
+        uVar4 = (undefined4)*(undefined8 *)(iVar5 + iStack_14 * 0x10 + 0x20);
+      }
+      (*(code *)*puVar3)(uVar4,0xffffffffffffffff);
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 5:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_18);
+      uVar6 = maybe___DecodeUnsignedNumber(uVar6,&iStack_1c);
+      puVar3 = (undefined4 *)maybe___DecodeUnsignedNumber(uVar6,&iStack_20);
+      pcVar2 = (code *)*puVar3;
+      iVar5 = *(int *)(iVar5 + 0x18) + iStack_18 + iStack_1c * iStack_20;
+      for (iVar10 = iStack_1c; iVar10 != 0; iVar10 = iVar10 + -1) {
+        iVar5 = iVar5 - iStack_20;
+        (*pcVar2)(iVar5,0xffffffffffffffff);
+      }
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 6:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_24);
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_28);
+      if ((bVar1 & 0x20) == 0) {
+        iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_24);
+      }
+      else {
+        iVar5 = (int)*(undefined8 *)(iVar5 + iStack_24 * 0x10 + 0x20);
+      }
+      (*(code *)*puVar3)(iVar5 + iStack_28,0);
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 7:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_2c);
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_30);
+      if ((bVar1 & 0x20) == 0) {
+        iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_2c);
+      }
+      else {
+        iVar5 = (int)*(undefined8 *)(iVar5 + iStack_2c * 0x10 + 0x20);
+      }
+      (*(code *)*puVar3)(iVar5 + iStack_30,0xffffffffffffffff);
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 8:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_34);
+      uVar6 = maybe___DecodeSignedNumber(uVar6,&iStack_38);
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_3c);
+      if ((bVar1 & 0x40) == 0) {
+        cVar8 = *(char *)(*(int *)(iVar5 + 0x18) + iStack_34);
+      }
+      else {
+        cVar8 = (char)*(undefined8 *)(iVar5 + iStack_34 * 0x10 + 0x20);
+      }
+      if (cVar8 != '\0') {
+        if ((bVar1 & 0x20) == 0) {
+          iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_38);
+        }
+        else {
+          iVar5 = (int)*(undefined8 *)(iVar5 + iStack_38 * 0x10 + 0x20);
+        }
+        (*(code *)*puVar3)(iVar5 + iStack_3c,0xffffffffffffffff);
+      }
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 9:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_40);
+      uVar6 = maybe___DecodeSignedNumber(uVar6,&iStack_44);
+      uVar6 = maybe___DecodeUnsignedNumber(uVar6,&iStack_48);
+      puVar3 = (undefined4 *)maybe___DecodeUnsignedNumber(uVar6,&iStack_4c);
+      pcVar2 = (code *)*puVar3;
+      if ((bVar1 & 0x20) == 0) {
+        iVar5 = *(int *)(*(int *)(iVar5 + 0x18) + iStack_40);
+      }
+      else {
+        iVar5 = (int)*(undefined8 *)(iVar5 + iStack_40 * 0x10 + 0x20);
+      }
+      iVar5 = iVar5 + iStack_44 + iStack_48 * iStack_4c;
+      for (iVar10 = iStack_48; iVar10 != 0; iVar10 = iVar10 + -1) {
+        iVar5 = iVar5 - iStack_4c;
+        (*pcVar2)(iVar5,0xffffffffffffffff);
+      }
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 10:
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_50);
+      if ((bVar1 & 0x20) == 0) {
+        uVar4 = *(undefined4 *)(*(int *)(iVar5 + 0x18) + iStack_50);
+      }
+      else {
+        uVar4 = (undefined4)*(undefined8 *)(iVar5 + iStack_50 * 0x10 + 0x20);
       }
       (*(code *)*puVar3)(uVar4);
-    }
-    *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
-    break;
-  case 0xc:
-    if (param_3 == pbVar9) {
-      return;
-    }
-    uVar6 = maybe___DecodeUnsignedNumber(pbVar9 + 5,auStack_60);
-    uVar4 = maybe___DecodeSignedNumber(uVar6,auStack_64);
-    *(undefined4 *)(iVar11 + 8) = uVar4;
-    break;
-  case 0xd:
-    uVar4 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_68);
-    piVar7 = (int *)(*(int *)(iVar5 + 0x18) + iStack_68);
-    pcVar2 = (code *)piVar7[2];
-    if (pcVar2 != (code *)0x0) {
-      iVar10 = *piVar7;
-      if (*(int *)(iVar5 + 4) != iVar10) {
-        (*pcVar2)(iVar10,0xffffffffffffffff);
-        *(undefined4 *)(iVar11 + 8) = uVar4;
-        break;
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 0xb:
+      uVar6 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_54);
+      puVar3 = (undefined4 *)maybe___DecodeSignedNumber(uVar6,&iStack_58);
+      if ((bVar1 & 0x40) == 0) {
+        cVar8 = *(char *)(*(int *)(iVar5 + 0x18) + iStack_54);
       }
-      *(code **)(iVar5 + 8) = pcVar2;
+      else {
+        cVar8 = (char)*(undefined8 *)(iVar5 + iStack_54 * 0x10 + 0x20);
+      }
+      if (cVar8 != '\0') {
+        if ((bVar1 & 0x20) == 0) {
+          uVar4 = *(undefined4 *)(*(int *)(iVar5 + 0x18) + iStack_58);
+        }
+        else {
+          uVar4 = (undefined4)*(undefined8 *)(iVar5 + iStack_58 * 0x10 + 0x20);
+        }
+        (*(code *)*puVar3)(uVar4);
+      }
+      *(undefined4 **)(iVar11 + 8) = puVar3 + 1;
+      break;
+    case 0xc:
+      if (param_3 == pbVar9) {
+        return;
+      }
+      uVar6 = maybe___DecodeUnsignedNumber(pbVar9 + 5,auStack_60);
+      uVar4 = maybe___DecodeSignedNumber(uVar6,auStack_64);
+      *(undefined4 *)(iVar11 + 8) = uVar4;
+      break;
+    case 0xd:
+      uVar4 = maybe___DecodeSignedNumber(pbVar9 + 1,&iStack_68);
+      piVar7 = (int *)(*(int *)(iVar5 + 0x18) + iStack_68);
+      pcVar2 = (code *)piVar7[2];
+      if (pcVar2 != (code *)0x0) {
+        iVar10 = *piVar7;
+        if (*(int *)(iVar5 + 4) != iVar10) {
+          (*pcVar2)(iVar10,0xffffffffffffffff);
+          *(undefined4 *)(iVar11 + 8) = uVar4;
+          break;
+        }
+        *(code **)(iVar5 + 8) = pcVar2;
+      }
+      *(undefined4 *)(iVar11 + 8) = uVar4;
+      break;
+    case 0xf:
+      if (param_3 == pbVar9) {
+        return;
+      }
+      uVar6 = maybe___DecodeUnsignedNumber(pbVar9 + 1,&iStack_6c);
+      uVar6 = maybe___DecodeUnsignedNumber(uVar6,auStack_70);
+      iVar5 = maybe___DecodeSignedNumber(uVar6,auStack_74);
+      *(int *)(iVar11 + 8) = iVar5 + iStack_6c * 4;
     }
-    *(undefined4 *)(iVar11 + 8) = uVar4;
-    break;
-  case 0xf:
-    if (param_3 == pbVar9) {
-      return;
-    }
-    uVar6 = maybe___DecodeUnsignedNumber(pbVar9 + 1,&iStack_6c);
-    uVar6 = maybe___DecodeUnsignedNumber(uVar6,auStack_70);
-    iVar5 = maybe___DecodeSignedNumber(uVar6,auStack_74);
-    *(int *)(iVar11 + 8) = iVar5 + iStack_6c * 4;
+  }
+  else {
+switchD_00102100_caseD_0:
+    maybe_std_terminate();
   }
   if ((bVar1 & 0x80) != 0) {
     *(undefined4 *)(iVar11 + 8) = 0;
@@ -1394,8 +1386,8 @@ LAB_001020dc:
 void maybe___UnwindFrame(undefined8 param_1)
 
 {
-  byte bVar1;
-  byte *pbVar2;
+  byte *pbVar1;
+  byte bVar2;
   undefined4 uVar3;
   int iVar4;
   undefined8 uVar5;
@@ -1430,8 +1422,8 @@ void maybe___UnwindFrame(undefined8 param_1)
   undefined1 auStack_4 [4];
   
   iVar6 = (int)param_1;
-  pbVar2 = *(byte **)(iVar6 + 8);
-  while ((pbVar2 == (byte *)0x0 || ((*pbVar2 & 0x80) != 0))) {
+  pbVar1 = *(byte **)(iVar6 + 8);
+  while ((pbVar1 == (byte *)0x0 || ((*pbVar1 & 0x80) != 0))) {
     uVar5 = maybe___RestoreSavedRegisters(iVar6 + 0x20,param_1);
     maybe___FindExceptionTable(uVar5,param_1);
     if (*(int *)(iVar6 + 4) == 0) {
@@ -1439,84 +1431,91 @@ void maybe___UnwindFrame(undefined8 param_1)
     }
     maybe___DecodeFrameInfo(iVar6 + 0x20,param_1);
     if (*(int *)(iVar6 + 8) != 0) goto LAB_00102410;
-    pbVar2 = *(byte **)(iVar6 + 8);
+    pbVar1 = *(byte **)(iVar6 + 8);
   }
-  switch(*pbVar2 & 0x1f) {
-  default:
+  bVar2 = *pbVar1 & 0x1f;
+  if (bVar2 < 0x10) {
+                    /* WARNING: Switch is manually overridden */
+    switch(bVar2) {
+    default:
+      goto switchD_00102220_caseD_0;
+    case 2:
+      iVar4 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_4);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 3:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_8);
+      iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_c);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 4:
+      iVar4 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_10);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 5:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_14);
+      uVar5 = maybe___DecodeUnsignedNumber(uVar5,auStack_18);
+      iVar4 = maybe___DecodeUnsignedNumber(uVar5,auStack_1c);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 6:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_20);
+      iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_24);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 7:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_28);
+      iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_2c);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 8:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_30);
+      uVar5 = maybe___DecodeSignedNumber(uVar5,auStack_34);
+      iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_38);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 9:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_3c);
+      uVar5 = maybe___DecodeSignedNumber(uVar5,auStack_40);
+      uVar5 = maybe___DecodeUnsignedNumber(uVar5,auStack_44);
+      iVar4 = maybe___DecodeUnsignedNumber(uVar5,auStack_48);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 10:
+      iVar4 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_4c);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 0xb:
+      uVar5 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_50);
+      iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_54);
+      *(int *)(iVar6 + 8) = iVar4 + 4;
+      break;
+    case 0xc:
+      uVar5 = maybe___DecodeUnsignedNumber(pbVar1 + 5,auStack_5c);
+      uVar3 = maybe___DecodeSignedNumber(uVar5,auStack_60);
+      *(undefined4 *)(iVar6 + 8) = uVar3;
+      break;
+    case 0xd:
+      uVar3 = maybe___DecodeSignedNumber(pbVar1 + 1,auStack_64);
+      *(undefined4 *)(iVar6 + 8) = uVar3;
+      break;
+    case 0xf:
+      uVar5 = maybe___DecodeUnsignedNumber(pbVar1 + 1,&iStack_68);
+      uVar5 = maybe___DecodeUnsignedNumber(uVar5,auStack_6c);
+      iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_70);
+      *(int *)(iVar6 + 8) = iVar4 + iStack_68 * 4;
+    }
+  }
+  else {
+switchD_00102220_caseD_0:
     maybe_std_terminate();
-    break;
-  case 2:
-    iVar4 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_4);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 3:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_8);
-    iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_c);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 4:
-    iVar4 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_10);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 5:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_14);
-    uVar5 = maybe___DecodeUnsignedNumber(uVar5,auStack_18);
-    iVar4 = maybe___DecodeUnsignedNumber(uVar5,auStack_1c);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 6:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_20);
-    iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_24);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 7:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_28);
-    iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_2c);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 8:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_30);
-    uVar5 = maybe___DecodeSignedNumber(uVar5,auStack_34);
-    iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_38);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 9:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_3c);
-    uVar5 = maybe___DecodeSignedNumber(uVar5,auStack_40);
-    uVar5 = maybe___DecodeUnsignedNumber(uVar5,auStack_44);
-    iVar4 = maybe___DecodeUnsignedNumber(uVar5,auStack_48);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 10:
-    iVar4 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_4c);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 0xb:
-    uVar5 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_50);
-    iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_54);
-    *(int *)(iVar6 + 8) = iVar4 + 4;
-    break;
-  case 0xc:
-    uVar5 = maybe___DecodeUnsignedNumber(pbVar2 + 5,auStack_5c);
-    uVar3 = maybe___DecodeSignedNumber(uVar5,auStack_60);
-    *(undefined4 *)(iVar6 + 8) = uVar3;
-    break;
-  case 0xd:
-    uVar3 = maybe___DecodeSignedNumber(pbVar2 + 1,auStack_64);
-    *(undefined4 *)(iVar6 + 8) = uVar3;
-    break;
-  case 0xf:
-    uVar5 = maybe___DecodeUnsignedNumber(pbVar2 + 1,&iStack_68);
-    uVar5 = maybe___DecodeUnsignedNumber(uVar5,auStack_6c);
-    iVar4 = maybe___DecodeSignedNumber(uVar5,auStack_70);
-    *(int *)(iVar6 + 8) = iVar4 + iStack_68 * 4;
   }
 LAB_00102410:
-  bVar1 = **(byte **)(iVar6 + 8);
-  while ((bVar1 & 0x1f) == 1) {
+  bVar2 = **(byte **)(iVar6 + 8);
+  while ((bVar2 & 0x1f) == 1) {
     maybe___DecodeSignedNumber(*(int *)(iVar6 + 8) + 1,&iStack_74);
     *(int *)(iVar6 + 8) = *(int *)(iVar6 + 8) + iStack_74;
-    bVar1 = **(byte **)(iVar6 + 8);
+    bVar2 = **(byte **)(iVar6 + 8);
   }
   return;
 }

@@ -682,7 +682,7 @@ void ScrNameentryGetField48200_Entere9590(void)
 /* WARNING: Removing unreachable block (ram,0x002e9718) */
 /* WARNING: Removing unreachable block (ram,0x002e9744) */
 
-void eventui_step_sub_002e96a0(undefined8 param_1,undefined8 param_2,char param_3,ulong param_4)
+void eventui_step_sub_002e96a0(undefined8 param_1,undefined8 param_2,byte param_3,ulong param_4)
 
 {
   bool bVar1;
@@ -690,85 +690,17 @@ void eventui_step_sub_002e96a0(undefined8 param_1,undefined8 param_2,char param_
   float *pfVar3;
   float fVar4;
   
-  switch(param_3) {
-  case '\0':
-  case '\t':
-  case '\n':
-  case '\v':
-  case '\f':
-  case '\r':
-  case '\x0e':
-  case '\x0f':
-  case '\x10':
-  case '\x11':
-  case '\x12':
-  case '\x13':
-  case '\x14':
-  case '\x15':
-  case '\x16':
-  case '\x17':
-  case '\x18':
-  case '9':
-  case ':':
-  case ';':
-  case '<':
-  case '=':
-  case '>':
-  case '?':
-  case '@':
-  case 'A':
-  case 'B':
-  case 'C':
-  case 'D':
-  case 'E':
-  case 'F':
-  case 'G':
-  case 'H':
-    bVar1 = false;
-    break;
-  case '\x01':
-  case '\x02':
-  case '\x03':
-  case '\x04':
-  case '\x05':
-  case '\x06':
-  case '\a':
-  case '\b':
-  case '\x19':
-  case '\x1a':
-  case '\x1b':
-  case '\x1c':
-  case '\x1d':
-  case '\x1e':
-  case '\x1f':
-  case ' ':
-  case '!':
-  case '\"':
-  case '#':
-  case '$':
-  case '%':
-  case '&':
-  case '\'':
-  case '(':
-  case ')':
-  case '*':
-  case '+':
-  case ',':
-  case '-':
-  case '.':
-  case '/':
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-    bVar1 = true;
-    break;
-  default:
+  if (param_3 < 0x49) {
+                    /* WARNING: Switch is manually overridden */
+    switch(param_3) {
+    case 0:
+      bVar1 = false;
+      break;
+    case 1:
+      bVar1 = true;
+    }
+  }
+  else {
     bVar1 = false;
   }
   if (bVar1) {
@@ -785,7 +717,7 @@ void eventui_step_sub_002e96a0(undefined8 param_1,undefined8 param_2,char param_
     puVar2 = (uint *)UiElem_GetPropPtr(param_1);
     *puVar2 = (uint)param_4 & 0xff;
   }
-  if (param_3 == '\n') {
+  if (param_3 == 10) {
     UiElem_MarkDirty(param_1);
   }
   return;
@@ -1378,7 +1310,9 @@ LAB_002ea570:
 }
 
 // 0x002ea690  size 0x124
-void eventui_step_sub_002ea690(int param_1)
+/* entry 15 of state table 0x342d70 used by ScrNameentryGetField48200_Updateec910 */
+
+void ScrNameentryGetField48200_Updateec910_State15(int param_1)
 
 {
   char *pcVar1;

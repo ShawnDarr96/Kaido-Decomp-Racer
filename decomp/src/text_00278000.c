@@ -271,7 +271,7 @@ void ScrRace_Draw_Front_8480(int param_1)
     iVar1 = UiMgr_FindLayout(0x69);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x2d,8);
 LAB_002786e4:
-    uVar4 = *(undefined4 *)(param_1 + 0x18);
+    uVar10 = *(uint *)(param_1 + 0x18);
   }
   else {
     iVar2 = UiMgr_FindLayout(0x69);
@@ -283,69 +283,64 @@ LAB_002786e4:
     }
     iVar2 = UiMgr_FindLayout(0x69);
     UiElem_SetPropInt(*_g_UiMgr + iVar2 * 0x4f4 + 4,0x2d,0x16,iVar1 + 0x1f);
-    uVar4 = *(undefined4 *)(param_1 + 0x18);
+    uVar10 = *(uint *)(param_1 + 0x18);
   }
-  switch(uVar4) {
-  case 0:
-  case 1:
-  case 2:
-    *(undefined4 *)(param_1 + 0x9e4) = 0;
-    MenuWnd_DrawText(0x69,0x3c,0x1e4);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,3);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,1);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,1);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + 1);
-    iVar1 = *(int *)(param_1 + 0x9e4);
-    goto LAB_00278a98;
-  case 3:
-  case 4:
-  case 5:
-    *(undefined4 *)(param_1 + 0x9e4) = 1;
-    MenuWnd_DrawText(0x69,0x3c,0x1e5);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,7);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,5);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,5);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + -2);
-    break;
-  case 6:
-  case 7:
-  case 8:
-  case 9:
-  case 10:
-    *(undefined4 *)(param_1 + 0x9e4) = 2;
-    MenuWnd_DrawText(0x69,0x3c,0x1e6);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,2);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,0);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,0);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + -5);
-    break;
-  case 0xb:
-  case 0xc:
-  case 0xd:
-  case 0xe:
-  case 0xf:
-    *(undefined4 *)(param_1 + 0x9e4) = 3;
-    MenuWnd_DrawText(0x69,0x3c,0x1e7);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,6);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,4);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,4);
-    iVar1 = UiMgr_FindLayout(0x69);
-    UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + -10);
+  if (uVar10 < 0x10) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar10) {
+    case 0:
+    case 1:
+    case 2:
+      *(undefined4 *)(param_1 + 0x9e4) = 0;
+      MenuWnd_DrawText(0x69,0x3c,0x1e4);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,3);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,1);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,1);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + 1);
+      iVar1 = *(int *)(param_1 + 0x9e4);
+      goto LAB_00278a98;
+    case 3:
+    case 4:
+    case 5:
+      *(undefined4 *)(param_1 + 0x9e4) = 1;
+      MenuWnd_DrawText(0x69,0x3c,0x1e5);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,7);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,5);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,5);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + -2);
+      break;
+    default:
+      *(undefined4 *)(param_1 + 0x9e4) = 2;
+      MenuWnd_DrawText(0x69,0x3c,0x1e6);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,2);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,0);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,0);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + -5);
+      break;
+    case 0xb:
+      *(undefined4 *)(param_1 + 0x9e4) = 3;
+      MenuWnd_DrawText(0x69,0x3c,0x1e7);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x36,0x16,6);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3a,0x16,4);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,0x16,4);
+      iVar1 = UiMgr_FindLayout(0x69);
+      UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x3b,9,*(int *)(param_1 + 0x18) + -10);
+    }
   }
   iVar1 = *(int *)(param_1 + 0x9e4);
 LAB_00278a98:
@@ -2111,108 +2106,111 @@ LAB_0027baac:
     *(undefined4 *)(param_1 + 0xa18) = 0;
   }
   uVar9 = 0x41;
-  switch(*(undefined4 *)(param_1 + 0xc)) {
-  case 0:
-  case 1:
-  case 2:
-  case 3:
-    unaff_s0_lo = 0;
-    uVar9 = 0x1f7;
-    break;
-  case 4:
-  case 5:
-  case 6:
-  case 7:
-    unaff_s0_lo = 1;
-    uVar9 = 0x1f8;
-    break;
-  case 8:
-    unaff_s0_lo = 2;
-    uVar9 = 0x1f9;
-    break;
-  case 9:
-    unaff_s0_lo = 3;
-    uVar9 = 0x1fa;
-    break;
-  case 10:
-    unaff_s0_lo = 4;
-    uVar9 = 0x22b;
-    break;
-  case 0xb:
-    unaff_s0_lo = 0;
-    uVar9 = 0x1fd;
-    break;
-  case 0xc:
-    unaff_s0_lo = 1;
-    uVar9 = 0x1fe;
-    break;
-  case 0xd:
-    unaff_s0_lo = 2;
-    uVar9 = 0x1ff;
-    break;
-  case 0xe:
-    unaff_s0_lo = 2;
-    uVar9 = 0x1ff;
-    break;
-  case 0xf:
-    unaff_s0_lo = 2;
-    uVar9 = 0x1ff;
-    break;
-  case 0x10:
-    unaff_s0_lo = 3;
-    uVar9 = 0x200;
-    break;
-  case 0x11:
-    unaff_s0_lo = 4;
-    uVar9 = 0x201;
-    break;
-  case 0x12:
-    unaff_s0_lo = 0;
-    uVar9 = 0x202;
-    break;
-  case 0x13:
-    unaff_s0_lo = 1;
-    uVar9 = 0x203;
-    break;
-  case 0x14:
-    unaff_s0_lo = 0;
-    uVar9 = 0x204;
-    break;
-  case 0x15:
-    unaff_s0_lo = 1;
-    uVar9 = 0x205;
-    break;
-  case 0x16:
-    unaff_s0_lo = 2;
-    uVar9 = 0x206;
-    break;
-  case 0x17:
-    unaff_s0_lo = 3;
-    uVar9 = 0x207;
-    break;
-  case 0x18:
-    unaff_s0_lo = 0;
-    uVar9 = 0x20c;
-    break;
-  case 0x1b:
-    unaff_s0_lo = 1;
-    uVar9 = 0x22c;
-    break;
-  case 0x1c:
-    unaff_s0_lo = 2;
-    uVar9 = 0x22d;
-    break;
-  case 0x1d:
-    unaff_s0_lo = 3;
-    uVar9 = 0x22e;
-    break;
-  case 0x1e:
-    unaff_s0_lo = 4;
-    uVar9 = 0x22f;
-    break;
-  case 0x1f:
-    unaff_s0_lo = 5;
-    uVar9 = 0x20d;
+  if (*(uint *)(param_1 + 0xc) < 0x20) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 0xc)) {
+    default:
+      unaff_s0_lo = 0;
+      uVar9 = 0x1f7;
+      break;
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+      unaff_s0_lo = 1;
+      uVar9 = 0x1f8;
+      break;
+    case 8:
+      unaff_s0_lo = 2;
+      uVar9 = 0x1f9;
+      break;
+    case 9:
+      unaff_s0_lo = 3;
+      uVar9 = 0x1fa;
+      break;
+    case 10:
+      unaff_s0_lo = 4;
+      uVar9 = 0x22b;
+      break;
+    case 0xb:
+      unaff_s0_lo = 0;
+      uVar9 = 0x1fd;
+      break;
+    case 0xc:
+      unaff_s0_lo = 1;
+      uVar9 = 0x1fe;
+      break;
+    case 0xd:
+      unaff_s0_lo = 2;
+      uVar9 = 0x1ff;
+      break;
+    case 0xe:
+      unaff_s0_lo = 2;
+      uVar9 = 0x1ff;
+      break;
+    case 0xf:
+      unaff_s0_lo = 2;
+      uVar9 = 0x1ff;
+      break;
+    case 0x10:
+      unaff_s0_lo = 3;
+      uVar9 = 0x200;
+      break;
+    case 0x11:
+      unaff_s0_lo = 4;
+      uVar9 = 0x201;
+      break;
+    case 0x12:
+      unaff_s0_lo = 0;
+      uVar9 = 0x202;
+      break;
+    case 0x13:
+      unaff_s0_lo = 1;
+      uVar9 = 0x203;
+      break;
+    case 0x14:
+      unaff_s0_lo = 0;
+      uVar9 = 0x204;
+      break;
+    case 0x15:
+      unaff_s0_lo = 1;
+      uVar9 = 0x205;
+      break;
+    case 0x16:
+      unaff_s0_lo = 2;
+      uVar9 = 0x206;
+      break;
+    case 0x17:
+      unaff_s0_lo = 3;
+      uVar9 = 0x207;
+      break;
+    case 0x18:
+      unaff_s0_lo = 0;
+      uVar9 = 0x20c;
+      break;
+    case 0x19:
+    case 0x1a:
+      break;
+    case 0x1b:
+      unaff_s0_lo = 1;
+      uVar9 = 0x22c;
+      break;
+    case 0x1c:
+      unaff_s0_lo = 2;
+      uVar9 = 0x22d;
+      break;
+    case 0x1d:
+      unaff_s0_lo = 3;
+      uVar9 = 0x22e;
+      break;
+    case 0x1e:
+      unaff_s0_lo = 4;
+      uVar9 = 0x22f;
+      break;
+    case 0x1f:
+      unaff_s0_lo = 5;
+      uVar9 = 0x20d;
+    }
   }
   if (*piRam0036f468 == 1) {
     if (unaff_s2 == 0x60) {

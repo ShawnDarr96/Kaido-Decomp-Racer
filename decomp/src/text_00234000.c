@@ -66,9 +66,9 @@ void ScrGarage_Draw_Cars_41b0(undefined8 param_1,undefined8 param_2,undefined8 p
 }
 
 // 0x00234200  size 0x9c
-/* screen record 0x32b314 */
+/* entry 11 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus */
 
-void screc32b314_exit_sub_00234200(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrRace_Select_PlayerStatus_State11(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iStack_8;
@@ -82,9 +82,9 @@ void screc32b314_exit_sub_00234200(undefined8 param_1,undefined8 param_2,undefin
 }
 
 // 0x002342a0  size 0x54
-/* screen record 0x32b314 */
+/* entry 10 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus */
 
-void screc32b314_update_sub_002342a0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrRace_Select_PlayerStatus_State10(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -96,9 +96,9 @@ void screc32b314_update_sub_002342a0(undefined8 param_1,undefined8 param_2,undef
 }
 
 // 0x00234300  size 0x44
-/* screen record 0x32b314 */
+/* entry 9 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus */
 
-void screc32b314_enter_sub_00234300(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrRace_Select_PlayerStatus_State9(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -109,9 +109,9 @@ void screc32b314_enter_sub_00234300(undefined8 param_1,undefined8 param_2,undefi
 }
 
 // 0x00234350  size 0x44
-/* screen record 0x32b308 */
+/* entry 8 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus */
 
-void screc32b308_exit_sub_00234350(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrRace_Select_PlayerStatus_State8(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -122,9 +122,9 @@ void screc32b308_exit_sub_00234350(undefined8 param_1,undefined8 param_2,undefin
 }
 
 // 0x002343a0  size 0x4c
-/* screen record 0x32b308 */
+/* entry 7 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus */
 
-void screc32b308_update_sub_002343a0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrRace_Select_PlayerStatus_State7(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
@@ -136,9 +136,9 @@ void screc32b308_update_sub_002343a0(undefined8 param_1,undefined8 param_2,undef
 }
 
 // 0x002343f0  size 0x48
-/* screen record 0x32b308 */
+/* entry 6 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus */
 
-void screc32b308_enter_sub_002343f0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+void ScrRace_Select_PlayerStatus_State6(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
@@ -1252,9 +1252,9 @@ void ScrRace_Select_PrizeInformation(int param_1)
 
 // 0x002366e0  size 0x58
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277b8 */
+/* menu page 18 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277b8_exit_sub_002366e0(void)
+void MenuPage18_Exit(void)
 
 {
   int iVar1;
@@ -1267,9 +1267,9 @@ void screc3277b8_exit_sub_002366e0(void)
 
 // 0x00236740  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277b8 */
+/* menu page 18 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277b8_update_sub_00236740(undefined8 param_1)
+void MenuPage18_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1295,9 +1295,9 @@ void screc3277b8_update_sub_00236740(undefined8 param_1)
 
 // 0x00236840  size 0x118
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3277b8 */
+/* menu page 18 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc3277b8_enter_sub_00236840(void)
+void MenuPage18_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1589,7 +1589,7 @@ void ScrCareer_Draw_NoData_7210(int param_1,int param_2)
 {
   undefined2 uVar1;
   int iVar2;
-  undefined4 uVar3;
+  uint uVar3;
   undefined8 uVar4;
   int iVar5;
   undefined4 *puVar6;
@@ -1621,61 +1621,56 @@ void ScrCareer_Draw_NoData_7210(int param_1,int param_2)
     if (*(int *)(iVar2 + iVar9 + 0x37b0) == 1) {
       uVar4 = MsgId_RivalNickname(iVar5);
       MenuWnd_DrawText(0xc6,puVar6[1],uVar4);
-      uVar3 = *(undefined4 *)(param_1 + 8);
+      uVar3 = *(uint *)(param_1 + 8);
     }
     else {
       MenuWnd_DrawText(0xc6,puVar6[1],0x5c);
-      uVar3 = *(undefined4 *)(param_1 + 8);
+      uVar3 = *(uint *)(param_1 + 8);
     }
-    uVar1 = (undefined2)iVar5;
-    switch(uVar3) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-      iVar2 = RivalDb_Get(uVar1);
-      uVar4 = Race_GetLapCountForMode(*(undefined4 *)(iVar2 + 0x14));
-      uVar4 = MsgId_ForOption(uVar4);
-      uVar4 = MsgId_ForSlot(uVar4,0);
-      MenuWnd_DrawText(0xc6,puVar6[2],uVar4);
-      break;
-    case 8:
-    case 9:
-      iVar2 = Profile_Get(0);
-      if (*(short *)(iVar2 + iVar5 * 2 + 0x3fc4) < 1) {
-        MenuWnd_DrawText(0xc6,puVar6[3],0x5b);
-      }
-      else {
-        MenuWnd_DrawText(0xc6,puVar6[3],0xd9);
-      }
-      break;
-    case 10:
-    case 0xc:
-      iVar2 = Profile_Get(0);
-      if (*(int *)(iVar2 + iVar9 + 0x37b0) == 1) {
-        uVar4 = RivalDb_Get(uVar1);
-        uVar4 = RivalRec_GetCarId(uVar4);
-        uVar4 = MenuText_CarShortName(uVar4,0xffffffffffffffff);
-        MenuWnd_DrawText(0xc6,puVar6[3],uVar4);
-      }
-      else {
-        MenuWnd_DrawText(0xc6,puVar6[3],0x5b);
-      }
-      break;
-    case 0xb:
-      iVar2 = Profile_Get(0);
-      if (*(int *)(iVar2 + iVar9 + 0x37b0) == 1) {
-        uVar4 = RivalDb_Get(uVar1);
-        uVar1 = RivalRec_GetId(uVar4);
-        uVar4 = MsgId_TeamName(uVar1);
+    if (uVar3 < 0xd) {
+      uVar1 = (undefined2)iVar5;
+                    /* WARNING: Switch is manually overridden */
+      switch(uVar3) {
+      default:
+        iVar2 = RivalDb_Get(uVar1);
+        uVar4 = Race_GetLapCountForMode(*(undefined4 *)(iVar2 + 0x14));
+        uVar4 = MsgId_ForOption(uVar4);
+        uVar4 = MsgId_ForSlot(uVar4,0);
         MenuWnd_DrawText(0xc6,puVar6[2],uVar4);
-      }
-      else {
-        MenuWnd_DrawText(0xc6,puVar6[3],0x5b);
+        break;
+      case 8:
+      case 9:
+        iVar2 = Profile_Get(0);
+        if (*(short *)(iVar2 + iVar5 * 2 + 0x3fc4) < 1) {
+          MenuWnd_DrawText(0xc6,puVar6[3],0x5b);
+        }
+        else {
+          MenuWnd_DrawText(0xc6,puVar6[3],0xd9);
+        }
+        break;
+      case 10:
+        iVar2 = Profile_Get(0);
+        if (*(int *)(iVar2 + iVar9 + 0x37b0) == 1) {
+          uVar4 = RivalDb_Get(uVar1);
+          uVar4 = RivalRec_GetCarId(uVar4);
+          uVar4 = MenuText_CarShortName(uVar4,0xffffffffffffffff);
+          MenuWnd_DrawText(0xc6,puVar6[3],uVar4);
+        }
+        else {
+          MenuWnd_DrawText(0xc6,puVar6[3],0x5b);
+        }
+        break;
+      case 0xb:
+        iVar2 = Profile_Get(0);
+        if (*(int *)(iVar2 + iVar9 + 0x37b0) == 1) {
+          uVar4 = RivalDb_Get(uVar1);
+          uVar1 = RivalRec_GetId(uVar4);
+          uVar4 = MsgId_TeamName(uVar1);
+          MenuWnd_DrawText(0xc6,puVar6[2],uVar4);
+        }
+        else {
+          MenuWnd_DrawText(0xc6,puVar6[3],0x5b);
+        }
       }
     }
     iVar2 = Profile_Get(0);
@@ -1700,8 +1695,9 @@ void ScrCareer_Draw_NoData_7210(int param_1,int param_2)
 
 // 0x002375d0  size 0x170
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 6 of draw table 0x32b4f0 used by ScrRace_Draw_RivalInfo */
 
-void scrrace_draw_sub_002375d0(undefined8 param_1)
+void ScrRace_Draw_RivalInfo_Draw6(undefined8 param_1)
 
 {
   int iVar1;

@@ -4,9 +4,9 @@
 
 // 0x0021c160  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327710 */
+/* menu page 4 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327710_exit_sub_0021c160(void)
+void maybe_PageNaFesta_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -15,9 +15,9 @@ void screc327710_exit_sub_0021c160(void)
 
 // 0x0021c180  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327710 */
+/* menu page 4 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327710_update_sub_0021c180(undefined8 param_1)
+void maybe_PageNaFesta_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -36,16 +36,18 @@ void screc327710_update_sub_0021c180(undefined8 param_1)
 }
 
 // 0x0021c240  size 0x8
-/* screen record 0x327710 */
+/* menu page 4 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327710_enter_sub_0021c240(void)
+void maybe_PageNaFesta_Enter(void)
 
 {
   return;
 }
 
 // 0x0021c250  size 0xc
-void menuscr_leaf_sub_0021c250(int param_1)
+/* entry 4 of state table 0x32a370 used by MenuPage05_Update */
+
+void MenuPage05_State4(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x18) = 0;

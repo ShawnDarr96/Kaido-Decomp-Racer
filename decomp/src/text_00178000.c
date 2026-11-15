@@ -1247,30 +1247,30 @@ void MotionBlur_Build(undefined8 param_1,int param_2,int param_3)
         do {
           iVar6 = uStack_90 + iStack_c0;
           bVar1 = true;
-          switch(uVar13) {
-          case 0:
-            bVar1 = (*puVar11 & 4) != 0;
-            sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_20);
-            goto LAB_0017a45c;
-          case 1:
-          case 3:
-          case 4:
-            bVar1 = (*puVar11 & 8) != 0;
-            sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_20);
-            break;
-          case 2:
-            bVar1 = (*puVar11 & 0x10) != 0;
-            sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_30);
-            break;
-          case 5:
-            bVar1 = (*puVar11 & 4) != 0;
-            sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_10);
-            break;
-          case 6:
-            bVar1 = (*puVar11 & 0x20) != 0;
-            sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_10);
+          if (uVar13 < 7) {
+                    /* WARNING: Switch is manually overridden */
+            switch(uVar13) {
+            case 0:
+              bVar1 = (*puVar11 & 4) != 0;
+              sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_20);
+              break;
+            default:
+              bVar1 = (*puVar11 & 8) != 0;
+              sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_20);
+              break;
+            case 2:
+              bVar1 = (*puVar11 & 0x10) != 0;
+              sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_30);
+              break;
+            case 5:
+              bVar1 = (*puVar11 & 4) != 0;
+              sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_10);
+              break;
+            case 6:
+              bVar1 = (*puVar11 & 0x20) != 0;
+              sceVu0ScaleVector(puVar12[0xc1],auStack_40,&uStack_10);
+            }
           }
-LAB_0017a45c:
           iVar5 = iStack_e0 + *(int *)(param_3 + 0x504) + iStack_f0;
           if (*(int *)(iVar5 + 0x5a0) != 0) {
             iVar9 = 9;

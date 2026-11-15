@@ -183,122 +183,119 @@ undefined4 sceGsExecStoreImage(uint param_1,uint param_2)
   undefined4 uVar3;
   undefined4 uVar4;
   undefined4 uVar5;
-  uint uVar6;
-  int iVar7;
-  uint uVar8;
-  undefined1 *puVar9;
-  ulong uVar10;
-  undefined8 uVar11;
+  int iVar6;
+  uint uVar7;
+  undefined1 *puVar8;
+  ulong uVar9;
+  undefined8 uVar10;
+  uint uVar11;
   undefined1 *puVar12;
-  char *pcVar13;
-  uint uVar14;
-  int iVar15;
-  uint uVar16;
-  undefined4 *puVar17;
-  uint uVar18;
+  uint uVar13;
+  char *pcVar14;
+  uint uVar15;
+  int iVar16;
+  uint uVar17;
+  undefined4 *puVar18;
   uint uVar19;
   uint uVar20;
   uint uVar21;
+  uint uVar22;
   undefined4 uStack_90;
   undefined4 uStack_8c;
   undefined4 uStack_88;
   undefined4 uStack_84;
   
-  iVar7 = 0;
-  uVar16 = 0;
+  iVar6 = 0;
+  uVar17 = 0;
+  uVar22 = 0;
+  uVar11 = 0;
   uVar21 = 0;
-  uVar6 = 0;
-  uVar20 = 0;
-  uVar8 = (uint)*(undefined8 *)(param_1 + 0x40);
-  uVar19 = uVar8 & 0xfff;
-  uVar18 = (uint)((ulong)*(undefined8 *)(param_1 + 0x40) >> 0x20) & 0xfff;
-  uVar14 = 0;
-  switch((uint)((ulong)*(undefined8 *)(param_1 + 0x20) >> 0x18) & 0x3f) {
+  uVar7 = (uint)*(undefined8 *)(param_1 + 0x40);
+  uVar20 = uVar7 & 0xfff;
+  uVar13 = (uint)((ulong)*(undefined8 *)(param_1 + 0x20) >> 0x18) & 0x3f;
+  uVar19 = (uint)((ulong)*(undefined8 *)(param_1 + 0x40) >> 0x20) & 0xfff;
+  uVar15 = 0;
+  if (0x3a < uVar13) goto switchD_001086c4_caseD_3;
+                    /* WARNING: Switch is manually overridden */
+  switch(uVar13) {
   case 0:
-  case 0x30:
-    uVar16 = uVar19 * uVar18 * 4;
-    uVar6 = (int)uVar16 >> 4;
-    uVar16 = uVar16 & 0xf;
-    uVar21 = uVar6 & 0xfffffff8;
-    uVar6 = uVar6 & 7;
-    if (uVar16 != 0) {
-      uVar14 = uVar18 + 3 & 0x1ffc;
-      iVar7 = (int)(uVar19 * uVar14) >> 2;
+    uVar17 = uVar20 * uVar19 * 4;
+    uVar11 = (int)uVar17 >> 4;
+    uVar17 = uVar17 & 0xf;
+    uVar22 = uVar11 & 0xfffffff8;
+    uVar11 = uVar11 & 7;
+    if (uVar17 != 0) {
+      uVar15 = uVar19 + 3 & 0x1ffc;
+      iVar6 = (int)(uVar20 * uVar15) >> 2;
 LAB_00108800:
-      iVar7 = ((iVar7 - uVar21) - uVar6) + -1;
+      iVar6 = ((iVar6 - uVar22) - uVar11) + -1;
       goto switchD_001086c4_caseD_3;
     }
     break;
   case 1:
-  case 0x31:
-    uVar16 = uVar19 * uVar18 * 3;
-    uVar6 = (int)uVar16 >> 4;
-    uVar16 = uVar16 & 0xf;
-    uVar21 = uVar6 & 0xfffffff8;
-    uVar6 = uVar6 & 7;
-    if (uVar16 != 0) {
-      uVar14 = uVar18 + 0xf & 0x1ff0;
-      iVar7 = ((((int)(uVar19 * uVar14 * 3) >> 4) - uVar21) - uVar6) + -1;
+    uVar17 = uVar20 * uVar19 * 3;
+    uVar11 = (int)uVar17 >> 4;
+    uVar17 = uVar17 & 0xf;
+    uVar22 = uVar11 & 0xfffffff8;
+    uVar11 = uVar11 & 7;
+    if (uVar17 != 0) {
+      uVar15 = uVar19 + 0xf & 0x1ff0;
+      iVar6 = ((((int)(uVar20 * uVar15 * 3) >> 4) - uVar22) - uVar11) + -1;
       goto switchD_001086c4_caseD_3;
     }
     break;
   case 2:
   case 10:
-  case 0x32:
-  case 0x3a:
-    uVar16 = uVar19 * uVar18 * 2;
-    uVar6 = (int)uVar16 >> 4;
-    uVar16 = uVar16 & 0xf;
-    uVar21 = uVar6 & 0xfffffff8;
-    uVar6 = uVar6 & 7;
-    if (uVar16 != 0) {
-      uVar14 = uVar18 + 7 & 0xfffffff8;
-      iVar7 = (int)(uVar19 * uVar14) >> 3;
+    uVar17 = uVar20 * uVar19 * 2;
+    uVar11 = (int)uVar17 >> 4;
+    uVar17 = uVar17 & 0xf;
+    uVar22 = uVar11 & 0xfffffff8;
+    uVar11 = uVar11 & 7;
+    if (uVar17 != 0) {
+      uVar15 = uVar19 + 7 & 0xfffffff8;
+      iVar6 = (int)(uVar20 * uVar15) >> 3;
       goto LAB_00108800;
     }
     break;
   default:
     goto switchD_001086c4_caseD_3;
   case 0x13:
-  case 0x1b:
-    uVar6 = (int)(uVar19 * uVar18) >> 4;
-    uVar16 = uVar19 * uVar18 & 0xf;
-    uVar21 = uVar6 & 0xfffffff8;
-    uVar6 = uVar6 & 7;
-    if (uVar16 != 0) {
-      uVar14 = uVar18 + 7 & 0xfffffff8;
-      iVar7 = (int)(uVar19 * uVar14) >> 4;
+    uVar11 = (int)(uVar20 * uVar19) >> 4;
+    uVar17 = uVar20 * uVar19 & 0xf;
+    uVar22 = uVar11 & 0xfffffff8;
+    uVar11 = uVar11 & 7;
+    if (uVar17 != 0) {
+      uVar15 = uVar19 + 7 & 0xfffffff8;
+      iVar6 = (int)(uVar20 * uVar15) >> 4;
       goto LAB_00108800;
     }
     break;
   case 0x14:
-  case 0x24:
-  case 0x2c:
-    uVar6 = (int)(uVar19 * uVar18) >> 5;
-    uVar16 = (int)(uVar19 * uVar18) >> 1 & 0xf;
-    uVar21 = uVar6 & 0xfffffff8;
-    uVar6 = uVar6 & 7;
-    if (uVar16 != 0) {
-      uVar14 = uVar18 + 7 & 0xfffffff8;
-      iVar7 = (int)(uVar19 * uVar14) >> 5;
+    uVar11 = (int)(uVar20 * uVar19) >> 5;
+    uVar17 = (int)(uVar20 * uVar19) >> 1 & 0xf;
+    uVar22 = uVar11 & 0xfffffff8;
+    uVar11 = uVar11 & 7;
+    if (uVar17 != 0) {
+      uVar15 = uVar19 + 7 & 0xfffffff8;
+      iVar6 = (int)(uVar20 * uVar15) >> 5;
       goto LAB_00108800;
     }
   }
-  iVar7 = 0;
-  uVar14 = uVar18;
+  iVar6 = 0;
+  uVar15 = uVar19;
 switchD_001086c4_caseD_3:
-  if (uVar16 != 0) {
-    *(ulong *)(param_1 + 0x40 | 0x20000000) = (long)(int)(uVar8 & 0xfff) | (ulong)uVar14 << 0x20;
+  if (uVar17 != 0) {
+    *(ulong *)(param_1 + 0x40 | 0x20000000) = (long)(int)(uVar7 & 0xfff) | (ulong)uVar15 << 0x20;
   }
-  uVar8 = REG_DMAC_1_VIF1_CHCR;
-  while ((uVar8 & 0x100) != 0) {
-    bVar1 = 0x1000000 < uVar20;
-    uVar20 = uVar20 + 1;
+  uVar7 = REG_DMAC_1_VIF1_CHCR;
+  while ((uVar7 & 0x100) != 0) {
+    bVar1 = 0x1000000 < uVar21;
+    uVar21 = uVar21 + 1;
     if (bVar1) goto LAB_001089d8;
-    uVar8 = REG_DMAC_1_VIF1_CHCR;
+    uVar7 = REG_DMAC_1_VIF1_CHCR;
   }
-  uVar10 = GsGetIMR();
-  uVar11 = GsPutIMR(uVar10 | 0x200);
+  uVar9 = GsGetIMR();
+  uVar10 = GsPutIMR(uVar9 | 0x200);
   REG_GS_CSR = 2;
   REG_DMAC_1_VIF1_QWC = 7;
   if ((param_1 & 0x70000000) == 0x70000000) {
@@ -309,21 +306,21 @@ switchD_001086c4_caseD_3:
   }
   REG_DMAC_1_VIF1_MADR = param_1;
   REG_DMAC_1_VIF1_CHCR = 0x101;
-  uVar8 = REG_DMAC_1_VIF1_CHCR;
-  while ((uVar8 & 0x100) != 0) {
-    bVar1 = 0x1000000 < uVar20;
-    uVar20 = uVar20 + 1;
+  uVar7 = REG_DMAC_1_VIF1_CHCR;
+  while ((uVar7 & 0x100) != 0) {
+    bVar1 = 0x1000000 < uVar21;
+    uVar21 = uVar21 + 1;
     if (bVar1) {
 LAB_001089d8:
       maybe_scePrintf(0x35e9c0);
       return 0xffffffff;
     }
-    uVar8 = REG_DMAC_1_VIF1_CHCR;
+    uVar7 = REG_DMAC_1_VIF1_CHCR;
   }
-  uVar10 = REG_GS_CSR;
-  while ((uVar10 & 2) == 0) {
-    bVar1 = 0x1000000 < uVar20;
-    uVar20 = uVar20 + 1;
+  uVar9 = REG_GS_CSR;
+  while ((uVar9 & 2) == 0) {
+    bVar1 = 0x1000000 < uVar21;
+    uVar21 = uVar21 + 1;
     if (bVar1) {
       maybe_scePrintf(0x35e9f8);
       REG_VIF1_FIFO = DAT_00306860;
@@ -332,106 +329,106 @@ LAB_001089d8:
       DAT_1000500c = DAT_0030686c;
       return 0xffffffff;
     }
-    uVar10 = REG_GS_CSR;
+    uVar9 = REG_GS_CSR;
   }
   REG_VIF1_STAT = 0x800000;
   REG_GS_BUSDIR = 1;
-  if (uVar21 != 0) {
-    REG_DMAC_1_VIF1_QWC = uVar21;
+  if (uVar22 != 0) {
+    REG_DMAC_1_VIF1_QWC = uVar22;
     if ((param_2 & 0x70000000) == 0x70000000) {
-      uVar8 = param_2 & 0xfffffff | 0x80000000;
+      uVar7 = param_2 & 0xfffffff | 0x80000000;
     }
     else {
-      uVar8 = param_2 & 0xfffffff;
+      uVar7 = param_2 & 0xfffffff;
     }
-    REG_DMAC_1_VIF1_MADR = uVar8;
+    REG_DMAC_1_VIF1_MADR = uVar7;
     REG_DMAC_1_VIF1_CHCR = 0x100;
-    uVar8 = REG_DMAC_1_VIF1_CHCR;
-    while ((uVar8 & 0x100) != 0) {
-      bVar1 = 0x1000000 < uVar20;
-      uVar20 = uVar20 + 1;
+    uVar7 = REG_DMAC_1_VIF1_CHCR;
+    while ((uVar7 & 0x100) != 0) {
+      bVar1 = 0x1000000 < uVar21;
+      uVar21 = uVar21 + 1;
       if (bVar1) {
-        pcVar13 = s_sceGsExecStoreImage__DMA_Ch_1__G_0035ea28;
+        pcVar14 = s_sceGsExecStoreImage__DMA_Ch_1__G_0035ea28;
         goto LAB_00108a30;
       }
-      uVar8 = REG_DMAC_1_VIF1_CHCR;
+      uVar7 = REG_DMAC_1_VIF1_CHCR;
     }
   }
-  iVar15 = 0;
-  if (uVar6 != 0) {
-    puVar17 = (undefined4 *)(uVar21 * 0x10 + param_2);
+  iVar16 = 0;
+  if (uVar11 != 0) {
+    puVar18 = (undefined4 *)(uVar22 * 0x10 + param_2);
     do {
-      uVar8 = REG_VIF1_STAT;
-      while ((uVar8 & 0x1f000000) == 0) {
-        bVar1 = 0x1000000 < uVar20;
-        uVar20 = uVar20 + 1;
+      uVar7 = REG_VIF1_STAT;
+      while ((uVar7 & 0x1f000000) == 0) {
+        bVar1 = 0x1000000 < uVar21;
+        uVar21 = uVar21 + 1;
         if (bVar1) goto LAB_00108a28;
-        uVar8 = REG_VIF1_STAT;
+        uVar7 = REG_VIF1_STAT;
       }
       uVar2 = REG_VIF1_FIFO;
       uVar3 = DAT_10005004;
       uVar4 = DAT_10005008;
       uVar5 = DAT_1000500c;
-      iVar15 = iVar15 + 1;
-      *puVar17 = uVar2;
-      puVar17[1] = uVar3;
-      puVar17[2] = uVar4;
-      puVar17[3] = uVar5;
-      puVar17 = puVar17 + 4;
-    } while (iVar15 < (int)uVar6);
+      iVar16 = iVar16 + 1;
+      *puVar18 = uVar2;
+      puVar18[1] = uVar3;
+      puVar18[2] = uVar4;
+      puVar18[3] = uVar5;
+      puVar18 = puVar18 + 4;
+    } while (iVar16 < (int)uVar11);
   }
-  if (uVar16 != 0) {
-    uVar8 = REG_VIF1_STAT;
-    while ((uVar8 & 0x1f000000) == 0) {
-      bVar1 = 0x1000000 < uVar20;
-      uVar20 = uVar20 + 1;
+  if (uVar17 != 0) {
+    uVar7 = REG_VIF1_STAT;
+    while ((uVar7 & 0x1f000000) == 0) {
+      bVar1 = 0x1000000 < uVar21;
+      uVar21 = uVar21 + 1;
       if (bVar1) {
 LAB_00108a28:
-        pcVar13 = s_sceGsExecStoreImage__Enough_data_0035ea68;
+        pcVar14 = s_sceGsExecStoreImage__Enough_data_0035ea68;
 LAB_00108a30:
-        maybe_scePrintf(pcVar13);
+        maybe_scePrintf(pcVar14);
         REG_GS_CSR = 0x100;
         REG_GS_BUSDIR = 0;
         REG_GIF_CTRL = 1;
         REG_VIF1_FBRST = 1;
         return 0xffffffff;
       }
-      uVar8 = REG_VIF1_STAT;
+      uVar7 = REG_VIF1_STAT;
     }
-    iVar15 = 0;
+    iVar16 = 0;
     uStack_90 = REG_VIF1_FIFO;
     uStack_8c = DAT_10005004;
     uStack_88 = DAT_10005008;
     uStack_84 = DAT_1000500c;
-    if (uVar16 != 0) {
+    if (uVar17 != 0) {
       do {
-        puVar9 = (undefined1 *)((int)&uStack_90 + iVar15);
-        puVar12 = (undefined1 *)((uVar21 + uVar6) * 0x10 + param_2 + iVar15);
-        iVar15 = iVar15 + 1;
-        *puVar12 = *puVar9;
-      } while (iVar15 < (int)uVar16);
+        puVar8 = (undefined1 *)((int)&uStack_90 + iVar16);
+        puVar12 = (undefined1 *)((uVar22 + uVar11) * 0x10 + param_2 + iVar16);
+        iVar16 = iVar16 + 1;
+        *puVar12 = *puVar8;
+      } while (iVar16 < (int)uVar17);
     }
-    iVar15 = 0;
-    if (0 < iVar7) {
+    iVar16 = 0;
+    if (0 < iVar6) {
       do {
-        uVar8 = REG_VIF1_STAT;
-        while ((uVar8 & 0x1f000000) == 0) {
-          bVar1 = 0x1000000 < uVar20;
-          uVar20 = uVar20 + 1;
+        uVar7 = REG_VIF1_STAT;
+        while ((uVar7 & 0x1f000000) == 0) {
+          bVar1 = 0x1000000 < uVar21;
+          uVar21 = uVar21 + 1;
           if (bVar1) goto LAB_00108a28;
-          uVar8 = REG_VIF1_STAT;
+          uVar7 = REG_VIF1_STAT;
         }
         uStack_90 = REG_VIF1_FIFO;
         uStack_8c = DAT_10005004;
         uStack_88 = DAT_10005008;
         uStack_84 = DAT_1000500c;
-        iVar15 = iVar15 + 1;
-      } while (iVar15 < iVar7);
+        iVar16 = iVar16 + 1;
+      } while (iVar16 < iVar6);
     }
   }
   REG_VIF1_STAT = 0;
   REG_GS_BUSDIR = 0;
-  GsPutIMR(uVar11);
+  GsPutIMR(uVar10);
   REG_GS_CSR = 2;
   REG_VIF1_FIFO = DAT_00306860;
   DAT_10005004 = DAT_00306864;

@@ -18,7 +18,7 @@ void PwInput_ResetSlots(int param_1,undefined8 param_2)
 }
 
 // 0x002dc730  size 0x20c
-void PwInput_SetupGrid(undefined4 *param_1,byte param_2,undefined4 param_3)
+void PwInput_SetupGrid(undefined4 *param_1,uint param_2,undefined4 param_3)
 
 {
   undefined4 uVar1;
@@ -47,7 +47,7 @@ void PwInput_SetupGrid(undefined4 *param_1,byte param_2,undefined4 param_3)
   param_1[0x20] = uVar1;
   uVar1 = (*pcRam0036f8a8)(0x216);
   param_1[0x21] = uVar1;
-  if (8 < param_2) {
+  if (8 < (param_2 & 0xff)) {
     uVar1 = (*pcRam0036f8ac)(0xbc);
     *param_1 = uVar1;
     uVar1 = (*pcRam0036f8a8)(0x100);
@@ -61,35 +61,34 @@ void PwInput_SetupGrid(undefined4 *param_1,byte param_2,undefined4 param_3)
     uVar1 = (*pcRam0036f8b0)(0x2c);
     param_1[5] = uVar1;
   }
-  switch(param_2) {
-  case 5:
-  case 6:
-  case 9:
-  case 10:
-    uVar1 = (*pcRam0036f8ac)(0xc0);
-    param_1[0x26] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x217);
-    param_1[0x33] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x218);
-    param_1[0x34] = uVar1;
-    break;
-  case 7:
-  case 0xb:
-    uVar1 = (*pcRam0036f8ac)(0xc2);
-    param_1[0x26] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x219);
-    param_1[0x33] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x21a);
-    param_1[0x34] = uVar1;
-    break;
-  case 8:
-  case 0xc:
-    uVar1 = (*pcRam0036f8ac)(0xc3);
-    param_1[0x26] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x227);
-    param_1[0x33] = uVar1;
-    uVar1 = (*pcRam0036f8a8)(0x228);
-    param_1[0x34] = uVar1;
+  uVar3 = (param_2 & 0xff) - 5;
+  if (uVar3 < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar3) {
+    default:
+      uVar1 = (*pcRam0036f8ac)(0xc0);
+      param_1[0x26] = uVar1;
+      uVar1 = (*pcRam0036f8a8)(0x217);
+      param_1[0x33] = uVar1;
+      uVar1 = (*pcRam0036f8a8)(0x218);
+      param_1[0x34] = uVar1;
+      break;
+    case 2:
+      uVar1 = (*pcRam0036f8ac)(0xc2);
+      param_1[0x26] = uVar1;
+      uVar1 = (*pcRam0036f8a8)(0x219);
+      param_1[0x33] = uVar1;
+      uVar1 = (*pcRam0036f8a8)(0x21a);
+      param_1[0x34] = uVar1;
+      break;
+    case 3:
+      uVar1 = (*pcRam0036f8ac)(0xc3);
+      param_1[0x26] = uVar1;
+      uVar1 = (*pcRam0036f8a8)(0x227);
+      param_1[0x33] = uVar1;
+      uVar1 = (*pcRam0036f8a8)(0x228);
+      param_1[0x34] = uVar1;
+    }
   }
   return;
 }
@@ -603,40 +602,38 @@ int PwInput_IsSpecialKey(int param_1,int param_2)
   return 1 - uVar1;
 }
 
-// 0x002dd4f0  size 0x28
-undefined8 PwInput_GetKeyLabel(ulong param_1)
+// 0x002dd4f0  size 0x54
+undefined4 PwInput_GetKeyLabel(ulong param_1)
 
 {
-  undefined8 uVar1;
+  undefined4 uVar1;
   
   if (param_1 < 0x26) {
-                    /* WARNING: Could not recover jumptable at 0x002dd510. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)(&PTR_Showroom_Nop_4_00368170)[(int)param_1])();
-    return uVar1;
+                    /* WARNING: Switch is manually overridden */
+    switch((int)param_1) {
+    default:
+      goto override_jmp_002dd510_case_0;
+    case 1:
+      uVar1 = 0xe;
+      break;
+    case 4:
+      uVar1 = 3;
+      break;
+    case 8:
+    case 9:
+    case 10:
+    case 0xb:
+      uVar1 = 1;
+      break;
+    case 0xc:
+      uVar1 = 4;
+    }
   }
-  return 0;
-}
-
-// 0x002dd528  size 0x8
-undefined4 Showroom_Nop_2(void)
-
-{
-  return 4;
-}
-
-// 0x002dd530  size 0x8
-undefined4 Showroom_Nop_3(void)
-
-{
-  return 0xe;
-}
-
-// 0x002dd538  size 0xc
-undefined8 Showroom_Nop_4(void)
-
-{
-  return 0;
+  else {
+override_jmp_002dd510_case_0:
+    uVar1 = 0;
+  }
+  return uVar1;
 }
 
 // 0x002dd550  size 0xe4
@@ -1481,7 +1478,7 @@ Password_ApplyRewards
 }
 
 // 0x002dead0  size 0x5f0
-undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
+undefined8 Password_EncodeCar(byte param_1,long param_2,short param_3)
 
 {
   char cVar1;
@@ -1497,13 +1494,14 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
   else {
     iVar2 = *(int *)(iVar3 + 0x88);
     if (iVar2 == 2) {
-      if ((param_1 == '\x06') && ((int)param_2 - 1U < 2)) {
+      if ((param_1 == 6) && ((int)param_2 - 1U < 2)) {
         uVar4 = 1;
       }
     }
-    else {
+    else if (param_1 < 8) {
+                    /* WARNING: Switch is manually overridden */
       switch(param_1) {
-      case '\0':
+      case 0:
         if (param_2 == 2) {
           if (*(float *)(iVar3 + 0x4c) < 300.0) {
             uVar4 = 1;
@@ -1523,7 +1521,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 0;
         }
         break;
-      case '\x01':
+      case 1:
         if (param_2 == 2) {
           if (iVar2 == 0) {
             uVar4 = 1;
@@ -1539,7 +1537,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 1;
         }
         break;
-      case '\x02':
+      case 2:
         if (param_2 == 2) {
           if (*(float *)(iVar3 + 0x4c) == 280.0) {
             uVar4 = 1;
@@ -1554,7 +1552,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 1;
         }
         break;
-      case '\x03':
+      case 3:
         if (param_2 == 2) {
           if ((((param_3 == 0x6e) || (param_3 == 0x70)) || (param_3 == 0x72)) ||
              (((((param_3 == 0x74 || (param_3 == 0x76)) ||
@@ -1572,7 +1570,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 1;
         }
         break;
-      case '\x04':
+      case 4:
         if (param_2 == 2) {
           if ((((((param_3 == 0xd) || (param_3 == 0xf)) || (param_3 == 0x17)) ||
                ((param_3 == 0x19 || (param_3 == 0x21)))) || (param_3 == 0x23)) || (param_3 == 0xe8))
@@ -1590,7 +1588,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 1;
         }
         break;
-      case '\x05':
+      case 5:
         if (param_2 == 2) {
           if ((((param_3 == 0x84) || (param_3 == 0x86)) ||
               ((param_3 == 0x88 || (((param_3 == 0x89 || (param_3 == 0x8b)) || (param_3 == 0xde)))))
@@ -1610,7 +1608,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 1;
         }
         break;
-      case '\x06':
+      case 6:
         if (param_2 == 2) {
           uVar4 = 1;
         }
@@ -1625,7 +1623,7 @@ undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
           uVar4 = 1;
         }
         break;
-      case '\a':
+      case 7:
         if (param_2 == 2) {
           if ((float)*(uint *)(iVar3 + 0x48) < 1000.0) {
             uVar4 = 1;

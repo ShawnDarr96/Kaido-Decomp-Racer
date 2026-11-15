@@ -2029,8 +2029,9 @@ void menuscr_load_sub_0020fba0
 
 // 0x0020fd00  size 0x1dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 8 of state table 0x329d70 used by MenuPage43_Update */
 
-void scrcareer_draw_sub_0020fd00(int param_1)
+void MenuPage43_State8(int param_1)
 
 {
   int iVar1;

@@ -531,9 +531,9 @@ void ScrRace_Draw_Sell_0ed0(int param_1)
 
 // 0x002611f0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327848 */
+/* menu page 30 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327848_exit_sub_002611f0(void)
+void MenuPage30_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -542,9 +542,9 @@ void screc327848_exit_sub_002611f0(void)
 
 // 0x00261210  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327848 */
+/* menu page 30 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327848_update_sub_00261210(undefined8 param_1)
+void MenuPage30_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -564,9 +564,9 @@ void screc327848_update_sub_00261210(undefined8 param_1)
 
 // 0x002612d0  size 0x308
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327848 */
+/* menu page 30 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327848_enter_sub_002612d0(void)
+void MenuPage30_Enter(void)
 
 {
   undefined4 uVar1;
@@ -709,8 +709,9 @@ void screc327848_enter_sub_002612d0(void)
 
 // 0x002615e0  size 0x160
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* entry 3 of state table 0x32d2e0 used by MenuPage31_Update */
 
-void scrcareer_draw_sub_002615e0(undefined4 *param_1)
+void MenuPage31_State3(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1264,9 +1265,9 @@ void ScrCarStatus_Enter(int *param_1)
 
 // 0x00262670  size 0x30
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327854 */
+/* menu page 31 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327854_exit_sub_00262670(void)
+void MenuPage31_Exit(void)
 
 {
   Menu_BlockInput(_g_MenuMgr + 0x654);
@@ -1276,9 +1277,9 @@ void screc327854_exit_sub_00262670(void)
 
 // 0x002626a0  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327854 */
+/* menu page 31 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327854_update_sub_002626a0(int param_1)
+void MenuPage31_Update(int param_1)
 
 {
   uint uVar1;
@@ -1295,9 +1296,9 @@ void screc327854_update_sub_002626a0(int param_1)
 }
 
 // 0x00262740  size 0x8
-/* screen record 0x327854 */
+/* menu page 31 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327854_enter_sub_00262740(void)
+void MenuPage31_Enter(void)
 
 {
   return;

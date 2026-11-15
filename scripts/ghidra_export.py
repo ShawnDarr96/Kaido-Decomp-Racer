@@ -42,6 +42,8 @@ def main():
         try:
             set_gp(program)
             create_extra_functions(program)
+            remove_fragment_functions(program)
+            apply_jumptables(program)
             apply_globals(program)
             apply_symbols(program)
             if args.auto_names:
@@ -66,6 +68,101 @@ def set_gp(program):
     ctx.setValue(gp, text.getStart(), text.getEnd(), BigInteger.valueOf(GP_VALUE))
 
 
+def not_functions():
+    """Addresses in config/not_functions.txt: switch-case labels that must not be functions."""
+    path = ROOT / "config" / "not_functions.txt"
+    if not path.exists():
+        return set()
+    return {int(l.split("#")[0], 16) for l in path.read_text().splitlines() if l.split("#")[0].strip()}
+
+
+def remove_fragment_functions(program):
+    """Delete functions that are really case labels, then regrow the parent functions over them
+    and re-run analysis on the parents so their jump tables are recovered."""
+    from ghidra.app.cmd.function import CreateFunctionCmd
+    from ghidra.app.plugin.core.analysis import AutoAnalysisManager
+    from ghidra.program.model.address import AddressSet
+    from ghidra.program.model.symbol import SourceType
+    from ghidra.util.task import ConsoleTaskMonitor
+    af = program.getAddressFactory().getDefaultAddressSpace()
+    fm = program.getFunctionManager()
+    st = program.getSymbolTable()
+    bad = sorted(not_functions())
+    n = 0
+    for a in bad:
+        addr = af.getAddress(a)
+        if fm.getFunctionAt(addr) is not None:
+            fm.removeFunction(addr)
+            n += 1
+        for s in list(st.getSymbols(addr)):
+            if s.getSource() != SourceType.DEFAULT:
+                s.delete()
+    parents = {}
+    for a in bad:
+        f = fm.getFunctionContaining(af.getAddress(a - 4))
+        if f is None:
+            # walk back to the nearest function start below the fragment
+            f = fm.getFunctionBefore(af.getAddress(a)) if hasattr(fm, "getFunctionBefore") else None
+            if f is None:
+                it = fm.getFunctions(af.getAddress(a), False)
+                f = it.next() if it.hasNext() else None
+        if f is not None:
+            parents[f.getEntryPoint().getOffset()] = f
+    mon = ConsoleTaskMonitor()
+    aset = AddressSet()
+    for f in parents.values():
+        CreateFunctionCmd.fixupFunctionBody(program, f, mon)
+        aset.add(f.getBody())
+    if n:
+        mgr = AutoAnalysisManager.getAnalysisManager(program)
+        mgr.reAnalyzeAll(aset)
+        mgr.startAnalysis(mon)
+        for f in parents.values():
+            CreateFunctionCmd.fixupFunctionBody(program, f, mon)
+    print(f"removed {n} case-label fragments; regrew {len(parents)} parent functions", flush=True)
+
+
+def apply_jumptables(program):
+    """Give every switch in config/jumptables.txt (tools/jumptables.py) its jump-table targets:
+    computed-jump references for flow, and a decompiler override so the switch is recovered."""
+    from java.util import ArrayList
+    from ghidra.app.cmd.function import CreateFunctionCmd
+    from ghidra.program.model.pcode import JumpTable
+    from ghidra.program.model.symbol import RefType, SourceType
+    from ghidra.util.task import ConsoleTaskMonitor
+    path = ROOT / "config" / "jumptables.txt"
+    if not path.exists():
+        return
+    af = program.getAddressFactory().getDefaultAddressSpace()
+    fm = program.getFunctionManager()
+    rm = program.getReferenceManager()
+    mon = ConsoleTaskMonitor()
+    n = bad = 0
+    for line in path.read_text().splitlines():
+        if not line.strip() or line.startswith("#"):
+            continue
+        parts = line.split()
+        jr = af.getAddress(int(parts[0], 16))
+        targets = [af.getAddress(int(x, 16)) for x in parts[3:]]
+        f = fm.getFunctionContaining(jr)
+        if f is None:
+            bad += 1
+            continue
+        for t in set(targets):
+            rm.addMemoryReference(jr, t, RefType.COMPUTED_JUMP, SourceType.USER_DEFINED, 0)
+        CreateFunctionCmd.fixupFunctionBody(program, f, mon)
+        lst = ArrayList()
+        for t in targets:
+            lst.add(t)
+        try:
+            JumpTable(jr, lst, True, 0).writeOverride(f)
+            n += 1
+        except Exception as e:
+            print(f"  jumptable 0x{jr.getOffset():08x}: {e}", flush=True)
+            bad += 1
+    print(f"applied {n} jump tables ({bad} problems)", flush=True)
+
+
 def create_extra_functions(program):
     """Create functions Ghidra's analysis missed (code addresses referenced from data tables)."""
     from ghidra.app.cmd.function import CreateFunctionCmd
@@ -77,7 +174,10 @@ def create_extra_functions(program):
     af = program.getAddressFactory().getDefaultAddressSpace()
     fm = program.getFunctionManager()
     n = 0
+    skip = not_functions()
     for line in path.read_text().split():
+        if int(line, 16) in skip:
+            continue
         addr = af.getAddress(int(line, 16))
         if fm.getFunctionAt(addr) is not None:
             continue
@@ -110,7 +210,8 @@ def read_symbols():
     if not SYMBOLS.exists():
         return {}
     with open(SYMBOLS, encoding="utf-8", newline="") as f:
-        return {int(r["address"], 16): r for r in csv.DictReader(f)}
+        skip = not_functions()
+        return {int(r["address"], 16): r for r in csv.DictReader(f) if int(r["address"], 16) not in skip}
 
 
 def apply_symbols(program):

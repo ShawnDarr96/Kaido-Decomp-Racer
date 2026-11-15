@@ -1358,61 +1358,65 @@ long Rival_SetupBattle(int param_1,undefined8 param_2,char param_3)
   uStack_8 = *(undefined4 *)(psVar2 + 0x14);
   iVar11 = *(int *)(psVar2 + 0xb8);
   if ((param_3 == '\r') || (param_3 == (char)psVar2[2])) {
-    switch((char)psVar2[2]) {
-    case '\x01':
-      sVar1 = *psVar2;
-      if (*(short *)(sVar1 * 2 + *_g_Profiles + 0x4b7c) == 0) {
-        iVar6 = 0;
-        iVar11 = 0;
-        uVar3 = GameDb_GetTeam();
-        memcpy(auStack_b0,uVar3,0x44);
-        uVar4 = auStack_b0[0];
-        sVar9 = sVar1;
-      }
-      break;
-    case '\x02':
-      lVar10 = 1;
-      break;
-    case '\x03':
-      if (*(int *)(iStack_c * 4 + *_g_Profiles + 0x2b14) != -1) {
+    if (*(byte *)(psVar2 + 2) < 0xd) {
+                    /* WARNING: Switch is manually overridden */
+      switch(*(byte *)(psVar2 + 2)) {
+      case 1:
+        sVar1 = *psVar2;
+        if (*(short *)(sVar1 * 2 + *_g_Profiles + 0x4b7c) == 0) {
+          iVar6 = 0;
+          iVar11 = 0;
+          uVar3 = GameDb_GetTeam();
+          memcpy(auStack_b0,uVar3,0x44);
+          uVar4 = auStack_b0[0];
+          sVar9 = sVar1;
+        }
+        break;
+      case 2:
+        lVar10 = 1;
+        break;
+      case 3:
+        if (*(int *)(iStack_c * 4 + *_g_Profiles + 0x2b14) != -1) {
+          lVar10 = 0;
+        }
+        break;
+      case 4:
+        break;
+      default:
+        lVar10 = 1;
+        break;
+      case 7:
+        if (((char)uStack_10 == '\b') && (*(int *)(iStack_c * 4 + *_g_Profiles + 0x2a74) != -1)) {
+          lVar10 = 0;
+        }
+      case 0:
+        if ((*psVar2 != -1) && (*(short *)(*psVar2 * 2 + *_g_Profiles + 0x4b7c) == 0)) {
+          lVar10 = 0;
+        }
+        break;
+      case 8:
+        if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
+          lVar10 = 0;
+        }
+        break;
+      case 9:
+        if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
+          lVar10 = 0;
+        }
+        break;
+      case 10:
+        if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
+          lVar10 = 0;
+        }
+        break;
+      case 0xb:
+        if (*(char *)((int)psVar2[1] + *_g_Profiles + 0xd82c) != '\0') {
+          lVar10 = 0;
+        }
+        break;
+      case 0xc:
         lVar10 = 0;
       }
-      break;
-    case '\x05':
-    case '\x06':
-      lVar10 = 1;
-      break;
-    case '\a':
-      if (((char)uStack_10 == '\b') && (*(int *)(iStack_c * 4 + *_g_Profiles + 0x2a74) != -1)) {
-        lVar10 = 0;
-      }
-    case '\0':
-      if ((*psVar2 != -1) && (*(short *)(*psVar2 * 2 + *_g_Profiles + 0x4b7c) == 0)) {
-        lVar10 = 0;
-      }
-      break;
-    case '\b':
-      if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
-        lVar10 = 0;
-      }
-      break;
-    case '\t':
-      if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
-        lVar10 = 0;
-      }
-      break;
-    case '\n':
-      if (0 < *(short *)(param_1 * 2 + *_g_Profiles + 0x3fc4)) {
-        lVar10 = 0;
-      }
-      break;
-    case '\v':
-      if (*(char *)((int)psVar2[1] + *_g_Profiles + 0xd82c) != '\0') {
-        lVar10 = 0;
-      }
-      break;
-    case '\f':
-      lVar10 = 0;
     }
   }
   else {
@@ -1552,7 +1556,7 @@ undefined1 Rival_IsAvailable(ulong param_1,int param_2,undefined8 param_3,undefi
 }
 
 // 0x001b2700  size 0x174
-long Rival_CheckWeatherCondition(ulong param_1,undefined1 param_2)
+long Rival_CheckWeatherCondition(ulong param_1,byte param_2)
 
 {
   char cVar1;
@@ -1560,45 +1564,48 @@ long Rival_CheckWeatherCondition(ulong param_1,undefined1 param_2)
   
   lVar2 = 0;
   if ((param_1 & 1) == 0) {
-    switch(param_2) {
-    case 0:
-      if ((param_1 & 2) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 1:
-      if ((param_1 & 4) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 2:
-      if ((param_1 & 8) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 3:
-      if ((param_1 & 0x10) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 4:
-      if ((param_1 & 0x20) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 5:
-      if ((param_1 & 0x40) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 6:
-      if ((param_1 & 0x80) != 0) {
-        lVar2 = 1;
-      }
-      break;
-    case 7:
-      if ((param_1 & 0x100) != 0) {
-        lVar2 = 1;
+    if (param_2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_2) {
+      case 0:
+        if ((param_1 & 2) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 1:
+        if ((param_1 & 4) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 2:
+        if ((param_1 & 8) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 3:
+        if ((param_1 & 0x10) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 4:
+        if ((param_1 & 0x20) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 5:
+        if ((param_1 & 0x40) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 6:
+        if ((param_1 & 0x80) != 0) {
+          lVar2 = 1;
+        }
+        break;
+      case 7:
+        if ((param_1 & 0x100) != 0) {
+          lVar2 = 1;
+        }
       }
     }
   }
@@ -1623,12 +1630,12 @@ long Rival_CheckWeatherCondition(ulong param_1,undefined1 param_2)
 // 0x001b2880  size 0x50c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-bool Rival_CheckAppearCondition(ulong param_1,undefined1 param_2)
+bool Rival_CheckAppearCondition(ulong param_1,byte param_2)
 
 {
   int iVar1;
   int iVar2;
-  undefined1 uVar3;
+  byte bVar3;
   char cVar4;
   int iVar5;
   uint uVar6;
@@ -1651,45 +1658,48 @@ bool Rival_CheckAppearCondition(ulong param_1,undefined1 param_2)
   iVar5 = (iVar5 + -1) / 7 + iVar2;
   iVar8 = iVar5 - iVar2;
   if ((param_1 & 1) == 0) {
-    switch(param_2) {
-    case 0:
-      if ((param_1 & 2) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 1:
-      if ((param_1 & 4) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 2:
-      if ((param_1 & 8) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 3:
-      if ((param_1 & 0x10) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 4:
-      if ((param_1 & 0x20) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 5:
-      if ((param_1 & 0x40) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 6:
-      if ((param_1 & 0x80) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 7:
-      if ((param_1 & 0x100) != 0) {
-        bVar10 = true;
+    if (param_2 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_2) {
+      case 0:
+        if ((param_1 & 2) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 1:
+        if ((param_1 & 4) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 2:
+        if ((param_1 & 8) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 3:
+        if ((param_1 & 0x10) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 4:
+        if ((param_1 & 0x20) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 5:
+        if ((param_1 & 0x40) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 6:
+        if ((param_1 & 0x80) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 7:
+        if ((param_1 & 0x100) != 0) {
+          bVar10 = true;
+        }
       }
     }
   }
@@ -1697,29 +1707,30 @@ bool Rival_CheckAppearCondition(ulong param_1,undefined1 param_2)
     bVar10 = true;
   }
   if (bVar10 == true) {
-    uVar3 = Race_GetTimeOfDay();
+    bVar3 = Race_GetTimeOfDay();
     bVar10 = false;
-    switch(uVar3) {
-    case 0:
-      if ((param_1 & 0x8000000) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 1:
-    case 2:
-      if ((param_1 & 0x10000000) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 3:
-      if ((param_1 & 0x2000000) != 0) {
-        bVar10 = true;
-      }
-      break;
-    case 4:
-    case 5:
-      if ((param_1 & 0x4000000) != 0) {
-        bVar10 = true;
+    if (bVar3 < 6) {
+                    /* WARNING: Switch is manually overridden */
+      switch(bVar3) {
+      case 0:
+        if ((param_1 & 0x8000000) != 0) {
+          bVar10 = true;
+        }
+        break;
+      default:
+        if ((param_1 & 0x10000000) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 3:
+        if ((param_1 & 0x2000000) != 0) {
+          bVar10 = true;
+        }
+        break;
+      case 4:
+        if ((param_1 & 0x4000000) != 0) {
+          bVar10 = true;
+        }
       }
     }
   }

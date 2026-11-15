@@ -668,9 +668,9 @@ void ScrRace_Draw_CategoryRace_51c0(int param_1)
 
 // 0x00255aa0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327824 */
+/* menu page 27 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327824_exit_sub_00255aa0(void)
+void maybe_PageBetCar_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -679,9 +679,9 @@ void screc327824_exit_sub_00255aa0(void)
 
 // 0x00255ac0  size 0x130
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x327824 */
+/* menu page 27 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327824_update_sub_00255ac0(undefined8 param_1)
+void maybe_PageBetCar_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -713,9 +713,9 @@ void screc327824_update_sub_00255ac0(undefined8 param_1)
 }
 
 // 0x00255bf0  size 0x3c
-/* screen record 0x327824 */
+/* menu page 27 (table 0x3276e0, dispatched by 0x201380) */
 
-void screc327824_enter_sub_00255bf0(void)
+void maybe_PageBetCar_Enter(void)
 
 {
   char cVar1;

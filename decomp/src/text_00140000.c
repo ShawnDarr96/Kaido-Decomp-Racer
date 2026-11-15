@@ -853,122 +853,119 @@ void Wheel_StateMachine(int param_1)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  switch(*(undefined4 *)(param_1 + 0x588)) {
-  case 0:
-    if (*(int *)(param_1 + 0x49c) != 0) {
-      *(uint *)(param_1 + 0x494) = *(uint *)(param_1 + 0x494) | 1;
-      *(undefined4 *)(param_1 + 0x49c) = 0;
+  if (*(uint *)(param_1 + 0x588) < 8) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(uint *)(param_1 + 0x588)) {
+    case 0:
+      if (*(int *)(param_1 + 0x49c) != 0) {
+        *(uint *)(param_1 + 0x494) = *(uint *)(param_1 + 0x494) | 1;
+        *(undefined4 *)(param_1 + 0x49c) = 0;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 1;
+      break;
+    case 1:
+      *(undefined4 *)(param_1 + 0x58c) = 0;
+      if ((*(int *)(param_1 + 0x4a4) == -1) || ((*(uint *)(param_1 + 0x4b0) & 2) != 0)) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 1;
+        *(undefined1 *)(param_1 + 0x4bc) = 0;
+      }
+      if (((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) &&
+         (*(char *)(param_1 + 0x4bc) == '\0')) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 4;
+        *(undefined1 *)(param_1 + 0x4bc) = 0;
+        *(undefined4 *)(param_1 + 0x4c0) = 1000;
+        *(undefined4 *)(param_1 + 0x4c4) = 0;
+        *(undefined4 *)(param_1 + 0x4c8) = 0xffffff01;
+        *(undefined4 *)(param_1 + 0x4cc) = 0x5a;
+        *(undefined4 *)(param_1 + 0x4d0) = 0;
+        *(undefined4 *)(param_1 + 0x4d4) = 0;
+        *(undefined4 *)(param_1 + 0x4d8) = 0;
+        *(undefined4 *)(param_1 + 0x4dc) = 0;
+        *(undefined4 *)(param_1 + 0x4e0) = uStack_1c;
+        *(undefined4 *)(param_1 + 0x4e4) = uStack_18;
+        *(undefined4 *)(param_1 + 0x4e8) = uStack_14;
+        *(undefined4 *)(param_1 + 0x4ec) = uStack_10;
+        *(undefined4 *)(param_1 + 0x4f0) = uStack_c;
+        *(undefined4 *)(param_1 + 0x4f4) = uStack_8;
+      }
+      if ((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 8;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 2;
+      break;
+    case 2:
+      iVar1 = *(int *)(param_1 + 0x58c) + 1;
+      *(int *)(param_1 + 0x58c) = iVar1;
+      if (iVar1 < 0x3c) {
+        return;
+      }
+      if (*(int *)(param_1 + 0x4a4) != -1) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 0x10;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 3;
+      break;
+    case 3:
+      *(undefined4 *)(param_1 + 0x58c) = 0;
+      if ((*(int *)(param_1 + 0x4a4) == -1) || ((*(uint *)(param_1 + 0x4b0) & 2) != 0)) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 1;
+        *(undefined1 *)(param_1 + 0x4bc) = 0;
+      }
+      if (((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) &&
+         (*(char *)(param_1 + 0x4bc) == '\0')) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 4;
+        *(undefined1 *)(param_1 + 0x4bc) = 0;
+        *(undefined4 *)(param_1 + 0x4c0) = 1000;
+        *(undefined4 *)(param_1 + 0x4c4) = 0;
+        *(undefined4 *)(param_1 + 0x4c8) = 0xffffff01;
+        *(undefined4 *)(param_1 + 0x4cc) = 0x10e;
+        *(undefined4 *)(param_1 + 0x4d0) = 0;
+        *(undefined4 *)(param_1 + 0x4d4) = 0;
+        *(undefined4 *)(param_1 + 0x4d8) = 0;
+        *(undefined4 *)(param_1 + 0x4dc) = 0;
+        *(undefined4 *)(param_1 + 0x4e0) = uStack_1c;
+        *(undefined4 *)(param_1 + 0x4e4) = uStack_18;
+        *(undefined4 *)(param_1 + 0x4e8) = uStack_14;
+        *(undefined4 *)(param_1 + 0x4ec) = uStack_10;
+        *(undefined4 *)(param_1 + 0x4f0) = uStack_c;
+        *(undefined4 *)(param_1 + 0x4f4) = uStack_8;
+      }
+      if ((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 8;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 4;
+      break;
+    case 4:
+      iVar1 = *(int *)(param_1 + 0x58c) + 1;
+      *(int *)(param_1 + 0x58c) = iVar1;
+      if (iVar1 < 0x3c) {
+        return;
+      }
+      if (*(int *)(param_1 + 0x4a4) != -1) {
+        *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 0x10;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 5;
+      break;
+    case 5:
+      if (*(int *)(param_1 + 0x4a4) != -1) {
+        *(undefined4 *)(param_1 + 0x4b0) = 2;
+      }
+      if (*(int *)(param_1 + 0x49c) != 1) {
+        *(uint *)(param_1 + 0x494) = *(uint *)(param_1 + 0x494) | 1;
+        *(undefined4 *)(param_1 + 0x49c) = 1;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 6;
+      *(undefined4 *)(param_1 + 0x58c) = 0;
+      break;
+    case 6:
+      iVar1 = *(int *)(param_1 + 0x58c) + 1;
+      *(int *)(param_1 + 0x58c) = iVar1;
+      if (iVar1 < 0x3c) {
+        return;
+      }
+      *(undefined4 *)(param_1 + 0x588) = 7;
+      *(undefined4 *)(param_1 + 0x58c) = 0;
     }
-    *(undefined4 *)(param_1 + 0x588) = 1;
-    break;
-  case 1:
-    *(undefined4 *)(param_1 + 0x58c) = 0;
-    if ((*(int *)(param_1 + 0x4a4) == -1) || ((*(uint *)(param_1 + 0x4b0) & 2) != 0)) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 1;
-      *(undefined1 *)(param_1 + 0x4bc) = 0;
-    }
-    if (((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) &&
-       (*(char *)(param_1 + 0x4bc) == '\0')) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 4;
-      *(undefined1 *)(param_1 + 0x4bc) = 0;
-      *(undefined4 *)(param_1 + 0x4c0) = 1000;
-      *(undefined4 *)(param_1 + 0x4c4) = 0;
-      *(undefined4 *)(param_1 + 0x4c8) = 0xffffff01;
-      *(undefined4 *)(param_1 + 0x4cc) = 0x5a;
-      *(undefined4 *)(param_1 + 0x4d0) = 0;
-      *(undefined4 *)(param_1 + 0x4d4) = 0;
-      *(undefined4 *)(param_1 + 0x4d8) = 0;
-      *(undefined4 *)(param_1 + 0x4dc) = 0;
-      *(undefined4 *)(param_1 + 0x4e0) = uStack_1c;
-      *(undefined4 *)(param_1 + 0x4e4) = uStack_18;
-      *(undefined4 *)(param_1 + 0x4e8) = uStack_14;
-      *(undefined4 *)(param_1 + 0x4ec) = uStack_10;
-      *(undefined4 *)(param_1 + 0x4f0) = uStack_c;
-      *(undefined4 *)(param_1 + 0x4f4) = uStack_8;
-    }
-    if ((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 8;
-    }
-    *(undefined4 *)(param_1 + 0x588) = 2;
-    break;
-  case 2:
-    iVar1 = *(int *)(param_1 + 0x58c) + 1;
-    *(int *)(param_1 + 0x58c) = iVar1;
-    if (iVar1 < 0x3c) {
-      return;
-    }
-    if (*(int *)(param_1 + 0x4a4) != -1) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 0x10;
-    }
-    *(undefined4 *)(param_1 + 0x588) = 3;
-    break;
-  case 3:
-    *(undefined4 *)(param_1 + 0x58c) = 0;
-    if ((*(int *)(param_1 + 0x4a4) == -1) || ((*(uint *)(param_1 + 0x4b0) & 2) != 0)) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 1;
-      *(undefined1 *)(param_1 + 0x4bc) = 0;
-    }
-    if (((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) &&
-       (*(char *)(param_1 + 0x4bc) == '\0')) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 4;
-      *(undefined1 *)(param_1 + 0x4bc) = 0;
-      *(undefined4 *)(param_1 + 0x4c0) = 1000;
-      *(undefined4 *)(param_1 + 0x4c4) = 0;
-      *(undefined4 *)(param_1 + 0x4c8) = 0xffffff01;
-      *(undefined4 *)(param_1 + 0x4cc) = 0x10e;
-      *(undefined4 *)(param_1 + 0x4d0) = 0;
-      *(undefined4 *)(param_1 + 0x4d4) = 0;
-      *(undefined4 *)(param_1 + 0x4d8) = 0;
-      *(undefined4 *)(param_1 + 0x4dc) = 0;
-      *(undefined4 *)(param_1 + 0x4e0) = uStack_1c;
-      *(undefined4 *)(param_1 + 0x4e4) = uStack_18;
-      *(undefined4 *)(param_1 + 0x4e8) = uStack_14;
-      *(undefined4 *)(param_1 + 0x4ec) = uStack_10;
-      *(undefined4 *)(param_1 + 0x4f0) = uStack_c;
-      *(undefined4 *)(param_1 + 0x4f4) = uStack_8;
-    }
-    if ((*(int *)(param_1 + 0x4a4) != -1) || ((*(uint *)(param_1 + 0x4b0) & 1) != 0)) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 8;
-    }
-    *(undefined4 *)(param_1 + 0x588) = 4;
-    break;
-  case 4:
-    iVar1 = *(int *)(param_1 + 0x58c) + 1;
-    *(int *)(param_1 + 0x58c) = iVar1;
-    if (iVar1 < 0x3c) {
-      return;
-    }
-    if (*(int *)(param_1 + 0x4a4) != -1) {
-      *(uint *)(param_1 + 0x4b0) = *(uint *)(param_1 + 0x4b0) | 0x10;
-    }
-    *(undefined4 *)(param_1 + 0x588) = 5;
-    break;
-  case 5:
-    if (*(int *)(param_1 + 0x4a4) != -1) {
-      *(undefined4 *)(param_1 + 0x4b0) = 2;
-    }
-    if (*(int *)(param_1 + 0x49c) != 1) {
-      *(uint *)(param_1 + 0x494) = *(uint *)(param_1 + 0x494) | 1;
-      *(undefined4 *)(param_1 + 0x49c) = 1;
-    }
-    *(undefined4 *)(param_1 + 0x588) = 6;
-    *(undefined4 *)(param_1 + 0x58c) = 0;
-    break;
-  case 6:
-    iVar1 = *(int *)(param_1 + 0x58c) + 1;
-    *(int *)(param_1 + 0x58c) = iVar1;
-    if (iVar1 < 0x3c) {
-      return;
-    }
-    *(undefined4 *)(param_1 + 0x588) = 7;
-    *(undefined4 *)(param_1 + 0x58c) = 0;
-    break;
-  case 7:
-    break;
-  default:
-    goto switchD_001415e8_default;
   }
-switchD_001415e8_default:
   return;
 }
 
@@ -1073,8 +1070,9 @@ void Wheel_ReadInput(int param_1,undefined8 param_2)
     uVar2 = uVar2 | uVar11;
   }
   iVar13 = (int)param_2;
-  if ((*(uint *)(param_1 + 0x574) & 0x18) != 0) {
-    switch(*(undefined1 *)(iVar13 + 9)) {
+  if (((*(uint *)(param_1 + 0x574) & 0x18) != 0) && (*(byte *)(iVar13 + 9) < 8)) {
+                    /* WARNING: Switch is manually overridden */
+    switch(*(byte *)(iVar13 + 9)) {
     case 0:
       uVar2 = uVar2 | 4;
       break;
@@ -1305,46 +1303,43 @@ uint Wheel_ReadAxis(int param_1,uint param_2,ulong param_3,uint *param_4,long pa
   if ((0xf < param_2) && (param_2 < 0x18)) {
     iVar2 = 0;
     uVar6 = 0;
-    switch(param_2) {
-    case 0x10:
-    case 0x12:
-    case 0x14:
-    case 0x16:
-      if ((param_3 & 0xff) < 0x7f) {
-        iVar2 = 1;
-        if ((long)param_3 < 0) {
-          fVar7 = (float)(param_3 & 0xffffffff);
+    if (param_2 - 0x10 < 8) {
+                    /* WARNING: Switch is manually overridden */
+      switch(param_2 - 0x10) {
+      case 0:
+        if ((param_3 & 0xff) < 0x7f) {
+          iVar2 = 1;
+          if ((long)param_3 < 0) {
+            fVar7 = (float)(param_3 & 0xffffffff);
+          }
+          else {
+            fVar7 = (float)(int)param_3;
+          }
+          fVar7 = (127.5 - fVar7) * 2.0;
+          if (fVar7 < 2.1474836e+09) {
+            uVar6 = (uint)fVar7;
+          }
+          else {
+            uVar6 = (int)(fVar7 - 2.1474836e+09) | 0x80000000;
+          }
         }
-        else {
-          fVar7 = (float)(int)param_3;
-        }
-        fVar7 = (127.5 - fVar7) * 2.0;
-        if (fVar7 < 2.1474836e+09) {
-          uVar6 = (uint)fVar7;
-        }
-        else {
-          uVar6 = (int)(fVar7 - 2.1474836e+09) | 0x80000000;
-        }
-      }
-      break;
-    case 0x11:
-    case 0x13:
-    case 0x15:
-    case 0x17:
-      if (0x7f < (param_3 & 0xff)) {
-        iVar2 = 1;
-        if ((long)param_3 < 0) {
-          fVar7 = (float)(param_3 & 0xffffffff);
-        }
-        else {
-          fVar7 = (float)(int)param_3;
-        }
-        fVar7 = (fVar7 - 127.5) * 2.0;
-        if (fVar7 < 2.1474836e+09) {
-          uVar6 = (uint)fVar7;
-        }
-        else {
-          uVar6 = (int)(fVar7 - 2.1474836e+09) | 0x80000000;
+        break;
+      case 1:
+        if (0x7f < (param_3 & 0xff)) {
+          iVar2 = 1;
+          if ((long)param_3 < 0) {
+            fVar7 = (float)(param_3 & 0xffffffff);
+          }
+          else {
+            fVar7 = (float)(int)param_3;
+          }
+          fVar7 = (fVar7 - 127.5) * 2.0;
+          if (fVar7 < 2.1474836e+09) {
+            uVar6 = (uint)fVar7;
+          }
+          else {
+            uVar6 = (int)(fVar7 - 2.1474836e+09) | 0x80000000;
+          }
         }
       }
     }

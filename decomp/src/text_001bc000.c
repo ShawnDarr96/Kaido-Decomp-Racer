@@ -565,141 +565,142 @@ void Profile_StartNight(undefined8 param_1)
 {
   undefined1 uVar1;
   char cVar2;
-  int iVar3;
+  uint uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
   int iVar7;
+  int iVar8;
   
-  iVar6 = (int)param_1;
-  if (*(char *)(iVar6 + 0x2730) == '\0') {
-    iVar4 = 0x14;
-    *(undefined1 *)(iVar6 + 0x2730) = 1;
+  iVar7 = (int)param_1;
+  if (*(char *)(iVar7 + 0x2730) == '\0') {
+    iVar5 = 0x14;
+    *(undefined1 *)(iVar7 + 0x2730) = 1;
   }
   else {
-    *(undefined1 *)(iVar6 + 0x2730) = 0;
-    *(int *)(iVar6 + 0x2734) = *(int *)(iVar6 + 0x2734) + 1;
-    iVar4 = 0x46;
-    if ((9999999 < *(int *)(iVar6 + 0x2734)) && (*(char *)(iVar6 + 0x273c) == '\0')) {
-      *(undefined1 *)(iVar6 + 0x273c) = 1;
+    *(undefined1 *)(iVar7 + 0x2730) = 0;
+    *(int *)(iVar7 + 0x2734) = *(int *)(iVar7 + 0x2734) + 1;
+    iVar5 = 0x46;
+    if ((9999999 < *(int *)(iVar7 + 0x2734)) && (*(char *)(iVar7 + 0x273c) == '\0')) {
+      *(undefined1 *)(iVar7 + 0x273c) = 1;
     }
-    if (*(int *)(iVar6 + 0x2734) % 0xf == 0) {
-      iVar7 = 0;
-      iVar3 = 0;
+    if (*(int *)(iVar7 + 0x2734) % 0xf == 0) {
+      iVar8 = 0;
+      iVar4 = 0;
       do {
-        if (*(char *)(iVar6 + iVar3 + 0xd82c) == '\x02') {
-          iVar5 = GameDb_GetTeamInfo(iVar3);
-          iVar7 = iVar7 + *(int *)(iVar5 + 0xc);
+        if (*(char *)(iVar7 + iVar4 + 0xd82c) == '\x02') {
+          iVar6 = GameDb_GetTeamInfo(iVar4);
+          iVar8 = iVar8 + *(int *)(iVar6 + 0xc);
         }
-        iVar3 = iVar3 + 1;
-      } while (iVar3 < 0x1e);
-      *(int *)(iVar6 + 0x2738) = *(int *)(iVar6 + 0x2738) + iVar7;
-      *(int *)(iVar6 + 0x2bdc) = *(int *)(iVar6 + 0x2bdc) + iVar7;
-      if (99999999 < *(int *)(iVar6 + 0x2bdc)) {
-        *(undefined4 *)(iVar6 + 0x2bdc) = 99999999;
+        iVar4 = iVar4 + 1;
+      } while (iVar4 < 0x1e);
+      *(int *)(iVar7 + 0x2738) = *(int *)(iVar7 + 0x2738) + iVar8;
+      *(int *)(iVar7 + 0x2bdc) = *(int *)(iVar7 + 0x2bdc) + iVar8;
+      if (99999999 < *(int *)(iVar7 + 0x2bdc)) {
+        *(undefined4 *)(iVar7 + 0x2bdc) = 99999999;
       }
-      if (99999999 < *(int *)(iVar6 + 0x2738)) {
-        *(undefined4 *)(iVar6 + 0x2738) = 99999999;
+      if (99999999 < *(int *)(iVar7 + 0x2738)) {
+        *(undefined4 *)(iVar7 + 0x2738) = 99999999;
       }
     }
     Profile_AdvanceDay(param_1);
   }
-  *(undefined1 *)(iVar6 + 0x3fbc) = 0;
-  *(undefined1 *)(iVar6 + 0x3fbd) = 0;
-  *(undefined1 *)(iVar6 + 0x3fbe) = 0;
-  *(undefined1 *)(iVar6 + 0x3fbf) = 0;
-  *(undefined1 *)(iVar6 + 0x3fc0) = 0;
-  *(undefined1 *)(iVar6 + 0x3fc1) = 0;
-  *(undefined1 *)(iVar6 + 0x3fc2) = 0;
-  *(undefined1 *)(iVar6 + 0x3fc3) = 0;
-  iVar3 = (*(int *)(iVar6 + 0x2734) + -1) / 0x1c + 1;
-  if (999 < iVar3) {
-    iVar3 = 999;
+  *(undefined1 *)(iVar7 + 0x3fbc) = 0;
+  *(undefined1 *)(iVar7 + 0x3fbd) = 0;
+  *(undefined1 *)(iVar7 + 0x3fbe) = 0;
+  *(undefined1 *)(iVar7 + 0x3fbf) = 0;
+  *(undefined1 *)(iVar7 + 0x3fc0) = 0;
+  *(undefined1 *)(iVar7 + 0x3fc1) = 0;
+  *(undefined1 *)(iVar7 + 0x3fc2) = 0;
+  *(undefined1 *)(iVar7 + 0x3fc3) = 0;
+  uVar3 = (*(int *)(iVar7 + 0x2734) + -1) / 0x1c + 1;
+  if (999 < (int)uVar3) {
+    uVar3 = 999;
   }
-  switch(iVar3) {
-  case 1:
-  case 2:
-  case 0xc:
-    iVar4 = iVar4 + 3;
-    *(undefined1 *)(iVar6 + 0x2732) = 3;
-    break;
-  case 3:
-  case 4:
-  case 5:
-    *(undefined1 *)(iVar6 + 0x2732) = 0;
-    iVar4 = iVar4 + 3;
-    break;
-  case 6:
-  case 7:
-  case 8:
-    iVar4 = iVar4 + 3;
-    *(undefined1 *)(iVar6 + 0x2732) = 1;
-    break;
-  case 9:
-  case 10:
-  case 0xb:
-    iVar4 = iVar4 + 5;
-    *(undefined1 *)(iVar6 + 0x2732) = 2;
+  if (uVar3 < 0xd) {
+                    /* WARNING: Switch is manually overridden */
+    switch(uVar3) {
+    case 0:
+      break;
+    case 1:
+    case 2:
+      iVar5 = iVar5 + 3;
+      *(undefined1 *)(iVar7 + 0x2732) = 3;
+      break;
+    default:
+      *(undefined1 *)(iVar7 + 0x2732) = 0;
+      iVar5 = iVar5 + 3;
+      break;
+    case 6:
+    case 7:
+    case 8:
+      iVar5 = iVar5 + 3;
+      *(undefined1 *)(iVar7 + 0x2732) = 1;
+      break;
+    case 9:
+      iVar5 = iVar5 + 5;
+      *(undefined1 *)(iVar7 + 0x2732) = 2;
+    }
   }
-  iVar3 = maybe_Rand_Float();
-  if (iVar3 % 100 < iVar4) {
-    iVar4 = maybe_Rand_Float();
-    iVar4 = iVar4 % 100;
-    cVar2 = *(char *)(iVar6 + 0x2731);
+  iVar4 = maybe_Rand_Float();
+  if (iVar4 % 100 < iVar5) {
+    iVar5 = maybe_Rand_Float();
+    iVar5 = iVar5 % 100;
+    cVar2 = *(char *)(iVar7 + 0x2731);
     if (cVar2 == '\x04') {
-      if (iVar4 < 0x50) {
-        *(undefined1 *)(iVar6 + 0x2731) = 0;
+      if (iVar5 < 0x50) {
+        *(undefined1 *)(iVar7 + 0x2731) = 0;
       }
-      else if (iVar4 < 0x55) {
-        *(undefined1 *)(iVar6 + 0x2731) = 1;
+      else if (iVar5 < 0x55) {
+        *(undefined1 *)(iVar7 + 0x2731) = 1;
       }
-      else if (iVar4 < 0x5a) {
-        *(undefined1 *)(iVar6 + 0x2731) = 3;
+      else if (iVar5 < 0x5a) {
+        *(undefined1 *)(iVar7 + 0x2731) = 3;
       }
     }
     else if (cVar2 == '\x01') {
-      if (iVar4 < 0x28) {
-        *(undefined1 *)(iVar6 + 0x2731) = 0;
+      if (iVar5 < 0x28) {
+        *(undefined1 *)(iVar7 + 0x2731) = 0;
       }
-      else if (iVar4 < 0x46) {
-        *(undefined1 *)(iVar6 + 0x2731) = 3;
+      else if (iVar5 < 0x46) {
+        *(undefined1 *)(iVar7 + 0x2731) = 3;
       }
-      else if (iVar4 < 0x5a) {
-        *(undefined1 *)(iVar6 + 0x2731) = 4;
+      else if (iVar5 < 0x5a) {
+        *(undefined1 *)(iVar7 + 0x2731) = 4;
       }
     }
     else if (cVar2 == '\x03') {
-      if (iVar4 < 0x28) {
-        *(undefined1 *)(iVar6 + 0x2731) = 0;
+      if (iVar5 < 0x28) {
+        *(undefined1 *)(iVar7 + 0x2731) = 0;
       }
-      else if (iVar4 < 0x41) {
-        *(undefined1 *)(iVar6 + 0x2731) = 1;
+      else if (iVar5 < 0x41) {
+        *(undefined1 *)(iVar7 + 0x2731) = 1;
       }
-      else if (iVar4 < 0x4b) {
-        *(undefined1 *)(iVar6 + 0x2731) = 4;
+      else if (iVar5 < 0x4b) {
+        *(undefined1 *)(iVar7 + 0x2731) = 4;
       }
     }
     else {
       if (cVar2 != '\0') {
-        uVar1 = *(undefined1 *)(iVar6 + 0x2730);
+        uVar1 = *(undefined1 *)(iVar7 + 0x2730);
         goto LAB_001bce30;
       }
-      if (iVar4 < 0x1e) {
-        *(undefined1 *)(iVar6 + 0x2731) = 3;
+      if (iVar5 < 0x1e) {
+        *(undefined1 *)(iVar7 + 0x2731) = 3;
       }
-      else if (iVar4 < 0x32) {
-        *(undefined1 *)(iVar6 + 0x2731) = 1;
+      else if (iVar5 < 0x32) {
+        *(undefined1 *)(iVar7 + 0x2731) = 1;
       }
-      else if (iVar4 < 0x37) {
-        *(undefined1 *)(iVar6 + 0x2731) = 4;
+      else if (iVar5 < 0x37) {
+        *(undefined1 *)(iVar7 + 0x2731) = 4;
       }
     }
   }
-  uVar1 = *(undefined1 *)(iVar6 + 0x2730);
+  uVar1 = *(undefined1 *)(iVar7 + 0x2730);
 LAB_001bce30:
   RaceCtx_Set_13(uVar1);
-  RaceCtx_Set_12(*(undefined1 *)(iVar6 + 0x2731));
-  RaceCtx_Set_14(*(undefined1 *)(iVar6 + 0x2732));
+  RaceCtx_Set_12(*(undefined1 *)(iVar7 + 0x2731));
+  RaceCtx_Set_14(*(undefined1 *)(iVar7 + 0x2732));
   return;
 }
 
@@ -707,21 +708,23 @@ LAB_001bce30:
 void Profile_ScheduleRivals(int param_1)
 
 {
-  bool bVar1;
-  undefined8 uVar2;
-  ulong uVar3;
-  int iVar4;
+  uint uVar1;
+  bool bVar2;
+  undefined8 uVar3;
+  ulong uVar4;
   int iVar5;
   int iVar6;
-  long lVar7;
-  int *piVar8;
-  int iVar9;
-  undefined4 *puVar10;
-  int iVar11;
-  int *piVar12;
-  undefined4 *puVar13;
-  int iVar14;
-  undefined4 uVar15;
+  int iVar7;
+  long lVar8;
+  int *piVar9;
+  int iVar10;
+  undefined4 *puVar11;
+  uint *puVar12;
+  int iVar13;
+  int *piVar14;
+  undefined4 *puVar15;
+  int iVar16;
+  undefined4 uVar17;
   int iStack_810;
   int iStack_800;
   int iStack_7f0;
@@ -732,8 +735,8 @@ void Profile_ScheduleRivals(int param_1)
   int aiStack_740 [401];
   short sStack_fc;
   short sStack_fa;
-  undefined4 uStack_f0;
-  int aiStack_ec [4];
+  uint uStack_f0;
+  uint auStack_ec [4];
   undefined4 uStack_dc;
   undefined4 uStack_d0;
   undefined4 auStack_cc [18];
@@ -762,553 +765,560 @@ void Profile_ScheduleRivals(int param_1)
   int iStack_8;
   undefined4 uStack_4;
   
-  iVar5 = 0xca;
-  piVar8 = aiStack_740;
-  piVar12 = (int *)(param_1 + 0x4c30);
+  iVar6 = 0xca;
+  piVar9 = aiStack_740;
+  piVar14 = (int *)(param_1 + 0x4c30);
   do {
-    iVar5 = iVar5 + -1;
-    iVar9 = piVar12[1];
-    *piVar8 = *piVar12;
-    piVar8[1] = iVar9;
-    piVar12 = piVar12 + 2;
-    piVar8 = piVar8 + 2;
-  } while (0 < iVar5);
+    iVar6 = iVar6 + -1;
+    iVar10 = piVar14[1];
+    *piVar9 = *piVar14;
+    piVar9[1] = iVar10;
+    piVar14 = piVar14 + 2;
+    piVar9 = piVar9 + 2;
+  } while (0 < iVar6);
   iStack_800 = 0;
-  iVar9 = 0;
-  iVar5 = param_1;
+  iVar10 = 0;
+  iVar6 = param_1;
   do {
-    if (*(int *)(iVar5 + 0x2b14) != -1) {
+    if (*(int *)(iVar6 + 0x2b14) != -1) {
       iStack_800 = iStack_800 + 1;
     }
-    iVar9 = iVar9 + 1;
-    iVar5 = iVar5 + 4;
-  } while (iVar9 < 0x28);
-  iVar5 = *(int *)(param_1 + 0x274c);
+    iVar10 = iVar10 + 1;
+    iVar6 = iVar6 + 4;
+  } while (iVar10 < 0x28);
+  iVar6 = *(int *)(param_1 + 0x274c);
   iStack_7f0 = 0;
   iStack_810 = 0x81;
-  iVar9 = param_1;
+  iVar10 = param_1;
   do {
-    if (*(int *)(iVar9 + 0x2a74) != -1) {
-      bVar1 = false;
-      uVar2 = GameDb_GetRivalCar(iStack_7f0);
-      memcpy(&uStack_7e0,uVar2,0x50);
-      iVar6 = 9;
-      puVar13 = auStack_7dc;
-      puVar10 = auStack_78c;
+    if (*(int *)(iVar10 + 0x2a74) != -1) {
+      bVar2 = false;
+      uVar3 = GameDb_GetRivalCar(iStack_7f0);
+      memcpy(&uStack_7e0,uVar3,0x50);
+      iVar7 = 9;
+      puVar15 = auStack_7dc;
+      puVar11 = auStack_78c;
       do {
-        iVar6 = iVar6 + -1;
-        uVar15 = puVar13[1];
-        *puVar10 = *puVar13;
-        puVar10[1] = uVar15;
-        puVar13 = puVar13 + 2;
-        puVar10 = puVar10 + 2;
-      } while (0 < iVar6);
-      iVar6 = 9;
-      puVar13 = auStack_78c;
-      puVar10 = auStack_cc;
+        iVar7 = iVar7 + -1;
+        uVar17 = puVar15[1];
+        *puVar11 = *puVar15;
+        puVar11[1] = uVar17;
+        puVar15 = puVar15 + 2;
+        puVar11 = puVar11 + 2;
+      } while (0 < iVar7);
+      iVar7 = 9;
+      puVar15 = auStack_78c;
+      puVar11 = auStack_cc;
       uStack_d0 = uStack_7e0;
       do {
-        iVar6 = iVar6 + -1;
-        uVar15 = puVar13[1];
-        *puVar10 = *puVar13;
-        puVar10[1] = uVar15;
-        puVar13 = puVar13 + 2;
-        puVar10 = puVar10 + 2;
-      } while (0 < iVar6);
-      iVar14 = 0;
-      puVar10 = &uStack_d0;
+        iVar7 = iVar7 + -1;
+        uVar17 = puVar15[1];
+        *puVar11 = *puVar15;
+        puVar11[1] = uVar17;
+        puVar15 = puVar15 + 2;
+        puVar11 = puVar11 + 2;
+      } while (0 < iVar7);
+      iVar16 = 0;
+      puVar11 = &uStack_d0;
       uStack_84 = uStack_794;
-      iVar6 = iStack_810;
+      iVar7 = iStack_810;
       do {
-        aiStack_ec[0] = puVar10[2];
-        uStack_f0 = puVar10[1];
-        aiStack_ec[1] = puVar10[3];
-        aiStack_ec[2] = puVar10[4];
-        aiStack_ec[3] = puVar10[5];
-        uStack_dc = puVar10[6];
-        switch(puVar10[1]) {
-        case 0:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_8 = *(int *)(iVar11 + 0x2750);
-              uStack_4 = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 1) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 1:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_10 = *(int *)(iVar11 + 0x2750);
-              uStack_c = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 2) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 2:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_18 = *(int *)(iVar11 + 0x2750);
-              uStack_14 = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 4) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 3:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_20 = *(int *)(iVar11 + 0x2750);
-              uStack_1c = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 8) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 4:
-          iVar4 = 0;
-          puVar13 = &uStack_f0;
-          do {
-            iVar11 = puVar13[1];
-            if (iVar11 == -1) break;
-            if ((*(int *)(param_1 + 0x2748) <= iVar11) && (iVar11 < *(int *)(param_1 + 0x2744))) {
-              uVar3 = maybe_Rand_Float();
-              iVar4 = (int)(uVar3 & 3);
-              if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                iVar4 = iVar4 + -4;
-              }
-              Career_AssignRivalCar
-                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         0xffffffffffffffff);
-              Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-              *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-              bVar1 = true;
-              break;
-            }
-            iVar4 = iVar4 + 1;
-            puVar13 = puVar13 + 1;
-          } while (iVar4 < 5);
-          break;
-        case 5:
-          if ((*(char *)(param_1 + 0x273d) != *(char *)(param_1 + 0x273e)) &&
-             (*(char *)(param_1 + 0x273f) != *(char *)(param_1 + 0x2740))) {
-            uVar3 = maybe_Rand_Float();
-            iVar4 = (int)(uVar3 & 3);
-            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-              iVar4 = iVar4 + -4;
-            }
-            Career_AssignRivalCar
-                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                       *(undefined1 *)(param_1 + 0x273d));
-            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-            *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-            bVar1 = true;
-          }
-          break;
-        case 6:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_28 = *(int *)(iVar11 + 0x2750);
-              uStack_24 = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 0x40) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 7:
-          iVar4 = 0;
-          puVar13 = &uStack_f0;
-          do {
-            iVar11 = puVar13[1];
-            if (iVar11 == -1) break;
-            for (piVar8 = aiStack_740; piVar8[1] != -1; piVar8 = piVar8 + 2) {
-              if ((piVar8[1] == iVar11) && (piVar8[2] != 0)) {
-                if (*(short *)(param_1 + iVar11 * 2 + 0x3fc4) == 1) {
-                  uVar3 = maybe_Rand_Float();
-                  iVar11 = (int)(uVar3 & 3);
-                  if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                    iVar11 = iVar11 + -4;
+        uStack_f0 = puVar11[1];
+        auStack_ec[0] = puVar11[2];
+        auStack_ec[1] = puVar11[3];
+        auStack_ec[2] = puVar11[4];
+        auStack_ec[3] = puVar11[5];
+        uStack_dc = puVar11[6];
+        if (uStack_f0 < 0x14) {
+                    /* WARNING: Switch is manually overridden */
+          switch(uStack_f0) {
+          case 0:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_8 = *(int *)(iVar13 + 0x2750);
+                uStack_4 = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 1) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
                   }
                   Career_AssignRivalCar
-                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar11,uStack_d0,
-                             puVar13[1]);
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
                   Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                  *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                  bVar1 = true;
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
                 }
-                break;
-              }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
             }
-            if (bVar1) break;
-            iVar4 = iVar4 + 1;
-            puVar13 = puVar13 + 1;
-          } while (iVar4 < 5);
-          break;
-        case 8:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
+            break;
+          case 1:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_10 = *(int *)(iVar13 + 0x2750);
+                uStack_c = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 2) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
+            break;
+          case 2:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_18 = *(int *)(iVar13 + 0x2750);
+                uStack_14 = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 4) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
+            break;
+          case 3:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_20 = *(int *)(iVar13 + 0x2750);
+                uStack_1c = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 8) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
+            break;
+          case 4:
+            iVar5 = 0;
+            puVar12 = &uStack_f0;
             do {
-              uVar15 = *(undefined4 *)(iVar11 + 0x2754);
-              uStack_2c = uVar15;
-              iStack_30 = *(int *)(iVar11 + 0x2750);
-              if (*(int *)(iVar11 + 0x2750) == 0x100) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
+              uVar1 = puVar12[1];
+              if (uVar1 == 0xffffffff) break;
+              if ((*(int *)(param_1 + 0x2748) <= (int)uVar1) &&
+                 ((int)uVar1 < *(int *)(param_1 + 0x2744))) {
+                uVar4 = maybe_Rand_Float();
+                iVar5 = (int)(uVar4 & 3);
+                if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                  iVar5 = iVar5 + -4;
                 }
                 Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           uVar15);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 9:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_38 = *(int *)(iVar11 + 0x2750);
-              uStack_34 = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 0x200) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
                            0xffffffffffffffff);
                 Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
+                *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                bVar2 = true;
                 break;
               }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 10:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_40 = *(int *)(iVar11 + 0x2750);
-              uStack_3c = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 0x400) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
-                }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
-              }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 0xb:
-          iVar4 = 0;
-          puVar13 = &uStack_f0;
-          do {
-            if (puVar13[1] == -1) break;
-            if ((*(int *)(param_1 + 0x2734) < 9999) &&
-               ((*(int *)(param_1 + 0x2734) - *(int *)(iVar9 + 0x2a74)) % (int)puVar13[1] == 0)) {
-              uVar3 = maybe_Rand_Float();
-              iVar4 = (int)(uVar3 & 3);
-              if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                iVar4 = iVar4 + -4;
+              iVar5 = iVar5 + 1;
+              puVar12 = puVar12 + 1;
+            } while (iVar5 < 5);
+            break;
+          case 5:
+            if ((*(char *)(param_1 + 0x273d) != *(char *)(param_1 + 0x273e)) &&
+               (*(char *)(param_1 + 0x273f) != *(char *)(param_1 + 0x2740))) {
+              uVar4 = maybe_Rand_Float();
+              iVar5 = (int)(uVar4 & 3);
+              if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                iVar5 = iVar5 + -4;
               }
               Career_AssignRivalCar
-                        (auStack_80,*(int *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         *(int *)(param_1 + 0x2734) - *(int *)(iVar9 + 0x2a74));
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                         *(undefined1 *)(param_1 + 0x273d));
               Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-              *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-              bVar1 = true;
-              break;
+              *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+              bVar2 = true;
             }
-            iVar4 = iVar4 + 1;
-            puVar13 = puVar13 + 1;
-          } while (iVar4 < 5);
-          break;
-        case 0xc:
-          if ((long)aiStack_ec[0] <= (long)sStack_fc) {
-            uVar3 = maybe_Rand_Float();
-            iVar4 = (int)(uVar3 & 3);
-            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-              iVar4 = iVar4 + -4;
+            break;
+          case 6:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_28 = *(int *)(iVar13 + 0x2750);
+                uStack_24 = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 0x40) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
             }
-            Career_AssignRivalCar
-                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                       (long)sStack_fc);
-            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-            *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-            bVar1 = true;
-          }
-          break;
-        case 0xd:
-          if (aiStack_ec[0] <= sStack_fa) {
-            uVar3 = maybe_Rand_Float();
-            iVar4 = (int)(uVar3 & 3);
-            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-              iVar4 = iVar4 + -4;
+            break;
+          case 7:
+            iVar5 = 0;
+            puVar12 = &uStack_f0;
+            do {
+              uVar1 = puVar12[1];
+              if (uVar1 == 0xffffffff) break;
+              for (piVar9 = aiStack_740; piVar9[1] != 0xffffffff; piVar9 = piVar9 + 2) {
+                if ((piVar9[1] == uVar1) && (piVar9[2] != 0)) {
+                  if (*(short *)(param_1 + uVar1 * 2 + 0x3fc4) == 1) {
+                    uVar4 = maybe_Rand_Float();
+                    iVar13 = (int)(uVar4 & 3);
+                    if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                      iVar13 = iVar13 + -4;
+                    }
+                    Career_AssignRivalCar
+                              (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar13,uStack_d0
+                               ,puVar12[1]);
+                    Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                    *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                    bVar2 = true;
+                  }
+                  break;
+                }
+              }
+              if (bVar2) break;
+              iVar5 = iVar5 + 1;
+              puVar12 = puVar12 + 1;
+            } while (iVar5 < 5);
+            break;
+          case 8:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                uVar17 = *(undefined4 *)(iVar13 + 0x2754);
+                uStack_2c = uVar17;
+                iStack_30 = *(int *)(iVar13 + 0x2750);
+                if (*(int *)(iVar13 + 0x2750) == 0x100) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             uVar17);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
             }
-            Career_AssignRivalCar
-                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                       (int)sStack_fa);
-            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-            *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-            bVar1 = true;
-          }
-          break;
-        case 0xe:
-          iVar4 = 0;
-          puVar13 = &uStack_f0;
-          do {
-            lVar7 = (long)(int)puVar13[1];
-            if (lVar7 == -1) break;
-            if ((*(short *)(param_1 + 0x5318) < lVar7) && (lVar7 <= *(short *)(param_1 + 0x5312))) {
-              uVar3 = maybe_Rand_Float();
-              iVar4 = (int)(uVar3 & 3);
-              if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                iVar4 = iVar4 + -4;
+            break;
+          case 9:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_38 = *(int *)(iVar13 + 0x2750);
+                uStack_34 = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 0x200) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
+            break;
+          case 10:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_40 = *(int *)(iVar13 + 0x2750);
+                uStack_3c = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 0x400) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
+            break;
+          case 0xb:
+            iVar5 = 0;
+            puVar12 = &uStack_f0;
+            do {
+              if (puVar12[1] == 0xffffffff) break;
+              if ((*(int *)(param_1 + 0x2734) < 9999) &&
+                 ((*(int *)(param_1 + 0x2734) - *(int *)(iVar10 + 0x2a74)) % (int)puVar12[1] == 0))
+              {
+                uVar4 = maybe_Rand_Float();
+                iVar5 = (int)(uVar4 & 3);
+                if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                  iVar5 = iVar5 + -4;
+                }
+                Career_AssignRivalCar
+                          (auStack_80,*(int *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                           *(int *)(param_1 + 0x2734) - *(int *)(iVar10 + 0x2a74));
+                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                bVar2 = true;
+                break;
+              }
+              iVar5 = iVar5 + 1;
+              puVar12 = puVar12 + 1;
+            } while (iVar5 < 5);
+            break;
+          case 0xc:
+            if ((long)(int)auStack_ec[0] <= (long)sStack_fc) {
+              uVar4 = maybe_Rand_Float();
+              iVar5 = (int)(uVar4 & 3);
+              if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                iVar5 = iVar5 + -4;
               }
               Career_AssignRivalCar
-                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         *(undefined2 *)(param_1 + 0x5312));
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                         (long)sStack_fc);
               Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-              *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-              bVar1 = true;
-              break;
+              *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+              bVar2 = true;
             }
-            iVar4 = iVar4 + 1;
-            puVar13 = puVar13 + 1;
-          } while (iVar4 < 5);
-          break;
-        case 0xf:
-          iVar4 = 0;
-          puVar13 = &uStack_f0;
-          do {
-            lVar7 = (long)(int)puVar13[1];
-            if (lVar7 == -1) break;
-            if ((*(short *)(param_1 + 0x531a) < lVar7) && (lVar7 <= *(short *)(param_1 + 0x5314))) {
-              uVar3 = maybe_Rand_Float();
-              iVar4 = (int)(uVar3 & 3);
-              if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                iVar4 = iVar4 + -4;
+            break;
+          case 0xd:
+            if ((int)auStack_ec[0] <= (int)sStack_fa) {
+              uVar4 = maybe_Rand_Float();
+              iVar5 = (int)(uVar4 & 3);
+              if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                iVar5 = iVar5 + -4;
               }
               Career_AssignRivalCar
-                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                         *(undefined2 *)(param_1 + 0x5314));
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                         (int)sStack_fa);
               Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-              *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-              bVar1 = true;
-              break;
+              *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+              bVar2 = true;
             }
-            iVar4 = iVar4 + 1;
-            puVar13 = puVar13 + 1;
-          } while (iVar4 < 5);
-          break;
-        case 0x10:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
+            break;
+          case 0xe:
+            iVar5 = 0;
+            puVar12 = &uStack_f0;
             do {
-              iStack_48 = *(int *)(iVar11 + 0x2750);
-              uStack_44 = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 0x10000) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
+              lVar8 = (long)(int)puVar12[1];
+              if (lVar8 == -1) break;
+              if ((*(short *)(param_1 + 0x5318) < lVar8) && (lVar8 <= *(short *)(param_1 + 0x5312)))
+              {
+                uVar4 = maybe_Rand_Float();
+                iVar5 = (int)(uVar4 & 3);
+                if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                  iVar5 = iVar5 + -4;
                 }
                 Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                           *(undefined2 *)(param_1 + 0x5312));
                 Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
+                *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                bVar2 = true;
                 break;
               }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 0x11:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
+              iVar5 = iVar5 + 1;
+              puVar12 = puVar12 + 1;
+            } while (iVar5 < 5);
+            break;
+          case 0xf:
+            iVar5 = 0;
+            puVar12 = &uStack_f0;
             do {
-              iStack_50 = *(int *)(iVar11 + 0x2750);
-              uStack_4c = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 0x20000) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
+              lVar8 = (long)(int)puVar12[1];
+              if (lVar8 == -1) break;
+              if ((*(short *)(param_1 + 0x531a) < lVar8) && (lVar8 <= *(short *)(param_1 + 0x5314)))
+              {
+                uVar4 = maybe_Rand_Float();
+                iVar5 = (int)(uVar4 & 3);
+                if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                  iVar5 = iVar5 + -4;
                 }
                 Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
+                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                           *(undefined2 *)(param_1 + 0x5314));
                 Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
+                *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                bVar2 = true;
                 break;
               }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
-          }
-          break;
-        case 0x12:
-          if ((iStack_800 == 0x28) && (iVar5 != 0x28)) {
-            uVar3 = maybe_Rand_Float();
-            iVar4 = (int)(uVar3 & 3);
-            if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-              iVar4 = iVar4 + -4;
+              iVar5 = iVar5 + 1;
+              puVar12 = puVar12 + 1;
+            } while (iVar5 < 5);
+            break;
+          case 0x10:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_48 = *(int *)(iVar13 + 0x2750);
+                uStack_44 = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 0x10000) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
             }
-            Career_AssignRivalCar
-                      (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                       0xffffffffffffffff);
-            Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-            *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-            bVar1 = true;
-          }
-          break;
-        case 0x13:
-          iVar4 = 0;
-          if (0 < *(int *)(param_1 + 0x2a70)) {
-            iVar11 = param_1;
-            do {
-              iStack_58 = *(int *)(iVar11 + 0x2750);
-              uStack_54 = *(undefined4 *)(iVar11 + 0x2754);
-              if (*(int *)(iVar11 + 0x2750) == 0x80000) {
-                uVar3 = maybe_Rand_Float();
-                iVar4 = (int)(uVar3 & 3);
-                if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
-                  iVar4 = iVar4 + -4;
+            break;
+          case 0x11:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_50 = *(int *)(iVar13 + 0x2750);
+                uStack_4c = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 0x20000) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
                 }
-                Career_AssignRivalCar
-                          (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar6 + iVar4,uStack_d0,
-                           0xffffffffffffffff);
-                Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
-                *(int *)(iVar9 + 0x2ac4) = *(int *)(iVar9 + 0x2ac4) + 1;
-                bVar1 = true;
-                break;
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
+            break;
+          case 0x12:
+            if ((iStack_800 == 0x28) && (iVar6 != 0x28)) {
+              uVar4 = maybe_Rand_Float();
+              iVar5 = (int)(uVar4 & 3);
+              if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                iVar5 = iVar5 + -4;
               }
-              iVar4 = iVar4 + 1;
-              iVar11 = iVar11 + 8;
-            } while (iVar4 < *(int *)(param_1 + 0x2a70));
+              Career_AssignRivalCar
+                        (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                         0xffffffffffffffff);
+              Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+              *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+              bVar2 = true;
+            }
+            break;
+          case 0x13:
+            iVar5 = 0;
+            if (0 < *(int *)(param_1 + 0x2a70)) {
+              iVar13 = param_1;
+              do {
+                iStack_58 = *(int *)(iVar13 + 0x2750);
+                uStack_54 = *(undefined4 *)(iVar13 + 0x2754);
+                if (*(int *)(iVar13 + 0x2750) == 0x80000) {
+                  uVar4 = maybe_Rand_Float();
+                  iVar5 = (int)(uVar4 & 3);
+                  if (((long)uVar4 < 0) && ((uVar4 & 3) != 0)) {
+                    iVar5 = iVar5 + -4;
+                  }
+                  Career_AssignRivalCar
+                            (auStack_80,*(undefined4 *)(param_1 + 0x2734),iVar7 + iVar5,uStack_d0,
+                             0xffffffffffffffff);
+                  Career_UpdateRivalStatus(param_1 + 0x531c,0,auStack_80);
+                  *(int *)(iVar10 + 0x2ac4) = *(int *)(iVar10 + 0x2ac4) + 1;
+                  bVar2 = true;
+                  break;
+                }
+                iVar5 = iVar5 + 1;
+                iVar13 = iVar13 + 8;
+              } while (iVar5 < *(int *)(param_1 + 0x2a70));
+            }
           }
         }
-        if (bVar1) break;
-        iVar14 = iVar14 + 1;
-        puVar10 = puVar10 + 6;
-        iVar6 = iVar6 + 4;
-      } while (iVar14 < 3);
+        if (bVar2) break;
+        iVar16 = iVar16 + 1;
+        puVar11 = puVar11 + 6;
+        iVar7 = iVar7 + 4;
+      } while (iVar16 < 3);
     }
     iStack_810 = iStack_810 + 0xc;
     iStack_7f0 = iStack_7f0 + 1;
-    iVar9 = iVar9 + 4;
+    iVar10 = iVar10 + 4;
     if (0x13 < iStack_7f0) {
       return;
     }
@@ -1352,7 +1362,7 @@ void Profile_SetupRivalBattle(int param_1)
   int iVar8;
   undefined2 uStack_480;
   short sStack_47e;
-  undefined1 uStack_47c;
+  byte bStack_47c;
   undefined4 uStack_478;
   undefined4 uStack_474;
   undefined4 uStack_470;
@@ -1390,7 +1400,7 @@ void Profile_SetupRivalBattle(int param_1)
   undefined4 uStack_308;
   undefined2 uStack_300;
   short sStack_2fe;
-  undefined1 uStack_2fc;
+  byte bStack_2fc;
   undefined4 uStack_2f8;
   undefined4 uStack_2f4;
   undefined4 uStack_2f0;
@@ -1428,7 +1438,7 @@ void Profile_SetupRivalBattle(int param_1)
   undefined4 uStack_188;
   undefined2 uStack_180;
   short sStack_17e;
-  undefined1 uStack_17c;
+  byte bStack_17c;
   undefined4 uStack_178;
   undefined4 uStack_174;
   undefined4 uStack_170;
@@ -1484,7 +1494,7 @@ void Profile_SetupRivalBattle(int param_1)
       puVar5 = auStack_2bc;
       sStack_2fe = sStack_47e;
       uStack_2e4 = uStack_464;
-      uStack_2fc = uStack_47c;
+      bStack_2fc = bStack_47c;
       iVar4 = 0x17;
       uStack_2f8 = uStack_478;
       uStack_2f4 = uStack_474;
@@ -1544,7 +1554,7 @@ void Profile_SetupRivalBattle(int param_1)
       uStack_18c = uStack_30c;
       uStack_188 = uStack_308;
       sStack_17e = sStack_47e;
-      uStack_17c = uStack_47c;
+      bStack_17c = bStack_47c;
       uStack_178 = uStack_478;
       uStack_174 = uStack_474;
       uStack_168 = uStack_468;
@@ -1607,17 +1617,16 @@ void Profile_SetupRivalBattle(int param_1)
       uStack_8 = uStack_308;
       uStack_1c = uStack_31c;
       if (sStack_47e == -1) break;
-      switch(uStack_47c) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 7:
-      case 8:
-      case 9:
-      case 10:
-        if (*(short *)(iVar8 + 0x3fc4) == 0) {
-          bVar2 = false;
+      if (bStack_47c < 0xb) {
+                    /* WARNING: Switch is manually overridden */
+        switch(bStack_47c) {
+        default:
+          if (*(short *)(iVar8 + 0x3fc4) == 0) {
+            bVar2 = false;
+          }
+          break;
+        case 4:
+          break;
         }
       }
       if (!bVar2) break;

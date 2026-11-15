@@ -975,99 +975,100 @@ void maybe_Fio_RpcCallback(int param_1)
   if (-1 < iVar1) {
     memcpy(piVar4,piVar13 + 4,piVar13[3]);
   }
-  switch(iVar11) {
-  case 2:
-    if (0 < piVar13[5]) {
-      uVar10 = piVar13[7];
-      iVar11 = 0;
+  if (iVar11 - 2U < 0x19) {
+                    /* WARNING: Switch is manually overridden */
+    switch(iVar11 - 2U) {
+    case 0:
       if (0 < piVar13[5]) {
-        piVar4 = piVar13 + 9;
-        do {
-          puVar8 = (undefined1 *)((uVar10 | 0x20000000) + iVar11);
-          iVar3 = *piVar4;
-          puVar5 = (undefined1 *)(uVar10 + iVar11);
-          iVar11 = iVar11 + 1;
-          *puVar8 = (char)iVar3;
-          *puVar5 = (char)iVar3;
-          piVar4 = (int *)((int)(piVar13 + 9) + iVar11);
-        } while (iVar11 < piVar13[5]);
+        uVar10 = piVar13[7];
+        iVar11 = 0;
+        if (0 < piVar13[5]) {
+          piVar4 = piVar13 + 9;
+          do {
+            puVar8 = (undefined1 *)((uVar10 | 0x20000000) + iVar11);
+            iVar3 = *piVar4;
+            puVar5 = (undefined1 *)(uVar10 + iVar11);
+            iVar11 = iVar11 + 1;
+            *puVar8 = (char)iVar3;
+            *puVar5 = (char)iVar3;
+            piVar4 = (int *)((int)(piVar13 + 9) + iVar11);
+          } while (iVar11 < piVar13[5]);
+        }
       }
-    }
-    if (0 < piVar13[6]) {
-      uVar10 = piVar13[8];
-      iVar11 = 0;
       if (0 < piVar13[6]) {
-        piVar4 = piVar13 + 0x19;
-        do {
-          puVar8 = (undefined1 *)((uVar10 | 0x20000000) + iVar11);
-          iVar3 = *piVar4;
-          puVar5 = (undefined1 *)(uVar10 + iVar11);
-          iVar11 = iVar11 + 1;
-          *puVar8 = (char)iVar3;
-          *puVar5 = (char)iVar3;
-          piVar4 = (int *)((int)(piVar13 + 0x19) + iVar11);
-        } while (iVar11 < piVar13[6]);
-        goto LAB_0011571c;
+        uVar10 = piVar13[8];
+        iVar11 = 0;
+        if (0 < piVar13[6]) {
+          piVar4 = piVar13 + 0x19;
+          do {
+            puVar8 = (undefined1 *)((uVar10 | 0x20000000) + iVar11);
+            iVar3 = *piVar4;
+            puVar5 = (undefined1 *)(uVar10 + iVar11);
+            iVar11 = iVar11 + 1;
+            *puVar8 = (char)iVar3;
+            *puVar5 = (char)iVar3;
+            piVar4 = (int *)((int)(piVar13 + 0x19) + iVar11);
+          } while (iVar11 < piVar13[6]);
+          goto LAB_0011571c;
+        }
       }
+      break;
+    case 9:
+      if (*piVar4 < 1) goto LAB_0011571c;
+      piVar4 = (int *)piVar13[5];
+      piVar6 = piVar13 + 6;
+      if (((uint)piVar4 & 7) == 0) {
+        do {
+          uVar7 = *(undefined8 *)(piVar6 + 2);
+          uVar9 = *(undefined8 *)(piVar6 + 4);
+          uVar12 = *(undefined8 *)(piVar6 + 6);
+          *(undefined8 *)piVar4 = *(undefined8 *)piVar6;
+          *(undefined8 *)(piVar4 + 2) = uVar7;
+          *(undefined8 *)(piVar4 + 4) = uVar9;
+          *(undefined8 *)(piVar4 + 6) = uVar12;
+          piVar6 = piVar6 + 8;
+          piVar4 = piVar4 + 8;
+        } while (piVar6 != piVar13 + 0x56);
+      }
+      else {
+        do {
+          uVar7 = *(undefined8 *)(piVar6 + 2);
+          uVar9 = *(undefined8 *)(piVar6 + 4);
+          uVar12 = *(undefined8 *)(piVar6 + 6);
+          *(undefined8 *)piVar4 = *(undefined8 *)piVar6;
+          *(undefined8 *)(piVar4 + 2) = uVar7;
+          *(undefined8 *)(piVar4 + 4) = uVar9;
+          *(undefined8 *)(piVar4 + 6) = uVar12;
+          piVar6 = piVar6 + 8;
+          piVar4 = piVar4 + 8;
+        } while (piVar6 != piVar13 + 0x56);
+      }
+      *piVar4 = *piVar6;
+      break;
+    case 10:
+      puVar2 = (undefined8 *)piVar13[5];
+      uVar7 = *(undefined8 *)(piVar13 + 8);
+      uVar9 = *(undefined8 *)(piVar13 + 10);
+      uVar12 = *(undefined8 *)(piVar13 + 0xc);
+      *puVar2 = *(undefined8 *)(piVar13 + 6);
+      puVar2[1] = uVar7;
+      puVar2[2] = uVar9;
+      puVar2[3] = uVar12;
+      uVar7 = *(undefined8 *)(piVar13 + 0x10);
+      uVar9 = *(undefined8 *)(piVar13 + 0x12);
+      uVar12 = *(undefined8 *)(piVar13 + 0x14);
+      puVar2[4] = *(undefined8 *)(piVar13 + 0xe);
+      puVar2[5] = uVar7;
+      puVar2[6] = uVar9;
+      puVar2[7] = uVar12;
+      goto LAB_0011571c;
+    case 0x15:
+      uVar10 = piVar13[6];
+      if (0x400 < uVar10) {
+        uVar10 = 0x400;
+      }
+      memcpy(piVar13[5],piVar13 + 7,uVar10);
     }
-    break;
-  case 0xb:
-    if (*piVar4 < 1) goto LAB_0011571c;
-    piVar4 = (int *)piVar13[5];
-    piVar6 = piVar13 + 6;
-    if (((uint)piVar4 & 7) == 0) {
-      do {
-        uVar7 = *(undefined8 *)(piVar6 + 2);
-        uVar9 = *(undefined8 *)(piVar6 + 4);
-        uVar12 = *(undefined8 *)(piVar6 + 6);
-        *(undefined8 *)piVar4 = *(undefined8 *)piVar6;
-        *(undefined8 *)(piVar4 + 2) = uVar7;
-        *(undefined8 *)(piVar4 + 4) = uVar9;
-        *(undefined8 *)(piVar4 + 6) = uVar12;
-        piVar6 = piVar6 + 8;
-        piVar4 = piVar4 + 8;
-      } while (piVar6 != piVar13 + 0x56);
-    }
-    else {
-      do {
-        uVar7 = *(undefined8 *)(piVar6 + 2);
-        uVar9 = *(undefined8 *)(piVar6 + 4);
-        uVar12 = *(undefined8 *)(piVar6 + 6);
-        *(undefined8 *)piVar4 = *(undefined8 *)piVar6;
-        *(undefined8 *)(piVar4 + 2) = uVar7;
-        *(undefined8 *)(piVar4 + 4) = uVar9;
-        *(undefined8 *)(piVar4 + 6) = uVar12;
-        piVar6 = piVar6 + 8;
-        piVar4 = piVar4 + 8;
-      } while (piVar6 != piVar13 + 0x56);
-    }
-    *piVar4 = *piVar6;
-    break;
-  case 0xc:
-    puVar2 = (undefined8 *)piVar13[5];
-    uVar7 = *(undefined8 *)(piVar13 + 8);
-    uVar9 = *(undefined8 *)(piVar13 + 10);
-    uVar12 = *(undefined8 *)(piVar13 + 0xc);
-    *puVar2 = *(undefined8 *)(piVar13 + 6);
-    puVar2[1] = uVar7;
-    puVar2[2] = uVar9;
-    puVar2[3] = uVar12;
-    uVar7 = *(undefined8 *)(piVar13 + 0x10);
-    uVar9 = *(undefined8 *)(piVar13 + 0x12);
-    uVar12 = *(undefined8 *)(piVar13 + 0x14);
-    puVar2[4] = *(undefined8 *)(piVar13 + 0xe);
-    puVar2[5] = uVar7;
-    puVar2[6] = uVar9;
-    puVar2[7] = uVar12;
-    goto LAB_0011571c;
-  case 0x17:
-  case 0x19:
-  case 0x1a:
-    uVar10 = piVar13[6];
-    if (0x400 < uVar10) {
-      uVar10 = 0x400;
-    }
-    memcpy(piVar13[5],piVar13 + 7,uVar10);
   }
 LAB_0011571c:
   if (iVar1 < 0) {
