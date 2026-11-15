@@ -42,7 +42,7 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | M1 | Find the matching compiler: MWCC PS2 2.4.1 (decomp.me mwcps2 builds) and record its flags by matching a few small functions | any | F2 |  |  |
-| M2 | Set up splat (splat64) for SLES_531.91: yaml, asm/data extraction, linker script; rebuild a byte-identical ELF from asm | any | F4 |  |  |
+| M2 | Set up splat (splat64) for SLES_531.91: yaml, asm/data extraction, linker script; rebuild a byte-identical ELF from asm | any | F4 | ShawnDarr96/claude (2026-11-15) |  |
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  |  |
 | M4 | Add a progress report for matched bytes to scripts/progress.py and CI | any | M2 |  |  |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
@@ -331,3 +331,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim N153.
 - 2026-11-15 ShawnDarr96: N153 released: done: ~100 names reviewed; left: 1419 maybe_ names
 - 2026-11-15 ShawnDarr96/claude: claim N153.
+- 2026-11-15 ShawnDarr96/claude: claim M2.
