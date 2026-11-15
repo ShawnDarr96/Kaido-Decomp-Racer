@@ -5,5 +5,7 @@ compiler: mwcps2-3.0-011126   # decomp.me id; "MWCPS2 3.0 (Built 011126)" = Code
 flags: -O4,p
 # MWCPS2 2.4 (001213) and 2.3.3 (000906) do NOT match: they save ra with sq and copy registers
 # with paddub where the game uses sd and daddu (Options_ApplySeVolume shows it).
+# Open question: the game uses branch-likely (beqzl) for some null checks (RaceCar_Get,
+# RaceScene_IsPaused); -O4,p gives beqz+nop. Probably a code-generation option still to find.
 # Note for writing C: char parameters are passed as int and narrowed at each use
 # (dsll32/dsra32 0x18 pairs), e.g. Options_ApplySeVolume(int vol) { ... (char)vol ... }.
