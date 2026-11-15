@@ -35,7 +35,7 @@ Columns:
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
 | T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5 |
-| T8 | Car_* functions still take the car as an untyped param; give them RaceCar * signatures and name the remaining ~440 unk_ fields (CarSpec at +0xbf0 too) | any |  |  | Gap of T3 |
+| T8 | Car_* functions still take the car as an untyped param; give them RaceCar * signatures and name the remaining ~440 unk_ fields (CarSpec at +0xbf0 too) | any |  | ShawnDarr96/claude (2026-11-14) | Gap of T3 |
 
 ## P3 Matching
 
@@ -279,3 +279,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: T5 done; added T7 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim T3.
 - 2026-11-14 ShawnDarr96/claude: T3 done; added T8 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim T8.
