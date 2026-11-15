@@ -2285,7 +2285,7 @@ undefined1 * GameState_Ptr_3a04(void)
 // 0x00177160  size 0x24
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
-RacerStats * GameState_Elem_2fa0_x17c(int index)
+RivalRec * GameState_Elem_2fa0_x17c(int index)
 
 {
   return g_GameState->stats + index;

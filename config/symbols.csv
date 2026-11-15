@@ -2111,7 +2111,7 @@ address,name,signature,source,comment
 0x00177100,GameState_Get_3a48,,game-accessor,
 0x00177110,GameState_CopyCourseRecord,,game,0x100 bytes each at +0x28a0
 0x00177150,GameState_Ptr_3a04,,game-accessor,
-0x00177160,GameState_Elem_2fa0_x17c,RacerStats * GameState_Elem_2fa0_x17c(int index),game-accessor,
+0x00177160,GameState_Elem_2fa0_x17c,RivalRec * GameState_Elem_2fa0_x17c(int index),game-accessor,
 0x00177190,GameState_Elem_28a0_x100,RacerResult * GameState_Elem_28a0_x100(int index),game-accessor,
 0x001771b0,GameState_Elem_3e0_x540,RacerState * GameState_Elem_3e0_x540(int index),game-accessor,
 0x001771e0,GameState_Get_ec,,game-accessor,

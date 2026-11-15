@@ -300,19 +300,31 @@
    "size": "0x100",
    "fields": []
   },
-  "RacerStats": {
+  "RivalRec": {
    "size": "0x17c",
    "fields": [
     [
+     "0x0",
+     "s16",
+     "id",
+     1
+    ],
+    [
+     "0x2",
+     "s16",
+     "subId",
+     1
+    ],
+    [
      "0x4",
-     "u32",
-     "unk_04",
+     "u8",
+     "team",
      1
     ],
     [
      "0x8",
      "u32",
-     "unk_08",
+     "carId",
      1
     ],
     [
@@ -332,9 +344,33 @@
      "u32",
      "unk_1c",
      1
+    ],
+    [
+     "0x20",
+     "f32",
+     "pos",
+     3
+    ],
+    [
+     "0x2c",
+     "s8",
+     "type",
+     1
+    ],
+    [
+     "0x38",
+     "s16",
+     "count",
+     1
+    ],
+    [
+     "0x3a",
+     "s16",
+     "max",
+     1
     ]
    ],
-   "note": "passed to RivalRec_GetTeam: likely the racer's rival record"
+   "note": "F14: same record the matched RivalRec_* accessors read (src/rival_profile.c); Career_ProcessRaceEnd passes GameState.stats[i] to RivalRec_GetType/IsBelowMax/GetTeam (was RacerStats)"
   },
   "GameState": {
    "size": "0x3ae0",
@@ -636,7 +672,7 @@
     ],
     [
      "0x2fa0",
-     "RacerStats",
+     "RivalRec",
      "stats",
      7
     ],

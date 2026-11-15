@@ -534,7 +534,7 @@ void Traffic_Spawn(int param_1)
   char cVar1;
   char cVar2;
   RaceEntrySetup *pRVar3;
-  RacerStats *pRVar4;
+  RivalRec *pRVar4;
   RacerState *pRVar5;
   int iVar6;
   int iVar7;
@@ -564,7 +564,7 @@ void Traffic_Spawn(int param_1)
         *(undefined4 *)(param_1 + 0x54) = 0x1800;
       }
       else {
-        if ((char)pRVar4->unk_04 != '\r') {
+        if (pRVar4->team != '\r') {
           *(uint *)(param_1 + 0x54) = pRVar4->unk_10;
           *(uint *)(param_1 + 0x5c) = pRVar4->unk_18;
           *(uint *)(param_1 + 0x60) = pRVar4->unk_1c;

@@ -29,18 +29,18 @@ undefined4 maybe_RaceResult_GetCategory(void)
 {
   byte bVar1;
   RaceEntrySetup *pRVar2;
-  RacerStats *pRVar3;
+  RivalRec *pRVar3;
   undefined4 uVar4;
   
   uVar4 = 0;
   pRVar2 = GameState_Elem_f0_xcc(1);
   if (pRVar2 == (RaceEntrySetup *)0x0) {
-    pRVar3 = (RacerStats *)0x0;
+    pRVar3 = (RivalRec *)0x0;
   }
   else {
     pRVar3 = GameState_Elem_2fa0_x17c((int)(char)pRVar2->racerSlot);
   }
-  if (pRVar3 != (RacerStats *)0x0) {
+  if (pRVar3 != (RivalRec *)0x0) {
     bVar1 = RivalRec_GetTeam(pRVar3);
     if (bVar1 < 0xb) {
                     /* WARNING: Switch is manually overridden */
@@ -77,15 +77,15 @@ undefined4 maybe_RaceResult_GetCategory(void)
 // 0x002fd180  size 0x34
 /* stats record (0x17c) of setup entry 1's racer slot (was maybe_RaceResult_GetRivalTeam) */
 
-RacerStats * maybe_Race_GetRivalStats(void)
+RivalRec * maybe_Race_GetRivalStats(void)
 
 {
   RaceEntrySetup *pRVar1;
-  RacerStats *pRVar2;
+  RivalRec *pRVar2;
   
   pRVar1 = GameState_Elem_f0_xcc(1);
   if (pRVar1 == (RaceEntrySetup *)0x0) {
-    pRVar2 = (RacerStats *)0x0;
+    pRVar2 = (RivalRec *)0x0;
   }
   else {
     pRVar2 = GameState_Elem_2fa0_x17c((int)(char)pRVar1->racerSlot);

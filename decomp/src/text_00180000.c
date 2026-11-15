@@ -202,7 +202,7 @@ undefined4 Career_ProcessRaceEnd(void)
   int index;
   RaceEntrySetup *pRVar10;
   int iVar11;
-  RacerStats *pRVar12;
+  RivalRec *pRVar12;
   undefined4 *puVar13;
   uint uVar14;
   long lVar15;
@@ -337,8 +337,8 @@ undefined4 Career_ProcessRaceEnd(void)
       uVar29 = *(undefined4 *)&pRVar12->field_0x14;
       uVar17 = RivalRec_GetType(pRVar12);
       RivalRec_IsBelowMax(pRVar12);
-      lVar28 = (long)*(short *)&pRVar12->field_0x38;
-      lVar15 = (long)*(short *)&pRVar12->field_0x3a;
+      lVar28 = (long)pRVar12->count;
+      lVar15 = (long)pRVar12->max;
     }
     else {
       uVar16 = GameState_Ptr_3a04();
@@ -651,7 +651,7 @@ undefined4 RaceSetup_Prepare(void)
   RacerResult *pRVar15;
   int *piVar16;
   int iVar17;
-  RacerStats *pRVar18;
+  RivalRec *pRVar18;
   long lVar19;
   undefined8 uVar20;
   undefined8 uVar21;

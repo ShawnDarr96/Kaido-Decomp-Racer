@@ -82,17 +82,24 @@ typedef struct RacerResult {  /* size 0x100 */
     u8 pad_0000[0x100];
 } RacerResult;
 
-typedef struct RacerStats {  /* size 0x17c */
-    u8 pad_0000[0x4];
-    u32 unk_04;  /* 0x4 */
-    u32 unk_08;  /* 0x8 */
+typedef struct RivalRec {  /* size 0x17c */
+    s16 id;  /* 0x0 */
+    s16 subId;  /* 0x2 */
+    u8 team;  /* 0x4 */
+    u8 pad_0005[0x3];
+    u32 carId;  /* 0x8 */
     u8 pad_000c[0x4];
     u32 unk_10;  /* 0x10 */
     u8 pad_0014[0x4];
     u32 unk_18;  /* 0x18 */
     u32 unk_1c;  /* 0x1c */
-    u8 pad_0020[0x15c];
-} RacerStats;
+    f32 pos[3];  /* 0x20 */
+    s8 type;  /* 0x2c */
+    u8 pad_002d[0xb];
+    s16 count;  /* 0x38 */
+    s16 max;  /* 0x3a */
+    u8 pad_003c[0x140];
+} RivalRec;
 
 typedef struct GameState {  /* size 0x3ae0 */
     u8 course;  /* 0x0 */
@@ -150,7 +157,7 @@ typedef struct GameState {  /* size 0x3ae0 */
     u8 pad_03dd[0x3];
     RacerState racers[7];  /* 0x3e0 */
     RacerResult results[7];  /* 0x28a0 */
-    RacerStats stats[7];  /* 0x2fa0 */
+    RivalRec stats[7];  /* 0x2fa0 */
     u8 pad_3a04[0x44];
     u32 unk_3a48;  /* 0x3a48 */
     u8 pad_3a4c[0x2c];

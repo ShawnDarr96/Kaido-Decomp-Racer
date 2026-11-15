@@ -192,7 +192,8 @@ def apply_structs(program):
     from ghidra.program.model.data import (StructureDataType, PointerDataType, ArrayDataType,
                                            UnsignedCharDataType, UnsignedShortDataType,
                                            UnsignedIntegerDataType, UnsignedLongLongDataType,
-                                           FloatDataType, CategoryPath, DataTypeConflictHandler)
+                                           FloatDataType, CategoryPath, DataTypeConflictHandler,
+                                           SignedByteDataType, ShortDataType, IntegerDataType)
     path = ROOT / "config" / "structs.json"
     if not path.exists():
         return
@@ -201,6 +202,7 @@ def apply_structs(program):
     cat = CategoryPath("/kaido")
     prim = {"u8": UnsignedCharDataType(), "u16": UnsignedShortDataType(),
             "u32": UnsignedIntegerDataType(), "u64": UnsignedLongLongDataType(),
+            "s8": SignedByteDataType(), "s16": ShortDataType(), "s32": IntegerDataType(),
             "f32": FloatDataType(), "ptr": PointerDataType()}
     built = {}
 
