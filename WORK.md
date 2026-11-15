@@ -41,7 +41,6 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| M1 | Find the matching compiler: MWCC PS2 2.4.1 (decomp.me mwcps2 builds) and record its flags by matching a few small functions | any | F2 | ShawnDarr96/claude (2026-11-15) |  |
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  | done: SDK library set + link order recorded (config/sdk_libraries.txt); left: map each library's functions via data refs, then split game code (sinit data order) |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 
@@ -231,6 +230,7 @@ Columns:
 | N158 | exact coverage measured: 338 words left outside functions (COVERAGE.md); non-EE regions recorded | P1 | ShawnDarr96/claude | 2026-11-14 | 602604d |
 | M2 | byte-identical rebuild verified (sha1 05f754ae... = retail) | P3 | ShawnDarr96/claude | 2026-11-15 | 99bbe1a |
 | M4 | progress report tracks matched functions/bytes from config/matched.csv | P3 | ShawnDarr96/claude | 2026-11-15 | 40b55b7 |
+| M1 | compiler = mwcps2-3.0-011126 -O4,p (decomp.me), verified on 2 functions | P3 | ShawnDarr96/claude | 2026-11-15 | 2258c30 |
 
 ## Changes to the board
 
@@ -338,3 +338,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim M4.
 - 2026-11-15 ShawnDarr96/claude: M4 done.
 - 2026-11-15 ShawnDarr96/claude: claim M1.
+- 2026-11-15 ShawnDarr96/claude: M1 done.
