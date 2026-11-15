@@ -1114,7 +1114,7 @@ void RaceHud_UpdateMeters(undefined8 param_1,undefined8 param_2)
     iVar5 = iVar5 + 0x18;
   } while (iVar11 < 3);
   cVar9 = (char)param_2;
-  *(uint *)(iVar1 + 0x50) = pRVar2->unk_0814;
+  *(uint *)(iVar1 + 0x50) = pRVar2->gear;
   uVar6 = RaceProg_GetArray_1c(cVar9);
   iVar5 = RaceRule_GetParams(uVar6);
   *(undefined1 *)(iVar1 + 0x7c) = *(undefined1 *)(iVar5 + 8);

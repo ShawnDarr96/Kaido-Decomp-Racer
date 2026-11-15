@@ -828,7 +828,7 @@ void Ai_DriveCar(undefined8 param_1)
       iVar12 = 0;
     }
   }
-  if ((pRVar6->unk_0811 == '\0') && ((int)pRVar6->unk_0814 < 1)) {
+  if ((pRVar6->unk_0811 == '\0') && ((int)pRVar6->gear < 1)) {
     Car_RequestShiftUp(pRVar6);
   }
   auStack_b0[0] = 4;

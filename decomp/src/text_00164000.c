@@ -1784,86 +1784,86 @@ float Car_GetSurfaceGrip(int param_1,ulong param_2,float *param_3)
 }
 
 // 0x001666f0  size 0x274
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* gear at +0x814 (-1 = reverse) */
 
-void Car_UpdateGearRatio(int param_1)
+void Car_UpdateGearRatio(RaceCar *param_1)
 
 {
-  int iVar1;
-  int iVar2;
+  undefined *puVar1;
+  uint uVar2;
   float fVar3;
   float fVar4;
   float fVar5;
   
-  iVar1 = *(int *)(param_1 + 0x120);
-  if (*(char *)(iVar1 + 0x674) == '\0') {
+  puVar1 = param_1->maybe_params;
+  if (puVar1[0x674] == '\0') {
     return;
   }
-  iVar2 = *(int *)(param_1 + 0x814);
-  if (iVar2 == -1) {
-    fVar3 = *(float *)(param_1 + 300);
-    fVar5 = *(float *)(param_1 + 0x820) * fVar3;
+  uVar2 = param_1->gear;
+  if (uVar2 == 0xffffffff) {
+    fVar5 = param_1->maybe_brakeInput;
+    fVar4 = (float)param_1->unk_0820 * fVar5;
   }
-  else if (iVar2 == 0) {
-    fVar5 = *(float *)(param_1 + 0x128);
-    fVar3 = fVar5;
+  else if (uVar2 == 0) {
+    fVar4 = param_1->maybe_handbrakeInput;
+    fVar5 = fVar4;
   }
   else {
-    fVar5 = *(float *)(param_1 + 0x128);
-    fVar3 = fVar5;
-    if ((iVar2 != 1) && (*(float *)(param_1 + 0x824) != 0.0)) {
-      fVar3 = 0.0;
-    }
-    if (((*(int *)(param_1 + 0x818) != 0) && (*(float *)(param_1 + 0x820) < 1.0)) ||
-       (*(char *)(param_1 + 0x810) != '\0')) {
+    fVar4 = param_1->maybe_handbrakeInput;
+    fVar5 = fVar4;
+    if ((uVar2 != 1) && ((float)param_1->unk_0824 != 0.0)) {
       fVar5 = 0.0;
     }
+    if (((param_1->unk_0818 != 0) && ((float)param_1->unk_0820 < 1.0)) ||
+       (param_1->unk_0810 != '\0')) {
+      fVar4 = 0.0;
+    }
   }
-  fVar4 = *(float *)(iVar1 + 0x680) * (*(float *)(param_1 + 0x7fc) / *(float *)(iVar1 + 0x68c));
-  if (fVar3 != 0.0) {
-    fVar5 = fVar4 * fVar5;
-    if (1.0 <= fVar5) {
-      if (fVar5 <= *(float *)(iVar1 + 0x684)) goto LAB_001667ec;
-      *(float *)(param_1 + 0xac0) = *(float *)(iVar1 + 0x684);
+  fVar3 = *(float *)(puVar1 + 0x680) * ((float)param_1->unk_07fc / *(float *)(puVar1 + 0x68c));
+  if (fVar5 != 0.0) {
+    fVar4 = fVar3 * fVar4;
+    if (1.0 <= fVar4) {
+      if (fVar4 <= *(float *)(puVar1 + 0x684)) goto LAB_001667ec;
+      param_1->unk_0ac0 = (uint)*(float *)(puVar1 + 0x684);
     }
     else {
-      fVar5 = 1.0;
+      fVar4 = 1.0;
 LAB_001667ec:
-      *(float *)(param_1 + 0xac0) = fVar5;
+      param_1->unk_0ac0 = (uint)fVar4;
     }
-    fVar5 = *(float *)(iVar1 + 0x684);
+    fVar4 = *(float *)(puVar1 + 0x684);
     goto LAB_001667f4;
   }
-  fVar5 = fVar4 * fVar5;
-  if (0.6 <= fVar5) {
-    if (fVar5 <= *(float *)(iVar1 + 0x684)) goto LAB_00166940;
-    *(float *)(param_1 + 0xac0) = *(float *)(iVar1 + 0x684);
+  fVar4 = fVar3 * fVar4;
+  if (0.6 <= fVar4) {
+    if (fVar4 <= *(float *)(puVar1 + 0x684)) goto LAB_00166940;
+    param_1->unk_0ac0 = (uint)*(float *)(puVar1 + 0x684);
   }
   else {
-    fVar5 = 0.6;
+    fVar4 = 0.6;
 LAB_00166940:
-    *(float *)(param_1 + 0xac0) = fVar5;
+    param_1->unk_0ac0 = (uint)fVar4;
   }
-  fVar5 = *(float *)(iVar1 + 0x684);
+  fVar4 = *(float *)(puVar1 + 0x684);
 LAB_001667f4:
-  *(float *)(param_1 + 0xac8) =
-       1.0 - *(float *)(iVar1 + 0x67c) * ((fVar5 - *(float *)(param_1 + 0xac0)) / (fVar5 - 0.6));
-  *(undefined1 *)(param_1 + 0xacc) = 0;
-  if (*(char *)(iVar1 + 0x675) == '\0') {
-    *(bool *)(param_1 + 0xac4) =
-         *(float *)(iVar1 + 0x684) * *(float *)(iVar1 + 0x688) < (fVar4 - 1.0) * (1.0 - fVar3) * 1.6
-    ;
-    if ((*(int *)(param_1 + 0x814) < *(int *)(param_1 + 0x818)) &&
-       (*(float *)(param_1 + 0x128) == 0.0)) {
-      *(undefined1 *)(param_1 + 0xac4) = 0;
+  param_1->unk_0ac8 =
+       (uint)(1.0 - *(float *)(puVar1 + 0x67c) *
+                    ((fVar4 - (float)param_1->unk_0ac0) / (fVar4 - 0.6)));
+  param_1->unk_0acc = '\0';
+  if (puVar1[0x675] == '\0') {
+    param_1->unk_0ac4 =
+         *(float *)(puVar1 + 0x684) * *(float *)(puVar1 + 0x688) <
+         (fVar3 - 1.0) * (1.0 - fVar5) * 1.6;
+    if (((int)param_1->gear < (int)param_1->unk_0818) && (param_1->maybe_handbrakeInput == 0.0)) {
+      param_1->unk_0ac4 = '\0';
     }
   }
   else {
-    *(undefined4 *)(param_1 + 0xac8) = 0x3f800000;
-    fVar3 = *(float *)(iVar1 + 0x684) * 0.9;
-    if (*(float *)(param_1 + 0xac0) < fVar3) {
-      *(float *)(param_1 + 0xac0) = fVar3;
-      *(undefined1 *)(param_1 + 0xacc) = 1;
+    param_1->unk_0ac8 = 0x3f800000;
+    if ((float)param_1->unk_0ac0 < *(float *)(puVar1 + 0x684) * 0.9) {
+      param_1->unk_0ac0 = (uint)(*(float *)(puVar1 + 0x684) * 0.9);
+      param_1->unk_0acc = '\x01';
     }
   }
   return;
@@ -1918,7 +1918,9 @@ void maybe_Car_ClampClutch(float param_1,int param_2)
 }
 
 // 0x00166a30  size 0x98
-void maybe_Car_ClampSteer(float param_1,float param_2,int param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void maybe_Car_ClampSteer(float param_1,float param_2,RaceCar *param_3)
 
 {
   float fVar1;
@@ -1931,10 +1933,10 @@ void maybe_Car_ClampSteer(float param_1,float param_2,int param_3)
   else {
     param_1 = -1.0;
   }
-  fVar1 = (*(float *)(param_3 + 0x124) + 0.0) -
-          param_2 * (*(float *)(param_3 + 0x124) - param_1) *
-                    *(float *)(*(int *)(param_3 + 0x120) + 0x16c);
-  *(float *)(param_3 + 0x124) = fVar1;
+  fVar1 = ((float)param_3->unk_0124 + 0.0) -
+          param_2 * ((float)param_3->unk_0124 - param_1) * *(float *)(param_3->maybe_params + 0x16c)
+  ;
+  param_3->unk_0124 = (uint)fVar1;
   if (-1.0 <= fVar1) {
     if (1.0 < fVar1) {
       fVar1 = 1.0;
@@ -1943,7 +1945,7 @@ void maybe_Car_ClampSteer(float param_1,float param_2,int param_3)
   else {
     fVar1 = -1.0;
   }
-  *(float *)(param_3 + 0x124) = fVar1;
+  param_3->unk_0124 = (uint)fVar1;
   return;
 }
 
@@ -2006,163 +2008,172 @@ void Car_UpdateFrontTires(float param_1,undefined8 param_2)
 }
 
 // 0x00166c80  size 0x54
-void maybe_Car_SetThrottleInput(float param_1,int param_2,long param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void maybe_Car_SetThrottleInput(float param_1,RaceCar *param_2,long param_3)
 
 {
   float fVar1;
   
   if (param_3 == 0) {
-    *(undefined4 *)(param_2 + 0x134) = 0;
+    param_2->maybe_throttleInput = 0.0;
   }
   else {
-    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0xb0) * param_1 +
-            *(float *)(param_2 + 0x134) + 0.0;
-    *(float *)(param_2 + 0x134) = fVar1;
+    fVar1 = *(float *)(param_2->maybe_params + 0xb0) * param_1 + param_2->maybe_throttleInput + 0.0;
+    param_2->maybe_throttleInput = fVar1;
     if (1.0 < fVar1) {
-      *(undefined4 *)(param_2 + 0x134) = 0x3f800000;
+      param_2->maybe_throttleInput = 1.0;
     }
   }
   return;
 }
 
 // 0x00166ce0  size 0x54
-void maybe_Car_SetBrakeInput(float param_1,int param_2,long param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void maybe_Car_SetBrakeInput(float param_1,RaceCar *param_2,long param_3)
 
 {
   float fVar1;
   
   if (param_3 == 0) {
-    *(undefined4 *)(param_2 + 300) = 0;
+    param_2->maybe_brakeInput = 0.0;
   }
   else {
-    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0x520) * param_1 +
-            *(float *)(param_2 + 300) + 0.0;
-    *(float *)(param_2 + 300) = fVar1;
+    fVar1 = *(float *)(param_2->maybe_params + 0x520) * param_1 + param_2->maybe_brakeInput + 0.0;
+    param_2->maybe_brakeInput = fVar1;
     if (1.0 < fVar1) {
-      *(undefined4 *)(param_2 + 300) = 0x3f800000;
+      param_2->maybe_brakeInput = 1.0;
     }
   }
   return;
 }
 
 // 0x00166d40  size 0x60
-void maybe_Car_SetHandbrakeInput(float param_1,int param_2,long param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void maybe_Car_SetHandbrakeInput(float param_1,RaceCar *param_2,long param_3)
 
 {
   float fVar1;
   
-  if ((param_3 == 0) || (*(int *)(param_2 + 0x814) < 0)) {
-    *(undefined4 *)(param_2 + 0x128) = 0;
+  if ((param_3 == 0) || ((int)param_2->gear < 0)) {
+    param_2->maybe_handbrakeInput = 0.0;
   }
   else {
-    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0x520) * param_1 +
-            *(float *)(param_2 + 0x128) + 0.0;
-    *(float *)(param_2 + 0x128) = fVar1;
+    fVar1 = *(float *)(param_2->maybe_params + 0x520) * param_1 +
+            param_2->maybe_handbrakeInput + 0.0;
+    param_2->maybe_handbrakeInput = fVar1;
     if (1.0 < fVar1) {
-      *(undefined4 *)(param_2 + 0x128) = 0x3f800000;
+      param_2->maybe_handbrakeInput = 1.0;
     }
   }
   return;
 }
 
 // 0x00166da0  size 0x54
-void maybe_Car_SetClutchInput(float param_1,int param_2,long param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void maybe_Car_SetClutchInput(float param_1,RaceCar *param_2,long param_3)
 
 {
   float fVar1;
   
   if (param_3 == 0) {
-    *(undefined4 *)(param_2 + 0x130) = 0;
+    param_2->maybe_clutchInput = 0.0;
   }
   else {
-    fVar1 = *(float *)(*(int *)(param_2 + 0x120) + 0xb0) * param_1 +
-            *(float *)(param_2 + 0x130) + 0.0;
-    *(float *)(param_2 + 0x130) = fVar1;
+    fVar1 = *(float *)(param_2->maybe_params + 0xb0) * param_1 + param_2->maybe_clutchInput + 0.0;
+    param_2->maybe_clutchInput = fVar1;
     if (1.0 < fVar1) {
-      *(undefined4 *)(param_2 + 0x130) = 0x3f800000;
+      param_2->maybe_clutchInput = 1.0;
     }
   }
   return;
 }
 
 // 0x00166e00  size 0x250
-void Car_UpdateRearTires(float param_1,float param_2,int param_3,long param_4,long param_5)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void Car_UpdateRearTires(float param_1,float param_2,RaceCar *param_3,long param_4,long param_5)
 
 {
-  int iVar1;
-  undefined4 uVar2;
+  undefined *puVar1;
+  uint uVar2;
   float fVar3;
   float fVar4;
   float fVar5;
+  float fVar6;
+  float fVar7;
   
-  iVar1 = *(int *)(param_3 + 0x120);
-  fVar3 = *(float *)(iVar1 + 0x16c) * param_2;
-  param_2 = *(float *)(iVar1 + 0x170) * param_2;
-  fVar4 = param_2 / fVar3;
-  fVar5 = (*(float *)(param_3 + 0x290) + *(float *)(param_3 + 0x3d0)) * 0.5;
-  Tire_SetupLoad((*(float *)(param_3 + 0x2a0) + *(float *)(param_3 + 0x3e0)) * 0.5,0x3f800000,
-                 *(undefined4 *)(iVar1 + 0x214),param_3 + 0xae4,iVar1 + 0x180);
-  uVar2 = Tire_LateralForceFromSlip(fVar5,param_3 + 0xae4);
-  *(undefined4 *)(param_3 + 0xb5c) = uVar2;
+  puVar1 = param_3->maybe_params;
+  fVar4 = *(float *)(puVar1 + 0x16c) * param_2;
+  fVar7 = *(float *)(puVar1 + 0x170) * param_2;
+  fVar5 = fVar7 / fVar4;
+  fVar6 = ((float)param_3->unk_0290 + (float)param_3->unk_03d0) * 0.5;
+  Tire_SetupLoad(((float)param_3->unk_02a0 + (float)param_3->unk_03e0) * 0.5,0x3f800000,
+                 *(undefined4 *)(puVar1 + 0x214),&param_3->field_0xae4,puVar1 + 0x180);
+  uVar2 = Tire_LateralForceFromSlip(fVar6,&param_3->field_0xae4);
+  param_3->unk_0b5c = uVar2;
   if (param_4 != 0) {
     param_1 = -1.0;
   }
   if (param_5 != 0) {
     param_1 = 1.0;
   }
-  fVar5 = *(float *)(param_3 + 0x124);
-  param_1 = param_1 - fVar5;
-  if (0.0 < param_1) {
-    if (fVar5 < 0.0) {
-      fVar3 = param_2;
+  fVar3 = (float)param_3->unk_0124;
+  fVar6 = param_1 - fVar3;
+  if (0.0 < fVar6) {
+    if (fVar3 < 0.0) {
+      fVar4 = fVar7;
     }
-    else if (2.0 < *(float *)(param_3 + 0xb5c)) {
-      fVar5 = *(float *)(param_3 + 0xb5c) / 20.0 + 1.0;
-      if (0.0 <= fVar5) {
-        if (fVar5 <= fVar4) {
-          fVar4 = fVar5;
+    else if (2.0 < (float)param_3->unk_0b5c) {
+      fVar7 = (float)param_3->unk_0b5c / 20.0 + 1.0;
+      if (0.0 <= fVar7) {
+        if (fVar7 <= fVar5) {
+          fVar5 = fVar7;
         }
       }
       else {
-        fVar4 = 0.0;
+        fVar5 = 0.0;
       }
-      fVar3 = fVar3 * fVar4;
+      fVar4 = fVar4 * fVar5;
     }
-    if (fVar3 < param_1) {
-      param_1 = fVar3;
+    if (fVar4 < fVar6) {
+      fVar6 = fVar4;
     }
   }
   else {
-    if (0.0 < fVar5) {
-      fVar3 = param_2;
+    if (0.0 < fVar3) {
+      fVar4 = fVar7;
     }
-    else if (*(float *)(param_3 + 0xb5c) < -2.0) {
-      fVar5 = -*(float *)(param_3 + 0xb5c) / 20.0 + 1.0;
-      if (0.0 <= fVar5) {
-        if (fVar5 <= fVar4) {
-          fVar4 = fVar5;
+    else if ((float)param_3->unk_0b5c < -2.0) {
+      fVar7 = -(float)param_3->unk_0b5c / 20.0 + 1.0;
+      if (0.0 <= fVar7) {
+        if (fVar7 <= fVar5) {
+          fVar5 = fVar7;
         }
       }
       else {
-        fVar4 = 0.0;
+        fVar5 = 0.0;
       }
-      fVar3 = fVar3 * fVar4;
+      fVar4 = fVar4 * fVar5;
     }
-    if (param_1 < -fVar3) {
-      param_1 = -fVar3;
+    if (fVar6 < -fVar4) {
+      fVar6 = -fVar4;
     }
   }
-  param_1 = *(float *)(param_3 + 0x124) + param_1;
-  *(float *)(param_3 + 0x124) = param_1;
-  if (-1.0 <= param_1) {
-    if (1.0 < param_1) {
-      param_1 = 1.0;
+  fVar6 = (float)param_3->unk_0124 + fVar6;
+  param_3->unk_0124 = (uint)fVar6;
+  if (-1.0 <= fVar6) {
+    if (1.0 < fVar6) {
+      fVar6 = 1.0;
     }
   }
   else {
-    param_1 = -1.0;
+    fVar6 = -1.0;
   }
-  *(float *)(param_3 + 0x124) = param_1;
+  param_3->unk_0124 = (uint)fVar6;
   return;
 }
 
@@ -2193,15 +2204,18 @@ float maybe_Car_GetBoostScale(int param_1)
 }
 
 // 0x001670c0  size 0x4bc
-void Car_Init(int *param_1,int param_2,ulong param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void Car_Init(int *param_1,RaceCar *param_2,ulong param_3)
 
 {
   int iVar1;
   long lVar2;
   int *piVar3;
   uint uVar4;
-  float fVar5;
+  ulong uVar5;
   float fVar6;
+  float fVar7;
   undefined4 uStack_20;
   undefined4 uStack_1c;
   undefined4 uStack_18;
@@ -2212,7 +2226,7 @@ void Car_Init(int *param_1,int param_2,ulong param_3)
   memset(param_1 + 0x6c,0,0x500);
   uVar4 = 0;
   *(undefined1 *)(param_1 + 600) = 1;
-  param_1[0x48] = param_2;
+  param_1[0x48] = (int)param_2;
   piVar3 = param_1;
   do {
     if (uVar4 < 2) {
@@ -2267,10 +2281,10 @@ void Car_Init(int *param_1,int param_2,ulong param_3)
   PhysBody_ClearGroupMask(param_1[0x56],0xffffffffffffffff);
   PhysBody_ClearCollideMask(param_1[0x56],0xffffffffffffffff);
   PhysBody_ClearFlags(param_1[0x56],0xffffffffffffffff);
-  param_3 = param_3 | 0x7000000;
-  PhysBody_TestGroupMask(param_1[0x56],param_3);
-  PhysBody_SetGroupMask(param_1[0x56],param_3);
-  PhysBody_SetCollideMask(param_1[0x56],param_3);
+  uVar5 = param_3 | 0x7000000;
+  PhysBody_TestGroupMask(param_1[0x56],uVar5);
+  PhysBody_SetGroupMask(param_1[0x56],uVar5);
+  PhysBody_SetCollideMask(param_1[0x56],uVar5);
   PhysBody_ClearFlags(param_1[0x56],0x1000000);
   *(undefined1 *)(param_1 + 0x2dd) = 0;
   param_1[0x49] = 0;
@@ -2300,51 +2314,53 @@ void Car_Init(int *param_1,int param_2,ulong param_3)
   param_1[0x1c4] = *(int *)(param_1[0x48] + 0x20c);
   param_1[0x1e4] = *(int *)(param_1[0x48] + 0x31c);
   iVar1 = param_1[0x48];
-  fVar6 = *(float *)(iVar1 + 0x210);
-  fVar5 = *(float *)(iVar1 + 800);
+  fVar7 = *(float *)(iVar1 + 0x210);
+  fVar6 = *(float *)(iVar1 + 800);
   param_1[0x2b4] = (int)((float)param_1[0x11] * 9.8 * *(float *)(iVar1 + 0x75c));
   param_1[0x2b5] = (int)((float)param_1[0x11] * 9.8 * *(float *)(param_1[0x48] + 0x760));
-  fVar5 = 1.0 - (float)param_1[0x11] * 0.25 * (fVar6 + fVar5) * 0.5;
+  fVar6 = 1.0 - (float)param_1[0x11] * 0.25 * (fVar7 + fVar6) * 0.5;
   param_1[0x2b6] =
-       (int)(*(float *)(param_2 + 0x75c) /
-            (fVar5 * ((float)param_1[0x1c4] + (float)param_1[0x1e4]) * 0.5));
+       (int)((float)param_2->unk_075c /
+            (fVar6 * ((float)param_1[0x1c4] + (float)param_1[0x1e4]) * 0.5));
   param_1[0x2b7] =
-       (int)(*(float *)(param_2 + 0x760) /
-            (fVar5 * ((float)param_1[0x1c4] + (float)param_1[0x1e4]) * 0.5));
-  fVar5 = (float)param_1[0x2b6];
-  if (0.0 <= fVar5) {
-    if (1.0 < fVar5) {
-      fVar5 = 1.0;
+       (int)((float)param_2->unk_0760 /
+            (fVar6 * ((float)param_1[0x1c4] + (float)param_1[0x1e4]) * 0.5));
+  fVar6 = (float)param_1[0x2b6];
+  if (0.0 <= fVar6) {
+    if (1.0 < fVar6) {
+      fVar6 = 1.0;
     }
   }
   else {
-    fVar5 = 0.0;
+    fVar6 = 0.0;
   }
-  param_1[0x2b6] = (int)fVar5;
-  fVar5 = (float)param_1[0x2b7];
-  if (0.0 <= fVar5) {
-    if (1.0 < fVar5) {
-      fVar5 = 1.0;
+  param_1[0x2b6] = (int)fVar6;
+  fVar6 = (float)param_1[0x2b7];
+  if (0.0 <= fVar6) {
+    if (1.0 < fVar6) {
+      fVar6 = 1.0;
     }
   }
   else {
-    fVar5 = 0.0;
+    fVar6 = 0.0;
   }
-  param_1[0x2b7] = (int)fVar5;
+  param_1[0x2b7] = (int)fVar6;
   Car_UpdateAutoShift(param_1);
-  Car_SyncFromRigidBody(param_1);
-  Car_UpdateWheelTransforms(param_1);
-  param_1[0x222] = *(int *)(param_2 + 0xdc);
-  param_1[0x1c5] = *(int *)(param_2 + 0xe4);
-  param_1[0x1e5] = (int)(1.0 - *(float *)(param_2 + 0xe4));
-  param_1[0x2ae] = (int)((1.0 - *(float *)(param_2 + 0x758)) * 0.5 + 1.0);
-  param_1[0x2af] = (int)(1.0 - (1.0 - *(float *)(param_2 + 0x758)) * 0.25);
+  Car_SyncFromRigidBody((RaceCar *)param_1);
+  Car_UpdateWheelTransforms((RaceCar *)param_1);
+  param_1[0x222] = param_2->unk_00dc;
+  param_1[0x1c5] = param_2->unk_00e4;
+  param_1[0x1e5] = (int)(1.0 - (float)param_2->unk_00e4);
+  param_1[0x2ae] = (int)((1.0 - (float)param_2->unk_0758) * 0.5 + 1.0);
+  param_1[0x2af] = (int)(1.0 - (1.0 - (float)param_2->unk_0758) * 0.25);
   (**(code **)(*param_1 + 0x48))(param_1);
   return;
 }
 
 // 0x00167580  size 0x4d8
-void Car_Reset(int *param_1,int param_2,undefined1 param_3,undefined8 param_4)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void Car_Reset(int *param_1,RaceCar *param_2,undefined1 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -2360,10 +2376,10 @@ void Car_Reset(int *param_1,int param_2,undefined1 param_3,undefined8 param_4)
   undefined4 uStack_c;
   undefined4 uStack_8;
   
-  Car_Clear();
+  Car_Clear((RaceCar *)param_1);
   uVar4 = 0;
   *(undefined1 *)(param_1 + 600) = 1;
-  param_1[0x48] = param_2;
+  param_1[0x48] = (int)param_2;
   piVar3 = param_1;
   do {
     if (uVar4 < 2) {
@@ -2443,10 +2459,10 @@ void Car_Reset(int *param_1,int param_2,undefined1 param_3,undefined8 param_4)
   param_1[0x2b5] = (int)((float)param_1[0x11] * 9.8 * *(float *)(param_1[0x48] + 0x760));
   fVar5 = 1.0 - (float)param_1[0x11] * 0.25 * (fVar6 + fVar5) * 0.5;
   param_1[0x2b6] =
-       (int)(*(float *)(param_2 + 0x75c) /
+       (int)((float)param_2->unk_075c /
             (fVar5 * ((float)param_1[0x1c4] + (float)param_1[0x1e4]) * 0.5));
   param_1[0x2b7] =
-       (int)(*(float *)(param_2 + 0x760) /
+       (int)((float)param_2->unk_0760 /
             (fVar5 * ((float)param_1[0x1c4] + (float)param_1[0x1e4]) * 0.5));
   fVar5 = (float)param_1[0x2b6];
   if (0.0 <= fVar5) {
@@ -2470,13 +2486,13 @@ void Car_Reset(int *param_1,int param_2,undefined1 param_3,undefined8 param_4)
   param_1[0x2b7] = (int)fVar5;
   *(undefined1 *)((int)param_1 + 0x811) = param_3;
   Car_UpdateAutoShift(param_1);
-  Car_SyncFromRigidBody(param_1);
-  Car_UpdateWheelTransforms(param_1);
-  param_1[0x222] = *(int *)(param_2 + 0xdc);
-  param_1[0x1c5] = *(int *)(param_2 + 0xe4);
-  param_1[0x1e5] = (int)(1.0 - *(float *)(param_2 + 0xe4));
-  param_1[0x2ae] = (int)((1.0 - *(float *)(param_2 + 0x758)) * 0.5 + 1.0);
-  param_1[0x2af] = (int)(1.0 - (1.0 - *(float *)(param_2 + 0x758)) * 0.25);
+  Car_SyncFromRigidBody((RaceCar *)param_1);
+  Car_UpdateWheelTransforms((RaceCar *)param_1);
+  param_1[0x222] = param_2->unk_00dc;
+  param_1[0x1c5] = param_2->unk_00e4;
+  param_1[0x1e5] = (int)(1.0 - (float)param_2->unk_00e4);
+  param_1[0x2ae] = (int)((1.0 - (float)param_2->unk_0758) * 0.5 + 1.0);
+  param_1[0x2af] = (int)(1.0 - (1.0 - (float)param_2->unk_0758) * 0.25);
   (**(code **)(*param_1 + 0x48))(param_1);
   if (*(int *)(param_1[0x48] + 0x524) == 1) {
     param_1[0x20e] = *(int *)(param_1[0x48] + 0x650);
@@ -2501,214 +2517,213 @@ undefined4 Car_GetWheelLoad(int param_1,int param_2)
 }
 
 // 0x00167a80  size 0x2c8
-void Car_UpdateWheelContacts(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void Car_UpdateWheelContacts(RaceCar *param_1)
 
 {
-  int iVar1;
-  float *pfVar2;
-  int iVar3;
-  int iVar4;
-  uint uVar5;
-  int iVar6;
-  float fVar7;
+  uint uVar1;
+  uint uVar2;
+  float *pfVar3;
+  RaceCar *pRVar4;
+  RaceCar *pRVar5;
+  uint uVar6;
+  int iVar7;
   float fVar8;
+  float fVar9;
   float afStack_10 [4];
   
-  if (*(int *)(param_1 + 0x8e0) == 0) {
-    *(undefined4 *)(param_1 + 0x2ac) = 0;
-    *(undefined4 *)(param_1 + 0x3ec) = 0;
-    *(undefined4 *)(param_1 + 0x52c) = 0;
-    *(undefined4 *)(param_1 + 0x66c) = 0;
+  if (param_1->unk_08e0 == 0) {
+    param_1->unk_02ac = 0;
+    param_1->unk_03ec = 0;
+    param_1->unk_052c = 0;
+    param_1->unk_066c = 0;
   }
   else {
     memset(afStack_10,0,0x10);
-    pfVar2 = afStack_10;
-    uVar5 = 0;
-    iVar3 = param_1;
-    iVar4 = param_1;
+    pfVar3 = afStack_10;
+    uVar6 = 0;
+    pRVar4 = param_1;
+    pRVar5 = param_1;
     do {
-      if (*(float *)(iVar4 + 0x2ac) < 1.0) {
-        fVar7 = *(float *)(iVar4 + 0x278);
-        iVar1 = *(int *)(iVar3 + 0x7c0);
-        if (fVar7 < 1.0) {
-          if (fVar7 < 0.1) {
-            fVar7 = 0.1;
+      if ((float)pRVar5->unk_02ac < 1.0) {
+        fVar8 = (float)pRVar5->unk_0278;
+        uVar1 = pRVar4->unk_07c0;
+        if (fVar8 < 1.0) {
+          if (fVar8 < 0.1) {
+            fVar8 = 0.1;
           }
-          fVar8 = 1.0;
-          if (*(char *)(param_1 + 0x9a8) != '\0') {
-            if (uVar5 < 2) {
-              iVar6 = *(int *)(param_1 + (uint)*(byte *)(iVar4 + 0x1c8) * 4 + 0x9ac);
+          fVar9 = 1.0;
+          if (param_1->unk_09a8 != '\0') {
+            if (uVar6 < 2) {
+              iVar7 = *(int *)(&param_1->field_0x9ac + (uint)(byte)pRVar5->field_0x1c8 * 4);
             }
             else {
-              iVar6 = *(int *)(param_1 + (uint)*(byte *)(iVar4 + 0x1c8) * 4 + 0xa2c);
+              iVar7 = *(int *)(&param_1->field_0xa2c + (uint)(byte)pRVar5->field_0x1c8 * 4);
             }
-            if (iVar6 != 0) {
-              fVar8 = *(float *)(iVar6 + 0x10);
+            if (iVar7 != 0) {
+              fVar9 = *(float *)(iVar7 + 0x10);
             }
           }
-          *(float *)(iVar4 + 600) = fVar8;
-          fVar7 = fVar8 * *(float *)(param_1 + 0x870) * *(float *)(iVar1 + 0xb4) * (1.0 / fVar7) *
-                  0.3;
-          if (0.0 <= fVar7) {
-            if (0.05 < fVar7) {
-              fVar7 = 0.05;
+          *(float *)&pRVar5->field_0x258 = fVar9;
+          fVar8 = fVar9 * param_1->maybe_rpmLimit * *(float *)(uVar1 + 0xb4) * (1.0 / fVar8) * 0.3;
+          if (0.0 <= fVar8) {
+            if (0.05 < fVar8) {
+              fVar8 = 0.05;
             }
           }
           else {
-            fVar7 = 0.0;
+            fVar8 = 0.0;
           }
-          if (*(int *)(param_1 + 0x8e0) == 2) {
-            fVar7 = fVar7 * 0.3125;
+          if (param_1->unk_08e0 == 2) {
+            fVar8 = fVar8 * 0.3125;
           }
-          else if (*(int *)(param_1 + 0x8e0) == 1) {
-            fVar7 = fVar7 * 0.15625;
+          else if (param_1->unk_08e0 == 1) {
+            fVar8 = fVar8 * 0.15625;
           }
-          *pfVar2 = fVar7;
+          *pfVar3 = fVar8;
         }
       }
-      uVar5 = uVar5 + 1;
-      iVar4 = iVar4 + 0x140;
-      iVar3 = iVar3 + 4;
-      pfVar2 = pfVar2 + 1;
-    } while (uVar5 < 4);
-    uVar5 = 0;
-    iVar3 = param_1;
+      uVar6 = uVar6 + 1;
+      pRVar5 = (RaceCar *)&pRVar5->unk_0140;
+      pRVar4 = (RaceCar *)&pRVar4->field_0x4;
+      pfVar3 = pfVar3 + 1;
+    } while (uVar6 < 4);
+    uVar6 = 0;
+    pRVar4 = param_1;
     do {
-      fVar7 = *(float *)(iVar3 + 0x2ac) +
+      fVar8 = (float)pRVar4->unk_02ac +
               (afStack_10[0] + 0.0 + afStack_10[1] + afStack_10[2] + afStack_10[3]) / 4.0;
-      *(float *)(iVar3 + 0x2ac) = fVar7;
-      if (1.0 < fVar7) {
-        *(undefined4 *)(iVar3 + 0x2ac) = 0x3f800000;
+      pRVar4->unk_02ac = (uint)fVar8;
+      if (1.0 < fVar8) {
+        pRVar4->unk_02ac = 0x3f800000;
       }
-      uVar5 = uVar5 + 1;
-      iVar3 = iVar3 + 0x140;
-    } while (uVar5 < 4);
+      uVar6 = uVar6 + 1;
+      pRVar4 = (RaceCar *)&pRVar4->unk_0140;
+    } while (uVar6 < 4);
   }
-  uVar5 = 0;
-  iVar3 = param_1;
-  iVar4 = param_1;
+  uVar6 = 0;
+  pRVar4 = param_1;
+  pRVar5 = param_1;
   do {
-    iVar1 = *(int *)(iVar4 + 0x7c0);
-    iVar6 = *(int *)(iVar4 + 0x7b0);
-    fVar7 = *(float *)(iVar3 + 0x2ac) + *(float *)(iVar3 + 0x3ec);
-    if (*(char *)(param_1 + 0x961) != '\0') {
-      fVar7 = 0.0;
+    uVar1 = pRVar5->unk_07c0;
+    uVar2 = pRVar5->unk_07b0;
+    fVar8 = (float)pRVar4->unk_02ac + (float)pRVar4->unk_03ec;
+    if (param_1->unk_0961 != '\0') {
+      fVar8 = 0.0;
     }
-    *(float *)(iVar6 + 0x60) =
-         *(float *)(iVar1 + 0x8c) *
-         (*(float *)(iVar1 + 0xbc) * (1.0 - *(float *)(param_1 + 0x964)) +
-         *(float *)(iVar1 + 0xc0) * *(float *)(param_1 + 0x964));
-    if ((*(char *)(param_1 + 0x88f) != '\0') && (1.0 < *(float *)(param_1 + 0x130))) {
-      *(float *)(iVar6 + 0x60) = *(float *)(iVar6 + 0x60) * 1.25;
+    *(float *)(uVar2 + 0x60) =
+         *(float *)(uVar1 + 0x8c) *
+         (*(float *)(uVar1 + 0xbc) * (1.0 - (float)param_1->unk_0964) +
+         *(float *)(uVar1 + 0xc0) * (float)param_1->unk_0964);
+    if ((param_1->unk_088f != '\0') && (1.0 < param_1->maybe_clutchInput)) {
+      *(float *)(uVar2 + 0x60) = *(float *)(uVar2 + 0x60) * 1.25;
     }
-    uVar5 = uVar5 + 1;
-    iVar4 = iVar4 + 8;
-    iVar3 = iVar3 + 0x280;
-    *(float *)(iVar6 + 0x60) = *(float *)(iVar6 + 0x60) * (1.0 - *(float *)(iVar1 + 0xb8) * fVar7);
-  } while (uVar5 < 2);
+    uVar6 = uVar6 + 1;
+    pRVar5 = (RaceCar *)&pRVar5->unk_0008;
+    pRVar4 = (RaceCar *)&pRVar4->field_0x280;
+    *(float *)(uVar2 + 0x60) = *(float *)(uVar2 + 0x60) * (1.0 - *(float *)(uVar1 + 0xb8) * fVar8);
+  } while (uVar6 < 2);
   return;
 }
 
 // 0x00167d50  size 0x31c
-void Car_UpdateEngine(undefined8 param_1)
+void Car_UpdateEngine(RaceCar *param_1)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
+  undefined *puVar1;
+  uint uVar2;
+  float fVar3;
   float fVar4;
   float fVar5;
   float fVar6;
-  float fVar7;
   
-  iVar2 = (int)param_1;
-  iVar1 = *(int *)(iVar2 + 0x120);
-  fVar6 = *(float *)(iVar2 + 0x848);
-  fVar7 = *(float *)(iVar2 + 0x7ec);
-  *(undefined4 *)(iVar2 + 0x7e8) = *(undefined4 *)(iVar2 + 0x7e4);
-  fVar4 = (float)fabsf(*(float *)(iVar2 + 0x180) / *(float *)(iVar2 + 0x44));
-  fVar5 = (float)fabsf(*(undefined4 *)(iVar2 + 400));
-  fVar4 = fVar4 / (fVar5 + fVar4);
-  if (0.05 <= fVar4) {
-    fVar5 = *(float *)(iVar2 + 0xb6c);
-    if (fVar4 <= *(float *)(iVar2 + 0xb6c)) {
-      fVar5 = fVar4;
+  puVar1 = param_1->maybe_params;
+  fVar5 = (float)param_1->unk_0848;
+  fVar6 = (float)param_1->unk_07ec;
+  param_1->unk_07e8 = param_1->unk_07e4;
+  fVar3 = (float)fabsf((float)param_1->unk_0180 / (float)param_1->unk_0044);
+  fVar4 = (float)fabsf(param_1->unk_0190);
+  fVar3 = fVar3 / (fVar4 + fVar3);
+  if (0.05 <= fVar3) {
+    fVar4 = (float)param_1->unk_0b6c;
+    if (fVar3 <= (float)param_1->unk_0b6c) {
+      fVar4 = fVar3;
     }
   }
   else {
-    fVar5 = 0.05;
+    fVar4 = 0.05;
   }
-  *(float *)(iVar2 + 0xb70) = fVar5;
-  if (*(int *)(iVar2 + 0x888) == 1) {
+  param_1->unk_0b70 = (uint)fVar4;
+  if (param_1->unk_0888 == 1) {
     Car_UpdateDiffRear(param_1,0);
     Car_UpdateDiffFront(param_1,2);
   }
   else {
-    if (*(int *)(iVar2 + 0x888) == 0) {
+    if (param_1->unk_0888 == 0) {
       Car_UpdateDiffFront(param_1,0);
       Car_UpdateDiffRear(param_1,2);
-      iVar3 = *(int *)(iVar2 + 0x814);
+      uVar2 = param_1->gear;
       goto LAB_00167e54;
     }
     Car_UpdateDiffFront(param_1,0);
     Car_UpdateDiffFront(param_1,2);
   }
-  iVar3 = *(int *)(iVar2 + 0x814);
+  uVar2 = param_1->gear;
 LAB_00167e54:
-  fVar4 = *(float *)(iVar2 + 0x7e0);
-  if (iVar3 == -1) {
-    fVar4 = fVar4 * -1.0;
+  fVar3 = (float)param_1->unk_07e0;
+  if (uVar2 == 0xffffffff) {
+    fVar3 = fVar3 * -1.0;
   }
-  if (fVar4 < 0.0) {
-    fVar4 = 0.0;
+  if (fVar3 < 0.0) {
+    fVar3 = 0.0;
   }
-  if ((iVar3 == 0) || (fVar5 = *(float *)(iVar2 + 0x820), fVar5 == 0.0)) {
-    fVar7 = fVar7 + (*(float *)(iVar2 + 0x804) * *(float *)(iVar2 + 0x870)) /
-                    (*(float *)(iVar1 + 0x63c) + *(float *)(iVar1 + 0x648));
-    *(float *)(iVar2 + 0x7f0) = fVar7;
+  if ((uVar2 == 0) || (fVar4 = (float)param_1->unk_0820, fVar4 == 0.0)) {
+    fVar6 = fVar6 + ((float)param_1->unk_0804 * param_1->maybe_rpmLimit) /
+                    (*(float *)(puVar1 + 0x63c) + *(float *)(puVar1 + 0x648));
+    param_1->unk_07f0 = (uint)fVar6;
   }
-  else if (fVar5 < 1.0) {
-    fVar7 = fVar5 * (fVar6 * fVar4 - *(float *)(iVar2 + 0x7f0)) + *(float *)(iVar2 + 0x7f0) + 0.0;
-  }
-  else {
-    fVar7 = fVar6 * fVar4;
-    *(float *)(iVar2 + 0x7f0) = fVar7;
-  }
-  fVar5 = *(float *)(iVar2 + 0x7f0);
-  fVar4 = *(float *)(iVar1 + 0x528) * 0.10471976;
-  fVar6 = *(float *)(iVar1 + 0x68c) * *(float *)(iVar1 + 0x528) * 0.10471976;
-  if (fVar5 < fVar6) {
-    *(float *)(iVar2 + 0x7f0) = fVar6;
+  else if (fVar4 < 1.0) {
+    fVar6 = fVar4 * (fVar5 * fVar3 - (float)param_1->unk_07f0) + (float)param_1->unk_07f0 + 0.0;
   }
   else {
-    if (fVar5 <= fVar4) {
-      fVar4 = fVar5;
+    fVar6 = fVar5 * fVar3;
+    param_1->unk_07f0 = (uint)fVar6;
+  }
+  fVar4 = (float)param_1->unk_07f0;
+  fVar3 = *(float *)(puVar1 + 0x528) * 0.10471976;
+  fVar5 = *(float *)(puVar1 + 0x68c) * *(float *)(puVar1 + 0x528) * 0.10471976;
+  if (fVar4 < fVar5) {
+    param_1->unk_07f0 = (uint)fVar5;
+  }
+  else {
+    if (fVar4 <= fVar3) {
+      fVar3 = fVar4;
     }
-    *(float *)(iVar2 + 0x7f0) = fVar4;
+    param_1->unk_07f0 = (uint)fVar3;
   }
-  *(undefined4 *)(iVar2 + 0x800) = *(undefined4 *)(iVar2 + 0x7fc);
-  fVar5 = *(float *)(iVar1 + 0x528);
-  fVar4 = *(float *)(iVar1 + 0x68c) * fVar5 * 0.10471976;
-  if ((fVar4 <= fVar7) && (fVar4 = fVar5 * 0.10471976, fVar7 <= fVar5 * 0.10471976)) {
-    fVar4 = fVar7;
+  param_1->unk_0800 = param_1->unk_07fc;
+  fVar4 = *(float *)(puVar1 + 0x528);
+  fVar3 = *(float *)(puVar1 + 0x68c) * fVar4 * 0.10471976;
+  if ((fVar3 <= fVar6) && (fVar3 = fVar4 * 0.10471976, fVar6 <= fVar4 * 0.10471976)) {
+    fVar3 = fVar6;
   }
-  *(float *)(iVar2 + 0x7fc) = (fVar4 * 9.549296) / fVar5;
-  fVar4 = *(float *)(iVar2 + 0x7fc);
-  if (*(float *)(iVar1 + 0x68c) <= fVar4) {
-    fVar5 = *(float *)(iVar1 + 0x534);
-    if (fVar4 <= *(float *)(iVar1 + 0x534)) {
-      fVar5 = fVar4;
+  param_1->unk_07fc = (uint)((fVar3 * 9.549296) / fVar4);
+  fVar3 = (float)param_1->unk_07fc;
+  if (*(float *)(puVar1 + 0x68c) <= fVar3) {
+    fVar4 = *(float *)(puVar1 + 0x534);
+    if (fVar3 <= *(float *)(puVar1 + 0x534)) {
+      fVar4 = fVar3;
     }
   }
   else {
-    fVar5 = *(float *)(iVar1 + 0x68c);
+    fVar4 = *(float *)(puVar1 + 0x68c);
   }
-  *(float *)(iVar2 + 0x7fc) = fVar5;
-  fVar5 = fVar5 * *(float *)(iVar1 + 0x528);
-  *(float *)(iVar2 + 0x7f4) = fVar5;
-  *(float *)(iVar2 + 0x7ec) = fVar5 * 0.10471976;
-  *(float *)(iVar2 + 0x7f8) =
-       (*(float *)(iVar2 + 0x7f4) * 4.0 + *(float *)(iVar2 + 0x7f8) + 0.0) * 0.2;
+  param_1->unk_07fc = (uint)fVar4;
+  fVar3 = *(float *)(puVar1 + 0x528);
+  param_1->unk_07f4 = (uint)(fVar4 * fVar3);
+  param_1->unk_07ec = (uint)(fVar4 * fVar3 * 0.10471976);
+  param_1->rpm = ((float)param_1->unk_07f4 * 4.0 + param_1->rpm + 0.0) * 0.2;
   return;
 }
 

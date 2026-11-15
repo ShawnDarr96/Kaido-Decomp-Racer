@@ -2226,7 +2226,7 @@ void RaceRule_CheckFreeRun(char param_1)
   if (((*(uint *)(iVar5 + _g_RaceScene + 4) & 4) != 0) && (0 < lVar3)) {
     pRVar1 = RaceCar_Get(index);
     RaceCar_ClearFlags(pRVar1,0x803);
-    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->gear == 0)) {
       Car_RequestShiftUp(pRVar1);
     }
     if (pRVar1->unk_0890 == '\x01') {
@@ -2239,7 +2239,7 @@ void RaceRule_CheckFreeRun(char param_1)
     if (pRVar1->unk_0890 == '\x01') {
       pRVar1->unk_0890 = '\0';
     }
-    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->gear == 0)) {
       Car_RequestShiftUp(pRVar1);
     }
   }
@@ -2250,7 +2250,7 @@ void RaceRule_CheckFreeRun(char param_1)
     if (pRVar1->unk_0890 == '\x01') {
       pRVar1->unk_0890 = '\0';
     }
-    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->gear == 0)) {
       Car_RequestShiftUp(pRVar1);
     }
   }
@@ -2260,7 +2260,7 @@ void RaceRule_CheckFreeRun(char param_1)
     if (pRVar1->unk_0890 == '\x01') {
       pRVar1->unk_0890 = '\0';
     }
-    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->gear == 0)) {
       Car_RequestShiftUp(pRVar1);
     }
   }
@@ -2270,7 +2270,7 @@ void RaceRule_CheckFreeRun(char param_1)
     if (pRVar1->unk_0890 == '\x01') {
       pRVar1->unk_0890 = '\0';
     }
-    if ((pRVar1->unk_0811 == '\0') && (pRVar1->unk_0814 == 0)) {
+    if ((pRVar1->unk_0811 == '\0') && (pRVar1->gear == 0)) {
       Car_RequestShiftUp(pRVar1);
     }
   }

@@ -141,32 +141,33 @@ float RaceCar_WheelGroundDistance(int param_1,int param_2)
 // 0x001ccc10  size 0xac8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,byte param_5,long param_6,
-                   ulong param_7)
+void Ai_PredictPath(float param_1,RaceCar *param_2,ushort param_3,int param_4,byte param_5,
+                   long param_6,ulong param_7)
 
 {
-  short sVar1;
-  short *psVar2;
-  undefined1 auVar3 [16];
+  undefined2 uVar1;
+  short sVar2;
+  short *psVar3;
+  undefined1 auVar4 [16];
   undefined1 in_zero_qw [16];
-  float *pfVar4;
-  int *piVar5;
-  float *pfVar6;
-  uint uVar7;
-  undefined8 uVar8;
+  float *pfVar5;
+  RaceCar *pRVar6;
+  float *pfVar7;
+  uint uVar8;
   undefined8 uVar9;
+  undefined8 uVar10;
   undefined8 in_v0_udw;
-  int iVar10;
-  float *pfVar11;
-  int iVar12;
-  int iVar13;
-  int iVar14;
+  int iVar11;
+  float *pfVar12;
+  undefined4 uVar13;
+  undefined4 uVar14;
   undefined1 auVar15 [16];
-  long lVar16;
-  int *piVar17;
-  undefined4 uVar18;
-  float fVar19;
+  undefined1 *puVar16;
+  long lVar17;
+  undefined1 *puVar18;
+  undefined4 uVar19;
   float fVar20;
+  float fVar21;
   undefined4 uStack_120;
   undefined4 uStack_11c;
   undefined4 uStack_118;
@@ -227,106 +228,106 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,byte p
   float fStack_8;
   undefined4 uStack_4;
   
-  piVar17 = param_2 + 0x4d8;
+  puVar18 = &param_2->field_0x1360;
   uStack_4 = 0x3f800000;
-  lVar16 = GameState_Get_40();
-  if (lVar16 == 0) {
+  lVar17 = GameState_Get_40();
+  if (lVar17 == 0) {
     if (param_6 == 0) {
-      lVar16 = 1;
+      lVar17 = 1;
     }
     else {
-      lVar16 = 0;
+      lVar17 = 0;
     }
   }
   else if (param_6 == 0) {
-    lVar16 = 0;
+    lVar17 = 0;
   }
   else {
-    lVar16 = 1;
+    lVar17 = 1;
   }
-  *(ushort *)((int)param_2 + 0x1366) = param_3;
-  *(short *)(param_2 + 0x4da) = (short)param_4;
-  *(undefined2 *)((int)param_2 + 0x136a) = 0;
-  *(undefined1 *)piVar17 = 0;
-  Road_InitTracker(piVar17,0x36f230,0x36f238);
-  fStack_8 = (float)param_2[0x4de];
-  fStack_10 = (float)param_2[0x4dc];
-  fStack_c = (float)param_2[0x4dd] + 0.1;
+  param_2->unk_1366 = param_3;
+  *(short *)&param_2->field_0x1368 = (short)param_4;
+  *(undefined2 *)&param_2->field_0x136a = 0;
+  *puVar18 = 0;
+  Road_InitTracker(puVar18,0x36f230,0x36f238);
+  fStack_8 = *(float *)&param_2->field_0x1378;
+  fStack_10 = *(float *)&param_2->field_0x1370;
+  fStack_c = *(float *)&param_2->field_0x1374 + 0.1;
   maybe_Road_InterpolateSegment
-            (0x3f800000,0x36f230,auStack_30,*(undefined2 *)((int)param_2 + 0x1366),param_2[0x4db],
-             *(undefined2 *)((int)param_2 + 0x136a),lVar16);
-  sceVu0SubVector(&fStack_50,auStack_30,param_2 + 0x4dc);
-  sceVu0SubVector(param_2 + 0x4ec,auStack_30,param_2 + 0x4dc);
-  sceVu0Normalize(param_2 + 0x4ec,param_2 + 0x4ec);
-  piVar5 = param_2 + 0x4ee;
-  uVar18 = maybe_Vu0_SqrtQ((float)param_2[0x4ec] * (float)param_2[0x4ec] +
-                           (float)param_2[0x4ee] * (float)param_2[0x4ee]);
-  uStack_40 = atan2f(param_2[0x4ed],uVar18);
-  if (lVar16 == 0) {
-    uVar18 = atan2f(param_2[0x4ec],*piVar5);
-    uVar8 = maybe___sf_to_df(uVar18);
-    uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
-    lVar16 = maybe___dgt(uVar8,0x400921fb54442d18);
-    if (lVar16 == 0) {
-      uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = maybe___sf_to_df(uVar18);
-      uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
+            (0x3f800000,0x36f230,auStack_30,param_2->unk_1366,param_2->unk_136c,
+             *(undefined2 *)&param_2->field_0x136a,lVar17);
+  sceVu0SubVector(&fStack_50,auStack_30,&param_2->field_0x1370);
+  sceVu0SubVector(&param_2->field_0x13b0,auStack_30,&param_2->field_0x1370);
+  sceVu0Normalize(&param_2->field_0x13b0,&param_2->field_0x13b0);
+  puVar16 = &param_2->field_0x13b8;
+  uVar19 = maybe_Vu0_SqrtQ(*(float *)&param_2->field_0x13b0 * *(float *)&param_2->field_0x13b0 +
+                           *(float *)&param_2->field_0x13b8 * *(float *)&param_2->field_0x13b8);
+  uStack_40 = atan2f(*(undefined4 *)&param_2->field_0x13b4,uVar19);
+  if (lVar17 == 0) {
+    uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+    uVar9 = maybe___sf_to_df(uVar19);
+    uVar9 = __subdf3(uVar9,0x3ff921fb54442d18);
+    lVar17 = maybe___dgt(uVar9,0x400921fb54442d18);
+    if (lVar17 == 0) {
+      uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+      uVar9 = maybe___sf_to_df(uVar19);
+      uVar9 = __subdf3(uVar9,0x3ff921fb54442d18);
       auVar15._8_8_ = in_v0_udw;
       auVar15._0_8_ = 0xc00921fb54442d18;
       auVar15 = _pcpyld(in_zero_qw,auVar15);
-      lVar16 = maybe___dlt(uVar8,auVar15._0_8_);
-      if (lVar16 == 0) {
-        uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = maybe___sf_to_df(uVar18);
-        uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
+      lVar17 = maybe___dlt(uVar9,auVar15._0_8_);
+      if (lVar17 == 0) {
+        uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+        uVar9 = maybe___sf_to_df(uVar19);
+        uVar9 = __subdf3(uVar9,0x3ff921fb54442d18);
       }
       else {
-        uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = maybe___sf_to_df(uVar18);
-        uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
-        uVar8 = __adddf3(0x401921fb54442d18,uVar8);
+        uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+        uVar9 = maybe___sf_to_df(uVar19);
+        uVar9 = __subdf3(uVar9,0x3ff921fb54442d18);
+        uVar9 = __adddf3(0x401921fb54442d18,uVar9);
       }
     }
     else {
-      uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = maybe___sf_to_df(uVar18);
-      uVar8 = __subdf3(uVar8,0x3ff921fb54442d18);
-      uVar8 = __subdf3(uVar8,0x401921fb54442d18);
+      uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+      uVar9 = maybe___sf_to_df(uVar19);
+      uVar9 = __subdf3(uVar9,0x3ff921fb54442d18);
+      uVar9 = __subdf3(uVar9,0x401921fb54442d18);
     }
-    uStack_3c = maybe___extendsfdf2(uVar8);
+    uStack_3c = maybe___extendsfdf2(uVar9);
   }
   else {
-    uVar18 = atan2f(param_2[0x4ec],*piVar5);
-    uVar8 = maybe___sf_to_df(uVar18);
-    uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
-    lVar16 = maybe___dgt(uVar8,0x400921fb54442d18);
-    if (lVar16 == 0) {
-      uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = maybe___sf_to_df(uVar18);
-      uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
-      auVar3._8_8_ = in_v0_udw;
-      auVar3._0_8_ = 0xc00921fb54442d18;
-      auVar15 = _pcpyld(in_zero_qw,auVar3);
-      lVar16 = maybe___dlt(uVar8,auVar15._0_8_);
-      if (lVar16 == 0) {
-        uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = maybe___sf_to_df(uVar18);
-        uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
+    uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+    uVar9 = maybe___sf_to_df(uVar19);
+    uVar9 = __adddf3(0x3ff921fb54442d18,uVar9);
+    lVar17 = maybe___dgt(uVar9,0x400921fb54442d18);
+    if (lVar17 == 0) {
+      uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+      uVar9 = maybe___sf_to_df(uVar19);
+      uVar9 = __adddf3(0x3ff921fb54442d18,uVar9);
+      auVar4._8_8_ = in_v0_udw;
+      auVar4._0_8_ = 0xc00921fb54442d18;
+      auVar15 = _pcpyld(in_zero_qw,auVar4);
+      lVar17 = maybe___dlt(uVar9,auVar15._0_8_);
+      if (lVar17 == 0) {
+        uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+        uVar9 = maybe___sf_to_df(uVar19);
+        uVar9 = __adddf3(0x3ff921fb54442d18,uVar9);
       }
       else {
-        uVar18 = atan2f(param_2[0x4ec],*piVar5);
-        uVar8 = maybe___sf_to_df(uVar18);
-        uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
-        uVar8 = __adddf3(0x401921fb54442d18,uVar8);
+        uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+        uVar9 = maybe___sf_to_df(uVar19);
+        uVar9 = __adddf3(0x3ff921fb54442d18,uVar9);
+        uVar9 = __adddf3(0x401921fb54442d18,uVar9);
       }
     }
     else {
-      uVar18 = atan2f(param_2[0x4ec],*piVar5);
-      uVar8 = maybe___sf_to_df(uVar18);
-      uVar8 = __adddf3(0x3ff921fb54442d18,uVar8);
-      uVar8 = __subdf3(uVar8,0x401921fb54442d18);
+      uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);
+      uVar9 = maybe___sf_to_df(uVar19);
+      uVar9 = __adddf3(0x3ff921fb54442d18,uVar9);
+      uVar9 = __subdf3(uVar9,0x401921fb54442d18);
     }
-    uStack_3c = maybe___extendsfdf2(uVar8);
+    uStack_3c = maybe___extendsfdf2(uVar9);
   }
   uStack_38 = 0;
   uStack_118 = 0;
@@ -337,81 +338,81 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,byte p
   uStack_1c = uStack_10c;
   uStack_18 = uStack_108;
   uStack_14 = uStack_104;
-  PhysBody_LocalToWorld(param_2[0x55],&fStack_10);
+  PhysBody_LocalToWorld(param_2->unk_0154,&fStack_10);
   Car_SyncFromRigidBody(param_2);
-  PhysBody_Wake(param_2[0x56]);
-  PhysBody_SetRotation(param_2[0x55],&uStack_20);
+  PhysBody_Wake(param_2->unk_0158);
+  PhysBody_SetRotation(param_2->unk_0154,&uStack_20);
   Car_SyncFromRigidBody(param_2);
-  PhysBody_Wake(param_2[0x56]);
-  uVar9 = PhysBody_GetWorldMatrix(param_2[0x55]);
-  pfVar4 = (float *)uVar9;
-  uVar8 = PhysBody_GetRotation(param_2[0x55]);
-  Quat_ToEuler(auStack_60,uVar8);
-  sceVu0CopyVector(param_2 + 0x4dc,uVar9);
+  PhysBody_Wake(param_2->unk_0158);
+  uVar10 = PhysBody_GetWorldMatrix(param_2->unk_0154);
+  pfVar5 = (float *)uVar10;
+  uVar9 = PhysBody_GetRotation(param_2->unk_0154);
+  Quat_ToEuler(auStack_60,uVar9);
+  sceVu0CopyVector(&param_2->field_0x1370,uVar10);
   uStack_64 = 0x3f800000;
   uStack_74 = 0x3f800000;
-  fVar19 = (param_1 * 1000.0) / 3600.0;
+  fVar20 = (param_1 * 1000.0) / 3600.0;
   fStack_80 = fStack_50;
   fStack_7c = fStack_4c;
   fStack_78 = fStack_48;
   Vec3_Normalize(&fStack_80);
-  fStack_6c = fStack_7c * fVar19;
-  fStack_70 = fStack_80 * fVar19;
-  fStack_68 = fStack_78 * fVar19;
-  PhysBody_UpdateMomentum(param_2[0x55],&fStack_70);
-  iVar10 = 0;
-  piVar5 = param_2;
+  fStack_6c = fStack_7c * fVar20;
+  fStack_70 = fStack_80 * fVar20;
+  fStack_68 = fStack_78 * fVar20;
+  PhysBody_UpdateMomentum(param_2->unk_0154,&fStack_70);
+  iVar11 = 0;
+  pRVar6 = param_2;
   do {
-    iVar10 = iVar10 + 1;
-    *(char *)(piVar5 + 0x4f4) = (char)*piVar17;
-    iVar12 = param_2[0x4d9];
-    *(undefined2 *)((int)piVar5 + 0x13d2) = *(undefined2 *)((int)param_2 + 0x1362);
-    *(short *)(piVar5 + 0x4f5) = (short)iVar12;
-    iVar12 = param_2[0x4da];
-    *(undefined2 *)((int)piVar5 + 0x13d6) = *(undefined2 *)((int)param_2 + 0x1366);
-    *(short *)(piVar5 + 0x4f6) = (short)iVar12;
-    *(undefined2 *)((int)piVar5 + 0x13da) = *(undefined2 *)((int)param_2 + 0x136a);
-    piVar5[0x4f7] = param_2[0x4db];
-    iVar12 = param_2[0x4dd];
-    iVar13 = param_2[0x4de];
-    iVar14 = param_2[0x4df];
-    piVar5[0x4f8] = param_2[0x4dc];
-    piVar5[0x4f9] = iVar12;
-    piVar5[0x4fa] = iVar13;
-    piVar5[0x4fb] = iVar14;
-    iVar12 = param_2[0x4e1];
-    iVar13 = param_2[0x4e2];
-    iVar14 = param_2[0x4e3];
-    piVar5[0x4fc] = param_2[0x4e0];
-    piVar5[0x4fd] = iVar12;
-    piVar5[0x4fe] = iVar13;
-    piVar5[0x4ff] = iVar14;
-    iVar12 = param_2[0x4e5];
-    iVar13 = param_2[0x4e6];
-    iVar14 = param_2[0x4e7];
-    piVar5[0x500] = param_2[0x4e4];
-    piVar5[0x501] = iVar12;
-    piVar5[0x502] = iVar13;
-    piVar5[0x503] = iVar14;
-    piVar5[0x504] = param_2[0x4e8];
-    piVar5[0x505] = param_2[0x4e9];
-    *(char *)(piVar5 + 0x506) = (char)param_2[0x4ea];
-    auVar15 = *(undefined1 (*) [16])(param_2 + 0x4ec);
-    piVar5[0x508] = auVar15._0_4_;
-    piVar5[0x509] = auVar15._4_4_;
-    piVar5[0x50a] = auVar15._8_4_;
-    piVar5[0x50b] = auVar15._12_4_;
-    piVar5[0x50c] = param_2[0x4f0];
-    piVar5[0x50d] = param_2[0x4f1];
-    *(char *)(piVar5 + 0x4f4) = (char)iVar10;
-    piVar5 = piVar5 + 0x1c;
-  } while (iVar10 < 4);
+    iVar11 = iVar11 + 1;
+    pRVar6->field_0x13d0 = *puVar18;
+    uVar1 = *(undefined2 *)&param_2->field_0x1364;
+    *(undefined2 *)&pRVar6->field_0x13d2 = *(undefined2 *)&param_2->field_0x1362;
+    *(undefined2 *)&pRVar6->field_0x13d4 = uVar1;
+    uVar1 = *(undefined2 *)&param_2->field_0x1368;
+    *(ushort *)&pRVar6->field_0x13d6 = param_2->unk_1366;
+    *(undefined2 *)&pRVar6->field_0x13d8 = uVar1;
+    *(undefined2 *)&pRVar6->field_0x13da = *(undefined2 *)&param_2->field_0x136a;
+    *(uint *)&pRVar6->field_0x13dc = param_2->unk_136c;
+    uVar19 = *(undefined4 *)&param_2->field_0x1374;
+    uVar13 = *(undefined4 *)&param_2->field_0x1378;
+    uVar14 = *(undefined4 *)&param_2->field_0x137c;
+    *(undefined4 *)&pRVar6->field_0x13e0 = *(undefined4 *)&param_2->field_0x1370;
+    *(undefined4 *)&pRVar6->field_0x13e4 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x13e8 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x13ec = uVar14;
+    uVar19 = *(undefined4 *)&param_2->field_0x1384;
+    uVar13 = *(undefined4 *)&param_2->field_0x1388;
+    uVar14 = *(undefined4 *)&param_2->field_0x138c;
+    *(undefined4 *)&pRVar6->field_0x13f0 = *(undefined4 *)&param_2->field_0x1380;
+    *(undefined4 *)&pRVar6->field_0x13f4 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x13f8 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x13fc = uVar14;
+    uVar19 = *(undefined4 *)&param_2->field_0x1394;
+    uVar13 = *(undefined4 *)&param_2->field_0x1398;
+    uVar14 = *(undefined4 *)&param_2->field_0x139c;
+    *(undefined4 *)&pRVar6->field_0x1400 = *(undefined4 *)&param_2->field_0x1390;
+    *(undefined4 *)&pRVar6->field_0x1404 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x1408 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x140c = uVar14;
+    *(undefined4 *)&pRVar6->field_0x1410 = *(undefined4 *)&param_2->field_0x13a0;
+    *(undefined4 *)&pRVar6->field_0x1414 = *(undefined4 *)&param_2->field_0x13a4;
+    pRVar6->field_0x1418 = param_2->field_0x13a8;
+    auVar15 = *(undefined1 (*) [16])&param_2->field_0x13b0;
+    *(int *)&pRVar6->field_0x1420 = auVar15._0_4_;
+    *(int *)&pRVar6->field_0x1424 = auVar15._4_4_;
+    *(int *)&pRVar6->field_0x1428 = auVar15._8_4_;
+    *(int *)&pRVar6->field_0x142c = auVar15._12_4_;
+    *(undefined4 *)&pRVar6->field_0x1430 = *(undefined4 *)&param_2->field_0x13c0;
+    *(undefined4 *)&pRVar6->field_0x1434 = *(undefined4 *)&param_2->field_0x13c4;
+    pRVar6->field_0x13d0 = (char)iVar11;
+    pRVar6 = (RaceCar *)&pRVar6->unk_0070;
+  } while (iVar11 < 4);
   uStack_84 = 0x3f800000;
   uStack_94 = 0x3f800000;
   uStack_a4 = 0x3f800000;
   uStack_b4 = 0x3f800000;
   afStack_f0[0] = DAT_003191c0;
-  fVar20 = 0.0;
+  fVar21 = 0.0;
   afStack_f0[1] = (float)DAT_003191c4;
   afStack_f0[2] = (float)DAT_003191c8;
   afStack_f0[3] = (float)DAT_003191cc;
@@ -423,29 +424,29 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,byte p
   uStack_cc = DAT_003191e4;
   uStack_c8 = DAT_003191e8;
   uStack_c4 = DAT_003191ec;
-  psVar2 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)param_3 * 4);
-  sVar1 = *psVar2;
-  pfVar6 = (float *)(psVar2 + param_4 * 0x10 + 0x3e);
-  pfVar11 = (float *)(psVar2 + sVar1 * 0x10 + param_4 * 6 + 0x3e);
-  fVar19 = *pfVar11;
-  fStack_ac = pfVar11[1];
-  fStack_a8 = pfVar11[2];
-  pfVar11 = (float *)(psVar2 + sVar1 * 0x14 + sVar1 * 2 + param_4 * 6 + 0x3e);
-  fStack_90 = *pfVar11;
-  fStack_b0 = fVar19 - *pfVar6;
-  fStack_bc = pfVar11[1];
-  fStack_b8 = pfVar11[2];
-  fStack_c0 = fStack_90 - *pfVar6;
-  fStack_a0 = fVar19 - fStack_90;
+  psVar3 = *(short **)(*(int *)(_g_RoadData + 4) + (uint)param_3 * 4);
+  sVar2 = *psVar3;
+  pfVar7 = (float *)(psVar3 + param_4 * 0x10 + 0x3e);
+  pfVar12 = (float *)(psVar3 + sVar2 * 0x10 + param_4 * 6 + 0x3e);
+  fVar20 = *pfVar12;
+  fStack_ac = pfVar12[1];
+  fStack_a8 = pfVar12[2];
+  pfVar12 = (float *)(psVar3 + sVar2 * 0x14 + sVar2 * 2 + param_4 * 6 + 0x3e);
+  fStack_90 = *pfVar12;
+  fStack_b0 = fVar20 - *pfVar7;
+  fStack_bc = pfVar12[1];
+  fStack_b8 = pfVar12[2];
+  fStack_c0 = fStack_90 - *pfVar7;
+  fStack_a0 = fVar20 - fStack_90;
   fStack_8c = fStack_bc - fStack_ac;
   fStack_88 = fStack_b8 - fStack_a8;
   fStack_9c = fStack_ac - fStack_bc;
-  fStack_90 = fStack_90 - fVar19;
-  fStack_bc = fStack_bc - pfVar6[1];
-  fStack_ac = fStack_ac - pfVar6[1];
+  fStack_90 = fStack_90 - fVar20;
+  fStack_bc = fStack_bc - pfVar7[1];
+  fStack_ac = fStack_ac - pfVar7[1];
   fStack_98 = fStack_a8 - fStack_b8;
-  fStack_a8 = fStack_a8 - pfVar6[2];
-  fStack_b8 = fStack_b8 - pfVar6[2];
+  fStack_a8 = fStack_a8 - pfVar7[2];
+  fStack_b8 = fStack_b8 - pfVar7[2];
   Vec3_LengthB(&fStack_90);
   Vec3_Normalize(&fStack_90);
   Vec3_Normalize(&fStack_a0);
@@ -455,26 +456,26 @@ void Ai_PredictPath(float param_1,int *param_2,ushort param_3,int param_4,byte p
                     /* WARNING: Switch is manually overridden */
   switch(param_5) {
   case 1:
-    fVar20 = 1.5;
+    fVar21 = 1.5;
     goto LAB_001cd4e8;
   case 2:
-    fVar20 = 1.5;
+    fVar21 = 1.5;
     break;
   case 3:
-    fVar20 = 3.0;
+    fVar21 = 3.0;
     break;
   case 4:
-    fVar20 = 3.0;
+    fVar21 = 3.0;
     break;
   case 5:
-    fVar20 = 4.5;
+    fVar21 = 4.5;
     break;
   case 6:
-    fVar20 = 4.5;
+    fVar21 = 4.5;
     break;
   case 7:
-    uVar7 = Race_GetCourseVariant();
-    fVar20 = afStack_f0[uVar7 & 0xff];
+    uVar8 = Race_GetCourseVariant();
+    fVar21 = afStack_f0[uVar8 & 0xff];
   }
 switchD_001cd468_caseD_0:
 LAB_001cd4e8:
@@ -484,14 +485,14 @@ LAB_001cd4e8:
     case 0:
       goto switchD_001cd504_caseD_0;
     case 1:
-      fStack_c = fStack_ac * fVar20;
-      fStack_10 = fStack_b0 * fVar20;
-      fStack_8 = fStack_a8 * fVar20;
+      fStack_c = fStack_ac * fVar21;
+      fStack_10 = fStack_b0 * fVar21;
+      fStack_8 = fStack_a8 * fVar21;
       break;
     case 2:
-      fStack_c = fStack_bc * fVar20;
-      fStack_10 = fStack_c0 * fVar20;
-      fStack_8 = fStack_b8 * fVar20;
+      fStack_c = fStack_bc * fVar21;
+      fStack_10 = fStack_c0 * fVar21;
+      fStack_8 = fStack_b8 * fVar21;
     }
   }
   else {
@@ -500,72 +501,72 @@ switchD_001cd504_caseD_0:
     fStack_c = 0.0;
     fStack_8 = 0.0;
   }
-  fStack_10 = *pfVar4 + fStack_10;
-  fStack_c = pfVar4[1] + fStack_c;
-  fStack_8 = pfVar4[2] + fStack_8;
-  PhysBody_LocalToWorld(param_2[0x55],&fStack_10);
+  fStack_10 = *pfVar5 + fStack_10;
+  fStack_c = pfVar5[1] + fStack_c;
+  fStack_8 = pfVar5[2] + fStack_8;
+  PhysBody_LocalToWorld(param_2->unk_0154,&fStack_10);
   Car_SyncFromRigidBody(param_2);
-  PhysBody_Wake(param_2[0x56]);
-  sceVu0CopyVector(param_2 + 0x4dc,&fStack_10);
-  iVar10 = 0;
-  piVar5 = param_2;
+  PhysBody_Wake(param_2->unk_0158);
+  sceVu0CopyVector(&param_2->field_0x1370,&fStack_10);
+  iVar11 = 0;
+  pRVar6 = param_2;
   do {
-    iVar10 = iVar10 + 1;
-    *(char *)(piVar5 + 0x4f4) = (char)*piVar17;
-    iVar12 = param_2[0x4d9];
-    *(undefined2 *)((int)piVar5 + 0x13d2) = *(undefined2 *)((int)param_2 + 0x1362);
-    *(short *)(piVar5 + 0x4f5) = (short)iVar12;
-    iVar12 = param_2[0x4da];
-    *(undefined2 *)((int)piVar5 + 0x13d6) = *(undefined2 *)((int)param_2 + 0x1366);
-    *(short *)(piVar5 + 0x4f6) = (short)iVar12;
-    *(undefined2 *)((int)piVar5 + 0x13da) = *(undefined2 *)((int)param_2 + 0x136a);
-    piVar5[0x4f7] = param_2[0x4db];
-    iVar12 = param_2[0x4dd];
-    iVar13 = param_2[0x4de];
-    iVar14 = param_2[0x4df];
-    piVar5[0x4f8] = param_2[0x4dc];
-    piVar5[0x4f9] = iVar12;
-    piVar5[0x4fa] = iVar13;
-    piVar5[0x4fb] = iVar14;
-    iVar12 = param_2[0x4e1];
-    iVar13 = param_2[0x4e2];
-    iVar14 = param_2[0x4e3];
-    piVar5[0x4fc] = param_2[0x4e0];
-    piVar5[0x4fd] = iVar12;
-    piVar5[0x4fe] = iVar13;
-    piVar5[0x4ff] = iVar14;
-    iVar12 = param_2[0x4e5];
-    iVar13 = param_2[0x4e6];
-    iVar14 = param_2[0x4e7];
-    piVar5[0x500] = param_2[0x4e4];
-    piVar5[0x501] = iVar12;
-    piVar5[0x502] = iVar13;
-    piVar5[0x503] = iVar14;
-    piVar5[0x504] = param_2[0x4e8];
-    piVar5[0x505] = param_2[0x4e9];
-    *(char *)(piVar5 + 0x506) = (char)param_2[0x4ea];
-    iVar12 = param_2[0x4ed];
-    iVar13 = param_2[0x4ee];
-    iVar14 = param_2[0x4ef];
-    piVar5[0x508] = param_2[0x4ec];
-    piVar5[0x509] = iVar12;
-    piVar5[0x50a] = iVar13;
-    piVar5[0x50b] = iVar14;
-    piVar5[0x50c] = param_2[0x4f0];
-    piVar5[0x50d] = param_2[0x4f1];
-    *(char *)(piVar5 + 0x4f4) = (char)iVar10;
-    piVar5 = piVar5 + 0x1c;
-  } while (iVar10 < 4);
+    iVar11 = iVar11 + 1;
+    pRVar6->field_0x13d0 = *puVar18;
+    uVar1 = *(undefined2 *)&param_2->field_0x1364;
+    *(undefined2 *)&pRVar6->field_0x13d2 = *(undefined2 *)&param_2->field_0x1362;
+    *(undefined2 *)&pRVar6->field_0x13d4 = uVar1;
+    uVar1 = *(undefined2 *)&param_2->field_0x1368;
+    *(ushort *)&pRVar6->field_0x13d6 = param_2->unk_1366;
+    *(undefined2 *)&pRVar6->field_0x13d8 = uVar1;
+    *(undefined2 *)&pRVar6->field_0x13da = *(undefined2 *)&param_2->field_0x136a;
+    *(uint *)&pRVar6->field_0x13dc = param_2->unk_136c;
+    uVar19 = *(undefined4 *)&param_2->field_0x1374;
+    uVar13 = *(undefined4 *)&param_2->field_0x1378;
+    uVar14 = *(undefined4 *)&param_2->field_0x137c;
+    *(undefined4 *)&pRVar6->field_0x13e0 = *(undefined4 *)&param_2->field_0x1370;
+    *(undefined4 *)&pRVar6->field_0x13e4 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x13e8 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x13ec = uVar14;
+    uVar19 = *(undefined4 *)&param_2->field_0x1384;
+    uVar13 = *(undefined4 *)&param_2->field_0x1388;
+    uVar14 = *(undefined4 *)&param_2->field_0x138c;
+    *(undefined4 *)&pRVar6->field_0x13f0 = *(undefined4 *)&param_2->field_0x1380;
+    *(undefined4 *)&pRVar6->field_0x13f4 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x13f8 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x13fc = uVar14;
+    uVar19 = *(undefined4 *)&param_2->field_0x1394;
+    uVar13 = *(undefined4 *)&param_2->field_0x1398;
+    uVar14 = *(undefined4 *)&param_2->field_0x139c;
+    *(undefined4 *)&pRVar6->field_0x1400 = *(undefined4 *)&param_2->field_0x1390;
+    *(undefined4 *)&pRVar6->field_0x1404 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x1408 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x140c = uVar14;
+    *(undefined4 *)&pRVar6->field_0x1410 = *(undefined4 *)&param_2->field_0x13a0;
+    *(undefined4 *)&pRVar6->field_0x1414 = *(undefined4 *)&param_2->field_0x13a4;
+    pRVar6->field_0x1418 = param_2->field_0x13a8;
+    uVar19 = *(undefined4 *)&param_2->field_0x13b4;
+    uVar13 = *(undefined4 *)&param_2->field_0x13b8;
+    uVar14 = *(undefined4 *)&param_2->field_0x13bc;
+    *(undefined4 *)&pRVar6->field_0x1420 = *(undefined4 *)&param_2->field_0x13b0;
+    *(undefined4 *)&pRVar6->field_0x1424 = uVar19;
+    *(undefined4 *)&pRVar6->field_0x1428 = uVar13;
+    *(undefined4 *)&pRVar6->field_0x142c = uVar14;
+    *(undefined4 *)&pRVar6->field_0x1430 = *(undefined4 *)&param_2->field_0x13c0;
+    *(undefined4 *)&pRVar6->field_0x1434 = *(undefined4 *)&param_2->field_0x13c4;
+    pRVar6->field_0x13d0 = (char)iVar11;
+    pRVar6 = (RaceCar *)&pRVar6->unk_0070;
+  } while (iVar11 < 4);
   uStack_100 = 0;
   uStack_fc = 0;
   uStack_f8 = 0;
-  PhysBody_ClampAngularVelocity(param_2[0x55],&uStack_100);
+  PhysBody_ClampAngularVelocity(param_2->unk_0154,&uStack_100);
   if ((param_7 & 0x20) == 0) {
-    iVar10 = 0;
+    iVar11 = 0;
     do {
-      (**(code **)(*param_2 + 0x38))(0x3c888889,param_2);
-      iVar10 = iVar10 + 1;
-    } while (iVar10 < 0x3c);
+      (**(code **)(param_2->vtable + 0x38))(0x3c888889,param_2);
+      iVar11 = iVar11 + 1;
+    } while (iVar11 < 0x3c);
   }
   return;
 }
@@ -831,18 +832,18 @@ void RaceCar_PlaceAll(void)
 void RaceCar_CreateAll(undefined8 param_1)
 
 {
-  int iVar1;
-  undefined8 uVar2;
+  undefined8 uVar1;
+  long lVar2;
   long lVar3;
   int iVar4;
   undefined4 *puVar5;
-  int iVar6;
+  long lVar6;
   
-  uVar2 = Mem_Alloc16(0x1c,param_1);
-  g_RaceCars = (RaceCarList *)uVar2;
-  Mem_Set16(uVar2,0,0x1c);
-  iVar1 = GameState_GetTotalCarCount();
-  iVar6 = 0;
+  uVar1 = Mem_Alloc16(0x1c,param_1);
+  g_RaceCars = (RaceCarList *)uVar1;
+  Mem_Set16(uVar1,0,0x1c);
+  lVar2 = GameState_GetTotalCarCount();
+  lVar6 = 0;
   g_RaceCars->cars[0] = (RaceCar *)0x0;
   g_RaceCars->cars[1] = (RaceCar *)0x0;
   g_RaceCars->cars[2] = (RaceCar *)0x0;
@@ -850,7 +851,7 @@ void RaceCar_CreateAll(undefined8 param_1)
   g_RaceCars->cars[4] = (RaceCar *)0x0;
   g_RaceCars->cars[5] = (RaceCar *)0x0;
   g_RaceCars->cars[6] = (RaceCar *)0x0;
-  if (0 < iVar1) {
+  if (0 < lVar2) {
     iVar4 = 0;
     do {
       lVar3 = maybe_operator_new_arr(0x17e0);
@@ -867,10 +868,10 @@ void RaceCar_CreateAll(undefined8 param_1)
         puVar5[0x5c3] = 0x3f800000;
       }
       *(undefined4 **)((int)g_RaceCars->cars + iVar4) = puVar5;
-      RaceCar_ResetToTrack(*(undefined4 *)((int)g_RaceCars->cars + iVar4),iVar6);
-      iVar6 = iVar6 + 1;
+      RaceCar_ResetToTrack(*(RaceCar **)((int)g_RaceCars->cars + iVar4),lVar6);
+      lVar6 = (long)((int)lVar6 + 1);
       iVar4 = iVar4 + 4;
-    } while (iVar6 < iVar1);
+    } while (lVar6 < lVar2);
   }
   return;
 }
@@ -912,8 +913,8 @@ void RaceCar_PlaceOnGrid(undefined8 param_1,undefined8 param_2)
   } while (0 < iVar5);
   if ((uStack_cc & 0x20) == 0) {
     Ai_UpdateGearbox(param_1,param_2);
-    (**(code **)(*(int *)param_1 + 0x38))(0x3c888889,param_1);
-    RaceCar_UpdateTracker(param_1);
+    (**(code **)(((RaceCar *)param_1)->vtable + 0x38))(0x3c888889,param_1);
+    RaceCar_UpdateTracker((RaceCar *)param_1);
     if (((uStack_cc & 0x100) == 0) &&
        (((uStack_cc & 0x60) == 0 || (lVar3 = GameState_Get_ec(), lVar3 != 0)))) {
       Ai_UpdateDriver(param_1,param_2);
@@ -1104,7 +1105,9 @@ LAB_001ce1b8:
 }
 
 // 0x001ce4d0  size 0x268
-void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void RaceCar_ResetToTrack(RaceCar *param_1,undefined8 param_2)
 
 {
   char cVar1;
@@ -1113,9 +1116,9 @@ void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
   undefined8 uVar4;
   long lVar5;
   int iVar6;
-  int iVar7;
+  uint *puVar7;
   uint *puVar8;
-  uint *puVar9;
+  RaceCar *pRVar9;
   uint uVar10;
   uint auStack_1a0 [52];
   uint auStack_d0 [2];
@@ -1123,71 +1126,72 @@ void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
   int iStack_c0;
   
   GameState_CopyPlayerRecord(auStack_1a0);
-  puVar9 = auStack_1a0;
-  puVar8 = auStack_d0;
+  puVar8 = auStack_1a0;
+  puVar7 = auStack_d0;
   iVar6 = 0x33;
   do {
     iVar6 = iVar6 + -1;
-    *puVar8 = *puVar9;
-    puVar9 = puVar9 + 1;
+    *puVar7 = *puVar8;
     puVar8 = puVar8 + 1;
+    puVar7 = puVar7 + 1;
   } while (0 < iVar6);
-  *(undefined4 *)(param_1 + 0x17d8) = 0;
+  param_1->flags = 0;
   if ((auStack_d0[1] & 0x40) != 0) {
-    *(uint *)(param_1 + 0x17d8) = *(uint *)(param_1 + 0x17d8) | 0x400;
+    param_1->flags = param_1->flags | 0x400;
   }
-  *(undefined4 *)(param_1 + 0x17d0) = 0;
-  *(undefined4 *)(param_1 + 0x17d4) = 0;
+  param_1->checkpoint = 0;
+  param_1->unk_17d4 = 0;
   pRVar2 = GameState_Elem_f0_xcc((int)param_2);
-  *(RaceEntrySetup **)(param_1 + 0x17dc) = pRVar2;
-  *(undefined4 *)(param_1 + 0xbe0) = 0;
-  *(undefined4 *)(param_1 + 0xbe4) = 0;
-  *(undefined4 *)(param_1 + 0xbe8) = 0;
-  *(undefined4 *)(param_1 + 0xbec) = 0;
+  param_1->index = (uint)pRVar2;
+  param_1->unk_0be0 = 0;
+  param_1->unk_0be4 = 0;
+  param_1->unk_0be8 = 0;
+  param_1->unk_0bec = 0;
   pRVar3 = GameState_Elem_3e0_x540((int)cStack_c7);
-  CarSpec_BuildFromDb(pRVar3,param_1 + 0xbf0,auStack_d0,1);
-  Car_Reset(param_1,param_1 + 0xbf0,1,7);
-  uVar4 = PhysContact_GetBodyB(*(int *)(param_1 + 0x158) + 0x10);
+  CarSpec_BuildFromDb(pRVar3,&param_1->field_0xbf0,auStack_d0,1);
+  Car_Reset((int *)param_1,(RaceCar *)&param_1->field_0xbf0,1,7);
+  uVar4 = PhysContact_GetBodyB(param_1->unk_0158 + 0x10);
   uVar10 = 0;
-  *(int *)(param_1 + 0xae0) = param_1 + 0x1360;
-  iVar6 = param_1;
+  param_1->unk_0ae0 = (uint)&param_1->field_0x1360;
+  pRVar9 = param_1;
   do {
-    iVar7 = param_1 + uVar10 * 0x70;
-    *(char *)(iVar7 + 0x13d0) = (char)uVar10 + '\x01';
-    *(int *)(iVar6 + 0x1c4) = iVar7 + 0x13d0;
+    (&param_1->field_0x13d0)[uVar10 * 0x70] = (char)uVar10 + '\x01';
+    *(undefined1 **)&pRVar9->field_0x1c4 = &param_1->field_0x13d0 + uVar10 * 0x70;
     (**(code **)(*(int *)uVar4 + 0x58))(uVar4,uVar10);
     uVar10 = uVar10 + 1;
-    iVar6 = iVar6 + 0x140;
+    pRVar9 = (RaceCar *)&pRVar9->unk_0140;
   } while (uVar10 < 4);
-  *(undefined1 *)(param_1 + 0x9a8) = 1;
+  param_1->unk_09a8 = '\x01';
   cVar1 = CarRec_GetPaint(auStack_d0,0x14);
   if (cVar1 == '\0') {
-    Car_SetHandbrake(0,param_1,0);
+    Car_SetHandbrake(0.0,param_1,0);
   }
   else {
     iVar6 = CarRec_GetPaint(auStack_d0,0x14);
     Car_SetHandbrake((float)iVar6 * 0.05 + -1.0,param_1,1);
   }
   cVar1 = CarRec_GetPaint(auStack_d0,0x16);
-  *(bool *)(param_1 + 0x892) = cVar1 != '\0';
-  *(undefined1 *)(param_1 + 0x890) = 1;
+  param_1->unk_0892 = cVar1 != '\0';
+  param_1->unk_0890 = '\x01';
   lVar5 = CarRec_GetPartData(auStack_d0,0);
   if ((lVar5 < 3) && (pRVar3->unk_8c != 2)) {
-    *(undefined1 *)(param_1 + 0x8f0) = 0;
+    param_1->unk_08f0 = '\0';
   }
   else {
-    *(undefined1 *)(param_1 + 0x8f0) = 1;
+    param_1->unk_08f0 = '\x01';
   }
-  *(uint *)(param_1 + 0x884) = *(uint *)(param_1 + 0x884) | 2;
-  *(bool *)(param_1 + 0x811) = iStack_c0 != 0;
+  param_1->unk_0884 = param_1->unk_0884 | 2;
+  param_1->unk_0811 = iStack_c0 != 0;
   RaceCar_ApplyRecord(param_1,param_2,0);
-  *(undefined1 *)(param_1 + 0x88c) = 1;
+  param_1->unk_088c = '\x01';
   Ai_Reset(param_1);
   return;
 }
 
 // 0x001ce740  size 0x5dc
-void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void RaceCar_ApplyRecord(RaceCar *param_1,undefined8 param_2,long param_3)
 
 {
   bool bVar1;
@@ -1197,7 +1201,7 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
   uint *puVar5;
   uint *puVar6;
   float *pfVar7;
-  int iVar8;
+  RaceCar *pRVar8;
   float *pfVar9;
   int iVar10;
   undefined8 uVar11;
@@ -1279,17 +1283,17 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
   bVar1 = false;
   if (param_3 == 0) {
     if (((auStack_d0[1] & 2) == 0) || ((auStack_d0[1] & 0x100) == 0)) {
-      *(undefined4 *)(param_1 + 0x8e0) = 1;
+      param_1->unk_08e0 = 1;
       uVar2 = GameState_Get_2();
     }
     else {
       uVar2 = 0;
-      *(undefined4 *)(param_1 + 0x8e0) = 1;
+      param_1->unk_08e0 = 1;
     }
   }
   else {
     uVar2 = 0;
-    *(undefined4 *)(param_1 + 0x8e0) = 1;
+    param_1->unk_08e0 = 1;
   }
   uVar2 = uVar2 & 0xff;
   iVar4 = 0;
@@ -1301,20 +1305,20 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
       else {
         uVar11 = CarRec_GetPartInfo(auStack_d0,0x10);
       }
-      iVar8 = PartDb_Get(uVar11);
+      iVar10 = PartDb_Get(uVar11);
     }
     else {
       uVar11 = 0x93;
-      iVar8 = 5;
+      iVar10 = 5;
     }
     sVar3 = (short)uVar11;
     if (sVar3 == 0x9d) {
       unaff_f22 = afStack_130[uVar2 * 4 + 3];
       in_f23 = afStack_1f0[uVar2 * 4 + 3];
-      in_f21 = (float)(iVar8 + -1) / 4.0;
+      in_f21 = (float)(iVar10 + -1) / 4.0;
     }
     else if (sVar3 == 0x98) {
-      in_f21 = (float)(iVar8 + -1) / 4.0;
+      in_f21 = (float)(iVar10 + -1) / 4.0;
       in_f23 = afStack_1f0[uVar2 * 4 + 2];
       unaff_f22 = afStack_130[uVar2 * 4 + 2];
     }
@@ -1324,7 +1328,7 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
       if (((uVar2 == 1) || (uVar2 == 2)) || (uVar2 - 4 < 2)) {
         bVar1 = true;
       }
-      in_f21 = (float)(iVar8 + -1) / 4.0;
+      in_f21 = (float)(iVar10 + -1) / 4.0;
     }
     else if (sVar3 == 0x8d) {
       in_f23 = afStack_1f0[uVar2 * 4];
@@ -1332,7 +1336,7 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
       if (((uVar2 == 1) || (uVar2 == 2)) || (uVar2 - 4 < 2)) {
         bVar1 = true;
       }
-      in_f21 = (float)iVar8 / 5.0;
+      in_f21 = (float)iVar10 / 5.0;
     }
     if (bVar1) {
       unaff_f20 = in_f21 * 0.3;
@@ -1342,26 +1346,26 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
       pfVar9 = afStack_150;
       pfVar7 = afStack_170;
       fVar12 = afStack_190[uVar2];
-      iVar8 = param_1;
+      pRVar8 = param_1;
       do {
         if (iVar10 < 7) {
           fVar13 = *pfVar7;
           fVar14 = *pfVar9;
-          *(undefined4 *)(iVar8 + 0x1590) = 0;
-          *(float *)(iVar8 + 0x1594) = fVar12 * fVar13;
+          *(undefined4 *)&pRVar8->field_0x1590 = 0;
+          *(float *)&pRVar8->field_0x1594 = fVar12 * fVar13;
           fVar14 = ((1.0 - (1.0 - unaff_f22) * 0.2) - unaff_f20) * fVar14;
-          *(undefined4 *)(iVar8 + 0x1598) = 0;
-          *(float *)(iVar8 + 0x159c) = fVar14;
-          *(float *)(iVar8 + 0x15a0) = fVar14 + in_f23;
-          *(int *)(param_1 + iVar10 * 4 + 0x9ac) = iVar8 + 0x1590;
+          *(undefined4 *)&pRVar8->field_0x1598 = 0;
+          *(float *)&pRVar8->field_0x159c = fVar14;
+          *(float *)&pRVar8->field_0x15a0 = fVar14 + in_f23;
+          *(undefined1 **)(&param_1->field_0x9ac + iVar10 * 4) = &pRVar8->field_0x1590;
         }
         else {
-          *(int *)(param_1 + iVar10 * 4 + 0x9ac) = param_1 + 0x1590;
+          *(undefined1 **)(&param_1->field_0x9ac + iVar10 * 4) = &param_1->field_0x1590;
         }
         iVar10 = iVar10 + 1;
         pfVar9 = pfVar9 + 1;
         pfVar7 = pfVar7 + 1;
-        iVar8 = iVar8 + 0x14;
+        pRVar8 = (RaceCar *)&pRVar8->unk_0014;
       } while (iVar10 < 0x20);
     }
     else {
@@ -1369,26 +1373,26 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
       pfVar9 = afStack_150;
       pfVar7 = afStack_170;
       fVar12 = afStack_190[uVar2];
-      iVar8 = param_1;
+      pRVar8 = param_1;
       do {
         if (iVar10 < 7) {
           fVar13 = *pfVar7;
           fVar14 = *pfVar9;
-          *(undefined4 *)(iVar8 + 0x161c) = 0;
-          *(float *)(iVar8 + 0x1620) = fVar12 * fVar13;
+          *(undefined4 *)&pRVar8->field_0x161c = 0;
+          *(float *)&pRVar8->field_0x1620 = fVar12 * fVar13;
           fVar14 = ((1.0 - (1.0 - unaff_f22) * 0.2) - unaff_f20) * fVar14;
-          *(undefined4 *)(iVar8 + 0x1624) = 0;
-          *(float *)(iVar8 + 0x1628) = fVar14;
-          *(float *)(iVar8 + 0x162c) = fVar14 + in_f23;
-          *(int *)(param_1 + iVar10 * 4 + 0xa2c) = iVar8 + 0x161c;
+          *(undefined4 *)&pRVar8->field_0x1624 = 0;
+          *(float *)&pRVar8->field_0x1628 = fVar14;
+          *(float *)&pRVar8->field_0x162c = fVar14 + in_f23;
+          *(undefined1 **)(&param_1->field_0xa2c + iVar10 * 4) = &pRVar8->field_0x161c;
         }
         else {
-          *(int *)(param_1 + iVar10 * 4 + 0xa2c) = param_1 + 0x161c;
+          *(undefined1 **)(&param_1->field_0xa2c + iVar10 * 4) = &param_1->field_0x161c;
         }
         iVar10 = iVar10 + 1;
         pfVar9 = pfVar9 + 1;
         pfVar7 = pfVar7 + 1;
-        iVar8 = iVar8 + 0x14;
+        pRVar8 = (RaceCar *)&pRVar8->unk_0014;
       } while (iVar10 < 0x20);
     }
     iVar4 = iVar4 + 1;
@@ -1397,11 +1401,10 @@ void RaceCar_ApplyRecord(int param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001ced30  size 0xdc
-void RaceCar_SetTransform(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
+void RaceCar_SetTransform(RaceCar *param_1,undefined4 *param_2,undefined4 *param_3)
 
 {
-  undefined4 uVar1;
-  int iVar2;
+  uint uVar1;
   undefined4 uStack_30;
   undefined4 uStack_2c;
   undefined4 uStack_28;
@@ -1419,7 +1422,6 @@ void RaceCar_SetTransform(undefined8 param_1,undefined4 *param_2,undefined4 *par
   uStack_2c = param_2[1];
   uStack_28 = param_2[2];
   uStack_4 = param_2[3];
-  iVar2 = (int)param_1;
   uStack_20 = *param_3;
   uStack_1c = param_3[1];
   uStack_18 = param_3[2];
@@ -1428,50 +1430,51 @@ void RaceCar_SetTransform(undefined8 param_1,undefined4 *param_2,undefined4 *par
   uStack_10 = uStack_30;
   uStack_c = uStack_2c;
   uStack_8 = uStack_28;
-  PhysBody_LocalToWorld(*(undefined4 *)(iVar2 + 0x154),&uStack_30);
+  PhysBody_LocalToWorld(param_1->unk_0154,&uStack_30);
   Car_SyncFromRigidBody(param_1);
-  PhysBody_Wake(*(undefined4 *)(iVar2 + 0x158));
-  PhysBody_SetRotation(*(undefined4 *)(iVar2 + 0x154),&uStack_20);
+  PhysBody_Wake(param_1->unk_0158);
+  PhysBody_SetRotation(param_1->unk_0154,&uStack_20);
   Car_SyncFromRigidBody(param_1);
-  PhysBody_Wake(*(undefined4 *)(iVar2 + 0x158));
-  *(undefined4 *)(iVar2 + 0x1370) = uStack_10;
-  *(undefined4 *)(iVar2 + 0x1374) = uStack_c;
-  *(undefined4 *)(iVar2 + 0x1378) = uStack_8;
-  *(undefined4 *)(iVar2 + 0x137c) = uStack_4;
-  Road_UpdateTracker(iVar2 + 0x1360,0x36f230,0x36f238);
-  *(undefined4 *)(iVar2 + 0x17d4) = *(undefined4 *)(iVar2 + 0x17d0);
-  uVar1 = Checkpoint_GetDirection(*(undefined2 *)(iVar2 + 0x1366),*(undefined4 *)(iVar2 + 0x136c));
-  *(undefined4 *)(iVar2 + 0x17d0) = uVar1;
+  PhysBody_Wake(param_1->unk_0158);
+  *(undefined4 *)&param_1->field_0x1370 = uStack_10;
+  *(undefined4 *)&param_1->field_0x1374 = uStack_c;
+  *(undefined4 *)&param_1->field_0x1378 = uStack_8;
+  *(undefined4 *)&param_1->field_0x137c = uStack_4;
+  Road_UpdateTracker(&param_1->field_0x1360,0x36f230,0x36f238);
+  param_1->unk_17d4 = param_1->checkpoint;
+  uVar1 = Checkpoint_GetDirection(param_1->unk_1366,param_1->unk_136c);
+  param_1->checkpoint = uVar1;
   return;
 }
 
 // 0x001cee10  size 0xd8
-void RaceCar_UpdateTracker(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void RaceCar_UpdateTracker(RaceCar *param_1)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   undefined8 uVar2;
   int iVar3;
-  int iVar4;
-  int iVar5;
+  RaceCar *pRVar4;
+  RaceCar *pRVar5;
   
-  uVar2 = PhysBody_GetWorldMatrix(*(undefined4 *)(param_1 + 0x154));
-  sceVu0CopyVector(param_1 + 0x1370,uVar2);
-  Road_UpdateTracker(param_1 + 0x1360,0x36f230,0x36f238);
+  uVar2 = PhysBody_GetWorldMatrix(param_1->unk_0154);
+  sceVu0CopyVector(&param_1->field_0x1370,uVar2);
+  Road_UpdateTracker(&param_1->field_0x1360,0x36f230,0x36f238);
   iVar3 = 0;
-  iVar4 = param_1;
-  iVar5 = param_1;
+  pRVar4 = param_1;
+  pRVar5 = param_1;
   do {
-    sceVu0CopyVector(iVar5 + 0x13e0,iVar4 + 0x1f0);
-    Road_UpdateTracker(iVar5 + 0x13d0,0x36f230,0x36f238);
+    sceVu0CopyVector(&pRVar5->field_0x13e0,&pRVar4->unk_01f0);
+    Road_UpdateTracker(&pRVar5->field_0x13d0,0x36f230,0x36f238);
     iVar3 = iVar3 + 1;
-    iVar5 = iVar5 + 0x70;
-    iVar4 = iVar4 + 0x140;
+    pRVar5 = (RaceCar *)&pRVar5->unk_0070;
+    pRVar4 = (RaceCar *)&pRVar4->unk_0140;
   } while (iVar3 < 4);
-  *(undefined4 *)(param_1 + 0x17d4) = *(undefined4 *)(param_1 + 0x17d0);
-  uVar1 = Checkpoint_GetDirection
-                    (*(undefined2 *)(param_1 + 0x1366),*(undefined4 *)(param_1 + 0x136c));
-  *(undefined4 *)(param_1 + 0x17d0) = uVar1;
+  param_1->unk_17d4 = param_1->checkpoint;
+  uVar1 = Checkpoint_GetDirection(param_1->unk_1366,param_1->unk_136c);
+  param_1->checkpoint = uVar1;
   return;
 }
 

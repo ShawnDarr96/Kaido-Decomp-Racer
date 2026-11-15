@@ -680,7 +680,7 @@ typedef struct RaceCar {  /* size 0x17e0 */
     u8 unk_0810;  /* 0x810 */
     u8 unk_0811;  /* 0x811 */
     u8 pad_0812[0x2];
-    u32 unk_0814;  /* 0x814 */
+    u32 gear;  /* 0x814 */
     u32 unk_0818;  /* 0x818 */
     u32 unk_081c;  /* 0x81c */
     u32 unk_0820;  /* 0x820 */
