@@ -1,5 +1,6 @@
 /* Matching C (MWCPS2 3.0 build 011126, -O4,p; see config/compiler.txt). */
-typedef struct Options { char pad[0x1c]; int seVolume; int bgmVolume; char pad24[4]; char block[2][0xe8]; } Options;
+typedef struct OptBlock { int w[58]; } OptBlock;
+typedef struct Options { char pad[0x1c]; int seVolume; int bgmVolume; char pad24[4]; OptBlock block[2]; } Options;
 extern Options *g_Options;
 int SndMgr_GetInstance(void);
 int Snd_VolumeToMidi(char vol);
@@ -26,7 +27,6 @@ int Options_Get_8(void) { return *(int *)(((char *)g_Options) + 0x8); }
 int Options_Get_c(void) { return *(int *)(((char *)g_Options) + 0xc); }
 
 /* 0x1830d0-0x1833f0 - https://decomp.me/scratch/tudGj (objdiff 100% except where noted) */
-typedef struct OptBlock { int w[58]; } OptBlock;
 extern int g_ControlsShared1;
 extern int g_ControlsShared2;
 int Snd_RpmToPitch(char v);
@@ -51,7 +51,7 @@ void Options_SetDefaults(int *p) {
 }
 void Options_SetDefaultsVolume(int *p) { p[0] = 0xf; p[1] = 0xf; p[2] = 0; }
 void Options_SetDefaultsGame(int *p) { p[0] = 0; p[2] = 1; p[3] = 1; p[4] = 1; p[5] = 1; p[6] = 1; p[1] = 1; }
-OptBlock *Options_Elem_28_xe8(int i) { return &((OptBlock *)((char *)g_Options + 0x28))[i]; }
+OptBlock *Options_Elem_28_xe8(int i) { return &g_Options->block[i]; }
 /* matches: the only scratch differences were the target's "move" assembling as or instead of
  * the game's daddu (fixed in scripts/mkscratch.py) */
 void Options_ApplyBgmVolume(int vol) {
