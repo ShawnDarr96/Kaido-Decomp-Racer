@@ -1440,7 +1440,7 @@ void ScrRecord_Draw_NormalCar(undefined8 param_1)
       *(undefined4 *)(iVar6 + 0x54) = 0;
     }
   }
-  maybe_Record_IsSlotUsed(param_1,*(undefined4 *)(iVar6 + 0x40));
+  maybe_Record_MapRowToItem(param_1,*(undefined4 *)(iVar6 + 0x40));
   Record_GetTableEntry(param_1,*(undefined4 *)(iVar6 + 0x44));
   if (*(int *)(iVar6 + 8) == 0) {
     ScrRecord_Draw_NoData(param_1,iVar6 + 0x7fc);

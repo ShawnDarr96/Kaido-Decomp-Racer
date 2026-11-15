@@ -848,27 +848,27 @@ long ResPool_Load(byte param_1,undefined8 param_2,undefined8 param_3)
     switch(param_1) {
     case 0:
       maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,1);
-      maybe_Course_GetItemB(lVar1);
+      maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 1:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x50);
-      maybe_Course_GetItemB(lVar1);
+      maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 2:
       maybe_Mem_CopyQwords(iVar2 + 0x29,param_3,10);
-      maybe_Course_GetItemB(lVar1);
+      maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 3:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
-      maybe_Course_GetItemB(lVar1);
+      maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
       break;
     case 4:
       maybe_Mem_CopyQwords(iVar2 + 0x2c,param_3,0x20);
-      maybe_Course_GetItemB(lVar1);
+      maybe_Obj_AddRef(lVar1);
       *(undefined4 *)(iVar2 + 0xc) = uVar3;
     }
   }
@@ -1283,7 +1283,7 @@ void Asset_LoadCourseTex(undefined8 param_1,int param_2)
   int iVar4;
   
   iVar2 = 0;
-  maybe_Course_GetItemB();
+  maybe_Obj_AddRef();
   iVar4 = (int)param_1;
   *(int *)(iVar4 + 0xc) = param_2;
   lVar3 = Course_GetField_24(param_1);
@@ -1479,7 +1479,7 @@ void Asset_LoadEnv(undefined8 param_1,int param_2)
   int iVar4;
   
   iVar2 = 0;
-  maybe_Course_GetItemB();
+  maybe_Obj_AddRef();
   iVar4 = (int)param_1;
   *(int *)(iVar4 + 0xc) = param_2;
   lVar3 = Course_GetField_24(param_1);
@@ -1917,7 +1917,7 @@ void CarAsset_SetColor(undefined8 param_1,undefined4 param_2,undefined8 param_3)
 
 {
   maybe_Mem_CopyQwords((int)param_1 + 0x2c,param_3,0x20);
-  maybe_Course_GetItemB(param_1);
+  maybe_Obj_AddRef(param_1);
   *(undefined4 *)((int)param_1 + 0xc) = param_2;
   return;
 }

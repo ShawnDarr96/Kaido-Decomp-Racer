@@ -384,13 +384,13 @@ void CarModel_SwapParts(undefined8 param_1)
     *(int *)(iVar1 + 0x514) = *(int *)(iVar1 + 0x524);
   }
   *(undefined4 *)(iVar1 + 0x524) = 0;
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x500));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x528));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x508));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x50c));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x510));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x514));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x504));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x500));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x528));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x508));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x50c));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x510));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x514));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x504));
   Chunk_Init(param_1,0x530);
   *(undefined4 *)(iVar1 + 0x500) = 0;
   *(undefined4 *)(iVar1 + 0x504) = 0;

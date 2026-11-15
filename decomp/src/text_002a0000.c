@@ -1572,7 +1572,10 @@ ulong maybe_QuickRace_ReadPad(void)
 }
 
 // 0x002a31d0  size 0x8
-undefined4 maybe_CourseSel_IsUnlocked(int param_1)
+/* switch table row -> item (0->1, 1->0, 2->5, 3->3, ...), not a bool (was
+   maybe_CourseSel_IsUnlocked) */
+
+undefined4 maybe_QuickRace_MapRowToItem(int param_1)
 
 {
   undefined4 uVar1;
@@ -1612,7 +1615,9 @@ undefined4 maybe_CourseSel_IsUnlocked(int param_1)
 }
 
 // 0x002a31e0  size 0x8
-undefined4 maybe_Record_IsSlotUsed(undefined8 param_1,undefined4 param_2)
+/* same mapping, indexed by argument (was maybe_Record_IsSlotUsed) */
+
+undefined4 maybe_Record_MapRowToItem(undefined8 param_1,undefined4 param_2)
 
 {
   undefined4 uVar1;

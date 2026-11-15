@@ -683,7 +683,9 @@ undefined4 Course_GetField_24(int param_1)
 }
 
 // 0x001a5a00  size 0x40
-void maybe_Course_GetItemA(int param_1)
+/* decrements the refcount (+0x14) of the object at +0x24 (was maybe_Course_GetItemA) */
+
+void maybe_Obj_ReleaseRef(int param_1)
 
 {
   int iVar1;
@@ -700,7 +702,9 @@ void maybe_Course_GetItemA(int param_1)
 }
 
 // 0x001a5a40  size 0x28
-void maybe_Course_GetItemB(int param_1)
+/* increments it (was maybe_Course_GetItemB) */
+
+void maybe_Obj_AddRef(int param_1)
 
 {
   int iVar1;
@@ -749,7 +753,9 @@ void maybe_Course_InitHeader(undefined4 *param_1,undefined4 param_2,undefined4 p
 }
 
 // 0x001a5ad0  size 0x50
-undefined4 maybe_Course_IsBgmReady(void)
+/* true when every Snd_StreamGetState is 0 (was maybe_Course_IsBgmReady) */
+
+undefined4 maybe_Snd_AreStreamsIdle(void)
 
 {
   char cVar1;

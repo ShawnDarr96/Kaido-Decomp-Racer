@@ -433,8 +433,8 @@ void maybe_PageSelectCourse_State4_DrawSelectCourseTo(int param_1)
   MenuWnd_DrawText(0x109,0x2e,uVar8);
   uVar8 = MsgId_ForResult(3);
   MenuWnd_DrawText(0x109,0x2f,uVar8);
-  cVar4 = maybe_CourseSel_IsUnlocked(param_1);
-  if ((cVar4 == '\x04') || (cVar4 = maybe_CourseSel_IsUnlocked(param_1), cVar4 == '\a')) {
+  cVar4 = maybe_QuickRace_MapRowToItem(param_1);
+  if ((cVar4 == '\x04') || (cVar4 = maybe_QuickRace_MapRowToItem(param_1), cVar4 == '\a')) {
     uVar8 = MsgId_ForResult(2);
     MenuWnd_DrawText(0x109,0x30,uVar8);
     uVar8 = MsgId_ForResult(5);

@@ -2313,7 +2313,7 @@ void Options_SetDefaultsDisplay(undefined4 *param_1)
 }
 
 // 0x001831b0  size 0x8
-/* returns g_Options itself (was maybe_Options_GetLanguage) */
+/* returns g_Options itself; 19 callers (was maybe_Options_GetLanguage) */
 
 Options * Options_GetInstance(void)
 

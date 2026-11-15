@@ -2303,12 +2303,12 @@ address,size,name,file,status
 0x001a59b0,0x24,Arena_Alloc,src/text_001a4000.c,decompiled
 0x001a59e0,0x8,Course_SetField_24,src/text_001a4000.c,decompiled
 0x001a59f0,0x8,Course_GetField_24,src/text_001a4000.c,decompiled
-0x001a5a00,0x40,maybe_Course_GetItemA,src/text_001a4000.c,decompiled
-0x001a5a40,0x28,maybe_Course_GetItemB,src/text_001a4000.c,decompiled
+0x001a5a00,0x40,maybe_Obj_ReleaseRef,src/text_001a4000.c,decompiled
+0x001a5a40,0x28,maybe_Obj_AddRef,src/text_001a4000.c,decompiled
 0x001a5a70,0x8,Course_ClearCount,src/text_001a4000.c,decompiled
 0x001a5a80,0x20,Course_SetField18,src/text_001a4000.c,decompiled
 0x001a5aa0,0x30,maybe_Course_InitHeader,src/text_001a4000.c,decompiled
-0x001a5ad0,0x50,maybe_Course_IsBgmReady,src/text_001a4000.c,decompiled
+0x001a5ad0,0x50,maybe_Snd_AreStreamsIdle,src/text_001a4000.c,decompiled
 0x001a5b30,0x54,maybe_Game_CheckResetRequest,src/text_001a4000.c,decompiled
 0x001a5b90,0xe8,Game_MainLoop,src/text_001a4000.c,decompiled
 0x001a5c80,0x90,Game_Shutdown,src/text_001a4000.c,decompiled
@@ -4115,8 +4115,8 @@ address,size,name,file,status
 0x002a2d50,0x230,maybe_ScrReplayList_Enter,src/text_002a0000.c,decompiled
 0x002a2f80,0x128,maybe_ScrQuickRace_UpdateCarNames,src/text_002a0000.c,decompiled
 0x002a30b0,0x11c,maybe_QuickRace_ReadPad,src/text_002a0000.c,decompiled
-0x002a31d0,0x8,maybe_CourseSel_IsUnlocked,src/text_002a0000.c,decompiled
-0x002a31e0,0x8,maybe_Record_IsSlotUsed,src/text_002a0000.c,decompiled
+0x002a31d0,0x8,maybe_QuickRace_MapRowToItem,src/text_002a0000.c,decompiled
+0x002a31e0,0x8,maybe_Record_MapRowToItem,src/text_002a0000.c,decompiled
 0x002a31f0,0x10,Record_GetTableEntry,src/text_002a0000.c,decompiled
 0x002a3200,0x458,maybe_ScrQuickRace_StartRace,src/text_002a0000.c,decompiled
 0x002a3660,0x7a4,maybe_ScrQuickRace_State11,src/text_002a0000.c,decompiled

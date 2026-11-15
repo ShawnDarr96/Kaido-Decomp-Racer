@@ -1058,10 +1058,10 @@ void maybe_MenuObj_Release(byte *param_1)
       CarModel_SwapParts(*(undefined4 *)(param_1 + 0x10));
       goto LAB_002d5cbc;
     case 1:
-      maybe_Course_GetItemA(*(undefined4 *)(param_1 + 0x10));
+      maybe_Obj_ReleaseRef(*(undefined4 *)(param_1 + 0x10));
       break;
     case 2:
-      maybe_Course_GetItemA(*(undefined4 *)(param_1 + 0x10));
+      maybe_Obj_ReleaseRef(*(undefined4 *)(param_1 + 0x10));
       break;
     case 4:
       SceneObj_Release(*(undefined4 *)(param_1 + 0x10));
@@ -1244,7 +1244,7 @@ long maybe_GarageBg_LoadChunk(int param_1)
   if (lVar2 != 0) {
     iVar3 = (int)lVar2;
     uVar1 = *(undefined4 *)(iVar3 + 0x20);
-    maybe_Course_GetItemB(lVar2);
+    maybe_Obj_AddRef(lVar2);
     *(int *)(iVar3 + 0xc) = param_1;
     *(undefined4 *)(iVar3 + 0x28) = 1;
     *(undefined4 *)(iVar3 + 8) = 1;
@@ -1374,7 +1374,7 @@ void maybe_GarageBg_DrawObject(int param_1,undefined1 *param_2)
 void maybe_GarageBg_ResetObject(int param_1)
 
 {
-  maybe_Course_GetItemA();
+  maybe_Obj_ReleaseRef();
   Chunk_Init(param_1 + 0x28,0xb0);
   *(undefined4 *)(param_1 + 0x90) = 0;
   *(undefined4 *)(param_1 + 0x94) = 0;
@@ -2252,7 +2252,7 @@ long maybe_ShowroomBg_LoadChunk(int param_1)
   if (lVar2 != 0) {
     iVar3 = (int)lVar2;
     uVar1 = *(undefined4 *)(iVar3 + 0x20);
-    maybe_Course_GetItemB(lVar2);
+    maybe_Obj_AddRef(lVar2);
     *(int *)(iVar3 + 0xc) = param_1;
     *(undefined4 *)(iVar3 + 0x28) = 1;
     *(undefined4 *)(iVar3 + 8) = 1;

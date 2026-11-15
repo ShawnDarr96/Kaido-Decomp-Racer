@@ -151,22 +151,22 @@ long SceneObj_CreateCar(undefined8 param_1)
         ((lVar11 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0x94),iVar10 + 0x98), lVar11 == 0 ||
          (lVar4 = ResPool_Load(4,*(undefined4 *)(iVar10 + 0xdc),iVar10 + 0xe0), lVar4 == 0)))))) {
       if (lVar3 != 0) {
-        maybe_Course_GetItemA(lVar3);
+        maybe_Obj_ReleaseRef(lVar3);
       }
       if (lVar9 != 0) {
-        maybe_Course_GetItemA(lVar9);
+        maybe_Obj_ReleaseRef(lVar9);
       }
       if (lVar8 != 0) {
-        maybe_Course_GetItemA(lVar8);
+        maybe_Obj_ReleaseRef(lVar8);
       }
       if (lVar7 != 0) {
-        maybe_Course_GetItemA(lVar7);
+        maybe_Obj_ReleaseRef(lVar7);
       }
       if (lVar6 != 0) {
-        maybe_Course_GetItemA(lVar6);
+        maybe_Obj_ReleaseRef(lVar6);
       }
       if (lVar11 != 0) {
-        maybe_Course_GetItemA(lVar11);
+        maybe_Obj_ReleaseRef(lVar11);
       }
       lVar2 = 0;
     }
@@ -1059,7 +1059,7 @@ void SceneObj_Release(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x40));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x40));
   Chunk_Init(param_1,0x48);
   *(undefined4 *)(iVar1 + 0x40) = 0;
   *(undefined8 *)(iVar1 + 0x10) = 0x48;
@@ -1247,8 +1247,8 @@ void CarModel_Release(undefined8 param_1)
   int iVar1;
   
   iVar1 = (int)param_1;
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x40));
-  maybe_Course_GetItemA(*(undefined4 *)(iVar1 + 0x44));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x40));
+  maybe_Obj_ReleaseRef(*(undefined4 *)(iVar1 + 0x44));
   Chunk_Init(param_1,0x50);
   *(undefined4 *)(iVar1 + 0x44) = 0;
   *(undefined4 *)(iVar1 + 0x10) = 0;

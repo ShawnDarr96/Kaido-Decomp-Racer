@@ -2303,12 +2303,12 @@ address,name,signature,source,comment
 0x001a59b0,Arena_Alloc,,game,"bump allocator, 16-byte aligned"
 0x001a59e0,Course_SetField_24,,game-module,
 0x001a59f0,Course_GetField_24,,game-module,
-0x001a5a00,maybe_Course_GetItemA,,game,
-0x001a5a40,maybe_Course_GetItemB,,game,
+0x001a5a00,maybe_Obj_ReleaseRef,,game,decrements the refcount (+0x14) of the object at +0x24 (was maybe_Course_GetItemA)
+0x001a5a40,maybe_Obj_AddRef,,game,increments it (was maybe_Course_GetItemB)
 0x001a5a70,Course_ClearCount,,game,
 0x001a5a80,Course_SetField18,,game,
 0x001a5aa0,maybe_Course_InitHeader,,game,
-0x001a5ad0,maybe_Course_IsBgmReady,,game,
+0x001a5ad0,maybe_Snd_AreStreamsIdle,,game,true when every Snd_StreamGetState is 0 (was maybe_Course_IsBgmReady)
 0x001a5b30,maybe_Game_CheckResetRequest,,game,
 0x001a5b90,Game_MainLoop,,game,scene table at 0x3179e0 (0x20 per scene)
 0x001a5c80,Game_Shutdown,,game,
@@ -4117,8 +4117,8 @@ address,name,signature,source,comment
 0x002a2d50,maybe_ScrReplayList_Enter,,game,menu screen 31 (table 0x3274b0)
 0x002a2f80,maybe_ScrQuickRace_UpdateCarNames,,game,
 0x002a30b0,maybe_QuickRace_ReadPad,,game,
-0x002a31d0,maybe_CourseSel_IsUnlocked,,game,
-0x002a31e0,maybe_Record_IsSlotUsed,,game,
+0x002a31d0,maybe_QuickRace_MapRowToItem,,game,"switch table row -> item (0->1, 1->0, 2->5, 3->3, ...), not a bool (was maybe_CourseSel_IsUnlocked)"
+0x002a31e0,maybe_Record_MapRowToItem,,game,"same mapping, indexed by argument (was maybe_Record_IsSlotUsed)"
 0x002a31f0,Record_GetTableEntry,,game,
 0x002a3200,maybe_ScrQuickRace_StartRace,,game,
 0x002a3660,maybe_ScrQuickRace_State11,,game,entry 11 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
