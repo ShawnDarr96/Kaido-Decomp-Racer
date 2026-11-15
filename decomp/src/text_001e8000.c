@@ -2210,7 +2210,7 @@ void RaceIntro_DrawCars(undefined8 param_1,int param_2,long param_3,long param_4
   if (*(uint *)(iVar11 + 8) == 3) {
     return;
   }
-  maybe_IntroFlag_DrawAll(param_1,*(undefined4 *)(param_2 + 0x58));
+  IntroFlag_DrawAll(param_1,*(undefined4 *)(param_2 + 0x58));
   Layer_Reset(auStack_240,puVar9,0x436180,*(undefined4 *)(iVar11 + 0xc),
               *(undefined4 *)(iVar11 + 0x10));
   if (param_4 != 0) {
@@ -2360,7 +2360,7 @@ LAB_001eb9a8:
   }
   *(undefined4 *)(param_1 + 0x54) = 1;
 LAB_001eba24:
-  maybe_IntroFlag_Step();
+  IntroFlag_Step();
   return;
 }
 

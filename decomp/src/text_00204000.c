@@ -1477,9 +1477,9 @@ void MenuSnd_StopAll(void)
 }
 
 // 0x00206660  size 0x10
-/* installs MenuScene_NopCallback (was maybe_Ui_SetCallback) */
+/* N153 confirmed: installs MenuScene_NopCallback as the task callback */
 
-void maybe_MenuSceneTask_SetIdle(int param_1)
+void MenuSceneTask_SetIdle(int param_1)
 
 {
   *(code **)(param_1 + 0x1c) = MenuScene_NopCallback;

@@ -1621,8 +1621,9 @@ void maybe_IntroFlag_OnLoaded(void)
 
 // 0x002e3400  size 0x3c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: bumps g_IntroFlag's frame counter and steps both flags */
 
-void maybe_IntroFlag_Step(void)
+void IntroFlag_Step(void)
 
 {
   if (_g_IntroFlag != (int *)0x0) {
@@ -1635,8 +1636,9 @@ void maybe_IntroFlag_Step(void)
 
 // 0x002e3440  size 0x34
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: draws the intro flag when g_IntroFlag is loaded */
 
-void maybe_IntroFlag_DrawAll(int param_1,undefined8 param_2)
+void IntroFlag_DrawAll(int param_1,undefined8 param_2)
 
 {
   if (_g_IntroFlag != 0) {

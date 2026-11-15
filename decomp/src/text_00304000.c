@@ -506,7 +506,9 @@ int maybe_KernelPatch_RemoveHandler(long param_1)
 }
 
 // 0x00307e20  size 0x20
-void maybe_KernelPatch_CallSync(undefined2 param_1)
+/* N153 confirmed: calls the kernel routine then SYNC */
+
+void KernelPatch_CallSync(undefined2 param_1)
 
 {
   func_0x00076160(param_1);

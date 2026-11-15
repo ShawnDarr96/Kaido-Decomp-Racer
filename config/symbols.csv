@@ -2940,7 +2940,7 @@ address,name,signature,source,comment
 0x001c27c0,RaceWorld_Step,,game,
 0x001c29f0,RaceWorld_Step_Thunk,,game,task callback: j RaceWorld_Step
 0x001c2a00,maybe_RaceTask_ClearFlag,,game,
-0x001c2a10,maybe_RaceTask_StartWorld,,game,sets the run flag and installs RaceWorld_Step_Thunk (was maybe_RaceTask_SetFlag)
+0x001c2a10,RaceTask_StartWorld,,game,N153 confirmed: sets the run flag and installs RaceWorld_Step_Thunk
 0x001c2a30,Vu0_RaySphereTest,,game,
 0x001c2a70,Prop_DrawModel,,game,
 0x001c2bc0,Prop_Draw,,game,
@@ -3562,7 +3562,7 @@ address,name,signature,source,comment
 0x00201380,MenuWnd_DrawMoney,,game,
 0x00201c80,MenuScene_Update,,game,
 0x00202100,maybe_Ui_ClearField4,,game,
-0x00202110,maybe_MenuSceneTask_Reset,,game,resets the task state and installs MenuScene_Update (was maybe_Ui_ResetState)
+0x00202110,MenuSceneTask_Reset,,game,N153 confirmed: resets the task state and installs MenuScene_Update
 0x00202140,MenuScene_GetEntryScreen,,game,
 0x00202300,MenuText_CarFullNameDefault,,game,
 0x00202330,MenuText_CountCars,,game,
@@ -3611,7 +3611,7 @@ address,name,signature,source,comment
 0x00206550,MenuSnd_PlaySe,,game,
 0x002065f0,MenuScene_NopCallback,,game,task callback that only returns (jr ra)
 0x00206600,MenuSnd_StopAll,,game,
-0x00206660,maybe_MenuSceneTask_SetIdle,,game,installs MenuScene_NopCallback (was maybe_Ui_SetCallback)
+0x00206660,MenuSceneTask_SetIdle,,game,N153 confirmed: installs MenuScene_NopCallback as the task callback
 0x00206670,Title_Update,,game,
 0x002066b0,Title_Exit,,game,
 0x002066e0,Title_Enter,,game,
@@ -5060,8 +5060,8 @@ address,name,signature,source,comment
 0x002e2ac0,maybe_IntroFlag_Update,,game,
 0x002e2ee0,maybe_IntroFlag_Draw,,game,
 0x002e32c0,maybe_IntroFlag_OnLoaded,,game,
-0x002e3400,maybe_IntroFlag_Step,,game,
-0x002e3440,maybe_IntroFlag_DrawAll,,game,
+0x002e3400,IntroFlag_Step,,game,N153 confirmed: bumps g_IntroFlag's frame counter and steps both flags
+0x002e3440,IntroFlag_DrawAll,,game,N153 confirmed: draws the intro flag when g_IntroFlag is loaded
 0x002e3480,IntroFlag_Free,,game,
 0x002e3500,IntroFlag_Load,,game,
 0x002e3670,Eventui_Draw_Akagi,,game-module,
@@ -5298,7 +5298,7 @@ address,name,signature,source,comment
 0x00307a38,maybe_KernelPatch_FindHandler,,game,
 0x00307b40,maybe_KernelPatch_AddHandler,,game,
 0x00307c80,maybe_KernelPatch_RemoveHandler,,game,
-0x00307e20,maybe_KernelPatch_CallSync,,game,
+0x00307e20,KernelPatch_CallSync,,game,N153 confirmed: calls the kernel routine then SYNC
 0x00307e40,KernelPatch_CallSync_Orphan1,,game,"follows KernelPatch_CallSync; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00307e68,maybe_KernelPatch_ScanHandlers,,game,
 0x003685e0,__sinit_003685e0,,sinit,

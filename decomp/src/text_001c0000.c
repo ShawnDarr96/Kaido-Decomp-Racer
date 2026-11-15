@@ -2114,9 +2114,9 @@ void maybe_RaceTask_ClearFlag(int param_1)
 }
 
 // 0x001c2a10  size 0x1c
-/* sets the run flag and installs RaceWorld_Step_Thunk (was maybe_RaceTask_SetFlag) */
+/* N153 confirmed: sets the run flag and installs RaceWorld_Step_Thunk */
 
-void maybe_RaceTask_StartWorld(int param_1)
+void RaceTask_StartWorld(int param_1)
 
 {
   **(undefined1 **)(param_1 + 0x14) = 1;

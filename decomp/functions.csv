@@ -2940,7 +2940,7 @@ address,size,name,file,status
 0x001c27c0,0x220,RaceWorld_Step,src/text_001c0000.c,decompiled
 0x001c29f0,0x8,RaceWorld_Step_Thunk,src/text_001c0000.c,decompiled
 0x001c2a00,0xc,maybe_RaceTask_ClearFlag,src/text_001c0000.c,decompiled
-0x001c2a10,0x1c,maybe_RaceTask_StartWorld,src/text_001c0000.c,decompiled
+0x001c2a10,0x1c,RaceTask_StartWorld,src/text_001c0000.c,decompiled
 0x001c2a30,0x40,Vu0_RaySphereTest,src/text_001c0000.c,decompiled
 0x001c2a70,0x144,Prop_DrawModel,src/text_001c0000.c,decompiled
 0x001c2bc0,0xf4,Prop_Draw,src/text_001c0000.c,decompiled
@@ -3560,7 +3560,7 @@ address,size,name,file,status
 0x00201380,0x8f8,MenuWnd_DrawMoney,src/text_00200000.c,decompiled
 0x00201c80,0x47c,MenuScene_Update,src/text_00200000.c,decompiled
 0x00202100,0xc,maybe_Ui_ClearField4,src/text_00200000.c,decompiled
-0x00202110,0x28,maybe_MenuSceneTask_Reset,src/text_00200000.c,decompiled
+0x00202110,0x28,MenuSceneTask_Reset,src/text_00200000.c,decompiled
 0x00202140,0x1bc,MenuScene_GetEntryScreen,src/text_00200000.c,decompiled
 0x00202300,0x24,MenuText_CarFullNameDefault,src/text_00200000.c,decompiled
 0x00202330,0xcc,MenuText_CountCars,src/text_00200000.c,decompiled
@@ -3609,7 +3609,7 @@ address,size,name,file,status
 0x00206550,0xa0,MenuSnd_PlaySe,src/text_00204000.c,decompiled
 0x002065f0,0x8,MenuScene_NopCallback,src/text_00204000.c,decompiled
 0x00206600,0x5c,MenuSnd_StopAll,src/text_00204000.c,decompiled
-0x00206660,0x10,maybe_MenuSceneTask_SetIdle,src/text_00204000.c,decompiled
+0x00206660,0x10,MenuSceneTask_SetIdle,src/text_00204000.c,decompiled
 0x00206670,0x34,Title_Update,src/text_00204000.c,decompiled
 0x002066b0,0x24,Title_Exit,src/text_00204000.c,decompiled
 0x002066e0,0x68,Title_Enter,src/text_00204000.c,decompiled
@@ -5051,8 +5051,8 @@ address,size,name,file,status
 0x002e2ac0,0x418,maybe_IntroFlag_Update,src/text_002e0000.c,decompiled
 0x002e2ee0,0x3dc,maybe_IntroFlag_Draw,src/text_002e0000.c,decompiled
 0x002e32c0,0x140,maybe_IntroFlag_OnLoaded,src/text_002e0000.c,decompiled
-0x002e3400,0x3c,maybe_IntroFlag_Step,src/text_002e0000.c,decompiled
-0x002e3440,0x34,maybe_IntroFlag_DrawAll,src/text_002e0000.c,decompiled
+0x002e3400,0x3c,IntroFlag_Step,src/text_002e0000.c,decompiled
+0x002e3440,0x34,IntroFlag_DrawAll,src/text_002e0000.c,decompiled
 0x002e3480,0x74,IntroFlag_Free,src/text_002e0000.c,decompiled
 0x002e3500,0x170,IntroFlag_Load,src/text_002e0000.c,decompiled
 0x002e3670,0x360,Eventui_Draw_Akagi,src/text_002e0000.c,decompiled
@@ -5289,7 +5289,7 @@ address,size,name,file,status
 0x00307a38,0x104,maybe_KernelPatch_FindHandler,src/text_00304000.c,decompiled
 0x00307b40,0x13c,maybe_KernelPatch_AddHandler,src/text_00304000.c,decompiled
 0x00307c80,0x1a0,maybe_KernelPatch_RemoveHandler,src/text_00304000.c,decompiled
-0x00307e20,0x20,maybe_KernelPatch_CallSync,src/text_00304000.c,decompiled
+0x00307e20,0x20,KernelPatch_CallSync,src/text_00304000.c,decompiled
 0x00307e40,0x24,KernelPatch_CallSync_Orphan1,src/text_00304000.c,decompiled
 0x00307e68,0x1e0,maybe_KernelPatch_ScanHandlers,src/text_00304000.c,decompiled
 0x003685e0,0x50,__sinit_003685e0,src/text_00368000.c,decompiled

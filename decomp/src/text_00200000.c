@@ -692,9 +692,9 @@ void maybe_Ui_ClearField4(int param_1)
 }
 
 // 0x00202110  size 0x28
-/* resets the task state and installs MenuScene_Update (was maybe_Ui_ResetState) */
+/* N153 confirmed: resets the task state and installs MenuScene_Update */
 
-void maybe_MenuSceneTask_Reset(int param_1)
+void MenuSceneTask_Reset(int param_1)
 
 {
   undefined4 *puVar1;
