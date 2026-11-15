@@ -469,6 +469,17 @@ def export(program, args):
         a = f.getEntryPoint().getOffset()
         buckets.setdefault(a // BUCKET * BUCKET, []).append((f, res))
 
+    # Exact body ranges (a body can have holes or several ranges; "size" in functions.csv is the
+    # number of bytes in the body, not its span). Used for coverage checks.
+    with open(OUT / "function_ranges.csv", "w", newline="", encoding="utf-8") as rf:
+        rw = csv.writer(rf, lineterminator="\n")
+        rw.writerow(["address", "start", "end"])
+        for f in funcs:
+            for rng in f.getBody().getAddressRanges():
+                rw.writerow([f"0x{f.getEntryPoint().getOffset():08x}",
+                             f"0x{rng.getMinAddress().getOffset():08x}",
+                             f"0x{rng.getMaxAddress().getOffset() + 1:08x}"])
+
     failed = 0
     with open(OUT / "functions.csv", "w", newline="", encoding="utf-8") as idxf:
         idx = csv.writer(idxf)
