@@ -29,6 +29,16 @@ ok = sum(r["status"] == "decompiled" for r in rows)
 nm = [r for r in rows if named(r)]
 nm_size = sum(int(r["size"], 16) for r in nm)
 
+# Matched functions: config/matched.csv (address,name,scratch,notes), one row per function whose C
+# compiles to the retail bytes with the original compiler. The row is evidence: link the scratch.
+MATCHED = ROOT / "config" / "matched.csv"
+matched = []
+if MATCHED.exists():
+    by_addr = {r["address"]: r for r in rows}
+    matched = [m for m in csv.DictReader(open(MATCHED, encoding="utf-8")) if m["address"] in by_addr]
+mt_size = sum(int(by_addr[m["address"]]["size"], 16) for m in matched) if matched else 0
+maybe = sum(r["name"].startswith("maybe_") for r in rows)
+
 per_file = defaultdict(lambda: [0, 0, 0])
 for r in rows:
     s = per_file[r["file"]]
@@ -48,7 +58,10 @@ out = [
     f"| Named (not `FUN_`, not `*_sub_*`) | {len(nm)} | {pct(len(nm), total)} |",
     f"| Assigned to a library/module only (`*_sub_*`) | {sum(map(assigned, rows))} | {pct(sum(map(assigned, rows)), total)} |",
     f"| Code bytes in named functions | {nm_size} of {size} | {pct(nm_size, size)} |",
-    f"| Matching (byte-identical) | 0 | 0.0% |",
+    f"| Names still guesses (`maybe_`) | {maybe} | {pct(maybe, total)} |",
+    "| Rebuild from assembly | byte-identical (see `scripts/build.py`) | |",
+    f"| Functions matched in C (`config/matched.csv`) | {len(matched)} | {pct(len(matched), total)} |",
+    f"| Code bytes matched in C | {mt_size} of {size} | {pct(mt_size, size)} |",
     "",
     "## Per file",
     "",
