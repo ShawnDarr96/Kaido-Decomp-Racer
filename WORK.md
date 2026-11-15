@@ -42,7 +42,7 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | M1 | Find the matching compiler: MWCC PS2 2.4.1 (decomp.me mwcps2 builds) and record its flags by matching a few small functions | any | F2 |  |  |
-| M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  |  |
+| M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 | ShawnDarr96/claude (2026-11-15) |  |
 | M4 | Add a progress report for matched bytes to scripts/progress.py and CI | any | M2 |  |  |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 
@@ -333,3 +333,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim N153.
 - 2026-11-15 ShawnDarr96/claude: claim M2.
 - 2026-11-15 ShawnDarr96/claude: M2 done.
+- 2026-11-15 ShawnDarr96/claude: claim M3.
