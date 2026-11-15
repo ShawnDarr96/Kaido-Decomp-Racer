@@ -948,7 +948,7 @@ undefined4 lgDevPrepareForIOPReboot(void)
   return uVar1;
 }
 
-// 0x00171c40  size 0x80
+// 0x00171c40  size 0x7c
 /* sceSifCheckStatRpc; 25 callers */
 
 long lgDev_WaitAsync(long param_1,long param_2)
@@ -972,6 +972,16 @@ long lgDev_WaitAsync(long param_1,long param_2)
     }
   }
   return lVar1;
+}
+
+// 0x00171cc0  size 0x4
+/* follows lgDev_WaitAsync; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void lgDev_WaitAsync_Orphan2(void)
+
+{
+  return;
 }
 
 // 0x00171cc4  size 0x4c

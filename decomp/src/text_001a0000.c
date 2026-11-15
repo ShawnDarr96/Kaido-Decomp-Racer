@@ -1884,7 +1884,7 @@ void Course_DrawView(undefined1 *param_1,undefined8 param_2)
   return;
 }
 
-// 0x001a3820  size 0xef0
+// 0x001a3820  size 0xec8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Course_Render(int param_1)

@@ -2,6 +2,26 @@
 // Address range 0x001a4000 - 0x001a8000
 #include "ghidra_types.h"
 
+// 0x001a4710  size 0x28
+/* follows Course_Render; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void Course_Render_Orphan2(undefined8 param_1)
+
+{
+  undefined4 in_v0_lo;
+  undefined4 *unaff_s0_lo;
+  undefined1 uStack00000120;
+  undefined1 auStack_7ffffffe [2147483646];
+  
+  *unaff_s0_lo = in_v0_lo;
+  Pkt_AddPrimitives(param_1,&uStack00000120,1);
+  Pkt_Submit((int)register0x000001d0 + 0x430,0);
+  CourseStream_Update(2);
+  CourseStream_FreeAll();
+  return;
+}
+
 // 0x001a4738  size 0x28
 /* follows Course_Render; no call, branch, pointer or constant references it (exception landing pad
    or dead code) */

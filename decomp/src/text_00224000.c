@@ -234,7 +234,7 @@ LAB_00224d38:
   return;
 }
 
-// 0x002252d0  size 0xd04
+// 0x002252d0  size 0xce8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
@@ -534,6 +534,58 @@ void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
   return;
 }
 
+// 0x00225fd4  size 0x1c
+/* follows ScrCareer_Draw_MessageDeleted_52d0; no call, branch, pointer or constant reference
+   (exception landing pad or dead code) */
+
+void ScrCareer_Draw_MessageDeleted_52d0_Orphan2
+               (UiLayout *param_1,long param_2,undefined8 param_3,byte param_4)
+
+{
+  int iVar1;
+  long lVar2;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  int *unaff_s0_lo;
+  int unaff_s1_lo;
+  int unaff_s2_lo;
+  UiLayout *unaff_s3_lo;
+  int unaff_s4_lo;
+  
+  do {
+    UiElem_SetPropFloat(param_1,param_2,8,param_4);
+    param_4 = extraout_a3_lo_01;
+    while( true ) {
+      unaff_s2_lo = unaff_s2_lo + 1;
+      unaff_s1_lo = unaff_s1_lo + 4;
+      unaff_s0_lo = unaff_s0_lo + 1;
+      if (10 < unaff_s2_lo) {
+        UiLayout_UpdateAnimById((UiLayout *)0xa6,0);
+        iVar1 = UiMgr_FindLayout(0xa6);
+        UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+        iVar1 = UiMgr_FindLayout(0xae);
+        UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+        iVar1 = UiMgr_FindLayout(0xaf);
+        UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+        iVar1 = UiMgr_FindLayout(0xb0);
+        UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+        return;
+      }
+      iVar1 = *(int *)(unaff_s4_lo + 0x674);
+      if ((*(int *)(unaff_s4_lo + iVar1 * 4 + 0x2c) <= unaff_s2_lo) ||
+         (lVar2 = Career_GetRivalIndex
+                            (*(undefined4 *)(unaff_s4_lo + 0x680),iVar1 == 0,
+                             *(undefined4 *)(unaff_s4_lo + iVar1 * 800 + unaff_s1_lo + 0x34)),
+         param_4 = extraout_a3_lo, lVar2 == -1)) break;
+      UiElem_SetPropFloat(unaff_s3_lo,(long)*unaff_s0_lo,8,extraout_a3_lo);
+      param_4 = extraout_a3_lo_00;
+    }
+    param_2 = (long)*unaff_s0_lo;
+    param_1 = unaff_s3_lo;
+  } while( true );
+}
+
 // 0x00225ff4  size 0x20
 /* follows ScrCareer_Draw_MessageDeleted_52d0; no call, branch, pointer or constant references it
    (exception landing pad or dead code) */
@@ -579,7 +631,7 @@ void maybe_PageMail_State5_AcceptThisRival(int param_1)
   return;
 }
 
-// 0x00226050  size 0xcb4
+// 0x00226050  size 0xc9c
 void ScrCareer_Draw_DeleteThisMessage_6050(undefined4 *param_1)
 
 {
@@ -843,6 +895,56 @@ void ScrCareer_Draw_DeleteThisMessage_6050(undefined4 *param_1)
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar2].layout);
   iVar2 = UiMgr_FindLayout(0xb0);
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar2].layout);
+  return;
+}
+
+// 0x00226d04  size 0x18
+/* follows ScrCareer_Draw_DeleteThisMessage_6050; no call, branch, pointer or constant reference
+   (exception landing pad or dead code) */
+
+void ScrCareer_Draw_DeleteThisMessage_6050_Orphan2(void)
+
+{
+  int iVar1;
+  long lVar2;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte extraout_a3_lo_01;
+  byte in_a3_lo;
+  int *unaff_s0_lo;
+  int unaff_s1_lo;
+  int unaff_s2_lo;
+  UiLayout *unaff_s3_lo;
+  int unaff_s4_lo;
+  
+  while( true ) {
+    unaff_s2_lo = unaff_s2_lo + 1;
+    unaff_s1_lo = unaff_s1_lo + 4;
+    unaff_s0_lo = unaff_s0_lo + 1;
+    if (10 < unaff_s2_lo) break;
+    iVar1 = *(int *)(unaff_s4_lo + 0x674);
+    if ((unaff_s2_lo < *(int *)(unaff_s4_lo + iVar1 * 4 + 0x2c)) &&
+       (lVar2 = Career_GetRivalIndex
+                          (*(undefined4 *)(unaff_s4_lo + 0x680),iVar1 == 0,
+                           *(undefined4 *)(unaff_s4_lo + iVar1 * 800 + unaff_s1_lo + 0x34)),
+       in_a3_lo = extraout_a3_lo, lVar2 != -1)) {
+      UiElem_SetPropFloat(unaff_s3_lo,(long)*unaff_s0_lo,8,extraout_a3_lo);
+      in_a3_lo = extraout_a3_lo_00;
+    }
+    else {
+      UiElem_SetPropFloat(unaff_s3_lo,(long)*unaff_s0_lo,8,in_a3_lo);
+      in_a3_lo = extraout_a3_lo_01;
+    }
+  }
+  UiLayout_UpdateAnimById((UiLayout *)0xa6,0);
+  iVar1 = UiMgr_FindLayout(0xa6);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xae);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xaf);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xb0);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
   return;
 }
 
@@ -1223,7 +1325,7 @@ LAB_0022782c:
   return;
 }
 
-// 0x00227e70  size 0x2200
+// 0x00227e70  size 0x21dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_Mail_7e70(int *param_1)

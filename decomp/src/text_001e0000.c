@@ -567,7 +567,7 @@ void RaceProg_ComputeDistance(int param_1,int param_2)
   return;
 }
 
-// 0x001e10f0  size 0x7a0
+// 0x001e10f0  size 0x780
 void RaceProg_DetectCollisions(int param_1)
 
 {
@@ -756,6 +756,58 @@ void RaceProg_DetectCollisions(int param_1)
       cVar18 = cVar18 + '\x01';
       param_1 = param_1 + 4;
     } while (cVar18 < cVar6);
+  }
+  return;
+}
+
+// 0x001e1890  size 0x20
+/* follows RaceProg_DetectCollisions; no call, branch, pointer or constant reference (exception
+   landing pad or dead code) */
+
+void RaceProg_DetectCollisions_Orphan2(void)
+
+{
+  RaceCar *pRVar1;
+  long lVar2;
+  ulong uVar3;
+  char cVar4;
+  long unaff_s0;
+  undefined4 unaff_s1_lo;
+  undefined4 unaff_s1_hi;
+  int iVar5;
+  int unaff_s5_lo;
+  
+  while( true ) {
+    cVar4 = (char)unaff_s0 + '\x01';
+    unaff_s0 = (long)cVar4;
+    iVar5 = unaff_s5_lo + 4;
+    if (CONCAT44(unaff_s1_hi,unaff_s1_lo) <= unaff_s0) break;
+    lVar2 = Raceprog_Nop(*(undefined4 *)(unaff_s5_lo + 0x2c));
+    unaff_s5_lo = iVar5;
+    if (lVar2 == 0) {
+      pRVar1 = RaceCar_Get((int)cVar4);
+      RaceCar_GetIndex(pRVar1);
+      uVar3 = RaceCar_GetFlags(pRVar1);
+      if ((uVar3 & 0x800) == 0) {
+        if (cVar4 == '\x02') {
+          RaceScene_AddHandler(0x1008);
+        }
+        else if (cVar4 == '\x01') {
+          lVar2 = GameState_GetPlayerCount();
+          if (lVar2 == 2) {
+            RaceScene_AddHandler(0x1002);
+            RaceScene_AddHandler(0x402);
+          }
+          else {
+            RaceScene_AddHandler(0x1004);
+          }
+        }
+        else if (cVar4 == '\0') {
+          RaceScene_AddHandler(0x1001);
+          RaceScene_AddHandler(0x401);
+        }
+      }
+    }
   }
   return;
 }

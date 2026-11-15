@@ -216,7 +216,7 @@ void Wheel_Update(void)
   return;
 }
 
-// 0x00140540  size 0x724
+// 0x00140540  size 0x70c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* lgDevDownloadForceEffect etc. */
 
@@ -438,6 +438,23 @@ void Wheel_UpdateForceEffects(void)
     lgDevAStartForceEffectMulti(iVar11,0x387dc0);
     _g_Wheel = 1;
   }
+  return;
+}
+
+// 0x00140c64  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Wheel_UpdateForceEffects; no call, branch, pointer or constant reference (exception
+   landing pad or dead code) */
+
+void Wheel_UpdateForceEffects_Orphan2(void)
+
+{
+  _g_Wheel = 0;
+  if ((_s_WheelVar9 & 0x80000000) != 0) {
+    _s_WheelVar10 = 1;
+  }
+  lgDevAStartForceEffectMulti();
+  _g_Wheel = 1;
   return;
 }
 

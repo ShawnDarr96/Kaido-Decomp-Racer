@@ -236,3 +236,8 @@
 0x00222c9c  # tail block of the preceding function (branch target from it), not a function
 0x00307558  # tail block of the preceding function (branch target from it), not a function
 0x00307a2c  # tail block of the preceding function (branch target from it), not a function
+0x0012d288  # tail block of the preceding function (branch target from it)
+0x00153e20  # tail block of the preceding function (branch target from it)
+0x001baef0  # tail block of the preceding function (branch target from it)
+0x001bdc68  # tail block of the preceding function (branch target from it)
+0x002d5bb8  # tail block of the preceding function (branch target from it)

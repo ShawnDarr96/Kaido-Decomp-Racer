@@ -1333,8 +1333,8 @@ void Snd_StreamFill(int param_1,int param_2,uint param_3)
   int iVar2;
   int iVar3;
   int iVar4;
-  uint uVar5;
-  int iVar6;
+  int iVar5;
+  uint uVar6;
   int iVar7;
   int iVar8;
   int *piVar9;
@@ -1346,55 +1346,60 @@ void Snd_StreamFill(int param_1,int param_2,uint param_3)
   
   iVar11 = param_1 * 0x28;
   iVar8 = param_1 * 0x1c;
-  iVar1 = *(int *)(iVar8 + 0x42da70);
-  uVar5 = iVar1 * *(int *)(iVar8 + 0x42da74);
-  iVar2 = *(int *)(iVar8 + 0x42da7c);
+  iVar1 = *(int *)(&DAT_0042da70 + iVar8);
+  uVar6 = iVar1 * *(int *)(&DAT_0042da74 + iVar8);
+  iVar2 = *(int *)(&DAT_0042da7c + iVar8);
   iVar13 = 0;
   uVar12 = 0;
   if (param_3 != 0) {
     if (8 < param_3) {
       do {
         uVar12 = uVar12 + 8;
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 4);
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 0xc);
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 0x14);
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 0x1c);
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 0x24);
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 0x2c);
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *(int *)(param_2 + 0x34);
+        *(int *)(&DAT_0042dac4 + iVar11) = *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 4);
+        *(int *)(&DAT_0042dac4 + iVar11) =
+             *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 0xc);
+        *(int *)(&DAT_0042dac4 + iVar11) =
+             *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 0x14);
+        *(int *)(&DAT_0042dac4 + iVar11) =
+             *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 0x1c);
+        *(int *)(&DAT_0042dac4 + iVar11) =
+             *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 0x24);
+        *(int *)(&DAT_0042dac4 + iVar11) =
+             *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 0x2c);
+        *(int *)(&DAT_0042dac4 + iVar11) =
+             *(int *)(&DAT_0042dac4 + iVar11) + *(int *)(param_2 + 0x34);
         piVar9 = (int *)(param_2 + 0x3c);
         param_2 = param_2 + 0x40;
-        *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *piVar9;
+        *(int *)(&DAT_0042dac4 + iVar11) = *(int *)(&DAT_0042dac4 + iVar11) + *piVar9;
       } while (uVar12 < param_3 - 8);
     }
     for (; uVar12 < param_3; uVar12 = uVar12 + 1) {
       piVar9 = (int *)(param_2 + 4);
       param_2 = param_2 + 8;
-      *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) + *piVar9;
+      *(int *)(&DAT_0042dac4 + iVar11) = *(int *)(&DAT_0042dac4 + iVar11) + *piVar9;
     }
   }
-  uVar12 = *(uint *)(iVar11 + 0x42dac4);
-  if (uVar5 < uVar12) {
+  uVar12 = *(uint *)(&DAT_0042dac4 + iVar11);
+  if (uVar6 < uVar12) {
     piVar9 = aiStack_10;
     do {
-      iVar3 = *(int *)(iVar8 + 0x42da70);
-      iVar6 = *(int *)(iVar11 + 0x42dac8) * iVar3;
-      uVar10 = iVar1 * iVar2 - iVar6;
+      iVar3 = *(int *)(&DAT_0042da70 + iVar8);
+      uVar10 = iVar1 * iVar2 - *(int *)(&DAT_0042dac8 + iVar11) * iVar3;
       if (uVar12 <= uVar10) {
         uVar10 = uVar12;
       }
       iVar7 = ((int)uVar10 / iVar3) * iVar3;
-      iVar4 = *(int *)(iVar8 + 0x42da78);
-      *(int *)(iVar11 + 0x42dac4) = *(int *)(iVar11 + 0x42dac4) - iVar7;
-      *piVar9 = iVar4 + iVar6;
-      iVar6 = *(int *)(iVar11 + 0x42dac8);
-      iVar4 = *(int *)(iVar8 + 0x42da7c);
+      iVar4 = *(int *)(&DAT_0042da78 + iVar8);
+      *(int *)(&DAT_0042dac4 + iVar11) = *(int *)(&DAT_0042dac4 + iVar11) - iVar7;
+      *piVar9 = iVar4 + *(int *)(&DAT_0042dac8 + iVar11) * iVar3;
+      iVar4 = *(int *)(&DAT_0042dac8 + iVar11);
+      iVar5 = *(int *)(&DAT_0042da7c + iVar8);
       piVar9[1] = iVar7;
       piVar9 = piVar9 + 2;
-      *(int *)(iVar11 + 0x42dac8) = (iVar6 + (int)uVar10 / iVar3) % iVar4;
-      uVar12 = *(uint *)(iVar11 + 0x42dac4);
+      *(int *)(&DAT_0042dac8 + iVar11) = (iVar4 + (int)uVar10 / iVar3) % iVar5;
+      uVar12 = *(uint *)(&DAT_0042dac4 + iVar11);
       iVar13 = iVar13 + 1;
-    } while (uVar5 < uVar12);
+    } while (uVar6 < uVar12);
   }
   if (iVar13 != 0) {
     Snd_StreamLoadChunk(param_1,aiStack_10,iVar13);
@@ -1408,6 +1413,20 @@ void Snd_StreamFill(int param_1,int param_2,uint param_3)
    or dead code) */
 
 void Snd_StreamFill_Orphan1(undefined8 param_1,undefined8 param_2,undefined1 *param_3)
+
+{
+  _s_SndVar5 = 0;
+  _s_SndVar6 = 0;
+  *param_3 = 3;
+  return;
+}
+
+// 0x00153e30  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Snd_StreamFill; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void Snd_StreamFill_Orphan2(undefined8 param_1,undefined8 param_2,undefined1 *param_3)
 
 {
   _s_SndVar5 = 0;
@@ -1464,17 +1483,17 @@ void Snd_StreamPlayAll(undefined8 param_1)
   *(int *)(iVar3 + 0x42dab4) = iVar6;
   *(undefined4 *)(iVar3 + 0x42dab8) = *(undefined4 *)(iVar2 + 0x1c);
   *(undefined4 *)(iVar3 + 0x42dabc) = 0;
-  *(undefined4 *)(iVar3 + 0x42dac4) = 0;
-  *(undefined4 *)(iVar3 + 0x42dac8) = 0;
+  *(undefined4 *)(&DAT_0042dac4 + iVar3) = 0;
+  *(undefined4 *)(&DAT_0042dac8 + iVar3) = 0;
   DisableIntc();
-  _s_SndVar5 = &LAB_00153e30;
+  _s_SndVar5 = Snd_StreamFill_Orphan2;
   _s_SndVar6 = &s_Snd_LoadSystemBanks_1 + iVar3;
   IopStrm_Play(param_1,&uStack_10);
   EnableIntc(1);
   return;
 }
 
-// 0x00153fd0  size 0x260
+// 0x00153fd0  size 0x24c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Snd_StreamUpdate(void)

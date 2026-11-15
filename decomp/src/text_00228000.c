@@ -2,6 +2,30 @@
 // Address range 0x00228000 - 0x0022c000
 #include "ghidra_types.h"
 
+// 0x0022a070  size 0x24
+/* follows ScrCareer_Draw_Mail_7e70; no call, branch, pointer or constant reference (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_Mail_7e70_Orphan2(void)
+
+{
+  int iVar1;
+  byte in_a3_lo;
+  UiLayout *unaff_s8_lo;
+  
+  UiElem_SetPropFloat(unaff_s8_lo,1,6,in_a3_lo);
+  UiLayout_UpdateAnimById((UiLayout *)0xa6,0);
+  iVar1 = UiMgr_FindLayout(0xa6);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xae);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xaf);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xb0);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  return;
+}
+
 // 0x0022a094  size 0x24
 /* follows ScrCareer_Draw_Mail_7e70; no call, branch, pointer or constant references it (exception
    landing pad or dead code) */
@@ -12,7 +36,7 @@ void ScrCareer_Draw_Mail_7e70_Orphan1(void)
   return;
 }
 
-// 0x0022a0c0  size 0x131c
+// 0x0022a0c0  size 0x1304
 void ScrCareer_Draw_Mail_a0c0(int *param_1)
 
 {
@@ -546,6 +570,30 @@ LAB_0022a14c:
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
   iVar5 = UiMgr_FindLayout(0xb0);
   UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
+  return;
+}
+
+// 0x0022b3dc  size 0x18
+/* follows ScrCareer_Draw_Mail_a0c0; no call, branch, pointer or constant reference (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_Mail_a0c0_Orphan2(void)
+
+{
+  int iVar1;
+  int in_v0_lo;
+  undefined4 in_v1_lo;
+  
+  *(undefined4 *)(in_v0_lo + -0x57b0) = in_v1_lo;
+  UiLayout_UpdateAnimById((UiLayout *)0xa6,0);
+  iVar1 = UiMgr_FindLayout(0xa6);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xae);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xaf);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
+  iVar1 = UiMgr_FindLayout(0xb0);
+  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar1].layout);
   return;
 }
 

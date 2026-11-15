@@ -709,7 +709,7 @@ void UiRes_LoadAll(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   return;
 }
 
-// 0x001f17d0  size 0xa8
+// 0x001f17d0  size 0x9c
 int UiModel_FindStatic(int param_1,ushort *param_2)
 
 {
@@ -740,6 +740,45 @@ int UiModel_FindStatic(int param_1,ushort *param_2)
     }
   }
   return iVar1;
+}
+
+// 0x001f1878  size 0xc
+/* follows UiModel_FindStatic; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+int UiModel_FindStatic_Orphan2
+              (int param_1,byte *param_2,undefined8 param_3,uint param_4,uint param_5,long param_6,
+              long param_7,long param_8)
+
+{
+  int in_v0_lo;
+  int in_v1_lo;
+  uint in_t4_lo;
+  ushort *in_t5_lo;
+  
+  do {
+    in_v0_lo = in_v0_lo + in_v1_lo;
+    while( true ) {
+      while( true ) {
+        if (param_8 == param_7) {
+          in_t4_lo = (uint)*in_t5_lo;
+          in_t5_lo = in_t5_lo + 1;
+        }
+        else if (param_8 == param_6) {
+          in_t4_lo = (uint)*param_2;
+          param_2 = param_2 + 1;
+        }
+        if ((in_t4_lo == param_5) || (in_t4_lo == param_4)) {
+          return in_v0_lo;
+        }
+        if (1 < in_t4_lo - 0xfffc) break;
+        in_t5_lo = in_t5_lo + 1;
+      }
+      if (*(uint *)(param_1 + 0x338) <= in_t4_lo) break;
+      in_v0_lo = in_v0_lo + *(short *)(*(int *)(param_1 + 0x334) + in_t4_lo * 2);
+    }
+    in_v1_lo = *(int *)(*(int *)(param_1 + 0x90) + 8);
+  } while( true );
 }
 
 // 0x001f1884  size 0xc

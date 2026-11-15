@@ -2393,7 +2393,7 @@ void maybe_ScrModeSelect_Enter(int *param_1)
   return;
 }
 
-// 0x00293ba0  size 0x2e8
+// 0x00293ba0  size 0x2e4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrSave_SelectSlot(undefined8 param_1)
@@ -2494,6 +2494,17 @@ void ScrSave_SelectSlot(undefined8 param_1)
   return;
 }
 
+// 0x00293e88  size 0x4
+/* follows ScrSave_SelectSlot; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void ScrSave_SelectSlot_Orphan1(void)
+
+{
+  SaveMgr_FreeAll();
+  return;
+}
+
 // 0x00293ea0  size 0x90
 void ScrSave_Enter(undefined8 param_1)
 
@@ -2527,6 +2538,18 @@ undefined8 ScrSave_Enter_Callback1(undefined8 param_1)
 
 {
   return param_1;
+}
+
+// 0x00293f50  size 0x34
+/* address loaded as a constant in ScrSave_Enter */
+
+UiLayout * ScrSave_Enter_Callback2(void)
+
+{
+  int iVar1;
+  
+  iVar1 = UiMgr_FindLayout();
+  return &g_UiMgr->slots[iVar1].layout;
 }
 
 // 0x00293f90  size 0x19c

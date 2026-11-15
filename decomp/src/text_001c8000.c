@@ -2,7 +2,384 @@
 // Address range 0x001c8000 - 0x001cc000
 #include "ghidra_types.h"
 
-// 0x001c8bec  size 0x4c
+// 0x001c8ba0  size 0x48
+/* follows Driver_FilterSteering; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Driver_FilterSteering_Orphan2(void)
+
+{
+  uint uVar1;
+  uint unaff_s1_lo;
+  int unaff_s2_lo;
+  float *unaff_s3_lo;
+  uint *unaff_s4_lo;
+  int iVar2;
+  int unaff_s5_lo;
+  uint *unaff_s6_lo;
+  byte *unaff_s7_lo;
+  int iVar3;
+  int unaff_s8_lo;
+  float fVar4;
+  float fVar5;
+  float in_f3;
+  char in_stack_000000a0;
+  char in_stack_000000b0;
+  char in_stack_000000c0;
+  char in_stack_000000d0;
+  undefined8 in_stack_000000e8;
+  
+  unaff_s3_lo[1] = in_f3;
+  do {
+    unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+    do {
+      do {
+        while( true ) {
+          while( true ) {
+            while( true ) {
+              while( true ) {
+                while( true ) {
+                  do {
+                    iVar3 = unaff_s8_lo;
+                    iVar2 = unaff_s5_lo;
+                    unaff_s5_lo = iVar2 + 1;
+                    unaff_s8_lo = iVar3 + 8;
+                    unaff_s6_lo = unaff_s6_lo + 1;
+                    unaff_s7_lo = unaff_s7_lo + 4;
+                    if (0x17 < unaff_s5_lo) {
+                      return;
+                    }
+                    unaff_s1_lo = *(uint *)(iVar3 + 0xc);
+                  } while (unaff_s1_lo == 0);
+                  uVar1 = *(uint *)(iVar3 + 0x10);
+                  if ((unaff_s5_lo < 0x10) || (0x17 < unaff_s5_lo)) break;
+                  if ((uVar1 & 1) == 0) {
+                    if ((uVar1 & 2) == 0) {
+                      if ((uVar1 & 0x30) == 0) {
+                        if ((uVar1 & 4) == 0) {
+                          if ((uVar1 & 8) == 0) {
+                            if (((uVar1 & 0x40) != 0) && (fVar5 = 0.0, unaff_s3_lo[1] == 0.0)) {
+                              fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                0x330);
+                              switch(iVar2) {
+                              case 0xf:
+                              case 0x11:
+                              case 0x13:
+                              case 0x15:
+                                in_stack_000000a0 = '\0';
+                                break;
+                              case 0x10:
+                              case 0x12:
+                              case 0x14:
+                              case 0x16:
+                                in_stack_000000a0 = '\x01';
+                              }
+                              if (in_stack_000000a0 == '\0') {
+                                if (fVar4 < 0.0) {
+                                  fVar5 = -1.0;
+                                }
+                              }
+                              else if (0.0 < fVar4) {
+                                fVar5 = 1.0;
+                              }
+                              fVar5 = (float)fabsf(fVar4 * fVar5);
+                              if (0.2 <= fVar5) {
+                                if (fVar5 < 0.6) {
+                                  fVar5 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                                }
+                                else {
+                                  fVar5 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                }
+                              }
+                              else {
+                                fVar5 = 0.0;
+                              }
+                              if (fVar5 != 0.0) {
+                                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                                unaff_s3_lo[3] = fVar5;
+                              }
+                            }
+                          }
+                          else {
+                            fVar5 = 0.0;
+                            if (unaff_s3_lo[1] == 0.0) {
+                              fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 +
+                                                0x330);
+                              switch(iVar2) {
+                              case 0xf:
+                              case 0x11:
+                              case 0x13:
+                              case 0x15:
+                                in_stack_000000b0 = '\0';
+                                break;
+                              case 0x10:
+                              case 0x12:
+                              case 0x14:
+                              case 0x16:
+                                in_stack_000000b0 = '\x01';
+                              }
+                              if (in_stack_000000b0 == '\0') {
+                                if (fVar4 < 0.0) {
+                                  fVar5 = -1.0;
+                                }
+                              }
+                              else if (0.0 < fVar4) {
+                                fVar5 = 1.0;
+                              }
+                              fVar5 = (float)fabsf(fVar4 * fVar5);
+                              if (0.2 <= fVar5) {
+                                if (fVar5 < 0.6) {
+                                  fVar5 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                                }
+                                else {
+                                  fVar5 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                                }
+                              }
+                              else {
+                                fVar5 = 0.0;
+                              }
+                              if (fVar5 != 0.0) {
+                                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                                unaff_s3_lo[1] = fVar5;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          fVar5 = 0.0;
+                          if (*unaff_s3_lo == 0.0) {
+                            fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330
+                                              );
+                            switch(iVar2) {
+                            case 0xf:
+                            case 0x11:
+                            case 0x13:
+                            case 0x15:
+                              in_stack_000000c0 = '\0';
+                              break;
+                            case 0x10:
+                            case 0x12:
+                            case 0x14:
+                            case 0x16:
+                              in_stack_000000c0 = '\x01';
+                            }
+                            if (in_stack_000000c0 == '\0') {
+                              if (fVar4 < 0.0) {
+                                fVar5 = -1.0;
+                              }
+                            }
+                            else if (0.0 < fVar4) {
+                              fVar5 = 1.0;
+                            }
+                            fVar5 = (float)fabsf(fVar4 * fVar5);
+                            if (0.2 <= fVar5) {
+                              if (fVar5 < 0.6) {
+                                fVar5 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                              }
+                              else {
+                                fVar5 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                              }
+                            }
+                            else {
+                              fVar5 = 0.0;
+                            }
+                            if (fVar5 != 0.0) {
+                              unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                              *unaff_s3_lo = fVar5;
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        fVar5 = 0.0;
+                        if (unaff_s3_lo[2] == 0.0) {
+                          fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                          switch(iVar2) {
+                          case 0xf:
+                          case 0x11:
+                          case 0x13:
+                          case 0x15:
+                            in_stack_000000d0 = '\0';
+                            break;
+                          case 0x10:
+                          case 0x12:
+                          case 0x14:
+                          case 0x16:
+                            in_stack_000000d0 = '\x01';
+                          }
+                          if (in_stack_000000d0 == '\0') {
+                            if (fVar4 < 0.0) {
+                              fVar5 = -1.0;
+                            }
+                          }
+                          else if (0.0 < fVar4) {
+                            fVar5 = 1.0;
+                          }
+                          fVar5 = (float)fabsf(fVar4 * fVar5);
+                          if (0.2 <= fVar5) {
+                            if (fVar5 < 0.6) {
+                              fVar5 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                            }
+                            else {
+                              fVar5 = ((fVar5 - 0.6) / 0.36499995) * 0.5 + 0.5;
+                            }
+                          }
+                          else {
+                            fVar5 = 0.0;
+                          }
+                          if (1.0 < fVar5) {
+                            fVar5 = 1.0;
+                          }
+                          if (fVar5 != 0.0) {
+                            if ((uVar1 & 0x10) == 0) {
+                              unaff_s3_lo[2] = fVar5;
+                            }
+                            else {
+                              unaff_s3_lo[2] = -fVar5;
+                            }
+                            *(undefined1 *)(unaff_s3_lo + 5) = 0;
+                          }
+                        }
+                      }
+                    }
+                    else if ((*(uint *)(in_stack_000000e8._4_4_ + 0x10) & unaff_s1_lo) == 0) {
+                      fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                      switch(iVar2) {
+                      case 0xf:
+                      case 0x11:
+                        if ((fVar5 < -0.75) && ((*unaff_s4_lo & 1) != 0)) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                          *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                        }
+                        break;
+                      case 0x10:
+                      case 0x12:
+                        if ((0.75 < fVar5) && ((*unaff_s4_lo & 1) != 0)) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                          *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                        }
+                        break;
+                      case 0x13:
+                      case 0x15:
+                        if ((fVar5 < -0.75) && ((*unaff_s4_lo & 2) != 0)) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                          *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                        }
+                        break;
+                      case 0x14:
+                      case 0x16:
+                        if ((0.75 < fVar5) && ((*unaff_s4_lo & 2) != 0)) {
+                          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                          *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                    switch(iVar2) {
+                    case 0xf:
+                    case 0x11:
+                      if (fVar5 < -0.75) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                      }
+                      break;
+                    case 0x10:
+                    case 0x12:
+                      if (0.75 < fVar5) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                      }
+                      break;
+                    case 0x13:
+                    case 0x15:
+                      if (fVar5 < -0.75) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                      }
+                      break;
+                    case 0x14:
+                    case 0x16:
+                      if (0.75 < fVar5) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                      }
+                    }
+                  }
+                }
+                if ((uVar1 & 1) == 0) break;
+                if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) != 0) {
+                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                }
+              }
+              if ((uVar1 & 2) == 0) break;
+              if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0x14)) != 0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+              }
+            }
+            if ((uVar1 & 4) == 0) break;
+            fVar4 = 0.0;
+            fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+            if (fVar5 != 0.0) {
+              if (0.1 <= fVar5) {
+                if (fVar5 < 0.5) {
+                  fVar4 = ((fVar5 - 0.1) / 0.4) * 0.5;
+                }
+                else {
+                  fVar4 = ((fVar5 - 0.5) / 0.5) * 0.5 + 0.5;
+                }
+              }
+              *unaff_s3_lo = fVar4;
+              if (*unaff_s3_lo != 0.0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+              }
+            }
+          }
+          if ((uVar1 & 8) != 0) break;
+          if ((uVar1 & 0x30) == 0) {
+            if ((uVar1 & 0x40) != 0) {
+              fVar4 = 0.0;
+              fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+              if (fVar5 != 0.0) {
+                if (0.1 <= fVar5) {
+                  if (fVar5 < 0.5) {
+                    fVar4 = ((fVar5 - 0.1) / 0.4) * 0.5;
+                  }
+                  else {
+                    fVar4 = ((fVar5 - 0.5) / 0.5) * 0.5 + 0.5;
+                  }
+                }
+                unaff_s3_lo[3] = fVar4;
+                if (unaff_s3_lo[1] != 0.0) {
+                  unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                }
+              }
+            }
+          }
+          else if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) != 0) {
+            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+            if ((uVar1 & 0x10) == 0) {
+              unaff_s3_lo[2] = 1.0;
+            }
+            else {
+              unaff_s3_lo[2] = -1.0;
+            }
+          }
+        }
+        fVar4 = 0.0;
+        fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+      } while (fVar5 == 0.0);
+      if (0.1 <= fVar5) {
+        if (fVar5 < 0.5) {
+          fVar4 = ((fVar5 - 0.1) / 0.4) * 0.5;
+        }
+        else {
+          fVar4 = ((fVar5 - 0.5) / 0.5) * 0.5 + 0.5;
+        }
+      }
+      unaff_s3_lo[1] = fVar4;
+    } while (fVar4 == 0.0);
+  } while( true );
+}
+
+// 0x001c8bec  size 0x44
 /* follows Driver_FilterSteering; no call, branch, pointer or constant references it (exception
    landing pad or dead code) */
 
@@ -380,7 +757,17 @@ void Driver_FilterSteering_Orphan1(void)
   } while( true );
 }
 
-// 0x001c8c40  size 0xcb0
+// 0x001c8c38  size 0x8
+/* follows Driver_FilterSteering; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Driver_FilterSteering_Orphan3(void)
+
+{
+  return;
+}
+
+// 0x001c8c40  size 0xc64
 void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
 
 {
@@ -732,7 +1119,384 @@ void Driver_FilterPedals(uint *param_1,float *param_2,int param_3)
   return;
 }
 
-// 0x001c9940  size 0x50
+// 0x001c98f0  size 0x4c
+/* follows Driver_FilterPedals; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Driver_FilterPedals_Orphan2(void)
+
+{
+  uint uVar1;
+  uint unaff_s1_lo;
+  int unaff_s2_lo;
+  float *unaff_s3_lo;
+  uint *unaff_s4_lo;
+  int iVar2;
+  int unaff_s5_lo;
+  uint *unaff_s6_lo;
+  byte *unaff_s7_lo;
+  int iVar3;
+  int unaff_s8_lo;
+  float fVar4;
+  float fVar5;
+  float in_f0;
+  float in_f3;
+  char in_stack_000000a0;
+  char in_stack_000000b0;
+  char in_stack_000000c0;
+  char in_stack_000000d0;
+  undefined8 in_stack_000000e8;
+  
+  do {
+    unaff_s3_lo[1] = in_f3;
+    if (in_f0 != in_f3) {
+      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+    }
+    do {
+      while( true ) {
+        while( true ) {
+          while( true ) {
+            while( true ) {
+              while( true ) {
+                do {
+                  iVar3 = unaff_s8_lo;
+                  iVar2 = unaff_s5_lo;
+                  unaff_s5_lo = iVar2 + 1;
+                  unaff_s8_lo = iVar3 + 8;
+                  unaff_s6_lo = unaff_s6_lo + 1;
+                  unaff_s7_lo = unaff_s7_lo + 4;
+                  if (0x17 < unaff_s5_lo) {
+                    return;
+                  }
+                  unaff_s1_lo = *(uint *)(iVar3 + 0xc);
+                } while (unaff_s1_lo == 0);
+                uVar1 = *(uint *)(iVar3 + 0x10);
+                if ((unaff_s5_lo < 0x10) || (0x17 < unaff_s5_lo)) break;
+                if ((uVar1 & 1) == 0) {
+                  if ((uVar1 & 2) == 0) {
+                    if ((uVar1 & 0x30) == 0) {
+                      if ((uVar1 & 4) == 0) {
+                        if ((uVar1 & 8) == 0) {
+                          if (((uVar1 & 0x40) != 0) && (fVar5 = 0.0, unaff_s3_lo[1] == 0.0)) {
+                            fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330
+                                              );
+                            switch(iVar2) {
+                            case 0xf:
+                            case 0x11:
+                            case 0x13:
+                            case 0x15:
+                              in_stack_000000a0 = '\0';
+                              break;
+                            case 0x10:
+                            case 0x12:
+                            case 0x14:
+                            case 0x16:
+                              in_stack_000000a0 = '\x01';
+                            }
+                            if (in_stack_000000a0 == '\0') {
+                              if (fVar4 < 0.0) {
+                                fVar5 = -1.0;
+                              }
+                            }
+                            else if (0.0 < fVar4) {
+                              fVar5 = 1.0;
+                            }
+                            fVar5 = (float)fabsf(fVar4 * fVar5);
+                            if (0.2 <= fVar5) {
+                              if (fVar5 < 0.6) {
+                                fVar5 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                              }
+                              else {
+                                fVar5 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                              }
+                            }
+                            else {
+                              fVar5 = 0.0;
+                            }
+                            if (fVar5 != 0.0) {
+                              unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                              unaff_s3_lo[3] = fVar5;
+                            }
+                          }
+                        }
+                        else {
+                          fVar5 = 0.0;
+                          if (unaff_s3_lo[1] == 0.0) {
+                            fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330
+                                              );
+                            switch(iVar2) {
+                            case 0xf:
+                            case 0x11:
+                            case 0x13:
+                            case 0x15:
+                              in_stack_000000b0 = '\0';
+                              break;
+                            case 0x10:
+                            case 0x12:
+                            case 0x14:
+                            case 0x16:
+                              in_stack_000000b0 = '\x01';
+                            }
+                            if (in_stack_000000b0 == '\0') {
+                              if (fVar4 < 0.0) {
+                                fVar5 = -1.0;
+                              }
+                            }
+                            else if (0.0 < fVar4) {
+                              fVar5 = 1.0;
+                            }
+                            fVar5 = (float)fabsf(fVar4 * fVar5);
+                            if (0.2 <= fVar5) {
+                              if (fVar5 < 0.75) {
+                                fVar5 = ((fVar5 - 0.2) / 0.55) * 0.5;
+                              }
+                              else {
+                                fVar5 = ((fVar5 - 0.75) / 0.25) * 0.5 + 0.5;
+                              }
+                            }
+                            else {
+                              fVar5 = 0.0;
+                            }
+                            if (fVar5 != 0.0) {
+                              unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                              unaff_s3_lo[1] = fVar5;
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        fVar5 = 0.0;
+                        if (*unaff_s3_lo == 0.0) {
+                          fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                          switch(iVar2) {
+                          case 0xf:
+                          case 0x11:
+                          case 0x13:
+                          case 0x15:
+                            in_stack_000000c0 = '\0';
+                            break;
+                          case 0x10:
+                          case 0x12:
+                          case 0x14:
+                          case 0x16:
+                            in_stack_000000c0 = '\x01';
+                          }
+                          if (in_stack_000000c0 == '\0') {
+                            if (fVar4 < 0.0) {
+                              fVar5 = -1.0;
+                            }
+                          }
+                          else if (0.0 < fVar4) {
+                            fVar5 = 1.0;
+                          }
+                          fVar5 = (float)fabsf(fVar4 * fVar5);
+                          if (0.2 <= fVar5) {
+                            if (fVar5 < 0.6) {
+                              fVar5 = ((fVar5 - 0.2) / 0.40000004) * 0.5;
+                            }
+                            else {
+                              fVar5 = ((fVar5 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                            }
+                          }
+                          else {
+                            fVar5 = 0.0;
+                          }
+                          if (fVar5 != 0.0) {
+                            unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                            *unaff_s3_lo = fVar5;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      fVar5 = 0.0;
+                      if (unaff_s3_lo[2] == 0.0) {
+                        fVar4 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                        switch(iVar2) {
+                        case 0xf:
+                        case 0x11:
+                        case 0x13:
+                        case 0x15:
+                          in_stack_000000d0 = '\0';
+                          break;
+                        case 0x10:
+                        case 0x12:
+                        case 0x14:
+                        case 0x16:
+                          in_stack_000000d0 = '\x01';
+                        }
+                        if (in_stack_000000d0 == '\0') {
+                          if (fVar4 < 0.0) {
+                            fVar5 = -1.0;
+                          }
+                        }
+                        else if (0.0 < fVar4) {
+                          fVar5 = 1.0;
+                        }
+                        fVar5 = (float)fabsf(fVar4 * fVar5);
+                        if (0.05 <= fVar5) {
+                          if (fVar5 < 0.5) {
+                            fVar5 = ((fVar5 - 0.05) / 0.45) * 0.5;
+                          }
+                          else {
+                            fVar5 = ((fVar5 - 0.5) / 0.45) * 0.5 + 0.5;
+                          }
+                        }
+                        else {
+                          fVar5 = 0.0;
+                        }
+                        if (1.0 < fVar5) {
+                          fVar5 = 1.0;
+                        }
+                        if (fVar5 != 0.0) {
+                          if ((uVar1 & 0x10) == 0) {
+                            unaff_s3_lo[2] = fVar5;
+                          }
+                          else {
+                            unaff_s3_lo[2] = -fVar5;
+                          }
+                          *(undefined1 *)(unaff_s3_lo + 5) = 1;
+                        }
+                      }
+                    }
+                  }
+                  else if ((*(uint *)(in_stack_000000e8._4_4_ + 0x10) & unaff_s1_lo) == 0) {
+                    fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                    switch(iVar2) {
+                    case 0xf:
+                    case 0x11:
+                      if ((fVar5 < -0.75) && ((*unaff_s4_lo & 1) != 0)) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                        *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                      }
+                      break;
+                    case 0x10:
+                    case 0x12:
+                      if ((0.75 < fVar5) && ((*unaff_s4_lo & 1) != 0)) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                        *unaff_s4_lo = *unaff_s4_lo & 0xfffffffe;
+                      }
+                      break;
+                    case 0x13:
+                    case 0x15:
+                      if ((fVar5 < -0.75) && ((*unaff_s4_lo & 2) != 0)) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                        *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                      }
+                      break;
+                    case 0x14:
+                    case 0x16:
+                      if ((0.75 < fVar5) && ((*unaff_s4_lo & 2) != 0)) {
+                        unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                        *unaff_s4_lo = *unaff_s4_lo & 0xfffffffd;
+                      }
+                    }
+                  }
+                }
+                else {
+                  fVar5 = *(float *)(unaff_s2_lo + (uint)(byte)*unaff_s6_lo * 0x10 + 0x330);
+                  switch(iVar2) {
+                  case 0xf:
+                  case 0x11:
+                    if (fVar5 < -0.75) {
+                      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                    }
+                    break;
+                  case 0x10:
+                  case 0x12:
+                    if (0.75 < fVar5) {
+                      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                    }
+                    break;
+                  case 0x13:
+                  case 0x15:
+                    if (fVar5 < -0.75) {
+                      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                    }
+                    break;
+                  case 0x14:
+                  case 0x16:
+                    if (0.75 < fVar5) {
+                      unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+                    }
+                  }
+                }
+              }
+              if ((uVar1 & 1) == 0) break;
+              if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) != 0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+              }
+            }
+            if ((uVar1 & 2) == 0) break;
+            if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0x14)) != 0) {
+              unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+            }
+          }
+          if ((uVar1 & 4) == 0) break;
+          fVar5 = 0.0;
+          fVar4 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+          if (fVar4 != 0.0) {
+            if (0.2 <= fVar4) {
+              if (fVar4 < 0.6) {
+                fVar5 = ((fVar4 - 0.2) / 0.40000004) * 0.5;
+              }
+              else {
+                fVar5 = ((fVar4 - 0.6) / 0.39999998) * 0.5 + 0.5;
+              }
+            }
+            *unaff_s3_lo = fVar5;
+            if (*unaff_s3_lo != 0.0) {
+              unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+            }
+          }
+        }
+        if ((uVar1 & 8) != 0) break;
+        if ((uVar1 & 0x30) == 0) {
+          if ((uVar1 & 0x40) != 0) {
+            fVar5 = 0.0;
+            fVar4 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+            if (fVar4 != 0.0) {
+              if (0.2 <= fVar4) {
+                if (fVar4 < 0.6) {
+                  fVar5 = ((fVar4 - 0.2) / 0.40000004) * 0.5;
+                }
+                else {
+                  fVar5 = ((fVar4 - 0.6) / 0.39999998) * 0.5 + 0.5;
+                }
+              }
+              unaff_s3_lo[3] = fVar5;
+              if (unaff_s3_lo[1] != 0.0) {
+                unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+              }
+            }
+          }
+        }
+        else if ((*unaff_s6_lo & *(uint *)(unaff_s2_lo + 0xc)) != 0) {
+          unaff_s3_lo[4] = (float)((uint)unaff_s3_lo[4] | unaff_s1_lo);
+          if ((uVar1 & 0x10) == 0) {
+            unaff_s3_lo[2] = 1.0;
+          }
+          else {
+            unaff_s3_lo[2] = -1.0;
+          }
+        }
+      }
+      in_f3 = 0.0;
+      fVar5 = *(float *)(unaff_s2_lo + (uint)*unaff_s7_lo * 0x10 + 0x1b0);
+    } while (fVar5 == 0.0);
+    if (0.2 <= fVar5) {
+      if (fVar5 < 0.75) {
+        in_f3 = ((fVar5 - 0.2) / 0.55) * 0.5;
+      }
+      else {
+        in_f3 = ((fVar5 - 0.75) / 0.25) * 0.5 + 0.5;
+      }
+    }
+    in_f0 = 0.0;
+  } while( true );
+}
+
+// 0x001c9940  size 0x48
 /* follows Driver_FilterPedals; no call, branch, pointer or constant references it (exception
    landing pad or dead code) */
 
@@ -1106,6 +1870,16 @@ void Driver_FilterPedals_Orphan1(void)
       unaff_s3_lo[2] = 1.0;
     }
   } while( true );
+}
+
+// 0x001c9990  size 0x8
+/* follows Driver_FilterPedals; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Driver_FilterPedals_Orphan3(void)
+
+{
+  return;
 }
 
 // 0x001c99b0  size 0xc4

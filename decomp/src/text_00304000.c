@@ -63,6 +63,43 @@ void KernelPatch_SetupTlb_Orphan1(void)
   halt_baddata();
 }
 
+// 0x00306eac  size 0x4
+/* WARNING: Control flow encountered bad instruction data */
+/* follows KernelPatch_SetupTlb; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void KernelPatch_SetupTlb_Orphan4(void)
+
+{
+                    /* WARNING: Bad instruction - Truncating control flow here */
+  halt_baddata();
+}
+
+// 0x00307218  size 0x84
+/* address loaded as a constant in InitOsdPatch */
+
+uint InitOsdPatch_Callback1(int param_1)
+
+{
+  int *piVar1;
+  uint uVar2;
+  
+  func_0x000741e8(0xffffffff80074700,0x26);
+  piVar1 = (int *)0x80074780;
+  uVar2 = 0;
+  do {
+    if (param_1 == *piVar1) {
+      if (param_1 == -0x3bfe) {
+        return (uint)piVar1[1] >> 2 & 0x3ffffff | 0xc000000;
+      }
+      return piVar1[1];
+    }
+    uVar2 = uVar2 + 1;
+    piVar1 = piVar1 + 2;
+  } while (uVar2 < 5);
+  return 0;
+}
+
 // 0x003072a0  size 0xac
 /* follows KernelPatch_SetupTlb_Orphan1; unreferenced except as noted (was FUN_00306ea8_Orphan1) */
 
@@ -280,6 +317,18 @@ undefined8 maybe_KernelPatch_Dispatch(undefined8 param_1,undefined4 param_2,int 
    landing pad or dead code) */
 
 void KernelPatch_Dispatch_Orphan1(void)
+
+{
+                    /* WARNING: Bad instruction - Truncating control flow here */
+  halt_baddata();
+}
+
+// 0x00307998  size 0x1
+/* WARNING: Control flow encountered bad instruction data */
+/* follows KernelPatch_Dispatch; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void KernelPatch_Dispatch_Orphan4(void)
 
 {
                     /* WARNING: Bad instruction - Truncating control flow here */

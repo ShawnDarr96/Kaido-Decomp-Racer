@@ -116,6 +116,16 @@ void sceSifWriteBackDCache(uint param_1,long param_2)
   return;
 }
 
+// 0x001141fc  size 0x4
+/* follows sceSifWriteBackDCache; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void sceSifWriteBackDCache_Orphan1(void)
+
+{
+  return;
+}
+
 // 0x00114200  size 0x19c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 

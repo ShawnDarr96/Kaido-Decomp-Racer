@@ -622,6 +622,61 @@ bool maybe_Cd_CallbackThreadInit(undefined8 param_1,undefined4 param_2,undefined
   return !bVar1;
 }
 
+// 0x001210b0  size 0xb8
+/* address loaded as a constant in sceCdRead */
+
+void sceCdRead_Callback1(uint param_1)
+
+{
+  uint uVar1;
+  int *piVar2;
+  undefined1 *puVar3;
+  undefined1 *puVar4;
+  int iVar5;
+  int iVar6;
+  int *piVar7;
+  
+  piVar7 = (int *)(param_1 | 0x20000000);
+  iVar5 = 0;
+  if (0 < *piVar7) {
+    uVar1 = piVar7[2];
+    if (0 < *piVar7) {
+      piVar2 = piVar7 + 4;
+      do {
+        puVar4 = (undefined1 *)((uVar1 | 0x20000000) + iVar5);
+        iVar6 = *piVar2;
+        puVar3 = (undefined1 *)(uVar1 + iVar5);
+        iVar5 = iVar5 + 1;
+        *puVar4 = (char)iVar6;
+        *puVar3 = (char)iVar6;
+        piVar2 = (int *)((int)(piVar7 + 4) + iVar5);
+      } while (iVar5 < *piVar7);
+      iVar5 = piVar7[1];
+      goto LAB_00121118;
+    }
+  }
+  iVar5 = piVar7[1];
+LAB_00121118:
+  if (0 < iVar5) {
+    uVar1 = piVar7[3];
+    iVar6 = 0;
+    if (0 < iVar5) {
+      piVar2 = piVar7 + 0x14;
+      do {
+        puVar4 = (undefined1 *)((uVar1 | 0x20000000) + iVar6);
+        iVar5 = *piVar2;
+        puVar3 = (undefined1 *)(uVar1 + iVar6);
+        iVar6 = iVar6 + 1;
+        *puVar4 = (char)iVar5;
+        *puVar3 = (char)iVar5;
+        piVar2 = (int *)((int)(piVar7 + 0x14) + iVar6);
+      } while (iVar6 < piVar7[1]);
+    }
+  }
+  maybe_Cd_CallbackHandler(0x308218);
+  return;
+}
+
 // 0x00121168  size 0xb8
 void maybe_Cd_SemaInit(void)
 
@@ -943,7 +998,7 @@ undefined8 sceCdSyncS(long param_1)
   return uVar2;
 }
 
-// 0x00121a60  size 0x168
+// 0x00121a60  size 0x164
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "Scmd fail sema", "bind err S cmd" */
 
@@ -992,11 +1047,64 @@ undefined4 maybe_Cd_CheckSCmd(undefined8 param_1)
   return 0;
 }
 
+// 0x00121bc8  size 0x4
+/* follows Cd_CheckSCmd; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void Cd_CheckSCmd_Orphan2(void)
+
+{
+  return;
+}
+
 // 0x00121bcc  size 0x4
 /* follows Cd_CheckSCmd; no call, branch, pointer or constant references it (exception landing pad
    or dead code) */
 
 undefined4 Cd_CheckSCmd_Orphan1(long param_1,undefined4 *param_2)
+
+{
+  undefined4 *puVar1;
+  
+  if (param_1 == 0x8001) {
+    puVar1 = DAT_003081e8;
+  }
+  else if (param_1 == 0x8003) {
+    puVar1 = (undefined4 *)&DAT_00308240;
+  }
+  else if (param_1 == 0x8002) {
+    puVar1 = &DAT_003082c0;
+  }
+  else if (param_1 == 0x8004) {
+    puVar1 = (undefined4 *)&DAT_00309390;
+  }
+  else {
+    if (param_1 == 0x8011) {
+      *param_2 = DAT_003081ec;
+      return 1;
+    }
+    if (param_1 == 0x8013) {
+      puVar1 = (undefined4 *)&DAT_003093c0;
+    }
+    else if (param_1 == 0x8012) {
+      puVar1 = &DAT_00309800;
+    }
+    else if (param_1 == 0x8014) {
+      puVar1 = (undefined4 *)&DAT_00309d40;
+    }
+    else {
+      puVar1 = (undefined4 *)0x0;
+    }
+  }
+  *param_2 = puVar1;
+  return 1;
+}
+
+// 0x00121bd0  size 0xb0
+/* follows Cd_CheckSCmd; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+undefined4 Cd_CheckSCmd_Orphan3(long param_1,undefined4 *param_2)
 
 {
   undefined4 *puVar1;
@@ -1767,6 +1875,38 @@ void sceMcOpen_Callback1(void)
   return;
 }
 
+// 0x00123250  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows sceMcOpen; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+long sceMcOpen_Orphan1(undefined4 param_1)
+
+{
+  long lVar1;
+  
+  if (_g_sceMcInitShared1 == 0) {
+    lVar1 = -100;
+  }
+  else {
+    lVar1 = PollSema(DAT_00309d94);
+    if (lVar1 < 0) {
+      lVar1 = -200;
+    }
+    else {
+      _g_sceMcWriteShared2 = param_1;
+      lVar1 = sceSifCallRpc(0x3782c0,0x14,1,0x378340,0x30,0x379880,4,0x123240);
+      if (lVar1 == 0) {
+        DAT_00309d90 = 0x14;
+      }
+      else {
+        SignalSema(DAT_00309d94);
+      }
+    }
+  }
+  return lVar1;
+}
+
 // 0x00123310  size 0xc4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -1913,6 +2053,50 @@ long maybe_sceMcSeek(undefined4 param_1,undefined4 param_2,undefined4 param_3)
   return lVar1;
 }
 
+// 0x001236d8  size 0x98
+/* address loaded as a constant in sceMcRead */
+
+void sceMcRead_Callback1(uint param_1)
+
+{
+  int *piVar1;
+  int iVar2;
+  int iVar3;
+  undefined1 *puVar4;
+  
+  piVar1 = (int *)(param_1 | 0x20000000);
+  if (*piVar1 != 0) {
+    puVar4 = (undefined1 *)piVar1[2];
+    iVar2 = 0;
+    if (0 < *piVar1) {
+      do {
+        iVar3 = iVar2 + 0x10;
+        iVar2 = iVar2 + 1;
+        *puVar4 = *(undefined1 *)((int)piVar1 + iVar3);
+        puVar4 = puVar4 + 1;
+      } while (iVar2 < *piVar1);
+      iVar2 = piVar1[1];
+      goto LAB_0012372c;
+    }
+  }
+  iVar2 = piVar1[1];
+LAB_0012372c:
+  if (iVar2 != 0) {
+    puVar4 = (undefined1 *)piVar1[3];
+    iVar3 = 0;
+    if (0 < iVar2) {
+      do {
+        iVar2 = iVar3 + 0x50;
+        iVar3 = iVar3 + 1;
+        *puVar4 = *(undefined1 *)((int)piVar1 + iVar2);
+        puVar4 = puVar4 + 1;
+      } while (iVar3 < piVar1[1]);
+    }
+  }
+  iSignalSema(DAT_00309d98);
+  return;
+}
+
 // 0x00123770  size 0x114
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -2035,6 +2219,29 @@ uint sceMcSync(long param_1,long param_2,long param_3)
     }
   }
   return uVar3;
+}
+
+// 0x00123ac8  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* address loaded as a constant in sceMcGetDir */
+
+void sceMcGetDir_Callback1(uint param_1)
+
+{
+  undefined4 *puVar1;
+  
+  puVar1 = (undefined4 *)(param_1 | 0x20000000);
+  if (_s_sceMcGetDir_1 != (undefined4 *)0x0) {
+    *_s_sceMcGetDir_1 = *puVar1;
+  }
+  if (_s_sceMcGetDir_2 != (undefined4 *)0x0) {
+    *_s_sceMcGetDir_2 = puVar1[1];
+  }
+  if (_s_sceMcGetDir_3 != (undefined4 *)0x0) {
+    *_s_sceMcGetDir_3 = puVar1[0x24];
+  }
+  iSignalSema(DAT_00309d98);
+  return;
 }
 
 // 0x00123b20  size 0x17c

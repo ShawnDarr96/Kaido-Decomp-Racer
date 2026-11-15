@@ -784,7 +784,7 @@ int ResPool_CountUsedA(void)
   uint uVar2;
   
   uVar2 = 0;
-  if (_g_AssetShared3 != 0) {
+  if (g_AssetShared3 != 0) {
     iVar1 = _g_AssetShared4;
     do {
       if (*(int *)(iVar1 + 0x10) + *(int *)(iVar1 + 0x14) == 0) {
@@ -792,7 +792,7 @@ int ResPool_CountUsedA(void)
       }
       uVar2 = uVar2 + 1;
       iVar1 = iVar1 + 0xa0;
-    } while (uVar2 < _g_AssetShared3);
+    } while (uVar2 < g_AssetShared3);
   }
   return 0;
 }
@@ -807,7 +807,7 @@ int ResPool_CountUsedB(void)
   uint uVar2;
   
   uVar2 = 0;
-  if (_g_AssetShared1 != 0) {
+  if (g_AssetShared1 != 0) {
     iVar1 = _g_AssetShared2;
     do {
       if (*(int *)(iVar1 + 0x10) + *(int *)(iVar1 + 0x14) == 0) {
@@ -815,7 +815,7 @@ int ResPool_CountUsedB(void)
       }
       uVar2 = uVar2 + 1;
       iVar1 = iVar1 + 0x80;
-    } while (uVar2 < _g_AssetShared1);
+    } while (uVar2 < g_AssetShared1);
   }
   return 0;
 }
@@ -1081,15 +1081,15 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
   }
   _g_CourseAssetsC = 0;
   _g_CourseAssetsD = 0;
-  _g_AssetShared1 = 0;
+  g_AssetShared1 = 0;
   _g_AssetShared2 = 0;
-  _g_AssetShared3 = 0;
+  g_AssetShared3 = 0;
   _g_AssetShared4 = 0;
   if (*(int *)(param_2 + 0x14) + *(int *)(param_2 + 0x18) != 0) {
     _g_CourseAssetsC =
          Mem_Alloc16(*(int *)(param_2 + 0x14) * 0x80 + *(int *)(param_2 + 0x18) * 0xa0,param_1);
-    _g_AssetShared1 = *(uint *)(param_2 + 0x14);
-    _g_AssetShared3 = *(uint *)(param_2 + 0x18);
+    g_AssetShared1 = *(uint *)(param_2 + 0x14);
+    g_AssetShared3 = *(uint *)(param_2 + 0x18);
     _g_AssetShared4 = _g_CourseAssetsC + *(int *)(param_2 + 0x14) * 0x80;
     uVar14 = (uVar3 + 0x1000) * *(int *)(param_2 + 0x14);
     _g_AssetShared2 = _g_CourseAssetsC;
@@ -1098,7 +1098,7 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
                           (uVar18 + 0x1000) * *(int *)(param_2 + 0x18),0x40,param_1);
     uVar14 = 0;
     iVar5 = _g_CourseAssetsD;
-    if (_g_AssetShared1 != 0) {
+    if (g_AssetShared1 != 0) {
       iVar20 = 0;
       do {
         iVar8 = _g_AssetShared2 + iVar20;
@@ -1107,10 +1107,10 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
         uVar14 = uVar14 + 1;
         iVar5 = iVar5 + uVar3 + 0x1000;
         iVar20 = iVar20 + 0x80;
-      } while (uVar14 < _g_AssetShared1);
+      } while (uVar14 < g_AssetShared1);
     }
     uVar14 = 0;
-    if (_g_AssetShared3 != 0) {
+    if (g_AssetShared3 != 0) {
       iVar20 = 0;
       do {
         iVar8 = _g_AssetShared4 + iVar20;
@@ -1119,7 +1119,7 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
         uVar14 = uVar14 + 1;
         iVar5 = iVar5 + uVar18 + 0x1000;
         iVar20 = iVar20 + 0xa0;
-      } while (uVar14 < _g_AssetShared3);
+      } while (uVar14 < g_AssetShared3);
       cVar1 = *param_2;
       goto LAB_001aa5ac;
     }

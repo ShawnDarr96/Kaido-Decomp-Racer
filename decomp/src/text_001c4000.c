@@ -1916,7 +1916,7 @@ void Driver_UpdateAssists_Orphan1(void)
   return;
 }
 
-// 0x001c7f40  size 0xc60
+// 0x001c7f40  size 0xc18
 void Driver_FilterSteering(uint *param_1,float *param_2,int param_3)
 
 {

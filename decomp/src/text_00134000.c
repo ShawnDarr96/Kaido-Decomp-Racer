@@ -2046,6 +2046,16 @@ long File_RequestList_dtor(long param_1,short param_2)
   return param_1;
 }
 
+// 0x001373a0  size 0x1c
+/* address loaded as a constant in __sinit_00368630 */
+
+void __sinit_00368630_Callback1(void)
+
+{
+  __destroy_arr(0x380610,0x1373c0,0x60,0x100);
+  return;
+}
+
 // 0x001373c0  size 0x60
 long maybe_EngineNode_dtor(long param_1,short param_2)
 

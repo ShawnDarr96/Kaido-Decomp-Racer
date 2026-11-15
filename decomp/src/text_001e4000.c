@@ -678,6 +678,17 @@ void Race_LoadCourseAsync(undefined8 param_1)
   return;
 }
 
+// 0x001e5760  size 0x8
+/* follows Race_LoadCourseAsync; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Race_LoadCourseAsync_Orphan1(int param_1)
+
+{
+  RaceCam_UpdateReplay(*(undefined4 *)(param_1 + 0x14));
+  return;
+}
+
 // 0x001e5770  size 0x24
 void RaceTask_FreeCourse(void)
 
@@ -692,7 +703,7 @@ void Race_LoadTask(int param_1)
 
 {
   Race_LoadCourseAsync(*(undefined4 *)(param_1 + 0x14));
-  *(undefined1 **)(param_1 + 0x1c) = &LAB_001e5760;
+  *(code **)(param_1 + 0x1c) = Race_LoadCourseAsync_Orphan1;
   return;
 }
 
@@ -1424,6 +1435,17 @@ switchD_001e6958_caseD_2:
   return;
 }
 
+// 0x001e6ab0  size 0x8
+/* follows RaceHud_GetLayout; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void RaceHud_GetLayout_Orphan1(int param_1)
+
+{
+  RaceHud_Task(*(undefined4 *)(param_1 + 0x14));
+  return;
+}
+
 // 0x001e6ac0  size 0x2c
 void RaceTask_FreeUi(void)
 
@@ -1447,7 +1469,7 @@ void RaceHud_Init(int param_1)
   RaceHud_Load(0x430750);
   RaceHud_GetLayout(uVar1);
   UiMgr_DrawAll(1);
-  *(undefined1 **)(param_1 + 0x1c) = &LAB_001e6ab0;
+  *(code **)(param_1 + 0x1c) = RaceHud_GetLayout_Orphan1;
   return;
 }
 

@@ -112,7 +112,49 @@ undefined8 maybe_std_ostream_flush(undefined8 param_1)
   return param_1;
 }
 
-// 0x001043e8  size 0x54
+// 0x001043b8  size 0x30
+/* follows std_ostream_flush; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void std_ostream_flush_Orphan2(void)
+
+{
+  int iVar1;
+  undefined8 uVar2;
+  char *unaff_s0_lo;
+  long unaff_s1;
+  int *unaff_s2_lo;
+  int unaff_s8_lo;
+  
+  *(byte *)(*unaff_s2_lo + 0x3a) = *(byte *)(*unaff_s2_lo + 0x3a) | 1;
+  if ((*(byte *)(*unaff_s2_lo + 0x3b) & 1) != 0) {
+    maybe___throw(0,0,0);
+  }
+  maybe___destroy_local_object(unaff_s8_lo + 0x60);
+  if (unaff_s1 != 0) {
+    iVar1 = *unaff_s2_lo;
+    *(byte *)(iVar1 + 0x3a) = *(byte *)(iVar1 + 0x3a) | 1;
+    if (*(int *)(iVar1 + 0x20) == 0) {
+      *(byte *)(iVar1 + 0x3a) = *(byte *)(iVar1 + 0x3a) | 1;
+    }
+    if ((*(byte *)(iVar1 + 0x3a) & *(byte *)(iVar1 + 0x3b)) != 0) {
+      *(undefined ***)(unaff_s8_lo + 0x78) = &PTR_PTR_0036de90;
+      iVar1 = strlen(0x35e280);
+      uVar2 = maybe_operator_new(iVar1 + 1);
+      maybe_std_shared_count_ctor((undefined4 *)(unaff_s8_lo + 0x7c),uVar2);
+      maybe_strcpy(*(undefined4 *)(unaff_s8_lo + 0x7c),0x35e280);
+      maybe___throw(0x35e5f0,unaff_s8_lo + 0x78,0x102a60);
+    }
+  }
+  if ((((*(byte *)(**(int **)(unaff_s8_lo + 0x8c) + 0x3a) & 5) == 0) &&
+      ((*(ushort *)(**(int **)(unaff_s8_lo + 0x8c) + 0x38) & 0x2000) != 0)) &&
+     (*unaff_s0_lo == '\0')) {
+    maybe_std_ostream_flush();
+  }
+  return;
+}
+
+// 0x001043e8  size 0x48
 /* follows std_ostream_flush; no call, branch, pointer or constant references it (exception landing
    pad or dead code) */
 
@@ -215,7 +257,49 @@ undefined8 maybe_std_wostream_flush(undefined8 param_1)
   return param_1;
 }
 
-// 0x00104668  size 0x54
+// 0x00104638  size 0x30
+/* follows std_wostream_flush; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void std_wostream_flush_Orphan2(void)
+
+{
+  int iVar1;
+  undefined8 uVar2;
+  char *unaff_s0_lo;
+  long unaff_s1;
+  int *unaff_s2_lo;
+  int unaff_s8_lo;
+  
+  *(byte *)(*unaff_s2_lo + 0x3a) = *(byte *)(*unaff_s2_lo + 0x3a) | 1;
+  if ((*(byte *)(*unaff_s2_lo + 0x3b) & 1) != 0) {
+    maybe___throw(0,0,0);
+  }
+  maybe___destroy_local_object(unaff_s8_lo + 0x60);
+  if (unaff_s1 != 0) {
+    iVar1 = *unaff_s2_lo;
+    *(byte *)(iVar1 + 0x3a) = *(byte *)(iVar1 + 0x3a) | 1;
+    if (*(int *)(iVar1 + 0x20) == 0) {
+      *(byte *)(iVar1 + 0x3a) = *(byte *)(iVar1 + 0x3a) | 1;
+    }
+    if ((*(byte *)(iVar1 + 0x3a) & *(byte *)(iVar1 + 0x3b)) != 0) {
+      *(undefined ***)(unaff_s8_lo + 0x78) = &PTR_PTR_0036de90;
+      iVar1 = strlen(0x35e280);
+      uVar2 = maybe_operator_new(iVar1 + 1);
+      maybe_std_shared_count_ctor((undefined4 *)(unaff_s8_lo + 0x7c),uVar2);
+      maybe_strcpy(*(undefined4 *)(unaff_s8_lo + 0x7c),0x35e280);
+      maybe___throw(0x35e5f0,unaff_s8_lo + 0x78,0x102a60);
+    }
+  }
+  if ((((*(byte *)(**(int **)(unaff_s8_lo + 0x8c) + 0x3a) & 5) == 0) &&
+      ((*(ushort *)(**(int **)(unaff_s8_lo + 0x8c) + 0x38) & 0x2000) != 0)) &&
+     (*unaff_s0_lo == '\0')) {
+    maybe_std_wostream_flush();
+  }
+  return;
+}
+
+// 0x00104668  size 0x48
 /* follows std_wostream_flush; no call, branch, pointer or constant references it (exception landing
    pad or dead code) */
 
@@ -1653,7 +1737,7 @@ undefined8 maybe_std_ostream_sentry_ctor(undefined8 param_1,undefined4 param_2)
   return param_1;
 }
 
-// 0x00106644  size 0x58
+// 0x00106644  size 0x38
 /* code jumped/branched into from std_ostream_sentry_ctor; shared tail */
 
 void std_ostream_sentry_ctor_Tail1(void)
@@ -1665,6 +1749,38 @@ void std_ostream_sentry_ctor_Tail1(void)
   unaff_s2_lo[1] = in_v0_lo;
   maybe_strcpy(*unaff_s2_lo,0x35e280);
   maybe___throw(0x35e5f0);
+  return;
+}
+
+// 0x001066a0  size 0x34
+/* jumped/branched into from std_ostream_sentry_ctor; shared tail */
+
+void std_ostream_sentry_ctor_Tail2(int param_1)
+
+{
+  byte in_v0_lo;
+  int iVar1;
+  long lVar2;
+  int unaff_s8_lo;
+  
+  *(byte *)(param_1 + 0x3a) = in_v0_lo | 1;
+  if ((*(byte *)(param_1 + 0x3a) & *(byte *)(param_1 + 0x3b)) != 0) {
+    *(undefined ***)(unaff_s8_lo + 0xb0) = &PTR_PTR_0036de90;
+    iVar1 = strlen(0x35e280);
+    lVar2 = maybe_operator_new(iVar1 + 1);
+    *(undefined4 *)(unaff_s8_lo + 0xb4) = (int)lVar2;
+    *(undefined4 *)(unaff_s8_lo + 0xb8) = 0;
+    *(BADSPACEBASE **)(unaff_s8_lo + 100) = register0x000001d0;
+    if (lVar2 != 0) {
+      lVar2 = maybe_operator_new_arr(4);
+      if (lVar2 != 0) {
+        *(undefined4 *)lVar2 = 1;
+      }
+      *(undefined4 **)(unaff_s8_lo + 0xb8) = (undefined4 *)lVar2;
+    }
+    maybe_strcpy(*(undefined4 *)(unaff_s8_lo + 0xb4),0x35e280);
+    maybe___throw(0x35e5f0,unaff_s8_lo + 0xb0,0x102a60);
+  }
   return;
 }
 
@@ -1748,7 +1864,7 @@ undefined8 maybe_std_wostream_sentry_ctor(undefined8 param_1,undefined4 param_2)
   return param_1;
 }
 
-// 0x00106924  size 0x58
+// 0x00106924  size 0x38
 /* code jumped/branched into from std_wostream_sentry_ctor; shared tail */
 
 void std_wostream_sentry_ctor_Tail1(void)
@@ -1760,6 +1876,38 @@ void std_wostream_sentry_ctor_Tail1(void)
   unaff_s2_lo[1] = in_v0_lo;
   maybe_strcpy(*unaff_s2_lo,0x35e280);
   maybe___throw(0x35e5f0);
+  return;
+}
+
+// 0x00106980  size 0x34
+/* jumped/branched into from std_wostream_sentry_ctor; shared tail */
+
+void std_wostream_sentry_ctor_Tail2(int param_1)
+
+{
+  byte in_v0_lo;
+  int iVar1;
+  long lVar2;
+  int unaff_s8_lo;
+  
+  *(byte *)(param_1 + 0x3a) = in_v0_lo | 1;
+  if ((*(byte *)(param_1 + 0x3a) & *(byte *)(param_1 + 0x3b)) != 0) {
+    *(undefined ***)(unaff_s8_lo + 0xb0) = &PTR_PTR_0036de90;
+    iVar1 = strlen(0x35e280);
+    lVar2 = maybe_operator_new(iVar1 + 1);
+    *(undefined4 *)(unaff_s8_lo + 0xb4) = (int)lVar2;
+    *(undefined4 *)(unaff_s8_lo + 0xb8) = 0;
+    *(BADSPACEBASE **)(unaff_s8_lo + 100) = register0x000001d0;
+    if (lVar2 != 0) {
+      lVar2 = maybe_operator_new_arr(4);
+      if (lVar2 != 0) {
+        *(undefined4 *)lVar2 = 1;
+      }
+      *(undefined4 **)(unaff_s8_lo + 0xb8) = (undefined4 *)lVar2;
+    }
+    maybe_strcpy(*(undefined4 *)(unaff_s8_lo + 0xb4),0x35e280);
+    maybe___throw(0x35e5f0,unaff_s8_lo + 0xb0,0x102a60);
+  }
   return;
 }
 
@@ -2095,7 +2243,7 @@ void maybe_std_string_assign(uint *param_1,undefined8 param_2,undefined8 param_3
   return;
 }
 
-// 0x00107120  size 0x24c
+// 0x00107120  size 0x228
 /* "basic_string::reserve length_error" */
 
 void std_string_reserve(uint *param_1,uint param_2)
@@ -2192,6 +2340,87 @@ void std_string_reserve(uint *param_1,uint param_2)
       param_1[2] = (uint)pbVar2;
       param_1[1] = uVar5;
       *param_1 = *param_1 & 1 | (int)uVar8 << 1;
+    }
+  }
+  return;
+}
+
+// 0x0010736c  size 0x24
+/* follows std_string_reserve; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void std_string_reserve_Orphan2(void)
+
+{
+  bool bVar1;
+  byte *pbVar2;
+  uint uVar3;
+  uint uVar4;
+  ulong uVar5;
+  uint *unaff_s1_lo;
+  uint unaff_s2_lo;
+  ulong uVar6;
+  byte *pbVar7;
+  uint uVar8;
+  int unaff_s8_lo;
+  
+  bVar1 = (*unaff_s1_lo & 1) != 0;
+  if (bVar1) {
+    uVar3 = unaff_s1_lo[1];
+    uVar5 = (ulong)(*unaff_s1_lo >> 1);
+  }
+  else {
+    uVar5 = 0xb;
+    uVar3 = (uint)(byte)((byte)*unaff_s1_lo >> 1);
+  }
+  if (unaff_s2_lo < uVar3) {
+    unaff_s2_lo = uVar3;
+  }
+  if (unaff_s2_lo + 1 < 0xc) {
+    uVar6 = 0xb;
+  }
+  else {
+    uVar6 = (long)(int)(unaff_s2_lo + 0x10) & 0xfffffffffffffff0;
+  }
+  if (uVar6 != uVar5) {
+    if (uVar6 == 0xb) {
+      pbVar7 = (byte *)unaff_s1_lo[2];
+      pbVar2 = (byte *)((int)unaff_s1_lo + 1);
+      uVar8 = 0;
+    }
+    else {
+      if (uVar5 < uVar6) {
+        pbVar2 = (byte *)maybe_operator_new_arr(uVar6);
+      }
+      else {
+        *(BADSPACEBASE **)(unaff_s8_lo + 0xc4) = register0x000001d0;
+        pbVar2 = (byte *)maybe_operator_new_arr(uVar6);
+      }
+      uVar8 = 1;
+      if (bVar1) {
+        pbVar7 = (byte *)unaff_s1_lo[2];
+      }
+      else {
+        pbVar7 = (byte *)((int)unaff_s1_lo + 1);
+      }
+    }
+    memcpy(pbVar2,pbVar7,uVar3);
+    pbVar2[uVar3] = 0;
+    if (bVar1) {
+      Mem_Free(pbVar7);
+      uVar4 = *unaff_s1_lo;
+    }
+    else {
+      uVar4 = *unaff_s1_lo;
+    }
+    *unaff_s1_lo = uVar4 & 0xfffffffe | uVar8;
+    if (uVar8 == 0) {
+      *(byte *)unaff_s1_lo = (byte)*unaff_s1_lo & 1 | (byte)((uVar3 & 0x7f) << 1);
+    }
+    else {
+      unaff_s1_lo[2] = (uint)pbVar2;
+      unaff_s1_lo[1] = uVar3;
+      *unaff_s1_lo = *unaff_s1_lo & 1 | (int)uVar6 << 1;
     }
   }
   return;

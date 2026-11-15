@@ -1407,7 +1407,7 @@ void maybe_InitAlarmPatch(void)
   FlushCache(0);
   FlushCache(2);
   SetSyscall(DAT_00306f30,DAT_00306f34);
-  SetSyscall(DAT_00306f38,PTR_LAB_00306f3c);
+  SetSyscall(DAT_00306f38,PTR_maybe_KernelPatch_RestoreAndEret_00306f3c);
   uVar1 = DAT_00306f40;
   while( true ) {
     uVar4 = uVar4 + 1;
@@ -1640,6 +1640,500 @@ long maybe_kernl_InitTLB(void)
     } while (lVar7 < 0x30);
   }
   return lVar8;
+}
+
+// 0x0011a480  size 0x100
+/* kernel mode: saves all GPRs, calls the handler at 0x306ed8, eret */
+
+void maybe_KernelPatch_HandlerA
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
+               undefined1 param_9)
+
+{
+  undefined8 in_at;
+  undefined4 in_at_udw;
+  undefined4 in_register_0000001c;
+  undefined8 in_v0;
+  undefined4 in_v0_udw;
+  undefined4 in_register_0000002c;
+  undefined4 in_v1_lo;
+  undefined4 in_v1_hi;
+  undefined4 in_v1_udw;
+  undefined4 in_register_0000003c;
+  undefined4 in_a0_udw;
+  undefined4 in_register_0000004c;
+  undefined4 in_a1_udw;
+  undefined4 in_register_0000005c;
+  undefined4 in_a2_udw;
+  undefined4 in_register_0000006c;
+  undefined4 in_a3_udw;
+  undefined4 in_register_0000007c;
+  undefined4 in_t0_udw;
+  undefined4 in_register_0000008c;
+  undefined4 in_t1_udw;
+  undefined4 in_register_0000009c;
+  undefined4 in_t2_udw;
+  undefined4 in_register_000000ac;
+  undefined4 in_t3_udw;
+  undefined4 in_register_000000bc;
+  undefined4 in_t4_lo;
+  undefined4 in_t4_hi;
+  undefined4 in_t4_udw;
+  undefined4 in_register_000000cc;
+  undefined4 in_t5_lo;
+  undefined4 in_t5_hi;
+  undefined4 in_t5_udw;
+  undefined4 in_register_000000dc;
+  undefined4 in_t6_lo;
+  undefined4 in_t6_hi;
+  undefined4 in_t6_udw;
+  undefined4 in_register_000000ec;
+  undefined4 in_t7_lo;
+  undefined4 in_t7_hi;
+  undefined4 in_t7_udw;
+  undefined4 in_register_000000fc;
+  undefined4 unaff_s0_lo;
+  undefined4 unaff_s0_hi;
+  undefined4 in_s0_udw;
+  undefined4 in_register_0000010c;
+  undefined4 unaff_s1_lo;
+  undefined4 unaff_s1_hi;
+  undefined4 in_s1_udw;
+  undefined4 in_register_0000011c;
+  undefined4 unaff_s2_lo;
+  undefined4 unaff_s2_hi;
+  undefined4 in_s2_udw;
+  undefined4 in_register_0000012c;
+  undefined4 unaff_s3_lo;
+  undefined4 unaff_s3_hi;
+  undefined4 in_s3_udw;
+  undefined4 in_register_0000013c;
+  undefined4 unaff_s4_lo;
+  undefined4 unaff_s4_hi;
+  undefined4 in_s4_udw;
+  undefined4 in_register_0000014c;
+  undefined4 unaff_s5_lo;
+  undefined4 unaff_s5_hi;
+  undefined4 in_s5_udw;
+  undefined4 in_register_0000015c;
+  undefined4 unaff_s6_lo;
+  undefined4 unaff_s6_hi;
+  undefined4 in_s6_udw;
+  undefined4 in_register_0000016c;
+  undefined4 unaff_s7_lo;
+  undefined4 unaff_s7_hi;
+  undefined4 in_s7_udw;
+  undefined4 in_register_0000017c;
+  undefined4 in_t8_lo;
+  undefined4 in_t8_hi;
+  undefined4 in_t8_udw;
+  undefined4 in_register_0000018c;
+  undefined4 in_t9_lo;
+  undefined4 in_t9_hi;
+  undefined4 in_t9_udw;
+  undefined4 in_register_0000019c;
+  undefined4 in_gp_udw;
+  undefined4 in_register_000001cc;
+  undefined4 unaff_sp_hi;
+  undefined4 in_sp_udw;
+  undefined4 in_register_000001dc;
+  undefined4 unaff_s8_lo;
+  undefined4 unaff_s8_hi;
+  undefined4 in_s8_udw;
+  undefined4 in_register_000001ec;
+  undefined4 unaff_retaddr;
+  undefined4 unaff_retaddr_00;
+  undefined4 in_ra_udw;
+  undefined4 in_register_000001fc;
+  undefined8 in_hi;
+  undefined8 in_hi1;
+  undefined8 in_lo;
+  undefined8 in_lo1;
+  undefined8 in_sa;
+  undefined1 uStack00000000;
+  
+  uRam00375790 = (int)in_at;
+  uRam00375794 = (int)((ulong)in_at >> 0x20);
+  uRam00375798 = in_at_udw;
+  uRam0037579c = in_register_0000001c;
+  uRam003757a0 = (int)in_v0;
+  uRam003757a4 = (int)((ulong)in_v0 >> 0x20);
+  uRam003757a8 = in_v0_udw;
+  uRam003757ac = in_register_0000002c;
+  uRam003757b0 = in_v1_lo;
+  uRam003757b4 = in_v1_hi;
+  uRam003757b8 = in_v1_udw;
+  uRam003757bc = in_register_0000003c;
+  uRam003757c0 = (int)param_1;
+  uRam003757c4 = (int)((ulong)param_1 >> 0x20);
+  uRam003757c8 = in_a0_udw;
+  uRam003757cc = in_register_0000004c;
+  uRam003757d0 = (int)param_2;
+  uRam003757d4 = (int)((ulong)param_2 >> 0x20);
+  uRam003757d8 = in_a1_udw;
+  uRam003757dc = in_register_0000005c;
+  uRam003757e0 = (int)param_3;
+  uRam003757e4 = (int)((ulong)param_3 >> 0x20);
+  uRam003757e8 = in_a2_udw;
+  uRam003757ec = in_register_0000006c;
+  uRam003757f0 = (int)param_4;
+  uRam003757f4 = (int)((ulong)param_4 >> 0x20);
+  uRam003757f8 = in_a3_udw;
+  uRam003757fc = in_register_0000007c;
+  uRam00375800 = (int)param_5;
+  uRam00375804 = (int)((ulong)param_5 >> 0x20);
+  uRam00375808 = in_t0_udw;
+  uRam0037580c = in_register_0000008c;
+  uRam00375810 = (int)param_6;
+  uRam00375814 = (int)((ulong)param_6 >> 0x20);
+  uRam00375818 = in_t1_udw;
+  uRam0037581c = in_register_0000009c;
+  uRam00375820 = (int)param_7;
+  uRam00375824 = (int)((ulong)param_7 >> 0x20);
+  uRam00375828 = in_t2_udw;
+  uRam0037582c = in_register_000000ac;
+  uRam00375830 = (int)param_8;
+  uRam00375834 = (int)((ulong)param_8 >> 0x20);
+  uRam00375838 = in_t3_udw;
+  uRam0037583c = in_register_000000bc;
+  uRam00375840 = in_t4_lo;
+  uRam00375844 = in_t4_hi;
+  uRam00375848 = in_t4_udw;
+  uRam0037584c = in_register_000000cc;
+  uRam00375850 = in_t5_lo;
+  uRam00375854 = in_t5_hi;
+  uRam00375858 = in_t5_udw;
+  uRam0037585c = in_register_000000dc;
+  uRam00375860 = in_t6_lo;
+  uRam00375864 = in_t6_hi;
+  uRam00375868 = in_t6_udw;
+  uRam0037586c = in_register_000000ec;
+  uRam00375870 = in_t7_lo;
+  uRam00375874 = in_t7_hi;
+  uRam00375878 = in_t7_udw;
+  uRam0037587c = in_register_000000fc;
+  uRam00375880 = unaff_s0_lo;
+  uRam00375884 = unaff_s0_hi;
+  uRam00375888 = in_s0_udw;
+  uRam0037588c = in_register_0000010c;
+  uRam00375890 = unaff_s1_lo;
+  uRam00375894 = unaff_s1_hi;
+  uRam00375898 = in_s1_udw;
+  uRam0037589c = in_register_0000011c;
+  uRam003758a0 = unaff_s2_lo;
+  uRam003758a4 = unaff_s2_hi;
+  uRam003758a8 = in_s2_udw;
+  uRam003758ac = in_register_0000012c;
+  uRam003758b0 = unaff_s3_lo;
+  uRam003758b4 = unaff_s3_hi;
+  uRam003758b8 = in_s3_udw;
+  uRam003758bc = in_register_0000013c;
+  uRam003758c0 = unaff_s4_lo;
+  uRam003758c4 = unaff_s4_hi;
+  uRam003758c8 = in_s4_udw;
+  uRam003758cc = in_register_0000014c;
+  uRam003758d0 = unaff_s5_lo;
+  uRam003758d4 = unaff_s5_hi;
+  uRam003758d8 = in_s5_udw;
+  uRam003758dc = in_register_0000015c;
+  uRam003758e0 = unaff_s6_lo;
+  uRam003758e4 = unaff_s6_hi;
+  uRam003758e8 = in_s6_udw;
+  uRam003758ec = in_register_0000016c;
+  uRam003758f0 = unaff_s7_lo;
+  uRam003758f4 = unaff_s7_hi;
+  uRam003758f8 = in_s7_udw;
+  uRam003758fc = in_register_0000017c;
+  uRam00375900 = in_t8_lo;
+  uRam00375904 = in_t8_hi;
+  uRam00375908 = in_t8_udw;
+  uRam0037590c = in_register_0000018c;
+  uRam00375910 = in_t9_lo;
+  uRam00375914 = in_t9_hi;
+  uRam00375918 = in_t9_udw;
+  uRam0037591c = in_register_0000019c;
+  puRam00375940 = &_mips_gp0_value;
+  uRam00375944 = 0;
+  uRam00375948 = in_gp_udw;
+  uRam0037594c = in_register_000001cc;
+  puRam00375950 = &param_9;
+  uRam00375954 = unaff_sp_hi;
+  uRam00375958 = in_sp_udw;
+  uRam0037595c = in_register_000001dc;
+  uRam00375960 = unaff_s8_lo;
+  uRam00375964 = unaff_s8_hi;
+  uRam00375968 = in_s8_udw;
+  uRam0037596c = in_register_000001ec;
+  uRam00375970 = unaff_retaddr;
+  uRam00375974 = unaff_retaddr_00;
+  uRam00375978 = in_ra_udw;
+  uRam0037597c = in_register_000001fc;
+  uRam00375980 = in_hi;
+  uRam00375988 = in_hi1;
+  uRam00375990 = in_lo;
+  uRam00375998 = in_lo1;
+  uRam003759a0 = in_sa;
+  uRam003759a8 = EPC;
+  EPC = 0x11a580;
+  SYNC(0x10);
+  Status = Status & 0xfffffffe;
+  SYNC(0x10);
+  return;
+}
+
+// 0x0011a5c0  size 0xf4
+/* restores the saved GPRs and returns with eret */
+
+undefined8 maybe_KernelPatch_RestoreAndEret(void)
+
+{
+  SYNC(0x10);
+  EPC = uRam003759a8;
+  SYNC(0x10);
+  SYNC(0x10);
+  Status = Status & 0xffffffe4 | 0x13;
+  SYNC(0x10);
+  return CONCAT44(uRam003757a4,uRam003757a0);
+}
+
+// 0x0011a6c0  size 0xfc
+/* kernel mode: saves GPRs, calls table 0x306ee0 indexed by the cause code, eret */
+
+void maybe_KernelPatch_ExceptionDispatch
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+               undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
+               undefined1 param_9)
+
+{
+  undefined8 in_at;
+  undefined4 in_at_udw;
+  undefined4 in_register_0000001c;
+  undefined8 in_v0;
+  undefined4 in_v0_udw;
+  undefined4 in_register_0000002c;
+  undefined4 in_v1_lo;
+  undefined4 in_v1_hi;
+  undefined4 in_v1_udw;
+  undefined4 in_register_0000003c;
+  undefined4 in_a0_udw;
+  undefined4 in_register_0000004c;
+  undefined4 in_a1_udw;
+  undefined4 in_register_0000005c;
+  undefined4 in_a2_udw;
+  undefined4 in_register_0000006c;
+  undefined4 in_a3_udw;
+  undefined4 in_register_0000007c;
+  undefined4 in_t0_udw;
+  undefined4 in_register_0000008c;
+  undefined4 in_t1_udw;
+  undefined4 in_register_0000009c;
+  undefined4 in_t2_udw;
+  undefined4 in_register_000000ac;
+  undefined4 in_t3_udw;
+  undefined4 in_register_000000bc;
+  undefined4 in_t4_lo;
+  undefined4 in_t4_hi;
+  undefined4 in_t4_udw;
+  undefined4 in_register_000000cc;
+  undefined4 in_t5_lo;
+  undefined4 in_t5_hi;
+  undefined4 in_t5_udw;
+  undefined4 in_register_000000dc;
+  undefined4 in_t6_lo;
+  undefined4 in_t6_hi;
+  undefined4 in_t6_udw;
+  undefined4 in_register_000000ec;
+  undefined4 in_t7_lo;
+  undefined4 in_t7_hi;
+  undefined4 in_t7_udw;
+  undefined4 in_register_000000fc;
+  undefined4 unaff_s0_lo;
+  undefined4 unaff_s0_hi;
+  undefined4 in_s0_udw;
+  undefined4 in_register_0000010c;
+  undefined4 unaff_s1_lo;
+  undefined4 unaff_s1_hi;
+  undefined4 in_s1_udw;
+  undefined4 in_register_0000011c;
+  undefined4 unaff_s2_lo;
+  undefined4 unaff_s2_hi;
+  undefined4 in_s2_udw;
+  undefined4 in_register_0000012c;
+  undefined4 unaff_s3_lo;
+  undefined4 unaff_s3_hi;
+  undefined4 in_s3_udw;
+  undefined4 in_register_0000013c;
+  undefined4 unaff_s4_lo;
+  undefined4 unaff_s4_hi;
+  undefined4 in_s4_udw;
+  undefined4 in_register_0000014c;
+  undefined4 unaff_s5_lo;
+  undefined4 unaff_s5_hi;
+  undefined4 in_s5_udw;
+  undefined4 in_register_0000015c;
+  undefined4 unaff_s6_lo;
+  undefined4 unaff_s6_hi;
+  undefined4 in_s6_udw;
+  undefined4 in_register_0000016c;
+  undefined4 unaff_s7_lo;
+  undefined4 unaff_s7_hi;
+  undefined4 in_s7_udw;
+  undefined4 in_register_0000017c;
+  undefined4 in_t8_lo;
+  undefined4 in_t8_hi;
+  undefined4 in_t8_udw;
+  undefined4 in_register_0000018c;
+  undefined4 in_t9_lo;
+  undefined4 in_t9_hi;
+  undefined4 in_t9_udw;
+  undefined4 in_register_0000019c;
+  undefined4 in_gp_udw;
+  undefined4 in_register_000001cc;
+  undefined4 unaff_sp_hi;
+  undefined4 in_sp_udw;
+  undefined4 in_register_000001dc;
+  undefined4 unaff_s8_lo;
+  undefined4 unaff_s8_hi;
+  undefined4 in_s8_udw;
+  undefined4 in_register_000001ec;
+  undefined4 unaff_retaddr;
+  undefined4 unaff_retaddr_00;
+  undefined4 in_ra_udw;
+  undefined4 in_register_000001fc;
+  undefined8 in_hi;
+  undefined8 in_hi1;
+  undefined8 in_lo;
+  undefined8 in_lo1;
+  undefined8 in_sa;
+  undefined1 uStack00000000;
+  
+  uRam00375790 = (int)in_at;
+  uRam00375794 = (int)((ulong)in_at >> 0x20);
+  uRam00375798 = in_at_udw;
+  uRam0037579c = in_register_0000001c;
+  uRam003757a0 = (int)in_v0;
+  uRam003757a4 = (int)((ulong)in_v0 >> 0x20);
+  uRam003757a8 = in_v0_udw;
+  uRam003757ac = in_register_0000002c;
+  uRam003757b0 = in_v1_lo;
+  uRam003757b4 = in_v1_hi;
+  uRam003757b8 = in_v1_udw;
+  uRam003757bc = in_register_0000003c;
+  uRam003757c0 = (int)param_1;
+  uRam003757c4 = (int)((ulong)param_1 >> 0x20);
+  uRam003757c8 = in_a0_udw;
+  uRam003757cc = in_register_0000004c;
+  uRam003757d0 = (int)param_2;
+  uRam003757d4 = (int)((ulong)param_2 >> 0x20);
+  uRam003757d8 = in_a1_udw;
+  uRam003757dc = in_register_0000005c;
+  uRam003757e0 = (int)param_3;
+  uRam003757e4 = (int)((ulong)param_3 >> 0x20);
+  uRam003757e8 = in_a2_udw;
+  uRam003757ec = in_register_0000006c;
+  uRam003757f0 = (int)param_4;
+  uRam003757f4 = (int)((ulong)param_4 >> 0x20);
+  uRam003757f8 = in_a3_udw;
+  uRam003757fc = in_register_0000007c;
+  uRam00375800 = (int)param_5;
+  uRam00375804 = (int)((ulong)param_5 >> 0x20);
+  uRam00375808 = in_t0_udw;
+  uRam0037580c = in_register_0000008c;
+  uRam00375810 = (int)param_6;
+  uRam00375814 = (int)((ulong)param_6 >> 0x20);
+  uRam00375818 = in_t1_udw;
+  uRam0037581c = in_register_0000009c;
+  uRam00375820 = (int)param_7;
+  uRam00375824 = (int)((ulong)param_7 >> 0x20);
+  uRam00375828 = in_t2_udw;
+  uRam0037582c = in_register_000000ac;
+  uRam00375830 = (int)param_8;
+  uRam00375834 = (int)((ulong)param_8 >> 0x20);
+  uRam00375838 = in_t3_udw;
+  uRam0037583c = in_register_000000bc;
+  uRam00375840 = in_t4_lo;
+  uRam00375844 = in_t4_hi;
+  uRam00375848 = in_t4_udw;
+  uRam0037584c = in_register_000000cc;
+  uRam00375850 = in_t5_lo;
+  uRam00375854 = in_t5_hi;
+  uRam00375858 = in_t5_udw;
+  uRam0037585c = in_register_000000dc;
+  uRam00375860 = in_t6_lo;
+  uRam00375864 = in_t6_hi;
+  uRam00375868 = in_t6_udw;
+  uRam0037586c = in_register_000000ec;
+  uRam00375870 = in_t7_lo;
+  uRam00375874 = in_t7_hi;
+  uRam00375878 = in_t7_udw;
+  uRam0037587c = in_register_000000fc;
+  uRam00375880 = unaff_s0_lo;
+  uRam00375884 = unaff_s0_hi;
+  uRam00375888 = in_s0_udw;
+  uRam0037588c = in_register_0000010c;
+  uRam00375890 = unaff_s1_lo;
+  uRam00375894 = unaff_s1_hi;
+  uRam00375898 = in_s1_udw;
+  uRam0037589c = in_register_0000011c;
+  uRam003758a0 = unaff_s2_lo;
+  uRam003758a4 = unaff_s2_hi;
+  uRam003758a8 = in_s2_udw;
+  uRam003758ac = in_register_0000012c;
+  uRam003758b0 = unaff_s3_lo;
+  uRam003758b4 = unaff_s3_hi;
+  uRam003758b8 = in_s3_udw;
+  uRam003758bc = in_register_0000013c;
+  uRam003758c0 = unaff_s4_lo;
+  uRam003758c4 = unaff_s4_hi;
+  uRam003758c8 = in_s4_udw;
+  uRam003758cc = in_register_0000014c;
+  uRam003758d0 = unaff_s5_lo;
+  uRam003758d4 = unaff_s5_hi;
+  uRam003758d8 = in_s5_udw;
+  uRam003758dc = in_register_0000015c;
+  uRam003758e0 = unaff_s6_lo;
+  uRam003758e4 = unaff_s6_hi;
+  uRam003758e8 = in_s6_udw;
+  uRam003758ec = in_register_0000016c;
+  uRam003758f0 = unaff_s7_lo;
+  uRam003758f4 = unaff_s7_hi;
+  uRam003758f8 = in_s7_udw;
+  uRam003758fc = in_register_0000017c;
+  uRam00375900 = in_t8_lo;
+  uRam00375904 = in_t8_hi;
+  uRam00375908 = in_t8_udw;
+  uRam0037590c = in_register_0000018c;
+  uRam00375910 = in_t9_lo;
+  uRam00375914 = in_t9_hi;
+  uRam00375918 = in_t9_udw;
+  uRam0037591c = in_register_0000019c;
+  puRam00375940 = &_mips_gp0_value;
+  uRam00375944 = 0;
+  uRam00375948 = in_gp_udw;
+  uRam0037594c = in_register_000001cc;
+  puRam00375950 = &param_9;
+  uRam00375954 = unaff_sp_hi;
+  uRam00375958 = in_sp_udw;
+  uRam0037595c = in_register_000001dc;
+  uRam00375960 = unaff_s8_lo;
+  uRam00375964 = unaff_s8_hi;
+  uRam00375968 = in_s8_udw;
+  uRam0037596c = in_register_000001ec;
+  uRam00375970 = unaff_retaddr;
+  uRam00375974 = unaff_retaddr_00;
+  uRam00375978 = in_ra_udw;
+  uRam0037597c = in_register_000001fc;
+  uRam00375980 = in_hi;
+  uRam00375988 = in_hi1;
+  uRam00375990 = in_lo;
+  uRam00375998 = in_lo1;
+  uRam003759a0 = in_sa;
+  EPC = 0x11a7bc;
+  SYNC(0x10);
+  Status = Status & 0xfffffffe;
+  SYNC(0x10);
+  return;
 }
 
 // 0x0011a7e0  size 0x54
@@ -2004,6 +2498,20 @@ int maybe_Exec_SetupArgs(undefined8 param_1,int param_2,undefined4 *param_3)
     } while (param_2 != 0);
   }
   return iVar2;
+}
+
+// 0x0011add0  size 0x70
+/* follows Exec_SetupArgs; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void Exec_SetupArgs_Orphan1
+               (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  maybe_Exec_SetupArgs(0x35f440,param_3,param_4);
+  maybe_kernl_ResetTLB();
+  _ExecPS2(param_1,param_2,param_3,DAT_00306f20 + 4);
+  return;
 }
 
 // 0x0011ae40  size 0x48

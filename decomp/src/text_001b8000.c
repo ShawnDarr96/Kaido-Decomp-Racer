@@ -1430,7 +1430,7 @@ int Garage_GetCarPower(undefined8 param_1)
   return (iVar1 * 0x3c) / 100;
 }
 
-// 0x001ba290  size 0xc60
+// 0x001ba290  size 0xc5c
 /* 18 callers */
 
 undefined8 Garage_ComputeCarStats(undefined8 param_1,long param_2)
@@ -1739,7 +1739,8 @@ undefined8 Garage_ComputeCarStats(undefined8 param_1,long param_2)
     if (uVar3 == 1) {
       return 0x96;
     }
-    return 0;
+    uVar4 = Garage_ComputeCarStats_Tail1();
+    return uVar4;
   }
   uVar2 = (undefined4)uVar3;
   if (sVar1 != 0x45) {
@@ -1914,7 +1915,8 @@ undefined8 Garage_ComputeCarStats(undefined8 param_1,long param_2)
     if (sVar1 == 0xad) {
       return 0x6e;
     }
-    return 99999999;
+    uVar4 = Garage_ComputeCarStats_Tail2();
+    return uVar4;
   }
   if (uVar3 < 9) {
                     /* WARNING: Switch is manually overridden */
@@ -1953,7 +1955,7 @@ switchD_001ba76c_caseD_0:
   return uVar4;
 }
 
-// 0x001baf18  size 0x28
+// 0x001baf18  size 0xc
 /* follows Garage_ComputeCarStats; no call, branch, pointer or constant references it (exception
    landing pad or dead code) */
 
@@ -1961,6 +1963,26 @@ undefined4 Garage_ComputeCarStats_Orphan1(void)
 
 {
   return 0x78;
+}
+
+// 0x001baf38  size 0x8
+/* jumped/branched into from Garage_ComputeCarStats; shared tail */
+
+ulong Garage_ComputeCarStats_Tail2(void)
+
+{
+  ulong in_v0;
+  
+  return in_v0 | 0xe0ff;
+}
+
+// 0x001baf40  size 0x18
+/* jumped/branched into from Garage_ComputeCarStats; shared tail */
+
+void Garage_ComputeCarStats_Tail1(void)
+
+{
+  return;
 }
 
 // 0x001baf70  size 0x3c

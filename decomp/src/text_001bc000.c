@@ -1320,12 +1320,13 @@ void Profile_ScheduleRivals(int param_1)
     iStack_7f0 = iStack_7f0 + 1;
     iVar10 = iVar10 + 4;
     if (0x13 < iStack_7f0) {
+      Profile_ScheduleRivals_Tail1();
       return;
     }
   } while( true );
 }
 
-// 0x001bdca4  size 0x3c
+// 0x001bdca4  size 0xc
 /* follows Profile_ScheduleRivals; no call, branch, pointer or constant references it (exception
    landing pad or dead code) */
 
@@ -1349,8 +1350,7 @@ void Profile_ScheduleRivals_Orphan1(void)
   int unaff_s4_lo;
   int unaff_s6_lo;
   int unaff_s7_lo;
-  undefined4 unaff_s8_lo;
-  undefined4 unaff_s8_hi;
+  int unaff_s8_lo;
   undefined4 uVar12;
   long in_stack_000000a0;
   int in_stack_000000b0;
@@ -1380,6 +1380,7 @@ LAB_001bcf40:
         in_stack_000000e0 = in_stack_000000e0 + 1;
         iVar11 = unaff_s2_lo + 4;
         if (0x13 < in_stack_000000e0) {
+          Profile_ScheduleRivals_Tail1();
           return;
         }
         piVar1 = (int *)(unaff_s2_lo + 0x2a78);
@@ -1706,7 +1707,7 @@ LAB_001bcf40:
       } while (iVar9 < 5);
       break;
     case 0xc:
-      if ((long)*(int *)(unaff_s7_lo + 8) <= CONCAT44(unaff_s8_hi,unaff_s8_lo)) {
+      if (*(int *)(unaff_s7_lo + 8) <= unaff_s8_lo) {
         uVar3 = maybe_Rand_Float();
         iVar5 = (int)(uVar3 & 3);
         if (((long)uVar3 < 0) && ((uVar3 & 3) != 0)) {
@@ -1873,6 +1874,15 @@ LAB_001bcf40:
       }
     }
   } while( true );
+}
+
+// 0x001bdcb0  size 0x30
+/* jumped/branched into from Profile_ScheduleRivals; shared tail */
+
+void Profile_ScheduleRivals_Tail1(void)
+
+{
+  return;
 }
 
 // 0x001bdce0  size 0x14

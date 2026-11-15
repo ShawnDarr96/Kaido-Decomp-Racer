@@ -1007,7 +1007,7 @@ void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefine
   _s_PhysVar1 = param_4;
   PhysWorld_Init(0x42f3c0,param_1,param_2,param_3);
   PhysMaterial_SetDefaults();
-  _s_PhysParamB = &LAB_0015d390;
+  _s_PhysParamB = PhysMaterial_GetDamping_Orphan3;
   _s_PhysParamA = PhysMaterial_GetDamping_Orphan2;
   _s_PhysCallback = PhysMaterial_GetDamping_Orphan1;
   return;

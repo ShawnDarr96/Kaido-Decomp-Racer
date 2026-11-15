@@ -814,7 +814,7 @@ LAB_001099bc:
   iVar7 = iVar1 * 4 + iVar9;
   iVar12 = ((iVar6 - iVar13) * 2 + ((iVar8 >> 3) - iVar14)) * 0x180 + iVar12;
   *(undefined **)(param_1 + iVar7 + 0x5d0) =
-       (&PTR_LAB_00306870)[param_12 << 2 | (param_9 & 1) << 1 | param_10 & 1];
+       (&PTR_Mpeg_AddBlocks_Orphan16_00306870)[param_12 << 2 | (param_9 & 1) << 1 | param_10 & 1];
   piVar10 = (int *)(param_1 + 0x6d4 + iVar9);
   iVar1 = *param_2;
   piVar11[5] = iVar12 + iVar5 * 8 + 0x100;
@@ -920,6 +920,58 @@ void maybe_Mpeg_AddBlocks(undefined8 param_1,int param_2)
     puVar5[3] = auVar8._12_4_;
     puVar5 = puVar5 + 4;
   } while (iVar10 != 0);
+  return;
+}
+
+// 0x00109cf8  size 0x74
+/* follows Mpeg_AddBlocks; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void Mpeg_AddBlocks_Orphan16(undefined4 *param_1)
+
+{
+  int iVar1;
+  undefined1 in_zero_qw [16];
+  undefined1 (*pauVar2) [16];
+  undefined1 (*pauVar3) [16];
+  uint uVar4;
+  undefined1 auVar5 [16];
+  uint uVar6;
+  undefined1 auVar7 [16];
+  undefined4 *puVar8;
+  uint uVar9;
+  
+  pauVar2 = (undefined1 (*) [16])param_1[5];
+  pauVar3 = (undefined1 (*) [16])param_1[6];
+  uVar4 = param_1[2];
+  puVar8 = (undefined4 *)*param_1;
+  iVar1 = param_1[4];
+  uVar9 = 0xffffffff;
+  do {
+    do {
+      auVar5 = *pauVar2;
+      uVar4 = uVar4 - 1;
+      pauVar2 = (undefined1 (*) [16])(*pauVar2 + iVar1);
+      auVar7 = _qfsrv(*pauVar3,auVar5);
+      auVar5 = _pextlb(0,auVar7._0_8_);
+      auVar7 = _pextub(in_zero_qw,auVar7);
+      *puVar8 = auVar5._0_4_;
+      puVar8[1] = auVar5._4_4_;
+      puVar8[2] = auVar5._8_4_;
+      puVar8[3] = auVar5._12_4_;
+      pauVar3 = (undefined1 (*) [16])(*pauVar3 + iVar1);
+      puVar8[4] = auVar7._0_4_;
+      puVar8[5] = auVar7._4_4_;
+      puVar8[6] = auVar7._8_4_;
+      puVar8[7] = auVar7._12_4_;
+      puVar8 = (undefined4 *)((int)puVar8 + iVar1 * 2);
+    } while (0 < (int)uVar4);
+    pauVar2 = pauVar2 + 8;
+    pauVar3 = pauVar3 + 8;
+    uVar4 = param_1[3];
+    uVar6 = uVar9 & uVar4;
+    uVar9 = 0;
+  } while (uVar6 != 0);
   return;
 }
 

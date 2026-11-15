@@ -2,7 +2,7 @@
 // Address range 0x00254000 - 0x00258000
 #include "ghidra_types.h"
 
-// 0x00254100  size 0x1088
+// 0x00254100  size 0x1074
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void ScrCareer_Draw_SelectSectionTo(int param_1)
@@ -426,6 +426,215 @@ LAB_00254538:
       return;
     }
   } while( true );
+}
+
+// 0x00255188  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows ScrCareer_Draw_SelectSectionTo; no call, branch, pointer or constant reference (exception
+   landing pad or dead code) */
+
+void ScrCareer_Draw_SelectSectionTo_Orphan2(void)
+
+{
+  char cVar1;
+  undefined2 uVar2;
+  short sVar3;
+  uint uVar4;
+  int iVar5;
+  long lVar6;
+  undefined8 uVar7;
+  undefined8 uVar8;
+  byte extraout_a3_lo;
+  byte extraout_a3_lo_00;
+  byte bVar9;
+  byte extraout_a3_lo_01;
+  UiLayout *unaff_s1_lo;
+  int unaff_s2_lo;
+  
+LAB_00254970:
+  UiElem_SetPropFloat(unaff_s1_lo,
+                      (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),8,
+                      (char)_s_SectionSelA * '\x03');
+  do {
+    while( true ) {
+      while( true ) {
+        while( true ) {
+          while( true ) {
+            _s_SectionSelB = _s_SectionSelB + 1;
+            if (5 < _s_SectionSelB) {
+              _s_SectionSelA = _s_SectionSelA + 1;
+              if (4 < _s_SectionSelA) {
+                _s_ScrCareer_Draw_SelectSectionTo_1 = 0;
+                do {
+                  MenuWnd_DrawText(0x83,*(undefined4 *)
+                                         (&DAT_0032c190 + _s_ScrCareer_Draw_SelectSectionTo_1 * 4),
+                                   *(undefined4 *)
+                                    (&DAT_0032c170 + _s_ScrCareer_Draw_SelectSectionTo_1 * 4));
+                  _s_ScrCareer_Draw_SelectSectionTo_1 = _s_ScrCareer_Draw_SelectSectionTo_1 + 1;
+                } while (_s_ScrCareer_Draw_SelectSectionTo_1 < 5);
+                MenuWnd_DrawLabel(0x83,0x61,0x361,5,
+                                  *(undefined4 *)
+                                   (*(int *)(unaff_s2_lo + 0x62c) * 4 + unaff_s2_lo + 0xec),0);
+                MenuWnd_DrawText(7,0x2e,0x360);
+                uVar8 = Profile_Get(0);
+                cVar1 = Profile_GetChapter(uVar8);
+                if (cVar1 == '\0') {
+                  UiLayout_UpdateAnimById((UiLayout *)0x81,0);
+                  iVar5 = UiMgr_FindLayout(0x81);
+                  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
+                  iVar5 = UiMgr_FindLayout(0x83);
+                  UiElem_SetPropInt(&g_UiMgr->slots[iVar5].layout,0x5d,9,1);
+                  iVar5 = *(int *)(unaff_s2_lo + 0x64c);
+                  bVar9 = extraout_a3_lo;
+                }
+                else {
+                  UiLayout_UpdateAnimById((UiLayout *)0x82,0);
+                  iVar5 = UiMgr_FindLayout(0x82);
+                  UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
+                  iVar5 = UiMgr_FindLayout(0x83);
+                  UiElem_SetPropInt(&g_UiMgr->slots[iVar5].layout,0x5d,9,0);
+                  iVar5 = *(int *)(unaff_s2_lo + 0x64c);
+                  bVar9 = extraout_a3_lo_00;
+                }
+                if (iVar5 == *(int *)(unaff_s2_lo + 0x650)) {
+                  UiLayout_UpdateAnimById((UiLayout *)0x83,4);
+                  UiLayout_UpdateAnimById((UiLayout *)0x83,5);
+                }
+                else {
+                  UiElem_SetPropFloat(unaff_s1_lo,0x1a,8,bVar9);
+                  UiElem_SetPropFloat(unaff_s1_lo,0x1d,8,extraout_a3_lo_01);
+                }
+                iVar5 = UiMgr_FindLayout(0x83);
+                UiLayout_Draw(1.0,&g_UiMgr->slots[iVar5].layout);
+                return;
+              }
+              _s_SectionSelB = 0;
+            }
+            lVar6 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+            if (lVar6 != -1) break;
+            UiElem_SetPropFloat(unaff_s1_lo,
+                                (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030
+                                              ),8,(byte)_s_SectionSelA);
+            UiElem_SetPropFloat(unaff_s1_lo,
+                                (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0
+                                              ),8,(byte)_s_SectionSelA);
+          }
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+          uVar8 = RivalDb_Get(uVar2);
+          cVar1 = RivalRec_GetTeam(uVar8);
+          if ((cVar1 != '\x06') && (cVar1 != '\x05')) break;
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+          uVar8 = RivalDb_Get(uVar2);
+          uVar4 = RivalRec_GetTeam(uVar8);
+          UiElem_SetPropInt(unaff_s1_lo,
+                            (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
+                            *(int *)(&DAT_0032c130 + (uVar4 & 0xff) * 4));
+          UiElem_SetPropFloat(unaff_s1_lo,
+                              (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),
+                              8,(char)_s_SectionSelA * '\x03');
+          UiElem_SetPropFloat(unaff_s1_lo,
+                              (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),
+                              8,(char)_s_SectionSelA * '\x03');
+        }
+        if (cVar1 != '\x01') break;
+        uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+        uVar8 = RivalDb_Get(uVar2);
+        sVar3 = RivalRec_GetId(uVar8);
+        iVar5 = Profile_Get(0);
+        if (*(short *)(iVar5 + sVar3 * 2 + 0x4b7c) < 1) {
+          uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+          uVar8 = RivalDb_Get(uVar2);
+          uVar4 = RivalRec_GetTeam(uVar8);
+          UiElem_SetPropInt(unaff_s1_lo,
+                            (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
+                            *(int *)(&DAT_0032c130 + (uVar4 & 0xff) * 4));
+          UiElem_SetPropFloat(unaff_s1_lo,
+                              (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),
+                              8,(char)_s_SectionSelA * '\x03');
+        }
+        else {
+          UiElem_SetPropInt(unaff_s1_lo,
+                            (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
+                            0);
+          UiElem_SetPropFloat(unaff_s1_lo,
+                              (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),
+                              8,(char)_s_SectionSelA * '\x03');
+        }
+        UiElem_SetPropFloat(unaff_s1_lo,
+                            (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),8,
+                            (char)_s_SectionSelA * '\x03');
+      }
+      if (cVar1 != '\0') break;
+      uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+      uVar8 = RivalDb_Get(uVar2);
+      sVar3 = RivalRec_GetId(uVar8);
+      iVar5 = Profile_Get(0);
+      if (*(short *)(iVar5 + sVar3 * 2 + 0x4b7c) < 1) {
+        uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+        uVar8 = RivalDb_Get(uVar2);
+        lVar6 = RivalRec_IsValid(uVar8);
+        if (lVar6 == 0) goto LAB_00254538;
+        UiElem_SetPropInt(unaff_s1_lo,
+                          (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,1)
+        ;
+        UiElem_SetPropFloat(unaff_s1_lo,
+                            (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8,
+                            (char)_s_SectionSelA * '\x03');
+      }
+      else {
+LAB_00254538:
+        uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+        uVar8 = RivalDb_Get(uVar2);
+        uVar4 = RivalRec_GetTeam(uVar8);
+        UiElem_SetPropInt(unaff_s1_lo,
+                          (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
+                          *(int *)(&DAT_0032c130 + (uVar4 & 0xff) * 4));
+        uVar8 = Profile_Get(0);
+        uVar7 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+        sVar3 = Profile_GetRivalBattleCount(uVar8,uVar7);
+        if (sVar3 < 1) {
+          UiElem_SetPropFloat(unaff_s1_lo,
+                              (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),
+                              8,(char)_s_SectionSelA * '\x03');
+        }
+        else {
+          UiElem_SetPropFloat(unaff_s1_lo,
+                              (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),
+                              8,(char)_s_SectionSelA * '\x03');
+        }
+      }
+      UiElem_SetPropFloat(unaff_s1_lo,
+                          (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),8,
+                          (char)_s_SectionSelA * '\x03');
+    }
+    if (cVar1 != '\r') break;
+    UiElem_SetPropFloat(unaff_s1_lo,
+                        (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8,
+                        (byte)_s_SectionSelA);
+    UiElem_SetPropFloat(unaff_s1_lo,
+                        (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c0b0),8,
+                        (byte)_s_SectionSelA);
+  } while( true );
+  uVar2 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+  uVar8 = RivalDb_Get(uVar2);
+  uVar4 = RivalRec_GetTeam(uVar8);
+  UiElem_SetPropInt(unaff_s1_lo,
+                    (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),9,
+                    *(int *)(&DAT_0032c130 + (uVar4 & 0xff) * 4));
+  uVar8 = Profile_Get(0);
+  uVar7 = RivalSchedule_Get(_s_SectionSelA,_s_SectionSelB);
+  sVar3 = Profile_GetRivalBattleCount(uVar8,uVar7);
+  if (sVar3 < 1) {
+    UiElem_SetPropFloat(unaff_s1_lo,
+                        (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8,
+                        (char)_s_SectionSelA * '\x03');
+  }
+  else {
+    UiElem_SetPropFloat(unaff_s1_lo,
+                        (long)*(int *)(_s_SectionSelB * 4 + _s_SectionSelA * 0x18 + 0x32c030),8,
+                        (char)_s_SectionSelA * '\x03');
+  }
+  goto LAB_00254970;
 }
 
 // 0x002551a0  size 0x18

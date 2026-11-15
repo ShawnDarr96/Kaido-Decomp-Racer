@@ -692,8 +692,6 @@ int MenuObjSet_GetEntry(int param_1,int param_2)
 }
 
 // 0x002d53b0  size 0x808
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_MenuObj_StepState(byte *param_1,uint param_2,int *param_3)
 
 {
@@ -726,45 +724,45 @@ void maybe_MenuObj_StepState(byte *param_1,uint param_2,int *param_3)
                     /* WARNING: Switch is manually overridden */
     switch(*param_1) {
     case 0:
-      uVar13 = _g_SceneObjShared1;
-      if (param_2 <= _g_SceneObjShared1) {
+      uVar13 = g_SceneObjShared1;
+      if (param_2 <= g_SceneObjShared1) {
         uVar13 = param_2;
       }
       iVar15 = *(int *)(param_1 + 8);
       goto LAB_002d54b4;
     case 1:
-      uVar13 = _g_AssetShared1;
-      if (param_2 <= _g_AssetShared1) {
+      uVar13 = g_AssetShared1;
+      if (param_2 <= g_AssetShared1) {
         uVar13 = param_2;
       }
       break;
     case 2:
-      uVar13 = _g_AssetShared3;
-      if (param_2 <= _g_AssetShared3) {
+      uVar13 = g_AssetShared3;
+      if (param_2 <= g_AssetShared3) {
         uVar13 = param_2;
       }
       break;
     case 4:
-      uVar13 = _g_CourseShared7;
-      if (param_2 <= _g_CourseShared7) {
+      uVar13 = g_CourseShared7;
+      if (param_2 <= g_CourseShared7) {
         uVar13 = param_2;
       }
       break;
     case 5:
-      uVar13 = _g_CourseShared6;
-      if (param_2 <= _g_CourseShared6) {
+      uVar13 = g_CourseShared6;
+      if (param_2 <= g_CourseShared6) {
         uVar13 = param_2;
       }
       break;
     case 6:
-      uVar13 = _g_MenuObjShared1;
-      if (param_2 <= _g_MenuObjShared1) {
+      uVar13 = g_MenuObjShared1;
+      if (param_2 <= g_MenuObjShared1) {
         uVar13 = param_2;
       }
       break;
     case 7:
-      uVar13 = _g_MenuObjShared2;
-      if (param_2 <= _g_MenuObjShared2) {
+      uVar13 = g_MenuObjShared2;
+      if (param_2 <= g_MenuObjShared2) {
         uVar13 = param_2;
       }
     }
@@ -1238,7 +1236,7 @@ void maybe_GarageBg_DrawObjects(void)
   undefined4 uStack_4;
   
   iVar2 = _s_GarageBgVar1;
-  for (iVar1 = _g_MenuObjShared1; iVar1 != 0; iVar1 = iVar1 + -1) {
+  for (iVar1 = g_MenuObjShared1; iVar1 != 0; iVar1 = iVar1 + -1) {
     if ((*(uint *)(iVar2 + 0x28) & 0xc) != 0) {
       uStack_4 = 1;
       uStack_10 = 0;
@@ -1308,7 +1306,7 @@ void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
   iVar1 = iVar1 + 0x1400;
   Mem_Set16(0x46a190,0,0x20);
   _g_GarageBgData = Mem_AllocAligned(iVar1 * param_2,0x40,param_1);
-  _g_MenuObjShared1 = param_2;
+  g_MenuObjShared1 = param_2;
   _g_GarageBgBuf = Mem_Alloc16(param_2 * 0xb0,param_1);
   uVar5 = 0;
   _s_GarageBg_Alloc_1 = _g_GarageBgBuf + param_2 * 0x28;
@@ -2256,7 +2254,7 @@ void maybe_ShowroomBg_DrawObjects(void)
   undefined4 uStack_4;
   
   iVar2 = _s_ShowroomBgVar1;
-  for (iVar1 = _g_MenuObjShared2; iVar1 != 0; iVar1 = iVar1 + -1) {
+  for (iVar1 = g_MenuObjShared2; iVar1 != 0; iVar1 = iVar1 + -1) {
     if ((*(uint *)(iVar2 + 0x28) & 0xc) != 0) {
       uStack_4 = 1;
       uStack_10 = 0;
@@ -2326,7 +2324,7 @@ void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
   iVar1 = iVar1 + 0x1400;
   Mem_Set16(0x46a230,0,0x20);
   _g_ShowroomBgData = Mem_AllocAligned(iVar1 * param_2,0x40,param_1);
-  _g_MenuObjShared2 = param_2;
+  g_MenuObjShared2 = param_2;
   _g_ShowroomBgBuf = Mem_Alloc16(param_2 << 7,param_1);
   uVar5 = 0;
   _s_ShowroomBg_Alloc_1 = _g_ShowroomBgBuf + param_2 * 0x28;

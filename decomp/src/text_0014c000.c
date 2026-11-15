@@ -731,7 +731,7 @@ void Light_UpdateMatrices(undefined8 param_1)
   return;
 }
 
-// 0x0014d2a0  size 0x410
+// 0x0014d2a0  size 0x40c
 /* 13 callers */
 
 void Model_Relocate(int param_1)
@@ -896,6 +896,95 @@ void Model_Relocate(int param_1)
     }
   }
   return;
+}
+
+// 0x0014d6b0  size 0x4
+/* follows Model_Relocate; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+void Model_Relocate_Orphan2
+               (int param_1,uint param_2,undefined2 param_3,uint param_4,uint param_5,uint param_6,
+               uint param_7,uint param_8)
+
+{
+  uint uVar1;
+  uint in_v1_lo;
+  uint *in_t4_lo;
+  uint *in_t5_lo;
+  uint in_t6_lo;
+  uint in_t7_lo;
+  undefined4 unaff_s0_lo;
+  undefined4 unaff_s0_hi;
+  ushort unaff_s1_lo;
+  ushort unaff_s2_lo;
+  uint *in_t8_lo;
+  int *in_t9_lo;
+  
+  *(undefined2 *)(in_t8_lo + 0x16) = param_3;
+  do {
+    *(ulong *)(in_t8_lo + 0x12) = CONCAT44(unaff_s0_hi,unaff_s0_lo);
+    do {
+      uVar1 = *in_t8_lo;
+      if ((((uVar1 & 0x1040) == 0) || ((uVar1 & 0x20) == 0)) && ((uVar1 & 0x100) == 0)) {
+        in_t8_lo[0x1b] = 0;
+      }
+      else {
+        in_t8_lo[0x1b] = param_4;
+      }
+      in_t6_lo = in_t6_lo + 1;
+      in_t8_lo = in_t8_lo + (in_t8_lo[0x1e] + 1) * 4 + 0x28;
+      if (in_t4_lo[3] <= in_t6_lo) {
+        do {
+          do {
+            in_t7_lo = in_t7_lo + 1;
+            in_t9_lo = in_t9_lo + 1;
+            if (*(uint *)(param_1 + 0x24) <= in_t7_lo) {
+              return;
+            }
+            in_t5_lo = (uint *)*in_t9_lo;
+            if ((*in_t5_lo & 0x10) == 0) {
+              in_t4_lo = (uint *)0x0;
+            }
+            else {
+              in_t4_lo = in_t5_lo + 0x14;
+            }
+          } while ((in_t4_lo == (uint *)0x0) || ((in_t5_lo[2] & param_8) != 0));
+          in_t8_lo = in_t4_lo + 0xc;
+          *in_t5_lo = *in_t5_lo | param_8;
+          *in_t5_lo = *in_t5_lo & param_7;
+          in_t6_lo = 0;
+        } while (in_t4_lo[3] == 0);
+      }
+      if ((*in_t8_lo & 2) != 0) {
+        *in_t8_lo = *in_t8_lo & param_2;
+      }
+      uVar1 = *in_t8_lo;
+      if ((uVar1 & 0x100) == 0) {
+        if ((uVar1 & 0x40) != 0) {
+          *in_t8_lo = *in_t8_lo | 1;
+        }
+      }
+      else {
+        *in_t8_lo = uVar1 & in_v1_lo;
+        *in_t8_lo = *in_t8_lo | 0x40;
+        in_t5_lo[2] = in_t5_lo[2] | 2;
+      }
+      if ((*in_t8_lo & param_6) == 0) {
+        if ((*in_t8_lo & 0x10) == 0) {
+          *in_t5_lo = *in_t5_lo | 0x20;
+        }
+        else {
+          *in_t5_lo = *in_t5_lo | 0x40;
+        }
+      }
+      else {
+        *in_t5_lo = *in_t5_lo | 0x20;
+      }
+      if ((*in_t8_lo & 0x80) != 0) {
+        *(ushort *)(in_t8_lo + 0x16) = (ushort)in_t8_lo[0x16] & unaff_s1_lo | unaff_s2_lo;
+      }
+    } while ((*in_t8_lo & param_5) == 0);
+  } while( true );
 }
 
 // 0x0014d6c4  size 0x14
@@ -1476,6 +1565,51 @@ void MoviePlayer_Open_Callback1(void)
 
 {
   maybe_Movie_iSuspendSelf(_g_MoviePlayer);
+  return;
+}
+
+// 0x0014e590  size 0x148
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* address loaded as a constant in MoviePlayer_Open */
+
+void MoviePlayer_Open_Callback2(void)
+
+{
+  long lVar1;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  undefined4 uStack_8;
+  
+  lVar1 = MoviePlayer_Thread();
+  while (lVar1 != 0) {
+    Movie_Close(_g_MoviePlayer);
+    CdStream_Close();
+    *(undefined4 *)(_g_MoviePlayer + 0x168) = *(undefined4 *)(_g_MoviePlayer + 0x164);
+    *(undefined4 *)(_g_MoviePlayer + 0x16c) = *(undefined4 *)(_g_MoviePlayer + 0x164);
+    uStack_10 = *(undefined4 *)(_g_MoviePlayer + 0x158);
+    uStack_c = *(undefined4 *)(_g_MoviePlayer + 0x160);
+    uStack_8 = *(undefined4 *)(_g_MoviePlayer + 0x164);
+    CdStream_Open(&uStack_10);
+    Movie_Start(_g_MoviePlayer,*(undefined4 *)(_g_MoviePlayer + 0x194),
+                *(undefined4 *)(_g_MoviePlayer + 0x1e0),1);
+    *(undefined4 *)(_g_MoviePlayer + 0x154) = 1;
+    lVar1 = MoviePlayer_Thread();
+  }
+  if ((*(uint *)(_g_MoviePlayer + 0x15c) & 1) != 0) {
+    lVar1 = Movie_GetReadyCount(_g_MoviePlayer + 0x80);
+    while (lVar1 != 0) {
+      maybe_Movie_iSuspendSelf(_g_MoviePlayer);
+      lVar1 = Movie_GetReadyCount(_g_MoviePlayer + 0x80);
+    }
+  }
+  if ((*(uint *)(_g_MoviePlayer + 0x15c) & 1) != 0) {
+    *(undefined4 *)(_g_MoviePlayer + 0x198) = 0;
+  }
+  if ((*(uint *)(_g_MoviePlayer + 0x15c) & 2) != 0) {
+    MovieSnd_Start(_g_MoviePlayer + 0x1e8);
+    *(undefined4 *)(_g_MoviePlayer + 0x1e4) = 0;
+  }
+  *(undefined4 *)(_g_MoviePlayer + 0x154) = 4;
   return;
 }
 

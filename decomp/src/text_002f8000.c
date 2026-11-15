@@ -2255,6 +2255,17 @@ LAB_002fb138:
   return;
 }
 
+// 0x002fb380  size 0x8
+/* follows AttractTask_Update; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void AttractTask_Update_Orphan1(int param_1)
+
+{
+  maybe_AttractTask_Update(*(undefined4 *)(param_1 + 0x14));
+  return;
+}
+
 // 0x002fb390  size 0xc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -2281,7 +2292,7 @@ void maybe_AttractTask_Start(int param_1)
   _g_RaceSndShared1 = maybe_RaceResult_GetCategory();
   _g_DemoShared1 = 1;
   RaceScene_SetFlags(0x100);
-  *(undefined1 **)(param_1 + 0x1c) = &LAB_002fb380;
+  *(code **)(param_1 + 0x1c) = AttractTask_Update_Orphan1;
   return;
 }
 

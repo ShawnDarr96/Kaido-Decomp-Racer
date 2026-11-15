@@ -1290,7 +1290,7 @@ int SeqGen_EmitEvent(undefined8 param_1,undefined8 param_2,int *param_3,long par
   return iVar4;
 }
 
-// 0x002ba4b0  size 0xe74
+// 0x002ba4b0  size 0xe50
 undefined4 SeqGen_BuildPart(undefined8 param_1,int param_2)
 
 {
@@ -1764,6 +1764,330 @@ undefined4 SeqGen_BuildPart(undefined8 param_1,int param_2)
     uVar11 = 0;
   }
   return uVar11;
+}
+
+// 0x002bb324  size 0x24
+/* follows SeqGen_BuildPart; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void SeqGen_BuildPart_Orphan2(undefined4 param_1)
+
+{
+  bool bVar1;
+  byte bVar2;
+  byte bVar3;
+  undefined4 uVar4;
+  int in_v0_lo;
+  long lVar5;
+  undefined4 in_v0_udw;
+  undefined1 *in_v1_lo;
+  uint uVar6;
+  byte *unaff_s0_lo;
+  int unaff_s1_lo;
+  int unaff_s3_lo;
+  int iVar7;
+  int iVar8;
+  ulong unaff_s4;
+  ulong unaff_s5;
+  int iVar9;
+  ulong unaff_s6;
+  int unaff_s7_lo;
+  undefined1 uStack00000000;
+  int iStack000000a0;
+  int iStack000000a4;
+  undefined4 in_stack_000000a8;
+  int iStack000000b0;
+  int iStack000000b4;
+  undefined4 in_stack_000000b8;
+  undefined4 in_stack_000000c0;
+  undefined4 in_stack_000000c8;
+  int in_stack_000000d0;
+  undefined4 in_stack_000000d8;
+  undefined4 uStack00000100;
+  undefined4 uStack00000104;
+  undefined4 in_stack_00000108;
+  int iStack00000110;
+  undefined4 uStack00000114;
+  int in_stack_00000120;
+  int in_stack_00000130;
+  short *in_stack_00000140;
+  undefined1 uStack00000160;
+  int in_stack_00002568;
+  byte in_stack_00002570;
+  char in_stack_00002572;
+  byte in_stack_00002580;
+  byte in_stack_00002581;
+  char in_stack_00002582;
+  int in_stack_00002588;
+  undefined1 auStack_7ffffffe [2];
+  undefined4 auStack_7ffffffc [536870911];
+  
+  do {
+    *(undefined4 *)(in_v1_lo + in_v0_lo + 0x2160) = param_1;
+    while( true ) {
+      maybe_SeqGen_FindLoopPoint();
+      iVar8 = 0;
+      iStack000000a0 = (int)unaff_s4 + in_stack_00002568;
+      iStack000000a4 = iStack000000a0 >> 0x1f;
+      in_stack_000000a8 = in_v0_udw;
+      while( true ) {
+        if ((((in_stack_00002570 & 0xf0) == 0xb0) && (*unaff_s0_lo == 99)) &&
+           (in_stack_00002572 == '\0')) {
+          bVar1 = true;
+        }
+        else {
+          bVar1 = false;
+        }
+        if (!bVar1) break;
+        maybe_SeqGen_FindLoopPoint();
+        iVar8 = iVar8 + in_stack_00002568 * 2;
+        maybe_SeqGen_FindLoopPoint();
+      }
+      unaff_s4 = (ulong)(iStack000000a0 + iVar8);
+      while( true ) {
+        if ((ulong)(long)in_stack_00000130 < unaff_s4) {
+          unaff_s4 = (long)in_stack_00000130;
+        }
+        while( true ) {
+          while( true ) {
+            if (((in_stack_00000120 == 0) && (CONCAT44(uStack00000114,iStack00000110) <= unaff_s6))
+               && (CONCAT44(uStack00000114,iStack00000110) <= unaff_s4)) {
+              iVar8 = maybe_SeqGen_EmitControl();
+              unaff_s5 = (ulong)(iStack00000110 + iVar8);
+              in_stack_00000120 = 1;
+            }
+            iVar8 = (int)unaff_s5;
+            if ((CONCAT44(uStack00000104,uStack00000100) <= unaff_s6) &&
+               (CONCAT44(uStack00000104,uStack00000100) <= unaff_s4)) {
+              SeqGen_EmitEvent();
+              SeqGen_EmitEvent();
+              maybe_SeqGen_EmitNote();
+              lVar5 = maybe_SeqGen_ReadVarLen();
+              if (lVar5 != 0) {
+                *(undefined1 *)((int)register0x000001d0 + in_stack_00002588 + 0x2560) = 0xff;
+                *(undefined1 *)((int)register0x000001d0 + in_stack_00002588 + 0x2561) = 0x2f;
+                iVar9 = in_stack_00002588 + 3;
+                *(undefined1 *)((int)register0x000001d0 + in_stack_00002588 + 0x2562) = 0;
+                iVar8 = *(int *)(unaff_s1_lo + 0x6c);
+                uVar6 = *(uint *)(unaff_s1_lo + 0x68);
+                bVar1 = false;
+                if ((uVar6 < (uint)(iVar8 + iVar9)) && (bVar1 = true, uVar6 < (uint)(iVar8 + iVar9))
+                   ) {
+                  do {
+                    if (*(int *)(unaff_s1_lo + 100) != 0) {
+                      uVar4 = Mem_Realloc(*(int *)(unaff_s1_lo + 100),uVar6 << 1,
+                                          *(undefined4 *)(unaff_s1_lo + 0x60));
+                      *(undefined4 *)(unaff_s1_lo + 100) = uVar4;
+                      if (*(int *)(unaff_s1_lo + 100) != 0) {
+                        *(uint *)(unaff_s1_lo + 0x68) = uVar6 << 1;
+                        uVar6 = *(int *)(unaff_s1_lo + 0x68) - 1;
+                        if (*(uint *)(unaff_s1_lo + 0x6c) <= uVar6) {
+                          uVar6 = *(uint *)(unaff_s1_lo + 0x6c);
+                        }
+                        *(uint *)(unaff_s1_lo + 0x6c) = uVar6;
+                      }
+                    }
+                    iVar8 = *(int *)(unaff_s1_lo + 0x6c);
+                    uVar6 = *(uint *)(unaff_s1_lo + 0x68);
+                  } while (uVar6 < (uint)(iVar8 + iVar9));
+                }
+                maybe_Mem_CopyQwords
+                          (*(int *)(unaff_s1_lo + 100) + iVar8,(int)register0x000001d0 + 0x2560,
+                           iVar9);
+                *(int *)(unaff_s1_lo + 0x6c) = *(int *)(unaff_s1_lo + 0x6c) + iVar9;
+                if (bVar1) {
+                  *(undefined4 *)(unaff_s1_lo + 0x50) = *(undefined4 *)(unaff_s1_lo + 100);
+                }
+                *(undefined1 *)(unaff_s1_lo + 0x7c) = 0;
+              }
+              *(int *)(unaff_s7_lo + 0x89e8) = 1 - *(int *)(unaff_s7_lo + 0x89e8);
+              return;
+            }
+            if (unaff_s4 < unaff_s6) break;
+            if (unaff_s5 < unaff_s6) {
+              iVar8 = (int)unaff_s6 - iVar8;
+            }
+            else {
+              iVar8 = 0;
+            }
+            uVar4 = in_stack_00000108;
+            maybe_SeqGen_AppendBytes();
+            if (unaff_s5 < unaff_s6) {
+              unaff_s5 = unaff_s6;
+            }
+            uVar6 = (uint)in_stack_00002580;
+            if ((uVar6 & 0xf0) == 0x90) {
+              *(undefined4 *)
+               (&uStack00000160 + (in_stack_00002581 & 0x7f) * 4 + (uVar6 & 0xf) * 0x200) = 1;
+            }
+            else if ((uVar6 & 0xf0) == 0x80) {
+              *(undefined4 *)
+               (&uStack00000160 + (in_stack_00002581 & 0x7f) * 4 + (uVar6 & 0xf) * 0x200) = 0;
+            }
+            maybe_SeqGen_FindLoopPoint();
+            if ((((in_stack_00002580 & 0xf0) == 0xb0) && (in_stack_00002581 == 99)) &&
+               (in_stack_00002582 == '\x01')) {
+              bVar1 = true;
+            }
+            else {
+              bVar1 = false;
+            }
+            if (!bVar1) {
+              if (((in_stack_00002580 == 0xff) && (in_stack_00002581 == 0x2f)) &&
+                 (in_stack_00002582 == '\0')) {
+                bVar1 = true;
+              }
+              else {
+                bVar1 = false;
+              }
+            }
+            if (bVar1) {
+              unaff_s6 = 0xffffffffffffffff;
+            }
+            else {
+              iVar9 = 0;
+              iStack000000b0 = (int)unaff_s6 + iVar8;
+              iStack000000b4 = iStack000000b0 >> 0x1f;
+              in_stack_000000b8 = uVar4;
+              while( true ) {
+                if ((((in_stack_00002580 & 0xf0) == 0xb0) && (in_stack_00002581 == 99)) &&
+                   (in_stack_00002582 == '\0')) {
+                  bVar1 = true;
+                }
+                else {
+                  bVar1 = false;
+                }
+                if (!bVar1) break;
+                maybe_SeqGen_FindLoopPoint();
+                iVar9 = iVar9 + iVar8 * 2;
+                maybe_SeqGen_FindLoopPoint();
+              }
+              unaff_s6 = (ulong)(iStack000000b0 + iVar9);
+            }
+          }
+          if (unaff_s4 < (ulong)(long)in_stack_00000130) break;
+          if (unaff_s5 < (ulong)(long)in_stack_00000130) {
+            iVar8 = in_stack_00000130 - iVar8;
+          }
+          else {
+            iVar8 = 0;
+          }
+          lVar5 = SeqGen_EmitEvent();
+          if (0 < lVar5) {
+            unaff_s5 = (ulong)in_stack_00000130;
+          }
+          in_stack_00000140 = *(short **)(in_stack_00000140 + 4);
+          if (in_stack_00000140 == (short *)0x0) {
+            unaff_s4 = 0xffffffffffffffff;
+          }
+          else {
+            iVar9 = *in_stack_00000140 * 0x1e0;
+            if (iVar9 < 0) {
+              iVar9 = iVar9 + 3;
+            }
+            in_stack_00000130 = ((int)*in_stack_00000140 + (int)in_stack_00000140[1]) * 0x1e0;
+            if (in_stack_00000130 < 0) {
+              in_stack_00000130 = in_stack_00000130 + 3;
+            }
+            in_stack_00000130 = in_stack_00000130 >> 2;
+            *(undefined4 *)(unaff_s3_lo + 0x58) = 0;
+            *(undefined4 *)(unaff_s3_lo + 0x6c) = 0;
+            *(undefined1 *)(unaff_s3_lo + 0x7c) = 0;
+            *(undefined4 *)(unaff_s3_lo + 0x78) = 0;
+            maybe_SeqGen_FindLoopPoint();
+            iVar7 = 0;
+            while( true ) {
+              if ((((in_stack_00002570 & 0xf0) == 0xb0) && (*unaff_s0_lo == 99)) &&
+                 (in_stack_00002572 == '\0')) {
+                bVar1 = true;
+              }
+              else {
+                bVar1 = false;
+              }
+              if (!bVar1) break;
+              maybe_SeqGen_FindLoopPoint();
+              iVar7 = iVar7 + iVar8 * 2;
+              maybe_SeqGen_FindLoopPoint();
+            }
+            unaff_s4 = (ulong)((iVar9 >> 2) + iVar8 + iVar7);
+          }
+        }
+        if (unaff_s5 < unaff_s4) {
+          in_stack_00002568 = (int)unaff_s4 - iVar8;
+        }
+        else {
+          in_stack_00002568 = 0;
+        }
+        if ((((in_stack_00002570 & 0xf0) == 0xb0) && (*unaff_s0_lo == 99)) &&
+           (in_stack_00002572 == '\x01')) {
+          bVar1 = true;
+        }
+        else {
+          bVar1 = false;
+        }
+        if (!bVar1) {
+          if (((in_stack_00002570 == 0xff) && (*unaff_s0_lo == 0x2f)) && (in_stack_00002572 == '\0')
+             ) {
+            bVar1 = true;
+          }
+          else {
+            bVar1 = false;
+          }
+        }
+        if (!bVar1) break;
+        if ((((in_stack_00002570 & 0xf0) != 0xb0) || (*unaff_s0_lo != 99)) ||
+           (bVar1 = true, in_stack_00002572 != '\x01')) {
+          bVar1 = false;
+        }
+        if (bVar1) {
+          *(undefined4 *)(unaff_s3_lo + 0x58) = 0;
+          *(undefined4 *)(unaff_s3_lo + 0x6c) = 0;
+          *(undefined1 *)(unaff_s3_lo + 0x7c) = 0;
+          *(undefined4 *)(unaff_s3_lo + 0x78) = 0;
+          do {
+            maybe_SeqGen_FindLoopPoint();
+            if ((((in_stack_00002570 & 0xf0) == 0xb0) && (*unaff_s0_lo == 99)) &&
+               (in_stack_00002572 == '\0')) {
+              bVar1 = true;
+            }
+            else {
+              bVar1 = false;
+            }
+          } while (!bVar1);
+          maybe_SeqGen_FindLoopPoint();
+          maybe_SeqGen_FindLoopPoint();
+          unaff_s4 = (ulong)((int)unaff_s4 + in_stack_00002568);
+        }
+        else {
+          unaff_s4 = 0xffffffffffffffff;
+        }
+      }
+      bVar2 = in_stack_00002570 & 0xf0;
+      bVar3 = (in_stack_00002570 & 0xf) + (char)in_stack_000000d0;
+      in_stack_00002570 = bVar2 | bVar3;
+      in_v0_udw = in_stack_000000d8;
+      if ((bVar2 | bVar3 & 0xf0) == 0xc0) {
+        *unaff_s0_lo = *unaff_s0_lo + (char)in_stack_000000c0;
+        in_v0_udw = in_stack_000000c8;
+      }
+      maybe_SeqGen_AppendBytes();
+      if (unaff_s5 < unaff_s4) {
+        unaff_s5 = unaff_s4;
+      }
+      uVar6 = (uint)in_stack_00002570;
+      if ((uVar6 & 0xf0) == 0x90) break;
+      if ((uVar6 & 0xf0) == 0x80) {
+        *(undefined4 *)
+         ((int)register0x000001d0 +
+         (*unaff_s0_lo & 0x7f) * 4 + (uVar6 - in_stack_000000d0 & 0xf) * 0x200 + 0x2160) = 0;
+        in_v0_udw = in_stack_000000d8;
+      }
+    }
+    param_1 = 1;
+    in_v1_lo = &uStack00000000 + (uVar6 - in_stack_000000d0 & 0xf) * 0x200;
+    in_v0_lo = (*unaff_s0_lo & 0x7f) << 2;
+    in_v0_udw = in_stack_000000d8;
+  } while( true );
 }
 
 // 0x002bb348  size 0x24

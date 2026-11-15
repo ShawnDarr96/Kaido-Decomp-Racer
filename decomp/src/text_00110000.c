@@ -2277,6 +2277,42 @@ void SyncDCache(ulong param_1,ulong param_2)
   return;
 }
 
+// 0x00112118  size 0x14
+/* follows SyncDCache; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+void SyncDCache_Orphan1(uint param_1,uint param_2)
+
+{
+  uint uVar1;
+  int iVar2;
+  
+  iVar2 = 0;
+  do {
+    SYNC(0);
+    cacheOp(0x10,iVar2);
+    SYNC(0);
+    uVar1 = (TagLo & 0xfffff000) + iVar2;
+    if (((param_1 & 0xffffffc0) <= uVar1) && (uVar1 <= (param_2 & 0xffffffc0))) {
+      SYNC(0);
+      cacheOp(0x14,iVar2);
+      SYNC(0);
+    }
+    SYNC(0);
+    cacheOp(0x10,iVar2 + 1);
+    SYNC(0);
+    uVar1 = (TagLo & 0xfffff000) + iVar2;
+    if (((param_1 & 0xffffffc0) <= uVar1) && (uVar1 <= (param_2 & 0xffffffc0))) {
+      SYNC(0);
+      cacheOp(0x14,iVar2 + 1);
+      SYNC(0);
+    }
+    SYNC(0);
+    iVar2 = iVar2 + 0x40;
+  } while (iVar2 < 0x1000);
+  return;
+}
+
 // 0x00112130  size 0xa4
 void maybe__InvalidDCacheLines(uint param_1,uint param_2)
 
@@ -2362,6 +2398,16 @@ void InvalidDCache_Orphan1(uint param_1,uint param_2)
     iVar2 = iVar2 + 0x40;
   } while (iVar2 < 0x1000);
   return;
+}
+
+// 0x00112270  size 0x10
+/* follows InvalidDCache; no call, branch, pointer or constant reference (exception landing pad or
+   dead code) */
+
+uint InvalidDCache_Orphan2(void)
+
+{
+  return (Status ^ 1) & 1;
 }
 
 // 0x00112280  size 0x68
@@ -3172,7 +3218,7 @@ int maybe_Kprintf_DoubleToInt(ulong param_1)
   return iVar1;
 }
 
-// 0x00113230  size 0x160
+// 0x00113230  size 0x158
 void maybe_Kprintf_FormatDouble(undefined8 param_1)
 
 {
@@ -3211,6 +3257,17 @@ void maybe_Kprintf_FormatDouble(undefined8 param_1)
     return;
   }
   maybe_kprintf(0x35f1b8,iVar3);
+  return;
+}
+
+// 0x00113390  size 0x8
+/* follows Kprintf_FormatDouble; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Kprintf_FormatDouble_Orphan1(void)
+
+{
+  maybe_kprintf();
   return;
 }
 

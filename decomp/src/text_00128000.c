@@ -889,7 +889,7 @@ undefined8 __mdiff(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   return uVar6;
 }
 
-// 0x00129098  size 0xc8
+// 0x00129098  size 0xc0
 /* follows __mdiff; no call, branch, pointer or constant references it (exception landing pad or
    dead code) */
 
@@ -918,6 +918,16 @@ ulong __mdiff_Orphan1(undefined8 param_1)
     }
   }
   return uVar3;
+}
+
+// 0x00129160  size 0x8
+/* follows __mdiff; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+void __mdiff_Orphan2(void)
+
+{
+  return;
 }
 
 // 0x00129168  size 0x198
@@ -2692,6 +2702,79 @@ void signal(undefined8 param_1,undefined8 param_2)
   return;
 }
 
+// 0x0012ac08  size 0x1c
+/* follows signal; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+undefined4 signal_Orphan1(void)
+
+{
+  undefined *puVar1;
+  undefined4 uVar2;
+  undefined4 *puVar3;
+  long lVar4;
+  int iVar5;
+  
+  puVar1 = PTR_DAT_0030a090;
+  if (*(int *)(PTR_DAT_0030a090 + 0x1d4) == 0) {
+    lVar4 = _malloc_r(PTR_DAT_0030a090,0x80);
+    uVar2 = 0xffffffff;
+    *(int *)(puVar1 + 0x1d4) = (int)lVar4;
+    if (lVar4 != 0) {
+      puVar3 = (undefined4 *)((int)lVar4 + 0x7c);
+      iVar5 = 0x1f;
+      do {
+        iVar5 = iVar5 + -1;
+        *puVar3 = 0;
+        puVar3 = puVar3 + -1;
+      } while (-1 < iVar5);
+      uVar2 = 0;
+    }
+  }
+  else {
+    uVar2 = 0;
+  }
+  return uVar2;
+}
+
+// 0x0012ac28  size 0x20
+/* follows signal; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+undefined4 signal_Orphan2(ulong param_1)
+
+{
+  code *pcVar1;
+  undefined *puVar2;
+  undefined4 uVar3;
+  long lVar4;
+  undefined4 *puVar5;
+  int iVar6;
+  
+  puVar2 = PTR_DAT_0030a090;
+  uVar3 = 0xffffffff;
+  if (param_1 < 0x20) {
+    iVar6 = *(int *)(PTR_DAT_0030a090 + 0x1d4);
+    if (iVar6 == 0) {
+      lVar4 = maybe__init_signal_r();
+      if (lVar4 != 0) {
+        return 0xffffffff;
+      }
+      iVar6 = *(int *)(puVar2 + 0x1d4);
+    }
+    puVar5 = (undefined4 *)((int)param_1 * 4 + iVar6);
+    pcVar1 = (code *)*puVar5;
+    uVar3 = 1;
+    if (((pcVar1 != (code *)0x0) && (uVar3 = 2, pcVar1 != (code *)0xffffffff)) &&
+       (uVar3 = 3, pcVar1 != (code *)0x1)) {
+      *puVar5 = 0;
+      (*pcVar1)(param_1);
+      uVar3 = 0;
+    }
+  }
+  return uVar3;
+}
+
 // 0x0012ac48  size 0x5c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -2713,6 +2796,42 @@ undefined4 maybe__getpid_r(void)
 
 {
   return 1;
+}
+
+// 0x0012acc0  size 0x4
+/* follows _getpid_r; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+void _getpid_r_Orphan2(undefined4 param_1,undefined1 *param_2,undefined8 param_3,undefined8 param_4,
+                      undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+
+{
+  undefined1 *apuStack_c0 [2];
+  undefined4 uStack_b8;
+  undefined2 uStack_b4;
+  undefined1 *puStack_b0;
+  undefined4 uStack_ac;
+  undefined4 uStack_6c;
+  undefined8 uStack_28;
+  undefined8 uStack_20;
+  undefined8 uStack_18;
+  undefined8 uStack_10;
+  undefined8 uStack_8;
+  
+  uStack_b4 = 0x208;
+  uStack_ac = 0x7fffffff;
+  uStack_b8 = 0x7fffffff;
+  apuStack_c0[0] = param_2;
+  puStack_b0 = param_2;
+  uStack_6c = param_1;
+  uStack_28 = param_4;
+  uStack_20 = param_5;
+  uStack_18 = param_6;
+  uStack_10 = param_7;
+  uStack_8 = param_8;
+  vfprintf(apuStack_c0,param_3,&uStack_28);
+  *apuStack_c0[0] = 0;
+  return;
 }
 
 // 0x0012acc4  size 0x84

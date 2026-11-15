@@ -2,6 +2,109 @@
 // Address range 0x00154000 - 0x00158000
 #include "ghidra_types.h"
 
+// 0x00154230  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Snd_StreamUpdate; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void Snd_StreamUpdate_Orphan2(void)
+
+{
+  undefined4 uVar1;
+  char cVar2;
+  long lVar3;
+  int iVar4;
+  uint uVar5;
+  int *unaff_s0_lo;
+  undefined *puVar6;
+  int unaff_s1_lo;
+  int iVar7;
+  int unaff_s2_lo;
+  uint unaff_s3_lo;
+  char *unaff_s4_lo;
+  undefined4 uStack00000068;
+  
+code_r0x00154230:
+  *unaff_s4_lo = '\0';
+switchD_0015403c_caseD_0:
+  iVar4 = unaff_s1_lo;
+  iVar7 = unaff_s2_lo;
+  unaff_s3_lo = unaff_s3_lo + 1;
+  unaff_s2_lo = iVar7 + 0x28;
+  unaff_s1_lo = iVar4 + 0x1c;
+  if (1 < unaff_s3_lo) {
+    uVar5 = 0;
+    puVar6 = &s_SndVar1;
+    do {
+      DisableIntc(1);
+      if ((puVar6[0x298] == '\x05') &&
+         (lVar3 = IopStrm_WaitIdle(*(undefined4 *)(puVar6 + 0x29c)), lVar3 != 0)) {
+        puVar6[0x298] = '\x06';
+      }
+      EnableIntc(1);
+      uVar5 = uVar5 + 1;
+      puVar6 = puVar6 + 0x28;
+    } while (uVar5 < 2);
+    return;
+  }
+  unaff_s4_lo = (char *)(iVar7 + 0x2c0);
+  lVar3 = Rpc_GetPendingCount(0x42d824);
+  if (lVar3 == 0) {
+    return;
+  }
+  switch(*unaff_s4_lo) {
+  default:
+    goto switchD_0015403c_caseD_0;
+  case '\x02':
+    Snd_StreamPlayAll(*(undefined4 *)(iVar7 + 0x2c4));
+    goto switchD_0015403c_caseD_0;
+  case '\x03':
+    uStack00000068 = *(undefined4 *)(iVar4 + 0x284);
+    uVar1 = *(undefined4 *)(iVar7 + 0x2c4);
+    *unaff_s0_lo = *(int *)(iVar4 + 0x27c) * *(int *)(iVar4 + 0x288);
+    Snd_StreamFill(uVar1,&uStack00000068,1);
+    goto switchD_0015403c_caseD_0;
+  case '\x04':
+    iVar4 = *(int *)(iVar7 + 0x2c4) * 0x28;
+    IopStrm_Flush(*(undefined4 *)(&s_Snd_LoadSystemBanks_2 + iVar4));
+    (&s_Snd_LoadSystemBanks_1)[iVar4] = 5;
+    goto switchD_0015403c_caseD_0;
+  case '\x06':
+    iVar4 = *(int *)(iVar7 + 0x2c4) * 0x28;
+    DisableIntc(1);
+    _s_SndVar5 = Snd_QueueCmd4_Orphan1;
+    _s_SndVar6 = &s_Snd_LoadSystemBanks_1 + iVar4;
+    IopStrm_Stop(*(undefined4 *)(&s_Snd_LoadSystemBanks_2 + iVar4),
+                 *(undefined4 *)(&s_Snd_LoadSystemBanks_3 + iVar4));
+    (&s_Snd_LoadSystemBanks_1)[iVar4] = 7;
+    EnableIntc(1);
+    goto switchD_0015403c_caseD_0;
+  case '\b':
+    if (*(int *)(iVar7 + 0x2d8) == 1) {
+      IopStrm_IsStopped(*(undefined4 *)(iVar7 + 0x2c4));
+      *unaff_s4_lo = '\t';
+    }
+    goto switchD_0015403c_caseD_0;
+  case '\t':
+  case '\n':
+    break;
+  }
+  if ((*unaff_s4_lo == '\t') && (*(int *)(iVar7 + 0x2d8) == 0)) {
+    *unaff_s4_lo = '\n';
+    goto switchD_0015403c_caseD_0;
+  }
+  cVar2 = IopStrm_GetState(*(undefined4 *)(iVar7 + 0x2c4));
+  if (cVar2 != '\0') {
+    if (*unaff_s4_lo == '\n') {
+      IopStrm_IsPlaying(*(undefined4 *)(iVar7 + 0x2c4));
+    }
+    goto switchD_0015403c_caseD_0;
+  }
+  lVar3 = File_IsBusy(*(undefined4 *)(iVar7 + 0x2e4));
+  if (lVar3 == 0) goto switchD_0015403c_caseD_0;
+  goto code_r0x00154230;
+}
+
 // 0x00154244  size 0x14
 /* follows Snd_StreamUpdate; no call, branch, pointer or constant references it (exception landing
    pad or dead code) */

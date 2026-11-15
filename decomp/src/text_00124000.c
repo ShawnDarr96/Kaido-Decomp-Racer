@@ -1511,6 +1511,17 @@ void _cleanup_r(undefined8 param_1)
   return;
 }
 
+// 0x00126450  size 0x1c
+/* follows _cleanup_r; no call, branch, pointer or constant reference (exception landing pad or dead
+   code) */
+
+void _cleanup_r_Orphan1(void)
+
+{
+  maybe__fwalk(PTR_DAT_0030a090,0x126148);
+  return;
+}
+
 // 0x00126470  size 0x8c
 /* newlib stdio init; 9 callers */
 

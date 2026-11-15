@@ -1259,7 +1259,7 @@ undefined4 Tex_GetPsmInfo(uint param_1)
   return *(undefined4 *)(&DAT_00361530 + (param_1 & 0xff) * 4);
 }
 
-// 0x0013dca0  size 0x6f0
+// 0x0013dca0  size 0x6d4
 int Tex_BuildUploadPacket
               (ulong param_1,undefined8 param_2,undefined8 param_3,uint param_4,uint param_5,
               uint param_6,int param_7,long param_8)
@@ -1493,6 +1493,99 @@ LAB_0013df40:
     }
   }
   return iStack_20 + iVar8 + iStack_10;
+}
+
+// 0x0013e390  size 0x1c
+/* follows Tex_BuildUploadPacket; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+int Tex_BuildUploadPacket_Orphan2(void)
+
+{
+  int iVar1;
+  int in_v0_lo;
+  uint uVar2;
+  int unaff_s0_lo;
+  uint unaff_s1_lo;
+  uint unaff_s2_lo;
+  undefined4 unaff_s3_lo;
+  undefined4 unaff_s3_hi;
+  uint uVar3;
+  int unaff_s4_lo;
+  ulong uVar4;
+  ulong *puVar5;
+  int unaff_s6_lo;
+  int iVar6;
+  undefined4 unaff_s7_lo;
+  undefined4 unaff_s7_hi;
+  undefined1 unaff_s8_lo;
+  int in_stack_000000a0;
+  int *piStack000000b0;
+  uint uStack000000c0;
+  uint uStack000000d0;
+  uint uStack000000e0;
+  uint uStack000000f0;
+  int in_stack_00000120;
+  int in_stack_00000130;
+  
+  iVar6 = unaff_s6_lo + in_v0_lo;
+  if (1 < CONCAT44(unaff_s7_hi,unaff_s7_lo)) {
+    puVar5 = (ulong *)(unaff_s4_lo + 0x30);
+    *(undefined8 *)(unaff_s4_lo + 0x30) = 0;
+    piStack000000b0 = (int *)(unaff_s4_lo + 0x40);
+    *(undefined8 *)(unaff_s4_lo + 0x38) = 0;
+    uStack000000f0 = 0;
+    uStack000000e0 = 0xe;
+    uVar4 = 0;
+    uStack000000d0 = 0;
+    uStack000000c0 = 0x14;
+    if (CONCAT44(unaff_s7_hi,unaff_s7_lo) != 0) {
+      do {
+        uVar2 = 0;
+        uVar3 = (uint)uVar4;
+        if (CONCAT44(unaff_s3_hi,unaff_s3_lo) == 5) {
+          uVar2 = (unaff_s2_lo >> (uVar3 & 0x1f)) * (unaff_s1_lo >> (uVar3 & 0x1f));
+        }
+        else if (CONCAT44(unaff_s3_hi,unaff_s3_lo) == 4) {
+          uVar2 = (unaff_s2_lo >> (uVar3 & 0x1f)) * (unaff_s1_lo >> (uVar3 & 0x1f)) >> 1;
+        }
+        else if (CONCAT44(unaff_s3_hi,unaff_s3_lo) == 3) {
+          uVar2 = (unaff_s2_lo >> (uVar3 & 0x1f)) * (unaff_s1_lo >> (uVar3 & 0x1f)) * 4;
+        }
+        else if (CONCAT44(unaff_s3_hi,unaff_s3_lo) == 2) {
+          uVar2 = (unaff_s2_lo >> (uVar3 & 0x1f)) * (unaff_s1_lo >> (uVar3 & 0x1f)) * 3;
+        }
+        else if (CONCAT44(unaff_s3_hi,unaff_s3_lo) == 1) {
+          uVar2 = (unaff_s2_lo >> (uVar3 & 0x1f)) * (unaff_s1_lo >> (uVar3 & 0x1f)) * 2;
+        }
+        *piStack000000b0 = unaff_s0_lo * ((int)(unaff_s0_lo + uVar2 + -1) / unaff_s0_lo);
+        if ((uVar4 != 0) && (uVar4 < 4)) {
+          *puVar5 = *puVar5 | (ulong)(uint)(iVar6 << (uStack000000f0 & 0x1f));
+          iVar1 = Tex_GetBufferWidth(unaff_s8_lo,unaff_s2_lo >> (uVar3 & 0x1f));
+          uVar2 = uStack000000e0 & 0x1f;
+          uStack000000f0 = uStack000000f0 + 0x14;
+          uStack000000e0 = uStack000000e0 + 0x14;
+          *puVar5 = *puVar5 | (ulong)(uint)(iVar1 << uVar2);
+        }
+        if ((3 < uVar4) && (uVar4 < 7)) {
+          *(ulong *)(unaff_s4_lo + 0x38) =
+               *(ulong *)(unaff_s4_lo + 0x38) | (ulong)(uint)(iVar6 << (uStack000000d0 & 0x1f));
+          iVar1 = Tex_GetBufferWidth(unaff_s8_lo,unaff_s2_lo >> (uVar3 & 0x1f));
+          uVar2 = uStack000000c0 & 0x1f;
+          uStack000000d0 = uStack000000d0 + 0x14;
+          uStack000000c0 = uStack000000c0 + 0x14;
+          *(ulong *)(unaff_s4_lo + 0x38) =
+               *(ulong *)(unaff_s4_lo + 0x38) | (ulong)(uint)(iVar1 << uVar2);
+        }
+        iVar1 = Tex_GetPageCount(unaff_s8_lo,unaff_s2_lo >> (uVar3 & 0x1f),
+                                 unaff_s1_lo >> (uVar3 & 0x1f));
+        iVar6 = iVar6 + iVar1;
+        uVar4 = (ulong)(int)(uVar3 + 1);
+        piStack000000b0 = piStack000000b0 + 1;
+      } while (uVar4 < CONCAT44(unaff_s7_hi,unaff_s7_lo));
+    }
+  }
+  return in_stack_00000120 + in_stack_000000a0 + in_stack_00000130;
 }
 
 // 0x0013e3ac  size 0x1c

@@ -445,7 +445,7 @@ void Ai_AvoidCars(undefined8 param_1,undefined4 *param_2,undefined4 param_3,long
   return;
 }
 
-// 0x001d8920  size 0x129c
+// 0x001d8920  size 0x125c
 void Ai_ComputeTargetSpeed
                (float param_1,float param_2,int *param_3,int *param_4,int param_5,undefined8 param_6
                ,undefined4 param_7)
@@ -1159,6 +1159,48 @@ LAB_001d9930:
   return;
 }
 
+// 0x001d9bbc  size 0x34
+/* follows Ai_ComputeTargetSpeed; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void Ai_ComputeTargetSpeed_Orphan2(void)
+
+{
+  undefined4 unaff_s0_lo;
+  undefined2 unaff_s3_lo;
+  int unaff_s4_lo;
+  undefined4 in_f21;
+  undefined4 unaff_f20;
+  undefined4 in_f23;
+  undefined4 unaff_f22;
+  undefined4 in_f25;
+  undefined4 unaff_f24;
+  undefined4 unaff_f28;
+  undefined8 in_stack_000000d8;
+  undefined2 in_stack_00000170;
+  undefined8 in_stack_00000188;
+  undefined8 in_stack_000001b8;
+  
+  *in_stack_000001b8._4_4_ = in_stack_00000188._4_4_;
+  *(undefined2 *)(in_stack_000001b8._4_4_ + 1) = in_stack_00000170;
+  in_stack_000001b8._4_4_[2] = unaff_s4_lo + 1;
+  *(undefined2 *)(in_stack_000001b8._4_4_ + 3) = unaff_s3_lo;
+  in_stack_000001b8._4_4_[4] = unaff_f22;
+  in_stack_000001b8._4_4_[5] = in_f23;
+  in_stack_000001b8._4_4_[6] = unaff_f28;
+  in_stack_000001b8._4_4_[7] = 0x3f800000;
+  in_stack_000001b8._4_4_[8] = in_f21;
+  in_stack_000001b8._4_4_[9] = unaff_f20;
+  in_stack_000001b8._4_4_[10] = 0x447a0000;
+  in_stack_000001b8._4_4_[0xc] = in_stack_000000d8._4_4_;
+  in_stack_000001b8._4_4_[0xd] = unaff_f24;
+  in_stack_000001b8._4_4_[0xe] = in_f25;
+  in_stack_000001b8._4_4_[0xf] = 0x3f800000;
+  in_stack_000001b8._4_4_[0x10] = 0;
+  in_stack_000001b8._4_4_[0x11] = unaff_s0_lo;
+  return;
+}
+
 // 0x001d9bfc  size 0x40
 /* follows Ai_ComputeTargetSpeed; no call, branch, pointer or constant references it (exception
    landing pad or dead code) */
@@ -1837,7 +1879,7 @@ float Vec3_DotB(float *param_1,float *param_2)
   return param_1[2] * param_2[2] + *param_1 * *param_2 + param_1[1] * param_2[1];
 }
 
-// 0x001dad00  size 0x84
+// 0x001dad00  size 0x80
 float Race_CountActiveCars(float param_1)
 
 {
@@ -1857,6 +1899,16 @@ float Race_CountActiveCars(float param_1)
     iVar1 = iVar1 + 1;
   } while (iVar1 < 0x65);
   return 0.0;
+}
+
+// 0x001dad84  size 0x4
+/* follows Race_CountActiveCars; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+bool Race_CountActiveCars_Orphan1(void)
+
+{
+  return (g_RaceScene->flags & 0x10) != 0;
 }
 
 // 0x001dada0  size 0x254

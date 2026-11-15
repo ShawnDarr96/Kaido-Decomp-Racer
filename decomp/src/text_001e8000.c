@@ -477,6 +477,17 @@ void RaceSnd_SetupChannels(undefined8 param_1,int param_2)
   return;
 }
 
+// 0x001e8d50  size 0x8
+/* follows RaceSnd_SetupChannels; no call, branch, pointer or constant reference (exception landing
+   pad or dead code) */
+
+void RaceSnd_SetupChannels_Orphan1(int param_1)
+
+{
+  RaceSnd_Task(*(undefined4 *)(param_1 + 0x14));
+  return;
+}
+
 // 0x001e8d60  size 0x9c
 void RaceTask_ShutdownSound(int param_1)
 
@@ -510,7 +521,7 @@ void RaceSnd_Enter(int param_1)
   uVar1 = *(undefined4 *)(param_1 + 0x14);
   CarSnd_Init(0x430750);
   RaceSnd_PlayStart(uVar1);
-  *(undefined1 **)(param_1 + 0x1c) = &LAB_001e8d50;
+  *(code **)(param_1 + 0x1c) = RaceSnd_SetupChannels_Orphan1;
   return;
 }
 
@@ -2165,7 +2176,7 @@ void Race_CreateCars(void)
   return;
 }
 
-// 0x001eb550  size 0x390
+// 0x001eb550  size 0x38c
 void RaceIntro_DrawCars(undefined8 param_1,int param_2,long param_3,long param_4)
 
 {
@@ -2282,11 +2293,32 @@ LAB_001eb6d0:
   return;
 }
 
+// 0x001eb8e0  size 0x4
+/* follows RaceIntro_DrawCars; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+void RaceIntro_DrawCars_Orphan2(void)
+
+{
+  return;
+}
+
 // 0x001eb8e4  size 0x4
 /* follows RaceIntro_DrawCars; no call, branch, pointer or constant references it (exception landing
    pad or dead code) */
 
 void RaceIntro_DrawCars_Orphan1(undefined4 param_1,undefined4 param_2,int param_3)
+
+{
+  *(undefined4 *)(param_3 + 8) = param_1;
+  *(undefined4 *)(param_3 + 0xc) = param_2;
+  return;
+}
+
+// 0x001eb8f0  size 0xc
+/* address loaded as a constant in RaceIntro_LoadAssets */
+
+void RaceIntro_LoadAssets_Callback1(undefined4 param_1,undefined4 param_2,int param_3)
 
 {
   *(undefined4 *)(param_3 + 8) = param_1;

@@ -986,6 +986,16 @@ void PhysMaterial_GetDamping_Orphan2(undefined8 param_1,undefined8 param_2,undef
   return;
 }
 
+// 0x0015d390  size 0x8
+/* follows PhysMaterial_GetDamping; no call, branch, pointer or constant reference (exception
+   landing pad or dead code) */
+
+undefined8 PhysMaterial_GetDamping_Orphan3(void)
+
+{
+  return 0;
+}
+
 // 0x0015d3a0  size 0x24
 void PhysContact_Fill(undefined4 param_1,undefined4 param_2,undefined4 *param_3,undefined4 *param_4,
                      undefined4 *param_5)

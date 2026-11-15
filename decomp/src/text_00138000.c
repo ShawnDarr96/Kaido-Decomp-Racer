@@ -427,6 +427,16 @@ int Pad_InitState(int param_1)
   return param_1;
 }
 
+// 0x00138b40  size 0x1c
+/* address loaded as a constant in __sinit_003686c0 */
+
+void __sinit_003686c0_Callback1(void)
+
+{
+  __destroy_arr(0x386650,0x137ff0,0x498,2);
+  return;
+}
+
 // 0x00138b60  size 0x3c
 undefined4 Sema_GetCount(undefined4 *param_1,long param_2)
 
@@ -986,7 +996,7 @@ undefined8 Mc_Command_ctor(undefined8 param_1)
   return param_1;
 }
 
-// 0x00139770  size 0xac
+// 0x00139770  size 0xa8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Mc_CancelCommand(uint *param_1)
@@ -1008,6 +1018,121 @@ void Mc_CancelCommand(uint *param_1)
     *param_1 = *param_1 & 0xfffffff7;
   }
   return;
+}
+
+// 0x0013981c  size 0x4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* follows Mc_CancelCommand; no call, branch, pointer or constant reference (exception landing pad
+   or dead code) */
+
+undefined4
+Mc_CancelCommand_Orphan1
+          (int param_1,long param_2,undefined4 param_3,uint param_4,undefined4 param_5,
+          undefined4 param_6,undefined4 param_7)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined8 unaff_s0;
+  undefined4 uStack00000020;
+  undefined4 uStack00000024;
+  
+  iVar1 = _s_Mc_QueueCommand_1;
+  uStack00000020 = (undefined4)unaff_s0;
+  uStack00000024 = (undefined4)((ulong)unaff_s0 >> 0x20);
+  if (_s_Mc_QueueCommand_1 == 0) {
+    uVar2 = 0;
+  }
+  else {
+    *(int *)(_s_Mc_QueueCommand_1 + 8) = param_1;
+    *(undefined4 *)(iVar1 + 0xc) = param_3;
+    *(undefined4 *)(iVar1 + 0x10) = 1;
+    if (param_2 == 0) {
+      uVar2 = 0;
+    }
+    else {
+      uVar2 = *(undefined4 *)(param_1 + 0x30);
+    }
+    *(undefined4 *)(iVar1 + 0x14) = uVar2;
+    if (param_2 == 0) {
+      uVar2 = 0;
+    }
+    else {
+      uVar2 = *(undefined4 *)(param_1 + 0x34);
+    }
+    *(undefined4 *)(iVar1 + 0x18) = uVar2;
+    *(int *)(param_1 + 0x14) = *(int *)(param_1 + 0x14) + 1;
+    switch(*(undefined4 *)(iVar1 + 0xc)) {
+    case 1:
+      if ((param_4 & 1) == 0) {
+        iVar3 = 0;
+      }
+      else {
+        iVar3 = param_1 + 8;
+      }
+      *(int *)(iVar1 + 0x1c) = iVar3;
+      if ((param_4 & 2) == 0) {
+        iVar3 = 0;
+      }
+      else {
+        iVar3 = param_1 + 0xc;
+      }
+      *(int *)(iVar1 + 0x20) = iVar3;
+      if ((param_4 & 4) == 0) {
+        param_1 = 0;
+      }
+      else {
+        param_1 = param_1 + 0x10;
+      }
+      *(int *)(iVar1 + 0x24) = param_1;
+      break;
+    case 2:
+      *(uint *)(iVar1 + 0x28) = param_4;
+      *(undefined4 *)(iVar1 + 0x30) = param_5;
+      break;
+    case 4:
+      *(uint *)(iVar1 + 0x34) = param_4;
+      *(undefined4 *)(iVar1 + 0x30) = param_5;
+      break;
+    case 5:
+    case 6:
+      *(uint *)(iVar1 + 0x38) = param_4;
+      *(undefined4 *)(iVar1 + 0x3c) = param_5;
+      break;
+    case 0xb:
+      *(uint *)(iVar1 + 0x28) = param_4;
+      break;
+    case 0xc:
+      *(uint *)(iVar1 + 0x40) = param_4;
+      *(undefined4 *)(iVar1 + 0x44) = param_5;
+      break;
+    case 0xd:
+      *(uint *)(iVar1 + 0x28) = param_4;
+      *(undefined4 *)(iVar1 + 0x30) = param_5;
+      *(undefined4 *)(iVar1 + 0x48) = param_6;
+      *(undefined4 *)(iVar1 + 0x4c) = param_7;
+      break;
+    case 0xe:
+      *(uint *)(iVar1 + 0x28) = param_4;
+      *(undefined4 *)(iVar1 + 0x50) = param_5;
+      *(undefined4 *)(iVar1 + 0x54) = param_6;
+      break;
+    case 0xf:
+      *(uint *)(iVar1 + 0x28) = param_4;
+      break;
+    case 0x12:
+      *(uint *)(iVar1 + 0x40) = param_4;
+      break;
+    case 0x13:
+      *(uint *)(iVar1 + 0x28) = param_4;
+      *(undefined4 *)(iVar1 + 0x2c) = param_5;
+    }
+    maybe_List_Append(0x386f94,iVar1);
+    maybe_List_Remove(0x386fa8,iVar1);
+    uVar2 = 1;
+  }
+  return uVar2;
 }
 
 // 0x00139830  size 0x88

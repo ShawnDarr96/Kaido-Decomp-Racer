@@ -223,17 +223,17 @@ uint * SceneObj_Next(char param_1,uint *param_2)
     }
   }
   if (param_1 == '\x02') {
-    puVar2 = _g_CourseModelC + _g_CourseShared7 * 0x12;
+    puVar2 = _g_CourseModelC + g_CourseShared7 * 0x12;
   }
   else if (param_1 == '\x01') {
-    puVar2 = _g_CourseModelB + _g_CourseShared6 * 0x14;
+    puVar2 = _g_CourseModelB + g_CourseShared6 * 0x14;
   }
   else {
     if (param_1 != '\0') {
       bVar1 = false;
       goto LAB_00198568;
     }
-    puVar2 = _g_CourseModelA + _g_SceneObjShared1 * 0x14c;
+    puVar2 = _g_CourseModelA + g_SceneObjShared1 * 0x14c;
   }
   bVar1 = param_2 < puVar2;
 LAB_00198568:
@@ -263,11 +263,11 @@ int * SceneObj_AllocFromPool(char param_1)
   iVar4 = 0;
   iVar3 = 0;
   if (param_1 == '\x02') {
-    iVar3 = _g_CourseShared7;
+    iVar3 = g_CourseShared7;
     piVar2 = _g_CourseModelC;
   }
   else if (param_1 == '\x01') {
-    iVar3 = _g_CourseShared6;
+    iVar3 = g_CourseShared6;
     piVar2 = _g_CourseModelB;
   }
   else {
@@ -275,7 +275,7 @@ int * SceneObj_AllocFromPool(char param_1)
       bVar1 = false;
       goto LAB_00198690;
     }
-    iVar3 = _g_SceneObjShared1;
+    iVar3 = g_SceneObjShared1;
     piVar2 = _g_CourseModelA;
   }
   bVar1 = 0 < iVar3;
@@ -773,17 +773,17 @@ void Course_FreeModels(void)
   if (_g_CourseModelA != 0) {
     Mem_Free();
   }
-  _g_SceneObjShared1 = 0;
+  g_SceneObjShared1 = 0;
   _g_CourseModelA = 0;
   if (_g_CourseModelB != 0) {
     Mem_Free();
   }
-  _g_CourseShared6 = 0;
+  g_CourseShared6 = 0;
   _g_CourseModelB = 0;
   if (_g_CourseModelC != 0) {
     Mem_Free();
   }
-  _g_CourseShared7 = 0;
+  g_CourseShared7 = 0;
   _g_CourseModelC = 0;
   if (_s_CourseVar2 != 0) {
     Mem_Free();
@@ -841,11 +841,11 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
                      _g_CourseShared1 + _g_RaceIntroShared1,0x11110,0,0);
   Gfx_SetupRenderTargetEx(uVar9,0x4304f0,0,0);
   Asset_LoadCourseCommon(param_1,param_2);
-  _g_SceneObjShared1 = *(undefined4 *)(iVar3 + 0x20);
+  g_SceneObjShared1 = *(undefined4 *)(iVar3 + 0x20);
   _g_CourseModelA = Mem_Alloc16(*(int *)(iVar3 + 0x20) * 0x530,param_1);
   uVar8 = 0;
   if (*(int *)(iVar3 + 0x20) == 0) {
-    _g_CourseShared6 = *(int *)(iVar3 + 0xc);
+    g_CourseShared6 = *(int *)(iVar3 + 0xc);
   }
   else {
     iVar6 = 0;
@@ -867,10 +867,10 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
       uVar8 = uVar8 + 1;
       iVar6 = iVar6 + 0x530;
     } while (uVar8 < *(uint *)(iVar3 + 0x20));
-    _g_CourseShared6 = *(int *)(iVar3 + 0xc);
+    g_CourseShared6 = *(int *)(iVar3 + 0xc);
   }
-  if (_g_CourseShared6 == 0) {
-    _g_CourseShared6 = 0;
+  if (g_CourseShared6 == 0) {
+    g_CourseShared6 = 0;
     _g_CourseModelB = 0;
   }
   else {
@@ -878,7 +878,7 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   }
   uVar8 = 0;
   if (*(int *)(iVar3 + 0xc) == 0) {
-    _g_CourseShared7 = *(int *)(iVar3 + 0x10);
+    g_CourseShared7 = *(int *)(iVar3 + 0x10);
   }
   else {
     iVar6 = 0;
@@ -899,10 +899,10 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(iVar4 + 0x34) = 0;
       iVar6 = iVar6 + 0x50;
     } while (uVar8 < *(uint *)(iVar3 + 0xc));
-    _g_CourseShared7 = *(int *)(iVar3 + 0x10);
+    g_CourseShared7 = *(int *)(iVar3 + 0x10);
   }
-  if (_g_CourseShared7 == 0) {
-    _g_CourseShared7 = 0;
+  if (g_CourseShared7 == 0) {
+    g_CourseShared7 = 0;
     _g_CourseModelC = 0;
   }
   else {
