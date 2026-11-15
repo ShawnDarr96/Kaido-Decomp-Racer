@@ -16,8 +16,9 @@ Columns:
 | F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
-| F10 | Recover the struct layouts behind g_GameState, g_RaceCtx, g_Options, g_MenuMgr (fields now appear as GameState_Get_354 etc.) | any |  | ShawnDarr96/claude (2026-11-14) | Gap of F5 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
+| F12 | Per-racer sub-structs (RacerState 0x540, RacerResult 0x100, RacerStats 0x17c, RaceEntrySetup 0xcc) are opaque: recover their fields from the code that takes them as parameters | any |  |  | Gap of F10 |
+| F13 | About 7000 references to unnamed .bss globals (iRam/puRam00xxxxxx) remain: name them | any |  |  | Gap of F10 |
 
 ## P1 Naming
 
@@ -218,6 +219,7 @@ Columns:
 | N151 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
 | N152 | named in f27e3bd together with N132 (no placeholders left) | P1 | ShawnDarr96/claude | 2026-11-14 | f27e3bd |
 | N155 | 0 unrecovered indirect jumps: 6 tail-call flow overrides, 1 missing function added | P1 | ShawnDarr96/claude | 2026-11-14 | 2ef5873 |
+| F10 | 4 structs recovered and applied; ~3650 field references in the C | P0 | ShawnDarr96/claude | 2026-11-14 | f9318e2 |
 
 ## Changes to the board
 
@@ -263,3 +265,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim N153.
 - 2026-11-14 ShawnDarr96: N153 released: done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm
 - 2026-11-14 ShawnDarr96/claude: claim F10.
+- 2026-11-14 ShawnDarr96/claude: F10 done; added F12, F13 (gaps).
