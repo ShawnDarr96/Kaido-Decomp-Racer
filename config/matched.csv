@@ -1,3 +1,7 @@
 address,name,scratch,notes
 0x00177270,GameState_GetPlayerCount,https://decomp.me/scratch/zXHfU,src/gamestate.c
 0x001833f0,Options_ApplySeVolume,https://decomp.me/scratch/BJ7BQ,src/options.c; int parameter narrowed to char at each use
+0x00177210,GameState_GetRacerCount,https://decomp.me/scratch/DAiek,src/gamestate.c; every instruction matches (the scratch target also includes the linker's alignment nops)
+0x00177230,GameState_GetTotalCarCount,https://decomp.me/scratch/DAiek,src/gamestate.c
+0x00177250,GameState_GetTrafficCount,https://decomp.me/scratch/DAiek,src/gamestate.c
+0x00177260,GameState_GetRivalCount,https://decomp.me/scratch/DAiek,src/gamestate.c
