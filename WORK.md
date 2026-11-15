@@ -35,7 +35,7 @@ Columns:
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
 | T3 | Recover the car / vehicle struct and physics state | any | F5 |  |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
-| T5 | Recover the menu / UI structs | any | F5 |  |  |
+| T5 | Recover the menu / UI structs | any | F5 | ShawnDarr96/claude (2026-11-14) |  |
 
 ## P3 Matching
 
@@ -273,3 +273,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: F12 done; added F14 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim F13.
 - 2026-11-14 ShawnDarr96: F13 released: done: 72 globals named (refs 6886 -> 4356); left: 1401 distinct unnamed .bss/.data globals
+- 2026-11-14 ShawnDarr96/claude: claim T5.
