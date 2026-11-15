@@ -26,7 +26,7 @@ Columns:
 |---|---|---|---|---|---|
 | N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  | done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm; done: car input batch reviewed (6 names fixed/confirmed); left: ~1460 maybe_ names; done: 14 names reviewed so far (car inputs, sound, race task); left: ~1455 maybe_ names; done: 21 names reviewed (car inputs, sound, race task, garage sort); left: ~1450 maybe_ names; done: 35 names reviewed (fixes + confirmations); left: maybe_ count in symbols.csv; done: 52 names reviewed; left: 1437 maybe_ names; done: 61 names reviewed; left: 1428 maybe_ names; done: 66 names reviewed; left: 1428 maybe_ names; done: 72 names reviewed; left: 1426 maybe_ names; done: 84 names reviewed, 6 missing callback functions added; left: 1426 maybe_ names |
 | N154 | 25 layout-only menu pages (MenuPageNN_*) are named by table slot only; identify them from their UI layouts | any |  |  | Gap of N132 |
-| N157 | ~2100 words of EE .text are still outside functions (tail code ending in j/b, literals); and the 264 _OrphanN fragments should be tied to their parents via the exception tables | any |  | ShawnDarr96/claude (2026-11-14) | Gap of N156 |
+| N158 | 1476 non-zero words of EE .text outside functions (kernel syscall table at 0x306eb0, literals, padding) - type the data, check the rest | any |  |  | Gap of N157 |
 
 ## P2 Types
 
@@ -230,6 +230,7 @@ Columns:
 | F13 | 960 globals named in total (singletons, accessor-backed, scoped statics); unnamed refs 6886 -> 2198 | P0 | ShawnDarr96/claude | 2026-11-14 | 9e67629 |
 | F15 | all .data/.bss globals referenced by code now named (1291 in globals.csv) | P0 | ShawnDarr96/claude | 2026-11-14 | 862e958 |
 | N156 | 400 missed functions added and named (5427 total); VU microcode recorded | P1 | ShawnDarr96/claude | 2026-11-14 | 9ca1613 |
+| N157 | 69 more functions incl. kernel exception handlers; reusable name_new_functions.py; 1476 words left outside functions | P1 | ShawnDarr96/claude | 2026-11-14 | 8aa245d |
 
 ## Changes to the board
 
@@ -322,3 +323,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim N156.
 - 2026-11-14 ShawnDarr96/claude: N156 done; added N157 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim N157.
+- 2026-11-14 ShawnDarr96/claude: N157 done; added N158 (gaps).
