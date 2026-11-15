@@ -97,6 +97,8 @@ long maybe_sceMcFormat(undefined4 param_1)
 }
 
 // 0x001242e0  size 0x1cc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcReadDirEntry
                (undefined4 param_1,undefined4 param_2,long param_3,undefined8 *param_4,uint param_5)
 
@@ -117,15 +119,15 @@ long maybe_sceMcReadDirEntry
       }
       else {
         uRam00378378 = param_5 & 7;
-        uRam00378300 = *param_4;
-        uRam00378308 = param_4[1];
-        uRam00378310 = param_4[2];
-        uRam00378318 = param_4[3];
-        uRam00378320 = param_4[4];
-        uRam00378328 = param_4[5];
-        uRam00378330 = param_4[6];
-        uRam00378338 = param_4[7];
-        uRam00378380 = 0x378300;
+        _s_sceMcReadDirEntry_1 = *param_4;
+        _s_sceMcReadDirEntry_2 = param_4[1];
+        _s_sceMcReadDirEntry_3 = param_4[2];
+        _s_sceMcReadDirEntry_4 = param_4[3];
+        _s_sceMcReadDirEntry_5 = param_4[4];
+        _s_sceMcReadDirEntry_6 = param_4[5];
+        _s_sceMcReadDirEntry_7 = param_4[6];
+        _s_sceMcReadDirEntry_8 = param_4[7];
+        puRam00378380 = &s_sceMcReadDirEntry_1;
         uRam00378370 = param_1;
         uRam00378374 = param_2;
         maybe_strncpy(0x378384,param_3,0x3ff);
@@ -169,8 +171,8 @@ long maybe_sceMcGetEntSpace(undefined4 param_1,undefined4 param_2,long param_3,l
         maybe_strncpy(0x378384,param_3,0x3ff);
         uRam00378783 = 0;
         maybe_strncpy(0x378320,param_4,0x20);
-        uRam00378380 = 0x378300;
-        uRam0037833f = 0;
+        puRam00378380 = &s_sceMcReadDirEntry_1;
+        s_sceMcGetEntSpace_1 = 0;
         FlushCache(0);
         lVar1 = sceSifCallRpc(0x3782c0,0xe,1,0x378370,0x414,0x379880,4,0x123240);
         if (lVar1 == 0) {
@@ -474,15 +476,17 @@ undefined4 * maybe__calloc_r(undefined8 param_1,int param_2,int param_3)
 }
 
 // 0x00124b98  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe__close_r(int *param_1,undefined8 param_2)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = maybe__getpid(param_2);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return;
 }
@@ -1897,15 +1901,17 @@ LAB_00126d78:
 }
 
 // 0x00126e18  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe__fstat_r(int *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = _fstat(param_2,param_3);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return;
 }
@@ -2242,15 +2248,17 @@ void maybe_localeconv(void)
 }
 
 // 0x001274e0  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe__lseek_r(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = maybe__kill(param_2,param_3,param_4);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return;
 }

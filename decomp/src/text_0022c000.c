@@ -1469,6 +1469,8 @@ void MenuPage13_Enter(void)
 }
 
 // 0x0022e870  size 0xa18
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ScrRace_Draw_TodayResult(int param_1)
 
 {
@@ -1771,9 +1773,9 @@ void ScrRace_Draw_TodayResult(int param_1)
     MenuWnd_DrawLabel(0x15,0x2b,0x29,(sVar1 * 100) / ((int)sVar1 + (int)*(short *)(iVar7 + 0x5314)))
     ;
   }
-  uStack_8 = uRam0036e9f0;
+  uStack_8 = _s_ScrRace_Draw_TodayResult_1;
   iVar17 = *(int *)(param_1 + 0x1c) + 6;
-  uStack_4 = uRam0036e9f4;
+  uStack_4 = _s_ScrRace_Draw_TodayResult_2;
   iVar19 = UiMgr_FindLayout(0x14);
   iVar7 = *(int *)(param_1 + 0x20);
   pUVar18 = &g_UiMgr->slots[iVar19].layout;
@@ -2324,7 +2326,7 @@ void MenuScr_Select_Full(int param_1)
   if (cVar1 == '\0') {
     g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     if (*_g_MenuInput == 1) {
-      MenuWnd_SetItemState(0xf1,uRam0036ea10,0,0);
+      MenuWnd_SetItemState(0xf1,_s_MenuScr_Select_Full_1,0,0);
     }
   }
   else {

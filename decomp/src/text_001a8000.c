@@ -38,6 +38,8 @@ int PtclSys_Get(long param_1)
 }
 
 // 0x001a8810  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 PtclSys_Create(undefined8 param_1)
 
 {
@@ -53,7 +55,7 @@ undefined4 PtclSys_Create(undefined8 param_1)
     if ((*(uint *)(iVar1 + 0x14) & 1) == 0) {
       uStack_4 = 1;
       PtclSys_SetEmitter(iVar1,uVar3,param_1,&uStack_4);
-      iRam004307b4 = iRam004307b4 + 1;
+      _s_PtclSysVar1 = _s_PtclSysVar1 + 1;
       return *(undefined4 *)(iVar1 + 0x20);
     }
     uVar3 = uVar3 + 1;
@@ -63,6 +65,7 @@ undefined4 PtclSys_Create(undefined8 param_1)
 }
 
 // 0x001a8890  size 0x114
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "particleSystem Remove Error!" */
 
 void PtclSys_RemoveAll(void)
@@ -93,7 +96,7 @@ void PtclSys_RemoveAll(void)
             maybe_List_Remove(0x4307a0,iVar1);
             iVar1 = iVar2;
           }
-          iRam004307b4 = iRam004307b4 + -1;
+          _s_PtclSysVar1 = _s_PtclSysVar1 + -1;
         }
       }
     }
@@ -104,6 +107,8 @@ void PtclSys_RemoveAll(void)
 }
 
 // 0x001a89b0  size 0x18c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PtclSys_UpdateAll(void)
 
 {
@@ -118,7 +123,7 @@ void PtclSys_UpdateAll(void)
   do {
     piVar1 = *(int **)(iVar4 + 0x1c);
     if ((piVar1[5] & 1U) != 0) {
-      if (iRam004308d0 == 0) {
+      if (_s_PtclSysVar4 == 0) {
         PtclSys_ComputeRate(piVar1);
         (**(code **)(*piVar1 + 0x14))(piVar1);
       }
@@ -143,7 +148,7 @@ void PtclSys_UpdateAll(void)
               maybe_List_Remove(0x4307a0,iVar2);
               iVar2 = iVar3;
             }
-            iRam004307b4 = iRam004307b4 + -1;
+            _s_PtclSysVar1 = _s_PtclSysVar1 + -1;
           }
         }
       }
@@ -160,14 +165,14 @@ void PtclSys_UpdateAll(void)
 void PtclSys_BeginFrame(void)
 
 {
-  uRam004308d4 = 0;
-  if (uRam004308cc == 0) {
-    uRam004308c8 = _g_Particles;
+  _s_PtclSysVar5 = 0;
+  if (_s_PtclSysVar3 == 0) {
+    _s_PtclSysVar2 = _g_Particles;
   }
   else {
-    uRam004308c8 = _g_ParticlesB;
+    _s_PtclSysVar2 = _g_ParticlesB;
   }
-  uRam004308cc = uRam004308cc ^ 1;
+  _s_PtclSysVar3 = _s_PtclSysVar3 ^ 1;
   return;
 }
 
@@ -202,7 +207,7 @@ void PtclSys_Shutdown(void)
         (**(code **)(*piVar3 + 8))(piVar3,1);
       }
       *(undefined4 *)(iVar4 + 0x1c) = 0;
-      iRam004307b4 = iRam004307b4 + -1;
+      _s_PtclSysVar1 = _s_PtclSysVar1 + -1;
     }
     uVar5 = uVar5 + 1;
     iVar4 = iVar4 + 4;
@@ -250,10 +255,10 @@ void PtclSys_Init(undefined8 param_1)
     uVar5 = uVar5 + 1;
     iVar3 = iVar3 + 0xa0;
   } while (uVar5 < 0x300);
-  uRam004307b4 = 0;
-  uRam004308d4 = 0;
-  uRam004308c8 = 0;
-  uRam004308cc = 1;
+  _s_PtclSysVar1 = 0;
+  _s_PtclSysVar5 = 0;
+  _s_PtclSysVar2 = 0;
+  _s_PtclSysVar3 = 1;
   maybe_Heap_Create(0x4308a8,0x18500,0x430750);
   _g_Particles = Mem_AllocAligned(0x9000,0x10,0x4308a8);
   _g_ParticlesB = Mem_AllocAligned(0x9000,0x10,0x4308a8);
@@ -300,7 +305,7 @@ void PtclSys_Init(undefined8 param_1)
     *puVar4 = uVar7;
     puVar4 = puVar4 + 1;
   } while (uVar5 < 0x100);
-  uRam004308d0 = 0;
+  _s_PtclSysVar4 = 0;
   return;
 }
 
@@ -392,6 +397,7 @@ void View_DrawFullscreen(uint param_1,uint param_2,undefined8 param_3)
 }
 
 // 0x001a9210  size 0x1c0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 14 objects of 0x5c0 at 0x431100 */
 
 void maybe_Game_UpdateObjects(void)
@@ -428,24 +434,26 @@ void maybe_Game_UpdateObjects(void)
     iVar4 = (uint)*pbVar3 * 0x5c0;
     puVar6 = (uint *)(iVar4 + 0x431160);
     if (*pbVar3 == 7) {
-      uRam004339a0 = *(ushort *)(iVar2 + 0xfd50) & 0x1ff;
-      uRam004339a8 = uRam004339a0;
+      _s_Game_UpdateObjects_1 = *(ushort *)(iVar2 + 0xfd50) & 0x1ff;
+      _s_Game_UpdateObjects_2 = _s_Game_UpdateObjects_1;
     }
     else {
       uVar1 = *(ushort *)(iVar2 + 0xfd50);
       *puVar6 = *(ushort *)(iVar2 + 0xfd40) & 0x1ff;
-      *(uint *)(iVar4 + 0x431168) = uVar1 & 0x1ff;
+      *(uint *)(&s_Course_DrawReflectionPlane_8 + iVar4) = uVar1 & 0x1ff;
     }
     uVar7 = uVar7 + 1;
     pbVar3 = pbVar3 + 1;
     *(ushort *)(iVar4 + 0x4315a0) = *(ushort *)(iVar4 + 0x4315a0) & 0xfe00 | (ushort)*puVar6 & 0x1ff
     ;
     *(ushort *)(iVar4 + 0x4315b0) =
-         *(ushort *)(iVar4 + 0x4315b0) & 0xfe00 | (ushort)*(undefined4 *)(iVar4 + 0x431168) & 0x1ff;
+         *(ushort *)(iVar4 + 0x4315b0) & 0xfe00 |
+         (ushort)*(undefined4 *)(&s_Course_DrawReflectionPlane_8 + iVar4) & 0x1ff;
     *(ushort *)(iVar4 + 0x4315e0) = *(ushort *)(iVar4 + 0x4315e0) & 0xfe00 | (ushort)*puVar6 & 0x1ff
     ;
     *(ushort *)(iVar4 + 0x4315f0) =
-         *(ushort *)(iVar4 + 0x4315f0) & 0xfe00 | (ushort)*(undefined4 *)(iVar4 + 0x431168) & 0x1ff;
+         *(ushort *)(iVar4 + 0x4315f0) & 0xfe00 |
+         (ushort)*(undefined4 *)(&s_Course_DrawReflectionPlane_8 + iVar4) & 0x1ff;
   } while (uVar7 < 5);
   return;
 }
@@ -519,6 +527,8 @@ void Render_BeginScene(int *param_1)
 }
 
 // 0x001a95d0  size 0xf4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Render_SetupViews(void)
 
 {
@@ -532,10 +542,10 @@ void Render_SetupViews(void)
   puVar4 = &DAT_00317f00;
   uRam0036f2c0 = uRam00387fb8;
   uVar2 = 0;
-  uRam0036f2c4 = uRam00387fbc;
+  _s_RenderVar1 = uRam00387fbc;
   do {
     iVar3 = (uVar5 & 0xff) * 0x5c0;
-    if ((uRam0036f2d0 & 1 << (uVar5 & 0x1f)) != 0) {
+    if ((_s_RenderVar3 & 1 << (uVar5 & 0x1f)) != 0) {
       uVar2 = View_SetupForCourse(&g_Views + iVar3);
     }
     uVar1 = *(undefined4 *)(puVar4 + 4);
@@ -555,6 +565,8 @@ void Render_SetupViews(void)
 }
 
 // 0x001a96d0  size 0xf8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
 
 {
@@ -562,7 +574,7 @@ void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
   uint uVar2;
   
   if (param_3 != 0) {
-    uRam0036f2d0 = param_2;
+    _s_RenderVar3 = param_2;
   }
   lVar1 = Str_CompareN(0x4310e0,param_1,0x14);
   if (lVar1 == 0) {
@@ -588,6 +600,8 @@ void Render_SetVideoMode(undefined8 param_1,undefined4 param_2,long param_3)
 }
 
 // 0x001a97d0  size 0x120
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Render_SetInterlace(byte param_1)
 
 {
@@ -609,11 +623,11 @@ void Render_SetInterlace(byte param_1)
   undefined4 uStack_10;
   
   uRam0036f2cc = (uint)param_1;
-  uVar1 = (uint)(byte)uRam0036f2c8;
+  uVar1 = (uint)s_RenderVar2;
   iVar2 = uVar1 * 0x14;
   uStack_1e = (&DAT_00317f72)[iVar2];
   uStack_1f = (&DAT_00317f71)[iVar2];
-  uRam0036f2c8 = (uint)(byte)uRam0036f2c8;
+  _s_RenderVar2 = (uint)s_RenderVar2;
   uStack_1d = (&DAT_00317f73)[iVar2];
   uStack_1c = (&DAT_00317f74)[iVar2];
   uStack_10 = (&DAT_00317f80)[uVar1 * 5];
@@ -631,6 +645,8 @@ void Render_SetInterlace(byte param_1)
 }
 
 // 0x001a98f0  size 0x120
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Render_SetSceneMode(uint param_1,undefined8 param_2)
 
 {
@@ -650,8 +666,8 @@ void Render_SetSceneMode(uint param_1,undefined8 param_2)
   uint uStack_14;
   undefined4 uStack_10;
   
-  uRam0036f2c8 = param_1 & 0xff;
-  iVar1 = uRam0036f2c8 * 0x14;
+  _s_RenderVar2 = param_1 & 0xff;
+  iVar1 = _s_RenderVar2 * 0x14;
   uStack_1f = (&DAT_00317f71)[iVar1];
   uStack_1e = (&DAT_00317f72)[iVar1];
   bStack_20 = (byte)uRam0036f2cc;
@@ -663,8 +679,8 @@ void Render_SetSceneMode(uint param_1,undefined8 param_2)
   uStack_1a = (&DAT_00317f76)[iVar1];
   uStack_18 = (&DAT_00317f78)[iVar1];
   uStack_17 = (&DAT_00317f79)[iVar1];
-  uStack_10 = (&DAT_00317f80)[uRam0036f2c8 * 5];
-  uStack_14 = (&DAT_00317f7c)[uRam0036f2c8 * 5] | 1;
+  uStack_10 = (&DAT_00317f80)[_s_RenderVar2 * 5];
+  uStack_14 = (&DAT_00317f7c)[_s_RenderVar2 * 5] | 1;
   uStack_16 = (&DAT_00317f7a)[iVar1];
   uStack_15 = (&DAT_00317f7b)[iVar1];
   Render_SetVideoMode(&bStack_20,param_2,1);
@@ -681,6 +697,8 @@ void Render_Shutdown(void)
 }
 
 // 0x001a9a40  size 0x138
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Render_Init(undefined4 param_1)
 
 {
@@ -701,17 +719,17 @@ void Render_Init(undefined4 param_1)
   
   uRam0036f2bc = 0;
   uRam0036f2c0 = 0;
-  uRam0036f2c4 = 0;
-  uRam0036f2c8 = 0;
+  _s_RenderVar1 = 0;
+  _s_RenderVar2 = 0;
   uRam0036f2cc = 0;
-  uRam0036f2b8 = param_1;
+  _s_Render_Init_1 = param_1;
   Mem_Set16(0x4310e0,0x55,0x14);
-  uRam0036f2d0 = 0;
-  Gfx_InitAll(uRam0036f2b8);
-  pcRam00436318 = Render_SetupViews;
-  uRam0043631c = 0;
+  _s_RenderVar3 = 0;
+  Gfx_InitAll(_s_Render_Init_1);
+  _s_Render_Init_2 = Render_SetupViews;
+  _s_Render_Init_3 = 0;
   Gfx_RemoveEndFrameCallback(0x436310);
-  uRam0036f2c8 = 0;
+  _s_RenderVar2 = 0;
   uStack_1f = DAT_00317f71;
   uStack_1e = DAT_00317f72;
   uStack_18 = DAT_00317f78;
@@ -854,6 +872,8 @@ long ResPool_Load(byte param_1,undefined8 param_2,undefined8 param_3)
 }
 
 // 0x001a9ef0  size 0x28
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int ResPool_Get(int param_1)
 
 {
@@ -863,7 +883,7 @@ int ResPool_Get(int param_1)
     iVar1 = 0;
   }
   else {
-    iVar1 = iRam004363c0 + param_1 * 0x80;
+    iVar1 = _s_ResPool_Get_1 + param_1 * 0x80;
   }
   return iVar1;
 }
@@ -887,13 +907,13 @@ void Asset_FreeCourseCommon(void)
     Mem_Free();
     _g_CourseAssets = 0;
   }
-  if (iRam00436480 != 0) {
+  if (_s_AssetVar2 != 0) {
     Mem_Free();
-    iRam00436480 = 0;
+    _s_AssetVar2 = 0;
   }
-  if (iRam00436484 != 0) {
+  if (_s_AssetVar3 != 0) {
     Mem_Free();
-    iRam00436484 = 0;
+    _s_AssetVar3 = 0;
   }
   if (_g_CourseAssetsB != 0) {
     Mem_Free();
@@ -954,24 +974,24 @@ void Asset_LoadCourseCommon(undefined4 param_1,char *param_2)
     uRam0036f2e4 = 0;
     uRam0036f2e8 = 0;
   }
-  uRam0043648c = *(undefined4 *)(param_2 + 4);
-  uRam00436490 = *(undefined4 *)(param_2 + 8);
-  uRam00436494 = *(undefined4 *)(param_2 + 0xc);
-  uRam00436498 = *(undefined4 *)(param_2 + 0x10);
+  _s_Asset_LoadCourseCommon_2 = *(undefined4 *)(param_2 + 4);
+  _s_Asset_LoadCourseCommon_3 = *(undefined4 *)(param_2 + 8);
+  _s_Asset_LoadCourseCommon_4 = *(undefined4 *)(param_2 + 0xc);
+  _s_Asset_LoadCourseCommon_5 = *(undefined4 *)(param_2 + 0x10);
   iVar12 = uVar2 * 0xa0 + *(int *)(param_2 + 4) * 0xcc0 + *(int *)(param_2 + 8) * 400 +
            *(int *)(param_2 + 0xc) * 0x2d0 + *(int *)(param_2 + 0x10) * 0x50;
-  uRam00436488 = uVar2;
+  _s_Asset_LoadCourseCommon_1 = uVar2;
   _g_CourseAssetsB = Mem_Alloc16(iVar12,param_1);
-  iRam004364a0 = _g_CourseAssetsB + iVar12;
-  iRam004364a8 = _g_CourseAssetsB + uVar2 * 0xa0;
+  _s_Asset_LoadCourseCommon_6 = _g_CourseAssetsB + iVar12;
+  _s_Asset_LoadCourseCommon_8 = _g_CourseAssetsB + uVar2 * 0xa0;
   uVar14 = 0xff;
-  iRam004364ac = iRam004364a8 + *(int *)(param_2 + 4) * 0xcc0;
-  iRam004364b0 = iRam004364ac + *(int *)(param_2 + 8) * 0x80;
-  iRam004364b4 = iRam004364b0 + *(int *)(param_2 + 8) * 0xa0;
-  iRam004364b8 = iRam004364b4 + *(int *)(param_2 + 8) * 0x70;
-  iRam004364bc = iRam004364b8 + *(int *)(param_2 + 0xc) * 0x2d0;
+  _s_Asset_LoadCourseCommon_9 = _s_Asset_LoadCourseCommon_8 + *(int *)(param_2 + 4) * 0xcc0;
+  _s_Asset_LoadCourseCommon_10 = _s_Asset_LoadCourseCommon_9 + *(int *)(param_2 + 8) * 0x80;
+  _s_Asset_LoadCourseCommon_11 = _s_Asset_LoadCourseCommon_10 + *(int *)(param_2 + 8) * 0xa0;
+  _s_Asset_LoadCourseCommon_12 = _s_Asset_LoadCourseCommon_11 + *(int *)(param_2 + 8) * 0x70;
+  _s_Asset_LoadCourseCommon_13 = _s_Asset_LoadCourseCommon_12 + *(int *)(param_2 + 0xc) * 0x2d0;
   uVar11 = 0;
-  iRam004364a4 = _g_CourseAssetsB;
+  _s_Asset_LoadCourseCommon_7 = _g_CourseAssetsB;
   uVar3 = 0;
   do {
     uVar19 = 0;
@@ -1099,15 +1119,15 @@ LAB_001aa5ac:
     uVar11 = uVar4;
   }
   uVar9 = Mem_AllocAligned(iVar12 + uVar11 + 0x500,0x40,param_1);
-  iRam00436484 = (int)uVar9;
+  _s_AssetVar3 = (int)uVar9;
   maybe_Course_InitHeader(0x436320,0,0xc0);
   Course_SetField18(0x436320,iVar12,uVar9);
   uRam00436348 = 0;
   uRam0043634c = 0;
-  iVar12 = iRam00436484 + iVar12;
+  iVar12 = _s_AssetVar3 + iVar12;
   maybe_Course_InitHeader(0x4363e0,0,0x8c);
   Course_SetField18(0x4363e0,uVar11 + 0x500,iVar12);
-  uRam00436408 = 0;
+  _s_AssetVar1 = 0;
   if (*param_2 == '\x02') {
     iVar12 = uVar13 + 0x1680;
     iStack_70 = uStack_34 + 0x280;
@@ -1134,14 +1154,14 @@ LAB_001aa5ac:
                            iVar5 * *(int *)(param_2 + 8) + iVar20 * *(int *)(param_2 + 0xc) +
                            iStack_80 * *(int *)(param_2 + 0x10),0x40,param_1);
   uVar11 = 0;
-  iRam00436480 = iVar8;
+  _s_AssetVar2 = iVar8;
   if (uVar2 == 0) {
     iVar15 = *(int *)(param_2 + 4);
   }
   else {
     iVar15 = 0;
     do {
-      iVar17 = iRam004364a4 + iVar15;
+      iVar17 = _s_Asset_LoadCourseCommon_7 + iVar15;
       maybe_Course_InitHeader(iVar17,0,0xa0);
       Course_SetField18(iVar17,0,iVar8);
       uVar11 = uVar11 + 1;
@@ -1157,7 +1177,7 @@ LAB_001aa5ac:
   else {
     iVar15 = 0;
     do {
-      iVar17 = iRam004364a8 + iVar15;
+      iVar17 = _s_Asset_LoadCourseCommon_8 + iVar15;
       maybe_Course_InitHeader(iVar17,1,0xcc0);
       Course_SetField18(iVar17,iVar12,iVar8);
       uVar2 = uVar2 + 1;
@@ -1175,14 +1195,14 @@ LAB_001aa5ac:
     iVar12 = 0;
     iVar17 = 0;
     do {
-      iVar16 = iRam004364ac + iVar15;
+      iVar16 = _s_Asset_LoadCourseCommon_9 + iVar15;
       maybe_Course_InitHeader(iVar16,3,0x80);
       Course_SetField18(iVar16,iStack_70,iVar8);
-      iVar16 = iRam004364b0 + iVar12;
+      iVar16 = _s_Asset_LoadCourseCommon_10 + iVar12;
       maybe_Course_InitHeader(iVar16,4,0xa0);
       Course_SetField18(iVar16,iVar5,iVar8 + iStack_70);
       iVar8 = iVar8 + iStack_70 + iVar5;
-      iVar16 = iRam004364b4 + iVar17;
+      iVar16 = _s_Asset_LoadCourseCommon_11 + iVar17;
       maybe_Course_InitHeader(iVar16,2,0x70);
       Course_SetField18(iVar16,0,iVar8);
       *(undefined4 *)(iVar16 + 0x34) = 0;
@@ -1200,7 +1220,7 @@ LAB_001aa5ac:
   else {
     iVar12 = 0;
     do {
-      iVar5 = iRam004364b8 + iVar12;
+      iVar5 = _s_Asset_LoadCourseCommon_12 + iVar12;
       maybe_Course_InitHeader(iVar5,5,0x2d0);
       Course_SetField18(iVar5,iVar20,iVar8);
       uVar2 = uVar2 + 1;
@@ -1213,7 +1233,7 @@ LAB_001aa5ac:
   if (iVar12 != 0) {
     iVar12 = 0;
     do {
-      iVar5 = iRam004364bc + iVar12;
+      iVar5 = _s_Asset_LoadCourseCommon_13 + iVar12;
       maybe_Course_InitHeader(iVar5,6,0x50);
       Course_SetField18(iVar5,iStack_80,iVar8);
       uVar2 = uVar2 + 1;
@@ -1221,7 +1241,7 @@ LAB_001aa5ac:
       iVar12 = iVar12 + 0x50;
     } while (uVar2 < *(uint *)(param_2 + 0x10));
   }
-  Chunk_SetRange(0x436470,_g_CourseAssetsB,iRam004364a0);
+  Chunk_SetRange(0x436470,_g_CourseAssetsB,_s_Asset_LoadCourseCommon_6);
   return;
 }
 
@@ -1605,6 +1625,8 @@ void Asset_OnCarPartsLoaded
 }
 
 // 0x001ab550  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Asset_LoadCarParts(undefined8 param_1)
 
 {
@@ -1614,13 +1636,13 @@ void Asset_LoadCarParts(undefined8 param_1)
   
   iVar2 = 0;
   iVar3 = (int)param_1;
-  if (iRam00436408 == 0) {
-    iRam00436408 = 1;
+  if (_s_AssetVar1 == 0) {
+    _s_AssetVar1 = 1;
     *(undefined4 *)(iVar3 + 0x34) = 1;
-    iVar1 = iRam00436400;
+    iVar1 = _s_Asset_LoadCarParts_1;
   }
   else {
-    iVar2 = iRam00436400;
+    iVar2 = _s_Asset_LoadCarParts_1;
     iVar1 = 0;
   }
   *(undefined4 *)(iVar3 + 8) = 1;

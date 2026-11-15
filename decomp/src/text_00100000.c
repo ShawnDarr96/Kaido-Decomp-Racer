@@ -16,7 +16,7 @@ void maybe_crt0_Prologue(void)
   undefined8 uVar2;
   
   SYNC(0x10);
-  for (puVar1 = (undefined4 *)0x36ef80; ((uint)puVar1 & 0xf) != 0;
+  for (puVar1 = (undefined4 *)&s_MemVar1; ((uint)puVar1 & 0xf) != 0;
       puVar1 = (undefined4 *)((int)puVar1 + 1)) {
     *(undefined1 *)puVar1 = 0;
   }
@@ -51,7 +51,7 @@ void entry(void)
   undefined8 uVar2;
   
   SYNC(0x10);
-  for (puVar1 = (undefined4 *)0x36ef80; ((uint)puVar1 & 0xf) != 0;
+  for (puVar1 = (undefined4 *)&s_MemVar1; ((uint)puVar1 & 0xf) != 0;
       puVar1 = (undefined4 *)((int)puVar1 + 1)) {
     *(undefined1 *)puVar1 = 0;
   }
@@ -109,6 +109,7 @@ void maybe_operator_new_arr(undefined8 param_1)
 }
 
 // 0x00100290  size 0x138
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* checks 'BIND'/'CORE' block tags, sema-locked */
 
 void Mem_Free(long param_1)
@@ -149,7 +150,7 @@ void Mem_Free(long param_1)
       SignalSema(*(undefined4 *)(iVar1 + 0x14));
     }
     else if (*(int *)(iVar4 + -8) == 0x434f5245) {
-      iRam0036ef80 = iRam0036ef80 - piVar5[6];
+      _s_MemVar1 = _s_MemVar1 - piVar5[6];
       free(piVar5);
     }
   }
@@ -190,6 +191,7 @@ long Mem_Realloc(long param_1,uint param_2)
 }
 
 // 0x00100480  size 0x1f8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* (size, align, heap), sema-locked */
 
 int Mem_AllocAligned(long param_1,uint param_2,long param_3)
@@ -217,7 +219,7 @@ int Mem_AllocAligned(long param_1,uint param_2,long param_3)
     if (param_3 == 0) {
       piVar2 = (int *)malloc(uVar6);
       if (piVar2 != (int *)0x0) {
-        iRam0036ef80 = iRam0036ef80 + uVar6;
+        _s_MemVar1 = _s_MemVar1 + uVar6;
       }
     }
     else {
@@ -690,29 +692,33 @@ void maybe_std_dthandler(void)
 }
 
 // 0x00101070  size 0x54
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __destroy_global_chain(void)
 
 {
   undefined4 *puVar1;
   
-  puVar1 = puRam0036fb48;
+  puVar1 = _s_RuntimeVar1;
   while (puVar1 != (undefined4 *)0x0) {
-    puRam0036fb48 = (undefined4 *)*puVar1;
+    _s_RuntimeVar1 = (undefined4 *)*puVar1;
     (*(code *)puVar1[1])(puVar1[2],0xffffffffffffffff);
-    puVar1 = puRam0036fb48;
+    puVar1 = _s_RuntimeVar1;
   }
-  puRam0036fb48 = puVar1;
+  _s_RuntimeVar1 = puVar1;
   return;
 }
 
 // 0x001010d0  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 __register_global_object(undefined8 param_1,undefined4 param_2,undefined4 *param_3)
 
 {
-  *param_3 = puRam0036fb48;
+  *param_3 = _s_RuntimeVar1;
   param_3[1] = param_2;
   param_3[2] = (int)param_1;
-  puRam0036fb48 = param_3;
+  _s_RuntimeVar1 = param_3;
   return param_1;
 }
 
@@ -1925,6 +1931,7 @@ undefined8 maybe_std_shared_count_ctor(undefined8 param_1,int param_2)
 }
 
 // 0x00102d40  size 0x270
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* constructs cin/cout/cerr/clog once */
 
 undefined8 std_ios_base_Init_ctor(undefined8 param_1)
@@ -1933,34 +1940,35 @@ undefined8 std_ios_base_Init_ctor(undefined8 param_1)
   bool bVar1;
   int iVar2;
   
-  if (cRam0036fe78 == '\0') {
+  if (s_std_ios_base_Init_ctor_3 == '\0') {
     maybe_std_stdio_filebuf_ctor(0x36fe90,*(undefined4 *)(PTR_DAT_0030a090 + 4));
     __register_global_object(0x36fe90,0x102ff0,0x36fe80);
-    cRam0036fe78 = '\x01';
+    s_std_ios_base_Init_ctor_3 = '\x01';
   }
-  if (cRam0036fec8 == '\0') {
+  if (s_std_ios_base_Init_ctor_5 == '\0') {
     maybe_std_stdio_filebuf_ctor(0x36fee0,*(undefined4 *)(PTR_DAT_0030a090 + 8));
     __register_global_object(0x36fee0,0x102ff0,0x36fed0);
-    cRam0036fec8 = '\x01';
+    s_std_ios_base_Init_ctor_5 = '\x01';
   }
-  if (cRam0036ff18 == '\0') {
+  if (s_std_ios_base_Init_ctor_7 == '\0') {
     maybe_std_stdio_filebuf_ctor(0x36ff30,*(undefined4 *)(PTR_DAT_0030a090 + 0xc));
     __register_global_object(0x36ff30,0x102ff0,0x36ff20);
-    cRam0036ff18 = '\x01';
+    s_std_ios_base_Init_ctor_7 = '\x01';
   }
-  iVar2 = iRam0036fb50 + 1;
-  bVar1 = iRam0036fb50 == 0;
-  iRam0036fb50 = iVar2;
+  iVar2 = _s_stdVar1 + 1;
+  bVar1 = _s_stdVar1 == 0;
+  _s_stdVar1 = iVar2;
   if (bVar1) {
     maybe_std_istream_ctor(0x36fb60,1,0x36fe90);
     maybe_std_ostream_ctor(0x36fbd0,1,0x36fee0);
     maybe_std_ostream_ctor(0x36fc90,1,0x36ff30);
     maybe_std_ostream_ctor(0x36fc30,1,0x36ff30);
-    *(undefined4 *)(iRam0036fb60 + 0x40) = 0x36fbd0;
-    *(ushort *)(iRam0036fc90 + 0x38) = *(ushort *)(iRam0036fc90 + 0x38) | 0x2000;
-    (**(code **)(iRam0036fe90 + 0xc))(0x36fe90,0,0);
-    (**(code **)(iRam0036fee0 + 0xc))(0x36fee0,0,0);
-    (**(code **)(iRam0036ff30 + 0xc))(0x36ff30,0,0);
+    *(undefined4 *)(_s_std_ios_base_Init_ctor_1 + 0x40) = 0x36fbd0;
+    *(ushort *)(_s_std_ios_base_Init_ctor_2 + 0x38) =
+         *(ushort *)(_s_std_ios_base_Init_ctor_2 + 0x38) | 0x2000;
+    (**(code **)(_s_std_ios_base_Init_ctor_4 + 0xc))(0x36fe90,0,0);
+    (**(code **)(_s_std_ios_base_Init_ctor_6 + 0xc))(0x36fee0,0,0);
+    (**(code **)(_s_std_ios_base_Init_ctor_8 + 0xc))(0x36ff30,0,0);
   }
   return param_1;
 }
@@ -1982,19 +1990,21 @@ long maybe_std_stdio_filebuf_dtor(long param_1,short param_2)
 }
 
 // 0x00103050  size 0xf4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long std_ios_base_Init_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
-    iRam0036fb50 = iRam0036fb50 + -1;
-    if (iRam0036fb50 == 0) {
+    _s_stdVar1 = _s_stdVar1 + -1;
+    if (_s_stdVar1 == 0) {
       maybe_std_ostream_flush(0x36fbd0);
       maybe_std_ostream_flush(0x36fc90);
       maybe_std_ostream_flush(0x36fc30);
-      (**(code **)(iRam0036fb70 + 8))(0x36fb60,0xffffffffffffffff);
-      (**(code **)(iRam0036fbd4 + 8))(0x36fbd0,0xffffffffffffffff);
-      (**(code **)(iRam0036fc94 + 8))(0x36fc90,0xffffffffffffffff);
-      (**(code **)(iRam0036fc34 + 8))(0x36fc30,0xffffffffffffffff);
+      (**(code **)(_s_std_ios_base_Init_dtor_1 + 8))(0x36fb60,0xffffffffffffffff);
+      (**(code **)(_s_std_ios_base_Init_dtor_2 + 8))(0x36fbd0,0xffffffffffffffff);
+      (**(code **)(_s_std_ios_base_Init_dtor_4 + 8))(0x36fc90,0xffffffffffffffff);
+      (**(code **)(_s_std_ios_base_Init_dtor_3 + 8))(0x36fc30,0xffffffffffffffff);
     }
     if (0 < param_2) {
       Mem_Free(param_1);
@@ -2052,6 +2062,7 @@ long maybe_std_istream_dtor(long param_1,long param_2)
 }
 
 // 0x00103290  size 0x270
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* wide-char streams */
 
 undefined8 maybe_std_wios_Init_ctor(undefined8 param_1)
@@ -2060,34 +2071,35 @@ undefined8 maybe_std_wios_Init_ctor(undefined8 param_1)
   bool bVar1;
   int iVar2;
   
-  if (cRam0036ff68 == '\0') {
+  if (s_std_wios_Init_ctor_3 == '\0') {
     maybe_std_stdio_wfilebuf_ctor(0x36ff80,*(undefined4 *)(PTR_DAT_0030a090 + 4));
     __register_global_object(0x36ff80,0x103540,0x36ff70);
-    cRam0036ff68 = '\x01';
+    s_std_wios_Init_ctor_3 = '\x01';
   }
-  if (cRam0036ffe8 == '\0') {
+  if (s_std_wios_Init_ctor_5 == '\0') {
     maybe_std_stdio_wfilebuf_ctor(0x370000,*(undefined4 *)(PTR_DAT_0030a090 + 8));
     __register_global_object(0x370000,0x103540,0x36fff0);
-    cRam0036ffe8 = '\x01';
+    s_std_wios_Init_ctor_5 = '\x01';
   }
-  if (cRam00370068 == '\0') {
+  if (s_std_wios_Init_ctor_7 == '\0') {
     maybe_std_stdio_wfilebuf_ctor(0x370080,*(undefined4 *)(PTR_DAT_0030a090 + 0xc));
     __register_global_object(0x370080,0x103540,0x370070);
-    cRam00370068 = '\x01';
+    s_std_wios_Init_ctor_7 = '\x01';
   }
-  iVar2 = iRam0036fb58 + 1;
-  bVar1 = iRam0036fb58 == 0;
-  iRam0036fb58 = iVar2;
+  iVar2 = _s_stdVar2 + 1;
+  bVar1 = _s_stdVar2 == 0;
+  _s_stdVar2 = iVar2;
   if (bVar1) {
     maybe_std_wistream_ctor(0x36fcf0,1,0x36ff80);
     maybe_std_wostream_ctor(0x36fd60,1,0x370000);
     maybe_std_wostream_ctor(0x36fe20,1,0x370080);
     maybe_std_wostream_ctor(0x36fdc0,1,0x370080);
-    *(undefined4 *)(iRam0036fcf0 + 0x40) = 0x36fd60;
-    *(ushort *)(iRam0036fe20 + 0x38) = *(ushort *)(iRam0036fe20 + 0x38) | 0x2000;
-    (**(code **)(iRam0036ff80 + 0xc))(0x36ff80,0,0);
-    (**(code **)(iRam00370000 + 0xc))(0x370000,0,0);
-    (**(code **)(iRam00370080 + 0xc))(0x370080,0,0);
+    *(undefined4 *)(_s_std_wios_Init_ctor_1 + 0x40) = 0x36fd60;
+    *(ushort *)(_s_std_wios_Init_ctor_2 + 0x38) =
+         *(ushort *)(_s_std_wios_Init_ctor_2 + 0x38) | 0x2000;
+    (**(code **)(_s_std_wios_Init_ctor_4 + 0xc))(0x36ff80,0,0);
+    (**(code **)(_s_std_wios_Init_ctor_6 + 0xc))(0x370000,0,0);
+    (**(code **)(_s_std_wios_Init_ctor_8 + 0xc))(0x370080,0,0);
   }
   return param_1;
 }
@@ -2109,19 +2121,21 @@ long maybe_std_stdio_wfilebuf_dtor(long param_1,short param_2)
 }
 
 // 0x001035a0  size 0xf4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_std_wios_Init_dtor(long param_1,short param_2)
 
 {
   if (param_1 != 0) {
-    iRam0036fb58 = iRam0036fb58 + -1;
-    if (iRam0036fb58 == 0) {
+    _s_stdVar2 = _s_stdVar2 + -1;
+    if (_s_stdVar2 == 0) {
       maybe_std_wostream_flush(0x36fd60);
       maybe_std_wostream_flush(0x36fe20);
       maybe_std_wostream_flush(0x36fdc0);
-      (**(code **)(iRam0036fd00 + 8))(0x36fcf0,0xffffffffffffffff);
-      (**(code **)(iRam0036fd64 + 8))(0x36fd60,0xffffffffffffffff);
-      (**(code **)(iRam0036fe24 + 8))(0x36fe20,0xffffffffffffffff);
-      (**(code **)(iRam0036fdc4 + 8))(0x36fdc0,0xffffffffffffffff);
+      (**(code **)(_s_std_wios_Init_dtor_1 + 8))(0x36fcf0,0xffffffffffffffff);
+      (**(code **)(_s_std_wios_Init_dtor_2 + 8))(0x36fd60,0xffffffffffffffff);
+      (**(code **)(_s_std_wios_Init_dtor_4 + 8))(0x36fe20,0xffffffffffffffff);
+      (**(code **)(_s_std_wios_Init_dtor_3 + 8))(0x36fdc0,0xffffffffffffffff);
     }
     if (0 < param_2) {
       Mem_Free(param_1);

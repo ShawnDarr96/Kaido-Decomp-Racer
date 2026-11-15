@@ -426,6 +426,8 @@ void MenuScr_Draw_SoundConfig(int param_1)
 }
 
 // 0x00240d20  size 0x6c4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void MenuScr_Draw_GameConfig(int param_1)
 
 {
@@ -494,8 +496,8 @@ void MenuScr_Draw_GameConfig(int param_1)
     pUVar1[iVar4].layout.unk_318 = 1;
     *(undefined4 *)(param_1 + 0x6c) = 0xfb;
     *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
-    uVar3 = uRam0036eacc;
-    uVar5 = uRam0036eac8;
+    uVar3 = _s_MenuScr_Draw_GameConfig_2;
+    uVar5 = _s_MenuScr_Draw_GameConfig_1;
     *(undefined4 *)(param_1 + 0x78) = 0xfb;
     *(undefined4 *)(param_1 + 0x7c) = uVar5;
     *(undefined4 *)(param_1 + 0x80) = uVar3;
@@ -1746,6 +1748,8 @@ LAB_00243824:
 }
 
 // 0x00243bd0  size 0xf8c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ScrRace_Draw_Interval(int param_1)
 
 {
@@ -1889,11 +1893,11 @@ void ScrRace_Draw_Interval(int param_1)
                            *(undefined4 *)(param_1 + 0x10));
       }
     }
-    uVar5 = maybe___sf_to_df(fRam00469838 - fRam00469834);
+    uVar5 = maybe___sf_to_df(_s_ScrRace_Draw_Interval_3 - _s_ScrRace_Draw_Interval_2);
     uVar5 = fabs(uVar5);
     fVar9 = (float)maybe___extendsfdf2(uVar5);
     MenuWnd_DrawLabel(0x9f,0xb4,0x3a2,(int)(fVar9 * 1000.0),4);
-    MenuWnd_DrawLabel(0x9f,0xb5,0x3a2,(int)(fRam00469830 * 1000.0),4);
+    MenuWnd_DrawLabel(0x9f,0xb5,0x3a2,(int)(_s_ScrRace_Draw_Interval_1 * 1000.0),4);
   }
   uVar5 = Race_GetCourseVariant();
   uVar5 = MsgId_ForOption(uVar5);

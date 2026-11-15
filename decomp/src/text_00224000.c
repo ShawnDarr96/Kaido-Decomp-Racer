@@ -218,6 +218,8 @@ LAB_00224d38:
 }
 
 // 0x002252d0  size 0xd24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
 
 {
@@ -425,16 +427,21 @@ void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
   }
   uVar13 = maybe_Mail_CountMessages(*(undefined4 *)(param_1 + 0x674));
   MenuWnd_DrawLabel(7,0x2e,0x446,uVar13);
-  iRam0036f544 = 0;
+  _s_ScrCareer_Draw_MessageDeleted_52d0_1 = 0;
   do {
-    if (iRam0036f544 == *(int *)(param_1 + *(int *)(param_1 + 0x674) * 4 + 4)) {
-      UiElem_SetPropFloat(0x3f800000,pUVar11,*(undefined4 *)(&DAT_0032abe0 + iRam0036f544 * 4),8);
+    if (_s_ScrCareer_Draw_MessageDeleted_52d0_1 ==
+        *(int *)(param_1 + *(int *)(param_1 + 0x674) * 4 + 4)) {
+      UiElem_SetPropFloat(0x3f800000,pUVar11,
+                          *(undefined4 *)
+                           (&DAT_0032abe0 + _s_ScrCareer_Draw_MessageDeleted_52d0_1 * 4),8);
     }
     else {
-      UiElem_SetPropFloat(0,pUVar11,*(undefined4 *)(&DAT_0032abe0 + iRam0036f544 * 4),8);
+      UiElem_SetPropFloat(0,pUVar11,
+                          *(undefined4 *)
+                           (&DAT_0032abe0 + _s_ScrCareer_Draw_MessageDeleted_52d0_1 * 4),8);
     }
-    iRam0036f544 = iRam0036f544 + 1;
-  } while (iRam0036f544 < 10);
+    _s_ScrCareer_Draw_MessageDeleted_52d0_1 = _s_ScrCareer_Draw_MessageDeleted_52d0_1 + 1;
+  } while (_s_ScrCareer_Draw_MessageDeleted_52d0_1 < 10);
   if (*(int *)(*(int *)(param_1 + 0x674) * 4 + param_1 + 0x2c) < 0xb) {
     iVar3 = 0;
     iVar2 = 0;
@@ -1347,11 +1354,11 @@ void ScrCareer_Draw_Mail_7e70(int *param_1)
     UiElem_SetPropFloat(0,pUVar15,0x1c,8);
     UiElem_SetPropFloat(0,pUVar15,0x1d,8);
     UiElem_SetPropFloat(0x3f800000,pUVar15,0x17,8);
-    uRam0036f540 = 0;
+    _s_ScrCareer_Draw_Mail_7e70_1 = 0;
     do {
-      UiElem_SetPropFloat(0,pUVar12,(&DAT_0032a970)[uRam0036f540],8);
-      uRam0036f540 = uRam0036f540 + 1;
-    } while (uRam0036f540 < 0xb);
+      UiElem_SetPropFloat(0,pUVar12,(&DAT_0032a970)[_s_ScrCareer_Draw_Mail_7e70_1],8);
+      _s_ScrCareer_Draw_Mail_7e70_1 = _s_ScrCareer_Draw_Mail_7e70_1 + 1;
+    } while (_s_ScrCareer_Draw_Mail_7e70_1 < 0xb);
     iVar2 = param_1[0x19d];
   }
   if (param_1[iVar2 + 0xb] < 0xb) {

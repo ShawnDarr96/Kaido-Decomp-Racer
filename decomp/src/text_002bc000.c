@@ -479,7 +479,7 @@ void Result_BuildRaceEntry(int param_1)
   Save_AllocSlots();
   cVar2 = RaceCtx_GetMode();
   if (cVar2 == '\x03') {
-    if (iRam0036f7f0 == 0) {
+    if (_s_ResultVar1 == 0) {
       NameEntry_SetMode(param_1 + 0x40c,2);
     }
     else {
@@ -487,7 +487,7 @@ void Result_BuildRaceEntry(int param_1)
     }
   }
   else if (cVar2 == '\x02') {
-    if (iRam0036f7f0 == 0) {
+    if (_s_ResultVar1 == 0) {
       NameEntry_SetMode(param_1 + 0x40c,2,2);
     }
     else {
@@ -610,11 +610,11 @@ void Result_UpdateCursor(char *param_1)
             break;
           case 2:
             param_1[0x340] = '\x03';
-            uRam0036f7f0 = 0;
+            _s_ResultVar1 = 0;
             break;
           case 3:
             param_1[0x340] = '\x04';
-            uRam0036f7f0 = 1;
+            _s_ResultVar1 = 1;
             break;
           case 4:
             param_1[0x324] = '\0';

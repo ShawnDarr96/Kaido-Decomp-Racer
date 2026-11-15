@@ -94,3 +94,891 @@ address,name,comment
 0x0036f1f8,s_RaceIsReplayMode,1 when RaceCtx mode is 0xd (set in RaceTask_BeginLoading)
 0x0036f5dc,s_SectionSelA,cursor state in ScrCareer_Draw_SelectSectionTo
 0x0036f5e0,s_SectionSelB,cursor state in ScrCareer_Draw_SelectSectionTo
+0x0036e700,s_RandVar1,used only by Rand_* (3 functions)
+0x0036e708,s_File_SetHeap_1,used only by File_SetHeap
+0x0036e70c,s_File_SetHeap_2,used only by File_SetHeap
+0x0036e710,s_File_LoaderThread_1,used only by File_LoaderThread
+0x0036e711,s_File_LoaderThread_2,used only by File_LoaderThread
+0x0036e712,s_File_LoaderThread_3,used only by File_LoaderThread
+0x0036e713,s_File_LoaderThread_4,used only by File_LoaderThread
+0x0036e714,s_File_LoaderThread_5,used only by File_LoaderThread
+0x0036e715,s_File_LoaderThread_6,used only by File_LoaderThread
+0x0036e716,s_File_LoaderThread_7,used only by File_LoaderThread
+0x0036e717,s_File_LoaderThread_8,used only by File_LoaderThread
+0x0036e750,s_SceneVar1,used only by Scene_* (2 functions)
+0x0036e760,s_Car_ApplyTireForces_1,used only by Car_ApplyTireForces
+0x0036e768,s_Course_UpdateEnvironment_1,used only by Course_UpdateEnvironment
+0x0036e778,s_Controls_BuildAxisMap_1,used only by Controls_BuildAxisMap
+0x0036e77c,s_Controls_BuildAxisMap_2,used only by Controls_BuildAxisMap
+0x0036e794,s_Road_SearchNeighbours_1,used only by Road_SearchNeighbours
+0x0036e796,s_Road_SearchNeighbours_2,used only by Road_SearchNeighbours
+0x0036e798,s_Road_AdvanceAlongPath_1,used only by Road_AdvanceAlongPath
+0x0036e79a,s_Road_AdvanceAlongPath_2,used only by Road_AdvanceAlongPath
+0x0036e7d0,s_CarSnd_ComputeListener_1,used only by CarSnd_ComputeListener
+0x0036e7d4,s_CarSnd_ComputeListener_2,used only by CarSnd_ComputeListener
+0x0036e828,s_Ptcl_EmitBackfire_1,used only by Ptcl_EmitBackfire
+0x0036e82c,s_Ptcl_EmitBackfire_2,used only by Ptcl_EmitBackfire
+0x0036e850,s_RivalSchedule_SetupBattle_1,used only by RivalSchedule_SetupBattle
+0x0036e851,s_RivalSchedule_SetupBattle_2,used only by RivalSchedule_SetupBattle
+0x0036e852,s_RivalSchedule_SetupBattle_3,used only by RivalSchedule_SetupBattle
+0x0036e854,s_Prop_SpawnBird_1,used only by Prop_SpawnBird
+0x0036e85c,s_Prop_SpawnSpark_1,used only by Prop_SpawnSpark
+0x0036e870,s_UiMgr_LoadSystem_1,used only by UiMgr_LoadSystem
+0x0036e9f0,s_ScrRace_Draw_TodayResult_1,used only by ScrRace_Draw_TodayResult
+0x0036e9f4,s_ScrRace_Draw_TodayResult_2,used only by ScrRace_Draw_TodayResult
+0x0036ea10,s_MenuScr_Select_Full_1,used only by MenuScr_Select_Full
+0x0036ea58,s_ScrRace_Draw_RivalInfo_Draw0_NoData_1,used only by ScrRace_Draw_RivalInfo_Draw0_NoData
+0x0036ea5c,s_ScrRace_Draw_RivalInfo_Draw0_NoData_2,used only by ScrRace_Draw_RivalInfo_Draw0_NoData
+0x0036eac8,s_MenuScr_Draw_GameConfig_1,used only by MenuScr_Draw_GameConfig
+0x0036eacc,s_MenuScr_Draw_GameConfig_2,used only by MenuScr_Draw_GameConfig
+0x0036eb00,s_ScrCareer_Draw_Trickster_1,used only by ScrCareer_Draw_Trickster
+0x0036eb04,s_ScrCareer_Draw_Trickster_2,used only by ScrCareer_Draw_Trickster
+0x0036eb08,s_ScrCareer_Draw_Trickster_3,used only by ScrCareer_Draw_Trickster
+0x0036eb0c,s_ScrCareer_Draw_Trickster_4,used only by ScrCareer_Draw_Trickster
+0x0036eb18,s_ScrRace_Draw_StartPractice_1,used only by ScrRace_Draw_StartPractice
+0x0036eb1c,s_ScrRace_Draw_StartPractice_2,used only by ScrRace_Draw_StartPractice
+0x0036eb90,s_ScrCareer_Draw_GoBattle_9330_1,used only by ScrCareer_Draw_GoBattle_9330
+0x0036eb94,s_ScrCareer_Draw_GoBattle_9330_2,used only by ScrCareer_Draw_GoBattle_9330
+0x0036eba0,s_ScrCareer_Draw_GoBattle_8970_1,used only by ScrCareer_Draw_GoBattle_8970
+0x0036eba4,s_ScrCareer_Draw_GoBattle_8970_2,used only by ScrCareer_Draw_GoBattle_8970
+0x0036ebb0,s_ScrCareer_Draw_GoBattle_1,used only by ScrCareer_Draw_GoBattle
+0x0036ebb4,s_ScrCareer_Draw_GoBattle_2,used only by ScrCareer_Draw_GoBattle
+0x0036ebc0,s_ScrCareer_Draw_Challenge_1,used only by ScrCareer_Draw_Challenge
+0x0036ebc4,s_ScrCareer_Draw_Challenge_2,used only by ScrCareer_Draw_Challenge
+0x0036edc8,s_Wheel_DrawDetails_1,used only by maybe_Wheel_DrawDetails
+0x0036edcc,s_Wheel_DrawDetails_2,used only by maybe_Wheel_DrawDetails
+0x0036ee28,s_ScrQuickRaceVar1,used only by ScrQuickRace_* (2 functions)
+0x0036ee50,s_Result_FadeOutAndFinish_1,used only by Result_FadeOutAndFinish
+0x0036ee54,s_Result_FadeOut_1,used only by Result_FadeOut
+0x0036ee58,s_RaceHud_FadeOutAndFree_1,used only by RaceHud_FadeOutAndFree
+0x0036ee60,s_RaceUi_DrawRivalMarkersAlt_1,used only by RaceUi_DrawRivalMarkersAlt
+0x0036ee64,s_RaceUi_DrawRivalMarkersAlt_2,used only by RaceUi_DrawRivalMarkersAlt
+0x0036ee68,s_RaceUi_DrawRivalMarkersAlt_3,used only by RaceUi_DrawRivalMarkersAlt
+0x0036ee6c,s_RaceUi_DrawRivalMarkersAlt_4,used only by RaceUi_DrawRivalMarkersAlt
+0x0036ee74,s_RaceUi_DrawRivalMarkersAlt_5,used only by RaceUi_DrawRivalMarkersAlt
+0x0036ee78,s_RaceUi_DrawRivalMarkers_1,used only by RaceUi_DrawRivalMarkers
+0x0036ee7c,s_RaceUi_DrawRivalMarkers_2,used only by RaceUi_DrawRivalMarkers
+0x0036ee80,s_RaceUi_DrawRivalMarkers_3,used only by RaceUi_DrawRivalMarkers
+0x0036ee84,s_RaceUi_DrawRivalMarkers_4,used only by RaceUi_DrawRivalMarkers
+0x0036ee88,s_RaceUi_TaskCountdown_1,used only by RaceUi_TaskCountdown
+0x0036ee8c,s_RaceUi_TaskCountdown_2,used only by RaceUi_TaskCountdown
+0x0036ee90,s_RaceUi_TaskCountdown_3,used only by RaceUi_TaskCountdown
+0x0036ee94,s_RaceUi_TaskCountdown_4,used only by RaceUi_TaskCountdown
+0x0036eea0,s_NameEntry_Animate_1,used only by maybe_NameEntry_Animate
+0x0036eea8,s_NameEntry_Animate_2,used only by maybe_NameEntry_Animate
+0x0036eeac,s_NameEntry_Animate_3,used only by maybe_NameEntry_Animate
+0x0036eef0,s_Keyboard_Update_1,used only by Keyboard_Update
+0x0036ef80,s_MemVar1,used only by Mem_* (2 functions)
+0x0036ef8c,s_GfxVar1,used only by Gfx_* (3 functions)
+0x0036ef98,s_GfxVar2,used only by Gfx_* (3 functions)
+0x0036ef9c,s_GfxVar3,used only by Gfx_* (2 functions)
+0x0036efa0,s_GfxVar4,used only by Gfx_* (2 functions)
+0x0036efa4,s_GfxVar5,used only by Gfx_* (2 functions)
+0x0036efa8,s_GfxVar6,used only by Gfx_* (3 functions)
+0x0036efac,s_GfxVar7,used only by Gfx_* (2 functions)
+0x0036efb0,s_GfxVar8,used only by Gfx_* (2 functions)
+0x0036efb4,s_DbcVar1,used only by Dbc_* (2 functions)
+0x0036efb8,s_FileVar1,used only by File_* (2 functions)
+0x0036efbc,s_FileVar2,used only by File_* (2 functions)
+0x0036efc8,s_FileVar3,used only by File_* (8 functions)
+0x0036efd8,s_FileVar4,used only by File_* (2 functions)
+0x0036efdc,s_FileVar5,used only by File_* (2 functions)
+0x0036efe4,s_FileVar6,used only by File_* (3 functions)
+0x0036efec,s_FileVar7,used only by File_* (2 functions)
+0x0036eff0,s_FileVar8,used only by File_* (2 functions)
+0x0036f008,s_CdStreamVar1,used only by CdStream_* (2 functions)
+0x0036f00c,s_CdStreamVar2,used only by CdStream_* (4 functions)
+0x0036f010,s_CdStreamVar3,used only by CdStream_* (3 functions)
+0x0036f014,s_CdStreamVar4,used only by CdStream_* (2 functions)
+0x0036f020,s_IopSndVar1,used only by IopSnd_* (2 functions)
+0x0036f028,s_IopStrmVar1,used only by IopStrm_* (2 functions)
+0x0036f034,s_IopStrmVar2,used only by IopStrm_* (3 functions)
+0x0036f03c,s_IopStrmVar3,used only by IopStrm_* (7 functions)
+0x0036f040,s_IopSeVar1,used only by IopSe_* (5 functions)
+0x0036f044,s_IopSeVar2,used only by IopSe_* (5 functions)
+0x0036f04c,s_Tex_SwizzleBlocks_1,used only by Tex_SwizzleBlocks
+0x0036f050,s_WheelVar1,used only by Wheel_* (6 functions)
+0x0036f058,s_WheelVar2,used only by Wheel_* (2 functions)
+0x0036f05c,s_WheelVar3,used only by Wheel_* (2 functions)
+0x0036f060,s_WheelVar4,used only by Wheel_* (2 functions)
+0x0036f064,s_WheelVar5,used only by Wheel_* (2 functions)
+0x0036f068,s_WheelVar6,used only by Wheel_* (2 functions)
+0x0036f06c,s_WheelVar7,used only by Wheel_* (2 functions)
+0x0036f070,s_WheelVar8,used only by Wheel_* (2 functions)
+0x0036f078,s_WheelVar9,used only by Wheel_* (4 functions)
+0x0036f07c,s_WheelVar10,used only by Wheel_* (4 functions)
+0x0036f080,s_DmaChainVar1,used only by DmaChain_* (4 functions)
+0x0036f084,s_SceneVar2,used only by Scene_* (3 functions)
+0x0036f088,s_SceneVar3,used only by Scene_* (3 functions)
+0x0036f090,s_SceneVar4,used only by Scene_* (3 functions)
+0x0036f094,s_SceneVar5,used only by Scene_* (4 functions)
+0x0036f098,s_SceneVar6,used only by Scene_* (3 functions)
+0x0036f09c,s_Scene_Start_1,used only by Scene_Start
+0x0036f0a0,s_SceneVar7,used only by Scene_* (2 functions)
+0x0036f0a4,s_SceneVar8,used only by Scene_* (3 functions)
+0x0036f0a8,s_SceneVar9,used only by Scene_* (3 functions)
+0x0036f0ac,s_SceneVar10,used only by Scene_* (3 functions)
+0x0036f0d0,s_TexSlotVar1,used only by TexSlot_* (2 functions)
+0x0036f0d4,s_TexSlotVar2,used only by TexSlot_* (4 functions)
+0x0036f0d8,s_TexSlotVar3,used only by TexSlot_* (6 functions)
+0x0036f0ec,s_PhysWorld_Init_1,used only by PhysWorld_Init
+0x0036f114,s_PhysMaterialVar1,used only by PhysMaterial_* (4 functions)
+0x0036f118,s_PhysMaterialVar2,used only by PhysMaterial_* (3 functions)
+0x0036f11c,s_PhysMaterialVar3,used only by PhysMaterial_* (4 functions)
+0x0036f120,s_PhysMaterialVar4,used only by PhysMaterial_* (5 functions)
+0x0036f124,s_PhysMaterialVar5,used only by PhysMaterial_* (4 functions)
+0x0036f128,s_PhysMaterialVar6,used only by PhysMaterial_* (4 functions)
+0x0036f12c,s_PhysMaterialVar7,used only by PhysMaterial_* (4 functions)
+0x0036f130,s_PhysMaterialVar8,used only by PhysMaterial_* (4 functions)
+0x0036f134,s_PhysMaterialVar9,used only by PhysMaterial_* (4 functions)
+0x0036f138,s_PhysMaterialVar10,used only by PhysMaterial_* (4 functions)
+0x0036f13c,s_PhysMaterialVar11,used only by PhysMaterial_* (4 functions)
+0x0036f140,s_PhysMaterialVar12,used only by PhysMaterial_* (4 functions)
+0x0036f144,s_PhysMaterialVar13,used only by PhysMaterial_* (4 functions)
+0x0036f148,s_PhysMaterialVar14,used only by PhysMaterial_* (4 functions)
+0x0036f14c,s_PhysMaterialVar15,used only by PhysMaterial_* (4 functions)
+0x0036f150,s_PhysMaterialVar16,used only by PhysMaterial_* (4 functions)
+0x0036f198,s_SaveVar1,used only by Save_* (3 functions)
+0x0036f1b8,s_Course_RenderHook_1,used only by Course_RenderHook
+0x0036f1c8,s_Course_SpawnAmbient_1,used only by Course_SpawnAmbient
+0x0036f200,s___sinit_00369910_1,used only by __sinit_00369910
+0x0036f204,s___sinit_00369910_2,used only by __sinit_00369910
+0x0036f208,s___sinit_00369910_3,used only by __sinit_00369910
+0x0036f20c,s___sinit_00369910_4,used only by __sinit_00369910
+0x0036f210,s___sinit_00369910_5,used only by __sinit_00369910
+0x0036f214,s___sinit_00369910_6,used only by __sinit_00369910
+0x0036f218,s___sinit_00369910_7,used only by __sinit_00369910
+0x0036f21c,s___sinit_00369910_8,used only by __sinit_00369910
+0x0036f220,s_Cam_UpdateTrackside_1,used only by Cam_UpdateTrackside
+0x0036f224,s_Cam_UpdateTracksideAlt_1,used only by Cam_UpdateTracksideAlt
+0x0036f238,s_RaceWorld_BuildColliders_1,used only by RaceWorld_BuildColliders
+0x0036f23c,s_RaceCam_UpdateReplay_1,used only by RaceCam_UpdateReplay
+0x0036f260,s_Game_MainLoop_1,used only by Game_MainLoop
+0x0036f270,s_CarSnd_Update3d_1,used only by CarSnd_Update3d
+0x0036f271,s_CarSnd_Update3d_2,used only by CarSnd_Update3d
+0x0036f274,s_CarSnd_Update3d_3,used only by CarSnd_Update3d
+0x0036f278,s_CarSnd_UpdateEngine_1,used only by CarSnd_UpdateEngine
+0x0036f298,s_CourseVar1,used only by Course_* (2 functions)
+0x0036f2b8,s_Render_Init_1,used only by Render_Init
+0x0036f2c4,s_RenderVar1,used only by Render_* (2 functions)
+0x0036f2c8,s_RenderVar2,used only by Render_* (3 functions)
+0x0036f2d0,s_RenderVar3,used only by Render_* (3 functions)
+0x0036f308,s_RaceWorldVar1,used only by RaceWorld_* (3 functions)
+0x0036f31c,s_RaceSceneVar1,used only by RaceScene_* (3 functions)
+0x0036f320,s_RaceSceneVar2,used only by RaceScene_* (3 functions)
+0x0036f324,s_RaceSceneVar3,used only by RaceScene_* (3 functions)
+0x0036f330,s_Prop_SpawnBird_2,used only by Prop_SpawnBird
+0x0036f3b4,s_RaceCam_UpdateReplay_2,used only by RaceCam_UpdateReplay
+0x0036f3fc,s_UiResVar1,used only by UiRes_* (2 functions)
+0x0036f408,s_UiResVar2,used only by UiRes_* (2 functions)
+0x0036f40c,s_UiResVar3,used only by UiRes_* (3 functions)
+0x0036f430,s_UiMgrVar1,used only by UiMgr_* (3 functions)
+0x0036f434,s_UiMgrVar2,used only by UiMgr_* (3 functions)
+0x0036f438,s_UiMgrVar3,used only by UiMgr_* (2 functions)
+0x0036f43c,s_UiMgrVar4,used only by UiMgr_* (3 functions)
+0x0036f47c,s_MenuWnd_DrawDialogText_1,used only by MenuWnd_DrawDialogText
+0x0036f4a4,s_MenuSndVar1,used only by MenuSnd_* (5 functions)
+0x0036f540,s_ScrCareer_Draw_Mail_7e70_1,used only by ScrCareer_Draw_Mail_7e70
+0x0036f544,s_ScrCareer_Draw_MessageDeleted_52d0_1,used only by ScrCareer_Draw_MessageDeleted_52d0
+0x0036f548,s_ScrCareer_Draw_MessageDeleted_1,used only by ScrCareer_Draw_MessageDeleted
+0x0036f5e4,s_ScrCareer_Draw_SelectSectionTo_1,used only by ScrCareer_Draw_SelectSectionTo
+0x0036f5e8,s_ScrCareer_Draw_ThisBattleWith_1,used only by ScrCareer_Draw_ThisBattleWith
+0x0036f5ec,s_PageBetCar_State18_1,used only by maybe_PageBetCar_State18
+0x0036f698,s_TeamListVar1,used only by TeamList_* (2 functions)
+0x0036f6b4,s_ScrRivalList_ClearSlots_1,used only by maybe_ScrRivalList_ClearSlots
+0x0036f774,s_QuickRace_ReadPad_1,used only by maybe_QuickRace_ReadPad
+0x0036f778,s_QuickRace_ReadPad_2,used only by maybe_QuickRace_ReadPad
+0x0036f77c,s_QuickRace_ReadPad_3,used only by maybe_QuickRace_ReadPad
+0x0036f7f0,s_ResultVar1,used only by Result_* (2 functions)
+0x0036f808,s_RaceHudVar1,used only by RaceHud_* (2 functions)
+0x0036f80c,s_RaceHudVar2,used only by RaceHud_* (2 functions)
+0x0036f814,s_RaceHud_FadeOut_1,used only by RaceHud_FadeOut
+0x0036f938,s_Nameentry_Nop_4_1,used only by Nameentry_Nop_4
+0x0036f93c,s_Nameentry_Nop_3_1,used only by Nameentry_Nop_3
+0x0036f950,s_ComposerInputVar1,used only by ComposerInput_* (8 functions)
+0x0036f970,s_Attract_SetupDemoRace_1,used only by maybe_Attract_SetupDemoRace
+0x0036f974,s_Attract_SetupDemoRace_2,used only by maybe_Attract_SetupDemoRace
+0x0036fb48,s_RuntimeVar1,used only by runtime __* (2 functions)
+0x0036fb50,s_stdVar1,used only by std_* (2 functions)
+0x0036fb58,s_stdVar2,used only by std_* (2 functions)
+0x0036fb60,s_std_ios_base_Init_ctor_1,used only by std_ios_base_Init_ctor
+0x0036fb70,s_std_ios_base_Init_dtor_1,used only by std_ios_base_Init_dtor
+0x0036fbd4,s_std_ios_base_Init_dtor_2,used only by std_ios_base_Init_dtor
+0x0036fc34,s_std_ios_base_Init_dtor_3,used only by std_ios_base_Init_dtor
+0x0036fc90,s_std_ios_base_Init_ctor_2,used only by std_ios_base_Init_ctor
+0x0036fc94,s_std_ios_base_Init_dtor_4,used only by std_ios_base_Init_dtor
+0x0036fcf0,s_std_wios_Init_ctor_1,used only by maybe_std_wios_Init_ctor
+0x0036fd00,s_std_wios_Init_dtor_1,used only by maybe_std_wios_Init_dtor
+0x0036fd64,s_std_wios_Init_dtor_2,used only by maybe_std_wios_Init_dtor
+0x0036fdc4,s_std_wios_Init_dtor_3,used only by maybe_std_wios_Init_dtor
+0x0036fe20,s_std_wios_Init_ctor_2,used only by maybe_std_wios_Init_ctor
+0x0036fe24,s_std_wios_Init_dtor_4,used only by maybe_std_wios_Init_dtor
+0x0036fe78,s_std_ios_base_Init_ctor_3,used only by std_ios_base_Init_ctor
+0x0036fe90,s_std_ios_base_Init_ctor_4,used only by std_ios_base_Init_ctor
+0x0036fec8,s_std_ios_base_Init_ctor_5,used only by std_ios_base_Init_ctor
+0x0036fee0,s_std_ios_base_Init_ctor_6,used only by std_ios_base_Init_ctor
+0x0036ff18,s_std_ios_base_Init_ctor_7,used only by std_ios_base_Init_ctor
+0x0036ff30,s_std_ios_base_Init_ctor_8,used only by std_ios_base_Init_ctor
+0x0036ff68,s_std_wios_Init_ctor_3,used only by maybe_std_wios_Init_ctor
+0x0036ff80,s_std_wios_Init_ctor_4,used only by maybe_std_wios_Init_ctor
+0x0036ffe8,s_std_wios_Init_ctor_5,used only by maybe_std_wios_Init_ctor
+0x00370000,s_std_wios_Init_ctor_6,used only by maybe_std_wios_Init_ctor
+0x00370068,s_std_wios_Init_ctor_7,used only by maybe_std_wios_Init_ctor
+0x00370080,s_std_wios_Init_ctor_8,used only by maybe_std_wios_Init_ctor
+0x00370708,s_InitThreadExtension_1,used only by maybe_InitThreadExtension
+0x00370b40,s_Tty_SetBuffer_1,used only by maybe_Tty_SetBuffer
+0x00370b44,s_Tty_SetBuffer_2,used only by maybe_Tty_SetBuffer
+0x00370b48,s_Tty_SetBuffer_3,used only by maybe_Tty_SetBuffer
+0x00370b4c,s_Tty_SetBuffer_4,used only by maybe_Tty_SetBuffer
+0x00370c50,s_TtyVar1,used only by Tty_* (2 functions)
+0x00370c54,s_TtyVar2,used only by Tty_* (2 functions)
+0x00370c58,s_Tty_Init_1,used only by maybe_Tty_Init
+0x00370c5c,s_TtyVar3,used only by Tty_* (2 functions)
+0x00370c60,s_TtyVar4,used only by Tty_* (2 functions)
+0x00370c64,s_Tty_Init_2,used only by maybe_Tty_Init
+0x00370c68,s_TtyVar5,used only by Tty_* (2 functions)
+0x00370f7f,s_kputchar_1,used only by maybe_kputchar
+0x0037104c,s_sceSifInitCmd_1,used only by sceSifInitCmd
+0x00371050,s_sceSifInitCmd_2,used only by sceSifInitCmd
+0x0037105c,s_sceSifInitCmd_3,used only by sceSifInitCmd
+0x00371074,s_sceSifInitCmd_4,used only by sceSifInitCmd
+0x00371080,s_sceSifInitCmd_5,used only by sceSifInitCmd
+0x00371084,s_sceSifInitCmd_6,used only by sceSifInitCmd
+0x0037108c,s_sceSifInitCmd_7,used only by sceSifInitCmd
+0x00371090,s_sceSifInitCmd_8,used only by sceSifInitCmd
+0x003712cc,s_sceSifInitRpc_1,used only by sceSifInitRpc
+0x00372a80,s_sceSifInitRpc_2,used only by sceSifInitRpc
+0x00372a84,s_sceSifInitRpc_3,used only by sceSifInitRpc
+0x00372a88,s_sceSifInitRpc_4,used only by sceSifInitRpc
+0x00372a8c,s_sceSifInitRpc_5,used only by sceSifInitRpc
+0x00372a90,s_sceSifInitRpc_6,used only by sceSifInitRpc
+0x00372a94,s_sceSifInitRpc_7,used only by sceSifInitRpc
+0x00372a98,s_sceSifInitRpc_8,used only by sceSifInitRpc
+0x00372a9c,s_sceSifInitRpc_9,used only by sceSifInitRpc
+0x00372aa0,s_sceSifInitRpc_10,used only by sceSifInitRpc
+0x00372aa4,s_sceSifInitRpc_11,used only by sceSifInitRpc
+0x00372ac0,s_Fio_Bind_1,used only by maybe_Fio_Bind
+0x00372ac4,s_Fio_Bind_2,used only by maybe_Fio_Bind
+0x00372ac8,s_sceIoctl_1,used only by sceIoctl
+0x00372b20,s_sceChstat_1,used only by sceChstat
+0x00372b28,s_sceChstat_2,used only by sceChstat
+0x00372b2c,s_sceWrite_1,used only by sceWrite
+0x00372b30,s_sceChstat_3,used only by sceChstat
+0x00372b38,s_sceChstat_4,used only by sceChstat
+0x00372b40,s_sceChstat_5,used only by sceChstat
+0x00372b48,s_sceChstat_6,used only by sceChstat
+0x00372b50,s_sceChstat_7,used only by sceChstat
+0x00372f4f,s_sceChstat_8,used only by sceChstat
+0x0037330c,s_sceDevctl_1,used only by maybe_sceDevctl
+0x00373310,s_sceDevctl_2,used only by maybe_sceDevctl
+0x00373314,s_sceDevctl_3,used only by maybe_sceDevctl
+0x00373318,s_sceDevctl_4,used only by maybe_sceDevctl
+0x00373710,s_sceMount_1,used only by maybe_sceMount
+0x00374004,s_Fio_WaitFree_1,used only by maybe_Fio_WaitFree
+0x00374224,s_Fio_Bind_3,used only by maybe_Fio_Bind
+0x00374228,s_Fio_Bind_4,used only by maybe_Fio_Bind
+0x00374280,s_Fio_Bind_5,used only by maybe_Fio_Bind
+0x00374284,s_Fio_Bind_6,used only by maybe_Fio_Bind
+0x00374324,s_sceSifInitIopHeap_1,used only by sceSifInitIopHeap
+0x00374384,s_sceSifAllocSysMemory_1,used only by maybe_sceSifAllocSysMemory
+0x00374388,s_sceSifAllocSysMemory_2,used only by maybe_sceSifAllocSysMemory
+0x003743c0,s_sceSifLoadIopHeap_1,used only by maybe_sceSifLoadIopHeap
+0x003743c4,s_sceSifLoadIopHeap_2,used only by maybe_sceSifLoadIopHeap
+0x003744bf,s_sceSifLoadIopHeap_3,used only by maybe_sceSifLoadIopHeap
+0x003744c8,s_sceSifSetIopAddr_1,used only by maybe_sceSifSetIopAddr
+0x003745c4,s__lf_module_buffer_load_1,used only by maybe__lf_module_buffer_load
+0x003746bf,s__lf_elf_load_1,used only by maybe__lf_elf_load
+0x003746e4,s_sceSifLoadFileInit_1,used only by sceSifLoadFileInit
+0x003746e8,s_sceSifLoadFileInit_2,used only by sceSifLoadFileInit
+0x00374700,s_sceSifResetIop_1,used only by maybe_sceSifResetIop
+0x00374708,s_sceSifResetIop_2,used only by maybe_sceSifResetIop
+0x00374710,s_sceSifResetIop_3,used only by maybe_sceSifResetIop
+0x00374714,s_sceSifResetIop_4,used only by maybe_sceSifResetIop
+0x00377980,s_InitTimer_1,used only by maybe_InitTimer
+0x00377db0,s_Timer_FindFreeSlot_1,used only by maybe_Timer_FindFreeSlot
+0x00378004,s_sceCdSync0_1,used only by maybe_sceCdSync0
+0x0037800c,s_sceCdCallback_1,used only by maybe_sceCdCallback
+0x00378014,s_sceCdCbfunc_1,used only by sceCdCbfunc
+0x00378054,s_Cd_CallbackThreadInit_1,used only by maybe_Cd_CallbackThreadInit
+0x00378058,s_Cd_CallbackThreadInit_2,used only by maybe_Cd_CallbackThreadInit
+0x0037805c,s_Cd_CallbackThreadInit_3,used only by maybe_Cd_CallbackThreadInit
+0x00378060,s_Cd_CallbackThreadInit_4,used only by maybe_Cd_CallbackThreadInit
+0x00378064,s_Cd_CallbackThreadInit_5,used only by maybe_Cd_CallbackThreadInit
+0x003780a4,s_sceCdSearchFile_1,used only by sceCdSearchFile
+0x003781a3,s_sceCdSearchFile_2,used only by sceCdSearchFile
+0x003781a4,s_sceCdSearchFile_3,used only by sceCdSearchFile
+0x003781a8,s_sceCdSearchFile_4,used only by sceCdSearchFile
+0x00378224,s_sceCdSearchFile_5,used only by sceCdSearchFile
+0x0037824c,s_sceCdInit_1,used only by sceCdInit
+0x00378280,s_sceCdInit_2,used only by sceCdInit
+0x003782e8,s_sceMcGetDir_1,used only by maybe_sceMcGetDir
+0x003782ec,s_sceMcGetDir_2,used only by maybe_sceMcGetDir
+0x003782f0,s_sceMcGetDir_3,used only by maybe_sceMcGetDir
+0x00378300,s_sceMcReadDirEntry_1,used only by maybe_sceMcReadDirEntry
+0x00378308,s_sceMcReadDirEntry_2,used only by maybe_sceMcReadDirEntry
+0x00378310,s_sceMcReadDirEntry_3,used only by maybe_sceMcReadDirEntry
+0x00378318,s_sceMcReadDirEntry_4,used only by maybe_sceMcReadDirEntry
+0x00378320,s_sceMcReadDirEntry_5,used only by maybe_sceMcReadDirEntry
+0x00378328,s_sceMcReadDirEntry_6,used only by maybe_sceMcReadDirEntry
+0x00378330,s_sceMcReadDirEntry_7,used only by maybe_sceMcReadDirEntry
+0x00378338,s_sceMcReadDirEntry_8,used only by maybe_sceMcReadDirEntry
+0x0037833f,s_sceMcGetEntSpace_1,used only by maybe_sceMcGetEntSpace
+0x0037837c,s_sceMcSetFileInfo_1,used only by maybe_sceMcSetFileInfo
+0x00379884,s_sceMcInit_1,used only by sceMcInit
+0x00379888,s_sceMcInit_2,used only by sceMcInit
+0x003798bc,s_Mc_GetSyncState_1,used only by maybe_Mc_GetSyncState
+0x0037cc2c,s_sceDbcInit_1,used only by sceDbcInit
+0x0037cc54,s_sceDbcInit_2,used only by sceDbcInit
+0x0037cc7c,s_sceDbcInit_3,used only by sceDbcInit
+0x0037cc94,s_Dbc_GetDeviceStatusRpc_1,used only by maybe_Dbc_GetDeviceStatusRpc
+0x0037cca4,s_sceDbcCreateSocket_1,used only by sceDbcCreateSocket
+0x0037cca8,s_sceDbcCreateSocket_2,used only by sceDbcCreateSocket
+0x0037ccac,s_sceDbcCreateSocket_3,used only by sceDbcCreateSocket
+0x0037cf00,s_sceDbcSendData2_1,used only by sceDbcSendData2
+0x0037cf04,s_sceDbcSendData2_2,used only by sceDbcSendData2
+0x0037cf08,s_sceDbcSendData2_3,used only by sceDbcSendData2
+0x0037d090,s_sceDbcSRData_1,used only by sceDbcSRData
+0x0037e000,s_sceDbcSendData3_1,used only by maybe_sceDbcSendData3
+0x0037e004,s_sceDbcSendData3_2,used only by maybe_sceDbcSendData3
+0x0037e008,s_sceDbcSendData3_3,used only by maybe_sceDbcSendData3
+0x00380330,s_Gfx_BuildDisplayEnv_1,used only by maybe_Gfx_BuildDisplayEnv
+0x00380334,s_Gfx_BuildDisplayEnv_2,used only by maybe_Gfx_BuildDisplayEnv
+0x00380338,s_Gfx_BuildDisplayEnv_3,used only by maybe_Gfx_BuildDisplayEnv
+0x00380340,s_GfxVar9,used only by Gfx_* (2 functions)
+0x00380344,s_Gfx_BuildDisplayEnv_4,used only by maybe_Gfx_BuildDisplayEnv
+0x00380354,s_Gfx_BuildDisplayEnv_5,used only by maybe_Gfx_BuildDisplayEnv
+0x00380358,s_Gfx_BuildDisplayEnv_6,used only by maybe_Gfx_BuildDisplayEnv
+0x00380380,s___sinit_003685e0_1,used only by __sinit_003685e0
+0x0038038c,s_Gfx_SyncAndFlip_1,used only by Gfx_SyncAndFlip
+0x00380400,s_Gfx_Init_1,used only by Gfx_Init
+0x00380410,s_Gfx_Init_2,used only by Gfx_Init
+0x003804f0,s_Gfx_Init_3,used only by Gfx_Init
+0x00386620,s___sinit_00368630_1,used only by __sinit_00368630
+0x0038662c,s_FileVar9,used only by File_* (2 functions)
+0x00386f90,s_McVar1,used only by Mc_* (2 functions)
+0x00386f98,s_Mc_Init_1,used only by Mc_Init
+0x00386fa0,s_Mc_QueueCommand_1,used only by Mc_QueueCommand
+0x00386fac,s_Mc_Init_2,used only by Mc_Init
+0x00386fb4,s_McVar2,used only by Mc_* (3 functions)
+0x00386fbc,s___sinit_00368710_1,used only by __sinit_00368710
+0x00386fc4,s_Mc_Init_3,used only by Mc_Init
+0x00386fc8,s_Mc_Init_4,used only by Mc_Init
+0x00387000,s_IopSnd_Command_1,used only by IopSnd_Command
+0x00387004,s_IopSnd_Command_2,used only by IopSnd_Command
+0x00387008,s_IopSnd_Command_3,used only by IopSnd_Command
+0x00387084,s_IopStrm_Command_1,used only by IopStrm_Command
+0x003871c0,s_IopStrm_RpcHandler_1,used only by IopStrm_RpcHandler
+0x00387204,s_IopSe_Command_1,used only by IopSe_Command
+0x00387f50,s_DmaChainVar2,used only by DmaChain_* (2 functions)
+0x00387f54,s_DmaChainVar3,used only by DmaChain_* (2 functions)
+0x00387f58,s_DmaChainVar4,used only by DmaChain_* (2 functions)
+0x00387f60,s_DmaChainVar5,used only by DmaChain_* (2 functions)
+0x00387f64,s_DmaChainVar6,used only by DmaChain_* (2 functions)
+0x00387f68,s_DmaChainVar7,used only by DmaChain_* (2 functions)
+0x00387f6c,s_DmaChainVar8,used only by DmaChain_* (2 functions)
+0x00387f70,s_DmaChainVar9,used only by DmaChain_* (2 functions)
+0x00387f74,s_DmaChainVar10,used only by DmaChain_* (2 functions)
+0x00387f78,s_DmaChainVar11,used only by DmaChain_* (2 functions)
+0x00387f80,s_DmaChainVar12,used only by DmaChain_* (2 functions)
+0x00387f84,s_DmaChainVar13,used only by DmaChain_* (2 functions)
+0x00387f88,s_DmaChainVar14,used only by DmaChain_* (2 functions)
+0x00387f8c,s_DmaChainVar15,used only by DmaChain_* (2 functions)
+0x00387f90,s_DmaChainVar16,used only by DmaChain_* (2 functions)
+0x00387f94,s_DmaChainVar17,used only by DmaChain_* (2 functions)
+0x00387f98,s_DmaChainVar18,used only by DmaChain_* (2 functions)
+0x00387f9c,s_DmaChainVar19,used only by DmaChain_* (2 functions)
+0x00387fa0,s_GfxVar10,used only by Gfx_* (2 functions)
+0x00387fa1,s_GfxVar11,used only by Gfx_* (3 functions)
+0x00387fa2,s_GfxVar12,used only by Gfx_* (2 functions)
+0x00387fd4,s_Sprite_Draw_1,used only by Sprite_Draw
+0x00387fdc,s_Sprite_Draw_2,used only by Sprite_Draw
+0x00387fe0,s_Sprite_Draw_3,used only by Sprite_Draw
+0x00387fe4,s_Sprite_Draw_4,used only by Sprite_Draw
+0x00387fe8,s_Sprite_Draw_5,used only by Sprite_Draw
+0x00387fec,s_Sprite_Draw_6,used only by Sprite_Draw
+0x00388054,s_Sprite_Draw_7,used only by Sprite_Draw
+0x00388058,s_Sprite_Draw_8,used only by Sprite_Draw
+0x0038805c,s_Sprite_Draw_9,used only by Sprite_Draw
+0x00388080,s_Camera_SetupDefault_1,used only by Camera_SetupDefault
+0x00388098,s_Camera_SetupDefault_2,used only by Camera_SetupDefault
+0x0038809c,s_Camera_SetupDefault_3,used only by Camera_SetupDefault
+0x003880b4,s_Sprite_Draw_10,used only by Sprite_Draw
+0x003880bc,s_Sprite_Draw_11,used only by Sprite_Draw
+0x003880c0,s_Sprite_Draw_12,used only by Sprite_Draw
+0x003880c4,s_Sprite_Draw_13,used only by Sprite_Draw
+0x003880c8,s_Sprite_Draw_14,used only by Sprite_Draw
+0x003880cc,s_Sprite_Draw_15,used only by Sprite_Draw
+0x00388114,s_Gfx_SetDisplayParam_1,used only by Gfx_SetDisplayParam
+0x00388124,s_Sprite_Draw_16,used only by Sprite_Draw
+0x0038812c,s_Sprite_Draw_17,used only by Sprite_Draw
+0x00388130,s_Sprite_Draw_18,used only by Sprite_Draw
+0x00388134,s_Sprite_Draw_19,used only by Sprite_Draw
+0x00388138,s_Sprite_Draw_20,used only by Sprite_Draw
+0x0038813c,s_Sprite_Draw_21,used only by Sprite_Draw
+0x003881a4,s_Sprite_Draw_22,used only by Sprite_Draw
+0x003881a8,s_Sprite_Draw_23,used only by Sprite_Draw
+0x003881ac,s_Sprite_Draw_24,used only by Sprite_Draw
+0x0042b400,s_Gfx_SetFade_1,used only by Gfx_SetFade
+0x0042b720,s_Gfx_SetFade_2,used only by Gfx_SetFade
+0x0042ba40,s_Gfx_SetFade_3,used only by Gfx_SetFade
+0x0042bd60,s_Gfx_SetFade_4,used only by Gfx_SetFade
+0x0042c080,s_Gfx_SetFade_5,used only by Gfx_SetFade
+0x0042d0c0,s_Camera_SetupDefault_4,used only by Camera_SetupDefault
+0x0042d0c4,s_Camera_SetupDefault_5,used only by Camera_SetupDefault
+0x0042d0c8,s_Camera_SetupDefault_6,used only by Camera_SetupDefault
+0x0042d0cc,s_Camera_SetupDefault_7,used only by Camera_SetupDefault
+0x0042d0d0,s_Camera_SetupDefault_8,used only by Camera_SetupDefault
+0x0042d0d4,s_Camera_SetupDefault_9,used only by Camera_SetupDefault
+0x0042d0d8,s_Camera_SetupDefault_10,used only by Camera_SetupDefault
+0x0042d0dc,s_Camera_SetupDefault_11,used only by Camera_SetupDefault
+0x0042d0e0,s_Camera_SetupDefault_12,used only by Camera_SetupDefault
+0x0042d0e4,s_Camera_SetupDefault_13,used only by Camera_SetupDefault
+0x0042d0e8,s_Camera_SetupDefault_14,used only by Camera_SetupDefault
+0x0042d0ec,s_Camera_SetupDefault_15,used only by Camera_SetupDefault
+0x0042d0f0,s_Camera_SetupDefault_16,used only by Camera_SetupDefault
+0x0042d120,s_Camera_SetupDefault_17,used only by Camera_SetupDefault
+0x0042d128,s_Camera_SetupDefault_18,used only by Camera_SetupDefault
+0x0042d160,s_Camera_SetupDefault_19,used only by Camera_SetupDefault
+0x0042d164,s_Camera_SetupDefault_20,used only by Camera_SetupDefault
+0x0042d560,s_Camera_SetupDefault_21,used only by Camera_SetupDefault
+0x0042d570,s_Camera_SetupDefault_22,used only by Camera_SetupDefault
+0x0042d5a0,s_Camera_SetupDefault_23,used only by Camera_SetupDefault
+0x0042d5b0,s_Camera_SetupDefault_24,used only by Camera_SetupDefault
+0x0042d640,s_Light_SetDefaults_1,used only by Light_SetDefaults
+0x0042d644,s_Light_SetDefaults_2,used only by Light_SetDefaults
+0x0042d648,s_Light_SetDefaults_3,used only by Light_SetDefaults
+0x0042d64c,s_Light_SetDefaults_4,used only by Light_SetDefaults
+0x0042d690,s_Light_SetDefaults_5,used only by Light_SetDefaults
+0x0042d694,s_Light_SetDefaults_6,used only by Light_SetDefaults
+0x0042d698,s_Light_SetDefaults_7,used only by Light_SetDefaults
+0x0042d69c,s_Light_SetDefaults_8,used only by Light_SetDefaults
+0x0042d6a0,s_Light_SetDefaults_9,used only by Light_SetDefaults
+0x0042d6a4,s_Light_SetDefaults_10,used only by Light_SetDefaults
+0x0042d6a8,s_Light_SetDefaults_11,used only by Light_SetDefaults
+0x0042d6ac,s_Light_SetDefaults_12,used only by Light_SetDefaults
+0x0042d6b0,s_Light_SetDefaults_13,used only by Light_SetDefaults
+0x0042d6b4,s_Light_SetDefaults_14,used only by Light_SetDefaults
+0x0042d6b8,s_Light_SetDefaults_15,used only by Light_SetDefaults
+0x0042d6bc,s_Light_SetDefaults_16,used only by Light_SetDefaults
+0x0042d6c0,s_Light_SetDefaults_17,used only by Light_SetDefaults
+0x0042d6c4,s_Light_SetDefaults_18,used only by Light_SetDefaults
+0x0042d6c8,s_Light_SetDefaults_19,used only by Light_SetDefaults
+0x0042d6cc,s_Light_SetDefaults_20,used only by Light_SetDefaults
+0x0042d6d0,s_Light_SetDefaults_21,used only by Light_SetDefaults
+0x0042d6d4,s_Light_SetDefaults_22,used only by Light_SetDefaults
+0x0042d6d8,s_Light_SetDefaults_23,used only by Light_SetDefaults
+0x0042d6dc,s_Light_SetDefaults_24,used only by Light_SetDefaults
+0x0042d6e0,s_Light_SetDefaults_25,used only by Light_SetDefaults
+0x0042d6e4,s_Light_SetDefaults_26,used only by Light_SetDefaults
+0x0042d6e8,s_Light_SetDefaults_27,used only by Light_SetDefaults
+0x0042d6ec,s_Light_SetDefaults_28,used only by Light_SetDefaults
+0x0042d7ec,s_Gfx_ApplyVideoSettings_1,used only by Gfx_ApplyVideoSettings
+0x0042d810,s_SndVar1,used only by Snd_* (3 functions)
+0x0042d814,s_SndVar2,used only by Snd_* (3 functions)
+0x0042d818,s_SndVar3,used only by Snd_* (2 functions)
+0x0042d820,s_SndVar4,used only by Snd_* (4 functions)
+0x0042d854,s_SndVar5,used only by Snd_* (3 functions)
+0x0042d858,s_SndVar6,used only by Snd_* (3 functions)
+0x0042d86c,s_Snd_Init_1,used only by Snd_Init
+0x0042d870,s_Snd_Init_2,used only by Snd_Init
+0x0042d878,s_Snd_LoadBanks_1,used only by Snd_LoadBanks
+0x0042d87c,s_Snd_LoadBanks_2,used only by Snd_LoadBanks
+0x0042d880,s_Snd_LoadBanks_3,used only by Snd_LoadBanks
+0x0042d884,s_Snd_LoadBanks_4,used only by Snd_LoadBanks
+0x0042d888,s_Snd_LoadBanks_5,used only by Snd_LoadBanks
+0x0042d88c,s_Snd_LoadBanks_6,used only by Snd_LoadBanks
+0x0042d890,s_Snd_LoadBanks_7,used only by Snd_LoadBanks
+0x0042d894,s_Snd_LoadBanks_8,used only by Snd_LoadBanks
+0x0042d898,s_Snd_LoadBanks_9,used only by Snd_LoadBanks
+0x0042d89c,s_Snd_LoadBanks_10,used only by Snd_LoadBanks
+0x0042d8a0,s_Snd_LoadBanks_11,used only by Snd_LoadBanks
+0x0042d8a4,s_Snd_LoadBanks_12,used only by Snd_LoadBanks
+0x0042d8a8,s_Snd_LoadBanks_13,used only by Snd_LoadBanks
+0x0042d8ac,s_Snd_LoadBanks_14,used only by Snd_LoadBanks
+0x0042d8b0,s_Snd_LoadBanks_15,used only by Snd_LoadBanks
+0x0042d8b4,s_Snd_LoadBanks_16,used only by Snd_LoadBanks
+0x0042d8b8,s_Snd_LoadBanks_17,used only by Snd_LoadBanks
+0x0042d8bc,s_Snd_LoadBanks_18,used only by Snd_LoadBanks
+0x0042d8c0,s_Snd_LoadBanks_19,used only by Snd_LoadBanks
+0x0042d8c4,s_Snd_LoadBanks_20,used only by Snd_LoadBanks
+0x0042d8c8,s_Snd_LoadBanks_21,used only by Snd_LoadBanks
+0x0042d8cc,s_Snd_LoadBanks_22,used only by Snd_LoadBanks
+0x0042d8d0,s_Snd_LoadBanks_23,used only by Snd_LoadBanks
+0x0042d8d4,s_Snd_LoadBanks_24,used only by Snd_LoadBanks
+0x0042d8d8,s_Snd_LoadBanks_25,used only by Snd_LoadBanks
+0x0042d8dc,s_Snd_LoadBanks_26,used only by Snd_LoadBanks
+0x0042d8e0,s_Snd_LoadBanks_27,used only by Snd_LoadBanks
+0x0042d8e4,s_Snd_LoadBanks_28,used only by Snd_LoadBanks
+0x0042d8e8,s_Snd_LoadBanks_29,used only by Snd_LoadBanks
+0x0042d8ec,s_Snd_LoadBanks_30,used only by Snd_LoadBanks
+0x0042d8f0,s_Snd_LoadBanks_31,used only by Snd_LoadBanks
+0x0042d8f4,s_Snd_LoadBanks_32,used only by Snd_LoadBanks
+0x0042d8f8,s_Snd_LoadBanks_33,used only by Snd_LoadBanks
+0x0042d8fc,s_Snd_LoadBanks_34,used only by Snd_LoadBanks
+0x0042d900,s_Snd_LoadBanks_35,used only by Snd_LoadBanks
+0x0042d904,s_Snd_LoadBanks_36,used only by Snd_LoadBanks
+0x0042d908,s_Snd_LoadBanks_37,used only by Snd_LoadBanks
+0x0042d90c,s_Snd_LoadBanks_38,used only by Snd_LoadBanks
+0x0042d910,s_Snd_LoadBanks_39,used only by Snd_LoadBanks
+0x0042d914,s_Snd_LoadBanks_40,used only by Snd_LoadBanks
+0x0042d918,s_Snd_LoadBanks_41,used only by Snd_LoadBanks
+0x0042d91c,s_Snd_LoadBanks_42,used only by Snd_LoadBanks
+0x0042d920,s_Snd_LoadBanks_43,used only by Snd_LoadBanks
+0x0042d924,s_Snd_LoadBanks_44,used only by Snd_LoadBanks
+0x0042d928,s_Snd_LoadBanks_45,used only by Snd_LoadBanks
+0x0042d92c,s_Snd_LoadBanks_46,used only by Snd_LoadBanks
+0x0042d930,s_Snd_LoadBanks_47,used only by Snd_LoadBanks
+0x0042d934,s_Snd_LoadBanks_48,used only by Snd_LoadBanks
+0x0042d938,s_Snd_LoadBanks_49,used only by Snd_LoadBanks
+0x0042d93c,s_Snd_LoadBanks_50,used only by Snd_LoadBanks
+0x0042d940,s_Snd_LoadBanks_51,used only by Snd_LoadBanks
+0x0042d944,s_Snd_LoadBanks_52,used only by Snd_LoadBanks
+0x0042d948,s_Snd_LoadBanks_53,used only by Snd_LoadBanks
+0x0042d94c,s_Snd_LoadBanks_54,used only by Snd_LoadBanks
+0x0042d950,s_Snd_LoadBanks_55,used only by Snd_LoadBanks
+0x0042d954,s_Snd_LoadBanks_56,used only by Snd_LoadBanks
+0x0042d958,s_Snd_LoadBanks_57,used only by Snd_LoadBanks
+0x0042d95c,s_Snd_LoadBanks_58,used only by Snd_LoadBanks
+0x0042d960,s_Snd_LoadBanks_59,used only by Snd_LoadBanks
+0x0042d964,s_Snd_LoadBanks_60,used only by Snd_LoadBanks
+0x0042d968,s_Snd_LoadBanks_61,used only by Snd_LoadBanks
+0x0042d96c,s_Snd_LoadBanks_62,used only by Snd_LoadBanks
+0x0042d970,s_Snd_LoadBanks_63,used only by Snd_LoadBanks
+0x0042d974,s_Snd_LoadBanks_64,used only by Snd_LoadBanks
+0x0042d978,s_Snd_LoadBanks_65,used only by Snd_LoadBanks
+0x0042d97c,s_Snd_LoadBanks_66,used only by Snd_LoadBanks
+0x0042d980,s_Snd_LoadBanks_67,used only by Snd_LoadBanks
+0x0042d984,s_Snd_LoadBanks_68,used only by Snd_LoadBanks
+0x0042d988,s_Snd_LoadBanks_69,used only by Snd_LoadBanks
+0x0042d98c,s_Snd_LoadBanks_70,used only by Snd_LoadBanks
+0x0042d990,s_Snd_LoadBanks_71,used only by Snd_LoadBanks
+0x0042d994,s_Snd_LoadBanks_72,used only by Snd_LoadBanks
+0x0042d998,s_Snd_LoadBanks_73,used only by Snd_LoadBanks
+0x0042d99c,s_Snd_LoadBanks_74,used only by Snd_LoadBanks
+0x0042d9a0,s_Snd_LoadBanks_75,used only by Snd_LoadBanks
+0x0042d9a4,s_Snd_LoadBanks_76,used only by Snd_LoadBanks
+0x0042d9a8,s_Snd_LoadBanks_77,used only by Snd_LoadBanks
+0x0042d9ac,s_Snd_LoadBanks_78,used only by Snd_LoadBanks
+0x0042d9b0,s_Snd_LoadBanks_79,used only by Snd_LoadBanks
+0x0042d9b4,s_Snd_LoadBanks_80,used only by Snd_LoadBanks
+0x0042d9b8,s_Snd_LoadBanks_81,used only by Snd_LoadBanks
+0x0042d9bc,s_Snd_LoadBanks_82,used only by Snd_LoadBanks
+0x0042d9c0,s_Snd_LoadBanks_83,used only by Snd_LoadBanks
+0x0042d9c4,s_Snd_LoadBanks_84,used only by Snd_LoadBanks
+0x0042d9c8,s_Snd_LoadBanks_85,used only by Snd_LoadBanks
+0x0042d9cc,s_Snd_LoadBanks_86,used only by Snd_LoadBanks
+0x0042d9d0,s_Snd_LoadBanks_87,used only by Snd_LoadBanks
+0x0042d9d4,s_Snd_LoadBanks_88,used only by Snd_LoadBanks
+0x0042d9d8,s_Snd_LoadBanks_89,used only by Snd_LoadBanks
+0x0042d9dc,s_Snd_LoadBanks_90,used only by Snd_LoadBanks
+0x0042d9e0,s_Snd_LoadBanks_91,used only by Snd_LoadBanks
+0x0042d9e4,s_Snd_LoadBanks_92,used only by Snd_LoadBanks
+0x0042d9e8,s_Snd_LoadBanks_93,used only by Snd_LoadBanks
+0x0042d9ec,s_Snd_LoadBanks_94,used only by Snd_LoadBanks
+0x0042d9f0,s_Snd_LoadBanks_95,used only by Snd_LoadBanks
+0x0042d9f4,s_Snd_LoadBanks_96,used only by Snd_LoadBanks
+0x0042d9f8,s_Snd_LoadBanks_97,used only by Snd_LoadBanks
+0x0042d9fc,s_Snd_LoadBanks_98,used only by Snd_LoadBanks
+0x0042da00,s_Snd_LoadBanks_99,used only by Snd_LoadBanks
+0x0042da04,s_Snd_LoadBanks_100,used only by Snd_LoadBanks
+0x0042da08,s_Snd_LoadBanks_101,used only by Snd_LoadBanks
+0x0042da0c,s_Snd_LoadBanks_102,used only by Snd_LoadBanks
+0x0042da10,s_Snd_LoadBanks_103,used only by Snd_LoadBanks
+0x0042da14,s_Snd_LoadBanks_104,used only by Snd_LoadBanks
+0x0042da18,s_Snd_LoadBanks_105,used only by Snd_LoadBanks
+0x0042da1c,s_Snd_LoadBanks_106,used only by Snd_LoadBanks
+0x0042da20,s_Snd_LoadBanks_107,used only by Snd_LoadBanks
+0x0042da24,s_Snd_LoadBanks_108,used only by Snd_LoadBanks
+0x0042da28,s_Snd_LoadBanks_109,used only by Snd_LoadBanks
+0x0042da2c,s_Snd_LoadBanks_110,used only by Snd_LoadBanks
+0x0042da30,s_SndVar7,used only by Snd_* (6 functions)
+0x0042da34,s_SndVar8,used only by Snd_* (9 functions)
+0x0042da38,s_SndVar9,used only by Snd_* (6 functions)
+0x0042da3c,s_SndVar10,used only by Snd_* (4 functions)
+0x0042da40,s_SndVar11,used only by Snd_* (4 functions)
+0x0042da44,s_SndVar12,used only by Snd_* (4 functions)
+0x0042da48,s_SndVar13,used only by Snd_* (4 functions)
+0x0042da4c,s_SndVar14,used only by Snd_* (3 functions)
+0x0042da50,s_SndVar15,used only by Snd_* (4 functions)
+0x0042da54,s_SndVar16,used only by Snd_* (3 functions)
+0x0042da58,s_SndVar17,used only by Snd_* (4 functions)
+0x0042da5c,s_SndVar18,used only by Snd_* (3 functions)
+0x0042da60,s_SndVar19,used only by Snd_* (6 functions)
+0x0042da64,s_SndVar20,used only by Snd_* (6 functions)
+0x0042da68,s_SndVar21,used only by Snd_* (6 functions)
+0x0042da6c,s_SndVar22,used only by Snd_* (6 functions)
+0x0042da8c,s_SndVar23,used only by Snd_* (3 functions)
+0x0042da94,s_SndVar24,used only by Snd_* (3 functions)
+0x0042da9c,s_SndVar25,used only by Snd_* (3 functions)
+0x0042daa0,s_SndVar26,used only by Snd_* (3 functions)
+0x0042daa8,s_Snd_LoadSystemBanks_1,used only by Snd_LoadSystemBanks
+0x0042daac,s_Snd_LoadSystemBanks_2,used only by Snd_LoadSystemBanks
+0x0042dac0,s_Snd_LoadSystemBanks_3,used only by Snd_LoadSystemBanks
+0x0042dad0,s_Snd_LoadSystemBanks_4,used only by Snd_LoadSystemBanks
+0x0042dad4,s_Snd_LoadSystemBanks_5,used only by Snd_LoadSystemBanks
+0x0042dae8,s_Snd_LoadSystemBanks_6,used only by Snd_LoadSystemBanks
+0x0042daf8,s_SndVar27,used only by Snd_* (3 functions)
+0x0042dec0,s_SndVar28,used only by Snd_* (3 functions)
+0x0042e400,s_Font_UploadTexture_1,used only by maybe_Font_UploadTexture
+0x0042e424,s_Font_UploadTexture_2,used only by maybe_Font_UploadTexture
+0x0042e430,s_Font_UploadTexture_3,used only by maybe_Font_UploadTexture
+0x0042f0c2,s_Font_UploadTexture_4,used only by maybe_Font_UploadTexture
+0x0042f370,s_Font_UploadTexture_5,used only by maybe_Font_UploadTexture
+0x0042f3c0,s_PhysVar1,used only by Phys_* (3 functions)
+0x0042f3c8,s_PhysWorld_SolveIsland_1,used only by PhysWorld_SolveIsland
+0x0042f3d0,s_Phys_Shutdown_1,used only by Phys_Shutdown
+0x0042f3d4,s_Phys_Shutdown_2,used only by Phys_Shutdown
+0x0042f3dc,s_Phys_AddBody_1,used only by Phys_AddBody
+0x0042f3e0,s_PhysVar2,used only by Phys_* (3 functions)
+0x0042f3e4,s_Phys_Shutdown_3,used only by Phys_Shutdown
+0x0042f3e8,s_PhysVar3,used only by Phys_* (2 functions)
+0x0042f3ec,s_PhysVar4,used only by Phys_* (2 functions)
+0x0042f3f0,s_Phys_Shutdown_4,used only by Phys_Shutdown
+0x0042f3f4,s_Phys_Shutdown_5,used only by Phys_Shutdown
+0x0042f3f8,s_Phys_Shutdown_6,used only by Phys_Shutdown
+0x0042f400,s_Phys_SetupPools_1,used only by Phys_SetupPools
+0x0042f404,s_Phys_SetupPools_2,used only by Phys_SetupPools
+0x0042f408,s_Phys_SetupPools_3,used only by Phys_SetupPools
+0x0042f43c,s___sinit_003689b0_1,used only by __sinit_003689b0
+0x0042f45c,s___sinit_003689b0_2,used only by __sinit_003689b0
+0x0042f47c,s___sinit_003689b0_3,used only by __sinit_003689b0
+0x0042f480,s___sinit_003689b0_4,used only by __sinit_003689b0
+0x0042f484,s___sinit_003689b0_5,used only by __sinit_003689b0
+0x0042f488,s___sinit_003689b0_6,used only by __sinit_003689b0
+0x0042f490,s___sinit_003689b0_7,used only by __sinit_003689b0
+0x0042f494,s___sinit_003689b0_8,used only by __sinit_003689b0
+0x0042f498,s___sinit_003689b0_9,used only by __sinit_003689b0
+0x0042f4a0,s___sinit_003689b0_10,used only by __sinit_003689b0
+0x0042f4a4,s___sinit_003689b0_11,used only by __sinit_003689b0
+0x0042f4a8,s___sinit_003689b0_12,used only by __sinit_003689b0
+0x0042f4b0,s___sinit_003689b0_13,used only by __sinit_003689b0
+0x0042f4b4,s___sinit_003689b0_14,used only by __sinit_003689b0
+0x0042f4b8,s___sinit_003689b0_15,used only by __sinit_003689b0
+0x0042f4c0,s___sinit_003689b0_16,used only by __sinit_003689b0
+0x0042f4c4,s___sinit_003689b0_17,used only by __sinit_003689b0
+0x0042f4c8,s___sinit_003689b0_18,used only by __sinit_003689b0
+0x0042f4d0,s___sinit_003689b0_19,used only by __sinit_003689b0
+0x0042f4d4,s___sinit_003689b0_20,used only by __sinit_003689b0
+0x0042f4d8,s___sinit_003689b0_21,used only by __sinit_003689b0
+0x0042f4e0,s___sinit_003689b0_22,used only by __sinit_003689b0
+0x0042f4e4,s___sinit_003689b0_23,used only by __sinit_003689b0
+0x0042f4e8,s___sinit_003689b0_24,used only by __sinit_003689b0
+0x0042f4f0,s___sinit_003689b0_25,used only by __sinit_003689b0
+0x0042f4f4,s___sinit_003689b0_26,used only by __sinit_003689b0
+0x0042f4f8,s___sinit_003689b0_27,used only by __sinit_003689b0
+0x0042f500,s___sinit_003689b0_28,used only by __sinit_003689b0
+0x0042f504,s___sinit_003689b0_29,used only by __sinit_003689b0
+0x0042f508,s___sinit_003689b0_30,used only by __sinit_003689b0
+0x0042f510,s___sinit_003689b0_31,used only by __sinit_003689b0
+0x0042f514,s___sinit_003689b0_32,used only by __sinit_003689b0
+0x0042f518,s___sinit_003689b0_33,used only by __sinit_003689b0
+0x0042f520,s___sinit_003689b0_34,used only by __sinit_003689b0
+0x0042f524,s___sinit_003689b0_35,used only by __sinit_003689b0
+0x0042f528,s___sinit_003689b0_36,used only by __sinit_003689b0
+0x0042f530,s___sinit_003689b0_37,used only by __sinit_003689b0
+0x0042f534,s___sinit_003689b0_38,used only by __sinit_003689b0
+0x0042f538,s___sinit_003689b0_39,used only by __sinit_003689b0
+0x0042f540,s_PhysBox_GetCorner_1,used only by PhysBox_GetCorner
+0x0042f544,s_PhysBox_GetCorner_2,used only by PhysBox_GetCorner
+0x0042f548,s_PhysBox_GetCorner_3,used only by PhysBox_GetCorner
+0x0042fb70,s___sinit_00368c30_1,used only by __sinit_00368c30
+0x0042fb78,s___sinit_00368c30_2,used only by __sinit_00368c30
+0x0042fb7c,s___sinit_00368c30_3,used only by __sinit_00368c30
+0x0042fb80,s___sinit_00368c30_4,used only by __sinit_00368c30
+0x0042fb84,s___sinit_00368c30_5,used only by __sinit_00368c30
+0x0042fb88,s___sinit_00368c30_6,used only by __sinit_00368c30
+0x0042fb8c,s___sinit_00368c30_7,used only by __sinit_00368c30
+0x0042fb90,s___sinit_00368c30_8,used only by __sinit_00368c30
+0x0042fb94,s___sinit_00368c30_9,used only by __sinit_00368c30
+0x0042fb98,s___sinit_00368c30_10,used only by __sinit_00368c30
+0x0042fb9c,s___sinit_00368c30_11,used only by __sinit_00368c30
+0x0042fba0,s___sinit_00368c30_12,used only by __sinit_00368c30
+0x0042fba4,s___sinit_00368c30_13,used only by __sinit_00368c30
+0x0042fba8,s___sinit_00368c30_14,used only by __sinit_00368c30
+0x0042fbac,s___sinit_00368c30_15,used only by __sinit_00368c30
+0x0042fbb0,s___sinit_00368c30_16,used only by __sinit_00368c30
+0x0042fbb4,s___sinit_00368c30_17,used only by __sinit_00368c30
+0x0042fbb8,s___sinit_00368c30_18,used only by __sinit_00368c30
+0x0042fbbc,s___sinit_00368c30_19,used only by __sinit_00368c30
+0x0042fbc0,s___sinit_00368c30_20,used only by __sinit_00368c30
+0x0042fbc4,s___sinit_00368c30_21,used only by __sinit_00368c30
+0x0042fbc8,s___sinit_00368c30_22,used only by __sinit_00368c30
+0x0042fbcc,s___sinit_00368c30_23,used only by __sinit_00368c30
+0x0042fbd0,s___sinit_00368c30_24,used only by __sinit_00368c30
+0x0042fbd4,s___sinit_00368c30_25,used only by __sinit_00368c30
+0x0042fbd8,s___sinit_00368c30_26,used only by __sinit_00368c30
+0x0042fbe0,s___sinit_00368c30_27,used only by __sinit_00368c30
+0x0042fbe8,s___sinit_00368c30_28,used only by __sinit_00368c30
+0x0042fbec,s___sinit_00368c30_29,used only by __sinit_00368c30
+0x0042fbf0,s___sinit_00368c30_30,used only by __sinit_00368c30
+0x0042fbf4,s___sinit_00368c30_31,used only by __sinit_00368c30
+0x0042fbf8,s___sinit_00368c30_32,used only by __sinit_00368c30
+0x0042fbfc,s___sinit_00368c30_33,used only by __sinit_00368c30
+0x0042fc00,s___sinit_00368c30_34,used only by __sinit_00368c30
+0x0042fc04,s___sinit_00368c30_35,used only by __sinit_00368c30
+0x0042fc08,s___sinit_00368c30_36,used only by __sinit_00368c30
+0x0042fc0c,s___sinit_00368c30_37,used only by __sinit_00368c30
+0x0042fc10,s___sinit_00368c30_38,used only by __sinit_00368c30
+0x0042fc14,s___sinit_00368c30_39,used only by __sinit_00368c30
+0x0042fc18,s___sinit_00368c30_40,used only by __sinit_00368c30
+0x0042fc1c,s___sinit_00368c30_41,used only by __sinit_00368c30
+0x0042fc20,s___sinit_00368c30_42,used only by __sinit_00368c30
+0x0042fc24,s___sinit_00368c30_43,used only by __sinit_00368c30
+0x0042fc28,s___sinit_00368c30_44,used only by __sinit_00368c30
+0x0042fc2c,s___sinit_00368c30_45,used only by __sinit_00368c30
+0x0042fc30,s___sinit_00368c30_46,used only by __sinit_00368c30
+0x0042fc34,s___sinit_00368c30_47,used only by __sinit_00368c30
+0x0042fc38,s___sinit_00368c30_48,used only by __sinit_00368c30
+0x0042fc3c,s___sinit_00368c30_49,used only by __sinit_00368c30
+0x0042fc40,s___sinit_00368c30_50,used only by __sinit_00368c30
+0x0042fc44,s___sinit_00368c30_51,used only by __sinit_00368c30
+0x0042fc48,s___sinit_00368c30_52,used only by __sinit_00368c30
+0x0042fd64,s_lgDevInit_1,used only by lgDevInit
+0x0042fde4,s_lgDevRead_1,used only by lgDevRead
+0x004301c4,s_Course_UpdateEnvironment_2,used only by Course_UpdateEnvironment
+0x004303d0,s_Road_FindSectionCell_1,used only by maybe_Road_FindSectionCell
+0x004303d2,s_Road_FindSectionCell_2,used only by maybe_Road_FindSectionCell
+0x004303d4,s_Road_FindSectionCell_3,used only by maybe_Road_FindSectionCell
+0x004303d6,s_Road_FindSectionCell_4,used only by maybe_Road_FindSectionCell
+0x004303d8,s_Road_FindSectionCell_5,used only by maybe_Road_FindSectionCell
+0x004303da,s_Road_FindSectionCell_6,used only by maybe_Road_FindSectionCell
+0x00430464,s_CourseVar2,used only by Course_* (4 functions)
+0x00430468,s_CourseVar3,used only by Course_* (3 functions)
+0x00430478,s_CourseVar4,used only by Course_* (2 functions)
+0x0043047a,s_CourseVar5,used only by Course_* (2 functions)
+0x004305d4,s_CourseStream_RequestTextures_1,used only by CourseStream_RequestTextures
+0x004305dc,s_CourseStreamVar1,used only by CourseStream_* (2 functions)
+0x004305e4,s_Course_Load_1,used only by Course_Load
+0x004305e8,s_Course_Load_2,used only by Course_Load
+0x004305ec,s_Course_Load_3,used only by Course_Load
+0x004305f8,s_Course_Load_4,used only by Course_Load
+0x004305fc,s_Course_Load_5,used only by Course_Load
+0x00430644,s___sinit_00369c10_1,used only by __sinit_00369c10
+0x0043064c,s_CourseScene_Load_1,used only by CourseScene_Load
+0x00430650,s_CourseScene_Load_2,used only by CourseScene_Load
+0x00430664,s_CourseVar6,used only by Course_* (2 functions)
+0x00430670,s_Course_Render_1,used only by Course_Render
+0x00430700,s_Course_DrawReflectionPlane_1,used only by Course_DrawReflectionPlane
+0x00430704,s_Course_DrawReflectionPlane_2,used only by Course_DrawReflectionPlane
+0x00430708,s_Course_DrawReflectionPlane_3,used only by Course_DrawReflectionPlane
+0x0043070c,s_Course_DrawReflectionPlane_4,used only by Course_DrawReflectionPlane
+0x00430710,s_Course_DrawReflectionPlane_5,used only by Course_DrawReflectionPlane
+0x00430714,s_Course_DrawReflectionPlane_6,used only by Course_DrawReflectionPlane
+0x00430718,s_Course_DrawReflectionPlane_7,used only by Course_DrawReflectionPlane
+0x004307a8,s_Ptcl_Update_1,used only by Ptcl_Update
+0x004307b4,s_PtclSysVar1,used only by PtclSys_* (5 functions)
+0x004308c8,s_PtclSysVar2,used only by PtclSys_* (3 functions)
+0x004308cc,s_PtclSysVar3,used only by PtclSys_* (2 functions)
+0x004308d0,s_PtclSysVar4,used only by PtclSys_* (4 functions)
+0x004308d4,s_PtclSysVar5,used only by PtclSys_* (3 functions)
+0x00431164,s_ReplayCam_DrawOverlay_1,used only by maybe_ReplayCam_DrawOverlay
+0x00431168,s_Course_DrawReflectionPlane_8,used only by Course_DrawReflectionPlane
+0x0043116c,s_Course_DrawReflectionPlane_9,used only by Course_DrawReflectionPlane
+0x00431190,s_TitleCamVar1,used only by TitleCam_* (3 functions)
+0x00431194,s_TitleCamVar2,used only by TitleCam_* (3 functions)
+0x004311a0,s_CamVar1,used only by Cam_* (5 functions)
+0x004311cc,s_ReplayCam_DrawLensFlare_1,used only by maybe_ReplayCam_DrawLensFlare
+0x004312e8,s_ReplayCam_DrawLensFlare_2,used only by maybe_ReplayCam_DrawLensFlare
+0x004312ec,s_ReplayCam_DrawLensFlare_3,used only by maybe_ReplayCam_DrawLensFlare
+0x004312f8,s_ReplayCam_DrawLensFlare_4,used only by maybe_ReplayCam_DrawLensFlare
+0x00431684,s_Course_Render_2,used only by Course_Render
+0x00431764,s_RaceCam_UpdateReplay_3,used only by RaceCam_UpdateReplay
+0x00431c44,s_Course_Render_3,used only by Course_Render
+0x00431d24,s_RaceCam_UpdateReplay_4,used only by RaceCam_UpdateReplay
+0x00432204,s_Course_Render_4,used only by Course_Render
+0x004322b0,s_RaceCam_UpdateReplay_5,used only by RaceCam_UpdateReplay
+0x004322b4,s_RaceCam_UpdateReplay_6,used only by RaceCam_UpdateReplay
+0x004322e4,s_Cam_Init_1,used only by Cam_Init
+0x004327c4,s_Course_Render_5,used only by Course_Render
+0x00432870,s_Cam_SetPitch_1,used only by Cam_SetPitch
+0x004328a4,s_Cam_Init_2,used only by Cam_Init
+0x00432d84,s_Course_Render_6,used only by Course_Render
+0x004333f0,s_Cam_SetPitch_2,used only by Cam_SetPitch
+0x00433424,s_Cam_Init_3,used only by Cam_Init
+0x004339a0,s_Game_UpdateObjects_1,used only by maybe_Game_UpdateObjects
+0x004339a8,s_Game_UpdateObjects_2,used only by maybe_Game_UpdateObjects
+0x00433fa4,s_Prop_DrawBirds_1,used only by Prop_DrawBirds
+0x00434380,s_ReplayCam_DrawOverlay_2,used only by maybe_ReplayCam_DrawOverlay
+0x00434388,s_ReplayCam_DrawOverlay_3,used only by maybe_ReplayCam_DrawOverlay
+0x004343a0,s_ReplayCam_DrawOverlay_4,used only by maybe_ReplayCam_DrawOverlay
+0x004343b0,s_ReplayCam_DrawOverlay_5,used only by maybe_ReplayCam_DrawOverlay
+0x004343c0,s_ReplayCam_DrawOverlay_6,used only by maybe_ReplayCam_DrawOverlay
+0x004343d0,s_ReplayCam_DrawOverlay_7,used only by maybe_ReplayCam_DrawOverlay
+0x00435bf0,s_IntroCar_Draw_1,used only by maybe_IntroCar_Draw
+0x00436310,s___sinit_00369e00_1,used only by __sinit_00369e00
+0x00436318,s_Render_Init_2,used only by Render_Init
+0x0043631c,s_Render_Init_3,used only by Render_Init
+0x00436340,s_DriverAssetVar1,used only by DriverAsset_* (2 functions)
+0x00436350,s_DriverAssetVar2,used only by DriverAsset_* (2 functions)
+0x00436354,s_CarModel_DrawBody_1,used only by CarModel_DrawBody
+0x0043636c,s_CarModel_DrawBody_2,used only by CarModel_DrawBody
+0x00436370,s_CarAsset_UploadPalette_1,used only by CarAsset_UploadPalette
+0x00436388,s_CarAsset_UploadPalette_2,used only by CarAsset_UploadPalette
+0x0043638c,s_CarAsset_UploadPalette_3,used only by CarAsset_UploadPalette
+0x004363a4,s_CarAsset_UploadPalette_4,used only by CarAsset_UploadPalette
+0x004363c0,s_ResPool_Get_1,used only by ResPool_Get
+0x004363dc,s_CarAsset_UploadPaletteDefault_1,used only by CarAsset_UploadPaletteDefault
+0x00436400,s_Asset_LoadCarParts_1,used only by Asset_LoadCarParts
+0x00436408,s_AssetVar1,used only by Asset_* (2 functions)
+0x00436450,s_CarModel_DrawParts_1,used only by CarModel_DrawParts
+0x00436468,s_CarModel_DrawParts_2,used only by CarModel_DrawParts
+0x00436480,s_AssetVar2,used only by Asset_* (2 functions)
+0x00436484,s_AssetVar3,used only by Asset_* (2 functions)
+0x00436488,s_Asset_LoadCourseCommon_1,used only by Asset_LoadCourseCommon
+0x0043648c,s_Asset_LoadCourseCommon_2,used only by Asset_LoadCourseCommon
+0x00436490,s_Asset_LoadCourseCommon_3,used only by Asset_LoadCourseCommon
+0x00436494,s_Asset_LoadCourseCommon_4,used only by Asset_LoadCourseCommon
+0x00436498,s_Asset_LoadCourseCommon_5,used only by Asset_LoadCourseCommon
+0x004364a0,s_Asset_LoadCourseCommon_6,used only by Asset_LoadCourseCommon
+0x004364a4,s_Asset_LoadCourseCommon_7,used only by Asset_LoadCourseCommon
+0x004364a8,s_Asset_LoadCourseCommon_8,used only by Asset_LoadCourseCommon
+0x004364ac,s_Asset_LoadCourseCommon_9,used only by Asset_LoadCourseCommon
+0x004364b0,s_Asset_LoadCourseCommon_10,used only by Asset_LoadCourseCommon
+0x004364b4,s_Asset_LoadCourseCommon_11,used only by Asset_LoadCourseCommon
+0x004364b8,s_Asset_LoadCourseCommon_12,used only by Asset_LoadCourseCommon
+0x004364bc,s_Asset_LoadCourseCommon_13,used only by Asset_LoadCourseCommon
+0x00436570,s_PropVar1,used only by Prop_* (2 functions)
+0x004365c0,s_PropVar2,used only by Prop_* (2 functions)
+0x004678d0,s_UiRes_LoadAll_1,used only by UiRes_LoadAll
+0x00467990,s_UiRes_LoadAll_2,used only by UiRes_LoadAll
+0x00467a50,s_UiRes_LoadAll_3,used only by UiRes_LoadAll
+0x00467da0,s_UiRes_LoadAll_4,used only by UiRes_LoadAll
+0x004680e0,s_UiRes_LoadAll_5,used only by UiRes_LoadAll
+0x0046911c,s_UiMgr_UpdateAll_1,used only by UiMgr_UpdateAll
+0x00469120,s_UiMgr_UpdateAll_2,used only by UiMgr_UpdateAll
+0x00469124,s_UiMgr_UpdateAll_3,used only by UiMgr_UpdateAll
+0x00469128,s_UiMgr_UpdateAll_4,used only by UiMgr_UpdateAll
+0x0046912c,s_UiMgr_UpdateAll_5,used only by UiMgr_UpdateAll
+0x004695e0,s_MenuWnd_DrawMailList_1,used only by maybe_MenuWnd_DrawMailList
+0x004695e4,s_MenuWnd_DrawMailList_2,used only by maybe_MenuWnd_DrawMailList
+0x004695e8,s_MenuWnd_DrawMailList_3,used only by maybe_MenuWnd_DrawMailList
+0x00469830,s_ScrRace_Draw_Interval_1,used only by ScrRace_Draw_Interval
+0x00469834,s_ScrRace_Draw_Interval_2,used only by ScrRace_Draw_Interval
+0x00469838,s_ScrRace_Draw_Interval_3,used only by ScrRace_Draw_Interval
+0x0046a030,s_ReplayCamVar1,used only by ReplayCam_* (2 functions)
+0x0046a034,s_ReplayCamVar2,used only by ReplayCam_* (2 functions)
+0x0046a038,s_ReplayCam_Load_1,used only by maybe_ReplayCam_Load
+0x0046a03c,s_ReplayCam_Load_2,used only by maybe_ReplayCam_Load
+0x0046a050,s_ReplayCamVar3,used only by ReplayCam_* (2 functions)
+0x0046a054,s_ReplayCamVar4,used only by ReplayCam_* (3 functions)
+0x0046a070,s_ReplayCam_Load_3,used only by maybe_ReplayCam_Load
+0x0046a074,s_ReplayCamVar5,used only by ReplayCam_* (2 functions)
+0x0046a090,s_ReplayCamVar6,used only by ReplayCam_* (2 functions)
+0x0046a094,s_ReplayCam_Free_1,used only by maybe_ReplayCam_Free
+0x0046a0a8,s_ReplayCamVar7,used only by ReplayCam_* (2 functions)
+0x0046a0ac,s_ReplayCam_Free_2,used only by maybe_ReplayCam_Free
+0x0046a0c0,s_ReplayCamVar8,used only by ReplayCam_* (2 functions)
+0x0046a0c4,s_ReplayCamVar9,used only by ReplayCam_* (2 functions)
+0x0046a0d8,s_ReplayCamVar10,used only by ReplayCam_* (2 functions)
+0x0046a0dc,s_ReplayCamVar11,used only by ReplayCam_* (2 functions)
+0x0046a0e0,s_ReplayCamVar12,used only by ReplayCam_* (2 functions)
+0x0046a0e4,s_ReplayCamVar13,used only by ReplayCam_* (2 functions)
+0x0046a0e8,s_ReplayCamVar14,used only by ReplayCam_* (2 functions)
+0x0046a0ec,s_ReplayCamVar15,used only by ReplayCam_* (3 functions)
+0x0046a1a4,s_GarageBg_Alloc_1,used only by GarageBg_Alloc
+0x0046a1a8,s_GarageBgVar1,used only by GarageBg_* (2 functions)
+0x0046a1ac,s_GarageBgVar2,used only by GarageBg_* (2 functions)
+0x0046a244,s_ShowroomBg_Alloc_1,used only by ShowroomBg_Alloc
+0x0046a248,s_ShowroomBgVar1,used only by ShowroomBg_* (2 functions)
+0x0046a24c,s_ShowroomBg_Alloc_2,used only by ShowroomBg_Alloc
+0x0046a5dc,s_RuntimeVar2,used only by runtime __* (7 functions)

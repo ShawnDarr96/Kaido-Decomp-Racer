@@ -29,7 +29,7 @@ void maybe_ShowroomBg_DrawObject(int param_1,undefined1 *param_2)
   uVar3 = Model_GetTexture(*(undefined4 *)(param_1 + 0x34),0);
   uVar4 = Model_GetTexture(*(undefined4 *)(param_1 + 0x44),0);
   uVar5 = Model_GetTexture(*(undefined4 *)(param_1 + 0x48),0);
-  if (*(int *)(iVar6 + 0x431684) != 0) {
+  if (*(int *)(&s_Course_Render_2 + iVar6) != 0) {
     Cam_SetupViewport(&g_Views + iVar6,0,*param_2);
     Light_UpdateMatrices(0x436180);
     Layer_Reset(auStack_250,&g_Views + iVar6,0x436180,*(undefined4 *)(param_2 + 8),
@@ -1859,6 +1859,8 @@ void maybe_NameEntry_Reset(int param_1)
 }
 
 // 0x002dbc70  size 0x2a8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_NameEntry_Animate(int param_1)
 
 {
@@ -1933,17 +1935,17 @@ void maybe_NameEntry_Animate(int param_1)
   }
   uVar5 = (*pcVar2)(0xc4);
   pcVar2 = pcRam0036f8a8;
-  uVar3 = uRam0036eea8;
-  iVar4 = iRam0036eea0 * 0x18;
+  uVar3 = _s_NameEntry_Animate_2;
+  iVar4 = _s_NameEntry_Animate_1 * 0x18;
   *(int *)(&DAT_00342100 + iVar4) = (int)uVar5;
   *(undefined4 *)(&DAT_00342104 + iVar4) = 2;
   *(undefined4 *)(iVar4 + 0x342108) = uVar3;
   uVar6 = (*pcVar2)(0x68);
-  UiLayout_IsAnimDone(uVar5,0x13,uRam0036eea8,uVar6,1);
+  UiLayout_IsAnimDone(uVar5,0x13,_s_NameEntry_Animate_2,uVar6,1);
   pcVar2 = pcRam0036f8a8;
-  *(undefined4 *)(iRam0036eea0 * 0x18 + 0x34210c) = uRam0036eeac;
+  *(undefined4 *)(_s_NameEntry_Animate_1 * 0x18 + 0x34210c) = _s_NameEntry_Animate_3;
   uVar6 = (*pcVar2)(0x6a);
-  UiLayout_IsAnimDone(uVar5,0x12,uRam0036eeac,uVar6,1);
+  UiLayout_IsAnimDone(uVar5,0x12,_s_NameEntry_Animate_3,uVar6,1);
   DAT_003420f0 = 0;
   DAT_003420f4 = 0xffffffff;
   return;

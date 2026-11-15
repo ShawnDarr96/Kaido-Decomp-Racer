@@ -118,36 +118,43 @@ void TexSlot_BindSimple(undefined8 param_1,undefined8 param_2,long param_3,undef
 }
 
 // 0x00158370  size 0x1c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int TexSlot_GetEntry(int param_1,int param_2)
 
 {
-  return *(int *)(param_1 * 8 + iRam0036f0d8 + 4) + param_2 * 0x80;
+  return *(int *)(param_1 * 8 + _s_TexSlotVar3 + 4) + param_2 * 0x80;
 }
 
 // 0x00158390  size 0x20
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 28 callers */
 
 void TexSlot_Set(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  *(undefined4 *)(iRam0036f0d8 + param_1 * 8) = param_2;
-  *(undefined4 *)(param_1 * 8 + iRam0036f0d8 + 4) = param_3;
+  *(undefined4 *)(_s_TexSlotVar3 + param_1 * 8) = param_2;
+  *(undefined4 *)(param_1 * 8 + _s_TexSlotVar3 + 4) = param_3;
   return;
 }
 
 // 0x001583b0  size 0x30
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TexSlot_Free(void)
 
 {
-  if (iRam0036f0d8 != 0) {
+  if (_s_TexSlotVar3 != 0) {
     Mem_Free();
   }
-  uRam0036f0d4 = 0;
-  iRam0036f0d8 = 0;
+  _s_TexSlotVar2 = 0;
+  _s_TexSlotVar3 = 0;
   return;
 }
 
 // 0x001583e0  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 TexSlot_Alloc(uint param_1)
 
 {
@@ -156,25 +163,25 @@ undefined4 TexSlot_Alloc(uint param_1)
   int iVar3;
   uint uVar4;
   
-  uRam0036f0d4 = param_1;
-  lVar2 = Mem_Alloc16(param_1 << 3,uRam0036f0d0);
-  iRam0036f0d8 = (int)lVar2;
+  _s_TexSlotVar2 = param_1;
+  lVar2 = Mem_Alloc16(param_1 << 3,_s_TexSlotVar1);
+  _s_TexSlotVar3 = (int)lVar2;
   if (lVar2 == 0) {
     uVar1 = 0;
   }
   else {
     uVar4 = 0;
-    if (uRam0036f0d4 == 0) {
+    if (_s_TexSlotVar2 == 0) {
       uVar1 = 1;
     }
     else {
       iVar3 = 0;
       do {
         uVar4 = uVar4 + 1;
-        *(undefined4 *)(iRam0036f0d8 + iVar3) = 0;
-        *(undefined4 *)(iRam0036f0d8 + iVar3 + 4) = 0;
+        *(undefined4 *)(_s_TexSlotVar3 + iVar3) = 0;
+        *(undefined4 *)(_s_TexSlotVar3 + iVar3 + 4) = 0;
         iVar3 = iVar3 + 8;
-      } while (uVar4 < uRam0036f0d4);
+      } while (uVar4 < _s_TexSlotVar2);
       uVar1 = 1;
     }
   }
@@ -182,38 +189,44 @@ undefined4 TexSlot_Alloc(uint param_1)
 }
 
 // 0x00158460  size 0x30
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TexSlot_Shutdown(void)
 
 {
-  if (iRam0036f0d8 != 0) {
+  if (_s_TexSlotVar3 != 0) {
     Mem_Free();
   }
-  uRam0036f0d4 = 0;
-  iRam0036f0d8 = 0;
+  _s_TexSlotVar2 = 0;
+  _s_TexSlotVar3 = 0;
   return;
 }
 
 // 0x00158490  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TexSlot_SetHeap(undefined4 param_1)
 
 {
-  uRam0036f0d0 = param_1;
-  uRam0036f0d4 = 0;
-  uRam0036f0d8 = 0;
+  _s_TexSlotVar1 = param_1;
+  _s_TexSlotVar2 = 0;
+  _s_TexSlotVar3 = 0;
   return;
 }
 
 // 0x001584a0  size 0xec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Font_UploadTexture(undefined8 param_1,undefined8 param_2)
 
 {
-  if (iRam0042e400 != 0) {
-    uRam0042e430 = 0;
-    Pkt_AddTextureUploadAll(0x42e428,iRam0042e400,param_1,param_2);
-    TexSlot_Bind(uRam0042e424,iRam0042e400,1,param_1,param_2,0x50010,0,0);
+  if (_s_Font_UploadTexture_1 != 0) {
+    _s_Font_UploadTexture_3 = 0;
+    Pkt_AddTextureUploadAll(0x42e428,_s_Font_UploadTexture_1,param_1,param_2);
+    TexSlot_Bind(_s_Font_UploadTexture_2,_s_Font_UploadTexture_1,1,param_1,param_2,0x50010,0,0);
   }
-  if (iRam0042f370 != 0) {
-    Tex_InitDescriptor(0x42f090,2,uRam0042f0c2);
+  if (_s_Font_UploadTexture_5 != 0) {
+    Tex_InitDescriptor(0x42f090,2,_s_Font_UploadTexture_4);
     Tex_SetupFromHeader(0x42f090,param_1,param_2,0x50010,0,0x80);
   }
   return;
@@ -674,6 +687,8 @@ void PhysWorld_Step(float param_1,undefined8 param_2)
 }
 
 // 0x00159090  size 0x2bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysWorld_Init(int *param_1,int param_2,int param_3,int param_4)
 
 {
@@ -724,7 +739,7 @@ void PhysWorld_Init(int *param_1,int param_2,int param_3,int param_4)
   }
   param_1[0xb] = 0;
   param_1[3] = 2;
-  uRam0036f0ec = 2;
+  _s_PhysWorld_Init_1 = 2;
   param_1[0x10] = 0x20;
   if (*param_1 == 0) {
     iVar1 = param_1[0x10];
@@ -775,27 +790,29 @@ undefined8 PhysWorld_ctor(undefined8 param_1)
 }
 
 // 0x001593c0  size 0xec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_SetupPools(int param_1)
 
 {
   undefined8 uVar1;
   int iVar2;
   
-  iRam0042f400 = param_1;
-  if (iRam0042f404 != 0) {
-    Mem_Free(iRam0042f404 + -0x10);
+  _s_Phys_SetupPools_1 = param_1;
+  if (_s_Phys_SetupPools_2 != 0) {
+    Mem_Free(_s_Phys_SetupPools_2 + -0x10);
   }
-  if (iRam0042f3c0 == 0) {
-    iVar2 = iRam0042f400 << 1;
-    uVar1 = maybe_operator_new(iRam0042f400 * 0x80 + 0x10);
-    iRam0042f404 = __construct_new_array(uVar1,0x158670,0,0x40,iVar2);
+  if (_s_PhysVar1 == 0) {
+    iVar2 = _s_Phys_SetupPools_1 << 1;
+    uVar1 = maybe_operator_new(_s_Phys_SetupPools_1 * 0x80 + 0x10);
+    _s_Phys_SetupPools_2 = __construct_new_array(uVar1,0x158670,0,0x40,iVar2);
   }
   else {
-    iVar2 = iRam0042f400 << 1;
-    uVar1 = maybe_operator_new_heap(iRam0042f400 * 0x80 + 0x10);
-    iRam0042f404 = __construct_new_array(uVar1,0x158670,0,0x40,iVar2);
+    iVar2 = _s_Phys_SetupPools_1 << 1;
+    uVar1 = maybe_operator_new_heap(_s_Phys_SetupPools_1 * 0x80 + 0x10);
+    _s_Phys_SetupPools_2 = __construct_new_array(uVar1,0x158670,0,0x40,iVar2);
   }
-  iRam0042f408 = iRam0042f404 + iRam0042f400 * 0x40;
+  _s_Phys_SetupPools_3 = _s_Phys_SetupPools_2 + _s_Phys_SetupPools_1 * 0x40;
   return;
 }
 
@@ -808,6 +825,8 @@ void Phys_Step(void)
 }
 
 // 0x001594c0  size 0x130
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_RemoveBody(int param_1)
 
 {
@@ -818,39 +837,41 @@ void Phys_RemoveBody(int param_1)
   PhysBody_Unlink(param_1,0x42f3d8);
   PhysBody_LinkFront(param_1,0x42f3dc);
   uVar2 = 0;
-  iRam0042f3e0 = iRam0042f3e0 + -1;
-  piVar3 = piRam0042f3e8;
-  if (uRam0042f3ec != 0) {
+  _s_PhysVar2 = _s_PhysVar2 + -1;
+  piVar3 = _s_PhysVar3;
+  if (_s_PhysVar4 != 0) {
     do {
       if ((*piVar3 == param_1) || (piVar3[1] == param_1)) {
-        piVar1 = piRam0042f3e8 + uVar2 * 8;
+        piVar1 = _s_PhysVar3 + uVar2 * 8;
         PhysPairList_Clear(piVar1);
-        if (uVar2 < uRam0042f3ec - 1) {
-          PhysPairList_Add(piRam0042f3e8 + (uRam0042f3ec - 1) * 8,piVar1);
+        if (uVar2 < _s_PhysVar4 - 1) {
+          PhysPairList_Add(_s_PhysVar3 + (_s_PhysVar4 - 1) * 8,piVar1);
         }
         uVar2 = uVar2 - 1;
-        uRam0042f3ec = uRam0042f3ec - 1;
+        _s_PhysVar4 = _s_PhysVar4 - 1;
       }
       else {
         piVar3 = piVar3 + 8;
       }
       uVar2 = uVar2 + 1;
-    } while (uVar2 < uRam0042f3ec);
+    } while (uVar2 < _s_PhysVar4);
   }
   return;
 }
 
 // 0x00159600  size 0xb0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int Phys_AddBody(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   int iVar1;
   
-  iVar1 = iRam0042f3dc;
-  PhysBody_Unlink(iRam0042f3dc,0x42f3dc);
+  iVar1 = _s_Phys_AddBody_1;
+  PhysBody_Unlink(_s_Phys_AddBody_1,0x42f3dc);
   PhysBody_LinkFront(iVar1,0x42f3d8);
-  iRam0042f3e0 = iRam0042f3e0 + 1;
-  PhysBody_Init(iVar1,param_1,param_2,param_3,uRam0042f3c0);
+  _s_PhysVar2 = _s_PhysVar2 + 1;
+  PhysBody_Init(iVar1,param_1,param_2,param_3,_s_PhysVar1);
   PhysWorld_CollideBroadphase(0x42f3c0,iVar1,*(undefined4 *)(iVar1 + 0xdc));
   return iVar1;
 }
@@ -897,20 +918,22 @@ void Phys_SetParamB(undefined4 param_1)
 }
 
 // 0x001596f0  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Phys_Shutdown(void)
 
 {
-  __destroy_new_array(uRam0042f3d4,0x1626d0);
-  Mem_Free(uRam0042f3e8);
-  if (iRam0042f3f4 != 0) {
-    Mem_Free(iRam0042f3f4 + -0x10);
+  __destroy_new_array(_s_Phys_Shutdown_2,0x1626d0);
+  Mem_Free(_s_PhysVar3);
+  if (_s_Phys_Shutdown_5 != 0) {
+    Mem_Free(_s_Phys_Shutdown_5 + -0x10);
   }
-  uRam0042f3d0 = 0;
-  uRam0042f3e0 = 0;
-  uRam0042f3e4 = 0;
-  uRam0042f3ec = 0;
-  uRam0042f3f0 = 0;
-  uRam0042f3f8 = 0;
+  _s_Phys_Shutdown_1 = 0;
+  _s_PhysVar2 = 0;
+  _s_Phys_Shutdown_3 = 0;
+  _s_PhysVar4 = 0;
+  _s_Phys_Shutdown_4 = 0;
+  _s_Phys_Shutdown_6 = 0;
   return;
 }
 
@@ -920,7 +943,7 @@ void Phys_Shutdown(void)
 void Phys_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
 
 {
-  uRam0042f3c0 = param_4;
+  _s_PhysVar1 = param_4;
   PhysWorld_Init(0x42f3c0,param_1,param_2,param_3);
   PhysMaterial_SetDefaults();
   _s_PhysParamB = &LAB_0015d390;
@@ -2183,7 +2206,9 @@ undefined4 maybe_Phys_GetTableB(undefined8 param_1,int param_2)
 }
 
 // 0x0015b430  size 0x9c
-undefined4 PhysBox_GetCorner(int param_1,int param_2)
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined * PhysBox_GetCorner(int param_1,int param_2)
 
 {
   undefined1 auStack_50 [16];
@@ -2196,16 +2221,16 @@ undefined4 PhysBox_GetCorner(int param_1,int param_2)
   undefined4 uStack_4;
   
   param_2 = param_2 * 0x10;
-  Vec3_Scale(*(undefined4 *)(param_2 + 0x42f480),auStack_30,param_1 + 0x120);
-  Vec3_Scale(*(undefined4 *)(param_2 + 0x42f484),auStack_40,param_1 + 0x140);
+  Vec3_Scale(*(undefined4 *)(&s___sinit_003689b0_4 + param_2),auStack_30,param_1 + 0x120);
+  Vec3_Scale(*(undefined4 *)(&s___sinit_003689b0_5 + param_2),auStack_40,param_1 + 0x140);
   Vec3_Add(auStack_20,auStack_30,auStack_40);
-  Vec3_Scale(*(undefined4 *)(param_2 + 0x42f488),auStack_50,param_1 + 0x160);
+  Vec3_Scale(*(undefined4 *)(&s___sinit_003689b0_6 + param_2),auStack_50,param_1 + 0x160);
   Vec3_Add(&uStack_10,auStack_20,auStack_50);
-  uRam0042f540 = uStack_10;
-  uRam0042f544 = uStack_c;
-  uRam0042f548 = uStack_8;
+  _s_PhysBox_GetCorner_1 = uStack_10;
+  _s_PhysBox_GetCorner_2 = uStack_c;
+  _s_PhysBox_GetCorner_3 = uStack_8;
   uRam0042f54c = uStack_4;
-  return 0x42f540;
+  return &s_PhysBox_GetCorner_1;
 }
 
 // 0x0015b4d0  size 0x8

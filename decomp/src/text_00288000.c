@@ -633,6 +633,7 @@ void maybe_TeamList_FillPage(int param_1,undefined8 param_2,int param_3)
 
 // 0x002891d0  size 0x480
 /* WARNING: Removing unreachable block (ram,0x00289470) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void maybe_TeamList_Build(int param_1,undefined8 param_2)
 
@@ -663,10 +664,10 @@ void maybe_TeamList_Build(int param_1,undefined8 param_2)
   
   uVar5 = Profile_Get(0);
   *(undefined4 *)(param_1 + 0x54f8) = uVar5;
-  iRam0036f698 = (int)param_2;
-  iVar11 = iRam0036f698 * 4 + param_1;
+  _s_TeamListVar1 = (int)param_2;
+  iVar11 = _s_TeamListVar1 * 4 + param_1;
   piVar6 = (int *)(iVar11 + 0x74);
-  param_1 = param_1 + iRam0036f698 * 800;
+  param_1 = param_1 + _s_TeamListVar1 * 800;
   maybe_qsort(param_1 + 0x98,*(undefined4 *)(iVar11 + 0x74),4,0x289660);
   iVar11 = 0;
   if (0 < *piVar6 + -1) {
@@ -785,15 +786,17 @@ void maybe_TeamList_Build(int param_1,undefined8 param_2)
 }
 
 // 0x00289660  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_TeamList_CompareRivals(int *param_1,int *param_2)
 
 {
   int iVar1;
   
   iVar1 = Profile_Get(0);
-  Rival_IsDefeated(iRam0036f698,*param_1);
-  Rival_IsDefeated(iRam0036f698,*param_2);
-  iVar1 = iRam0036f698 * 0x644 + iVar1 + 0x531c;
+  Rival_IsDefeated(_s_TeamListVar1,*param_1);
+  Rival_IsDefeated(_s_TeamListVar1,*param_2);
+  iVar1 = _s_TeamListVar1 * 0x644 + iVar1 + 0x531c;
   return *(int *)(iVar1 + *param_2 * 8) - *(int *)(iVar1 + *param_1 * 8);
 }
 
@@ -1848,31 +1851,33 @@ int maybe_Mail_CountMessages(int param_1)
 }
 
 // 0x0028b6b0  size 0x130
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ScrRivalList_ClearSlots(int param_1)
 
 {
   int iVar1;
   
-  iRam0036f6b4 = 0;
+  _s_ScrRivalList_ClearSlots_1 = 0;
   do {
-    *(undefined4 *)(param_1 + iRam0036f6b4 * 4 + 0x2c) = 0;
-    iRam0036f6b4 = iRam0036f6b4 + 1;
-  } while (iRam0036f6b4 < 2);
-  iRam0036f6b4 = 0;
+    *(undefined4 *)(param_1 + _s_ScrRivalList_ClearSlots_1 * 4 + 0x2c) = 0;
+    _s_ScrRivalList_ClearSlots_1 = _s_ScrRivalList_ClearSlots_1 + 1;
+  } while (_s_ScrRivalList_ClearSlots_1 < 2);
+  _s_ScrRivalList_ClearSlots_1 = 0;
   do {
-    iVar1 = *(int *)(param_1 + 0x680) + iRam0036f6b4 * 0x28;
+    iVar1 = *(int *)(param_1 + 0x680) + _s_ScrRivalList_ClearSlots_1 * 0x28;
     if ((-1 < *(int *)(iVar1 + 0x9994)) && (*(byte *)(iVar1 + 0x999c) - 1 < 3)) {
-      *(int *)(param_1 + *(int *)(param_1 + 0x30) * 4 + 0x354) = iRam0036f6b4;
+      *(int *)(param_1 + *(int *)(param_1 + 0x30) * 4 + 0x354) = _s_ScrRivalList_ClearSlots_1;
       *(int *)(param_1 + 0x30) = *(int *)(param_1 + 0x30) + 1;
     }
-    iVar1 = *(int *)(param_1 + 0x680) + iRam0036f6b4 * 0x28;
+    iVar1 = *(int *)(param_1 + 0x680) + _s_ScrRivalList_ClearSlots_1 * 0x28;
     if ((-1 < *(int *)(iVar1 + 0xb8d4)) && (*(byte *)(iVar1 + 0xb8dc) - 1 < 3)) {
-      *(int *)(param_1 + *(int *)(param_1 + 0x2c) * 4 + 0x34) = iRam0036f6b4;
+      *(int *)(param_1 + *(int *)(param_1 + 0x2c) * 4 + 0x34) = _s_ScrRivalList_ClearSlots_1;
       *(int *)(param_1 + 0x2c) = *(int *)(param_1 + 0x2c) + 1;
     }
-    iRam0036f6b4 = iRam0036f6b4 + 1;
-  } while (iRam0036f6b4 < 200);
-  iRam0036f6b4 = 2;
+    _s_ScrRivalList_ClearSlots_1 = _s_ScrRivalList_ClearSlots_1 + 1;
+  } while (_s_ScrRivalList_ClearSlots_1 < 200);
+  _s_ScrRivalList_ClearSlots_1 = 2;
   return;
 }
 

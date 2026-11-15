@@ -376,12 +376,13 @@ LAB_00254538:
     } while (_s_SectionSelB < 6);
     _s_SectionSelA = _s_SectionSelA + 1;
     if (4 < _s_SectionSelA) {
-      iRam0036f5e4 = 0;
+      _s_ScrCareer_Draw_SelectSectionTo_1 = 0;
       do {
-        MenuWnd_DrawText(0x83,*(undefined4 *)(&DAT_0032c190 + iRam0036f5e4 * 4),
-                         *(undefined4 *)(&DAT_0032c170 + iRam0036f5e4 * 4));
-        iRam0036f5e4 = iRam0036f5e4 + 1;
-      } while (iRam0036f5e4 < 5);
+        MenuWnd_DrawText(0x83,*(undefined4 *)
+                               (&DAT_0032c190 + _s_ScrCareer_Draw_SelectSectionTo_1 * 4),
+                         *(undefined4 *)(&DAT_0032c170 + _s_ScrCareer_Draw_SelectSectionTo_1 * 4));
+        _s_ScrCareer_Draw_SelectSectionTo_1 = _s_ScrCareer_Draw_SelectSectionTo_1 + 1;
+      } while (_s_ScrCareer_Draw_SelectSectionTo_1 < 5);
       MenuWnd_DrawLabel(0x83,0x61,0x361,5,
                         *(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + param_1 + 0xec),0);
       MenuWnd_DrawText(7,0x2e,0x360);

@@ -115,6 +115,8 @@ void TitleCam_SetSpeed(int param_1,undefined4 param_2,int param_3,uint param_4)
 }
 
 // 0x00208b00  size 0x154
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TitleCam_Advance(undefined8 param_1,undefined8 param_2)
 
 {
@@ -130,8 +132,8 @@ void TitleCam_Advance(undefined8 param_1,undefined8 param_2)
   *(undefined4 *)(iVar4 + 0xdc) = 0;
   iVar5 = (int)param_2;
   *(undefined4 *)(iVar4 + 0x38) = *(undefined4 *)(iVar5 + 0x30);
-  uRam00431190 = *(undefined4 *)(iVar5 + 0x34);
-  uRam00431194 = *(undefined4 *)(iVar5 + 0x38);
+  _s_TitleCamVar1 = *(undefined4 *)(iVar5 + 0x34);
+  _s_TitleCamVar2 = *(undefined4 *)(iVar5 + 0x38);
   uVar1 = (ulong)uRam00431170;
   uVar2 = maybe___sf_to_df((*(float *)(iVar4 + 0x38) / 57.29578) / 2.0);
   uVar2 = maybe_cos(uVar2);
@@ -147,6 +149,8 @@ void TitleCam_Advance(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00208c60  size 0x164
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void TitleCam_StartPath(undefined8 param_1,int param_2)
 
 {
@@ -162,8 +166,8 @@ void TitleCam_StartPath(undefined8 param_1,int param_2)
   *(undefined4 *)(iVar5 + 0xd8) = 0;
   *(undefined4 *)(iVar5 + 0xdc) = 0;
   *(undefined4 *)(iVar5 + 0x38) = *(undefined4 *)(puVar1 + 0x30);
-  uRam00431190 = *(undefined4 *)(puVar1 + 0x34);
-  uRam00431194 = *(undefined4 *)(puVar1 + 0x38);
+  _s_TitleCamVar1 = *(undefined4 *)(puVar1 + 0x34);
+  _s_TitleCamVar2 = *(undefined4 *)(puVar1 + 0x38);
   uVar2 = (ulong)uRam00431170;
   uVar3 = maybe___sf_to_df((*(float *)(iVar5 + 0x38) / 57.29578) / 2.0);
   uVar3 = maybe_cos(uVar3);

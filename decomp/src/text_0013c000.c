@@ -116,6 +116,7 @@ void Iop_Reboot(long param_1,long param_2)
 
 // 0x0013c2c0  size 0x1d8
 /* WARNING: Removing unreachable block (ram,0x0013c2f0) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                    undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
@@ -128,7 +129,9 @@ void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8
   uint uVar5;
   undefined8 *puVar6;
   int iVar7;
-  int aiStack_70 [4];
+  int aiStack_70 [2];
+  undefined *puStack_68;
+  undefined4 uStack_64;
   undefined2 *puStack_60;
   undefined8 uStack_38;
   undefined8 uStack_30;
@@ -139,7 +142,7 @@ void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8
   undefined8 uStack_8;
   
   uVar5 = 0;
-  puVar4 = (undefined4 *)0x387000;
+  puVar4 = (undefined4 *)&s_IopSnd_Command_1;
   puVar6 = &uStack_38;
   do {
     uVar5 = uVar5 + 8;
@@ -151,13 +154,13 @@ void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8
     puVar4[5] = *(undefined4 *)(puVar6 + 5);
     puVar4[6] = *(undefined4 *)(puVar6 + 6);
     puVar4[7] = *(undefined4 *)(puVar6 + 7);
-    puVar3 = puRam00387008;
+    puVar3 = _s_IopSnd_Command_3;
     puVar4 = puVar4 + 8;
     puVar6 = puVar6 + 8;
   } while (uVar5 < 0x10);
-  aiStack_70[2] = 0x387000;
+  puStack_68 = &s_IopSnd_Command_1;
   aiStack_70[1] = 0x40;
-  aiStack_70[3] = 0x40;
+  uStack_64 = 0x40;
   puStack_60 = (undefined2 *)0x387040;
   aiStack_70[0] = param_1;
   uStack_38 = param_2;
@@ -171,15 +174,15 @@ void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0x100U) {
     case 10:
-      puStack_60 = puRam00387004;
+      puStack_60 = _s_IopSnd_Command_2;
       break;
     case 0xb:
-      maybe_Mem_CopyQwords(0x387004,puRam00387004,0x14);
+      maybe_Mem_CopyQwords(0x387004,_s_IopSnd_Command_2,0x14);
       goto LAB_0013c474;
     case 0x10:
-      puVar1 = (undefined2 *)0x387004;
-      puVar2 = puRam00387004;
-      for (iVar7 = iRam00387000; iVar7 != 0; iVar7 = iVar7 + -1) {
+      puVar1 = (undefined2 *)&s_IopSnd_Command_2;
+      puVar2 = _s_IopSnd_Command_2;
+      for (iVar7 = _s_IopSnd_Command_1; iVar7 != 0; iVar7 = iVar7 + -1) {
         *puVar1 = *puVar2;
         puVar1[1] = puVar2[1];
         *(undefined4 *)(puVar1 + 2) = *(undefined4 *)(puVar2 + 2);
@@ -190,7 +193,7 @@ void IopSnd_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8
     }
   }
 LAB_0013c474:
-  Rpc_Call(uRam0036f020,aiStack_70);
+  Rpc_Call(_s_IopSndVar1,aiStack_70);
   return;
 }
 
@@ -202,12 +205,14 @@ void IopSnd_Nop(void)
 }
 
 // 0x0013c4b0  size 0x94
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void IopSnd_SetBlocking(undefined8 param_1)
 
 {
   undefined8 uVar1;
   
-  uRam0036f020 = (undefined4)param_1;
+  _s_IopSndVar1 = (undefined4)param_1;
   uVar1 = Rpc_SetBlocking(param_1,1);
   IopSnd_Command(0x100,0);
   IopSnd_Command(0x10d,0x980,0x3fff);
@@ -215,14 +220,14 @@ void IopSnd_SetBlocking(undefined8 param_1)
   IopSnd_Command(0x10d,0x981,0x3fff);
   IopSnd_Command(0x10d,0xa81,0x3fff);
   IopSnd_Command(0x107,10,0x80);
-  Rpc_SetBlocking(uRam0036f020,uVar1);
+  Rpc_SetBlocking(_s_IopSndVar1,uVar1);
   return;
 }
 
 // 0x0013c550  size 0x1dc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
+undefined * IopStrm_RpcHandler(int param_1,int *param_2)
 
 {
   int iVar1;
@@ -234,7 +239,7 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
   iVar1 = *param_2;
   iVar5 = iVar1 * 0x6c;
   iVar4 = _g_IopStrm + iVar5;
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   if (param_1 - 0x400U < 6) {
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0x400U) {
@@ -282,10 +287,10 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
     case 4:
       if ((*(int *)(iVar4 + 0x30) == 0) ||
          (lVar3 = Sif_WaitDma(*(int *)(iVar4 + 0x30),0), -1 < lVar3)) {
-        uRam003871c0 = 0;
+        _s_IopStrm_RpcHandler_1 = 0;
       }
       else {
-        uRam003871c0 = *(undefined4 *)(iVar4 + 0x34);
+        _s_IopStrm_RpcHandler_1 = *(undefined4 *)(iVar4 + 0x34);
         *(undefined4 *)(iVar4 + 0x34) = 0;
       }
       break;
@@ -300,8 +305,8 @@ undefined4 IopStrm_RpcHandler(int param_1,int *param_2)
       *(undefined4 *)(iVar5 + 0x38) = 0;
     }
   }
-  SignalSema(uRam0036f03c);
-  return 0x3871c0;
+  SignalSema(_s_IopStrmVar3);
+  return &s_IopStrm_RpcHandler_1;
 }
 
 // 0x0013c730  size 0x148
@@ -393,7 +398,7 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
   int iVar4;
   uint uVar5;
   
-  lVar2 = IopStrm_Command(0x300,param_1,param_2,uRam0036f028);
+  lVar2 = IopStrm_Command(0x300,param_1,param_2,_s_IopStrmVar1);
   if (lVar2 == -1) {
     uVar1 = 0;
   }
@@ -405,7 +410,7 @@ undefined4 IopStrm_Open(uint param_1,undefined8 param_2,undefined8 param_3)
         uVar5 = uVar5 + 1;
       } while (uVar5 < param_1);
     }
-    uRam0036f034 = param_1;
+    _s_IopStrmVar2 = param_1;
     _g_IopStrm = Mem_Alloc16(param_1 * 0x6c,param_3);
     uVar5 = 0;
     if (param_1 != 0) {
@@ -493,10 +498,10 @@ void IopStrm_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0x300U) {
     case 5:
-      maybe_Mem_CopyQwords(0x387084,uRam00387084,0x10);
+      maybe_Mem_CopyQwords(0x387084,_s_IopStrm_Command_1,0x10);
       goto LAB_0013cb04;
     case 6:
-      maybe_Mem_CopyQwords(0x387084,uRam00387084,0xc);
+      maybe_Mem_CopyQwords(0x387084,_s_IopStrm_Command_1,0xc);
     }
   }
 LAB_0013cb04:
@@ -514,14 +519,14 @@ bool IopStrm_IsPlaying(undefined8 param_1)
   int iVar2;
   
   iVar2 = _g_IopStrm + (int)param_1 * 0x6c;
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   bVar1 = *(int *)(iVar2 + 0x3c) - 2U < 2;
   if (bVar1) {
     IopStrm_Command(0x30a,param_1);
     *(undefined4 *)(iVar2 + 0x3c) = 1;
     *(undefined4 *)(iVar2 + 0x40) = 0;
   }
-  SignalSema(uRam0036f03c);
+  SignalSema(_s_IopStrmVar3);
   return bVar1;
 }
 
@@ -537,7 +542,7 @@ undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
   
   uVar3 = 0;
   iVar2 = _g_IopStrm + (int)param_1 * 0x6c;
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   if ((*(int *)(iVar2 + 0x40) != param_2) && (*(int *)(iVar2 + 0x3c) - 2U < 2)) {
     IopStrm_Command(0x309,param_1,param_2);
     uVar1 = 2;
@@ -548,7 +553,7 @@ undefined4 IopStrm_SetVolume(undefined8 param_1,int param_2)
     *(undefined4 *)(iVar2 + 0x3c) = uVar1;
     *(int *)(iVar2 + 0x40) = param_2;
   }
-  SignalSema(uRam0036f03c);
+  SignalSema(_s_IopStrmVar3);
   return uVar3;
 }
 
@@ -562,14 +567,14 @@ bool IopStrm_IsStopped(undefined8 param_1)
   int iVar2;
   
   iVar2 = _g_IopStrm + (int)param_1 * 0x6c;
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   bVar1 = *(int *)(iVar2 + 0x3c) == 0;
   if (bVar1) {
     IopStrm_Command(0x308,param_1);
     *(undefined4 *)(iVar2 + 0x3c) = 1;
     *(undefined4 *)(iVar2 + 0x40) = 0;
   }
-  SignalSema(uRam0036f03c);
+  SignalSema(_s_IopStrmVar3);
   return bVar1;
 }
 
@@ -600,9 +605,9 @@ undefined1 IopStrm_GetState(int param_1)
   int iVar2;
   
   iVar2 = _g_IopStrm + param_1 * 0x6c;
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   uVar1 = *(undefined1 *)(iVar2 + 0x3c);
-  SignalSema(uRam0036f03c);
+  SignalSema(_s_IopStrmVar3);
   return uVar1;
 }
 
@@ -639,10 +644,10 @@ undefined8 IopStrm_Flush(undefined8 param_1)
   int *piVar2;
   
   piVar2 = (int *)(_g_IopStrm + (int)param_1 * 0x6c);
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   uVar1 = IopStrm_TransferChunk(param_1,piVar2[8],*piVar2 * piVar2[9]);
   piVar2[0xb] = piVar2[0xd];
-  SignalSema(uRam0036f03c);
+  SignalSema(_s_IopStrmVar3);
   return uVar1;
 }
 
@@ -655,9 +660,9 @@ void IopStrm_AddPosition(int param_1,int param_2)
   int iVar1;
   
   iVar1 = _g_IopStrm + param_1 * 0x6c;
-  WaitSema(uRam0036f03c);
+  WaitSema(_s_IopStrmVar3);
   *(int *)(iVar1 + 0x18) = *(int *)(iVar1 + 0x18) + param_2;
-  SignalSema(uRam0036f03c);
+  SignalSema(_s_IopStrmVar3);
   return;
 }
 
@@ -742,7 +747,7 @@ void IopStrm_Shutdown(void)
   undefined8 uVar1;
   
   uVar1 = Rpc_SetBlocking(_s_IopStrmRpcClient,1);
-  uRam0036f034 = 0;
+  _s_IopStrmVar2 = 0;
   if (_g_IopStrm != 0) {
     Mem_Free();
     _g_IopStrm = 0;
@@ -772,7 +777,7 @@ bool IopStrm_Init(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   long lVar1;
   undefined8 uVar2;
   
-  uRam0036f028 = (undefined4)param_3;
+  _s_IopStrmVar1 = (undefined4)param_3;
   _g_IopStrmA = Mem_AllocAligned(0x40,0x40,param_5);
   _g_IopStrmB = Mem_AllocAligned(0x1000,0x10,param_5);
   maybe_Mutex_Create(0x36f03c);
@@ -794,7 +799,7 @@ void IopStrm_Reset(void)
   undefined8 uVar1;
   
   uVar1 = Rpc_SetBlocking(_s_IopStrmRpcClient,1);
-  uRam0036f034 = 0;
+  _s_IopStrmVar2 = 0;
   if (_g_IopStrm != 0) {
     Mem_Free();
     _g_IopStrm = 0;
@@ -856,7 +861,7 @@ undefined4 IopSe_Open(uint param_1,undefined8 param_2,undefined8 param_3)
           uVar5 = uVar5 + 1;
         } while (uVar5 < param_1);
       }
-      uRam0036f044 = param_1;
+      _s_IopSeVar2 = param_1;
       _g_IopSe = Mem_Alloc16(param_1 * 0x50,param_3);
       uVar5 = 0;
       if (param_1 != 0) {
@@ -907,7 +912,7 @@ void IopSe_FlushDma(void)
   
   uVar7 = 0;
   iVar8 = 0;
-  if (uRam0036f044 != 0) {
+  if (_s_IopSeVar2 != 0) {
     iVar6 = 0;
     piVar4 = aiStack_200;
     do {
@@ -923,7 +928,7 @@ void IopSe_FlushDma(void)
       }
       uVar7 = uVar7 + 1;
       iVar6 = iVar6 + 0x50;
-    } while (uVar7 < uRam0036f044);
+    } while (uVar7 < _s_IopSeVar2);
   }
   if (iVar8 != 0) {
     FlushCache(0);
@@ -935,7 +940,7 @@ void IopSe_FlushDma(void)
     } while (-1 < lVar3);
   }
   uVar7 = 0;
-  if (uRam0036f044 != 0) {
+  if (_s_IopSeVar2 != 0) {
     iVar8 = 0;
     do {
       piVar4 = (int *)(_g_IopSe + iVar8);
@@ -945,7 +950,7 @@ void IopSe_FlushDma(void)
       }
       uVar7 = uVar7 + 1;
       iVar8 = iVar8 + 0x50;
-    } while (uVar7 < uRam0036f044);
+    } while (uVar7 < _s_IopSeVar2);
   }
   return;
 }
@@ -962,6 +967,7 @@ void IopSe_ClearPending(int param_1)
 
 // 0x0013d620  size 0x148
 /* WARNING: Removing unreachable block (ram,0x0013d650) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void IopSe_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                   undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
@@ -1011,10 +1017,10 @@ void IopSe_Command(int param_1,undefined8 param_2,undefined8 param_3,undefined8 
                     /* WARNING: Switch is manually overridden */
     switch(param_1 - 0x200U) {
     case 5:
-      maybe_Mem_CopyQwords(0x387204,uRam00387204,0x1c);
+      maybe_Mem_CopyQwords(0x387204,_s_IopSe_Command_1,0x1c);
     }
   }
-  Rpc_Call(uRam0036f040,aiStack_70);
+  Rpc_Call(_s_IopSeVar1,aiStack_70);
   return;
 }
 
@@ -1069,27 +1075,29 @@ void IopSe_Shutdown(void)
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uRam0036f040,1);
+  uVar1 = Rpc_SetBlocking(_s_IopSeVar1,1);
   if (_g_IopSe != 0) {
     Mem_Free();
     _g_IopSe = 0;
   }
-  uRam0036f044 = 0;
+  _s_IopSeVar2 = 0;
   IopSe_Command(0x201);
-  Rpc_SetBlocking(uRam0036f040,uVar1);
+  Rpc_SetBlocking(_s_IopSeVar1,uVar1);
   return;
 }
 
 // 0x0013d8f0  size 0x6c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 IopSe_OpenLocked(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
   undefined8 uVar2;
   
-  uVar1 = Rpc_SetBlocking(uRam0036f040,1);
+  uVar1 = Rpc_SetBlocking(_s_IopSeVar1,1);
   uVar2 = IopSe_Open(param_1,param_2,param_3);
-  Rpc_SetBlocking(uRam0036f040,uVar1);
+  Rpc_SetBlocking(_s_IopSeVar1,uVar1);
   return uVar2;
 }
 
@@ -1101,16 +1109,16 @@ void IopSe_Reset(void)
 {
   undefined8 uVar1;
   
-  uVar1 = Rpc_SetBlocking(uRam0036f040,1);
+  uVar1 = Rpc_SetBlocking(_s_IopSeVar1,1);
   if (_g_IopSe != 0) {
     Mem_Free();
     _g_IopSe = 0;
   }
-  uRam0036f044 = 0;
+  _s_IopSeVar2 = 0;
   IopSe_Command(0x201);
-  Rpc_SetBlocking(uRam0036f040,uVar1);
-  uRam0036f040 = 0;
-  uRam0036f044 = 0;
+  Rpc_SetBlocking(_s_IopSeVar1,uVar1);
+  _s_IopSeVar1 = 0;
+  _s_IopSeVar2 = 0;
   _g_IopSe = 0;
   return;
 }
@@ -1121,8 +1129,8 @@ void IopSe_Reset(void)
 void IopSe_SetRpcClient(undefined4 param_1)
 
 {
-  uRam0036f040 = param_1;
-  uRam0036f044 = 0;
+  _s_IopSeVar1 = param_1;
+  _s_IopSeVar2 = 0;
   _g_IopSe = 0;
   return;
 }
@@ -2166,6 +2174,8 @@ int Tex_Upload(undefined8 param_1,uint param_2,int param_3,int param_4,int param
 }
 
 // 0x0013f950  size 0x4bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int Tex_SwizzleBlocks(uint *param_1,int param_2,ulong param_3,uint *param_4)
 
 {
@@ -2246,7 +2256,7 @@ int Tex_SwizzleBlocks(uint *param_1,int param_2,ulong param_3,uint *param_4)
         iVar7 = uVar11 - uVar6;
       }
       uVar11 = uVar13 * iVar7 + 0xf >> 4;
-      iRam0036f04c = iRam0036f04c + uVar11;
+      _s_Tex_SwizzleBlocks_1 = _s_Tex_SwizzleBlocks_1 + uVar11;
       if ((param_3 & 0x400) == 0) {
         iVar5 = 2;
         *puVar3 = uVar14 + 6 | 0x10000000;
@@ -2318,7 +2328,7 @@ int Tex_SwizzleBlocks(uint *param_1,int param_2,ulong param_3,uint *param_4)
         iVar4 = 0xd;
       }
       uVar6 = uVar6 + iVar7;
-      iRam0036f04c = iRam0036f04c + iVar4;
+      _s_Tex_SwizzleBlocks_1 = _s_Tex_SwizzleBlocks_1 + iVar4;
       uVar11 = param_1[6];
       iVar12 = iVar12 + iVar4;
     } while (uVar6 < uVar11);

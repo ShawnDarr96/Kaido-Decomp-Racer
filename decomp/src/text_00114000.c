@@ -115,6 +115,8 @@ void sceSifWriteBackDCache(uint param_1,long param_2)
 }
 
 // 0x00114200  size 0x19c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void sceSifInitRpc(void)
 
 {
@@ -129,16 +131,16 @@ void sceSifInitRpc(void)
   EIntr();
   sceSifInitCmd();
   DIntr();
-  uRam00372aa0 = 0x20;
-  uRam00372a80 = 1;
-  puRam00372a94 = &DAT_20371a80;
-  puRam00372a84 = &DAT_20371280;
-  puRam00372a9c = &DAT_20372280;
-  uRam00372a88 = 0x20;
-  uRam00372a8c = 0;
-  uRam00372a90 = 0;
-  uRam00372a98 = 0x20;
-  uRam00372aa4 = 0;
+  _s_sceSifInitRpc_10 = 0x20;
+  _s_sceSifInitRpc_2 = 1;
+  _s_sceSifInitRpc_7 = &DAT_20371a80;
+  _s_sceSifInitRpc_3 = &DAT_20371280;
+  _s_sceSifInitRpc_9 = &DAT_20372280;
+  _s_sceSifInitRpc_4 = 0x20;
+  _s_sceSifInitRpc_5 = 0;
+  _s_sceSifInitRpc_6 = 0;
+  _s_sceSifInitRpc_8 = 0x20;
+  _s_sceSifInitRpc_11 = 0;
   maybe_sceSifGetCmdHandler(0xffffffff80000008,0x114500,0x372a80);
   maybe_sceSifGetCmdHandler(0xffffffff80000009,0x1148c8,0x372a80);
   maybe_sceSifGetCmdHandler(0xffffffff8000000a,0x114ad8,0x372a80);
@@ -148,7 +150,7 @@ void sceSifInitRpc(void)
   if (lVar1 != 0) {
     return;
   }
-  uRam003712cc = 1;
+  _s_sceSifInitRpc_1 = 1;
   sceSifSendCmd(0xffffffff80000002,0x3712c0,0x10,0,0,0);
   do {
     lVar1 = maybe_sceSifGetSreg(0);
@@ -901,6 +903,8 @@ void maybe_Fio_InitSema(void)
 }
 
 // 0x001152f0  size 0x88
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint maybe_Fio_WaitFree(void)
 
 {
@@ -912,7 +916,7 @@ uint maybe_Fio_WaitFree(void)
   WaitSema(DAT_00306b88);
   uVar1 = DAT_00306b88;
   uVar3 = 0x374000;
-  iVar2 = iRam00374004;
+  iVar2 = _s_Fio_WaitFree_1;
   while( true ) {
     if (iVar2 == 0) {
       *(undefined4 *)(uVar3 + 4) = 0x10000000;
@@ -1142,6 +1146,7 @@ void maybe_Fio_AsyncCallback(undefined8 param_1,undefined4 *param_2)
 
 // 0x00115920  size 0x204
 /* WARNING: Removing unreachable block (ram,0x00115a4c) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 maybe_Fio_Bind(void)
 
@@ -1152,8 +1157,8 @@ undefined4 maybe_Fio_Bind(void)
   uint uVar4;
   
   sceSifInitRpc(0);
-  uRam00374280 = 0;
-  uRam00374284 = 0;
+  _s_Fio_Bind_5 = 0;
+  _s_Fio_Bind_6 = 0;
   lVar3 = DIntr();
   maybe_sceSifGetCmdHandler(0xffffffff80000011,0x1153e8,0x374240);
   maybe_sceSifGetCmdHandler(0xffffffff80000013,0x1158d8,0x374280);
@@ -1166,7 +1171,7 @@ undefined4 maybe_Fio_Bind(void)
       return 0xffffffff;
     }
     iVar1 = 0x100000;
-    if (iRam00374224 != 0) break;
+    if (_s_Fio_Bind_3 != 0) break;
     do {
       iVar1 = iVar1 + -1;
     } while (iVar1 != -1);
@@ -1179,14 +1184,14 @@ undefined4 maybe_Fio_Bind(void)
     uVar4 = uVar4 + 0x10;
   } while (uVar4 < 0x374200);
   SignalSema(DAT_00306b88);
-  uRam00372ac0 = 0x373780;
-  uRam00372ac4 = 0x373bc0;
+  _s_Fio_Bind_1 = 0x373780;
+  _s_Fio_Bind_2 = 0x373bc0;
   lVar3 = sceSifCallRpc(0x374200,0xff,0,0x372ac0,8,0x373740,8,0);
   if (lVar3 < 0) {
     uVar2 = 0xfffeffff;
   }
   else {
-    uRam00374228 = DAT_20373740;
+    _s_Fio_Bind_4 = DAT_20373740;
     DAT_00306b7c = 1;
     uVar2 = 0;
     DAT_00306b80 = (uint)(DAT_20373744 == 2);
@@ -1562,6 +1567,7 @@ LAB_00116388:
 }
 
 // 0x00116490  size 0x2bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 3 */
 
 undefined4 sceWrite(undefined8 param_1,ulong param_2,int param_3)
@@ -1597,7 +1603,7 @@ undefined4 sceWrite(undefined8 param_1,ulong param_2,int param_3)
       if (uVar1 != 0) {
         uRam00372b0c = *puVar9;
         uStack_cc = 1;
-        iRam00372b2c = (int)(puVar9 + -0xdd000) >> 4;
+        _s_sceWrite_1 = (int)(puVar9 + -0xdd000) >> 4;
         uVar11 = (uint)param_2;
         uStack_c8 = 0;
         uStack_bc = 0;
@@ -1677,6 +1683,7 @@ LAB_001165f4:
 }
 
 // 0x00116750  size 0x374
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 5 */
 
 undefined4 sceIoctl(undefined8 param_1,long param_2,undefined8 *param_3)
@@ -1699,7 +1706,7 @@ undefined4 sceIoctl(undefined8 param_1,long param_2,undefined8 *param_3)
   
   lVar2 = maybe_Fio_GetFreeSlot();
   maybe_Fio_Lock(5);
-  puRam00372ac8 = param_3;
+  _s_sceIoctl_1 = param_3;
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
   }
@@ -1786,10 +1793,10 @@ LAB_001168f0:
       }
     }
     if (iVar5 == 0x20) {
-      *(undefined4 *)puRam00372ac8 = 0;
+      *(undefined4 *)_s_sceIoctl_1 = 0;
     }
     else {
-      *(undefined4 *)puRam00372ac8 = 1;
+      *(undefined4 *)_s_sceIoctl_1 = 1;
     }
     SignalSema(DAT_00306b8c);
   }
@@ -2026,7 +2033,7 @@ undefined4 maybe_sceFormat(char *param_1,long param_2,int param_3,int param_4)
   undefined1 *puVar2;
   undefined8 uVar3;
   long lVar4;
-  undefined1 *puVar5;
+  undefined *puVar5;
   int iVar6;
   undefined1 auStack_c0 [4];
   undefined4 uStack_bc;
@@ -2075,7 +2082,7 @@ undefined4 maybe_sceFormat(char *param_1,long param_2,int param_3,int param_4)
     if (0 < param_4) {
       do {
         puVar2 = (undefined1 *)(param_3 + iVar6);
-        puVar5 = (undefined1 *)(iVar6 + 0x37330c);
+        puVar5 = &s_sceDevctl_1 + iVar6;
         iVar6 = iVar6 + 1;
         *puVar5 = *puVar2;
       } while (iVar6 < param_4);
@@ -2395,6 +2402,7 @@ undefined4 sceGetstat(char *param_1,undefined4 param_2)
 }
 
 // 0x00117918  size 0x23c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 13 */
 
 undefined4 sceChstat(char *param_1,undefined8 *param_2,undefined4 param_3)
@@ -2414,13 +2422,13 @@ undefined4 sceChstat(char *param_1,undefined8 *param_2,undefined4 param_3)
   maybe_Fio_Lock(0xd);
   if (DAT_00306b7c == 0) {
     maybe_Fio_Bind();
-    cRam00372b50 = *param_1;
+    s_sceChstat_7 = *param_1;
   }
   else {
-    cRam00372b50 = *param_1;
+    s_sceChstat_7 = *param_1;
   }
   iVar2 = 0;
-  cVar1 = cRam00372b50;
+  cVar1 = s_sceChstat_7;
   while (iVar5 = iVar2, cVar1 != '\0') {
     iVar5 = iVar2 + 1;
     if (0x3ff < iVar5) break;
@@ -2429,17 +2437,17 @@ undefined4 sceChstat(char *param_1,undefined8 *param_2,undefined4 param_3)
     iVar2 = iVar5;
   }
   if (iVar5 == 0x400) {
-    uRam00372f4f = 0;
+    s_sceChstat_8 = 0;
     iVar5 = 0x3ff;
   }
   uRam00372b10 = *param_2;
   uRam00372b18 = param_2[1];
-  uRam00372b20 = param_2[2];
-  uRam00372b28 = param_2[3];
-  uRam00372b30 = param_2[4];
-  uRam00372b38 = param_2[5];
-  uRam00372b40 = param_2[6];
-  uRam00372b48 = param_2[7];
+  _s_sceChstat_1 = param_2[2];
+  _s_sceChstat_2 = param_2[3];
+  _s_sceChstat_3 = param_2[4];
+  _s_sceChstat_4 = param_2[5];
+  _s_sceChstat_5 = param_2[6];
+  _s_sceChstat_6 = param_2[7];
   uStack_cc = 1;
   uStack_c8 = 0;
   uStack_bc = 0;
@@ -2621,6 +2629,7 @@ undefined4 maybe_sceSync(char *param_1,undefined4 param_2)
 }
 
 // 0x00117f00  size 0x26c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x14 */
 
 undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int param_4,int param_5)
@@ -2630,7 +2639,7 @@ undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int par
   undefined1 *puVar2;
   undefined8 uVar3;
   long lVar4;
-  undefined1 *puVar5;
+  undefined *puVar5;
   int iVar6;
   undefined1 auStack_d0 [4];
   undefined4 uStack_cc;
@@ -2674,7 +2683,7 @@ undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int par
     if (0 < param_5) {
       do {
         puVar2 = (undefined1 *)(param_4 + iVar6);
-        puVar5 = (undefined1 *)(iVar6 + 0x37330c);
+        puVar5 = &s_sceDevctl_1 + iVar6;
         iVar6 = iVar6 + 1;
         *puVar5 = *puVar2;
       } while (iVar6 < param_5);
@@ -2683,7 +2692,7 @@ undefined4 maybe_sceMount(char *param_1,char *param_2,undefined4 param_3,int par
     uStack_c8 = 0;
     uStack_bc = 0;
     uRam0037370c = param_3;
-    iRam00373710 = param_5;
+    _s_sceMount_1 = param_5;
     uVar3 = CreateSema(auStack_d0);
     uRam00372b08 = 4;
     uRam00372b00 = (undefined4)uVar3;

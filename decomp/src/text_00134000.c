@@ -330,6 +330,7 @@ undefined4 Gut_ArchiveDecompress(int param_1,int param_2,uint param_3)
 }
 
 // 0x00134860  size 0x70
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* iReferThreadStatus + iWakeup */
 
 undefined8 maybe_Gfx_VSyncWakeThread(void)
@@ -337,10 +338,10 @@ undefined8 maybe_Gfx_VSyncWakeThread(void)
 {
   uint auStack_30 [12];
   
-  uRam0036ef98 = uRam0036ef98 + 1;
-  if ((uRam00380340 <= uRam0036ef98) &&
-     (iReferThreadStatus(uRam0036efa4,auStack_30), (auStack_30[0] & 4) != 0)) {
-    maybe_iWakeupThreadEx(uRam0036efa4);
+  _s_GfxVar2 = _s_GfxVar2 + 1;
+  if ((_s_GfxVar9 <= _s_GfxVar2) &&
+     (iReferThreadStatus(_s_GfxVar5,auStack_30), (auStack_30[0] & 4) != 0)) {
+    maybe_iWakeupThreadEx(_s_GfxVar5);
   }
   SYNC(0);
   EI();
@@ -398,6 +399,8 @@ void Gfx_ResetPathsIfBusy(void)
 }
 
 // 0x00134a20  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Gfx_KickVif1Dma(long param_1,long param_2)
 
 {
@@ -407,8 +410,8 @@ void maybe_Gfx_KickVif1Dma(long param_1,long param_2)
     do {
       uVar1 = REG_DMAC_1_VIF1_CHCR;
     } while ((uVar1 & 0x100) != 0);
-    uRam0036efac = (uint)param_1;
-    REG_DMAC_1_VIF1_TADR = uRam0036efac & 0xfffffff;
+    _s_GfxVar7 = (uint)param_1;
+    REG_DMAC_1_VIF1_TADR = _s_GfxVar7 & 0xfffffff;
     REG_DMAC_1_VIF1_QWC = 0;
     REG_DMAC_1_VIF1_CHCR = 0x145;
   }
@@ -419,7 +422,7 @@ void maybe_Gfx_KickVif1Dma(long param_1,long param_2)
     REG_DMAC_2_GIF_TADR = (uint)param_2 & 0xfffffff;
     REG_DMAC_2_GIF_QWC = 0;
     REG_DMAC_2_GIF_CHCR = 0x105;
-    uRam0036efb0 = (uint)param_2;
+    _s_GfxVar8 = (uint)param_2;
   }
   return;
 }
@@ -447,6 +450,7 @@ long Gfx_SyncPath(long param_1,undefined2 param_2)
 }
 
 // 0x00134b60  size 0x180
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceGsResetGraph(0,1,2,1), DBuff */
 
 void Gfx_Init(void)
@@ -459,17 +463,17 @@ void Gfx_Init(void)
   
   sceGsResetGraph(0,1,2,1);
   sceGsSetDefDBuff(0x3803a0,0,0x80,0x80,2,0,1);
-  uVar2 = uRam003804f0 & 0x1ff;
-  if ((uRam003804f0 & 0x1ff) <= (uRam00380400 & 0x1ff)) {
-    uVar2 = uRam00380400 & 0x1ff;
+  uVar2 = _s_Gfx_Init_3 & 0x1ff;
+  if ((_s_Gfx_Init_3 & 0x1ff) <= (_s_Gfx_Init_1 & 0x1ff)) {
+    uVar2 = _s_Gfx_Init_1 & 0x1ff;
   }
   sceGsSyncV(0);
   uVar4 = 0;
   if (0x200 / uVar2 != 0) {
     iVar3 = 0;
     do {
-      uRam00380410 = 0x31003;
-      uRam00380400 = uRam00380400 & 0xfe00 | (ushort)iVar3 & 0x1ff;
+      _s_Gfx_Init_2 = 0x31003;
+      _s_Gfx_Init_1 = _s_Gfx_Init_1 & 0xfe00 | (ushort)iVar3 & 0x1ff;
       FlushCache(0);
       sceGsPutDrawEnv(0x3803f0);
       lVar1 = sceGsSyncPath(0,0);
@@ -492,6 +496,8 @@ void Gfx_Init(void)
 }
 
 // 0x00134cf0  size 0x33c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Gfx_BuildDisplayEnv(int *param_1)
 
 {
@@ -508,15 +514,15 @@ void maybe_Gfx_BuildDisplayEnv(int *param_1)
   byte *pbVar11;
   byte *pbVar12;
   
-  iVar3 = iRam00380344;
-  iVar2 = iRam00380334;
-  iVar1 = iRam00380330;
+  iVar3 = _s_Gfx_BuildDisplayEnv_4;
+  iVar2 = _s_Gfx_BuildDisplayEnv_2;
+  iVar1 = _s_Gfx_BuildDisplayEnv_1;
   pbVar12 = (byte *)0x3801f0;
   uVar10 = 0;
-  uVar7 = (ulong)uRam00380354;
-  uVar6 = (ulong)uRam00380338;
-  uVar4 = uRam00380354 - 1;
-  uVar5 = iRam00380358 - 1;
+  uVar7 = (ulong)_s_Gfx_BuildDisplayEnv_5;
+  uVar6 = (ulong)_s_Gfx_BuildDisplayEnv_3;
+  uVar4 = _s_Gfx_BuildDisplayEnv_5 - 1;
+  uVar5 = _s_Gfx_BuildDisplayEnv_6 - 1;
   do {
     uVar9 = 0;
     pbVar11 = pbVar12;
@@ -625,6 +631,7 @@ void Gfx_RemoveFrameCallback(undefined8 param_1)
 }
 
 // 0x00135050  size 0x3c4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* runs vsync callbacks, sync path */
 
 void Gfx_SyncAndFlip(void)
@@ -636,7 +643,7 @@ void Gfx_SyncAndFlip(void)
   long lVar4;
   undefined8 *puVar5;
   
-  for (iVar1 = iRam0038038c; iVar1 != 0; iVar1 = *(int *)(iVar1 + 4)) {
+  for (iVar1 = _s_Gfx_SyncAndFlip_1; iVar1 != 0; iVar1 = *(int *)(iVar1 + 4)) {
     (**(code **)(iVar1 + 8))(*(undefined4 *)(iVar1 + 0xc));
   }
   lVar4 = sceGsSyncPath(0,0);
@@ -650,20 +657,20 @@ void Gfx_SyncAndFlip(void)
     REG_GIF_CTRL = 1;
     lVar4 = sceGsSyncPath(0,0);
   }
-  uRam0036efa0 = (uint)(uRam00380340 <= uRam0036ef98);
+  _s_GfxVar4 = (uint)(_s_GfxVar9 <= _s_GfxVar2);
   SleepThread();
   do {
-  } while (uRam0036ef98 < uRam00380340);
+  } while (_s_GfxVar2 < _s_GfxVar9);
   uVar3 = REG_GS_CSR;
   uRam0036ef94 = uRam0036ef94 + 1;
-  uRam0036ef98 = 0;
+  _s_GfxVar2 = 0;
   iRam0036ef90 = (int)((uVar3 & 0x2000) >> 0xd);
-  if (uRam0036ef8c != 0) {
+  if (_s_GfxVar1 != 0) {
     do {
       uVar2 = REG_DMAC_2_GIF_CHCR;
     } while ((uVar2 & 0x100) != 0);
     FlushCache(0);
-    REG_DMAC_2_GIF_TADR = uRam0036ef8c & 0xfffffff;
+    REG_DMAC_2_GIF_TADR = _s_GfxVar1 & 0xfffffff;
     REG_DMAC_2_GIF_QWC = 0;
     lVar4 = sceGsSyncPath(0,0);
     while (lVar4 != 0) {
@@ -712,9 +719,9 @@ void Gfx_SyncAndFlip(void)
   REG_GS_EXTDATA = puVar5[8];
   REG_GS_EXTWRITE = puVar5[9];
   REG_GS_BGCOLOR = 0;
-  if (iRam0036ef9c != 0) {
+  if (_s_GfxVar3 != 0) {
     REG_GS_PMODE = 0;
-    iRam0036ef9c = iRam0036ef9c + -1;
+    _s_GfxVar3 = _s_GfxVar3 + -1;
   }
   lVar4 = sceGsSyncPath(0,0);
   while (lVar4 != 0) {
@@ -731,6 +738,7 @@ void Gfx_SyncAndFlip(void)
 }
 
 // 0x00135420  size 0x238
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceGsResetGraph + DefDispEnv + vsync callback */
 
 void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
@@ -795,40 +803,44 @@ void Gfx_SetVideoMode(undefined2 param_1,undefined2 *param_2)
     uStack_40 = uStack_40 + 1;
     puVar3 = puVar3 + 10;
   } while (uStack_40 < 2);
-  uRam0036ef8c = 0;
+  _s_GfxVar1 = 0;
   maybe_Mem_CopyQwords(0x380330,param_2,0x40);
-  uRam0036efa8 = sceGsSyncVCallback(0x134860);
+  _s_GfxVar6 = sceGsSyncVCallback(0x134860);
   EnableIntc(2);
   return;
 }
 
 // 0x00135660  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Gfx_Shutdown(void)
 
 {
-  if (iRam0036efa8 != 0) {
+  if (_s_GfxVar6 != 0) {
     DisableIntc(2);
-    sceGsSyncVCallback(iRam0036efa8);
+    sceGsSyncVCallback(_s_GfxVar6);
   }
   maybe_List_Clear(0x380380);
   return;
 }
 
 // 0x001356a0  size 0x50
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Gfx_ResetState(void)
 
 {
   sceGsSyncV(0);
   sceGsResetPath();
   uRam0036ef90 = 0;
-  uRam0036ef9c = 4;
+  _s_GfxVar3 = 4;
   uRam0036ef94 = 0;
-  uRam0036ef98 = 0;
-  uRam0036efa0 = 0;
-  uRam0036efa4 = GetThreadId();
-  uRam0036efa8 = 0;
-  uRam0036efac = 0;
-  uRam0036efb0 = 0;
+  _s_GfxVar2 = 0;
+  _s_GfxVar4 = 0;
+  _s_GfxVar5 = GetThreadId();
+  _s_GfxVar6 = 0;
+  _s_GfxVar7 = 0;
+  _s_GfxVar8 = 0;
   return;
 }
 
@@ -847,28 +859,30 @@ long Gfx_FrameCallbackList_dtor(long param_1,short param_2)
 }
 
 // 0x00135750  size 0x38
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* refcounted sceDbcEnd */
 
 void Dbc_Release(void)
 
 {
-  iRam0036efb4 = iRam0036efb4 + -1;
-  if (iRam0036efb4 == 0) {
+  _s_DbcVar1 = _s_DbcVar1 + -1;
+  if (_s_DbcVar1 == 0) {
     sceDbcEnd();
   }
   return;
 }
 
 // 0x00135790  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* refcounted sceDbcInit */
 
 void Dbc_Acquire(void)
 
 {
-  if (iRam0036efb4 == 0) {
+  if (_s_DbcVar1 == 0) {
     sceDbcInit();
   }
-  iRam0036efb4 = iRam0036efb4 + 1;
+  _s_DbcVar1 = _s_DbcVar1 + 1;
   return;
 }
 
@@ -882,6 +896,7 @@ undefined8 Input_InitPorts(undefined8 param_1)
 }
 
 // 0x001357f0  size 0x1d0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceCdStRead */
 
 int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
@@ -896,15 +911,15 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
   int iStack_8;
   int iStack_4;
   
-  if (iRam0036f00c == -1) {
+  if (_s_CdStreamVar2 == -1) {
     iStack_4 = 0;
     iVar4 = 0;
     do {
       iVar2 = sceCdStRead((int)param_2 >> 0xb,param_1,1,&iStack_4);
-      iVar1 = iRam0036f00c;
+      iVar1 = _s_CdStreamVar2;
       if (iStack_4 == 0) {
-        iRam0036f010 = iRam0036f010 + iVar2;
-        iRam0036f014 = iRam0036f014 - iVar2;
+        _s_CdStreamVar3 = _s_CdStreamVar3 + iVar2;
+        _s_CdStreamVar4 = _s_CdStreamVar4 - iVar2;
         iVar2 = iVar2 << 0xb;
       }
       else {
@@ -912,17 +927,17 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
           iVar4 = iStack_4;
         }
         uStack_10 = 0;
-        iStack_c = iRam0036f010;
-        iStack_8 = iRam0036f014;
-        if (iRam0036f00c == -1) {
+        iStack_c = _s_CdStreamVar3;
+        iStack_8 = _s_CdStreamVar4;
+        if (_s_CdStreamVar2 == -1) {
           sceCdStStop();
         }
         else {
-          if (*(int *)(iRam0036f00c * 4 + 0x3805d0) != -1) {
+          if (*(int *)(_s_CdStreamVar2 * 4 + 0x3805d0) != -1) {
             sceClose();
             *(undefined4 *)(iVar1 * 4 + 0x3805d0) = 0xffffffff;
           }
-          iRam0036f00c = -1;
+          _s_CdStreamVar2 = -1;
         }
         Sema_Signal(0x36effc,0);
         do {
@@ -935,7 +950,7 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
   else {
     do {
       iVar2 = -1;
-      iVar4 = *(int *)(iRam0036f00c * 4 + 0x3805d0);
+      iVar4 = *(int *)(_s_CdStreamVar2 * 4 + 0x3805d0);
       if (iVar4 != -1) {
         iVar2 = sceRead(iVar4,param_1,param_2);
       }
@@ -945,27 +960,31 @@ int CdStream_ReadSector(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001359c0  size 0x98
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CdStream_Close(void)
 
 {
   int iVar1;
   
-  iVar1 = iRam0036f00c;
-  if (iRam0036f00c == -1) {
+  iVar1 = _s_CdStreamVar2;
+  if (_s_CdStreamVar2 == -1) {
     sceCdStStop();
   }
   else {
-    if (*(int *)(iRam0036f00c * 4 + 0x3805d0) != -1) {
+    if (*(int *)(_s_CdStreamVar2 * 4 + 0x3805d0) != -1) {
       sceClose();
       *(undefined4 *)(iVar1 * 4 + 0x3805d0) = 0xffffffff;
     }
-    iRam0036f00c = -1;
+    _s_CdStreamVar2 = -1;
   }
   Sema_Signal(0x36effc,0);
   return;
 }
 
 // 0x00135a60  size 0xfc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 CdStream_Open(int *param_1)
 
 {
@@ -979,12 +998,12 @@ undefined4 CdStream_Open(int *param_1)
   
   if (*param_1 == 0) {
     uStack_4 = 0;
-    uRam0036f00c = 0xffffffff;
+    _s_CdStreamVar2 = 0xffffffff;
     uStack_3 = 0;
     uStack_2 = 0;
-    iRam0036f010 = param_1[1];
-    iRam0036f014 = param_1[2];
-    lVar1 = sceCdStStart(iRam0036f010,&uStack_4);
+    _s_CdStreamVar3 = param_1[1];
+    _s_CdStreamVar4 = param_1[2];
+    lVar1 = sceCdStStart(_s_CdStreamVar3,&uStack_4);
     if (lVar1 == 0) {
       return 0;
     }
@@ -1009,34 +1028,38 @@ undefined4 CdStream_Open(int *param_1)
         *(int *)(uVar4 * 4 + 0x3805d0) = (int)lVar1;
       }
     }
-    uRam0036f00c = uVar4;
-    if (uRam0036f00c == 0xffffffff) {
+    _s_CdStreamVar2 = uVar4;
+    if (_s_CdStreamVar2 == 0xffffffff) {
       return 0;
     }
-    iRam0036f010 = 0;
-    iRam0036f014 = 0;
+    _s_CdStreamVar3 = 0;
+    _s_CdStreamVar4 = 0;
   }
   Sema_Wait(0x36effc);
   return 1;
 }
 
 // 0x00135b60  size 0x24
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CdStream_Shutdown(void)
 
 {
   sceCdStStop();
-  maybe_sceSifFreeSysMemory(uRam0036f008);
+  maybe_sceSifFreeSysMemory(_s_CdStreamVar1);
   return;
 }
 
 // 0x00135b90  size 0x64
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_CdStream_Init(undefined8 param_1,undefined8 param_2)
 
 {
-  uRam0036f00c = 0xffffffff;
-  uRam0036f010 = 0;
-  iRam0036f008 = sceSifAllocIopHeap((int)param_1 * 0x800 + 0x10);
-  sceCdStInit(param_1,param_2,iRam0036f008 + 0xfU & 0xfffffff0);
+  _s_CdStreamVar2 = 0xffffffff;
+  _s_CdStreamVar3 = 0;
+  _s_CdStreamVar1 = sceSifAllocIopHeap((int)param_1 * 0x800 + 0x10);
+  sceCdStInit(param_1,param_2,_s_CdStreamVar1 + 0xfU & 0xfffffff0);
   return 1;
 }
 
@@ -1126,6 +1149,7 @@ void maybe_Cd_ToggleMotor(undefined4 param_1)
 }
 
 // 0x00135e50  size 0x2f0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "decompress Error" */
 
 void File_LoaderThread(void)
@@ -1184,10 +1208,10 @@ void File_LoaderThread(void)
           uVar5 = *(uint *)(iVar6 + 0x44) >> 0xb;
         }
         iVar2 = *(int *)(iVar6 + 0x3c);
-        uStack_4 = uRam0036e710;
-        uStack_3 = uRam0036e711;
-        uStack_2 = uRam0036e712;
-        uStack_1 = uRam0036e713;
+        uStack_4 = s_File_LoaderThread_1;
+        uStack_3 = s_File_LoaderThread_2;
+        uStack_2 = s_File_LoaderThread_3;
+        uStack_1 = s_File_LoaderThread_4;
         do {
           do {
             lVar4 = sceCdDiskReady(0);
@@ -1204,10 +1228,10 @@ void File_LoaderThread(void)
           uVar5 = *(uint *)(iVar6 + 0x44) >> 0xb;
         }
         iVar2 = *(int *)(iVar6 + 0x3c);
-        uStack_8 = uRam0036e714;
-        uStack_7 = uRam0036e715;
-        uStack_6 = uRam0036e716;
-        uStack_5 = uRam0036e717;
+        uStack_8 = s_File_LoaderThread_5;
+        uStack_7 = s_File_LoaderThread_6;
+        uStack_6 = s_File_LoaderThread_7;
+        uStack_5 = s_File_LoaderThread_8;
         do {
           do {
             lVar4 = sceCdDiskReady(0);
@@ -1249,14 +1273,16 @@ LAB_00136060:
         Sema_Wait(0x36eff8);
       }
     }
-    if (iRam0036efc8 != 0) {
-      iRam0036efc8 = 0;
+    if (_s_FileVar3 != 0) {
+      _s_FileVar3 = 0;
       Sema_Signal(0x36efc4,0);
     }
   } while( true );
 }
 
 // 0x00136140  size 0x2a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void File_StartRequest(long param_1)
 
 {
@@ -1344,14 +1370,16 @@ void File_StartRequest(long param_1)
     }
     if (((*(uint *)(iVar5 + 0xc) & 0x100) != 0) && ((*(uint *)(iVar5 + 0xc) & 8) == 0)) {
       *(undefined4 *)(iVar5 + 0x5c) = *(undefined4 *)(iVar5 + 0x50);
-      *(undefined4 *)(iVar5 + 0x50) = *(undefined4 *)(&g_File + (uRam0036efe4 & 1) * 4);
-      uRam0036efe4 = uRam0036efe4 + 1;
+      *(undefined4 *)(iVar5 + 0x50) = *(undefined4 *)(&g_File + (_s_FileVar6 & 1) * 4);
+      _s_FileVar6 = _s_FileVar6 + 1;
     }
   }
   return;
 }
 
 // 0x001363e0  size 0x228
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int File_PollRequest(int param_1,long param_2,long param_3)
 
 {
@@ -1381,13 +1409,13 @@ int File_PollRequest(int param_1,long param_2,long param_3)
     *(undefined4 *)(iVar4 + 0xc) = 0;
   }
   if (param_1 == 0) {
-    iVar4 = iRam0038662c;
+    iVar4 = _s_FileVar9;
   }
   else {
     iVar4 = *(int *)(param_1 + 4);
   }
   if ((iVar4 != 0) && (*(int *)(iVar4 + 8) == -1)) {
-    iVar4 = iRam0038662c;
+    iVar4 = _s_FileVar9;
   }
   if (((iVar4 != 0) && (iVar3 != 0)) &&
      (((*(uint *)(iVar4 + 0xc) & 1) != 0 &&
@@ -1430,6 +1458,8 @@ int File_PollRequest(int param_1,long param_2,long param_3)
 }
 
 // 0x00136610  size 0x2ac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int File_NextRequest(int param_1)
 
 {
@@ -1444,7 +1474,7 @@ int File_NextRequest(int param_1)
   iVar7 = 0;
   if ((param_1 != 0) && (iVar6 = *(int *)(param_1 + 0x58), iVar6 != 0)) {
     if (((*(uint *)(iVar6 + 0xc) & 0x100) != 0) && ((*(uint *)(iVar6 + 0xc) & 8) == 0)) {
-      uRam0036eff0 = *(undefined4 *)(iVar6 + 0x50);
+      _s_FileVar8 = *(undefined4 *)(iVar6 + 0x50);
       *(undefined4 *)(iVar6 + 0x50) = *(undefined4 *)(iVar6 + 0x5c);
     }
     if ((*(uint *)(iVar6 + 0xc) & 0x2000) == 0) {
@@ -1500,7 +1530,7 @@ int File_NextRequest(int param_1)
     iVar6 = 0;
     if ((param_1 != 0) && (!bVar5)) {
       if (((*(uint *)(param_1 + 0xc) & 0x100) != 0) && ((*(uint *)(param_1 + 0xc) & 8) == 0)) {
-        uRam0036eff0 = *(undefined4 *)(param_1 + 0x50);
+        _s_FileVar8 = *(undefined4 *)(param_1 + 0x50);
         *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(param_1 + 0x5c);
       }
       if ((*(uint *)(param_1 + 0xc) & 0x2000) == 0) {
@@ -1541,15 +1571,17 @@ int File_NextRequest(int param_1)
 }
 
 // 0x001368c0  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void File_AbortAll(void)
 
 {
   Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iRam0036efc8 = 1;
+    _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
-  if (iRam0036efc8 != 0) {
+  if (_s_FileVar3 != 0) {
     Sema_Wait(0x36efc4);
   }
   return;
@@ -1614,6 +1646,8 @@ LAB_00136a24:
 }
 
 // 0x00136a80  size 0x160
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int File_QueueRequest(undefined4 *param_1)
 
 {
@@ -1637,14 +1671,14 @@ int File_QueueRequest(undefined4 *param_1)
   iVar2 = 0;
 LAB_00136aec:
   if (iVar2 != 0) {
-    if ((iRam0038662c == 0) && (lVar1 = Sema_GetCount(0x36eff4,0), lVar1 == 0)) {
+    if ((_s_FileVar9 == 0) && (lVar1 = Sema_GetCount(0x36eff4,0), lVar1 == 0)) {
       Sema_Signal(0x36eff4,0);
-      iVar4 = iRam0036efbc;
+      iVar4 = _s_FileVar2;
     }
     else {
-      iVar4 = iRam0036efbc;
+      iVar4 = _s_FileVar2;
     }
-    iRam0036efbc = (iVar4 + 1) % 0x7fffffff;
+    _s_FileVar2 = (iVar4 + 1) % 0x7fffffff;
     *(int *)(iVar2 + 8) = iVar4;
     *(undefined1 *)(iVar2 + 0x38) = 0;
     *(undefined4 *)(iVar2 + 0xc) = *param_1;
@@ -1665,6 +1699,7 @@ LAB_00136aec:
 }
 
 // 0x00136be0  size 0x12c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceCdSearchFile */
 
 undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
@@ -1685,10 +1720,10 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
   
   Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iRam0036efc8 = 1;
+    _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
-  if (iRam0036efc8 != 0) {
+  if (_s_FileVar3 != 0) {
     Sema_Wait(0x36efc4);
   }
   lVar2 = maybe_sceCdSearchFileSimple(&uStack_70,param_1);
@@ -1707,10 +1742,10 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
     File_QueueRequest(auStack_40);
     Sema_Wait(0x36efc0);
     if (iRam00386628 != 0) {
-      iRam0036efc8 = 1;
+      _s_FileVar3 = 1;
     }
     Sema_Signal(0x36efc0,0);
-    if (iRam0036efc8 != 0) {
+    if (_s_FileVar3 != 0) {
       Sema_Wait(0x36efc4);
     }
     uVar1 = 1;
@@ -1719,6 +1754,8 @@ undefined4 File_OpenCdFile(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x00136d10  size 0xf4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long param_4,long param_5)
 
 {
@@ -1731,10 +1768,10 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
   
   Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iRam0036efc8 = 1;
+    _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
-  if (iRam0036efc8 != 0) {
+  if (_s_FileVar3 != 0) {
     Sema_Wait(0x36efc4);
   }
   lVar2 = maybe_sceCdSearchFileSimple(&uStack_30,param_1);
@@ -1770,6 +1807,7 @@ undefined4 maybe_File_GetSectorCount(int *param_1)
 }
 
 // 0x00136e30  size 0x98
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceCdReadClock */
 
 void File_ReadClock(undefined8 param_1)
@@ -1779,10 +1817,10 @@ void File_ReadClock(undefined8 param_1)
   
   Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iRam0036efc8 = 1;
+    _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
-  if (iRam0036efc8 != 0) {
+  if (_s_FileVar3 != 0) {
     Sema_Wait(0x36efc4);
   }
   lVar1 = sceCdReadClock(param_1);
@@ -1794,6 +1832,8 @@ void File_ReadClock(undefined8 param_1)
 }
 
 // 0x00136ed0  size 0xcc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool File_GetDiscType(long param_1)
 
 {
@@ -1801,10 +1841,10 @@ bool File_GetDiscType(long param_1)
   
   Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iRam0036efc8 = 1;
+    _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
-  if (iRam0036efc8 != 0) {
+  if (_s_FileVar3 != 0) {
     Sema_Wait(0x36efc4);
   }
   lVar1 = sceCdGetDiskType();
@@ -1826,29 +1866,29 @@ void File_Shutdown(void)
 {
   Sema_Wait(0x36efc0);
   if (iRam00386628 != 0) {
-    iRam0036efc8 = 1;
+    _s_FileVar3 = 1;
   }
   Sema_Signal(0x36efc0,0);
-  if (iRam0036efc8 != 0) {
+  if (_s_FileVar3 != 0) {
     Sema_Wait(0x36efc4);
   }
   sceCdInit(5);
   if (_s_FileSectorCount != 0) {
-    uRam0036efe4 = 0;
+    _s_FileVar6 = 0;
     if (_g_File != 0) {
       Mem_Free();
       _g_File = 0;
     }
-    uRam0036efec = 0;
+    _s_FileVar7 = 0;
   }
   Thread_Delete(0x36efd0);
-  if (iRam0036efd8 != 0) {
+  if (_s_FileVar4 != 0) {
     Mem_Free();
-    iRam0036efd8 = 0;
+    _s_FileVar4 = 0;
   }
-  if (iRam0036efdc != 0) {
+  if (_s_FileVar5 != 0) {
     Mem_Free();
-    iRam0036efdc = 0;
+    _s_FileVar5 = 0;
   }
   Sema_Delete(0x36efc0);
   Sema_Delete(0x36efc4);
@@ -1872,34 +1912,34 @@ undefined4 File_Init(undefined8 param_1,undefined8 param_2,long param_3)
   sceCdInit(0);
   sceCdMmode(2);
   DAT_0036e704 = 0xffffffff;
-  uRam0036efbc = 0;
-  uRam0036efc8 = 0;
+  _s_FileVar2 = 0;
+  _s_FileVar3 = 0;
   uRam0036f000 = 0;
   uRam0036f004 = 0;
-  uRam0036eff0 = 0;
+  _s_FileVar8 = 0;
   Sema_Create(0x36efc0,1,1);
   Sema_Create(0x36efc4,0,1);
   Sema_Create(0x36eff4,0,1);
   Sema_Create(0x36eff8,0,1);
   Sema_Create(0x36effc,1,1);
-  uVar1 = Mem_AllocAligned(0x4000,0x10,uRam0036efb8);
-  uRam0036efd8 = (undefined4)uVar1;
+  uVar1 = Mem_AllocAligned(0x4000,0x10,_s_FileVar1);
+  _s_FileVar4 = (undefined4)uVar1;
   Thread_Create(0x36efd0,param_1,0x135e50,uVar1,0x4000,0);
   Thread_Start(0x36efd0,0);
-  uVar1 = Mem_AllocAligned(0x4000,0x10,uRam0036efb8);
-  uRam0036efdc = (undefined4)uVar1;
+  uVar1 = Mem_AllocAligned(0x4000,0x10,_s_FileVar1);
+  _s_FileVar5 = (undefined4)uVar1;
   maybe_Cd_CallbackThreadInit(param_2,uVar1,0x4000);
   maybe_sceCdSync0(0x135de0);
   if (param_3 == 0) {
     _g_File = 0;
-    iRam0036efec = 0;
+    _s_FileVar7 = 0;
     _s_FileSectorCount = 0;
   }
   else {
     _s_FileSectorCount = (int)param_3 + 0x7ffU & 0xfffff800;
-    uRam0036efe4 = 0;
-    _g_File = Mem_AllocAligned(_s_FileSectorCount << 1,0x40,uRam0036efb8);
-    iRam0036efec = _g_File + _s_FileSectorCount;
+    _s_FileVar6 = 0;
+    _g_File = Mem_AllocAligned(_s_FileSectorCount << 1,0x40,_s_FileVar1);
+    _s_FileVar7 = _g_File + _s_FileSectorCount;
   }
   uVar3 = 0;
   iVar2 = 0x380610;
@@ -1966,12 +2006,14 @@ void File_ShutdownNop(void)
 }
 
 // 0x00137320  size 0x14
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void File_SetHeap(undefined4 param_1)
 
 {
-  uRam0036efb8 = param_1;
-  uRam0036e708 = 0xffffffff;
-  uRam0036e70c = 0xffffffff;
+  _s_FileVar1 = param_1;
+  _s_File_SetHeap_1 = 0xffffffff;
+  _s_File_SetHeap_2 = 0xffffffff;
   return;
 }
 

@@ -1660,9 +1660,9 @@ void ScrCareer_Draw_Challenge(int param_1)
       *(undefined4 *)&pMVar5->field_0x53c = uVar9;
     }
     iVar8 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar8].layout,uRam0036ebc0,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar8].layout,_s_ScrCareer_Draw_Challenge_1,8);
     iVar8 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar8].layout,uRam0036ebc4,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar8].layout,_s_ScrCareer_Draw_Challenge_2,8);
     g_MenuMgr->unk_05a0 = 1;
     g_MenuMgr->unk_05e8 = 1;
     g_MenuMgr->unk_060c = 1;
@@ -1759,7 +1759,9 @@ void ScrCareer_Draw_Challenge(int param_1)
   UiElem_SetPropInt(&pUVar2[iVar7].layout,0x18,0x16,
                     *(undefined4 *)(&DAT_0032c980 + (uint)bStack_154 * 4));
   if (*_g_MenuInput == 1) {
-    MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36ebc0),1,0);
+    MenuWnd_SetItemState
+              (0x7a,*(undefined4 *)(&s_ScrCareer_Draw_Challenge_1 + *(int *)(param_1 + 0x62c) * 4),1
+               ,0);
   }
   MenuWnd_DrawStatus(*(undefined4 *)(param_1 + 0x24),0xfffffffffffffffd,0xffffffffffffffff,0);
   uVar11 = Profile_Get(0);
@@ -1991,9 +1993,9 @@ void ScrCareer_Draw_GoBattle(int param_1)
       } while (iVar15 < 6);
     }
     iVar15 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar15].layout,uRam0036ebb0,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar15].layout,_s_ScrCareer_Draw_GoBattle_1,8);
     iVar15 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar15].layout,uRam0036ebb4,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar15].layout,_s_ScrCareer_Draw_GoBattle_2,8);
     g_MenuMgr->unk_05a0 = 1;
     g_MenuMgr->unk_05e8 = 1;
     g_MenuMgr->unk_060c = 1;
@@ -2096,7 +2098,9 @@ void ScrCareer_Draw_GoBattle(int param_1)
   UiElem_SetPropInt(&pUVar2[iVar7].layout,0x18,0x16,
                     *(undefined4 *)(&DAT_0032c8b0 + (uint)bStack_184 * 4));
   if (*_g_MenuInput == 1) {
-    MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(param_1 + 0x62c) * 4 + 0x36ebb0),1,0);
+    MenuWnd_SetItemState
+              (0x7a,*(undefined4 *)(&s_ScrCareer_Draw_GoBattle_1 + *(int *)(param_1 + 0x62c) * 4),1,
+               0);
     iVar15 = *(int *)(param_1 + 0x688);
   }
   else {

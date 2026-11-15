@@ -1529,6 +1529,7 @@ int Keyboard_GetIndex(int *param_1)
 }
 
 // 0x002f7190  size 0x2a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "ABCDEF...0123456789-_" */
 
 undefined4 Keyboard_Update(undefined8 param_1)
@@ -1578,7 +1579,7 @@ undefined4 Keyboard_Update(undefined8 param_1)
         if (cVar1 == '\0') {
 LAB_002f7388:
           if (bVar2) {
-            maybe_strncpy(piVar5 + 3,uRam0036eef0,0x10);
+            maybe_strncpy(piVar5 + 3,_s_Keyboard_Update_1,0x10);
             iVar3 = strlen(piVar5 + 3);
             piVar5[2] = iVar3;
           }

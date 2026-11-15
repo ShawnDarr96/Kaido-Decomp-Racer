@@ -380,6 +380,8 @@ undefined4 DmaChain_GetSpan(char *param_1,uint *param_2,uint *param_3)
 }
 
 // 0x00144cd0  size 0xb4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool DmaChain_Init(uint *param_1,uint param_2)
 
 {
@@ -390,7 +392,7 @@ bool DmaChain_Init(uint *param_1,uint param_2)
   int iVar5;
   
   *param_1 = param_2;
-  uVar2 = Mem_Alloc16(*param_1 * 0x1c,uRam0036f080);
+  uVar2 = Mem_Alloc16(*param_1 * 0x1c,_s_DmaChainVar1);
   param_1[1] = uVar2;
   if (param_1[1] == 0) {
     bVar1 = false;
@@ -411,7 +413,7 @@ bool DmaChain_Init(uint *param_1,uint param_2)
         iVar5 = iVar5 + 0x1c;
       } while (uVar2 < *param_1);
     }
-    lVar4 = DmaBuf_Alloc(param_1 + 2,uRam0036f080,param_2 + 1);
+    lVar4 = DmaBuf_Alloc(param_1 + 2,_s_DmaChainVar1,param_2 + 1);
     bVar1 = lVar4 != 0;
   }
   return bVar1;
@@ -428,11 +430,11 @@ void DmaChain_Kick(uint param_1,int param_2,int param_3)
   uint uStack_4;
   
   iVar2 = (param_1 & 0xff) * 0x10;
-  if (*(int *)(iVar2 + 0x387f54) == 0) {
+  if (*(int *)(&s_DmaChainVar3 + iVar2) == 0) {
     iVar3 = 0;
   }
   else {
-    iVar3 = *(int *)(iVar2 + 0x387f50) % *(int *)(iVar2 + 0x387f54);
+    iVar3 = *(int *)(&s_DmaChainVar2 + iVar2) % *(int *)(&s_DmaChainVar3 + iVar2);
   }
   iVar2 = *(int *)(*(int *)(iVar2 + 0x387f5c) + iVar3 * 0x28 + 4);
   iVar3 = iVar2 + param_2 * 0x1c;
@@ -458,7 +460,7 @@ uint DmaChain_Begin(uint param_1,undefined4 *param_2)
   uint uStack_4;
   
   iVar2 = (param_1 & 0xff) * 0x10;
-  iVar4 = *(int *)(iVar2 + 0x387f54);
+  iVar4 = *(int *)(&s_DmaChainVar3 + iVar2);
   if (iVar4 == 0) {
     uVar5 = 0;
   }
@@ -467,7 +469,7 @@ uint DmaChain_Begin(uint param_1,undefined4 *param_2)
       iVar4 = 0;
     }
     else {
-      iVar4 = *(int *)(iVar2 + 0x387f50) % iVar4;
+      iVar4 = *(int *)(&s_DmaChainVar2 + iVar2) % iVar4;
     }
     puVar6 = (uint *)(*(int *)(iVar2 + 0x387f5c) + iVar4 * 0x28);
     puVar6[4] = 0;
@@ -501,7 +503,7 @@ uint DmaChain_Begin(uint param_1,undefined4 *param_2)
       puVar3[3] = 0;
       *param_2 = puVar3;
     }
-    *(undefined4 *)(iVar2 + 0x387f58) = 0;
+    *(undefined4 *)(&s_DmaChainVar4 + iVar2) = 0;
     uVar5 = puVar6[2];
   }
   return uVar5;
@@ -519,16 +521,16 @@ void DmaChain_End(uint param_1)
   int iVar6;
   
   iVar2 = (param_1 & 0xff) * 0x10;
-  iVar6 = *(int *)(iVar2 + 0x387f54);
+  iVar6 = *(int *)(&s_DmaChainVar3 + iVar2);
   if (iVar6 != 0) {
     if (iVar6 == 0) {
       iVar6 = 0;
     }
     else {
-      iVar6 = *(int *)(iVar2 + 0x387f50) % iVar6;
+      iVar6 = *(int *)(&s_DmaChainVar2 + iVar2) % iVar6;
     }
     puVar3 = (uint *)(*(int *)(iVar2 + 0x387f5c) + iVar6 * 0x28);
-    *(undefined4 *)(iVar2 + 0x387f58) = 1;
+    *(undefined4 *)(&s_DmaChainVar4 + iVar2) = 1;
     puVar3[8] = 0;
     uVar1 = 0;
     if (*puVar3 != 0) {
@@ -589,13 +591,13 @@ void DmaChain_SetFlag(uint param_1,int param_2,undefined1 param_3)
   
   iVar1 = (param_1 & 0xff) * 0x10;
   uVar3 = 0;
-  if (*(int *)(iVar1 + 0x387f54) != 0) {
+  if (*(int *)(&s_DmaChainVar3 + iVar1) != 0) {
     iVar2 = 0;
     do {
       uVar3 = uVar3 + 1;
       *(undefined1 *)(param_2 * 0x1c + *(int *)(*(int *)(iVar1 + 0x387f5c) + iVar2 + 4)) = param_3;
       iVar2 = iVar2 + 0x28;
-    } while (uVar3 < *(uint *)(iVar1 + 0x387f54));
+    } while (uVar3 < *(uint *)(&s_DmaChainVar3 + iVar1));
   }
   return;
 }
@@ -611,8 +613,8 @@ void DmaChain_Destroy(uint param_1)
   
   iVar1 = (param_1 & 0xff) * 0x10;
   uVar3 = 0;
-  if (*(int *)(iVar1 + 0x387f54) == 0) {
-    *(undefined4 *)(iVar1 + 0x387f50) = 0;
+  if (*(int *)(&s_DmaChainVar3 + iVar1) == 0) {
+    *(undefined4 *)(&s_DmaChainVar2 + iVar1) = 0;
   }
   else {
     iVar2 = 0;
@@ -627,11 +629,11 @@ void DmaChain_Destroy(uint param_1)
       }
       uVar3 = uVar3 + 1;
       iVar2 = iVar2 + 0x28;
-    } while (uVar3 < *(uint *)(iVar1 + 0x387f54));
-    *(undefined4 *)(iVar1 + 0x387f50) = 0;
+    } while (uVar3 < *(uint *)(&s_DmaChainVar3 + iVar1));
+    *(undefined4 *)(&s_DmaChainVar2 + iVar1) = 0;
   }
-  *(undefined4 *)(iVar1 + 0x387f54) = 0;
-  *(undefined4 *)(iVar1 + 0x387f58) = 0;
+  *(undefined4 *)(&s_DmaChainVar3 + iVar1) = 0;
+  *(undefined4 *)(&s_DmaChainVar4 + iVar1) = 0;
   if (*(int *)(iVar1 + 0x387f5c) != 0) {
     Mem_Free();
     *(undefined4 *)(iVar1 + 0x387f5c) = 0;
@@ -640,6 +642,8 @@ void DmaChain_Destroy(uint param_1)
 }
 
 // 0x00145250  size 0x120
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -652,17 +656,17 @@ undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,un
   uint uVar7;
   
   iVar4 = (param_1 & 0xff) * 0x10;
-  *(undefined4 *)(iVar4 + 0x387f50) = 0;
-  *(undefined4 *)(iVar4 + 0x387f54) = param_2;
-  *(undefined4 *)(iVar4 + 0x387f58) = 0;
-  uVar2 = Mem_Alloc16(*(int *)(iVar4 + 0x387f54) * 0x28,uRam0036f080);
+  *(undefined4 *)(&s_DmaChainVar2 + iVar4) = 0;
+  *(undefined4 *)(&s_DmaChainVar3 + iVar4) = param_2;
+  *(undefined4 *)(&s_DmaChainVar4 + iVar4) = 0;
+  uVar2 = Mem_Alloc16(*(int *)(&s_DmaChainVar3 + iVar4) * 0x28,_s_DmaChainVar1);
   *(undefined4 *)(iVar4 + 0x387f5c) = uVar2;
   if (*(int *)(iVar4 + 0x387f5c) == 0) {
     uVar2 = 0;
   }
   else {
     uVar7 = 0;
-    if (*(int *)(iVar4 + 0x387f54) != 0) {
+    if (*(int *)(&s_DmaChainVar3 + iVar4) != 0) {
       iVar6 = 0;
       do {
         iVar5 = *(int *)(iVar4 + 0x387f5c) + iVar6;
@@ -671,7 +675,7 @@ undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,un
           bVar1 = false;
         }
         else {
-          lVar3 = DmaBuf_Alloc(iVar5 + 0x18,uRam0036f080,param_3);
+          lVar3 = DmaBuf_Alloc(iVar5 + 0x18,_s_DmaChainVar1,param_3);
           if (lVar3 == 0) {
             bVar1 = false;
           }
@@ -684,7 +688,7 @@ undefined4 DmaChain_Create(uint param_1,undefined4 param_2,undefined8 param_3,un
         }
         uVar7 = uVar7 + 1;
         iVar6 = iVar6 + 0x28;
-      } while (uVar7 < *(uint *)(iVar4 + 0x387f54));
+      } while (uVar7 < *(uint *)(&s_DmaChainVar3 + iVar4));
     }
     uVar2 = 1;
   }
@@ -707,7 +711,7 @@ void DmaChain_DestroyAll(void)
   do {
     iVar1 = (uVar4 & 0xff) * 0x10;
     uVar3 = 0;
-    if (*(int *)(iVar1 + 0x387f54) != 0) {
+    if (*(int *)(&s_DmaChainVar3 + iVar1) != 0) {
       iVar2 = 0;
       do {
         puVar5 = (undefined4 *)(*(int *)(iVar1 + 0x387f5c) + iVar2);
@@ -720,38 +724,38 @@ void DmaChain_DestroyAll(void)
         }
         uVar3 = uVar3 + 1;
         iVar2 = iVar2 + 0x28;
-      } while (uVar3 < *(uint *)(iVar1 + 0x387f54));
+      } while (uVar3 < *(uint *)(&s_DmaChainVar3 + iVar1));
     }
-    *(undefined4 *)(iVar1 + 0x387f50) = 0;
-    *(undefined4 *)(iVar1 + 0x387f54) = 0;
-    *(undefined4 *)(iVar1 + 0x387f58) = 0;
+    *(undefined4 *)(&s_DmaChainVar2 + iVar1) = 0;
+    *(undefined4 *)(&s_DmaChainVar3 + iVar1) = 0;
+    *(undefined4 *)(&s_DmaChainVar4 + iVar1) = 0;
     if (*(int *)(iVar1 + 0x387f5c) != 0) {
       Mem_Free();
       *(undefined4 *)(iVar1 + 0x387f5c) = 0;
     }
     uVar4 = uVar4 + 1;
   } while (uVar4 < 5);
-  uRam00387f50 = 0;
-  uRam00387f54 = 0;
-  uRam00387f58 = 0;
-  uRam0036f080 = 0;
+  _s_DmaChainVar2 = 0;
+  _s_DmaChainVar3 = 0;
+  _s_DmaChainVar4 = 0;
+  _s_DmaChainVar1 = 0;
   uRam00387f5c = 0;
-  uRam00387f60 = 0;
-  uRam00387f64 = 0;
-  uRam00387f68 = 0;
-  uRam00387f6c = 0;
-  uRam00387f70 = 0;
-  uRam00387f74 = 0;
-  uRam00387f78 = 0;
+  _s_DmaChainVar5 = 0;
+  _s_DmaChainVar6 = 0;
+  _s_DmaChainVar7 = 0;
+  _s_DmaChainVar8 = 0;
+  _s_DmaChainVar9 = 0;
+  _s_DmaChainVar10 = 0;
+  _s_DmaChainVar11 = 0;
   _s_RaceUiSpriteCursor = 0;
-  uRam00387f80 = 0;
-  uRam00387f84 = 0;
-  uRam00387f88 = 0;
-  uRam00387f8c = 0;
-  uRam00387f90 = 0;
-  uRam00387f94 = 0;
-  uRam00387f98 = 0;
-  uRam00387f9c = 0;
+  _s_DmaChainVar12 = 0;
+  _s_DmaChainVar13 = 0;
+  _s_DmaChainVar14 = 0;
+  _s_DmaChainVar15 = 0;
+  _s_DmaChainVar16 = 0;
+  _s_DmaChainVar17 = 0;
+  _s_DmaChainVar18 = 0;
+  _s_DmaChainVar19 = 0;
   return;
 }
 
@@ -761,27 +765,27 @@ void DmaChain_DestroyAll(void)
 void DmaChain_SetHeap(undefined4 param_1)
 
 {
-  uRam0036f080 = param_1;
-  uRam00387f54 = 0;
-  uRam00387f50 = 0;
+  _s_DmaChainVar1 = param_1;
+  _s_DmaChainVar3 = 0;
+  _s_DmaChainVar2 = 0;
   uRam00387f5c = 0;
-  uRam00387f58 = 0;
-  uRam00387f60 = 0;
-  uRam00387f64 = 0;
-  uRam00387f68 = 0;
-  uRam00387f6c = 0;
-  uRam00387f70 = 0;
-  uRam00387f74 = 0;
-  uRam00387f78 = 0;
+  _s_DmaChainVar4 = 0;
+  _s_DmaChainVar5 = 0;
+  _s_DmaChainVar6 = 0;
+  _s_DmaChainVar7 = 0;
+  _s_DmaChainVar8 = 0;
+  _s_DmaChainVar9 = 0;
+  _s_DmaChainVar10 = 0;
+  _s_DmaChainVar11 = 0;
   _s_RaceUiSpriteCursor = 0;
-  uRam00387f80 = 0;
-  uRam00387f84 = 0;
-  uRam00387f88 = 0;
-  uRam00387f8c = 0;
-  uRam00387f90 = 0;
-  uRam00387f94 = 0;
-  uRam00387f98 = 0;
-  uRam00387f9c = 0;
+  _s_DmaChainVar12 = 0;
+  _s_DmaChainVar13 = 0;
+  _s_DmaChainVar14 = 0;
+  _s_DmaChainVar15 = 0;
+  _s_DmaChainVar16 = 0;
+  _s_DmaChainVar17 = 0;
+  _s_DmaChainVar18 = 0;
+  _s_DmaChainVar19 = 0;
   return;
 }
 
@@ -1352,11 +1356,11 @@ void Pkt_SubmitToChain(byte *param_1,int param_2)
   
   if (*param_1 != 5) {
     iVar2 = (uint)*param_1 * 0x10;
-    if (*(int *)(iVar2 + 0x387f54) == 0) {
+    if (*(int *)(&s_DmaChainVar3 + iVar2) == 0) {
       iVar3 = 0;
     }
     else {
-      iVar3 = *(int *)(iVar2 + 0x387f50) % *(int *)(iVar2 + 0x387f54);
+      iVar3 = *(int *)(&s_DmaChainVar2 + iVar2) % *(int *)(&s_DmaChainVar3 + iVar2);
     }
     iVar2 = *(int *)(iVar2 + 0x387f5c) + iVar3 * 0x28;
     pbVar4 = (byte *)(*(int *)(iVar2 + 4) + param_2 * 0x1c);

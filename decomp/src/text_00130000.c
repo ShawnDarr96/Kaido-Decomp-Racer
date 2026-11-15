@@ -560,7 +560,7 @@ undefined4 sceDbcInit(void)
   sceSifInitRpc(0);
   while (lVar3 = sceSifBindRpc(0x37cc08,0xffffffff80001300,0), -1 < lVar3) {
     iVar4 = 0x10000;
-    if (iRam0037cc2c != 0) goto LAB_00130c84;
+    if (_s_sceDbcInit_1 != 0) goto LAB_00130c84;
     do {
       iVar4 = iVar4 + -1;
     } while (iVar4 != -1);
@@ -572,7 +572,7 @@ LAB_00130c84:
   lVar3 = sceSifBindRpc(0x37cc30,0xffffffff8000131b,0);
   if (lVar3 < 0) goto LAB_00130d78;
   iVar4 = 0x10000;
-  if (iRam0037cc54 != 0) goto LAB_00130cdc;
+  if (_s_sceDbcInit_2 != 0) goto LAB_00130cdc;
   do {
     iVar4 = iVar4 + -1;
   } while (iVar4 != -1);
@@ -580,7 +580,7 @@ LAB_00130c84:
 LAB_00130cdc:
   while (lVar3 = sceSifBindRpc(0x37cc58,0xffffffff8000131c,0), -1 < lVar3) {
     iVar4 = 0x10000;
-    if (iRam0037cc7c != 0) {
+    if (_s_sceDbcInit_3 != 0) {
       uVar1 = maybe_Dbc_RpcCall();
       if ((int)uVar1 >> 8 != 3) {
         maybe_scePrintf(0x360a68);
@@ -661,7 +661,7 @@ undefined4 sceDbcCreateSocket(undefined4 *param_1,undefined4 param_2,undefined4 
   int iVar1;
   undefined4 uVar2;
   long lVar3;
-  undefined1 *puVar4;
+  undefined *puVar4;
   int iVar5;
   
   uVar2 = 0;
@@ -672,11 +672,11 @@ undefined4 sceDbcCreateSocket(undefined4 *param_1,undefined4 param_2,undefined4 
     uRam0037cc88 = param_1[2];
     uRam0037cc8c = param_1[3];
     uRam0037cc90 = param_1[4];
-    uRam0037cca8 = param_2;
-    uRam0037ccac = param_3;
+    _s_sceDbcCreateSocket_2 = param_2;
+    _s_sceDbcCreateSocket_3 = param_3;
     do {
       iVar1 = iVar5 + 0x14;
-      puVar4 = (undefined1 *)(iVar5 + 0x37cc94);
+      puVar4 = &s_Dbc_GetDeviceStatusRpc_1 + iVar5;
       iVar5 = iVar5 + 1;
       *puVar4 = *(undefined1 *)((int)param_1 + iVar1);
     } while (iVar5 < 0x10);
@@ -686,7 +686,7 @@ undefined4 sceDbcCreateSocket(undefined4 *param_1,undefined4 param_2,undefined4 
       uVar2 = 0;
     }
     else {
-      uVar2 = uRam0037cca4;
+      uVar2 = _s_sceDbcCreateSocket_1;
     }
   }
   return uVar2;
@@ -833,6 +833,7 @@ undefined4 sceDbcGetDeviceStatus(undefined4 param_1)
 }
 
 // 0x001313a8  size 0x88
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "sceDbcGetDeviceStatus: rpc error" */
 
 undefined4 maybe_Dbc_GetDeviceStatusRpc(int param_1)
@@ -843,7 +844,7 @@ undefined4 maybe_Dbc_GetDeviceStatusRpc(int param_1)
   
   uRam0037cc88 = 2;
   uRam0037cc90 = *(undefined4 *)(param_1 + 8);
-  uRam0037cc94 = *(undefined4 *)(param_1 + 0xc);
+  _s_Dbc_GetDeviceStatusRpc_1 = *(undefined4 *)(param_1 + 0xc);
   lVar2 = sceSifCallRpc(0x37cc08,0xffffffff8000131d,0,0x37cc80,0x280,0x37cc80,0x280,0);
   if (lVar2 < 0) {
     maybe_Dbc_GetLastError(0x360b98);
@@ -856,6 +857,8 @@ undefined4 maybe_Dbc_GetDeviceStatusRpc(int param_1)
 }
 
 // 0x00131430  size 0x148
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *param_4,int *param_5
                 ,int param_6)
 
@@ -886,12 +889,12 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
     iVar4 = 0;
   }
   else {
-    iVar4 = iRam0037d090;
-    if (-1 < iRam0037d090) {
+    iVar4 = _s_sceDbcSRData_1;
+    if (-1 < _s_sceDbcSRData_1) {
       *param_3 = iRam0037cc88;
       *param_5 = iRam0037cc8c;
       if (iRam0037cc8c < 1) {
-        iVar4 = iRam0037d090;
+        iVar4 = _s_sceDbcSRData_1;
       }
       else {
         puVar1 = (undefined1 *)0x37ce90;
@@ -902,7 +905,7 @@ int sceDbcSRData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *
           puVar1 = (undefined1 *)(iVar4 + 0x37ce91);
           iVar4 = iVar5;
         } while (iVar5 < iRam0037cc8c);
-        iVar4 = iRam0037d090;
+        iVar4 = _s_sceDbcSRData_1;
       }
     }
   }
@@ -949,6 +952,8 @@ int sceDbcSendData(undefined4 param_1,undefined4 param_2,int *param_3,undefined1
 }
 
 // 0x001316a8  size 0x15c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 sceDbcSendData2(undefined4 param_1,undefined4 param_2,int *param_3,undefined1 *param_4)
 
 {
@@ -960,10 +965,10 @@ undefined4 sceDbcSendData2(undefined4 param_1,undefined4 param_2,int *param_3,un
   
   if (*param_3 < 0x1081) {
     WaitSema(uRam003801c0);
-    iRam0037cf08 = *param_3;
+    _s_sceDbcSendData2_3 = *param_3;
     iVar5 = 0;
-    uRam0037cf00 = param_1;
-    uRam0037cf04 = param_2;
+    _s_sceDbcSendData2_1 = param_1;
+    _s_sceDbcSendData2_2 = param_2;
     if (0 < *param_3) {
       puVar1 = param_4;
       do {
@@ -995,6 +1000,7 @@ undefined4 sceDbcSendData2(undefined4 param_1,undefined4 param_2,int *param_3,un
 }
 
 // 0x00131808  size 0x164
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "SendData3 data length too long" */
 
 undefined4
@@ -1010,10 +1016,10 @@ maybe_sceDbcSendData3
   
   if (*param_3 < 0x2081) {
     WaitSema(uRam003801c0);
-    iRam0037e008 = *param_3;
+    _s_sceDbcSendData3_3 = *param_3;
     iVar4 = 0;
-    uRam0037e000 = param_1;
-    uRam0037e004 = param_2;
+    _s_sceDbcSendData3_1 = param_1;
+    _s_sceDbcSendData3_2 = param_2;
     if (0 < *param_3) {
       puVar1 = param_4;
       do {
@@ -2935,29 +2941,33 @@ void sceVu0NormalLightMatrix
 }
 
 // 0x001338b0  size 0x84
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* LCG 0x41c64e6d, 0x3039 */
 
 float maybe_Rand_Next(float param_1,float param_2)
 
 {
-  iRam0036e700 = iRam0036e700 * 0x41c64e6d + 0x3039;
-  return (param_2 - param_1) * (float)(iRam0036e700 >> 0x10 & 0x7fff) * 3.051851e-05 + param_1 + 0.0
-  ;
+  _s_RandVar1 = _s_RandVar1 * 0x41c64e6d + 0x3039;
+  return (param_2 - param_1) * (float)(_s_RandVar1 >> 0x10 & 0x7fff) * 3.051851e-05 + param_1 + 0.0;
 }
 
 // 0x00133940  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint maybe_Rand_Float(void)
 
 {
-  iRam0036e700 = iRam0036e700 * 0x41c64e6d + 0x3039;
-  return iRam0036e700 >> 0x10 & 0x7fff;
+  _s_RandVar1 = _s_RandVar1 * 0x41c64e6d + 0x3039;
+  return _s_RandVar1 >> 0x10 & 0x7fff;
 }
 
 // 0x001339a0  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Rand_Seed(undefined4 param_1)
 
 {
-  uRam0036e700 = param_1;
+  _s_RandVar1 = param_1;
   return;
 }
 

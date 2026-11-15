@@ -1821,18 +1821,21 @@ undefined4 RaceWorld_GroundQuery(float *param_1,undefined8 param_2,long param_3)
 }
 
 // 0x001c2340  size 0x40
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceWorld_Shutdown(void)
 
 {
   Phys_Shutdown();
-  Mem_Free(*(undefined4 *)(iRam0036f308 + 4));
-  Mem_Free(iRam0036f308);
-  iRam0036f308 = 0;
+  Mem_Free(*(undefined4 *)(_s_RaceWorldVar1 + 4));
+  Mem_Free(_s_RaceWorldVar1);
+  _s_RaceWorldVar1 = 0;
   maybe_Heap_Release(0x436530);
   return;
 }
 
 // 0x001c2380  size 0x16c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* physics heap 0x12488 */
 
 void RaceWorld_Init(void)
@@ -1860,7 +1863,7 @@ void RaceWorld_Init(void)
   PhysMaterial_SetSoftness(0,0x1000000);
   PhysMaterial_SetSoftness(0,0x4000000);
   puVar1 = (undefined4 *)Mem_AllocAligned(8,0x10,0x436530);
-  puRam0036f308 = puVar1;
+  _s_RaceWorldVar1 = puVar1;
   *puVar1 = 0;
   uVar2 = Mem_AllocAligned(0x40,0x10,0x430750);
   puVar1[1] = uVar2;
@@ -1868,6 +1871,8 @@ void RaceWorld_Init(void)
 }
 
 // 0x001c24f0  size 0x2c8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 RaceWorld_BuildColliders(ushort param_1,char param_2)
 
 {
@@ -1890,10 +1895,10 @@ undefined8 RaceWorld_BuildColliders(ushort param_1,char param_2)
   undefined4 uStack_8;
   
   uVar6 = 0;
-  if (*puRam0036f238 != 0) {
+  if (*_s_RaceWorld_BuildColliders_1 != 0) {
     iVar10 = 0;
     do {
-      psVar2 = *(short **)(puRam0036f238[1] + iVar10);
+      psVar2 = *(short **)(_s_RaceWorld_BuildColliders_1[1] + iVar10);
       uVar8 = 0;
       if (*psVar2 != 0) {
         iStack_30 = 0;
@@ -1925,7 +1930,7 @@ LAB_001c25c8:
                   goto LAB_001c25c8;
                 }
                 puVar7[2] = puVar7[2] | 0x8000;
-                if ((iRam0036f308 == 0) || ((puVar7[2] & 0x7fff) < 0x10)) goto LAB_001c25c8;
+                if ((_s_RaceWorldVar1 == 0) || ((puVar7[2] & 0x7fff) < 0x10)) goto LAB_001c25c8;
                 uVar5 = 0;
                 iVar3 = *(int *)(psVar2 + 0x20);
                 if ((puVar7[3] & 0x1000) == 0) {
@@ -1942,7 +1947,7 @@ LAB_001c25c8:
                 uStack_20 = *(undefined4 *)((int)psVar2 + (uint)puVar7[1] * 0x10 + iVar3);
                 uStack_1c = *(undefined4 *)((int)psVar2 + (uint)puVar7[1] * 0x10 + iVar3 + 4);
                 uStack_18 = *(undefined4 *)((int)psVar2 + (uint)puVar7[1] * 0x10 + iVar3 + 8);
-                RaceWorld_AddStaticBox(iRam0036f308,&uStack_10,&uStack_20,(short)uVar6,0,uVar5);
+                RaceWorld_AddStaticBox(_s_RaceWorldVar1,&uStack_10,&uStack_20,(short)uVar6,0,uVar5);
                 uVar1 = *(ushort *)((int)psVar2 + iVar4 + 4);
               }
               uVar9 = uVar9 + 1;
@@ -1955,7 +1960,7 @@ LAB_001c25c8:
       }
       uVar6 = uVar6 + 1;
       iVar10 = iVar10 + 4;
-    } while (uVar6 < *puRam0036f238);
+    } while (uVar6 < *_s_RaceWorld_BuildColliders_1);
   }
   return 0;
 }
@@ -2358,7 +2363,7 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
       *param_1 = 1;
       Prop_SpawnSmoke(iVar2,iVar4,auStack_10,400,param_3);
     }
-    Prop_SpawnSpark(iVar2,iVar4,auStack_10,400,-(param_2 != 0 ^ 1),uRam00436570,param_3);
+    Prop_SpawnSpark(iVar2,iVar4,auStack_10,400,-(param_2 != 0 ^ 1),_s_PropVar1,param_3);
   }
   else {
     puVar1 = g_Loading->workBufs[1];
@@ -2372,17 +2377,19 @@ void Prop_UpdateSparks(int *param_1,long param_2,undefined8 param_3)
       Prop_SpawnSmoke(iVar2,iVar5,auStack_20,200,param_3);
       Prop_SpawnSmoke(iVar4,iVar6,auStack_30,200,param_3);
     }
-    Prop_SpawnSpark(iVar2,iVar5,auStack_20,200,-(param_2 != 0 ^ 1),uRam00436570,param_3);
+    Prop_SpawnSpark(iVar2,iVar5,auStack_20,200,-(param_2 != 0 ^ 1),_s_PropVar1,param_3);
     uVar3 = 1;
     if (param_2 == 0) {
       uVar3 = 0xffffffffffffffff;
     }
-    Prop_SpawnSpark(iVar4,iVar6,auStack_30,200,uVar3,uRam004365c0,param_3);
+    Prop_SpawnSpark(iVar4,iVar6,auStack_30,200,uVar3,_s_PropVar2,param_3);
   }
   return;
 }
 
 // 0x001c34b0  size 0x3a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Prop_SpawnSpark(float *param_1,float *param_2,undefined4 *param_3,int param_4,long param_5,
                     int param_6,long param_7)
 
@@ -2408,11 +2415,11 @@ void Prop_SpawnSpark(float *param_1,float *param_2,undefined4 *param_3,int param
   uStack_18 = param_3[2];
   uStack_14 = param_3[3];
   if (param_7 != 0) {
-    if (6.2831855 < fRam0036e85c) {
-      fRam0036e85c = fRam0036e85c - 6.2831855;
+    if (6.2831855 < _s_Prop_SpawnSpark_1) {
+      _s_Prop_SpawnSpark_1 = _s_Prop_SpawnSpark_1 - 6.2831855;
     }
-    if (fRam0036e85c < 0.0) {
-      fRam0036e85c = fRam0036e85c + 6.2831855;
+    if (_s_Prop_SpawnSpark_1 < 0.0) {
+      _s_Prop_SpawnSpark_1 = _s_Prop_SpawnSpark_1 + 6.2831855;
     }
   }
   iVar2 = 0;
@@ -2430,7 +2437,7 @@ void Prop_SpawnSpark(float *param_1,float *param_2,undefined4 *param_3,int param
         param_2[2] = (param_2[2] + fVar3 + 0.00066666666) * 0.99;
       }
       else {
-        maybe_Math_AngleToIndex(fRam0036e85c,&fStack_8,&fStack_4);
+        maybe_Math_AngleToIndex(_s_Prop_SpawnSpark_1,&fStack_8,&fStack_4);
         fVar3 = (float)maybe_Rand_Next(0x3f000000,0x40600000);
         *param_1 = fStack_4 * fVar3 * 0.33333334 + *param_1 + 0.0;
         fVar3 = (float)maybe_Rand_Next(0x3f000000,0x40600000);
@@ -2588,7 +2595,7 @@ void Prop_UpdateLeaves(int *param_1)
       *param_1 = 1;
       Prop_MoveLeaves(iVar2,auStack_10,100);
     }
-    Prop_SpawnLeaf(iVar2,auStack_10,100,0,uRam00436570);
+    Prop_SpawnLeaf(iVar2,auStack_10,100,0,_s_PropVar1);
   }
   else {
     puVar1 = g_Loading->workBufs[1];
@@ -2600,8 +2607,8 @@ void Prop_UpdateLeaves(int *param_1)
       Prop_MoveLeaves(iVar2,auStack_20,100);
       Prop_MoveLeaves(iVar3,auStack_30,100);
     }
-    Prop_SpawnLeaf(iVar2,auStack_20,100,0,uRam00436570);
-    Prop_SpawnLeaf(iVar3,auStack_30,100,1,uRam004365c0);
+    Prop_SpawnLeaf(iVar2,auStack_20,100,0,_s_PropVar1);
+    Prop_SpawnLeaf(iVar3,auStack_30,100,1,_s_PropVar2);
   }
   return;
 }

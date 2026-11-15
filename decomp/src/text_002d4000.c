@@ -1199,6 +1199,8 @@ ulong MenuObj_IsReady(byte *param_1)
 }
 
 // 0x002d5f40  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_GarageBg_DrawObjects(void)
 
 {
@@ -1209,7 +1211,7 @@ void maybe_GarageBg_DrawObjects(void)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  iVar2 = iRam0046a1a8;
+  iVar2 = _s_GarageBgVar1;
   for (iVar1 = iRam0046a19c; iVar1 != 0; iVar1 = iVar1 + -1) {
     if ((*(uint *)(iVar2 + 0x28) & 0xc) != 0) {
       uStack_4 = 1;
@@ -1283,14 +1285,14 @@ void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
   uRam0046a19c = param_2;
   _g_GarageBgBuf = Mem_Alloc16(param_2 * 0xb0,param_1);
   uVar5 = 0;
-  iRam0046a1a4 = _g_GarageBgBuf + param_2 * 0x28;
-  iRam0046a1a8 = _g_GarageBgBuf;
-  uRam0046a1ac = param_3;
+  _s_GarageBg_Alloc_1 = _g_GarageBgBuf + param_2 * 0x28;
+  _s_GarageBgVar1 = _g_GarageBgBuf;
+  _s_GarageBgVar2 = param_3;
   if (param_2 != 0) {
     iVar3 = 0;
     iVar2 = 0;
     do {
-      iVar4 = iRam0046a1a8 + iVar3;
+      iVar4 = _s_GarageBgVar1 + iVar3;
       iVar6 = _g_GarageBgData + iVar2;
       maybe_Course_InitHeader(iVar4,0,0xb0);
       Course_SetField18(iVar4,iVar1,iVar6);
@@ -1308,7 +1310,7 @@ void GarageBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
       *(undefined4 *)(iVar4 + 0xac) = 0x3f800000;
     } while (uVar5 < param_2);
   }
-  Chunk_SetRange(0x46a190,_g_GarageBgBuf,iRam0046a1a4);
+  Chunk_SetRange(0x46a190,_g_GarageBgBuf,_s_GarageBg_Alloc_1);
   return;
 }
 
@@ -1326,7 +1328,7 @@ void maybe_GarageBg_DrawObject(int param_1,undefined1 *param_2)
   undefined1 auStack_180 [384];
   
   iVar2 = ((uint)(byte)param_2[4] * 0x18 - (uint)(byte)param_2[4]) * 0x40;
-  if (*(int *)(iVar2 + 0x431684) != 0) {
+  if (*(int *)(&s_Course_Render_2 + iVar2) != 0) {
     Cam_SetupViewport(&g_Views + iVar2,0,*param_2);
     Light_UpdateMatrices(0x436180);
     Layer_Reset(auStack_240,&g_Views + iVar2,0x436180,*(undefined4 *)(param_2 + 8),
@@ -1380,6 +1382,8 @@ void maybe_GarageBg_ResetObject(int param_1)
 }
 
 // 0x002d64c0  size 0x120
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_GarageBg_OnLoaded
                (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
@@ -1389,7 +1393,7 @@ void maybe_GarageBg_OnLoaded
   int iVar3;
   int iVar4;
   
-  iVar4 = iRam0046a1ac + iRam0036f2c0;
+  iVar4 = _s_GarageBgVar2 + iRam0036f2c0;
   Course_ClearCount(param_4);
   Arena_Alloc(param_4,param_3);
   uVar1 = Gut_PackGetEntry(param_2,0,0);
@@ -1826,7 +1830,7 @@ void maybe_IntroCar_Draw(void)
     afStack_20[1] = 0.0;
     sceVu0AddVector(0x435bc0,0x435bc0,afStack_20);
     sceVu0AddVector(0x435bd0,0x435bd0,afStack_20);
-    uRam00435bf0 = 0;
+    _s_IntroCar_Draw_1 = 0;
     Camera_Init(0x435bc0);
     Pkt_Init(auStack_d0,1,2,0);
     Pkt_SubmitToChain(auStack_d0,0xc);
@@ -2203,6 +2207,8 @@ void IntroCar_Load(undefined8 param_1)
 }
 
 // 0x002d7c80  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ShowroomBg_DrawObjects(void)
 
 {
@@ -2213,7 +2219,7 @@ void maybe_ShowroomBg_DrawObjects(void)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  iVar2 = iRam0046a248;
+  iVar2 = _s_ShowroomBgVar1;
   for (iVar1 = iRam0046a23c; iVar1 != 0; iVar1 = iVar1 + -1) {
     if ((*(uint *)(iVar2 + 0x28) & 0xc) != 0) {
       uStack_4 = 1;
@@ -2287,14 +2293,14 @@ void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
   uRam0046a23c = param_2;
   _g_ShowroomBgBuf = Mem_Alloc16(param_2 << 7,param_1);
   uVar5 = 0;
-  iRam0046a244 = _g_ShowroomBgBuf + param_2 * 0x28;
-  iRam0046a248 = _g_ShowroomBgBuf;
-  uRam0046a24c = param_3;
+  _s_ShowroomBg_Alloc_1 = _g_ShowroomBgBuf + param_2 * 0x28;
+  _s_ShowroomBgVar1 = _g_ShowroomBgBuf;
+  _s_ShowroomBg_Alloc_2 = param_3;
   if (param_2 != 0) {
     iVar3 = 0;
     iVar2 = 0;
     do {
-      iVar4 = iRam0046a248 + iVar3;
+      iVar4 = _s_ShowroomBgVar1 + iVar3;
       iVar6 = _g_ShowroomBgData + iVar2;
       maybe_Course_InitHeader(iVar4,0,0x80);
       Course_SetField18(iVar4,iVar1,iVar6);
@@ -2315,7 +2321,7 @@ void ShowroomBg_Alloc(undefined8 param_1,uint param_2,undefined4 param_3)
       *(undefined4 *)(iVar4 + 0x78) = 0;
     } while (uVar5 < param_2);
   }
-  Chunk_SetRange(0x46a230,_g_ShowroomBgBuf,iRam0046a244);
+  Chunk_SetRange(0x46a230,_g_ShowroomBgBuf,_s_ShowroomBg_Alloc_1);
   return;
 }
 

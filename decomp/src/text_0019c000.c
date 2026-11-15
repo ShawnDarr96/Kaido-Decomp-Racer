@@ -34,7 +34,7 @@ void CarModel_RenderOpaque(undefined8 param_1)
     iVar6 = ((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40;
     puStack_2bc = &g_Views + iVar6;
     puVar9 = (uint *)param_1;
-    if (((*(int *)(iVar6 + 0x431684) != 0) && ((bVar1 != 1 || ((*puVar9 & 4) != 0)))) &&
+    if (((*(int *)(&s_Course_Render_2 + iVar6) != 0) && ((bVar1 != 1 || ((*puVar9 & 4) != 0)))) &&
        ((bVar1 != 2 || ((*puVar9 & 8) != 0)))) {
       Layer_Reset(auStack_500,puStack_2bc,uStack_130,0,*(undefined4 *)(puVar7 + 4));
       Cam_SetupViewport(puStack_2bc,*puVar7,puVar7[1]);
@@ -541,7 +541,7 @@ void CourseStream_RequestBlock
   uVar5 = CourseStream_UpdateVisibility
                     (param_1,param_2,param_3,param_4,auStack_20,afStack_10,auStack_40,afStack_30);
   uVar12 = 0;
-  uRam004305dc = uVar5;
+  _s_CourseStreamVar1 = uVar5;
   if (uVar5 != 0) {
     do {
       lVar8 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar11 + 4));
@@ -1650,7 +1650,7 @@ void CourseStream_RequestLod
   }
   uVar5 = CourseStream_UpdateLod(param_1,param_2,auStack_20,afStack_10,puVar10);
   uVar13 = 0;
-  uRam004305dc = uVar5;
+  _s_CourseStreamVar1 = uVar5;
   if (uVar5 != 0) {
     do {
       lVar8 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined2 *)(iVar12 + 4));
@@ -1972,7 +1972,7 @@ void CourseStream_RequestTextures(undefined8 param_1,undefined8 param_2,long par
   }
   uVar3 = CourseStream_UpdateTextures(param_2,param_3);
   uVar9 = 0;
-  uRam004305d4 = uVar3;
+  _s_CourseStream_RequestTextures_1 = uVar3;
   if (uVar3 != 0) {
     do {
       lVar5 = BlockPool_FindB(_g_CourseBufB,uRam004305c4,*(undefined4 *)(iVar8 + 4));

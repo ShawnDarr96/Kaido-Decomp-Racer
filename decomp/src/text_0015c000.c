@@ -580,100 +580,110 @@ undefined8 PhysPair_Update(undefined8 param_1)
 }
 
 // 0x0015cd20  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysMaterial_ResetGlobals(void)
 
 {
-  uRam0036f114 = 0x3f000000;
-  uRam0036f118 = 0x3f800000;
-  uRam0036f11c = 0x3f000000;
-  uRam0036f120 = 0x3f800000;
-  uRam0036f134 = 0x3f000000;
-  uRam0036f138 = 0x3f800000;
-  uRam0036f13c = 0x3f000000;
-  uRam0036f140 = 0x3f800000;
-  uRam0036f124 = 0x3f000000;
-  uRam0036f128 = 0x3f800000;
-  uRam0036f12c = 0x3f000000;
-  uRam0036f130 = 0x3f800000;
-  uRam0036f144 = 0x3f000000;
-  uRam0036f14c = 0x3f000000;
-  uRam0036f148 = 0x3f800000;
-  uRam0036f150 = 0x3f800000;
+  _s_PhysMaterialVar1 = 0x3f000000;
+  _s_PhysMaterialVar2 = 0x3f800000;
+  _s_PhysMaterialVar3 = 0x3f000000;
+  _s_PhysMaterialVar4 = 0x3f800000;
+  _s_PhysMaterialVar9 = 0x3f000000;
+  _s_PhysMaterialVar10 = 0x3f800000;
+  _s_PhysMaterialVar11 = 0x3f000000;
+  _s_PhysMaterialVar12 = 0x3f800000;
+  _s_PhysMaterialVar5 = 0x3f000000;
+  _s_PhysMaterialVar6 = 0x3f800000;
+  _s_PhysMaterialVar7 = 0x3f000000;
+  _s_PhysMaterialVar8 = 0x3f800000;
+  _s_PhysMaterialVar13 = 0x3f000000;
+  _s_PhysMaterialVar15 = 0x3f000000;
+  _s_PhysMaterialVar14 = 0x3f800000;
+  _s_PhysMaterialVar16 = 0x3f800000;
   return;
 }
 
 // 0x0015cd70  size 0x48
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysMaterial_SetFriction(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uRam0036f118 = param_1;
+    _s_PhysMaterialVar2 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uRam0036f128 = param_1;
+    _s_PhysMaterialVar6 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uRam0036f138 = param_1;
+    _s_PhysMaterialVar10 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uRam0036f148 = param_1;
+    _s_PhysMaterialVar14 = param_1;
   }
   return;
 }
 
 // 0x0015cdc0  size 0x48
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysMaterial_SetRestitution(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uRam0036f114 = param_1;
+    _s_PhysMaterialVar1 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uRam0036f124 = param_1;
+    _s_PhysMaterialVar5 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uRam0036f134 = param_1;
+    _s_PhysMaterialVar9 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uRam0036f144 = param_1;
+    _s_PhysMaterialVar13 = param_1;
   }
   return;
 }
 
 // 0x0015ce10  size 0x48
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysMaterial_SetSoftness(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uRam0036f120 = param_1;
+    _s_PhysMaterialVar4 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uRam0036f130 = param_1;
+    _s_PhysMaterialVar8 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uRam0036f140 = param_1;
+    _s_PhysMaterialVar12 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uRam0036f150 = param_1;
+    _s_PhysMaterialVar16 = param_1;
   }
   return;
 }
 
 // 0x0015ce60  size 0x48
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysMaterial_SetDamping(undefined4 param_1,ulong param_2)
 
 {
   if ((param_2 & 0x7000000) != 0) {
-    uRam0036f11c = param_1;
+    _s_PhysMaterialVar3 = param_1;
   }
   if ((param_2 & 0x1000000) != 0) {
-    uRam0036f12c = param_1;
+    _s_PhysMaterialVar7 = param_1;
   }
   if ((param_2 & 0x2000000) != 0) {
-    uRam0036f13c = param_1;
+    _s_PhysMaterialVar11 = param_1;
   }
   if ((param_2 & 0x4000000) != 0) {
-    uRam0036f14c = param_1;
+    _s_PhysMaterialVar15 = param_1;
   }
   return;
 }
@@ -806,29 +816,33 @@ long PhysPair_dtor(long param_1,short param_2)
 }
 
 // 0x0015d220  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysMaterial_SetDefaults(void)
 
 {
-  uRam0036f114 = 0x3f000000;
-  uRam0036f118 = 0x3f800000;
-  uRam0036f11c = 0x3f000000;
-  uRam0036f120 = 0x3f800000;
-  uRam0036f134 = 0x3f000000;
-  uRam0036f138 = 0x3f800000;
-  uRam0036f13c = 0x3f000000;
-  uRam0036f140 = 0x3f800000;
-  uRam0036f124 = 0x3f000000;
-  uRam0036f128 = 0x3f800000;
-  uRam0036f12c = 0x3f000000;
-  uRam0036f130 = 0x3f800000;
-  uRam0036f144 = 0x3f000000;
-  uRam0036f14c = 0x3f000000;
-  uRam0036f148 = 0x3f800000;
-  uRam0036f150 = 0x3f800000;
+  _s_PhysMaterialVar1 = 0x3f000000;
+  _s_PhysMaterialVar2 = 0x3f800000;
+  _s_PhysMaterialVar3 = 0x3f000000;
+  _s_PhysMaterialVar4 = 0x3f800000;
+  _s_PhysMaterialVar9 = 0x3f000000;
+  _s_PhysMaterialVar10 = 0x3f800000;
+  _s_PhysMaterialVar11 = 0x3f000000;
+  _s_PhysMaterialVar12 = 0x3f800000;
+  _s_PhysMaterialVar5 = 0x3f000000;
+  _s_PhysMaterialVar6 = 0x3f800000;
+  _s_PhysMaterialVar7 = 0x3f000000;
+  _s_PhysMaterialVar8 = 0x3f800000;
+  _s_PhysMaterialVar13 = 0x3f000000;
+  _s_PhysMaterialVar15 = 0x3f000000;
+  _s_PhysMaterialVar14 = 0x3f800000;
+  _s_PhysMaterialVar16 = 0x3f800000;
   return;
 }
 
 // 0x0015d230  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 PhysMaterial_GetFriction(ulong param_1)
 
 {
@@ -837,23 +851,25 @@ undefined4 PhysMaterial_GetFriction(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uRam0036f120;
+        uVar1 = _s_PhysMaterialVar4;
       }
       else {
-        uVar1 = uRam0036f150;
+        uVar1 = _s_PhysMaterialVar16;
       }
     }
     else {
-      uVar1 = uRam0036f140;
+      uVar1 = _s_PhysMaterialVar12;
     }
   }
   else {
-    uVar1 = uRam0036f130;
+    uVar1 = _s_PhysMaterialVar8;
   }
   return uVar1;
 }
 
 // 0x0015d270  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 PhysMaterial_GetRestitution(ulong param_1)
 
 {
@@ -862,23 +878,25 @@ undefined4 PhysMaterial_GetRestitution(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uRam0036f11c;
+        uVar1 = _s_PhysMaterialVar3;
       }
       else {
-        uVar1 = uRam0036f14c;
+        uVar1 = _s_PhysMaterialVar15;
       }
     }
     else {
-      uVar1 = uRam0036f13c;
+      uVar1 = _s_PhysMaterialVar11;
     }
   }
   else {
-    uVar1 = uRam0036f12c;
+    uVar1 = _s_PhysMaterialVar7;
   }
   return uVar1;
 }
 
 // 0x0015d2b0  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 PhysMaterial_GetSoftness(ulong param_1)
 
 {
@@ -887,23 +905,25 @@ undefined4 PhysMaterial_GetSoftness(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uRam0036f120;
+        uVar1 = _s_PhysMaterialVar4;
       }
       else {
-        uVar1 = uRam0036f148;
+        uVar1 = _s_PhysMaterialVar14;
       }
     }
     else {
-      uVar1 = uRam0036f138;
+      uVar1 = _s_PhysMaterialVar10;
     }
   }
   else {
-    uVar1 = uRam0036f128;
+    uVar1 = _s_PhysMaterialVar6;
   }
   return uVar1;
 }
 
 // 0x0015d2f0  size 0x3c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 PhysMaterial_GetDamping(ulong param_1)
 
 {
@@ -912,18 +932,18 @@ undefined4 PhysMaterial_GetDamping(ulong param_1)
   if ((param_1 & 0x1000000) == 0) {
     if ((param_1 & 0x2000000) == 0) {
       if ((param_1 & 0x4000000) == 0) {
-        uVar1 = uRam0036f114;
+        uVar1 = _s_PhysMaterialVar1;
       }
       else {
-        uVar1 = uRam0036f144;
+        uVar1 = _s_PhysMaterialVar13;
       }
     }
     else {
-      uVar1 = uRam0036f134;
+      uVar1 = _s_PhysMaterialVar9;
     }
   }
   else {
-    uVar1 = uRam0036f124;
+    uVar1 = _s_PhysMaterialVar5;
   }
   return uVar1;
 }

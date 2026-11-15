@@ -3,23 +3,27 @@
 #include "ghidra_types.h"
 
 // 0x003685e0  size 0x50
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_003685e0(void)
 
 {
   List_ctor(0x380380,0);
-  puRam00380380 = &DAT_0036e0b0;
+  _s___sinit_003685e0_1 = &DAT_0036e0b0;
   __register_global_object(0x380380,0x1356f0,0x380370);
   return;
 }
 
 // 0x00368630  size 0x8c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_00368630(void)
 
 {
   __construct_array(0x380610,0x137420,0x1373c0,0x60,0x100);
   __register_global_object(0,0x1373a0,0x3805f8);
   List_ctor(0x386620,0);
-  puRam00386620 = &DAT_0036e0c0;
+  _s___sinit_00368630_1 = &DAT_0036e0c0;
   __register_global_object(0x386620,0x137340,0x386610);
   return;
 }
@@ -34,13 +38,15 @@ void __sinit_003686c0(void)
 }
 
 // 0x00368710  size 0x7c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_00368710(void)
 
 {
   List_ctor(0x386f94,1);
   List_ctor(0x386fa8,1);
   maybe_ListNode_ctor(0x386fbc,0);
-  puRam00386fbc = &DAT_0036e128;
+  _s___sinit_00368710_1 = &DAT_0036e128;
   __register_global_object(0x386f90,0x139e80,0x386f80);
   return;
 }
@@ -98,6 +104,8 @@ void __sinit_00368950(void)
 }
 
 // 0x003689b0  size 0x1a8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_003689b0(void)
 
 {
@@ -105,45 +113,45 @@ void __sinit_003689b0(void)
   __register_global_object(0x36f0f0,0x103050,0x42f410);
   maybe_std_wios_Init_ctor(0x36f0f4);
   __register_global_object(0x36f0f4,0x1035a0,0x42f420);
-  uRam0042f43c = 0x3f800000;
-  uRam0042f45c = 0x3f800000;
-  uRam0042f47c = 0x3f800000;
-  uRam0042f480 = 0;
-  uRam0042f484 = 0xbf350481;
-  uRam0042f488 = 0xbf350481;
-  uRam0042f490 = 0xbf350481;
-  uRam0042f494 = 0;
-  uRam0042f498 = 0xbf350481;
-  uRam0042f4a0 = 0xbf350481;
-  uRam0042f4a4 = 0xbf350481;
-  uRam0042f4a8 = 0;
-  uRam0042f4b0 = 0x3f350481;
-  uRam0042f4b4 = 0;
-  uRam0042f4b8 = 0xbf350481;
-  uRam0042f4c0 = 0x3f350481;
-  uRam0042f4c4 = 0xbf350481;
-  uRam0042f4c8 = 0;
-  uRam0042f4d0 = 0;
-  uRam0042f4d4 = 0x3f350481;
-  uRam0042f4d8 = 0xbf350481;
-  uRam0042f4e0 = 0xbf350481;
-  uRam0042f4e4 = 0x3f350481;
-  uRam0042f4e8 = 0;
-  uRam0042f4f0 = 0x3f350481;
-  uRam0042f4f4 = 0x3f350481;
-  uRam0042f4f8 = 0;
-  uRam0042f500 = 0;
-  uRam0042f504 = 0xbf350481;
-  uRam0042f508 = 0x3f350481;
-  uRam0042f510 = 0xbf350481;
-  uRam0042f514 = 0;
-  uRam0042f518 = 0x3f350481;
-  uRam0042f520 = 0x3f350481;
-  uRam0042f524 = 0;
-  uRam0042f528 = 0x3f350481;
-  uRam0042f530 = 0;
-  uRam0042f534 = 0x3f350481;
-  uRam0042f538 = 0x3f350481;
+  _s___sinit_003689b0_1 = 0x3f800000;
+  _s___sinit_003689b0_2 = 0x3f800000;
+  _s___sinit_003689b0_3 = 0x3f800000;
+  _s___sinit_003689b0_4 = 0;
+  _s___sinit_003689b0_5 = 0xbf350481;
+  _s___sinit_003689b0_6 = 0xbf350481;
+  _s___sinit_003689b0_7 = 0xbf350481;
+  _s___sinit_003689b0_8 = 0;
+  _s___sinit_003689b0_9 = 0xbf350481;
+  _s___sinit_003689b0_10 = 0xbf350481;
+  _s___sinit_003689b0_11 = 0xbf350481;
+  _s___sinit_003689b0_12 = 0;
+  _s___sinit_003689b0_13 = 0x3f350481;
+  _s___sinit_003689b0_14 = 0;
+  _s___sinit_003689b0_15 = 0xbf350481;
+  _s___sinit_003689b0_16 = 0x3f350481;
+  _s___sinit_003689b0_17 = 0xbf350481;
+  _s___sinit_003689b0_18 = 0;
+  _s___sinit_003689b0_19 = 0;
+  _s___sinit_003689b0_20 = 0x3f350481;
+  _s___sinit_003689b0_21 = 0xbf350481;
+  _s___sinit_003689b0_22 = 0xbf350481;
+  _s___sinit_003689b0_23 = 0x3f350481;
+  _s___sinit_003689b0_24 = 0;
+  _s___sinit_003689b0_25 = 0x3f350481;
+  _s___sinit_003689b0_26 = 0x3f350481;
+  _s___sinit_003689b0_27 = 0;
+  _s___sinit_003689b0_28 = 0;
+  _s___sinit_003689b0_29 = 0xbf350481;
+  _s___sinit_003689b0_30 = 0x3f350481;
+  _s___sinit_003689b0_31 = 0xbf350481;
+  _s___sinit_003689b0_32 = 0;
+  _s___sinit_003689b0_33 = 0x3f350481;
+  _s___sinit_003689b0_34 = 0x3f350481;
+  _s___sinit_003689b0_35 = 0;
+  _s___sinit_003689b0_36 = 0x3f350481;
+  _s___sinit_003689b0_37 = 0;
+  _s___sinit_003689b0_38 = 0x3f350481;
+  _s___sinit_003689b0_39 = 0x3f350481;
   uRam0042f54c = 0x3f800000;
   return;
 }
@@ -173,6 +181,8 @@ void __sinit_00368bc0(void)
 }
 
 // 0x00368c30  size 0x394
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_00368c30(void)
 
 {
@@ -180,58 +190,58 @@ void __sinit_00368c30(void)
   __register_global_object(0x36f154,0x103050,0x42fb50);
   maybe_std_wios_Init_ctor(0x36f158);
   __register_global_object(0x36f158,0x1035a0,0x42fb60);
-  uRam0042fb70 = DAT_0030ace0;
-  puRam0042fb78 = PTR_PhysPair_SphereTriangle_0030ace8;
-  uRam0042fb7c = DAT_0030acf0;
-  uRam0042fb80 = DAT_0030acf4;
-  puRam0042fb84 = PTR_Phys_Nop_17_0030acf8;
-  uRam0042fb8c = DAT_0030ad04;
-  uRam0042fb88 = DAT_0030ad00;
-  puRam0042fb90 = PTR_PhysPair_CollideGeneric_Wrap2_0030ad08;
-  uRam0042fb98 = DAT_0030ad14;
-  uRam0042fb94 = DAT_0030ad10;
-  puRam0042fb9c = PTR_Phys_Nop_16_0030ad18;
-  uRam0042fba4 = DAT_0030ad24;
-  uRam0042fba0 = DAT_0030ad20;
-  puRam0042fba8 = PTR_PhysPair_RunSphereBox_0030ad28;
-  uRam0042fbb0 = DAT_0030ad34;
-  uRam0042fbac = DAT_0030ad30;
-  puRam0042fbb4 = PTR_PhysPair_RunSphereBox_0030ad38;
-  uRam0042fbbc = DAT_0030ad44;
-  uRam0042fbb8 = DAT_0030ad40;
-  puRam0042fbc0 = PTR_PhysPair_CollideGeneric_Wrap_0030ad48;
-  uRam0042fbc8 = DAT_0030ad54;
-  uRam0042fbc4 = DAT_0030ad50;
-  uRam0042fbd4 = DAT_0030ad64;
-  puRam0042fbcc = PTR_PhysPair_RunSphereBox_0030ad58;
-  uRam0042fbd0 = DAT_0030ad60;
-  puRam0042fbd8 = PTR_PhysPair_RunBoxBox_0030ad68;
-  uRam0042fbec = DAT_0030ad80;
-  uRam0042fbe0 = DAT_0030ad70;
-  uRam0042fbf0 = DAT_0030ad84;
-  puRam0042fbe8 = PTR_PhysPair_PointMeshContacts_0030ad78;
-  puRam0042fc00 = PTR_PhysPair_BoxMeshContacts_0030ad98;
-  puRam0042fbf4 = PTR_PhysPair_BoxMeshContacts_0030ad88;
-  uRam0042fc04 = DAT_0030ada0;
-  uRam0042fbf8 = DAT_0030ad90;
-  uRam0042fbfc = DAT_0030ad94;
-  uRam0042fc08 = DAT_0030ada4;
-  puRam0042fc0c = PTR_PhysPair_RunBoxMesh_0030ada8;
-  uRam0042fc10 = DAT_0030adb0;
-  puRam0042fc18 = PTR_PhysPair_RunSphereMesh_0030adb8;
-  uRam0042fc14 = DAT_0030adb4;
-  uRam0042fc1c = DAT_0030adc0;
-  uRam0042fc20 = DAT_0030adc4;
-  puRam0042fc24 = PTR_PhysPair_RunSphereMesh_0030adc8;
-  uRam0042fc28 = DAT_0030add0;
-  puRam0042fc30 = PTR_PhysPair_RunBoxMesh_0030add8;
-  uRam0042fc2c = DAT_0030add4;
-  uRam0042fc34 = DAT_0030ade0;
-  uRam0042fc38 = DAT_0030ade4;
-  puRam0042fc3c = PTR_PhysPair_RunSphereMesh_0030ade8;
-  uRam0042fc40 = DAT_0030adf0;
-  uRam0042fc44 = DAT_0030adf4;
-  puRam0042fc48 = PTR_PhysPair_RunBoxPlane_0030adf8;
+  _s___sinit_00368c30_1 = DAT_0030ace0;
+  _s___sinit_00368c30_2 = PTR_PhysPair_SphereTriangle_0030ace8;
+  _s___sinit_00368c30_3 = DAT_0030acf0;
+  _s___sinit_00368c30_4 = DAT_0030acf4;
+  _s___sinit_00368c30_5 = PTR_Phys_Nop_17_0030acf8;
+  _s___sinit_00368c30_7 = DAT_0030ad04;
+  _s___sinit_00368c30_6 = DAT_0030ad00;
+  _s___sinit_00368c30_8 = PTR_PhysPair_CollideGeneric_Wrap2_0030ad08;
+  _s___sinit_00368c30_10 = DAT_0030ad14;
+  _s___sinit_00368c30_9 = DAT_0030ad10;
+  _s___sinit_00368c30_11 = PTR_Phys_Nop_16_0030ad18;
+  _s___sinit_00368c30_13 = DAT_0030ad24;
+  _s___sinit_00368c30_12 = DAT_0030ad20;
+  _s___sinit_00368c30_14 = PTR_PhysPair_RunSphereBox_0030ad28;
+  _s___sinit_00368c30_16 = DAT_0030ad34;
+  _s___sinit_00368c30_15 = DAT_0030ad30;
+  _s___sinit_00368c30_17 = PTR_PhysPair_RunSphereBox_0030ad38;
+  _s___sinit_00368c30_19 = DAT_0030ad44;
+  _s___sinit_00368c30_18 = DAT_0030ad40;
+  _s___sinit_00368c30_20 = PTR_PhysPair_CollideGeneric_Wrap_0030ad48;
+  _s___sinit_00368c30_22 = DAT_0030ad54;
+  _s___sinit_00368c30_21 = DAT_0030ad50;
+  _s___sinit_00368c30_25 = DAT_0030ad64;
+  _s___sinit_00368c30_23 = PTR_PhysPair_RunSphereBox_0030ad58;
+  _s___sinit_00368c30_24 = DAT_0030ad60;
+  _s___sinit_00368c30_26 = PTR_PhysPair_RunBoxBox_0030ad68;
+  _s___sinit_00368c30_29 = DAT_0030ad80;
+  _s___sinit_00368c30_27 = DAT_0030ad70;
+  _s___sinit_00368c30_30 = DAT_0030ad84;
+  _s___sinit_00368c30_28 = PTR_PhysPair_PointMeshContacts_0030ad78;
+  _s___sinit_00368c30_34 = PTR_PhysPair_BoxMeshContacts_0030ad98;
+  _s___sinit_00368c30_31 = PTR_PhysPair_BoxMeshContacts_0030ad88;
+  _s___sinit_00368c30_35 = DAT_0030ada0;
+  _s___sinit_00368c30_32 = DAT_0030ad90;
+  _s___sinit_00368c30_33 = DAT_0030ad94;
+  _s___sinit_00368c30_36 = DAT_0030ada4;
+  _s___sinit_00368c30_37 = PTR_PhysPair_RunBoxMesh_0030ada8;
+  _s___sinit_00368c30_38 = DAT_0030adb0;
+  _s___sinit_00368c30_40 = PTR_PhysPair_RunSphereMesh_0030adb8;
+  _s___sinit_00368c30_39 = DAT_0030adb4;
+  _s___sinit_00368c30_41 = DAT_0030adc0;
+  _s___sinit_00368c30_42 = DAT_0030adc4;
+  _s___sinit_00368c30_43 = PTR_PhysPair_RunSphereMesh_0030adc8;
+  _s___sinit_00368c30_44 = DAT_0030add0;
+  _s___sinit_00368c30_46 = PTR_PhysPair_RunBoxMesh_0030add8;
+  _s___sinit_00368c30_45 = DAT_0030add4;
+  _s___sinit_00368c30_47 = DAT_0030ade0;
+  _s___sinit_00368c30_48 = DAT_0030ade4;
+  _s___sinit_00368c30_49 = PTR_PhysPair_RunSphereMesh_0030ade8;
+  _s___sinit_00368c30_50 = DAT_0030adf0;
+  _s___sinit_00368c30_51 = DAT_0030adf4;
+  _s___sinit_00368c30_52 = PTR_PhysPair_RunBoxPlane_0030adf8;
   return;
 }
 
@@ -465,6 +475,8 @@ void __sinit_003698b0(void)
 }
 
 // 0x00369910  size 0xb4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_00369910(void)
 
 {
@@ -472,14 +484,14 @@ void __sinit_00369910(void)
   __register_global_object(0x36f1f0,0x103050,0x430390);
   maybe_std_wios_Init_ctor(0x36f1f4);
   __register_global_object(0x36f1f4,0x1035a0,0x4303a0);
-  puRam0036f200 = &DAT_0036e680;
-  puRam0036f204 = &DAT_0036e670;
-  puRam0036f208 = &DAT_0036e660;
-  puRam0036f20c = &DAT_0036e650;
-  puRam0036f210 = &DAT_0036e630;
-  puRam0036f214 = &DAT_0036e640;
-  puRam0036f218 = &DAT_0036e2f0;
-  puRam0036f21c = &DAT_0036e2e0;
+  _s___sinit_00369910_1 = &DAT_0036e680;
+  _s___sinit_00369910_2 = &DAT_0036e670;
+  _s___sinit_00369910_3 = &DAT_0036e660;
+  _s___sinit_00369910_4 = &DAT_0036e650;
+  _s___sinit_00369910_5 = &DAT_0036e630;
+  _s___sinit_00369910_6 = &DAT_0036e640;
+  _s___sinit_00369910_7 = &DAT_0036e2f0;
+  _s___sinit_00369910_8 = &DAT_0036e2e0;
   return;
 }
 
@@ -550,6 +562,8 @@ void __sinit_00369bb0(void)
 }
 
 // 0x00369c10  size 0xc0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_00369c10(void)
 
 {
@@ -558,7 +572,7 @@ void __sinit_00369c10(void)
   maybe_std_wios_Init_ctor(0x36f294);
   __register_global_object(0x36f294,0x1035a0,0x430620);
   maybe_ListNode_ctor(0x430644,0);
-  puRam00430644 = &DAT_0036e128;
+  _s___sinit_00369c10_1 = &DAT_0036e128;
   __register_global_object(0x430640,0x1a4ed0,0x430630);
   maybe_Heap_ctor(0x4306e0);
   __register_global_object(0x4306e0,0x100860,0x4306d0);
@@ -600,11 +614,13 @@ void __sinit_00369db0(void)
 }
 
 // 0x00369e00  size 0x50
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void __sinit_00369e00(void)
 
 {
   maybe_ListNode_ctor(0x436310,0);
-  puRam00436310 = &DAT_0036e5b8;
+  _s___sinit_00369e00_1 = &DAT_0036e5b8;
   __register_global_object(0x436310,0x1a9b80,0x436300);
   return;
 }

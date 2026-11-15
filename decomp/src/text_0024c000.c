@@ -319,6 +319,7 @@ void maybe_PageBetCar_State19(int param_1)
 }
 
 // 0x0024d4a0  size 0x1d4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* entry 18 of state table 0x32be30 used by maybe_PageBetCar_Update */
 
 void maybe_PageBetCar_State18(int param_1)
@@ -368,18 +369,19 @@ LAB_0024d54c:
     iVar5 = *(int *)(param_1 + 0x69c);
   }
   iVar2 = *(int *)(param_1 + 0x670);
-  iRam0036f5ec = MenuWnd_DrawHeader(param_1 + 0x118,iVar2,iVar5,
-                                    (iVar2 + (*(int *)(param_1 + 0x62c) - iVar5)) % iVar2);
+  _s_PageBetCar_State18_1 =
+       MenuWnd_DrawHeader(param_1 + 0x118,iVar2,iVar5,
+                          (iVar2 + (*(int *)(param_1 + 0x62c) - iVar5)) % iVar2);
 LAB_0024d574:
-  iVar5 = iRam0036f5ec;
-  if (iRam0036f5ec == 2) {
+  iVar5 = _s_PageBetCar_State18_1;
+  if (_s_PageBetCar_State18_1 == 2) {
     *(undefined4 *)(param_1 + 0x658) = 0;
   }
   if (*(int *)(param_1 + 0x660) != 0) {
     if (iVar5 == 2) {
       MenuWnd_RequestClose();
     }
-    if (iRam0036f5ec == 3) {
+    if (_s_PageBetCar_State18_1 == 3) {
       if (*(int *)(param_1 + 0x650) - 0x22U < 2) {
         UiElem_SetPropFloat(0x3f800000,&pUVar1[iVar4].layout,0x25,8);
         *(undefined4 *)(param_1 + 0x660) = 0;
@@ -1088,6 +1090,8 @@ void ScrCareer_Draw_YouDonHave(undefined8 param_1)
 }
 
 // 0x0024e670  size 0x160
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ScrCareer_Draw_ThisBattleWith(undefined8 param_1)
 
 {
@@ -1104,7 +1108,7 @@ void ScrCareer_Draw_ThisBattleWith(undefined8 param_1)
   *(undefined4 *)(iVar3 + 0x65c) = 0;
   if (iVar2 != 0) {
     MenuWnd_SetHelpText(0);
-    iRam0036f5e8 = 2;
+    _s_ScrCareer_Draw_ThisBattleWith_1 = 2;
     Menu_ClearSlot(0);
     g_MenuMgr->unk_05a0 = 1;
     g_MenuMgr->unk_05e8 = 1;
@@ -1112,7 +1116,7 @@ void ScrCareer_Draw_ThisBattleWith(undefined8 param_1)
     g_MenuMgr->unk_0634 = 1;
     g_MenuMgr->unk_0644 = 1;
   }
-  iRam0036f5e8 = MenuWnd_DrawFooter(0xffffffffffffffff,0xffffffffffffffff,0);
+  _s_ScrCareer_Draw_ThisBattleWith_1 = MenuWnd_DrawFooter(0xffffffffffffffff,0xffffffffffffffff,0);
   cVar1 = *(char *)(iVar3 + 0x480);
   if ((cVar1 == '\x02') || (cVar1 == '\x01')) {
     MenuWnd_DrawText(5,0x1c,0x37f);
@@ -1127,14 +1131,14 @@ void ScrCareer_Draw_ThisBattleWith(undefined8 param_1)
   iVar2 = *(int *)(iVar3 + 0x660);
 LAB_0024e71c:
   if (iVar2 != 0) {
-    if (iRam0036f5e8 == 2) {
+    if (_s_ScrCareer_Draw_ThisBattleWith_1 == 2) {
       MenuWnd_RequestRedraw();
     }
-    else if (iRam0036f5e8 == 3) {
+    else if (_s_ScrCareer_Draw_ThisBattleWith_1 == 3) {
       *(undefined4 *)(iVar3 + 0x660) = 0;
     }
   }
-  if (iRam0036f5e8 == 2) {
+  if (_s_ScrCareer_Draw_ThisBattleWith_1 == 2) {
     *(undefined4 *)(iVar3 + 0x658) = 0;
   }
   ScrCareer_Draw_MasterLord(param_1);
@@ -1595,9 +1599,9 @@ void ScrRace_Draw_StartPractice(undefined8 param_1)
       *(undefined4 *)&pUVar1[iVar2].layout.field_0x330 = uVar3;
       pUVar1[iVar2].layout.animState = 1;
       iVar2 = UiMgr_FindLayout(0xa0);
-      UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar2].layout,uRam0036eb18,8);
+      UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar2].layout,_s_ScrRace_Draw_StartPractice_1,8);
       iVar2 = UiMgr_FindLayout(0xa0);
-      UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar2].layout,uRam0036eb1c,8);
+      UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar2].layout,_s_ScrRace_Draw_StartPractice_2,8);
       *(undefined4 *)(iVar6 + 0x680) = 0;
     }
     *(undefined4 *)(iVar6 + 0x658) = 0;
@@ -1613,7 +1617,9 @@ void ScrRace_Draw_StartPractice(undefined8 param_1)
   MenuWnd_DrawText(0xa0,0x1b,0x39d);
   MenuWnd_DrawText(7,0x2e,*(undefined4 *)(*(int *)(iVar6 + 0x62c) * 4 + 0x36eb10));
   if (*_g_MenuInput == 1) {
-    MenuWnd_SetItemState(0xa0,*(undefined4 *)(*(int *)(iVar6 + 0x62c) * 4 + 0x36eb18),1,0);
+    MenuWnd_SetItemState
+              (0xa0,*(undefined4 *)(&s_ScrRace_Draw_StartPractice_1 + *(int *)(iVar6 + 0x62c) * 4),1
+               ,0);
   }
   UiLayout_UpdateAnimById(0xa0,2);
   iVar2 = UiMgr_FindLayout(0xa0);
@@ -1882,6 +1888,8 @@ LAB_0024f8a0:
 }
 
 // 0x0024fdd0  size 0x37e8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ScrCareer_Draw_Trickster(undefined8 param_1)
 
 {
@@ -3084,7 +3092,7 @@ LAB_00252314:
             uVar5 = RivalRec_GetCourse(auStack_3ce0);
             uVar13 = Msg_TeamInfo(uVar5);
             uVar13 = Msg_MakerName(uVar13);
-            MenuWnd_DrawLabel(0x84,uRam0036eb08,0x45,uVar12,uVar13);
+            MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_3,0x45,uVar12,uVar13);
           }
           RivalDb_Copy(auStack_3e60,*(undefined2 *)(*(int *)(iVar20 + 0x62c) * 4 + iVar20 + 0xfc));
           sVar4 = RivalRec_GetCourse(auStack_3e60);
@@ -3099,7 +3107,7 @@ LAB_00252314:
             uVar5 = RivalRec_GetCourse(auStack_4160);
             uVar13 = Msg_TeamInfo(uVar5);
             uVar13 = Msg_MakerName(uVar13);
-            MenuWnd_DrawLabel(0x84,uRam0036eb0c,0x45,uVar12,uVar13);
+            MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_4,0x45,uVar12,uVar13);
           }
         }
         else if (*(int *)(iVar20 + 0x668) == 2) {
@@ -3116,7 +3124,7 @@ LAB_00252314:
             uVar5 = RivalRec_GetCourse(auStack_45e0);
             uVar13 = Msg_TeamInfo(uVar5);
             uVar13 = Msg_MakerName(uVar13);
-            MenuWnd_DrawLabel(0x84,uRam0036eb08,0x45,uVar12,uVar13);
+            MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_3,0x45,uVar12,uVar13);
           }
           RivalDb_Copy(auStack_4760,*(undefined2 *)(*(int *)(iVar20 + 0x62c) * 4 + iVar20 + 0x104));
           sVar4 = RivalRec_GetCourse(auStack_4760);
@@ -3131,7 +3139,7 @@ LAB_00252314:
             uVar5 = RivalRec_GetCourse(auStack_4a60);
             uVar13 = Msg_TeamInfo(uVar5);
             uVar13 = Msg_MakerName(uVar13);
-            MenuWnd_DrawLabel(0x84,uRam0036eb0c,0x45,uVar12,uVar13);
+            MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_4,0x45,uVar12,uVar13);
           }
         }
         MenuWnd_DrawText(0x91,0x15,0x43a);
@@ -3302,7 +3310,7 @@ LAB_00252314:
         uVar5 = RivalRec_GetCourse(auStack_2610);
         uVar13 = Msg_TeamInfo(uVar5);
         uVar13 = Msg_MakerName(uVar13);
-        MenuWnd_DrawLabel(0x84,uRam0036eb00,0x45,uVar12,uVar13);
+        MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_1,0x45,uVar12,uVar13);
       }
       RivalDb_Copy(auStack_2790,*(undefined2 *)(*(int *)(iVar20 + 0x62c) * 4 + iVar20 + 0xfc));
       sVar4 = RivalRec_GetCourse(auStack_2790);
@@ -3315,7 +3323,7 @@ LAB_00252314:
         uVar5 = RivalRec_GetCourse(auStack_2a90);
         uVar13 = Msg_TeamInfo(uVar5);
         uVar13 = Msg_MakerName(uVar13);
-        MenuWnd_DrawLabel(0x84,uRam0036eb04,0x45,uVar12,uVar13);
+        MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_2,0x45,uVar12,uVar13);
       }
     }
     else if (*(int *)(iVar20 + 0x668) == 2) {
@@ -3330,7 +3338,7 @@ LAB_00252314:
         uVar5 = RivalRec_GetCourse(auStack_2f10);
         uVar13 = Msg_TeamInfo(uVar5);
         uVar13 = Msg_MakerName(uVar13);
-        MenuWnd_DrawLabel(0x84,uRam0036eb00,0x45,uVar12,uVar13);
+        MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_1,0x45,uVar12,uVar13);
       }
       RivalDb_Copy(auStack_3090,*(undefined2 *)(*(int *)(iVar20 + 0x62c) * 4 + iVar20 + 0x104));
       sVar4 = RivalRec_GetCourse(auStack_3090);
@@ -3343,7 +3351,7 @@ LAB_00252314:
         uVar5 = RivalRec_GetCourse(auStack_3390);
         uVar13 = Msg_TeamInfo(uVar5);
         uVar13 = Msg_MakerName(uVar13);
-        MenuWnd_DrawLabel(0x84,uRam0036eb04,0x45,uVar12,uVar13);
+        MenuWnd_DrawLabel(0x84,_s_ScrCareer_Draw_Trickster_2,0x45,uVar12,uVar13);
       }
     }
     MenuWnd_DrawText(0x91,0x15,0x43a);

@@ -484,6 +484,8 @@ void maybe_sqrtf(void)
 }
 
 // 0x00120e08  size 0x68
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceCdSync0(undefined4 param_1)
 
 {
@@ -495,7 +497,7 @@ undefined4 maybe_sceCdSync0(undefined4 param_1)
   if (lVar2 == 0) {
     lVar2 = DIntr();
     uVar1 = uRam00378000;
-    puRam00378004 = &_mips_gp0_value;
+    _s_sceCdSync0_1 = &_mips_gp0_value;
     uRam00378000 = param_1;
     if (lVar2 != 0) {
       EIntr();
@@ -538,7 +540,7 @@ void sceCdCbfunc(void)
       DAT_003081f4 = 0;
       DAT_00308218 = 0;
       DAT_003081d4 = 0;
-      uRam00378014 = 0;
+      _s_sceCdCbfunc_1 = 0;
       ExitDeleteThread();
     }
     if (0 < ram0x003081d0) {
@@ -552,6 +554,8 @@ void sceCdCbfunc(void)
 }
 
 // 0x00120fe0  size 0xcc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool maybe_Cd_CallbackThreadInit(undefined8 param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -566,11 +570,11 @@ bool maybe_Cd_CallbackThreadInit(undefined8 param_1,undefined4 param_2,undefined
     uVar2 = GetThreadId();
     uRam00378018 = (undefined4)uVar2;
     ReferThreadStatus(uVar2,0x378020);
-    pcRam00378054 = sceCdCbfunc;
-    uRam00378064 = (undefined4)param_1;
-    uRam00378060 = 0;
-    uRam00378058 = param_2;
-    uRam0037805c = param_3;
+    _s_Cd_CallbackThreadInit_1 = sceCdCbfunc;
+    _s_Cd_CallbackThreadInit_5 = (undefined4)param_1;
+    _s_Cd_CallbackThreadInit_4 = 0;
+    _s_Cd_CallbackThreadInit_2 = param_2;
+    _s_Cd_CallbackThreadInit_3 = param_3;
     uVar2 = CreateThread(0x378050);
     DAT_003081d4 = (int)uVar2;
     _StartThread(uVar2,0);
@@ -625,6 +629,8 @@ void maybe_sceCdInitEeCB(void)
 }
 
 // 0x001212c0  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceCdCallback(undefined4 param_1,undefined4 param_2)
 
 {
@@ -636,7 +642,7 @@ undefined4 maybe_sceCdCallback(undefined4 param_1,undefined4 param_2)
   }
   lVar2 = DIntr();
   uVar1 = uRam00378008;
-  puRam0037800c = &_mips_gp0_value;
+  _s_sceCdCallback_1 = &_mips_gp0_value;
   uRam00378008 = param_1;
   uRam00378010 = param_2;
   if (lVar2 != 0) {
@@ -707,30 +713,30 @@ undefined4 sceCdSearchFile(undefined8 *param_1,char *param_2,undefined4 param_3)
             } while (iVar6 != -1);
           }
           iVar6 = 0x100000;
-          if (iRam00378224 != 0) break;
+          if (_s_sceCdSearchFile_5 != 0) break;
           do {
             iVar6 = iVar6 + -1;
           } while (iVar6 != -1);
         }
         DAT_00308204 = 0;
       }
-      cRam003780a4 = *param_2;
+      s_sceCdSearchFile_1 = *param_2;
       iVar6 = 0;
-      if (cRam003780a4 != '\0') {
+      if (s_sceCdSearchFile_1 != '\0') {
         for (iVar6 = 1;
             (iVar6 < 0x100 &&
-            (cVar1 = param_2[iVar6], *(char *)(iVar6 + 0x3780a4) = cVar1, cVar1 != '\0'));
+            (cVar1 = param_2[iVar6], (&s_sceCdSearchFile_1)[iVar6] = cVar1, cVar1 != '\0'));
             iVar6 = iVar6 + 1) {
         }
       }
       if (iVar6 == 0x100) {
-        uRam003781a3 = 0;
+        s_sceCdSearchFile_2 = 0;
       }
       if (0 < ram0x003081d0) {
         maybe_scePrintf(0x35fd48,0x3780a4);
       }
-      uRam003781a4 = 0x378080;
-      uRam003781a8 = param_3;
+      _s_sceCdSearchFile_3 = 0x378080;
+      _s_sceCdSearchFile_4 = param_3;
       sceSifWriteBackDCache(0x378080,300);
       lVar7 = sceSifCallRpc(0x378200,0,0,0x378080,300,0x3781c0,4,0);
       uVar4 = DAT_20378098;
@@ -982,14 +988,14 @@ undefined4 sceCdInit(int param_1)
           iVar1 = iVar1 + -1;
         } while (iVar1 != -1);
       }
-      if (iRam0037824c != 0) break;
+      if (_s_sceCdInit_1 != 0) break;
       iVar1 = 0x100000;
       do {
         iVar1 = iVar1 + -1;
       } while (iVar1 != -1);
     }
     DAT_00308210 = 0;
-    iRam00378280 = param_1;
+    _s_sceCdInit_2 = param_1;
     sceSifWriteBackDCache(0x378280,4);
     lVar2 = sceSifCallRpc(0x378228,0,0,0x378280,4,0x3093c0,0x10,0);
     if (lVar2 < 0) {
@@ -1580,6 +1586,7 @@ maybe_Cd_StreamCmd(undefined4 param_1,undefined4 param_2,undefined4 param_3,unde
 }
 
 // 0x00122ff0  size 0x1cc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "bind error libmc" */
 
 int sceMcInit(void)
@@ -1625,12 +1632,12 @@ int sceMcInit(void)
     iRam003782e4 = 0;
     iVar1 = (int)lVar2 + -100;
   }
-  else if (iRam00379884 < 0x20a) {
+  else if (_s_sceMcInit_1 < 0x20a) {
     maybe_scePrintf(0x360080);
     iRam003782e4 = 0;
     iVar1 = -0x78;
   }
-  else if (iRam00379888 < 0x20e) {
+  else if (_s_sceMcInit_2 < 0x20e) {
     maybe_scePrintf(0x3600a8);
     iRam003782e4 = 0;
     iVar1 = -0x79;
@@ -1654,12 +1661,14 @@ undefined4 maybe_sceMcEnd(void)
 }
 
 // 0x00123210  size 0x30
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_Mc_GetSyncState(undefined4 *param_1,undefined4 *param_2)
 
 {
   *param_1 = 0x379880;
   *param_2 = &DAT_00309d90;
-  uRam003798bc = DAT_00309d94;
+  _s_Mc_GetSyncState_1 = DAT_00309d94;
   return 0x3782c0;
 }
 
@@ -1920,6 +1929,8 @@ uint sceMcSync(long param_1,long param_2,long param_3)
 }
 
 // 0x00123b20  size 0x17c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcGetDir(undefined4 param_1,undefined4 param_2,long param_3,long param_4,long param_5)
 
 {
@@ -1938,9 +1949,9 @@ long maybe_sceMcGetDir(undefined4 param_1,undefined4 param_2,long param_3,long p
       uRam00378354 = (uint)(param_3 != 0);
       uRam00378350 = (uint)(param_4 != 0);
       uRam0037834c = (uint)(param_5 != 0);
-      uRam003782e8 = (undefined4)param_3;
-      uRam003782ec = (undefined4)param_4;
-      uRam003782f0 = (undefined4)param_5;
+      _s_sceMcGetDir_1 = (undefined4)param_3;
+      _s_sceMcGetDir_2 = (undefined4)param_4;
+      _s_sceMcGetDir_3 = (undefined4)param_5;
       uRam00378344 = param_1;
       uRam00378348 = param_2;
       sceSifWriteBackDCache(0x3787c0,0xc0);
@@ -1977,6 +1988,8 @@ undefined4 sceMcUdCheckNewCard(void)
 }
 
 // 0x00123d10  size 0x14c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe_sceMcSetFileInfo
                (undefined4 param_1,undefined4 param_2,long param_3,undefined4 param_4,long param_5,
                undefined8 param_6)
@@ -2001,7 +2014,7 @@ long maybe_sceMcSetFileInfo
         uRam00378370 = param_1;
         uRam00378374 = param_2;
         uRam00378378 = param_4;
-        iRam0037837c = (int)param_5;
+        _s_sceMcSetFileInfo_1 = (int)param_5;
         maybe_strncpy(0x378384,param_3,0x3ff);
         uRam00378783 = 0;
         if (-1 < param_5) {

@@ -479,6 +479,7 @@ void maybe_ScrQuickRace_Update(undefined8 param_1)
 }
 
 // 0x002a4d20  size 0x350
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 32 (table 0x3274b0) */
 
 void maybe_ScrQuickRace_Enter(int param_1)
@@ -604,8 +605,8 @@ void maybe_ScrQuickRace_Enter(int param_1)
   if (iRam0036f770 != 0) {
     maybe_ScrQuickRace_UpdateCarNames(param_1);
   }
-  if (iRam0036ee28 != 2) {
-    *(int *)(param_1 + 8) = iRam0036ee28;
+  if (_s_ScrQuickRaceVar1 != 2) {
+    *(int *)(param_1 + 8) = _s_ScrQuickRaceVar1;
     *(undefined4 *)(param_1 + 0x880) = 0xffffffff;
     *(undefined4 *)(param_1 + 0x884) = 2;
     *(undefined4 *)(param_1 + 0x888) = 2;
@@ -614,7 +615,7 @@ void maybe_ScrQuickRace_Enter(int param_1)
     *(undefined4 *)(param_1 + 0x894) = 1;
     *(undefined4 *)(param_1 + 0x88c) = 1;
     *(undefined4 *)(param_1 + 0x898) = 0;
-    iRam0036ee28 = 2;
+    _s_ScrQuickRaceVar1 = 2;
   }
   return;
 }

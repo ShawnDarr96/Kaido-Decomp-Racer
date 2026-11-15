@@ -56,7 +56,7 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
   undefined8 uVar4;
   
   bVar2 = (g_MenuMgr->flags & 0x80000) == 0;
-  uRam0036f47c = (uint)bVar2;
+  _s_MenuWnd_DrawDialogText_1 = (uint)bVar2;
   iVar3 = (uint)bVar2 * 0x18;
   *(int *)(iVar3 + _g_MenuWnd + 0x34) = (int)param_3;
   *(int *)(iVar3 + _g_MenuWnd + 0x30) = (int)param_1;
@@ -90,7 +90,7 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
       uVar4 = UiRes_GetLayoutData(0x68);
       UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,uVar4,1);
       if (1 < param_3) {
-        *(undefined4 *)(uRam0036f47c * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
+        *(undefined4 *)(_s_MenuWnd_DrawDialogText_1 * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
         iVar3 = UiMgr_FindLayout(param_1);
         pUVar1 = g_UiMgr->slots;
         uVar4 = UiRes_GetLayoutData(0x6a);
@@ -103,7 +103,7 @@ void MenuWnd_DrawDialogText(undefined8 param_1,undefined4 *param_2,long param_3,
       uVar4 = UiRes_GetLayoutData(0x6b);
       UiLayout_IsAnimDone(&pUVar1[iVar3].layout,0x13,*param_2,uVar4,1);
       if (1 < param_3) {
-        *(undefined4 *)(uRam0036f47c * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
+        *(undefined4 *)(_s_MenuWnd_DrawDialogText_1 * 0x18 + _g_MenuWnd + 0x24) = param_2[1];
         iVar3 = UiMgr_FindLayout(param_1);
         pUVar1 = g_UiMgr->slots;
         uVar4 = UiRes_GetLayoutData(0x69);

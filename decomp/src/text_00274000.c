@@ -575,6 +575,8 @@ void maybe_Wheel_DrawList(long param_1,int param_2,long param_3,long param_4)
 }
 
 // 0x002750b0  size 0x3f0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Wheel_DrawDetails(int param_1)
 
 {
@@ -587,9 +589,9 @@ void maybe_Wheel_DrawDetails(int param_1)
   int iStack_8;
   int iStack_4;
   
-  iStack_4 = iRam0036edcc;
+  iStack_4 = _s_Wheel_DrawDetails_2;
   iVar5 = *(int *)(param_1 + 0x68);
-  iStack_8 = iRam0036edc8;
+  iStack_8 = _s_Wheel_DrawDetails_1;
   if (iVar5 == 0) {
     uVar4 = Profile_Get(0);
     sVar2 = Profile_GetCurrentPartSlot(uVar4,0xf);

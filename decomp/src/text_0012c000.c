@@ -191,15 +191,17 @@ uint maybe___swbuf_r(byte param_1,undefined8 param_2)
 }
 
 // 0x0012d6f0  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe__write_r(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = _write(param_2,param_3,param_4);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return lVar1;
 }

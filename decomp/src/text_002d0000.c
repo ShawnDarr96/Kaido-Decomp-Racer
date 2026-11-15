@@ -725,8 +725,8 @@ void RaceHud_Load(undefined8 param_1)
     uVar12 = 0;
     iVar11 = 0;
     do {
-      uVar2 = uRam0036f80c;
-      uVar6 = uRam0036f808;
+      uVar2 = _s_RaceHudVar2;
+      uVar6 = _s_RaceHudVar1;
       puVar1 = _g_RaceHud;
       iVar7 = iVar11 + iVar13;
       *(int *)(_g_RaceHud + iVar7 + 0x1108) = (int)param_1;
@@ -746,8 +746,8 @@ void RaceHud_Load(undefined8 param_1)
     uVar9 = uVar9 + 1;
     iVar13 = iVar13 + 0xb4;
   } while (uVar9 < 2);
-  RaceUi_InitSprites(_g_RaceHud + 0x1270,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
-  RaceUi_InitSprites(_g_RaceHud + 0x26f0,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
+  RaceUi_InitSprites(_g_RaceHud + 0x1270,param_1,1,_s_RaceHudVar1,_s_RaceHudVar2,0x50010);
+  RaceUi_InitSprites(_g_RaceHud + 0x26f0,param_1,1,_s_RaceHudVar1,_s_RaceHudVar2,0x50010);
   puVar1 = _g_RaceHud;
   uVar9 = g_ArcToc->entries[0xa02].unpackedSize;
   puVar10 = (undefined4 *)(_g_RaceHud + 0x1270);
@@ -874,6 +874,8 @@ void RaceHud_Load(undefined8 param_1)
 }
 
 // 0x002d17d0  size 0x710
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ReplayCam_RenderFrame(void)
 
 {
@@ -911,7 +913,7 @@ void maybe_ReplayCam_RenderFrame(void)
   puStack_2c = &g_Views;
   Pkt_SubmitToChain(auStack_40,10);
   Pkt_End(auStack_40);
-  Gfx_SetupRenderTargetEx(0x431100,auStack_35b40,uRam0046a0dc,0);
+  Gfx_SetupRenderTargetEx(0x431100,auStack_35b40,_s_ReplayCamVar11,0);
   TexSlot_Set(0,1,auStack_35b40);
   iVar2 = 0;
   puVar4 = auStack_359c0;
@@ -1066,6 +1068,8 @@ void maybe_ReplayCam_RenderFrame(void)
 }
 
 // 0x002d1ee0  size 0x4a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
 
 {
@@ -1093,33 +1097,33 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   undefined1 auStack_40 [20];
   undefined *puStack_2c;
   
-  uVar7 = uRam004343d0;
-  uVar6 = uRam004343c0;
-  uVar5 = uRam004343b0;
-  uVar4 = uRam004343a0;
+  uVar7 = _s_ReplayCam_DrawOverlay_7;
+  uVar6 = _s_ReplayCam_DrawOverlay_6;
+  uVar5 = _s_ReplayCam_DrawOverlay_5;
+  uVar4 = _s_ReplayCam_DrawOverlay_4;
   iVar3 = iRam00431174;
-  uRam00434380 = 0;
-  uRam004343a0 = uRam004343a0 & 0xc0ffffff | 0x3fff02000000;
+  _s_ReplayCam_DrawOverlay_2 = 0;
+  _s_ReplayCam_DrawOverlay_4 = _s_ReplayCam_DrawOverlay_4 & 0xc0ffffff | 0x3fff02000000;
   auVar8._8_4_ = in_v0_udw;
   auVar8._0_8_ = 0xfffffffeffffffff;
   auVar8._12_4_ = in_register_0000002c;
   auVar8 = _pcpyld(in_zero_qw,auVar8);
-  uRam004343b0 = uRam004343b0 & auVar8._0_8_ | 0x100000000;
+  _s_ReplayCam_DrawOverlay_5 = _s_ReplayCam_DrawOverlay_5 & auVar8._0_8_ | 0x100000000;
   auVar1._8_4_ = in_v0_udw;
   auVar1._0_8_ = 0xffffffffffffffff;
   auVar1._12_4_ = in_register_0000002c;
   auVar8 = _pcpyld(in_zero_qw,auVar1);
-  uRam004343c0 = uRam004343c0 & auVar8._0_8_ | 0x7e0000007e00;
-  uRam00434388 = 0x3f;
-  uRam00431164 = 2;
-  uRam004343d0 = uRam004343d0 & auVar8._0_8_ | 0x7f0000003f0000;
+  _s_ReplayCam_DrawOverlay_6 = _s_ReplayCam_DrawOverlay_6 & auVar8._0_8_ | 0x7e0000007e00;
+  _s_ReplayCam_DrawOverlay_3 = 0x3f;
+  _s_ReplayCam_DrawOverlay_1 = 2;
+  _s_ReplayCam_DrawOverlay_7 = _s_ReplayCam_DrawOverlay_7 & auVar8._0_8_ | 0x7f0000003f0000;
   iRam00431174 = iRam00431174 << 1;
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = (undefined *)0x433f00;
   Pkt_SubmitToChain(auStack_40,8);
   Pkt_End(auStack_40);
   Gfx_SetupRenderTargetEx(0x431100,auStack_c0,0,1);
-  Gfx_SetupRenderTargetEx(0x433f00,auStack_140,uRam0046a0c4,0);
+  Gfx_SetupRenderTargetEx(0x433f00,auStack_140,_s_ReplayCamVar9,0);
   TexSlot_Set(0,1,auStack_c0);
   uVar10 = (int)param_2 * 0x80;
   uVar12 = 0;
@@ -1151,13 +1155,13 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   } while (uVar12 < 4);
   Pkt_AddPrimitives(auStack_40,auStack_1090,((int)puVar14 - (int)auStack_1090) / 0x310);
   Pkt_Submit(auStack_40,0);
-  uRam00431164 = 0;
+  _s_ReplayCam_DrawOverlay_1 = 0;
   puStack_2c = &g_Views;
   iRam00431174 = iVar3;
-  uRam004343a0 = uVar4;
-  uRam004343b0 = uVar5;
-  uRam004343c0 = uVar6;
-  uRam004343d0 = uVar7;
+  _s_ReplayCam_DrawOverlay_4 = uVar4;
+  _s_ReplayCam_DrawOverlay_5 = uVar5;
+  _s_ReplayCam_DrawOverlay_6 = uVar6;
+  _s_ReplayCam_DrawOverlay_7 = uVar7;
   Pkt_SubmitToChain(auStack_40,8);
   Pkt_End(auStack_40);
   TexSlot_Set(0,1,auStack_140);
@@ -1202,6 +1206,8 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
 }
 
 // 0x002d2380  size 0x134
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ReplayCam_Draw(void)
 
 {
@@ -1212,12 +1218,12 @@ void maybe_ReplayCam_Draw(void)
   undefined *puStack_2c;
   
   if ((uRam0046a028 & 4) != 0) {
-    fVar1 = fRam0046a0ec;
-    if (2.1474836e+09 <= fRam0046a0ec) {
-      fVar1 = fRam0046a0ec - 2.1474836e+09;
+    fVar1 = _s_ReplayCamVar15;
+    if (2.1474836e+09 <= _s_ReplayCamVar15) {
+      fVar1 = _s_ReplayCamVar15 - 2.1474836e+09;
     }
     if (0x80 < ((int)fVar1 & 0xffU)) {
-      fRam0046a0ec = 128.0;
+      _s_ReplayCamVar15 = 128.0;
     }
     maybe_ReplayCam_DrawLensFlare(2);
     Pkt_Init(auStack_40,1,2,0);
@@ -1313,6 +1319,7 @@ void maybe_ReplayCam_DrawModel(undefined8 param_1,undefined8 param_2)
 /* WARNING: Removing unreachable block (ram,0x002d2c8c) */
 /* WARNING: Heritage AFTER dead removal. Example location: s0xffffff68 : 0x002d2b4c */
 /* WARNING: Removing unreachable block (ram,0x002d2d00) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* WARNING: Restarted to delay deadcode elimination for space: stack */
 
 void maybe_ReplayCam_DrawLensFlare(char param_1)
@@ -1351,7 +1358,7 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
   undefined1 auStack_10 [16];
   
   if (param_1 == '\x03') {
-    unaff_s5_lo = (uint *)Tex_GetMipLevel(uRam0046a0d8,0);
+    unaff_s5_lo = (uint *)Tex_GetMipLevel(_s_ReplayCamVar10,0);
     sceVu0SubVector(auStack_30,0x431110,0x431100);
     fVar8 = (float)sceVu0InnerProduct(auStack_30,auStack_30);
     fVar8 = SQRT(fVar8);
@@ -1412,22 +1419,22 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
     }
   }
   else if (param_1 == '\x02') {
-    unaff_s5_lo = (uint *)Tex_GetMipLevel(uRam0046a0c0,0);
+    unaff_s5_lo = (uint *)Tex_GetMipLevel(_s_ReplayCamVar8,0);
   }
   else if (param_1 == '\x01') {
-    unaff_s5_lo = (uint *)Tex_GetMipLevel(uRam0046a0a8,0);
+    unaff_s5_lo = (uint *)Tex_GetMipLevel(_s_ReplayCamVar7,0);
   }
   else if (param_1 == '\0') {
-    unaff_s5_lo = (uint *)Tex_GetMipLevel(uRam0046a090,0);
+    unaff_s5_lo = (uint *)Tex_GetMipLevel(_s_ReplayCamVar6,0);
   }
-  fVar1 = fRam004312f8;
-  fVar10 = fRam004312ec;
-  fVar8 = fRam004312e8;
+  fVar1 = _s_ReplayCam_DrawLensFlare_4;
+  fVar10 = _s_ReplayCam_DrawLensFlare_3;
+  fVar8 = _s_ReplayCam_DrawLensFlare_2;
   uVar5 = 0;
-  fVar9 = fRam0046a030 + fRam0046a034;
-  uVar6 = uRam004311cc & 0xff;
-  uVar4 = uRam004311cc >> 8;
-  uVar2 = uRam004311cc >> 0x10;
+  fVar9 = _s_ReplayCamVar1 + _s_ReplayCamVar2;
+  uVar6 = _s_ReplayCam_DrawLensFlare_1 & 0xff;
+  uVar4 = _s_ReplayCam_DrawLensFlare_1 >> 8;
+  uVar2 = _s_ReplayCam_DrawLensFlare_1 >> 0x10;
   do {
     uVar3 = uVar5 & 0x1f;
     if ((uVar3 < 8) || (0xf < uVar3)) {
@@ -1468,8 +1475,8 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
         fVar11 = 1.0;
       }
       fVar7 = 1.2;
-      if (fVar11 + fRam0046a054 <= 1.2) {
-        fVar7 = fVar11 + fRam0046a054;
+      if (fVar11 + _s_ReplayCamVar4 <= 1.2) {
+        fVar7 = fVar11 + _s_ReplayCamVar4;
       }
       fVar7 = fVar7 * 100.0;
       if (2.1474836e+09 <= fVar7) {
@@ -1481,32 +1488,32 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
       uStack_100 = 0;
     }
     else if (param_1 == '\x02') {
-      fVar11 = fRam0046a0ec;
-      if (2.1474836e+09 <= fRam0046a0ec) {
-        fVar11 = fRam0046a0ec - 2.1474836e+09;
+      fVar11 = _s_ReplayCamVar15;
+      if (2.1474836e+09 <= _s_ReplayCamVar15) {
+        fVar11 = _s_ReplayCamVar15 - 2.1474836e+09;
       }
       bStack_f0 = (byte)(int)fVar11;
-      fVar11 = fRam0046a0e0;
-      if (2.1474836e+09 <= fRam0046a0e0) {
-        fVar11 = fRam0046a0e0 - 2.1474836e+09;
+      fVar11 = _s_ReplayCamVar12;
+      if (2.1474836e+09 <= _s_ReplayCamVar12) {
+        fVar11 = _s_ReplayCamVar12 - 2.1474836e+09;
       }
       fVar11 = (float)(int)uVar3 * ((float)((int)fVar11 & 0xff) / 255.0);
       if (2.1474836e+09 <= fVar11) {
         fVar11 = fVar11 - 2.1474836e+09;
       }
       uStack_100 = (undefined1)(int)fVar11;
-      fVar11 = fRam0046a0e4;
-      if (2.1474836e+09 <= fRam0046a0e4) {
-        fVar11 = fRam0046a0e4 - 2.1474836e+09;
+      fVar11 = _s_ReplayCamVar13;
+      if (2.1474836e+09 <= _s_ReplayCamVar13) {
+        fVar11 = _s_ReplayCamVar13 - 2.1474836e+09;
       }
       fVar11 = (float)(int)uVar3 * ((float)((int)fVar11 & 0xff) / 255.0);
       if (2.1474836e+09 <= fVar11) {
         fVar11 = fVar11 - 2.1474836e+09;
       }
       uStack_110 = (undefined1)(int)fVar11;
-      fVar11 = fRam0046a0e8;
-      if (2.1474836e+09 <= fRam0046a0e8) {
-        fVar11 = fRam0046a0e8 - 2.1474836e+09;
+      fVar11 = _s_ReplayCamVar14;
+      if (2.1474836e+09 <= _s_ReplayCamVar14) {
+        fVar11 = _s_ReplayCamVar14 - 2.1474836e+09;
       }
       fVar11 = (float)(int)uVar3 * ((float)((int)fVar11 & 0xff) / 255.0);
       if (2.1474836e+09 <= fVar11) {
@@ -1571,6 +1578,8 @@ void maybe_ReplayCam_DrawLensFlare(char param_1)
 }
 
 // 0x002d3430  size 0x118
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_ReplayCam_Update(void)
 
 {
@@ -1580,15 +1589,15 @@ void maybe_ReplayCam_Update(void)
   lVar1 = RaceScene_IsReplay();
   if (lVar1 == 0) {
     if ((uRam0046a028 & 8) != 0) {
-      fVar2 = fRam0043118c - fRam0046a074;
-      fRam0046a074 = fRam0043118c;
+      fVar2 = fRam0043118c - _s_ReplayCamVar5;
+      _s_ReplayCamVar5 = fRam0043118c;
       if ((20.0 < fVar2) || (fVar2 < -20.0)) {
-        fRam0046a050 = 0.033333335;
-        fRam0046a054 = 1.0;
+        _s_ReplayCamVar3 = 0.033333335;
+        _s_ReplayCamVar4 = 1.0;
       }
-      fRam0046a054 = fRam0046a054 - fRam0046a050;
-      if (fRam0046a054 <= 0.0) {
-        fRam0046a054 = 0.0;
+      _s_ReplayCamVar4 = _s_ReplayCamVar4 - _s_ReplayCamVar3;
+      if (_s_ReplayCamVar4 <= 0.0) {
+        _s_ReplayCamVar4 = 0.0;
       }
       maybe_ReplayCam_RenderFrame();
     }
@@ -1614,37 +1623,37 @@ void maybe_ReplayCam_Free(void)
   DmaBuf_Free(0x46a098);
   DmaBuf_Free(0x46a0b0);
   DmaBuf_Free(0x46a0c8);
-  if (iRam0046a094 != 0) {
+  if (_s_ReplayCam_Free_1 != 0) {
     Mem_Free();
-    iRam0046a094 = 0;
+    _s_ReplayCam_Free_1 = 0;
   }
-  if (iRam0046a0ac != 0) {
+  if (_s_ReplayCam_Free_2 != 0) {
     Mem_Free();
-    iRam0046a0ac = 0;
+    _s_ReplayCam_Free_2 = 0;
   }
-  if (iRam0046a0c4 != 0) {
+  if (_s_ReplayCamVar9 != 0) {
     Mem_Free();
-    iRam0046a0c4 = 0;
+    _s_ReplayCamVar9 = 0;
   }
-  if (iRam0046a0dc != 0) {
+  if (_s_ReplayCamVar11 != 0) {
     Mem_Free();
-    iRam0046a0dc = 0;
+    _s_ReplayCamVar11 = 0;
   }
-  if (iRam0046a090 != 0) {
+  if (_s_ReplayCamVar6 != 0) {
     Mem_Free();
-    iRam0046a090 = 0;
+    _s_ReplayCamVar6 = 0;
   }
-  if (iRam0046a0a8 != 0) {
+  if (_s_ReplayCamVar7 != 0) {
     Mem_Free();
-    iRam0046a0a8 = 0;
+    _s_ReplayCamVar7 = 0;
   }
-  if (iRam0046a0c0 != 0) {
+  if (_s_ReplayCamVar8 != 0) {
     Mem_Free();
-    iRam0046a0c0 = 0;
+    _s_ReplayCamVar8 = 0;
   }
-  if (iRam0046a0d8 != 0) {
+  if (_s_ReplayCamVar10 != 0) {
     Mem_Free();
-    iRam0046a0d8 = 0;
+    _s_ReplayCamVar10 = 0;
   }
   return;
 }
@@ -1670,31 +1679,31 @@ void maybe_ReplayCam_Load(undefined8 param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  uRam0046a034 = 0x3e4ccccd;
-  uRam0046a030 = 0x3e4ccccd;
+  _s_ReplayCamVar2 = 0x3e4ccccd;
+  _s_ReplayCamVar1 = 0x3e4ccccd;
   uStack_10 = DAT_0032fca0;
   uStack_c = DAT_0032fca4;
   uStack_8 = DAT_0032fca8;
   uRam0046a028 = 2;
   uStack_4 = DAT_0032fcac;
-  uRam0046a038 = 0x3f266666;
+  _s_ReplayCam_Load_1 = 0x3f266666;
   sceVu0CopyVector(0x46a040,&uStack_10);
-  uRam0046a03c = 0x3e333333;
-  uRam0046a0e0 = 0x437f0000;
-  uRam0046a0e4 = 0x437f0000;
-  uRam0046a0e8 = 0x437f0000;
-  uRam0046a0ec = 0x43000000;
+  _s_ReplayCam_Load_2 = 0x3e333333;
+  _s_ReplayCamVar12 = 0x437f0000;
+  _s_ReplayCamVar13 = 0x437f0000;
+  _s_ReplayCamVar14 = 0x437f0000;
+  _s_ReplayCamVar15 = 0x43000000;
   uStack_20 = DAT_0032fcb0;
   uStack_1c = DAT_0032fcb4;
   uStack_18 = DAT_0032fcb8;
   uStack_14 = DAT_0032fcbc;
   sceVu0CopyVector(0x46a060,&uStack_20);
   uRam0046a028 = 8;
-  uRam0046a070 = 0x40800000;
+  _s_ReplayCam_Load_3 = 0x40800000;
   iVar5 = 0;
-  uRam0046a050 = 0;
-  uRam0046a054 = 0;
-  uRam0046a074 = 0;
+  _s_ReplayCamVar3 = 0;
+  _s_ReplayCamVar4 = 0;
+  _s_ReplayCamVar5 = 0;
   cVar3 = '\0';
   while( true ) {
     if (cVar3 == '\x03') {

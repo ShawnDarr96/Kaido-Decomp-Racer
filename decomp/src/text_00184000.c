@@ -236,6 +236,8 @@ void Cam_ResetTimer(int param_1)
 }
 
 // 0x00184900  size 0x214
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_Init(undefined8 param_1)
 
 {
@@ -248,16 +250,16 @@ void Cam_Init(undefined8 param_1)
   Cam_SetPitch(((float)uRam0038804c * 1.9209821) / 2.0,param_1);
   Cam_SetYaw(0,param_1);
   *(undefined4 *)(iVar2 + 0x4e8) = 0x3f000000;
-  uRam004311a0 = 0x3f000000;
+  _s_CamVar1 = 0x3f000000;
   *(undefined4 *)(iVar2 + 0x4ec) = *(undefined4 *)(iVar2 + 0x4e0);
   *(undefined4 *)(iVar2 + 0x4f0) = *(undefined4 *)(iVar2 + 0x4e4);
   *(undefined4 *)(iVar2 + 0x4f4) = *(undefined4 *)(iVar2 + 0x4e8);
   *(undefined4 *)(iVar2 + 0xa8) = uRam004311a4;
-  uVar1 = uRam004322e4;
-  *(undefined4 *)(iVar2 + 0x168) = uRam004322e4;
+  uVar1 = _s_Cam_Init_1;
+  *(undefined4 *)(iVar2 + 0x168) = _s_Cam_Init_1;
   *(undefined4 *)(iVar2 + 0x108) = uVar1;
-  *(undefined4 *)(iVar2 + 0x1c8) = uRam004328a4;
-  *(undefined4 *)(iVar2 + 0x228) = uRam00433424;
+  *(undefined4 *)(iVar2 + 0x1c8) = _s_Cam_Init_2;
+  *(undefined4 *)(iVar2 + 0x228) = _s_Cam_Init_3;
   *(undefined4 *)(iVar2 + 0x288) = 0x459c4000;
   *(undefined4 *)(iVar2 + 0x2e8) = 0x459c4000;
   *(undefined4 *)(iVar2 + 0x348) = 0x459c4000;
@@ -395,11 +397,13 @@ void Cam_NormalizeDirection(int param_1)
 }
 
 // 0x00184f50  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_SetFov(undefined4 param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0x4e8) = param_1;
-  uRam004311a0 = param_1;
+  _s_CamVar1 = param_1;
   return;
 }
 
@@ -432,6 +436,7 @@ void Cam_SetYaw(float param_1,int param_2)
 }
 
 // 0x00185030  size 0x13c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 10 callers */
 
 void Cam_SetPitch(float param_1,int param_2)
@@ -442,10 +447,10 @@ void Cam_SetPitch(float param_1,int param_2)
   float fVar3;
   float fVar4;
   
-  uVar2 = uRam00432870;
-  uVar1 = (ulong)uRam004333f0;
+  uVar2 = _s_Cam_SetPitch_1;
+  uVar1 = (ulong)_s_Cam_SetPitch_2;
   fVar4 = param_1 / (float)uRam00431170;
-  fVar3 = (float)uRam00432870 * fVar4;
+  fVar3 = (float)_s_Cam_SetPitch_1 * fVar4;
   *(float *)(param_2 + 0x4e4) = param_1;
   *(float *)(param_2 + 0xa4) = param_1;
   *(float *)(param_2 + 0x284) = param_1;
@@ -896,6 +901,8 @@ void Cam_FindReplayKey(uint param_1,uint *param_2,undefined8 param_3,uint *param
 }
 
 // 0x00185c40  size 0x260
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
 
 {
@@ -934,8 +941,8 @@ void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
                           puVar8[4] + piVar7[3] * 0xd8,auStack_70,piVar9);
       Cam_SetPitch(fStack_2c,param_2);
       Cam_SetYaw(uStack_30,param_2);
-      fRam004311a0 = (float)piVar7[0x13d] * (fStack_2c / (float)piVar7[0x13c]);
-      piVar7[0x13a] = (int)fRam004311a0;
+      _s_CamVar1 = (float)piVar7[0x13d] * (fStack_2c / (float)piVar7[0x13c]);
+      piVar7[0x13a] = (int)_s_CamVar1;
       sceVu0CopyVector(piVar7 + 0x108,auStack_60);
       sceVu0CopyVector(piVar7 + 0x10c,auStack_50);
       sceVu0CopyVector(piVar7 + 0x110,piVar7 + 0x124);
@@ -947,16 +954,16 @@ void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
           if (puVar8[1] <= *puVar8) {
             uVar6 = *puVar8;
           }
-          iRam0036f220 = uVar6 + 1;
+          _s_Cam_UpdateTrackside_1 = uVar6 + 1;
         }
         else if (iVar3 < iVar2) {
           uVar6 = puVar8[1];
           if (*puVar8 <= puVar8[1]) {
             uVar6 = *puVar8;
           }
-          iRam0036f220 = uVar6 - 1;
+          _s_Cam_UpdateTrackside_1 = uVar6 - 1;
         }
-        uVar5 = Cam_FindKeyBefore(*piVar7,piVar7[1],iRam0036f220);
+        uVar5 = Cam_FindKeyBefore(*piVar7,piVar7[1],_s_Cam_UpdateTrackside_1);
         if (uVar5 == 0) {
           sceVu0CopyVector(piVar7 + 0x134,auStack_60);
           return;
@@ -978,6 +985,8 @@ void Cam_UpdateTrackside(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x00185ea0  size 0x260
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Cam_UpdateTracksideAlt(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1017,8 +1026,8 @@ void Cam_UpdateTracksideAlt(undefined8 param_1,undefined8 param_2)
                  auStack_70,piVar9);
       Cam_SetPitch(fStack_2c,param_2);
       Cam_SetYaw(uStack_30,param_2);
-      fRam004311a0 = (float)piVar7[0x13d] * (fStack_2c / (float)piVar7[0x13c]);
-      piVar7[0x13a] = (int)fRam004311a0;
+      _s_CamVar1 = (float)piVar7[0x13d] * (fStack_2c / (float)piVar7[0x13c]);
+      piVar7[0x13a] = (int)_s_CamVar1;
       sceVu0CopyVector(piVar7 + 0x108,auStack_60);
       sceVu0CopyVector(piVar7 + 0x10c,auStack_50);
       sceVu0CopyVector(piVar7 + 0x110,piVar7 + 0x124);
@@ -1030,16 +1039,16 @@ void Cam_UpdateTracksideAlt(undefined8 param_1,undefined8 param_2)
           if (puVar8[1] <= *puVar8) {
             uVar6 = *puVar8;
           }
-          iRam0036f224 = uVar6 + 1;
+          _s_Cam_UpdateTracksideAlt_1 = uVar6 + 1;
         }
         else if (iVar3 < iVar2) {
           uVar6 = puVar8[1];
           if (*puVar8 <= puVar8[1]) {
             uVar6 = *puVar8;
           }
-          iRam0036f224 = uVar6 - 1;
+          _s_Cam_UpdateTracksideAlt_1 = uVar6 - 1;
         }
-        uVar5 = Cam_FindKeyAfter(*piVar7,piVar7[1],iRam0036f224);
+        uVar5 = Cam_FindKeyAfter(*piVar7,piVar7[1],_s_Cam_UpdateTracksideAlt_1);
         if (uVar5 == 0) {
           sceVu0CopyVector(piVar7 + 0x134,auStack_60);
           return;

@@ -269,6 +269,8 @@ void Result_Finish(undefined8 param_1)
 }
 
 // 0x002c0930  size 0xe4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Result_FadeOut(void)
 
 {
@@ -292,13 +294,13 @@ undefined4 Result_FadeOut(void)
   uStack_14 = 0;
   uStack_10 = 0;
   uStack_c = 0;
-  if (iRam0036ee54 < 1) {
+  if (_s_Result_FadeOut_1 < 1) {
     Gfx_SetFade(2,9,0,0);
     uVar1 = 1;
-    iRam0036ee54 = 0x3c;
+    _s_Result_FadeOut_1 = 0x3c;
   }
   else {
-    iVar2 = ((0x3c - iRam0036ee54) * 0x80) / 0x3c;
+    iVar2 = ((0x3c - _s_Result_FadeOut_1) * 0x80) / 0x3c;
     if (iVar2 < 0) {
       iVar2 = 0;
     }
@@ -308,12 +310,14 @@ undefined4 Result_FadeOut(void)
     aiStack_50[0] = (0x80 - iVar2) * 0x1000000;
     Gfx_SetFade(2,9,1,aiStack_50);
     uVar1 = 0;
-    iRam0036ee54 = iRam0036ee54 + -1;
+    _s_Result_FadeOut_1 = _s_Result_FadeOut_1 + -1;
   }
   return uVar1;
 }
 
 // 0x002c0a20  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Result_FadeOutAndFinish(undefined8 param_1)
 
 {
@@ -336,14 +340,14 @@ undefined4 Result_FadeOutAndFinish(undefined8 param_1)
   uStack_14 = 0;
   uStack_10 = 0;
   uStack_c = 0;
-  if (iRam0036ee50 < 1) {
+  if (_s_Result_FadeOutAndFinish_1 < 1) {
     Gfx_SetFade(2,9,0,0);
-    iRam0036ee50 = 0x3c;
+    _s_Result_FadeOutAndFinish_1 = 0x3c;
     Result_Finish(param_1);
     uVar1 = 1;
   }
   else {
-    aiStack_50[0] = ((0x3c - iRam0036ee50) * 0x80) / 0x3c;
+    aiStack_50[0] = ((0x3c - _s_Result_FadeOutAndFinish_1) * 0x80) / 0x3c;
     if (aiStack_50[0] < 0) {
       aiStack_50[0] = 0;
     }
@@ -353,7 +357,7 @@ undefined4 Result_FadeOutAndFinish(undefined8 param_1)
     aiStack_50[0] = aiStack_50[0] << 0x18;
     Gfx_SetFade(2,9,1,aiStack_50);
     uVar1 = 0;
-    iRam0036ee50 = iRam0036ee50 + -1;
+    _s_Result_FadeOutAndFinish_1 = _s_Result_FadeOutAndFinish_1 + -1;
   }
   return uVar1;
 }

@@ -278,6 +278,8 @@ undefined * UiMgr_LockedAlloc(int param_1)
 }
 
 // 0x001f4980  size 0x140
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiMgr_LoadLayout(uint param_1,undefined8 param_2,undefined8 param_3)
 
 {
@@ -298,8 +300,8 @@ void UiMgr_LoadLayout(uint param_1,undefined8 param_2,undefined8 param_3)
     param_3 = 0;
   }
   g_UiMgr->slots[g_UiMgr->unk_50c].id = param_1;
-  UiLayout_Init(&g_UiMgr->slots[g_UiMgr->unk_50c].layout,iRam0036f430 + g_UiMgr->unk_508,
-                iRam0036f434 + g_UiMgr->unk_508,param_3);
+  UiLayout_Init(&g_UiMgr->slots[g_UiMgr->unk_50c].layout,_s_UiMgrVar1 + g_UiMgr->unk_508,
+                _s_UiMgrVar2 + g_UiMgr->unk_508,param_3);
   UiLayout_Load(&g_UiMgr->slots[g_UiMgr->unk_50c].layout,param_2,0);
   g_UiMgr->unk_50c = g_UiMgr->unk_50c + 1;
   return;
@@ -327,14 +329,16 @@ undefined4 UiMgr_FindFreeSlot(void)
 }
 
 // 0x001f4b20  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiMgr_SetActive(undefined8 param_1,int param_2)
 
 {
   int iVar1;
   int iVar2;
   
-  iRam0036f430 = (int)param_1;
-  iRam0036f434 = param_2;
+  _s_UiMgrVar1 = (int)param_1;
+  _s_UiMgrVar2 = param_2;
   if (g_UiMgr != (UiMgr *)0x0) {
     if (g_UiMgr->unk_508 != 0) {
       UiLayout_SetTexture(&g_UiMgr->field_0x4,param_1);
@@ -344,7 +348,7 @@ void UiMgr_SetActive(undefined8 param_1,int param_2)
       iVar1 = 0;
       do {
         UiLayout_SetTexture(&(g_UiMgr->slots->layout).field_0x0 + iVar1,
-                            iRam0036f430 + g_UiMgr->unk_508,iRam0036f434 + g_UiMgr->unk_508);
+                            _s_UiMgrVar1 + g_UiMgr->unk_508,_s_UiMgrVar2 + g_UiMgr->unk_508);
         iVar2 = iVar2 + 1;
         iVar1 = iVar1 + 0x4f4;
       } while (iVar2 < (int)g_UiMgr->slotCount);
@@ -379,6 +383,8 @@ void UiMgr_Free(void)
 }
 
 // 0x001f4c80  size 0x210
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiMgr_Alloc(undefined8 param_1,uint param_2,uint param_3,long param_4,uint param_5,long param_6
                 )
 
@@ -419,7 +425,7 @@ void UiMgr_Alloc(undefined8 param_1,uint param_2,uint param_3,long param_4,uint 
     g_UiMgr->unk_4f4 = 0;
   }
   else {
-    UiLayout_Init(&g_UiMgr->field_0x4,iRam0036f430,iRam0036f434,0);
+    UiLayout_Init(&g_UiMgr->field_0x4,_s_UiMgrVar1,_s_UiMgrVar2,0);
     UiLayout_Load(&g_UiMgr->field_0x4,param_4,0);
     g_UiMgr->unk_4f4 = 1;
     g_UiMgr->unk_508 = param_5;
@@ -429,8 +435,8 @@ void UiMgr_Alloc(undefined8 param_1,uint param_2,uint param_3,long param_4,uint 
     iVar4 = 0;
     do {
       *(undefined4 *)((int)&g_UiMgr->slots->id + iVar4) = 0xffffffff;
-      UiLayout_Init(&(g_UiMgr->slots->layout).field_0x0 + iVar4,iRam0036f430 + g_UiMgr->unk_508,
-                    iRam0036f434 + g_UiMgr->unk_508,1);
+      UiLayout_Init(&(g_UiMgr->slots->layout).field_0x0 + iVar4,_s_UiMgrVar1 + g_UiMgr->unk_508,
+                    _s_UiMgrVar2 + g_UiMgr->unk_508,1);
       iVar5 = iVar5 + 1;
       iVar4 = iVar4 + 0x4f4;
     } while (iVar5 < (int)param_2);
@@ -439,6 +445,7 @@ void UiMgr_Alloc(undefined8 param_1,uint param_2,uint param_3,long param_4,uint 
 }
 
 // 0x001f4e90  size 0x19c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* recursive */
 
 void UiMgr_DrawAll(uint param_1)
@@ -477,13 +484,13 @@ void UiMgr_DrawAll(uint param_1)
     UiLayout_Draw(0x3f800000,0x468e10);
   }
   else if (param_1 == 0) {
-    if (iRam0036f438 < 0x259) {
+    if (_s_UiMgrVar3 < 0x259) {
       UiLayout_Draw(0x3f800000,0x468920);
     }
     else {
       UiMgr_DrawAll();
     }
-    iRam0036f438 = iRam0036f438 + 1;
+    _s_UiMgrVar3 = _s_UiMgrVar3 + 1;
   }
   else {
     iVar3 = 0;
@@ -500,6 +507,7 @@ void UiMgr_DrawAll(uint param_1)
 // 0x001f5030  size 0xfc
 /* WARNING: Removing unreachable block (ram,0x001f50bc) */
 /* WARNING: Removing unreachable block (ram,0x001f50dc) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void UiMgr_UpdateAll(void)
 
@@ -530,12 +538,12 @@ void UiMgr_UpdateAll(void)
     iVar4 = iVar4 + 1;
     iVar2 = iVar2 + 0x4f0;
   } while (iVar4 < 2);
-  uRam00469120 = 0xffffffff;
-  uRam0046911c = 0;
-  uRam0046912c = uRam0036f43c;
-  uRam0036f438 = 0;
-  uRam00469124 = 1;
-  uRam00469128 = 1;
+  _s_UiMgr_UpdateAll_2 = 0xffffffff;
+  _s_UiMgr_UpdateAll_1 = 0;
+  _s_UiMgr_UpdateAll_5 = _s_UiMgrVar4;
+  _s_UiMgrVar3 = 0;
+  _s_UiMgr_UpdateAll_3 = 1;
+  _s_UiMgr_UpdateAll_4 = 1;
   return;
 }
 
@@ -557,6 +565,8 @@ void UiMgr_RebindTextures(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f51a0  size 0x68
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiMgr_FreeSystem(void)
 
 {
@@ -570,14 +580,16 @@ void UiMgr_FreeSystem(void)
     iVar2 = iVar2 + 1;
     iVar1 = iVar1 + 0x4f0;
   } while (iVar2 < 2);
-  if (iRam0036f43c != 0) {
+  if (_s_UiMgrVar4 != 0) {
     Mem_Free();
-    iRam0036f43c = 0;
+    _s_UiMgrVar4 = 0;
   }
   return;
 }
 
 // 0x001f5210  size 0x164
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiMgr_LoadSystem(undefined8 param_1)
 
 {
@@ -600,7 +612,7 @@ void UiMgr_LoadSystem(undefined8 param_1)
   puVar4 = &uStack_20;
   uStack_20 = DAT_003268c0;
   uStack_1c = DAT_003268c4;
-  iStack_4 = iRam0036e870;
+  iStack_4 = _s_UiMgr_LoadSystem_1;
   uStack_18 = DAT_003268c8;
   uStack_14 = DAT_003268cc;
   uStack_10 = DAT_003268d0;
@@ -623,7 +635,7 @@ void UiMgr_LoadSystem(undefined8 param_1)
     uVar2 = uVar2 + 0x7ff >> 0xb;
   }
   uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
-  uRam0036f43c = (undefined4)uVar3;
+  _s_UiMgrVar4 = (undefined4)uVar3;
   Arc_LoadFileEx(iStack_4,uVar3,0,0,0,0);
   File_AbortAll();
   return;

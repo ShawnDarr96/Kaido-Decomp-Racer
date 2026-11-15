@@ -243,6 +243,7 @@ undefined8 main(void)
 // 0x00170810  size 0x3b0
 /* WARNING: Removing unreachable block (ram,0x00170b28) */
 /* WARNING: Removing unreachable block (ram,0x00170b5c) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined8 lgDevInit(void)
 
@@ -269,7 +270,7 @@ undefined8 lgDevInit(void)
                     /* WARNING: Do nothing block with infinite loop */
       } while( true );
     }
-    if (iRam0042fd64 != 0) break;
+    if (_s_lgDevInit_1 != 0) break;
     for (iVar7 = 0xffff; iVar7 != -1; iVar7 = iVar7 + -1) {
     }
   }
@@ -500,6 +501,8 @@ undefined4 lgDevSetDeviceProperty(undefined4 param_1,undefined4 param_2,undefine
 }
 
 // 0x00171098  size 0x108
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 lgDevRead(undefined4 param_1,undefined4 param_2,long param_3)
 
 {
@@ -514,7 +517,7 @@ undefined4 lgDevRead(undefined4 param_1,undefined4 param_2,long param_3)
   else {
     lgDev_WaitAsync(0,0);
     uRam0042fd88 = param_1;
-    uRam0042fde4 = param_2;
+    _s_lgDevRead_1 = param_2;
     lVar3 = sceSifCallRpc(0x42fd40,6,0,0x42fd80,0x240,0x42fd80,0x240,0);
     uVar1 = uRam0042fdfc;
     if (lVar3 == 0) {
@@ -554,7 +557,7 @@ undefined4 lgDevReadMulti(int param_1,long param_2,long param_3,undefined8 *para
         lgDev_WaitAsync(0,0);
         iVar5 = 0;
         if (0 < param_1) {
-          puVar4 = (undefined4 *)0x42fde4;
+          puVar4 = (undefined4 *)&s_lgDevRead_1;
           do {
             iVar2 = iVar5 * 4;
             iVar5 = iVar5 + 1;
@@ -1206,11 +1209,11 @@ void Save_AllocSlots(void)
   uint uVar1;
   int iVar2;
   
-  _g_SaveSlots = Mem_Alloc16(0x440,uRam0036f198);
+  _g_SaveSlots = Mem_Alloc16(0x440,_s_SaveVar1);
   uVar1 = 0;
   do {
     iVar2 = _g_SaveSlots + uVar1 * 0x220;
-    *(undefined4 *)(iVar2 + 0x38) = uRam0036f198;
+    *(undefined4 *)(iVar2 + 0x38) = _s_SaveVar1;
     *(undefined4 *)(iVar2 + 0x70) = 0;
     *(undefined4 *)(iVar2 + 0x74) = 0;
     *(undefined4 *)(iVar2 + 0x78) = 0;
@@ -1228,7 +1231,7 @@ void Save_Shutdown(void)
 
 {
   Mc_Shutdown();
-  uRam0036f198 = 0;
+  _s_SaveVar1 = 0;
   _g_SaveSlots = 0;
   return;
 }
@@ -1241,7 +1244,7 @@ void Save_Init(undefined4 param_1)
 
 {
   _g_SaveSlots = 0;
-  uRam0036f198 = param_1;
+  _s_SaveVar1 = param_1;
   Mc_Init(param_1,0x14);
   return;
 }

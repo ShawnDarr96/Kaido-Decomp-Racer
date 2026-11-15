@@ -584,6 +584,7 @@ void Car_UpdateLsd(RaceCar *param_1)
 }
 
 // 0x00169450  size 0x40c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void Car_ApplyTireForces(RaceCar *param_1)
@@ -627,7 +628,7 @@ void Car_ApplyTireForces(RaceCar *param_1)
   param_1->unk_0674 = 0;
   fVar5 = fVar12 + param_1->maybe_throttleInput;
   if (fVar5 != 0.0) {
-    if ((fVar5 <= 0.3) || (fVar5 = (float)fabsf(uVar11), fRam0036e760 <= fVar5)) {
+    if ((fVar5 <= 0.3) || (fVar5 = (float)fabsf(uVar11), _s_Car_ApplyTireForces_1 <= fVar5)) {
       param_1->unk_0ab1 = '\0';
       fVar5 = (float)fabsf(param_1->unk_0190);
       if (fVar5 < 103.0) {

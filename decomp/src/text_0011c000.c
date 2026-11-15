@@ -125,6 +125,8 @@ float maybe___floatundisf(ulong param_1)
 }
 
 // 0x0011c3a8  size 0x4c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 maybe_Timer_FindFreeSlot(void)
 
 {
@@ -135,14 +137,14 @@ undefined8 maybe_Timer_FindFreeSlot(void)
   iVar3 = 0x3f;
   uRam00377dc0 = 0x3779c0;
   iVar2 = 0x377dc0;
-  piVar1 = (int *)0x377db0;
+  piVar1 = (int *)&s_Timer_FindFreeSlot_1;
   do {
     *piVar1 = iVar2;
     iVar3 = iVar3 + -1;
     piVar1 = piVar1 + -4;
     iVar2 = iVar2 + -0x10;
   } while (-1 < iVar3);
-  uRam00377db0 = 0;
+  _s_Timer_FindFreeSlot_1 = 0;
   return 0;
 }
 

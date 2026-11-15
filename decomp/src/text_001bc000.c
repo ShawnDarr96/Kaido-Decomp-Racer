@@ -2109,9 +2109,9 @@ void RivalSchedule_SetupBattle(void)
       piVar8 = piVar8 + 5;
     } while (iVar11 < 10);
     if (0 < iVar4) {
-      acStack_4[0] = cRam0036e850;
-      acStack_4[1] = uRam0036e851;
-      acStack_4[2] = uRam0036e852;
+      acStack_4[0] = s_RivalSchedule_SetupBattle_1;
+      acStack_4[1] = s_RivalSchedule_SetupBattle_2;
+      acStack_4[2] = s_RivalSchedule_SetupBattle_3;
       for (pcVar15 = acStack_4; (iVar4 != 0 && (cVar3 = *pcVar15, cVar3 != '\r'));
           pcVar15 = pcVar15 + 1) {
         piVar16 = aiStack_1c0;

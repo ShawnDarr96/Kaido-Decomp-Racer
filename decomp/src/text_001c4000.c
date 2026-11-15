@@ -270,7 +270,7 @@ void Prop_DrawBirds(uint param_1)
       uVar4 = 800;
     }
     sceVu0CopyVector(auStack_170,puVar1 + 0x420);
-    uRam00433fa4 = *(undefined4 *)(puVar1 + 0xa8);
+    _s_Prop_DrawBirds_1 = *(undefined4 *)(puVar1 + 0xa8);
     Cam_SetupViewport(0x433f00,0,8);
     maybe_Pkt_InitLayers(auStack_160,0x433f00,0x436180,8,9);
     if (param_1 - 2 < 2) {
@@ -380,6 +380,7 @@ void Prop_UpdateBirds(int *param_1,undefined8 param_2)
 
 // 0x001c4f70  size 0x330
 /* WARNING: Removing unreachable block (ram,0x001c50b4) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void Prop_SpawnBird(float *param_1,undefined4 *param_2,int param_3,char param_4)
 
@@ -400,11 +401,11 @@ void Prop_SpawnBird(float *param_1,undefined4 *param_2,int param_3,char param_4)
   uStack_1c = param_2[1];
   uStack_18 = param_2[2];
   uStack_14 = param_2[3];
-  if (6.2831855 < fRam0036e854) {
-    fRam0036e854 = fRam0036e854 - 6.2831855;
+  if (6.2831855 < _s_Prop_SpawnBird_1) {
+    _s_Prop_SpawnBird_1 = _s_Prop_SpawnBird_1 - 6.2831855;
   }
-  if (fRam0036e854 < 0.0) {
-    fRam0036e854 = fRam0036e854 + 6.2831855;
+  if (_s_Prop_SpawnBird_1 < 0.0) {
+    _s_Prop_SpawnBird_1 = _s_Prop_SpawnBird_1 + 6.2831855;
   }
   afStack_30[3] = 1.0;
   if (param_4 == '\0') {
@@ -412,25 +413,25 @@ void Prop_SpawnBird(float *param_1,undefined4 *param_2,int param_3,char param_4)
     if (iRam0036f318 == 0) {
       uVar1 = 100;
     }
-    fRam0036f330 = 0.021666666;
+    _s_Prop_SpawnBird_2 = 0.021666666;
     afStack_30[1] = 0.1;
     afStack_30[0] = 1.0 / ((float)uVar1 / 2.0);
     afStack_30[2] = afStack_30[0];
   }
   else if (param_4 == '\x01') {
-    fRam0036f330 = 0.021666666;
+    _s_Prop_SpawnBird_2 = 0.021666666;
     afStack_30[2] = 0.1;
     afStack_30[1] = 0.13333334;
     afStack_30[0] = afStack_30[2];
   }
   else if (param_4 == '\x02') {
-    fRam0036f330 = 0.33333334;
+    _s_Prop_SpawnBird_2 = 0.33333334;
     afStack_30[2] = 0.06666667;
     afStack_30[1] = 0.13333334;
     afStack_30[0] = afStack_30[2];
   }
   else if (param_4 == '\x03') {
-    fRam0036f330 = 0.5;
+    _s_Prop_SpawnBird_2 = 0.5;
     afStack_30[1] = 0.2;
     afStack_30[2] = 0.2;
     afStack_30[0] = afStack_30[2];
@@ -440,9 +441,9 @@ void Prop_SpawnBird(float *param_1,undefined4 *param_2,int param_3,char param_4)
   if (0 < param_3) {
     do {
       if ((param_4 == '\x01') || (param_4 == '\0')) {
-        fVar4 = (float)maybe_Rand_Next(fRam0036f330,fRam0036f330 + 0.021666666);
-        fVar3 = fRam0036f330;
-        fVar5 = fRam0036f330 + 0.021666666;
+        fVar4 = (float)maybe_Rand_Next(_s_Prop_SpawnBird_2,_s_Prop_SpawnBird_2 + 0.021666666);
+        fVar3 = _s_Prop_SpawnBird_2;
+        fVar5 = _s_Prop_SpawnBird_2 + 0.021666666;
         *param_1 = fStack_4 * fVar4 + *param_1 + 0.0;
         fVar3 = (float)maybe_Rand_Next(fVar3,fVar5);
         param_1[2] = fStack_8 * fVar3 + param_1[2] + 0.0;
@@ -450,13 +451,13 @@ void Prop_SpawnBird(float *param_1,undefined4 *param_2,int param_3,char param_4)
       else {
         if (param_4 != '\x03') {
           if (param_4 != '\x02') goto LAB_001c5268;
-          fVar3 = (float)maybe_Rand_Next(fRam0036f330,fRam0036f330 + 1.275);
+          fVar3 = (float)maybe_Rand_Next(_s_Prop_SpawnBird_2,_s_Prop_SpawnBird_2 + 1.275);
           param_1[1] = (param_1[1] + 0.0) - fVar3 * 0.4;
         }
         fVar3 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-        *param_1 = fRam0036f330 * fStack_4 * fVar3 + *param_1 + 0.0;
+        *param_1 = _s_Prop_SpawnBird_2 * fStack_4 * fVar3 + *param_1 + 0.0;
         fVar3 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
-        param_1[2] = fRam0036f330 * fStack_8 * fVar3 + param_1[2] + 0.0;
+        param_1[2] = _s_Prop_SpawnBird_2 * fStack_8 * fVar3 + param_1[2] + 0.0;
       }
 LAB_001c5268:
       Prop_CollideWithCar(afStack_30 + 4,param_1,afStack_30);
@@ -607,14 +608,14 @@ void RaceScene_Draw(void)
   if (lVar1 != 0) {
     TexSlot_Set(5,1);
   }
-  if (((bRam0036f31c == 0) && (cRam0036f324 == '\x01')) && (cRam0036f320 == '\0')) {
+  if (((s_RaceSceneVar1 == 0) && (s_RaceSceneVar3 == '\x01')) && (s_RaceSceneVar2 == '\0')) {
     lVar1 = ResPool_Get(6);
     if (lVar1 != 0) {
       TexSlot_Set(5,1,lVar1);
     }
     Prop_DrawSparks();
   }
-  else if (cRam0036f320 == '\x04') {
+  else if (s_RaceSceneVar2 == '\x04') {
     Prop_DrawOverlay(8);
     Prop_DrawBirds(2);
     Prop_DrawPaper(8);
@@ -628,7 +629,7 @@ void RaceScene_Draw(void)
       Course_SpawnAmbient();
     }
   }
-  else if (cRam0036f320 == '\x05') {
+  else if (s_RaceSceneVar2 == '\x05') {
     Prop_DrawOverlay(8);
     Prop_DrawBirds(3);
     Prop_DrawPaper(8);
@@ -639,22 +640,22 @@ void RaceScene_Draw(void)
     Prop_DrawLeaves();
     Course_DrawSky();
   }
-  else if (cRam0036f320 == '\x02') {
+  else if (s_RaceSceneVar2 == '\x02') {
     lVar1 = ResPool_Get(8);
     if (lVar1 != 0) {
       TexSlot_Set(5,1,lVar1);
     }
     Prop_DrawLeaves();
   }
-  else if (cRam0036f320 == '\0') {
-    if (bRam0036f31c - 2 < 2) {
+  else if (s_RaceSceneVar2 == '\0') {
+    if (s_RaceSceneVar1 - 2 < 2) {
       lVar1 = ResPool_Get();
       if (lVar1 != 0) {
         TexSlot_Set(5,1,lVar1);
       }
       Prop_DrawDebris();
     }
-    else if (bRam0036f31c == 1) {
+    else if (s_RaceSceneVar1 == 1) {
       lVar1 = ResPool_Get(7);
       if (lVar1 != 0) {
         TexSlot_Set(5,1,lVar1);
@@ -662,7 +663,7 @@ void RaceScene_Draw(void)
       Prop_DrawAll();
     }
   }
-  else if (cRam0036f320 == '\x03') {
+  else if (s_RaceSceneVar2 == '\x03') {
     Prop_DrawOverlay(8);
     Prop_DrawBirds(1);
     Prop_DrawPaper(8);
@@ -683,31 +684,31 @@ void RaceScene_UpdateAmbient(undefined8 param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  if (((bRam0036f31c == 0) && (cRam0036f324 == '\x01')) && (cRam0036f320 == '\0')) {
+  if (((s_RaceSceneVar1 == 0) && (s_RaceSceneVar3 == '\x01')) && (s_RaceSceneVar2 == '\0')) {
     Prop_UpdateLeaves();
   }
-  if (cRam0036f320 == '\x04') {
+  if (s_RaceSceneVar2 == '\x04') {
     uStack_4 = *(undefined4 *)param_1;
     Prop_UpdateBirds(&uStack_4,2);
-    Prop_UpdateSparks(param_1,cRam0036f324 == '\x01',1);
+    Prop_UpdateSparks(param_1,s_RaceSceneVar3 == '\x01',1);
   }
-  else if (cRam0036f320 == '\x05') {
+  else if (s_RaceSceneVar2 == '\x05') {
     uStack_8 = *(undefined4 *)param_1;
     Prop_UpdateBirds(&uStack_8,3);
     Prop_UpdatePaper(param_1,1);
   }
-  else if (cRam0036f320 == '\x02') {
+  else if (s_RaceSceneVar2 == '\x02') {
     Prop_UpdatePaper(param_1,0);
   }
-  else if (cRam0036f320 == '\0') {
-    if (bRam0036f31c - 2 < 2) {
-      Prop_UpdateSparks(param_1,cRam0036f324 == '\x01',0);
+  else if (s_RaceSceneVar2 == '\0') {
+    if (s_RaceSceneVar1 - 2 < 2) {
+      Prop_UpdateSparks(param_1,s_RaceSceneVar3 == '\x01',0);
     }
-    else if (bRam0036f31c == 1) {
+    else if (s_RaceSceneVar1 == 1) {
       Prop_UpdateDebris(param_1);
     }
   }
-  else if (cRam0036f320 == '\x03') {
+  else if (s_RaceSceneVar2 == '\x03') {
     Prop_UpdateBirds(param_1,1);
   }
   else {
@@ -720,7 +721,7 @@ void RaceScene_UpdateAmbient(undefined8 param_1)
 void Prop_SetLight(int param_1,undefined4 param_2,undefined8 param_3)
 
 {
-  *(undefined4 *)(param_1 * 0x50 + 0x436570) = param_2;
+  *(undefined4 *)(&s_PropVar1 + param_1 * 0x50) = param_2;
   sceVu0CopyMatrix(param_1 * 0x50 + 0x436580,param_3);
   return;
 }
@@ -730,9 +731,9 @@ void RaceScene_SetPaused(undefined1 param_1,undefined1 param_2,undefined1 param_
                         )
 
 {
-  uRam0036f31c = param_1;
-  uRam0036f320 = param_2;
-  uRam0036f324 = param_3;
+  s_RaceSceneVar1 = param_1;
+  s_RaceSceneVar2 = param_2;
+  s_RaceSceneVar3 = param_3;
   uRam0036f318 = param_4;
   return;
 }
@@ -766,7 +767,7 @@ void RaceScene_AllocProps(undefined8 param_1)
   _g_Props = Mem_AllocAligned(0x9600,0x10,param_1);
   _g_PropsB = Mem_AllocAligned(0x12c0,0x10,param_1);
   iVar2 = 0;
-  puVar1 = (undefined4 *)0x436570;
+  puVar1 = (undefined4 *)&s_PropVar1;
   do {
     *puVar1 = 0;
     maybe_Vu0_UnitMatrix(puVar1 + 4);

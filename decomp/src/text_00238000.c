@@ -1114,8 +1114,8 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
   else {
     MenuWnd_SetItemVisible(0);
   }
-  uVar7 = uRam0036ea5c;
-  uVar8 = uRam0036ea58;
+  uVar7 = _s_ScrRace_Draw_RivalInfo_Draw0_NoData_2;
+  uVar8 = _s_ScrRace_Draw_RivalInfo_Draw0_NoData_1;
   iVar2 = *(int *)(iVar16 + 0x10);
   iVar10 = *(int *)(iVar16 + 0x1c);
   iVar3 = *(int *)(iVar16 + 0x28);

@@ -740,6 +740,8 @@ long Mc_IssueCommand(int param_1)
 }
 
 // 0x00139340  size 0x174
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4
 Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefined4 param_5,
                undefined4 param_6,undefined4 param_7)
@@ -749,12 +751,12 @@ Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefin
   undefined4 uVar2;
   int iVar3;
   
-  iVar1 = iRam00386fa0;
-  if (iRam00386fa0 == 0) {
+  iVar1 = _s_Mc_QueueCommand_1;
+  if (_s_Mc_QueueCommand_1 == 0) {
     uVar2 = 0;
   }
   else {
-    *(int *)(iRam00386fa0 + 8) = param_1;
+    *(int *)(_s_Mc_QueueCommand_1 + 8) = param_1;
     *(undefined4 *)(iVar1 + 0xc) = param_3;
     *(undefined4 *)(iVar1 + 0x10) = 1;
     if (param_2 == 0) {
@@ -848,6 +850,8 @@ Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefin
 }
 
 // 0x001394c0  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Mc_Update(void)
 
 {
@@ -855,8 +859,8 @@ void Mc_Update(void)
   long lVar2;
   int iVar3;
   
-  iVar3 = iRam00386fb4;
-  if (iRam00386fb4 != 0) {
+  iVar3 = _s_McVar2;
+  if (_s_McVar2 != 0) {
     while (iVar1 = *(int *)(iVar3 + 4), (**(uint **)(iVar3 + 8) & 8) == 0) {
       if (*(int *)(iVar3 + 0x10) == 0) {
         lVar2 = Mc_PollResult(iVar3);
@@ -883,15 +887,17 @@ void Mc_Update(void)
 }
 
 // 0x00139580  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Mc_Shutdown(void)
 
 {
   Gfx_AddFrameCallback(0x386fbc);
   maybe_List_Clear(0x386f94);
   maybe_List_Clear(0x386fa8);
-  if (iRam00386f90 != 0) {
-    __destroy_new_array(iRam00386f90,0x1395e0);
-    iRam00386f90 = 0;
+  if (_s_McVar1 != 0) {
+    __destroy_new_array(_s_McVar1,0x1395e0);
+    _s_McVar1 = 0;
   }
   return;
 }
@@ -911,6 +917,7 @@ long Mc_Command_dtor(long param_1,short param_2)
 }
 
 // 0x00139640  size 0xec
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* sceMcInit */
 
 void Mc_Init(undefined8 param_1,uint param_2)
@@ -921,21 +928,21 @@ void Mc_Init(undefined8 param_1,uint param_2)
   int iVar3;
   
   sceMcInit();
-  uRam00386f98 = 0;
-  uRam00386fac = 0;
+  _s_Mc_Init_1 = 0;
+  _s_Mc_Init_2 = 0;
   uVar1 = maybe_operator_new_heap(param_2 * 0x58 + 0x10,param_1);
-  iRam00386f90 = __construct_new_array(uVar1,0x139730,0x1395e0,0x58,param_2);
+  _s_McVar1 = __construct_new_array(uVar1,0x139730,0x1395e0,0x58,param_2);
   uVar2 = 0;
   if (param_2 != 0) {
     iVar3 = 0;
     do {
-      maybe_List_Remove(0x386f94,iRam00386f90 + iVar3);
+      maybe_List_Remove(0x386f94,_s_McVar1 + iVar3);
       uVar2 = uVar2 + 1;
       iVar3 = iVar3 + 0x58;
     } while (uVar2 < param_2);
   }
-  pcRam00386fc4 = Mc_Update;
-  uRam00386fc8 = 0;
+  _s_Mc_Init_3 = Mc_Update;
+  _s_Mc_Init_4 = 0;
   Gfx_RemoveFrameCallback(0x386fbc);
   return;
 }
@@ -950,13 +957,15 @@ undefined8 Mc_Command_ctor(undefined8 param_1)
 }
 
 // 0x00139770  size 0xac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Mc_CancelCommand(uint *param_1)
 
 {
   int iVar1;
   int iVar2;
   
-  iVar1 = iRam00386fb4;
+  iVar1 = _s_McVar2;
   if ((*param_1 & 8) != 0) {
     while (iVar2 = iVar1, iVar2 != 0) {
       iVar1 = *(int *)(iVar2 + 4);
@@ -972,13 +981,15 @@ void Mc_CancelCommand(uint *param_1)
 }
 
 // 0x00139830  size 0x88
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Mc_RemoveCommandsFor(int param_1)
 
 {
   int iVar1;
   int iVar2;
   
-  iVar1 = iRam00386fb4;
+  iVar1 = _s_McVar2;
   while (iVar2 = iVar1, iVar2 != 0) {
     iVar1 = *(int *)(iVar2 + 4);
     if (param_1 == *(int *)(iVar2 + 8)) {

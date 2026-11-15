@@ -2221,6 +2221,8 @@ int * Controls_BuildButtonMap(int *param_1)
 }
 
 // 0x00183030  size 0x90
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int * Controls_BuildAxisMap(int *param_1)
 
 {
@@ -2233,8 +2235,8 @@ int * Controls_BuildAxisMap(int *param_1)
   int iVar7;
   int *piVar8;
   
-  iVar2 = iRam0036e77c;
-  iVar1 = iRam0036e778;
+  iVar2 = _s_Controls_BuildAxisMap_2;
+  iVar1 = _s_Controls_BuildAxisMap_1;
   piVar8 = param_1 + 0x1e;
   iVar7 = 0;
   piVar4 = &DAT_0030b8b0;
@@ -2738,6 +2740,8 @@ void Cam_Update(undefined8 param_1)
 }
 
 // 0x00183b40  size 0x1a8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined1 Cam_SetMode(undefined8 param_1,char param_2)
 
 {
@@ -2761,31 +2765,31 @@ undefined1 Cam_SetMode(undefined8 param_1,char param_2)
                     /* WARNING: Switch is manually overridden */
     switch(*(byte *)(iVar1 + 0x4f8)) {
     case 0:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f200;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_1;
       break;
     case 1:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f204;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_2;
       break;
     case 2:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f208;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_3;
       break;
     case 3:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f21c;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_8;
       break;
     case 4:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f200;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_1;
       break;
     case 5:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f204;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_2;
       break;
     case 6:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f208;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_3;
       break;
     case 7:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f210;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_5;
       break;
     case 8:
-      *(undefined4 *)(iVar1 + 0x4fc) = 0x36f214;
+      *(undefined **)(iVar1 + 0x4fc) = &s___sinit_00369910_6;
     }
   }
   (**(code **)(**(int **)(iVar1 + 0x4fc) + 8))(*(int **)(iVar1 + 0x4fc),param_1);
@@ -2794,8 +2798,8 @@ undefined1 Cam_SetMode(undefined8 param_1,char param_2)
   *(undefined4 *)(iVar1 + 0x4e8) = *(undefined4 *)(iVar1 + 0x4f4);
   Cam_SetYaw(*(undefined4 *)(iVar1 + 0x4e0),param_1);
   Cam_SetPitch(*(undefined4 *)(iVar1 + 0x4e4),param_1);
-  uRam004311a0 = *(undefined4 *)(iVar1 + 0x4e8);
-  *(undefined4 *)(iVar1 + 0x4e8) = uRam004311a0;
+  _s_CamVar1 = *(undefined4 *)(iVar1 + 0x4e8);
+  *(undefined4 *)(iVar1 + 0x4e8) = _s_CamVar1;
   return *(undefined1 *)(iVar1 + 0x4f8);
 }
 

@@ -1551,14 +1551,14 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
     return;
   }
   (**(code **)(*(int *)(piVar13[3] + 8) + 0x10))();
-  bRam0036f270 = CarSnd_ComputeListener(param_1,param_2);
+  s_CarSnd_Update3d_1 = CarSnd_ComputeListener(param_1,param_2);
   fVar15 = (float)Cam_ComputeFov(param_2,*piVar13);
-  iRam0036f274 = (int)(fVar15 * 8192.0 - 8192.0);
-  if (iRam0036f274 < -0x2000) {
-    iRam0036f274 = -0x2000;
+  _s_CarSnd_Update3d_3 = (int)(fVar15 * 8192.0 - 8192.0);
+  if (_s_CarSnd_Update3d_3 < -0x2000) {
+    _s_CarSnd_Update3d_3 = -0x2000;
   }
-  else if (0x1fff < iRam0036f274) {
-    iRam0036f274 = 0x1fff;
+  else if (0x1fff < _s_CarSnd_Update3d_3) {
+    _s_CarSnd_Update3d_3 = 0x1fff;
   }
   iVar7 = (int)param_2;
   sceVu0SubVector(auStack_10,iVar7 + 0x430,iVar7 + 0x420);
@@ -1579,7 +1579,7 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
   if (0x7f < sVar3) {
     sVar3 = 0x7f;
   }
-  cRam0036f271 = (char)sVar3 + -0x40;
+  s_CarSnd_Update3d_2 = (char)sVar3 + -0x40;
   lVar8 = Loading_IsActive();
   if ((lVar8 != 0) && (_s_RaceIsReplayMode == 0)) {
     pRVar6 = GameState_Elem_f0_xcc(0);
@@ -1605,13 +1605,13 @@ void CarSnd_Update3d(undefined8 param_1,undefined8 param_2)
         fVar15 = 1.2;
       }
     }
-    fVar15 = (float)bRam0036f270 * fVar15;
+    fVar15 = (float)s_CarSnd_Update3d_1 * fVar15;
     if (2.1474836e+09 <= fVar15) {
       fVar15 = fVar15 - 2.1474836e+09;
     }
-    bRam0036f270 = (byte)(int)fVar15;
+    s_CarSnd_Update3d_1 = (byte)(int)fVar15;
   }
-  if ((float)bRam0036f270 == 0.0) {
+  if ((float)s_CarSnd_Update3d_1 == 0.0) {
     (**(code **)(*(int *)(piVar13[3] + 8) + 0xc))();
     (**(code **)(*(int *)piVar13[9] + 8))((int *)piVar13[9],(char)piVar13[0xc]);
     piVar13[10] = piVar13[10] & 0xfffffffd;
@@ -1959,6 +1959,8 @@ void CarSnd_Init(undefined8 param_1)
 }
 
 // 0x001937f0  size 0x1f0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 uint CarSnd_ComputeListener(int *param_1,undefined8 param_2)
 
 {
@@ -1985,7 +1987,7 @@ uint CarSnd_ComputeListener(int *param_1,undefined8 param_2)
   iVar2 = PhysBody_GetWorldMatrix(*(undefined4 *)(*param_1 + 0x154));
   uStack_8 = *(undefined4 *)(iVar2 + 8);
   fVar5 = (float)Cam_DistanceTo(param_2,&uStack_10);
-  fVar5 = 1.0 - (fVar5 - fRam0036e7d4) / fRam0036e7d0;
+  fVar5 = 1.0 - (fVar5 - _s_CarSnd_ComputeListener_2) / _s_CarSnd_ComputeListener_1;
   if (0.0 <= fVar5) {
     if (1.0 < fVar5) {
       fVar5 = 1.0;
@@ -2021,6 +2023,8 @@ uint CarSnd_ComputeListener(int *param_1,undefined8 param_2)
 }
 
 // 0x001939e0  size 0x708
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarSnd_UpdateEngine(undefined4 *param_1,undefined8 param_2)
 
 {
@@ -2043,7 +2047,7 @@ void CarSnd_UpdateEngine(undefined4 *param_1,undefined8 param_2)
   }
   fVar12 = (float)RaceCar_GetSpeedKmh(param_2);
   param_1[2] = (int)((DAT_0036e7cc * fVar12) / DAT_0036e7c8);
-  fVar12 = fRam0036f278;
+  fVar12 = _s_CarSnd_UpdateEngine_1;
   if ((param_1[1] & 2) != 0) {
     if (param_1[2] == 0) {
       (**(code **)(*(int *)*param_1 + 8))((int *)*param_1,*(undefined1 *)(param_1 + 7));

@@ -1672,6 +1672,8 @@ LAB_00112568:
 }
 
 // 0x00112578  size 0xd4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_InitThreadExtension(void)
 
 {
@@ -1701,7 +1703,7 @@ int maybe_InitThreadExtension(void)
       lVar1 = CreateThread(auStack_80);
       DAT_00306ad8 = (int)lVar1;
       if (-1 < lVar1) {
-        uRam00370708 = 0;
+        _s_InitThreadExtension_1 = 0;
         uRam0037070c = 0;
         _StartThread(lVar1,0x370708);
         uVar2 = GetThreadId();
@@ -1990,14 +1992,16 @@ void maybe_sceDeci2kputs(undefined4 param_1)
 }
 
 // 0x00112b28  size 0x24
-undefined4 maybe_Tty_SetBuffer(undefined4 param_1)
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined * maybe_Tty_SetBuffer(undefined4 param_1)
 
 {
-  uRam00370b40 = param_1;
-  uRam00370b48 = 0x370b50;
-  uRam00370b44 = 0;
-  uRam00370b4c = 0x370b50;
-  return 0x370b40;
+  _s_Tty_SetBuffer_1 = param_1;
+  _s_Tty_SetBuffer_3 = 0x370b50;
+  _s_Tty_SetBuffer_2 = 0;
+  _s_Tty_SetBuffer_4 = 0x370b50;
+  return &s_Tty_SetBuffer_1;
 }
 
 // 0x00112b50  size 0x3c
@@ -2098,6 +2102,8 @@ void maybe_Tty_Deci2Handler(int param_1,ulong param_2,undefined4 *param_3)
 }
 
 // 0x00112d68  size 0x174
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_Tty_Write(char *param_1,int param_2)
 
 {
@@ -2110,10 +2116,10 @@ int maybe_Tty_Write(char *param_1,int param_2)
   
   iVar5 = 0;
   iVar6 = -1;
-  if (iRam00370c5c == 0) {
+  if (_s_TtyVar3 == 0) {
     lVar1 = DIntr();
-    iRam00370c5c = 1;
-    puRam00370c60 = &DAT_20370c80;
+    _s_TtyVar3 = 1;
+    _s_TtyVar4 = &DAT_20370c80;
     pcVar4 = &DAT_20370c8c;
     iVar6 = 0;
     do {
@@ -2133,12 +2139,12 @@ int maybe_Tty_Write(char *param_1,int param_2)
       pcVar4 = pcVar4 + 1;
       iVar6 = iVar6 + 1;
     } while (iVar5 < 0x100);
-    iRam00370c54 = iVar5 + 0xc;
-    DAT_20370c80 = (undefined2)iRam00370c54;
+    _s_TtyVar2 = iVar5 + 0xc;
+    DAT_20370c80 = (undefined2)_s_TtyVar2;
                     /* WARNING: Read-only address (ram,0x20370c80) is written */
-    lVar2 = sceDeci2ReqSend(uRam00370c50,DAT_20370c87);
+    lVar2 = sceDeci2ReqSend(_s_TtyVar1,DAT_20370c87);
     if (lVar2 < 0) {
-      iRam00370c5c = 0;
+      _s_TtyVar3 = 0;
       iVar6 = -1;
       if (lVar1 != 0) {
         EIntr();
@@ -2146,9 +2152,9 @@ int maybe_Tty_Write(char *param_1,int param_2)
       }
     }
     else {
-      while (iRam00370c5c != 0) {
+      while (_s_TtyVar3 != 0) {
                     /* WARNING: Read-only address (ram,0x20370c80) is written */
-        sceDeci2Poll(uRam00370c50);
+        sceDeci2Poll(_s_TtyVar1);
       }
                     /* WARNING: Read-only address (ram,0x20370c80) is written */
       if (lVar1 != 0) {
@@ -2160,6 +2166,8 @@ int maybe_Tty_Write(char *param_1,int param_2)
 }
 
 // 0x00112ee0  size 0xd0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_Tty_Read(int param_1,int param_2)
 
 {
@@ -2173,9 +2181,9 @@ int maybe_Tty_Read(int param_1,int param_2)
     do {
       iVar3 = iVar2 + 1;
       do {
-      } while (*(int *)(iRam00370c68 + 4) == 0);
-      *(char *)(param_1 + iVar2) = **(char **)(iRam00370c68 + 8);
-      maybe_Tty_PopChar(iRam00370c68);
+      } while (*(int *)(_s_TtyVar5 + 4) == 0);
+      *(char *)(param_1 + iVar2) = **(char **)(_s_TtyVar5 + 8);
+      maybe_Tty_PopChar(_s_TtyVar5);
       cVar1 = *(char *)(param_1 + iVar2);
       if ((cVar1 == '\n') || (cVar1 == '\r')) {
         return iVar3;
@@ -2187,26 +2195,28 @@ int maybe_Tty_Read(int param_1,int param_2)
 }
 
 // 0x00112fb0  size 0xbc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool maybe_Tty_Init(void)
 
 {
   bool bVar1;
   
   FlushCache(0);
-  iRam00370c50 = sceDeci2Open(0x210,0x370c50,0x112bd0);
-  bVar1 = -1 < iRam00370c50;
+  _s_TtyVar1 = sceDeci2Open(0x210,0x370c50,0x112bd0);
+  bVar1 = -1 < _s_TtyVar1;
   if (bVar1) {
-    uRam00370c5c = 0;
-    uRam00370c54 = 0;
-    uRam00370c58 = 0;
-    puRam00370c64 = &DAT_20370dc0;
-    puRam00370c60 = &DAT_20370c80;
+    _s_TtyVar3 = 0;
+    _s_TtyVar2 = 0;
+    _s_Tty_Init_1 = 0;
+    _s_Tty_Init_2 = &DAT_20370dc0;
+    _s_TtyVar4 = &DAT_20370c80;
     DAT_20370c84 = 0x210;
     DAT_20370c86 = 0x45;
     DAT_20370c87 = 0x48;
     DAT_20370c88 = 0;
     DAT_20370c82 = 0;
-    uRam00370c68 = maybe_Tty_SetBuffer(0x100);
+    _s_TtyVar5 = maybe_Tty_SetBuffer(0x100);
   }
   return bVar1;
 }
@@ -2235,7 +2245,7 @@ void maybe_kputchar(int param_1)
   iVar1 = DAT_00306ae0;
   if (0x7d < DAT_00306ae0) {
     DAT_00306ae0 = 0;
-    uRam00370f7f = 0;
+    s_kputchar_1 = 0;
     maybe_sceDeci2kputs(0x370f00);
     iVar1 = DAT_00306ae0;
   }
@@ -2690,6 +2700,8 @@ undefined4 maybe_sceSifGetSreg(int param_1)
 }
 
 // 0x00113aa0  size 0x280
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void sceSifInitCmd(void)
 
 {
@@ -2706,13 +2718,13 @@ void sceSifInitCmd(void)
     return;
   }
   DAT_00306ae8 = 1;
-  puVar2 = (undefined4 *)0x371080;
+  puVar2 = (undefined4 *)&s_sceSifInitCmd_5;
   puRam00371058 = &DAT_20370f80;
-  uRam00371074 = 0x371200;
-  puRam0037105c = &DAT_20371000;
+  _s_sceSifInitCmd_4 = 0x371200;
+  _s_sceSifInitCmd_3 = &DAT_20371000;
   uRam00371068 = 0x20;
   uRam00371060 = 0;
-  uRam00371064 = 0x371080;
+  puRam00371064 = &s_sceSifInitCmd_5;
   uRam0037106c = 0;
   uRam00371070 = 0;
   do {
@@ -2727,10 +2739,10 @@ void sceSifInitCmd(void)
     iVar6 = iVar6 + -1;
     puVar2 = puVar2 + -1;
   } while (-1 < iVar6);
-  puRam00371080 = &LAB_00113a48;
-  puRam0037108c = &LAB_00113a28;
-  uRam00371090 = 0x371058;
-  uRam00371084 = 0x371058;
+  _s_sceSifInitCmd_5 = &LAB_00113a48;
+  _s_sceSifInitCmd_7 = &LAB_00113a28;
+  _s_sceSifInitCmd_8 = 0x371058;
+  _s_sceSifInitCmd_6 = 0x371058;
   EIntr();
   FlushCache(0);
   uVar1 = REG_DMAC_STAT;
@@ -2746,7 +2758,7 @@ void sceSifInitCmd(void)
   lVar3 = sceSifGetReg(0xffffffff80000000);
   uRam00371060 = (undefined4)lVar3;
   if (lVar3 != 0) {
-    uRam00371050 = 0x370f80;
+    _s_sceSifInitCmd_2 = 0x370f80;
     sceSifSendCmd(0xffffffff80000000,0x371040,0x14,0,0,0);
     return;
   }
@@ -2758,8 +2770,8 @@ void sceSifInitCmd(void)
   uRam00371060 = (undefined4)uVar5;
   sceSifSetReg(0xffffffff80000000,uVar5);
   sceSifSetReg(0xffffffff80000001,0x371058);
-  uRam00371050 = 0x370f80;
-  uRam0037104c = 0;
+  _s_sceSifInitCmd_2 = 0x370f80;
+  _s_sceSifInitCmd_1 = 0;
   sceSifSendCmd(0xffffffff80000002,0x371040,0x14,0,0,0);
   return;
 }

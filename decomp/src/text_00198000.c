@@ -331,6 +331,8 @@ void View_DrawBackground(uint param_1,long param_2,long param_3)
 }
 
 // 0x00198870  size 0x264
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_DrawShadowedMeshes(long param_1)
 
 {
@@ -532,18 +534,20 @@ void Course_DrawShadowedMeshes(long param_1)
   }
   Camera_Init(0x431100);
   Light_UpdateMatrices(&uStack_180);
-  if (iRam00430468 == 0) {
-    uVar1 = Tex_GetImageData(uRam00430464,0);
-    maybe_Light_ApplyToVertices(&uStack_180,uVar1,uRam00430478,uRam0043047a,0x431100);
+  if (_s_CourseVar3 == 0) {
+    uVar1 = Tex_GetImageData(_s_CourseVar2,0);
+    maybe_Light_ApplyToVertices(&uStack_180,uVar1,_s_CourseVar4,_s_CourseVar5,0x431100);
   }
   else {
-    uVar1 = Tex_GetImageData(uRam00430464,0);
-    maybe_Light_ApplyToVerticesAlt(&uStack_180,uVar1,uRam00430478,uRam0043047a,0x431100);
+    uVar1 = Tex_GetImageData(_s_CourseVar2,0);
+    maybe_Light_ApplyToVerticesAlt(&uStack_180,uVar1,_s_CourseVar4,_s_CourseVar5,0x431100);
   }
   return;
 }
 
 // 0x00198ae0  size 0x24c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_DrawLitMeshes(long param_1)
 
 {
@@ -743,13 +747,13 @@ void Course_DrawLitMeshes(long param_1)
   }
   Camera_Init(0x431100);
   Light_UpdateMatrices(&uStack_180);
-  if (iRam00430468 == 0) {
-    uVar1 = Tex_GetImageData(uRam00430464,0);
-    maybe_Light_ApplyToVertices(&uStack_180,uVar1,uRam00430478,uRam0043047a,0x431100);
+  if (_s_CourseVar3 == 0) {
+    uVar1 = Tex_GetImageData(_s_CourseVar2,0);
+    maybe_Light_ApplyToVertices(&uStack_180,uVar1,_s_CourseVar4,_s_CourseVar5,0x431100);
   }
   else {
-    uVar1 = Tex_GetImageData(uRam00430464,0);
-    maybe_Light_ApplyToVerticesAlt(&uStack_180,uVar1,uRam00430478,uRam0043047a,0x431100);
+    uVar1 = Tex_GetImageData(_s_CourseVar2,0);
+    maybe_Light_ApplyToVerticesAlt(&uStack_180,uVar1,_s_CourseVar4,_s_CourseVar5,0x431100);
   }
   return;
 }
@@ -775,9 +779,9 @@ void Course_FreeModels(void)
   }
   uRam00430580 = 0;
   _g_CourseModelC = 0;
-  if (iRam00430464 != 0) {
+  if (_s_CourseVar2 != 0) {
     Mem_Free();
-    iRam00430464 = 0;
+    _s_CourseVar2 = 0;
   }
   Asset_FreeCourseCommon();
   return;
@@ -812,23 +816,23 @@ void Course_LoadModels(undefined8 param_1,undefined8 param_2)
   else {
     uVar9 = 0x432800;
   }
-  uRam00430468 = (uint)(cVar1 == '\0');
+  _s_CourseVar3 = (uint)(cVar1 == '\0');
   lVar5 = 0;
-  iRam00430464 = 0;
+  _s_CourseVar2 = 0;
   do {
     if (lVar5 != 0) {
       uVar2 = Mem_AllocAligned(lVar5,0x80,param_1);
-      iRam00430464 = (int)uVar2;
+      _s_CourseVar2 = (int)uVar2;
       Mem_Set16(uVar2,0,lVar5);
     }
     uVar2 = 3;
-    if (uRam00430468 == 0) {
+    if (_s_CourseVar3 == 0) {
       uVar2 = 1;
     }
-    lVar5 = Tex_BuildUploadPacket(uVar2,uVar7,uVar7,1,0,0,0x80,iRam00430464);
-  } while (iRam00430464 == 0);
-  TexSlot_BindSimple(0x430470,iRam00430464,0,iRam0036f284 + iRam0036f2c0,iRam0036f284 + iRam0036f2c0
-                     ,0x11110,0,0);
+    lVar5 = Tex_BuildUploadPacket(uVar2,uVar7,uVar7,1,0,0,0x80,_s_CourseVar2);
+  } while (_s_CourseVar2 == 0);
+  TexSlot_BindSimple(0x430470,_s_CourseVar2,0,iRam0036f284 + iRam0036f2c0,
+                     iRam0036f284 + iRam0036f2c0,0x11110,0,0);
   Gfx_SetupRenderTargetEx(uVar9,0x4304f0,0,0);
   Asset_LoadCourseCommon(param_1,param_2);
   uRam00430570 = *(undefined4 *)(iVar3 + 0x20);
@@ -938,7 +942,7 @@ void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
   undefined *puStack_2c;
   
   iVar1 = ((uint)*param_2 * 0x18 - (uint)*param_2) * 0x40;
-  if (*(int *)(iVar1 + 0x431684) != 0) {
+  if (*(int *)(&s_Course_Render_2 + iVar1) != 0) {
     if (*(int *)(param_2 + 4) != 0) {
       TexSlot_Set(5,1);
     }
@@ -1084,7 +1088,7 @@ void SceneObj_BuildMatrix(int param_1,undefined1 *param_2)
   iVar1 = *(int *)(*(int *)(param_2 + 0x10) * 4 + *(int *)(param_1 + 0x44) + 0x3c);
   iVar4 = ((uint)(byte)param_2[4] * 0x18 - (uint)(byte)param_2[4]) * 0x40;
   iVar3 = *(int *)(param_1 + 0x44) + *(int *)(param_2 + 0x10) * 0x1c;
-  if ((*(int *)(iVar4 + 0x431684) != 0) && (iVar1 != 0)) {
+  if ((*(int *)(&s_Course_Render_2 + iVar4) != 0) && (iVar1 != 0)) {
     Cam_SetupViewport(&g_Views + iVar4,0,*param_2);
     Light_UpdateMatrices(0x436180);
     Layer_Reset(auStack_240,&g_Views + iVar4,0x436180,*(undefined4 *)(param_2 + 8),
@@ -1520,6 +1524,8 @@ uint CarModel_ComputeLod(float param_1,undefined8 param_2,int param_3,undefined8
 }
 
 // 0x0019a260  size 0x638
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarModel_DrawBody(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1552,10 +1558,10 @@ void CarModel_DrawBody(undefined8 param_1,undefined8 param_2)
   puVar7 = (undefined4 *)(iVar8 + 0x100);
   iVar6 = iVar8 + 0xc0;
   bVar1 = *(int *)(iVar8 + 0x240) == 0;
-  if (iRam00436354 != 0) {
+  if (_s_CarModel_DrawBody_1 != 0) {
     Pkt_Flush(iVar8 + 0x44,0x43635c);
   }
-  TexSlot_Set(0,iRam00436354,uRam0043636c);
+  TexSlot_Set(0,_s_CarModel_DrawBody_1,_s_CarModel_DrawBody_2);
   uVar11 = 0;
   iStack_80 = 0;
   iVar5 = 0;
@@ -1736,6 +1742,8 @@ switchD_0019a314_default:
 }
 
 // 0x0019a8a0  size 0x6ac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarModel_DrawParts(int param_1,undefined8 param_2)
 
 {
@@ -1772,7 +1780,7 @@ void CarModel_DrawParts(int param_1,undefined8 param_2)
     in_f21 = (float)sceVu0InnerProduct(param_1 + 0x120,auStack_10);
     unaff_f20 = (float)sceVu0InnerProduct(param_1 + 0x140,auStack_10);
   }
-  if (iRam00436450 != 0) {
+  if (_s_CarModel_DrawParts_1 != 0) {
     Pkt_Flush(param_2,0x436458);
   }
   uVar13 = 0;
@@ -1821,11 +1829,11 @@ LAB_0019aa5c:
         uVar2 = CarModel_ComputeLod(*(undefined4 *)(iVar6 + 0xcb0),param_1,
                                     *(undefined4 *)(iVar12 + 0x244),param_1 + 0x120,4,0x3128a0);
         *(undefined4 *)(iVar12 + 0x45c) = uVar2;
-        if (iRam00436450 == 0) {
+        if (_s_CarModel_DrawParts_1 == 0) {
           iVar6 = *(int *)(param_1 + 0x528);
         }
         else {
-          TexSlot_Set(0,iRam00436450,uRam00436468);
+          TexSlot_Set(0,_s_CarModel_DrawParts_1,_s_CarModel_DrawParts_2);
           iVar6 = *(int *)(param_1 + 0x528);
         }
         if ((*(int *)(iVar14 + iVar6 + 0x38) != 0) && (*(uint *)(iVar12 + 0x45c) < 3)) {

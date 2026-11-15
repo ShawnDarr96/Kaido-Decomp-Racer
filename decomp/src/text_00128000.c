@@ -1579,15 +1579,17 @@ uint maybe_rand(void)
 }
 
 // 0x0012a108  size 0x60
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 long maybe__read_r(int *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = _read(param_2,param_3,param_4);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return lVar1;
 }
@@ -1961,15 +1963,17 @@ uint __srget(undefined4 *param_1)
 }
 
 // 0x0012a908  size 0x58
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe__sbrk_r(int *param_1,undefined8 param_2)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = _sbrk(param_2);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return;
 }
@@ -2131,15 +2135,17 @@ void signal(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x0012ac48  size 0x5c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe__kill_r(int *param_1,undefined8 param_2,undefined8 param_3)
 
 {
   long lVar1;
   
-  iRam0046a5dc = 0;
+  _s_RuntimeVar2 = 0;
   lVar1 = maybe__exit_hook(param_2,param_3);
-  if ((lVar1 == -1) && (iRam0046a5dc != 0)) {
-    *param_1 = iRam0046a5dc;
+  if ((lVar1 == -1) && (_s_RuntimeVar2 != 0)) {
+    *param_1 = _s_RuntimeVar2;
   }
   return;
 }

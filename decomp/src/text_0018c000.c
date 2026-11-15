@@ -779,7 +779,7 @@ void Weather_Draw(float param_1,uint param_2)
   uint uStack_878;
   uint uStack_874;
   undefined1 auStack_870 [20];
-  undefined4 uStack_85c;
+  undefined *puStack_85c;
   undefined1 auStack_830 [128];
   uint auStack_7b0 [170];
   undefined8 uStack_508;
@@ -847,7 +847,7 @@ void Weather_Draw(float param_1,uint param_2)
   Pkt_AddPrimitives(auStack_4a0,auStack_7b0,1);
   Pkt_Submit(auStack_4a0,0);
   Pkt_Init(auStack_870,1,2,0);
-  uStack_85c = 0x42d0c0;
+  puStack_85c = &s_Camera_SetupDefault_4;
   Pkt_SubmitToChain(auStack_870,8);
   Pkt_AddRef(auStack_870,0x3014c0);
   puVar1 = (undefined8 *)Pkt_AllocDmaRef(auStack_870,4,0,0x50000004);

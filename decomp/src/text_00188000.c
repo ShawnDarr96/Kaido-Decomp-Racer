@@ -455,6 +455,7 @@ ushort Road_FindNearestSection
 // 0x00189030  size 0x4e4
 /* WARNING: Removing unreachable block (ram,0x00189278) */
 /* WARNING: Removing unreachable block (ram,0x001892e8) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 long Road_AdvanceAlongPath
                (undefined8 param_1,undefined8 param_2,ushort *param_3,undefined4 param_4,
@@ -482,8 +483,8 @@ long Road_AdvanceAlongPath
   ushort uStack_2;
   
   fStack_14 = 1e+06;
-  uStack_4 = uRam0036e798;
-  uStack_2 = uRam0036e79a;
+  uStack_4 = _s_Road_AdvanceAlongPath_1;
+  uStack_2 = _s_Road_AdvanceAlongPath_2;
   piVar6 = (int *)param_1;
   uVar5 = *param_3;
   uStack_10 = *(undefined4 *)param_3;
@@ -704,6 +705,8 @@ undefined4 Road_GetSegmentPoint(int *param_1,ushort *param_2,short param_3)
 }
 
 // 0x00189770  size 0x564
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Road_SearchNeighbours
                (undefined8 param_1,undefined8 param_2,ushort *param_3,ushort param_4,ushort param_5)
 
@@ -726,8 +729,8 @@ void Road_SearchNeighbours
   fVar3 = 1e+06;
   fStack_4 = 1e+06;
   piVar7 = (int *)param_1;
-  uVar10 = uRam0036e796;
-  uVar9 = uRam0036e794;
+  uVar10 = _s_Road_SearchNeighbours_2;
+  uVar9 = _s_Road_SearchNeighbours_1;
   if ((long)(short)param_4 != -1) {
     iVar11 = 0;
     iVar12 = *(int *)(*(int *)(*piVar7 + 4) + (uint)param_4 * 4);
@@ -1784,6 +1787,8 @@ void maybe_Road_ClipToEdge(float *param_1,ushort *param_2,int param_3,undefined8
 }
 
 // 0x0018bc40  size 0x240
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 param_3)
 
 {
@@ -1800,16 +1805,16 @@ int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 para
   
   iVar10 = 0;
   iVar6 = 0;
-  uRam004303d0 = 0xffff;
-  uRam004303d2 = 0xffff;
-  uRam004303d4 = 0xffff;
-  uRam004303d6 = 0xffff;
-  uRam004303d8 = 0xffff;
-  uRam004303da = 0xffff;
+  _s_Road_FindSectionCell_1 = 0xffff;
+  _s_Road_FindSectionCell_2 = 0xffff;
+  _s_Road_FindSectionCell_3 = 0xffff;
+  _s_Road_FindSectionCell_4 = 0xffff;
+  _s_Road_FindSectionCell_5 = 0xffff;
+  _s_Road_FindSectionCell_6 = 0xffff;
   piVar8 = (int *)param_3;
   if (*param_2 != -1) {
     iVar7 = 0;
-    psVar9 = (short *)0x4303d0;
+    psVar9 = (short *)&s_Road_FindSectionCell_1;
     iVar5 = *(int *)(*(int *)(*piVar8 + 4) + *param_2 * 4);
     do {
       if (*(short *)(iVar5 + 4) != -1) {
@@ -1832,7 +1837,7 @@ int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 para
       iVar7 = iVar7 + 1;
       iVar5 = iVar5 + 6;
     } while (iVar7 < 6);
-    *(undefined2 *)(iVar6 * 2 + 0x4303d0) = 0xffff;
+    *(undefined2 *)(&s_Road_FindSectionCell_1 + iVar6 * 2) = 0xffff;
   }
   if ((iVar10 == 0) && (lVar3 = 0, 0 < *(int *)*piVar8)) {
     iVar5 = 0;
@@ -1840,7 +1845,7 @@ int maybe_Road_FindSectionCell(undefined8 param_1,short *param_2,undefined8 para
       bVar2 = true;
       iVar7 = 0;
       if (0 < iVar6) {
-        psVar9 = (short *)0x4303d0;
+        psVar9 = (short *)&s_Road_FindSectionCell_1;
         do {
           if (lVar3 == *psVar9) {
             bVar2 = false;

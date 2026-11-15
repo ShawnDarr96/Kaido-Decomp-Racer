@@ -115,9 +115,9 @@ void ScrCareer_Draw_GoBattle_8970(undefined8 param_1)
       } while (iVar16 < 6);
     }
     iVar16 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar16].layout,uRam0036eba0,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar16].layout,_s_ScrCareer_Draw_GoBattle_8970_1,8);
     iVar16 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar16].layout,uRam0036eba4,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar16].layout,_s_ScrCareer_Draw_GoBattle_8970_2,8);
     iVar16 = UiMgr_FindLayout(0x84);
     UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar16].layout,0xe,8);
     g_MenuMgr->unk_05a0 = 1;
@@ -364,7 +364,9 @@ void ScrCareer_Draw_GoBattle_8970(undefined8 param_1)
                     *(undefined4 *)(&DAT_0032c870 + (uint)bStack_154 * 4));
   ScrCareer_Draw_MasterLord(param_1);
   if (*_g_MenuInput == 1) {
-    MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(iVar15 + 0x62c) * 4 + 0x36eba0),1,0);
+    MenuWnd_SetItemState
+              (0x7a,*(undefined4 *)
+                     (&s_ScrCareer_Draw_GoBattle_8970_1 + *(int *)(iVar15 + 0x62c) * 4),1,0);
   }
   iVar16 = UiMgr_FindLayout(0x7a);
   UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar16].layout);
@@ -481,9 +483,9 @@ void ScrCareer_Draw_GoBattle_9330(undefined8 param_1)
       } while (iVar7 < 6);
     }
     iVar7 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,uRam0036eb90,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,_s_ScrCareer_Draw_GoBattle_9330_1,8);
     iVar7 = UiMgr_FindLayout(0x7a);
-    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,uRam0036eb94,8);
+    UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,_s_ScrCareer_Draw_GoBattle_9330_2,8);
     iVar7 = UiMgr_FindLayout(0x84);
     UiElem_SetPropFloat(0,&g_UiMgr->slots[iVar7].layout,0xe,8);
     g_MenuMgr->unk_05a0 = 1;
@@ -739,7 +741,9 @@ void ScrCareer_Draw_GoBattle_9330(undefined8 param_1)
                     *(undefined4 *)(&DAT_0032c830 + (uint)bStack_154 * 4));
   ScrCareer_Draw_MasterLord(param_1);
   if (*_g_MenuInput == 1) {
-    MenuWnd_SetItemState(0x7a,*(undefined4 *)(*(int *)(iVar16 + 0x62c) * 4 + 0x36eb90),1,0);
+    MenuWnd_SetItemState
+              (0x7a,*(undefined4 *)
+                     (&s_ScrCareer_Draw_GoBattle_9330_1 + *(int *)(iVar16 + 0x62c) * 4),1,0);
   }
   iVar7 = UiMgr_FindLayout(0x7a);
   UiLayout_Draw(0x3f800000,&g_UiMgr->slots[iVar7].layout);

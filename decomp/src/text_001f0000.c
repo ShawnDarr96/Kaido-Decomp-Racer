@@ -109,7 +109,7 @@ void UiRes_LoadLocalized(int param_1)
   else {
     uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  iRam0036f40c = uVar1 << 0xb;
+  _s_UiResVar3 = uVar1 << 0xb;
   Arc_LoadFileEx(param_1,_g_Fonts,0x1f0600,0,0,0);
   return;
 }
@@ -120,10 +120,10 @@ void UiRes_LoadLocalized(int param_1)
 void UiRes_AllocFonts(undefined8 param_1,undefined4 param_2,int param_3)
 
 {
-  iRam0036f408 = param_3;
-  uRam0036f40c = param_2;
+  _s_UiResVar2 = param_3;
+  _s_UiResVar3 = param_2;
   _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
-  _g_Fonts = Mem_AllocAligned(uRam0036f40c,0x40,param_1);
+  _g_Fonts = Mem_AllocAligned(_s_UiResVar3,0x40,param_1);
   return;
 }
 
@@ -137,7 +137,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   undefined8 uVar2;
   
   param_2 = param_2 + (uint)g_RaceCtx->language;
-  iRam0036f408 = param_3;
+  _s_UiResVar2 = param_3;
   _g_LocalizedText = Mem_AllocAligned(param_3 << 2,0x40,param_1);
   uVar1 = g_ArcToc->entries[param_2].unpackedSize;
   if (uVar1 == 0) {
@@ -146,14 +146,16 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   else {
     uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  iRam0036f40c = uVar1 << 0xb;
-  uVar2 = Mem_AllocAligned(iRam0036f40c,0x40,param_1);
+  _s_UiResVar3 = uVar1 << 0xb;
+  uVar2 = Mem_AllocAligned(_s_UiResVar3,0x40,param_1);
   _g_Fonts = (undefined4)uVar2;
   Arc_LoadFileEx(param_2,uVar2,0x1f0600,0,0,0);
   return;
 }
 
 // 0x001f0820  size 0x12c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_LoadCommon(undefined8 param_1)
 
 {
@@ -175,21 +177,21 @@ void UiRes_LoadCommon(undefined8 param_1)
     uVar3 = uVar3 + 0x7ff >> 0xb;
   }
   uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,param_1);
-  psRam0036f3fc = (short *)uVar4;
+  _s_UiResVar1 = (short *)uVar4;
   Arc_LoadFileEx(0x188c,uVar4,0,0,0,0);
   File_AbortAll();
-  psVar1 = psRam0036f3fc;
+  psVar1 = _s_UiResVar1;
   iVar9 = 0;
   iVar8 = 0;
   iVar7 = 0x467830;
   iVar6 = 0;
-  iVar5 = *psRam0036f3fc + 1;
+  iVar5 = *_s_UiResVar1 + 1;
   do {
     if (*(int *)(iVar7 + 0xa0) != 0) {
       *(int *)(iVar7 + 0xbc) = iVar5;
       *(short **)(iVar7 + 0xb8) = psVar1 + iVar6 + 1;
     }
-    psVar2 = psRam0036f3fc;
+    psVar2 = _s_UiResVar1;
     iVar8 = iVar8 + 1;
     iVar6 = iVar6 + iVar5;
     iVar9 = iVar9 + 1;
@@ -234,7 +236,7 @@ void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
           uVar2 = uVar2 + 0x7ff >> 0xb;
         }
         iVar4 = iVar5 * 0x340;
-        piVar6 = (int *)(iVar4 + 0x467da0);
+        piVar6 = (int *)(&s_UiRes_LoadAll_4 + iVar4);
         iVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
         *piVar6 = iVar3;
         Arc_LoadFileEx(*(int *)(&DAT_00326860 + (param_2 & 0xff) * 4),*piVar6,0,0,0,0);
@@ -250,14 +252,14 @@ void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
       }
       iVar5 = iVar5 * 0x340;
       Tex_InitDescriptor(iVar5 + 0x467ac0,2,*(undefined2 *)(iVar5 + 0x467af2),
-                         *(undefined4 *)(iVar5 + 0x467da0));
+                         *(undefined4 *)(&s_UiRes_LoadAll_4 + iVar5));
       *(uint *)(iVar5 + 0x467ac0) = *(uint *)(iVar5 + 0x467ac0) | 2;
       *(undefined4 *)(iVar5 + 0x467af4) = 0x156;
       *(undefined8 *)(iVar5 + 0x467ad8) = 0x44;
       return;
     }
   }
-  *(undefined4 *)(iVar5 * 0x340 + 0x467da0) = 0;
+  *(undefined4 *)(&s_UiRes_LoadAll_4 + iVar5 * 0x340) = 0;
   return;
 }
 
@@ -284,7 +286,7 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
         uVar1 = uVar1 + 0x7ff >> 0xb;
       }
       iVar4 = param_2 * 0xc0;
-      piVar6 = (int *)(iVar4 + 0x4678d0);
+      piVar6 = (int *)(&s_UiRes_LoadAll_1 + iVar4);
       iVar2 = Mem_AllocAligned(uVar1 << 0xb,0x40,param_1);
       *piVar6 = iVar2;
       Arc_LoadFileEx(*(int *)(&DAT_00326860 + param_2 * 4),*piVar6,0,0,0,0);
@@ -298,8 +300,9 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
       uVar3 = uRam0036f2c0;
       if (*piVar6 != 0) {
         *(undefined4 *)(iVar4 + 0x4678e0) = 0;
-        Pkt_AddTextureUploadAll(iVar4 + 0x4678d8,*(undefined4 *)(iVar4 + 0x4678d0),uVar3,uVar3);
-        TexSlot_Bind(*puVar5,*(undefined4 *)(iVar4 + 0x4678d0),1,uVar3,uVar3,0x50010,0,0);
+        Pkt_AddTextureUploadAll
+                  (iVar4 + 0x4678d8,*(undefined4 *)(&s_UiRes_LoadAll_1 + iVar4),uVar3,uVar3);
+        TexSlot_Bind(*puVar5,*(undefined4 *)(&s_UiRes_LoadAll_1 + iVar4),1,uVar3,uVar3,0x50010,0,0);
       }
       Tex_InitDescriptorSimple
                 (iVar4 + 0x467880,2,0,*(undefined4 *)(&DAT_00326880 + param_2 * 8),
@@ -310,7 +313,7 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
       return;
     }
   }
-  *(undefined4 *)(param_2 * 0xc0 + 0x4678d0) = 0;
+  *(undefined4 *)(&s_UiRes_LoadAll_1 + param_2 * 0xc0) = 0;
   return;
 }
 
@@ -372,7 +375,7 @@ void UiText_DrawString(undefined8 param_1,short *param_2)
   if (bVar1 < 3) {
     iVar6 = ((uint)bVar1 * 2 + (uint)bVar1) * 0x40;
     iVar11 = iVar6 + 0x467830;
-    if (*(int *)(iVar6 + 0x4678d0) != 0) {
+    if (*(int *)(&s_UiRes_LoadAll_1 + iVar6) != 0) {
       Pkt_Init(iVar11,2,2,0);
       Pkt_SubmitToChain(iVar11,(*_s_RaceUiSpriteCursor + -2) - *piVar7);
       Pkt_Flush(iVar11,iVar6 + 0x4678d8);
@@ -397,7 +400,7 @@ void UiText_DrawString(undefined8 param_1,short *param_2)
   else {
     iVar6 = (bVar1 - 3) * 0x340;
     iVar11 = iVar6 + 0x467a70;
-    if (*(int *)(iVar6 + 0x467da0) != 0) {
+    if (*(int *)(&s_UiRes_LoadAll_4 + iVar6) != 0) {
       Pkt_Init(iVar11,2,2,0);
       Pkt_SubmitToChain(iVar11,(*_s_RaceUiSpriteCursor + -2) - *piVar7);
       if (piVar7[9] != 0) {
@@ -599,20 +602,21 @@ void UiRes_UploadFonts(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x001f15f0  size 0x118
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_FreeAll(void)
 
 {
   int iVar1;
-  int iVar2;
-  uint uVar3;
+  uint uVar2;
   
-  uVar3 = 0;
+  uVar2 = 0;
   do {
-    iVar1 = (uVar3 & 0xff) * 0xc0;
-    if (*(int *)(iVar1 + 0x4678d0) != 0) {
-      if (*(int *)(iVar1 + 0x4678d0) != 0) {
+    iVar1 = (uVar2 & 0xff) * 0xc0;
+    if (*(int *)(&s_UiRes_LoadAll_1 + iVar1) != 0) {
+      if (*(int *)(&s_UiRes_LoadAll_1 + iVar1) != 0) {
         Mem_Free();
-        *(undefined4 *)(iVar1 + 0x4678d0) = 0;
+        *(undefined4 *)(&s_UiRes_LoadAll_1 + iVar1) = 0;
       }
       DmaBuf_Free(iVar1 + 0x4678d8);
       if (*(int *)(iVar1 + 0x4678d4) != 0) {
@@ -620,37 +624,39 @@ void UiRes_FreeAll(void)
         *(undefined4 *)(iVar1 + 0x4678d4) = 0;
       }
     }
-    uVar3 = uVar3 + 1;
-  } while ((int)uVar3 < 3);
-  uVar3 = 3;
+    uVar2 = uVar2 + 1;
+  } while ((int)uVar2 < 3);
+  uVar2 = 3;
   do {
-    iVar2 = ((uVar3 & 0xff) - 3) * 0x340;
-    iVar1 = *(int *)(iVar2 + 0x467da0);
-    if ((iVar1 != 0) && (iVar1 != 0)) {
+    iVar1 = ((uVar2 & 0xff) - 3) * 0x340;
+    if ((*(int *)(&s_UiRes_LoadAll_4 + iVar1) != 0) && (*(int *)(&s_UiRes_LoadAll_4 + iVar1) != 0))
+    {
       Mem_Free();
-      *(undefined4 *)(iVar2 + 0x467da0) = 0;
+      *(undefined4 *)(&s_UiRes_LoadAll_4 + iVar1) = 0;
     }
-    uVar3 = uVar3 + 1;
-  } while ((int)uVar3 < 5);
-  if (iRam0036f3fc != 0) {
+    uVar2 = uVar2 + 1;
+  } while ((int)uVar2 < 5);
+  if (_s_UiResVar1 != 0) {
     Mem_Free();
-    iRam0036f3fc = 0;
+    _s_UiResVar1 = 0;
   }
   return;
 }
 
 // 0x001f1710  size 0xb8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void UiRes_LoadAll(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   uint uVar1;
   
   uVar1 = 0;
-  uRam004678d0 = 0;
-  uRam00467990 = 0;
-  uRam00467a50 = 0;
-  uRam00467da0 = 0;
-  uRam004680e0 = 0;
+  _s_UiRes_LoadAll_1 = 0;
+  _s_UiRes_LoadAll_2 = 0;
+  _s_UiRes_LoadAll_3 = 0;
+  _s_UiRes_LoadAll_4 = 0;
+  _s_UiRes_LoadAll_5 = 0;
   do {
     UiRes_LoadTextures(param_1,uVar1 & 0xff,param_2);
     uVar1 = uVar1 + 1;

@@ -30,7 +30,7 @@ void Course_UpdateFlareOcclusion(void)
   puVar7 = &DAT_00317500;
   do {
     iVar5 = ((uint)(byte)puVar7[2] * 0x18 - (uint)(byte)puVar7[2]) * 0x40;
-    if (*(int *)(iVar5 + 0x431684) != 0) {
+    if (*(int *)(&s_Course_Render_2 + iVar5) != 0) {
       Cam_SetupViewport(&g_Views + iVar5,*puVar7,puVar7[1]);
     }
     uVar9 = uVar9 + 1;
@@ -70,7 +70,7 @@ void Course_UpdateFlareOcclusion(void)
               do {
                 iVar6 = ((uint)(byte)puVar7[2] * 0x18 - (uint)(byte)puVar7[2]) * 0x40;
                 puVar10 = &g_Views + iVar6;
-                if (*(int *)(iVar6 + 0x431684) != 0) {
+                if (*(int *)(&s_Course_Render_2 + iVar6) != 0) {
                   if (_s_RaceIsReplayMode == 1) {
                     lVar2 = Vu0_TransformPointPersp(puVar10,iVar6 + 0x4313c0,puVar8 + 8);
                     if (lVar2 != 0) {
@@ -198,8 +198,8 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
       iVar11 = iVar11 + 8;
     } while (uVar10 < uRam004305c4);
   }
-  pcRam0043064c = Course_CaptureReflection;
-  puRam00430650 = &g_CourseScene;
+  _s_CourseScene_Load_1 = Course_CaptureReflection;
+  _s_CourseScene_Load_2 = &g_CourseScene;
   Gfx_RemoveFrameCallback(0x430644);
   uRam00430654 = 0;
   uRam00430658 = 0;
@@ -782,6 +782,7 @@ bool maybe_Game_CheckResetRequest(void)
 }
 
 // 0x001a5b90  size 0xe8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* scene table at 0x3179e0 (0x20 per scene) */
 
 void Game_MainLoop(byte param_1)
@@ -809,7 +810,7 @@ void Game_MainLoop(byte param_1)
       Gfx_SyncAndFlip();
       Pad_Update();
       Wheel_Update();
-      iRam0036f260 = iRam0036f260 + 1;
+      _s_Game_MainLoop_1 = _s_Game_MainLoop_1 + 1;
       uVar3 = SndMgr_GetInstance();
       SndMgr_Update(uVar3);
       Snd_Update();
@@ -1334,6 +1335,8 @@ void Ptcl_EmitExhaust(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
 }
 
 // 0x001a7110  size 0x1ac
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Ptcl_EmitBackfire(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                       long param_5)
 
@@ -1345,10 +1348,10 @@ void Ptcl_EmitBackfire(undefined8 param_1,undefined8 param_2,undefined8 param_3,
   float afStack_8 [2];
   
   afStack_20[0] = DAT_00317e50;
-  afStack_8[0] = fRam0036e828;
+  afStack_8[0] = _s_Ptcl_EmitBackfire_1;
   afStack_20[1] = DAT_00317e54;
   afStack_20[2] = DAT_00317e58;
-  afStack_8[1] = (float)uRam0036e82c;
+  afStack_8[1] = (float)_s_Ptcl_EmitBackfire_2;
   afStack_20[3] = (float)DAT_00317e5c;
   fVar3 = (float)maybe_Rand_Next(0,0x42c80000);
   if (2.1474836e+09 <= fVar3) {
@@ -1530,6 +1533,7 @@ void Asset_Nop_2(void)
 }
 
 // 0x001a7770  size 0x128
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "particle Error!" */
 
 void Ptcl_Update(undefined8 param_1)
@@ -1553,8 +1557,8 @@ void Ptcl_Update(undefined8 param_1)
   if (uVar5 != 0) {
     do {
       iVar1 = iRam004307ac;
-      if (iRam004307a8 < 1) {
-        if (iRam004307a8 == 0) {
+      if (_s_Ptcl_Update_1 < 1) {
+        if (_s_Ptcl_Update_1 == 0) {
           *(undefined4 *)(iVar2 + 0x118) = 0;
           return;
         }
@@ -1595,7 +1599,7 @@ void PtclSys_Draw(int param_1)
     do {
       uVar1 = (uint)(byte)puVar2[2];
       uVar3 = uVar3 + 1;
-      if (((uVar1 != 4) && (uVar1 != 3)) && (*(int *)(uVar1 * 0x5c0 + 0x431684) == 1)) {
+      if (((uVar1 != 4) && (uVar1 != 3)) && (*(int *)(&s_Course_Render_2 + uVar1 * 0x5c0) == 1)) {
         maybe_Pkt_InitLayers(auStack_160,&g_Views + uVar1 * 0x5c0,0x436180,*puVar2,puVar2[1]);
         Obj_Init(&uStack_210);
         uStack_210 = *(undefined2 *)(*(int *)(param_1 + 0x24) + 200);
@@ -1695,6 +1699,8 @@ LAB_001a7c20:
 }
 
 // 0x001a7c80  size 0x130
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PtclSys_ResetBounds(int param_1)
 
 {
@@ -1708,7 +1714,7 @@ void PtclSys_ResetBounds(int param_1)
   *(undefined4 *)(param_1 + 0xa4) = 0xff7fffff;
   *(undefined4 *)(param_1 + 0xa8) = 0xff7fffff;
   *(undefined4 *)(param_1 + 0xac) = 0x3f800000;
-  if (iRam004308d0 != 0) {
+  if (_s_PtclSysVar4 != 0) {
     for (iVar1 = *(int *)(param_1 + 0xc); iVar1 != 0; iVar1 = *(int *)(iVar1 + 4)) {
       if (*(float *)(iVar1 + 0x20) < *(float *)(param_1 + 0x90)) {
         *(float *)(param_1 + 0x90) = *(float *)(iVar1 + 0x20);
@@ -1738,6 +1744,7 @@ void PtclSys_ResetBounds(int param_1)
 /* WARNING: Removing unreachable block (ram,0x001a859c) */
 /* WARNING: Removing unreachable block (ram,0x001a8444) */
 /* WARNING: Removing unreachable block (ram,0x001a8488) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* "particle Error! : inactive particle" */
 
 void PtclSys_Update(undefined8 param_1)
@@ -1789,10 +1796,10 @@ void PtclSys_Update(undefined8 param_1)
     }
   }
   PtclSys_ResetBounds(param_1);
-  if (iRam004308d0 == 0) {
+  if (_s_PtclSysVar4 == 0) {
     *(float *)(iVar4 + 0x88) = *(float *)(iVar4 + 0x88) + 1.0;
-    *(undefined4 *)(iVar4 + 0xb0) = uRam004308c8;
-    *(int *)(iVar4 + 0xb0) = *(int *)(iVar4 + 0xb0) + iRam004308d4 * 0x30;
+    *(undefined4 *)(iVar4 + 0xb0) = _s_PtclSysVar2;
+    *(int *)(iVar4 + 0xb0) = *(int *)(iVar4 + 0xb0) + _s_PtclSysVar5 * 0x30;
     *(undefined4 *)(iVar4 + 0xb4) = 0;
     if (*(int *)(iVar4 + 0xc) != 0) {
       iVar3 = *(int *)(iVar4 + 0xc);
@@ -1968,7 +1975,7 @@ LAB_001a8620:
         iVar3 = iVar10;
       } while (iVar10 != 0);
     }
-    iRam004308d4 = iRam004308d4 + *(int *)(iVar4 + 0xb4);
+    _s_PtclSysVar5 = _s_PtclSysVar5 + *(int *)(iVar4 + 0xb4);
   }
   return;
 }

@@ -213,17 +213,21 @@ void ComposerScene_SetMode(undefined4 param_1)
 }
 
 // 0x002f8330  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Nameentry_Nop_3(void)
 
 {
-  return uRam0036f93c;
+  return _s_Nameentry_Nop_3_1;
 }
 
 // 0x002f8340  size 0x8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 Nameentry_Nop_4(void)
 
 {
-  return uRam0036f938;
+  return _s_Nameentry_Nop_4_1;
 }
 
 // 0x002f8350  size 0x1f0
@@ -560,83 +564,98 @@ undefined4 ComposerInput_SetupDevices(char *param_1)
 }
 
 // 0x002f8a90  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 ComposerInput_GetRepeat(void)
 
 {
-  return *(undefined4 *)(iRam0036f950 + 0x20);
+  return *(undefined4 *)(_s_ComposerInputVar1 + 0x20);
 }
 
 // 0x002f8aa0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 ComposerInput_GetHeld(void)
 
 {
-  return *(undefined4 *)(iRam0036f950 + 0x1c);
+  return *(undefined4 *)(_s_ComposerInputVar1 + 0x1c);
 }
 
 // 0x002f8ab0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 29 callers */
 
 undefined4 ComposerInput_GetPressed(void)
 
 {
-  return *(undefined4 *)(iRam0036f950 + 0x18);
+  return *(undefined4 *)(_s_ComposerInputVar1 + 0x18);
 }
 
 // 0x002f8ac0  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ComposerInput_Lock(void)
 
 {
-  *(undefined4 *)(iRam0036f950 + 0x14) = 1;
+  *(undefined4 *)(_s_ComposerInputVar1 + 0x14) = 1;
   return;
 }
 
 // 0x002f8ad0  size 0xc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ComposerInput_SetMode(undefined4 param_1)
 
 {
-  *(undefined4 *)(iRam0036f950 + 0xc) = param_1;
+  *(undefined4 *)(_s_ComposerInputVar1 + 0xc) = param_1;
   return;
 }
 
 // 0x002f8ae0  size 0x2c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ComposerInput_Free(void)
 
 {
-  if (iRam0036f950 != 0) {
+  if (_s_ComposerInputVar1 != 0) {
     Mem_Free();
-    iRam0036f950 = 0;
+    _s_ComposerInputVar1 = 0;
   }
   return;
 }
 
 // 0x002f8b10  size 0xa4
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ComposerInput_Alloc(undefined8 param_1,undefined4 param_2)
 
 {
   long lVar1;
   
-  if (puRam0036f950 != (undefined1 *)0x0) {
+  if (_s_ComposerInputVar1 != (undefined1 *)0x0) {
     Mem_Free();
-    puRam0036f950 = (undefined1 *)0x0;
+    _s_ComposerInputVar1 = (undefined1 *)0x0;
   }
   lVar1 = Mem_Alloc16(0x24,param_1);
-  puRam0036f950 = (undefined1 *)lVar1;
+  _s_ComposerInputVar1 = (undefined1 *)lVar1;
   if (lVar1 != 0) {
-    *puRam0036f950 = 0;
-    puRam0036f950[1] = 0;
-    *(undefined4 *)(puRam0036f950 + 4) = param_2;
-    *(undefined4 *)(puRam0036f950 + 8) = 0;
-    *(undefined4 *)(puRam0036f950 + 0xc) = 1;
-    *(undefined4 *)(puRam0036f950 + 0x10) = 1;
-    *(undefined4 *)(puRam0036f950 + 0x14) = 0;
-    *(undefined4 *)(puRam0036f950 + 0x18) = 0;
-    *(undefined4 *)(puRam0036f950 + 0x1c) = 0;
-    *(undefined4 *)(puRam0036f950 + 0x20) = 0;
+    *_s_ComposerInputVar1 = 0;
+    _s_ComposerInputVar1[1] = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 4) = param_2;
+    *(undefined4 *)(_s_ComposerInputVar1 + 8) = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0xc) = 1;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x10) = 1;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x14) = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x18) = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x1c) = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x20) = 0;
   }
   return;
 }
 
 // 0x002f8bc0  size 0xf8
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void ComposerInput_Task(void)
 
 {
@@ -645,17 +664,17 @@ void ComposerInput_Task(void)
   undefined8 uVar3;
   long lVar4;
   
-  if (puRam0036f950 != (undefined1 *)0x0) {
-    *(undefined4 *)(puRam0036f950 + 0x18) = 0;
-    *(undefined4 *)(puRam0036f950 + 0x1c) = 0;
-    *(undefined4 *)(puRam0036f950 + 0x20) = 0;
-    if (*(int *)(puRam0036f950 + 0xc) != 0) {
-      if (*(int *)(puRam0036f950 + 0x14) != 0) {
-        *(undefined4 *)(puRam0036f950 + 0x14) = 0;
-        ComposerInput_SetupDevices(puRam0036f950);
+  if (_s_ComposerInputVar1 != (undefined1 *)0x0) {
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x18) = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x1c) = 0;
+    *(undefined4 *)(_s_ComposerInputVar1 + 0x20) = 0;
+    if (*(int *)(_s_ComposerInputVar1 + 0xc) != 0) {
+      if (*(int *)(_s_ComposerInputVar1 + 0x14) != 0) {
+        *(undefined4 *)(_s_ComposerInputVar1 + 0x14) = 0;
+        ComposerInput_SetupDevices(_s_ComposerInputVar1);
       }
-      puVar1 = puRam0036f950;
-      uVar3 = Pad_GetPort(*puRam0036f950,puRam0036f950[1]);
+      puVar1 = _s_ComposerInputVar1;
+      uVar3 = Pad_GetPort(*_s_ComposerInputVar1,_s_ComposerInputVar1[1]);
       iVar2 = (int)uVar3;
       lVar4 = (**(code **)(*(int *)(iVar2 + 4) + 8))(uVar3);
       if ((lVar4 != 0) &&
@@ -1889,6 +1908,8 @@ void maybe_Attract_DrawLogo(int param_1)
 }
 
 // 0x002fa920  size 0x18c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void maybe_Attract_SetupDemoRace(void)
 
 {
@@ -1901,14 +1922,14 @@ void maybe_Attract_SetupDemoRace(void)
   uint uVar7;
   undefined1 auStack_d0 [208];
   
-  cVar2 = *(char *)(uRam0036f970 + 0x36ef10);
+  cVar2 = *(char *)(_s_Attract_SetupDemoRace_1 + 0x36ef10);
   if ((cVar2 == '\a') || (cVar2 == '\x04')) {
     uVar3 = *(undefined1 *)((int)uRam0036ef94 % 7 + 0x36ef18);
   }
   else {
     uVar3 = *(undefined1 *)((int)uRam0036ef94 % 7 + 0x36ef20);
   }
-  uRam0036f970 = uRam0036f970 + 1 & 7;
+  _s_Attract_SetupDemoRace_1 = _s_Attract_SetupDemoRace_1 + 1 & 7;
   iVar6 = 0;
   uVar4 = uRam0036ef94 / 7;
   uVar7 = uRam0036ef94;
@@ -1922,11 +1943,11 @@ void maybe_Attract_SetupDemoRace(void)
   do {
     iVar1 = (int)uVar7 % iVar6;
     uVar7 = uVar7 + 0x19;
-  } while ((long)iRam0036f974 == (long)(&DAT_00318080)[iVar1]);
-  iRam0036f974 = (int)(&DAT_00318080)[iVar1];
+  } while ((long)_s_Attract_SetupDemoRace_2 == (long)(&DAT_00318080)[iVar1]);
+  _s_Attract_SetupDemoRace_2 = (int)(&DAT_00318080)[iVar1];
   CarRec_ResetColors(auStack_d0);
-  iVar6 = CarDb_GetModelEntry(iRam0036f974);
-  CarRec_Build(auStack_d0,(undefined2)iRam0036f974,(short)((int)uVar7 % iVar6),1,0);
+  iVar6 = CarDb_GetModelEntry(_s_Attract_SetupDemoRace_2);
+  CarRec_Build(auStack_d0,_s_Attract_SetupDemoRace_2,(short)((int)uVar7 % iVar6),1,0);
   RaceCtx_SetMode(6);
   RaceSetup_FromQuickRace(0xf,1,cVar2,uVar3,uVar4 & 1,1,auStack_d0,0);
   return;

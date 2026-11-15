@@ -224,14 +224,16 @@ GameState * maybe_GameState_GetFlag(void)
 }
 
 // 0x001783a0  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_RenderHook(void)
 
 {
   undefined4 *puVar1;
   long lVar2;
   
-  if (*(int *)(iRam0036f1b8 + 0xc) != 0) {
-    puVar1 = *(undefined4 **)(*(int *)(iRam0036f1b8 + 0xc) + 0x14);
+  if (*(int *)(_s_Course_RenderHook_1 + 0xc) != 0) {
+    puVar1 = *(undefined4 **)(*(int *)(_s_Course_RenderHook_1 + 0xc) + 0x14);
     lVar2 = ResPool_Get(0);
     if (lVar2 != 0) {
       TexSlot_Set(5,9);
@@ -512,6 +514,8 @@ void Course_DrawLayer(int param_1,uint param_2)
 }
 
 // 0x00178a50  size 0x19c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_SpawnAmbient(void)
 
 {
@@ -520,21 +524,21 @@ void Course_SpawnAmbient(void)
   undefined8 uVar3;
   float fVar4;
   
-  if (uRam0036f1c8 == 0) {
+  if (_s_Course_SpawnAmbient_1 == 0) {
     fVar4 = (float)maybe_Rand_Next(0x41000000,0x447a0000);
     if (fVar4 < 2.1474836e+09) {
-      uRam0036f1c8 = (uint)fVar4;
+      _s_Course_SpawnAmbient_1 = (uint)fVar4;
     }
     else {
-      uRam0036f1c8 = (int)(fVar4 - 2.1474836e+09) | 0x80000000;
+      _s_Course_SpawnAmbient_1 = (int)(fVar4 - 2.1474836e+09) | 0x80000000;
     }
   }
   lVar2 = RaceScene_IsPaused();
   if ((lVar2 == 0) && (iRam0046a59c == 0)) {
-    uRam0036f1c8 = uRam0036f1c8 - 1;
+    _s_Course_SpawnAmbient_1 = _s_Course_SpawnAmbient_1 - 1;
   }
-  if (uRam0036f1c8 < 8) {
-    if (uRam0036f1c8 == 6) {
+  if (_s_Course_SpawnAmbient_1 < 8) {
+    if (_s_Course_SpawnAmbient_1 == 6) {
       lVar2 = Loading_IsActive();
       uVar3 = 0x11;
       if (lVar2 == 0) {
@@ -542,7 +546,7 @@ void Course_SpawnAmbient(void)
       }
       Se_PlayMenuVol(uVar3,0x7f);
     }
-    uVar1 = uRam0036f1c8 * 0x70;
+    uVar1 = _s_Course_SpawnAmbient_1 * 0x70;
     if ((int)uVar1 < 0) {
       fVar4 = (float)(uVar1 >> 1) + (float)(uVar1 >> 1);
     }
@@ -645,11 +649,11 @@ void Course_UpdateEnvironment(void)
   iVar2 = iRam004301a8;
   iVar1 = iRam004301a0;
   if (cRam004301c0 != '\0') {
-    if (6.2831855 < fRam0036e768) {
-      fRam0036e768 = fRam0036e768 - 6.2831855;
+    if (6.2831855 < _s_Course_UpdateEnvironment_1) {
+      _s_Course_UpdateEnvironment_1 = _s_Course_UpdateEnvironment_1 - 6.2831855;
     }
-    if (fRam0036e768 < 0.0) {
-      fRam0036e768 = fRam0036e768 + 6.2831855;
+    if (_s_Course_UpdateEnvironment_1 < 0.0) {
+      _s_Course_UpdateEnvironment_1 = _s_Course_UpdateEnvironment_1 + 6.2831855;
     }
     uStack_180 = DAT_0030b870;
     uStack_17c = DAT_0030b874;
@@ -678,18 +682,19 @@ void Course_UpdateEnvironment(void)
         sceVu0OuterProduct(afStack_540,&uStack_530,afStack_540);
         sceVu0Normalize(afStack_540,afStack_540);
         lVar3 = RaceScene_IsPaused();
-        if (((lVar3 == 0) && (iRam0046a59c == 0)) && (uRam004301c4 = 0xc, cRam004301c0 == '\x01')) {
+        if (((lVar3 == 0) && (iRam0046a59c == 0)) &&
+           (_s_Course_UpdateEnvironment_2 = 0xc, cRam004301c0 == '\x01')) {
           fVar13 = (float)maybe_Rand_Next(0x3f800000,0x41400000);
           if (fVar13 < 2.1474836e+09) {
-            uRam004301c4 = (uint)fVar13;
+            _s_Course_UpdateEnvironment_2 = (uint)fVar13;
           }
           else {
-            uRam004301c4 = (int)(fVar13 - 2.1474836e+09) | 0x80000000;
+            _s_Course_UpdateEnvironment_2 = (int)(fVar13 - 2.1474836e+09) | 0x80000000;
           }
         }
         uVar7 = 0;
         iVar12 = iVar2;
-        if (uRam004301c4 != 0) {
+        if (_s_Course_UpdateEnvironment_2 != 0) {
           iVar8 = 0x4301c0;
           iVar6 = iVar1 + iVar2 * 0x30;
           do {
@@ -708,16 +713,16 @@ void Course_UpdateEnvironment(void)
               fStack_55c = fStack_51c - 1.3;
               fStack_550 = fStack_560;
               fStack_548 = fStack_558;
-              fVar13 = (float)cosf(fRam0036e768);
+              fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
               fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               fStack_550 = (fStack_550 + 0.0) - fVar13 * fVar14;
-              fVar13 = (float)sinf(fRam0036e768);
+              fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
               fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               fStack_548 = (fStack_548 + 0.0) - fVar13 * fVar14;
-              fVar13 = (float)cosf(fRam0036e768);
+              fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
               fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               fStack_560 = fVar13 * fVar14 + fStack_560 + 0.0;
-              fVar13 = (float)sinf(fRam0036e768);
+              fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
               fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
               uStack_544 = 0x3c23d70a;
               uStack_554 = 0x3c23d70a;
@@ -744,7 +749,7 @@ void Course_UpdateEnvironment(void)
             iVar12 = iVar12 + 1;
             iVar6 = iVar6 + 0x30;
             iVar8 = iVar8 + 0x20;
-          } while (uVar7 < uRam004301c4);
+          } while (uVar7 < _s_Course_UpdateEnvironment_2);
         }
         iRam004301a8 = iRam004301a8 + (iVar12 - iVar2);
         maybe_Pkt_InitLayers(auStack_460,&g_Views,0x436180,0,1);
@@ -788,13 +793,14 @@ void Course_UpdateEnvironment(void)
           sceVu0OuterProduct(afStack_4a0,&uStack_490,afStack_4a0);
           sceVu0Normalize(afStack_4a0,afStack_4a0);
           lVar3 = RaceScene_IsPaused();
-          if (((lVar3 == 0) && (iRam0046a59c == 0)) && (uRam004301c4 = 6, cRam004301c0 == '\x01')) {
+          if (((lVar3 == 0) && (iRam0046a59c == 0)) &&
+             (_s_Course_UpdateEnvironment_2 = 6, cRam004301c0 == '\x01')) {
             fVar13 = (float)maybe_Rand_Next(0x3f800000,0x40c00000);
             if (fVar13 < 2.1474836e+09) {
-              uRam004301c4 = (uint)fVar13;
+              _s_Course_UpdateEnvironment_2 = (uint)fVar13;
             }
             else {
-              uRam004301c4 = (int)(fVar13 - 2.1474836e+09) | 0x80000000;
+              _s_Course_UpdateEnvironment_2 = (int)(fVar13 - 2.1474836e+09) | 0x80000000;
             }
           }
           uVar7 = 0;
@@ -802,7 +808,7 @@ void Course_UpdateEnvironment(void)
           if (uStack_5c0 != 0) {
             iVar8 = 6;
           }
-          if (uRam004301c4 != 0) {
+          if (_s_Course_UpdateEnvironment_2 != 0) {
             do {
               iVar4 = (uVar7 + iVar8) * 0x20;
               iVar11 = iVar4 + 0x4301d0;
@@ -820,16 +826,16 @@ void Course_UpdateEnvironment(void)
                 fStack_4bc = fStack_47c - 1.3;
                 fStack_4b0 = fStack_4c0;
                 fStack_4a8 = fStack_4b8;
-                fVar13 = (float)cosf(fRam0036e768);
+                fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
                 fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 fStack_4b0 = (fStack_4b0 + 0.0) - fVar13 * fVar14;
-                fVar13 = (float)sinf(fRam0036e768);
+                fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
                 fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 fStack_4a8 = (fStack_4a8 + 0.0) - fVar13 * fVar14;
-                fVar13 = (float)cosf(fRam0036e768);
+                fVar13 = (float)cosf(_s_Course_UpdateEnvironment_1);
                 fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 fStack_4c0 = fVar13 * fVar14 + fStack_4c0 + 0.0;
-                fVar13 = (float)sinf(fRam0036e768);
+                fVar13 = (float)sinf(_s_Course_UpdateEnvironment_1);
                 fVar14 = (float)maybe_Rand_Next(0x3f000000,0x3fc00000);
                 uStack_4a4 = 0x3c23d70a;
                 uStack_4b4 = 0x3c23d70a;
@@ -855,7 +861,7 @@ void Course_UpdateEnvironment(void)
               uVar7 = uVar7 + 1;
               iVar12 = iVar12 + 1;
               iVar6 = iVar6 + 0x30;
-            } while (uVar7 < uRam004301c4);
+            } while (uVar7 < _s_Course_UpdateEnvironment_2);
           }
           puStack_5e0 = puStack_5e0 + 0x10;
           uStack_5c0 = uStack_5c0 + 1;
@@ -2150,7 +2156,7 @@ void Car_DrawAllEffects(void)
   iVar5 = 0x30b810;
   do {
     iVar2 = ((uint)*(byte *)(iVar5 + 2) * 0x18 - (uint)*(byte *)(iVar5 + 2)) * 0x40;
-    if (*(int *)(iVar2 + 0x431684) != 0) {
+    if (*(int *)(&s_Course_Render_2 + iVar2) != 0) {
       sceVu0SubVector(auStack_10,iVar2 + 0x431110,&g_Views + iVar2);
       sceVu0Normalize(iVar2 + 0x431140,auStack_10);
       uVar6 = 0;

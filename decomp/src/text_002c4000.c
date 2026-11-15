@@ -1949,6 +1949,8 @@ LAB_002c79c8:
 }
 
 // 0x002c7c60  size 0x188
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void RaceUi_TaskCountdown(int param_1)
 
 {
@@ -1964,10 +1966,10 @@ void RaceUi_TaskCountdown(int param_1)
   puVar6 = auStack_10 + 2;
   puVar5 = auStack_10;
   iVar4 = 0;
-  auStack_10[2] = uRam0036ee88;
-  auStack_10[3] = uRam0036ee8c;
-  auStack_10[0] = uRam0036ee90;
-  auStack_10[1] = uRam0036ee94;
+  auStack_10[2] = _s_RaceUi_TaskCountdown_1;
+  auStack_10[3] = _s_RaceUi_TaskCountdown_2;
+  auStack_10[0] = _s_RaceUi_TaskCountdown_3;
+  auStack_10[1] = _s_RaceUi_TaskCountdown_4;
   iVar7 = param_1;
   do {
     bVar2 = (*(uint *)(iVar7 + 8) & 0x80) != 0;

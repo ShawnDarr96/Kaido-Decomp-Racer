@@ -820,6 +820,8 @@ void PhysWorld_SolveIslands(undefined8 param_1)
 }
 
 // 0x00161d20  size 0x57c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void PhysWorld_SolveIsland(int param_1,uint *param_2,uint param_3)
 
 {
@@ -1001,15 +1003,15 @@ LAB_00161e50:
           if (puVar12 == (uint *)0x0) {
             Vec3_Scale(0xc11ccccd,auStack_40,puVar1 + 8);
             fVar15 = (float)PhysBody_PointVelocity
-                                      (uRam0042f3c8,*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8,
-                                       auStack_40);
+                                      (_s_PhysWorld_SolveIsland_1,*(undefined4 *)(param_1 + 4),
+                                       puVar1,puVar1 + 8,auStack_40);
           }
         }
         else {
           uVar5 = PhysBody_GetUserBlock(*(undefined4 *)(param_1 + 4));
           fVar15 = (float)PhysBody_PointVelocity
-                                    (uRam0042f3c8,*(undefined4 *)(param_1 + 4),puVar1,puVar1 + 8,
-                                     uVar5);
+                                    (_s_PhysWorld_SolveIsland_1,*(undefined4 *)(param_1 + 4),puVar1,
+                                     puVar1 + 8,uVar5);
         }
         if (fVar15 != 0.0) {
           Vec3_Scale(fVar15,&uStack_80,puVar1 + 8);

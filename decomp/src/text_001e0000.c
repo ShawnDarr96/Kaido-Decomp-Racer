@@ -1450,7 +1450,7 @@ void RaceCam_UpdateReplay(int *param_1)
     param_1[6] = param_1[6] | 1;
     param_1[6] = param_1[6] | 8;
   }
-  if ((cRam0036f23c == '\x02') && (cRam0036f234 == '\x02')) {
+  if ((s_RaceCam_UpdateReplay_1 == '\x02') && (cRam0036f234 == '\x02')) {
     RaceScene_SetFlagB4();
   }
   lVar16 = RaceScene_IsFlag8000();
@@ -1484,9 +1484,10 @@ void RaceCam_UpdateReplay(int *param_1)
           }
         }
         else {
-          CourseStream_RequestTextures(fRam00431764,0,puVar1 + 0x420,puVar2 + 0x420);
+          CourseStream_RequestTextures(_s_RaceCam_UpdateReplay_3,0,puVar1 + 0x420,puVar2 + 0x420);
           CourseStream_RequestBlock
-                    (0x42960000,fRam00431764 + 50.0,0x42960000,fRam00431d24 + 50.0,0,1);
+                    (0x42960000,_s_RaceCam_UpdateReplay_3 + 50.0,0x42960000,
+                     _s_RaceCam_UpdateReplay_4 + 50.0,0,1);
         }
         iStack_a40 = 0;
         piStack_aa0 = param_1;
@@ -2023,8 +2024,8 @@ LAB_001e311c:
               uStack_654 = 0x80;
               auStack_920[0] = auStack_920[0] | 2;
               uStack_658 = 0x70;
-              fStack_61c = (float)uRam004322b4;
-              fStack_620 = (float)uRam004322b0;
+              fStack_61c = (float)_s_RaceCam_UpdateReplay_6;
+              fStack_620 = (float)_s_RaceCam_UpdateReplay_5;
               Pkt_AddPrimitives(auStack_610,auStack_920,1);
               Pkt_Submit(auStack_610,0);
             }
@@ -2087,7 +2088,7 @@ LAB_001e311c:
         else {
           lVar16 = RaceScene_IsFlag10();
           if (lVar16 != 0) {
-            iRam0036f3b4 = iRam0036f3b4 + 1;
+            _s_RaceCam_UpdateReplay_2 = _s_RaceCam_UpdateReplay_2 + 1;
             Weather_Draw(param_1[3]);
           }
         }

@@ -284,8 +284,8 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar8 = iVar8 + 8;
     } while (uVar9 < uRam004305cc);
   }
-  iRam004305e4 = 0;
-  uRam004305fc = (uint)*(ushort *)(iVar10 + 0x1a);
+  _s_Course_Load_1 = 0;
+  _s_Course_Load_5 = (uint)*(ushort *)(iVar10 + 0x1a);
   iVar8 = *(int *)(param_4 + 4);
   if (iVar8 < 0) {
     uVar9 = 0;
@@ -297,7 +297,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     *(undefined4 *)(_g_CourseBufA + 0x14) = *(undefined4 *)(param_4 + 4);
     uRam00430600 = 1;
     BlockPool_AllocD(_g_CourseBufA,1,param_1,uVar5);
-    uVar2 = uRam004305fc;
+    uVar2 = _s_Course_Load_5;
     iVar8 = _g_CourseBufA;
     *(undefined4 *)(_g_CourseBufA + 0x18) = 1;
     *(undefined4 *)(iVar8 + 0x1c) = 0;
@@ -306,17 +306,17 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     uVar3 = Mem_Alloc16(0x80,param_1);
     *(undefined4 *)(iVar8 + 0x34) = uVar3;
   }
-  iRam004305ec = uRam004305fc + uVar9;
-  iRam004305f0 = iRam004305ec + *(ushort *)(iVar10 + 0x22) * uVar12;
-  iRam004305e8 = iRam004305f0 + (uint)*(ushort *)(iVar10 + 0x26);
-  iRam004305f4 = iRam004305e8;
-  iRam004305f8 = iRam004305e8;
+  _s_Course_Load_3 = _s_Course_Load_5 + uVar9;
+  iRam004305f0 = _s_Course_Load_3 + *(ushort *)(iVar10 + 0x22) * uVar12;
+  _s_Course_Load_2 = iRam004305f0 + (uint)*(ushort *)(iVar10 + 0x26);
+  iRam004305f4 = _s_Course_Load_2;
+  _s_Course_Load_4 = _s_Course_Load_2;
   uRam00430604 = param_5;
   uRam00430608 = param_6;
   BlockPool_AllocC(_g_CourseStream,1,param_1,uVar4);
   BlockPool_AllocB(_g_CourseBufB,uVar12,param_1,uStack_4);
   BlockPool_AllocA(_g_CourseBufC,uVar11,param_1,uStack_8);
-  iVar7 = iRam004305e4;
+  iVar7 = _s_Course_Load_1;
   iVar8 = _g_CourseStream;
   uVar1 = *(ushort *)(iVar10 + 0x18);
   *(uint *)(_g_CourseStream + 0x14) = (uint)uVar1;
@@ -346,7 +346,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
     uVar3 = Mem_Alloc16((uint)uVar1 << 7,param_1);
     *(undefined4 *)(iVar8 + 0x50) = uVar3;
   }
-  iVar7 = iRam004305f8;
+  iVar7 = _s_Course_Load_4;
   iVar8 = _g_CourseStream;
   uVar1 = *(ushort *)(iVar10 + 0x2c);
   *(uint *)(_g_CourseStream + 0x54) = (uint)uVar1;
@@ -365,7 +365,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
   if (uVar12 != 0) {
     iVar8 = 0;
     do {
-      iVar7 = iRam004305e8;
+      iVar7 = _s_Course_Load_2;
       uVar1 = *(ushort *)(iVar10 + 0x1c);
       iVar6 = _g_CourseBufB + iVar8;
       *(uint *)(iVar6 + 0x14) = (uint)uVar1;
@@ -381,7 +381,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
         *(undefined4 *)(iVar6 + 0x30) = uVar3;
       }
       uVar1 = *(ushort *)(iVar10 + 0x20);
-      iVar6 = iRam004305ec + *(ushort *)(iVar10 + 0x22) * uVar11;
+      iVar6 = _s_Course_Load_3 + *(ushort *)(iVar10 + 0x22) * uVar11;
       iVar7 = _g_CourseBufB + iVar8;
       *(uint *)(iVar7 + 0x34) = (uint)uVar1;
       *(undefined4 *)(iVar7 + 0x38) = 0;
@@ -414,7 +414,7 @@ int Course_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4,
       iVar8 = iVar8 + 0x74;
     } while (uVar11 < uVar12);
   }
-  return iRam004305ec;
+  return _s_Course_Load_3;
 }
 
 // 0x001a1260  size 0x5c
@@ -1286,6 +1286,8 @@ void Course_CullBlocks(int param_1,int param_2,ushort *param_3,long param_4,long
 }
 
 // 0x001a23c0  size 0x1bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_CaptureReflection(void)
 
 {
@@ -1318,9 +1320,9 @@ void Course_CaptureReflection(void)
       uVar6 = uVar6 + 1;
       iVar3 = iVar3 + 0x10;
     } while (uVar6 < 0x10);
-    if (iRam0036f298 != 0) {
+    if (_s_CourseVar1 != 0) {
       iRam00430654 = 0;
-      iRam0036f298 = 0;
+      _s_CourseVar1 = 0;
       Gfx_StoreImage(iRam00430660,0x430700);
     }
     iVar1 = 0;
@@ -1339,12 +1341,14 @@ void Course_CaptureReflection(void)
       uVar6 = uVar6 + 1;
       iVar3 = iVar3 + 0x10;
     } while (uVar6 < 0x10);
-    fRam00430664 = ((float)iVar1 / 16.0) / 16.0;
+    _s_CourseVar6 = ((float)iVar1 / 16.0) / 16.0;
   }
   return;
 }
 
 // 0x001a2580  size 0x328
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Course_DrawReflectionPlane(void)
 
 {
@@ -1359,9 +1363,9 @@ void Course_DrawReflectionPlane(void)
   uint uVar9;
   uint uVar10;
   undefined1 auStack_40 [20];
-  undefined4 uStack_2c;
+  undefined *puStack_2c;
   
-  uVar3 = uRam0043116c;
+  uVar3 = _s_Course_DrawReflectionPlane_9;
   uVar2 = uRam0036f2bc;
   if (iRam00430654 != 0) {
     iVar5 = 0x10;
@@ -1369,7 +1373,7 @@ void Course_DrawReflectionPlane(void)
     uVar10 = uRam00431170 >> 6;
     uVar8 = iRam00430658 - 8;
     uVar7 = iRam0043065c - 8;
-    uVar9 = iRam00431168 << 5;
+    uVar9 = _s_Course_DrawReflectionPlane_8 << 5;
     iVar6 = iVar5;
     if ((int)uVar8 < -0x10) {
       bVar1 = false;
@@ -1405,7 +1409,7 @@ void Course_DrawReflectionPlane(void)
     }
     if (bVar1) {
       Pkt_Init(auStack_40,1,2,0);
-      uStack_2c = 0x42d0c0;
+      puStack_2c = &s_Camera_SetupDefault_4;
       Pkt_SubmitToChain(auStack_40,0);
       puVar4 = (undefined8 *)Pkt_AllocDmaRef(auStack_40,6,0x13000000,0x50000006);
       *puVar4 = 0x1000000000008005;
@@ -1423,15 +1427,15 @@ void Course_DrawReflectionPlane(void)
       puVar4[10] = 2;
       puVar4[0xb] = 0x53;
       Pkt_Submit(auStack_40,0);
-      uRam00430700 = uVar2;
-      uRam00430704 = 1;
-      uRam00430708 = uVar3;
-      uRam0043070c = 0;
-      uRam00430710 = 0;
-      iRam00430714 = iVar6;
-      iRam00430718 = iVar5;
+      _s_Course_DrawReflectionPlane_1 = uVar2;
+      _s_Course_DrawReflectionPlane_2 = 1;
+      _s_Course_DrawReflectionPlane_3 = uVar3;
+      _s_Course_DrawReflectionPlane_4 = 0;
+      _s_Course_DrawReflectionPlane_5 = 0;
+      _s_Course_DrawReflectionPlane_6 = iVar6;
+      _s_Course_DrawReflectionPlane_7 = iVar5;
     }
-    uRam0036f298 = (uint)bVar1;
+    _s_CourseVar1 = (uint)bVar1;
   }
   return;
 }
@@ -1452,7 +1456,7 @@ void Course_BindTextureSlots(undefined8 param_1,long param_2)
     bVar1 = *(byte *)(iVar4 + 8);
     iVar2 = ((uint)bVar1 * 0x18 - (uint)bVar1) * 0x40;
     uVar3 = 0;
-    if (*(int *)(iVar2 + 0x431684) != 0) {
+    if (*(int *)(&s_Course_Render_2 + iVar2) != 0) {
       if ((iRam00430600 != 0) && (param_2 != 0)) {
         *(undefined4 *)(iVar2 + 0x431154) = 0x3d4ccccd;
         *(undefined4 *)(iVar2 + 0x431158) = 0x447a0000;
@@ -1604,16 +1608,16 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
       Obj_SetVisible(auStack_390,1,5,uVar4);
       uVar1 = *(ushort *)(iVar12 + 10);
       uVar2 = *(ushort *)(iVar12 + 8);
-      fStack_b0 = *(float *)(iVar9 + 0x431190);
-      fStack_ac = *(float *)(iVar9 + 0x431194);
+      fStack_b0 = *(float *)(&s_TitleCamVar1 + iVar9);
+      fStack_ac = *(float *)(&s_TitleCamVar2 + iVar9);
     }
     else {
       iVar12 = TexSlot_GetEntry(5,uVar3);
       Obj_SetVisible(auStack_390,1,5,uVar3);
       uVar1 = *(ushort *)(iVar12 + 10);
       uVar2 = *(ushort *)(iVar12 + 8);
-      fStack_ac = *(float *)(iVar9 + 0x431194) * 7.0;
-      fStack_b0 = *(float *)(iVar9 + 0x431190) * 7.0;
+      fStack_ac = *(float *)(&s_TitleCamVar2 + iVar9) * 7.0;
+      fStack_b0 = *(float *)(&s_TitleCamVar1 + iVar9) * 7.0;
     }
     fStack_bc = (float)(uVar1 >> 1);
     fStack_c0 = (float)(uVar2 >> 1);
@@ -1626,7 +1630,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
     uStack_c4 = 0x80;
     uStack_e8 = 0x50000;
     Pkt_AddPrimitives(auStack_40,auStack_390);
-    if ((param_2 == 0) && (fRam00430664 != 0.0)) {
+    if ((param_2 == 0) && (_s_CourseVar6 != 0.0)) {
       uVar10 = 0;
       do {
         Obj_Reset(auStack_390,4,0xffffffffffffffff);
@@ -1635,8 +1639,8 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
         Obj_SetVisible(auStack_390,1,5,uVar5);
         fStack_c0 = 0.0;
         fStack_bc = 0.0;
-        fStack_ac = fRam00430664 * 2.0 * *(float *)(iVar9 + 0x431194);
-        fStack_b0 = fRam00430664 * 2.0 * *(float *)(iVar9 + 0x431190);
+        fStack_ac = _s_CourseVar6 * 2.0 * *(float *)(&s_TitleCamVar2 + iVar9);
+        fStack_b0 = _s_CourseVar6 * 2.0 * *(float *)(&s_TitleCamVar1 + iVar9);
         auStack_390[0] = auStack_390[0] | 4;
         fStack_a0 = fVar14;
         fStack_9c = fVar15;
@@ -1672,8 +1676,8 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
         fStack_bc = (float)*(ushort *)(iVar8 + 10) * 0.5;
         auStack_390[0] = auStack_390[0] | 4;
         fStack_c0 = (float)(*(ushort *)(iVar8 + 8) >> 1);
-        fStack_ac = *pfVar11 * *(float *)(iVar9 + 0x431194);
-        fStack_b0 = *pfVar11 * *(float *)(iVar9 + 0x431190);
+        fStack_ac = *pfVar11 * *(float *)(&s_TitleCamVar2 + iVar9);
+        fStack_b0 = *pfVar11 * *(float *)(&s_TitleCamVar1 + iVar9);
         Angle_Wrap(0,auStack_390);
         uStack_e8 = 0x31001;
         uStack_d0 = ((uint)pfVar11[3] & 0xff0000) >> 0x10;
@@ -1940,14 +1944,14 @@ void Course_Render(int param_1)
   undefined4 uStack_54;
   undefined4 uStack_50;
   undefined1 auStack_40 [20];
-  undefined4 uStack_2c;
+  undefined *puStack_2c;
   
   lVar11 = 0;
   CourseStream_Update(8);
   Course_UpdateFlareOcclusion();
   CourseStream_Update(0x10);
   Pkt_Init(auStack_40,1,2,0);
-  uStack_2c = 0x42d0c0;
+  puStack_2c = &s_Camera_SetupDefault_4;
   if (iRam0043067c == 0) {
     Pkt_SubmitToChain(auStack_40,0);
     Pkt_Flush(auStack_40,_g_CourseStream + 0x20);
@@ -1960,7 +1964,7 @@ void Course_Render(int param_1)
   iVar9 = piVar2[2];
   while (iVar9 != 0) {
     uVar1 = *(undefined1 *)
-             ((int)piVar2 + (iRam00430670 % (piVar2[1] * piVar2[2])) / piVar2[1] + 0x10);
+             ((int)piVar2 + (_s_Course_Render_1 % (piVar2[1] * piVar2[2])) / piVar2[1] + 0x10);
     if (*piVar2 == 0) {
       uVar6 = Tex_GetEntry(uVar4,uVar1);
       iVar9 = *(int *)(_g_CourseStream + 0x30) + piVar2[3] * 0x80;
@@ -1975,12 +1979,12 @@ void Course_Render(int param_1)
     iVar9 = piVar2[10];
     piVar2 = piVar2 + 8;
   }
-  iRam00430670 = iRam00430670 + param_1;
+  _s_Course_Render_1 = _s_Course_Render_1 + param_1;
   TexSlot_Set(0,*(undefined4 *)(_g_CourseStream + 0x18),*(undefined4 *)(_g_CourseStream + 0x30));
   TexSlot_Set(4,*(undefined4 *)(_g_CourseStream + 0x38),*(undefined4 *)(_g_CourseStream + 0x50));
   lVar7 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),3,0);
   lVar8 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),4,0);
-  if ((lVar7 != 0) && (iRam00431684 != 0)) {
+  if ((lVar7 != 0) && (_s_Course_Render_2 != 0)) {
     uStack_5c = 5;
     uStack_50 = 1;
     uStack_60 = 0;
@@ -1988,7 +1992,7 @@ void Course_Render(int param_1)
     uStack_54 = 0;
     Course_DrawView(&uStack_60,lVar7);
   }
-  if ((lVar7 != 0) && (iRam00431c44 != 0)) {
+  if ((lVar7 != 0) && (_s_Course_Render_3 != 0)) {
     uStack_5c = 5;
     uStack_58 = 1;
     uStack_50 = 2;
@@ -1996,7 +2000,7 @@ void Course_Render(int param_1)
     uStack_54 = 0;
     Course_DrawView(&uStack_60,lVar7);
   }
-  if ((lVar7 != 0) && (iRam00432204 != 0)) {
+  if ((lVar7 != 0) && (_s_Course_Render_4 != 0)) {
     uStack_5c = 5;
     uStack_58 = 2;
     uStack_60 = 1;
@@ -2004,7 +2008,7 @@ void Course_Render(int param_1)
     uStack_54 = 0;
     Course_DrawView(&uStack_60,lVar7);
   }
-  if ((lVar8 != 0) && (iRam00432d84 != 0)) {
+  if ((lVar8 != 0) && (_s_Course_Render_6 != 0)) {
     uStack_5c = 6;
     uStack_58 = 4;
     uStack_50 = 6;
@@ -2012,11 +2016,11 @@ void Course_Render(int param_1)
     uStack_54 = 0;
     Course_DrawView(&uStack_60,lVar8,1);
   }
-  if (iRam004327c4 != 0) {
+  if (_s_Course_Render_5 != 0) {
     View_DrawFadeSprite(0,1);
   }
   lVar7 = Gut_PackGetEntry(*(undefined4 *)(_g_CourseStream + 0xc),6,0);
-  if ((lVar7 != 0) && (iRam00431684 != 0)) {
+  if ((lVar7 != 0) && (_s_Course_Render_2 != 0)) {
     uStack_7c = 7;
     uStack_70 = 1;
     uStack_80 = 0;
@@ -2024,7 +2028,7 @@ void Course_Render(int param_1)
     uStack_74 = 0;
     Course_DrawView(&uStack_80,lVar7,0);
   }
-  if ((lVar7 != 0) && (iRam00431c44 != 0)) {
+  if ((lVar7 != 0) && (_s_Course_Render_3 != 0)) {
     uStack_7c = 7;
     uStack_78 = 1;
     uStack_80 = 0;
@@ -2032,7 +2036,7 @@ void Course_Render(int param_1)
     uStack_74 = 0;
     Course_DrawView(&uStack_80,lVar7,0);
   }
-  if ((lVar7 != 0) && (iRam00432204 != 0)) {
+  if ((lVar7 != 0) && (_s_Course_Render_4 != 0)) {
     uStack_80 = 1;
     uStack_7c = 7;
     uStack_78 = 2;
@@ -2040,11 +2044,11 @@ void Course_Render(int param_1)
     uStack_74 = 0;
     Course_DrawView(&uStack_80,lVar7,0);
   }
-  if (iRam004327c4 == 0) {
-    if (iRam00431c44 != 0) {
+  if (_s_Course_Render_5 == 0) {
+    if (_s_Course_Render_3 != 0) {
       View_DrawFadeSprite(1,1);
     }
-    if (iRam00432204 != 0) {
+    if (_s_Course_Render_4 != 0) {
       View_DrawFadeSprite(2,1);
     }
   }
@@ -2061,7 +2065,7 @@ void Course_Render(int param_1)
     }
     uVar10 = uVar10 + 1;
   }
-  if (iRam004327c4 != 0) {
+  if (_s_Course_Render_5 != 0) {
     DmaChain_Kick(1,0,4);
   }
   uVar10 = 0;
@@ -2070,7 +2074,7 @@ void Course_Render(int param_1)
     if (*(int *)piVar2[1] != 0) {
       TexSlot_Set(1,*(undefined4 *)(iVar9 + 0x18),*(undefined4 *)(iVar9 + 0x30));
       TexSlot_Set(2,*(undefined4 *)(*piVar2 + 0x38),*(undefined4 *)(*piVar2 + 0x50));
-      if (iRam004327c4 != 0) {
+      if (_s_Course_Render_5 != 0) {
         uStack_ac = 2;
         uStack_98 = 1;
         uStack_a8 = 3;
@@ -2099,7 +2103,7 @@ void Course_Render(int param_1)
   if (iRam00430674 != 0) {
     Course_BindTextureSlots(1,lVar11);
   }
-  if ((-1 < *piRam004305b8) && (iRam004327c4 != 0)) {
+  if ((-1 < *piRam004305b8) && (_s_Course_Render_5 != 0)) {
     uStack_cc = 2;
     uStack_d0 = 0;
     uStack_c8 = 3;
@@ -2107,7 +2111,7 @@ void Course_Render(int param_1)
     uStack_c0 = 5;
     Course_DrawSkyAndSun(&uStack_d0,1);
   }
-  if (iRam004327c4 != 0) {
+  if (_s_Course_Render_5 != 0) {
     DmaChain_Kick(1,0,5);
   }
   uVar10 = 0;
@@ -2116,7 +2120,7 @@ void Course_Render(int param_1)
     if (*(int *)piVar2[1] != 0) {
       TexSlot_Set(1,*(undefined4 *)(iVar9 + 0x18),*(undefined4 *)(iVar9 + 0x30));
       TexSlot_Set(2,*(undefined4 *)(*piVar2 + 0x38),*(undefined4 *)(*piVar2 + 0x50));
-      if (iRam00431684 != 0) {
+      if (_s_Course_Render_2 != 0) {
         uStack_100 = 0;
         uStack_fc = 0;
         uStack_f8 = 0;
@@ -2128,7 +2132,7 @@ void Course_Render(int param_1)
         uStack_e0 = 0;
         Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && iRam00430668 != 0,0);
       }
-      if (iRam00431c44 != 0) {
+      if (_s_Course_Render_3 != 0) {
         uStack_f0 = 2;
         uStack_f8 = 1;
         uStack_e4 = 1;
@@ -2140,7 +2144,7 @@ void Course_Render(int param_1)
         uStack_ec = (uint)bRam004306c0;
         Course_DrawLensFlare(piVar2,&uStack_100,lVar11 != 0 && iRam00430668 != 0,0);
       }
-      if (iRam00432204 != 0) {
+      if (_s_Course_Render_4 != 0) {
         uStack_f8 = 2;
         uStack_f0 = 3;
         uStack_100 = 1;
@@ -2155,7 +2159,7 @@ void Course_Render(int param_1)
     }
     uVar10 = uVar10 + 1;
   }
-  if (iRam004327c4 != 0) {
+  if (_s_Course_Render_5 != 0) {
     View_DrawFullscreen(0,3,0xffffffff80808080);
   }
   uVar10 = 0;
@@ -2168,7 +2172,7 @@ void Course_Render(int param_1)
       TexSlot_Set(1,*(undefined4 *)(*piVar2 + 0x18),*(undefined4 *)(*piVar2 + 0x30));
       TexSlot_Set(2,*(undefined4 *)(*piVar2 + 0x38),*(undefined4 *)(*piVar2 + 0x50));
       TexSlot_Set(3,*(undefined4 *)(*piVar2 + 0x58),*(undefined4 *)(*piVar2 + 0x70));
-      if (iRam00431684 != 0) {
+      if (_s_Course_Render_2 != 0) {
         uStack_130 = 0;
         uStack_12c = 0;
         uStack_128 = 0;
@@ -2180,7 +2184,7 @@ void Course_Render(int param_1)
         uStack_114 = 0;
         Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && iRam00430668 != 0,1);
       }
-      if (iRam00431c44 != 0) {
+      if (_s_Course_Render_3 != 0) {
         uStack_120 = 2;
         uStack_130 = 0;
         uStack_12c = 0;
@@ -2192,7 +2196,7 @@ void Course_Render(int param_1)
         uStack_114 = 0;
         Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && iRam00430668 != 0,1);
       }
-      if (iRam00432204 != 0) {
+      if (_s_Course_Render_4 != 0) {
         uStack_128 = 2;
         uStack_120 = 3;
         uStack_12c = 0;
@@ -2204,7 +2208,7 @@ void Course_Render(int param_1)
         uStack_114 = 0;
         Course_DrawLensFlare(piVar2,&uStack_130,lVar11 != 0 && iRam0043066c != 0,1);
       }
-      if (iRam00432d84 != 0) {
+      if (_s_Course_Render_6 != 0) {
         uStack_12c = 3;
         uStack_118 = 1;
         uStack_128 = 4;
@@ -2234,10 +2238,10 @@ void Course_Render(int param_1)
   if (iRam00430674 != 0) {
     Course_BindTextureSlots(0,lVar11);
   }
-  if (iRam00432d84 != 0) {
+  if (_s_Course_Render_6 != 0) {
     DmaChain_Kick(1,0,6);
   }
-  if ((-1 < *piRam004305b8) && (iRam00431684 != 0)) {
+  if ((-1 < *piRam004305b8) && (_s_Course_Render_2 != 0)) {
     uStack_140 = 1;
     uStack_150 = 0;
     uStack_14c = 0;

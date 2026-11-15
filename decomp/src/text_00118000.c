@@ -100,6 +100,8 @@ LAB_001182ec:
 }
 
 // 0x001183c8  size 0x238
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4
 maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefined4 param_5,
                ulong param_6)
@@ -150,14 +152,14 @@ maybe_sceDevctl(char *param_1,undefined4 param_2,int param_3,uint param_4,undefi
     uStack_cc = 1;
     uStack_c8 = 0;
     uStack_bc = 0;
-    uRam0037330c = param_2;
-    uRam00373310 = param_4;
+    _s_sceDevctl_1 = param_2;
+    _s_sceDevctl_2 = param_4;
     uVar3 = CreateSema(auStack_d0);
-    uRam00373318 = (undefined4)param_6;
+    _s_sceDevctl_4 = (undefined4)param_6;
     uRam00372b08 = 4;
     uRam00372b00 = (undefined4)uVar3;
     puRam00372b04 = auStack_b0;
-    uRam00373314 = param_5;
+    _s_sceDevctl_3 = param_5;
     sceSifWriteBackDCache(0x372b00,0x81c);
     lVar4 = sceSifCallRpc(0x374200,0x17,0,0x372b00,0x81c,0x373740,4,0);
     iVar6 = DAT_20373740;
@@ -326,6 +328,7 @@ undefined4 maybe_sceReadlink(char *param_1,undefined8 param_2,ulong param_3)
 }
 
 // 0x001189a8  size 0x88
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* binds RPC 0x80000003 */
 
 undefined4 sceSifInitIopHeap(void)
@@ -339,7 +342,7 @@ undefined4 sceSifInitIopHeap(void)
     if (lVar2 < 0) {
       return 0xffffffff;
     }
-    if (iRam00374324 != 0) break;
+    if (_s_sceSifInitIopHeap_1 != 0) break;
     iVar1 = 0x100000;
     do {
       iVar1 = iVar1 + -1;
@@ -364,6 +367,8 @@ undefined4 sceSifAllocIopHeap(undefined4 param_1)
 }
 
 // 0x00118aa0  size 0x80
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifAllocSysMemory(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -373,8 +378,8 @@ undefined4 maybe_sceSifAllocSysMemory(undefined4 param_1,undefined4 param_2,unde
   uVar1 = 0;
   if (-1 < DAT_00306b98) {
     uRam00374380 = param_2;
-    uRam00374384 = param_1;
-    uRam00374388 = param_3;
+    _s_sceSifAllocSysMemory_1 = param_1;
+    _s_sceSifAllocSysMemory_2 = param_3;
     lVar2 = sceSifCallRpc(0x374300,4,0,0x374380,0xc,0x374340,4,0);
     uVar1 = uRam00374340;
     if (lVar2 < 0) {
@@ -414,6 +419,8 @@ void maybe_sceSifFreeSysMemory(void)
 }
 
 // 0x00118bb8  size 0xf0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 maybe_sceSifLoadIopHeap(char *param_1,undefined4 param_2)
 
 {
@@ -426,20 +433,20 @@ undefined4 maybe_sceSifLoadIopHeap(char *param_1,undefined4 param_2)
     uVar2 = 0;
   }
   else {
-    cRam003743c4 = *param_1;
+    s_sceSifLoadIopHeap_2 = *param_1;
     iVar4 = 0;
-    if (cRam003743c4 != '\0') {
+    if (s_sceSifLoadIopHeap_2 != '\0') {
       for (iVar4 = 1;
           (iVar4 < 0xfc &&
-          (cVar1 = param_1[iVar4], *(char *)(iVar4 + 0x3743c4) = cVar1, cVar1 != '\0'));
+          (cVar1 = param_1[iVar4], (&s_sceSifLoadIopHeap_2)[iVar4] = cVar1, cVar1 != '\0'));
           iVar4 = iVar4 + 1) {
       }
     }
     if (iVar4 == 0xfc) {
       iVar4 = 0xfb;
     }
-    uRam003744bf = 0;
-    uRam003743c0 = param_2;
+    s_sceSifLoadIopHeap_3 = 0;
+    _s_sceSifLoadIopHeap_1 = param_2;
     lVar3 = sceSifCallRpc(0x374300,3,0,0x3743c0,iVar4 + 5,0x374340,4,0);
     uVar2 = uRam00374340;
     if (lVar3 < 0) {
@@ -562,6 +569,7 @@ undefined4 maybe_sceSifQueryMemSize(undefined4 param_1)
 }
 
 // 0x00118ef8  size 0x100
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* binds RPC 0x80000006 */
 
 undefined4 sceSifLoadFileInit(void)
@@ -573,13 +581,13 @@ undefined4 sceSifLoadFileInit(void)
   
   if (DAT_00306ba0 < 0) {
     while (lVar3 = sceSifBindRpc(0x3746c0,0xffffffff80000006,0), -1 < lVar3) {
-      if (iRam003746e4 != 0) {
+      if (_s_sceSifLoadFileInit_1 != 0) {
         DAT_00306ba0 = 0;
         lVar3 = sceSifCallRpc(0x3746c0,0xff,0,0,0,0x3744c0,4,0);
         if (lVar3 < 0) {
           return 0xfffeffff;
         }
-        uRam003746e8 = uRam003744c0;
+        _s_sceSifLoadFileInit_2 = uRam003744c0;
         return 0;
       }
       iVar2 = 0x100000;
@@ -650,7 +658,7 @@ maybe__lf_module_load(undefined4 param_1,long param_2,undefined8 *param_3,undefi
         uRam003744c4 = (undefined4)param_2;
       }
       else {
-        puVar4 = (undefined8 *)0x3745c4;
+        puVar4 = (undefined8 *)&s__lf_module_buffer_load_1;
         if ((((uint)param_3 | 0x3745c4) & 7) == 0) {
           puVar1 = param_3 + 0x1c;
           do {
@@ -731,7 +739,7 @@ maybe__lf_module_load_ex(undefined4 param_1,long param_2,undefined8 *param_3,und
         uRam003744c4 = (undefined4)param_2;
       }
       else {
-        puVar4 = (undefined8 *)0x3745c4;
+        puVar4 = (undefined8 *)&s__lf_module_buffer_load_1;
         if ((((uint)param_3 | 0x3745c4) & 7) == 0) {
           puVar1 = param_3 + 0x1c;
           do {
@@ -909,7 +917,7 @@ maybe__lf_module_buffer_load
       maybe_strncpy(0x3744c8,param_1,0xfc);
       uRam003745c3 = 0;
       if (param_3 == (undefined8 *)0x0) {
-        uRam003745c4 = 0;
+        s__lf_module_buffer_load_1 = 0;
         uRam003744c0 = 0;
       }
       else if (param_2 < 0xfd) {
@@ -917,7 +925,7 @@ maybe__lf_module_buffer_load
         uRam003744c0 = (undefined4)param_2;
       }
       else {
-        puVar4 = (undefined8 *)0x3745c4;
+        puVar4 = (undefined8 *)&s__lf_module_buffer_load_1;
         if ((((uint)param_3 | 0x3745c4) & 7) == 0) {
           puVar1 = param_3 + 0x1c;
           do {
@@ -1002,7 +1010,7 @@ undefined8 maybe__lf_elf_load(undefined8 param_1,undefined8 param_2,int *param_3
       maybe_strncpy(0x3744c8,param_1,0xfc);
       uRam003745c3 = 0;
       maybe_strncpy(0x3745c4,param_2,0xfc);
-      uRam003746bf = 0;
+      s__lf_elf_load_1 = 0;
       lVar1 = sceSifCallRpc(0x3746c0,param_4,0,0x3744c0,0x200,0x3744c0,0x10,0);
       if (lVar1 < 0) {
         uVar2 = 0xfffffffffffeffff;
@@ -1069,6 +1077,8 @@ LAB_00119b44:
 }
 
 // 0x00119b78  size 0xdc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined8 maybe_sceSifSetIopAddr(undefined4 param_1,undefined4 *param_2,long param_3)
 
 {
@@ -1082,17 +1092,17 @@ undefined8 maybe_sceSifSetIopAddr(undefined4 param_1,undefined4 *param_2,long pa
   else {
     uRam003744c4 = (undefined4)param_3;
     if (param_3 == 0) {
-      uRam003744c8 = CONCAT31(uRam003744c8._1_3_,*(undefined1 *)param_2);
+      _s_sceSifSetIopAddr_1 = CONCAT31(s_sceSifSetIopAddr_1_1,*(undefined1 *)param_2);
     }
     else if (param_3 == 1) {
-      uRam003744c8 = CONCAT22(uRam003744c8._2_2_,*(undefined2 *)param_2);
+      _s_sceSifSetIopAddr_1 = CONCAT22(s_sceSifSetIopAddr_1_1._1_2_,*(undefined2 *)param_2);
     }
     else {
       if (param_3 != 2) {
         uRam003744c0 = param_1;
         return 0xfffffffffffefffe;
       }
-      uRam003744c8 = *param_2;
+      _s_sceSifSetIopAddr_1 = *param_2;
     }
     uRam003744c0 = param_1;
     lVar1 = sceSifCallRpc(0x3746c0,2,0,0x3744c0,0x20,0x3744c0,0x10,0);
@@ -1105,13 +1115,15 @@ undefined8 maybe_sceSifSetIopAddr(undefined4 param_1,undefined4 *param_2,long pa
 }
 
 // 0x00119c58  size 0x154
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 bool maybe_sceSifResetIop(char *param_1,undefined4 param_2)
 
 {
   long lVar1;
   char cVar2;
   int iVar3;
-  undefined4 uStack_40;
+  undefined *puStack_40;
   undefined4 uStack_3c;
   undefined4 uStack_38;
   undefined4 uStack_34;
@@ -1120,27 +1132,27 @@ bool maybe_sceSifResetIop(char *param_1,undefined4 param_2)
   maybe_SetSifCmdFlag(1,0);
   sceSifStopDma();
   uStack_3c = sceSifGetReg(0xffffffff80000000);
-  iRam00374710 = 0;
-  uRam00374714 = param_2;
+  _s_sceSifResetIop_3 = 0;
+  _s_sceSifResetIop_4 = param_2;
   if (*param_1 != '\0') {
     cVar2 = *param_1;
-    iVar3 = iRam00374710;
+    iVar3 = _s_sceSifResetIop_3;
     while( true ) {
-      iRam00374710 = iVar3 + 1;
+      _s_sceSifResetIop_3 = iVar3 + 1;
       *(char *)(iVar3 + 0x374718) = cVar2;
-      if (param_1[iRam00374710] == '\0') break;
-      cVar2 = param_1[iRam00374710];
-      iVar3 = iRam00374710;
+      if (param_1[_s_sceSifResetIop_3] == '\0') break;
+      cVar2 = param_1[_s_sceSifResetIop_3];
+      iVar3 = _s_sceSifResetIop_3;
     }
   }
-  uRam00374708 = 0x80000003;
-  uRam00374700 = 0x68;
+  _s_sceSifResetIop_2 = 0x80000003;
+  _s_sceSifResetIop_1 = 0x68;
   uStack_38 = 0x68;
   uStack_34 = 0x44;
-  uStack_40 = 0x374700;
+  puStack_40 = &s_sceSifResetIop_1;
   sceSifWriteBackDCache(0x374700,0x68);
   sceSifSetReg(4,0x40000);
-  lVar1 = sceSifSetDma(&uStack_40,1);
+  lVar1 = sceSifSetDma(&puStack_40,1);
   if (lVar1 != 0) {
     sceSifSetReg(4,0x10000);
     sceSifSetReg(4,0x20000);
@@ -1867,6 +1879,7 @@ void Timer_SetComp(undefined8 param_1)
 }
 
 // 0x0011b0e0  size 0x154
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* RCNT2 + INTC handler */
 
 undefined8 maybe_InitTimer(uint param_1)
@@ -1886,14 +1899,14 @@ undefined8 maybe_InitTimer(uint param_1)
     DAT_0030819c = 0x3759c0;
     iVar4 = 0x3779c0;
     iVar1 = 0x7f;
-    piVar5 = (int *)0x377980;
+    piVar5 = (int *)&s_InitTimer_1;
     do {
       *piVar5 = iVar4;
       iVar1 = iVar1 + -1;
       piVar5 = piVar5 + -0x10;
       iVar4 = iVar4 + -0x40;
     } while (-1 < iVar1);
-    uRam00377980 = 0;
+    _s_InitTimer_1 = 0;
     maybe_Timer_FindFreeSlot();
     lVar3 = AddIntcHandler(0xb,0x11b680,0,0);
     if (lVar3 < 0) {

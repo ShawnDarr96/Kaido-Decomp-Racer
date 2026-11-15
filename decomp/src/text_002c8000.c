@@ -895,18 +895,18 @@ void RaceUi_DrawRivalMarkers(int param_1)
   uStack_18 = DAT_0032fc78;
   iVar7 = param_1;
   do {
-    fVar1 = fRam0036ee78;
-    fVar11 = *pfVar8 - fRam0036ee78;
-    fVar13 = pfVar8[1] - fRam0036ee7c;
-    fVar12 = fRam0036ee78 + *pfVar8;
-    fVar15 = fRam0036ee7c;
+    fVar1 = _s_RaceUi_DrawRivalMarkers_1;
+    fVar11 = *pfVar8 - _s_RaceUi_DrawRivalMarkers_1;
+    fVar13 = pfVar8[1] - _s_RaceUi_DrawRivalMarkers_2;
+    fVar12 = _s_RaceUi_DrawRivalMarkers_1 + *pfVar8;
+    fVar15 = _s_RaceUi_DrawRivalMarkers_2;
     pRVar2 = RaceCar_Get(index);
     uVar3 = RaceCar_GetFlags(pRVar2);
     if ((uVar3 & 0x100) == 0) {
       pbVar6 = (byte *)(iVar7 + 0x80);
       iVar9 = 0;
       iVar10 = 8;
-      uStack_10 = CONCAT44(uRam0036ee84,uRam0036ee80);
+      uStack_10 = CONCAT44(_s_RaceUi_DrawRivalMarkers_4,_s_RaceUi_DrawRivalMarkers_3);
       do {
         fVar14 = *(float *)(pbVar6 + 4);
         if (fVar14 != 0.0) {
@@ -1023,20 +1023,20 @@ void RaceUi_DrawRivalMarkersAlt(int param_1)
   float fStack_c;
   float fStack_8;
   
-  fVar3 = fRam0036ee68;
-  fVar2 = fRam0036ee60;
-  fVar11 = fRam0036ee60 - fRam0036ee68;
-  fVar12 = fRam0036ee60 + fRam0036ee68;
-  fVar13 = fRam0036ee64 - fRam0036ee6c;
-  fVar15 = fRam0036ee6c;
-  fVar16 = fRam0036ee64;
+  fVar3 = _s_RaceUi_DrawRivalMarkersAlt_3;
+  fVar2 = _s_RaceUi_DrawRivalMarkersAlt_1;
+  fVar11 = _s_RaceUi_DrawRivalMarkersAlt_1 - _s_RaceUi_DrawRivalMarkersAlt_3;
+  fVar12 = _s_RaceUi_DrawRivalMarkersAlt_1 + _s_RaceUi_DrawRivalMarkersAlt_3;
+  fVar13 = _s_RaceUi_DrawRivalMarkersAlt_2 - _s_RaceUi_DrawRivalMarkersAlt_4;
+  fVar15 = _s_RaceUi_DrawRivalMarkersAlt_4;
+  fVar16 = _s_RaceUi_DrawRivalMarkersAlt_2;
   pRVar4 = RaceCar_Get(0);
   uVar5 = RaceCar_GetFlags(pRVar4);
   if ((uVar5 & 0x100) == 0) {
     pbVar9 = (byte *)(param_1 + 0x80);
     iVar10 = 0;
     iVar8 = 8;
-    fStack_c = fRam0036ee74;
+    fStack_c = _s_RaceUi_DrawRivalMarkersAlt_5;
     do {
       fVar14 = *(float *)(pbVar9 + 4);
       if (fVar14 != 0.0) {

@@ -59,7 +59,7 @@ void RaceCam_UpdateFree(int param_1)
     pbVar7 = &DAT_0031c2e0;
     do {
       iVar5 = ((uint)*pbVar7 * 0x18 - (uint)*pbVar7) * 0x40;
-      if (*(int *)(iVar5 + 0x431684) != 0) {
+      if (*(int *)(&s_Course_Render_2 + iVar5) != 0) {
         index = *(int *)(pbVar7 + 4);
         uStack_10 = DAT_0031c300;
         fStack_c = DAT_0031c304;

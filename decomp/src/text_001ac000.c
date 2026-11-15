@@ -934,6 +934,8 @@ uint CarAsset_GetPartVariant(undefined8 param_1,uint param_2)
 }
 
 // 0x001adf20  size 0x134
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarAsset_UploadPaletteDefault(int param_1,int param_2)
 
 {
@@ -968,13 +970,15 @@ void CarAsset_UploadPaletteDefault(int param_1,int param_2)
       uStack_20 = 0x10;
       Tex_BuildClutPacket(iVar1,*(undefined4 *)
                                  ((param_2 + (*(byte *)(param_1 + 0x39) - 1) * 4) * 0x80 +
-                                  iRam004363dc + 0x6c),&iStack_40);
+                                  _s_CarAsset_UploadPaletteDefault_1 + 0x6c),&iStack_40);
     }
   }
   return;
 }
 
 // 0x001ae060  size 0x1a0
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void CarAsset_UploadPalette(int param_1,int param_2,uint param_3)
 
 {
@@ -993,13 +997,14 @@ void CarAsset_UploadPalette(int param_1,int param_2,uint param_3)
   
   uVar2 = param_3 & 0xff;
   uVar3 = (uint)*(byte *)(uVar2 + param_1 + 0x3c);
-  if ((uVar3 != 0xff) && ((uRam00436370 <= uVar3 || (uRam0043638c <= uVar3)))) {
+  if ((uVar3 != 0xff) &&
+     ((_s_CarAsset_UploadPalette_1 <= uVar3 || (_s_CarAsset_UploadPalette_3 <= uVar3)))) {
     uVar3 = 0;
   }
   if (param_2 == 0) {
     uVar1 = 0;
     if (uVar3 != 0xff) {
-      uVar1 = *(undefined4 *)(uVar3 * 0x80 + iRam00436388 + 0x6c);
+      uVar1 = *(undefined4 *)(uVar3 * 0x80 + _s_CarAsset_UploadPalette_2 + 0x6c);
     }
     if (*(int *)(param_1 + 0x4e4) != 0) {
       uStack_28 = 0;
@@ -1017,7 +1022,7 @@ void CarAsset_UploadPalette(int param_1,int param_2,uint param_3)
   if (param_2 == 1) {
     uVar1 = 0;
     if (uVar3 != 0xff) {
-      uVar1 = *(undefined4 *)(uVar3 * 0x80 + iRam004363a4 + 0x6c);
+      uVar1 = *(undefined4 *)(uVar3 * 0x80 + _s_CarAsset_UploadPalette_4 + 0x6c);
     }
     if (*(int *)(param_1 + 0x4e8) != 0) {
       iStack_2c = (uVar2 >> 1) << 4;
@@ -1624,43 +1629,47 @@ void DriverAsset_Clear(undefined8 param_1)
 }
 
 // 0x001af1d0  size 0x10
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void DriverAsset_SetFace(int param_1,undefined1 param_2)
 
 {
   *(undefined1 *)(param_1 + 0x29) = param_2;
-  DriverAsset_ApplyFace(param_1,uRam00436340);
+  DriverAsset_ApplyFace(param_1,_s_DriverAssetVar1);
   return;
 }
 
 // 0x001af1e0  size 0x208
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void DriverAsset_ApplyFace(int param_1)
 
 {
   undefined4 uVar1;
   
-  uVar1 = Model_GetTexture(uRam00436350,*(undefined1 *)(param_1 + 0x29));
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(undefined1 *)(param_1 + 0x29));
   *(undefined4 *)(param_1 + 0x30) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(byte *)(param_1 + 0x29) + 4);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(byte *)(param_1 + 0x29) + 4);
   *(undefined4 *)(param_1 + 0x4c) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(byte *)(param_1 + 0x29) + 8);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(byte *)(param_1 + 0x29) + 8);
   *(undefined4 *)(param_1 + 0x68) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(byte *)(param_1 + 0x29) + 8);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(byte *)(param_1 + 0x29) + 8);
   *(undefined4 *)(param_1 + 0x84) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(undefined1 *)(param_1 + 0x29));
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(undefined1 *)(param_1 + 0x29));
   *(undefined4 *)(param_1 + 0x34) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(byte *)(param_1 + 0x29) + 4);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(byte *)(param_1 + 0x29) + 4);
   *(undefined4 *)(param_1 + 0x50) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(byte *)(param_1 + 0x29) + 0xc);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(byte *)(param_1 + 0x29) + 0xc);
   *(undefined4 *)(param_1 + 0x6c) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,*(byte *)(param_1 + 0x29) + 0xc);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,*(byte *)(param_1 + 0x29) + 0xc);
   *(undefined4 *)(param_1 + 0x88) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,3);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,3);
   *(undefined4 *)(param_1 + 0x38) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,7);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,7);
   *(undefined4 *)(param_1 + 0x54) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x13);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x13);
   *(undefined4 *)(param_1 + 0x70) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x13);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x13);
   *(undefined4 *)(param_1 + 0x8c) = uVar1;
   *(undefined4 *)(param_1 + 0x3c) = *(undefined4 *)(param_1 + 0x34);
   *(undefined4 *)(param_1 + 0x58) = *(undefined4 *)(param_1 + 0x50);
@@ -1670,26 +1679,28 @@ void DriverAsset_ApplyFace(int param_1)
   *(undefined4 *)(param_1 + 0x5c) = *(undefined4 *)(param_1 + 0x50);
   *(undefined4 *)(param_1 + 0x78) = *(undefined4 *)(param_1 + 0x6c);
   *(undefined4 *)(param_1 + 0x94) = *(undefined4 *)(param_1 + 0x88);
-  uVar1 = Model_GetTexture(uRam00436350,0x14);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x14);
   *(undefined4 *)(param_1 + 0x44) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x15);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x15);
   *(undefined4 *)(param_1 + 0x60) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x16);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x16);
   *(undefined4 *)(param_1 + 0x7c) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x16);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x16);
   *(undefined4 *)(param_1 + 0x98) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x14);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x14);
   *(undefined4 *)(param_1 + 0x48) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x15);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x15);
   *(undefined4 *)(param_1 + 100) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x16);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x16);
   *(undefined4 *)(param_1 + 0x80) = uVar1;
-  uVar1 = Model_GetTexture(uRam00436350,0x16);
+  uVar1 = Model_GetTexture(_s_DriverAssetVar2,0x16);
   *(undefined4 *)(param_1 + 0x9c) = uVar1;
   return;
 }
 
 // 0x001af3f0  size 0x1bc
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void DriverAsset_Setup(undefined8 param_1,undefined8 param_2)
 
 {
@@ -1697,7 +1708,7 @@ void DriverAsset_Setup(undefined8 param_1,undefined8 param_2)
   int iVar2;
   
   uVar1 = Gut_PackGetEntry(param_2,0,0);
-  uRam00436350 = (undefined4)uVar1;
+  _s_DriverAssetVar2 = (undefined4)uVar1;
   Model_Relocate(uVar1);
   iVar2 = iRam0036f2ec + iRam0036f2c0;
   uVar1 = Gut_PackGetEntry(param_2,1,0);
@@ -1745,6 +1756,8 @@ void DriverAsset_OnLoaded
 }
 
 // 0x001af650  size 0x9c
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void DriverAsset_Load(undefined8 param_1)
 
 {
@@ -1757,10 +1770,10 @@ void DriverAsset_Load(undefined8 param_1)
   if (iRam00436348 == 0) {
     iRam00436348 = 1;
     *(undefined4 *)(iVar3 + 0x2c) = 1;
-    iVar1 = iRam00436340;
+    iVar1 = _s_DriverAssetVar1;
   }
   else {
-    iVar2 = iRam00436340;
+    iVar2 = _s_DriverAssetVar1;
     iVar1 = 0;
   }
   *(undefined4 *)(iVar3 + 8) = 1;
