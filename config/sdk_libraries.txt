@@ -1,0 +1,9 @@
+# Sony SDK libraries linked into SLES_531.91, from the "PsII<lib> <version>" strings each library
+# embeds at the start of its data. Address order = link order of these libraries (evidence for M3).
+0x00306820 libgraph 2800
+0x00306a40 libipu   2800
+0x00306ac0 libkernl 2800
+0x003081c0 libcdvd  2800
+0x00309d80 libmc    2810
+0x0030a500 libpad2  2800
+0x0030a530 libdbc   2800
