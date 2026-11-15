@@ -2188,7 +2188,9 @@ void Car_UpdateRearTires(float param_1,float param_2,RaceCar *param_3,long param
 }
 
 // 0x00167050  size 0x30
-undefined4 maybe_Car_GetNitroScale(int param_1)
+/* N153 confirmed: 1.2 while RaceCar.nitroOn, else 1.0 */
+
+undefined4 Car_GetNitroScale(int param_1)
 
 {
   undefined4 uVar1;

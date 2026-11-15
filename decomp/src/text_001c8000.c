@@ -592,7 +592,7 @@ void Driver_ReadWheel(undefined4 *param_1,undefined8 param_2)
     piVar5 = piVar5 + 1;
     puVar4 = puVar4 + 2;
   } while (iVar7 < 0x18);
-  iVar7 = maybe_Options_GetLanguage();
+  iVar7 = Options_GetInstance();
   Controls_ApplyMapping(iVar7 + (int)param_2 * 0xe8 + 0x28,param_1[0x31]);
   uVar9 = 0;
   puVar8 = &DAT_00318920;
@@ -772,7 +772,7 @@ void Driver_ApplyControls(uint *param_1)
       lVar4 = Wheel_IsActive();
       if (lVar4 == 0) {
         Driver_ReadWheel(param_1 + 0x35,param_1[1]);
-        iVar3 = maybe_Options_GetLanguage();
+        iVar3 = Options_GetInstance();
         Controls_ApplyMapping(iVar3 + param_1[1] * 0xe8 + 0x28,param_1[0x66]);
         *param_1 = *param_1 | 2;
       }

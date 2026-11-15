@@ -253,7 +253,7 @@ void RaceSnd_PlayStart(undefined8 param_1)
   *(undefined4 *)(iVar7 + 0x30) = 5000000;
   *(undefined4 *)(iVar7 + 0x38) = 0;
   *(undefined4 *)(iVar7 + 0x3c) = 5000000;
-  uVar2 = maybe_Options_GetBgmVolume();
+  uVar2 = Options_GetBgmVolume();
   uVar5 = Snd_RpmToPitch(uVar2);
   SndMgr_PlayEngine(uVar3,uVar5);
   uVar5 = SndMgr_GetChannelB(uVar3,1);
@@ -961,7 +961,7 @@ void maybe_RaceTask_SetupControls(int *param_1)
     do {
       lVar3 = Wheel_GetDeviceName(iVar8);
       if (((lVar3 != 0) && (*piVar7 == 0)) && (lVar4 = Wheel_IsActive(lVar3), lVar4 == 0)) {
-        iVar2 = maybe_Options_GetLanguage();
+        iVar2 = Options_GetInstance();
         Controls_SetDefaults(iVar2 + iVar6 + 0x28,lVar3);
         *piVar7 = 1;
       }
@@ -1023,7 +1023,7 @@ void RaceScene_StateOptions(undefined4 *param_1)
   int iVar11;
   
   iVar11 = 1;
-  iVar6 = maybe_Options_GetLanguage();
+  iVar6 = Options_GetInstance();
   cVar5 = RaceCtx_Get_8();
   if (cVar5 == '\r') {
     iVar11 = 2;

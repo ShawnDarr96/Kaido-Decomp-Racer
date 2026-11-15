@@ -886,14 +886,14 @@ address,name,signature,source,comment
 0x00133280,Vu0_StoreMatrixVf28,,game,N153 confirmed: sqc2 from vf28-vf31
 0x001332a0,maybe_Vu0_ClearStack,,f1,
 0x001333b0,maybe_Vu0_EvalCurve,,f1,
-0x00133650,maybe_Vu0_SqrtQ,,f1,
+0x00133650,Vu0_SqrtQ,,game,"N153 confirmed: vsqrt into Q, vwaitq"
 0x00133680,sceVu0RotTransPersN,,f1,
 0x001336d0,sceVu0ViewScreenMatrix,,f1,look-at: outer products + inverse
 0x00133780,sceVu0LightColorMatrix,,f1,
 0x001337f0,sceVu0NormalLightMatrix,,f1,
 0x001338b0,maybe_Rand_Next,,f2,"LCG 0x41c64e6d, 0x3039"
 0x00133940,maybe_Rand_Float,,f2,
-0x001339a0,maybe_Rand_Seed,,f2,
+0x001339a0,Rand_Seed,,game,N153 confirmed: stores the seed
 0x001339b0,Math_SinCosTable,,game,256-entry table at 0x360e00
 0x001339f0,maybe_Math_AngleToIndex,,f2,x * 40.74 (256/2pi)
 0x00133a70,Math_FloatToFixed22,,game,
@@ -946,7 +946,7 @@ address,name,signature,source,comment
 0x00136a80,File_QueueRequest,,game,
 0x00136be0,File_OpenCdFile,,game,sceCdSearchFile
 0x00136d10,File_ReadCdFile,,game,
-0x00136e10,maybe_File_GetSectorCount,,game,
+0x00136e10,File_GetSectorCount,,game,N153 confirmed: *out = sector count * 2
 0x00136e30,File_ReadClock,,game,sceCdReadClock
 0x00136ed0,File_GetDiscType,,game,
 0x00136fa0,File_Shutdown,,game,
@@ -1123,7 +1123,7 @@ address,name,signature,source,comment
 0x00141a00,Wheel_ConsumeDisconnect,,game,
 0x00141a30,Engine_GetField_47c,,game-module,
 0x00141a40,maybe_EngineObj_SetBitB,,game,
-0x00141a60,maybe_EngineObj_HasFlags,,game,
+0x00141a60,EngineObj_HasFlags,,game,N153 confirmed: (flags & mask) == mask
 0x00141a80,Wheel_ReadInput,,game,
 0x001423f0,Wheel_ReadAxis,,game,
 0x00142910,Wheel_ReadButtons,,game,
@@ -1466,8 +1466,8 @@ address,name,signature,source,comment
 0x0015bdb0,Phys_Nop_15,,game-module,
 0x0015bdc0,PhysPlane_GetKind,,game,
 0x0015be60,PhysPlane_TransformNormal,,game,
-0x0015bf00,maybe_PhysSphere_SetRadius,,game,
-0x0015bf10,maybe_PhysSphere_SetCenter,,game,
+0x0015bf00,PhysSphere_SetRadius,,game,"N153 confirmed: +0x14, read by PhysSphere_ContainsPoint"
+0x0015bf10,PhysSphere_SetCenter,,game,"N153 confirmed: +0x20, read by PhysSphere_ContainsPoint"
 0x0015bf20,PhysShape_GetCenter,,game,
 0x0015bf30,PhysPlane_RayIntersect,,game,
 0x0015c0e0,PhysPair_SetBodyA,,game,
@@ -1668,7 +1668,7 @@ address,name,signature,source,comment
 0x00166d40,maybe_Car_SetHandbrakeInput,"void maybe_Car_SetHandbrakeInput(float param_1,RaceCar *param_2,long param_3)",game,
 0x00166da0,maybe_Car_SetBoostInput,"void maybe_Car_SetClutchInput(float param_1,RaceCar *param_2,long param_3)",game,ramps +0x130 (was maybe_Car_SetClutchInput)
 0x00166e00,Car_UpdateRearTires,"void Car_UpdateRearTires(float param_1,float param_2,RaceCar *param_3,long param_4,long param_5)",game,
-0x00167050,maybe_Car_GetNitroScale,,game,
+0x00167050,Car_GetNitroScale,,game,"N153 confirmed: 1.2 while RaceCar.nitroOn, else 1.0"
 0x00167080,Car_GetBoostScale,,game,1 + params[0x17c] while +0x130 > 0.5 (N153: confirmed)
 0x001670c0,Car_Init,"void Car_Init(int *param_1,RaceCar *param_2,ulong param_3)",game,
 0x00167580,Car_Reset,"void Car_Reset(int *param_1,RaceCar *param_2,undefined1 param_3,undefined8 param_4)",game,
@@ -1978,14 +1978,14 @@ address,name,signature,source,comment
 0x00183030,Controls_BuildAxisMap,,game,
 0x001830d0,Options_SetDefaultsSound,,game,
 0x00183110,Options_SetDefaultsDisplay,,game,
-0x001831b0,maybe_Options_GetLanguage,,game,18 callers
+0x001831b0,Options_GetInstance,,game,returns g_Options itself (was maybe_Options_GetLanguage)
 0x001831c0,Options_SetDefaults,,game,
 0x00183300,Options_SetDefaultsVolume,,game,
 0x00183320,Options_SetDefaultsGame,,game,
 0x00183350,Options_Elem_28_xe8,,game-accessor,
 0x00183380,Options_ApplyBgmVolume,,game,
 0x001833f0,Options_ApplySeVolume,,game,
-0x00183460,maybe_Options_GetBgmVolume,,game,"reads Options+0x20, the field Options_ApplyBgmVolume writes (was Options_GetSeVolume)"
+0x00183460,Options_GetBgmVolume,,game,"N153 confirmed: returns Options.bgmVolume, the field ApplyBgmVolume writes"
 0x00183470,Options_Get_1c,,game-accessor,
 0x00183480,Options_Get_14,,game-accessor,
 0x00183490,Options_Get_18,,game-accessor,

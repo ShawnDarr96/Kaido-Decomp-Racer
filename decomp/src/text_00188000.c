@@ -196,8 +196,7 @@ void Road_ComputeLateralOffset
   maybe_sceVu0ScaleVectorXYZ(fVar13,&fStack_20,&fStack_20);
   sceVu0AddVector(&fStack_50,&fStack_50,&fStack_20);
   sceVu0SubVector(&fStack_50,param_2,&fStack_50);
-  fVar9 = (float)maybe_Vu0_SqrtQ(fStack_48 * fStack_48 +
-                                 fStack_50 * fStack_50 + fStack_4c * fStack_4c);
+  fVar9 = (float)Vu0_SqrtQ(fStack_48 * fStack_48 + fStack_50 * fStack_50 + fStack_4c * fStack_4c);
   if (fStack_3c != 0.0) {
     if (fStack_3c < 0.0) {
       fVar12 = fVar12 - fVar9;

@@ -2861,7 +2861,9 @@ void maybe_Vu0_EvalCurve(float param_1,undefined8 param_2,int param_3,int param_
 }
 
 // 0x00133650  size 0x24
-undefined4 maybe_Vu0_SqrtQ(undefined4 param_1)
+/* N153 confirmed: vsqrt into Q, vwaitq */
+
+undefined4 Vu0_SqrtQ(undefined4 param_1)
 
 {
   undefined1 in_vf0 [16];
@@ -2991,8 +2993,9 @@ uint maybe_Rand_Float(void)
 
 // 0x001339a0  size 0x8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: stores the seed */
 
-void maybe_Rand_Seed(undefined4 param_1)
+void Rand_Seed(undefined4 param_1)
 
 {
   _s_RandVar1 = param_1;

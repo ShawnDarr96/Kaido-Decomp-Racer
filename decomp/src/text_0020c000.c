@@ -625,7 +625,7 @@ void SaveMgr_BuildHeader(int param_1)
     }
     *(undefined4 *)(*(int *)(param_1 + 0x434) + 0x20) = uVar1;
     if (*(int *)(param_1 + 0x18) == 0) {
-      uVar1 = maybe_Options_GetLanguage();
+      uVar1 = Options_GetInstance();
     }
     else {
       uVar1 = 0;

@@ -2313,9 +2313,9 @@ void Options_SetDefaultsDisplay(undefined4 *param_1)
 }
 
 // 0x001831b0  size 0x8
-/* 18 callers */
+/* returns g_Options itself (was maybe_Options_GetLanguage) */
 
-Options * maybe_Options_GetLanguage(void)
+Options * Options_GetInstance(void)
 
 {
   return g_Options;
@@ -2438,9 +2438,9 @@ void Options_ApplySeVolume(char param_1)
 }
 
 // 0x00183460  size 0xc
-/* reads Options+0x20, the field Options_ApplyBgmVolume writes (was Options_GetSeVolume) */
+/* N153 confirmed: returns Options.bgmVolume, the field ApplyBgmVolume writes */
 
-undefined1 maybe_Options_GetBgmVolume(void)
+undefined1 Options_GetBgmVolume(void)
 
 {
   return (char)g_Options->bgmVolume;
@@ -2569,7 +2569,7 @@ undefined4 Loading_IsActive(void)
     else {
       bVar1 = false;
     }
-    if ((bVar1) && (iVar2 = maybe_Options_GetLanguage(), *(int *)(iVar2 + 0x24) == 0)) {
+    if ((bVar1) && (iVar2 = Options_GetInstance(), *(int *)(iVar2 + 0x24) == 0)) {
       uVar3 = 1;
     }
     else {
@@ -2740,7 +2740,7 @@ void Cam_Update(undefined8 param_1)
   (**(code **)(**(int **)(iVar2 + 0x4fc) + 0xc))(*(int **)(iVar2 + 0x4fc),param_1);
   Cam_ApplyLookAt(param_1);
   uVar3 = sceVu0InnerProduct(iVar2 + 0x4b0,iVar2 + 0x4b0);
-  fVar4 = (float)maybe_Vu0_SqrtQ(uVar3);
+  fVar4 = (float)Vu0_SqrtQ(uVar3);
   if (2.0 < fVar4) {
     *(undefined4 *)(iVar2 + 0x500) = 1;
   }
@@ -2985,7 +2985,7 @@ float Cam_ComputeFov(int param_1,int param_2)
   fVar3 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
   maybe_sceVu0ScaleVectorXYZ(fVar2 / fVar3,auStack_30,auStack_40);
   uVar4 = sceVu0InnerProduct(auStack_30,auStack_30);
-  fVar5 = (float)maybe_Vu0_SqrtQ(uVar4);
+  fVar5 = (float)Vu0_SqrtQ(uVar4);
   if (fVar2 / fVar3 < 0.0) {
     fVar5 = fVar5 * -1.0;
   }
@@ -2993,7 +2993,7 @@ float Cam_ComputeFov(int param_1,int param_2)
   fVar3 = (float)sceVu0InnerProduct(auStack_40,auStack_40);
   maybe_sceVu0ScaleVectorXYZ(fVar2 / fVar3,auStack_20,auStack_40);
   uVar4 = sceVu0InnerProduct(auStack_20,auStack_20);
-  fVar6 = (float)maybe_Vu0_SqrtQ(uVar4);
+  fVar6 = (float)Vu0_SqrtQ(uVar4);
   if (0.0 < fVar2 / fVar3) {
     fVar6 = fVar6 * -1.0;
   }

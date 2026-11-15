@@ -882,7 +882,7 @@ void Game_Init(void)
   Wheel_Init();
   maybe_Scene_InitHeap(0x430750);
   SaveMgr_Init(0x430750);
-  maybe_Rand_Seed(0);
+  Rand_Seed(0);
   Xvi_LoadIop();
   Snd_Init(0x430750,0x20,_g_GameShared1 + -1);
   SndMgr_Init(0x430750);

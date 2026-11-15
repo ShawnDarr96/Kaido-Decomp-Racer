@@ -392,7 +392,7 @@ void Cam_NormalizeDirection(int param_1)
   undefined4 uVar1;
   
   uVar1 = sceVu0InnerProduct(param_1 + 0x4b0,param_1 + 0x4b0);
-  maybe_Vu0_SqrtQ(uVar1);
+  Vu0_SqrtQ(uVar1);
   return;
 }
 
@@ -476,7 +476,7 @@ void Cam_DistanceTo(int param_1,float *param_2)
   fVar3 = *(float *)(param_1 + 0x420) - *param_2;
   fVar2 = *(float *)(param_1 + 0x424) - param_2[1];
   fVar1 = *(float *)(param_1 + 0x428) - param_2[2];
-  maybe_Vu0_SqrtQ(fVar1 * fVar1 + fVar2 * fVar2 + fVar3 * fVar3);
+  Vu0_SqrtQ(fVar1 * fVar1 + fVar2 * fVar2 + fVar3 * fVar3);
   return;
 }
 
@@ -1680,13 +1680,13 @@ void Cam_UpdateCollision(float *param_1,int *param_2,int *param_3,undefined4 par
                 uVar11 = (**(code **)(*(int *)uVar8 + 0x38))(uVar8,0);
                 sceVu0SubVector(auStack_120,uVar10,uVar11);
                 uVar28 = sceVu0InnerProduct(auStack_90,auStack_90);
-                maybe_Vu0_SqrtQ(uVar28);
+                Vu0_SqrtQ(uVar28);
                 param_2[0x19] = param_2[0x9b];
                 sceVu0AddVector(auStack_120,auStack_120,auStack_90);
                 sceVu0ScaleVector(0x3f000000,auStack_90,auStack_120);
                 uStack_84 = 0x3f800000;
                 uVar28 = sceVu0InnerProduct(auStack_90,auStack_90);
-                fVar26 = (float)maybe_Vu0_SqrtQ(uVar28);
+                fVar26 = (float)Vu0_SqrtQ(uVar28);
                 uStack_114 = 0x3f800000;
                 sceVu0SubVector(auStack_100,auStack_d0,auStack_e0);
                 sceVu0SubVector(auStack_110,auStack_c0,auStack_d0);

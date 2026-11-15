@@ -939,7 +939,7 @@ void RaceCam_UpdateFinish(undefined4 *param_1)
     *(RaceCar **)(puVar1 + 0x7b0) = pRVar4;
     pRVar4 = RaceCar_Get(uVar7);
     *(RaceCar **)(puVar1 + 0x7b4) = pRVar4;
-    piVar5 = (int *)maybe_Options_GetLanguage();
+    piVar5 = (int *)Options_GetInstance();
     iVar2 = *piVar5;
     if (iVar2 == 2) {
       puVar1[0x4f9] = 2;

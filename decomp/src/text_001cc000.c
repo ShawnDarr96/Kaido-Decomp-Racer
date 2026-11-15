@@ -129,7 +129,7 @@ float RaceCar_WheelGroundDistance(int param_1,int param_2)
     uStack_8 = uStack_18;
     uStack_4 = uStack_14;
     uVar3 = Vec3_Dot(&uStack_10,&uStack_10);
-    fVar4 = (float)maybe_Vu0_SqrtQ(uVar3);
+    fVar4 = (float)Vu0_SqrtQ(uVar3);
     if ((fVar4 <= 3.3333333) || (fVar4 = (float)fabsf(*(undefined4 *)(iVar2 + 0x294)), fVar4 <= 0.2)
        ) {
       fVar4 = 0.0;
@@ -258,8 +258,8 @@ void Ai_PredictPath(float param_1,RaceCar *param_2,ushort param_3,int param_4,by
   sceVu0SubVector(&param_2->field_0x13b0,auStack_30,&param_2->field_0x1370);
   sceVu0Normalize(&param_2->field_0x13b0,&param_2->field_0x13b0);
   puVar16 = &param_2->field_0x13b8;
-  uVar19 = maybe_Vu0_SqrtQ(*(float *)&param_2->field_0x13b0 * *(float *)&param_2->field_0x13b0 +
-                           *(float *)&param_2->field_0x13b8 * *(float *)&param_2->field_0x13b8);
+  uVar19 = Vu0_SqrtQ(*(float *)&param_2->field_0x13b0 * *(float *)&param_2->field_0x13b0 +
+                     *(float *)&param_2->field_0x13b8 * *(float *)&param_2->field_0x13b8);
   uStack_40 = atan2f(*(undefined4 *)&param_2->field_0x13b4,uVar19);
   if (lVar17 == 0) {
     uVar19 = atan2f(*(undefined4 *)&param_2->field_0x13b0,*(undefined4 *)puVar16);

@@ -1027,7 +1027,7 @@ undefined4 MenuInput_SetupDevices(int param_1)
       }
       if ((*(int *)(_g_MenuInput + 4) == 1) && (*(int *)(param_1 + 8) == 0)) {
         *(undefined4 *)(param_1 + 8) = 1;
-        iVar2 = maybe_Options_GetLanguage();
+        iVar2 = Options_GetInstance();
         Controls_SetDefaults
                   (iVar2 + (*(char *)(param_1 + 0x1c) * 0x1c + (int)*(char *)(param_1 + 0x1c)) * 8 +
                    0x28,lVar3);

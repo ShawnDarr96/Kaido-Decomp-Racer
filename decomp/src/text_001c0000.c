@@ -1505,8 +1505,8 @@ int RaceWorld_AddStaticBox
     sceVu0CopyVector(pcVar2 + 0x10);
     sceVu0CopyVector(pcVar2 + 0x20,param_3);
     sceVu0SubVector(pcVar2 + 0x30,param_3,param_2);
-    fVar3 = (float)maybe_Vu0_SqrtQ(*(float *)(pcVar2 + 0x30) * *(float *)(pcVar2 + 0x30) +
-                                   *(float *)(pcVar2 + 0x38) * *(float *)(pcVar2 + 0x38));
+    fVar3 = (float)Vu0_SqrtQ(*(float *)(pcVar2 + 0x30) * *(float *)(pcVar2 + 0x30) +
+                             *(float *)(pcVar2 + 0x38) * *(float *)(pcVar2 + 0x38));
     pcVar2[1] = (char)(int)(fVar3 / 3.5);
     pcVar2[0x34] = '\0';
     pcVar2[0x35] = '\0';

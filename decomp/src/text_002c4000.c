@@ -85,7 +85,7 @@ void RaceMenu_Draw(undefined8 param_1)
     cVar2 = Options_Get_1c();
     *(short *)((int)piVar6 + 0x10a) = (short)cVar2;
     *(short *)(piVar6 + 0x42) = (short)cVar2;
-    cVar2 = maybe_Options_GetBgmVolume();
+    cVar2 = Options_GetBgmVolume();
     *(short *)((int)piVar6 + 0x10e) = (short)cVar2;
     *(short *)(piVar6 + 0x43) = (short)cVar2;
     iVar3 = Options_Get_4();

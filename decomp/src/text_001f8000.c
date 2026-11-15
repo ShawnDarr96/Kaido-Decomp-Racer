@@ -1865,7 +1865,7 @@ void Se_PlayMenu(undefined1 param_1)
   
   uVar2 = SndMgr_GetInstance();
   uVar2 = SndMgr_GetChannelB(uVar2,0);
-  cVar1 = maybe_Options_GetBgmVolume();
+  cVar1 = Options_GetBgmVolume();
   (**(code **)(*(int *)uVar2 + 0x24))(uVar2,param_1,0,(cVar1 * 0x60) / 0xf & 0xff,0x3c,0x40,0);
   return;
 }

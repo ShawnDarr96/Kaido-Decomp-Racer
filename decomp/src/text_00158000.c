@@ -2829,7 +2829,9 @@ void PhysPlane_TransformNormal(int param_1,undefined8 param_2,int param_3)
 }
 
 // 0x0015bf00  size 0x8
-void maybe_PhysSphere_SetRadius(undefined4 param_1,int param_2)
+/* N153 confirmed: +0x14, read by PhysSphere_ContainsPoint */
+
+void PhysSphere_SetRadius(undefined4 param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0x14) = param_1;
@@ -2837,7 +2839,9 @@ void maybe_PhysSphere_SetRadius(undefined4 param_1,int param_2)
 }
 
 // 0x0015bf10  size 0xc
-void maybe_PhysSphere_SetCenter(int param_1,undefined4 *param_2)
+/* N153 confirmed: +0x20, read by PhysSphere_ContainsPoint */
+
+void PhysSphere_SetCenter(int param_1,undefined4 *param_2)
 
 {
   undefined4 uVar1;

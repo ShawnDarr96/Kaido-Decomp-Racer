@@ -39,17 +39,17 @@ void ScrOptions_ResetDefaults(undefined4 *param_1)
   if (iVar2 != 0) {
     param_1[1] = 0;
     *param_1 = 0;
-    uVar1 = maybe_Options_GetLanguage();
+    uVar1 = Options_GetInstance();
     Options_SetDefaultsGame(uVar1);
-    iVar2 = maybe_Options_GetLanguage();
+    iVar2 = Options_GetInstance();
     Options_SetDefaultsVolume(iVar2 + 0x1c);
-    iVar2 = maybe_Options_GetLanguage();
+    iVar2 = Options_GetInstance();
     Options_SetDefaults(iVar2 + 0x28);
-    iVar2 = maybe_Options_GetLanguage();
+    iVar2 = Options_GetInstance();
     Options_SetDefaults(iVar2 + 0x110);
-    iVar2 = maybe_Options_GetLanguage();
+    iVar2 = Options_GetInstance();
     Options_ApplySeVolume(*(undefined1 *)(iVar2 + 0x1c));
-    iVar2 = maybe_Options_GetLanguage();
+    iVar2 = Options_GetInstance();
     Options_ApplyBgmVolume(*(undefined1 *)(iVar2 + 0x20));
   }
   return;
@@ -207,9 +207,9 @@ void maybe_ScrOptionsLanguage_State7_OptionsGetLanguage(undefined8 param_1)
       iVar5 = iVar5 + 8;
       puVar6 = puVar6 + 5;
     } while (uVar7 < 9);
-    iVar5 = maybe_Options_GetLanguage();
+    iVar5 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsB(puVar2 + 0x82,iVar5 + puVar2[0x81] * 0xe8 + 0x28);
-    iVar5 = maybe_Options_GetLanguage();
+    iVar5 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsA(puVar2 + 0x8e,iVar5 + puVar2[0x81] * 0xe8 + 0x88);
     puVar6 = puVar2 + 0xf7;
     puVar2[0xf8] = 1;
@@ -233,9 +233,9 @@ void maybe_ScrOptionsLanguage_State7_OptionsGetLanguage(undefined8 param_1)
       iVar5 = iVar5 + 8;
       puVar6 = puVar6 + 5;
     } while (uVar7 < 9);
-    iVar5 = maybe_Options_GetLanguage();
+    iVar5 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsB(puVar2 + 0xf9,iVar5 + puVar2[0xf8] * 0xe8 + 0x28);
-    iVar5 = maybe_Options_GetLanguage();
+    iVar5 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsA(puVar2 + 0x105,iVar5 + puVar2[0xf8] * 0xe8 + 0x88);
   }
   puVar2[1] = 6;
@@ -343,9 +343,9 @@ void maybe_ScrOptionsLanguage_State5_OptionsGetLanguage(undefined4 *param_1)
       iVar7 = iVar7 + 8;
       puVar8 = puVar8 + 5;
     } while (uVar12 < 9);
-    iVar7 = maybe_Options_GetLanguage();
+    iVar7 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0x82,iVar7 + param_1[0x81] * 0xe8 + 0x28);
-    iVar7 = maybe_Options_GetLanguage();
+    iVar7 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x8e,iVar7 + param_1[0x81] * 0xe8 + 0x88);
     puVar8 = param_1 + 0xf7;
     param_1[0xf8] = 1;
@@ -369,9 +369,9 @@ void maybe_ScrOptionsLanguage_State5_OptionsGetLanguage(undefined4 *param_1)
       iVar7 = iVar7 + 8;
       puVar8 = puVar8 + 5;
     } while (uVar12 < 9);
-    iVar7 = maybe_Options_GetLanguage();
+    iVar7 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0xf9,iVar7 + param_1[0xf8] * 0xe8 + 0x28);
-    iVar7 = maybe_Options_GetLanguage();
+    iVar7 = Options_GetInstance();
     maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x105,iVar7 + param_1[0xf8] * 0xe8 + 0x88);
   }
   *param_1 = 4;
@@ -413,7 +413,7 @@ void maybe_ScrOptionsLanguage_State5_OptionsGetLanguage(undefined4 *param_1)
           return;
         }
       }
-      iVar7 = maybe_Options_GetLanguage();
+      iVar7 = Options_GetInstance();
       iVar11 = iVar7 + 0x28;
       Mem_Set16(iVar11,0,0x60);
       *(undefined4 *)(iVar7 + 0x38) = 0x10;
@@ -439,7 +439,7 @@ void maybe_ScrOptionsLanguage_State5_OptionsGetLanguage(undefined4 *param_1)
         puVar9 = puVar9 + 5;
         *(undefined4 *)(iVar11 + *piVar1 * 4) = uVar5;
       } while (iVar10 < 10);
-      iVar7 = maybe_Options_GetLanguage();
+      iVar7 = Options_GetInstance();
       iVar11 = iVar7 + 0x110;
       Mem_Set16(iVar11,0,0x60);
       *(undefined4 *)(iVar7 + 0x120) = 0x10;
@@ -512,7 +512,7 @@ void maybe_ScrOptionsLanguage_State4_OptionsGetLanguage(undefined4 *param_1)
     uVar4 = 0x100000;
   }
   if (uVar4 == 0x10) {
-    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+    puVar2 = (undefined4 *)Options_GetInstance();
     *puVar2 = param_1[0xe];
     puVar2[1] = param_1[0xf];
     puVar2[2] = param_1[0x10];
@@ -522,7 +522,7 @@ void maybe_ScrOptionsLanguage_State4_OptionsGetLanguage(undefined4 *param_1)
     puVar2[6] = param_1[0x14];
   }
   else if (uVar4 == 0x20) {
-    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+    puVar2 = (undefined4 *)Options_GetInstance();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -548,7 +548,7 @@ void maybe_ScrOptionsLanguage_State3_OptionsGetLanguage(undefined4 *param_1)
   param_1[0x171] = 0;
   if (iVar1 != 0) {
     *param_1 = 0;
-    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+    puVar2 = (undefined4 *)Options_GetInstance();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -586,11 +586,11 @@ void maybe_ScrOptionsLanguage_State2_OptionsGetLanguage(undefined4 *param_1)
   if (iVar1 != 0) {
     param_1[1] = 0;
     *param_1 = 0;
-    iVar1 = maybe_Options_GetLanguage();
+    iVar1 = Options_GetInstance();
     param_1[0x15] = *(undefined4 *)(iVar1 + 0x1c);
     param_1[0x16] = *(undefined4 *)(iVar1 + 0x20);
     param_1[0x17] = *(undefined4 *)(iVar1 + 0x24);
-    iVar1 = maybe_Options_GetLanguage();
+    iVar1 = Options_GetInstance();
     param_1[0x18] = *(undefined4 *)(iVar1 + 0x1c);
     param_1[0x19] = *(undefined4 *)(iVar1 + 0x20);
     param_1[0x1a] = *(undefined4 *)(iVar1 + 0x24);
@@ -625,23 +625,23 @@ void maybe_ScrOptionsLanguage_State2_OptionsGetLanguage(undefined4 *param_1)
   }
   if (uVar3 == 0x10) {
     if (param_1[5] == 3) {
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       Options_SetDefaultsVolume(iVar1 + 0x1c);
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       Options_ApplySeVolume(*(undefined1 *)(iVar1 + 0x1c));
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       Options_ApplyBgmVolume(*(undefined1 *)(iVar1 + 0x20));
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       param_1[0x15] = *(undefined4 *)(iVar1 + 0x1c);
       param_1[0x16] = *(undefined4 *)(iVar1 + 0x20);
       param_1[0x17] = *(undefined4 *)(iVar1 + 0x24);
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       param_1[0x18] = *(undefined4 *)(iVar1 + 0x1c);
       param_1[0x19] = *(undefined4 *)(iVar1 + 0x20);
       param_1[0x1a] = *(undefined4 *)(iVar1 + 0x24);
     }
     else {
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       *(undefined4 *)(iVar1 + 0x1c) = param_1[0x15];
       *(undefined4 *)(iVar1 + 0x20) = param_1[0x16];
       *(undefined4 *)(iVar1 + 0x24) = param_1[0x17];
@@ -678,7 +678,7 @@ void maybe_ScrOptionsLanguage_State1_OptionsGetLanguage(undefined4 *param_1)
   if (iVar1 != 0) {
     param_1[1] = 0;
     *param_1 = 0;
-    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+    puVar2 = (undefined4 *)Options_GetInstance();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -743,9 +743,9 @@ LAB_002954b8:
   }
   if (uVar5 == 0x10) {
     if (param_1[4] == 6) {
-      uVar4 = maybe_Options_GetLanguage();
+      uVar4 = Options_GetInstance();
       Options_SetDefaultsGame(uVar4);
-      puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+      puVar2 = (undefined4 *)Options_GetInstance();
       param_1[0xe] = *puVar2;
       param_1[0xf] = puVar2[1];
       param_1[0x10] = puVar2[2];
@@ -755,7 +755,7 @@ LAB_002954b8:
       param_1[0x14] = puVar2[6];
     }
     else {
-      puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+      puVar2 = (undefined4 *)Options_GetInstance();
       *puVar2 = param_1[0xe];
       puVar2[1] = param_1[0xf];
       puVar2[2] = param_1[0x10];
@@ -766,7 +766,7 @@ LAB_002954b8:
     }
   }
   else if (uVar5 == 0x20) {
-    puVar2 = (undefined4 *)maybe_Options_GetLanguage();
+    puVar2 = (undefined4 *)Options_GetInstance();
     param_1[0xe] = *puVar2;
     param_1[0xf] = puVar2[1];
     param_1[0x10] = puVar2[2];
@@ -956,7 +956,7 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
   param_1[8] = 0;
   param_1[9] = 0;
   param_1[10] = 0;
-  puVar1 = (undefined4 *)maybe_Options_GetLanguage();
+  puVar1 = (undefined4 *)Options_GetInstance();
   param_1[0xe] = *puVar1;
   param_1[0xf] = puVar1[1];
   param_1[0x10] = puVar1[2];
@@ -964,7 +964,7 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
   param_1[0x12] = puVar1[4];
   param_1[0x13] = puVar1[5];
   param_1[0x14] = puVar1[6];
-  iVar2 = maybe_Options_GetLanguage();
+  iVar2 = Options_GetInstance();
   puVar4 = param_1 + 0x80;
   uVar5 = 0;
   iVar3 = 0;
@@ -990,9 +990,9 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
     iVar2 = iVar2 + 8;
     puVar4 = puVar4 + 5;
   } while (uVar5 < 9);
-  iVar2 = maybe_Options_GetLanguage();
+  iVar2 = Options_GetInstance();
   maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0x82,iVar2 + param_1[0x81] * 0xe8 + 0x28);
-  iVar2 = maybe_Options_GetLanguage();
+  iVar2 = Options_GetInstance();
   maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x8e,iVar2 + param_1[0x81] * 0xe8 + 0x88);
   puVar4 = param_1 + 0xf7;
   param_1[0xf8] = 1;
@@ -1016,9 +1016,9 @@ void maybe_ScrOptionsLanguage_Enter(undefined4 *param_1)
     iVar2 = iVar2 + 8;
     puVar4 = puVar4 + 5;
   } while (uVar5 < 9);
-  iVar2 = maybe_Options_GetLanguage();
+  iVar2 = Options_GetInstance();
   maybe_ScrOptionsLanguage_InitItemsB(param_1 + 0xf9,iVar2 + param_1[0xf8] * 0xe8 + 0x28);
-  iVar2 = maybe_Options_GetLanguage();
+  iVar2 = Options_GetInstance();
   maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0x105,iVar2 + param_1[0xf8] * 0xe8 + 0x88);
   param_1[0x16e] = 0xffffffff;
   param_1[0x16f] = 0;
@@ -1066,9 +1066,9 @@ void ScrOptions_InputSound(int *param_1,int param_2)
   Menu_HandleCursor(param_1,iVar5,2,9,1,0);
   if (*param_1 == 9) {
     if (uVar9 == 0x10) {
-      iVar5 = maybe_Options_GetLanguage();
+      iVar5 = Options_GetInstance();
       Options_SetDefaultsSound(iVar5 + param_1[1] * 0xe8 + 0x88);
-      iVar5 = maybe_Options_GetLanguage();
+      iVar5 = Options_GetInstance();
       maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0xe,iVar5 + param_1[1] * 0xe8 + 0x88);
       *(undefined4 *)(param_2 + 4) = 7;
     }
@@ -1080,7 +1080,7 @@ void ScrOptions_InputSound(int *param_1,int param_2)
         bVar4 = param_1[0xe] != 0;
       }
       if (!bVar4) {
-        iVar5 = maybe_Options_GetLanguage();
+        iVar5 = Options_GetInstance();
         iVar10 = iVar5 + param_1[1] * 0xe8 + 0x88;
         Mem_Set16(iVar10,0,0x18);
         iVar5 = 0;
@@ -1151,7 +1151,7 @@ void ScrOptions_InputDisplay(int *param_1,int param_2)
   iVar1 = *param_1;
   if (iVar1 == 10) {
     if (uVar6 == 0x10) {
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       Options_SetDefaultsDisplay(iVar1 + param_1[1] * 0xe8 + 0x28);
       *param_1 = 0;
       uVar6 = 0;
@@ -1174,9 +1174,9 @@ void ScrOptions_InputDisplay(int *param_1,int param_2)
         iVar1 = iVar1 + 8;
         piVar5 = piVar5 + 5;
       } while (uVar6 < 9);
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       maybe_ScrOptionsLanguage_InitItemsB(param_1 + 2,iVar1 + param_1[1] * 0xe8 + 0x28);
-      iVar1 = maybe_Options_GetLanguage();
+      iVar1 = Options_GetInstance();
       maybe_ScrOptionsLanguage_InitItemsA(param_1 + 0xe,iVar1 + param_1[1] * 0xe8 + 0x88);
       *param_1 = 10;
       *(undefined4 *)(param_2 + 4) = 5;

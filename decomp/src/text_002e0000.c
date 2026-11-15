@@ -1224,7 +1224,7 @@ void maybe_JukeboxTask_Load(int param_1)
     iVar2 = _g_FileShared2;
     Sema_Signal(0x36efc0,0);
     if ((iVar2 == 0) && (*(int *)(iVar1 + 4) = *(int *)(iVar1 + 4) + -1, *(int *)(iVar1 + 4) < 0)) {
-      uVar4 = maybe_File_GetSectorCount(&uStack_4);
+      uVar4 = File_GetSectorCount(&uStack_4);
       maybe_Heap_CreateFromBuffer(iVar1 + 8,uVar4,uStack_4);
       maybe_Jukebox_PickSong(iVar1);
       *(code **)(param_1 + 0x1c) = maybe_JukeboxTask_Draw;

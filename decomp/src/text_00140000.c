@@ -1038,7 +1038,9 @@ void maybe_EngineObj_SetBitB(int param_1,uint param_2)
 }
 
 // 0x00141a60  size 0x14
-bool maybe_EngineObj_HasFlags(int param_1,uint param_2)
+/* N153 confirmed: (flags & mask) == mask */
+
+bool EngineObj_HasFlags(int param_1,uint param_2)
 
 {
   return param_2 == (param_2 & *(uint *)(param_1 + 0x480));

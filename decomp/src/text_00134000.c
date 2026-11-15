@@ -1802,8 +1802,9 @@ undefined4 File_ReadCdFile(undefined8 param_1,long param_2,long param_3,long par
 
 // 0x00136e10  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* N153 confirmed: *out = sector count * 2 */
 
-undefined4 maybe_File_GetSectorCount(int *param_1)
+undefined4 File_GetSectorCount(int *param_1)
 
 {
   *param_1 = _s_FileSectorCount << 1;

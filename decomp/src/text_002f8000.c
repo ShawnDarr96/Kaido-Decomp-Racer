@@ -528,7 +528,7 @@ undefined4 ComposerInput_SetupDevices(char *param_1)
         param_1[9] = '\0';
         param_1[10] = '\0';
         param_1[0xb] = '\0';
-        iVar1 = maybe_Options_GetLanguage();
+        iVar1 = Options_GetInstance();
         Controls_SetDefaults(iVar1 + (*param_1 * 0x1c + (int)*param_1) * 8 + 0x28,lVar2);
         iVar1 = *(int *)(param_1 + 0x10);
       }
