@@ -1985,7 +1985,7 @@ address,name,signature,source,comment
 0x00183350,Options_Elem_28_xe8,,game-accessor,
 0x00183380,Options_ApplyBgmVolume,,game,
 0x001833f0,Options_ApplySeVolume,,game,
-0x00183460,Options_GetSeVolume,,game-accessor,
+0x00183460,maybe_Options_GetBgmVolume,,game,"reads Options+0x20, the field Options_ApplyBgmVolume writes (was Options_GetSeVolume)"
 0x00183470,Options_Get_1c,,game-accessor,
 0x00183480,Options_Get_14,,game-accessor,
 0x00183490,Options_Get_18,,game-accessor,
@@ -3149,7 +3149,7 @@ address,name,signature,source,comment
 0x001fc4a0,MenuMgr_Back,,game,
 0x001fc500,MenuMgr_SetupFromCareer,,game,
 0x001fc9b0,MenuMgr_SetupFromResult,,game,
-0x001fd070,MenuMgr_GetScreenParam,,game,49 callers
+0x001fd070,MenuMgr_RequestScreen,,game,stores the requested screen id at MenuMgr+0x20 (was MenuMgr_GetScreenParam)
 0x001fd0c0,MenuMgr_ResolveNext,,game,
 0x001fd1d0,MenuMgr_ApplyNext,,game,
 0x001fd2d0,MenuMgr_Goto,,game,13 callers

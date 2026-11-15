@@ -222,7 +222,7 @@ void Prop_DrawPaper(uint param_1)
   undefined4 uStack_60;
   undefined4 uStack_5c;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = &g_Views;
@@ -566,7 +566,7 @@ void Prop_DrawOverlay(uint param_1)
   undefined1 auStack_80 [20];
   undefined4 uStack_6c;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = &g_Views + (param_1 & 0xff) * 0x5c0;

@@ -15,7 +15,7 @@ void Course_UpdateFlareOcclusion(void)
   undefined1 *puVar7;
   uint *puVar8;
   uint uVar9;
-  undefined1 *puVar10;
+  undefined *puVar10;
   uint uVar11;
   uint uVar12;
   uint uVar13;

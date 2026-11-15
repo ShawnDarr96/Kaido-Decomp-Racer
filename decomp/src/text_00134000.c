@@ -2013,10 +2013,10 @@ void Pad_Update(void)
 {
   undefined4 uVar1;
   long lVar2;
-  undefined1 *puVar3;
+  undefined *puVar3;
   int iVar4;
   int iVar5;
-  undefined1 *puVar6;
+  undefined *puVar6;
   int iVar7;
   
   iVar7 = 0;
@@ -2091,7 +2091,7 @@ void Pad_Update(void)
 // 0x001375f0  size 0x30
 /* 0x498 bytes per pad at 0x386650 */
 
-undefined1 * Pad_GetPort(char param_1,char param_2)
+undefined * Pad_GetPort(char param_1,char param_2)
 
 {
   return &g_Pads + param_2 * 0x498 + param_1 * 0x498;
@@ -2101,7 +2101,7 @@ undefined1 * Pad_GetPort(char param_1,char param_2)
 void maybe_Pad_Shutdown(void)
 
 {
-  undefined1 *puVar1;
+  undefined *puVar1;
   int iVar2;
   
   iVar2 = 0;

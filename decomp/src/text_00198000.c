@@ -303,7 +303,7 @@ void View_DrawBackground(uint param_1,long param_2,long param_3)
   float fStack_50;
   float fStack_4c;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   iVar1 = (param_1 & 0xff) * 0x5c0;
   Camera_Init(&g_Views + iVar1);
@@ -927,7 +927,7 @@ void SceneObj_DrawModel(undefined8 param_1,byte *param_2)
   float fStack_50;
   float fStack_4c;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   iVar1 = ((uint)*param_2 * 0x18 - (uint)*param_2) * 0x40;
   if (*(int *)(iVar1 + 0x431684) != 0) {

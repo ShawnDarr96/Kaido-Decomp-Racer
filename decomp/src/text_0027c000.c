@@ -213,7 +213,7 @@ void ScrCareer_Draw_InspectCarParts_cd70(int param_1)
     *(undefined4 *)(iVar1 + 0x370) = uVar2;
     *(undefined4 *)(iVar1 + 0x36c) = 1;
     Menu_ClearSlot(0);
-    Menu_ShowDialog(_g_MenuMgr + 0x654,0x11c,2);
+    Menu_ShowDialog(&g_MenuMgr->field_0x654,0x11c,2);
   }
   lVar3 = UiLayout_UpdateAnimById(0x5d,0);
   lVar4 = UiLayout_UpdateAnimById(0x5d,1);
@@ -277,9 +277,9 @@ void ScrCareer_Draw_TuneUp_d1e0(int *param_1)
       *(undefined4 *)(iVar1 + 0x330) = 1;
     }
     Menu_ClearSlot(0);
-    Menu_ShowDialog(_g_MenuMgr + 0x654,0x116,3);
+    Menu_ShowDialog(&g_MenuMgr->field_0x654,0x116,3);
     if (param_1[0x280] != -1) {
-      Menu_SetCursorAlpha(_g_MenuMgr + 0x654,0);
+      Menu_SetCursorAlpha(&g_MenuMgr->field_0x654,0);
     }
   }
   lVar2 = UiLayout_UpdateAnimById(0x5c,0);
@@ -288,7 +288,7 @@ void ScrCareer_Draw_TuneUp_d1e0(int *param_1)
   }
   if ((param_1[0x286] != 0) && (lVar2 = UiLayout_UpdateAnimById(0x5c), lVar2 == 0)) {
     param_1[0x286] = 0;
-    Menu_BlockInput(_g_MenuMgr + 0x654);
+    Menu_BlockInput(&g_MenuMgr->field_0x654);
   }
   if (*piRam0036f468 == 1) {
     MenuWnd_SetItemState(0x5c,*(undefined4 *)(*param_1 * 4 + 0x36ed60),1,0);
@@ -305,7 +305,7 @@ void ScrCareer_Draw_TuneUp_d1e0(int *param_1)
   uVar3 = Profile_Get(0);
   uVar3 = Profile_GetMoney(uVar3);
   MenuWnd_DrawNumber(0x2d,0x38,uVar3);
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   iVar1 = UiMgr_FindLayout(0x35);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   iVar1 = UiMgr_FindLayout(0x2c);
@@ -320,13 +320,12 @@ void ScrCareer_Draw_TuneUp_d1e0(int *param_1)
 }
 
 // 0x0027d4d0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* page identified from its states' on-screen text (N154) */
 
 void maybe_PageWheels_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -340,8 +339,8 @@ void maybe_PageWheels_Update(undefined8 param_1)
   int iVar1;
   long lVar2;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   (*(code *)(&PTR_ScrCareer_Draw_TuneUp_d1e0_0032db60)[*(int *)((int)param_1 + 0xa04)])(param_1);
   if (*(int *)((int)param_1 + 0xa04) != 0) {
@@ -350,10 +349,9 @@ void maybe_PageWheels_Update(undefined8 param_1)
     iVar1 = UiMgr_FindLayout(0x5b);
     UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   }
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
-     (lVar2 = UiLayout_UpdateAnimById(0x5c,1), lVar2 == 0)) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+  if (((g_MenuMgr->flags & 4) == 0) && (lVar2 = UiLayout_UpdateAnimById(0x5c,1), lVar2 == 0)) {
+    if ((g_MenuMgr->flags & 1) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
     }
   }
   return;
@@ -882,7 +880,7 @@ LAB_0027e77c:
   MenuWnd_DrawText(0x10,0x10,unaff_s2_lo);
   iVar4 = UiMgr_FindLayout(0x10);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+  g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
   return;
 }
 
@@ -1528,11 +1526,11 @@ void ScrGarage_Draw_SaveChangesAnd(undefined8 param_1)
   if (*piVar11 < 2) {
     if (piVar11[0xd] == 1) {
       MenuWnd_DrawCursor(0);
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
       lVar7 = UiLayout_UpdateAnimById(0x3a,5);
       lVar8 = UiLayout_UpdateAnimById(0x41,2);
       if (lVar7 == 0 && lVar8 == 0) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
         piVar11[0xd] = 0;
         iVar3 = UiMgr_FindLayout(0x3a);
         iVar3 = *_g_UiMgr + iVar3 * 0x4f4;
@@ -1570,11 +1568,11 @@ void ScrGarage_Draw_SaveChangesAnd(undefined8 param_1)
   else {
     if (piVar11[0xd] == 0) {
       MenuWnd_DrawCursor(0);
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
       lVar7 = UiLayout_UpdateAnimById(0x3a,6);
       lVar8 = UiLayout_UpdateAnimById(0x41,0);
       if (lVar7 == 0 && lVar8 == 0) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
         piVar11[0xd] = 1;
         iVar3 = UiMgr_FindLayout(0x3a);
         iVar3 = *_g_UiMgr + iVar3 * 0x4f4;

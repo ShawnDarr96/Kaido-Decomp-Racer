@@ -462,26 +462,26 @@ void UiMgr_Alloc(undefined8 param_1,int param_2,int param_3,long param_4,int par
 void UiMgr_DrawAll(uint param_1)
 
 {
-  char cVar1;
+  uchar uVar1;
   undefined8 uVar2;
   int iVar3;
   int iVar4;
   
-  cVar1 = *(char *)(iRam0036f1d4 + 0x15);
+  uVar1 = g_RaceCtx->unk_0015;
   uVar2 = 2;
-  if (cVar1 == '\x04') {
+  if (uVar1 == '\x04') {
     uVar2 = 7;
   }
-  else if (cVar1 == '\x03') {
+  else if (uVar1 == '\x03') {
     uVar2 = 6;
   }
-  else if (cVar1 == '\x02') {
+  else if (uVar1 == '\x02') {
     uVar2 = 5;
   }
-  else if (cVar1 == '\x05') {
+  else if (uVar1 == '\x05') {
     uVar2 = 4;
   }
-  else if (cVar1 == '\x01') {
+  else if (uVar1 == '\x01') {
     uVar2 = 3;
   }
   UiElem_SetNumber(0x468e10,3,0x16,uVar2);
@@ -601,7 +601,7 @@ void UiMgr_FreeSystem(void)
 void UiMgr_LoadSystem(undefined8 param_1)
 
 {
-  undefined1 uVar1;
+  uchar uVar1;
   uint uVar2;
   undefined8 uVar3;
   undefined4 *puVar4;
@@ -625,8 +625,8 @@ void UiMgr_LoadSystem(undefined8 param_1)
   uStack_14 = DAT_003268cc;
   uStack_10 = DAT_003268d0;
   uStack_c = DAT_003268d4;
-  uVar1 = *(undefined1 *)(iRam0036f1d4 + 0x15);
-  *(undefined1 *)(iRam0036f1d4 + 0x15) = 0;
+  uVar1 = g_RaceCtx->unk_0015;
+  g_RaceCtx->unk_0015 = '\0';
   do {
     UiLayout_Init(iVar5,uRam0036f2c0,uRam0036f2c0,1);
     UiLayout_Load(iVar5,puVar4,param_1);
@@ -634,7 +634,7 @@ void UiMgr_LoadSystem(undefined8 param_1)
     iVar5 = iVar5 + 0x4f0;
     puVar4 = puVar4 + 3;
   } while (iVar6 < 2);
-  *(undefined1 *)(iRam0036f1d4 + 0x15) = uVar1;
+  g_RaceCtx->unk_0015 = uVar1;
   iVar6 = _g_ArcToc + iStack_4 * 0x14;
   iVar5 = *(int *)(iVar6 + 0x20);
   if (iVar5 == 0) {

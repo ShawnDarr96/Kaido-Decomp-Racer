@@ -167,11 +167,11 @@ void ScrCareer_Draw_ChangeTyres(int param_1)
     *(undefined4 *)(iVar3 + 0x330) = 1;
     Menu_ClearSlot(0);
     MenuWnd_SetHelpText(0);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
+    g_MenuMgr->unk_05a0 = 0;
+    g_MenuMgr->unk_05e8 = 0;
+    g_MenuMgr->unk_060c = 0;
+    g_MenuMgr->unk_0634 = 0;
+    g_MenuMgr->unk_0644 = 0;
   }
   lVar4 = UiLayout_UpdateAnimById(0xa3,0);
   lVar5 = UiLayout_UpdateAnimById(0xa4,0);
@@ -237,7 +237,7 @@ void ScrCareer_Draw_ChangeTyres(int param_1)
   }
   else {
     DAT_0032befc = 3;
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x18000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x18000;
   }
   UiLayout_UpdateAnimById(0xa2,0);
   iVar3 = UiMgr_FindLayout(0xa2);
@@ -262,7 +262,7 @@ void ScrRace_Draw_TaAttack(int param_1)
   long lVar5;
   undefined8 uVar6;
   
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1c000;
+  g_MenuMgr->flags = g_MenuMgr->flags | 0x1c000;
   UiMgr_FindLayout(0x9e);
   UiMgr_FindLayout(0x78);
   iVar1 = *(int *)(param_1 + 0x65c);
@@ -329,11 +329,11 @@ void ScrRace_Draw_TaAttack(int param_1)
                       *(undefined4 *)(&DAT_0032c1d0 + *(int *)(param_1 + 0x6b0) * 4),0x16,
                       *(undefined4 *)(&DAT_0032c1b0 + iVar4 * 4));
     Menu_ClearSlot(0);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
+    g_MenuMgr->unk_05a0 = 1;
+    g_MenuMgr->unk_05e8 = 1;
+    g_MenuMgr->unk_060c = 1;
+    g_MenuMgr->unk_0634 = 1;
+    g_MenuMgr->unk_0644 = 1;
   }
   lVar5 = UiLayout_UpdateAnimById(0x9e,0);
   if (lVar5 == 0) {

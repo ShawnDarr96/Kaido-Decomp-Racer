@@ -224,7 +224,7 @@ LAB_00307be0:
       *(short *)(iVar3 + -0x7ff898be) = (short)iVar2;
       *(short *)(iVar3 + -0x7ff898c0) = (short)iVar6;
       *(int *)(iVar3 + -0x7ff898bc) = (int)lVar4;
-      *(undefined1 **)(iVar3 + -0x7ff898b0) = &_mips_gp0_value;
+      *(undefined **)(iVar3 + -0x7ff898b0) = &_mips_gp0_value;
       uVar1 = uRam80076740;
       *(undefined4 *)(iVar3 + -0x7ff898b8) = param_2;
       *(undefined4 *)(iVar3 + -0x7ff898b4) = param_3;

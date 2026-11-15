@@ -1,7 +1,7 @@
 address,name,comment
 0x0036f1a8,g_GameState,0x3ae0-byte game state (gp-0x7548)
-0x0036f1cc,g_RaceCtx,race context (gp-0x751c)
-0x0036f1dc,g_Options,options/settings 0x1f8 bytes (gp-0x750c)
+0x0036f1d4,g_RaceCtx,race context (gp-0x751c)
+0x0036f1e4,g_Options,options/settings 0x1f8 bytes (gp-0x750c)
 0x0036f1e0,g_RaceTbl,race tables 0x9240 bytes
 0x0036f1e8,g_RaceSlotTbl,0x9944 bytes (gp-0x7508)
 0x0036f1fc,g_Loading,loading screen state (gp-0x74f4)

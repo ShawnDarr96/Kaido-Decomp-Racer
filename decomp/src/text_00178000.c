@@ -70,161 +70,157 @@ void RaceParams_SetDefaults(undefined1 *param_1)
 }
 
 // 0x00178110  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_3acc(undefined4 param_1)
+void GameState_Set_3acc(undefined *param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x3acc) = param_1;
+  g_GameState->replayBuf = param_1;
   return;
 }
 
 // 0x00178120  size 0x26c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x3ae0 bytes -> 0x36f1a8 */
 
 void GameState_Alloc(undefined8 param_1)
 
 {
-  undefined1 *puVar1;
-  undefined4 *puVar2;
-  int iVar3;
-  undefined1 *puVar4;
+  GameState *pGVar1;
+  uchar *puVar2;
+  undefined4 *puVar3;
+  int iVar4;
+  uint *puVar5;
   
-  puVar1 = (undefined1 *)Mem_Alloc16(0x3ae0,param_1);
-  _g_GameState = puVar1;
-  *puVar1 = 10;
-  puVar1[1] = 1;
-  puVar1[2] = 0;
-  puVar1[3] = 0;
-  iVar3 = 0;
-  puVar1[4] = 0;
-  *(undefined4 *)(puVar1 + 0xc) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x10) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 8) = 0;
-  *(undefined4 *)(puVar1 + 0x40) = 0;
-  puVar1 = _g_GameState;
-  *(undefined4 *)(_g_GameState + 0x48) = 0;
-  *(undefined4 *)(puVar1 + 0xc4) = 0;
-  *(undefined4 *)(puVar1 + 0x4c) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x50) = 0xffffffff;
-  puVar1[0x54] = 0;
-  puVar1[0x55] = 2;
-  *(undefined4 *)(puVar1 + 0x58) = 0;
-  *(undefined4 *)(puVar1 + 0x5c) = 0;
-  *(undefined4 *)(puVar1 + 200) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x60) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 100) = 0xffffffff;
-  puVar1[0x68] = 0;
-  puVar1[0x69] = 2;
-  *(undefined4 *)(puVar1 + 0x6c) = 0;
-  *(undefined4 *)(puVar1 + 0x70) = 0;
-  *(undefined4 *)(puVar1 + 0xcc) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x74) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x78) = 0xffffffff;
-  puVar1[0x7c] = 0;
-  puVar1[0x7d] = 2;
-  *(undefined4 *)(puVar1 + 0x80) = 0;
-  *(undefined4 *)(puVar1 + 0x84) = 0;
-  *(undefined4 *)(puVar1 + 0xd0) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x88) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x8c) = 0xffffffff;
-  puVar1[0x90] = 0;
-  puVar1[0x91] = 2;
-  *(undefined4 *)(puVar1 + 0x94) = 0;
-  *(undefined4 *)(puVar1 + 0x98) = 0;
-  *(undefined4 *)(puVar1 + 0xd4) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x9c) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0xa0) = 0xffffffff;
-  puVar1[0xa4] = 0;
-  puVar1[0xa5] = 2;
-  *(undefined4 *)(puVar1 + 0xa8) = 0;
-  *(undefined4 *)(puVar1 + 0xac) = 0;
-  *(undefined4 *)(puVar1 + 0xd8) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0xb0) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0xb4) = 0xffffffff;
-  puVar1[0xb8] = 0;
-  puVar1[0xb9] = 2;
-  *(undefined4 *)(puVar1 + 0xbc) = 0;
-  *(undefined4 *)(puVar1 + 0xc0) = 0;
-  *(undefined4 *)(puVar1 + 0xdc) = 0xffffffff;
-  puVar1 = _g_GameState;
-  *(undefined4 *)(_g_GameState + 0xe0) = 0;
-  puVar4 = puVar1 + 0xe0;
-  *(undefined4 *)(puVar1 + 0xe4) = 0;
-  *(undefined4 *)(puVar1 + 0xe8) = 0;
-  *(undefined4 *)(puVar1 + 0xec) = 1;
+  pGVar1 = (GameState *)Mem_Alloc16(0x3ae0,param_1);
+  g_GameState = pGVar1;
+  pGVar1->course = '\n';
+  pGVar1->direction = '\x01';
+  pGVar1->unk_0002 = '\0';
+  pGVar1->unk_0003 = '\0';
+  iVar4 = 0;
+  pGVar1->field_0x4 = 0;
+  pGVar1->unk_000c = 0xffffffff;
+  pGVar1->unk_0010 = 0xffffffff;
+  pGVar1->unk_0008 = 0;
+  pGVar1->unk_0040 = 0;
+  pGVar1 = g_GameState;
+  g_GameState->recordHeader = 0;
+  pGVar1->currentRecord = 0;
+  pGVar1->unk_004c = 0xffffffff;
+  *(undefined4 *)pGVar1->records = 0xffffffff;
+  pGVar1->records[0].field_0x4 = 0;
+  pGVar1->records[0].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[0].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[0].field_0xc = 0;
+  pGVar1->unk_00c8 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[0].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 1) = 0xffffffff;
+  pGVar1->records[1].field_0x4 = 0;
+  pGVar1->records[1].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[1].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[1].field_0xc = 0;
+  pGVar1->unk_00cc = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[1].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 2) = 0xffffffff;
+  pGVar1->records[2].field_0x4 = 0;
+  pGVar1->records[2].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[2].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[2].field_0xc = 0;
+  pGVar1->unk_00d0 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[2].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 3) = 0xffffffff;
+  pGVar1->records[3].field_0x4 = 0;
+  pGVar1->records[3].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[3].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[3].field_0xc = 0;
+  pGVar1->unk_00d4 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[3].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 4) = 0xffffffff;
+  pGVar1->records[4].field_0x4 = 0;
+  pGVar1->records[4].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[4].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[4].field_0xc = 0;
+  pGVar1->unk_00d8 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[4].field_0x10 = 0xffffffff;
+  *(undefined4 *)&pGVar1->field_0xb4 = 0xffffffff;
+  pGVar1->field_0xb8 = 0;
+  pGVar1->field_0xb9 = 2;
+  *(undefined4 *)&pGVar1->field_0xbc = 0;
+  *(undefined4 *)&pGVar1->field_0xc0 = 0;
+  pGVar1->unk_00dc = 0xffffffff;
+  pGVar1 = g_GameState;
+  g_GameState->playerCount = 0;
+  puVar5 = &pGVar1->playerCount;
+  pGVar1->rivalCount = 0;
+  pGVar1->trafficCount = 0;
+  pGVar1->unk_00ec = 1;
   do {
-    CarRec_Init(puVar4 + 0x10);
-    puVar1 = _g_GameState;
-    iVar3 = iVar3 + 1;
-    puVar4 = puVar4 + 0xcc;
-  } while (iVar3 < 3);
-  iVar3 = 0;
-  _g_GameState[0x354] = 8;
-  puVar4 = puVar1 + 0x354;
-  *(undefined4 *)(puVar1 + 0x35c) = 0;
-  *(undefined4 *)(puVar1 + 0x360) = 0;
-  *(undefined4 *)(puVar1 + 0x358) = 0;
-  puVar1[0x3dc] = 0xff;
-  *(undefined4 *)(puVar1 + 0x364) = 0;
+    CarRec_Init((RaceEntrySetup *)(puVar5 + 4));
+    pGVar1 = g_GameState;
+    iVar4 = iVar4 + 1;
+    puVar5 = puVar5 + 0x33;
+  } while (iVar4 < 3);
+  iVar4 = 0;
+  g_GameState->modeFlags = '\b';
+  puVar2 = &pGVar1->modeFlags;
+  pGVar1->unk_035c = 0;
+  pGVar1->unk_0360 = 0;
+  *(undefined4 *)&pGVar1->field_0x358 = 0;
+  pGVar1->unk_03dc = 0xff;
+  pGVar1->unk_0364 = 0;
   do {
-    *(undefined4 *)(puVar4 + 0x14) = 0;
-    iVar3 = iVar3 + 5;
-    *(undefined4 *)(puVar4 + 0x18) = 0;
-    *(undefined4 *)(puVar4 + 0x1c) = 0;
-    *(undefined4 *)(puVar4 + 0x20) = 0;
-    *(undefined4 *)(puVar4 + 0x24) = 0;
-    puVar4 = puVar4 + 0x14;
-  } while (iVar3 < 10);
-  *(undefined4 *)(puVar1 + 0x390) = 0;
-  *(undefined4 *)(puVar1 + 0x394) = 0;
-  *(undefined4 *)(puVar1 + 0x398) = 5000000;
-  *(undefined4 *)(puVar1 + 0x39c) = 5000000;
-  *(undefined4 *)(puVar1 + 0x3a0) = 100;
-  *(undefined4 *)(puVar1 + 0x3a4) = 0;
-  *(undefined4 *)(puVar1 + 0x3b0) = 0xffffffff;
-  *(undefined4 *)(puVar1 + 0x3bc) = 0;
-  *(undefined4 *)(puVar1 + 0x3c0) = 0;
-  *(undefined4 *)(puVar1 + 0x3b4) = 0;
-  *(undefined4 *)(puVar1 + 0x3b8) = 0;
-  *(undefined4 *)(puVar1 + 0x3ac) = 0;
-  RaceSlot_Clear(puVar1 + 0x3c4);
-  RaceSlot_Clear(puVar1 + 0x3d0);
-  iVar3 = 0;
-  puVar2 = (undefined4 *)(_g_GameState + 0x3a50);
+    *(undefined4 *)(puVar2 + 0x14) = 0;
+    iVar4 = iVar4 + 5;
+    *(undefined4 *)(puVar2 + 0x18) = 0;
+    *(undefined4 *)(puVar2 + 0x1c) = 0;
+    *(undefined4 *)(puVar2 + 0x20) = 0;
+    *(undefined4 *)(puVar2 + 0x24) = 0;
+    puVar2 = puVar2 + 0x14;
+  } while (iVar4 < 10);
+  pGVar1->unk_0390 = 0;
+  pGVar1->unk_0394 = 0;
+  pGVar1->unk_0398 = 5000000;
+  pGVar1->unk_039c = 5000000;
+  pGVar1->unk_03a0 = 100;
+  pGVar1->unk_03a4 = 0;
+  pGVar1->unk_03b0 = 0xffffffff;
+  pGVar1->unk_03bc = 0;
+  pGVar1->unk_03c0 = 0;
+  pGVar1->unk_03b4 = 0;
+  pGVar1->unk_03b8 = 0;
+  pGVar1->unk_03ac = 0;
+  RaceSlot_Clear(pGVar1->color);
+  RaceSlot_Clear(pGVar1->startPos);
+  iVar4 = 0;
+  puVar3 = (undefined4 *)&g_GameState->field_0x3a50;
   do {
-    *puVar2 = 0;
-    iVar3 = iVar3 + 5;
-    puVar2[10] = 0;
-    puVar2[0x14] = 0;
-    puVar2[1] = 0;
-    puVar2[0xb] = 0;
-    puVar2[0x15] = 0;
-    puVar2[2] = 0;
-    puVar2[0xc] = 0;
-    puVar2[0x16] = 0;
-    puVar2[3] = 0;
-    puVar2[0xd] = 0;
-    puVar2[0x17] = 0;
-    puVar2[4] = 0;
-    puVar2[0xe] = 0;
-    puVar2[0x18] = 0;
-    puVar2 = puVar2 + 5;
-  } while (iVar3 < 10);
-  *(undefined4 *)(_g_GameState + 0x3ac8) = 0xffffffff;
-  *(undefined4 *)(_g_GameState + 0x3acc) = 0;
-  *(undefined4 *)(_g_GameState + 0x3ad0) = 0;
+    *puVar3 = 0;
+    iVar4 = iVar4 + 5;
+    puVar3[10] = 0;
+    puVar3[0x14] = 0;
+    puVar3[1] = 0;
+    puVar3[0xb] = 0;
+    puVar3[0x15] = 0;
+    puVar3[2] = 0;
+    puVar3[0xc] = 0;
+    puVar3[0x16] = 0;
+    puVar3[3] = 0;
+    puVar3[0xd] = 0;
+    puVar3[0x17] = 0;
+    puVar3[4] = 0;
+    puVar3[0xe] = 0;
+    puVar3[0x18] = 0;
+    puVar3 = puVar3 + 5;
+  } while (iVar4 < 10);
+  g_GameState->unk_3ac8 = 0xffffffff;
+  g_GameState->replayBuf = (undefined *)0x0;
+  g_GameState->ghostBuf = (undefined *)0x0;
   return;
 }
 
 // 0x00178390  size 0x8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 maybe_GameState_GetFlag(void)
+GameState * maybe_GameState_GetFlag(void)
 
 {
-  return _g_GameState;
+  return g_GameState;
 }
 
 // 0x001783a0  size 0x9c
@@ -347,9 +343,9 @@ void Course_DrawSky(void)
   undefined4 uStack_90;
   undefined4 uStack_8c;
   undefined1 auStack_80 [20];
-  undefined1 *puStack_6c;
+  undefined *puStack_6c;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = &g_Views;
@@ -2224,7 +2220,7 @@ void Skid_Alloc(undefined8 param_1)
 void Race_Shutdown(void)
 
 {
-  if (iRam0036f1d4 != 0) {
+  if (g_RaceCtx != (RaceCtx *)0x0) {
     Mem_Free();
   }
   GameState_Free();
@@ -2242,13 +2238,13 @@ void Race_Init(undefined8 param_1)
 
 {
   Render_SetInterlace(1);
-  iRam0036f1d4 = Mem_Alloc16(0x18,param_1);
+  g_RaceCtx = (RaceCtx *)Mem_Alloc16(0x18,param_1);
   RaceCtx_SetMode(0);
   RaceCtx_Set_4(0);
   RaceCtx_Set_8(0x13);
   RaceCtx_Set_9(6);
-  RaceCtx_SetDefaults(iRam0036f1d4 + 0x10);
-  *(undefined1 *)(iRam0036f1d4 + 0x15) = 1;
+  RaceCtx_SetDefaults(&g_RaceCtx->courseOverride);
+  g_RaceCtx->unk_0015 = '\x01';
   GameState_Alloc(param_1);
   Profile_InitTable(param_1);
   Profile_Create(0,param_1);

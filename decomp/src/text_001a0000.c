@@ -1493,7 +1493,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   uint uVar10;
   float *pfVar11;
   int iVar12;
-  undefined1 *puVar13;
+  undefined *puVar13;
   float fVar14;
   float fVar15;
   float fStack_3e0;
@@ -1523,7 +1523,7 @@ void Course_DrawSkyAndSun(undefined1 *param_1,long param_2)
   float fStack_9c;
   undefined1 auStack_80 [64];
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   puVar6 = puRam004305b8;
   iVar12 = iRam004305b4 + 0x10;
@@ -1697,7 +1697,7 @@ void Course_DrawLensFlare(int *param_1,undefined1 *param_2,long param_3,int para
   undefined4 uVar3;
   bool bVar4;
   int iVar5;
-  undefined1 *puVar6;
+  undefined *puVar6;
   int iVar7;
   long lVar8;
   ushort *puVar9;
@@ -1889,7 +1889,7 @@ void Course_Render(int param_1)
   undefined4 uStack_1a0;
   undefined4 uStack_19c;
   undefined1 auStack_190 [20];
-  undefined1 *puStack_17c;
+  undefined *puStack_17c;
   undefined4 uStack_150;
   undefined4 uStack_14c;
   undefined4 uStack_148;

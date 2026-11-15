@@ -1934,18 +1934,16 @@ void ScrCareer_Draw_Category(undefined8 param_1)
 }
 
 // 0x0026f880  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* page identified from its states' on-screen text (N154) */
 
 void maybe_PageAero_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
 // 0x0026f8a0  size 0x110
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* page identified from its states' on-screen text (N154) */
 
 void maybe_PageAero_Update(undefined8 param_1)
@@ -1957,17 +1955,17 @@ void maybe_PageAero_Update(undefined8 param_1)
   lVar1 = UiLayout_UpdateAnimById(0xd9,0);
   lVar2 = UiLayout_UpdateAnimById(0xda,0);
   if (lVar1 == 0 && lVar2 == 0) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+    if ((g_MenuMgr->flags & 2) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
     }
   }
   (*(code *)(&PTR_ScrCareer_Draw_Category_0032d910)[*(int *)((int)param_1 + 4)])(param_1);
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) {
+  if ((g_MenuMgr->flags & 4) == 0) {
     lVar1 = UiLayout_UpdateAnimById(0xd9,1);
     lVar2 = UiLayout_UpdateAnimById(0xda,1);
     if (lVar1 == 0 && lVar2 == 0) {
-      if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+      if ((g_MenuMgr->flags & 1) == 0) {
+        g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
       }
     }
   }

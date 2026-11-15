@@ -1985,7 +1985,7 @@ address,size,name,file,status
 0x00183350,0x24,Options_Elem_28_xe8,src/text_00180000.c,decompiled
 0x00183380,0x68,Options_ApplyBgmVolume,src/text_00180000.c,decompiled
 0x001833f0,0x68,Options_ApplySeVolume,src/text_00180000.c,decompiled
-0x00183460,0xc,Options_GetSeVolume,src/text_00180000.c,decompiled
+0x00183460,0xc,maybe_Options_GetBgmVolume,src/text_00180000.c,decompiled
 0x00183470,0xc,Options_Get_1c,src/text_00180000.c,decompiled
 0x00183480,0xc,Options_Get_14,src/text_00180000.c,decompiled
 0x00183490,0xc,Options_Get_18,src/text_00180000.c,decompiled
@@ -3149,7 +3149,7 @@ address,size,name,file,status
 0x001fc4a0,0x54,MenuMgr_Back,src/text_001fc000.c,decompiled
 0x001fc500,0x4b0,MenuMgr_SetupFromCareer,src/text_001fc000.c,decompiled
 0x001fc9b0,0x6c0,MenuMgr_SetupFromResult,src/text_001fc000.c,decompiled
-0x001fd070,0x50,MenuMgr_GetScreenParam,src/text_001fc000.c,decompiled
+0x001fd070,0x50,MenuMgr_RequestScreen,src/text_001fc000.c,decompiled
 0x001fd0c0,0x10c,MenuMgr_ResolveNext,src/text_001fc000.c,decompiled
 0x001fd1d0,0xfc,MenuMgr_ApplyNext,src/text_001fc000.c,decompiled
 0x001fd2d0,0xa8,MenuMgr_Goto,src/text_001fc000.c,decompiled

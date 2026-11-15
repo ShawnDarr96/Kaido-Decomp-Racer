@@ -413,15 +413,15 @@ LAB_00238610:
     *(undefined4 *)(iVar1 + 0x394) = 1;
     MenuWnd_DrawDialogText(199,0x36ea68,2);
     if (*param_1 == 1) {
-      Menu_ShowDialog(_g_MenuMgr + 0x654,0x11f,2);
+      Menu_ShowDialog(&g_MenuMgr->field_0x654,0x11f,2);
       iVar1 = param_1[0x205];
     }
     else {
-      Menu_ShowDialog(_g_MenuMgr + 0x654,0x11a,0);
+      Menu_ShowDialog(&g_MenuMgr->field_0x654,0x11a,0);
       iVar1 = param_1[0x205];
     }
     if (iVar1 != 0) goto LAB_00238610;
-    Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
+    Menu_SetCursorAlpha(&g_MenuMgr->field_0x654,1);
     iVar1 = param_1[0x205];
   }
   if (iVar1 == 0) {
@@ -446,14 +446,14 @@ LAB_00238610:
       lVar8 = UiLayout_UpdateAnimById(0xc9,1);
       if (lVar6 == 0 && lVar8 == 0) {
         param_1[0x20b] = 0;
-        Menu_BlockInput(_g_MenuMgr + 0x654);
+        Menu_BlockInput(&g_MenuMgr->field_0x654);
       }
     }
     else {
       lVar6 = UiLayout_UpdateAnimById(199,3);
       if (lVar6 == 0) {
         param_1[0x20b] = 0;
-        Menu_BlockInput(_g_MenuMgr + 0x654);
+        Menu_BlockInput(&g_MenuMgr->field_0x654);
       }
     }
     MenuWnd_DrawCursor(0);
@@ -495,7 +495,7 @@ LAB_00238610:
         else {
           *(undefined4 *)(iVar1 + 0x31c) = 1;
         }
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
         param_1[8] = param_1[param_1[7] + 0xe];
       }
       else {
@@ -541,7 +541,7 @@ LAB_00238610:
         else {
           *(undefined4 *)(iVar1 + 0x31c) = 1;
         }
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
         param_1[8] = param_1[param_1[7] + 0xe];
       }
       else {
@@ -622,18 +622,18 @@ LAB_002387d8:
     else {
       iVar1 = UiMgr_FindLayout(199);
       UiElem_SetPropInt(*_g_UiMgr + iVar1 * 0x4f4 + 4,0x13,9,7);
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
       UiLayout_UpdateAnimById(0xc9,2);
       if ((param_1[8] == param_1[param_1[7] + 0xe]) &&
          (lVar6 = UiLayout_UpdateAnimById(0xc9,0), lVar6 == 0)) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
       }
     }
   }
   else {
     UiLayout_UpdateAnimById(199,6);
   }
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   iVar1 = Profile_Get(0);
   if (*(int *)(iVar1 + param_1[8] * 4 + 0x37b0) != 1) {
     MenuWnd_DrawText(0xc9,0x10,0x29c);
@@ -801,7 +801,7 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
   int iVar14;
   float fVar15;
   
-  uVar1 = *(uint *)(_g_MenuMgr + 0x28);
+  uVar1 = g_MenuMgr->flags;
   iVar14 = (int)param_1;
   iVar13 = *(int *)(iVar14 + 0x828);
   *(undefined4 *)(iVar14 + 0x828) = 0;
@@ -1049,7 +1049,7 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
         *(undefined4 *)(iVar14 + 0x82c) = 0;
       }
     }
-    else if ((*(int *)(_g_MenuMgr + 0x20) == 0xb) || (*(int *)(_g_MenuMgr + 0x20) == 0x15)) {
+    else if ((g_MenuMgr->nextScreen == 0xb) || (g_MenuMgr->nextScreen == 0x15)) {
       lVar10 = UiLayout_UpdateAnimById(0xc6,1);
       lVar11 = UiLayout_UpdateAnimById(0xc6,3);
       if (lVar10 == 0 && lVar11 == 0) {
@@ -1078,7 +1078,7 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
       else {
         *(undefined4 *)(iVar9 + 0x380) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
     else {
       iVar13 = (*(int *)(iVar14 + 0x10) + (*(int *)(iVar14 + 0x1c) - *(int *)(iVar14 + 0x28)) + 9) %
@@ -1099,7 +1099,7 @@ void ScrRace_Draw_RivalInfo_Draw0_NoData(undefined8 param_1)
       else {
         *(undefined4 *)(iVar9 + 0x36c) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
     else {
       iVar13 = (*(int *)(iVar14 + 0x10) + (*(int *)(iVar14 + 0x1c) - *(int *)(iVar14 + 0x28)) + -1)
@@ -1175,7 +1175,7 @@ void ScrRivalInfo_Exit(void)
   
   iVar1 = UiMgr_FindLayout(7);
   UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x25,8);
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -1190,8 +1190,8 @@ void ScrRace_Draw_RivalInfo(undefined8 param_1)
   ulong uVar3;
   int *piVar4;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   piVar4 = (int *)param_1;
   (*(code *)(&PTR_ScrRace_Draw_RivalInfo_Draw0_NoData_0032b4f0)[piVar4[0x206]])(param_1);
@@ -1219,10 +1219,9 @@ void ScrRace_Draw_RivalInfo(undefined8 param_1)
     uVar3 = uVar3 | 1;
   }
   MenuWnd_SetTitle(uVar3,0xffffffffffffffff);
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
-     (lVar2 = Menu_IsInputIdle(piVar4 + 0x205), lVar2 == 1)) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+  if (((g_MenuMgr->flags & 4) == 0) && (lVar2 = Menu_IsInputIdle(piVar4 + 0x205), lVar2 == 1)) {
+    if ((g_MenuMgr->flags & 1) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
     }
   }
   return;
@@ -2152,13 +2151,13 @@ void maybe_PageSponsors_State0_GarageDrawSponsors(undefined8 param_1)
   }
 LAB_0023bff8:
   if ((char)piVar7[0xc] == '\0') {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     if (((*piRam0036f468 == 1) && (piVar7[4] == 0)) && (piVar7[6] == 0)) {
       MenuWnd_SetItemState(0xd4,*(undefined4 *)(&DAT_0032b728 + piVar7[0xb] * 4),0,0);
     }
   }
   else {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
     if ((char)piVar7[0xc] == -1) {
       lVar4 = UiLayout_UpdateAnimById(0xd4,9);
       if (lVar4 == 0) {

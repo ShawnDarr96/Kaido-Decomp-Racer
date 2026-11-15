@@ -472,13 +472,12 @@ void ScrRace_Select_PlayerStatus(int param_1)
 }
 
 // 0x00234da0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x3277ac */
 
 void PagePlayerStatus_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -493,15 +492,15 @@ void PagePlayerStatus_Update(undefined8 param_1)
   int iVar2;
   long lVar3;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   iVar2 = (int)param_1;
   if (*(char *)(iVar2 + 0x24) == '\0') {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
   }
   else {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
     if (*(char *)(iVar2 + 0x24) == -1) {
       lVar3 = UiLayout_UpdateAnimById(0xd8,2);
       if (lVar3 == 0) {
@@ -540,9 +539,9 @@ void PagePlayerStatus_Update(undefined8 param_1)
   iVar2 = UiMgr_FindLayout(8);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
   ScrRace_Select_PlayerStatus(param_1);
-  uVar1 = *(uint *)(_g_MenuMgr + 0x28);
+  uVar1 = g_MenuMgr->flags;
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
-    *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
+    g_MenuMgr->flags = uVar1 | 0x800;
   }
   return;
 }
@@ -563,7 +562,7 @@ void PagePlayerStatus_Enter(void)
   iVar3 = *_g_UiMgr;
   uVar4 = UiRes_GetLayoutData(0x7c);
   UiLayout_PlayAnim(iVar3 + iVar1 * 0x4f4 + 4,uVar4);
-  if (*(int *)(_g_MenuMgr + 0x24) == 0x24) {
+  if (g_MenuMgr->prevScreen == 0x24) {
     uVar2 = UiRes_GetLayoutData(0x7e);
     iVar3 = UiMgr_FindLayout(8);
     iVar3 = *_g_UiMgr + iVar3 * 0x4f4;
@@ -791,11 +790,11 @@ void ScrRace_Draw_YouHaveNot(int param_1)
     *(undefined4 *)(iVar1 + 0x348) = uVar2;
     *(undefined4 *)(iVar1 + 0x344) = 1;
     MenuWnd_DrawDialogText(0xe6,0x36ea50,2,0);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
+    g_MenuMgr->unk_05a0 = 0;
+    g_MenuMgr->unk_05e8 = 0;
+    g_MenuMgr->unk_060c = 0;
+    g_MenuMgr->unk_0634 = 0;
+    g_MenuMgr->unk_0644 = 0;
   }
   MenuWnd_DrawCursor(1);
   lVar3 = UiLayout_UpdateAnimById(0xe6,0);
@@ -889,13 +888,12 @@ void ScrRace_Draw_PrizeInformation(int param_1)
     *(undefined4 *)(iVar2 + 0x334) = uVar3;
     *(undefined4 *)(iVar2 + 0x330) = 1;
     MenuWnd_DrawDialogText(0xe6,0x36ea48,2,0);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x5f0) =
-         *(undefined4 *)(&DAT_0032b3d0 + *(int *)(param_1 + 0x28) * 4);
+    g_MenuMgr->unk_05a0 = 1;
+    g_MenuMgr->unk_05e8 = 1;
+    g_MenuMgr->unk_060c = 1;
+    g_MenuMgr->unk_0634 = 1;
+    g_MenuMgr->unk_0644 = 1;
+    g_MenuMgr->unk_05f0 = *(uint *)(&DAT_0032b3d0 + *(int *)(param_1 + 0x28) * 4);
   }
   MenuWnd_DrawCursor(1);
   lVar4 = UiLayout_UpdateAnimById(0xe6,0);
@@ -920,7 +918,7 @@ void ScrRace_Draw_PrizeInformation(int param_1)
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
   iVar2 = UiMgr_FindLayout(0xe6);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   return;
 }
@@ -984,13 +982,12 @@ void ScrRace_Draw_PrizeInformation_5c80(int param_1)
     *(undefined4 *)(iVar1 + 0x334) = uVar2;
     *(undefined4 *)(iVar1 + 0x330) = 1;
     MenuWnd_DrawDialogText(0xe5,0x36ea40,2,0);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 1;
-    *(undefined4 *)(_g_MenuMgr + 0x5f0) =
-         *(undefined4 *)(&DAT_0032b3d0 + *(int *)(param_1 + 0x28) * 4);
+    g_MenuMgr->unk_05a0 = 1;
+    g_MenuMgr->unk_05e8 = 1;
+    g_MenuMgr->unk_060c = 1;
+    g_MenuMgr->unk_0634 = 1;
+    g_MenuMgr->unk_0644 = 1;
+    g_MenuMgr->unk_05f0 = *(uint *)(&DAT_0032b3d0 + *(int *)(param_1 + 0x28) * 4);
   }
   MenuWnd_DrawCursor(1);
   lVar3 = UiLayout_UpdateAnimById(0xe5,0);
@@ -1016,7 +1013,7 @@ void ScrRace_Draw_PrizeInformation_5c80(int param_1)
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   iVar1 = UiMgr_FindLayout(0xe5);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   MenuWnd_SetTitle(3,0xffffffffffffffff);
   return;
 }
@@ -1150,11 +1147,11 @@ void ScrRace_Select_PrizeInformation(int param_1)
     *(undefined4 *)(iVar3 + 0x358) = 1;
     Menu_ClearSlot(0);
     MenuWnd_DrawDialogText(0xe4,0x36ea38,2,0);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
+    g_MenuMgr->unk_05a0 = 0;
+    g_MenuMgr->unk_05e8 = 0;
+    g_MenuMgr->unk_060c = 0;
+    g_MenuMgr->unk_0634 = 0;
+    g_MenuMgr->unk_0644 = 0;
   }
   lVar5 = UiLayout_UpdateAnimById(0xe4,0);
   if (lVar5 == 0) {
@@ -1173,13 +1170,13 @@ void ScrRace_Select_PrizeInformation(int param_1)
     cVar2 = *(char *)(param_1 + 0x2c);
   }
   if (cVar2 == '\0') {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     if (*piRam0036f468 == 1) {
       MenuWnd_SetItemState(0xe4,*(undefined4 *)(&DAT_0032b470 + *(int *)(param_1 + 0x24) * 4),0,0);
     }
   }
   else {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
     if (*(char *)(param_1 + 0x2c) == -1) {
       lVar5 = UiLayout_UpdateAnimById(0xe4,2);
       if (lVar5 == 0) {
@@ -1272,7 +1269,7 @@ void MenuPage18_Exit(void)
   
   iVar1 = UiMgr_FindLayout(7);
   UiElem_SetPropFloat(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x25,8);
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -1288,17 +1285,16 @@ void MenuPage18_Update(undefined8 param_1)
   
   lVar2 = UiLayout_UpdateAnimById(0xe3,0);
   if (lVar2 == 0) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+    if ((g_MenuMgr->flags & 2) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
     }
   }
   iVar1 = UiMgr_FindLayout(7);
   UiElem_SetPropFloat(0,*_g_UiMgr + iVar1 * 0x4f4 + 4,0x25,8);
   (*(code *)(&PTR_ScrRace_Select_PrizeInformation_0032b3b0)[*(int *)((int)param_1 + 4)])(param_1);
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
-     (lVar2 = UiLayout_UpdateAnimById(0xe3,1), lVar2 == 0)) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+  if (((g_MenuMgr->flags & 4) == 0) && (lVar2 = UiLayout_UpdateAnimById(0xe3,1), lVar2 == 0)) {
+    if ((g_MenuMgr->flags & 1) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
     }
   }
   return;

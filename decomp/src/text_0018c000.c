@@ -154,17 +154,17 @@ void ScreenFx_Draw(uint *param_1)
   undefined8 *puVar1;
   undefined4 *puVar2;
   uint *puVar3;
-  undefined1 *puVar4;
+  undefined *puVar4;
   uint uVar5;
   uint uVar6;
-  undefined1 *unaff_s1_lo;
+  undefined *unaff_s1_lo;
   int iVar7;
   undefined4 *puVar8;
   uint uVar9;
   undefined4 uVar10;
   float fVar11;
   undefined1 auStack_860 [20];
-  undefined1 *puStack_84c;
+  undefined *puStack_84c;
   undefined1 auStack_820 [128];
   uint auStack_7a0 [170];
   undefined8 uStack_4f8;
@@ -173,9 +173,9 @@ void ScreenFx_Draw(uint *param_1)
   undefined4 uStack_4b0;
   undefined4 uStack_4ac;
   undefined1 auStack_490 [20];
-  undefined1 *puStack_47c;
+  undefined *puStack_47c;
   undefined1 auStack_450 [20];
-  undefined1 *puStack_43c;
+  undefined *puStack_43c;
   undefined1 auStack_410 [128];
   uint auStack_390 [170];
   undefined8 uStack_e8;
@@ -184,7 +184,7 @@ void ScreenFx_Draw(uint *param_1)
   undefined4 uStack_a0;
   undefined4 uStack_9c;
   undefined1 auStack_80 [20];
-  undefined1 *puStack_6c;
+  undefined *puStack_6c;
   undefined1 auStack_40 [20];
   undefined4 uStack_2c;
   
@@ -192,10 +192,10 @@ void ScreenFx_Draw(uint *param_1)
     return;
   }
   uVar9 = param_1[3];
-  puVar4 = (undefined1 *)0x431c80;
+  puVar4 = (undefined *)0x431c80;
   if (uVar9 != 2) {
     if (uVar9 == 1) {
-      puVar4 = (undefined1 *)0x4316c0;
+      puVar4 = (undefined *)0x4316c0;
     }
     else {
       if (uVar9 == 0) {
@@ -781,9 +781,9 @@ void Weather_Draw(float param_1,uint param_2)
   undefined4 uStack_4c0;
   undefined4 uStack_4bc;
   undefined1 auStack_4a0 [20];
-  undefined1 *puStack_48c;
+  undefined *puStack_48c;
   undefined1 auStack_460 [20];
-  undefined1 *puStack_44c;
+  undefined *puStack_44c;
   undefined1 auStack_420 [128];
   uint auStack_3a0 [170];
   undefined8 uStack_f8;
@@ -792,7 +792,7 @@ void Weather_Draw(float param_1,uint param_2)
   undefined4 uStack_b0;
   undefined4 uStack_ac;
   undefined1 auStack_90 [20];
-  undefined1 *puStack_7c;
+  undefined *puStack_7c;
   undefined1 auStack_50 [20];
   undefined4 uStack_3c;
   float fStack_8;

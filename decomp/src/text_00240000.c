@@ -799,7 +799,7 @@ void MenuScr_Draw_GameConfig_13f0(int param_1)
   MenuWnd_DrawText(0xf9,0x30,0x1ed6);
   MenuWnd_DrawText(0xf9,0x31,0x1ed7);
   MenuWnd_DrawText(0xf8,0x1b,*(undefined4 *)(&DAT_0032bd00 + *(int *)(param_1 + 0xc) * 4));
-  if ((!bVar1) && ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0)) {
+  if ((!bVar1) && ((g_MenuMgr->flags & 1) == 0)) {
     MenuWnd_SetItemState(0xf9,*(undefined4 *)(&DAT_0032bce0 + *(int *)(param_1 + 0xc) * 4),1,0);
   }
   iVar3 = UiMgr_FindLayout(0xf9);
@@ -808,13 +808,12 @@ void MenuScr_Draw_GameConfig_13f0(int param_1)
 }
 
 // 0x002418e0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 26 (table 0x3276e0, dispatched by 0x201380) */
 
 void MenuPage26_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -828,13 +827,13 @@ void MenuPage26_Update(int param_1)
   uint uVar1;
   int iVar2;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   (*(code *)(&PTR_MenuScr_Draw_GameConfig_13f0_0032b820)[*(int *)(param_1 + 0x5bc)])();
-  uVar1 = *(uint *)(_g_MenuMgr + 0x28);
+  uVar1 = g_MenuMgr->flags;
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
-    *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
+    g_MenuMgr->flags = uVar1 | 0x800;
   }
   UiLayout_UpdateAnimById(0xf7,0);
   iVar2 = UiMgr_FindLayout(0xf7);
@@ -1615,11 +1614,11 @@ void ScrRecord_Draw_IsTakenAway(int param_1)
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x21,8);
     iVar3 = UiMgr_FindLayout(0x99);
     UiElem_SetPropFloat(0,*_g_UiMgr + iVar3 * 0x4f4 + 4,0x1d,8);
-    *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x5e8) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x60c) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x634) = 0;
-    *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
+    g_MenuMgr->unk_05a0 = 0;
+    g_MenuMgr->unk_05e8 = 0;
+    g_MenuMgr->unk_060c = 0;
+    g_MenuMgr->unk_0634 = 0;
+    g_MenuMgr->unk_0644 = 0;
   }
   GameState_GetVec3d0(acStack_20);
   if ((acStack_20[0] == '\x06') || (*(int *)(param_1 + 0x64c) == 0x2e)) {

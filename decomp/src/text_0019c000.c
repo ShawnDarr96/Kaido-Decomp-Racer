@@ -20,7 +20,7 @@ void CarModel_RenderOpaque(undefined8 param_1)
   undefined1 auStack_500 [68];
   undefined1 auStack_4bc [64];
   int iStack_47c;
-  undefined1 *puStack_2bc;
+  undefined *puStack_2bc;
   undefined4 uStack_130;
   uint uStack_a8;
   
@@ -183,7 +183,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
   undefined1 auStack_4bc [64];
   int iStack_47c;
   undefined1 auStack_440 [388];
-  undefined1 *puStack_2bc;
+  undefined *puStack_2bc;
   int iStack_130;
   uint uStack_a8;
   
@@ -196,7 +196,7 @@ void CarModel_RenderTranslucent(undefined8 param_1)
       puStack_2bc = &g_Views;
     }
     else {
-      puStack_2bc = (undefined1 *)0x432240;
+      puStack_2bc = (undefined *)0x432240;
     }
     if (*(int *)(puStack_2bc + 0x584) != 0) {
       Layer_Reset(auStack_500,puStack_2bc,iStack_130,0,4);

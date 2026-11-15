@@ -224,7 +224,7 @@ void ScrRace_Draw_Front_8480(int param_1)
     MenuWnd_DrawDialogText(0x69,0x36ed98,2,0);
     if (*(int *)(param_1 + 0xa00) != 0x11) {
       *(undefined4 *)(param_1 + 0x9e8) = 0xffffffff;
-      Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
+      Menu_SetCursorAlpha(&g_MenuMgr->field_0x654,1);
     }
   }
   UiLayout_UpdateAnimById(0x69,8);
@@ -247,7 +247,7 @@ void ScrRace_Draw_Front_8480(int param_1)
     MenuWnd_DrawCursor();
   }
   else {
-    Menu_BlockInput(_g_MenuMgr + 0x654);
+    Menu_BlockInput(&g_MenuMgr->field_0x654);
     if (*(int *)(param_1 + 0xa08) == 0x11) {
       lVar5 = UiLayout_UpdateAnimById(0x69,3);
       lVar6 = UiLayout_UpdateAnimById(0x69,5);
@@ -349,7 +349,7 @@ LAB_00278a98:
   }
   else {
     *(int *)(param_1 + 0x9e8) = iVar1;
-    Menu_SetCursorAlpha(_g_MenuMgr + 0x654,1);
+    Menu_SetCursorAlpha(&g_MenuMgr->field_0x654,1);
     iVar1 = *(int *)(param_1 + 0x9e0);
   }
   uVar10 = 0xffffffff;
@@ -367,7 +367,7 @@ LAB_00278a98:
       else {
         *(undefined4 *)(iVar1 + 0x3a8) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
     else {
       uVar3 = (*(int *)(param_1 + 0x18) - *(int *)(param_1 + 0x9ec)) + 0xf;
@@ -391,7 +391,7 @@ LAB_00278a98:
       else {
         *(undefined4 *)(iVar1 + 0x394) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
     else {
       uVar3 = (*(int *)(param_1 + 0x18) - *(int *)(param_1 + 0x9ec)) + 0x15;
@@ -429,7 +429,7 @@ LAB_00278a98:
     iVar1 = iVar1 + 1;
     puVar8 = puVar8 + 1;
   } while (iVar1 < 6);
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   iVar1 = UiMgr_FindLayout(0x69);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   MenuWnd_SetTitle(3,0x211);
@@ -606,7 +606,7 @@ void ScrGarage_Draw_Wheel(undefined8 param_1)
     maybe_Wheel_DrawList
               (*(undefined4 *)(*(int *)(iVar9 + 0x10) * 4 + iVar9 + 0x7c),
                *(undefined4 *)(iVar9 + 0x78),1,*(undefined4 *)(iVar9 + 0x9d4));
-    Menu_DrawFrame(_g_MenuMgr + 0x654);
+    Menu_DrawFrame(&g_MenuMgr->field_0x654);
   }
   else if (iVar2 == 3) {
     if (*(int *)(iVar9 + 0xa18) != 0) {
@@ -717,7 +717,7 @@ void ScrGarage_Draw_Wheel_99f0(undefined8 param_1)
     maybe_Wheel_DrawList
               (*(undefined4 *)(*(int *)(iVar7 + 0x10) * 4 + iVar7 + 0x7c),
                *(undefined4 *)(iVar7 + 0x78),1,0);
-    Menu_DrawFrame(_g_MenuMgr + 0x654);
+    Menu_DrawFrame(&g_MenuMgr->field_0x654);
   }
   else if (iVar2 == 3) {
     ScrGarage_Draw_Front_4b50(*(undefined4 *)(iVar7 + 0xc),0);
@@ -971,7 +971,7 @@ LAB_0027a408:
       else {
         *(undefined4 *)(iVar3 + 0x344) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
     else {
       iVar3 = *(int *)(param_1 + 0x10);
@@ -997,7 +997,7 @@ LAB_0027a408:
       else {
         *(undefined4 *)(iVar3 + 0x358) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
     else {
       iVar3 = *(int *)(param_1 + 0x10);
@@ -1027,7 +1027,7 @@ LAB_0027a408:
   maybe_Wheel_DrawList
             (*(undefined4 *)(*(int *)(param_1 + 0x10) * 4 + param_1 + 0x7c),
              *(undefined4 *)(param_1 + 0x78),1,*(undefined4 *)(param_1 + 0x9d4));
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   return;
 }
 
@@ -1389,7 +1389,7 @@ void maybe_PageWheels_State6_Wheel(undefined8 param_1)
       else {
         *(undefined4 *)(iVar1 + 0x344) = 1;
       }
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     }
   }
   else if ((iVar1 == 2) && (lVar4 = UiLayout_UpdateAnimById(99,3), lVar4 == 0)) {
@@ -1404,7 +1404,7 @@ void maybe_PageWheels_State6_Wheel(undefined8 param_1)
     else {
       *(undefined4 *)(iVar1 + 0x358) = 1;
     }
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
   }
   MenuWnd_SetTitle(3,0x1fb);
   iVar1 = *(int *)(*(int *)(iVar7 + 0x10) * 4 + iVar7 + 0x7c);
@@ -1583,7 +1583,7 @@ void ScrGarage_Draw_Wheel_b150(int param_1)
   iVar1 = UiMgr_FindLayout(0x67);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
   MenuWnd_SetTitle(3,0x209);
-  Menu_DrawFrame(_g_MenuMgr + 0x654);
+  Menu_DrawFrame(&g_MenuMgr->field_0x654);
   return;
 }
 

@@ -116,8 +116,6 @@ int MenuText_CarShortName(long param_1,long param_2)
 }
 
 // 0x001f8300  size 0x120
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Menu_HandleList(undefined4 *param_1,int *param_2,long param_3,long param_4,undefined8 param_5,
                     undefined8 param_6)
 
@@ -130,7 +128,7 @@ void Menu_HandleList(undefined4 *param_1,int *param_2,long param_3,long param_4,
   if ((lVar1 < 0) && (*param_2 = *param_2 + -1, *param_2 < 0)) {
     if (param_4 < param_3) {
       *param_2 = 0;
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
       *param_1 = 1;
     }
     else {
@@ -147,7 +145,7 @@ void Menu_HandleList(undefined4 *param_1,int *param_2,long param_3,long param_4,
     if (iVar2 < *param_2) {
       if (param_4 < param_3) {
         *param_2 = (int)param_4 + -1;
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+        g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
         *param_1 = 2;
       }
       else {
@@ -368,22 +366,22 @@ void Menu_DrawFrame(int *param_1)
       if (iVar2 != 3) {
         bVar1 = true;
         if (iVar2 == 1) {
-          if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+          if (g_MenuMgr->bgMode < 7) {
                     /* WARNING: Switch is manually overridden */
-            switch(*(uint *)(_g_MenuMgr + 0x34)) {
+            switch(g_MenuMgr->bgMode) {
             case 0:
               break;
             case 1:
-              bVar1 = *(int *)(_g_MenuMgr + 0x534) == 1;
+              bVar1 = g_MenuMgr->unk_0534 == 1;
               break;
             case 2:
-              bVar1 = *(int *)(_g_MenuMgr + 0x5b0) == 1;
+              bVar1 = g_MenuMgr->unk_05b0 == 1;
               break;
             case 3:
-              bVar1 = *(int *)(_g_MenuMgr + 0x600) == 1;
+              bVar1 = g_MenuMgr->unk_0600 == 1;
               break;
             case 4:
-              bVar1 = *(int *)(_g_MenuMgr + 0x630) == 1;
+              bVar1 = g_MenuMgr->unk_0630 == 1;
             }
           }
           else {
@@ -400,23 +398,23 @@ void Menu_DrawFrame(int *param_1)
           }
           lVar3 = UiLayout_UpdateAnimById(0x127,0);
           if (lVar3 == 0) {
-            if (*(uint *)(_g_MenuMgr + 0x34) < 7) {
+            if (g_MenuMgr->bgMode < 7) {
                     /* WARNING: Switch is manually overridden */
-              switch(*(uint *)(_g_MenuMgr + 0x34)) {
+              switch(g_MenuMgr->bgMode) {
               case 0:
                 bVar1 = true;
                 break;
               case 1:
-                bVar1 = *(int *)(_g_MenuMgr + 0x534) == 1;
+                bVar1 = g_MenuMgr->unk_0534 == 1;
                 break;
               case 2:
-                bVar1 = *(int *)(_g_MenuMgr + 0x5b0) == 1;
+                bVar1 = g_MenuMgr->unk_05b0 == 1;
                 break;
               case 3:
-                bVar1 = *(int *)(_g_MenuMgr + 0x600) == 1;
+                bVar1 = g_MenuMgr->unk_0600 == 1;
                 break;
               case 4:
-                bVar1 = *(int *)(_g_MenuMgr + 0x630) == 1;
+                bVar1 = g_MenuMgr->unk_0630 == 1;
               }
             }
             else {
@@ -1626,13 +1624,13 @@ void MenuList_Update(int *param_1,int param_2,int param_3)
   
   iVar6 = *param_1;
   if (iVar6 == 2) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     if (*piRam0036f468 == 1) {
       MenuWnd_SetItemState(param_1[1],*(undefined4 *)(param_2 + param_1[3] * 8),1,0);
     }
   }
   else if (iVar6 == 1) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
     lVar5 = UiLayout_UpdateAnimById(param_1[1],param_1[8]);
     if (lVar5 == 0) {
       *param_1 = 2;
@@ -1654,7 +1652,7 @@ void MenuList_Update(int *param_1,int param_2,int param_3)
       iVar6 = param_1[4];
       goto LAB_001fadf0;
     }
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
     lVar5 = UiLayout_UpdateAnimById(param_1[1],param_1[7]);
     if (lVar5 == 0) {
       *param_1 = 2;
@@ -1794,7 +1792,6 @@ void MenuList_Reset(undefined4 *param_1,undefined4 param_2,undefined4 param_3,un
 }
 
 // 0x001fb170  size 0xd0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 59 callers */
 
 undefined4 Menu_IsInputIdle(int *param_1)
@@ -1806,8 +1803,8 @@ undefined4 Menu_IsInputIdle(int *param_1)
   *puRam0036f468 = 0;
   if (param_1[4] != 1) {
     if (param_1[1] == param_1[2]) {
-      if ((*(int *)(_g_MenuMgr + 0x1c) == *(int *)(_g_MenuMgr + 0x20)) || (param_1[6] != 1)) {
-        if ((*(uint *)(_g_MenuMgr + 0x28) & 0x400000) == 0) {
+      if ((g_MenuMgr->curScreen == g_MenuMgr->nextScreen) || (param_1[6] != 1)) {
+        if ((g_MenuMgr->flags & 0x400000) == 0) {
           *puRam0036f468 = 1;
         }
         uVar1 = 1;
@@ -1816,7 +1813,7 @@ undefined4 Menu_IsInputIdle(int *param_1)
         uVar1 = 0;
       }
     }
-    else if ((param_1[6] == 1) || ((*(uint *)(_g_MenuMgr + 0x28) & 1) != 0)) {
+    else if ((param_1[6] == 1) || ((g_MenuMgr->flags & 1) != 0)) {
       uVar1 = 0;
     }
     else {
@@ -1831,14 +1828,13 @@ undefined4 Menu_IsInputIdle(int *param_1)
 }
 
 // 0x001fb240  size 0x4c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 44 callers */
 
 void Menu_RequestTransition(int param_1)
 
 {
   if ((*(int *)(param_1 + 4) != *(int *)(param_1 + 8)) ||
-     (*(int *)(_g_MenuMgr + 0x1c) != *(int *)(_g_MenuMgr + 0x20))) {
+     (g_MenuMgr->curScreen != g_MenuMgr->nextScreen)) {
     *puRam0036f468 = 0;
     *(undefined4 *)(param_1 + 0x1c) = 1;
     *(undefined4 *)(param_1 + 0x18) = 1;
@@ -1857,14 +1853,12 @@ void Se_PlayMenu(undefined1 param_1)
   
   uVar2 = SndMgr_GetInstance();
   uVar2 = SndMgr_GetChannelB(uVar2,0);
-  cVar1 = Options_GetSeVolume();
+  cVar1 = maybe_Options_GetBgmVolume();
   (**(code **)(*(int *)uVar2 + 0x24))(uVar2,param_1,0,(cVar1 * 0x60) / 0xf & 0xff,0x3c,0x40,0);
   return;
 }
 
 // 0x001fb2a0  size 0x48
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Menu_GetChapterIndex(void)
 
 {
@@ -1874,27 +1868,25 @@ void Menu_GetChapterIndex(void)
   uVar2 = Profile_Get(0);
   cVar1 = Profile_GetChapter(uVar2);
   if (cVar1 == '\0') {
-    *(undefined4 *)(_g_MenuMgr + 0x20) = 0xd;
+    g_MenuMgr->nextScreen = 0xd;
   }
   else {
-    *(undefined4 *)(_g_MenuMgr + 0x20) = 0xe;
+    g_MenuMgr->nextScreen = 0xe;
   }
   return;
 }
 
 // 0x001fb2f0  size 0x104
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Menu_GetUnlockState(void)
 
 {
   byte bVar1;
   char cVar2;
   undefined8 uVar3;
-  undefined1 unaff_s1_lo;
+  uchar unaff_s1_lo;
   
-  if ((*(int *)(_g_MenuMgr + 0x20) == 0x20) || (*(int *)(_g_MenuMgr + 0x20) == 0x2b)) {
-    unaff_s1_lo = 0;
+  if ((g_MenuMgr->nextScreen == 0x20) || (g_MenuMgr->nextScreen == 0x2b)) {
+    unaff_s1_lo = '\0';
   }
   else {
     uVar3 = Profile_Get(0);
@@ -1905,65 +1897,63 @@ void Menu_GetUnlockState(void)
       case 0:
         cVar2 = Profile_GetChapter(uVar3);
         if (cVar2 == '\0') {
-          unaff_s1_lo = 1;
+          unaff_s1_lo = '\x01';
         }
         else {
-          unaff_s1_lo = 5;
+          unaff_s1_lo = '\x05';
         }
         break;
       default:
         cVar2 = Profile_GetChapter(uVar3);
         if (cVar2 == '\0') {
-          unaff_s1_lo = 3;
+          unaff_s1_lo = '\x03';
         }
         else {
-          unaff_s1_lo = 7;
+          unaff_s1_lo = '\a';
         }
         break;
       case 3:
         cVar2 = Profile_GetChapter(uVar3);
         if (cVar2 == '\0') {
-          unaff_s1_lo = 2;
+          unaff_s1_lo = '\x02';
         }
         else {
-          unaff_s1_lo = 6;
+          unaff_s1_lo = '\x06';
         }
         break;
       case 4:
         cVar2 = Profile_GetChapter(uVar3);
         if (cVar2 == '\0') {
-          unaff_s1_lo = 4;
+          unaff_s1_lo = '\x04';
         }
         else {
-          unaff_s1_lo = 8;
+          unaff_s1_lo = '\b';
         }
       }
     }
   }
-  *(undefined1 *)(_g_MenuMgr + 0x641) = unaff_s1_lo;
+  g_MenuMgr->unk_0641 = unaff_s1_lo;
   return;
 }
 
 // 0x001fb400  size 0x25c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 Menu_ExitToRace(void)
 
 {
-  int iVar1;
+  MenuMgr *pMVar1;
   int iVar2;
   undefined4 uVar3;
   long lVar4;
   
-  iVar1 = _g_MenuMgr;
+  pMVar1 = g_MenuMgr;
   uVar3 = 0;
-  if (*(uint *)(_g_MenuMgr + 0x30) < 7) {
+  if (g_MenuMgr->nextBgMode < 7) {
                     /* WARNING: Switch is manually overridden */
-    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    switch(g_MenuMgr->nextBgMode) {
     case 0:
       break;
     case 1:
-      if (*(int *)(_g_MenuMgr + 0x5a4) == 0) {
+      if (g_MenuMgr->unk_05a4 == 0) {
         Sema_Wait(0x36efc0);
         iVar2 = iRam00386628;
         Sema_Signal(0x36efc0,0);
@@ -1972,13 +1962,13 @@ undefined4 Menu_ExitToRace(void)
           return 0;
         }
       }
-      if (*(int *)(iVar1 + 0x5a4) != 0) {
-        *(int *)(iVar1 + 0x5a4) = *(int *)(iVar1 + 0x5a4) + -1;
+      if (pMVar1->unk_05a4 != 0) {
+        pMVar1->unk_05a4 = pMVar1->unk_05a4 - 1;
       }
       uVar3 = 1;
       break;
     case 2:
-      if (*(int *)(_g_MenuMgr + 0x5e4) == 0) {
+      if (g_MenuMgr->unk_05e4 == 0) {
         Sema_Wait(0x36efc0);
         iVar2 = iRam00386628;
         Sema_Signal(0x36efc0,0);
@@ -1988,13 +1978,13 @@ undefined4 Menu_ExitToRace(void)
           return 0;
         }
       }
-      if (*(int *)(iVar1 + 0x5e4) != 0) {
-        *(int *)(iVar1 + 0x5e4) = *(int *)(iVar1 + 0x5e4) + -1;
+      if (pMVar1->unk_05e4 != 0) {
+        pMVar1->unk_05e4 = pMVar1->unk_05e4 - 1;
       }
       uVar3 = 1;
       break;
     case 3:
-      if (*(int *)(_g_MenuMgr + 0x604) == 0) {
+      if (g_MenuMgr->unk_0604 == 0) {
         Sema_Wait(0x36efc0);
         iVar2 = iRam00386628;
         Sema_Signal(0x36efc0,0);
@@ -2003,13 +1993,13 @@ undefined4 Menu_ExitToRace(void)
           return 0;
         }
       }
-      if (*(int *)(iVar1 + 0x604) != 0) {
-        *(int *)(iVar1 + 0x604) = *(int *)(iVar1 + 0x604) + -1;
+      if (pMVar1->unk_0604 != 0) {
+        pMVar1->unk_0604 = pMVar1->unk_0604 - 1;
       }
       uVar3 = 1;
       break;
     case 4:
-      if (*(int *)(_g_MenuMgr + 0x638) == 0) {
+      if (g_MenuMgr->unk_0638 == 0) {
         Sema_Wait(0x36efc0);
         iVar2 = iRam00386628;
         Sema_Signal(0x36efc0,0);
@@ -2018,16 +2008,16 @@ undefined4 Menu_ExitToRace(void)
           return 0;
         }
       }
-      if (*(int *)(iVar1 + 0x638) != 0) {
-        *(int *)(iVar1 + 0x638) = *(int *)(iVar1 + 0x638) + -1;
+      if (pMVar1->unk_0638 != 0) {
+        pMVar1->unk_0638 = pMVar1->unk_0638 - 1;
       }
       uVar3 = 1;
       break;
     case 5:
-      if ((*(int *)(_g_MenuMgr + 0x650) != 0) && (lVar4 = MenuMovie_Stop(), lVar4 != 0)) {
-        *(undefined4 *)(iVar1 + 0x650) = 0;
+      if ((g_MenuMgr->unk_0650 != 0) && (lVar4 = MenuMovie_Stop(), lVar4 != 0)) {
+        pMVar1->unk_0650 = 0;
       }
-      if ((*(int *)(iVar1 + 0x650) == 0) && (lVar4 = MenuMovie_Reset(), lVar4 == 1)) {
+      if ((pMVar1->unk_0650 == 0) && (lVar4 = MenuMovie_Reset(), lVar4 == 1)) {
         MenuMovie_Free();
         uVar3 = 0;
       }
@@ -2041,47 +2031,45 @@ undefined4 Menu_ExitToRace(void)
 }
 
 // 0x001fb660  size 0x130
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuMgr_PopScreen(void)
 
 {
-  int iVar1;
+  MenuMgr *pMVar1;
   long lVar2;
   
-  if (*(uint *)(_g_MenuMgr + 0x30) < 7) {
+  if (g_MenuMgr->nextBgMode < 7) {
                     /* WARNING: Switch is manually overridden */
-    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    switch(g_MenuMgr->nextBgMode) {
     case 1:
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-      iVar1 = _g_MenuMgr;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
+      pMVar1 = g_MenuMgr;
       maybe_MenuObjSet_UpdateAll(8);
-      *(undefined4 *)(iVar1 + 0x5a4) = 3;
+      pMVar1->unk_05a4 = 3;
       break;
     case 2:
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-      iVar1 = _g_MenuMgr;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
+      pMVar1 = g_MenuMgr;
       maybe_MenuObjSet_UpdateAll(8);
-      *(undefined4 *)(iVar1 + 0x5e4) = 3;
+      pMVar1->unk_05e4 = 3;
       break;
     case 3:
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-      iVar1 = _g_MenuMgr;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
+      pMVar1 = g_MenuMgr;
       maybe_MenuObjSet_UpdateAll(8);
-      *(undefined4 *)(iVar1 + 0x604) = 3;
+      pMVar1->unk_0604 = 3;
       break;
     case 4:
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-      iVar1 = _g_MenuMgr;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
+      pMVar1 = g_MenuMgr;
       maybe_MenuObjSet_UpdateAll(8);
-      *(undefined4 *)(iVar1 + 0x638) = 3;
+      pMVar1->unk_0638 = 3;
       break;
     case 5:
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x8000000;
-      iVar1 = _g_MenuMgr;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x8000000;
+      pMVar1 = g_MenuMgr;
       lVar2 = MenuMovie_Stop();
       if (lVar2 == 0) {
-        *(undefined4 *)(iVar1 + 0x650) = 1;
+        pMVar1->unk_0650 = 1;
       }
       MenuMovie_Draw();
     }
@@ -2090,140 +2078,136 @@ void MenuMgr_PopScreen(void)
 }
 
 // 0x001fb790  size 0x2ac
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined8 MenuMgr_ChangeScreen(void)
 
 {
-  long lVar1;
-  int iVar2;
-  int iVar3;
+  MenuMgr *pMVar1;
+  long lVar2;
+  uint *puVar3;
   int iVar4;
+  uint *puVar5;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 0x8000000) == 0) {
+  if ((g_MenuMgr->flags & 0x8000000) == 0) {
     return 0;
   }
-  lVar1 = Menu_ExitToRace();
-  if (lVar1 == 1) {
+  lVar2 = Menu_ExitToRace();
+  if (lVar2 == 1) {
     return 1;
   }
-  if (*(int *)(_g_MenuMgr + 0x30) == 2) {
+  if (g_MenuMgr->nextBgMode == 2) {
     Subtitle_AllocBuffer(0x430750);
   }
-  if (*(int *)(_g_MenuMgr + 0x34) == 2) {
+  if (g_MenuMgr->bgMode == 2) {
     Subtitle_FreeBuffer();
   }
-  if (((*(int *)(_g_MenuMgr + 0x30) - 5U < 2) && (*(int *)(_g_MenuMgr + 0x34) != 5)) &&
-     (*(int *)(_g_MenuMgr + 0x34) != 6)) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x100;
-    UiLayout_Load(_g_MenuMgr + 0x40,0x3294a8,0x430750);
+  if (((g_MenuMgr->nextBgMode - 5 < 2) && (g_MenuMgr->bgMode != 5)) && (g_MenuMgr->bgMode != 6)) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x100;
+    UiLayout_Load(&g_MenuMgr->field_0x40,0x3294a8,0x430750);
   }
-  if (((*(int *)(_g_MenuMgr + 0x34) - 5U < 2) && (*(int *)(_g_MenuMgr + 0x30) != 5)) &&
-     (*(int *)(_g_MenuMgr + 0x30) != 6)) {
-    UiLayout_Free(_g_MenuMgr + 0x40);
+  if (((g_MenuMgr->bgMode - 5 < 2) && (g_MenuMgr->nextBgMode != 5)) && (g_MenuMgr->nextBgMode != 6))
+  {
+    UiLayout_Free(&g_MenuMgr->field_0x40);
   }
-  iVar2 = _g_MenuMgr;
-  if (*(uint *)(_g_MenuMgr + 0x30) < 7) {
+  pMVar1 = g_MenuMgr;
+  if (g_MenuMgr->nextBgMode < 7) {
                     /* WARNING: Switch is manually overridden */
-    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    switch(g_MenuMgr->nextBgMode) {
     case 1:
-      *(undefined4 *)(_g_MenuMgr + 0x534) = 0;
-      iVar4 = iVar2 + 0x534;
-      *(undefined4 *)(iVar2 + 0x538) = 0;
-      *(undefined4 *)(iVar2 + 0x53c) = 0;
-      iVar3 = 0;
-      *(undefined4 *)(iVar2 + 0x540) = 0;
-      *(undefined4 *)(iVar2 + 0x594) = 0;
-      *(undefined4 *)(iVar2 + 0x598) = 0;
-      *(undefined4 *)(iVar2 + 0x59c) = *(undefined4 *)(iVar2 + 0x598);
-      *(undefined4 *)(iVar2 + 0x5a0) = 0;
-      *(undefined4 *)(iVar2 + 0x544) = 0xfffffffe;
-      iVar2 = iVar4;
+      g_MenuMgr->unk_0534 = 0;
+      puVar5 = &pMVar1->unk_0534;
+      pMVar1->unk_0538 = 0;
+      *(undefined4 *)&pMVar1->field_0x53c = 0;
+      iVar4 = 0;
+      pMVar1->unk_0540 = 0;
+      pMVar1->unk_0594 = 0;
+      pMVar1->unk_0598 = 0;
+      *(uint *)&pMVar1->field_0x59c = pMVar1->unk_0598;
+      pMVar1->unk_05a0 = 0;
+      pMVar1->unk_0544 = 0xfffffffe;
+      puVar3 = puVar5;
       do {
-        *(undefined2 *)(iVar2 + 0x14) = 0x162;
-        iVar3 = iVar3 + 7;
-        *(undefined2 *)(iVar2 + 0x16) = 0x162;
-        *(undefined2 *)(iVar2 + 0x18) = 0x162;
-        *(undefined2 *)(iVar2 + 0x1a) = 0x162;
-        *(undefined2 *)(iVar2 + 0x1c) = 0x162;
-        *(undefined2 *)(iVar2 + 0x1e) = 0x162;
-        *(undefined2 *)(iVar2 + 0x20) = 0x162;
-        iVar2 = iVar2 + 0xe;
-      } while (iVar3 < 0x15);
-      iVar2 = 0;
+        *(undefined2 *)(puVar3 + 5) = 0x162;
+        iVar4 = iVar4 + 7;
+        *(undefined2 *)((int)puVar3 + 0x16) = 0x162;
+        *(undefined2 *)(puVar3 + 6) = 0x162;
+        *(undefined2 *)((int)puVar3 + 0x1a) = 0x162;
+        *(undefined2 *)(puVar3 + 7) = 0x162;
+        *(undefined2 *)((int)puVar3 + 0x1e) = 0x162;
+        *(undefined2 *)(puVar3 + 8) = 0x162;
+        puVar3 = (uint *)((int)puVar3 + 0xe);
+      } while (iVar4 < 0x15);
+      iVar4 = 0;
       do {
-        *(undefined2 *)(iVar4 + 0x3e) = 0xfffe;
-        iVar2 = iVar2 + 8;
-        *(undefined2 *)(iVar4 + 0x40) = 0xfffe;
-        *(undefined2 *)(iVar4 + 0x42) = 0xfffe;
-        *(undefined2 *)(iVar4 + 0x44) = 0xfffe;
-        *(undefined2 *)(iVar4 + 0x46) = 0xfffe;
-        *(undefined2 *)(iVar4 + 0x48) = 0xfffe;
-        *(undefined2 *)(iVar4 + 0x4a) = 0xfffe;
-        *(undefined2 *)(iVar4 + 0x4c) = 0xfffe;
-        iVar4 = iVar4 + 0x10;
-      } while (iVar2 < 0x10);
+        *(undefined2 *)((int)puVar5 + 0x3e) = 0xfffe;
+        iVar4 = iVar4 + 8;
+        *(undefined2 *)(puVar5 + 0x10) = 0xfffe;
+        *(undefined2 *)((int)puVar5 + 0x42) = 0xfffe;
+        *(undefined2 *)(puVar5 + 0x11) = 0xfffe;
+        *(undefined2 *)((int)puVar5 + 0x46) = 0xfffe;
+        *(undefined2 *)(puVar5 + 0x12) = 0xfffe;
+        *(undefined2 *)((int)puVar5 + 0x4a) = 0xfffe;
+        *(undefined2 *)(puVar5 + 0x13) = 0xfffe;
+        puVar5 = puVar5 + 4;
+      } while (iVar4 < 0x10);
       goto LAB_001fb9f0;
     case 2:
-      *(undefined1 *)(_g_MenuMgr + 0x5ac) = 1;
-      *(undefined4 *)(iVar2 + 0x5b8) = 0;
-      *(undefined4 *)(iVar2 + 0x5b4) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x5e8) = 0;
-      *(undefined4 *)(iVar2 + 0x5d8) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x5dc) = 0;
+      g_MenuMgr->unk_05ac = '\x01';
+      pMVar1->unk_05b8 = 0;
+      *(undefined4 *)&pMVar1->field_0x5b4 = 0xffffffff;
+      pMVar1->unk_05e8 = 0;
+      *(undefined4 *)&pMVar1->field_0x5d8 = 0xffffffff;
+      pMVar1->unk_05dc = 0;
       break;
     case 3:
-      *(undefined4 *)(_g_MenuMgr + 0x5f0) = 0;
-      *(undefined4 *)(iVar2 + 0x60c) = 0;
-      *(undefined4 *)(iVar2 + 0x5fc) = 0;
-      *(undefined4 *)(iVar2 + 0x600) = 0;
+      g_MenuMgr->unk_05f0 = 0;
+      pMVar1->unk_060c = 0;
+      pMVar1->unk_05fc = 0;
+      pMVar1->unk_0600 = 0;
       break;
     case 4:
-      *(undefined1 *)(_g_MenuMgr + 0x620) = 1;
-      *(undefined4 *)(iVar2 + 0x624) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x628) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x634) = 0;
-      *(undefined4 *)(iVar2 + 0x62c) = 0;
-      *(undefined4 *)(iVar2 + 0x614) = 0xffffffff;
-      *(undefined4 *)(iVar2 + 0x618) = 0;
+      g_MenuMgr->unk_0620 = '\x01';
+      pMVar1->unk_0624 = 0xffffffff;
+      pMVar1->unk_0628 = 0xffffffff;
+      pMVar1->unk_0634 = 0;
+      *(undefined4 *)&pMVar1->field_0x62c = 0;
+      *(undefined4 *)&pMVar1->field_0x614 = 0xffffffff;
+      pMVar1->unk_0618 = 0;
       break;
     case 5:
-      *(undefined4 *)(_g_MenuMgr + 0x644) = 0;
-      *(undefined1 *)(iVar2 + 0x640) = 0;
-      *(undefined4 *)(iVar2 + 0x648) = 0xa0;
-      *(undefined4 *)(iVar2 + 0x64c) = 0x31;
-      *(undefined4 *)(iVar2 + 0x650) = 0;
+      g_MenuMgr->unk_0644 = 0;
+      pMVar1->unk_0640 = '\0';
+      pMVar1->unk_0648 = 0xa0;
+      pMVar1->unk_064c = 0x31;
+      pMVar1->unk_0650 = 0;
     }
   }
 LAB_001fb9f0:
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xf7ffffff;
+  g_MenuMgr->flags = g_MenuMgr->flags & 0xf7ffffff;
   return 0;
 }
 
 // 0x001fba40  size 0xb8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuMgr_DrawCar(void)
 
 {
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 0x200) == 0) && (*(uint *)(_g_MenuMgr + 0x30) < 7)) {
+  if (((g_MenuMgr->flags & 0x200) == 0) && (g_MenuMgr->nextBgMode < 7)) {
                     /* WARNING: Switch is manually overridden */
-    switch(*(uint *)(_g_MenuMgr + 0x30)) {
+    switch(g_MenuMgr->nextBgMode) {
     case 1:
-      MenuCar_Render(_g_MenuMgr + 0x534);
+      MenuCar_Render(&g_MenuMgr->unk_0534);
       return;
     case 2:
-      MenuCar_Setup(_g_MenuMgr + 0x5ac);
+      MenuCar_Setup(&g_MenuMgr->unk_05ac);
       break;
     case 3:
-      MenuCar_DrawSpin(_g_MenuMgr + 0x5f0);
+      MenuCar_DrawSpin(&g_MenuMgr->unk_05f0);
       break;
     case 4:
-      MenuCar_Draw(_g_MenuMgr + 0x614);
+      MenuCar_Draw(&g_MenuMgr->field_0x614);
       break;
     case 5:
-      MenuMovie_SetParams(*(undefined4 *)(_g_MenuMgr + 0x644),*(undefined1 *)(_g_MenuMgr + 0x640),
-                          *(undefined4 *)(_g_MenuMgr + 0x648),*(undefined4 *)(_g_MenuMgr + 0x64c));
+      MenuMovie_SetParams(g_MenuMgr->unk_0644,g_MenuMgr->unk_0640,g_MenuMgr->unk_0648,
+                          g_MenuMgr->unk_064c);
       MenuMovie_Draw();
     }
   }
@@ -2231,19 +2215,17 @@ void MenuMgr_DrawCar(void)
 }
 
 // 0x001fbb00  size 0x1c8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuMgr_Update(void)
 
 {
   bool bVar1;
   long lVar2;
   
-  if (*(int *)(_g_MenuMgr + 0x3c) != *(int *)(_g_MenuMgr + 0x38)) {
+  if (g_MenuMgr->voiceParam != g_MenuMgr->unk_0038) {
     lVar2 = UiMgr_FindFreeSlot();
     bVar1 = true;
-    if ((lVar2 != 1) && (*(int *)(_g_MenuMgr + 0x344) != 1)) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xfffffeff;
+    if ((lVar2 != 1) && (g_MenuMgr->unk_0344 != 1)) {
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xfffffeff;
       bVar1 = false;
     }
     lVar2 = CarDb_IsLoading();
@@ -2267,12 +2249,12 @@ void MenuMgr_Update(void)
       return;
     }
   }
-  if ((*(int *)(_g_MenuMgr + 0x3c) == *(int *)(_g_MenuMgr + 0x38)) ||
-     (*(int *)(_g_MenuMgr + 0x1c) != *(int *)(_g_MenuMgr + 0x20))) {
-    if (((*(int *)(_g_MenuMgr + 0x38) != -1) &&
-        (((0 < *(int *)(_g_MenuMgr + 0x20) && (lVar2 = MenuSnd_StopBgm(), lVar2 == 0)) &&
+  if ((g_MenuMgr->voiceParam == g_MenuMgr->unk_0038) ||
+     (g_MenuMgr->curScreen != g_MenuMgr->nextScreen)) {
+    if (((g_MenuMgr->unk_0038 != 0xffffffff) &&
+        (((0 < (int)g_MenuMgr->nextScreen && (lVar2 = MenuSnd_StopBgm(), lVar2 == 0)) &&
          (lVar2 = MenuSnd_PlayBgm(), lVar2 == 0)))) &&
-       (*(int *)(_g_MenuMgr + 0x3c) == *(int *)(_g_MenuMgr + 0x38))) {
+       (g_MenuMgr->voiceParam == g_MenuMgr->unk_0038)) {
       MenuSnd_SetBgmVolume();
     }
   }
@@ -2281,34 +2263,33 @@ void MenuMgr_Update(void)
     if (lVar2 == 1) {
       MenuSnd_PlayVoice();
     }
-    *(undefined4 *)(_g_MenuMgr + 0x38) = *(undefined4 *)(_g_MenuMgr + 0x3c);
-    if (*(int *)(_g_MenuMgr + 0x38) != -1) {
-      MenuSnd_PlaySe(*(int *)(_g_MenuMgr + 0x38),0);
+    g_MenuMgr->unk_0038 = g_MenuMgr->voiceParam;
+    if (g_MenuMgr->unk_0038 != 0xffffffff) {
+      MenuSnd_PlaySe(g_MenuMgr->unk_0038,0);
     }
   }
   return;
 }
 
 // 0x001fbcd0  size 0x2ec
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 bool MenuMgr_EnterScreen(void)
 
 {
   uint uVar1;
-  int iVar2;
+  MenuMgr *pMVar2;
   long lVar3;
   bool bVar4;
-  undefined4 *puVar5;
-  undefined1 *puVar6;
+  uint *puVar5;
+  uchar *puVar6;
+  undefined1 *puVar7;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 0x200) == 0) {
+  if ((g_MenuMgr->flags & 0x200) == 0) {
     bVar4 = false;
   }
   else {
-    uVar1 = *(uint *)(_g_MenuMgr + 0x30);
+    uVar1 = g_MenuMgr->nextBgMode;
     bVar4 = false;
-    if (uVar1 == *(uint *)(_g_MenuMgr + 0x34)) {
+    if (uVar1 == g_MenuMgr->bgMode) {
       if (uVar1 < 7) {
                     /* WARNING: Switch is manually overridden */
         switch(uVar1) {
@@ -2328,82 +2309,81 @@ bool MenuMgr_EnterScreen(void)
         }
       }
       if (bVar4 == false) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xfffffdff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xfffffdff;
       }
     }
     else {
       bVar4 = true;
       lVar3 = MenuMgr_ChangeScreen();
-      if (((lVar3 == 0) && ((*(uint *)(_g_MenuMgr + 0x28) & 0x100) == 0)) &&
-         (uVar1 = *(uint *)(_g_MenuMgr + 0x34), uVar1 < 7)) {
+      if (((lVar3 == 0) && ((g_MenuMgr->flags & 0x100) == 0)) &&
+         (uVar1 = g_MenuMgr->bgMode, uVar1 < 7)) {
                     /* WARNING: Switch is manually overridden */
         switch(uVar1) {
         case 0:
-          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
+          g_MenuMgr->nextBgMode = uVar1;
           break;
         case 1:
-          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
-          iVar2 = _g_MenuMgr;
-          puVar5 = (undefined4 *)(_g_MenuMgr + 0x534);
+          g_MenuMgr->nextBgMode = uVar1;
+          pMVar2 = g_MenuMgr;
+          puVar5 = &g_MenuMgr->unk_0534;
           Garage3d_Load(0,0xc20);
           Garage3d_DrawLit();
           *puVar5 = 0;
-          *(undefined4 *)(iVar2 + 0x5a8) = 0;
-          *(undefined4 *)(iVar2 + 0x598) = 0;
-          *(undefined4 *)(iVar2 + 0x59c) = 0xffffffff;
+          *(undefined4 *)&pMVar2->field_0x5a8 = 0;
+          pMVar2->unk_0598 = 0;
+          *(undefined4 *)&pMVar2->field_0x59c = 0xffffffff;
           break;
         case 2:
-          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
-          iVar2 = _g_MenuMgr;
-          puVar6 = (undefined1 *)(_g_MenuMgr + 0x5ac);
+          g_MenuMgr->nextBgMode = uVar1;
+          pMVar2 = g_MenuMgr;
+          puVar6 = &g_MenuMgr->unk_05ac;
           Garage3d_Load(1,0xc20);
           Garage3d_DrawLit();
           RaceScene_AllocProps(0x430750);
-          RaceScene_SetPaused(*puVar6,*(undefined1 *)(iVar2 + 0x5d5),*(undefined1 *)(iVar2 + 0x5d4),
-                              1);
-          *(undefined4 *)(iVar2 + 0x5b4) = 0xffffffff;
-          *(undefined4 *)(iVar2 + 0x5b0) = 0;
-          *(undefined4 *)(iVar2 + 0x5d8) = 0xffffffff;
-          *(undefined4 *)(iVar2 + 0x5dc) = 0;
-          *(undefined4 *)(iVar2 + 0x5ec) = 0;
+          RaceScene_SetPaused(*puVar6,pMVar2->unk_05d5,pMVar2->unk_05d4,1);
+          *(undefined4 *)&pMVar2->field_0x5b4 = 0xffffffff;
+          pMVar2->unk_05b0 = 0;
+          *(undefined4 *)&pMVar2->field_0x5d8 = 0xffffffff;
+          pMVar2->unk_05dc = 0;
+          *(undefined4 *)&pMVar2->field_0x5ec = 0;
           break;
         case 3:
-          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
-          iVar2 = _g_MenuMgr;
+          g_MenuMgr->nextBgMode = uVar1;
+          pMVar2 = g_MenuMgr;
           GarageBg_Load(1,0xc20);
-          *(undefined4 *)(iVar2 + 0x600) = 0;
-          *(undefined4 *)(iVar2 + 0x5f4) = 0xffffffff;
-          *(undefined4 *)(iVar2 + 0x5f8) = 0;
-          *(undefined4 *)(iVar2 + 0x608) = 0;
+          pMVar2->unk_0600 = 0;
+          *(undefined4 *)&pMVar2->field_0x5f4 = 0xffffffff;
+          *(undefined4 *)&pMVar2->field_0x5f8 = 0;
+          *(undefined4 *)&pMVar2->field_0x608 = 0;
           break;
         case 4:
-          *(uint *)(_g_MenuMgr + 0x30) = uVar1;
-          iVar2 = _g_MenuMgr;
-          puVar5 = (undefined4 *)(_g_MenuMgr + 0x614);
+          g_MenuMgr->nextBgMode = uVar1;
+          pMVar2 = g_MenuMgr;
+          puVar7 = &g_MenuMgr->field_0x614;
           ShowroomBg_Load(1,0xc20);
-          *(undefined4 *)(iVar2 + 0x630) = 0;
-          *puVar5 = 0xffffffff;
-          *(undefined4 *)(iVar2 + 0x618) = 0;
-          *(undefined4 *)(iVar2 + 0x61c) = 0;
-          *(undefined1 *)(iVar2 + 0x621) = 9;
-          *(undefined4 *)(iVar2 + 0x63c) = 0;
+          pMVar2->unk_0630 = 0;
+          *(undefined4 *)puVar7 = 0xffffffff;
+          pMVar2->unk_0618 = 0;
+          *(undefined4 *)&pMVar2->field_0x61c = 0;
+          pMVar2->field_0x621 = 9;
+          *(undefined4 *)&pMVar2->field_0x63c = 0;
           break;
         case 5:
-          if (*(int *)(_g_MenuMgr + 0x38) != *(int *)(_g_MenuMgr + 0x3c)) {
+          if (g_MenuMgr->unk_0038 != g_MenuMgr->voiceParam) {
             MenuSnd_PlayVoice();
-            *(undefined4 *)(_g_MenuMgr + 0x38) = *(undefined4 *)(_g_MenuMgr + 0x3c);
-            if (*(int *)(_g_MenuMgr + 0x38) != -1) {
-              MenuSnd_PlaySe(*(int *)(_g_MenuMgr + 0x38),0);
+            g_MenuMgr->unk_0038 = g_MenuMgr->voiceParam;
+            if (g_MenuMgr->unk_0038 != 0xffffffff) {
+              MenuSnd_PlaySe(g_MenuMgr->unk_0038,0);
             }
           }
-          if ((*(int *)(_g_MenuMgr + 0x38) == *(int *)(_g_MenuMgr + 0x3c)) &&
-             ((*(int *)(_g_MenuMgr + 0x38) == -1 || (lVar3 = MenuSnd_StopBgm(), lVar3 == 0)))) {
-            *(undefined4 *)(_g_MenuMgr + 0x30) = *(undefined4 *)(_g_MenuMgr + 0x34);
-            iVar2 = _g_MenuMgr;
-            puVar6 = (undefined1 *)(_g_MenuMgr + 0x640);
+          if ((g_MenuMgr->unk_0038 == g_MenuMgr->voiceParam) &&
+             ((g_MenuMgr->unk_0038 == 0xffffffff || (lVar3 = MenuSnd_StopBgm(), lVar3 == 0)))) {
+            g_MenuMgr->nextBgMode = g_MenuMgr->bgMode;
+            pMVar2 = g_MenuMgr;
+            puVar6 = &g_MenuMgr->unk_0640;
             MenuMovie_Create(iRam0036f2c0 + 0xc20,1,0,0,0x430750);
-            MenuMovie_LoadFile(*(undefined1 *)(iVar2 + 0x641),*puVar6);
-            *(undefined4 *)(iVar2 + 0x650) = 0;
+            MenuMovie_LoadFile(pMVar2->unk_0641,*puVar6);
+            pMVar2->unk_0650 = 0;
           }
         }
       }
@@ -2428,40 +2408,38 @@ undefined4 MenuMgr_LoadScreenLayouts(void)
   int iVar8;
   
   uVar7 = 0;
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 0x20) != 0) {
-    psVar6 = (short *)(&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x1c)];
+  if ((g_MenuMgr->flags & 0x20) != 0) {
+    psVar6 = (short *)(&PTR_DAT_00328f60)[g_MenuMgr->curScreen];
     if (psVar6 == (short *)0x0) {
       return 0;
     }
-    if ((*(int *)(_g_MenuMgr + 0x24) == -1) ||
-       ((short *)(&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x24)] == (short *)0x0)) {
+    if ((g_MenuMgr->prevScreen == 0xffffffff) ||
+       ((short *)(&PTR_DAT_00328f60)[g_MenuMgr->prevScreen] == (short *)0x0)) {
       iVar8 = 0;
     }
     else {
       iVar8 = 0;
       for (iVar5 = 0;
-          ((*psVar6 != -2 &&
-           (*(short *)((&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x24)] + iVar5) != -2)) &&
-          (*(short *)((&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x24)] + iVar5) ==
-           *(short *)((&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x1c)] + iVar5))); iVar5 = iVar5 + 2
-          ) {
+          ((*psVar6 != -2 && (*(short *)((&PTR_DAT_00328f60)[g_MenuMgr->prevScreen] + iVar5) != -2))
+          && (*(short *)((&PTR_DAT_00328f60)[g_MenuMgr->prevScreen] + iVar5) ==
+              *(short *)((&PTR_DAT_00328f60)[g_MenuMgr->curScreen] + iVar5))); iVar5 = iVar5 + 2) {
         psVar6 = psVar6 + 1;
         iVar8 = iVar8 + 1;
       }
       iVar5 = 0;
-      if (*(short *)(&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x24)] != -2) {
+      if (*(short *)(&PTR_DAT_00328f60)[g_MenuMgr->prevScreen] != -2) {
         iVar4 = 0;
         do {
           iVar4 = iVar4 + 2;
           iVar5 = iVar5 + 1;
-        } while (*(short *)((&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x24)] + iVar4) != -2);
+        } while (*(short *)((&PTR_DAT_00328f60)[g_MenuMgr->prevScreen] + iVar4) != -2);
       }
       iVar5 = iVar5 + -1;
       if ((iVar8 + -1 < iVar5) && (iVar8 + -1 < iVar5)) {
         iVar4 = iVar5 * 2;
         do {
           iVar3 = UiMgr_FindLayout(*(undefined2 *)
-                                    ((&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x24)] + iVar4));
+                                    ((&PTR_DAT_00328f60)[g_MenuMgr->prevScreen] + iVar4));
           _g_UiMgr[0x143] = _g_UiMgr[0x143] + -1;
           UiLayout_Free(*_g_UiMgr + iVar3 * 0x4f4 + 4);
           iVar5 = iVar5 + -1;
@@ -2471,7 +2449,7 @@ undefined4 MenuMgr_LoadScreenLayouts(void)
       }
     }
     iVar8 = iVar8 * 2;
-    puVar2 = (&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x1c)];
+    puVar2 = (&PTR_DAT_00328f60)[g_MenuMgr->curScreen];
     sVar1 = *(short *)(puVar2 + iVar8);
     if (sVar1 != -2) {
       uVar7 = 1;
@@ -2484,8 +2462,8 @@ undefined4 MenuMgr_LoadScreenLayouts(void)
           UiMgr_LoadLayout(sVar1,sVar1 * 0xc + 0x327930,1);
         }
         iVar8 = iVar8 + 2;
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x100;
-        puVar2 = (&PTR_DAT_00328f60)[*(int *)(_g_MenuMgr + 0x1c)];
+        g_MenuMgr->flags = g_MenuMgr->flags | 0x100;
+        puVar2 = (&PTR_DAT_00328f60)[g_MenuMgr->curScreen];
         sVar1 = *(short *)(puVar2 + iVar8);
       }
     }

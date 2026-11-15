@@ -709,8 +709,6 @@ void SetGsCrt(void)
 }
 
 // 0x001113c0  size 0x10
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void _Exit(int __status)
 
 {
@@ -1683,7 +1681,7 @@ int maybe_InitThreadExtension(void)
   code *pcStack_7c;
   undefined4 uStack_78;
   undefined4 uStack_74;
-  undefined1 *puStack_70;
+  undefined *puStack_70;
   undefined4 uStack_6c;
   undefined1 auStack_50 [4];
   undefined4 uStack_4c;
@@ -2798,7 +2796,7 @@ void maybe_sceSifGetCmdHandler(long param_1,undefined4 param_2,undefined4 param_
     *puVar1 = param_2;
     iVar2 = iRam0037106c;
   }
-  *(undefined1 **)(iVar3 + iVar2 + 8) = &_mips_gp0_value;
+  *(undefined **)(iVar3 + iVar2 + 8) = &_mips_gp0_value;
   return;
 }
 

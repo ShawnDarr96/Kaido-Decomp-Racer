@@ -249,7 +249,7 @@ void RaceSnd_PlayStart(undefined8 param_1)
   *(undefined4 *)(iVar7 + 0x30) = 5000000;
   *(undefined4 *)(iVar7 + 0x38) = 0;
   *(undefined4 *)(iVar7 + 0x3c) = 5000000;
-  uVar2 = Options_GetSeVolume();
+  uVar2 = maybe_Options_GetBgmVolume();
   uVar5 = Snd_RpmToPitch(uVar2);
   SndMgr_PlayEngine(uVar3,uVar5);
   uVar5 = SndMgr_GetChannelB(uVar3,1);
@@ -2234,7 +2234,7 @@ void RaceIntro_DrawCars(undefined8 param_1,int param_2,long param_3,long param_4
   int *piVar6;
   bool bVar7;
   ushort *puVar8;
-  undefined1 *puVar9;
+  undefined *puVar9;
   int iVar10;
   int iVar11;
   undefined4 uStack_260;

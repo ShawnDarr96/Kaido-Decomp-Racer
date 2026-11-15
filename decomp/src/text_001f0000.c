@@ -97,7 +97,7 @@ void UiRes_LoadLocalized(int param_1)
   uint uVar2;
   int iVar3;
   
-  param_1 = param_1 + (uint)*(byte *)(iRam0036f1d4 + 0x15);
+  param_1 = param_1 + (uint)g_RaceCtx->unk_0015;
   iVar3 = param_1 * 0x14 + _g_ArcToc;
   iVar1 = *(int *)(iVar3 + 0x20);
   if (iVar1 == 0) {
@@ -133,7 +133,7 @@ void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
   undefined8 uVar3;
   int iVar4;
   
-  param_2 = param_2 + (uint)*(byte *)(iRam0036f1d4 + 0x15);
+  param_2 = param_2 + (uint)g_RaceCtx->unk_0015;
   iRam0036f408 = param_3;
   uRam0036f404 = Mem_AllocAligned(param_3 << 2,0x40,param_1);
   iVar4 = param_2 * 0x14 + _g_ArcToc;

@@ -1442,7 +1442,7 @@ void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
   *(undefined4 *)(iVar6 + 0x300) = uVar8;
   iVar2 = *(int *)(iVar6 + 0x2f8);
   iVar5 = iVar2 * 0x14 + _g_ArcToc;
-  bVar1 = *(byte *)(iRam0036f1d4 + 0x15);
+  bVar1 = g_RaceCtx->unk_0015;
   iVar3 = *(int *)(iVar5 + 0x20);
   if (iVar3 == 0) {
     uVar4 = *(uint *)(iVar5 + 0x18);

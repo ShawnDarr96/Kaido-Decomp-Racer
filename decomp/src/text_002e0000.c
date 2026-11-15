@@ -384,7 +384,7 @@ void Eventui_Draw_BgmConfig_0880(int *param_1)
   }
   MenuWnd_DrawCursor(1);
   if ((char)param_1[0xb] == '\0') {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     if (*piRam0036f468 == 1) {
       MenuWnd_SetItemState
                 (0xf5,*(undefined4 *)
@@ -393,7 +393,7 @@ void Eventui_Draw_BgmConfig_0880(int *param_1)
     }
   }
   else {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
     if ((char)param_1[0xb] == '\x01') {
       lVar3 = UiLayout_UpdateAnimById(0xf5,2);
       if (lVar3 == 0) {
@@ -805,18 +805,16 @@ void Eventui_Draw_BgmConfig_13c0(int *param_1)
 }
 
 // 0x002e1c30  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 44 (table 0x3276e0, dispatched by 0x201380) */
 
 void MenuPage44_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
 // 0x002e1c50  size 0x98
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 44 (table 0x3276e0, dispatched by 0x201380) */
 
 void MenuPage44_Update(int param_1)
@@ -824,13 +822,13 @@ void MenuPage44_Update(int param_1)
 {
   uint uVar1;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   (*(code *)(&PTR_Eventui_Draw_BgmConfig_13c0_00342510)[*(int *)(param_1 + 4)])();
-  uVar1 = *(uint *)(_g_MenuMgr + 0x28);
+  uVar1 = g_MenuMgr->flags;
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
-    *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
+    g_MenuMgr->flags = uVar1 | 0x800;
   }
   return;
 }
@@ -1043,7 +1041,6 @@ void maybe_ScrMusic_State0_SndQueueCmd1(int param_1)
 }
 
 // 0x002e2250  size 0x22c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 44 (table 0x3274b0) */
 
 void maybe_ScrMusic_Update(undefined8 param_1)
@@ -1081,10 +1078,10 @@ void maybe_ScrMusic_Update(undefined8 param_1)
         if (iVar3 == -1) {
           cVar1 = RaceCtx_GetMode();
           if ((cVar1 == '\b') && (lVar2 = RaceCtx_Get_4(), lVar2 == 2)) {
-            MenuMgr_GetScreenParam(0xfffffffffffffffc);
+            MenuMgr_RequestScreen(0xfffffffffffffffc);
           }
           else {
-            MenuMgr_GetScreenParam(*(undefined4 *)(_g_MenuMgr + 0x24));
+            MenuMgr_RequestScreen(g_MenuMgr->prevScreen);
           }
         }
       }
@@ -1104,10 +1101,10 @@ void maybe_ScrMusic_Update(undefined8 param_1)
         if (iVar3 == -1) {
           cVar1 = RaceCtx_GetMode();
           if ((cVar1 == '\b') && (lVar2 = RaceCtx_Get_4(), lVar2 == 2)) {
-            MenuMgr_GetScreenParam(0xfffffffffffffffc);
+            MenuMgr_RequestScreen(0xfffffffffffffffc);
           }
           else {
-            MenuMgr_GetScreenParam(*(undefined4 *)(_g_MenuMgr + 0x24));
+            MenuMgr_RequestScreen(g_MenuMgr->prevScreen);
           }
         }
       }
@@ -1473,7 +1470,7 @@ void maybe_IntroFlag_Draw(uint param_1,undefined8 param_2,undefined8 param_3,int
   int *piVar5;
   uint *puVar6;
   int iVar7;
-  undefined1 *puVar8;
+  undefined *puVar8;
   float *pfVar9;
   int iVar10;
   int iVar11;

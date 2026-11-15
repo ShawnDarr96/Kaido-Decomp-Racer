@@ -1712,30 +1712,24 @@ undefined4 Password_GetCarFlags(undefined2 param_1)
 }
 
 // 0x002df200  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3a4(void)
+uint GameState_Get_3a4(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3a4);
+  return g_GameState->unk_03a4;
 }
 
 // 0x002df210  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3ac(void)
+uint GameState_Get_3ac(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3ac);
+  return g_GameState->unk_03ac;
 }
 
 // 0x002df220  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3a8(void)
+uint GameState_Get_3a8(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3a8);
+  return g_GameState->unk_03a8;
 }
 
 // 0x002df230  size 0xe8
@@ -1797,8 +1791,6 @@ bool GameState_Get_35c_Wrap(void)
 }
 
 // 0x002df350  size 0xa4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int Password_Generate(long param_1)
 
 {
@@ -1808,8 +1800,8 @@ int Password_Generate(long param_1)
   int iStack_c;
   undefined4 uStack_8;
   
-  if (*(int *)(_g_GameState + 0x3a4) == 0) {
-    iVar1 = Password_BuildString(*(undefined4 *)(_g_GameState + 0x3a8));
+  if (g_GameState->unk_03a4 == 0) {
+    iVar1 = Password_BuildString(g_GameState->unk_03a8);
   }
   else {
     aiStack_20[0] = DAT_003424c0;
@@ -1830,14 +1822,12 @@ int Password_Generate(long param_1)
 }
 
 // 0x002df400  size 0x168
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int Password_EncodeFields(int param_1,int param_2)
 
 {
   int iVar1;
-  int iVar2;
-  int iVar3;
+  uint uVar2;
+  uint uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
@@ -1846,17 +1836,17 @@ int Password_EncodeFields(int param_1,int param_2)
   int iVar9;
   
   iVar4 = 5;
-  iVar2 = *(int *)(_g_GameState + 0x3b4);
-  iVar3 = *(int *)(_g_GameState + 0x3bc);
-  if (iVar2 != 0) {
-    iVar5 = iVar2 - *(int *)(_g_GameState + 0x3b8);
+  uVar2 = g_GameState->unk_03b4;
+  uVar3 = g_GameState->unk_03bc;
+  if (uVar2 != 0) {
+    iVar5 = uVar2 - g_GameState->unk_03b8;
     iVar9 = 0;
     if (iVar5 < 0) {
       iVar5 = iVar5 + 3;
     }
     iVar7 = 0;
     do {
-      iVar6 = iVar2 - iVar7;
+      iVar6 = uVar2 - iVar7;
       if (iVar9 != 0) {
         iVar6 = iVar6 - iVar6 % 100;
         iVar1 = iVar6 % 1000;
@@ -1880,8 +1870,8 @@ int Password_EncodeFields(int param_1,int param_2)
     } while (iVar9 < 5);
   }
   iVar5 = 5;
-  if (iVar3 != 0) {
-    iVar9 = iVar3 - *(int *)(_g_GameState + 0x3c0);
+  if (uVar3 != 0) {
+    iVar9 = uVar3 - g_GameState->unk_03c0;
     if (iVar9 < 0) {
       iVar9 = iVar9 + 3;
     }
@@ -1889,17 +1879,17 @@ int Password_EncodeFields(int param_1,int param_2)
     iVar7 = 0;
     do {
       iVar5 = iVar7;
-      if (param_2 <= iVar3 - iVar6) break;
+      if (param_2 <= (int)(uVar3 - iVar6)) break;
       iVar7 = iVar5 + 1;
       iVar6 = iVar6 + (iVar9 >> 2);
       iVar5 = 5;
     } while (iVar7 < 5);
   }
-  if ((iVar3 == 0) || (iVar2 == 0)) {
-    if ((iVar3 == 0) && (iVar2 != 0)) {
+  if ((uVar3 == 0) || (uVar2 == 0)) {
+    if ((uVar3 == 0) && (uVar2 != 0)) {
       iVar5 = iVar4;
     }
-    else if ((iVar3 == 0) || (iVar2 != 0)) {
+    else if ((uVar3 == 0) || (uVar2 != 0)) {
       iVar5 = 0;
     }
   }

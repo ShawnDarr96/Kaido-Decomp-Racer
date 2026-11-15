@@ -1093,11 +1093,11 @@ void ScrGarage_Draw_SaveChangesAnd_1fc0(undefined8 param_1)
   if (*piVar10 < 4) {
     if (piVar10[0xd] == 1) {
       MenuWnd_DrawCursor(0);
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
       lVar9 = UiLayout_UpdateAnimById(0x3d,1);
       lVar6 = UiLayout_UpdateAnimById(0x3e,2);
       if (lVar9 == 0 && lVar6 == 0) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
         piVar10[0xd] = 0;
         iVar2 = UiMgr_FindLayout(0x3d);
         iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
@@ -1137,11 +1137,11 @@ void ScrGarage_Draw_SaveChangesAnd_1fc0(undefined8 param_1)
   else {
     if (piVar10[0xd] == 0) {
       MenuWnd_DrawCursor(0);
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x400000;
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x400000;
       lVar9 = UiLayout_UpdateAnimById(0x3d,3);
       lVar6 = UiLayout_UpdateAnimById(0x3e,0);
       if (lVar9 == 0 && lVar6 == 0) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+        g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
         piVar10[0xd] = 1;
         iVar2 = UiMgr_FindLayout(0x3d);
         iVar2 = *_g_UiMgr + iVar2 * 0x4f4;
@@ -1497,13 +1497,12 @@ void MenuScr_Draw_PowerTrain_2fb0(int *param_1)
 }
 
 // 0x00283440  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 42 (table 0x3276e0, dispatched by 0x201380) */
 
 void maybe_PagePartInfo_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -1517,8 +1516,8 @@ void maybe_PagePartInfo_Update(undefined8 param_1)
   int iVar1;
   long lVar2;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   iVar1 = UiMgr_FindLayout(0x36);
   UiLayout_UpdateAnim(*_g_UiMgr + iVar1 * 0x4f4 + 4,0);
@@ -1529,11 +1528,11 @@ void maybe_PagePartInfo_Update(undefined8 param_1)
   if (*(int *)((int)param_1 + 0x3c) != 5) {
     maybe_PartInfo_Draw(param_1);
   }
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) {
+  if ((g_MenuMgr->flags & 4) == 0) {
     lVar2 = UiLayout_UpdateAnimById(0x37,2);
     if (lVar2 == 0) {
-      if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-        *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+      if ((g_MenuMgr->flags & 1) == 0) {
+        g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
       }
     }
     iVar1 = UiMgr_FindLayout(0x37);

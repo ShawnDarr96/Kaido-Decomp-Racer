@@ -46,6 +46,7 @@ def main():
             apply_jumptables(program)
             apply_flow_overrides(program)
             apply_globals(program)
+            apply_structs(program)
             apply_symbols(program)
             if args.auto_names:
                 auto_name_from_strings(program)
@@ -184,6 +185,84 @@ def apply_flow_overrides(program):
     print(f"applied {n} flow overrides", flush=True)
 
 
+def apply_structs(program):
+    """Build the structs in config/structs.json in Ghidra's data type manager, retype each struct's
+    global as a pointer to it, and write decomp/include/structs.h from the same spec."""
+    import json
+    from ghidra.program.model.data import (StructureDataType, PointerDataType, ArrayDataType,
+                                           UnsignedCharDataType, UnsignedShortDataType,
+                                           UnsignedIntegerDataType, UnsignedLongLongDataType,
+                                           FloatDataType, CategoryPath, DataTypeConflictHandler)
+    path = ROOT / "config" / "structs.json"
+    if not path.exists():
+        return
+    spec = json.loads(path.read_text())["types"]
+    dtm = program.getDataTypeManager()
+    cat = CategoryPath("/kaido")
+    prim = {"u8": UnsignedCharDataType(), "u16": UnsignedShortDataType(),
+            "u32": UnsignedIntegerDataType(), "u64": UnsignedLongLongDataType(),
+            "f32": FloatDataType(), "ptr": PointerDataType()}
+    built = {}
+
+    def get(name):
+        if name in prim:
+            return prim[name]
+        if name not in built:
+            t = spec[name]
+            st = StructureDataType(cat, name, int(t["size"], 16))
+            for off, ty, fname, count in t["fields"]:
+                dt = get(ty)
+                if count > 1:
+                    dt = ArrayDataType(dt, count, dt.getLength())
+                st.replaceAtOffset(int(off, 16), dt, dt.getLength(), fname, None)
+            built[name] = dtm.addDataType(st, DataTypeConflictHandler.REPLACE_HANDLER)
+        return built[name]
+
+    af = program.getAddressFactory().getDefaultAddressSpace()
+    listing = program.getListing()
+    st = program.getSymbolTable()
+    hdr = ["/* Generated from config/structs.json by scripts/ghidra_export.py. Edit the JSON. */",
+           "#ifndef KAIDO_STRUCTS_H", "#define KAIDO_STRUCTS_H", "#include \"types.h\"", ""]
+    ctype = {"ptr": "void *", "f32": "f32"}
+    for name, t in spec.items():
+        get(name)
+        hdr.append(f"typedef struct {name} {{  /* size {t['size']} */")
+        pos = 0
+        for off, ty, fname, count in t["fields"]:
+            o = int(off, 16)
+            if o > pos:
+                hdr.append(f"    u8 pad_{pos:04x}[0x{o - pos:x}];")
+            arr = f"[{count}]" if count > 1 else ""
+            hdr.append(f"    {ctype.get(ty, ty)} {fname}{arr};  /* {off} */")
+            pos = o + get(ty).getLength() * count
+        size = int(t["size"], 16)
+        if pos < size:
+            hdr.append(f"    u8 pad_{pos:04x}[0x{size - pos:x}];")
+        hdr += [f"}} {name};", ""]
+        if t.get("global"):
+            hdr.append(f"extern {name} *{t['global']};")
+            hdr.append("")
+            syms = [s for s in st.getSymbols(t["global"], None)]
+            if syms:
+                addr = syms[0].getAddress()
+                mem = program.getMemory()
+                if not mem.contains(addr):
+                    # .bss is not mapped by the ELF loader here: map it so globals can be typed
+                    from ghidra.util.task import ConsoleTaskMonitor
+                    blk = mem.createUninitializedBlock(".bss_globals", af.getAddress(0x36EF80),
+                                                       0x46A600 - 0x36EF80, False)
+                    blk.setRead(True)
+                    blk.setWrite(True)
+                    print("mapped .bss 0x36ef80-0x46a600", flush=True)
+                listing.clearCodeUnits(addr, addr.add(3), False)
+                listing.createData(addr, PointerDataType(built[name]))
+    hdr.append("#endif")
+    inc = ROOT / "decomp" / "include"
+    inc.mkdir(parents=True, exist_ok=True)
+    (inc / "structs.h").write_text("\n".join(hdr) + "\n", encoding="utf-8")
+    print(f"applied {len(spec)} structs", flush=True)
+
+
 def create_extra_functions(program):
     """Create functions Ghidra's analysis missed (code addresses referenced from data tables)."""
     from ghidra.app.cmd.function import CreateFunctionCmd
@@ -217,6 +296,9 @@ def apply_globals(program):
     with open(GLOBALS, encoding="utf-8", newline="") as f:
         for r in csv.DictReader(f):
             addr = af.getAddress(int(r["address"], 16))
+            for stale in list(st.getSymbols(r["name"], None)):
+                if stale.getAddress() != addr:
+                    stale.delete()  # the global moved (address corrected in globals.csv)
             sym = st.getPrimarySymbol(addr)
             if sym is None or sym.getName() != r["name"]:
                 st.createLabel(addr, r["name"], SourceType.USER_DEFINED).setPrimary()

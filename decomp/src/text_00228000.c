@@ -472,7 +472,7 @@ LAB_0022a14c:
       puVar9 = puVar9 + 1;
     } while (iVar1 < 0xb);
   }
-  if (*(int *)(_g_MenuMgr + 0x20) == 8) {
+  if (g_MenuMgr->nextScreen == 8) {
     iVar1 = 0;
     puVar9 = &DAT_0032a940;
     do {
@@ -502,18 +502,16 @@ LAB_0022a14c:
 }
 
 // 0x0022b410  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* page identified from its states' on-screen text (N154) */
 
 void maybe_PageMail_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
 // 0x0022b430  size 0xe0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* page identified from its states' on-screen text (N154) */
 
 void maybe_PageMail_Update(undefined8 param_1)
@@ -522,16 +520,15 @@ void maybe_PageMail_Update(undefined8 param_1)
   long lVar1;
   int iVar2;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   iVar2 = (int)param_1;
   MenuWnd_SetTitle((&DAT_0032a850)[*(int *)(iVar2 + 0x10)],0xffffffffffffffff);
   (*(code *)(&PTR_ScrCareer_Draw_Mail_a0c0_0032a820)[*(int *)(iVar2 + 0x10)])(param_1);
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
-     (lVar1 = Menu_IsInputIdle(iVar2 + 0xc), lVar1 == 1)) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+  if (((g_MenuMgr->flags & 4) == 0) && (lVar1 = Menu_IsInputIdle(iVar2 + 0xc), lVar1 == 1)) {
+    if ((g_MenuMgr->flags & 1) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
     }
   }
   return;

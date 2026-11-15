@@ -352,7 +352,7 @@ void View_DrawFadeSprite(uint param_1,undefined8 param_2)
 {
   undefined8 uVar1;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = &g_Views + (param_1 & 0xff) * 0x5c0;
@@ -371,7 +371,7 @@ void View_DrawFullscreen(uint param_1,uint param_2,undefined8 param_3)
 {
   undefined8 uVar1;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   Pkt_Init(auStack_40,1,2,0);
   puStack_2c = &g_Views + (param_1 & 0xff) * 0x5c0;

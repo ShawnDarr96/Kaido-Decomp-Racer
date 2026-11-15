@@ -1787,7 +1787,7 @@ maybe_Demux_DeliverPacket
     *(undefined4 *)((int)plVar3 + 0x14) = param_5;
     plVar3[1] = lVar2;
     iVar4 = *(int *)(iVar1 + 100);
-    *(undefined1 **)(plVar3 + 3) = &_mips_gp0_value;
+    *(undefined **)(plVar3 + 3) = &_mips_gp0_value;
     *(int *)(iVar1 + 100) = iVar4 + 1;
   }
   return uVar5;
@@ -2268,7 +2268,7 @@ undefined4 sceMpegAddCallback(int param_1,int param_2,undefined4 param_3,undefin
   uVar1 = *puVar2;
   *puVar2 = param_3;
   *(undefined4 *)(iVar3 + 0x10) = param_4;
-  *(undefined1 **)(iVar3 + 0x14) = &_mips_gp0_value;
+  *(undefined **)(iVar3 + 0x14) = &_mips_gp0_value;
   return uVar1;
 }
 

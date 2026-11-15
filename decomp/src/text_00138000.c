@@ -517,7 +517,7 @@ bool Thread_Create(int *param_1,undefined4 param_2,undefined4 param_3,undefined4
   undefined4 uStack_2c;
   undefined4 uStack_28;
   undefined4 uStack_24;
-  undefined1 *puStack_20;
+  undefined *puStack_20;
   undefined4 uStack_1c;
   int iStack_10;
   

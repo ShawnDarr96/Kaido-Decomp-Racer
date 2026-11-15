@@ -1290,7 +1290,7 @@ void Se_PlayMenuVol(undefined1 param_1,uint param_2)
   
   uVar2 = SndMgr_GetInstance();
   uVar2 = SndMgr_GetChannelB(uVar2,0);
-  cVar1 = Options_GetSeVolume();
+  cVar1 = maybe_Options_GetBgmVolume();
   (**(code **)(*(int *)uVar2 + 0x24))
             (uVar2,param_1,0,(int)((param_2 & 0xff) * (int)cVar1) / 0xf & 0xff,0x3c,0x40,0);
   return;

@@ -45,7 +45,7 @@ undefined8 maybe_iSetTimerHandler(uint param_1,undefined8 param_2,long param_3,u
     else {
       *(undefined8 *)(iVar3 + 0x20) = param_2;
       *(uint *)(iVar3 + 0xc) = uVar2 | 2;
-      *(undefined1 **)(iVar3 + 0x2c) = &_mips_gp0_value;
+      *(undefined **)(iVar3 + 0x2c) = &_mips_gp0_value;
       *(undefined4 *)(iVar3 + 0x30) = param_4;
       if ((*(uint *)(iVar3 + 0xc) & 1) != 0) {
         maybe_Timer_FindNextAlarm(iVar3);

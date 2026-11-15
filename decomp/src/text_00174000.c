@@ -1651,8 +1651,6 @@ undefined4 RaceEntry_SetName(long param_1,char *param_2)
 }
 
 // 0x00176770  size 0x170
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 RaceEntry_SetCar(long param_1,char *param_2)
 
 {
@@ -1704,7 +1702,7 @@ undefined4 RaceEntry_SetCar(long param_1,char *param_2)
     *(undefined1 *)(iVar7 + 0x121) = 1;
     PlayerRecord_Copy(1,auStack_d0);
     uVar6 = 1;
-    *(undefined4 *)(_g_GameState + 0xe0) = 2;
+    g_GameState->playerCount = 2;
   }
   return uVar6;
 }
@@ -1729,8 +1727,6 @@ undefined4 RaceEntry_Matches(long param_1,char *param_2)
 }
 
 // 0x00176960  size 0x440
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4
 RaceEntry_Create(long param_1,long param_2,long param_3,undefined4 param_4,undefined4 param_5,
                 undefined1 param_6,undefined1 param_7,long param_8)
@@ -1873,8 +1869,7 @@ RaceEntry_Create(long param_1,long param_2,long param_3,undefined4 param_4,undef
     puVar7[0x404] = puVar6[0x3dc];
     *(undefined4 *)(puVar7 + 0x408) = *(undefined4 *)(puVar6 + 0x3ac8);
     *(int *)(puVar7 + 0x10) = (int)*(short *)(puVar7 + 0x124);
-    *(undefined4 *)(puVar7 + 0x18) =
-         *(undefined4 *)(_g_GameState + (char)puVar7[0x121] * 0x540 + 0x3e0);
+    *(undefined4 *)(puVar7 + 0x18) = *(undefined4 *)(g_GameState->racers + (char)puVar7[0x121]);
     *(int *)(puVar7 + 0x14) = (int)(char)puVar6[0x40c];
     *(undefined4 *)(puVar7 + 0x1c) = *(undefined4 *)(puVar7 + *(int *)(puVar7 + 0xec) * 0x14 + 0x74)
     ;
@@ -1983,317 +1978,259 @@ void Replay_Alloc(undefined8 param_1)
 }
 
 // 0x00176e90  size 0x20
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_GetVec3d0(undefined4 *param_1)
+void GameState_GetVec3d0(float *param_1)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
+  float fVar1;
+  float fVar2;
   
-  uVar1 = *(undefined4 *)(_g_GameState + 0x3d4);
-  uVar2 = *(undefined4 *)(_g_GameState + 0x3d8);
-  *param_1 = *(undefined4 *)(_g_GameState + 0x3d0);
-  param_1[1] = uVar1;
-  param_1[2] = uVar2;
+  fVar1 = g_GameState->startPos[1];
+  fVar2 = g_GameState->startPos[2];
+  *param_1 = g_GameState->startPos[0];
+  param_1[1] = fVar1;
+  param_1[2] = fVar2;
   return;
 }
 
 // 0x00176eb0  size 0x40
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_Color_Unpack(undefined4 *param_1)
 
 {
-  int iVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined1 uStack_10;
+  GameState *pGVar1;
+  uint uVar2;
+  uint uVar3;
+  uchar uStack_10;
   
-  iVar1 = _g_GameState;
+  pGVar1 = g_GameState;
   uVar2 = param_1[1];
   uVar3 = param_1[2];
-  uStack_10 = (undefined1)*param_1;
-  *(undefined1 *)(_g_GameState + 0x3c4) = uStack_10;
-  *(undefined4 *)(iVar1 + 0x3c8) = uVar2;
-  *(undefined4 *)(iVar1 + 0x3cc) = uVar3;
+  uStack_10 = (uchar)*param_1;
+  g_GameState->color[0] = uStack_10;
+  pGVar1->unk_03c8 = uVar2;
+  pGVar1->unk_03cc = uVar3;
   return;
 }
 
 // 0x00176ef0  size 0x20
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_GetVec3c4(undefined4 *param_1)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
+  uint uVar1;
+  uint uVar2;
   
-  uVar1 = *(undefined4 *)(_g_GameState + 0x3c8);
-  uVar2 = *(undefined4 *)(_g_GameState + 0x3cc);
-  *param_1 = *(undefined4 *)(_g_GameState + 0x3c4);
+  uVar1 = g_GameState->unk_03c8;
+  uVar2 = g_GameState->unk_03cc;
+  *param_1 = *(undefined4 *)g_GameState->color;
   param_1[1] = uVar1;
   param_1[2] = uVar2;
   return;
 }
 
 // 0x00176f10  size 0x10
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 GameState_GetReplayValue(void)
 
 {
-  return **(undefined4 **)(_g_GameState + 0x3acc);
+  return *(undefined4 *)g_GameState->replayBuf;
 }
 
 // 0x00176f20  size 0x10
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 GameState_GetGhostValue(void)
 
 {
-  return **(undefined4 **)(_g_GameState + 0x3ad0);
+  return *(undefined4 *)g_GameState->ghostBuf;
 }
 
 // 0x00176f30  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3acc(void)
+undefined * GameState_Get_3acc(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3acc);
+  return g_GameState->replayBuf;
 }
 
 // 0x00176f40  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3ad0(void)
+undefined * GameState_Get_3ad0(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3ad0);
+  return g_GameState->ghostBuf;
 }
 
 // 0x00176f50  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_364(undefined4 param_1)
+void GameState_Set_364(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x364) = param_1;
+  g_GameState->unk_0364 = param_1;
   return;
 }
 
 // 0x00176f60  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_390(undefined4 param_1)
+void GameState_Set_390(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x390) = param_1;
+  g_GameState->unk_0390 = param_1;
   return;
 }
 
 // 0x00176f70  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_364(void)
+uint GameState_Get_364(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x364);
+  return g_GameState->unk_0364;
 }
 
 // 0x00176f80  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_390(void)
+uint GameState_Get_390(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x390);
+  return g_GameState->unk_0390;
 }
 
 // 0x00176f90  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_360(void)
+uint GameState_Get_360(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x360);
+  return g_GameState->unk_0360;
 }
 
 // 0x00176fa0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_35c(void)
+uint GameState_Get_35c(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x35c);
+  return g_GameState->unk_035c;
 }
 
 // 0x00176fb0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_360(undefined4 param_1)
+void GameState_Set_360(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x360) = param_1;
+  g_GameState->unk_0360 = param_1;
   return;
 }
 
 // 0x00176fc0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_35c(undefined4 param_1)
+void GameState_Set_35c(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x35c) = param_1;
+  g_GameState->unk_035c = param_1;
   return;
 }
 
 // 0x00176fd0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3a0(void)
+uint GameState_Get_3a0(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3a0);
+  return g_GameState->unk_03a0;
 }
 
 // 0x00176fe0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_3a0(undefined4 param_1)
+void GameState_Set_3a0(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x3a0) = param_1;
+  g_GameState->unk_03a0 = param_1;
   return;
 }
 
 // 0x00176ff0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_39c(void)
+uint GameState_Get_39c(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x39c);
+  return g_GameState->unk_039c;
 }
 
 // 0x00177000  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_39c(undefined4 param_1)
+void GameState_Set_39c(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x39c) = param_1;
+  g_GameState->unk_039c = param_1;
   return;
 }
 
 // 0x00177010  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_398(void)
+uint GameState_Get_398(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x398);
+  return g_GameState->unk_0398;
 }
 
 // 0x00177020  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_398(undefined4 param_1)
+void GameState_Set_398(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x398) = param_1;
+  g_GameState->unk_0398 = param_1;
   return;
 }
 
 // 0x00177030  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_354(undefined1 param_1)
+void GameState_Set_354(uchar param_1)
 
 {
-  *(undefined1 *)(_g_GameState + 0x354) = param_1;
+  g_GameState->modeFlags = param_1;
   return;
 }
 
 // 0x00177040  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined1 GameState_Get_354(void)
+uchar GameState_Get_354(void)
 
 {
-  return *(undefined1 *)(_g_GameState + 0x354);
+  return g_GameState->modeFlags;
 }
 
 // 0x00177050  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined1 GameState_Get_354_7050(void)
+uchar GameState_Get_354_7050(void)
 
 {
-  return *(undefined1 *)(_g_GameState + 0x354);
+  return g_GameState->modeFlags;
 }
 
 // 0x00177060  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Ptr_354(void)
+uchar * GameState_Ptr_354(void)
 
 {
-  return _g_GameState + 0x354;
+  return &g_GameState->modeFlags;
 }
 
 // 0x00177070  size 0x24
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Elem_f0_xcc(int param_1)
+RaceEntrySetup * GameState_Elem_f0_xcc(int param_1)
 
 {
-  return _g_GameState + param_1 * 0xcc + 0xf0;
+  return g_GameState->entrySetup + param_1;
 }
 
 // 0x001770a0  size 0x48
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0xcc bytes each at +0xf0 */
 
 void GameState_CopyPlayerRecord(undefined4 *param_1,int param_2)
 
 {
-  undefined4 *puVar1;
+  RaceEntrySetup *pRVar1;
   int iVar2;
   
   iVar2 = 0x33;
-  puVar1 = (undefined4 *)(param_2 * 0xcc + _g_GameState + 0xf0);
+  pRVar1 = g_GameState->entrySetup + param_2;
   do {
     iVar2 = iVar2 + -1;
-    *param_1 = *puVar1;
-    puVar1 = puVar1 + 1;
+    *param_1 = *(undefined4 *)pRVar1;
+    pRVar1 = (RaceEntrySetup *)&pRVar1->field_0x4;
     param_1 = param_1 + 1;
   } while (0 < iVar2);
   return;
 }
 
 // 0x001770f0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_3a48(undefined4 param_1)
+void GameState_Set_3a48(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x3a48) = param_1;
+  g_GameState->unk_3a48 = param_1;
   return;
 }
 
 // 0x00177100  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_3a48(void)
+uint GameState_Get_3a48(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x3a48);
+  return g_GameState->unk_3a48;
 }
 
 // 0x00177110  size 0x3c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x100 bytes each at +0x28a0 */
 
 void GameState_CopyCourseRecord(undefined4 *param_1,int param_2)
@@ -2301,15 +2238,15 @@ void GameState_CopyCourseRecord(undefined4 *param_1,int param_2)
 {
   undefined4 uVar1;
   int iVar2;
-  undefined4 *puVar3;
+  RacerResult *pRVar3;
   
   iVar2 = 0x20;
-  puVar3 = (undefined4 *)(param_2 * 0x100 + _g_GameState + 0x28a0);
+  pRVar3 = g_GameState->results + param_2;
   do {
     iVar2 = iVar2 + -1;
-    uVar1 = puVar3[1];
-    *param_1 = *puVar3;
-    puVar3 = puVar3 + 2;
+    uVar1 = *(undefined4 *)&pRVar3->field_0x4;
+    *param_1 = *(undefined4 *)pRVar3;
+    pRVar3 = (RacerResult *)&pRVar3->field_0x8;
     param_1[1] = uVar1;
     param_1 = param_1 + 2;
   } while (0 < iVar2);
@@ -2317,137 +2254,113 @@ void GameState_CopyCourseRecord(undefined4 *param_1,int param_2)
 }
 
 // 0x00177150  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Ptr_3a04(void)
+undefined1 * GameState_Ptr_3a04(void)
 
 {
-  return _g_GameState + 0x3a04;
+  return &g_GameState->field_0x3a04;
 }
 
 // 0x00177160  size 0x24
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Elem_2fa0_x17c(int param_1)
+RacerStats * GameState_Elem_2fa0_x17c(int param_1)
 
 {
-  return _g_GameState + param_1 * 0x17c + 0x2fa0;
+  return g_GameState->stats + param_1;
 }
 
 // 0x00177190  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Elem_28a0_x100(int param_1)
+RacerResult * GameState_Elem_28a0_x100(int param_1)
 
 {
-  return _g_GameState + param_1 * 0x100 + 0x28a0;
+  return g_GameState->results + param_1;
 }
 
 // 0x001771b0  size 0x24
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Elem_3e0_x540(int param_1)
+RacerState * GameState_Elem_3e0_x540(int param_1)
 
 {
-  return _g_GameState + param_1 * 0x540 + 0x3e0;
+  return g_GameState->racers + param_1;
 }
 
 // 0x001771e0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_ec(void)
+uint GameState_Get_ec(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0xec);
+  return g_GameState->unk_00ec;
 }
 
 // 0x001771f0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_e4(undefined4 param_1)
+void GameState_Set_e4(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0xe4) = param_1;
+  g_GameState->rivalCount = param_1;
   return;
 }
 
 // 0x00177200  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_e0(undefined4 param_1)
+void GameState_Set_e0(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0xe0) = param_1;
+  g_GameState->playerCount = param_1;
   return;
 }
 
 // 0x00177210  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* e0 + e4 */
 
 int GameState_GetRacerCount(void)
 
 {
-  return *(int *)(_g_GameState + 0xe0) + *(int *)(_g_GameState + 0xe4);
+  return g_GameState->playerCount + g_GameState->rivalCount;
 }
 
 // 0x00177230  size 0x1c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* e0 + e4 + e8 */
 
 int GameState_GetTotalCarCount(void)
 
 {
-  return *(int *)(_g_GameState + 0xe0) +
-         *(int *)(_g_GameState + 0xe8) + *(int *)(_g_GameState + 0xe4);
+  return g_GameState->playerCount + g_GameState->trafficCount + g_GameState->rivalCount;
 }
 
 // 0x00177250  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* +0xe8 */
 
-undefined4 GameState_GetTrafficCount(void)
+uint GameState_GetTrafficCount(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0xe8);
+  return g_GameState->trafficCount;
 }
 
 // 0x00177260  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* +0xe4 */
 
-undefined4 GameState_GetRivalCount(void)
+uint GameState_GetRivalCount(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0xe4);
+  return g_GameState->rivalCount;
 }
 
 // 0x00177270  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* +0xe0 */
 
-undefined4 GameState_GetPlayerCount(void)
+uint GameState_GetPlayerCount(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0xe0);
+  return g_GameState->playerCount;
 }
 
 // 0x00177280  size 0x24
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_UpdateTimestamp(void)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   
   uVar1 = GameState_ComputeTimestamp();
-  *(undefined4 *)(_g_GameState + 0x14) = uVar1;
+  g_GameState->unk_0014 = uVar1;
   return;
 }
 
 // 0x001772b0  size 0x1b8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_ApplyGarage(void)
 
 {
@@ -2456,62 +2369,58 @@ void GameState_ApplyGarage(void)
   int iVar3;
   undefined8 *puVar4;
   int iVar5;
-  int iVar6;
+  uint uVar6;
   int iVar7;
   undefined4 uVar8;
   
-  if (*(int *)(_g_GameState + 0x44) != 0) {
-    iVar6 = *(int *)(_g_GameState + 0xc);
-    iVar3 = *(int *)(_g_GameState + 0x44) + (uint)*(byte *)(_g_GameState + 1) * 0x10;
-    iVar5 = iVar6 * 0x10;
+  if (g_GameState->unk_0044 != 0) {
+    uVar6 = g_GameState->unk_000c;
+    iVar3 = g_GameState->unk_0044 + (uint)g_GameState->direction * 0x10;
+    iVar5 = uVar6 * 0x10;
     iVar7 = *(int *)(iVar3 + 0xc);
     puVar4 = (undefined8 *)(*(int *)(iVar3 + 4) + iVar5);
     uVar2 = *puVar4;
     uVar1 = *puVar4;
-    if (*(int *)(_g_GameState + 0x40) == 0) {
-      if (iVar6 <= *(int *)(_g_GameState + 0x10)) {
+    if (g_GameState->unk_0040 == 0) {
+      if ((int)uVar6 <= (int)g_GameState->unk_0010) {
         iVar3 = 0;
         puVar4 = (undefined8 *)(iVar7 + iVar5);
         do {
           uVar8 = Checkpoint_BuildGate(uVar2,*puVar4);
-          iVar6 = iVar6 + 1;
+          uVar6 = uVar6 + 1;
           puVar4 = puVar4 + 2;
-          *(undefined4 *)(_g_GameState + iVar3 + 0x18) = uVar8;
+          *(undefined4 *)((int)g_GameState->records + iVar3 + -0x38) = uVar8;
           iVar3 = iVar3 + 4;
-        } while (iVar6 <= *(int *)(_g_GameState + 0x10));
+        } while ((int)uVar6 <= (int)g_GameState->unk_0010);
       }
     }
-    else if (*(int *)(_g_GameState + 0x10) <= iVar6) {
+    else if ((int)g_GameState->unk_0010 <= (int)uVar6) {
       iVar3 = 0;
       puVar4 = (undefined8 *)(iVar7 + iVar5);
       do {
         uVar8 = Checkpoint_BuildGate(uVar1,*puVar4);
-        iVar6 = iVar6 + -1;
+        uVar6 = uVar6 - 1;
         puVar4 = puVar4 + -2;
-        *(undefined4 *)(_g_GameState + iVar3 + 0x18) = uVar8;
+        *(undefined4 *)((int)g_GameState->records + iVar3 + -0x38) = uVar8;
         iVar3 = iVar3 + 4;
-      } while (*(int *)(_g_GameState + 0x10) <= iVar6);
+      } while ((int)g_GameState->unk_0010 <= (int)uVar6);
     }
   }
   return;
 }
 
 // 0x00177470  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 GameState_GetArray_3a78(int param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_GameState + 0x3a78);
+  return *(undefined4 *)((int)(g_GameState->stats + 7) + param_1 * 4 + 0x74);
 }
 
 // 0x00177490  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 GameState_GetArray_3a50(int param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_GameState + 0x3a50);
+  return *(undefined4 *)((int)(g_GameState->stats + 7) + param_1 * 4 + 0x4c);
 }
 
 // 0x001774b0  size 0x240
@@ -2611,22 +2520,22 @@ void GameState_SetupStartGrid(void)
         fVar8 = fVar8 + fVar7;
       }
       uVar6 = uVar6 + 1;
-      *(float *)(_g_GameState + iVar4 + 0x3a50) = fVar8;
+      *(float *)((int)(g_GameState->stats + 7) + iVar4 + 0x4c) = fVar8;
       iVar4 = iVar4 + 4;
     } while ((int)uVar6 < *_g_RoadData);
   }
   iVar4 = 0;
-  *(undefined4 *)(_g_GameState + 0x3a78) = 0;
+  g_GameState->unk_3a78 = 0;
   lVar3 = 0;
   if (0 < *_g_RoadData) {
     iVar2 = 0;
     do {
       uVar6 = (uint)lVar3;
       lVar3 = (long)(short)((short)lVar3 + 1);
-      *(int *)(_g_GameState + iVar2 + 0x3aa0) =
+      *(int *)((int)(g_GameState->stats + 7) + iVar2 + 0x9c) =
            (int)**(short **)(_g_RoadData[1] + (uVar6 & 0xffff) * 4);
-      iVar4 = iVar4 + *(int *)(_g_GameState + iVar2 + 0x3aa0) * 0x20;
-      *(int *)(_g_GameState + iVar2 + 0x3a7c) = iVar4;
+      iVar4 = iVar4 + *(int *)((int)(g_GameState->stats + 7) + iVar2 + 0x9c) * 0x20;
+      *(int *)((int)(g_GameState->stats + 7) + iVar2 + 0x78) = iVar4;
       iVar2 = iVar2 + 4;
     } while (lVar3 < *_g_RoadData);
   }
@@ -2634,120 +2543,99 @@ void GameState_SetupStartGrid(void)
 }
 
 // 0x00177700  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_44(void)
+uint GameState_Get_44(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x44);
+  return g_GameState->unk_0044;
 }
 
 // 0x00177710  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 GameState_GetArray_18(int param_1)
 
 {
-  return *(undefined4 *)(param_1 * 4 + _g_GameState + 0x18);
+  return *(undefined4 *)((int)g_GameState->records + param_1 * 4 + -0x38);
 }
 
 // 0x00177730  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_14(void)
+uint GameState_Get_14(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x14);
+  return g_GameState->unk_0014;
 }
 
 // 0x00177740  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_8(void)
+uint GameState_Get_8(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 8);
+  return g_GameState->unk_0008;
 }
 
 // 0x00177750  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_40(void)
+uint GameState_Get_40(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x40);
+  return g_GameState->unk_0040;
 }
 
 // 0x00177760  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_10(void)
+uint GameState_Get_10(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x10);
+  return g_GameState->unk_0010;
 }
 
 // 0x00177770  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_c(void)
+uint GameState_Get_c(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0xc);
+  return g_GameState->unk_000c;
 }
 
 // 0x00177780  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined1 GameState_Get_3(void)
+uchar GameState_Get_3(void)
 
 {
-  return *(undefined1 *)(_g_GameState + 3);
+  return g_GameState->unk_0003;
 }
 
 // 0x00177790  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined1 GameState_Get_2(void)
+uchar GameState_Get_2(void)
 
 {
-  return *(undefined1 *)(_g_GameState + 2);
+  return g_GameState->unk_0002;
 }
 
 // 0x001777a0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined1 GameState_Get_1(void)
+uchar GameState_Get_1(void)
 
 {
-  return *(undefined1 *)(_g_GameState + 1);
+  return g_GameState->direction;
 }
 
 // 0x001777b0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined1 GameState_Get_0(void)
+uchar GameState_Get_0(void)
 
 {
-  return *_g_GameState;
+  return g_GameState->course;
 }
 
 // 0x001777c0  size 0xe0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_SaveHeader(undefined4 *param_1)
 
 {
   undefined4 uVar1;
-  undefined1 *puVar2;
+  GameState *pGVar2;
   int iVar3;
-  undefined4 *puVar4;
-  undefined4 uStack_50;
+  uchar *puVar4;
+  uchar uStack_50;
+  uchar uStack_4f;
+  uchar uStack_4e;
+  uchar uStack_4d;
   undefined1 auStack_4c [4];
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
+  uint uStack_48;
+  uint uStack_44;
+  uint uStack_40;
+  uint uStack_3c;
   undefined4 uStack_38;
   undefined4 uStack_34;
   undefined4 uStack_30;
@@ -2758,61 +2646,59 @@ void GameState_SaveHeader(undefined4 *param_1)
   undefined4 uStack_1c;
   undefined4 uStack_18;
   undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  uint uStack_10;
+  uint uStack_c;
   
-  puVar2 = _g_GameState;
+  pGVar2 = g_GameState;
   puVar4 = &uStack_50;
   iVar3 = 9;
   do {
     iVar3 = iVar3 + -1;
     uVar1 = param_1[1];
-    *puVar4 = *param_1;
-    puVar4[1] = uVar1;
+    *(undefined4 *)puVar4 = *param_1;
+    *(undefined4 *)((int)puVar4 + 4) = uVar1;
     param_1 = param_1 + 2;
-    puVar4 = puVar4 + 2;
+    puVar4 = (uchar *)((int)puVar4 + 8);
   } while (0 < iVar3);
-  *_g_GameState = (undefined1)uStack_50;
-  puVar2[1] = uStack_50._1_1_;
-  puVar2[2] = uStack_50._2_1_;
-  puVar2[3] = uStack_50._3_1_;
-  puVar2[4] = auStack_4c[0];
-  *(undefined4 *)(puVar2 + 8) = uStack_48;
-  *(undefined4 *)(puVar2 + 0xc) = uStack_44;
-  *(undefined4 *)(puVar2 + 0x10) = uStack_40;
-  *(undefined4 *)(puVar2 + 0x14) = uStack_3c;
-  *(undefined4 *)(puVar2 + 0x18) = uStack_38;
-  *(undefined4 *)(puVar2 + 0x1c) = uStack_34;
-  *(undefined4 *)(puVar2 + 0x20) = uStack_30;
-  *(undefined4 *)(puVar2 + 0x24) = uStack_2c;
-  *(undefined4 *)(puVar2 + 0x28) = uStack_28;
-  *(undefined4 *)(puVar2 + 0x2c) = uStack_24;
-  *(undefined4 *)(puVar2 + 0x30) = uStack_20;
-  *(undefined4 *)(puVar2 + 0x34) = uStack_1c;
-  *(undefined4 *)(puVar2 + 0x38) = uStack_18;
-  *(undefined4 *)(puVar2 + 0x3c) = uStack_14;
-  *(undefined4 *)(puVar2 + 0x40) = uStack_10;
-  *(undefined4 *)(puVar2 + 0x44) = uStack_c;
+  g_GameState->course = uStack_50;
+  pGVar2->direction = uStack_4f;
+  pGVar2->unk_0002 = uStack_4e;
+  pGVar2->unk_0003 = uStack_4d;
+  pGVar2->field_0x4 = auStack_4c[0];
+  pGVar2->unk_0008 = uStack_48;
+  pGVar2->unk_000c = uStack_44;
+  pGVar2->unk_0010 = uStack_40;
+  pGVar2->unk_0014 = uStack_3c;
+  *(undefined4 *)&pGVar2->field_0x18 = uStack_38;
+  *(undefined4 *)&pGVar2->field_0x1c = uStack_34;
+  *(undefined4 *)&pGVar2->field_0x20 = uStack_30;
+  *(undefined4 *)&pGVar2->field_0x24 = uStack_2c;
+  *(undefined4 *)&pGVar2->field_0x28 = uStack_28;
+  *(undefined4 *)&pGVar2->field_0x2c = uStack_24;
+  *(undefined4 *)&pGVar2->field_0x30 = uStack_20;
+  *(undefined4 *)&pGVar2->field_0x34 = uStack_1c;
+  *(undefined4 *)&pGVar2->field_0x38 = uStack_18;
+  *(undefined4 *)&pGVar2->field_0x3c = uStack_14;
+  pGVar2->unk_0040 = uStack_10;
+  pGVar2->unk_0044 = uStack_c;
   return;
 }
 
 // 0x001778a0  size 0x30
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_LoadHeader(undefined4 *param_1)
 
 {
   undefined4 uVar1;
   int iVar2;
-  undefined4 *puVar3;
+  GameState *pGVar3;
   
   iVar2 = 9;
-  puVar3 = _g_GameState;
+  pGVar3 = g_GameState;
   do {
     iVar2 = iVar2 + -1;
-    uVar1 = puVar3[1];
-    *param_1 = *puVar3;
-    puVar3 = puVar3 + 2;
+    uVar1 = *(undefined4 *)&pGVar3->field_0x4;
+    *param_1 = *(undefined4 *)pGVar3;
+    pGVar3 = (GameState *)&pGVar3->unk_0008;
     param_1[1] = uVar1;
     param_1 = param_1 + 2;
   } while (0 < iVar2);
@@ -2820,157 +2706,144 @@ void GameState_LoadHeader(undefined4 *param_1)
 }
 
 // 0x001778d0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_48(void)
+uint GameState_Get_48(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x48);
+  return g_GameState->recordHeader;
 }
 
 // 0x001778e0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_c4(void)
+uint GameState_Get_c4(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0xc4);
+  return g_GameState->currentRecord;
 }
 
 // 0x001778f0  size 0x40
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_GetRecord(undefined4 *param_1,int param_2)
 
 {
-  int iVar1;
+  GameState *pGVar1;
   undefined4 uVar2;
   undefined4 uVar3;
   undefined4 uVar4;
   
-  iVar1 = param_2 * 0x14 + _g_GameState;
-  uVar4 = *(undefined4 *)(iVar1 + 0x50);
-  uVar2 = *(undefined4 *)(iVar1 + 0x54);
-  uVar3 = *(undefined4 *)(iVar1 + 0x58);
-  *param_1 = *(undefined4 *)(iVar1 + 0x4c);
+  pGVar1 = g_GameState;
+  uVar4 = *(undefined4 *)(g_GameState->records + param_2);
+  uVar2 = *(undefined4 *)&g_GameState->records[param_2].field_0x4;
+  uVar3 = *(undefined4 *)&g_GameState->records[param_2].field_0x8;
+  *param_1 = *(undefined4 *)&g_GameState->records[param_2 + -1].field_0x10;
   param_1[1] = uVar4;
   param_1[2] = uVar2;
   param_1[3] = uVar3;
-  param_1[4] = *(undefined4 *)(iVar1 + 0x5c);
+  param_1[4] = *(undefined4 *)&pGVar1->records[param_2].field_0xc;
   return;
 }
 
 // 0x00177930  size 0x44
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_GetCurrentRecord(undefined4 *param_1)
 
 {
-  int iVar1;
-  undefined4 uVar2;
+  uint uVar1;
+  GameState *pGVar2;
   undefined4 uVar3;
   undefined4 uVar4;
+  undefined4 uVar5;
   
-  iVar1 = *(int *)(_g_GameState + 0xc4) * 0x14 + _g_GameState;
-  uVar4 = *(undefined4 *)(iVar1 + 0x50);
-  uVar2 = *(undefined4 *)(iVar1 + 0x54);
-  uVar3 = *(undefined4 *)(iVar1 + 0x58);
-  *param_1 = *(undefined4 *)(iVar1 + 0x4c);
-  param_1[1] = uVar4;
-  param_1[2] = uVar2;
-  param_1[3] = uVar3;
-  param_1[4] = *(undefined4 *)(iVar1 + 0x5c);
+  pGVar2 = g_GameState;
+  uVar1 = g_GameState->currentRecord;
+  uVar5 = *(undefined4 *)(g_GameState->records + uVar1);
+  uVar3 = *(undefined4 *)&g_GameState->records[uVar1].field_0x4;
+  uVar4 = *(undefined4 *)&g_GameState->records[uVar1].field_0x8;
+  *param_1 = *(undefined4 *)&g_GameState->records[uVar1 - 1].field_0x10;
+  param_1[1] = uVar5;
+  param_1[2] = uVar3;
+  param_1[3] = uVar4;
+  param_1[4] = *(undefined4 *)&pGVar2->records[uVar1].field_0xc;
   return;
 }
 
 // 0x00177980  size 0xa8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_SaveRecords(undefined4 *param_1)
 
 {
   undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  undefined4 *puVar5;
-  undefined4 auStack_a0 [31];
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  uint uVar2;
+  GameState *pGVar3;
+  int iVar4;
+  uint *puVar5;
+  uint *puVar6;
+  uint auStack_a0 [31];
+  uint uStack_24;
+  uint uStack_20;
+  uint uStack_1c;
+  uint uStack_18;
+  uint uStack_14;
+  uint uStack_10;
+  uint uStack_c;
   
-  iVar2 = _g_GameState;
-  puVar4 = auStack_a0;
-  iVar3 = 0x13;
+  pGVar3 = g_GameState;
+  puVar5 = auStack_a0;
+  iVar4 = 0x13;
   do {
-    iVar3 = iVar3 + -1;
+    iVar4 = iVar4 + -1;
     uVar1 = param_1[1];
-    *puVar4 = *param_1;
-    puVar4[1] = uVar1;
+    *puVar5 = *param_1;
+    puVar5[1] = uVar1;
     param_1 = param_1 + 2;
-    puVar4 = puVar4 + 2;
-  } while (0 < iVar3);
-  puVar5 = auStack_a0 + 1;
-  iVar3 = 0xf;
-  *(undefined4 *)(_g_GameState + 0x48) = auStack_a0[0];
-  puVar4 = (undefined4 *)(iVar2 + 0x4c);
-  do {
-    iVar3 = iVar3 + -1;
-    uVar1 = puVar5[1];
-    *puVar4 = *puVar5;
-    puVar4[1] = uVar1;
     puVar5 = puVar5 + 2;
-    puVar4 = puVar4 + 2;
-  } while (0 < iVar3);
-  *(undefined4 *)(iVar2 + 0xc4) = uStack_24;
-  *(undefined4 *)(iVar2 + 200) = uStack_20;
-  *(undefined4 *)(iVar2 + 0xcc) = uStack_1c;
-  *(undefined4 *)(iVar2 + 0xd0) = uStack_18;
-  *(undefined4 *)(iVar2 + 0xd4) = uStack_14;
-  *(undefined4 *)(iVar2 + 0xd8) = uStack_10;
-  *(undefined4 *)(iVar2 + 0xdc) = uStack_c;
+  } while (0 < iVar4);
+  puVar6 = auStack_a0 + 1;
+  iVar4 = 0xf;
+  g_GameState->recordHeader = auStack_a0[0];
+  puVar5 = &pGVar3->unk_004c;
+  do {
+    iVar4 = iVar4 + -1;
+    uVar2 = puVar6[1];
+    *puVar5 = *puVar6;
+    *(uint *)(puVar5 + 1) = uVar2;
+    puVar6 = puVar6 + 2;
+    puVar5 = puVar5 + 2;
+  } while (0 < iVar4);
+  pGVar3->currentRecord = uStack_24;
+  pGVar3->unk_00c8 = uStack_20;
+  pGVar3->unk_00cc = uStack_1c;
+  pGVar3->unk_00d0 = uStack_18;
+  pGVar3->unk_00d4 = uStack_14;
+  pGVar3->unk_00d8 = uStack_10;
+  pGVar3->unk_00dc = uStack_c;
   return;
 }
 
 // 0x00177a30  size 0x20
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 GameState_GetCurrentRecordValue(void)
 
 {
-  return *(undefined4 *)(*(int *)(_g_GameState + 0xc4) * 0x14 + _g_GameState + 0x4c);
+  return *(undefined4 *)&g_GameState->records[g_GameState->currentRecord - 1].field_0x10;
 }
 
 // 0x00177a50  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int GameState_Ptr_48(void)
+uint * GameState_Ptr_48(void)
 
 {
-  return _g_GameState + 0x48;
+  return &g_GameState->recordHeader;
 }
 
 // 0x00177a60  size 0x34
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_LoadRecords(undefined4 *param_1)
+void GameState_LoadRecords(uint *param_1)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   int iVar2;
-  undefined4 *puVar3;
+  GameRecord *pGVar3;
   
   iVar2 = 0x13;
-  puVar3 = (undefined4 *)(_g_GameState + 0x48);
+  pGVar3 = (GameRecord *)&g_GameState->recordHeader;
   do {
     iVar2 = iVar2 + -1;
-    uVar1 = puVar3[1];
-    *param_1 = *puVar3;
-    puVar3 = puVar3 + 2;
+    uVar1 = *(uint *)&pGVar3->field_0x4;
+    *param_1 = *(uint *)pGVar3;
+    pGVar3 = (GameRecord *)&pGVar3->field_0x8;
     param_1[1] = uVar1;
     param_1 = param_1 + 2;
   } while (0 < iVar2);
@@ -2978,152 +2851,150 @@ void GameState_LoadRecords(undefined4 *param_1)
 }
 
 // 0x00177aa0  size 0x28c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_NewGame(void)
 
 {
-  char cVar1;
-  int iVar2;
-  undefined1 *puVar3;
-  undefined1 *puVar4;
+  GameState *pGVar1;
+  char cVar2;
+  uchar *puVar3;
+  int iVar4;
+  uint *puVar5;
+  RacerState *pRVar6;
   
-  puVar4 = _g_GameState;
-  iVar2 = 0;
-  _g_GameState[0x354] = 8;
-  puVar3 = puVar4 + 0x354;
-  *(undefined4 *)(puVar4 + 0x35c) = 0;
-  *(undefined4 *)(puVar4 + 0x360) = 0;
-  *(undefined4 *)(puVar4 + 0x358) = 0;
-  puVar4[0x3dc] = 0xff;
-  *(undefined4 *)(puVar4 + 0x364) = 0;
+  pGVar1 = g_GameState;
+  iVar4 = 0;
+  g_GameState->modeFlags = '\b';
+  puVar3 = &pGVar1->modeFlags;
+  pGVar1->unk_035c = 0;
+  pGVar1->unk_0360 = 0;
+  *(undefined4 *)&pGVar1->field_0x358 = 0;
+  pGVar1->unk_03dc = 0xff;
+  pGVar1->unk_0364 = 0;
   do {
     *(undefined4 *)(puVar3 + 0x14) = 0;
-    iVar2 = iVar2 + 5;
+    iVar4 = iVar4 + 5;
     *(undefined4 *)(puVar3 + 0x18) = 0;
     *(undefined4 *)(puVar3 + 0x1c) = 0;
     *(undefined4 *)(puVar3 + 0x20) = 0;
     *(undefined4 *)(puVar3 + 0x24) = 0;
     puVar3 = puVar3 + 0x14;
-  } while (iVar2 < 10);
-  *(undefined4 *)(puVar4 + 0x390) = 0;
-  *(undefined4 *)(puVar4 + 0x394) = 0;
-  *(undefined4 *)(puVar4 + 0x398) = 5000000;
-  *(undefined4 *)(puVar4 + 0x39c) = 5000000;
-  *(undefined4 *)(puVar4 + 0x3a0) = 100;
-  *(undefined4 *)(puVar4 + 0x3a4) = 0;
-  *(undefined4 *)(puVar4 + 0x3b0) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x3bc) = 0;
-  *(undefined4 *)(puVar4 + 0x3c0) = 0;
-  *(undefined4 *)(puVar4 + 0x3b4) = 0;
-  *(undefined4 *)(puVar4 + 0x3b8) = 0;
-  *(undefined4 *)(puVar4 + 0x3ac) = 0;
-  RaceSlot_Clear(puVar4 + 0x3c4);
-  RaceSlot_Clear(puVar4 + 0x3d0);
-  puVar4 = _g_GameState;
-  iVar2 = 0;
-  *(undefined4 *)(_g_GameState + 0x48) = 0;
-  *(undefined4 *)(puVar4 + 0xc4) = 0;
-  *(undefined4 *)(puVar4 + 0x4c) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x50) = 0xffffffff;
-  puVar4[0x54] = 0;
-  puVar4[0x55] = 2;
-  *(undefined4 *)(puVar4 + 0x58) = 0;
-  *(undefined4 *)(puVar4 + 0x5c) = 0;
-  *(undefined4 *)(puVar4 + 200) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x60) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 100) = 0xffffffff;
-  puVar4[0x68] = 0;
-  puVar4[0x69] = 2;
-  *(undefined4 *)(puVar4 + 0x6c) = 0;
-  *(undefined4 *)(puVar4 + 0x70) = 0;
-  *(undefined4 *)(puVar4 + 0xcc) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x74) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x78) = 0xffffffff;
-  puVar4[0x7c] = 0;
-  puVar4[0x7d] = 2;
-  *(undefined4 *)(puVar4 + 0x80) = 0;
-  *(undefined4 *)(puVar4 + 0x84) = 0;
-  *(undefined4 *)(puVar4 + 0xd0) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x88) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x8c) = 0xffffffff;
-  puVar4[0x90] = 0;
-  puVar4[0x91] = 2;
-  *(undefined4 *)(puVar4 + 0x94) = 0;
-  *(undefined4 *)(puVar4 + 0x98) = 0;
-  *(undefined4 *)(puVar4 + 0xd4) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x9c) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0xa0) = 0xffffffff;
-  puVar4[0xa4] = 0;
-  puVar4[0xa5] = 2;
-  *(undefined4 *)(puVar4 + 0xa8) = 0;
-  *(undefined4 *)(puVar4 + 0xac) = 0;
-  *(undefined4 *)(puVar4 + 0xd8) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0xb0) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0xb4) = 0xffffffff;
-  puVar4[0xb8] = 0;
-  puVar4[0xb9] = 2;
-  *(undefined4 *)(puVar4 + 0xbc) = 0;
-  *(undefined4 *)(puVar4 + 0xc0) = 0;
-  *(undefined4 *)(puVar4 + 0xdc) = 0xffffffff;
-  puVar4 = _g_GameState;
-  *(undefined4 *)(_g_GameState + 0xe0) = 0;
-  puVar3 = puVar4 + 0xe0;
-  *(undefined4 *)(puVar4 + 0xe4) = 0;
-  *(undefined4 *)(puVar4 + 0xe8) = 0;
-  *(undefined4 *)(puVar4 + 0xec) = 1;
+  } while (iVar4 < 10);
+  pGVar1->unk_0390 = 0;
+  pGVar1->unk_0394 = 0;
+  pGVar1->unk_0398 = 5000000;
+  pGVar1->unk_039c = 5000000;
+  pGVar1->unk_03a0 = 100;
+  pGVar1->unk_03a4 = 0;
+  pGVar1->unk_03b0 = 0xffffffff;
+  pGVar1->unk_03bc = 0;
+  pGVar1->unk_03c0 = 0;
+  pGVar1->unk_03b4 = 0;
+  pGVar1->unk_03b8 = 0;
+  pGVar1->unk_03ac = 0;
+  RaceSlot_Clear(pGVar1->color);
+  RaceSlot_Clear(pGVar1->startPos);
+  pGVar1 = g_GameState;
+  iVar4 = 0;
+  g_GameState->recordHeader = 0;
+  pGVar1->currentRecord = 0;
+  pGVar1->unk_004c = 0xffffffff;
+  *(undefined4 *)pGVar1->records = 0xffffffff;
+  pGVar1->records[0].field_0x4 = 0;
+  pGVar1->records[0].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[0].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[0].field_0xc = 0;
+  pGVar1->unk_00c8 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[0].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 1) = 0xffffffff;
+  pGVar1->records[1].field_0x4 = 0;
+  pGVar1->records[1].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[1].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[1].field_0xc = 0;
+  pGVar1->unk_00cc = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[1].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 2) = 0xffffffff;
+  pGVar1->records[2].field_0x4 = 0;
+  pGVar1->records[2].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[2].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[2].field_0xc = 0;
+  pGVar1->unk_00d0 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[2].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 3) = 0xffffffff;
+  pGVar1->records[3].field_0x4 = 0;
+  pGVar1->records[3].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[3].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[3].field_0xc = 0;
+  pGVar1->unk_00d4 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[3].field_0x10 = 0xffffffff;
+  *(undefined4 *)(pGVar1->records + 4) = 0xffffffff;
+  pGVar1->records[4].field_0x4 = 0;
+  pGVar1->records[4].field_0x5 = 2;
+  *(undefined4 *)&pGVar1->records[4].field_0x8 = 0;
+  *(undefined4 *)&pGVar1->records[4].field_0xc = 0;
+  pGVar1->unk_00d8 = 0xffffffff;
+  *(undefined4 *)&pGVar1->records[4].field_0x10 = 0xffffffff;
+  *(undefined4 *)&pGVar1->field_0xb4 = 0xffffffff;
+  pGVar1->field_0xb8 = 0;
+  pGVar1->field_0xb9 = 2;
+  *(undefined4 *)&pGVar1->field_0xbc = 0;
+  *(undefined4 *)&pGVar1->field_0xc0 = 0;
+  pGVar1->unk_00dc = 0xffffffff;
+  pGVar1 = g_GameState;
+  g_GameState->playerCount = 0;
+  puVar5 = &pGVar1->playerCount;
+  pGVar1->rivalCount = 0;
+  pGVar1->trafficCount = 0;
+  pGVar1->unk_00ec = 1;
   do {
-    CarRec_Init(puVar3 + 0x10);
-    puVar4 = _g_GameState;
-    iVar2 = iVar2 + 1;
-    puVar3 = puVar3 + 0xcc;
-  } while (iVar2 < 3);
-  iVar2 = 0;
-  *_g_GameState = 10;
-  puVar4[1] = 1;
-  puVar4[2] = 0;
-  puVar4[3] = 0;
-  puVar4[4] = 0;
-  *(undefined4 *)(puVar4 + 0xc) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 0x10) = 0xffffffff;
-  *(undefined4 *)(puVar4 + 8) = 0;
-  *(undefined4 *)(puVar4 + 0x40) = 0;
-  *(undefined4 *)(_g_GameState + 0x3ac8) = 0xffffffff;
-  puVar4 = _g_GameState;
-  *(undefined4 *)(_g_GameState + 0x3a48) = 0xffffffff;
-  puVar4 = puVar4 + 0x3e0;
+    CarRec_Init((RaceEntrySetup *)(puVar5 + 4));
+    pGVar1 = g_GameState;
+    iVar4 = iVar4 + 1;
+    puVar5 = puVar5 + 0x33;
+  } while (iVar4 < 3);
+  iVar4 = 0;
+  g_GameState->course = '\n';
+  pGVar1->direction = '\x01';
+  pGVar1->unk_0002 = '\0';
+  pGVar1->unk_0003 = '\0';
+  pGVar1->field_0x4 = 0;
+  pGVar1->unk_000c = 0xffffffff;
+  pGVar1->unk_0010 = 0xffffffff;
+  pGVar1->unk_0008 = 0;
+  pGVar1->unk_0040 = 0;
+  g_GameState->unk_3ac8 = 0xffffffff;
+  pGVar1 = g_GameState;
+  g_GameState->unk_3a48 = 0xffffffff;
+  pRVar6 = pGVar1->racers;
   do {
-    Opponent_Clear(puVar4 + 0x2bc0);
-    iVar2 = iVar2 + 1;
-    puVar4 = puVar4 + 0x17c;
-  } while (iVar2 < 7);
-  cVar1 = RaceCtx_GetMode();
-  if (cVar1 != '\x02') {
-    cVar1 = RaceCtx_GetMode();
-    if (cVar1 != '\x03') {
-      iVar2 = Options_Get_10();
+    Opponent_Clear((int)(pRVar6 + 8) + 0x1c0);
+    iVar4 = iVar4 + 1;
+    pRVar6 = (RacerState *)&pRVar6->field_0x17c;
+  } while (iVar4 < 7);
+  cVar2 = RaceCtx_GetMode();
+  if (cVar2 != '\x02') {
+    cVar2 = RaceCtx_GetMode();
+    if (cVar2 != '\x03') {
+      iVar4 = Options_Get_10();
       goto LAB_00177cd0;
     }
   }
-  iVar2 = iRam0036f1ec;
+  iVar4 = iRam0036f1ec;
 LAB_00177cd0:
-  if (iVar2 == 0) {
-    *(undefined4 *)(_g_GameState + 0xec) = 0;
+  if (iVar4 == 0) {
+    g_GameState->unk_00ec = 0;
   }
   else {
-    *(undefined4 *)(_g_GameState + 0xec) = 1;
+    g_GameState->unk_00ec = 1;
   }
   return;
 }
 
 // 0x00177d30  size 0x20
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_MarkGhostDirty(void)
 
 {
-  if (*(int *)(_g_GameState + 0x3ad0) != 0) {
-    *(undefined4 *)(*(int *)(_g_GameState + 0x3ad0) + 4) = 1;
+  if (g_GameState->ghostBuf != (undefined *)0x0) {
+    *(undefined4 *)(g_GameState->ghostBuf + 4) = 1;
   }
   return;
 }
@@ -3142,134 +3013,122 @@ void RaceResult_Clear(undefined4 *param_1)
 }
 
 // 0x00177d80  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_Set_394(undefined4 param_1)
+void GameState_Set_394(uint param_1)
 
 {
-  *(undefined4 *)(_g_GameState + 0x394) = param_1;
+  g_GameState->unk_0394 = param_1;
   return;
 }
 
 // 0x00177d90  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 GameState_Get_394(void)
+uint GameState_Get_394(void)
 
 {
-  return *(undefined4 *)(_g_GameState + 0x394);
+  return g_GameState->unk_0394;
 }
 
 // 0x00177da0  size 0x178
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void GameState_StartRace(long param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
+void GameState_StartRace(long param_1,undefined8 param_2,uint param_3,uint param_4)
 
 {
-  int iVar1;
+  GameState *pGVar1;
   char cVar2;
-  undefined4 uVar3;
+  uint uVar3;
   undefined1 auStack_60 [16];
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
+  uint uStack_50;
+  uint uStack_4c;
+  uint uStack_48;
+  uint uStack_44;
   undefined1 auStack_40 [24];
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  uint uStack_28;
+  uint uStack_24;
+  uint uStack_20;
+  uint uStack_1c;
   int iStack_18;
   int iStack_14;
   int iStack_10;
   int iStack_c;
   
-  iVar1 = _g_GameState;
-  *(undefined4 *)(_g_GameState + 0x3a4) = 0;
-  *(undefined4 *)(iVar1 + 0x3b0) = 0xffffffff;
-  *(undefined4 *)(iVar1 + 0x3bc) = 0;
-  *(undefined4 *)(iVar1 + 0x3c0) = 0;
-  *(undefined4 *)(iVar1 + 0x3b4) = 0;
-  *(undefined4 *)(iVar1 + 0x3b8) = 0;
-  *(undefined4 *)(iVar1 + 0x3ac) = 0;
-  *(int *)(_g_GameState + 0x3a4) = (int)param_1;
-  *(undefined4 *)(_g_GameState + 0x3a8) = param_3;
-  *(undefined4 *)(_g_GameState + 0x3ac) = param_4;
+  pGVar1 = g_GameState;
+  g_GameState->unk_03a4 = 0;
+  pGVar1->unk_03b0 = 0xffffffff;
+  pGVar1->unk_03bc = 0;
+  pGVar1->unk_03c0 = 0;
+  pGVar1->unk_03b4 = 0;
+  pGVar1->unk_03b8 = 0;
+  pGVar1->unk_03ac = 0;
+  g_GameState->unk_03a4 = (uint)param_1;
+  g_GameState->unk_03a8 = param_3;
+  g_GameState->unk_03ac = param_4;
   if (param_1 == 0) {
     uVar3 = Course_FindSection(auStack_60);
-    *(undefined4 *)(_g_GameState + 0x3b0) = uVar3;
+    g_GameState->unk_03b0 = uVar3;
     cVar2 = Race_GetTimeOfDay();
     if (cVar2 == '\0') {
-      *(undefined4 *)(_g_GameState + 0x3b4) = uStack_50;
-      *(undefined4 *)(_g_GameState + 0x3b8) = uStack_48;
+      g_GameState->unk_03b4 = uStack_50;
+      g_GameState->unk_03b8 = uStack_48;
     }
     else {
-      *(undefined4 *)(_g_GameState + 0x3b4) = uStack_4c;
-      *(undefined4 *)(_g_GameState + 0x3b8) = uStack_44;
+      g_GameState->unk_03b4 = uStack_4c;
+      g_GameState->unk_03b8 = uStack_44;
     }
   }
   else {
     uVar3 = Course_GetVariantInfo(auStack_40);
-    *(undefined4 *)(_g_GameState + 0x3b0) = uVar3;
+    g_GameState->unk_03b0 = uVar3;
     cVar2 = Race_GetTimeOfDay();
     if (cVar2 == '\0') {
-      *(int *)(_g_GameState + 0x3bc) = iStack_18 * 1000;
-      *(int *)(_g_GameState + 0x3c0) = iStack_10 * 1000;
-      *(undefined4 *)(_g_GameState + 0x3b4) = uStack_28;
-      *(undefined4 *)(_g_GameState + 0x3b8) = uStack_20;
+      g_GameState->unk_03bc = iStack_18 * 1000;
+      g_GameState->unk_03c0 = iStack_10 * 1000;
+      g_GameState->unk_03b4 = uStack_28;
+      g_GameState->unk_03b8 = uStack_20;
     }
     else {
-      *(int *)(_g_GameState + 0x3bc) = iStack_14 * 1000;
-      *(int *)(_g_GameState + 0x3c0) = iStack_c * 1000;
-      *(undefined4 *)(_g_GameState + 0x3b4) = uStack_24;
-      *(undefined4 *)(_g_GameState + 0x3b8) = uStack_1c;
+      g_GameState->unk_03bc = iStack_14 * 1000;
+      g_GameState->unk_03c0 = iStack_c * 1000;
+      g_GameState->unk_03b4 = uStack_24;
+      g_GameState->unk_03b8 = uStack_1c;
     }
   }
   return;
 }
 
 // 0x00177f20  size 0x34
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_FreeReplay(void)
 
 {
-  if (*(int *)(_g_GameState + 0x3acc) != 0) {
+  if (g_GameState->replayBuf != (undefined *)0x0) {
     Mem_Free();
-    *(undefined4 *)(_g_GameState + 0x3acc) = 0;
+    g_GameState->replayBuf = (undefined *)0x0;
   }
   return;
 }
 
 // 0x00177f60  size 0x34
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_FreeGhost(void)
 
 {
-  if (*(int *)(_g_GameState + 0x3ad0) != 0) {
+  if (g_GameState->ghostBuf != (undefined *)0x0) {
     Mem_Free();
-    *(undefined4 *)(_g_GameState + 0x3ad0) = 0;
+    g_GameState->ghostBuf = (undefined *)0x0;
   }
   return;
 }
 
 // 0x00177fa0  size 0x64
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void GameState_Free(void)
 
 {
-  if (_g_GameState != 0) {
-    if (*(int *)(_g_GameState + 0x3acc) != 0) {
+  if (g_GameState != (GameState *)0x0) {
+    if (g_GameState->replayBuf != (undefined *)0x0) {
       Mem_Free();
-      *(undefined4 *)(_g_GameState + 0x3acc) = 0;
+      g_GameState->replayBuf = (undefined *)0x0;
     }
-    if (*(int *)(_g_GameState + 0x3ad0) != 0) {
+    if (g_GameState->ghostBuf != (undefined *)0x0) {
       Mem_Free();
-      *(undefined4 *)(_g_GameState + 0x3ad0) = 0;
+      g_GameState->ghostBuf = (undefined *)0x0;
     }
-    Mem_Free(_g_GameState);
+    Mem_Free(g_GameState);
   }
   return;
 }

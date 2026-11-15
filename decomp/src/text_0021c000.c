@@ -3,18 +3,16 @@
 #include "ghidra_types.h"
 
 // 0x0021c160  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 4 (table 0x3276e0, dispatched by 0x201380) */
 
 void maybe_PageNaFesta_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
 // 0x0021c180  size 0xc0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu page 4 (table 0x3276e0, dispatched by 0x201380) */
 
 void maybe_PageNaFesta_Update(undefined8 param_1)
@@ -22,14 +20,14 @@ void maybe_PageNaFesta_Update(undefined8 param_1)
 {
   long lVar1;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   (*(code *)(&PTR_maybe_PageNaFesta_State0_Entry_0032a290)[*(int *)((int)param_1 + 0x4c)])(param_1);
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
-     (lVar1 = Menu_IsInputIdle((int)param_1 + 0x48), lVar1 == 1)) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+  if (((g_MenuMgr->flags & 4) == 0) && (lVar1 = Menu_IsInputIdle((int)param_1 + 0x48), lVar1 == 1))
+  {
+    if ((g_MenuMgr->flags & 1) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
     }
   }
   return;
@@ -745,7 +743,7 @@ LAB_0021d294:
     lVar4 = UiLayout_UpdateAnimById(0xac,2);
     if (lVar4 == 0) {
       param_1[6] = 0;
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+      g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
       param_1[0x1541] = 0;
     }
     if ((param_1[6] == 0) || (param_1[0x1541] != 1)) goto LAB_0021d4ac;
@@ -1369,7 +1367,7 @@ LAB_0021eedc:
 LAB_0021f034:
   if ((iVar1 == 1) && (lVar4 = UiLayout_UpdateAnimById(0xab,2), lVar4 == 0)) {
     param_1[0x153f] = 0;
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     uVar3 = UiRes_GetLayoutData(0xe6);
     iVar1 = UiMgr_FindLayout(0xab);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;
@@ -1404,7 +1402,7 @@ LAB_0021f034:
   }
   if ((iVar1 == 2) && (lVar4 = UiLayout_UpdateAnimById(0xab,3), lVar4 == 0)) {
     param_1[0x153f] = 0;
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) & 0xffbfffff;
+    g_MenuMgr->flags = g_MenuMgr->flags & 0xffbfffff;
     uVar3 = UiRes_GetLayoutData(0xe3);
     iVar1 = UiMgr_FindLayout(0xab);
     iVar1 = *_g_UiMgr + iVar1 * 0x4f4;

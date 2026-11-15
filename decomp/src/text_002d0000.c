@@ -871,13 +871,13 @@ void maybe_ReplayCam_RenderFrame(void)
   undefined1 uStack_35d8e;
   undefined1 auStack_35ce0 [352];
   undefined1 auStack_35b80 [20];
-  undefined1 *puStack_35b6c;
+  undefined *puStack_35b6c;
   undefined1 auStack_35b40 [128];
   undefined1 auStack_35ac0 [128];
   undefined1 auStack_35a40 [128];
   uint auStack_359c0 [54880];
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   Pad_GetPort(0,0);
   maybe_ReplayCam_DrawModel(0x431100,0x431100);
@@ -933,7 +933,7 @@ void maybe_ReplayCam_RenderFrame(void)
   Pkt_AddPrimitives(auStack_40,auStack_359c0,((int)puVar4 - (int)auStack_359c0) / 0x310);
   Pkt_Submit(auStack_40,0);
   Pkt_Init(auStack_40,1,2,0);
-  puStack_2c = (undefined1 *)0x435600;
+  puStack_2c = (undefined *)0x435600;
   Pkt_SubmitToChain(auStack_40,10);
   Pkt_End(auStack_40);
   Gfx_SetupRenderTargetEx(0x431100,auStack_35a40,0,0);
@@ -1071,7 +1071,7 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   undefined1 auStack_140 [128];
   undefined1 auStack_c0 [128];
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   uVar7 = uRam004343d0;
   uVar6 = uRam004343c0;
@@ -1095,7 +1095,7 @@ void maybe_ReplayCam_DrawOverlay(ulong param_1,ulong param_2)
   uRam004343d0 = uRam004343d0 & auVar8._0_8_ | 0x7f0000003f0000;
   iRam00431174 = iRam00431174 << 1;
   Pkt_Init(auStack_40,1,2,0);
-  puStack_2c = (undefined1 *)0x433f00;
+  puStack_2c = (undefined *)0x433f00;
   Pkt_SubmitToChain(auStack_40,8);
   Pkt_End(auStack_40);
   Gfx_SetupRenderTargetEx(0x431100,auStack_c0,0,1);
@@ -1189,7 +1189,7 @@ void maybe_ReplayCam_Draw(void)
   uint uVar2;
   uint uVar3;
   undefined1 auStack_40 [20];
-  undefined1 *puStack_2c;
+  undefined *puStack_2c;
   
   if ((uRam0046a028 & 4) != 0) {
     fVar1 = fRam0046a0ec;

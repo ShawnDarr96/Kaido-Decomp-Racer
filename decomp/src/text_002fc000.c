@@ -107,7 +107,6 @@ void ScrRenderSetInterlace_Exit(void)
 }
 
 // 0x002fd1e0  size 0x398
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* menu screen 45 (table 0x3274b0) */
 
 void ScrRenderSetInterlace_Update(int *param_1)
@@ -167,7 +166,7 @@ void ScrRenderSetInterlace_Update(int *param_1)
       if (uVar3 == 0x10) {
         Se_PlayMenu(5);
         if (param_1[1] == 0) {
-          MenuMgr_GetScreenParam(0);
+          MenuMgr_RequestScreen(0);
           param_1[1] = 0;
         }
         else {
@@ -193,11 +192,11 @@ void ScrRenderSetInterlace_Update(int *param_1)
       iVar1 = iRam00386628;
       Sema_Signal(0x36efc0,0);
       if (iVar1 == 0) {
-        if (*(int *)(_g_MenuMgr + 0x24) == -1) {
+        if (g_MenuMgr->prevScreen == 0xffffffff) {
           param_1[5] = 2;
         }
         else {
-          MenuMgr_GetScreenParam();
+          MenuMgr_RequestScreen();
         }
       }
     }
@@ -214,7 +213,7 @@ void ScrRenderSetInterlace_Update(int *param_1)
       }
       if (uVar3 == 0x10) {
         Se_PlayMenu(5);
-        *(undefined1 *)(iRam0036f1d4 + 0x15) = *(undefined1 *)(param_1[1] + 0x36ef28);
+        g_RaceCtx->unk_0015 = *(uchar *)(param_1[1] + 0x36ef28);
         UiRes_LoadLocalized(0x1870);
         param_1[1] = 0;
         param_1[5] = 1;
@@ -250,13 +249,12 @@ void ScrRenderSetInterlace_Enter(undefined4 *param_1)
 }
 
 // 0x002fd5c0  size 0x14
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x3278fc */
 
 void ScrDraw_StartGame_Exit(void)
 
 {
-  *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
+  g_MenuMgr->flags = g_MenuMgr->flags | 4;
   return;
 }
 
@@ -269,8 +267,8 @@ void Misc_Draw_StartGame(int *param_1)
   int iVar1;
   long lVar2;
   
-  if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
-    *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
+  if ((g_MenuMgr->flags & 2) == 0) {
+    g_MenuMgr->flags = g_MenuMgr->flags | 0x1000;
   }
   iVar1 = param_1[4];
   if (iVar1 == 3) {
@@ -336,10 +334,9 @@ void Misc_Draw_StartGame(int *param_1)
   param_1[7] = 0;
 LAB_002fd938:
   param_1[9] = 0;
-  if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
-     (lVar2 = Menu_IsInputIdle(param_1 + 3), lVar2 == 1)) {
-    if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {
-      *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x800;
+  if (((g_MenuMgr->flags & 4) == 0) && (lVar2 = Menu_IsInputIdle(param_1 + 3), lVar2 == 1)) {
+    if ((g_MenuMgr->flags & 1) == 0) {
+      g_MenuMgr->flags = g_MenuMgr->flags | 0x800;
     }
   }
   return;
