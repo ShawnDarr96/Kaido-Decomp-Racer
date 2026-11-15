@@ -6,70 +6,82 @@
 void maybe_RaceHud_FormatRecord(byte *param_1)
 
 {
-  byte bVar1;
-  char cVar2;
-  undefined4 uVar3;
-  RaceEntrySetup *pRVar4;
-  int iVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  byte bVar4;
+  char cVar5;
+  undefined4 uVar6;
+  RaceTbl *tbl;
+  RaceRecordA *pRVar7;
+  RaceEntrySetup *pRVar8;
+  RaceRecordB *pRVar9;
+  uint uVar10;
+  uint uVar11;
+  undefined8 uVar12;
   
   if (*param_1 < 9) {
                     /* WARNING: Switch is manually overridden */
     switch(*param_1) {
     case 1:
-      bVar1 = RaceCtx_Get_8();
-      if (bVar1 < 0xb) {
-        uVar3 = GameState_Get_390();
-        *(undefined4 *)(param_1 + 0x26c) = uVar3;
+      bVar4 = RaceCtx_Get_8();
+      if (bVar4 < 0xb) {
+        uVar6 = GameState_Get_390();
+        *(undefined4 *)(param_1 + 0x26c) = uVar6;
       }
       else {
-        cVar2 = RaceCtx_Get_8();
-        if (cVar2 == '\x10') {
-          uVar3 = GameState_Get_390();
-          *(undefined4 *)(param_1 + 0x26c) = uVar3;
+        cVar5 = RaceCtx_Get_8();
+        if (cVar5 == '\x10') {
+          uVar6 = GameState_Get_390();
+          *(undefined4 *)(param_1 + 0x26c) = uVar6;
         }
         else {
-          pRVar4 = GameState_Elem_f0_xcc(0);
-          uVar8 = maybe_RaceTbl_GetCount();
-          uVar6 = Race_GetDirection();
-          uVar7 = Race_GetCourseVariant();
-          iVar5 = RaceTbl_GetCourseEntry(uVar8,pRVar4->maybe_state,uVar6,uVar7);
-          *(undefined4 *)(param_1 + 0x26c) = *(undefined4 *)(iVar5 + 0x10);
+          pRVar8 = GameState_Elem_f0_xcc(0);
+          tbl = (RaceTbl *)maybe_RaceTbl_GetCount();
+          uVar10 = Race_GetDirection();
+          uVar11 = Race_GetCourseVariant();
+          pRVar7 = RaceTbl_GetCourseEntry(tbl,(int)(char)pRVar8->maybe_state,uVar10,uVar11);
+          uVar1 = pRVar7->field_0x11;
+          uVar2 = pRVar7->field_0x12;
+          uVar3 = pRVar7->field_0x13;
+          param_1[0x26c] = pRVar7->field_0x10;
+          param_1[0x26d] = uVar1;
+          param_1[0x26e] = uVar2;
+          param_1[0x26f] = uVar3;
         }
       }
       break;
     case 2:
-      bVar1 = RaceCtx_Get_8();
-      if (bVar1 < 0xb) {
-        uVar8 = GameState_Get_364();
-        Time_SplitHms(1,uVar8,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+      bVar4 = RaceCtx_Get_8();
+      if (bVar4 < 0xb) {
+        uVar12 = GameState_Get_364();
+        Time_SplitHms(1,uVar12,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
       }
       else {
-        cVar2 = RaceCtx_Get_8();
-        if (cVar2 == '\x10') {
-          uVar8 = GameState_Get_364();
-          Time_SplitHms(1,uVar8,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+        cVar5 = RaceCtx_Get_8();
+        if (cVar5 == '\x10') {
+          uVar12 = GameState_Get_364();
+          Time_SplitHms(1,uVar12,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
         }
         else {
-          pRVar4 = GameState_Elem_f0_xcc(0);
-          uVar8 = RaceTbl_Ptr_5fa0();
-          uVar6 = Race_GetDirection();
-          uVar7 = Race_GetCourseVariant();
-          iVar5 = RaceTbl_GetCourseEntryB(uVar8,pRVar4->maybe_state,uVar6,uVar7);
-          if (*(int *)(iVar5 + 0xc) == 0) {
+          pRVar8 = GameState_Elem_f0_xcc(0);
+          pRVar9 = (RaceRecordB *)RaceTbl_Ptr_5fa0();
+          uVar10 = Race_GetDirection();
+          uVar11 = Race_GetCourseVariant();
+          pRVar9 = RaceTbl_GetCourseEntryB(pRVar9,(int)(char)pRVar8->maybe_state,uVar10,uVar11);
+          if (*(int *)&pRVar9->field_0xc == 0) {
             Time_SplitHms(1,0,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
           }
           else {
-            Time_SplitHms(1,*(int *)(iVar5 + 0xc),param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+            Time_SplitHms(1,*(int *)&pRVar9->field_0xc,param_1 + 0x270,param_1 + 0x274,
+                          param_1 + 0x278);
           }
         }
       }
       break;
     case 3:
-      uVar8 = GameState_Get_364();
-      Time_SplitHms(1,uVar8,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+      uVar12 = GameState_Get_364();
+      Time_SplitHms(1,uVar12,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
     }
   }
   return;
@@ -309,141 +321,151 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
 
 {
   bool bVar1;
-  undefined *puVar2;
-  undefined4 uVar3;
-  undefined *puVar4;
-  undefined4 uVar5;
-  undefined *puVar6;
-  undefined4 uVar7;
-  undefined *puVar8;
-  undefined4 uVar9;
-  undefined *puVar10;
-  byte bVar11;
-  uint uVar12;
-  undefined4 uVar13;
-  RaceEntrySetup *pRVar14;
-  int iVar15;
-  undefined8 uVar16;
-  undefined8 uVar17;
-  undefined8 uVar18;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined *puVar5;
+  undefined4 uVar6;
+  undefined *puVar7;
+  undefined4 uVar8;
+  undefined *puVar9;
+  undefined4 uVar10;
+  undefined *puVar11;
+  undefined4 uVar12;
+  undefined *puVar13;
+  byte bVar14;
+  undefined4 uVar15;
+  RaceTbl *tbl;
+  RaceRecordA *pRVar16;
+  RaceEntrySetup *pRVar17;
+  RaceRecordB *pRVar18;
+  uint uVar19;
+  uint uVar20;
+  undefined8 uVar21;
   
-  puVar10 = PTR_Result_Nop_0032f8a0;
-  uVar9 = DAT_0032f89c;
-  puVar8 = PTR_RaceUi_TaskSplits_0032f890;
-  uVar7 = DAT_0032f88c;
-  puVar6 = PTR_RaceUi_DrawRivalBanner_0032f880;
-  uVar5 = DAT_0032f87c;
-  puVar4 = PTR_RaceUi_TaskSpeedometer_0032f870;
-  uVar3 = DAT_0032f86c;
-  puVar2 = PTR_RaceUi_TaskGapMeter_0032f860;
-  uVar13 = DAT_0032f85c;
+  puVar13 = PTR_Result_Nop_0032f8a0;
+  uVar12 = DAT_0032f89c;
+  puVar11 = PTR_RaceUi_TaskSplits_0032f890;
+  uVar10 = DAT_0032f88c;
+  puVar9 = PTR_RaceUi_DrawRivalBanner_0032f880;
+  uVar8 = DAT_0032f87c;
+  puVar7 = PTR_RaceUi_TaskSpeedometer_0032f870;
+  uVar6 = DAT_0032f86c;
+  puVar5 = PTR_RaceUi_TaskGapMeter_0032f860;
+  uVar15 = DAT_0032f85c;
   bVar1 = (*(uint *)(param_1 + 0x27c) & 1) == 0;
   if (*param_1 < 9) {
                     /* WARNING: Switch is manually overridden */
     switch(*param_1) {
     case 0:
-      uVar12 = g_ArcToc->entries[0xa00].unpackedSize;
-      if (uVar12 == 0) {
-        uVar12 = g_ArcToc->entries[0xa00].sectorCount;
+      uVar19 = g_ArcToc->entries[0xa00].unpackedSize;
+      if (uVar19 == 0) {
+        uVar19 = g_ArcToc->entries[0xa00].sectorCount;
       }
       else {
-        uVar12 = uVar12 + 0x7ff >> 0xb;
+        uVar19 = uVar19 + 0x7ff >> 0xb;
       }
-      uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
-      *(undefined4 *)(param_1 + 0x26f4) = uVar13;
-      uVar13 = Arc_LoadFileEx(0xa00,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
+      uVar15 = Mem_AllocAligned(uVar19 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
+      *(undefined4 *)(param_1 + 0x26f4) = uVar15;
+      uVar15 = Arc_LoadFileEx(0xa00,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
       ;
-      *(undefined4 *)(param_1 + 0x2728) = uVar13;
+      *(undefined4 *)(param_1 + 0x2728) = uVar15;
       param_1[0x2724] = 0;
       param_1[0x2725] = 0;
       param_1[0x2726] = 0;
       param_1[0x2727] = 0;
       param_1[0x2720] = 1;
-      puVar4 = PTR_RaceUi_DrawResultBanner_0032f810;
-      uVar3 = DAT_0032f80c;
-      puVar2 = PTR_RaceUi_TaskGearIndicator_0032f800;
-      uVar13 = DAT_0032f7fc;
+      puVar7 = PTR_RaceUi_DrawResultBanner_0032f810;
+      uVar6 = DAT_0032f80c;
+      puVar5 = PTR_RaceUi_TaskGearIndicator_0032f800;
+      uVar15 = DAT_0032f7fc;
       param_1[0x2721] = 0;
       param_1[0x2722] = 0;
       param_1[0x2723] = 0;
       if (bVar1) {
         *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f808;
-        *(undefined4 *)(param_1 + 0xfac) = uVar3;
-        *(undefined **)(param_1 + 0xfb0) = puVar4;
+        *(undefined4 *)(param_1 + 0xfac) = uVar6;
+        *(undefined **)(param_1 + 0xfb0) = puVar7;
       }
       else {
         *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f7f8;
-        *(undefined4 *)(param_1 + 0xfac) = uVar13;
-        *(undefined **)(param_1 + 0xfb0) = puVar2;
+        *(undefined4 *)(param_1 + 0xfac) = uVar15;
+        *(undefined **)(param_1 + 0xfb0) = puVar5;
       }
       break;
     case 1:
-      uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
-      if (uVar12 == 0) {
-        uVar12 = g_ArcToc->entries[0xa01].sectorCount;
+      uVar19 = g_ArcToc->entries[0xa01].unpackedSize;
+      if (uVar19 == 0) {
+        uVar19 = g_ArcToc->entries[0xa01].sectorCount;
       }
       else {
-        uVar12 = uVar12 + 0x7ff >> 0xb;
+        uVar19 = uVar19 + 0x7ff >> 0xb;
       }
-      uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
-      *(undefined4 *)(param_1 + 0x26f4) = uVar13;
-      uVar13 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
+      uVar15 = Mem_AllocAligned(uVar19 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
+      *(undefined4 *)(param_1 + 0x26f4) = uVar15;
+      uVar15 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
       ;
-      *(undefined4 *)(param_1 + 0x2728) = uVar13;
+      *(undefined4 *)(param_1 + 0x2728) = uVar15;
       param_1[0x2724] = 0;
       param_1[0x2725] = 0;
       param_1[0x2726] = 0;
       param_1[0x2727] = 0;
       param_1[0x2720] = 1;
-      puVar4 = PTR_RaceUi_TaskLapCounter_0032f830;
-      uVar3 = DAT_0032f82c;
-      puVar2 = PTR_RaceUi_TaskCountdown_0032f820;
-      uVar13 = DAT_0032f81c;
+      puVar7 = PTR_RaceUi_TaskLapCounter_0032f830;
+      uVar6 = DAT_0032f82c;
+      puVar5 = PTR_RaceUi_TaskCountdown_0032f820;
+      uVar15 = DAT_0032f81c;
       param_1[0x2721] = 0;
       param_1[0x2722] = 0;
       param_1[0x2723] = 0;
       if (bVar1) {
         *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f828;
-        *(undefined4 *)(param_1 + 0xfac) = uVar3;
-        *(undefined **)(param_1 + 0xfb0) = puVar4;
-        bVar11 = RaceCtx_Get_8();
-        if (bVar11 < 0xb) {
-          uVar13 = GameState_Get_390();
-          *(undefined4 *)(param_1 + 0x26c) = uVar13;
+        *(undefined4 *)(param_1 + 0xfac) = uVar6;
+        *(undefined **)(param_1 + 0xfb0) = puVar7;
+        bVar14 = RaceCtx_Get_8();
+        if (bVar14 < 0xb) {
+          uVar15 = GameState_Get_390();
+          *(undefined4 *)(param_1 + 0x26c) = uVar15;
         }
         else {
-          pRVar14 = GameState_Elem_f0_xcc(0);
-          uVar16 = maybe_RaceTbl_GetCount();
-          uVar17 = Race_GetDirection();
-          uVar18 = Race_GetCourseVariant();
-          iVar15 = RaceTbl_GetCourseEntry(uVar16,pRVar14->maybe_state,uVar17,uVar18);
-          *(undefined4 *)(param_1 + 0x26c) = *(undefined4 *)(iVar15 + 0x10);
+          pRVar17 = GameState_Elem_f0_xcc(0);
+          tbl = (RaceTbl *)maybe_RaceTbl_GetCount();
+          uVar19 = Race_GetDirection();
+          uVar20 = Race_GetCourseVariant();
+          pRVar16 = RaceTbl_GetCourseEntry(tbl,(int)(char)pRVar17->maybe_state,uVar19,uVar20);
+          uVar2 = pRVar16->field_0x11;
+          uVar3 = pRVar16->field_0x12;
+          uVar4 = pRVar16->field_0x13;
+          param_1[0x26c] = pRVar16->field_0x10;
+          param_1[0x26d] = uVar2;
+          param_1[0x26e] = uVar3;
+          param_1[0x26f] = uVar4;
         }
       }
       else {
         *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f818;
-        *(undefined4 *)(param_1 + 0xfac) = uVar13;
-        *(undefined **)(param_1 + 0xfb0) = puVar2;
+        *(undefined4 *)(param_1 + 0xfac) = uVar15;
+        *(undefined **)(param_1 + 0xfb0) = puVar5;
       }
       break;
     case 2:
       goto switchD_002d0b18_caseD_2;
     case 3:
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f858;
-      *(undefined4 *)(param_1 + 0xfac) = uVar13;
-      *(undefined **)(param_1 + 0xfb0) = puVar2;
-      uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
-      if (uVar12 == 0) {
-        uVar12 = g_ArcToc->entries[0xa01].sectorCount;
+      *(undefined4 *)(param_1 + 0xfac) = uVar15;
+      *(undefined **)(param_1 + 0xfb0) = puVar5;
+      uVar19 = g_ArcToc->entries[0xa01].unpackedSize;
+      if (uVar19 == 0) {
+        uVar19 = g_ArcToc->entries[0xa01].sectorCount;
       }
       else {
-        uVar12 = uVar12 + 0x7ff >> 0xb;
+        uVar19 = uVar19 + 0x7ff >> 0xb;
       }
-      uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
-      *(undefined4 *)(param_1 + 0x26f4) = uVar13;
-      uVar13 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
+      uVar15 = Mem_AllocAligned(uVar19 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
+      *(undefined4 *)(param_1 + 0x26f4) = uVar15;
+      uVar15 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
       ;
-      *(undefined4 *)(param_1 + 0x2728) = uVar13;
+      *(undefined4 *)(param_1 + 0x2728) = uVar15;
       param_1[0x2724] = 0;
       param_1[0x2725] = 0;
       param_1[0x2726] = 0;
@@ -452,32 +474,32 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       param_1[0x2721] = 0;
       param_1[0x2722] = 0;
       param_1[0x2723] = 0;
-      uVar16 = GameState_Get_364();
-      Time_SplitHms(1,uVar16,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
-      uVar13 = GameState_Get_390();
-      *(undefined4 *)(param_1 + 0x26c) = uVar13;
+      uVar21 = GameState_Get_364();
+      Time_SplitHms(1,uVar21,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+      uVar15 = GameState_Get_390();
+      *(undefined4 *)(param_1 + 0x26c) = uVar15;
       break;
     default:
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f868;
-      *(undefined4 *)(param_1 + 0xfac) = uVar3;
-      *(undefined **)(param_1 + 0xfb0) = puVar4;
+      *(undefined4 *)(param_1 + 0xfac) = uVar6;
+      *(undefined **)(param_1 + 0xfb0) = puVar7;
       break;
     case 6:
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f878;
-      *(undefined4 *)(param_1 + 0xfac) = uVar5;
-      *(undefined **)(param_1 + 0xfb0) = puVar6;
-      uVar12 = g_ArcToc->entries[0xa00].unpackedSize;
-      if (uVar12 == 0) {
-        uVar12 = g_ArcToc->entries[0xa00].sectorCount;
+      *(undefined4 *)(param_1 + 0xfac) = uVar8;
+      *(undefined **)(param_1 + 0xfb0) = puVar9;
+      uVar19 = g_ArcToc->entries[0xa00].unpackedSize;
+      if (uVar19 == 0) {
+        uVar19 = g_ArcToc->entries[0xa00].sectorCount;
       }
       else {
-        uVar12 = uVar12 + 0x7ff >> 0xb;
+        uVar19 = uVar19 + 0x7ff >> 0xb;
       }
-      uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
-      *(undefined4 *)(param_1 + 0x26f4) = uVar13;
-      uVar13 = Arc_LoadFileEx(0xa00,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
+      uVar15 = Mem_AllocAligned(uVar19 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
+      *(undefined4 *)(param_1 + 0x26f4) = uVar15;
+      uVar15 = Arc_LoadFileEx(0xa00,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
       ;
-      *(undefined4 *)(param_1 + 0x2728) = uVar13;
+      *(undefined4 *)(param_1 + 0x2728) = uVar15;
       param_1[0x2724] = 0;
       param_1[0x2725] = 0;
       param_1[0x2726] = 0;
@@ -486,25 +508,25 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       param_1[0x2721] = 0;
       param_1[0x2722] = 0;
       param_1[0x2723] = 0;
-      uVar16 = GameState_Get_364();
-      Time_SplitHms(1,uVar16,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+      uVar21 = GameState_Get_364();
+      Time_SplitHms(1,uVar21,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
       break;
     case 7:
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f888;
-      *(undefined4 *)(param_1 + 0xfac) = uVar7;
-      *(undefined **)(param_1 + 0xfb0) = puVar8;
-      uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
-      if (uVar12 == 0) {
-        uVar12 = g_ArcToc->entries[0xa01].sectorCount;
+      *(undefined4 *)(param_1 + 0xfac) = uVar10;
+      *(undefined **)(param_1 + 0xfb0) = puVar11;
+      uVar19 = g_ArcToc->entries[0xa01].unpackedSize;
+      if (uVar19 == 0) {
+        uVar19 = g_ArcToc->entries[0xa01].sectorCount;
       }
       else {
-        uVar12 = uVar12 + 0x7ff >> 0xb;
+        uVar19 = uVar19 + 0x7ff >> 0xb;
       }
-      uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
-      *(undefined4 *)(param_1 + 0x26f4) = uVar13;
-      uVar13 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
+      uVar15 = Mem_AllocAligned(uVar19 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
+      *(undefined4 *)(param_1 + 0x26f4) = uVar15;
+      uVar15 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0)
       ;
-      *(undefined4 *)(param_1 + 0x2728) = uVar13;
+      *(undefined4 *)(param_1 + 0x2728) = uVar15;
       param_1[0x2724] = 0;
       param_1[0x2725] = 0;
       param_1[0x2726] = 0;
@@ -516,62 +538,63 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       break;
     case 8:
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f898;
-      *(undefined4 *)(param_1 + 0xfac) = uVar9;
-      *(undefined **)(param_1 + 0xfb0) = puVar10;
+      *(undefined4 *)(param_1 + 0xfac) = uVar12;
+      *(undefined **)(param_1 + 0xfb0) = puVar13;
     }
   }
   else {
 switchD_002d0b18_caseD_2:
-    uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
-    if (uVar12 == 0) {
-      uVar12 = g_ArcToc->entries[0xa01].sectorCount;
+    uVar19 = g_ArcToc->entries[0xa01].unpackedSize;
+    if (uVar19 == 0) {
+      uVar19 = g_ArcToc->entries[0xa01].sectorCount;
     }
     else {
-      uVar12 = uVar12 + 0x7ff >> 0xb;
+      uVar19 = uVar19 + 0x7ff >> 0xb;
     }
-    uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
-    *(undefined4 *)(param_1 + 0x26f4) = uVar13;
-    uVar13 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0);
-    *(undefined4 *)(param_1 + 0x2728) = uVar13;
+    uVar15 = Mem_AllocAligned(uVar19 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
+    *(undefined4 *)(param_1 + 0x26f4) = uVar15;
+    uVar15 = Arc_LoadFileEx(0xa01,*(undefined4 *)(param_1 + 0x26f4),0x2c55e0,param_1 + 0x26f0,0,0);
+    *(undefined4 *)(param_1 + 0x2728) = uVar15;
     param_1[0x2724] = 0;
     param_1[0x2725] = 0;
     param_1[0x2726] = 0;
     param_1[0x2727] = 0;
     param_1[0x2720] = 1;
-    puVar4 = PTR_RaceUi_DrawIntroCard_0032f850;
-    uVar3 = DAT_0032f84c;
-    puVar2 = PTR_RaceUi_TaskWarning_0032f840;
-    uVar13 = DAT_0032f83c;
+    puVar7 = PTR_RaceUi_DrawIntroCard_0032f850;
+    uVar6 = DAT_0032f84c;
+    puVar5 = PTR_RaceUi_TaskWarning_0032f840;
+    uVar15 = DAT_0032f83c;
     param_1[0x2721] = 0;
     param_1[0x2722] = 0;
     param_1[0x2723] = 0;
     if (bVar1) {
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f848;
-      *(undefined4 *)(param_1 + 0xfac) = uVar3;
-      *(undefined **)(param_1 + 0xfb0) = puVar4;
-      bVar11 = RaceCtx_Get_8();
-      if (bVar11 < 0xb) {
-        uVar16 = GameState_Get_364();
-        Time_SplitHms(1,uVar16,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+      *(undefined4 *)(param_1 + 0xfac) = uVar6;
+      *(undefined **)(param_1 + 0xfb0) = puVar7;
+      bVar14 = RaceCtx_Get_8();
+      if (bVar14 < 0xb) {
+        uVar21 = GameState_Get_364();
+        Time_SplitHms(1,uVar21,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
       }
       else {
-        pRVar14 = GameState_Elem_f0_xcc(0);
-        uVar16 = RaceTbl_Ptr_5fa0();
-        uVar17 = Race_GetDirection();
-        uVar18 = Race_GetCourseVariant();
-        iVar15 = RaceTbl_GetCourseEntryB(uVar16,pRVar14->maybe_state,uVar17,uVar18);
-        if (*(int *)(iVar15 + 0xc) == 0) {
+        pRVar17 = GameState_Elem_f0_xcc(0);
+        pRVar18 = (RaceRecordB *)RaceTbl_Ptr_5fa0();
+        uVar19 = Race_GetDirection();
+        uVar20 = Race_GetCourseVariant();
+        pRVar18 = RaceTbl_GetCourseEntryB(pRVar18,(int)(char)pRVar17->maybe_state,uVar19,uVar20);
+        if (*(int *)&pRVar18->field_0xc == 0) {
           Time_SplitHms(1,0,param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
         }
         else {
-          Time_SplitHms(1,*(int *)(iVar15 + 0xc),param_1 + 0x270,param_1 + 0x274,param_1 + 0x278);
+          Time_SplitHms(1,*(int *)&pRVar18->field_0xc,param_1 + 0x270,param_1 + 0x274,
+                        param_1 + 0x278);
         }
       }
     }
     else {
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f838;
-      *(undefined4 *)(param_1 + 0xfac) = uVar13;
-      *(undefined **)(param_1 + 0xfb0) = puVar2;
+      *(undefined4 *)(param_1 + 0xfac) = uVar15;
+      *(undefined **)(param_1 + 0xfb0) = puVar5;
     }
   }
   return;

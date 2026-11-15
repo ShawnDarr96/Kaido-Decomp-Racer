@@ -1147,13 +1147,12 @@ void Result_CheckNewRecord(int param_1,int param_2)
 {
   char cVar1;
   RaceEntrySetup *pRVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
+  RaceRecordB *pRVar3;
+  uint b;
+  uint c;
+  int iVar4;
+  int iVar5;
+  int iVar6;
   int iStack_20;
   int iStack_1c;
   int aiStack_18 [2];
@@ -1162,46 +1161,46 @@ void Result_CheckNewRecord(int param_1,int param_2)
   int aiStack_8 [2];
   
   pRVar2 = GameState_Elem_f0_xcc(param_2);
-  uVar4 = RaceTbl_Ptr_5fa0();
-  uVar5 = Race_GetDirection();
-  uVar6 = Race_GetCourseVariant();
-  iVar3 = RaceTbl_GetCourseEntryB(uVar4,pRVar2->maybe_state,uVar5,uVar6);
+  pRVar3 = (RaceRecordB *)RaceTbl_Ptr_5fa0();
+  b = Race_GetDirection();
+  c = Race_GetCourseVariant();
+  pRVar3 = RaceTbl_GetCourseEntryB(pRVar3,(int)(char)pRVar2->maybe_state,b,c);
   if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
      (cVar1 = GameState_Get_354_7050(), cVar1 == '\x02')) {
-    Time_SplitHms(1,*(undefined4 *)(iVar3 + 0xc),param_1 + 0xcc,param_1 + 0xd0,param_1 + 0xd4);
-    iVar9 = 0;
+    Time_SplitHms(1,*(undefined4 *)&pRVar3->field_0xc,param_1 + 0xcc,param_1 + 0xd0,param_1 + 0xd4);
+    iVar6 = 0;
     do {
-      if (iVar9 == 0) {
-        Time_SplitHms(1,*(undefined4 *)(iVar3 + 0x140),param_1 + 0xd8,param_1 + 0xdc,param_1 + 0xe0)
-        ;
+      if (iVar6 == 0) {
+        Time_SplitHms(1,*(undefined4 *)&pRVar3->field_0x140,param_1 + 0xd8,param_1 + 0xdc,
+                      param_1 + 0xe0);
       }
-      else if (*(int *)(iVar3 + 0x13c) < *(int *)(iVar3 + 0x140)) {
-        Time_SplitHms(1,*(int *)(iVar3 + 0x13c),&iStack_10,&iStack_c,aiStack_8);
-        Time_SplitHms(1,*(undefined4 *)(iVar3 + 0x140),&iStack_20,&iStack_1c,aiStack_18);
-        iVar7 = aiStack_8[0] + iStack_c * 1000 + iStack_10 * 60000;
-        iVar8 = aiStack_18[0] + iStack_1c * 1000 + iStack_20 * 60000;
-        if (iVar7 < iVar8) {
-          iVar8 = iVar8 - iVar7;
+      else if (*(int *)&pRVar3->field_0x13c < *(int *)&pRVar3->field_0x140) {
+        Time_SplitHms(1,*(int *)&pRVar3->field_0x13c,&iStack_10,&iStack_c,aiStack_8);
+        Time_SplitHms(1,*(undefined4 *)&pRVar3->field_0x140,&iStack_20,&iStack_1c,aiStack_18);
+        iVar4 = aiStack_8[0] + iStack_c * 1000 + iStack_10 * 60000;
+        iVar5 = aiStack_18[0] + iStack_1c * 1000 + iStack_20 * 60000;
+        if (iVar4 < iVar5) {
+          iVar5 = iVar5 - iVar4;
         }
-        else if (iVar8 < iVar7) {
-          iVar8 = iVar7 - iVar8;
+        else if (iVar5 < iVar4) {
+          iVar5 = iVar4 - iVar5;
         }
         else {
-          iVar8 = 0;
+          iVar5 = 0;
         }
-        *(int *)(param_1 + 0xd8) = iVar8 / 60000;
-        *(int *)(param_1 + 0xdc) = (iVar8 / 1000) % 0x3c;
-        *(int *)(param_1 + 0xe0) = iVar8 % 1000;
+        *(int *)(param_1 + 0xd8) = iVar5 / 60000;
+        *(int *)(param_1 + 0xdc) = (iVar5 / 1000) % 0x3c;
+        *(int *)(param_1 + 0xe0) = iVar5 % 1000;
       }
       else {
         *(undefined4 *)(param_1 + 0xd8) = 0;
         *(undefined4 *)(param_1 + 0xdc) = 0;
         *(undefined4 *)(param_1 + 0xe0) = 0;
       }
-      iVar9 = iVar9 + 1;
+      iVar6 = iVar6 + 1;
       param_1 = param_1 + 0xc;
-      iVar3 = iVar3 + 4;
-    } while (iVar9 < 10);
+      pRVar3 = (RaceRecordB *)&pRVar3->field_0x4;
+    } while (iVar6 < 10);
   }
   return;
 }
@@ -1213,41 +1212,41 @@ void Result_StoreRecord(int param_1,int param_2)
   char cVar1;
   RaceEntrySetup *pRVar2;
   int iVar3;
-  int iVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  int iVar8;
-  int iVar9;
+  RaceTbl *tbl;
+  uint b;
+  uint c;
+  RaceRecordA *pRVar4;
+  int iVar5;
+  int iVar6;
   
   pRVar2 = GameState_Elem_f0_xcc(param_2);
   iVar3 = RaceProg_GetArray_34((char)param_2);
-  uVar5 = maybe_RaceTbl_GetCount();
-  uVar6 = Race_GetDirection();
-  uVar7 = Race_GetCourseVariant();
-  iVar4 = RaceTbl_GetCourseEntry(uVar5,pRVar2->maybe_state,uVar6,uVar7);
+  tbl = (RaceTbl *)maybe_RaceTbl_GetCount();
+  b = Race_GetDirection();
+  c = Race_GetCourseVariant();
+  pRVar4 = RaceTbl_GetCourseEntry(tbl,(int)(char)pRVar2->maybe_state,b,c);
   if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
      (cVar1 = GameState_Get_354_7050(), cVar1 == '\x01')) {
-    iVar9 = 0;
-    iVar8 = param_1;
+    iVar6 = 0;
+    iVar5 = param_1;
     do {
-      *(undefined4 *)(iVar8 + 0xa4) = 0;
-      iVar9 = iVar9 + 3;
-      *(undefined4 *)(iVar8 + 0xa8) = 0;
-      *(undefined4 *)(iVar8 + 0xac) = 0;
-      iVar8 = iVar8 + 0xc;
-    } while (iVar9 < 9);
-    iVar8 = 0;
-    *(undefined4 *)(param_1 + 0xa0) = *(undefined4 *)(iVar4 + 0x10);
+      *(undefined4 *)(iVar5 + 0xa4) = 0;
+      iVar6 = iVar6 + 3;
+      *(undefined4 *)(iVar5 + 0xa8) = 0;
+      *(undefined4 *)(iVar5 + 0xac) = 0;
+      iVar5 = iVar5 + 0xc;
+    } while (iVar6 < 9);
+    iVar5 = 0;
+    *(undefined4 *)(param_1 + 0xa0) = *(undefined4 *)&pRVar4->field_0x10;
     do {
       if (*(int *)(iVar3 + 0xfc) != -1) {
-        iVar9 = param_1 + *(int *)(iVar3 + 0xfc) * 4;
-        *(int *)(iVar9 + 0xa4) = *(int *)(iVar9 + 0xa4) + *(int *)(iVar4 + 400);
+        iVar6 = param_1 + *(int *)(iVar3 + 0xfc) * 4;
+        *(int *)(iVar6 + 0xa4) = *(int *)(iVar6 + 0xa4) + *(int *)&pRVar4->field_0x190;
       }
-      iVar8 = iVar8 + 1;
+      iVar5 = iVar5 + 1;
       iVar3 = iVar3 + 0x1c;
-      iVar4 = iVar4 + 4;
-    } while (iVar8 < 0x46);
+      pRVar4 = (RaceRecordA *)&pRVar4->field_0x4;
+    } while (iVar5 < 0x46);
   }
   return;
 }
@@ -1258,30 +1257,31 @@ void Result_StoreRecordAlt(undefined8 param_1,undefined8 param_2)
 {
   char cVar1;
   RaceEntrySetup *pRVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
+  RaceTbl *tbl;
+  uint uVar3;
+  uint uVar4;
+  RaceRecordA *pRVar5;
+  RaceRecordB *pRVar6;
   ulong uVar7;
   
   if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') {
     pRVar2 = GameState_Elem_f0_xcc(0);
     cVar1 = GameState_Get_354_7050();
     if (cVar1 == '\x01') {
-      uVar4 = maybe_RaceTbl_GetCount();
-      uVar5 = Race_GetDirection();
-      uVar6 = Race_GetCourseVariant();
-      iVar3 = RaceTbl_GetCourseEntry(uVar4,pRVar2->maybe_state,uVar5,uVar6);
-      *(uint *)((int)param_1 + 0x9c) = (uint)(*(int *)(iVar3 + 0x10) == 0);
+      tbl = (RaceTbl *)maybe_RaceTbl_GetCount();
+      uVar3 = Race_GetDirection();
+      uVar4 = Race_GetCourseVariant();
+      pRVar5 = RaceTbl_GetCourseEntry(tbl,(int)(char)pRVar2->maybe_state,uVar3,uVar4);
+      *(uint *)((int)param_1 + 0x9c) = (uint)(*(int *)&pRVar5->field_0x10 == 0);
     }
     else {
       cVar1 = GameState_Get_354_7050();
       if (cVar1 == '\x02') {
-        uVar4 = RaceTbl_Ptr_5fa0();
-        uVar5 = Race_GetDirection();
-        uVar6 = Race_GetCourseVariant();
-        iVar3 = RaceTbl_GetCourseEntryB(uVar4,pRVar2->maybe_state,uVar5,uVar6);
-        *(uint *)((int)param_1 + 0x9c) = (uint)(*(int *)(iVar3 + 0xc) == 0);
+        pRVar6 = (RaceRecordB *)RaceTbl_Ptr_5fa0();
+        uVar3 = Race_GetDirection();
+        uVar4 = Race_GetCourseVariant();
+        pRVar6 = RaceTbl_GetCourseEntryB(pRVar6,(int)(char)pRVar2->maybe_state,uVar3,uVar4);
+        *(uint *)((int)param_1 + 0x9c) = (uint)(*(int *)&pRVar6->field_0xc == 0);
       }
     }
   }

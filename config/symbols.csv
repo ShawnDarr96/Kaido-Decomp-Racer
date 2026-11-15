@@ -1918,8 +1918,8 @@ address,name,signature,source,comment
 0x0017d9e0,Time_SplitHms,,game,0xe10 = 3600
 0x0017db80,Ranking_ComputePlayerRank,,game,
 0x0017def0,Ranking_FindBestRival,,game,
-0x0017e140,RaceTbl_GetCourseEntry,,game,0x2fd0/0x17e8/0x2a8 strides
-0x0017e1a0,RaceTbl_GetCourseEntryB,,game,
+0x0017e140,RaceTbl_GetCourseEntry,"RaceRecordA * RaceTbl_GetCourseEntry(RaceTbl *tbl,uint a,uint b,uint c)",game,0x2fd0/0x17e8/0x2a8 strides
+0x0017e1a0,RaceTbl_GetCourseEntryB,"RaceRecordB * RaceTbl_GetCourseEntryB(RaceRecordB *tbl,uint a,uint b,uint c)",game,records [2][2][9] of 0x168 (tbl = RaceTbl_Ptr_5fa0())
 0x0017e1e0,RaceTbl_Ptr_5fa0,,game-accessor,
 0x0017e1f0,maybe_RaceTbl_GetCount,,game,
 0x0017e200,maybe_RaceTbl_GetCapacity,,game,
@@ -1933,7 +1933,7 @@ address,name,signature,source,comment
 0x0017e6e0,Race_GetDirection,,game,
 0x0017e720,Race_GetCourseVariant,,game,19 callers
 0x0017e760,Race_GetWeather,,game,
-0x0017e7c0,RaceSlot_Clear,,game,
+0x0017e7c0,RaceSlot_Clear,void RaceSlot_Clear(RaceSlot *slot),game,"type = 9 (empty), id = -1"
 0x0017e7e0,RaceCtx_SetDefaults,,game,
 0x0017e800,RaceCtx_Set_14,,game-accessor,
 0x0017e810,RaceCtx_Set_13,,game-accessor,

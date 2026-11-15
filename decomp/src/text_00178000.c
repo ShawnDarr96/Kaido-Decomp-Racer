@@ -187,8 +187,8 @@ void GameState_Alloc(undefined8 param_1)
   pGVar1->unk_03b4 = 0;
   pGVar1->unk_03b8 = 0;
   pGVar1->unk_03ac = 0;
-  RaceSlot_Clear(pGVar1->color);
-  RaceSlot_Clear(pGVar1->startPos);
+  RaceSlot_Clear((RaceSlot *)pGVar1->color);
+  RaceSlot_Clear((RaceSlot *)pGVar1->startPos);
   iVar4 = 0;
   puVar3 = (undefined4 *)&g_GameState->field_0x3a50;
   do {
@@ -2273,17 +2273,13 @@ void Race_Init(undefined8 param_1)
 }
 
 // 0x0017bf40  size 0x8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 maybe_Race_GetMode(void)
+RaceSlotTbl * maybe_Race_GetMode(void)
 
 {
-  return _g_RaceSlotTbl;
+  return g_RaceSlotTbl;
 }
 
 // 0x0017bf50  size 0x3c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 Race_SetCarSlot(long param_1,long param_2)
 
 {
@@ -2291,7 +2287,7 @@ undefined4 Race_SetCarSlot(long param_1,long param_2)
   
   if ((param_1 < 0xc) && (param_2 < 0x21)) {
     uVar1 = 1;
-    *(int *)(_g_RaceSlotTbl + (int)param_1 * 4) = (int)param_2;
+    g_RaceSlotTbl->header[(int)param_1] = (uint)param_2;
   }
   else {
     uVar1 = 0;
@@ -2300,21 +2296,17 @@ undefined4 Race_SetCarSlot(long param_1,long param_2)
 }
 
 // 0x0017bf90  size 0x2c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceTables_Free(void)
 
 {
-  if (_g_RaceSlotTbl != 0) {
+  if (g_RaceSlotTbl != (RaceSlotTbl *)0x0) {
     Mem_Free();
-    _g_RaceSlotTbl = 0;
+    g_RaceSlotTbl = (RaceSlotTbl *)0x0;
   }
   return;
 }
 
 // 0x0017bfc0  size 0x2ac
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceTables_Alloc(undefined8 param_1)
 
 {
@@ -2340,7 +2332,7 @@ void RaceTables_Alloc(undefined8 param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  _g_RaceSlotTbl = Mem_Alloc16(0x9944,param_1);
+  g_RaceSlotTbl = (RaceSlotTbl *)Mem_Alloc16(0x9944,param_1);
   puVar7 = &uStack_30;
   uStack_2c = DAT_0030b9a4;
   uStack_30 = DAT_0030b9a0;
@@ -2348,7 +2340,7 @@ void RaceTables_Alloc(undefined8 param_1)
   uStack_28 = DAT_0030b9a8;
   uStack_1c = DAT_0030b9b4;
   uStack_20 = DAT_0030b9b0;
-  iVar8 = 0;
+  iVar9 = 0;
   uStack_14 = DAT_0030b9bc;
   uStack_18 = DAT_0030b9b8;
   uStack_10 = DAT_0030b9c0;
@@ -2357,55 +2349,55 @@ void RaceTables_Alloc(undefined8 param_1)
   iVar6 = 0;
   uStack_4 = DAT_0030b9cc;
   do {
-    iVar8 = iVar8 + 6;
+    iVar9 = iVar9 + 6;
     uVar1 = puVar7[1];
     uVar2 = puVar7[2];
     uVar3 = puVar7[3];
     uVar4 = puVar7[4];
     uVar5 = puVar7[5];
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6) = *puVar7;
+    *(undefined4 *)((int)g_RaceSlotTbl->header + iVar6) = *puVar7;
     puVar7 = puVar7 + 6;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 4) = uVar1;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 8) = uVar2;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0xc) = uVar3;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x10) = uVar4;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x14) = uVar5;
+    *(undefined4 *)((int)g_RaceSlotTbl->header + iVar6 + 4) = uVar1;
+    *(undefined4 *)((int)g_RaceSlotTbl->header + iVar6 + 8) = uVar2;
+    *(undefined4 *)((int)g_RaceSlotTbl->header + iVar6 + 0xc) = uVar3;
+    *(undefined4 *)((int)g_RaceSlotTbl->header + iVar6 + 0x10) = uVar4;
+    *(undefined4 *)((int)g_RaceSlotTbl->header + iVar6 + 0x14) = uVar5;
     iVar6 = iVar6 + 0x18;
-  } while (iVar8 < 0xc);
-  iVar8 = 0;
+  } while (iVar9 < 0xc);
+  iVar9 = 0;
   iVar6 = 0;
   do {
-    iVar8 = iVar8 + 6;
-    *(undefined2 *)(_g_RaceSlotTbl + iVar6 + 0x874) = 0;
-    *(undefined1 *)(_g_RaceSlotTbl + iVar6 + 0x876) = 0;
-    *(undefined2 *)(_g_RaceSlotTbl + iVar6 + 0x10cc) = 0;
-    *(undefined1 *)(_g_RaceSlotTbl + iVar6 + 0x10ce) = 0;
-    *(undefined2 *)(_g_RaceSlotTbl + iVar6 + 0x1924) = 0;
-    *(undefined1 *)(_g_RaceSlotTbl + iVar6 + 0x1926) = 0;
-    *(undefined2 *)(_g_RaceSlotTbl + iVar6 + 0x217c) = 0;
-    *(undefined1 *)(_g_RaceSlotTbl + iVar6 + 0x217e) = 0;
-    *(undefined2 *)(_g_RaceSlotTbl + iVar6 + 0x29d4) = 0;
-    *(undefined1 *)(_g_RaceSlotTbl + iVar6 + 0x29d6) = 0;
-    *(undefined2 *)(_g_RaceSlotTbl + iVar6 + 0x322c) = 0;
-    *(undefined1 *)(_g_RaceSlotTbl + iVar6 + 0x322e) = 0;
+    iVar9 = iVar9 + 6;
+    *(undefined2 *)((int)&g_RaceSlotTbl->slots[0].unk_844 + iVar6) = 0;
+    (&g_RaceSlotTbl->slots[0].unk_846)[iVar6] = '\0';
+    *(undefined2 *)((int)&g_RaceSlotTbl->slots[1].unk_844 + iVar6) = 0;
+    (&g_RaceSlotTbl->slots[1].unk_846)[iVar6] = '\0';
+    *(undefined2 *)((int)&g_RaceSlotTbl->slots[2].unk_844 + iVar6) = 0;
+    (&g_RaceSlotTbl->slots[2].unk_846)[iVar6] = '\0';
+    *(undefined2 *)((int)&g_RaceSlotTbl->slots[3].unk_844 + iVar6) = 0;
+    (&g_RaceSlotTbl->slots[3].unk_846)[iVar6] = '\0';
+    *(undefined2 *)((int)&g_RaceSlotTbl->slots[4].unk_844 + iVar6) = 0;
+    (&g_RaceSlotTbl->slots[4].unk_846)[iVar6] = '\0';
+    *(undefined2 *)((int)&g_RaceSlotTbl->slots[5].unk_844 + iVar6) = 0;
+    (&g_RaceSlotTbl->slots[5].unk_846)[iVar6] = '\0';
     iVar6 = iVar6 + 0x3210;
-  } while (iVar8 < 0x12);
-  iVar8 = 0;
+  } while (iVar9 < 0x12);
   iVar6 = 0;
+  iVar9 = 0;
   do {
-    iVar8 = iVar8 + 8;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x9660) = 0;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x9664) = 0;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x9668) = 0;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x966c) = 0;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x9670) = 0;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x9674) = 0;
-    *(undefined4 *)(_g_RaceSlotTbl + iVar6 + 0x9678) = 0;
-    iVar9 = _g_RaceSlotTbl + iVar6;
-    iVar6 = iVar6 + 0x20;
-    *(undefined4 *)(iVar9 + 0x967c) = 0;
-  } while (iVar8 < 0xb1);
-  *(undefined4 *)(iVar8 * 4 + _g_RaceSlotTbl + 0x9660) = 0;
+    iVar8 = iVar6;
+    iVar6 = iVar8 + 8;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 4) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 8) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 0xc) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 0x10) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 0x14) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 0x18) = 0;
+    *(undefined4 *)((int)g_RaceSlotTbl->flags + iVar9 + 0x1c) = 0;
+    iVar9 = iVar9 + 0x20;
+  } while (iVar6 < 0xb1);
+  g_RaceSlotTbl->flags[iVar8 + 8] = 0;
   return;
 }
 

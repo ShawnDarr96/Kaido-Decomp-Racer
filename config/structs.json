@@ -4164,6 +4164,91 @@
      1
     ]
    ]
+  },
+  "RaceRecordA": {
+   "size": "0x2a8",
+   "fields": []
+  },
+  "RaceRecordB": {
+   "size": "0x168",
+   "fields": []
+  },
+  "RaceTbl": {
+   "size": "0x9240",
+   "global": "g_RaceTbl",
+   "fields": [
+    [
+     "0x0",
+     "RaceRecordA",
+     "recordsA",
+     36
+    ],
+    [
+     "0x5fa0",
+     "RaceRecordB",
+     "recordsB",
+     36
+    ]
+   ]
+  },
+  "RaceSlot": {
+   "size": "0x858",
+   "fields": [
+    [
+     "0x0",
+     "u8",
+     "type",
+     1
+    ],
+    [
+     "0x4",
+     "u32",
+     "id",
+     1
+    ],
+    [
+     "0x8",
+     "u32",
+     "unk_08",
+     1
+    ],
+    [
+     "0x844",
+     "u16",
+     "unk_844",
+     1
+    ],
+    [
+     "0x846",
+     "u8",
+     "unk_846",
+     1
+    ]
+   ]
+  },
+  "RaceSlotTbl": {
+   "size": "0x9944",
+   "global": "g_RaceSlotTbl",
+   "fields": [
+    [
+     "0x0",
+     "u32",
+     "header",
+     12
+    ],
+    [
+     "0x30",
+     "RaceSlot",
+     "slots",
+     18
+    ],
+    [
+     "0x9660",
+     "u32",
+     "flags",
+     185
+    ]
+   ]
   }
  }
 }

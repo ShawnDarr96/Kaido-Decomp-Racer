@@ -2907,8 +2907,8 @@ void GameState_NewGame(void)
   pGVar1->unk_03b4 = 0;
   pGVar1->unk_03b8 = 0;
   pGVar1->unk_03ac = 0;
-  RaceSlot_Clear(pGVar1->color);
-  RaceSlot_Clear(pGVar1->startPos);
+  RaceSlot_Clear((RaceSlot *)pGVar1->color);
+  RaceSlot_Clear((RaceSlot *)pGVar1->startPos);
   pGVar1 = g_GameState;
   iVar4 = 0;
   g_GameState->recordHeader = 0;

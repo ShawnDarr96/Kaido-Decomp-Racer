@@ -1111,9 +1111,9 @@ int maybe_Career_CommitRaceResult(int param_1)
   undefined1 *puVar10;
   undefined2 uVar11;
   undefined4 *puVar12;
-  undefined1 *puVar13;
-  undefined2 *puVar14;
-  undefined4 *puVar15;
+  undefined4 *puVar13;
+  undefined1 *puVar14;
+  undefined2 *puVar15;
   int iVar16;
   undefined2 *puVar17;
   uint uVar18;
@@ -1176,16 +1176,16 @@ int maybe_Career_CommitRaceResult(int param_1)
   iVar19 = -1;
   uVar11 = (undefined2)*(undefined4 *)(param_1 + 0x24);
   RivalDb_Copy(auStack_3e0,uVar11);
-  puVar15 = auStack_3e0;
-  puVar12 = auStack_190;
+  puVar12 = auStack_3e0;
+  puVar13 = auStack_190;
   iVar9 = 0x5f;
   do {
     iVar9 = iVar9 + -1;
-    *puVar12 = *puVar15;
-    puVar15 = puVar15 + 1;
+    *puVar13 = *puVar12;
     puVar12 = puVar12 + 1;
+    puVar13 = puVar13 + 1;
   } while (0 < iVar9);
-  RaceSlot_Clear(param_1 + 0x480);
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x480));
   sVar4 = RivalRec_GetCourse(auStack_190);
   if (sVar4 == -1) {
     lVar6 = RivalRec_IsValid(auStack_190);
@@ -1197,17 +1197,17 @@ int maybe_Career_CommitRaceResult(int param_1)
         *(int *)(param_1 + 0xe4) = (int)sVar4;
         iVar19 = 0xe;
         maybe_SaveData_Serialize(&uStack_550,1,*(undefined4 *)(param_1 + 0xe4));
-        puVar15 = auStack_54c;
-        puVar12 = (undefined4 *)(param_1 + 0x568);
+        puVar12 = auStack_54c;
+        puVar13 = (undefined4 *)(param_1 + 0x568);
         iVar9 = 0xf;
         *(undefined4 *)(param_1 + 0x564) = uStack_550;
         do {
           iVar9 = iVar9 + -1;
-          uVar2 = puVar15[1];
-          *puVar12 = *puVar15;
-          puVar15 = puVar15 + 2;
-          puVar12[1] = uVar2;
+          uVar2 = puVar12[1];
+          *puVar13 = *puVar12;
           puVar12 = puVar12 + 2;
+          puVar13[1] = uVar2;
+          puVar13 = puVar13 + 2;
         } while (0 < iVar9);
         *(undefined4 *)(param_1 + 0x5e0) = uStack_4d4;
         *(undefined4 *)(param_1 + 0x5e4) = uStack_4d0;
@@ -1340,7 +1340,7 @@ int maybe_Career_CommitRaceResult(int param_1)
               uVar7 = Profile_Get(0);
               Profile_CopyCarRecord(&sStack_4b0,uVar7,lVar6);
               iVar16 = 0x17;
-              puVar13 = auStack_49c;
+              puVar14 = auStack_49c;
               puVar10 = auStack_24c;
               sStack_260 = sStack_4b0;
               uStack_250 = uStack_4a0;
@@ -1350,13 +1350,13 @@ int maybe_Career_CommitRaceResult(int param_1)
               uStack_254 = uStack_4a4;
               do {
                 iVar16 = iVar16 + -1;
-                *puVar10 = *puVar13;
-                puVar13 = puVar13 + 1;
+                *puVar10 = *puVar14;
+                puVar14 = puVar14 + 1;
                 puVar10 = puVar10 + 1;
               } while (0 < iVar16);
               iVar16 = 8;
               puVar17 = auStack_460;
-              puVar14 = auStack_210;
+              puVar15 = auStack_210;
               uStack_228 = uStack_478;
               uStack_224 = uStack_474;
               uStack_220 = uStack_470;
@@ -1369,21 +1369,21 @@ int maybe_Career_CommitRaceResult(int param_1)
               do {
                 iVar16 = iVar16 + -1;
                 uVar11 = puVar17[1];
-                *puVar14 = *puVar17;
-                puVar14[1] = uVar11;
+                *puVar15 = *puVar17;
+                puVar15[1] = uVar11;
                 puVar17 = puVar17 + 2;
-                puVar14 = puVar14 + 2;
+                puVar15 = puVar15 + 2;
               } while (0 < iVar16);
               iVar16 = 0x15;
               puVar17 = auStack_440;
-              puVar14 = auStack_1f0;
+              puVar15 = auStack_1f0;
               do {
                 iVar16 = iVar16 + -1;
                 uVar11 = puVar17[1];
-                *puVar14 = *puVar17;
-                puVar14[1] = uVar11;
+                *puVar15 = *puVar17;
+                puVar15[1] = uVar11;
                 puVar17 = puVar17 + 2;
-                puVar14 = puVar14 + 2;
+                puVar15 = puVar15 + 2;
               } while (0 < iVar16);
               uStack_19c = uStack_3ec;
               uStack_198 = uStack_3e8;
@@ -1901,8 +1901,8 @@ void maybe_ScrCareerStart_AdvanceSchedule(int param_1)
   } while (iVar12 < 0x19);
   *(undefined4 *)(param_1 + 0x444) = 0;
   *(undefined4 *)(param_1 + 0x3dc) = 0;
-  RaceSlot_Clear(param_1 + 0x480);
-  RaceSlot_Clear(param_1 + 0x474);
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x480));
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x474));
   *(undefined4 *)(param_1 + 0x24) = 0xffffffff;
   *(undefined4 *)(param_1 + 0xe4) = 0xffffffff;
   *(undefined4 *)(param_1 + 0x494) = 0;

@@ -590,7 +590,7 @@ void Opponent_Clear(undefined2 *param_1)
   param_1[0xb4] = 0;
   *(undefined4 *)(param_1 + 8) = 0;
   *(undefined4 *)(param_1 + 10) = 0;
-  RaceSlot_Clear(param_1 + 0x10);
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x10));
   *(undefined1 *)(param_1 + 0x16) = 8;
   *(undefined4 *)(param_1 + 0x1a) = 1;
   iVar2 = 0;

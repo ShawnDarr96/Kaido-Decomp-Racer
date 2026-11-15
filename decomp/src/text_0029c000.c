@@ -580,8 +580,8 @@ void ScrCareerStart_Reset(undefined4 *param_1)
   param_1[1] = 0;
   param_1[7] = 0;
   *param_1 = 1;
-  RaceSlot_Clear(param_1 + 0x120);
-  RaceSlot_Clear(param_1 + 0x11d);
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x120));
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x11d));
   param_1[0x125] = 0;
   param_1[0x123] = 0;
   param_1[0x124] = 0;
@@ -1135,7 +1135,7 @@ LAB_0029d538:
             iVar6 = iVar6 + 4;
           } while (iVar7 < 0x162);
         }
-        RaceSlot_Clear(param_1 + 0x474);
+        RaceSlot_Clear((RaceSlot *)(param_1 + 0x474));
         if (*(int *)(param_1 + 0x648) == 0x24) {
           *(undefined4 *)(param_1 + 0x62c) = *(undefined4 *)(param_1 + 0x6a0);
         }

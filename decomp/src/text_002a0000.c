@@ -1874,7 +1874,7 @@ void maybe_ScrQuickRace_StartRace(int param_1,int param_2)
 void maybe_ScrQuickRace_State11(undefined4 *param_1)
 
 {
-  undefined1 uVar1;
+  char cVar1;
   int iVar2;
   int iVar3;
   int iVar4;
@@ -1882,11 +1882,12 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
   bool bVar6;
   undefined4 uVar7;
   int iVar8;
-  long lVar9;
-  long lVar10;
+  RaceRecordB *pRVar9;
+  RaceTbl *tbl;
+  RaceRecordA *pRVar10;
   long lVar11;
-  undefined8 uVar12;
-  undefined8 uVar13;
+  long lVar12;
+  long lVar13;
   undefined8 uVar14;
   uint uVar15;
   uint uVar16;
@@ -1909,23 +1910,9 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
   if (param_1[0x15] == 0) {
     iVar8 = param_1[0x14];
     iVar3 = param_1[0x10];
-    lVar9 = Menu_HandleCursor(param_1 + 0x14,0,2,9,0,0);
-    lVar10 = Menu_HandleCursor(param_1 + 0x10,0,8,7,1,param_1[0x18]);
+    lVar11 = Menu_HandleCursor(param_1 + 0x14,0,2,9,0,0);
+    lVar12 = Menu_HandleCursor(param_1 + 0x10,0,8,7,1,param_1[0x18]);
     UiMgr_FindLayout(0x10e);
-    uVar15 = _g_MenuInput[2];
-    if ((_g_MenuInput[4] & uVar15) == 0) {
-      uVar15 = 0x100000;
-    }
-    else if (uVar15 == 0x80000) {
-      uVar15 = 0x80000;
-    }
-    else if (*_g_MenuInput != 1) {
-      uVar15 = 0x100000;
-    }
-    if (uVar15 == 0x1000) {
-      Se_PlayMenu(7);
-      param_1[0x11] = param_1[0x11] != 0 ^ 1;
-    }
     uVar16 = _g_MenuInput[2];
     if ((_g_MenuInput[4] & uVar16) == 0) {
       uVar16 = 0x100000;
@@ -1936,7 +1923,21 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
     else if (*_g_MenuInput != 1) {
       uVar16 = 0x100000;
     }
-    if (uVar16 == 0x2000) {
+    if (uVar16 == 0x1000) {
+      Se_PlayMenu(7);
+      param_1[0x11] = param_1[0x11] != 0 ^ 1;
+    }
+    uVar15 = _g_MenuInput[2];
+    if ((_g_MenuInput[4] & uVar15) == 0) {
+      uVar15 = 0x100000;
+    }
+    else if (uVar15 == 0x80000) {
+      uVar15 = 0x80000;
+    }
+    else if (*_g_MenuInput != 1) {
+      uVar15 = 0x100000;
+    }
+    if (uVar15 == 0x2000) {
       Se_PlayMenu(7);
       param_1[0x12] = param_1[0x12] != 0 ^ 1;
     }
@@ -1998,8 +1999,8 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
     iVar8 = param_1[0x10];
     if (iVar3 != iVar8) {
       bVar6 = iVar3 < iVar8;
-      lVar11 = abs(iVar3 - iVar8);
-      if (lVar11 != 1) {
+      lVar13 = abs(iVar3 - iVar8);
+      if (lVar13 != 1) {
         bVar6 = !bVar6;
       }
       if (bVar6) {
@@ -2053,26 +2054,27 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
         pUVar5[iVar8].layout.animState = 1;
       }
     }
-    if (uVar16 == 0x2000 || (uVar15 == 0x1000 || (lVar10 != 0 || (lVar9 != 0 || iVar2 != 0)))) {
-      uVar12 = RaceTbl_Ptr_5fa0();
-      uVar13 = maybe_RaceTbl_GetCount();
+    if (uVar15 == 0x2000 || (uVar16 == 0x1000 || (lVar12 != 0 || (lVar11 != 0 || iVar2 != 0)))) {
+      pRVar9 = (RaceRecordB *)RaceTbl_Ptr_5fa0();
+      tbl = (RaceTbl *)maybe_RaceTbl_GetCount();
       uVar14 = Menu_MapCursorToItem(param_1[0x10]);
-      uVar1 = (&DAT_0036ee2c)[param_1[0x11]];
+      cVar1 = (&DAT_0036ee2c)[param_1[0x11]];
+      uVar16 = (uint)uVar14;
       if (param_1[2] == 0) {
         if (param_1[0x12] == 0) {
-          uVar12 = RaceTbl_GetCourseEntryB(uVar12,0,uVar1,uVar14);
-          maybe_QuickRace_InitRowsB(param_1 + 0x1ff,uVar12);
-          maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,uVar1,0);
+          pRVar9 = RaceTbl_GetCourseEntryB(pRVar9,0,(int)cVar1,uVar16);
+          maybe_QuickRace_InitRowsB(param_1 + 0x1ff,pRVar9);
+          maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,cVar1,0);
           *(undefined1 *)((int)param_1 + 0x7f9) = 0;
           return;
         }
-        uVar12 = RaceTbl_GetCourseEntryB(uVar12,1,uVar1,uVar14);
-        maybe_QuickRace_InitRowsB(param_1 + 0x1ff,uVar12);
-        maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,uVar1,1);
+        pRVar9 = RaceTbl_GetCourseEntryB(pRVar9,1,(int)cVar1,uVar16);
+        maybe_QuickRace_InitRowsB(param_1 + 0x1ff,pRVar9);
+        maybe_Record_FormatEntry(param_1 + 0x1fb,param_1 + param_1[0x14] + 0x1ff,uVar14,cVar1,1);
       }
       else if (param_1[0x12] == 0) {
-        uVar12 = RaceTbl_GetCourseEntry(uVar13,0,uVar1,uVar14);
-        maybe_QuickRace_InitRowsA(param_1 + 0x209,uVar12);
+        pRVar10 = RaceTbl_GetCourseEntry(tbl,0,(int)cVar1,uVar16);
+        maybe_QuickRace_InitRowsA(param_1 + 0x209,pRVar10);
         iVar2 = param_1[0x14];
         auStack_10[3] = 0;
         if (*(int *)param_1[iVar2 + 0x209] < 0) {
@@ -2091,7 +2093,7 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
         }
         else {
           auStack_10[2] = 1;
-          maybe_QuickRace_GetOptionValue(auStack_10 + 2,param_1[iVar2 + 0x209],uVar14,uVar1,0);
+          maybe_QuickRace_GetOptionValue(auStack_10 + 2,param_1[iVar2 + 0x209],uVar14,cVar1,0);
           auStack_10[2] =
                auStack_10[2] & 0xf000001f |
                (*(uint *)(param_1[iVar2 + 0x209] + 0x10) & 0x7fffff) << 5;
@@ -2099,8 +2101,8 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
         }
       }
       else {
-        uVar12 = RaceTbl_GetCourseEntry(uVar13,1,uVar1,uVar14);
-        maybe_QuickRace_InitRowsA(param_1 + 0x209,uVar12);
+        pRVar10 = RaceTbl_GetCourseEntry(tbl,1,(int)cVar1,uVar16);
+        maybe_QuickRace_InitRowsA(param_1 + 0x209,pRVar10);
         iVar2 = param_1[0x14];
         auStack_10[1] = 0;
         if (*(int *)param_1[iVar2 + 0x209] < 0) {
@@ -2119,7 +2121,7 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
         }
         else {
           auStack_10[0] = 1;
-          maybe_QuickRace_GetOptionValue(auStack_10,param_1[iVar2 + 0x209],uVar14,uVar1,1);
+          maybe_QuickRace_GetOptionValue(auStack_10,param_1[iVar2 + 0x209],uVar14,cVar1,1);
           auStack_10[0] =
                auStack_10[0] & 0xf000001f |
                (*(uint *)(param_1[iVar2 + 0x209] + 0x10) & 0x7fffff) << 5;

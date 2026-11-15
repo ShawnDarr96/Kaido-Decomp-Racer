@@ -2144,7 +2144,7 @@ void maybe_ScrCareerStart_ClearRaceSlots(int param_1)
       iVar1 = iVar1 + 2;
     } while (iVar2 < 0x162);
   }
-  RaceSlot_Clear(param_1 + 0x474);
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x474));
   *(undefined4 *)(param_1 + 0x670) = 0;
   *(undefined4 *)(param_1 + 0x674) = 0xffffffff;
   iVar2 = 0;
@@ -2374,7 +2374,7 @@ undefined4 maybe_ScrCareerStart_SetupTeamRace(int param_1)
     puVar5 = puVar5 + 1;
     puVar4 = puVar4 + 1;
   } while (0 < iVar3);
-  RaceSlot_Clear(param_1 + 0x480);
+  RaceSlot_Clear((RaceSlot *)(param_1 + 0x480));
   *(undefined1 *)(param_1 + 0x480) = uStack_4c;
   *(undefined4 *)(param_1 + 0x484) = uStack_48;
   *(undefined4 *)(param_1 + 0x488) = uStack_44;

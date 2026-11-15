@@ -925,4 +925,38 @@ typedef struct RoadData {  /* size 0x8 */
 
 extern RoadData *g_RoadData;
 
+typedef struct RaceRecordA {  /* size 0x2a8 */
+    u8 pad_0000[0x2a8];
+} RaceRecordA;
+
+typedef struct RaceRecordB {  /* size 0x168 */
+    u8 pad_0000[0x168];
+} RaceRecordB;
+
+typedef struct RaceTbl {  /* size 0x9240 */
+    RaceRecordA recordsA[36];  /* 0x0 */
+    RaceRecordB recordsB[36];  /* 0x5fa0 */
+} RaceTbl;
+
+extern RaceTbl *g_RaceTbl;
+
+typedef struct RaceSlot {  /* size 0x858 */
+    u8 type;  /* 0x0 */
+    u8 pad_0001[0x3];
+    u32 id;  /* 0x4 */
+    u32 unk_08;  /* 0x8 */
+    u8 pad_000c[0x838];
+    u16 unk_844;  /* 0x844 */
+    u8 unk_846;  /* 0x846 */
+    u8 pad_0847[0x11];
+} RaceSlot;
+
+typedef struct RaceSlotTbl {  /* size 0x9944 */
+    u32 header[12];  /* 0x0 */
+    RaceSlot slots[18];  /* 0x30 */
+    u32 flags[185];  /* 0x9660 */
+} RaceSlotTbl;
+
+extern RaceSlotTbl *g_RaceSlotTbl;
+
 #endif

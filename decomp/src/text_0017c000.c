@@ -1323,15 +1323,13 @@ void Time_SplitHms(long param_1,int param_2,int *param_3,int *param_4,int *param
 }
 
 // 0x0017db80  size 0x370
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int Ranking_ComputePlayerRank(void)
 
 {
   int *piVar1;
-  int *piVar2;
-  byte bVar3;
-  uint uVar4;
+  byte bVar2;
+  uint uVar3;
+  RaceTbl *pRVar4;
   byte bVar5;
   undefined1 uVar6;
   undefined1 uVar7;
@@ -1341,379 +1339,386 @@ int Ranking_ComputePlayerRank(void)
   int iVar11;
   int iVar12;
   int iVar13;
-  int *piVar14;
+  RaceRecordA *pRVar14;
   undefined8 uVar15;
-  int *piVar16;
-  int iVar17;
-  int iVar18;
+  int iVar16;
+  RaceRecordA *pRVar17;
+  int *piVar18;
+  undefined4 *puVar19;
+  int iVar20;
   
   pRVar8 = GameState_Elem_f0_xcc(0);
   iVar9 = RaceProg_GetArray_34(0);
   uVar15 = RaceProg_GetArray_40(0);
-  iVar17 = _g_RaceTbl;
-  bVar3 = pRVar8->maybe_state;
+  pRVar4 = g_RaceTbl;
+  bVar2 = pRVar8->maybe_state;
   uVar10 = GameState_Get_1();
   bVar5 = GameState_Get_0();
   uVar6 = GameState_Get_2();
   uVar7 = GameState_Get_3();
-  uVar4 = pRVar8->maybe_counter;
+  uVar3 = pRVar8->maybe_counter;
   iVar11 = LapTime_GetBest(uVar15);
   iVar12 = SpGauge_GetValue(iVar9);
   if (bVar5 == 8) {
     return -1;
   }
   iVar13 = RaceProg_GetArray_1c(0);
-  piVar16 = (int *)(iVar17 + (uint)bVar3 * 0x2fd0 + (uVar10 & 0xff) * 0x17e8 + (uint)bVar5 * 0x2a8);
-  iVar17 = 0;
-  piVar14 = piVar16;
+  pRVar17 = pRVar4->recordsA + (uint)bVar2 * 0x12 + (uVar10 & 0xff) * 9 + (uint)bVar5;
+  iVar16 = 0;
+  pRVar14 = pRVar17;
   while( true ) {
-    iVar18 = iVar17;
-    iVar17 = (int)(short)uVar4;
+    iVar20 = iVar16;
+    iVar16 = (int)(short)uVar3;
     uVar10 = (uint)(*(int *)(iVar13 + 0xc) != 0);
-    if (*piVar14 == -1) {
-      piVar14 = piVar16 + iVar18 * 5;
-      *piVar14 = iVar17;
-      *(undefined1 *)(piVar14 + 1) = uVar6;
-      *(undefined1 *)((int)piVar14 + 5) = uVar7;
-      piVar14[2] = uVar10;
-      piVar14[3] = iVar11;
-      piVar14[4] = iVar12;
+    if (*(int *)pRVar14 == -1) {
+      piVar18 = (int *)((int)&pRVar17->field_0x0 + iVar20 * 5 * 4);
+      *piVar18 = iVar16;
+      *(undefined1 *)(piVar18 + 1) = uVar6;
+      *(undefined1 *)((int)piVar18 + 5) = uVar7;
+      piVar18[2] = uVar10;
+      piVar18[3] = iVar11;
+      piVar18[4] = iVar12;
       goto LAB_0017dd10;
     }
-    if (piVar14[4] < iVar12) break;
-    iVar17 = iVar18 + 1;
-    piVar14 = piVar14 + 5;
-    iVar18 = -1;
-    if (0x13 < iVar17) goto LAB_0017dd10;
+    if (*(int *)&pRVar14->field_0x10 < iVar12) break;
+    iVar16 = iVar20 + 1;
+    pRVar14 = (RaceRecordA *)&pRVar14->field_0x14;
+    iVar20 = -1;
+    if (0x13 < iVar16) goto LAB_0017dd10;
   }
   iVar13 = 0x13;
-  if (iVar18 < 0x13) {
-    piVar14 = piVar16 + 0x5f;
+  if (iVar20 < 0x13) {
+    puVar19 = (undefined4 *)&pRVar17->field_0x17c;
     do {
       iVar13 = iVar13 + -1;
-      *piVar14 = piVar14[-5];
-      *(char *)(piVar14 + 1) = (char)piVar14[-4];
-      *(undefined1 *)((int)piVar14 + 5) = *(undefined1 *)((int)piVar14 + -0xf);
-      piVar14[2] = piVar14[-3];
-      piVar14[3] = piVar14[-2];
-      piVar14[4] = piVar14[-1];
-      piVar14 = piVar14 + -5;
-    } while (iVar18 < iVar13);
+      *puVar19 = puVar19[-5];
+      *(undefined1 *)(puVar19 + 1) = *(undefined1 *)(puVar19 + -4);
+      *(undefined1 *)((int)puVar19 + 5) = *(undefined1 *)((int)puVar19 + -0xf);
+      puVar19[2] = puVar19[-3];
+      puVar19[3] = puVar19[-2];
+      puVar19[4] = puVar19[-1];
+      puVar19 = puVar19 + -5;
+    } while (iVar20 < iVar13);
   }
-  piVar14 = piVar16 + iVar18 * 5;
-  *piVar14 = iVar17;
-  *(undefined1 *)(piVar14 + 1) = uVar6;
-  *(undefined1 *)((int)piVar14 + 5) = uVar7;
-  piVar14[2] = uVar10;
-  piVar14[3] = iVar11;
-  piVar14[4] = iVar12;
+  piVar18 = (int *)((int)&pRVar17->field_0x0 + iVar20 * 5 * 4);
+  *piVar18 = iVar16;
+  *(undefined1 *)(piVar18 + 1) = uVar6;
+  *(undefined1 *)((int)piVar18 + 5) = uVar7;
+  piVar18[2] = uVar10;
+  piVar18[3] = iVar11;
+  piVar18[4] = iVar12;
 LAB_0017dd10:
-  if (iVar18 == 0) {
-    piVar14 = piVar16;
-    iVar17 = 0;
-    iVar11 = iVar9;
+  if (iVar20 == 0) {
+    pRVar14 = pRVar17;
+    iVar11 = 0;
+    iVar12 = iVar9;
     do {
-      iVar12 = iVar17;
-      iVar17 = iVar12 + 8;
-      piVar14[100] = *(int *)(iVar11 + 0x100) + *(int *)(iVar11 + 0x104);
-      piVar14[0x65] = *(int *)(iVar11 + 0x11c) + *(int *)(iVar11 + 0x120);
-      piVar14[0x66] = *(int *)(iVar11 + 0x138) + *(int *)(iVar11 + 0x13c);
-      piVar14[0x67] = *(int *)(iVar11 + 0x154) + *(int *)(iVar11 + 0x158);
-      piVar14[0x68] = *(int *)(iVar11 + 0x170) + *(int *)(iVar11 + 0x174);
-      piVar14[0x69] = *(int *)(iVar11 + 0x18c) + *(int *)(iVar11 + 400);
-      piVar14[0x6a] = *(int *)(iVar11 + 0x1a8) + *(int *)(iVar11 + 0x1ac);
-      piVar1 = (int *)(iVar11 + 0x1c4);
-      piVar2 = (int *)(iVar11 + 0x1c8);
-      iVar11 = iVar11 + 0xe0;
-      piVar14[0x6b] = *piVar1 + *piVar2;
-      piVar14 = piVar14 + 8;
-    } while (iVar17 < 0x3e);
-    iVar9 = iVar17 * 0x1c + iVar9;
-    piVar16[iVar12 + 0x6c] = *(int *)(iVar9 + 0x100) + *(int *)(iVar9 + 0x104);
-    piVar16[iVar12 + 0x6d] = *(int *)(iVar9 + 0x11c) + *(int *)(iVar9 + 0x120);
-    piVar16[iVar12 + 0x6e] = *(int *)(iVar9 + 0x138) + *(int *)(iVar9 + 0x13c);
-    piVar16[iVar12 + 0x6f] = *(int *)(iVar9 + 0x154) + *(int *)(iVar9 + 0x158);
-    piVar16[iVar12 + 0x70] = *(int *)(iVar9 + 0x170) + *(int *)(iVar9 + 0x174);
-    piVar16[iVar12 + 0x71] = *(int *)(iVar9 + 0x18c) + *(int *)(iVar9 + 400);
+      iVar16 = iVar11;
+      iVar11 = iVar16 + 8;
+      *(int *)&pRVar14->field_0x190 = *(int *)(iVar12 + 0x100) + *(int *)(iVar12 + 0x104);
+      *(int *)&pRVar14->field_0x194 = *(int *)(iVar12 + 0x11c) + *(int *)(iVar12 + 0x120);
+      *(int *)&pRVar14->field_0x198 = *(int *)(iVar12 + 0x138) + *(int *)(iVar12 + 0x13c);
+      *(int *)&pRVar14->field_0x19c = *(int *)(iVar12 + 0x154) + *(int *)(iVar12 + 0x158);
+      *(int *)&pRVar14->field_0x1a0 = *(int *)(iVar12 + 0x170) + *(int *)(iVar12 + 0x174);
+      *(int *)&pRVar14->field_0x1a4 = *(int *)(iVar12 + 0x18c) + *(int *)(iVar12 + 400);
+      *(int *)&pRVar14->field_0x1a8 = *(int *)(iVar12 + 0x1a8) + *(int *)(iVar12 + 0x1ac);
+      piVar18 = (int *)(iVar12 + 0x1c4);
+      piVar1 = (int *)(iVar12 + 0x1c8);
+      iVar12 = iVar12 + 0xe0;
+      *(int *)&pRVar14->field_0x1ac = *piVar18 + *piVar1;
+      pRVar14 = (RaceRecordA *)&pRVar14->field_0x20;
+    } while (iVar11 < 0x3e);
+    iVar9 = iVar11 * 0x1c + iVar9;
+    *(int *)(&pRVar17->field_0x1b0 + iVar16 * 4) = *(int *)(iVar9 + 0x100) + *(int *)(iVar9 + 0x104)
+    ;
+    *(int *)(&pRVar17->field_0x1b4 + iVar16 * 4) = *(int *)(iVar9 + 0x11c) + *(int *)(iVar9 + 0x120)
+    ;
+    *(int *)(&pRVar17->field_0x1b8 + iVar16 * 4) = *(int *)(iVar9 + 0x138) + *(int *)(iVar9 + 0x13c)
+    ;
+    *(int *)(&pRVar17->field_0x1bc + iVar16 * 4) = *(int *)(iVar9 + 0x154) + *(int *)(iVar9 + 0x158)
+    ;
+    *(int *)(&pRVar17->field_0x1c0 + iVar16 * 4) = *(int *)(iVar9 + 0x170) + *(int *)(iVar9 + 0x174)
+    ;
+    *(int *)(&pRVar17->field_0x1c4 + iVar16 * 4) = *(int *)(iVar9 + 0x18c) + *(int *)(iVar9 + 400);
   }
-  return iVar18;
+  return iVar20;
 }
 
 // 0x0017def0  size 0x24c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int Ranking_FindBestRival(void)
 
 {
   byte bVar1;
   uint uVar2;
-  byte bVar3;
-  undefined1 uVar4;
+  RaceTbl *pRVar3;
+  byte bVar4;
   undefined1 uVar5;
-  RaceEntrySetup *pRVar6;
-  int iVar7;
-  uint uVar8;
-  int iVar9;
+  undefined1 uVar6;
+  RaceEntrySetup *pRVar7;
+  int iVar8;
+  uint uVar9;
   int iVar10;
-  int *piVar11;
-  int iVar12;
-  int *piVar13;
-  int iVar14;
-  int iVar15;
+  int iVar11;
+  RaceRecordB *pRVar12;
+  int iVar13;
+  int *piVar14;
+  undefined4 *puVar15;
+  RaceRecordB *pRVar16;
+  int iVar17;
+  int iVar18;
   
-  iVar14 = -1;
-  pRVar6 = GameState_Elem_f0_xcc(0);
-  iVar7 = RaceProg_GetArray_40(0);
-  bVar1 = pRVar6->maybe_state;
-  iVar15 = _g_RaceTbl + 0x5fa0;
-  uVar8 = GameState_Get_1();
-  bVar3 = GameState_Get_0();
-  uVar4 = GameState_Get_2();
-  uVar5 = GameState_Get_3();
-  uVar2 = pRVar6->maybe_counter;
-  iVar9 = LapTime_GetBest(iVar7);
-  if (bVar3 == 8) {
-    iVar14 = -1;
+  iVar17 = -1;
+  pRVar7 = GameState_Elem_f0_xcc(0);
+  iVar8 = RaceProg_GetArray_40(0);
+  pRVar3 = g_RaceTbl;
+  bVar1 = pRVar7->maybe_state;
+  uVar9 = GameState_Get_1();
+  bVar4 = GameState_Get_0();
+  uVar5 = GameState_Get_2();
+  uVar6 = GameState_Get_3();
+  uVar2 = pRVar7->maybe_counter;
+  iVar10 = LapTime_GetBest(iVar8);
+  if (bVar4 == 8) {
+    iVar17 = -1;
   }
-  else if (iVar9 != 0) {
-    iVar10 = RaceProg_GetArray_1c(0);
-    iVar12 = 0;
-    piVar11 = (int *)(iVar15 + (uint)bVar1 * 0x1950 + (uVar8 & 0xff) * 0xca8 + (uint)bVar3 * 0x168);
-    piVar13 = piVar11;
+  else if (iVar10 != 0) {
+    iVar11 = RaceProg_GetArray_1c(0);
+    iVar13 = 0;
+    pRVar12 = pRVar3->recordsB + (uint)bVar1 * 0x12 + (uVar9 & 0xff) * 9 + (uint)bVar4;
+    pRVar16 = pRVar12;
     while( true ) {
-      iVar15 = (int)(short)uVar2;
-      uVar8 = (uint)(*(int *)(iVar10 + 0xc) != 0);
-      if (*piVar13 == -1) {
-        piVar13 = piVar11 + iVar12 * 4;
-        *piVar13 = iVar15;
-        *(undefined1 *)(piVar13 + 1) = uVar4;
-        *(undefined1 *)((int)piVar13 + 5) = uVar5;
-        piVar13[2] = uVar8;
-        piVar13[3] = iVar9;
-        iVar14 = iVar12;
+      iVar18 = (int)(short)uVar2;
+      uVar9 = (uint)(*(int *)(iVar11 + 0xc) != 0);
+      if (*(int *)pRVar16 == -1) {
+        piVar14 = (int *)((int)&pRVar12->field_0x0 + iVar13 * 4 * 4);
+        *piVar14 = iVar18;
+        *(undefined1 *)(piVar14 + 1) = uVar5;
+        *(undefined1 *)((int)piVar14 + 5) = uVar6;
+        piVar14[2] = uVar9;
+        piVar14[3] = iVar10;
+        iVar17 = iVar13;
         goto LAB_0017e048;
       }
-      if (iVar9 < piVar13[3]) break;
-      iVar12 = iVar12 + 1;
-      piVar13 = piVar13 + 4;
-      if (0x13 < iVar12) goto LAB_0017e048;
+      if (iVar10 < *(int *)&pRVar16->field_0xc) break;
+      iVar13 = iVar13 + 1;
+      pRVar16 = (RaceRecordB *)&pRVar16->field_0x10;
+      if (0x13 < iVar13) goto LAB_0017e048;
     }
-    iVar14 = 0x13;
-    if (iVar12 < 0x13) {
-      piVar13 = piVar11 + 0x4c;
+    iVar17 = 0x13;
+    if (iVar13 < 0x13) {
+      puVar15 = (undefined4 *)&pRVar12->field_0x130;
       do {
-        iVar14 = iVar14 + -1;
-        *piVar13 = piVar13[-4];
-        *(char *)(piVar13 + 1) = (char)piVar13[-3];
-        *(undefined1 *)((int)piVar13 + 5) = *(undefined1 *)((int)piVar13 + -0xb);
-        piVar13[2] = piVar13[-2];
-        piVar13[3] = piVar13[-1];
-        piVar13 = piVar13 + -4;
-      } while (iVar12 < iVar14);
+        iVar17 = iVar17 + -1;
+        *puVar15 = puVar15[-4];
+        *(undefined1 *)(puVar15 + 1) = *(undefined1 *)(puVar15 + -3);
+        *(undefined1 *)((int)puVar15 + 5) = *(undefined1 *)((int)puVar15 + -0xb);
+        puVar15[2] = puVar15[-2];
+        puVar15[3] = puVar15[-1];
+        puVar15 = puVar15 + -4;
+      } while (iVar13 < iVar17);
     }
-    piVar13 = piVar11 + iVar12 * 4;
-    *piVar13 = iVar15;
-    *(undefined1 *)(piVar13 + 1) = uVar4;
-    *(undefined1 *)((int)piVar13 + 5) = uVar5;
-    piVar13[2] = uVar8;
-    piVar13[3] = iVar9;
-    iVar14 = iVar12;
+    piVar14 = (int *)((int)&pRVar12->field_0x0 + iVar13 * 4 * 4);
+    *piVar14 = iVar18;
+    *(undefined1 *)(piVar14 + 1) = uVar5;
+    *(undefined1 *)((int)piVar14 + 5) = uVar6;
+    piVar14[2] = uVar9;
+    piVar14[3] = iVar10;
+    iVar17 = iVar13;
 LAB_0017e048:
-    if (iVar14 == 0) {
-      iVar9 = 0;
+    if (iVar17 == 0) {
+      iVar10 = 0;
       do {
-        iVar9 = iVar9 + 5;
-        piVar11[0x50] = *(int *)(iVar7 + 4);
-        piVar11[0x51] = *(int *)(iVar7 + 0x10);
-        piVar11[0x52] = *(int *)(iVar7 + 0x1c);
-        piVar11[0x53] = *(int *)(iVar7 + 0x28);
-        piVar11[0x54] = *(int *)(iVar7 + 0x34);
-        iVar7 = iVar7 + 0x3c;
-        piVar11 = piVar11 + 5;
-      } while (iVar9 < 10);
+        iVar10 = iVar10 + 5;
+        *(undefined4 *)&pRVar12->field_0x140 = *(undefined4 *)(iVar8 + 4);
+        *(undefined4 *)&pRVar12->field_0x144 = *(undefined4 *)(iVar8 + 0x10);
+        *(undefined4 *)&pRVar12->field_0x148 = *(undefined4 *)(iVar8 + 0x1c);
+        *(undefined4 *)&pRVar12->field_0x14c = *(undefined4 *)(iVar8 + 0x28);
+        *(undefined4 *)&pRVar12->field_0x150 = *(undefined4 *)(iVar8 + 0x34);
+        iVar8 = iVar8 + 0x3c;
+        pRVar12 = (RaceRecordB *)&pRVar12->field_0x14;
+      } while (iVar10 < 10);
     }
   }
-  return iVar14;
+  return iVar17;
 }
 
 // 0x0017e140  size 0x58
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 /* 0x2fd0/0x17e8/0x2a8 strides */
 
-int RaceTbl_GetCourseEntry(int param_1,uint param_2,uint param_3,uint param_4)
+RaceRecordA * RaceTbl_GetCourseEntry(RaceTbl *tbl,uint a,uint b,uint c)
 
 {
-  return param_1 + (param_2 & 0xff) * 0x2fd0 + (param_3 & 0xff) * 0x17e8 + (param_4 & 0xff) * 0x2a8;
+  return tbl->recordsA + (a & 0xff) * 0x12 + (b & 0xff) * 9 + (c & 0xff);
 }
 
 // 0x0017e1a0  size 0x40
-int RaceTbl_GetCourseEntryB(int param_1,uint param_2,uint param_3,uint param_4)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+/* records [2][2][9] of 0x168 (tbl = RaceTbl_Ptr_5fa0()) */
+
+RaceRecordB * RaceTbl_GetCourseEntryB(RaceRecordB *tbl,uint a,uint b,uint c)
 
 {
-  return param_1 + (param_2 & 0xff) * 0x1950 + (param_3 & 0xff) * 0xca8 + (param_4 & 0xff) * 0x168;
+  return tbl + (a & 0xff) * 0x12 + (b & 0xff) * 9 + (c & 0xff);
 }
 
 // 0x0017e1e0  size 0xc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-int RaceTbl_Ptr_5fa0(void)
+RaceRecordB * RaceTbl_Ptr_5fa0(void)
 
 {
-  return _g_RaceTbl + 0x5fa0;
+  return g_RaceTbl->recordsB;
 }
 
 // 0x0017e1f0  size 0x8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 maybe_RaceTbl_GetCount(void)
+RaceTbl * maybe_RaceTbl_GetCount(void)
 
 {
-  return _g_RaceTbl;
+  return g_RaceTbl;
 }
 
 // 0x0017e200  size 0x8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-undefined4 maybe_RaceTbl_GetCapacity(void)
+RaceTbl * maybe_RaceTbl_GetCapacity(void)
 
 {
-  return _g_RaceTbl;
+  return g_RaceTbl;
 }
 
 // 0x0017e210  size 0x28
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceTbl_Free(void)
 
 {
-  if (_g_RaceTbl != 0) {
+  if (g_RaceTbl != (RaceTbl *)0x0) {
     Mem_Free();
   }
   return;
 }
 
 // 0x0017e240  size 0x1e0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x9240 bytes */
 
 void RaceTbl_Alloc(undefined8 param_1)
 
 {
-  undefined4 *puVar1;
-  undefined4 *puVar2;
-  undefined4 *puVar3;
-  undefined4 *puVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
+  RaceTbl *pRVar1;
+  RaceTbl *pRVar2;
+  RaceRecordB *pRVar3;
+  RaceTbl *pRVar4;
+  RaceRecordB *pRVar5;
+  RaceTbl *pRVar6;
+  RaceRecordB *pRVar7;
   int iVar8;
   int iVar9;
+  RaceRecordB *pRVar10;
+  int iVar11;
+  int iVar12;
+  int iVar13;
   
-  puVar1 = (undefined4 *)Mem_Alloc16(0x9240,param_1);
-  iVar9 = 0;
-  _g_RaceTbl = puVar1;
+  pRVar1 = (RaceTbl *)Mem_Alloc16(0x9240,param_1);
+  iVar13 = 0;
+  g_RaceTbl = pRVar1;
   do {
-    iVar8 = 0;
-    puVar4 = puVar1;
+    iVar12 = 0;
+    pRVar6 = pRVar1;
     do {
-      iVar7 = 0;
-      puVar3 = puVar4;
+      iVar11 = 0;
+      pRVar4 = pRVar6;
       do {
-        iVar5 = 0;
-        puVar2 = puVar3;
+        iVar8 = 0;
+        pRVar2 = pRVar4;
         do {
-          *puVar2 = 0xffffffff;
-          puVar2[3] = 0;
-          iVar5 = iVar5 + 5;
-          puVar2[4] = 0;
-          puVar2[5] = 0xffffffff;
-          puVar2[8] = 0;
-          puVar2[9] = 0;
-          puVar2[10] = 0xffffffff;
-          puVar2[0xd] = 0;
-          puVar2[0xe] = 0;
-          puVar2[0xf] = 0xffffffff;
-          puVar2[0x12] = 0;
-          puVar2[0x13] = 0;
-          puVar2[0x14] = 0xffffffff;
-          puVar2[0x17] = 0;
-          puVar2[0x18] = 0;
-          puVar2 = puVar2 + 0x19;
-        } while (iVar5 < 0x14);
-        puVar2 = puVar3;
-        iVar5 = 0;
+          *(undefined4 *)pRVar2->recordsA = 0xffffffff;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0xc = 0;
+          iVar8 = iVar8 + 5;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x10 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x14 = 0xffffffff;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x20 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x24 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x28 = 0xffffffff;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x34 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x38 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x3c = 0xffffffff;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x48 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x4c = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x50 = 0xffffffff;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x5c = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x60 = 0;
+          pRVar2 = (RaceTbl *)&pRVar2->recordsA[0].field_0x64;
+        } while (iVar8 < 0x14);
+        pRVar2 = pRVar4;
+        iVar8 = 0;
         do {
-          iVar6 = iVar5;
-          puVar2[100] = 0;
-          puVar2[0x65] = 0;
-          puVar2[0x66] = 0;
-          puVar2[0x67] = 0;
-          puVar2[0x68] = 0;
-          puVar2[0x69] = 0;
-          puVar2[0x6a] = 0;
-          puVar2[0x6b] = 0;
-          puVar2 = puVar2 + 8;
-          iVar5 = iVar6 + 8;
-        } while (iVar6 + 8 < 0x3e);
-        iVar7 = iVar7 + 1;
-        puVar3[iVar6 + 0x6c] = 0;
-        puVar3[iVar6 + 0x6d] = 0;
-        puVar3[iVar6 + 0x6e] = 0;
-        puVar3[iVar6 + 0x6f] = 0;
-        puVar3[iVar6 + 0x70] = 0;
-        puVar3[iVar6 + 0x71] = 0;
-        puVar3 = puVar3 + 0xaa;
-      } while (iVar7 < 9);
-      iVar8 = iVar8 + 1;
-      puVar4 = puVar4 + 0x5fa;
-    } while (iVar8 < 2);
-    iVar9 = iVar9 + 1;
-    puVar1 = puVar1 + 0xbf4;
-  } while (iVar9 < 2);
-  iVar9 = 0;
-  puVar1 = _g_RaceTbl + 0x17e8;
+          iVar9 = iVar8;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x190 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x194 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x198 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x19c = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x1a0 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x1a4 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x1a8 = 0;
+          *(undefined4 *)&pRVar2->recordsA[0].field_0x1ac = 0;
+          pRVar2 = (RaceTbl *)&pRVar2->recordsA[0].field_0x20;
+          iVar8 = iVar9 + 8;
+        } while (iVar9 + 8 < 0x3e);
+        iVar11 = iVar11 + 1;
+        *(undefined4 *)(&pRVar4->recordsA[0].field_0x1b0 + iVar9 * 4) = 0;
+        *(undefined4 *)(&pRVar4->recordsA[0].field_0x1b4 + iVar9 * 4) = 0;
+        *(undefined4 *)(&pRVar4->recordsA[0].field_0x1b8 + iVar9 * 4) = 0;
+        *(undefined4 *)(&pRVar4->recordsA[0].field_0x1bc + iVar9 * 4) = 0;
+        *(undefined4 *)(&pRVar4->recordsA[0].field_0x1c0 + iVar9 * 4) = 0;
+        *(undefined4 *)(&pRVar4->recordsA[0].field_0x1c4 + iVar9 * 4) = 0;
+        pRVar4 = (RaceTbl *)(pRVar4->recordsA + 1);
+      } while (iVar11 < 9);
+      iVar12 = iVar12 + 1;
+      pRVar6 = (RaceTbl *)(pRVar6->recordsA + 9);
+    } while (iVar12 < 2);
+    iVar13 = iVar13 + 1;
+    pRVar1 = (RaceTbl *)(pRVar1->recordsA + 0x12);
+  } while (iVar13 < 2);
+  iVar13 = 0;
+  pRVar10 = g_RaceTbl->recordsB;
   do {
-    iVar8 = 0;
-    puVar4 = puVar1;
+    iVar12 = 0;
+    pRVar7 = pRVar10;
     do {
-      iVar7 = 0;
-      puVar3 = puVar4;
+      iVar11 = 0;
+      pRVar5 = pRVar7;
       do {
-        iVar5 = 0;
-        puVar2 = puVar3;
+        iVar8 = 0;
+        pRVar3 = pRVar5;
         do {
-          *puVar2 = 0xffffffff;
-          puVar2[3] = 0;
-          iVar5 = iVar5 + 5;
-          puVar2[4] = 0xffffffff;
-          puVar2[7] = 0;
-          puVar2[8] = 0xffffffff;
-          puVar2[0xb] = 0;
-          puVar2[0xc] = 0xffffffff;
-          puVar2[0xf] = 0;
-          puVar2[0x10] = 0xffffffff;
-          puVar2[0x13] = 0;
-          puVar2 = puVar2 + 0x14;
-        } while (iVar5 < 0x14);
-        iVar5 = 0;
-        puVar2 = puVar3;
+          *(undefined4 *)pRVar3 = 0xffffffff;
+          *(undefined4 *)&pRVar3->field_0xc = 0;
+          iVar8 = iVar8 + 5;
+          *(undefined4 *)&pRVar3->field_0x10 = 0xffffffff;
+          *(undefined4 *)&pRVar3->field_0x1c = 0;
+          *(undefined4 *)&pRVar3->field_0x20 = 0xffffffff;
+          *(undefined4 *)&pRVar3->field_0x2c = 0;
+          *(undefined4 *)&pRVar3->field_0x30 = 0xffffffff;
+          *(undefined4 *)&pRVar3->field_0x3c = 0;
+          *(undefined4 *)&pRVar3->field_0x40 = 0xffffffff;
+          *(undefined4 *)&pRVar3->field_0x4c = 0;
+          pRVar3 = (RaceRecordB *)&pRVar3->field_0x50;
+        } while (iVar8 < 0x14);
+        iVar8 = 0;
+        pRVar3 = pRVar5;
         do {
-          puVar2[0x50] = 0;
-          puVar2[0x51] = 0;
-          iVar5 = iVar5 + 5;
-          puVar2[0x52] = 0;
-          puVar2[0x53] = 0;
-          puVar2[0x54] = 0;
-          puVar2 = puVar2 + 5;
-        } while (iVar5 < 10);
-        iVar7 = iVar7 + 1;
-        puVar3 = puVar3 + 0x5a;
-      } while (iVar7 < 9);
-      iVar8 = iVar8 + 1;
-      puVar4 = puVar4 + 0x32a;
-    } while (iVar8 < 2);
-    iVar9 = iVar9 + 1;
-    puVar1 = puVar1 + 0x654;
-  } while (iVar9 < 2);
+          *(undefined4 *)&pRVar3->field_0x140 = 0;
+          *(undefined4 *)&pRVar3->field_0x144 = 0;
+          iVar8 = iVar8 + 5;
+          *(undefined4 *)&pRVar3->field_0x148 = 0;
+          *(undefined4 *)&pRVar3->field_0x14c = 0;
+          *(undefined4 *)&pRVar3->field_0x150 = 0;
+          pRVar3 = (RaceRecordB *)&pRVar3->field_0x14;
+        } while (iVar8 < 10);
+        iVar11 = iVar11 + 1;
+        pRVar5 = pRVar5 + 1;
+      } while (iVar11 < 9);
+      iVar12 = iVar12 + 1;
+      pRVar7 = pRVar7 + 9;
+    } while (iVar12 < 2);
+    iVar13 = iVar13 + 1;
+    pRVar10 = pRVar10 + 0x12;
+  } while (iVar13 < 2);
   return;
 }
 
@@ -1918,12 +1923,15 @@ uchar Race_GetWeather(void)
 }
 
 // 0x0017e7c0  size 0x18
-void RaceSlot_Clear(undefined1 *param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+/* type = 9 (empty), id = -1 */
+
+void RaceSlot_Clear(RaceSlot *slot)
 
 {
-  *param_1 = 9;
-  *(undefined4 *)(param_1 + 4) = 0xffffffff;
-  *(undefined4 *)(param_1 + 8) = 0;
+  slot->type = '\t';
+  slot->id = 0xffffffff;
+  slot->unk_08 = 0;
   return;
 }
 
