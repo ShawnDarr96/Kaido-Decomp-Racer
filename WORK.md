@@ -36,7 +36,7 @@ Columns:
 | T3 | Recover the car / vehicle struct and physics state | any | F5 |  |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
 | T5 | Recover the menu / UI structs | any | F5 |  |  |
-| T6 | Recover the file-system / archive structs used with BUILD.DAT | any | F6 |  |  |
+| T6 | Recover the file-system / archive structs used with BUILD.DAT | any | F6 | ShawnDarr96/claude (2026-11-14) |  |
 
 ## P3 Matching
 
@@ -266,3 +266,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: N153 released: done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm
 - 2026-11-14 ShawnDarr96/claude: claim F10.
 - 2026-11-14 ShawnDarr96/claude: F10 done; added F12, F13 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim T6.
