@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OBJDUMP = ROOT / "tools/ps2dev/ee/bin/mips64r5900el-ps2-elf-objdump.exe"
 GP = 0x3766F0
+RAW_WORD_OPS = {"cvt.w.s"}
 
 
 def main():
@@ -35,6 +36,9 @@ def main():
                 real = {0x2d: "daddu", 0x25: "or", 0x21: "addu"}.get(word & 0x3f)
                 if real:
                     op, args = real, args + ",zero"
+            if op in RAW_WORD_OPS:
+                # GAS refuses these for -march=r5900 although the EE executes them: emit the word
+                op, args = ".word", f"0x{word:08x}"
             ins.append((int(m.group(1), 16), op, args))
     targets = set()
     for a, op, args in ins:
