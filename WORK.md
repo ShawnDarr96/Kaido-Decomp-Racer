@@ -23,7 +23,7 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  | ShawnDarr96/claude (2026-11-14) |  |
+| N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  | done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm |
 | N154 | 25 layout-only menu pages (MenuPageNN_*) are named by table slot only; identify them from their UI layouts | any |  |  | Gap of N132 |
 
 ## P2 Types
@@ -261,3 +261,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim N155.
 - 2026-11-14 ShawnDarr96/claude: N155 done.
 - 2026-11-14 ShawnDarr96/claude: claim N153.
+- 2026-11-14 ShawnDarr96: N153 released: done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm
