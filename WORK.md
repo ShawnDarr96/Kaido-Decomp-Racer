@@ -42,7 +42,6 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | M1 | Find the matching compiler: MWCC PS2 2.4.1 (decomp.me mwcps2 builds) and record its flags by matching a few small functions | any | F2 |  |  |
-| M2 | Set up splat (splat64) for SLES_531.91: yaml, asm/data extraction, linker script; rebuild a byte-identical ELF from asm | any | F4 | ShawnDarr96/claude (2026-11-15) |  |
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  |  |
 | M4 | Add a progress report for matched bytes to scripts/progress.py and CI | any | M2 |  |  |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
@@ -231,6 +230,7 @@ Columns:
 | N156 | 400 missed functions added and named (5427 total); VU microcode recorded | P1 | ShawnDarr96/claude | 2026-11-14 | 9ca1613 |
 | N157 | 69 more functions incl. kernel exception handlers; reusable name_new_functions.py; 1476 words left outside functions | P1 | ShawnDarr96/claude | 2026-11-14 | 8aa245d |
 | N158 | exact coverage measured: 338 words left outside functions (COVERAGE.md); non-EE regions recorded | P1 | ShawnDarr96/claude | 2026-11-14 | 602604d |
+| M2 | byte-identical rebuild verified (sha1 05f754ae... = retail) | P3 | ShawnDarr96/claude | 2026-11-15 | 99bbe1a |
 
 ## Changes to the board
 
@@ -332,3 +332,4 @@ Columns:
 - 2026-11-15 ShawnDarr96: N153 released: done: ~100 names reviewed; left: 1419 maybe_ names
 - 2026-11-15 ShawnDarr96/claude: claim N153.
 - 2026-11-15 ShawnDarr96/claude: claim M2.
+- 2026-11-15 ShawnDarr96/claude: M2 done.
