@@ -17,7 +17,7 @@ A decompilation of **Kaido Racer** (PlayStation 2, PAL, SLES-53191, Genki / Kona
 | Executable extracted, compiler identified | done: **Metrowerks CodeWarrior MIPS C 2.4.1.01**, Sony SDK libraries **2.8.0** |
 | Full Ghidra analysis (Emotion Engine processor) | done |
 | Every function decompiled to C | done: [`decomp/src/`](decomp/src), index in [`decomp/functions.csv`](decomp/functions.csv), progress in [`decomp/PROGRESS.md`](decomp/PROGRESS.md) |
-| Every function named | done: 5049 functions, all named (no `FUN_`/`_sub_` placeholders left); 1278 of the names are `maybe_` guesses still to review (row N153), and the 25 layout-only menu pages are named by table slot (`MenuPageNN_*`); see [`config/symbols.csv`](config/symbols.csv) |
+| Every function named | done: 5427 functions, all named (no `FUN_` left); 400 of them were missed by analysis and found by measuring `.text` coverage (syscall stubs, callback thunks, MMI libmpeg routines, exception landing pads named `<Prev>_OrphanN`). About 1430 names are still `maybe_` guesses (row N153). 0x2fd9b8-0x306d50 is VU1 microcode ([`config/vu_microcode.txt`](config/vu_microcode.txt)) |
 | Switch tables recovered | done: 210 switch-case labels that analysis had turned into functions are folded back into their parents ([`config/not_functions.txt`](config/not_functions.txt)); 339 jump tables are applied as decompiler overrides ([`config/jumptables.txt`](config/jumptables.txt)); 6 indirect jumps remain unrecovered |
 | Global singletons named, `$gp` resolved | done: [`config/globals.csv`](config/globals.csv), `$gp = 0x3766f0` |
 | `maybe_` names reviewed, types recovered | in progress, tracked in [`WORK.md`](WORK.md) |
