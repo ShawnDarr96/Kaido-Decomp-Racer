@@ -16,6 +16,12 @@ flags: -O4,p
 # - TODO: re-check the other scratches made with 3.0 under b103 (zXHfU, BJ7BQ, DAiek, E0YK3, zUNmC,
 #   tudGj, EJChW, LM97T). The near misses there (RaceCar_Get / RaceScene_IsPaused branch-likely,
 #   GameState_CopyPlayerRecord extra nop, Options_SetDefaults) may be this same build difference.
+# - 3.0.1b145 (050209) emits the game's branch-likely null checks, which b103 never does with any C
+#   form: scratch tIAOp is 26/26 at 100% under b145 (b119 and b210 score worse on the same batch).
+#   The C form matters: the ternary's else arm goes into the likely delay slot, e.g.
+#   (h->flags & 0xff000000) == 0 ? 0 : h->value  ->  bnezl v0 / lw v0,0(a0) / daddu v0,zero,zero.
+#   TODO: confirm b145 on wWxaE (the div-nop test that ruled out b210) and the other batches; if they
+#   hold, switch the compiler line above to mwcps2-3.0.1b145-050209.
 #
 # Note for writing C: char parameters are passed as int and narrowed at each use
 # (dsll32/dsra32 0x18 pairs), e.g. Options_ApplySeVolume(int vol) { ... (char)vol ... }.
