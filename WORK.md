@@ -14,11 +14,12 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F12 |
 | F16 | Scoped names (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) record ownership only; give them meaning-based names | any |  |  | Gap of F15 |
 | F17 | Decompile the XVI IOP modules XVI_IOP.IRX (4.9 KB) and XVI_SND.IRX (35.6 KB): separate R3000 binaries, IOP GCC toolchain | any |  |  | Gap of F7 |
 | F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  |  | Gap of F11 |
 | F19 | Document the XVI model format (XVI0/XMDL/NORM chunks) from the Xvi_* loaders | any |  |  | Gap of F11 |
+| F20 | Name the unk_ fields of RaceEntrySetup (0xcc) and RacerState (0x540): read RaceSetup_Prepare / Career_ProcessRaceEnd / CarRec_Init | any |  |  | Gap of F14 |
+| F21 | Find RacerResult's users (GameState+0x28a0, stride 0x100; reached by pointer arithmetic) and recover its fields; also RivalRec 0xc/0xf0/0x168 used by Opponent_BuildEntry | any |  |  | Gap of F14 |
 
 ## P1 Naming
 
@@ -237,6 +238,7 @@ Columns:
 | F7 | decomp/IOP_MODULES.md + scripts/survey_irx.py: 12 modules are stock Sony SDK 2.8 / Logitech lgdev 1.08 (nothing to decompile); XVI_IOP.IRX and XVI_SND.IRX are XVI middleware | P0 | ShawnDarr96/claude | 2026-11-15 | 07adb9c |
 | F9 | 0x131c00-0x1328b0 all named and confirmed: List_Append/Remove (swap fixed), List_Clear/dtor, ListNode_dtor, Mem_Copy, Mutex_Create/Delete; Gfx_Add/RemoveFrameCallback swap fixed | P0 | ShawnDarr96/claude | 2026-11-15 | 667f7b6 |
 | F11 | scripts/catalogue_build.py + decomp/BUILD_DAT.md: 9,215 XVI model packs, 2,249 sprite sheets, 613 IECS sound banks, 103 TIM2, 102 streams, 22 glyph text; 2,914 still unidentified | P0 | ShawnDarr96/claude | 2026-11-15 | e276deb |
+| F14 | RacerStats renamed RivalRec (passed to RivalRec_* accessors); id, subId, team, carId, pos[3], type, count, max named from the matched accessors; export supports signed field types | P0 | ShawnDarr96/claude | 2026-11-15 | 8328084 |
 
 ## Changes to the board
 
@@ -356,3 +358,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim F11.
 - 2026-11-15 ShawnDarr96/claude: F11 done; added F18, F19 (gaps).
 - 2026-11-15 ShawnDarr96/claude: claim F14.
+- 2026-11-15 ShawnDarr96/claude: F14 done; added F20, F21 (gaps).
