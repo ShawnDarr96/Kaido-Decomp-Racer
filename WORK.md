@@ -49,7 +49,7 @@ Columns:
 | M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
 | M15 | Match Vec3_Scale and Vec3_ScaleCopy (97%: the game assigns x/y/z to f0/f1/f2; locals and struct-copy forms tried) | any |  |  | Gap of M14 |
 | M18 | Batch 13 leftovers: Sema/Thread wrappers (slt $at macro shape - check if they come from an asm/GCC library), Vec3_Sub/Add/Vec4_Sub/Quat_Mul (float regs), car clamps (bc1tl), Demo_EvalKeyC/D | any |  |  | Gap of M17 |
-| M19 | Match batch 14: menu draw states, SeqGen validators, BlockPool, RoadData, CarSnd, Profile calendar, RaceScene callbacks (29 functions) | any |  |  |  |
+| M19 | Match batch 14: menu draw states, SeqGen validators, BlockPool, RoadData, CarSnd, Profile calendar, RaceScene callbacks (29 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
 
 ## P4 Finish
 
@@ -400,3 +400,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim M17.
 - 2026-11-15 ShawnDarr96/claude: M17 done; added M18 (gaps).
 - 2026-11-15 ShawnDarr96: added M19.
+- 2026-11-15 ShawnDarr96/claude: claim M19.
