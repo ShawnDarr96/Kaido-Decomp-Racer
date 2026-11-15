@@ -2425,7 +2425,7 @@ void scrsave_select_sub_00293ba0(undefined8 param_1)
   iVar6 = (int)param_1;
   lVar3 = Menu_IsInputIdle(iVar6 + 0x568);
   if (*(int *)(iVar6 + 0x77c) == 0) {
-    lVar5 = password_leaf_sub_002dcc30(iVar6 + 0x588);
+    lVar5 = PwInput_IsOpen(iVar6 + 0x588);
     if (lVar5 == 0) {
       if (iRam0036f898 == 0) {
         uVar2 = SaveUi_Task(param_1,lVar3,0,0);
@@ -2528,7 +2528,7 @@ void scrsave_step_sub_00293ea0(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x57c) = 1;
   *(undefined4 *)(iVar1 + 0x574) = 1;
   *(undefined4 *)(iVar1 + 0x580) = 0;
-  password_step_sub_002dd0c0(iVar1 + 0x588,1,0);
+  PwInput_Clear(iVar1 + 0x588,1,0);
   *(undefined4 *)(iVar1 + 0x77c) = 0;
   *(undefined4 *)(iVar1 + 0x778) = 0;
   *(undefined4 *)(iVar1 + 0x770) = 0;
@@ -2551,7 +2551,7 @@ void scrsave_select_sub_00293f90(undefined8 param_1)
   iVar5 = (int)param_1;
   lVar3 = Menu_IsInputIdle(iVar5 + 0x568);
   if (*(int *)(iVar5 + 0x778) == 0) {
-    lVar4 = password_leaf_sub_002dcc30(iVar5 + 0x588);
+    lVar4 = PwInput_IsOpen(iVar5 + 0x588);
     if (lVar4 == 0) {
       uVar2 = SaveUi_Task(param_1,lVar3,0,0);
       *(uint *)(iVar5 + 0x770) = uVar2 & 0xff;

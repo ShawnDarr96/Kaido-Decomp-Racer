@@ -237,7 +237,7 @@ void result_step_sub_002c07a0(undefined8 param_1)
     break;
   case 3:
   case 4:
-    script_step_sub_002bcb00(param_1);
+    Result_BuildRaceEntry(param_1);
     *puVar5 = 4;
     break;
   case 5:
@@ -443,7 +443,7 @@ void result_step_sub_002c0b10(undefined8 param_1)
       }
     }
     result_draw_sub_002c0490(param_1);
-    script_step_sub_002bce00(param_1);
+    Result_UpdateCursor(param_1);
     break;
   case '\x03':
     lVar7 = replayui_step_sub_002db3e0(pcVar8 + 0x40c);
@@ -482,7 +482,7 @@ void result_step_sub_002c0b10(undefined8 param_1)
       }
     }
     result_draw_sub_002c0490(param_1);
-    script_step_sub_002bce00(param_1);
+    Result_UpdateCursor(param_1);
     break;
   case '\a':
     if ((cVar1 == '\x01') || (cVar1 == '\b')) {
@@ -518,7 +518,7 @@ void result_step_sub_002c0b10(undefined8 param_1)
       }
     }
     result_draw_sub_002c0490(param_1);
-    script_step_sub_002bce00(param_1);
+    Result_UpdateCursor(param_1);
     break;
   default:
     goto switchD_002c0cb0_default;
@@ -575,7 +575,7 @@ LAB_002c0fa8:
     uVar4 = LapTime_GetBest(uVar5);
     *(undefined4 *)(param_1 + 0x1d4) = uVar4;
     if (*(int *)(param_1 + 0x9c) == 0) {
-      lVar8 = script_leaf_sub_002bcce0(param_1 + 0x268,param_1 + 0x1e4,param_1 + 0xcc);
+      lVar8 = LapTime_Compare(param_1 + 0x268,param_1 + 0x1e4,param_1 + 0xcc);
       if (lVar8 < 0) {
         bVar2 = true;
         *(undefined4 *)(param_1 + 0xcc) = *(undefined4 *)(param_1 + 0x1e4);
@@ -599,7 +599,7 @@ LAB_002c0fa8:
       if (uVar10 == 0) {
         LapTime_FormatLap(uVar5,0,iVar3 + 0x1f0,iVar3 + 500,iVar3 + 0x1f8);
         if (*(int *)(param_1 + 0x9c) == 0) {
-          lVar8 = script_leaf_sub_002bcce0(iVar9 + 0x278,iVar3 + 0x1f0,iVar3 + 0xd8);
+          lVar8 = LapTime_Compare(iVar9 + 0x278,iVar3 + 0x1f0,iVar3 + 0xd8);
           if (lVar8 < 0) {
             *(undefined4 *)(iVar3 + 0xd8) = *(undefined4 *)(iVar3 + 0x1f0);
             *(undefined4 *)(iVar3 + 0xdc) = *(undefined4 *)(iVar3 + 500);
@@ -626,7 +626,7 @@ LAB_002c0fa8:
           Time_SplitHms(1,uVar6,auStack_20,auStack_1c,auStack_18);
           LapTime_FormatTotal(uVar5,uVar10,iVar3 + 0x1f0,iVar3 + 500,iVar3 + 0x1f8);
           if (*(int *)(param_1 + 0x9c) == 0) {
-            script_leaf_sub_002bcce0(iVar9 + 0x278,iVar3 + 0x1f0,iVar3 + 0xd8);
+            LapTime_Compare(iVar9 + 0x278,iVar3 + 0x1f0,iVar3 + 0xd8);
             if (bVar2) {
               *(undefined4 *)(iVar3 + 0xd8) = *(undefined4 *)(iVar3 + 0x1f0);
               *(undefined4 *)(iVar3 + 0xdc) = *(undefined4 *)(iVar3 + 500);

@@ -1433,7 +1433,7 @@ void menuscr_step_sub_002ae470(int param_1,undefined8 param_2,undefined8 param_3
 {
   if (param_1 == *(int *)(param_4 + 0x10)) {
     *(undefined4 *)(param_4 + 0x14) = 0;
-    script_load_sub_002bb990(uRam0036f7e0);
+    SeqGen_LoadPattern(uRam0036f7e0);
   }
   return;
 }
@@ -1449,7 +1449,7 @@ void menuscr_step_sub_002ae4b0(int param_1,undefined8 param_2,undefined4 param_3
     *(undefined4 *)(iVar1 + 0xb0) = param_3;
     menuscr_step_sub_002afb80(param_4);
     *(undefined4 *)(iVar1 + 0xcc) = 0;
-    script_load_sub_002bb990(uRam0036f7e0);
+    SeqGen_LoadPattern(uRam0036f7e0);
   }
   return;
 }
@@ -1463,10 +1463,10 @@ void menuscr_step_sub_002ae500(int param_1,undefined8 param_2,undefined4 param_3
   iVar1 = (int)param_4;
   if (param_1 == *(int *)(iVar1 + 0x70)) {
     *(undefined4 *)(iVar1 + 0x4c) = param_3;
-    script_step_sub_002b0650(param_4);
-    script_step_sub_002b0d20(param_4,0);
+    maybe_SeqSrc_ReadEvent(param_4);
+    maybe_SeqGen_ScanTrack(param_4,0);
     *(undefined4 *)(iVar1 + 0x74) = 0;
-    script_load_sub_002bb990(uRam0036f7e0);
+    SeqGen_LoadPattern(uRam0036f7e0);
   }
   return;
 }

@@ -3,14 +3,14 @@
 #include "ghidra_types.h"
 
 // 0x002dc6d0  size 0x54
-void password_step_sub_002dc6d0(int param_1,undefined8 param_2)
+void PwInput_ResetSlots(int param_1,undefined8 param_2)
 
 {
   uint uVar1;
   
   uVar1 = 0;
   do {
-    password_leaf_sub_002dd200(param_1,param_2);
+    PwInput_CommitChar(param_1,param_2);
     uVar1 = uVar1 + 1;
     param_1 = param_1 + 0x4c;
   } while (uVar1 < 3);
@@ -18,7 +18,7 @@ void password_step_sub_002dc6d0(int param_1,undefined8 param_2)
 }
 
 // 0x002dc730  size 0x20c
-void password_step_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 param_3)
+void PwInput_SetupGrid(undefined4 *param_1,byte param_2,undefined4 param_3)
 
 {
   undefined4 uVar1;
@@ -31,7 +31,7 @@ void password_step_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 para
   param_1[0x3b] = 0xffffffff;
   puVar2 = param_1;
   do {
-    password_leaf_sub_002dd160(puVar2);
+    PwInput_ResetBuffer(puVar2);
     uVar3 = uVar3 + 1;
     puVar2 = puVar2 + 0x13;
   } while (uVar3 < 3);
@@ -95,7 +95,7 @@ void password_step_sub_002dc730(undefined4 *param_1,byte param_2,undefined4 para
 }
 
 // 0x002dc940  size 0x180
-void password_leaf_sub_002dc940(undefined4 *param_1,char param_2)
+void PwInput_GetCharForKey(undefined4 *param_1,char param_2)
 
 {
   undefined4 uVar1;
@@ -149,7 +149,7 @@ void password_leaf_sub_002dc940(undefined4 *param_1,char param_2)
 }
 
 // 0x002dcac0  size 0x15c
-void password_step_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 param_3)
+void PwInput_Init(undefined4 *param_1,ulong param_2,undefined8 param_3)
 
 {
   undefined1 uVar1;
@@ -177,7 +177,7 @@ void password_step_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 par
     uVar6 = 0;
     puVar4 = param_1;
     do {
-      password_leaf_sub_002dd160(puVar4);
+      PwInput_ResetBuffer(puVar4);
       uVar6 = uVar6 + 1;
       puVar4 = puVar4 + 0x13;
     } while (uVar6 < 3);
@@ -194,32 +194,32 @@ void password_step_sub_002dcac0(undefined4 *param_1,ulong param_2,undefined8 par
       param_1[0x3a] = 0x13;
       param_1[0x3b] = 0x14;
     }
-    password_leaf_sub_002dc940(param_1,param_2,uVar1);
+    PwInput_GetCharForKey(param_1,param_2,uVar1);
   }
   else {
-    password_step_sub_002dc730(param_1,param_2,param_3);
+    PwInput_SetupGrid(param_1,param_2,param_3);
   }
   return;
 }
 
 // 0x002dcc20  size 0x10
-void password_step_sub_002dcc20(int param_1)
+void PwInput_Open(int param_1)
 
 {
   *(undefined1 *)(param_1 + 0x1e0) = 1;
-  password_step_sub_002dc6d0(param_1 + 0xf0);
+  PwInput_ResetSlots(param_1 + 0xf0);
   return;
 }
 
 // 0x002dcc30  size 0x10
-bool password_leaf_sub_002dcc30(int param_1)
+bool PwInput_IsOpen(int param_1)
 
 {
   return *(char *)(param_1 + 0x1e0) != -1;
 }
 
 // 0x002dcc40  size 0x108
-void password_step_sub_002dcc40(int param_1)
+void PwInput_Update(int param_1)
 
 {
   char cVar1;
@@ -236,7 +236,7 @@ void password_step_sub_002dcc40(int param_1)
       uVar4 = 0;
       iVar3 = param_1;
       do {
-        password_draw_sub_002dd350(iVar3,0xffffffffffffffff);
+        PwInput_Draw(iVar3,0xffffffffffffffff);
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
@@ -248,7 +248,7 @@ void password_step_sub_002dcc40(int param_1)
       uVar4 = 0;
       iVar3 = param_1 + 0xf0;
       do {
-        password_draw_sub_002dd350(iVar3,0xffffffffffffffff);
+        PwInput_Draw(iVar3,0xffffffffffffffff);
         uVar4 = uVar4 + 1;
         iVar3 = iVar3 + 0x4c;
       } while (uVar4 < 3);
@@ -261,7 +261,7 @@ void password_step_sub_002dcc40(int param_1)
   uVar4 = 0;
   iVar3 = param_1;
   do {
-    password_draw_sub_002dd350(iVar3,uVar2);
+    PwInput_Draw(iVar3,uVar2);
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x4c;
   } while (uVar4 < 3);
@@ -271,7 +271,7 @@ void password_step_sub_002dcc40(int param_1)
 }
 
 // 0x002dcd50  size 0x368
-bool password_anim_sub_002dcd50(int *param_1)
+bool PwInput_Animate(int *param_1)
 
 {
   char cVar1;
@@ -356,7 +356,7 @@ bool password_anim_sub_002dcd50(int *param_1)
           DAT_003420f0 = 0;
           DAT_003420f4 = 0xffffffff;
           *(undefined1 *)(param_1 + 0x78) = 0;
-          password_step_sub_002dc6d0(param_1,(char)param_1[0x78]);
+          PwInput_ResetSlots(param_1,(char)param_1[0x78]);
         }
         else {
           *(undefined1 *)(param_1 + 0x78) = 0xff;
@@ -404,7 +404,7 @@ LAB_002dcfb0:
 }
 
 // 0x002dd0c0  size 0xa0
-void password_step_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_3)
+void PwInput_Clear(int param_1,undefined1 param_2,undefined1 param_3)
 
 {
   int iVar1;
@@ -413,14 +413,14 @@ void password_step_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_
   uVar2 = 0;
   iVar1 = param_1;
   do {
-    password_leaf_sub_002dd160(iVar1);
+    PwInput_ResetBuffer(iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x4c;
   } while (uVar2 < 3);
   uVar2 = 0;
   iVar1 = param_1 + 0xf0;
   do {
-    password_leaf_sub_002dd160(iVar1);
+    PwInput_ResetBuffer(iVar1);
     uVar2 = uVar2 + 1;
     iVar1 = iVar1 + 0x4c;
   } while (uVar2 < 3);
@@ -431,7 +431,7 @@ void password_step_sub_002dd0c0(int param_1,undefined1 param_2,undefined1 param_
 }
 
 // 0x002dd160  size 0xa0
-void password_leaf_sub_002dd160(undefined4 *param_1)
+void PwInput_ResetBuffer(undefined4 *param_1)
 
 {
   uint uVar1;
@@ -471,7 +471,7 @@ void password_leaf_sub_002dd160(undefined4 *param_1)
 }
 
 // 0x002dd200  size 0x150
-void password_leaf_sub_002dd200(int *param_1,ulong param_2)
+void PwInput_CommitChar(int *param_1,ulong param_2)
 
 {
   int iVar1;
@@ -546,7 +546,7 @@ void password_leaf_sub_002dd200(int *param_1,ulong param_2)
 }
 
 // 0x002dd350  size 0x108
-void password_draw_sub_002dd350(int *param_1,uint param_2)
+void PwInput_Draw(int *param_1,uint param_2)
 
 {
   int iVar1;
@@ -573,7 +573,7 @@ void password_draw_sub_002dd350(int *param_1,uint param_2)
     piVar3 = param_1;
     do {
       if ((-1 < piVar3[0x11]) && (uVar4 == param_2)) {
-        password_anim_sub_002dd640(*param_1,piVar3[0x11],1,0);
+        PwInput_SetKeyState(*param_1,piVar3[0x11],1,0);
       }
       uVar4 = uVar4 + 1;
       piVar3 = piVar3 + 1;
@@ -584,7 +584,7 @@ void password_draw_sub_002dd350(int *param_1,uint param_2)
 }
 
 // 0x002dd460  size 0x90
-int password_leaf_sub_002dd460(int param_1,int param_2)
+int PwInput_IsSpecialKey(int param_1,int param_2)
 
 {
   uint uVar1;
@@ -604,7 +604,7 @@ int password_leaf_sub_002dd460(int param_1,int param_2)
 }
 
 // 0x002dd4f0  size 0x28
-undefined8 password_leaf_sub_002dd4f0(ulong param_1)
+undefined8 PwInput_GetKeyLabel(ulong param_1)
 
 {
   undefined8 uVar1;
@@ -640,7 +640,7 @@ undefined8 Showroom_Nop_4(void)
 }
 
 // 0x002dd550  size 0xe4
-void password_anim_sub_002dd550(long param_1)
+void PwInput_AnimateCursor(long param_1)
 
 {
   int iVar1;
@@ -673,7 +673,7 @@ void password_anim_sub_002dd550(long param_1)
 }
 
 // 0x002dd640  size 0x13c
-void password_anim_sub_002dd640(int param_1,int param_2,undefined8 param_3,long param_4)
+void PwInput_SetKeyState(int param_1,int param_2,undefined8 param_3,long param_4)
 
 {
   int iVar1;
@@ -713,7 +713,7 @@ void password_anim_sub_002dd640(int param_1,int param_2,undefined8 param_3,long 
 // 0x002dd780  size 0x84
 /* WARNING: Removing unreachable block (ram,0x002dd7c4) */
 
-void password_draw_sub_002dd780
+void PwInput_DrawNameShort
                (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
                undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
@@ -738,9 +738,8 @@ void password_draw_sub_002dd780
 // 0x002dd810  size 0x78
 /* WARNING: Removing unreachable block (ram,0x002dd850) */
 
-void password_draw_sub_002dd810
-               (undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
-               undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
+void PwInput_DrawName(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4,
+                     undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8)
 
 {
   undefined1 auStack_a0 [120];
@@ -761,7 +760,7 @@ void password_draw_sub_002dd810
 }
 
 // 0x002dd890  size 0x1e0
-undefined8 password_leaf_sub_002dd890(int param_1,undefined4 *param_2)
+undefined8 Password_UnpackHeader(int param_1,undefined4 *param_2)
 
 {
   uint uVar1;
@@ -809,7 +808,7 @@ undefined8 password_leaf_sub_002dd890(int param_1,undefined4 *param_2)
 }
 
 // 0x002dda70  size 0x158
-void password_leaf_sub_002dda70(int param_1)
+void Password_VerifyChecksum(int param_1)
 
 {
   undefined4 *puVar1;
@@ -865,7 +864,7 @@ void password_leaf_sub_002dda70(int param_1)
 }
 
 // 0x002ddbd0  size 0x1e8
-void password_leaf_sub_002ddbd0(byte *param_1)
+void Password_DecodeFields(byte *param_1)
 
 {
   uint uVar1;
@@ -937,7 +936,9 @@ void password_leaf_sub_002ddbd0(byte *param_1)
 }
 
 // 0x002dddc0  size 0x190
-void password_step_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_3)
+/* "PassWord : input data error" */
+
+void Password_Decode(undefined8 param_1,undefined8 param_2,int param_3)
 
 {
   long lVar1;
@@ -947,13 +948,13 @@ void password_step_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_
   int iVar5;
   int iVar6;
   
-  password_leaf_sub_002ddf50();
-  lVar1 = password_leaf_sub_002dd890(param_1,param_2);
+  Password_ClearState();
+  lVar1 = Password_UnpackHeader(param_1,param_2);
   if (lVar1 < 0) {
     printf(0x368210);
   }
   else {
-    password_leaf_sub_002ddbd0(param_1);
+    Password_DecodeFields(param_1);
     iVar6 = (int)param_1;
     iVar2 = 1;
     *(int *)(iVar6 + 0x18) = *(int *)(iVar6 + 0x18) + *(int *)(iVar6 + 0x20);
@@ -973,7 +974,7 @@ void password_step_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_
            (*(uint *)(iVar6 + 0x1c) << uVar3 | *(uint *)(iVar6 + 0x1c) >> (0x20 - uVar3 & 0x1f));
       iVar5 = iVar5 + 8;
     } while (iVar2 < 0x41);
-    password_leaf_sub_002dda70(param_1);
+    Password_VerifyChecksum(param_1);
     iVar5 = 0;
     do {
       puVar4 = (undefined1 *)(param_3 + iVar5);
@@ -999,7 +1000,7 @@ void password_step_sub_002dddc0(undefined8 param_1,undefined8 param_2,int param_
 }
 
 // 0x002ddf50  size 0x7c
-void password_leaf_sub_002ddf50(undefined1 *param_1)
+void Password_ClearState(undefined1 *param_1)
 
 {
   param_1[0x10] = 0;
@@ -1028,8 +1029,7 @@ void password_leaf_sub_002ddf50(undefined1 *param_1)
 }
 
 // 0x002ddfd0  size 0x254
-void password_step_sub_002ddfd0
-               (undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4)
+void Password_ApplyCareer(undefined8 param_1,undefined8 param_2,char param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -1121,7 +1121,7 @@ void password_step_sub_002ddfd0
 }
 
 // 0x002de230  size 0x21c
-void password_step_sub_002de230
+void Password_ApplyCareerEx
                (undefined8 param_1,int param_2,int param_3,char param_4,undefined8 param_5)
 
 {
@@ -1214,7 +1214,7 @@ void password_step_sub_002de230
 }
 
 // 0x002de450  size 0xe8
-void password_leaf_sub_002de450(int param_1)
+void Password_GetCharTable(int param_1)
 
 {
   char *pcVar1;
@@ -1254,7 +1254,7 @@ void password_leaf_sub_002de450(int param_1)
 }
 
 // 0x002de540  size 0x8c
-void password_leaf_sub_002de540(int param_1)
+void Password_PackBits(int param_1)
 
 {
   int iVar1;
@@ -1298,7 +1298,7 @@ void password_leaf_sub_002de540(int param_1)
 }
 
 // 0x002de5d0  size 0x2c
-char password_leaf_sub_002de5d0(int param_1,uint param_2)
+char Password_GetDigit(int param_1,uint param_2)
 
 {
   char cVar1;
@@ -1311,7 +1311,7 @@ char password_leaf_sub_002de5d0(int param_1,uint param_2)
 }
 
 // 0x002de600  size 0x1cc
-bool password_step_sub_002de600(undefined8 param_1,uint param_2)
+bool Password_ComputeProgress(undefined8 param_1,uint param_2)
 
 {
   char cVar1;
@@ -1380,7 +1380,7 @@ bool password_step_sub_002de600(undefined8 param_1,uint param_2)
 }
 
 // 0x002de7d0  size 0x88
-void password_leaf_sub_002de7d0(int param_1,uint param_2,int param_3,long param_4)
+void Password_GetRecordTime(int param_1,uint param_2,int param_3,long param_4)
 
 {
   if (param_4 == 0) {
@@ -1397,7 +1397,7 @@ void password_leaf_sub_002de7d0(int param_1,uint param_2,int param_3,long param_
 }
 
 // 0x002de860  size 0x7c
-int password_leaf_sub_002de860(int param_1,long param_2,uint param_3,int param_4)
+int Password_GetRecordScore(int param_1,long param_2,uint param_3,int param_4)
 
 {
   int iVar1;
@@ -1414,7 +1414,7 @@ int password_leaf_sub_002de860(int param_1,long param_2,uint param_3,int param_4
 }
 
 // 0x002de8e0  size 0x5c
-undefined1 password_leaf_sub_002de8e0(int param_1,long param_2,int param_3,uint param_4,int param_5)
+undefined1 Password_GetRecordFlag(int param_1,long param_2,int param_3,uint param_4,int param_5)
 
 {
   undefined1 uVar1;
@@ -1430,7 +1430,7 @@ undefined1 password_leaf_sub_002de8e0(int param_1,long param_2,int param_3,uint 
 
 // 0x002de940  size 0x188
 undefined4
-password_step_sub_002de940
+Password_ApplyRewards
           (undefined8 param_1,char param_2,long param_3,int param_4,undefined8 param_5,int param_6)
 
 {
@@ -1462,7 +1462,7 @@ password_step_sub_002de940
     cVar1 = *pcVar3;
     if ((cVar1 == '\a') || (param_2 < cVar1)) {
       *pcVar3 = param_2;
-      lVar2 = password_step_sub_002de600(param_1,param_5);
+      lVar2 = Password_ComputeProgress(param_1,param_5);
       if (lVar2 != 0) {
         uVar4 = 1;
       }
@@ -1481,7 +1481,7 @@ password_step_sub_002de940
 }
 
 // 0x002dead0  size 0x5f0
-undefined8 password_step_sub_002dead0(char param_1,long param_2,short param_3)
+undefined8 Password_EncodeCar(char param_1,long param_2,short param_3)
 
 {
   char cVar1;
@@ -1646,7 +1646,7 @@ undefined8 password_step_sub_002dead0(char param_1,long param_2,short param_3)
 }
 
 // 0x002df0c0  size 0x50
-undefined4 password_step_sub_002df0c0(undefined2 param_1)
+undefined4 Password_IsCarSpecial(undefined2 param_1)
 
 {
   int iVar1;
@@ -1671,7 +1671,7 @@ undefined4 password_step_sub_002df0c0(undefined2 param_1)
 }
 
 // 0x002df110  size 0x80
-undefined4 password_step_sub_002df110(undefined2 param_1)
+undefined4 Password_GetCarClass(undefined2 param_1)
 
 {
   char cVar1;
@@ -1694,7 +1694,7 @@ undefined4 password_step_sub_002df110(undefined2 param_1)
 }
 
 // 0x002df190  size 0x6c
-undefined4 password_step_sub_002df190(undefined2 param_1)
+undefined4 Password_GetCarFlags(undefined2 param_1)
 
 {
   char cVar1;
@@ -1741,7 +1741,7 @@ undefined4 GameState_Get_3a8(void)
 }
 
 // 0x002df230  size 0xe8
-undefined4 password_step_sub_002df230(void)
+undefined4 Password_GetModeCode(void)
 
 {
   ulong uVar1;
@@ -1801,7 +1801,7 @@ bool GameState_Get_35c_Wrap(void)
 // 0x002df350  size 0xa4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int password_step_sub_002df350(long param_1)
+int Password_Generate(long param_1)
 
 {
   int iVar1;
@@ -1811,7 +1811,7 @@ int password_step_sub_002df350(long param_1)
   undefined4 uStack_8;
   
   if (*(int *)(_g_GameState + 0x3a4) == 0) {
-    iVar1 = password_leaf_sub_002df9f0(*(undefined4 *)(_g_GameState + 0x3a8));
+    iVar1 = Password_BuildString(*(undefined4 *)(_g_GameState + 0x3a8));
   }
   else {
     aiStack_20[0] = DAT_003424c0;
@@ -1834,7 +1834,7 @@ int password_step_sub_002df350(long param_1)
 // 0x002df400  size 0x168
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int password_leaf_sub_002df400(int param_1,int param_2)
+int Password_EncodeFields(int param_1,int param_2)
 
 {
   int iVar1;
@@ -1912,7 +1912,7 @@ int password_leaf_sub_002df400(int param_1,int param_2)
 }
 
 // 0x002df570  size 0x104
-int password_step_sub_002df570(int param_1)
+int Password_EncodeTeams(int param_1)
 
 {
   short sVar1;
@@ -1963,7 +1963,7 @@ int password_step_sub_002df570(int param_1)
 }
 
 // 0x002df680  size 0x88
-int password_step_sub_002df680(uint param_1,int param_2,char param_3,int param_4)
+int Password_EncodeCourseA(uint param_1,int param_2,char param_3,int param_4)
 
 {
   undefined8 uVar1;
@@ -1987,7 +1987,7 @@ int password_step_sub_002df680(uint param_1,int param_2,char param_3,int param_4
 }
 
 // 0x002df710  size 0xe0
-int password_step_sub_002df710(uint param_1,int param_2,char param_3,long param_4)
+int Password_EncodeCourseB(uint param_1,int param_2,char param_3,long param_4)
 
 {
   int iVar1;
@@ -2028,7 +2028,7 @@ int password_step_sub_002df710(uint param_1,int param_2,char param_3,long param_
 }
 
 // 0x002df7f0  size 0x7c
-undefined4 password_leaf_sub_002df7f0(long param_1)
+undefined4 Password_GetKeyTable(long param_1)
 
 {
   undefined4 uVar1;
@@ -2054,7 +2054,7 @@ undefined4 password_leaf_sub_002df7f0(long param_1)
 }
 
 // 0x002df870  size 0x17c
-int password_step_sub_002df870(undefined8 param_1,int param_2,int param_3,char param_4,long param_5)
+int Password_EncodeSections(undefined8 param_1,int param_2,int param_3,char param_4,long param_5)
 
 {
   int iVar1;
@@ -2115,7 +2115,7 @@ int password_step_sub_002df870(undefined8 param_1,int param_2,int param_3,char p
 }
 
 // 0x002df9f0  size 0x478
-undefined4 password_leaf_sub_002df9f0(long param_1,long param_2)
+undefined4 Password_BuildString(long param_1,long param_2)
 
 {
   undefined4 uVar1;
@@ -2322,7 +2322,7 @@ undefined4 password_leaf_sub_002df9f0(long param_1,long param_2)
 }
 
 // 0x002dfe70  size 0x60
-void password_step_sub_002dfe70(undefined4 *param_1,undefined8 param_2)
+void Course_GetSectionCount(undefined4 *param_1,undefined8 param_2)
 
 {
   undefined4 uVar1;
@@ -2347,7 +2347,7 @@ void password_step_sub_002dfe70(undefined4 *param_1,undefined8 param_2)
 }
 
 // 0x002dfed0  size 0x54
-int password_step_sub_002dfed0(undefined8 param_1,uint param_2,int param_3)
+int Course_GetVariantInfo(undefined8 param_1,uint param_2,int param_3)
 
 {
   undefined8 uVar1;
@@ -2359,7 +2359,7 @@ int password_step_sub_002dfed0(undefined8 param_1,uint param_2,int param_3)
 }
 
 // 0x002dff30  size 0x100
-int password_step_sub_002dff30(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
+int Course_FindSection(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
 
 {
   int *piVar1;

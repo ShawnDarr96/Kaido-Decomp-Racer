@@ -2331,7 +2331,7 @@ void RaceRule_Finish(void)
       iVar9 = SpGauge_GetValue();
       iVar9 = (int)(float)iVar9;
     }
-    uVar8 = password_leaf_sub_002df400(iVar9,*(undefined4 *)(uVar1 + 0x4b8));
+    uVar8 = Password_EncodeFields(iVar9,*(undefined4 *)(uVar1 + 0x4b8));
     if (uVar8 < 6) {
                     /* WARNING: Could not recover jumptable at 0x001dc074. Too many branches */
                     /* WARNING: Treating indirect jump as call */
@@ -2344,7 +2344,7 @@ void RaceRule_Finish(void)
       uVar4 = GameState_Get_3ac();
       uVar5 = Race_GetCourseVariant();
       uVar6 = GameState_Get_3a8();
-      lVar7 = password_step_sub_002de940(uVar2,uVar8,uVar3,uVar4,uVar5,uVar6);
+      lVar7 = Password_ApplyRewards(uVar2,uVar8,uVar3,uVar4,uVar5,uVar6);
       if (lVar7 != 0) {
         *_g_RaceProg = *_g_RaceProg | 0x20000;
       }

@@ -653,7 +653,7 @@ void scrrecord_step_sub_002a5080(undefined8 param_1,int *param_2)
     uStack_18._0_2_ = (ushort)uVar3;
     uStack_18 = CONCAT22(uStack_18._2_2_ & 0xf003 | (ushort)((uStack_c & 0x3ff) << 2),
                          (ushort)uStack_18);
-    password_step_sub_002dddc0(auStack_250,&uStack_18,param_1);
+    Password_Decode(auStack_250,&uStack_18,param_1);
   }
   return;
 }

@@ -1173,23 +1173,23 @@ void screc327800_update_sub_0023dfd0(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
   if (*(int *)(iVar3 + 0x770) != *(int *)(iVar3 + 0x774)) {
-    uVar4 = password_leaf_sub_002dd4f0();
-    uVar5 = password_leaf_sub_002dd4f0(*(undefined4 *)(iVar3 + 0x770));
-    password_step_sub_002dcac0(iVar3 + 0x588,uVar5,*(undefined4 *)(iVar3 + 0x770));
+    uVar4 = PwInput_GetKeyLabel();
+    uVar5 = PwInput_GetKeyLabel(*(undefined4 *)(iVar3 + 0x770));
+    PwInput_Init(iVar3 + 0x588,uVar5,*(undefined4 *)(iVar3 + 0x770));
     if ((uVar4 & 0xff) == (uVar5 & 0xff)) {
       uVar2 = *(undefined4 *)(iVar3 + 0x770);
     }
     else {
-      password_step_sub_002dcc20(iVar3 + 0x588);
+      PwInput_Open(iVar3 + 0x588);
       uVar2 = *(undefined4 *)(iVar3 + 0x770);
     }
     *(undefined4 *)(iVar3 + 0x774) = uVar2;
   }
   UiLayout_UpdateAnimById(0xb3,0);
-  uVar2 = password_leaf_sub_002dd460(param_1,*(undefined4 *)(iVar3 + 0x770));
+  uVar2 = PwInput_IsSpecialKey(param_1,*(undefined4 *)(iVar3 + 0x770));
   *(undefined4 *)(iVar3 + 0x76c) = uVar2;
-  password_anim_sub_002dcd50(iVar3 + 0x588);
-  password_step_sub_002dcc40(iVar3 + 0x588);
+  PwInput_Animate(iVar3 + 0x588);
+  PwInput_Update(iVar3 + 0x588);
   iVar3 = UiMgr_FindLayout(0xb3);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   iVar3 = UiMgr_FindLayout(0xb7);
@@ -1272,23 +1272,23 @@ void screc32780c_update_sub_0023e250(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
   if (*(int *)(iVar3 + 0x770) != *(int *)(iVar3 + 0x774)) {
-    uVar4 = password_leaf_sub_002dd4f0();
-    uVar5 = password_leaf_sub_002dd4f0(*(undefined4 *)(iVar3 + 0x770));
-    password_step_sub_002dcac0(iVar3 + 0x588,uVar5,*(undefined4 *)(iVar3 + 0x770));
+    uVar4 = PwInput_GetKeyLabel();
+    uVar5 = PwInput_GetKeyLabel(*(undefined4 *)(iVar3 + 0x770));
+    PwInput_Init(iVar3 + 0x588,uVar5,*(undefined4 *)(iVar3 + 0x770));
     if ((uVar4 & 0xff) == (uVar5 & 0xff)) {
       uVar2 = *(undefined4 *)(iVar3 + 0x770);
     }
     else {
-      password_step_sub_002dcc20(iVar3 + 0x588);
+      PwInput_Open(iVar3 + 0x588);
       uVar2 = *(undefined4 *)(iVar3 + 0x770);
     }
     *(undefined4 *)(iVar3 + 0x774) = uVar2;
   }
   UiLayout_UpdateAnimById(0xb3,0);
-  uVar2 = password_leaf_sub_002dd460(param_1,*(undefined4 *)(iVar3 + 0x770));
+  uVar2 = PwInput_IsSpecialKey(param_1,*(undefined4 *)(iVar3 + 0x770));
   *(undefined4 *)(iVar3 + 0x76c) = uVar2;
-  password_anim_sub_002dcd50(iVar3 + 0x588);
-  password_step_sub_002dcc40(iVar3 + 0x588);
+  PwInput_Animate(iVar3 + 0x588);
+  PwInput_Update(iVar3 + 0x588);
   iVar3 = UiMgr_FindLayout(0xb3);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
   iVar3 = UiMgr_FindLayout(0xb7);

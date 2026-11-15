@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002f8000  size 0x18
-void nameentry_leaf_sub_002f8000(int param_1)
+void PreviewSnd_MarkStopped(int param_1)
 
 {
   *(uint *)(param_1 + 4) = *(uint *)(param_1 + 4) | 1;
@@ -12,7 +12,7 @@ void nameentry_leaf_sub_002f8000(int param_1)
 }
 
 // 0x002f8020  size 0x60
-void nameentry_step_sub_002f8020(undefined4 *param_1)
+void PreviewSnd_StopAndClear(undefined4 *param_1)
 
 {
   long lVar1;
@@ -26,7 +26,7 @@ void nameentry_step_sub_002f8020(undefined4 *param_1)
 }
 
 // 0x002f8080  size 0x14
-void nameentry_leaf_sub_002f8080(undefined4 *param_1,undefined4 param_2)
+void PreviewSnd_Init(undefined4 *param_1,undefined4 param_2)
 
 {
   *param_1 = param_2;
@@ -36,12 +36,12 @@ void nameentry_leaf_sub_002f8080(undefined4 *param_1,undefined4 param_2)
 }
 
 // 0x002f80a0  size 0xcc
-undefined4 nameentry_step_sub_002f80a0(int *param_1)
+undefined4 Composer_UpdateInput(int *param_1)
 
 {
   undefined4 uVar1;
   
-  nameentry_leaf_sub_002f8ad0(0);
+  ComposerInput_SetMode(0);
   if ((param_1[5] == 0) && (param_1[6] == 0)) {
     if ((param_1[1] != param_1[2]) || (*(int *)(iRam0036f934 + 4) != *(int *)(iRam0036f934 + 0xc)))
     {
@@ -56,7 +56,7 @@ undefined4 nameentry_step_sub_002f80a0(int *param_1)
       param_1[4] = 1;
       param_1[7] = 0;
     }
-    nameentry_leaf_sub_002f8ad0(1);
+    ComposerInput_SetMode(1);
     uVar1 = 1;
   }
   else {
@@ -66,7 +66,9 @@ undefined4 nameentry_step_sub_002f80a0(int *param_1)
 }
 
 // 0x002f8170  size 0x28
-void nameentry_leaf_sub_002f8170(int param_1)
+/* 32 callers */
+
+void Composer_ConsumeRedraw(int param_1)
 
 {
   if (*(int *)(param_1 + 0x18) != 0) {
@@ -77,7 +79,9 @@ void nameentry_leaf_sub_002f8170(int param_1)
 }
 
 // 0x002f81a0  size 0x8
-void nameentry_leaf_sub_002f81a0(int param_1)
+/* 32 callers */
+
+void Composer_ClearDirty(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x14) = 0;
@@ -99,7 +103,9 @@ undefined4 Nameentry_GetField_14(int param_1)
 }
 
 // 0x002f81d0  size 0xc
-undefined4 nameentry_leaf_sub_002f81d0(int param_1)
+/* 32 callers */
+
+undefined4 Composer_ConsumeConfirm(int param_1)
 
 {
   undefined4 uVar1;
@@ -110,7 +116,9 @@ undefined4 nameentry_leaf_sub_002f81d0(int param_1)
 }
 
 // 0x002f81e0  size 0xc
-undefined4 nameentry_leaf_sub_002f81e0(int param_1)
+/* 30 callers */
+
+undefined4 Composer_ConsumeCancel(int param_1)
 
 {
   undefined4 uVar1;
@@ -150,7 +158,7 @@ void Nameentry_SetField_8(int param_1,undefined4 param_2)
 }
 
 // 0x002f8230  size 0x2c
-void nameentry_leaf_sub_002f8230(undefined4 *param_1,undefined4 param_2)
+void Composer_InitPanel(undefined4 *param_1,undefined4 param_2)
 
 {
   *param_1 = 0xffffffff;
@@ -166,8 +174,9 @@ void nameentry_leaf_sub_002f8230(undefined4 *param_1,undefined4 param_2)
 
 // 0x002f8260  size 0xa4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* 26 callers */
 
-void nameentry_draw_sub_002f8260(long param_1,int param_2)
+void Composer_DrawLabel(long param_1,int param_2)
 
 {
   int iVar1;
@@ -184,14 +193,14 @@ void nameentry_draw_sub_002f8260(long param_1,int param_2)
 }
 
 // 0x002f8310  size 0xc
-undefined4 nameentry_leaf_sub_002f8310(void)
+undefined4 ComposerScene_GetMode(void)
 
 {
   return *(undefined4 *)(iRam0036f934 + 0x18);
 }
 
 // 0x002f8320  size 0xc
-void nameentry_leaf_sub_002f8320(undefined4 param_1)
+void ComposerScene_SetMode(undefined4 param_1)
 
 {
   *(undefined4 *)(iRam0036f934 + 0x18) = param_1;
@@ -213,7 +222,7 @@ undefined4 Nameentry_Nop_4(void)
 }
 
 // 0x002f8350  size 0x1f0
-void nameentry_step_sub_002f8350(void)
+void ComposerScene_FadeIn(void)
 
 {
   int aiStack_50 [8];
@@ -283,7 +292,7 @@ void nameentry_step_sub_002f8350(void)
 }
 
 // 0x002f8540  size 0xc
-void nameentry_leaf_sub_002f8540(undefined4 param_1)
+void ComposerScene_SetPage(undefined4 param_1)
 
 {
   *(undefined4 *)(iRam0036f934 + 0x10) = param_1;
@@ -291,28 +300,30 @@ void nameentry_leaf_sub_002f8540(undefined4 param_1)
 }
 
 // 0x002f8550  size 0xc
-undefined4 nameentry_leaf_sub_002f8550(void)
+undefined4 ComposerScene_GetPage(void)
 
 {
   return *(undefined4 *)(iRam0036f934 + 0x10);
 }
 
 // 0x002f8560  size 0xc
-undefined4 nameentry_leaf_sub_002f8560(void)
+undefined4 ComposerScene_GetPrevState(void)
 
 {
   return *(undefined4 *)(iRam0036f934 + 8);
 }
 
 // 0x002f8570  size 0xc
-undefined4 nameentry_leaf_sub_002f8570(void)
+undefined4 ComposerScene_GetState(void)
 
 {
   return *(undefined4 *)(iRam0036f934 + 4);
 }
 
 // 0x002f8580  size 0x30
-void nameentry_leaf_sub_002f8580(int param_1)
+/* 7 callers */
+
+void ComposerScene_RequestState(int param_1)
 
 {
   if (*(int *)(iRam0036f934 + 4) != param_1) {
@@ -323,7 +334,7 @@ void nameentry_leaf_sub_002f8580(int param_1)
 }
 
 // 0x002f85b0  size 0x60
-int nameentry_leaf_sub_002f85b0(void)
+int ComposerScene_ApplyState(void)
 
 {
   int iVar1;
@@ -347,7 +358,7 @@ int nameentry_leaf_sub_002f85b0(void)
 }
 
 // 0x002f8620  size 0xc0
-void nameentry_select_sub_002f8620(void)
+void ComposerScene_Exit(void)
 
 {
   int iVar1;
@@ -376,14 +387,16 @@ void nameentry_select_sub_002f8620(void)
 }
 
 // 0x002f86e0  size 0x18
-bool nameentry_leaf_sub_002f86e0(void)
+/* 14 callers */
+
+bool ComposerScene_IsChanging(void)
 
 {
   return *(int *)(iRam0036f934 + 4) != *(int *)(iRam0036f934 + 0xc);
 }
 
 // 0x002f8700  size 0x54
-void nameentry_exit_sub_002f8700(void)
+void ComposerScene_Free(void)
 
 {
   if (*piRam0036f934 != 0) {
@@ -401,7 +414,7 @@ void nameentry_exit_sub_002f8700(void)
 // 0x002f8760  size 0x17c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void nameentry_load_sub_002f8760(undefined8 param_1,undefined4 param_2)
+void ComposerScene_Alloc(undefined8 param_1,undefined4 param_2)
 
 {
   int *piVar1;
@@ -455,7 +468,7 @@ void nameentry_load_sub_002f8760(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x002f88e0  size 0x1ac
-undefined4 nameentry_step_sub_002f88e0(char *param_1)
+undefined4 ComposerInput_SetupDevices(char *param_1)
 
 {
   int iVar1;
@@ -527,28 +540,30 @@ undefined4 nameentry_step_sub_002f88e0(char *param_1)
 }
 
 // 0x002f8a90  size 0xc
-undefined4 nameentry_leaf_sub_002f8a90(void)
+undefined4 ComposerInput_GetRepeat(void)
 
 {
   return *(undefined4 *)(iRam0036f950 + 0x20);
 }
 
 // 0x002f8aa0  size 0xc
-undefined4 nameentry_leaf_sub_002f8aa0(void)
+undefined4 ComposerInput_GetHeld(void)
 
 {
   return *(undefined4 *)(iRam0036f950 + 0x1c);
 }
 
 // 0x002f8ab0  size 0xc
-undefined4 nameentry_leaf_sub_002f8ab0(void)
+/* 29 callers */
+
+undefined4 ComposerInput_GetPressed(void)
 
 {
   return *(undefined4 *)(iRam0036f950 + 0x18);
 }
 
 // 0x002f8ac0  size 0x10
-void nameentry_leaf_sub_002f8ac0(void)
+void ComposerInput_Lock(void)
 
 {
   *(undefined4 *)(iRam0036f950 + 0x14) = 1;
@@ -556,7 +571,7 @@ void nameentry_leaf_sub_002f8ac0(void)
 }
 
 // 0x002f8ad0  size 0xc
-void nameentry_leaf_sub_002f8ad0(undefined4 param_1)
+void ComposerInput_SetMode(undefined4 param_1)
 
 {
   *(undefined4 *)(iRam0036f950 + 0xc) = param_1;
@@ -564,7 +579,7 @@ void nameentry_leaf_sub_002f8ad0(undefined4 param_1)
 }
 
 // 0x002f8ae0  size 0x2c
-void nameentry_exit_sub_002f8ae0(void)
+void ComposerInput_Free(void)
 
 {
   if (iRam0036f950 != 0) {
@@ -575,7 +590,7 @@ void nameentry_exit_sub_002f8ae0(void)
 }
 
 // 0x002f8b10  size 0xa4
-void nameentry_load_sub_002f8b10(undefined8 param_1,undefined4 param_2)
+void ComposerInput_Alloc(undefined8 param_1,undefined4 param_2)
 
 {
   long lVar1;
@@ -602,7 +617,7 @@ void nameentry_load_sub_002f8b10(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x002f8bc0  size 0xf8
-void nameentry_input_sub_002f8bc0(void)
+void ComposerInput_Task(void)
 
 {
   undefined1 *puVar1;
@@ -617,7 +632,7 @@ void nameentry_input_sub_002f8bc0(void)
     if (*(int *)(puRam0036f950 + 0xc) != 0) {
       if (*(int *)(puRam0036f950 + 0x14) != 0) {
         *(undefined4 *)(puRam0036f950 + 0x14) = 0;
-        nameentry_step_sub_002f88e0(puRam0036f950);
+        ComposerInput_SetupDevices(puRam0036f950);
       }
       puVar1 = puRam0036f950;
       uVar3 = Pad_GetPort(*puRam0036f950,puRam0036f950[1]);
@@ -645,12 +660,12 @@ void Frontend_Nop(void)
 void frontend_leaf_sub_002f8cd0(int param_1)
 
 {
-  *(code **)(param_1 + 0x1c) = nameentry_input_sub_002f8bc0;
+  *(code **)(param_1 + 0x1c) = ComposerInput_Task;
   return;
 }
 
 // 0x002f8ce0  size 0x240
-undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
+undefined4 Composer_GetSlotLabel(int param_1,undefined1 param_2)
 
 {
   int iVar1;
@@ -661,7 +676,7 @@ undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
   default:
     return 6;
   case 1:
-    lVar3 = script_step_sub_002bc1a0(*(undefined4 *)(param_1 + 0x60));
+    lVar3 = SeqGen_IsUserSong(*(undefined4 *)(param_1 + 0x60));
     if (lVar3 == 0) {
       return 5;
     }
@@ -703,7 +718,7 @@ undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
     if (bVar2) {
       return 2;
     }
-    lVar3 = script_step_sub_002bc1a0();
+    lVar3 = SeqGen_IsUserSong();
     if (lVar3 == 0) {
       return 5;
     }
@@ -712,7 +727,7 @@ undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
     }
     break;
   case 5:
-    lVar3 = script_step_sub_002bc1a0(*(undefined4 *)(param_1 + 0x60));
+    lVar3 = SeqGen_IsUserSong(*(undefined4 *)(param_1 + 0x60));
     if (lVar3 == 0) {
       return 5;
     }
@@ -729,7 +744,7 @@ undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
     if (iVar1 == *(int *)(param_1 + 0x54)) {
       return 3;
     }
-    lVar3 = script_step_sub_002bc1a0();
+    lVar3 = SeqGen_IsUserSong();
     if (lVar3 != 0) {
       return 4;
     }
@@ -742,7 +757,7 @@ undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
     if (bVar2) {
       return 2;
     }
-    lVar3 = script_step_sub_002bc1a0();
+    lVar3 = SeqGen_IsUserSong();
     if (lVar3 == 0) {
       return 5;
     }
@@ -754,7 +769,7 @@ undefined4 nameentry_step_sub_002f8ce0(int param_1,undefined1 param_2)
 }
 
 // 0x002f8f20  size 0x170
-void nameentry_step_sub_002f8f20(undefined8 param_1)
+void Composer_StatePlay(undefined8 param_1)
 
 {
   char cVar1;
@@ -762,7 +777,7 @@ void nameentry_step_sub_002f8f20(undefined8 param_1)
   undefined8 uVar3;
   int iVar4;
   
-  lVar2 = nameentry_leaf_sub_002f81e0();
+  lVar2 = Composer_ConsumeCancel();
   iVar4 = (int)param_1;
   if (lVar2 == 0) {
     cVar1 = *(char *)(iVar4 + 0x4c);
@@ -772,12 +787,12 @@ void nameentry_step_sub_002f8f20(undefined8 param_1)
     *(undefined4 *)(iVar4 + 0x78) = 0xfffffffe;
     *(undefined4 *)(iVar4 + 0x70) = *(undefined4 *)(iVar4 + 0x60);
     *(undefined1 *)(iVar4 + 0x4c) = 1;
-    nameentry_step_sub_002f7f80(iVar4 + 0x24);
-    script_step_sub_002b97c0(*(undefined4 *)(iVar4 + 0x20),*(undefined4 *)(iVar4 + 0x60));
+    PreviewSnd_StopIfPlaying(iVar4 + 0x24);
+    SeqGen_SelectSong(*(undefined4 *)(iVar4 + 0x20),*(undefined4 *)(iVar4 + 0x60));
     cVar1 = *(char *)(iVar4 + 0x4c);
   }
   if (cVar1 == '\x05') {
-    lVar2 = nameentry_step_sub_002f7d80(iVar4 + 0x24,0,0xffffffffffffffff,0xffffffffffffffff);
+    lVar2 = PreviewSnd_Play(iVar4 + 0x24,0,0xffffffffffffffff,0xffffffffffffffff);
     if (lVar2 != 0) {
       *(undefined1 *)(iVar4 + 0x4c) = 6;
       uVar3 = Nameentry_Nop_2(param_1);
@@ -785,42 +800,42 @@ void nameentry_step_sub_002f8f20(undefined8 param_1)
     }
   }
   else if (cVar1 == '\x04') {
-    lVar2 = script_leaf_sub_002b9290(*(undefined4 *)(iVar4 + 0x20));
+    lVar2 = SeqGen_IsReady(*(undefined4 *)(iVar4 + 0x20));
     if (lVar2 == 0) {
       *(undefined1 *)(iVar4 + 0x4c) = 0;
       uVar3 = Nameentry_Nop_2(param_1);
       Nameentry_SetField_8(param_1,uVar3);
     }
     else {
-      lVar2 = nameentry_step_sub_002f64e0(iVar4 + 0x24);
+      lVar2 = Composer_PreviewLoop(iVar4 + 0x24);
       if (lVar2 != 0) {
         *(undefined1 *)(iVar4 + 0x4c) = 5;
       }
     }
   }
   else if (cVar1 == '\x02') {
-    lVar2 = script_step_sub_002bb460(*(undefined4 *)(iVar4 + 0x20));
+    lVar2 = SeqGen_StopThread(*(undefined4 *)(iVar4 + 0x20));
     if (lVar2 != 0) {
       *(undefined1 *)(iVar4 + 0x4c) = 4;
     }
   }
   else if ((cVar1 == '\x01') &&
-          (lVar2 = script_leaf_sub_002b9080(*(undefined4 *)(iVar4 + 0x20),0xffffffffffffffff),
-          lVar2 == 0)) {
-    script_load_sub_002bb4c0(*(undefined4 *)(iVar4 + 0x20));
+          (lVar2 = SeqGen_GetPosition(*(undefined4 *)(iVar4 + 0x20),0xffffffffffffffff), lVar2 == 0)
+          ) {
+    SeqGen_StartThread(*(undefined4 *)(iVar4 + 0x20));
     *(undefined1 *)(iVar4 + 0x4c) = 2;
   }
   return;
 }
 
 // 0x002f9090  size 0x4c
-void nameentry_step_sub_002f9090(undefined8 param_1)
+void Composer_StateIdle(undefined8 param_1)
 
 {
   long lVar1;
   undefined4 uVar2;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   if (lVar1 != 0) {
     uVar2 = Nameentry_Nop_2(param_1);
     *(undefined4 *)((int)param_1 + 0x74) = uVar2;
@@ -841,16 +856,16 @@ void ScrNameentrySetField8_Exitf90e0(undefined8 param_1)
   int iVar3;
   int iVar4;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   iVar4 = (int)param_1;
   if (lVar1 != 0) {
     *(undefined4 *)(iVar4 + 0x78) = 7;
     *(undefined4 *)(iVar4 + 0x6c) = 1;
   }
-  nameentry_step_sub_002f6190(iVar4 + 0x6c,0,1,1,0);
-  uVar2 = nameentry_leaf_sub_002f8ab0();
+  Composer_MoveCursor(iVar4 + 0x6c,0,1,1,0);
+  uVar2 = ComposerInput_GetPressed();
   if ((uVar2 & 0x800) != 0) {
-    lVar1 = script_step_sub_002bc1a0(*(undefined4 *)(iVar4 + 0x60));
+    lVar1 = SeqGen_IsUserSong(*(undefined4 *)(iVar4 + 0x60));
     if (lVar1 == 0) {
       Se_PlayMenuVol(8,0x60);
     }
@@ -860,7 +875,7 @@ void ScrNameentrySetField8_Exitf90e0(undefined8 param_1)
         iVar3 = *(int *)(iVar4 + 0x6c);
         goto LAB_002f912c;
       }
-      nameentry_step_sub_002f7f80(iVar4 + 0x24);
+      PreviewSnd_StopIfPlaying(iVar4 + 0x24);
       *(undefined4 *)(iVar4 + 0x70) = 0xffffffff;
       *(undefined1 *)(iVar4 + 0x4c) = 0;
     }
@@ -869,14 +884,14 @@ void ScrNameentrySetField8_Exitf90e0(undefined8 param_1)
 LAB_002f912c:
   if (iVar3 == 0) {
     *(undefined4 *)(iVar4 + 0x74) = 7;
-    uVar2 = nameentry_leaf_sub_002f8ab0();
+    uVar2 = ComposerInput_GetPressed();
     if ((uVar2 & 0x180) != 0) {
       if (*(int *)(iVar4 + 0x60) == *(int *)(iVar4 + 0x70)) {
-        nameentry_step_sub_002f7f80(iVar4 + 0x24);
+        PreviewSnd_StopIfPlaying(iVar4 + 0x24);
         *(undefined4 *)(iVar4 + 0x70) = 0xffffffff;
         *(undefined1 *)(iVar4 + 0x4c) = 0;
       }
-      script_step_sub_002bc150(*(undefined4 *)(iVar4 + 0x60));
+      SeqGen_GetModeSongIndex(*(undefined4 *)(iVar4 + 0x60));
     }
   }
   else {
@@ -899,13 +914,13 @@ void ScrNameentrySetField8_Updatef9220(undefined8 param_1)
   ulong uVar6;
   int iVar7;
   
-  lVar5 = nameentry_leaf_sub_002f81e0();
+  lVar5 = Composer_ConsumeCancel();
   iVar7 = (int)param_1;
   if (lVar5 != 0) {
     *(undefined4 *)(iVar7 + 0x78) = 0;
     *(undefined1 *)(iVar7 + 100) = 7;
   }
-  nameentry_step_sub_002f6190(iVar7 + 0x60,0,0x1d,1,0);
+  Composer_MoveCursor(iVar7 + 0x60,0,0x1d,1,0);
   iVar2 = *(int *)(iVar7 + 0x60);
   iVar3 = *(int *)(iVar7 + 0x58);
   if ((iVar2 + 1) % 0x1e == iVar3) {
@@ -916,16 +931,16 @@ void ScrNameentrySetField8_Updatef9220(undefined8 param_1)
     *(int *)(iVar7 + 0x58) = (iVar3 + 1) % 0x1e;
     *(undefined4 *)(iVar7 + 0x68) = 1;
   }
-  uVar6 = nameentry_leaf_sub_002f8ab0();
+  uVar6 = ComposerInput_GetPressed();
   if ((uVar6 & 0x800) != 0) {
-    lVar5 = script_step_sub_002bc1a0(*(undefined4 *)(iVar7 + 0x60));
+    lVar5 = SeqGen_IsUserSong(*(undefined4 *)(iVar7 + 0x60));
     if (lVar5 == 0) {
       Se_PlayMenuVol(8,0x60);
       uVar1 = *(undefined1 *)(iVar7 + 100);
       goto LAB_002f92e4;
     }
     if (*(int *)(iVar7 + 0x60) == *(int *)(iVar7 + 0x70)) {
-      nameentry_step_sub_002f7f80(iVar7 + 0x24);
+      PreviewSnd_StopIfPlaying(iVar7 + 0x24);
       *(undefined4 *)(iVar7 + 0x70) = 0xffffffff;
       *(undefined1 *)(iVar7 + 0x4c) = 0;
     }
@@ -935,10 +950,10 @@ void ScrNameentrySetField8_Updatef9220(undefined8 param_1)
   }
   uVar1 = *(undefined1 *)(iVar7 + 100);
 LAB_002f92e4:
-  cVar4 = nameentry_step_sub_002f8ce0(param_1,uVar1);
+  cVar4 = Composer_GetSlotLabel(param_1,uVar1);
   if (cVar4 == '\x05') {
     *(undefined4 *)(iVar7 + 0x74) = 0xfffffffe;
-    uVar6 = nameentry_leaf_sub_002f8ab0();
+    uVar6 = ComposerInput_GetPressed();
     if ((uVar6 & 0x980) != 0) {
       Se_PlayMenuVol(8,0x60);
     }
@@ -967,13 +982,13 @@ void ScrNameentrySetField8_Enterf93b0(undefined8 param_1)
   bool bVar7;
   int iVar8;
   
-  lVar4 = nameentry_leaf_sub_002f81e0();
+  lVar4 = Composer_ConsumeCancel();
   iVar8 = (int)param_1;
   if (((lVar4 != 0) && (lVar4 = Nameentry_Nop_2(param_1), lVar4 != 9)) &&
      (lVar4 = Nameentry_Nop_2(param_1), lVar4 != 10)) {
     *(undefined4 *)(iVar8 + 0x54) = 0xffffffff;
   }
-  nameentry_step_sub_002f6190(iVar8 + 0x60,0,0x1d,1,0);
+  Composer_MoveCursor(iVar8 + 0x60,0,0x1d,1,0);
   iVar6 = *(int *)(iVar8 + 0x60);
   iVar2 = *(int *)(iVar8 + 0x58);
   if ((iVar6 + 1) % 0x1e == iVar2) {
@@ -984,9 +999,9 @@ void ScrNameentrySetField8_Enterf93b0(undefined8 param_1)
     *(int *)(iVar8 + 0x58) = (iVar2 + 1) % 0x1e;
     *(undefined4 *)(iVar8 + 0x68) = 1;
   }
-  uVar5 = nameentry_leaf_sub_002f8ab0();
+  uVar5 = ComposerInput_GetPressed();
   if ((uVar5 & 0x800) != 0) {
-    lVar4 = script_step_sub_002bc1a0(*(undefined4 *)(iVar8 + 0x60));
+    lVar4 = SeqGen_IsUserSong(*(undefined4 *)(iVar8 + 0x60));
     if (lVar4 == 0) {
       Se_PlayMenuVol(8,0x60);
     }
@@ -996,7 +1011,7 @@ void ScrNameentrySetField8_Enterf93b0(undefined8 param_1)
         iVar6 = *(int *)(iVar8 + 0x54);
         goto LAB_002f947c;
       }
-      nameentry_step_sub_002f7f80(iVar8 + 0x24);
+      PreviewSnd_StopIfPlaying(iVar8 + 0x24);
       *(undefined4 *)(iVar8 + 0x70) = 0xffffffff;
       *(undefined1 *)(iVar8 + 0x4c) = 0;
     }
@@ -1005,11 +1020,11 @@ void ScrNameentrySetField8_Enterf93b0(undefined8 param_1)
 LAB_002f947c:
   if (iVar6 == -1) {
     *(undefined1 *)(iVar8 + 100) = 5;
-    cVar1 = nameentry_step_sub_002f8ce0(param_1,*(undefined1 *)(iVar8 + 100));
+    cVar1 = Composer_GetSlotLabel(param_1,*(undefined1 *)(iVar8 + 100));
     if (cVar1 == '\0') {
       *(undefined4 *)(iVar8 + 0x74) = 0xfffffffe;
       *(undefined4 *)(iVar8 + 0x78) = 0;
-      uVar5 = nameentry_leaf_sub_002f8ab0();
+      uVar5 = ComposerInput_GetPressed();
       if ((uVar5 & 0x180) != 0) {
         *(undefined4 *)(iVar8 + 0x54) = *(undefined4 *)(iVar8 + 0x60);
         *(undefined4 *)(iVar8 + 0x5c) = 0xffffffff;
@@ -1019,7 +1034,7 @@ LAB_002f947c:
     else {
       *(undefined4 *)(iVar8 + 0x74) = 0xfffffffe;
       *(undefined4 *)(iVar8 + 0x78) = 0;
-      uVar5 = nameentry_leaf_sub_002f8ab0();
+      uVar5 = ComposerInput_GetPressed();
       if ((uVar5 & 0x180) != 0) {
         Se_PlayMenuVol(8,0x60);
       }
@@ -1027,11 +1042,11 @@ LAB_002f947c:
   }
   else {
     *(undefined1 *)(iVar8 + 100) = 6;
-    cVar1 = nameentry_step_sub_002f8ce0(param_1,*(undefined1 *)(iVar8 + 100));
+    cVar1 = Composer_GetSlotLabel(param_1,*(undefined1 *)(iVar8 + 100));
     if (cVar1 == '\0') {
       *(undefined4 *)(iVar8 + 0x74) = 6;
       *(undefined4 *)(iVar8 + 0x78) = 0xfffffffe;
-      uVar5 = nameentry_leaf_sub_002f8ab0();
+      uVar5 = ComposerInput_GetPressed();
       if ((uVar5 & 0x180) != 0) {
         iVar2 = maybe_Race_GetMode();
         iVar6 = *(int *)(iVar8 + 0x60);
@@ -1054,7 +1069,7 @@ LAB_002f947c:
       *(undefined4 *)(iVar8 + 0x74) = 9;
       *(undefined4 *)(iVar8 + 0x78) = 0xfffffffe;
     }
-    uVar5 = nameentry_leaf_sub_002f8ab0();
+    uVar5 = ComposerInput_GetPressed();
     if ((uVar5 & 0x240) != 0) {
       *(undefined4 *)(iVar8 + 0x54) = 0xffffffff;
       Se_PlayMenuVol(6,0x60);
@@ -1073,15 +1088,15 @@ void Scrstrcmp_Exit(int param_1)
   long lVar2;
   ulong uVar3;
   
-  lVar2 = nameentry_leaf_sub_002f81e0();
+  lVar2 = Composer_ConsumeCancel();
   if (lVar2 != 0) {
     *(undefined4 *)(param_1 + 0x78) = 4;
     *(undefined4 *)(param_1 + 0x6c) = 1;
   }
-  nameentry_step_sub_002f6190(param_1 + 0x6c,0,1,1,0);
+  Composer_MoveCursor(param_1 + 0x6c,0,1,1,0);
   if (*(int *)(param_1 + 0x6c) == 0) {
     *(undefined4 *)(param_1 + 0x74) = 3;
-    uVar3 = nameentry_leaf_sub_002f8ab0();
+    uVar3 = ComposerInput_GetPressed();
     if ((uVar3 & 0x180) != 0) {
       iVar1 = maybe_Race_GetMode();
       maybe_strncpy(iVar1 + (*(int *)(param_1 + 0x60) + -0xc) * 0x858 + 0x876,param_1 + 0x3c,0x10);
@@ -1105,18 +1120,18 @@ void Scrstrcmp_Update(undefined8 param_1)
   int iVar4;
   int iVar5;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   iVar4 = (int)param_1;
   if (lVar1 != 0) {
     *(undefined4 *)(iVar4 + 0x74) = 0xfffffffe;
     *(undefined4 *)(iVar4 + 0x78) = 0xfffffffe;
     lVar1 = Nameentry_Nop_2(param_1);
     if (lVar1 != 5) {
-      uVar3 = script_step_sub_002b8e60(*(undefined4 *)(iVar4 + 0x20),*(undefined4 *)(iVar4 + 0x60));
-      nameentry_step_sub_002f7430(iVar4 + 0x30,uVar3);
+      uVar3 = SeqGen_GetPartTextId(*(undefined4 *)(iVar4 + 0x20),*(undefined4 *)(iVar4 + 0x60));
+      Keyboard_Init(iVar4 + 0x30,uVar3);
     }
   }
-  lVar1 = nameentry_step_sub_002f7190(iVar4 + 0x30);
+  lVar1 = Keyboard_Update(iVar4 + 0x30);
   if (lVar1 == 2) {
     *(undefined4 *)(iVar4 + 0x74) = 3;
     *(undefined4 *)(iVar4 + 0x78) = 3;
@@ -1124,9 +1139,8 @@ void Scrstrcmp_Update(undefined8 param_1)
   else if (lVar1 == 1) {
     iVar5 = 0;
     do {
-      if ((iVar5 != *(int *)(iVar4 + 0x60)) && (lVar1 = script_step_sub_002bc1a0(iVar5), lVar1 != 0)
-         ) {
-        uVar3 = script_step_sub_002b8e60(*(undefined4 *)(iVar4 + 0x20),iVar5);
+      if ((iVar5 != *(int *)(iVar4 + 0x60)) && (lVar1 = SeqGen_IsUserSong(iVar5), lVar1 != 0)) {
+        uVar3 = SeqGen_GetPartTextId(*(undefined4 *)(iVar4 + 0x20),iVar5);
         lVar1 = strcmp(iVar4 + 0x3c,uVar3);
         if (lVar1 == 0) {
           *(undefined4 *)(iVar4 + 0x74) = 5;
@@ -1140,9 +1154,9 @@ void Scrstrcmp_Update(undefined8 param_1)
     *(undefined4 *)(iVar4 + 0x74) = 3;
   }
   else {
-    uVar2 = nameentry_leaf_sub_002f8ab0();
+    uVar2 = ComposerInput_GetPressed();
     if ((uVar2 & 0x180) == 0) {
-      uVar2 = nameentry_leaf_sub_002f8ab0();
+      uVar2 = ComposerInput_GetPressed();
       if ((uVar2 & 0x240) != 0) {
         Se_PlayMenuVol(6,0x60);
       }
@@ -1168,14 +1182,14 @@ void Scrstrcmp_Enter(undefined8 param_1)
   ulong uVar6;
   int iVar7;
   
-  lVar5 = nameentry_leaf_sub_002f81e0();
+  lVar5 = Composer_ConsumeCancel();
   iVar7 = (int)param_1;
   if (lVar5 != 0) {
     *(undefined4 *)(iVar7 + 0x74) = 4;
     *(undefined4 *)(iVar7 + 0x78) = 0;
     *(undefined1 *)(iVar7 + 100) = 4;
   }
-  nameentry_step_sub_002f6190(iVar7 + 0x60,0,0x1d,1,0);
+  Composer_MoveCursor(iVar7 + 0x60,0,0x1d,1,0);
   iVar2 = *(int *)(iVar7 + 0x60);
   iVar3 = *(int *)(iVar7 + 0x58);
   if ((iVar2 + 1) % 0x1e == iVar3) {
@@ -1186,16 +1200,16 @@ void Scrstrcmp_Enter(undefined8 param_1)
     *(int *)(iVar7 + 0x58) = (iVar3 + 1) % 0x1e;
     *(undefined4 *)(iVar7 + 0x68) = 1;
   }
-  uVar6 = nameentry_leaf_sub_002f8ab0();
+  uVar6 = ComposerInput_GetPressed();
   if ((uVar6 & 0x800) != 0) {
-    lVar5 = script_step_sub_002bc1a0(*(undefined4 *)(iVar7 + 0x60));
+    lVar5 = SeqGen_IsUserSong(*(undefined4 *)(iVar7 + 0x60));
     if (lVar5 == 0) {
       Se_PlayMenuVol(8,0x60);
       uVar1 = *(undefined1 *)(iVar7 + 100);
       goto LAB_002f99e4;
     }
     if (*(int *)(iVar7 + 0x60) == *(int *)(iVar7 + 0x70)) {
-      nameentry_step_sub_002f7f80(iVar7 + 0x24);
+      PreviewSnd_StopIfPlaying(iVar7 + 0x24);
       *(undefined4 *)(iVar7 + 0x70) = 0xffffffff;
       *(undefined1 *)(iVar7 + 0x4c) = 0;
     }
@@ -1205,10 +1219,10 @@ void Scrstrcmp_Enter(undefined8 param_1)
   }
   uVar1 = *(undefined1 *)(iVar7 + 100);
 LAB_002f99e4:
-  cVar4 = nameentry_step_sub_002f8ce0(param_1,uVar1);
+  cVar4 = Composer_GetSlotLabel(param_1,uVar1);
   if (cVar4 == '\x05') {
     *(undefined4 *)(iVar7 + 0x74) = 0xfffffffe;
-    uVar6 = nameentry_leaf_sub_002f8ab0();
+    uVar6 = ComposerInput_GetPressed();
     if ((uVar6 & 0x980) != 0) {
       Se_PlayMenuVol(8,0x60);
     }
@@ -1236,13 +1250,13 @@ void ScrNameentrySetField8_Exitf9ac0(undefined8 param_1)
   int iVar6;
   undefined1 auStack_860 [2144];
   
-  lVar3 = nameentry_leaf_sub_002f81e0();
+  lVar3 = Composer_ConsumeCancel();
   iVar6 = (int)param_1;
   if (((lVar3 != 0) && (lVar3 = Nameentry_Nop_2(param_1), lVar3 != 9)) &&
      (lVar3 = Nameentry_Nop_2(param_1), lVar3 != 10)) {
     *(undefined4 *)(iVar6 + 0x54) = 0xffffffff;
   }
-  nameentry_step_sub_002f6190(iVar6 + 0x60,0,0x1d,1,0);
+  Composer_MoveCursor(iVar6 + 0x60,0,0x1d,1,0);
   iVar2 = *(int *)(iVar6 + 0x60);
   iVar5 = *(int *)(iVar6 + 0x58);
   if ((iVar2 + 1) % 0x1e == iVar5) {
@@ -1253,9 +1267,9 @@ void ScrNameentrySetField8_Exitf9ac0(undefined8 param_1)
     *(int *)(iVar6 + 0x58) = (iVar5 + 1) % 0x1e;
     *(undefined4 *)(iVar6 + 0x68) = 1;
   }
-  uVar4 = nameentry_leaf_sub_002f8ab0();
+  uVar4 = ComposerInput_GetPressed();
   if ((uVar4 & 0x800) != 0) {
-    lVar3 = script_step_sub_002bc1a0(*(undefined4 *)(iVar6 + 0x60));
+    lVar3 = SeqGen_IsUserSong(*(undefined4 *)(iVar6 + 0x60));
     if (lVar3 == 0) {
       Se_PlayMenuVol(8,0x60);
     }
@@ -1265,7 +1279,7 @@ void ScrNameentrySetField8_Exitf9ac0(undefined8 param_1)
         iVar2 = *(int *)(iVar6 + 0x54);
         goto LAB_002f9b90;
       }
-      nameentry_step_sub_002f7f80(iVar6 + 0x24);
+      PreviewSnd_StopIfPlaying(iVar6 + 0x24);
       *(undefined4 *)(iVar6 + 0x70) = 0xffffffff;
       *(undefined1 *)(iVar6 + 0x4c) = 0;
     }
@@ -1274,11 +1288,11 @@ void ScrNameentrySetField8_Exitf9ac0(undefined8 param_1)
 LAB_002f9b90:
   if (iVar2 == -1) {
     *(undefined1 *)(iVar6 + 100) = 2;
-    cVar1 = nameentry_step_sub_002f8ce0(param_1,*(undefined1 *)(iVar6 + 100));
+    cVar1 = Composer_GetSlotLabel(param_1,*(undefined1 *)(iVar6 + 100));
     if (cVar1 == '\0') {
       *(undefined4 *)(iVar6 + 0x74) = 0xfffffffe;
       *(undefined4 *)(iVar6 + 0x78) = 0;
-      uVar4 = nameentry_leaf_sub_002f8ab0();
+      uVar4 = ComposerInput_GetPressed();
       if ((uVar4 & 0x180) != 0) {
         *(undefined4 *)(iVar6 + 0x54) = *(undefined4 *)(iVar6 + 0x60);
         *(undefined4 *)(iVar6 + 0x5c) = 0xffffffff;
@@ -1292,11 +1306,11 @@ LAB_002f9b90:
   }
   else {
     *(undefined1 *)(iVar6 + 100) = 3;
-    cVar1 = nameentry_step_sub_002f8ce0(param_1,*(undefined1 *)(iVar6 + 100));
+    cVar1 = Composer_GetSlotLabel(param_1,*(undefined1 *)(iVar6 + 100));
     if (cVar1 == '\0') {
       *(undefined4 *)(iVar6 + 0x74) = 2;
       *(undefined4 *)(iVar6 + 0x78) = 0xfffffffe;
-      uVar4 = nameentry_leaf_sub_002f8ab0();
+      uVar4 = ComposerInput_GetPressed();
       if ((uVar4 & 0x180) != 0) {
         iVar2 = maybe_Race_GetMode();
         iVar5 = iVar2 + (*(int *)(iVar6 + 0x54) + -0xc) * 0x858 + 0x30;
@@ -1318,7 +1332,7 @@ LAB_002f9b90:
       *(undefined4 *)(iVar6 + 0x74) = 9;
       *(undefined4 *)(iVar6 + 0x78) = 0xfffffffe;
     }
-    uVar4 = nameentry_leaf_sub_002f8ab0();
+    uVar4 = ComposerInput_GetPressed();
     if ((uVar4 & 0x240) != 0) {
       *(undefined4 *)(iVar6 + 0x54) = 0xffffffff;
       Se_PlayMenuVol(6,0x60);
@@ -1340,14 +1354,14 @@ void ScrNameentrySetField8_Updatef9dc0(undefined8 param_1)
   ulong uVar5;
   int iVar6;
   
-  lVar4 = nameentry_leaf_sub_002f81e0();
+  lVar4 = Composer_ConsumeCancel();
   iVar6 = (int)param_1;
   if (lVar4 != 0) {
     *(undefined4 *)(iVar6 + 0x74) = 0xfffffffe;
     *(undefined4 *)(iVar6 + 0x78) = 0;
     *(undefined1 *)(iVar6 + 100) = 1;
   }
-  nameentry_step_sub_002f6190(iVar6 + 0x60,0,0x1d,1,0);
+  Composer_MoveCursor(iVar6 + 0x60,0,0x1d,1,0);
   iVar1 = *(int *)(iVar6 + 0x60);
   iVar2 = *(int *)(iVar6 + 0x58);
   if ((iVar1 + 1) % 0x1e == iVar2) {
@@ -1358,12 +1372,12 @@ void ScrNameentrySetField8_Updatef9dc0(undefined8 param_1)
     *(int *)(iVar6 + 0x58) = (iVar2 + 1) % 0x1e;
     *(undefined4 *)(iVar6 + 0x68) = 1;
   }
-  uVar5 = nameentry_leaf_sub_002f8ab0();
+  uVar5 = ComposerInput_GetPressed();
   if ((uVar5 & 0x980) != 0) {
-    cVar3 = nameentry_step_sub_002f8ce0(param_1,*(undefined1 *)(iVar6 + 100));
+    cVar3 = Composer_GetSlotLabel(param_1,*(undefined1 *)(iVar6 + 100));
     if (cVar3 == '\0') {
       if (*(int *)(iVar6 + 0x60) == *(int *)(iVar6 + 0x70)) {
-        nameentry_step_sub_002f7f80(iVar6 + 0x24);
+        PreviewSnd_StopIfPlaying(iVar6 + 0x24);
         *(undefined4 *)(iVar6 + 0x70) = 0xffffffff;
         *(undefined1 *)(iVar6 + 0x4c) = 0;
       }
@@ -1388,12 +1402,12 @@ void ScrNameentrySetField8_Enterf9f00(int param_1)
   long lVar1;
   ulong uVar2;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   if (lVar1 != 0) {
     *(undefined4 *)(param_1 + 0x78) = 0xfffffffe;
     *(undefined1 *)(param_1 + 100) = 0;
   }
-  nameentry_step_sub_002f6190(param_1 + 0x50,0,5,1,0);
+  Composer_MoveCursor(param_1 + 0x50,0,5,1,0);
   switch(*(undefined4 *)(param_1 + 0x50)) {
   case 0:
     uVar2 = Nameentry_GetField_4(param_1 + 0x24);
@@ -1402,9 +1416,9 @@ void ScrNameentrySetField8_Enterf9f00(int param_1)
     }
     else {
       *(undefined4 *)(param_1 + 0x74) = 0;
-      uVar2 = nameentry_leaf_sub_002f8ab0();
+      uVar2 = ComposerInput_GetPressed();
       if ((uVar2 & 0x180) != 0) {
-        nameentry_step_sub_002f7f80(param_1 + 0x24);
+        PreviewSnd_StopIfPlaying(param_1 + 0x24);
         *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
         *(undefined1 *)(param_1 + 0x4c) = 0;
       }
@@ -1425,13 +1439,13 @@ void ScrNameentrySetField8_Enterf9f00(int param_1)
   case 5:
     *(undefined4 *)(param_1 + 0x74) = 0xffffffff;
   }
-  uVar2 = nameentry_leaf_sub_002f8ab0();
+  uVar2 = ComposerInput_GetPressed();
   if ((uVar2 & 0x800) != 0) {
-    nameentry_step_sub_002f7f80(param_1 + 0x24);
+    PreviewSnd_StopIfPlaying(param_1 + 0x24);
     *(undefined4 *)(param_1 + 0x70) = 0xffffffff;
     *(undefined1 *)(param_1 + 0x4c) = 0;
   }
-  uVar2 = nameentry_leaf_sub_002f8ab0();
+  uVar2 = ComposerInput_GetPressed();
   if ((uVar2 & 0x240) != 0) {
     if (*(int *)(param_1 + 0x50) == 5) {
       Se_PlayMenuVol(8,0x60);
@@ -1455,14 +1469,14 @@ void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
   long lVar3;
   ulong uVar4;
   
-  lVar3 = nameentry_step_sub_002f80a0();
+  lVar3 = Composer_UpdateInput();
   if (lVar3 != 0) {
     iVar2 = Nameentry_GetField_4_8200(param_1);
     (*(code *)(&PTR_ScrNameentrySetField8_Enterf9f00_00343580)[iVar2])(param_1);
-    uVar4 = nameentry_leaf_sub_002f8ab0();
+    uVar4 = ComposerInput_GetPressed();
     iVar2 = (int)param_1;
     if ((uVar4 & 0x240) == 0) {
-      uVar4 = nameentry_leaf_sub_002f8ab0();
+      uVar4 = ComposerInput_GetPressed();
       if ((uVar4 & 0x180) != 0) {
         if (*(int *)(iVar2 + 0x74) == -2) {
           iVar1 = *(int *)(iVar2 + 0x74);
@@ -1473,10 +1487,10 @@ void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
         }
         if (iVar1 < 0) {
           if (iVar1 == -1) {
-            nameentry_step_sub_002f7f80(iVar2 + 0x24);
+            PreviewSnd_StopIfPlaying(iVar2 + 0x24);
             *(undefined4 *)(iVar2 + 0x70) = 0xffffffff;
             *(undefined1 *)(iVar2 + 0x4c) = 0;
-            nameentry_leaf_sub_002f8580(0);
+            ComposerScene_RequestState(0);
           }
         }
         else {
@@ -1494,10 +1508,10 @@ void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
       }
       if (iVar1 < 0) {
         if (iVar1 == -1) {
-          nameentry_step_sub_002f7f80(iVar2 + 0x24);
+          PreviewSnd_StopIfPlaying(iVar2 + 0x24);
           *(undefined4 *)(iVar2 + 0x70) = 0xffffffff;
           *(undefined1 *)(iVar2 + 0x4c) = 0;
-          nameentry_leaf_sub_002f8580(0);
+          ComposerScene_RequestState(0);
         }
       }
       else {
@@ -1514,7 +1528,7 @@ void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
 void ScrNameentryGetField48200_Exitfa210(int param_1)
 
 {
-  nameentry_step_sub_002f8020(param_1 + 0x24);
+  PreviewSnd_StopAndClear(param_1 + 0x24);
   return;
 }
 
@@ -1527,8 +1541,8 @@ void ScrNameentryGetField48200_Enterfa220(int param_1)
   undefined4 uVar1;
   int iVar2;
   
-  nameentry_leaf_sub_002f8230(param_1,0);
-  nameentry_leaf_sub_002f8080(param_1 + 0x24,8);
+  Composer_InitPanel(param_1,0);
+  PreviewSnd_Init(param_1 + 0x24,8);
   uVar1 = Script_Nop();
   *(undefined4 *)(param_1 + 0x20) = uVar1;
   iVar2 = 0;
@@ -1545,7 +1559,7 @@ void ScrNameentryGetField48200_Enterfa220(int param_1)
   *(undefined4 *)(param_1 + 0x74) = 0xffffffff;
   *(undefined4 *)(param_1 + 0x78) = 0xffffffff;
   do {
-    uVar1 = nameentry_step_sub_002f6be0(iVar2);
+    uVar1 = Composer_GetModeSongs(iVar2);
     iVar2 = iVar2 + 1;
     *(undefined4 *)(param_1 + 0x7c) = uVar1;
     param_1 = param_1 + 4;
@@ -1562,27 +1576,27 @@ void attract_step_sub_002fa2c0(undefined8 param_1,long param_2)
     case -8:
       break;
     case -7:
-      nameentry_leaf_sub_002f8580(0xfffffffffffffffd);
+      ComposerScene_RequestState(0xfffffffffffffffd);
       break;
     case -6:
-      nameentry_leaf_sub_002f8580(0xfffffffffffffffe);
+      ComposerScene_RequestState(0xfffffffffffffffe);
       break;
     case -5:
-      nameentry_leaf_sub_002f8580(0xffffffffffffffff);
+      ComposerScene_RequestState(0xffffffffffffffff);
       break;
     case -4:
-      nameentry_leaf_sub_002f8580(1);
+      ComposerScene_RequestState(1);
       break;
     case -3:
-      nameentry_leaf_sub_002f8580(2);
+      ComposerScene_RequestState(2);
       break;
     case -2:
-      nameentry_leaf_sub_002f8320(0);
-      nameentry_leaf_sub_002f8580(3);
+      ComposerScene_SetMode(0);
+      ComposerScene_RequestState(3);
       break;
     case -1:
-      nameentry_leaf_sub_002f8320(1);
-      nameentry_leaf_sub_002f8580(3);
+      ComposerScene_SetMode(1);
+      ComposerScene_RequestState(3);
       break;
     default:
       goto switchD_002fa2f4_default;
@@ -1601,12 +1615,12 @@ void attract_step_sub_002fa3a0(int param_1)
 {
   long lVar1;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   if (lVar1 != 0) {
     *(undefined4 *)(param_1 + 0x2c) = 2;
     *(undefined4 *)(param_1 + 0x24) = 0;
   }
-  nameentry_step_sub_002f6190(param_1 + 0x24,0,1,1,0);
+  Composer_MoveCursor(param_1 + 0x24,0,1,1,0);
   if (*(int *)(param_1 + 0x24) == 0) {
     *(undefined4 *)(param_1 + 0x28) = 0xfffffffa;
   }
@@ -1624,12 +1638,12 @@ void screc3435b0_exit_sub_002fa410(int param_1)
 {
   long lVar1;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   if (lVar1 != 0) {
     *(undefined4 *)(param_1 + 0x2c) = 0;
     *(undefined4 *)(param_1 + 0x24) = 1;
   }
-  nameentry_step_sub_002f6190(param_1 + 0x24,0,1,1,0);
+  Composer_MoveCursor(param_1 + 0x24,0,1,1,0);
   if (*(int *)(param_1 + 0x24) == 0) {
     *(undefined4 *)(param_1 + 0x28) = 3;
   }
@@ -1647,12 +1661,12 @@ void screc3435b0_update_sub_002fa480(int param_1)
 {
   long lVar1;
   
-  lVar1 = nameentry_leaf_sub_002f81e0();
+  lVar1 = Composer_ConsumeCancel();
   if (lVar1 != 0) {
     *(undefined4 *)(param_1 + 0x2c) = 0;
     *(undefined4 *)(param_1 + 0x24) = 0;
   }
-  nameentry_step_sub_002f6190(param_1 + 0x24,0,1,1,0);
+  Composer_MoveCursor(param_1 + 0x24,0,1,1,0);
   if (*(int *)(param_1 + 0x24) == 0) {
     *(undefined4 *)(param_1 + 0x28) = 0xfffffffe;
   }
@@ -1672,12 +1686,12 @@ void screc3435b0_enter_sub_002fa4f0(int param_1)
   long lVar2;
   ulong uVar3;
   
-  lVar2 = nameentry_leaf_sub_002f81e0();
+  lVar2 = Composer_ConsumeCancel();
   if (lVar2 != 0) {
     *(undefined4 *)(param_1 + 0x2c) = 0xfffffff8;
   }
-  nameentry_step_sub_002f6190(param_1 + 0x20,0,4,1,0);
-  uVar3 = nameentry_leaf_sub_002f8ab0();
+  Composer_MoveCursor(param_1 + 0x20,0,4,1,0);
+  uVar3 = ComposerInput_GetPressed();
   if ((uVar3 & 0x240) != 0) {
     if (*(int *)(param_1 + 0x20) == 4) {
       Se_PlayMenuVol(8,0x60);
@@ -1716,15 +1730,15 @@ void ScrNameentryGetField48200_Update(undefined8 param_1)
   long lVar2;
   ulong uVar3;
   
-  lVar2 = nameentry_step_sub_002f80a0();
+  lVar2 = Composer_UpdateInput();
   if (lVar2 != 0) {
-    nameentry_leaf_sub_002f8ac0();
+    ComposerInput_Lock();
     iVar1 = Nameentry_GetField_4_8200(param_1);
     (*(code *)(&PTR_screc3435b0_enter_sub_002fa4f0_003435b0)[iVar1])(param_1);
-    uVar3 = nameentry_leaf_sub_002f8ab0();
+    uVar3 = ComposerInput_GetPressed();
     iVar1 = (int)param_1;
     if ((uVar3 & 0x180) == 0) {
-      uVar3 = nameentry_leaf_sub_002f8ab0();
+      uVar3 = ComposerInput_GetPressed();
       if ((uVar3 & 0x240) != 0) {
         if (*(int *)(iVar1 + 0x2c) != -8) {
           Se_PlayMenuVol(6,0x60);
@@ -1760,12 +1774,12 @@ void ScrNameentryGetField48200_Enter(undefined8 param_1)
   long lVar1;
   int iVar2;
   
-  nameentry_leaf_sub_002f8230(param_1,0);
+  Composer_InitPanel(param_1,0);
   iVar2 = (int)param_1;
   *(undefined4 *)(iVar2 + 0x24) = 0;
   *(undefined4 *)(iVar2 + 0x28) = 0;
   *(undefined4 *)(iVar2 + 0x2c) = 0;
-  lVar1 = nameentry_leaf_sub_002f8560();
+  lVar1 = ComposerScene_GetPrevState();
   if (lVar1 < 0) {
     *(undefined4 *)(iVar2 + 0x20) = 0;
   }

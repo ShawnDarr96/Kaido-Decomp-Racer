@@ -3,7 +3,9 @@
 #include "ghidra_types.h"
 
 // 0x002bc0b0  size 0x58
-undefined4 script_leaf_sub_002bc0b0(int param_1)
+/* 10 callers */
+
+undefined4 SeqGen_FindPatternIndex(int param_1)
 
 {
   undefined4 uVar1;
@@ -27,21 +29,21 @@ undefined4 script_leaf_sub_002bc0b0(int param_1)
 }
 
 // 0x002bc110  size 0x20
-undefined2 script_leaf_sub_002bc110(int param_1)
+undefined2 SeqGen_GetPatternId(int param_1)
 
 {
   return *(undefined2 *)(*(int *)(iRam0036f7e4 + 8) + param_1 * 0xc);
 }
 
 // 0x002bc130  size 0x1c
-int script_leaf_sub_002bc130(int param_1)
+int SeqGen_GetPatternEntry(int param_1)
 
 {
   return *(int *)(iRam0036f7e4 + 8) + param_1 * 0xc;
 }
 
 // 0x002bc150  size 0x50
-bool script_step_sub_002bc150(long param_1)
+bool SeqGen_GetModeSongIndex(long param_1)
 
 {
   int iVar1;
@@ -54,7 +56,9 @@ bool script_step_sub_002bc150(long param_1)
 }
 
 // 0x002bc1a0  size 0x50
-bool script_step_sub_002bc1a0(long param_1)
+/* < 12 slots; 15 callers */
+
+bool SeqGen_IsUserSong(long param_1)
 
 {
   bool bVar1;
@@ -78,7 +82,7 @@ undefined4 Script_Nop(void)
 }
 
 // 0x002bc200  size 0x1ec
-void script_exit_sub_002bc200(void)
+void SeqGen_Shutdown(void)
 
 {
   int iVar1;
@@ -99,7 +103,7 @@ void script_exit_sub_002bc200(void)
   iVar2 = 0;
   do {
     iVar1 = iRam0036f7e0 + iVar2;
-    script_exit_sub_002b1820(iVar1 + 0x158);
+    maybe_SeqSrc_Free(iVar1 + 0x158);
     menuscr_exit_sub_002afbd0(iVar1 + 0x1ec);
     if (*(int *)(iVar1 + 0x2d8) != 0) {
       Mem_Free();
@@ -124,7 +128,7 @@ void script_exit_sub_002bc200(void)
   iVar2 = 0;
   do {
     iVar1 = iRam0036f7e0 + iVar2;
-    script_exit_sub_002b1820(iVar1 + 0x6e98);
+    maybe_SeqSrc_Free(iVar1 + 0x6e98);
     menuscr_exit_sub_002afbd0(iVar1 + 0x6f2c);
     if (*(int *)(iVar1 + 0x7018) != 0) {
       Mem_Free();
@@ -169,8 +173,9 @@ void script_exit_sub_002bc200(void)
 
 // 0x002bc3f0  size 0x33c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* 0x8a08-byte state */
 
-void script_load_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3)
+void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
 
 {
   uint uVar1;
@@ -246,14 +251,14 @@ void script_load_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3
   iVar4 = 0;
   iVar7 = 0;
   do {
-    script_step_sub_002bc9e0(iRam0036f7e0 + iVar7 + 0x158,param_1,param_1);
+    SeqGen_ResetPart(iRam0036f7e0 + iVar7 + 0x158,param_1,param_1);
     iVar4 = iVar4 + 1;
     iVar7 = iVar7 + 0xda8;
   } while (iVar4 < 8);
   iVar4 = 0;
   iVar7 = 0;
   do {
-    script_step_sub_002bc9e0(iRam0036f7e0 + iVar7 + 0x6e98,0x430750,param_1);
+    SeqGen_ResetPart(iRam0036f7e0 + iVar7 + 0x6e98,0x430750,param_1);
     iVar4 = iVar4 + 1;
     iVar7 = iVar7 + 0xda8;
   } while (iVar4 < 2);
@@ -277,7 +282,7 @@ void script_load_sub_002bc3f0(undefined8 param_1,undefined4 param_2,uint param_3
 // 0x002bc730  size 0x160
 /* WARNING: Removing unreachable block (ram,0x002bc7b0) */
 
-void script_leaf_sub_002bc730(int param_1,int param_2)
+void SeqGen_ApplyPattern(int param_1,int param_2)
 
 {
   bool bVar1;
@@ -334,7 +339,7 @@ void script_leaf_sub_002bc730(int param_1,int param_2)
 }
 
 // 0x002bc8a0  size 0x130
-void script_leaf_sub_002bc8a0(int param_1,short param_2,short param_3)
+void SeqGen_ApplyRange(int param_1,short param_2,short param_3)
 
 {
   short *psVar1;
@@ -393,10 +398,10 @@ LAB_002bc8d4:
 }
 
 // 0x002bc9e0  size 0x114
-void script_step_sub_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
+void SeqGen_ResetPart(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  script_step_sub_002b19d0();
+  maybe_SeqGen_ResetTrack();
   Mem_Set16(param_1 + 0x94,0,0x10);
   Mem_Set16(param_1 + 0xa4,0,0x40);
   Mem_Set16(param_1 + 0xe4,0,0x18);
@@ -430,7 +435,7 @@ void script_step_sub_002bc9e0(int param_1,undefined4 param_2,undefined4 param_3)
 }
 
 // 0x002bcb00  size 0x1d4
-void script_step_sub_002bcb00(int param_1)
+void Result_BuildRaceEntry(int param_1)
 
 {
   int iVar1;
@@ -493,7 +498,9 @@ void script_step_sub_002bcb00(int param_1)
 }
 
 // 0x002bcce0  size 0x11c
-int script_leaf_sub_002bcce0(int *param_1,int *param_2,int *param_3)
+/* min*60000 + sec*1000 + ms */
+
+int LapTime_Compare(int *param_1,int *param_2,int *param_3)
 
 {
   int iVar1;
@@ -521,7 +528,7 @@ int script_leaf_sub_002bcce0(int *param_1,int *param_2,int *param_3)
 }
 
 // 0x002bce00  size 0x4d0
-void script_step_sub_002bce00(char *param_1)
+void Result_UpdateCursor(char *param_1)
 
 {
   int iVar1;
@@ -835,7 +842,7 @@ void result_draw_sub_002bd2d0(int param_1)
     else if (cVar4 == '\x01') {
       uStack_18 = uStack_18 & 0xf000001e | 1 | (*(uint *)(param_1 + 0x150) & 0x7fffff) << 5;
     }
-    password_step_sub_002dddc0(auStack_310,&uStack_18,acStack_10);
+    Password_Decode(auStack_310,&uStack_18,acStack_10);
     uVar9 = 0;
     pcVar6 = acStack_10;
     do {
@@ -2010,7 +2017,7 @@ void Result_Draw_TestCourse_f9a0(int param_1)
   int iStack_28;
   
   uVar1 = *(undefined4 *)(param_1 + 4);
-  uVar3 = password_step_sub_002df230();
+  uVar3 = Password_GetModeCode();
   switch(uVar3) {
   case 0:
     unaff_s0 = 7;

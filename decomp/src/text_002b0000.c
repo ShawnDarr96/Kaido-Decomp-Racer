@@ -3,7 +3,7 @@
 #include "ghidra_types.h"
 
 // 0x002b02c0  size 0x250
-void script_load_sub_002b02c0(int param_1)
+void maybe_SeqSrc_LoadTrack(int param_1)
 
 {
   int *piVar1;
@@ -82,7 +82,7 @@ void script_load_sub_002b02c0(int param_1)
 }
 
 // 0x002b0510  size 0x140
-void script_step_sub_002b0510(int param_1)
+void maybe_SeqSrc_ReadEventHeader(int param_1)
 
 {
   maybe_Mem_CopyQwords(param_1 + 0x10,*(int *)(param_1 + 100) + *(int *)(param_1 + 0x6c),4);
@@ -105,7 +105,7 @@ void script_step_sub_002b0510(int param_1)
 }
 
 // 0x002b0650  size 0x140
-void script_step_sub_002b0650(undefined8 param_1)
+void maybe_SeqSrc_ReadEvent(undefined8 param_1)
 
 {
   int iVar1;
@@ -123,8 +123,8 @@ void script_step_sub_002b0650(undefined8 param_1)
   *(int *)(iVar1 + 0x6c) = *(int *)(iVar1 + 0x6c) + 1;
   maybe_Mem_CopyQwords(iVar1 + 0xf,*(int *)(iVar1 + 100) + *(int *)(iVar1 + 0x6c),1);
   *(int *)(iVar1 + 0x6c) = *(int *)(iVar1 + 0x6c) + 1;
-  script_step_sub_002b0510(param_1);
-  script_load_sub_002b02c0(param_1);
+  maybe_SeqSrc_ReadEventHeader(param_1);
+  maybe_SeqSrc_LoadTrack(param_1);
   if (*(int *)(iVar1 + 0x44) == 0) {
     *(int *)(iVar1 + 0x50) = *(int *)(iVar1 + 100) + 0x4a;
     *(int *)(iVar1 + 0x54) = *(int *)(iVar1 + 0x6c) + -0x4a;
@@ -138,7 +138,7 @@ void script_step_sub_002b0650(undefined8 param_1)
 }
 
 // 0x002b0790  size 0x2f0
-undefined4 script_step_sub_002b0790(undefined8 param_1,int *param_2)
+undefined4 maybe_SeqGen_AppendBytes(undefined8 param_1,int *param_2)
 
 {
   bool bVar1;
@@ -231,7 +231,7 @@ undefined4 script_step_sub_002b0790(undefined8 param_1,int *param_2)
 }
 
 // 0x002b0a80  size 0xe4
-undefined4 script_step_sub_002b0a80(undefined8 param_1,undefined8 param_2,long param_3)
+undefined4 maybe_SeqGen_FindLoopPoint(undefined8 param_1,undefined8 param_2,long param_3)
 
 {
   byte bVar1;
@@ -262,7 +262,7 @@ LAB_002b0b18:
 }
 
 // 0x002b0b70  size 0x1a4
-void script_load_sub_002b0b70(undefined8 param_1,undefined8 param_2)
+void maybe_SeqSrc_Open(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -275,7 +275,7 @@ void script_load_sub_002b0b70(undefined8 param_1,undefined8 param_2)
   undefined1 auStack_10 [12];
   int iStack_4;
   
-  script_exit_sub_002b1820();
+  maybe_SeqSrc_Free();
   iVar7 = (int)param_1;
   if (*(int *)(iVar7 + 100) != 0) {
     Mem_Free();
@@ -334,7 +334,7 @@ void script_load_sub_002b0b70(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002b0d20  size 0x238
-undefined4 script_step_sub_002b0d20(undefined8 param_1,long param_2)
+undefined4 maybe_SeqGen_ScanTrack(undefined8 param_1,long param_2)
 
 {
   char cVar1;
@@ -395,7 +395,7 @@ undefined4 script_step_sub_002b0d20(undefined8 param_1,long param_2)
 }
 
 // 0x002b0f60  size 0x350
-undefined4 script_step_sub_002b0f60(undefined8 param_1,undefined8 param_2)
+undefined4 maybe_SeqGen_EmitNote(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -522,7 +522,7 @@ undefined4 script_step_sub_002b0f60(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002b12b0  size 0x24c
-long script_step_sub_002b12b0(undefined8 param_1,undefined8 param_2)
+long maybe_SeqGen_EmitControl(undefined8 param_1,undefined8 param_2)
 
 {
   bool bVar1;
@@ -616,8 +616,10 @@ long script_step_sub_002b12b0(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002b1500  size 0x174
+/* -0x4000..0x4000 */
+
 undefined8
-script_step_sub_002b1500(undefined8 param_1,undefined8 param_2,byte param_3,short param_4)
+maybe_SeqGen_EmitPitchBend(undefined8 param_1,undefined8 param_2,byte param_3,short param_4)
 
 {
   bool bVar1;
@@ -675,7 +677,9 @@ script_step_sub_002b1500(undefined8 param_1,undefined8 param_2,byte param_3,shor
 }
 
 // 0x002b1680  size 0x19c
-undefined8 script_step_sub_002b1680(undefined8 param_1,undefined8 param_2,ulong param_3)
+/* microseconds per beat range */
+
+undefined8 maybe_SeqGen_EmitTempo(undefined8 param_1,undefined8 param_2,ulong param_3)
 
 {
   bool bVar1;
@@ -735,7 +739,7 @@ undefined8 script_step_sub_002b1680(undefined8 param_1,undefined8 param_2,ulong 
 }
 
 // 0x002b1820  size 0xc0
-void script_exit_sub_002b1820(undefined8 param_1)
+void maybe_SeqSrc_Free(undefined8 param_1)
 
 {
   int iVar1;
@@ -769,8 +773,9 @@ void script_exit_sub_002b1820(undefined8 param_1)
 
 // 0x002b18e0  size 0xf0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* archive id 0x1ec2 + n */
 
-void script_load_sub_002b18e0(undefined8 param_1,int param_2)
+void maybe_SeqSrc_LoadFromArchive(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
@@ -778,7 +783,7 @@ void script_load_sub_002b18e0(undefined8 param_1,int param_2)
   int iVar3;
   int iVar4;
   
-  script_exit_sub_002b1820();
+  maybe_SeqSrc_Free();
   iVar3 = (param_2 + 0x1ec2) * 0x14 + _g_ArcToc;
   iVar4 = *(int *)(iVar3 + 0x20);
   if (iVar4 == 0) {
@@ -811,7 +816,7 @@ void script_load_sub_002b18e0(undefined8 param_1,int param_2)
 }
 
 // 0x002b19d0  size 0xb0
-void script_step_sub_002b19d0(undefined8 param_1,undefined4 param_2)
+void maybe_SeqGen_ResetTrack(undefined8 param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -841,7 +846,7 @@ void script_step_sub_002b19d0(undefined8 param_1,undefined4 param_2)
 }
 
 // 0x002b1a80  size 0x968
-undefined4 script_step_sub_002b1a80(int param_1)
+undefined4 maybe_SeqGen_MixTracksA(int param_1)
 
 {
   bool bVar1;
@@ -1217,7 +1222,7 @@ undefined4 script_step_sub_002b1a80(int param_1)
 }
 
 // 0x002b23f0  size 0x1c98
-undefined4 script_step_sub_002b23f0(int param_1)
+undefined4 maybe_SeqGen_MixTracksMain(int param_1)
 
 {
   bool bVar1;

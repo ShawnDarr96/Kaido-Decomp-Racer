@@ -445,7 +445,7 @@ void ScrRace_Draw_NaFesta(uint *param_1)
     MenuWnd_DrawTextId(0x26,0x6d,uVar13,0x308);
   }
   if (bVar3) {
-    password_step_sub_002dfed0(auStack_90,uVar11,param_1[8]);
+    Course_GetVariantInfo(auStack_90,uVar11,param_1[8]);
     bVar1 = cStack_84 == '\x01';
     iVar17 = 0;
     piVar14 = aiStack_30;
@@ -453,15 +453,15 @@ void ScrRace_Draw_NaFesta(uint *param_1)
     do {
       if (bVar1) {
         uVar13 = Race_GetTimeOfDay();
-        iVar9 = password_step_sub_002df710(uVar11,param_1[8],uVar13,iVar17);
+        iVar9 = Password_EncodeCourseB(uVar11,param_1[8],uVar13,iVar17);
         *piVar14 = iVar9;
       }
       else {
         uVar13 = Race_GetTimeOfDay();
-        iVar9 = password_step_sub_002df680(uVar11,param_1[8],uVar13,iVar17);
+        iVar9 = Password_EncodeCourseA(uVar11,param_1[8],uVar13,iVar17);
         *piVar14 = iVar9;
       }
-      uVar10 = password_leaf_sub_002df7f0(iVar17);
+      uVar10 = Password_GetKeyTable(iVar17);
       *puVar15 = uVar10;
       iVar17 = iVar17 + 1;
       piVar14 = piVar14 + 1;
@@ -474,10 +474,10 @@ void ScrRace_Draw_NaFesta(uint *param_1)
     puVar15 = auStack_50;
     do {
       uVar13 = Race_GetTimeOfDay();
-      iVar9 = password_step_sub_002df870(uVar11,param_1[7],param_1[8],uVar13,iVar17);
+      iVar9 = Password_EncodeSections(uVar11,param_1[7],param_1[8],uVar13,iVar17);
       uVar16 = param_1[7];
       *piVar14 = iVar9;
-      uVar10 = password_leaf_sub_002df9f0(uVar16,iVar17);
+      uVar10 = Password_BuildString(uVar16,iVar17);
       *puVar15 = uVar10;
       iVar17 = iVar17 + 1;
       piVar14 = piVar14 + 1;
@@ -501,7 +501,7 @@ void ScrRace_Draw_NaFesta(uint *param_1)
   MenuWnd_DrawRivalLabel(0x26,0x50,5,0x3a,sVar2);
   MenuWnd_DrawRivalLabel(0x26,0x51,5,0x3a,iVar17);
   if (bVar3) {
-    password_step_sub_002dfed0(auStack_f0,uVar11,param_1[8]);
+    Course_GetVariantInfo(auStack_f0,uVar11,param_1[8]);
     uVar13 = MsgId_OnOff(iStack_e0 <= iStack_dc);
     MenuWnd_DrawText(0x26,0x3e,uVar13);
     cVar6 = Race_IsTimeTrialMode(uVar11,0);
@@ -514,7 +514,7 @@ void ScrRace_Draw_NaFesta(uint *param_1)
     ui_leaf_sub_001f6720(auStack_18,uVar11,iStack_e0,iStack_dc);
   }
   else {
-    password_step_sub_002dff30(auStack_b0,uVar11,param_1[7],param_1[8]);
+    Course_FindSection(auStack_b0,uVar11,param_1[7],param_1[8]);
     uVar13 = MsgId_OnOff(iStack_a8 <= iStack_a4);
     MenuWnd_DrawText(0x26,0x3e,uVar13);
     cVar6 = Race_IsTimeTrialMode(uVar11,0);
@@ -911,7 +911,7 @@ void ScrRace_Draw_CaAttack(int param_1)
   iVar1 = *(int *)(_g_GameState + 0x3a8);
   if (iVar6 == 1) {
     uVar4 = Menu_MapCursorToItem(*(undefined4 *)(param_1 + 0x14));
-    password_step_sub_002dfed0(auStack_40,uVar4,*(undefined4 *)(param_1 + 0x20));
+    Course_GetVariantInfo(auStack_40,uVar4,*(undefined4 *)(param_1 + 0x20));
     if (cStack_34 == '\x02') {
       bVar2 = false;
     }
@@ -1107,11 +1107,11 @@ void ScrCareer_Draw_Entry(undefined8 param_1)
     uVar4 = Menu_MapCursorToItem(*(undefined4 *)(iVar7 + 0x14));
     if (iVar2 == iVar1 + 1) {
       uVar5 = Profile_Get(0);
-      lVar6 = password_leaf_sub_002de8e0(uVar5,1,0,uVar4,*(undefined4 *)(iVar7 + 0x20));
+      lVar6 = Password_GetRecordFlag(uVar5,1,0,uVar4,*(undefined4 *)(iVar7 + 0x20));
     }
     else {
       uVar5 = Profile_Get(0);
-      lVar6 = password_leaf_sub_002de8e0
+      lVar6 = Password_GetRecordFlag
                         (uVar5,0,*(undefined4 *)(iVar7 + 0x20),uVar4,*(undefined4 *)(iVar7 + 0x1c));
     }
     if (lVar6 != 0) {
@@ -1517,7 +1517,7 @@ void ScrEntry_Update(undefined8 param_1)
     if (bVar1) {
       if (iVar3 < 3) {
         uVar8 = Profile_Get(0);
-        lVar6 = password_leaf_sub_002de8e0(uVar8,1,0,uVar5,iVar3);
+        lVar6 = Password_GetRecordFlag(uVar8,1,0,uVar5,iVar3);
       }
       else {
         lVar6 = 7;
@@ -1525,7 +1525,7 @@ void ScrEntry_Update(undefined8 param_1)
     }
     else {
       uVar8 = Profile_Get(0);
-      lVar6 = password_leaf_sub_002de8e0(uVar8,0,iVar3,uVar5,*(undefined4 *)(iVar9 + 0x1c));
+      lVar6 = Password_GetRecordFlag(uVar8,0,iVar3,uVar5,*(undefined4 *)(iVar9 + 0x1c));
     }
     if (lVar6 != 0) {
       iVar4 = UiMgr_FindLayout(0x26);

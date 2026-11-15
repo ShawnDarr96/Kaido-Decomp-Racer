@@ -2568,7 +2568,7 @@ void scrrecord_input_sub_002a3660(undefined4 *param_1)
           auStack_10[2] =
                auStack_10[2] & 0xf000001f |
                (*(uint *)(param_1[iVar2 + 0x209] + 0x10) & 0x7fffff) << 5;
-          password_step_sub_002dddc0(auStack_250,auStack_10 + 2,param_1 + 0x1fb);
+          Password_Decode(auStack_250,auStack_10 + 2,param_1 + 0x1fb);
         }
       }
       else {
@@ -2596,7 +2596,7 @@ void scrrecord_input_sub_002a3660(undefined4 *param_1)
           auStack_10[0] =
                auStack_10[0] & 0xf000001f |
                (*(uint *)(param_1[iVar2 + 0x209] + 0x10) & 0x7fffff) << 5;
-          password_step_sub_002dddc0(auStack_490,auStack_10,param_1 + 0x1fb);
+          Password_Decode(auStack_490,auStack_10,param_1 + 0x1fb);
         }
       }
       *(undefined1 *)((int)param_1 + 0x7f9) = 0;

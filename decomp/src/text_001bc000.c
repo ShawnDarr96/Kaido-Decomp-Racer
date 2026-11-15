@@ -1827,10 +1827,10 @@ void Profile_AdvanceDay(int param_1)
       *(undefined2 *)(param_1 + 0x5318) = *(undefined2 *)(param_1 + 0x5312);
       *(undefined2 *)(param_1 + 0x531a) = *(undefined2 *)(param_1 + 0x5314);
       do {
-        password_step_sub_002de600(param_1,uVar9 & 0xff);
+        Password_ComputeProgress(param_1,uVar9 & 0xff);
         uVar9 = uVar9 + 1;
       } while ((int)uVar9 < 9);
-      password_leaf_sub_002de450(param_1 + 0xd84a);
+      Password_GetCharTable(param_1 + 0xd84a);
       return;
     }
   } while( true );
@@ -1879,7 +1879,7 @@ void Profile_ResetCareer(int param_1,ulong param_2)
     *(undefined1 *)(iVar2 + 0xd830) = 0;
     *(undefined1 *)(iVar2 + 0xd831) = 0;
   } while (iVar1 < 0x1e);
-  password_leaf_sub_002de540(param_1 + 0xd84a);
+  Password_PackBits(param_1 + 0xd84a);
   iVar1 = 0;
   puVar4 = (undefined4 *)(param_1 + 0x531c);
   do {

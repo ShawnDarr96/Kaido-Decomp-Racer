@@ -302,14 +302,14 @@ void screc3276e0_update_sub_002d8910(undefined8 param_1)
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
   }
   if (*(int *)(iVar4 + 0x770) != *(int *)(iVar4 + 0x774)) {
-    uVar6 = password_leaf_sub_002dd4f0();
-    uVar7 = password_leaf_sub_002dd4f0(*(undefined4 *)(iVar4 + 0x770));
-    password_step_sub_002dcac0(iVar4 + 0x588,uVar7,*(undefined4 *)(iVar4 + 0x770));
+    uVar6 = PwInput_GetKeyLabel();
+    uVar7 = PwInput_GetKeyLabel(*(undefined4 *)(iVar4 + 0x770));
+    PwInput_Init(iVar4 + 0x588,uVar7,*(undefined4 *)(iVar4 + 0x770));
     if ((uVar6 & 0xff) == (uVar7 & 0xff)) {
       uVar3 = *(undefined4 *)(iVar4 + 0x770);
     }
     else {
-      password_step_sub_002dcc20(iVar4 + 0x588);
+      PwInput_Open(iVar4 + 0x588);
       uVar3 = *(undefined4 *)(iVar4 + 0x770);
     }
     *(undefined4 *)(iVar4 + 0x774) = uVar3;
@@ -327,12 +327,12 @@ void screc3276e0_update_sub_002d8910(undefined8 param_1)
   iVar2 = *(int *)(iVar4 + 0x778);
 LAB_002d8994:
   if (((iVar2 == 0) || (lVar5 = Menu_IsInputIdle(iVar4 + 0x568), lVar5 == 0)) ||
-     (lVar5 = password_leaf_sub_002dcc30(iVar4 + 0x588), lVar5 != 0)) {
+     (lVar5 = PwInput_IsOpen(iVar4 + 0x588), lVar5 != 0)) {
     UiLayout_UpdateAnimById(0xb3,0);
-    uVar3 = password_leaf_sub_002dd460(param_1,*(undefined4 *)(iVar4 + 0x770));
+    uVar3 = PwInput_IsSpecialKey(param_1,*(undefined4 *)(iVar4 + 0x770));
     *(undefined4 *)(iVar4 + 0x76c) = uVar3;
-    password_anim_sub_002dcd50(iVar4 + 0x588);
-    password_step_sub_002dcc40(iVar4 + 0x588);
+    PwInput_Animate(iVar4 + 0x588);
+    PwInput_Update(iVar4 + 0x588);
     iVar4 = UiMgr_FindLayout(0xb3);
     UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar4 * 0x4f4 + 4);
     iVar4 = UiMgr_FindLayout(0xb7);
@@ -394,7 +394,7 @@ void showroom_select_sub_002d8bd0(undefined8 param_1)
   iVar5 = (int)param_1;
   lVar3 = Menu_IsInputIdle(iVar5 + 0x568);
   if (*(int *)(iVar5 + 0x778) == 0) {
-    lVar4 = password_leaf_sub_002dcc30(iVar5 + 0x588);
+    lVar4 = PwInput_IsOpen(iVar5 + 0x588);
     if (lVar4 == 0) {
       uVar2 = SaveUi_Task(param_1,lVar3,1,1);
       *(uint *)(iVar5 + 0x770) = uVar2 & 0xff;
@@ -439,7 +439,7 @@ void showroom_step_sub_002d8cf0(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x57c) = 1;
   *(undefined4 *)(iVar1 + 0x574) = 1;
   *(undefined4 *)(iVar1 + 0x580) = 0;
-  password_step_sub_002dd0c0(iVar1 + 0x588,0,0);
+  PwInput_Clear(iVar1 + 0x588,0,0);
   *(undefined4 *)(iVar1 + 0x778) = 0;
   *(undefined4 *)(iVar1 + 0x770) = 0;
   *(undefined4 *)(iVar1 + 0x774) = 1;
@@ -1017,7 +1017,7 @@ void replayui_draw_sub_002d9e30(int param_1)
       UiText_DrawById(auStack_7a0,uVar10);
       uVar10 = (*pcVar5)(0xc2);
       uVar11 = (*pcVar6)(0x3a);
-      password_draw_sub_002dd810(uVar10,0x12,uVar11,uVar7);
+      PwInput_DrawName(uVar10,0x12,uVar11,uVar7);
     }
     else if ((cVar1 == '\x04') || (cVar1 == '\x02')) {
       if ((bVar4) && (bVar3)) {
@@ -1033,7 +1033,7 @@ void replayui_draw_sub_002d9e30(int param_1)
       UiText_DrawById(auStack_760,uVar10);
       uVar10 = (*pcVar5)(0xc2);
       uVar11 = (*pcVar6)(0x1e7e);
-      password_draw_sub_002dd810(uVar10,0x12,uVar11,uStack_4,uStack_8,uStack_c);
+      PwInput_DrawName(uVar10,0x12,uVar11,uStack_4,uStack_8,uStack_c);
     }
     else if (cVar1 == '\x01') {
       auStack_30[1] = DAT_00342204;
@@ -1058,10 +1058,10 @@ void replayui_draw_sub_002d9e30(int param_1)
         iVar8 = Replay_GetHeader();
         uVar10 = (*pcVar5)(0xc0);
         uVar11 = (*pcVar6)(0x1e9e);
-        password_draw_sub_002dd810(uVar10,0x1c,uVar11);
+        PwInput_DrawName(uVar10,0x1c,uVar11);
         uVar10 = (*pcVar5)(0xc0);
         uVar11 = (*pcVar6)(0x3a);
-        password_draw_sub_002dd810(uVar10,0x20,uVar11,*(undefined4 *)(iVar8 + 0x24));
+        PwInput_DrawName(uVar10,0x20,uVar11,*(undefined4 *)(iVar8 + 0x24));
         if (*(char *)(iVar8 + 0xd) == '\x05') {
           uVar10 = (*pcVar6)(0x356);
           uVar11 = (*pcVar5)(0xc0);
@@ -1097,10 +1097,10 @@ void replayui_draw_sub_002d9e30(int param_1)
       else {
         uVar10 = (*pcVar5)(0xc0);
         uVar11 = (*pcVar6)(0x1e9e);
-        password_draw_sub_002dd810(uVar10,0x1c,uVar11);
+        PwInput_DrawName(uVar10,0x1c,uVar11);
         uVar10 = (*pcVar5)(0xc0);
         uVar11 = (*pcVar6)(0x3a);
-        password_draw_sub_002dd810(uVar10,0x20,uVar11,*(undefined4 *)(param_1 + 0x7d8));
+        PwInput_DrawName(uVar10,0x20,uVar11,*(undefined4 *)(param_1 + 0x7d8));
         if (*(int *)(param_1 + 0x7b4) == 5) {
           uVar10 = (*pcVar6)(0x356);
           uVar11 = (*pcVar5)(0xc0);
@@ -1226,7 +1226,7 @@ void replayui_draw_sub_002da920(int param_1)
       }
       *(undefined4 *)(param_1 + 0x7dc) = *(undefined4 *)(param_1 + 0x7a4);
       uVar9 = (*pcVar6)(0xc4);
-      password_anim_sub_002dd640(uVar9,0x3d,1,0);
+      PwInput_SetKeyState(uVar9,0x3d,1,0);
       if (*(int *)(iVar13 + 0x354) == 1) {
         UiLayout_UpdateAnim(uVar8,3);
       }
@@ -1259,7 +1259,7 @@ void replayui_draw_sub_002da920(int param_1)
       UiText_DrawById(auStack_40,uVar10);
     }
     else {
-      password_draw_sub_002dd810(uVar9,DAT_003421b8,uVar10,iVar13 + 1);
+      PwInput_DrawName(uVar9,DAT_003421b8,uVar10,iVar13 + 1);
     }
   }
   else if (*(int *)(param_1 + 0x7e0) == 2) {
@@ -1285,13 +1285,12 @@ void replayui_draw_sub_002da920(int param_1)
       UiText_DrawById(auStack_80,uVar10);
     }
     else {
-      password_draw_sub_002dd810(uVar9,DAT_003421b8,uVar10,iVar13 + 1);
+      PwInput_DrawName(uVar9,DAT_003421b8,uVar10,iVar13 + 1);
     }
   }
   else {
     uVar9 = (*pcVar6)(0xc4);
-    password_anim_sub_002dd640
-              (uVar9,*(undefined4 *)(&DAT_003421c0 + *(int *)(param_1 + 0x79c) * 4),1,0);
+    PwInput_SetKeyState(uVar9,*(undefined4 *)(&DAT_003421c0 + *(int *)(param_1 + 0x79c) * 4),1,0);
   }
   iVar13 = 0;
   puVar14 = &DAT_003421e0;
@@ -1327,7 +1326,7 @@ void replayui_draw_sub_002da920(int param_1)
       UiText_DrawById(auStack_c0,uVar9);
     }
     else {
-      password_draw_sub_002dd810(uVar7,*puVar11,uVar9,iVar2 + 1);
+      PwInput_DrawName(uVar7,*puVar11,uVar9,iVar2 + 1);
     }
     puVar14 = puVar14 + 1;
     piVar12 = piVar12 + 1;
@@ -1347,7 +1346,7 @@ void replayui_draw_sub_002da920(int param_1)
     cVar1 = *(char *)(param_1 + 0x768);
   }
   if (cVar1 == -1) {
-    password_anim_sub_002dd550(1);
+    PwInput_AnimateCursor(1);
     if (*(int *)(param_1 + 0x7a8) < 7) {
       UiElem_SetPropFloat(0,uVar8,0x42,8);
       UiElem_SetPropFloat(0,uVar8,0x43,8);
@@ -1465,7 +1464,7 @@ LAB_002db20c:
       uVar6 = 0;
       iVar7 = param_1 + 0x588;
       do {
-        password_draw_sub_002dd350(iVar7,0xffffffffffffffff);
+        PwInput_Draw(iVar7,0xffffffffffffffff);
         uVar6 = uVar6 + 1;
         iVar7 = iVar7 + 0x4c;
       } while (uVar6 < 3);
@@ -1477,7 +1476,7 @@ LAB_002db20c:
       uVar6 = 0;
       iVar7 = param_1 + 0x678;
       do {
-        password_draw_sub_002dd350(iVar7,0xffffffffffffffff);
+        PwInput_Draw(iVar7,0xffffffffffffffff);
         uVar6 = uVar6 + 1;
         iVar7 = iVar7 + 0x4c;
       } while (uVar6 < 3);
@@ -1490,7 +1489,7 @@ LAB_002db20c:
   uVar6 = 0;
   iVar7 = param_1 + 0x588;
   do {
-    password_draw_sub_002dd350(iVar7,uVar2);
+    PwInput_Draw(iVar7,uVar2);
     uVar6 = uVar6 + 1;
     iVar7 = iVar7 + 0x4c;
   } while (uVar6 < 3);
@@ -1729,7 +1728,7 @@ void replayui_anim_sub_002db730(undefined8 param_1)
         *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
         *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
         *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-        password_step_sub_002dc730(iVar6 + 0x588,7,iVar3);
+        PwInput_SetupGrid(iVar6 + 0x588,7,iVar3);
       }
       else if (cVar2 == '\x01') {
         puVar8 = (undefined4 *)(iVar6 + 0x588);
@@ -1744,7 +1743,7 @@ void replayui_anim_sub_002db730(undefined8 param_1)
         *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
         *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
         *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-        password_step_sub_002dc730(iVar6 + 0x588,5,iVar3);
+        PwInput_SetupGrid(iVar6 + 0x588,5,iVar3);
       }
       else {
         puVar8 = (undefined4 *)(iVar6 + 0x588);
@@ -1759,7 +1758,7 @@ void replayui_anim_sub_002db730(undefined8 param_1)
         *(undefined4 *)(iVar6 + 0x75c) = *(undefined4 *)(iVar6 + 0x66c);
         *(undefined4 *)(iVar6 + 0x760) = *(undefined4 *)(iVar6 + 0x670);
         *(undefined4 *)(iVar6 + 0x764) = *(undefined4 *)(iVar6 + 0x674);
-        password_step_sub_002dc730(iVar6 + 0x588,6,iVar3);
+        PwInput_SetupGrid(iVar6 + 0x588,6,iVar3);
       }
     }
     else {
@@ -1780,7 +1779,7 @@ void replayui_anim_sub_002db730(undefined8 param_1)
         uVar9 = 0;
         iVar5 = iVar6 + 0x588;
         do {
-          password_leaf_sub_002dd160(iVar5);
+          PwInput_ResetBuffer(iVar5);
           uVar9 = uVar9 + 1;
           iVar5 = iVar5 + 0x4c;
         } while (uVar9 < 3);
@@ -1797,14 +1796,14 @@ void replayui_anim_sub_002db730(undefined8 param_1)
           *(undefined4 *)(iVar6 + 0x670) = 0x13;
           *(undefined4 *)(iVar6 + 0x674) = 0x14;
         }
-        password_leaf_sub_002dc940(iVar6 + 0x588,uVar10,uVar1);
+        PwInput_GetCharForKey(iVar6 + 0x588,uVar10,uVar1);
       }
       else {
-        password_step_sub_002dc730(iVar6 + 0x588,uVar10,iVar3);
+        PwInput_SetupGrid(iVar6 + 0x588,uVar10,iVar3);
       }
     }
     if (uVar11 != uVar10) {
-      password_step_sub_002dcc20(iVar6 + 0x588);
+      PwInput_Open(iVar6 + 0x588);
     }
     *(undefined4 *)(iVar6 + 0x774) = *(undefined4 *)(iVar6 + 0x770);
     uVar4 = (*pcRam0036f8ac)(0xc4);
@@ -1812,7 +1811,7 @@ void replayui_anim_sub_002db730(undefined8 param_1)
     uVar4 = (*pcRam0036f8ac)(0xc4);
     UiElem_SetPropFloat(0x3f800000,uVar4,0x43,8);
   }
-  password_anim_sub_002dcd50(iVar6 + 0x588);
+  PwInput_Animate(iVar6 + 0x588);
   if ((((*(int *)(iVar6 + 0x66c) == 0xc) && (*(char *)(iVar6 + 0x768) == '\0')) ||
       ((*(int *)(iVar6 + 0x75c) == 0xc && (*(char *)(iVar6 + 0x768) == '\x01')))) ||
      ((*(int *)(iVar6 + 0x66c) == 0xc && (*(char *)(iVar6 + 0x768) == -1)))) {
@@ -1851,14 +1850,14 @@ void replayui_step_sub_002dbb80(int param_1)
   uVar1 = *(undefined1 *)(param_1 + 0x779);
   uVar2 = *(undefined1 *)(param_1 + 0x778);
   do {
-    password_leaf_sub_002dd160(iVar3);
+    PwInput_ResetBuffer(iVar3);
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x4c;
   } while (uVar4 < 3);
   uVar4 = 0;
   iVar3 = param_1 + 0x678;
   do {
-    password_leaf_sub_002dd160(iVar3);
+    PwInput_ResetBuffer(iVar3);
     uVar4 = uVar4 + 1;
     iVar3 = iVar3 + 0x4c;
   } while (uVar4 < 3);
@@ -2038,7 +2037,7 @@ LAB_002dc0cc:
       uVar7 = (*pcVar4)(0x1e8d);
       uVar8 = (*pcVar4)(*(undefined4 *)((uint)param_2 * 4 + 0x342130));
       uVar9 = (*pcVar4)(*(undefined4 *)(param_3 * 4 + 0x342150));
-      password_draw_sub_002dd780
+      PwInput_DrawNameShort
                 (iVar1,param_1[0x3b],*(undefined4 *)(&DAT_00342188 + (uint)param_2 * 4),uVar7,uVar8,
                  uVar9);
       goto LAB_002dc0cc;
@@ -2054,7 +2053,7 @@ LAB_002dc0cc:
   case 6:
   case 7:
     uVar10 = (*pcVar4)(0x1ea4);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 4:
     if (param_2 == 1) {
@@ -2070,130 +2069,129 @@ LAB_002dc0cc:
     break;
   case 8:
     uVar10 = (*pcVar4)(0x1ea5);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 9:
     uVar10 = (*pcVar4)(0x1ea6);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
     break;
   case 10:
     if ((param_2 == 1) && (param_3 - 4 < 2)) {
       uVar10 = (*pcVar4)(0x1ea8);
-      password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     }
     else if ((param_2 == 1) && (param_3 != 0)) {
       uVar10 = (*pcVar4)(0x1ea9);
-      password_draw_sub_002dd810
-                (iVar1,param_1[0x3a],uVar10,uVar6,*(undefined4 *)(&DAT_00342140 + (param_3 - 1) * 4)
-                 ,iVar14);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,
+                       *(undefined4 *)(&DAT_00342140 + (param_3 - 1) * 4),iVar14);
     }
     else {
       uVar10 = (*pcVar4)(0x1ea7);
-      password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+      PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     }
     break;
   case 0xb:
     uVar10 = (*pcVar4)(0x1eaa);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
     break;
   case 0xc:
     break;
   case 0xd:
     uVar10 = (*pcVar4)(0x1eab);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0xe:
     uVar10 = (*pcVar4)(0x1ead);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14,uVar6);
     break;
   case 0xf:
     uVar10 = (*pcVar4)(0x1eae);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x10:
     uVar10 = (*pcVar4)(0x1eb0);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x11:
     uVar10 = (*pcVar4)(0x1eb2);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x12:
     uVar10 = (*pcVar4)(0x1eb4);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x13:
     uVar10 = (*pcVar4)(0x1eb6);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x14:
     uVar10 = (*pcVar4)(0x1eb8);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x15:
     uVar10 = (*pcVar4)(0x1eba);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
     break;
   case 0x16:
     uVar10 = (*pcVar4)(0x1ebb);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
     break;
   case 0x17:
     uVar10 = (*pcVar4)(0x1ebc);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x18:
     uVar10 = (*pcVar4)(0x1ebe);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x19:
     uVar10 = (*pcVar4)(0x1ec1);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x1a:
     uVar10 = (*pcVar4)(0x1ec3);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x1b:
     uVar10 = (*pcVar4)(0x1ec5);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
     break;
   case 0x1c:
     uVar10 = (*pcVar4)(0x1ec7);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,0x14,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,0x14,uVar6);
     break;
   case 0x1d:
   case 0x1e:
     uVar7 = (*pcVar4)(0x1ec8);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6);
     break;
   case 0x1f:
     uVar7 = (*pcVar4)(0x1ec9);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6,uVar6);
     break;
   case 0x20:
     uVar7 = (*pcVar4)(0x1eca);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar7,iVar14,uVar10,uVar6,uVar6);
     break;
   case 0x21:
     uVar10 = (*pcVar4)(0x1ecb);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
     break;
   case 0x22:
     uVar10 = (*pcVar4)(0x1ecc);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14,uVar6);
     break;
   case 0x23:
     uVar10 = (*pcVar4)(0x1ece);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
     break;
   case 0x24:
     uVar10 = (*pcVar4)(0x1ecf);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,uVar6,iVar14);
     break;
   case 0x25:
     uVar10 = (*pcVar4)(0x1ecd);
-    password_draw_sub_002dd810(iVar1,param_1[0x3a],uVar10,iVar14);
+    PwInput_DrawName(iVar1,param_1[0x3a],uVar10,iVar14);
     break;
   default:
     goto switchD_002dc0f0_default;

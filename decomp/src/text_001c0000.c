@@ -1095,7 +1095,7 @@ void Profile_BuildRivalList(int *param_1,int param_2,int param_3)
   if (iStack_10 == 0) {
     iVar6 = 0;
     while( true ) {
-      password_step_sub_002dfe70(aiStack_390,iVar6);
+      Course_GetSectionCount(aiStack_390,iVar6);
       uStack_1c4 = uStack_384;
       if (aiStack_390[0] == -1) break;
       if (param_3 == aiStack_390[0]) {

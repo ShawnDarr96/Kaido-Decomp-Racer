@@ -20,7 +20,7 @@ void scrsave_step_sub_00294140(undefined8 param_1)
   *(undefined4 *)(iVar1 + 0x57c) = 1;
   *(undefined4 *)(iVar1 + 0x574) = 1;
   *(undefined4 *)(iVar1 + 0x580) = 0;
-  password_step_sub_002dd0c0(iVar1 + 0x588,2,0);
+  PwInput_Clear(iVar1 + 0x588,2,0);
   *(undefined4 *)(iVar1 + 0x778) = 0;
   *(undefined4 *)(iVar1 + 0x770) = 0;
   *(undefined4 *)(iVar1 + 0x774) = 1;

@@ -210,8 +210,8 @@ long SndMgr_UpdateStreams(undefined8 param_1)
     break;
   case '\x05':
     if (*piVar6 != piVar11[2]) {
-      lVar10 = nameentry_leaf_sub_002f6440(8);
-      if ((lVar10 == 0) || (lVar10 = nameentry_leaf_sub_002f63f0(8), lVar10 == 0)) {
+      lVar10 = Composer_GetPartEntry(8);
+      if ((lVar10 == 0) || (lVar10 = Composer_GetSelectedPart(8), lVar10 == 0)) {
         lVar10 = 0;
       }
       else {
@@ -271,8 +271,8 @@ long SndMgr_UpdateStreams(undefined8 param_1)
     lVar10 = 1;
     break;
   case '\v':
-    lVar10 = nameentry_leaf_sub_002f6440(8);
-    if ((lVar10 == 0) || (lVar10 = nameentry_leaf_sub_002f63f0(8), lVar10 == 0)) {
+    lVar10 = Composer_GetPartEntry(8);
+    if ((lVar10 == 0) || (lVar10 = Composer_GetSelectedPart(8), lVar10 == 0)) {
       lVar10 = 0;
     }
     else {
@@ -305,38 +305,37 @@ long SndMgr_UpdateStreams(undefined8 param_1)
     lVar10 = 0;
     break;
   case '\x13':
-    lVar10 = script_leaf_sub_002bc0b0(uVar7);
-    if ((lVar10 != 0) && (lVar10 = script_leaf_sub_002b9080(uVar7,0xffffffffffffffff), lVar10 == 0))
-    {
-      script_step_sub_002b97c0(uVar7,piVar11[2]);
+    lVar10 = SeqGen_FindPatternIndex(uVar7);
+    if ((lVar10 != 0) && (lVar10 = SeqGen_GetPosition(uVar7,0xffffffffffffffff), lVar10 == 0)) {
+      SeqGen_SelectSong(uVar7,piVar11[2]);
       *(undefined1 *)(piVar11 + 1) = 0x14;
       *piVar6 = piVar11[2];
     }
     lVar10 = 0;
     break;
   case '\x14':
-    lVar10 = script_leaf_sub_002b9080(uVar7,0xffffffffffffffff);
+    lVar10 = SeqGen_GetPosition(uVar7,0xffffffffffffffff);
     if (lVar10 == 0) {
-      script_load_sub_002bb4c0(uVar7);
+      SeqGen_StartThread(uVar7);
       *(undefined1 *)(piVar11 + 1) = 0x15;
     }
     lVar10 = 0;
     break;
   case '\x15':
-    lVar8 = script_step_sub_002bb460(uVar7);
+    lVar8 = SeqGen_StopThread(uVar7);
     if (lVar8 == 0) {
       lVar10 = 0;
     }
     else {
-      lVar8 = script_leaf_sub_002b9290(uVar7);
+      lVar8 = SeqGen_IsReady(uVar7);
       if (lVar8 == 0) {
         piVar2 = *(int **)(iVar5 + *piVar11 * 4);
         (**(code **)(*piVar2 + 0x28))(piVar2,0xff);
       }
       else {
-        script_leaf_sub_002b8ca0(uVar7,&uStack_4,&uStack_10);
-        script_leaf_sub_002b8c30(uVar7,&uStack_8,&uStack_14);
-        script_leaf_sub_002b8bc0(uVar7,&uStack_c,&uStack_18);
+        SeqGen_GetLoopRangeC(uVar7,&uStack_4,&uStack_10);
+        SeqGen_GetLoopRangeB(uVar7,&uStack_8,&uStack_14);
+        SeqGen_GetLoopRangeA(uVar7,&uStack_c,&uStack_18);
         Snd_PlayStream(*(undefined4 *)(*(int *)(iVar5 + *piVar11 * 4) + 0x40),uStack_4,uStack_10,
                        uStack_8,uStack_14,uStack_c,uStack_18);
       }

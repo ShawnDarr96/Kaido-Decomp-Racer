@@ -2295,7 +2295,7 @@ void scrgarage_step_sub_00287c70(uint *param_1)
   *param_1 = 0;
   uVar1 = Profile_Get(0);
   uVar1 = Profile_GetCurrentCarModel(uVar1);
-  lVar2 = password_step_sub_002df190(uVar1);
+  lVar2 = Password_GetCarFlags(uVar1);
   if (lVar2 == 0) {
     *param_1 = *param_1 | 1;
   }
@@ -2304,7 +2304,7 @@ void scrgarage_step_sub_00287c70(uint *param_1)
   }
   uVar1 = Profile_Get(0);
   uVar1 = Profile_GetCurrentCarModel(uVar1);
-  lVar2 = password_step_sub_002df110(uVar1);
+  lVar2 = Password_GetCarClass(uVar1);
   if (lVar2 == 4) {
     *param_1 = *param_1 | 0x10;
   }
@@ -2316,7 +2316,7 @@ void scrgarage_step_sub_00287c70(uint *param_1)
   }
   uVar1 = Profile_Get(0);
   uVar1 = Profile_GetCurrentCarModel(uVar1);
-  lVar2 = password_step_sub_002df0c0(uVar1);
+  lVar2 = Password_IsCarSpecial(uVar1);
   if (lVar2 == 7) {
     *param_1 = *param_1 | 0x80;
   }
@@ -2394,13 +2394,13 @@ void scrrace_step_sub_00287ec0(int param_1,long param_2)
       if (param_2 == -1) {
         uVar2 = Menu_MapCursorToItem(*(undefined4 *)(param_1 + 0x14));
         if (*(int *)(param_1 + 0x1c) == *(int *)(param_1 + 8) + 1) {
-          password_step_sub_002dfed0(auStack_40,uVar2,*(undefined4 *)(param_1 + 0x20));
+          Course_GetVariantInfo(auStack_40,uVar2,*(undefined4 *)(param_1 + 0x20));
           iVar5 = iStack_2c;
           iVar6 = iStack_30;
         }
         else {
-          password_step_sub_002dff30
-                    (auStack_60,uVar2,*(int *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20));
+          Course_FindSection(auStack_60,uVar2,*(int *)(param_1 + 0x1c),
+                             *(undefined4 *)(param_1 + 0x20));
           iVar5 = iStack_54;
           iVar6 = iStack_58;
         }
@@ -2480,14 +2480,14 @@ void scrrace_step_sub_00287ec0(int param_1,long param_2)
         iVar6 = *(int *)(param_1 + 0x1c);
         uVar2 = Menu_MapCursorToItem(*(undefined4 *)(param_1 + 0x14));
         uVar3 = Profile_Get(0);
-        password_leaf_sub_002de7d0(uVar3,uVar2,*(undefined4 *)(param_1 + 0x1c),iVar6 == iVar5 + 1);
+        Password_GetRecordTime(uVar3,uVar2,*(undefined4 *)(param_1 + 0x1c),iVar6 == iVar5 + 1);
         uVar3 = Race_GetCourseId(*(undefined1 *)(_g_MenuMgr + 0x620));
         if (*(int *)(param_1 + 0x1c) == *(int *)(param_1 + 8) + 1) {
-          password_step_sub_002ddfd0
+          Password_ApplyCareer
                     (uVar2,*(undefined4 *)(param_1 + 0x20),uVar3,*(undefined4 *)(param_1 + 0x24));
         }
         else {
-          password_step_sub_002de230
+          Password_ApplyCareerEx
                     (uVar2,*(int *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),uVar3,
                      *(undefined4 *)(param_1 + 0x24));
         }

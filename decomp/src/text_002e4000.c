@@ -15,7 +15,7 @@ void Eventui_Draw_Rokko(undefined8 param_1)
   undefined8 uVar5;
   undefined1 auStack_40 [64];
   
-  lVar4 = nameentry_leaf_sub_002f81d0();
+  lVar4 = Composer_ConsumeConfirm();
   if (lVar4 != 0) {
     uVar2 = UiRes_GetLayoutData(0x3b);
     iVar3 = UiMgr_FindLayout(9);
@@ -88,11 +88,11 @@ void Eventui_Draw_Rokko(undefined8 param_1)
   }
   lVar4 = UiLayout_UpdateAnimById(9,0);
   if (lVar4 == 0) {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar4 = Nameentry_GetField_18(param_1);
   if ((lVar4 != 0) && (lVar4 = UiLayout_UpdateAnimById(9,1), lVar4 == 0)) {
-    nameentry_leaf_sub_002f8170(param_1);
+    Composer_ConsumeRedraw(param_1);
   }
   lVar4 = Nameentry_GetField_14(param_1);
   iVar3 = (int)param_1;
@@ -104,13 +104,13 @@ void Eventui_Draw_Rokko(undefined8 param_1)
   MenuWnd_DrawLabel(9,0x1c,5,0,*(int *)(iVar3 + 0x60) + 1);
   iVar1 = UiMgr_FindLayout(9);
   UiElem_GetRect(*_g_UiMgr + iVar1 * 0x4f4 + 4,auStack_40,0x1e);
-  uVar5 = script_step_sub_002b8e60(*(undefined4 *)(iVar3 + 0x20),*(undefined4 *)(iVar3 + 0x60));
+  uVar5 = SeqGen_GetPartTextId(*(undefined4 *)(iVar3 + 0x20),*(undefined4 *)(iVar3 + 0x60));
   UiText_DrawPlayerName(auStack_40,uVar5,0);
   MenuWnd_DrawText(9,0x1f,0x32);
   UiLayout_UpdateAnimById(9,2);
   iVar1 = UiMgr_FindLayout(9);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
-  nameentry_draw_sub_002f8260(0xffffffffffffffff,3);
+  Composer_DrawLabel(0xffffffffffffffff,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
      ((lVar4 = Nameentry_GetField_4_8200(param_1), lVar4 == 1 &&
@@ -129,7 +129,7 @@ void Eventui_Draw_Rokko(undefined8 param_1)
   UiLayout_UpdateAnimById(7,8);
   iVar3 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  lVar4 = nameentry_leaf_sub_002f86e0();
+  lVar4 = ComposerScene_IsChanging();
   if (lVar4 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -156,7 +156,7 @@ void Eventui_Draw_Hakone_46a0(undefined8 param_1)
   int iVar3;
   long lVar4;
   
-  lVar4 = nameentry_leaf_sub_002f81d0();
+  lVar4 = Composer_ConsumeConfirm();
   iVar3 = (int)param_1;
   if (lVar4 != 0) {
     uVar1 = UiRes_GetLayoutData(0x14);
@@ -255,13 +255,13 @@ void Eventui_Draw_Hakone_46a0(undefined8 param_1)
                         (&DAT_003428d0)[*(int *)(iVar3 + 0x50)],8);
     Menu_ClearSlot(0);
   }
-  nameentry_leaf_sub_002f81a0(param_1);
+  Composer_ClearDirty(param_1);
   lVar4 = Nameentry_GetField_18(param_1);
   if (lVar4 != 0) {
-    nameentry_leaf_sub_002f8170(param_1);
+    Composer_ConsumeRedraw(param_1);
   }
   eventui_anim_sub_002e39e0(param_1);
-  nameentry_draw_sub_002f8260(0x2a,3);
+  Composer_DrawLabel(0x2a,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
      ((lVar4 = Nameentry_GetField_4_8200(param_1), lVar4 == 1 &&
@@ -280,7 +280,7 @@ void Eventui_Draw_Hakone_46a0(undefined8 param_1)
   UiLayout_UpdateAnimById(7,8);
   iVar3 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  lVar4 = nameentry_leaf_sub_002f86e0();
+  lVar4 = ComposerScene_IsChanging();
   if (lVar4 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -307,7 +307,7 @@ void Eventui_Draw_Hakone_4b60(undefined8 param_1)
   int iVar3;
   long lVar4;
   
-  lVar4 = nameentry_leaf_sub_002f81d0();
+  lVar4 = Composer_ConsumeConfirm();
   iVar3 = (int)param_1;
   if (lVar4 != 0) {
     uVar1 = UiRes_GetLayoutData(0x14);
@@ -428,17 +428,17 @@ void Eventui_Draw_Hakone_4b60(undefined8 param_1)
                         (&DAT_003428d0)[*(int *)(iVar3 + 0x50)],8);
     Menu_ClearSlot(0);
   }
-  nameentry_leaf_sub_002f81a0(param_1);
+  Composer_ClearDirty(param_1);
   lVar4 = Nameentry_GetField_18(param_1);
   if (lVar4 != 0) {
-    nameentry_leaf_sub_002f8170(param_1);
+    Composer_ConsumeRedraw(param_1);
   }
   eventui_anim_sub_002e39e0(param_1);
   if (*(int *)(iVar3 + 0x54) == -1) {
-    nameentry_draw_sub_002f8260(0x28,3);
+    Composer_DrawLabel(0x28,3);
   }
   else {
-    nameentry_draw_sub_002f8260(0x29,3);
+    Composer_DrawLabel(0x29,3);
   }
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
@@ -458,7 +458,7 @@ void Eventui_Draw_Hakone_4b60(undefined8 param_1)
   UiLayout_UpdateAnimById(7,8);
   iVar3 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  lVar4 = nameentry_leaf_sub_002f86e0();
+  lVar4 = ComposerScene_IsChanging();
   if (lVar4 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -483,25 +483,25 @@ void ScrDraw_Hakone_Exit(undefined8 param_1)
   long lVar1;
   long lVar2;
   
-  lVar1 = nameentry_leaf_sub_002f81d0();
+  lVar1 = Composer_ConsumeConfirm();
   if (lVar1 != 0) {
     MenuWnd_SetItemVisible(0);
-    nameentry_step_sub_002f6d80(1);
+    Composer_ShowPanel(1);
   }
   lVar1 = Nameentry_Draw_Rokko(0x2e,*(undefined4 *)((int)param_1 + 0x6c));
   if (lVar1 == 1) {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar2 = Nameentry_GetField_18(param_1);
   if (lVar2 != 0) {
     if (lVar1 == 1) {
-      nameentry_leaf_sub_002f6c30();
+      Composer_RequestRedraw();
     }
     if (lVar1 == 3) {
-      nameentry_leaf_sub_002f8170(param_1);
+      Composer_ConsumeRedraw(param_1);
     }
   }
-  nameentry_draw_sub_002f8260(0xffffffffffffffff,3);
+  Composer_DrawLabel(0xffffffffffffffff,3);
   return;
 }
 
@@ -527,7 +527,7 @@ void ScrDraw_Hakone_Update(undefined8 param_1)
   undefined4 uStack_2c;
   undefined1 auStack_4 [4];
   
-  lVar6 = nameentry_leaf_sub_002f81d0();
+  lVar6 = Composer_ConsumeConfirm();
   if (lVar6 != 0) {
     uVar4 = UiRes_GetLayoutData(5);
     iVar5 = UiMgr_FindLayout(2);
@@ -665,7 +665,7 @@ void ScrDraw_Hakone_Update(undefined8 param_1)
   lVar6 = UiLayout_UpdateAnimById(2,0);
   lVar7 = UiLayout_UpdateAnimById(2,2);
   if (lVar6 == 0 && lVar7 == 0) {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   UiLayout_UpdateAnimById(2,4);
   UiLayout_UpdateAnimById(2,5);
@@ -674,7 +674,7 @@ void ScrDraw_Hakone_Update(undefined8 param_1)
   if (DAT_00342a60 != -1) {
     piVar9 = &DAT_00342a60;
     do {
-      iVar2 = nameentry_leaf_sub_002f7170(iVar5 + 0x30);
+      iVar2 = Keyboard_GetIndex(iVar5 + 0x30);
       if (((iVar11 == iVar2) && (lVar6 = Nameentry_GetField_14(param_1), lVar6 == 0)) &&
          (lVar6 = Nameentry_GetField_18(param_1), lVar6 == 0)) {
         iVar2 = UiMgr_FindLayout(2);
@@ -711,8 +711,8 @@ void ScrDraw_Hakone_Update(undefined8 param_1)
       puVar10 = puVar10 + 1;
     } while (iVar2 < iVar11);
   }
-  if ((iVar11 < 0xf) && (lVar6 = nameentry_leaf_sub_002f7100(iVar5 + 0x30), lVar6 != 0)) {
-    auStack_4[0] = nameentry_leaf_sub_002f70d0(iVar5 + 0x30);
+  if ((iVar11 < 0xf) && (lVar6 = Keyboard_IsCharAllowed(iVar5 + 0x30), lVar6 != 0)) {
+    auStack_4[0] = Keyboard_GetChar(iVar5 + 0x30);
     iVar11 = UiMgr_FindLayout(2);
     UiElem_GetRect(*_g_UiMgr + iVar11 * 0x4f4 + 4,auStack_40,(&DAT_00342b70)[*(int *)(iVar5 + 0x38)]
                   );
@@ -731,10 +731,10 @@ void ScrDraw_Hakone_Update(undefined8 param_1)
     lVar6 = UiLayout_UpdateAnimById(2,1);
     lVar7 = UiLayout_UpdateAnimById(2,3);
     if (lVar6 == 0 && lVar7 == 0) {
-      nameentry_leaf_sub_002f8170(param_1);
+      Composer_ConsumeRedraw(param_1);
     }
   }
-  nameentry_draw_sub_002f8260(0x27,3);
+  Composer_DrawLabel(0x27,3);
   iVar5 = UiMgr_FindLayout(2);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar5 * 0x4f4 + 4);
   return;
@@ -754,7 +754,7 @@ void Eventui_Draw_Hakone_5810(undefined8 param_1)
   long lVar6;
   long lVar7;
   
-  lVar4 = nameentry_leaf_sub_002f81d0();
+  lVar4 = Composer_ConsumeConfirm();
   iVar3 = (int)param_1;
   if (lVar4 != 0) {
     uVar1 = UiRes_GetLayoutData(0xb);
@@ -1042,11 +1042,11 @@ void Eventui_Draw_Hakone_5810(undefined8 param_1)
     lVar6 = UiLayout_UpdateAnimById(7,4);
     lVar7 = UiLayout_UpdateAnimById(8,0);
     if (lVar7 == 0 && (lVar6 == 0 && (lVar4 == 0 && lVar5 == 0))) {
-      nameentry_leaf_sub_002f81a0(param_1);
+      Composer_ClearDirty(param_1);
     }
   }
   else {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar4 = Nameentry_GetField_18(param_1);
   if (lVar4 != 0) {
@@ -1057,15 +1057,15 @@ void Eventui_Draw_Hakone_5810(undefined8 param_1)
       lVar6 = UiLayout_UpdateAnimById(7,5);
       lVar7 = UiLayout_UpdateAnimById(8,1);
       if (lVar7 == 0 && (lVar6 == 0 && (lVar4 == 0 && lVar5 == 0))) {
-        nameentry_leaf_sub_002f8170(param_1);
+        Composer_ConsumeRedraw(param_1);
       }
     }
     else {
-      nameentry_leaf_sub_002f8170(param_1);
+      Composer_ConsumeRedraw(param_1);
     }
   }
   eventui_anim_sub_002e39e0(param_1);
-  nameentry_draw_sub_002f8260(0x26,3);
+  Composer_DrawLabel(0x26,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
      ((lVar4 = Nameentry_GetField_4_8200(param_1), lVar4 == 1 &&
@@ -1084,7 +1084,7 @@ void Eventui_Draw_Hakone_5810(undefined8 param_1)
   UiLayout_UpdateAnimById(7,8);
   iVar3 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  lVar4 = nameentry_leaf_sub_002f86e0();
+  lVar4 = ComposerScene_IsChanging();
   if (lVar4 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -1111,7 +1111,7 @@ void Eventui_Draw_Hakone_6260(undefined8 param_1)
   int iVar3;
   long lVar4;
   
-  lVar4 = nameentry_leaf_sub_002f81d0();
+  lVar4 = Composer_ConsumeConfirm();
   iVar3 = (int)param_1;
   if (lVar4 != 0) {
     uVar1 = UiRes_GetLayoutData(0x14);
@@ -1232,17 +1232,17 @@ void Eventui_Draw_Hakone_6260(undefined8 param_1)
                         (&DAT_003428d0)[*(int *)(iVar3 + 0x50)],8);
     Menu_ClearSlot(0);
   }
-  nameentry_leaf_sub_002f81a0(param_1);
+  Composer_ClearDirty(param_1);
   lVar4 = Nameentry_GetField_18(param_1);
   if (lVar4 != 0) {
-    nameentry_leaf_sub_002f8170(param_1);
+    Composer_ConsumeRedraw(param_1);
   }
   eventui_anim_sub_002e39e0(param_1);
   if (*(int *)(iVar3 + 0x54) == -1) {
-    nameentry_draw_sub_002f8260(0x24,3);
+    Composer_DrawLabel(0x24,3);
   }
   else {
-    nameentry_draw_sub_002f8260(0x25,3);
+    Composer_DrawLabel(0x25,3);
   }
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
@@ -1262,7 +1262,7 @@ void Eventui_Draw_Hakone_6260(undefined8 param_1)
   UiLayout_UpdateAnimById(7,8);
   iVar3 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  lVar4 = nameentry_leaf_sub_002f86e0();
+  lVar4 = ComposerScene_IsChanging();
   if (lVar4 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -1289,7 +1289,7 @@ void Eventui_Draw_Hakone_67d0(undefined8 param_1)
   int iVar3;
   long lVar4;
   
-  lVar4 = nameentry_leaf_sub_002f81d0();
+  lVar4 = Composer_ConsumeConfirm();
   iVar3 = (int)param_1;
   if (lVar4 != 0) {
     uVar1 = UiRes_GetLayoutData(0x14);
@@ -1388,13 +1388,13 @@ void Eventui_Draw_Hakone_67d0(undefined8 param_1)
                         (&DAT_003428d0)[*(int *)(iVar3 + 0x50)],8);
     Menu_ClearSlot(0);
   }
-  nameentry_leaf_sub_002f81a0(param_1);
+  Composer_ClearDirty(param_1);
   lVar4 = Nameentry_GetField_18(param_1);
   if (lVar4 != 0) {
-    nameentry_leaf_sub_002f8170(param_1);
+    Composer_ConsumeRedraw(param_1);
   }
   eventui_anim_sub_002e39e0(param_1);
-  nameentry_draw_sub_002f8260(0x23,3);
+  Composer_DrawLabel(0x23,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar3 + 0x70) == -1) ||
      ((lVar4 = Nameentry_GetField_4_8200(param_1), lVar4 == 1 &&
@@ -1413,7 +1413,7 @@ void Eventui_Draw_Hakone_67d0(undefined8 param_1)
   UiLayout_UpdateAnimById(7,8);
   iVar3 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar3 * 0x4f4 + 4);
-  lVar4 = nameentry_leaf_sub_002f86e0();
+  lVar4 = ComposerScene_IsChanging();
   if (lVar4 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -1445,7 +1445,7 @@ void Eventui_Draw_Hakone_6c90(undefined8 param_1)
   undefined4 *puVar8;
   uint uVar9;
   
-  lVar3 = nameentry_leaf_sub_002f81d0();
+  lVar3 = Composer_ConsumeConfirm();
   if (lVar3 != 0) {
     uVar1 = UiRes_GetLayoutData(0xb);
     iVar2 = UiMgr_FindLayout(7);
@@ -1734,17 +1734,17 @@ void Eventui_Draw_Hakone_6c90(undefined8 param_1)
     lVar5 = UiLayout_UpdateAnimById(7,4);
     lVar6 = UiLayout_UpdateAnimById(8,0);
     if (lVar6 == 0 && (lVar5 == 0 && (lVar3 == 0 && lVar4 == 0))) {
-      nameentry_leaf_sub_002f81a0(param_1);
+      Composer_ClearDirty(param_1);
     }
   }
   else {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar3 = Nameentry_GetField_18(param_1);
   if (lVar3 != 0) {
-    lVar3 = nameentry_leaf_sub_002f86e0();
+    lVar3 = ComposerScene_IsChanging();
     if (lVar3 == 0) {
-      nameentry_leaf_sub_002f8170(param_1);
+      Composer_ConsumeRedraw(param_1);
     }
     else {
       lVar3 = UiLayout_UpdateAnimById(7,1);
@@ -1752,7 +1752,7 @@ void Eventui_Draw_Hakone_6c90(undefined8 param_1)
       lVar5 = UiLayout_UpdateAnimById(7,5);
       lVar6 = UiLayout_UpdateAnimById(8,1);
       if (lVar6 == 0 && (lVar5 == 0 && (lVar3 == 0 && lVar4 == 0))) {
-        nameentry_leaf_sub_002f8170(param_1);
+        Composer_ConsumeRedraw(param_1);
         uVar1 = *(undefined4 *)(iVar2 + 0x50);
         goto LAB_002e6d1c;
       }
@@ -1785,7 +1785,7 @@ LAB_002e6d1c:
   case 5:
     uVar7 = 0x22;
   }
-  nameentry_draw_sub_002f8260(uVar7,3);
+  Composer_DrawLabel(uVar7,3);
   MenuWnd_DrawText(7,0x45,1);
   if ((*(int *)(iVar2 + 0x70) == -1) ||
      ((lVar3 = Nameentry_GetField_4_8200(param_1), lVar3 == 1 &&
@@ -1804,7 +1804,7 @@ LAB_002e6d1c:
   UiLayout_UpdateAnimById(7,8);
   iVar2 = UiMgr_FindLayout(7);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
-  lVar3 = nameentry_leaf_sub_002f86e0();
+  lVar3 = ComposerScene_IsChanging();
   if (lVar3 == 0) {
     UiLayout_UpdateAnimById(8,5);
     UiLayout_UpdateAnimById(8,6);
@@ -1949,21 +1949,21 @@ void Eventui_Draw_TestCourse(undefined8 param_1)
   long lVar2;
   long lVar3;
   
-  lVar2 = nameentry_leaf_sub_002f81d0();
+  lVar2 = Composer_ConsumeConfirm();
   if (lVar2 != 0) {
-    nameentry_step_sub_002f6d80(1);
+    Composer_ShowPanel(1);
   }
   lVar2 = Nameentry_Draw_Rokko(0x12,*(undefined4 *)((int)param_1 + 0x24));
   if (lVar2 == 1) {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar3 = Nameentry_GetField_18(param_1);
   if (lVar3 != 0) {
     if (lVar2 == 1) {
-      nameentry_leaf_sub_002f6c30();
+      Composer_RequestRedraw();
     }
     if (lVar2 == 3) {
-      nameentry_leaf_sub_002f8170(param_1);
+      Composer_ConsumeRedraw(param_1);
     }
   }
   MenuWnd_DrawText(5,0x1f,0);
@@ -1973,7 +1973,7 @@ void Eventui_Draw_TestCourse(undefined8 param_1)
   MenuWnd_DrawText(5,0x23,4);
   iVar1 = UiMgr_FindLayout(5);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
-  nameentry_draw_sub_002f8260(0xffffffffffffffff,3);
+  Composer_DrawLabel(0xffffffffffffffff,3);
   return;
 }
 
@@ -1987,21 +1987,21 @@ void Eventui_Draw_TestCourse_7ae0(undefined8 param_1)
   long lVar2;
   long lVar3;
   
-  lVar2 = nameentry_leaf_sub_002f81d0();
+  lVar2 = Composer_ConsumeConfirm();
   if (lVar2 != 0) {
-    nameentry_step_sub_002f6d80(1);
+    Composer_ShowPanel(1);
   }
   lVar2 = Nameentry_Draw_Rokko(0x11,*(undefined4 *)((int)param_1 + 0x24));
   if (lVar2 == 1) {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar3 = Nameentry_GetField_18(param_1);
   if (lVar3 != 0) {
     if (lVar2 == 1) {
-      nameentry_leaf_sub_002f6c30();
+      Composer_RequestRedraw();
     }
     if (lVar2 == 3) {
-      nameentry_leaf_sub_002f8170(param_1);
+      Composer_ConsumeRedraw(param_1);
     }
   }
   MenuWnd_DrawText(5,0x1f,0);
@@ -2011,7 +2011,7 @@ void Eventui_Draw_TestCourse_7ae0(undefined8 param_1)
   MenuWnd_DrawText(5,0x23,4);
   iVar1 = UiMgr_FindLayout(5);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
-  nameentry_draw_sub_002f8260(0xffffffffffffffff,3);
+  Composer_DrawLabel(0xffffffffffffffff,3);
   return;
 }
 
@@ -2025,7 +2025,7 @@ void Eventui_Draw_TestCourse_7c10(undefined8 param_1)
   int iVar2;
   long lVar3;
   
-  lVar3 = nameentry_leaf_sub_002f81d0();
+  lVar3 = Composer_ConsumeConfirm();
   if (lVar3 != 0) {
     uVar1 = UiRes_GetLayoutData(0x25);
     iVar2 = UiMgr_FindLayout(6);
@@ -2075,11 +2075,11 @@ void Eventui_Draw_TestCourse_7c10(undefined8 param_1)
   }
   lVar3 = UiLayout_UpdateAnimById(6,0);
   if (lVar3 == 0) {
-    nameentry_leaf_sub_002f81a0(param_1);
+    Composer_ClearDirty(param_1);
   }
   lVar3 = Nameentry_GetField_18(param_1);
   if ((lVar3 != 0) && (lVar3 = UiLayout_UpdateAnimById(6,1), lVar3 == 0)) {
-    nameentry_leaf_sub_002f8170(param_1);
+    Composer_ConsumeRedraw(param_1);
   }
   lVar3 = Nameentry_GetField_14(param_1);
   if (lVar3 == 0) {
@@ -2093,10 +2093,10 @@ void Eventui_Draw_TestCourse_7c10(undefined8 param_1)
   iVar2 = UiMgr_FindLayout(6);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar2 * 0x4f4 + 4);
   if (*(int *)((int)param_1 + 0x24) == 0) {
-    nameentry_draw_sub_002f8260(0x15,3);
+    Composer_DrawLabel(0x15,3);
   }
   else {
-    nameentry_draw_sub_002f8260(0x16,3);
+    Composer_DrawLabel(0x16,3);
   }
   return;
 }
@@ -2113,7 +2113,7 @@ void Eventui_Draw_TestCourse_7e90(undefined8 param_1)
   long lVar4;
   undefined8 uVar5;
   
-  lVar3 = nameentry_leaf_sub_002f81d0();
+  lVar3 = Composer_ConsumeConfirm();
   if (lVar3 != 0) {
     uVar1 = UiRes_GetLayoutData(1);
     iVar2 = UiMgr_FindLayout(5);
@@ -2231,14 +2231,14 @@ void Eventui_Draw_TestCourse_7e90(undefined8 param_1)
   if (lVar3 == 1) {
     lVar3 = UiLayout_UpdateAnimById(5,0);
     if (lVar3 == 0) {
-      nameentry_leaf_sub_002f81a0(param_1);
+      Composer_ClearDirty(param_1);
     }
   }
   else {
     lVar3 = UiLayout_UpdateAnimById(5,0);
     lVar4 = UiLayout_UpdateAnimById(5,1);
     if (lVar3 == 0 && lVar4 == 0) {
-      nameentry_leaf_sub_002f81a0(param_1);
+      Composer_ClearDirty(param_1);
     }
   }
   lVar3 = Nameentry_GetField_18(param_1);
@@ -2248,14 +2248,14 @@ void Eventui_Draw_TestCourse_7e90(undefined8 param_1)
     if (lVar3 == 1) {
       lVar3 = UiLayout_UpdateAnimById(5,4);
       if (lVar3 == 0) {
-        nameentry_leaf_sub_002f8170(param_1);
+        Composer_ConsumeRedraw(param_1);
       }
     }
     else {
       lVar3 = UiLayout_UpdateAnimById(5,2);
       lVar4 = UiLayout_UpdateAnimById(5,3);
       if (lVar3 == 0 && lVar4 == 0) {
-        nameentry_leaf_sub_002f8170(param_1);
+        Composer_ConsumeRedraw(param_1);
       }
     }
   }
@@ -2287,7 +2287,7 @@ void Eventui_Draw_TestCourse_7e90(undefined8 param_1)
   else if (iVar2 == 0) {
     uVar5 = 0xc;
   }
-  nameentry_draw_sub_002f8260(uVar5,3);
+  Composer_DrawLabel(uVar5,3);
   return;
 }
 

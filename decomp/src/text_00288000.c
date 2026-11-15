@@ -229,7 +229,7 @@ void screc32e724_enter_sub_002885c0(undefined8 param_1)
     do {
       uVar4 = Profile_Get(0);
       uVar4 = Profile_GetCurrentCarModel(uVar4);
-      lVar5 = password_step_sub_002dead0(uVar3,uVar8,uVar4);
+      lVar5 = Password_EncodeCar(uVar3,uVar8,uVar4);
       if (lVar5 != 0) {
         puVar6[1] = puVar6[1] | 1 << (uVar8 & 0x1f);
       }
@@ -238,7 +238,7 @@ void screc32e724_enter_sub_002885c0(undefined8 param_1)
     Menu_HandleCursor(puVar6 + 8,0,2,2,1,0);
     uVar4 = Profile_Get(0);
     uVar4 = Profile_GetCurrentCarModel(uVar4);
-    lVar5 = password_step_sub_002dead0(uVar3,puVar6[8],uVar4);
+    lVar5 = Password_EncodeCar(uVar3,puVar6[8],uVar4);
     if (lVar5 == 0) {
       puVar6[0x1b] = 7;
     }
@@ -250,7 +250,7 @@ void screc32e724_enter_sub_002885c0(undefined8 param_1)
     iVar1 = puVar6[2];
     iVar2 = puVar6[7];
     uVar4 = Profile_Get(0);
-    lVar5 = password_leaf_sub_002de860(uVar4,iVar2 == iVar1 + 1,uVar3,iVar2);
+    lVar5 = Password_GetRecordScore(uVar4,iVar2 == iVar1 + 1,uVar3,iVar2);
     if (lVar5 == 0) {
       puVar6[0x1b] = 6;
     }
@@ -366,7 +366,7 @@ void screc32e718_exit_sub_002888c0(int param_1)
   }
   uVar5 = Menu_MapCursorToItem(*(undefined4 *)(param_1 + 0x14));
   uVar6 = Profile_Get(0);
-  uVar4 = password_leaf_sub_002de5d0(uVar6,uVar5);
+  uVar4 = Password_GetDigit(uVar6,uVar5);
   *(undefined4 *)(param_1 + 8) = uVar4;
   *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_1 + 8);
   *(undefined4 *)(param_1 + 0x20) = 0;
@@ -454,7 +454,7 @@ void screc3274e0_enter_sub_00288c20(undefined8 param_1)
       puVar8[5] = uVar4;
       uVar5 = Menu_MapCursorToItem(puVar8[5]);
       uVar6 = Profile_Get(0);
-      uVar4 = password_leaf_sub_002de5d0(uVar6,uVar5);
+      uVar4 = Password_GetDigit(uVar6,uVar5);
       puVar8[2] = uVar4;
       puVar8[7] = puVar8[2];
       puVar8[8] = 0;
@@ -469,7 +469,7 @@ void screc3274e0_enter_sub_00288c20(undefined8 param_1)
       puVar8[5] = uVar4;
       uVar5 = Menu_MapCursorToItem(puVar8[5]);
       uVar6 = Profile_Get(0);
-      uVar4 = password_leaf_sub_002de5d0(uVar6,uVar5);
+      uVar4 = Password_GetDigit(uVar6,uVar5);
       puVar8[2] = uVar4;
       iVar1 = *(int *)(_g_GameState + 0x3a4);
       if (iVar1 == 1) {
@@ -480,20 +480,20 @@ void screc3274e0_enter_sub_00288c20(undefined8 param_1)
         puVar8[7] = *(undefined4 *)(_g_GameState + 0x3a8);
         puVar8[8] = *(undefined4 *)(_g_GameState + 0x3ac);
       }
-      uVar4 = password_step_sub_002df230();
+      uVar4 = Password_GetModeCode();
       puVar8[0xd] = uVar4;
       if (puVar8[0xd] == 6) {
         puVar8[0xe] = 0;
       }
       else {
-        uVar4 = password_step_sub_002df350();
+        uVar4 = Password_Generate();
         puVar8[0xe] = uVar4;
       }
       if (puVar8[0xd] == 0) {
         uVar5 = Profile_Get(0);
         uVar5 = Profile_GetCurrentCar(uVar5);
         uVar5 = CarRec_GetName(uVar5);
-        uVar4 = password_step_sub_002df570(uVar5);
+        uVar4 = Password_EncodeTeams(uVar5);
         puVar8[0xb] = uVar4;
       }
       else {
@@ -501,7 +501,7 @@ void screc3274e0_enter_sub_00288c20(undefined8 param_1)
       }
       if (iVar1 == 1) {
         uVar5 = Menu_MapCursorToItem(puVar8[5]);
-        password_step_sub_002dfed0(auStack_40,uVar5,puVar8[8]);
+        Course_GetVariantInfo(auStack_40,uVar5,puVar8[8]);
         puVar8[0xc] = auStack_40[0];
       }
       if (iVar1 == 0) {
