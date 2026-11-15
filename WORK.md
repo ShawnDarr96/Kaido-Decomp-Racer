@@ -14,7 +14,7 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  |  | Gap of F11 |
+| F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F11 |
 | F19 | Document the XVI model format (XVI0/XMDL/NORM chunks) from the Xvi_* loaders | any |  |  | Gap of F11 |
 | F20 | Name the unk_ fields of RaceEntrySetup (0xcc) and RacerState (0x540): read RaceSetup_Prepare / Career_ProcessRaceEnd / CarRec_Init | any |  |  | Gap of F14 |
 | F21 | Find RacerResult's users (GameState+0x28a0, stride 0x100; reached by pointer arithmetic) and recover its fields; also RivalRec 0xc/0xf0/0x168 used by Opponent_BuildEntry | any |  |  | Gap of F14 |
@@ -365,3 +365,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: F16 done; added F22 (gaps).
 - 2026-11-15 ShawnDarr96/claude: claim F17.
 - 2026-11-15 ShawnDarr96/claude: F17 done; added F23 (gaps).
+- 2026-11-15 ShawnDarr96/claude: claim F18.
