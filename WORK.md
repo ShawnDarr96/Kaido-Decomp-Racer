@@ -14,7 +14,7 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  |  | Gap of F12 |
+| F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F12 |
 | F16 | Scoped names (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) record ownership only; give them meaning-based names | any |  |  | Gap of F15 |
 | F17 | Decompile the XVI IOP modules XVI_IOP.IRX (4.9 KB) and XVI_SND.IRX (35.6 KB): separate R3000 binaries, IOP GCC toolchain | any |  |  | Gap of F7 |
 | F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  |  | Gap of F11 |
@@ -355,3 +355,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: F9 done.
 - 2026-11-15 ShawnDarr96/claude: claim F11.
 - 2026-11-15 ShawnDarr96/claude: F11 done; added F18, F19 (gaps).
+- 2026-11-15 ShawnDarr96/claude: claim F14.
