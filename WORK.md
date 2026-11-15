@@ -13,12 +13,12 @@ Columns:
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
-| F7 | Survey the IOP modules in IRX/ (LGD, PAD2, XVI folders): which are stock Sony modules and which are game-specific, and whether any need decompiling | any |  | ShawnDarr96/claude (2026-11-15) |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
 | F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
 | F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  |  | Gap of F12 |
 | F16 | Scoped names (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) record ownership only; give them meaning-based names | any |  |  | Gap of F15 |
+| F17 | Decompile the XVI IOP modules XVI_IOP.IRX (4.9 KB) and XVI_SND.IRX (35.6 KB): separate R3000 binaries, IOP GCC toolchain | any |  |  | Gap of F7 |
 
 ## P1 Naming
 
@@ -234,6 +234,7 @@ Columns:
 | M2 | byte-identical rebuild verified (sha1 05f754ae... = retail) | P3 | ShawnDarr96/claude | 2026-11-15 | 99bbe1a |
 | M4 | progress report tracks matched functions/bytes from config/matched.csv | P3 | ShawnDarr96/claude | 2026-11-15 | 40b55b7 |
 | M1 | compiler = mwcps2-3.0-011126 -O4,p (decomp.me), verified on 2 functions | P3 | ShawnDarr96/claude | 2026-11-15 | 2258c30 |
+| F7 | decomp/IOP_MODULES.md + scripts/survey_irx.py: 12 modules are stock Sony SDK 2.8 / Logitech lgdev 1.08 (nothing to decompile); XVI_IOP.IRX and XVI_SND.IRX are XVI middleware | P0 | ShawnDarr96/claude | 2026-11-15 | 07adb9c |
 
 ## Changes to the board
 
@@ -347,3 +348,4 @@ Columns:
 - 2026-11-15 ShawnDarr96: added M7.
 - 2026-11-15 ShawnDarr96: added M8.
 - 2026-11-15 ShawnDarr96/claude: claim F7.
+- 2026-11-15 ShawnDarr96/claude: F7 done; added F17 (gaps).
