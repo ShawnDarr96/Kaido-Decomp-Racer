@@ -14,7 +14,7 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  |  | Gap of F1 |
+| F9 | Identify the code at 0x131c00-0x1328b0 (C++ containers with vtable 0x36e0a0, used by the heap) | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F1 |
 | F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  |  | Gap of F6 |
 | F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  |  | Gap of F12 |
 | F16 | Scoped names (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) record ownership only; give them meaning-based names | any |  |  | Gap of F15 |
@@ -349,3 +349,4 @@ Columns:
 - 2026-11-15 ShawnDarr96: added M8.
 - 2026-11-15 ShawnDarr96/claude: claim F7.
 - 2026-11-15 ShawnDarr96/claude: F7 done; added F17 (gaps).
+- 2026-11-15 ShawnDarr96/claude: claim F9.
