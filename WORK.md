@@ -26,7 +26,7 @@ Columns:
 |---|---|---|---|---|---|
 | N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  | done: 168 heuristic screen names re-derived from their tables (see latest N153 commit); left: ~1280 maybe_ names to confirm; done: car input batch reviewed (6 names fixed/confirmed); left: ~1460 maybe_ names; done: 14 names reviewed so far (car inputs, sound, race task); left: ~1455 maybe_ names; done: 21 names reviewed (car inputs, sound, race task, garage sort); left: ~1450 maybe_ names; done: 35 names reviewed (fixes + confirmations); left: maybe_ count in symbols.csv; done: 52 names reviewed; left: 1437 maybe_ names; done: 61 names reviewed; left: 1428 maybe_ names; done: 66 names reviewed; left: 1428 maybe_ names; done: 72 names reviewed; left: 1426 maybe_ names; done: 84 names reviewed, 6 missing callback functions added; left: 1426 maybe_ names |
 | N154 | 25 layout-only menu pages (MenuPageNN_*) are named by table slot only; identify them from their UI layouts | any |  |  | Gap of N132 |
-| N157 | ~2100 words of EE .text are still outside functions (tail code ending in j/b, literals); and the 264 _OrphanN fragments should be tied to their parents via the exception tables | any |  |  | Gap of N156 |
+| N157 | ~2100 words of EE .text are still outside functions (tail code ending in j/b, literals); and the 264 _OrphanN fragments should be tied to their parents via the exception tables | any |  | ShawnDarr96/claude (2026-11-14) | Gap of N156 |
 
 ## P2 Types
 
@@ -321,3 +321,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: added N156.
 - 2026-11-14 ShawnDarr96/claude: claim N156.
 - 2026-11-14 ShawnDarr96/claude: N156 done; added N157 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim N157.
