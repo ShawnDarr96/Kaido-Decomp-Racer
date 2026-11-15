@@ -1806,15 +1806,16 @@ void maybe_DemoCam_PlaceFront(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
-  int iVar2;
+  RacerState *pRVar2;
+  int iVar3;
   
   Demo_PlaceCamera(0x3d3851ec,0x3e23d70a,param_2);
-  iVar2 = (int)param_2;
-  if (*(int *)(iVar2 + 0x7b0) != 0) {
+  iVar3 = (int)param_2;
+  if (*(int *)(iVar3 + 0x7b0) != 0) {
     iVar1 = RaceCar_GetIndex();
-    iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
-    *(float *)(iVar2 + 0x474) = ((float)*(uint *)(iVar1 + 0x38) + 250.0) / 1000.0;
-    *(float *)(iVar2 + 0x484) = ((float)*(uint *)(iVar1 + 0x38) + 100.0) / 1000.0;
+    pRVar2 = GameState_Elem_3e0_x540((int)*(char *)(iVar1 + 9));
+    *(float *)(iVar3 + 0x474) = ((float)pRVar2->maybe_carObj + 250.0) / 1000.0;
+    *(float *)(iVar3 + 0x484) = ((float)pRVar2->maybe_carObj + 100.0) / 1000.0;
   }
   return;
 }
@@ -1824,15 +1825,16 @@ void maybe_DemoCam_PlaceOrbit(undefined8 param_1,undefined8 param_2)
 
 {
   int iVar1;
-  int iVar2;
+  RacerState *pRVar2;
+  int iVar3;
   
   maybe_DemoCam_SetPath(param_2,0x365100,0x365110,0x365120,0x365130);
-  iVar2 = (int)param_2;
-  if (*(int *)(iVar2 + 0x7b0) != 0) {
+  iVar3 = (int)param_2;
+  if (*(int *)(iVar3 + 0x7b0) != 0) {
     iVar1 = RaceCar_GetIndex();
-    iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
-    *(float *)(iVar2 + 0x474) = ((float)*(uint *)(iVar1 + 0x38) + 250.0) / 1000.0;
-    *(float *)(iVar2 + 0x484) = ((float)*(uint *)(iVar1 + 0x38) + 100.0) / 1000.0;
+    pRVar2 = GameState_Elem_3e0_x540((int)*(char *)(iVar1 + 9));
+    *(float *)(iVar3 + 0x474) = ((float)pRVar2->maybe_carObj + 250.0) / 1000.0;
+    *(float *)(iVar3 + 0x484) = ((float)pRVar2->maybe_carObj + 100.0) / 1000.0;
   }
   return;
 }
@@ -2016,6 +2018,7 @@ void maybe_DemoCam_PlaceSide(undefined8 param_1,int param_2)
 
 {
   int iVar1;
+  RacerState *pRVar2;
   
   sceVu0CopyVector(param_2 + 0x470,0x365080);
   sceVu0CopyVector(param_2 + 0x480,0x365090);
@@ -2023,11 +2026,11 @@ void maybe_DemoCam_PlaceSide(undefined8 param_1,int param_2)
   sceVu0CopyVector(param_2 + 0x4a0,0x3650b0);
   if (*(int *)(param_2 + 0x7b0) != 0) {
     iVar1 = RaceCar_GetIndex();
-    iVar1 = GameState_Elem_3e0_x540(*(undefined1 *)(iVar1 + 9));
-    *(float *)(param_2 + 0x470) = ((float)(*(uint *)(iVar1 + 0x34) >> 1) - 1800.0) / 1000.0;
-    *(float *)(param_2 + 0x474) = ((float)*(uint *)(iVar1 + 0x38) - 450.0) / 1000.0;
-    *(float *)(param_2 + 0x480) = (float)(*(uint *)(iVar1 + 0x34) >> 1) / 1000.0;
-    *(float *)(param_2 + 0x484) = ((float)*(uint *)(iVar1 + 0x38) - 450.0) / 1000.0;
+    pRVar2 = GameState_Elem_3e0_x540((int)*(char *)(iVar1 + 9));
+    *(float *)(param_2 + 0x470) = ((float)(pRVar2->unk_34 >> 1) - 1800.0) / 1000.0;
+    *(float *)(param_2 + 0x474) = ((float)pRVar2->maybe_carObj - 450.0) / 1000.0;
+    *(float *)(param_2 + 0x480) = (float)(pRVar2->unk_34 >> 1) / 1000.0;
+    *(float *)(param_2 + 0x484) = ((float)pRVar2->maybe_carObj - 450.0) / 1000.0;
   }
   return;
 }

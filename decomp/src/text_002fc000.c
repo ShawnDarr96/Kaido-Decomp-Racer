@@ -28,66 +28,67 @@ undefined4 maybe_RaceResult_GetCategory(void)
 
 {
   byte bVar1;
-  long lVar2;
-  undefined4 uVar3;
+  RaceEntrySetup *pRVar2;
+  RacerStats *pRVar3;
+  undefined4 uVar4;
   
-  uVar3 = 0;
-  lVar2 = GameState_Elem_f0_xcc(1);
-  if (lVar2 == 0) {
-    lVar2 = 0;
+  uVar4 = 0;
+  pRVar2 = GameState_Elem_f0_xcc(1);
+  if (pRVar2 == (RaceEntrySetup *)0x0) {
+    pRVar3 = (RacerStats *)0x0;
   }
   else {
-    lVar2 = GameState_Elem_2fa0_x17c(*(undefined1 *)((int)lVar2 + 9));
+    pRVar3 = GameState_Elem_2fa0_x17c((int)(char)pRVar2->unk_09);
   }
-  if (lVar2 != 0) {
-    bVar1 = RivalRec_GetTeam(lVar2);
+  if (pRVar3 != (RacerStats *)0x0) {
+    bVar1 = RivalRec_GetTeam(pRVar3);
     if (bVar1 < 0xb) {
                     /* WARNING: Switch is manually overridden */
       switch(bVar1) {
       case 2:
-        uVar3 = 1;
+        uVar4 = 1;
         break;
       case 3:
-        uVar3 = 2;
+        uVar4 = 2;
         break;
       case 4:
-        uVar3 = 3;
+        uVar4 = 3;
         break;
       case 6:
-        uVar3 = 4;
+        uVar4 = 4;
         break;
       case 7:
-        uVar3 = 5;
+        uVar4 = 5;
         break;
       case 8:
-        uVar3 = 6;
+        uVar4 = 6;
         break;
       case 9:
-        uVar3 = 7;
+        uVar4 = 7;
         break;
       case 10:
-        uVar3 = 8;
+        uVar4 = 8;
       }
     }
   }
-  return uVar3;
+  return uVar4;
 }
 
 // 0x002fd180  size 0x34
-undefined8 maybe_RaceResult_GetRivalTeam(void)
+RacerStats * maybe_RaceResult_GetRivalTeam(void)
 
 {
-  long lVar1;
-  undefined8 uVar2;
+  RaceEntrySetup *pRVar1;
+  RacerStats *pRVar2;
   
-  lVar1 = GameState_Elem_f0_xcc(1);
-  if (lVar1 == 0) {
-    uVar2 = 0;
+  pRVar1 = GameState_Elem_f0_xcc(1);
+  if (pRVar1 == (RaceEntrySetup *)0x0) {
+    pRVar2 = (RacerStats *)0x0;
   }
   else {
-    uVar2 = GameState_Elem_2fa0_x17c(*(undefined1 *)((int)lVar1 + 9));
+    pRVar2 = GameState_Elem_2fa0_x17c((int)(char)pRVar1->unk_09);
   }
-  return uVar2;
+  return pRVar2;
 }
 
 // 0x002fd1c0  size 0xc

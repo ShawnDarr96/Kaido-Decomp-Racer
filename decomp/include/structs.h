@@ -8,11 +8,74 @@ typedef struct GameRecord {  /* size 0x14 */
 } GameRecord;
 
 typedef struct RaceEntrySetup {  /* size 0xcc */
-    u8 pad_0000[0xcc];
+    u8 maybe_state;  /* 0x0 */
+    u8 pad_0001[0x3];
+    u32 unk_04;  /* 0x4 */
+    u8 unk_08;  /* 0x8 */
+    u8 unk_09;  /* 0x9 */
+    u8 pad_000a[0x2];
+    u32 maybe_counter;  /* 0xc */
+    f32 maybe_accum;  /* 0x10 */
+    u32 unk_14;  /* 0x14 */
+    u8 pad_0018[0x8];
+    u32 unk_20;  /* 0x20 */
+    u8 pad_0024[0x4];
+    u32 unk_28;  /* 0x28 */
+    u8 unk_2c;  /* 0x2c */
+    u8 pad_002d[0x3];
+    u32 unk_30;  /* 0x30 */
+    u32 unk_34;  /* 0x34 */
+    u32 unk_38;  /* 0x38 */
+    u32 unk_3c;  /* 0x3c */
+    u32 unk_40;  /* 0x40 */
+    u32 unk_44;  /* 0x44 */
+    u32 unk_48;  /* 0x48 */
+    u32 unk_4c;  /* 0x4c */
+    u32 unk_50;  /* 0x50 */
+    u32 unk_54;  /* 0x54 */
+    u32 unk_58;  /* 0x58 */
+    u32 unk_5c;  /* 0x5c */
+    u32 unk_60;  /* 0x60 */
+    u32 unk_64;  /* 0x64 */
+    u32 unk_68;  /* 0x68 */
+    u32 unk_6c;  /* 0x6c */
+    u32 unk_70;  /* 0x70 */
+    u8 pad_0074[0xc];
+    u32 maybe_scheduleIds[18];  /* 0x80 */
+    u32 unk_c8;  /* 0xc8 */
 } RaceEntrySetup;
 
 typedef struct RacerState {  /* size 0x540 */
-    u8 pad_0000[0x540];
+    u32 unk_00;  /* 0x0 */
+    u32 unk_04;  /* 0x4 */
+    u8 pad_0008[0x1];
+    u8 unk_09;  /* 0x9 */
+    u8 pad_000a[0x2];
+    u16 unk_0c;  /* 0xc */
+    u8 pad_000e[0x26];
+    u32 unk_34;  /* 0x34 */
+    void * maybe_carObj;  /* 0x38 */
+    u8 pad_003c[0x8];
+    u32 unk_44;  /* 0x44 */
+    u8 unk_48;  /* 0x48 */
+    u8 unk_49;  /* 0x49 */
+    u8 pad_004a[0x2];
+    u32 unk_4c;  /* 0x4c */
+    u32 unk_50;  /* 0x50 */
+    u8 pad_0054[0x38];
+    u32 unk_8c;  /* 0x8c */
+    u32 unk_90;  /* 0x90 */
+    u8 pad_0094[0x68];
+    u16 unk_fc;  /* 0xfc */
+    u8 pad_00fe[0x62];
+    u32 unk_160;  /* 0x160 */
+    u8 pad_0164[0x4];
+    u32 unk_168;  /* 0x168 */
+    u8 pad_016c[0x48];
+    u32 unk_1b4;  /* 0x1b4 */
+    u8 pad_01b8[0x88];
+    u32 unk_240;  /* 0x240 */
+    u8 pad_0244[0x2fc];
 } RacerState;
 
 typedef struct RacerResult {  /* size 0x100 */
@@ -20,7 +83,15 @@ typedef struct RacerResult {  /* size 0x100 */
 } RacerResult;
 
 typedef struct RacerStats {  /* size 0x17c */
-    u8 pad_0000[0x17c];
+    u8 pad_0000[0x4];
+    u32 unk_04;  /* 0x4 */
+    u32 unk_08;  /* 0x8 */
+    u8 pad_000c[0x4];
+    u32 unk_10;  /* 0x10 */
+    u8 pad_0014[0x4];
+    u32 unk_18;  /* 0x18 */
+    u32 unk_1c;  /* 0x1c */
+    u8 pad_0020[0x15c];
 } RacerStats;
 
 typedef struct GameState {  /* size 0x3ae0 */

@@ -365,9 +365,9 @@ void Result_Init(undefined8 param_1)
 
 {
   byte bVar1;
-  char *pcVar2;
+  RaceEntrySetup *pRVar2;
   int iVar3;
-  int *piVar4;
+  RacerState *pRVar4;
   ulong uVar5;
   undefined8 uVar6;
   long lVar7;
@@ -379,21 +379,21 @@ void Result_Init(undefined8 param_1)
     *(uint *)(pbVar8 + 0x32c) = (uint)((uVar5 & 4) != 0);
     *(uint *)(pbVar8 + 0x318) = (uint)((uVar5 & 0x400) != 0);
     Result_BuildCareerRecords(param_1);
-    pcVar2 = (char *)GameState_Elem_f0_xcc(0);
-    if (*pcVar2 == '\x01') {
+    pRVar2 = GameState_Elem_f0_xcc(0);
+    if (pRVar2->maybe_state == '\x01') {
       pbVar8[0x3f0] = 0x4e;
       pbVar8[0x3f1] = 0;
       pbVar8[0x3f2] = 0;
       pbVar8[0x3f3] = 0;
     }
-    else if (*pcVar2 == '\0') {
+    else if (pRVar2->maybe_state == '\0') {
       pbVar8[0x3f0] = 0x4d;
       pbVar8[0x3f1] = 0;
       pbVar8[0x3f2] = 0;
       pbVar8[0x3f3] = 0;
     }
-    iVar3 = GameState_Elem_f0_xcc(0);
-    if (*(short *)(iVar3 + 0xc) == 0x112) {
+    pRVar2 = GameState_Elem_f0_xcc(0);
+    if ((short)pRVar2->maybe_counter == 0x112) {
       iVar3 = 0x295;
     }
     else {
@@ -401,12 +401,12 @@ void Result_Init(undefined8 param_1)
       iVar3 = *(char *)(iVar3 + 0x40c) + 0x296;
     }
     *(int *)(pbVar8 + 0x3f8) = iVar3;
-    iVar3 = GameState_Elem_f0_xcc(0);
-    piVar4 = (int *)GameState_Elem_3e0_x540(*(undefined1 *)(iVar3 + 9));
-    *(int *)(pbVar8 + 0x400) = *piVar4 + 0x1b3;
-    iVar3 = GameState_Elem_f0_xcc(0);
-    piVar4 = (int *)GameState_Elem_3e0_x540(*(undefined1 *)(iVar3 + 9));
-    *(int *)(pbVar8 + 0x408) = *piVar4 + 0xd1;
+    pRVar2 = GameState_Elem_f0_xcc(0);
+    pRVar4 = GameState_Elem_3e0_x540((int)(char)pRVar2->unk_09);
+    *(uint *)(pbVar8 + 0x400) = pRVar4->unk_00 + 0x1b3;
+    pRVar2 = GameState_Elem_f0_xcc(0);
+    pRVar4 = GameState_Elem_3e0_x540((int)(char)pRVar2->unk_09);
+    *(uint *)(pbVar8 + 0x408) = pRVar4->unk_00 + 0xd1;
     Result_BuildTimeAttackRecords(param_1,0);
     uVar5 = RaceProg_Get_4();
     if ((uVar5 & 2) != 0) {
@@ -1144,11 +1144,11 @@ void Result_LoadLayouts(int param_1,uint param_2,undefined8 param_3,undefined4 *
 }
 
 // 0x002c1eb0  size 0x294
-void Result_CheckNewRecord(int param_1,undefined8 param_2)
+void Result_CheckNewRecord(int param_1,int param_2)
 
 {
   char cVar1;
-  undefined1 *puVar2;
+  RaceEntrySetup *pRVar2;
   int iVar3;
   undefined8 uVar4;
   undefined8 uVar5;
@@ -1163,11 +1163,11 @@ void Result_CheckNewRecord(int param_1,undefined8 param_2)
   int iStack_c;
   int aiStack_8 [2];
   
-  puVar2 = (undefined1 *)GameState_Elem_f0_xcc(param_2);
+  pRVar2 = GameState_Elem_f0_xcc(param_2);
   uVar4 = RaceTbl_Ptr_5fa0();
   uVar5 = Race_GetDirection();
   uVar6 = Race_GetCourseVariant();
-  iVar3 = RaceTbl_GetCourseEntryB(uVar4,*puVar2,uVar5,uVar6);
+  iVar3 = RaceTbl_GetCourseEntryB(uVar4,pRVar2->maybe_state,uVar5,uVar6);
   if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
      (cVar1 = GameState_Get_354_7050(), cVar1 == '\x02')) {
     Time_SplitHms(1,*(undefined4 *)(iVar3 + 0xc),param_1 + 0xcc,param_1 + 0xd0,param_1 + 0xd4);
@@ -1209,11 +1209,11 @@ void Result_CheckNewRecord(int param_1,undefined8 param_2)
 }
 
 // 0x002c2150  size 0x150
-void Result_StoreRecord(int param_1,undefined8 param_2)
+void Result_StoreRecord(int param_1,int param_2)
 
 {
   char cVar1;
-  undefined1 *puVar2;
+  RaceEntrySetup *pRVar2;
   int iVar3;
   int iVar4;
   undefined8 uVar5;
@@ -1222,12 +1222,12 @@ void Result_StoreRecord(int param_1,undefined8 param_2)
   int iVar8;
   int iVar9;
   
-  puVar2 = (undefined1 *)GameState_Elem_f0_xcc(param_2);
+  pRVar2 = GameState_Elem_f0_xcc(param_2);
   iVar3 = RaceProg_GetArray_34((char)param_2);
   uVar5 = maybe_RaceTbl_GetCount();
   uVar6 = Race_GetDirection();
   uVar7 = Race_GetCourseVariant();
-  iVar4 = RaceTbl_GetCourseEntry(uVar5,*puVar2,uVar6,uVar7);
+  iVar4 = RaceTbl_GetCourseEntry(uVar5,pRVar2->maybe_state,uVar6,uVar7);
   if (((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
      (cVar1 = GameState_Get_354_7050(), cVar1 == '\x01')) {
     iVar9 = 0;
@@ -1259,7 +1259,7 @@ void Result_StoreRecordAlt(undefined8 param_1,undefined8 param_2)
 
 {
   char cVar1;
-  undefined1 *puVar2;
+  RaceEntrySetup *pRVar2;
   int iVar3;
   undefined8 uVar4;
   undefined8 uVar5;
@@ -1267,13 +1267,13 @@ void Result_StoreRecordAlt(undefined8 param_1,undefined8 param_2)
   ulong uVar7;
   
   if ((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') {
-    puVar2 = (undefined1 *)GameState_Elem_f0_xcc(0);
+    pRVar2 = GameState_Elem_f0_xcc(0);
     cVar1 = GameState_Get_354_7050();
     if (cVar1 == '\x01') {
       uVar4 = maybe_RaceTbl_GetCount();
       uVar5 = Race_GetDirection();
       uVar6 = Race_GetCourseVariant();
-      iVar3 = RaceTbl_GetCourseEntry(uVar4,*puVar2,uVar5,uVar6);
+      iVar3 = RaceTbl_GetCourseEntry(uVar4,pRVar2->maybe_state,uVar5,uVar6);
       *(uint *)((int)param_1 + 0x9c) = (uint)(*(int *)(iVar3 + 0x10) == 0);
     }
     else {
@@ -1282,7 +1282,7 @@ void Result_StoreRecordAlt(undefined8 param_1,undefined8 param_2)
         uVar4 = RaceTbl_Ptr_5fa0();
         uVar5 = Race_GetDirection();
         uVar6 = Race_GetCourseVariant();
-        iVar3 = RaceTbl_GetCourseEntryB(uVar4,*puVar2,uVar5,uVar6);
+        iVar3 = RaceTbl_GetCourseEntryB(uVar4,pRVar2->maybe_state,uVar5,uVar6);
         *(uint *)((int)param_1 + 0x9c) = (uint)(*(int *)(iVar3 + 0xc) == 0);
       }
     }

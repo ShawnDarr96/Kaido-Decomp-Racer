@@ -697,14 +697,15 @@ void Result_DrawRaceInfo(int param_1)
   uint uVar2;
   char cVar3;
   byte bVar4;
-  char *pcVar5;
+  RaceEntrySetup *pRVar5;
   int iVar6;
-  byte *pbVar7;
-  uint uVar8;
-  int iVar9;
-  undefined4 uVar10;
-  int iVar11;
-  uint uVar12;
+  char *pcVar7;
+  byte *pbVar8;
+  uint uVar9;
+  int iVar10;
+  undefined4 uVar11;
+  int iVar12;
+  uint uVar13;
   undefined1 auStack_350 [20];
   undefined4 uStack_33c;
   int iStack_338;
@@ -722,32 +723,32 @@ void Result_DrawRaceInfo(int param_1)
   ushort uStack_14;
   char acStack_10 [16];
   
-  uVar8 = 2;
+  uVar9 = 2;
   iVar1 = *(int *)(param_1 + 0x318);
   if (*(int *)(param_1 + 0x31c) == 0) {
-    uVar8 = 0;
+    uVar9 = 0;
   }
-  iVar9 = (int)(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6];
-  uVar2 = *(uint *)(&DAT_0032f1c4 + iVar9 * 8);
-  uVar12 = 0;
+  iVar10 = (int)(char)(&DAT_0032f535)[(uint)bRam0036f810 * 6];
+  uVar2 = *(uint *)(&DAT_0032f1c4 + iVar10 * 8);
+  uVar13 = 0;
   if (uVar2 != 0) {
-    iVar11 = 0;
+    iVar12 = 0;
     do {
-      uVar10 = 3;
-      pbVar7 = (&PTR_DAT_0032f1c0)[iVar9 * 2] + iVar11;
-      bVar4 = *pbVar7;
-      if (((iVar1 != 0 | uVar8) & *(uint *)(pbVar7 + 4)) == 0) {
-        uVar10 = 0;
+      uVar11 = 3;
+      pbVar8 = (&PTR_DAT_0032f1c0)[iVar10 * 2] + iVar12;
+      bVar4 = *pbVar8;
+      if (((iVar1 != 0 | uVar9) & *(uint *)(pbVar8 + 4)) == 0) {
+        uVar11 = 0;
       }
-      if ((*(int *)(pbVar7 + 0xc) != -1) && (bVar4 + 0x57 != -1)) {
+      if ((*(int *)(pbVar8 + 0xc) != -1) && (bVar4 + 0x57 != -1)) {
         UiElem_GetRect(*(undefined4 *)(param_1 + 0x28),auStack_50);
         iStack_38 = (int)((float)iStack_38 * *(float *)(param_1 + 0x94));
-        uStack_3c = uVar10;
+        uStack_3c = uVar11;
         UiText_DrawById(auStack_50,bVar4 + 0x57);
       }
-      uVar12 = uVar12 + 1;
-      iVar11 = iVar11 + 0x14;
-    } while (uVar12 < uVar2);
+      uVar13 = uVar13 + 1;
+      iVar12 = iVar12 + 0x14;
+    } while (uVar13 < uVar2);
   }
   iVar1 = *(int *)(param_1 + 0x3b8);
   if ((*(int *)(param_1 + 0x3b4) != -1) && (iVar1 != -1)) {
@@ -757,23 +758,23 @@ void Result_DrawRaceInfo(int param_1)
     UiText_DrawById(auStack_90,iVar1);
   }
   iVar1 = *(int *)(param_1 + 0x3bc);
-  uVar10 = *(undefined4 *)(param_1 + 0x2c);
-  iVar11 = *(int *)(param_1 + 0x3c0);
-  if ((iVar1 != -1) && (iVar11 != -1)) {
+  uVar11 = *(undefined4 *)(param_1 + 0x2c);
+  iVar12 = *(int *)(param_1 + 0x3c0);
+  if ((iVar1 != -1) && (iVar12 != -1)) {
     if (*(int *)(param_1 + 0x318) != 0) {
       UiElem_GetRect(*(undefined4 *)(param_1 + 0x28),auStack_350,iVar1);
       uStack_33c = 0;
       iStack_338 = (int)((float)iStack_338 * *(float *)(param_1 + 0x94));
-      MenuWnd_DrawRivalLabel(uVar10,iVar1,0,iVar11,0x30,0x30,0x30,0x30);
+      MenuWnd_DrawRivalLabel(uVar11,iVar1,0,iVar12,0x30,0x30,0x30,0x30);
       cVar3 = *(char *)(param_1 + 0x48);
       goto LAB_002bd944;
     }
-    pcVar5 = (char *)GameState_Elem_f0_xcc(0);
+    pRVar5 = GameState_Elem_f0_xcc(0);
     Result_ResetCursor(&uStack_18);
-    if (*pcVar5 == '\x01') {
+    if (pRVar5->maybe_state == '\x01') {
       uStack_18 = uStack_18 & 0xfffffffd | 2;
     }
-    else if (*pcVar5 == '\0') {
+    else if (pRVar5->maybe_state == '\0') {
       uStack_18 = uStack_18 & 0xfffffffd;
     }
     cVar3 = Race_GetDirection();
@@ -829,16 +830,16 @@ void Result_DrawRaceInfo(int param_1)
         uStack_14 = (ushort)((byte)uStack_14 & 0x83 | 0x1c);
       }
     }
-    uStack_14 = uStack_14 & 0x7f | *(short *)(pcVar5 + 0xc) << 7;
+    uStack_14 = uStack_14 & 0x7f | (short)pRVar5->maybe_counter << 7;
     cVar3 = GameState_Get_354_7050();
     if (cVar3 == '\x02') {
       uStack_18 = uStack_18 & 0xfffffffe;
       uStack_18 = CONCAT22(uStack_18._2_2_,
                            (ushort)uStack_18 & 0xf01f |
                            (ushort)((*(uint *)(param_1 + 0x1e4) & 0x7f) << 5));
-      uVar8 = uStack_18 & 0xfffc0fff | (*(uint *)(param_1 + 0x1e8) & 0x3f) << 0xc;
-      uStack_18._2_2_ = (ushort)(uVar8 >> 0x10);
-      uStack_18._0_2_ = (ushort)uVar8;
+      uVar9 = uStack_18 & 0xfffc0fff | (*(uint *)(param_1 + 0x1e8) & 0x3f) << 0xc;
+      uStack_18._2_2_ = (ushort)(uVar9 >> 0x10);
+      uStack_18._0_2_ = (ushort)uVar9;
       uStack_18 = CONCAT22(uStack_18._2_2_ & 0xf003 |
                            (ushort)((*(uint *)(param_1 + 0x1ec) & 0x3ff) << 2),(ushort)uStack_18);
     }
@@ -846,34 +847,34 @@ void Result_DrawRaceInfo(int param_1)
       uStack_18 = uStack_18 & 0xf000001e | 1 | (*(uint *)(param_1 + 0x150) & 0x7fffff) << 5;
     }
     Password_Decode(auStack_310,&uStack_18,acStack_10);
-    uVar8 = 0;
-    pcVar5 = acStack_10;
+    uVar9 = 0;
+    pcVar7 = acStack_10;
     do {
-      cVar3 = *pcVar5;
+      cVar3 = *pcVar7;
       if (cVar3 < 'A') {
-        *pcVar5 = cVar3 + -0x32;
+        *pcVar7 = cVar3 + -0x32;
       }
       else if (cVar3 < 'J') {
-        *pcVar5 = *pcVar5 + -0x39;
+        *pcVar7 = *pcVar7 + -0x39;
       }
       else if (cVar3 < 'P') {
-        *pcVar5 = *pcVar5 + -0x3a;
+        *pcVar7 = *pcVar7 + -0x3a;
       }
       else {
-        *pcVar5 = *pcVar5 + -0x3b;
+        *pcVar7 = *pcVar7 + -0x3b;
       }
-      uVar8 = uVar8 + 1;
-      pcVar5 = pcVar5 + 1;
-    } while (uVar8 < 0xd);
+      uVar9 = uVar9 + 1;
+      pcVar7 = pcVar7 + 1;
+    } while (uVar9 < 0xd);
     MenuWnd_DrawRivalLabel
-              (uVar10,iVar1,0,iVar11,acStack_10[0] + 0x10,acStack_10[1] + 0x10,acStack_10[2] + 0x10,
+              (uVar11,iVar1,0,iVar12,acStack_10[0] + 0x10,acStack_10[1] + 0x10,acStack_10[2] + 0x10,
                acStack_10[3] + 0x10);
   }
   cVar3 = *(char *)(param_1 + 0x48);
 LAB_002bd944:
   if (cVar3 == '\x03') {
     *(undefined4 *)(param_1 + 0x348) =
-         *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar9 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
+         *(undefined4 *)((&PTR_DAT_0032f1c0)[iVar10 * 2] + *(int *)(param_1 + 0x324) * 0x14 + 0x10);
     if ((((&DAT_0032f535)[(uint)bRam0036f810 * 6] == '\x05') &&
         (cVar3 = GameState_Get_354_7050(), cVar3 == '\x01')) && (*(int *)(param_1 + 0x348) == 99)) {
       *(undefined4 *)(param_1 + 0x348) = 100;

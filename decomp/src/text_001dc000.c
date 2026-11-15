@@ -2548,37 +2548,38 @@ void RaceProg_UpdateGapMeter(float param_1,int *param_2,undefined8 param_3,int p
   float *pfVar7;
   float *pfVar8;
   bool bVar9;
-  int iVar10;
+  RaceEntrySetup *pRVar10;
   undefined8 uVar11;
   int *piVar12;
   int iVar13;
   int iVar14;
-  float fVar15;
+  int iVar15;
   float fVar16;
   float fVar17;
-  int iVar18;
+  float fVar18;
+  int iVar19;
   
   uVar11 = RaceCar_Get(param_3);
-  fVar15 = (float)RaceCar_GetSpeedKmh(uVar11);
-  iVar18 = *(int *)((int)uVar11 + 0x6c);
-  iVar10 = GameState_Elem_f0_xcc(param_3);
-  GameState_Elem_3e0_x540(*(undefined1 *)(iVar10 + 9));
-  fVar17 = 0.0;
-  param_2[param_2[1] + 2] = iVar18;
+  fVar16 = (float)RaceCar_GetSpeedKmh(uVar11);
+  iVar19 = *(int *)((int)uVar11 + 0x6c);
+  pRVar10 = GameState_Elem_f0_xcc((int)param_3);
+  GameState_Elem_3e0_x540((int)(char)pRVar10->unk_09);
+  fVar18 = 0.0;
+  param_2[param_2[1] + 2] = iVar19;
   if (*param_2 == 0) {
-    iVar10 = param_2[1];
-    iVar18 = 0;
-    if (0 < iVar10) {
-      if (8 < iVar10) {
+    iVar19 = param_2[1];
+    iVar15 = 0;
+    if (0 < iVar19) {
+      if (8 < iVar19) {
         bVar9 = false;
-        if ((-1 < iVar10) && (iVar10 < 0x7fffffff)) {
+        if ((-1 < iVar19) && (iVar19 < 0x7fffffff)) {
           bVar9 = true;
         }
         if (bVar9) {
           piVar12 = param_2;
           do {
             pfVar1 = (float *)(piVar12 + 2);
-            iVar18 = iVar18 + 8;
+            iVar15 = iVar15 + 8;
             pfVar2 = (float *)(piVar12 + 3);
             pfVar3 = (float *)(piVar12 + 4);
             pfVar4 = (float *)(piVar12 + 5);
@@ -2587,86 +2588,86 @@ void RaceProg_UpdateGapMeter(float param_1,int *param_2,undefined8 param_3,int p
             pfVar7 = (float *)(piVar12 + 8);
             pfVar8 = (float *)(piVar12 + 9);
             piVar12 = piVar12 + 8;
-            fVar17 = fVar17 + *pfVar1 + *pfVar2 + *pfVar3 + *pfVar4 + *pfVar5 + *pfVar6 + *pfVar7 +
+            fVar18 = fVar18 + *pfVar1 + *pfVar2 + *pfVar3 + *pfVar4 + *pfVar5 + *pfVar6 + *pfVar7 +
                      *pfVar8;
-          } while (iVar18 < iVar10 + -8);
+          } while (iVar15 < iVar19 + -8);
         }
       }
-      iVar10 = param_2[1];
-      if (iVar18 < iVar10) {
-        piVar12 = param_2 + iVar18;
+      iVar19 = param_2[1];
+      if (iVar15 < iVar19) {
+        piVar12 = param_2 + iVar15;
         do {
-          iVar18 = iVar18 + 1;
-          fVar17 = fVar17 + (float)piVar12[2];
+          iVar15 = iVar15 + 1;
+          fVar18 = fVar18 + (float)piVar12[2];
           piVar12 = piVar12 + 1;
-        } while (iVar18 < iVar10);
+        } while (iVar15 < iVar19);
       }
     }
-    fVar17 = fVar17 / (float)(iVar10 + 1);
+    fVar18 = fVar18 / (float)(iVar19 + 1);
   }
   else {
-    iVar18 = 0;
+    iVar15 = 0;
     iVar13 = param_2[1] + 2;
-    iVar10 = param_2[1];
+    iVar19 = param_2[1];
     do {
-      iVar14 = iVar10 + 1;
+      iVar14 = iVar19 + 1;
       if (0x3b < iVar14) {
-        iVar14 = iVar10 + -0x3b;
+        iVar14 = iVar19 + -0x3b;
       }
       if (0x3b < iVar13) {
         iVar13 = iVar13 + -0x3c;
       }
-      iVar18 = iVar18 + 1;
+      iVar15 = iVar15 + 1;
       iVar13 = iVar13 + 1;
-      fVar17 = fVar17 + (float)param_2[iVar14 + 2];
-      iVar10 = iVar14;
-    } while (iVar18 < 0x3c);
-    fVar17 = fVar17 / 60.0;
+      fVar18 = fVar18 + (float)param_2[iVar14 + 2];
+      iVar19 = iVar14;
+    } while (iVar15 < 0x3c);
+    fVar18 = fVar18 / 60.0;
   }
-  fVar17 = (float)Race_CountActiveCars((fVar17 * 180.0) / 3.1415927);
+  fVar18 = (float)Race_CountActiveCars((fVar18 * 180.0) / 3.1415927);
   if (param_1 == 1000.0) {
-    fVar16 = 2.0;
+    fVar17 = 2.0;
   }
   else if (param_1 < 0.0) {
-    if (fVar17 < 0.0) {
-      fVar16 = 3.0;
+    if (fVar18 < 0.0) {
+      fVar17 = 3.0;
     }
     else {
-      fVar16 = 1.0;
+      fVar17 = 1.0;
     }
   }
-  else if (0.0 < fVar17) {
-    fVar16 = 3.0;
+  else if (0.0 < fVar18) {
+    fVar17 = 3.0;
   }
   else {
-    fVar16 = 1.0;
+    fVar17 = 1.0;
   }
-  fVar17 = (float)fabsf(fVar17);
-  if (fVar17 <= 45.0) {
-    if (fVar17 < 10.0) {
-      fVar17 = 0.0;
+  fVar18 = (float)fabsf(fVar18);
+  if (fVar18 <= 45.0) {
+    if (fVar18 < 10.0) {
+      fVar18 = 0.0;
     }
   }
   else {
-    fVar17 = 45.0;
+    fVar18 = 45.0;
   }
-  fVar17 = (float)tanf((fVar17 * 3.1415927) / 180.0);
-  fVar15 = fVar15 - 10.0;
-  if (fVar15 < 0.0) {
-    fVar15 = 0.0;
-  }
-  fVar16 = fVar17 * fVar16 * 1.0 * 10.0;
-  if (fVar15 == 0.0) {
+  fVar18 = (float)tanf((fVar18 * 3.1415927) / 180.0);
+  fVar16 = fVar16 - 10.0;
+  if (fVar16 < 0.0) {
     fVar16 = 0.0;
   }
-  iVar10 = (int)(((fVar15 * fVar15) / 100.0) * fVar17 * 0.5 + fVar16);
-  if (iVar10 < 10) {
-    iVar10 = 0;
+  fVar17 = fVar18 * fVar17 * 1.0 * 10.0;
+  if (fVar16 == 0.0) {
+    fVar17 = 0.0;
   }
-  if (iVar10 % 10 != 0) {
-    iVar10 = iVar10 - iVar10 % 10;
+  iVar19 = (int)(((fVar16 * fVar16) / 100.0) * fVar18 * 0.5 + fVar17);
+  if (iVar19 < 10) {
+    iVar19 = 0;
   }
-  param_2[param_4 * 7 + 0x40] = param_2[param_4 * 7 + 0x40] + iVar10;
+  if (iVar19 % 10 != 0) {
+    iVar19 = iVar19 - iVar19 % 10;
+  }
+  param_2[param_4 * 7 + 0x40] = param_2[param_4 * 7 + 0x40] + iVar19;
   param_2[1] = param_2[1] + 1;
   if (param_2[1] == 0x3c) {
     param_2[1] = 0;

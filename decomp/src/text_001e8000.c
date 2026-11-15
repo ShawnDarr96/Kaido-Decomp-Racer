@@ -9,90 +9,91 @@ void RaceSnd_UpdateCrowd(undefined8 param_1)
   char cVar1;
   undefined1 uVar2;
   undefined2 uVar3;
-  float fVar4;
-  long lVar5;
-  undefined8 uVar6;
+  RaceEntrySetup *pRVar4;
+  float fVar5;
+  long lVar6;
   ulong uVar7;
-  undefined1 *puVar8;
-  uint uVar9;
-  float fVar10;
+  undefined8 uVar8;
+  undefined1 *puVar9;
+  uint uVar10;
+  float fVar11;
   
-  lVar5 = RaceScene_IsRunning();
-  if (lVar5 != 1) {
+  lVar6 = RaceScene_IsRunning();
+  if (lVar6 != 1) {
     return;
   }
-  lVar5 = RaceScene_IsPaused();
-  puVar8 = (undefined1 *)param_1;
-  *(uint *)(puVar8 + 0x18) = (uint)(lVar5 != 0);
+  lVar6 = RaceScene_IsPaused();
+  puVar9 = (undefined1 *)param_1;
+  *(uint *)(puVar9 + 0x18) = (uint)(lVar6 != 0);
   cVar1 = Options_Get_1c();
-  *(int *)(puVar8 + 0x1c) = (int)cVar1;
+  *(int *)(puVar9 + 0x1c) = (int)cVar1;
   RaceSnd_StopSlot(param_1,0xff);
-  RaceSnd_StopSlot(puVar8 + 8,0xff);
-  RaceSnd_StopSlot(puVar8 + 0x10,0xff);
+  RaceSnd_StopSlot(puVar9 + 8,0xff);
+  RaceSnd_StopSlot(puVar9 + 0x10,0xff);
   RaceSnd_PlayResult(param_1,param_1,3);
   uVar2 = Options_Get_1c();
   uVar3 = Snd_VolumeToMidi(uVar2);
-  (**(code **)(**(int **)(puVar8 + 4) + 0x10))(*(int **)(puVar8 + 4),*puVar8,uVar3,0x3f,1);
-  if (*(int *)(puVar8 + 0x18) == 0) {
+  (**(code **)(**(int **)(puVar9 + 4) + 0x10))(*(int **)(puVar9 + 4),*puVar9,uVar3,0x3f,1);
+  if (*(int *)(puVar9 + 0x18) == 0) {
     uVar2 = Options_Get_1c();
     uVar3 = Snd_VolumeToMidi(uVar2);
-    (**(code **)(**(int **)(puVar8 + 0xc) + 0x10))(*(int **)(puVar8 + 0xc),puVar8[8],uVar3,0x3f,1);
+    (**(code **)(**(int **)(puVar9 + 0xc) + 0x10))(*(int **)(puVar9 + 0xc),puVar9[8],uVar3,0x3f,1);
   }
   else {
     uVar2 = Options_Get_1c();
     uVar3 = Snd_VolumeToMidi(uVar2);
-    (**(code **)(**(int **)(puVar8 + 0x14) + 0x10))
-              (*(int **)(puVar8 + 0x14),puVar8[0x10],uVar3,0x3f,1);
+    (**(code **)(**(int **)(puVar9 + 0x14) + 0x10))
+              (*(int **)(puVar9 + 0x14),puVar9[0x10],uVar3,0x3f,1);
   }
-  fVar10 = DAT_0036e860;
+  fVar11 = DAT_0036e860;
   if (iRam0036f1f8 != 0) goto LAB_001e8224;
   cVar1 = Options_Get_1c();
-  *(int *)(puVar8 + 0x1c) = (int)cVar1;
-  lVar5 = Loading_IsActive();
-  if (lVar5 != 0) {
-    uVar6 = GameState_Elem_f0_xcc(0);
-    uVar7 = CarRec_GetPartData(uVar6,0xb);
-    fVar4 = 1.0;
+  *(int *)(puVar9 + 0x1c) = (int)cVar1;
+  lVar6 = Loading_IsActive();
+  if (lVar6 != 0) {
+    pRVar4 = GameState_Elem_f0_xcc(0);
+    uVar7 = CarRec_GetPartData(pRVar4,0xb);
+    fVar5 = 1.0;
     if (uVar7 < 6) {
                     /* WARNING: Switch is manually overridden */
       switch((int)uVar7) {
       case 0:
-        fVar10 = fVar10 * 0.8;
+        fVar11 = fVar11 * 0.8;
         goto LAB_001e8314;
       case 1:
-        fVar4 = 0.9;
+        fVar5 = 0.9;
         break;
       case 2:
         break;
       case 3:
         break;
       case 4:
-        fVar4 = 1.1;
+        fVar5 = 1.1;
         break;
       case 5:
-        fVar4 = 1.2;
+        fVar5 = 1.2;
       }
     }
-    fVar10 = fVar10 * fVar4;
+    fVar11 = fVar11 * fVar5;
   }
 LAB_001e8314:
-  uVar6 = SndMgr_GetInstance();
-  uVar6 = SndMgr_GetSlot(uVar6,1);
-  fVar10 = (float)*(int *)(puVar8 + 0x1c) * fVar10;
-  if (fVar10 < 2.1474836e+09) {
-    uVar9 = (uint)fVar10;
+  uVar8 = SndMgr_GetInstance();
+  uVar8 = SndMgr_GetSlot(uVar8,1);
+  fVar11 = (float)*(int *)(puVar9 + 0x1c) * fVar11;
+  if (fVar11 < 2.1474836e+09) {
+    uVar10 = (uint)fVar11;
   }
   else {
-    uVar9 = (int)(fVar10 - 2.1474836e+09) | 0x80000000;
+    uVar10 = (int)(fVar11 - 2.1474836e+09) | 0x80000000;
   }
-  uVar3 = Snd_VolumeToMidi(uVar9);
-  (**(code **)(*(int *)uVar6 + 0x20))(uVar6,uVar3);
+  uVar3 = Snd_VolumeToMidi(uVar10);
+  (**(code **)(*(int *)uVar8 + 0x20))(uVar8,uVar3);
 LAB_001e8224:
   if (iRam0046a590 == 0) {
-    *(undefined4 *)(puVar8 + 0x24) = 3;
+    *(undefined4 *)(puVar9 + 0x24) = 3;
   }
   else {
-    *(undefined4 *)(puVar8 + 0x24) = 2;
+    *(undefined4 *)(puVar9 + 0x24) = 2;
   }
   return;
 }

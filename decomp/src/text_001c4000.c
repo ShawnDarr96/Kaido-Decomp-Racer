@@ -806,7 +806,7 @@ void RaceScene_SetupPlayerCar(void)
 
 {
   char cVar1;
-  int iVar2;
+  RaceEntrySetup *pRVar2;
   int iVar3;
   long lVar4;
   
@@ -815,8 +815,8 @@ void RaceScene_SetupPlayerCar(void)
   if (0 < (long)cVar1) {
     iVar3 = 0;
     do {
-      iVar2 = GameState_Elem_f0_xcc(lVar4);
-      if ((*(uint *)(iVar2 + 4) & 0x100) == 0) {
+      pRVar2 = GameState_Elem_f0_xcc((int)lVar4);
+      if ((pRVar2->unk_04 & 0x100) == 0) {
         *(undefined4 *)(*(int *)(iRam0036f34c + iVar3) + 0x1d8) = 0;
       }
       lVar4 = (long)((int)lVar4 + 1);
@@ -916,23 +916,23 @@ void Driver_CreatePlayers(undefined8 param_1)
 }
 
 // 0x001c5fc0  size 0x168
-void Driver_CreateAi(undefined8 param_1,undefined8 param_2)
+void Driver_CreateAi(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
   undefined4 *puVar2;
-  int iVar3;
+  RaceEntrySetup *pRVar3;
   undefined4 uVar4;
+  int iVar5;
   
-  iVar3 = GameState_Elem_f0_xcc(param_2);
-  uVar1 = *(uint *)(iVar3 + 4);
-  iVar3 = (int)param_2;
+  pRVar3 = GameState_Elem_f0_xcc(param_2);
+  uVar1 = pRVar3->unk_04;
   if ((uVar1 & 1) == 0) {
     if ((uVar1 & 2) == 0) {
       if ((uVar1 & 4) != 0) {
         uVar4 = Mem_Alloc16(0x18,param_1);
-        *(undefined4 *)(iVar3 * 4 + iRam0036f34c + 8) = uVar4;
-        puVar2 = *(undefined4 **)(iVar3 * 4 + iRam0036f34c + 8);
+        *(undefined4 *)(param_2 * 4 + iRam0036f34c + 8) = uVar4;
+        puVar2 = *(undefined4 **)(param_2 * 4 + iRam0036f34c + 8);
         *puVar2 = 0;
         puVar2[1] = 0;
         puVar2[2] = 0;
@@ -943,8 +943,8 @@ void Driver_CreateAi(undefined8 param_1,undefined8 param_2)
     }
     else {
       uVar4 = Mem_Alloc16(0x18,param_1);
-      *(undefined4 *)(iVar3 * 4 + iRam0036f34c + 8) = uVar4;
-      puVar2 = *(undefined4 **)(iVar3 * 4 + iRam0036f34c + 8);
+      *(undefined4 *)(param_2 * 4 + iRam0036f34c + 8) = uVar4;
+      puVar2 = *(undefined4 **)(param_2 * 4 + iRam0036f34c + 8);
       *puVar2 = 0;
       puVar2[1] = 0;
       puVar2[2] = 0;
@@ -954,13 +954,13 @@ void Driver_CreateAi(undefined8 param_1,undefined8 param_2)
     }
   }
   else {
-    iVar3 = iVar3 * 4;
+    iVar5 = param_2 * 4;
     uVar4 = Mem_Alloc16(0x6a130,param_1);
-    *(undefined4 *)(iRam0036f34c + iVar3) = uVar4;
-    Driver_InitController(*(undefined4 *)(iRam0036f34c + iVar3),(char)param_2);
+    *(undefined4 *)(iRam0036f34c + iVar5) = uVar4;
+    Driver_InitController(*(undefined4 *)(iRam0036f34c + iVar5),(char)param_2);
     uVar4 = Mem_Alloc16(0x18,param_1);
-    *(undefined4 *)(iVar3 + iRam0036f34c + 8) = uVar4;
-    puVar2 = *(undefined4 **)(iVar3 + iRam0036f34c + 8);
+    *(undefined4 *)(iVar5 + iRam0036f34c + 8) = uVar4;
+    puVar2 = *(undefined4 **)(iVar5 + iRam0036f34c + 8);
     *puVar2 = 0;
     puVar2[1] = 0;
     puVar2[2] = 0;

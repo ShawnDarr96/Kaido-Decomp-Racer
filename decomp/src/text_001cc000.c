@@ -1112,8 +1112,8 @@ void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
 
 {
   char cVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
+  RaceEntrySetup *pRVar2;
+  RacerState *pRVar3;
   undefined8 uVar4;
   long lVar5;
   int iVar6;
@@ -1123,7 +1123,7 @@ void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
   uint uVar10;
   uint auStack_1a0 [52];
   uint auStack_d0 [2];
-  undefined1 uStack_c7;
+  char cStack_c7;
   int iStack_c0;
   
   GameState_CopyPlayerRecord(auStack_1a0);
@@ -1142,14 +1142,14 @@ void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
   }
   *(undefined4 *)(param_1 + 0x17d0) = 0;
   *(undefined4 *)(param_1 + 0x17d4) = 0;
-  uVar2 = GameState_Elem_f0_xcc(param_2);
-  *(undefined4 *)(param_1 + 0x17dc) = uVar2;
+  pRVar2 = GameState_Elem_f0_xcc((int)param_2);
+  *(RaceEntrySetup **)(param_1 + 0x17dc) = pRVar2;
   *(undefined4 *)(param_1 + 0xbe0) = 0;
   *(undefined4 *)(param_1 + 0xbe4) = 0;
   *(undefined4 *)(param_1 + 0xbe8) = 0;
   *(undefined4 *)(param_1 + 0xbec) = 0;
-  uVar3 = GameState_Elem_3e0_x540(uStack_c7);
-  CarSpec_BuildFromDb(uVar3,param_1 + 0xbf0,auStack_d0,1);
+  pRVar3 = GameState_Elem_3e0_x540((int)cStack_c7);
+  CarSpec_BuildFromDb(pRVar3,param_1 + 0xbf0,auStack_d0,1);
   Car_Reset(param_1,param_1 + 0xbf0,1,7);
   uVar4 = PhysContact_GetBodyB(*(int *)(param_1 + 0x158) + 0x10);
   uVar10 = 0;
@@ -1176,7 +1176,7 @@ void RaceCar_ResetToTrack(int param_1,undefined8 param_2)
   *(bool *)(param_1 + 0x892) = cVar1 != '\0';
   *(undefined1 *)(param_1 + 0x890) = 1;
   lVar5 = CarRec_GetPartData(auStack_d0,0);
-  if ((lVar5 < 3) && (*(int *)((int)uVar3 + 0x8c) != 2)) {
+  if ((lVar5 < 3) && (pRVar3->unk_8c != 2)) {
     *(undefined1 *)(param_1 + 0x8f0) = 0;
   }
   else {

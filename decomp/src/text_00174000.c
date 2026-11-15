@@ -1869,7 +1869,7 @@ RaceEntry_Create(long param_1,long param_2,long param_3,undefined4 param_4,undef
     puVar7[0x404] = puVar6[0x3dc];
     *(undefined4 *)(puVar7 + 0x408) = *(undefined4 *)(puVar6 + 0x3ac8);
     *(int *)(puVar7 + 0x10) = (int)*(short *)(puVar7 + 0x124);
-    *(undefined4 *)(puVar7 + 0x18) = *(undefined4 *)(g_GameState->racers + (char)puVar7[0x121]);
+    *(uint *)(puVar7 + 0x18) = g_GameState->racers[(char)puVar7[0x121]].unk_00;
     *(int *)(puVar7 + 0x14) = (int)(char)puVar6[0x40c];
     *(undefined4 *)(puVar7 + 0x1c) = *(undefined4 *)(puVar7 + *(int *)(puVar7 + 0xec) * 0x14 + 0x74)
     ;
@@ -2189,10 +2189,12 @@ uchar * GameState_Ptr_354(void)
 }
 
 // 0x00177070  size 0x24
-RaceEntrySetup * GameState_Elem_f0_xcc(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+RaceEntrySetup * GameState_Elem_f0_xcc(int index)
 
 {
-  return g_GameState->entrySetup + param_1;
+  return g_GameState->entrySetup + index;
 }
 
 // 0x001770a0  size 0x48
@@ -2209,7 +2211,7 @@ void GameState_CopyPlayerRecord(undefined4 *param_1,int param_2)
   do {
     iVar2 = iVar2 + -1;
     *param_1 = *(undefined4 *)pRVar1;
-    pRVar1 = (RaceEntrySetup *)&pRVar1->field_0x4;
+    pRVar1 = (RaceEntrySetup *)&pRVar1->unk_04;
     param_1 = param_1 + 1;
   } while (0 < iVar2);
   return;
@@ -2261,24 +2263,30 @@ undefined1 * GameState_Ptr_3a04(void)
 }
 
 // 0x00177160  size 0x24
-RacerStats * GameState_Elem_2fa0_x17c(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+RacerStats * GameState_Elem_2fa0_x17c(int index)
 
 {
-  return g_GameState->stats + param_1;
+  return g_GameState->stats + index;
 }
 
 // 0x00177190  size 0x14
-RacerResult * GameState_Elem_28a0_x100(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+RacerResult * GameState_Elem_28a0_x100(int index)
 
 {
-  return g_GameState->results + param_1;
+  return g_GameState->results + index;
 }
 
 // 0x001771b0  size 0x24
-RacerState * GameState_Elem_3e0_x540(int param_1)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+RacerState * GameState_Elem_3e0_x540(int index)
 
 {
-  return g_GameState->racers + param_1;
+  return g_GameState->racers + index;
 }
 
 // 0x001771e0  size 0xc

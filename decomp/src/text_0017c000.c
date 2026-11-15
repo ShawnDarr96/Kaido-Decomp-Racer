@@ -21,27 +21,28 @@ void RaceSetup_FromCareer
 
 {
   undefined2 uVar1;
-  undefined4 uVar2;
+  uint uVar2;
   GameState *pGVar3;
-  undefined1 uVar4;
-  undefined1 uVar5;
-  undefined1 uVar6;
-  undefined4 uVar7;
+  uchar uVar4;
+  uchar uVar5;
+  uchar uVar6;
+  float fVar7;
   undefined8 uVar8;
   undefined8 uVar9;
   int iVar10;
   int *piVar11;
   undefined4 *puVar12;
-  undefined1 *puVar13;
-  undefined2 *puVar14;
+  uint *puVar13;
+  undefined1 *puVar14;
   undefined2 *puVar15;
-  undefined4 *puVar16;
-  ulong uVar17;
-  undefined2 *puVar18;
+  undefined2 *puVar16;
+  uint *puVar17;
+  ulong uVar18;
   undefined2 *puVar19;
-  undefined1 *puVar20;
+  undefined2 *puVar20;
+  undefined1 *puVar21;
   undefined4 uStack_464;
-  undefined4 auStack_45c [6];
+  uint auStack_45c [6];
   undefined4 uStack_444;
   undefined4 uStack_440;
   undefined4 uStack_43c;
@@ -55,13 +56,13 @@ void RaceSetup_FromCareer
   undefined2 auStack_400 [42];
   undefined1 uStack_3ac;
   undefined4 uStack_3a8;
-  undefined1 uStack_3a0;
-  undefined4 uStack_39c;
-  undefined1 uStack_398;
-  undefined1 uStack_397;
+  uchar uStack_3a0;
+  uint uStack_39c;
+  uchar uStack_398;
+  uchar uStack_397;
   undefined4 uStack_394;
-  undefined4 uStack_390;
-  undefined4 auStack_38c [6];
+  float fStack_390;
+  uint auStack_38c [6];
   undefined4 uStack_374;
   undefined4 uStack_370;
   undefined4 uStack_36c;
@@ -82,13 +83,13 @@ void RaceSetup_FromCareer
   undefined4 uStack_2c8;
   undefined4 uStack_2c4;
   undefined4 uStack_2c0;
-  undefined1 auStack_280 [4];
-  undefined4 uStack_27c;
-  undefined1 uStack_278;
-  undefined1 uStack_277;
+  uchar auStack_280 [4];
+  uint uStack_27c;
+  uchar uStack_278;
+  uchar uStack_277;
   undefined2 uStack_274;
   undefined2 uStack_272;
-  undefined4 uStack_270;
+  float fStack_270;
   undefined1 auStack_26c [24];
   undefined4 uStack_254;
   undefined4 uStack_250;
@@ -125,8 +126,8 @@ void RaceSetup_FromCareer
     param_8 = param_8 + 1;
     puVar12 = puVar12 + 1;
   } while (0 < iVar10);
-  uVar17 = param_2 & 0xff;
-  if ((uVar17 == 4) || (uVar17 == 7)) {
+  uVar18 = param_2 & 0xff;
+  if ((uVar18 == 4) || (uVar18 == 7)) {
     if (param_3 == 4) {
       param_3 = 5;
     }
@@ -144,7 +145,7 @@ void RaceSetup_FromCareer
                     /* WARNING: Switch is manually overridden */
   switch(param_3) {
   case 1:
-    if ((uVar17 == 7) || (uVar17 == 4)) {
+    if ((uVar18 == 7) || (uVar18 == 4)) {
       CarRec_SetModelAndColor(uVar8,0x9d);
       CarRec_SetModelAndColor(uVar9,0x9d);
     }
@@ -165,34 +166,34 @@ void RaceSetup_FromCareer
 switchD_0017c3e8_caseD_0:
 LAB_0017c464:
   CarRec_Copy(aiStack_e0,auStack_280);
-  auStack_280[0] = 1;
+  auStack_280[0] = '\x01';
   uStack_27c = 0x89;
-  uStack_278 = 0;
+  uStack_278 = '\0';
   CarRec_SetMileage(auStack_280,param_7);
-  uVar7 = uStack_270;
+  fVar7 = fStack_270;
   uVar6 = uStack_277;
   uVar5 = uStack_278;
   uVar2 = uStack_27c;
   uVar4 = auStack_280[0];
   pGVar3 = g_GameState;
-  puVar20 = auStack_26c;
-  puVar12 = auStack_38c;
+  puVar21 = auStack_26c;
+  puVar13 = auStack_38c;
   uStack_3a0 = auStack_280[0];
   uStack_39c = uStack_27c;
   iVar10 = 0x17;
   uStack_398 = uStack_278;
   uStack_397 = uStack_277;
   uStack_394 = CONCAT22(uStack_272,uStack_274);
-  uStack_390 = uStack_270;
-  puVar13 = puVar20;
+  fStack_390 = fStack_270;
+  puVar14 = puVar21;
   do {
     iVar10 = iVar10 + -1;
-    *(undefined1 *)puVar12 = *puVar13;
-    puVar13 = puVar13 + 1;
-    puVar12 = (undefined4 *)((int)puVar12 + 1);
+    *(undefined1 *)puVar13 = *puVar14;
+    puVar14 = puVar14 + 1;
+    puVar13 = (uint *)((int)puVar13 + 1);
   } while (0 < iVar10);
-  puVar19 = auStack_230;
-  puVar14 = auStack_350;
+  puVar20 = auStack_230;
+  puVar15 = auStack_350;
   iVar10 = 8;
   uStack_374 = uStack_254;
   uStack_370 = uStack_250;
@@ -203,45 +204,45 @@ LAB_0017c464:
   uStack_35c = uStack_23c;
   uStack_358 = uStack_238;
   uStack_354 = uStack_234;
-  puVar15 = puVar19;
+  puVar16 = puVar20;
   do {
     iVar10 = iVar10 + -1;
-    uVar1 = puVar15[1];
-    *puVar14 = *puVar15;
-    puVar14[1] = uVar1;
+    uVar1 = puVar16[1];
+    *puVar15 = *puVar16;
+    puVar15[1] = uVar1;
+    puVar16 = puVar16 + 2;
     puVar15 = puVar15 + 2;
-    puVar14 = puVar14 + 2;
   } while (0 < iVar10);
-  puVar18 = auStack_210;
-  puVar14 = auStack_330;
+  puVar19 = auStack_210;
+  puVar15 = auStack_330;
   iVar10 = 0x15;
-  puVar15 = puVar18;
+  puVar16 = puVar19;
   do {
     iVar10 = iVar10 + -1;
-    uVar1 = puVar15[1];
-    *puVar14 = *puVar15;
-    puVar14[1] = uVar1;
+    uVar1 = puVar16[1];
+    *puVar15 = *puVar16;
+    puVar15[1] = uVar1;
+    puVar16 = puVar16 + 2;
     puVar15 = puVar15 + 2;
-    puVar14 = puVar14 + 2;
   } while (0 < iVar10);
-  puVar16 = auStack_38c;
+  puVar17 = auStack_38c;
   iVar10 = 0x17;
   uStack_2dc = uStack_1bc;
   uStack_2d8 = uStack_1b8;
-  *(undefined1 *)g_GameState->entrySetup = uVar4;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0x4 = uVar2;
-  puVar12 = (undefined4 *)&pGVar3->entrySetup[0].field_0x14;
-  pGVar3->entrySetup[0].field_0x8 = uVar5;
-  pGVar3->entrySetup[0].field_0x9 = uVar6;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0xc = uStack_394;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0x10 = uVar7;
+  g_GameState->entrySetup[0].maybe_state = uVar4;
+  pGVar3->entrySetup[0].unk_04 = uVar2;
+  puVar13 = &pGVar3->entrySetup[0].unk_14;
+  pGVar3->entrySetup[0].unk_08 = uVar5;
+  pGVar3->entrySetup[0].unk_09 = uVar6;
+  pGVar3->entrySetup[0].maybe_counter = uStack_394;
+  pGVar3->entrySetup[0].maybe_accum = fVar7;
   do {
     iVar10 = iVar10 + -1;
-    uVar2 = puVar16[1];
-    *puVar12 = *puVar16;
-    puVar12[1] = uVar2;
-    puVar16 = puVar16 + 2;
-    puVar12 = puVar12 + 2;
+    uVar2 = puVar17[1];
+    *puVar13 = *puVar17;
+    puVar13[1] = uVar2;
+    puVar17 = puVar17 + 2;
+    puVar13 = puVar13 + 2;
   } while (0 < iVar10);
   if (iStack_1a8 == 0) {
     uVar8 = CarRec_GetPartSlotB(aiStack_e0,0xf);
@@ -250,7 +251,7 @@ LAB_0017c464:
                     /* WARNING: Switch is manually overridden */
       switch(param_3) {
       case 1:
-        if ((uVar17 == 7) || (uVar17 == 4)) {
+        if ((uVar18 == 7) || (uVar18 == 4)) {
           CarRec_SetModelAndColor(uVar8,0x9d);
           CarRec_SetModelAndColor(uVar9,0x9d);
         }
@@ -273,23 +274,23 @@ LAB_0017c464:
 LAB_0017c704:
   CarRec_Copy(auStack_1b0,auStack_280);
   uStack_27c = 0x91;
-  auStack_280[0] = 1;
-  uStack_278 = 1;
+  auStack_280[0] = '\x01';
+  uStack_278 = '\x01';
   CarRec_SetMileage(auStack_280,param_9);
   uVar5 = uStack_278;
   uVar2 = uStack_27c;
   uVar4 = auStack_280[0];
   pGVar3 = g_GameState;
-  puVar12 = auStack_45c;
+  puVar13 = auStack_45c;
   iVar10 = 0x17;
   uStack_464 = CONCAT22(uStack_272,uStack_274);
   do {
     iVar10 = iVar10 + -1;
-    *(undefined1 *)puVar12 = *puVar20;
-    puVar20 = puVar20 + 1;
-    puVar12 = (undefined4 *)((int)puVar12 + 1);
+    *(undefined1 *)puVar13 = *puVar21;
+    puVar21 = puVar21 + 1;
+    puVar13 = (uint *)((int)puVar13 + 1);
   } while (0 < iVar10);
-  puVar15 = auStack_420;
+  puVar16 = auStack_420;
   iVar10 = 8;
   uStack_444 = uStack_254;
   uStack_440 = uStack_250;
@@ -302,40 +303,40 @@ LAB_0017c704:
   uStack_424 = uStack_234;
   do {
     iVar10 = iVar10 + -1;
-    uVar1 = puVar19[1];
-    *puVar15 = *puVar19;
-    puVar15[1] = uVar1;
-    puVar19 = puVar19 + 2;
-    puVar15 = puVar15 + 2;
+    uVar1 = puVar20[1];
+    *puVar16 = *puVar20;
+    puVar16[1] = uVar1;
+    puVar20 = puVar20 + 2;
+    puVar16 = puVar16 + 2;
   } while (0 < iVar10);
-  puVar15 = auStack_400;
+  puVar16 = auStack_400;
   iVar10 = 0x15;
   do {
     iVar10 = iVar10 + -1;
-    uVar1 = puVar18[1];
-    *puVar15 = *puVar18;
-    puVar15[1] = uVar1;
-    puVar18 = puVar18 + 2;
-    puVar15 = puVar15 + 2;
+    uVar1 = puVar19[1];
+    *puVar16 = *puVar19;
+    puVar16[1] = uVar1;
+    puVar19 = puVar19 + 2;
+    puVar16 = puVar16 + 2;
   } while (0 < iVar10);
-  puVar16 = auStack_45c;
+  puVar17 = auStack_45c;
   iVar10 = 0x17;
   uStack_3ac = uStack_1bc;
   uStack_3a8 = uStack_1b8;
-  *(undefined1 *)(g_GameState->entrySetup + 1) = uVar4;
-  *(undefined4 *)&pGVar3->entrySetup[1].field_0x4 = uVar2;
-  puVar12 = (undefined4 *)&pGVar3->entrySetup[1].field_0x14;
-  pGVar3->entrySetup[1].field_0x8 = uVar5;
-  pGVar3->entrySetup[1].field_0x9 = uStack_277;
-  *(undefined4 *)&pGVar3->entrySetup[1].field_0xc = uStack_464;
-  *(undefined4 *)&pGVar3->entrySetup[1].field_0x10 = uStack_270;
+  g_GameState->entrySetup[1].maybe_state = uVar4;
+  pGVar3->entrySetup[1].unk_04 = uVar2;
+  puVar13 = &pGVar3->entrySetup[1].unk_14;
+  pGVar3->entrySetup[1].unk_08 = uVar5;
+  pGVar3->entrySetup[1].unk_09 = uStack_277;
+  pGVar3->entrySetup[1].maybe_counter = uStack_464;
+  pGVar3->entrySetup[1].maybe_accum = fStack_270;
   do {
     iVar10 = iVar10 + -1;
-    uVar2 = puVar16[1];
-    *puVar12 = *puVar16;
-    puVar12[1] = uVar2;
-    puVar16 = puVar16 + 2;
-    puVar12 = puVar12 + 2;
+    uVar2 = puVar17[1];
+    *puVar13 = *puVar17;
+    puVar13[1] = uVar2;
+    puVar17 = puVar17 + 2;
+    puVar13 = puVar13 + 2;
   } while (0 < iVar10);
   GameState_Set_e0(2);
   if (param_5 == 0) {
@@ -373,26 +374,27 @@ LAB_0017c704:
 // 0x0017ca10  size 0x4b4
 void RaceSetup_FromQuickRace
                (uchar param_1,undefined8 param_2,ulong param_3,byte param_4,undefined1 param_5,
-               int param_6,undefined4 *param_7,undefined1 param_8)
+               int param_6,undefined4 *param_7,uchar param_8)
 
 {
   undefined2 uVar1;
-  undefined4 uVar2;
+  uint uVar2;
   GameState *pGVar3;
-  undefined1 uVar4;
-  undefined1 uVar5;
+  uchar uVar4;
+  uchar uVar5;
   undefined8 uVar6;
   undefined8 uVar7;
   int iVar8;
   undefined4 *puVar9;
-  undefined1 *puVar10;
-  undefined2 *puVar11;
+  uint *puVar10;
+  undefined1 *puVar11;
   undefined2 *puVar12;
-  undefined4 *puVar13;
-  ulong uVar14;
-  short sVar15;
+  undefined2 *puVar13;
+  uint *puVar14;
+  ulong uVar15;
+  short sVar16;
   undefined4 uStack_2c4;
-  undefined4 auStack_2bc [6];
+  uint auStack_2bc [6];
   undefined4 uStack_2a4;
   undefined4 uStack_2a0;
   undefined4 uStack_29c;
@@ -413,13 +415,13 @@ void RaceSetup_FromQuickRace
   undefined4 uStack_1f8;
   undefined4 uStack_1f4;
   undefined4 uStack_1f0;
-  undefined1 auStack_1b0 [4];
-  undefined4 uStack_1ac;
-  undefined1 uStack_1a8;
-  undefined1 uStack_1a7;
+  uchar auStack_1b0 [4];
+  uint uStack_1ac;
+  uchar uStack_1a8;
+  uchar uStack_1a7;
   undefined2 uStack_1a4;
   undefined2 uStack_1a2;
-  undefined4 uStack_1a0;
+  float fStack_1a0;
   undefined1 auStack_19c [24];
   undefined4 uStack_184;
   undefined4 uStack_180;
@@ -447,8 +449,8 @@ void RaceSetup_FromQuickRace
     param_7 = param_7 + 1;
     puVar9 = puVar9 + 1;
   } while (0 < iVar8);
-  uVar14 = param_3 & 0xff;
-  if ((uVar14 == 4) || (uVar14 == 7)) {
+  uVar15 = param_3 & 0xff;
+  if ((uVar15 == 4) || (uVar15 == 7)) {
     if (param_4 == 4) {
       param_4 = 5;
     }
@@ -460,41 +462,41 @@ void RaceSetup_FromQuickRace
   g_RaceCtx->raceType = '\x13';
   g_RaceCtx->raceType = param_1;
   if (iStack_d8 == 0) {
-    sVar15 = 0;
+    sVar16 = 0;
     uVar6 = CarRec_GetPartSlotB(auStack_e0,0xf);
     uVar7 = CarRec_GetPartSlotB(auStack_e0,0x10);
     if (param_1 == '\x0f') {
-      sVar15 = 4;
+      sVar16 = 4;
     }
     if (param_4 < 6) {
                     /* WARNING: Switch is manually overridden */
       switch(param_4) {
       case 0:
-        CarRec_SetModelAndColor(uVar6,sVar15 + 0x8d);
-        CarRec_SetModelAndColor(uVar7,sVar15 + 0x8d);
+        CarRec_SetModelAndColor(uVar6,sVar16 + 0x8d);
+        CarRec_SetModelAndColor(uVar7,sVar16 + 0x8d);
         break;
       case 1:
-        if ((uVar14 == 7) || (uVar14 == 4)) {
-          CarRec_SetModelAndColor(uVar6,sVar15 + 0x9d);
-          CarRec_SetModelAndColor(uVar7,sVar15 + 0x9d);
+        if ((uVar15 == 7) || (uVar15 == 4)) {
+          CarRec_SetModelAndColor(uVar6,sVar16 + 0x9d);
+          CarRec_SetModelAndColor(uVar7,sVar16 + 0x9d);
         }
         else {
-          CarRec_SetModelAndColor(uVar6,sVar15 + 0x98);
-          CarRec_SetModelAndColor(uVar7,sVar15 + 0x98);
+          CarRec_SetModelAndColor(uVar6,sVar16 + 0x98);
+          CarRec_SetModelAndColor(uVar7,sVar16 + 0x98);
         }
         break;
       case 2:
-        CarRec_SetModelAndColor(uVar6,sVar15 + 0x9d);
-        CarRec_SetModelAndColor(uVar7,sVar15 + 0x9d);
+        CarRec_SetModelAndColor(uVar6,sVar16 + 0x9d);
+        CarRec_SetModelAndColor(uVar7,sVar16 + 0x9d);
         break;
       case 3:
-        CarRec_SetModelAndColor(uVar6,sVar15 + 0x98);
-        CarRec_SetModelAndColor(uVar7,sVar15 + 0x98);
+        CarRec_SetModelAndColor(uVar6,sVar16 + 0x98);
+        CarRec_SetModelAndColor(uVar7,sVar16 + 0x98);
       }
     }
   }
   CarRec_Copy(auStack_e0,auStack_1b0);
-  uStack_1a8 = 0;
+  uStack_1a8 = '\0';
   uStack_1ac = 0x89;
   auStack_1b0[0] = param_8;
   CarRec_SetMileage(auStack_1b0,param_2);
@@ -502,18 +504,18 @@ void RaceSetup_FromQuickRace
   uVar2 = uStack_1ac;
   uVar4 = auStack_1b0[0];
   pGVar3 = g_GameState;
-  puVar10 = auStack_19c;
-  puVar9 = auStack_2bc;
+  puVar11 = auStack_19c;
+  puVar10 = auStack_2bc;
   iVar8 = 0x17;
   uStack_2c4 = CONCAT22(uStack_1a2,uStack_1a4);
   do {
     iVar8 = iVar8 + -1;
-    *(undefined1 *)puVar9 = *puVar10;
-    puVar10 = puVar10 + 1;
-    puVar9 = (undefined4 *)((int)puVar9 + 1);
+    *(undefined1 *)puVar10 = *puVar11;
+    puVar11 = puVar11 + 1;
+    puVar10 = (uint *)((int)puVar10 + 1);
   } while (0 < iVar8);
-  puVar12 = auStack_160;
-  puVar11 = auStack_280;
+  puVar13 = auStack_160;
+  puVar12 = auStack_280;
   iVar8 = 8;
   uStack_298 = uStack_178;
   uStack_294 = uStack_174;
@@ -526,41 +528,41 @@ void RaceSetup_FromQuickRace
   uStack_284 = uStack_164;
   do {
     iVar8 = iVar8 + -1;
-    uVar1 = puVar12[1];
-    *puVar11 = *puVar12;
-    puVar11[1] = uVar1;
+    uVar1 = puVar13[1];
+    *puVar12 = *puVar13;
+    puVar12[1] = uVar1;
+    puVar13 = puVar13 + 2;
     puVar12 = puVar12 + 2;
-    puVar11 = puVar11 + 2;
   } while (0 < iVar8);
-  puVar12 = auStack_140;
-  puVar11 = auStack_260;
+  puVar13 = auStack_140;
+  puVar12 = auStack_260;
   iVar8 = 0x15;
   do {
     iVar8 = iVar8 + -1;
-    uVar1 = puVar12[1];
-    *puVar11 = *puVar12;
-    puVar11[1] = uVar1;
+    uVar1 = puVar13[1];
+    *puVar12 = *puVar13;
+    puVar12[1] = uVar1;
+    puVar13 = puVar13 + 2;
     puVar12 = puVar12 + 2;
-    puVar11 = puVar11 + 2;
   } while (0 < iVar8);
-  puVar13 = auStack_2bc;
+  puVar14 = auStack_2bc;
   iVar8 = 0x17;
   uStack_20c = uStack_ec;
   uStack_208 = uStack_e8;
-  *(undefined1 *)g_GameState->entrySetup = uVar4;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0x4 = uVar2;
-  puVar9 = (undefined4 *)&pGVar3->entrySetup[0].field_0x14;
-  pGVar3->entrySetup[0].field_0x8 = uVar5;
-  pGVar3->entrySetup[0].field_0x9 = uStack_1a7;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0xc = uStack_2c4;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0x10 = uStack_1a0;
+  g_GameState->entrySetup[0].maybe_state = uVar4;
+  pGVar3->entrySetup[0].unk_04 = uVar2;
+  puVar10 = &pGVar3->entrySetup[0].unk_14;
+  pGVar3->entrySetup[0].unk_08 = uVar5;
+  pGVar3->entrySetup[0].unk_09 = uStack_1a7;
+  pGVar3->entrySetup[0].maybe_counter = uStack_2c4;
+  pGVar3->entrySetup[0].maybe_accum = fStack_1a0;
   do {
     iVar8 = iVar8 + -1;
-    uVar2 = puVar13[1];
-    *puVar9 = *puVar13;
-    puVar9[1] = uVar2;
-    puVar13 = puVar13 + 2;
-    puVar9 = puVar9 + 2;
+    uVar2 = puVar14[1];
+    *puVar10 = *puVar14;
+    puVar10[1] = uVar2;
+    puVar14 = puVar14 + 2;
+    puVar10 = puVar10 + 2;
   } while (0 < iVar8);
   GameState_Set_e0(1);
   if (param_6 == 0) {
@@ -597,26 +599,29 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
 
 {
   undefined2 uVar1;
-  undefined4 uVar2;
-  GameState *pGVar3;
-  undefined1 uVar4;
-  undefined1 uVar5;
-  undefined1 uVar6;
-  undefined4 uVar7;
-  undefined2 uVar8;
-  undefined8 uVar9;
-  int iVar10;
-  undefined1 *puVar11;
-  undefined4 *puVar12;
-  undefined1 *puVar13;
-  undefined2 *puVar14;
+  uint uVar2;
+  undefined4 uVar3;
+  GameState *pGVar4;
+  uchar uVar5;
+  uchar uVar6;
+  uchar uVar7;
+  float fVar8;
+  undefined2 uVar9;
+  undefined8 uVar10;
+  int iVar11;
+  undefined1 *puVar12;
+  uint *puVar13;
+  undefined1 *puVar14;
   undefined2 *puVar15;
   undefined4 *puVar16;
   undefined2 *puVar17;
-  undefined2 *puVar18;
-  undefined1 *puVar19;
+  uint *puVar18;
+  undefined4 *puVar19;
+  undefined2 *puVar20;
+  undefined2 *puVar21;
+  undefined1 *puVar22;
   undefined4 uStack_a24;
-  undefined4 auStack_a1c [6];
+  uint auStack_a1c [6];
   undefined4 uStack_a04;
   undefined4 uStack_a00;
   undefined4 uStack_9fc;
@@ -630,13 +635,13 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   undefined2 auStack_9c0 [42];
   undefined1 uStack_96c;
   undefined4 uStack_968;
-  undefined1 uStack_960;
-  undefined4 uStack_95c;
-  undefined1 uStack_958;
-  undefined1 uStack_957;
+  uchar uStack_960;
+  uint uStack_95c;
+  uchar uStack_958;
+  uchar uStack_957;
   undefined4 uStack_954;
-  undefined4 uStack_950;
-  undefined4 auStack_94c [6];
+  float fStack_950;
+  uint auStack_94c [6];
   undefined4 uStack_934;
   undefined4 uStack_930;
   undefined4 uStack_92c;
@@ -650,13 +655,13 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   undefined2 auStack_8f0 [42];
   undefined1 uStack_89c;
   undefined4 uStack_898;
-  undefined1 auStack_890 [4];
+  uchar auStack_890 [4];
   undefined4 uStack_88c;
   undefined1 uStack_888;
-  undefined1 uStack_887;
+  uchar uStack_887;
   undefined2 uStack_884;
   undefined2 uStack_882;
-  undefined4 uStack_880;
+  float fStack_880;
   undefined1 auStack_87c [24];
   undefined4 uStack_864;
   undefined4 uStack_860;
@@ -763,13 +768,13 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   undefined4 uStack_448;
   undefined4 uStack_444;
   undefined4 uStack_440;
-  undefined1 auStack_400 [4];
-  undefined4 uStack_3fc;
-  undefined1 uStack_3f8;
-  undefined1 uStack_3f7;
+  uchar auStack_400 [4];
+  uint uStack_3fc;
+  uchar uStack_3f8;
+  uchar uStack_3f7;
   undefined2 uStack_3f4;
   undefined2 uStack_3f2;
-  undefined4 uStack_3f0;
+  float fStack_3f0;
   undefined1 auStack_3ec [24];
   undefined4 uStack_3d4;
   undefined4 uStack_3d0;
@@ -842,13 +847,13 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   undefined2 auStack_140 [42];
   undefined1 uStack_ec;
   undefined4 uStack_e8;
-  undefined1 auStack_e0 [4];
-  undefined4 uStack_dc;
-  undefined1 uStack_d8;
-  undefined1 uStack_d7;
+  uchar auStack_e0 [4];
+  uint uStack_dc;
+  uchar uStack_d8;
+  uchar uStack_d7;
   undefined2 uStack_d4;
   undefined2 uStack_d2;
-  undefined4 uStack_d0;
+  float fStack_d0;
   undefined1 auStack_cc [24];
   undefined4 uStack_b4;
   undefined4 uStack_b0;
@@ -880,11 +885,11 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   g_RaceCtx->raceType = '\x13';
   g_RaceCtx->raceType = param_1;
   if (param_3 == -1) {
-    uVar9 = Profile_Get(0);
-    Profile_CopyCurrentCar(&uStack_640,uVar9);
-    puVar13 = auStack_62c;
-    puVar11 = auStack_19c;
-    iVar10 = 0x17;
+    uVar10 = Profile_Get(0);
+    Profile_CopyCurrentCar(&uStack_640,uVar10);
+    puVar14 = auStack_62c;
+    puVar12 = auStack_19c;
+    iVar11 = 0x17;
     uStack_1b0 = uStack_640;
     uStack_1a0 = uStack_630;
     uStack_1ae = uStack_63e;
@@ -892,14 +897,14 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
     uStack_1a8 = uStack_638;
     uStack_1a4 = uStack_634;
     do {
-      iVar10 = iVar10 + -1;
-      *puVar11 = *puVar13;
-      puVar13 = puVar13 + 1;
-      puVar11 = puVar11 + 1;
-    } while (0 < iVar10);
-    puVar15 = auStack_5f0;
-    puVar14 = auStack_160;
-    iVar10 = 8;
+      iVar11 = iVar11 + -1;
+      *puVar12 = *puVar14;
+      puVar14 = puVar14 + 1;
+      puVar12 = puVar12 + 1;
+    } while (0 < iVar11);
+    puVar17 = auStack_5f0;
+    puVar15 = auStack_160;
+    iVar11 = 8;
     uStack_178 = uStack_608;
     uStack_174 = uStack_604;
     uStack_170 = uStack_600;
@@ -910,34 +915,34 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
     uStack_168 = uStack_5f8;
     uStack_164 = uStack_5f4;
     do {
-      iVar10 = iVar10 + -1;
-      uVar8 = puVar15[1];
-      *puVar14 = *puVar15;
-      puVar14[1] = uVar8;
+      iVar11 = iVar11 + -1;
+      uVar9 = puVar17[1];
+      *puVar15 = *puVar17;
+      puVar15[1] = uVar9;
+      puVar17 = puVar17 + 2;
       puVar15 = puVar15 + 2;
-      puVar14 = puVar14 + 2;
-    } while (0 < iVar10);
-    puVar15 = auStack_5d0;
-    puVar14 = auStack_140;
-    iVar10 = 0x15;
+    } while (0 < iVar11);
+    puVar17 = auStack_5d0;
+    puVar15 = auStack_140;
+    iVar11 = 0x15;
     do {
-      iVar10 = iVar10 + -1;
-      uVar8 = puVar15[1];
-      *puVar14 = *puVar15;
-      puVar14[1] = uVar8;
+      iVar11 = iVar11 + -1;
+      uVar9 = puVar17[1];
+      *puVar15 = *puVar17;
+      puVar15[1] = uVar9;
+      puVar17 = puVar17 + 2;
       puVar15 = puVar15 + 2;
-      puVar14 = puVar14 + 2;
-    } while (0 < iVar10);
+    } while (0 < iVar11);
     uStack_ec = uStack_57c;
     uStack_e8 = uStack_578;
   }
   else {
-    uVar9 = Profile_Get(0);
-    uVar9 = Garage_GetPartSlot(uVar9,param_3);
-    CarRec_InstallPart(&uStack_570,uVar9,0);
-    puVar13 = auStack_55c;
-    puVar11 = auStack_19c;
-    iVar10 = 0x17;
+    uVar10 = Profile_Get(0);
+    uVar10 = Garage_GetPartSlot(uVar10,param_3);
+    CarRec_InstallPart(&uStack_570,uVar10,0);
+    puVar14 = auStack_55c;
+    puVar12 = auStack_19c;
+    iVar11 = 0x17;
     uStack_1b0 = uStack_570;
     uStack_1a0 = uStack_560;
     uStack_1ae = uStack_56e;
@@ -945,14 +950,14 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
     uStack_1a8 = uStack_568;
     uStack_1a4 = uStack_564;
     do {
-      iVar10 = iVar10 + -1;
-      *puVar11 = *puVar13;
-      puVar13 = puVar13 + 1;
-      puVar11 = puVar11 + 1;
-    } while (0 < iVar10);
-    puVar15 = auStack_520;
-    puVar14 = auStack_160;
-    iVar10 = 8;
+      iVar11 = iVar11 + -1;
+      *puVar12 = *puVar14;
+      puVar14 = puVar14 + 1;
+      puVar12 = puVar12 + 1;
+    } while (0 < iVar11);
+    puVar17 = auStack_520;
+    puVar15 = auStack_160;
+    iVar11 = 8;
     uStack_178 = uStack_538;
     uStack_174 = uStack_534;
     uStack_170 = uStack_530;
@@ -963,55 +968,55 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
     uStack_168 = uStack_528;
     uStack_164 = uStack_524;
     do {
-      iVar10 = iVar10 + -1;
-      uVar8 = puVar15[1];
-      *puVar14 = *puVar15;
-      puVar14[1] = uVar8;
+      iVar11 = iVar11 + -1;
+      uVar9 = puVar17[1];
+      *puVar15 = *puVar17;
+      puVar15[1] = uVar9;
+      puVar17 = puVar17 + 2;
       puVar15 = puVar15 + 2;
-      puVar14 = puVar14 + 2;
-    } while (0 < iVar10);
-    puVar15 = auStack_500;
-    puVar14 = auStack_140;
-    iVar10 = 0x15;
+    } while (0 < iVar11);
+    puVar17 = auStack_500;
+    puVar15 = auStack_140;
+    iVar11 = 0x15;
     do {
-      iVar10 = iVar10 + -1;
-      uVar8 = puVar15[1];
-      *puVar14 = *puVar15;
-      puVar14[1] = uVar8;
+      iVar11 = iVar11 + -1;
+      uVar9 = puVar17[1];
+      *puVar15 = *puVar17;
+      puVar15[1] = uVar9;
+      puVar17 = puVar17 + 2;
       puVar15 = puVar15 + 2;
-      puVar14 = puVar14 + 2;
-    } while (0 < iVar10);
+    } while (0 < iVar11);
     uStack_ec = uStack_4ac;
     uStack_e8 = uStack_4a8;
     GameState_Set_3a48(param_3);
   }
   CarRec_Copy(&uStack_1b0,auStack_e0);
-  auStack_e0[0] = 1;
+  auStack_e0[0] = '\x01';
   uStack_dc = 0x89;
-  uStack_d8 = 0;
+  uStack_d8 = '\0';
   CarRec_SetMileage(auStack_e0,param_2);
-  uVar5 = uStack_d8;
+  uVar6 = uStack_d8;
   uVar2 = uStack_dc;
-  uVar4 = auStack_e0[0];
-  pGVar3 = g_GameState;
-  puVar11 = auStack_cc;
-  puVar12 = auStack_94c;
-  iVar10 = 0x17;
+  uVar5 = auStack_e0[0];
+  pGVar4 = g_GameState;
+  puVar12 = auStack_cc;
+  puVar13 = auStack_94c;
+  iVar11 = 0x17;
   uStack_95c = uStack_dc;
   uStack_958 = uStack_d8;
   uStack_960 = auStack_e0[0];
   uStack_957 = uStack_d7;
   uStack_954 = CONCAT22(uStack_d2,uStack_d4);
-  uStack_950 = uStack_d0;
+  fStack_950 = fStack_d0;
   do {
-    iVar10 = iVar10 + -1;
-    *(undefined1 *)puVar12 = *puVar11;
-    puVar11 = puVar11 + 1;
-    puVar12 = (undefined4 *)((int)puVar12 + 1);
-  } while (0 < iVar10);
-  puVar15 = auStack_90;
-  puVar14 = auStack_910;
-  iVar10 = 8;
+    iVar11 = iVar11 + -1;
+    *(undefined1 *)puVar13 = *puVar12;
+    puVar12 = puVar12 + 1;
+    puVar13 = (uint *)((int)puVar13 + 1);
+  } while (0 < iVar11);
+  puVar17 = auStack_90;
+  puVar15 = auStack_910;
+  iVar11 = 8;
   uStack_928 = uStack_a8;
   uStack_924 = uStack_a4;
   uStack_920 = uStack_a0;
@@ -1022,43 +1027,43 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   uStack_918 = uStack_98;
   uStack_914 = uStack_94;
   do {
-    iVar10 = iVar10 + -1;
-    uVar8 = puVar15[1];
-    *puVar14 = *puVar15;
-    puVar14[1] = uVar8;
+    iVar11 = iVar11 + -1;
+    uVar9 = puVar17[1];
+    *puVar15 = *puVar17;
+    puVar15[1] = uVar9;
+    puVar17 = puVar17 + 2;
     puVar15 = puVar15 + 2;
-    puVar14 = puVar14 + 2;
-  } while (0 < iVar10);
-  puVar15 = auStack_70;
-  puVar14 = auStack_8f0;
-  iVar10 = 0x15;
+  } while (0 < iVar11);
+  puVar17 = auStack_70;
+  puVar15 = auStack_8f0;
+  iVar11 = 0x15;
   do {
-    iVar10 = iVar10 + -1;
-    uVar8 = puVar15[1];
-    *puVar14 = *puVar15;
-    puVar14[1] = uVar8;
+    iVar11 = iVar11 + -1;
+    uVar9 = puVar17[1];
+    *puVar15 = *puVar17;
+    puVar15[1] = uVar9;
+    puVar17 = puVar17 + 2;
     puVar15 = puVar15 + 2;
-    puVar14 = puVar14 + 2;
-  } while (0 < iVar10);
-  puVar16 = auStack_94c;
-  iVar10 = 0x17;
+  } while (0 < iVar11);
+  puVar18 = auStack_94c;
+  iVar11 = 0x17;
   uStack_89c = uStack_1c;
   uStack_898 = uStack_18;
-  *(undefined1 *)g_GameState->entrySetup = uVar4;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0x4 = uVar2;
-  puVar12 = (undefined4 *)&pGVar3->entrySetup[0].field_0x14;
-  pGVar3->entrySetup[0].field_0x8 = uVar5;
-  pGVar3->entrySetup[0].field_0x9 = uStack_d7;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0xc = uStack_954;
-  *(undefined4 *)&pGVar3->entrySetup[0].field_0x10 = uStack_d0;
+  g_GameState->entrySetup[0].maybe_state = uVar5;
+  pGVar4->entrySetup[0].unk_04 = uVar2;
+  puVar13 = &pGVar4->entrySetup[0].unk_14;
+  pGVar4->entrySetup[0].unk_08 = uVar6;
+  pGVar4->entrySetup[0].unk_09 = uStack_d7;
+  pGVar4->entrySetup[0].maybe_counter = uStack_954;
+  pGVar4->entrySetup[0].maybe_accum = fStack_d0;
   do {
-    iVar10 = iVar10 + -1;
-    uVar2 = puVar16[1];
-    *puVar12 = *puVar16;
-    puVar12[1] = uVar2;
-    puVar16 = puVar16 + 2;
-    puVar12 = puVar12 + 2;
-  } while (0 < iVar10);
+    iVar11 = iVar11 + -1;
+    uVar2 = puVar18[1];
+    *puVar13 = *puVar18;
+    puVar13[1] = uVar2;
+    puVar18 = puVar18 + 2;
+    puVar13 = puVar13 + 2;
+  } while (0 < iVar11);
   GameState_Set_e0(1);
   if (param_11 == 0xffffffff) {
     if (param_12 != '\b') {
@@ -1077,9 +1082,9 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
   else {
     if (param_10 == 0) {
       RivalDb_Copy(&uStack_7c0,(short)param_11);
-      puVar16 = auStack_77c;
-      puVar12 = auStack_2ec;
-      iVar10 = 0x17;
+      puVar19 = auStack_77c;
+      puVar16 = auStack_2ec;
+      iVar11 = 0x17;
       uStack_320 = uStack_7b0;
       uStack_318 = uStack_7a8;
       uStack_314 = uStack_7a4;
@@ -1100,31 +1105,31 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
       uStack_2f6 = uStack_786;
       uStack_2f0 = uStack_780;
       do {
-        iVar10 = iVar10 + -1;
-        *puVar12 = *puVar16;
+        iVar11 = iVar11 + -1;
+        *puVar16 = *puVar19;
+        puVar19 = puVar19 + 1;
         puVar16 = puVar16 + 1;
-        puVar12 = puVar12 + 1;
-      } while (0 < iVar10);
-      puVar16 = auStack_720;
-      puVar12 = auStack_290;
-      iVar10 = 0x17;
+      } while (0 < iVar11);
+      puVar19 = auStack_720;
+      puVar16 = auStack_290;
+      iVar11 = 0x17;
       do {
-        iVar10 = iVar10 + -1;
-        *puVar12 = *puVar16;
+        iVar11 = iVar11 + -1;
+        *puVar16 = *puVar19;
+        puVar19 = puVar19 + 1;
         puVar16 = puVar16 + 1;
-        puVar12 = puVar12 + 1;
-      } while (0 < iVar10);
-      puVar16 = auStack_6c4;
-      puVar12 = auStack_234;
-      iVar10 = 8;
+      } while (0 < iVar11);
+      puVar19 = auStack_6c4;
+      puVar16 = auStack_234;
+      iVar11 = 8;
       do {
-        iVar10 = iVar10 + -1;
-        uVar2 = puVar16[1];
-        *puVar12 = *puVar16;
-        puVar12[1] = uVar2;
+        iVar11 = iVar11 + -1;
+        uVar3 = puVar19[1];
+        *puVar16 = *puVar19;
+        puVar16[1] = uVar3;
+        puVar19 = puVar19 + 2;
         puVar16 = puVar16 + 2;
-        puVar12 = puVar12 + 2;
-      } while (0 < iVar10);
+      } while (0 < iVar11);
       uStack_1f4 = uStack_684;
       uStack_1f0 = uStack_680;
       uStack_1ec = uStack_67c;
@@ -1142,28 +1147,28 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
       uStack_1b8 = uStack_648;
       uStack_1cc = uStack_65c;
       if (cStack_7bc == '\v') {
-        uVar8 = RivalRec_GetCourse(&uStack_330);
-        Opponent_BuildFromTeam(auStack_890,(char)uVar8,param_5);
-        puVar19 = auStack_3ec;
+        uVar9 = RivalRec_GetCourse(&uStack_330);
+        Opponent_BuildFromTeam(auStack_890,(char)uVar9,param_5);
+        puVar22 = auStack_3ec;
         auStack_400[0] = auStack_890[0];
         uStack_3fc = uStack_88c;
-        puVar13 = auStack_87c;
+        puVar14 = auStack_87c;
         uStack_3f8 = uStack_888;
-        iVar10 = 0x17;
+        iVar11 = 0x17;
         uStack_3f7 = uStack_887;
         uStack_3f4 = uStack_884;
         uStack_3f2 = uStack_882;
-        uStack_3f0 = uStack_880;
-        puVar11 = puVar19;
+        fStack_3f0 = fStack_880;
+        puVar12 = puVar22;
         do {
-          iVar10 = iVar10 + -1;
-          *puVar11 = *puVar13;
-          puVar13 = puVar13 + 1;
-          puVar11 = puVar11 + 1;
-        } while (0 < iVar10);
-        puVar18 = auStack_3b0;
-        puVar15 = auStack_840;
-        iVar10 = 8;
+          iVar11 = iVar11 + -1;
+          *puVar12 = *puVar14;
+          puVar14 = puVar14 + 1;
+          puVar12 = puVar12 + 1;
+        } while (0 < iVar11);
+        puVar21 = auStack_3b0;
+        puVar17 = auStack_840;
+        iVar11 = 8;
         uStack_3d4 = uStack_864;
         uStack_3d0 = uStack_860;
         uStack_3cc = uStack_85c;
@@ -1173,50 +1178,50 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
         uStack_3bc = uStack_84c;
         uStack_3b8 = uStack_848;
         uStack_3b4 = uStack_844;
-        puVar14 = puVar18;
+        puVar15 = puVar21;
         do {
-          iVar10 = iVar10 + -1;
-          uVar1 = puVar15[1];
-          *puVar14 = *puVar15;
-          puVar14[1] = uVar1;
+          iVar11 = iVar11 + -1;
+          uVar1 = puVar17[1];
+          *puVar15 = *puVar17;
+          puVar15[1] = uVar1;
+          puVar17 = puVar17 + 2;
           puVar15 = puVar15 + 2;
-          puVar14 = puVar14 + 2;
-        } while (0 < iVar10);
-        puVar17 = auStack_390;
-        puVar15 = auStack_820;
-        iVar10 = 0x15;
-        puVar14 = puVar17;
+        } while (0 < iVar11);
+        puVar20 = auStack_390;
+        puVar17 = auStack_820;
+        iVar11 = 0x15;
+        puVar15 = puVar20;
         do {
-          iVar10 = iVar10 + -1;
-          uVar1 = puVar15[1];
-          *puVar14 = *puVar15;
-          puVar14[1] = uVar1;
+          iVar11 = iVar11 + -1;
+          uVar1 = puVar17[1];
+          *puVar15 = *puVar17;
+          puVar15[1] = uVar1;
+          puVar17 = puVar17 + 2;
           puVar15 = puVar15 + 2;
-          puVar14 = puVar14 + 2;
-        } while (0 < iVar10);
-        uStack_3f8 = 0;
-        auStack_400[0] = 1;
+        } while (0 < iVar11);
+        uStack_3f8 = '\0';
+        auStack_400[0] = '\x01';
         uStack_3fc = 0x89;
         uStack_338 = uStack_7c8;
         uStack_33c = uStack_7cc;
         CarRec_SetMileage(auStack_400,param_2);
-        uVar7 = uStack_3f0;
-        uVar6 = uStack_3f7;
-        uVar5 = uStack_3f8;
+        fVar8 = fStack_3f0;
+        uVar7 = uStack_3f7;
+        uVar6 = uStack_3f8;
         uVar2 = uStack_3fc;
-        uVar4 = auStack_400[0];
-        pGVar3 = g_GameState;
-        puVar12 = auStack_a1c;
-        iVar10 = 0x17;
+        uVar5 = auStack_400[0];
+        pGVar4 = g_GameState;
+        puVar13 = auStack_a1c;
+        iVar11 = 0x17;
         uStack_a24 = CONCAT22(uStack_3f2,uStack_3f4);
         do {
-          iVar10 = iVar10 + -1;
-          *(undefined1 *)puVar12 = *puVar19;
-          puVar19 = puVar19 + 1;
-          puVar12 = (undefined4 *)((int)puVar12 + 1);
-        } while (0 < iVar10);
-        puVar14 = auStack_9e0;
-        iVar10 = 8;
+          iVar11 = iVar11 + -1;
+          *(undefined1 *)puVar13 = *puVar22;
+          puVar22 = puVar22 + 1;
+          puVar13 = (uint *)((int)puVar13 + 1);
+        } while (0 < iVar11);
+        puVar15 = auStack_9e0;
+        iVar11 = 8;
         uStack_a04 = uStack_3d4;
         uStack_a00 = uStack_3d0;
         uStack_9fc = uStack_3cc;
@@ -1227,43 +1232,43 @@ void RaceSetup_Build(uchar param_1,undefined8 param_2,char param_3,ulong param_4
         uStack_9e8 = uStack_3b8;
         uStack_9e4 = uStack_3b4;
         do {
-          iVar10 = iVar10 + -1;
-          uVar1 = puVar18[1];
-          *puVar14 = *puVar18;
-          puVar14[1] = uVar1;
-          puVar18 = puVar18 + 2;
-          puVar14 = puVar14 + 2;
-        } while (0 < iVar10);
-        puVar14 = auStack_9c0;
-        iVar10 = 0x15;
+          iVar11 = iVar11 + -1;
+          uVar1 = puVar21[1];
+          *puVar15 = *puVar21;
+          puVar15[1] = uVar1;
+          puVar21 = puVar21 + 2;
+          puVar15 = puVar15 + 2;
+        } while (0 < iVar11);
+        puVar15 = auStack_9c0;
+        iVar11 = 0x15;
         do {
-          iVar10 = iVar10 + -1;
-          uVar1 = puVar17[1];
-          *puVar14 = *puVar17;
-          puVar14[1] = uVar1;
-          puVar17 = puVar17 + 2;
-          puVar14 = puVar14 + 2;
-        } while (0 < iVar10);
-        puVar16 = auStack_a1c;
-        iVar10 = 0x17;
+          iVar11 = iVar11 + -1;
+          uVar1 = puVar20[1];
+          *puVar15 = *puVar20;
+          puVar15[1] = uVar1;
+          puVar20 = puVar20 + 2;
+          puVar15 = puVar15 + 2;
+        } while (0 < iVar11);
+        puVar18 = auStack_a1c;
+        iVar11 = 0x17;
         uStack_96c = uStack_33c;
         uStack_968 = uStack_338;
-        *(undefined1 *)g_GameState->entrySetup = uVar4;
-        *(undefined4 *)&pGVar3->entrySetup[0].field_0x4 = uVar2;
-        pGVar3->entrySetup[0].field_0x8 = uVar5;
-        puVar12 = (undefined4 *)&pGVar3->entrySetup[0].field_0x14;
-        pGVar3->entrySetup[0].field_0x9 = uVar6;
-        *(undefined4 *)&pGVar3->entrySetup[0].field_0xc = uStack_a24;
-        *(undefined4 *)&pGVar3->entrySetup[0].field_0x10 = uVar7;
+        g_GameState->entrySetup[0].maybe_state = uVar5;
+        pGVar4->entrySetup[0].unk_04 = uVar2;
+        pGVar4->entrySetup[0].unk_08 = uVar6;
+        puVar13 = &pGVar4->entrySetup[0].unk_14;
+        pGVar4->entrySetup[0].unk_09 = uVar7;
+        pGVar4->entrySetup[0].maybe_counter = uStack_a24;
+        pGVar4->entrySetup[0].maybe_accum = fVar8;
         do {
-          iVar10 = iVar10 + -1;
-          uVar2 = puVar16[1];
-          *puVar12 = *puVar16;
-          puVar12[1] = uVar2;
-          puVar16 = puVar16 + 2;
-          puVar12 = puVar12 + 2;
-        } while (0 < iVar10);
-        GameState_Set_3a48(uVar8);
+          iVar11 = iVar11 + -1;
+          uVar2 = puVar18[1];
+          *puVar13 = *puVar18;
+          puVar13[1] = uVar2;
+          puVar18 = puVar18 + 2;
+          puVar13 = puVar13 + 2;
+        } while (0 < iVar11);
+        GameState_Set_3a48(uVar9);
       }
       RaceParams_Clear(&g_GameState->recordHeader);
       g_GameState->recordHeader = 1;
@@ -1326,11 +1331,11 @@ int Ranking_ComputePlayerRank(void)
   int *piVar1;
   int *piVar2;
   byte bVar3;
-  short sVar4;
+  uint uVar4;
   byte bVar5;
   undefined1 uVar6;
   undefined1 uVar7;
-  byte *pbVar8;
+  RaceEntrySetup *pRVar8;
   int iVar9;
   uint uVar10;
   int iVar11;
@@ -1342,16 +1347,16 @@ int Ranking_ComputePlayerRank(void)
   int iVar17;
   int iVar18;
   
-  pbVar8 = (byte *)GameState_Elem_f0_xcc(0);
+  pRVar8 = GameState_Elem_f0_xcc(0);
   iVar9 = RaceProg_GetArray_34(0);
   uVar15 = RaceProg_GetArray_40(0);
   iVar17 = _g_RaceTbl;
-  bVar3 = *pbVar8;
+  bVar3 = pRVar8->maybe_state;
   uVar10 = GameState_Get_1();
   bVar5 = GameState_Get_0();
   uVar6 = GameState_Get_2();
   uVar7 = GameState_Get_3();
-  sVar4 = *(short *)(pbVar8 + 0xc);
+  uVar4 = pRVar8->maybe_counter;
   iVar11 = LapTime_GetBest(uVar15);
   iVar12 = SpGauge_GetValue(iVar9);
   if (bVar5 == 8) {
@@ -1363,10 +1368,11 @@ int Ranking_ComputePlayerRank(void)
   piVar14 = piVar16;
   while( true ) {
     iVar18 = iVar17;
+    iVar17 = (int)(short)uVar4;
     uVar10 = (uint)(*(int *)(iVar13 + 0xc) != 0);
     if (*piVar14 == -1) {
       piVar14 = piVar16 + iVar18 * 5;
-      *piVar14 = (int)sVar4;
+      *piVar14 = iVar17;
       *(undefined1 *)(piVar14 + 1) = uVar6;
       *(undefined1 *)((int)piVar14 + 5) = uVar7;
       piVar14[2] = uVar10;
@@ -1380,11 +1386,11 @@ int Ranking_ComputePlayerRank(void)
     iVar18 = -1;
     if (0x13 < iVar17) goto LAB_0017dd10;
   }
-  iVar17 = 0x13;
+  iVar13 = 0x13;
   if (iVar18 < 0x13) {
     piVar14 = piVar16 + 0x5f;
     do {
-      iVar17 = iVar17 + -1;
+      iVar13 = iVar13 + -1;
       *piVar14 = piVar14[-5];
       *(char *)(piVar14 + 1) = (char)piVar14[-4];
       *(undefined1 *)((int)piVar14 + 5) = *(undefined1 *)((int)piVar14 + -0xf);
@@ -1392,10 +1398,10 @@ int Ranking_ComputePlayerRank(void)
       piVar14[3] = piVar14[-2];
       piVar14[4] = piVar14[-1];
       piVar14 = piVar14 + -5;
-    } while (iVar18 < iVar17);
+    } while (iVar18 < iVar13);
   }
   piVar14 = piVar16 + iVar18 * 5;
-  *piVar14 = (int)sVar4;
+  *piVar14 = iVar17;
   *(undefined1 *)(piVar14 + 1) = uVar6;
   *(undefined1 *)((int)piVar14 + 5) = uVar7;
   piVar14[2] = uVar10;
@@ -1440,11 +1446,11 @@ int Ranking_FindBestRival(void)
 
 {
   byte bVar1;
-  short sVar2;
+  uint uVar2;
   byte bVar3;
   undefined1 uVar4;
   undefined1 uVar5;
-  byte *pbVar6;
+  RaceEntrySetup *pRVar6;
   int iVar7;
   uint uVar8;
   int iVar9;
@@ -1456,15 +1462,15 @@ int Ranking_FindBestRival(void)
   int iVar15;
   
   iVar14 = -1;
-  pbVar6 = (byte *)GameState_Elem_f0_xcc(0);
+  pRVar6 = GameState_Elem_f0_xcc(0);
   iVar7 = RaceProg_GetArray_40(0);
-  bVar1 = *pbVar6;
+  bVar1 = pRVar6->maybe_state;
   iVar15 = _g_RaceTbl + 0x5fa0;
   uVar8 = GameState_Get_1();
   bVar3 = GameState_Get_0();
   uVar4 = GameState_Get_2();
   uVar5 = GameState_Get_3();
-  sVar2 = *(short *)(pbVar6 + 0xc);
+  uVar2 = pRVar6->maybe_counter;
   iVar9 = LapTime_GetBest(iVar7);
   if (bVar3 == 8) {
     iVar14 = -1;
@@ -1475,10 +1481,11 @@ int Ranking_FindBestRival(void)
     piVar11 = (int *)(iVar15 + (uint)bVar1 * 0x1950 + (uVar8 & 0xff) * 0xca8 + (uint)bVar3 * 0x168);
     piVar13 = piVar11;
     while( true ) {
+      iVar15 = (int)(short)uVar2;
       uVar8 = (uint)(*(int *)(iVar10 + 0xc) != 0);
       if (*piVar13 == -1) {
         piVar13 = piVar11 + iVar12 * 4;
-        *piVar13 = (int)sVar2;
+        *piVar13 = iVar15;
         *(undefined1 *)(piVar13 + 1) = uVar4;
         *(undefined1 *)((int)piVar13 + 5) = uVar5;
         piVar13[2] = uVar8;
@@ -1505,7 +1512,7 @@ int Ranking_FindBestRival(void)
       } while (iVar12 < iVar14);
     }
     piVar13 = piVar11 + iVar12 * 4;
-    *piVar13 = (int)sVar2;
+    *piVar13 = iVar15;
     *(undefined1 *)(piVar13 + 1) = uVar4;
     *(undefined1 *)((int)piVar13 + 5) = uVar5;
     piVar13[2] = uVar8;
