@@ -75,10 +75,23 @@ def classify(h, size=None):
     if len(h) >= 32 and h[2:4] != b"\0\0" and sum(1 for i in range(1, 32, 2) if h[i] in (0, 0xff)) >= 14:
         return "16-bit glyph-index text"
     if n == 0xC and len(h) > 0x10:
-        o = struct.unpack_from("<I", h, 4)[0]
-        if 0x10 < o < len(h) - 16 and h[o + 12:o + 16] == b"TIM2":
-            return "sprite sheet (0xc header + TIM2)"
+        # UI layout: u32 0xc, u32 offset and u32 size of an optional texture block (screen width,
+        # height, 0, then a TIM2), u32 element count, element records
+        o, tsize = struct.unpack_from("<II", h, 4)
+        if 0x10 < o <= (size or len(h)) and (size is None or o + tsize <= size + 16):
+            return "UI layout (0xc) + TIM2" if tsize else "UI layout (0xc), no texture"
+    # float parameter tables that start with a zero word; values fit per-car data (125 of each
+    # of the first two). Sizes are exact, so the rule only fires on these records.
+    if h[:4] == b"\0\0\0\0" and size in CAR_TABLES:
+        return CAR_TABLES[size]
     return "unknown"
+
+
+CAR_TABLES = {
+    624: "probably car chassis parameters (floats; mass ~1500)",
+    1152: "probably car engine curve (floats; 12800 rpm ceiling, redline, 0..1 torque curve)",
+    1764: "probably car handling parameters (floats)",
+}
 
 
 def classify_leaf(h):
