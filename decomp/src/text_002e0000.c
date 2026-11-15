@@ -871,9 +871,9 @@ void MenuPage44_Enter(void)
 }
 
 // 0x002e1d90  size 0x1d0
-/* screen record 0x342748 */
+/* state of maybe_ScrMusic; on-screen text/callee hint "SndQueueCmd1" (was ScrSndQueueCmd1_Exit) */
 
-void ScrSndQueueCmd1_Exit(undefined4 *param_1)
+void maybe_ScrMusic_State2_SndQueueCmd1(undefined4 *param_1)
 
 {
   int iVar1;
@@ -945,9 +945,10 @@ void ScrSndQueueCmd1_Exit(undefined4 *param_1)
 }
 
 // 0x002e1f60  size 0x27c
-/* screen record 0x342748 */
+/* state of maybe_ScrMusic; on-screen text/callee hint "SndQueueCmd1" (was ScrSndQueueCmd1_Update)
+    */
 
-void ScrSndQueueCmd1_Update(int *param_1)
+void maybe_ScrMusic_State1_SndQueueCmd1(int *param_1)
 
 {
   int iVar1;
@@ -1024,9 +1025,9 @@ void ScrSndQueueCmd1_Update(int *param_1)
 }
 
 // 0x002e21e0  size 0x58
-/* screen record 0x342748 */
+/* state of maybe_ScrMusic; on-screen text/callee hint "SndQueueCmd1" (was ScrSndQueueCmd1_Enter) */
 
-void ScrSndQueueCmd1_Enter(int param_1)
+void maybe_ScrMusic_State0_SndQueueCmd1(int param_1)
 
 {
   int iVar1;
@@ -1057,7 +1058,7 @@ void maybe_ScrMusic_Update(undefined8 param_1)
   iVar4 = (int)param_1;
   lVar2 = SeqGen_FindPatternIndex(*(undefined4 *)(iVar4 + 0x20));
   if ((lVar2 != 0) && (lVar2 = Menu_IsInputIdle(param_1), lVar2 != 0)) {
-    (*(code *)(&PTR_ScrSndQueueCmd1_Enter_00342748)[*(int *)(iVar4 + 4)])(param_1);
+    (*(code *)(&PTR_maybe_ScrMusic_State0_SndQueueCmd1_00342748)[*(int *)(iVar4 + 4)])(param_1);
     uVar5 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar5) == 0) {
       uVar5 = 0x100000;

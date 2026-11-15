@@ -503,9 +503,9 @@ LAB_0022a14c:
 
 // 0x0022b410  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 7 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage07_Exit(void)
+void maybe_PageMail_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -514,9 +514,9 @@ void MenuPage07_Exit(void)
 
 // 0x0022b430  size 0xe0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 7 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage07_Update(undefined8 param_1)
+void maybe_PageMail_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -538,9 +538,9 @@ void MenuPage07_Update(undefined8 param_1)
 }
 
 // 0x0022b510  size 0x8
-/* menu page 7 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage07_Enter(void)
+void maybe_PageMail_Enter(void)
 
 {
   return;

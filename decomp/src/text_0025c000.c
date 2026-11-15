@@ -222,9 +222,10 @@ void ScrGarage_Draw_ChangeColourScheme(undefined8 param_1)
 
 // 0x0025cb50  size 0x78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32cd2c */
+/* state of MenuPage29; on-screen text/callee hint "ChangeColourScheme" (was
+   ScrChangeColourScheme_Enter) */
 
-void ScrChangeColourScheme_Enter(undefined4 *param_1)
+void maybe_PageBodyShop_State3_ChangeColourScheme(undefined4 *param_1)
 
 {
   long lVar1;
@@ -1083,9 +1084,9 @@ LAB_0025e244:
 
 // 0x0025e320  size 0x258
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32cd20 */
+/* state of MenuPage29; on-screen text/callee hint "Reinforcement" (was ScrReinforcement_Enter) */
 
-void ScrReinforcement_Enter(int *param_1)
+void maybe_PageBodyShop_State0_Reinforcement(int *param_1)
 
 {
   int iVar1;
@@ -1163,9 +1164,9 @@ void ScrReinforcement_Enter(int *param_1)
 
 // 0x0025e580  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 29 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage29_Exit(void)
+void maybe_PageBodyShop_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1174,9 +1175,9 @@ void MenuPage29_Exit(void)
 
 // 0x0025e5a0  size 0xf8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 29 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage29_Update(undefined8 param_1)
+void maybe_PageBodyShop_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -1185,7 +1186,8 @@ void MenuPage29_Update(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_ScrReinforcement_Enter_0032cd20)[*(int *)((int)param_1 + 0x4c)])(param_1);
+  (*(code *)(&PTR_maybe_PageBodyShop_State0_Reinforcement_0032cd20)[*(int *)((int)param_1 + 0x4c)])
+            (param_1);
   UiLayout_UpdateAnimById(0x42,0);
   iVar1 = UiMgr_FindLayout(0x42);
   UiLayout_Draw(0x3f800000,*_g_UiMgr + iVar1 * 0x4f4 + 4);
@@ -1200,9 +1202,9 @@ void MenuPage29_Update(undefined8 param_1)
 
 // 0x0025e6a0  size 0xb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 29 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage29_Enter(void)
+void maybe_PageBodyShop_Enter(void)
 
 {
   undefined4 uVar1;

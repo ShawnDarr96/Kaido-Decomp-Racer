@@ -801,9 +801,9 @@ void ScrCareer_Draw_BetParts(undefined8 param_1)
 
 // 0x0024df90  size 0x8c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32be6c */
+/* state of maybe_PageBetCar; on-screen text/callee hint "BetParts" (was ScrBetParts_Enter) */
 
-void ScrBetParts_Enter(int param_1)
+void maybe_PageBetCar_State15_BetParts(int param_1)
 
 {
   int iVar1;
@@ -827,9 +827,10 @@ void ScrBetParts_Enter(int param_1)
 
 // 0x0024e020  size 0x46c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32be60 */
+/* state of maybe_PageBetCar; on-screen text/callee hint "ThisBattleWith" (was
+   ScrThisBattleWith_Exit) */
 
-void ScrThisBattleWith_Exit(undefined8 param_1)
+void maybe_PageBetCar_State14_ThisBattleWith(undefined8 param_1)
 
 {
   int iVar1;
@@ -1224,9 +1225,10 @@ void ScrRace_Draw_CategoryRace(int param_1)
 }
 
 // 0x0024eb80  size 0x54
-/* screen record 0x32be54 */
+/* state of maybe_PageBetCar; on-screen text/callee hint "EnableAutomaticGear" (was
+   ScrEnableAutomaticGear_Update) */
 
-void ScrEnableAutomaticGear_Update(int param_1)
+void maybe_PageBetCar_State10_EnableAutomaticGear(int param_1)
 
 {
   int iVar1;
@@ -1287,9 +1289,10 @@ void ScrRace_Draw_EnableAutomaticGear(undefined8 param_1)
 
 // 0x0024ed00  size 0x78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32be48 */
+/* state of maybe_PageBetCar; on-screen text/callee hint "StartPractice" (was ScrStartPractice_Exit)
+    */
 
-void ScrStartPractice_Exit(int param_1)
+void maybe_PageBetCar_State8_StartPractice(int param_1)
 
 {
   int iVar1;

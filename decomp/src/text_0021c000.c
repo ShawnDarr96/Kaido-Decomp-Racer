@@ -25,7 +25,7 @@ void maybe_PageNaFesta_Update(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_ScrEntry_Enter_0032a290)[*(int *)((int)param_1 + 0x4c)])(param_1);
+  (*(code *)(&PTR_maybe_PageNaFesta_State0_Entry_0032a290)[*(int *)((int)param_1 + 0x4c)])(param_1);
   if (((*(uint *)(_g_MenuMgr + 0x28) & 4) == 0) &&
      (lVar1 = Menu_IsInputIdle((int)param_1 + 0x48), lVar1 == 1)) {
     if ((*(uint *)(_g_MenuMgr + 0x28) & 1) == 0) {

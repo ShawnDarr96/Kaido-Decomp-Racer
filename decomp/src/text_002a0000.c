@@ -4,9 +4,10 @@
 
 // 0x002a11b0  size 0xb8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eca0 */
+/* state of maybe_ScrBuyCarColour; on-screen text/callee hint "CarRecGetModelId" (was
+   ScrCarRecGetModelId_Exit) */
 
-void ScrCarRecGetModelId_Exit(int param_1)
+void maybe_ScrBuyCarColour_State2_CarRecGetModelId(int param_1)
 
 {
   int iVar1;
@@ -37,9 +38,10 @@ void ScrCarRecGetModelId_Exit(int param_1)
 
 // 0x002a1270  size 0x1b0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eca0 */
+/* state of maybe_ScrBuyCarColour; on-screen text/callee hint "CarRecGetModelId" (was
+   ScrCarRecGetModelId_Update) */
 
-void ScrCarRecGetModelId_Update(int *param_1)
+void maybe_ScrBuyCarColour_State1_CarRecGetModelId(int *param_1)
 
 {
   int iVar1;
@@ -106,9 +108,10 @@ void ScrCarRecGetModelId_Update(int *param_1)
 
 // 0x002a1420  size 0xcc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eca0 */
+/* state of maybe_ScrBuyCarColour; on-screen text/callee hint "CarRecGetModelId" (was
+   ScrCarRecGetModelId_Enter) */
 
-void ScrCarRecGetModelId_Enter(undefined8 param_1)
+void maybe_ScrBuyCarColour_State0_CarRecGetModelId(undefined8 param_1)
 
 {
   int iVar1;
@@ -544,7 +547,8 @@ void maybe_ScrBuyCarColour_Update(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x48);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_ScrCarRecGetModelId_Enter_0032eca0)[*(int *)(iVar2 + 0x4c)])(param_1);
+    (*(code *)(&PTR_maybe_ScrBuyCarColour_State0_CarRecGetModelId_0032eca0)[*(int *)(iVar2 + 0x4c)])
+              (param_1);
     maybe_ScrBuyCarColour_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x48);
   }
@@ -2136,9 +2140,10 @@ void maybe_ScrQuickRace_State11(undefined4 *param_1)
 }
 
 // 0x002a3e10  size 0xa8
-/* screen record 0x32ed60 */
+/* state of maybe_ScrReplayList; on-screen text/callee hint "CarDbGetModelEntry" (was
+   ScrCarDbGetModelEntry_Exit) */
 
-void ScrCarDbGetModelEntry_Exit(undefined4 *param_1)
+void maybe_ScrReplayList_State14_CarDbGetModelEntry(undefined4 *param_1)
 
 {
   int iVar1;
@@ -2163,9 +2168,10 @@ void ScrCarDbGetModelEntry_Exit(undefined4 *param_1)
 
 // 0x002a3ec0  size 0xb0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ed60 */
+/* state of maybe_ScrReplayList; on-screen text/callee hint "CarDbGetModelEntry" (was
+   ScrCarDbGetModelEntry_Update) */
 
-void ScrCarDbGetModelEntry_Update(undefined4 *param_1)
+void maybe_ScrReplayList_State13_CarDbGetModelEntry(undefined4 *param_1)
 
 {
   int iVar1;
@@ -2192,9 +2198,10 @@ void ScrCarDbGetModelEntry_Update(undefined4 *param_1)
 
 // 0x002a3f70  size 0x270
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ed60 */
+/* state of maybe_ScrReplayList; on-screen text/callee hint "CarDbGetModelEntry" (was
+   ScrCarDbGetModelEntry_Enter) */
 
-void ScrCarDbGetModelEntry_Enter(undefined4 *param_1)
+void maybe_ScrReplayList_State12_CarDbGetModelEntry(undefined4 *param_1)
 
 {
   undefined4 uVar1;

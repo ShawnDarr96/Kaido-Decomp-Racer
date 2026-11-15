@@ -3343,8 +3343,8 @@ address,name,signature,source,comment
 0x002130a0,MenuPage43_Update,,game,"menu page 43 (table 0x3276e0, dispatched by 0x201380)"
 0x00213220,MenuPage43_Enter,,game,"menu page 43 (table 0x3276e0, dispatched by 0x201380)"
 0x002132c0,maybe_PageCarPartInfo_State7,,game,entry 7 of state table 0x32a020 used by maybe_PageCarPartInfo_Update
-0x00213430,ScrDoYouWant_Exit,,game-screen,screen record 0x32a02c
-0x002135b0,ScrDoYouWant_Update,,game-screen,screen record 0x32a02c
+0x00213430,maybe_PageCarPartInfo_State5_DoYouWant,,game,"state of maybe_PageCarPartInfo; on-screen text/callee hint ""DoYouWant"" (was ScrDoYouWant_Exit)"
+0x002135b0,maybe_PageCarPartInfo_State4_DoYouWant,,game,"state of maybe_PageCarPartInfo; on-screen text/callee hint ""DoYouWant"" (was ScrDoYouWant_Update)"
 0x00213720,ScrCareer_Draw_DoYouWant,,game-module,
 0x002138b0,maybe_PageCarPartInfo_State2,,game,entry 2 of state table 0x32a020 used by maybe_PageCarPartInfo_Update
 0x00213ea0,maybe_PageCarPartInfo_State1,,game,entry 1 of state table 0x32a020 used by maybe_PageCarPartInfo_Update
@@ -3356,26 +3356,26 @@ address,name,signature,source,comment
 0x00214ee0,ScrGarage_Draw_AreYouSure,,game-module,
 0x00215330,ScrGarage_Draw_AreYouSure_5330,,game-module,
 0x00215790,ScrGarage_Draw_SellAll,,game-module,
-0x00215cc0,ScrGarageGetPartSlot_Exit,,game-screen,screen record 0x32a1a8
-0x00216580,ScrGarageGetPartSlot_Update,,game-screen,screen record 0x32a1a8
-0x00216a30,ScrGarageGetPartSlot_Enter,,game-screen,screen record 0x32a1a8
+0x00215cc0,maybe_PagePartShop_State8_GarageGetPartSlot,,game,"state of MenuPage03; on-screen text/callee hint ""GarageGetPartSlot"" (was ScrGarageGetPartSlot_Exit)"
+0x00216580,maybe_PagePartShop_State7_GarageGetPartSlot,,game,"state of MenuPage03; on-screen text/callee hint ""GarageGetPartSlot"" (was ScrGarageGetPartSlot_Update)"
+0x00216a30,maybe_PagePartShop_State6_GarageGetPartSlot,,game,"state of MenuPage03; on-screen text/callee hint ""GarageGetPartSlot"" (was ScrGarageGetPartSlot_Enter)"
 0x00216ee0,ScrGarage_Draw_DoYouWant,,game-module,
-0x00217250,ScrDoYouWant_Update17250,,game-screen,screen record 0x32a19c
-0x00217590,ScrDoYouWant_Enter,,game-screen,screen record 0x32a19c
+0x00217250,maybe_PagePartShop_State4_DoYouWant,,game,"state of MenuPage03; on-screen text/callee hint ""DoYouWant"" (was ScrDoYouWant_Update17250)"
+0x00217590,maybe_PagePartShop_State3_DoYouWant,,game,"state of MenuPage03; on-screen text/callee hint ""DoYouWant"" (was ScrDoYouWant_Enter)"
 0x002178d0,ScrGarage_Draw_DemonstrationModel,,game-module,
-0x00217e40,ScrShop_Update,,game-screen,screen record 0x32a190
+0x00217e40,maybe_PagePartShop_State1_Shop,,game,"state of MenuPage03; on-screen text/callee hint ""Shop"" (was ScrShop_Update)"
 0x00218770,ScrCareer_Draw_Shop,,game-module,
-0x00218b10,MenuPage03_Exit,,game,"menu page 3 (table 0x3276e0, dispatched by 0x201380)"
-0x00218b30,MenuPage03_Update,,game,"menu page 3 (table 0x3276e0, dispatched by 0x201380)"
-0x00218bf0,MenuPage03_Enter,,game,"menu page 3 (table 0x3276e0, dispatched by 0x201380)"
+0x00218b10,maybe_PagePartShop_Exit,,game,page identified from its states' on-screen text (N154)
+0x00218b30,maybe_PagePartShop_Update,,game,page identified from its states' on-screen text (N154)
+0x00218bf0,maybe_PagePartShop_Enter,,game,page identified from its states' on-screen text (N154)
 0x00218fb0,ScrRace_Draw_NaFesta,,game-module,
 0x002199f0,maybe_PageNaFesta_State7,,game,entry 7 of state table 0x32a290 used by maybe_PageNaFesta_Update
 0x00219b40,ScrRace_Draw_Days,,game-module,
 0x00219d00,ScrRace_Draw_CaAttack,,game-module,
-0x0021a4f0,ScrCaAttack_Enter,,game-screen,screen record 0x32a29c
+0x0021a4f0,maybe_PageNaFesta_State3_CaAttack,,game,"state of maybe_PageNaFesta; on-screen text/callee hint ""CaAttack"" (was ScrCaAttack_Enter)"
 0x0021a670,ScrCareer_Draw_Entry,,game-module,
-0x0021abf0,ScrEntry_Update,,game-screen,screen record 0x32a290
-0x0021b780,ScrEntry_Enter,,game-screen,screen record 0x32a290
+0x0021abf0,maybe_PageNaFesta_State1_Entry,,game,"state of maybe_PageNaFesta; on-screen text/callee hint ""Entry"" (was ScrEntry_Update)"
+0x0021b780,maybe_PageNaFesta_State0_Entry,,game,"state of maybe_PageNaFesta; on-screen text/callee hint ""Entry"" (was ScrEntry_Enter)"
 0x0021c160,maybe_PageNaFesta_Exit,,game,"menu page 4 (table 0x3276e0, dispatched by 0x201380)"
 0x0021c180,maybe_PageNaFesta_Update,,game,"menu page 4 (table 0x3276e0, dispatched by 0x201380)"
 0x0021c240,maybe_PageNaFesta_Enter,,game,"menu page 4 (table 0x3276e0, dispatched by 0x201380)"
@@ -3400,17 +3400,17 @@ address,name,signature,source,comment
 0x00223730,ScrCareer_Draw_MessageDeleted,,game-module,
 0x00224900,ScrCareer_Draw_DeleteThisMessage,,game-module,
 0x002252d0,ScrCareer_Draw_MessageDeleted_52d0,,game-module,
-0x00226020,ScrMessageDeleted_Update,,game-screen,screen record 0x32a838
-0x00226030,ScrMessageDeleted_Enter,,game-screen,screen record 0x32a838
-0x00226040,ScrAcceptThisRival_Exit,,game-screen,screen record 0x32a82c
+0x00226020,maybe_PageMail_State7_MessageDeleted,,game,"state of MenuPage07; on-screen text/callee hint ""MessageDeleted"" (was ScrMessageDeleted_Update)"
+0x00226030,maybe_PageMail_State6_MessageDeleted,,game,"state of MenuPage07; on-screen text/callee hint ""MessageDeleted"" (was ScrMessageDeleted_Enter)"
+0x00226040,maybe_PageMail_State5_AcceptThisRival,,game,"state of MenuPage07; on-screen text/callee hint ""AcceptThisRival"" (was ScrAcceptThisRival_Exit)"
 0x00226050,ScrCareer_Draw_DeleteThisMessage_6050,,game-module,
 0x00226d40,ScrCareer_Draw_AcceptThisRival,,game-module,
 0x00227450,ScrCareer_Draw_Mail_7450,,game-module,
 0x00227e70,ScrCareer_Draw_Mail_7e70,,game-module,
 0x0022a0c0,ScrCareer_Draw_Mail_a0c0,,game-module,
-0x0022b410,MenuPage07_Exit,,game,"menu page 7 (table 0x3276e0, dispatched by 0x201380)"
-0x0022b430,MenuPage07_Update,,game,"menu page 7 (table 0x3276e0, dispatched by 0x201380)"
-0x0022b510,MenuPage07_Enter,,game,"menu page 7 (table 0x3276e0, dispatched by 0x201380)"
+0x0022b410,maybe_PageMail_Exit,,game,page identified from its states' on-screen text (N154)
+0x0022b430,maybe_PageMail_Update,,game,page identified from its states' on-screen text (N154)
+0x0022b510,maybe_PageMail_Enter,,game,page identified from its states' on-screen text (N154)
 0x0022b520,MenuScr_Draw_AreYouSure,,game-module,
 0x0022b8f0,MenuScr_Draw_PleaseEnterAn,,game-module,
 0x0022c1f0,MenuScr_Draw_Continue,,game-module,
@@ -3421,9 +3421,9 @@ address,name,signature,source,comment
 0x0022c720,MenuPage10_Update,,game,"menu page 10 (table 0x3276e0, dispatched by 0x201380)"
 0x0022c8c0,MenuPage10_Enter,,game,"menu page 10 (table 0x3276e0, dispatched by 0x201380)"
 0x0022c980,ScrCareer_Draw_PlayerCar,,game-module,
-0x0022cb20,ScrScrCareerDrawPlayerCar_Exit,,game-screen,screen record 0x327764
-0x0022cb50,ScrScrCareerDrawPlayerCar_Update,,game-screen,screen record 0x327764
-0x0022cce0,ScrScrCareerDrawPlayerCar_Enter,,game-screen,screen record 0x327764
+0x0022cb20,PagePlayerCar_Exit,,game,screen record 0x327764
+0x0022cb50,PagePlayerCar_Update,,game,screen record 0x327764
+0x0022cce0,PagePlayerCar_Enter,,game,screen record 0x327764
 0x0022d010,MenuScr_Draw_SelectCourse,,game-module,
 0x0022d300,MenuPage12_Exit,,game,"menu page 12 (table 0x3276e0, dispatched by 0x201380)"
 0x0022d380,MenuPage12_Update,,game,"menu page 12 (table 0x3276e0, dispatched by 0x201380)"
@@ -3436,17 +3436,17 @@ address,name,signature,source,comment
 0x0022e350,MenuPage13_Update,,game,"menu page 13 (table 0x3276e0, dispatched by 0x201380)"
 0x0022e420,MenuPage13_Enter,,game,"menu page 13 (table 0x3276e0, dispatched by 0x201380)"
 0x0022e870,ScrRace_Draw_TodayResult,,game-module,
-0x0022f290,ScrKaidoTheatre_Update,,game-screen,screen record 0x32b060
+0x0022f290,maybe_PageKaidoTheatre_State1_KaidoTheatre,,game,"state of MenuPage14; on-screen text/callee hint ""KaidoTheatre"" (was ScrKaidoTheatre_Update)"
 0x0022f3d0,ScrCareer_Draw_KaidoTheatre_f3d0,,game-module,
-0x0022f760,MenuPage14_Exit,,game,"menu page 14 (table 0x3276e0, dispatched by 0x201380)"
-0x0022f780,MenuPage14_Update,,game,"menu page 14 (table 0x3276e0, dispatched by 0x201380)"
-0x0022f850,MenuPage14_Enter,,game,"menu page 14 (table 0x3276e0, dispatched by 0x201380)"
+0x0022f760,maybe_PageKaidoTheatre_Exit,,game,page identified from its states' on-screen text (N154)
+0x0022f780,maybe_PageKaidoTheatre_Update,,game,page identified from its states' on-screen text (N154)
+0x0022f850,maybe_PageKaidoTheatre_Enter,,game,page identified from its states' on-screen text (N154)
 0x0022fc80,MenuScr_Select_Full,,game-module,
 0x00230340,ScrRace_Draw_HillClimb,,game-module,
-0x002306e0,ScrHillClimb_Enter,,game-screen,screen record 0x32b140
-0x00231190,MenuPage15_Exit,,game,"menu page 15 (table 0x3276e0, dispatched by 0x201380)"
-0x00231210,MenuPage15_Update,,game,"menu page 15 (table 0x3276e0, dispatched by 0x201380)"
-0x002312b0,MenuPage15_Enter,,game,"menu page 15 (table 0x3276e0, dispatched by 0x201380)"
+0x002306e0,maybe_PageHillClimb_State0_HillClimb,,game,"state of MenuPage15; on-screen text/callee hint ""HillClimb"" (was ScrHillClimb_Enter)"
+0x00231190,maybe_PageHillClimb_Exit,,game,page identified from its states' on-screen text (N154)
+0x00231210,maybe_PageHillClimb_Update,,game,page identified from its states' on-screen text (N154)
+0x002312b0,maybe_PageHillClimb_Enter,,game,page identified from its states' on-screen text (N154)
 0x002312c0,MenuNum_CountUp_LoversInfo,,game,
 0x00231610,ScrCareer_Draw_NoData,,game-module,
 0x002317e0,ScrCareer_Draw_NoData_17e0,,game-module,
@@ -3469,16 +3469,16 @@ address,name,signature,source,comment
 0x00234350,ScrRace_Select_PlayerStatus_State8,,game,entry 8 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus
 0x002343a0,ScrRace_Select_PlayerStatus_State7,,game,entry 7 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus
 0x002343f0,ScrRace_Select_PlayerStatus_State6,,game,entry 6 of state table 0x32b2f0 used by ScrRace_Select_PlayerStatus
-0x00234440,ScrDraw_WinLoss_Exit,,game-screen,screen record 0x32b2fc
-0x00234490,ScrDraw_WinLoss_Update,,game-screen,screen record 0x32b2fc
+0x00234440,ScrRace_Select_PlayerStatus_State5_DrawWinLoss,,game,"state of ScrRace_Select_PlayerStatus; on-screen text/callee hint ""DrawWinLoss"" (was ScrDraw_WinLoss_Exit)"
+0x00234490,ScrRace_Select_PlayerStatus_State4_DrawWinLoss,,game,"state of ScrRace_Select_PlayerStatus; on-screen text/callee hint ""DrawWinLoss"" (was ScrDraw_WinLoss_Update)"
 0x00234550,MenuScr_Draw_WinLoss,,game-module,
 0x002345d0,MenuScr_Draw_MonthWeek,,game-module,
-0x00234640,ScrDraw_MonthWeek_Update,,game-screen,screen record 0x32b2f0
-0x002346d0,ScrDraw_MonthWeek_Enter,,game-screen,screen record 0x32b2f0
+0x00234640,ScrRace_Select_PlayerStatus_State1_DrawMonthWeek,,game,"state of ScrRace_Select_PlayerStatus; on-screen text/callee hint ""DrawMonthWeek"" (was ScrDraw_MonthWeek_Update)"
+0x002346d0,ScrRace_Select_PlayerStatus_State0_DrawMonthWeek,,game,"state of ScrRace_Select_PlayerStatus; on-screen text/callee hint ""DrawMonthWeek"" (was ScrDraw_MonthWeek_Enter)"
 0x00234750,ScrRace_Select_PlayerStatus,,game-module,
-0x00234da0,ScrScrRaceSelectPlayerStatus_Exit,,game-screen,screen record 0x3277ac
-0x00234dc0,ScrScrRaceSelectPlayerStatus_Update,,game-screen,screen record 0x3277ac
-0x00234fc0,ScrScrRaceSelectPlayerStatus_Enter,,game-screen,screen record 0x3277ac
+0x00234da0,PagePlayerStatus_Exit,,game,screen record 0x3277ac
+0x00234dc0,PagePlayerStatus_Update,,game,screen record 0x3277ac
+0x00234fc0,PagePlayerStatus_Enter,,game,screen record 0x3277ac
 0x00235150,MenuNum_CountUp_PrizeInfo,,game,
 0x002354a0,ScrRace_Draw_YouHaveNot,,game-module,
 0x00235940,ScrRace_Draw_PrizeInformation,,game-module,
@@ -3491,27 +3491,27 @@ address,name,signature,source,comment
 0x00236ac0,ScrCareer_Draw_NoData_6ac0,,game-module,
 0x00237210,ScrCareer_Draw_NoData_7210,,game-module,
 0x002375d0,ScrRace_Draw_RivalInfo_Draw6,,game,entry 6 of draw table 0x32b4f0 used by ScrRace_Draw_RivalInfo
-0x00237740,ScrScrCareerDrawNoData6ac0_Exit,,game-screen,screen record 0x32b4fc
-0x00237f10,ScrScrCareerDrawNoData6ac0_Update,,game-screen,screen record 0x32b4fc
-0x002380d0,ScrScrCareerDrawNoData6ac0_Enter,,game-screen,screen record 0x32b4fc
+0x00237740,ScrRace_Draw_RivalInfo_Draw5_CareerDrawNoDat,,game,"state of ScrRace_Draw_RivalInfo; on-screen text/callee hint ""CareerDrawNoDat"" (was ScrScrCareerDrawNoData6ac0_Exit)"
+0x00237f10,ScrRace_Draw_RivalInfo_Draw4_CareerDrawNoDat,,game,"state of ScrRace_Draw_RivalInfo; on-screen text/callee hint ""CareerDrawNoDat"" (was ScrScrCareerDrawNoData6ac0_Update)"
+0x002380d0,ScrRace_Draw_RivalInfo_Draw3_CareerDrawNoDat,,game,"state of ScrRace_Draw_RivalInfo; on-screen text/callee hint ""CareerDrawNoDat"" (was ScrScrCareerDrawNoData6ac0_Enter)"
 0x002385e0,ScrCareer_Draw_NoData_85e0,,game-module,
-0x00239460,ScrNoData_Update,,game-screen,screen record 0x32b4f0
-0x00239790,ScrNoData_Enter,,game-screen,screen record 0x32b4f0
+0x00239460,ScrRace_Draw_RivalInfo_Draw1_NoData,,game,"state of ScrRace_Draw_RivalInfo; on-screen text/callee hint ""NoData"" (was ScrNoData_Update)"
+0x00239790,ScrRace_Draw_RivalInfo_Draw0_NoData,,game,"state of ScrRace_Draw_RivalInfo; on-screen text/callee hint ""NoData"" (was ScrNoData_Enter)"
 0x0023a310,ScrRivalInfo_Exit,,game-screen,screen record 0x3277c4
 0x0023a370,ScrRace_Draw_RivalInfo,,game-module,
 0x0023a570,ScrRivalInfo_Enter,,game-screen,screen record 0x3277c4
 0x0023a610,MenuNum_CountUp_NoCar,,game,
 0x0023a930,ScrGarage_Draw_NoCarIs,,game-module,
 0x0023aaa0,ScrGarage_Draw_Sponsors,,game-module,
-0x0023ae00,ScrContractMoney_Exit,,game-screen,screen record 0x32b71c
+0x0023ae00,maybe_PageSponsors_State5_ContractMoney,,game,"state of MenuPage20; on-screen text/callee hint ""ContractMoney"" (was ScrContractMoney_Exit)"
 0x0023aef0,ScrCareer_Draw_ContractMoney,,game-module,
-0x0023b330,ScrContractMoney_Enter,,game-screen,screen record 0x32b71c
-0x0023b420,ScrScrGarageDrawSponsors_Exit,,game-screen,screen record 0x32b710
-0x0023b6d0,ScrScrGarageDrawSponsors_Update,,game-screen,screen record 0x32b710
-0x0023b7d0,ScrScrGarageDrawSponsors_Enter,,game-screen,screen record 0x32b710
-0x0023c1d0,MenuPage20_Exit,,game,"menu page 20 (table 0x3276e0, dispatched by 0x201380)"
-0x0023c1f0,MenuPage20_Update,,game,"menu page 20 (table 0x3276e0, dispatched by 0x201380)"
-0x0023c290,MenuPage20_Enter,,game,"menu page 20 (table 0x3276e0, dispatched by 0x201380)"
+0x0023b330,maybe_PageSponsors_State3_ContractMoney,,game,"state of MenuPage20; on-screen text/callee hint ""ContractMoney"" (was ScrContractMoney_Enter)"
+0x0023b420,maybe_PageSponsors_State2_GarageDrawSponsors,,game,"state of MenuPage20; on-screen text/callee hint ""GarageDrawSponsors"" (was ScrScrGarageDrawSponsors_Exit)"
+0x0023b6d0,maybe_PageSponsors_State1_GarageDrawSponsors,,game,"state of MenuPage20; on-screen text/callee hint ""GarageDrawSponsors"" (was ScrScrGarageDrawSponsors_Update)"
+0x0023b7d0,maybe_PageSponsors_State0_GarageDrawSponsors,,game,"state of MenuPage20; on-screen text/callee hint ""GarageDrawSponsors"" (was ScrScrGarageDrawSponsors_Enter)"
+0x0023c1d0,maybe_PageSponsors_Exit,,game,page identified from its states' on-screen text (N154)
+0x0023c1f0,maybe_PageSponsors_Update,,game,page identified from its states' on-screen text (N154)
+0x0023c290,maybe_PageSponsors_Enter,,game,page identified from its states' on-screen text (N154)
 0x0023c330,MenuScr_Draw_Movie_Draw3,,game,entry 3 of draw table 0x32b740 used by MenuScr_Draw_Movie
 0x0023c8e0,MenuScr_Draw_Movie_Draw2,,game,entry 2 of draw table 0x32b740 used by MenuScr_Draw_Movie
 0x0023cd60,MenuScr_Draw_Movie_Draw1,,game,entry 1 of draw table 0x32b740 used by MenuScr_Draw_Movie
@@ -3561,21 +3561,21 @@ address,name,signature,source,comment
 0x00243bd0,ScrRace_Draw_Interval,,game-module,
 0x00244b90,ScrCareer_Draw_MasterLord,,game-module,
 0x00245af0,ScrCareer_Draw_Prize,,game-module,
-0x00246180,ScrIsTakenAway_Exit,,game-screen,screen record 0x32bedc
+0x00246180,maybe_PageBetCar_State45_IsTakenAway,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""IsTakenAway"" (was ScrIsTakenAway_Exit)"
 0x00246190,ScrCareer_Draw_ThisIsYour,,game-module,
 0x00246520,ScrCareer_Draw_IsTakenAway,,game-module,
 0x00246800,MenuScr_Draw_GetPrize,,game-module,
 0x00246ab0,ScrCareer_Draw_Received,,game-module,
-0x00246da0,ScrReceived_Enter,,game-screen,screen record 0x32bed0
+0x00246da0,maybe_PageBetCar_State40_Received,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""Received"" (was ScrReceived_Enter)"
 0x00246e20,ScrCareer_Draw_BetCar,,game-module,
 0x00247320,ScrCareer_Draw_ThisIsThe,,game-module,
 0x002476b0,ScrCareer_Draw_Challenge,,game-module,
 0x00247e40,ScrCareer_Draw_GoBattle,,game-module,
 0x00248970,ScrCareer_Draw_GoBattle_8970,,game-module,
 0x00249330,ScrCareer_Draw_GoBattle_9330,,game-module,
-0x00249d10,ScrDraw_GetPrize_Exit,,game-screen,screen record 0x32beac
+0x00249d10,maybe_PageBetCar_State33_DrawGetPrize,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""DrawGetPrize"" (was ScrDraw_GetPrize_Exit)"
 0x0024a0f0,MenuScr_Draw_GetPrize_a0f0,,game-module,
-0x0024a340,ScrDraw_GetPrize_Enter,,game-screen,screen record 0x32beac
+0x0024a340,maybe_PageBetCar_State31_DrawGetPrize,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""DrawGetPrize"" (was ScrDraw_GetPrize_Enter)"
 0x0024a5a0,ScrCareer_Draw_EnableAutomaticGear,,game-module,
 0x0024a870,ScrCareer_Draw_EnableAutomaticGear_a870,,game-module,
 0x0024ab90,ScrCareer_Draw_EnableAutomaticGear_ab90,,game-module,
@@ -3589,14 +3589,14 @@ address,name,signature,source,comment
 0x0024d4a0,maybe_PageBetCar_State18,,game,entry 18 of state table 0x32be30 used by maybe_PageBetCar_Update
 0x0024d680,ScrCareer_Draw_GoBattle_d680,,game-module,
 0x0024d960,ScrCareer_Draw_BetParts,,game-module,
-0x0024df90,ScrBetParts_Enter,,game-screen,screen record 0x32be6c
-0x0024e020,ScrThisBattleWith_Exit,,game-screen,screen record 0x32be60
+0x0024df90,maybe_PageBetCar_State15_BetParts,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""BetParts"" (was ScrBetParts_Enter)"
+0x0024e020,maybe_PageBetCar_State14_ThisBattleWith,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""ThisBattleWith"" (was ScrThisBattleWith_Exit)"
 0x0024e490,ScrCareer_Draw_YouDonHave,,game-module,
 0x0024e670,ScrCareer_Draw_ThisBattleWith,,game-module,
 0x0024e7d0,ScrRace_Draw_CategoryRace,,game-module,
-0x0024eb80,ScrEnableAutomaticGear_Update,,game-screen,screen record 0x32be54
+0x0024eb80,maybe_PageBetCar_State10_EnableAutomaticGear,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""EnableAutomaticGear"" (was ScrEnableAutomaticGear_Update)"
 0x0024ebe0,ScrRace_Draw_EnableAutomaticGear,,game-module,
-0x0024ed00,ScrStartPractice_Exit,,game-screen,screen record 0x32be48
+0x0024ed00,maybe_PageBetCar_State8_StartPractice,,game,"state of maybe_PageBetCar; on-screen text/callee hint ""StartPractice"" (was ScrStartPractice_Exit)"
 0x0024ed80,ScrGarage_Draw_ChangeTyres,,game-module,
 0x0024f270,ScrRace_Draw_StartPractice,,game-module,
 0x0024f720,ScrRace_Draw_SelectStartingPoint,,game-module,
@@ -3623,30 +3623,30 @@ address,name,signature,source,comment
 0x00259960,ScrGarage_Draw_FullAero,,game-module,
 0x0025a760,maybe_PartShop_Draw,,game,
 0x0025a940,ScrCareer_Draw_Power,,game-module,
-0x0025abc0,ScrCanEquipThis_Exit,,game-screen,screen record 0x32cd5c
+0x0025abc0,maybe_PageBodyShop_State17_CanEquipThis,,game,"state of MenuPage29; on-screen text/callee hint ""CanEquipThis"" (was ScrCanEquipThis_Exit)"
 0x0025ac90,ScrRace_Draw_ThisCarPart,,game-module,
 0x0025adc0,ScrRace_Draw_CanEquipThis,,game-module,
 0x0025aea0,ScrRace_Draw_ThisCarPart_aea0,,game-module,
-0x0025af80,ScrThisCarPart_Update,,game-screen,screen record 0x32cd50
-0x0025b050,ScrThisCarPart_Enter,,game-screen,screen record 0x32cd50
+0x0025af80,maybe_PageBodyShop_State13_ThisCarPart,,game,"state of MenuPage29; on-screen text/callee hint ""ThisCarPart"" (was ScrThisCarPart_Update)"
+0x0025b050,maybe_PageBodyShop_State12_ThisCarPart,,game,"state of MenuPage29; on-screen text/callee hint ""ThisCarPart"" (was ScrThisCarPart_Enter)"
 0x0025b120,ScrGarage_Draw_YouNeedTo,,game-module,
-0x0025b3f0,ScrBodyColour_Update,,game-screen,screen record 0x32cd44
+0x0025b3f0,maybe_PageBodyShop_State10_BodyColour,,game,"state of MenuPage29; on-screen text/callee hint ""BodyColour"" (was ScrBodyColour_Update)"
 0x0025b430,ScrGarage_Draw_Front,,game-module,
 0x0025b810,ScrRace_Draw_Front,,game-module,
 0x0025ba50,ScrGarage_Draw_BodyColour,,game-module,
-0x0025bd80,ScrColourSchemeChanged_Exit,,game-screen,screen record 0x32cd38
+0x0025bd80,maybe_PageBodyShop_State8_ColourSchemeChanged,,game,"state of MenuPage29; on-screen text/callee hint ""ColourSchemeChanged"" (was ScrColourSchemeChanged_Exit)"
 0x0025c5d0,ScrGarage_Draw_ColourSchemeChanged,,game-module,
 0x0025c740,ScrGarage_Draw_ColourSchemeChanged_c740,,game-module,
 0x0025c8b0,ScrGarage_Draw_Equip,,game-module,
 0x0025c9e0,ScrGarage_Draw_ChangeColourScheme,,game-module,
-0x0025cb50,ScrChangeColourScheme_Enter,,game-screen,screen record 0x32cd2c
+0x0025cb50,maybe_PageBodyShop_State3_ChangeColourScheme,,game,"state of MenuPage29; on-screen text/callee hint ""ChangeColourScheme"" (was ScrChangeColourScheme_Enter)"
 0x0025cbd0,ScrGarage_Draw_Engine,,game-module,
 0x0025d010,ScrGarage_Draw_SportsTyres,,game-module,
 0x0025d480,ScrGarage_Draw_Reinforcement,,game-module,
-0x0025e320,ScrReinforcement_Enter,,game-screen,screen record 0x32cd20
-0x0025e580,MenuPage29_Exit,,game,"menu page 29 (table 0x3276e0, dispatched by 0x201380)"
-0x0025e5a0,MenuPage29_Update,,game,"menu page 29 (table 0x3276e0, dispatched by 0x201380)"
-0x0025e6a0,MenuPage29_Enter,,game,"menu page 29 (table 0x3276e0, dispatched by 0x201380)"
+0x0025e320,maybe_PageBodyShop_State0_Reinforcement,,game,"state of MenuPage29; on-screen text/callee hint ""Reinforcement"" (was ScrReinforcement_Enter)"
+0x0025e580,maybe_PageBodyShop_Exit,,game,page identified from its states' on-screen text (N154)
+0x0025e5a0,maybe_PageBodyShop_Update,,game,page identified from its states' on-screen text (N154)
+0x0025e6a0,maybe_PageBodyShop_Enter,,game,page identified from its states' on-screen text (N154)
 0x0025e760,ScrGarage_Draw_Sell,,game-module,
 0x0025eae0,ScrGarage_Draw_Sell_eae0,,game-module,
 0x0025fa10,ScrGarage_Draw_Sell_fa10,,game-module,
@@ -3657,13 +3657,13 @@ address,name,signature,source,comment
 0x002611f0,MenuPage30_Exit,,game,"menu page 30 (table 0x3276e0, dispatched by 0x201380)"
 0x00261210,MenuPage30_Update,,game,"menu page 30 (table 0x3276e0, dispatched by 0x201380)"
 0x002612d0,MenuPage30_Enter,,game,"menu page 30 (table 0x3276e0, dispatched by 0x201380)"
-0x002615e0,MenuPage31_State3,,game,entry 3 of state table 0x32d2e0 used by MenuPage31_Update
-0x00261740,ScrCarStatus_Exit,,game-screen,screen record 0x32d2e0
+0x002615e0,maybe_PageCarStatus_State3,,game,page identified from its states' on-screen text (N154)
+0x00261740,maybe_PageCarStatus_State2_CarStatus,,game,"state of MenuPage31; on-screen text/callee hint ""CarStatus"" (was ScrCarStatus_Exit)"
 0x002618a0,ScrCareer_Draw_CarStatus,,game-module,
-0x00261dc0,ScrCarStatus_Enter,,game-screen,screen record 0x32d2e0
-0x00262670,MenuPage31_Exit,,game,"menu page 31 (table 0x3276e0, dispatched by 0x201380)"
-0x002626a0,MenuPage31_Update,,game,"menu page 31 (table 0x3276e0, dispatched by 0x201380)"
-0x00262740,MenuPage31_Enter,,game,"menu page 31 (table 0x3276e0, dispatched by 0x201380)"
+0x00261dc0,maybe_PageCarStatus_State0_CarStatus,,game,"state of MenuPage31; on-screen text/callee hint ""CarStatus"" (was ScrCarStatus_Enter)"
+0x00262670,maybe_PageCarStatus_Exit,,game,page identified from its states' on-screen text (N154)
+0x002626a0,maybe_PageCarStatus_Update,,game,page identified from its states' on-screen text (N154)
+0x00262740,maybe_PageCarStatus_Enter,,game,page identified from its states' on-screen text (N154)
 0x00262750,ScrRecord_Draw_NormalCar,,game-module,
 0x00262e10,ScrCareer_Draw_AutomaticGearChange,,game-module,
 0x00263190,ScrCareer_Draw_SelectCarColour_3190,,game-module,
@@ -3671,21 +3671,21 @@ address,name,signature,source,comment
 0x00263eb0,MenuScr_Draw_SelectCarManufacturer_3eb0,,game-module,
 0x002644c0,MenuScr_Draw_NormalCar_44c0,,game-module,
 0x002648e0,MenuScr_Draw_LoadGhostData,,game-module,
-0x00264d60,ScrDraw_SelectCourseTo_Update,,game-screen,screen record 0x32d36c
+0x00264d60,maybe_PageSelectCourse_State4_DrawSelectCourseTo,,game,"state of MenuPage32; on-screen text/callee hint ""DrawSelectCourseTo"" (was ScrDraw_SelectCourseTo_Update)"
 0x002654b0,MenuScr_Draw_SelectCourseTo,,game-module,
 0x00265b60,MenuScr_Draw_TimeAttack,,game-module,
 0x00265f20,MenuScr_Draw_DoYouWant,,game-module,
 0x00266030,MenuScr_Select_TimeAttack,,game-module,
-0x00266600,MenuPage32_Exit,,game,"menu page 32 (table 0x3276e0, dispatched by 0x201380)"
-0x00266640,MenuPage32_Update,,game,"menu page 32 (table 0x3276e0, dispatched by 0x201380)"
-0x002666e0,MenuPage32_Enter,,game,"menu page 32 (table 0x3276e0, dispatched by 0x201380)"
+0x00266600,maybe_PageSelectCourse_Exit,,game,page identified from its states' on-screen text (N154)
+0x00266640,maybe_PageSelectCourse_Update,,game,page identified from its states' on-screen text (N154)
+0x002666e0,maybe_PageSelectCourse_Enter,,game,page identified from its states' on-screen text (N154)
 0x002668e0,maybe_MenuWnd_DrawRivalLabels,,game,
 0x00266a40,maybe_GhostData_AnimateLayout,,game,
 0x00266ce0,ScrGarage_Draw_NoData,,game-module,
 0x002670c0,ScrRecord_Draw_NoData,,game-module,
 0x002674e0,ScrCareer_Draw_YourGarageHas,,game-module,
-0x00267860,ScrDoYouWant_Exit67860,,game-screen,screen record 0x32d740
-0x00267990,ScrDoYouWant_Update67990,,game-screen,screen record 0x32d740
+0x00267860,maybe_PageMoney_State2_DoYouWant,,game,"state of maybe_PageMoney; on-screen text/callee hint ""DoYouWant"" (was ScrDoYouWant_Exit67860)"
+0x00267990,maybe_PageMoney_State1_DoYouWant,,game,"state of maybe_PageMoney; on-screen text/callee hint ""DoYouWant"" (was ScrDoYouWant_Update67990)"
 0x00267ac0,ScrGarage_Draw_DoYouWant_7ac0,,game-module,
 0x00267f00,maybe_PageMoney_Exit,,game,"menu page 34 (table 0x3276e0, dispatched by 0x201380)"
 0x00267f20,maybe_PageMoney_Update,,game,"menu page 34 (table 0x3276e0, dispatched by 0x201380)"
@@ -3697,7 +3697,7 @@ address,name,signature,source,comment
 0x00268a70,maybe_PageChangeCar_State3,,game,entry 3 of state table 0x32d770 used by maybe_PageChangeCar_Update
 0x00268b90,ScrGarage_Draw_ChangeToThis,,game-module,
 0x00268c90,ScrGarage_Draw_FfSort,,game-module,
-0x00268f40,ScrFfSort_Enter,,game-screen,screen record 0x32d770
+0x00268f40,maybe_PageChangeCar_State0_FfSort,,game,"state of maybe_PageChangeCar; on-screen text/callee hint ""FfSort"" (was ScrFfSort_Enter)"
 0x002696d0,maybe_PageChangeCar_Exit,,game,"menu page 35 (table 0x3276e0, dispatched by 0x201380)"
 0x00269730,maybe_PageChangeCar_Update,,game,"menu page 35 (table 0x3276e0, dispatched by 0x201380)"
 0x00269850,maybe_PageChangeCar_Enter,,game,"menu page 35 (table 0x3276e0, dispatched by 0x201380)"
@@ -3711,15 +3711,15 @@ address,name,signature,source,comment
 0x0026ad80,ScrGarage_Draw_BodyTune,,game-module,
 0x0026b1f0,ScrGarage_Draw_PowerTune,,game-module,
 0x0026b8c0,MenuScr_Select_CarStatus,,game-module,
-0x0026bd30,ScrScrGarageDrawFullAeroa980_Exit,,game-screen,screen record 0x32d91c
-0x0026be70,ScrScrGarageDrawFullAeroa980_Update,,game-screen,screen record 0x32d91c
-0x0026cb10,ScrScrGarageDrawFullAeroa980_Enter,,game-screen,screen record 0x32d91c
-0x0026d7b0,ScrCategory_Exit,,game-screen,screen record 0x32d910
-0x0026e460,ScrCategory_Update,,game-screen,screen record 0x32d910
+0x0026bd30,maybe_PageAero_State5_GarageDrawFullAero,,game,"state of MenuPage37; on-screen text/callee hint ""GarageDrawFullAero"" (was ScrScrGarageDrawFullAeroa980_Exit)"
+0x0026be70,maybe_PageAero_State4_GarageDrawFullAero,,game,"state of MenuPage37; on-screen text/callee hint ""GarageDrawFullAero"" (was ScrScrGarageDrawFullAeroa980_Update)"
+0x0026cb10,maybe_PageAero_State3_GarageDrawFullAero,,game,"state of MenuPage37; on-screen text/callee hint ""GarageDrawFullAero"" (was ScrScrGarageDrawFullAeroa980_Enter)"
+0x0026d7b0,maybe_PageAero_State2_Category,,game,"state of MenuPage37; on-screen text/callee hint ""Category"" (was ScrCategory_Exit)"
+0x0026e460,maybe_PageAero_State1_Category,,game,"state of MenuPage37; on-screen text/callee hint ""Category"" (was ScrCategory_Update)"
 0x0026f420,ScrCareer_Draw_Category,,game-module,
-0x0026f880,MenuPage37_Exit,,game,"menu page 37 (table 0x3276e0, dispatched by 0x201380)"
-0x0026f8a0,MenuPage37_Update,,game,"menu page 37 (table 0x3276e0, dispatched by 0x201380)"
-0x0026f9b0,MenuPage37_Enter,,game,"menu page 37 (table 0x3276e0, dispatched by 0x201380)"
+0x0026f880,maybe_PageAero_Exit,,game,page identified from its states' on-screen text (N154)
+0x0026f8a0,maybe_PageAero_Update,,game,page identified from its states' on-screen text (N154)
+0x0026f9b0,maybe_PageAero_Enter,,game,page identified from its states' on-screen text (N154)
 0x0026fde0,MenuScr_Draw_Clockwise,,game-module,
 0x0026ff80,ScrSubtitleDraw_Draw2,,game,entry 2 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update
 0x002700c0,ScrSubtitleDraw_Draw1,,game,entry 1 of draw table 0x32d9b8 used by ScrSubtitleDraw_Update
@@ -3742,9 +3742,9 @@ address,name,signature,source,comment
 0x00273d80,maybe_PageRivalTitle_Update,,game,"menu page 39 (table 0x3276e0, dispatched by 0x201380)"
 0x00273ea0,maybe_PageRivalTitle_Enter,,game,"menu page 39 (table 0x3276e0, dispatched by 0x201380)"
 0x00273f40,ScrCareer_Draw_TuneUp,,game-module,
-0x002740f0,ScrScrCareerDrawTuneUp_Exit,,game-screen,screen record 0x3278c0
-0x00274120,ScrScrCareerDrawTuneUp_Update,,game-screen,screen record 0x3278c0
-0x00274240,ScrScrCareerDrawTuneUp_Enter,,game-screen,screen record 0x3278c0
+0x002740f0,PageTuneUp_Exit,,game,screen record 0x3278c0
+0x00274120,PageTuneUp_Update,,game,screen record 0x3278c0
+0x00274240,PageTuneUp_Enter,,game,screen record 0x3278c0
 0x00274470,maybe_TakeOffCar_DrawPartStatus,,game,
 0x00274610,maybe_Tune_GetPartGroupB,,game,
 0x00274810,maybe_Rival_HasCarClass,,game,
@@ -3755,7 +3755,7 @@ address,name,signature,source,comment
 0x002750b0,maybe_Wheel_DrawDetails,,game,
 0x002754a0,maybe_Wheel_DrawCarInfo,,game,
 0x00275890,ScrGarage_Draw_AreCurrentlyEquipped,,game-module,
-0x00275a50,ScrTakeOffCar_Exit,,game-screen,screen record 0x32dbbc
+0x00275a50,maybe_PageWheels_State25_TakeOffCar,,game,"state of MenuPage41; on-screen text/callee hint ""TakeOffCar"" (was ScrTakeOffCar_Exit)"
 0x002762b0,ScrGarage_Draw_TakeOffCar,,game-module,
 0x00276470,ScrGarage_Draw_TakeOffCar_6470,,game-module,
 0x00276570,ScrGarage_Draw_TakeOffCar_6570,,game-module,
@@ -3769,17 +3769,17 @@ address,name,signature,source,comment
 0x00279570,ScrGarage_Draw_Wheel,,game-module,
 0x002799f0,ScrGarage_Draw_Wheel_99f0,,game-module,
 0x00279d80,ScrGarage_Draw_Wheel_9d80,,game-module,
-0x0027a760,ScrWheel_Update,,game-screen,screen record 0x32db78
-0x0027aae0,ScrWheel_Enter,,game-screen,screen record 0x32db78
+0x0027a760,maybe_PageWheels_State7_Wheel,,game,"state of MenuPage41; on-screen text/callee hint ""Wheel"" (was ScrWheel_Update)"
+0x0027aae0,maybe_PageWheels_State6_Wheel,,game,"state of MenuPage41; on-screen text/callee hint ""Wheel"" (was ScrWheel_Enter)"
 0x0027b150,ScrGarage_Draw_Wheel_b150,,game-module,
-0x0027b590,ScrSportsTyres_Update,,game-screen,screen record 0x32db6c
+0x0027b590,maybe_PageWheels_State4_SportsTyres,,game,"state of MenuPage41; on-screen text/callee hint ""SportsTyres"" (was ScrSportsTyres_Update)"
 0x0027ba40,ScrGarage_Draw_SportsTyres_ba40,,game-module,
 0x0027cb10,ScrRace_Draw_Equipment,,game-module,
 0x0027cd70,ScrCareer_Draw_InspectCarParts_cd70,,game-module,
 0x0027d1e0,ScrCareer_Draw_TuneUp_d1e0,,game-module,
-0x0027d4d0,MenuPage41_Exit,,game,"menu page 41 (table 0x3276e0, dispatched by 0x201380)"
-0x0027d4f0,MenuPage41_Update,,game,"menu page 41 (table 0x3276e0, dispatched by 0x201380)"
-0x0027d620,MenuPage41_Enter,,game,"menu page 41 (table 0x3276e0, dispatched by 0x201380)"
+0x0027d4d0,maybe_PageWheels_Exit,,game,page identified from its states' on-screen text (N154)
+0x0027d4f0,maybe_PageWheels_Update,,game,page identified from its states' on-screen text (N154)
+0x0027d620,maybe_PageWheels_Enter,,game,page identified from its states' on-screen text (N154)
 0x0027d7c0,maybe_Setting_AnimateGauge,,game,
 0x0027dbc0,ScrGarage_Draw_InitialTorque,,game-module,
 0x0027e190,MenuScr_Draw_SpringRate,,game-module,
@@ -3814,13 +3814,13 @@ address,name,signature,source,comment
 0x00285e40,maybe_ScrCareerRaceSetup_Exit,,game,menu screen 43 (table 0x3274b0)
 0x00285eb0,maybe_ScrCareerRaceSetup_Enter,,game,menu screen 43 (table 0x3274b0)
 0x002860d0,maybe_ScrCarPassword_HandleInput,,game,
-0x002862a0,ScrGarageIsSlotUsed_Update,,game-screen,screen record 0x32e6e8
-0x00286390,ScrGarageIsSlotUsed_Enter,,game-screen,screen record 0x32e6e8
-0x002863a0,ScrGarageFindCar_Update863a0,,game-screen,screen record 0x32e6dc
-0x00286420,ScrGarageFindCar_Enter86420,,game-screen,screen record 0x32e6dc
-0x002865b0,ScrGarageFindCar_Exit,,game-screen,screen record 0x32e6d0
-0x00286630,ScrGarageFindCar_Update,,game-screen,screen record 0x32e6d0
-0x002868f0,ScrGarageFindCar_Enter,,game-screen,screen record 0x32e6d0
+0x002862a0,maybe_ScrCarPassword_State7_GarageIsSlotUsed,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageIsSlotUsed"" (was ScrGarageIsSlotUsed_Update)"
+0x00286390,maybe_ScrCarPassword_State5_GarageIsSlotUsed,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageIsSlotUsed"" (was ScrGarageIsSlotUsed_Enter)"
+0x002863a0,maybe_ScrCarPassword_State4_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Update863a0)"
+0x00286420,maybe_ScrCarPassword_State3_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Enter86420)"
+0x002865b0,maybe_ScrCarPassword_State2_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Exit)"
+0x00286630,maybe_ScrCarPassword_State1_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Update)"
+0x002868f0,maybe_ScrCarPassword_State0_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Enter)"
 0x00286af0,maybe_ScrCarPassword_Exit,,game,menu screen 2 (table 0x3274b0)
 0x00286b00,maybe_ScrCarPassword_Update,,game,menu screen 2 (table 0x3274b0)
 0x00286b60,maybe_ScrCarPassword_Enter,,game,menu screen 2 (table 0x3274b0)
@@ -3828,16 +3828,16 @@ address,name,signature,source,comment
 0x00286d10,maybe_ScrGarageBuyCar_OnResult,,game,
 0x00286df0,ScrGarageBuyCar_State11,,game,entry 11 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00286e70,ScrGarageBuyCar_State10,,game,entry 10 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
-0x00286ef0,ScrGarageFindCar_Exit86ef0,,game-screen,screen record 0x32e70c
-0x00286fc0,ScrGarageFindCar_Update86fc0,,game-screen,screen record 0x32e70c
-0x00287150,ScrGarageFindCar_Enter87150,,game-screen,screen record 0x32e70c
+0x00286ef0,maybe_ScrCarPassword_State17_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Exit86ef0)"
+0x00286fc0,maybe_ScrCarPassword_State16_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Update86fc0)"
+0x00287150,maybe_ScrCarPassword_State15_GarageFindCar,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageFindCar"" (was ScrGarageFindCar_Enter87150)"
 0x00287240,ScrGarageBuyCar_State6,,game,entry 6 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00287340,ScrGarageBuyCar_State5,,game,entry 5 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x002873c0,ScrGarageBuyCar_State4,,game,entry 4 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x002873f0,ScrGarageBuyCar_State3,,game,entry 3 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x00287420,ScrGarageBuyCar_State2,,game,entry 2 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
 0x002874b0,ScrGarageBuyCar_State1,,game,entry 1 of state table 0x32e6f0 used by ScrGarageBuyCar_Update
-0x00287770,ScrGarageIsSlotUsed_Exit,,game-screen,screen record 0x32e6e8
+0x00287770,maybe_ScrCarPassword_State8_GarageIsSlotUsed,,game,"state of maybe_ScrCarPassword; on-screen text/callee hint ""GarageIsSlotUsed"" (was ScrGarageIsSlotUsed_Exit)"
 0x00287850,ScrGarageBuyCar_Exit,,game,menu screen 3 (table 0x3274b0)
 0x00287880,ScrGarageBuyCar_Update,,game,menu screen 3 (table 0x3274b0)
 0x00287a60,ScrGarageBuyCar_Enter,,game,menu screen 3 (table 0x3274b0)
@@ -4002,15 +4002,15 @@ address,name,signature,source,comment
 0x00294270,maybe_ScrOptions_HandleInputA,,game,
 0x00294360,Menuscr_Nop_7,,game-module,
 0x00294370,Menuscr_Nop_8,,game-module,
-0x00294380,ScrmaybeOptionsGetLanguage_Exit94380,,game-screen,screen record 0x32eae8
-0x002944c0,ScrmaybeOptionsGetLanguage_Update944c0,,game-screen,screen record 0x32eae8
-0x002947b0,ScrmaybeOptionsGetLanguage_Enter947b0,,game-screen,screen record 0x32eae8
-0x002948b0,ScrmaybeOptionsGetLanguage_Exit948b0,,game-screen,screen record 0x32eadc
-0x00294de0,ScrmaybeOptionsGetLanguage_Update94de0,,game-screen,screen record 0x32eadc
-0x00294fa0,ScrmaybeOptionsGetLanguage_Enter94fa0,,game-screen,screen record 0x32eadc
-0x00295060,ScrmaybeOptionsGetLanguage_Exit,,game-screen,screen record 0x32ead0
-0x00295320,ScrmaybeOptionsGetLanguage_Update,,game-screen,screen record 0x32ead0
-0x00295670,ScrmaybeOptionsGetLanguage_Enter,,game-screen,screen record 0x32ead0
+0x00294380,maybe_ScrOptionsLanguage_State8_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Exit94380)"
+0x002944c0,maybe_ScrOptionsLanguage_State7_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Update944c0)"
+0x002947b0,maybe_ScrOptionsLanguage_State6_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Enter947b0)"
+0x002948b0,maybe_ScrOptionsLanguage_State5_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Exit948b0)"
+0x00294de0,maybe_ScrOptionsLanguage_State4_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Update94de0)"
+0x00294fa0,maybe_ScrOptionsLanguage_State3_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Enter94fa0)"
+0x00295060,maybe_ScrOptionsLanguage_State2_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Exit)"
+0x00295320,maybe_ScrOptionsLanguage_State1_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Update)"
+0x00295670,maybe_ScrOptionsLanguage_State0_OptionsGetLanguage,,game,"state of maybe_ScrOptionsLanguage; on-screen text/callee hint ""OptionsGetLanguage"" (was ScrmaybeOptionsGetLanguage_Enter)"
 0x00295750,maybe_ScrOptionsLanguage_HandleInput,,game,
 0x002958e0,maybe_ScrOptionsLanguage_OnResult,,game,
 0x002959b0,maybe_ScrOptionsLanguage_Exit,,game,menu screen 26 (table 0x3274b0)
@@ -4074,18 +4074,18 @@ address,name,signature,source,comment
 0x0029f670,maybe_ScrBuyCarColour_State14,,game,entry 14 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029f700,maybe_ScrBuyCarColour_State13,,game,entry 13 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029f740,maybe_ScrBuyCarColour_State12,,game,entry 12 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
-0x0029f780,ScrGarageComputeCarStats_Exit,,game-screen,screen record 0x32ecc4
-0x0029f800,ScrGarageComputeCarStats_Update,,game-screen,screen record 0x32ecc4
-0x0029fa10,ScrGarageComputeCarStats_Enter,,game-screen,screen record 0x32ecc4
+0x0029f780,maybe_ScrBuyCarColour_State11_GarageComputeCarStats,,game,"state of maybe_ScrBuyCarColour; on-screen text/callee hint ""GarageComputeCarStats"" (was ScrGarageComputeCarStats_Exit)"
+0x0029f800,maybe_ScrBuyCarColour_State10_GarageComputeCarStats,,game,"state of maybe_ScrBuyCarColour; on-screen text/callee hint ""GarageComputeCarStats"" (was ScrGarageComputeCarStats_Update)"
+0x0029fa10,maybe_ScrBuyCarColour_State9_GarageComputeCarStats,,game,"state of maybe_ScrBuyCarColour; on-screen text/callee hint ""GarageComputeCarStats"" (was ScrGarageComputeCarStats_Enter)"
 0x0029fb00,maybe_ScrBuyCarColour_State8,,game,entry 8 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029fca0,maybe_ScrBuyCarColour_State7,,game,entry 7 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029fce0,maybe_ScrBuyCarColour_State6,,game,entry 6 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029fd20,maybe_ScrBuyCarColour_State5,,game,entry 5 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029fea0,maybe_ScrBuyCarColour_State4,,game,entry 4 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
 0x0029ffb0,maybe_ScrBuyCarColour_State3,,game,entry 3 of state table 0x32eca0 used by maybe_ScrBuyCarColour_Update
-0x002a11b0,ScrCarRecGetModelId_Exit,,game-screen,screen record 0x32eca0
-0x002a1270,ScrCarRecGetModelId_Update,,game-screen,screen record 0x32eca0
-0x002a1420,ScrCarRecGetModelId_Enter,,game-screen,screen record 0x32eca0
+0x002a11b0,maybe_ScrBuyCarColour_State2_CarRecGetModelId,,game,"state of maybe_ScrBuyCarColour; on-screen text/callee hint ""CarRecGetModelId"" (was ScrCarRecGetModelId_Exit)"
+0x002a1270,maybe_ScrBuyCarColour_State1_CarRecGetModelId,,game,"state of maybe_ScrBuyCarColour; on-screen text/callee hint ""CarRecGetModelId"" (was ScrCarRecGetModelId_Update)"
+0x002a1420,maybe_ScrBuyCarColour_State0_CarRecGetModelId,,game,"state of maybe_ScrBuyCarColour; on-screen text/callee hint ""CarRecGetModelId"" (was ScrCarRecGetModelId_Enter)"
 0x002a14f0,maybe_CarModel_GetClassA,,game,
 0x002a1600,maybe_CarModel_IsBossCar,,game,
 0x002a1690,maybe_CarModel_GetClassB,,game,
@@ -4122,15 +4122,15 @@ address,name,signature,source,comment
 0x002a31f0,Record_GetTableEntry,,game,
 0x002a3200,maybe_ScrQuickRace_StartRace,,game,
 0x002a3660,maybe_ScrQuickRace_State11,,game,entry 11 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
-0x002a3e10,ScrCarDbGetModelEntry_Exit,,game-screen,screen record 0x32ed60
-0x002a3ec0,ScrCarDbGetModelEntry_Update,,game-screen,screen record 0x32ed60
-0x002a3f70,ScrCarDbGetModelEntry_Enter,,game-screen,screen record 0x32ed60
+0x002a3e10,maybe_ScrReplayList_State14_CarDbGetModelEntry,,game,"state of maybe_ScrReplayList; on-screen text/callee hint ""CarDbGetModelEntry"" (was ScrCarDbGetModelEntry_Exit)"
+0x002a3ec0,maybe_ScrReplayList_State13_CarDbGetModelEntry,,game,"state of maybe_ScrReplayList; on-screen text/callee hint ""CarDbGetModelEntry"" (was ScrCarDbGetModelEntry_Update)"
+0x002a3f70,maybe_ScrReplayList_State12_CarDbGetModelEntry,,game,"state of maybe_ScrReplayList; on-screen text/callee hint ""CarDbGetModelEntry"" (was ScrCarDbGetModelEntry_Enter)"
 0x002a41e0,maybe_ScrQuickRace_State7,,game,entry 7 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
 0x002a4370,maybe_ScrQuickRace_State6,,game,entry 6 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
 0x002a44e0,maybe_ScrQuickRace_State5,,game,entry 5 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
-0x002a46a0,ScrSubtitleHide_Exita46a0,,game-screen,screen record 0x32ed48
-0x002a47a0,ScrSubtitleHide_Updatea47a0,,game-screen,screen record 0x32ed48
-0x002a49f0,ScrSubtitleHide_Entera49f0,,game-screen,screen record 0x32ed48
+0x002a46a0,maybe_ScrReplayList_State8_SubtitleHide,,game,"state of maybe_ScrReplayList; on-screen text/callee hint ""SubtitleHide"" (was ScrSubtitleHide_Exita46a0)"
+0x002a47a0,maybe_ScrReplayList_State7_SubtitleHide,,game,"state of maybe_ScrReplayList; on-screen text/callee hint ""SubtitleHide"" (was ScrSubtitleHide_Updatea47a0)"
+0x002a49f0,maybe_ScrReplayList_State6_SubtitleHide,,game,"state of maybe_ScrReplayList; on-screen text/callee hint ""SubtitleHide"" (was ScrSubtitleHide_Entera49f0)"
 0x002a4a80,maybe_ScrQuickRace_State1,,game,entry 1 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
 0x002a4b00,maybe_ScrQuickRace_State0,,game,entry 0 of state table 0x32ed40 used by maybe_ScrQuickRace_Update
 0x002a4b70,maybe_ScrQuickRace_Exit,,game,menu screen 32 (table 0x3274b0)
@@ -4162,7 +4162,7 @@ address,name,signature,source,comment
 0x002a6450,ScrGarageSelect_Exit,,game,menu screen 36 (table 0x3274b0)
 0x002a6460,ScrGarageSelect_Update,,game,menu screen 36 (table 0x3274b0)
 0x002a6580,ScrGarageSelect_Enter,,game,menu screen 36 (table 0x3274b0)
-0x002a6650,ScrSubtitleHide_Entera6650,,game-screen,screen record 0x32ee34
+0x002a6650,maybe_ScrGarageList_State9_SubtitleHide,,game,"state of maybe_ScrGarageList; on-screen text/callee hint ""SubtitleHide"" (was ScrSubtitleHide_Entera6650)"
 0x002a67b0,maybe_ScrCarSpec_State4,,game,entry 4 of state table 0x32ee20 used by maybe_ScrCarSpec_Update
 0x002a68b0,maybe_ScrCarSpec_State3,,game,entry 3 of state table 0x32ee20 used by maybe_ScrCarSpec_Update
 0x002a69a0,maybe_ScrCarSpec_State2,,game,entry 2 of state table 0x32ee20 used by maybe_ScrCarSpec_Update
@@ -4173,8 +4173,8 @@ address,name,signature,source,comment
 0x002a6d40,maybe_ScrCarSpec_Enter,,game,menu screen 37 (table 0x3274b0)
 0x002a6ff0,maybe_ScrRaceStart_Build,,game,
 0x002a7170,maybe_ScrCarSpec_State8,,game,entry 8 of state table 0x32ee20 used by maybe_ScrCarSpec_Update
-0x002a7250,ScrSubtitleHide_Exita7250,,game-screen,screen record 0x32ee34
-0x002a7390,ScrSubtitleHide_Updatea7390,,game-screen,screen record 0x32ee34
+0x002a7250,maybe_ScrGarageList_State11_SubtitleHide,,game,"state of maybe_ScrGarageList; on-screen text/callee hint ""SubtitleHide"" (was ScrSubtitleHide_Exita7250)"
+0x002a7390,maybe_ScrGarageList_State10_SubtitleHide,,game,"state of maybe_ScrGarageList; on-screen text/callee hint ""SubtitleHide"" (was ScrSubtitleHide_Updatea7390)"
 0x002a7690,maybe_ScrRaceStart_Exit,,game,menu screen 38 (table 0x3274b0)
 0x002a76a0,maybe_ScrRaceStart_Update,,game,menu screen 38 (table 0x3274b0)
 0x002a7860,maybe_ScrRaceStart_Enter,,game,menu screen 38 (table 0x3274b0)
@@ -4187,9 +4187,9 @@ address,name,signature,source,comment
 0x002a8100,maybe_ScrRivalIntro_State5,,game,entry 5 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update
 0x002a8160,maybe_ScrRivalIntro_State4,,game,entry 4 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update
 0x002a81c0,maybe_ScrRivalIntro_State3,,game,entry 3 of state table 0x32ee50 used by maybe_ScrRivalIntro_Update
-0x002a82b0,ScrRivalDbFindByName_Exit,,game-screen,screen record 0x32ee50
-0x002a83b0,ScrRivalDbFindByName_Update,,game-screen,screen record 0x32ee50
-0x002a85e0,ScrRivalDbFindByName_Enter,,game-screen,screen record 0x32ee50
+0x002a82b0,maybe_ScrRivalIntro_State2_RivalDbFindByName,,game,"state of maybe_ScrRivalIntro; on-screen text/callee hint ""RivalDbFindByName"" (was ScrRivalDbFindByName_Exit)"
+0x002a83b0,maybe_ScrRivalIntro_State1_RivalDbFindByName,,game,"state of maybe_ScrRivalIntro; on-screen text/callee hint ""RivalDbFindByName"" (was ScrRivalDbFindByName_Update)"
+0x002a85e0,maybe_ScrRivalIntro_State0_RivalDbFindByName,,game,"state of maybe_ScrRivalIntro; on-screen text/callee hint ""RivalDbFindByName"" (was ScrRivalDbFindByName_Enter)"
 0x002a8870,maybe_ScrRivalIntro_Exit,,game,menu screen 39 (table 0x3274b0)
 0x002a88a0,maybe_ScrRivalIntro_Update,,game,menu screen 39 (table 0x3274b0)
 0x002a8a40,maybe_ScrRivalIntro_Enter,,game,menu screen 39 (table 0x3274b0)
@@ -4202,9 +4202,9 @@ address,name,signature,source,comment
 0x002a9410,maybe_PartSlot_GetCategory,,game,
 0x002a9510,maybe_ScrTuneParts_BuildRow,,game,
 0x002a9760,maybe_ScrTuneParts_State29,,game,entry 29 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
-0x002a97a0,ScrTeamDbCopy_Exit,,game-screen,screen record 0x32eef0
-0x002a97e0,ScrTeamDbCopy_Update,,game-screen,screen record 0x32eef0
-0x002a9b50,ScrTeamDbCopy_Enter,,game-screen,screen record 0x32eef0
+0x002a97a0,maybe_ScrTuneParts_State26_TeamDbCopy,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""TeamDbCopy"" (was ScrTeamDbCopy_Exit)"
+0x002a97e0,maybe_ScrTuneParts_State25_TeamDbCopy,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""TeamDbCopy"" (was ScrTeamDbCopy_Update)"
+0x002a9b50,maybe_ScrTuneParts_State24_TeamDbCopy,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""TeamDbCopy"" (was ScrTeamDbCopy_Enter)"
 0x002a9b90,maybe_ScrTuneParts_State23,,game,entry 23 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002a9bd0,maybe_ScrTuneParts_State22,,game,entry 22 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002a9c50,maybe_ScrTuneParts_State21,,game,entry 21 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
@@ -4223,9 +4223,9 @@ address,name,signature,source,comment
 0x002aae60,maybe_ScrTuneParts_State8,,game,entry 8 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002ab3f0,maybe_ScrTuneParts_State7,,game,entry 7 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002ab4b0,maybe_ScrTuneParts_State6,,game,entry 6 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
-0x002abcd0,ScrRivalIsBossId_Exit,,game-screen,screen record 0x32ee9c
-0x002abf10,ScrRivalIsBossId_Update,,game-screen,screen record 0x32ee9c
-0x002ac030,ScrRivalIsBossId_Enter,,game-screen,screen record 0x32ee9c
+0x002abcd0,maybe_ScrTuneParts_State5_RivalIsBossId,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""RivalIsBossId"" (was ScrRivalIsBossId_Exit)"
+0x002abf10,maybe_ScrTuneParts_State4_RivalIsBossId,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""RivalIsBossId"" (was ScrRivalIsBossId_Update)"
+0x002ac030,maybe_ScrTuneParts_State3_RivalIsBossId,,game,"state of maybe_ScrTuneParts; on-screen text/callee hint ""RivalIsBossId"" (was ScrRivalIsBossId_Enter)"
 0x002ac2a0,maybe_ScrTuneParts_State2,,game,entry 2 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002ac370,maybe_ScrTuneParts_State1,,game,entry 1 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
 0x002ac460,maybe_ScrTuneParts_State0,,game,entry 0 of state table 0x32ee90 used by maybe_ScrTuneParts_Update
@@ -4241,9 +4241,9 @@ address,name,signature,source,comment
 0x002ad670,maybe_ScrPartInfo_State5,,game,entry 5 of state table 0x32ef40 used by maybe_ScrPartInfo_Update
 0x002ad810,maybe_ScrPartInfo_State4,,game,entry 4 of state table 0x32ef40 used by maybe_ScrPartInfo_Update
 0x002ad9e0,maybe_ScrPartInfo_State3,,game,entry 3 of state table 0x32ef40 used by maybe_ScrPartInfo_Update
-0x002adad0,ScrCarRecGetModelId_Exitadad0,,game-screen,screen record 0x32ef40
-0x002adc60,ScrCarRecGetModelId_Updateadc60,,game-screen,screen record 0x32ef40
-0x002add60,ScrCarRecGetModelId_Enteradd60,,game-screen,screen record 0x32ef40
+0x002adad0,maybe_ScrPartInfo_State2_CarRecGetModelId,,game,"state of maybe_ScrPartInfo; on-screen text/callee hint ""CarRecGetModelId"" (was ScrCarRecGetModelId_Exitadad0)"
+0x002adc60,maybe_ScrPartInfo_State1_CarRecGetModelId,,game,"state of maybe_ScrPartInfo; on-screen text/callee hint ""CarRecGetModelId"" (was ScrCarRecGetModelId_Updateadc60)"
+0x002add60,maybe_ScrPartInfo_State0_CarRecGetModelId,,game,"state of maybe_ScrPartInfo; on-screen text/callee hint ""CarRecGetModelId"" (was ScrCarRecGetModelId_Enteradd60)"
 0x002ade50,maybe_ScrPartInfo_Exit,,game,menu screen 42 (table 0x3274b0)
 0x002ade60,maybe_ScrPartInfo_Update,,game,menu screen 42 (table 0x3274b0)
 0x002adf00,maybe_ScrPartInfo_Enter,,game,menu screen 42 (table 0x3274b0)
@@ -4617,9 +4617,9 @@ address,name,signature,source,comment
 0x002e1c30,MenuPage44_Exit,,game,"menu page 44 (table 0x3276e0, dispatched by 0x201380)"
 0x002e1c50,MenuPage44_Update,,game,"menu page 44 (table 0x3276e0, dispatched by 0x201380)"
 0x002e1cf0,MenuPage44_Enter,,game,"menu page 44 (table 0x3276e0, dispatched by 0x201380)"
-0x002e1d90,ScrSndQueueCmd1_Exit,,game-screen,screen record 0x342748
-0x002e1f60,ScrSndQueueCmd1_Update,,game-screen,screen record 0x342748
-0x002e21e0,ScrSndQueueCmd1_Enter,,game-screen,screen record 0x342748
+0x002e1d90,maybe_ScrMusic_State2_SndQueueCmd1,,game,"state of maybe_ScrMusic; on-screen text/callee hint ""SndQueueCmd1"" (was ScrSndQueueCmd1_Exit)"
+0x002e1f60,maybe_ScrMusic_State1_SndQueueCmd1,,game,"state of maybe_ScrMusic; on-screen text/callee hint ""SndQueueCmd1"" (was ScrSndQueueCmd1_Update)"
+0x002e21e0,maybe_ScrMusic_State0_SndQueueCmd1,,game,"state of maybe_ScrMusic; on-screen text/callee hint ""SndQueueCmd1"" (was ScrSndQueueCmd1_Enter)"
 0x002e2240,maybe_ScrMusic_Exit,,game,menu screen 44 (table 0x3274b0)
 0x002e2250,maybe_ScrMusic_Update,,game,menu screen 44 (table 0x3274b0)
 0x002e2480,maybe_ScrMusic_Enter,,game,menu screen 44 (table 0x3274b0)
@@ -4642,56 +4642,56 @@ address,name,signature,source,comment
 0x002e41b0,Eventui_Draw_Rokko,,game-module,
 0x002e46a0,Eventui_Draw_Hakone_46a0,,game-module,
 0x002e4b60,Eventui_Draw_Hakone_4b60,,game-module,
-0x002e50d0,ScrDraw_Hakone_Exit,,game-screen,screen record 0x3428ac
-0x002e5190,ScrDraw_Hakone_Update,,game-screen,screen record 0x3428ac
+0x002e50d0,maybe_ComposerTask_State16_State5_DrawHakone,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawHakone"" (was ScrDraw_Hakone_Exit)"
+0x002e5190,maybe_ComposerTask_State16_State4_DrawHakone,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawHakone"" (was ScrDraw_Hakone_Update)"
 0x002e5810,Eventui_Draw_Hakone_5810,,game-module,
 0x002e6260,Eventui_Draw_Hakone_6260,,game-module,
 0x002e67d0,Eventui_Draw_Hakone_67d0,,game-module,
 0x002e6c90,Eventui_Draw_Hakone_6c90,,game-module,
-0x002e76a0,ScrNameentryGetField48200_Updatee76a0,,game-screen,screen record 0x3433ec
-0x002e7720,ScrNameentryGetField48200_Exite7720,,game-screen,screen record 0x3433ec
-0x002e7730,ScrNameentryGetField48200_Entere7730,,game-screen,screen record 0x3433ec
+0x002e76a0,maybe_ComposerTask_State16_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatee76a0)"
+0x002e7720,maybe_ComposerTask_State17_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exite7720)"
+0x002e7730,maybe_ComposerTask_State15_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Entere7730)"
 0x002e79b0,Eventui_Draw_TestCourse,,game-module,
 0x002e7ae0,Eventui_Draw_TestCourse_7ae0,,game-module,
 0x002e7c10,Eventui_Draw_TestCourse_7c10,,game-module,
 0x002e7e90,Eventui_Draw_TestCourse_7e90,,game-module,
-0x002e8380,ScrNameentryGetField48200_Updatee8380,,game-screen,screen record 0x3433e0
-0x002e8400,ScrNameentryGetField48200_Exite8400,,game-screen,screen record 0x3433e0
-0x002e8410,ScrNameentryGetField48200_Entere8410,,game-screen,screen record 0x3433e0
+0x002e8380,maybe_ComposerTask_State13_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatee8380)"
+0x002e8400,maybe_ComposerTask_State14_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exite8400)"
+0x002e8410,maybe_ComposerTask_State12_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Entere8410)"
 0x002e84e0,maybe_ComposerUi_InputInstrument,,game,
-0x002e8870,ScrNameentryGetField48200_Updatee8870,,game-screen,screen record 0x3433c8
-0x002e88c0,ScrNameentryGetField48200_Exite88c0,,game-screen,screen record 0x3433c8
-0x002e88d0,ScrNameentryGetField48200_Entere88d0,,game-screen,screen record 0x3433c8
+0x002e8870,maybe_ComposerTask_State7_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatee8870)"
+0x002e88c0,maybe_ComposerTask_State8_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exite88c0)"
+0x002e88d0,maybe_ComposerTask_State6_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Entere88d0)"
 0x002e89f0,maybe_ComposerUi_AnimateNameB,,game,
 0x002e8b90,Eventui_Draw_Akagi_8b90,,game-module,
-0x002e9540,ScrNameentryGetField48200_Updatee9540,,game-screen,screen record 0x3433f8
-0x002e9580,ScrNameentryGetField48200_Exite9580,,game-screen,screen record 0x3433f8
-0x002e9590,ScrNameentryGetField48200_Entere9590,,game-screen,screen record 0x3433f8
+0x002e9540,maybe_ComposerTask_State19_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatee9540)"
+0x002e9580,maybe_ComposerTask_State20_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exite9580)"
+0x002e9590,maybe_ComposerTask_State18_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Entere9590)"
 0x002e96a0,maybe_ComposerUi_SetGridCell,,game,
 0x002e97e0,maybe_ComposerUi_PlayNote,,game,
 0x002e99f0,maybe_ComposerUi_UpdatePlayback,,game,
 0x002e9b30,maybe_ComposerUi_ClearTracks,,game,
 0x002e9bc0,maybe_ComposerUi_InputEdit,,game,
 0x002ea2d0,maybe_ComposerUi_InputRange,,game,
-0x002ea690,ScrNameentryGetField48200_Updateec910_State15,,game,entry 15 of state table 0x342d70 used by ScrNameentryGetField48200_Updateec910
-0x002ea7c0,ScrScriptFieldPtr89f6_Exit,,game-screen,screen record 0x342da0
-0x002ea8c0,ScrScriptFieldPtr89f6_Update,,game-screen,screen record 0x342da0
-0x002eaa60,ScrScriptFieldPtr89f6_Enter,,game-screen,screen record 0x342da0
-0x002eab50,ScrNameentrySetField8_Exiteab50,,game-screen,screen record 0x342d94
-0x002eacc0,ScrNameentrySetField8_Updateeacc0,,game-screen,screen record 0x342d94
-0x002ead80,ScrNameentrySetField8_Enteread80,,game-screen,screen record 0x342d94
-0x002eae70,ScrNameentrySetField8_Exiteae70,,game-screen,screen record 0x342d88
-0x002eaf60,ScrNameentrySetField8_Updateeaf60,,game-screen,screen record 0x342d88
-0x002eb150,ScrNameentrySetField8_Entereb150,,game-screen,screen record 0x342d88
-0x002eb2e0,ScrNameentrySetField8_Exit,,game-screen,screen record 0x342d7c
-0x002eb3e0,ScrNameentrySetField8_Update,,game-screen,screen record 0x342d7c
-0x002eb570,ScrNameentrySetField8_Enter,,game-screen,screen record 0x342d7c
-0x002eb620,ScrScriptGetElem2f4xda8_Exit,,game-screen,screen record 0x342d70
-0x002ebb70,ScrScriptGetElem2f4xda8_Update,,game-screen,screen record 0x342d70
-0x002ec550,ScrScriptGetElem2f4xda8_Enter,,game-screen,screen record 0x342d70
-0x002ec910,ScrNameentryGetField48200_Updateec910,,game-screen,screen record 0x3433d4
-0x002ec980,ScrNameentryGetField48200_Exitec980,,game-screen,screen record 0x3433d4
-0x002ec9c0,ScrNameentryGetField48200_Enterec9c0,,game-screen,screen record 0x3433d4
+0x002ea690,maybe_ComposerTask_State10_Sub15,,game,entry 15 of state table 0x342d70 used by ScrNameentryGetField48200_Updateec910
+0x002ea7c0,maybe_ComposerTask_State10_State14_iptFieldPtr,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""iptFieldPtr"" (was ScrScriptFieldPtr89f6_Exit)"
+0x002ea8c0,maybe_ComposerTask_State10_State13_iptFieldPtr,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""iptFieldPtr"" (was ScrScriptFieldPtr89f6_Update)"
+0x002eaa60,maybe_ComposerTask_State10_State12_iptFieldPtr,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""iptFieldPtr"" (was ScrScriptFieldPtr89f6_Enter)"
+0x002eab50,maybe_ComposerTask_State10_State11_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exiteab50)"
+0x002eacc0,maybe_ComposerTask_State10_State10_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Updateeacc0)"
+0x002ead80,maybe_ComposerTask_State10_State9_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Enteread80)"
+0x002eae70,maybe_ComposerTask_State10_State8_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exiteae70)"
+0x002eaf60,maybe_ComposerTask_State10_State7_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Updateeaf60)"
+0x002eb150,maybe_ComposerTask_State10_State6_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Entereb150)"
+0x002eb2e0,maybe_ComposerTask_State10_State5_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exit)"
+0x002eb3e0,maybe_ComposerTask_State10_State4_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Update)"
+0x002eb570,maybe_ComposerTask_State10_State3_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Enter)"
+0x002eb620,maybe_ComposerTask_State10_State2_iptGetElem2f4xda8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""iptGetElem2f4xda8"" (was ScrScriptGetElem2f4xda8_Exit)"
+0x002ebb70,maybe_ComposerTask_State10_State1_iptGetElem2f4xda8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""iptGetElem2f4xda8"" (was ScrScriptGetElem2f4xda8_Update)"
+0x002ec550,maybe_ComposerTask_State10_State0_iptGetElem2f4xda8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""iptGetElem2f4xda8"" (was ScrScriptGetElem2f4xda8_Enter)"
+0x002ec910,maybe_ComposerTask_State10_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updateec910)"
+0x002ec980,maybe_ComposerTask_State11_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exitec980)"
+0x002ec9c0,maybe_ComposerTask_State9_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Enterec9c0)"
 0x002ecb70,maybe_ComposerUi_AnimateNameC,,game,
 0x002ecdf0,Eventui_Draw_Akagi_cdf0,,game-module,
 0x002ed150,maybe_ComposerUi_SetCellNumber,,game,
@@ -4702,10 +4702,10 @@ address,name,signature,source,comment
 0x002ef1c0,maybe_ComposerUi_DrawPlayhead,,game,
 0x002ef5f0,maybe_ComposerUi_ScrollView,,game,
 0x002efa10,Eventui_Draw_TestCourse_fa10,,game-module,
-0x002f0270,ScrDraw_Equipment_Exit,,game-screen,screen record 0x342de0
+0x002f0270,maybe_ComposerTask_State10_State30_DrawEquipment,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawEquipment"" (was ScrDraw_Equipment_Exit)"
 0x002f0830,MenuScr_Draw_Equipment,,game-module,
-0x002f1080,ScrDraw_Equipment_Enter,,game-screen,screen record 0x342de0
-0x002f1180,ScrDraw_TestCourse_Exit,,game-screen,screen record 0x342dd4
+0x002f1080,maybe_ComposerTask_State10_State28_DrawEquipment,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawEquipment"" (was ScrDraw_Equipment_Enter)"
+0x002f1180,maybe_ComposerTask_State10_State27_DrawTestCourse,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawTestCourse"" (was ScrDraw_TestCourse_Exit)"
 0x002f1840,MenuScr_Draw_TestCourse,,game-module,
 0x002f2200,MenuScr_Draw_TestCourse_2200,,game-module,
 0x002f2590,MenuScr_Draw_TestCourse_2590,,game-module,
@@ -4713,13 +4713,13 @@ address,name,signature,source,comment
 0x002f3220,MenuScr_Draw_TestCourse_3220,,game-module,
 0x002f3390,MenuScr_Draw_TestCourse_3390,,game-module,
 0x002f3820,MenuScr_Draw_TestCourse_3820,,game-module,
-0x002f4190,ScrDraw_TestCourse_Enter,,game-screen,screen record 0x342dbc
+0x002f4190,maybe_ComposerTask_State10_State19_DrawTestCourse,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawTestCourse"" (was ScrDraw_TestCourse_Enter)"
 0x002f4440,MenuScr_Draw_Akagi,,game-module,
-0x002f5230,ScrDraw_Akagi_Update,,game-screen,screen record 0x342db0
-0x002f54b0,ScrDraw_Akagi_Enter,,game-screen,screen record 0x342db0
-0x002f5710,ScrNameentryGetField48200_Updatef5710,,game-screen,screen record 0x343404
-0x002f5770,ScrNameentryGetField48200_Exitf5770,,game-screen,screen record 0x343404
-0x002f57b0,ScrNameentryGetField48200_Enterf57b0,,game-screen,screen record 0x343404
+0x002f5230,maybe_ComposerTask_State10_State17_DrawAkagi,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawAkagi"" (was ScrDraw_Akagi_Update)"
+0x002f54b0,maybe_ComposerTask_State10_State16_DrawAkagi,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""DrawAkagi"" (was ScrDraw_Akagi_Enter)"
+0x002f5710,maybe_ComposerTask_State22_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatef5710)"
+0x002f5770,maybe_ComposerTask_State23_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exitf5770)"
+0x002f57b0,maybe_ComposerTask_State21_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Enterf57b0)"
 0x002f5ab0,maybe_ComposerTask_Update,,game,
 0x002f5cd0,ComposerTask_Exit,,game,
 0x002f5d10,ComposerTask_Init,,game,
@@ -4803,26 +4803,26 @@ address,name,signature,source,comment
 0x002f8ce0,Composer_GetSlotLabel,,game,
 0x002f8f20,Composer_StatePlay,,game,
 0x002f9090,Composer_StateIdle,,game,
-0x002f90e0,ScrNameentrySetField8_Exitf90e0,,game-screen,screen record 0x343598
-0x002f9220,ScrNameentrySetField8_Updatef9220,,game-screen,screen record 0x343598
-0x002f93b0,ScrNameentrySetField8_Enterf93b0,,game-screen,screen record 0x343598
-0x002f96c0,Scrstrcmp_Exit,,game-screen,screen record 0x34358c
-0x002f9780,Scrstrcmp_Update,,game-screen,screen record 0x34358c
-0x002f9920,Scrstrcmp_Enter,,game-screen,screen record 0x34358c
-0x002f9ac0,ScrNameentrySetField8_Exitf9ac0,,game-screen,screen record 0x343580
-0x002f9dc0,ScrNameentrySetField8_Updatef9dc0,,game-screen,screen record 0x343580
-0x002f9f00,ScrNameentrySetField8_Enterf9f00,,game-screen,screen record 0x343580
-0x002fa080,ScrNameentryGetField48200_Updatefa080,,game-screen,screen record 0x3433bc
-0x002fa210,ScrNameentryGetField48200_Exitfa210,,game-screen,screen record 0x3433bc
-0x002fa220,ScrNameentryGetField48200_Enterfa220,,game-screen,screen record 0x3433bc
+0x002f90e0,maybe_ComposerTask_State4_State8_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exitf90e0)"
+0x002f9220,maybe_ComposerTask_State4_State7_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Updatef9220)"
+0x002f93b0,maybe_ComposerTask_State4_State6_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Enterf93b0)"
+0x002f96c0,maybe_ComposerTask_State4_State5_strcmp,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""strcmp"" (was Scrstrcmp_Exit)"
+0x002f9780,maybe_ComposerTask_State4_State4_strcmp,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""strcmp"" (was Scrstrcmp_Update)"
+0x002f9920,maybe_ComposerTask_State4_State3_strcmp,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""strcmp"" (was Scrstrcmp_Enter)"
+0x002f9ac0,maybe_ComposerTask_State4_State2_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Exitf9ac0)"
+0x002f9dc0,maybe_ComposerTask_State4_State1_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Updatef9dc0)"
+0x002f9f00,maybe_ComposerTask_State4_State0_NameentrySetField8,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentrySetField8"" (was ScrNameentrySetField8_Enterf9f00)"
+0x002fa080,maybe_ComposerTask_State4_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Updatefa080)"
+0x002fa210,maybe_ComposerTask_State5_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exitfa210)"
+0x002fa220,maybe_ComposerTask_State3_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Enterfa220)"
 0x002fa2c0,maybe_Composer_OnMenuResult,,game,
-0x002fa3a0,ScrNameentryGetField48200_State3,,game,entry 3 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
-0x002fa410,ScrNameentryGetField48200_State2,,game,entry 2 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
-0x002fa480,ScrNameentryGetField48200_State1,,game,entry 1 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
-0x002fa4f0,ScrNameentryGetField48200_State0,,game,entry 0 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
-0x002fa5f0,ScrNameentryGetField48200_Update,,game-screen,screen record 0x3433b0
-0x002fa6d0,ScrNameentryGetField48200_Exit,,game-screen,screen record 0x3433b0
-0x002fa6e0,ScrNameentryGetField48200_Enter,,game-screen,screen record 0x3433b0
+0x002fa3a0,maybe_ComposerTask_State1_Sub3,,game,entry 3 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
+0x002fa410,maybe_ComposerTask_State1_Sub2,,game,entry 2 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
+0x002fa480,maybe_ComposerTask_State1_Sub1,,game,entry 1 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
+0x002fa4f0,maybe_ComposerTask_State1_Sub0,,game,entry 0 of state table 0x3435b0 used by ScrNameentryGetField48200_Update
+0x002fa5f0,maybe_ComposerTask_State1_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Update)"
+0x002fa6d0,maybe_ComposerTask_State2_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Exit)"
+0x002fa6e0,maybe_ComposerTask_State0_NameentryGetField,,game,"state of maybe_ComposerTask; on-screen text/callee hint ""NameentryGetField"" (was ScrNameentryGetField48200_Enter)"
 0x002fa730,maybe_Attract_DrawLogo,,game,
 0x002fa920,maybe_Attract_SetupDemoRace,,game,
 0x002faab0,maybe_AttractTask_Load,,game,

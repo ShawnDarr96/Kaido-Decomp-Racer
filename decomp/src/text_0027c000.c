@@ -321,9 +321,9 @@ void ScrCareer_Draw_TuneUp_d1e0(int *param_1)
 
 // 0x0027d4d0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 41 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage41_Exit(void)
+void maybe_PageWheels_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -332,9 +332,9 @@ void MenuPage41_Exit(void)
 
 // 0x0027d4f0  size 0x128
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 41 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage41_Update(undefined8 param_1)
+void maybe_PageWheels_Update(undefined8 param_1)
 
 {
   int iVar1;
@@ -361,9 +361,9 @@ void MenuPage41_Update(undefined8 param_1)
 
 // 0x0027d620  size 0x194
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 41 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage41_Enter(void)
+void maybe_PageWheels_Enter(void)
 
 {
   undefined4 uVar1;

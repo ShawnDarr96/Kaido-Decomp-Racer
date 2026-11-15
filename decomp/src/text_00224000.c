@@ -490,9 +490,10 @@ void ScrCareer_Draw_MessageDeleted_52d0(int param_1)
 }
 
 // 0x00226020  size 0xc
-/* screen record 0x32a838 */
+/* state of MenuPage07; on-screen text/callee hint "MessageDeleted" (was ScrMessageDeleted_Update)
+    */
 
-void ScrMessageDeleted_Update(int param_1)
+void maybe_PageMail_State7_MessageDeleted(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0;
@@ -501,9 +502,9 @@ void ScrMessageDeleted_Update(int param_1)
 }
 
 // 0x00226030  size 0xc
-/* screen record 0x32a838 */
+/* state of MenuPage07; on-screen text/callee hint "MessageDeleted" (was ScrMessageDeleted_Enter) */
 
-void ScrMessageDeleted_Enter(int param_1)
+void maybe_PageMail_State6_MessageDeleted(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0;
@@ -512,9 +513,10 @@ void ScrMessageDeleted_Enter(int param_1)
 }
 
 // 0x00226040  size 0xc
-/* screen record 0x32a82c */
+/* state of MenuPage07; on-screen text/callee hint "AcceptThisRival" (was ScrAcceptThisRival_Exit)
+    */
 
-void ScrAcceptThisRival_Exit(int param_1)
+void maybe_PageMail_State5_AcceptThisRival(int param_1)
 
 {
   *(undefined4 *)(param_1 + 0x1c) = 0;

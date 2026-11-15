@@ -106,9 +106,9 @@ void ScrCareer_Draw_Shop(int param_1)
 
 // 0x00218b10  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 3 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage03_Exit(void)
+void maybe_PagePartShop_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -117,9 +117,9 @@ void MenuPage03_Exit(void)
 
 // 0x00218b30  size 0xc0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 3 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage03_Update(undefined8 param_1)
+void maybe_PagePartShop_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -139,9 +139,9 @@ void MenuPage03_Update(undefined8 param_1)
 
 // 0x00218bf0  size 0x3b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 3 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage03_Enter(void)
+void maybe_PagePartShop_Enter(void)
 
 {
   undefined4 uVar1;
@@ -950,9 +950,9 @@ void ScrRace_Draw_CaAttack(int param_1)
 
 // 0x0021a4f0  size 0x180
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a29c */
+/* state of maybe_PageNaFesta; on-screen text/callee hint "CaAttack" (was ScrCaAttack_Enter) */
 
-void ScrCaAttack_Enter(undefined8 param_1)
+void maybe_PageNaFesta_State3_CaAttack(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1148,9 +1148,9 @@ void ScrCareer_Draw_Entry(undefined8 param_1)
 
 // 0x0021abf0  size 0xb90
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a290 */
+/* state of maybe_PageNaFesta; on-screen text/callee hint "Entry" (was ScrEntry_Update) */
 
-void ScrEntry_Update(undefined8 param_1)
+void maybe_PageNaFesta_State1_Entry(undefined8 param_1)
 
 {
   bool bVar1;
@@ -1546,9 +1546,9 @@ void ScrEntry_Update(undefined8 param_1)
 
 // 0x0021b780  size 0x9d8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a290 */
+/* state of maybe_PageNaFesta; on-screen text/callee hint "Entry" (was ScrEntry_Enter) */
 
-void ScrEntry_Enter(int param_1)
+void maybe_PageNaFesta_State0_Entry(int param_1)
 
 {
   int iVar1;

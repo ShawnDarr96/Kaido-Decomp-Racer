@@ -119,9 +119,9 @@ void ScrRace_Draw_HillClimb(int param_1)
 
 // 0x002306e0  size 0xaa4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32b140 */
+/* state of MenuPage15; on-screen text/callee hint "HillClimb" (was ScrHillClimb_Enter) */
 
-void ScrHillClimb_Enter(int *param_1)
+void maybe_PageHillClimb_State0_HillClimb(int *param_1)
 
 {
   char cVar1;
@@ -512,9 +512,9 @@ LAB_00230db8:
 
 // 0x00231190  size 0x80
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 15 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage15_Exit(void)
+void maybe_PageHillClimb_Exit(void)
 
 {
   int iVar1;
@@ -532,9 +532,9 @@ void MenuPage15_Exit(void)
 
 // 0x00231210  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 15 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage15_Update(int param_1)
+void maybe_PageHillClimb_Update(int param_1)
 
 {
   uint uVar1;
@@ -542,7 +542,7 @@ void MenuPage15_Update(int param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_ScrHillClimb_Enter_0032b140)[*(int *)(param_1 + 4)])();
+  (*(code *)(&PTR_maybe_PageHillClimb_State0_HillClimb_0032b140)[*(int *)(param_1 + 4)])();
   uVar1 = *(uint *)(_g_MenuMgr + 0x28);
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
@@ -551,9 +551,9 @@ void MenuPage15_Update(int param_1)
 }
 
 // 0x002312b0  size 0x8
-/* menu page 15 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage15_Enter(void)
+void maybe_PageHillClimb_Enter(void)
 
 {
   return;

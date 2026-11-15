@@ -1033,9 +1033,9 @@ LAB_0027a408:
 
 // 0x0027a760  size 0x37c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32db78 */
+/* state of MenuPage41; on-screen text/callee hint "Wheel" (was ScrWheel_Update) */
 
-void ScrWheel_Update(undefined8 param_1)
+void maybe_PageWheels_State7_Wheel(undefined8 param_1)
 
 {
   undefined4 uVar1;
@@ -1181,9 +1181,9 @@ void ScrWheel_Update(undefined8 param_1)
 
 // 0x0027aae0  size 0x670
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32db78 */
+/* state of MenuPage41; on-screen text/callee hint "Wheel" (was ScrWheel_Enter) */
 
-void ScrWheel_Enter(undefined8 param_1)
+void maybe_PageWheels_State6_Wheel(undefined8 param_1)
 
 {
   int iVar1;
@@ -1589,9 +1589,9 @@ void ScrGarage_Draw_Wheel_b150(int param_1)
 
 // 0x0027b590  size 0x4ac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32db6c */
+/* state of MenuPage41; on-screen text/callee hint "SportsTyres" (was ScrSportsTyres_Update) */
 
-void ScrSportsTyres_Update(int param_1)
+void maybe_PageWheels_State4_SportsTyres(int param_1)
 
 {
   undefined4 uVar1;

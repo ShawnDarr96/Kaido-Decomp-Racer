@@ -202,9 +202,10 @@ LAB_002a4568:
 }
 
 // 0x002a46a0  size 0xfc
-/* screen record 0x32ed48 */
+/* state of maybe_ScrReplayList; on-screen text/callee hint "SubtitleHide" (was
+   ScrSubtitleHide_Exita46a0) */
 
-void ScrSubtitleHide_Exita46a0(undefined4 *param_1)
+void maybe_ScrReplayList_State8_SubtitleHide(undefined4 *param_1)
 
 {
   int iVar1;
@@ -237,9 +238,10 @@ void ScrSubtitleHide_Exita46a0(undefined4 *param_1)
 
 // 0x002a47a0  size 0x250
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ed48 */
+/* state of maybe_ScrReplayList; on-screen text/callee hint "SubtitleHide" (was
+   ScrSubtitleHide_Updatea47a0) */
 
-void ScrSubtitleHide_Updatea47a0(undefined4 *param_1)
+void maybe_ScrReplayList_State7_SubtitleHide(undefined4 *param_1)
 
 {
   byte bVar1;
@@ -326,9 +328,10 @@ LAB_002a4838:
 }
 
 // 0x002a49f0  size 0x88
-/* screen record 0x32ed48 */
+/* state of maybe_ScrReplayList; on-screen text/callee hint "SubtitleHide" (was
+   ScrSubtitleHide_Entera49f0) */
 
-void ScrSubtitleHide_Entera49f0(undefined4 *param_1)
+void maybe_ScrReplayList_State6_SubtitleHide(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1508,9 +1511,10 @@ void ScrGarageSelect_Enter(int param_1)
 }
 
 // 0x002a6650  size 0x154
-/* screen record 0x32ee34 */
+/* state of maybe_ScrGarageList; on-screen text/callee hint "SubtitleHide" (was
+   ScrSubtitleHide_Entera6650) */
 
-void ScrSubtitleHide_Entera6650(int param_1)
+void maybe_ScrGarageList_State9_SubtitleHide(int param_1)
 
 {
   int iVar1;
@@ -1969,9 +1973,10 @@ void maybe_ScrCarSpec_State8(int param_1)
 
 // 0x002a7250  size 0x134
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee34 */
+/* state of maybe_ScrGarageList; on-screen text/callee hint "SubtitleHide" (was
+   ScrSubtitleHide_Exita7250) */
 
-void ScrSubtitleHide_Exita7250(int *param_1)
+void maybe_ScrGarageList_State11_SubtitleHide(int *param_1)
 
 {
   int iVar1;
@@ -2013,9 +2018,10 @@ LAB_002a733c:
 
 // 0x002a7390  size 0x2fc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee34 */
+/* state of maybe_ScrGarageList; on-screen text/callee hint "SubtitleHide" (was
+   ScrSubtitleHide_Updatea7390) */
 
-void ScrSubtitleHide_Updatea7390(int *param_1)
+void maybe_ScrGarageList_State10_SubtitleHide(int *param_1)
 
 {
   int iVar1;
@@ -2148,7 +2154,7 @@ void maybe_ScrRaceStart_Update(undefined8 param_1)
   puVar4 = (undefined4 *)param_1;
   lVar2 = Menu_IsInputIdle(puVar4 + 10);
   if (lVar2 != 0) {
-    (*(code *)(&PTR_ScrSubtitleHide_Updatea7390_0032ee38)[puVar4[0xb]])(param_1);
+    (*(code *)(&PTR_maybe_ScrGarageList_State10_SubtitleHide_0032ee38)[puVar4[0xb]])(param_1);
     uVar3 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar3) == 0) {
       uVar3 = 0x100000;
@@ -2272,7 +2278,7 @@ void maybe_ScrRaceStart_Enter(undefined8 param_1)
       *puVar3 = 3;
     }
   }
-  (*(code *)(&PTR_ScrSubtitleHide_Updatea7390_0032ee38)[puVar3[0xb]])(param_1);
+  (*(code *)(&PTR_maybe_ScrGarageList_State10_SubtitleHide_0032ee38)[puVar3[0xb]])(param_1);
   return;
 }
 

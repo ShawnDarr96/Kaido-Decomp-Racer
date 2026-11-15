@@ -1151,9 +1151,9 @@ void ScrCareer_Draw_Power(int param_1,long param_2)
 }
 
 // 0x0025abc0  size 0xc4
-/* screen record 0x32cd5c */
+/* state of MenuPage29; on-screen text/callee hint "CanEquipThis" (was ScrCanEquipThis_Exit) */
 
-void ScrCanEquipThis_Exit(undefined8 param_1)
+void maybe_PageBodyShop_State17_CanEquipThis(undefined8 param_1)
 
 {
   int iVar1;
@@ -1298,9 +1298,9 @@ void ScrRace_Draw_ThisCarPart_aea0(undefined8 param_1)
 }
 
 // 0x0025af80  size 0xc4
-/* screen record 0x32cd50 */
+/* state of MenuPage29; on-screen text/callee hint "ThisCarPart" (was ScrThisCarPart_Update) */
 
-void ScrThisCarPart_Update(undefined8 param_1)
+void maybe_PageBodyShop_State13_ThisCarPart(undefined8 param_1)
 
 {
   int iVar1;
@@ -1332,9 +1332,9 @@ void ScrThisCarPart_Update(undefined8 param_1)
 }
 
 // 0x0025b050  size 0xc4
-/* screen record 0x32cd50 */
+/* state of MenuPage29; on-screen text/callee hint "ThisCarPart" (was ScrThisCarPart_Enter) */
 
-void ScrThisCarPart_Enter(undefined8 param_1)
+void maybe_PageBodyShop_State12_ThisCarPart(undefined8 param_1)
 
 {
   int iVar1;
@@ -1466,9 +1466,9 @@ void ScrGarage_Draw_YouNeedTo(undefined8 param_1)
 }
 
 // 0x0025b3f0  size 0x3c
-/* screen record 0x32cd44 */
+/* state of MenuPage29; on-screen text/callee hint "BodyColour" (was ScrBodyColour_Update) */
 
-void ScrBodyColour_Update(int *param_1)
+void maybe_PageBodyShop_State10_BodyColour(int *param_1)
 
 {
   if (*param_1 == 3) {
@@ -1809,9 +1809,10 @@ void ScrGarage_Draw_BodyColour(int param_1)
 
 // 0x0025bd80  size 0x84c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32cd38 */
+/* state of MenuPage29; on-screen text/callee hint "ColourSchemeChanged" (was
+   ScrColourSchemeChanged_Exit) */
 
-void ScrColourSchemeChanged_Exit(int param_1)
+void maybe_PageBodyShop_State8_ColourSchemeChanged(int param_1)
 
 {
   int iVar1;

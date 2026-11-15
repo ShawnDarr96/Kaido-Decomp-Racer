@@ -84,9 +84,10 @@ void maybe_ScrRivalIntro_State3(uint *param_1)
 
 // 0x002a82b0  size 0xf4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee50 */
+/* state of maybe_ScrRivalIntro; on-screen text/callee hint "RivalDbFindByName" (was
+   ScrRivalDbFindByName_Exit) */
 
-void ScrRivalDbFindByName_Exit(int param_1)
+void maybe_ScrRivalIntro_State2_RivalDbFindByName(int param_1)
 
 {
   int iVar1;
@@ -131,9 +132,10 @@ void ScrRivalDbFindByName_Exit(int param_1)
 // 0x002a83b0  size 0x220
 /* WARNING: Switch with 1 destination removed at 0x002a8404 */
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee50 */
+/* state of maybe_ScrRivalIntro; on-screen text/callee hint "RivalDbFindByName" (was
+   ScrRivalDbFindByName_Update) */
 
-void ScrRivalDbFindByName_Update(int param_1)
+void maybe_ScrRivalIntro_State1_RivalDbFindByName(int param_1)
 
 {
   byte bVar1;
@@ -210,9 +212,10 @@ void ScrRivalDbFindByName_Update(int param_1)
 
 // 0x002a85e0  size 0x290
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee50 */
+/* state of maybe_ScrRivalIntro; on-screen text/callee hint "RivalDbFindByName" (was
+   ScrRivalDbFindByName_Enter) */
 
-void ScrRivalDbFindByName_Enter(int param_1)
+void maybe_ScrRivalIntro_State0_RivalDbFindByName(int param_1)
 
 {
   undefined2 uVar1;
@@ -332,7 +335,8 @@ void maybe_ScrRivalIntro_Update(undefined8 param_1)
   iVar7 = (int)param_1;
   lVar3 = Menu_IsInputIdle(iVar7 + 0x114);
   if (lVar3 != 0) {
-    (*(code *)(&PTR_ScrRivalDbFindByName_Enter_0032ee50)[*(int *)(iVar7 + 0x118)])(param_1);
+    (*(code *)(&PTR_maybe_ScrRivalIntro_State0_RivalDbFindByName_0032ee50)[*(int *)(iVar7 + 0x118)])
+              (param_1);
     uVar5 = piRam0036f468[2];
     if ((piRam0036f468[4] & uVar5) == 0) {
       uVar5 = 0x100000;
@@ -952,9 +956,9 @@ void maybe_ScrTuneParts_State29(int param_1)
 }
 
 // 0x002a97a0  size 0x34
-/* screen record 0x32eef0 */
+/* state of maybe_ScrTuneParts; on-screen text/callee hint "TeamDbCopy" (was ScrTeamDbCopy_Exit) */
 
-void ScrTeamDbCopy_Exit(int param_1)
+void maybe_ScrTuneParts_State26_TeamDbCopy(int param_1)
 
 {
   int iVar1;
@@ -970,9 +974,10 @@ void ScrTeamDbCopy_Exit(int param_1)
 
 // 0x002a97e0  size 0x36c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32eef0 */
+/* state of maybe_ScrTuneParts; on-screen text/callee hint "TeamDbCopy" (was ScrTeamDbCopy_Update)
+    */
 
-void ScrTeamDbCopy_Update(int param_1)
+void maybe_ScrTuneParts_State25_TeamDbCopy(int param_1)
 
 {
   short sVar1;
@@ -1119,9 +1124,9 @@ LAB_002a9a98:
 }
 
 // 0x002a9b50  size 0x38
-/* screen record 0x32eef0 */
+/* state of maybe_ScrTuneParts; on-screen text/callee hint "TeamDbCopy" (was ScrTeamDbCopy_Enter) */
 
-void ScrTeamDbCopy_Enter(int param_1)
+void maybe_ScrTuneParts_State24_TeamDbCopy(int param_1)
 
 {
   int iVar1;
@@ -2488,9 +2493,10 @@ LAB_002ab4e0:
 
 // 0x002abcd0  size 0x23c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee9c */
+/* state of maybe_ScrTuneParts; on-screen text/callee hint "RivalIsBossId" (was
+   ScrRivalIsBossId_Exit) */
 
-void ScrRivalIsBossId_Exit(int param_1)
+void maybe_ScrTuneParts_State5_RivalIsBossId(int param_1)
 
 {
   short sVar1;
@@ -2578,9 +2584,10 @@ void ScrRivalIsBossId_Exit(int param_1)
 
 // 0x002abf10  size 0x120
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee9c */
+/* state of maybe_ScrTuneParts; on-screen text/callee hint "RivalIsBossId" (was
+   ScrRivalIsBossId_Update) */
 
-void ScrRivalIsBossId_Update(int param_1)
+void maybe_ScrTuneParts_State4_RivalIsBossId(int param_1)
 
 {
   undefined4 uVar1;

@@ -6,7 +6,7 @@
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x3278c0 */
 
-void ScrScrCareerDrawTuneUp_Exit(void)
+void PageTuneUp_Exit(void)
 
 {
   Menu_BlockInput(_g_MenuMgr + 0x654);
@@ -18,7 +18,7 @@ void ScrScrCareerDrawTuneUp_Exit(void)
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x3278c0 */
 
-void ScrScrCareerDrawTuneUp_Update(undefined8 param_1)
+void PageTuneUp_Update(undefined8 param_1)
 
 {
   bool bVar1;
@@ -59,7 +59,7 @@ void ScrScrCareerDrawTuneUp_Update(undefined8 param_1)
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x3278c0 */
 
-void ScrScrCareerDrawTuneUp_Enter(void)
+void PageTuneUp_Enter(void)
 
 {
   int iVar1;
@@ -888,9 +888,9 @@ LAB_0027593c:
 
 // 0x00275a50  size 0x85c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32dbbc */
+/* state of MenuPage41; on-screen text/callee hint "TakeOffCar" (was ScrTakeOffCar_Exit) */
 
-void ScrTakeOffCar_Exit(undefined8 param_1)
+void maybe_PageWheels_State25_TakeOffCar(undefined8 param_1)
 
 {
   bool bVar1;

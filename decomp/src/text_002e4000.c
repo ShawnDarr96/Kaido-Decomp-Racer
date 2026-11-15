@@ -475,9 +475,9 @@ void Eventui_Draw_Hakone_4b60(undefined8 param_1)
 }
 
 // 0x002e50d0  size 0xb8
-/* screen record 0x3428ac */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawHakone" (was ScrDraw_Hakone_Exit) */
 
-void ScrDraw_Hakone_Exit(undefined8 param_1)
+void maybe_ComposerTask_State16_State5_DrawHakone(undefined8 param_1)
 
 {
   long lVar1;
@@ -507,9 +507,10 @@ void ScrDraw_Hakone_Exit(undefined8 param_1)
 
 // 0x002e5190  size 0x67c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3428ac */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawHakone" (was ScrDraw_Hakone_Update)
+    */
 
-void ScrDraw_Hakone_Update(undefined8 param_1)
+void maybe_ComposerTask_State16_State4_DrawHakone(undefined8 param_1)
 
 {
   undefined1 *puVar1;
@@ -1825,9 +1826,10 @@ LAB_002e6d1c:
 
 // 0x002e76a0  size 0x7c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3433ec */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Updatee76a0) */
 
-void ScrNameentryGetField48200_Updatee76a0(undefined8 param_1)
+void maybe_ComposerTask_State16_NameentryGetField(undefined8 param_1)
 
 {
   int iVar1;
@@ -1841,9 +1843,10 @@ void ScrNameentryGetField48200_Updatee76a0(undefined8 param_1)
 }
 
 // 0x002e7720  size 0x8
-/* screen record 0x3433ec */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Exite7720) */
 
-void ScrNameentryGetField48200_Exite7720(void)
+void maybe_ComposerTask_State17_NameentryGetField(void)
 
 {
   return;
@@ -1851,9 +1854,10 @@ void ScrNameentryGetField48200_Exite7720(void)
 
 // 0x002e7730  size 0x27c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x3433ec */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Entere7730) */
 
-void ScrNameentryGetField48200_Entere7730(void)
+void maybe_ComposerTask_State15_NameentryGetField(void)
 
 {
   undefined4 uVar1;

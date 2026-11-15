@@ -4,9 +4,10 @@
 
 // 0x002f4190  size 0x2a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x342dbc */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawTestCourse" (was
+   ScrDraw_TestCourse_Enter) */
 
-void ScrDraw_TestCourse_Enter(int param_1)
+void maybe_ComposerTask_State10_State19_DrawTestCourse(int param_1)
 
 {
   int iVar1;
@@ -495,9 +496,9 @@ LAB_002f4770:
 
 // 0x002f5230  size 0x27c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x342db0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawAkagi" (was ScrDraw_Akagi_Update) */
 
-void ScrDraw_Akagi_Update(int param_1)
+void maybe_ComposerTask_State10_State17_DrawAkagi(int param_1)
 
 {
   int iVar1;
@@ -562,9 +563,9 @@ void ScrDraw_Akagi_Update(int param_1)
 
 // 0x002f54b0  size 0x254
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x342db0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawAkagi" (was ScrDraw_Akagi_Enter) */
 
-void ScrDraw_Akagi_Enter(int param_1)
+void maybe_ComposerTask_State10_State16_DrawAkagi(int param_1)
 
 {
   int iVar1;
@@ -623,25 +624,27 @@ void ScrDraw_Akagi_Enter(int param_1)
 }
 
 // 0x002f5710  size 0x54
-/* screen record 0x343404 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Updatef5710) */
 
-void ScrNameentryGetField48200_Updatef5710(undefined8 param_1)
+void maybe_ComposerTask_State22_NameentryGetField(undefined8 param_1)
 
 {
   int iVar1;
   
   if (*(int *)((int)param_1 + 0x30) == 0) {
     iVar1 = Nameentry_GetField_4_8200((int)param_1 + 0xc44);
-    (*(code *)(&PTR_ScrDraw_Akagi_Enter_00342db0)[iVar1])(param_1);
+    (*(code *)(&PTR_maybe_ComposerTask_State10_State16_DrawAkagi_00342db0)[iVar1])(param_1);
     ComposerTex_Draw(param_1);
   }
   return;
 }
 
 // 0x002f5770  size 0x40
-/* screen record 0x343404 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Exitf5770) */
 
-void ScrNameentryGetField48200_Exitf5770(undefined8 param_1)
+void maybe_ComposerTask_State23_NameentryGetField(undefined8 param_1)
 
 {
   if (*(int *)((int)param_1 + 0xc40) != 0) {
@@ -654,9 +657,10 @@ void ScrNameentryGetField48200_Exitf5770(undefined8 param_1)
 
 // 0x002f57b0  size 0x2f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x343404 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Enterf57b0) */
 
-void ScrNameentryGetField48200_Enterf57b0(undefined8 param_1)
+void maybe_ComposerTask_State21_NameentryGetField(undefined8 param_1)
 
 {
   int iVar1;
@@ -748,19 +752,19 @@ void maybe_ComposerTask_Update(int param_1)
     if (*pcVar1 == '\0') {
       uVar3 = ComposerScene_ApplyState();
       iVar2 = ComposerScene_GetState();
-      (*(code *)(&PTR_ScrNameentryGetField48200_Enter_003433b0)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_maybe_ComposerTask_State0_NameentryGetField_003433b0)[iVar2 * 3])(uVar3);
       uVar3 = ComposerScene_ApplyState();
       iVar2 = ComposerScene_GetState();
-      (*(code *)(&PTR_ScrNameentryGetField48200_Entere8410_003433e0)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_maybe_ComposerTask_State12_NameentryGetField_003433e0)[iVar2 * 3])(uVar3);
       *pcVar1 = '\x01';
     }
     if (*pcVar1 == '\x01') {
       uVar3 = ComposerScene_ApplyState();
       iVar2 = ComposerScene_GetState();
-      (*(code *)(&PTR_ScrNameentryGetField48200_Update_003433b4)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_maybe_ComposerTask_State1_NameentryGetField_003433b4)[iVar2 * 3])(uVar3);
       uVar3 = ComposerScene_ApplyState();
       iVar2 = ComposerScene_GetState();
-      (*(code *)(&PTR_ScrNameentryGetField48200_Updatee8380_003433e4)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_maybe_ComposerTask_State13_NameentryGetField_003433e4)[iVar2 * 3])(uVar3);
       lVar4 = ComposerScene_IsChanging();
       if ((lVar4 != 0) && (lVar4 = ComposerScene_GetPage(), lVar4 == 3)) {
         ComposerScene_SetPage(0);
@@ -770,10 +774,10 @@ void maybe_ComposerTask_Update(int param_1)
     else if (*pcVar1 == '\x02') {
       uVar3 = ComposerScene_ApplyState();
       iVar2 = ComposerScene_GetState();
-      (*(code *)(&PTR_ScrNameentryGetField48200_Exite8400_003433e8)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_maybe_ComposerTask_State14_NameentryGetField_003433e8)[iVar2 * 3])(uVar3);
       uVar3 = ComposerScene_ApplyState();
       iVar2 = ComposerScene_GetState();
-      (*(code *)(&PTR_ScrNameentryGetField48200_Exit_003433b8)[iVar2 * 3])(uVar3);
+      (*(code *)(&PTR_maybe_ComposerTask_State2_NameentryGetField_003433b8)[iVar2 * 3])(uVar3);
       ComposerScene_Exit();
       *pcVar1 = '\0';
     }

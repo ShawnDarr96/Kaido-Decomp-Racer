@@ -4,9 +4,10 @@
 
 // 0x002f0270  size 0x5b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x342de0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawEquipment" (was
+   ScrDraw_Equipment_Exit) */
 
-void ScrDraw_Equipment_Exit(int param_1)
+void maybe_ComposerTask_State10_State30_DrawEquipment(int param_1)
 
 {
   int iVar1;
@@ -464,9 +465,10 @@ void MenuScr_Draw_Equipment(int param_1)
 
 // 0x002f1080  size 0xf4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x342de0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawEquipment" (was
+   ScrDraw_Equipment_Enter) */
 
-void ScrDraw_Equipment_Enter(int param_1)
+void maybe_ComposerTask_State10_State28_DrawEquipment(int param_1)
 
 {
   int iVar1;
@@ -500,9 +502,10 @@ void ScrDraw_Equipment_Enter(int param_1)
 
 // 0x002f1180  size 0x6b4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x342dd4 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "DrawTestCourse" (was
+   ScrDraw_TestCourse_Exit) */
 
-void ScrDraw_TestCourse_Exit(int param_1)
+void maybe_ComposerTask_State10_State27_DrawTestCourse(int param_1)
 
 {
   undefined1 *puVar1;

@@ -829,9 +829,9 @@ LAB_00245fb0:
 }
 
 // 0x00246180  size 0x8
-/* screen record 0x32bedc */
+/* state of maybe_PageBetCar; on-screen text/callee hint "IsTakenAway" (was ScrIsTakenAway_Exit) */
 
-void ScrIsTakenAway_Exit(void)
+void maybe_PageBetCar_State45_IsTakenAway(void)
 
 {
   return;
@@ -1237,9 +1237,9 @@ void ScrCareer_Draw_Received(int param_1)
 
 // 0x00246da0  size 0x78
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32bed0 */
+/* state of maybe_PageBetCar; on-screen text/callee hint "Received" (was ScrReceived_Enter) */
 
-void ScrReceived_Enter(int param_1)
+void maybe_PageBetCar_State40_Received(int param_1)
 
 {
   int iVar1;

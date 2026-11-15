@@ -860,9 +860,10 @@ void ScrGarage_Draw_SellAll(int param_1)
 
 // 0x00215cc0  size 0x8bc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a1a8 */
+/* state of MenuPage03; on-screen text/callee hint "GarageGetPartSlot" (was
+   ScrGarageGetPartSlot_Exit) */
 
-void ScrGarageGetPartSlot_Exit(int param_1)
+void maybe_PagePartShop_State8_GarageGetPartSlot(int param_1)
 
 {
   bool bVar1;
@@ -1151,9 +1152,10 @@ void ScrGarageGetPartSlot_Exit(int param_1)
 
 // 0x00216580  size 0x4a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a1a8 */
+/* state of MenuPage03; on-screen text/callee hint "GarageGetPartSlot" (was
+   ScrGarageGetPartSlot_Update) */
 
-void ScrGarageGetPartSlot_Update(int param_1)
+void maybe_PagePartShop_State7_GarageGetPartSlot(int param_1)
 
 {
   undefined2 uVar1;
@@ -1397,9 +1399,10 @@ void ScrGarageGetPartSlot_Update(int param_1)
 
 // 0x00216a30  size 0x4a4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a1a8 */
+/* state of MenuPage03; on-screen text/callee hint "GarageGetPartSlot" (was
+   ScrGarageGetPartSlot_Enter) */
 
-void ScrGarageGetPartSlot_Enter(int param_1)
+void maybe_PagePartShop_State6_GarageGetPartSlot(int param_1)
 
 {
   undefined2 uVar1;
@@ -1794,9 +1797,9 @@ void ScrGarage_Draw_DoYouWant(int param_1)
 
 // 0x00217250  size 0x338
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a19c */
+/* state of MenuPage03; on-screen text/callee hint "DoYouWant" (was ScrDoYouWant_Update17250) */
 
-void ScrDoYouWant_Update17250(int param_1)
+void maybe_PagePartShop_State4_DoYouWant(int param_1)
 
 {
   undefined2 uVar1;
@@ -1943,9 +1946,9 @@ void ScrDoYouWant_Update17250(int param_1)
 
 // 0x00217590  size 0x338
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a19c */
+/* state of MenuPage03; on-screen text/callee hint "DoYouWant" (was ScrDoYouWant_Enter) */
 
-void ScrDoYouWant_Enter(int param_1)
+void maybe_PagePartShop_State3_DoYouWant(int param_1)
 
 {
   undefined2 uVar1;
@@ -2305,9 +2308,9 @@ void ScrGarage_Draw_DemonstrationModel(int param_1)
 
 // 0x00217e40  size 0x92c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a190 */
+/* state of MenuPage03; on-screen text/callee hint "Shop" (was ScrShop_Update) */
 
-void ScrShop_Update(int param_1)
+void maybe_PagePartShop_State1_Shop(int param_1)
 
 {
   undefined2 uVar1;

@@ -1192,9 +1192,10 @@ void maybe_ScrCarPassword_HandleInput(int *param_1)
 }
 
 // 0x002862a0  size 0xe8
-/* screen record 0x32e6e8 */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageIsSlotUsed" (was
+   ScrGarageIsSlotUsed_Update) */
 
-void ScrGarageIsSlotUsed_Update(undefined4 *param_1)
+void maybe_ScrCarPassword_State7_GarageIsSlotUsed(undefined4 *param_1)
 
 {
   undefined8 uVar1;
@@ -1226,9 +1227,10 @@ void ScrGarageIsSlotUsed_Update(undefined4 *param_1)
 }
 
 // 0x00286390  size 0x10
-/* screen record 0x32e6e8 */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageIsSlotUsed" (was
+   ScrGarageIsSlotUsed_Enter) */
 
-void ScrGarageIsSlotUsed_Enter(undefined4 *param_1)
+void maybe_ScrCarPassword_State5_GarageIsSlotUsed(undefined4 *param_1)
 
 {
   param_1[1] = 1;
@@ -1237,9 +1239,10 @@ void ScrGarageIsSlotUsed_Enter(undefined4 *param_1)
 }
 
 // 0x002863a0  size 0x74
-/* screen record 0x32e6dc */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Update863a0) */
 
-void ScrGarageFindCar_Update863a0(undefined4 *param_1)
+void maybe_ScrCarPassword_State4_GarageFindCar(undefined4 *param_1)
 
 {
   undefined8 uVar1;
@@ -1262,9 +1265,10 @@ void ScrGarageFindCar_Update863a0(undefined4 *param_1)
 }
 
 // 0x00286420  size 0x188
-/* screen record 0x32e6dc */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Enter86420) */
 
-void ScrGarageFindCar_Enter86420(undefined4 *param_1)
+void maybe_ScrCarPassword_State3_GarageFindCar(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1324,9 +1328,10 @@ void ScrGarageFindCar_Enter86420(undefined4 *param_1)
 
 // 0x002865b0  size 0x7c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e6d0 */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Exit) */
 
-void ScrGarageFindCar_Exit(undefined4 *param_1)
+void maybe_ScrCarPassword_State2_GarageFindCar(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1343,9 +1348,10 @@ void ScrGarageFindCar_Exit(undefined4 *param_1)
 
 // 0x00286630  size 0x2bc
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e6d0 */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Update) */
 
-void ScrGarageFindCar_Update(undefined4 *param_1)
+void maybe_ScrCarPassword_State1_GarageFindCar(undefined4 *param_1)
 
 {
   char cVar1;
@@ -1449,9 +1455,10 @@ void ScrGarageFindCar_Update(undefined4 *param_1)
 
 // 0x002868f0  size 0x1f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e6d0 */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Enter) */
 
-void ScrGarageFindCar_Enter(undefined4 *param_1)
+void maybe_ScrCarPassword_State0_GarageFindCar(undefined4 *param_1)
 
 {
   int iVar1;
@@ -1550,7 +1557,8 @@ void maybe_ScrCarPassword_Update(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x4bc);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_ScrGarageFindCar_Enter_0032e6d0)[*(int *)(iVar2 + 0x4c0)])(param_1);
+    (*(code *)(&PTR_maybe_ScrCarPassword_State0_GarageFindCar_0032e6d0)[*(int *)(iVar2 + 0x4c0)])
+              (param_1);
     maybe_ScrCarPassword_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x4bc);
   }
@@ -1576,7 +1584,7 @@ void maybe_ScrCarPassword_Enter(int param_1)
   *(undefined4 *)(param_1 + 0x4d4) = 0;
   *(undefined4 *)(param_1 + 0x4b4) = 0;
   *(undefined4 *)(_g_MenuMgr + 0x544) = 0xfffffffe;
-  ScrGarageFindCar_Enter();
+  maybe_ScrCarPassword_State0_GarageFindCar();
   return;
 }
 
@@ -1715,9 +1723,10 @@ void ScrGarageBuyCar_State10(int param_1)
 
 // 0x00286ef0  size 0xc8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e70c */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Exit86ef0) */
 
-void ScrGarageFindCar_Exit86ef0(int param_1)
+void maybe_ScrCarPassword_State17_GarageFindCar(int param_1)
 
 {
   int iVar1;
@@ -1748,9 +1757,10 @@ void ScrGarageFindCar_Exit86ef0(int param_1)
 
 // 0x00286fc0  size 0x18c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e70c */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Update86fc0) */
 
-void ScrGarageFindCar_Update86fc0(int param_1)
+void maybe_ScrCarPassword_State16_GarageFindCar(int param_1)
 
 {
   short sVar1;
@@ -1813,9 +1823,10 @@ void ScrGarageFindCar_Update86fc0(int param_1)
 }
 
 // 0x00287150  size 0xe8
-/* screen record 0x32e70c */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageFindCar" (was
+   ScrGarageFindCar_Enter87150) */
 
-void ScrGarageFindCar_Enter87150(int param_1)
+void maybe_ScrCarPassword_State15_GarageFindCar(int param_1)
 
 {
   int iVar1;
@@ -2098,9 +2109,10 @@ void ScrGarageBuyCar_State1(undefined4 *param_1)
 
 // 0x00287770  size 0xe0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32e6e8 */
+/* state of maybe_ScrCarPassword; on-screen text/callee hint "GarageIsSlotUsed" (was
+   ScrGarageIsSlotUsed_Exit) */
 
-void ScrGarageIsSlotUsed_Exit(int param_1)
+void maybe_ScrCarPassword_State8_GarageIsSlotUsed(int param_1)
 
 {
   int iVar1;
@@ -2207,7 +2219,7 @@ void ScrGarageBuyCar_Update(undefined8 param_1)
       Garage_BuildSortedCarList(iVar7 + 0x28,8,0);
       iVar3 = *(int *)(iVar7 + 0x5c);
     }
-    (*(code *)(&PTR_ScrGarageIsSlotUsed_Exit_0032e6f0)[iVar3])(param_1);
+    (*(code *)(&PTR_maybe_ScrCarPassword_State8_GarageIsSlotUsed_0032e6f0)[iVar3])(param_1);
     maybe_ScrGarageBuyCar_HandleInput(param_1);
     Menu_RequestTransition(iVar7 + 0x58);
   }
@@ -2304,7 +2316,7 @@ void ScrGarageBuyCar_Enter(undefined8 param_1)
   puVar6[0x1b] = 1;
   puVar6[0x19] = 1;
   puVar6[0x1c] = 0;
-  (*(code *)(&PTR_ScrGarageIsSlotUsed_Exit_0032e6f0)[puVar6[0x17]])(param_1);
+  (*(code *)(&PTR_maybe_ScrCarPassword_State8_GarageIsSlotUsed_0032e6f0)[puVar6[0x17]])(param_1);
   return;
 }
 

@@ -4,9 +4,9 @@
 
 // 0x0023c1d0  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 20 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage20_Exit(void)
+void maybe_PageSponsors_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -15,9 +15,9 @@ void MenuPage20_Exit(void)
 
 // 0x0023c1f0  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 20 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage20_Update(int param_1)
+void maybe_PageSponsors_Update(int param_1)
 
 {
   uint uVar1;
@@ -25,7 +25,7 @@ void MenuPage20_Update(int param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_ScrScrGarageDrawSponsors_Enter_0032b710)[*(int *)(param_1 + 4)])();
+  (*(code *)(&PTR_maybe_PageSponsors_State0_GarageDrawSponsors_0032b710)[*(int *)(param_1 + 4)])();
   uVar1 = *(uint *)(_g_MenuMgr + 0x28);
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
@@ -35,9 +35,9 @@ void MenuPage20_Update(int param_1)
 
 // 0x0023c290  size 0x9c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 20 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage20_Enter(void)
+void maybe_PageSponsors_Enter(void)
 
 {
   undefined4 uVar1;

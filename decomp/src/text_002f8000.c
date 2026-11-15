@@ -855,9 +855,10 @@ void Composer_StateIdle(undefined8 param_1)
 }
 
 // 0x002f90e0  size 0x134
-/* screen record 0x343598 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
+   ScrNameentrySetField8_Exitf90e0) */
 
-void ScrNameentrySetField8_Exitf90e0(undefined8 param_1)
+void maybe_ComposerTask_State4_State8_NameentrySetField8(undefined8 param_1)
 
 {
   long lVar1;
@@ -910,9 +911,10 @@ LAB_002f912c:
 }
 
 // 0x002f9220  size 0x18c
-/* screen record 0x343598 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
+   ScrNameentrySetField8_Updatef9220) */
 
-void ScrNameentrySetField8_Updatef9220(undefined8 param_1)
+void maybe_ComposerTask_State4_State7_NameentrySetField8(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -977,9 +979,10 @@ LAB_002f92e4:
 }
 
 // 0x002f93b0  size 0x304
-/* screen record 0x343598 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
+   ScrNameentrySetField8_Enterf93b0) */
 
-void ScrNameentrySetField8_Enterf93b0(undefined8 param_1)
+void maybe_ComposerTask_State4_State6_NameentrySetField8(undefined8 param_1)
 
 {
   char cVar1;
@@ -1088,9 +1091,9 @@ LAB_002f947c:
 }
 
 // 0x002f96c0  size 0xc0
-/* screen record 0x34358c */
+/* state of maybe_ComposerTask; on-screen text/callee hint "strcmp" (was Scrstrcmp_Exit) */
 
-void Scrstrcmp_Exit(int param_1)
+void maybe_ComposerTask_State4_State5_strcmp(int param_1)
 
 {
   int iVar1;
@@ -1118,9 +1121,9 @@ void Scrstrcmp_Exit(int param_1)
 }
 
 // 0x002f9780  size 0x194
-/* screen record 0x34358c */
+/* state of maybe_ComposerTask; on-screen text/callee hint "strcmp" (was Scrstrcmp_Update) */
 
-void Scrstrcmp_Update(undefined8 param_1)
+void maybe_ComposerTask_State4_State4_strcmp(undefined8 param_1)
 
 {
   long lVar1;
@@ -1178,9 +1181,9 @@ void Scrstrcmp_Update(undefined8 param_1)
 }
 
 // 0x002f9920  size 0x190
-/* screen record 0x34358c */
+/* state of maybe_ComposerTask; on-screen text/callee hint "strcmp" (was Scrstrcmp_Enter) */
 
-void Scrstrcmp_Enter(undefined8 param_1)
+void maybe_ComposerTask_State4_State3_strcmp(undefined8 param_1)
 
 {
   undefined1 uVar1;
@@ -1246,9 +1249,10 @@ LAB_002f99e4:
 }
 
 // 0x002f9ac0  size 0x2f4
-/* screen record 0x343580 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
+   ScrNameentrySetField8_Exitf9ac0) */
 
-void ScrNameentrySetField8_Exitf9ac0(undefined8 param_1)
+void maybe_ComposerTask_State4_State2_NameentrySetField8(undefined8 param_1)
 
 {
   char cVar1;
@@ -1351,9 +1355,10 @@ LAB_002f9b90:
 }
 
 // 0x002f9dc0  size 0x134
-/* screen record 0x343580 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
+   ScrNameentrySetField8_Updatef9dc0) */
 
-void ScrNameentrySetField8_Updatef9dc0(undefined8 param_1)
+void maybe_ComposerTask_State4_State1_NameentrySetField8(undefined8 param_1)
 
 {
   int iVar1;
@@ -1403,9 +1408,10 @@ void ScrNameentrySetField8_Updatef9dc0(undefined8 param_1)
 }
 
 // 0x002f9f00  size 0x174
-/* screen record 0x343580 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentrySetField8" (was
+   ScrNameentrySetField8_Enterf9f00) */
 
-void ScrNameentrySetField8_Enterf9f00(int param_1)
+void maybe_ComposerTask_State4_State0_NameentrySetField8(int param_1)
 
 {
   long lVar1;
@@ -1471,9 +1477,10 @@ void ScrNameentrySetField8_Enterf9f00(int param_1)
 }
 
 // 0x002fa080  size 0x188
-/* screen record 0x3433bc */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Updatefa080) */
 
-void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
+void maybe_ComposerTask_State4_NameentryGetField(undefined8 param_1)
 
 {
   int iVar1;
@@ -1484,7 +1491,7 @@ void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
   lVar3 = Composer_UpdateInput();
   if (lVar3 != 0) {
     iVar2 = Nameentry_GetField_4_8200(param_1);
-    (*(code *)(&PTR_ScrNameentrySetField8_Enterf9f00_00343580)[iVar2])(param_1);
+    (*(code *)(&PTR_maybe_ComposerTask_State4_State0_NameentrySetField8_00343580)[iVar2])(param_1);
     uVar4 = ComposerInput_GetPressed();
     iVar2 = (int)param_1;
     if ((uVar4 & 0x240) == 0) {
@@ -1535,9 +1542,10 @@ void ScrNameentryGetField48200_Updatefa080(undefined8 param_1)
 }
 
 // 0x002fa210  size 0x8
-/* screen record 0x3433bc */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Exitfa210) */
 
-void ScrNameentryGetField48200_Exitfa210(int param_1)
+void maybe_ComposerTask_State5_NameentryGetField(int param_1)
 
 {
   PreviewSnd_StopAndClear(param_1 + 0x24);
@@ -1545,9 +1553,10 @@ void ScrNameentryGetField48200_Exitfa210(int param_1)
 }
 
 // 0x002fa220  size 0x9c
-/* screen record 0x3433bc */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Enterfa220) */
 
-void ScrNameentryGetField48200_Enterfa220(int param_1)
+void maybe_ComposerTask_State3_NameentryGetField(int param_1)
 
 {
   undefined4 uVar1;
@@ -1625,7 +1634,7 @@ void maybe_Composer_OnMenuResult(undefined8 param_1,long param_2)
 // 0x002fa3a0  size 0x70
 /* entry 3 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void ScrNameentryGetField48200_State3(int param_1)
+void maybe_ComposerTask_State1_Sub3(int param_1)
 
 {
   long lVar1;
@@ -1648,7 +1657,7 @@ void ScrNameentryGetField48200_State3(int param_1)
 // 0x002fa410  size 0x68
 /* entry 2 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void ScrNameentryGetField48200_State2(int param_1)
+void maybe_ComposerTask_State1_Sub2(int param_1)
 
 {
   long lVar1;
@@ -1671,7 +1680,7 @@ void ScrNameentryGetField48200_State2(int param_1)
 // 0x002fa480  size 0x6c
 /* entry 1 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void ScrNameentryGetField48200_State1(int param_1)
+void maybe_ComposerTask_State1_Sub1(int param_1)
 
 {
   long lVar1;
@@ -1694,7 +1703,7 @@ void ScrNameentryGetField48200_State1(int param_1)
 // 0x002fa4f0  size 0xfc
 /* entry 0 of state table 0x3435b0 used by ScrNameentryGetField48200_Update */
 
-void ScrNameentryGetField48200_State0(int param_1)
+void maybe_ComposerTask_State1_Sub0(int param_1)
 
 {
   int iVar1;
@@ -1736,9 +1745,10 @@ void ScrNameentryGetField48200_State0(int param_1)
 }
 
 // 0x002fa5f0  size 0xe0
-/* screen record 0x3433b0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Update) */
 
-void ScrNameentryGetField48200_Update(undefined8 param_1)
+void maybe_ComposerTask_State1_NameentryGetField(undefined8 param_1)
 
 {
   int iVar1;
@@ -1749,7 +1759,7 @@ void ScrNameentryGetField48200_Update(undefined8 param_1)
   if (lVar2 != 0) {
     ComposerInput_Lock();
     iVar1 = Nameentry_GetField_4_8200(param_1);
-    (*(code *)(&PTR_ScrNameentryGetField48200_State0_003435b0)[iVar1])(param_1);
+    (*(code *)(&PTR_maybe_ComposerTask_State1_Sub0_003435b0)[iVar1])(param_1);
     uVar3 = ComposerInput_GetPressed();
     iVar1 = (int)param_1;
     if ((uVar3 & 0x180) == 0) {
@@ -1772,18 +1782,20 @@ void ScrNameentryGetField48200_Update(undefined8 param_1)
 }
 
 // 0x002fa6d0  size 0x8
-/* screen record 0x3433b0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Exit) */
 
-void ScrNameentryGetField48200_Exit(void)
+void maybe_ComposerTask_State2_NameentryGetField(void)
 
 {
   return;
 }
 
 // 0x002fa6e0  size 0x44
-/* screen record 0x3433b0 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Enter) */
 
-void ScrNameentryGetField48200_Enter(undefined8 param_1)
+void maybe_ComposerTask_State0_NameentryGetField(undefined8 param_1)
 
 {
   long lVar1;

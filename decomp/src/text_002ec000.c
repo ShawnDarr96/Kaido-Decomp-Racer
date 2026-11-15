@@ -3,9 +3,10 @@
 #include "ghidra_types.h"
 
 // 0x002ec550  size 0x3bc
-/* screen record 0x342d70 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "iptGetElem2f4xda8" (was
+   ScrScriptGetElem2f4xda8_Enter) */
 
-void ScrScriptGetElem2f4xda8_Enter(undefined8 param_1)
+void maybe_ComposerTask_State10_State0_iptGetElem2f4xda8(undefined8 param_1)
 
 {
   short sVar1;
@@ -129,9 +130,10 @@ void ScrScriptGetElem2f4xda8_Enter(undefined8 param_1)
 }
 
 // 0x002ec910  size 0x6c
-/* screen record 0x3433d4 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Updateec910) */
 
-void ScrNameentryGetField48200_Updateec910(undefined8 param_1)
+void maybe_ComposerTask_State10_NameentryGetField(undefined8 param_1)
 
 {
   int iVar1;
@@ -144,15 +146,16 @@ void ScrNameentryGetField48200_Updateec910(undefined8 param_1)
       *(int *)(iVar1 + 0xd68) = *(int *)(iVar1 + 0xd68) + -1;
     }
     iVar1 = Nameentry_GetField_4_8200(iVar1 + 0xc44);
-    (*(code *)(&PTR_ScrScriptGetElem2f4xda8_Enter_00342d70)[iVar1])(param_1);
+    (*(code *)(&PTR_maybe_ComposerTask_State10_State0_iptGetElem2f4xda8_00342d70)[iVar1])(param_1);
   }
   return;
 }
 
 // 0x002ec980  size 0x38
-/* screen record 0x3433d4 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Exitec980) */
 
-void ScrNameentryGetField48200_Exitec980(int param_1)
+void maybe_ComposerTask_State11_NameentryGetField(int param_1)
 
 {
   PreviewSnd_StopAndClear(param_1 + 0xc8c);
@@ -162,9 +165,10 @@ void ScrNameentryGetField48200_Exitec980(int param_1)
 }
 
 // 0x002ec9c0  size 0x1ac
-/* screen record 0x3433d4 */
+/* state of maybe_ComposerTask; on-screen text/callee hint "NameentryGetField" (was
+   ScrNameentryGetField48200_Enterec9c0) */
 
-void ScrNameentryGetField48200_Enterec9c0(int param_1)
+void maybe_ComposerTask_State9_NameentryGetField(int param_1)
 
 {
   undefined4 uVar1;

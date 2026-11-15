@@ -4,9 +4,10 @@
 
 // 0x002ac030  size 0x264
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ee9c */
+/* state of maybe_ScrTuneParts; on-screen text/callee hint "RivalIsBossId" (was
+   ScrRivalIsBossId_Enter) */
 
-void ScrRivalIsBossId_Enter(int param_1)
+void maybe_ScrTuneParts_State3_RivalIsBossId(int param_1)
 
 {
   undefined4 uVar1;
@@ -1045,9 +1046,10 @@ void maybe_ScrPartInfo_State3(int *param_1)
 }
 
 // 0x002adad0  size 0x184
-/* screen record 0x32ef40 */
+/* state of maybe_ScrPartInfo; on-screen text/callee hint "CarRecGetModelId" (was
+   ScrCarRecGetModelId_Exitadad0) */
 
-void ScrCarRecGetModelId_Exitadad0(int *param_1)
+void maybe_ScrPartInfo_State2_CarRecGetModelId(int *param_1)
 
 {
   int *piVar1;
@@ -1110,9 +1112,10 @@ void ScrCarRecGetModelId_Exitadad0(int *param_1)
 }
 
 // 0x002adc60  size 0xfc
-/* screen record 0x32ef40 */
+/* state of maybe_ScrPartInfo; on-screen text/callee hint "CarRecGetModelId" (was
+   ScrCarRecGetModelId_Updateadc60) */
 
-void ScrCarRecGetModelId_Updateadc60(undefined8 param_1)
+void maybe_ScrPartInfo_State1_CarRecGetModelId(undefined8 param_1)
 
 {
   short sVar1;
@@ -1146,9 +1149,10 @@ void ScrCarRecGetModelId_Updateadc60(undefined8 param_1)
 }
 
 // 0x002add60  size 0xe4
-/* screen record 0x32ef40 */
+/* state of maybe_ScrPartInfo; on-screen text/callee hint "CarRecGetModelId" (was
+   ScrCarRecGetModelId_Enteradd60) */
 
-void ScrCarRecGetModelId_Enteradd60(undefined8 param_1)
+void maybe_ScrPartInfo_State0_CarRecGetModelId(undefined8 param_1)
 
 {
   char cVar1;
@@ -1207,7 +1211,7 @@ void maybe_ScrPartInfo_Update(undefined8 param_1)
       *puVar2 = puVar2[1];
     }
     if (puVar2[0xf] == 5) {
-      (*(code *)(&PTR_ScrCarRecGetModelId_Enteradd60_0032ef40)[puVar2[3]])(param_1);
+      (*(code *)(&PTR_maybe_ScrPartInfo_State0_CarRecGetModelId_0032ef40)[puVar2[3]])(param_1);
     }
     maybe_ScrPartInfo_HandleInput(param_1);
     Menu_RequestTransition(puVar2 + 2);

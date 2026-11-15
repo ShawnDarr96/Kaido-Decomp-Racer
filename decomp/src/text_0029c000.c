@@ -2638,9 +2638,10 @@ void maybe_ScrBuyCarColour_State12(int param_1)
 }
 
 // 0x0029f780  size 0x80
-/* screen record 0x32ecc4 */
+/* state of maybe_ScrBuyCarColour; on-screen text/callee hint "GarageComputeCarStats" (was
+   ScrGarageComputeCarStats_Exit) */
 
-void ScrGarageComputeCarStats_Exit(int param_1)
+void maybe_ScrBuyCarColour_State11_GarageComputeCarStats(int param_1)
 
 {
   int iVar1;
@@ -2663,9 +2664,10 @@ void ScrGarageComputeCarStats_Exit(int param_1)
 
 // 0x0029f800  size 0x204
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ecc4 */
+/* state of maybe_ScrBuyCarColour; on-screen text/callee hint "GarageComputeCarStats" (was
+   ScrGarageComputeCarStats_Update) */
 
-void ScrGarageComputeCarStats_Update(int *param_1)
+void maybe_ScrBuyCarColour_State10_GarageComputeCarStats(int *param_1)
 
 {
   short sVar1;
@@ -2745,9 +2747,10 @@ LAB_0029f988:
 
 // 0x0029fa10  size 0xec
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32ecc4 */
+/* state of maybe_ScrBuyCarColour; on-screen text/callee hint "GarageComputeCarStats" (was
+   ScrGarageComputeCarStats_Enter) */
 
-void ScrGarageComputeCarStats_Enter(int param_1)
+void maybe_ScrBuyCarColour_State9_GarageComputeCarStats(int param_1)
 
 {
   int iVar1;

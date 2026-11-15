@@ -106,9 +106,10 @@ void Menuscr_Nop_8(void)
 }
 
 // 0x00294380  size 0x138
-/* screen record 0x32eae8 */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Exit94380) */
 
-void ScrmaybeOptionsGetLanguage_Exit94380(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State8_OptionsGetLanguage(undefined4 *param_1)
 
 {
   bool bVar1;
@@ -164,9 +165,10 @@ void ScrmaybeOptionsGetLanguage_Exit94380(undefined4 *param_1)
 }
 
 // 0x002944c0  size 0x2f0
-/* screen record 0x32eae8 */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Update944c0) */
 
-void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
+void maybe_ScrOptionsLanguage_State7_OptionsGetLanguage(undefined8 param_1)
 
 {
   bool bVar1;
@@ -256,9 +258,10 @@ void ScrmaybeOptionsGetLanguage_Update944c0(undefined8 param_1)
 }
 
 // 0x002947b0  size 0xf4
-/* screen record 0x32eae8 */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Enter947b0) */
 
-void ScrmaybeOptionsGetLanguage_Enter947b0(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State6_OptionsGetLanguage(undefined4 *param_1)
 
 {
   undefined8 uVar1;
@@ -293,9 +296,10 @@ void ScrmaybeOptionsGetLanguage_Enter947b0(undefined4 *param_1)
 }
 
 // 0x002948b0  size 0x524
-/* screen record 0x32eadc */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Exit948b0) */
 
-void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State5_OptionsGetLanguage(undefined4 *param_1)
 
 {
   int *piVar1;
@@ -465,9 +469,10 @@ void ScrmaybeOptionsGetLanguage_Exit948b0(undefined4 *param_1)
 }
 
 // 0x00294de0  size 0x1bc
-/* screen record 0x32eadc */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Update94de0) */
 
-void ScrmaybeOptionsGetLanguage_Update94de0(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State4_OptionsGetLanguage(undefined4 *param_1)
 
 {
   int iVar1;
@@ -526,9 +531,10 @@ void ScrmaybeOptionsGetLanguage_Update94de0(undefined4 *param_1)
 }
 
 // 0x00294fa0  size 0xc0
-/* screen record 0x32eadc */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Enter94fa0) */
 
-void ScrmaybeOptionsGetLanguage_Enter94fa0(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State3_OptionsGetLanguage(undefined4 *param_1)
 
 {
   int iVar1;
@@ -558,9 +564,10 @@ void ScrmaybeOptionsGetLanguage_Enter94fa0(undefined4 *param_1)
 }
 
 // 0x00295060  size 0x2b0
-/* screen record 0x32ead0 */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Exit) */
 
-void ScrmaybeOptionsGetLanguage_Exit(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State2_OptionsGetLanguage(undefined4 *param_1)
 
 {
   int iVar1;
@@ -648,9 +655,10 @@ void ScrmaybeOptionsGetLanguage_Exit(undefined4 *param_1)
 }
 
 // 0x00295320  size 0x348
-/* screen record 0x32ead0 */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Update) */
 
-void ScrmaybeOptionsGetLanguage_Update(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State1_OptionsGetLanguage(undefined4 *param_1)
 
 {
   int iVar1;
@@ -765,9 +773,10 @@ LAB_002954b8:
 }
 
 // 0x00295670  size 0xdc
-/* screen record 0x32ead0 */
+/* state of maybe_ScrOptionsLanguage; on-screen text/callee hint "OptionsGetLanguage" (was
+   ScrmaybeOptionsGetLanguage_Enter) */
 
-void ScrmaybeOptionsGetLanguage_Enter(undefined4 *param_1)
+void maybe_ScrOptionsLanguage_State0_OptionsGetLanguage(undefined4 *param_1)
 
 {
   int iVar1;
@@ -911,7 +920,8 @@ void maybe_ScrOptionsLanguage_Update(undefined8 param_1)
   iVar2 = (int)param_1;
   lVar1 = Menu_IsInputIdle(iVar2 + 0x5b8);
   if (lVar1 != 0) {
-    (*(code *)(&PTR_ScrmaybeOptionsGetLanguage_Enter_0032ead0)[*(int *)(iVar2 + 0x5bc)])(param_1);
+    (*(code *)(&PTR_maybe_ScrOptionsLanguage_State0_OptionsGetLanguage_0032ead0)
+              [*(int *)(iVar2 + 0x5bc)])(param_1);
     maybe_ScrOptionsLanguage_HandleInput(param_1);
     Menu_RequestTransition(iVar2 + 0x5b8);
   }

@@ -279,9 +279,10 @@ LAB_0026493c:
 
 // 0x00264d60  size 0x744
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d36c */
+/* state of MenuPage32; on-screen text/callee hint "DrawSelectCourseTo" (was
+   ScrDraw_SelectCourseTo_Update) */
 
-void ScrDraw_SelectCourseTo_Update(int param_1)
+void maybe_PageSelectCourse_State4_DrawSelectCourseTo(int param_1)
 
 {
   bool bVar1;
@@ -1042,9 +1043,9 @@ void MenuScr_Select_TimeAttack(int param_1)
 
 // 0x00266600  size 0x3c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 32 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage32_Exit(void)
+void maybe_PageSelectCourse_Exit(void)
 
 {
   *(undefined4 *)(_g_MenuMgr + 0x5a0) = 0;
@@ -1058,9 +1059,9 @@ void MenuPage32_Exit(void)
 
 // 0x00266640  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 32 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage32_Update(int param_1)
+void maybe_PageSelectCourse_Update(int param_1)
 
 {
   uint uVar1;
@@ -1078,9 +1079,9 @@ void MenuPage32_Update(int param_1)
 
 // 0x002666e0  size 0x1f8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 32 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage32_Enter(int param_1)
+void maybe_PageSelectCourse_Enter(int param_1)
 
 {
   undefined4 uVar1;
@@ -1613,9 +1614,9 @@ void ScrCareer_Draw_YourGarageHas(int param_1)
 
 // 0x00267860  size 0x12c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d740 */
+/* state of maybe_PageMoney; on-screen text/callee hint "DoYouWant" (was ScrDoYouWant_Exit67860) */
 
-void ScrDoYouWant_Exit67860(int param_1)
+void maybe_PageMoney_State2_DoYouWant(int param_1)
 
 {
   int iVar1;
@@ -1650,9 +1651,10 @@ void ScrDoYouWant_Exit67860(int param_1)
 
 // 0x00267990  size 0x12c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d740 */
+/* state of maybe_PageMoney; on-screen text/callee hint "DoYouWant" (was ScrDoYouWant_Update67990)
+    */
 
-void ScrDoYouWant_Update67990(int param_1)
+void maybe_PageMoney_State1_DoYouWant(int param_1)
 
 {
   int iVar1;

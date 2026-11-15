@@ -340,7 +340,7 @@ void ScrCareer_Draw_PlayerCar(int *param_1)
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x327764 */
 
-void ScrScrCareerDrawPlayerCar_Exit(void)
+void PagePlayerCar_Exit(void)
 
 {
   Menu_BlockInput(_g_MenuMgr + 0x654);
@@ -352,7 +352,7 @@ void ScrScrCareerDrawPlayerCar_Exit(void)
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x327764 */
 
-void ScrScrCareerDrawPlayerCar_Update(undefined8 param_1)
+void PagePlayerCar_Update(undefined8 param_1)
 
 {
   bool bVar1;
@@ -411,7 +411,7 @@ void ScrScrCareerDrawPlayerCar_Update(undefined8 param_1)
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* screen record 0x327764 */
 
-void ScrScrCareerDrawPlayerCar_Enter(void)
+void PagePlayerCar_Enter(void)
 
 {
   undefined4 uVar1;
@@ -1813,9 +1813,9 @@ void ScrRace_Draw_TodayResult(int param_1)
 
 // 0x0022f290  size 0x138
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32b060 */
+/* state of MenuPage14; on-screen text/callee hint "KaidoTheatre" (was ScrKaidoTheatre_Update) */
 
-void ScrKaidoTheatre_Update(int param_1)
+void maybe_PageKaidoTheatre_State1_KaidoTheatre(int param_1)
 
 {
   int iVar1;
@@ -1978,9 +1978,9 @@ void ScrCareer_Draw_KaidoTheatre_f3d0(int param_1)
 
 // 0x0022f760  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 14 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage14_Exit(void)
+void maybe_PageKaidoTheatre_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1989,9 +1989,9 @@ void MenuPage14_Exit(void)
 
 // 0x0022f780  size 0xc8
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 14 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage14_Update(undefined8 param_1)
+void maybe_PageKaidoTheatre_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -2015,9 +2015,9 @@ void MenuPage14_Update(undefined8 param_1)
 
 // 0x0022f850  size 0x428
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 14 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage14_Enter(void)
+void maybe_PageKaidoTheatre_Enter(void)
 
 {
   undefined4 uVar1;

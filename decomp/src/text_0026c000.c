@@ -4,9 +4,10 @@
 
 // 0x0026cb10  size 0xca0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d91c */
+/* state of MenuPage37; on-screen text/callee hint "GarageDrawFullAero" (was
+   ScrScrGarageDrawFullAeroa980_Enter) */
 
-void ScrScrGarageDrawFullAeroa980_Enter(undefined8 param_1)
+void maybe_PageAero_State3_GarageDrawFullAero(undefined8 param_1)
 
 {
   int iVar1;
@@ -557,9 +558,9 @@ void ScrScrGarageDrawFullAeroa980_Enter(undefined8 param_1)
 
 // 0x0026d7b0  size 0xcac
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d910 */
+/* state of MenuPage37; on-screen text/callee hint "Category" (was ScrCategory_Exit) */
 
-void ScrCategory_Exit(undefined8 param_1)
+void maybe_PageAero_State2_Category(undefined8 param_1)
 
 {
   int iVar1;
@@ -1111,9 +1112,9 @@ void ScrCategory_Exit(undefined8 param_1)
 
 // 0x0026e460  size 0xfb4
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d910 */
+/* state of MenuPage37; on-screen text/callee hint "Category" (was ScrCategory_Update) */
 
-void ScrCategory_Update(undefined8 param_1)
+void maybe_PageAero_State1_Category(undefined8 param_1)
 
 {
   byte bVar1;
@@ -1934,9 +1935,9 @@ void ScrCareer_Draw_Category(undefined8 param_1)
 
 // 0x0026f880  size 0x14
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 37 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage37_Exit(void)
+void maybe_PageAero_Exit(void)
 
 {
   *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 4;
@@ -1945,9 +1946,9 @@ void MenuPage37_Exit(void)
 
 // 0x0026f8a0  size 0x110
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 37 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage37_Update(undefined8 param_1)
+void maybe_PageAero_Update(undefined8 param_1)
 
 {
   long lVar1;
@@ -1975,9 +1976,9 @@ void MenuPage37_Update(undefined8 param_1)
 
 // 0x0026f9b0  size 0x42c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 37 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage37_Enter(int param_1)
+void maybe_PageAero_Enter(int param_1)
 
 {
   int iVar1;

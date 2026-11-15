@@ -1640,9 +1640,9 @@ void maybe_PageCarPartInfo_State7(int param_1)
 
 // 0x00213430  size 0x17c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a02c */
+/* state of maybe_PageCarPartInfo; on-screen text/callee hint "DoYouWant" (was ScrDoYouWant_Exit) */
 
-void ScrDoYouWant_Exit(int param_1)
+void maybe_PageCarPartInfo_State5_DoYouWant(int param_1)
 
 {
   int iVar1;
@@ -1688,9 +1688,10 @@ void ScrDoYouWant_Exit(int param_1)
 
 // 0x002135b0  size 0x164
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32a02c */
+/* state of maybe_PageCarPartInfo; on-screen text/callee hint "DoYouWant" (was ScrDoYouWant_Update)
+    */
 
-void ScrDoYouWant_Update(int param_1)
+void maybe_PageCarPartInfo_State4_DoYouWant(int param_1)
 
 {
   int iVar1;

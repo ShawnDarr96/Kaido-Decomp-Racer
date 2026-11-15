@@ -709,9 +709,9 @@ void MenuPage30_Enter(void)
 
 // 0x002615e0  size 0x160
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* entry 3 of state table 0x32d2e0 used by MenuPage31_Update */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage31_State3(undefined4 *param_1)
+void maybe_PageCarStatus_State3(undefined4 *param_1)
 
 {
   int iVar1;
@@ -748,9 +748,9 @@ void MenuPage31_State3(undefined4 *param_1)
 
 // 0x00261740  size 0x160
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d2e0 */
+/* state of MenuPage31; on-screen text/callee hint "CarStatus" (was ScrCarStatus_Exit) */
 
-void ScrCarStatus_Exit(undefined4 *param_1)
+void maybe_PageCarStatus_State2_CarStatus(undefined4 *param_1)
 
 {
   int iVar1;
@@ -950,9 +950,9 @@ void ScrCareer_Draw_CarStatus(int *param_1)
 
 // 0x00261dc0  size 0x8a0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d2e0 */
+/* state of MenuPage31; on-screen text/callee hint "CarStatus" (was ScrCarStatus_Enter) */
 
-void ScrCarStatus_Enter(int *param_1)
+void maybe_PageCarStatus_State0_CarStatus(int *param_1)
 
 {
   int iVar1;
@@ -1265,9 +1265,9 @@ void ScrCarStatus_Enter(int *param_1)
 
 // 0x00262670  size 0x30
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 31 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage31_Exit(void)
+void maybe_PageCarStatus_Exit(void)
 
 {
   Menu_BlockInput(_g_MenuMgr + 0x654);
@@ -1277,9 +1277,9 @@ void MenuPage31_Exit(void)
 
 // 0x002626a0  size 0x98
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* menu page 31 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage31_Update(int param_1)
+void maybe_PageCarStatus_Update(int param_1)
 
 {
   uint uVar1;
@@ -1287,7 +1287,7 @@ void MenuPage31_Update(int param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_ScrCarStatus_Enter_0032d2e0)[*(int *)(param_1 + 0x18)])();
+  (*(code *)(&PTR_maybe_PageCarStatus_State0_CarStatus_0032d2e0)[*(int *)(param_1 + 0x18)])();
   uVar1 = *(uint *)(_g_MenuMgr + 0x28);
   if (((uVar1 & 4) == 0) && ((uVar1 & 1) == 0)) {
     *(uint *)(_g_MenuMgr + 0x28) = uVar1 | 0x800;
@@ -1296,9 +1296,9 @@ void MenuPage31_Update(int param_1)
 }
 
 // 0x00262740  size 0x8
-/* menu page 31 (table 0x3276e0, dispatched by 0x201380) */
+/* page identified from its states' on-screen text (N154) */
 
-void MenuPage31_Enter(void)
+void maybe_PageCarStatus_Enter(void)
 
 {
   return;

@@ -484,9 +484,9 @@ void ScrGarage_Draw_FfSort(undefined8 param_1)
 
 // 0x00268f40  size 0x790
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d770 */
+/* state of maybe_PageChangeCar; on-screen text/callee hint "FfSort" (was ScrFfSort_Enter) */
 
-void ScrFfSort_Enter(undefined8 param_1)
+void maybe_PageChangeCar_State0_FfSort(undefined8 param_1)
 
 {
   int iVar1;
@@ -763,7 +763,8 @@ void maybe_PageChangeCar_Update(undefined8 param_1)
   if ((*(uint *)(_g_MenuMgr + 0x28) & 2) == 0) {
     *(uint *)(_g_MenuMgr + 0x28) = *(uint *)(_g_MenuMgr + 0x28) | 0x1000;
   }
-  (*(code *)(&PTR_ScrFfSort_Enter_0032d770)[*(int *)((int)param_1 + 0x2c)])(param_1);
+  (*(code *)(&PTR_maybe_PageChangeCar_State0_FfSort_0032d770)[*(int *)((int)param_1 + 0x2c)])
+            (param_1);
   iVar1 = UiMgr_FindLayout(8);
   UiLayout_UpdateAnim(*_g_UiMgr + iVar1 * 0x4f4 + 4,2);
   iVar1 = UiMgr_FindLayout(8);
@@ -1828,9 +1829,10 @@ LAB_0026b9ac:
 }
 
 // 0x0026bd30  size 0x138
-/* screen record 0x32d91c */
+/* state of MenuPage37; on-screen text/callee hint "GarageDrawFullAero" (was
+   ScrScrGarageDrawFullAeroa980_Exit) */
 
-void ScrScrGarageDrawFullAeroa980_Exit(undefined8 param_1)
+void maybe_PageAero_State5_GarageDrawFullAero(undefined8 param_1)
 
 {
   char cVar1;
@@ -1887,9 +1889,10 @@ LAB_0026bd9c:
 
 // 0x0026be70  size 0xca0
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* screen record 0x32d91c */
+/* state of MenuPage37; on-screen text/callee hint "GarageDrawFullAero" (was
+   ScrScrGarageDrawFullAeroa980_Update) */
 
-void ScrScrGarageDrawFullAeroa980_Update(undefined8 param_1)
+void maybe_PageAero_State4_GarageDrawFullAero(undefined8 param_1)
 
 {
   int iVar1;
