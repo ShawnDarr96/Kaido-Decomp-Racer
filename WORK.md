@@ -47,7 +47,7 @@ Columns:
 | M9 | Match Options_SetDefaults (54%) and Options_ApplySeVolume (74% under b145: final store duplicated into the early-out path) with another C form | any |  |  | Gap of M8 |
 | M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
 | M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
-| M14 | Match batch 11: RingBuf/Phys/Save/GameState/RaceTbl/Render/Snd/CarRec/LapTime/Menu/Composer/Input/Vec3 functions (82 functions) | any |  |  |  |
+| M14 | Match batch 11: RingBuf/Phys/Save/GameState/RaceTbl/Render/Snd/CarRec/LapTime/Menu/Composer/Input/Vec3 functions (82 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
 
 ## P4 Finish
 
@@ -386,3 +386,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim M12.
 - 2026-11-15 ShawnDarr96/claude: M12 done; added M13 (gaps).
 - 2026-11-15 ShawnDarr96: added M14.
+- 2026-11-15 ShawnDarr96/claude: claim M14.
