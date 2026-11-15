@@ -49,7 +49,7 @@ Columns:
 | M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
 | M15 | Match Vec3_Scale and Vec3_ScaleCopy (97%: the game assigns x/y/z to f0/f1/f2; locals and struct-copy forms tried) | any |  |  | Gap of M14 |
 | M18 | Batch 13 leftovers: Sema/Thread wrappers (slt $at macro shape - check if they come from an asm/GCC library), Vec3_Sub/Add/Vec4_Sub/Quat_Mul (float regs), car clamps (bc1tl), Demo_EvalKeyC/D | any |  |  | Gap of M17 |
-| M19 | Match batch 14: menu draw states, SeqGen validators, BlockPool, RoadData, CarSnd, Profile calendar, RaceScene callbacks (29 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
+| M20 | Batch 14 leftovers: SeqGen_IsValidNote/Start/End, BlockPool_FindFree(B), RoadData_GetSectionStart/End, Profile_GetMonth; and State5_DrawWinLoss (needs cvt.w.s as .word in the scratch) | any |  |  | Gap of M19 |
 
 ## P4 Finish
 
@@ -253,6 +253,7 @@ Columns:
 | M14 | 80/82 matched (https://decomp.me/scratch/K6LSo, src/batch11_accessors.c); 396 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | f160237 |
 | M16 | 67/67 matched (https://decomp.me/scratch/j5YB4, src/batch12_accessors.c); 463 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 4a2f7e3 |
 | M17 | 22/38 matched (https://decomp.me/scratch/jwxlJ, src/batch13_helpers.c); 485 matched | P3 | ShawnDarr96/claude | 2026-11-15 | 1a152ea |
+| M19 | 21/29 matched (https://decomp.me/scratch/GJB7z, src/batch14_menus_seqgen.c); 506 matched | P3 | ShawnDarr96/claude | 2026-11-15 | d8e09e0 |
 
 ## Changes to the board
 
@@ -401,3 +402,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: M17 done; added M18 (gaps).
 - 2026-11-15 ShawnDarr96: added M19.
 - 2026-11-15 ShawnDarr96/claude: claim M19.
+- 2026-11-15 ShawnDarr96/claude: M19 done; added M20 (gaps).
