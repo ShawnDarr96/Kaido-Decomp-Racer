@@ -412,58 +412,53 @@ void ComposerScene_Free(void)
 }
 
 // 0x002f8760  size 0x17c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ComposerScene_Alloc(undefined8 param_1,undefined4 param_2)
 
 {
   int *piVar1;
   int *piVar2;
-  int iVar3;
-  undefined4 uVar4;
-  int *piVar5;
-  int iVar6;
-  uint uVar7;
-  int iVar8;
-  int iVar9;
-  undefined4 *puVar10;
+  undefined4 uVar3;
+  int *piVar4;
+  int iVar5;
+  uint uVar6;
+  int iVar7;
+  undefined4 *puVar8;
   
   puRam0036f934 = (undefined4 *)Mem_Alloc16(0x1c,param_1);
-  uVar4 = Mem_Alloc16(0x17f0,param_1);
-  iVar9 = 0;
-  iVar6 = 0;
-  piVar5 = &DAT_00343410;
-  *puRam0036f934 = uVar4;
+  uVar3 = Mem_Alloc16(0x17f0,param_1);
+  iVar7 = 0;
+  iVar5 = 0;
+  piVar4 = &DAT_00343410;
+  *puRam0036f934 = uVar3;
   puRam0036f934[1] = param_2;
   puRam0036f934[2] = 0xffffffff;
   puRam0036f934[3] = puRam0036f934[1];
   puRam0036f934[4] = 1;
   puRam0036f934[5] = 0xffffffff;
   do {
-    piVar1 = piVar5 + 2;
-    iVar8 = _g_ArcToc + *piVar5 * 0x14;
-    iVar3 = *(int *)(iVar8 + 0x20);
-    if (iVar3 == 0) {
-      uVar7 = *(uint *)(iVar8 + 0x18);
+    piVar1 = piVar4 + 2;
+    uVar6 = g_ArcToc->entries[*piVar4].unpackedSize;
+    if (uVar6 == 0) {
+      uVar6 = g_ArcToc->entries[*piVar4].sectorCount;
     }
     else {
-      uVar7 = iVar3 + 0x7ffU >> 0xb;
+      uVar6 = uVar6 + 0x7ff >> 0xb;
     }
-    piVar2 = piVar5 + 1;
-    iVar6 = iVar6 + 1;
-    piVar5 = piVar5 + 3;
-    iVar9 = iVar9 + ((*piVar1 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                    uVar7 * 0x800 + *piVar2 * 0x80;
-  } while (iVar6 < 0x14);
+    piVar2 = piVar4 + 1;
+    iVar5 = iVar5 + 1;
+    piVar4 = piVar4 + 3;
+    iVar7 = iVar7 + ((*piVar1 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                    uVar6 * 0x800 + *piVar2 * 0x80;
+  } while (iVar5 < 0x14);
   UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
-  UiMgr_Alloc(0x430750,0x14,iVar9,0,0,0x186f);
-  iVar6 = 0;
-  puVar10 = &DAT_00343410;
+  UiMgr_Alloc(0x430750,0x14,iVar7,0,0,0x186f);
+  iVar5 = 0;
+  puVar8 = &DAT_00343410;
   do {
-    UiMgr_LoadLayout(iVar6,puVar10,0);
-    iVar6 = iVar6 + 1;
-    puVar10 = puVar10 + 3;
-  } while (iVar6 < 0x14);
+    UiMgr_LoadLayout(iVar5,puVar8,0);
+    iVar5 = iVar5 + 1;
+    puVar8 = puVar8 + 3;
+  } while (iVar5 < 0x14);
   return;
 }
 

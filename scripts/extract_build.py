@@ -7,7 +7,9 @@ Format (from Arc_Init / Arc_LoadFileEx / Gut_ArchiveDecompress in the executable
 BUILD.TOC   16-byte header (u32 entry count, 3 more u32), then `count` entries of 0x14 bytes:
             u32 sector   start in BUILD.DAT, in 2048-byte sectors
             u32 stored   bytes stored in BUILD.DAT
-            u32 unk08, u32 unk0c
+            u32 sectors  ceil(stored / 2048), checked for all 15219 entries
+            u32 stream   1 on 102 entries with sector 0 and 4-333 MB sizes (files streamed from
+                         outside BUILD.DAT); 0 otherwise
             u32 unpacked 0 = stored as-is, otherwise the size after GUT decompression
 GUT archive a standard `uclpack` stream: magic 00 e9 'UCL' ff 01 1a, u32 BE flags, u8 method (0x2b,
             NRV2B_LE32), u8 level, u32 BE block size; then chunks of big-endian u32 raw size and u32

@@ -2070,58 +2070,53 @@ void maybe_IntroCar_OnLoaded(undefined8 param_1,undefined8 param_2)
 }
 
 // 0x002d7a80  size 0x110
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_IntroCar_LoadFile(undefined8 param_1)
 
 {
-  int iVar1;
-  byte bVar2;
-  uint uVar3;
-  undefined4 uVar4;
-  int iVar5;
-  int iVar6;
+  byte bVar1;
+  uint uVar2;
+  undefined4 uVar3;
+  int iVar4;
   
-  bVar2 = GameState_Get_0();
-  if (bVar2 < 8) {
+  bVar1 = GameState_Get_0();
+  if (bVar1 < 8) {
                     /* WARNING: Switch is manually overridden */
-    switch(bVar2) {
+    switch(bVar1) {
     case 0:
-      iVar6 = 0x1984;
+      iVar4 = 0x1984;
       break;
     case 1:
-      iVar6 = 0x1983;
+      iVar4 = 0x1983;
       break;
     case 2:
-      iVar6 = 0x1986;
+      iVar4 = 0x1986;
       break;
     case 3:
-      iVar6 = 0x1985;
+      iVar4 = 0x1985;
       break;
     case 4:
-      iVar6 = 0x1987;
+      iVar4 = 0x1987;
       break;
     case 5:
-      iVar6 = 0x1981;
+      iVar4 = 0x1981;
       break;
     case 6:
-      iVar6 = 0x1982;
+      iVar4 = 0x1982;
       break;
     case 7:
-      iVar6 = 0x1988;
+      iVar4 = 0x1988;
     }
-    iVar5 = iVar6 * 0x14 + _g_ArcToc;
-    iVar1 = *(int *)(iVar5 + 0x20);
-    if (iVar1 == 0) {
-      uVar3 = *(uint *)(iVar5 + 0x18);
+    uVar2 = g_ArcToc->entries[iVar4].unpackedSize;
+    if (uVar2 == 0) {
+      uVar2 = g_ArcToc->entries[iVar4].sectorCount;
     }
     else {
-      uVar3 = iVar1 + 0x7ffU >> 0xb;
+      uVar2 = uVar2 + 0x7ff >> 0xb;
     }
-    uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,param_1);
-    *(undefined4 *)(iRam0036f85c + 0xc) = uVar4;
+    uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
+    *(undefined4 *)(iRam0036f85c + 0xc) = uVar3;
     *(undefined4 *)(iRam0036f85c + 0x10) = 0;
-    Arc_LoadFileEx(iVar6,*(undefined4 *)(iRam0036f85c + 0xc),0x2d7740,iRam0036f85c,0,0);
+    Arc_LoadFileEx(iVar4,*(undefined4 *)(iRam0036f85c + 0xc),0x2d7740,iRam0036f85c,0,0);
   }
   return;
 }

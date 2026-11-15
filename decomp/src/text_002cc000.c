@@ -443,8 +443,6 @@ void RaceHud_ClearSlot(int param_1,uint param_2)
 }
 
 // 0x002ccde0  size 0x2a40
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
 
 {
@@ -457,13 +455,13 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   int *piVar7;
   byte bVar8;
   int iVar9;
-  int iVar10;
+  undefined4 uVar10;
   undefined4 uVar11;
-  undefined4 uVar12;
+  int iVar12;
   int iVar13;
-  int iVar14;
-  uint uVar15;
-  uint uVar16;
+  uint uVar14;
+  int iVar15;
+  int iVar16;
   uint uVar17;
   uint uVar18;
   uint uVar19;
@@ -471,17 +469,16 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   uint uVar21;
   uint uVar22;
   uint uVar23;
-  int iVar24;
-  uint uVar25;
+  uint uVar24;
+  int iVar25;
   uint uVar26;
   uint uVar27;
-  int iVar28;
+  uint uVar28;
   int iVar29;
   int iVar30;
-  int iVar31;
   int unaff_s1_lo;
-  int *piVar32;
-  int iVar33;
+  int *piVar31;
+  int iVar32;
   undefined4 uStack_1e0;
   undefined1 uStack_1d0;
   int aiStack_180 [4];
@@ -555,14 +552,14 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   bVar5 = false;
   bVar4 = (*(uint *)(param_1 + 0x27c) & 1) != 0;
   maybe_RaceHud_SetupRecordLayout(&piStack_20);
-  iVar30 = (uint)bRam0036f810 * 6;
+  iVar29 = (uint)bRam0036f810 * 6;
   piStack_10 = piStack_20;
-  bVar1 = (&DAT_0032f531)[iVar30];
+  bVar1 = (&DAT_0032f531)[iVar29];
   piStack_8 = piStack_18;
   aiStack_140[0] = DAT_0032fc10;
   aiStack_140[1] = DAT_0032fc14;
   piStack_c = piStack_1c;
-  iVar33 = (byte)(&DAT_0032f530)[iVar30] + 0x24;
+  iVar32 = (byte)(&DAT_0032f530)[iVar29] + 0x24;
   aiStack_140[2] = DAT_0032fc18;
   aiStack_140[3] = DAT_0032fc1c;
   uStack_130 = DAT_0032fc20;
@@ -575,7 +572,7 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   auStack_170[3] = DAT_0032fc3c;
   uStack_14c = DAT_0032fc54;
   uStack_160 = DAT_0032fc40;
-  bVar2 = (&DAT_0032f533)[iVar30];
+  bVar2 = (&DAT_0032f533)[iVar29];
   uStack_158 = DAT_0032fc48;
   aiStack_180[2] = DAT_0032fc68;
   uStack_154 = DAT_0032fc4c;
@@ -585,9 +582,9 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   aiStack_180[1] = DAT_0032fc64;
   aiStack_180[3] = DAT_0032fc6c;
   iVar3 = aiStack_140[bVar1];
-  iVar9 = (byte)(&DAT_0032f532)[iVar30] + 0x28;
-  uVar12 = auStack_170[(byte)(&DAT_0032f532)[iVar30]];
-  iVar30 = aiStack_180[(byte)(&DAT_0032f534)[iVar30]];
+  iVar9 = (byte)(&DAT_0032f532)[iVar29] + 0x28;
+  uVar11 = auStack_170[(byte)(&DAT_0032f532)[iVar29]];
+  iVar29 = aiStack_180[(byte)(&DAT_0032f534)[iVar29]];
   bVar8 = GameState_Get_354_7050();
   piVar7 = piStack_8;
   piVar6 = piStack_c;
@@ -637,433 +634,432 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
       bVar5 = true;
     }
   }
-  iVar13 = unaff_s1_lo * 0xc;
-  iVar28 = *(int *)(&DAT_0032f8b0 + iVar13) * 0x14;
-  iVar10 = _g_ArcToc + 0x20;
-  iVar31 = *(int *)(iVar10 + iVar28);
-  if (iVar31 == 0) {
-    uVar25 = *(uint *)(iVar28 + _g_ArcToc + 0x18);
+  iVar12 = unaff_s1_lo * 0xc;
+  iVar30 = *(int *)(&DAT_0032f8b0 + iVar12);
+  uVar26 = g_ArcToc->entries[iVar30].unpackedSize;
+  if (uVar26 == 0) {
+    uVar26 = g_ArcToc->entries[iVar30].sectorCount;
   }
   else {
-    uVar25 = iVar31 + 0x7ffU >> 0xb;
+    uVar26 = uVar26 + 0x7ff >> 0xb;
   }
-  iVar31 = ((*(int *)(&DAT_0032f8b8 + iVar13) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar25 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar13) * 0x80;
+  iVar30 = ((*(int *)(&DAT_0032f8b8 + iVar12) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+           uVar26 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar12) * 0x80;
   if (bVar4) {
-    iVar28 = *(int *)(iVar10 + DAT_0032fa54 * 0x14);
-    if (iVar28 == 0) {
-      uVar25 = *(uint *)(DAT_0032fa54 * 0x14 + _g_ArcToc + 0x18);
+    uVar26 = g_ArcToc->entries[DAT_0032fa54].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[DAT_0032fa54].sectorCount;
     }
     else {
-      uVar25 = iVar28 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar14 = (uint)bVar1 * 0xc;
-    piVar32 = (int *)(&DAT_0032f8b0 + iVar14);
-    iVar28 = *(int *)(iVar10 + *piVar32 * 0x14);
-    if (iVar28 == 0) {
-      uVar22 = *(uint *)(*piVar32 * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar22 = iVar28 + 0x7ffU >> 0xb;
-    }
-    iVar28 = *(int *)(iVar10 + DAT_0032f910 * 0x14);
-    if (iVar28 == 0) {
-      uVar23 = *(uint *)(DAT_0032f910 * 0x14 + _g_ArcToc + 0x18);
+    iVar13 = (uint)bVar1 * 0xc;
+    piVar31 = (int *)(&DAT_0032f8b0 + iVar13);
+    uVar23 = g_ArcToc->entries[*piVar31].unpackedSize;
+    if (uVar23 == 0) {
+      uVar23 = g_ArcToc->entries[*piVar31].sectorCount;
     }
     else {
-      uVar23 = iVar28 + 0x7ffU >> 0xb;
+      uVar23 = uVar23 + 0x7ff >> 0xb;
     }
-    iVar28 = *(int *)(iVar10 + DAT_0032f91c * 0x14);
-    if (iVar28 == 0) {
-      uVar15 = *(uint *)(DAT_0032f91c * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar15 = iVar28 + 0x7ffU >> 0xb;
-    }
-    iVar28 = *(int *)(iVar10 + DAT_0032f904 * 0x14);
-    if (iVar28 == 0) {
-      uVar26 = *(uint *)(DAT_0032f904 * 0x14 + _g_ArcToc + 0x18);
+    uVar24 = g_ArcToc->entries[DAT_0032f910].unpackedSize;
+    if (uVar24 == 0) {
+      uVar24 = g_ArcToc->entries[DAT_0032f910].sectorCount;
     }
     else {
-      uVar26 = iVar28 + 0x7ffU >> 0xb;
+      uVar24 = uVar24 + 0x7ff >> 0xb;
     }
-    iVar31 = iVar31 + ((DAT_0032fa5c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + DAT_0032fa58 * 0x80 +
-             ((*(int *)(&DAT_0032f8b8 + iVar14) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar22 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar14) * 0x80 +
+    uVar14 = g_ArcToc->entries[DAT_0032f91c].unpackedSize;
+    if (uVar14 == 0) {
+      uVar14 = g_ArcToc->entries[DAT_0032f91c].sectorCount;
+    }
+    else {
+      uVar14 = uVar14 + 0x7ff >> 0xb;
+    }
+    uVar27 = g_ArcToc->entries[DAT_0032f904].unpackedSize;
+    if (uVar27 == 0) {
+      uVar27 = g_ArcToc->entries[DAT_0032f904].sectorCount;
+    }
+    else {
+      uVar27 = uVar27 + 0x7ff >> 0xb;
+    }
+    iVar30 = iVar30 + ((DAT_0032fa5c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + DAT_0032fa58 * 0x80 +
+             ((*(int *)(&DAT_0032f8b8 + iVar13) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+             uVar23 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar13) * 0x80 +
              ((DAT_0032f918 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar23 * 0x800 + DAT_0032f914 * 0x80 +
+             uVar24 * 0x800 + DAT_0032f914 * 0x80 +
              ((DAT_0032f924 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar15 * 0x800 + DAT_0032f920 * 0x80 +
+             uVar14 * 0x800 + DAT_0032f920 * 0x80 +
              ((DAT_0032f90c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar26 * 0x800 + DAT_0032f908 * 0x80;
+             uVar27 * 0x800 + DAT_0032f908 * 0x80;
   }
   else {
-    iVar28 = *(int *)(iVar10 + DAT_0032fa3c * 0x14);
-    if (iVar28 == 0) {
-      uVar25 = *(uint *)(DAT_0032fa3c * 0x14 + _g_ArcToc + 0x18);
+    uVar26 = g_ArcToc->entries[DAT_0032fa3c].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[DAT_0032fa3c].sectorCount;
     }
     else {
-      uVar25 = iVar28 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar28 = *(int *)(iVar10 + DAT_0032fa48 * 0x14);
-    if (iVar28 == 0) {
-      uVar22 = *(uint *)(DAT_0032fa48 * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar22 = iVar28 + 0x7ffU >> 0xb;
-    }
-    iVar14 = ((uint)bVar1 * 2 + (uint)bVar1) * 4;
-    piVar32 = (int *)(&DAT_0032f8b0 + iVar14);
-    iVar28 = *(int *)(iVar10 + *piVar32 * 0x14);
-    if (iVar28 == 0) {
-      uVar23 = *(uint *)(*piVar32 * 0x14 + _g_ArcToc + 0x18);
+    uVar23 = g_ArcToc->entries[DAT_0032fa48].unpackedSize;
+    if (uVar23 == 0) {
+      uVar23 = g_ArcToc->entries[DAT_0032fa48].sectorCount;
     }
     else {
-      uVar23 = iVar28 + 0x7ffU >> 0xb;
+      uVar23 = uVar23 + 0x7ff >> 0xb;
     }
-    iVar28 = *(int *)(iVar10 + DAT_0032f904 * 0x14);
-    if (iVar28 == 0) {
-      uVar15 = *(uint *)(DAT_0032f904 * 0x14 + _g_ArcToc + 0x18);
+    iVar13 = ((uint)bVar1 * 2 + (uint)bVar1) * 4;
+    piVar31 = (int *)(&DAT_0032f8b0 + iVar13);
+    uVar24 = g_ArcToc->entries[*piVar31].unpackedSize;
+    if (uVar24 == 0) {
+      uVar24 = g_ArcToc->entries[*piVar31].sectorCount;
     }
     else {
-      uVar15 = iVar28 + 0x7ffU >> 0xb;
+      uVar24 = uVar24 + 0x7ff >> 0xb;
     }
-    iVar31 = iVar31 + ((DAT_0032fa44 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + DAT_0032fa40 * 0x80 +
+    uVar14 = g_ArcToc->entries[DAT_0032f904].unpackedSize;
+    if (uVar14 == 0) {
+      uVar14 = g_ArcToc->entries[DAT_0032f904].sectorCount;
+    }
+    else {
+      uVar14 = uVar14 + 0x7ff >> 0xb;
+    }
+    iVar30 = iVar30 + ((DAT_0032fa44 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + DAT_0032fa40 * 0x80 +
              ((DAT_0032fa50 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar22 * 0x800 + DAT_0032fa4c * 0x80 +
-             ((*(int *)(&DAT_0032f8b8 + iVar14) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar23 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar14) * 0x80 +
+             uVar23 * 0x800 + DAT_0032fa4c * 0x80 +
+             ((*(int *)(&DAT_0032f8b8 + iVar13) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+             uVar24 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar13) * 0x80 +
              ((DAT_0032f90c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar15 * 0x800 + DAT_0032f908 * 0x80;
+             uVar14 * 0x800 + DAT_0032f908 * 0x80;
   }
-  iVar14 = iVar33 * 0xc;
-  iVar29 = *(int *)(&DAT_0032f8b0 + iVar14) * 0x14;
-  iVar28 = *(int *)(iVar10 + iVar29);
-  if (iVar28 == 0) {
-    uVar25 = *(uint *)(iVar29 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar25 = iVar28 + 0x7ffU >> 0xb;
-  }
-  iVar28 = *(int *)(iVar10 + DAT_0032fa78 * 0x14);
-  if (iVar28 == 0) {
-    uVar22 = *(uint *)(DAT_0032fa78 * 0x14 + _g_ArcToc + 0x18);
+  iVar15 = iVar32 * 0xc;
+  iVar13 = *(int *)(&DAT_0032f8b0 + iVar15);
+  uVar26 = g_ArcToc->entries[iVar13].unpackedSize;
+  if (uVar26 == 0) {
+    uVar26 = g_ArcToc->entries[iVar13].sectorCount;
   }
   else {
-    uVar22 = iVar28 + 0x7ffU >> 0xb;
+    uVar26 = uVar26 + 0x7ff >> 0xb;
   }
-  iVar28 = *(int *)(iVar10 + DAT_0032fa84 * 0x14);
-  if (iVar28 == 0) {
-    uVar23 = *(uint *)(DAT_0032fa84 * 0x14 + _g_ArcToc + 0x18);
+  uVar23 = g_ArcToc->entries[DAT_0032fa78].unpackedSize;
+  if (uVar23 == 0) {
+    uVar23 = g_ArcToc->entries[DAT_0032fa78].sectorCount;
   }
   else {
-    uVar23 = iVar28 + 0x7ffU >> 0xb;
+    uVar23 = uVar23 + 0x7ff >> 0xb;
   }
-  iVar28 = 8;
-  iVar31 = iVar31 + ((*(int *)(&DAT_0032f8b8 + iVar14) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                    uVar25 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar14) * 0x80 +
+  uVar24 = g_ArcToc->entries[DAT_0032fa84].unpackedSize;
+  if (uVar24 == 0) {
+    uVar24 = g_ArcToc->entries[DAT_0032fa84].sectorCount;
+  }
+  else {
+    uVar24 = uVar24 + 0x7ff >> 0xb;
+  }
+  iVar13 = 8;
+  iVar30 = iVar30 + ((*(int *)(&DAT_0032f8b8 + iVar15) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                    uVar26 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar15) * 0x80 +
            ((DAT_0032fa80 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar22 * 0x800 + DAT_0032fa7c * 0x80 +
+           uVar23 * 0x800 + DAT_0032fa7c * 0x80 +
            ((DAT_0032fa8c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar23 * 0x800 + DAT_0032fa88 * 0x80;
+           uVar24 * 0x800 + DAT_0032fa88 * 0x80;
   if (*(int *)(param_1 + 0x288) == 0) {
-    iVar29 = iVar9 * 0xc;
-    iVar28 = *(int *)(iVar10 + *(int *)(&DAT_0032f8b0 + iVar29) * 0x14);
-    if (iVar28 == 0) {
-      uVar25 = *(uint *)(*(int *)(&DAT_0032f8b0 + iVar29) * 0x14 + _g_ArcToc + 0x18);
+    iVar16 = iVar9 * 0xc;
+    uVar26 = g_ArcToc->entries[*(int *)(&DAT_0032f8b0 + iVar16)].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[*(int *)(&DAT_0032f8b0 + iVar16)].sectorCount;
     }
     else {
-      uVar25 = iVar28 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar28 = *(int *)(iVar10 + DAT_0032fb14 * 0x14);
-    if (iVar28 == 0) {
-      uVar22 = *(uint *)(DAT_0032fb14 * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar22 = iVar28 + 0x7ffU >> 0xb;
-    }
-    iVar28 = *(int *)(iVar10 + DAT_0032fb74 * 0x14);
-    if (iVar28 == 0) {
-      uVar23 = *(uint *)(DAT_0032fb74 * 0x14 + _g_ArcToc + 0x18);
+    uVar23 = g_ArcToc->entries[DAT_0032fb14].unpackedSize;
+    if (uVar23 == 0) {
+      uVar23 = g_ArcToc->entries[DAT_0032fb14].sectorCount;
     }
     else {
-      uVar23 = iVar28 + 0x7ffU >> 0xb;
+      uVar23 = uVar23 + 0x7ff >> 0xb;
     }
-    iVar24 = (bVar2 + 0x34) * 0xc;
-    iVar28 = *(int *)(iVar10 + *(int *)(&DAT_0032f8b0 + iVar24) * 0x14);
-    if (iVar28 == 0) {
-      uVar15 = *(uint *)(*(int *)(&DAT_0032f8b0 + iVar24) * 0x14 + _g_ArcToc + 0x18);
+    uVar24 = g_ArcToc->entries[DAT_0032fb74].unpackedSize;
+    if (uVar24 == 0) {
+      uVar24 = g_ArcToc->entries[DAT_0032fb74].sectorCount;
     }
     else {
-      uVar15 = iVar28 + 0x7ffU >> 0xb;
+      uVar24 = uVar24 + 0x7ff >> 0xb;
     }
-    iVar28 = 0xe;
-    iVar31 = iVar31 + ((*(int *)(&DAT_0032f8b8 + iVar29) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar29) * 0x80 +
+    iVar25 = (bVar2 + 0x34) * 0xc;
+    uVar14 = g_ArcToc->entries[*(int *)(&DAT_0032f8b0 + iVar25)].unpackedSize;
+    if (uVar14 == 0) {
+      uVar14 = g_ArcToc->entries[*(int *)(&DAT_0032f8b0 + iVar25)].sectorCount;
+    }
+    else {
+      uVar14 = uVar14 + 0x7ff >> 0xb;
+    }
+    iVar13 = 0xe;
+    iVar30 = iVar30 + ((*(int *)(&DAT_0032f8b8 + iVar16) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar16) * 0x80 +
              ((DAT_0032fb1c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar22 * 0x800 + DAT_0032fb18 * 0x80 +
+             uVar23 * 0x800 + DAT_0032fb18 * 0x80 +
              ((DAT_0032fb7c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar23 * 0x800 + DAT_0032fb78 * 0x80 +
-             ((*(int *)(&DAT_0032f8b8 + iVar24) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar15 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar24) * 0x80;
+             uVar24 * 0x800 + DAT_0032fb78 * 0x80 +
+             ((*(int *)(&DAT_0032f8b8 + iVar25) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+             uVar14 * 0x800 + *(int *)(&DAT_0032f8b4 + iVar25) * 0x80;
   }
   if (bVar5) {
-    iVar29 = *(int *)(iVar10 + DAT_0032f928 * 0x14);
-    if (iVar29 == 0) {
-      uVar25 = *(uint *)(DAT_0032f928 * 0x14 + _g_ArcToc + 0x18);
+    uVar26 = g_ArcToc->entries[DAT_0032f928].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[DAT_0032f928].sectorCount;
     }
     else {
-      uVar25 = iVar29 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar29 = *(int *)(iVar10 + DAT_0032f934 * 0x14);
-    if (iVar29 == 0) {
-      uVar22 = *(uint *)(DAT_0032f934 * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar22 = iVar29 + 0x7ffU >> 0xb;
-    }
-    iVar29 = *(int *)(iVar10 + DAT_0032f940 * 0x14);
-    if (iVar29 == 0) {
-      uVar23 = *(uint *)(DAT_0032f940 * 0x14 + _g_ArcToc + 0x18);
+    uVar23 = g_ArcToc->entries[DAT_0032f934].unpackedSize;
+    if (uVar23 == 0) {
+      uVar23 = g_ArcToc->entries[DAT_0032f934].sectorCount;
     }
     else {
-      uVar23 = iVar29 + 0x7ffU >> 0xb;
+      uVar23 = uVar23 + 0x7ff >> 0xb;
     }
-    iVar29 = *(int *)(iVar10 + DAT_0032f94c * 0x14);
-    if (iVar29 == 0) {
-      uVar15 = *(uint *)(DAT_0032f94c * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar15 = iVar29 + 0x7ffU >> 0xb;
-    }
-    iVar29 = *(int *)(iVar10 + DAT_0032f958 * 0x14);
-    if (iVar29 == 0) {
-      uVar26 = *(uint *)(DAT_0032f958 * 0x14 + _g_ArcToc + 0x18);
+    uVar24 = g_ArcToc->entries[DAT_0032f940].unpackedSize;
+    if (uVar24 == 0) {
+      uVar24 = g_ArcToc->entries[DAT_0032f940].sectorCount;
     }
     else {
-      uVar26 = iVar29 + 0x7ffU >> 0xb;
+      uVar24 = uVar24 + 0x7ff >> 0xb;
     }
-    iVar29 = *(int *)(iVar10 + DAT_0032f964 * 0x14);
-    if (iVar29 == 0) {
-      uVar16 = *(uint *)(DAT_0032f964 * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar16 = iVar29 + 0x7ffU >> 0xb;
-    }
-    iVar29 = *(int *)(iVar10 + DAT_0032f970 * 0x14);
-    if (iVar29 == 0) {
-      uVar17 = *(uint *)(DAT_0032f970 * 0x14 + _g_ArcToc + 0x18);
+    uVar14 = g_ArcToc->entries[DAT_0032f94c].unpackedSize;
+    if (uVar14 == 0) {
+      uVar14 = g_ArcToc->entries[DAT_0032f94c].sectorCount;
     }
     else {
-      uVar17 = iVar29 + 0x7ffU >> 0xb;
+      uVar14 = uVar14 + 0x7ff >> 0xb;
     }
-    iVar29 = *(int *)(iVar10 + DAT_0032f97c * 0x14);
-    if (iVar29 == 0) {
-      uVar18 = *(uint *)(DAT_0032f97c * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar18 = iVar29 + 0x7ffU >> 0xb;
-    }
-    iVar29 = *(int *)(iVar10 + DAT_0032f988 * 0x14);
-    if (iVar29 == 0) {
-      uVar19 = *(uint *)(DAT_0032f988 * 0x14 + _g_ArcToc + 0x18);
+    uVar27 = g_ArcToc->entries[DAT_0032f958].unpackedSize;
+    if (uVar27 == 0) {
+      uVar27 = g_ArcToc->entries[DAT_0032f958].sectorCount;
     }
     else {
-      uVar19 = iVar29 + 0x7ffU >> 0xb;
+      uVar27 = uVar27 + 0x7ff >> 0xb;
     }
-    iVar29 = *(int *)(iVar10 + DAT_0032f994 * 0x14);
-    if (iVar29 == 0) {
-      uVar20 = *(uint *)(DAT_0032f994 * 0x14 + _g_ArcToc + 0x18);
-    }
-    else {
-      uVar20 = iVar29 + 0x7ffU >> 0xb;
-    }
-    iVar29 = *(int *)(iVar10 + DAT_0032f9a0 * 0x14);
-    if (iVar29 == 0) {
-      uVar21 = *(uint *)(DAT_0032f9a0 * 0x14 + _g_ArcToc + 0x18);
+    uVar17 = g_ArcToc->entries[DAT_0032f964].unpackedSize;
+    if (uVar17 == 0) {
+      uVar17 = g_ArcToc->entries[DAT_0032f964].sectorCount;
     }
     else {
-      uVar21 = iVar29 + 0x7ffU >> 0xb;
+      uVar17 = uVar17 + 0x7ff >> 0xb;
     }
-    iVar29 = *(int *)(iVar10 + DAT_0032f9ac * 0x14);
-    if (iVar29 == 0) {
-      uVar27 = *(uint *)(DAT_0032f9ac * 0x14 + _g_ArcToc + 0x18);
+    uVar18 = g_ArcToc->entries[DAT_0032f970].unpackedSize;
+    if (uVar18 == 0) {
+      uVar18 = g_ArcToc->entries[DAT_0032f970].sectorCount;
     }
     else {
-      uVar27 = iVar29 + 0x7ffU >> 0xb;
+      uVar18 = uVar18 + 0x7ff >> 0xb;
     }
-    iVar28 = iVar28 + 0xc;
-    iVar31 = iVar31 + ((DAT_0032f930 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + DAT_0032f92c * 0x80 +
+    uVar19 = g_ArcToc->entries[DAT_0032f97c].unpackedSize;
+    if (uVar19 == 0) {
+      uVar19 = g_ArcToc->entries[DAT_0032f97c].sectorCount;
+    }
+    else {
+      uVar19 = uVar19 + 0x7ff >> 0xb;
+    }
+    uVar20 = g_ArcToc->entries[DAT_0032f988].unpackedSize;
+    if (uVar20 == 0) {
+      uVar20 = g_ArcToc->entries[DAT_0032f988].sectorCount;
+    }
+    else {
+      uVar20 = uVar20 + 0x7ff >> 0xb;
+    }
+    uVar21 = g_ArcToc->entries[DAT_0032f994].unpackedSize;
+    if (uVar21 == 0) {
+      uVar21 = g_ArcToc->entries[DAT_0032f994].sectorCount;
+    }
+    else {
+      uVar21 = uVar21 + 0x7ff >> 0xb;
+    }
+    uVar22 = g_ArcToc->entries[DAT_0032f9a0].unpackedSize;
+    if (uVar22 == 0) {
+      uVar22 = g_ArcToc->entries[DAT_0032f9a0].sectorCount;
+    }
+    else {
+      uVar22 = uVar22 + 0x7ff >> 0xb;
+    }
+    uVar28 = g_ArcToc->entries[DAT_0032f9ac].unpackedSize;
+    if (uVar28 == 0) {
+      uVar28 = g_ArcToc->entries[DAT_0032f9ac].sectorCount;
+    }
+    else {
+      uVar28 = uVar28 + 0x7ff >> 0xb;
+    }
+    iVar13 = iVar13 + 0xc;
+    iVar30 = iVar30 + ((DAT_0032f930 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + DAT_0032f92c * 0x80 +
              ((DAT_0032f93c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar22 * 0x800 + DAT_0032f938 * 0x80 +
+             uVar23 * 0x800 + DAT_0032f938 * 0x80 +
              ((DAT_0032f948 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar23 * 0x800 + DAT_0032f944 * 0x80 +
+             uVar24 * 0x800 + DAT_0032f944 * 0x80 +
              ((DAT_0032f954 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar15 * 0x800 + DAT_0032f950 * 0x80 +
+             uVar14 * 0x800 + DAT_0032f950 * 0x80 +
              ((DAT_0032f960 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar26 * 0x800 + DAT_0032f95c * 0x80 +
+             uVar27 * 0x800 + DAT_0032f95c * 0x80 +
              ((DAT_0032f96c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar16 * 0x800 + DAT_0032f968 * 0x80 +
+             uVar17 * 0x800 + DAT_0032f968 * 0x80 +
              ((DAT_0032f978 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar17 * 0x800 + DAT_0032f974 * 0x80 +
+             uVar18 * 0x800 + DAT_0032f974 * 0x80 +
              ((DAT_0032f984 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar18 * 0x800 + DAT_0032f980 * 0x80 +
+             uVar19 * 0x800 + DAT_0032f980 * 0x80 +
              ((DAT_0032f990 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar19 * 0x800 + DAT_0032f98c * 0x80 +
+             uVar20 * 0x800 + DAT_0032f98c * 0x80 +
              ((DAT_0032f99c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar20 * 0x800 + DAT_0032f998 * 0x80 +
+             uVar21 * 0x800 + DAT_0032f998 * 0x80 +
              ((DAT_0032f9a8 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar21 * 0x800 + DAT_0032f9a4 * 0x80 +
+             uVar22 * 0x800 + DAT_0032f9a4 * 0x80 +
              ((DAT_0032f9b4 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-             uVar27 * 0x800 + DAT_0032f9b0 * 0x80;
+             uVar28 * 0x800 + DAT_0032f9b0 * 0x80;
   }
-  iVar29 = *(int *)(iVar10 + DAT_0032fb80 * 0x14);
-  if (iVar29 == 0) {
-    uVar25 = *(uint *)(DAT_0032fb80 * 0x14 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar25 = iVar29 + 0x7ffU >> 0xb;
-  }
-  iVar29 = *(int *)(iVar10 + DAT_0032fb8c * 0x14);
-  if (iVar29 == 0) {
-    uVar22 = *(uint *)(DAT_0032fb8c * 0x14 + _g_ArcToc + 0x18);
+  uVar26 = g_ArcToc->entries[DAT_0032fb80].unpackedSize;
+  if (uVar26 == 0) {
+    uVar26 = g_ArcToc->entries[DAT_0032fb80].sectorCount;
   }
   else {
-    uVar22 = iVar29 + 0x7ffU >> 0xb;
+    uVar26 = uVar26 + 0x7ff >> 0xb;
   }
-  iVar29 = *(int *)(iVar10 + DAT_0032fb98 * 0x14);
-  if (iVar29 == 0) {
-    uVar23 = *(uint *)(DAT_0032fb98 * 0x14 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar23 = iVar29 + 0x7ffU >> 0xb;
-  }
-  iVar29 = *(int *)(iVar10 + DAT_0032fba4 * 0x14);
-  if (iVar29 == 0) {
-    uVar15 = *(uint *)(DAT_0032fba4 * 0x14 + _g_ArcToc + 0x18);
+  uVar23 = g_ArcToc->entries[DAT_0032fb8c].unpackedSize;
+  if (uVar23 == 0) {
+    uVar23 = g_ArcToc->entries[DAT_0032fb8c].sectorCount;
   }
   else {
-    uVar15 = iVar29 + 0x7ffU >> 0xb;
+    uVar23 = uVar23 + 0x7ff >> 0xb;
   }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbb0 * 0x14);
-  if (iVar29 == 0) {
-    uVar26 = *(uint *)(DAT_0032fbb0 * 0x14 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar26 = iVar29 + 0x7ffU >> 0xb;
-  }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbbc * 0x14);
-  if (iVar29 == 0) {
-    uVar16 = *(uint *)(DAT_0032fbbc * 0x14 + _g_ArcToc + 0x18);
+  uVar24 = g_ArcToc->entries[DAT_0032fb98].unpackedSize;
+  if (uVar24 == 0) {
+    uVar24 = g_ArcToc->entries[DAT_0032fb98].sectorCount;
   }
   else {
-    uVar16 = iVar29 + 0x7ffU >> 0xb;
+    uVar24 = uVar24 + 0x7ff >> 0xb;
   }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbc8 * 0x14);
-  if (iVar29 == 0) {
-    uVar17 = *(uint *)(DAT_0032fbc8 * 0x14 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar17 = iVar29 + 0x7ffU >> 0xb;
-  }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbd4 * 0x14);
-  if (iVar29 == 0) {
-    uVar18 = *(uint *)(DAT_0032fbd4 * 0x14 + _g_ArcToc + 0x18);
+  uVar14 = g_ArcToc->entries[DAT_0032fba4].unpackedSize;
+  if (uVar14 == 0) {
+    uVar14 = g_ArcToc->entries[DAT_0032fba4].sectorCount;
   }
   else {
-    uVar18 = iVar29 + 0x7ffU >> 0xb;
+    uVar14 = uVar14 + 0x7ff >> 0xb;
   }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbe0 * 0x14);
-  if (iVar29 == 0) {
-    uVar19 = *(uint *)(DAT_0032fbe0 * 0x14 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar19 = iVar29 + 0x7ffU >> 0xb;
-  }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbec * 0x14);
-  if (iVar29 == 0) {
-    uVar20 = *(uint *)(DAT_0032fbec * 0x14 + _g_ArcToc + 0x18);
+  uVar27 = g_ArcToc->entries[DAT_0032fbb0].unpackedSize;
+  if (uVar27 == 0) {
+    uVar27 = g_ArcToc->entries[DAT_0032fbb0].sectorCount;
   }
   else {
-    uVar20 = iVar29 + 0x7ffU >> 0xb;
+    uVar27 = uVar27 + 0x7ff >> 0xb;
   }
-  iVar29 = *(int *)(iVar10 + DAT_0032fbf8 * 0x14);
-  if (iVar29 == 0) {
-    uVar21 = *(uint *)(DAT_0032fbf8 * 0x14 + _g_ArcToc + 0x18);
-  }
-  else {
-    uVar21 = iVar29 + 0x7ffU >> 0xb;
-  }
-  iVar29 = *(int *)(iVar10 + DAT_0032fc04 * 0x14);
-  if (iVar29 == 0) {
-    uVar27 = *(uint *)(DAT_0032fc04 * 0x14 + _g_ArcToc + 0x18);
+  uVar17 = g_ArcToc->entries[DAT_0032fbbc].unpackedSize;
+  if (uVar17 == 0) {
+    uVar17 = g_ArcToc->entries[DAT_0032fbbc].sectorCount;
   }
   else {
-    uVar27 = iVar29 + 0x7ffU >> 0xb;
+    uVar17 = uVar17 + 0x7ff >> 0xb;
   }
-  iVar29 = iVar28 + 0xc;
-  iVar31 = iVar31 + ((DAT_0032fb88 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                    uVar25 * 0x800 + DAT_0032fb84 * 0x80 +
+  uVar18 = g_ArcToc->entries[DAT_0032fbc8].unpackedSize;
+  if (uVar18 == 0) {
+    uVar18 = g_ArcToc->entries[DAT_0032fbc8].sectorCount;
+  }
+  else {
+    uVar18 = uVar18 + 0x7ff >> 0xb;
+  }
+  uVar19 = g_ArcToc->entries[DAT_0032fbd4].unpackedSize;
+  if (uVar19 == 0) {
+    uVar19 = g_ArcToc->entries[DAT_0032fbd4].sectorCount;
+  }
+  else {
+    uVar19 = uVar19 + 0x7ff >> 0xb;
+  }
+  uVar20 = g_ArcToc->entries[DAT_0032fbe0].unpackedSize;
+  if (uVar20 == 0) {
+    uVar20 = g_ArcToc->entries[DAT_0032fbe0].sectorCount;
+  }
+  else {
+    uVar20 = uVar20 + 0x7ff >> 0xb;
+  }
+  uVar21 = g_ArcToc->entries[DAT_0032fbec].unpackedSize;
+  if (uVar21 == 0) {
+    uVar21 = g_ArcToc->entries[DAT_0032fbec].sectorCount;
+  }
+  else {
+    uVar21 = uVar21 + 0x7ff >> 0xb;
+  }
+  uVar22 = g_ArcToc->entries[DAT_0032fbf8].unpackedSize;
+  if (uVar22 == 0) {
+    uVar22 = g_ArcToc->entries[DAT_0032fbf8].sectorCount;
+  }
+  else {
+    uVar22 = uVar22 + 0x7ff >> 0xb;
+  }
+  uVar28 = g_ArcToc->entries[DAT_0032fc04].unpackedSize;
+  if (uVar28 == 0) {
+    uVar28 = g_ArcToc->entries[DAT_0032fc04].sectorCount;
+  }
+  else {
+    uVar28 = uVar28 + 0x7ff >> 0xb;
+  }
+  iVar16 = iVar13 + 0xc;
+  iVar30 = iVar30 + ((DAT_0032fb88 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                    uVar26 * 0x800 + DAT_0032fb84 * 0x80 +
            ((DAT_0032fb94 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar22 * 0x800 + DAT_0032fb90 * 0x80 +
+           uVar23 * 0x800 + DAT_0032fb90 * 0x80 +
            ((DAT_0032fba0 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar23 * 0x800 + DAT_0032fb9c * 0x80 +
+           uVar24 * 0x800 + DAT_0032fb9c * 0x80 +
            ((DAT_0032fbac * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar15 * 0x800 + DAT_0032fba8 * 0x80 +
+           uVar14 * 0x800 + DAT_0032fba8 * 0x80 +
            ((DAT_0032fbb8 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar26 * 0x800 + DAT_0032fbb4 * 0x80 +
+           uVar27 * 0x800 + DAT_0032fbb4 * 0x80 +
            ((DAT_0032fbc4 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar16 * 0x800 + DAT_0032fbc0 * 0x80 +
+           uVar17 * 0x800 + DAT_0032fbc0 * 0x80 +
            ((DAT_0032fbd0 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar17 * 0x800 + DAT_0032fbcc * 0x80 +
+           uVar18 * 0x800 + DAT_0032fbcc * 0x80 +
            ((DAT_0032fbdc * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar18 * 0x800 + DAT_0032fbd8 * 0x80 +
+           uVar19 * 0x800 + DAT_0032fbd8 * 0x80 +
            ((DAT_0032fbe8 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar19 * 0x800 + DAT_0032fbe4 * 0x80 +
+           uVar20 * 0x800 + DAT_0032fbe4 * 0x80 +
            ((DAT_0032fbf4 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar20 * 0x800 + DAT_0032fbf0 * 0x80 +
+           uVar21 * 0x800 + DAT_0032fbf0 * 0x80 +
            ((DAT_0032fc00 * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar21 * 0x800 + DAT_0032fbfc * 0x80 +
+           uVar22 * 0x800 + DAT_0032fbfc * 0x80 +
            ((DAT_0032fc0c * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-           uVar27 * 0x800 + DAT_0032fc08 * 0x80;
+           uVar28 * 0x800 + DAT_0032fc08 * 0x80;
   if (piStack_10 != (int *)0x0) {
-    iVar29 = *(int *)(iVar10 + *piStack_10 * 0x14);
-    if (iVar29 == 0) {
-      uVar25 = *(uint *)(*piStack_10 * 0x14 + _g_ArcToc + 0x18);
+    uVar26 = g_ArcToc->entries[*piStack_10].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[*piStack_10].sectorCount;
     }
     else {
-      uVar25 = iVar29 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar29 = iVar28 + 0xd;
-    iVar31 = iVar31 + ((piStack_10[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + piStack_10[1] * 0x80;
+    iVar16 = iVar13 + 0xd;
+    iVar30 = iVar30 + ((piStack_10[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + piStack_10[1] * 0x80;
   }
   if (piStack_c != (int *)0x0) {
-    iVar28 = *(int *)(iVar10 + *piStack_c * 0x14);
-    if (iVar28 == 0) {
-      uVar25 = *(uint *)(*piStack_c * 0x14 + _g_ArcToc + 0x18);
+    uVar26 = g_ArcToc->entries[*piStack_c].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[*piStack_c].sectorCount;
     }
     else {
-      uVar25 = iVar28 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar29 = iVar29 + 1;
-    iVar31 = iVar31 + ((piStack_c[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + piStack_c[1] * 0x80;
+    iVar16 = iVar16 + 1;
+    iVar30 = iVar30 + ((piStack_c[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + piStack_c[1] * 0x80;
   }
   if (piStack_8 != (int *)0x0) {
-    iVar10 = *(int *)(iVar10 + *piStack_8 * 0x14);
-    if (iVar10 == 0) {
-      uVar25 = *(uint *)(*piStack_8 * 0x14 + _g_ArcToc + 0x18);
+    uVar26 = g_ArcToc->entries[*piStack_8].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[*piStack_8].sectorCount;
     }
     else {
-      uVar25 = iVar10 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    iVar29 = iVar29 + 1;
-    iVar31 = iVar31 + ((piStack_8[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar25 * 0x800 + piStack_8[1] * 0x80;
+    iVar16 = iVar16 + 1;
+    iVar30 = iVar30 + ((piStack_8[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                      uVar26 * 0x800 + piStack_8[1] * 0x80;
   }
   if ((*(uint *)(param_1 + 0x27c) & 0x10) == 0) {
     *(uint *)(param_1 + 0x27c) = *(uint *)(param_1 + 0x27c) | 0x10;
@@ -1071,24 +1067,23 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   else {
     UiMgr_Free();
   }
-  UiMgr_Alloc(param_2,iVar29,iVar31,0,0,0xffffffffffffffff);
-  iStack_30 = *piVar32;
-  iStack_2c = piVar32[1];
-  iStack_28 = piVar32[2];
+  UiMgr_Alloc(param_2,iVar16,iVar30,0,0,0xffffffffffffffff);
+  iStack_30 = *piVar31;
+  iStack_2c = piVar31[1];
+  iStack_28 = piVar31[2];
   *(undefined4 *)(param_1 + 0xfbc) = 0;
   *(undefined4 *)(param_1 + 0xfc0) = 0;
   UiMgr_LoadLayout(0,&iStack_30,0);
   if (-1 < iVar3) {
-    iVar10 = iVar3 * 0x14 + _g_ArcToc;
-    iVar31 = *(int *)(iVar10 + 0x20);
-    if (iVar31 == 0) {
-      uVar25 = *(uint *)(iVar10 + 0x18);
+    uVar26 = g_ArcToc->entries[iVar3].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[iVar3].sectorCount;
     }
     else {
-      uVar25 = iVar31 + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0xfc4) = uVar11;
+    uVar10 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0xfc4) = uVar10;
     Arc_LoadFileEx(iVar3,*(undefined4 *)(param_1 + 0xfc4),0,0,0,0);
   }
   if (bVar4) {
@@ -1098,14 +1093,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0xfe4) = 2;
     *(undefined4 *)(param_1 + 0xfe8) = 1;
     UiMgr_LoadLayout(2,&iStack_40,0);
-    if (*(int *)(_g_ArcToc + 0x1e368) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e360);
+    uVar26 = g_ArcToc->entries[0x182a].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x182a].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e368) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0xfec) = uVar11;
+    uVar10 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0xfec) = uVar10;
     Arc_LoadFileEx(0x182a,*(undefined4 *)(param_1 + 0xfec),0,0,0,0);
     iStack_50 = DAT_0032f91c;
     iStack_4c = DAT_0032f920;
@@ -1113,14 +1109,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0xff8) = 3;
     *(undefined4 *)(param_1 + 0xffc) = 1;
     UiMgr_LoadLayout(3,&iStack_50,0);
-    if (*(int *)(_g_ArcToc + 0x1e368) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e360);
+    uVar26 = g_ArcToc->entries[0x182a].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x182a].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e368) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x1000) = uVar11;
+    uVar10 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x1000) = uVar10;
     Arc_LoadFileEx(0x182a,*(undefined4 *)(param_1 + 0x1000),0,0,0,0);
   }
   iStack_60 = DAT_0032f904;
@@ -1129,16 +1126,17 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
   *(undefined4 *)(param_1 + 0xfd0) = 1;
   *(undefined4 *)(param_1 + 0xfd4) = 1;
   UiMgr_LoadLayout(1,&iStack_60,0);
-  if (*(int *)(_g_ArcToc + 0x1e1ec) == 0) {
-    uVar25 = *(uint *)(_g_ArcToc + 0x1e1e4);
+  uVar26 = g_ArcToc->entries[0x1817].unpackedSize;
+  if (uVar26 == 0) {
+    uVar26 = g_ArcToc->entries[0x1817].sectorCount;
   }
   else {
-    uVar25 = *(int *)(_g_ArcToc + 0x1e1ec) + 0x7ffU >> 0xb;
+    uVar26 = uVar26 + 0x7ff >> 0xb;
   }
-  uVar11 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xfd8) = uVar11;
+  uVar10 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xfd8) = uVar10;
   Arc_LoadFileEx(0x1817,*(undefined4 *)(param_1 + 0xfd8),0,0,0,0);
-  UiMgr_LoadLayout(0x10,&DAT_0032f8b0 + iVar13,0);
+  UiMgr_LoadLayout(0x10,&DAT_0032f8b0 + iVar12,0);
   if (bVar4) {
     UiMgr_LoadLayout(0x11,0x32fa54,0);
   }
@@ -1146,20 +1144,20 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     UiMgr_LoadLayout(0x11,0x32fa3c,0);
     UiMgr_LoadLayout(0x12,0x32fa48,0);
   }
-  if (iVar33 == 0x25) {
+  if (iVar32 == 0x25) {
     uStack_1d0 = 1;
     uStack_1e0 = 0x14;
   }
-  else if (iVar33 == 0x24) {
+  else if (iVar32 == 0x24) {
     uStack_1d0 = 0;
     uStack_1e0 = 0x13;
   }
   RaceMenu_LoadLayouts
-            (param_1 + 0x2a0,uStack_1d0,uStack_1e0,0x15,0x16,&DAT_0032f8b0 + iVar14,0x32fa78,
+            (param_1 + 0x2a0,uStack_1d0,uStack_1e0,0x15,0x16,&DAT_0032f8b0 + iVar15,0x32fa78,
              0x32fa84);
   if (*(int *)(param_1 + 0x288) == 0) {
-    Result_LoadPageA(param_1 + 0x3b8,0,0x17,&DAT_0032f8b0 + iVar9 * 0xc,2,uVar12);
-    Result_LoadPageB(param_1 + 0x3b8,1,0x19,0x32fb14,3,4,iVar30,iVar30 + 1);
+    Result_LoadPageA(param_1 + 0x3b8,0,0x17,&DAT_0032f8b0 + iVar9 * 0xc,2,uVar11);
+    Result_LoadPageB(param_1 + 0x3b8,1,0x19,0x32fb14,3,4,iVar29,iVar29 + 1);
     Result_LoadLayouts(param_1 + 0x3b8,2,0x1a,0x32fb74,0xffffffffffffffff,0xffffffffffffffff,
                        0xffffffffffffffff,0xffffffffffffffff);
     Result_LoadPageA(param_1 + 0x3b8,3,0x18,&DAT_0032f8b0 + (bVar2 + 0x34) * 0xc,5,0x180c);
@@ -1171,14 +1169,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x100c) = 4;
     *(undefined4 *)(param_1 + 0x1010) = 2;
     UiMgr_LoadLayout(4,&iStack_70,0);
-    if (*(int *)(_g_ArcToc + 0x1e200) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e1f8);
+    uVar26 = g_ArcToc->entries[0x1818].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1818].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e200) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x1014) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x1014) = uVar11;
     Arc_LoadFileEx(0x1818,*(undefined4 *)(param_1 + 0x1014),0,0,0,0);
     iStack_80 = DAT_0032f934;
     iStack_7c = DAT_0032f938;
@@ -1186,14 +1185,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x1020) = 5;
     *(undefined4 *)(param_1 + 0x1024) = 1;
     UiMgr_LoadLayout(5,&iStack_80,0);
-    if (*(int *)(_g_ArcToc + 0x1e1ec) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e1e4);
+    uVar26 = g_ArcToc->entries[0x1817].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1817].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e1ec) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x1028) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x1028) = uVar11;
     Arc_LoadFileEx(0x1817,*(undefined4 *)(param_1 + 0x1028),0,0,0,0);
     iStack_90 = DAT_0032f940;
     iStack_8c = DAT_0032f944;
@@ -1201,14 +1201,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x1034) = 6;
     *(undefined4 *)(param_1 + 0x1038) = 3;
     UiMgr_LoadLayout(6,&iStack_90,0);
-    if (*(int *)(_g_ArcToc + 0x1e2a0) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e298);
+    uVar26 = g_ArcToc->entries[0x1820].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1820].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e2a0) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x103c) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x103c) = uVar11;
     Arc_LoadFileEx(0x1820,*(undefined4 *)(param_1 + 0x103c),0,0,0,0);
     iStack_a0 = DAT_0032f94c;
     iStack_9c = DAT_0032f950;
@@ -1216,14 +1217,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x1048) = 7;
     *(undefined4 *)(param_1 + 0x104c) = 4;
     UiMgr_LoadLayout(7,&iStack_a0,0);
-    if (*(int *)(_g_ArcToc + 0x1e2b4) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e2ac);
+    uVar26 = g_ArcToc->entries[0x1821].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1821].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e2b4) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x1050) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x1050) = uVar11;
     Arc_LoadFileEx(0x1821,*(undefined4 *)(param_1 + 0x1050),0,0,0,0);
     iStack_b0 = DAT_0032f958;
     iStack_ac = DAT_0032f95c;
@@ -1231,14 +1233,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x105c) = 8;
     *(undefined4 *)(param_1 + 0x1060) = 4;
     UiMgr_LoadLayout(8,&iStack_b0,0);
-    if (*(int *)(_g_ArcToc + 0x1e2c8) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e2c0);
+    uVar26 = g_ArcToc->entries[0x1822].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1822].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e2c8) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x1064) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x1064) = uVar11;
     Arc_LoadFileEx(0x1822,*(undefined4 *)(param_1 + 0x1064),0,0,0,0);
     iStack_c0 = DAT_0032f964;
     iStack_bc = DAT_0032f968;
@@ -1246,14 +1249,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x1070) = 9;
     *(undefined4 *)(param_1 + 0x1074) = 4;
     UiMgr_LoadLayout(9,&iStack_c0,0);
-    if (*(int *)(_g_ArcToc + 0x1e354) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e34c);
+    uVar26 = g_ArcToc->entries[0x1829].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1829].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e354) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x1078) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x1078) = uVar11;
     Arc_LoadFileEx(0x1829,*(undefined4 *)(param_1 + 0x1078),0,0,0,0);
     iStack_d0 = DAT_0032f970;
     iStack_cc = DAT_0032f974;
@@ -1261,14 +1265,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x1084) = 10;
     *(undefined4 *)(param_1 + 0x1088) = 4;
     UiMgr_LoadLayout(10,&iStack_d0,0);
-    if (*(int *)(_g_ArcToc + 0x1e340) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e338);
+    uVar26 = g_ArcToc->entries[0x1828].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1828].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e340) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x108c) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x108c) = uVar11;
     Arc_LoadFileEx(0x1828,*(undefined4 *)(param_1 + 0x108c),0,0,0,0);
     iStack_e0 = DAT_0032f97c;
     iStack_dc = DAT_0032f980;
@@ -1276,14 +1281,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x1098) = 0xb;
     *(undefined4 *)(param_1 + 0x109c) = 5;
     UiMgr_LoadLayout(0xb,&iStack_e0,0);
-    if (*(int *)(_g_ArcToc + 0x1e2dc) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e2d4);
+    uVar26 = g_ArcToc->entries[0x1823].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1823].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e2dc) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x10a0) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar11;
     Arc_LoadFileEx(0x1823,*(undefined4 *)(param_1 + 0x10a0),0,0,0,0);
     iStack_f0 = DAT_0032f988;
     iStack_ec = DAT_0032f98c;
@@ -1291,14 +1297,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x10ac) = 0xc;
     *(undefined4 *)(param_1 + 0x10b0) = 5;
     UiMgr_LoadLayout(0xc,&iStack_f0,0);
-    if (*(int *)(_g_ArcToc + 0x1e2f0) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e2e8);
+    uVar26 = g_ArcToc->entries[0x1824].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1824].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e2f0) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x10b4) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x10b4) = uVar11;
     Arc_LoadFileEx(0x1824,*(undefined4 *)(param_1 + 0x10b4),0,0,0,0);
     iStack_100 = DAT_0032f994;
     iStack_fc = DAT_0032f998;
@@ -1306,14 +1313,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x10c0) = 0xd;
     *(undefined4 *)(param_1 + 0x10c4) = 5;
     UiMgr_LoadLayout(0xd,&iStack_100,0);
-    if (*(int *)(_g_ArcToc + 0x1e304) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e2fc);
+    uVar26 = g_ArcToc->entries[0x1825].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1825].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e304) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x10c8) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x10c8) = uVar11;
     Arc_LoadFileEx(0x1825,*(undefined4 *)(param_1 + 0x10c8),0,0,0,0);
     iStack_110 = DAT_0032f9a0;
     iStack_10c = DAT_0032f9a4;
@@ -1321,14 +1329,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x10d4) = 0xe;
     *(undefined4 *)(param_1 + 0x10d8) = 5;
     UiMgr_LoadLayout(0xe,&iStack_110,0);
-    if (*(int *)(_g_ArcToc + 0x1e318) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e310);
+    uVar26 = g_ArcToc->entries[0x1826].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1826].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e318) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x10dc) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x10dc) = uVar11;
     Arc_LoadFileEx(0x1826,*(undefined4 *)(param_1 + 0x10dc),0,0,0,0);
     iStack_120 = DAT_0032f9ac;
     iStack_11c = DAT_0032f9b0;
@@ -1336,14 +1345,15 @@ void RaceHud_LoadLayouts(int param_1,undefined4 param_2)
     *(undefined4 *)(param_1 + 0x10e8) = 0xf;
     *(undefined4 *)(param_1 + 0x10ec) = 5;
     UiMgr_LoadLayout(0xf,&iStack_120,0);
-    if (*(int *)(_g_ArcToc + 0x1e32c) == 0) {
-      uVar25 = *(uint *)(_g_ArcToc + 0x1e324);
+    uVar26 = g_ArcToc->entries[0x1827].unpackedSize;
+    if (uVar26 == 0) {
+      uVar26 = g_ArcToc->entries[0x1827].sectorCount;
     }
     else {
-      uVar25 = *(int *)(_g_ArcToc + 0x1e32c) + 0x7ffU >> 0xb;
+      uVar26 = uVar26 + 0x7ff >> 0xb;
     }
-    uVar12 = Mem_AllocAligned(uVar25 << 0xb,0x40,0x430750);
-    *(undefined4 *)(param_1 + 0x10f0) = uVar12;
+    uVar11 = Mem_AllocAligned(uVar26 << 0xb,0x40,0x430750);
+    *(undefined4 *)(param_1 + 0x10f0) = uVar11;
     Arc_LoadFileEx(0x1827,*(undefined4 *)(param_1 + 0x10f0),0,0,0,0);
   }
   UiMgr_LoadLayout(0x1b,0x32fb80,0);

@@ -16,88 +16,81 @@ void CourseStream_LoadSky(void)
 }
 
 // 0x001a06f0  size 0x168
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 int CourseStream_GetLoadProgress(int param_1,uint *param_2,uint *param_3)
 
 {
-  uint uVar1;
-  int iVar2;
-  uint uVar3;
+  int iVar1;
+  uint uVar2;
+  int iVar3;
   uint uVar4;
-  int iVar5;
+  uint uVar5;
   uint uVar6;
   uint uVar7;
   int iVar8;
-  int iVar9;
   
-  uVar4 = 0;
+  uVar5 = 0;
   if (*(int *)(param_1 + 0x40) != 0) {
-    iVar2 = param_1;
+    iVar3 = param_1;
     do {
-      iVar8 = *(int *)(iVar2 + 0x44) * 0x14;
-      iVar5 = _g_ArcToc + iVar8;
-      iVar9 = *(int *)(iVar5 + 0x20);
-      if (iVar9 == 0) {
-        uVar3 = *(uint *)(iVar5 + 0x18);
+      iVar8 = *(int *)(iVar3 + 0x44);
+      uVar4 = g_ArcToc->entries[iVar8].unpackedSize;
+      if (uVar4 == 0) {
+        uVar4 = g_ArcToc->entries[iVar8].sectorCount;
       }
       else {
-        uVar3 = iVar9 + 0x7ffU >> 0xb;
+        uVar4 = uVar4 + 0x7ff >> 0xb;
       }
       uVar7 = *param_2;
-      if (uVar7 < uVar3 << 0xb) {
-        iVar8 = _g_ArcToc + iVar8;
-        iVar9 = *(int *)(iVar8 + 0x20);
-        if (iVar9 == 0) {
-          uVar7 = *(uint *)(iVar8 + 0x18);
+      if (uVar7 < uVar4 << 0xb) {
+        uVar4 = g_ArcToc->entries[iVar8].unpackedSize;
+        if (uVar4 == 0) {
+          uVar7 = g_ArcToc->entries[iVar8].sectorCount;
         }
         else {
-          uVar7 = iVar9 + 0x7ffU >> 0xb;
+          uVar7 = uVar4 + 0x7ff >> 0xb;
         }
         uVar7 = uVar7 << 0xb;
       }
       *param_2 = uVar7;
-      uVar3 = *(uint *)(iVar2 + 0x48);
-      uVar7 = (uVar3 + *(int *)(iVar2 + 0x4c)) - 1;
-      if (uVar3 <= uVar7) {
-        iVar9 = uVar3 * 0x14;
+      uVar4 = *(uint *)(iVar3 + 0x48);
+      uVar7 = (uVar4 + *(int *)(iVar3 + 0x4c)) - 1;
+      if (uVar4 <= uVar7) {
+        iVar8 = uVar4 * 0x14;
         do {
-          iVar8 = _g_ArcToc + iVar9;
-          iVar5 = *(int *)(iVar8 + 0x20);
-          if (iVar5 == 0) {
-            uVar1 = *(uint *)(iVar8 + 0x18);
+          iVar1 = *(int *)((int)&g_ArcToc->entries[0].unpackedSize + iVar8);
+          if (iVar1 == 0) {
+            uVar2 = *(uint *)((int)&g_ArcToc->entries[0].sectorCount + iVar8);
           }
           else {
-            uVar1 = iVar5 + 0x7ffU >> 0xb;
+            uVar2 = iVar1 + 0x7ffU >> 0xb;
           }
           uVar6 = *param_3;
-          if (uVar6 < uVar1 << 0xb) {
-            if (iVar5 == 0) {
-              uVar6 = *(uint *)(iVar8 + 0x18);
+          if (uVar6 < uVar2 << 0xb) {
+            if (iVar1 == 0) {
+              uVar6 = *(uint *)((int)&g_ArcToc->entries[0].sectorCount + iVar8);
             }
             else {
-              uVar6 = iVar5 + 0x7ffU >> 0xb;
+              uVar6 = iVar1 + 0x7ffU >> 0xb;
             }
             uVar6 = uVar6 << 0xb;
           }
-          uVar3 = uVar3 + 1;
+          uVar4 = uVar4 + 1;
           *param_3 = uVar6;
-          iVar9 = iVar9 + 0x14;
-        } while (uVar3 <= uVar7);
+          iVar8 = iVar8 + 0x14;
+        } while (uVar4 <= uVar7);
       }
-      uVar4 = uVar4 + 1;
-      iVar2 = iVar2 + 0xc;
-    } while (uVar4 < *(uint *)(param_1 + 0x40));
+      uVar5 = uVar5 + 1;
+      iVar3 = iVar3 + 0xc;
+    } while (uVar5 < *(uint *)(param_1 + 0x40));
   }
-  iVar9 = *(int *)(param_1 + 0x3c) * 0x14 + _g_ArcToc;
-  iVar2 = *(int *)(iVar9 + 0x20);
-  if (iVar2 == 0) {
-    uVar4 = *(uint *)(iVar9 + 0x18);
+  uVar5 = g_ArcToc->entries[*(int *)(param_1 + 0x3c)].unpackedSize;
+  if (uVar5 == 0) {
+    uVar5 = g_ArcToc->entries[*(int *)(param_1 + 0x3c)].sectorCount;
   }
   else {
-    uVar4 = iVar2 + 0x7ffU >> 0xb;
+    uVar5 = uVar5 + 0x7ff >> 0xb;
   }
-  return uVar4 << 0xb;
+  return uVar5 << 0xb;
 }
 
 // 0x001a0860  size 0x368

@@ -777,63 +777,58 @@ void ReplayUi_Free(void)
 }
 
 // 0x002d9ca0  size 0x190
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ReplayUi_Load(undefined8 param_1)
 
 {
-  undefined4 uVar1;
-  uint uVar2;
-  int iVar3;
+  int iVar1;
+  undefined4 uVar2;
+  uint uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
-  int iVar7;
-  int *piVar8;
+  int *piVar7;
   
-  iVar7 = 0;
+  iVar6 = 0;
   iRam0036f8b4 = Mem_AllocAligned(0xb8,0x40,param_1);
-  iVar6 = 0;
-  piVar8 = &DAT_00342260;
   iVar5 = 0;
+  piVar7 = &DAT_00342260;
+  iVar4 = 0;
   do {
-    iVar3 = *piVar8;
-    *(int *)(iRam0036f8b4 + iVar5) = iVar3;
-    iVar4 = _g_ArcToc + iVar3 * 0x14;
-    iVar3 = *(int *)(iVar4 + 0x20);
-    if (iVar3 == 0) {
-      uVar2 = *(uint *)(iVar4 + 0x18);
+    iVar1 = *piVar7;
+    *(int *)(iRam0036f8b4 + iVar4) = iVar1;
+    uVar3 = g_ArcToc->entries[iVar1].unpackedSize;
+    if (uVar3 == 0) {
+      uVar3 = g_ArcToc->entries[iVar1].sectorCount;
     }
     else {
-      uVar2 = iVar3 + 0x7ffU >> 0xb;
+      uVar3 = uVar3 + 0x7ff >> 0xb;
     }
-    iVar6 = iVar6 + 1;
-    iVar7 = iVar7 + uVar2 * 0x800;
-    piVar8 = piVar8 + 1;
-    iVar5 = iVar5 + 4;
-  } while (iVar6 < 0x2c);
-  uVar1 = Mem_AllocAligned(0xb0,0x40,param_1);
-  *(undefined4 *)(iRam0036f8b4 + 0xb4) = uVar1;
-  uVar1 = Mem_AllocAligned(iVar7,0x40,param_1);
-  iVar6 = 0;
-  piVar8 = &DAT_00342260;
-  *(undefined4 *)(iRam0036f8b4 + 0xb0) = uVar1;
-  iVar5 = *(int *)(iRam0036f8b4 + 0xb0);
+    iVar5 = iVar5 + 1;
+    iVar6 = iVar6 + uVar3 * 0x800;
+    piVar7 = piVar7 + 1;
+    iVar4 = iVar4 + 4;
+  } while (iVar5 < 0x2c);
+  uVar2 = Mem_AllocAligned(0xb0,0x40,param_1);
+  *(undefined4 *)(iRam0036f8b4 + 0xb4) = uVar2;
+  uVar2 = Mem_AllocAligned(iVar6,0x40,param_1);
+  iVar5 = 0;
+  piVar7 = &DAT_00342260;
+  *(undefined4 *)(iRam0036f8b4 + 0xb0) = uVar2;
+  iVar4 = *(int *)(iRam0036f8b4 + 0xb0);
   do {
-    Arc_LoadFileEx(*piVar8,iVar5,0,0,0,0);
-    iVar3 = _g_ArcToc + *piVar8 * 0x14;
-    iVar7 = *(int *)(iVar3 + 0x20);
-    if (iVar7 == 0) {
-      uVar2 = *(uint *)(iVar3 + 0x18);
+    Arc_LoadFileEx(*piVar7,iVar4,0,0,0,0);
+    uVar3 = g_ArcToc->entries[*piVar7].unpackedSize;
+    if (uVar3 == 0) {
+      uVar3 = g_ArcToc->entries[*piVar7].sectorCount;
     }
     else {
-      uVar2 = iVar7 + 0x7ffU >> 0xb;
+      uVar3 = uVar3 + 0x7ff >> 0xb;
     }
-    iVar6 = iVar6 + 1;
-    iVar5 = iVar5 + uVar2 * 0x800;
-    piVar8 = piVar8 + 1;
-  } while (iVar6 < 0x2b);
-  Arc_LoadFileEx((&DAT_00342260)[iVar6],iVar5,0x2d9c20,0,0,0);
+    iVar5 = iVar5 + 1;
+    iVar4 = iVar4 + uVar3 * 0x800;
+    piVar7 = piVar7 + 1;
+  } while (iVar5 < 0x2b);
+  Arc_LoadFileEx((&DAT_00342260)[iVar5],iVar4,0x2d9c20,0,0,0);
   return;
 }
 

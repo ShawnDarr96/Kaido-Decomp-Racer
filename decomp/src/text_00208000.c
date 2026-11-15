@@ -590,177 +590,177 @@ void GameDb_Load(void)
   undefined4 uVar1;
   uint uVar2;
   
-  uVar2 = *(uint *)(_g_ArcToc + 0x20320);
+  uVar2 = g_ArcToc->entries[0x19c0].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20314);
+    uVar2 = g_ArcToc->entries[0x19c0].storedSize;
   }
   _g_GameDb[1] = uVar2 / 0x58;
   uVar1 = Arc_LoadFileEx(0x19c0,_g_GameDb[0x7c],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20334);
+  uVar2 = g_ArcToc->entries[0x19c1].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20328);
+    uVar2 = g_ArcToc->entries[0x19c1].storedSize;
   }
   _g_GameDb[2] = uVar2 / 0x48;
   uVar1 = Arc_LoadFileEx(0x19c1,_g_GameDb[0x7d],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20348);
+  uVar2 = g_ArcToc->entries[0x19c2].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x2033c);
+    uVar2 = g_ArcToc->entries[0x19c2].storedSize;
   }
   _g_GameDb[3] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c2,_g_GameDb[0x7e],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20370);
+  uVar2 = g_ArcToc->entries[0x19c4].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20364);
+    uVar2 = g_ArcToc->entries[0x19c4].storedSize;
   }
   _g_GameDb[4] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c4,_g_GameDb[0x7f],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20384);
+  uVar2 = g_ArcToc->entries[0x19c5].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20378);
+    uVar2 = g_ArcToc->entries[0x19c5].storedSize;
   }
   _g_GameDb[5] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c5,_g_GameDb[0x80],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20398);
+  uVar2 = g_ArcToc->entries[0x19c6].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x2038c);
+    uVar2 = g_ArcToc->entries[0x19c6].storedSize;
   }
   _g_GameDb[6] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c6,_g_GameDb[0x81],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x203ac);
+  uVar2 = g_ArcToc->entries[0x19c7].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x203a0);
+    uVar2 = g_ArcToc->entries[0x19c7].storedSize;
   }
   _g_GameDb[7] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c7,_g_GameDb[0x82],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x203d4);
+  uVar2 = g_ArcToc->entries[0x19c9].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x203c8);
+    uVar2 = g_ArcToc->entries[0x19c9].storedSize;
   }
   _g_GameDb[8] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c9,_g_GameDb[0x83],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x203c0);
+  uVar2 = g_ArcToc->entries[0x19c8].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x203b4);
+    uVar2 = g_ArcToc->entries[0x19c8].storedSize;
   }
   _g_GameDb[9] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19c8,_g_GameDb[0x84],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x203e8);
+  uVar2 = g_ArcToc->entries[0x19ca].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x203dc);
+    uVar2 = g_ArcToc->entries[0x19ca].storedSize;
   }
   _g_GameDb[10] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19ca,_g_GameDb[0x85],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x203fc);
+  uVar2 = g_ArcToc->entries[0x19cb].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x203f0);
+    uVar2 = g_ArcToc->entries[0x19cb].storedSize;
   }
   _g_GameDb[0xb] = uVar2 >> 6;
   uVar1 = Arc_LoadFileEx(0x19cb,_g_GameDb[0x86],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20410);
+  uVar2 = g_ArcToc->entries[0x19cc].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20404);
+    uVar2 = g_ArcToc->entries[0x19cc].storedSize;
   }
   _g_GameDb[0xc] = uVar2 / 0x38;
   uVar1 = Arc_LoadFileEx(0x19cc,_g_GameDb[0x87],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20424);
+  uVar2 = g_ArcToc->entries[0x19cd].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20418);
+    uVar2 = g_ArcToc->entries[0x19cd].storedSize;
   }
   _g_GameDb[0xe] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19cd,_g_GameDb[0x89],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20438);
+  uVar2 = g_ArcToc->entries[0x19ce].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x2042c);
+    uVar2 = g_ArcToc->entries[0x19ce].storedSize;
   }
   _g_GameDb[0xd] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19ce,_g_GameDb[0x88],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x2044c);
+  uVar2 = g_ArcToc->entries[0x19cf].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20440);
+    uVar2 = g_ArcToc->entries[0x19cf].storedSize;
   }
   _g_GameDb[0x12] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19cf,_g_GameDb[0x8d],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20460);
+  uVar2 = g_ArcToc->entries[0x19d0].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20454);
+    uVar2 = g_ArcToc->entries[0x19d0].storedSize;
   }
   _g_GameDb[0x10] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19d0,_g_GameDb[0x8b],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20474);
+  uVar2 = g_ArcToc->entries[0x19d1].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20468);
+    uVar2 = g_ArcToc->entries[0x19d1].storedSize;
   }
   _g_GameDb[0xf] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19d1,_g_GameDb[0x8a],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20488);
+  uVar2 = g_ArcToc->entries[0x19d2].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x2047c);
+    uVar2 = g_ArcToc->entries[0x19d2].storedSize;
   }
   _g_GameDb[0x11] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19d2,_g_GameDb[0x8c],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x2049c);
+  uVar2 = g_ArcToc->entries[0x19d3].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20490);
+    uVar2 = g_ArcToc->entries[0x19d3].storedSize;
   }
   _g_GameDb[0x14] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19d3,_g_GameDb[0x8f],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x204b0);
+  uVar2 = g_ArcToc->entries[0x19d4].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x204a4);
+    uVar2 = g_ArcToc->entries[0x19d4].storedSize;
   }
   _g_GameDb[0x13] = uVar2 >> 5;
   uVar1 = Arc_LoadFileEx(0x19d4,_g_GameDb[0x8e],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x204c4);
+  uVar2 = g_ArcToc->entries[0x19d5].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x204b8);
+    uVar2 = g_ArcToc->entries[0x19d5].storedSize;
   }
   _g_GameDb[0x15] = uVar2 / 0x17c;
   uVar1 = Arc_LoadFileEx(0x19d5,_g_GameDb[0x90],0x209540,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x204d8);
+  uVar2 = g_ArcToc->entries[0x19d6].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x204cc);
+    uVar2 = g_ArcToc->entries[0x19d6].storedSize;
   }
   _g_GameDb[0x16] = uVar2 / 0x44;
   uVar1 = Arc_LoadFileEx(0x19d6,_g_GameDb[0x91],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x204ec);
+  uVar2 = g_ArcToc->entries[0x19d7].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x204e0);
+    uVar2 = g_ArcToc->entries[0x19d7].storedSize;
   }
   _g_GameDb[0x17] = uVar2 / 0x28;
   uVar1 = Arc_LoadFileEx(0x19d7,_g_GameDb[0x92],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20500);
+  uVar2 = g_ArcToc->entries[0x19d8].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x204f4);
+    uVar2 = g_ArcToc->entries[0x19d8].storedSize;
   }
   _g_GameDb[0x18] = uVar2 / 0x50;
   uVar1 = Arc_LoadFileEx(0x19d8,_g_GameDb[0x93],0,0,0,0);
   *_g_GameDb = uVar1;
-  uVar2 = *(uint *)(_g_ArcToc + 0x20514);
+  uVar2 = g_ArcToc->entries[0x19d9].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 0x20508);
+    uVar2 = g_ArcToc->entries[0x19d9].storedSize;
   }
   _g_GameDb[0x19] = uVar2 / 0xc;
   uVar1 = Arc_LoadFileEx(0x19d9,_g_GameDb[0x94],0,0,0,0);

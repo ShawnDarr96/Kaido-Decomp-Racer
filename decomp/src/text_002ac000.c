@@ -2095,44 +2095,40 @@ void SeqGen_FreeData(undefined8 param_1)
 }
 
 // 0x002afe00  size 0xf0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void SeqGen_LoadFile(undefined8 param_1,int param_2)
 
 {
   uint uVar1;
   undefined4 uVar2;
   int iVar3;
-  int iVar4;
   
   SeqGen_FreeData();
-  iVar3 = (param_2 + 0x1ca6) * 0x14 + _g_ArcToc;
-  iVar4 = *(int *)(iVar3 + 0x20);
-  if (iVar4 == 0) {
-    uVar1 = *(uint *)(iVar3 + 0x18);
+  uVar1 = g_ArcToc->entries[param_2 + 0x1ca6].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[param_2 + 0x1ca6].sectorCount;
   }
   else {
-    uVar1 = iVar4 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  iVar4 = (int)param_1;
-  if (*(int *)(iVar4 + 0xbc) != 0) {
+  iVar3 = (int)param_1;
+  if (*(int *)(iVar3 + 0xbc) != 0) {
     Mem_Free();
-    *(undefined4 *)(iVar4 + 0xbc) = 0;
+    *(undefined4 *)(iVar3 + 0xbc) = 0;
   }
-  *(undefined4 *)(iVar4 + 0xc0) = 0;
-  *(undefined4 *)(iVar4 + 0xc4) = 0xffffffff;
-  *(undefined4 *)(iVar4 + 200) = 0xffffffff;
-  *(undefined4 *)(iVar4 + 0xcc) = 0;
-  uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar4 + 0xb8));
-  *(undefined4 *)(iVar4 + 0xbc) = uVar2;
-  if (*(int *)(iVar4 + 0xbc) != 0) {
-    *(uint *)(iVar4 + 0xc0) = uVar1 << 0xb;
-    *(undefined4 *)(iVar4 + 0xc4) = 0;
+  *(undefined4 *)(iVar3 + 0xc0) = 0;
+  *(undefined4 *)(iVar3 + 0xc4) = 0xffffffff;
+  *(undefined4 *)(iVar3 + 200) = 0xffffffff;
+  *(undefined4 *)(iVar3 + 0xcc) = 0;
+  uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar3 + 0xb8));
+  *(undefined4 *)(iVar3 + 0xbc) = uVar2;
+  if (*(int *)(iVar3 + 0xbc) != 0) {
+    *(uint *)(iVar3 + 0xc0) = uVar1 << 0xb;
+    *(undefined4 *)(iVar3 + 0xc4) = 0;
   }
-  if (*(int *)(iVar4 + 0xbc) != 0) {
-    uVar2 = Arc_LoadFileEx(param_2 + 0x1ca6,*(int *)(iVar4 + 0xbc),0x2ae4b0,param_1,0,0);
-    *(undefined4 *)(iVar4 + 200) = uVar2;
-    *(undefined4 *)(iVar4 + 0xcc) = 1;
+  if (*(int *)(iVar3 + 0xbc) != 0) {
+    uVar2 = Arc_LoadFileEx(param_2 + 0x1ca6,*(int *)(iVar3 + 0xbc),0x2ae4b0,param_1,0,0);
+    *(undefined4 *)(iVar3 + 200) = uVar2;
+    *(undefined4 *)(iVar3 + 0xcc) = 1;
   }
   return;
 }

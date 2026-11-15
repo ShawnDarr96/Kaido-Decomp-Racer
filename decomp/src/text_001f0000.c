@@ -87,26 +87,22 @@ void UiRes_FreeFonts(void)
 }
 
 // 0x001f06b0  size 0x60
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* language offset at +0x15 */
 
 void UiRes_LoadLocalized(int param_1)
 
 {
-  int iVar1;
-  uint uVar2;
-  int iVar3;
+  uint uVar1;
   
   param_1 = param_1 + (uint)g_RaceCtx->unk_0015;
-  iVar3 = param_1 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar3 + 0x20);
-  if (iVar1 == 0) {
-    uVar2 = *(uint *)(iVar3 + 0x18);
+  uVar1 = g_ArcToc->entries[param_1].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[param_1].sectorCount;
   }
   else {
-    uVar2 = iVar1 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  iRam0036f40c = uVar2 << 0xb;
+  iRam0036f40c = uVar1 << 0xb;
   Arc_LoadFileEx(param_1,uRam0036f400,0x1f0600,0,0,0);
   return;
 }
@@ -123,37 +119,30 @@ void UiRes_AllocFonts(undefined8 param_1,undefined4 param_2,int param_3)
 }
 
 // 0x001f0760  size 0xb4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiRes_LoadLocalizedAlloc(undefined8 param_1,int param_2,int param_3)
 
 {
-  int iVar1;
-  uint uVar2;
-  undefined8 uVar3;
-  int iVar4;
+  uint uVar1;
+  undefined8 uVar2;
   
   param_2 = param_2 + (uint)g_RaceCtx->unk_0015;
   iRam0036f408 = param_3;
   uRam0036f404 = Mem_AllocAligned(param_3 << 2,0x40,param_1);
-  iVar4 = param_2 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar2 = *(uint *)(iVar4 + 0x18);
+  uVar1 = g_ArcToc->entries[param_2].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[param_2].sectorCount;
   }
   else {
-    uVar2 = iVar1 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  iRam0036f40c = uVar2 << 0xb;
-  uVar3 = Mem_AllocAligned(iRam0036f40c,0x40,param_1);
-  uRam0036f400 = (undefined4)uVar3;
-  Arc_LoadFileEx(param_2,uVar3,0x1f0600,0,0,0);
+  iRam0036f40c = uVar1 << 0xb;
+  uVar2 = Mem_AllocAligned(iRam0036f40c,0x40,param_1);
+  uRam0036f400 = (undefined4)uVar2;
+  Arc_LoadFileEx(param_2,uVar2,0x1f0600,0,0,0);
   return;
 }
 
 // 0x001f0820  size 0x12c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiRes_LoadCommon(undefined8 param_1)
 
 {
@@ -167,11 +156,12 @@ void UiRes_LoadCommon(undefined8 param_1)
   int iVar8;
   int iVar9;
   
-  if (*(int *)(_g_ArcToc + 0x1eb10) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1eb08);
+  uVar3 = g_ArcToc->entries[0x188c].unpackedSize;
+  if (uVar3 == 0) {
+    uVar3 = g_ArcToc->entries[0x188c].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1eb10) + 0x7ffU >> 0xb;
+    uVar3 = uVar3 + 0x7ff >> 0xb;
   }
   uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,param_1);
   psRam0036f3fc = (short *)uVar4;
@@ -210,8 +200,6 @@ void UiRes_LoadCommon(undefined8 param_1)
 }
 
 // 0x001f0950  size 0x240
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
 
 {
@@ -227,13 +215,12 @@ void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
     iVar3 = *(int *)(&DAT_00326860 + (param_2 & 0xff) * 4);
     if (iVar3 != -1) {
       if (iVar3 != -1) {
-        iVar4 = iVar3 * 0x14 + _g_ArcToc;
-        iVar3 = *(int *)(iVar4 + 0x20);
-        if (iVar3 == 0) {
-          uVar2 = *(uint *)(iVar4 + 0x18);
+        uVar2 = g_ArcToc->entries[iVar3].unpackedSize;
+        if (uVar2 == 0) {
+          uVar2 = g_ArcToc->entries[iVar3].sectorCount;
         }
         else {
-          uVar2 = iVar3 + 0x7ffU >> 0xb;
+          uVar2 = uVar2 + 0x7ff >> 0xb;
         }
         iVar4 = iVar5 * 0x340;
         piVar6 = (int *)(iVar4 + 0x467da0);
@@ -264,8 +251,6 @@ void UiRes_LoadIcons(undefined8 param_1,uint param_2,long param_3)
 }
 
 // 0x001f0b90  size 0x268
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
 
 {
@@ -280,13 +265,12 @@ void UiRes_LoadTextures(undefined8 param_1,uint param_2,long param_3)
   if (param_3 != 0) {
     iVar2 = *(int *)(&DAT_00326860 + param_2 * 4);
     if (iVar2 != -1) {
-      iVar4 = iVar2 * 0x14 + _g_ArcToc;
-      iVar2 = *(int *)(iVar4 + 0x20);
-      if (iVar2 == 0) {
-        uVar1 = *(uint *)(iVar4 + 0x18);
+      uVar1 = g_ArcToc->entries[iVar2].unpackedSize;
+      if (uVar1 == 0) {
+        uVar1 = g_ArcToc->entries[iVar2].sectorCount;
       }
       else {
-        uVar1 = iVar2 + 0x7ffU >> 0xb;
+        uVar1 = uVar1 + 0x7ff >> 0xb;
       }
       iVar4 = param_2 * 0xc0;
       piVar6 = (int *)(iVar4 + 0x4678d0);

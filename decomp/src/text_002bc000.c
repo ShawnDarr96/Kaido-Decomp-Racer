@@ -172,7 +172,6 @@ void SeqGen_Shutdown(void)
 }
 
 // 0x002bc3f0  size 0x33c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* 0x8a08-byte state */
 
 void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
@@ -183,16 +182,14 @@ void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
   undefined8 uVar3;
   int iVar4;
   int iVar5;
-  int iVar6;
-  int iVar7;
-  uint uVar8;
+  uint uVar6;
   
   uVar3 = Mem_Alloc16(0x8a08,param_1);
   iRam0036f7e0 = (int)uVar3;
   Mem_Set16(uVar3,0,0x8a08);
   *(undefined4 *)(iRam0036f7e0 + 8) = 0;
-  uVar8 = 0;
-  iVar7 = 0;
+  uVar6 = 0;
+  iVar5 = 0;
   *(undefined4 *)(iRam0036f7e0 + 0xc) = 1;
   *(int *)(iRam0036f7e0 + 0x30) = (int)param_1;
   *(undefined4 *)(iRam0036f7e0 + 0x34) = param_2;
@@ -203,74 +200,74 @@ void SeqGen_Init(undefined8 param_1,undefined4 param_2,uint param_3)
   *(undefined4 *)(iRam0036f7e0 + 0x89ec) = 4;
   *(undefined1 *)(iRam0036f7e0 + 0x89f6) = 0;
   do {
-    iVar4 = iRam0036f7e0 + iVar7;
+    iVar4 = iRam0036f7e0 + iVar5;
     *(int *)(iVar4 + 0x38) = (int)param_1;
     *(undefined4 *)(iVar4 + 0x3c) = 0;
     *(undefined4 *)(iVar4 + 0x40) = 0;
     *(undefined4 *)(iVar4 + 0x44) = 0xffffffff;
     *(undefined4 *)(iVar4 + 0x48) = 0xffffffff;
     *(undefined4 *)(iVar4 + 0x4c) = 0;
-    iVar4 = *(int *)(iRam0036f7e0 + iVar7 + 0x3c);
+    iVar4 = *(int *)(iRam0036f7e0 + iVar5 + 0x3c);
     if (iVar4 != 0) {
-      Mem_Set16(iVar4,0,*(undefined4 *)(iRam0036f7e0 + iVar7 + 0x40));
+      Mem_Set16(iVar4,0,*(undefined4 *)(iRam0036f7e0 + iVar5 + 0x40));
     }
-    if (((int)(param_3 & 0xffff) >> (uVar8 & 0x1f) & 1U) != 0) {
-      iVar5 = _g_ArcToc + (uVar8 + 0x17ff) * 0x14;
-      iVar4 = *(int *)(iVar5 + 0x20);
-      iVar6 = iRam0036f7e0 + iVar7;
-      if (iVar4 == 0) {
-        uVar1 = *(uint *)(iVar5 + 0x18);
+    if (((int)(param_3 & 0xffff) >> (uVar6 & 0x1f) & 1U) != 0) {
+      uVar1 = g_ArcToc->entries[uVar6 + 0x17ff].unpackedSize;
+      iVar4 = iRam0036f7e0 + iVar5;
+      if (uVar1 == 0) {
+        uVar1 = g_ArcToc->entries[uVar6 + 0x17ff].sectorCount;
       }
       else {
-        uVar1 = iVar4 + 0x7ffU >> 0xb;
+        uVar1 = uVar1 + 0x7ff >> 0xb;
       }
-      if (*(int *)(iVar6 + 0x3c) != 0) {
+      if (*(int *)(iVar4 + 0x3c) != 0) {
         Mem_Free();
-        *(undefined4 *)(iVar6 + 0x3c) = 0;
+        *(undefined4 *)(iVar4 + 0x3c) = 0;
       }
-      *(undefined4 *)(iVar6 + 0x40) = 0;
-      *(undefined4 *)(iVar6 + 0x44) = 0xffffffff;
-      *(undefined4 *)(iVar6 + 0x48) = 0xffffffff;
-      *(undefined4 *)(iVar6 + 0x4c) = 0;
-      uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar6 + 0x38));
-      *(undefined4 *)(iVar6 + 0x3c) = uVar2;
-      if (*(int *)(iVar6 + 0x3c) != 0) {
-        *(uint *)(iVar6 + 0x40) = uVar1 << 0xb;
-        *(undefined4 *)(iVar6 + 0x44) = 0;
+      *(undefined4 *)(iVar4 + 0x40) = 0;
+      *(undefined4 *)(iVar4 + 0x44) = 0xffffffff;
+      *(undefined4 *)(iVar4 + 0x48) = 0xffffffff;
+      *(undefined4 *)(iVar4 + 0x4c) = 0;
+      uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar4 + 0x38));
+      *(undefined4 *)(iVar4 + 0x3c) = uVar2;
+      if (*(int *)(iVar4 + 0x3c) != 0) {
+        *(uint *)(iVar4 + 0x40) = uVar1 << 0xb;
+        *(undefined4 *)(iVar4 + 0x44) = 0;
       }
-      if (*(int *)(iVar6 + 0x3c) != 0) {
-        uVar2 = Arc_LoadFileEx(uVar8 + 0x17ff,*(int *)(iVar6 + 0x3c),0x2ae450,
-                               (undefined4 *)(iVar6 + 0x38),0,0);
-        *(undefined4 *)(iVar6 + 0x48) = uVar2;
-        *(undefined4 *)(iVar6 + 0x4c) = 1;
+      if (*(int *)(iVar4 + 0x3c) != 0) {
+        uVar2 = Arc_LoadFileEx(uVar6 + 0x17ff,*(int *)(iVar4 + 0x3c),0x2ae450,
+                               (undefined4 *)(iVar4 + 0x38),0,0);
+        *(undefined4 *)(iVar4 + 0x48) = uVar2;
+        *(undefined4 *)(iVar4 + 0x4c) = 1;
       }
     }
-    uVar8 = uVar8 + 1;
-    iVar7 = iVar7 + 0x18;
-  } while ((int)uVar8 < 0xc);
+    uVar6 = uVar6 + 1;
+    iVar5 = iVar5 + 0x18;
+  } while ((int)uVar6 < 0xc);
   iVar4 = 0;
-  iVar7 = 0;
+  iVar5 = 0;
   do {
-    SeqGen_ResetPart(iRam0036f7e0 + iVar7 + 0x158,param_1,param_1);
+    SeqGen_ResetPart(iRam0036f7e0 + iVar5 + 0x158,param_1,param_1);
     iVar4 = iVar4 + 1;
-    iVar7 = iVar7 + 0xda8;
+    iVar5 = iVar5 + 0xda8;
   } while (iVar4 < 8);
   iVar4 = 0;
-  iVar7 = 0;
+  iVar5 = 0;
   do {
-    SeqGen_ResetPart(iRam0036f7e0 + iVar7 + 0x6e98,0x430750,param_1);
+    SeqGen_ResetPart(iRam0036f7e0 + iVar5 + 0x6e98,0x430750,param_1);
     iVar4 = iVar4 + 1;
-    iVar7 = iVar7 + 0xda8;
+    iVar5 = iVar5 + 0xda8;
   } while (iVar4 < 2);
   if ((param_3 & 0xffff) == 0xffff) {
-    if (*(int *)(_g_ArcToc + 0x1e0fc) == 0) {
-      uVar8 = *(uint *)(_g_ArcToc + 0x1e0f4);
+    uVar6 = g_ArcToc->entries[0x180b].unpackedSize;
+    if (uVar6 == 0) {
+      uVar6 = g_ArcToc->entries[0x180b].sectorCount;
     }
     else {
-      uVar8 = *(int *)(_g_ArcToc + 0x1e0fc) + 0x7ffU >> 0xb;
+      uVar6 = uVar6 + 0x7ff >> 0xb;
     }
     puRam0036f7e4 = (undefined4 *)Mem_Alloc16(0xc,param_1);
-    uVar2 = Mem_Alloc16(uVar8 << 0xb,param_1);
+    uVar2 = Mem_Alloc16(uVar6 << 0xb,param_1);
     puRam0036f7e4[2] = uVar2;
     uVar2 = Arc_LoadFileEx(0x180b,puRam0036f7e4[2],0x2ae560,puRam0036f7e4,0,0);
     *puRam0036f7e4 = uVar2;

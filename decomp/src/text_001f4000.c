@@ -290,22 +290,19 @@ int UiMgr_LockedAlloc(int param_1)
 void UiMgr_LoadLayout(undefined4 param_1,undefined8 param_2,undefined8 param_3)
 
 {
-  int iVar1;
-  uint uVar2;
-  int iVar3;
-  int *piVar4;
+  uint uVar1;
+  int *piVar2;
   
-  piVar4 = (int *)param_2;
-  iVar3 = *piVar4 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar3 + 0x20);
-  if (iVar1 == 0) {
-    uVar2 = *(uint *)(iVar3 + 0x18);
+  piVar2 = (int *)param_2;
+  uVar1 = g_ArcToc->entries[*piVar2].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[*piVar2].sectorCount;
   }
   else {
-    uVar2 = iVar1 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
   if (0x100000 <
-      (int)(((piVar4[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar2 * 0x800 + piVar4[1] * 0x80))
+      (int)(((piVar2[2] * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar1 * 0x800 + piVar2[1] * 0x80))
   {
     param_3 = 0;
   }
@@ -419,13 +416,12 @@ void UiMgr_Alloc(undefined8 param_1,int param_2,int param_3,long param_4,int par
     _g_UiMgr[0x144] = 0;
   }
   else {
-    iVar3 = (int)param_6 * 0x14 + _g_ArcToc;
-    iVar1 = *(int *)(iVar3 + 0x20);
-    if (iVar1 == 0) {
-      uVar2 = *(uint *)(iVar3 + 0x18);
+    uVar2 = g_ArcToc->entries[(int)param_6].unpackedSize;
+    if (uVar2 == 0) {
+      uVar2 = g_ArcToc->entries[(int)param_6].sectorCount;
     }
     else {
-      uVar2 = iVar1 + 0x7ffU >> 0xb;
+      uVar2 = uVar2 + 0x7ff >> 0xb;
     }
     _g_UiMgr[0x145] = uVar2 << 0xb;
     iVar1 = Mem_AllocAligned(_g_UiMgr[0x145],0x40,param_1);
@@ -596,8 +592,6 @@ void UiMgr_FreeSystem(void)
 }
 
 // 0x001f5210  size 0x164
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiMgr_LoadSystem(undefined8 param_1)
 
 {
@@ -635,13 +629,12 @@ void UiMgr_LoadSystem(undefined8 param_1)
     puVar4 = puVar4 + 3;
   } while (iVar6 < 2);
   g_RaceCtx->unk_0015 = uVar1;
-  iVar6 = _g_ArcToc + iStack_4 * 0x14;
-  iVar5 = *(int *)(iVar6 + 0x20);
-  if (iVar5 == 0) {
-    uVar2 = *(uint *)(iVar6 + 0x18);
+  uVar2 = g_ArcToc->entries[iStack_4].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[iStack_4].sectorCount;
   }
   else {
-    uVar2 = iVar5 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
   uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
   uRam0036f43c = (undefined4)uVar3;

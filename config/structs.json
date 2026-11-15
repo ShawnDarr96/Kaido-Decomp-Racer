@@ -781,6 +781,77 @@
      1
     ]
    ]
+  },
+  "ArcTocEntry": {
+   "size": "0x14",
+   "fields": [
+    [
+     "0x0",
+     "u32",
+     "sector",
+     1
+    ],
+    [
+     "0x4",
+     "u32",
+     "storedSize",
+     1
+    ],
+    [
+     "0x8",
+     "u32",
+     "sectorCount",
+     1
+    ],
+    [
+     "0xc",
+     "u32",
+     "maybe_isStream",
+     1
+    ],
+    [
+     "0x10",
+     "u32",
+     "unpackedSize",
+     1
+    ]
+   ]
+  },
+  "ArcToc": {
+   "size": "0x4a50c",
+   "global": "g_ArcToc",
+   "fields": [
+    [
+     "0x0",
+     "u32",
+     "entryCount",
+     1
+    ],
+    [
+     "0x4",
+     "u32",
+     "unk04",
+     1
+    ],
+    [
+     "0x8",
+     "u32",
+     "unk08",
+     1
+    ],
+    [
+     "0xc",
+     "u32",
+     "unk0c",
+     1
+    ],
+    [
+     "0x10",
+     "ArcTocEntry",
+     "entries",
+     15219
+    ]
+   ]
   }
  }
 }

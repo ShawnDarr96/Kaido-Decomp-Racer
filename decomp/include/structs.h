@@ -206,4 +206,22 @@ typedef struct RaceCtx {  /* size 0x18 */
 
 extern RaceCtx *g_RaceCtx;
 
+typedef struct ArcTocEntry {  /* size 0x14 */
+    u32 sector;  /* 0x0 */
+    u32 storedSize;  /* 0x4 */
+    u32 sectorCount;  /* 0x8 */
+    u32 maybe_isStream;  /* 0xc */
+    u32 unpackedSize;  /* 0x10 */
+} ArcTocEntry;
+
+typedef struct ArcToc {  /* size 0x4a50c */
+    u32 entryCount;  /* 0x0 */
+    u32 unk04;  /* 0x4 */
+    u32 unk08;  /* 0x8 */
+    u32 unk0c;  /* 0xc */
+    ArcTocEntry entries[15219];  /* 0x10 */
+} ArcToc;
+
+extern ArcToc *g_ArcToc;
+
 #endif

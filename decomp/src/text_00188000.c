@@ -972,38 +972,33 @@ void RoadData_Free(undefined4 *param_1)
 }
 
 // 0x0018a0d0  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined8 RoadData_Load(undefined8 param_1,undefined8 param_2)
 
 {
-  int iVar1;
+  uint uVar1;
   uint uVar2;
-  uint uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  int iVar6;
+  undefined4 uVar3;
+  undefined8 uVar4;
   
-  iVar6 = (int)param_2 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar6 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar6 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)param_2].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)param_2].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
   Sema_Wait(0x36efc0);
-  uVar2 = uRam00386628;
+  uVar1 = uRam00386628;
   Sema_Signal(0x36efc0,0);
-  if (uVar2 < 0x100) {
-    uVar4 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-    *(undefined4 *)param_1 = uVar4;
-    uVar5 = Arc_LoadFileEx(param_2,*(undefined4 *)param_1,0x18a040,param_1,0,0);
+  if (uVar1 < 0x100) {
+    uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+    *(undefined4 *)param_1 = uVar3;
+    uVar4 = Arc_LoadFileEx(param_2,*(undefined4 *)param_1,0x18a040,param_1,0,0);
   }
   else {
-    uVar5 = 0xffffffffffffffff;
+    uVar4 = 0xffffffffffffffff;
   }
-  return uVar5;
+  return uVar4;
 }
 
 // 0x0018a1b0  size 0x10
@@ -1506,37 +1501,32 @@ void RoadMesh_Free(undefined4 *param_1)
 }
 
 // 0x0018b1e0  size 0xc8
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined8 RoadMesh_Load(undefined8 param_1,undefined8 param_2)
 
 {
-  int iVar1;
-  uint uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
-  int iVar5;
+  uint uVar1;
+  undefined4 uVar2;
+  undefined8 uVar3;
   
   Sema_Wait(0x36efc0);
-  uVar2 = uRam00386628;
+  uVar1 = uRam00386628;
   Sema_Signal(0x36efc0,0);
-  if (uVar2 < 0x100) {
-    iVar5 = (int)param_2 * 0x14 + _g_ArcToc;
-    iVar1 = *(int *)(iVar5 + 0x20);
-    if (iVar1 == 0) {
-      uVar2 = *(uint *)(iVar5 + 0x18);
+  if (uVar1 < 0x100) {
+    uVar1 = g_ArcToc->entries[(int)param_2].unpackedSize;
+    if (uVar1 == 0) {
+      uVar1 = g_ArcToc->entries[(int)param_2].sectorCount;
     }
     else {
-      uVar2 = iVar1 + 0x7ffU >> 0xb;
+      uVar1 = uVar1 + 0x7ff >> 0xb;
     }
-    uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x10,0x430750);
-    *(undefined4 *)param_1 = uVar3;
-    uVar4 = Arc_LoadFileEx(param_2,*(undefined4 *)param_1,0x18b150,param_1,0,0);
+    uVar2 = Mem_AllocAligned(uVar1 << 0xb,0x10,0x430750);
+    *(undefined4 *)param_1 = uVar2;
+    uVar3 = Arc_LoadFileEx(param_2,*(undefined4 *)param_1,0x18b150,param_1,0,0);
   }
   else {
-    uVar4 = 0xffffffffffffffff;
+    uVar3 = 0xffffffffffffffff;
   }
-  return uVar4;
+  return uVar3;
 }
 
 // 0x0018b2b0  size 0x10

@@ -215,8 +215,6 @@ void maybe_RaceHud_AnimateLapInfo(int param_1)
 }
 
 // 0x002d0860  size 0x268
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_RaceHud_LoadWeatherAssets(int param_1)
 
 {
@@ -229,92 +227,86 @@ void maybe_RaceHud_LoadWeatherAssets(int param_1)
   int iVar7;
   int iVar8;
   int iVar9;
-  int iVar10;
-  int iVar11;
   
   cVar1 = Race_GetWeather();
-  iVar9 = 0;
   iVar8 = 0;
+  iVar7 = 0;
   if (cVar1 != '\0') {
-    iVar9 = 0x12;
+    iVar8 = 0x12;
   }
   lVar5 = GameState_GetPlayerCount();
   if (0 < lVar5) {
-    iVar11 = 0;
+    iVar9 = 0;
     do {
       iVar2 = maybe_GameState_GetFlag();
-      cVar1 = *(char *)(iVar2 + iVar11 + 0x7b0);
-      iVar7 = 0;
+      cVar1 = *(char *)(iVar2 + iVar9 + 0x7b0);
+      iVar6 = 0;
       if (cVar1 == '\x04') {
-        iVar7 = 6;
+        iVar6 = 6;
       }
       else if (cVar1 == '\x03') {
-        iVar7 = 5;
+        iVar6 = 5;
       }
       else if (cVar1 == '\x02') {
-        iVar7 = 4;
+        iVar6 = 4;
       }
       else if (cVar1 == '\x01') {
-        iVar7 = 3;
+        iVar6 = 3;
       }
-      iVar10 = iVar7 + iVar9 + 0xa00;
-      iVar6 = _g_ArcToc + iVar10 * 0x14;
-      iVar7 = *(int *)(iVar6 + 0x20);
-      if (iVar7 == 0) {
-        uVar4 = *(uint *)(iVar6 + 0x18);
+      iVar6 = iVar6 + iVar8;
+      uVar4 = g_ArcToc->entries[iVar6 + 0xa00].unpackedSize;
+      if (uVar4 == 0) {
+        uVar4 = g_ArcToc->entries[iVar6 + 0xa00].sectorCount;
       }
       else {
-        uVar4 = iVar7 + 0x7ffU >> 0xb;
+        uVar4 = uVar4 + 0x7ff >> 0xb;
       }
       uVar3 = Mem_AllocAligned(uVar4 << 0xb,0x40,*(undefined4 *)(param_1 + 0x1108));
       *(undefined4 *)(param_1 + 0x110c) = uVar3;
-      uVar3 = Arc_LoadFileEx(iVar10,*(undefined4 *)(param_1 + 0x110c),0x2c55e0,param_1 + 0x1108,0,0)
-      ;
+      uVar3 = Arc_LoadFileEx(iVar6 + 0xa00,*(undefined4 *)(param_1 + 0x110c),0x2c55e0,
+                             param_1 + 0x1108,0,0);
       *(undefined4 *)(param_1 + 0x1140) = uVar3;
       *(undefined4 *)(param_1 + 0x113c) = 0;
       *(undefined4 *)(param_1 + 0x1138) = 1;
-      iVar6 = (uint)*(byte *)(iVar2 + iVar11 + 0x7b1) + iVar9 + 0xa03;
-      iVar7 = _g_ArcToc + iVar6 * 0x14;
-      iVar2 = *(int *)(iVar7 + 0x20);
-      if (iVar2 == 0) {
-        uVar4 = *(uint *)(iVar7 + 0x18);
+      iVar2 = (uint)*(byte *)(iVar2 + iVar9 + 0x7b1) + iVar8;
+      uVar4 = g_ArcToc->entries[iVar2 + 0xa03].unpackedSize;
+      if (uVar4 == 0) {
+        uVar4 = g_ArcToc->entries[iVar2 + 0xa03].sectorCount;
       }
       else {
-        uVar4 = iVar2 + 0x7ffU >> 0xb;
+        uVar4 = uVar4 + 0x7ff >> 0xb;
       }
       uVar3 = Mem_AllocAligned(uVar4 << 0xb,0x40,*(undefined4 *)(param_1 + 0x1144));
       *(undefined4 *)(param_1 + 0x1148) = uVar3;
-      uVar3 = Arc_LoadFileEx(iVar6,*(undefined4 *)(param_1 + 0x1148),0x2c55e0,param_1 + 0x1144,0,0);
+      uVar3 = Arc_LoadFileEx(iVar2 + 0xa03,*(undefined4 *)(param_1 + 0x1148),0x2c55e0,
+                             param_1 + 0x1144,0,0);
       *(undefined4 *)(param_1 + 0x117c) = uVar3;
       *(undefined4 *)(param_1 + 0x1178) = 0;
       *(undefined4 *)(param_1 + 0x1174) = 1;
-      iVar7 = (iVar9 + 0xa14) * 0x14 + _g_ArcToc;
-      iVar2 = *(int *)(iVar7 + 0x20);
-      if (iVar2 == 0) {
-        uVar4 = *(uint *)(iVar7 + 0x18);
+      uVar4 = g_ArcToc->entries[iVar8 + 0xa14].unpackedSize;
+      if (uVar4 == 0) {
+        uVar4 = g_ArcToc->entries[iVar8 + 0xa14].sectorCount;
       }
       else {
-        uVar4 = iVar2 + 0x7ffU >> 0xb;
+        uVar4 = uVar4 + 0x7ff >> 0xb;
       }
       uVar3 = Mem_AllocAligned(uVar4 << 0xb,0x40,*(undefined4 *)(param_1 + 0x1180));
       *(undefined4 *)(param_1 + 0x1184) = uVar3;
-      uVar3 = Arc_LoadFileEx(iVar9 + 0xa14,*(undefined4 *)(param_1 + 0x1184),0x2c55e0,
+      uVar3 = Arc_LoadFileEx(iVar8 + 0xa14,*(undefined4 *)(param_1 + 0x1184),0x2c55e0,
                              param_1 + 0x1180,0,0);
       *(undefined4 *)(param_1 + 0x11b8) = uVar3;
-      iVar11 = iVar11 + 0x540;
+      iVar9 = iVar9 + 0x540;
       *(undefined4 *)(param_1 + 0x11b4) = 0;
       *(undefined4 *)(param_1 + 0x11b0) = 1;
-      iVar8 = iVar8 + 1;
+      iVar7 = iVar7 + 1;
       param_1 = param_1 + 0xb4;
       iVar2 = GameState_GetPlayerCount();
-    } while (iVar8 < iVar2);
+    } while (iVar7 < iVar2);
   }
   return;
 }
 
 // 0x002d0ad0  size 0x658
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void maybe_RaceHud_LoadRecordAssets(byte *param_1)
 
 {
@@ -352,11 +344,12 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
                     /* WARNING: Switch is manually overridden */
     switch(*param_1) {
     case 0:
-      if (*(int *)(_g_ArcToc + 0xc820) == 0) {
-        uVar12 = *(uint *)(_g_ArcToc + 0xc818);
+      uVar12 = g_ArcToc->entries[0xa00].unpackedSize;
+      if (uVar12 == 0) {
+        uVar12 = g_ArcToc->entries[0xa00].sectorCount;
       }
       else {
-        uVar12 = *(int *)(_g_ArcToc + 0xc820) + 0x7ffU >> 0xb;
+        uVar12 = uVar12 + 0x7ff >> 0xb;
       }
       uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
       *(undefined4 *)(param_1 + 0x26f4) = uVar13;
@@ -387,11 +380,12 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       }
       break;
     case 1:
-      if (*(int *)(_g_ArcToc + 0xc834) == 0) {
-        uVar12 = *(uint *)(_g_ArcToc + 0xc82c);
+      uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
+      if (uVar12 == 0) {
+        uVar12 = g_ArcToc->entries[0xa01].sectorCount;
       }
       else {
-        uVar12 = *(int *)(_g_ArcToc + 0xc834) + 0x7ffU >> 0xb;
+        uVar12 = uVar12 + 0x7ff >> 0xb;
       }
       uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
       *(undefined4 *)(param_1 + 0x26f4) = uVar13;
@@ -440,11 +434,12 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f858;
       *(undefined4 *)(param_1 + 0xfac) = uVar13;
       *(undefined **)(param_1 + 0xfb0) = puVar2;
-      if (*(int *)(_g_ArcToc + 0xc834) == 0) {
-        uVar12 = *(uint *)(_g_ArcToc + 0xc82c);
+      uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
+      if (uVar12 == 0) {
+        uVar12 = g_ArcToc->entries[0xa01].sectorCount;
       }
       else {
-        uVar12 = *(int *)(_g_ArcToc + 0xc834) + 0x7ffU >> 0xb;
+        uVar12 = uVar12 + 0x7ff >> 0xb;
       }
       uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
       *(undefined4 *)(param_1 + 0x26f4) = uVar13;
@@ -473,11 +468,12 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f878;
       *(undefined4 *)(param_1 + 0xfac) = uVar5;
       *(undefined **)(param_1 + 0xfb0) = puVar6;
-      if (*(int *)(_g_ArcToc + 0xc820) == 0) {
-        uVar12 = *(uint *)(_g_ArcToc + 0xc818);
+      uVar12 = g_ArcToc->entries[0xa00].unpackedSize;
+      if (uVar12 == 0) {
+        uVar12 = g_ArcToc->entries[0xa00].sectorCount;
       }
       else {
-        uVar12 = *(int *)(_g_ArcToc + 0xc820) + 0x7ffU >> 0xb;
+        uVar12 = uVar12 + 0x7ff >> 0xb;
       }
       uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
       *(undefined4 *)(param_1 + 0x26f4) = uVar13;
@@ -499,11 +495,12 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
       *(undefined4 *)(param_1 + 0xfa8) = DAT_0032f888;
       *(undefined4 *)(param_1 + 0xfac) = uVar7;
       *(undefined **)(param_1 + 0xfb0) = puVar8;
-      if (*(int *)(_g_ArcToc + 0xc834) == 0) {
-        uVar12 = *(uint *)(_g_ArcToc + 0xc82c);
+      uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
+      if (uVar12 == 0) {
+        uVar12 = g_ArcToc->entries[0xa01].sectorCount;
       }
       else {
-        uVar12 = *(int *)(_g_ArcToc + 0xc834) + 0x7ffU >> 0xb;
+        uVar12 = uVar12 + 0x7ff >> 0xb;
       }
       uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
       *(undefined4 *)(param_1 + 0x26f4) = uVar13;
@@ -527,11 +524,12 @@ void maybe_RaceHud_LoadRecordAssets(byte *param_1)
   }
   else {
 switchD_002d0b18_caseD_2:
-    if (*(int *)(_g_ArcToc + 0xc834) == 0) {
-      uVar12 = *(uint *)(_g_ArcToc + 0xc82c);
+    uVar12 = g_ArcToc->entries[0xa01].unpackedSize;
+    if (uVar12 == 0) {
+      uVar12 = g_ArcToc->entries[0xa01].sectorCount;
     }
     else {
-      uVar12 = *(int *)(_g_ArcToc + 0xc834) + 0x7ffU >> 0xb;
+      uVar12 = uVar12 + 0x7ff >> 0xb;
     }
     uVar13 = Mem_AllocAligned(uVar12 << 0xb,0x40,*(undefined4 *)(param_1 + 0x26f0));
     *(undefined4 *)(param_1 + 0x26f4) = uVar13;
@@ -582,8 +580,6 @@ switchD_002d0b18_caseD_2:
 }
 
 // 0x002d1130  size 0x694
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceHud_Load(undefined8 param_1)
 
 {
@@ -730,12 +726,13 @@ void RaceHud_Load(undefined8 param_1)
   RaceUi_InitSprites(puRam0036f804 + 0x1270,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
   RaceUi_InitSprites(puRam0036f804 + 0x26f0,param_1,1,uRam0036f808,uRam0036f80c,0x50010);
   puVar1 = puRam0036f804;
+  uVar9 = g_ArcToc->entries[0xa02].unpackedSize;
   puVar10 = (undefined4 *)(puRam0036f804 + 0x1270);
-  if (*(int *)(_g_ArcToc + 0xc848) == 0) {
-    uVar9 = *(uint *)(_g_ArcToc + 0xc840);
+  if (uVar9 == 0) {
+    uVar9 = g_ArcToc->entries[0xa02].sectorCount;
   }
   else {
-    uVar9 = *(int *)(_g_ArcToc + 0xc848) + 0x7ffU >> 0xb;
+    uVar9 = uVar9 + 0x7ff >> 0xb;
   }
   uVar6 = Mem_AllocAligned(uVar9 << 0xb,0x40,*puVar10);
   *(undefined4 *)(puVar1 + 0x1274) = uVar6;

@@ -2635,26 +2635,23 @@ undefined4 Loading_LoadScreenImage(uint param_1)
 
 {
   int iVar1;
-  int iVar2;
-  uint uVar3;
-  int iVar4;
+  uint uVar2;
   
   iVar1 = *(int *)(&DAT_0030ba00 + (param_1 & 0xff) * 4);
-  iVar4 = iVar1 * 0x14 + _g_ArcToc;
-  iVar2 = *(int *)(iVar4 + 0x20);
-  if (iVar2 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[iVar1].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[iVar1].sectorCount;
   }
   else {
-    uVar3 = iVar2 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
   if (_g_Loading[1] != 0) {
     Mem_Free();
   }
-  uVar3 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  _g_Loading[1] = uVar3;
-  uVar3 = Arc_LoadFileEx(iVar1,_g_Loading[1],0x185b50,_g_Loading,0,0);
-  _g_Loading[3] = uVar3;
+  uVar2 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  _g_Loading[1] = uVar2;
+  uVar2 = Arc_LoadFileEx(iVar1,_g_Loading[1],0x185b50,_g_Loading,0,0);
+  _g_Loading[3] = uVar2;
   *_g_Loading = *_g_Loading | 8;
   return 1;
 }

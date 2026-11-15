@@ -928,14 +928,12 @@ void Light_SetEnabledFlag(int param_1,undefined1 param_2)
 }
 
 // 0x001a6030  size 0x60
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Arc_GetEntryInfo(undefined4 *param_1,int param_2)
 
 {
   *param_1 = 0;
-  param_1[1] = *(undefined4 *)(_g_ArcToc + *(int *)(&DAT_00317a80 + param_2 * 8) * 0x14 + 0x10);
-  param_1[2] = *(undefined4 *)(_g_ArcToc + *(int *)(&DAT_00317a80 + param_2 * 8) * 0x14 + 0x14);
+  param_1[1] = g_ArcToc->entries[*(int *)(&DAT_00317a80 + param_2 * 8)].sector;
+  param_1[2] = g_ArcToc->entries[*(int *)(&DAT_00317a80 + param_2 * 8)].storedSize;
   param_1[3] = *(undefined4 *)(&DAT_00317a84 + param_2 * 8);
   return;
 }

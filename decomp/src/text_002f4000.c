@@ -1894,32 +1894,27 @@ void ComposerTex_Free(int param_1)
 }
 
 // 0x002f7bb0  size 0xb0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void ComposerTex_Load(undefined8 param_1,undefined8 param_2,undefined4 param_3)
 
 {
-  int iVar1;
-  uint uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  undefined4 *puVar5;
+  uint uVar1;
+  undefined4 uVar2;
+  undefined4 *puVar3;
   
-  iVar4 = (int)param_2 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar2 = *(uint *)(iVar4 + 0x18);
+  uVar1 = g_ArcToc->entries[(int)param_2].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[(int)param_2].sectorCount;
   }
   else {
-    uVar2 = iVar1 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  puVar5 = (undefined4 *)param_1;
-  uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,*puVar5);
-  puVar5[1] = uVar3;
-  uVar3 = Arc_LoadFileEx(param_2,puVar5[1],0x2f7480,param_1,0,0);
-  puVar5[0xe] = uVar3;
-  puVar5[0xd] = param_3;
-  puVar5[0xc] = 1;
+  puVar3 = (undefined4 *)param_1;
+  uVar2 = Mem_AllocAligned(uVar1 << 0xb,0x40,*puVar3);
+  puVar3[1] = uVar2;
+  uVar2 = Arc_LoadFileEx(param_2,puVar3[1],0x2f7480,param_1,0,0);
+  puVar3[0xe] = uVar2;
+  puVar3[0xd] = param_3;
+  puVar3[0xc] = 1;
   return;
 }
 

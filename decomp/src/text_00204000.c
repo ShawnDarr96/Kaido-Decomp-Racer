@@ -856,9 +856,9 @@ void CarDb_Load(void)
   undefined4 uVar1;
   uint uVar2;
   
-  uVar2 = *(uint *)(_g_ArcToc + 0xbf74);
+  uVar2 = g_ArcToc->entries[0x991].unpackedSize;
   if (uVar2 == 0) {
-    uVar2 = *(uint *)(_g_ArcToc + 49000);
+    uVar2 = g_ArcToc->entries[0x991].storedSize;
   }
   *(uint *)(_g_CarDb + 0x24) = uVar2 / 0x270;
   uVar1 = Arc_LoadFileEx(0x991,*(undefined4 *)(_g_CarDb + 0x2c),0,0,0,0);
@@ -1019,14 +1019,14 @@ void CarDb_Alloc(undefined8 param_1)
     iVar3 = iVar3 + iVar6;
     iVar6 = *(int *)(_g_CarDb + 0x28);
   }
-  uVar5 = *(uint *)(_g_ArcToc + 0xbf4c);
+  uVar5 = g_ArcToc->entries[0x98f].unpackedSize;
   if (uVar5 == 0) {
-    uVar5 = *(uint *)(_g_ArcToc + 0xbf40);
+    uVar5 = g_ArcToc->entries[0x98f].storedSize;
   }
   *(uint *)(_g_CarDb + 0x4c) = uVar5 / 3;
-  uVar5 = *(uint *)(_g_ArcToc + 0xbf60);
+  uVar5 = g_ArcToc->entries[0x990].unpackedSize;
   if (uVar5 == 0) {
-    uVar5 = *(uint *)(_g_ArcToc + 0xbf54);
+    uVar5 = g_ArcToc->entries[0x990].storedSize;
   }
   *(uint *)(_g_CarDb + 0x50) = uVar5 / 3;
   return;

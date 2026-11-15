@@ -930,20 +930,19 @@ LAB_0020db74:
 }
 
 // 0x0020dd00  size 0x1ac
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 undefined4 SaveMgr_Close(undefined4 *param_1)
 
 {
   int iVar1;
-  undefined4 uVar2;
-  long lVar3;
-  int iVar4;
+  uint uVar2;
+  undefined4 uVar3;
+  long lVar4;
   int iVar5;
+  int iVar6;
   
-  lVar3 = SaveSlot_Close(*param_1);
-  if (lVar3 == 0) {
-    uVar2 = 0;
+  lVar4 = SaveSlot_Close(*param_1);
+  if (lVar4 == 0) {
+    uVar3 = 0;
   }
   else {
     if (*(int *)(param_1[0x10d] + 0x10) != 0) {
@@ -954,18 +953,18 @@ undefined4 SaveMgr_Close(undefined4 *param_1)
       Mem_Free();
       param_1[0x10d] = 0;
     }
-    iVar5 = 0;
+    iVar6 = 0;
     if (0 < *(int *)(param_1[1] + 4)) {
-      iVar4 = 0;
+      iVar5 = 0;
       do {
         iVar1 = param_1[0x10c];
-        if (*(int *)(iVar1 + iVar4 + 0x28) != 0) {
+        if (*(int *)(iVar1 + iVar5 + 0x28) != 0) {
           Mem_Free();
-          *(undefined4 *)(iVar1 + iVar4 + 0x28) = 0;
+          *(undefined4 *)(iVar1 + iVar5 + 0x28) = 0;
         }
-        iVar5 = iVar5 + 1;
-        iVar4 = iVar4 + 0x2c;
-      } while (iVar5 < *(int *)(param_1[1] + 4));
+        iVar6 = iVar6 + 1;
+        iVar5 = iVar5 + 0x2c;
+      } while (iVar6 < *(int *)(param_1[1] + 4));
     }
     if (param_1[0x10c] != 0) {
       Mem_Free();
@@ -982,22 +981,22 @@ undefined4 SaveMgr_Close(undefined4 *param_1)
     *(undefined1 *)((int)param_1 + 0x1e) = 0;
     *(undefined1 *)((int)param_1 + 0x1f) = *(undefined1 *)((int)param_1 + 0x1e);
     if (puRam0036f4f4[3] == 0) {
-      uVar2 = Arc_GetFileSize(4,4,1);
-      puRam0036f4f4[2] = uVar2;
-      uVar2 = Mem_AllocAligned(puRam0036f4f4[2],0x40,*puRam0036f4f4);
-      puRam0036f4f4[3] = uVar2;
-      uVar2 = Arc_LoadFileEx(4,puRam0036f4f4[3],0,0,0,0);
-      puRam0036f4f4[1] = uVar2;
+      uVar3 = Arc_GetFileSize(4,4,1);
+      puRam0036f4f4[2] = uVar3;
+      uVar3 = Mem_AllocAligned(puRam0036f4f4[2],0x40,*puRam0036f4f4);
+      puRam0036f4f4[3] = uVar3;
+      uVar3 = Arc_LoadFileEx(4,puRam0036f4f4[3],0,0,0,0);
+      puRam0036f4f4[1] = uVar3;
     }
-    iVar5 = *(int *)(_g_ArcToc + 0x70);
-    if (iVar5 == 0) {
-      iVar5 = *(int *)(_g_ArcToc + 100);
+    uVar2 = g_ArcToc->entries[4].unpackedSize;
+    if (uVar2 == 0) {
+      uVar2 = g_ArcToc->entries[4].storedSize;
     }
-    param_1[0x107] = iVar5;
-    uVar2 = 1;
+    param_1[0x107] = uVar2;
+    uVar3 = 1;
     param_1[0x106] = puRam0036f4f4[3];
   }
-  return uVar2;
+  return uVar3;
 }
 
 // 0x0020deb0  size 0x254
@@ -1103,13 +1102,11 @@ void SaveMgr_Open(undefined8 param_1,undefined1 param_2,byte param_3,undefined8 
 }
 
 // 0x0020e110  size 0xdc
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void SaveMgr_LoadIcon(undefined4 *param_1)
 
 {
   undefined4 uVar1;
-  int iVar2;
+  uint uVar2;
   
   *param_1 = 0;
   param_1[1] = 0;
@@ -1129,11 +1126,11 @@ void SaveMgr_LoadIcon(undefined4 *param_1)
     uVar1 = Arc_LoadFileEx(4,puRam0036f4f4[3],0,0,0,0);
     puRam0036f4f4[1] = uVar1;
   }
-  iVar2 = *(int *)(_g_ArcToc + 0x70);
-  if (iVar2 == 0) {
-    iVar2 = *(int *)(_g_ArcToc + 100);
+  uVar2 = g_ArcToc->entries[4].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[4].storedSize;
   }
-  param_1[0x107] = iVar2;
+  param_1[0x107] = uVar2;
   param_1[0x106] = puRam0036f4f4[3];
   return;
 }
@@ -1742,22 +1739,19 @@ void Subtitle_Free(void)
 void Subtitle_Alloc(undefined8 param_1,undefined8 param_2,undefined4 param_3)
 
 {
-  int iVar1;
-  uint uVar2;
-  undefined4 uVar3;
-  int iVar4;
+  uint uVar1;
+  undefined4 uVar2;
   
   _g_Subtitle = (undefined4 *)Mem_Alloc16(0xc280,param_1);
-  iVar4 = (int)param_2 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar2 = *(uint *)(iVar4 + 0x18);
+  uVar1 = g_ArcToc->entries[(int)param_2].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[(int)param_2].sectorCount;
   }
   else {
-    uVar2 = iVar1 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  uVar3 = Mem_AllocAligned(uVar2 << 0xb,0x40,param_1);
-  _g_Subtitle[0x1f10] = uVar3;
+  uVar2 = Mem_AllocAligned(uVar1 << 0xb,0x40,param_1);
+  _g_Subtitle[0x1f10] = uVar2;
   Arc_LoadFileEx(param_2,_g_Subtitle[0x1f10],0,0,0,0);
   *_g_Subtitle = 0;
   _g_Subtitle[0x1f06] = param_3;

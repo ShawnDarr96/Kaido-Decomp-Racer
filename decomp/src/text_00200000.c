@@ -1082,51 +1082,47 @@ void MenuScene_Exit(int param_1)
 }
 
 // 0x00202b90  size 0x384
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void MenuScene_Enter(int param_1)
 
 {
   short sVar1;
   undefined4 *puVar2;
-  int iVar3;
+  uint uVar3;
   uint uVar4;
   undefined4 uVar5;
   int iVar6;
   uint uVar7;
   int iVar8;
-  int iVar9;
-  short *psVar10;
-  undefined **ppuVar11;
+  short *psVar9;
+  undefined **ppuVar10;
+  int iVar11;
   int iVar12;
-  int iVar13;
   int iStack_10;
   int iStack_c;
   int iStack_8;
   
   uVar7 = 0;
-  iVar9 = 1;
+  iVar8 = 1;
   puVar2 = *(undefined4 **)(param_1 + 0x14);
   do {
-    iVar8 = _g_ArcToc + (iVar9 + 0x1870) * 0x14;
-    iVar12 = *(int *)(iVar8 + 0x20);
-    if (iVar12 == 0) {
-      uVar4 = *(uint *)(iVar8 + 0x18);
+    uVar3 = g_ArcToc->entries[iVar8 + 0x1870].unpackedSize;
+    if (uVar3 == 0) {
+      uVar4 = g_ArcToc->entries[iVar8 + 0x1870].sectorCount;
     }
     else {
-      uVar4 = iVar12 + 0x7ffU >> 0xb;
+      uVar4 = uVar3 + 0x7ff >> 0xb;
     }
     if (uVar7 < uVar4 << 0xb) {
-      if (iVar12 == 0) {
-        uVar7 = *(uint *)(iVar8 + 0x18);
+      if (uVar3 == 0) {
+        uVar7 = g_ArcToc->entries[iVar8 + 0x1870].sectorCount;
       }
       else {
-        uVar7 = iVar12 + 0x7ffU >> 0xb;
+        uVar7 = uVar3 + 0x7ff >> 0xb;
       }
       uVar7 = uVar7 << 0xb;
     }
-    iVar9 = iVar9 + 1;
-  } while (iVar9 < 6);
+    iVar8 = iVar8 + 1;
+  } while (iVar8 < 6);
   UiRes_AllocFonts(0x430750,uVar7,0x1f91);
   UiRes_LoadLocalized(0x1870);
   puVar2[4] = 0;
@@ -1138,52 +1134,51 @@ void MenuScene_Enter(int param_1)
   CarDb_Load();
   GameDb_Alloc(0x430750);
   GameDb_Load();
-  iVar9 = 0;
+  iVar8 = 0;
   iVar12 = 0;
-  ppuVar11 = &PTR_DAT_00328f60;
+  ppuVar10 = &PTR_DAT_00328f60;
   iStack_10 = DAT_003294b8;
   iStack_c = DAT_003294bc;
   iStack_8 = DAT_003294c0;
   do {
-    psVar10 = (short *)*ppuVar11;
-    iVar8 = 0;
-    sVar1 = *psVar10;
+    psVar9 = (short *)*ppuVar10;
+    iVar11 = 0;
+    sVar1 = *psVar9;
     while (sVar1 != -2) {
       iVar6 = sVar1 * 0xc;
-      iVar13 = _g_ArcToc + *(int *)(iVar6 + 0x327930) * 0x14;
-      iVar3 = *(int *)(iVar13 + 0x20);
-      if (iVar3 == 0) {
-        uVar7 = *(uint *)(iVar13 + 0x18);
+      uVar7 = g_ArcToc->entries[*(int *)(iVar6 + 0x327930)].unpackedSize;
+      if (uVar7 == 0) {
+        uVar7 = g_ArcToc->entries[*(int *)(iVar6 + 0x327930)].sectorCount;
       }
       else {
-        uVar7 = iVar3 + 0x7ffU >> 0xb;
+        uVar7 = uVar7 + 0x7ff >> 0xb;
       }
-      psVar10 = psVar10 + 1;
-      iVar8 = iVar8 + ((*(int *)(iVar6 + 0x327938) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-                      uVar7 * 0x800 + *(int *)(iVar6 + 0x327934) * 0x80;
-      sVar1 = *psVar10;
+      psVar9 = psVar9 + 1;
+      iVar11 = iVar11 + ((*(int *)(iVar6 + 0x327938) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+                        uVar7 * 0x800 + *(int *)(iVar6 + 0x327934) * 0x80;
+      sVar1 = *psVar9;
     }
-    if (iVar9 < iVar8) {
-      iVar9 = iVar8;
+    if (iVar8 < iVar11) {
+      iVar8 = iVar11;
     }
     iVar12 = iVar12 + 1;
-    ppuVar11 = ppuVar11 + 1;
+    ppuVar10 = ppuVar10 + 1;
   } while (iVar12 < 0x2e);
-  iVar8 = DAT_003294c0 * 0xd;
-  iVar12 = *(int *)(_g_ArcToc + 0x20 + DAT_003294b8 * 0x14);
-  if (iVar12 == 0) {
-    uVar7 = *(uint *)(DAT_003294b8 * 0x14 + _g_ArcToc + 0x18);
+  iVar12 = DAT_003294c0 * 0xd;
+  uVar7 = g_ArcToc->entries[DAT_003294b8].unpackedSize;
+  if (uVar7 == 0) {
+    uVar7 = g_ArcToc->entries[DAT_003294b8].sectorCount;
   }
   else {
-    uVar7 = iVar12 + 0x7ffU >> 0xb;
+    uVar7 = uVar7 + 0x7ff >> 0xb;
   }
-  iVar12 = DAT_003294bc * 0x80;
+  iVar11 = DAT_003294bc * 0x80;
   MenuWnd_Alloc(0x430750,1);
   Subtitle_Alloc(0x430750,0x17fd,0);
   MenuWnd_AllocSystem(0x430750);
   UiMgr_Alloc(0x430750,299,
-              iVar9 + ((iVar8 + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar7 * 0x800 + iVar12,&iStack_10,
-              0xc20,0x17fb);
+              iVar8 + ((iVar12 + 1) * 0x10 + 0x3fU & 0xffffffc0) + uVar7 * 0x800 + iVar11,&iStack_10
+              ,0xc20,0x17fb);
   UiMgr_SetActive(uRam0036f2c0,uRam0036f2c0);
   if (puVar2[1] == -7) {
     puVar2[1] = 0xd;

@@ -772,7 +772,6 @@ void maybe_SeqSrc_Free(undefined8 param_1)
 }
 
 // 0x002b18e0  size 0xf0
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* archive id 0x1ec2 + n */
 
 void maybe_SeqSrc_LoadFromArchive(undefined8 param_1,int param_2)
@@ -781,36 +780,34 @@ void maybe_SeqSrc_LoadFromArchive(undefined8 param_1,int param_2)
   uint uVar1;
   undefined4 uVar2;
   int iVar3;
-  int iVar4;
   
   maybe_SeqSrc_Free();
-  iVar3 = (param_2 + 0x1ec2) * 0x14 + _g_ArcToc;
-  iVar4 = *(int *)(iVar3 + 0x20);
-  if (iVar4 == 0) {
-    uVar1 = *(uint *)(iVar3 + 0x18);
+  uVar1 = g_ArcToc->entries[param_2 + 0x1ec2].unpackedSize;
+  if (uVar1 == 0) {
+    uVar1 = g_ArcToc->entries[param_2 + 0x1ec2].sectorCount;
   }
   else {
-    uVar1 = iVar4 + 0x7ffU >> 0xb;
+    uVar1 = uVar1 + 0x7ff >> 0xb;
   }
-  iVar4 = (int)param_1;
-  if (*(int *)(iVar4 + 100) != 0) {
+  iVar3 = (int)param_1;
+  if (*(int *)(iVar3 + 100) != 0) {
     Mem_Free();
-    *(undefined4 *)(iVar4 + 100) = 0;
+    *(undefined4 *)(iVar3 + 100) = 0;
   }
-  *(undefined4 *)(iVar4 + 0x68) = 0;
-  *(undefined4 *)(iVar4 + 0x6c) = 0xffffffff;
-  *(undefined4 *)(iVar4 + 0x70) = 0xffffffff;
-  *(undefined4 *)(iVar4 + 0x74) = 0;
-  uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar4 + 0x60));
-  *(undefined4 *)(iVar4 + 100) = uVar2;
-  if (*(int *)(iVar4 + 100) != 0) {
-    *(uint *)(iVar4 + 0x68) = uVar1 << 0xb;
-    *(undefined4 *)(iVar4 + 0x6c) = 0;
+  *(undefined4 *)(iVar3 + 0x68) = 0;
+  *(undefined4 *)(iVar3 + 0x6c) = 0xffffffff;
+  *(undefined4 *)(iVar3 + 0x70) = 0xffffffff;
+  *(undefined4 *)(iVar3 + 0x74) = 0;
+  uVar2 = Mem_Alloc16(uVar1 << 0xb,*(undefined4 *)(iVar3 + 0x60));
+  *(undefined4 *)(iVar3 + 100) = uVar2;
+  if (*(int *)(iVar3 + 100) != 0) {
+    *(uint *)(iVar3 + 0x68) = uVar1 << 0xb;
+    *(undefined4 *)(iVar3 + 0x6c) = 0;
   }
-  if (*(int *)(iVar4 + 100) != 0) {
-    uVar2 = Arc_LoadFileEx(param_2 + 0x1ec2,*(int *)(iVar4 + 100),0x2ae500,param_1,0,0);
-    *(undefined4 *)(iVar4 + 0x70) = uVar2;
-    *(undefined4 *)(iVar4 + 0x74) = 1;
+  if (*(int *)(iVar3 + 100) != 0) {
+    uVar2 = Arc_LoadFileEx(param_2 + 0x1ec2,*(int *)(iVar3 + 100),0x2ae500,param_1,0,0);
+    *(undefined4 *)(iVar3 + 0x70) = uVar2;
+    *(undefined4 *)(iVar3 + 0x74) = 1;
   }
   return;
 }

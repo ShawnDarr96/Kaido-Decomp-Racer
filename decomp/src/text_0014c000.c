@@ -3,14 +3,12 @@
 #include "ghidra_types.h"
 
 // 0x0014c060  size 0x34
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void Arc_Shutdown(void)
 
 {
-  if (_g_ArcToc != 0) {
+  if (g_ArcToc != (ArcToc *)0x0) {
     Mem_Free();
-    _g_ArcToc = 0;
+    g_ArcToc = (ArcToc *)0x0;
   }
   File_Shutdown();
   return;
@@ -27,7 +25,7 @@ void Arc_Init(undefined8 param_1,undefined8 param_2)
   int iVar2;
   long lVar3;
   int *piVar4;
-  undefined4 uStack_14;
+  uint uStack_14;
   undefined1 auStack_10 [4];
   undefined4 uStack_c;
   int iStack_8;
@@ -35,43 +33,44 @@ void Arc_Init(undefined8 param_1,undefined8 param_2)
   
   File_Init(param_1,param_2,0x7fe6d);
   lVar3 = File_GetDiscType(0);
-  iRam0036f0bc = (int)lVar3;
+  _g_ArcDiscOk = (int)lVar3;
   if (lVar3 == 0) {
-    iRam0036f0bc = 0;
+    _g_ArcDiscOk = 0;
   }
-  _g_ArcToc = Mem_AllocAligned(DAT_0030a8c0 * 0x14 + 0x80fU & 0xfffff800,0x40,uRam0036f0b8);
-  if (iRam0036f0bc != 0) {
+  g_ArcToc = (ArcToc *)
+             Mem_AllocAligned(g_ArcEntryCount * 0x14 + 0x80fU & 0xfffff800,0x40,_g_ArcHeap);
+  if (_g_ArcDiscOk != 0) {
     lVar3 = File_ReadCdFile(0x3622e0,auStack_4,&iStack_8,0,0);
     if (lVar3 == 0) {
-      iRam0036f0bc = 0;
+      _g_ArcDiscOk = 0;
     }
     else {
       lVar3 = File_ReadCdFile(0x3622f0,&uStack_c,auStack_10,0,0);
       if (lVar3 == 0) {
-        iRam0036f0bc = 0;
+        _g_ArcDiscOk = 0;
       }
     }
-    if ((iRam0036f0bc != 0) && (iStack_8 != DAT_0030a8c0 * 0x14 + 0x10)) {
-      iRam0036f0bc = 0;
+    if ((_g_ArcDiscOk != 0) && (iStack_8 != g_ArcEntryCount * 0x14 + 0x10)) {
+      _g_ArcDiscOk = 0;
     }
-    if (iRam0036f0bc != 0) {
-      File_OpenCdFile(0x3622e0,_g_ArcToc);
+    if (_g_ArcDiscOk != 0) {
+      File_OpenCdFile(0x3622e0,g_ArcToc);
     }
-    if (iRam0036f0bc != 0) {
-      uRam0036f0c0 = uStack_c;
+    if (_g_ArcDiscOk != 0) {
+      _g_ArcDatSector = uStack_c;
     }
   }
-  if ((iRam0036f0bc != 0) && (lVar3 = Str_CompareN(_g_ArcToc,0x30a8c0,0x10), lVar3 != 0)) {
-    iRam0036f0bc = 0;
+  if ((_g_ArcDiscOk != 0) && (lVar3 = Str_CompareN(g_ArcToc,0x30a8c0,0x10), lVar3 != 0)) {
+    _g_ArcDiscOk = 0;
   }
-  if ((iRam0036f0bc != 0) &&
+  if ((_g_ArcDiscOk != 0) &&
      (uStack_14 = 0, PTR_s__MOV_MV1_OPMOV_PSS_1_0030a8d4 != (undefined *)0x0)) {
     piVar4 = &DAT_0030a8d0;
     do {
       iVar2 = *piVar4;
       lVar3 = File_ReadCdFile(piVar4[1],&uStack_14,0,0,0);
       if (lVar3 != 0) {
-        *(undefined4 *)(_g_ArcToc + iVar2 * 0x14 + 0x10) = uStack_14;
+        g_ArcToc->entries[iVar2].sector = uStack_14;
       }
       piVar1 = piVar4 + 3;
       piVar4 = piVar4 + 2;
@@ -90,12 +89,14 @@ void Arc_CloseHost(void)
 }
 
 // 0x0014c2c0  size 0x30
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 void Arc_SetHeap(undefined4 param_1)
 
 {
   File_SetHeap();
   File_ResetHostHandles();
-  uRam0036f0b8 = param_1;
+  _g_ArcHeap = param_1;
   return;
 }
 

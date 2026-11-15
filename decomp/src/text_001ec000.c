@@ -1420,74 +1420,67 @@ void UiLayout_OnTextureLoaded(void)
 }
 
 // 0x001ee6c0  size 0x22c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void UiLayout_Load(undefined8 param_1,undefined4 *param_2,long param_3)
 
 {
   byte bVar1;
   int iVar2;
-  int iVar3;
-  uint uVar4;
-  int iVar5;
-  int iVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
+  uint uVar3;
+  int iVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
   
-  uVar7 = param_2[1];
-  uVar8 = param_2[2];
-  iVar6 = (int)param_1;
-  *(undefined4 *)(iVar6 + 0x2f8) = *param_2;
-  *(undefined4 *)(iVar6 + 0x2fc) = uVar7;
-  *(undefined4 *)(iVar6 + 0x300) = uVar8;
-  iVar2 = *(int *)(iVar6 + 0x2f8);
-  iVar5 = iVar2 * 0x14 + _g_ArcToc;
+  uVar5 = param_2[1];
+  uVar6 = param_2[2];
+  iVar4 = (int)param_1;
+  *(undefined4 *)(iVar4 + 0x2f8) = *param_2;
+  *(undefined4 *)(iVar4 + 0x2fc) = uVar5;
+  *(undefined4 *)(iVar4 + 0x300) = uVar6;
+  iVar2 = *(int *)(iVar4 + 0x2f8);
   bVar1 = g_RaceCtx->unk_0015;
-  iVar3 = *(int *)(iVar5 + 0x20);
-  if (iVar3 == 0) {
-    uVar4 = *(uint *)(iVar5 + 0x18);
+  uVar3 = g_ArcToc->entries[iVar2].unpackedSize;
+  if (uVar3 == 0) {
+    uVar3 = g_ArcToc->entries[iVar2].sectorCount;
   }
   else {
-    uVar4 = iVar3 + 0x7ffU >> 0xb;
+    uVar3 = uVar3 + 0x7ff >> 0xb;
   }
-  *(uint *)(iVar6 + 0x308) =
-       ((*(int *)(iVar6 + 0x300) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
-       uVar4 * 0x800 + *(int *)(iVar6 + 0x2fc) * 0x80;
+  *(uint *)(iVar4 + 0x308) =
+       ((*(int *)(iVar4 + 0x300) * 0xd + 1) * 0x10 + 0x3fU & 0xffffffc0) +
+       uVar3 * 0x800 + *(int *)(iVar4 + 0x2fc) * 0x80;
   if (param_3 == 0) {
-    uVar7 = UiMgr_LockedAlloc(*(undefined4 *)(iVar6 + 0x308));
-    *(undefined4 *)(iVar6 + 0x3c) = uVar7;
+    uVar5 = UiMgr_LockedAlloc(*(undefined4 *)(iVar4 + 0x308));
+    *(undefined4 *)(iVar4 + 0x3c) = uVar5;
   }
   else {
-    uVar7 = Mem_AllocAligned(*(undefined4 *)(iVar6 + 0x308),0x40,param_3);
-    *(undefined4 *)(iVar6 + 0x3c) = uVar7;
-    *(int *)(iVar6 + 0x4ec) = (int)param_3;
+    uVar5 = Mem_AllocAligned(*(undefined4 *)(iVar4 + 0x308),0x40,param_3);
+    *(undefined4 *)(iVar4 + 0x3c) = uVar5;
+    *(int *)(iVar4 + 0x4ec) = (int)param_3;
   }
-  if (0 < *(int *)(iVar6 + 0x2fc)) {
-    iVar5 = *(int *)(iVar6 + 0x2f8) * 0x14 + _g_ArcToc;
-    iVar3 = *(int *)(iVar5 + 0x20);
-    if (iVar3 == 0) {
-      uVar4 = *(uint *)(iVar5 + 0x18);
+  if (0 < *(int *)(iVar4 + 0x2fc)) {
+    uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].unpackedSize;
+    if (uVar3 == 0) {
+      uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].sectorCount;
     }
     else {
-      uVar4 = iVar3 + 0x7ffU >> 0xb;
+      uVar3 = uVar3 + 0x7ff >> 0xb;
     }
-    *(uint *)(iVar6 + 0x2d8) = *(int *)(iVar6 + 0x3c) + uVar4 * 0x800;
+    *(uint *)(iVar4 + 0x2d8) = *(int *)(iVar4 + 0x3c) + uVar3 * 0x800;
   }
-  if ((*(int *)(iVar6 + 0x2d4) != 0) && (0 < *(int *)(iVar6 + 0x300))) {
-    iVar5 = *(int *)(iVar6 + 0x2f8) * 0x14 + _g_ArcToc;
-    iVar3 = *(int *)(iVar5 + 0x20);
-    if (iVar3 == 0) {
-      uVar4 = *(uint *)(iVar5 + 0x18);
+  if ((*(int *)(iVar4 + 0x2d4) != 0) && (0 < *(int *)(iVar4 + 0x300))) {
+    uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].unpackedSize;
+    if (uVar3 == 0) {
+      uVar3 = g_ArcToc->entries[*(int *)(iVar4 + 0x2f8)].sectorCount;
     }
     else {
-      uVar4 = iVar3 + 0x7ffU >> 0xb;
+      uVar3 = uVar3 + 0x7ff >> 0xb;
     }
-    DmaBuf_SetUncached(iVar6 + 0x2dc,
-                       *(int *)(iVar6 + 0x3c) + *(int *)(iVar6 + 0x2fc) * 0x80 + uVar4 * 0x800,
-                       *(int *)(iVar6 + 0x300) * 0xd + 1);
+    DmaBuf_SetUncached(iVar4 + 0x2dc,
+                       *(int *)(iVar4 + 0x3c) + *(int *)(iVar4 + 0x2fc) * 0x80 + uVar3 * 0x800,
+                       *(int *)(iVar4 + 0x300) * 0xd + 1);
   }
-  *(undefined4 *)(iVar6 + 0x304) = 1;
-  Arc_LoadFileEx(iVar2 + (uint)bVar1,*(undefined4 *)(iVar6 + 0x3c),0x1ee590,param_1,0,0);
+  *(undefined4 *)(iVar4 + 0x304) = 1;
+  Arc_LoadFileEx(iVar2 + (uint)bVar1,*(undefined4 *)(iVar4 + 0x3c),0x1ee590,param_1,0,0);
   return;
 }
 

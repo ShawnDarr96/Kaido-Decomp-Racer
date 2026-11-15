@@ -22,3 +22,7 @@ address,name,comment
 0x00430750,g_MainHeap,26 MB main heap
 0x00431100,g_Views,14 x 0x5c0-byte render views
 0x003803a0,g_GsDBuff,sceGsDBuff
+0x0030a8c0,g_ArcEntryCount,number of BUILD.TOC entries (15219); checked against the TOC file size in Arc_Init
+0x0036f0c0,g_ArcDatSector,start sector of BUILD.DAT on disc; added to each entry's sector
+0x0036f0bc,g_ArcDiscOk,1 when BUILD.TOC/BUILD.DAT were found and the TOC size matched
+0x0036f0b8,g_ArcHeap,heap the TOC buffer is allocated from

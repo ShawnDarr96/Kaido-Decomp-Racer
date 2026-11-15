@@ -2037,13 +2037,12 @@ void maybe_Scene_InitHeap(undefined4 param_1)
 void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4)
 
 {
-  int iVar1;
   uint auStack_30 [2];
   undefined4 uStack_28;
   int iStack_24;
   undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
+  uint uStack_1c;
+  uint uStack_18;
   undefined4 uStack_14;
   undefined4 uStack_10;
   undefined4 uStack_c;
@@ -2051,23 +2050,22 @@ void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4
   
   uStack_8 = (undefined4)param_3;
   auStack_30[0] = 0x400c;
-  iVar1 = _g_ArcToc + param_1 * 0x14;
   if (param_3 != 0) {
     auStack_30[0] = 0x600c;
   }
-  if (*(int *)(iVar1 + 0x20) != 0) {
+  if (g_ArcToc->entries[param_1].unpackedSize != 0) {
     auStack_30[0] = auStack_30[0] | 0x100;
   }
   uStack_28 = 0;
   uStack_20 = 0;
-  iStack_24 = iRam0036f0c0 + *(int *)(iVar1 + 0x10);
+  iStack_24 = _g_ArcDatSector + g_ArcToc->entries[param_1].sector;
   if ((auStack_30[0] & 0x100) == 0) {
-    uStack_1c = *(undefined4 *)(iVar1 + 0x14);
+    uStack_1c = g_ArcToc->entries[param_1].storedSize;
     uStack_18 = 0;
   }
   else {
-    uStack_1c = *(undefined4 *)(iVar1 + 0x20);
-    uStack_18 = *(undefined4 *)(iVar1 + 0x14);
+    uStack_1c = g_ArcToc->entries[param_1].unpackedSize;
+    uStack_18 = g_ArcToc->entries[param_1].storedSize;
   }
   uStack_14 = 0;
   uStack_10 = param_2;
@@ -2081,16 +2079,15 @@ void Arc_LoadFile(int param_1,undefined4 param_2,long param_3,undefined4 param_4
 /* 54 callers */
 
 void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param_4,long param_5,
-                   int param_6)
+                   uint param_6)
 
 {
-  int iVar1;
   uint auStack_30 [2];
   undefined4 uStack_28;
   int iStack_24;
   undefined4 uStack_20;
-  int iStack_1c;
-  undefined4 uStack_18;
+  uint uStack_1c;
+  uint uStack_18;
   undefined4 uStack_14;
   undefined4 uStack_10;
   undefined4 uStack_c;
@@ -2099,28 +2096,27 @@ void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param
   uStack_20 = (undefined4)param_5;
   uStack_8 = (undefined4)param_3;
   auStack_30[0] = 0x4824;
-  iVar1 = _g_ArcToc + param_1 * 0x14;
   if (param_3 != 0) {
     auStack_30[0] = 0x6824;
   }
   if (param_5 != 0) {
     auStack_30[0] = auStack_30[0] | 0x80;
   }
-  if (*(int *)(iVar1 + 0x20) != 0) {
+  if (g_ArcToc->entries[param_1].unpackedSize != 0) {
     auStack_30[0] = auStack_30[0] | 0x100;
   }
   uStack_28 = 0;
-  iStack_24 = iRam0036f0c0 + *(int *)(iVar1 + 0x10);
+  iStack_24 = _g_ArcDatSector + g_ArcToc->entries[param_1].sector;
   if ((auStack_30[0] & 0x100) == 0) {
     if (param_6 == 0) {
-      param_6 = *(int *)(iVar1 + 0x14);
+      param_6 = g_ArcToc->entries[param_1].storedSize;
     }
     uStack_18 = 0;
-    iStack_1c = param_6;
+    uStack_1c = param_6;
   }
   else {
-    iStack_1c = *(int *)(iVar1 + 0x20);
-    uStack_18 = *(undefined4 *)(iVar1 + 0x14);
+    uStack_1c = g_ArcToc->entries[param_1].unpackedSize;
+    uStack_18 = g_ArcToc->entries[param_1].storedSize;
   }
   uStack_14 = 0;
   uStack_10 = param_2;
@@ -2130,38 +2126,36 @@ void Arc_LoadFileEx(int param_1,undefined4 param_2,long param_3,undefined4 param
 }
 
 // 0x0014bfe0  size 0x7c
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 uint Arc_GetFileSize(uint param_1,uint param_2,long param_3)
 
 {
   uint uVar1;
   uint uVar2;
   uint uVar3;
-  int iVar4;
+  uint *puVar4;
   
   uVar3 = 0;
   if (param_1 <= param_2) {
-    iVar4 = _g_ArcToc + param_1 * 0x14;
+    puVar4 = &g_ArcToc->entries[param_1 - 1].storedSize;
     uVar1 = uVar3;
     do {
-      uVar3 = *(uint *)(iVar4 + 0x20);
+      uVar3 = puVar4[8];
       if (uVar3 == 0) {
-        uVar2 = *(uint *)(iVar4 + 0x14);
+        uVar2 = puVar4[5];
       }
       else {
         uVar2 = uVar3;
       }
       if (uVar1 < uVar2) {
         if (uVar3 == 0) {
-          uVar3 = *(uint *)(iVar4 + 0x14);
+          uVar3 = puVar4[5];
         }
       }
       else {
         uVar3 = uVar1;
       }
       param_1 = param_1 + 1;
-      iVar4 = iVar4 + 0x14;
+      puVar4 = puVar4 + 5;
       uVar1 = uVar3;
     } while (param_1 <= param_2);
   }

@@ -5077,3 +5077,7 @@ g_Pads = 0x00386650; // type:u32
 g_MainHeap = 0x00430750; // type:u32
 g_Views = 0x00431100; // type:u32
 g_GsDBuff = 0x003803A0; // type:u32
+g_ArcEntryCount = 0x0030A8C0; // type:u32
+g_ArcDatSector = 0x0036F0C0; // type:u32
+g_ArcDiscOk = 0x0036F0BC; // type:u32
+g_ArcHeap = 0x0036F0B8; // type:u32

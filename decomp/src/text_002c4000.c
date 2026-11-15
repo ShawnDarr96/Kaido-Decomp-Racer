@@ -166,17 +166,13 @@ LAB_002c432c:
 }
 
 // 0x002c44a0  size 0xac4
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void RaceMenu_LoadLayouts
                (int param_1,char param_2,undefined8 param_3,undefined4 param_4,undefined4 param_5,
                undefined4 *param_6,undefined4 *param_7,undefined4 *param_8)
 
 {
-  int iVar1;
-  undefined4 uVar2;
-  uint uVar3;
-  int iVar4;
+  undefined4 uVar1;
+  uint uVar2;
   undefined8 unaff_s0;
   undefined8 unaff_s1;
   undefined8 unaff_s2;
@@ -259,223 +255,225 @@ void RaceMenu_LoadLayouts
   UiMgr_LoadLayout(param_3,&uStack_10,0);
   UiMgr_LoadLayout(param_4,&uStack_20,0);
   UiMgr_LoadLayout(param_5,&uStack_30,0);
-  if (*(int *)(_g_ArcToc + 0x1e8a4) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e89c);
+  uVar2 = g_ArcToc->entries[0x186d].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x186d].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e8a4) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x20) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x20) = uVar1;
   Arc_LoadFileEx(0x186d,*(undefined4 *)(param_1 + 0x20),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e8b8) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e8b0);
+  uVar2 = g_ArcToc->entries[0x186e].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x186e].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e8b8) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x24) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x24) = uVar1;
   Arc_LoadFileEx(0x186e,*(undefined4 *)(param_1 + 0x24),0,0,0,0);
-  iVar4 = (int)unaff_s3 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s3].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s3].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x34) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x34) = uVar1;
   Arc_LoadFileEx(unaff_s3,*(undefined4 *)(param_1 + 0x34),0,0,0,0);
-  iVar4 = (int)unaff_s2 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s2].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s2].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x38) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x38) = uVar1;
   Arc_LoadFileEx(unaff_s2,*(undefined4 *)(param_1 + 0x38),0,0,0,0);
-  iVar4 = (int)unaff_s1 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s1].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s1].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x48) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x48) = uVar1;
   Arc_LoadFileEx(unaff_s1,*(undefined4 *)(param_1 + 0x48),0,0,0,0);
-  iVar4 = (int)unaff_s0 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s0].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s0].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x4c) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x4c) = uVar1;
   Arc_LoadFileEx(unaff_s0,*(undefined4 *)(param_1 + 0x4c),0,0,0,0);
-  iVar4 = (int)unaff_s5 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s5].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s5].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x5c) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x5c) = uVar1;
   Arc_LoadFileEx(unaff_s5,*(undefined4 *)(param_1 + 0x5c),0,0,0,0);
-  iVar4 = (int)unaff_s6 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s6].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s6].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x60) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x60) = uVar1;
   Arc_LoadFileEx(unaff_s6,*(undefined4 *)(param_1 + 0x60),0,0,0,0);
-  iVar4 = (int)unaff_s7 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s7].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s7].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x70) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x70) = uVar1;
   Arc_LoadFileEx(unaff_s7,*(undefined4 *)(param_1 + 0x70),0,0,0,0);
-  iVar4 = (int)unaff_s8 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[(int)unaff_s8].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[(int)unaff_s8].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x74) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x74) = uVar1;
   Arc_LoadFileEx(unaff_s8,*(undefined4 *)(param_1 + 0x74),0,0,0,0);
-  iVar4 = iStack_50 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[iStack_50].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[iStack_50].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x84) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x84) = uVar1;
   Arc_LoadFileEx(iStack_50,*(undefined4 *)(param_1 + 0x84),0,0,0,0);
-  iVar4 = iStack_60 * 0x14 + _g_ArcToc;
-  iVar1 = *(int *)(iVar4 + 0x20);
-  if (iVar1 == 0) {
-    uVar3 = *(uint *)(iVar4 + 0x18);
+  uVar2 = g_ArcToc->entries[iStack_60].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[iStack_60].sectorCount;
   }
   else {
-    uVar3 = iVar1 + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x88) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x88) = uVar1;
   Arc_LoadFileEx(iStack_60,*(undefined4 *)(param_1 + 0x88),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e69c) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e694);
+  uVar2 = g_ArcToc->entries[0x1853].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x1853].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e69c) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x98) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x98) = uVar1;
   Arc_LoadFileEx(0x1853,*(undefined4 *)(param_1 + 0x98),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e6b0) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e6a8);
+  uVar2 = g_ArcToc->entries[0x1854].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x1854].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e6b0) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0x9c) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0x9c) = uVar1;
   Arc_LoadFileEx(0x1854,*(undefined4 *)(param_1 + 0x9c),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e714) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e70c);
+  uVar2 = g_ArcToc->entries[0x1859].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x1859].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e714) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xac) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xac) = uVar1;
   Arc_LoadFileEx(0x1859,*(undefined4 *)(param_1 + 0xac),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e728) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e720);
+  uVar2 = g_ArcToc->entries[0x185a].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x185a].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e728) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xb0) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xb0) = uVar1;
   Arc_LoadFileEx(0x185a,*(undefined4 *)(param_1 + 0xb0),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e82c) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e824);
+  uVar2 = g_ArcToc->entries[0x1867].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x1867].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e82c) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xc0) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xc0) = uVar1;
   Arc_LoadFileEx(0x1867,*(undefined4 *)(param_1 + 0xc0),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e840) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e838);
+  uVar2 = g_ArcToc->entries[0x1868].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x1868].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e840) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xc4) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xc4) = uVar1;
   Arc_LoadFileEx(0x1868,*(undefined4 *)(param_1 + 0xc4),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e854) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e84c);
+  uVar2 = g_ArcToc->entries[0x1869].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x1869].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e854) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xd4) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xd4) = uVar1;
   Arc_LoadFileEx(0x1869,*(undefined4 *)(param_1 + 0xd4),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e868) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e860);
+  uVar2 = g_ArcToc->entries[0x186a].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x186a].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e868) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xd8) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xd8) = uVar1;
   Arc_LoadFileEx(0x186a,*(undefined4 *)(param_1 + 0xd8),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e87c) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e874);
+  uVar2 = g_ArcToc->entries[0x186b].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x186b].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e87c) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xe8) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xe8) = uVar1;
   Arc_LoadFileEx(0x186b,*(undefined4 *)(param_1 + 0xe8),0,0,0,0);
-  if (*(int *)(_g_ArcToc + 0x1e890) == 0) {
-    uVar3 = *(uint *)(_g_ArcToc + 0x1e888);
+  uVar2 = g_ArcToc->entries[0x186c].unpackedSize;
+  if (uVar2 == 0) {
+    uVar2 = g_ArcToc->entries[0x186c].sectorCount;
   }
   else {
-    uVar3 = *(int *)(_g_ArcToc + 0x1e890) + 0x7ffU >> 0xb;
+    uVar2 = uVar2 + 0x7ff >> 0xb;
   }
-  uVar2 = Mem_AllocAligned(uVar3 << 0xb,0x40,0x430750);
-  *(undefined4 *)(param_1 + 0xec) = uVar2;
+  uVar1 = Mem_AllocAligned(uVar2 << 0xb,0x40,0x430750);
+  *(undefined4 *)(param_1 + 0xec) = uVar1;
   Arc_LoadFileEx(0x186c,*(undefined4 *)(param_1 + 0xec),0,0,0,0);
   return;
 }
