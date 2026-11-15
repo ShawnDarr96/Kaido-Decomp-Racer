@@ -455,14 +455,14 @@ address,name,comment
 0x003804f0,s_Gfx_Init_3,used only by Gfx_Init
 0x00386620,s___sinit_00368630_1,used only by __sinit_00368630
 0x0038662c,s_FileVar9,used only by File_* (2 functions)
-0x00386f90,s_McVar1,used only by Mc_* (2 functions)
-0x00386f98,s_Mc_Init_1,used only by Mc_Init
-0x00386fa0,s_Mc_QueueCommand_1,used only by Mc_QueueCommand
-0x00386fac,s_Mc_Init_2,used only by Mc_Init
-0x00386fb4,s_McVar2,used only by Mc_* (3 functions)
-0x00386fbc,s___sinit_00368710_1,used only by __sinit_00368710
-0x00386fc4,s_Mc_Init_3,used only by Mc_Init
-0x00386fc8,s_Mc_Init_4,used only by Mc_Init
+0x00386f90,s_McRequestPool,F16: array of 0x58-byte memory-card requests built by Mc_Init
+0x00386f98,s_McFreeList_ownsNodes,F16: List field +4; Mc_Init clears it (nodes live in s_McRequestPool)
+0x00386fa0,s_McFreeList_head,F16: List field +0xc; Mc_QueueCommand pops it
+0x00386fac,s_McQueue_ownsNodes,F16: List field +4
+0x00386fb4,s_McQueue_head,F16: List field +0xc; Mc_Update takes requests from it
+0x00386fbc,s_McFrameNode,F16: ListNode registered with Gfx_AddFrameCallback by Mc_Init
+0x00386fc4,s_McFrameNode_func,F16: node callback = Mc_Update
+0x00386fc8,s_McFrameNode_arg,F16: node callback argument
 0x00387000,s_IopSnd_Command_1,used only by IopSnd_Command
 0x00387004,s_IopSnd_Command_2,used only by IopSnd_Command
 0x00387008,s_IopSnd_Command_3,used only by IopSnd_Command
@@ -853,9 +853,9 @@ address,name,comment
 0x004305ec,s_Course_Load_3,used only by Course_Load
 0x004305f8,s_Course_Load_4,used only by Course_Load
 0x004305fc,s_Course_Load_5,used only by Course_Load
-0x00430644,s___sinit_00369c10_1,used only by __sinit_00369c10
-0x0043064c,s_CourseScene_Load_1,used only by CourseScene_Load
-0x00430650,s_CourseScene_Load_2,used only by CourseScene_Load
+0x00430644,s_CourseSceneFrameNode,F16: ListNode registered with Gfx_AddFrameCallback by CourseScene_Load
+0x0043064c,s_CourseSceneFrameNode_func,F16: node callback = Course_CaptureReflection
+0x00430650,s_CourseSceneFrameNode_arg,F16: node callback argument = &g_CourseScene
 0x00430664,s_CourseVar6,used only by Course_* (2 functions)
 0x00430670,s_Course_Render_1,used only by Course_Render
 0x00430700,s_Course_DrawReflectionPlane_1,used only by Course_DrawReflectionPlane
@@ -905,9 +905,9 @@ address,name,comment
 0x004343c0,s_ReplayCam_DrawOverlay_6,used only by maybe_ReplayCam_DrawOverlay
 0x004343d0,s_ReplayCam_DrawOverlay_7,used only by maybe_ReplayCam_DrawOverlay
 0x00435bf0,s_IntroCar_Draw_1,used only by maybe_IntroCar_Draw
-0x00436310,s___sinit_00369e00_1,used only by __sinit_00369e00
-0x00436318,s_Render_Init_2,used only by Render_Init
-0x0043631c,s_Render_Init_3,used only by Render_Init
+0x00436310,s_RenderEndFrameNode,F16: ListNode registered with Gfx_AddEndFrameCallback by Render_Init
+0x00436318,s_RenderEndFrameNode_func,F16: node callback = Render_SetupViews
+0x0043631c,s_RenderEndFrameNode_arg,F16: node callback argument
 0x00436340,s_DriverAssetVar1,used only by DriverAsset_* (2 functions)
 0x00436350,s_DriverAssetVar2,used only by DriverAsset_* (2 functions)
 0x00436354,s_CarModel_DrawBody_1,used only by CarModel_DrawBody
@@ -1290,3 +1290,5 @@ address,name,comment
 0x0046a594,g_DemoShared1,shared: Demo(2) AttractTask(2) Race(1)
 0x0046a598,g_AttractShared1,shared: Attract(1) AttractTask(1) Misc(1)
 0x0046a59c,g_CourseShared118,shared: Course(5) Demo(1) AttractTask(1)
+0x00386f94,s_McFreeList,F16: List of free requests (List_ctor in __sinit)
+0x00386fa8,s_McQueue,F16: List of queued memory-card requests

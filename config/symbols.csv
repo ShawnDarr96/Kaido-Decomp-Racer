@@ -1045,7 +1045,7 @@ address,name,signature,source,comment
 0x00131e20,Str_FormatNumberBase,,game,base 2..36
 0x00131f30,Task_RunPostUpdate,,game,
 0x00131fb0,Task_RunUpdate,,game,
-0x00132020,TaskList_Remove,,game,
+0x00132020,TaskList_Add,,game,F16: stores the list count in the task (+0xc) and tail-calls List_Append; names were swapped
 0x00132030,TaskList_dtor,,game,
 0x00132090,TaskList_ctor,,game,
 0x001320d0,Task_dtor,,game,
@@ -1559,8 +1559,8 @@ address,name,signature,source,comment
 0x00153118,Gfx_EndFrame_Orphan1,,game,"follows Gfx_EndFrame; no call, branch, pointer or constant references it (exception landing pad or dead code)"
 0x00153130,Gfx_SetDisplayParam,,game,
 0x00153260,Gfx_SetFade,,game,
-0x00153330,Gfx_AddEndFrameCallback,,game,
-0x00153340,Gfx_RemoveEndFrameCallback,,game,
+0x00153330,Gfx_RemoveEndFrameCallback,,game,F16: tail-calls List_Remove; called from Render_Shutdown (names were swapped)
+0x00153340,Gfx_AddEndFrameCallback,,game,F16: tail-calls List_Append; called from Render_Init (names were swapped)
 0x00153350,Gfx_ApplyVideoSettings,,game,
 0x001538f0,Gfx_ShutdownAll,,game,
 0x00153920,Gfx_InitAll,,game,

@@ -791,12 +791,12 @@ Mc_QueueCommand(int param_1,long param_2,undefined4 param_3,uint param_4,undefin
   undefined4 uVar2;
   int iVar3;
   
-  iVar1 = _s_Mc_QueueCommand_1;
-  if (_s_Mc_QueueCommand_1 == 0) {
+  iVar1 = _s_McFreeList_head;
+  if (_s_McFreeList_head == 0) {
     uVar2 = 0;
   }
   else {
-    *(int *)(_s_Mc_QueueCommand_1 + 8) = param_1;
+    *(int *)(_s_McFreeList_head + 8) = param_1;
     *(undefined4 *)(iVar1 + 0xc) = param_3;
     *(undefined4 *)(iVar1 + 0x10) = 1;
     if (param_2 == 0) {
@@ -899,8 +899,8 @@ void Mc_Update(void)
   long lVar2;
   int iVar3;
   
-  iVar3 = _s_McVar2;
-  if (_s_McVar2 != 0) {
+  iVar3 = _s_McQueue_head;
+  if (_s_McQueue_head != 0) {
     while (iVar1 = *(int *)(iVar3 + 4), (**(uint **)(iVar3 + 8) & 8) == 0) {
       if (*(int *)(iVar3 + 0x10) == 0) {
         lVar2 = Mc_PollResult(iVar3);
@@ -935,9 +935,9 @@ void Mc_Shutdown(void)
   Gfx_RemoveFrameCallback(0x386fbc);
   List_Clear(0x386f94);
   List_Clear(0x386fa8);
-  if (_s_McVar1 != 0) {
-    __destroy_new_array(_s_McVar1,0x1395e0);
-    _s_McVar1 = 0;
+  if (_s_McRequestPool != 0) {
+    __destroy_new_array(_s_McRequestPool,0x1395e0);
+    _s_McRequestPool = 0;
   }
   return;
 }
@@ -968,21 +968,21 @@ void Mc_Init(undefined8 param_1,uint param_2)
   int iVar3;
   
   sceMcInit();
-  _s_Mc_Init_1 = 0;
-  _s_Mc_Init_2 = 0;
+  _s_McFreeList_ownsNodes = 0;
+  _s_McQueue_ownsNodes = 0;
   uVar1 = maybe_operator_new_heap(param_2 * 0x58 + 0x10,param_1);
-  _s_McVar1 = __construct_new_array(uVar1,0x139730,0x1395e0,0x58,param_2);
+  _s_McRequestPool = __construct_new_array(uVar1,0x139730,0x1395e0,0x58,param_2);
   uVar2 = 0;
   if (param_2 != 0) {
     iVar3 = 0;
     do {
-      List_Append(0x386f94,_s_McVar1 + iVar3);
+      List_Append(0x386f94,_s_McRequestPool + iVar3);
       uVar2 = uVar2 + 1;
       iVar3 = iVar3 + 0x58;
     } while (uVar2 < param_2);
   }
-  _s_Mc_Init_3 = Mc_Update;
-  _s_Mc_Init_4 = 0;
+  _s_McFrameNode_func = Mc_Update;
+  _s_McFrameNode_arg = 0;
   Gfx_AddFrameCallback(0x386fbc);
   return;
 }
@@ -1005,7 +1005,7 @@ void Mc_CancelCommand(uint *param_1)
   int iVar1;
   int iVar2;
   
-  iVar1 = _s_McVar2;
+  iVar1 = _s_McQueue_head;
   if ((*param_1 & 8) != 0) {
     while (iVar2 = iVar1, iVar2 != 0) {
       iVar1 = *(int *)(iVar2 + 4);
@@ -1038,14 +1038,14 @@ Mc_CancelCommand_Orphan1
   undefined4 uStack00000020;
   undefined4 uStack00000024;
   
-  iVar1 = _s_Mc_QueueCommand_1;
+  iVar1 = _s_McFreeList_head;
   uStack00000020 = (undefined4)unaff_s0;
   uStack00000024 = (undefined4)((ulong)unaff_s0 >> 0x20);
-  if (_s_Mc_QueueCommand_1 == 0) {
+  if (_s_McFreeList_head == 0) {
     uVar2 = 0;
   }
   else {
-    *(int *)(_s_Mc_QueueCommand_1 + 8) = param_1;
+    *(int *)(_s_McFreeList_head + 8) = param_1;
     *(undefined4 *)(iVar1 + 0xc) = param_3;
     *(undefined4 *)(iVar1 + 0x10) = 1;
     if (param_2 == 0) {
@@ -1144,7 +1144,7 @@ void Mc_RemoveCommandsFor(int param_1)
   int iVar1;
   int iVar2;
   
-  iVar1 = _s_McVar2;
+  iVar1 = _s_McQueue_head;
   while (iVar2 = iVar1, iVar2 != 0) {
     iVar1 = *(int *)(iVar2 + 4);
     if (param_1 == *(int *)(iVar2 + 8)) {

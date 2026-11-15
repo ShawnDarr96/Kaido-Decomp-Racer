@@ -238,8 +238,8 @@ CourseScene_Load(undefined8 param_1,int param_2,undefined8 param_3,char *param_4
       iVar11 = iVar11 + 8;
     } while (uVar10 < _g_CourseStreamShared3);
   }
-  _s_CourseScene_Load_1 = Course_CaptureReflection;
-  _s_CourseScene_Load_2 = &g_CourseScene;
+  _s_CourseSceneFrameNode_func = Course_CaptureReflection;
+  _s_CourseSceneFrameNode_arg = &g_CourseScene;
   Gfx_AddFrameCallback(0x430644);
   _g_CourseShared11 = 0;
   _g_CourseShared12 = 0;

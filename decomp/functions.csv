@@ -1045,7 +1045,7 @@ address,size,name,file,status
 0x00131e20,0x104,Str_FormatNumberBase,src/text_00130000.c,decompiled
 0x00131f30,0x7c,Task_RunPostUpdate,src/text_00130000.c,decompiled
 0x00131fb0,0x70,Task_RunUpdate,src/text_00130000.c,decompiled
-0x00132020,0xc,TaskList_Remove,src/text_00130000.c,decompiled
+0x00132020,0xc,TaskList_Add,src/text_00130000.c,decompiled
 0x00132030,0x60,TaskList_dtor,src/text_00130000.c,decompiled
 0x00132090,0x38,TaskList_ctor,src/text_00130000.c,decompiled
 0x001320d0,0x60,Task_dtor,src/text_00130000.c,decompiled
@@ -1559,8 +1559,8 @@ address,size,name,file,status
 0x00153118,0x10,Gfx_EndFrame_Orphan1,src/text_00150000.c,decompiled
 0x00153130,0x128,Gfx_SetDisplayParam,src/text_00150000.c,decompiled
 0x00153260,0xc8,Gfx_SetFade,src/text_00150000.c,decompiled
-0x00153330,0x10,Gfx_AddEndFrameCallback,src/text_00150000.c,decompiled
-0x00153340,0x10,Gfx_RemoveEndFrameCallback,src/text_00150000.c,decompiled
+0x00153330,0x10,Gfx_RemoveEndFrameCallback,src/text_00150000.c,decompiled
+0x00153340,0x10,Gfx_AddEndFrameCallback,src/text_00150000.c,decompiled
 0x00153350,0x594,Gfx_ApplyVideoSettings,src/text_00150000.c,decompiled
 0x001538f0,0x2c,Gfx_ShutdownAll,src/text_00150000.c,decompiled
 0x00153920,0x38,Gfx_InitAll,src/text_00150000.c,decompiled

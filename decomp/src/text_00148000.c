@@ -2019,7 +2019,7 @@ void Scene_CreateObjects(int *param_1)
           Task_ctor(puVar9,puVar7,iVar4,piVar6[2],piVar6[3],piVar6[4]);
           *puVar9 = &DAT_0036e158;
         }
-        TaskList_Remove(puVar7,puVar9);
+        TaskList_Add(puVar7,puVar9);
         uVar10 = uVar10 + 1;
         puVar9 = puVar9 + 9;
         iVar4 = iVar4 + (*piVar6 + 0xfU & 0xfffffff0);

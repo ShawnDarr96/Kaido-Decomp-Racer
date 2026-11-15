@@ -702,7 +702,7 @@ void Render_SetSceneMode(uint param_1,undefined8 param_2)
 void Render_Shutdown(void)
 
 {
-  Gfx_AddEndFrameCallback(0x436310);
+  Gfx_RemoveEndFrameCallback(0x436310);
   Gfx_ShutdownAll();
   return;
 }
@@ -737,9 +737,9 @@ void Render_Init(undefined4 param_1)
   Mem_Set16(0x4310e0,0x55,0x14);
   _s_RenderVar3 = 0;
   Gfx_InitAll(_s_Render_Init_1);
-  _s_Render_Init_2 = Render_SetupViews;
-  _s_Render_Init_3 = 0;
-  Gfx_RemoveEndFrameCallback(0x436310);
+  _s_RenderEndFrameNode_func = Render_SetupViews;
+  _s_RenderEndFrameNode_arg = 0;
+  Gfx_AddEndFrameCallback(0x436310);
   _s_RenderVar2 = 0;
   uStack_1f = DAT_00317f71;
   uStack_1e = DAT_00317f72;

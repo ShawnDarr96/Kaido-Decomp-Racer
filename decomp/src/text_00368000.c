@@ -46,7 +46,7 @@ void __sinit_00368710(void)
   List_ctor(0x386f94,1);
   List_ctor(0x386fa8,1);
   ListNode_ctor(0x386fbc,0);
-  _s___sinit_00368710_1 = &DAT_0036e128;
+  _s_McFrameNode = &DAT_0036e128;
   __register_global_object(0x386f90,0x139e80,0x386f80);
   return;
 }
@@ -572,7 +572,7 @@ void __sinit_00369c10(void)
   maybe_std_wios_Init_ctor(0x36f294);
   __register_global_object(0x36f294,0x1035a0,0x430620);
   ListNode_ctor(0x430644,0);
-  _s___sinit_00369c10_1 = &DAT_0036e128;
+  _s_CourseSceneFrameNode = &DAT_0036e128;
   __register_global_object(0x430640,0x1a4ed0,0x430630);
   maybe_Heap_ctor(0x4306e0);
   __register_global_object(0x4306e0,0x100860,0x4306d0);
@@ -620,7 +620,7 @@ void __sinit_00369e00(void)
 
 {
   ListNode_ctor(0x436310,0);
-  _s___sinit_00369e00_1 = &DAT_0036e5b8;
+  _s_RenderEndFrameNode = &DAT_0036e5b8;
   __register_global_object(0x436310,0x1a9b80,0x436300);
   return;
 }

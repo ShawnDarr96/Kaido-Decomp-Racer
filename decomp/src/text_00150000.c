@@ -1001,7 +1001,9 @@ void Gfx_SetFade(int param_1,uint param_2,long param_3,long param_4)
 }
 
 // 0x00153330  size 0x10
-void Gfx_AddEndFrameCallback(undefined8 param_1)
+/* F16: tail-calls List_Remove; called from Render_Shutdown (names were swapped) */
+
+void Gfx_RemoveEndFrameCallback(undefined8 param_1)
 
 {
   List_Remove(0x42d7e0,param_1);
@@ -1009,7 +1011,9 @@ void Gfx_AddEndFrameCallback(undefined8 param_1)
 }
 
 // 0x00153340  size 0x10
-void Gfx_RemoveEndFrameCallback(undefined8 param_1)
+/* F16: tail-calls List_Append; called from Render_Init (names were swapped) */
+
+void Gfx_AddEndFrameCallback(undefined8 param_1)
 
 {
   List_Append(0x42d7e0,param_1);

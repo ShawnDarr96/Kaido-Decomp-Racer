@@ -1428,7 +1428,9 @@ void Task_RunUpdate(int param_1)
 }
 
 // 0x00132020  size 0xc
-void TaskList_Remove(int param_1,int param_2)
+/* F16: stores the list count in the task (+0xc) and tail-calls List_Append; names were swapped */
+
+void TaskList_Add(int param_1,int param_2)
 
 {
   *(undefined4 *)(param_2 + 0xc) = *(undefined4 *)(param_1 + 8);
