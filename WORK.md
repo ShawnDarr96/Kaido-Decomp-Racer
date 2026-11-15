@@ -14,10 +14,11 @@ Columns:
 |---|---|---|---|---|---|
 | F3 | Decide module prefixes for game code (Car_, Race_, Menu_, Gfx_, Snd_, Fs_ ...) and write the list into AGENTS.md | humans |  |  |  |
 | F8 | Check the maybe_ SDK names against real SDK 2.8.0 symbols (another game with symbols, or the SDK libs) and drop maybe_ where confirmed | any |  |  | Gap of F1 |
-| F11 | Identify the file types of the 15219 BUILD.DAT entries (TIM2 textures, models, layouts, sound banks) and write a catalogue script | any |  | ShawnDarr96/claude (2026-11-15) | Gap of F6 |
 | F14 | Name the unk_ fields of RaceEntrySetup/RacerState/RacerStats and find RacerResult's users (accessed by pointer arithmetic, not the accessor) | any |  |  | Gap of F12 |
 | F16 | Scoped names (s_<Function>_N, s_<Module>VarN, g_<Module>SharedN) record ownership only; give them meaning-based names | any |  |  | Gap of F15 |
 | F17 | Decompile the XVI IOP modules XVI_IOP.IRX (4.9 KB) and XVI_SND.IRX (35.6 KB): separate R3000 binaries, IOP GCC toolchain | any |  |  | Gap of F7 |
+| F18 | Identify the 2,914 BUILD.DAT entries catalogue_build.py leaves unknown (0xc records without TIM2, 398,664-byte float tables, type-id float records) | any |  |  | Gap of F11 |
+| F19 | Document the XVI model format (XVI0/XMDL/NORM chunks) from the Xvi_* loaders | any |  |  | Gap of F11 |
 
 ## P1 Naming
 
@@ -235,6 +236,7 @@ Columns:
 | M1 | compiler = mwcps2-3.0-011126 -O4,p (decomp.me), verified on 2 functions | P3 | ShawnDarr96/claude | 2026-11-15 | 2258c30 |
 | F7 | decomp/IOP_MODULES.md + scripts/survey_irx.py: 12 modules are stock Sony SDK 2.8 / Logitech lgdev 1.08 (nothing to decompile); XVI_IOP.IRX and XVI_SND.IRX are XVI middleware | P0 | ShawnDarr96/claude | 2026-11-15 | 07adb9c |
 | F9 | 0x131c00-0x1328b0 all named and confirmed: List_Append/Remove (swap fixed), List_Clear/dtor, ListNode_dtor, Mem_Copy, Mutex_Create/Delete; Gfx_Add/RemoveFrameCallback swap fixed | P0 | ShawnDarr96/claude | 2026-11-15 | 667f7b6 |
+| F11 | scripts/catalogue_build.py + decomp/BUILD_DAT.md: 9,215 XVI model packs, 2,249 sprite sheets, 613 IECS sound banks, 103 TIM2, 102 streams, 22 glyph text; 2,914 still unidentified | P0 | ShawnDarr96/claude | 2026-11-15 | e276deb |
 
 ## Changes to the board
 
@@ -352,3 +354,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: claim F9.
 - 2026-11-15 ShawnDarr96/claude: F9 done.
 - 2026-11-15 ShawnDarr96/claude: claim F11.
+- 2026-11-15 ShawnDarr96/claude: F11 done; added F18, F19 (gaps).
