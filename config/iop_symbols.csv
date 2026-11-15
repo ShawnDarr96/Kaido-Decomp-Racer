@@ -1,0 +1,19 @@
+module,address,name,comment
+XVI_IOP,0x000000c0,XviIop_InitSif,sceSif init checks then RPC init
+XVI_IOP,0x000000f8,XviIop_AllocMemory,"AllocSysMemory; prints ""Memory allocate failed"""
+XVI_IOP,0x00000144,XviIop_FreeMemory,"FreeSysMemory; prints ""Memory release failed"""
+XVI_IOP,0x00000184,XviIop_SetDma,sif DMA with interrupts suspended; optionally waits
+XVI_IOP,0x000001f8,XviIop_WaitDma,polls the DMA status until done
+XVI_IOP,0x0000023c,XviIop_ParseArgs,"matches ""name=value"" module arguments and converts with XviIop_Atoi"
+XVI_IOP,0x00000320,XviIop_StrLen,
+XVI_IOP,0x00000354,XviIop_StrCpy,
+XVI_IOP,0x00000380,XviIop_StrCat,StrLen + StrCpy
+XVI_IOP,0x000004b8,XviIop_Atoi,optional '-' then decimal digits
+XVI_IOP,0x00000590,XviServer_Start,"CreateThread + StartThread; prints ""Server thread create/start failed"" or ""Server installed ver"""
+XVI_IOP,0x000006cc,XviServer_Stop,"TerminateThread + DeleteThread + unregister; prints ""Server thread delete failed"""
+XVI_IOP,0x00000760,XviServer_Thread,registers the RPC server then runs the sifcmd loop
+XVI_IOP,0x00000798,XviServer_Register,sets up the RPC queue and registers the server
+XVI_IOP,0x000007f4,XviServer_Unregister,"removes the server and queue (""Server un registed failed"")"
+XVI_IOP,0x00000850,XviClient_Bind,"binds an RPC client by GUID, retrying; creates the client semaphore (""Client module bind failed"", ""Client Re entrant Semapho create failed"")"
+XVI_IOP,0x00000908,XviClient_Unbind,DeleteSema on the client semaphore
+XVI_IOP,0x00000938,XviClient_Call,RPC call serialised by the client semaphore
