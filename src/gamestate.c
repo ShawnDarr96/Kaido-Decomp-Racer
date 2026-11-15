@@ -1,7 +1,56 @@
 /* Matching C (MWCPS2 3.0 build 011126, -O4,p; see config/compiler.txt).
- * Functions are in their original address order (0x177210-0x177280). */
-typedef struct GameState { char pad[0xe0]; int playerCount; int rivalCount; int trafficCount; } GameState;
+ * Functions are in their original address order. 0x176f30-0x177210: https://decomp.me/scratch/E0YK3 */
+typedef struct Rec204 { int w[51]; } Rec204;
+typedef struct Rec256 { int w[64]; } Rec256;
+typedef struct Rec380 { int w[95]; } Rec380;
+typedef struct Rec1344 { int w[336]; } Rec1344;
+typedef struct GameState {
+    char pad0[0xe0];
+    int playerCount;      /* 0xe0 */
+    int rivalCount;       /* 0xe4 */
+    int trafficCount;     /* 0xe8 */
+    char pad1[0xf0 - 0xec];
+    Rec204 entry[3];      /* 0xf0 */
+    char pad2[0x3e0 - 0x354];
+    Rec1344 racer[7];     /* 0x3e0 */
+    Rec256 course[7];     /* 0x28a0 */
+    Rec380 stats[7];      /* 0x2fa0 */
+} GameState;
 extern GameState *g_GameState;
+
+int GameState_Get_3acc(void) { return *(int *)(((char *)g_GameState) + 0x3acc); }
+int GameState_Get_3ad0(void) { return *(int *)(((char *)g_GameState) + 0x3ad0); }
+void GameState_Set_364(int v) { *(int *)(((char *)g_GameState) + 0x364) = v; }
+void GameState_Set_390(int v) { *(int *)(((char *)g_GameState) + 0x390) = v; }
+int GameState_Get_364(void) { return *(int *)(((char *)g_GameState) + 0x364); }
+int GameState_Get_390(void) { return *(int *)(((char *)g_GameState) + 0x390); }
+int GameState_Get_360(void) { return *(int *)(((char *)g_GameState) + 0x360); }
+int GameState_Get_35c(void) { return *(int *)(((char *)g_GameState) + 0x35c); }
+void GameState_Set_360(int v) { *(int *)(((char *)g_GameState) + 0x360) = v; }
+void GameState_Set_35c(int v) { *(int *)(((char *)g_GameState) + 0x35c) = v; }
+int GameState_Get_3a0(void) { return *(int *)(((char *)g_GameState) + 0x3a0); }
+void GameState_Set_3a0(int v) { *(int *)(((char *)g_GameState) + 0x3a0) = v; }
+int GameState_Get_39c(void) { return *(int *)(((char *)g_GameState) + 0x39c); }
+void GameState_Set_39c(int v) { *(int *)(((char *)g_GameState) + 0x39c) = v; }
+int GameState_Get_398(void) { return *(int *)(((char *)g_GameState) + 0x398); }
+void GameState_Set_398(int v) { *(int *)(((char *)g_GameState) + 0x398) = v; }
+void GameState_Set_354(signed char v) { *(signed char *)(((char *)g_GameState) + 0x354) = v; }
+signed char GameState_Get_354(void) { return *(signed char *)(((char *)g_GameState) + 0x354); }
+signed char GameState_Get_354_7050(void) { return *(signed char *)(((char *)g_GameState) + 0x354); }
+char *GameState_Ptr_354(void) { return ((char *)g_GameState) + 0x354; }
+Rec204 *GameState_Elem_f0_xcc(int i) { return &g_GameState->entry[i]; }
+/* NONMATCHING: one extra nop before the copy loop's branch (EE short-loop padding) */
+void GameState_CopyPlayerRecord(Rec204 *dst, int i) { *dst = g_GameState->entry[i]; }
+void GameState_Set_3a48(int v) { *(int *)(((char *)g_GameState) + 0x3a48) = v; }
+int GameState_Get_3a48(void) { return *(int *)(((char *)g_GameState) + 0x3a48); }
+void GameState_CopyCourseRecord(Rec256 *dst, int i) { *dst = g_GameState->course[i]; }
+char *GameState_Ptr_3a04(void) { return ((char *)g_GameState) + 0x3a04; }
+Rec380 *GameState_Elem_2fa0_x17c(int i) { return &g_GameState->stats[i]; }
+Rec256 *GameState_Elem_28a0_x100(int i) { return &g_GameState->course[i]; }
+Rec1344 *GameState_Elem_3e0_x540(int i) { return &g_GameState->racer[i]; }
+int GameState_Get_ec(void) { return *(int *)(((char *)g_GameState) + 0xec); }
+void GameState_Set_e4(int v) { *(int *)(((char *)g_GameState) + 0xe4) = v; }
+void GameState_Set_e0(int v) { *(int *)(((char *)g_GameState) + 0xe0) = v; }
 
 /* 0x00177210 - matched: https://decomp.me/scratch/DAiek */
 int GameState_GetRacerCount(void) {
