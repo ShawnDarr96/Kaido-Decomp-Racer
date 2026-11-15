@@ -48,7 +48,6 @@ Columns:
 | M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
 | M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
 | M15 | Match Vec3_Scale and Vec3_ScaleCopy (97%: the game assigns x/y/z to f0/f1/f2; locals and struct-copy forms tried) | any |  |  | Gap of M14 |
-| M16 | Match batch 12: Profile/CarDb/Obj/TexSlot/GameState/Course/RaceTask/CarRec/SeqGen/Gfx/File/Movie functions (67 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
 
 ## P4 Finish
 
@@ -250,6 +249,7 @@ Columns:
 | M10 | 61/63 matched (https://decomp.me/scratch/zLgfx); 233 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 7f21eea |
 | M12 | 83/84 matched (https://decomp.me/scratch/Drv7c, src/batch10_accessors.c); 316 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 1c8d959 |
 | M14 | 80/82 matched (https://decomp.me/scratch/K6LSo, src/batch11_accessors.c); 396 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | f160237 |
+| M16 | 67/67 matched (https://decomp.me/scratch/j5YB4, src/batch12_accessors.c); 463 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 4a2f7e3 |
 
 ## Changes to the board
 
@@ -392,3 +392,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: M14 done; added M15 (gaps).
 - 2026-11-15 ShawnDarr96: added M16.
 - 2026-11-15 ShawnDarr96/claude: claim M16.
+- 2026-11-15 ShawnDarr96/claude: M16 done.
