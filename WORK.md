@@ -33,9 +33,9 @@ Columns:
 |---|---|---|---|---|---|
 | T1 | Import SDK 2.8.0 types (sceGsDrawEnv, sceGsDispEnv, sceDmaChan, sceCdRMode, sceMcTblGetDir, ...) into the Ghidra project and decomp/include/ | any | F1 |  |  |
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
-| T4 | Recover the race, course and opponent structs | any | F5 | ShawnDarr96/claude (2026-11-14) |  |
 | T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5 |
 | T9 | About 440 RaceCar fields and the embedded CarSpec (+0xbf0) / params block (+0x120) are still unk_ | any |  |  | Gap of T8 |
+| T10 | Race table / slot table (g_RaceTbl 0x9240, g_RaceSlotTbl 0x9944) and the AI line / road graph data are still raw offsets | any |  |  | Gap of T4 |
 
 ## P3 Matching
 
@@ -224,6 +224,7 @@ Columns:
 | T5 | UiMgr/UiLayoutSlot/UiLayout recovered and applied; layout-table accesses now use field names | P2 | ShawnDarr96/claude | 2026-11-14 | 856b9c3 |
 | T3 | RaceCar 0x17e0 recovered (454 fields, ~15 named) and applied; RaceCar_Get typed | P2 | ShawnDarr96/claude | 2026-11-14 | 18464de |
 | T8 | 47 car functions typed RaceCar *; gear field named | P2 | ShawnDarr96/claude | 2026-11-14 | dc68512 |
+| T4 | 4 race/course control structs applied (~630 field refs); 2 misnamed accessors fixed | P2 | ShawnDarr96/claude | 2026-11-14 | 6f133ec |
 
 ## Changes to the board
 
@@ -283,3 +284,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: claim T8.
 - 2026-11-14 ShawnDarr96/claude: T8 done; added T9 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim T4.
+- 2026-11-14 ShawnDarr96/claude: T4 done; added T10 (gaps).
