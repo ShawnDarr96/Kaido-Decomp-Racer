@@ -46,7 +46,7 @@ Columns:
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 | M9 | Match Options_SetDefaults (54%) and Options_ApplySeVolume (74% under b145: final store duplicated into the early-out path) with another C form | any |  |  | Gap of M8 |
 | M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
-| M12 | Match batch 10: Phys/Snd/Profile garage/RaceProg/SpGauge/Msg/GameDb/Script/Composer/Course/RaceCar accessors (84 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
+| M13 | Match Msg_TeamName (85%): the game reloads &local after TeamDb_Copy; MWCC folds it for every form tried | any |  |  | Gap of M12 |
 
 ## P4 Finish
 
@@ -246,6 +246,7 @@ Columns:
 | M8 | RaceCar_Get, RaceScene_IsPaused and GameState_CopyPlayerRecord now match under b145 (landed with M6) | P3 | ShawnDarr96/claude | 2026-11-15 | 3bd316f |
 | M7 | 23 functions matched (src/profile.c, src/carrec.c, src/scene.c; https://decomp.me/scratch/peXXi); 172 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | d26e18e |
 | M10 | 61/63 matched (https://decomp.me/scratch/zLgfx); 233 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 7f21eea |
+| M12 | 83/84 matched (https://decomp.me/scratch/Drv7c, src/batch10_accessors.c); 316 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 1c8d959 |
 
 ## Changes to the board
 
@@ -382,3 +383,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: M10 done; added M11 (gaps).
 - 2026-11-15 ShawnDarr96: added M12.
 - 2026-11-15 ShawnDarr96/claude: claim M12.
+- 2026-11-15 ShawnDarr96/claude: M12 done; added M13 (gaps).
