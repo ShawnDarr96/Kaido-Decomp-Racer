@@ -33,7 +33,7 @@ Columns:
 |---|---|---|---|---|---|
 | T1 | Import SDK 2.8.0 types (sceGsDrawEnv, sceGsDispEnv, sceDmaChan, sceCdRMode, sceMcTblGetDir, ...) into the Ghidra project and decomp/include/ | any | F1 |  |  |
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
-| T3 | Recover the car / vehicle struct and physics state | any | F5 |  |  |
+| T3 | Recover the car / vehicle struct and physics state | any | F5 | ShawnDarr96/claude (2026-11-14) |  |
 | T4 | Recover the race, course and opponent structs | any | F5 |  |  |
 | T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5 |
 
@@ -276,3 +276,4 @@ Columns:
 - 2026-11-14 ShawnDarr96: F13 released: done: 72 globals named (refs 6886 -> 4356); left: 1401 distinct unnamed .bss/.data globals
 - 2026-11-14 ShawnDarr96/claude: claim T5.
 - 2026-11-14 ShawnDarr96/claude: T5 done; added T7 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim T3.
