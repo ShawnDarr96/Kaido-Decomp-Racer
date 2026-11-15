@@ -23,27 +23,27 @@ Columns:
 
 | ID | Task | Area | Needs | Who | Notes |
 |---|---|---|---|---|---|
-| N132 | Replace the menuscr_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 382 functions |
-| N133 | Replace the scrcareer_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 169 functions |
-| N134 | Replace the scrgarage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 157 functions |
-| N135 | Replace the phys_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 143 functions |
-| N136 | Replace the libkernl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 105 functions |
-| N137 | Replace the script_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 85 functions |
-| N138 | Replace the nameentry_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 85 functions |
-| N139 | Replace the eventui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 84 functions |
-| N140 | Replace the scrrace_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 82 functions |
-| N141 | Replace the showroom_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 66 functions |
-| N142 | Replace the msl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 61 functions |
-| N143 | Replace the libmpeg_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 53 functions |
-| N144 | Replace the garage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 51 functions |
-| N145 | Replace the password_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 50 functions |
-| N146 | Replace the newlib_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
-| N147 | Replace the result_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 46 functions |
-| N148 | Replace the raceui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 39 functions |
-| N149 | Replace the vu0math_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 35 functions |
-| N150 | Replace the snd_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 33 functions |
-| N151 | Replace the racehud_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  |  | 33 functions |
-| N152 | Replace the small-module placeholders (snd, racehud, loadfile, libmc, profile, attract, scroptions, libcdvd, misc, carsnd, replayui, libpad2, race, demo, scrrecord, libm, course, road, raceprog, menu, libdbc, libgraph, ui, scrsave) | any |  |  | about 330 functions |
+| N132 | Replace the menuscr_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 382 functions |
+| N133 | Replace the scrcareer_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 169 functions |
+| N134 | Replace the scrgarage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 157 functions |
+| N135 | Replace the phys_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 143 functions |
+| N136 | Replace the libkernl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 105 functions |
+| N137 | Replace the script_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 85 functions |
+| N138 | Replace the nameentry_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 85 functions |
+| N139 | Replace the eventui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 84 functions |
+| N140 | Replace the scrrace_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 82 functions |
+| N141 | Replace the showroom_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 66 functions |
+| N142 | Replace the msl_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 61 functions |
+| N143 | Replace the libmpeg_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 53 functions |
+| N144 | Replace the garage_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 51 functions |
+| N145 | Replace the password_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 50 functions |
+| N146 | Replace the newlib_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 46 functions |
+| N147 | Replace the result_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 46 functions |
+| N148 | Replace the raceui_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 39 functions |
+| N149 | Replace the vu0math_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 35 functions |
+| N150 | Replace the snd_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
+| N151 | Replace the racehud_sub_* placeholders with real names (read each function; keep maybe_ where unsure) | any |  | ShawnDarr96/claude (2026-11-14) | 33 functions |
+| N152 | Replace the small-module placeholders (snd, racehud, loadfile, libmc, profile, attract, scroptions, libcdvd, misc, carsnd, replayui, libpad2, race, demo, scrrecord, libm, course, road, raceprog, menu, libdbc, libgraph, ui, scrsave) | any |  | ShawnDarr96/claude (2026-11-14) | about 330 functions |
 | N153 | Review the maybe_ names in game code (about 300) and confirm or rename them | any |  |  |  |
 
 ## P2 Types
@@ -253,3 +253,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: F4, F5 done; added F10 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim F6.
 - 2026-11-14 ShawnDarr96/claude: F6 done; added F11 (gaps).
+- 2026-11-14 ShawnDarr96/claude: claim N132, N133, N134, N135, N136, N137, N138, N139, N140, N141, N142, N143, N144, N145, N146, N147, N148, N149, N150, N151, N152.
