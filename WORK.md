@@ -44,6 +44,7 @@ Columns:
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  | done: SDK library set + link order recorded (config/sdk_libraries.txt); left: map each library's functions via data refs, then split game code (sinit data order) |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 | M6 | Recheck earlier decomp.me scratches (wWxaE, LM97T, zXHfU, BJ7BQ, DAiek, E0YK3, zUNmC, tudGj, EJChW) under MWCPS2 3.0.1b145; make it the official compiler if they hold | any |  |  | compiler notes in config/compiler.txt; b145 matched tIAOp 26/26 incl. branch-likely |
+| M7 | Match batch 8 on decomp.me: Profile play-date/stat/points/course records, CarRec, Scene gp globals (23 functions) | any |  |  | make target asm with python -I scripts/mkscratch.py <lo> <hi> |
 
 ## P4 Finish
 
@@ -342,3 +343,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: M1 done.
 - 2026-11-15 ShawnDarr96: N153 released: done: ~105 names reviewed; left: 1413 maybe_ names
 - 2026-11-15 ShawnDarr96: added M6.
+- 2026-11-15 ShawnDarr96: added M7.
