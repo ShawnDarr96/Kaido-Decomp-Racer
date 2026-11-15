@@ -34,7 +34,7 @@ Columns:
 | T1 | Import SDK 2.8.0 types (sceGsDrawEnv, sceGsDispEnv, sceDmaChan, sceCdRMode, sceMcTblGetDir, ...) into the Ghidra project and decomp/include/ | any | F1 |  |  |
 | T2 | Recover the game state struct behind the global at 0x0036f1a8 | any | F5 |  |  |
 | T7 | UiLayout internals (0x4f0) and the MenuWnd / menu-screen work structs (the 0x6xx-0xaxx per-screen param blocks) are still raw offsets | any |  |  | Gap of T5; done: UiLayout 20 direct fields, 17 functions typed; left: the element/resource sub-objects the layout points to |
-| T9 | About 440 RaceCar fields and the embedded CarSpec (+0xbf0) / params block (+0x120) are still unk_ | any |  |  | Gap of T8 |
+| T9 | About 440 RaceCar fields and the embedded CarSpec (+0xbf0) / params block (+0x120) are still unk_ | any |  | ShawnDarr96/claude (2026-11-14) | Gap of T8 |
 | T11 | Fields inside RaceRecordA/B and RaceSlot, and the AI line / road graph data, are still unknown | any |  |  | Gap of T10 |
 
 ## P3 Matching
@@ -296,3 +296,4 @@ Columns:
 - 2026-11-14 ShawnDarr96/claude: F15 done; added F16 (gaps).
 - 2026-11-14 ShawnDarr96/claude: claim T7.
 - 2026-11-14 ShawnDarr96: T7 released: done: UiLayout 20 direct fields, 17 functions typed; left: the element/resource sub-objects the layout points to
+- 2026-11-14 ShawnDarr96/claude: claim T9.
