@@ -3,7 +3,9 @@
 #include "ghidra_types.h"
 
 // 0x001e0430  size 0x48
-int maybe_RaceProg_CountC(int param_1,int param_2)
+/* sum of entry+0x18 where entry+4 == key (was maybe_RaceProg_CountC) */
+
+int maybe_StatList_SumField18ByKey(int param_1,int param_2)
 
 {
   int iVar1;
@@ -25,7 +27,9 @@ int maybe_RaceProg_CountC(int param_1,int param_2)
 }
 
 // 0x001e0480  size 0x50
-int maybe_RaceProg_CountD(int param_1,int param_2)
+/* sum of entry+8 + entry+0xc where entry+4 == key (was maybe_RaceProg_CountD) */
+
+int maybe_StatList_SumValuesByKey(int param_1,int param_2)
 
 {
   int iVar1;

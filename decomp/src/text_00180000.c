@@ -31,7 +31,7 @@ void Race_FrameBegin(void)
       uVar2 = Profile_Get(0);
       Career_ProcessDay(uVar2);
     }
-    uVar2 = maybe_RaceProg_GetEntry();
+    uVar2 = RaceProg_GetHeader();
     GameState_Set_35c(uVar2);
     RaceScene_SetupPlayerCar();
   }

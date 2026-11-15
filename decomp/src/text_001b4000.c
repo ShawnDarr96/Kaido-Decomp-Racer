@@ -1852,11 +1852,11 @@ void Career_ProcessDay(int param_1)
     pRVar5 = GameState_Elem_f0_xcc(1);
     pRVar6 = GameState_Elem_2fa0_x17c((int)(char)pRVar5->unk_09);
     iVar12 = GameState_Ptr_48();
-    uVar10 = maybe_RaceProg_GetEntry();
+    uVar10 = RaceProg_GetHeader();
     if ((uVar10 & 1) == 0) {
-      uVar10 = maybe_RaceProg_GetEntry();
+      uVar10 = RaceProg_GetHeader();
       if ((uVar10 & 2) == 0) {
-        uVar10 = maybe_RaceProg_GetEntry();
+        uVar10 = RaceProg_GetHeader();
         if ((uVar10 & 4) != 0) {
           *(short *)(param_1 + 0x5316) = *(short *)(param_1 + 0x5316) + 1;
           if (9999 < *(short *)(param_1 + 0x5316)) {
@@ -1926,7 +1926,7 @@ LAB_001b7ba8:
         }
       }
       else {
-        uVar11 = maybe_RaceProg_GetEntryB();
+        uVar11 = RaceProg_GetInstance();
         *(short *)(param_1 + 0x5314) = *(short *)(param_1 + 0x5314) + 1;
         if (9999 < *(short *)(param_1 + 0x5314)) {
           *(undefined2 *)(param_1 + 0x5314) = 9999;
@@ -2328,7 +2328,7 @@ LAB_001b7998:
     }
     else if (cVar3 == '\x01') {
       uVar11 = RaceProg_GetArray_34(0);
-      iVar13 = maybe_RaceProg_CountB(uVar11);
+      iVar13 = maybe_StatList_AverageValue(uVar11);
       if (*(int *)(param_1 + 0x2bcc) < iVar13) {
         *(int *)(param_1 + 0x2bcc) = iVar13;
       }
@@ -2340,7 +2340,7 @@ LAB_001b7998:
         *(int *)(param_1 + 0x2bc4) =
              (iVar13 + (sVar4 + -1) * *(int *)(param_1 + 0x2bc4)) / (int)sVar4;
       }
-      iVar13 = maybe_RaceProg_CountA(uVar11);
+      iVar13 = maybe_StatList_MaxValue(uVar11);
       if (*(int *)(param_1 + 0x2bd0) < iVar13) {
         *(int *)(param_1 + 0x2bd0) = iVar13;
         iVar13 = *_g_Profiles;

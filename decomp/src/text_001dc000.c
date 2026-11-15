@@ -3,7 +3,9 @@
 #include "ghidra_types.h"
 
 // 0x001dc180  size 0xc
-undefined4 maybe_RaceProg_GetEntry(void)
+/* returns RaceProg's first word: checkpointFlags + two bytes (was maybe_RaceProg_GetEntry) */
+
+undefined4 RaceProg_GetHeader(void)
 
 {
   undefined4 uVar1;
@@ -90,7 +92,9 @@ uint RaceProg_GetArray_28(char param_1)
 }
 
 // 0x001dc280  size 0x8
-RaceProg * maybe_RaceProg_GetEntryB(void)
+/* returns g_RaceProg (was maybe_RaceProg_GetEntryB) */
+
+RaceProg * RaceProg_GetInstance(void)
 
 {
   return g_RaceProg;
@@ -2503,7 +2507,10 @@ void RaceProg_UpdateTimerAll(void)
 }
 
 // 0x001dff30  size 0x48
-void maybe_RaceProg_CountA(int param_1)
+/* max of entry+8 over the -1-terminated 0x1c-byte list at +0xf8 (<= 70 entries) (was
+   maybe_RaceProg_CountA) */
+
+void maybe_StatList_MaxValue(int param_1)
 
 {
   int iVar1;
@@ -2525,7 +2532,9 @@ void maybe_RaceProg_CountA(int param_1)
 }
 
 // 0x001dff80  size 0x50
-int maybe_RaceProg_CountB(int param_1)
+/* running average of entry+8 (was maybe_RaceProg_CountB) */
+
+int maybe_StatList_AverageValue(int param_1)
 
 {
   int iVar1;

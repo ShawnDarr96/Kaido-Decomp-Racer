@@ -51,7 +51,7 @@ void RaceHud_UpdateFinishFlag(int param_1)
       *(undefined1 *)(param_1 + 0x102c) = 1;
     }
   }
-  else if ((*(int *)(param_1 + 0x28c) == 0) && (uVar2 = maybe_RaceProg_GetEntry(), uVar2 != 0)) {
+  else if ((*(int *)(param_1 + 0x28c) == 0) && (uVar2 = RaceProg_GetHeader(), uVar2 != 0)) {
     *(undefined4 *)(param_1 + 0x28c) = 1;
     if ((uVar2 & 4) == 0) {
       if ((uVar2 & 1) == 0) {

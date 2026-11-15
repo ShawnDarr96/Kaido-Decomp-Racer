@@ -2068,7 +2068,7 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
         if (iVar9 < 9) {
           iVar10 = 0x58;
           do {
-            uVar6 = maybe_RaceProg_CountD(uVar5,iVar9);
+            uVar6 = maybe_StatList_SumValuesByKey(uVar5,iVar9);
             RaceUi_DrawSprite(0x43fc0000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,
                               0x3f800000,iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,0xc - iVar9,1,0
                              );
@@ -2088,7 +2088,7 @@ void RaceUi_TaskLapCounter(undefined8 param_1)
         if (-1 < iVar9) {
           iVar10 = 0x58;
           do {
-            uVar6 = maybe_RaceProg_CountD(uVar5,iVar9);
+            uVar6 = maybe_StatList_SumValuesByKey(uVar5,iVar9);
             RaceUi_DrawSprite(0x43fc0000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,
                               0x3f800000,iVar7 + 0x26f0,*_s_RaceUiSpriteCursor + -10,iVar9 + 4,1,0);
             RaceUi_DrawSprite(0x44020000,(float)iVar10,*(undefined4 *)(iVar7 + 0x3b70),0x3f800000,

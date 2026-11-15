@@ -2786,7 +2786,7 @@ address,size,name,file,status
 0x001dbbc0,0x344,RaceRule_CheckFreeRun,src/text_001d8000.c,decompiled
 0x001dbf40,0x94,maybe_RaceTask_InitRules,src/text_001d8000.c,decompiled
 0x001dbfe0,0x1a0,RaceRule_Finish,src/text_001d8000.c,decompiled
-0x001dc180,0xc,maybe_RaceProg_GetEntry,src/text_001dc000.c,decompiled
+0x001dc180,0xc,RaceProg_GetHeader,src/text_001dc000.c,decompiled
 0x001dc190,0xc,RaceProg_Get_c,src/text_001dc000.c,decompiled
 0x001dc1a0,0xc,RaceProg_Set_8,src/text_001dc000.c,decompiled
 0x001dc1b0,0x18,RaceProg_GetPhase,src/text_001dc000.c,decompiled
@@ -2795,7 +2795,7 @@ address,size,name,file,status
 0x001dc220,0x1c,RaceProg_GetArray_40,src/text_001dc000.c,decompiled
 0x001dc240,0x1c,RaceProg_GetArray_34,src/text_001dc000.c,decompiled
 0x001dc260,0x1c,RaceProg_GetArray_28,src/text_001dc000.c,decompiled
-0x001dc280,0x8,maybe_RaceProg_GetEntryB,src/text_001dc000.c,decompiled
+0x001dc280,0x8,RaceProg_GetInstance,src/text_001dc000.c,decompiled
 0x001dc290,0xc,RaceProg_Get_4,src/text_001dc000.c,decompiled
 0x001dc2a0,0x10,Flags_Set,src/text_001dc000.c,decompiled
 0x001dc2b0,0xfc,RaceProg_UpdateAll,src/text_001dc000.c,decompiled
@@ -2834,11 +2834,11 @@ address,size,name,file,status
 0x001df7d0,0x4ec,RaceProg_UpdateLaps,src/text_001dc000.c,decompiled
 0x001dfcd0,0x1e0,RaceProg_UpdateTimers,src/text_001dc000.c,decompiled
 0x001dfec0,0x64,RaceProg_UpdateTimerAll,src/text_001dc000.c,decompiled
-0x001dff30,0x48,maybe_RaceProg_CountA,src/text_001dc000.c,decompiled
-0x001dff80,0x50,maybe_RaceProg_CountB,src/text_001dc000.c,decompiled
+0x001dff30,0x48,maybe_StatList_MaxValue,src/text_001dc000.c,decompiled
+0x001dff80,0x50,maybe_StatList_AverageValue,src/text_001dc000.c,decompiled
 0x001dffd0,0x458,RaceProg_UpdateGapMeter,src/text_001dc000.c,decompiled
-0x001e0430,0x48,maybe_RaceProg_CountC,src/text_001e0000.c,decompiled
-0x001e0480,0x50,maybe_RaceProg_CountD,src/text_001e0000.c,decompiled
+0x001e0430,0x48,maybe_StatList_SumField18ByKey,src/text_001e0000.c,decompiled
+0x001e0480,0x50,maybe_StatList_SumValuesByKey,src/text_001e0000.c,decompiled
 0x001e04d0,0x18,RaceProg_GetSplit,src/text_001e0000.c,decompiled
 0x001e04f0,0xc,RaceProg_Set_10,src/text_001e0000.c,decompiled
 0x001e0500,0xc,RaceProg_Get_10,src/text_001e0000.c,decompiled

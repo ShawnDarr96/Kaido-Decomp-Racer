@@ -710,9 +710,9 @@ void Result_BuildBattleRecords(int param_1,undefined1 param_2)
     iVar4 = 0;
     iVar3 = param_1;
     do {
-      uVar5 = maybe_RaceProg_CountD(uVar6,iVar4);
+      uVar5 = maybe_StatList_SumValuesByKey(uVar6,iVar4);
       *(undefined4 *)(iVar3 + 0x154) = uVar5;
-      uVar5 = maybe_RaceProg_CountC(uVar6,iVar4);
+      uVar5 = maybe_StatList_SumField18ByKey(uVar6,iVar4);
       *(undefined4 *)(iVar3 + 0x17c) = uVar5;
       if (*(int *)(param_1 + 0x9c) == 0) {
         *(int *)(iVar3 + 0x1ac) = *(int *)(iVar3 + 0x154) - *(int *)(iVar3 + 0xa4);

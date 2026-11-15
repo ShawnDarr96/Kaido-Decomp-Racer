@@ -2786,7 +2786,7 @@ address,name,signature,source,comment
 0x001dbbc0,RaceRule_CheckFreeRun,,game,
 0x001dbf40,maybe_RaceTask_InitRules,,game,allocates RaceRule for the racer count and mode (was maybe_Race_CheckRuleEnd)
 0x001dbfe0,RaceRule_Finish,,game,
-0x001dc180,maybe_RaceProg_GetEntry,,game,
+0x001dc180,RaceProg_GetHeader,,game,returns RaceProg's first word: checkpointFlags + two bytes (was maybe_RaceProg_GetEntry)
 0x001dc190,RaceProg_Get_c,,game-accessor,
 0x001dc1a0,RaceProg_Set_8,,game-accessor,
 0x001dc1b0,RaceProg_GetPhase,,game,"returns RaceProg+8, or 3 when no race is running (was RaceProg_Get)"
@@ -2795,7 +2795,7 @@ address,name,signature,source,comment
 0x001dc220,RaceProg_GetArray_40,,game-accessor,
 0x001dc240,RaceProg_GetArray_34,,game-accessor,
 0x001dc260,RaceProg_GetArray_28,,game-accessor,
-0x001dc280,maybe_RaceProg_GetEntryB,,game,
+0x001dc280,RaceProg_GetInstance,,game,returns g_RaceProg (was maybe_RaceProg_GetEntryB)
 0x001dc290,RaceProg_Get_4,,game-accessor,
 0x001dc2a0,Flags_Set,,game,*p |= mask
 0x001dc2b0,RaceProg_UpdateAll,,game,
@@ -2834,11 +2834,11 @@ address,name,signature,source,comment
 0x001df7d0,RaceProg_UpdateLaps,,game,
 0x001dfcd0,RaceProg_UpdateTimers,,game,
 0x001dfec0,RaceProg_UpdateTimerAll,,game,
-0x001dff30,maybe_RaceProg_CountA,,game,
-0x001dff80,maybe_RaceProg_CountB,,game,
+0x001dff30,maybe_StatList_MaxValue,,game,max of entry+8 over the -1-terminated 0x1c-byte list at +0xf8 (<= 70 entries) (was maybe_RaceProg_CountA)
+0x001dff80,maybe_StatList_AverageValue,,game,running average of entry+8 (was maybe_RaceProg_CountB)
 0x001dffd0,RaceProg_UpdateGapMeter,,game,
-0x001e0430,maybe_RaceProg_CountC,,game,
-0x001e0480,maybe_RaceProg_CountD,,game,
+0x001e0430,maybe_StatList_SumField18ByKey,,game,sum of entry+0x18 where entry+4 == key (was maybe_RaceProg_CountC)
+0x001e0480,maybe_StatList_SumValuesByKey,,game,sum of entry+8 + entry+0xc where entry+4 == key (was maybe_RaceProg_CountD)
 0x001e04d0,RaceProg_GetSplit,,game,
 0x001e04f0,RaceProg_Set_10,,game-accessor,
 0x001e0500,RaceProg_Get_10,,game-accessor,
