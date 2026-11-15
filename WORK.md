@@ -45,7 +45,7 @@ Columns:
 | M3 | Split .text into original translation units using SDK library boundaries and alignment | any | M2, F1, F2 |  | done: SDK library set + link order recorded (config/sdk_libraries.txt); left: map each library's functions via data refs, then split game code (sinit data order) |
 | M5 | Plan matching rows per translation unit once M3 is done and add them to this board | humans | M3 |  |  |
 | M9 | Match Options_SetDefaults (54%) and Options_ApplySeVolume (74% under b145: final store duplicated into the early-out path) with another C form | any |  |  | Gap of M8 |
-| M10 | Match batch 9: RaceProg, Composer/Nameentry, Movie, Wheel, PhysPair/PhysBody, Light accessors (63 functions) | any |  | ShawnDarr96/claude (2026-11-15) |  |
+| M11 | Match maybe_EngineObj_SetBitB (needs C++ virtual call codegen: vtable load, jr t9) and PhysBody_SetVelocity (needs a 128-bit lq/sq type) | any |  |  | Gap of M10 |
 
 ## P4 Finish
 
@@ -244,6 +244,7 @@ Columns:
 | M6 | compiler = mwcps2-3.0.1b145-050209 -O4,p; all scratches rechecked; +3 matches (RaceCar_Get, RaceScene_IsPaused, GameState_CopyPlayerRecord), -1 (Options_ApplySeVolume only matches under 3.0); 149 matched | P3 | ShawnDarr96/claude | 2026-11-15 | 3bd316f |
 | M8 | RaceCar_Get, RaceScene_IsPaused and GameState_CopyPlayerRecord now match under b145 (landed with M6) | P3 | ShawnDarr96/claude | 2026-11-15 | 3bd316f |
 | M7 | 23 functions matched (src/profile.c, src/carrec.c, src/scene.c; https://decomp.me/scratch/peXXi); 172 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | d26e18e |
+| M10 | 61/63 matched (https://decomp.me/scratch/zLgfx); 233 matched in total | P3 | ShawnDarr96/claude | 2026-11-15 | 7f21eea |
 
 ## Changes to the board
 
@@ -377,3 +378,4 @@ Columns:
 - 2026-11-15 ShawnDarr96/claude: M7 done.
 - 2026-11-15 ShawnDarr96: added M10.
 - 2026-11-15 ShawnDarr96/claude: claim M10.
+- 2026-11-15 ShawnDarr96/claude: M10 done; added M11 (gaps).
